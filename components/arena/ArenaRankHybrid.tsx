@@ -17,7 +17,7 @@
 //  Терминология экрана — РАНГ (владелец, D-40), не «лига»: тир = золотой щит
 //  Арены, а не клубная лига.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
 import Reanimated, {
@@ -47,6 +47,8 @@ import { useArenaSound } from '../../hooks/use_arena_sound';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { ArenaRankAnnounce } from '../../modules/arena/result_view';
 import PressableHybrid from '../PressableHybrid';
+import { ArenaStarGlyph } from './ArenaStarGlyph';
+import { GoldDustFall, ImpactFlash, RaysHalo, fireImpactFlash } from './ArenaImpactFx';
 
 const TIER_COPY: Record<ArenaTierKey, 'tierBronze' | 'tierSilver' | 'tierGold' | 'tierPlatinum' | 'tierDiamond' | 'tierMaster' | 'tierGrandmaster' | 'tierLegend'> = {
   bronze: 'tierBronze',
@@ -75,13 +77,15 @@ const DIVISION_ROMAN: Record<1 | 2 | 3, string> = { 1: 'I', 2: 'II', 3: 'III' };
  * Вся хореография на shared values + два setTimeout — как в соседних сценах
  * файла; JS-поток не тикает по кадрам.
  */
-function RankStarsBeat({ fromFilled, toFilled, direction, startDelayMs, reduceMotion, size = 20 }: {
+function RankStarsBeat({ fromFilled, toFilled, direction, startDelayMs, reduceMotion, size = 22, onImpact }: {
   fromFilled: number;
   toFilled: number;
   direction: 'up' | 'down';
   startDelayMs: number;
   reduceMotion: boolean;
   size?: number;
+  /** Момент удара победной звезды — сцена вешает сюда вспышку/звук/пыль. */
+  onImpact?: () => void;
 }) {
   const P = useTournamentPalette();
   const from = Math.max(0, Math.min(3, Math.trunc(fromFilled)));
@@ -93,27 +97,52 @@ function RankStarsBeat({ fromFilled, toFilled, direction, startDelayMs, reduceMo
   const beatIndex = direction === 'up' ? beatFilled - 1 : beatFilled;
   const [filled, setFilled] = useState(reduceMotion ? to : from);
   const rowOpacity = useSharedValue(1);
-  const beatScale = useSharedValue(1);
+  const beatY = useSharedValue(0);
+  const beatScaleX = useSharedValue(1);
+  const beatScaleY = useSharedValue(1);
   const haloOpacity = useSharedValue(0);
   const haloScale = useSharedValue(0.6);
+  const ringOpacity = useSharedValue(0);
+  const ringScale = useSharedValue(0.55);
+  // Каскад надежды при спуске: сохранённые звёзды загораются одна за другой.
+  const hopeA = useSharedValue(1);
+  const hopeB = useSharedValue(1);
+  const onImpactRef = useRef(onImpact);
+  onImpactRef.current = onImpact;
 
   useEffect(() => {
     if (reduceMotion) { setFilled(to); return; }
     setFilled(from);
     const timers: ReturnType<typeof setTimeout>[] = [];
-    timers.push(setTimeout(() => {
-      setFilled(beatFilled);
-      if (direction === 'up') {
-        beatScale.value = withSequence(withTiming(1.45, { duration: 0 }), withSpring(1, SUITE.pulse));
-        haloOpacity.value = withSequence(withTiming(0.85, { duration: 0 }), withTiming(0, { duration: 640, easing: Easing.linear }));
-        haloScale.value = withSequence(withTiming(0.6, { duration: 0 }), withTiming(2.4, { duration: 640, easing: Easing.out(Easing.quad) }));
-      } else {
-        beatScale.value = withSequence(withTiming(0.72, { duration: 140, easing: Easing.out(Easing.quad) }), withSpring(1, SUITE.pulse));
-      }
-    }, startDelayMs));
+    if (direction === 'up') {
+      // Замах и падение: звезда появляется НАД слотом и бьёт вниз (Чекан).
+      timers.push(setTimeout(() => {
+        setFilled(beatFilled);
+        beatY.value = withSequence(
+          withTiming(-30, { duration: 0 }),
+          withTiming(-34, { duration: CHK.anticipMs, easing: Easing.inOut(Easing.ease) }),
+          withTiming(0, { duration: CHK.fallMs, easing: Easing.bezier(...CHK.fallBezier) }),
+        );
+      }, startDelayMs));
+      timers.push(setTimeout(() => {
+        onImpactRef.current?.();
+        beatScaleY.value = withSequence(withTiming(0.72, { duration: 0 }), withSpring(1, CHK.squash));
+        beatScaleX.value = withSequence(withTiming(1.3, { duration: 0 }), withSpring(1, CHK.squash));
+        haloOpacity.value = withSequence(withTiming(1, { duration: 0 }), withTiming(0, { duration: 680, easing: Easing.linear }));
+        haloScale.value = withSequence(withTiming(0.55, { duration: 0 }), withTiming(2.4, { duration: 680, easing: Easing.out(Easing.quad) }));
+        ringOpacity.value = withSequence(withTiming(0.9, { duration: 0 }), withTiming(0, { duration: CHK.ringPrimaryMs, easing: Easing.linear }));
+        ringScale.value = withSequence(withTiming(0.55, { duration: 0 }), withTiming(2.5, { duration: CHK.ringPrimaryMs, easing: Easing.out(Easing.quad) }));
+      }, startDelayMs + CHK.anticipMs + CHK.fallMs));
+    } else {
+      // «Выдох»: потерянная звезда мягко сжимается и гаснет — без красного.
+      timers.push(setTimeout(() => {
+        setFilled(beatFilled);
+        beatScaleX.value = withSequence(withTiming(0.72, { duration: 140, easing: Easing.out(Easing.quad) }), withSpring(1, SUITE.pulse));
+        beatScaleY.value = withSequence(withTiming(0.72, { duration: 140, easing: Easing.out(Easing.quad) }), withSpring(1, SUITE.pulse));
+      }, startDelayMs));
+    }
     if (crossing) {
-      // Второй такт: ряд гаснет, под затемнением меняется на счёт нового
-      // ранга и проявляется обратно.
+      // Второй такт: ряд гаснет, под затемнением меняется счёт нового ранга.
       timers.push(setTimeout(() => {
         rowOpacity.value = withSequence(
           withTiming(0, { duration: 200, easing: Easing.out(Easing.quad) }),
@@ -121,11 +150,23 @@ function RankStarsBeat({ fromFilled, toFilled, direction, startDelayMs, reduceMo
         );
       }, startDelayMs + 780));
       timers.push(setTimeout(() => setFilled(to), startDelayMs + 980));
+      if (direction === 'down' && to >= 1) {
+        // Нота надежды: сохранённые звёзды вспыхивают каскадом 90ms.
+        timers.push(setTimeout(() => {
+          hopeA.value = withSequence(withTiming(0.7, { duration: 0 }), withSpring(1, SUITE.pulse));
+        }, startDelayMs + 1220));
+        if (to >= 2) timers.push(setTimeout(() => {
+          hopeB.value = withSequence(withTiming(0.7, { duration: 0 }), withSpring(1, SUITE.pulse));
+        }, startDelayMs + 1310));
+      }
     }
     return () => {
       timers.forEach((timer) => clearTimeout(timer));
-      cancelAnimation(rowOpacity); cancelAnimation(beatScale);
+      cancelAnimation(rowOpacity); cancelAnimation(beatY);
+      cancelAnimation(beatScaleX); cancelAnimation(beatScaleY);
       cancelAnimation(haloOpacity); cancelAnimation(haloScale);
+      cancelAnimation(ringOpacity); cancelAnimation(ringScale);
+      cancelAnimation(hopeA); cancelAnimation(hopeB);
     };
     // зачем: хореография собирается один раз на монтирование сцены — как в
     // соседних сценах этого файла.
@@ -133,30 +174,64 @@ function RankStarsBeat({ fromFilled, toFilled, direction, startDelayMs, reduceMo
   }, [reduceMotion]);
 
   const rowStyle = useAnimatedStyle(() => ({ opacity: rowOpacity.value }));
-  const beatStyle = useAnimatedStyle(() => ({ transform: [{ scale: beatScale.value }] }));
+  const beatStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: beatY.value }, { scaleX: beatScaleX.value }, { scaleY: beatScaleY.value }],
+  }));
   const haloStyle = useAnimatedStyle(() => ({ opacity: haloOpacity.value, transform: [{ scale: haloScale.value }] }));
+  const ringStyle = useAnimatedStyle(() => ({ opacity: ringOpacity.value, transform: [{ scale: ringScale.value }] }));
+  const hopeStyleA = useAnimatedStyle(() => ({ transform: [{ scale: hopeA.value }] }));
+  const hopeStyleB = useAnimatedStyle(() => ({ transform: [{ scale: hopeB.value }] }));
 
   return (
     <Reanimated.View style={[styles.starsRow, rowStyle]}>
       {[0, 1, 2].map((index) => {
         const lit = index < filled;
-        const icon = (
-          <Ionicons
-            name={lit ? 'star' : 'star-outline'}
-            size={size}
-            color={lit ? P.gold : P.muted}
-            style={lit ? undefined : styles.starDim}
-          />
-        );
-        if (index !== beatIndex) return <View key={index}>{icon}</View>; // guard-ok: три фиксированных слота
+        const icon = <ArenaStarGlyph lit={lit} size={size} />;
+        if (index === beatIndex) {
+          return (
+            <View key={index} style={styles.starBeatWrap}>{/* guard-ok: три фиксированных слота, порядок не меняется */}
+              <Reanimated.View pointerEvents="none" style={[styles.starHalo, haloStyle]} />
+              <Reanimated.View pointerEvents="none" style={[styles.starRing, ringStyle]}>
+                <View style={[styles.starRingHole, { backgroundColor: P.card }]} />
+              </Reanimated.View>
+              <Reanimated.View style={beatStyle}>{icon}</Reanimated.View>
+            </View>
+          );
+        }
+        const hope = index === 0 ? hopeStyleA : index === 1 ? hopeStyleB : null;
         return (
-          <View key={index} style={styles.starBeatWrap}>{/* guard-ok: три фиксированных слота, порядок не меняется */}
-            <Reanimated.View pointerEvents="none" style={[styles.starHalo, haloStyle, { backgroundColor: P.gold }]} />
-            <Reanimated.View style={beatStyle}>{icon}</Reanimated.View>
-          </View>
+          <Reanimated.View key={index} style={hope}>{icon}</Reanimated.View> // guard-ok: три фиксированных слота
         );
       })}
     </Reanimated.View>
+  );
+}
+
+/** Римская цифра деления тикает: старая уходит, новая падает пружиной. */
+function DivisionTick({ from, to, direction, delayMs, reduceMotion }: {
+  from: 1 | 2 | 3; to: 1 | 2 | 3; direction: 'up' | 'down'; delayMs: number; reduceMotion: boolean;
+}) {
+  const oldOpacity = useSharedValue(1);
+  const oldY = useSharedValue(0);
+  const newOpacity = useSharedValue(0);
+  const newY = useSharedValue(direction === 'up' ? 18 : -18);
+  useEffect(() => {
+    if (reduceMotion) { oldOpacity.value = 0; newOpacity.value = 1; newY.value = 0; return; }
+    const shift = direction === 'up' ? -16 : 16;
+    oldOpacity.value = withDelay(delayMs, withTiming(0, { duration: 220, easing: Easing.out(Easing.quad) }));
+    oldY.value = withDelay(delayMs, withTiming(shift, { duration: 220, easing: Easing.out(Easing.quad) }));
+    newOpacity.value = withDelay(delayMs, withTiming(1, { duration: 240, easing: Easing.out(Easing.quad) }));
+    newY.value = withDelay(delayMs, withSpring(0, SUITE.pulse));
+    return () => { cancelAnimation(oldOpacity); cancelAnimation(oldY); cancelAnimation(newOpacity); cancelAnimation(newY); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduceMotion]);
+  const oldStyle = useAnimatedStyle(() => ({ opacity: oldOpacity.value, transform: [{ translateY: oldY.value }] }));
+  const newStyle = useAnimatedStyle(() => ({ opacity: newOpacity.value, transform: [{ translateY: newY.value }] }));
+  return (
+    <View style={styles.divTick}>
+      <Reanimated.Text style={[styles.divTickText, oldStyle]}>{DIVISION_ROMAN[from]}</Reanimated.Text>
+      <Reanimated.Text style={[styles.divTickText, styles.divTickAbs, newStyle]}>{DIVISION_ROMAN[to]}</Reanimated.Text>
+    </View>
   );
 }
 
@@ -252,6 +327,9 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromSta
   const ctaOpacity = useSharedValue(0);
   const ctaY = useSharedValue(12);
   const dustOpacity = useSharedValue(0);
+  // зачем: премиум-прогон (владелец, 2026-08-23) — вспышка всего экрана в
+  // момент удара щита, как в принятом макете phraseman-arena-stars.html.
+  const flashOpacity = useSharedValue(0);
 
   useEffect(() => {
     const L = LUM.ladder;
@@ -284,6 +362,7 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromSta
     function onImpact() {
       playSound('rankUp');
       void hapticSuccess();
+      fireImpactFlash(flashOpacity, 0.6);
       embScaleY.value = withSpring(1, CHK.squash);
       embScaleX.value = withSequence(withTiming(1.16, { duration: 0 }), withSpring(1, CHK.squash));
       cardY.value = withSequence(withTiming(6, { duration: 0 }), withSpring(0, CHK.recoil));
@@ -336,6 +415,7 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromSta
       cancelAnimation(ring1Scale); cancelAnimation(ring1Opacity);
       cancelAnimation(rewardsOpacity); cancelAnimation(rewardsX);
       cancelAnimation(ctaOpacity); cancelAnimation(ctaY); cancelAnimation(dustOpacity);
+      cancelAnimation(flashOpacity);
     };
     // зачем: хореография собирается один раз на монтирование сцены (тир не
     // меняется в рамках одного показа) — не на каждый ре-рендер темы/языка.
@@ -370,6 +450,9 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromSta
       <Reanimated.View pointerEvents="none" style={[styles.bloom, bloomStyle, { backgroundColor: P.gold }]} />
       <Reanimated.View style={[styles.card, cardStyle, { backgroundColor: P.card }, noAndroidOutline]}>
         <View style={styles.embWrap}>
+          {/* Лучи разгораются после удара и медленно плывут — принятый макет F. */}
+          <RaysHalo delayMs={LUM.ladder[2] + 140 + CHK.anticipMs + CHK.fallMs} reduceMotion={reduceMotion} size={300} />
+          <GoldDustFall delayMs={LUM.ladder[2] + 140 + CHK.anticipMs + CHK.fallMs + 120} count={14} reduceMotion={reduceMotion} />
           {dustLayers.map((d) => (
             <DustSpark key={d.key} dx={d.dx} dy={d.dy} opacity={dustOpacity} color={P.gold} />
           ))}
@@ -419,6 +502,7 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromSta
           </DuoPressable>
         </Reanimated.View>
       </Reanimated.View>
+      <ImpactFlash opacity={flashOpacity} />
     </View>
   );
 }
@@ -455,9 +539,14 @@ function RewardRow({ icon, color, title, sub, P }: {
 
 export const ArenaTierUpHybrid = memo(ArenaTierUpHybridImpl);
 
-// ─── B. «Шаг ранга» (rank_up) — только база ────────────────────────────────
+// ─── B. «Смена деления» (rank_up / rank_down) — полноценная модалка ─────────
+// зачем: владелец (2026-08-23) — «модалы повышения и понижения ранга, всё
+// премиально». Тихий баннер заменён модалкой по принятому макету
+// .motion-mockups/phraseman-arena-stars.html: подъём — герой-звезда бьёт с
+// вспышкой и лучами; спуск — обратный Световод с тёплой бронзой, честным
+// тиком цифры вниз и «нотой надежды» на сохранённых звёздах.
 
-export interface ArenaRankStepHybridProps extends RankHybridProps {
+export interface ArenaRankShiftHybridProps extends RankHybridProps {
   tierIndex: number;
   fromDivision: 1 | 2 | 3;
   toDivision: 1 | 2 | 3;
@@ -465,112 +554,205 @@ export interface ArenaRankStepHybridProps extends RankHybridProps {
   /** Звёзды ранга до и после матча — для ряда из трёх пипсов. */
   fromStars: number;
   toStars: number;
+  onRevenge?: () => void;
 }
 
-function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, direction, fromStars, toStars, reduceMotion, onDone, transitionLabel }: ArenaRankStepHybridProps) {
+function ArenaRankShiftHybridImpl({ tierIndex, fromDivision, toDivision, direction, fromStars, toStars, reduceMotion, onDone, onRevenge, transitionLabel }: ArenaRankShiftHybridProps) {
   const P = useTournamentPalette();
   const { lang } = useLang();
   const playSound = useArenaSound();
+  const up = direction === 'up';
+  const BRONZE = ARENA_RANK_HYBRID_COLORS.bronze;
 
-  const bannerOpacity = useSharedValue(0);
-  const bannerY = useSharedValue(14);
-  const sweepX = useSharedValue(-70);
-  const sweepOpacity = useSharedValue(0);
-  const numScale = useSharedValue(1);
-  const numOpacity = useSharedValue(1);
-  const [displayDivision, setDisplayDivision] = useState<1 | 2 | 3>(fromDivision);
+  const bgOpacity = useSharedValue(0);
+  const auraOpacity = useSharedValue(0);
+  const auraScale = useSharedValue(0.8);
+  const cardOpacity = useSharedValue(0);
+  const cardScale = useSharedValue(up ? 1.05 : 1);
+  const cardY = useSharedValue(up ? 0 : -12);
+  const cardX = useSharedValue(0);
+  const flashOpacity = useSharedValue(0);
+  const pillOpacity = useSharedValue(0);
+  const pillY = useSharedValue(8);
+  const headlineOpacity = useSharedValue(0);
+  const headlineY = useSharedValue(8);
+  const transOpacity = useSharedValue(0);
+  const bodyOpacity = useSharedValue(0);
+  const bodyY = useSharedValue(8);
+  const rewardsOpacity = useSharedValue(0);
+  const rewardsX = useSharedValue(-12);
+  const ctaOpacity = useSharedValue(0);
+  const ctaY = useSharedValue(12);
+  const [impacted, setImpacted] = useState(false);
+
+  // Удар звезды приходит из RankStarsBeat — вспышка, встряска, звук в одну кадр-точку.
+  const onStarImpact = useMemo(() => () => {
+    setImpacted(true);
+    playSound('rankUp');
+    void hapticSuccess();
+    fireImpactFlash(flashOpacity, 0.5);
+    cardY.value = withSequence(withTiming(5, { duration: 0 }), withSpring(0, CHK.recoil));
+    cardX.value = withSequence(
+      withTiming(-2, { duration: 54 }),
+      withTiming(2, { duration: 72 }),
+      withSpring(0, SUITE.pulse),
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const L = LUM.ladder;
-
     if (reduceMotion) {
-      bannerOpacity.value = 1; bannerY.value = 0;
-      sweepOpacity.value = 0;
-      setDisplayDivision(toDivision);
-      playSound(direction === 'up' ? 'rankUp' : 'rankDown');
-      void (direction === 'up' ? hapticLightImpact() : hapticWarning());
+      bgOpacity.value = 1; auraOpacity.value = up ? 0.6 : 0.2;
+      cardOpacity.value = 1; cardScale.value = 1; cardY.value = 0;
+      pillOpacity.value = 1; pillY.value = 0;
+      headlineOpacity.value = 1; headlineY.value = 0;
+      transOpacity.value = 1; bodyOpacity.value = 1; bodyY.value = 0;
+      rewardsOpacity.value = 1; rewardsX.value = 0;
+      ctaOpacity.value = 1; ctaY.value = 0;
+      playSound(up ? 'rankUp' : 'rankDown');
+      void (up ? hapticSuccess() : hapticWarning());
       return;
     }
+    if (!up) { playSound('rankDown'); void hapticWarning(); }
 
-    setDisplayDivision(fromDivision);
-    bannerOpacity.value = withDelay(L[1], withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.quad) }));
-    bannerY.value = withDelay(L[1], withSpring(0, LUM.settle));
+    bgOpacity.value = withTiming(1, { duration: 280, easing: Easing.out(Easing.quad) });
+    auraOpacity.value = withTiming(up ? 0.6 : 0.2, { duration: up ? 900 : 320, easing: Easing.out(Easing.quad) });
+    if (up) auraScale.value = withTiming(1.3, { duration: 900, easing: Easing.out(Easing.quad) });
 
-    sweepOpacity.value = withDelay(L[2], withTiming(1, { duration: 10, easing: Easing.linear }));
-    sweepX.value = withDelay(L[2], withTiming(300, { duration: 520, easing: Easing.bezier(0.32, 0.72, 0, 1) }, (finished) => {
-      if (finished) sweepOpacity.value = 0;
-    }));
+    cardOpacity.value = withDelay(L[1], withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.quad) }));
+    if (up) cardScale.value = withDelay(L[1], withSpring(1, LUM.settle));
+    else cardY.value = withDelay(L[1], withSpring(0, LUM.settle));
 
-    const tickAt = L[2] + 250;
-    const tickTimer = setTimeout(() => {
-      setDisplayDivision(toDivision);
-      numOpacity.value = 0.4;
-      numOpacity.value = withTiming(1, { duration: 180, easing: Easing.out(Easing.quad) });
-      numScale.value = withSequence(withTiming(1.06, { duration: 0 }), withSpring(1, SUITE.pulse));
-      playSound(direction === 'up' ? 'rankUp' : 'rankDown');
-      void (direction === 'up' ? hapticLightImpact() : hapticWarning());
-    }, tickAt);
+    pillOpacity.value = withDelay(200, withTiming(1, { duration: 280, easing: Easing.out(Easing.quad) }));
+    pillY.value = withDelay(200, withSpring(0, SUITE.text));
+    headlineOpacity.value = withDelay(250, withTiming(1, { duration: 280, easing: Easing.out(Easing.quad) }));
+    headlineY.value = withDelay(250, withSpring(0, SUITE.text));
+    transOpacity.value = withDelay(300, withTiming(1, { duration: 280, easing: Easing.out(Easing.quad) }));
 
-    const exitAt = 2050;
-    const exitTimer = setTimeout(() => {
-      bannerOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.out(Easing.quad) });
-      bannerY.value = withTiming(-10, { duration: LUM.exitMs, easing: Easing.out(Easing.quad) }, (finished) => {
-        if (finished && onDone) runOnJS(onDone)();
-      });
-    }, exitAt);
+    if (!up) {
+      // Спуск: вздрагивание ряда на L3 — момент осознания, не наказание.
+      cardX.value = withDelay(L[3], withSequence(
+        withTiming(-4, { duration: 54 }),
+        withTiming(4, { duration: 72 }),
+        withTiming(-2, { duration: 62 }),
+        withSpring(0, LUM.settle),
+      ));
+    }
+
+    const tail = up ? L[3] + CHK.anticipMs + CHK.fallMs + 560 : L[3] + 700;
+    bodyOpacity.value = withDelay(tail, withTiming(1, { duration: 240, easing: Easing.out(Easing.quad) }));
+    bodyY.value = withDelay(tail, withSpring(0, SUITE.text));
+    rewardsOpacity.value = withDelay(tail + 60, withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }));
+    rewardsX.value = withDelay(tail + 60, withSpring(0, SUITE.row));
+    ctaOpacity.value = withDelay(tail + 150, withTiming(1, { duration: 280, easing: Easing.out(Easing.quad) }));
+    ctaY.value = withDelay(tail + 150, withSpring(0, SUITE.pulse));
 
     return () => {
-      clearTimeout(tickTimer);
-      clearTimeout(exitTimer);
-      cancelAnimation(bannerOpacity); cancelAnimation(bannerY);
-      cancelAnimation(sweepX); cancelAnimation(sweepOpacity);
-      cancelAnimation(numScale); cancelAnimation(numOpacity);
+      cancelAnimation(bgOpacity); cancelAnimation(auraOpacity); cancelAnimation(auraScale);
+      cancelAnimation(cardOpacity); cancelAnimation(cardScale); cancelAnimation(cardY); cancelAnimation(cardX);
+      cancelAnimation(flashOpacity); cancelAnimation(pillOpacity); cancelAnimation(pillY);
+      cancelAnimation(headlineOpacity); cancelAnimation(headlineY); cancelAnimation(transOpacity);
+      cancelAnimation(bodyOpacity); cancelAnimation(bodyY);
+      cancelAnimation(rewardsOpacity); cancelAnimation(rewardsX);
+      cancelAnimation(ctaOpacity); cancelAnimation(ctaY);
     };
+    // зачем: хореография собирается один раз на монтирование сцены.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [direction, fromDivision, playSound, reduceMotion, tierIndex, toDivision]);
+  }, [reduceMotion]);
 
-  const bannerStyle = useAnimatedStyle(() => ({ opacity: bannerOpacity.value, transform: [{ translateY: bannerY.value }] }));
-  const sweepStyle = useAnimatedStyle(() => ({ opacity: sweepOpacity.value, transform: [{ translateX: sweepX.value }] }));
-  const numStyle = useAnimatedStyle(() => ({ opacity: numOpacity.value, transform: [{ scale: numScale.value }] }));
+  const bgStyle = useAnimatedStyle(() => ({ opacity: bgOpacity.value }));
+  const auraStyle = useAnimatedStyle(() => ({ opacity: auraOpacity.value, transform: [{ scale: auraScale.value }] }));
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: cardOpacity.value,
+    transform: [{ translateX: cardX.value }, { translateY: cardY.value }, { scale: cardScale.value }],
+  }));
+  const pillStyle = useAnimatedStyle(() => ({ opacity: pillOpacity.value, transform: [{ translateY: pillY.value }] }));
+  const headlineStyle = useAnimatedStyle(() => ({ opacity: headlineOpacity.value, transform: [{ translateY: headlineY.value }] }));
+  const transStyle = useAnimatedStyle(() => ({ opacity: transOpacity.value }));
+  const bodyStyle = useAnimatedStyle(() => ({ opacity: bodyOpacity.value, transform: [{ translateY: bodyY.value }] }));
+  const rewardsStyle = useAnimatedStyle(() => ({ opacity: rewardsOpacity.value, transform: [{ translateX: rewardsX.value }] }));
+  const ctaStyle = useAnimatedStyle(() => ({ opacity: ctaOpacity.value, transform: [{ translateY: ctaY.value }] }));
 
   const tierName = arenaText(lang, TIER_COPY[ARENA_TIER_KEYS[Math.max(0, Math.min(7, tierIndex))]]);
+  const reserve = Math.max(0, Math.min(3, Math.trunc(toStars)));
 
   return (
-    <Reanimated.View style={[styles.rankBanner, bannerStyle, { backgroundColor: P.card }, noAndroidOutline]}>
-      <View style={styles.rankBannerEmb}>
-        <RankShield tierIndex={tierIndex} size={38} />
-      </View>
-      <View style={styles.rankBannerText}>
-        <Text style={[styles.rankBannerTitle, { color: P.text }]}>{tierName} {DIVISION_ROMAN[toDivision]}</Text>
-        <Text style={[styles.rankBannerSub, { color: P.muted }]}>
-          {arenaText(lang, direction === 'up' ? 'resultRankUp' : 'resultRankDown')}
-        </Text>
-        <Text style={[styles.rankBannerSub, { color: P.text }]}>{transitionLabel}</Text>
-        {/* Звезда бьёт в такт тику номера деления. */}
+    <View style={styles.overlayRoot} pointerEvents="box-none">
+      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, bgStyle, { backgroundColor: ARENA_RANK_HYBRID_COLORS.scrim }]} />
+      {up ? (
+        <Reanimated.View pointerEvents="none" style={[styles.bloom, auraStyle, { backgroundColor: P.gold }]} />
+      ) : (
+        <Reanimated.View pointerEvents="none" style={[styles.veil, auraStyle, { backgroundColor: BRONZE }]} />
+      )}
+      <Reanimated.View style={[styles.card, cardStyle, { backgroundColor: P.card }, noAndroidOutline]}>
+        <View style={styles.embWrap}>
+          {up ? <RaysHalo delayMs={LUM.ladder[2]} reduceMotion={reduceMotion} size={280} /> : null}
+          <RankShield tierIndex={tierIndex} size={64} />
+          {up && impacted ? <GoldDustFall delayMs={160} count={12} reduceMotion={reduceMotion} /> : null}
+        </View>
+        <Reanimated.View style={pillStyle}>
+          <View style={[styles.pill, { backgroundColor: (up ? P.gold : BRONZE) + '26' }]}>
+            <Text style={[styles.pillText, { color: up ? P.gold : BRONZE }]}>
+              {arenaText(lang, up ? 'resultRankUp' : 'resultRankDown')}
+            </Text>
+          </View>
+        </Reanimated.View>
+        <Reanimated.Text style={[styles.headline, headlineStyle, { color: P.text }]}>{tierName}</Reanimated.Text>
+        <DivisionTick
+          from={fromDivision}
+          to={toDivision}
+          direction={direction}
+          delayMs={up ? LUM.ladder[3] + CHK.anticipMs + CHK.fallMs + 240 : LUM.ladder[3] + 300}
+          reduceMotion={reduceMotion}
+        />
+        <Reanimated.Text style={[styles.transitionText, transStyle, { color: P.muted }]}>{transitionLabel}</Reanimated.Text>
         <RankStarsBeat
           fromFilled={fromStars}
           toFilled={toStars}
           direction={direction}
-          startDelayMs={LUM.ladder[2] + 250}
+          startDelayMs={LUM.ladder[3]}
           reduceMotion={reduceMotion}
-          size={15}
+          onImpact={up ? onStarImpact : undefined}
         />
-      </View>
-      <Reanimated.Text style={[numStyle, styles.rankBannerNum, { color: P.gold }]}>
-        {DIVISION_ROMAN[displayDivision]}
-      </Reanimated.Text>
-      <Reanimated.View pointerEvents="none" style={[styles.sweepMask, sweepStyle]}>
-        <LinearGradient
-          colors={['transparent', P.gold + '55', 'transparent']}
-          start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-          style={StyleSheet.absoluteFill}
-        />
+        <Reanimated.Text style={[styles.body, bodyStyle, { color: P.muted }]}>
+          {arenaText(lang, up ? 'rankShiftUpBody' : 'rankShiftDownBody')}
+        </Reanimated.Text>
+        {!up ? (
+          <Reanimated.View style={[styles.rewardsCol, rewardsStyle]}>
+            <RewardRow
+              icon="star"
+              color={P.gold}
+              title={arenaText(lang, 'rankReserveTitle').replace('{n}', String(reserve))}
+              sub={arenaText(lang, 'rankReserveSub')}
+              P={P}
+            />
+          </Reanimated.View>
+        ) : null}
+        <Reanimated.View style={[styles.ctaCol, ctaStyle]}>
+          <DuoPressable
+            onPress={up ? onDone : (onRevenge ?? onDone)}
+            edgeColor={P.card}
+            edgeHeight={4}
+            style={[styles.cta, up ? { backgroundColor: P.gold } : { backgroundColor: P.gold }]}
+          >
+            <Text style={[styles.ctaText, { color: ARENA_RANK_HYBRID_COLORS.tierUpCtaText }]}>
+              {arenaText(lang, up ? 'tierUpCta' : 'tierDownCta')}
+            </Text>
+          </DuoPressable>
+          {!up ? (
+            <PressableHybrid variant="secondary" accessibilityRole="button" onPress={onDone} contentStyle={styles.laterBtn}>
+              <Text style={[styles.laterText, { color: P.muted }]}>{arenaText(lang, 'later')}</Text>
+            </PressableHybrid>
+          ) : null}
+        </Reanimated.View>
       </Reanimated.View>
-    </Reanimated.View>
+      <ImpactFlash opacity={flashOpacity} />
+    </View>
   );
 }
 
-export const ArenaRankStepHybrid = memo(ArenaRankStepHybridImpl);
+export const ArenaRankShiftHybrid = memo(ArenaRankShiftHybridImpl);
 
 // ─── C. «Тихая ступень» (tier_down) ─────────────────────────────────────────
 
@@ -826,7 +1008,7 @@ function ArenaRankChangeHybridBase({
           onRevenge={onRevenge}
         />
       ) : (
-        <ArenaRankStepHybrid
+        <ArenaRankShiftHybrid
           tierIndex={transition.after.tierIndex}
           fromDivision={transition.before.division}
           toDivision={transition.after.division}
@@ -836,6 +1018,7 @@ function ArenaRankChangeHybridBase({
           transitionLabel={transitionLabel}
           reduceMotion={reduceMotion}
           onDone={onDone}
+          onRevenge={onRevenge}
         />
       )}
       <PressableHybrid
@@ -870,14 +1053,23 @@ const styles = StyleSheet.create({
   ringHole: { width: 88, height: 88, borderRadius: 44 },
   rimGlow: { position: 'absolute', width: 108, height: 108, borderRadius: 54, opacity: 0 },
   dust: { position: 'absolute', width: 5, height: 5, borderRadius: 3, top: 50 },
-  starsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 8 },
+  starsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, marginTop: 8 },
   starDim: { opacity: 0.45 },
   starBeatWrap: { alignItems: 'center', justifyContent: 'center' },
-  starHalo: { position: 'absolute', width: 30, height: 30, borderRadius: 15, opacity: 0 },
+  starHalo: { position: 'absolute', width: 32, height: 32, borderRadius: 16, opacity: 0, backgroundColor: ARENA_RANK_HYBRID_COLORS.goldHalo },
+  // Кольцо удара — «дыркой» из двух кругов, без borderWidth (запрет владельца).
+  starRing: { position: 'absolute', width: 34, height: 34, borderRadius: 17, opacity: 0, backgroundColor: ARENA_RANK_HYBRID_COLORS.goldRing, alignItems: 'center', justifyContent: 'center' },
+  starRingHole: { width: 30, height: 30, borderRadius: 15 },
+  divTick: { height: 40, width: 72, alignItems: 'center', justifyContent: 'center' },
+  divTickText: { fontSize: 32, fontWeight: '700', color: ARENA_RANK_HYBRID_COLORS.goldSoft, lineHeight: 38 },
+  divTickAbs: { position: 'absolute' },
+  ctaCol: { width: '100%', gap: 2, marginTop: 8 },
+  laterBtn: { minHeight: 40, alignItems: 'center', justifyContent: 'center' },
+  laterText: { fontSize: 13, fontWeight: '700' },
   pill: { paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999, marginBottom: 6 },
   pillText: { fontSize: 11, fontWeight: '700', letterSpacing: 0.6, textTransform: 'uppercase' },
   headline: { fontSize: 24, fontWeight: '700', letterSpacing: -0.4 },
-  transitionText: { fontSize: 13, fontWeight: '800', textAlign: 'center', marginTop: 2 },
+  transitionText: { fontSize: 13, fontWeight: '700', textAlign: 'center', marginTop: 2 },
   body: { fontSize: 14, fontWeight: '700', textAlign: 'center', marginTop: 2, marginBottom: 10, maxWidth: 300 },
   rewardsCol: { width: '100%', gap: 8, marginBottom: 14 },
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, padding: 10 },

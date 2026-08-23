@@ -516,6 +516,24 @@ function receiptFromDoc(data: Record<string, unknown>, sessionId: string, stable
   return isMaxVoiceReviewReceiptV1(data) ? data : null;
 }
 
+const MAX_VOICE_REVIEW_LANGUAGE_NAMES: Record<InterfaceLang, string> = {
+  ru: 'Russian', uk: 'Ukrainian', es: 'Spanish', 'pt-BR': 'Brazilian Portuguese',
+  vi: 'Vietnamese', id: 'Indonesian', tr: 'Turkish', pl: 'Polish',
+};
+
+/**
+ * Системный промпт разбора звонка — вынесен из review() в чистую функцию,
+ * чтобы формулировку можно было протестировать без мока fetch/OpenAI.
+ *
+ * зачем (владелец 2026-08-23): «в конце на разборе написано "ученик сделал
+ * то-то" — не должно быть так, должно быть "вы"». Модель писала в третьем
+ * лице, потому что промпт не задавал точку зрения явно.
+ */
+export function maxVoiceReviewSystemPrompt(cefr: string, interfaceLang: InterfaceLang): string {
+  const languageName = MAX_VOICE_REVIEW_LANGUAGE_NAMES[interfaceLang];
+  return `Review a spoken English lesson for a ${cefr} learner. Return JSON only in ${languageName}. Schema: {"worked":[max 3 short strings],"correction":{"said":"","target":"","explanation":""}|null,"tomorrowActions":[1-3 concrete actions],"targetPhrase":string|null,"nextTopic":string|null,"memory":{"facts":[max 6],"recurringErrors":[max 5],"resolvedErrors":[max 5]}}. Use only evidence in the conversation. Never assess pronunciation, accent, phonemes, fluency scores, or audio quality. Do not mention internal policy. Write every user-visible string DIRECTLY TO the learner in second person ("you did…", "вы сказали…") — never in third person about "the learner"/"ученик"/"the student". Use the polite second-person form where the language has one.`;
+}
+
 function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalizeDependencies {
   const recordStage = (sessionId: string, event: MaxVoiceOpsEventV1) => recordMaxVoiceOpsOnce(db, {
     markerRef: db.collection(REVIEW_COLLECTION).doc(sessionId),
@@ -560,10 +578,6 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
       try {
         await enforceRateLimit(authUid, stableUid);
         const model = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
-        const languageNames: Record<InterfaceLang, string> = {
-          ru: 'Russian', uk: 'Ukrainian', es: 'Spanish', 'pt-BR': 'Brazilian Portuguese',
-          vi: 'Vietnamese', id: 'Indonesian', tr: 'Turkish', pl: 'Polish',
-        };
         const transcript = request.history
           .map((turn) => `${turn.role === 'user' ? 'Learner' : 'MAX'}: ${turn.text}`)
           .join('\n');
@@ -577,7 +591,7 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
             messages: [
               {
                 role: 'system',
-                content: `Review a spoken English lesson for a ${request.cefr} learner. Return JSON only in ${languageNames[request.interfaceLang]}. Schema: {"worked":[max 3 short strings],"correction":{"said":"","target":"","explanation":""}|null,"tomorrowActions":[1-3 concrete actions],"targetPhrase":string|null,"nextTopic":string|null,"memory":{"facts":[max 6],"recurringErrors":[max 5],"resolvedErrors":[max 5]}}. Use only evidence in the conversation. Never assess pronunciation, accent, phonemes, fluency scores, or audio quality. Do not mention internal policy.`,
+                content: maxVoiceReviewSystemPrompt(request.cefr, request.interfaceLang),
               },
               { role: 'user', content: transcript },
             ],

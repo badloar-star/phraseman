@@ -350,11 +350,12 @@ export default function MaxCallSession() {
   const [boardListenPending, setBoardListenPending] = useState(false);
   const boardListenPendingRef = useRef(false);
   const [turns, setTurns] = useState<TranscriptTurn[]>([]);
-  // зачем (владелец 2026-08-23): «убери полностью субтитры». Бегущая строка
-  // речи MAX перетягивала внимание на чтение вместо слушания и показывала только
-  // ЕГО реплики (своих ученик не видел). Полный текст разговора с обеими
-  // сторонами остаётся в шторке транскрипта по кнопке — там он и нужен.
-  const [ccEnabled, setCcEnabled] = useState(false);
+  // зачем (владелец 2026-08-23): сначала «убери полностью субтитры» — они
+  // показывали ТОЛЬКО речь MAX, своих слов ученик не видел. Затем «надо сделать
+  // такт субтитров и чтобы видно было, что я говорю, но продуманно». Вернули
+  // включёнными, но уже как диалог: сверху распознанная реплика ученика, снизу
+  // речь учителя с подсветкой произносимого. Выключатель остался в шторке.
+  const [ccEnabled, setCcEnabled] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [muted, setMuted] = useState(false);
   const [hardAtMs, setHardAtMs] = useState<number | null>(null);
@@ -367,6 +368,15 @@ export default function MaxCallSession() {
   const liveCaptionRef = useRef(LIVE_CAPTION_INITIAL);
   const liveCaptionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [visibleAssistantText, setVisibleAssistantText] = useState('');
+  // зачем (владелец 2026-08-23): «чтобы видно было, что я говорю». Последняя
+  // распознанная реплика ученика — из уже собираемого буфера реплик, без
+  // отдельного состояния и без лишних ре-рендеров.
+  const lastUserText = useMemo(() => {
+    for (let i = turns.length - 1; i >= 0; i -= 1) {
+      if (turns[i].role === 'user') return turns[i].text;
+    }
+    return '';
+  }, [turns]);
   const [completedAssistantText, setCompletedAssistantText] = useState('');
   // зачем (владелец 2026-08-23): субтитры показывают реплику ЦЕЛИКОМ и
   // подсвечивают акцентом уже произнесённое. Раньше окно из последних слов
@@ -1333,12 +1343,15 @@ export default function MaxCallSession() {
           ) : null}
         </View>
 
-        {/* Две строки MAX не скроллятся и появляются в темпе реального аудио. */}
+        {/* Субтитры на две стороны: сверху распознанная реплика ученика, снизу
+            речь MAX. Не скроллятся, появляются в темпе реального аудио. */}
         {phase !== 'failed' && ccEnabled ? (
           <MaxCallLiveCaptionView
             visibleAssistantText={visibleAssistantText}
             fullAssistantText={fullAssistantText}
             completedAssistantText={completedAssistantText}
+            userText={lastUserText}
+            userSpeaking={uiState.eqOwner === 'user'}
             lang={lang}
           />
         ) : null}

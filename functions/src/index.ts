@@ -229,6 +229,11 @@ const {
   adminDraftIdeaDecision,
 } = require("./user_ideas");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  submitMaxVoiceFeedback,
+  adminListMaxVoiceFeedback,
+} = require("./max_voice_feedback");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require("./league_finalize_cron");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueResidentsTickCron } = require("./league_residents_cron");
@@ -384,6 +389,8 @@ exports.submitUserIdea = submitUserIdea;
 exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
+exports.submitMaxVoiceFeedback = submitMaxVoiceFeedback;
+exports.adminListMaxVoiceFeedback = adminListMaxVoiceFeedback;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 // Жители лиг: раз в 6 часов растёт их опыт/уровень/аватар (владелец 2026-08-04).
 exports.leagueResidentsTickCron = leagueResidentsTickCron;

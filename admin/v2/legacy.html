@@ -11372,6 +11372,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         'openai-budget': 'revenue',
         'app-health': 'core',
         'max-ops': 'system',
+        'max-feedback': 'core',
         'warm-instances': 'system',
         reports: 'users',
         emails: 'users',
@@ -11933,6 +11934,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
   <div class="tab" onclick="switchTab('max-ops')" title="Сводная серверная диагностика звонков MAX без содержимого разговоров">Здоровье MAX</div>
+  <div class="tab" onclick="switchTab('max-feedback')" title="Отзывы учеников о звонках с MAX: как прошёл разговор, что понравилось, что улучшить">💬 Отзывы MAX</div>
   <div class="tab" onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>
   <!-- зачем: старая админка стала главной; уникальные разделы v2 (Офис агентов, Центр монет, Фабрика, Брифинг) остаются в один клик -->
   <!-- зачем: /index.html теперь редиректит на старую (закладки на index.html тоже должны открывать старую) — ссылка на новую ведёт на /v2.html -->
@@ -14100,6 +14102,30 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     <span class="reports-count" id="idea-count"></span>
   </div>
   <div id="idea-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- MAX FEEDBACK TAB (Отзывы учеников о звонке с MAX) -->
+<div id="tab-max-feedback" class="reports-tab pm-v4-page" data-pm-v4-section="max-feedback">
+  <div class="pm-v4-section-header" data-pm-v4-header="max-feedback"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Отзывы MAX</h2><div class="pm-v4-section-sub">Как прошёл разговор, что понравилось, что улучшить.</div></div></div>
+
+  <div class="reports-toolbar">
+    <select id="max-feedback-filter-rating" onchange="filterMaxVoiceFeedback()">
+      <option value="">Все оценки</option>
+      <option value="5">★★★★★</option>
+      <option value="4">★★★★☆</option>
+      <option value="3">★★★☆☆</option>
+      <option value="2">★★☆☆☆</option>
+      <option value="1">★☆☆☆☆</option>
+      <option value="0">Без оценки</option>
+    </select>
+    <button onclick="loadMaxVoiceFeedback(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <span class="reports-count" id="max-feedback-count"></span>
+  </div>
+
+  <div id="max-feedback-list"><div class="reports-empty">⏳ Загрузка...</div></div>
+  <div style="margin-top:12px;text-align:center">
+    <button id="max-feedback-more" onclick="loadMoreMaxVoiceFeedback()" style="display:none;background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:8px;padding:9px 18px;font-size:12.5px;font-weight:700;cursor:pointer">Показать ещё</button>
+  </div>
 </div>
 
 <!-- TOP HELPERS BOARD TAB (Топ хелперов) -->
@@ -17951,7 +17977,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts','access-management'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','max-feedback','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts','access-management'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -22589,6 +22615,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
     if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
     if(tab==='max-ops' && !window._maxOpsLoaded && typeof window.maxOpsLoad === 'function') void window.maxOpsLoad(false);
+    if(tab==='max-feedback' && typeof window.loadMaxVoiceFeedback === 'function') void window.loadMaxVoiceFeedback();
     if(tab==='ops-log' && !window._opsLoaded) loadOpsLog();
     if (tab === 'community-packs' && typeof window.setCommunityPacksSubtab === 'function') {
       window.setCommunityPacksSubtab(window._cpSubTab || 'queue');
@@ -23682,6 +23709,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     referrals: 'Рефералы',
     'app-health': 'Состояние приложения',
     'max-ops': 'Здоровье MAX',
+    'max-feedback': 'Отзывы MAX',
     'warm-instances': 'Тёплые инстансы',
     'push-notify': 'Push-уведомления',
   };
@@ -23737,6 +23765,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'openai-budget': 'wallet',
     'app-health': 'activity',
     'max-ops': 'activity',
+    'max-feedback': 'chat',
     'warm-instances': 'activity',
     users: 'users',
     testers: 'users',
@@ -23814,6 +23843,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'openai-budget': 'revenue',
     'app-health': 'core',
     'max-ops': 'system',
+    'max-feedback': 'core',
     'warm-instances': 'system',
     users: 'users',
     testers: 'users',
@@ -30662,6 +30692,107 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       else alert('Ошибка: ' + msg);
       filterUserIdeas();
     }
+  }
+
+  // ── MAX FEEDBACK — отзывы учеников о звонке с MAX ────────────────────────────
+  // зачем (владелец 2026-08-23): «на экране результатов добавь окно фидбека; в
+  // админке — раздел, где можно читать эти фидбеки». Читаем через callable
+  // adminListMaxVoiceFeedback (не getDocs напрямую): коллекция закрыта в
+  // firestore.rules на чтение только серверной функцией, а не клиентским SDK,
+  // потому что отзыв — свободный текст пользователя и в нём может быть что
+  // угодно, вплоть до персональных данных, которые лучше не тянуть в браузер
+  // без явного серверного фильтра полей.
+  let _maxVoiceFeedbackNextCursor = null;
+  let _maxVoiceFeedbackItems = [];
+  const MAX_FEEDBACK_PAGE = 30;
+
+  async function fetchMaxVoiceFeedbackPage(cursor) {
+    const call = httpsCallable(functionsUs, 'adminListMaxVoiceFeedback');
+    const res = await call({ limit: MAX_FEEDBACK_PAGE, cursor: cursor || undefined });
+    return res.data || { items: [], nextCursor: null };
+  }
+
+  window.loadMaxVoiceFeedback = async function(force) {
+    const list = document.getElementById('max-feedback-list');
+    if (!list) return;
+    if (force || !_maxVoiceFeedbackItems.length) {
+      list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+      _maxVoiceFeedbackItems = [];
+      _maxVoiceFeedbackNextCursor = null;
+    }
+    try {
+      const page = await fetchMaxVoiceFeedbackPage(null);
+      _maxVoiceFeedbackItems = page.items || [];
+      _maxVoiceFeedbackNextCursor = page.nextCursor || null;
+      await renderMaxVoiceFeedback();
+    } catch (e) {
+      const msg = (e && (e.message || e.code)) || String(e);
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(msg)}</div>`;
+    }
+  };
+
+  window.loadMoreMaxVoiceFeedback = async function() {
+    if (!_maxVoiceFeedbackNextCursor) return;
+    const btn = document.getElementById('max-feedback-more');
+    if (btn) { btn.disabled = true; btn.textContent = 'Загрузка…'; }
+    try {
+      const page = await fetchMaxVoiceFeedbackPage(_maxVoiceFeedbackNextCursor);
+      _maxVoiceFeedbackItems = _maxVoiceFeedbackItems.concat(page.items || []);
+      _maxVoiceFeedbackNextCursor = page.nextCursor || null;
+      await renderMaxVoiceFeedback();
+    } catch (e) {
+      if (typeof showToast === 'function') showToast('❌ ' + ((e && e.message) || String(e)), 'err');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = 'Показать ещё'; }
+    }
+  };
+
+  window.filterMaxVoiceFeedback = function() { void renderMaxVoiceFeedback(); };
+
+  async function renderMaxVoiceFeedback() {
+    const list = document.getElementById('max-feedback-list');
+    const countEl = document.getElementById('max-feedback-count');
+    const moreBtn = document.getElementById('max-feedback-more');
+    if (!list) return;
+
+    const ratingFilter = document.getElementById('max-feedback-filter-rating')?.value || '';
+    let items = _maxVoiceFeedbackItems;
+    if (ratingFilter !== '') items = items.filter((r) => String(r.rating || 0) === ratingFilter);
+
+    if (countEl) countEl.textContent = `${items.length} отзывов`;
+    if (moreBtn) moreBtn.style.display = _maxVoiceFeedbackNextCursor ? 'inline-block' : 'none';
+
+    if (!items.length) {
+      list.innerHTML = '<div class="reports-empty">💬 Отзывов пока нет</div>';
+      return;
+    }
+
+    // Батч имён — правило владельца (2026-08-02): uid никогда не показывается
+    // один. userName из самого отзыва — резерв, если пользователя нет в кэше.
+    const uids = [...new Set(items.map((r) => r.uid).filter(Boolean))];
+    const names = await resolveUserNames(uids);
+
+    list.innerHTML = items.map((r) => {
+      const stars = r.rating > 0
+        ? '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating)
+        : '<span style="color:#6b7280">без оценки</span>';
+      const message = r.message ? escapeHtml(r.message) : '<span style="color:#6b7280">(только оценка, без текста)</span>';
+      const date = r.createdAtMs ? new Date(r.createdAtMs).toLocaleString('ru-RU') : '—';
+      const userRef = names[r.uid] ? renderUserRef(r.uid, names, { shortUid: true }) : (r.userName ? escapeHtml(r.userName) : renderUserRef(r.uid, names, { shortUid: true }));
+      const meta = [r.cefr, r.format, r.lang, r.callSeconds ? `${Math.round(r.callSeconds / 60)} мин` : ''].filter(Boolean).map(escapeHtml).join(' · ');
+      return `
+        <div style="background:#12151d;border-radius:10px;padding:12px 14px;margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
+            <div style="font-size:13px;color:#fbbf24;font-weight:700">${stars}</div>
+            <div style="font-size:11px;color:#6b7280">${escapeHtml(date)}</div>
+          </div>
+          <div style="margin-top:6px;color:#e5e7eb;font-size:13px;line-height:1.5">${message}</div>
+          <div style="margin-top:8px;font-size:11px;color:#93a4ba;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <div>${userRef}</div>
+            ${meta ? `<div>${meta}</div>` : ''}
+          </div>
+        </div>`;
+    }).join('');
   }
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────
@@ -47139,6 +47270,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'daily-phrases':{ reopenMs:60000, focusMs:600000, readBudget:180 },
     'app-health':{ reopenMs:30000, focusMs:180000, readBudget:180 },
     'max-ops':{ reopenMs:60000, focusMs:300000, readBudget:30 },
+    'max-feedback':{ reopenMs:60000, focusMs:300000, readBudget:80 },
     audit:{ reopenMs:30000, focusMs:300000, readBudget:180 },
     'ops-log':{ reopenMs:30000, focusMs:300000, readBudget:180 },
     'ugc-purchases':{ reopenMs:30000, focusMs:300000, readBudget:120 },
@@ -47162,7 +47294,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'age-consent':'Возраст и согласие','compliance-radar':'Комплаенс','daily-digest':'Дайджест владельца',
     'gmail-support':'Gmail-поддержка','overview':'Обзор','mod-queue':'Очередь модерации',
     'ideas':'Идеи пользователей','analytics':'Доход и аналитика','openai-budget':'Бюджет OpenAI',
-    'app-health':'Состояние приложения','max-ops':'Здоровье MAX','users':'Пользователи','testers':'Телеграм-оплаты',
+    'app-health':'Состояние приложения','max-ops':'Здоровье MAX','max-feedback':'Отзывы MAX','users':'Пользователи','testers':'Телеграм-оплаты',
     'beta-testers':'Бета-тестеры','site-admin':'Сайт и веб-оплаты',
     'reports':'Ошибки контента','emails':'Имейлы','website-inbox':'Сайт: обращения',
     'user-reports':'Жалобы на пользователей','explain-reports':'Жалобы на объяснения',
@@ -48259,6 +48391,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'openai-budget': async () => pmV5CombineRefresh(await Promise.all([pmV5SafeCall('loadOpenAiBudgetDashboard', true), pmV5SafeCall('loadOpenAiDialogQuotaConfig', true)])),
     'app-health': () => pmV5SafeCall('loadAppHealth', true),
     'max-ops': () => pmV5SafeCall('maxOpsLoad', true),
+    'max-feedback': () => pmV5SafeCall('loadMaxVoiceFeedback', true),
     'users': pmV5RefreshUsersSection,
     'testers': () => pmV5SafeCall('loadTelegramPremiumOrders', true),
     'beta-testers': () => pmV5SafeCall('pmV9LoadEmbeddedSection', 'beta-testers'),
@@ -48921,6 +49054,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"asset-archive":{"title":"Архив ассетов","description":"Ассеты, публикация, цены и доступность."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы за осколки","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"helpers-board":{"title":"Топ хелперов","description":"Рейтинг подтверждённых помощников."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"clubs":{"title":"Лиги","description":"Группы, короны и недельные бонусы."},"card-packs":{"title":"Наборы карточек","description":"Маркет наборов и статусы публикации."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"tournaments":{"title":"Турниры","description":"Пул заданий, ревью, расписание и ручная сборка."},"tournament-pool":{"title":"Пул турниров","description":"Одобренные задания и распределение по режимам внутри единой админки."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
   const UI_TRANSLATIONS = {"Overview":"Обзор","Analytics":"Аналитика","Reports":"Ошибки контента","Support (site)":"Сайт: обращения","User reports":"Жалобы на пользователей","Explain reports":"Жалобы на объяснения","Explain cache":"Кэш объяснений","Ban list":"Бан-лист","Plus Radar":"Диагностика Plus","Cancel surveys":"Причины отмены","UGC purchases":"Покупки UGC","Refunds":"Возвраты","Archive":"Архив","Audit log":"Журнал аудита","Ops log":"Журнал операций","Community":"Сообщество","Card packs":"Наборы карточек","Clubs":"Лиги","Referrals":"Рефералы","App Health":"Состояние приложения","Push notifications":"Push-уведомления","Push":"Push","OpenAI budget":"Бюджет OpenAI","Refresh":"Обновить","Loading...":"Загрузка…","Loading…":"Загрузка…","Waiting for Firestore data...":"Ожидание данных Firestore…","Waiting for Cloud Function data...":"Ожидание серверных данных…","All platforms":"Все платформы","All languages":"Все языки","All plans":"Все тарифы","All themes":"Все темы","All accounts":"Все аккаунты","All versions":"Все версии","All cases":"Все случаи","Critical only":"Только критические","All reasons":"Все причины","All severity":"Все уровни","All statuses":"Все статусы","All features":"Все функции","All users":"Все пользователи","All":"Все","Any":"Любой","Users":"Пользователи","User":"Пользователь","Title":"Заголовок","Text":"Текст","Language":"Язык","Platform":"Платформа","Theme":"Тема","Total":"Всего","Period":"Период","From":"С","To":"По","Previous":"Назад","Next":"Далее","Save":"Сохранить","Send":"Отправить","Schedule":"Расписание","Selected":"Выбрано","Sort by XP":"Сортировать по XP","Sort by name":"Сортировать по имени","Sort by streak":"Сортировать по серии","Sort by lessons":"Сортировать по урокам","Sort by version":"Сортировать по версии","Sort by date":"Сортировать по дате","Russian":"Русский","Ukrainian":"Украинский","Free":"Бесплатные","Registered":"Зарегистрированные","Anonymous":"Анонимные","Hide duplicates":"Скрыть дубли","Duplicates":"Дубли","Email list":"Список email","Grant shards":"Выдать осколки","Grant Plus":"Выдать Plus","Ban users":"Заблокировать","Clear selection":"Снять выделение","Progress Streak Lessons":"Прогресс · серия · уроки","Streak":"Серия","Lessons":"Уроки","Account Shards":"Аккаунт · осколки","Shards":"Осколки","Download CSV":"Скачать CSV","CSV":"CSV","Real Plus + admin Plus":"Real Plus + Admin Plus","Same identity or email":"Совпадает профиль или email","Same name with access":"Совпадает имя и доступ","Stale premium flag":"Устаревший premium-флаг","Manual store fields":"Ручные поля магазина","Inactive admin Plus fields":"Неактивные поля Admin Plus","Too expensive":"Слишком дорого","Not enough content":"Мало контента","Technical issues":"Технические проблемы","Found better app":"Нашёл лучшее приложение","Rarely using":"Редко использует","Other":"Другое","Open tab or press Refresh.":"Откройте раздел или нажмите «Обновить».","Last 1h":"1 час","Last 6h":"6 часов","Last 24h":"24 часа","Last 7d":"7 дней","Open":"Открыто","Reviewed":"Проверено","Fixed":"Исправлено","Known issue":"Известная проблема","Copy AI report":"Копировать отчёт ИИ","Copy raw JSON":"Копировать JSON","Load activity":"Загрузить активность","Activity is lazy-loaded to save Firestore reads.":"Активность загружается только по запросу.","Open App Health to load diagnostics.":"Откройте раздел для загрузки диагностики.","⬇ Load more (older)":"⬇ Загрузить ещё","Published":"Опубликован","Unpublished":"Снят с публикации","Draft":"Черновик","Preview French rows":"Предпросмотр французских строк","Create French draft":"Создать французский черновик","Check French approval":"Проверить французское утверждение","Rollback French draft":"Откатить французский черновик","By UID":"По пользователю","Segment":"Сегмент","Reactivation":"Реактивация","User UID":"Пользователь","Click action (optional)":"Действие по нажатию","Send segment":"Отправить сегменту","Inactive >= days":"Неактивен минимум, дней","Inactive <= days ago":"Неактивен не более, дней","Send reactivation":"Отправить реактивацию","Date and time":"Дата и время","Audience":"Аудитория","Inactive 7+ days":"Неактивные 7+ дней","Статистика загрузится автоматически при открытии раздела.":"Статистика загрузится при открытии раздела.","Source answers":"Ответы об источнике","Unique users":"Уникальные пользователи","Top source":"Главный источник","Sources":"Источники","Paywall analytics":"Аналитика paywall","Custom":"Свой период","Bar width":"Ширина столбцов","Compact":"Компактно","Normal":"Обычно","Wide":"Широко","Analytics opens with a safe dashboard shell first. Live data loads when this tab opens.":"Данные загружаются после открытия раздела.","Paywall views":"Показы paywall","Paywall purchases":"Покупки из paywall","Plus events":"События Plus","Shards purchases":"Покупки осколков","Settings paywall":"Paywall в настройках","Automatic paywall":"Автоматический paywall","Onboarding paywall":"Paywall онбординга","1 day":"1 день","7 days":"7 дней","28 days":"28 дней","30 days":"30 дней","90 days":"90 дней","180 days":"180 дней","Daily":"По дням","Weekly":"По неделям","Reset zoom":"Сбросить масштаб","Save model":"Сохранить модель","Theo model config is loading...":"Настройки модели Theo загружаются…","Free tier replies/day":"Ответов Free в день","Plus tier replies/day":"Ответов Plus в день","Save quota":"Сохранить лимиты","Reload quota":"Перечитать лимиты","Theo quota config is loading...":"Лимиты Theo загружаются…","OpenAI estimated month loads when this tab is active.":"Расчёт загружается при открытии раздела.","OpenAI estimated month":"Оценка OpenAI за месяц","Selected period":"Выбранный период","Paid calls":"Платные вызовы","Tokens":"Токены","Feature costs":"Расходы по функциям","Model costs":"Расходы по моделям","Avg XP":"Средний XP","AVG XP":"Средний XP","Average XP":"Средний XP","Avg streak":"Средняя серия","AVG STREAK":"Средняя серия","Average streak":"Средняя серия","Avg shards":"Средние осколки","AVG SHARDS":"Средние осколки","Average shards":"Средние осколки","days":"дн.","Days":"Дни","Search name or UID":"Поиск по нику или #nameIndex","Search by name or UID":"Поиск по нику или #nameIndex","Search name, email or UID":"Поиск по нику, email или #nameIndex","Search":"Поиск","Status":"Статус","Actions":"Действия","Date":"Дата","Name":"Имя","Email":"Email","Version":"Версия","Country":"Страна","Source":"Источник","Created":"Создано","Updated":"Обновлено","Active":"Активен","Inactive":"Неактивен","Enabled":"Включено","Disabled":"Выключено","Completed":"Завершено","Pending":"Ожидает","Failed":"Ошибка","Success":"Успешно","Error":"Ошибка","Copy":"Копировать","Close":"Закрыть","Cancel":"Отмена","Delete":"Удалить","Edit":"Изменить","Create":"Создать","Publish":"Опубликовать","Unpublish":"Снять с публикации","Details":"Подробнее","More":"Ещё","Settings":"Настройки","Management":"Управление","No data":"Нет данных","No results":"Ничего не найдено","Unknown":"Неизвестно","Никнейм или UID":"Никнейм или #nameIndex","UID или никнейм":"#nameIndex или никнейм","Selected:":"Выбрано:","Progress":"Прогресс","App":"Приложение","Account":"Аккаунт","Find user":"Найти пользователя","Revenue":"Доход","Push composer":"Push-редактор","Loaded user records in this admin session.":"Профили, загруженные в текущей сессии.","Limited":"Ограничено","Paywall and RevenueCat data status.":"Статус paywall и данных RevenueCat.","Moderation":"Модерация","Queues":"Очереди","Reports, user reports, and ban list.":"Ошибки контента, жалобы и блокировки.","Delivery":"Доставка","Ready":"Готово","Push jobs, app messages, and daily content.":"Push-задачи, сообщения и ежедневный контент.","Visits today":"Посещения сегодня","Unique sessions on knowlyapps.com today (UTC).":"Уникальные сессии knowlyapps.com сегодня (UTC).","Total visits":"Посещения за всё время","All-time unique sessions since tracking started.":"Уникальные сессии с начала отслеживания.","iOS store clicks today":"Переходы в App Store сегодня","App Store badge clicks today — clicks, not installs.":"Нажатия на App Store сегодня, не установки.","iOS store clicks total":"Переходы в App Store всего","All-time App Store badge clicks — clicks, not installs.":"Все нажатия на App Store, не установки.","Android store clicks today":"Переходы в Google Play сегодня","Google Play badge clicks today — clicks, not installs.":"Нажатия на Google Play сегодня, не установки.","Android store clicks total":"Переходы в Google Play всего","All-time Google Play badge clicks — clicks, not installs.":"Все нажатия на Google Play, не установки.","Daily trend":"Динамика по дням","Hover a point for the exact day. Scroll to zoom, drag to pan.":"Наведите для точного значения. Колесо — масштаб, перетаскивание — обзор.","Visits":"Посещения","Purchases":"Покупки","Check app health first":"Сначала проверьте состояние приложения","Recent activity, health events, archive, audit, and ops diagnostics.":"Активность, ошибки, архив, аудит и журнал операций.","Review incoming reports":"Разберите новые жалобы","Content reports and user reports are the highest-risk human queue.":"Ошибки контента и жалобы пользователей требуют ручной проверки.","Inspect revenue funnel":"Проверьте воронку дохода","Paywall views, purchases, RevenueCat events, and shards purchases.":"Показы paywall, покупки, RevenueCat и покупки осколков.","Quick admin actions":"Быстрые действия администратора","Admin status summary":"Сводка состояния админки","Site traffic":"Трафик сайта","Granularity":"Детализация","Admin worklist":"Рабочая очередь администратора","Show duplicate names with different UIDs":"Показать одинаковые ники у разных аккаунтов","Copy or download the email list":"Копировать или скачать список email","Select all":"Выбрать всё","Sort by semantic app version":"Сортировать по версии приложения","Source:":"Источник:","Search uid, name, text...":"Поиск по нику, #nameIndex или тексту…","Server-side estimate from billing logs. Cache hits are not billed, so they do not appear here.":"Серверная оценка по журналу биллинга. Попадания в кэш не тарифицируются и не отображаются.","Revenue, conversion, and shard-purchase signals from consented product events and server-owned RevenueCat records.":"Доход, конверсия и покупки осколков по разрешённым продуктовым событиям и серверным данным RevenueCat.","Choose the onboarding source date window":"Выбрать период источников онбординга","Filter onboarding source events by platform":"Фильтровать источники по платформе","Reload onboarding source statistics":"Обновить статистику источников","Reload revenue analytics":"Обновить аналитику дохода","Revenue analytics filters":"Фильтры аналитики дохода","Revenue date window":"Период аналитики дохода","First UTC day":"Первый день UTC","Last UTC day":"Последний день UTC","Revenue platform":"Платформа дохода","App message delivery surface":"Место показа сообщения","Settings message slot":"Позиция сообщения в настройках","Settings message control percent":"Доля показа сообщения","App message format":"Формат сообщения","App message status":"Статус сообщения","App message audience":"Аудитория сообщения","App message priority":"Приоритет сообщения","App message retention days":"Срок хранения сообщения","App message title":"Заголовок сообщения","App message body":"Текст сообщения","App message poll question":"Вопрос опроса","App message poll option count":"Количество вариантов ответа","App health period":"Период состояния приложения","App health severity filter":"Фильтр важности","App health status filter":"Фильтр статуса","App health feature filter":"Фильтр функции","Search app health events":"Поиск событий состояния приложения","Search audit log by UID, email, or details":"Поиск в аудите по #nameIndex, email или деталям","Copy for Claude":"Копировать для Claude","Job history":"История заданий","Enter UID...":"Введите никнейм или #nameIndex…","Push target user UID":"Получатель push","Notification title...":"Заголовок уведомления…","Notification text...":"Текст уведомления…","Push title for UID mode":"Заголовок точечного push","Push message text for UID mode":"Текст точечного push","Push click action for UID mode":"Действие точечного push","Push segment language":"Язык сегмента push","Push segment premium status":"Статус Plus сегмента","Push segment minimum streak":"Минимальная серия сегмента","Push title for segment mode":"Заголовок push для сегмента","Push message text for segment mode":"Текст push для сегмента","Push click action for segment mode":"Действие push для сегмента","Push reactivation minimum inactive days":"Минимум дней неактивности","Push reactivation maximum inactive days":"Максимум дней неактивности","We miss you":"Мы скучаем","Come back and continue your streak.":"Возвращайтесь и продолжайте свою серию.","Push title for reactivation mode":"Заголовок push для реактивации","Push message text for reactivation mode":"Текст push для реактивации","Push click action for reactivation mode":"Действие push для реактивации","Scheduled push date and time":"Дата и время запланированного push","Scheduled push audience":"Аудитория запланированного push","Scheduled push title":"Заголовок запланированного push","Scheduled push message text":"Текст запланированного push","Scheduled push click action":"Действие запланированного push","Theo model":"Модель Theo"};
   SECTION_META['max-ops'] = { title:'Здоровье MAX', description:'Надёжность звонка, разбора и памяти по приватным серверным агрегатам.' };
+  SECTION_META['max-feedback'] = { title:'Отзывы MAX', description:'Что ученики пишут о звонке с учителем: как прошёл разговор, что понравилось, что улучшить.' };
   const UI_TRANSLATIONS_LOWER = Object.fromEntries(Object.entries(UI_TRANSLATIONS).map(([key, value]) => [key.toLocaleLowerCase('ru-RU'), value]));
   const TECHNICAL_SECTIONS = new Set(['tab-audit','tab-ops-log','tab-max-ops']);
   const USER_REF_SKIP = '#help-modal-overlay,.umodal,.dp-modal,.pg-modal,.pm-tech-details,#pm-entity-drawer,[data-pm-technical="true"]';
@@ -50821,7 +50955,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const list=document.getElementById('pm-phase3-inbox-list');if(!list)return;const q=state.inboxSearch.trim().toLowerCase();const rows=state.inboxItems.filter((row)=>(state.inboxFilter==='all'||row.type===state.inboxFilter)&&(!q||`${row.title} ${row.detail} ${row.provenance}`.toLowerCase().includes(q)));const count=document.getElementById('pm-phase3-inbox-count');if(count)count.textContent=String(rows.length);list.replaceChildren();if(!rows.length){list.append(el('div','pm-phase3-empty','В уже загруженных источниках подходящих элементов нет. Откройте нужный исходный раздел, чтобы загрузить его ограниченную страницу.'));return;}rows.forEach((row)=>{const item=el('article','pm-phase3-inbox-item');item.append(el('span','pm-phase3-inbox-kind',row.icon||'•'));const main=el('div');main.append(el('div','pm-phase3-inbox-title',row.title),el('div','pm-phase3-inbox-meta',`${row.detail}${row.at?` · ${formatTime(row.at)}`:''}`));const prov=el('div','pm-phase3-provenance',row.provenance);prov.dataset.pmPhase3Provenance=row.section;main.append(prov);const open=el('button','', 'Открыть');open.type='button';open.addEventListener('click',()=>{if(typeof row.jump==='function')row.jump();else section(row.section);});item.append(main,open);list.append(item);});
   }
 
-  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','helpers-board','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','app-messages','community-packs','card-packs','daily-phrases','youtube-catalog','v2-generator','asset-archive','review-promo','clubs','tournaments','tournament-pool']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
+  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','helpers-board','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','card-packs','daily-phrases','youtube-catalog','v2-generator','asset-archive','review-promo','clubs','tournaments','tournament-pool']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
   function tabKey(node){const oc=node?.getAttribute?.('onclick')||'';const m=oc.match(/switchTab\(['"]([^'"]+)/);if(m)return m[1];if(node?.dataset?.tab)return node.dataset.tab;const id=String(node?.id||'');return id.replace(/^admin-nav-/,'').replace(/^tab-/,'');}
   function applyNavGroup(group){state.navGroup=GROUPS[group]?group:'all';document.querySelectorAll('#pm-phase3-nav-groups button').forEach((btn)=>btn.classList.toggle('is-active',btn.dataset.group===state.navGroup));document.querySelectorAll('.tabs .tab').forEach((node)=>{const key=tabKey(node);const hide=state.navGroup!=='all'&&!GROUPS[state.navGroup]?.has(key);node.dataset.pmPhase3GroupHidden=hide?'true':'false';});}
   function installQuickNavigation(){

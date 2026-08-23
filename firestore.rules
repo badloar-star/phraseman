@@ -1963,6 +1963,13 @@ service cloud.firestore {
       allow read, update, delete: if isAdmin();
     }
 
+    // Отзывы о звонке MAX: пишутся только через submitMaxVoiceFeedback (Admin
+    // SDK), читаются только админом через adminListMaxVoiceFeedback.
+    match /max_voice_feedback/{docId} {
+      allow create, update: if false;
+      allow read, delete: if isAdmin();
+    }
+
     match /user_idea_rate_limits/{docId} {
       allow read, create, update, delete: if isAdmin();
     }

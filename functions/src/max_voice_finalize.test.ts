@@ -1,5 +1,6 @@
 import {
   finalizeMaxVoiceRequest,
+  maxVoiceReviewSystemPrompt,
   type MaxVoiceFinalizeCoreInput,
   type MaxVoiceFinalizeDependencies,
   type MaxVoiceFinalizeLeaseResult,
@@ -237,5 +238,35 @@ describe('MAX durable finalizer', () => {
       expect(receipt.targetPhrase).toHaveLength(240);
       expect(receipt).not.toHaveProperty('pronunciationScore');
     }
+  });
+});
+
+describe('maxVoiceReviewSystemPrompt', () => {
+  // зачем (владелец 2026-08-23): «на разборе написано "ученик сделал то-то" —
+  // не должно быть так, должно быть "вы"». Модель писала в третьем лице, пока
+  // промпт не задавал точку зрения явно.
+  it('requires second-person address and forbids third-person "the learner"/"ученик"', () => {
+    const prompt = maxVoiceReviewSystemPrompt('A2', 'ru');
+    expect(prompt).toContain('DIRECTLY TO the learner in second person');
+    expect(prompt).toContain('"вы сказали…"');
+    expect(prompt).toContain('never in third person about "the learner"/"ученик"/"the student"');
+    expect(prompt).toContain('Use the polite second-person form where the language has one');
+  });
+
+  it('interpolates cefr and the target language name for every supported locale', () => {
+    expect(maxVoiceReviewSystemPrompt('B1', 'ru')).toContain('B1 learner');
+    expect(maxVoiceReviewSystemPrompt('B1', 'ru')).toContain('JSON only in Russian');
+    expect(maxVoiceReviewSystemPrompt('A1', 'uk')).toContain('JSON only in Ukrainian');
+    expect(maxVoiceReviewSystemPrompt('A1', 'es')).toContain('JSON only in Spanish');
+    expect(maxVoiceReviewSystemPrompt('A1', 'pt-BR')).toContain('JSON only in Brazilian Portuguese');
+    expect(maxVoiceReviewSystemPrompt('A1', 'vi')).toContain('JSON only in Vietnamese');
+    expect(maxVoiceReviewSystemPrompt('A1', 'id')).toContain('JSON only in Indonesian');
+    expect(maxVoiceReviewSystemPrompt('A1', 'tr')).toContain('JSON only in Turkish');
+    expect(maxVoiceReviewSystemPrompt('A1', 'pl')).toContain('JSON only in Polish');
+  });
+
+  it('still forbids pronunciation/accent assessment (pre-existing safety rule stays intact)', () => {
+    const prompt = maxVoiceReviewSystemPrompt('B2', 'ru');
+    expect(prompt).toContain('Never assess pronunciation, accent, phonemes, fluency scores, or audio quality');
   });
 });

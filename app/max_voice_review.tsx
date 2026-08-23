@@ -5,6 +5,7 @@ import {
   findNodeHandle,
   ScrollView,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -21,6 +22,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from './analytics';
 import type { TranscriptTurn } from './max_call_transcript';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { submitMaxVoiceFeedback } from './max_voice_feedback_client';
 import {
   drainOneMaxFinalize,
   readLastMaxVoiceReviewReceipt,
@@ -88,6 +90,14 @@ function formatDuration(totalSec: number): string {
 function copy(lang: Lang) {
   return {
     title: triLang(lang, { ru: 'Разбор разговора', uk: 'Розбір розмови', es: 'Análisis de la conversación', 'pt-BR': 'Análise da conversa', vi: 'Đánh giá cuộc trò chuyện', id: 'Ulasan percakapan', tr: 'Konuşma değerlendirmesi', pl: 'Podsumowanie rozmowy' }),
+    // зачем (владелец 2026-08-23): «ключевой вопрос — как прошёл разговор, что
+    // понравилось, что улучшить». Спрашиваем именно так, одним живым вопросом.
+    feedbackTitle: triLang(lang, { ru: 'Как прошёл разговор?', uk: 'Як пройшла розмова?', es: '¿Cómo fue la conversación?', 'pt-BR': 'Como foi a conversa?', vi: 'Cuộc trò chuyện thế nào?', id: 'Bagaimana percakapannya?', tr: 'Konuşma nasıl geçti?', pl: 'Jak poszła rozmowa?' }),
+    feedbackPlaceholder: triLang(lang, { ru: 'Что понравилось, что улучшить?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?', 'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?', id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?' }),
+    feedbackSend: triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' }),
+    feedbackThanks: triLang(lang, { ru: 'Спасибо! Отзыв отправлен', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado', 'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi', id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana' }),
+    feedbackFailed: triLang(lang, { ru: 'Не отправилось. Попробуйте ещё раз', uk: 'Не надіслалося. Спробуйте ще раз', es: 'No se envió. Inténtalo de nuevo', 'pt-BR': 'Não enviou. Tente novamente', vi: 'Chưa gửi được. Thử lại nhé', id: 'Gagal terkirim. Coba lagi', tr: 'Gönderilemedi. Tekrar deneyin', pl: 'Nie wysłano. Spróbuj ponownie' }),
+    feedbackRating: triLang(lang, { ru: 'Оценка', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação', vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena' }),
     completed: triLang(lang, { ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación completada', 'pt-BR': 'Conversa concluída', vi: 'Đã hoàn thành cuộc trò chuyện', id: 'Percakapan selesai', tr: 'Konuşma tamamlandı', pl: 'Rozmowa zakończona' }),
     worked: triLang(lang, { ru: 'Что получилось', uk: 'Що вдалося', es: 'Lo que salió bien', 'pt-BR': 'O que deu certo', vi: 'Điều bạn làm tốt', id: 'Yang sudah bagus', tr: 'İyi yaptıkların', pl: 'Co poszło dobrze' }),
     fix: triLang(lang, { ru: 'Что поправить', uk: 'Що виправити', es: 'Qué corregir', 'pt-BR': 'O que corrigir', vi: 'Điều cần sửa', id: 'Yang perlu diperbaiki', tr: 'Neyi düzeltmeli', pl: 'Co poprawić' }),
@@ -131,6 +141,10 @@ export default function MaxVoiceReview() {
     ? params.sessionId.trim()
     : localResult?.sessionId ?? '';
   const c = useMemo(() => copy(lang), [lang]);
+  // Отзыв о звонке: локальное состояние, сеть догоняет фоном (Optimistic UI).
+  const [feedbackText, setFeedbackText] = useState('');
+  const [feedbackRating, setFeedbackRating] = useState(0);
+  const [feedbackState, setFeedbackState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
   const [reviewState, setReviewState] = useState<ReviewState>({ kind: 'loading' });
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [transcriptOpen, setTranscriptOpen] = useState(false);
@@ -291,6 +305,38 @@ export default function MaxVoiceReview() {
 
   const card = { backgroundColor: glassFill(t.bgSurface, 0.48), borderRadius: 20, padding: 18, marginTop: 14 } as const;
 
+  /**
+   * Отправка отзыва — оптимистичная: экран сразу говорит «спасибо», сеть догоняет
+   * фоном. Ошибка откатывает состояние и возвращает текст, чтобы человек не
+   * потерял написанное. Повторный тап заблокирован флагом отправки.
+   */
+  const sendFeedback = async (): Promise<void> => {
+    const message = feedbackText.trim();
+    if (feedbackState === 'sending' || (message === '' && feedbackRating === 0)) return;
+    hapticTap();
+    const sentText = message;
+    const sentRating = feedbackRating;
+    setFeedbackState('sending');
+    setFeedbackText('');
+    try {
+      await submitMaxVoiceFeedback({
+        sessionId: requestedSessionId || 'unknown',
+        message: sentText,
+        rating: sentRating,
+        lang,
+        cefr: localResult?.cefr ?? null,
+        format: localResult?.format ?? null,
+        callSeconds: localResult?.durationSec ?? 0,
+      });
+      setFeedbackState('sent');
+      void trackEvent('max_voice_feedback_sent', { rating: sentRating, hasText: sentText !== '' });
+    } catch {
+      // Откат: возвращаем текст и оценку, человек не потерял написанное.
+      setFeedbackText(sentText);
+      setFeedbackState('failed');
+    }
+  };
+
   if (reviewState.kind === 'loading') {
     return (
       <ScreenGradient>
@@ -342,6 +388,110 @@ export default function MaxVoiceReview() {
         </View>
 
         <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
+          {/* зачем (владелец 2026-08-23): «на экране результатов в самом верху
+              добавь окно ввода фидбека с кнопкой отправить». Стоит первым: пока
+              впечатление свежее, человек ещё готов написать. */}
+          <View testID="max-voice-review-feedback" style={{ ...card, marginTop: 8 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+              {c.feedbackTitle}
+            </Text>
+            {feedbackState === 'sent' ? (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12 }}>
+                <Ionicons name="checkmark-circle" size={20} color={t.correctText} />
+                <Text accessibilityLiveRegion="polite" style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
+                  {c.feedbackThanks}
+                </Text>
+              </View>
+            ) : (
+              <>
+                <View accessibilityRole="radiogroup" accessibilityLabel={c.feedbackRating} style={{ flexDirection: 'row', gap: 6, marginTop: 12 }}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <TouchableOpacity
+                      key={`star-${star}`}
+                      testID={`max-voice-feedback-star-${star}`}
+                      accessibilityRole="radio"
+                      accessibilityState={{ selected: feedbackRating >= star }}
+                      accessibilityLabel={`${c.feedbackRating} ${star}`}
+                      onPress={() => {
+                        hapticTap();
+                        setFeedbackRating(star);
+                        if (feedbackState === 'failed') setFeedbackState('idle');
+                      }}
+                      style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <Ionicons
+                        name={feedbackRating >= star ? 'star' : 'star-outline'}
+                        size={26}
+                        color={feedbackRating >= star ? t.gold : t.textGhost}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                <TextInput
+                  testID="max-voice-feedback-input"
+                  accessibilityLabel={c.feedbackTitle}
+                  value={feedbackText}
+                  onChangeText={(value) => {
+                    setFeedbackText(value);
+                    if (feedbackState === 'failed') setFeedbackState('idle');
+                  }}
+                  placeholder={c.feedbackPlaceholder}
+                  placeholderTextColor={t.textGhost}
+                  multiline
+                  maxLength={2000}
+                  maxFontSizeMultiplier={2}
+                  style={{
+                    color: t.textPrimary,
+                    fontSize: f.body,
+                    fontWeight: '600',
+                    lineHeight: Math.round(f.body * 1.4),
+                    backgroundColor: glassFill(t.bgCard, 0.7),
+                    borderRadius: 14,
+                    paddingHorizontal: 14,
+                    paddingTop: 12,
+                    paddingBottom: 12,
+                    marginTop: 12,
+                    minHeight: 92,
+                    textAlignVertical: 'top',
+                  }}
+                />
+                {feedbackState === 'failed' ? (
+                  <Text accessibilityLiveRegion="polite" style={{ color: t.wrongText, fontSize: f.sub, fontWeight: '800', marginTop: 10 }} maxFontSizeMultiplier={2}>
+                    {c.feedbackFailed}
+                  </Text>
+                ) : null}
+                <TouchableOpacity
+                  testID="max-voice-feedback-send"
+                  accessibilityRole="button"
+                  accessibilityLabel={c.feedbackSend}
+                  accessibilityState={{ disabled: feedbackState === 'sending' || (feedbackText.trim() === '' && feedbackRating === 0) }}
+                  disabled={feedbackState === 'sending' || (feedbackText.trim() === '' && feedbackRating === 0)}
+                  onPress={() => { void sendFeedback(); }}
+                  style={{
+                    marginTop: 12,
+                    minHeight: 48,
+                    borderRadius: 14,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: feedbackText.trim() === '' && feedbackRating === 0 ? glassFill(t.bgCard, 0.6) : t.accent,
+                    opacity: feedbackState === 'sending' ? 0.7 : 1,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: feedbackText.trim() === '' && feedbackRating === 0 ? t.textGhost : t.onAccent,
+                      fontSize: f.body,
+                      fontWeight: '900',
+                    }}
+                    maxFontSizeMultiplier={2}
+                  >
+                    {c.feedbackSend}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+
           <View testID="max-voice-review-hero" style={{ ...card, marginTop: 8, backgroundColor: t.accentBg }}>
             <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.completed}</Text>
             <Text ref={readyTitleRef} accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.25), marginTop: 8 }} maxFontSizeMultiplier={2}>

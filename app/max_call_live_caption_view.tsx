@@ -11,7 +11,23 @@ type Props = {
   /** Вся реплика целиком (включая ещё не прозвучавший хвост). */
   fullAssistantText?: string;
   completedAssistantText: string;
+  /**
+   * Последняя распознанная реплика ученика.
+   *
+   * зачем (владелец 2026-08-23): «надо чтобы у него был такт субтитров и чтобы
+   * видно было что я говорю». Раньше строка показывала ТОЛЬКО речь MAX — своих
+   * слов ученик не видел вовсе и не понимал, расслышали ли его.
+   */
+  userText?: string;
+  /** Ученик говорит прямо сейчас — показываем это ожиданием, а не пустотой. */
+  userSpeaking?: boolean;
   lang: Lang;
+};
+
+/** Подпись своей стороны в субтитрах. */
+const YOU_LABEL: Record<string, string> = {
+  ru: 'ВЫ', uk: 'ВИ', es: 'TÚ', 'pt-BR': 'VOCÊ',
+  vi: 'BẠN', id: 'ANDA', tr: 'SEN', pl: 'TY', en: 'YOU',
 };
 
 /**
@@ -51,6 +67,9 @@ export function MaxCallLiveCaptionView({
   visibleAssistantText,
   fullAssistantText,
   completedAssistantText,
+  userText = '',
+  userSpeaking = false,
+  lang,
 }: Props) {
   const { theme: t, f } = useTheme();
   const { fontScale } = useWindowDimensions();
@@ -60,6 +79,10 @@ export function MaxCallLiveCaptionView({
   const source = (fullAssistantText ?? '').trim() !== '' ? fullAssistantText! : visibleAssistantText;
   const rail = captionRailTail(source, wordLimit);
   const { spoken, ahead } = splitSpokenTail(rail, visibleAssistantText);
+  // Свою реплику держим короче, чем реплику учителя: она нужна как
+  // подтверждение «тебя услышали вот так», а не как второй экран текста.
+  const userRail = captionRailTail(userText, Math.max(6, Math.round(wordLimit * 0.6)));
+  const youLabel = YOU_LABEL[lang] ?? YOU_LABEL.en;
   const announcedRef = useRef('');
 
   useEffect(() => {
@@ -76,6 +99,32 @@ export function MaxCallLiveCaptionView({
         accessible={false}
         style={{ minHeight: 132, marginHorizontal: 22, marginBottom: 8, justifyContent: 'center' }}
       >
+        {/* Реплика ученика — над репликой учителя, тоном тише и прижата вправо:
+            две стороны читаются как диалог, без рамок и подложек. */}
+        {userRail !== '' || userSpeaking ? (
+          <View style={{ alignSelf: 'flex-end', maxWidth: '92%', marginBottom: rail !== '' ? 12 : 0 }}>
+            <Text
+              style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textAlign: 'right' }}
+              maxFontSizeMultiplier={2}
+            >
+              {youLabel}
+            </Text>
+            <Text
+              testID="max-call-live-caption-user-text"
+              maxFontSizeMultiplier={2}
+              style={{
+                color: userRail !== '' ? t.textSecond : t.textGhost,
+                fontSize: f.body,
+                fontWeight: '700',
+                lineHeight: Math.round(f.body * 1.35),
+                marginTop: 4,
+                textAlign: 'right',
+              }}
+            >
+              {userRail !== '' ? userRail : '…'}
+            </Text>
+          </View>
+        ) : null}
         {rail !== '' ? (
           <>
           <Text

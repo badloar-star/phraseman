@@ -26274,7 +26274,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     const resolution = resolutionLabels[prepared.resolution] || prepared.resolution || 'Статус не указан';
     const reward = Math.max(0, Math.min(100, Math.floor(Number(prepared.shards) || 0)));
     const rewardLabel = reward > 0
-      ? `<span style="color:#86efac;font-size:11px">+${reward} ${reward === 1 ? 'осколок' : reward < 5 ? 'осколка' : 'осколков'}</span>`
+      ? `<span style="color:#86efac;font-size:11px">+${reward} ${reward === 1 ? 'жемчужина' : reward < 5 ? 'жемчужины' : 'жемчужин'}</span>`
       : '';
     return `<section class="prepared-reply-box" data-prep-id="${escapeHtml(String(report.id))}" aria-label="Подготовленный ответ пользователю" style="margin-top:10px;border-top:1px solid #2a3145;padding:10px 0 0">
       <div style="color:#d9f99d;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap">

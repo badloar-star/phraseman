@@ -16,7 +16,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import {
   Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
-import { Image } from 'expo-image';
+import Reanimated from 'react-native-reanimated';
 import {
   applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
   isEnergyBonusGiftId, isPremiumLevelGiftId, rollF2pLevelGiftForUser,
@@ -30,7 +30,7 @@ import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
+import LevelSpinRewardArt from './LevelSpinRewardArt';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import PlusBadge from './PlusBadge';
@@ -58,6 +58,7 @@ import {
 import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 export {
@@ -101,8 +102,9 @@ interface Props {
    * зачем: владелец (2026-08-16) — GiftOpenBurst сейчас статичное свечение без
    * движения (по прошлой просьбе убрать конфетти/лучи). В hybrid добавляем
    * ЕДИНСТВЕННЫЙ удар героя-награды (RewardImpactRings — кольца+пыль по
-   * редкости) поверх реального момента reveal, БЕЗ изменения chest/opening
-   * логики, claim-потока и бизнес-состояния. Боевой дефолт — 'classic'.
+   * редкости) в момент reveal. Hybrid пропускает старые JS-loop/shake и
+   * оставляет claim-поток и бизнес-состояние неизменными. Production default —
+   * hybrid; explicit classic сохранён для rollback/QA.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
@@ -193,13 +195,14 @@ function LevelGiftModal({
   occurrenceId,
   deviceLocalSpin,
   studyTarget,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
   const storesOnly = deliveryMode === 'inventory';
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
 
   const [phase, setPhase] = useState<Phase>('box');
   const [gift, setGift]   = useState<GiftDef | null>(null);
@@ -211,7 +214,8 @@ function LevelGiftModal({
   // зачем: добавка ЕДИНСТВЕННОГО удара героя-награды в hybrid (закон владельца
   // «удар только у героя кульминации») — вызывается безусловно (Rules of
   // Hooks), сам эффект гейтится visible/gift/phase внутри опции visible ниже.
-  // Chest/opening-хореография (Animated ниже) НЕ трогается вовсе.
+  // Бизнес-логика открытия общая; hybrid пропускает legacy JS-анимацию и
+  // передаёт визуальный reveal общему UI-thread движку ниже.
   const impact = useRewardImpactHybrid({
     visible: isHybrid && visible && phase === 'reveal' && !!gift,
     rarity: gift?.rarity ?? 'common',
@@ -237,6 +241,7 @@ function LevelGiftModal({
   const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
   const isVisibleRef = useRef(false);
   const openingAccountTokenRef = useRef<AccountGenerationToken | null>(null);
+  const openingSafetyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isCurrentOpening = (accountToken: AccountGenerationToken): boolean =>
     isCurrentLevelGiftOpening(openingAccountTokenRef.current, accountToken);
 
@@ -248,6 +253,10 @@ function LevelGiftModal({
       idleLoop.current?.stop();
       glowLoop.current?.stop();
       orbHoverLoop.current?.stop();
+      if (openingSafetyTimerRef.current) {
+        clearTimeout(openingSafetyTimerRef.current);
+        openingSafetyTimerRef.current = null;
+      }
       return;
     }
     if (!justOpened) return;
@@ -291,26 +300,32 @@ function LevelGiftModal({
       orbPulse.setValue(0);
       modalEntrance.setValue(0);
       modalGlow.setValue(0);
-      Animated.spring(modalEntrance, {
-        toValue: 1,
-        useNativeDriver: true,
-        tension: 115,
-        friction: 12,
-      }).start();
+      if (isHybrid || reduceMotion) {
+        modalEntrance.setValue(1);
+      } else {
+        Animated.spring(modalEntrance, {
+          toValue: 1,
+          useNativeDriver: true,
+          tension: 115,
+          friction: 12,
+        }).start();
+      }
       glowLoop.current?.stop();
-      glowLoop.current = Animated.loop(
+      glowLoop.current = (isHybrid || reduceMotion) ? null : Animated.loop(
         Animated.sequence([
           Animated.timing(modalGlow, { toValue: 1, duration: 1450, useNativeDriver: true }),
           Animated.timing(modalGlow, { toValue: 0, duration: 1450, useNativeDriver: true }),
         ])
       );
-      glowLoop.current.start();
+      glowLoop.current?.start();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, orbPulse, modalEntrance, modalGlow, presentationMode, studyTarget, onClose]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, orbPulse, modalEntrance, modalGlow, presentationMode, studyTarget, onClose, isHybrid, reduceMotion]);
 
   useEffect(() => {
-    if (!visible || !gift) {
+    if (!visible || !gift || isHybrid || reduceMotion) {
       idleLoop.current?.stop();
+      floatAnim.setValue(0);
+      rockAnim.setValue(0);
       return;
     }
     const floatLoop = Animated.loop(
@@ -328,7 +343,7 @@ function LevelGiftModal({
     idleLoop.current = Animated.parallel([floatLoop, rockLoop]);
     idleLoop.current.start();
     return () => { idleLoop.current?.stop(); };
-  }, [visible, gift, floatAnim, rockAnim]);
+  }, [visible, gift, floatAnim, rockAnim, isHybrid, reduceMotion]);
 
   useEffect(() => {
     if (!visible || !storesOnly || !gift) return;
@@ -401,12 +416,14 @@ function LevelGiftModal({
       });
     };
 
-    let safetyTimer: ReturnType<typeof setTimeout> | undefined;
     let finalized = false;
     const finalize = () => {
       if (finalized || !isCurrentOpening(accountToken)) return;
       finalized = true;
-      if (safetyTimer) clearTimeout(safetyTimer);
+      if (openingSafetyTimerRef.current) {
+        clearTimeout(openingSafetyTimerRef.current);
+        openingSafetyTimerRef.current = null;
+      }
       if (storesOnly) {
         void saveUnclaimedGift(level, g, accountToken);
       }
@@ -415,6 +432,12 @@ function LevelGiftModal({
       fadeReveal.setValue(0);
       orbRise.setValue(0);
       orbPulse.setValue(0);
+      if (isHybrid || reduceMotion) {
+        fadeReveal.setValue(1);
+        orbRise.setValue(1);
+        updateAppliedMeta();
+        return;
+      }
       Animated.parallel([
         Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
         Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
@@ -433,11 +456,11 @@ function LevelGiftModal({
       });
       updateAppliedMeta();
     };
-    if (skipOpeningAnimation) {
+    if (skipOpeningAnimation || isHybrid || reduceMotion) {
       finalize();
       return;
     }
-    safetyTimer = setTimeout(finalize, LEVEL_GIFT_OPEN_SAFETY_MS);
+    openingSafetyTimerRef.current = setTimeout(finalize, LEVEL_GIFT_OPEN_SAFETY_MS);
 
     // Короткая дрожь → крышка отлетает (lidLift) → finalize раскрывает награду.
     Animated.sequence([
@@ -738,13 +761,31 @@ function LevelGiftModal({
             </>
           ) : (
             <Animated.View style={{ opacity: fadeReveal, alignItems: 'center', transform: [{ translateY: revealY }] }}>
+              {/* зачем 2026-08-23 (владелец прислал скриншот пустой модалки
+                  «Подарок за уровень»): обёртка вешала impact.styles.text
+                  ВСЕГДА, когда motionVariant='hybrid' (это дефолт). Но
+                  textOpacity в use_reward_impact_hybrid стартует с 0 и растёт
+                  только внутри эффекта, который гейтован visible — а visible
+                  хука требует phase === 'reveal'. При открытии подарка из
+                  инвентаря (presentationMode='apply') фаза остаётся 'box'
+                  (previewingStoredGift), хук не заряжается, и весь контент
+                  награды навсегда оставался с opacity 0: панель с одной шапкой
+                  и пустотой под ней. Тот же класс бага уже ловили в
+                  BoonChestHybrid.tsx (см. комментарий «до тапа всё было с
+                  opacity 0: гибрид не запускается»).
+                  Правило: анимационный стиль применяем ТОЛЬКО когда хук реально
+                  запущен, иначе контент просто видим. */}
+              <Reanimated.View style={[styles.hybridRevealContent, isHybrid && phase === 'reveal' ? impact.styles.text : undefined]}>
               {gift?.choices?.length ? (
                 <>
-                  <Image
-                    source={getLevelGiftRewardIcon(gift.id, themeMode)}
-                    style={{ width: 82, height: 82, marginBottom: 8 }}
-                    contentFit="contain"
-                  />
+                  <View style={{ marginBottom: 8 }}>
+                    <LevelSpinRewardArt
+                      rewardId={gift.id}
+                      size={82}
+                      accessibilityLabel={giftDisplayTitleForLang(gift, lang)}
+                      fallbackColor={rarityAccent}
+                    />
+                  </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '800', marginBottom: 8, textAlign: 'center' }}>
                     {giftDisplayTitleForLang(gift, lang)}
                   </Text>
@@ -771,10 +812,11 @@ function LevelGiftModal({
                           opacity: choiceBusy ? 0.65 : 1,
                         }}
                       >
-                        <Image
-                          source={getLevelGiftRewardIcon(choice.id, themeMode)}
-                          style={{ width: 38, height: 38 }}
-                          contentFit="contain"
+                        <LevelSpinRewardArt
+                          rewardId={choice.id}
+                          size={38}
+                          accessibilityLabel={giftDisplayTitleForLang(choice, lang)}
+                          fallbackColor={paletteForRarity(choice.rarity).accent}
                         />
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -821,14 +863,21 @@ function LevelGiftModal({
                     ring1Style={impact.styles.ring1}
                   />
                 )}
+                {/* зачем 2026-08-23: тот же класс бага, что и у text выше —
+                    heroOpacity тоже стартует с 0 и поднимается только при
+                    запущенном хуке, поэтому в предпросмотре сохранённого
+                    подарка иконка награды была невидима вместе с текстом. */}
                 {gift && (
-                  <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
-                    <Image
-                      source={getLevelGiftRewardIcon(gift.id, themeMode)}
-                      style={{ width: 108, height: 108 }}
-                      contentFit="contain"
-                    />
-                  </Animated.View>
+                  <Reanimated.View style={isHybrid && phase === 'reveal' ? impact.styles.hero : undefined}>
+                    <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
+                      <LevelSpinRewardArt
+                        rewardId={gift.id}
+                        size={108}
+                        accessibilityLabel={giftDisplayTitleForLang(gift, lang)}
+                        fallbackColor={rarityAccent}
+                      />
+                    </Animated.View>
+                  </Reanimated.View>
                 )}
               </View>
 
@@ -910,56 +959,56 @@ function LevelGiftModal({
               {gift?.id && isEnergyBonusGiftId(gift.id) && (() => {
                 const n = gift.id === 'energy_plus1' ? 1 : gift.id === 'energy_plus3' ? 3 : 2;
                 return (
-                <View style={{
-                  backgroundColor: '#FEF3C7',
-                  borderRadius: 10,
-                  paddingVertical: 8,
-                  paddingHorizontal: 14,
-                  marginBottom: 16,
-                  borderWidth: 0,
-                  borderColor: '#D97706',
-                  alignItems: 'center',
-                }}>
-                  {energyBoostAlreadyActive ? (
-                    <>
-                      <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                        {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
-                        {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
-                      </Text>
-                      <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
-                        {triLang(lang, {
-                          ru: `Бусты энергии не суммируются — предыдущий заменён новым (+${n} до завтра)`,
-                          uk: `Бусти енергії не сумуються — попередній замінено новим (+${n} до завтра)`,
-                          es: `Los bonos de energía no se acumulan: el anterior queda reemplazado por uno nuevo (+${n} hasta mañana)`,
-                          'pt-BR': `Bônus de energia não acumulam — o anterior foi substituído por um novo (+${n} até amanhã)`,
-                          vi: `Boost năng lượng không cộng dồn — boost trước đã được thay bằng boost mới (+${n} đến ngày mai)`,
-                          id: `Boost energi tidak ditumpuk — yang lama diganti dengan yang baru (+${n} sampai besok)`,
-                          tr: `Enerji güçlendirmeleri birikmez — önceki yeni olanla değiştirildi (yarına kadar +${n})`,
-                          pl: `Bonusy energii się nie sumują — poprzedni zastąpiono nowym (+${n} do jutra)`,
-                        })}
-                      </Text>
-                    </>
-                  ) : (
-                    <>
-                      <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                        {/* зачем: владелец запретил эмодзи в UI — префикс ⚡ убран, текст не менялся. */}
-                        {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
-                      </Text>
-                      <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
-                        {triLang(lang, {
-                          ru: `Эти ${n} ед. энергии исчезнут в начале следующего дня`,
-                          uk: `Ці ${n} од. енергії зникнуть на початку наступного дня`,
-                          es: `Estas ${n} unidades extra de energía caducan al empezar el día siguiente`,
-                          'pt-BR': `Estas ${n} unidades extras de energia expiram no começo do próximo dia`,
-                          vi: `${n} năng lượng thêm này sẽ biến mất vào đầu ngày tiếp theo`,
-                          id: `${n} energi ekstra ini akan hilang di awal hari berikutnya`,
-                          tr: `Bu ekstra ${n} enerji bir sonraki günün başında kaybolur`,
-                          pl: `Te dodatkowe ${n} jednostki energii znikną na początku następnego dnia`,
-                        })}
-                      </Text>
-                    </>
-                  )}
-                </View>
+                  <View style={{
+                    backgroundColor: '#FEF3C7',
+                    borderRadius: 10,
+                    paddingVertical: 8,
+                    paddingHorizontal: 14,
+                    marginBottom: 16,
+                    borderWidth: 0,
+                    borderColor: '#D97706',
+                    alignItems: 'center',
+                  }}>
+                    {energyBoostAlreadyActive ? (
+                      <>
+                        <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
+                          {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
+                          {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
+                        </Text>
+                        <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
+                          {triLang(lang, {
+                            ru: `Бусты энергии не суммируются — предыдущий заменён новым (+${n} до завтра)`,
+                            uk: `Бусти енергії не сумуються — попередній замінено новим (+${n} до завтра)`,
+                            es: `Los bonos de energía no se acumulan: el anterior queda reemplazado por uno nuevo (+${n} hasta mañana)`,
+                            'pt-BR': `Bônus de energia não acumulam — o anterior foi substituído por um novo (+${n} até amanhã)`,
+                            vi: `Boost năng lượng không cộng dồn — boost trước đã được thay bằng boost mới (+${n} đến ngày mai)`,
+                            id: `Boost energi tidak ditumpuk — yang lama diganti dengan yang baru (+${n} sampai besok)`,
+                            tr: `Enerji güçlendirmeleri birikmez — önceki yeni olanla değiştirildi (yarına kadar +${n})`,
+                            pl: `Bonusy energii się nie sumują — poprzedni zastąpiono nowym (+${n} do jutra)`,
+                          })}
+                        </Text>
+                      </>
+                    ) : (
+                      <>
+                        <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
+                          {/* зачем: владелец запретил эмодзи в UI — префикс ⚡ убран, текст не менялся. */}
+                          {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
+                        </Text>
+                        <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
+                          {triLang(lang, {
+                            ru: `Эти ${n} ед. энергии исчезнут в начале следующего дня`,
+                            uk: `Ці ${n} од. енергії зникнуть на початку наступного дня`,
+                            es: `Estas ${n} unidades extra de energía caducan al empezar el día siguiente`,
+                            'pt-BR': `Estas ${n} unidades extras de energia expiram no começo do próximo dia`,
+                            vi: `${n} năng lượng thêm này sẽ biến mất vào đầu ngày tiếp theo`,
+                            id: `${n} energi ekstra ini akan hilang di awal hari berikutnya`,
+                            tr: `Bu ekstra ${n} enerji bir sonraki günün başında kaybolur`,
+                            pl: `Te dodatkowe ${n} jednostki energii znikną na początku następnego dnia`,
+                          })}
+                        </Text>
+                      </>
+                    )}
+                  </View>
                 );
               })()}
 
@@ -1067,6 +1116,7 @@ function LevelGiftModal({
               </TouchableOpacity>
               </>
               )}
+              </Reanimated.View>
             </Animated.View>
           )}
         </Animated.View>
@@ -1076,3 +1126,7 @@ function LevelGiftModal({
 }
 
 export default memo(LevelGiftModal);
+
+const styles = StyleSheet.create({
+  hybridRevealContent: { width: '100%', alignItems: 'center' },
+});

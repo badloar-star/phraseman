@@ -301,18 +301,23 @@ export const submitClientReport = onCall({
   const payload = asRecord(request.data?.payload);
   const now = Date.now();
   // зачем: в Арене клиент не знает uid соперника (сервер его намеренно не шлёт),
-  // поэтому находим сами по matchId + месту. Жалоба на бота отклоняется:
-  // ник ему выдал сервер, наказывать некого.
+  // поэтому находим сами по matchId + месту.
+  //
+  // Бот: жалоба ПРИНИМАЕТСЯ как успех, но документ не пишется. Отказ ошибкой
+  // косвенно раскрывал бы бота (на живого уходит, на бота — «не отправилась»),
+  // а владелец запретил раскрывать бота в интерфейсе. Наказывать некого,
+  // телеграм-алерт о жалобе не спамится — записи просто нет.
   const resolvedPayload = kind === 'arena_opponent_report'
     ? await (async () => {
       const matchId = text(payload.matchId, 180);
       if (!matchId) throw new HttpsError('invalid-argument', 'match_id_required');
       const seat = enumText(payload.opponentSeat, ['a', 'b'] as const, 'a');
       const opponent = await resolveArenaOpponent(db, matchId, seat, stableUid);
-      if (opponent.isBot) throw new HttpsError('failed-precondition', 'arena_opponent_is_bot');
+      if (opponent.isBot) return null;
       return { ...payload, reportedUid: opponent.uid };
     })()
     : payload;
+  if (resolvedPayload === null) return { ok: true, id: 'accepted' };
   const doc = buildReportDoc(kind, resolvedPayload, stableUid, authUid, now);
   const rateRef = db.collection(RATE_COLLECTION).doc(rateDocId(kind, authUid, stableUid));
   const reportRef = db.collection(config.collection).doc();

@@ -442,3 +442,49 @@ it('rejects raw caller injection into semantic paid markers', async () => {
     localWrites: [[`${CLIENT_SHARD_SEMANTIC_PAID_PREFIX}owner-1:profile_card_level:5`, '1']],
   })).resolves.toEqual({ status: 'failed', reason: 'reserved_local_write_key' });
 });
+
+// зачем: раньше флаг «оплачено» завершал операцию с пустым writes, поэтому
+// покупка, потерявшая свой товар на диске (гонка/чистка кэша), не выдавалась
+// уже НИКОГДА — жемчужины списаны, а набора нет. Тест сторожит до-выдачу.
+it('re-materializes a paid card pack whose local entitlement disappeared', async () => {
+  const packGrant = {
+    kind: 'official_card_pack',
+    subjectId: 'travel_basic',
+    payload: { studyTarget: 'en' },
+  };
+  const ownedKey = 'flashcards_owned_packs_v1';
+
+  // Первая покупка: списывает жемчуг и кладёт набор в «Мои».
+  await expect(commitClientShardOperation({
+    expectedOwnerStableId: 'owner-1',
+    operationId: 'pack:travel_basic:0001',
+    direction: 'debit',
+    amount: 5,
+    reason: 'card_pack',
+    grant: packGrant,
+    localWrites: [],
+    semanticResult: true,
+  })).resolves.toMatchObject({ status: 'applied', balanceAfter: 15 });
+  expect(JSON.parse(storage[ownedKey] ?? '[]')).toContain('travel_basic');
+
+  // Набор пропал с диска, флаг «оплачено» остался — состояние из репортов.
+  delete storage[ownedKey];
+  expect(storage[`${CLIENT_SHARD_SEMANTIC_PAID_PREFIX}owner-1:official_card_pack:travel_basic`]).toBe('1');
+
+  const balanceBeforeRetry = storage.shards_balance;
+  const retry = await commitClientShardOperation({
+    expectedOwnerStableId: 'owner-1',
+    operationId: 'pack:travel_basic:0002',
+    direction: 'debit',
+    amount: 5,
+    reason: 'card_pack',
+    grant: packGrant,
+    localWrites: [],
+    semanticResult: true,
+  });
+
+  // Набор снова выдан, повторного списания не произошло.
+  expect(retry.status).toBe('already-satisfied');
+  expect(JSON.parse(storage[ownedKey] ?? '[]')).toContain('travel_basic');
+  expect(storage.shards_balance).toBe(balanceBeforeRetry);
+});

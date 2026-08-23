@@ -44,11 +44,35 @@ export async function reducePortableClientShardGrant(
   createdAtMs: number,
   ownerStableId: string,
 ): Promise<ClientShardSemanticReduction> {
-  const payload = objectValue(grant.payload);
   const paidKey = semanticPaidKey(ownerStableId, grant.kind, grant.subjectId);
-  if (await AsyncStorage.getItem(paidKey) === '1') {
-    return { status: 'already-satisfied', writes: [] };
+  const alreadyPaid = await AsyncStorage.getItem(paidKey) === '1';
+  const reduction = await materializePortableClientShardGrant(
+    grant,
+    createdAtMs,
+    ownerStableId,
+    paidKey,
+  );
+  // зачем: раньше флаг «оплачено» безусловно завершал операцию с пустым writes.
+  // Если товар при этом НЕ лежал на диске (список перезаписан гонкой, чистка
+  // кэша, откат AsyncStorage), покупка становилась невосстановимой: жемчужины
+  // списаны, флаг стоит, а набора нет — отсюда «карточки не покупаются».
+  // Теперь флаг не короткое замыкание, а лишь признак «повторно не списывать»:
+  // материализацию считаем всегда, а already-satisfied у вызывающего означает
+  // «запиши writes, баланс не трогай» (client_shard_operation_ledger.ts) —
+  // ровно то, что нужно для до-выдачи уже оплаченного товара.
+  if (alreadyPaid && reduction.status === 'materialized') {
+    return { status: 'already-satisfied', writes: reduction.writes };
   }
+  return reduction;
+}
+
+async function materializePortableClientShardGrant(
+  grant: ClientShardGrant,
+  createdAtMs: number,
+  ownerStableId: string,
+  paidKey: string,
+): Promise<ClientShardSemanticReduction> {
+  const payload = objectValue(grant.payload);
   switch (grant.kind) {
     case 'official_card_pack': {
       const target = storageStudyTarget(payload.studyTarget === 'fr' ? 'fr' : 'en');

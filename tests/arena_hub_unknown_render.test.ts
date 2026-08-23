@@ -22,10 +22,26 @@ jest.mock('react-native-reanimated', () => {
     withDelay: (_delay: number, value: number) => value, withSpring: (value: number) => value };
 });
 jest.mock('@expo/vector-icons/Ionicons', () => () => null);
+// зачем: ArenaHubLive → ArenaRankStars → ArenaStarGlyph рендерит золотой
+// глиф через react-native-svg (звёздная лестница, 2026-08-23). Этот jest.config
+// использует лёгкий мок 'react-native' без Touchable.Mixin, от которого
+// react-native-svg падает при импорте — тест не проверяет форму звезды,
+// только текст/лейблы вокруг неё, поэтому глушим SVG так же, как Ionicons.
+jest.mock('react-native-svg', () => {
+  const stub = (name: string) => (props: Record<string, unknown>) => h(name, props, props.children as React.ReactNode);
+  return {
+    __esModule: true,
+    default: stub('Svg'),
+    Svg: stub('Svg'), Defs: stub('Defs'), Stop: stub('Stop'),
+    LinearGradient: stub('LinearGradient'), RadialGradient: stub('RadialGradient'),
+    Circle: stub('Circle'), Path: stub('Path'), Rect: stub('Rect'),
+  };
+});
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
 jest.mock('../modules/arena/copy', () => ({
   arenaText: (_lang: string, key: string) => key === 'valueUnknown' ? 'Данные пока недоступны'
     : key === 'ranks' ? 'Ранги' : key === 'rankProgress' ? 'До следующего деления'
+      : key === 'rankStars' ? 'Звёзды ранга'
       : key === 'goalPlay' ? 'Сыграть матчи' : key === 'goalSpeed' ? 'Ответить первым'
         : key === 'goalAccuracy' ? 'Выиграть матч' : key === 'goalsTitle' ? 'Цели дня'
           : key === 'hubOffline' ? 'Нет подключения' : key === 'hubOfflineHint' ? 'Свежие данные появятся, когда вернётся сеть. Для матча нужна сеть.'

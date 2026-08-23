@@ -12,8 +12,8 @@
   "style": "semi-realistic stylized 3D character, Pixar-like proportions, soft studio light from upper-left, matte skin, clean single-color background, no outlines, no text, no watermark",
   "pose": "three-quarter-body bust, facing camera, shoulders visible, arms down, gentle closed-mouth smile, eyes looking straight at camera",
   "slots": {
-    "hair":      { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] }, { "rect": [0, 0.62, 1, 0.38] } ] },
-    "headwear":  { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] }, { "rect": [0, 0.62, 1, 0.38] } ] },
+    "hair":      { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] } ] },
+    "headwear":  { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] } ] },
     "outfit":    { "locked": [ { "rect": [0, 0, 1, 0.50] } ] },
     "accessory": { "locked": [] },
     "eyes":      { "locked": [ { "rect": [0, 0, 1, 0.30] }, { "rect": [0, 0.48, 1, 0.52] } ] },

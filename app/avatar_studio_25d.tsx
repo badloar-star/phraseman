@@ -228,7 +228,11 @@ export default function AvatarStudio25dScreen() {
               title={copy.slots[section.slot] ?? section.slot}
               optional={section.optional}
               copy={copy}
-              items={avatar25dItemsForSlot(catalog, section.slot)}
+              items={avatar25dItemsForSlot(catalog, section.slot).filter(
+                // зачем: детали привязаны к своей базе (мальчик/девочка) —
+                // чужие в каталоге вкладки не показываем
+                item => !item.base || item.base === `${selection.base}.png`,
+              )}
               selectedId={selection[section.slot]}
               onPick={id => pick(section.slot, id)}
             />
@@ -296,7 +300,7 @@ function SlotSection({
           {items.map(item => (
             <OptionTile
               key={item.id}
-              label={item.id.replace(/^[a-z]+_/, '').replace(/_/g, ' ')}
+              label={item.label ?? item.id.replace(/^[a-z]+_/, '').replace(/_/g, ' ')}
               asset={AVATAR_25D_ASSETS[avatar25dItemKey(item)] ?? null}
               selected={selectedId === item.id}
               onPress={() => onPick(item.id)}

@@ -16,6 +16,7 @@ const file = args[0];
 const slot = getOption('--slot');
 const basePath = getOption('--base');
 const acceptId = args.includes('--accept') ? getOption('--id') : null;
+const acceptLabel = getOption('--label');
 if (!file || !slot || (args.includes('--accept') && !acceptId)) {
   process.stdout.write(
     'Использование: node check_render.mjs <картинка.png> --slot <base|hair|headwear|outfit|accessory|eyes|skin|emotion>\n' +
@@ -109,20 +110,55 @@ if (!errors.length) {
     if (basePath) {
       const base = await loadImage(basePath);
       const baseBox = silhouetteBox(base.data);
-      if (Math.abs(centerX - (baseBox.x0 + baseBox.x1) / 2 / AW) > 0.03 || Math.abs(box.y0 / AH - baseBox.y0 / AH) > 0.03)
-        errors.push('pose_shifted: персонаж сместился относительно эталона — поза/кадрирование обязаны совпадать');
-      const heightRatio = (box.y1 - box.y0) / Math.max(1, baseBox.y1 - baseBox.y0);
-      if (heightRatio < 0.93 || heightRatio > 1.07) errors.push(`scale_drifted: масштаб ${heightRatio.toFixed(2)} от эталона (допуск 0.93–1.07)`);
-      const mask = lockedMask(passport.slots[slot].locked);
-      let lockedSum = 0, lockedCount = 0, lockedHot = 0, changedTotal = 0;
-      for (let at = 0; at < AW * AH; at += 1) {
-        const delta = distance(candidate.data, at * 3, base.data[at * 3], base.data[at * 3 + 1], base.data[at * 3 + 2]);
-        if (delta > 10) changedTotal += 1; // зачем: смена только цвета (напр. волос) даёт малую дельту — порог «изменение есть» мягче среднего по зоне
-        if (mask[at]) { lockedCount += 1; lockedSum += delta; if (delta > LOCKED_HOT_DELTA) lockedHot += 1; }
+      // зачем: у причёсок/уборов силуэт МЕНЯЕТСЯ самой деталью (ёжик ниже,
+      // пучок выше), поэтому позу для них якорим не по силуэту, а по лицу —
+      // поиском наилучшего совмещения ядра лица (глаза-нос-рот) с эталоном.
+      const hairLike = slot === 'hair' || slot === 'headwear';
+      if (!hairLike) {
+        if (Math.abs(centerX - (baseBox.x0 + baseBox.x1) / 2 / AW) > 0.03 || Math.abs(box.y0 / AH - baseBox.y0 / AH) > 0.03)
+          errors.push('pose_shifted: персонаж сместился относительно эталона — поза/кадрирование обязаны совпадать');
+        const heightRatio = (box.y1 - box.y0) / Math.max(1, baseBox.y1 - baseBox.y0);
+        if (heightRatio < 0.93 || heightRatio > 1.07) errors.push(`scale_drifted: масштаб ${heightRatio.toFixed(2)} от эталона (допуск 0.93–1.07)`);
       }
-      if (lockedCount && (lockedSum / lockedCount > LOCKED_MEAN || lockedHot / lockedCount > LOCKED_HOT_FRAC))
-        errors.push(`locked_zone_changed: изменилась запретная зона (лицо/одежда/волосы вне слота «${slot}») — среднее ${(lockedSum / Math.max(1, lockedCount)).toFixed(1)}`);
+      let changedTotal = 0;
+      for (let at = 0; at < AW * AH; at += 1)
+        if (distance(candidate.data, at * 3, base.data[at * 3], base.data[at * 3 + 1], base.data[at * 3 + 2]) > 10) changedTotal += 1;
       if (changedTotal / (AW * AH) < 0.004) errors.push('no_visible_change: картинка не отличается от эталона — деталь не добавилась');
+
+      if (hairLike) {
+        // Ядро лица: эллипс глаза-нос-рот; ищем сдвиг с минимальной разницей.
+        const cx = 0.5 * AW, cy = 0.455 * AH, rx = 0.075 * AW, ry = 0.075 * AH;
+        const points = [];
+        for (let y = Math.ceil(cy - ry); y <= cy + ry; y += 1) for (let x = Math.ceil(cx - rx); x <= cx + rx; x += 1) {
+          const nx = (x - cx) / rx, ny = (y - cy) / ry;
+          if (nx * nx + ny * ny <= 1) points.push((y * AW + x) * 3);
+        }
+        let best = { mean: Infinity, dx: 0, dy: 0, hot: 0 };
+        for (let dy = -6; dy <= 6; dy += 1) for (let dx = -6; dx <= 6; dx += 1) {
+          let sum = 0, hot = 0;
+          for (const at of points) {
+            const shifted = at + (dy * AW + dx) * 3;
+            const delta = distance(candidate.data, at, base.data[shifted], base.data[shifted + 1], base.data[shifted + 2]);
+            sum += delta; if (delta > 12) hot += 1;
+          }
+          const mean = sum / points.length;
+          if (mean < best.mean) best = { mean, dx, dy, hot: hot / points.length };
+        }
+        if (Math.abs(best.dx) > 3 || Math.abs(best.dy) > 3)
+          errors.push(`pose_shifted: лицо съехало на ${(Math.hypot(best.dx, best.dy) / AW * 100).toFixed(1)}% кадра относительно эталона`);
+        else if (best.mean > 8 || best.hot > 0.10)
+          errors.push(`locked_zone_changed: лицо не совпадает с эталоном (среднее ${best.mean.toFixed(1)}) — персонаж перерисован`);
+      } else {
+        const mask = lockedMask(passport.slots[slot].locked);
+        let lockedSum = 0, lockedCount = 0, lockedHot = 0;
+        for (let at = 0; at < AW * AH; at += 1) {
+          if (!mask[at]) continue;
+          const delta = distance(candidate.data, at * 3, base.data[at * 3], base.data[at * 3 + 1], base.data[at * 3 + 2]);
+          lockedCount += 1; lockedSum += delta; if (delta > LOCKED_HOT_DELTA) lockedHot += 1;
+        }
+        if (lockedCount && (lockedSum / lockedCount > LOCKED_MEAN || lockedHot / lockedCount > LOCKED_HOT_FRAC))
+          errors.push(`locked_zone_changed: изменилась запретная зона (лицо/одежда/волосы вне слота «${slot}») — среднее ${(lockedSum / Math.max(1, lockedCount)).toFixed(1)}`);
+      }
     }
   }
 }
@@ -144,7 +180,7 @@ if (acceptId) {
   const manifestPath = path.join(pipelineRoot, 'manifest.json');
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
   const items = manifest.items.filter(item => !(item.id === acceptId && item.slot === slot));
-  items.push({ id: acceptId, slot, file: `catalog/${slot}/${acceptId}.png`, sha256, base: basePath ? path.basename(basePath) : null, acceptedAt: new Date().toISOString() });
+  items.push({ id: acceptId, slot, file: `catalog/${slot}/${acceptId}.png`, sha256, base: basePath ? path.basename(basePath) : null, label: acceptLabel || null, acceptedAt: new Date().toISOString() });
   await writeFile(manifestPath, JSON.stringify({ ...manifest, items }, null, 2) + '\n');
   process.stdout.write(`Принят в каталог: catalog/${slot}/${acceptId}.png (sha256 ${sha256.slice(0, 12)}…)\n`);
 }

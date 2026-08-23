@@ -40,10 +40,13 @@ describe('avatar studio 2.5D route contract', () => {
     expect(view.getByRole('button', { name: 'Сохранить персонажа' })).toBeTruthy();
   });
 
-  it('пустой каталог показывает обучающее пустое состояние, а не null/спиннер', async () => {
+  it('вкладка с ассетами показывает плитки своей базы, пустая — обучающее состояние', async () => {
     const view = await render(<AvatarStudio25dScreen />);
     await fireEvent.press(view.getByRole('tab', { name: 'Волосы' }));
-    expect(view.getByText('Пока пусто — детали принимаются конвейером.')).toBeTruthy();
+    expect(view.getByText('Пробор')).toBeTruthy(); // мужская причёска для base_m
+    expect(view.queryByText('Хвостики')).toBeNull(); // женская не показывается мальчику
+    await fireEvent.press(view.getByRole('tab', { name: 'Образ' }));
+    expect(view.getAllByText('Пока пусто — детали принимаются конвейером.').length).toBeGreaterThan(0);
   });
 
   it('сохранение отвечает мгновенно (Optimistic UI, без сети)', async () => {

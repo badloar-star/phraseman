@@ -23,6 +23,7 @@ export interface Avatar25dCatalogItem {
   readonly file: string;
   readonly sha256: string;
   readonly base: string | null;
+  readonly label: string | null;
   readonly acceptedAt: string;
 }
 
@@ -51,14 +52,16 @@ export function parseAvatar25dCatalog(input: unknown): Avatar25dCatalog {
     const { id, slot, file, sha256, acceptedAt } = item;
     if (typeof id !== 'string' || !ID_PATTERN.test(id)) fail(`bad_id:${String(id)}`);
     if (typeof slot !== 'string' || !AVATAR_25D_SLOTS.includes(slot as Avatar25dSlot)) fail(`bad_slot:${String(slot)}`);
-    if (file !== `catalog/${slot}/${id}.png`) fail(`bad_file:${String(file)}`);
+    // published-каталог сжат в webp; png допустим для переходного периода
+    if (file !== `catalog/${slot}/${id}.webp` && file !== `catalog/${slot}/${id}.png`) fail(`bad_file:${String(file)}`);
     if (typeof sha256 !== 'string' || !SHA256_PATTERN.test(sha256)) fail(`bad_sha256:${id}`);
     if (typeof acceptedAt !== 'string' || !acceptedAt) fail(`bad_accepted_at:${id}`);
     const key = `${slot}/${id}`;
     if (seen.has(key)) fail(`duplicate:${key}`);
     seen.add(key);
     const base = typeof item.base === 'string' ? item.base : null;
-    return { id, slot: slot as Avatar25dSlot, file, sha256, base, acceptedAt };
+    const label = typeof item.label === 'string' && item.label ? item.label : null;
+    return { id, slot: slot as Avatar25dSlot, file, sha256, base, label, acceptedAt };
   });
 
   return { version: 1, items };

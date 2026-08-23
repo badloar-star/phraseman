@@ -402,8 +402,13 @@ export async function runYoutubeCatalogSync(input: { trigger: 'cron' | 'manual';
   });
 }
 
+// зачем 2026-08-23 (аудит стоимости): крон тикал каждую минуту, а внутренний
+// троттл nextRunAtMs всё равно отбивал 43 200 холостых вызовов в месяц кодом
+// 'not_due'. 5 минут срезают 80% холостого хода и при этом сохраняют
+// адаптивность nextYoutubeSyncIntervalMs (живой эфир хочет 60 с, скорый — 120 с):
+// 30-минутный крон отложил бы появление живого стрима в каталоге на полчаса.
 export const youtubeCatalogSyncCron = onSchedule({
-  schedule: 'every 1 minutes',
+  schedule: 'every 5 minutes',
   timeZone: 'UTC',
   region: REGION,
   timeoutSeconds: 120,

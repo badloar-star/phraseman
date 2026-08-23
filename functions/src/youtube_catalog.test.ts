@@ -47,7 +47,10 @@ describe('youtube catalog runtime', () => {
     }
     expect(source).toContain("export const adminGetYoutubeCatalogWorkspace = onCall(\n  { ...ADMIN_SENSITIVE_WRITE_OPTIONS, invoker: 'public' },");
     expect(indexSource).toContain('adminGetYoutubeCatalogWorkspace');
-    expect(indexSource).toContain("from './youtube_catalog'");
+    // зачем 2026-08-23: index.ts всегда импортировал через ДВОЙНЫЕ кавычки, а сторож
+    // искал одинарные — тест был красным независимо от правок кода. Сверяем по имени
+    // модуля, не по стилю кавычек, чтобы сторож ловил реальную регрессию.
+    expect(indexSource).toMatch(/from ["']\.\/youtube_catalog["']/);
     expect(packageJson.scripts['deploy:youtube-catalog']).toContain('functions:youtubeCatalogSyncCron');
     expect(packageJson.scripts['deploy:youtube-catalog']).not.toContain('firebase deploy --only functions"');
   });

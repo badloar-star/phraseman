@@ -916,13 +916,20 @@ export {
 export { webLeadCapture, webLeadNudgeCron } from "./web_leads";
 
 // ── Турниры (Фаза 1 MVP, спека docs/tournaments/2026-07-21-tournaments-mode-spec.md) ──
+// ⛔ ТУРНИРЫ ВЫКЛЮЧЕНЫ ФУЛЛ (владелец, 2026-08-23). НЕ ВКЛЮЧАТЬ ОБРАТНО.
+// зачем: логика уже была заглушена гейтом TOURNAMENTS_RELEASED=false (2026-08-10),
+// но три крона оставались ЗАДЕПЛОЕНЫ и тикали вхолостую — два каждую минуту
+// (tournamentFillBots, tournamentAdvanceRooms) и один раз в 5 минут
+// (tournamentCreateRooms). Они просыпались только чтобы упереться в `if
+// (!TOURNAMENTS_RELEASED) return;` — ~95 000 холостых запусков в месяц за деньги.
+// Экспорт снят => Firebase удаляет расписания. Callable-функции турниров
+// оставлены на месте: они и так фейлятся гейтом, а tournamentClaimReward нужен,
+// чтобы никто не потерял уже начисленную награду.
+// Возврат = отдельное задание владельца, не попутная правка.
 export {
-  tournamentCreateRooms,
   tournamentJoin,
   tournamentLeave,
   tournamentForfeit,
-  tournamentFillBots,
-  tournamentAdvanceRooms,
   tournamentAdvanceRound,
   tournamentRoundReview,
   tournamentSubmitSpeedMatchAttempt,
@@ -1035,8 +1042,9 @@ export {
 
 // Недельный банк турниров: копится с каждого турнира, раздаётся тройке лучших
 // по сумме очков в ночь воскресенья (крон) либо вручную из админки.
+// ⛔ tournamentWeeklyBankCron снят с деплоя вместе с остальными турнирными
+// кронами (владелец, 2026-08-23). Ручная выплата из админки остаётся доступной.
 export {
-  tournamentWeeklyBankCron,
   adminPayoutTournamentWeeklyBank,
   adminSetTournamentEconomy,
   adminGetTournamentEconomy,

@@ -48,6 +48,13 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Warns when the shared index looks like it picked up a parallel session's work
+# (see scripts/guard_foreign_staged.mjs — three commits were hijacked on 2026-08-23).
+node scripts/guard_foreign_staged.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Owner lock: App Check must stay OFF for admin functions until the owner says
 # otherwise (see scripts/guard_admin_app_check.mjs — commit 58023df0f killed all
 # ~30 admin callables with "unauthenticated"; Plus could not be granted for 2 days).

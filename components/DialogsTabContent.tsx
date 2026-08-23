@@ -1,5 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../app/personal_progress_store';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -7,6 +8,7 @@ import {
   Animated,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -15,7 +17,6 @@ import {
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
 import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';
 import { isScenarioLevelUnlocked, reachedCourseLevel } from '../app/ai_dialog_level_lock';
-import { isMaxVoiceEntryVisible } from '../app/max_voice_flags';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
   DIALOG_SCENARIO_GROUPS,
@@ -32,6 +33,11 @@ import {
   getLessonsTabInitialState,
   loadLessonsTabStateFromStorage,
 } from '../app/lessons_tab_state';
+import {
+  CHALLENGE_SCENE_THEME,
+  sceneThemeForCategory,
+  type DialogSceneTheme,
+} from '../constants/dialogSceneThemes';
 import { triLang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
@@ -42,7 +48,6 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
 import { noAndroidOutline } from '../constants/androidGlow';
-import { guessLearnerCefr } from '../app/max_call_mint_request';
 // Статус карточки сценария — кодирует и подачу, и доступность.
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -53,6 +58,8 @@ interface ScenarioVM {
   levelChip: string;
   /** Текст-замок (для locked) — почему закрыто. */
   lockedText: string;
+  /** Световая палитра сцены карточки. */
+  scene: DialogSceneTheme;
   onPress: () => void;
   onLongPress: () => void;
 }
@@ -88,15 +95,7 @@ export default function DialogsTabContent({
   activeRef.current = active;
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
-  // MAX должен жить в реальном разделе «Диалоги», а не только в историческом
-  // standalone-роуте ai_dialog_home. Гейт вычисляем один раз на время экрана:
-  // remote/env-флаг и наличие нативного WebRTC не меняются внутри сессии.
-  const maxVoiceVisible = useMemo(() => isMaxVoiceEntryVisible(), []);
 
-  // Две вкладки внутри Диалогов: «Уроки» (сценарии по уровню курса A1→B2) и
-  // «Ситуации» (сложные сцены по уровню аккаунта). По запросу пользователя они
-  // разделены как вкладки, а не как две секции в одном списке.
-  const [tab, setTab] = useState<'lessons' | 'situations'>('lessons');
   const [accountLevel, setAccountLevel] = useState(1);
   const [unlockedLessons, setUnlockedLessons] = useState<number[]>(
     () => getLessonsTabInitialState(studyTarget)?.persistedUnlocked ?? [],
@@ -140,9 +139,9 @@ export default function DialogsTabContent({
     }
     xpDirtyRef.current = false;
     const generation = ++refreshGenerationRef.current;
-    const raw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
+    await hydratePersonalProgress().catch(() => null);
     if (!activeRef.current || generation !== refreshGenerationRef.current) return;
-    const totalXP = Math.max(0, parseInt(raw || '0', 10) || 0);
+    const totalXP = getPersonalProgressSnapshot().totalXp;
     setAccountLevel(getLevelFromXP(totalXP));
   }, []);
 
@@ -274,13 +273,14 @@ export default function DialogsTabContent({
     [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, openScenarioDestination, router],
   );
 
-  // ── View-model для активной вкладки ───────────────────────────────────────
+  // ── View-model каталога ────────────────────────────────────────────────────
   // Каждой карточке считаем статус (done / available / locked) один раз — UI ниже
   // только рисует по статусу, без повторной проверки замков.
 
   const courseGroupVMs = useMemo(
     () =>
       DIALOG_SCENARIO_GROUPS.map((group) => {
+        const scene = sceneThemeForCategory(group.category);
         const scenarios = getScenariosByCategory(group.category).map<ScenarioVM>((scenario) => {
           const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
           const done = completedIds.has(scenario.id);
@@ -289,6 +289,7 @@ export default function DialogsTabContent({
             scenario,
             status,
             levelChip: scenario.cefr,
+            scene,
             lockedText: !dialogAccess
               ? triLang(lang, {
                   ru: 'Входит в Plus', uk: 'Входить у Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
@@ -309,7 +310,7 @@ export default function DialogsTabContent({
           };
         });
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
-        return { group, scenarios, doneCount };
+        return { group, scene, scenarios, doneCount };
       }),
     [reachedLevel, dialogAccess, completedIds, lang, openCourseScenario],
   );
@@ -324,6 +325,7 @@ export default function DialogsTabContent({
         return {
           scenario,
           status,
+          scene: CHALLENGE_SCENE_THEME,
           levelChip: triLang(lang, {
             ru: `ур. ${requiredLevel}`,
             uk: `рів. ${requiredLevel}`,
@@ -356,17 +358,15 @@ export default function DialogsTabContent({
     [accountLevel, completedIds, dialogAccess, lang, openChallengeScenario],
   );
 
-  // Блок «Продолжить»: первый доступный незавершённый сценарий активной вкладки.
-  // Если все доступные пройдены — берём первый доступный (повтор не вреден).
+  // Блок «Продолжить»: первый доступный незавершённый сценарий каталога
+  // (сначала уроки, затем ситуации). Если все доступные пройдены — первый
+  // доступный (повтор не вреден).
   const heroVM = useMemo<ScenarioVM | null>(() => {
-    const pool =
-      tab === 'lessons'
-        ? courseGroupVMs.flatMap((g) => g.scenarios)
-        : challengeVMs;
+    const pool = [...courseGroupVMs.flatMap((g) => g.scenarios), ...challengeVMs];
     const available = pool.filter((vm) => vm.status !== 'locked');
     if (available.length === 0) return null;
     return available.find((vm) => vm.status === 'available') ?? available[0];
-  }, [tab, courseGroupVMs, challengeVMs]);
+  }, [courseGroupVMs, challengeVMs]);
 
   const briefingLongPressHint = triLang(lang, {
     ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
@@ -379,9 +379,9 @@ export default function DialogsTabContent({
     pl: 'Przytrzymaj, aby otworzyć wprowadzenie do scenariusza.',
   });
 
-  // ── Рендер карточки сценария по статусу ───────────────────────────────────
-  const renderScenarioCard = (vm: ScenarioVM, index: number) => {
-    const { scenario, status, levelChip, lockedText } = vm;
+  // ── Рендер карточки-сцены по статусу ──────────────────────────────────────
+  const renderScenarioCard = (vm: ScenarioVM, index: number, layout: 'shelf' | 'row') => {
+    const { scenario, status, levelChip, lockedText, scene } = vm;
     const locked = status === 'locked';
     const title = dialogScenarioTitle(scenario, lang);
     const statusLabel = locked
@@ -418,6 +418,8 @@ export default function DialogsTabContent({
         status={status}
         statusLabel={statusLabel}
         lockedText={lockedText}
+        scene={scene}
+        layout={layout}
         onPress={vm.onPress}
         onLongPress={vm.onLongPress}
         colors={{
@@ -436,52 +438,34 @@ export default function DialogsTabContent({
     );
   };
 
+  // Hero «Продолжить»: широкая кино-карточка сцены со «светом места» и
+  // глифом-постером. Одна явная следующая цель каталога.
   const renderHero = (vm: ScenarioVM) => {
-    const { scenario, status } = vm;
+    const { scenario, status, scene } = vm;
     const kicker =
       status === 'done'
         ? triLang(lang, {
-          ru: 'ПРОЙДЕНО · ПРОЙТИ ЕЩЁ РАЗ',
-          uk: 'ПРОЙДЕНО · ЩЕ РАЗ',
-          es: 'HECHO · OTRA VEZ',
-          'pt-BR': 'CONCLUÍDO · FAZER DE NOVO',
-          vi: 'ĐÃ XONG · LÀM LẠI',
-          id: 'SELESAI · ULANGI',
-          tr: 'TAMAMLANDI · TEKRAR YAP',
-          pl: 'UKOŃCZONO · ZRÓB JESZCZE RAZ',
+          ru: 'Пройдено · ещё раз',
+          uk: 'Пройдено · ще раз',
+          es: 'Hecho · otra vez',
+          'pt-BR': 'Concluído · de novo',
+          vi: 'Đã xong · làm lại',
+          id: 'Selesai · ulangi',
+          tr: 'Tamamlandı · tekrar',
+          pl: 'Ukończono · jeszcze raz',
         })
         : triLang(lang, {
-          ru: 'НА ОЧЕРЕДИ',
-          uk: 'НА ЧЕРЗІ',
-          es: 'SIGUIENTE',
-          'pt-BR': 'PRÓXIMO',
-          vi: 'TIẾP THEO',
-          id: 'BERIKUTNYA',
-          tr: 'SIRADA',
-          pl: 'NASTĘPNE',
+          ru: 'На очереди',
+          uk: 'На черзі',
+          es: 'Siguiente',
+          'pt-BR': 'Próximo',
+          vi: 'Tiếp theo',
+          id: 'Berikutnya',
+          tr: 'Sırada',
+          pl: 'Następne',
         });
     return (
-      <View style={{ paddingHorizontal: 14, marginTop: 16 }}>
-        <Text
-          style={{
-            color: t.textMuted,
-            fontSize: f.label,
-            fontWeight: '900',
-            marginBottom: 7,
-            marginLeft: 4,
-          }}
-        >
-          {triLang(lang, {
-            ru: 'Продолжить',
-            uk: 'Продовжити',
-            es: 'Continuar',
-            'pt-BR': 'Continuar',
-            vi: 'Tiếp tục',
-            id: 'Lanjutkan',
-            tr: 'Devam et',
-            pl: 'Kontynuuj',
-          })}
-        </Text>
+      <View style={{ paddingHorizontal: 20, marginTop: 18 }}>
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
@@ -495,52 +479,58 @@ export default function DialogsTabContent({
             pl: `Kontynuuj: ${dialogScenarioTitle(scenario, lang)}`,
           })}
           accessibilityHint={briefingLongPressHint}
-          activeOpacity={0.86}
+          activeOpacity={0.88}
           onPress={vm.onPress}
           onLongPress={vm.onLongPress}
           delayLongPress={550}
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 11,
+            height: 148,
+            borderRadius: 24,
             backgroundColor: t.bgCard,
-            borderRadius: 18,
-            borderWidth: 0,
-            borderColor: accent + '5A',
-            paddingHorizontal: 13,
-            paddingVertical: 13,
-            shadowColor: accent,
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.18,
-            shadowRadius: 8,
+            overflow: 'hidden',
+            shadowColor: scene.hueDeep,
+            shadowOffset: { width: 0, height: 6 },
+            shadowOpacity: 0.3,
+            shadowRadius: 14,
             ...noAndroidOutline,
           }}
         >
-          <View
-            style={{
-              width: 48,
-              height: 48,
-              borderRadius: 15,
-              backgroundColor: t.accentBg,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Ionicons name={scenario.icon as never} size={24} color={accent} />
+          <LinearGradient
+            pointerEvents="none"
+            colors={[scene.hue + '3D', scene.hueDeep + '1C', 'transparent']}
+            locations={[0, 0.55, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          />
+          {/* Глиф-постер сцены: крупная полупрозрачная иконка как «свет витрины». */}
+          <View pointerEvents="none" style={{ position: 'absolute', right: -14, bottom: -18, opacity: 0.16 }}>
+            <Ionicons name={scenario.icon as never} size={128} color={scene.hue} />
           </View>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: accent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.3 }}>
+          <View style={{ flex: 1, padding: 16, paddingRight: 84, justifyContent: 'center' }}>
+            <Text
+              style={{ color: scene.hue, fontSize: f.label, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' }}
+              numberOfLines={1}
+              maxFontSizeMultiplier={1.2}
+            >
               {kicker}
             </Text>
             <Text
-              style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', marginTop: 2 }}
+              style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 5 }}
               numberOfLines={1}
+              maxFontSizeMultiplier={1.2}
             >
               {dialogScenarioTitle(scenario, lang)}
             </Text>
             <Text
-              style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}
-              numberOfLines={1}
+              style={{
+                color: t.textSecond,
+                fontSize: f.sub,
+                marginTop: 4,
+                lineHeight: Math.round(f.sub * 1.35),
+                height: Math.round(f.sub * 1.35) * 2,
+              }}
+              numberOfLines={2}
               maxFontSizeMultiplier={1.15}
             >
               {dialogScenarioGoal(scenario, lang)}
@@ -548,41 +538,54 @@ export default function DialogsTabContent({
           </View>
           <View
             style={{
-              width: 38,
-              height: 38,
-              borderRadius: 19,
-              backgroundColor: accent,
+              position: 'absolute',
+              right: 16,
+              top: 16,
+              width: 46,
+              height: 46,
+              borderRadius: 23,
+              backgroundColor: t.accent,
               alignItems: 'center',
               justifyContent: 'center',
+              shadowColor: t.accent,
+              shadowOffset: { width: 0, height: 3 },
+              shadowOpacity: 0.35,
+              shadowRadius: 8,
+              ...noAndroidOutline,
             }}
           >
-            <Ionicons name="play" size={18} color={t.correctText} style={{ marginLeft: 2 }} />
+            <Ionicons name="play" size={20} color={t.correctText} style={{ marginLeft: 2 }} />
           </View>
         </TouchableOpacity>
       </View>
     );
   };
 
-  // Заголовок группы со счётчиком пройдено/всего.
-  const renderGroupHeader = (label: string, doneCount: number, total: number) => (
+  // Заголовок полки: световая точка сцены + название + счётчик пройдено/всего.
+  const renderShelfHeader = (label: string, scene: DialogSceneTheme, doneCount: number, total: number) => (
     <View
       style={{
-        paddingHorizontal: 18,
-        paddingTop: 18,
-        paddingBottom: 8,
+        paddingHorizontal: 20,
+        paddingTop: 26,
+        paddingBottom: 12,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
+        gap: 9,
       }}
     >
-      <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: accent }} />
-      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }} numberOfLines={2}>
+      <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: scene.hue }} />
+      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', flex: 1 }} numberOfLines={1}>
         {label}
       </Text>
-      <Text style={{ color: doneCount > 0 ? accent : t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
+      <Text style={{ color: doneCount > 0 ? scene.hue : t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
         {doneCount}/{total}
       </Text>
     </View>
+  );
+
+  const challengeDoneCount = useMemo(
+    () => challengeVMs.filter((vm) => vm.status === 'done').length,
+    [challengeVMs],
   );
 
   return (
@@ -594,87 +597,24 @@ export default function DialogsTabContent({
     >
       {headerSlot}
 
-      {maxVoiceVisible && (
-        <TouchableOpacity
-          testID="max-voice-entry-card"
-          accessibilityRole="button"
-          onPress={() => {
-            hapticTap();
-            // зачем: владелец 2026-08-16 — не «звонок в кафе», а личный учитель:
-            // ведёт урок, помнит ученика, предлагает сцены сам. Уровень — по
-            // прогрессу уроков, чтобы новичок услышал родной язык, а не английский.
-            router.push({
-              pathname: '/max_call_prestart',
-              params: { format: 'tutor', cefr: guessLearnerCefr() },
-            } as never);
-          }}
-          style={{
-            marginHorizontal: 14,
-            marginTop: headerSlot ? 0 : 12,
-            marginBottom: 10,
-            borderRadius: 16,
-            backgroundColor: t.bgCard,
-            padding: 14,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 12,
-          }}
-        >
-          <View
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 22,
-              backgroundColor: t.accentBg,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Ionicons name="call" size={20} color={t.accent} />
-          </View>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Позвонить учителю', uk: 'Подзвонити вчителю', es: 'Llamar a tu profesor',
-                'pt-BR': 'Ligar para seu professor', vi: 'Gọi cho giáo viên', id: 'Telepon guru',
-                tr: 'Öğretmeni ara', pl: 'Zadzwoń do nauczyciela',
-              })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-              {triLang(lang, {
-                ru: 'Урок голосом: помнит тебя, ведёт и задаёт домашку', uk: 'Урок голосом: пам’ятає тебе, веде й дає домашку',
-                es: 'Clase de voz: te recuerda, te guía y deja tarea', 'pt-BR': 'Aula de voz: lembra de você, conduz e passa tarefa',
-                vi: 'Buổi học bằng giọng nói: nhớ bạn, dẫn dắt và giao bài tập', id: 'Pelajaran suara: mengingatmu, memandu, memberi PR',
-                tr: 'Sesli ders: seni hatırlar, yönlendirir ve ödev verir', pl: 'Lekcja głosowa: pamięta cię, prowadzi i zadaje pracę domową',
-              })}
-            </Text>
-          </View>
-          <View style={{ backgroundColor: t.gold, borderRadius: 7, paddingHorizontal: 7, paddingVertical: 2 }}>
-            <Text style={{ color: t.textOnGold, fontSize: f.label, fontWeight: '900' }}>MAX</Text>
-          </View>
-        </TouchableOpacity>
-      )}
-
       {!aiDialogGateOpen && (
         <View
           style={{
-            marginTop: 12,
-            marginHorizontal: 14,
-            borderRadius: 14,
+            marginTop: 14,
+            marginHorizontal: 20,
+            borderRadius: 20,
             backgroundColor: t.bgCard,
-            borderWidth: 0,
-            borderColor: t.border,
-            padding: 13,
+            padding: 14,
             flexDirection: 'row',
-            gap: 11,
+            gap: 12,
             alignItems: 'flex-start',
           }}
         >
           <View
             style={{
-              width: 34,
-              height: 34,
-              borderRadius: 11,
+              width: 38,
+              height: 38,
+              borderRadius: 13,
               backgroundColor: t.bgSurface,
               alignItems: 'center',
               justifyContent: 'center',
@@ -683,7 +623,7 @@ export default function DialogsTabContent({
             <Ionicons name="lock-closed-outline" size={18} color={t.textMuted} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }} numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} numberOfLines={2}>
               {frenchGateCopy.title}
             </Text>
             <Text
@@ -696,146 +636,65 @@ export default function DialogsTabContent({
         </View>
       )}
 
-      {/* Сегментированный переключатель двух вкладок диалогов. */}
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 16,
-          marginHorizontal: 14,
-          backgroundColor: t.bgSurface,
-          borderRadius: 14,
-          borderWidth: 0,
-          borderColor: t.border,
-          padding: 4,
-          gap: 4,
-        }}
-      >
-        {([
-          { key: 'lessons' as const, label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }), icon: 'school-outline' as const },
-          { key: 'situations' as const, label: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }), icon: 'flame-outline' as const },
-        ]).map((seg) => {
-          const activeTab = tab === seg.key;
-          return (
-            <TouchableOpacity
-              key={seg.key}
-              accessibilityRole="tab"
-              accessibilityState={{ selected: activeTab }}
-              accessibilityLabel={seg.label}
-              activeOpacity={0.86}
-              onPress={() => {
-                if (tab === seg.key) return;
-                hapticTap();
-                setTab(seg.key);
-              }}
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 7,
-                paddingVertical: 9,
-                borderRadius: 11,
-                backgroundColor: activeTab ? accent : 'transparent',
-              }}
-            >
-              <Ionicons name={seg.icon} size={16} color={activeTab ? t.correctText : t.textSecond} />
-              <Text
-                style={{ color: activeTab ? t.correctText : t.textSecond, fontSize: f.sub, fontWeight: '900' }}
-                numberOfLines={1}
-              >
-                {seg.label}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-
-      {/* Блок «Продолжить» — одна явная следующая цель активной вкладки. */}
+      {/* Одна явная следующая цель каталога. */}
       {heroVM && renderHero(heroVM)}
 
-      {tab === 'lessons' && (
-      <View>
-        <View style={{ paddingHorizontal: 18, paddingTop: 18, paddingBottom: 2 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
-            {triLang(lang, {
-              ru: 'Диалоги по урокам',
-              uk: 'Діалоги за уроками',
-              es: 'Diálogos por lecciones',
-              'pt-BR': 'Diálogos por lições',
-              vi: 'Đối thoại theo bài học',
-              id: 'Dialog per pelajaran',
-              tr: 'Derslere göre diyaloglar',
-              pl: 'Dialogi według lekcji',
-            })}
-          </Text>
-          <Text
+      {/* Полки курса: каждая группа — горизонтальная полка карточек-сцен. */}
+      {courseGroupVMs.map(({ group, scene, scenarios, doneCount }) => (
+        <View key={group.category}>
+          {renderShelfHeader(dialogScenarioGroupLabel(group, lang), scene, doneCount, scenarios.length)}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            snapToInterval={178}
+            snapToAlignment="start"
+            contentContainerStyle={{ paddingRight: 20 }}
+          >
+            {scenarios.map((vm, index) => renderScenarioCard(vm, index, 'shelf'))}
+          </ScrollView>
+        </View>
+      ))}
+
+      {/* Мир «Ситуации»: жёсткие сцены по уровню аккаунта — широкие баннеры. */}
+      {challengeVMs.length > 0 && (
+        <View>
+          <View
             style={{
-              color: t.textMuted,
-              fontSize: f.caption,
-              lineHeight: Math.round(f.caption * 1.35),
-              marginTop: 3,
+              paddingHorizontal: 20,
+              paddingTop: 30,
+              paddingBottom: 12,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 9,
             }}
           >
-            {triLang(lang, {
-              ru: `Открыты по прогрессу курса: сейчас ${reachedLevel}`,
-              uk: `Відкриті за прогресом курсу: зараз ${reachedLevel}`,
-              es: `Se abren con el curso: ahora ${reachedLevel}`,
-              'pt-BR': `Abertos pelo progresso do curso: agora ${reachedLevel}`,
-              vi: `Mở theo tiến độ khóa học: hiện tại ${reachedLevel}`,
-              id: `Terbuka sesuai progres kursus: sekarang ${reachedLevel}`,
-              tr: `Kurs ilerlemesine göre açılır: şu an ${reachedLevel}`,
-              pl: `Otwarte według postępu kursu: teraz ${reachedLevel}`,
-            })}
-          </Text>
-        </View>
-
-        {courseGroupVMs.map(({ group, scenarios, doneCount }) => (
-          <View key={group.category}>
-            {renderGroupHeader(dialogScenarioGroupLabel(group, lang), doneCount, scenarios.length)}
-            {scenarios.map((vm, index) => renderScenarioCard(vm, index))}
-          </View>
-        ))}
-      </View>
-      )}
-
-      {tab === 'situations' && (
-      <View>
-        <View style={{ paddingHorizontal: 18, paddingTop: 24, paddingBottom: 8 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-            <View style={{ width: 3, height: 18, borderRadius: 2, backgroundColor: accent }} />
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', flex: 1 }}>
+            <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: CHALLENGE_SCENE_THEME.hue }} />
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', flex: 1 }} numberOfLines={1}>
               {triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' })}
             </Text>
-            <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>
-              {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}`, 'pt-BR': `nív. ${accountLevel}`, vi: `cấp ${accountLevel}`, id: `lvl. ${accountLevel}`, tr: `sv. ${accountLevel}`, pl: `poz. ${accountLevel}` })}
+            <View
+              style={{
+                backgroundColor: CHALLENGE_SCENE_THEME.hue + '22',
+                borderRadius: 9,
+                paddingHorizontal: 8,
+                paddingVertical: 3,
+              }}
+            >
+              <Text style={{ color: CHALLENGE_SCENE_THEME.hue, fontSize: f.caption, fontWeight: '700' }}>
+                {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}`, 'pt-BR': `nív. ${accountLevel}`, vi: `cấp ${accountLevel}`, id: `lvl. ${accountLevel}`, tr: `sv. ${accountLevel}`, pl: `poz. ${accountLevel}` })}
+              </Text>
+            </View>
+            <Text style={{ color: challengeDoneCount > 0 ? CHALLENGE_SCENE_THEME.hue : t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+              {challengeDoneCount}/{challengeVMs.length}
             </Text>
           </View>
-          <Text
-            style={{
-              color: t.textMuted,
-              fontSize: f.caption,
-              lineHeight: Math.round(f.caption * 1.35),
-              marginTop: 5,
-            }}
-          >
-            {triLang(lang, {
-              ru: 'Сложные и смешные сцены. Чем выше уровень аккаунта, тем жёстче разговор.',
-              uk: 'Складні й кумедні сцени. Що вищий рівень акаунта, то гостріша розмова.',
-              es: 'Escenas raras y difíciles. Cuanto más nivel tengas, más dura será la conversación.',
-              'pt-BR': 'Cenas difíceis e engraçadas. Quanto maior o nível da conta, mais intensa fica a conversa.',
-              vi: 'Các cảnh khó và vui. Cấp tài khoản càng cao, cuộc trò chuyện càng căng hơn.',
-              id: 'Adegan sulit dan lucu. Makin tinggi level akun, makin tajam percakapannya.',
-              tr: 'Zor ve komik sahneler. Hesap seviyen yükseldikçe konuşma daha sertleşir.',
-              pl: 'Trudne i zabawne sceny. Im wyższy poziom konta, tym ostrzejsza rozmowa.',
-            })}
-          </Text>
-        </View>
 
-        {challengeVMs.map((vm, index) => renderScenarioCard(vm, index))}
-      </View>
+          {challengeVMs.map((vm, index) => renderScenarioCard(vm, index, 'row'))}
+        </View>
       )}
 
-      {tab === 'lessons' && hasLockedCourseLevels && (
+      {hasLockedCourseLevels && (
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
@@ -848,7 +707,7 @@ export default function DialogsTabContent({
             tr: 'Tüm diyalog seviyelerini Plus ile aç',
             pl: 'Otwórz wszystkie poziomy dialogów z Plus',
           })}
-          activeOpacity={0.86}
+          activeOpacity={0.88}
           onPress={() => {
             if (!accessResolved) return;
             hapticTap();
@@ -856,32 +715,38 @@ export default function DialogsTabContent({
             router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level' } } as never);
           }}
           style={{
-            marginTop: 18,
-            marginHorizontal: 14,
-            borderRadius: 16,
+            marginTop: 26,
+            marginHorizontal: 20,
+            borderRadius: 22,
             backgroundColor: t.bgCard,
-            borderWidth: 0,
-            borderColor: t.border,
-            padding: 14,
+            overflow: 'hidden',
+            padding: 16,
             flexDirection: 'row',
             alignItems: 'center',
-            gap: 11,
+            gap: 13,
           }}
         >
+          <LinearGradient
+            pointerEvents="none"
+            colors={[accent + '2A', 'transparent']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          />
           <View
             style={{
-              width: 38,
-              height: 38,
-              borderRadius: 12,
-              backgroundColor: t.bgSurface,
+              width: 44,
+              height: 44,
+              borderRadius: 15,
+              backgroundColor: accent + '26',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Ionicons name="lock-open-outline" size={19} color={accent} />
+            <Ionicons name="lock-open-outline" size={20} color={accent} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }} numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={2}>
               {triLang(lang, {
                 ru: 'Все диалоги входят в Plus',
                 uk: 'Усі діалоги входять у Plus',

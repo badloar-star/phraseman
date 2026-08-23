@@ -19,6 +19,9 @@ export default function AiDialogHome() {
   const router = useRouter();
   const activeCount = getPublicDialogScenarios().length;
 
+  // зачем: фулл-редизайн Диалогов (2026-08-23) — шапка «кино-афиши»: крупный
+  // заголовок ведёт, счётчик сцен живёт тихой мета-строкой рядом, кнопка
+  // «назад» — тональная, без обводок.
   const header = (
     <View>
       <View
@@ -26,8 +29,8 @@ export default function AiDialogHome() {
           flexDirection: 'row',
           alignItems: 'center',
           paddingVertical: 12,
-          paddingHorizontal: 14,
-          paddingBottom: 8,
+          paddingHorizontal: 20,
+          paddingBottom: 6,
         }}
       >
       <TouchableOpacity
@@ -42,18 +45,17 @@ export default function AiDialogHome() {
           height: 44,
           borderRadius: 22,
           backgroundColor: t.bgCard,
-          borderWidth: 0,
-          borderColor: t.border,
           justifyContent: 'center',
           alignItems: 'center',
-          marginRight: 12,
+          marginRight: 14,
         }}
       >
         <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
       </TouchableOpacity>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text
-          style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
+          style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}
+          numberOfLines={1}
         >
           {triLang(lang, {
             ru: 'Диалоги',
@@ -66,7 +68,7 @@ export default function AiDialogHome() {
             pl: 'Dialogi',
           })}
         </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
+        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
           {triLang(lang, {
             ru: `${activeCount} сценариев с Компасом`,
             uk: `${activeCount} сценаріїв із Компасом`,

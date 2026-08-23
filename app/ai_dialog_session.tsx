@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
@@ -41,8 +42,6 @@ import { moodToFace, DEFAULT_MOOD } from './dialog_mood_face';
 import {
   parseTurnState,
   isTerminalOutcome,
-  outcomeTitle,
-  objectiveLabel,
   type DialogOutcome,
 } from './dialog_outcome';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
@@ -63,12 +62,8 @@ import {
   type PremiumDialogReviewResponse,
 } from './ai_dialog_client';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import {
-  TRANSLATE_LIMIT_PER_DIALOG,
-  decideTranslateAction,
-  shouldShowTranslateButton,
-  translateRemaining as computeTranslateRemaining,
-} from './dialog_translate_limit';
+import DialogVerdictScreen from '../components/DialogVerdictScreen';
+import { sceneThemeFor } from '../constants/dialogSceneThemes';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -86,7 +81,6 @@ import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
-import { useTurnReadyCue } from '../hooks/use-turn-ready-cue';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
 
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -103,13 +97,6 @@ type VoiceInputStatus =
   | 'denied'
   | 'stalled'
   | 'error';
-
-// Разговорный режим: после отпускания пальца ждём финальный результат
-// распознавателя перед авто-отправкой (последний `result` часто прилетает уже
-// после stop()). Достаточно, чтобы досдать хвост, но незаметно для юзера.
-// Normal completion is event-driven (`end`/`error`). This is only a bounded
-// fallback for OEM recognizers that stop the engine without a terminal event.
-const CONVERSATION_SEND_GRACE_MS = 1200;
 
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
@@ -202,9 +189,7 @@ function AiDialogSession() {
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
-  const { playTurnReady } = useTurnReadyCue();
-  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; maxFallback?: string }>();
-  const maxFallbackRequested = params.maxFallback === '1';
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
@@ -240,6 +225,10 @@ function AiDialogSession() {
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
 
+  // зачем: фулл-редизайн (2026-08-23) — «свет места»: палитра сцены красит шапку,
+  // пузыри собеседника и финал, чтобы каждый диалог ощущался своим местом.
+  const scene = useMemo(() => sceneThemeFor(scenario), [scenario]);
+
   // Первая реплика собеседника (приветствие) присутствует СРАЗУ, с первого кадра —
   // через ленивый инициализатор, а не через эффект (раньше эффект мог не сработать
   // при гонке/двойном маунте → «первой реплики нет»). Приветствие УНИКАЛЬНОЕ для
@@ -262,33 +251,14 @@ function AiDialogSession() {
   voiceInputStatusRef.current = voiceInputStatus;
   const voiceInputListenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const voiceInputMountedRef = useRef(true);
-  // ── Разговорный режим «зажми и говори» (hands-free болталка) ────────────────
-  // Когда включён: кнопка микрофона работает на удержание (onPressIn → слушаю,
-  // onPressOut → авто-отправка распознанного), а ответ ИИ сразу озвучивается.
-  // Конец речи определяет ПАЛЕЦ (отпустил), а не OEM-endpointer — это обходит
-  // «микрофон Android закрывается сам» и исключает эхо (mic и динамик никогда не
-  // открыты одновременно: пока звучит ответ, палец отпущен и запись закрыта).
-  const [conversationMode, setConversationMode] = useState(maxFallbackRequested);
-  // Свежее значение флага для колбэков send/распознавания без stale-closure и
-  // без пересоздания send при каждом переключении тумблера.
-  const conversationModeRef = useRef(maxFallbackRequested);
   // Invalidates an in-flight permission/model/start sequence when the finger is
-  // released or the conversation mode is turned off.
+  // released.
   const voiceInputGenerationRef = useRef(0);
   const voiceInputSessionRef = useRef(0);
   const holdPressActiveRef = useRef(false);
-  useEffect(() => {
-    conversationModeRef.current = conversationMode;
-  }, [conversationMode]);
-  // Последний распознанный текст: onPressOut читает его, чтобы отправить реплику
-  // (локальная `latest` внутри startVoiceInput недоступна снаружи).
+  // Последний распознанный текст: голосовой ввод «зажми и продиктуй» вставляет
+  // его в поле по завершении записи (авто-отправки нет — только ручная кнопка).
   const latestTranscriptRef = useRef('');
-  const sendVoiceTextRef = useRef<(text: string) => void>(() => undefined);
-  const conversationReleasePendingRef = useRef(false);
-  const conversationSendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const finalizeConversationSendRef = useRef<(session: number) => void>(() => undefined);
-  // Идёт озвучка ответа ИИ (для подсказки «Отвечает…» под полем ввода).
-  const [aiSpeaking, setAiSpeaking] = useState(false);
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
   // может принять start() и не прислать НИ start, НИ result, НИ error — без
   // таймера кнопка микрофона зависла бы в «Слушаю…» навсегда.
@@ -301,18 +271,16 @@ function AiDialogSession() {
   }, []);
 
   // ── Перевод реплик собеседника ────────────────────────────────────────────
-  // translations: кэш «индекс реплики → перевод» (повторный флип бесплатен).
+  // translations: кэш «индекс реплики → перевод» (повторный флип бесплатен,
+  // без ограничения на число реплик за диалог — владелец снял лимит 2026-08-17).
   // flipped: какие реплики сейчас показаны в переводе (а не в оригинале).
   // translatingIdx: индекс реплики, перевод которой грузится прямо сейчас.
-  // translateUsed: сколько из TRANSLATE_LIMIT_PER_DIALOG уже потрачено.
   const [translations, setTranslations] = useState<Record<number, string>>({});
   const [flipped, setFlipped] = useState<Record<number, boolean>>({});
   const [translatingIdx, setTranslatingIdx] = useState<number | null>(null);
-  const [translateUsed, setTranslateUsed] = useState(0);
-  // Индекс реплики, перевод которой только что упал (сеть/функция/лимит). Показываем
+  // Индекс реплики, перевод которой только что упал (сеть/функция). Показываем
   // под ней плашку «не удалось · повторить» — чтобы сбой не выглядел как «ничего».
   const [translateErrorIdx, setTranslateErrorIdx] = useState<number | null>(null);
-  const translateRemaining = computeTranslateRemaining(translateUsed, TRANSLATE_LIMIT_PER_DIALOG);
 
   // ── «Диалог как игра»: цель · настроение · исход ──────────────────────────
   // Под-цели и темперамент выводим из каталога (или явные поля сценария) —
@@ -340,40 +308,37 @@ function AiDialogSession() {
   const [reviewStatus, setReviewStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const reviewRequestedRef = useRef(false);
 
+  // Полноэкранный финал (редизайн 2026-08-23): реально начисленный XP этого
+  // прохождения (0 при повторе — анти-фарм строка скрыта) и флаг «переписка
+  // показана под вердиктом» (кнопка «Показать переписку» / пилюля «Итоги»).
+  const [xpAwarded, setXpAwarded] = useState(0);
+  const [verdictHidden, setVerdictHidden] = useState(false);
+  // Подсказка «Что сделать дальше» над полем ввода: свёрнута по умолчанию.
+  const [hintOpen, setHintOpen] = useState(false);
+
   // Открыть/скрыть перевод реплики i. Первый показ новой реплики тратит лимит и
-  // зовёт сервер; дальше флип идёт из кэша мгновенно и лимит не трогает. Само
-  // решение делегировано чистой decideTranslateAction (покрыта unit-тестами).
+  // зовёт сервер; дальше флип идёт из кэша мгновенно. Безлимитно — владелец
+  // снял ограничение на число переводов за диалог (2026-08-17).
   const toggleTranslation = useCallback(
     async (i: number, rawText: string) => {
       hapticTap();
-      const action = decideTranslateAction({
-        hasTranslation: translations[i] != null,
-        isFlipped: flipped[i] === true,
-        used: translateUsed,
-        isBusy: translatingIdx != null,
-        limit: TRANSLATE_LIMIT_PER_DIALOG,
-      });
-      if (action === 'hide') {
+      if (flipped[i] === true) {
         setFlipped((prev) => ({ ...prev, [i]: false }));
         return;
       }
-      if (action === 'show_cached') {
+      if (translations[i] != null) {
         setFlipped((prev) => ({ ...prev, [i]: true }));
         return;
       }
-      if (action === 'noop') return;
+      if (translatingIdx != null) return;
       if (!accessResolved) return;
-      // action === 'fetch': новая реплика, нужен серверный вызов.
 
       const clean = stripMarkers(rawText);
       if (!clean) return;
 
       setTranslatingIdx(i);
       setTranslateErrorIdx(null);
-      void trackEvent('ai_dialog_translate_requested', {
-        scenarioId: scenario.id,
-        usedBefore: translateUsed,
-      });
+      void trackEvent('ai_dialog_translate_requested', { scenarioId: scenario.id });
       try {
         const res = await callPremiumDialogTranslate({
           text: clean,
@@ -385,8 +350,6 @@ function AiDialogSession() {
         if (!translation) throw new Error('empty_translation');
         setTranslations((prev) => ({ ...prev, [i]: translation }));
         setFlipped((prev) => ({ ...prev, [i]: true }));
-        // Лимит тратим ТОЛЬКО при успешном переводе (сбой не сжигает попытку).
-        setTranslateUsed((prev) => prev + 1);
         void trackEvent('ai_dialog_translate_shown', {
           scenarioId: scenario.id,
           cached: res.cached === true,
@@ -400,7 +363,7 @@ function AiDialogSession() {
         setTranslatingIdx(null);
       }
     },
-    [accessResolved, flipped, translations, translatingIdx, translateUsed, lang, scenario.id, studyTarget],
+    [accessResolved, flipped, translations, translatingIdx, lang, scenario.id, studyTarget],
   );
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
@@ -460,7 +423,6 @@ function AiDialogSession() {
       const next = value.trim();
       if (!next) return;
       latest = next;
-      // Дублируем в ref: onPressOut (разговорный режим) читает его для авто-отправки.
       latestTranscriptRef.current = next;
       if (!voiceInputMountedRef.current) return;
       setInput(next);
@@ -523,10 +485,6 @@ function AiDialogSession() {
     const endSub = speechModule.addListener('end', () => {
       if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
-      if (conversationReleasePendingRef.current) {
-        finalizeConversationSendRef.current(session);
-        return;
-      }
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
       if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
@@ -534,10 +492,6 @@ function AiDialogSession() {
     const errorSub = speechModule.addListener('error', () => {
       if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
-      if (conversationReleasePendingRef.current && latestTranscriptRef.current.trim()) {
-        finalizeConversationSendRef.current(session);
-        return;
-      }
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
       // Есть текст — молча оставляем его; иначе транзиентный сбой → 'error' с «Повторить».
@@ -598,8 +552,8 @@ function AiDialogSession() {
           onDevice,
           // Голосовой ввод не переслушивают — файл записи не нужен, не пишем.
           persistRecording: false,
-          // Разговорный режим = зажми-и-говори: держим движок открытым, пока
-          // зажата кнопка (иначе Android-endpointer рвёт речь на паузе).
+          // Зажми-и-говори: держим движок открытым, пока зажата кнопка
+          // (иначе Android-endpointer рвёт речь на паузе).
           holdToTalk: true,
           // Свободная реплика диалога, не заранее известная фраза — targetText
           // тут только для biasing (заголовок сценария), НЕ для iOS task hint.
@@ -641,11 +595,6 @@ function AiDialogSession() {
       voiceInputGenerationRef.current += 1;
       voiceInputSessionRef.current += 1;
       holdPressActiveRef.current = false;
-      conversationReleasePendingRef.current = false;
-      if (conversationSendTimerRef.current != null) {
-        clearTimeout(conversationSendTimerRef.current);
-        conversationSendTimerRef.current = null;
-      }
       clearRecognizerWatchdog();
       cleanupVoiceInputListeners();
       try {
@@ -659,20 +608,15 @@ function AiDialogSession() {
 
   // зачем: сворачивание приложения НЕ размонтирует экран, поэтому cleanup выше не срабатывает
   // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
-  // Обрываем жёстко (abort), снимаем отложенную отправку реплики и возвращаем режим
-  // воспроизведения. Возобновление — только по явному действию пользователя.
+  // Обрываем жёстко (abort) и возвращаем режим воспроизведения. Возобновление —
+  // только по явному действию пользователя.
   // Speech capture lifecycle invariant: blur/background invalidates pending starts,
-  // aborts live capture, clears deferred delivery, and never auto-resumes on return.
+  // aborts live capture, and never auto-resumes on return.
   useEffect(() => {
     if (runtimeActive) return;
     voiceInputGenerationRef.current += 1;
     voiceInputSessionRef.current += 1;
     holdPressActiveRef.current = false;
-    conversationReleasePendingRef.current = false;
-    if (conversationSendTimerRef.current != null) {
-      clearTimeout(conversationSendTimerRef.current);
-      conversationSendTimerRef.current = null;
-    }
     clearRecognizerWatchdog();
     cleanupVoiceInputListeners();
     try {
@@ -722,6 +666,9 @@ function AiDialogSession() {
           payload: { scenarioId: scenario.id, outcome: terminalOutcome },
         });
         await AsyncStorage.setItem(dedupeKey, '1');
+        // Показ «+XP» на финальном экране — только когда начисление реально
+        // произошло (повтор сценария честно молчит, как в контракте салюта).
+        setXpAwarded(amount);
       } catch {
         // best-effort: сбой начисления XP не должен ломать показ модала-вердикта
       }
@@ -775,37 +722,6 @@ function AiDialogSession() {
     [gameEnabled, objectives, temperament],
   );
 
-  // Озвучить реплику ИИ в разговорном режиме. Микрофон к этому моменту закрыт
-  // (press-and-hold: палец отпущен) — поэтому эха нет. Индикатор «Отвечает…»
-  // гасим по onDone/onError/onStopped. Вне разговорного режима — no-op (озвучка
-  // остаётся ручной, по тапу на реплику).
-  const speakAiReply = useCallback(
-    (rawText: string) => {
-      if (!conversationModeRef.current) return;
-      const clean = stripMarkers(rawText).trim();
-      if (!clean) return;
-      setAiSpeaking(true);
-      const done = () => {
-        if (voiceInputMountedRef.current) setAiSpeaking(false);
-      };
-      // зачем: «твой ход» звучит ТОЛЬКО когда собеседник договорил сам (onDone).
-      // onStopped/onError — это обрыв: уход с экрана, выключенная озвучка,
-      // сбой синтеза. Там ход к пользователю не переходит, и звук был бы враньём.
-      const doneSpeaking = () => {
-        done();
-        if (voiceInputMountedRef.current && conversationModeRef.current) playTurnReady();
-      };
-      speak(clean, undefined, {
-        language: 'en-US',
-        voice: '',
-        onDone: doneSpeaking,
-        onStopped: done,
-        onError: done,
-      });
-    },
-    [speak, playTurnReady],
-  );
-
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
@@ -848,8 +764,6 @@ function AiDialogSession() {
           ...gameRequestFields,
         });
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
-        // Разговорный режим: сразу озвучиваем ответ вслух (иначе no-op).
-        speakAiReply(res.assistantMessage);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyTurnState(res.turnState);
       } catch (error) {
@@ -862,56 +776,25 @@ function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState, speakAiReply],
+    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState],
   );
-  sendVoiceTextRef.current = (text: string) => {
-    void send(text);
-  };
-  finalizeConversationSendRef.current = (session: number) => {
-    if (!voiceInputMountedRef.current || !runtimeActiveRef.current || session !== voiceInputSessionRef.current) return;
-    if (!conversationReleasePendingRef.current) return;
-    conversationReleasePendingRef.current = false;
-    if (conversationSendTimerRef.current != null) {
-      clearTimeout(conversationSendTimerRef.current);
-      conversationSendTimerRef.current = null;
-    }
-    const text = latestTranscriptRef.current.trim();
-    cleanupVoiceInputListeners();
-    restoreLoudPlaybackMode();
-    if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
-    if (text) sendVoiceTextRef.current(text);
-  };
 
-  // ── Press-and-hold для разговорного режима ─────────────────────────────────
-  // Grace-таймер отложенной авто-отправки после отпускания пальца.
-  const clearConversationSendTimer = useCallback(() => {
-    if (conversationSendTimerRef.current != null) {
-      clearTimeout(conversationSendTimerRef.current);
-      conversationSendTimerRef.current = null;
-    }
-  }, []);
-
-  // Любой голосовой ввод использует один жест: держим кнопку, пока говорим.
-  // Разговорный режим отличается только авто-отправкой и озвучкой ответа.
+  // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим, распознанный
+  // текст живёт в поле — отправка всегда ручная (кнопка отправки/Enter).
   const handleMicPressIn = useCallback(() => {
-    if (sending || ended || aiSpeaking) return;
-    if (conversationReleasePendingRef.current) return;
+    if (sending || ended) return;
     holdPressActiveRef.current = true;
-    clearConversationSendTimer();
     latestTranscriptRef.current = '';
     void startVoiceInput();
-  }, [sending, ended, aiSpeaking, clearConversationSendTimer, startVoiceInput]);
+  }, [sending, ended, startVoiceInput]);
 
-  // Отпустил микрофон: сразу гасим красное active-состояние и останавливаем
-  // recognizer. В разговорном режиме после финального result ещё авто-отправляем.
+  // Отпустил микрофон: сразу гасим красное active-состояние и останавливаем recognizer.
   const handleMicPressOut = useCallback(() => {
-    const session = voiceInputSessionRef.current;
     holdPressActiveRef.current = false;
     voiceInputGenerationRef.current += 1;
     clearRecognizerWatchdog();
     if (voiceInputStatusRef.current === 'requesting') {
       voiceInputSessionRef.current += 1;
-      conversationReleasePendingRef.current = false;
       cleanupVoiceInputListeners();
       try {
         speechModule?.abort();
@@ -923,31 +806,13 @@ function AiDialogSession() {
       return;
     }
     if (voiceInputStatusRef.current !== 'listening') return;
-    conversationReleasePendingRef.current = conversationModeRef.current;
     setVoiceInputStatus('finishing');
     try {
       speechModule?.stop();
     } catch {
       /* сервис мог умереть — не мешаем */
     }
-    if (conversationModeRef.current) {
-      clearConversationSendTimer();
-      conversationSendTimerRef.current = setTimeout(() => {
-        conversationSendTimerRef.current = null;
-        finalizeConversationSendRef.current(session);
-      }, CONVERSATION_SEND_GRACE_MS);
-    }
-  }, [
-    clearRecognizerWatchdog,
-    speechModule,
-    clearConversationSendTimer,
-    cleanupVoiceInputListeners,
-    restoreLoudPlaybackMode,
-  ]);
-
-  useEffect(() => {
-    return () => clearConversationSendTimer();
-  }, [clearConversationSendTimer]);
+  }, [clearRecognizerWatchdog, speechModule, cleanupVoiceInputListeners, restoreLoudPlaybackMode]);
 
   // Повтор последней отправки после ошибки сети. Реплика пользователя уже в чате,
   // поэтому НЕ пушим её заново — только заново зовём ИИ с той же историей.
@@ -989,7 +854,6 @@ function AiDialogSession() {
         ...gameRequestFields,
       });
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
-      speakAiReply(res.assistantMessage);
       applyTurnState(res.turnState);
     } catch (error) {
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
@@ -998,7 +862,7 @@ function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState, speakAiReply]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -1204,32 +1068,18 @@ function AiDialogSession() {
     );
   };
 
-  const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
   const voiceInputHint =
-    // Разговорный режим: свои подсказки имеют приоритет («Отвечает…» → «Говори…»
-    // при удержании → «Зажми и говори» в покое).
-    conversationMode && aiSpeaking
+    voiceInputStatus === 'requesting'
       ? triLang(lang, {
-          ru: 'Отвечает…',
-          uk: 'Відповідає…',
-          es: 'Respondiendo…',
-          'pt-BR': 'Respondendo…',
-          vi: 'Đang trả lời…',
-          id: 'Menjawab…',
-          tr: 'Yanıtlıyor…',
-          pl: 'Odpowiada…',
+          ru: 'Готовлю микрофон… удерживай кнопку',
+          uk: 'Готую мікрофон… тримай кнопку',
+          es: 'Preparando el micrófono… mantén pulsado',
+          'pt-BR': 'Preparando o microfone… continue segurando',
+          vi: 'Đang chuẩn bị micrô… hãy tiếp tục giữ',
+          id: 'Menyiapkan mikrofon… tetap tahan',
+          tr: 'Mikrofon hazırlanıyor… basılı tut',
+          pl: 'Przygotowuję mikrofon… trzymaj przycisk',
         })
-      : voiceInputStatus === 'requesting'
-        ? triLang(lang, {
-            ru: 'Готовлю микрофон… удерживай кнопку',
-            uk: 'Готую мікрофон… тримай кнопку',
-            es: 'Preparando el micrófono… mantén pulsado',
-            'pt-BR': 'Preparando o microfone… continue segurando',
-            vi: 'Đang chuẩn bị micrô… hãy tiếp tục giữ',
-            id: 'Menyiapkan mikrofon… tetap tahan',
-            tr: 'Mikrofon hazırlanıyor… basılı tut',
-            pl: 'Przygotowuję mikrofon… trzymaj przycisk',
-          })
       : voiceInputStatus === 'finishing'
         ? triLang(lang, {
             ru: 'Обрабатываю сказанное…',
@@ -1241,29 +1091,7 @@ function AiDialogSession() {
             tr: 'Söylediklerin işleniyor…',
             pl: 'Przetwarzam wypowiedź…',
           })
-      : conversationMode && voiceInputStatus === 'listening'
-        ? triLang(lang, {
-            ru: 'Говори… (отпусти, когда закончишь)',
-            uk: 'Говори… (відпусти, коли закінчиш)',
-            es: 'Habla… (suelta al terminar)',
-            'pt-BR': 'Fale… (solte ao terminar)',
-            vi: 'Nói… (thả ra khi xong)',
-            id: 'Bicara… (lepas saat selesai)',
-            tr: 'Konuş… (bitince bırak)',
-            pl: 'Mów… (puść, gdy skończysz)',
-          })
-        : conversationMode && voiceInputStatus === 'idle' && !sending
-          ? triLang(lang, {
-              ru: 'Зажми микрофон и говори',
-              uk: 'Затисни мікрофон і говори',
-              es: 'Mantén pulsado el micro y habla',
-              'pt-BR': 'Segure o microfone e fale',
-              vi: 'Giữ micrô và nói',
-              id: 'Tahan mikrofon dan bicara',
-              tr: 'Mikrofona basılı tut ve konuş',
-              pl: 'Przytrzymaj mikrofon i mów',
-            })
-          : voiceInputStatus === 'listening'
+      : voiceInputStatus === 'listening'
       ? triLang(lang, {
           ru: 'Говори… отпусти, когда закончишь',
           uk: 'Говори… відпусти, коли закінчиш',
@@ -1274,7 +1102,7 @@ function AiDialogSession() {
           tr: 'Konuş… bitince bırak',
           pl: 'Mów… puść, gdy skończysz',
         })
-      : !conversationMode && voiceInputStatus === 'idle' && !sending
+      : voiceInputStatus === 'idle' && !sending
         ? triLang(lang, {
             ru: 'Зажми микрофон и продиктуй ответ',
             uk: 'Затисни мікрофон і продиктуй відповідь',
@@ -1386,20 +1214,29 @@ function AiDialogSession() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        {/* Header — мессенджер-стиль: аватар собеседника + имя + статус «онлайн» */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 12,
-            paddingVertical: 10,
-            gap: 4,
-            borderBottomWidth: 0.5,
-            borderBottomColor: t.border,
-          }}
-        >
+        {/* Шапка-сцена (редизайн 2026-08-23): «свет места» вместо линии-разделителя,
+            собеседник в свете сцены, лицо-настроение и тихий прогресс целей. */}
+        <View style={{ position: 'relative' }}>
+          <LinearGradient
+            pointerEvents="none"
+            colors={[scene.hueDeep + '3D', scene.hue + '12', 'transparent']}
+            locations={[0, 0.62, 1]}
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: -18 }}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 12,
+              paddingVertical: 10,
+              gap: 4,
+            }}
+          >
           <TouchableOpacity
             onPress={onBack}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
@@ -1416,33 +1253,29 @@ function AiDialogSession() {
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
 
-          {/* Аватар: иконка сценария на акцентном круге */}
+          {/* Аватар: иконка сценария в свете сцены */}
           <View
             style={{
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-              backgroundColor: t.accentBg,
+              width: 42,
+              height: 42,
+              borderRadius: 15,
+              backgroundColor: scene.hue + '26',
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: 10,
-              borderWidth: 0,
-              borderColor: t.accent + '40',
             }}
           >
-            <Ionicons name={scenario.icon as any} size={20} color={t.accent} />
+            <Ionicons name={scenario.icon as any} size={21} color={scene.hue} />
             {/* «онлайн»-точка */}
             <View
               style={{
                 position: 'absolute',
-                right: -1,
-                bottom: -1,
+                right: -2,
+                bottom: -2,
                 width: 12,
                 height: 12,
                 borderRadius: 6,
                 backgroundColor: t.correct,
-                borderWidth: 0,
-                borderColor: t.bgPrimary,
               }}
             />
           </View>
@@ -1463,7 +1296,7 @@ function AiDialogSession() {
                     tr: 'Karşıdakinin ruh hâli',
                     pl: 'Nastrój rozmówcy',
                   })}
-                  style={{ fontSize: f.body }}
+                  style={{ fontSize: f.bodyLg }}
                 >
                   {moodToFace(mood)}
                 </Text>
@@ -1472,62 +1305,43 @@ function AiDialogSession() {
                 // смайла нет (не игра или диалог завершён) — короткий нейтральный
                 // заголовок, чтобы шапка не была пустой.
                 <Text
-                  style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
+                  style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
                   numberOfLines={1}
                 >
                   {dialogScenarioTitle(scenario, lang)}
                 </Text>
               )}
             </View>
-            {/* Вторая строка с местом сцены («в ресторане» и т.п.) и имя собеседника
-                убраны по просьбе: и так понятно, что открываем; длинное место/имя
-                уходило в «...». В игре в шапке остаётся только лицо-настроение. */}
-          </View>
-
-          {/* Счётчик переводов: 3 точки, что гаснут по мере использования.
-              Видим, пока диалог идёт — показывает, сколько переводов осталось. */}
-          {!ended && (
-            <View
-              accessibilityRole="text"
-              accessibilityLabel={triLang(lang, {
-                ru: `Переводов осталось: ${translateRemaining} из ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                uk: `Перекладів залишилось: ${translateRemaining} з ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                es: `Traducciones restantes: ${translateRemaining} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                'pt-BR': `Traduções restantes: ${translateRemaining} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                vi: `Còn lại ${translateRemaining}/${TRANSLATE_LIMIT_PER_DIALOG} bản dịch`,
-                id: `Sisa terjemahan: ${translateRemaining} dari ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                tr: `Kalan çeviri: ${translateRemaining}/${TRANSLATE_LIMIT_PER_DIALOG}`,
-                pl: `Pozostałe tłumaczenia: ${translateRemaining} z ${TRANSLATE_LIMIT_PER_DIALOG}`,
-              })}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 4,
-                marginRight: 8,
-                paddingHorizontal: 8,
-                paddingVertical: 5,
-                borderRadius: 12,
-                backgroundColor: t.bgCard,
-              }}
-            >
-              <Ionicons name="language-outline" size={13} color={t.textSecond} />
-              {Array.from({ length: TRANSLATE_LIMIT_PER_DIALOG }).map((_, di) => {
-                const spent = di >= translateRemaining;
-                return (
+            {/* Тихий прогресс целей сцены: точки загораются светом сцены по мере
+                выполнения. Без цифр — новичка не пугаем счётом. */}
+            {gameEnabled && !ended && objectives.length > 0 && (
+              <View
+                accessibilityLabel={triLang(lang, {
+                  ru: `Цели: ${objectivesMet.size} из ${objectives.length}`,
+                  uk: `Цілі: ${objectivesMet.size} з ${objectives.length}`,
+                  es: `Objetivos: ${objectivesMet.size} de ${objectives.length}`,
+                  'pt-BR': `Objetivos: ${objectivesMet.size} de ${objectives.length}`,
+                  vi: `Mục tiêu: ${objectivesMet.size}/${objectives.length}`,
+                  id: `Tujuan: ${objectivesMet.size} dari ${objectives.length}`,
+                  tr: `Hedefler: ${objectivesMet.size}/${objectives.length}`,
+                  pl: `Cele: ${objectivesMet.size} z ${objectives.length}`,
+                })}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 4 }}
+              >
+                {objectives.map((o) => (
                   <View
-                    key={di}
+                    key={o.id}
                     style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: 3,
-                      backgroundColor: spent ? t.border : t.accent,
-                      opacity: spent ? 0.5 : 1,
+                      width: 7,
+                      height: 7,
+                      borderRadius: 4,
+                      backgroundColor: objectivesMet.has(o.id) ? scene.hue : t.textMuted + '4D',
                     }}
                   />
-                );
-              })}
-            </View>
-          )}
+                ))}
+              </View>
+            )}
+          </View>
 
           {!ended && userExchanges > 0 ? (
             <TouchableOpacity
@@ -1553,7 +1367,7 @@ function AiDialogSession() {
                 backgroundColor: t.bgCard,
               }}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Завершить',
                   uk: 'Завершити',
@@ -1586,38 +1400,8 @@ function AiDialogSession() {
               marginLeft: 6,
             }}
           />
-        </View>
-
-        {maxFallbackRequested && (
-          <View
-            testID="max-voice-fallback-banner"
-            style={{
-              marginHorizontal: 12,
-              marginTop: 8,
-              borderRadius: 12,
-              paddingHorizontal: 12,
-              paddingVertical: 9,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 8,
-              backgroundColor: t.accentBg,
-            }}
-          >
-            <Ionicons name="radio-outline" size={16} color={t.accent} />
-            <Text style={{ color: t.textSecond, fontSize: f.caption, flex: 1 }}>
-              {triLang(lang, {
-                ru: 'Голосовая линия перегружена — продолжаем в режиме рации. Минуты MAX не тратятся.',
-                uk: 'Голосова лінія перевантажена — продовжуємо в режимі рації. Хвилини MAX не витрачаються.',
-                es: 'La línea de voz está ocupada: seguimos en modo walkie-talkie. No se gastan minutos MAX.',
-                'pt-BR': 'A linha de voz está ocupada: seguimos no modo rádio. Os minutos MAX não são gastos.',
-                vi: 'Đường dây thoại đang bận — tiếp tục ở chế độ bộ đàm. Không dùng phút MAX.',
-                id: 'Jalur suara sibuk — lanjut dalam mode walkie-talkie. Menit MAX tidak terpakai.',
-                tr: 'Ses hattı yoğun — telsiz modunda devam ediyoruz. MAX dakikaları harcanmaz.',
-                pl: 'Linia głosowa jest zajęta — kontynuujemy w trybie krótkofalówki. Minuty MAX nie są zużywane.',
-              })}
-            </Text>
           </View>
-        )}
+        </View>
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -1650,20 +1434,20 @@ function AiDialogSession() {
                     marginBottom: 12,
                   }}
                 >
-                  {/* Мини-аватар собеседника слева от его пузыря */}
+                  {/* Мини-аватар собеседника слева от его пузыря — в свете сцены */}
                   {!isUser && (
                     <View
                       style={{
                         width: 28,
                         height: 28,
-                        borderRadius: 14,
-                        backgroundColor: t.accentBg,
+                        borderRadius: 11,
+                        backgroundColor: scene.hue + '26',
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginRight: 8,
                       }}
                     >
-                      <Ionicons name={scenario.icon as any} size={15} color={t.accent} />
+                      <Ionicons name={scenario.icon as any} size={15} color={scene.hue} />
                     </View>
                   )}
 
@@ -1672,8 +1456,8 @@ function AiDialogSession() {
                     <View
                       style={{
                         backgroundColor: t.accent,
-                        borderRadius: 20,
-                        borderBottomRightRadius: 6,
+                        borderRadius: 22,
+                        borderBottomRightRadius: 7,
                         paddingHorizontal: 16,
                         paddingVertical: 11,
                         maxWidth: '82%',
@@ -1688,7 +1472,7 @@ function AiDialogSession() {
                         style={{
                           color: t.correctText,
                           fontSize: f.bodyLg,
-                          fontWeight: '600',
+                          fontWeight: '400',
                           lineHeight: Math.round(f.bodyLg * 1.4),
                         }}
                         maxFontSizeMultiplier={1.2}
@@ -1697,16 +1481,18 @@ function AiDialogSession() {
                       </Text>
                     </View>
                   ) : (
-                    // Пузырь собеседника — слева, светлая карточка, «хвостик» снизу-слева.
+                    // Пузырь собеседника — карточка со «светом места»: тон темы +
+                    // деликатный тинт сцены сверху, «хвостик» снизу-слева.
                     <View
                       style={{
                         backgroundColor: glassFill(t.bgCard, 0.46),
-                        borderRadius: 20,
-                        borderBottomLeftRadius: 6,
+                        borderRadius: 22,
+                        borderBottomLeftRadius: 7,
                         paddingHorizontal: 16,
                         paddingVertical: 12,
                         maxWidth: '82%',
                         flexShrink: 1,
+                        overflow: 'hidden',
                         shadowColor: t.shadowDark,
                         shadowOpacity: 0.18,
                         shadowRadius: 6,
@@ -1714,6 +1500,13 @@ function AiDialogSession() {
                         ...noAndroidOutline,
                       }}
                     >
+                      <LinearGradient
+                        pointerEvents="none"
+                        colors={[scene.hue + '12', 'transparent']}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 0.9, y: 1 }}
+                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                      />
                       <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8, flexShrink: 1 }}>
                         {flipped[i] && translations[i] != null ? (
                           // Перевод на язык интерфейса: обычный текст, без подсветки
@@ -1722,7 +1515,7 @@ function AiDialogSession() {
                             style={{
                               color: t.textPrimary,
                               fontSize: f.bodyLg,
-                              fontWeight: '600',
+                              fontWeight: '400',
                               flexShrink: 1,
                               fontStyle: 'italic',
                               lineHeight: Math.round(f.bodyLg * 1.4),
@@ -1823,37 +1616,11 @@ function AiDialogSession() {
 
                       {/* Кнопка «Показать/Скрыть перевод» под репликой собеседника.
                           Грузится — skeleton-shimmer (правило: загрузка = скелетон, не спиннер).
-                          Прячется, когда лимит исчерпан И эту реплику ещё не открывали. */}
+                          Безлимитно — владелец снял ограничение на число переводов (2026-08-17). */}
                       {(() => {
                         const isTranslating = translatingIdx === i;
                         const hasTranslation = translations[i] != null;
                         const isFlipped = flipped[i] === true;
-                        // зачем: раньше кнопка при исчерпанном лимите просто ИСЧЕЗАЛА —
-                        // пользователь читал это как поломку («в последней реплике нет
-                        // перевода»), потому что не знал про лимит 3 перевода на диалог.
-                        // Теперь вместо пустоты — спокойная подпись с причиной, без кнопки.
-                        if (!shouldShowTranslateButton(hasTranslation, translateUsed, TRANSLATE_LIMIT_PER_DIALOG)) {
-                          return (
-                            <View
-                              style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 8, alignSelf: 'flex-start' }}
-                              accessibilityRole="text"
-                            >
-                              <Ionicons name="lock-closed-outline" size={13} color={t.textMuted} />
-                              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
-                                {triLang(lang, {
-                                  ru: `Переводы на диалог: ${TRANSLATE_LIMIT_PER_DIALOG} из ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  uk: `Переклади на діалог: ${TRANSLATE_LIMIT_PER_DIALOG} з ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  es: `Traducciones por diálogo: ${TRANSLATE_LIMIT_PER_DIALOG} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  'pt-BR': `Traduções por diálogo: ${TRANSLATE_LIMIT_PER_DIALOG} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  vi: `Bản dịch mỗi hội thoại: ${TRANSLATE_LIMIT_PER_DIALOG}/${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  id: `Terjemahan per dialog: ${TRANSLATE_LIMIT_PER_DIALOG} dari ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  tr: `Diyalog başına çeviri: ${TRANSLATE_LIMIT_PER_DIALOG}/${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                  pl: `Tłumaczenia na dialog: ${TRANSLATE_LIMIT_PER_DIALOG} z ${TRANSLATE_LIMIT_PER_DIALOG}`,
-                                })}
-                              </Text>
-                            </View>
-                          );
-                        }
                         if (isTranslating) {
                           return (
                             <View style={{ marginTop: 8 }}>
@@ -1963,20 +1730,20 @@ function AiDialogSession() {
                   style={{
                     width: 28,
                     height: 28,
-                    borderRadius: 14,
-                    backgroundColor: t.accentBg,
+                    borderRadius: 11,
+                    backgroundColor: scene.hue + '26',
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginRight: 8,
                   }}
                 >
-                  <Ionicons name={scenario.icon as any} size={15} color={t.accent} />
+                  <Ionicons name={scenario.icon as any} size={15} color={scene.hue} />
                 </View>
                 <AiTypingBubble
                   bubbleColor={t.bgCard}
                   borderColor={'transparent'}
-                  dotColor={t.accent}
-                  glowColor={t.accent + '18'}
+                  dotColor={scene.hue}
+                  glowColor={scene.hue + '18'}
                 />
               </View>
             )}
@@ -2031,398 +1798,10 @@ function AiDialogSession() {
               </View>
             )}
 
-            {/* Модал-вердикт «диалога как игры»: исход + реакция персонажа +
-                чек-лист целей + разбор. Показывается, когда диалог завершился
-                терминальным исходом (success/lost_patience/stalled). */}
-            {ended && gameEnabled && isTerminalOutcome(outcome) && !hasPremiumAccess && (
-              <View
-                style={{
-                  backgroundColor: glassFill(t.bgSurface, 0.46),
-                  borderRadius: 18,
-                  padding: 18,
-                  marginTop: 6,
-                  marginBottom: 6,
-                }}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                  <View
-                    style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 18,
-                      backgroundColor: t.accentBg,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <Ionicons name="lock-closed-outline" size={18} color={t.accent} />
-                  </View>
-                  <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }} numberOfLines={2}>
-                      {outcomeTitle(outcome, lang)}
-                    </Text>
-                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }}>
-                      {triLang(lang, {
-                        ru: 'AI-разбор ошибок — в Plus',
-                        uk: 'AI-розбір помилок — у Plus',
-                        es: 'Análisis de errores con IA — en Plus',
-                        'pt-BR': 'Análise de erros com IA — no Plus',
-                        vi: 'Phân tích lỗi bằng AI — trong Plus',
-                        id: 'Analisis kesalahan AI — di Plus',
-                        tr: 'AI hata analizi — Plus ile',
-                        pl: 'Analiza błędów AI — w Plus',
-                      })}
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      borderRadius: 9,
-                      paddingHorizontal: 7,
-                      paddingVertical: 3,
-                      backgroundColor: t.accent,
-                    }}
-                  >
-                    <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '900' }}>PLUS</Text>
-                  </View>
-                </View>
+            {/* Финал-вердикт (редизайн 2026-08-23) вынесен из ленты чата в
+                полноэкранный DialogVerdictScreen — оверлей ниже по дереву.
+                Здесь, в ленте, терминальный исход ничего не рисует. */}
 
-                <View
-                  style={{
-                    backgroundColor: glassFill(t.bgCard, 0.32),
-                    borderRadius: 14,
-                    padding: 12,
-                    gap: 8,
-                  }}
-                >
-                  {[
-                    triLang(lang, {
-                      ru: 'где фраза звучала неестественно',
-                      uk: 'де фраза звучала неприродно',
-                      es: 'dónde la frase sonó poco natural',
-                      'pt-BR': 'onde a frase soou pouco natural',
-                      vi: 'chỗ câu nói chưa tự nhiên',
-                      id: 'bagian frasa yang kurang alami',
-                      tr: 'cümlenin nerede doğal durmadığı',
-                      pl: 'gdzie zdanie brzmiało nienaturalnie',
-                    }),
-                    triLang(lang, {
-                      ru: 'что исправить в следующей реплике',
-                      uk: 'що виправити в наступній репліці',
-                      es: 'qué corregir en la siguiente respuesta',
-                      'pt-BR': 'o que corrigir na próxima fala',
-                      vi: 'nên sửa gì ở lượt nói tiếp theo',
-                      id: 'apa yang diperbaiki di balasan berikutnya',
-                      tr: 'sonraki yanıtta neyi düzeltmek gerektiği',
-                      pl: 'co poprawić w następnej odpowiedzi',
-                    }),
-                    triLang(lang, {
-                      ru: 'как сказать это естественнее',
-                      uk: 'як сказати це природніше',
-                      es: 'cómo decirlo de forma más natural',
-                      'pt-BR': 'como dizer isso de forma mais natural',
-                      vi: 'cách nói tự nhiên hơn',
-                      id: 'cara mengatakannya lebih alami',
-                      tr: 'bunu daha doğal söyleme yolu',
-                      pl: 'jak powiedzieć to naturalniej',
-                    }),
-                  ].map((line) => (
-                    <View key={line} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                      <Ionicons name="sparkles-outline" size={15} color={t.textMuted} />
-                      <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', flex: 1 }}>
-                        {line}
-                      </Text>
-                    </View>
-                  ))}
-                </View>
-
-                <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (!accessResolved) return;
-                      hapticTap();
-                      void trackEvent('paywall_shown', { context: 'dialog_analysis', source: 'dialog_analysis' });
-                      router.push({
-                        pathname: '/premium_modal',
-                        params: { context: 'dialog_analysis', source: 'dialog_analysis' },
-                      } as never);
-                    }}
-                    activeOpacity={0.84}
-                    style={{
-                      flex: 1,
-                      borderRadius: 14,
-                      paddingVertical: 13,
-                      alignItems: 'center',
-                      backgroundColor: t.accent,
-                    }}
-                  >
-                    <Text style={{ color: t.correctText, fontWeight: '900', fontSize: f.body }}>
-                      {triLang(lang, {
-                        ru: 'Открыть Plus',
-                        uk: 'Відкрити Plus',
-                        es: 'Abrir Plus',
-                        'pt-BR': 'Abrir Plus',
-                        vi: 'Mở Plus',
-                        id: 'Buka Plus',
-                        tr: 'Plus’ı aç',
-                        pl: 'Otwórz Plus',
-                      })}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={onBack}
-                    activeOpacity={0.84}
-                    style={{
-                      flex: 1,
-                      borderRadius: 14,
-                      paddingVertical: 13,
-                      alignItems: 'center',
-                      backgroundColor: t.bgSurface,
-                    }}
-                  >
-                    <Text style={{ color: t.textPrimary, fontWeight: '900', fontSize: f.body }}>
-                      {triLang(lang, {
-                        ru: 'К диалогам',
-                        uk: 'До діалогів',
-                        es: 'A los diálogos',
-                        'pt-BR': 'Aos diálogos',
-                        vi: 'Về danh sách',
-                        id: 'Ke daftar dialog',
-                        tr: 'Diyaloglara',
-                        pl: 'Do dialogów',
-                      })}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-
-            {ended && gameEnabled && isTerminalOutcome(outcome) && hasPremiumAccess && (
-              <View
-                style={{
-                  backgroundColor: t.bgCard,
-                  borderRadius: 18,
-                  padding: 18,
-                  borderWidth: outcome === 'success' || outcome === 'lost_patience' ? 2 : 0,
-                  borderColor:
-                    outcome === 'success'
-                      ? t.correct
-                      : outcome === 'lost_patience'
-                        ? t.wrong
-                        : 'transparent',
-                  marginTop: 6,
-                  marginBottom: 6,
-                }}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                  <Text style={{ fontSize: f.h2 }} maxFontSizeMultiplier={1.2}>
-                    {outcome === 'success' ? '🎉' : outcome === 'lost_patience' ? '😠' : '💤'}
-                  </Text>
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', flex: 1 }}
-                    numberOfLines={2}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    {outcomeTitle(outcome, lang)}
-                  </Text>
-                  {/* Финальное настроение собеседника (аудит M4: дизайн обещал
-                      финальный смайл в модале). */}
-                  <Text
-                    style={{ fontSize: f.bodyLg }}
-                    maxFontSizeMultiplier={1.2}
-                    accessibilityLabel={triLang(lang, {
-                      ru: 'Финальное настроение собеседника',
-                      uk: 'Фінальний настрій співрозмовника',
-                      es: 'Ánimo final del interlocutor',
-                      'pt-BR': 'Humor final do interlocutor',
-                      vi: 'Tâm trạng cuối của người kia',
-                      id: 'Suasana hati akhir lawan bicara',
-                      tr: 'Karşıdakinin son ruh hâli',
-                      pl: 'Końcowy nastrój rozmówcy',
-                    })}
-                  >
-                    {moodToFace(mood)}
-                  </Text>
-                </View>
-
-                {/* Реакция персонажа от 1-го лица (если пришла). */}
-                {characterReaction.length > 0 && (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      gap: 10,
-                      backgroundColor: glassFill(t.bgCard, 0.32),
-                      borderRadius: 12,
-                      padding: 12,
-                      marginBottom: 12,
-                    }}
-                  >
-                    <View
-                      style={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: 16,
-                        backgroundColor: t.accentBg,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Ionicons name={scenario.icon as any} size={17} color={t.accent} />
-                    </View>
-                    <Text
-                      style={{
-                        color: t.textSecond,
-                        fontSize: f.sub,
-                        fontStyle: 'italic',
-                        flex: 1,
-                        lineHeight: Math.round(f.sub * 1.4),
-                      }}
-                      maxFontSizeMultiplier={1.2}
-                      numberOfLines={6}
-                    >
-                      {personaName ? `${personaName}: ` : ''}
-                      {characterReaction}
-                    </Text>
-                  </View>
-                )}
-
-                {/* Чек-лист под-целей: выполнено / упущено. */}
-                {objectives.length > 0 && (
-                  <View style={{ marginBottom: coachTips.length > 0 ? 12 : 0 }}>
-                    {objectives.map((o) => {
-                      const done = objectivesMet.has(o.id);
-                      return (
-                        <View
-                          key={o.id}
-                          style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 6 }}
-                        >
-                          <Ionicons
-                            name={done ? 'checkmark-circle' : 'ellipse-outline'}
-                            size={18}
-                            color={done ? t.correct : t.textMuted}
-                          />
-                          <Text
-                            style={{
-                              color: done ? t.textPrimary : t.textMuted,
-                              fontSize: f.sub,
-                              flex: 1,
-                              textDecorationLine: done ? 'none' : 'none',
-                            }}
-                            numberOfLines={2}
-                          >
-                            {objectiveLabel(o, lang)}
-                          </Text>
-                        </View>
-                      );
-                    })}
-                  </View>
-                )}
-
-                {/* Разбор «что сказать в следующий раз». */}
-                {coachTips.length > 0 && (
-                  <View
-                    style={{
-                      backgroundColor: t.accentBg,
-                      borderRadius: 12,
-                      padding: 12,
-                    }}
-                  >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-                      <Ionicons name="bulb-outline" size={15} color={t.accent} />
-                      <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900' }}>
-                        {triLang(lang, {
-                          ru: 'На будущее',
-                          uk: 'На майбутнє',
-                          es: 'Para la próxima',
-                          'pt-BR': 'Para a próxima',
-                          vi: 'Lần sau',
-                          id: 'Untuk lain kali',
-                          tr: 'Bir dahaki sefere',
-                          pl: 'Na przyszłość',
-                        })}
-                      </Text>
-                    </View>
-                    {coachTips.map((tip, ti) => (
-                      <Text
-                        key={ti}
-                        style={{
-                          color: t.textSecond,
-                          fontSize: f.sub,
-                          lineHeight: Math.round(f.sub * 1.4),
-                          marginTop: ti === 0 ? 0 : 4,
-                        }}
-                        maxFontSizeMultiplier={1.2}
-                      >
-                        • {tip}
-                      </Text>
-                    ))}
-                  </View>
-                )}
-
-                {/* Разбор фраз ученика: похвала + исправления + совет. */}
-                {renderDialogReview()}
-
-                {/* Действия: ещё раз / к диалогам. */}
-                <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      hapticTap();
-                      void trackEvent('ai_dialog_retry_scenario', { scenarioId: scenario.id, outcome });
-                      // Перезапуск того же сценария «вместо» текущего экрана — свап, не push.
-                      markNextNavigationAsReplace();
-                      router.replace({
-                        pathname: '/ai_dialog_session',
-                        params: { scenarioId: scenario.id },
-                      } as never);
-                    }}
-                    activeOpacity={0.84}
-                    style={{
-                      flex: 1,
-                      borderRadius: 14,
-                      paddingVertical: 13,
-                      alignItems: 'center',
-                      backgroundColor: t.accent,
-                    }}
-                  >
-                    <Text style={{ color: t.correctText, fontWeight: '900', fontSize: f.body }}>
-                      {triLang(lang, {
-                        ru: 'Ещё раз',
-                        uk: 'Ще раз',
-                        es: 'Otra vez',
-                        'pt-BR': 'De novo',
-                        vi: 'Lần nữa',
-                        id: 'Sekali lagi',
-                        tr: 'Tekrar',
-                        pl: 'Jeszcze raz',
-                      })}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={onBack}
-                    activeOpacity={0.84}
-                    style={{
-                      flex: 1,
-                      borderRadius: 14,
-                      paddingVertical: 13,
-                      alignItems: 'center',
-                      backgroundColor: t.bgSurface,
-                    }}
-                  >
-                    <Text style={{ color: t.textPrimary, fontWeight: '900', fontSize: f.body }}>
-                      {triLang(lang, {
-                        ru: 'К диалогам',
-                        uk: 'До діалогів',
-                        es: 'A los diálogos',
-                        'pt-BR': 'Aos diálogos',
-                        vi: 'Về danh sách',
-                        id: 'Ke daftar dialog',
-                        tr: 'Diyaloglara',
-                        pl: 'Do dialogów',
-                      })}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
 
             {/* Старый «нейтральный» финал — когда игра не активна ИЛИ юзер вышел
                 кнопкой «Завершить» без терминального исхода. */}
@@ -2501,53 +1880,6 @@ function AiDialogSession() {
             )}
           </ScrollView>
 
-          {/* Подсказка «Что сделать дальше» — ТОЛЬКО до первой реплики пользователя
-              (userExchanges === 0): помогает начать разговор. После первого ответа
-              собеседник уже реагирует на сказанное, и общая подсказка не нужна —
-              дальше отталкиваемся от его реплик. */}
-          {!ended && lastIsAssistant && !sending && userExchanges === 0 && (
-            <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
-              <View
-                style={{
-                  borderRadius: 16,
-                  backgroundColor: glassFill(t.bgSurface, 0.46),
-                  paddingHorizontal: 14,
-                  paddingVertical: 12,
-                  flexDirection: 'row',
-                  alignItems: 'flex-start',
-                  gap: 10,
-                }}
-              >
-                <Ionicons name="bulb-outline" size={18} color={t.textSecond} style={{ marginTop: 1 }} />
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
-                    {triLang(lang, {
-                      ru: 'Что сделать дальше',
-                      uk: 'Що зробити далі',
-                      es: 'Qué hacer ahora',
-                      'pt-BR': 'O que fazer agora',
-                      vi: 'Làm gì tiếp theo',
-                      id: 'Apa langkah berikutnya',
-                      tr: 'Şimdi ne yapmalı',
-                      pl: 'Co zrobić dalej',
-                    })}
-                  </Text>
-                  <Text
-                    style={{
-                      color: t.textMuted,
-                      fontSize: f.sub,
-                      lineHeight: Math.round(f.sub * 1.35),
-                      marginTop: 4,
-                    }}
-                    maxFontSizeMultiplier={1.15}
-                  >
-                    {dialogScenarioNextStepHint(scenario, lang)}
-                  </Text>
-                </View>
-              </View>
-            </View>
-          )}
-
           {/* Поле ввода — пилюля + круглая кнопка отправки */}
           {!ended && (
             <View
@@ -2557,113 +1889,71 @@ function AiDialogSession() {
                 paddingBottom: 12,
               }}
             >
-              {/* Тумблер разговорного режима «зажми и говори» — только там, где
-                  голосовой ввод в принципе поддерживается устройством. */}
-              {speechModule && (
+              {/* Подсказка тренера «Что сделать дальше»: свёрнутая пилюля над полем
+                  ввода. Текст берётся из каталога сценария — раскрытие мгновенное,
+                  без сети. зачем: застрявший новичок получает следующий шаг в один
+                  тап, не выходя из диалога. */}
+              <View style={{ marginBottom: 8 }}>
                 <TouchableOpacity
                   onPress={() => {
-                    if (!accessResolved) return;
                     hapticTap();
-                    if (!hasPremiumAccess) {
-                      void trackEvent('paywall_shown', {
-                        context: 'ai_voice_input',
-                        source: 'ai_dialog_conversation_toggle',
-                      });
-                      router.push({
-                        pathname: '/premium_modal',
-                        params: { context: 'ai_voice_input', source: 'ai_dialog_conversation_toggle' },
-                      } as never);
-                      return;
-                    }
-                    setConversationMode((prev) => {
-                      const next = !prev;
-                      void trackEvent('ai_dialog_conversation_mode_toggled', {
-                        scenarioId: scenario.id,
-                        on: next,
-                      });
-                      if (!next) {
-                        voiceInputGenerationRef.current += 1;
-                        voiceInputSessionRef.current += 1;
-                        holdPressActiveRef.current = false;
-                        conversationReleasePendingRef.current = false;
-                        // Выключаем — гасим всё голосовое, чтобы не «зависло».
-                        clearConversationSendTimer();
-                        clearRecognizerWatchdog();
-                        try {
-                          speechModule?.abort();
-                        } catch {
-                          /* no-op */
-                        }
-                        cleanupVoiceInputListeners();
-                        restoreLoudPlaybackMode();
-                        setVoiceInputStatus('idle');
-                      }
-                      return next;
-                    });
+                    if (!hintOpen) void trackEvent('ai_dialog_hint_opened', { scenarioId: scenario.id });
+                    setHintOpen((v) => !v);
                   }}
                   activeOpacity={0.8}
-                  accessibilityRole="switch"
-                  accessibilityState={{ checked: conversationMode }}
+                  accessibilityRole="button"
+                  accessibilityState={{ expanded: hintOpen }}
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Что сделать дальше',
+                    uk: 'Що зробити далі',
+                    es: 'Qué hacer ahora',
+                    'pt-BR': 'O que fazer agora',
+                    vi: 'Nên làm gì tiếp',
+                    id: 'Apa langkah berikutnya',
+                    tr: 'Şimdi ne yapmalı',
+                    pl: 'Co zrobić dalej',
+                  })}
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
                     alignSelf: 'flex-start',
-                    gap: 7,
+                    gap: 6,
+                    backgroundColor: hintOpen ? scene.hue + '26' : t.bgCard,
+                    borderRadius: 15,
                     paddingHorizontal: 12,
                     paddingVertical: 7,
-                    marginBottom: 8,
-                    borderRadius: 16,
-                    borderWidth: conversationMode ? 1 : 0,
-                    borderColor: conversationMode ? t.accent : 'transparent',
-                    backgroundColor: conversationMode ? t.accent : t.bgSurface,
                   }}
                 >
-                  <Ionicons
-                    name="chatbubbles-outline"
-                    size={15}
-                    color={conversationMode ? t.correctText : t.textSecond}
-                  />
-                  <Text
-                    style={{
-                      color: conversationMode ? t.correctText : t.textSecond,
-                      fontSize: f.caption,
-                      fontWeight: '800',
-                    }}
-                    maxFontSizeMultiplier={1.1}
-                  >
+                  <Ionicons name="bulb-outline" size={14} color={scene.hue} />
+                  <Text style={{ color: hintOpen ? scene.hue : t.textSecond, fontSize: f.label, fontWeight: '700' }}>
                     {triLang(lang, {
-                      ru: 'Разговор вслух',
-                      uk: 'Розмова вголос',
-                      es: 'Conversar en voz alta',
-                      'pt-BR': 'Conversar em voz alta',
-                      vi: 'Trò chuyện bằng giọng nói',
-                      id: 'Ngobrol dengan suara',
-                      tr: 'Sesli konuşma',
-                      pl: 'Rozmowa na głos',
+                      ru: 'Что сделать дальше',
+                      uk: 'Що зробити далі',
+                      es: 'Qué hacer ahora',
+                      'pt-BR': 'O que fazer agora',
+                      vi: 'Nên làm gì tiếp',
+                      id: 'Apa langkah berikutnya',
+                      tr: 'Şimdi ne yapmalı',
+                      pl: 'Co zrobić dalej',
                     })}
                   </Text>
-                  {!hasPremiumAccess && (
-                    <View
-                      style={{
-                        borderRadius: 7,
-                        paddingHorizontal: 5,
-                        paddingVertical: 1,
-                        backgroundColor: conversationMode ? t.bgPrimary : t.accent,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          color: conversationMode ? t.accent : t.correctText,
-                          fontSize: 8,
-                          fontWeight: '900',
-                        }}
-                      >
-                        PLUS
-                      </Text>
-                    </View>
-                  )}
+                  <Ionicons name={hintOpen ? 'chevron-down' : 'chevron-up'} size={13} color={t.textMuted} />
                 </TouchableOpacity>
-              )}
+                {hintOpen && (
+                  <Text
+                    style={{
+                      color: t.textSecond,
+                      fontSize: f.sub,
+                      lineHeight: Math.round(f.sub * 1.4),
+                      marginTop: 7,
+                      paddingHorizontal: 6,
+                    }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {dialogScenarioNextStepHint(scenario, lang)}
+                  </Text>
+                )}
+              </View>
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               <TextInput
                 value={input}
@@ -2706,15 +1996,14 @@ function AiDialogSession() {
                 maxFontSizeMultiplier={1.2}
               />
               <TouchableOpacity
-                // Единый контракт во всех голосовых режимах: press-in старт,
-                // press-out стоп. Разговорный режим дополнительно авто-отправляет.
+                // Единый контракт голосового ввода: press-in старт, press-out стоп.
                 onPressIn={handleMicPressIn}
                 onPressOut={handleMicPressOut}
-                disabled={sending || aiSpeaking || voiceInputStatus === 'finishing'}
+                disabled={sending || voiceInputStatus === 'finishing'}
                 activeOpacity={0.82}
                 accessibilityRole="button"
                 accessibilityState={{
-                  disabled: sending || aiSpeaking || voiceInputStatus === 'finishing',
+                  disabled: sending || voiceInputStatus === 'finishing',
                   busy: voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing',
                 }}
                 accessibilityLabel={
@@ -2866,6 +2155,108 @@ function AiDialogSession() {
             </View>
           )}
         </KeyboardAvoidingView>
+
+        {/* Полноэкранный финал-вердикт (редизайн 2026-08-23): исход, настроение,
+            цели, реакция персонажа и разбор — отдельным «экраном-праздником».
+            Переписка остаётся под ним: «Показать переписку» прячет оверлей. */}
+        {ended && gameEnabled && isTerminalOutcome(outcome) && !verdictHidden && (
+          <DialogVerdictScreen
+            outcome={outcome}
+            lang={lang}
+            moodFace={moodToFace(mood)}
+            scene={scene}
+            scenarioIcon={scenario.icon}
+            scenarioTitle={dialogScenarioTitle(scenario, lang)}
+            personaName={personaName}
+            characterReaction={characterReaction}
+            objectives={objectives}
+            objectivesMet={objectivesMet}
+            coachTips={coachTips}
+            review={review}
+            reviewStatus={reviewStatus}
+            xpAwarded={xpAwarded}
+            locked={!hasPremiumAccess}
+            onRetry={() => {
+              hapticTap();
+              void trackEvent('ai_dialog_retry_scenario', { scenarioId: scenario.id, outcome });
+              // Перезапуск того же сценария «вместо» текущего экрана — свап, не push.
+              markNextNavigationAsReplace();
+              router.replace({
+                pathname: '/ai_dialog_session',
+                params: { scenarioId: scenario.id },
+              } as never);
+            }}
+            onExit={onBack}
+            onShowChat={() => {
+              hapticTap();
+              setVerdictHidden(true);
+            }}
+            onOpenPlus={() => {
+              if (!accessResolved) return;
+              hapticTap();
+              void trackEvent('paywall_shown', { context: 'dialog_analysis', source: 'dialog_analysis' });
+              router.push({
+                pathname: '/premium_modal',
+                params: { context: 'dialog_analysis', source: 'dialog_analysis' },
+              } as never);
+            }}
+          />
+        )}
+
+        {/* Пилюля «Итоги»: вернуться к финалу, пока читаешь переписку. */}
+        {ended && gameEnabled && isTerminalOutcome(outcome) && verdictHidden && (
+          <View
+            pointerEvents="box-none"
+            style={{ position: 'absolute', left: 0, right: 0, bottom: 22, alignItems: 'center' }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                hapticTap();
+                setVerdictHidden(false);
+              }}
+              activeOpacity={0.86}
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Показать итоги диалога',
+                uk: 'Показати підсумки діалогу',
+                es: 'Mostrar el resumen del diálogo',
+                'pt-BR': 'Mostrar o resumo do diálogo',
+                vi: 'Hiện kết quả hội thoại',
+                id: 'Tampilkan hasil dialog',
+                tr: 'Diyalog özetini göster',
+                pl: 'Pokaż wyniki dialogu',
+              })}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 7,
+                backgroundColor: t.accent,
+                borderRadius: 22,
+                paddingHorizontal: 18,
+                minHeight: 44,
+                shadowColor: t.accent,
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.35,
+                shadowRadius: 10,
+                ...noAndroidOutline,
+              }}
+            >
+              <Ionicons name="podium-outline" size={17} color={t.correctText} />
+              <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: 'Итоги',
+                  uk: 'Підсумки',
+                  es: 'Resumen',
+                  'pt-BR': 'Resumo',
+                  vi: 'Kết quả',
+                  id: 'Hasil',
+                  tr: 'Özet',
+                  pl: 'Wyniki',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -2873,8 +2264,8 @@ function AiDialogSession() {
 
 // зачем: явное согласие на AI-диалоги (владелец) — экран даже не монтируется,
 // пока пользователь не подтвердил, что его сообщения уйдут в OpenAI. Gate живёт
-// снаружи, а не внутри компонента: внутри слишком много точек отправки
-// (обычный send + разговорный режим), одна внешняя точка входа надёжнее.
+// снаружи, а не внутри компонента: внутри несколько точек отправки (send/retry),
+// одна внешняя точка входа надёжнее.
 export default function AiDialogSessionRoute() {
   return (
     <AiDialogConsentGate>

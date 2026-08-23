@@ -17,6 +17,8 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
+  Text,
+  TouchableOpacity,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -54,9 +56,11 @@ import {
   shouldBypassEmptyCustomCollection,
 } from './flashcards/tabbar_state';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import ReportPackModal from '../components/ReportPackModal';
+import { packTitleForInterface } from './flashcards/marketplace';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import CollectionDeckView from './flashcards/CollectionDeckView';
-// E13: «сила слова» — точки Weak/Medium/Strong из SRS-данных (§2)
+// E13: «сила слова» — точки из новой проекции ошибок (§2).
 import {
   loadWordStrengthMap,
   strengthFor,
@@ -135,6 +139,10 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   /** Компоненты раздела карточек локализованы на ru/uk/es — сужаем интерфейсный язык. */
 
   const { studyTarget } = useStudyTarget();
+  // зачем (Apple 1.2, UGC): пожаловаться на чужой набор можно было только
+  // в каталоге долгим тапом по плитке. На самой странице набора — там, где
+  // человек и читает чужие карточки, — жалобы не было вовсе.
+  const [packReportOpen, setPackReportOpen] = useState(false);
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
@@ -200,6 +208,12 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     const canGoBack = typeof router.canGoBack === 'function' && router.canGoBack();
     if (packBackOrigin && canGoBack && typeof router.dismissTo === 'function') {
       try {
+        // зачем (баг «второй „назад“ снова открывает тот же набор»): dismissTo — это
+        // POP_TO в обход navigation_back.ts, а его JS-модель стека (navigationStack)
+        // узнаёт о новом пути только из rememberNavigationPath в _layout.tsx. Без этого
+        // флага rememberEntry считает переход обычным push и КЛАДЁТ каталог поверх ещё
+        // не снятой записи набора — второй safeRouterBack всплывал обратно на набор.
+        markNextNavigationAsReplace();
         router.dismissTo(packBackOrigin as any);
         return;
       } catch {
@@ -281,6 +295,25 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     const tm = setTimeout(() => setSearchQuery(searchInput), FC_SEARCH_DEBOUNCE_MS);
     return () => clearTimeout(tm);
   }, [searchInput]);
+  const searchActive = searchQuery.trim().length > 0;
+
+  /** Один контракт для стрелки и Android Back: сначала закрываем локальный слой. */
+  const handleCollectionBack = useCallback(() => {
+    if (filterOpen) {
+      setFilterOpen(false);
+      return;
+    }
+    if (searchInput.length > 0 || searchActive) {
+      setSearchInput('');
+      setSearchQuery('');
+      return;
+    }
+    if (viewMode === 'deck') {
+      exitDeckToList();
+      return;
+    }
+    leaveCollection();
+  }, [exitDeckToList, filterOpen, leaveCollection, searchActive, searchInput, viewMode]);
 
   const { isPremium } = usePremium();
   // Карта «силы слова» строится из проекции нового журнала ошибок.
@@ -535,21 +568,13 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (filterOpen) {
-        setFilterOpen(false);
-        return true;
-      }
-      if (viewMode === 'deck') {
-        exitDeckToList();
-        return true;
-      }
-      leaveCollection();
+      handleCollectionBack();
       return true;
     });
     return () => sub.remove();
-  }, [filterOpen, viewMode, exitDeckToList, leaveCollection]);
+  }, [handleCollectionBack]);
 
-  // ── E8: «Тренировать этот набор» — words-сессия тренера с ?deck=… (§3.7) ──
+  // «Тренировать этот набор» использует обычный живой режим карточек.
   /** deckId текущего набора: сохранённые / свои карточки / добавленный набор. */
   const trainDeckId = useMemo((): string | null => {
     if (packDeeplink) return `pack:${packDeeplink}`;
@@ -559,22 +584,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     if (activeCat === 'custom') return 'custom';
     return null;
   }, [packDeeplink, activeFilter, activeCat]);
-
-  const startDeckSession = useCallback((mode: 'blitz' | 'listening') => {
-    if (!trainDeckId) return;
-    fcHaptic('tap');
-    void (async () => {
-      // Размер сессии — из последнего пресета (fc_mode_prefs_v1), дефолт 15 (§3.5)
-      const preset = await getLastPreset(mode).catch(() => null);
-      const size = preset?.size ?? FC_DEFAULT_SESSION_SIZE;
-      router.push({
-        pathname: mode === 'blitz' ? '/flashcards_blitz_session' : '/flashcards_listening_session',
-        params: { deck: trainDeckId, size: String(size) },
-      } as any);
-    })();
-  }, [trainDeckId, router]);
-  const startDeckTraining = useCallback(() => startDeckSession('blitz'), [startDeckSession]);
-  const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);
 
   /** Набор уже у пользователя (куплен / добавлен / он его автор). */
   const packOwnedByMe = useMemo(() => {
@@ -588,6 +597,25 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     );
   }, [packDeeplink, ownedPackIdList, communityOwnedIdList, currentMarketPack, accessStableId]);
 
+  /** Публичный staged-снимок — только render input, не разрешение на тренировку. */
+  const packTrainingAccessReady = !packDeeplink || (collectionDataReady && packOwnedByMe);
+
+  const startDeckSession = useCallback((mode: 'blitz' | 'listening') => {
+    if (!trainDeckId || !packTrainingAccessReady) return;
+    fcHaptic('tap');
+    void (async () => {
+      // Размер сессии — из последнего пресета (fc_mode_prefs_v1), дефолт 15 (§3.5)
+      const preset = await getLastPreset(mode).catch(() => null);
+      const size = preset?.size ?? FC_DEFAULT_SESSION_SIZE;
+      router.push({
+        pathname: mode === 'blitz' ? '/flashcards_blitz_session' : '/flashcards_listening_session',
+        params: { deck: trainDeckId, size: String(size) },
+      } as any);
+    })();
+  }, [packTrainingAccessReady, trainDeckId, router]);
+  const startDeckTraining = useCallback(() => startDeckSession('blitz'), [startDeckSession]);
+  const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);
+
   /** Только просмотр: набор открыт из каталога и ещё не добавлен себе. */
   const previewMode = previewRequested && !packOwnedByMe;
 
@@ -597,7 +625,8 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
    * их роль берёт таббар, в режиме просмотра тренировка недоступна.
    */
   const showModeButtons =
-    !sectionRoot && !previewMode && trainDeckId !== null && !loading && filteredCards.length > 0;
+    !sectionRoot && !previewMode && packTrainingAccessReady && trainDeckId !== null
+    && !loading && filteredCards.length > 0;
 
   /**
    * «Сделать публичным»: своя коллекция, которая ещё живёт только на устройстве.
@@ -674,13 +703,22 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     tabScroll.expandNow();
   }, [viewMode, tabScroll]);
 
-  const searchActive = searchQuery.trim().length > 0;
   /**
    * Набор ещё догружается: список пуст не потому, что набор пустой, а потому что
    * карточки в пути. Заглушка «пусто» в этот момент и читалась как промежуточный
    * экран перед набором (замечание владельца, 2026-08-13) — не показываем её.
+   *
+   * зачем (владелец, «сначала тёмные карточки без цвета, потом рывком цветные и
+   * кнопки»): у наборов сообщества (UGC) карточки приходят на первый кадр синхронно
+   * через staging, а их оформление (packCardTheme) — только из marketPackCatalog,
+   * который догружается с сервера отдельным async-циклом (loadAll в useCollectionData).
+   * Карточки успевали отрисоваться БЕЗ темы, а через кадр перекрашивались — сам рывок.
+   * У бандловых (встроенных) наборов marketPackCatalog синхронный с первого кадра
+   * (reserveBundledMarketPacks), поэтому им ждать нечего — держим паузу только пока
+   * каталог ещё не подтвердил решение по этому конкретному packDeeplink.
    */
-  const packCardsPending = !!packDeeplink && !collectionDataReady && filteredCards.length === 0;
+  const packCardsPending =
+    !!packDeeplink && !collectionDataReady && (filteredCards.length === 0 || !currentMarketPack);
   const isEmpty = !loading && !packCardsPending && filteredCards.length === 0;
   const bypassEmptyCustomCollection = shouldBypassEmptyCustomCollection({
     collectionDataReady,
@@ -729,7 +767,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           packDeeplink={packDeeplink}
           marketPackCatalog={marketPackCatalog}
           fallbackTitle={s.title}
-          onBack={leaveCollection}
+          onBack={handleCollectionBack}
           showViewToggle={!isEmpty}
           viewMode={viewMode}
           onToggleViewMode={toggleViewMode}
@@ -770,6 +808,23 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
               variant="screen"
               onAdded={() => { void loadAll(); }}
             />
+            {/* Тихая ссылка под лайком: жалоба не должна спорить с «Добавить
+                себе», но обязана быть на виду у самого контента. */}
+            <TouchableOpacity
+              testID="collection-report-pack"
+              accessibilityRole="button"
+              onPress={() => setPackReportOpen(true)}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              style={{ alignSelf: 'center', paddingVertical: 10 }}
+            >
+              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', es: 'Denunciar el pack',
+                  'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan set',
+                  tr: 'Seti bildir', pl: 'Zgłoś zestaw',
+                })}
+              </Text>
+            </TouchableOpacity>
           </View>
         ) : null}
 
@@ -874,7 +929,35 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 
       {/* Cards 2.1 §5.2: таббар раздела — только в корне «Карточек» */}
       {sectionRoot ? (
-        <FlashcardsTabBar lang={lang} t={t} active="cards" bottomInset={0} scroll={tabScroll} />
+        <FlashcardsTabBar
+          lang={lang}
+          t={t}
+          active="cards"
+          bottomInset={0}
+          scroll={tabScroll}
+          // зачем: пункт «Коллекция» ведёт в сохранённые+свои карточки раздела —
+          // без них вести некуда, прячем пункт вместо мёртвого тапа (владелец).
+          hasAnyCards={savedCards.length > 0 || customCards.length > 0}
+        />
+      ) : null}
+
+      {/* Жалоба на чужой набор прямо с его страницы. «Не показывать» скрывает
+          набор на устройстве — тогда уходим назад, чтобы не остаться на
+          экране только что скрытого набора. */}
+      {packReportOpen && currentMarketPack ? (
+        <ReportPackModal
+          visible
+          packId={currentMarketPack.id}
+          packTitle={packTitleForInterface(currentMarketPack, lang)}
+          authorStableId={currentMarketPack.authorStableId ?? null}
+          lang={lang}
+          studyTarget={studyTarget}
+          onClose={() => setPackReportOpen(false)}
+          onPackHiddenOnDevice={() => {
+            setPackReportOpen(false);
+            openCommunityPacks();
+          }}
+        />
       ) : null}
 
     </SafeAreaView>

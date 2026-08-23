@@ -42,6 +42,7 @@ import { triLang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
+import EnergyCostBadge from './EnergyCostBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -578,36 +579,42 @@ export default function DialogsTabContent({
             {/* Полноширинная CTA. Нажатие обрабатывает вся плашка (внешний
                 TouchableOpacity) — кнопка визуальная, без второго обработчика,
                 чтобы не плодить двойные тапы. */}
-            <View
-              style={{
-                marginTop: 14,
-                minHeight: 52,
-                borderRadius: 18,
-                backgroundColor: t.accent,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 9,
-                shadowColor: t.accent,
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: 0.35,
-                shadowRadius: 10,
-                ...noAndroidOutline,
-              }}
-            >
-              <Ionicons name="play" size={20} color={t.correctText} />
-              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {triLang(lang, {
-                  ru: 'Начать',
-                  uk: 'Почати',
-                  es: 'Empezar',
-                  'pt-BR': 'Começar',
-                  vi: 'Bắt đầu',
-                  id: 'Mulai',
-                  tr: 'Başla',
-                  pl: 'Zacznij',
-                })}
-              </Text>
+            <View style={{ position: 'relative' }}>
+              <View
+                style={{
+                  marginTop: 14,
+                  minHeight: 52,
+                  borderRadius: 18,
+                  backgroundColor: t.accent,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 9,
+                  shadowColor: t.accent,
+                  shadowOffset: { width: 0, height: 4 },
+                  shadowOpacity: 0.35,
+                  shadowRadius: 10,
+                  ...noAndroidOutline,
+                }}
+              >
+                <Ionicons name="play" size={20} color={t.correctText} />
+                <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
+                  {triLang(lang, {
+                    ru: 'Начать',
+                    uk: 'Почати',
+                    es: 'Empezar',
+                    'pt-BR': 'Começar',
+                    vi: 'Bắt đầu',
+                    id: 'Mulai',
+                    tr: 'Başla',
+                    pl: 'Zacznij',
+                  })}
+                </Text>
+              </View>
+              {/* зачем: цена входа видна ДО нажатия. Здесь бейдж особенно важен:
+                  повторный сценарий идёт мимо брифинга (openScenarioDestination),
+                  и без него человек нигде не увидел бы, что диалог стоит энергии. */}
+              <EnergyCostBadge testID="dialogs-hero-energy-cost" />
             </View>
           </View>
         </TouchableOpacity>

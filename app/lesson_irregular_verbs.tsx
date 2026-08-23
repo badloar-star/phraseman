@@ -23,6 +23,7 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
@@ -999,15 +1000,19 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const pack = stringsForLang(lang);
   return (
     <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
-      <TouchableOpacity
-        onPress={onStartLearn}
-        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}
-      >
-        <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
-        <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
-          {pack.words.listStartTraining}
-        </Text>
-      </TouchableOpacity>
+      <View style={{ position: 'relative' }}>
+        <TouchableOpacity
+          onPress={onStartLearn}
+          style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}
+        >
+          <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
+          <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
+            {pack.words.listStartTraining}
+          </Text>
+        </TouchableOpacity>
+        {/* Тренировка монтирует компонент, который списывает 1 ⚡. */}
+        <EnergyCostBadge testID="irregular-verbs-train-energy-cost" />
+      </View>
 
       <IrregVerbsScrollTable t={t} f={f} lang={lang} allVerbs={allVerbs} globalCounts={globalCounts} lessonId={lessonId} />
     </BouncyScrollView>

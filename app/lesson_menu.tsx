@@ -16,6 +16,7 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
 import EnergyBar from '../components/EnergyBar';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useEnergy } from '../components/EnergyContext';
 import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -25,6 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';
@@ -279,7 +281,18 @@ export async function prefetchLessonMenuCache(
   } catch { /* prefetch should never block navigation */ }
 }
 
-export default function LessonMenu() {
+/**
+ * Пункты меню урока, вход в которые стоит 1 ⚡ (владелец 2026-08-23).
+ * Теория (lesson-menu-theory) сюда НЕ входит — она бесплатна.
+ */
+const ENERGY_COST_MENU_ITEMS = new Set([
+  'lesson-menu-primary',
+  'lesson-menu-words',
+  'lesson-menu-irregular-verbs',
+  'lesson-menu-prepositions',
+]);
+
+function LessonMenu() {
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
   const router = useRouter();
   const { theme:t, f, themeMode } = useTheme();
@@ -1436,6 +1449,14 @@ export default function LessonMenu() {
               <Text style={{color:t.textMuted,fontSize: f.sub,marginTop:3}}>{item.sub}</Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>
+            {/* зачем: цена входа видна ДО нажатия (владелец 2026-08-23). Только
+                на пунктах, которые реально стартуют активность и списывают
+                энергию: продолжить урок, слова, глаголы, предлоги. Теория
+                (lesson-menu-theory) энергию не тратит — там бейджа нет.
+                Недоступный пункт тоже без бейджа: списания не будет. */}
+            {ENERGY_COST_MENU_ITEMS.has(item.testID) && !item.disabled && !item.unavailable ? (
+              <EnergyCostBadge testID={`${item.testID}-energy-cost`} />
+            ) : null}
           </PremiumCard>
         ))}
       </View>
@@ -1669,3 +1690,5 @@ export default function LessonMenu() {
     </ScreenGradient>
   );
 }
+
+export default withOptionalPersonalPlanSunsetGuard(LessonMenu, ['planTask']);

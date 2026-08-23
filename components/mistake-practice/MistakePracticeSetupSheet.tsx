@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import EnergyCostBadge from '../EnergyCostBadge';
 import {
   mistakePracticeLengthOptions,
   type MistakePracticeLength,
@@ -108,19 +109,23 @@ export default function MistakePracticeSetupSheet({
           })}
         </View>
 
-        <Pressable
-          testID="mistake-practice-start"
-          accessibilityRole="button"
-          accessibilityState={{ disabled: !canStart }}
-          disabled={!canStart}
-          onPress={() => {
-            void hapticTap();
-            onStart(selected);
-          }}
-          style={[styles.start, { backgroundColor: canStart ? t.accent : t.bgSurface2 }]}
-        >
-          <Text style={{ color: canStart ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.start}</Text>
-        </Pressable>
+        <View style={styles.startWrap}>
+          <Pressable
+            testID="mistake-practice-start"
+            accessibilityRole="button"
+            accessibilityState={{ disabled: !canStart }}
+            disabled={!canStart}
+            onPress={() => {
+              void hapticTap();
+              onStart(selected);
+            }}
+            style={[styles.start, { backgroundColor: canStart ? t.accent : t.bgSurface2 }]}
+          >
+            <Text style={{ color: canStart ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.start}</Text>
+          </Pressable>
+          {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
+          {canStart ? <EnergyCostBadge testID="mistake-practice-energy-cost" /> : null}
+        </View>
       </View>
     </HybridSheetShell>
   );
@@ -128,6 +133,8 @@ export default function MistakePracticeSetupSheet({
 
 const styles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingTop: 8, paddingBottom: 12, gap: 16 },
+  // Якорь для углового бейджа «−1 ⚡».
+  startWrap: { position: 'relative' },
   headingRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   headingCopy: { flex: 1, gap: 2 },
   icon: { width: 44, height: 44, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },

@@ -45,6 +45,7 @@ import { getStableId } from "../../../app/stable_id";
 import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useTheme } from "../../../components/ThemeContext";
+import EnergyCostBadge from "../../../components/EnergyCostBadge";
 import { usePremium } from "../../../components/PremiumContext";
 import MistakePracticeLoopNode from "../../../components/mistake-practice/MistakePracticeLoopNode";
 import { trackMistakePracticeEvent } from "../../../app/mistake_practice_analytics";
@@ -946,6 +947,51 @@ export default function LearningV2LessonMap() {
     typeof selected === "object" && selected !== null && !("kind" in selected)
       ? selected
       : null;
+  // зачем: обе кнопки листа («Начать» и «Пропустить теорию») ведут на один и
+  // тот же экран сессии, разница только в параметре skipTheory — вынесено в
+  // одну функцию, чтобы не дублировать защиту от повторного нажатия.
+  const enterSelectedSession = (skipTheory: boolean) => {
+    if (
+      !selectedSession ||
+      (selectedSession.state !== "current" &&
+        selectedSession.state !== "completed")
+    ) {
+      dismissSheet();
+      return;
+    }
+    if (navigationLatchRef.current) return;
+    navigationLatchRef.current = true;
+    setSelected(null);
+    try {
+      requestAnimationFrame(() => {
+        router.push({
+          pathname: "/learning-v2/session/[id]",
+          params: {
+            id: learningV2CourseSessionIdV1(
+              lessonOrdinal,
+              selectedSession.order,
+            ),
+            runtimeMode: "direct_v1",
+            lessonOrdinal: String(lessonOrdinal),
+            sessionOrdinal: String(selectedSession.order),
+            runKind:
+              selectedSession.state === "completed" ? "repeat" : "initial",
+            ...(skipTheory ? { skipTheory: "1" } : {}),
+            ...(auxiliaryScope
+              ? {
+                  releaseEnvironment: auxiliaryScope.environment,
+                  releaseSeasonId: auxiliaryScope.seasonId,
+                }
+              : {}),
+          },
+        } as never);
+      });
+    } catch (error) {
+      navigationLatchRef.current = false;
+      cancelPreparedLearningV2SessionNetworkIntent(selectedSession.id);
+      throw error;
+    }
+  };
   return (
     <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
       <FlatList
@@ -1207,63 +1253,41 @@ export default function LearningV2LessonMap() {
             </Text>
           </>
         ) : null}
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => {
-            if (
-              selectedSession &&
-              (selectedSession.state === "current" ||
-                selectedSession.state === "completed")
-            ) {
-              if (navigationLatchRef.current) return;
-              navigationLatchRef.current = true;
-              setSelected(null);
-              try {
-                requestAnimationFrame(() => {
-                  router.push({
-                    pathname: "/learning-v2/session/[id]",
-                    params: {
-                      id: learningV2CourseSessionIdV1(
-                        lessonOrdinal,
-                        selectedSession.order,
-                      ),
-                      runtimeMode: "direct_v1",
-                      lessonOrdinal: String(lessonOrdinal),
-                      sessionOrdinal: String(selectedSession.order),
-                      runKind:
-                        selectedSession.state === "completed"
-                          ? "repeat"
-                          : "initial",
-                      ...(auxiliaryScope
-                        ? {
-                            releaseEnvironment: auxiliaryScope.environment,
-                            releaseSeasonId: auxiliaryScope.seasonId,
-                          }
-                        : {}),
-                    },
-                  } as never);
-                });
-              } catch (error) {
-                navigationLatchRef.current = false;
-                cancelPreparedLearningV2SessionNetworkIntent(
-                  selectedSession.id,
-                );
-                throw error;
-              }
-              return;
-            }
-            dismissSheet();
-          }}
-          style={[styles.sheetCta, { backgroundColor: t.accent }]}
-        >
-          <Text style={[styles.sheetCtaText, { color: t.correctText }]}>
-            {selectedSession?.state === "current"
-              ? "Начать"
-              : selectedSession?.state === "completed"
-                ? "Повторить"
-                : "Понятно"}
-          </Text>
-        </Pressable>
+        <View style={styles.sheetCtaWrap}>
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => enterSelectedSession(false)}
+            style={[styles.sheetCta, { backgroundColor: t.accent }]}
+          >
+            <Text style={[styles.sheetCtaText, { color: t.correctText }]}>
+              {selectedSession?.state === "current"
+                ? "Начать"
+                : selectedSession?.state === "completed"
+                  ? "Повторить"
+                  : "Понятно"}
+            </Text>
+          </Pressable>
+          {/* Цена входа видна до нажатия. На «Понятно» (сессия заблокирована)
+              бейджа нет — там ничего не спишется. */}
+          {selectedSession?.state === "current" || selectedSession?.state === "completed" ? (
+            <EnergyCostBadge testID="learning-v2-map-energy-cost" />
+          ) : null}
+        </View>
+        {/* зачем: владелец — «начать» уже есть, второй кнопкой текстом ниже
+            даём пропустить теорию для новой (ещё не пройденной) сессии.
+            Пропуск не изобретает новый экран: слоты 1-3 из 12 просто не
+            начисляются, практика идёт сразу с 4-го (см. session/[id].tsx). */}
+        {selectedSession?.state === "current" && (
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => enterSelectedSession(true)}
+            style={styles.sheetSkipTouch}
+          >
+            <Text style={[styles.sheetSkipText, { color: t.textMuted }]}>
+              Пропустить теорию
+            </Text>
+          </Pressable>
+        )}
       </LessonMapSheet>
     </View>
   );
@@ -1563,6 +1587,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   sheetText: { color: "#B4BEC9", lineHeight: 20, marginTop: 8, minHeight: 52 },
+  // Якорь для углового бейджа «−1 ⚡».
+  sheetCtaWrap: { position: "relative" },
   sheetCta: {
     height: 56,
     borderRadius: 20,
@@ -1572,4 +1598,12 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   sheetCtaText: { color: "#07110A", fontWeight: "900", fontSize: 16 },
+  // Текстовая кнопка ниже основной — не притворяется CTA: без заливки и тени.
+  sheetSkipTouch: {
+    minHeight: 44,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 4,
+  },
+  sheetSkipText: { fontWeight: "700", fontSize: 14 },
 });

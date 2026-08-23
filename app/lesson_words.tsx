@@ -30,6 +30,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import CoachToast from '../components/CoachToast';
 import {
   cancelScheduledAnimatedStateUpdates,
@@ -3423,15 +3424,19 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
           />
         }
         ListHeaderComponent={onStartTraining ? (
-          <TouchableOpacity
-            onPress={onStartTraining}
-            style={{ marginHorizontal: hPad, marginTop: ds.spacing.md, marginBottom: ds.spacing.xs, backgroundColor:t.bgCard, borderRadius: ds.radius.lg, paddingVertical: ds.spacing.sm, alignItems:'center', flexDirection:'row', justifyContent:'center', gap:8 }}
-          >
-            <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
-            <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>
-              {pickTriLang(lang, { ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Comenzar práctica', 'pt-BR': 'Começar treino', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening' })}
-            </Text>
-          </TouchableOpacity>
+          <View style={{ position: 'relative' }}>
+            <TouchableOpacity
+              onPress={onStartTraining}
+              style={{ marginHorizontal: hPad, marginTop: ds.spacing.md, marginBottom: ds.spacing.xs, backgroundColor:t.bgCard, borderRadius: ds.radius.lg, paddingVertical: ds.spacing.sm, alignItems:'center', flexDirection:'row', justifyContent:'center', gap:8 }}
+            >
+              <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
+              <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>
+                {pickTriLang(lang, { ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Comenzar práctica', 'pt-BR': 'Começar treino', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening' })}
+              </Text>
+            </TouchableOpacity>
+            {/* Тренировка монтирует компонент Training, который списывает 1 ⚡. */}
+            <EnergyCostBadge testID="lesson-words-train-energy-cost" corner="topRight" />
+          </View>
         ) : null}
         renderSectionHeader={({ section }) => (
           <View style={{ backgroundColor:t.bgPrimary, paddingHorizontal:hPad, paddingTop:ds.spacing.md, paddingBottom:ds.spacing.sm }}>

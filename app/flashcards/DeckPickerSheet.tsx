@@ -39,6 +39,8 @@ import { isLowPowerEffective } from './low_power';
 // early return чуть ниже, использующий те же state/handlers.
 import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import PressableHybrid from '../../components/PressableHybrid';
+import EnergyCostBadge from '../../components/EnergyCostBadge';
+import { FlowText } from '../../components/text-integrity/FlowText';
 import {
   deckSelectionLabel,
   summarizeDeckSelection,
@@ -196,13 +198,14 @@ function DeckRow({ deck, index, active, onToggle, simple, t, f }: DeckRowProps) 
         >
           <Ionicons name={deck.icon} size={18} color={active ? t.accent : t.textMuted} />
         </View>
-        <Text
+        <FlowText
+          testID={`fc-deck-title-${deck.deckId}`}
+          provenance="user"
           style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}
-          numberOfLines={2}
           maxFontSizeMultiplier={1.6}
         >
           {deck.title}
-        </Text>
+        </FlowText>
         <Text style={{ color: active ? t.accent : t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
           {deck.count}
         </Text>
@@ -239,7 +242,7 @@ export default function DeckPickerSheet({
   f,
   reduceMotion = false,
   mode = 'trainer',
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: Props) {
   const insets = useStableSafeAreaInsets();
   const { height: winH, width: winW } = useWindowDimensions();
@@ -738,6 +741,7 @@ export default function DeckPickerSheet({
           </ScrollView>
 
           {/* CTA */}
+          <View style={{ position: 'relative' }}>
           <Pressable
             testID="fc-deck-start"
             accessibilityLabel="qa-fc-deck-start"
@@ -783,6 +787,10 @@ export default function DeckPickerSheet({
                     })}
             </Text>
           </Pressable>
+          {/* Цена входа видна до нажатия (владелец 2026-08-23). Пока набор не
+              выбран (canStart=false) бейджа нет — списания не будет. */}
+          {canStart ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
+          </View>
         </Reanimated.View>
       </View>
     </Modal>

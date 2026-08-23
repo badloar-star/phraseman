@@ -74,8 +74,13 @@ function EnergyCostBadge({
     return () => { loop.stop(); pulse.setValue(0); };
   }, [urgent, pulse, reduceMotion]);
 
-  // Безлимит — бейджа нет вовсе (решение владельца 2026-08-23).
-  if (isUnlimited) return null;
+  // зачем: при безлимите (Плюс/VIP/тестер/вечернее окно) бейдж остаётся, но
+  // БЕЗ цифры — только значок энергии. Владелец 2026-08-23: сначала выбрал
+  // скрывать целиком, но тогда на его собственном телефоне (там безлимит)
+  // значка не было видно нигде, и проверить работу было нельзя. Значок без
+  // цифры честен: он напоминает, что активность стоит энергии, и одновременно
+  // не врёт подписчику, будто с него что-то спишется.
+  const showCost = !isUnlimited;
 
   const scale = Animated.add(
     enter.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }),
@@ -100,9 +105,11 @@ function EnergyCostBadge({
         style,
       ]}
     >
-      <Text style={[styles.label, { color: urgent ? t.wrong : t.textPrimary, fontSize: f.caption }]}>
-        {`−${cost}`}
-      </Text>
+      {showCost ? (
+        <Text style={[styles.label, { color: urgent ? t.wrong : t.textPrimary, fontSize: f.caption }]}>
+          {`−${cost}`}
+        </Text>
+      ) : null}
       <EnergyIcon filled themeMode={themeMode} size={14} animateChange={false} themeColor={t.accent} />
     </Animated.View>
   );

@@ -21,7 +21,7 @@ import ScreenGradient from '../../components/ScreenGradient';
 import { glassFill } from '../../components/GlassSurface';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
-import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
+import { clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending } from '../hall_of_fame_utils';
@@ -41,7 +41,6 @@ import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveT
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
 import { MOTION_DURATION } from '../../constants/motion';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
-import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
 import { HELPFUL_REPORTS_CONFIRMED_KEY, SPECIAL_TITLES, TITLES, getEarnedSpecialTitles, getTitleString } from '../../constants/titles';
 import { GREETINGS_ES } from '../../constants/greetings_es';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -70,10 +69,15 @@ import { loadAllMedals, countMedals } from '../medal_utils';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import SurveyTaskCard from '../../components/SurveyTaskCard';
+import SurveySheetModal from '../../components/survey/SurveySheetModal';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { fetchActiveSurveyWithRetry } from '../survey_client';
 import { buildActiveSurveyOffer, type SurveyOfferSnapshot } from '../survey_offer_model';
-import { primeSurvey } from '../survey_handoff';
+import {
+    sameSurveyDurableScope,
+    type SurveyDurableScope,
+    type SurveyLaunch,
+} from '../survey_flow_controller';
 import { getCanonicalUserId } from '../user_id_policy';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import GoldBevel from '../../components/GoldBevel';
@@ -88,13 +92,16 @@ import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, onStreakUpdated } from '../shards_system';
 import { purchaseStreakFreeze } from '../streak_freeze_purchase';
+import { commitPremiumFreeFreeze } from '../economy/premium_free_freeze';
 import { coinIconForBalance } from '../coin_icons';
-import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
-import { captureAccountGeneration } from '../account_generation';
-import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
+import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, resolveHomeStorageStats, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
+import { captureAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
+import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
+import MaxHomeOrb from '../../components/home/MaxHomeOrb';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
@@ -105,12 +112,19 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
-import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
+import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_chest_rewards';
 import { getCachedLeagueStateSync } from '../league_open_cache_policy';
 import { getHomeMenuImages } from '../home_menu_icons';
+import { getMaxHomeOrbLayers } from '../max_home_orb_assets';
+import {
+  guessLearnerCefr,
+  prefetchMaxTutorPreview,
+  type MaxCallParams,
+} from '../max_call_mint_request';
+import { isAiVoiceConsentGranted } from '../max_voice_consent';
+import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
-import { isStudyTargetSourceUiLang } from '../study_target_lang_dev';
 import {
     addDaysToDateKey,
     readCurrentStreakWeekMarkers,
@@ -516,6 +530,30 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         stableId: string;
         dayKey: string;
     } | null>(null);
+    const [openSurveyLaunch, setOpenSurveyLaunch] = useState<SurveyLaunch | null>(null);
+    const openSurveyAccountGenerationRef = useRef<AccountGenerationToken | null>(null);
+    const closeSurveySheet = useCallback(() => {
+        openSurveyAccountGenerationRef.current = null;
+        setOpenSurveyLaunch(null);
+    }, []);
+    const handleSurveyDurablyReconciled = useCallback((completed: SurveyDurableScope) => {
+        setSurveyOffer((current) => {
+            if (!current) return current;
+            const currentScope = {
+                stableId: current.stableId,
+                dayKey: current.dayKey,
+                surveyId: current.challenge.surveyId,
+            };
+            return sameSurveyDurableScope(currentScope, completed) ? null : current;
+        });
+    }, []);
+    // зачем (аудит скорости 2026-08-22): раньше пересчитывался на КАЖДОМ кадре
+    // скролла (scrollEventThrottle=16 ≈ 60/с) — сам расчёт дешёвый, но лишняя
+    // работа на JS-потоке во время активного скролла. Троттлим по времени: при
+    // непрерывном скролле пересчёт идёт не чаще раза в ~100мс, а последний кадр
+    // после остановки досчитывается таймером — итоговое состояние всегда точное.
+    const dailyPhraseVisibilityThrottleRef = useRef(0);
+    const dailyPhraseVisibilitySettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const refreshDailyPhraseVisibility = useCallback(() => {
         const next = isDailyPhraseCardHalfVisible({
             cardTop: dailyPhraseLayoutRef.current.top,
@@ -528,8 +566,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const handleHomeScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         topFadeScroll?.onScroll?.(event);
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
-        refreshDailyPhraseVisibility();
+        if (dailyPhraseVisibilitySettleTimerRef.current) {
+            clearTimeout(dailyPhraseVisibilitySettleTimerRef.current);
+        }
+        const now = Date.now();
+        if (now - dailyPhraseVisibilityThrottleRef.current >= 100) {
+            dailyPhraseVisibilityThrottleRef.current = now;
+            refreshDailyPhraseVisibility();
+        } else {
+            dailyPhraseVisibilitySettleTimerRef.current = setTimeout(() => {
+                dailyPhraseVisibilitySettleTimerRef.current = null;
+                dailyPhraseVisibilityThrottleRef.current = Date.now();
+                refreshDailyPhraseVisibility();
+            }, 100);
+        }
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
+    useEffect(() => () => {
+        if (dailyPhraseVisibilitySettleTimerRef.current) {
+            clearTimeout(dailyPhraseVisibilitySettleTimerRef.current);
+        }
+    }, []);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const isHomeOwner = runtimeOwnerId === 'home';
@@ -537,6 +593,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // само по себе ещё не означает, что экран видим: до onboarding_done запрещаем
     // тяжёлые загрузки, Firestore, префетчи и циклы анимаций.
     const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);
+    const maxVoiceVisible = useMemo(() => isMaxVoiceEntryVisible(), []);
+    const maxTutorCallParams = useMemo<MaxCallParams>(() => ({
+        format: 'tutor',
+        scenarioId: 'coffee',
+        cefr: guessLearnerCefr(),
+        devMode: false,
+        interfaceLang: lang,
+        studyTarget: 'en',
+    }), [lang]);
+    useEffect(() => {
+        if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;
+        void prefetchMaxTutorPreview(maxTutorCallParams).catch(() => {
+            // Read-only warmup is opportunistic; prestart keeps a local fallback.
+        });
+    }, [focusTick, homeRuntimeActive, maxTutorCallParams, maxVoiceVisible]);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work.
     const homeDataDirtyRef = useRef(true);
@@ -570,6 +641,42 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         })();
         return () => { cancelled = true; };
     }, [focusTick, homeRuntimeActive, lang]);
+    useEffect(() => {
+        if (!openSurveyLaunch) return undefined;
+        const openedAccount = openSurveyAccountGenerationRef.current;
+        if (!openedAccount) {
+            closeSurveySheet();
+            return undefined;
+        }
+        const closeIfSurveyScopeChanged = (account = captureAccountGeneration()) => {
+            const accountMismatch = account.phase !== 'active'
+                || account.generation !== openedAccount.generation
+                || account.stableId !== openSurveyLaunch.stableId;
+            const offerMismatch = Boolean(surveyOffer && (
+                surveyOffer.stableId !== openSurveyLaunch.stableId
+                || surveyOffer.dayKey !== openSurveyLaunch.dayKey
+            ));
+            const dayMismatch = getUtcDayKey() !== openSurveyLaunch.dayKey;
+            if (accountMismatch || offerMismatch || dayMismatch || openSurveyLaunch.lang !== lang) {
+                closeSurveySheet();
+            }
+        };
+        closeIfSurveyScopeChanged();
+        const subscription = subscribeAccountGeneration(closeIfSurveyScopeChanged);
+        const now = new Date();
+        const nextUtcDayMs = Date.UTC(
+            now.getUTCFullYear(),
+            now.getUTCMonth(),
+            now.getUTCDate() + 1,
+        );
+        const utcDayBoundaryTimeout = setTimeout(() => {
+            if (getUtcDayKey() !== openSurveyLaunch.dayKey) closeSurveySheet();
+        }, Math.max(1, nextUtcDayMs - Date.now() + 25));
+        return () => {
+            subscription.remove();
+            clearTimeout(utcDayBoundaryTimeout);
+        };
+    }, [closeSurveySheet, lang, openSurveyLaunch, surveyOffer]);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -695,13 +802,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }));
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
-    // [SRS] Количество фраз, готовых к повторению сегодня (из локального стора).
-    // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
-    // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
-    // зачем: гидрируем синхронно из снапшота — раньше стартовал с 0 и подпись «ждут
-    // сегодня» прыгала на реальное число вторым проходом при каждом повторном открытии
-    // Home; холодный первый-в-жизни запуск (hh=null) честно остаётся 0.
-    const [dueCount, setDueCount] = useState(() => hh?.dueCount ?? 0);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
     const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip, isPro);
@@ -771,7 +871,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         string
     ];
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
-    const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
     const isPaperHomeTheme = themeMode === 'sagePorcelain';
     const lightPanelBg = t.bgCard;
@@ -920,11 +1019,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         hapticTap();
         const scheduleHide = () => {
             energyTooltipAnim.setValue(0);
-            Animated.spring(energyTooltipAnim, { toValue: 1, useNativeDriver: false, tension: 120, friction: 8 }).start();
+            // зачем (аудит скорости 2026-08-22): анимируются только
+            // opacity/translateY/scale (строки ниже) — все три поддерживают
+            // native driver, JS-поток гонять незачем.
+            Animated.spring(energyTooltipAnim, { toValue: 1, useNativeDriver: true, tension: 120, friction: 8 }).start();
             if (energyTooltipTimer.current)
                 clearTimeout(energyTooltipTimer.current);
             energyTooltipTimer.current = setTimeout(() => {
-                Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: false }).start(() => {
+                Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
                     setEnergyTooltip((p) => ({ ...p, visible: false }));
                 });
             }, 3000);
@@ -980,7 +1082,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, homeRuntimeActive, lang]);
     // Миграция xp_migration_v2 переехала из экрана в xp_manager.migrateXPFormulaV2()
     // (вызывается на старте из _layout.tsx) — one-shot миграциям не место в маунте таба (D4).
-    // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
+    // D4: секции ниже первого экрана (подсказки, быстрый доступ, ошибки,
     // фраза дня, подвал) монтируются вторым проходом после первого кадра.
     // зачем: флаг стартовал с false на КАЖДОМ маунте главной. При возврате с любого
     // раздела таб размораживается заново, флаг опять false — и «Цель лиги»,
@@ -1047,7 +1149,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setHomeLeagueCrownExpiresAt(expiresAt);
             setHomeLeagueCrownCount(Math.max(1, Math.floor(Number(crownCount) || 1)));
         });
-        // Слушаем событие начисления осколков
+        // Точный локальный баланс уже зафиксирован клиентским журналом до события.
+        // Подарочные credit-операции могут не эмитить shards_earned, поэтому главная
+        // обновляет цифру напрямую и не ждёт ни AsyncStorage, ни фоновой записи сервера.
+        const shardsBalanceSub = onAppEvent('shards_balance_updated', (payload) => {
+            if (!homeRuntimeActiveRef.current) {
+                shardsDirtyRef.current = true;
+                return;
+            }
+            setShardsBalance(payload.balance);
+        });
+        // Слушаем событие начисления осколков для анимации награды.
         const shardsSub = DeviceEventEmitter.addListener('shards_earned', (payload: {
             amount: number;
         }) => {
@@ -1135,6 +1247,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         const onboardingCompletedSub = onAppEvent('onboarding_completed', () => {
             setHomeOnboardingDone(true);
+            // зачем: купил Plus прямо в онбординге → markCelebrationPending() уже
+            // записан (paywall_purchase.ts), но Home был смонтирован ПОД онбордингом
+            // ещё до покупки и его первый loadData() проверил celebration раньше, чем
+            // флаг появился — второй проверки не было никогда, экран после покупки
+            // просто исчезал. requestHomeDataRefresh() либо перезагрузит сразу (если
+            // homeRuntimeActive уже true), либо взведёт homeDataDirtyRef — эффект на
+            // [homeRuntimeActive, focusTick] подхватит его тем же тиком, когда
+            // homeOnboardingDone включит homeRuntimeActive.
+            requestHomeDataRefresh();
         });
         return () => {
             mountedRef.current = false;
@@ -1145,6 +1266,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             xpSub.remove();
             leagueStateSub.remove();
             crownSub.remove();
+            shardsBalanceSub.remove();
             shardsSub.remove();
             reviveOfferSub.remove();
             freezeUpdatedSub.remove();
@@ -1561,12 +1683,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         streakScaleAnim.setValue(1);
         const endPerf = perfMark('home:loadData');
         try {
-            const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs] = await Promise.all([
+            const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs, personalProgress] = await Promise.all([
                 AsyncStorage.multiGet([
                     'user_name',
-                    'streak_count',
                     'week_days_done',
-                    'user_total_xp',
                     HOME_SELECTED_TITLE_KEY,
                     'streak_last_shown',
                 ]),
@@ -1574,12 +1694,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 getMyWeekPoints(),
                 getShardsBalance(),
                 AsyncStorage.multiGet(['premium_active']),
+                hydratePersonalProgress().catch(() => getPersonalProgressSnapshot()),
             ]);
             const homeStorage = new Map(homeStoragePairs);
             const name = homeStorage.get('user_name') ?? null;
-            const streakVal = homeStorage.get('streak_count') ?? null;
+            const streakVal = String(personalProgress.streakCount);
             const weekData = homeStorage.get('week_days_done') ?? null;
-            const xpStored = homeStorage.get('user_total_xp') ?? null;
+            const xpStored = String(personalProgress.totalXp);
             const storedTitleKey = homeStorage.get(HOME_SELECTED_TITLE_KEY) ?? null;
             const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null;
             const premiumSignals = new Map(premiumSignalPairs);
@@ -1594,8 +1715,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const hydratedName = resolveHydratedProfileName(homeHydrationStartedAt, name);
             if (hydratedName)
                 setUserName(hydratedName);
-            const currentStreakNum = parseInt(streakVal || '0') || 0;
-            if (streakVal)
+            const sharedSnapshotAtHydration = getAppSnapshot();
+            const hydratedStats = resolveHomeStorageStats({
+                storedTotalXp: xpStored,
+                storedStreak: streakVal,
+                profile: sharedSnapshotAtHydration.profile,
+                progress: sharedSnapshotAtHydration.progress,
+            });
+            const currentStreakNum = hydratedStats.streak;
+            if (streakVal !== null || sharedSnapshotAtHydration.progress?.source === 'live')
                 setStreak(currentStreakNum);
             const lastStreakShown = parseInt(lastStreakShownRaw || '0') || 0;
             if (currentStreakNum > 0 && currentStreakNum !== lastStreakShown) {
@@ -1624,18 +1752,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             else {
                 setDisplayStreak(currentStreakNum);
             }
-            const xpSnap = parseInt(xpStored || '0', 10) || 0;
+            const xpSnap = hydratedStats.totalXp;
             const curLvlSnap = getLevelFromXP(xpSnap);
             const [[, savedAvSnap], [, savedFrSnap], [, savedAuraSnap]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY]);
-            const avatarSnap = isCustomAvatarValue(savedAvSnap) ? savedAvSnap! : getBestAvatarForLevel(curLvlSnap);
-            const frameSnap = savedFrSnap || getBestFrameForLevel(curLvlSnap).id;
-            if (xpStored) {
+            const liveProfileVisuals = sharedSnapshotAtHydration.profile?.source === 'live'
+                ? resolveHomeProfileVisuals({ snapshot: sharedSnapshotAtHydration.profile })
+                : null;
+            const avatarSnap = liveProfileVisuals?.avatar
+                || (isCustomAvatarValue(savedAvSnap) ? savedAvSnap! : getBestAvatarForLevel(curLvlSnap));
+            const frameSnap = liveProfileVisuals?.frame || savedFrSnap || getBestFrameForLevel(curLvlSnap).id;
+            const auraSnap = liveProfileVisuals?.aura ?? normalizeAvatarAuraId(savedAuraSnap) ?? null;
+            if (xpStored !== null || sharedSnapshotAtHydration.profile?.source === 'live') {
                 const newXP = xpSnap;
                 setTotalXP(newXP);
                 // Обновляем UI аватара/рамки по текущему уровню
                 // (запись в AsyncStorage и детект level-up делает xp_manager.ts)
                 setUserAvatar(avatarSnap);
-                setUserAvatarAura(normalizeAvatarAuraId(savedAuraSnap) ?? null);
+                setUserAvatarAura(auraSnap);
                 setUserFrame(frameSnap);
                 // Мини-бейдж перцентиля — глобальные пороги из leaderboard_stats/global
                 if (newXP > 0) {
@@ -1757,7 +1890,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             else if (mountedRef.current) {
                 setLastLesson(null);
             }
-            // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі, SRS — щоб не ловити вічний спінер.
+            // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі и ошибки — щоб не ловити вічний спінер.
             const [freezeStoragePairs, baseMulti] = await Promise.all([
                 AsyncStorage.multiGet(['streak_freeze', 'premium_free_freeze_used']),
                 getCurrentMultiplier(),
@@ -1784,12 +1917,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 premiumFreezeUsed: freeFreezeRaw === 'true',
                 totalXPMulti: baseMulti,
                 userAvatar: avatarSnap,
-                userAvatarAura: normalizeAvatarAuraId(savedAuraSnap) ?? null,
+                userAvatarAura: auraSnap,
                 userFrame: frameSnap,
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
                 lastLessonScore: snapLastLessonScore,
-                dueCount: hh?.dueCount,
                 homeLeagueCrownExpiresAt,
                 homeLeagueCrownCount,
                 // The long-lived event subscriptions call the first loadData closure,
@@ -1804,14 +1936,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     name: hydratedName,
                     avatar: avatarSnap,
                     frame: frameSnap,
-                    aura: normalizeAvatarAuraId(savedAuraSnap) ?? undefined,
+                    aura: auraSnap ?? undefined,
                     totalXp: xpSnap,
                     level: getLevelFromXP(xpSnap),
                     premiumActive: premiumSignals.get('premium_active') === 'true',
                     vipActive: isVip,
                 },
                 progress: {
-                    source: 'local',
+                    source: 'storage',
                     updatedAt: Date.now(),
                     streak: currentStreakNum,
                     shards: shardsBal,
@@ -1820,22 +1952,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
             if (mountedRef.current)
                 markHomeStatsReady();
-            // Имя для лиги: либо настоящее, либо анонимная подстановка на основе уровня (как в club_screen.tsx),
-            // чтобы checkLeagueOnAppOpen не записал в Firestore "пустого" пользователя.
-            const leagueName = (name && name.trim())
-                || (() => {
-                    const xpNum = parseInt(xpStored || '0', 10) || 0;
-                    const lvl = getXPProgress(xpNum).level;
-                    return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
-                })();
-            // Префетч лиги стартует до прочих локальных чтений, чтобы ранний вход
-            // в раздел уже получил тёплый кэш.
-            // Firestore-чтений это не добавляет: вызов ровно один, просто раньше.
-            const leagueOpenPromise = checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null);
-            const [leagueOpenResult, dueItems, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
-                // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
-                // Если remote недоступен — функция сама перейдет на локальный state.
-                leagueOpenPromise,
+            // Home never reads a foreign league group. Club owns the six-hour
+            // remote refresh; Home consumes only its local pending/cache projection.
+            const [leaguePending, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
+                loadPendingResult().catch(() => null),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
                 AsyncStorage.multiGet(['login_bonus_pending', 'comeback_pending', 'weekly_pb_v1']),
@@ -1844,39 +1964,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const bonusRaw = bannerStorage.get('login_bonus_pending') ?? null;
             const comebackRaw = bannerStorage.get('comeback_pending') ?? null;
             const pbRaw = bannerStorage.get('weekly_pb_v1') ?? null;
-            const leagueState = leagueOpenResult?.state ?? null;
-            // Если checkLeagueOnAppOpen упал/таймаутнул — читаем pending напрямую,
-            // чтобы при следующем открытии (когда state уже сохранён) модалка всё равно вылезла.
-            const leaguePending: LeagueResult | null = leagueOpenResult?.needShowResult
-                ? leagueOpenResult.result
-                : await loadPendingResult().catch(() => null);
-            if (leagueState) {
-                const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
-                const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
-                const matchingFreshBonus = freshLeagueBonus
-                    && freshLeagueBonus.weekId === leagueState.weekId
-                    && freshLeagueBonus.leagueId === leagueState.leagueId
-                    ? freshLeagueBonus
-                    : null;
-                const nextHomeLeagueChest = buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
-                        ru: 'Лига недели',
-                        uk: 'Ліга тижня',
-                        es: 'Liga semanal',
-                        'pt-BR': "Liga semanal",
-                        vi: "Giải đấu tuần",
-                        id: "Liga mingguan",
-                        tr: "Haftalık lig",
-                        pl: "Liga tygodnia",
-                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints);
-                setEngineLeague(league);
-                setHomeLeagueChest((prev) => nextHomeLeagueChest ?? prev);
-                patchHomeScreenHydration({
-                    ...(nextHomeLeagueChest ? { homeLeagueChest: nextHomeLeagueChest } : {}), // null не затирает кэш — иначе карточка Лиги «пропадает» с главной
-                }, studyTarget);
-            }
-            else {
-                setHomeLeagueChest((prev) => prev);
-            }
+            setHomeLeagueChest((prev) => prev);
             if (leaguePending && mountedRef.current) {
                 const pendingSig = getLeagueResultSignature(leaguePending);
                 // Если пользователь уже закрыл модалку в этой сессии — больше не показываем,
@@ -1894,6 +1982,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 else {
                     void checkAchievements({
                         type: 'league_result',
+                        weekId: leaguePending.weekId,
+                        points: leaguePending.points,
+                        prevLeagueId: leaguePending.prevLeagueId,
+                        confirmed: leaguePending.confirmed,
                         myRank: leaguePending.myRank,
                         totalInGroup: leaguePending.totalInGroup,
                         promoted: leaguePending.promoted,
@@ -1905,10 +1997,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     setPendingLeagueResult(leaguePending);
                 }
             }
-            setDueCount(dueItems.length);
-            // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
-            // Home подпись «Моя практика» стартует с этого числа, а не с 0 (см. dueCount выше).
-            patchHomeScreenHydration({ dueCount: dueItems.length }, studyTarget);
             setMedalCounts(countMedals(allMedals));
             // [BANNERS] Login bonus, comeback, personal best, streak repair
             if (bonusRaw) {
@@ -2114,7 +2202,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             return;
         }
         if (freeAvailable) {
-            await AsyncStorage.setItem('premium_free_freeze_used', 'true');
+            await commitPremiumFreeFreeze(today);
             setPremiumFreezeUsed(true);
         }
         else {
@@ -2144,9 +2232,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 return;
             }
             setShardsBalance(prev => Math.max(0, prev - FREEZE_COST_SHARDS));
-        }
-        if (freeAvailable) {
-            await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
         }
         const lastActive = await AsyncStorage.getItem('last_active_date').catch(() => null);
         const frozenDate = lastActive && !isSameLocalOrUtcDay(lastActive) ? addDaysToDateKey(lastActive, 1) : today;
@@ -2342,6 +2427,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const renderNewHome = () => {
         const { level, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
+        const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
         // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
         // и после смены языка интерфейса оставалось на старом языке (укр. экран —
@@ -2351,20 +2437,33 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
-        const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
+        const homeQuickTileWidth = maxVoiceVisible
+            ? Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3)
+            : Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap) / 2);
         const homeQuickIconPlateSize = Math.min(118, Math.max(88, homeQuickTileWidth - 20));
         const homeQuickIconImageSize = Math.max(96, homeQuickIconPlateSize + 18);
+        const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
-        const homePracticeIconSize = 64;
-        const homePracticeIconImageSize = homePracticeIconSize;
-        const homeTodayIconSize = 84;
+        const homeLastLessonArtSize = 92;
+        const homeTodayIconSize = 112;
+        const homeLeagueWatermarkSize = 164;
         const homeTodayLeagueCardMinHeight = 120;
         const homeTodayCardPadX = 16;
         const homeTodayCardPadY = 12;
         // Плитка «Уроки» сохраняет push-презентацию /lessons_list, а вкладка с
         // книжкой открывает тот же раздел как retained-tab. Продолжение последнего
         // урока остаётся на отдельной плашке ниже.
+        const maxTeacherSubtitle = triLang(lang, {
+            ru: 'Учитель английского', uk: 'Учитель англійської', es: 'Profesor de inglés',
+            'pt-BR': 'Professor de inglês', vi: 'Giáo viên tiếng Anh', id: 'Guru bahasa Inggris',
+            tr: 'İngilizce öğretmeni', pl: 'Nauczyciel angielskiego',
+        });
+        const maxTeacherA11yLabel = triLang(lang, {
+            ru: 'МАКС, учитель английского', uk: 'МАКС, учитель англійської', es: 'MAX, profesor de inglés',
+            'pt-BR': 'MAX, professor de inglês', vi: 'MAX, giáo viên tiếng Anh', id: 'MAX, guru bahasa Inggris',
+            tr: 'MAX, İngilizce öğretmeni', pl: 'MAX, nauczyciel angielskiego',
+        });
         const quickItems = [
             {
                 key: 'lesson',
@@ -2378,19 +2477,38 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 onPress: () => { go('/lessons_list'); },
             },
             {
-                key: 'practice',
-                iconKey: 'practice' as const,
-                testID: 'home-quick-practice',
-                img: menuImages.practice,
+                key: 'max',
+                iconKey: 'dialogs' as const,
+                testID: 'home-quick-max',
+                img: menuImages.dialogs,
                 label: triLang(lang, {
-                    ru: 'Практика', uk: 'Практика', es: 'Práctica', 'pt-BR': 'Prática',
-                    vi: 'Luyện tập', id: 'Latihan', tr: 'Pratik', pl: 'Praktyka',
+                    ru: 'МАКС', uk: 'МАКС', es: 'MAX', 'pt-BR': 'MAX',
+                    vi: 'MAX', id: 'MAX', tr: 'MAX', pl: 'MAX',
                 }),
                 onPress: () => {
                     hapticTap();
+                    // зачем (владелец 2026-08-23): «раздел должен быть всегда
+                    // прогрет, чтобы я больше не видел "Подготавливаем связь"».
+                    // Заготовка стартует В МОМЕНТ ТАПА, до навигации: пока едет
+                    // анимация перехода, связь уже готовится, и пре-экран
+                    // переиспользует её (beginPremint отдаёт живой слот с тем же
+                    // ключом). Греть заранее для всех нельзя — заготовка держит
+                    // серверный резерв минут, значит только по явному намерению.
+                    void import('../max_call_premint').then(({ beginPremint, premintKey }) =>
+                        import('../max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
+                            beginPremint(
+                                premintKey(maxTutorCallParams),
+                                () => performMaxVoiceMint(maxTutorCallParams, initialMintRequest(maxTutorCallParams)),
+                                Date.now(),
+                                releaseUnusedMint,
+                            );
+                        }),
+                    ).catch(() => {
+                        // Прогрев — оптимизация: пре-экран сам запустит заготовку.
+                    });
                     nav.push({
                             pathname: '/max_call_prestart',
-                        params: { format: 'tutor', cefr: guessLearnerCefr() },
+                        params: { format: 'tutor', cefr: maxTutorCallParams.cefr },
                     } as never);
                 },
             },
@@ -2403,12 +2521,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 onPress: () => { go('/flashcards'); },
             },
         ];
-        const visibleQuickItems = quickItems;
+        const visibleQuickItems = maxVoiceVisible
+            ? quickItems
+            : quickItems.filter((item) => item.key !== 'max');
         // зачем: удалён мёртвый второй ряд плиток (activityQuickItems /
         // visibleActivityQuickItems / themedClubIcon) — он объявлялся, но никогда
         // не рендерился, поэтому «Аттестация» числилась в
         // коде как разделы главной, которых пользователь не видит. Реальный ряд —
-        // visibleQuickItems (Урок / Практика / Карточки), см. рендер ниже.
+        // visibleQuickItems (Урок / МАКС / Карточки), см. рендер ниже.
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
@@ -2817,7 +2937,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             </LinearGradient>
           </TouchableOpacity>
 
-          {/* БЫСТРЫЙ СТАРТ: Уроки (полный список) / Практика / Карточки.
+          {/* БЫСТРЫЙ СТАРТ: Уроки / МАКС / Карточки при доступном MAX.
               зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
               называет действие, подпись под ней короткая (запрет на подписи-
               расшифровки соблюдён: это label плитки, а не описание). */}
@@ -2859,7 +2979,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       testID={item.testID}
                       accessible={true}
                       accessibilityRole="button"
-                      accessibilityLabel={item.label}
+                      accessibilityLabel={item.key === 'max' ? maxTeacherA11yLabel : item.label}
                       activeOpacity={0.78}
                       onPress={item.onPress}
                       style={{
@@ -2881,12 +3001,25 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                           justifyContent: 'center',
                           backgroundColor: tileIconBg,
                         }}>
-                          <LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
+                          {item.key === 'max' ? (
+                            <MaxHomeOrb
+                              layers={maxOrbLayers}
+                              size={homeQuickIconImageSize}
+                              ownerVisible={homeRuntimeActive && maxVoiceVisible}
+                            />
+                          ) : (
+                            <LightSketchMenuImage source={item.img} width={homeQuickThemeArtSize} height={homeQuickThemeArtSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
+                          )}
                         </View>
                         {/* зачем: подпись плитки быстрого старта — короткие лейблы («Уроки»,
-                            «Практика», «Карточки») в реальных локалях умещаются в одну строку;
+                            «МАКС», «Карточки») в реальных локалях умещаются в одну строку;
                             FlowText переносит целиком вместо обрезания на случай длинных переводов. */}
                         <FlowText testID="home-quick-tile-label" provenance="authored" style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }}>{item.label}</FlowText>
+                        {item.key === 'max' ? (
+                          <FlowText provenance="authored" style={{ color: t.textMuted, fontSize: Math.max(11, f.caption - 1), fontWeight: '700', textAlign: 'center' }}>
+                            {maxTeacherSubtitle}
+                          </FlowText>
+                        ) : null}
                       </View>
                     </TouchableOpacity>
                   </Animated.View>
@@ -2898,9 +3031,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
 
 
-          {/* Очередь баннеров (лимит 1) — ПОД фокус-блоком: уведомление никогда
-              не важнее первого учебного действия дня. */}
-          {bannersJSX}
           </Animated.View>
 
           {/* ПРОДОЛЖИТЬ УРОК (карточка — только после первого захода в любой урок / last_opened_lesson) */}
@@ -2908,8 +3038,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
           {/* зачем: владелец (2026-08-02) — плашка плана заменена плашкой последнего
               открытого урока: один тап продолжает учёбу ровно там, где остановился.
-              Форма — как у рядов «Сегодня» (вызовы дня): иконка 64, название,
-              тонкий прогресс, счётчик справа. */}
+              Форма — как у рядов «Сегодня» (вызовы дня): компактная иконка,
+              название и счётчик справа. */}
           {lastLesson == null ? null : (
             <TouchableOpacity
               testID="home-continue-lesson"
@@ -2929,8 +3059,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
-                  <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <LightSketchMenuImage source={lastLessonImage} width={64} height={64} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
+                  <View style={{ width: homeLastLessonArtSize, height: homeLastLessonArtSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <LightSketchMenuImage source={lastLessonImage} width={homeLastLessonArtSize} height={homeLastLessonArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
@@ -2946,6 +3076,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               </LinearGradient>
             </TouchableOpacity>
           )}
+
+          {/* Очередь баннеров (лимит 1) — ПОД карточкой последнего урока по правке
+              владельца (2026-08-23): бонус за вход не должен опережать «продолжить
+              урок», это следующий шаг сразу под ним. */}
+          {bannersJSX}
 
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
           {showHomeFeatureTipCard && currentHomeFeatureTip ? (
@@ -3048,7 +3183,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <SaveProgressBanner ownerActive={homeRuntimeActive} />
           </View>
 
-          {/* D4: секции ниже первого экрана (быстрый доступ, SRS-ряд, тренер, фраза дня,
+          {/* D4: секции ниже первого экрана (быстрый доступ, ошибки, фраза дня,
               подвал) монтируются вторым проходом — belowFoldReady/InteractionManager. */}
           {belowFoldReady && (<>
 
@@ -3084,10 +3219,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 accessibilityLabel={triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
               >
                 <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayLeagueCardMinHeight, borderRadius: 24, borderWidth: 0, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, overflow: 'hidden' }}>
-                  <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -16, width: 126, height: 126, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
+                  <Image pointerEvents="none" source={menuImages.league} style={{ position: 'absolute', right: -8, top: -22, width: homeLeagueWatermarkSize, height: homeLeagueWatermarkSize, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                     <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Подарок лиги', uk: 'Подарунок ліги', es: 'Regalo de liga', 'pt-BR': 'Presente da liga', vi: 'Quà tặng của giải đấu', id: 'Hadiah liga', tr: 'Lig hediyesi', pl: 'Prezent ligi' })}/>
+                      <Image source={menuImages.league} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' })}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
@@ -3131,12 +3266,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 challenge={surveyOffer.challenge}
                 onOpen={(challenge) => {
                   if (!challenge.survey) return;
-                  hapticTap();
-                  primeSurvey({ survey: challenge.survey, stableId: surveyOffer.stableId, dayKey: surveyOffer.dayKey, lang });
-                  router.push({
-                    pathname: '/survey_screen',
-                    params: { surveyId: challenge.survey.surveyId, stableId: surveyOffer.stableId, dayKey: surveyOffer.dayKey, lang },
-                  } as any);
+                  const openedAccount = captureAccountGeneration();
+                  if (openedAccount.phase !== 'active' || openedAccount.stableId !== surveyOffer.stableId) return;
+                  openSurveyAccountGenerationRef.current = openedAccount;
+                  setOpenSurveyLaunch({
+                    survey: challenge.survey,
+                    stableId: surveyOffer.stableId,
+                    dayKey: surveyOffer.dayKey,
+                    lang,
+                  });
                 }}
               />
             </View>
@@ -3364,6 +3502,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }}
         onClose={() => setHomeProfilePlayer(null)}
       />
+
+      {openSurveyLaunch ? (
+        <SurveySheetModal
+          visible={openSurveyLaunch !== null}
+          launch={openSurveyLaunch}
+          onClose={closeSurveySheet}
+          onDurablyReconciled={handleSurveyDurablyReconciled}
+        />
+      ) : null}
 
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>

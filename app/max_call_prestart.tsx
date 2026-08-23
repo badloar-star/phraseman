@@ -220,7 +220,15 @@ function MaxCallPrestartContent() {
   const remainingMin = Math.max(0, Math.floor(dayRemainingSec / 60));
   const dayMaxMin = Math.max(remainingMin, Math.round(dayMaxSec / 60));
   const noMinutesLeft = dayRemainingSec < 60;
-  const startReady = prepState === 'ready' && !noMinutesLeft;
+  /*
+   * зачем (владелец 2026-08-23): «убери "подготавливаем связь" и недоступную
+   * кнопку — раздел должен быть всегда прогрет». Кнопка блокируется ТОЛЬКО
+   * когда звонок физически невозможен (кончились минуты) или подготовка
+   * провалилась. Ожидание сети больше не запирает человека: экран звонка и так
+   * умеет дозреть параллельно с offer (см. startCall ниже), а заготовка теперь
+   * стартует ещё на главной, в момент тапа по плитке.
+   */
+  const startReady = prepState !== 'failed' && !noMinutesLeft;
 
   const title =
     isTutor
@@ -435,7 +443,7 @@ function MaxCallPrestartContent() {
                   ? triLang(lang, { ru: 'Можно начинать', uk: 'Можна починати', es: 'Todo listo', 'pt-BR': 'Tudo pronto', vi: 'Sẵn sàng bắt đầu', id: 'Siap dimulai', tr: 'Başlamaya hazır', pl: 'Możesz zaczynać' })
                   : prepState === 'failed'
                     ? maxVoiceFailureMessage(preflightReason ?? 'preflight_failed', lang)
-                    : triLang(lang, { ru: 'Подготавливаем связь…', uk: 'Готуємо з’єднання…', es: 'Preparando la conexión…', 'pt-BR': 'Preparando a conexão…', vi: 'Đang chuẩn bị kết nối…', id: 'Menyiapkan koneksi…', tr: 'Bağlantı hazırlanıyor…', pl: 'Przygotowujemy połączenie…' })}
+                    : ''}
               </Text>
             </View>
 
@@ -487,9 +495,10 @@ function MaxCallPrestartContent() {
             >
               <Ionicons name="call" size={22} color={startReady ? t.correctText : t.textGhost} />
               <Text style={{ color: startReady ? t.correctText : t.textGhost, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                {prepState === 'preparing'
-                  ? triLang(lang, { ru: 'Подготавливаем звонок…', uk: 'Готуємо дзвінок…', es: 'Preparando la llamada…', 'pt-BR': 'Preparando a ligação…', vi: 'Đang chuẩn bị cuộc gọi…', id: 'Menyiapkan panggilan…', tr: 'Arama hazırlanıyor…', pl: 'Przygotowujemy rozmowę…' })
-                  : triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', es: 'Empezar la clase', 'pt-BR': 'Começar a aula', vi: 'Bắt đầu bài học', id: 'Mulai pelajaran', tr: 'Dersi başlat', pl: 'Rozpocznij lekcję' })}
+                {/* зачем: кнопка больше не сообщает о подготовке — она зовёт
+                    начать. Если заготовка не дозрела, ожидание происходит уже
+                    внутри звонка, параллельно с открытием соединения. */}
+                {triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', es: 'Empezar la clase', 'pt-BR': 'Começar a aula', vi: 'Bắt đầu bài học', id: 'Mulai pelajaran', tr: 'Dersi başlat', pl: 'Rozpocznij lekcję' })}
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -706,7 +715,9 @@ function MaxCallPrestartContent() {
               gap: 10,
             }}
           >
-            <Ionicons name={prepState === 'preparing' ? 'hourglass-outline' : 'call'} size={20} color={startReady ? t.correctText : t.textGhost} />
+            {/* зачем: песочные часы вместо трубки читались как «жди» — кнопка
+                теперь активна всегда, значок только трубка. */}
+            <Ionicons name="call" size={20} color={startReady ? t.correctText : t.textGhost} />
             <Text
               style={{
                 color: startReady ? t.correctText : t.textGhost,
@@ -715,16 +726,7 @@ function MaxCallPrestartContent() {
               }}
               maxFontSizeMultiplier={2}
             >
-              {prepState === 'preparing' ? triLang(lang, {
-                ru: 'Готовим урок…',
-                uk: 'Готуємо урок…',
-                es: 'Preparando la clase…',
-                'pt-BR': 'Preparando a aula…',
-                vi: 'Đang chuẩn bị bài học…',
-                id: 'Menyiapkan pelajaran…',
-                tr: 'Ders hazırlanıyor…',
-                pl: 'Przygotowujemy lekcję…',
-              }) : triLang(lang, {
+              {triLang(lang, {
                 ru: 'Позвонить',
                 uk: 'Подзвонити',
                 es: 'Llamar',

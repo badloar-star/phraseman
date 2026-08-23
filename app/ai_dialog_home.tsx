@@ -54,8 +54,7 @@ export default function AiDialogHome() {
       </TouchableOpacity>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text
-          style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}
-          numberOfLines={1}
+          style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}
         >
           {triLang(lang, {
             ru: 'Диалоги',
@@ -68,7 +67,7 @@ export default function AiDialogHome() {
             pl: 'Dialogi',
           })}
         </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>
+        <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}>
           {triLang(lang, {
             ru: `${activeCount} сценариев с Компасом`,
             uk: `${activeCount} сценаріїв із Компасом`,

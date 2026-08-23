@@ -1213,18 +1213,21 @@ function AiDialogSession() {
 
   return (
     <ScreenGradient>
+      {/* зачем (владелец, приёмка на устройстве): свет сцены обязан заливать и
+          сейф-зону — градиент живёт ВНЕ SafeAreaView, от самого верха экрана,
+          иначе над шапкой видна полоса базового фона у статус-бара. */}
+      <LinearGradient
+        pointerEvents="none"
+        colors={[scene.hueDeep + '3D', scene.hue + '12', 'transparent']}
+        locations={[0, 0.62, 1]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 160 }}
+      />
       <SafeAreaView style={{ flex: 1 }}>
         {/* Шапка-сцена (редизайн 2026-08-23): «свет места» вместо линии-разделителя,
-            собеседник в свете сцены, лицо-настроение и тихий прогресс целей. */}
+            собеседник в свете сцены, лицо-настроение. */}
         <View style={{ position: 'relative' }}>
-          <LinearGradient
-            pointerEvents="none"
-            colors={[scene.hueDeep + '3D', scene.hue + '12', 'transparent']}
-            locations={[0, 0.62, 1]}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: -18 }}
-          />
           <View
             style={{
               flexDirection: 'row',
@@ -1306,41 +1309,13 @@ function AiDialogSession() {
                 // заголовок, чтобы шапка не была пустой.
                 <Text
                   style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
-                  numberOfLines={1}
                 >
                   {dialogScenarioTitle(scenario, lang)}
                 </Text>
               )}
             </View>
-            {/* Тихий прогресс целей сцены: точки загораются светом сцены по мере
-                выполнения. Без цифр — новичка не пугаем счётом. */}
-            {gameEnabled && !ended && objectives.length > 0 && (
-              <View
-                accessibilityLabel={triLang(lang, {
-                  ru: `Цели: ${objectivesMet.size} из ${objectives.length}`,
-                  uk: `Цілі: ${objectivesMet.size} з ${objectives.length}`,
-                  es: `Objetivos: ${objectivesMet.size} de ${objectives.length}`,
-                  'pt-BR': `Objetivos: ${objectivesMet.size} de ${objectives.length}`,
-                  vi: `Mục tiêu: ${objectivesMet.size}/${objectives.length}`,
-                  id: `Tujuan: ${objectivesMet.size} dari ${objectives.length}`,
-                  tr: `Hedefler: ${objectivesMet.size}/${objectives.length}`,
-                  pl: `Cele: ${objectivesMet.size} z ${objectives.length}`,
-                })}
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 5 }}
-              >
-                {objectives.map((o) => (
-                  <View
-                    key={o.id}
-                    style={{
-                      width: 9,
-                      height: 9,
-                      borderRadius: 5,
-                      backgroundColor: objectivesMet.has(o.id) ? scene.hue : t.textMuted + '4D',
-                    }}
-                  />
-                ))}
-              </View>
-            )}
+            {/* зачем (владелец, приёмка): точки-прогресс целей из шапки убраны —
+                «убери индикатор 3 точки вверху». Прогресс целей виден в финале. */}
           </View>
 
           {!ended && userExchanges > 0 ? (
@@ -2103,7 +2078,6 @@ function AiDialogSession() {
                       fontSize: f.sub,
                       fontWeight: '800',
                     }}
-                    numberOfLines={1}
                     maxFontSizeMultiplier={1.1}
                   >
                     {voiceInputHint}

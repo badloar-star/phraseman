@@ -178,7 +178,7 @@ export default function DialogVerdictScreen({
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
               <Ionicons name={scenarioIcon as never} size={15} color={scene.hue} />
-              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }} numberOfLines={1}>
+              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
                 {scenarioTitle}
               </Text>
               <Text
@@ -258,7 +258,6 @@ export default function DialogVerdictScreen({
                   lineHeight: Math.round(f.sub * 1.45),
                 }}
                 maxFontSizeMultiplier={1.2}
-                numberOfLines={6}
               >
                 {personaName ? `${personaName}: ` : ''}
                 {characterReaction}
@@ -305,7 +304,6 @@ export default function DialogVerdictScreen({
                     />
                     <Text
                       style={{ color: done ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '600', flex: 1 }}
-                      numberOfLines={2}
                       maxFontSizeMultiplier={1.2}
                     >
                       {objectiveLabel(o, lang)}
@@ -466,7 +464,7 @@ export default function DialogVerdictScreen({
               />
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 10 }}>
                 <Ionicons name="school-outline" size={16} color={t.accent} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }} numberOfLines={2}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}>
                   {triLang(lang, {
                     ru: 'AI-разбор ошибок — в Plus',
                     uk: 'AI-розбір помилок — у Plus',

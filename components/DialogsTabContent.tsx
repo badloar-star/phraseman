@@ -536,62 +536,87 @@ export default function DialogsTabContent({
             end={{ x: 1, y: 1 }}
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           />
-          {/* Глиф-постер сцены: крупная полупрозрачная иконка как «свет витрины». */}
-          <View pointerEvents="none" style={{ position: 'absolute', right: -12, bottom: -20, opacity: 0.15 }}>
-            <Ionicons name={scenario.icon as never} size={112} color={scene.hue} />
+          {/* зачем (владелец, приёмка на устройстве): плашка «На очереди» с
+              полноширинной кнопкой «Начать» ВНИЗУ; тексты переносятся целиком,
+              никаких обрезаний в «…». Глиф-постер увели в верхний угол, чтобы
+              не спорил с кнопкой. */}
+          <View pointerEvents="none" style={{ position: 'absolute', right: -16, top: -14, opacity: 0.12 }}>
+            <Ionicons name={scenario.icon as never} size={104} color={scene.hue} />
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13, padding: 16 }}>
-            <View
+          <View style={{ padding: 16 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13 }}>
+              <View
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 19,
+                  backgroundColor: scene.hue + '26',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name={scenario.icon as never} size={27} color={scene.hue} />
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text
+                  style={{ color: scene.hue, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {kicker}
+                </Text>
+                <Text
+                  style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '900', marginTop: 3 }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {dialogScenarioTitle(scenario, lang)}
+                </Text>
+              </View>
+            </View>
+            <Text
               style={{
-                width: 56,
-                height: 56,
-                borderRadius: 19,
-                backgroundColor: scene.hue + '26',
-                alignItems: 'center',
-                justifyContent: 'center',
+                color: t.textSecond,
+                fontSize: f.body,
+                fontWeight: '600',
+                lineHeight: Math.round(f.body * 1.4),
+                marginTop: 10,
               }}
+              maxFontSizeMultiplier={1.15}
             >
-              <Ionicons name={scenario.icon as never} size={27} color={scene.hue} />
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text
-                style={{ color: scene.hue, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}
-                numberOfLines={1}
-                maxFontSizeMultiplier={1.2}
-              >
-                {kicker}
-              </Text>
-              <Text
-                style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '900', marginTop: 3 }}
-                numberOfLines={1}
-                maxFontSizeMultiplier={1.2}
-              >
-                {dialogScenarioTitle(scenario, lang)}
-              </Text>
-              <Text
-                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600', marginTop: 3 }}
-                numberOfLines={1}
-                maxFontSizeMultiplier={1.15}
-              >
-                {dialogScenarioGoal(scenario, lang)}
-              </Text>
-            </View>
+              {dialogScenarioGoal(scenario, lang)}
+            </Text>
+            {/* Полноширинная CTA. Нажатие обрабатывает вся плашка (внешний
+                TouchableOpacity) — кнопка визуальная, без второго обработчика,
+                чтобы не плодить двойные тапы. */}
             <View
               style={{
-                width: 52,
-                height: 52,
-                borderRadius: 26,
+                marginTop: 14,
+                minHeight: 52,
+                borderRadius: 18,
                 backgroundColor: t.accent,
+                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
+                gap: 9,
                 shadowColor: t.accent,
-                shadowOffset: { width: 0, height: 3 },
+                shadowOffset: { width: 0, height: 4 },
                 shadowOpacity: 0.35,
-                shadowRadius: 8,
+                shadowRadius: 10,
                 ...noAndroidOutline,
               }}
             >
-              <Ionicons name="play" size={23} color={t.correctText} style={{ marginLeft: 2 }} />
+              <Ionicons name="play" size={20} color={t.correctText} />
+              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
+                {triLang(lang, {
+                  ru: 'Начать',
+                  uk: 'Почати',
+                  es: 'Empezar',
+                  'pt-BR': 'Começar',
+                  vi: 'Bắt đầu',
+                  id: 'Mulai',
+                  tr: 'Başla',
+                  pl: 'Zacznij',
+                })}
+              </Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -601,13 +626,15 @@ export default function DialogsTabContent({
 
   // Карточка-мир (эталонный паттерн стрик-карты Статистики): медальон + имя +
   // крупный счётчик + прогресс-бар; тап раскрывает список крупных строк.
+  // зачем (владелец, приёмка): в шапке мира ничего не должно тесниться — имя
+  // мира переносится целиком, чип «ур. N» из шапки убран (уровень и так виден
+  // на каждой строке внутри разворота).
   const renderWorldCard = (
     key: WorldKey,
     label: string,
     scene: DialogSceneTheme,
     vms: ScenarioVM[],
     doneCount: number,
-    accessory?: React.ReactNode,
   ) => {
     const expanded = openWorld === key;
     const total = vms.length;
@@ -655,10 +682,9 @@ export default function DialogsTabContent({
               >
                 <Ionicons name={WORLD_ICONS[key] as never} size={26} color={scene.hue} />
               </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.h3 + 1, fontWeight: '800', flex: 1 }} numberOfLines={1}>
+              <Text style={{ color: t.textPrimary, fontSize: f.h3 + 1, fontWeight: '800', flex: 1 }}>
                 {label}
               </Text>
-              {accessory}
               <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
                 <Text style={{ color: scene.hue, fontSize: f.numLg, fontWeight: '900', lineHeight: f.numLg * 1.05 }}>
                   {doneCount}
@@ -723,12 +749,11 @@ export default function DialogsTabContent({
             <Ionicons name="lock-closed-outline" size={22} color={t.textMuted} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
               {frenchGateCopy.title}
             </Text>
             <Text
               style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 4 }}
-              numberOfLines={3}
             >
               {frenchGateCopy.body}
             </Text>
@@ -752,18 +777,6 @@ export default function DialogsTabContent({
           CHALLENGE_SCENE_THEME,
           challengeVMs,
           challengeVMs.filter((vm) => vm.status === 'done').length,
-          <View
-            style={{
-              backgroundColor: CHALLENGE_SCENE_THEME.hue + '22',
-              borderRadius: 10,
-              paddingHorizontal: 10,
-              paddingVertical: 4,
-            }}
-          >
-            <Text style={{ color: CHALLENGE_SCENE_THEME.hue, fontSize: f.sub, fontWeight: '800' }}>
-              {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}`, 'pt-BR': `nív. ${accountLevel}`, vi: `cấp ${accountLevel}`, id: `lvl. ${accountLevel}`, tr: `sv. ${accountLevel}`, pl: `poz. ${accountLevel}` })}
-            </Text>
-          </View>,
         )}
 
       {hasLockedCourseLevels && (
@@ -818,7 +831,7 @@ export default function DialogsTabContent({
             <Ionicons name="lock-open-outline" size={25} color={accent} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }} numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
               {triLang(lang, {
                 ru: 'Все диалоги входят в Plus',
                 uk: 'Усі діалоги входять у Plus',
@@ -832,7 +845,6 @@ export default function DialogsTabContent({
             </Text>
             <Text
               style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3, lineHeight: Math.round(f.sub * 1.4) }}
-              numberOfLines={2}
               maxFontSizeMultiplier={1.15}
             >
               {triLang(lang, {

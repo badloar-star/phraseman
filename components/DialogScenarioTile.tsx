@@ -107,7 +107,6 @@ export default function DialogScenarioTile({
               fontWeight: '700',
               lineHeight: Math.round(fontSizes.bodyLg * 1.25),
             }}
-            numberOfLines={2}
             maxFontSizeMultiplier={1.2}
           >
             {title}
@@ -116,7 +115,6 @@ export default function DialogScenarioTile({
           {locked && (
             <Text
               style={{ color: colors.textMuted, fontSize: fontSizes.sub, fontWeight: '700', marginTop: 3 }}
-              numberOfLines={1}
               maxFontSizeMultiplier={1.2}
             >
               {statusLabel}

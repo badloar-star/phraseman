@@ -144,7 +144,27 @@ export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
     EPISODE_01_SESSION_54_SOURCE,
     EPISODE_01_SESSION_55_SOURCE,
     EPISODE_01_SESSION_56_SOURCE,
-  ].map(upgradeLesson1SessionDistractorsV2));
+  ].map(upgradeLesson1SessionDistractorsV2).map(deepFreezeSource));
+
+/**
+ * Замораживает источник целиком, а не только верхний уровень.
+ *
+ * зачем (аудит 2026-08-23): кэш собранных осколков ключуется ссылкой на
+ * источник и молча отдал бы устаревший осколок, если материал изменить после
+ * первой сборки — то есть автопасс, выданный СТАРОМУ тексту, применился бы к
+ * новому. Пересчитывать отпечаток на каждый вызов слишком дорого (39 мс против
+ * 0.001 мс), поэтому вместо проверки инварианта делаем его настоящим:
+ * upgradeLesson1SessionDistractorsV2 мутирует источники на месте один раз при
+ * сборке реестра, после чего мутации запрещены физически.
+ */
+function deepFreezeSource<T>(value: T): T {
+  if (value === null || typeof value !== 'object') return value;
+  if (Object.isFrozen(value)) return value;
+  Object.freeze(value);
+  for (const nested of Object.values(value as Record<string, unknown>))
+    deepFreezeSource(nested);
+  return value;
+}
 
 /**
  * Превращает авторский текст в осколки сессий того вида, который принимает
@@ -183,7 +203,7 @@ function contiguousPlayableCeiling(): number {
   if (cachedCeiling !== null) return cachedCeiling;
   let ceiling = 0;
   for (const source of AUTHORED_EPISODE_01_SESSIONS) {
-    if (buildPlayableShard(source) === null) break;
+    if (!isPlayable(source)) break;
     ceiling = source.requiredSessionOrdinal;
   }
   cachedCeiling = ceiling;
@@ -198,7 +218,7 @@ function isWithinContiguousPrefix(sessionOrdinal: number): boolean {
   if (cachedCeiling !== null) return sessionOrdinal <= cachedCeiling;
   for (const source of AUTHORED_EPISODE_01_SESSIONS) {
     if (source.requiredSessionOrdinal >= sessionOrdinal) break;
-    if (buildPlayableShard(source) === null) {
+    if (!isPlayable(source)) {
       // Нашли стену раньше запрошенной сессии — это и есть точная граница.
       cachedCeiling = source.requiredSessionOrdinal - 1;
       return false;
@@ -232,22 +252,38 @@ export function playableAuthoredLearningV2Sessions(): readonly SessionSource[] {
  * недоступна». Отдаём только то, что приложение гарантированно примет.
  */
 // зачем кэш (владелец, правило скорости): сборка одной сессии — это гейт
-// качества по восьми локалям плюс валидатор осколка, ~200–270 мс. Экран
-// открывается синхронно этим путём, и без памяти цена платилась бы при КАЖДОМ
-// открытии. Источники статические и заморожены, поэтому результат по ссылке на
-// источник неизменен — кэш не может отдать устаревшее.
-const shardCache = new WeakMap<
-  SessionSource,
-  { readonly shard: LearningV2GeneratedSessionShardV1 | null }
->();
+// качества по восьми локалям плюс валидатор осколка, ~30 мс. Экран открывается
+// синхронно этим путём, и без памяти цена платилась бы при КАЖДОМ открытии.
+//
+// Корректность кэша (аудит 2026-08-23): раньше здесь стояло утверждение, что
+// источники заморожены — оно было ЛОЖНЫМ (заморожен был только массив, а
+// upgradeLesson1SessionDistractorsV2 мутирует источники на месте). Теперь
+// инвариант настоящий: реестр выше замораживает каждый источник вглубь, так
+// что ключ WeakMap не может указывать на изменившийся материал.
+// зачем вердикт отдельно от осколка (аудит 2026-08-23): собранный осколок
+// весит ~12 МБ, и удержание всех четырнадцати ради проверки непрерывности
+// стоило 166 МБ на телефоне. Но для «играбельна ли предыдущая» нужен лишь
+// ответ да/нет — его и помним, а тяжёлый осколок держим только для последней
+// запрошенной сессии, ту, в которую человек играет прямо сейчас.
+const playableVerdictCache = new WeakMap<SessionSource, boolean>();
+let lastBuilt: Readonly<{
+  source: SessionSource;
+  shard: LearningV2GeneratedSessionShardV1 | null;
+}> | null = null;
+
+function isPlayable(source: SessionSource): boolean {
+  const known = playableVerdictCache.get(source);
+  if (known !== undefined) return known;
+  return buildPlayableShard(source) !== null;
+}
 
 function buildPlayableShard(
   source: SessionSource,
 ): LearningV2GeneratedSessionShardV1 | null {
-  const cached = shardCache.get(source);
-  if (cached) return cached.shard;
+  if (lastBuilt?.source === source) return lastBuilt.shard;
   const built = computePlayableShard(source);
-  shardCache.set(source, { shard: built });
+  playableVerdictCache.set(source, built !== null);
+  lastBuilt = { source, shard: built };
   return built;
 }
 
@@ -305,9 +341,29 @@ export function authoredLearningV2SessionShard(
   return isWithinContiguousPrefix(sessionOrdinal) ? shard : null;
 }
 
-/** Сколько сессий сейчас реально играбельны — честное число для отчётов. */
+/**
+ * Сколько сессий человек пройдёт подряд, не упершись в стену.
+ *
+ * зачем рядом есть второе число (аудит 2026-08-23): это НЕ количество годных
+ * сессий. Годных сейчас больше — 17-40 написаны и чисты, но заперты пропуском
+ * на 15-16. Одно число скрывало бы, что закрытие двух сессий разблокирует
+ * сразу два десятка; для честного отчёта владельцу нужны оба.
+ */
 export function playableAuthoredLearningV2SessionCount(): number {
   return playableAuthoredLearningV2Sessions().length;
+}
+
+/**
+ * Сколько сессий готовы по существу — прошли гейт и приняты валидатором, вне
+ * зависимости от пропусков. Разница с непрерывным числом показывает, сколько
+ * готового материала заперто недописанными сессиями.
+ */
+export function qualifiedAuthoredLearningV2SessionOrdinals(): readonly number[] {
+  return Object.freeze(
+    AUTHORED_EPISODE_01_SESSIONS.filter(isPlayable).map(
+      (source) => source.requiredSessionOrdinal,
+    ),
+  );
 }
 
 /** Сколько сессий урока написано на самом деле — для честного отчёта о готовности. */

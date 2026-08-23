@@ -14,6 +14,12 @@ import {
 } from "../modules/learning-v2/content/source/authored_sessions_v1";
 import { validateLearningV2GeneratedSessionShardV1 } from "../modules/learning-v2/content/generator_session_shard";
 
+// Достигнутый уровень непрерывно проходимых сессий урока 1. Опускать нельзя:
+// снижение означает, что готовый материал перестал доезжать до человека.
+// Поднимать — можно и нужно, когда закрывают пропуск (сейчас это сессии 15-16,
+// за которыми ждут уже написанные 17-40).
+const MIN_PLAYABLE_SESSIONS_RATCHET = 14;
+
 describe("authored sessions reach the runtime, not just the test suite", () => {
   // зачем: главная проверка. Если этот список пуст или сюда забыли добавить
   // новую сессию, приложение её не увидит — именно так и вышло с сессиями 1–8.
@@ -37,7 +43,14 @@ describe("authored sessions reach the runtime, not just the test suite", () => {
   // разрыв между «написано» и «играбельно» виден числом ниже.
   it("builds every playable session into a shard the runtime accepts", () => {
     const shards = authoredLearningV2SessionShards();
-    expect(shards.length).toBeGreaterThan(0);
+    // зачем порог, а не «больше нуля» (аудит 2026-08-23): условие
+    // toBeGreaterThan(0) проходило бы, когда играбельна ровно ОДНА сессия из
+    // 56 — то есть регресс, который этот сторож обязан ловить, отличался бы от
+    // поломки на единицу и остался бы незамеченным. Порог — достигнутый
+    // уровень: он может только расти, когда допишут недостающие сессии.
+    expect(shards.length).toBeGreaterThanOrEqual(
+      MIN_PLAYABLE_SESSIONS_RATCHET,
+    );
     expect(shards.length).toBeLessThanOrEqual(
       AUTHORED_EPISODE_01_SESSIONS.length,
     );

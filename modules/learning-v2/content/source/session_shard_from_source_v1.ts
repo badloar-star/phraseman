@@ -35,8 +35,16 @@ const HEX64_RE = /^[0-9a-f]{64}$/;
 // экрана. Нормализуем в одном месте: уже валидный отпечаток остаётся как есть,
 // заглушка детерминированно превращается в хэш от самой строки — значение
 // стабильно между сборками, клиентом и сервером.
-function normalizedGenerationInputFingerprint(raw: string): string {
-  return HEX64_RE.test(raw) ? raw : hashCanonicalBody({ authoredFingerprintLabel: raw });
+function normalizedGenerationInputFingerprint(
+  raw: string,
+  sessionOrdinal: number,
+): string {
+  // зачем в хэш идёт и номер сессии (аудит 2026-08-23): заглушка — это просто
+  // строка-метка, и никто не сторожит её уникальность. Две сессии с одинаковой
+  // меткой получили бы ОДИН отпечаток; номер делает столкновение невозможным.
+  return HEX64_RE.test(raw)
+    ? raw
+    : hashCanonicalBody({ authoredFingerprintLabel: raw, sessionOrdinal });
 }
 
 const FAMILY_FUNCTION: Readonly<
@@ -508,6 +516,7 @@ export function buildSessionShardFromSource(
   const sessionOrdinal = source.requiredSessionOrdinal;
   const generationInputFingerprint = normalizedGenerationInputFingerprint(
     source.generationInputFingerprint,
+    sessionOrdinal,
   );
   const sessionTemplateId = `${episodeId}:session-${pad(sessionOrdinal)}`;
   const choreography = lesson1SessionChoreographyV1(sessionOrdinal);

@@ -19,6 +19,206 @@
       "base": null,
       "label": "Девочка",
       "acceptedAt": "2026-08-23T10:02:39.071Z"
+    },
+    {
+      "id": "hair_pony_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_pony_f.png",
+      "sha256": "22ae78885f80a76a993021c6d53ba7d828d25bd1359c90dfc70526d267f2a58d",
+      "base": "base_f.png",
+      "label": "Хвост",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:36:43.159Z"
+    },
+    {
+      "id": "hair_spacebuns_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_spacebuns_f.png",
+      "sha256": "832371dc7354abda30324a137639e6f94a0c3c18a3d66ab36adf748c7b0baeb3",
+      "base": "base_f.png",
+      "label": "Два пучка",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:36:44.174Z"
+    },
+    {
+      "id": "hair_halfup_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_halfup_f.png",
+      "sha256": "0591f6ac9f4b6b0b9dfacad816729045f097c841a46074d6f6f5e7dbe37425af",
+      "base": "base_f.png",
+      "label": "Полусобранные",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:36:44.407Z"
+    },
+    {
+      "id": "hair_shag_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_shag_m.png",
+      "sha256": "9216436f7ba2ac5efbfaf0e42ecae0a342645fbc15e2d6a4c09eb89fb16bbdff",
+      "base": "base_m.png",
+      "label": "Шегги",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:36:46.836Z"
+    },
+    {
+      "id": "hair_wavy_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_wavy_m.png",
+      "sha256": "d4e5477a65d3ddba7d0a327492ccd4d0e3d9cf6c3cb744a57d78dec9f3a6ccb9",
+      "base": "base_m.png",
+      "label": "Волны",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:36:47.847Z"
+    },
+    {
+      "id": "hair_braids_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_braids_f.png",
+      "sha256": "96d6e3626c188ff98fd6cd7a29227c70117a5022df90a20d7cc57466ac596375",
+      "base": "base_f.png",
+      "label": "Косы",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.653Z"
+    },
+    {
+      "id": "hair_buzz_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_buzz_m.png",
+      "sha256": "2d144642de530ffb6dfd57b673bc4024522bfa4fa906542a8e6dd5e2446f2f14",
+      "base": "base_m.png",
+      "label": "Ёжик",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.654Z"
+    },
+    {
+      "id": "hair_crop_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_crop_m.png",
+      "sha256": "b773c952d514aeedd027cf1b29396eedd5caf086d04bf525ef19afcba742e758",
+      "base": "base_m.png",
+      "label": "Кроп",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.655Z"
+    },
+    {
+      "id": "hair_curls_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_curls_m.png",
+      "sha256": "0defc5fdc3050935fa55e78e249b02d96ae1333e9b292f96d22fbd3196648c99",
+      "base": "base_m.png",
+      "label": "Кудри",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.656Z"
+    },
+    {
+      "id": "hair_curly_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_curly_f.png",
+      "sha256": "701978662bfe843c876f0e077c5f30986aa835e2abc5faba9e775e7a582b12ad",
+      "base": "base_f.png",
+      "label": "Кудри",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.657Z"
+    },
+    {
+      "id": "hair_fringe_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_fringe_m.png",
+      "sha256": "903de5bb35d35361f117591c44fa3ab47e5c1364f12542870a6b86df3d669f36",
+      "base": "base_m.png",
+      "label": "Чёлка",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.659Z"
+    },
+    {
+      "id": "hair_lowbun_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_lowbun_f.png",
+      "sha256": "4270f0d7ef5f792e6a1bc3f34c9b110c802ae0db86edf756441391ccd219890b",
+      "base": "base_f.png",
+      "label": "Низкий пучок",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.660Z"
+    },
+    {
+      "id": "hair_messy_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_messy_m.png",
+      "sha256": "26c198ab7541ecbb4e7366bb3b45f05cb9bc7fed1ca791476c0699cb538b400f",
+      "base": "base_m.png",
+      "label": "Небрежная",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.661Z"
+    },
+    {
+      "id": "hair_pixie_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_pixie_f.png",
+      "sha256": "edb09ce46bc67c9b45579805fa21fc8fd230c5ffedf87213dd8a90207f45a2ac",
+      "base": "base_f.png",
+      "label": "Пикси",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.662Z"
+    },
+    {
+      "id": "hair_slick_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_slick_m.png",
+      "sha256": "f55ff252fc3258be30d0f924fabff57cd9f2ac97b39d3f6f53f1c81d8dd433ac",
+      "base": "base_m.png",
+      "label": "Назад",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.663Z"
+    },
+    {
+      "id": "hair_spiky_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_spiky_m.png",
+      "sha256": "f184230ddc1152a7ea3f47e62bb1c6b51fc856ec5771135a0c876efd3f49b949",
+      "base": "base_m.png",
+      "label": "Торчком",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.664Z"
+    },
+    {
+      "id": "hair_textured_m",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_textured_m.png",
+      "sha256": "c90a13b7af6cab2659ef3c7340bef9ed1ed3b265fc096cb3e0b636cf4f35bc2f",
+      "base": "base_m.png",
+      "label": "Рваная",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:37:09.665Z"
+    },
+    {
+      "id": "hair_bob_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_bob_f.png",
+      "sha256": "6a1ceee172f1c3eb7bd838969dda373b951f1f7105dad11be2777ae1f1af2d04",
+      "base": "base_f.png",
+      "label": "Боб",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:38:21.217Z"
+    },
+    {
+      "id": "hair_straight_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_straight_f.png",
+      "sha256": "20e12bd35b8a4a5620adfaa5c1220953f725c9ad5a30de2f7f97e4516773f7f4",
+      "base": "base_f.png",
+      "label": "Прямые",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:38:21.799Z"
+    },
+    {
+      "id": "hair_waves_f",
+      "slot": "hair",
+      "file": "layers-src/hair/hair_waves_f.png",
+      "sha256": "5465fc01fb59c1af1d4e88bb5e291a0d2af25f7c4360c5f63bd6282a9705c585",
+      "base": "base_f.png",
+      "label": "Волны",
+      "layerOnly": true,
+      "acceptedAt": "2026-08-23T11:38:22.376Z"
     }
   ]
 }

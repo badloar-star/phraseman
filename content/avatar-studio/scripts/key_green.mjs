@@ -46,7 +46,9 @@ for (let at = 0; at < CANON_W * CANON_H; at += 1) {
   else if (greenness < 20) alpha = 255;
   else alpha = Math.round(255 * (1 - (greenness - 20) / 70));
   rgba[at * 4] = r;
-  rgba[at * 4 + 1] = alpha === 255 ? g : Math.min(g, Math.max(r, b));
+  // зачем: деспилл ВЕЗДЕ, не только на краях — тонкие пряди ловят зелёный
+  // отсвет фона даже в «непрозрачных» пикселях (виден зеленоватый отлив).
+  rgba[at * 4 + 1] = Math.min(g, Math.round(Math.max(r, b) * 1.04));
   rgba[at * 4 + 2] = b;
   rgba[at * 4 + 3] = alpha;
   if (alpha > 200) { solid += 1; sumX += at % CANON_W; sumY += Math.floor(at / CANON_W); }

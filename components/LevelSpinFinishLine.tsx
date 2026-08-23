@@ -9,7 +9,6 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { Image } from 'expo-image';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
@@ -26,13 +25,14 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { useTheme } from './ThemeContext';
 import { LinearGradient } from './SafeLinearGradient';
 import { FlowText } from './text-integrity/FlowText';
-import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
+import LevelSpinRewardArt from './LevelSpinRewardArt';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   ALL_LEVEL_GIFT_DEFS,
   giftDisplayDescForLang,
   giftDisplayTitleForLang,
-  giftRarityUiLabel,
+  giftSpinTier,
+  giftSpinTierUiLabel,
   type GiftDef,
 } from '../app/level_gift_system';
 import type { LocalLevelSpinReceipt as LevelSpinReceipt } from '../app/level_spin_local_contract';
@@ -55,9 +55,10 @@ import {
 } from '../app/level_reward_spin_motion';
 
 const REWARD_STREAM_IDS = [
-  'energy_full', 'xp_100', 'xp_250', 'hint_1', 'xp_bank_150',
+  'energy_full', 'xp_250', 'xp_500', 'pearls_5', 'stars_10',
+  'hint_1', 'xp_bank_150',
   'xp_2x_24h', 'energy_plus2', 'chain_shield_1', 'hint_3', 'xp_bank_300',
-  'cosmetic_avatar_common', 'xp_2x_48h', 'energy_plus3', 'xp_bank_600', 'choice_3_level',
+  'xp_2x_48h', 'energy_plus3', 'xp_bank_600',
 ] as const;
 const REWARD_STREAM_REPEATS = 3;
 const REWARD_STREAM_LENGTH = REWARD_STREAM_IDS.length * REWARD_STREAM_REPEATS;
@@ -84,13 +85,16 @@ function giftForId(id: string | null | undefined): GiftDef | null {
 }
 
 function rarityColor(gift: GiftDef, themeMode: ThemeMode, theme: Theme): string {
+  const tier = giftSpinTier(gift);
   if (isLightThemeMode(themeMode)) {
-    if (gift.rarity === 'epic') return theme.gold;
-    if (gift.rarity === 'rare') return '#1F5E8C';
+    if (tier === 'exceptional') return '#7A5317';
+    if (tier === 'ultra') return theme.gold;
+    if (tier === 'rare') return '#1F5E8C';
     return theme.correct;
   }
-  if (gift.rarity === 'epic') return '#F3C85C';
-  if (gift.rarity === 'rare') return '#79B8FF';
+  if (tier === 'exceptional') return '#F4D58A';
+  if (tier === 'ultra') return '#D8B45B';
+  if (tier === 'rare') return '#79B8FF';
   return '#7BD9CB';
 }
 
@@ -118,8 +122,10 @@ const HIGH_VALUE_COMMON_GIFT_IDS = new Set([
 /** A reward's surface communicates rarity first, then the stronger common rewards. */
 function rewardGradientForGift(gift: GiftDef, themeMode: ThemeMode, theme: Theme): [string, string, string] {
   if (isLightThemeMode(themeMode)) return [theme.cardGradient[0], theme.cardGradient[1], theme.bgCard];
-  if (gift.rarity === 'epic') return ['#4D1E67', '#2A123D', '#150A20'];
-  if (gift.rarity === 'rare') return ['#164C72', '#102B49', '#091727'];
+  const tier = giftSpinTier(gift);
+  if (tier === 'exceptional') return ['#4D3820', '#2B2014', '#15100B'];
+  if (tier === 'ultra') return ['#3E3320', '#252014', '#12100B'];
+  if (tier === 'rare') return ['#164C72', '#102B49', '#091727'];
   if (HIGH_VALUE_COMMON_GIFT_IDS.has(gift.id)) return ['#574015', '#30230D', '#181208'];
   return DEFAULT_REWARD_GRADIENT;
 }
@@ -504,20 +510,44 @@ export default function LevelSpinFinishLine({
       });
       cancelAnimation(reelOffset);
       const liveOffset = reelOffset.value;
-      const plan = createLevelSpinLandingPlan({
-        liveOffset,
-        selectorTop: selectorCenterY - cardHeight / 2,
-        rowPitch,
-        streamLength: streamIds.length,
-      });
+      const selectorTop = selectorCenterY - cardHeight / 2;
+      let plan: LevelSpinLandingPlan;
+      try {
+        plan = createLevelSpinLandingPlan({
+          liveOffset,
+          selectorTop,
+          rowPitch,
+          streamLength: streamIds.length,
+        });
+      } catch {
+        // зачем: барабан крутится бесконечным withRepeat, и если геометрия
+        // посадки невозможна (лента ушла за последний ряд, дробный layout),
+        // бросок раньше улетал в никуда из setTimeout — спин не
+        // останавливался НИКОГДА. Теперь есть аварийная посадка: садимся на
+        // безопасный ряд, а не оставляем человека с вечной анимацией.
+        const fallbackIndex = Math.max(1, streamIds.length - 3);
+        pendingLandingRef.current = {
+          landingIndex: fallbackIndex,
+          targetOffset: selectorTop - fallbackIndex * rowPitch,
+          cruiseVelocityPxPerSecond: 0,
+          initialVelocityPxPerSecond: 0,
+          requestId: receipt.requestId,
+          liveOffset,
+        };
+        setLandingIndex(fallbackIndex);
+        return;
+      }
       pendingLandingRef.current = { ...plan, requestId: receipt.requestId, liveOffset };
       setLandingIndex(plan.landingIndex);
     };
     decelerationTimerRef.current = setTimeout(beginDeceleration, waitMs);
-    return () => {
-      if (decelerationTimerRef.current) clearTimeout(decelerationTimerRef.current);
-      decelerationTimerRef.current = null;
-    };
+    // зачем: cleanup НЕ снимает таймер торможения. Зависимостей у эффекта 15
+    // (machineHeight, landingIndex, selectorCenterY, appActive…), и любой
+    // ре-рендер в течение окна ожидания (до 1.6 с) раньше убивал таймер —
+    // при потоке ре-рендеров посадка не наступала и барабан крутился вечно.
+    // Таймер самодостаточен: он сам проверяет актуальность чека и фокус,
+    // а полная отмена живёт в эффекте паузы и в unmount-эффекте.
+    return undefined;
   }, [appActive, cardHeight, isFocused, landingIndex, machineHeight, motionRequestId, phase, receipt, reducedMotion, reelOffset, resultOpacity, rowPitch, selectorCenterY, startReelMotion, startRevealSettle, streamIds.length]);
 
   const ctaTestID = resultVisible
@@ -543,18 +573,10 @@ export default function LevelSpinFinishLine({
     ? ''
     : phase === 'empty'
       ? triLang(lang, { ru: 'Спины закончились', uk: 'Спіни закінчилися', es: 'No quedan giros', 'pt-BR': 'Sem giros', vi: 'Đã hết lượt', id: 'Putaran habis', tr: 'Çevirme kalmadı', pl: 'Brak spinów' })
-      : manualReelEnabled
-        ? triLang(lang, {
-          ru: 'Крути пальцем для просмотра · спин запускает кнопка',
-          uk: 'Крути пальцем для перегляду · спін запускає кнопка',
-          es: 'Desliza para mirar · el botón inicia el giro',
-          'pt-BR': 'Deslize para ver · o botão inicia o giro',
-          vi: 'Vuốt để xem · nút mới bắt đầu lượt quay',
-          id: 'Geser untuk melihat · tombol memulai putaran',
-          tr: 'Bakmak için kaydır · dönüşü düğme başlatır',
-          pl: 'Przesuń, aby obejrzeć · losowanie uruchamia przycisk',
-        })
-        : '';
+      // зачем: владелец (2026-08-23) убрал подсказку «крути пальцем…» — жест
+      // остаётся, но экран его не подписывает (правило: без мелких пояснений).
+      // Для незрячих объяснение живёт в accessibilityHint барабана ниже.
+      : '';
 
   const handleCtaPress = resultVisible
     ? onAgain
@@ -626,14 +648,15 @@ export default function LevelSpinFinishLine({
                   },
                 ]}
               >
-                <Image
-                  source={getLevelGiftRewardIcon(gift.id, themeMode)}
-                  style={[styles.rewardIcon, compact && styles.rewardIconCompact]}
-                  contentFit="contain"
+                <LevelSpinRewardArt
+                  rewardId={gift.id}
+                  size={compact ? 66 : 77}
+                  accessibilityLabel={giftDisplayTitleForLang(gift, lang)}
+                  fallbackColor={accent}
                 />
                 <View style={styles.rewardCopy}>
                   <View style={[styles.rarityPill, { backgroundColor: `${accent}24` }]}>
-                    <Text style={[styles.rarityText, { color: accent }]}>{giftRarityUiLabel(gift.rarity, lang)}</Text>
+                    <Text style={[styles.rarityText, { color: accent }]}>{giftSpinTierUiLabel(gift, lang)}</Text>
                   </View>
                   <FlowText testID={`level-spin-reward-name-${index}`} provenance="authored" style={[styles.rewardName, { color: t.textPrimary, fontSize: compact ? f.sub : f.body }]}>
                     {giftDisplayTitleForLang(gift, lang)}
@@ -687,7 +710,12 @@ export default function LevelSpinFinishLine({
             end={{ x: 1, y: 1 }}
             style={styles.resultToastGradient}
           >
-            <Image source={getLevelGiftRewardIcon(resultGift.id, themeMode)} style={styles.resultIcon} contentFit="contain" />
+            <LevelSpinRewardArt
+              rewardId={resultGift.id}
+              size={43}
+              accessibilityLabel={giftDisplayTitleForLang(resultGift, lang)}
+              fallbackColor={rarityColor(resultGift, themeMode, t)}
+            />
             <View style={styles.resultCopy}>
               <Text style={styles.resultKicker}>{triLang(lang, { ru: 'Твоя награда', uk: 'Твоя нагорода', es: 'Tu recompensa', 'pt-BR': 'Sua recompensa', vi: 'Phần thưởng', id: 'Hadiahmu', tr: 'Ödülün', pl: 'Twoja nagroda' })}</Text>
               <Text style={styles.resultTitle}>{giftDisplayTitleForLang(resultGift, lang)}</Text>
@@ -752,8 +780,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     ...noAndroidOutline,
   },
-  rewardIcon: { width: 77, height: 77 },
-  rewardIconCompact: { width: 66, height: 66 },
   rewardCopy: { flex: 1, minWidth: 0 },
   rarityPill: { alignSelf: 'flex-start', borderRadius: 8, paddingHorizontal: 7, paddingVertical: 4 },
   rarityText: { fontSize: 8, lineHeight: 9, fontWeight: '900', letterSpacing: 1.1, textTransform: 'uppercase' },
@@ -820,7 +846,6 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   resultToastCompact: { bottom: 76, minHeight: 64 },
-  resultIcon: { width: 43, height: 43 },
   resultCopy: { flex: 1, minWidth: 0 },
   resultKicker: { color: '#5C410B', textTransform: 'uppercase', letterSpacing: 0.8, fontSize: 9, fontWeight: '900' },
   resultTitle: { marginTop: 2, color: '#191108', fontSize: 13, lineHeight: 16, fontWeight: '900' },

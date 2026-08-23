@@ -44,11 +44,14 @@ describe('Finish Line level spin screen contract', () => {
     expect(code).toContain('receipt={receipt}');
   });
 
-  test('keeps a 15-card existing reward image stream under a fixed selector', () => {
+  test('keeps a 15-card v2 reward image stream under a fixed selector', () => {
     const code = presentation();
-    const ids = code.match(/'(?:energy_full|xp_100|xp_250|hint_1|xp_bank_150|xp_2x_24h|energy_plus2|chain_shield_1|hint_3|xp_bank_300|cosmetic_avatar_common|xp_2x_48h|energy_plus3|xp_bank_600|choice_3_level)'/g) ?? [];
+    const ids = code.match(/'(?:energy_full|xp_250|xp_500|pearls_5|stars_10|hint_1|xp_bank_150|xp_2x_24h|energy_plus2|chain_shield_1|hint_3|xp_bank_300|xp_2x_48h|energy_plus3|xp_bank_600)'/g) ?? [];
     expect(new Set(ids).size).toBeGreaterThanOrEqual(15);
     expect(code).toContain('testID="level-spin-selector"');
+    expect(code).toContain('LevelSpinRewardArt');
+    expect(code).not.toContain('cosmetic_avatar_common');
+    expect(code).not.toContain('choice_3_level');
   });
 
   test('loops on an exact row cycle and retargets receipt deceleration without a snap', () => {
@@ -76,7 +79,7 @@ describe('Finish Line level spin screen contract', () => {
     expect(manualGesture).not.toContain('.failOffsetX(');
     expect(manualGesture).toContain('manualDragStartOffset.value + event.translationY');
     expect(manualGesture).toContain('const velocity = Math.max(');
-    expect(manualGesture).toContain('withDecay({\n        velocity,');
+    expect(manualGesture).toMatch(/withDecay\(\{\s*velocity,/);
     expect(manualGesture).toContain('deceleration: MANUAL_REEL_DECELERATION');
     expect(manualGesture).toContain('clamp: [manualReelMinOffset, manualReelMaxOffset]');
     expect(manualGesture).toContain('nearestManualReelRowOffset');
@@ -112,7 +115,10 @@ describe('Finish Line level spin screen contract', () => {
     expect(code).toContain('accessibilityRole="adjustable"');
     expect(code).toContain("{ name: 'increment' }");
     expect(code).toContain("{ name: 'decrement' }");
-    expect(code).toContain('Крути пальцем для просмотра · спин запускает кнопка');
+    // зачем: владелец (2026-08-23) снял видимую подсказку «крути пальцем…» —
+    // сторож теперь следит за обратным: на экране её быть НЕ должно, объяснение
+    // жеста живёт только в accessibilityHint для незрячих.
+    expect(code).not.toContain('Крути пальцем для просмотра');
     expect(code).toContain('без расхода спина');
   });
 
@@ -148,7 +154,13 @@ describe('Finish Line level spin screen contract', () => {
     expect(readFileSync(join(process.cwd(), 'components', 'LevelSpinRewardModal.tsx'), 'utf8')).toContain("soundDirector.request('pm.spin.reward_lock'");
     expect(screen).not.toContain("soundDirector.request('pm.spin.reel_start'");
     expect(screen).toContain('await acknowledgeLocalLevelSpin(requestId)');
-    expect(screen).toContain("safeRouterBack(router, '/level_gifts_inventory' as never)");
+    // Владелец 2026-08-23: раздел спина НЕ закрывается после получения подарка.
+    // Уход с экрана делает ТОЛЬКО стрелка «Назад» в шапке — ни «ГОТОВО»
+    // в модалке приза, ни исчерпание спинов экран больше не сворачивают.
+    expect(screen).toContain("onPress={() => safeRouterBack(router, '/level_gifts_inventory' as never)}");
+    expect(screen.match(/safeRouterBack\(/g) ?? []).toHaveLength(1);
+    expect(screen).toContain('const settleRewardPreview = useCallback');
+    expect(screen).toContain('onClaim={() => { void handleRewardPreviewClaim(); }}');
     expect(screen).not.toContain('rewardLane');
     expect(finishLine).not.toContain('ПОДАРОК УЖЕ В ПУТИ');
     expect(finishLine).not.toContain('Подарок уже в пути');
@@ -174,7 +186,7 @@ describe('Finish Line level spin screen contract', () => {
     expect(screen).toContain('giftId={receipt?.baseGiftId ?? null}');
     expect(screen).toContain('onClaim={() => {');
     expect(rewardModal).toContain('testID="level-spin-reward-modal"');
-    expect(rewardModal).toContain('if (!visible) return null;');
+    expect(rewardModal).toMatch(/if \([^\n]*!visible[^\n]*\) return null;/);
     expect(rewardModal).toContain("gift?.id ?? giftId ?? 'choice_3_level'");
     expect(rewardModal).toContain('Animated.spring');
     expect(rewardModal).toContain("'pm.spin.reward_win'");

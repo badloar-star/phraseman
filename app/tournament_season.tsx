@@ -22,9 +22,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
 import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
-import { Card } from '../components/tournament/tournament_ui';
-import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
-import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
+import { Card } from '../components/ui/v2_sheet';
+import { TournamentBackdrop } from '../components/ui/V2Backdrop';
+import { TimeLeft, useCountdown } from '../components/ui/V2Countdown';
 import {
   loadSeasonStandings,
   loadWeeklyBankInfo,
@@ -34,8 +34,9 @@ import {
   type SeasonEntry,
   type SeasonStandings,
 } from './tournament_client';
-import { placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/ui/v2_theme';
 import { triLang, type Lang } from '../constants/i18n';
+import { runeWord } from '../constants/runes';
 import { useLang } from '../components/LangContext';
 
 /**
@@ -273,14 +274,14 @@ const SeasonRowItem = memo(function SeasonRowItem({
   const accessibilityLabel =
     // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
     triLang(lang, {
-        ru: `${place > 0 ? `Место ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} звёзд${onPress ? '. Открыть карточку' : ''}`,
-        uk: `${place > 0 ? `Місце ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} зірок${onPress ? '. Відкрити картку' : ''}`,
-        es: `${place > 0 ? `Puesto ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} estrellas${onPress ? '. Abrir tarjeta' : ''}`,
-        'pt-BR': `${place > 0 ? `Posição ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} estrelas${onPress ? '. Abrir cartão' : ''}`,
-        vi: `${place > 0 ? `Hạng ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} sao${onPress ? '. Mở hồ sơ' : ''}`,
-        id: `${place > 0 ? `Peringkat ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} bintang${onPress ? '. Buka kartu' : ''}`,
-        tr: `${place > 0 ? `${place}. sıra. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} yıldız${onPress ? '. Kartı aç' : ''}`,
-        pl: `${place > 0 ? `Miejsce ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} gwiazdek${onPress ? '. Otwórz kartę' : ''}`,
+        ru: `${place > 0 ? `Место ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('ru', row.starsTotal)}${onPress ? '. Открыть карточку' : ''}`,
+        uk: `${place > 0 ? `Місце ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('uk', row.starsTotal)}${onPress ? '. Відкрити картку' : ''}`,
+        es: `${place > 0 ? `Puesto ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('es', row.starsTotal)}${onPress ? '. Abrir tarjeta' : ''}`,
+        'pt-BR': `${place > 0 ? `Posição ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('pt-BR', row.starsTotal)}${onPress ? '. Abrir cartão' : ''}`,
+        vi: `${place > 0 ? `Hạng ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('vi', row.starsTotal)}${onPress ? '. Mở hồ sơ' : ''}`,
+        id: `${place > 0 ? `Peringkat ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('id', row.starsTotal)}${onPress ? '. Buka kartu' : ''}`,
+        tr: `${place > 0 ? `${place}. sıra. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('tr', row.starsTotal)}${onPress ? '. Kartı aç' : ''}`,
+        pl: `${place > 0 ? `Miejsce ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.starsTotal} ${runeWord('pl', row.starsTotal)}${onPress ? '. Otwórz kartę' : ''}`,
     });
 
   // зачем 2026-07-27: строка РИСУЕТСЯ этим View, а не самим TapScale. TapScale

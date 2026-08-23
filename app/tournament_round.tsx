@@ -45,8 +45,8 @@ const TOURNAMENT_SOUND_OPTIONS = {
   scope: TOURNAMENT_SOUND_SCOPE,
   rateLimit: TOURNAMENT_SOUND_RATE_LIMIT,
 } as const;
-import { TimerRing } from '../components/tournament/TournamentCountdown';
-import { Sheet } from '../components/tournament/tournament_ui';
+import { TimerRing } from '../components/ui/V2Countdown';
+import { Sheet } from '../components/ui/v2_sheet';
 import {
   V2Card,
   V2Chip,
@@ -55,15 +55,15 @@ import {
   V2Cta,
   V2Segments,
   V2StreakPill,
-} from '../components/tournament/tournament_v2_ui';
+} from '../components/ui/v2_ui';
 import {
   StarGlyph,
   TournamentFxHost,
   type TournamentFxApi,
-} from '../components/tournament/TournamentFx';
-import { radius, type, useTournamentPalette, v2motion, type TournamentPalette} from '../components/tournament/tournament_theme';
+} from '../components/ui/V2Fx';
+import { radius, type, useTournamentPalette, v2motion, type TournamentPalette} from '../components/ui/v2_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
+import { TournamentBackdrop } from '../components/ui/V2Backdrop';
 import { TournamentRoundIntro } from '../components/tournament/TournamentRoundIntro';
 import {
       canRetryTournamentTaskAnswer, forfeitTournament, getOrCreateTournamentTaskIdempotencyKey,
@@ -83,6 +83,7 @@ import { answerFingerprint } from './tournament_answer_fingerprint';
 import { actionToastTri, emitAppEvent } from './events';
 import { closeTournamentFlow } from './tournament_navigation';
 import { triLang, type Lang } from '../constants/i18n';
+import { runeWord } from '../constants/runes';
 import { useLang } from '../components/LangContext';
 
 // зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
@@ -1408,14 +1409,14 @@ export default function TournamentRoundScreen() {
             value={stars}
             tone="stars"
             accessibilityLabel={triLang(lang, {
-              ru: `Общий счёт турнира: ${stars} звёзд`,
-              uk: `Загальний рахунок турніру: ${stars} зірок`,
-              es: `Puntuación total del torneo: ${stars} estrellas`,
-              'pt-BR': `Pontuação total do torneio: ${stars} estrelas`,
-              vi: `Tổng điểm giải đấu: ${stars} sao`,
-              id: `Skor total turnamen: ${stars} bintang`,
-              tr: `Toplam turnuva skoru: ${stars} yıldız`,
-              pl: `Łączny wynik turnieju: ${stars} gwiazdek`,
+              ru: `Общий счёт турнира: ${stars} ${runeWord('ru', stars)}`,
+              uk: `Загальний рахунок турніру: ${stars} ${runeWord('uk', stars)}`,
+              es: `Puntuación total del torneo: ${stars} ${runeWord('es', stars)}`,
+              'pt-BR': `Pontuação total do torneio: ${stars} ${runeWord('pt-BR', stars)}`,
+              vi: `Tổng điểm giải đấu: ${stars} ${runeWord('vi', stars)}`,
+              id: `Skor total turnamen: ${stars} ${runeWord('id', stars)}`,
+              tr: `Toplam turnuva skoru: ${stars} ${runeWord('tr', stars)}`,
+              pl: `Łączny wynik turnieju: ${stars} ${runeWord('pl', stars)}`,
             })}
             accessibilityLiveRegion="polite"
           />
@@ -1470,26 +1471,26 @@ export default function TournamentRoundScreen() {
                   style={styles.matchDoneButton}
                   accessibilityRole="button"
                   accessibilityLabel={triLang(lang, {
-                      ru: `Готово, засчитать ${confirmedMatchCount} звёзд`,
-                      uk: `Готово, зарахувати ${confirmedMatchCount} зірок`,
-                      es: `Listo, contabilizar ${confirmedMatchCount} estrellas`,
-                      'pt-BR': `Concluído, contabilizar ${confirmedMatchCount} estrelas`,
-                      vi: `Xong, tính ${confirmedMatchCount} sao`,
-                      id: `Selesai, hitung ${confirmedMatchCount} bintang`,
-                      tr: `Bitti, ${confirmedMatchCount} yıldız say`,
-                      pl: `Gotowe, zalicz ${confirmedMatchCount} gwiazdek`,
+                      ru: `Готово, засчитать ${confirmedMatchCount} ${runeWord('ru', confirmedMatchCount)}`,
+                      uk: `Готово, зарахувати ${confirmedMatchCount} ${runeWord('uk', confirmedMatchCount)}`,
+                      es: `Listo, contabilizar ${confirmedMatchCount} ${runeWord('es', confirmedMatchCount)}`,
+                      'pt-BR': `Concluído, contabilizar ${confirmedMatchCount} ${runeWord('pt-BR', confirmedMatchCount)}`,
+                      vi: `Xong, tính ${confirmedMatchCount} ${runeWord('vi', confirmedMatchCount)}`,
+                      id: `Selesai, hitung ${confirmedMatchCount} ${runeWord('id', confirmedMatchCount)}`,
+                      tr: `Bitti, ${confirmedMatchCount} ${runeWord('tr', confirmedMatchCount)} say`,
+                      pl: `Gotowe, zalicz ${confirmedMatchCount} ${runeWord('pl', confirmedMatchCount)}`,
                   })}
                 >
                   <Text style={styles.matchDoneText}>
                     {triLang(lang, {
-                        ru: `Готово · ${confirmedMatchCount} ${confirmedMatchCount === 1 ? 'звезда' : 'звёзд'}`,
-                        uk: `Готово · ${confirmedMatchCount} зірок`,
-                        es: `Listo · ${confirmedMatchCount} estrellas`,
-                        'pt-BR': `Concluído · ${confirmedMatchCount} estrelas`,
-                        vi: `Xong · ${confirmedMatchCount} sao`,
-                        id: `Selesai · ${confirmedMatchCount} bintang`,
-                        tr: `Bitti · ${confirmedMatchCount} yıldız`,
-                        pl: `Gotowe · ${confirmedMatchCount} gwiazdek`,
+                        ru: `Готово · ${confirmedMatchCount} ${runeWord('ru', confirmedMatchCount)}`,
+                        uk: `Готово · ${confirmedMatchCount} ${runeWord('uk', confirmedMatchCount)}`,
+                        es: `Listo · ${confirmedMatchCount} ${runeWord('es', confirmedMatchCount)}`,
+                        'pt-BR': `Concluído · ${confirmedMatchCount} ${runeWord('pt-BR', confirmedMatchCount)}`,
+                        vi: `Xong · ${confirmedMatchCount} ${runeWord('vi', confirmedMatchCount)}`,
+                        id: `Selesai · ${confirmedMatchCount} ${runeWord('id', confirmedMatchCount)}`,
+                        tr: `Bitti · ${confirmedMatchCount} ${runeWord('tr', confirmedMatchCount)}`,
+                        pl: `Gotowe · ${confirmedMatchCount} ${runeWord('pl', confirmedMatchCount)}`,
                     })}
                   </Text>
                 </Pressable>

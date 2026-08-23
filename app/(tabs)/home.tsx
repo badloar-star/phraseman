@@ -95,7 +95,12 @@ import { purchaseStreakFreeze } from '../streak_freeze_purchase';
 import { commitPremiumFreeFreeze } from '../economy/premium_free_freeze';
 import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, resolveHomeStorageStats, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
-import { captureAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
+// зачем: плавающая кнопка спина на карточке уровня. peek — синхронный кэш баланса,
+// чтобы первый кадр карточки был финальным (правило layout stability), а readLocal
+// — авторитетное локальное значение без единого обращения к сети/Firestore.
+import { peekLevelSpinBalance } from '../level_reward_spins_client';
+import { readLocalLevelSpinBalance } from '../local_level_spins';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -2192,6 +2197,61 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
         }
     }, [focusTick, homeRuntimeActive, shardsAnim, shardsBonusAnim]);
+    // ── ПЛАВАЮЩАЯ КНОПКА СПИНА НА КАРТОЧКЕ УРОВНЯ ──
+    // зачем (владелец 2026-08-23): заработанный спин было видно только внутри
+    // «Статистики» — до него надо было доехать. Кнопка живёт прямо в углу карточки
+    // уровня на главной и появляется, ТОЛЬКО когда спинов ≥ 1.
+    // Стоимость Firebase: ноль — баланс спинов целиком локальный (AsyncStorage),
+    // peek синхронный, чтения коллекций нет.
+    const [homeSpinBalance, setHomeSpinBalance] = useState<number>(() => {
+        // Первый кадр = финальная геометрия: если спин уже был в кэше, кнопка
+        // рисуется сразу, а не «вспыхивает» после первого асинхронного чтения.
+        const token = captureAccountGeneration();
+        const owner = token.stableId;
+        if (!owner) return 0;
+        return Math.max(0, Math.floor(peekLevelSpinBalance(owner) ?? 0));
+    });
+    const homeSpinPulse = useRef(new Animated.Value(1)).current;
+    const homeSpinReduceMotion = useReduceMotion();
+    const refreshHomeSpinBalance = useCallback(() => {
+        const token = captureAccountGeneration();
+        const owner = token.stableId;
+        if (!owner) { setHomeSpinBalance(0); return; }
+        void readLocalLevelSpinBalance()
+            .then((balance) => {
+                // Гонка смены аккаунта: поздний ответ чужого владельца не должен
+                // подставить его число (класс бага «чужие пиксели после смены аккаунта»).
+                if (!isCurrentAccountGeneration(token, owner)) return;
+                setHomeSpinBalance(Math.max(0, Math.floor(balance ?? 0)));
+            })
+            .catch(() => { /* держим последнее известное значение, без мигания нулём */ });
+    }, []);
+    useEffect(() => {
+        if (!homeRuntimeActive) return;
+        refreshHomeSpinBalance();
+    }, [homeRuntimeActive, focusTick, refreshHomeSpinBalance]);
+    useEffect(() => {
+        // Спин может быть начислен, пока главная открыта (урок/арена в фоне) и
+        // потрачен на экране колеса — событие обновляет кнопку мгновенно.
+        const subscription = onAppEvent('level_spin_balance_changed', refreshHomeSpinBalance);
+        return () => subscription.remove();
+    }, [refreshHomeSpinBalance]);
+    useEffect(() => {
+        // Пульс — единственный «зов» кнопки. Крутится только на активной вкладке,
+        // на UI-треде (useNativeDriver) и молчит при «уменьшить движение».
+        homeSpinPulse.stopAnimation();
+        if (!homeRuntimeActive || homeSpinBalance <= 0 || homeSpinReduceMotion) {
+            homeSpinPulse.setValue(1);
+            return;
+        }
+        const loop = Animated.loop(Animated.sequence([
+            Animated.timing(homeSpinPulse, { toValue: 1.06, duration: 700, easing: Easing.inOut(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+            Animated.timing(homeSpinPulse, { toValue: 1, duration: 700, easing: Easing.inOut(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+        ]));
+        loop.start();
+        return () => { loop.stop(); homeSpinPulse.setValue(1); };
+    }, [homeRuntimeActive, homeSpinBalance, homeSpinPulse, homeSpinReduceMotion]);
+
     const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
         hapticTap();
@@ -2934,6 +2994,69 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {renderHomeHeroStatus()}
+              {/* Плавающая кнопка спина — только когда спин реально заработан.
+                  зачем (владелец 2026-08-23): «есть спин → сразу видно и сразу тап».
+                  Живёт в правом нижнем углу карточки: правый верхний занят серией,
+                  а ряд дней недели ниже центрирован и его перекрывать нельзя. */}
+              {homeSpinBalance > 0 ? (
+                <Animated.View
+                  testID="home-spin-fab"
+                  pointerEvents="box-none"
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    bottom: 12,
+                    transform: [{ scale: homeSpinPulse }],
+                  }}
+                >
+                  <TapScale
+                    testID="home-spin-fab-button"
+                    accessibilityRole="button"
+                    accessibilityLiveRegion="polite"
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Спины: ${homeSpinBalance}`, uk: `Спіни: ${homeSpinBalance}`,
+                      es: `Giros: ${homeSpinBalance}`, 'pt-BR': `Giros: ${homeSpinBalance}`,
+                      vi: `Lượt quay: ${homeSpinBalance}`, id: `Putaran: ${homeSpinBalance}`,
+                      tr: `Çevirmeler: ${homeSpinBalance}`, pl: `Spiny: ${homeSpinBalance}`,
+                    })}
+                    scaleTo={0.92}
+                    hitSlop={10}
+                    onPress={() => {
+                      // stopPropagation здесь не нужен: TapScale — Pressable-потомок,
+                      // его onPress не пробрасывается в родительскую карточку.
+                      hapticTap();
+                      nav.push('/level_reward_spin');
+                    }}
+                    style={[{ width: 46, height: 46, borderRadius: 23, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }, isGoldTheme ? goldShadow(2) : isOliveTheme ? oliveShadow(2) : null]}
+                  >
+                    <LinearGradient
+                      colors={isGoldTheme ? [GOLD_RICH.champagne, t.gold, '#B8860B'] : [t.gold, '#F4C95D', '#D99D18']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={StyleSheet.absoluteFill}
+                    />
+                    {/* Тёмная иконка на золоте: контраст читаемый в любой теме,
+                        белая на светлом золоте «плавала». */}
+                    <Ionicons name="sync" size={22} color="#2B1D05"/>
+                    <View style={{
+                      position: 'absolute',
+                      top: 1,
+                      right: 1,
+                      minWidth: 17,
+                      height: 17,
+                      borderRadius: 9,
+                      paddingHorizontal: 4,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: '#2B1D05',
+                    }}>
+                      <Text maxFontSizeMultiplier={1} style={{ color: t.gold, fontSize: 10, fontWeight: '900', includeFontPadding: false }}>
+                        {homeSpinBalance}
+                      </Text>
+                    </View>
+                  </TapScale>
+                </Animated.View>
+              ) : null}
             </LinearGradient>
           </TouchableOpacity>
 

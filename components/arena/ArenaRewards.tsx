@@ -10,7 +10,7 @@ import Reanimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { StarGlyph } from '../ui/V2Fx';
+import RuneGlyph from '../RuneGlyph';
 import { useTournamentPalette } from '../ui/v2_theme';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
@@ -20,13 +20,17 @@ import { useCountUp } from '../league/leagueStatusShared';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
 /**
- * Полка наград за матч — чипы «опыт» и «звёзды кошелька».
+ * Полка наград за матч — чипы «опыт» и «руны» (кошелёк Арены).
  *
  * зачем: владелец (2026-08-23, премиум-макет phraseman-arena-stars.html):
  * «не забывай про начисление опыта — им тоже должно быть место на экране
  * завершения». Чипы входят каскадом 70ms, опыт тикает 0→N. Полка
- * расширяемая: новая валюта (руны и т.п.) встаёт следующим чипом,
- * ничего не переставляя.
+ * расширяемая: следующая валюта встаёт третьим чипом, ничего не переставляя.
+ *
+ * Валюта кошелька Арены — руны, не звёзды (переименование 22–23.08,
+ * docs/RUNES_RENAME_REGISTRY_2026-08-23.md). Поле `starsEarned` в контракте
+ * не переименовано — это серверное имя поля, реестр его прямо запрещает
+ * трогать; честный глиф и текст на экране решают вопрос для игрока.
  *
  * `reward` может отсутствовать: итог ещё не пришёл с сервера. Раньше в этом
  * случае рисовалось «+0» — то есть «ты не заработал ничего» вместо честного
@@ -59,12 +63,12 @@ export function ArenaRewards({ reward, starsLabel }: { reward?: ArenaMatchReward
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const known = reward !== undefined;
-  const shownStars = useCountUp(reward?.starsEarned ?? 0, reduceMotion);
+  const shownRunes = useCountUp(reward?.starsEarned ?? 0, reduceMotion);
   const shownXp = useCountUp(reward?.xpEarned ?? 0, reduceMotion);
-  const showStars = !known || Number(reward?.starsEarned ?? 0) > 0;
+  const showRunes = !known || Number(reward?.starsEarned ?? 0) > 0;
   return (
     <View style={styles.row} accessibilityLabel={known
-      ? `+${reward?.xpEarned ?? 0} ${arenaText(lang, 'xpLabel')}${showStars ? `, +${reward?.starsEarned ?? 0} ${starsLabel}` : ''}`
+      ? `+${reward?.xpEarned ?? 0} ${arenaText(lang, 'xpLabel')}${showRunes ? `, +${reward?.starsEarned ?? 0} ${starsLabel}` : ''}`
       : undefined}
     >
       <RewardChip delayMs={0} reduceMotion={reduceMotion}>
@@ -72,10 +76,10 @@ export function ArenaRewards({ reward, starsLabel }: { reward?: ArenaMatchReward
         <Text style={[styles.value, { color: known ? P.text : P.muted }]}>{known ? `+${shownXp}` : '—'}</Text>
         <Text style={[styles.label, { color: P.muted }]}>{arenaText(lang, 'xpLabel')}</Text>
       </RewardChip>
-      {showStars ? (
+      {showRunes ? (
         <RewardChip delayMs={70} reduceMotion={reduceMotion}>
-          <StarGlyph size={16} color={P.gold} />
-          <Text style={[styles.value, { color: known ? P.text : P.muted }]}>{known ? `+${shownStars}` : '—'}</Text>
+          <RuneGlyph size={16} color={P.gold} />
+          <Text style={[styles.value, { color: known ? P.text : P.muted }]}>{known ? `+${shownRunes}` : '—'}</Text>
           <Text style={[styles.label, { color: P.muted }]}>{starsLabel}</Text>
         </RewardChip>
       ) : null}

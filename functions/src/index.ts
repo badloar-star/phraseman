@@ -1012,8 +1012,6 @@ export {
   arenaV2DevFriendBotCreate,
   arenaV2FriendsBoard,
   arenaV2SeasonClaim,
-  arenaV2SpinStatus,
-  arenaV2SpinClaim,
   arenaV2CleanupHourly,
 } from "./arena_v2";
 // Arena Expansion layers Today, review/mastery, asynchronous social play and

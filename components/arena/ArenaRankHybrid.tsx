@@ -48,6 +48,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { ArenaRankAnnounce } from '../../modules/arena/result_view';
 import PressableHybrid from '../PressableHybrid';
 import { ArenaStarGlyph } from './ArenaStarGlyph';
+import RuneGlyph from '../RuneGlyph';
 import { GoldDustFall, ImpactFlash, RaysHalo, fireImpactFlash } from './ArenaImpactFx';
 
 const TIER_COPY: Record<ArenaTierKey, 'tierBronze' | 'tierSilver' | 'tierGold' | 'tierPlatinum' | 'tierDiamond' | 'tierMaster' | 'tierGrandmaster' | 'tierLegend'> = {
@@ -491,7 +492,7 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromSta
           {arenaText(lang, 'tierUpBody')}
         </Reanimated.Text>
         <Reanimated.View style={[styles.rewardsCol, rewardsStyle]}>
-          <RewardRow icon="star" color={P.gold} title={arenaText(lang, 'tierUpStarsTitle').replace('{n}', String(starsAwarded))} sub={arenaText(lang, 'tierUpStarsSub')} P={P} />
+          <RewardRow icon="rune" color={P.gold} title={arenaText(lang, 'tierUpStarsTitle').replace('{n}', String(starsAwarded))} sub={arenaText(lang, 'tierUpStarsSub')} P={P} />
           {chestUnlocked ? (
             <RewardRow icon="gift" color={P.accent} title={arenaText(lang, 'tierUpChestTitle')} sub={arenaText(lang, 'tierUpChestSub')} P={P} />
           ) : null}
@@ -521,13 +522,18 @@ const DustSpark = memo(function DustSpark({ dx, dy, opacity, color }: {
 });
 
 function RewardRow({ icon, color, title, sub, P }: {
-  icon: React.ComponentProps<typeof Ionicons>['name']; color: string; title: string; sub: string;
+  // зачем: начисление кошельковой валюты (руны) идёт через RewardRow наравне
+  // с иконками Ionicons (сундук, реванш) — icon='rune' рисует RuneGlyph вместо
+  // Ionicons, не заводя отдельный компонент строки. Звёзды РАНГА (запас на
+  // этом делении) остаются иконкой 'star' — это не валюта, менять нельзя
+  // (docs/RUNES_RENAME_REGISTRY_2026-08-23.md: границы переименования).
+  icon: React.ComponentProps<typeof Ionicons>['name'] | 'rune'; color: string; title: string; sub: string;
   P: ReturnType<typeof useTournamentPalette>;
 }) {
   return (
     <View style={[styles.rewardRow, { backgroundColor: P.elev }]}>
       <View style={[styles.rewardIcon, { backgroundColor: color + '26' }]}>
-        <Ionicons name={icon} size={16} color={color} />
+        {icon === 'rune' ? <RuneGlyph size={16} color={color} /> : <Ionicons name={icon} size={16} color={color} />}
       </View>
       <View style={{ flex: 1 }}>
         <Text style={[styles.rewardTitle, { color: P.text }]}>{title}</Text>
@@ -926,7 +932,7 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, fromStars, toStars, re
           {arenaText(lang, 'tierDownBody')}
         </Reanimated.Text>
         <Reanimated.View style={[styles.rewardsCol, rewardsStyle]}>
-          <RewardRow icon="ribbon" color={BRONZE} title={arenaText(lang, 'tierDownSavedTitle').replace('{n}', String(starsSaved))} sub={arenaText(lang, 'tierDownSavedSub')} P={P} />
+          <RewardRow icon="rune" color={BRONZE} title={arenaText(lang, 'tierDownSavedTitle').replace('{n}', String(starsSaved))} sub={arenaText(lang, 'tierDownSavedSub')} P={P} />
           <RewardRow icon="return-up-forward" color={P.accent} title={arenaText(lang, 'tierDownRevengeTitle')} sub={arenaText(lang, 'tierDownRevengeSub')} P={P} />
         </Reanimated.View>
         <Reanimated.View style={ctaStyle}>

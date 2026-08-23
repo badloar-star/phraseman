@@ -3,7 +3,7 @@ import { AccessibilityInfo, Text, useWindowDimensions, View } from 'react-native
 
 import { useTheme } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 
 type Props = {
   /** Уже прозвучавшая часть текущей реплики — подсвечивается акцентом. */
@@ -22,12 +22,6 @@ type Props = {
   /** Ученик говорит прямо сейчас — показываем это ожиданием, а не пустотой. */
   userSpeaking?: boolean;
   lang: Lang;
-};
-
-/** Подпись своей стороны в субтитрах. */
-const YOU_LABEL: Record<string, string> = {
-  ru: 'ВЫ', uk: 'ВИ', es: 'TÚ', 'pt-BR': 'VOCÊ',
-  vi: 'BẠN', id: 'ANDA', tr: 'SEN', pl: 'TY', en: 'YOU',
 };
 
 /**
@@ -82,7 +76,10 @@ export function MaxCallLiveCaptionView({
   // Свою реплику держим короче, чем реплику учителя: она нужна как
   // подтверждение «тебя услышали вот так», а не как второй экран текста.
   const userRail = captionRailTail(userText, Math.max(6, Math.round(wordLimit * 0.6)));
-  const youLabel = YOU_LABEL[lang] ?? YOU_LABEL.en;
+  const youLabel = triLang(lang, {
+    ru: 'ВЫ', uk: 'ВИ', es: 'TÚ', 'pt-BR': 'VOCÊ',
+    vi: 'BẠN', id: 'ANDA', tr: 'SEN', pl: 'TY',
+  });
   const announcedRef = useRef('');
 
   useEffect(() => {

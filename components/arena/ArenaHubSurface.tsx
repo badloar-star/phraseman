@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { useLang } from '../LangContext';
-import { V2Card, V2Cta } from '../ui/v2_ui';
 import { useTournamentPalette } from '../ui/v2_theme';
 import { ArenaScreen } from './ArenaScreen';
 import { ArenaDailyGoals } from './ArenaDailyGoals';
@@ -14,12 +13,10 @@ import { arenaHubActionBlock, arenaHubModel, type ArenaHubBlockReason } from '..
 import { createArenaHubHydrationController } from '../../modules/arena/hub_hydration';
 import {
   ArenaFeatureRow,
-  ArenaProgress,
   ArenaStateCard,
   ArenaStateNotice,
 } from './ArenaExpansionUI';
 import { arenaText } from '../../modules/arena/copy';
-import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../../modules/arena/expansion_copy';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2Home, createArenaRequestId } from '../../app/arena_client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -59,11 +56,6 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
   const { lang } = useLang();
   const P = useTournamentPalette();
   const tabContentBottomPad = useTabContentBottomPad();
-  // Высота строки числом не растёт вместе с системным шрифтом — при
-  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
-  const fontScale = useArenaFontScale();
-  const todayTitleLine = { lineHeight: 28 * fontScale };
-  const todayBodyLine = { lineHeight: 20 * fontScale };
   const active = useRuntimeActive(ownerVisible);
   /**
    * Первый кадр рисуется ПРОШЛЫМ снимком, а не пустотой (владелец: «видимой
@@ -169,7 +161,6 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
   const expansionServerFailure = expansionFailure?.kind === 'server';
   const reportChecking = reportGuard === 'checking';
   const reportBlocked = reportGuard === 'blocked';
-  const today = expansion?.today;
   const blockHint = (reason: ArenaHubBlockReason) => {
     if (reason === 'offline') return arenaText(lang, 'hubOfflineHint');
     if (reason === 'server') return arenaText(lang, 'arenaNotDeployedHint');
@@ -179,13 +170,10 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     return arenaText(lang, 'valueUnknown');
   };
   const baseBlock = arenaHubActionBlock({ known: home !== null && !reportChecking, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
-  const todayBlock = arenaHubActionBlock({ known: expansion !== null && today !== undefined && !reportChecking, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.today && today?.state !== 'unavailable' });
   const activeMatchBlock = arenaHubActionBlock({ known: home !== null && !reportChecking, offline, server: serverFailure, reportBlocked });
   const activeRunBlock = arenaHubActionBlock({ known: expansion !== null && !reportChecking, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
   const centralBlock = home?.activeMatch?.matchId ? activeMatchBlock : baseBlock;
   const centralEnabled = centralBlock === 'ok';
-  const todayDisabledHint = todayBlock === 'ok' ? undefined : blockHint(todayBlock);
-  const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
 
   /**
    * Живая часть главного экрана.
@@ -333,23 +321,10 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
         />
       ) : null}
       {expansionServerFailure ? <ArenaStateNotice state="error" onRetry={load} /> : null}
-      <V2Card style={styles.todayCard}>
-          <View style={styles.todayHead}>
-            <View style={styles.todayCopy}>
-              <Text style={[styles.todayTitle, todayTitleLine, { color: P.text }]}>{arenaExpansionText(lang, 'todayTitle')}</Text>
-              <Text style={[styles.todayBody, todayBodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text>
-            </View>
-            <View style={[styles.todayNumber, { backgroundColor: P.elev2 }]}>
-              <Text style={[styles.todayNumberText, { color: P.text }]}>10</Text>
-            </View>
-          </View>
-          <ArenaProgress value={today?.completedTasks ?? null} max={10} label={arenaExpansionText(lang, 'todayTitle')} />
-          {today?.state === 'complete' ? (
-            <Text accessibilityLiveRegion="polite" style={[styles.complete, { color: P.accent }]}>{arenaExpansionText(lang, 'todayComplete')}</Text>
-          ) : (
-            <V2Cta accessibilityLabel={todayAction} accessibilityHint={todayDisabledHint} disabled={todayBlock !== 'ok'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
-          )}
-      </V2Card>
+      {/* зачем 2026-08-23 (владелец: «убери с арены эту хуйню про 10 заданий»):
+          карточка «Испытание дня» снята с хаба. Сам экран /arena_today и его
+          маршрут живы — на них по-прежнему ведёт строка активного забега выше,
+          поэтому незавершённое испытание не теряется. */}
     </>
   );
 
@@ -411,7 +386,6 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     <ArenaHubOverflowSheet
       visible={overflowOpen}
       latestMatchId={hub.lastMatch?.matchId ?? null}
-      spinsAvailable={home?.profile.spinsAvailable ?? 0}
       onClose={() => setOverflowOpen(false)}
     />
     {arenaIntroDef ? (
@@ -434,14 +408,6 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
 export default ArenaHubSurface;
 
 const styles = StyleSheet.create({
-  todayCard: { gap: 16 },
-  todayHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  todayCopy: { flex: 1 },
-  todayTitle: { fontSize: 22, fontWeight: '900' },
-  todayBody: { marginTop: 3, fontSize: 14, fontWeight: '600' },
-  todayNumber: { width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  todayNumberText: { fontSize: 22, fontWeight: '900' },
-  complete: { minHeight: 44, textAlign: 'center', textAlignVertical: 'center', fontSize: 17, fontWeight: '900' },
   play: { minHeight: 62, borderRadius: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
   playText: { fontSize: 19, fontWeight: '900' },
   overflowHitbox: { width: 44, height: 44, alignSelf: 'auto' },

@@ -23,6 +23,7 @@ import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useTheme } from '../ThemeContext';
 import { TABBAR_HYBRID } from '../../constants/motionHybrid';
+import { BG_GRADIENTS } from '../../constants/screenBackground';
 import { getTournamentThemeAssets } from './v2_theme_assets';
 import { useTournamentPalette } from './v2_theme';
 
@@ -145,6 +146,12 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
     opacity: 0.08 + breathe.value * 0.1,
   }));
   const quiet = variant === 'play' || variant === 'review';
+  // Тот же массив, что читает ScreenGradient на главной: фон Арены обязан
+  // совпадать с фоном приложения, а не приближаться к нему своими цветами.
+  const themeBg = BG_GRADIENTS[themeMode] ?? [P.bg, P.bg, P.bg];
+  // Тихие экраны (бой/разбор) чуть глушим к базовому фону, чтобы контент
+  // читался — но отталкиваемся от общей палитры, а не от своей.
+  const screenBg = (quiet ? [themeBg[0], themeBg[1], P.bg] : themeBg) as readonly [string, string, string];
 
   return (
     <View
@@ -157,23 +164,19 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
           если шапку не закрывают (Арена — как на главной). */}
       <View style={[styles.artLayer, { top: capSafeTop ? insets.top : 0 }]}>
         {/*
-          зачем 2026-08-23 (владелец: «на арене цвет сейф-зоны отличается от
-          экрана — сделай КАК НА ГЛАВНОЙ, фулл бекграунд»): вертикальный
-          градиент шёл от полупрозрачного верха к сплошному P.bg внизу. Поверх
-          общего скрима приложения (AppArtBackdrop затемняет верх на 40%) это
-          давало ровно то, что владелец видел: тёмная полоса сейф-зоны и более
-          светлая страница под ней. На главной такого второго градиента нет —
-          там фон ровный от края до края. Арена теперь ведёт себя так же:
-          собственный градиент убран, фон держит P.bg корня экрана.
-          Тихие экраны (play/review) сохраняют лёгкий акцентный подмес.
+          зачем 2026-08-23 (владелец: «фон на арене чёрный, а не такой как на
+          главной»): Арена рисовала САМОДЕЛЬНЫЙ градиент из P.bg — он выходил
+          на голый bgPrimary и в тёмных темах читался как чёрный, потому что
+          настоящий фон главной — это BG_GRADIENTS[themeMode] (для indigo
+          #14131F→#0C0B16→#010102), заметно синее bgPrimary. Берём ТОТ ЖЕ
+          источник, что и ScreenGradient у главной: один общий список цветов,
+          одна тема — один фон. Расходиться им больше нечем.
         */}
-        {quiet ? (
-          <LinearGradient
-            colors={[P.bgGradA, `${P.bg}F2`, P.bg]}
-            locations={[0, 0.58, 1]}
-            style={StyleSheet.absoluteFill}
-          />
-        ) : null}
+        <LinearGradient
+          colors={screenBg}
+          locations={[0, 0.5, 1]}
+          style={StyleSheet.absoluteFill}
+        />
         {motionCapable ? (
           /*
             зачем 2026-08-23 (владелец: «на арене цвет сейф-зоны вверху

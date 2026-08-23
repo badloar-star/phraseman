@@ -22,7 +22,11 @@ import { onRequest } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 
 import { upsertEmailContact, emailContactDocId, normalizeEmailContactEmail } from './email_contacts';
-import { suppressionDocId, unsubscribeUrlFor } from './email_unsubscribe';
+import {
+  EMAIL_UNSUBSCRIBE_SECRETS,
+  suppressionDocId,
+  unsubscribeUrlFor,
+} from './email_unsubscribe';
 import { RESEND_API_KEY } from './resend_secret';
 
 const REGION = 'us-central1';
@@ -345,7 +349,8 @@ export const webLeadCapture = onRequest(
     timeoutSeconds: 20,
     maxInstances: 3,
     invoker: 'public',
-    secrets: [RESEND_API_KEY],
+    // зачем: письмо с планом несёт ссылку отписки — нужен подписывающий секрет
+    secrets: [RESEND_API_KEY, ...EMAIL_UNSUBSCRIBE_SECRETS],
   },
   async (req, res) => {
     if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;
@@ -419,7 +424,9 @@ export const webLeadCapture = onRequest(
 export const webLeadNudgeCron = onSchedule(
   {
     schedule: '17 */6 * * *', timeZone: 'Etc/UTC', region: REGION,
-    memory: '256MiB', timeoutSeconds: 300, secrets: [RESEND_API_KEY],
+    memory: '256MiB', timeoutSeconds: 300,
+    // зачем: догоняющие письма тоже несут ссылку отписки
+    secrets: [RESEND_API_KEY, ...EMAIL_UNSUBSCRIBE_SECRETS],
   },
   async () => {
     const db = getFirestore();

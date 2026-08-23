@@ -15,18 +15,74 @@ import { createHmac, timingSafeEqual } from 'crypto';
 import { onRequest } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { defineString } from 'firebase-functions/params';
+import { defineSecret, defineString } from 'firebase-functions/params';
 
 const REGION = 'us-central1';
 
 /**
- * Секрет для подписи ссылок отписки. Задай в functions/.env как
- * EMAIL_UNSUBSCRIBE_SECRET (длинная случайная строка). Дефолт — заглушка,
- * рассылку на реальных людей запускать только с заданным секретом.
+ * Секрет для подписи ссылок отписки — Google Secret Manager, не .env.
+ *
+ * зачем: раньше здесь был defineString с дефолтной строкой прямо в коде
+ * (см. коммит этой правки). Дефолт срабатывал МОЛЧА:
+ * деплой из окружения без functions/.env (CI, чужая машина, новый проект)
+ * не падал, а начинал подписывать ссылки строкой из открытого исходника —
+ * любой мог подделать HMAC и массово отписать чужие адреса. defineSecret
+ * без дефолта делает такой деплой невозможным: Firebase требует значение.
+ * Эталон рядом — RESEND_API_KEY и AUTH_RECOVERY_CHALLENGE_HMAC_KEY_*.
+ *
+ * Любая функция, которая строит или проверяет ссылку отписки, ОБЯЗАНА
+ * перечислить оба секрета в своих `secrets: [...]` — иначе рантайм их не
+ * увидит и .value() вернёт пустую строку.
  */
-const unsubscribeSecret = defineString('EMAIL_UNSUBSCRIBE_SECRET', {
-  default: 'phraseman-unsubscribe-dev-secret-change-me',
-});
+export const EMAIL_UNSUBSCRIBE_SECRET = defineSecret('EMAIL_UNSUBSCRIBE_SECRET');
+
+/**
+ * Предыдущий секрет — принимается ТОЛЬКО при проверке, никогда не подписывает.
+ *
+ * зачем: без него ротация секрета разом ломает все уже разосланные письма —
+ * человек жмёт «Отписаться» в старом письме и видит «Ссылка недействительна».
+ * Для писем с заголовком List-Unsubscribe-Post: One-Click это прямой путь к
+ * жалобам на спам: Gmail и Yahoo требуют, чтобы one-click реально работал.
+ * Переменная EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET лежала в functions/.env с
+ * 26.07.2026, но кодом не читалась — ротацию заготовили и не дописали.
+ * Пустое значение допустимо и означает «ротации не было».
+ */
+export const EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET = defineSecret(
+  'EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET',
+);
+
+/** Все секреты отписки — подключать в `secrets:` каждой функции-потребителя. */
+export const EMAIL_UNSUBSCRIBE_SECRETS = [
+  EMAIL_UNSUBSCRIBE_SECRET,
+  EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET,
+] as const;
+
+/**
+ * Значение секрета с явным отказом вместо тихой заглушки.
+ * Пустой секрет — это неверная конфигурация, а не «подпишем чем-нибудь».
+ */
+function requireCurrentSecret(): string {
+  const value = String(EMAIL_UNSUBSCRIBE_SECRET.value() || '').trim();
+  if (!value) {
+    throw new Error(
+      'EMAIL_UNSUBSCRIBE_SECRET is not configured — ' +
+        'set it in Secret Manager and list it in the function secrets[]',
+    );
+  }
+  return value;
+}
+
+/** Прошлый секрет; пустая строка — ротации не было, это нормально. */
+function previousSecretOrEmpty(): string {
+  return String(EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET.value() || '').trim();
+}
+
+function signWith(secret: string, email: string): string {
+  return createHmac('sha256', secret)
+    .update(email.trim().toLowerCase())
+    .digest('hex')
+    .slice(0, 32);
+}
 
 /**
  * Базовый публичный URL функций, от которого строится ссылка отписки.
@@ -53,24 +109,38 @@ export function suppressionDocId(email: string): string {
     .slice(0, 48);
 }
 
-/** Подпись email для ссылки отписки (первые 32 hex-символа HMAC-SHA256). */
+/**
+ * Подпись email для ссылки отписки (первые 32 hex-символа HMAC-SHA256).
+ * Подписываем ВСЕГДА текущим секретом — прошлый только принимается.
+ */
 export function unsubscribeToken(email: string): string {
-  return createHmac('sha256', unsubscribeSecret.value())
-    .update(email.trim().toLowerCase())
-    .digest('hex')
-    .slice(0, 32);
+  return signWith(requireCurrentSecret(), email);
 }
 
-/** Timing-safe проверка токена. */
+/**
+ * Timing-safe проверка токена: сначала текущий секрет, затем — прошлый.
+ *
+ * зачем: обе ветки считаются одинаково длинным сравнением, чтобы по времени
+ * ответа нельзя было понять, каким секретом подписана ссылка.
+ */
 export function verifyUnsubscribeToken(email: string, token: string): boolean {
-  const expected = unsubscribeToken(email);
   const given = String(token || '').toLowerCase();
-  if (given.length !== expected.length) return false;
-  try {
-    return timingSafeEqual(Buffer.from(expected), Buffer.from(given));
-  } catch {
-    return false;
+  // зачем: НЕ requireCurrentSecret() — это публичный HTTP-обработчик, и при
+  // неверной конфигурации он обязан ответить «ссылка недействительна»,
+  // а не упасть в 500. Падать на пустом секрете должна только подпись.
+  const current = String(EMAIL_UNSUBSCRIBE_SECRET.value() || '').trim();
+  const candidates = [current, previousSecretOrEmpty()].filter(Boolean);
+  let matched = false;
+  for (const secret of candidates) {
+    const expected = signWith(secret, email);
+    if (given.length !== expected.length) continue;
+    try {
+      if (timingSafeEqual(Buffer.from(expected), Buffer.from(given))) matched = true;
+    } catch {
+      // повреждённый ввод — просто не совпал
+    }
   }
+  return matched;
 }
 
 /** Готовая ссылка отписки для конкретного адреса. */
@@ -139,7 +209,13 @@ function confirmPageHtml(email: string, ok: boolean): string {
  * POST ?e=<email>&t=<token> — one-click (RFC 8058, List-Unsubscribe-Post) → 200.
  */
 export const emailUnsubscribe = onRequest(
-  { region: REGION, cors: true, memory: '256MiB' },
+  {
+    region: REGION,
+    cors: true,
+    memory: '256MiB',
+    // зачем: без secrets[] рантайм не увидит значения и .value() вернёт пусто
+    secrets: [...EMAIL_UNSUBSCRIBE_SECRETS],
+  },
   async (req, res) => {
     const method = String(req.method || 'GET').toUpperCase();
     if (method !== 'GET' && method !== 'POST') {

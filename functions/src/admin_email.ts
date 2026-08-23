@@ -9,7 +9,11 @@ import {
   normalizeEmailContactEmail,
   upsertEmailContact,
 } from './email_contacts';
-import { loadSuppressedEmails, unsubscribeUrlFor } from './email_unsubscribe';
+import {
+  EMAIL_UNSUBSCRIBE_SECRETS,
+  loadSuppressedEmails,
+  unsubscribeUrlFor,
+} from './email_unsubscribe';
 import { RESEND_API_KEY } from './resend_secret';
 
 const REGION = 'us-central1';
@@ -491,7 +495,9 @@ export const adminEmailBroadcast = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK,
   timeoutSeconds: 540,
   memory: '512MiB',
-  secrets: [RESEND_API_KEY],
+  // зачем: рассылка строит ссылку отписки, значит подписывающий секрет обязан
+  // быть в рантайме — иначе unsubscribeUrlFor упадёт на пустом значении.
+  secrets: [RESEND_API_KEY, ...EMAIL_UNSUBSCRIBE_SECRETS],
 }, async (request) => {
   if (!request.auth?.token?.admin) {
     throw new HttpsError('permission-denied', 'admin_only');

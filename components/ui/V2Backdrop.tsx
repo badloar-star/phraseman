@@ -80,7 +80,6 @@ export const TournamentPodiumArt = memo(function TournamentPodiumArt({ style }: 
 export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, capSafeTop = true }: Props) {
   const { themeMode } = useTheme();
   const P = useTournamentPalette();
-  const assets = useMemo(() => getTournamentThemeAssets(themeMode), [themeMode]);
   const focused = useIsScreenFocused();
   // зачем 2026-08-04 (владелец: «в турнире верхняя сейф-зона другого цвета —
   // убрать, чтобы совпадала с фоном страницы темы»): арт-бэкдроп и sheen
@@ -157,12 +156,11 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
       {/* Арт и переливы: либо под сейф-зоной (турниры), либо во весь экран,
           если шапку не закрывают (Арена — как на главной). */}
       <View style={[styles.artLayer, { top: capSafeTop ? insets.top : 0 }]}>
-        <Image
-          accessible={false} // guard-ok: декоративный фон режима, смысл несёт контент поверх
-          source={assets.backdrop}
-          resizeMode="cover"
-          style={[styles.backdrop, quiet && styles.quietBackdrop]}
-        />
+        {/* зачем 2026-08-23 (владелец: «удали фон-ассеты арены и импорты»):
+            картинка-подложка темы убрана — фон держат сплошной P.bg экрана
+            и градиент поверх. Минус одна полноэкранная декодированная
+            текстура на КАЖДОМ экране Арены: меньше памяти и быстрее первый
+            кадр, геометрия слоя не меняется (лэйаут стабилен). */}
         <LinearGradient
           colors={quiet
             ? [P.bgGradA, `${P.bg}F2`, P.bg]
@@ -171,7 +169,15 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
           style={StyleSheet.absoluteFill}
         />
         {motionCapable ? (
-          <Animated.View style={[styles.light, { backgroundColor: P.sheen }, lightStyle]} />
+          /*
+            зачем 2026-08-23 (владелец: «на арене цвет сейф-зоны вверху
+            отличается от цвета экрана»): sheen начинался на 80px ВЫШЕ верха
+            экрана и накрывал сейф-зону акцентным свечением. При
+            capSafeTop=false (Арена) шапка от этого была другого оттенка, чем
+            страница. Теперь пятно стартует ПОД сейф-зоной — верх экрана
+            остаётся ровно P.bg, а свечение живёт в контенте, как и задумано.
+          */
+          <Animated.View style={[styles.light, { top: (capSafeTop ? 0 : insets.top) - 80, backgroundColor: P.sheen }, lightStyle]} />
         ) : null}
       </View>
       {/* Сплошная шапка ровно в цвет страницы: статус-бар не отличается от фона. */}
@@ -184,16 +190,8 @@ const styles = StyleSheet.create({
   // Слой арта: прижат к низу и краям, сверху отступает на высоту сейф-зоны.
   artLayer: { position: 'absolute', left: 0, right: 0, bottom: 0, overflow: 'hidden' },
   safeTopCap: { position: 'absolute', top: 0, left: 0, right: 0 },
-  backdrop: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
-    opacity: 0.9,
-  },
-  quietBackdrop: { opacity: 0.46 },
   light: {
     position: 'absolute',
-    top: -80,
     left: -40,
     right: -40,
     height: 320,

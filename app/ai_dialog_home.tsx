@@ -68,7 +68,7 @@ export default function AiDialogHome() {
             pl: 'Dialogi',
           })}
         </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+        <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>
           {triLang(lang, {
             ru: `${activeCount} сценариев с Компасом`,
             uk: `${activeCount} сценаріїв із Компасом`,

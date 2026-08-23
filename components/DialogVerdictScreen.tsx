@@ -171,18 +171,18 @@ export default function DialogVerdictScreen({
 
           <Reanimated.View entering={enter(80)} style={{ alignItems: 'center', marginTop: 16 }}>
             <Text
-              style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700', textAlign: 'center' }}
+              style={{ color: t.textPrimary, fontSize: f.h1 + 3, fontWeight: '900', textAlign: 'center' }}
               maxFontSizeMultiplier={1.2}
             >
               {outcomeTitle(outcome, lang)}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
               <Ionicons name={scenarioIcon as never} size={15} color={scene.hue} />
-              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '400' }} numberOfLines={1}>
+              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }} numberOfLines={1}>
                 {scenarioTitle}
               </Text>
               <Text
-                style={{ fontSize: f.body }}
+                style={{ fontSize: f.h2 }}
                 accessibilityLabel={triLang(lang, {
                   ru: 'Финальное настроение собеседника',
                   uk: 'Фінальний настрій співрозмовника',
@@ -211,7 +211,7 @@ export default function DialogVerdictScreen({
                 }}
               >
                 <Ionicons name="sparkles" size={15} color={t.accent} />
-                <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }}>+{xpAwarded} XP</Text>
+                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900' }}>+{xpAwarded} XP</Text>
               </View>
             )}
           </Reanimated.View>
@@ -252,7 +252,7 @@ export default function DialogVerdictScreen({
               <Text
                 style={{
                   color: t.textSecond,
-                  fontSize: f.sub,
+                  fontSize: f.body,
                   fontStyle: 'italic',
                   flex: 1,
                   lineHeight: Math.round(f.sub * 1.45),
@@ -286,7 +286,7 @@ export default function DialogVerdictScreen({
                     pl: 'Cele sceny',
                   })}
                 </Text>
-                <Text style={{ color: metCount > 0 ? scene.hue : t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+                <Text style={{ color: metCount > 0 ? scene.hue : t.textMuted, fontSize: f.h3, fontWeight: '900' }}>
                   {metCount}/{objectives.length}
                 </Text>
               </View>
@@ -300,11 +300,11 @@ export default function DialogVerdictScreen({
                   >
                     <Ionicons
                       name={done ? 'checkmark-circle' : 'ellipse-outline'}
-                      size={19}
+                      size={22}
                       color={done ? scene.hue : t.textMuted}
                     />
                     <Text
-                      style={{ color: done ? t.textPrimary : t.textMuted, fontSize: f.sub, flex: 1 }}
+                      style={{ color: done ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '600', flex: 1 }}
                       numberOfLines={2}
                       maxFontSizeMultiplier={1.2}
                     >
@@ -342,9 +342,9 @@ export default function DialogVerdictScreen({
                   key={ti}
                   style={{
                     color: t.textSecond,
-                    fontSize: f.sub,
-                    lineHeight: Math.round(f.sub * 1.4),
-                    marginTop: ti === 0 ? 0 : 5,
+                    fontSize: f.body,
+                    lineHeight: Math.round(f.body * 1.42),
+                    marginTop: ti === 0 ? 0 : 6,
                   }}
                   maxFontSizeMultiplier={1.2}
                 >
@@ -385,7 +385,7 @@ export default function DialogVerdictScreen({
                 <View>
                   {!!review?.praise && (
                     <Text
-                      style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }}
+                      style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
                       maxFontSizeMultiplier={1.2}
                     >
                       {review.praise}
@@ -393,7 +393,7 @@ export default function DialogVerdictScreen({
                   )}
                   {(review?.corrections ?? []).length === 0 ? (
                     <Text
-                      style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', marginTop: 8 }}
+                      style={{ color: t.correct, fontSize: f.body, fontWeight: '700', marginTop: 8 }}
                       maxFontSizeMultiplier={1.2}
                     >
                       {triLang(lang, {
@@ -410,11 +410,11 @@ export default function DialogVerdictScreen({
                   ) : (
                     (review?.corrections ?? []).map((c, ci) => (
                       <View key={ci} style={{ marginTop: ci === 0 ? 2 : 12 }}>
-                        <Text style={{ color: t.textMuted, fontSize: f.sub }} maxFontSizeMultiplier={1.2}>
+                        <Text style={{ color: t.textMuted, fontSize: f.body }} maxFontSizeMultiplier={1.2}>
                           {c.original}
                         </Text>
                         <Text
-                          style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}
+                          style={{ color: t.correct, fontSize: f.body, fontWeight: '800', marginTop: 2 }}
                           maxFontSizeMultiplier={1.2}
                         >
                           → {c.corrected}
@@ -423,9 +423,9 @@ export default function DialogVerdictScreen({
                           <Text
                             style={{
                               color: t.textSecond,
-                              fontSize: f.caption,
+                              fontSize: f.sub,
                               marginTop: 3,
-                              lineHeight: Math.round(f.caption * 1.35),
+                              lineHeight: Math.round(f.sub * 1.4),
                             }}
                             maxFontSizeMultiplier={1.2}
                           >
@@ -439,7 +439,7 @@ export default function DialogVerdictScreen({
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 7, marginTop: 12 }}>
                       <Ionicons name="bulb-outline" size={14} color={t.accent} style={{ marginTop: 2 }} />
                       <Text
-                        style={{ color: t.textSecond, fontSize: f.sub, flex: 1, lineHeight: Math.round(f.sub * 1.4) }}
+                        style={{ color: t.textSecond, fontSize: f.body, flex: 1, lineHeight: Math.round(f.body * 1.42) }}
                         maxFontSizeMultiplier={1.2}
                       >
                         {review.tip}
@@ -516,7 +516,7 @@ export default function DialogVerdictScreen({
               ].map((line) => (
                 <View key={line} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 7 }}>
                   <Ionicons name="sparkles-outline" size={14} color={t.textMuted} />
-                  <Text style={{ color: t.textSecond, fontSize: f.sub, flex: 1 }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, flex: 1 }} maxFontSizeMultiplier={1.2}>
                     {line}
                   </Text>
                 </View>

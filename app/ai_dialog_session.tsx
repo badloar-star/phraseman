@@ -1296,7 +1296,7 @@ function AiDialogSession() {
                     tr: 'Karşıdakinin ruh hâli',
                     pl: 'Nastrój rozmówcy',
                   })}
-                  style={{ fontSize: f.bodyLg }}
+                  style={{ fontSize: f.h2 + 2 }}
                 >
                   {moodToFace(mood)}
                 </Text>
@@ -1326,15 +1326,15 @@ function AiDialogSession() {
                   tr: `Hedefler: ${objectivesMet.size}/${objectives.length}`,
                   pl: `Cele: ${objectivesMet.size} z ${objectives.length}`,
                 })}
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 4 }}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 5 }}
               >
                 {objectives.map((o) => (
                   <View
                     key={o.id}
                     style={{
-                      width: 7,
-                      height: 7,
-                      borderRadius: 4,
+                      width: 9,
+                      height: 9,
+                      borderRadius: 5,
                       backgroundColor: objectivesMet.has(o.id) ? scene.hue : t.textMuted + '4D',
                     }}
                   />
@@ -1359,15 +1359,15 @@ function AiDialogSession() {
                 pl: 'Zakończ dialog',
               })}
               style={{
-                minHeight: 36,
-                borderRadius: 18,
+                minHeight: 40,
+                borderRadius: 20,
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingHorizontal: 14,
+                paddingHorizontal: 16,
                 backgroundColor: t.bgCard,
               }}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700' }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Завершить',
                   uk: 'Завершити',
@@ -1655,8 +1655,8 @@ function AiDialogSession() {
                                 alignSelf: 'flex-start',
                               }}
                             >
-                              <Ionicons name="refresh" size={14} color={t.textMuted} />
-                              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}>
+                              <Ionicons name="refresh" size={16} color={t.textMuted} />
+                              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
                                 {triLang(lang, {
                                   ru: 'Сбой · Перевести снова',
                                   uk: 'Збій · Перекласти знову',
@@ -1709,10 +1709,10 @@ function AiDialogSession() {
                           >
                             <Ionicons
                               name={isFlipped ? 'swap-horizontal' : 'language-outline'}
-                              size={14}
+                              size={16}
                               color={t.accent}
                             />
-                            <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '800' }}>
+                            <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
                               {label}
                             </Text>
                           </TouchableOpacity>
@@ -1789,8 +1789,8 @@ function AiDialogSession() {
                       backgroundColor: t.accent,
                     }}
                   >
-                    <Ionicons name="refresh" size={16} color={t.correctText} />
-                    <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.label }}>
+                    <Ionicons name="refresh" size={17} color={t.correctText} />
+                    <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.sub }}>
                       {dialogRetryLabel(lang)}
                     </Text>
                   </TouchableOpacity>
@@ -1917,15 +1917,15 @@ function AiDialogSession() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     alignSelf: 'flex-start',
-                    gap: 6,
+                    gap: 8,
                     backgroundColor: hintOpen ? scene.hue + '26' : t.bgCard,
-                    borderRadius: 15,
-                    paddingHorizontal: 12,
-                    paddingVertical: 7,
+                    borderRadius: 18,
+                    paddingHorizontal: 15,
+                    minHeight: 42,
                   }}
                 >
-                  <Ionicons name="bulb-outline" size={14} color={scene.hue} />
-                  <Text style={{ color: hintOpen ? scene.hue : t.textSecond, fontSize: f.label, fontWeight: '700' }}>
+                  <Ionicons name="bulb-outline" size={17} color={scene.hue} />
+                  <Text style={{ color: hintOpen ? scene.hue : t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
                     {triLang(lang, {
                       ru: 'Что сделать дальше',
                       uk: 'Що зробити далі',
@@ -1937,15 +1937,15 @@ function AiDialogSession() {
                       pl: 'Co zrobić dalej',
                     })}
                   </Text>
-                  <Ionicons name={hintOpen ? 'chevron-down' : 'chevron-up'} size={13} color={t.textMuted} />
+                  <Ionicons name={hintOpen ? 'chevron-down' : 'chevron-up'} size={15} color={t.textMuted} />
                 </TouchableOpacity>
                 {hintOpen && (
                   <Text
                     style={{
                       color: t.textSecond,
-                      fontSize: f.sub,
-                      lineHeight: Math.round(f.sub * 1.4),
-                      marginTop: 7,
+                      fontSize: f.body,
+                      lineHeight: Math.round(f.body * 1.42),
+                      marginTop: 8,
                       paddingHorizontal: 6,
                     }}
                     maxFontSizeMultiplier={1.2}
@@ -2100,7 +2100,7 @@ function AiDialogSession() {
                   <Text
                     style={{
                       color: voiceInputStatus === 'listening' ? t.accent : t.textMuted,
-                      fontSize: f.caption,
+                      fontSize: f.sub,
                       fontWeight: '800',
                     }}
                     numberOfLines={1}
@@ -2117,7 +2117,7 @@ function AiDialogSession() {
                       }}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                      <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900' }}>
+                      <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
                         {triLang(lang, {
                           ru: 'Открыть настройки',
                           uk: 'Відкрити налаштування',
@@ -2136,7 +2136,7 @@ function AiDialogSession() {
                       onPress={() => void startVoiceInput()}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                      <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900' }}>
+                      <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
                         {triLang(lang, {
                           ru: 'Повторить',
                           uk: 'Повторити',

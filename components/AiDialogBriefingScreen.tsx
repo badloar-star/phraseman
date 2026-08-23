@@ -122,7 +122,7 @@ export default function AiDialogBriefingScreen({
                   paddingVertical: 3,
                 }}
               >
-                <Text style={{ color: scene.hue, fontSize: f.label, fontWeight: '700', letterSpacing: 1.2 }}>
+                <Text style={{ color: scene.hue, fontSize: f.sub, fontWeight: '800', letterSpacing: 1.2 }}>
                   {scenario.cefr}
                 </Text>
               </View>

@@ -8,7 +8,6 @@ import {
   Animated,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -26,6 +25,7 @@ import {
   getChallengeDialogScenarios,
   getScenariosByCategory,
   type DialogScenario,
+  type DialogScenarioCategory,
 } from '../app/ai_dialog_scenarios';
 import { onAppEvent } from '../app/events';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from '../app/ai_dialog_target_gate';
@@ -48,8 +48,22 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+// зачем (v2, 2026-08-23): владелец задал эталон — раздел «Статистика»: всё
+// крупное, никаких мелких плиток/подписей. Полки карточек 128px заменены
+// стопкой полноширинных карточек-миров с разворотом (паттерн стрик-карты).
 // Статус карточки сценария — кодирует и подачу, и доступность.
 type ScenarioStatus = 'done' | 'available' | 'locked';
+
+// Мир каталога: три группы курса + «Ситуации». Каталог — стопка крупных
+// карточек-миров (эталон владельца — раздел «Статистика»), разворот по тапу.
+type WorldKey = DialogScenarioCategory | 'challenge';
+
+const WORLD_ICONS: Record<WorldKey, string> = {
+  everyday: 'cafe',
+  travel: 'airplane',
+  social: 'people',
+  challenge: 'flame',
+};
 
 interface ScenarioVM {
   scenario: DialogScenario;
@@ -101,8 +115,13 @@ export default function DialogsTabContent({
     () => getLessonsTabInitialState(studyTarget)?.persistedUnlocked ?? [],
   );
   // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено», счётчиков
-  // X/N в группах и выбора первого незавершённого сценария в блоке «Продолжить».
+  // X/N в мирах и выбора первого незавершённого сценария в блоке «Продолжить».
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
+
+  // Раскрытый мир. До первого тапа пользователя следует за героем «На очереди»,
+  // после — только ручное управление (эталонный паттерн разворота карточки).
+  const [openWorld, setOpenWorld] = useState<WorldKey | null>(null);
+  const worldTouchedRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -368,6 +387,22 @@ export default function DialogsTabContent({
     return available.find((vm) => vm.status === 'available') ?? available[0];
   }, [courseGroupVMs, challengeVMs]);
 
+  // Мир героя — его карточка раскрыта по умолчанию, пока пользователь не начал
+  // управлять разворотами сам.
+  const heroWorld: WorldKey | null = heroVM
+    ? (heroVM.scene === CHALLENGE_SCENE_THEME ? 'challenge' : heroVM.scenario.category)
+    : null;
+  useEffect(() => {
+    if (worldTouchedRef.current || !heroWorld) return;
+    setOpenWorld(heroWorld);
+  }, [heroWorld]);
+
+  const toggleWorld = useCallback((key: WorldKey) => {
+    hapticTap();
+    worldTouchedRef.current = true;
+    setOpenWorld((prev) => (prev === key ? null : key));
+  }, []);
+
   const briefingLongPressHint = triLang(lang, {
     ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
     uk: 'Натисніть і утримуйте, щоб відкрити вступ до сценарію.',
@@ -379,8 +414,8 @@ export default function DialogsTabContent({
     pl: 'Przytrzymaj, aby otworzyć wprowadzenie do scenariusza.',
   });
 
-  // ── Рендер карточки-сцены по статусу ──────────────────────────────────────
-  const renderScenarioCard = (vm: ScenarioVM, index: number, layout: 'shelf' | 'row') => {
+  // ── Рендер строки сценария по статусу ─────────────────────────────────────
+  const renderScenarioCard = (vm: ScenarioVM, index: number) => {
     const { scenario, status, levelChip, lockedText, scene } = vm;
     const locked = status === 'locked';
     const title = dialogScenarioTitle(scenario, lang);
@@ -419,7 +454,6 @@ export default function DialogsTabContent({
         statusLabel={statusLabel}
         lockedText={lockedText}
         scene={scene}
-        layout={layout}
         onPress={vm.onPress}
         onLongPress={vm.onLongPress}
         colors={{
@@ -431,15 +465,15 @@ export default function DialogsTabContent({
           textMuted: t.textMuted,
           correctText: t.correctText,
         }}
-        fontSizes={{ body: f.body, label: f.label }}
+        fontSizes={{ body: f.body, bodyLg: f.bodyLg, sub: f.sub, label: f.label }}
         accessibilityLabel={`${title}. ${levelChip}. ${statusLabel}`}
         accessibilityHint={accessibilityHint}
       />
     );
   };
 
-  // Hero «Продолжить»: широкая кино-карточка сцены со «светом места» и
-  // глифом-постером. Одна явная следующая цель каталога.
+  // Hero «Продолжить»: крупная кино-карточка сцены — медальон, заголовок,
+  // большая кнопка запуска (планка эталона: всё крупное).
   const renderHero = (vm: ScenarioVM) => {
     const { scenario, status, scene } = vm;
     const kicker =
@@ -465,7 +499,7 @@ export default function DialogsTabContent({
           pl: 'Następne',
         });
     return (
-      <View style={{ paddingHorizontal: 20, marginTop: 18 }}>
+      <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
@@ -484,8 +518,7 @@ export default function DialogsTabContent({
           onLongPress={vm.onLongPress}
           delayLongPress={550}
           style={{
-            height: 148,
-            borderRadius: 24,
+            borderRadius: 22,
             backgroundColor: t.bgCard,
             overflow: 'hidden',
             shadowColor: scene.hueDeep,
@@ -504,89 +537,156 @@ export default function DialogsTabContent({
             style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
           />
           {/* Глиф-постер сцены: крупная полупрозрачная иконка как «свет витрины». */}
-          <View pointerEvents="none" style={{ position: 'absolute', right: -14, bottom: -18, opacity: 0.16 }}>
-            <Ionicons name={scenario.icon as never} size={128} color={scene.hue} />
+          <View pointerEvents="none" style={{ position: 'absolute', right: -12, bottom: -20, opacity: 0.15 }}>
+            <Ionicons name={scenario.icon as never} size={112} color={scene.hue} />
           </View>
-          <View style={{ flex: 1, padding: 16, paddingRight: 84, justifyContent: 'center' }}>
-            <Text
-              style={{ color: scene.hue, fontSize: f.label, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' }}
-              numberOfLines={1}
-              maxFontSizeMultiplier={1.2}
-            >
-              {kicker}
-            </Text>
-            <Text
-              style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 5 }}
-              numberOfLines={1}
-              maxFontSizeMultiplier={1.2}
-            >
-              {dialogScenarioTitle(scenario, lang)}
-            </Text>
-            <Text
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13, padding: 16 }}>
+            <View
               style={{
-                color: t.textSecond,
-                fontSize: f.sub,
-                marginTop: 4,
-                lineHeight: Math.round(f.sub * 1.35),
-                height: Math.round(f.sub * 1.35) * 2,
+                width: 56,
+                height: 56,
+                borderRadius: 19,
+                backgroundColor: scene.hue + '26',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-              numberOfLines={2}
-              maxFontSizeMultiplier={1.15}
             >
-              {dialogScenarioGoal(scenario, lang)}
-            </Text>
-          </View>
-          <View
-            style={{
-              position: 'absolute',
-              right: 16,
-              top: 16,
-              width: 46,
-              height: 46,
-              borderRadius: 23,
-              backgroundColor: t.accent,
-              alignItems: 'center',
-              justifyContent: 'center',
-              shadowColor: t.accent,
-              shadowOffset: { width: 0, height: 3 },
-              shadowOpacity: 0.35,
-              shadowRadius: 8,
-              ...noAndroidOutline,
-            }}
-          >
-            <Ionicons name="play" size={20} color={t.correctText} style={{ marginLeft: 2 }} />
+              <Ionicons name={scenario.icon as never} size={27} color={scene.hue} />
+            </View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text
+                style={{ color: scene.hue, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}
+                numberOfLines={1}
+                maxFontSizeMultiplier={1.2}
+              >
+                {kicker}
+              </Text>
+              <Text
+                style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '900', marginTop: 3 }}
+                numberOfLines={1}
+                maxFontSizeMultiplier={1.2}
+              >
+                {dialogScenarioTitle(scenario, lang)}
+              </Text>
+              <Text
+                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600', marginTop: 3 }}
+                numberOfLines={1}
+                maxFontSizeMultiplier={1.15}
+              >
+                {dialogScenarioGoal(scenario, lang)}
+              </Text>
+            </View>
+            <View
+              style={{
+                width: 52,
+                height: 52,
+                borderRadius: 26,
+                backgroundColor: t.accent,
+                alignItems: 'center',
+                justifyContent: 'center',
+                shadowColor: t.accent,
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.35,
+                shadowRadius: 8,
+                ...noAndroidOutline,
+              }}
+            >
+              <Ionicons name="play" size={23} color={t.correctText} style={{ marginLeft: 2 }} />
+            </View>
           </View>
         </TouchableOpacity>
       </View>
     );
   };
 
-  // Заголовок полки: световая точка сцены + название + счётчик пройдено/всего.
-  const renderShelfHeader = (label: string, scene: DialogSceneTheme, doneCount: number, total: number) => (
-    <View
-      style={{
-        paddingHorizontal: 20,
-        paddingTop: 26,
-        paddingBottom: 12,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 9,
-      }}
-    >
-      <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: scene.hue }} />
-      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', flex: 1 }} numberOfLines={1}>
-        {label}
-      </Text>
-      <Text style={{ color: doneCount > 0 ? scene.hue : t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
-        {doneCount}/{total}
-      </Text>
-    </View>
-  );
-
-  const challengeDoneCount = useMemo(
-    () => challengeVMs.filter((vm) => vm.status === 'done').length,
-    [challengeVMs],
-  );
+  // Карточка-мир (эталонный паттерн стрик-карты Статистики): медальон + имя +
+  // крупный счётчик + прогресс-бар; тап раскрывает список крупных строк.
+  const renderWorldCard = (
+    key: WorldKey,
+    label: string,
+    scene: DialogSceneTheme,
+    vms: ScenarioVM[],
+    doneCount: number,
+    accessory?: React.ReactNode,
+  ) => {
+    const expanded = openWorld === key;
+    const total = vms.length;
+    const ratio = total > 0 ? doneCount / total : 0;
+    return (
+      <View key={key} style={{ paddingHorizontal: 16, marginTop: 10 }}>
+        <View
+          style={{
+            borderRadius: 22,
+            backgroundColor: t.bgCard,
+            overflow: 'hidden',
+            padding: 14,
+            shadowColor: scene.hueDeep,
+            shadowOffset: { width: 0, height: 5 },
+            shadowOpacity: 0.24,
+            shadowRadius: 12,
+            ...noAndroidOutline,
+          }}
+        >
+          <LinearGradient
+            pointerEvents="none"
+            colors={[scene.hue + '2E', scene.hueDeep + '10', 'transparent']}
+            locations={[0, 0.55, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          />
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityState={{ expanded }}
+            accessibilityLabel={`${label}. ${doneCount}/${total}`}
+            activeOpacity={0.9}
+            onPress={() => toggleWorld(key)}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13 }}>
+              <View
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 19,
+                  backgroundColor: scene.hue + '26',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name={WORLD_ICONS[key] as never} size={26} color={scene.hue} />
+              </View>
+              <Text style={{ color: t.textPrimary, fontSize: f.h3 + 1, fontWeight: '800', flex: 1 }} numberOfLines={1}>
+                {label}
+              </Text>
+              {accessory}
+              <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                <Text style={{ color: scene.hue, fontSize: f.numLg, fontWeight: '900', lineHeight: f.numLg * 1.05 }}>
+                  {doneCount}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>/{total}</Text>
+              </View>
+              <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={18} color={t.textMuted} />
+            </View>
+            <View style={{ height: 10, borderRadius: 6, backgroundColor: t.bgSurface, marginTop: 12, overflow: 'hidden' }}>
+              <View
+                style={{
+                  height: 10,
+                  borderRadius: 6,
+                  backgroundColor: scene.hue,
+                  width: `${Math.max(ratio > 0 ? 4 : 2, Math.round(ratio * 100))}%`,
+                }}
+              />
+            </View>
+          </TouchableOpacity>
+          {expanded && (
+            <View style={{ marginTop: 12, gap: 0 }}>
+              {vms.map((vm, index) => renderScenarioCard(vm, index))}
+            </View>
+          )}
+        </View>
+      </View>
+    );
+  };
 
   return (
     <Animated.ScrollView
@@ -601,33 +701,33 @@ export default function DialogsTabContent({
         <View
           style={{
             marginTop: 14,
-            marginHorizontal: 20,
-            borderRadius: 20,
+            marginHorizontal: 16,
+            borderRadius: 22,
             backgroundColor: t.bgCard,
-            padding: 14,
+            padding: 16,
             flexDirection: 'row',
-            gap: 12,
+            gap: 13,
             alignItems: 'flex-start',
           }}
         >
           <View
             style={{
-              width: 38,
-              height: 38,
-              borderRadius: 13,
+              width: 48,
+              height: 48,
+              borderRadius: 16,
               backgroundColor: t.bgSurface,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Ionicons name="lock-closed-outline" size={18} color={t.textMuted} />
+            <Ionicons name="lock-closed-outline" size={22} color={t.textMuted} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={2}>
               {frenchGateCopy.title}
             </Text>
             <Text
-              style={{ color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35), marginTop: 3 }}
+              style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 4 }}
               numberOfLines={3}
             >
               {frenchGateCopy.body}
@@ -639,60 +739,32 @@ export default function DialogsTabContent({
       {/* Одна явная следующая цель каталога. */}
       {heroVM && renderHero(heroVM)}
 
-      {/* Полки курса: каждая группа — горизонтальная полка карточек-сцен. */}
-      {courseGroupVMs.map(({ group, scene, scenarios, doneCount }) => (
-        <View key={group.category}>
-          {renderShelfHeader(dialogScenarioGroupLabel(group, lang), scene, doneCount, scenarios.length)}
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            decelerationRate="fast"
-            snapToInterval={178}
-            snapToAlignment="start"
-            contentContainerStyle={{ paddingRight: 20 }}
-          >
-            {scenarios.map((vm, index) => renderScenarioCard(vm, index, 'shelf'))}
-          </ScrollView>
-        </View>
-      ))}
+      {/* Миры курса: три группы крупными карточками с разворотом. */}
+      {courseGroupVMs.map(({ group, scene, scenarios, doneCount }) =>
+        renderWorldCard(group.category, dialogScenarioGroupLabel(group, lang), scene, scenarios, doneCount),
+      )}
 
-      {/* Мир «Ситуации»: жёсткие сцены по уровню аккаунта — широкие баннеры. */}
-      {challengeVMs.length > 0 && (
-        <View>
+      {/* Мир «Ситуации»: жёсткие сцены по уровню аккаунта. */}
+      {challengeVMs.length > 0 &&
+        renderWorldCard(
+          'challenge',
+          triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
+          CHALLENGE_SCENE_THEME,
+          challengeVMs,
+          challengeVMs.filter((vm) => vm.status === 'done').length,
           <View
             style={{
-              paddingHorizontal: 20,
-              paddingTop: 30,
-              paddingBottom: 12,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 9,
+              backgroundColor: CHALLENGE_SCENE_THEME.hue + '22',
+              borderRadius: 10,
+              paddingHorizontal: 10,
+              paddingVertical: 4,
             }}
           >
-            <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: CHALLENGE_SCENE_THEME.hue }} />
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', flex: 1 }} numberOfLines={1}>
-              {triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' })}
+            <Text style={{ color: CHALLENGE_SCENE_THEME.hue, fontSize: f.sub, fontWeight: '800' }}>
+              {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}`, 'pt-BR': `nív. ${accountLevel}`, vi: `cấp ${accountLevel}`, id: `lvl. ${accountLevel}`, tr: `sv. ${accountLevel}`, pl: `poz. ${accountLevel}` })}
             </Text>
-            <View
-              style={{
-                backgroundColor: CHALLENGE_SCENE_THEME.hue + '22',
-                borderRadius: 9,
-                paddingHorizontal: 8,
-                paddingVertical: 3,
-              }}
-            >
-              <Text style={{ color: CHALLENGE_SCENE_THEME.hue, fontSize: f.caption, fontWeight: '700' }}>
-                {triLang(lang, { ru: `ур. ${accountLevel}`, uk: `рів. ${accountLevel}`, es: `niv. ${accountLevel}`, 'pt-BR': `nív. ${accountLevel}`, vi: `cấp ${accountLevel}`, id: `lvl. ${accountLevel}`, tr: `sv. ${accountLevel}`, pl: `poz. ${accountLevel}` })}
-              </Text>
-            </View>
-            <Text style={{ color: challengeDoneCount > 0 ? CHALLENGE_SCENE_THEME.hue : t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
-              {challengeDoneCount}/{challengeVMs.length}
-            </Text>
-          </View>
-
-          {challengeVMs.map((vm, index) => renderScenarioCard(vm, index, 'row'))}
-        </View>
-      )}
+          </View>,
+        )}
 
       {hasLockedCourseLevels && (
         <TouchableOpacity
@@ -715,8 +787,8 @@ export default function DialogsTabContent({
             router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level' } } as never);
           }}
           style={{
-            marginTop: 26,
-            marginHorizontal: 20,
+            marginTop: 10,
+            marginHorizontal: 16,
             borderRadius: 22,
             backgroundColor: t.bgCard,
             overflow: 'hidden',
@@ -735,18 +807,18 @@ export default function DialogsTabContent({
           />
           <View
             style={{
-              width: 44,
-              height: 44,
-              borderRadius: 15,
+              width: 56,
+              height: 56,
+              borderRadius: 19,
               backgroundColor: accent + '26',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Ionicons name="lock-open-outline" size={20} color={accent} />
+            <Ionicons name="lock-open-outline" size={25} color={accent} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }} numberOfLines={2}>
               {triLang(lang, {
                 ru: 'Все диалоги входят в Plus',
                 uk: 'Усі діалоги входять у Plus',
@@ -759,7 +831,7 @@ export default function DialogsTabContent({
               })}
             </Text>
             <Text
-              style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2, lineHeight: Math.round(f.caption * 1.35) }}
+              style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3, lineHeight: Math.round(f.sub * 1.4) }}
               numberOfLines={2}
               maxFontSizeMultiplier={1.15}
             >
@@ -775,7 +847,7 @@ export default function DialogsTabContent({
               })}
             </Text>
           </View>
-          <Ionicons name="chevron-forward" size={18} color={t.textSecond} />
+          <Ionicons name="chevron-forward" size={20} color={t.textSecond} />
         </TouchableOpacity>
       )}
     </Animated.ScrollView>

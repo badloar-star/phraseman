@@ -22,6 +22,7 @@ import {
 } from './gift_account_storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
+import { RUNE_GLYPH_PRIMARY, runeWord } from '../constants/runes';
 import {
   CUSTOM_AVATAR_GIFT_OWNED_KEY,
   CUSTOM_AVATAR_GIFT_REPLAY_KEY,
@@ -78,6 +79,15 @@ import {
   type AccountTransitionLockLease,
 } from './account_generation';
 import { withStorageLock } from './storage_mutex';
+import { commitShardCreditOperation } from './shards_system';
+import { emitAppEvent } from './events';
+import { prepareVipSnapshotWritesForAccount, readVipSnapshotForAccount } from './premium_vip_storage';
+import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
+import {
+  LEVEL_SPIN_REWARD_CATALOG,
+  type LevelSpinRewardCatalogEntry,
+  type LevelSpinRewardId,
+} from './level_spin_reward_catalog';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -95,6 +105,8 @@ export interface GiftDef {
   descUK:  string;
   descES?: string;
   weight:  number;
+  /** Spin-only presentation tier. Legacy roll rarity remains unchanged. */
+  spinTier?: LevelSpinRewardCatalogEntry['tier'];
   /** Choice reward: UI asks the user to pick one of these concrete rewards. */
   choices?: GiftDef[];
   /** Server-owned roll receipt. Persisted with pending inventory for replay. */
@@ -113,6 +125,53 @@ export interface GiftDef {
 
 type PlannedGiftCopy = Record<PlannedInterfaceLang, string>;
 
+const makeSpinPlannedCopy = (
+  ids: readonly string[],
+  copy: (id: string) => { title: PlannedGiftCopy; desc: PlannedGiftCopy },
+): Partial<Record<GiftId, { title: PlannedGiftCopy; desc: PlannedGiftCopy }>> => Object.fromEntries(
+  ids.map((id) => [id, copy(id)]),
+);
+
+const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy; desc: PlannedGiftCopy }>> = {
+  ...makeSpinPlannedCopy(
+    ['xp_500', 'xp_1000', 'xp_3000', 'xp_5000', 'xp_10000', 'xp_25000', 'xp_50000'],
+    (id) => {
+      const amount = Number(id.slice(3));
+      return {
+        title: { 'pt-BR': `+${amount} XP`, vi: `+${amount} XP`, id: `+${amount} XP`, tr: `+${amount} XP`, pl: `+${amount} XP` },
+        desc: { 'pt-BR': `+${amount} XP instantâneos`, vi: `Nhận ngay ${amount} XP`, id: `${amount} XP instan`, tr: `Anında ${amount} XP`, pl: `Natychmiast ${amount} XP` },
+      };
+    },
+  ),
+  ...makeSpinPlannedCopy(
+    ['pearls_5', 'pearls_10', 'pearls_20', 'pearls_50', 'pearls_100', 'pearls_250', 'pearls_500'],
+    (id) => {
+      const amount = Number(id.slice('pearls_'.length));
+      return {
+        title: { 'pt-BR': `+${amount} pérolas`, vi: `+${amount} ngọc trai`, id: `+${amount} mutiara`, tr: `+${amount} inci`, pl: `+${amount} pereł` },
+        desc: { 'pt-BR': `${amount} pérolas para o seu saldo`, vi: `${amount} ngọc trai vào số dư của bạn`, id: `${amount} mutiara ke saldomu`, tr: `Bakiyene ${amount} inci`, pl: `${amount} pereł do twojego salda` },
+      };
+    },
+  ),
+  ...makeSpinPlannedCopy(
+    ['stars_10', 'stars_20', 'stars_50', 'stars_100', 'stars_250', 'stars_500', 'stars_1000'],
+    (id) => {
+      const amount = Number(id.slice('stars_'.length));
+      return {
+        title: { 'pt-BR': `+${amount} estrelas`, vi: `+${amount} sao`, id: `+${amount} bintang`, tr: `+${amount} yıldız`, pl: `+${amount} gwiazdek` },
+        desc: { 'pt-BR': `${amount} estrelas para o saldo único`, vi: `${amount} sao vào số dư chung`, id: `${amount} bintang ke saldo terpadu`, tr: `Birleşik bakiyene ${amount} yıldız`, pl: `${amount} gwiazdek do wspólnego salda` },
+      };
+    },
+  ),
+  ...makeSpinPlannedCopy(['plus_days_3', 'plus_days_7'], (id) => {
+    const days = Number(id.slice('plus_days_'.length));
+    return {
+      title: { 'pt-BR': `Plus por ${days} dias`, vi: `Plus trong ${days} ngày`, id: `Plus selama ${days} hari`, tr: `${days} günlük Plus`, pl: `Plus na ${days} dni` },
+      desc: { 'pt-BR': `Acesso Plus temporário por ${days} dias`, vi: `Quyền truy cập Plus tạm thời trong ${days} ngày`, id: `Akses Plus sementara selama ${days} hari`, tr: `${days} gün geçici Plus erişimi`, pl: `Tymczasowy dostęp Plus przez ${days} dni` },
+    };
+  }),
+};
+
 const PACK_FOREVER_DESC: PlannedGiftCopy = {
   'pt-BR': 'O pacote completo foi adicionado aos seus cartões para sempre.',
   vi: 'Toàn bộ gói đã được thêm vào thẻ của bạn vĩnh viễn.',
@@ -122,6 +181,7 @@ const PACK_FOREVER_DESC: PlannedGiftCopy = {
 };
 
 const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy; desc: PlannedGiftCopy }>> = {
+  ...SPIN_REWARD_PLANNED_LOCALE,
   energy_full: {
     title: { 'pt-BR': 'Energia cheia', vi: 'Năng lượng đầy', id: 'Energi penuh', tr: 'Tam enerji', pl: 'Pełna energia' },
     desc: { 'pt-BR': 'Todos os espaços de energia foram restaurados agora', vi: 'Tất cả ô năng lượng được hồi phục ngay bây giờ', id: 'Semua slot energi dipulihkan sekarang', tr: 'Tüm enerji yuvaları şimdi yenilendi', pl: 'Wszystkie sloty energii zostały odnowione' },
@@ -406,6 +466,23 @@ export function giftRarityUiLabel(rarity: GiftRarity | string | undefined | null
   });
 }
 
+const SPIN_TIER_UI_LABEL: Record<LevelSpinRewardCatalogEntry['tier'], Record<Lang, string>> = {
+  ordinary: { ru: 'Обычный', uk: 'Звичайний', es: 'Común', 'pt-BR': 'Comum', vi: 'Thường', id: 'Biasa', tr: 'Sıradan', pl: 'Zwykły' },
+  rare: { ru: 'Редкий', uk: 'Рідкісний', es: 'Raro', 'pt-BR': 'Raro', vi: 'Hiếm', id: 'Langka', tr: 'Nadir', pl: 'Rzadki' },
+  ultra: { ru: 'Ультраредкий', uk: 'Ультрарідкісний', es: 'Ultrarraro', 'pt-BR': 'Ultrarraro', vi: 'Siêu hiếm', id: 'Ultra langka', tr: 'Ultra nadir', pl: 'Ultrarzadki' },
+  exceptional: { ru: 'Исключительный', uk: 'Винятковий', es: 'Excepcional', 'pt-BR': 'Excepcional', vi: 'Đặc biệt', id: 'Istimewa', tr: 'Olağanüstü', pl: 'Wyjątkowy' },
+};
+
+export function giftSpinTier(gift: GiftDef): LevelSpinRewardCatalogEntry['tier'] {
+  return gift.spinTier
+    ?? LEVEL_SPIN_REWARD_CATALOG.find((entry) => entry.id === gift.id)?.tier
+    ?? (gift.rarity === 'epic' ? 'ultra' : gift.rarity === 'rare' ? 'rare' : 'ordinary');
+}
+
+export function giftSpinTierUiLabel(gift: GiftDef, lang: Lang): string {
+  return SPIN_TIER_UI_LABEL[giftSpinTier(gift)][lang];
+}
+
 const GIFT_F2P: GiftDef[] = [
   {
     id: 'energy_full', rarity: 'common', icon: '⚡', weight: 9,
@@ -654,6 +731,70 @@ const GIFT_PREMIUM: GiftDef[] = [
     descUK: 'Випадковий платний набір — повний перегляд 48 год (таймер у магазині)',
     descES: 'Un pack de pago aleatorio — acceso completo 48 h (cuenta atrás en la tienda)',
   },
+];
+
+const spinRewardRarity = (entry: LevelSpinRewardCatalogEntry): GiftRarity => (
+  entry.tier === 'ordinary' ? 'common' : entry.tier === 'rare' ? 'rare' : 'epic'
+);
+
+const spinRewardEntry = (id: LevelSpinRewardId): LevelSpinRewardCatalogEntry => {
+  const entry = LEVEL_SPIN_REWARD_CATALOG.find((candidate) => candidate.id === id);
+  if (!entry) throw new Error(`level_spin_reward_definition_orphan:${id}`);
+  return entry;
+};
+
+const spinXpGift = (amount: 250 | 500 | 1_000 | 3_000 | 5_000 | 10_000 | 25_000 | 50_000): GiftDef => {
+  const entry = spinRewardEntry(`xp_${amount}`);
+  return {
+    id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '✨', weight: entry.weight,
+    titleRU: `+${amount} XP`, titleUK: `+${amount} XP`, titleES: `+${amount} XP`,
+    descRU: `Мгновенные ${amount} опыта`, descUK: `Миттєвих ${amount} досвіду`,
+    descES: `${amount} XP al instante`,
+  };
+};
+
+const spinPearlGift = (amount: 5 | 10 | 20 | 50 | 100 | 250 | 500): GiftDef => {
+  const entry = spinRewardEntry(`pearls_${amount}`);
+  return {
+    id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '🫧', weight: entry.weight,
+    titleRU: `+${amount} жемчужин`, titleUK: `+${amount} перлин`, titleES: `+${amount} perlas`,
+    descRU: `${amount} жемчужин в твой баланс`, descUK: `${amount} перлин на твій баланс`,
+    descES: `${amount} perlas para tu saldo`,
+  };
+};
+
+const spinStarGift = (amount: 10 | 20 | 50 | 100 | 250 | 500 | 1_000): GiftDef => {
+  const entry = spinRewardEntry(`stars_${amount}`);
+  return {
+    // зачем (владелец, 22.08): валюта переименована в руны — иконка стала
+    // руническим глифом, эмодзи-звезда ушла вместе со словом.
+    id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: RUNE_GLYPH_PRIMARY, weight: entry.weight,
+    titleRU: `+${amount} ${runeWord('ru', amount)}`, titleUK: `+${amount} ${runeWord('uk', amount)}`, titleES: `+${amount} ${runeWord('es', amount)}`,
+    descRU: `${amount} ${runeWord('ru', amount)} в единый баланс`, descUK: `${amount} ${runeWord('uk', amount)} у єдиний баланс`,
+    descES: `${amount} ${runeWord('es', amount)} para el saldo único`,
+  };
+};
+
+const spinPlusGift = (days: 3 | 7): GiftDef => {
+  const entry = spinRewardEntry(`plus_days_${days}`);
+  return {
+    id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '💎', weight: entry.weight,
+    titleRU: `Plus на ${days} ${days === 3 ? 'дня' : 'дней'}`,
+    titleUK: `Plus на ${days} ${days === 3 ? 'дні' : 'днів'}`,
+    titleES: `Plus durante ${days} días`,
+    descRU: `Временный доступ Plus на ${days} ${days === 3 ? 'дня' : 'дней'}`,
+    descUK: `Тимчасовий доступ Plus на ${days} ${days === 3 ? 'дні' : 'днів'}`,
+    descES: `Acceso Plus temporal durante ${days} días`,
+  };
+};
+
+/** Definitions used only by local Spin v2. They are not another level-gift roll pool. */
+const SPIN_REWARD_DEFS: GiftDef[] = [
+  ...([500, 1_000, 3_000, 5_000, 10_000, 25_000, 50_000] as const).map(spinXpGift),
+  ...([5, 10, 20, 50, 100, 250, 500] as const).map(spinPearlGift),
+  ...([10, 20, 50, 100, 250, 500, 1_000] as const).map(spinStarGift),
+  spinPlusGift(3),
+  spinPlusGift(7),
 ];
 
 /**
@@ -1450,6 +1591,12 @@ type LevelGiftEffectReceipt = {
   };
   aura?: GiftCosmeticUnlock | null;
   customAvatar?: GiftCosmeticUnlock | null;
+  plus?: {
+    days: 3 | 7;
+    fromMs: number;
+    untilMs: number;
+    lifetime?: boolean;
+  };
 };
 
 const levelGiftEffectOccurrenceKey = (
@@ -1803,6 +1950,79 @@ const applyChainShieldForOccurrence = async (
   return true;
 };
 
+const applySpinPlusForOccurrence = async (
+  id: 'plus_days_3' | 'plus_days_7',
+  days: 3 | 7,
+  opts?: ApplyGiftOptions,
+): Promise<boolean> => {
+  const accountToken = opts?.accountToken ?? captureAccountGeneration();
+  const stableId = accountToken.stableId;
+  if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) {
+    throw new Error('level_spin_plus_identity_not_ready');
+  }
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const nowMs = Date.now();
+    const existing = await readVipSnapshotForAccount(stableId);
+    if (!isCurrentAccountGeneration(accountToken, stableId)) {
+      throw new Error('level_spin_plus_identity_changed');
+    }
+    const previousUntil = Math.max(0, Number(existing?.vip_until) || 0);
+    const previousPlan = String(existing?.vip_plan ?? '').trim().toLowerCase();
+    const lifetime = existing?.vip_active === 'true'
+      && (previousUntil <= 0 || previousPlan === 'lifetime' || previousPlan === 'pro_lifetime');
+    return {
+      giftId: id,
+      status: 'prepared',
+      plus: {
+        days,
+        fromMs: nowMs,
+        untilMs: lifetime ? 0 : Math.max(nowMs, previousUntil) + days * 24 * 60 * 60 * 1_000,
+        ...(lifetime ? { lifetime: true } : {}),
+      },
+    };
+  });
+  if (!staged) return false;
+  const planned = staged.receipt.plus;
+  if (!planned || planned.days !== days || (planned.lifetime !== true && planned.untilMs <= planned.fromMs)) {
+    throw new Error('level_spin_plus_receipt_invalid');
+  }
+  if (staged.receipt.status !== 'prepared') return true;
+  const existing = await readVipSnapshotForAccount(stableId);
+  if (!isCurrentAccountGeneration(accountToken, stableId)) {
+    throw new Error('level_spin_plus_identity_changed');
+  }
+  const currentUntil = Math.max(0, Number(existing?.vip_until) || 0);
+  const currentPlan = String(existing?.vip_plan ?? '').trim().toLowerCase();
+  const currentLifetime = existing?.vip_active === 'true'
+    && (currentUntil <= 0 || currentPlan === 'lifetime' || currentPlan === 'pro_lifetime');
+  if (currentLifetime) {
+    if (existing && currentUntil > 0) {
+      await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, {
+        ...existing,
+        vip_until: '0',
+      }));
+    }
+  } else if (planned.lifetime !== true) {
+    await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, {
+      vip_active: 'true',
+      vip_plan: 'level_spin',
+      vip_from: String(planned.fromMs),
+      vip_until: String(Math.max(planned.untilMs, currentUntil)),
+      vip_admin_override: 'true',
+      vip_admin_grant_at: String(planned.fromMs),
+    }));
+  } else if (existing && Number(existing.vip_until) > 0) {
+    await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, {
+      ...existing,
+      vip_until: '0',
+    }));
+  }
+  await markLevelGiftEffectApplied(staged, opts);
+  emitAppEvent('vip_activated');
+  emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+  return true;
+};
+
 const applyAuraGiftForOccurrence = async (
   id: GiftId,
   opts?: ApplyGiftOptions,
@@ -2112,6 +2332,53 @@ const applyGiftUnlocked = async (
       const occurrence = opts?.occurrenceId ?? `${today}:${id}`;
       await grantGiftXpBankForOccurrence(amount, owner, occurrence, grantInstantGiftXp);
     };
+    const grantSpinPearls = async (amount: number): Promise<void> => {
+      const accountToken = opts?.accountToken;
+      const stableId = accountToken?.stableId?.trim();
+      const occurrenceId = opts?.occurrenceId?.trim();
+      if (!accountToken || !stableId || !occurrenceId || !isCurrentAccountGeneration(accountToken, stableId)) {
+        throw new Error('level_spin_pearls_identity_not_ready');
+      }
+      const eventHash = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        `level-spin-pearl:${stableId}:${occurrenceId}:${id}`,
+      );
+      const result = await commitShardCreditOperation({
+        operationId: `level-spin-pearl:${eventHash.slice(0, 40)}`,
+        amount,
+        reason: 'level_spin_pearls',
+        grant: {
+          kind: 'level_spin_reward',
+          subjectId: eventHash.slice(0, 40),
+          payload: { giftId: id, amount, occurrenceId },
+        },
+        accountToken,
+        accountTransitionLockLease: opts?.accountTransitionLockLease,
+      });
+      if (result.status !== 'applied' && result.status !== 'already-applied') {
+        throw new Error('level_spin_pearls_commit_failed');
+      }
+    };
+    const grantSpinStars = async (): Promise<void> => {
+      const accountToken = opts?.accountToken;
+      const stableId = accountToken?.stableId?.trim();
+      const occurrenceId = opts?.occurrenceId?.trim() ?? '';
+      const occurrenceMatch = /^level-spin:([A-Za-z0-9_-]{16,96}):(base|premium)$/.exec(occurrenceId);
+      const requestId = gift.spinRewardReceipt?.requestId ?? occurrenceMatch?.[1] ?? '';
+      const lane = gift.spinRewardReceipt?.lane ?? occurrenceMatch?.[2] as 'base' | 'premium' | undefined;
+      if (!accountToken || !stableId || !requestId || !lane || !isCurrentAccountGeneration(accountToken, stableId)) {
+        throw new Error('level_spin_star_identity_not_ready');
+      }
+      await enqueueLevelSpinStarGrant({
+        token: accountToken,
+        requestId,
+        lane,
+        ...(opts?.spinDeliveryToken ? { deliveryToken: opts.spinDeliveryToken } : {}),
+        giftId: id,
+      }, {
+        accountTransitionLockLease: opts?.accountTransitionLockLease,
+      });
+    };
 
     switch (id) {
       case 'energy_full': {
@@ -2133,14 +2400,41 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'xp_50':
-        await grantInstantGiftXp(50);
-        break;
       case 'xp_100':
-        await grantInstantGiftXp(100);
-        break;
       case 'xp_250':
-        await grantInstantGiftXp(250);
+      case 'xp_500':
+      case 'xp_1000':
+      case 'xp_3000':
+      case 'xp_5000':
+      case 'xp_10000':
+      case 'xp_25000':
+      case 'xp_50000':
+        await grantInstantGiftXp(Number(id.slice(3)));
         break;
+      case 'pearls_5':
+      case 'pearls_10':
+      case 'pearls_20':
+      case 'pearls_50':
+      case 'pearls_100':
+      case 'pearls_250':
+      case 'pearls_500':
+        await grantSpinPearls(Number(id.slice('pearls_'.length)));
+        break;
+      case 'stars_10':
+      case 'stars_20':
+      case 'stars_50':
+      case 'stars_100':
+      case 'stars_250':
+      case 'stars_500':
+      case 'stars_1000':
+        await grantSpinStars();
+        break;
+      case 'plus_days_3':
+      case 'plus_days_7': {
+        const days = id === 'plus_days_3' ? 3 : 7;
+        if (!await applySpinPlusForOccurrence(id, days, opts)) return { success: false };
+        break;
+      }
       case 'hint_1':
       case 'hint_3': {
         const count = id === 'hint_1' ? 1 : 3;
@@ -2331,7 +2625,7 @@ const applyGiftUnlocked = async (
 };
 
 function levelGiftDefinitionById(giftId: string): GiftDef | null {
-  for (const gift of [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS]) {
+  for (const gift of [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS, ...SPIN_REWARD_DEFS]) {
     if (gift.id === giftId) return cloneGiftDef(gift);
     const choice = gift.choices?.find((candidate) => candidate.id === giftId);
     if (choice) return cloneGiftDef(choice);
@@ -2353,25 +2647,28 @@ async function applySpinRewardGift(
     return { success: false };
   }
   const stableId: string = accountToken.stableId;
-  return withAccountTransitionLock(async () => {
-  if (!isCurrentAccountGeneration(accountToken)) return { success: false };
   const occurrenceId = `level-spin:${authority.requestId}:${authority.lane}`;
   const occurrenceKey = `${safeLevelGiftEventPart(stableId, 80)}:${safeLevelGiftEventPart(occurrenceId, 120)}`;
   const reservationId = occurrenceId;
   try {
-    const journal = await readLevelGiftApplyJournal();
-    const prior = journal[occurrenceKey];
-    const entry: LevelGiftApplyJournalEntry = prior?.reservationId === reservationId
-      ? prior
-      : {
-        reservationId,
-        giftId: gift.id,
-        claimToken: Crypto.randomUUID(),
-        status: 'prepared',
-      };
-    journal[occurrenceKey] = entry;
-    if (!await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey)) return { success: false };
-    if (!isCurrentAccountGeneration(accountToken)) return { success: false };
+    const entry = await withAccountTransitionLock(async (): Promise<LevelGiftApplyJournalEntry | null> => {
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+      const journal = await readLevelGiftApplyJournal();
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+      const prior = journal[occurrenceKey];
+      const prepared: LevelGiftApplyJournalEntry = prior?.reservationId === reservationId
+        ? prior
+        : {
+          reservationId,
+          giftId: gift.id,
+          claimToken: Crypto.randomUUID(),
+          status: 'prepared',
+        };
+      journal[occurrenceKey] = prepared;
+      if (!await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey)) return null;
+      return isCurrentAccountGeneration(accountToken, stableId) ? prepared : null;
+    });
+    if (!entry) return { success: false };
     const actionBase = {
       stableId,
       requestId: authority.requestId,
@@ -2380,8 +2677,12 @@ async function applySpinRewardGift(
       selectedGiftId: authority.giftId,
     } as const;
     const begun = await callLevelSpinDeliveryAction({ ...actionBase, action: 'begin_delivery' });
+    if (!isCurrentAccountGeneration(accountToken, stableId)) return { success: false };
     if (begun.status === 'already_claimed') {
-      await removeLevelGiftApplyJournalEntry(occurrenceKey).catch(() => {});
+      await withAccountTransitionLock(async () => {
+        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+        await removeLevelGiftApplyJournalEntry(occurrenceKey);
+      }).catch(() => {});
       return { success: false, alreadyClaimed: true };
     }
     if (begun.status !== 'acquired' || !begun.giftId) return { success: false };
@@ -2397,34 +2698,58 @@ async function applySpinRewardGift(
       // current-entitlement canonical gift used only for this delivery's effect.
       spinRewardReceipt: { ...authority, giftId: authority.giftId },
     };
-    let result: ApplyGiftResult = { success: true };
-    if (entry.status !== 'effect_applied') {
-      result = await applyGiftUnlocked(effectiveGift, userName, currentEnergy, maxEnergy, setEnergy, {
-        ...opts,
-        occurrenceId,
-        preserveGiftId: true,
-        spinDeliveryToken: entry.claimToken,
-      });
-      if (!result.success) {
-        await callLevelSpinDeliveryAction({ ...actionBase, action: 'release_delivery' }).catch(() => null);
-        return result;
-      }
-      entry.status = 'effect_applied';
-      journal[occurrenceKey] = entry;
-      const persisted = await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey).catch(() => false);
-      if (!persisted) return { success: false };
-      await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
-    } else {
-      await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+    const result = await withXpAccountOperationQueue(accountToken, (xpLease) => (
+      withAccountTransitionLock(async (lease): Promise<ApplyGiftResult> => {
+        if (!isCurrentAccountGeneration(accountToken, stableId)) return { success: false };
+        const journal = await readLevelGiftApplyJournal();
+        const activeEntry = journal[occurrenceKey];
+        if (!isCurrentAccountGeneration(accountToken, stableId)
+          || activeEntry?.reservationId !== reservationId
+          || activeEntry.claimToken !== entry.claimToken
+          || activeEntry.giftId !== gift.id) {
+          return { success: false };
+        }
+        let applied: ApplyGiftResult = { success: true };
+        if (activeEntry.status !== 'effect_applied') {
+          applied = await applyGiftUnlocked(effectiveGift, userName, currentEnergy, maxEnergy, setEnergy, {
+            ...opts,
+            occurrenceId,
+            preserveGiftId: true,
+            spinDeliveryToken: activeEntry.claimToken,
+            accountTransitionLockLease: lease,
+            xpOperationLease: xpLease,
+          });
+          if (!applied.success || !isCurrentAccountGeneration(accountToken, stableId)) {
+            return applied.success ? { success: false } : applied;
+          }
+          activeEntry.status = 'effect_applied';
+          journal[occurrenceKey] = activeEntry;
+          const persisted = await saveVerifiedLevelGiftApplyJournal(journal, occurrenceKey).catch(() => false);
+          if (!persisted || !isCurrentAccountGeneration(accountToken, stableId)) return { success: false };
+        }
+        await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+        return applied;
+      })
+    ), { success: false });
+    if (!result.success || !isCurrentAccountGeneration(accountToken, stableId)) {
+      // Once local application has started, failure is ambiguous: an inner
+      // exactly-once receipt may already be applied_unconfirmed even if the
+      // outer journal write crashed. Keep the same delivery token pinned so a
+      // retry completes this receipt; releasing here could let another device
+      // acquire and materialize the same reward again.
+      return result.success ? { success: false } : result;
     }
     const completed = await callLevelSpinDeliveryAction({ ...actionBase, action: 'complete_delivery' });
+    if (!isCurrentAccountGeneration(accountToken, stableId)) return { success: false };
     if (completed.status !== 'claimed' && completed.status !== 'already_claimed') return { success: false };
-    await removeLevelGiftApplyJournalEntry(occurrenceKey).catch(() => {});
+    await withAccountTransitionLock(async () => {
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+      await removeLevelGiftApplyJournalEntry(occurrenceKey);
+    }).catch(() => {});
     return result;
   } catch {
     return { success: false };
   }
-  });
 }
 
 export const applyGift = async (
@@ -2594,17 +2919,18 @@ export function isEnergyBonusGiftId(gid: string | undefined): boolean {
   return gid === 'energy_plus1' || gid === 'energy_plus2' || gid === 'energy_plus3';
 }
 
-/**
- * Сколько осколков выдаёт подарок. Всегда 0: жемчужные подарки переделаны в мгновенный XP
- * (решение владельца 2026-08-02 — «подарок обещает жемчуг, а платит 0» было обманом).
- * Функция сохранена, чтобы не менять UI-ветки (инвентарь рисует жемчужный арт только при >0).
- */
+/** Amount for the real spin-only pearl rewards. Historical `shards_*` remain XP. */
 export function giftShardAmount(gid: string | undefined): number {
-  void gid;
-  return 0;
+  const match = /^pearls_(5|10|20|50|100|250|500)$/.exec(String(gid ?? ''));
+  return match ? Number(match[1]) : 0;
 }
 
-export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS];
+export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [
+  ...GIFT_F2P,
+  ...GIFT_PREMIUM,
+  ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS,
+  ...SPIN_REWARD_DEFS,
+];
 
 export function isKnownLevelGiftId(giftId: string): boolean {
   return ALL_LEVEL_GIFT_DEFS.some((gift) =>

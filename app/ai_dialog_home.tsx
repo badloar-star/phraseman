@@ -9,7 +9,6 @@ import DialogsTabContent from '../components/DialogsTabContent';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { getPublicDialogScenarios } from './ai_dialog_scenarios';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 
@@ -17,11 +16,16 @@ export default function AiDialogHome() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const activeCount = getPublicDialogScenarios().length;
 
-  // зачем: фулл-редизайн Диалогов (2026-08-23) — шапка «кино-афиши»: крупный
-  // заголовок ведёт, счётчик сцен живёт тихой мета-строкой рядом, кнопка
-  // «назад» — тональная, без обводок.
+  const backLabel = triLang(lang, {
+    ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+    vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+  });
+
+  // зачем (аудит 2026-08-23): подпись-расшифровка под заголовком нарушала
+  // жёсткий запрет владельца («название самодостаточно, не добавляй подпись»)
+  // — счётчик сценариев убран из шапки целиком; он и так виден на каждой
+  // карточке-мире каталога («3/7» и т.п.), дублировать под заголовком незачем.
   const header = (
     <View>
       <View
@@ -35,7 +39,7 @@ export default function AiDialogHome() {
       >
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel="Back"
+        accessibilityLabel={backLabel}
         onPress={() => {
           hapticTap();
           safeRouterBack(router, '/(tabs)/home' as any);
@@ -54,7 +58,7 @@ export default function AiDialogHome() {
       </TouchableOpacity>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text
-          style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}
+          style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}
         >
           {triLang(lang, {
             ru: 'Диалоги',
@@ -65,18 +69,6 @@ export default function AiDialogHome() {
             id: 'Dialog',
             tr: 'Diyaloglar',
             pl: 'Dialogi',
-          })}
-        </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}>
-          {triLang(lang, {
-            ru: `${activeCount} сценариев с Компасом`,
-            uk: `${activeCount} сценаріїв із Компасом`,
-            es: `${activeCount} escenarios con Compass`,
-            'pt-BR': `${activeCount} cenários com Compass`,
-            vi: `${activeCount} kịch bản với Compass`,
-            id: `${activeCount} skenario dengan Compass`,
-            tr: `Compass ile ${activeCount} senaryo`,
-            pl: `${activeCount} scenariuszy z Compass`,
           })}
         </Text>
       </View>

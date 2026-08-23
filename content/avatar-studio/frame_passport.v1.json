@@ -8,6 +8,7 @@
     "headHeightFrac": 0.42
   },
   "safeMargins": { "top": 0.04, "sides": 0.05, "bottom": 0.0 },
+  "bustCrop": { "sideMarginAppliesAboveFrac": 0.66 },
   "style": "semi-realistic stylized 3D character, Pixar-like proportions, soft studio light from upper-left, matte skin, clean single-color background, no outlines, no text, no watermark",
   "pose": "three-quarter-body bust, facing camera, shoulders visible, arms down, gentle closed-mouth smile, eyes looking straight at camera",
   "slots": {

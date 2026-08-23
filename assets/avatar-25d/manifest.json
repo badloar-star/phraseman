@@ -1,5 +1,22 @@
 {
   "version": 1,
   "passport": "frame_passport.v1.json",
-  "items": []
+  "items": [
+    {
+      "id": "base_m",
+      "slot": "base",
+      "file": "catalog/base/base_m.png",
+      "sha256": "a6af30db324033897718ccb7dddf2079c4ff4c00105f5ed089c4f6f6c424cec9",
+      "base": null,
+      "acceptedAt": "2026-08-23T08:15:10.448Z"
+    },
+    {
+      "id": "base_f",
+      "slot": "base",
+      "file": "catalog/base/base_f.png",
+      "sha256": "4e549f0223d27c732ef37cc964b4fba994b104be6609e009e4bf7208c0f4d3fa",
+      "base": null,
+      "acceptedAt": "2026-08-23T08:15:10.783Z"
+    }
+  ]
 }

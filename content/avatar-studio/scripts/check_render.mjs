@@ -80,7 +80,9 @@ else if (candidate.meta.width !== passport.canvas.width || candidate.meta.height
 
 if (!errors.length) {
   const block = Math.round(AW * 0.08);
-  for (const [cornerX, cornerY, label] of [[0, 0, 'верх-лево'], [AW - block, 0, 'верх-право'], [0, AH - block, 'низ-лево'], [AW - block, AH - block, 'низ-право']]) {
+  // зачем: бюст-кадрирование утверждённого референса — торс и рукава уходят за
+  // нижние края, поэтому фоновыми обязаны быть только ВЕРХНИЕ углы.
+  for (const [cornerX, cornerY, label] of [[0, 0, 'верх-лево'], [AW - block, 0, 'верх-право']]) {
     let sum = 0;
     for (let y = cornerY; y < cornerY + block; y += 1) for (let x = cornerX; x < cornerX + block; x += 1)
       sum += distance(candidate.data, (y * AW + x) * 3, bg.r, bg.g, bg.b);
@@ -90,8 +92,16 @@ if (!errors.length) {
   if (!box.count) errors.push('empty_image: персонаж не найден');
   else {
     if (box.y0 < passport.safeMargins.top * AH) errors.push('breaks_top_margin: персонаж упирается в верхний край (нужно 4% поля)');
-    if (box.x0 < passport.safeMargins.sides * AW) errors.push('breaks_left_margin: вылезает за левое поле 5%');
-    if (box.x1 > AW - passport.safeMargins.sides * AW) errors.push('breaks_right_margin: вылезает за правое поле 5%');
+    // Боковые поля — только для верхней зоны (голова/плечи): ниже bustCrop-линии
+    // рукава и торс по замыслу могут выходить за кадр, как в референсе.
+    const sideZone = Math.round((passport.bustCrop?.sideMarginAppliesAboveFrac ?? 1) * AH);
+    let upperX0 = AW, upperX1 = -1;
+    for (let y = 0; y < sideZone; y += 1) for (let x = 0; x < AW; x += 1)
+      if (distance(candidate.data, (y * AW + x) * 3, bg.r, bg.g, bg.b) > 12) { if (x < upperX0) upperX0 = x; if (x > upperX1) upperX1 = x; }
+    if (upperX1 >= 0) {
+      if (upperX0 < passport.safeMargins.sides * AW) errors.push('breaks_left_margin: голова/плечи вылезают за левое поле 5%');
+      if (upperX1 > AW - passport.safeMargins.sides * AW) errors.push('breaks_right_margin: голова/плечи вылезают за правое поле 5%');
+    }
     const centerX = (box.x0 + box.x1) / 2 / AW;
     if (Math.abs(centerX - 0.5) > 0.06) errors.push(`character_off_center: центр силуэта на ${(centerX * 100).toFixed(0)}% ширины вместо 50%`);
     if ((box.y1 - box.y0) / AH < 0.5) errors.push('character_too_small: силуэт меньше половины высоты кадра');

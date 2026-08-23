@@ -71,6 +71,17 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# One cloud function — exactly one codebase (see scripts/guard_functions_codebase_duplicates.mjs).
+# 2026-08-23 the whole deploy died with "More than one codebase claims following functions":
+# the content factory had been moved into the content codebase that morning (bundle 380->140 MB),
+# and a later session re-exported the same function from default for an admin button, unaware.
+# The error only surfaces at deploy time — for the owner, at the end of a long build — so it must
+# be caught at commit time instead. It blocks EVERY session's deploy, not just the author's.
+node scripts/guard_functions_codebase_duplicates.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Owner lock: league demotion must keep working (see scripts/guard_league_demotion.mjs).
 # 2026-08-17 demotion was dead for EVERYONE: rooms have 3-5 real players and a tail of
 # exactly-zero scores, so competition ranking made a zero-point player look 4th (top

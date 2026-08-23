@@ -8,7 +8,23 @@ import type { SessionSource } from './session_shard_from_source_v1';
 export type Lesson1DistractorTrapType = NonNullable<EpisodeSourceDistractor['trapType']>;
 
 export type Lesson1DistractorLocale = keyof NonNullable<EpisodeSourcePhrase['localizedDetails']>;
-type Locale = Lesson1DistractorLocale;
+
+/**
+ * Локали, для которых этот каталог пишет объяснения дистракторов.
+ *
+ * зачем (2026-08-23): общий список локалей источника получил девятую запись
+ * 'en' — её добавили для ИСПАНСКОГО курса, где английский служит языком
+ * объяснения. Для урока 1 английского курса пара «объясняем английский
+ * по-английски» вырожденная: `LOCALES` ниже её намеренно не содержит, и в
+ * словари объяснений 'en' физически не приходит (единственный проход — по
+ * LOCALES, см. генерацию в конце файла).
+ *
+ * Поэтому тип словарей сужен до реально обслуживаемых локалей, а не расширен
+ * пустыми английскими строками: пустышка молча доехала бы до ученика вместо
+ * честного UNTRANSLATED_MARKER. Появится английский курс с объяснениями на
+ * английском — добавляем 'en' И в LOCALES, И в каждый словарь разом.
+ */
+type Locale = Exclude<Lesson1DistractorLocale, 'en'>;
 
 const LOCALES: readonly Locale[] = [
   'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl',
@@ -237,17 +253,6 @@ const SEMANTIC_FAMILY_FOCUS: Readonly<
     quality: 'widoczną cechę', readiness: 'gotowość lub obecny stan',
     timing: 'porę dnia lub czas', weather: 'stan pogody', number_or_plural: 'dokładną liczbę lub ilość',
   },
-  // зачем: локаль 'en' добавлена в LearningV2InterfaceLocale (уже в основной
-  // ветке), а этот каталог остался на восьми языках и двое суток ронял сборку
-  // functions — 209 ошибок, блокировавших любой деплой. Английский интерфейс
-  // при изучении английского — вырожденная пара, но тип требует полного
-  // Record, и пустые строки здесь были бы хуже: они попали бы в подсказку.
-  en: {
-    emotion: "a person's emotion", family: 'a family role', object: 'a specific object',
-    physical: 'a bodily sensation', place: 'a specific place', profession: "a person's profession",
-    quality: 'a visible trait', readiness: 'readiness or current state',
-    timing: 'a part of the day or time', weather: 'the weather', number_or_plural: 'an exact number or amount',
-  },
 });
 
 function semanticNeighborReason(
@@ -266,7 +271,6 @@ function semanticNeighborReason(
     id: `“${wrong}” masih berada dalam bidang makna yang berdekatan, tetapi yang diuji di sini ialah ${focus}. Dalam “${phrase}”, makna itu dibawa oleh “${correct}”; memilih “${wrong}” akan menggambarkan situasi lain.`,
     tr: `«${wrong}» yakın bir anlam alanındadır, fakat burada ${focus} anlatan sözcük aranıyor. «${phrase}» içinde bu anlamı «${correct}» verir; «${wrong}» seçilirse başka bir durum anlatılır.`,
     pl: `„${wrong}” należy do bliskiego pola znaczeń, lecz tutaj trzeba nazwać ${focus}. W „${phrase}” ten sens wyraża „${correct}”; wybór „${wrong}” opisałby inną sytuację.`,
-    en: `“${wrong}” sits in a close meaning field, but what is tested here is ${focus}. In “${phrase}” that meaning is carried by “${correct}”, so a topic-similar “${wrong}” would describe a different situation.`,
   };
   return copy[locale];
 }
@@ -344,16 +348,6 @@ const REASON: Readonly<Record<Locale, Record<Lesson1DistractorTrapType, (wrong: 
     l1_transfer: (w, c, p) => `„${w}” kusi przy dosłownym przeniesieniu polskiej odmiany lub szyku, ale angielska konstrukcja „${p}” wymaga „${c}”.`,
     phrase_assembly: (w, c, p) => `„${w}” pasuje do innego połączenia, lecz tutaj zmienia szyk albo relację części; zwrot „${p}” budujemy ze słowem „${c}”.`,
   },
-  // Английский интерфейс: см. пояснение у SEMANTIC_FAMILY_FOCUS выше.
-  en: {
-    grammar: (w, c, p) => `“${w}” looks like the same kind of word, but it does not fit this slot in “${p}”; the form needed here is “${c}”.`,
-    semantic_neighbor: (w, c, p) => `“${w}” belongs to the same topic and therefore distracts, but it names a different thing, trait or number; the exact sense of “${p}” calls for “${c}”.`,
-    collocation_pragmatics: (w, c, p) => `“${w}” shows up in similar polite formulas, but it does not build the set phrase “${p}”; its natural part is “${c}”.`,
-    phonetic: (w, c, p) => `“${w}” sounds close to “${c}”, yet the ending or stressed syllable differs; in the sound and sense of “${p}” you need “${c}”.`,
-    orthographic: (w, c, p) => `“${w}” looks similar to “${c}” in writing, but the apostrophe, ending or letters make a different form; “${p}” is spelled with “${c}”.`,
-    l1_transfer: (w, c, p) => `“${w}” comes from carrying over a familiar word order or form, but the English construction “${p}” requires “${c}”.`,
-    phrase_assembly: (w, c, p) => `“${w}” can stand in a different relation, but here it changes the order or link between parts; the phrase “${p}” is built with “${c}”.`,
-  },
 });
 
 type PairReasonKey = 'are|is' | 'are|do' | 'at|in' | 'at|on';
@@ -409,13 +403,6 @@ const PAIR_REASON: Readonly<
     'at|in': (p) => `„in” zwykle umieszcza kogoś wewnątrz nazwanego miejsca lub przestrzeni. W tym zwrocie home nie jest pojemnikiem: „w domu” oddaje stałe „at home”, jak w „${p}”.`,
     'at|on': (p) => `„on” kieruje uwagę na powierzchnię, więc wygląda jak możliwy przyimek miejsca, ale z home tworzy błędne połączenie. Stały zwrot to „at home”, jak w „${p}”.`,
   },
-  // Английский интерфейс: см. пояснение у SEMANTIC_FAMILY_FOCUS выше.
-  en: {
-    'are|is': (p) => `“is” is tempting because it is also a form of to be, but it goes with he, she, it or a single thing. In “${p}” the subject is you, so the question starts with “are”.`,
-    'are|do': (p) => `“do” really does come before you in a question about an action, as in Do you work? In “${p}” the part after you describes a state or a place, not an action, so “are” is needed.`,
-    'at|in': (p) => `“in” usually places someone inside the named place or space. In this set phrase home is not a container: “at home” is the fixed way to say it, as in “${p}”.`,
-    'at|on': (p) => `“on” points at a surface, so it looks like a possible place preposition, but with home it makes the wrong link. The fixed phrase is “at home”, as in “${p}”.`,
-  },
 });
 
 function pairSpecificReason(
@@ -458,12 +445,22 @@ function buildWordDistractors(locale: Locale, correct: string, phrase: string, s
   return created;
 }
 
+/**
+ * зачем (2026-08-23): принимает ПОЛНЫЙ список локалей источника, включая 'en',
+ * потому что вызывающий (session_package_from_shard_v1) перебирает
+ * LEARNING_V2_INTERFACE_LOCALES целиком. Для 'en' объяснений у урока 1 нет по
+ * замыслу (см. Locale выше), и функция возвращает пустой список — вызывающий
+ * уже умеет обходиться без авторского объяснения и подставляет свой fallback.
+ * Молча вернуть русский текст было бы хуже пустоты: ученик увидел бы чужой
+ * язык вместо честного отсутствия перевода.
+ */
 export function lesson1DistractorChoicesV2(
   locale: Lesson1DistractorLocale,
   correct: string,
   phrase: string,
   sessionOrdinal?: number,
 ) {
+  if (locale === 'en') return [];
   return buildWordDistractors(locale, correct, phrase, sessionOrdinal);
 }
 

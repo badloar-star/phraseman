@@ -161,13 +161,12 @@ export default function AvatarStudio25dScreen() {
     void saveAvatar25dSelection(selection).then(ok => { if (!ok) setSaved(false); });
   }, [selection]);
 
-  // Портрет — стопка: эталон снизу, слои деталей сверху. Пиксели эталона не
-  // меняются при смене детали — «дрожание» независимых генераций исключено,
-  // а комбинации (волосы+глаза+одежда) складываются из слоёв.
-  const portraitAsset: number | null =
-    AVATAR_25D_ASSETS[`base/${selection.base}`] ?? null;
-  const hairLayerAsset: number | null =
-    selection.hair ? AVATAR_25D_ASSETS[`layer:hair/${selection.hair}`] ?? null : null;
+  // Портрет: прозрачный персонаж поверх фона карточки (фон рисует приложение).
+  // Для детали показывается ЗАПЕЧЁННЫЙ портрет (эталон+разница, собранный на
+  // публикации) — «дрожание» независимых генераций исключено по построению.
+  const portraitAsset: number | null = selection.hair
+    ? AVATAR_25D_ASSETS[`portrait:hair/${selection.hair}`] ?? AVATAR_25D_ASSETS[`base/${selection.base}`] ?? null
+    : AVATAR_25D_ASSETS[`base/${selection.base}`] ?? null;
 
   const catalogEmpty = catalog.items.length === 0;
 
@@ -189,13 +188,7 @@ export default function AvatarStudio25dScreen() {
       >
         <View style={styles.portraitCard}>
           {portraitAsset !== null ? (
-            <View style={styles.portraitStack}>
-              <Image source={portraitAsset} style={styles.portraitImage} resizeMode="cover" accessibilityLabel={copy.portrait} />
-              {hairLayerAsset !== null && (
-                // Слой декоративен: портрет уже озвучен базовым Image.
-                <Image source={hairLayerAsset} style={styles.portraitLayer} resizeMode="cover" accessible={false} />
-              )}
-            </View>
+            <Image source={portraitAsset} style={styles.portraitImage} resizeMode="cover" accessibilityLabel={copy.portrait} />
           ) : (
             <View style={styles.portraitEmpty}>
               <View style={styles.portraitEmptyHead} />
@@ -387,9 +380,9 @@ const styles = StyleSheet.create({
   body: { flex: 1 },
   bodyContent: { paddingHorizontal: 20, gap: 18 },
   portraitCard: {
-    // Первый кадр = финальная геометрия: пропорция паспорта кадра 4:5.
+    // Первый кадр = финальная геометрия: пропорция паспорта кадра v2 (альбом).
     width: '100%',
-    aspectRatio: 4 / 5,
+    aspectRatio: 1316 / 1195,
     maxHeight: 430,
     borderRadius: 28,
     backgroundColor: scene.portrait,
@@ -400,9 +393,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     elevation: 6,
   },
-  portraitStack: { flex: 1 },
   portraitImage: { width: '100%', height: '100%' },
-  portraitLayer: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' },
   portraitEmpty: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 28, gap: 10 },
   portraitEmptyHead: {
     width: 96,

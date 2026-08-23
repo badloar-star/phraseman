@@ -1,34 +1,36 @@
 {
-  "version": 1,
-  "canvas": { "width": 1024, "height": 1280 },
-  "background": "#F7EFE4",
+  "version": 2,
+  "canvas": { "width": 1316, "height": 1195 },
+  "background": "chroma-green",
+  "chroma": { "minGreenness": 40 },
   "anchor": {
-    "pupilLineY": 0.38,
+    "pupilLineY": 0.45,
     "faceCenterX": 0.5,
-    "headHeightFrac": 0.42
+    "headHeightFrac": 0.55
   },
-  "safeMargins": { "top": 0.04, "sides": 0.05, "bottom": 0.0 },
-  "bustCrop": { "sideMarginAppliesAboveFrac": 0.66 },
-  "style": "semi-realistic stylized 3D character, Pixar-like proportions, soft studio light from upper-left, matte skin, clean single-color background, no outlines, no text, no watermark",
-  "pose": "three-quarter-body bust, facing camera, shoulders visible, arms down, gentle closed-mouth smile, eyes looking straight at camera",
+  "faceCore": [0.5, 0.5, 0.11, 0.1],
+  "safeMargins": { "top": 0.03, "sides": 0.04, "bottom": 0.0 },
+  "bustCrop": { "sideMarginAppliesAboveFrac": 0.55 },
+  "style": "semi-realistic stylized 3D character, Pixar-like proportions, soft studio light, matte skin, solid green chroma background, no outlines, no text, no watermark",
+  "pose": "head-and-shoulders close-up, facing camera, gentle closed-mouth smile, eyes looking straight at camera; shoulders may run off the bottom side edges",
   "slots": {
-    "hair":      { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] } ] },
-    "headwear":  { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] } ] },
-    "outfit":    { "locked": [ { "rect": [0, 0, 1, 0.50] } ] },
+    "hair":      { "locked": [ { "ellipse": [0.5, 0.5, 0.11, 0.1] } ] },
+    "headwear":  { "locked": [ { "ellipse": [0.5, 0.5, 0.11, 0.1] } ] },
+    "outfit":    { "locked": [ { "rect": [0, 0, 1, 0.6] } ] },
     "accessory": { "locked": [] },
-    "eyes":      { "locked": [ { "rect": [0, 0, 1, 0.30] }, { "rect": [0, 0.48, 1, 0.52] } ] },
+    "eyes":      { "locked": [ { "rect": [0, 0, 1, 0.36] }, { "rect": [0, 0.56, 1, 0.44] } ] },
     "skin":      { "locked": [] },
-    "emotion":   { "locked": [ { "rect": [0, 0.58, 1, 0.42] }, { "rect": [0, 0, 1, 0.20] } ] },
+    "emotion":   { "locked": [ { "rect": [0, 0.72, 1, 0.28] }, { "rect": [0, 0, 1, 0.3] } ] },
     "base":      { "locked": [] }
   },
   "matrixP0": {
     "bases": ["base_m", "base_f"],
-    "hairStyles": 6,
+    "hairStyles": 10,
     "hairColorsByRecolor": 4,
     "outfits": 6,
     "headwear": ["hood"],
     "skinTones": 3,
     "emotions": ["smile", "joy", "surprise", "sad", "determined", "wink"],
-    "estimatedGenerations": "~44-50 on the full matrix; colors are deterministic recolors, not generations"
+    "estimatedGenerations": "две картинки на деталь (на персонаже + зелёная изоляция); цвета — перекрасом скриптом"
   }
 }

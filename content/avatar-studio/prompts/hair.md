@@ -11,14 +11,14 @@ medium-brown color (#4B2415).
 
 Everything else must remain PIXEL-IDENTICAL to the attached image: same face,
 same eyes, nose, mouth and their exact positions, same skin, same clothing, same
-pose, same camera framing, same flat #F7EFE4 background, same lighting, same
-canvas 1024 x 1280.
+pose, same camera framing, same solid green chroma background as the attached image, same lighting, same
+canvas 1316 x 1195 (same canvas as the attached image).
 
 The new hair must fit inside the frame: nothing cropped by the top or side
 edges (keep 4% top margin and 5% side margins). The hair may cover the forehead
 naturally but must NOT cover the eyes.
 
-No text, no watermark. Output a single PNG, 1024 x 1280.
+No text, no watermark. Output a single PNG, 1316 x 1195 (same canvas as the attached image).
 ```
 
 **Приёмка:**
@@ -37,4 +37,4 @@ PASS → добавь `--accept --id hair_<название>_m`. Цвета эт
   must stay exactly as in the attached image; modify hair pixels only.»
 - `breaks_top_margin` → «Make the hairstyle more compact so it stays 4% away
   from the top edge.»
-- `background_mismatch` → «Keep the background one flat uniform #F7EFE4.»
+- `background_mismatch` → «Keep the background one solid green chroma key (same green as the base).»

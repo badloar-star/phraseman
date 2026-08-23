@@ -39,10 +39,10 @@ then read frame_passport.v1.json. Do not ask the user to explain the process.
 
 1. ON-MODEL: edit the correct base render using the matching
    `prompts/<slot>.md` template with {{ITEM}} filled in. Output ONE PNG
-   1024x1280 — the character wearing the new item.
+   1316x1195 — the character wearing the new item.
 2. GREEN ISOLATION (for hair, headwear, accessory): immediately apply
    `prompts/isolate.md` to YOUR OWN step-1 output. Output a second PNG
-   1024x1280: ONLY the new item, exact same position and scale, on solid pure
+   1316x1195: ONLY the new item, exact same position and scale, on solid pure
    #00FF00 — no skin, no face, no clothing, no shadows.
 
 So a batch «волосы: 5 мужских» = 10 images total (5 on-model + 5 green),
@@ -54,7 +54,7 @@ generated pair by pair: asset 1 step 1, asset 1 step 2, asset 2 step 1, ...
   variants in one picture, labels, numbers or captions on the image.
 - Identity lock: face, pose, framing, lighting and everything outside the
   changed slot stay PIXEL-IDENTICAL to the base render.
-- Canvas 1024x1280 (4:5). On-model background: one flat uniform #F7EFE4.
+- Canvas 1316x1195 (landscape, как эталоны). On-model background: one solid green chroma key (same green as the base).
 - Do not move, zoom or rescale the character. 4% top margin, 5% side margins
   for head and shoulders; torso may touch the bottom edge (bust crop).
 - Hair: one uniform medium-brown #4B2415 (color variants are made later by a
@@ -73,7 +73,7 @@ of the matching template:
 - `locked_zone_changed` — you redrew the face or another locked zone.
 - `breaks_top_margin` / `breaks_left_margin` / `breaks_right_margin` — the
   item sticks out of the safe area.
-- `background_mismatch` — background is not flat #F7EFE4.
+- `background_mismatch` — background is not solid chroma green.
 - `layer_misplaced` — the green-isolation item is not in the same position as
   in your step-1 image.
 

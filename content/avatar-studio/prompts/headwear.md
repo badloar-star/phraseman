@@ -12,12 +12,12 @@ not covered.
 
 Everything else must remain PIXEL-IDENTICAL to the attached image: same face,
 same visible hair, same clothing, same pose, same camera framing, same flat
-#F7EFE4 background, same lighting, same canvas 1024 x 1280.
+chroma green background, same lighting, same canvas 1316 x 1195 (same canvas as the attached image).
 
 The headwear must fit inside the frame: keep 4% top margin and 5% side margins.
 It must NOT cover the eyes.
 
-No text, no watermark. Output a single PNG, 1024 x 1280.
+No text, no watermark. Output a single PNG, 1316 x 1195 (same canvas as the attached image).
 ```
 
 **Приёмка:**

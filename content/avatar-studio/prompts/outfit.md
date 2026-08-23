@@ -10,13 +10,13 @@ Edit the attached image. Change ONLY the clothing to: {{ITEM}}.
 
 Everything else must remain PIXEL-IDENTICAL to the attached image: same face,
 same hair and its exact silhouette, same skin, same pose, same camera framing,
-same flat #F7EFE4 background, same lighting, same canvas 1024 x 1280.
+same solid green chroma background as the attached image, same lighting, same canvas 1316 x 1195 (same canvas as the attached image).
 
 The clothing must stay within the frame: nothing cropped by the left or right
 edge (keep 5% side margins). The collar must sit naturally on the same neck and
 shoulders as in the attached image. Do not add hats, glasses or accessories.
 
-No text, no watermark. Output a single PNG, 1024 x 1280.
+No text, no watermark. Output a single PNG, 1316 x 1195 (same canvas as the attached image).
 ```
 
 **Приёмка:**

@@ -19,8 +19,12 @@ if (!file || !onModelPath || !basePath) {
   process.exit(1);
 }
 
+const passport = JSON.parse(await readFile(path.join(pipelineRoot, 'frame_passport.v1.json'), 'utf8'));
 async function loadRaw(sourcePath) {
-  const { data, info } = await sharp(sourcePath).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  // Нормализуем к канону паспорта: генерации приходят чуть разных размеров.
+  const { data, info } = await sharp(sourcePath).removeAlpha()
+    .resize(passport.canvas.width, passport.canvas.height, { fit: 'fill' })
+    .raw().toBuffer({ resolveWithObject: true });
   return { data, info };
 }
 const green = await loadRaw(file);

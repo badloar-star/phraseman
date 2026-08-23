@@ -1,7 +1,7 @@
 // зачем: владельцу нужно, чтобы ЛЮБОЙ ИИ-генератор давал детали аватара,
-// которые точно встают в кастомизатор. Этот сторож — машинная приёмка:
-// размер/фон/поля/совмещение с эталоном проверяются до пикселя, кривой ассет
-// в каталог физически не попадает (та же философия, что GLB-аудитор 3D-трека).
+// которые точно встают в кастомизатор. Сторож — машинная приёмка (паспорт v2,
+// зелёный хромакей): размер/зелёный фон/поля/совмещение лица с эталоном
+// проверяются до пикселя, кривой ассет в каталог физически не попадает.
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -20,33 +20,34 @@ const acceptLabel = getOption('--label');
 if (!file || !slot || (args.includes('--accept') && !acceptId)) {
   process.stdout.write(
     'Использование: node check_render.mjs <картинка.png> --slot <base|hair|headwear|outfit|accessory|eyes|skin|emotion>\n' +
-    '  [--base <эталон base_m.png|base_f.png>] [--accept --id <slot_название_база>]\n');
+    '  [--base <эталон base_m.png|base_f.png>] [--accept --id <slot_название_база>] [--label <подпись>]\n');
   process.exit(1);
 }
 if (!passport.slots[slot]) { process.stdout.write(`FAIL unknown_slot: слота «${slot}» нет в паспорте\n`); process.exit(1); }
 if (slot !== 'base' && !basePath) { process.stdout.write('FAIL base_required: для всех слотов кроме base обязателен --base <эталон>\n'); process.exit(1); }
 
-// Анализ на сетке 256×320 (то же 4:5) — быстро и без нагрузки на машину.
-const AW = 256, AH = 320;
-// Пороги приёмки. Реальные edit-генераторы дают в «неизменных» местах шум ~2–8;
-// устойчивое пятно с дельтой >10 на ≥4% запретной зоны — настоящая порча.
-// Калибровать можно ТОЛЬКО по первым реальным ассетам решением владельца.
+// Анализ на сетке с пропорцией паспорта — быстро и без нагрузки на машину.
+const canvasRatio = passport.canvas.width / passport.canvas.height;
+const AH = 240, AW = Math.round(AH * canvasRatio);
+const MIN_GREENNESS = passport.chroma?.minGreenness ?? 40;
+// Пороги приёмки. Реальные edit-генераторы дают в «неизменных» местах шум ~2–8.
+// Калибровать можно ТОЛЬКО по реальным ассетам решением владельца.
 const LOCKED_MEAN = 6, LOCKED_HOT_DELTA = 10, LOCKED_HOT_FRAC = 0.04;
-const hex = passport.background.replace('#', '');
-const bg = { r: parseInt(hex.slice(0, 2), 16), g: parseInt(hex.slice(2, 4), 16), b: parseInt(hex.slice(4, 6), 16) };
+
 const distance = (data, at, r, g, b) => Math.hypot(data[at] - r, data[at + 1] - g, data[at + 2] - b) / 4.4167;
+const greennessAt = (data, at) => data[at + 1] - Math.max(data[at], data[at + 2]);
+const isForeground = (data, at) => greennessAt(data, at) < 25; // не-зелёное = персонаж
 
 async function loadImage(sourcePath) {
   const image = sharp(sourcePath);
   const meta = await image.metadata();
-  const { data } = await image.flatten({ background: bg }).resize(AW, AH, { fit: 'fill' })
-    .removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { data } = await image.removeAlpha().resize(AW, AH, { fit: 'fill' }).raw().toBuffer({ resolveWithObject: true });
   return { meta, data };
 }
 function silhouetteBox(data) {
   let x0 = AW, y0 = AH, x1 = -1, y1 = -1, count = 0;
   for (let y = 0; y < AH; y += 1) for (let x = 0; x < AW; x += 1) {
-    if (distance(data, (y * AW + x) * 3, bg.r, bg.g, bg.b) > 12) {
+    if (isForeground(data, (y * AW + x) * 3)) {
       count += 1; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
     }
   }
@@ -73,46 +74,44 @@ const errors = [];
 const notes = [];
 const candidate = await loadImage(file);
 const ratio = candidate.meta.width / candidate.meta.height;
-if (Math.abs(ratio - passport.canvas.width / passport.canvas.height) > 0.015)
-  errors.push(`wrong_canvas_ratio: ${candidate.meta.width}x${candidate.meta.height} вместо 4:5 — попроси генератор дать ровно 1024x1280`);
-else if (candidate.meta.width < 768) errors.push(`too_small: ширина ${candidate.meta.width}px, нужно ≥1024`);
+if (Math.abs(ratio - canvasRatio) > 0.03)
+  errors.push(`wrong_canvas_ratio: ${candidate.meta.width}x${candidate.meta.height} — попроси генератор дать тот же кадр, что у эталона (${passport.canvas.width}x${passport.canvas.height})`);
+else if (candidate.meta.width < 900) errors.push(`too_small: ширина ${candidate.meta.width}px, нужно ≥1024`);
 else if (candidate.meta.width !== passport.canvas.width || candidate.meta.height !== passport.canvas.height)
-  notes.push(`размер ${candidate.meta.width}x${candidate.meta.height} (не канонические 1024x1280) — пропорции верные, допустимо`);
+  notes.push(`размер ${candidate.meta.width}x${candidate.meta.height} (канон ${passport.canvas.width}x${passport.canvas.height}) — пропорции верные, допустимо`);
 
 if (!errors.length) {
   const block = Math.round(AW * 0.08);
-  // зачем: бюст-кадрирование утверждённого референса — торс и рукава уходят за
-  // нижние края, поэтому фоновыми обязаны быть только ВЕРХНИЕ углы.
-  for (const [cornerX, cornerY, label] of [[0, 0, 'верх-лево'], [AW - block, 0, 'верх-право']]) {
+  // Верхние углы обязаны быть зелёным хромакеем (низ может занимать персонаж).
+  for (const [cornerX, label] of [[0, 'верх-лево'], [AW - block, 'верх-право']]) {
     let sum = 0;
-    for (let y = cornerY; y < cornerY + block; y += 1) for (let x = cornerX; x < cornerX + block; x += 1)
-      sum += distance(candidate.data, (y * AW + x) * 3, bg.r, bg.g, bg.b);
-    if (sum / (block * block) > 8) errors.push(`background_mismatch: угол «${label}» не фон #F7EFE4 — фон обязан быть ровным`);
+    for (let y = 0; y < block; y += 1) for (let x = cornerX; x < cornerX + block; x += 1)
+      sum += greennessAt(candidate.data, (y * AW + x) * 3);
+    if (sum / (block * block) < MIN_GREENNESS) errors.push(`background_mismatch: угол «${label}» не зелёный хромакей — фон обязан быть чистым зелёным`);
   }
   const box = silhouetteBox(candidate.data);
   if (!box.count) errors.push('empty_image: персонаж не найден');
   else {
-    if (box.y0 < passport.safeMargins.top * AH) errors.push('breaks_top_margin: персонаж упирается в верхний край (нужно 4% поля)');
-    // Боковые поля — только для верхней зоны (голова/плечи): ниже bustCrop-линии
-    // рукава и торс по замыслу могут выходить за кадр, как в референсе.
+    if (box.y0 < passport.safeMargins.top * AH) errors.push('breaks_top_margin: персонаж упирается в верхний край (нужно 3% поля)');
+    // Боковые поля — только для зоны головы: ниже bustCrop-линии плечи по
+    // замыслу уходят за края кадра.
     const sideZone = Math.round((passport.bustCrop?.sideMarginAppliesAboveFrac ?? 1) * AH);
     let upperX0 = AW, upperX1 = -1;
     for (let y = 0; y < sideZone; y += 1) for (let x = 0; x < AW; x += 1)
-      if (distance(candidate.data, (y * AW + x) * 3, bg.r, bg.g, bg.b) > 12) { if (x < upperX0) upperX0 = x; if (x > upperX1) upperX1 = x; }
+      if (isForeground(candidate.data, (y * AW + x) * 3)) { if (x < upperX0) upperX0 = x; if (x > upperX1) upperX1 = x; }
     if (upperX1 >= 0) {
-      if (upperX0 < passport.safeMargins.sides * AW) errors.push('breaks_left_margin: голова/плечи вылезают за левое поле 5%');
-      if (upperX1 > AW - passport.safeMargins.sides * AW) errors.push('breaks_right_margin: голова/плечи вылезают за правое поле 5%');
+      if (upperX0 < passport.safeMargins.sides * AW) errors.push('breaks_left_margin: голова вылезает за левое поле');
+      if (upperX1 > AW - passport.safeMargins.sides * AW) errors.push('breaks_right_margin: голова вылезает за правое поле');
     }
     const centerX = (box.x0 + box.x1) / 2 / AW;
     if (Math.abs(centerX - 0.5) > 0.06) errors.push(`character_off_center: центр силуэта на ${(centerX * 100).toFixed(0)}% ширины вместо 50%`);
-    if ((box.y1 - box.y0) / AH < 0.5) errors.push('character_too_small: силуэт меньше половины высоты кадра');
+    if ((box.y1 - box.y0) / AH < 0.6) errors.push('character_too_small: силуэт меньше 60% высоты кадра');
 
     if (basePath) {
       const base = await loadImage(basePath);
       const baseBox = silhouetteBox(base.data);
-      // зачем: у причёсок/уборов силуэт МЕНЯЕТСЯ самой деталью (ёжик ниже,
-      // пучок выше), поэтому позу для них якорим не по силуэту, а по лицу —
-      // поиском наилучшего совмещения ядра лица (глаза-нос-рот) с эталоном.
+      // зачем: у причёсок/уборов силуэт МЕНЯЕТСЯ самой деталью, поэтому позу
+      // для них якорим по ядру лица (поиск наилучшего совмещения с эталоном).
       const hairLike = slot === 'hair' || slot === 'headwear';
       if (!hairLike) {
         if (Math.abs(centerX - (baseBox.x0 + baseBox.x1) / 2 / AW) > 0.03 || Math.abs(box.y0 / AH - baseBox.y0 / AH) > 0.03)
@@ -126,8 +125,8 @@ if (!errors.length) {
       if (changedTotal / (AW * AH) < 0.004) errors.push('no_visible_change: картинка не отличается от эталона — деталь не добавилась');
 
       if (hairLike) {
-        // Ядро лица: эллипс глаза-нос-рот; ищем сдвиг с минимальной разницей.
-        const cx = 0.5 * AW, cy = 0.455 * AH, rx = 0.075 * AW, ry = 0.075 * AH;
+        const [fcx, fcy, frx, fry] = passport.faceCore;
+        const cx = fcx * AW, cy = fcy * AH, rx = frx * AW, ry = fry * AH;
         const points = [];
         for (let y = Math.ceil(cy - ry); y <= cy + ry; y += 1) for (let x = Math.ceil(cx - rx); x <= cx + rx; x += 1) {
           const nx = (x - cx) / rx, ny = (y - cy) / ry;
@@ -157,7 +156,7 @@ if (!errors.length) {
           lockedCount += 1; lockedSum += delta; if (delta > LOCKED_HOT_DELTA) lockedHot += 1;
         }
         if (lockedCount && (lockedSum / lockedCount > LOCKED_MEAN || lockedHot / lockedCount > LOCKED_HOT_FRAC))
-          errors.push(`locked_zone_changed: изменилась запретная зона (лицо/одежда/волосы вне слота «${slot}») — среднее ${(lockedSum / Math.max(1, lockedCount)).toFixed(1)}`);
+          errors.push(`locked_zone_changed: изменилась запретная зона (вне слота «${slot}») — среднее ${(lockedSum / Math.max(1, lockedCount)).toFixed(1)}`);
       }
     }
   }

@@ -14,13 +14,13 @@ cutout on a solid pure green background (#00FF00).
 
 Critical rules:
 - Keep the {{WHAT}} in the EXACT same position, scale and perspective as in
-  the attached image. Same canvas 1024 x 1280. Do not recenter or enlarge it.
+  the attached image. Same canvas 1316 x 1195 (same canvas as the attached image). Do not recenter or enlarge it.
 - Include every pixel of the {{WHAT}}, including strands/parts that overlap
   the face, ears, shoulders or clothing in the original.
 - Include NOTHING else: no skin, no face, no ears, no neck, no clothing, no
   shadows on the background. Everything that is not the {{WHAT}} is pure
   #00FF00 green.
-- No text, no watermark. Output a single PNG, 1024 x 1280.
+- No text, no watermark. Output a single PNG, 1316 x 1195 (same canvas as the attached image).
 ```
 
 `{{WHAT}}` = «new hairstyle» для причёсок, «hood» для капюшона, «glasses» для
@@ -38,7 +38,7 @@ node content/avatar-studio/scripts/key_green.mjs content/avatar-studio/inbox/с�
 
 **Если не получилось:**
 - Деталь сместилась/увеличилась → «Keep it in the exact same position and
-  scale as in the attached image; the canvas is the same 1024 x 1280.»
+  scale as in the attached image; the canvas is the same 1316 x 1195 (same canvas as the attached image).»
 - В слой попала кожа/одежда → «Include only the {{WHAT}}; every other pixel
   must be pure #00FF00.»
 - Потерялись пряди на лице/плечах → «Include the strands that overlap the

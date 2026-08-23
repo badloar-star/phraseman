@@ -28,7 +28,7 @@ NON-NEGOTIABLE RULES
 - Identity lock: the face, pose, camera framing, lighting and everything
   outside the changed slot stay PIXEL-IDENTICAL to the base render. Never
   invent a new person, never restyle the whole picture.
-- Canvas: 1024 x 1280 (portrait 4:5). Background: one flat uniform #F7EFE4 —
+- Canvas: 1316 x 1195 (same canvas as the base render). Background: one solid green chroma key (same green as the base) —
   no gradient, no background shadows, no text, no watermark.
 - Framing is inherited from the base render: do not move, zoom or rescale the
   character. Head and shoulders keep 4% top margin and 5% side margins;
@@ -47,11 +47,11 @@ asset:
 2. Determine the base: мальчик/муж=base_m, девочка/жен=base_f. If not stated,
    ask once ("для мальчика или для девочки?").
 3. STEP 1 — ON-MODEL: take the matching template from prompts/, put the
-   requested item into {{ITEM}}, and generate ONE PNG 1024 x 1280 as an edit
+   requested item into {{ITEM}}, and generate ONE PNG 1316 x 1195 (same canvas as the attached image) as an edit
    of the correct base render (the character wearing the new item).
 4. STEP 2 — GREEN ISOLATION (for hair, headwear, accessories): immediately
    after step 1, apply prompts/isolate.md to your own step-1 output: produce a
-   second PNG 1024 x 1280 where ONLY the new item is visible, in the EXACT
+   second PNG 1316 x 1195 (same canvas as the attached image) where ONLY the new item is visible, in the EXACT
    same position and scale, on a solid pure #00FF00 green background —
    no skin, no face, no clothing, nothing else.
 5. Output both images (on-model + green isolation). The user downloads them

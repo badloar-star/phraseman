@@ -11,12 +11,12 @@ the character.
 
 Everything else must remain PIXEL-IDENTICAL to the attached image: same face and
 expression, same hair, same clothing, same pose, same camera framing, same flat
-#F7EFE4 background, same lighting, same canvas 1024 x 1280.
+chroma green background, same lighting, same canvas 1316 x 1195 (same canvas as the attached image).
 
 The accessory must stay within the frame margins (4% top, 5% sides) and must not
 hide the eyes (glasses frames are fine, the eyes stay visible through them).
 
-No text, no watermark. Output a single PNG, 1024 x 1280.
+No text, no watermark. Output a single PNG, 1316 x 1195 (same canvas as the attached image).
 ```
 
 **Приёмка:**

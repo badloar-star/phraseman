@@ -17,7 +17,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
-import { formatTimeLeft, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
+import { formatTimeLeft, type, useTournamentPalette, type TournamentPalette} from './v2_theme';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 

@@ -20,7 +20,9 @@ const ROUND_SOURCE = fs.readFileSync(
   'utf8',
 );
 const UI_SOURCE = fs.readFileSync(
-  path.join(__dirname, '..', 'components', 'tournament', 'tournament_v2_ui.tsx'),
+  // зачем 2026-08-23: общий UI-слой переехал в components/ui (это библиотека
+  // Арены, а не турниров) — путь обновлён, сторож продолжает охранять тот же код.
+  path.join(__dirname, '..', 'components', 'ui', 'v2_ui.tsx'),
   'utf8',
 );
 

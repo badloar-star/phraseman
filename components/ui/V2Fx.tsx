@@ -21,7 +21,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { AccessibilityInfo, StyleSheet, View } from 'react-native';
+import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
+import { RUNE_GLYPH_PRIMARY, pickRuneGlyphs } from '../../constants/runes';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -34,21 +35,42 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../text-integrity/FlowText';
-import { v2motion } from './tournament_theme';
+import { v2motion } from './v2_theme';
 
 // Глифы V2 (SVG-символы эталона; эмодзи запрещены правилом владельца в
 // НАГРАДНЫХ эффектах — звёзды, конфетти, волна рисуются векторами).
 // Исключение 2026-07-27: реакции игроков это и есть эмодзи по прямому
 // требованию владельца («эмодзи отправляются, улетают вверх, все их видят»),
 // поэтому ReactionFlight рисует символ, а не глиф.
-const STAR_PATH = 'M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z';
 const SPARK_PATH = 'M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.1-3.2 0.3-4.8 1.2-2.2 1.2-3.5 3.6-4.4 8-0.9-4.4-2.2-6.8-4.4-8-1.6-0.9-3.1-1.1-4.8-1.2 1.7-0.1 3.2-0.3 4.8-1.2 2.2-1.2 3.5-3.6 4.4-8z';
 
-export function StarGlyph({ size, color }: { size: number; color: string }) {
+/**
+ * Глиф валюты «руны» для счётчиков и полётов турнира/Арены.
+ *
+ * зачем (владелец, 22.08, макет 26-checkpoint-and-runes): валюта переименована
+ * из звёзд в руны, вместо SVG-звезды показывается рунический символ. По
+ * умолчанию — «дежурная» ᚠ (статичные счётчики); в полёте начисления родитель
+ * передаёт СВОЙ глиф, чтобы символы каждый раз были разные.
+ *
+ * Имя StarGlyph сохранено: это внутренняя точка сборки восьми турнирных
+ * экранов, переименование файла к тексту отношения не имеет.
+ */
+export function StarGlyph({ size, color, glyph }: { size: number; color: string; glyph?: string }) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24">
-      <Path d={STAR_PATH} fill={color} />
-    </Svg>
+    <Text
+      allowFontScaling={false}
+      accessibilityElementsHidden
+      importantForAccessibility="no"
+      style={{
+        fontSize: size,
+        lineHeight: Math.round(size * 1.16),
+        fontWeight: '700',
+        textAlign: 'center',
+        color,
+      }}
+    >
+      {glyph ?? RUNE_GLYPH_PRIMARY}
+    </Text>
   );
 }
 
@@ -84,7 +106,7 @@ export type TournamentFxApi = {
 };
 
 type Effect =
-  | { kind: 'star'; id: number; from: FxPoint; to: FxPoint; color: string; trail: number; onLand?: () => void }
+  | { kind: 'star'; id: number; from: FxPoint; to: FxPoint; color: string; trail: number; glyph: string; onLand?: () => void }
   | { kind: 'confetto'; id: number; origin: FxPoint; color: string; angle: number; velocity: number; rotate: number; duration: number }
   | { kind: 'wave'; id: number; color: string }
   | { kind: 'label'; id: number; text: string; at: FxPoint; color: string }
@@ -125,8 +147,11 @@ export const TournamentFxHost = memo(forwardRef<TournamentFxApi, { width: number
         if (reduceMotionRef.current) { onLand?.(); return; }
         const f = toLocal(from); const t = toLocal(to);
         const batch: Effect[] = [];
+        // зачем: trail 1-3 — тени-хвост ОДНОЙ руны, поэтому глиф общий на батч.
+        // Разные символы владелец просил между начислениями, а не внутри следа.
+        const [glyph] = pickRuneGlyphs(1);
         for (let trail = 0; trail <= 3; trail++) {
-          batch.push({ kind: 'star', id: effectSeq++, from: f, to: t, color, trail, onLand: trail === 0 ? onLand : undefined });
+          batch.push({ kind: 'star', id: effectSeq++, from: f, to: t, color, trail, glyph, onLand: trail === 0 ? onLand : undefined });
         }
         setEffects((prev) => [...prev, ...batch]);
       },
@@ -283,7 +308,7 @@ const StarFlight = memo(function StarFlight({
   const size = 26 - trail * 3;
   return (
     <Animated.View style={[styles.abs, style]}>
-      <StarGlyph size={size} color={fx.color} />
+      <StarGlyph size={size} color={fx.color} glyph={fx.glyph} />
     </Animated.View>
   );
 });

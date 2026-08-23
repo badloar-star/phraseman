@@ -13,9 +13,9 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { Cta } from './tournament_ui';
-import { T, radius, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
-import { TournamentBackdrop } from './TournamentBackdrop';
+import { Cta } from '../ui/v2_sheet';
+import { T, radius, type, useTournamentPalette, type TournamentPalette} from '../ui/v2_theme';
+import { TournamentBackdrop } from '../ui/V2Backdrop';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 

@@ -30,8 +30,8 @@ import * as Haptics from 'expo-haptics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { resolveTournamentIntroCountdownValue, tournamentNow } from '../../app/tournament_client';
 import { FlowText } from '../text-integrity/FlowText';
-import { useTournamentPalette, v2motion } from './tournament_theme';
-import { TournamentBackdrop } from './TournamentBackdrop';
+import { useTournamentPalette, v2motion } from '../ui/v2_theme';
+import { TournamentBackdrop } from '../ui/V2Backdrop';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 

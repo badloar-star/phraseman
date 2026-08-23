@@ -13,6 +13,8 @@ type PrimaryButtonProps = {
   disabled?: boolean;
   loading?: boolean;
   style?: ViewStyle;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 };
 
 // зачем: владелец 2026-08-16 — GoldBevel рисовал фальшивую «подошву» градиентом
@@ -20,7 +22,7 @@ type PrimaryButtonProps = {
 // кромка ужималась вместе с лицом и читалась как второй слой под кнопкой.
 // Перевели на DuoPressable: настоящая статичная подошва ниже лица + лицо едет
 // вниз на edgeHeight, GoldBevel остаётся чисто декоративным бликом на лице.
-function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButtonProps) {
+function PrimaryButton({ label, onPress, disabled, loading, style, accessibilityLabel, accessibilityHint }: PrimaryButtonProps) {
   const { theme: t, f, ds, themeMode } = useTheme();
   const isDisabled = !!disabled || !!loading;
   const isGoldTheme = themeMode === 'gold';
@@ -42,6 +44,10 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
 
   return (
     <DuoPressable
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel ?? label}
+      accessibilityHint={accessibilityHint}
+      accessibilityState={{ disabled: isDisabled, busy: !!loading }}
       onPress={onPress}
       disabled={isDisabled}
       edgeColor={edgeColor}

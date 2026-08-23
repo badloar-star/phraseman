@@ -32,7 +32,7 @@ import {
   type SpokenAudioClaim,
   whenSpokenAudioReady,
 } from '../../modules/audio/audio_runtime_arbiter';
-import { useTournamentPalette, v2motion } from './tournament_theme';
+import { useTournamentPalette, v2motion } from '../ui/v2_theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);

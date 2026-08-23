@@ -26,9 +26,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FlowText } from '../text-integrity';
-import { StarGlyph } from './TournamentFx';
-import { V2Cta } from './tournament_v2_ui';
-import { METAL, radius, useTournamentPalette } from './tournament_theme';
+import { StarGlyph } from '../ui/V2Fx';
+import { V2Cta } from '../ui/v2_ui';
+import { METAL, radius, useTournamentPalette } from '../ui/v2_theme';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';

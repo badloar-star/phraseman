@@ -28,8 +28,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import { hapticMediumImpact, hapticTap } from '../../hooks/use-haptics';
-import { METAL, radius, useTournamentPalette, v2motion, type TournamentV2 } from './tournament_theme';
-import { StarGlyph } from './TournamentFx';
+import { METAL, radius, useTournamentPalette, v2motion, type TournamentV2 } from './v2_theme';
+import { StarGlyph } from './V2Fx';
 import { useTheme } from '../ThemeContext';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);

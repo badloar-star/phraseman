@@ -29,7 +29,7 @@ import Animated, {
 import * as Haptics from 'expo-haptics';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
-import { INNER_LIGHT, T, motion, radius, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
+import { INNER_LIGHT, T, motion, radius, type, useTournamentPalette, type TournamentPalette} from './v2_theme';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 

@@ -140,16 +140,39 @@ async function bakePortrait(item) {
   return keyGreen(composed);
 }
 
+// зачем: слой только ДОБАВЛЯЕТ пиксели — если он не накрывает родные волосы
+// базы, получается «шапка поверх шевелюры» (инцидент 2026-08-23). Меряем
+// покрытие тёмных волос базы слоем; мало — стиль блокируется до лысой базы.
+function baseHairCoverage(baseRaw, layerRgba) {
+  let hairPixels = 0, covered = 0;
+  for (let y = 0; y < CANON_H * 0.68; y += 1) for (let x = 0; x < CANON_W; x += 1) {
+    const at = y * CANON_W + x;
+    const r = baseRaw[at * 3], g = baseRaw[at * 3 + 1], b = baseRaw[at * 3 + 2];
+    const luma = 0.3 * r + 0.59 * g + 0.11 * b;
+    if (!(luma < 100 && r > g && g >= b * 0.75)) continue; // тёмно-каштановое = волосы
+    const nx = (x / CANON_W - 0.5) / 0.18, ny = (y / CANON_H - 0.48) / 0.15;
+    if (nx * nx + ny * ny <= 1) continue; // лицо/брови не считаем
+    hairPixels += 1;
+    if (layerRgba[at * 4 + 3] > 100) covered += 1;
+  }
+  return hairPixels ? covered / hairPixels : 1;
+}
+
 // Портрет из готового зелёного слоя (без on-model черновика): база + слой.
 // Для причёсок/уборов, если есть «лысая» база base_*_bald.png — берём её,
 // тогда родные волосы базы не торчат из-под новой причёски.
 async function bakeFromLayer(item) {
   const hairLike = item.slot === 'hair' || item.slot === 'headwear';
   const baldPath = path.join(pipelineRoot, 'base', item.base.replace('.png', '_bald.png'));
-  const baseFile = hairLike && existsSync(baldPath) ? baldPath : path.join(pipelineRoot, 'base', item.base);
-  const composed = Buffer.from(await loadRaw(baseFile));
+  const useBald = hairLike && existsSync(baldPath);
+  const baseFile = useBald ? baldPath : path.join(pipelineRoot, 'base', item.base);
   const layer = await sharp(path.join(pipelineRoot, item.file)).ensureAlpha()
     .resize(CANON_W, CANON_H, { fit: 'fill' }).raw().toBuffer();
+  if (item.slot === 'hair' && !useBald) {
+    const coverage = baseHairCoverage(await loadRaw(path.join(pipelineRoot, 'base', item.base)), layer);
+    if (coverage < 0.82) return { blocked: true, coverage };
+  }
+  const composed = Buffer.from(await loadRaw(baseFile));
   for (let at = 0; at < CANON_W * CANON_H; at += 1) {
     const alpha = layer[at * 4 + 3];
     if (alpha <= 16) continue;
@@ -158,7 +181,7 @@ async function bakeFromLayer(item) {
     composed[at * 3 + 1] = Math.round(layer[at * 4 + 1] * weight + composed[at * 3 + 1] * (1 - weight));
     composed[at * 3 + 2] = Math.round(layer[at * 4 + 2] * weight + composed[at * 3 + 2] * (1 - weight));
   }
-  return keyGreen(composed);
+  return { rgba: keyGreen(composed) };
 }
 
 async function writeWebp(rgba, destination) {
@@ -181,7 +204,12 @@ for (const item of manifest.items) {
     continue;
   }
   const layerOnly = item.layerOnly === true || item.file.startsWith('layers-src/');
-  const portraitRgba = layerOnly ? await bakeFromLayer(item) : await bakePortrait(item);
+  const baked = layerOnly ? await bakeFromLayer(item) : { rgba: await bakePortrait(item) };
+  if (baked.blocked) {
+    process.stdout.write(`ПРОПУЩЕН ${item.id} («${item.label}»): накрывает лишь ${(baked.coverage * 100).toFixed(0)}% родных волос базы — ждёт лысую базу\n`);
+    continue;
+  }
+  const portraitRgba = baked.rgba;
   const portraitFile = `portraits/${item.slot}/${item.id}.webp`;
   fileBytes = await writeWebp(portraitRgba, path.join(assetsRoot, portraitFile));
   // Плитка-превью — тот же запечённый портрет (микро-отличий нет по построению).

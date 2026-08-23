@@ -1,4 +1,5 @@
 {
+  "//": "zachem (audit 2026-08-23): проверка типов падала по памяти на 4 ГБ и не работала ВООБЩЕ. Причина: include '**/*.ts' затягивал временные копии рабочего дерева (.codex-tmp, .worktrees, .claude/worktrees) — 57136 файлов TS против 2195 реальных, в 26 раз больше проекта. Git их игнорирует, а компилятор нет. НЕ убирать эти exclude: без них полная проверка типов снова станет невозможной, и придётся городить срезы вроде tsconfig.arena.json.",
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
@@ -21,6 +22,10 @@
     "docs/design",
     "subscription-recovery",
     "tmp",
-    "node_modules"
+    "node_modules",
+    ".codex-tmp",
+    ".worktrees",
+    ".claude/worktrees",
+    ".expo/web-build"
   ]
 }

@@ -8,6 +8,7 @@
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import sharp from 'sharp';
 
 const pipelineRoot = path.resolve(import.meta.dirname, '..');
@@ -142,7 +143,13 @@ for (const item of manifest.items) {
     layerFile = `layers/${item.slot}/${item.id}.webp`;
     const layerPath = path.join(assetsRoot, layerFile);
     await mkdir(path.dirname(layerPath), { recursive: true });
-    await writeFile(layerPath, await makeLayer(source, path.join(pipelineRoot, 'base', item.base)));
+    // зачем: слой, изолированный самим генератором на зелёном (key_green.mjs),
+    // чище автоматической вырезки — при наличии он главный.
+    const manualLayer = path.join(pipelineRoot, 'layers-src', item.slot, `${item.id}.png`);
+    const layerBytes = existsSync(manualLayer)
+      ? await sharp(manualLayer).resize(PUBLISH_WIDTH, PUBLISH_HEIGHT).webp({ quality: WEBP_QUALITY, alphaQuality: 100 }).toBuffer()
+      : await makeLayer(source, path.join(pipelineRoot, 'base', item.base));
+    await writeFile(layerPath, layerBytes);
     mapEntries.push(`  'layer:${item.slot}/${item.id}': require('./${layerFile}'),`);
   }
   publishedItems.push({ ...item, file: publishedFile, layer: layerFile, sha256: createHash('sha256').update(fullBytes).digest('hex') });

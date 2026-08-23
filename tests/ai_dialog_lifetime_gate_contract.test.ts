@@ -41,14 +41,20 @@ describe('ai dialog Plus-only gate contract', () => {
     }
   });
 
-  it('Dialogs keeps both catalogue tabs but marks every inaccessible card as Plus', () => {
-    expect(tabContent).toContain("useState<'lessons' | 'situations'>");
-    expect(tabContent).toContain("tab === 'lessons'");
-    expect(tabContent).toContain("tab === 'situations'");
-    expect(tabContent).toContain('accessibilityRole="tab"');
+  // зачем (2026-08-23): владелец заказал фулл-редизайн Диалогов и распорядился
+  // «переосмыслить каталог полностью» — вкладки «Уроки/Ситуации» заменены
+  // стопкой крупных карточек-миров с разворотом (эталон — раздел «Статистика»).
+  // Ожидания про accessibilityRole="tab" / useState<'lessons' | 'situations'>
+  // и переменную plusLocked сторожили ОТМЕНЁННУЮ форму подачи, поэтому сняты.
+  // Суть гейта (Plus обязателен, закрытая карточка помечается замком) осталась
+  // и проверяется ниже — её ослаблять нельзя.
+  it('Dialogs catalogue marks every inaccessible scenario as locked behind Plus', () => {
     expect(tabContent).toContain("const dialogAccess = useFeatureAccess('ai_dialog')");
     expect(tabContent).toContain("const status: ScenarioStatus = !dialogAccess || !unlocked ? 'locked'");
-    expect(tabContent).toContain('const plusLocked = locked && !dialogAccess');
+    // Замок ведёт на пейвол, а не молча ничего не делает.
+    expect(tabContent).toContain("context: 'dialog_limit'");
+    expect(tabContent).toContain("context: 'dialog_locked_level'");
+    // Пожизненная бесплатная квота остаётся отменённой: ни счётчика, ни остатка.
     expect(tabContent).not.toContain('getFreeDialogsLeft');
     expect(tabContent).not.toContain('freeDialogsLeft');
     expect(tabContent).not.toContain('Бесплатных диалогов осталось');

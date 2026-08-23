@@ -14,7 +14,12 @@ describe('ai typing bubble contract', () => {
   });
 
   it('keeps the typing bubble animated, accessible, and reduced-motion aware', () => {
-    expect(bubbleSource).toContain('accessibilityLabel="AI is typing a reply"');
+    // зачем (2026-08-23): метка озвучки пузыря локализована через triLang на все
+    // 8 языков интерфейса — сторож ждал сырую английскую строку и охранял
+    // отменённое правило. Проверяем суть: метка есть и она локализованная.
+    expect(bubbleSource).toContain('accessibilityLabel={triLang(lang,');
+    expect(bubbleSource).toContain("ru: 'Собеседник печатает ответ'");
+    expect(bubbleSource).not.toContain('accessibilityLabel="AI is typing a reply"');
     expect(bubbleSource).toContain('testID="ai-typing-bubble"');
     expect(bubbleSource).toContain('AccessibilityInfo.isReduceMotionEnabled');
     expect(bubbleSource).toContain("AccessibilityInfo.addEventListener('reduceMotionChanged'");

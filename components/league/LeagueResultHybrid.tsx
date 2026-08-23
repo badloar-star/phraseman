@@ -24,7 +24,6 @@ import Reanimated, {
   runOnJS,
   useAnimatedProps,
   useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withDelay,
   withSequence,
@@ -36,10 +35,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import {
-  LeagueResult, LEAGUES, CLUBS, GroupMember,
+  LeagueResult, LEAGUES, CLUBS, GroupMember, clubNamePlanned,
   getLeagueResultZoneSize, orderGroupForResultDisplay,
 } from '../../app/league_engine';
-import { clubNamePlanned } from '../../app/league_engine';
 import AvatarView from '../AvatarView';
 import PremiumAvatarHalo from '../PremiumAvatarHalo';
 import { memberNameStatusStyle } from '../premiumMemberStyles';
@@ -50,7 +48,8 @@ import { readableOn, isLightSurface } from '../../constants/color_contrast';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticSoftImpact, hapticLightImpact } from '../../hooks/use-haptics';
 import { soundDirector } from '../../modules/audio/sound_director';
-import { LUM, CHK } from '../../constants/motionHybrid';
+import { LUM, CHK, SUITE } from '../../constants/motionHybrid';
+import { LEAGUE_RESULT_HYBRID_COLORS } from '../../constants/motionHybridPalettes';
 import { noAndroidOutline } from '../../constants/androidGlow';
 
 const { width: W } = Dimensions.get('window');
@@ -59,11 +58,8 @@ const CARD_W = Math.min(W - 24, 420);
 const AnimatedText = Reanimated.createAnimatedComponent(Text);
 
 // ─── Медальные жетоны мест (золото/серебро/бронза) — тот же язык, что и classic ──
-const MEDAL_TOKEN: Record<1 | 2 | 3, { grad: [string, string]; ink: string; ring: string }> = {
-  1: { grad: ['#FFE89A', '#E0A124'], ink: '#5A3C06', ring: '#FFF1CC' },
-  2: { grad: ['#EAEEF3', '#A9B2BD'], ink: '#3A4150', ring: '#FFFFFF' },
-  3: { grad: ['#F0C29A', '#B4774A'], ink: '#4A2D14', ring: '#FBE0CC' },
-};
+const COLORS = LEAGUE_RESULT_HYBRID_COLORS;
+const MEDAL_TOKEN: Record<1 | 2 | 3, { grad: [string, string]; ink: string; ring: string }> = COLORS.medalTokens;
 
 // зачем: раньше кольцо жетона рисовалось обводкой (borderWidth/borderColor) —
 // запрет владельца на обводки контейнеров. Разделяем от фона тоном: внешняя
@@ -83,12 +79,12 @@ const MedalToken = memo(function MedalToken({ place, size = 20, onLight = false 
       width: outer, height: outer, borderRadius: outer / 2,
       backgroundColor: ringColor,
       alignItems: 'center', justifyContent: 'center',
-      shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { width: 0, height: 1 },
+      shadowColor: COLORS.shadow, shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { width: 0, height: 1 },
     }}>
       <View style={{ width: size, height: size, borderRadius: size / 2, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
         <LinearGradient colors={cfg.grad} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={StyleSheet.absoluteFill} />
         <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '45%', backgroundColor: 'rgba(255,255,255,0.35)' }} />
-        <Text style={{ color: cfg.ink, fontSize: size * 0.55, fontWeight: '900' }}>{place}</Text>
+        <Text style={{ color: cfg.ink, fontSize: size * 0.55, fontWeight: '700' }}>{place}</Text>
       </View>
     </View>
   );
@@ -143,7 +139,6 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
 
-  const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
   const newLeague  = LEAGUES[result.newLeagueId]  ?? LEAGUES[0];
   const club       = CLUBS[result.newLeagueId]    ?? CLUBS[0];
   const prevClub   = CLUBS[result.prevLeagueId]   ?? CLUBS[0];
@@ -159,8 +154,8 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   );
 
   // Цвет исхода: золото — повышение, тёплая бронза — вылет, акцент — остался.
-  const glowColor = isPromo ? '#FFD24A' : isDemo ? '#C08A50' : ink(t.gold, 3);
-  const outColor  = isPromo ? ink('#FFD24A', 4.5) : isDemo ? '#E8C49A' : t.textPrimary;
+  const glowColor = isPromo ? COLORS.promotionGlow : isDemo ? COLORS.demotionGlow : ink(t.gold, 3);
+  const outColor  = isPromo ? ink(COLORS.promotionGlow, 4.5) : isDemo ? COLORS.demotionText : t.textPrimary;
 
   const displayGroup = useMemo(
     () => orderGroupForResultDisplay(result.group, result.myRank),
@@ -334,10 +329,10 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
     } else if (isStay) {
       medallionT.value = withDelay(0, withTiming(endT, { duration: 0 }));
       anchorOpacity.value = withDelay(950, withTiming(1, { duration: 220 }));
-      anchorY.value = withDelay(950, withSpring(0, { mass: 0.55, damping: 12, stiffness: 200 }));
+      anchorY.value = withDelay(950, withSpring(0, SUITE.anchor));
       medallionSquashY.value = withDelay(1120, withSequence(
         withTiming(1.06, { duration: 0 }),
-        withSpring(1, { mass: 0.55, damping: 14, stiffness: 210 }),
+        withSpring(1, SUITE.pulse),
       ));
       thresholdFlash.value = withDelay(1450, withSequence(
         withTiming(0.9, { duration: 0 }),
@@ -398,16 +393,22 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
 
   const medallionStyle = useAnimatedStyle(() => ({
     opacity: medallionOpacity.value,
-    top: medallionT.value * (midHeight - NODE_H) - 4,
-    transform: [{ scaleY: medallionSquashY.value }],
+    transform: [
+      { translateY: medallionT.value * (midHeight - NODE_H) - 4 },
+      { scaleY: medallionSquashY.value },
+    ],
   }));
   const trailStyle = useAnimatedStyle(() => {
-    const dist = Math.abs(medallionT.value - startT) * midHeight;
+    const startY = startT * (midHeight - NODE_H) + NODE_H / 2;
+    const currentY = medallionT.value * (midHeight - NODE_H) + NODE_H / 2;
+    const dist = Math.max(4, Math.abs(currentY - startY));
+    const centerY = (startY + currentY) / 2;
     return {
       opacity: trailOpacity.value,
-      height: Math.max(4, dist),
-      transform: [{ scaleY: trailScaleY.value }],
-      top: Math.min(startT, medallionT.value) * (midHeight - NODE_H) + NODE_H / 2,
+      transform: [
+        { translateY: centerY - midHeight / 2 },
+        { scaleY: (dist / midHeight) * trailScaleY.value },
+      ],
     };
   });
   const thresholdFlashStyle = useAnimatedStyle(() => ({
@@ -431,7 +432,7 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
     transform: [{ translateY: ctaY.value }],
   }));
   const progressBarStyle = useAnimatedStyle(() => ({
-    width: `${progressBarWidth.value}%`,
+    transform: [{ scaleX: progressBarWidth.value / 68 }],
   }));
 
   // зачем: AnimatedText — Reanimated-обёртка над RN Text, а не TextInput, поэтому
@@ -503,19 +504,14 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   });
 
   const savedLabel = triLang(lang, {
-    ru: 'Звёзды и уроки сохранены · ничего не сгорело',
-    uk: 'Зірки та уроки збережено · нічого не згоріло',
-    es: 'Estrellas y lecciones guardadas · nada se perdió',
-    "pt-BR": 'Estrelas e lições salvas · nada foi perdido',
-    vi: 'Sao và bài học đã lưu · không mất gì',
-    id: 'Bintang dan pelajaran tersimpan · tidak ada yang hilang',
-    tr: 'Yıldızlar ve dersler kaydedildi · hiçbir şey kaybolmadı',
-    pl: 'Gwiazdki i lekcje zapisane · nic nie przepadło',
-  });
-
-  const bonusLabel = triLang(lang, {
-    ru: newLeague.tagRU, uk: newLeague.tagUK, es: newLeague.tagES,
-    "pt-BR": newLeague.tagRU, vi: newLeague.tagRU, id: newLeague.tagRU, tr: newLeague.tagRU, pl: newLeague.tagRU,
+    ru: 'Руны и уроки сохранены · ничего не сгорело',
+    uk: 'Руни та уроки збережено · нічого не згоріло',
+    es: 'Runas y lecciones guardadas · nada se perdió',
+    "pt-BR": 'Runas e lições salvas · nada foi perdido',
+    vi: 'Rune và bài học đã lưu · không mất gì',
+    id: 'Rune dan pelajaran tersimpan · tidak ada yang hilang',
+    tr: 'Rünler ve dersler kaydedildi · hiçbir şey kaybolmadı',
+    pl: 'Runy i lekcje zapisane · nic nie przepadło',
   });
 
   const zoneBonusLabel = triLang(lang, {
@@ -601,11 +597,11 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
         <View
           style={[
             styles.threshold,
-            { top: `${thresholdT * 100}%`, backgroundColor: isDemo ? '#C0392B55' : glowColor + 'CC' },
+            { top: `${thresholdT * 100}%`, backgroundColor: isDemo ? COLORS.demotionThreshold : glowColor + 'CC' },
           ]}
         />
-        <Reanimated.View pointerEvents="none" style={[styles.thresholdFlash, thresholdFlashStyle, { top: `${thresholdT * 100}%`, backgroundColor: '#FFF6D8' }]} />
-        <Text style={[styles.thresholdLabel, { top: `${thresholdT * 100}%`, color: isDemo ? '#E8A87C' : glowColor }]} numberOfLines={1}>
+        <Reanimated.View pointerEvents="none" style={[styles.thresholdFlash, thresholdFlashStyle, { top: `${thresholdT * 100}%`, backgroundColor: COLORS.thresholdFlash }]} />
+        <Text style={[styles.thresholdLabel, { top: `${thresholdT * 100}%`, color: isDemo ? COLORS.demotionThresholdText : glowColor }]}>
           {thresholdLabel}
         </Text>
 
@@ -616,20 +612,20 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
 
         {/* Световой хвост медальона (только повышение) */}
         {isPromo && (
-          <Reanimated.View pointerEvents="none" style={[styles.trail, trailStyle, { backgroundColor: glowColor }]} />
+          <Reanimated.View pointerEvents="none" style={[styles.trail, { height: midHeight, backgroundColor: glowColor }, trailStyle]} />
         )}
 
         {/* Мой медальон */}
         <Reanimated.View style={[styles.medallionWrap, medallionStyle]}>
           <LinearGradient
-            colors={isDemo ? ['#E8C49A', '#8A6238'] : ['#FDF3D0', glowColor]}
+            colors={isDemo ? COLORS.demotionMedallion : [COLORS.promotionMedallionStart, glowColor]}
             style={styles.medallion}
           >
-            <Text style={{ color: '#3A2A06', fontSize: 15, fontWeight: '900' }}>{meLabel}</Text>
+            <Text style={{ color: COLORS.medallionInk, fontSize: 15, fontWeight: '700' }}>{meLabel}</Text>
           </LinearGradient>
           <AnimatedText
             animatedProps={rankTextProps}
-            style={{ marginLeft: 8, color: glowColor, fontSize: 18, fontWeight: '900' }}
+            style={{ marginLeft: 8, color: glowColor, fontSize: 18, fontWeight: '700' }}
           >
             {displayRank}
           </AnimatedText>
@@ -641,15 +637,15 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
             styles.anchor, anchorStyle,
             { top: `${endT * 100}%`, marginTop: NODE_H + 6, backgroundColor: t.bgSurface2 },
           ]}>
-            <Ionicons name="shield-checkmark" size={13} color={ink('#34C759', 3)} />
+            <Ionicons name="shield-checkmark" size={13} color={ink(COLORS.stayShield, 3)} />
           </Reanimated.View>
         )}
 
         {/* Бронзовая платформа (только вылет) */}
         {isDemo && (
           <Reanimated.View style={[styles.plate, plateStyle, { backgroundColor: t.bgSurface }]}>
-            <Ionicons name="shield" size={16} color="#C08A50" />
-            <Text style={{ color: '#E8C49A', fontSize: f.caption, fontWeight: '700', marginLeft: 8, flex: 1 }} numberOfLines={1}>
+            <Ionicons name="shield" size={16} color={COLORS.demotionGlow} />
+            <Text style={{ color: COLORS.demotionText, fontSize: f.caption, fontWeight: '700', marginLeft: 8, flex: 1 }}>
               {platformLabel}
             </Text>
           </Reanimated.View>
@@ -661,7 +657,7 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
         {isPromo && (
           <Reanimated.View style={[styles.rewardsRow, rewardsStyle]}>
             <RewardChip icon="star" color={t.gold} title="+10% XP" sub={triLang(lang, { ru: 'бонус новой лиги', uk: 'бонус нової ліги', es: 'bono de nueva liga', "pt-BR": 'bônus da nova liga', vi: 'thưởng giải mới', id: 'bonus liga baru', tr: 'yeni lig bonusu', pl: 'bonus nowej ligi' })} t={t} f={f} />
-            <RewardChip icon="water" color={ink('#4A90D9', 3)} title={zoneBonusLabel} sub={zoneBonusSub} t={t} f={f} />
+            <RewardChip icon="water" color={ink(COLORS.zoneBonus, 3)} title={zoneBonusLabel} sub={zoneBonusSub} t={t} f={f} />
           </Reanimated.View>
         )}
         {isStay && (
@@ -670,12 +666,12 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
             <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
               <Reanimated.View style={[styles.progressFill, progressBarStyle, { backgroundColor: glowColor }]} />
             </View>
-            <Text style={{ color: glowColor, fontSize: f.body, fontWeight: '800' }}>120 XP</Text>
+            <Text style={{ color: glowColor, fontSize: f.body, fontWeight: '700' }}>120 XP</Text>
           </Reanimated.View>
         )}
         {isDemo && (
           <Reanimated.View style={[styles.rewardsRow, rewardsStyle]}>
-            <RewardChip icon="ribbon" color="#C08A50" title={savedLabel} sub="" t={t} f={f} wide />
+            <RewardChip icon="ribbon" color={COLORS.demotionGlow} title={savedLabel} sub="" t={t} f={f} wide />
           </Reanimated.View>
         )}
 
@@ -719,7 +715,6 @@ const PodiumSeat = memo(function PodiumSeat({ member, place, onLight, themeMode,
         </View>
       </View>
       <Text
-        numberOfLines={1}
         style={memberNameStatusStyle(
           { color: nameColor, fontSize: f.caption, fontWeight: member?.isMe ? '900' : '700', maxWidth: 92, textAlign: 'center', marginTop: 5 },
           { isPremium: !!member?.isPremium, isVip: !!member?.isVip, themeMode, surface: t.bgPrimary },
@@ -763,7 +758,7 @@ const PathMemberRow = memo(function PathMemberRow({ row, onLight, themeMode, t, 
           <MedalToken place={row.place as 1 | 2 | 3} size={14} onLight={onLight} />
         </View>
       )}
-      <Text numberOfLines={1} style={{ flex: 1, color: t.textPrimary, fontSize: f.caption, fontWeight: '700', marginLeft: 8 }}>
+      <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.caption, fontWeight: '700', marginLeft: 8 }}>
         {member.name}
       </Text>
       <Text style={{ color: t.textMuted, fontSize: f.caption, fontVariant: ['tabular-nums'] }}>
@@ -782,9 +777,9 @@ const RewardChip = memo(function RewardChip({ icon, color, title, sub, t, f, wid
         <Ionicons name={icon} size={16} color={color} />
       </View>
       <View style={{ flex: 1 }}>
-        <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: t.fontBody ?? 13, fontWeight: '800' }}>{title}</Text>
+        <Text style={{ color: t.textPrimary, fontSize: t.fontBody ?? 13, fontWeight: '700' }}>{title}</Text>
         {/* guard-ok: второе ЗНАЧЕНИЕ чипа (за топ-7 / bonus new league), не расшифровка title */}
-        {!!sub && <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: 11, marginTop: 1 }}>{sub}</Text>}
+        {!!sub && <Text style={{ color: t.textMuted, fontSize: 11, marginTop: 1 }}>{sub}</Text>}
       </View>
     </View>
   );
@@ -816,11 +811,11 @@ const styles = StyleSheet.create({
     position: 'absolute', left: 76, right: 0, height: NODE_H,
     flexDirection: 'row', alignItems: 'center', borderRadius: 12, paddingHorizontal: 10,
   },
-  trail: { position: 'absolute', left: 20, width: 24, borderRadius: 12, opacity: 0.5 },
-  medallionWrap: { position: 'absolute', left: 0, flexDirection: 'row', alignItems: 'center', height: NODE_H },
+  trail: { position: 'absolute', top: 0, left: 20, width: 24, borderRadius: 12, opacity: 0.5 },
+  medallionWrap: { position: 'absolute', top: 0, left: 0, flexDirection: 'row', alignItems: 'center', height: NODE_H },
   medallion: {
     width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center',
-    shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, elevation: 8,
+    shadowColor: COLORS.shadow, shadowOpacity: 0.4, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, elevation: 8,
   },
   anchor: {
     position: 'absolute', left: 14, width: 22, height: 22, borderRadius: 11,
@@ -836,7 +831,7 @@ const styles = StyleSheet.create({
   rewardIcon: { width: 28, height: 28, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: 9, marginBottom: 4 },
   progressTrack: { flex: 1, height: 6, borderRadius: 3, overflow: 'hidden' },
-  progressFill: { height: '100%', borderRadius: 3 },
+  progressFill: { width: '68%', height: '100%', borderRadius: 3, transformOrigin: 'left center' },
   ctaAnchor: { height: 0 },
 });
 

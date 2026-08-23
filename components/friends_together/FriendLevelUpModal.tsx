@@ -5,13 +5,13 @@
 import React, { memo, useEffect } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import RuneGlyph from '../RuneGlyph';
 import Reanimated from 'react-native-reanimated';
 import DuoPressable from '../DuoPressable';
 import AvatarView from '../AvatarView';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
-import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useRewardImpactHybrid, type RewardImpactRarity } from '../celebration/use_reward_impact_hybrid';
 import RewardImpactRings from '../celebration/RewardImpactRings';
 import { LEVEL_NAMES } from '../../app/friends_together/together_days';
@@ -33,6 +33,7 @@ export interface FriendLevelUpModalProps {
   level: number;
   bonusPercent: number;
   starsGranted: number;
+  claimBusy?: boolean;
   onClaim: () => void;
 }
 
@@ -47,11 +48,11 @@ function FriendLevelUpModal({
   level,
   bonusPercent,
   starsGranted,
+  claimBusy = false,
   onClaim,
 }: FriendLevelUpModalProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const reduceMotion = useReduceMotion();
   const rarity = rarityForLevel(level);
   const isGold = level >= 4;
 
@@ -94,10 +95,10 @@ function FriendLevelUpModal({
   const starsLabel = `+${starsGranted}`;
 
   return (
-    <Modal transparent visible={visible} animationType="none" onRequestClose={onClaim}>
+    <Modal transparent visible={visible} animationType="none" onRequestClose={() => { if (!claimBusy) onClaim(); }}>
       <View style={styles.root}>
         <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.scrim, impact.styles.backdrop]} />
-        <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={claimLabel} onPress={onClaim} />
+        <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={claimLabel} disabled={claimBusy} onPress={onClaim} />
 
         <View style={styles.stage} pointerEvents="box-none">
           <Reanimated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: isGold ? `${t.gold}38` : `${t.accent}38` }, impact.styles.bloom]} />
@@ -133,7 +134,7 @@ function FriendLevelUpModal({
                 </View>
                 {starsGranted > 0 && (
                   <View style={[styles.rewardChip, { backgroundColor: t.goldBg }]}>
-                    <Ionicons name="star" size={16} color={t.gold} />
+                    <RuneGlyph size={16} color={t.gold} />
                     <Text style={[styles.rewardText, { color: t.gold, fontSize: f.sub }]}>{starsLabel}</Text>
                   </View>
                 )}
@@ -144,9 +145,10 @@ function FriendLevelUpModal({
               <DuoPressable
                 testID="friend-level-up-claim"
                 onPress={onClaim}
+                disabled={claimBusy}
                 edgeColor={t.bgSurface2}
                 edgeHeight={4}
-                style={[styles.ctaBtn, { backgroundColor: isGold ? t.gold : t.accent }]}
+                style={[styles.ctaBtn, { backgroundColor: isGold ? t.gold : t.accent, opacity: claimBusy ? 0.62 : 1 }]}
               >
                 <Text style={[styles.ctaText, { color: t.correctText }]}>{claimLabel}</Text>
               </DuoPressable>

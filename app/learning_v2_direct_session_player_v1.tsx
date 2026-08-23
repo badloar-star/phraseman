@@ -70,6 +70,15 @@ import {
   recordLearningV2SessionStarResult,
 } from "./learning_v2_session_star_results_store";
 import {
+  learningV2SessionAbandonEvent,
+  learningV2SessionCompleteEvent,
+  learningV2SessionStartEvent,
+  learningV2TaskResultEvent,
+  type LearningV2ActivityFamilyCode,
+  type LearningV2SessionKindCode,
+} from "../modules/learning-v2/telemetry";
+import { trackLearningV2Telemetry } from "./learning_v2_telemetry";
+import {
   resolveLearningV2CourseSessionFullPhraseAudioV1,
   resolveLearningV2CourseSessionSelectableAudioV1,
   type LearningV2CourseSessionAudioPreloadHandleV1,
@@ -97,6 +106,19 @@ const MODE_ICONS = Object.freeze({
 >);
 
 type ResultState = "idle" | "correct";
+
+/**
+ * Вид занятия для телеметрии — выводится из координаты, а не из содержания.
+ * По карте курса: 8/16/24/32/40/48 — проверки глав, 56 — итоговый экзамен.
+ * Точный педагогический SessionKind живёт в контенте; здесь нужен только
+ * безопасный код для воронки.
+ */
+function telemetrySessionKind(ordinal: number): LearningV2SessionKindCode {
+  if (ordinal === 56) return "final_exam";
+  if (ordinal % 8 === 0) return "checkpoint";
+  return "phrases";
+}
+
 
 function exactOrdinal(value: string, max: number): number | null {
   const parsed = Number(value);
@@ -232,6 +254,13 @@ export default function LearningV2DirectSessionPlayerV1() {
   // зачем (аудит анимаций 22.08): сессия завершалась молча — сразу возврат на
   // карту. Теперь звёзды зажигаются по одной (<=700мс), и только потом уход.
   const [finaleStars, setFinaleStars] = useState<0 | 1 | 2 | 3 | null>(null);
+  // зачем (техдолг Phase 12): до этого в курсе не было НИ ОДНОГО события —
+  // после релиза мы бы не увидели, где люди бросают занятие. Отсчёт начинается
+  // с первого готового кадра; длительность уходит грубым бакетом, не точным
+  // таймлайном человека.
+  const sessionStartedAtRef = useRef<number | null>(null);
+  const sessionStageRef = useRef<"intro" | "practice" | "finale">("intro");
+  const telemetryStartSentRef = useRef(false);
   const interruptedWhileBackgroundedRef = useRef(false);
   const finishingRef = useRef(false);
   const completionsRef = useRef(
@@ -435,6 +464,37 @@ export default function LearningV2DirectSessionPlayerV1() {
   }, [managedAudio, resetInteraction]);
 
   useEffect(() => {
+    if (telemetryStartSentRef.current || !runSummary || !lessonOrdinal || !sessionOrdinal)
+      return;
+    telemetryStartSentRef.current = true;
+    sessionStartedAtRef.current = Date.now();
+    trackLearningV2Telemetry(
+      learningV2SessionStartEvent({
+        lessonOrdinal,
+        sessionOrdinal,
+        sessionKind: telemetrySessionKind(sessionOrdinal),
+        studyTarget,
+      }),
+    );
+  }, [lessonOrdinal, runSummary, sessionOrdinal, studyTarget]);
+
+  // Незавершённое занятие при уходе с экрана — главный сигнал обрыва.
+  useEffect(() => () => {
+    if (finishingRef.current || !telemetryStartSentRef.current) return;
+    if (!lessonOrdinal || !sessionOrdinal) return;
+    trackLearningV2Telemetry(
+      learningV2SessionAbandonEvent({
+        lessonOrdinal,
+        sessionOrdinal,
+        sessionKind: telemetrySessionKind(sessionOrdinal),
+        studyTarget,
+        durationMs: Date.now() - (sessionStartedAtRef.current ?? Date.now()),
+        stage: sessionStageRef.current,
+      }),
+    );
+  }, [lessonOrdinal, sessionOrdinal, studyTarget]);
+
+  useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextState) => {
       // A Learning V2 run is deliberately not resumable after a real app
       // interruption. A transient `inactive` state alone is not enough: iOS
@@ -473,6 +533,16 @@ export default function LearningV2DirectSessionPlayerV1() {
           hintUsed,
         });
         setResult("correct");
+        if (lessonOrdinal && sessionOrdinal)
+          trackLearningV2Telemetry(
+            learningV2TaskResultEvent({
+              lessonOrdinal,
+              sessionOrdinal,
+              activityFamily: practice.family as LearningV2ActivityFamilyCode,
+              outcome: "correct",
+              attempts,
+            }),
+          );
         void hapticSuccess();
         return;
       }
@@ -527,6 +597,16 @@ export default function LearningV2DirectSessionPlayerV1() {
       setSelectedChoiceId(null);
       setOrderedIds([]);
       setTranscript("");
+      if (lessonOrdinal && sessionOrdinal)
+        trackLearningV2Telemetry(
+          learningV2TaskResultEvent({
+            lessonOrdinal,
+            sessionOrdinal,
+            activityFamily: practice.family as LearningV2ActivityFamilyCode,
+            outcome: "wrong",
+            attempts,
+          }),
+        );
       void hapticError();
       if (!reducedMotion && practice.inputMode === "single_choice") {
         const wrongId = selectedChoiceId;
@@ -537,7 +617,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           }));
       }
     },
-    [attempts, auxiliary, hintUsed, lang, material?.lessonId, orderedIds, practice, reducedMotion, result, run, selectedChoiceId, studyTarget],
+    [attempts, auxiliary, hintUsed, lang, lessonOrdinal, material?.lessonId, orderedIds, practice, reducedMotion, result, run, selectedChoiceId, sessionOrdinal, studyTarget],
   );
 
   const finish = useCallback(async () => {
@@ -584,12 +664,24 @@ export default function LearningV2DirectSessionPlayerV1() {
       });
       // Сцена сама уводит на карту в onDone — прогресс уже сохранён, поэтому
       // выход по кнопке «назад» во время сцены ничего не теряет.
+      sessionStageRef.current = "finale";
+      trackLearningV2Telemetry(
+        learningV2SessionCompleteEvent({
+          lessonOrdinal: runSummary.lessonOrdinal,
+          sessionOrdinal: runSummary.sessionOrdinal,
+          sessionKind: telemetrySessionKind(runSummary.sessionOrdinal),
+          studyTarget,
+          durationMs: Date.now() - (sessionStartedAtRef.current ?? Date.now()),
+          starsEarned: earned,
+          correctCount: completion.interactionCompletions.length,
+        }),
+      );
       setFinaleStars(earned);
     } catch {
       finishingRef.current = false;
       setFinishing(false);
     }
-  }, [finishing, material, router, run, runSummary]);
+  }, [finishing, material, router, run, runSummary, studyTarget]);
 
   const advance = useCallback(() => {
     if (result !== "correct" || !runSummary) return;
@@ -777,6 +869,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               hintUsed: entry.hintUsed,
             }),
           );
+          sessionStageRef.current = "practice";
           setIntroDone(true);
         }}
         onBack={() => safeRouterBack(router, "/learning-v2/course")}

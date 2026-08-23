@@ -28,15 +28,18 @@ describe('product analytics event catalog', () => {
       'exit_trial_offer_shown',
       'experiment_exposure',
       'product_operation_failure',
+      // зачем 2026-08-22 (техдолг Phase 12): у курса Learning V2 не было ни
+      // одного события — воронка была слепой. События несут только координаты
+      // курса, коды и грубые бакеты: ни личности, ни текста заданий, ни ответов.
+      'learning_v2_session_abandon',
+      'learning_v2_session_complete',
+      'learning_v2_session_start',
+      'learning_v2_task_result',
       'lesson_abandoned',
       'lesson_answer',
       'onboarding_complete',
       'lesson_complete',
       'lesson_start',
-      'learning_review_answer',
-      'learning_review_session_abandoned',
-      'learning_review_session_complete',
-      'learning_review_session_start',
       'paywall_close',
       'paywall_continue_free',
       'paywall_cta_click',

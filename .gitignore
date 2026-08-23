@@ -343,3 +343,13 @@ functions/src/generated/support_repo_context.json
 
 # Сборка отдельной кодбазы MAX (functions-max/index.ts компилируется в lib/).
 /functions-max/lib/
+
+# зачем: аудит 2026-08-23 нашёл ~58 МБ мусора, не покрытого игнорами — любой
+# `git add -A` в параллельной сессии утащил бы его в коммит.
+# Локальные сборки тестов Арены: правило `.arena-test-build/` выше ловило только
+# точное имя, а tools/arena_tests плодит суффиксы (-intro-fix, -20260820 и т.п.).
+.arena-*build*/
+# Черновики генератора аватаров (content/avatar-studio — рабочая копия в prototypes/,
+# 32 МБ). Никакой код на корневой prototypes/ не ссылается: единственное упоминание
+# в components/friends_together/FriendsChestCard.tsx ведёт на docs/prototypes/.
+/prototypes/

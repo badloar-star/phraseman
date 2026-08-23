@@ -132,11 +132,21 @@ assets/images/personal_plan_tasks/*.png
 /android/
 
 # Personal-plan listening audio now streams from Firebase Storage (plan-audio/**)
-# and is disk-cached on device — see app/plan_audio_url_map.generated.ts. The local
-# mp3 are kept on disk only as a backup/regen source, so they must NOT be uploaded
-# to EAS (the require() map was neutralized; nothing bundles them). ~126 MB saved
-# from every EAS upload archive.
-assets/audio/personal-plans-runtime/
+# and is disk-cached on device — see app/plan_audio_url_map.generated.ts. Keep the
+# large local source set out of EAS, but ship the five Gavan day-1 clips that are
+# still statically required as exact local fallbacks.
+assets/audio/personal-plans-runtime/*
+!assets/audio/personal-plans-runtime/gavan
+assets/audio/personal-plans-runtime/gavan/*
+!assets/audio/personal-plans-runtime/gavan/runtime
+assets/audio/personal-plans-runtime/gavan/runtime/*
+!assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio
+assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/*
+!assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-1.mp3
+!assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-2.mp3
+!assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-3.mp3
+!assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-4.mp3
+!assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-5.mp3
 
 # Collectible card art now streams from Firebase Storage (collectible-images/**)
 # and is disk-cached on device — see app/collectibles/collectible_image_url_map.generated.ts.
@@ -176,3 +186,12 @@ assets/images/level_gifts/minimalDark-rare.webp
 assets/images/level_gifts/gold-common.webp
 assets/images/level_gifts/dark-common.webp
 assets/images/level_gifts/minimalDark-common.webp
+
+# зачем: аудит 2026-08-23 — эти папки не покрыты .easignore и уезжали в каждый
+# EAS-архив (~58 МБ). К рантайму приложения отношения не имеют.
+prototypes/
+.arena-test-build/
+.arena-*build*/
+# Огрызки упавшей конвертации изображений (*.webp.tmp) и прочие .tmp —
+# в архив сборки не нужны.
+*.tmp

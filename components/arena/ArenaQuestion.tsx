@@ -78,11 +78,17 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
           </>
         ) : null}
         <View style={[styles.matchGrid, viewport.compactHeight && styles.matchGridCompact]}>
-          <View style={styles.column}>
-            {view.left.map((item, index) => (
+          {/* зачем: раньше это были ДВЕ независимые колонки — левая по view.left,
+              правая по view.right. Колонки росли каждая своей высотой, и стоило
+              одному слову перенестись на две строки, как пары визуально
+              разъезжались: слово оказывалось напротив чужой пары. Теперь одна
+              строка = одна позиция: левый и правый элемент делят общую высоту и
+              не могут разойтись. Правый список остаётся перемешанным (это игра),
+              строка объединяет их ВИЗУАЛЬНО, проверка по-прежнему в onSpeedAttempt. */}
+          {view.left.map((item, index) => (
+            <View key={`pair-${index}`} style={styles.matchRow}>
               <V2Chip
-                key={`${item}-${index}`}
-                style={styles.touchChip}
+                style={[styles.touchChip, styles.matchCell]}
                 selected={left === index}
                 disabled={locked || matchedLeft.has(index)}
                 accessibilityLabel={item}
@@ -90,19 +96,14 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               >
                 {matchedLeft.has(index)
                   ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><Text numberOfLines={2} ellipsizeMode="tail" style={[styles.matchedText, { color: P.text }]}>{item}</Text></View>
-                  // Длинное слово на доске пар не должно растягивать колонку:
+                  // Длинное слово на доске пар не должно растягивать строку:
                   // тогда нижние пары уезжают за край и становятся нетыкаемыми.
                   : <Text numberOfLines={2} ellipsizeMode="tail">{item}</Text>}
               </V2Chip>
-            ))}
-          </View>
-          <View style={styles.column}>
-            {view.right.map((item, index) => (
               <V2Chip
-                key={`${item}-${index}`}
-                style={styles.touchChip}
+                style={[styles.touchChip, styles.matchCell]}
                 disabled={locked || left === null || matchedRight.has(index)}
-                accessibilityLabel={item}
+                accessibilityLabel={view.right[index]}
                 onPress={() => {
                   if (left === null) return;
                   const pairIndex = left;
@@ -119,11 +120,11 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 }}
               >
                 {matchedRight.has(index)
-                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><Text numberOfLines={2} ellipsizeMode="tail" style={[styles.matchedText, { color: P.text }]}>{item}</Text></View>
-                  : <Text numberOfLines={2} ellipsizeMode="tail">{item}</Text>}
+                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><Text numberOfLines={2} ellipsizeMode="tail" style={[styles.matchedText, { color: P.text }]}>{view.right[index]}</Text></View>
+                  : <Text numberOfLines={2} ellipsizeMode="tail">{view.right[index]}</Text>}
               </V2Chip>
-            ))}
-          </View>
+            </View>
+          ))}
         </View>
       </ScrollView>
     );
@@ -263,9 +264,13 @@ const styles = StyleSheet.create({
   answerTrayScroll: { flexShrink: 1, minHeight: 68, borderRadius: 18 },
   answerTray: { minHeight: 68, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },
   tokenCloud: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center' },
-  matchGrid: { flexDirection: 'row', gap: 10 },
+  // Список строк-пар: направление вертикальное, ряд задаёт matchRow.
+  matchGrid: { gap: 10 },
+  // Одна позиция = одна строка. alignItems stretch, чтобы обе фишки
+  // делили высоту самой высокой и не расходились по вертикали.
+  matchRow: { flexDirection: 'row', gap: 10, alignItems: 'stretch' },
+  matchCell: { flex: 1, justifyContent: 'center' },
   matchGridCompact: { gap: 8 },
-  column: { flex: 1, gap: 8, justifyContent: 'space-between' },
   touchChip: { minHeight: 48 },
   matched: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   // Отгаданная пара стоит в строке рядом со значком. Без сжатия длинное слово

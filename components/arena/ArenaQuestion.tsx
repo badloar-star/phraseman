@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { V2Card, V2Chip, V2Cta, type ChipVerdict } from '../tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+// зачем: v2_ui/v2_theme переехали из components/tournament в components/ui (2d5e95032) — старый путь мёртвый, Metro не резолвил модуль
+import { V2Card, V2Chip, V2Cta, type ChipVerdict } from '../ui/v2_ui';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { adaptArenaTask, encodeArenaSelection } from '../../modules/arena/task_adapter';
 import type { ArenaPublicTask } from '../../modules/arena/contract';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';

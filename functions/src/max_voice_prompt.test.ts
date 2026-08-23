@@ -295,9 +295,14 @@ describe('tutor instructions', () => {
       personaRole: '',
       learnerLangName: 'Polish',
     });
-    expect(instr.startsWith('You are Max, the learner\'s personal English TEACHER')).toBe(true);
-    expect(instr).toContain('level A1, native language Polish');
-    expect(instr).toContain('A1: TEACH IN Polish');
+    // зачем (кэш, 2026-08-23): статика больше НЕ содержит имени, уровня и
+    // родного языка — иначе префикс различался бы у каждой из 36 комбинаций
+    // «уровень × язык» и ~6800 токенов не кэшировались бы никогда. Персональные
+    // данные переехали в блок YOUR LEARNER в самый конец промпта.
+    expect(instr.startsWith('You are the learner\'s personal English TEACHER')).toBe(true);
+    expect(instr).toContain('You are Max.');
+    expect(instr).toContain("level is A1 and their NATIVE language is Polish");
+    expect(instr).toContain('A1: TEACH IN NATIVE');
     expect(instr).toContain('YOU own the clock');
     expect(instr).toContain('If the learner asks to stop, finish, end, or hang up');
     expect(JSON.stringify(TUTOR_TOOLS)).toContain('learner asks to stop or end');
@@ -317,8 +322,11 @@ describe('tutor instructions', () => {
     });
     expect(instr).toContain('set_language_preference("more_target")');
     expect(instr).toContain('set_language_preference("more_native")');
-    expect(instr).toContain('This does NOT mean "teach me Russian"');
-    expect(instr).toContain('Never start giving Russian lessons');
+    // Формулировки обезличены ради кэша, смысл прежний: «объясняй мне на моём»
+    // ≠ «учи меня моему родному». Конкретный язык приходит из блока YOUR LEARNER.
+    expect(instr).toContain('This does NOT mean "teach me my own language"');
+    expect(instr).toContain('Never start giving lessons in their own native language');
+    expect(instr).toContain('their NATIVE language is Russian');
   });
 
   // зачем: владелец 2026-08-17 — учитель сказал ученику «привет, я из России»
@@ -354,7 +362,7 @@ describe('tutor instructions', () => {
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'French',
     });
     expect(fr).toContain('personal English TEACHER');
-    expect(fr).toContain('level A2, native language Russian');
+    expect(fr).toContain('level is A2 and their NATIVE language is Russian');
     expect(fr).toContain('ONE COURSE PER LESSON: the learner is studying English');
     expect(fr).toContain('other languages can be chosen as a separate study language in the app settings');
     expect(fr).not.toContain('personal French TEACHER');

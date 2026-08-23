@@ -71,32 +71,52 @@ export function projectMaxReview(receipt: MaxVoiceReviewReceiptV1): MaxReviewPro
 // «не-букве» работают одинаково для обоих алфавитов.
 const NOT_BEFORE = '(?<![\\p{L}\\p{N}])';
 const NOT_AFTER = '(?![\\p{L}\\p{N}])';
-const SUBJECT = '(?:Learners?|The learner|[Уу]ченик|[Уу]ченица|[Сс]тудент|[Сс]тудентка|[Уу]чащийся)';
+// Только единственное число: «Ученики поздоровались» — про группу, там «вы»
+// было бы враньём. «Learners» во множественном тоже не трогаем.
+const SUBJECT = '(?:Learner|The learner|[Уу]ченик|[Уу]ченица|[Сс]тудент|[Сс]тудентка|[Уу]чащийся)';
 const OBLIQUE = '(?:ученика|ученику|учеником|ученике|студента|студенту|студентом|студенте)';
+// Слова, которые законно стоят между подлежащим и глаголом: «ученик НЕ терялся»,
+// «ученик УЖЕ ответил». Без них глагол оставался в мужском роде рядом с «вы».
+const ADVERBS = '(?:не|уже|тоже|также|сразу|быстро|уверенно|легко|сам|сама)';
+const GAP = `(?:\\s+${ADVERBS})*`;
 
 /** «поздоровался/поздоровалась» → «поздоровались» (возвратный глагол). */
 const SUBJECT_REFLEXIVE_VERB = new RegExp(
-  `${NOT_BEFORE}${SUBJECT}${NOT_AFTER}\\s+(\\p{L}+?)(?:лся|лась|лось)${NOT_AFTER}`,
+  `${NOT_BEFORE}${SUBJECT}${NOT_AFTER}(${GAP})\\s+(\\p{L}+?)(?:лся|лась|лось)${NOT_AFTER}`,
   'gu',
 );
 /** «выбрал/выбрала» → «выбрали» (обычный глагол прошедшего времени). */
 const SUBJECT_PLAIN_VERB = new RegExp(
-  `${NOT_BEFORE}${SUBJECT}${NOT_AFTER}\\s+(\\p{L}+?)(?:ла|ло|л)${NOT_AFTER}`,
+  `${NOT_BEFORE}${SUBJECT}${NOT_AFTER}(${GAP})\\s+(\\p{L}+?)(?:ла|ло|л)${NOT_AFTER}`,
   'gu',
 );
-const SUBJECT_ALONE = new RegExp(`${NOT_BEFORE}${SUBJECT}${NOT_AFTER}`, 'gu');
+// Подлежащее без глагола рядом. Кириллица и латиница РАЗНЫЕ: русское «ученик»
+// заменяем всегда, а английское «Learner» — только если дальше по строке нет
+// латиницы. Иначе английский разбор превращался в «Вы said hello confidently».
+const SUBJECT_RU_ALONE = new RegExp(
+  `${NOT_BEFORE}(?:[Уу]ченик|[Уу]ченица|[Сс]тудент|[Сс]тудентка|[Уу]чащийся)${NOT_AFTER}`,
+  'gu',
+);
+const SUBJECT_EN_ALONE = /(?<![\p{L}\p{N}])(?:The learner|Learner)(?![\p{L}\p{N}-])/gu;
 const SUBJECT_OBLIQUE = new RegExp(`${NOT_BEFORE}${OBLIQUE}${NOT_AFTER}`, 'giu');
 /** «Вы» строчное только в середине предложения, не после точки и не в начале. */
 const MID_SENTENCE_YOU = /(?<=[^.!?\n][  ,;:—-]\s*)(?<![\p{L}\p{N}])Вы(?![\p{L}\p{N}])/gu;
+/** Латиница за пределами имени MAX — признак англоязычного разбора. */
+const HAS_LATIN_PROSE = /(?<![\p{L}\p{N}])(?!MAX\b)[A-Za-z]{2,}/u;
 
 export function humanizeReviewSubject(value: string): string {
-  return value
-    .replace(SUBJECT_REFLEXIVE_VERB, (_match, stem: string) => `Вы ${stem}лись`)
-    .replace(SUBJECT_PLAIN_VERB, (_match, stem: string) => `Вы ${stem}ли`)
+  const withVerbs = value
+    .replace(SUBJECT_REFLEXIVE_VERB, (_m, gap: string, stem: string) => `Вы${gap} ${stem}лись`)
+    .replace(SUBJECT_PLAIN_VERB, (_m, gap: string, stem: string) => `Вы${gap} ${stem}ли`)
     // Косвенные падежи раньше подлежащего: «ученику» не должно стать «Вы».
     .replace(SUBJECT_OBLIQUE, 'вас')
-    .replace(SUBJECT_ALONE, 'Вы')
-    .replace(MID_SENTENCE_YOU, 'вы');
+    .replace(SUBJECT_RU_ALONE, 'Вы');
+  // Английский текст трогаем только если он не остался английским: иначе
+  // получается смесь «Вы used a new phrase», которая хуже исходника.
+  const normalized = HAS_LATIN_PROSE.test(withVerbs.replace(SUBJECT_EN_ALONE, ''))
+    ? withVerbs
+    : withVerbs.replace(SUBJECT_EN_ALONE, 'Вы');
+  return normalized.replace(MID_SENTENCE_YOU, 'вы');
 }
 
 export function compactReviewText(value: string, maxChars: number): string {

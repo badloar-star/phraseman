@@ -177,3 +177,31 @@ describe('humanizeReviewSubject', () => {
     expect(compactReviewText('Learner выбрал имя.', 180)).toBe('Вы выбрали имя.');
   });
 });
+
+// Аудит собственной правки (2026-08-23) нашёл четыре случая, где нормализация
+// врала. Каждый закреплён тестом, чтобы не вернулся.
+describe('humanizeReviewSubject: края, найденные аудитом', () => {
+  it('согласует глагол через «не»/«уже» — иначе «вы не терялся»', () => {
+    expect(humanizeReviewSubject('Разговор шёл легко, ученик не терялся.'))
+      .toBe('Разговор шёл легко, вы не терялись.');
+  });
+
+  it('не калечит англоязычный разбор смесью «Вы said hello»', () => {
+    expect(humanizeReviewSubject('Learner said hello confidently.'))
+      .toBe('Learner said hello confidently.');
+    expect(humanizeReviewSubject('The learner used a new phrase.'))
+      .toBe('The learner used a new phrase.');
+  });
+
+  it('не превращает множественное число в «вы» — речь о группе, а не о вас', () => {
+    expect(humanizeReviewSubject('Ученики поздоровались.')).toBe('Ученики поздоровались.');
+  });
+
+  it('не режет слово по дефису', () => {
+    expect(humanizeReviewSubject('Learner-friendly подход.')).toBe('Learner-friendly подход.');
+  });
+
+  it('меняет подлежащее и там, где глагола рядом нет', () => {
+    expect(humanizeReviewSubject('Ученик и MAX договорились.')).toBe('Вы и MAX договорились.');
+  });
+});

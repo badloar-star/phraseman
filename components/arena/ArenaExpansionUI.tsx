@@ -1,11 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import RuneGlyph from '../RuneGlyph';
 import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
-import { V2Card, V2Cta } from '../tournament/tournament_v2_ui';
+import { V2Card, V2Cta } from '../ui/v2_ui';
 import type { ArenaFeatureState, ArenaHubSection } from '../../modules/arena/expansion_contract';
 import { ARENA_HUB_SECTIONS } from '../../modules/arena/expansion_contract';
 import { useLang } from '../LangContext';
@@ -59,7 +60,7 @@ export function ArenaSectionTabs({
  *
  * `balance` может быть неизвестен: ответа ещё нет. Ноль в этом случае —
  * утверждение «у тебя пусто», а не отсутствие ответа. Игрок, накопивший
- * тысячу звёзд, видел ноль и шёл проверять, не списали ли всё.
+ * тысячу рун, видел ноль и шёл проверять, не списали ли всё.
  */
 export function ArenaWalletButton({ label, balance, onPress, disabled = false, disabledHint }: { label: string; balance: number | null; onPress: () => void; disabled?: boolean; disabledHint?: string }) {
   const P = useTournamentPalette();
@@ -75,7 +76,7 @@ export function ArenaWalletButton({ label, balance, onPress, disabled = false, d
       onPress={onPress}
       style={[styles.walletButton, { backgroundColor: P.gold, opacity: disabled ? 0.55 : 1 }]}
     >
-      <Ionicons name="star" size={17} color={P.onGold} />
+      <RuneGlyph size={17} color={P.onGold} />
       <Text accessible={balance !== null} style={[styles.walletValue, { color: P.onGold }]}>{balance === null ? '—' : balance}</Text>
     </Pressable>
   );
@@ -119,7 +120,7 @@ export function ArenaFeatureRow({
           <Ionicons name={icon} size={25} color={foreground} />
         </View>
         <View style={styles.featureCopy}>
-          <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.featureTitle, { color: foreground }]}>{title}</Text>
+          <Text style={[styles.featureTitle, { color: foreground }]}>{title}</Text>
           {body ? <Text style={[styles.featureBody, { lineHeight: 18 * fontScale, color: accent ? P.okInk : P.muted }]}>{body}</Text> : null}
           {badge ? <Text style={[styles.featureBadge, { lineHeight: 17 * fontScale, color: accent ? P.okInk : P.gold }]}>{badge}</Text> : null}
         </View>
@@ -234,7 +235,8 @@ export function ArenaStateNotice({
 export function ArenaSectionTitle({ children }: { children: React.ReactNode }) {
   const P = useTournamentPalette();
   const fontScale = useArenaFontScale();
-  return <Text style={[styles.sectionTitle, { lineHeight: 25 * fontScale, color: P.text }]}>{children}</Text>;
+  // eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- bounded authored heading; two wrapped lines keep the following action reachable at large font
+  return <Text numberOfLines={2} style={[styles.sectionTitle, { lineHeight: 25 * fontScale, color: P.text }]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({

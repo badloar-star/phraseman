@@ -34,8 +34,8 @@ import { Image } from 'expo-image'; // guard-ok: жемчужина декора
 import { coinIconForBalance, pearlIconForTheme } from './coin_icons';
 import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
-import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
-import { StarGlyph, TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
+import { V2Card, V2Counter, V2Cta } from '../components/ui/v2_ui';
+import { StarGlyph, TournamentFxHost, type TournamentFxApi } from '../components/ui/V2Fx';
 import {
   METAL,
   motion,
@@ -44,9 +44,9 @@ import {
   type,
   useTournamentPalette,
   type TournamentV2,
-} from '../components/tournament/tournament_theme';
+} from '../components/ui/v2_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { TournamentBackdrop, TournamentPodiumArt } from '../components/tournament/TournamentBackdrop';
+import { TournamentBackdrop, TournamentPodiumArt } from '../components/ui/V2Backdrop';
 import { isTournamentBotPlayer, tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { tournamentBotCardInfo } from '../components/tournament/tournament_bot_card';
 import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
@@ -610,7 +610,7 @@ export default function TournamentResultsScreen() {
           </TapScale>
           {/* зачем 2026-08-04 (владелец: «в правом верхнем углу просто как везде
               индикатор звёздочек, чтобы видеть, сколько звёздочек ты набрал»):
-              звёзды ушли из-под ников на подиуме, и итог сезона стало негде
+              руны ушли из-под ников на подиуме, и итог сезона стало негде
               увидеть. Индикатор тот же, что на вкладке турниров, и цифра
               докручивается до нового значения — видно, что турнир её поднял. */}
           <View style={styles.headerStars}>
@@ -619,7 +619,7 @@ export default function TournamentResultsScreen() {
               testID="results-season-stars"
               provenance="authored"
               style={styles.headerStarsText}
-              accessibilityLabel={triLang(lang, { ru: `Звёзд за сезон: ${seasonStars}`, uk: `Зірок за сезон: ${seasonStars}`, es: `Estrellas de la temporada: ${seasonStars}`, 'pt-BR': `Estrelas da temporada: ${seasonStars}`, vi: `Sao mùa giải: ${seasonStars}`, id: `Bintang musim: ${seasonStars}`, tr: `Sezon yıldızları: ${seasonStars}`, pl: `Gwiazdki sezonu: ${seasonStars}` })}
+              accessibilityLabel={triLang(lang, { ru: `Рун за сезон: ${seasonStars}`, uk: `Рун за сезон: ${seasonStars}`, es: `Runas de la temporada: ${seasonStars}`, 'pt-BR': `Runas da temporada: ${seasonStars}`, vi: `Rune mùa giải: ${seasonStars}`, id: `Rune musim: ${seasonStars}`, tr: `Sezon rünleri: ${seasonStars}`, pl: `Runy sezonu: ${seasonStars}` })}
             >
               {shownSeasonStars}
             </FlowText>

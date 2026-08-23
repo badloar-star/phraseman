@@ -10,18 +10,22 @@ import Animated, {
   runOnJS,
   Easing,
 } from 'react-native-reanimated';
-import { StarGlyph } from '../tournament/TournamentFx';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { StarGlyph } from '../ui/V2Fx';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { v2motion } from '../tournament/tournament_theme';
+import { pickRuneGlyphs } from '../../constants/runes';
+import { v2motion } from '../ui/v2_theme';
 
 /**
- * Полёт звёзд в кошелёк.
+ * Полёт рун в кошелёк.
  *
- * Владелец (2026-08-12): начисленные звёзды обязаны физически долетать до
+ * Владелец (2026-08-12): начисленная валюта обязана физически долетать до
  * счётчика — это главный момент вознаграждения в Арене.
  *
- * Каждая звезда летит по дуге (Безье через контрольную точку выше прямой),
+ * зачем (владелец, 22.08): валюта переименована в руны, и в полёте идут РАЗНЫЕ
+ * рунические символы — один повторённый глиф владелец отверг прямо.
+ *
+ * Каждая руна летит по дуге (Безье через контрольную точку выше прямой),
  * стартует с задержкой в 55 мс от предыдущей и приземляется с лёгким
  * перелётом. Счётчик увеличивается на КАЖДОЙ посадке, а не разом в конце —
  * иначе полёт читается как декорация.
@@ -33,6 +37,7 @@ export type ArenaPoint = Readonly<{ x: number; y: number }>;
 
 function FlyingStar({
   index,
+  glyph,
   from,
   to,
   size,
@@ -41,6 +46,7 @@ function FlyingStar({
   onLand,
 }: {
   index: number;
+  glyph: string;
   from: ArenaPoint;
   to: ArenaPoint;
   size: number;
@@ -94,13 +100,13 @@ function FlyingStar({
 
   return (
     <Animated.View pointerEvents="none" style={[styles.star, style]}>
-      <StarGlyph size={size} color={color} />
+      <StarGlyph size={size} color={color} glyph={glyph} />
     </Animated.View>
   );
 }
 
 function ArenaStarFlightBase({
-  /** Сколько звёзд отправить. Больше MAX_VISIBLE схлопывается — иначе каша. */
+  /** Сколько рун отправить. Больше MAX_VISIBLE схлопывается — иначе каша. */
   amount,
   from,
   to,
@@ -122,6 +128,10 @@ function ArenaStarFlightBase({
 
   useEffect(() => { landedRef.current = 0; }, [amount, from?.x, from?.y, to?.x, to?.y]);
 
+  // зачем (владелец, 22.08): каждая руна полёта несёт СВОЙ символ; выборка
+  // фиксируется на весь полёт, иначе глифы менялись бы прямо в воздухе.
+  const glyphs = React.useMemo(() => pickRuneGlyphs(count), [count]);
+
   const handleLand = React.useCallback(() => {
     landedRef.current += 1;
     onEachLand?.(landedRef.current);
@@ -136,6 +146,7 @@ function ArenaStarFlightBase({
         <FlyingStar
           key={index}
           index={index}
+          glyph={glyphs[index]}
           from={from}
           to={to}
           size={size}

@@ -91,6 +91,15 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Ratchet: no new \`as any\` in app/components/modules (see scripts/guard_as_any_ratchet.mjs).
+# Each cast switches the type checker off; one of them left the whole RevenueCat money
+# path (premium/plan/expiry) unchecked until commit d6a3390a6. The count may only go
+# down, never up. Runs in ~1s.
+node scripts/guard_as_any_ratchet.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 exit 0
 `;
 

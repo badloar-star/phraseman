@@ -28,6 +28,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, {
@@ -127,6 +129,11 @@ export default function FlashcardsBlitzSession() {
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
+  // Старт/рестарт блиц-раунда = 1 ⚡ за попытку (владелец 2026-08-23: единая
+  // экономика). Гейт стоит ДО эффекта старта раунда ниже — раунд не запускается,
+  // пока энергия не подтверждена.
+  const { isUnlimited: blitzEnergyUnlimited, spendOne: spendBlitzEnergy } = useEnergy();
+  const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
 
   const queueRef = useRef<DeckCard[]>([]);
   const qIdxRef = useRef(0);
@@ -249,9 +256,23 @@ export default function FlashcardsBlitzSession() {
       .catch(() => {});
   }, [clearRoundTimers, progress]);
 
-  // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
+  // Ровно одно списание на каждый roundId (первый заход и каждый рестарт «Ещё
+  // разок»). Пока не решено — стартовый эффект ниже ждёт (см. energyGate).
   useEffect(() => {
     if (loading || !canStartBlitz(pool.length)) return;
+    setEnergyGate('checking');
+    if (blitzEnergyUnlimited) { setEnergyGate('ok'); return; }
+    let cancelled = false;
+    void spendBlitzEnergy().then((ok) => {
+      if (cancelled) return;
+      setEnergyGate(ok ? 'ok' : 'denied');
+    });
+    return () => { cancelled = true; };
+  }, [loading, pool.length, roundId, blitzEnergyUnlimited, spendBlitzEnergy]);
+
+  // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
+  useEffect(() => {
+    if (loading || !canStartBlitz(pool.length) || energyGate !== 'ok') return;
     finishingRef.current = false;
     eventsRef.current = [];
     queueRef.current = shuffleArr(pool);
@@ -293,9 +314,9 @@ export default function FlashcardsBlitzSession() {
       clearRoundTimers();
       cancelAnimation(progress);
     };
-    // Рестарт — только по roundId / новой загрузке пула
+    // Рестарт — только по roundId / новой загрузке пула / решению по энергии
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, pool, roundId]);
+  }, [loading, pool, roundId, energyGate]);
 
   // ── Следующий вопрос (пул зациклен — 60с может пережить весь список) ─────
   const nextQuestion = useCallback(() => {
@@ -375,6 +396,22 @@ export default function FlashcardsBlitzSession() {
         gainAnim.value = 0;
         gainAnim.value = withTiming(1, { duration: 650, easing: Easing.out(Easing.cubic) });
       } else {
+        if (studyTarget === 'en' || studyTarget === 'fr') {
+          void captureCurrentAccountObjectiveAttempt({
+            attemptId: `flashcard-blitz:${roundId}:${qIdxRef.current}:${question.card.id}:${optIdx}`,
+            studyTarget,
+            verdict: 'wrong',
+            objective: true,
+            content: {
+              sourceKind: 'flashcard',
+              sourceId: question.card.id,
+              canonicalTarget: question.card.en,
+              sourceMeaning: question.card.translation,
+              distractors: pool.filter((card) => card.id !== question.card.id).slice(0, 5).map((card) => card.en),
+            },
+            facet: { kind: 'meaning', expected: question.card.en },
+          }).catch(() => {});
+        }
         playSfx('incorrect');
         fcHaptic('wrong');
         comboScale.value = withTiming(0, { duration: 150 });
@@ -395,7 +432,7 @@ export default function FlashcardsBlitzSession() {
         setTimeout(nextQuestion, isOk ? BLITZ_ADVANCE_OK_MS : BLITZ_ADVANCE_WRONG_MS),
       );
     },
-    [locked, question, finish, nextQuestion, comboScale, scoreScale, gainAnim, heartsShake],
+    [locked, question, finish, nextQuestion, comboScale, scoreScale, gainAnim, heartsShake, pool, roundId, studyTarget],
   );
 
   const leave = useCallback(() => {
@@ -478,7 +515,7 @@ export default function FlashcardsBlitzSession() {
   const startWithPreset = useCallback(
     (preset: FcModePreset) => {
       setDeckPickerOpen(false);
-      // «Слабые» — due-очередь тренажёра «Моя практика», к наборам не относится.
+      // Исторический псевдо-набор «Слабые» не относится к наборам карточек.
       const deck = deckRouteParam(presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID));
       /**
        * Выбор не изменился — `?deck=` совпал бы со старым, экран бы не
@@ -882,6 +919,7 @@ export default function FlashcardsBlitzSession() {
         </ContentWrap>
         {deckPickerSheet}
       </SafeAreaView>
+      <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} />
     </ScreenGradient>
   );
 }

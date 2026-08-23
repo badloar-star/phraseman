@@ -104,6 +104,7 @@ import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
 import ThemedChoiceModal from "../../components/ThemedChoiceModal";
+import LearningV2SessionOutcomeSheet from "../../components/LearningV2SessionOutcomeSheet";
 import EnergyBar from "../../components/EnergyBar";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
@@ -3890,80 +3891,73 @@ export default function LessonsTab({
           ) : null}
         </View>
       </ScreenGradient>
-      <ThemedChoiceModal
+      <LearningV2SessionOutcomeSheet
         visible={selectedLearningV2Session !== null}
         title={learningV2SessionOutcomeTitle(
           selectedLearningV2OutcomeKind,
           lang,
         )}
         message={selectedLearningV2Outcome}
-        choices={[
-          {
-            label:
-              selectedLearningV2Session?.state === "completed"
-                ? triLang(lang, {
-                    ru: "Повторить",
-                    uk: "Повторити",
-                    es: "Repetir",
-                    "pt-BR": "Repetir",
-                    vi: "Luyện lại",
-                    id: "Ulangi",
-                    tr: "Tekrarla",
-                    pl: "Powtórz",
-                  })
-                : triLang(lang, {
-                    ru: "Начать",
-                    uk: "Почати",
-                    es: "Empezar",
-                    "pt-BR": "Começar",
-                    vi: "Bắt đầu",
-                    id: "Mulai",
-                    tr: "Başla",
-                    pl: "Zacznij",
-                  }),
-            onPress: () => {
-              const selected = selectedLearningV2Session;
-              if (!selected) return;
-              setSelectedLearningV2Session(null);
-              const sessionId = learningV2CourseSessionIdV1(
-                selected.lessonOrdinal,
-                selected.sessionOrdinal,
-              );
-              requestAnimationFrame(() => {
-                router.push({
-                  pathname: "/learning-v2/session/[id]",
-                  params: {
-                    id: sessionId,
-                    runtimeMode: "direct_v1",
-                    lessonOrdinal: String(selected.lessonOrdinal),
-                    sessionOrdinal: String(selected.sessionOrdinal),
-                    releaseEnvironment:
-                      learningV2Catalog?.environment ?? "production",
-                    releaseSeasonId:
-                      learningV2Catalog?.seasonId ?? "learning-v2",
-                    runKind:
-                      selected.state === "completed" ? "repeat" : "initial",
-                  },
-                } as never);
-              });
-            },
-          },
-          {
-            label: triLang(lang, {
-              ru: "Не сейчас",
-              uk: "Не зараз",
-              es: "Ahora no",
-              "pt-BR": "Agora não",
-              vi: "Để sau",
-              id: "Nanti saja",
-              tr: "Şimdi değil",
-              pl: "Nie teraz",
-            }),
-            variant: "secondary" as const,
-            onPress: () => setSelectedLearningV2Session(null),
-          },
-        ]}
-        onRequestClose={() => setSelectedLearningV2Session(null)}
+        primaryLabel={
+          selectedLearningV2Session?.state === "completed"
+            ? triLang(lang, {
+                ru: "Повторить",
+                uk: "Повторити",
+                es: "Repetir",
+                "pt-BR": "Repetir",
+                vi: "Luyện lại",
+                id: "Ulangi",
+                tr: "Tekrarla",
+                pl: "Powtórz",
+              })
+            : triLang(lang, {
+                ru: "Начать",
+                uk: "Почати",
+                es: "Empezar",
+                "pt-BR": "Começar",
+                vi: "Bắt đầu",
+                id: "Mulai",
+                tr: "Başla",
+                pl: "Zacznij",
+              })
+        }
+        onPrimaryPress={() => {
+          const selected = selectedLearningV2Session;
+          if (!selected) return;
+          setSelectedLearningV2Session(null);
+          const sessionId = learningV2CourseSessionIdV1(
+            selected.lessonOrdinal,
+            selected.sessionOrdinal,
+          );
+          requestAnimationFrame(() => {
+            router.push({
+              pathname: "/learning-v2/session/[id]",
+              params: {
+                id: sessionId,
+                runtimeMode: "direct_v1",
+                lessonOrdinal: String(selected.lessonOrdinal),
+                sessionOrdinal: String(selected.sessionOrdinal),
+                releaseEnvironment:
+                  learningV2Catalog?.environment ?? "production",
+                releaseSeasonId:
+                  learningV2Catalog?.seasonId ?? "learning-v2",
+                runKind:
+                  selected.state === "completed" ? "repeat" : "initial",
+              },
+            } as never);
+          });
+        }}
+        secondaryLabel={triLang(lang, {
+          ru: "Не сейчас",
+          uk: "Не зараз",
+          es: "Ahora no",
+          "pt-BR": "Agora não",
+          vi: "Để sau",
+          id: "Nanti saja",
+          tr: "Şimdi değil",
+          pl: "Nie teraz",
+        })}
+        onClose={() => setSelectedLearningV2Session(null)}
       />
       <ThemedChoiceModal
         visible={gateModal !== null}

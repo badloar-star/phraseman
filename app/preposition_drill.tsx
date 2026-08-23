@@ -156,28 +156,30 @@ export default function PrepositionDrillScreen() {
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
-  /** Совпадает с spendOne(): база + подарочная очередь. */
-  const totalPlayEnergy = (): number =>
-    energyUnlimitedRef.current ? Number.POSITIVE_INFINITY : energyRef.current + bonusEnergyRef.current;
 
-  // Открываем модал только после реальной загрузки из AsyncStorage (не placeholder MAX_ENERGY).
+  // Вход в тренажёр предлогов = 1 ⚡ (владелец 2026-08-23: платим за попытку,
+  // а не за ошибки). Ждём energyReady — до первого живого чтения из AsyncStorage
+  // в контексте лежит placeholder MAX_ENERGY, списание по нему украло бы заряд.
+  // зачем: ref-латч, а не деп на energy — после списания баланс падает, и эффект
+  // с депами на energy списал бы второй раз.
+  const drillEntryChargedRef = useRef(false);
   useEffect(() => {
-    if (!energyReady) return;
-    if (energyUnlimited) return;
-    if (energy + bonusEnergy <= 0) setNoEnergyModalOpen(true);
-  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
-
-  useEffect(() => {
-    if (energyUnlimited || energy + bonusEnergy > 0) setNoEnergyModalOpen(false);
-  }, [energyUnlimited, energy, bonusEnergy]);
+    if (!energyReady || drillEntryChargedRef.current) return;
+    drillEntryChargedRef.current = true;
+    if (energyUnlimitedRef.current) return;
+    if (energyRef.current + bonusEnergyRef.current <= 0) {
+      setNoEnergyModalOpen(true);
+      return;
+    }
+    spendOneRef.current().catch(() => {});
+  }, [energyReady]);
 
   const onCloseEnergyModal = useCallback(() => {
     setNoEnergyModalOpen(false);
-    // Закрыли модал без пополнения — выходим, иначе остаёмся без права списания.
-    if (!energyUnlimitedRef.current && energyRef.current + bonusEnergyRef.current <= 0) {
-      safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-    }
-  }, [router]);
+    // Модал показываем только когда вход НЕ оплачен (не хватило заряда) — значит
+    // закрытие всегда означает выход из тренажёра.
+    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  }, [router, lessonId]);
 
   const showXpToast = (amount: number = POINTS_PER_CORRECT) => {
     setXpToastAmount(amount);
@@ -406,10 +408,8 @@ export default function PrepositionDrillScreen() {
 
   const onAnswer = (option: string) => {
     if (selected) return;
-    if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) {
-      setNoEnergyModalOpen(true);
-      return;
-    }
+    // зачем: 1 ⚡ уже списана за вход в тренажёр, внутри энергия не тратится —
+    // проверка баланса на каждом ответе оборвала бы оплаченную сессию.
     const ok = option === item.correct;
     setSelected(option);
     setIsCorrect(ok);
@@ -450,18 +450,8 @@ export default function PrepositionDrillScreen() {
       setWrongIds(nextWrong);
       saveProgress(nextAnswered, nextWrong);
 
-      // Энергия: тратим 1 единицу за ошибку (сначала бонусная, см. EnergyContext).
-      // Модал — когда суммарно нечего было тратить к концу (не только «была база ровно 1»).
-      if (!energyUnlimitedRef.current) {
-        const totalBefore = energyRef.current + bonusEnergyRef.current;
-        spendOneRef.current().then(success => {
-          if (!success) return;
-          setTimeout(() => {
-            const totalAfter = energyRef.current + bonusEnergyRef.current;
-            if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
-          }, 800);
-        }).catch(() => {});
-      }
+      // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Заряд уже
+      // списан один раз за вход в тренажёр (эффект старта выше).
     }
   };
 

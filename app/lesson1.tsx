@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -952,7 +953,7 @@ const LessonContent = React.memo(function LessonContent({
   // зачем: полноэкранный ActivityIndicator дёргал геометрию (спиннер по центру
   // вместо шапки+карточки+плиток) — заменён на скелетон с зарезервированной
   // геометрией загруженного урока (шапка, задание, ответная строка, плитки,
-  // прогресс-бар), см. эталон app/review.tsx ~1297-1345.
+  // прогресс-бар), сохраняя геометрию рабочего состояния экрана.
   if (!phrase) {
     return (
       <LessonFirstFrame theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
@@ -1879,7 +1880,7 @@ function pronunciationOverrideForLessonPhrase(line: string): string | undefined 
   return line.replace(/\bread\b/i, 'reed');
 }
 
-export default function LessonScreen() {
+function LessonScreen() {
   const lessonRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
@@ -2533,7 +2534,13 @@ export default function LessonScreen() {
 
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
-  // Проверяем энергию при входе — сразу, без задержки
+  // Энергия при входе в урок: списываем РОВНО 1 ⚡ за старт.
+  // зачем: владелец 2026-08-23 — единое правило экономики. Энергия платится за
+  // ПОПЫТКУ (вход в активность), а не за ошибки внутри неё. Ошибка больше не
+  // жжёт заряд, поэтому урок не может оборваться на середине.
+  // Списание идемпотентно на урок за один заход (entryEnergyGateLessonRef): при
+  // ре-рендерах и смене энергии повторно не снимаем. Ноль энергии → модалка и
+  // отказ от входа (обрабатывает вызывающий экран, здесь — блок ответов ниже).
   const entryEnergyGateLessonRef = useRef<number | null>(null);
   useFocusEffect(
     useCallback(() => {
@@ -2544,10 +2551,14 @@ export default function LessonScreen() {
   useEffect(() => {
     if (!energyReady) return;
     if (testerEnergyDisabled) return;
-    if (currentEnergy > 0 || bonusEnergy > 0) return;
     if (entryEnergyGateLessonRef.current === lessonId) return;
     entryEnergyGateLessonRef.current = lessonId;
-    showEnergyEmptyFeedback();
+    if (currentEnergy <= 0 && bonusEnergy <= 0) {
+      showEnergyEmptyFeedback();
+      return;
+    }
+    // Оптимистично: spendOne сразу двигает локальный счётчик, запись догоняет.
+    spendOneRef.current().catch(() => {});
   }, [energyReady, lessonId, currentEnergy, bonusEnergy, testerEnergyDisabled, showEnergyEmptyFeedback]);
 
   const loadData = async () => {
@@ -2812,14 +2823,10 @@ export default function LessonScreen() {
     // на status === 'playing', ещё не успела перерисоваться). Тот же приём, что
     // locked.current в lesson_words.tsx. Снимается в goNext при возврате в 'playing'.
     if (answerInFlightRef.current) return;
-    // Блокируем ответ если энергия закончилась
-    if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0 && bonusEnergyRef.current <= 0) {
-      void trackFeatureBlocked('lesson', 'answer', 'no_energy', { lessonId, cellIndex }, 'lesson1');
-      showEnergyEmptyFeedbackRef.current();
-      return;
-    }
-    // Флаг поднимаем ПОСЛЕ проверки энергии: отказ по энергии — не принятый ответ,
-    // пользователь должен иметь возможность повторить попытку после пополнения.
+    // зачем: владелец 2026-08-23 — за вход в урок уже списана 1 ⚡, а внутри урока
+    // энергия не тратится вообще. Значит блокировать ОТВЕТЫ по нулевому балансу
+    // нельзя: иначе оплаченный урок обрывался бы на первом же ответе (заряд ушёл
+    // именно на этот вход). Гейт остался ровно один — на входе, выше.
     answerInFlightRef.current = true;
     const st = studyTargetRef.current;
     const expected = phraseCanonicalAnswer(phrase, st);
@@ -2907,16 +2914,11 @@ export default function LessonScreen() {
       }
       // Replay attempts can earn XP too, so a mistake must always break the combo.
       correctStreakRef.current = 0;
-      // [SRS] Записываем ошибку в хранилище интервального повторения.
-      // phraseCanonicalAnswer(...) — ключ как при проверке (совпадает со слотами words).
-      // phrase.russian — подсказка (русский/украинский перевод, будет показан на лицевой стороне карточки).
-      // lessonId — для фильтрации по уроку (getItemsByLesson) и отображения метки на карточке.
-      // Если фраза уже есть в базе — errorCount++, interval сбрасывается к 1 дню.
-      // Если фраза новая — добавляется с nextDue = завтра.
+      // Новая долгосрочная система «Ошибки» только фиксирует объективный fail.
+      // Локальный обязательный replay этого урока остаётся выше и не зависит от Plus.
       {
         const stRm = studyTargetRef.current;
         const analyticsPhraseKey = phraseCanonicalAnswer(phrase, stRm);
-        // Тренер: записываем фразу с errorWord (слово на котором ошибся)
         {
           const canonKey = phraseCanonicalAnswer(phrase, stRm);
           const correctTokens = canonKey.split(/\s+/).filter(Boolean);
@@ -2933,27 +2935,40 @@ export default function LessonScreen() {
             picked: resolvedToken?.picked,
             rawCategory: tokenRow?.category,
           };
-          recordMistake(
-            canonKey,
-            phrase.russian,
-            lessonId,
-            phrase.ukrainian,
-            'lesson',
-            spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
-            mistakeMeta,
-          );
-          logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
           lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
-          void recordPhraseMistake(
-            canonKey,
-            phrase.russian,
-            phrase.ukrainian ?? phrase.russian,
-            lessonId,
-            errWord,
-            tokenRow?.category,
-            phrase.spanish,
-            stRm,
-          );
+          if (stRm === 'en' || stRm === 'fr') {
+            const attemptScope = serverAttemptIdRef.current
+              || lessonAnalyticsAttemptRef.current?.id
+              || String(lessonStorageId);
+            void getStableId()
+              .then((accountScope) => captureObjectiveAttempt({
+                accountScope,
+                attemptId: [
+                  attemptScope,
+                  'answer',
+                  String(sessionAnswerCount.current),
+                  String(progressCell),
+                ].join(':'),
+                studyTarget: stRm,
+                verdict: 'wrong',
+                objective: true,
+                content: {
+                  sourceKind: 'lesson_phrase',
+                  sourceId: `lesson-${lessonId}:phrase-${String(phrase.id ?? canonKey)}`,
+                  canonicalTarget: canonKey,
+                  sourceMeaning: lessonPhraseMeaningForLang(phrase, lang, stRm),
+                  lessonId: String(lessonId),
+                  tokens: correctTokens,
+                  distractors: shuffled,
+                },
+                facet: {
+                  kind: 'word_order',
+                  tokenIndex: tokenIndex >= 0 ? tokenIndex : undefined,
+                  expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
+                },
+              }))
+              .catch(() => {});
+          }
         }
       }
     }
@@ -3057,16 +3072,9 @@ export default function LessonScreen() {
     } else {
       correctStreakRef.current = 0;
       setComboCount(0);
-      // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
-      if ((currentEnergyRef.current > 0 || bonusEnergyRef.current > 0) && !testerEnergyDisabledRef.current) {
-        spendOneRef.current().then(success => {
-          if (success) {
-            if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
-              setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
-            }
-          }
-        }).catch(() => {});
-      }
+      // зачем: владелец 2026-08-23 — энергия БОЛЬШЕ НЕ ТРАТИТСЯ ЗА ОШИБКИ.
+      // Единственная трата — 1 ⚡ при входе в урок (см. гейт входа выше).
+      // Ошибка теперь стоит только времени, а не заряда: учиться можно спокойно.
     }
 
     setWasWrong(!isRight);
@@ -3877,3 +3885,5 @@ export default function LessonScreen() {
     </>
   );
 }
+
+export default withOptionalPersonalPlanSunsetGuard(LessonScreen, ['planTask']);

@@ -36,6 +36,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '../components/ThemeContext';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -143,8 +145,13 @@ export default function FlashcardsSpeakingSession() {
   const reduceMotion = useFcReduceMotion();
 
   const [loading, setLoading] = useState(true);
+  // Старт сессии «Говорить» = 1 ⚡ (владелец 2026-08-23: единая экономика).
+  const { isUnlimited: speakEnergyUnlimited, spendOne: spendSpeakEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = useState(false);
+  const speakingEntryChargedRef = useRef(false);
   const [session, setSession] = useState<SpeakingSessionState>(() => initialSpeakingState([]));
   const sessionRef = useRef(session);
+  const mistakeCaptureRunRef = useRef(`flashcard-speaking-${Date.now().toString(36)}`);
   sessionRef.current = session;
   const [task, setTask] = useState<SpeakingTask>(DEFAULT_SPEAKING_PREFS.task);
   const [flipped, setFlipped] = useState(false);
@@ -186,6 +193,17 @@ export default function FlashcardsSpeakingSession() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
+      // зачем: списываем ДО тяжёлой загрузки колоды — при отказе не грузим
+      // карточки впустую. Латч на весь маунт экрана (не на deckKey/roundId —
+      // тут нет рестарта раунда, вся сессия — одна попытка).
+      if (!speakingEntryChargedRef.current) {
+        speakingEntryChargedRef.current = true;
+        if (!speakEnergyUnlimited) {
+          const ok = await spendSpeakEnergy();
+          if (cancelled) return;
+          if (!ok) { setNoEnergyOpen(true); setLoading(false); return; }
+        }
+      }
       const [pool, rawPrefs] = await Promise.all([
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch((): DeckCard[] => []),
         AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(() => null),
@@ -208,7 +226,7 @@ export default function FlashcardsSpeakingSession() {
     };
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckKey, sessionSize, contentLang, clearAdvanceTimer]);
+  }, [deckKey, sessionSize, contentLang, clearAdvanceTimer, speakEnergyUnlimited, spendSpeakEnergy]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -298,11 +316,27 @@ export default function FlashcardsSpeakingSession() {
           goNext();
         }, SPEAKING_AUTO_ADVANCE_MS);
       } else {
+        const failedCard = currentSpeakingCard(s);
+        if (failedCard && (studyTarget === 'en' || studyTarget === 'fr')) {
+          void captureCurrentAccountObjectiveAttempt({
+            attemptId: `${mistakeCaptureRunRef.current}:${s.index}:${failedCard.id}:${attempt.score}`,
+            studyTarget,
+            verdict: 'wrong',
+            objective: true,
+            content: {
+              sourceKind: 'flashcard',
+              sourceId: failedCard.id,
+              canonicalTarget: failedCard.en,
+              sourceMeaning: failedCard.translation,
+            },
+            facet: { kind: 'pronunciation', expected: failedCard.en },
+          }).catch(() => {});
+        }
         fcHaptic('wrong');
         playSfx('incorrect');
       }
     },
-    [task, clearAdvanceTimer, goNext],
+    [task, clearAdvanceTimer, goNext, studyTarget],
   );
 
   /** Панель закрылась сама (отказ движка / «нет речи») — ждём удержания снова. */
@@ -848,6 +882,7 @@ export default function FlashcardsSpeakingSession() {
         </ContentWrap>
       </SafeAreaView>
       {deckPickerSheet}
+      <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
     </ScreenGradient>
   );
 }

@@ -36,6 +36,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
 import { setAudioModeAsync } from 'expo-audio';
 import { useTheme } from '../components/ThemeContext';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -152,6 +154,10 @@ export default function FlashcardsListeningSession() {
   const contentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
 
   const [loading, setLoading] = useState(true);
+  // Старт сессии «Слушать» = 1 ⚡ (владелец 2026-08-23: единая экономика).
+  const { isUnlimited: listenEnergyUnlimited, spendOne: spendListenEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = useState(false);
+  const listeningEntryChargedRef = useRef(false);
   const [cards, setCards] = useState<ListeningCard[]>([]);
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -295,6 +301,16 @@ export default function FlashcardsListeningSession() {
     let cancelled = false;
     let createdMachine: ListeningMachine | null = null;
     void (async () => {
+      // зачем: списываем ДО загрузки карточек/голосов — при отказе не тратим
+      // TTS-разрешение и сеть впустую. Латч на весь маунт экрана.
+      if (!listeningEntryChargedRef.current) {
+        listeningEntryChargedRef.current = true;
+        if (!listenEnergyUnlimited) {
+          const ok = await spendListenEnergy();
+          if (cancelled) return;
+          if (!ok) { setNoEnergyOpen(true); setLoading(false); return; }
+        }
+      }
       const [pool, rawPrefs] = await Promise.all([
         // cards-2.1 (§6): несколько наборов одной объединённой подборкой (дедуп по id + шаффл)
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch(
@@ -503,7 +519,7 @@ export default function FlashcardsListeningSession() {
   const startWithPreset = useCallback(
     (preset: FcModePreset) => {
       setDeckPickerOpen(false);
-      // «Слабые» — due-очередь тренажёра «Моя практика», к наборам не относится.
+      // Исторический псевдо-набор «Слабые» не относится к наборам карточек.
       const decks = presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID);
       const deck = deckRouteParam(decks) || 'saved';
       /**
@@ -952,6 +968,7 @@ export default function FlashcardsListeningSession() {
         </ContentWrap>
       </SafeAreaView>
       {deckPickerSheet}
+      <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
     </ScreenGradient>
   );
 }

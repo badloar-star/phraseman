@@ -5,8 +5,8 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import AvatarView from '../components/AvatarView';
 import HybridSheetShell from '../components/modal_fx/HybridSheetShell';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { V2Card, V2Cta } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useLang } from '../components/LangContext';
 import { arenaText } from '../modules/arena/copy';
@@ -20,6 +20,8 @@ import {
 } from './arena_client';
 import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnapshot } from './friends_tab_swr_warm';
 import { getCanonicalUserId } from './user_id_policy';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 const ACTIVE_INVITE_KEY = 'arena_friend_invite_active_v2';
 type SelectedFriend = { uid: string; name: string; avatar?: string; aura?: string };
@@ -47,6 +49,10 @@ export default function ArenaFriendDuelScreen() {
   const [now, setNow] = useState(Date.now());
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  // Вызов друга = 1 ⚡ у инициатора (владелец 2026-08-23: единая экономика,
+  // платим за ПОПЫТКУ — списание в create() ниже, до сетевого вызова).
+  const { isUnlimited: duelEnergyUnlimited, spendOne: spendDuelEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const requestIdRef = useRef(createArenaRequestId('friend_invite'));
   /**
    * На первом входе picker открыт нативным Modal поверх всего экрана. Он
@@ -133,6 +139,10 @@ export default function ArenaFriendDuelScreen() {
 
   const create = async () => {
     if (!selected || busy) return;
+    if (!duelEnergyUnlimited) {
+      const ok = await spendDuelEnergy();
+      if (!ok) { setNoEnergyOpen(true); return; }
+    }
     setBusy(true); setError('');
     try {
       const result = await arenaV2InviteCreate(selected.uid, requestIdRef.current);
@@ -200,6 +210,7 @@ export default function ArenaFriendDuelScreen() {
           </ScrollView>
         </View>}
       </HybridSheetShell>
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
     </ArenaScreen>
   );
 }

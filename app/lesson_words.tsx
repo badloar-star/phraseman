@@ -2713,6 +2713,23 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
+
+  // Старт тренировки слов = 1 ⚡ (владелец 2026-08-23: платим за попытку, не за ошибки).
+  // зачем: пустой деп-массив — списываем РОВНО ОДИН РАЗ на монтирование экрана
+  // тренировки, а не на каждый ре-рендер. Ноль энергии → показываем модалку и
+  // не пускаем дальше (родитель разворачивает NoEnergyModal).
+  const trainingEntryChargedRef = useRef(false);
+  useEffect(() => {
+    if (trainingEntryChargedRef.current) return;
+    trainingEntryChargedRef.current = true;
+    if (testerEnergyDisabledRef.current) return;
+    if (currentEnergyRef.current <= 0) {
+      onNoEnergyRef.current();
+      return;
+    }
+    spendOneRef.current().catch(() => {});
+  }, []);
+
   const [practiceRepeatConfirm, setPracticeRepeatConfirm] = useState(false);
 
   // Состояние прогресса слов (сколько раундов пройдено). Окно рисуется сразу; с диска подмешиваем после (см. effect).
@@ -2728,7 +2745,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [learnedCnt, setLearnedCnt] = useState(initialTrainingState.learnedCnt);
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
-  const wordMistakeCountRef = useRef<Record<string, number>>({});
   // [FeedbackKit] Показ VictoryBurst на финал сессии — один раз (guard от
   // повторного показа при ре-рендерах, пока allDone держится true).
   const [victoryShown, setVictoryShown] = useState(false);
@@ -2907,11 +2923,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
-    // Блокируем если энергия кончилась
-    if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0) {
-      onNoEnergyRef.current();
-      return;
-    }
+    // зачем: 1 ⚡ уже списана за вход в тренировку, внутри энергия не тратится —
+    // блокировать ответы по нулевому балансу нельзя, иначе оплаченная сессия
+    // обрывалась бы сразу после списания. Гейт ровно один — на входе.
     sessionTouchedRef.current = true;
     locked.current = true;
 
@@ -3032,7 +3046,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           expected: current.word.en,
           rawCategory: current.word.pos,
         };
-        logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta, studyTarget);
         wrongMistakesRef.current.push({ phrase: current.word.en, ...mistakeMeta });
         if (studyTarget === 'en' || studyTarget === 'fr') {
           void captureCurrentAccountObjectiveAttempt({
@@ -3061,15 +3074,8 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         const secondInsert = insertTrainingCardLater(firstInsert.queue, firstInsert.index, resetCard);
         applyTrainingQueue(secondInsert.queue, currentNext);
 
-        // Тратим энергию при ошибке
-        if (!testerEnergyDisabledRef.current) {
-          const energyBefore = currentEnergyRef.current;
-          spendOneRef.current().then(success => {
-            if (success && energyBefore === 1) {
-              setTimeout(() => { onNoEnergyRef.current(); }, 800);
-            }
-          }).catch(() => {});
-        }
+        // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Единственная
+        // трата — 1 ⚡ при входе в тренировку (см. эффект старта выше).
       }
 
       setChosen(null);
@@ -3244,13 +3250,11 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   return (
     <View testID="lesson-words-training" style={{ flex:1, paddingHorizontal:20, paddingTop:12 }}>
-
       <View style={{ width:'100%', marginBottom:14, alignItems:'flex-end' }}>
         <Text style={{ color:sx.muted, fontSize:f.label, fontWeight:'700' }}>
           {trainingStepLabel}
         </Text>
       </View>
-
       {/* Вопрос */}
       <View style={{ flex:1, justifyContent:'center', alignItems:'center', gap:10 }}>
         {current.roundType === 'context' ? (
@@ -3294,7 +3298,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           </View>
         )}
       </View>
-
       {/* Варианты ответов — 2 колонки */}
       <View style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', gap:10, paddingBottom:16 }}>
         {current.options.map((opt, i) => {
@@ -3342,7 +3345,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           );
         })}
       </View>
-
       {current && (
         <ReportErrorButton
           screen="lesson_words"
@@ -3355,9 +3357,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           textColor={sx.muted}
         />
       )}
-
       {xpToastOverlay}
-
     </View>
   );
 }

@@ -14,7 +14,6 @@
 // app always works offline and on first launch.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ONBOARDING_ENABLED_STEPS_TEXT_KEY,
   parseEnabledOnboardingSteps,
@@ -35,6 +34,8 @@ export type RemoteNumberKey =
   | 'league_sync_force_interval_ms'
   | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
+  | 'avatar_dna_rollout_pct'
+  | 'phone_state_cutover_percent'
   // Экономика (вынесено из хардкодов для крутки баланса без релиза):
   // стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10 в home.tsx).
   | 'streak_freeze_cost_shards';
@@ -50,8 +51,11 @@ export type RemoteBoolKey =
   | 'soft_upsell_weekly_review_enabled'
   | 'soft_upsell_second_ai_dialogue_enabled'
   | 'soft_upsell_streak_enabled'
-  | 'soft_upsell_repeated_training_enabled'
   | 'referral_enabled'
+  | 'avatar_dna_enabled'
+  | 'phone_state_shadow_enabled'
+  | 'phone_state_sync_enabled'
+  | 'phone_state_emergency_stop'
   // Мастер-флаг «Рулетка Plus + реферальная программа». Живёт в numbers
   // (remote_config/app.numbers.referral_roulette_enabled) — туда его пишут
   // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
@@ -109,6 +113,7 @@ export type RemoteBoolKey =
   | 'gate_lessons_premium'
   | 'gate_speaking_premium'
   | 'gate_ai_dialog_premium'
+  | 'gate_personal_plan_premium'
   | 'gate_ai_voice_call'
   | 'gate_diagnosis_training_premium'
   | 'gate_stats_premium'
@@ -217,7 +222,10 @@ export type RemoteTextKey =
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 3,
   max_energy: 5,
-  energy_recovery_interval_ms: 10 * 60 * 1000,
+  // зачем: владелец 2026-08-23 — энергия больше не сгорает за ошибки, только
+  // за СТАРТ любой активности. Раз трата стала редкой и осознанной, единица
+  // восстанавливается 30 минут (полный запас из 5 — за 2,5 часа).
+  energy_recovery_interval_ms: 30 * 60 * 1000,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
   paywall_v2_pct: 100,
@@ -227,6 +235,8 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
   league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
+  avatar_dna_rollout_pct: 0,
+  phone_state_cutover_percent: 0,
   streak_freeze_cost_shards: 10,
 };
 
@@ -243,11 +253,20 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   soft_upsell_weekly_review_enabled: false,
   soft_upsell_second_ai_dialogue_enabled: false,
   soft_upsell_streak_enabled: false,
-  soft_upsell_repeated_training_enabled: false,
   // Дефолт true = kill-switch семантика (фича едет с релизом, админка может
   // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
   // задеплоенная invite-страница — иначе ссылки будут битыми.
   referral_enabled: true,
+  // Безопасный sell-switch: новый редактор невидим до явного включения и
+  // отдельного поэтапного процента. Старый экран Студии при этом не меняется.
+  avatar_dna_enabled: false,
+  // PhoneState remains fully dormant until each capability is explicitly
+  // enabled after shadow verification. These are sell-switches, never defaults.
+  phone_state_shadow_enabled: false,
+  phone_state_sync_enabled: false,
+  // Fail-safe rollout brake. The owner must deliberately disable it only
+  // after internal/shadow evidence is green.
+  phone_state_emergency_stop: true,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   referral_roulette_enabled: true,
@@ -315,6 +334,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_lessons_premium: true,
   gate_speaking_premium: true,
   gate_ai_dialog_premium: true,
+  gate_personal_plan_premium: true,
   // MAX voice: здесь семантика не «премиум-замок», а kill switch фичи целиком.
   // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений,
   // единственный гейт будет пейвол». Дефолт TRUE = линия открыта без записи в
@@ -397,6 +417,8 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
+  avatar_dna_rollout_pct: { min: 0, max: 100 },
+  phone_state_cutover_percent: { min: 0, max: 100 },
   streak_freeze_cost_shards: { min: 0, max: 9999 },
 };
 
@@ -422,7 +444,8 @@ const ROLLOUT_SUFFIX = '_rollout_pct';
 function clampNumber(key: RemoteNumberKey, value: number): number {
   const { min, max } = NUMBER_BOUNDS[key];
   if (!Number.isFinite(value)) return DEFAULT_NUMBERS[key];
-  return Math.max(min, Math.min(max, value));
+  const bounded = Math.max(min, Math.min(max, value));
+  return key === 'phone_state_cutover_percent' ? Math.round(bounded) : bounded;
 }
 
 function parseEnvNumber(raw: string | undefined): number | undefined {
@@ -564,6 +587,13 @@ export function isInRolloutBucket(userId: string, salt: string, pct: number): bo
   return hashToUnit(`${userId}:rollout:${salt}`) * 100 < pct;
 }
 
+export function assignPhoneStateCohort(stableUid: string, configuredPercent: number): boolean {
+  const percent = Math.round(Math.max(0, Math.min(100, Number.isFinite(configuredPercent)
+    ? configuredPercent
+    : 0)));
+  return isInRolloutBucket(stableUid, 'phone-state-cutover-v1', percent);
+}
+
 export function getRemoteConfigSignature(): string {
   return _configSignature;
 }
@@ -587,6 +617,11 @@ export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
+export const isAvatarDNAEnabled = (stableId: string | null): boolean => (
+  getRemoteBool('avatar_dna_enabled')
+  && Boolean(stableId)
+  && isInRolloutBucket(stableId as string, 'avatar-dna-v1', getRemoteNumber('avatar_dna_rollout_pct'))
+);
 export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
 export const isReferralRouletteEmergencyStopped = () => getRemoteBool('referral_roulette_emergency_stop');
 
@@ -596,7 +631,6 @@ const SOFT_UPSELL_FLAG_BY_TRIGGER: Record<SoftUpsellTrigger, RemoteBoolKey> = {
   weekly_review: 'soft_upsell_weekly_review_enabled',
   second_ai_dialogue: 'soft_upsell_second_ai_dialogue_enabled',
   streak_milestone: 'soft_upsell_streak_enabled',
-  repeated_training: 'soft_upsell_repeated_training_enabled',
 };
 
 export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boolean> {

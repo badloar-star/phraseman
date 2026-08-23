@@ -17,7 +17,10 @@ export interface EnergyState {
 const ENERGY_STORAGE_KEY = 'energy_state';
 const ENERGY_PER_LESSON = 1;
 /** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
-export const ENERGY_RECOVERY_INTERVAL_MS = 10 * 60 * 1000;
+// зачем: владелец 2026-08-23 — 30 минут за единицу. Энергия теперь тратится
+// только за СТАРТ активности (не за ошибки), поэтому трата редкая и медленное
+// восстановление не наказывает за учёбу.
+export const ENERGY_RECOVERY_INTERVAL_MS = 30 * 60 * 1000;
 
 /**
  * Подарок «Энергия +N до полуночи» (level_gift_system: BONUS_ENERGY_KEY).

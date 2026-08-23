@@ -22,8 +22,11 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import DuoPressable from '../components/DuoPressable';
+import { PRESS } from '../constants/motionHybrid';
 import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { FlowText } from '../components/text-integrity/FlowText';
@@ -74,6 +77,7 @@ import {
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
@@ -81,9 +85,9 @@ import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
 } from './flashcards_target_gate';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 
 import { noAndroidOutline } from '../constants/androidGlow';
-import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 type Phase = 'select' | 'play';
 
@@ -826,7 +830,7 @@ function restoreSessionDraft(
   };
 }
 
-export default function FlashcardsSwipeScreen() {
+function FlashcardsSwipeScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{
     quick?: string | string[];
@@ -902,9 +906,14 @@ export default function FlashcardsSwipeScreen() {
   const [loadingSources, setLoadingSources] = useState(() => initialSources.length === 0);
   const [starting, setStarting] = useState(false);
   const [loadError, setLoadError] = useState('');
+  // Старт тренировки карточек = 1 ⚡ (владелец 2026-08-23: единая экономика —
+  // платим за ПОПЫТКУ, ошибки внутри свайп-тренировки энергию не трогают).
+  const { isUnlimited: swipeEnergyUnlimited, spendOne: spendSwipeEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [phase, setPhase] = useState<Phase>('select');
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
   const [queue, setQueue] = useState<Prompt[]>([]);
+  const mistakeCaptureRunRef = useRef(`flashcard-swipe-${Date.now().toString(36)}`);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const [correctTranslationReminder, setCorrectTranslationReminder] = useState<CorrectTranslationReminder | null>(null);
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
@@ -1893,6 +1902,10 @@ export default function FlashcardsSwipeScreen() {
       return;
     }
     if (selectedSources.length === 0 || starting) return;
+    if (!swipeEnergyUnlimited) {
+      const ok = await spendSwipeEnergy();
+      if (!ok) { setNoEnergyOpen(true); return; }
+    }
     draftRestoreAttemptedRef.current = true;
     void hapticTap();
     setStarting(true);
@@ -1943,7 +1956,7 @@ export default function FlashcardsSwipeScreen() {
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, starting, studyTarget]);
+  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, spendSwipeEnergy, starting, studyTarget, swipeEnergyUnlimited]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -2310,6 +2323,22 @@ export default function FlashcardsSwipeScreen() {
           streak: 0,
         }));
         setFeedback({ kind: 'wrong', prompt });
+        if (studyTarget === 'en' || studyTarget === 'fr') {
+          void captureCurrentAccountObjectiveAttempt({
+            attemptId: `${mistakeCaptureRunRef.current}:${prompt.id}:${cardProgress.attempts}`,
+            studyTarget,
+            verdict: 'wrong',
+            objective: true,
+            content: {
+              sourceKind: 'flashcard',
+              sourceId: prompt.card.id,
+              canonicalTarget: prompt.card.en,
+              sourceMeaning: prompt.trueTranslation,
+              distractors: queue.filter((candidate) => candidate.card.id !== prompt.card.id).slice(0, 5).map((candidate) => candidate.card.en),
+            },
+            facet: { kind: 'meaning', expected: prompt.card.en },
+          }).catch(() => {});
+        }
         return;
       }
 
@@ -2349,7 +2378,7 @@ export default function FlashcardsSwipeScreen() {
         );
       }
     },
-    [makePrompt, queue, showCorrectTranslationReminder, trainingCards, updateCardMemory],
+    [makePrompt, queue, showCorrectTranslationReminder, studyTarget, trainingCards, updateCardMemory],
   );
 
   const answerCurrent = useCallback(
@@ -2438,9 +2467,27 @@ export default function FlashcardsSwipeScreen() {
           !settling &&
           Math.abs(gesture.dx) > 8 &&
           Math.abs(gesture.dx) > Math.abs(gesture.dy),
-        onPanResponderMove: (_, gesture) => {
-          position.setValue({ x: gesture.dx, y: gesture.dy * 0.16 });
-        },
+        /**
+         * зачем (владелец, 2026-08-16, «прыжки/дёрганье»): раньше здесь на
+         * КАЖДОЕ движение пальца вызывался `position.setValue(...)` — то есть
+         * координата ехала через JS-мост, и под нагрузкой (озвучка, разбор
+         * очереди, ре-рендер) карточка отставала от пальца.
+         *
+         * `Animated.event` с `useNativeDriver: true` отдаёт то же самое на
+         * UI-поток: палец ведёт карточку ровно, даже когда JS занят. Пружины
+         * возврата и улёта уже были нативными — теперь весь путь жеста единый.
+         *
+         * Наклон и бейджи «верно/неверно» читают `position.x` только через
+         * `interpolate` (нативный драйвер это поддерживает), addListener и
+         * чтения `_value` в файле нет — иначе натив бы не подошёл.
+         *
+         * `y` мягче `x` (0.16): вертикаль не должна уводить карточку из-под
+         * пальца — это было и раньше, здесь тот же множитель.
+         */
+        onPanResponderMove: Animated.event(
+          [null, { dx: position.x, dy: position.y }],
+          { useNativeDriver: true, listener: undefined },
+        ),
         onPanResponderRelease: (_, gesture) => {
           // FIX (владелец, 2026-08-13): фиксированный порог 96px был великоват —
           // обычный быстрый флик до него не доезжал, и карта возвращалась
@@ -2503,6 +2550,18 @@ export default function FlashcardsSwipeScreen() {
   // непрозрачность достигается на ~12% ширины экрана (BADGE_FULL_RATIO) и
   // держится clamp-ом до конца жеста И весь улёт карточки (position.x на улёте
   // уходит за ±width*1.15), то есть вплоть до подмены карточки.
+  /**
+   * зачем: вертикаль всегда шла с коэффициентом 0.16 — карточка не должна
+   * уезжать из-под пальца вверх/вниз. Раньше он применялся при ЗАПИСИ
+   * (`position.setValue({ y: gesture.dy * 0.16 })`), но нативный
+   * `Animated.event` пишет сырой `dy`, поэтому гасим на ПРИМЕНЕНИИ — жест
+   * ощущается ровно как прежде, только теперь целиком на UI-потоке.
+   */
+  const dragTranslateY = useMemo(
+    () => position.y.interpolate({ inputRange: [-1, 1], outputRange: [-0.16, 0.16] }),
+    [position.y],
+  );
+
   const badgeFullAt = swipeBadgeFullAtPx(width);
   const badgeStartAt = Math.max(6, Math.round(badgeFullAt * 0.25));
   const yesOpacity = position.x.interpolate({
@@ -2821,6 +2880,7 @@ export default function FlashcardsSwipeScreen() {
                 void startSession();
               }}
               edgeColor={t.accent}
+              edgeHeight={PRESS.edgeHeight.default}
               wrapStyle={styles.doneButtonWrap}
               style={[styles.primaryDoneButton, isCompactFlashcardsTask && styles.compactDoneButton, { backgroundColor: t.accent }]}
               accessibilityLabel={text.nextRound}
@@ -2830,7 +2890,11 @@ export default function FlashcardsSwipeScreen() {
             </DuoPressable>
             <TouchableOpacity
               onPress={openSettings}
-              style={[styles.secondaryDoneButton, isCompactFlashcardsTask && styles.compactDoneButton, { backgroundColor: t.bgCard }]}
+              style={[
+                styles.secondaryDoneButton,
+                isCompactFlashcardsTask && styles.compactDoneButton,
+                { backgroundColor: t.bgCard, paddingBottom: PRESS.edgeHeight.default },
+              ]}
               accessibilityLabel={text.toSets}
             >
               <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.toSets}</Text>
@@ -2995,7 +3059,7 @@ export default function FlashcardsSwipeScreen() {
                   : t.cardShadow,
               },
               {
-                transform: [...position.getTranslateTransform(), { rotate }],
+                transform: [{ translateX: position.x }, { translateY: dragTranslateY }, { rotate }],
                 // зачем: A-39 — карта растворяется на улёте, а не пропадает резко.
                 opacity: flyOpacity,
               },
@@ -3306,6 +3370,7 @@ export default function FlashcardsSwipeScreen() {
           </View>
         </ContentWrap>
       </SafeAreaView>
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
     </ScreenGradient>
   );
 }
@@ -4016,3 +4081,5 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 });
+
+export default withOptionalPersonalPlanSunsetGuard(FlashcardsSwipeScreen, ['planFlashcardsTask']);

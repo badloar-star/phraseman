@@ -9,6 +9,7 @@ import {
   formatTimeUntilRecovery,
   secondsUntilEnergyFull,
   getEffectiveMaxEnergyValue,
+  getRecoveryIntervalMs,
   EnergyState,
 } from '../app/energy_system';
 import { TOTAL_XP_FOR_LEVEL } from '../constants/theme';
@@ -207,10 +208,13 @@ describe('Energy System', () => {
   });
 
   describe('checkAndRecover', () => {
-    it('should recover energy after 10 minutes', async () => {
+    // зачем: интервал берём из самой системы, а не магическим числом — владелец
+    // 2026-08-23 сменил его с 10 на 30 минут, и хардкод в тесте это ловил как
+    // «поломку», хотя менялось правило, а не код восстановления.
+    it('should recover one unit after a full recovery interval', async () => {
       const currentState: EnergyState = {
         current: 2,
-        lastRecoveryTime: Date.now() - 10 * 60 * 1000, // 10 min ago = 1 cycle
+        lastRecoveryTime: Date.now() - getRecoveryIntervalMs(), // ровно 1 цикл назад
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
       (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
@@ -235,10 +239,11 @@ describe('Energy System', () => {
       expect(result.lastRecoveryTime).toBe(currentState.lastRecoveryTime + 20 * 60 * 1000);
     });
 
-    it('should not recover energy before 10 minutes', async () => {
+    it('should not recover energy before a full interval has passed', async () => {
       const currentState: EnergyState = {
         current: 2,
-        lastRecoveryTime: Date.now() - 9 * 60 * 1000, // 9 min ago = 0 cycles
+        // Заведомо меньше одного интервала восстановления → 0 циклов.
+        lastRecoveryTime: Date.now() - Math.floor(getRecoveryIntervalMs() * 0.9),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
 

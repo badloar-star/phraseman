@@ -5,13 +5,15 @@ import AvatarView from '../components/AvatarView';
 import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
 import DuoPressable from '../components/DuoPressable';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { V2Card } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { V2Card } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { useTheme } from '../components/ThemeContext';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useLang } from '../components/LangContext';
 import { arenaText } from '../modules/arena/copy';
 import { arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 export default function ArenaInviteScreen() {
   const router = useRouter();
@@ -23,6 +25,10 @@ export default function ArenaInviteScreen() {
   const { lang } = useLang();
   const [status, setStatus] = useState<ArenaFriendInviteStatus | null>(null);
   const [busy, setBusy] = useState(false);
+  // Принятие вызова друга = 1 ⚡ у принимающего (владелец 2026-08-23: единая
+  // экономика, платим за ПОПЫТКУ — списание в accept() ниже).
+  const { isUnlimited: inviteEnergyUnlimited, spendOne: spendInviteEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [error, setError] = useState('');
   const [now, setNow] = useState(Date.now());
   const readyRequestedRef = useRef('');
@@ -89,6 +95,10 @@ export default function ArenaInviteScreen() {
 
   const accept = async () => {
     if (!inviteId || busy) return;
+    if (!inviteEnergyUnlimited) {
+      const ok = await spendInviteEnergy();
+      if (!ok) { setNoEnergyOpen(true); return; }
+    }
     setBusy(true); setError('');
     try {
       const accepted = await arenaV2InviteAccept(inviteId);
@@ -123,6 +133,7 @@ export default function ArenaInviteScreen() {
           <DuoPressable testID="arena-friend-invite-decline" disabled={busy} onPress={() => { void decline(); }} edgeColor={t.bgSurface2} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}><Text style={[styles.button, { color: t.textPrimary }]}>Сегодня без драмы</Text></DuoPressable>
         </View>
       </HybridAlertShell>
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
     </ArenaScreen>
   );
 }

@@ -56,7 +56,8 @@ import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
 
-const ENERGY_COST = 5;
+// зачем: владелец 2026-08-23 — единая экономика, любой старт = 1 ⚡.
+const ENERGY_COST = 1;
 
 type Props = {
   level: LevelExamLevel;

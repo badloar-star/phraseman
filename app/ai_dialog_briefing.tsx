@@ -18,6 +18,8 @@ import {
   frenchAiDialogGateCopy,
 } from './ai_dialog_target_gate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 type RecoveryScreenProps = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -76,6 +78,10 @@ export default function AiDialogBriefingRoute() {
   const { studyTarget } = useStudyTarget();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const goBack = () => safeRouterBack(router, '/(tabs)/lessons' as never);
+  // Старт диалога MAX = 1 ⚡ (владелец 2026-08-23: единая экономика — платим
+  // за ПОПЫТКУ на брифинге, до входа в саму сессию диалога).
+  const { isUnlimited: dialogEnergyUnlimited, spendOne: spendDialogEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = React.useState(false);
 
   if (!aiDialogGateOpen) {
     const gateCopy = frenchAiDialogGateCopy(lang);
@@ -115,17 +121,27 @@ export default function AiDialogBriefingRoute() {
   }
 
   return (
-    <AiDialogBriefingScreen
-      scenario={scenario}
-      onBack={goBack}
-      onStart={() => {
-        void markAiDialogIntroSeen(studyTarget, scenario.id);
-        markNextNavigationAsReplace();
-        router.replace({
-          pathname: '/ai_dialog_session',
-          params: { scenarioId: scenario.id },
-        } as never);
-      }}
-    />
+    <>
+      <AiDialogBriefingScreen
+        scenario={scenario}
+        onBack={goBack}
+        onStart={() => {
+          const enter = () => {
+            void markAiDialogIntroSeen(studyTarget, scenario.id);
+            markNextNavigationAsReplace();
+            router.replace({
+              pathname: '/ai_dialog_session',
+              params: { scenarioId: scenario.id },
+            } as never);
+          };
+          if (dialogEnergyUnlimited) { enter(); return; }
+          void spendDialogEnergy().then((ok) => {
+            if (ok) enter();
+            else setNoEnergyOpen(true);
+          });
+        }}
+      />
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
+    </>
   );
 }

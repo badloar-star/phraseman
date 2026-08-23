@@ -221,12 +221,11 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
   initCounts: Record<string, number>;
-  initSrs: VerbSrsMap;
   onUpdate: (base: string, count: number) => void;
   onReset: () => void;
   lessonId?: number;
@@ -253,6 +252,20 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
 
+  // Старт тренировки неправильных глаголов = 1 ⚡ (владелец 2026-08-23).
+  // зачем: пустой деп-массив — ровно одно списание на монтирование экрана.
+  const verbsEntryChargedRef = useRef(false);
+  useEffect(() => {
+    if (verbsEntryChargedRef.current) return;
+    verbsEntryChargedRef.current = true;
+    if (testerEnergyDisabledRef.current) return;
+    if (currentEnergyRef.current <= 0) {
+      onNoEnergyRef.current();
+      return;
+    }
+    spendOneRef.current().catch(() => {});
+  }, []);
+
   const [queue, setQueue] = useState<IrregularVerb[]>(() => [...verbs]);
   const [pos, setPos] = useState(0);
   // step: 0=ask past, 1=ask pp, 2=ask base (mirrors original FORM_SEQ order)
@@ -273,19 +286,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   // глагола (base–past–part). null = скрыта; ставится при чистом проходе глагола.
   const [learnedBurst, setLearnedBurst] = useState<{ base: string; past: string; pp: string } | null>(null);
   const hadErrorThisVerb = useRef(false);
-  // «Шаткий» проход: была ошибка ИЛИ глагол ещё незрелый (узнавание) — короткий SRS-интервал.
-  const shakyThisVerb = useRef(false);
   // Счётчик ошибок на глагол для тренера (порог: 2 ошибки → активация)
-  const verbMistakeCountRef = useRef<Record<string, number>>({});
   const irregularStorageKey = useMemo(() => irregularVerbsGlobalKey(studyTarget), [studyTarget]);
-  // SRS-карта (стрик/повторения по каждой base) — обновляется по ходу сессии.
-  const srsMapRef = useRef<VerbSrsMap>(initSrs);
-  // Зрелые глаголы (streak ≥ 2) тренируем воспроизведением (буквы), новые — узнаванием (кнопки).
-  const RECALL_STREAK_THRESHOLD = 2;
+  // Уже знакомые глаголы тренируем воспроизведением; новые — узнаванием.
   const isRecallVerb = useCallback((base: string): boolean => {
-    const st = srsMapRef.current[base.trim().toLowerCase()];
-    return !!st && !st.mastered && st.streak >= RECALL_STREAK_THRESHOLD;
-  }, []);
+    return (initCounts[base] ?? 0) >= 2;
+  }, [initCounts]);
   const [letterBankKey, setLetterBankKey] = useState(0);
 
   const xpTranslateY = useRef(new Animated.Value(40)).current;
@@ -349,9 +355,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   const initVerb = useCallback((verb: IrregularVerb) => {
     setStep(0);
     hadErrorThisVerb.current = false;
-    // Узнавание из 4 кнопок = «шаткий» проход (можно угадать) → короткий SRS-интервал.
     // Воспроизведение из букв = «крепкий» проход.
-    shakyThisVerb.current = !isRecallVerb(verb.base);
     setLetterBankKey(k => k + 1);
     buildStep(verb, 0);
   }, [buildStep, isRecallVerb]);
@@ -385,11 +389,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
 
   const handleTap = useCallback(async (word: string, btnIdx: number) => {
     if (locked.current || phase !== 'answering') return;
-    // Блокируем если энергия кончилась
-    if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0) {
-      onNoEnergyRef.current();
-      return;
-    }
+    // зачем: 1 ⚡ уже списана за вход, внутри энергия не тратится — блокировать
+    // ответы по нулю нельзя, иначе оплаченная тренировка обрывалась бы сразу.
     locked.current = true;
 
     const verb = queue[pos % Math.max(queue.length, 1)];
@@ -419,9 +420,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
     } else {
       fk.verdict({ correct: false });
       hadErrorThisVerb.current = true;
-      shakyThisVerb.current = true;
 
-      // Тренер: считаем ошибки на глагол; при 2-й — активируем в очереди
       const vKey = verb.base;
       if (studyTarget === 'en' || studyTarget === 'fr') {
         void captureCurrentAccountObjectiveAttempt({
@@ -441,15 +440,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         }).catch(() => {});
       }
 
-      // Тратим энергию при ошибке
-      if (!testerEnergyDisabledRef.current) {
-        const energyBefore = currentEnergyRef.current;
-        spendOneRef.current().then(success => {
-          if (success && energyBefore === 1) {
-            setTimeout(() => { onNoEnergyRef.current(); }, 800);
-          }
-        }).catch(() => {});
-      }
+      // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Единственная
+      // трата — 1 ⚡ при входе в тренировку глаголов (эффект старта выше).
     }
 
     // Advance after short delay (озвучка — сразу выше, без ожидания таймера)
@@ -462,10 +454,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
       } else {
         // Verb complete (все 3 формы отвечены)
         const noErrors = !hadErrorThisVerb.current && isCorrect;
-        // SRS: чистый проход двигает по лесенке; «шаткий» (узнавание/угадал) — короткий интервал.
-        void recordVerbPass(verb.base, { clean: noErrors, shaky: shakyThisVerb.current }, studyTarget)
-          .then(state => { srsMapRef.current = { ...srsMapRef.current, [verb.base.trim().toLowerCase()]: state }; })
-          .catch(() => {});
         if (noErrors) {
           // Correct — mark as learned
           // [FeedbackKit] Мини-победа «Глагол освоен» — на СУЩЕСТВУЮЩЕЕ событие
@@ -1089,11 +1077,8 @@ export default function LessonIrregularVerbs() {
   const [userTab, setUserTab] = useState<null | 'dict' | 'learn'>(null);
   const tab: 'dict' | 'learn' = userTab !== null ? userTab : 'dict';
   const [globalCounts, setGlobalCounts] = useState<Record<string, number>>({});
-  const [srsMap, setSrsMap] = useState<VerbSrsMap>({});
   const [practiceAll, setPracticeAll] = useState(false);
   const [learnTabKey, setLearnTabKey] = useState(0);
-  // Карта SRS грузится асинхронно; до неё activePortion пуст просто из-за отсутствия
-  // данных, и решать «учить нечего» нельзя — иначе повтор включится по ложной причине.
 
   useEffect(() => {
     if (!canTrain) {
@@ -1117,35 +1102,22 @@ export default function LessonIrregularVerbs() {
       } catch { counts = {}; }
       if (cancelled) return;
       setGlobalCounts(counts);
-      // SRS: грузим карту; если пусто, но есть старый count-прогресс — мягко мигрируем.
-      let map = await loadVerbSrs(studyTarget);
-      if (Object.keys(map).length === 0 && Object.keys(counts).length > 0) {
-        map = await seedSrsFromLegacyCounts(counts, studyTarget);
-      }
-      if (!cancelled) setSrsMap(map);
     })();
     return () => { cancelled = true; };
   }, [irregularStorageKey, studyTarget]);
 
   // Порции: большие уроки учим волнами по ~6. Берём первую незавершённую порцию.
   const portions = useMemo(() => portionsForVerbs(allVerbs), [allVerbs]);
-  // SRS-сводка по всему уроку: что повторять/учить сегодня.
-  const lessonSummary = useMemo(
-    () => summarizeVerbSrs(allVerbs.map(v => v.base), srsMap),
-    [allVerbs, srsMap],
-  );
-  const dueBaseSet = useMemo(() => new Set(lessonSummary.dueBases.map(b => b.toLowerCase())), [lessonSummary]);
-
-  // Первая порция, в которой есть глаголы «на сегодня» (новые или пора повторить).
+  // Первая порция, в которой остались ещё не освоенные глаголы.
   const activePortion = useMemo(() => {
     for (const portion of portions) {
-      const due = portion.filter(v => dueBaseSet.has(v.base.toLowerCase()));
+      const due = portion.filter(v => (globalCounts[v.base] ?? 0) < 3);
       if (due.length > 0) return due;
     }
     return [];
-  }, [portions, dueBaseSet]);
+  }, [globalCounts, portions]);
 
-  // В режиме practiceAll тренируем все глаголы урока (прогресс/SRS как обычно).
+  // В режиме practiceAll тренируем все глаголы урока.
   const verbsForLearnTab = practiceAll ? allVerbs : activePortion;
   const title = triLang(lang, {
     ru: 'Неправильные глаголы',
@@ -1188,7 +1160,6 @@ export default function LessonIrregularVerbs() {
                   allVerbs={allVerbsFlat}
                   lang={lang}
                   initCounts={globalCounts}
-                  initSrs={srsMap}
                   lessonId={lessonId}
                   studyTarget={studyTarget}
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}

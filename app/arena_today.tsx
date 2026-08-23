@@ -6,8 +6,8 @@ import { useLang } from '../components/LangContext';
 import { ArenaQuestion } from '../components/arena/ArenaQuestion';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaDisclosureBadge, ArenaProgress, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
-import { V2Card, V2Cta, V2Segments } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette, v2motion } from '../components/tournament/tournament_theme';
+import { V2Card, V2Cta, V2Segments } from '../components/ui/v2_ui';
+import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
@@ -26,6 +26,8 @@ import {
   createArenaRequestId,
 } from './arena_client';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 export default function ArenaTodayScreen() {
   const router = useRouter();
@@ -44,9 +46,12 @@ export default function ArenaTodayScreen() {
   const [match, setMatch] = useState<ArenaMatch | null>(null);
   const [hardExpiresAtMs, setHardExpiresAtMs] = useState<number | null>(null);
   const [reward, setReward] = useState<ArenaMatchReward | null>(null);
-  const [completedRunId, setCompletedRunId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [verdict, setVerdict] = useState<'correct' | 'wrong' | null>(null);
+  // Старт «Задания дня» = 1 ⚡ (владелец 2026-08-23: единая экономика — платим
+  // за ПОПЫТКУ, ошибки внутри задания энергию больше не трогают).
+  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaTodayEnergy } = useEnergy();
+  const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const ids = useRef(new Map<string, string>());
   const deadlineSyncs = useRef(new Set<string>());
   const startRequestId = useRef<string | null>(null);
@@ -56,7 +61,6 @@ export default function ArenaTodayScreen() {
 
   const applyMutation = useCallback((response: Awaited<ReturnType<typeof arenaTodaySync>>) => {
     setMatch(response.match);
-    setCompletedRunId(response.match.matchId);
     if (response.hardExpiresAtMs !== undefined) setHardExpiresAtMs(response.hardExpiresAtMs);
     if (response.viewerReward) setReward(response.viewerReward);
     if ((response.state === 'aborted' || response.match.state === 'aborted') && !(ghostRun && response.viewerReward)) setStatus('expired');
@@ -72,7 +76,7 @@ export default function ArenaTodayScreen() {
     void arenaExpansionHome().then(async (home) => {
       if (!home.availability.today || home.today.state === 'unavailable') { setStatus('unavailable'); return; }
       if (home.today.state === 'expired') { setStatus('expired'); return; }
-      if (home.today.state === 'complete') { setStatus('complete'); setCompletedRunId(home.today.sessionId ?? null); setReward(home.today.starsEarned === undefined ? null : { starsEarned: home.today.starsEarned }); return; }
+      if (home.today.state === 'complete') { setStatus('complete'); setReward(home.today.starsEarned === undefined ? null : { starsEarned: home.today.starsEarned }); return; }
       if (home.today.sessionId) {
         const response = await arenaTodaySync(home.today.sessionId);
         applyMutation(response);
@@ -85,18 +89,20 @@ export default function ArenaTodayScreen() {
 
   useEffect(() => { if (active) load(); }, [active, load]);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent(ghostRun ? 'ghost' : 'today', ghostRun ? 'resume' : 'direct')); }, [ghostRun]);
+  const completionCorrect = match?.players[0]?.correct ?? 0;
+  const currentMatchId = match?.matchId ?? null;
+  const currentTaskIndex = match?.currentTaskIndex ?? null;
   useEffect(() => {
     if ((status !== 'complete' && status !== 'expired') || completionTracked.current) return;
     completionTracked.current = true;
-    const correct = match?.players[0]?.correct ?? 0;
-    trackArenaTelemetry(arenaRunCompleteEvent(ghostRun ? 'ghost' : 'today', ghostRun ? 'recording' : 'mixed', status === 'expired' ? 'expired' : 'complete', correct, Date.now() - openedAt.current));
-  }, [ghostRun, match?.players, status]);
+    trackArenaTelemetry(arenaRunCompleteEvent(ghostRun ? 'ghost' : 'today', ghostRun ? 'recording' : 'mixed', status === 'expired' ? 'expired' : 'complete', completionCorrect, Date.now() - openedAt.current));
+  }, [completionCorrect, ghostRun, status]);
   useEffect(() => {
-    if (!match) return;
-    pruneArenaSubmissionIds(ids.current, match.matchId, match.currentTaskIndex);
+    if (currentMatchId === null || currentTaskIndex === null) return;
+    pruneArenaSubmissionIds(ids.current, currentMatchId, currentTaskIndex);
     setSubmitting(false);
     setVerdict(null);
-  }, [match?.currentTaskIndex, match?.matchId]);
+  }, [currentMatchId, currentTaskIndex]);
   useEffect(() => {
     if (!active || !match || match.terminal || now < match.stateDeadlineAtMs) return;
     const key = `${match.matchId}:${match.version}`;
@@ -115,6 +121,19 @@ export default function ArenaTodayScreen() {
 
   const start = () => {
     if (submitting) return;
+    if (!arenaEnergyUnlimited) {
+      // зачем: гейт ДО setSubmitting — отказ по энергии не блокирует кнопку
+      // и не трогает состояние загрузки, пользователь может пополнить и нажать снова.
+      void spendArenaTodayEnergy().then((ok) => {
+        if (!ok) { setNoEnergyOpen(true); return; }
+        beginArenaTodayMatch();
+      });
+      return;
+    }
+    beginArenaTodayMatch();
+  };
+
+  const beginArenaTodayMatch = () => {
     setSubmitting(true);
     trackArenaTelemetry(arenaActionEvent('today', 'start', 'mixed'));
     const requestId = startRequestId.current ?? createArenaRequestId('today');
@@ -122,7 +141,6 @@ export default function ArenaTodayScreen() {
     void arenaTodayStart(requestId).then((response) => {
       startRequestId.current = null;
       setMatch(response.match);
-      setCompletedRunId(response.match.matchId);
       setHardExpiresAtMs(response.hardExpiresAtMs);
       setStatus(response.match.terminal ? 'complete' : 'ready');
     }).catch(() => setStatus('error')).finally(() => setSubmitting(false));
@@ -171,13 +189,19 @@ export default function ArenaTodayScreen() {
     <ArenaScreen title={screenTitle}>
       {ghostRun ? <><ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /><ArenaDisclosureBadge text={arenaExpansionText(lang, 'noEconomy')} /></> : null}
       <ArenaStateCard state="ready" title={ghostRun ? arenaText(lang, reward?.outcome === 'win' ? 'victory' : reward?.outcome === 'loss' ? 'defeat' : 'draw') : arenaExpansionText(lang, 'todayComplete')} body={ghostRun ? arenaExpansionText(lang, 'score').replace('{you}', String(reward?.guestScore ?? 0)).replace('{them}', String(reward?.hostScore ?? 0)) : arenaExpansionText(lang, 'starsEarned').replace('{amount}', String(reward?.starsEarned ?? 0))} actionLabel={arenaExpansionText(lang, 'continueAction')} onAction={() => router.replace('/arena' as never)} />
-      {!ghostRun && completedRunId ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_ghost_duel', params: { sourceRunId: completedRunId, sourceKind: 'arena_today' } } as never)}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta> : null}
-      {completedRunId ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_match_lab', params: { matchId: completedRunId } } as never)}>{arenaExpansionText(lang, 'review')}</V2Cta> : null}
+      {/* зачем убраны обе кнопки (владелец, 2026-08-16): «Записать дуэль»
+          вела на /arena_ghost_duel, «Разбор» — на /arena_match_lab. Оба
+          экрана удалены вместе с остальным расширением. Точка входа
+          params.runKind === 'ghost' ниже по файлу больше не достижима
+          (источник самих призрачных дуэлей удалён), поэтому ghostRun == false
+          всегда — ветка оставлена мёртвой, а не вычищена построчно, чтобы не
+          трогать соседний рабочий поток обычных заданий без сборки под рукой. */}
     </ArenaScreen>
   );
   if (!match) return (
     <ArenaScreen title={screenTitle} subtitle={arenaExpansionText(lang, 'todayBody')}>
       <V2Card style={styles.startCard}><ArenaProgress value={0} max={10} label={arenaExpansionText(lang, 'todayTitle')} /><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text><V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta></V2Card>
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
     </ArenaScreen>
   );
 
@@ -192,7 +216,7 @@ export default function ArenaTodayScreen() {
           <ArenaQuestion task={match.currentPublicTask} locked={submitting || match.state !== 'task_active'} verdict={verdict} submitLabel={arenaText(lang, 'submit')} onSubmit={submit} onSpeedAttempt={speedAttempt} />
           {submitting && !verdict ? <Text style={[styles.server, { color: P.muted }]}>{arenaText(lang, 'serverCheck')}</Text> : null}
         </Animated.View>
-      ) : <View style={styles.center}><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaText(lang, 'waiting')}</Text></View>}
+      ) : <View style={styles.center} />}
     </ArenaScreen>
   );
 }

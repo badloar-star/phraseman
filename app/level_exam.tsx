@@ -54,8 +54,9 @@ import LevelExamV2 from '../components/level-exam/LevelExamV2';
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
-/** Энергия за ПОПЫТКУ залога уровня (списывается авансом на старте, не за ошибку). */
-const LEVEL_EXAM_ENERGY = 5;
+/** Энергия за ПОПЫТКУ зачёта уровня (списывается авансом на старте, не за ошибку). */
+// зачем: владелец 2026-08-23 — единая экономика, любой старт = 1 ⚡.
+const LEVEL_EXAM_ENERGY = 1;
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -314,11 +315,6 @@ const LEVEL_TOPIC_UNAVAILABLE: Record<PlannedInterfaceLang, string> = {
 function levelTopicPlanned(q: LevelQ, locale: PlannedInterfaceLang): string {
   const planned = LEVEL_TOPIC_PLANNED[q.topicES]?.[locale];
   return planned && planned.trim().length > 0 ? planned : LEVEL_TOPIC_UNAVAILABLE[locale];
-}
-
-function levelExamCategory(q: LevelQ, token?: string): WordCategory | undefined {
-  const category = normalizeWordCategory(`${q.topic} ${q.topicUK} ${q.topicES}`, token).category;
-  return isUserFacingCategory(category) ? category : undefined;
 }
 
 // 3 вопроса per lesson (первые 3 из pool = fill-типы, они лучше всего подходят)
@@ -778,6 +774,7 @@ export default function LevelExam() {
           return;
         }
       }
+      mistakeCaptureRunRef.current = `level-exam-${Date.now().toString(36)}`;
       void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
       setChoices(new Array(questions.length).fill(null));
       setIdx(0);
@@ -789,6 +786,7 @@ export default function LevelExam() {
   }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, examEnergyUnlimited, energy, bonusEnergy, spendAmount]);
 
   const { flashKey, flash } = useWordFlash();
+  const mistakeCaptureRunRef = React.useRef(`level-exam-${Date.now().toString(36)}`);
 
   const handlePick = (ci: number) => {
     if (chosen !== null) return;
@@ -796,39 +794,30 @@ export default function LevelExam() {
     // (раньше был общий tap без сигнала результата).
     if (q && ci === q.correct) void hapticSuccess(); else void hapticError();
     if (q && ci !== q.correct) {
-      const hints = buildLevelExamHintPair(q);
-      const phrase = buildLevelExamEnglish(q);
       const expected = q.opts[q.correct];
-      const picked = q.opts[ci];
-      const resolvedToken = q.type === 'choice4'
-        ? resolveChoiceMistakeToken(phrase, picked, q.topic)
-        : resolvePhraseMistakeToken(phrase, picked, q.topic);
-      const tokenMetaBase = q.q.includes('___') && expected
-        ? { tokenText: expected, expected, picked, rawCategory: q.topic }
-        : {
-            ...(resolvedToken ?? { expected }),
-            rawCategory: q.topic,
-          };
-      const category = levelExamCategory(q, tokenMetaBase.tokenText || tokenMetaBase.expected);
-      const tokenMeta = { ...tokenMetaBase, category };
-      void recordMistake(
-        phrase,
-        hints.ru,
-        q.lessonNum,
-        hints.uk,
-        'exam',
-        undefined,
-        tokenMeta,
-        studyTarget,
-      );
-      logMistake(
-        phrase,
-        q.lessonNum,
-        'exam',
-        'wrong_pick',
-        tokenMeta,
-        studyTarget,
-      );
+      const canonicalTarget = q.type === 'choice4'
+        ? expected
+        : q.q.replace('___', expected).replace(/\[[^\]]+\]/, expected).replace(/^Correct:\s*/i, '');
+      if ((studyTarget === 'en' || studyTarget === 'fr') && expected) {
+        void captureCurrentAccountObjectiveAttempt({
+          attemptId: `${mistakeCaptureRunRef.current}:${idx}:${ci}`,
+          studyTarget,
+          verdict: 'wrong',
+          objective: true,
+          content: {
+            sourceKind: 'level_exam',
+            sourceId: `${lvl}:${q.lessonNum}:${q.q}`,
+            canonicalTarget,
+            sourceMeaning: q.topic,
+            lessonId: String(q.lessonNum),
+            distractors: q.opts,
+          },
+          facet: {
+            kind: q.q.includes('___') ? 'missing_token' : 'form',
+            expected,
+          },
+        }).catch(() => {});
+      }
     }
     setChoices(prev => { const n = [...prev]; n[idx] = ci; return n; });
     setShowAnswer(true);
@@ -968,103 +957,103 @@ export default function LevelExam() {
     const checking = accessState === 'checking';
     return (
       <ScreenGradient artBackdrop="exam">
-      <SafeAreaView style={{ flex: 1 }}>
-        <ContentWrap>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingHorizontal: 16,
-              paddingVertical: 12,
-              borderBottomWidth: StyleSheet.hairlineWidth,
-              borderBottomColor: isOliveTheme ? 'transparent' : LX.cardLine,
-            }}
-          >
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="chevron-back" size={26} color={isOliveTheme ? OLIVE_RICH.ivory : '#FFFFFF'} />
-            </TapScale>
-          </View>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveExamChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveExamChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={LX.gold} />
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 16,
+                paddingVertical: 12,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderBottomColor: isOliveTheme ? 'transparent' : LX.cardLine,
+              }}
+            >
+              <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+                <Ionicons name="chevron-back" size={26} color={isOliveTheme ? OLIVE_RICH.ivory : '#FFFFFF'} />
+              </TapScale>
             </View>
-            <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
-              {checking
-                ? triLang(lang, {
-                  ru: 'Проверяем доступ',
-                  uk: 'Перевіряємо доступ',
-                  es: 'Comprobando acceso',
-                  'pt-BR': "Verificando acesso",
-                  vi: "Đang kiểm tra quyền truy cập",
-                  id: "Memeriksa akses",
-                  tr: "Erişim kontrol ediliyor",
-                  pl: "Sprawdzanie dostępu",
-                })
-                : title}
-            </Text>
-            <Text style={{ color: oliveExamChrome?.muted ?? 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
-              {checking
-                ? triLang(lang, {
-                  ru: 'Секунду, сверяем текущий уровень.',
-                  uk: 'Секунду, звіряємо поточний рівень.',
-                  es: 'Un segundo, estamos comprobando tu nivel actual.',
-                  'pt-BR': "Um segundo, estamos conferindo seu nível atual.",
-                  vi: "Chờ một chút, chúng tôi đang kiểm tra cấp độ hiện tại của bạn.",
-                  id: "Sebentar, kami sedang memeriksa levelmu saat ini.",
-                  tr: "Bir saniye, mevcut seviyeni kontrol ediyoruz.",
-                  pl: "Chwileczkę, sprawdzamy Twój aktualny poziom.",
-                })
-                : blockedText}
-            </Text>
-            {!checking && (
-              <TouchableOpacity
-                activeOpacity={0.86}
-                onPress={() => {
-                  hapticTap();
-                  if (accessBlockKind === 'premium') {
-                    const firstLessonForLevel = getFirstLessonForLevel(lvl as CourseLevel);
-                    router.push({
-                      pathname: '/premium_modal',
-                      params: {
-                        context: lessonPaywallContext(firstLessonForLevel),
-                        lessons_done: '0',
-                        ...lessonPurchaseContinuationParams(firstLessonForLevel),
-                      },
-                    } as any);
-                  } else {
-                    router.replace('/lessons_list' as any);
-                  }
-                }}
-                style={{ backgroundColor: oliveExamChrome?.cta ?? LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
-              >
-                <Text style={{ color: oliveExamChrome?.ctaText ?? LX.ink, fontSize: f.body, fontWeight: '900' }}>
-                  {accessBlockKind === 'premium'
-                    ? triLang(lang, {
-                      ru: 'Получить Plus',
-                      uk: 'Отримати Plus',
-                      es: 'Obtener Plus',
-                      'pt-BR': "Obter Plus",
-                      vi: "Mở Plus",
-                      id: "Dapatkan Plus",
-                      tr: "Plus al",
-                      pl: "Kup Plus",
-                    })
-                    : triLang(lang, {
-                      ru: 'К урокам',
-                      uk: 'До уроків',
-                      es: 'Ir a lecciones',
-                      'pt-BR': "Ir para as aulas",
-                      vi: "Đến bài học",
-                      id: "Ke pelajaran",
-                      tr: "Derslere git",
-                      pl: "Do lekcji",
-                    })}
-                </Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        </ContentWrap>
-      </SafeAreaView>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
+              <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveExamChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveExamChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+                <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={LX.gold} />
+              </View>
+              <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+                {checking
+                  ? triLang(lang, {
+                    ru: 'Проверяем доступ',
+                    uk: 'Перевіряємо доступ',
+                    es: 'Comprobando acceso',
+                    'pt-BR': "Verificando acesso",
+                    vi: "Đang kiểm tra quyền truy cập",
+                    id: "Memeriksa akses",
+                    tr: "Erişim kontrol ediliyor",
+                    pl: "Sprawdzanie dostępu",
+                  })
+                  : title}
+              </Text>
+              <Text style={{ color: oliveExamChrome?.muted ?? 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
+                {checking
+                  ? triLang(lang, {
+                    ru: 'Секунду, сверяем текущий уровень.',
+                    uk: 'Секунду, звіряємо поточний рівень.',
+                    es: 'Un segundo, estamos comprobando tu nivel actual.',
+                    'pt-BR': "Um segundo, estamos conferindo seu nível atual.",
+                    vi: "Chờ một chút, chúng tôi đang kiểm tra cấp độ hiện tại của bạn.",
+                    id: "Sebentar, kami sedang memeriksa levelmu saat ini.",
+                    tr: "Bir saniye, mevcut seviyeni kontrol ediyoruz.",
+                    pl: "Chwileczkę, sprawdzamy Twój aktualny poziom.",
+                  })
+                  : blockedText}
+              </Text>
+              {!checking && (
+                <TouchableOpacity
+                  activeOpacity={0.86}
+                  onPress={() => {
+                    hapticTap();
+                    if (accessBlockKind === 'premium') {
+                      const firstLessonForLevel = getFirstLessonForLevel(lvl as CourseLevel);
+                      router.push({
+                        pathname: '/premium_modal',
+                        params: {
+                          context: lessonPaywallContext(firstLessonForLevel),
+                          lessons_done: '0',
+                          ...lessonPurchaseContinuationParams(firstLessonForLevel),
+                        },
+                      } as any);
+                    } else {
+                      router.replace('/lessons_list' as any);
+                    }
+                  }}
+                  style={{ backgroundColor: oliveExamChrome?.cta ?? LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
+                >
+                  <Text style={{ color: oliveExamChrome?.ctaText ?? LX.ink, fontSize: f.body, fontWeight: '900' }}>
+                    {accessBlockKind === 'premium'
+                      ? triLang(lang, {
+                        ru: 'Получить Plus',
+                        uk: 'Отримати Plus',
+                        es: 'Obtener Plus',
+                        'pt-BR': "Obter Plus",
+                        vi: "Mở Plus",
+                        id: "Dapatkan Plus",
+                        tr: "Plus al",
+                        pl: "Kup Plus",
+                      })
+                      : triLang(lang, {
+                        ru: 'К урокам',
+                        uk: 'До уроків',
+                        es: 'Ir a lecciones',
+                        'pt-BR': "Ir para as aulas",
+                        vi: "Đến bài học",
+                        id: "Ke pelajaran",
+                        tr: "Derslere git",
+                        pl: "Do lekcji",
+                      })}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
       </ScreenGradient>
     );
   }
@@ -1152,165 +1141,165 @@ export default function LevelExam() {
 
     return (
       <ScreenGradient artBackdrop="exam">
-      <SafeAreaView style={{ flex: 1 }}>
-        <ContentWrap>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingHorizontal: 16,
-              paddingVertical: 12,
-              borderBottomWidth: StyleSheet.hairlineWidth,
-              borderBottomColor: oliveExamChrome?.border ?? LX.cardLine,
-            }}
-          >
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="chevron-back" size={26} color={oliveExamChrome?.ivory ?? '#FFFFFF'} />
-            </TapScale>
-          </View>
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
             <View
               style={{
-                backgroundColor: oliveExamChrome?.raised ?? (isOliveTheme ? OLIVE_RICH.raised : LX.card),
-                borderRadius: 22,
-                borderWidth: 0,
-                borderColor: LX.cardLine,
-                padding: 20,
-                gap: 18,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 16,
+                paddingVertical: 12,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderBottomColor: oliveExamChrome?.border ?? LX.cardLine,
               }}
             >
-              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
-                <View
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 14,
-                    borderWidth: 0,
-                    borderColor: LX.gold,
-                    backgroundColor: LX.goldSoft,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Ionicons name="diamond-outline" size={26} color={LX.gold} />
-                </View>
-                <View style={{ flex: 1, paddingTop: 2 }}>
-                  <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
-                    {title}
-                  </Text>
-                </View>
-              </View>
-
-              <View style={{ flexDirection: 'row', gap: 10 }}>
-                {statTriples.map((s, i) => (
+              <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+                <Ionicons name="chevron-back" size={26} color={oliveExamChrome?.ivory ?? '#FFFFFF'} />
+              </TapScale>
+            </View>
+            <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+              <View
+                style={{
+                  backgroundColor: oliveExamChrome?.raised ?? (isOliveTheme ? OLIVE_RICH.raised : LX.card),
+                  borderRadius: 22,
+                  borderWidth: 0,
+                  borderColor: LX.cardLine,
+                  padding: 20,
+                  gap: 18,
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
                   <View
-                    key={i}
                     style={{
-                      flex: 1,
-                      minWidth: 0,
-                      alignItems: 'center',
-                      paddingVertical: 14,
-                      paddingHorizontal: 6,
-                      borderRadius: 16,
-                    backgroundColor: oliveExamChrome?.panel ?? 'rgba(0,0,0,0.35)',
+                      width: 48,
+                      height: 48,
+                      borderRadius: 14,
                       borderWidth: 0,
-                      borderColor: LX.cardLine,
+                      borderColor: LX.gold,
+                      backgroundColor: LX.goldSoft,
+                      justifyContent: 'center',
+                      alignItems: 'center',
                     }}
                   >
-                    <Ionicons name={s.icon} size={18} color={LX.gold} style={{ marginBottom: 8 }} />
-                    <Text style={{ color: oliveExamChrome?.cta ?? LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
-                    <Text
-                      style={{
-                        color: oliveExamChrome?.muted ?? LX.gold,
-                        fontSize: f.label - 1,
-                        fontWeight: '700',
-                        letterSpacing: 0,
-                        textAlign: 'center',
-                      }}
-                      numberOfLines={1}
-                    >
-                      {s.cap}
+                    <Ionicons name="diamond-outline" size={26} color={LX.gold} />
+                  </View>
+                  <View style={{ flex: 1, paddingTop: 2 }}>
+                    <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
+                      {title}
                     </Text>
                   </View>
-                ))}
+                </View>
+
+                <View style={{ flexDirection: 'row', gap: 10 }}>
+                  {statTriples.map((s, i) => (
+                    <View
+                      key={i}
+                      style={{
+                        flex: 1,
+                        minWidth: 0,
+                        alignItems: 'center',
+                        paddingVertical: 14,
+                        paddingHorizontal: 6,
+                        borderRadius: 16,
+                      backgroundColor: oliveExamChrome?.panel ?? 'rgba(0,0,0,0.35)',
+                        borderWidth: 0,
+                        borderColor: LX.cardLine,
+                      }}
+                    >
+                      <Ionicons name={s.icon} size={18} color={LX.gold} style={{ marginBottom: 8 }} />
+                      <Text style={{ color: oliveExamChrome?.cta ?? LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
+                      <Text
+                        style={{
+                          color: oliveExamChrome?.muted ?? LX.gold,
+                          fontSize: f.label - 1,
+                          fontWeight: '700',
+                          letterSpacing: 0,
+                          textAlign: 'center',
+                        }}
+                        numberOfLines={1}
+                      >
+                        {s.cap}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+
+                <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : 'rgba(255,255,255,0.88)', fontSize: f.body, lineHeight: 22 }}>{introBody}</Text>
+
+                {premiumNote ? (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'flex-start',
+                      gap: 10,
+                      padding: 14,
+                      borderRadius: 14,
+                      backgroundColor: oliveExamChrome?.panel ?? LX.goldSoft,
+                      borderWidth: 0,
+                      borderColor: oliveExamChrome?.border ?? LX.cardLine,
+                    }}
+                  >
+                    <Ionicons name="sparkles-outline" size={20} color={oliveExamChrome?.cta ?? LX.gold} style={{ marginTop: 2 }} />
+                    <Text style={{ flex: 1, color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
+                  </View>
+                ) : null}
+
+                <TouchableOpacity
+                  activeOpacity={0.92}
+                  onPress={() => { hapticTap(); void startExam(); }}
+                  disabled={examStarting}
+                  style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4, opacity: examStarting ? 0.6 : 1 }}
+                >
+                  <LinearGradient
+                    colors={isOliveTheme ? ['#F0DEA5', '#C9A84C', '#9C7A29'] : ['#FFE9A8', '#E8C040', '#C99516']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 10,
+                      paddingVertical: 16,
+                    }}
+                  >
+                    <Ionicons name="sparkles" size={20} color={LX.ink} />
+                    <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
+                      {triLang(lang, {
+                        ru: 'Начать зачёт',
+                        uk: 'Почати залік',
+                        es: 'Empezar examen',
+                        'pt-BR': "Começar teste",
+                        vi: "Bắt đầu bài kiểm tra",
+                        id: "Mulai ujian",
+                        tr: "Sınava başla",
+                        pl: "Rozpocznij test",
+                      })}
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
               </View>
 
-              <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : 'rgba(255,255,255,0.88)', fontSize: f.body, lineHeight: 22 }}>{introBody}</Text>
-
-              {premiumNote ? (
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'flex-start',
-                    gap: 10,
-                    padding: 14,
-                    borderRadius: 14,
-                    backgroundColor: oliveExamChrome?.panel ?? LX.goldSoft,
-                    borderWidth: 0,
-                    borderColor: oliveExamChrome?.border ?? LX.cardLine,
-                  }}
-                >
-                  <Ionicons name="sparkles-outline" size={20} color={oliveExamChrome?.cta ?? LX.gold} style={{ marginTop: 2 }} />
-                  <Text style={{ flex: 1, color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
-                </View>
-              ) : null}
-
-              <TouchableOpacity
-                activeOpacity={0.92}
-                onPress={() => { hapticTap(); void startExam(); }}
-                disabled={examStarting}
-                style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4, opacity: examStarting ? 0.6 : 1 }}
-              >
-                <LinearGradient
-                  colors={isOliveTheme ? ['#F0DEA5', '#C9A84C', '#9C7A29'] : ['#FFE9A8', '#E8C040', '#C99516']}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 10,
-                    paddingVertical: 16,
-                  }}
-                >
-                  <Ionicons name="sparkles" size={20} color={LX.ink} />
-                  <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
-                    {triLang(lang, {
-                      ru: 'Начать зачёт',
-                      uk: 'Почати залік',
-                      es: 'Empezar examen',
-                      'pt-BR': "Começar teste",
-                      vi: "Bắt đầu bài kiểm tra",
-                      id: "Mulai ujian",
-                      tr: "Sınava başla",
-                      pl: "Rozpocznij test",
-                    })}
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ alignItems: 'center', marginTop: 18 }}>
-              <ReportErrorButton
-                screen="level_exam"
-                dataId={`level_exam_intro_${lvl}`}
-                dataText={triLang(lang, {
-                  ru: `Зачёт уровня ${lvl}: вступление`,
-                  uk: `Залік рівня ${lvl}: вступ`,
-                  es: `Examen de nivel ${lvl}: intro`,
-                  'pt-BR': `Teste de nível ${lvl}: introdução`,
-                  vi: `Bài kiểm tra trình độ ${lvl}: mở đầu`,
-                  id: `Ujian level ${lvl}: pengantar`,
-                  tr: `${lvl} seviye sınavı: giriş`,
-                  pl: `Test poziomu ${lvl}: wstęp`,
-                })}
-                textColor={sx.muted}
-              />
-            </View>
-          </BouncyScrollView>
-        </ContentWrap>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LEVEL_EXAM_ENERGY} />
-      </SafeAreaView>
+              <View style={{ alignItems: 'center', marginTop: 18 }}>
+                <ReportErrorButton
+                  screen="level_exam"
+                  dataId={`level_exam_intro_${lvl}`}
+                  dataText={triLang(lang, {
+                    ru: `Зачёт уровня ${lvl}: вступление`,
+                    uk: `Залік рівня ${lvl}: вступ`,
+                    es: `Examen de nivel ${lvl}: intro`,
+                    'pt-BR': `Teste de nível ${lvl}: introdução`,
+                    vi: `Bài kiểm tra trình độ ${lvl}: mở đầu`,
+                    id: `Ujian level ${lvl}: pengantar`,
+                    tr: `${lvl} seviye sınavı: giriş`,
+                    pl: `Test poziomu ${lvl}: wstęp`,
+                  })}
+                  textColor={sx.muted}
+                />
+              </View>
+            </BouncyScrollView>
+          </ContentWrap>
+          <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LEVEL_EXAM_ENERGY} />
+        </SafeAreaView>
       </ScreenGradient>
     );
   }

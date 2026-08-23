@@ -15,6 +15,7 @@ import {
 import { useEnergy } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
+import ScreenGradient from '../components/ScreenGradient';
 import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -163,6 +164,19 @@ function ListeningPlayback({ audioRef, color, foreground, accessibilityLabel }: 
   );
 }
 
+function MistakePracticeScreenFrame({ children, centered = false }: Readonly<{
+  children: React.ReactNode;
+  centered?: boolean;
+}>) {
+  return (
+    <ScreenGradient>
+      <SafeAreaView style={styles.screen}>
+        {centered ? <View style={[styles.screen, styles.center]}>{children}</View> : children}
+      </SafeAreaView>
+    </ScreenGradient>
+  );
+}
+
 function MistakePracticeSessionScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -174,6 +188,7 @@ function MistakePracticeSessionScreen() {
     planDayIndex?: string;
     focusMistakeId?: string;
     returnTo?: string;
+    maxReviewSessionId?: string;
   }>();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -181,6 +196,10 @@ function MistakePracticeSessionScreen() {
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
   const { spendOne } = useEnergy();
+  // зачем: ref — чтобы эффект подготовки сессии не пересоздавался из-за spendOne
+  // и не готовил сессию заново (это лишние чтения журнала ошибок).
+  const spendOneRef = useRef(spendOne);
+  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
   const [accountScope, setAccountScope] = useState<string | null>(null);
   const [session, setSession] = useState<MistakePracticeSession | null>(null);
   const [pendingSession, setPendingSession] = useState<MistakePracticeSession | null>(null);
@@ -222,7 +241,12 @@ function MistakePracticeSessionScreen() {
   const returnToMaxReview = params.returnTo === 'max_voice_review';
   const leavePractice = () => {
     if (returnToMaxReview) {
-      router.replace('/max_voice_review' as any);
+      router.replace({
+        pathname: '/max_voice_review',
+        params: typeof params.maxReviewSessionId === 'string'
+          ? { sessionId: params.maxReviewSessionId }
+          : {},
+      } as any);
       return;
     }
     safeRouterBack(router, '/flashcards' as never);
@@ -277,6 +301,11 @@ function MistakePracticeSessionScreen() {
         setAccountScope(scope);
         setSession(prepared.session);
         setLoading(false);
+        // Старт отработки ошибок = 1 ⚡ (единое правило владельца 2026-08-23).
+        // зачем: у этого экрана обязателен премиум-доступ, поэтому spendOne здесь
+        // почти всегда no-op — но списание оставлено явным, чтобы правило было
+        // одинаковым во всех активностях и не отвалилось при смене гейта доступа.
+        if (!prepared.resumed) void spendOneRef.current().catch(() => {});
       }
     })().catch((error: unknown) => {
       if (cancelled) return;
@@ -313,12 +342,9 @@ function MistakePracticeSessionScreen() {
       const attemptId = `${session.sessionId}:position:${session.cursor}`;
       const result = advanceMistakePracticeSession(session, { attemptId, correct });
       if (result.kind === 'duplicate') return;
+      // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. За отработку
+      // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
       if (!correct) {
-        const energyOk = await spendOne();
-        if (!energyOk) {
-          setLoadError(copy.noEnergy);
-          return;
-        }
         setWrongAnswers((value) => value + 1);
       }
       const occurredAtMs = Date.now();
@@ -403,7 +429,7 @@ function MistakePracticeSessionScreen() {
       submissionLatchRef.current = false;
       setSubmitting(false);
     }
-  }, [accountScope, copy, entry, entrySource, feedback, persistSession, session, spendOne, studyTarget, submitting]);
+  }, [accountScope, copy, entry, entrySource, feedback, persistSession, session, studyTarget, submitting]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!pendingSession) return;
@@ -569,24 +595,24 @@ function MistakePracticeSessionScreen() {
   }, [accountScope, hiddenUndo, persistSession, studyTarget]);
 
   if (loading) {
-    return <SafeAreaView style={[styles.screen, styles.center, { backgroundColor: t.bgPrimary }]}><ActivityIndicator color={t.accent} /></SafeAreaView>;
+    return <MistakePracticeScreenFrame centered><ActivityIndicator color={t.accent} /></MistakePracticeScreenFrame>;
   }
 
   if (loadError || !session || (!entry && !complete)) {
     return (
-      <SafeAreaView style={[styles.screen, styles.center, { backgroundColor: t.bgPrimary }]}>
+      <MistakePracticeScreenFrame centered>
         <Ionicons name="alert-circle-outline" size={48} color={t.wrong} />
         <Text style={[styles.errorTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
         <Pressable style={[styles.primaryButton, { backgroundColor: t.accent }]} onPress={leavePractice}>
           <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
         </Pressable>
-      </SafeAreaView>
+      </MistakePracticeScreenFrame>
     );
   }
 
   if (complete) {
     return (
-      <SafeAreaView style={[styles.screen, styles.center, { backgroundColor: t.bgPrimary }]}>
+      <MistakePracticeScreenFrame centered>
         <View style={[styles.completeIcon, { backgroundColor: t.correctBg }]}>
           <Ionicons name="checkmark" size={42} color={t.correct} />
         </View>
@@ -598,14 +624,14 @@ function MistakePracticeSessionScreen() {
         <Pressable style={[styles.primaryButton, { backgroundColor: t.accent }]} onPress={leavePractice}>
           <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.done}</Text>
         </Pressable>
-      </SafeAreaView>
+      </MistakePracticeScreenFrame>
     );
   }
 
   if (!entry) return null;
 
   return (
-    <SafeAreaView style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
+    <MistakePracticeScreenFrame>
       <View style={styles.header}>
         <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={styles.headerButton}>
           <Ionicons name="close" size={24} color={t.textMuted} />
@@ -782,7 +808,7 @@ function MistakePracticeSessionScreen() {
         onConfirm={() => void hideCurrentMistake()}
         testIDPrefix="mistake-practice-hide"
       />
-    </SafeAreaView>
+    </MistakePracticeScreenFrame>
   );
 }
 

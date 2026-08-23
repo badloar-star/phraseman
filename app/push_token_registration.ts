@@ -149,7 +149,7 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 
 /** Пользовательский выбор для СЕРВЕРНЫХ пушей: false = этот тип не слать. */
 // `league` covers league-only notifications. Tournament pushes are owner-locked off.
-export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean };
+export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean; maxLessons: boolean };
 
 /** Локальный кэш последних записанных префов — чтобы не писать в Firestore повторно. */
 const PUSH_PREFS_LOCAL_KEY = 'server_push_prefs_last_written';
@@ -171,12 +171,14 @@ export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<voi
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
     if (!linkOk) return;
 
-    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}`;
+    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}${prefs.maxLessons ? 1 : 0}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_PREFS_LOCAL_KEY);
     if (lastWritten === cacheKey) return;
 
     await db.collection('users').doc(stableId).set(
-      { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league } },
+      // зачем (2026-08-23): lessons читает maxLessonReminderCron. Без зеркала
+      // человек, выключивший «Уроки с MAX», продолжал бы получать напоминания.
+      { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league, lessons: prefs.maxLessons } },
       { merge: true },
     );
     await AsyncStorage.setItem(PUSH_PREFS_LOCAL_KEY, cacheKey);

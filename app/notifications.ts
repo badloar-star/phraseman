@@ -14,6 +14,8 @@ import { getStoredStudyTarget } from './study_target';
 import { lessonPassCountKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getLocalDayKey, isSameLocalOrUtcDay } from './local_date';
 import { createDisposableAdoption } from './disposable_adoption';
+import { persistPortablePreference } from './phone_state_preference_bridge';
+import { emitAppEvent } from './events';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -551,9 +553,9 @@ export const scheduleDailyReminder = async (
     });
 
     await AsyncStorage.setItem(DAILY_REMINDER_ID_KEY, id);
-    await AsyncStorage.setItem('notification_hour', String(hour));
-    await AsyncStorage.setItem('notification_minute', String(minute));
-    await AsyncStorage.setItem('notifications_enabled', 'true');
+    await persistPortablePreference('notification_hour', String(hour));
+    await persistPortablePreference('notification_minute', String(minute));
+    await persistPortablePreference('notifications_enabled', 'true');
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
@@ -599,7 +601,7 @@ async function cancelAllScheduledLocalNotifications(N: Awaited<ReturnType<typeof
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
-  await AsyncStorage.setItem('notifications_enabled', 'false');
+  await persistPortablePreference('notifications_enabled', 'false');
 }
 
 // ── Отменить все уведомления ─────────────────────────────────────────────────
@@ -1304,7 +1306,11 @@ export type NotifCategory =
   | 'gifts'
   // «Вместе» (friends_together §1.3): пуш «Позвал(а)» от друга. Локальных
   // напоминаний нет (см. CATEGORY_LOCAL_TYPES ниже) — шлёт только сервер по чужому тапу.
-  | 'friends';
+  | 'friends'
+  // зачем (2026-08-23, владелец, P2-1): учитель MAX в конце урока обещает тему
+  // на завтра; напоминание об этом шлёт СЕРВЕР в «час прошлого урока»
+  // (functions/src/max_lesson_reminder_push.ts). Локальных напоминаний нет.
+  | 'max_lessons';
 
 export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
 
@@ -1324,6 +1330,10 @@ export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
     // «Вместе»: по умолчанию включено, как и остальные социальные категории;
     // получатель может выключить в настройках (friendsNudge это уважает).
     friends: true,
+    // Напоминание об уроке приходит только тем, кому учитель реально обещал
+    // тему, поэтому включено по умолчанию: это продолжение начатого занятия,
+    // а не рассылка.
+    max_lessons: true,
   },
 };
 
@@ -1342,6 +1352,9 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   // Пустой массив: «Позвать» — не локальное напоминание с расписанием, а серверный
   // пуш по тапу другого человека. Отменять здесь нечего.
   friends: [],
+  // Тоже пусто: напоминание об уроке шлёт сервер в «час прошлого урока», а не
+  // локальное расписание телефона. Отменять на клиенте нечего.
+  max_lessons: [],
 };
 
 function normalizeNotifPrefs(raw: unknown): NotifPrefs {
@@ -1384,7 +1397,7 @@ export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
     notifPrefsMemory = migrated;
     await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(migrated));
     // Синхронизируем легаси-флаг: его читают streak/league/weekly-refresh/bootstrap.
-    if (master && legacy !== 'true') await AsyncStorage.setItem('notifications_enabled', 'true');
+    if (master && legacy !== 'true') await persistPortablePreference('notifications_enabled', 'true');
     return getNotifPrefsSnapshot();
   } catch {
     notifPrefsMemory = notifPrefsMemory ?? { ...DEFAULT_NOTIF_PREFS, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
@@ -1427,7 +1440,7 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
   try {
     await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(normalized));
     // Легаси-флаг = мастер: его уже читают все старые проверки, включая bootstrap.
-    await AsyncStorage.setItem('notifications_enabled', normalized.master ? 'true' : 'false');
+    await persistPortablePreference('notifications_enabled', normalized.master ? 'true' : 'false');
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
@@ -1442,6 +1455,7 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
       league: normalized.master && normalized.categories.league,
+      maxLessons: normalized.master && normalized.categories.max_lessons,
     }))
     .catch(() => {});
 };
@@ -1595,12 +1609,12 @@ export const scheduleNotifications = async (
   }
 
   await AsyncStorage.setItem('per_day_notif_ids', JSON.stringify(newIds));
-  await AsyncStorage.setItem('notifications_enabled', 'true');
+  await persistPortablePreference('notifications_enabled', 'true');
   // Сохраняем время первого включённого дня для восстановления после перезапуска
   const first = Object.values(s.schedule).find(d => d.enabled);
   if (first) {
-    await AsyncStorage.setItem('notification_hour', String(first.hour));
-    await AsyncStorage.setItem('notification_minute', String(first.minute));
+    await persistPortablePreference('notification_hour', String(first.hour));
+    await persistPortablePreference('notification_minute', String(first.minute));
   }
 };
 
@@ -2664,6 +2678,39 @@ export const setupNotificationTapHandler = (
           scheduleNav(() => {
             router.push('/level_gifts_inventory' as any);
           });
+          break;
+        case 'arena_friend_invite':
+        case 'arena_friend_accepted':
+        case 'arena_friend_declined':
+        case 'arena_friend_cancelled':
+        case 'arena_friend_expired':
+          scheduleNav(() => {
+            const inviteId = String(data.inviteId ?? '').trim();
+            router.push(inviteId
+              ? { pathname: '/arena_invite', params: { inviteId } }
+              : '/arena_friend_duel');
+          });
+          break;
+        case 'activity_like':
+        case 'friend_nudge':
+          scheduleNav(() => {
+            const actorStableUid = String(data.actorStableUid ?? '').trim();
+            const eventId = String(data.eventId ?? '').trim();
+            router.push({
+              pathname: '/(tabs)/friends',
+              params: {
+                ...(actorStableUid ? { focusFriend: actorStableUid } : {}),
+                ...(eventId ? { socialEventId: eventId } : {}),
+              },
+            });
+          });
+          break;
+        case 'friend_gift_received':
+          emitAppEvent('friend_gift_push_opened');
+          scheduleNav(() => { router.push('/(tabs)/friends'); });
+          break;
+        case 'friend_gift_thanks':
+          scheduleNav(() => { router.push('/(tabs)/friends'); });
           break;
         case 'tournament_starting':
           // Owner lock: an already delivered notification is inert. Do not

@@ -322,7 +322,12 @@ interface ExpoReceipt {
 /**
  * Отправляет чанк и возвращает ticket-ids для последующей проверки receipts.
  */
-async function sendExpoPushChunk(chunk: ExpoPushMessage[]): Promise<string[]> {
+/**
+ * зачем экспорт (2026-08-23): напоминание «урок дня»
+ * (max_lesson_reminder_push) шлёт через тот же Expo-канал. Вторая копия этой
+ * функции разъехалась бы с этой при первой же правке протокола Expo.
+ */
+export async function sendExpoPushChunk(chunk: ExpoPushMessage[]): Promise<string[]> {
   const res = await fetch(EXPO_PUSH_ENDPOINT, {
     method: 'POST',
     headers: {

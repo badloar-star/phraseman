@@ -424,6 +424,30 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
 // break or who have been away 3-14 days, and sends them a localized push via the
 // Expo Push API (delivers through FCM/APNs even to a closed app). Closes the
 // retention gap where local-only notifications never reach a lapsed user.
+/**
+ * зачем (2026-08-23, P2-1): учитель MAX обещает тему на завтра, а приложение
+ * молчало. Крон ходит РАЗ В ЧАС, потому что напоминание уходит в «час прошлого
+ * урока» — у каждого ученика он свой. На пустой базе прогон стоит один запрос
+ * по индексу: кандидаты берутся из памяти учителя (where nextTopic != ''),
+ * а не обходом коллекции users.
+ */
+export const maxLessonReminderCron = functions.scheduler.onSchedule(
+  { schedule: "5 * * * *", timeZone: "UTC" },
+  async () => {
+    const { runLessonReminderPush } = await import("./max_lesson_reminder_push");
+    const summary = await runLessonReminderPush();
+    if (summary.candidates > 0 || summary.sent > 0) {
+      console.log("maxLessonReminderCron", JSON.stringify(summary));
+    }
+    if (summary.failedChunks > 0) {
+      console.error(
+        `maxLessonReminderCron: ${summary.failedChunks} chunk(s) failed — ` +
+          `sent ${summary.sent}/${summary.eligible} eligible.`,
+      );
+    }
+  },
+);
+
 export const reEngagePushCron = functions.scheduler.onSchedule(
   { schedule: "0 10 * * *", timeZone: "UTC" },
   async () => {

@@ -76,8 +76,18 @@ function isTranslationDictionary(source) {
   return hasRu && hasOther;
 }
 
-/** Переводчики проекта: строки внутри их вызова легальны по определению. */
-const TRANSLATORS = ['triLang', 'pickLang', 'localized', 't('];
+/**
+ * Переводчики проекта: строки внутри их вызова легальны по определению.
+ *
+ * зачем 'L(' (2026-08-23): экраны заводят локальный алиас
+ * `const L = (copy) => triLang(lang, copy)`, чтобы не таскать lang в каждый
+ * вызов — так сделано минимум в settings_notifications, account_details,
+ * manage_subscription, ideas_submit, community_pack_create. Сторож их не знал
+ * и считал ВСЕ строки этих экранов непереведёнными: 45 ложных срабатываний в
+ * одном settings_notifications. Сторож, который шумит на корректном коде,
+ * заставляет двигать базу вверх — то есть ровно то, против чего он написан.
+ */
+const TRANSLATORS = ['triLang', 'pickLang', 'localized', 't(', 'L('];
 
 function walk(dir, out = []) {
   let entries;

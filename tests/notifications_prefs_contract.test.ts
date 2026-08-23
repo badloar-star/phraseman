@@ -49,7 +49,7 @@ describe('гейты категорий в app/notifications.ts', () => {
   });
 
   it('saveNotifPrefs синхронизирует легаси-флаг и зеркалит выбор в облако', () => {
-    expect(src).toContain("AsyncStorage.setItem('notifications_enabled', normalized.master ? 'true' : 'false')");
+    expect(src).toContain("persistPortablePreference('notifications_enabled', normalized.master ? 'true' : 'false')");
     expect(src).toContain('updateServerPushPrefs');
   });
 
@@ -92,8 +92,19 @@ describe('зеркало pushPrefs для серверных пушей', () => 
     // зачем: категории перечислены поимённо — забыть зеркалить новую значит
     // молча слать серверный пуш тому, кто её выключил (так и было с league
     // до 2026-08-03, когда под ней появился пуш «турнир начинается»).
-    expect(src).toContain('pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league }');
+    expect(src).toContain('pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league, lessons: prefs.maxLessons }');
     expect(src).toContain('PUSH_PREFS_LOCAL_KEY');
+    // Кэш-ключ обязан включать КАЖДУЮ зеркалируемую категорию: иначе смена
+    // только этого тумблера совпадёт со старым ключом и запись не уйдёт —
+    // человек выключил напоминание, а сервер об этом не узнал.
+    expect(src).toContain('${prefs.maxLessons ? 1 : 0}');
+  });
+
+  it('сервер уважает pushPrefs.lessons перед напоминанием об уроке MAX', () => {
+    const src = appSource('functions/src/max_lesson_reminder_push.ts');
+    expect(src).toContain('profile.pushPrefs?.lessons === false');
+    // Поле обязано быть в проекции чтения профилей, иначе придёт пустым.
+    expect(src).toContain("'pushPrefs'");
   });
 
   it('сервер уважает pushPrefs.league перед пушем о старте турнира', () => {

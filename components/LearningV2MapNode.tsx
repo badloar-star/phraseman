@@ -52,6 +52,9 @@ interface Props {
   reduceMotion: boolean;
   accessibilityLabel: string;
   onPress: () => void;
+  /** Центр узла в оконных координатах в момент перехода next/current → completed
+   *  — старт полёта звёзд в баланс (сцена A5, выбор владельца «чип в шапке»). */
+  onCompletedTransition?: (point: { x: number; y: number }) => void;
   style?: StyleProp<ViewStyle>;
   testID?: string;
   children: React.ReactNode;
@@ -69,10 +72,12 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
   reduceMotion,
   accessibilityLabel,
   onPress,
+  onCompletedTransition,
   style,
   testID,
   children,
 }: Props) {
+  const rootRef = useRef<View>(null);
   const pressY = useSharedValue(0);
   const denialScale = useSharedValue(1);
   const popScale = useSharedValue(1);
@@ -99,8 +104,13 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
         withTiming(1.08, { duration: 150, easing: PRESS_EASE }),
         withTiming(1, { duration: 170, easing: PRESS_EASE }),
       );
+      if (active && onCompletedTransition) {
+        rootRef.current?.measureInWindow((x, y, w, h) => {
+          onCompletedTransition({ x: x + w / 2, y: y + h / 2 });
+        });
+      }
     }
-  }, [popScale, reduceMotion, state]);
+  }, [active, onCompletedTransition, popScale, reduceMotion, state]);
 
   useEffect(() => {
     if (!showHalo) return undefined;
@@ -163,6 +173,8 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
 
   return (
     <Pressable
+      ref={rootRef}
+      collapsable={false}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityState={{ disabled: !accessible }}

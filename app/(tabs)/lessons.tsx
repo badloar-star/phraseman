@@ -20,6 +20,7 @@ import Reanimated, {
   useAnimatedStyle,
   useAnimatedProps,
   withTiming,
+  withSequence,
   withSpring,
   cancelAnimation,
   Easing,
@@ -47,6 +48,7 @@ import { lessonPurchaseContinuationParams } from "../paywall_lesson_continuation
 import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
 import {
   captureAccountGeneration,
+  subscribeAccountGeneration,
   withAccountTransitionLock,
 } from "../account_generation";
 import { getStableId, peekStableId } from "../stable_id";
@@ -80,6 +82,16 @@ import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
 import LearningV2MapNode from "../../components/LearningV2MapNode";
+import LearningV2StarFlight, {
+  type LearningV2StarFlightPoint,
+} from "../../components/LearningV2StarFlight";
+import {
+  hydrateCurrentLearningV2WalletBalance,
+  peekCurrentLearningV2WalletBalance,
+  subscribeLearningV2WalletBalance,
+  type LearningV2WalletBalanceSnapshot,
+} from "../learning_v2_wallet_balance_store";
+import { WALLET_SUBUNITS_PER_STAR } from "../../modules/learning-v2/contracts/wallet";
 import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
@@ -1171,6 +1183,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   reduceMotion,
   runtimeActive,
   onSessionPress,
+  onSessionCompleted,
 }: Readonly<{
   row: LearningV2InlineMapRowV1;
   lang: Lang;
@@ -1184,6 +1197,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
     sessionOrdinal: number,
     state: LearningV2AccordionSessionStateV1,
   ) => void;
+  onSessionCompleted?: (point: LearningV2StarFlightPoint) => void;
 }>) {
   if (row.kind === "chapter") {
     return (
@@ -1326,6 +1340,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           onPress={() =>
             onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state)
           }
+          onCompletedTransition={onSessionCompleted}
           style={{
             transform: [{ translateX: wave }],
             opacity: row.state === "locked" ? 0.78 : 1,
@@ -2035,6 +2050,86 @@ export default function LessonsTab({
           selectedLearningV2Session.sessionOrdinal,
         )
       : "");
+  // зачем: чип баланса звёзд в шапке страницы V2 + полёт звёзд в него после
+  // пройденной сессии (выбор владельца 22.08: «чип в шапке», сцена A5 макета).
+  // Баланс — локальная presentation-проекция кошелька: peek + подписка +
+  // hydrate из AsyncStorage при входе на страницу; ноль запросов к серверу.
+  const [learningV2WalletBalance, setLearningV2WalletBalance] =
+    useState<LearningV2WalletBalanceSnapshot | null>(() =>
+      peekCurrentLearningV2WalletBalance(),
+    );
+  const learningV2WalletFingerprintRef = useRef<string | null>(null);
+  const learningV2WalletChipRef = useRef<View>(null);
+  const learningV2WalletPulse = useSharedValue(1);
+  const learningV2WalletPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: learningV2WalletPulse.value }],
+  }));
+  useEffect(() => {
+    const refresh = () =>
+      setLearningV2WalletBalance(peekCurrentLearningV2WalletBalance());
+    const unsubscribeBalance = subscribeLearningV2WalletBalance(refresh);
+    const accountSubscription = subscribeAccountGeneration(refresh);
+    refresh();
+    return () => {
+      unsubscribeBalance();
+      accountSubscription.remove();
+    };
+  }, []);
+  useEffect(() => {
+    if (page !== "v2" || !lessonsRuntimeActive) return;
+    void hydrateCurrentLearningV2WalletBalance().catch(() => {});
+  }, [page, lessonsRuntimeActive]);
+  useEffect(() => {
+    // Тот же bump, что на push-экране урока: 1 → 1.16 → 1 при смене кошелька.
+    const next = learningV2WalletBalance?.walletStateFingerprint ?? null;
+    const previous = learningV2WalletFingerprintRef.current;
+    learningV2WalletFingerprintRef.current = next;
+    if (
+      !next ||
+      !previous ||
+      next === previous ||
+      learningV2ReduceMotionPreference !== false
+    )
+      return;
+    learningV2WalletPulse.value = withSequence(
+      withTiming(1.16, { duration: 140, easing: Easing.out(Easing.cubic) }),
+      withTiming(1, { duration: 220, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [
+    learningV2ReduceMotionPreference,
+    learningV2WalletBalance?.walletStateFingerprint,
+    learningV2WalletPulse,
+  ]);
+  const learningV2WalletStarsLabel =
+    learningV2WalletBalance === null
+      ? "—"
+      : new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(
+          learningV2WalletBalance.balanceSubunits / WALLET_SUBUNITS_PER_STAR,
+        );
+  const [learningV2StarFlight, setLearningV2StarFlight] = useState<{
+    key: number;
+    from: LearningV2StarFlightPoint;
+    to: LearningV2StarFlightPoint;
+  } | null>(null);
+  const clearLearningV2StarFlight = useCallback(
+    () => setLearningV2StarFlight(null),
+    [],
+  );
+  const handleLearningV2SessionCompletedAt = useCallback(
+    (point: LearningV2StarFlightPoint) => {
+      if (learningV2ReduceMotionPreference !== false) return;
+      const chip = learningV2WalletChipRef.current;
+      if (!chip) return;
+      chip.measureInWindow((x, y, width, height) => {
+        setLearningV2StarFlight({
+          key: Date.now(),
+          from: point,
+          to: { x: x + width / 2, y: y + height / 2 },
+        });
+      });
+    },
+    [learningV2ReduceMotionPreference],
+  );
   // зачем: «спокойный отказ» закрытого узла (спека mock 08, макет A3) — тап по
   // закрытой сессии называет точную предпосылку вместо мёртвой тишины. Плашка
   // абсолютная (нет сдвига layout), живёт 2.2с, reduce motion показывает сразу.
@@ -3066,7 +3161,44 @@ export default function LessonsTab({
                 })}
               </Text>
             </View>
-            <View style={{ flexShrink: 0 }}>
+            <View
+              style={{
+                flexShrink: 0,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+              }}
+            >
+              {page === "v2" ? (
+                <Reanimated.View style={learningV2WalletPulseStyle}>
+                  <View
+                    ref={learningV2WalletChipRef}
+                    collapsable={false}
+                    accessibilityLabel={`${learningV2WalletStarsLabel} ★`}
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 6,
+                      backgroundColor: t.bgCard,
+                      borderRadius: 999,
+                      paddingHorizontal: 12,
+                      paddingVertical: 7,
+                    }}
+                  >
+                    <Ionicons name="star" size={14} color={t.gold} />
+                    <Text
+                      style={{
+                        color: t.textPrimary,
+                        fontSize: 14,
+                        fontWeight: "700",
+                        fontVariant: ["tabular-nums"],
+                      }}
+                    >
+                      {learningV2WalletStarsLabel}
+                    </Text>
+                  </View>
+                </Reanimated.View>
+              ) : null}
               <EnergyBar size={30} ownerActive={lessonsRuntimeActive} />
             </View>
           </View>
@@ -3314,6 +3446,7 @@ export default function LessonsTab({
                       reduceMotion={learningV2ReduceMotionPreference !== false}
                       runtimeActive={lessonsRuntimeActive}
                       onSessionPress={handleLearningV2SessionPress}
+                      onSessionCompleted={handleLearningV2SessionCompletedAt}
                     />
                   );
                 }
@@ -3611,6 +3744,15 @@ export default function LessonsTab({
               }}
             />
           </BouncyWrap>
+          {learningV2StarFlight !== null ? (
+            <LearningV2StarFlight
+              key={learningV2StarFlight.key}
+              from={learningV2StarFlight.from}
+              to={learningV2StarFlight.to}
+              color={t.gold}
+              onDone={clearLearningV2StarFlight}
+            />
+          ) : null}
           {learningV2DenialHint !== null ? (
             <Reanimated.View
               pointerEvents="none"

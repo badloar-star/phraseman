@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react';
 import { useRouter } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput, ScrollView, Animated,
@@ -783,13 +783,20 @@ type FriendRowTogether = {
   onOpenSheet: () => void;
 };
 
-function FriendRow({
+function FriendRowBase({
   profile, rank, onPress, onDelete, onGift, onHighFive, highFived, lang, t, f, chrome, themeMode, giftAvailable, together,
 }: {
   profile: FriendProfile; rank: number;
-  onPress: () => void; onDelete: () => void; onGift: () => void;
+  // зачем (аудит скорости 2026-08-22): раньше renderItem передавал готовые
+  // замыкания (() => openProfile(profile) и т.д.), пересоздаваемые на каждый
+  // рендер экрана друзей — новые ссылки колбэков делали React.memo ниже
+  // бесполезным (строка не была даже обёрнута в memo). Колбэки теперь принимают
+  // friendUid, поэтому renderItem может передавать СТАБИЛЬНЫЕ ссылки.
+  onPress: (friendUid: string) => void;
+  onDelete: (friendUid: string) => void;
+  onGift: (friendUid: string) => void;
   /** «Дай пять» — профильный лайк другу прямо из списка. */
-  onHighFive: () => void;
+  onHighFive: (friendUid: string) => void;
   highFived: boolean;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
@@ -799,6 +806,15 @@ function FriendRow({
   /** «Вместе»: undefined, когда флаг выключен — строка рендерится ровно как раньше. */
   together?: FriendRowTogether;
 }) {
+  const friendUid = profile.uid;
+  // Локальные обёртки-с-аргументом: сам компонент под memo, поэтому создание
+  // этих замыканий на его собственный рендер (а не на рендер списка) безвредно.
+  // «Вместе»: открыть шит дружбы вместо профиля — условие живёт здесь (не в
+  // стабильной by-uid обёртке снаружи), потому что together уже есть в пропах.
+  const handlePress = () => (together ? together.onOpenSheet() : onPress(friendUid));
+  const handleDelete = () => onDelete(friendUid);
+  const handleGift = () => onGift(friendUid);
+  const handleHighFive = () => onHighFive(friendUid);
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
   const hasLeagueCrown = leagueCrownCount > 0 || Number(profile.leagueCrownExpiresAt) > Date.now();
@@ -817,7 +833,7 @@ function FriendRow({
       <TouchableOpacity
         testID={`friend-row-profile-${profile.uid}`}
         activeOpacity={0.75}
-        onPress={onPress}
+        onPress={handlePress}
         accessibilityRole="button"
         accessibilityLabel={triLang(lang as any, { ru: `Открыть профиль ${profile.name}`, uk: `Відкрити профіль ${profile.name}`, es: `Abrir perfil de ${profile.name}`, 'pt-BR': `Abrir perfil de ${profile.name}`, vi: `Mở hồ sơ ${profile.name}`, id: `Buka profil ${profile.name}`, tr: `${profile.name} profilini aç`, pl: `Otwórz profil ${profile.name}` })}
         style={{ flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 10 }}
@@ -908,11 +924,11 @@ function FriendRow({
             accessibilityLabel={highFived
               ? triLang(lang as any, { ru: `Убрать «дай пять» ${profile.name}`, uk: `Прибрати «дай п'ять» ${profile.name}`, es: `Quitar el «choca esos cinco» a ${profile.name}`, 'pt-BR': `Remover o «toca aqui» de ${profile.name}`, vi: `Bỏ «đập tay» với ${profile.name}`, id: `Batalkan «tos» untuk ${profile.name}`, tr: `${profile.name} için «çak bir beşlik» geri al`, pl: `Cofnij «przybij piątkę» dla ${profile.name}` })
               : triLang(lang as any, { ru: `Дай пять ${profile.name}`, uk: `Дай п'ять ${profile.name}`, es: `Choca esos cinco con ${profile.name}`, 'pt-BR': `Toca aqui com ${profile.name}`, vi: `Đập tay với ${profile.name}`, id: `Tos dengan ${profile.name}`, tr: `${profile.name} ile çak bir beşlik`, pl: `Przybij piątkę ${profile.name}` })}
-            onPress={onHighFive}
+            onPress={handleHighFive}
           />
           <TapScale
             testID={`friend-gift-${profile.uid}`}
-            onPress={onGift}
+            onPress={handleGift}
             hitSlop={6}
             accessibilityLabel={triLang(lang as any, { ru: `Подарить ${profile.name}`, uk: `Подарувати ${profile.name}`, es: `Regalar a ${profile.name}`, 'pt-BR': `Presentear ${profile.name}`, vi: `Tặng quà cho ${profile.name}`, id: `Beri hadiah ke ${profile.name}`, tr: `${profile.name} kullanıcısına hediye gönder`, pl: `Podaruj ${profile.name}` })}
             style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
@@ -923,7 +939,7 @@ function FriendRow({
           </TapScale>
           <TapScale
             testID={`friend-delete-${profile.uid}`}
-            onPress={onDelete}
+            onPress={handleDelete}
             hitSlop={6}
             accessibilityLabel={triLang(lang as any, { ru: `Удалить ${profile.name}`, uk: `Видалити ${profile.name}`, es: `Eliminar a ${profile.name}`, 'pt-BR': `Remover ${profile.name}`, vi: `Xóa ${profile.name}`, id: `Hapus ${profile.name}`, tr: `${profile.name} kullanıcısını sil`, pl: `Usuń ${profile.name}` })}
             style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
@@ -935,6 +951,14 @@ function FriendRow({
     </View>
   );
 }
+
+// зачем (аудит скорости 2026-08-22): компонент не был мемоизирован вообще —
+// каждая видимая строка списка друзей перерисовывалась при ЛЮБОМ изменении
+// состояния экрана (открытие модалки, тик анимации, обновление другого
+// друга). Вместе со стабильными by-uid колбэками выше это даёт React.memo
+// реальный эффект: shallow-compare пропускает строку, если её собственные
+// данные (profile/rank/highFived/together) не изменились.
+const FriendRow = memo(FriendRowBase);
 
 // ── Request row ───────────────────────────────────────────────────────────────
 
@@ -2941,6 +2965,32 @@ export default function FriendsTabScreen() {
     [friends, profiles],
   );
 
+  // зачем (аудит скорости 2026-08-22): renderItem ниже раньше создавал новые
+  // стрелочные обёртки (() => openProfile(profile) и т.д.) на КАЖДЫЙ item при
+  // каждом рендере экрана — FriendRow при этом даже не был обёрнут в
+  // React.memo, так что перерисовывались вообще все строки на любой чих
+  // состояния. Держим свежий список в ref (без лишних ре-рендеров) и
+  // стабильные by-uid обёртки — их ссылки не меняются между рендерами,
+  // React.memo(FriendRow) выше реально их использует.
+  const sortedFriendsRef = useRef(sortedFriends);
+  sortedFriendsRef.current = sortedFriends;
+  const openProfileByUid = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (profile) openProfile(profile);
+  }, [openProfile]);
+  const handleDeleteConfirmByUid = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (profile) handleDeleteConfirm(profile.uid, profile.name);
+  }, [handleDeleteConfirm]);
+  const openGiftPickerByUid = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (profile) openGiftPicker(profile);
+  }, [openGiftPicker]);
+  const handleHighFiveByUid = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (profile) handleHighFive(profile);
+  }, [handleHighFive]);
+
   const friendQuestPeerUid = useMemo(() => {
     if (!activeFriendQuest) return '';
     return activeFriendQuest.participantUids.find(uid => !!profiles[uid] || friends.some(friend => friend.uid === uid)) ?? activeFriendQuest.participantUids[1] ?? '';
@@ -3239,17 +3289,17 @@ export default function FriendsTabScreen() {
           testID="friends-list"
           data={sortedFriends}
           keyExtractor={(profile: FriendProfile) => profile.uid}
-          renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => {
+          renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => { // guard-ok: FlashList не memo-сравнивает renderItem; стабильны колбэки внутри (onPress={openProfileByUid} и т.д., аудит 2026-08-22)
             const together = togetherByUid[profile.uid];
             return (
               <Reanimated.View entering={FadeInDown.delay(Math.min(i, 10) * 40).duration(320)}>
                 <FriendRow
                   profile={profile}
                   rank={i + 1}
-                  onPress={() => (together ? together.onOpenSheet() : openProfile(profile))}
-                  onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
-                  onGift={() => openGiftPicker(profile)}
-                  onHighFive={() => handleHighFive(profile)}
+                  onPress={openProfileByUid}
+                  onDelete={handleDeleteConfirmByUid}
+                  onGift={openGiftPickerByUid}
+                  onHighFive={handleHighFiveByUid}
                   highFived={highFivedUids.has(profile.uid)}
                   lang={lang} t={t} f={f} chrome={chrome}
                   themeMode={themeMode}

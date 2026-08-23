@@ -525,6 +525,17 @@ export interface VoiceInstructionOpts {
   appDigest?: string;
   /** Учитель: каталог сцен от клиента (id: setting) — недоверенный блок. */
   sceneCatalog?: string;
+  /**
+   * Учитель: учебный план урока (фразы текущего и следующего урока курса,
+   * грамматика) — недоверенный блок.
+   *
+   * зачем (владелец 2026-08-23, рычаг 3): этот текст зависит ТОЛЬКО от номера
+   * урока, а не от личности ученика, поэтому у всех на одном уроке он
+   * одинаков и попадает в общий prompt cache. Раньше он ехал внутри
+   * learnerSnapshot вперемешку с именем и серией — и вся эта склейка (~900
+   * токенов) переотправлялась каждый ход по полной цене.
+   */
+  syllabusBlock?: string;
   /** Учитель: снимок ученика от клиента (имя, серия, тренажёр…) — недоверенный блок. */
   learnerSnapshot?: string;
   /** Учитель: блок памяти (сервер, из voice_tutor_memory). */
@@ -637,6 +648,11 @@ function buildTutorInstructions(opts: VoiceInstructionOpts, cefr: 'A1' | 'A2' | 
   if (sceneCatalog) {
     parts.push('SCENES YOU MAY PROPOSE (use the id in start_scene)\n' + wrapUntrusted('SCENES (untrusted list)', sceneCatalog));
   }
+  // Учебный план — ВЫШЕ личных данных: он общий для всех, кто на этом уроке,
+  // поэтому остаётся частью кэшируемого префикса. Личное идёт после него.
+  const syllabus = blockText(opts.syllabusBlock, 1600);
+  if (syllabus) parts.push(wrapUntrusted('LESSON SYLLABUS (untrusted app content)', syllabus));
+
   const snapshot = blockText(opts.learnerSnapshot, 2400);
   if (snapshot) parts.push(wrapUntrusted('LEARNER SNAPSHOT (untrusted app data)', snapshot));
 

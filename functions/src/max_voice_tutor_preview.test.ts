@@ -29,7 +29,9 @@ describe('buildTutorPreview', () => {
       cefr: 'A1', format: 'tutor', personaName: 'Max', personaRole: '',
       learnerLangName: 'Ukrainian', targetLangName: 'English',
     });
-    expect(prompt).toContain('Never use Russian as a fallback');
+    // Формулировка обезличена ради кэша (рычаг 1), правило то же и даже прямее:
+    // нерусскому ученику отвечать по-русски запрещено.
+    expect(prompt).toContain('if their NATIVE is not Russian, never answer in Russian');
   });
   test('returns a stable current-lesson preview without mutating memory', () => {
     const source = memory({ callCount: 3 });

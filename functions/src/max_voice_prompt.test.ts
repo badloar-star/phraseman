@@ -403,6 +403,50 @@ describe('tutor instructions', () => {
     expect(at('RECONNECT SUMMARY')).toBeLessThan(at(VOICE_UNTRUSTED_ANCHOR));
   });
 
+  // зачем (владелец 2026-08-23, «урезать стоимость минуты хотя бы на 70»):
+  // prompt cache OpenAI совпадает по ТОЧНОМУ префиксу и общий на организацию.
+  // Эти три проверки сторожат экономию рычагов 1-3: стоит вернуть уровень/язык
+  // в статику или учебный план обратно в снимок — и кэш снова развалится.
+  it('кэш-контракт: префикс одинаков у РАЗНЫХ учеников (уровень и язык — в конце)', () => {
+    const mk = (cefr: 'A1' | 'A2' | 'B1' | 'B2', lang: string) =>
+      buildVoiceInstructions({
+        cefr, format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: lang,
+      });
+    const cut = (s: string) => s.slice(0, s.indexOf('YOUR LEARNER'));
+    // Разные уровни И разные родные языки — общая часть обязана совпадать.
+    expect(cut(mk('A1', 'Russian'))).toBe(cut(mk('B2', 'Polish')));
+    expect(cut(mk('A2', 'Turkish'))).toBe(cut(mk('B1', 'Spanish')));
+    // Сама персональная строка при этом на месте и в самом конце.
+    expect(mk('A1', 'Russian')).toContain('level is A1 and their NATIVE language is Russian');
+  });
+
+  it('кэш-контракт: учебный план идёт ВЫШЕ личного снимка', () => {
+    const out = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian',
+      syllabusBlock: 'SYLLABUS — current app lesson 7 phrases: hello | thanks',
+      learnerSnapshot: 'name: Ivan\nstreak: 5 days',
+    });
+    const at = (needle: string) => out.indexOf(needle);
+    // План зависит только от номера урока -> общий для всех на этом уроке,
+    // поэтому обязан стоять ДО уникального снимка, иначе не кэшируется.
+    expect(at('LESSON SYLLABUS')).toBeGreaterThan(-1);
+    expect(at('LESSON SYLLABUS')).toBeLessThan(at('LEARNER SNAPSHOT'));
+    expect(out).toContain('current app lesson 7 phrases');
+  });
+
+  it('кэш-контракт: префикс стабилен при смене СНИМКА, но одинаковом учебном плане', () => {
+    const base = {
+      cefr: 'A2' as const, format: 'tutor' as const, personaName: 'Max', personaRole: '',
+      learnerLangName: 'Russian', syllabusBlock: 'SYLLABUS — lesson 3: one | two',
+    };
+    const a = buildVoiceInstructions({ ...base, learnerSnapshot: 'name: Ann\nstreak: 2 days' });
+    const b = buildVoiceInstructions({ ...base, learnerSnapshot: 'name: Bob\nstreak: 40 days' });
+    const cut = (s: string) => s.slice(0, s.indexOf('=== LEARNER SNAPSHOT'));
+    expect(cut(a)).toBe(cut(b));
+    // И план внутри этой общей части — то есть он тоже в кэше.
+    expect(cut(a)).toContain('SYLLABUS — lesson 3');
+  });
+
   it('префикс байт-в-байт стабилен при смене памяти/снимка (кэш инструкций)', () => {
     const base = { cefr: 'A2', format: 'tutor' as const, personaName: 'Max', personaRole: '', learnerLangName: 'Russian' };
     const a = buildVoiceInstructions({ ...base, tutorMemoryBlock: 'M1', learnerSnapshot: 'S1' });

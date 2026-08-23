@@ -724,9 +724,11 @@ describe("format 'tutor' — личный учитель", () => {
     ]);
     expect(body.session.tool_choice).toBe('auto');
     const instr: string = body.session.instructions;
-    expect(instr).toContain('You are Max, the learner\'s personal English TEACHER');
-    expect(instr).toContain('native language Ukrainian');
-    expect(instr).toContain('level A1');
+    // Рычаг 1 (кэш): имя учителя уехало из статики в блок YOUR LEARNER в конце,
+    // иначе префикс различался бы у учеников и не попадал в общий кэш.
+    expect(instr).toContain('You are the learner\'s personal English TEACHER');
+    expect(instr).toContain('You are Max.');
+    expect(instr).toContain('level is A1 and their NATIVE language is Ukrainian');
     expect(instr).toContain('WHAT THE APP OFFERS');
     expect(instr).toContain('тренажёр карточек'); // выжимка устава из админки
     expect(instr).toContain('hotel_checkin'); // каталог сцен от клиента
@@ -769,7 +771,7 @@ describe("format 'tutor' — личный учитель", () => {
     expect(instr).not.toContain('personal French TEACHER');
     expect(instr).toContain('FIRST lesson');
     expect(instr).toContain('Trainer (flashcards)'); // TUTOR_APP_DIGEST_FALLBACK
-    expect(instr).toContain('native language Russian');
+    expect(instr).toContain('their NATIVE language is Russian');
     expect(res.tutor.lessonsSoFar).toBe(0);
   });
 

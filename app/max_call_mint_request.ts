@@ -199,10 +199,25 @@ export async function buildLearnerSnapshot(
     if (words.length > 0) lines.push(`frequent mistakes to revisit naturally: ${words.join(', ')}`);
   } catch {}
   if (cefr) lines.push(`level in the app: ${cefr}`);
-  // зачем: владелец 2026-08-17 — «а план обучения у тутора есть или от фонаря?».
-  // План = курс приложения: учитель получает фразы ТЕКУЩЕГО урока ученика (тот
-  // же контент, что видит ученик в уроках) и следующего — и ведёт урок-звонок по
-  // ним, а не выбирает тему наугад. Контент в бандле, сеть не нужна.
+  return lines.join('\n');
+}
+
+/**
+ * Учебный план урока: фразы текущего и следующего урока курса + грамматика.
+ *
+ * зачем (владелец 2026-08-17): «а план обучения у тутора есть или от фонаря?».
+ * План = курс приложения: учитель ведёт звонок по тому же контенту, что ученик
+ * видит в уроках, а не выбирает тему наугад. Контент в бандле, сеть не нужна.
+ *
+ * зачем ОТДЕЛЬНО от снимка (владелец 2026-08-23, рычаг 3): этот текст зависит
+ * ТОЛЬКО от номера урока. Пока он ехал внутри learnerSnapshot вперемешку с
+ * именем и серией, вся склейка (~900 токенов) была уникальной для каждого
+ * ученика и переотправлялась КАЖДЫЙ ход по полной цене — это давало 44% счёта
+ * за урок. Вынесенный отдельно, план одинаков у всех на этом уроке и попадает
+ * в общий prompt cache.
+ */
+export function buildLessonSyllabusBlock(): string {
+  const lines: string[] = [];
   try {
     const home = peekHomeScreenHydration();
     const current = Math.max(1, home?.lastLessonId ?? Math.max(1, (home?.lessonsCompleted ?? 0) + 1));
@@ -312,6 +327,9 @@ export async function buildTutorMintExtras(params: MaxCallParams): Promise<Parti
     // сцены написан прямо в строке ("level A2"), а уровень ученика учитель
     // видит в блоке YOUR LEARNER, поэтому выбирает подходящую сам.
     sceneCatalog: renderTutorSceneCatalog(tutorStableSceneItems()),
+    // Учебный план отдельным полем — он общий для всех на этом уроке и потому
+    // кэшируется; личный снимок идёт следом и остаётся уникальным (рычаг 3).
+    syllabusBlock: buildLessonSyllabusBlock(),
     learnerSnapshot: await buildLearnerSnapshot(cefr, params.studyTarget === 'fr' ? 'fr' : 'en'),
   };
 }

@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 // зачем: v2_ui/v2_theme переехали из components/tournament в components/ui (2d5e95032) — старый путь мёртвый, Metro не резолвил модуль
-import { V2Card, V2Chip, V2Cta, type ChipVerdict } from '../ui/v2_ui';
-import { useTournamentPalette } from '../ui/v2_theme';
+import { V2Chip, V2Cta, type ChipVerdict } from '../ui/v2_ui';
+import { hexToRgba, useTournamentPalette } from '../ui/v2_theme';
 import { adaptArenaTask, encodeArenaSelection } from '../../modules/arena/task_adapter';
 import type { ArenaPublicTask } from '../../modules/arena/contract';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
@@ -12,6 +12,7 @@ import {
   arenaQuestionLayout,
   arenaQuestionViewportLayout,
 } from '../../modules/arena/question_layout';
+import { ArenaBilingualText } from './ArenaBilingualText';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
 
@@ -65,7 +66,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
         nestedScrollEnabled
         bounces={false}
       >
-        <Text style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</Text>
+        <ArenaBilingualText style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</ArenaBilingualText>
         {instruction ? (
           <>
             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
@@ -138,7 +139,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
         nestedScrollEnabled
         bounces={false}
       >
-        <Text style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</Text>
+        <ArenaBilingualText style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</ArenaBilingualText>
         {instruction ? (
           <>
             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
@@ -150,7 +151,10 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
           </>
         ) : null}
         <ScrollView
-          style={[styles.answerTrayScroll, { maxHeight: viewport.answerTrayMaxHeight, backgroundColor: P.elev }]}
+          // зачем: лоток — зона сброса, её видно обязательно (иначе пустой лоток
+          // непонятен), но плотная подложка P.elev делала из неё карточку-контейнер.
+          // Даём деликатный тон из цвета текста: углубление читается, контейнера нет.
+          style={[styles.answerTrayScroll, { maxHeight: viewport.answerTrayMaxHeight, backgroundColor: hexToRgba(P.text, 0.05) }]}
           contentContainerStyle={styles.answerTray}
           showsVerticalScrollIndicator={viewport.compactHeight}
           nestedScrollEnabled
@@ -194,8 +198,11 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 
   const selected = choice !== null;
   return (
-    <V2Card style={styles.card}>
-      <Text style={[styles.prompt, promptStyle]}>{view.prompt}</Text>
+    // зачем: вопрос — главный объект экрана, а не карточка в списке; владелец
+    // просил задание без контейнера, тон задаёт фон экрана (контракт
+    // arena_owner_requested_ui_contract). Режим matching уже так и устроен.
+    <View style={styles.body}>
+      <ArenaBilingualText style={[styles.prompt, promptStyle]}>{view.prompt}</ArenaBilingualText>
       {(
         /**
          * Варианты прокручиваются, если не помещаются.
@@ -236,19 +243,19 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
         disabled={!selected || locked}
         onPress={() => onSubmit(encodeArenaSelection(view, view.type === 'choices' ? choice : tokens))}
       >{submitLabel}</V2Cta>
-    </V2Card>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { gap: 16 },
+  body: { gap: 16 },
   immersiveScroll: { flex: 1, minHeight: 0 },
   immersiveContent: { flexGrow: 1, gap: 10, paddingBottom: 2 },
   // Высота строки задаётся на месте: она умножается на системный масштаб.
   prompt: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
   promptImmersive: { fontSize: 19 },
   instruction: { fontSize: 13, fontWeight: '700', textAlign: 'center' },
-  options: { gap: 10 },
+  options: { gap: 8 },
   // Прокрутка занимает только то место, что осталось: таймер и счёт выше
   // остаются на экране при любой длине вариантов.
   optionsScroll: { flexShrink: 1 },

@@ -238,7 +238,10 @@ export const premiumDialogStream = onRequest({
     mode === 'companion'
       ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang, data.studyTarget)
       : buildScenarioSystemPrompt(cefr, data);
-  const systemPrompt = `${baseSystemPrompt}\n\n${SAFETY_SYSTEM_INSTRUCTION}`;
+  // Safety уже внутри baseSystemPrompt (renderGlobalRules, стабильный префикс —
+  // кэш OpenAI). Приклеивать её здесь второй раз значило бы и удвоить блок в
+  // промпте, и порвать кэш ровно так, как это делалось до удешевления.
+  const systemPrompt = baseSystemPrompt;
 
   // Safety: те же два слоя, что и в callable. Модерация идёт параллельно генерации
   // и не задерживает ни первый токен, ни ответ; флаги дожидаемся перед завершением.

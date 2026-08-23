@@ -24,6 +24,7 @@ export interface Avatar25dCatalogItem {
   readonly sha256: string;
   readonly base: string | null;
   readonly label: string | null;
+  readonly layer: string | null;
   readonly acceptedAt: string;
 }
 
@@ -61,7 +62,9 @@ export function parseAvatar25dCatalog(input: unknown): Avatar25dCatalog {
     seen.add(key);
     const base = typeof item.base === 'string' ? item.base : null;
     const label = typeof item.label === 'string' && item.label ? item.label : null;
-    return { id, slot: slot as Avatar25dSlot, file, sha256, base, label, acceptedAt };
+    const layer = typeof item.layer === 'string' && item.layer ? item.layer : null;
+    if (layer !== null && layer !== `layers/${slot}/${id}.webp`) fail(`bad_layer:${id}`);
+    return { id, slot: slot as Avatar25dSlot, file, sha256, base, label, layer, acceptedAt };
   });
 
   return { version: 1, items };

@@ -1,104 +1,53 @@
-/**
- * Навигация внутри Арены.
- *
- * Владелец (D-30): у Арены свой таббар с крупной кнопкой «Начать матч» в
- * центре; по нажатию выпадает выбор режима, как в «Карточках 2.1». По бокам —
- * важные вкладки.
- *
- * Здесь только чистые решения: какая вкладка активна, куда она ведёт, какие
- * режимы показывать и какие из них можно нажать. Экран этого не считает — в
- * JSX такую логику не проверить, а ошибка в ней означает либо мёртвую кнопку,
- * либо кнопку, ведущую в отключённый раздел.
- */
-
-/**
- * зачем три, а не четыре плюс центральная (владелец, 2026-08-16): навигаций
- * было ДВЕ — таббар снизу (Сегодня · Ранги · [Матч] · Топы · История) и вкладки
- * внутри экрана (Обзор · Играть · Рост · Вместе). Они пересекались: «Играть»
- * внутри дублировал центральную кнопку, «Рост» — «Ранги». Девять точек входа
- * туда, где смыслов три.
- *
- * Осталось три глагола без пересечений, и КАЖДЫЙ раскрывает свой список —
- * одно правило на все три, угадывать нечего.
- */
-export type ArenaHubTab = 'play' | 'rating' | 'history';
+/** Чистые решения для постоянного хаба Арены и его overflow-меню. */
 export type ArenaHubMode = 'quick' | 'ranked' | 'friend';
-
-export const ARENA_HUB_TABS: readonly ArenaHubTab[] = ['play', 'rating', 'history'];
-
-/**
- * «Дом» каждой кнопки: сюда ведёт сама кнопка, если список не открывать, и по
- * нему таббар понимает, какая вкладка активна.
- */
-export const ARENA_HUB_ROUTES: Readonly<Record<ArenaHubTab, string>> = Object.freeze({
-  play: '/arena',
-  rating: '/arena_ranks',
-  history: '/arena_history',
-});
-
-/** Пункт списка под кнопкой таббара. */
-export type ArenaHubTabChoice = Readonly<{
-  key: string;
+export type ArenaOverflowKey = 'ranks' | 'tops' | 'season' | 'history' | 'review' | 'wallet' | 'spin';
+export type ArenaOverflowRoute = string | Readonly<{
+  pathname: '/arena_review';
+  params: Readonly<{ matchId: string }>;
+}>;
+export type ArenaOverflowChoice = Readonly<{
+  key: ArenaOverflowKey;
   icon: string;
-  /** Ключ текста в arenaText — подписи-расшифровки запрещены, только название. */
   label: string;
-  route: string;
+  route: ArenaOverflowRoute | null;
+  disabled: boolean;
 }>;
 
 /**
- * Что раскрывается под кнопкой.
+ * Магазин звёзд закрыт до релиза.
  *
- * У «Играть» список пустой намеренно: режимы отдаёт `arenaModeChoices`, потому
- * что их доступность зависит от ответа сервера, а эти маршруты доступны всегда.
+ * зачем: владелец не хочет выпускать витрину, в которой пока нечего купить —
+ * каталог наполнится нескоро. Экран и покупки живы целиком, скрыт только вход:
+ * достаточно вернуть `true`, когда товары появятся. Пункт «Спин» ведёт на тот
+ * же экран и остаётся — начисленный спин игрок обязан иметь возможность забрать.
  */
-export const ARENA_HUB_TAB_CHOICES: Readonly<Record<ArenaHubTab, readonly ArenaHubTabChoice[]>> =
-  Object.freeze({
-    play: Object.freeze([] as readonly ArenaHubTabChoice[]),
-    rating: Object.freeze([
-      { key: 'ranks', icon: 'podium', label: 'ranks', route: '/arena_ranks' },
-      { key: 'tops', icon: 'trophy', label: 'topsTab', route: '/arena_tops' },
-      { key: 'season', icon: 'star', label: 'season', route: '/arena_season_pass' },
-    ] as readonly ArenaHubTabChoice[]),
-    history: Object.freeze([
-      { key: 'matches', icon: 'time', label: 'historyTab', route: '/arena_history' },
-      { key: 'review', icon: 'search', label: 'reviewTitle', route: '/arena_review' },
-    ] as readonly ArenaHubTabChoice[]),
-  });
+export const ARENA_STAR_STORE_ENABLED = false;
 
-/**
- * Какие экраны принадлежат кнопке.
- *
- * зачем: экран из списка обязан подсвечивать СВОЮ кнопку. Иначе игрок уходит в
- * «Топы», а подсвечено «Играть» — таббар врёт о том, где человек находится.
- */
-export const ARENA_HUB_TAB_MEMBERS: Readonly<Record<ArenaHubTab, readonly string[]>> = Object.freeze({
-  play: Object.freeze(['/arena_matchmaking', '/arena_match', '/arena_results',
-    '/arena_friend_duel', '/arena_invite', '/arena_today']),
-  rating: Object.freeze(['/arena_ranks', '/arena_tops', '/arena_season_pass']),
-  history: Object.freeze(['/arena_history', '/arena_review']),
-});
-
-/**
- * Какая вкладка соответствует открытому экрану.
- *
- * Разбирается по пути, а не хранится состоянием: состояние разъезжается при
- * переходе «назад», и таббар начинает подсвечивать не тот раздел, в котором
- * игрок находится.
- */
-export function arenaHubTabForRoute(pathname: string | null | undefined): ArenaHubTab {
-  const path = String(pathname ?? '').split('?')[0].replace(/\/+$/, '');
-  // Сначала точные совпадения: `/arena_ranks` не должен считаться вкладкой
-  // «Играть» только потому, что начинается с `/arena`.
-  for (const tab of ARENA_HUB_TABS) {
-    if (path === ARENA_HUB_ROUTES[tab]) return tab;
+/** Secondary Arena destinations live behind the hub's top-right overflow. */
+export function arenaHubOverflowChoices(
+  latestMatchId: string | null,
+  spinsAvailable = 0,
+): readonly ArenaOverflowChoice[] {
+  const choices: ArenaOverflowChoice[] = [
+    { key: 'ranks', icon: 'podium-outline', label: 'ranks', route: '/arena_ranks', disabled: false },
+    { key: 'tops', icon: 'trophy-outline', label: 'topsTab', route: '/arena_tops', disabled: false },
+    { key: 'season', icon: 'star-outline', label: 'season', route: '/season_pass', disabled: false },
+    { key: 'history', icon: 'time-outline', label: 'historyTab', route: '/arena_history', disabled: false },
+    {
+      key: 'review',
+      icon: 'search-outline',
+      label: 'reviewTitle',
+      route: latestMatchId ? { pathname: '/arena_review', params: { matchId: latestMatchId } } : null,
+      disabled: !latestMatchId,
+    },
+  ];
+  if (ARENA_STAR_STORE_ENABLED) {
+    choices.push({ key: 'wallet', icon: 'sparkles-outline', label: 'wallet', route: '/arena_star_wallet', disabled: false });
   }
-  // Затем экраны из списков — они подсвечивают кнопку, которой принадлежат.
-  for (const tab of ARENA_HUB_TABS) {
-    for (const route of ARENA_HUB_TAB_MEMBERS[tab]) {
-      if (path === route || path.startsWith(`${route}/`)) return tab;
-    }
+  if (Number.isFinite(spinsAvailable) && spinsAvailable > 0) {
+    choices.push({ key: 'spin', icon: 'sync-circle-outline', label: 'spins', route: '/arena_star_wallet', disabled: false });
   }
-  return 'play';
+  return choices;
 }
 
 /* ------------------------------ режимы ----------------------------------- */
@@ -202,28 +151,4 @@ export function arenaMatchButtonAction(input: Readonly<{
   // недоигранный матч закрыть надо в любом случае.
   if (!input.enabled) return { kind: 'blocked' };
   return { kind: 'choose_mode' };
-}
-
-/* ------------------------- место под таббар ------------------------------- */
-
-/**
- * Высота собственного таббара Арены. Должна совпадать с `BAR_HEIGHT` в
- * `components/arena/ArenaTabBar.tsx`; тест сверяет их по исходнику.
- */
-export const ARENA_TAB_BAR_HEIGHT = 62;
-
-/**
- * Сколько места обязан оставить снизу экран, живущий под таббаром.
- *
- * Таббар лежит ПОВЕРХ содержимого (`position: absolute`), поэтому экран сам о
- * нём не знает: без этого отступа последние строки любого длинного списка —
- * а на экране рангов это двадцать четыре тира и таблица друзей — оказываются
- * закрыты полосой и до них нельзя ни дочитать, ни дотянуться.
- *
- * Системный отступ снизу прибавляется, а не заменяет: на телефонах с полосой
- * жеста таббар и сам сдвинут вверх на её высоту.
- */
-export function arenaHubBodyPaddingBottom(safeAreaBottom: number): number {
-  const inset = Number.isFinite(safeAreaBottom) ? Math.max(0, safeAreaBottom) : 0;
-  return ARENA_TAB_BAR_HEIGHT + Math.max(10, inset);
 }

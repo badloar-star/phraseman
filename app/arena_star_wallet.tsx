@@ -8,10 +8,11 @@ import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
-import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { V2Card, V2Cta } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
+import { ARENA_STAR_STORE_ENABLED } from '../modules/arena/hub_nav';
 import type { ArenaStarStoreResponse, ArenaStoreItem } from '../modules/arena/expansion_contract';
 import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
 import { arenaFeatureOpenEvent, arenaStoreActionEvent } from '../modules/arena/telemetry';
@@ -154,13 +155,15 @@ export default function ArenaStarWalletScreen() {
   </View> : null;
 
   return (
-    <ArenaScreen title={arenaExpansionText(lang, 'wallet')} subtitle={arenaExpansionText(lang, 'store')} scroll={false}>
+    <ArenaScreen title={arenaExpansionText(lang, 'wallet')} subtitle={ARENA_STAR_STORE_ENABLED ? arenaExpansionText(lang, 'store') : undefined} scroll={false}>
       <FlatList
-        data={store?.items ?? []}
+        data={ARENA_STAR_STORE_ENABLED ? (store?.items ?? []) : []}
         keyExtractor={(item) => item.sku}
         contentContainerStyle={styles.list}
         ListHeaderComponent={header}
-        ListEmptyComponent={<View style={styles.center}><ArenaStateNotice state={state === 'insufficient' || state === 'success' || state === 'ready' ? 'empty' : state} emptyHint="emptyStore" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>}
+        // зачем: витрина закрыта до релиза — заглушка «магазин пуст» с кнопкой
+        // «назад» тут соврала бы: товаров нет не потому, что не загрузились.
+        ListEmptyComponent={ARENA_STAR_STORE_ENABLED ? <View style={styles.center}><ArenaStateNotice state={state === 'insufficient' || state === 'success' || state === 'ready' ? 'empty' : state} emptyHint="emptyStore" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View> : null}
         renderItem={({ item }) => { const wired = Boolean(arenaStoreItemTitle(lang, item.sku)) && arenaCosmeticDefinition(item.sku)?.slot === item.slot; return <V2Card style={styles.item}><View style={[styles.itemIcon, { backgroundColor: P.elev2 }]}><Ionicons name={item.icon ?? 'shield'} size={25} color={P.gold} /></View><View style={styles.flex}><Text style={[styles.title, { color: P.text }]}>{arenaStoreItemTitle(lang, item.sku) ?? arenaExpansionText(lang, 'unavailable')}</Text><Text style={[styles.price, { color: P.gold }]}>{item.priceStars}</Text></View><View style={styles.itemAction}>{item.equipped ? <Text style={[styles.owned, { color: P.accent }]}>{arenaExpansionText(lang, 'equipped')}</Text> : item.owned ? <V2Cta tone="ghost" disabled={!wired || busySku === item.sku} onPress={() => equip(item)}>{arenaExpansionText(lang, 'equip')}</V2Cta> : <V2Cta disabled={!wired || !item.available || busySku === item.sku} onPress={() => purchase(item)}>{arenaExpansionText(lang, 'buy').replace('{amount}', String(item.priceStars))}</V2Cta>}</View></V2Card>; }}
       />
     </ArenaScreen>

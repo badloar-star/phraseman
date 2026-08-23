@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, {
   FadeIn,
   FadeInDown,
@@ -19,6 +19,7 @@ import type { LearningV2IntroQuestionTaskBinding } from '../modules/learning-v2/
 import type { RequiredSessionTaskCompletionInputV3 } from '../modules/learning-v2/progress/required_session_completion_envelope';
 import { useLang } from '../components/LangContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { isShortScreen } from '../constants/layout-scale';
 
 type IntroCheckResult = 'idle' | 'wrong' | 'correct';
 
@@ -50,6 +51,14 @@ export default function LearningV2SessionIntroCheck({
 }: LearningV2SessionIntroCheckProps) {
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
+  // зачем (владелец, 2026-08-23): на 667pt (iPhone SE/8) экран не помещался
+  // даже при одной строке текста — дефицит 31pt, а с вопросом в две строки и
+  // блоком награды доходило до 67pt. Кнопка «Дальше» и последний вариант
+  // ответа уезжали под нижний край. Лечим двумя слоями: прокрутка (страховка
+  // на любой длине текста и крупном системном шрифте) + ужатый вертикальный
+  // ритм, чтобы в типичном случае прокручивать вообще не пришлось.
+  const { height: windowHeight } = useWindowDimensions();
+  const shortScreen = isShortScreen(windowHeight);
   const reducedMotion = useReducedMotion();
   const [questionIndex, setQuestionIndex] = useState(0);
   const [result, setResult] = useState<IntroCheckResult>('idle');
@@ -169,11 +178,18 @@ export default function LearningV2SessionIntroCheck({
         </Animated.View>
       </View>
 
-      <View style={styles.content}>
+      <ScrollView
+        style={styles.contentScroll}
+        contentContainerStyle={[styles.content, shortScreen && styles.contentShort]}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        alwaysBounceVertical={false}
+        overScrollMode="never"
+      >
         <Animated.View
           key={`intro-check-heading-${questionIndex}`}
           entering={reducedMotion ? FadeIn.duration(1) : FadeInDown.duration(220).reduceMotion(ReduceMotion.System)}
-          style={styles.eyebrowRow}
+          style={[styles.eyebrowRow, shortScreen && styles.eyebrowRowShort]}
         >
           <View style={styles.eyebrowIcon}><Ionicons name="sparkles" size={18} color="#F8C84E" /></View>
           <View style={styles.eyebrowCopy}>
@@ -185,13 +201,13 @@ export default function LearningV2SessionIntroCheck({
         <Animated.View
           key={`intro-check-card-${questionIndex}`}
           entering={reducedMotion ? FadeIn.duration(1) : FadeInDown.duration(280).reduceMotion(ReduceMotion.System)}
-          style={styles.questionCard}
+          style={[styles.questionCard, shortScreen && styles.questionCardShort]}
         >
           <Text style={styles.questionNumber}>ВОПРОС {questionIndex + 1}</Text>
           <Text style={styles.prompt}>{prompt}</Text>
         </Animated.View>
 
-        <Animated.View style={[styles.choices, shakeStyle]}>
+        <Animated.View style={[styles.choices, shortScreen && styles.choicesShort, shakeStyle]}>
           {choices.map((choice, index) => {
             const isCorrect = result === 'correct' && index === question.correctChoiceIndex;
             const isWrong = result === 'wrong' && index === selectedIndex;
@@ -219,7 +235,7 @@ export default function LearningV2SessionIntroCheck({
             );
           })}
         </Animated.View>
-      </View>
+      </ScrollView>
 
       <View style={[styles.bottom, { paddingBottom: insets.bottom + 14 }]}>
         {result === 'wrong' && (
@@ -287,16 +303,27 @@ const styles = StyleSheet.create({
   counterText: { color: '#E9EEF4', fontWeight: '900', fontSize: 12 },
   starCounter: { minWidth: 58, height: 38, borderRadius: 16, backgroundColor: '#2D2819', borderWidth: 1, borderColor: '#66562A', paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5 },
   starCounterText: { color: '#FFF1B8', fontWeight: '900', fontSize: 15 },
-  content: { flex: 1, paddingHorizontal: 18, paddingTop: 26 },
+  // Скролл-оболочка держит flex:1, а сам контент растёт по содержимому:
+  // flexGrow:1 сохраняет прежнее «занимает всё место», когда текста мало.
+  contentScroll: { flex: 1 },
+  content: { flexGrow: 1, paddingHorizontal: 18, paddingTop: 26, paddingBottom: 8 },
+  // Низкий экран: ужимаем только отступы, кегли не трогаем — вопрос обязан
+  // читаться так же, а места отыгрывается ~24pt.
+  contentShort: { paddingTop: 14 },
   eyebrowRow: { flexDirection: 'row', alignItems: 'center', gap: 11, marginBottom: 18 },
+  eyebrowRowShort: { marginBottom: 10 },
   eyebrowIcon: { width: 42, height: 42, borderRadius: 15, backgroundColor: '#F8C84E1F', borderWidth: 1, borderColor: '#F8C84E55', alignItems: 'center', justifyContent: 'center' },
   eyebrowCopy: { flex: 1 },
   eyebrow: { color: '#F8C84E', fontSize: 12, lineHeight: 16, letterSpacing: 1.4, fontWeight: '900' },
   eyebrowDetail: { color: '#7F8B99', fontSize: 12, lineHeight: 17, marginTop: 2, fontWeight: '700' },
   questionCard: { minHeight: 180, borderRadius: 28, backgroundColor: '#1B2430', borderWidth: 1, borderColor: '#39485A', padding: 24, justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.28, shadowRadius: 24, shadowOffset: { width: 0, height: 14 }, elevation: 8 },
+  // Карточка вопроса: на низком экране минимум ниже, текст всё равно ведёт.
+  questionCardShort: { minHeight: 132, padding: 18 },
   questionNumber: { color: '#758395', fontSize: 11, lineHeight: 16, letterSpacing: 1.5, fontWeight: '900', textAlign: 'center' },
   prompt: { color: '#F8FAFC', fontSize: 25, lineHeight: 34, textAlign: 'center', fontWeight: '900', letterSpacing: -0.4, marginTop: 12 },
   choices: { gap: 11, marginTop: 18 },
+  // Карточки ответов остаются 62pt высотой (палец), сокращаем только зазоры.
+  choicesShort: { gap: 8, marginTop: 12 },
   choice: { minHeight: 62, borderRadius: 20, backgroundColor: '#1A222D', borderWidth: 1, borderColor: '#344151', paddingHorizontal: 15, flexDirection: 'row', alignItems: 'center', gap: 12 },
   choiceCorrect: { backgroundColor: '#203A25', borderColor: '#8EE65A' },
   choiceWrong: { backgroundColor: '#3A2327', borderColor: '#FB7185' },

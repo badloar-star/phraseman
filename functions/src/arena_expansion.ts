@@ -27,7 +27,7 @@ import {
   decodeArenaSpeedProgress,
   encodeArenaSpeedProgress,
   arenaObservedElapsedMs,
-  arenaRankIndexFromRp,
+  arenaRankIndexFromStars,
   arenaSeasonWindow,
   arenaTaskDurationMs,
   arenaTaskStars,
@@ -40,6 +40,7 @@ import {
 } from './arena_v2_core';
 import {
   commitStarOperations,
+  normalizeStars,
   prepareStarOperations,
   type StarOpRequest,
 } from './stars_ledger';
@@ -704,6 +705,7 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
     });
   }
   const profile = profileSnap.data() ?? {};
+  const unifiedStars = normalizeStars(who.user.stars);
   const config = who.config;
   const todayData = todaySnap.data() ?? {};
   const todayStatus = todaySnap.exists
@@ -764,7 +766,9 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
       store: config.enabled === true && config.arenaExpansionEnabled === true && config.arenaStarStoreEnabled === true
         && config.arenaCosmeticCatalogVersion === ARENA_EXPANSION_CATALOG_VERSION,
     },
-    walletStars: Math.max(0, Math.trunc(Number(profile.starWalletBalance ?? 0))),
+    walletStars: unifiedStars.balance,
+    starsEarnedTotal: unifiedStars.earnedTotal,
+    starsSeq: unifiedStars.seq,
     seasonStarsEarned: Math.max(0, Math.trunc(Number(seasonSnap.data()?.stars ?? 0))),
     mastery: compactMastery(profile.mastery),
     today: { dayKey, band: String(todaySnap.exists ? todayData.band : arenaTodayBand(Number(profile.rank ?? 0))), status: todayStatus,
@@ -797,7 +801,7 @@ export const arenaTodayStart = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (r
   const output = await db.runTransaction(async (tx) => {
     const [profileSnap, queueSnap] = await Promise.all([tx.get(profileRef), tx.get(queueRef)]);
     const profile = profileSnap.data() ?? {};
-    const band = arenaTodayBand(Number(profile.rank ?? arenaRankIndexFromRp(Number(profile.rating ?? 0))));
+    const band = arenaTodayBand(Number(profile.rank ?? arenaRankIndexFromStars(Number(profile.rating ?? 0))));
     const snapshotId = arenaTodaySnapshotId(dayKey, band);
     const snapshotRef = db.collection(ARENA_EXPANSION_COLLECTIONS.dailyPrivate).doc(snapshotId);
     const markerRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.dailyAttempts).doc(dayKey);
@@ -1007,10 +1011,13 @@ export const arenaStarStore = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
     userSubcollection(who.stableUid, ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId).get(),
   ]);
   const profile = profileSnap.data() ?? {};
+  const unifiedStars = normalizeStars(who.user.stars);
   const owned = new Set(ownedSnap.docs.map((doc) => doc.id));
   const equipped = profile.equippedCosmetics ?? {};
   const wallet = {
-    walletStars: Math.max(0, Math.trunc(Number(profile.starWalletBalance ?? 0))),
+    walletStars: unifiedStars.balance,
+    starsEarnedTotal: unifiedStars.earnedTotal,
+    starsSeq: unifiedStars.seq,
     seasonStarsEarned: Math.max(0, Math.trunc(Number(seasonSnap.data()?.stars ?? 0))),
     equippedBySlot: equipped,
   };
@@ -1043,24 +1050,23 @@ export const arenaStarPurchase = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
     const [profileSnap, entitlementSnap, receiptSnap, userSnap] = await Promise.all([
       tx.get(profileRef), tx.get(entitlementRef), tx.get(receiptRef), tx.get(userRef),
     ]);
+    const unifiedStars = normalizeStars(userSnap.data()?.stars);
     if (receiptSnap.exists) {
       if (receiptSnap.data()?.operation !== 'purchase' || receiptSnap.data()?.itemId !== itemId
         || receiptSnap.data()?.catalogVersion !== ARENA_EXPANSION_CATALOG_VERSION) {
         throw new HttpsError('already-exists', 'arena_store_request_conflict');
       }
-      return receiptSnap.data()!;
+      return { ...receiptSnap.data()!, balanceAfter: unifiedStars.balance, starsSeq: unifiedStars.seq };
     }
     const profile = profileSnap.data() ?? {};
-    const balance = Math.max(0, Math.trunc(Number(profile.starWalletBalance ?? 0)));
     if (entitlementSnap.exists) {
       const replay = { receiptId: receiptRef.id, operation: 'purchase', itemId,
         slot: item.slot, catalogVersion: ARENA_EXPANSION_CATALOG_VERSION,
-        status: 'already_owned', alreadyOwned: true, balanceAfter: balance };
+        status: 'already_owned', alreadyOwned: true,
+        balanceAfter: unifiedStars.balance, starsSeq: unifiedStars.seq };
       tx.create(receiptRef, replay);
       return replay;
     }
-    if (balance < item.price) throw new HttpsError('failed-precondition', 'arena_store_insufficient_stars');
-    const balanceAfter = balance - item.price;
     const purchasedAtMs = nowMs();
     /**
      * Списание идёт через единый журнал звёзд (владелец D-05/D-06): трата
@@ -1088,10 +1094,19 @@ export const arenaStarPurchase = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
       weekKeyForMs: arenaWeekKeyForMs,
       authUid: who.authUid ?? '',
     });
+    const purchaseOutcome = purchasePrepared.result.outcomes[0];
+    if (purchaseOutcome?.status === 'rejected') {
+      if (purchaseOutcome.errorCode === 'insufficient_stars') {
+        throw new HttpsError('failed-precondition', 'arena_store_insufficient_stars');
+      }
+      throw new HttpsError('failed-precondition', 'arena_store_star_operation_rejected');
+    }
+    const purchaseResult = commitStarOperations(tx, purchasePrepared);
+    const balanceAfter = purchaseResult.balance;
     const resultDoc = { receiptId: receiptRef.id, operation: 'purchase', itemId, slot: item.slot,
       catalogVersion: ARENA_EXPANSION_CATALOG_VERSION,
-      status: 'purchased', price: item.price, balanceAfter, purchasedAtMs };
-    commitStarOperations(tx, purchasePrepared);
+      status: 'purchased', price: item.price, balanceAfter,
+      starsSeq: purchaseResult.seq, purchasedAtMs };
     tx.set(profileRef, {
       starWalletBalance: balanceAfter,
       lifetimeWalletStarsSpent: Math.max(0, Number(profile.lifetimeWalletStarsSpent ?? 0)) + item.price,
@@ -1109,7 +1124,7 @@ export const arenaStarPurchase = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
   const seasonSnap = await userSubcollection(who.stableUid, ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId).get();
   return { ok: true, ...result,
     entitlement: { itemId, slot: item.slot },
-    wallet: { walletStars: result.balanceAfter,
+    wallet: { walletStars: result.balanceAfter, starsSeq: result.starsSeq,
       seasonStarsEarned: Math.max(0, Number(seasonSnap.data()?.stars ?? 0)), equippedBySlot: {} },
     item: { sku: item.itemId, title: item.itemId, titleKey: `arena.store.${item.itemId}.title`,
       category: item.slot, slot: item.slot, priceStars: item.price, owned: true, equipped: false, available: true },

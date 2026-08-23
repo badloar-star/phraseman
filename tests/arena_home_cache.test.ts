@@ -60,7 +60,7 @@ describe('тёплый снимок главного экрана', () => {
     const day1 = Date.UTC(2026, 7, 12, 20, 0);
     const day2 = Date.UTC(2026, 7, 13, 9, 0);
     const stored = {
-      schemaVersion: 'arena-home-warm.v1',
+      schemaVersion: 'arena-home-warm.v2',
       savedAtWallMs: day1,
       savedDayKey: arenaWarmDayKey(day1),
       home: { profile: { rating: 700, dailyMatches: 3, dailyWins: 2, dailyFirstAnswers: 9 } },
@@ -80,7 +80,7 @@ describe('тёплый снимок главного экрана', () => {
 
   it('снимок без ключа суток считается вчерашним', () => {
     const parsed = arenaHomeWarmUsable({
-      schemaVersion: 'arena-home-warm.v1',
+      schemaVersion: 'arena-home-warm.v2',
       savedAtWallMs: 1_000,
       home: { profile: { rating: 500, dailyMatches: 4 } },
       expansion: null,
@@ -90,13 +90,13 @@ describe('тёплый снимок главного экрана', () => {
 
   it('снимок старше суток не показывается', () => {
     expect(arenaHomeWarmUsable({
-      schemaVersion: 'arena-home-warm.v1', savedAtWallMs: 0, home: {}, expansion: null,
+      schemaVersion: 'arena-home-warm.v2', savedAtWallMs: 0, home: {}, expansion: null,
     }, ARENA_HOME_CACHE_TTL_MS + 1)).toBeNull();
   });
 
   it('снимок из будущего не показывается — часы переведены', () => {
     expect(arenaHomeWarmUsable({
-      schemaVersion: 'arena-home-warm.v1', savedAtWallMs: 10_000_000, home: {}, expansion: null,
+      schemaVersion: 'arena-home-warm.v2', savedAtWallMs: 10_000_000, home: {}, expansion: null,
     }, 1_000)).toBeNull();
   });
 
@@ -112,6 +112,83 @@ describe('тёплый снимок главного экрана', () => {
     const warm = arenaPeekHomeWarm(1_200);
     expect(warm?.home).toEqual({ a: 1 });
     expect(warm?.expansion).toEqual({ b: 2 });
+  });
+
+  it('частичные обновления в те же сутки сохраняют дневные данные второй половины', () => {
+    const morning = Date.UTC(2026, 7, 20, 9, 0);
+    arenaResetHomeWarm();
+    arenaRememberHomeWarm({
+      home: { profile: { rating: 700, dailyMatches: 2 } },
+      expansion: { today: { completedTasks: 1 }, activeRun: { runId: 'run-1' }, season: { stars: 5 } },
+      wallNowMs: morning,
+    });
+
+    arenaRememberHomeWarm({
+      home: { profile: { rating: 710, dailyMatches: 3 } },
+      wallNowMs: morning + 1_000,
+    });
+    expect(arenaPeekHomeWarm(morning + 2_000)?.expansion).toEqual({
+      today: { completedTasks: 1 },
+      activeRun: { runId: 'run-1' },
+      season: { stars: 5 },
+    });
+
+    arenaRememberHomeWarm({
+      expansion: { today: { completedTasks: 2 }, season: { stars: 6 } },
+      wallNowMs: morning + 3_000,
+    });
+    expect(arenaPeekHomeWarm(morning + 4_000)?.home).toEqual({
+      profile: { rating: 710, dailyMatches: 3 },
+    });
+  });
+
+  it('частичное обновление после смены суток не переносит вчерашние дневные данные', () => {
+    const day1 = Date.UTC(2026, 7, 20, 23, 59);
+    const day2 = Date.UTC(2026, 7, 21, 0, 1);
+    arenaResetHomeWarm();
+    arenaRememberHomeWarm({
+      home: { profile: { rating: 700, dailyMatches: 2 } },
+      expansion: { today: { completedTasks: 1 }, activeRun: { runId: 'old-run' }, season: { stars: 5 } },
+      wallNowMs: day1,
+    });
+
+    arenaRememberHomeWarm({
+      home: { profile: { rating: 705, dailyMatches: 0 } },
+      wallNowMs: day2,
+    });
+    expect(arenaPeekHomeWarm(day2 + 1_000)?.expansion).toEqual({ season: { stars: 5 } });
+  });
+
+  it('записи снимка на диск выполняются по порядку и не откатывают более свежий снимок', async () => {
+    let resolveFirst!: () => void;
+    let resolveSecond!: () => void;
+    const first = new Promise<void>((resolve) => { resolveFirst = resolve; });
+    const second = new Promise<void>((resolve) => { resolveSecond = resolve; });
+    const writes: string[] = [];
+    const store: ArenaKeyValueStore = {
+      getItem: async () => null,
+      setItem: jest.fn(async (_key: string, value: string) => {
+        writes.push(value);
+        if (writes.length === 1) await first;
+        else await second;
+      }),
+      removeItem: async () => {},
+    };
+    arenaResetHomeWarm();
+
+    arenaRememberHomeWarm({ home: { profile: { rating: 700 } }, wallNowMs: 1_000, store });
+    arenaRememberHomeWarm({ home: { profile: { rating: 710 } }, wallNowMs: 2_000, store });
+    await Promise.resolve();
+    expect(store.setItem).toHaveBeenCalledTimes(1);
+
+    resolveFirst();
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    expect(store.setItem).toHaveBeenCalledTimes(2);
+    resolveSecond();
+    await new Promise<void>((resolve) => setImmediate(resolve));
+
+    const latest = JSON.parse(writes[1]) as { home: { profile: { rating: number } } };
+    expect(latest.home.profile.rating).toBe(710);
   });
 
   it('после перезапуска снимок поднимается с диска', async () => {
@@ -130,13 +207,13 @@ describe('тёплый снимок главного экрана', () => {
   it('битый снимок на диске не роняет экран', async () => {
     const store = fakeStore();
     arenaResetHomeWarm();
-    store.data.set('arena.home.warm.v1', '{ это не json');
+    store.data.set('arena.home.warm.v2', '{ это не json');
     expect(await arenaLoadHomeWarm(store, 1_000)).toBeNull();
   });
 });
 
 describe('экран Арены пользуется снимком', () => {
-  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena.tsx'), 'utf8');
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaHubSurface.tsx'), 'utf8');
 
   it('первый кадр берётся из памяти, а не из пустоты', () => {
     expect(source).toContain('arenaPeekHomeWarm');
@@ -158,12 +235,10 @@ describe('экран Арены пользуется снимком', () => {
   });
 
   it('даже без данных рисуются живые блоки и карточка Today с честным неизвестным прогрессом', () => {
-    expect(source).toContain('<ArenaHubLive model={hub} />');
+    expect(source).toContain('<ArenaHubSummary model={hub} />');
     expect(source).toContain('<ArenaDailyGoals model={hub.goals} />');
     expect(source).toContain('value={today?.completedTasks ?? null}');
-    expect(source).toContain("? home.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home.profile.rank ?? 0) + 1}`");
-    expect(source).toContain(": '—'}");
-    expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaHubLive/);
+    expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaHubSummary/);
     expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaDailyGoals/);
     expect(source).not.toMatch(/\{\s*today\s*\?\s*<V2Card/);
   });

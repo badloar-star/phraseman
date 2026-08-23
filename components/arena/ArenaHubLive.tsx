@@ -11,11 +11,12 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useLang } from '../LangContext';
-import { V2Card } from '../tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { V2Card } from '../ui/v2_ui';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { arenaText } from '../../modules/arena/copy';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { ArenaHubModel } from '../../modules/arena/hub_view';
+import { ArenaRankStars } from './ArenaRankStars';
 
 /**
  * Живая часть главного экрана Арены.
@@ -64,28 +65,31 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
         <V2Card pad={16} style={styles.card}>
           <View style={styles.rankHead}>
             {/*
-              Название ранга и число RP стоят в одной строке. Раньше ни одно из
+              Название ранга и звёзды стоят в одной строке. Раньше ни одно из
               них не сжималось: длинное название («Бриллиант · III» при крупном
-              системном шрифте) выдавливало RP за правый край, и игрок терял
-              как раз то число, ради которого сюда смотрит. Название уступает
-              первым — оно и так читается по значку и цвету.
+              системном шрифте) выдавливало правый край, и игрок терял как раз
+              то, ради чего сюда смотрит. Название уступает первым — оно и так
+              читается по значку и цвету.
             */}
             <Text
-              numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.75}
               accessibilityLabel={rank ? undefined : `${arenaText(lang, 'ranks')}: ${arenaText(lang, 'valueUnknown')}`}
               style={[styles.rankName, { color: P.text }]}
             >
               {rank === null ? '—' : `${arenaText(lang, TIER_COPY[rank.tierIndex])} · ${ROMAN[rank.division]}`}
             </Text>
-            <Text
-              numberOfLines={1}
-              accessibilityLabel={rank ? undefined : `RP: ${arenaText(lang, 'valueUnknown')}`}
-              style={[styles.rp, { color: P.muted }]}
-            >
-              {rank ? rank.rp : '—'}
-            </Text>
+            {rank ? (
+              <ArenaRankStars
+                filled={rank.starsInRank}
+                accessibilityLabel={`${arenaText(lang, 'rankStars')}: ${rank.starsInRank}/${rank.starsPerRank}`}
+              />
+            ) : (
+              <Text
+                accessibilityLabel={`${arenaText(lang, 'rankStars')}: ${arenaText(lang, 'valueUnknown')}`}
+                style={[styles.rp, { color: P.muted }]}
+              >
+                —
+              </Text>
+            )}
           </View>
           {rank?.top ? (
             <Text style={[styles.meta, { color: P.gold }]}>{arenaText(lang, 'rankTop')}</Text>
@@ -96,7 +100,7 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
                 accessibilityLabel={rank ? undefined : `${arenaText(lang, 'rankProgress')}: ${arenaText(lang, 'valueUnknown')}`}
                 style={[styles.meta, { color: P.muted }]}
               >
-                {arenaText(lang, 'rankProgress')}: {rank === null ? '—' : rank.rpToNextRank}
+                {arenaText(lang, 'rankProgress')}: {rank === null ? '—' : `${rank.winsToNextRank} ★`}
               </Text>
             </>
           )}
@@ -121,7 +125,7 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
               </Text>
             </View>
             {/* Серия показывается только когда она есть: «серия 0» — не новость. */}
-            {model.streak > 0 ? (
+            {typeof model.streak === 'number' && model.streak > 0 ? (
               <View style={styles.streak}>
                 <Ionicons name="flame" size={16} color={P.gold} />
                 <Text style={[styles.value, { color: P.gold }]}>{model.streak}</Text>
@@ -138,11 +142,11 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
             <Text style={[styles.label, { color: P.muted }]}>{arenaText(lang, 'hubNearYou')}</Text>
             {model.friends.map((row) => (
               <View key={row.stableUid} style={styles.friendRow}>
-                <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.place, { color: P.muted }]}>{row.place}</Text>
-                <Text numberOfLines={1} style={[styles.value, { color: row.you ? P.accent : P.text, flex: 1 }]}>
+                <Text maxFontSizeMultiplier={1.4} style={[styles.place, { color: P.muted }]}>{row.place}</Text>
+                <Text style={[styles.value, { color: row.you ? P.accent : P.text, flex: 1 }]}>
                   {row.you ? arenaText(lang, 'you') : arenaText(lang, TIER_COPY[Math.min(7, Math.floor(row.rating / 300))])}
                 </Text>
-                <Text numberOfLines={1} style={[styles.value, { color: P.text }]}>{row.rating}</Text>
+                <Text style={[styles.value, { color: P.text }]}>{row.rating}</Text>
               </View>
             ))}
           </V2Card>

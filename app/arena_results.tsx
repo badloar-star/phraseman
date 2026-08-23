@@ -1,29 +1,29 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
 import { ArenaRewards } from '../components/arena/ArenaRewards';
-import { ArenaDisclosureBadge } from '../components/arena/ArenaExpansionUI';
-import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { V2Card, V2Cta } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
 import { arenaText } from '../modules/arena/copy';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
-import type { ArenaPlayer } from '../modules/arena/contract';
-import type { ArenaMatchReward } from '../modules/arena/contract';
+import type { ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import type { TournamentFxApi } from '../components/tournament/TournamentFx';
-import { arenaExpansionHome, arenaFlushOutbox, arenaOutboxPending, arenaRivalAccept, arenaV2Home, arenaV2SyncMatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
+import type { TournamentFxApi } from '../components/ui/V2Fx';
+import { arenaExpansionHome, arenaFlushOutbox, arenaV2SyncMatchDispatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
 import { arenaResultTheme } from '../modules/arena/arena_cosmetics';
 import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
 import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { useArenaSound } from '../hooks/use_arena_sound';
 import { arenaResultAnnounce, arenaResultHasAnnounce } from '../modules/arena/result_view';
-import { ArenaTierDownHybrid, ArenaTierUpHybrid } from '../components/arena/ArenaRankHybrid';
+import { arenaRankView } from '../modules/arena/rank_engine';
+import { ArenaRankStars } from '../components/arena/ArenaRankStars';
+import { ArenaRankChangeHybrid } from '../components/arena/ArenaRankHybrid';
 import { ResultsSequence } from '../components/feedback/ResultsSequence';
 import { arenaQuickXpPresentation } from '../modules/arena/quick_result';
 import {
@@ -34,6 +34,11 @@ import {
 import { arenaResultReplayMode, arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
 import { useArenaTerminalResultSync } from '../hooks/use_arena_terminal_result_sync';
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
+import { arenaForgetResultHandoff, arenaPeekResultHandoff } from '../modules/arena/result_handoff';
+import {
+  arenaResultRouteOwnerMatches,
+  createArenaResultOwnerGate,
+} from '../modules/arena/listener_scope';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -45,14 +50,14 @@ export default function ArenaResultsScreen() {
   const reactionLine = { lineHeight: 17 * fontScale };
   const pendingLine = { lineHeight: 20 * fontScale };
   const window = useWindowDimensions();
-  const params = useLocalSearchParams<{ matchId?: string; mode?: string; viewerSeat?: string; reportRejected?: string; motionVariant?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; mode?: string; viewerSeat?: string; ownerGeneration?: string; reportRejected?: string; motionVariant?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
   const routeMode = params.mode === 'quick' || params.mode === 'ranked' ? params.mode : null;
   const reportRejected = params.reportRejected === '1';
   // зачем: гибрид «Штамп ранга»/«Тихая ступень» (ArenaRankHybrid) включается
   // через ?motionVariant=hybrid — по умолчанию classic, ничего не меняется
   // для боевых игроков, пока владелец не переключит default.
-  const motionVariant = params.motionVariant === 'hybrid' ? 'hybrid' : 'classic';
+  const motionVariant = params.motionVariant === 'classic' ? 'classic' : 'hybrid';
   // зачем: гибрид-сцена «Штамп ранга»/«Тихая ступень» — модальная кульминация
   // (ArenaRankHybrid.onDone), а не постоянный блок как classic-текст: она
   // доигрывает один раз и уступает место обычной карточке объявления.
@@ -66,57 +71,122 @@ export default function ArenaResultsScreen() {
     return () => subscription.remove();
   }, []);
   const resultAccountKey = `${resultAccount.phase}:${resultAccount.generation}:${resultAccount.stableId ?? ''}`;
-  const resultAccountActive = active && resultAccount.phase === 'active' && Boolean(resultAccount.stableId);
+  const parsedOwnerGeneration = typeof params.ownerGeneration === 'string'
+    ? Number(params.ownerGeneration)
+    : Number.NaN;
+  const routeOwnerGeneration = Number.isSafeInteger(parsedOwnerGeneration) && parsedOwnerGeneration >= 0
+    ? parsedOwnerGeneration
+    : null;
+  const resultRouteOwnerCurrent = arenaResultRouteOwnerMatches(routeOwnerGeneration, resultAccount);
+  const resultIdentityKey = resultRouteOwnerCurrent && resultAccount.stableId
+    ? resultAccountKey
+    : null;
+  const resultOwnerGate = useRef(createArenaResultOwnerGate()).current;
+  const resultOwnerCurrent = resultOwnerGate.claim(resultIdentityKey);
+  const resultAccountActive = active && resultOwnerCurrent;
+  useEffect(() => {
+    if (resultAccount.phase === 'active' && !resultRouteOwnerCurrent) {
+      router.replace('/arena' as never);
+    }
+  }, [resultAccount.phase, resultRouteOwnerCurrent, router]);
   const reduceMotion = useReduceMotion();
   const fxRef = useRef<TournamentFxApi>(null);
   const celebratedRef = useRef<string | null>(null);
-  const live = useArenaMatch(matchId, active);
+  const live = useArenaMatch(matchId, resultAccountActive, resultAccountKey);
   const routeSeat = params.viewerSeat === 'a' || params.viewerSeat === 'b' ? params.viewerSeat : null;
-  const [viewerSeat, setViewerSeat] = useState<'a' | 'b' | null>(() => routeSeat ?? peekArenaViewerSeat(matchId));
+  const initialHandoff = useMemo(
+    () => resultOwnerCurrent && matchId ? arenaPeekResultHandoff(resultAccountKey, matchId) : null,
+    [matchId, resultAccountKey, resultOwnerCurrent],
+  );
+  useEffect(() => {
+    if (initialHandoff && matchId) arenaForgetResultHandoff(resultAccountKey, matchId);
+  }, [initialHandoff, matchId, resultAccountKey]);
+  const [viewerSeat, setViewerSeat] = useState<'a' | 'b' | null>(
+    () => resultOwnerCurrent
+      ? routeSeat ?? initialHandoff?.viewerSeat ?? peekArenaViewerSeat(matchId)
+      : null,
+  );
   const [privateRewardState, setPrivateRewardState] = useState<Readonly<{
     matchId: string;
     reward: ArenaMatchReward;
-  }> | null>(null);
-  const [quickResultState, setQuickResultState] = useState(() => (
-    arenaQuickResultInitialState(matchId, routeSeat, routeMode === 'quick')
-  ));
+  }> | null>(() => initialHandoff?.viewerReward
+    ? { matchId: initialHandoff.matchId, reward: initialHandoff.viewerReward }
+    : null);
+  const [quickResultState, setQuickResultState] = useState(() => {
+    const initial = arenaQuickResultInitialState(
+      matchId,
+      routeSeat ?? initialHandoff?.viewerSeat ?? null,
+      routeMode === 'quick',
+    );
+    return initialHandoff && matchId
+      ? arenaQuickResultReduce(initial, {
+        type: 'sync',
+        matchId,
+        version: initialHandoff.match.version,
+        state: initialHandoff.match.state,
+        match: initialHandoff.match,
+        viewerSeat: initialHandoff.viewerSeat,
+        viewerReward: initialHandoff.viewerReward,
+      })
+      : initial;
+  });
   const [quickResultAccountKey, setQuickResultAccountKey] = useState(resultAccountKey);
   useEffect(() => {
     setQuickResultAccountKey(resultAccountKey);
-    setPrivateRewardState(null);
-    setQuickResultState(arenaQuickResultInitialState(matchId, routeSeat, routeMode === 'quick'));
-  }, [matchId, resultAccountKey, routeMode, routeSeat]);
+    if (!resultOwnerCurrent) {
+      setViewerSeat(null);
+      setPrivateRewardState(null);
+      setQuickResultState(arenaQuickResultInitialState(matchId, null, routeMode === 'quick'));
+      return;
+    }
+    setViewerSeat(routeSeat ?? initialHandoff?.viewerSeat ?? peekArenaViewerSeat(matchId));
+    setPrivateRewardState(initialHandoff?.viewerReward
+      ? { matchId: initialHandoff.matchId, reward: initialHandoff.viewerReward }
+      : null);
+    const initial = arenaQuickResultInitialState(
+      matchId,
+      routeSeat ?? initialHandoff?.viewerSeat ?? null,
+      routeMode === 'quick',
+    );
+    setQuickResultState(initialHandoff && matchId
+      ? arenaQuickResultReduce(initial, {
+        type: 'sync',
+        matchId,
+        version: initialHandoff.match.version,
+        state: initialHandoff.match.state,
+        match: initialHandoff.match,
+        viewerSeat: initialHandoff.viewerSeat,
+        viewerReward: initialHandoff.viewerReward,
+      })
+      : initial);
+  }, [initialHandoff, matchId, resultAccountKey, resultOwnerCurrent, routeMode, routeSeat]);
   const [equipped, setEquipped] = useState<Readonly<Record<string, string>>>({});
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
-  const [baseEnabled, setBaseEnabled] = useState(false);
-  const [syncState, setSyncState] = useState<string | null>(null);
-  const [rivalBusy, setRivalBusy] = useState(false);
-  const rivalAcceptRequestId = useRef<string | null>(null);
+  const requestResultSync = useCallback(async (matchId: string, version?: number) => {
+    const dispatch = await arenaV2SyncMatchDispatch(matchId, version, resultAccount);
+    if (!dispatch) throw new Error('arena_account_scope_stale');
+    return dispatch.networkPromise;
+  }, [resultAccount]);
   /**
    * Отчёт мог не уйти — например, матч доигран в метро. Сюда игрок приходит
    * сразу после матча, поэтому досылаем прямо здесь, а потом честно смотрим,
    * остался ли отчёт в очереди: без этой проверки экран сказал бы «матч
    * засчитан» про матч, о котором сервер ещё не знает.
    */
-  const [reportPending, setReportPending] = useState(false);
   useEffect(() => {
-    if (!active) return;
-    let alive = true;
+    if (!resultAccountActive) return;
+    // Досылка остаётся фоновой: экран ожидания ей больше не принадлежит.
+    // Цельный итог монтируется только из terminal sync / atomic handoff.
     void arenaFlushOutbox()
-      .catch(() => 0)
-      .then(() => arenaOutboxPending(matchId))
-      .then((pending) => { if (alive) setReportPending(pending); })
       .catch(() => {});
-    return () => { alive = false; };
-  }, [active, matchId]);
+  }, [matchId, resultAccountActive]);
 
   useEffect(() => {
     if (!resultAccountActive || !matchId) return;
     let alive = true;
-    void arenaV2SyncMatch(matchId).then((response) => {
+    void requestResultSync(matchId).then((response) => {
       if (!alive) return;
-      setSyncState(String(response.state ?? ''));
       if (response.viewerSeat) { rememberArenaViewerSeat(matchId, response.viewerSeat); setViewerSeat(response.viewerSeat); }
       if (response.viewerReward) setPrivateRewardState({ matchId, reward: response.viewerReward });
       setQuickResultState((previous) => arenaQuickResultReduce(previous, {
@@ -130,8 +200,17 @@ export default function ArenaResultsScreen() {
       }));
     }).catch(() => {});
     return () => { alive = false; };
-  }, [matchId, resultAccountActive, resultAccountKey]);
-  useEffect(() => { if (active) void Promise.all([arenaExpansionHome(), arenaV2Home()]).then(([home, base]) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); setBaseEnabled(base.availability.enabled); }).catch(() => { setExpansion(null); setBaseEnabled(false); }); }, [active]);
+  }, [matchId, requestResultSync, resultAccountActive, resultAccountKey]);
+  useEffect(() => {
+    if (!resultAccountActive) {
+      setExpansion(null);
+      setEquipped({});
+      return;
+    }
+    void arenaExpansionHome()
+      .then((home) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); })
+      .catch(() => { setExpansion(null); });
+  }, [resultAccountActive, resultAccountKey]);
   useEffect(() => {
     if (!matchId) return;
     setQuickResultState((previous) => arenaQuickResultReduce(previous, {
@@ -146,12 +225,15 @@ export default function ArenaResultsScreen() {
     matchId,
     accountKey: resultAccountKey,
     terminalSyncVersion,
-    request: arenaV2SyncMatch,
-    onRequested: (version) => setQuickResultState((previous) => arenaQuickResultReduce(previous, {
-      type: 'terminal_sync_requested', matchId, version,
-    })),
+    request: requestResultSync,
+    onRequested: (version) => {
+      if (!matchId) return;
+      setQuickResultState((previous) => arenaQuickResultReduce(previous, {
+        type: 'terminal_sync_requested', matchId, version,
+      }));
+    },
     onResolved: (response) => {
-      setSyncState(String(response.state ?? ''));
+      if (!matchId) return;
       if (response.viewerSeat) {
         rememberArenaViewerSeat(matchId, response.viewerSeat);
         setViewerSeat(response.viewerSeat);
@@ -253,26 +335,10 @@ export default function ArenaResultsScreen() {
   const seriesThem = series?.opponentWins ?? (effectiveViewerSeat === 'b'
     ? match?.result?.seriesSummary?.winsA
     : match?.result?.seriesSummary?.winsB) ?? 0;
-  const incomingRivalOffer = Boolean(match?.rivalOffer && viewerSeat
-    && match.rivalOffer.fromSeat !== viewerSeat && match.rivalOffer.expiresAtMs > Date.now());
-  const openRivalry = () => {
-    if (!incomingRivalOffer || !match?.rivalOffer) {
-      router.push({ pathname: '/arena_rivalries', params: { sourceMatchId: matchId } } as never);
-      return;
-    }
-    const requestId = rivalAcceptRequestId.current ?? createArenaRequestId('rival_accept');
-    rivalAcceptRequestId.current = requestId;
-    setRivalBusy(true);
-    void arenaRivalAccept(match.rivalOffer.seriesId, requestId).then((response) => {
-      rivalAcceptRequestId.current = null;
-      if (response.activeMatchId) {
-        router.replace({ pathname: '/arena_match', params: { matchId: response.activeMatchId, viewerSeat: response.viewerSeat } } as never);
-      } else {
-        router.replace('/arena_rivalries' as never);
-      }
-    }).catch(() => router.push({ pathname: '/arena_rivalries', params: { sourceMatchId: matchId } } as never))
-      .finally(() => setRivalBusy(false));
-  };
+  // зачем: предложение начать/принять соперничество вело на удалённый
+  // /arena_rivalries (владелец, 2026-08-16). openRivalry/incomingRivalOffer
+  // убраны вместе с кнопкой — счёт УЖЕ идущей серии (seriesYou/seriesThem
+  // выше) остаётся честным отображением состояния матча, не приглашением.
 
   useEffect(() => {
     if (!active || reduceMotion || !match || winner !== effectiveViewerSeat || celebratedRef.current === match.matchId) return;
@@ -281,21 +347,13 @@ export default function ArenaResultsScreen() {
     fxRef.current?.confetti({ x: window.width / 2, y: Math.min(260, window.height * 0.3) }, [P.accent, P.gold, P.text]);
   }, [active, effectiveViewerSeat, match, P.accent, P.gold, P.text, reduceMotion, winner, window.height, window.width]);
 
-  const rankScene = motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind === 'tier_up' ? (
-    <ArenaTierUpHybrid
-      tierIndex={announce.rank.tierIndex}
+  const rankScene = motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind !== 'none' ? (
+    <ArenaRankChangeHybrid
+      transition={announce.rank}
       starsAwarded={announce.starsEarned}
       chestUnlocked={announce.unlockedItemIds.length > 0}
-      reduceMotion={reduceMotion}
       onDone={() => setRankSceneDismissed(true)}
-    />
-  ) : motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind === 'tier_down' ? (
-    <ArenaTierDownHybrid
-      tierIndex={announce.rank.tierIndex}
-      starsSaved={announce.starsEarned}
-      reduceMotion={reduceMotion}
-      onDone={() => setRankSceneDismissed(true)}
-      // зачем: «Реванш» ведёт в очередь на матч (тот же путь, что «Ещё матч»), а не просто прячет сцену
+      // «Реванш» остаётся доступен внутри сцены понижения и атомарно закрывает её.
       onRevenge={() => {
         setRankSceneDismissed(true);
         router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick', requestId: createArenaRequestId('queue') } } as never);
@@ -303,53 +361,13 @@ export default function ArenaResultsScreen() {
     />
   ) : null;
 
-  if (surfaceKind === 'neutral_pending' && matchId) {
-    return (
-      <ArenaScreen title={arenaText(lang, 'result')} subtitle={arenaText(lang, 'resultPending')} variant="results" onBack={() => router.replace('/arena' as never)}>
-        <View style={styles.pending}>
-          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
-            {arenaText(lang, 'resultPending')}
-          </Text>
-          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'resultPendingHint')}</Text>
-        </View>
-        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
-          {arenaText(lang, 'reviewTitle')}
-        </V2Cta>
-        <V2Cta disabled={!replayMode} onPress={() => {
-          if (!replayMode) return;
-          router.replace({
-            pathname: '/arena_matchmaking', params: { mode: replayMode, requestId: createArenaRequestId('queue') },
-          } as never);
-        }}>{arenaText(lang, 'playAgain')}</V2Cta>
-        <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
-      </ArenaScreen>
-    );
-  }
+  if (!resultOwnerCurrent) return null;
 
-  if (surfaceKind === 'quick_pending' && matchId) {
-    const quickPendingTitle = reportRejected
-      ? arenaText(lang, 'reportRejected')
-      : arenaText(lang, reportPending ? 'reportQueued' : 'awaitingRival');
-    const quickPendingHint = reportRejected
-      ? arenaText(lang, 'reportRejectedHint')
-      : arenaText(lang, reportPending ? 'reportQueuedHint' : 'awaitingRivalHint');
-    return (
-      <ArenaScreen title={arenaText(lang, 'result')} subtitle={quickPendingTitle} variant="results" onBack={() => router.replace('/arena' as never)}>
-        <View style={styles.pending}>
-          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: reportRejected ? P.danger : P.text }]}>
-            {quickPendingTitle}
-          </Text>
-          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{quickPendingHint}</Text>
-        </View>
-        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
-          {arenaText(lang, 'reviewTitle')}
-        </V2Cta>
-        <V2Cta onPress={() => router.replace({
-          pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
-        } as never)}>{arenaText(lang, 'playAgain')}</V2Cta>
-        <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
-      </ArenaScreen>
-    );
+  if ((surfaceKind === 'neutral_pending' || surfaceKind === 'quick_pending') && matchId) {
+    // Этот route в нормальном ходе открывается только с атомарным handoff из
+    // матча. Если старый deep link всё же пришёл раньше данных, не показываем
+    // отдельный «ждём/отправляем» экран между игрой и исходом.
+    return null;
   }
 
   if (surfaceKind === 'quick_ready' && matchId && quickPresentation && quickReward) {
@@ -357,6 +375,7 @@ export default function ArenaResultsScreen() {
       <ResultsSequence
         stars={0}
         showStars={false}
+        showFinaleMark={false}
         xp={quickXp.baseXp}
         rewards={quickXpRewards}
         title={title}
@@ -389,7 +408,7 @@ export default function ArenaResultsScreen() {
         <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
       ) : null}
       {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
-      {arenaResultHasAnnounce(announce) && !(motionVariant === 'hybrid' && !rankSceneDismissed && (announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down')) ? (
+      {arenaResultHasAnnounce(announce) && !(motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind !== 'none') ? (
         <V2Card style={styles.announce}>
           {announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down' ? (
             <Text style={[styles.announceHead, {
@@ -407,13 +426,24 @@ export default function ArenaResultsScreen() {
             </Text>
           ) : null}
 
-          {/* Очки ранга — со знаком: потерю скрывать нельзя. */}
+          {/* Звезда ранга — со знаком: потерю скрывать нельзя.
+              зачем: владелец (2026-08-23) — победа +1 звезда, поражение −1,
+              никаких очков. */}
           {announce.ratingDelta !== 0 ? (
-            <Text style={[styles.announceLine, {
-              color: announce.ratingDelta > 0 ? P.accent : P.danger,
-            }]}>
-              {announce.ratingDelta > 0 ? '+' : ''}{announce.ratingDelta}
-            </Text>
+            <>
+              <Text style={[styles.announceLine, {
+                color: announce.ratingDelta > 0 ? P.accent : P.danger,
+              }]}>
+                {announce.ratingDelta > 0 ? `+${announce.ratingDelta} ★` : `−${Math.abs(announce.ratingDelta)} ★`}
+              </Text>
+              {typeof reward?.ratingAfter === 'number' ? (
+                <ArenaRankStars
+                  filled={arenaRankView(reward.ratingAfter).starsInRank}
+                  size={18}
+                  accessibilityLabel={`${arenaText(lang, 'rankStars')}: ${arenaRankView(reward.ratingAfter).starsInRank}/3`}
+                />
+              ) : null}
+            </>
           ) : null}
 
           {/* Косметика за тир. Владелец (D-63): награда — предмет, не звёзды. */}
@@ -432,31 +462,34 @@ export default function ArenaResultsScreen() {
           {arenaText(lang, 'reviewTitle')}
         </V2Cta>
       ) : null}
-      <V2Cta onPress={() => match?.mode === 'series'
-        ? router.replace('/arena_rivalries' as never)
-        : match?.mode === 'friend'
-        ? router.replace('/arena_friend_duel' as never)
-        : router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick', requestId: createArenaRequestId('queue') } } as never)}>{match?.mode === 'series' ? arenaExpansionText(lang, 'rivalryContinue') : arenaText(lang, 'playAgain')}</V2Cta>
+      {/* зачем: переход «продолжить серию» вёл на /arena_rivalries — экран
+          расширения удалён вместе с предложением начать соперничество
+          (владелец, 2026-08-16). match.mode === 'series' остаётся валидным
+          состоянием УЖЕ идущего матча (счёт серии выше по-прежнему честный),
+          но начать новую серию отсюда больше нельзя — только сыграть снова. */}
+      {match?.mode === 'friend' ? (
+        <V2Cta onPress={() => router.replace('/arena_friend_duel' as never)}>
+          {arenaText(lang, 'playAgain')}
+        </V2Cta>
+      ) : (
+        <V2Cta
+          disabled={!replayMode}
+          onPress={() => {
+            if (!replayMode) return;
+            router.replace({
+              pathname: '/arena_matchmaking',
+              params: { mode: replayMode, requestId: createArenaRequestId('queue') },
+            } as never);
+          }}
+        >
+          {arenaText(lang, 'playAgain')}
+        </V2Cta>
+      )}
       <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
-      {baseEnabled && expansion?.availability.lab && matchId ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_match_lab', params: { matchId } } as never)}>{arenaExpansionText(lang, 'review')}</V2Cta> : null}
-      {baseEnabled && expansion?.availability.ghost && matchId && (match?.mode === 'quick' || match?.mode === 'ranked') ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_ghost_duel', params: { sourceRunId: matchId, sourceKind: 'arena_match' } } as never)}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta> : null}
-      {incomingRivalOffer ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'rivalryIncoming')} /> : null}
-      {baseEnabled && expansion?.availability.rival && matchId && match?.opponentKind === 'human' && (match.mode === 'quick' || match.mode === 'ranked') ? <V2Cta tone="ghost" disabled={rivalBusy} onPress={openRivalry}>{incomingRivalOffer ? arenaText(lang, 'accept') : arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}
-      {/*
-        Раньше здесь краснело одно слово «Повторить» — глагол вместо
-        объяснения, и без единой кнопки, которой его можно было бы выполнить.
-        Игрок видел красное и думал, что потерял результат матча. Результат
-        при этом уже засчитан на сервере: ждёт только доставка.
-      */}
-      {/*
-        Матч ещё не закрыт: свой отчёт ушёл, а соперник не сдал. Раньше игрок
-        видел экран результата без награды и без единого слова о том, почему
-        её нет и придёт ли она вообще.
-      */}
       {/*
         Сервер отказался засчитывать матч. Молчать здесь нельзя: без этой
-        строки ниже включилось бы «ждём соперника» — обещание награды, которая
-        не придёт никогда.
+        строки игрок получил бы ложный обычный итог. Это терминальный отказ,
+        а не промежуточный экран ожидания.
       */}
       {reportRejected ? (
         <View style={styles.pending}>
@@ -464,32 +497,6 @@ export default function ArenaResultsScreen() {
             {arenaText(lang, 'reportRejected')}
           </Text>
           <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'reportRejectedHint')}</Text>
-        </View>
-      ) : null}
-      {/* Сначала сохраняем базовый контракт `!match.terminal && !reward`, затем
-          уточняем его свежим callable-состоянием на случай отставшего snapshot. */}
-      {!reportRejected && !reportPending && match && !match.terminal && !reward
-        && syncState !== 'settled' && syncState !== 'aborted' ? (
-        <View style={styles.pending}>
-          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
-            {arenaText(lang, 'awaitingRival')}
-          </Text>
-          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'awaitingRivalHint')}</Text>
-        </View>
-      ) : null}
-      {reportPending ? (
-        <View style={styles.pending}>
-          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
-            {arenaText(lang, 'reportQueued')}
-          </Text>
-          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'reportQueuedHint')}</Text>
-        </View>
-      ) : live.error ? (
-        <View style={styles.pending}>
-          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
-            {arenaText(lang, 'resultPending')}
-          </Text>
-          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'resultPendingHint')}</Text>
         </View>
       ) : null}
     </ArenaScreen>

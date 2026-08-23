@@ -34,10 +34,10 @@ jest.mock('../modules/arena/copy', () => ({
 jest.mock('../modules/arena/expansion_contract', () => ({ ARENA_HUB_SECTIONS: [] }));
 jest.mock('../modules/arena/expansion_copy', () => ({ arenaExpansionText: () => '' }));
 jest.mock('../modules/arena/expansion_state', () => ({ arenaExpansionStateCopy: () => ({ silent: true }) }));
-jest.mock('../components/tournament/tournament_theme', () => ({
+jest.mock('../components/ui/v2_theme', () => ({
   useTournamentPalette: () => ({ accent: '#8EEA63', elev: '#123', elev2: '#234', gold: '#fc0', muted: '#789', text: '#fff', onGold: '#111', okInk: '#111', ghost: '#666', goldSoft: '#332' }),
 }));
-jest.mock('../components/tournament/tournament_v2_ui', () => ({ V2Card: ({ children }: { children: React.ReactNode }) => children, V2Cta: () => null }));
+jest.mock('../components/ui/v2_ui', () => ({ V2Card: ({ children }: { children: React.ReactNode }) => children, V2Cta: () => null }));
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
 jest.mock('../hooks/use_arena_font_scale', () => ({ useArenaFontScale: () => 1 }));
 jest.mock('../hooks/use_arena_sound', () => ({ useArenaSound: () => mockPlaySound }));
@@ -61,7 +61,7 @@ function progressWidth(node: unknown): string | undefined {
   return undefined;
 }
 
-const hub = (rank: ArenaHubModel['rank']): ArenaHubModel => ({ rank, goals: null, lastMatch: null, streak: 0, friends: [], searchingNow: null });
+const hub = (rank: ArenaHubModel['rank']): ArenaHubModel => ({ rank, stats: null, goals: null, lastMatch: null, streak: 0, friends: [], searchingNow: null });
 const goals = (completedCount: number): ArenaDailyGoalsModel => ({
   completedCount, allComplete: false,
   goals: [
@@ -91,11 +91,11 @@ describe('Arena unknown-value rendering', () => {
   it('announces distinct unknown rank values and keeps known zero real', async () => {
     const screen = await render(h(ArenaHubLive, { model: hub(null) }));
     expect(screen.getByLabelText(`Ранги: ${unknown}`)).toBeTruthy();
-    expect(screen.getByLabelText(`RP: ${unknown}`)).toBeTruthy();
+    expect(screen.getByLabelText(`Звёзды ранга: ${unknown}`)).toBeTruthy();
     expect(screen.getByLabelText(`До следующего деления: ${unknown}`)).toBeTruthy();
     expect(screen.getAllByText('—').length).toBeGreaterThanOrEqual(2);
-    await screen.rerender(h(ArenaHubLive, { model: hub({ rp: 0, tierIndex: 0, tierKey: 'bronze', division: 1, progress: 0, rpToNextRank: 100, top: false }) }));
-    expect(screen.getByText('0')).toBeTruthy();
+    await screen.rerender(h(ArenaHubLive, { model: hub({ starsInRank: 0, starsPerRank: 3, tierIndex: 0, tierKey: 'bronze', division: 1, progress: 0, winsToNextRank: 3, top: false }) }));
+    expect(screen.getByLabelText('Звёзды ранга: 0/3')).toBeTruthy();
     expect(screen.queryByLabelText(`Ранги: ${unknown}`)).toBeNull();
   });
 

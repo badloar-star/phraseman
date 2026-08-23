@@ -2,27 +2,26 @@ import * as client from '../modules/arena/rank_engine';
 import * as server from '../functions/src/arena_rank_engine';
 
 /**
- * Паритет движка рангов.
+ * Паритет движка рангов (звёздная лестница).
  *
  * Клиент показывает игроку повышение, сервер записывает его в базу — РАЗНЫМИ
  * файлами: сервер не может импортировать клиентский код, клиент не может
- * импортировать серверный. Расхождение означает, что экран сказал «новый тир»,
- * а в профиле оказался откат, и заметит это игрок в худший момент.
+ * импортировать серверный. Расхождение означает, что экран сказал «новый
+ * ранг», а в профиле оказался откат, и заметит это игрок в худший момент.
  *
  * Поэтому обе реализации прогоняются здесь на одних и тех же входах, включая
  * исчерпывающий обход всей шкалы и длинные случайные партии.
  */
 
 const OUTCOMES = ['win', 'loss', 'draw'] as const;
-/** Те же значения, что в серверной таблице очков. */
-const RP_DELTAS = [24, 20, 16, 4, 0, -4, -16, -20, -24];
 
 describe('константы совпадают', () => {
   it('шкала', () => {
     expect(client.ARENA_TIER_COUNT).toBe(server.ARENA_TIER_COUNT);
     expect(client.ARENA_DIVISIONS_PER_TIER).toBe(server.ARENA_DIVISIONS_PER_TIER);
     expect(client.ARENA_RANK_COUNT).toBe(server.ARENA_RANK_COUNT);
-    expect(client.ARENA_RP_PER_RANK).toBe(server.ARENA_RP_PER_RANK);
+    expect(client.ARENA_STARS_PER_RANK).toBe(server.ARENA_STARS_PER_RANK);
+    expect(client.ARENA_STARS_TOTAL_MAX).toBe(server.ARENA_STARS_TOTAL_MAX);
     expect(client.ARENA_TIER_KEYS).toEqual(server.ARENA_TIER_KEYS);
   });
 
@@ -33,47 +32,52 @@ describe('константы совпадают', () => {
 });
 
 describe('вид ранга — исчерпывающе по всей шкале', () => {
-  it('каждое значение очков даёт одинаковый ранг на обеих сторонах', () => {
-    const total = client.ARENA_RANK_COUNT * client.ARENA_RP_PER_RANK + 500;
-    for (let rp = -200; rp <= total; rp += 1) {
-      expect(client.arenaRankIndex(rp)).toBe(server.arenaRankIndex(rp));
-      expect(client.arenaRankView(rp)).toEqual(server.arenaRankView(rp));
+  it('каждое значение звёзд даёт одинаковый ранг на обеих сторонах', () => {
+    const total = client.ARENA_STARS_TOTAL_MAX + 50;
+    for (let stars = -20; stars <= total; stars += 1) {
+      expect(client.arenaRankIndex(stars)).toBe(server.arenaRankIndex(stars));
+      expect(client.arenaRankView(stars)).toEqual(server.arenaRankView(stars));
     }
   });
 
   it('мусор обрабатывается одинаково', () => {
-    for (const rp of [NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, -0]) {
-      expect(client.arenaRankIndex(rp as number)).toBe(server.arenaRankIndex(rp as number));
-      expect(client.arenaRankView(rp as number)).toEqual(server.arenaRankView(rp as number));
+    for (const stars of [NaN, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, -0]) {
+      expect(client.arenaRankIndex(stars as number)).toBe(server.arenaRankIndex(stars as number));
+      expect(client.arenaRankView(stars as number)).toEqual(server.arenaRankView(stars as number));
+    }
+  });
+});
+
+describe('дельта за исход', () => {
+  it('совпадает для всех исходов', () => {
+    for (const outcome of OUTCOMES) {
+      expect(client.arenaStarDelta(outcome)).toBe(server.arenaStarDelta(outcome));
     }
   });
 });
 
 describe('исход матча — исчерпывающе по решётке', () => {
-  it('очки × исход × дельта × щит дают одинаковый результат', () => {
+  it('звёзды × исход × лучший тир дают одинаковый результат', () => {
     let checked = 0;
-    for (let rp = 0; rp <= 2_400; rp += 20) {
+    for (let stars = 0; stars <= client.ARENA_STARS_TOTAL_MAX; stars += 1) {
       for (const outcome of OUTCOMES) {
-        for (const rpDelta of RP_DELTAS) {
-          for (const lifetimeBestTierIndex of [0, 3]) {
-            const state = { rp, seasonBestTierIndex: 0, lifetimeBestTierIndex };
-            expect(client.arenaApplyRankOutcome({ state, outcome, rpDelta }))
-              .toEqual(server.arenaApplyRankOutcome({ state, outcome, rpDelta } as never));
-            checked += 1;
-          }
+        for (const lifetimeBestTierIndex of [0, 3, 7]) {
+          const state = { stars, seasonBestTierIndex: 0, lifetimeBestTierIndex };
+          expect(client.arenaApplyRankOutcome({ state, outcome }))
+            .toEqual(server.arenaApplyRankOutcome({ state, outcome } as never));
+          checked += 1;
         }
       }
     }
     // Столько входов прогнать глазами нельзя, а разойтись они могут на одном.
-    expect(checked).toBeGreaterThan(6_000);
+    expect(checked).toBeGreaterThan(600);
   });
-
 });
 
 describe('мягкий сброс', () => {
   it('совпадает на всей шкале', () => {
-    for (let rp = 0; rp <= 2_400; rp += 1) {
-      const state = { rp, seasonBestTierIndex: 3, lifetimeBestTierIndex: 4 };
+    for (let stars = 0; stars <= client.ARENA_STARS_TOTAL_MAX; stars += 1) {
+      const state = { stars, seasonBestTierIndex: 3, lifetimeBestTierIndex: 4 };
       expect(client.arenaSoftReset(state)).toEqual(server.arenaSoftReset(state as never));
     }
   });
@@ -81,11 +85,11 @@ describe('мягкий сброс', () => {
 
 describe('процентиль и подбор соперника', () => {
   it('процентиль совпадает', () => {
-    const pool = [0, 100, 250, 250, 700, 1_200, 1_900, 2_300];
-    for (let rp = 0; rp <= 2_400; rp += 7) {
-      expect(client.arenaPercentileAbove(rp, pool)).toBe(server.arenaPercentileAbove(rp, pool));
+    const pool = [0, 3, 8, 8, 21, 36, 57, 69];
+    for (let stars = 0; stars <= client.ARENA_STARS_TOTAL_MAX; stars += 1) {
+      expect(client.arenaPercentileAbove(stars, pool)).toBe(server.arenaPercentileAbove(stars, pool));
     }
-    expect(client.arenaPercentileAbove(500, [])).toBe(server.arenaPercentileAbove(500, []));
+    expect(client.arenaPercentileAbove(15, [])).toBe(server.arenaPercentileAbove(15, []));
   });
 
   it('годность соперника совпадает', () => {
@@ -101,7 +105,7 @@ describe('процентиль и подбор соперника', () => {
 describe('длинные партии', () => {
   /**
    * Одиночный вход может совпасть случайно. Расхождение накапливается там, где
-   * состояние переносится из матча в матч: щит, серия, лучший тир сезона.
+   * состояние переносится из матча в матч: звёзды, лучший тир сезона.
    */
   it('двести матчей подряд не расходятся ни на одном шаге', () => {
     for (let seed = 1; seed <= 12; seed += 1) {
@@ -112,9 +116,8 @@ describe('длинные партии', () => {
         // Детерминированный генератор: тот же ряд на обеих сторонах.
         value = (value * 1103515245 + 12345) % 2147483648;
         const outcome = OUTCOMES[Math.abs(value) % 3];
-        const rpDelta = RP_DELTAS[Math.abs(Math.floor(value / 3)) % RP_DELTAS.length];
-        const a = client.arenaApplyRankOutcome({ state: left, outcome, rpDelta });
-        const b = server.arenaApplyRankOutcome({ state: right, outcome, rpDelta } as never);
+        const a = client.arenaApplyRankOutcome({ state: left, outcome });
+        const b = server.arenaApplyRankOutcome({ state: right, outcome } as never);
         expect(a).toEqual(b);
         left = a.next;
         right = b.next;

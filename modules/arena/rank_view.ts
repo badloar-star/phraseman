@@ -1,7 +1,7 @@
 import {
   ARENA_DIVISIONS_PER_TIER,
+  ARENA_STARS_PER_RANK,
   ARENA_RANK_COUNT,
-  ARENA_RP_PER_RANK,
   ARENA_TIER_COUNT,
   ARENA_TIER_KEYS,
   arenaRankView,
@@ -13,8 +13,11 @@ import {
  *
  * Владелец (D-04): вместо плоского списка на 48 строк — человеческий экран.
  * Плоский список плох не длиной: он не отвечает ни на один вопрос, который
- * игрок задаёт, глядя на ранг. Сколько мне до следующего? Цел ли щит? Иду ли я
- * в серии и сколько осталось? Какой тир я уже забрал насовсем?
+ * игрок задаёт, глядя на ранг. Сколько мне до следующего? Какой тир я уже
+ * забрал насовсем?
+ *
+ * Владелец (2026-08-23): шкала звёздная — победа +1 звезда, три звезды на
+ * ранг. Диапазоны тиров считаются в звёздах общего счёта.
  *
  * Экран не считает ничего сам — всё здесь, чистой функцией, которую видно в
  * тесте.
@@ -23,28 +26,31 @@ import {
 export type ArenaTierRow = Readonly<{
   tierIndex: number;
   tierKey: ArenaTierKey;
-  /** Диапазон очков тира — для подписи «нужно столько-то». */
-  minRp: number;
-  maxRp: number;
+  /** Диапазон звёзд тира — для подписи «нужно столько-то». */
+  minStars: number;
+  maxStars: number;
   /** Тир, в котором игрок стоит сейчас. */
   current: boolean;
   /** Тир взят в этом сезоне и остаётся наградой, даже если ранг просел. */
   earned: boolean;
-  /** Следующий тир: именно к нему идёт промо-серия. */
+  /** Следующий тир: именно к нему идёт игрок. */
   next: boolean;
   /** Заперт: до него ещё не дошли и он не следующий. */
   locked: boolean;
 }>;
 
 export type ArenaRankScreen = Readonly<{
-  rp: number;
+  stars: number;
+  starsInRank: number;
+  starsPerRank: number;
   rankIndex: number;
   tierIndex: number;
   tierKey: ArenaTierKey;
   division: 1 | 2 | 3;
-  /** Доля заполнения полосы до следующего деления, 0..1. */
+  /** Доля заполнения пипсов до следующего деления, 0..1. */
   progress: number;
-  rpToNextRank: number;
+  /** Побед до следующего ранга (1 победа = 1 звезда). На вершине 0. */
+  winsToNextRank: number;
   top: boolean;
   seasonBestTierIndex: number;
   tiers: readonly ArenaTierRow[];
@@ -57,7 +63,7 @@ export function arenaTierRows(input: Readonly<{
   seasonBestTierIndex: number;
 }>): readonly ArenaTierRow[] {
   return ARENA_TIER_KEYS.map((tierKey, tierIndex) => {
-    const spanRp = ARENA_DIVISIONS_PER_TIER * ARENA_RP_PER_RANK;
+    const spanStars = ARENA_DIVISIONS_PER_TIER * ARENA_STARS_PER_RANK;
     const isCurrent = tierIndex === input.tierIndex;
     // Следующий — соседний сверху. Строка «следующий» есть всегда, и игроку
     // понятно, куда идти.
@@ -66,10 +72,10 @@ export function arenaTierRows(input: Readonly<{
     return {
       tierIndex,
       tierKey,
-      minRp: tierIndex * spanRp,
-      maxRp: tierIndex === ARENA_TIER_COUNT - 1
-        ? ARENA_RANK_COUNT * ARENA_RP_PER_RANK
-        : (tierIndex + 1) * spanRp - 1,
+      minStars: tierIndex * spanStars,
+      maxStars: tierIndex === ARENA_TIER_COUNT - 1
+        ? ARENA_RANK_COUNT * ARENA_STARS_PER_RANK
+        : (tierIndex + 1) * spanStars - 1,
       current: isCurrent,
       // Взятым считается всё, до чего игрок доходил в этом сезоне: тир —
       // награда, а не текущее положение, иначе неудачная серия матчей стирала
@@ -82,11 +88,11 @@ export function arenaTierRows(input: Readonly<{
 }
 
 export function arenaRankScreen(input: Readonly<{
-  rp: number;
+  stars: number;
   seasonBestTierIndex?: number;
   percentileAbove?: number | null;
 }>): ArenaRankScreen {
-  const view = arenaRankView(input.rp);
+  const view = arenaRankView(input.stars);
   const seasonBestTierIndex = Math.max(
     0,
     Math.min(ARENA_TIER_COUNT - 1, Math.trunc(Number(input.seasonBestTierIndex ?? 0))),
@@ -95,14 +101,16 @@ export function arenaRankScreen(input: Readonly<{
     view.tierIndex,
   );
   return {
-    rp: view.rp,
+    stars: view.stars,
+    starsInRank: view.starsInRank,
+    starsPerRank: view.starsPerRank,
     rankIndex: view.rankIndex,
     tierIndex: view.tierIndex,
     tierKey: view.tierKey,
     division: view.division,
-    progress: view.rpForRank > 0 ? Math.max(0, Math.min(1, view.rpInRank / view.rpForRank)) : 1,
-    // Наверху шкалы копить не к чему, и «осталось 100» было бы враньём.
-    rpToNextRank: view.top ? 0 : Math.max(0, view.rpForRank - view.rpInRank),
+    progress: view.starsPerRank > 0 ? Math.max(0, Math.min(1, view.starsInRank / view.starsPerRank)) : 1,
+    // Наверху шкалы копить не к чему, и «осталось 3» было бы враньём.
+    winsToNextRank: view.top ? 0 : Math.max(0, view.starsPerRank - view.starsInRank),
     top: view.top,
     seasonBestTierIndex,
     tiers: arenaTierRows({ tierIndex: view.tierIndex, seasonBestTierIndex }),

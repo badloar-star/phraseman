@@ -29,20 +29,22 @@ const receipt = (over: Record<string, unknown> = {}) => ({
 const friend = (stableUid: string, rating: number, you = false) => ({ stableUid, rating, you });
 
 describe('карточка ранга', () => {
-  it('показывает деление и остаток до следующего', () => {
-    const model = arenaHubModel({ rating: 150 });
-    expect(model.rank!.rp).toBe(150);
-    expect(model.rank!.progress).toBeCloseTo(0.5, 3);
-    expect(model.rank!.rpToNextRank).toBe(50);
+  it('показывает звёзды ранга и победы до следующего', () => {
+    // Звёздная шкала (2026-08-23): 4 звезды = второй ранг, одна из трёх горит.
+    const model = arenaHubModel({ rating: 4 });
+    expect(model.rank!.starsInRank).toBe(1);
+    expect(model.rank!.starsPerRank).toBe(3);
+    expect(model.rank!.progress).toBeCloseTo(1 / 3, 3);
+    expect(model.rank!.winsToNextRank).toBe(2);
   });
 
   it('на вершине не обещает следующего деления', () => {
     const model = arenaHubModel({ rating: 999_999 });
     expect(model.rank!.top).toBe(true);
-    expect(model.rank!.rpToNextRank).toBe(0);
+    expect(model.rank!.winsToNextRank).toBe(0);
   });
 
-  it('не выдумывает Bronze и ноль RP из неизвестного рейтинга', () => {
+  it('не выдумывает Bronze и ноль звёзд из неизвестного рейтинга', () => {
     for (const rating of [null, undefined, NaN, -100, 'много']) {
       const model = arenaHubModel({ rating });
       expect(model.rank).toBeNull();
@@ -52,7 +54,7 @@ describe('карточка ранга', () => {
   it('сохраняет реальный нулевой рейтинг известным', () => {
     const model = arenaHubModel({ rating: 0 });
     expect(model.rank).not.toBeNull();
-    expect(model.rank!.rp).toBe(0);
+    expect(model.rank!.starsInRank).toBe(0);
   });
 });
 
@@ -84,6 +86,21 @@ describe('цели дня на главном', () => {
 });
 
 describe('последний матч и серия', () => {
+  it('отдаёт плотную сводку только из реальных расписок', () => {
+    const model = arenaHubModel({
+      wins: 14,
+      losses: 6,
+      historyKnown: true,
+      historyRaw: [
+        receipt({ matchId: 'w', outcome: 'win', settledAtMs: 300 }),
+        receipt({ matchId: 'l', outcome: 'loss', settledAtMs: 200 }),
+        receipt({ matchId: 'd', outcome: 'draw', settledAtMs: 100 }),
+      ],
+    });
+    expect(model.stats).toEqual({ wins: 14, losses: 6 });
+    expect(arenaHubModel({}).stats).toBeNull();
+  });
+
   it('берётся самый свежий', () => {
     const model = arenaHubModel({
       historyRaw: [
@@ -97,7 +114,7 @@ describe('последний матч и серия', () => {
   it('без матчей ничего не выдумывает', () => {
     const model = arenaHubModel({});
     expect(model.lastMatch).toBeNull();
-    expect(model.streak).toBe(0);
+    expect(model.streak).toBeNull();
   });
 
   it('битые расписки не становятся последним матчем', () => {
@@ -107,6 +124,7 @@ describe('последний матч и серия', () => {
 
   it('серия побед считается от свежего', () => {
     const model = arenaHubModel({
+      historyKnown: true,
       historyRaw: [
         receipt({ matchId: 'a', outcome: 'win', settledAtMs: 300 }),
         receipt({ matchId: 'b', outcome: 'win', settledAtMs: 200 }),

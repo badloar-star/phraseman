@@ -1,8 +1,9 @@
 import {
   ARENA_DIVISIONS_PER_TIER,
   ARENA_RANK_COUNT,
-  ARENA_RP_PER_RANK,
   ARENA_SOFT_RESET_BONUS,
+  ARENA_STARS_PER_RANK,
+  ARENA_STARS_TOTAL_MAX,
   ARENA_TIER_COUNT,
   ARENA_TIER_KEYS,
   arenaApplyRankOutcome,
@@ -12,36 +13,38 @@ import {
   arenaRankView,
   arenaRankedOpponentEligible,
   arenaSoftReset,
+  arenaStarDelta,
   type ArenaRankState,
 } from '../modules/arena/rank_engine';
 
 /**
- * Ранги рейтинговой Арены.
+ * Ранги рейтинговой Арены — звёздная лестница.
  *
- * Владелец (D-04) сначала попросил промо-серии и защиту от падения из тира,
- * а позже (D-40) отменил и то и другое дословно: «защиты нет, промо-серий нет.
- * Очки упали ниже порога — игрок выпал из тира. Честно и прозрачно». Тесты
- * держат ПОЗДНЕЕ решение и отдельно проверяют, что удержания сверху и спасения
- * снизу действительно нет.
+ * Владелец (2026-08-23) отменил очки ранга (RP) и вернул звёзды: победа +1,
+ * поражение −1, три звезды — новый ранг. Проигрыш при нуле звёзд роняет на
+ * ранг ниже с двумя звёздами — чистой арифметикой общего счёта, без
+ * отдельного правила. Решение D-40 в силе: защиты тира нет, промо-серий нет.
  */
 
 const state = (over: Partial<ArenaRankState> = {}): ArenaRankState =>
   ({ ...arenaRankStateEmpty(), ...over });
 
-const apply = (from: ArenaRankState, outcome: 'win' | 'loss' | 'draw', rpDelta: number) =>
-  arenaApplyRankOutcome({ state: from, outcome, rpDelta });
+const apply = (from: ArenaRankState, outcome: 'win' | 'loss' | 'draw') =>
+  arenaApplyRankOutcome({ state: from, outcome });
 
 describe('шкала рангов', () => {
-  it('двадцать четыре ранга, восемь тиров по три деления', () => {
+  it('двадцать четыре ранга, восемь тиров по три деления, три звезды на ранг', () => {
     expect(ARENA_RANK_COUNT).toBe(24);
     expect(ARENA_TIER_COUNT * ARENA_DIVISIONS_PER_TIER).toBe(ARENA_RANK_COUNT);
     expect(ARENA_TIER_KEYS.length).toBe(ARENA_TIER_COUNT);
+    expect(ARENA_STARS_PER_RANK).toBe(3);
+    expect(ARENA_STARS_TOTAL_MAX).toBe(72);
   });
 
-  it('очки переводятся в ранг и не выходят за шкалу', () => {
+  it('звёзды переводятся в ранг и не выходят за шкалу', () => {
     expect(arenaRankIndex(0)).toBe(0);
-    expect(arenaRankIndex(99)).toBe(0);
-    expect(arenaRankIndex(100)).toBe(1);
+    expect(arenaRankIndex(2)).toBe(0);
+    expect(arenaRankIndex(3)).toBe(1);
     expect(arenaRankIndex(999_999)).toBe(ARENA_RANK_COUNT - 1);
     expect(arenaRankIndex(-500)).toBe(0);
     expect(arenaRankIndex(NaN)).toBe(0);
@@ -50,74 +53,100 @@ describe('шкала рангов', () => {
   /** Деления идут сверху вниз: первый ранг тира — III, последний — I. */
   it('деления внутри тира нумеруются от III к I', () => {
     expect(arenaRankView(0).division).toBe(3);
-    expect(arenaRankView(100).division).toBe(2);
-    expect(arenaRankView(200).division).toBe(1);
-    expect(arenaRankView(300).division).toBe(3);
-    expect(arenaRankView(300).tierIndex).toBe(1);
+    expect(arenaRankView(3).division).toBe(2);
+    expect(arenaRankView(6).division).toBe(1);
+    expect(arenaRankView(9).division).toBe(3);
+    expect(arenaRankView(9).tierIndex).toBe(1);
   });
 
-  it('полоса прогресса не переполняется и не уходит в минус', () => {
-    for (const rp of [0, 50, 99, 100, 1_150, 2_399, 999_999]) {
-      const view = arenaRankView(rp);
-      expect(view.rpInRank).toBeGreaterThanOrEqual(0);
-      expect(view.rpInRank).toBeLessThanOrEqual(ARENA_RP_PER_RANK);
+  it('пипсы не переполняются и не уходят в минус', () => {
+    for (const stars of [0, 1, 2, 3, 35, 71, 72, 999_999]) {
+      const view = arenaRankView(stars);
+      expect(view.starsInRank).toBeGreaterThanOrEqual(0);
+      expect(view.starsInRank).toBeLessThanOrEqual(ARENA_STARS_PER_RANK);
     }
   });
 
-  it('на верху шкалы полоса стоит полной, а не пустой', () => {
-    const view = arenaRankView(ARENA_RANK_COUNT * ARENA_RP_PER_RANK + 5_000);
-    expect(view.top).toBe(true);
-    expect(view.rpInRank).toBe(ARENA_RP_PER_RANK);
+  it('верх шкалы показывает реальный запас звёзд — это буфер против падения', () => {
+    expect(arenaRankView(ARENA_STARS_TOTAL_MAX).top).toBe(true);
+    expect(arenaRankView(ARENA_STARS_TOTAL_MAX).starsInRank).toBe(ARENA_STARS_PER_RANK);
+    expect(arenaRankView(ARENA_STARS_TOTAL_MAX - 2).top).toBe(true);
+    expect(arenaRankView(ARENA_STARS_TOTAL_MAX - 2).starsInRank).toBe(1);
+  });
+});
+
+describe('дельта за исход — одно правило для любого соперника', () => {
+  it('победа +1, поражение −1, ничья 0', () => {
+    expect(arenaStarDelta('win')).toBe(1);
+    expect(arenaStarDelta('loss')).toBe(-1);
+    expect(arenaStarDelta('draw')).toBe(0);
   });
 });
 
 describe('обычное начисление', () => {
-  it('победа поднимает деление', () => {
-    const change = apply(state({ rp: 90 }), 'win', 20);
-    expect(change.next.rp).toBe(110);
+  it('третья звезда поднимает деление', () => {
+    const change = apply(state({ stars: 2 }), 'win');
+    expect(change.next.stars).toBe(3);
     expect(change.event).toBe('rank_up');
   });
 
-  it('поражение внутри тира опускает деление', () => {
-    const change = apply(state({ rp: 210 }), 'loss', -20);
-    expect(change.next.rp).toBe(190);
-    expect(change.event).toBe('rank_down');
-  });
-
-  it('очки не уходят в минус', () => {
-    const change = apply(state({ rp: 10 }), 'loss', -50);
-    expect(change.next.rp).toBe(0);
-  });
-
-  it('ничья без изменения очков ничего не двигает', () => {
-    const change = apply(state({ rp: 150 }), 'draw', 0);
-    expect(change.next.rp).toBe(150);
+  it('победа внутри ранга зажигает звезду без смены деления', () => {
+    const change = apply(state({ stars: 3 }), 'win');
+    expect(change.next.stars).toBe(4);
     expect(change.event).toBe('none');
+    expect(arenaRankView(change.next.stars).starsInRank).toBe(1);
+  });
+
+  it('поражение при нуле звёзд роняет на ранг ниже с двумя звёздами', () => {
+    const change = apply(state({ stars: 6 }), 'loss');
+    expect(change.next.stars).toBe(5);
+    expect(change.event).toBe('rank_down');
+    const view = arenaRankView(change.next.stars);
+    expect(view.rankIndex).toBe(1);
+    expect(view.starsInRank).toBe(2);
+  });
+
+  it('звёзды не уходят в минус — с самого низа падать некуда', () => {
+    const change = apply(state({ stars: 0 }), 'loss');
+    expect(change.next.stars).toBe(0);
+    expect(change.event).toBe('none');
+  });
+
+  it('ничья ничего не двигает', () => {
+    const change = apply(state({ stars: 5 }), 'draw');
+    expect(change.next.stars).toBe(5);
+    expect(change.event).toBe('none');
+  });
+
+  it('на вершине звёзды упираются в потолок, а не копятся бесконечно', () => {
+    const change = apply(state({ stars: ARENA_STARS_TOTAL_MAX }), 'win');
+    expect(change.next.stars).toBe(ARENA_STARS_TOTAL_MAX);
+    expect(change.starsDelta).toBe(0);
   });
 });
 
 describe('переход между тирами — без удержаний и спасений', () => {
-  /** D-40: «очки упали ниже порога — игрок выпал из тира». Без исключений. */
-  it('первое же поражение на границе роняет тир', () => {
-    const change = apply(state({ rp: 300 }), 'loss', -20);
+  /** D-40: «упал ниже порога — выпал из тира». Без исключений. */
+  it('первое же поражение на границе тира роняет тир', () => {
+    const change = apply(state({ stars: 9 }), 'loss');
     expect(change.event).toBe('tier_down');
-    expect(change.next.rp).toBe(280);
+    expect(change.next.stars).toBe(8);
     expect(change.tierAfter).toBe(0);
   });
 
   /** Ничего не задерживает игрока на подходе к новому тиру. */
   it('победа сразу вносит в новый тир, без серии', () => {
-    const change = apply(state({ rp: 280 }), 'win', 20);
+    const change = apply(state({ stars: 8 }), 'win');
     expect(change.event).toBe('tier_up');
-    expect(change.next.rp).toBe(300);
+    expect(change.next.stars).toBe(9);
     expect(change.tierAfter).toBe(1);
   });
 
-  it('очки не замораживаются ни в каком состоянии', () => {
-    let current = state({ rp: 280 });
+  it('звёзды не замораживаются ни в каком состоянии', () => {
+    let current = state({ stars: 8 });
     for (let attempt = 0; attempt < 5; attempt += 1) {
-      const change = apply(current, 'win', 20);
-      expect(change.rpDelta).toBe(20);
+      const change = apply(current, 'win');
+      expect(change.starsDelta).toBe(1);
       current = change.next;
     }
   });
@@ -125,11 +154,11 @@ describe('переход между тирами — без удержаний �
 
 describe('лучший тир', () => {
   it('сезонный запоминается и не падает вместе с рангом', () => {
-    let current = state({ rp: 280 });
-    current = apply(current, 'win', 20).next;
+    let current = state({ stars: 8 });
+    current = apply(current, 'win').next;
     expect(current.seasonBestTierIndex).toBe(1);
-    for (let attempt = 0; attempt < 10; attempt += 1) current = apply(current, 'loss', -24).next;
-    expect(arenaRankView(current.rp).tierIndex).toBe(0);
+    for (let attempt = 0; attempt < 10; attempt += 1) current = apply(current, 'loss').next;
+    expect(arenaRankView(current.stars).tierIndex).toBe(0);
     expect(current.seasonBestTierIndex).toBe(1);
   });
 
@@ -138,9 +167,9 @@ describe('лучший тир', () => {
    * обнуление выдало бы её повторно.
    */
   it('пожизненный переживает и откат, и сброс сезона', () => {
-    let current = apply(state({ rp: 280 }), 'win', 20).next;
+    let current = apply(state({ stars: 8 }), 'win').next;
     expect(current.lifetimeBestTierIndex).toBe(1);
-    for (let attempt = 0; attempt < 10; attempt += 1) current = apply(current, 'loss', -24).next;
+    for (let attempt = 0; attempt < 10; attempt += 1) current = apply(current, 'loss').next;
     current = arenaSoftReset(current);
     expect(current.seasonBestTierIndex).toBe(0);
     expect(current.lifetimeBestTierIndex).toBe(1);
@@ -153,46 +182,46 @@ describe('мягкий сброс сезона', () => {
    * Сжатие к середине оставляет сильных выше слабых, но даёт новичкам шанс.
    */
   it('сжимает шкалу к середине по формуле владельца', () => {
-    expect(arenaSoftReset(state({ rp: 2_000 })).rp).toBe(Math.floor(2_000 * 0.6) + ARENA_SOFT_RESET_BONUS);
-    expect(arenaSoftReset(state({ rp: 1_000 })).rp).toBe(Math.floor(1_000 * 0.6) + ARENA_SOFT_RESET_BONUS);
+    expect(arenaSoftReset(state({ stars: 60 })).stars).toBe(Math.floor(60 * 0.6) + ARENA_SOFT_RESET_BONUS);
+    expect(arenaSoftReset(state({ stars: 30 })).stars).toBe(Math.floor(30 * 0.6) + ARENA_SOFT_RESET_BONUS);
   });
 
   it('сильные остаются выше слабых', () => {
-    const strong = arenaSoftReset(state({ rp: 2_300 })).rp;
-    const weak = arenaSoftReset(state({ rp: 600 })).rp;
+    const strong = arenaSoftReset(state({ stars: 69 })).stars;
+    const weak = arenaSoftReset(state({ stars: 18 })).stars;
     expect(strong).toBeGreaterThan(weak);
   });
 
   it('сброс никого не поднимает', () => {
-    for (const rp of [0, 100, 500, 1_000, 2_300]) {
-      expect(arenaSoftReset(state({ rp })).rp).toBeLessThanOrEqual(rp);
+    for (const stars of [0, 3, 15, 30, 69]) {
+      expect(arenaSoftReset(state({ stars })).stars).toBeLessThanOrEqual(stars);
     }
   });
 
   it('нулевой рейтинг остаётся нулевым — новичку прибавки не бывает', () => {
-    expect(arenaSoftReset(state({ rp: 0 })).rp).toBe(0);
+    expect(arenaSoftReset(state({ stars: 0 })).stars).toBe(0);
   });
 
   it('сезонный счёт лучшего тира обнуляется, пожизненный — нет', () => {
     const next = arenaSoftReset(state({
-      rp: 1_500, seasonBestTierIndex: 5, lifetimeBestTierIndex: 6,
+      stars: 45, seasonBestTierIndex: 5, lifetimeBestTierIndex: 6,
     }));
     expect(next.seasonBestTierIndex).toBe(0);
     expect(next.lifetimeBestTierIndex).toBe(6);
   });
 
   it('повторный сброс сходится, а не уносит в ноль', () => {
-    let current = state({ rp: 2_300 });
+    let current = state({ stars: 69 });
     for (let season = 0; season < 12; season += 1) current = arenaSoftReset(current);
-    expect(current.rp).toBeGreaterThan(0);
-    expect(current.rp).toBeLessThanOrEqual(2_300);
+    expect(current.stars).toBeGreaterThan(0);
+    expect(current.stars).toBeLessThanOrEqual(69);
   });
 });
 
 describe('процентиль вместо глобального топа', () => {
-  it('считается по тем, у кого очков меньше', () => {
-    expect(arenaPercentileAbove(500, [100, 200, 300, 400, 600])).toBe(80);
-    expect(arenaPercentileAbove(50, [100, 200, 300])).toBe(0);
+  it('считается по тем, у кого звёзд меньше', () => {
+    expect(arenaPercentileAbove(50, [10, 20, 30, 40, 60])).toBe(80);
+    expect(arenaPercentileAbove(5, [10, 20, 30])).toBe(0);
   });
 
   it('никогда не показывает сто процентов', () => {
@@ -200,11 +229,11 @@ describe('процентиль вместо глобального топа', ()
   });
 
   it('пустая выборка не роняет и не врёт', () => {
-    expect(arenaPercentileAbove(500, [])).toBe(0);
+    expect(arenaPercentileAbove(50, [])).toBe(0);
   });
 
-  it('равные очки не считаются «ниже тебя»', () => {
-    expect(arenaPercentileAbove(300, [300, 300, 300, 300])).toBe(0);
+  it('равные звёзды не считаются «ниже тебя»', () => {
+    expect(arenaPercentileAbove(30, [30, 30, 30, 30])).toBe(0);
   });
 });
 

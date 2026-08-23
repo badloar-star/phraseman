@@ -17,12 +17,15 @@ import { arenaHistoryRows, arenaHistorySummary, type ArenaHistoryRow } from './h
  */
 
 export type ArenaHubRankCard = Readonly<{
-  rp: number;
+  /** Звёзды внутри текущего ранга и их потолок — для трёх пипсов. */
+  starsInRank: number;
+  starsPerRank: number;
   tierIndex: number;
   tierKey: ArenaTierKey;
   division: 1 | 2 | 3;
   progress: number;
-  rpToNextRank: number;
+  /** Побед до следующего ранга (1 победа = 1 звезда). На вершине 0. */
+  winsToNextRank: number;
   top: boolean;
 }>;
 
@@ -35,11 +38,12 @@ export type ArenaHubFriend = Readonly<{
 
 export type ArenaHubModel = Readonly<{
   rank: ArenaHubRankCard | null;
+  stats: Readonly<{ wins: number; losses: number }> | null;
   goals: ArenaDailyGoals | null;
   /** Последний матч. `null`, пока их не было. */
   lastMatch: ArenaHistoryRow | null;
   /** Серия побед с последнего матча. */
-  streak: number;
+  streak: number | null;
   /** Верхушка таблицы друзей вокруг себя. Пусто, если сравнивать не с кем. */
   friends: readonly ArenaHubFriend[];
   /** Сколько живых игроков ищет матч. `null` — неизвестно. */
@@ -104,6 +108,9 @@ export function arenaHubModel(input: Readonly<{
   dailyMatches?: unknown;
   dailyFirstAnswers?: unknown;
   dailyWins?: unknown;
+  wins?: unknown;
+  losses?: unknown;
+  historyKnown?: boolean;
   historyRaw?: readonly unknown[];
   friendsRaw?: readonly Readonly<{ stableUid: string; you: boolean; rating: number }>[];
   searchingNow?: unknown;
@@ -114,6 +121,9 @@ export function arenaHubModel(input: Readonly<{
     : null;
   const history = arenaHistoryRows(input.historyRaw ?? []);
   const summary = arenaHistorySummary(history);
+  const lifetimeCounts = [input.wins, input.losses];
+  const hasLifetimeCounts = lifetimeCounts.every((value) => typeof value === 'number'
+    && Number.isFinite(value) && Number.isInteger(value) && value >= 0);
   const searching = Math.trunc(Number(input.searchingNow));
   const dailyCounts = [input.dailyMatches, input.dailyFirstAnswers, input.dailyWins];
   const hasCompleteDailyCounts = dailyCounts.every((value) => typeof value === 'number'
@@ -121,14 +131,19 @@ export function arenaHubModel(input: Readonly<{
 
   return {
     rank: view === null ? null : {
-      rp: view.rp,
+      starsInRank: view.starsInRank,
+      starsPerRank: view.starsPerRank,
       tierIndex: view.tierIndex,
       tierKey: view.tierKey,
       division: view.division,
-      progress: view.rpForRank > 0 ? Math.max(0, Math.min(1, view.rpInRank / view.rpForRank)) : 1,
-      rpToNextRank: view.top ? 0 : Math.max(0, view.rpForRank - view.rpInRank),
+      progress: view.starsPerRank > 0 ? Math.max(0, Math.min(1, view.starsInRank / view.starsPerRank)) : 1,
+      winsToNextRank: view.top ? 0 : Math.max(0, view.starsPerRank - view.starsInRank),
       top: view.top,
     },
+    stats: hasLifetimeCounts ? {
+      wins: Number(input.wins),
+      losses: Number(input.losses),
+    } : null,
     goals: hasCompleteDailyCounts && typeof input.todayKey === 'string' && input.todayKey.length > 0
       ? arenaDailyGoals({
         storedDayKey: input.dailyDayKey,
@@ -139,7 +154,7 @@ export function arenaHubModel(input: Readonly<{
       })
       : null,
     lastMatch: history[0] ?? null,
-    streak: summary.currentStreak,
+    streak: input.historyKnown ? summary.currentStreak : null,
     friends: arenaHubFriends(input.friendsRaw ?? []),
     // Ноль ищущих — это тоже сведение, и его надо показать честно; неизвестно
     // — совсем другое дело, и путать их нельзя.

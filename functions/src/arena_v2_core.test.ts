@@ -10,7 +10,7 @@ import {
   arenaRareSpin,
   arenaRanksCompatible,
   arenaObservedElapsedMs,
-  arenaRpDelta,
+  arenaStarDeltaForOutcome,
   arenaSeasonStars,
   arenaSeasonWindow,
   arenaTaskStars,
@@ -24,6 +24,8 @@ import {
   arenaQuickBotDelayMs,
   ARENA_DAILY_REWARD_MATCHES,
   ARENA_V2_ANSWER_MS,
+  ARENA_V2_QUICK_BOT_MAX_MS,
+  ARENA_V2_QUICK_BOT_MIN_MS,
 } from './arena_v2_core';
 import { ARENA_STAR_POLICY } from './arena_stars_v3';
 
@@ -134,6 +136,38 @@ describe('Arena V2 pure product contract', () => {
       .toMatchObject({ ok: false, reason: 'task_count_invalid' });
   });
 
+  // Регрессия: быстрый матч владелец сделал на восемь заданий, а 8 не делится
+  // на пять типов нацело. Пока квота считалась как expectedTasks / модов, она
+  // требовала 1.6 задания на тип и отклоняла КАЖДЫЙ быстрый конверт —
+  // матч с ботом не создавался вовсе. Квота обязана идти от порядка слотов.
+  it('accepts the eight-task quick envelope with its uneven mode quota', () => {
+    const quick = selectArenaTasks(pool(), 'quick-envelope', 0, 'quick')!;
+    expect(quick).toHaveLength(8);
+    expect(validateArenaPrivateEnvelope({ matchId: 'm', tasks: quick }, 'quick'))
+      .toMatchObject({ ok: true });
+    // Полный порядок повторяет каждый тип дважды, восьмёрка обрывает его на
+    // третьем повторе: три типа по два задания, два оставшихся — по одному.
+    const counts = new Map<string, number>();
+    for (const entry of quick) counts.set(entry.mode, (counts.get(entry.mode) ?? 0) + 1);
+    expect([...counts.values()].sort()).toEqual([1, 1, 2, 2, 2]);
+    // Десятка не должна пролезть под видом быстрого матча, и наоборот.
+    const ranked = selectArenaTasks(pool(), 'quick-envelope', 0)!;
+    expect(validateArenaPrivateEnvelope({ matchId: 'm', tasks: ranked }, 'quick'))
+      .toMatchObject({ ok: false, reason: 'task_count_invalid' });
+    expect(validateArenaPrivateEnvelope({ matchId: 'm', tasks: quick }))
+      .toMatchObject({ ok: false, reason: 'task_count_invalid' });
+  });
+
+  // Ослабление квоты до «лишь бы восемь штук» открыло бы дверь конверту из
+  // восьми одинаковых заданий. Проверка обязана сверять состав, а не только длину.
+  it('still rejects a quick envelope whose mode mix is wrong', () => {
+    const quick = selectArenaTasks(pool(), 'quick-mix', 0, 'quick')!;
+    const skewed = [...quick.slice(0, 7), { ...quick[0], taskId: 'dup-slot-8' }];
+    expect(skewed).toHaveLength(8);
+    expect(validateArenaPrivateEnvelope({ matchId: 'm', tasks: skewed }, 'quick'))
+      .toMatchObject({ ok: false, reason: 'mode_quota_invalid' });
+  });
+
   it('scores speed attempts with unique -5 penalties and ignores invalid duplicates', () => {
     expect(scoreArenaSpeedProgress({
       matchedIndexes: [0, 1, 2, 3, 3, 8], triedIndexes: [[], [], [], []], wrongAttempts: 1,
@@ -158,11 +192,11 @@ describe('Arena V2 pure product contract', () => {
     ).left).toBe('win');
   });
 
-  it('uses only opponent division difference for ranked RP', () => {
-    expect(arenaRpDelta(10, 9, 'win')).toBe(16);
-    expect(arenaRpDelta(10, 10, 'loss')).toBe(-20);
-    expect(arenaRpDelta(10, 11, 'draw')).toBe(4);
-    expect(() => arenaRpDelta(10, 12, 'win')).toThrow('arena_ranked_division_difference_invalid');
+  // Владелец (2026-08-23): звёздная лестница — дельта не зависит от соперника.
+  it('awards exactly one star for a win and takes one for a loss', () => {
+    expect(arenaStarDeltaForOutcome('win')).toBe(1);
+    expect(arenaStarDeltaForOutcome('loss')).toBe(-1);
+    expect(arenaStarDeltaForOutcome('draw')).toBe(0);
   });
 
   it('never widens Ranked beyond one division while Quick allows three', () => {
@@ -222,25 +256,27 @@ describe('Arena V2 pure product contract', () => {
       submittedAnswers: 10, dropsToday: 1, rollBps: 0, pityBefore: 12 })).toEqual({ awarded: false, pityAfter: 12 });
   });
 
-  it('shortens the quick match to five balanced tasks and keeps ranked at ten', () => {
-    expect(arenaTaskCount('quick')).toBe(5);
+  it('runs the quick match for eight balanced tasks and keeps ranked at ten', () => {
+    expect(arenaTaskCount('quick')).toBe(8);
     expect(arenaTaskCount('ranked')).toBe(10);
     expect(arenaTaskCount('friend')).toBe(10);
     expect(arenaTaskCount()).toBe(10);
     const quick = selectArenaTasks(pool(), 'quick-seed', 19, 'quick')!;
-    expect(quick).toHaveLength(5);
+    expect(quick).toHaveLength(8);
     expect(new Set(quick.map((entry) => entry.mode)).size).toBe(5);
   });
 
-  // Владелец 2026-08-16 сузил окно с 8–55 до 8–15 секунд: на пустой Арене
-  // полминуты ожидания читались как зависший экран, а живой соперник за это
-  // время всё равно почти не появлялся.
-  it('assigns the bot entry moment inside eight to fifteen seconds, biased to the start', () => {
-    expect(arenaQuickBotDelayMs(0)).toBe(8_000);
-    expect(arenaQuickBotDelayMs(1)).toBe(15_000);
+  // Владелец 2026-08-21: первый бот приходит в случайном окне 3–45 секунд.
+  // Следующий бот после сорванного назначения имеет отдельное клиентское
+  // окно 50–70 секунд и этой серверной формулой не управляется.
+  it('assigns the first bot inside three to forty-five seconds, biased to the start', () => {
+    expect(ARENA_V2_QUICK_BOT_MIN_MS).toBe(3_000);
+    expect(ARENA_V2_QUICK_BOT_MAX_MS).toBe(45_000);
+    expect(arenaQuickBotDelayMs(0)).toBe(3_000);
+    expect(arenaQuickBotDelayMs(1)).toBe(45_000);
     const median = arenaQuickBotDelayMs(0.5);
-    expect(median).toBeGreaterThan(9_000);
-    expect(median).toBeLessThan(13_000);
+    expect(median).toBeGreaterThan(15_000);
+    expect(median).toBeLessThan(20_000);
     expect(arenaQuickBotDelayMs(Number.NaN)).toBe(median);
   });
 

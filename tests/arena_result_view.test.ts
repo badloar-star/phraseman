@@ -6,8 +6,6 @@ import {
 import { ARENA_TIER_KEYS } from '../modules/arena/rank_engine';
 import * as fs from 'fs';
 import * as path from 'path';
-import { arenaText } from '../modules/arena/copy';
-import type { Lang } from '../constants/i18n';
 
 /**
  * Что объявить после матча.
@@ -20,10 +18,13 @@ import type { Lang } from '../constants/i18n';
  * хуже молчания — игрок пойдёт проверять и не найдёт подтверждения.
  */
 
+// Звёздная шкала (2026-08-23): победа +1, три звезды на ранг. 9 звёзд —
+// первый ранг второго тира, 8 — последний ранг первого.
 const reward = (over: Record<string, unknown> = {}) => ({
   starsEarned: 12,
   xpEarned: 40,
-  ratingDelta: 20,
+  ratingDelta: 1,
+  ratingAfter: 9,
   rankEvent: 'tier_up',
   rankTierBefore: 0,
   rankTierAfter: 1,
@@ -38,13 +39,35 @@ describe('повышение и понижение', () => {
   });
 
   it('падение из тира объявляется отдельно', () => {
-    const announce = arenaResultAnnounce(reward({ rankEvent: 'tier_down', rankTierAfter: 0 }));
+    const announce = arenaResultAnnounce(reward({ rankEvent: 'tier_down', ratingAfter: 8, ratingDelta: -1, rankTierAfter: 0 }));
     expect(announce.rank.kind).toBe('tier_down');
   });
 
   it('смена деления внутри тира — своё событие, не подмена тира', () => {
-    expect(arenaResultAnnounce(reward({ rankEvent: 'rank_up' })).rank.kind).toBe('rank_up');
-    expect(arenaResultAnnounce(reward({ rankEvent: 'rank_down' })).rank.kind).toBe('rank_down');
+    expect(arenaResultAnnounce(reward({ rankEvent: 'rank_up', ratingAfter: 6 })).rank.kind).toBe('rank_up');
+    expect(arenaResultAnnounce(reward({ rankEvent: 'rank_down', ratingAfter: 5, ratingDelta: -1 })).rank.kind).toBe('rank_down');
+  });
+
+  it('несёт точные ранги до и после для всех четырёх анимаций', () => {
+    const rankUp = arenaResultAnnounce(reward({ rankEvent: 'rank_up', ratingAfter: 6 })).rank;
+    expect(rankUp).toMatchObject({
+      kind: 'rank_up',
+      before: { rankIndex: 1, division: 2 },
+      after: { rankIndex: 2, division: 1 },
+    });
+
+    const rankDown = arenaResultAnnounce(reward({ rankEvent: 'rank_down', ratingAfter: 5, ratingDelta: -1 })).rank;
+    expect(rankDown).toMatchObject({
+      kind: 'rank_down',
+      before: { rankIndex: 2, division: 1 },
+      after: { rankIndex: 1, division: 2 },
+    });
+
+    const tierUp = arenaResultAnnounce(reward()).rank;
+    expect(tierUp).toMatchObject({ kind: 'tier_up', before: { tierIndex: 0 }, after: { tierIndex: 1 } });
+
+    const tierDown = arenaResultAnnounce(reward({ rankEvent: 'tier_down', ratingAfter: 8, ratingDelta: -1 })).rank;
+    expect(tierDown).toMatchObject({ kind: 'tier_down', before: { tierIndex: 1 }, after: { tierIndex: 0 } });
   });
 
   it('без события ранга — молчим', () => {
@@ -54,8 +77,8 @@ describe('повышение и понижение', () => {
 
   /** Назвать тир наугад значит соврать. */
   it('событие есть, а тир за шкалой — молчим, а не выдумываем', () => {
-    for (const value of [99, -1, null, 'золото', NaN]) {
-      expect(arenaResultAnnounce(reward({ rankTierAfter: value })).rank.kind).toBe('none');
+    for (const value of [null, 'золото', NaN, undefined]) {
+      expect(arenaResultAnnounce(reward({ ratingAfter: value })).rank.kind).toBe('none');
     }
   });
 
@@ -151,16 +174,11 @@ describe('тир по очкам', () => {
  * потерял результат матча. На самом деле результат уже засчитан на сервере, и
  * ждёт только доставка: повторять нечего.
  */
-describe('обрыв связи на экране результата', () => {
+describe('обрыв связи не создаёт промежуточный экран результата', () => {
   const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_results.tsx'), 'utf8');
 
   it('не выдаёт кнопочный глагол за объяснение', () => {
     expect(source).not.toContain("styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')");
-  });
-
-  it('объясняет, что результат уже засчитан', () => {
-    expect(source).toContain("'resultPending'");
-    expect(source).toContain("'resultPendingHint'");
   });
 
   /**
@@ -172,13 +190,9 @@ describe('обрыв связи на экране результата', () => {
     expect(source).not.toContain("arenaText(lang, 'loading')");
   });
 
-  it('обе строки переведены на восемь языков', () => {
-    for (const lang of ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[]) {
-      expect(arenaText(lang, 'resultPending').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'resultPendingHint').length).toBeGreaterThan(0);
-      // Объяснение не должно совпадать с подписью кнопки повтора.
-      expect(arenaText(lang, 'resultPending')).not.toBe(arenaText(lang, 'retry'));
-    }
+  it('не монтирует ветку подготовки результата', () => {
+    expect(source).not.toContain("arenaText(lang, 'resultPending')");
+    expect(source).not.toContain("arenaText(lang, 'resultPendingHint')");
   });
 });
 
@@ -217,11 +231,11 @@ describe('неизвестная награда не выдаётся за но�
 describe('ноль не подменяет незнание', () => {
   const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
 
-  it('кошелёк рисует прочерк, пока баланс неизвестен', () => {
-    const ui = read('components/arena/ArenaExpansionUI.tsx');
-    expect(ui).toContain("balance === null ? '—' : balance");
-    // И хаб действительно передаёт незнание, а не ноль.
-    expect(read('app/arena.tsx')).toContain('expansion ? expansion.wallet.walletStars : null');
+  it('плотная сводка хаба рисует прочерк, пока статистика неизвестна', () => {
+    const summary = read('components/arena/ArenaHubSummary.tsx');
+    expect(summary).toContain("stats?.wins ?? '—'");
+    expect(summary).toContain("stats?.losses ?? '—'");
+    expect(summary).toContain("model.streak ?? '—'");
   });
 
   it('топы не выдают чужой тир за свой', () => {
@@ -236,50 +250,27 @@ describe('ноль не подменяет незнание', () => {
  * Игрок видел экран результата без награды и без единого слова о том, почему
  * её нет и придёт ли она вообще.
  */
-describe('ожидание отчёта соперника объясняется', () => {
+describe('ожидание отчёта остаётся за финальным кадром матча', () => {
   const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_results.tsx'), 'utf8');
-  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
 
-  it('экран различает «отчёт не ушёл» и «соперник не сдал»', () => {
-    expect(source).toContain("'reportQueued'");
-    expect(source).toContain("'awaitingRival'");
-    /**
-     * Оговорка показывается только пока матч не закрыт и награды нет.
-     *
-     * Условие проверяется по частям, а не одной строкой целиком: строку
-     * целиком ломает любое ДОБАВЛЕНИЕ проверки в то же условие, даже
-     * правильное. Так и вышло — в условие добавили ещё и состояние
-     * синхронизации, и тест покраснел на здоровой правке. Тест, который
-     * краснеет от улучшений, учит не улучшать.
-     */
-    const awaiting = source.slice(source.indexOf("arenaText(lang, 'awaitingRival')") - 700,
-      source.indexOf("arenaText(lang, 'awaitingRival')"));
-    for (const part of ['!reportPending', '!match.terminal', '!reward']) {
-      expect(awaiting).toContain(part);
-    }
-  });
-
-  it('сказано, что матч закроется сам и награда придёт', () => {
-    for (const lang of langs) {
-      expect(arenaText(lang, 'awaitingRival').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'awaitingRivalHint').length).toBeGreaterThan(0);
-      // Это не то же самое, что «отчёт лежит в очереди»: там ничего не ушло.
-      expect(arenaText(lang, 'awaitingRival')).not.toBe(arenaText(lang, 'reportQueued'));
-    }
+  it('не монтирует ни один экран ожидания', () => {
+    expect(source).not.toContain("arenaText(lang, 'awaitingRival')");
+    expect(source).not.toContain("arenaText(lang, 'awaitingRivalHint')");
+    expect(source).not.toContain("arenaText(lang, 'reportQueued')");
+    expect(source).not.toContain("arenaText(lang, 'reportQueuedHint')");
   });
 });
 
-/**
- * Длинное имя соперника не должно выталкивать счёт за край экрана: во время
- * матча счёт важнее имени, а обрезанное многоточием имя читается нормально.
- */
+/** Владелец (2026-08-21): ник стоит под аватаром и показывается целиком. */
 describe('длинные имена не ломают строку игроков', () => {
   const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
 
-  it('имя игрока обрезается многоточием', () => {
+  it('переносит полный ник под аватар мелким кеглем', () => {
     const players = read('components/arena/ArenaPlayers.tsx');
-    expect(players).toContain('numberOfLines={1}');
-    expect(players).toContain('ellipsizeMode="tail"');
+    expect(players).toContain('<View style={styles.identity}>');
+    expect(players).not.toContain('numberOfLines={1}');
+    expect(players).not.toContain('ellipsizeMode="tail"');
+    expect(players).toMatch(/name:\s*\{[^}]*fontSize:\s*1[012](?:\.\d+)?/);
   });
 
   it('заголовок строки раздела тоже ограничен', () => {

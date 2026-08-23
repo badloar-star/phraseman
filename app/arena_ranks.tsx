@@ -8,25 +8,24 @@ import Animated, {
   useSharedValue,
   withDelay,
   withSpring,
-  withTiming,
 } from 'react-native-reanimated';
 
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
-import { V2Card } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { ArenaRankStars } from '../components/arena/ArenaRankStars';
+import { V2Card } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { arenaText } from '../modules/arena/copy';
 import { arenaRankScreen, type ArenaTierRow } from '../modules/arena/rank_view';
 import { arenaTierRewardLadder } from '../modules/arena/tier_rewards';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { arenaKnowsValue, arenaLoadState } from '../modules/arena/load_state';
+import { arenaKnowsValue } from '../modules/arena/load_state';
 import { arenaLoadHomeWarm, arenaPeekHomeWarm, arenaRememberHomeWarm } from '../modules/arena/home_cache';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { arenaV2FriendsBoard, arenaV2Home, type ArenaFriendsBoardRow } from './arena_client';
+import { arenaV2Home } from './arena_client';
 
 /**
  * Экран рангов.
@@ -115,7 +114,7 @@ function TierRow({ row, index, reduceMotion, rewardItemId, rewardClaimed }: {
             {arenaText(lang, TIER_COPY[row.tierIndex])}
           </Text>
           <Text style={[styles.meta, { color: row.current ? P.okInk : P.muted }]}>
-            {row.locked ? arenaText(lang, 'rankLocked') : `${row.minRp}–${row.maxRp}`}
+            {row.locked ? arenaText(lang, 'rankLocked') : `${row.minStars}–${row.maxStars} ★`}
           </Text>
         </View>
         {/* Награда за тир — косметика (D-63), не звёзды: общую экономику
@@ -150,10 +149,6 @@ export default function ArenaRanksScreen() {
     warmHome as Awaited<ReturnType<typeof arenaV2Home>> | null,
   );
   const profile = home?.profile ?? null;
-  const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
-  const [friendsLoaded, setFriendsLoaded] = useState(false);
-  const [friendsFailed, setFriendsFailed] = useState(false);
-  const [percentile, setPercentile] = useState<number | null>(null);
   /**
    * Пока ответа нет, экран НЕ рисует ранг. Раньше он показывал «Бронза III ·
    * 0 очков» — то есть чужой ранг как твой, и это худшая ложь из возможных
@@ -173,33 +168,17 @@ export default function ArenaRanksScreen() {
         setHome((current) => current ?? (stored.home as Awaited<ReturnType<typeof arenaV2Home>>));
       }
     }).catch(() => {});
-    // Отдельным вызовом и ровно один раз на открытие: список друзей меняется
-    // днями, а не секундами, и опрашивать его по кругу незачем.
-    void arenaV2FriendsBoard()
-      .then((board) => { setFriends(board.rows); setPercentile(board.percentileAbove); setFriendsLoaded(true); })
-      // Молчаливый отказ здесь означал исчезнувшую таблицу друзей: игрок видел
-      // пустое место и решал, что друзей у него нет.
-      .catch(() => { setFriendsFailed(true); setFriendsLoaded(true); });
   }, [active]);
 
   const screen = useMemo(() => arenaRankScreen({
-    rp: profile?.rating ?? 0,
+    stars: profile?.rating ?? 0,
     seasonBestTierIndex: profile?.seasonBestTierIndex,
-    percentileAbove: percentile,
-  }), [profile, percentile]);
+    percentileAbove: null,
+  }), [profile]);
 
   const ladder = useMemo(() => arenaTierRewardLadder(lifetimeBest(profile)), [profile]);
 
   const known = arenaKnowsValue({ loaded: Boolean(home), failed: homeFailed });
-  /**
-   * Таблица друзей одна строка длиной — это ты сам: сравнивать не с кем, и это
-   * не то же самое, что неудачная загрузка.
-   */
-  const friendsState = arenaLoadState({
-    loaded: friendsLoaded,
-    failed: friendsFailed,
-    count: Math.max(0, friends.length - 1),
-  });
   /**
    * Пока ранг неизвестен, заголовок ПУСТОЙ, а не «Загрузка»: слово загрузки
    * владелец видеть запретил, а выдумывать чужой ранг нельзя тем более.
@@ -210,17 +189,18 @@ export default function ArenaRanksScreen() {
     : homeFailed ? arenaText(lang, 'loadFailed') : '';
 
   return (
-    <ArenaHubChrome
-      availability={home?.availability}
-      activeMatchId={home?.activeMatch?.matchId ?? null}
-      activeQueue={home?.activeQueue}
-    >
     <ArenaScreen title={arenaText(lang, 'ranks')} variant="table">
       <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(300)}>
         <V2Card pad={16} style={styles.head}>
           <Text style={[styles.headline, { color: known ? P.text : P.muted }]}>{headline}</Text>
-          {/* Число очков — утверждение. Пока его нет, не утверждаем. */}
-          {known ? <Text style={[styles.rp, { color: P.muted }]}>{screen.rp}</Text> : null}
+          {/* Звёзды ранга — утверждение. Пока их нет, не утверждаем. */}
+          {known ? (
+            <ArenaRankStars
+              filled={screen.starsInRank}
+              size={18}
+              accessibilityLabel={`${arenaText(lang, 'rankStars')}: ${screen.starsInRank}/${screen.starsPerRank}`}
+            />
+          ) : null}
           {homeFailed ? (
             <Text style={[styles.meta, { color: P.muted }]}>{arenaText(lang, 'loadFailedHint')}</Text>
           ) : null}
@@ -231,7 +211,7 @@ export default function ArenaRanksScreen() {
             <>
               <RankProgressBar progress={screen.progress} reduceMotion={reduceMotion} />
               <Text style={[styles.meta, { color: P.muted }]}>
-                {arenaText(lang, 'rankProgress')}: {screen.rpToNextRank}
+                {arenaText(lang, 'rankProgress')}: {`${screen.winsToNextRank} ★`}
               </Text>
             </>
           )}
@@ -287,55 +267,7 @@ export default function ArenaRanksScreen() {
         </View>
       ) : null}
 
-      {/*
-        Отказ и «не с кем сравнить» — разные вещи, и раньше блок при обоих
-        просто исчезал. Теперь у каждого своя строка с объяснением.
-
-        А вот загрузка не показывается вовсе: владелец запретил видимую
-        загрузку где бы то ни было. Пока список едет, блока просто нет — он
-        появляется готовым. Показывать «Загрузка» здесь было бы вдвойне
-        плохо: строка живёт доли секунды и дёргает страницу прыжком высоты.
-      */}
-      {friendsState === 'failed' || friendsState === 'empty' ? (
-        <>
-          <Text style={[styles.section, { color: P.muted }]}>{arenaText(lang, 'friendsBoard')}</Text>
-          <V2Card pad={12}>
-            <Text style={[styles.name, { color: P.text }]}>
-              {arenaText(lang, friendsState === 'failed' ? 'loadFailed' : 'friendsBoardEmpty')}
-            </Text>
-            <Text style={[styles.meta, { color: P.muted }]}>
-              {arenaText(lang, friendsState === 'failed' ? 'loadFailedHint' : 'friendsBoardEmptyHint')}
-            </Text>
-          </V2Card>
-        </>
-      ) : null}
-
-      {friendsState === 'ready' ? (
-        <>
-          <Text style={[styles.section, { color: P.muted }]}>{arenaText(lang, 'friendsBoard')}</Text>
-          {friends.map((row, index) => (
-            <Animated.View
-              key={row.stableUid}
-              entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.delay(index * 40).duration(240)}
-            >
-              <V2Card pad={12} style={[styles.row, row.you ? { borderColor: P.accent, borderWidth: 1 } : null]}>
-                <View style={[styles.badge, { backgroundColor: P.elev2 }]}>
-                  <Text style={[styles.name, { color: P.text }]}>{index + 1}</Text>
-                </View>
-                <View style={styles.copy}>
-                  <Text style={[styles.name, { color: row.you ? P.accent : P.text }]}>
-                    {row.you ? arenaText(lang, 'you') : arenaText(lang, TIER_COPY[Math.min(7, Math.floor(row.rank / 3))])}
-                  </Text>
-                  <Text style={[styles.meta, { color: P.muted }]}>{row.wins}/{row.losses}</Text>
-                </View>
-                <Text style={[styles.rp, { color: P.text }]}>{row.rating}</Text>
-              </V2Card>
-            </Animated.View>
-          ))}
-        </>
-      ) : null}
     </ArenaScreen>
-    </ArenaHubChrome>
   );
 }
 

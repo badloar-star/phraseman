@@ -36,8 +36,8 @@ export const ARENA_V2_COLLECTIONS = Object.freeze({
 
 /** Рейтинг, дружеская дуэль, серия, Arena Today — полный матч. */
 export const ARENA_V2_TASK_COUNT = 10;
-/** Владелец (2026-08-12): быстрый матч укорочен до пяти заданий (~60–80 секунд). */
-export const ARENA_V2_QUICK_TASK_COUNT = 5;
+/** Владелец (2026-08-21): быстрый матч — восемь заданий. */
+export const ARENA_V2_QUICK_TASK_COUNT = 8;
 
 /** Число заданий по режиму. Строка, а не union, чтобы вызывающие не тянули типы. */
 export function arenaTaskCount(mode?: string): number {
@@ -47,20 +47,15 @@ export const ARENA_V2_MAX_TASK_DOC_READS = 10;
 export const ARENA_V2_SPEED_MATCH_PAIRS = 4;
 export const ARENA_V2_PRIVATE_BUDGET_BYTES = 384 * 1_024;
 /**
- * Владелец (2026-08-12): бот в быстром матче подключается не через фиксированные
- * 6 секунд, а в СЛУЧАЙНЫЙ момент 8–55 секунд со смещением к 10–25 с. Момент
- * назначает сервер при постановке в очередь и кладёт в очередь как botDueAtMs;
- * клиент только ждёт до него. Живой соперник всегда перебивает бота.
+ * Владелец (2026-08-21): первый бот быстрого матча приходит в СЛУЧАЙНЫЙ
+ * момент 3–45 секунд со смещением к началу окна. Момент назначает сервер при
+ * постановке в очередь и кладёт в очередь как botDueAtMs; клиент только ждёт
+ * до него. Живой соперник всегда перебивает бота. Повторный бот после
+ * сорванного назначения регулируется отдельным клиентским окном 50–70 секунд.
  */
-export const ARENA_V2_QUICK_BOT_MIN_MS = 8_000;
-/**
- * Владелец (2026-08-16) сузил верхнюю границу с 55 до 15 секунд: до полуминуты
- * ожидания на пустой Арене экран выглядел зависшим, а живой соперник за это
- * время всё равно почти никогда не появлялся. Живой по-прежнему перебивает
- * бота в любой момент.
- */
-export const ARENA_V2_QUICK_BOT_MAX_MS = 15_000;
-/** Смещение к началу диапазона: медиана ≈ 11 с. */
+export const ARENA_V2_QUICK_BOT_MIN_MS = 3_000;
+export const ARENA_V2_QUICK_BOT_MAX_MS = 45_000;
+/** Смещение к началу диапазона: медиана ≈ 17 с. */
 export const ARENA_V2_QUICK_BOT_BIAS = 1.6;
 
 /** `unit` — равномерное [0,1). Возвращает задержку в миллисекундах. */
@@ -80,7 +75,8 @@ export const ARENA_V2_READING_MS = 1_500;
 export const ARENA_V2_RECEIVE_GRACE_MS = 1_500;
 export const ARENA_V2_QUEUE_LEASE_MS = 45_000;
 export const ARENA_V2_MATCH_TTL_MS = 7 * 24 * 60 * 60 * 1_000;
-export const ARENA_V2_INVITE_TTL_MS = 24 * 60 * 60 * 1_000;
+export const ARENA_V2_INVITE_TTL_MS = 10 * 60 * 1_000;
+export const ARENA_V2_RENDEZVOUS_MS = 90 * 1_000;
 export const ARENA_V2_TIME_TIE_BREAK_MS = 2_000;
 export const ARENA_V2_SEASON_LENGTH_DAYS = 63;
 export const ARENA_V2_SEASON_EPOCH_MS = Date.UTC(2026, 7, 1);
@@ -268,9 +264,8 @@ export const ARENA_V2_DIFFICULTY_BY_DIVISION_BAND = Object.freeze({
 } as const);
 
 /**
- * Первые пять слотов полного порядка — ровно по одному заданию каждого типа,
- * поэтому короткий быстрый матч получается обычным срезом и остаётся
- * сбалансированным по типам.
+ * Быстрый матч берёт первые восемь слотов полного порядка: все пять типов
+ * успевают встретиться, а три основных типа повторяются.
  */
 export function arenaModeOrder(mode?: string): readonly OwnerApprovedTournamentMode[] {
   return ARENA_V2_MODE_ORDER.slice(0, arenaTaskCount(mode)) as readonly OwnerApprovedTournamentMode[];
@@ -340,8 +335,18 @@ export function validateArenaPrivateEnvelope(
     }
     counts.set(task.mode, (counts.get(task.mode) ?? 0) + 1);
   }
-  const perMode = expectedTasks / OWNER_APPROVED_TOURNAMENT_MODES.length;
-  if (OWNER_APPROVED_TOURNAMENT_MODES.some((mode) => counts.get(mode) !== perMode)) {
+  // зачем: владелец сделал быстрый матч из восьми заданий, а 8 не делится на
+  // пять типов нацело — прежняя проверка `expectedTasks / модов` давала 1.6 и
+  // ОТКЛОНЯЛА любой быстрый конверт (mode_quota_invalid), из-за чего матч с
+  // ботом не создавался. Квоту берём из того же порядка слотов, по которому
+  // задания и подбираются, — один источник правды для любой длины матча.
+  const expectedCounts = new Map<string, number>();
+  for (const mode of arenaModeOrder(matchMode)) {
+    expectedCounts.set(mode, (expectedCounts.get(mode) ?? 0) + 1);
+  }
+  if (OWNER_APPROVED_TOURNAMENT_MODES.some(
+    (mode) => (counts.get(mode) ?? 0) !== (expectedCounts.get(mode) ?? 0),
+  )) {
     return { ok: false, reason: 'mode_quota_invalid', serializedBytes };
   }
   if (serializedBytes >= ARENA_V2_PRIVATE_BUDGET_BYTES) {
@@ -471,26 +476,15 @@ export function resolveArenaOutcome(
     : { left: 'loss', right: 'win', reason: 'time' };
 }
 
-export const ARENA_V2_RP_TABLE = Object.freeze({
-  '-1': { win: 16, loss: -24, draw: -4 },
-  '0': { win: 20, loss: -20, draw: 0 },
-  '1': { win: 24, loss: -16, draw: 4 },
-} as const);
-
-export function arenaRankIndexFromRp(rp: number): number {
-  return Math.max(0, Math.min(23, Math.floor(Math.max(0, rp) / 100)));
+// зачем: владелец (2026-08-23) отменил очки ранга (RP) и таблицу дельт по
+// разнице дивизионов. Звёздная лестница: победа +1, поражение −1, ничья 0 —
+// одинаково для любого соперника, ранг = звёзды ÷ 3.
+export function arenaRankIndexFromStars(stars: number): number {
+  return Math.max(0, Math.min(23, Math.floor(Math.max(0, stars) / 3)));
 }
 
-export function arenaRpDelta(
-  ownDivisionIndex: number,
-  opponentDivisionIndex: number,
-  outcome: ArenaV2Outcome,
-): number {
-  const difference = Math.trunc(opponentDivisionIndex) - Math.trunc(ownDivisionIndex);
-  if (!Number.isInteger(difference) || difference < -1 || difference > 1) {
-    throw new Error('arena_ranked_division_difference_invalid');
-  }
-  return ARENA_V2_RP_TABLE[String(difference) as '-1' | '0' | '1'][outcome];
+export function arenaStarDeltaForOutcome(outcome: ArenaV2Outcome): number {
+  return outcome === 'win' ? 1 : outcome === 'loss' ? -1 : 0;
 }
 
 export function arenaSeasonWindow(nowMs: number): { seasonId: string; startsAtMs: number; endsAtMs: number } {

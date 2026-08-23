@@ -51,11 +51,11 @@ describe('список тиров', () => {
     expect(rows[7].locked).toBe(true);
   });
 
-  it('диапазоны очков идут подряд и не пересекаются', () => {
+  it('диапазоны звёзд идут подряд и не пересекаются', () => {
     const rows = arenaTierRows({ tierIndex: 0, seasonBestTierIndex: 0 });
     for (let index = 1; index < rows.length; index += 1) {
-      expect(rows[index].minRp).toBeGreaterThan(rows[index - 1].minRp);
-      expect(rows[index].minRp).toBeGreaterThan(rows[index - 1].maxRp);
+      expect(rows[index].minStars).toBeGreaterThan(rows[index - 1].minStars);
+      expect(rows[index].minStars).toBeGreaterThan(rows[index - 1].maxStars);
     }
   });
 
@@ -67,56 +67,56 @@ describe('список тиров', () => {
 });
 
 describe('экран целиком', () => {
-  it('новичок: бронза III, полоса пуста, щит цел', () => {
-    const screen = arenaRankScreen({ rp: 0 });
+  it('новичок: бронза III, звёзд ноль', () => {
+    const screen = arenaRankScreen({ stars: 0 });
     expect(screen.tierKey).toBe('bronze');
     expect(screen.division).toBe(3);
     expect(screen.progress).toBe(0);
   });
 
-  it('полоса показывает долю до следующего деления', () => {
-    expect(arenaRankScreen({ rp: 150 }).progress).toBeCloseTo(0.5, 3);
-    expect(arenaRankScreen({ rp: 150 }).rpToNextRank).toBe(50);
+  it('пипсы показывают звёзды до следующего деления', () => {
+    expect(arenaRankScreen({ stars: 4 }).starsInRank).toBe(1);
+    expect(arenaRankScreen({ stars: 4 }).progress).toBeCloseTo(1 / 3, 3);
+    expect(arenaRankScreen({ stars: 4 }).winsToNextRank).toBe(2);
   });
 
-  it('полоса не выходит за границы ни при каких очках', () => {
-    for (const rp of [-500, 0, 99, 100, 1_234, 2_399, 2_400, 999_999, NaN]) {
-      const screen = arenaRankScreen({ rp });
+  it('пипсы не выходят за границы ни при каких звёздах', () => {
+    for (const stars of [-500, 0, 2, 3, 41, 71, 72, 999_999, NaN]) {
+      const screen = arenaRankScreen({ stars });
       expect(screen.progress).toBeGreaterThanOrEqual(0);
       expect(screen.progress).toBeLessThanOrEqual(1);
-      expect(screen.rpToNextRank).toBeGreaterThanOrEqual(0);
+      expect(screen.winsToNextRank).toBeGreaterThanOrEqual(0);
     }
   });
 
-  /** Наверху шкалы копить не к чему, и «осталось 100» было бы враньём. */
+  /** Наверху шкалы копить не к чему, и «осталось 3» было бы враньём. */
   it('на вершине не обещает следующего деления', () => {
-    const screen = arenaRankScreen({ rp: 999_999 });
+    const screen = arenaRankScreen({ stars: 999_999 });
     expect(screen.top).toBe(true);
-    expect(screen.rpToNextRank).toBe(0);
-    expect(screen.progress).toBe(1);
+    expect(screen.winsToNextRank).toBe(0);
   });
 
   /** Иначе у нового игрока подсветка не совпадёт с тем, где он стоит. */
   it('текущий тир всегда считается взятым', () => {
-    const screen = arenaRankScreen({ rp: 1_500, seasonBestTierIndex: 0 });
+    const screen = arenaRankScreen({ stars: 45, seasonBestTierIndex: 0 });
     expect(screen.seasonBestTierIndex).toBeGreaterThanOrEqual(screen.tierIndex);
     expect(screen.tiers[screen.tierIndex].earned).toBe(true);
   });
 
   it('процентиль показывается только когда он есть', () => {
-    expect(arenaRankScreen({ rp: 500 }).percentileAbove).toBeNull();
-    expect(arenaRankScreen({ rp: 500, percentileAbove: 72 }).percentileAbove).toBe(72);
-    expect(arenaRankScreen({ rp: 500, percentileAbove: 150 }).percentileAbove).toBe(99);
-    expect(arenaRankScreen({ rp: 500, percentileAbove: -5 }).percentileAbove).toBe(0);
+    expect(arenaRankScreen({ stars: 15 }).percentileAbove).toBeNull();
+    expect(arenaRankScreen({ stars: 15, percentileAbove: 72 }).percentileAbove).toBe(72);
+    expect(arenaRankScreen({ stars: 15, percentileAbove: 150 }).percentileAbove).toBe(99);
+    expect(arenaRankScreen({ stars: 15, percentileAbove: -5 }).percentileAbove).toBe(0);
   });
 
   it('битое состояние ранга не роняет экран', () => {
     const screen = arenaRankScreen({
-      rp: NaN,
+      stars: NaN,
       seasonBestTierIndex: 99,
       percentileAbove: NaN,
     });
-    expect(screen.rp).toBe(0);
+    expect(screen.stars).toBe(0);
     expect(screen.tiers.length).toBe(ARENA_TIER_COUNT);
     expect(screen.seasonBestTierIndex).toBeLessThan(ARENA_TIER_COUNT);
   });
@@ -132,16 +132,14 @@ describe('таблица друзей различает отказ и отсу�
   const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_ranks.tsx'), 'utf8');
 
   it('состояние считается общим модулем, а не длиной массива', () => {
-    expect(source).toContain('arenaLoadState');
-    expect(source).toContain('friendsState');
-    // Старая единственная развилка по длине больше не решает судьбу блока.
-    expect(source).not.toContain('{friends.length > 1 ? (');
+    expect(source).not.toContain('arenaV2FriendsBoard');
+    expect(source).not.toContain('friendsState');
+    expect(source).not.toContain('friends.map');
   });
 
-  it('отказ отделён от пустоты и оба объяснены', () => {
+  it('личный экран сохраняет собственную ошибку загрузки', () => {
     expect(source).toContain("'loadFailed'");
-    expect(source).toContain("'friendsBoardEmpty'");
-    expect(source).toContain("'friendsBoardEmptyHint'");
+    expect(source).toContain("'loadFailedHint'");
   });
 
   it('строки пустой таблицы переведены на восемь языков', () => {

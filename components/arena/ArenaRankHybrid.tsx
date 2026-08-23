@@ -11,21 +11,19 @@
 //     самом экране итогов (без модалки), число дивизиона тикает на UI-потоке,
 //     блик пробегает один раз, баннер уходит сам (exit короче входа).
 //   C «Тихая ступень» (tier_down) — обратный Световод: вуаль сверху вместо
-//     блума снизу, карточка ОСЕДАЕТ (не падает), бронзовый щит просто
-//     проявляется — ни одного удара, ни одной частицы. Тёплая бронза, не
-//     траур; CTA «Реванш».
+//     блума снизу, карточка ОСЕДАЕТ с короткой контролируемой отдачей,
+//     приглушённые частицы уходят вниз. Тёплая бронза, не траур; CTA «Реванш».
 //
 //  Терминология экрана — РАНГ (владелец, D-40), не «лига»: тир = золотой щит
 //  Арены, а не клубная лига.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View, type TextProps } from 'react-native';
+import React, { memo, useEffect, useMemo, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
 import Reanimated, {
   Easing,
   cancelAnimation,
   runOnJS,
-  useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -37,16 +35,18 @@ import Reanimated, {
 import { LinearGradient } from '../SafeLinearGradient';
 import DuoPressable from '../DuoPressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { ARENA_TIER_KEYS, type ArenaTierKey } from '../../modules/arena/rank_engine';
 import { arenaText } from '../../modules/arena/copy';
 import { useLang } from '../LangContext';
-import { LUM, CHK } from '../../constants/motionHybrid';
+import { LUM, CHK, SUITE } from '../../constants/motionHybrid';
+import { ARENA_RANK_HYBRID_COLORS } from '../../constants/motionHybridPalettes';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { hapticLightImpact, hapticSuccess, hapticWarning } from '../../hooks/use-haptics';
 import { useArenaSound } from '../../hooks/use_arena_sound';
-
-const AnimatedText = Reanimated.createAnimatedComponent(Text);
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import type { ArenaRankAnnounce } from '../../modules/arena/result_view';
+import PressableHybrid from '../PressableHybrid';
 
 const TIER_COPY: Record<ArenaTierKey, 'tierBronze' | 'tierSilver' | 'tierGold' | 'tierPlatinum' | 'tierDiamond' | 'tierMaster' | 'tierGrandmaster' | 'tierLegend'> = {
   bronze: 'tierBronze',
@@ -61,10 +61,110 @@ const TIER_COPY: Record<ArenaTierKey, 'tierBronze' | 'tierSilver' | 'tierGold' |
 
 const DIVISION_ROMAN: Record<1 | 2 | 3, string> = { 1: 'I', 2: 'II', 3: 'III' };
 
+/**
+ * Звёзды ранга в сцене итога — «удар» по изменившейся звезде.
+ *
+ * Владелец (2026-08-23): победа +1 звезда, поражение −1, три звезды — новый
+ * ранг. Сцена обязана ПОКАЗАТЬ звезду, а не только сменившийся номер деления:
+ * выигранная вспыхивает пружиной с золотым нимбом, потерянная гаснет.
+ *
+ * Переход через границу ранга — двумя тактами: сначала ряд СТАРОГО ранга
+ * дожимается (третья звезда встаёт / последняя гаснет), затем ряд мягко
+ * перезаряжается под новый ранг. Так игрок видит и «за что», и «где я теперь».
+ *
+ * Вся хореография на shared values + два setTimeout — как в соседних сценах
+ * файла; JS-поток не тикает по кадрам.
+ */
+function RankStarsBeat({ fromFilled, toFilled, direction, startDelayMs, reduceMotion, size = 20 }: {
+  fromFilled: number;
+  toFilled: number;
+  direction: 'up' | 'down';
+  startDelayMs: number;
+  reduceMotion: boolean;
+  size?: number;
+}) {
+  const P = useTournamentPalette();
+  const from = Math.max(0, Math.min(3, Math.trunc(fromFilled)));
+  const to = Math.max(0, Math.min(3, Math.trunc(toFilled)));
+  // Через границу ранга: вверх ряд сначала ДОПОЛНЯЕТСЯ до трёх, вниз —
+  // опустошается до нуля, и только потом перезаряжается под новый ранг.
+  const crossing = direction === 'up' ? to <= from : to >= from;
+  const beatFilled = direction === 'up' ? (crossing ? 3 : to) : (crossing ? 0 : to);
+  const beatIndex = direction === 'up' ? beatFilled - 1 : beatFilled;
+  const [filled, setFilled] = useState(reduceMotion ? to : from);
+  const rowOpacity = useSharedValue(1);
+  const beatScale = useSharedValue(1);
+  const haloOpacity = useSharedValue(0);
+  const haloScale = useSharedValue(0.6);
+
+  useEffect(() => {
+    if (reduceMotion) { setFilled(to); return; }
+    setFilled(from);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    timers.push(setTimeout(() => {
+      setFilled(beatFilled);
+      if (direction === 'up') {
+        beatScale.value = withSequence(withTiming(1.45, { duration: 0 }), withSpring(1, SUITE.pulse));
+        haloOpacity.value = withSequence(withTiming(0.85, { duration: 0 }), withTiming(0, { duration: 640, easing: Easing.linear }));
+        haloScale.value = withSequence(withTiming(0.6, { duration: 0 }), withTiming(2.4, { duration: 640, easing: Easing.out(Easing.quad) }));
+      } else {
+        beatScale.value = withSequence(withTiming(0.72, { duration: 140, easing: Easing.out(Easing.quad) }), withSpring(1, SUITE.pulse));
+      }
+    }, startDelayMs));
+    if (crossing) {
+      // Второй такт: ряд гаснет, под затемнением меняется на счёт нового
+      // ранга и проявляется обратно.
+      timers.push(setTimeout(() => {
+        rowOpacity.value = withSequence(
+          withTiming(0, { duration: 200, easing: Easing.out(Easing.quad) }),
+          withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }),
+        );
+      }, startDelayMs + 780));
+      timers.push(setTimeout(() => setFilled(to), startDelayMs + 980));
+    }
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer));
+      cancelAnimation(rowOpacity); cancelAnimation(beatScale);
+      cancelAnimation(haloOpacity); cancelAnimation(haloScale);
+    };
+    // зачем: хореография собирается один раз на монтирование сцены — как в
+    // соседних сценах этого файла.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduceMotion]);
+
+  const rowStyle = useAnimatedStyle(() => ({ opacity: rowOpacity.value }));
+  const beatStyle = useAnimatedStyle(() => ({ transform: [{ scale: beatScale.value }] }));
+  const haloStyle = useAnimatedStyle(() => ({ opacity: haloOpacity.value, transform: [{ scale: haloScale.value }] }));
+
+  return (
+    <Reanimated.View style={[styles.starsRow, rowStyle]}>
+      {[0, 1, 2].map((index) => {
+        const lit = index < filled;
+        const icon = (
+          <Ionicons
+            name={lit ? 'star' : 'star-outline'}
+            size={size}
+            color={lit ? P.gold : P.muted}
+            style={lit ? undefined : styles.starDim}
+          />
+        );
+        if (index !== beatIndex) return <View key={index}>{icon}</View>; // guard-ok: три фиксированных слота
+        return (
+          <View key={index} style={styles.starBeatWrap}>{/* guard-ok: три фиксированных слота, порядок не меняется */}
+            <Reanimated.View pointerEvents="none" style={[styles.starHalo, haloStyle, { backgroundColor: P.gold }]} />
+            <Reanimated.View style={beatStyle}>{icon}</Reanimated.View>
+          </View>
+        );
+      })}
+    </Reanimated.View>
+  );
+}
+
 /** Метал щита по тиру — бронза для нижних, серебро/золото для остальных. Ровно как в макете. */
 function shieldMetal(tierIndex: number): { a: string; b: string; c: string; edge: string; spark: string } {
-  if (tierIndex === 0) return { a: '#F6DCB4', b: '#C08A50', c: '#6E4520', edge: '#3A2410', spark: '#FFE9C8' };
-  return { a: '#F7FAFD', b: '#C3CDD9', c: '#5D6B7C', edge: '#2A3440', spark: '#FFFFFF' };
+  return tierIndex === 0
+    ? ARENA_RANK_HYBRID_COLORS.bronzeShield
+    : ARENA_RANK_HYBRID_COLORS.lightShield;
 }
 
 /** Эмблема ранга — тот же геральдический щит, что на макете, чистый SVG (не эмодзи). */
@@ -103,6 +203,7 @@ const RankShield = memo(function RankShield({ tierIndex, size = 82 }: { tierInde
 interface RankHybridProps {
   reduceMotion: boolean;
   onDone?: () => void;
+  transitionLabel: string;
 }
 
 // ─── A. «Штамп ранга» (tier_up) — полный гибрид ────────────────────────────
@@ -111,13 +212,16 @@ export interface ArenaTierUpHybridProps extends RankHybridProps {
   tierIndex: number;
   starsAwarded: number;
   chestUnlocked: boolean;
+  /** Звёзды ранга до и после матча — для ряда из трёх пипсов. */
+  fromStars: number;
+  toStars: number;
 }
 
 /** Порядок и число частиц-искр по кромке при ударе — как в макете (10 штук). */
 const DUST_COUNT = 10;
 const DUST_INDICES = Array.from({ length: DUST_COUNT }, (_, i) => i);
 
-function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, reduceMotion, onDone }: ArenaTierUpHybridProps) {
+function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, fromStars, toStars, reduceMotion, onDone, transitionLabel }: ArenaTierUpHybridProps) {
   const P = useTournamentPalette();
   const { lang } = useLang();
   const playSound = useArenaSound();
@@ -194,28 +298,22 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, reduceM
       rimOpacity.value = withSequence(withTiming(1, { duration: 0 }), withTiming(0, { duration: LUM.rimMs, easing: Easing.linear }));
 
       kickerOpacity.value = withDelay(80, withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }));
-      kickerY.value = withDelay(80, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+      kickerY.value = withDelay(80, withSpring(0, SUITE.text));
       const headDelay = CL[2] - CL[1] + 80;
       headlineOpacity.value = withDelay(headDelay, withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }));
-      headlineY.value = withDelay(headDelay, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+      headlineY.value = withDelay(headDelay, withSpring(0, SUITE.text));
       const bodyDelay = CL[3] - CL[1] + 80;
       bodyOpacity.value = withDelay(bodyDelay, withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }));
-      bodyY.value = withDelay(bodyDelay, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+      bodyY.value = withDelay(bodyDelay, withSpring(0, SUITE.text));
 
       const rewardsDelay = CL[3];
       rewardsOpacity.value = withDelay(rewardsDelay, withTiming(1, { duration: 240, easing: Easing.out(Easing.quad) }));
-      rewardsX.value = withDelay(rewardsDelay, withSpring(0, { mass: 0.6, damping: 13, stiffness: 150 }));
+      rewardsX.value = withDelay(rewardsDelay, withSpring(0, SUITE.row));
 
       const ctaDelay = CL[4] + 60;
       ctaOpacity.value = withDelay(ctaDelay, withTiming(1, { duration: 240, easing: Easing.out(Easing.quad) }));
-      ctaY.value = withDelay(ctaDelay, withSpring(0, { mass: 0.6, damping: 13, stiffness: 150 }));
+      ctaY.value = withDelay(ctaDelay, withSpring(0, SUITE.row));
 
-      if (onDone) {
-        const total = ctaDelay + 240 + 200;
-        const t = setTimeout(onDone, total);
-        return () => clearTimeout(t);
-      }
-      return undefined;
     }
 
     embY.value = withDelay(anticipDelay, withSequence(
@@ -262,7 +360,7 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, reduceM
   const dustLayers = useMemo(() => DUST_INDICES.map((i) => {
     const ang = -Math.PI + (i / (DUST_COUNT - 1)) * Math.PI;
     const dist = 42 + (i % 4) * 20;
-    return { key: i, dx: Math.cos(ang) * dist, dy: Math.sin(ang) * dist * 0.5 + 38 };
+    return { key: i, dx: Math.cos(ang) * dist, dy: -(46 + (i % 4) * 14) };
   }), []);
 
   const tierName = arenaText(lang, TIER_COPY[ARENA_TIER_KEYS[Math.max(0, Math.min(7, tierIndex))]]);
@@ -295,6 +393,17 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, reduceM
           </View>
         </Reanimated.View>
         <Reanimated.Text style={[styles.headline, headlineStyle, { color: P.text }]}>{tierName}</Reanimated.Text>
+        <Text style={[styles.transitionText, { color: P.text }]}>{transitionLabel}</Text>
+        {/* Звезда победы бьёт в такт удару щита: третья встаёт — ряд
+            перезаряжается под новый ранг. */}
+        <RankStarsBeat
+          fromFilled={fromStars}
+          toFilled={toStars}
+          direction="up"
+          startDelayMs={LUM.ladder[2] + 140 + CHK.anticipMs + CHK.fallMs + 140}
+          reduceMotion={reduceMotion}
+          size={22}
+        />
         <Reanimated.Text style={[styles.body, bodyStyle, { color: P.muted }]}>
           {arenaText(lang, 'tierUpBody')}
         </Reanimated.Text>
@@ -305,9 +414,9 @@ function ArenaTierUpHybridImpl({ tierIndex, starsAwarded, chestUnlocked, reduceM
           ) : null}
         </Reanimated.View>
         <Reanimated.View style={ctaStyle}>
-          <View style={[styles.cta, { backgroundColor: P.gold }]}>
-            <Text style={[styles.ctaText, { color: '#241A02' }]}>{arenaText(lang, 'tierUpCta')}</Text>
-          </View>
+          <DuoPressable onPress={onDone} edgeColor={P.card} edgeHeight={4} style={[styles.cta, { backgroundColor: P.gold }]}>
+            <Text style={[styles.ctaText, { color: ARENA_RANK_HYBRID_COLORS.tierUpCtaText }]}>{arenaText(lang, 'tierUpCta')}</Text>
+          </DuoPressable>
         </Reanimated.View>
       </Reanimated.View>
     </View>
@@ -319,7 +428,10 @@ const DustSpark = memo(function DustSpark({ dx, dy, opacity, color }: {
 }) {
   const style = useAnimatedStyle(() => ({
     opacity: opacity.value,
-    transform: [{ translateX: opacity.value > 0 ? dx * (1 - opacity.value + 0.001) : dx }, { translateY: dy }],
+    transform: [
+      { translateX: opacity.value > 0 ? dx * (1 - opacity.value + 0.001) : dx },
+      { translateY: opacity.value > 0 ? dy * (1 - opacity.value + 0.001) : dy },
+    ],
   }));
   return <Reanimated.View pointerEvents="none" style={[styles.dust, style, { backgroundColor: color }]} />;
 });
@@ -334,8 +446,8 @@ function RewardRow({ icon, color, title, sub, P }: {
         <Ionicons name={icon} size={16} color={color} />
       </View>
       <View style={{ flex: 1 }}>
-        <Text numberOfLines={1} style={[styles.rewardTitle, { color: P.text }]}>{title}</Text>
-        <Text numberOfLines={1} style={[styles.rewardSub, { color: P.muted }]}>{sub}</Text>
+        <Text style={[styles.rewardTitle, { color: P.text }]}>{title}</Text>
+        <Text style={[styles.rewardSub, { color: P.muted }]}>{sub}</Text>
       </View>
     </View>
   );
@@ -349,11 +461,16 @@ export interface ArenaRankStepHybridProps extends RankHybridProps {
   tierIndex: number;
   fromDivision: 1 | 2 | 3;
   toDivision: 1 | 2 | 3;
+  direction: 'up' | 'down';
+  /** Звёзды ранга до и после матча — для ряда из трёх пипсов. */
+  fromStars: number;
+  toStars: number;
 }
 
-function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, reduceMotion, onDone }: ArenaRankStepHybridProps) {
+function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, direction, fromStars, toStars, reduceMotion, onDone, transitionLabel }: ArenaRankStepHybridProps) {
   const P = useTournamentPalette();
   const { lang } = useLang();
+  const playSound = useArenaSound();
 
   const bannerOpacity = useSharedValue(0);
   const bannerY = useSharedValue(14);
@@ -370,6 +487,8 @@ function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, reduceMo
       bannerOpacity.value = 1; bannerY.value = 0;
       sweepOpacity.value = 0;
       setDisplayDivision(toDivision);
+      playSound(direction === 'up' ? 'rankUp' : 'rankDown');
+      void (direction === 'up' ? hapticLightImpact() : hapticWarning());
       return;
     }
 
@@ -387,14 +506,15 @@ function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, reduceMo
       setDisplayDivision(toDivision);
       numOpacity.value = 0.4;
       numOpacity.value = withTiming(1, { duration: 180, easing: Easing.out(Easing.quad) });
-      numScale.value = withSequence(withTiming(1.06, { duration: 0 }), withSpring(1, { mass: 0.55, damping: 14, stiffness: 210 }));
-      void hapticLightImpact();
+      numScale.value = withSequence(withTiming(1.06, { duration: 0 }), withSpring(1, SUITE.pulse));
+      playSound(direction === 'up' ? 'rankUp' : 'rankDown');
+      void (direction === 'up' ? hapticLightImpact() : hapticWarning());
     }, tickAt);
 
     const exitAt = 2050;
     const exitTimer = setTimeout(() => {
-      bannerOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.in(Easing.quad) });
-      bannerY.value = withTiming(-10, { duration: LUM.exitMs, easing: Easing.in(Easing.quad) }, (finished) => {
+      bannerOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.out(Easing.quad) });
+      bannerY.value = withTiming(-10, { duration: LUM.exitMs, easing: Easing.out(Easing.quad) }, (finished) => {
         if (finished && onDone) runOnJS(onDone)();
       });
     }, exitAt);
@@ -407,7 +527,7 @@ function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, reduceMo
       cancelAnimation(numScale); cancelAnimation(numOpacity);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduceMotion, tierIndex, fromDivision, toDivision]);
+  }, [direction, fromDivision, playSound, reduceMotion, tierIndex, toDivision]);
 
   const bannerStyle = useAnimatedStyle(() => ({ opacity: bannerOpacity.value, transform: [{ translateY: bannerY.value }] }));
   const sweepStyle = useAnimatedStyle(() => ({ opacity: sweepOpacity.value, transform: [{ translateX: sweepX.value }] }));
@@ -422,7 +542,19 @@ function ArenaRankStepHybridImpl({ tierIndex, fromDivision, toDivision, reduceMo
       </View>
       <View style={styles.rankBannerText}>
         <Text style={[styles.rankBannerTitle, { color: P.text }]}>{tierName} {DIVISION_ROMAN[toDivision]}</Text>
-        <Text style={[styles.rankBannerSub, { color: P.muted }]}>{arenaText(lang, 'rankStepBody')}</Text>
+        <Text style={[styles.rankBannerSub, { color: P.muted }]}>
+          {arenaText(lang, direction === 'up' ? 'resultRankUp' : 'resultRankDown')}
+        </Text>
+        <Text style={[styles.rankBannerSub, { color: P.text }]}>{transitionLabel}</Text>
+        {/* Звезда бьёт в такт тику номера деления. */}
+        <RankStarsBeat
+          fromFilled={fromStars}
+          toFilled={toStars}
+          direction={direction}
+          startDelayMs={LUM.ladder[2] + 250}
+          reduceMotion={reduceMotion}
+          size={15}
+        />
       </View>
       <Reanimated.Text style={[numStyle, styles.rankBannerNum, { color: P.gold }]}>
         {DIVISION_ROMAN[displayDivision]}
@@ -445,19 +577,23 @@ export const ArenaRankStepHybrid = memo(ArenaRankStepHybridImpl);
 export interface ArenaTierDownHybridProps extends RankHybridProps {
   tierIndex: number;
   starsSaved: number;
+  /** Звёзды ранга до и после матча — для ряда из трёх пипсов. */
+  fromStars: number;
+  toStars: number;
   onRevenge?: () => void;
 }
 
-function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, onRevenge }: ArenaTierDownHybridProps) {
+function ArenaTierDownHybridImpl({ tierIndex, starsSaved, fromStars, toStars, reduceMotion, onDone, onRevenge, transitionLabel }: ArenaTierDownHybridProps) {
   const P = useTournamentPalette();
   const { lang } = useLang();
   const playSound = useArenaSound();
-  const BRONZE = '#C08A50';
+  const BRONZE = ARENA_RANK_HYBRID_COLORS.bronze;
 
   const bgOpacity = useSharedValue(0);
   const veilOpacity = useSharedValue(0);
   const cardOpacity = useSharedValue(0);
   const cardY = useSharedValue(-12);
+  const cardX = useSharedValue(0);
   const embOpacity = useSharedValue(0);
   const embScale = useSharedValue(0.94);
   const kickerOpacity = useSharedValue(0);
@@ -469,19 +605,20 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, 
   const rewardsOpacity = useSharedValue(0);
   const ctaOpacity = useSharedValue(0);
   const ctaY = useSharedValue(8);
+  const dustOpacity = useSharedValue(0);
 
   useEffect(() => {
     const L = LUM.ladder;
 
     if (reduceMotion) {
       bgOpacity.value = 1; veilOpacity.value = 1;
-      cardOpacity.value = 1; cardY.value = 0;
+      cardOpacity.value = 1; cardY.value = 0; cardX.value = 0;
       embOpacity.value = 1; embScale.value = 1;
       kickerOpacity.value = 1; kickerY.value = 0;
       headlineOpacity.value = 1; headlineY.value = 0;
       bodyOpacity.value = 1; bodyY.value = 0;
       rewardsOpacity.value = 1;
-      ctaOpacity.value = 1; ctaY.value = 0;
+      ctaOpacity.value = 1; ctaY.value = 0; dustOpacity.value = 0;
       playSound('rankDown');
       void hapticWarning();
       return;
@@ -498,6 +635,16 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, 
 
     embOpacity.value = withDelay(L[2], withTiming(1, { duration: 420, easing: Easing.out(Easing.quad) }));
     embScale.value = withDelay(L[2], withSpring(1, LUM.settle));
+    cardX.value = withDelay(L[2], withSequence(
+      withTiming(-4, { duration: 54 }),
+      withTiming(4, { duration: 72 }),
+      withTiming(-2, { duration: 62 }),
+      withSpring(0, LUM.settle),
+    ));
+    dustOpacity.value = withDelay(L[2], withSequence(
+      withTiming(0.42, { duration: 0 }),
+      withTiming(0, { duration: 720, easing: Easing.linear }),
+    ));
 
     kickerOpacity.value = withDelay(L[2], withTiming(1, { duration: 300, easing: Easing.out(Easing.quad) }));
     kickerY.value = withDelay(L[2], withSpring(0, LUM.settle));
@@ -511,16 +658,45 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, 
     ctaOpacity.value = withDelay(L[5], withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }));
     ctaY.value = withDelay(L[5], withSpring(0, LUM.settle));
 
-    if (onDone) {
-      const t = setTimeout(onDone, L[5] + 260 + 200);
-      return () => clearTimeout(t);
-    }
-    return undefined;
-  }, [reduceMotion, tierIndex]);
+    return () => {
+      cancelAnimation(bgOpacity); cancelAnimation(veilOpacity);
+      cancelAnimation(cardOpacity); cancelAnimation(cardY); cancelAnimation(cardX);
+      cancelAnimation(embOpacity); cancelAnimation(embScale); cancelAnimation(dustOpacity);
+      cancelAnimation(kickerOpacity); cancelAnimation(kickerY);
+      cancelAnimation(headlineOpacity); cancelAnimation(headlineY);
+      cancelAnimation(bodyOpacity); cancelAnimation(bodyY);
+      cancelAnimation(rewardsOpacity); cancelAnimation(ctaOpacity); cancelAnimation(ctaY);
+    };
+  }, [
+    bgOpacity,
+    bodyOpacity,
+    bodyY,
+    cardOpacity,
+    cardX,
+    cardY,
+    ctaOpacity,
+    ctaY,
+    dustOpacity,
+    embOpacity,
+    embScale,
+    headlineOpacity,
+    headlineY,
+    kickerOpacity,
+    kickerY,
+    onDone,
+    playSound,
+    reduceMotion,
+    rewardsOpacity,
+    tierIndex,
+    veilOpacity,
+  ]);
 
   const bgStyle = useAnimatedStyle(() => ({ opacity: bgOpacity.value }));
   const veilStyle = useAnimatedStyle(() => ({ opacity: veilOpacity.value }));
-  const cardStyle = useAnimatedStyle(() => ({ opacity: cardOpacity.value, transform: [{ translateY: cardY.value }] }));
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: cardOpacity.value,
+    transform: [{ translateX: cardX.value }, { translateY: cardY.value }],
+  }));
   const embStyle = useAnimatedStyle(() => ({ opacity: embOpacity.value, transform: [{ scale: embScale.value }] }));
   const kickerStyle = useAnimatedStyle(() => ({ opacity: kickerOpacity.value, transform: [{ translateY: kickerY.value }] }));
   const headlineStyle = useAnimatedStyle(() => ({ opacity: headlineOpacity.value, transform: [{ translateY: headlineY.value }] }));
@@ -529,21 +705,41 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, 
   const ctaStyle = useAnimatedStyle(() => ({ opacity: ctaOpacity.value, transform: [{ translateY: ctaY.value }] }));
 
   const tierName = arenaText(lang, TIER_COPY[ARENA_TIER_KEYS[Math.max(0, Math.min(7, tierIndex))]]);
+  const dustLayers = useMemo(() => DUST_INDICES.slice(0, 8).map((i) => ({
+    key: i,
+    dx: ((i % 4) - 1.5) * 24,
+    dy: 48 + (i % 3) * 16,
+  })), []);
 
   return (
     <View style={styles.overlayRoot} pointerEvents="box-none">
-      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, bgStyle, { backgroundColor: '#00000066' }]} />
+      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, bgStyle, { backgroundColor: ARENA_RANK_HYBRID_COLORS.scrim }]} />
       <Reanimated.View pointerEvents="none" style={[styles.veil, veilStyle, { backgroundColor: BRONZE }]} />
       <Reanimated.View style={[styles.card, cardStyle, { backgroundColor: P.card }, noAndroidOutline]}>
-        <Reanimated.View style={embStyle}>
-          <RankShield tierIndex={tierIndex} />
-        </Reanimated.View>
+        <View style={styles.embWrap}>
+          {dustLayers.map((d) => (
+            <DustSpark key={d.key} dx={d.dx} dy={d.dy} opacity={dustOpacity} color={BRONZE} />
+          ))}
+          <Reanimated.View style={embStyle}>
+            <RankShield tierIndex={tierIndex} />
+          </Reanimated.View>
+        </View>
         <Reanimated.View style={kickerStyle}>
           <View style={[styles.pill, { backgroundColor: BRONZE + '26' }]}>
             <Text style={[styles.pillText, { color: BRONZE }]}>{arenaText(lang, 'resultTierDown')}</Text>
           </View>
         </Reanimated.View>
         <Reanimated.Text style={[styles.headline, headlineStyle, { color: P.text }]}>{tierName}</Reanimated.Text>
+        <Text style={[styles.transitionText, { color: P.text }]}>{transitionLabel}</Text>
+        {/* Потерянная звезда гаснет — ряд перезаряжается под нижний ранг. */}
+        <RankStarsBeat
+          fromFilled={fromStars}
+          toFilled={toStars}
+          direction="down"
+          startDelayMs={LUM.ladder[2] + 220}
+          reduceMotion={reduceMotion}
+          size={22}
+        />
         <Reanimated.Text style={[styles.body, bodyStyle, { color: P.muted }]}>
           {arenaText(lang, 'tierDownBody')}
         </Reanimated.Text>
@@ -570,6 +766,94 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, 
 
 export const ArenaTierDownHybrid = memo(ArenaTierDownHybridImpl);
 
+export type ArenaRankChangeHybridProps = Readonly<{
+  transition: Exclude<ArenaRankAnnounce, { kind: 'none' }>;
+  starsAwarded: number;
+  chestUnlocked: boolean;
+  onDone: () => void;
+  onRevenge?: () => void;
+}>;
+
+function ArenaRankChangeHybridBase({
+  transition,
+  starsAwarded,
+  chestUnlocked,
+  onDone,
+  onRevenge,
+}: ArenaRankChangeHybridProps) {
+  const P = useTournamentPalette();
+  const { lang } = useLang();
+  const reduceMotion = useReduceMotion();
+  const rankLabel = (rank: typeof transition.before): string => {
+    const tier = arenaText(lang, TIER_COPY[ARENA_TIER_KEYS[rank.tierIndex]]);
+    return `${tier} ${DIVISION_ROMAN[rank.division]}`;
+  };
+  const transitionLabel = `${rankLabel(transition.before)} → ${rankLabel(transition.after)}`;
+  const eventLabel = arenaText(lang,
+    transition.kind === 'tier_up' ? 'resultTierUp'
+      : transition.kind === 'tier_down' ? 'resultTierDown'
+        : transition.kind === 'rank_up' ? 'resultRankUp' : 'resultRankDown');
+  const announcement = `${eventLabel}. ${transitionLabel}`;
+
+  return (
+    <View
+      style={styles.overlayRoot}
+      pointerEvents="box-none"
+      accessibilityViewIsModal
+      importantForAccessibility="yes"
+    >
+      <Text style={styles.srOnly} accessibilityLiveRegion="assertive">{announcement}</Text>
+      {transition.kind === 'tier_up' ? (
+        <ArenaTierUpHybrid
+          tierIndex={transition.after.tierIndex}
+          starsAwarded={starsAwarded}
+          chestUnlocked={chestUnlocked}
+          fromStars={transition.before.starsInRank}
+          toStars={transition.after.starsInRank}
+          transitionLabel={transitionLabel}
+          reduceMotion={reduceMotion}
+          onDone={onDone}
+        />
+      ) : transition.kind === 'tier_down' ? (
+        <ArenaTierDownHybrid
+          tierIndex={transition.after.tierIndex}
+          starsSaved={starsAwarded}
+          fromStars={transition.before.starsInRank}
+          toStars={transition.after.starsInRank}
+          transitionLabel={transitionLabel}
+          reduceMotion={reduceMotion}
+          onDone={onDone}
+          onRevenge={onRevenge}
+        />
+      ) : (
+        <ArenaRankStepHybrid
+          tierIndex={transition.after.tierIndex}
+          fromDivision={transition.before.division}
+          toDivision={transition.after.division}
+          direction={transition.kind === 'rank_up' ? 'up' : 'down'}
+          fromStars={transition.before.starsInRank}
+          toStars={transition.after.starsInRank}
+          transitionLabel={transitionLabel}
+          reduceMotion={reduceMotion}
+          onDone={onDone}
+        />
+      )}
+      <PressableHybrid
+        variant="icon"
+        accessibilityRole="button"
+        accessibilityLabel={arenaText(lang, 'tierUpCta')}
+        onPress={onDone}
+        style={styles.closeHitbox}
+        contentStyle={[styles.closeButton, { backgroundColor: P.elev }]}
+      >
+        <Ionicons name="close" size={23} color={P.text} />
+      </PressableHybrid>
+    </View>
+  );
+}
+
+export const ArenaRankChangeHybrid = memo(ArenaRankChangeHybridBase);
+
 const styles = StyleSheet.create({
   overlayRoot: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' },
   bloom: { position: 'absolute', width: 260, height: 260, borderRadius: 130, opacity: 0 },
@@ -579,35 +863,44 @@ const styles = StyleSheet.create({
     alignItems: 'center', gap: 4,
     // Перф-потолок проекта — shadowRadius ~16 (см. androidGlow.ts); elevation
     // безопасен, т.к. фон карточки непрозрачный (P.card задаётся инлайн).
-    shadowColor: '#000', shadowOpacity: 0.32, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 10,
+    shadowColor: ARENA_RANK_HYBRID_COLORS.shadow, shadowOpacity: 0.32, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 10,
   },
   embWrap: { width: 96, height: 108, alignItems: 'center', justifyContent: 'center', marginBottom: 6 },
   ring: { position: 'absolute', width: 92, height: 92, borderRadius: 46, alignItems: 'center', justifyContent: 'center' },
   ringHole: { width: 88, height: 88, borderRadius: 44 },
   rimGlow: { position: 'absolute', width: 108, height: 108, borderRadius: 54, opacity: 0 },
   dust: { position: 'absolute', width: 5, height: 5, borderRadius: 3, top: 50 },
+  starsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 8 },
+  starDim: { opacity: 0.45 },
+  starBeatWrap: { alignItems: 'center', justifyContent: 'center' },
+  starHalo: { position: 'absolute', width: 30, height: 30, borderRadius: 15, opacity: 0 },
   pill: { paddingHorizontal: 12, paddingVertical: 5, borderRadius: 999, marginBottom: 6 },
   pillText: { fontSize: 11, fontWeight: '700', letterSpacing: 0.6, textTransform: 'uppercase' },
   headline: { fontSize: 24, fontWeight: '700', letterSpacing: -0.4 },
-  body: { fontSize: 14, fontWeight: '600', textAlign: 'center', marginTop: 2, marginBottom: 10, maxWidth: 300 },
+  transitionText: { fontSize: 13, fontWeight: '800', textAlign: 'center', marginTop: 2 },
+  body: { fontSize: 14, fontWeight: '700', textAlign: 'center', marginTop: 2, marginBottom: 10, maxWidth: 300 },
   rewardsCol: { width: '100%', gap: 8, marginBottom: 14 },
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, padding: 10 },
   rewardIcon: { width: 30, height: 30, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   rewardTitle: { fontSize: 13, fontWeight: '700' },
-  rewardSub: { fontSize: 11, fontWeight: '600', marginTop: 1 },
+  rewardSub: { fontSize: 11, fontWeight: '700', marginTop: 1 },
   cta: { width: '100%', minHeight: 50, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   ctaQuiet: {},
   ctaText: { fontSize: 15, fontWeight: '700' },
 
   rankBanner: {
+    position: 'absolute', left: 18, right: 18, top: 96,
     flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 20, padding: 12,
     overflow: 'hidden',
-    shadowColor: '#000', shadowOpacity: 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 6,
+    shadowColor: ARENA_RANK_HYBRID_COLORS.shadow, shadowOpacity: 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 6,
   },
   rankBannerEmb: { width: 38, height: 42, alignItems: 'center', justifyContent: 'center' },
   rankBannerText: { flex: 1 },
   rankBannerTitle: { fontSize: 15, fontWeight: '700' },
-  rankBannerSub: { fontSize: 11, fontWeight: '600', marginTop: 1 },
+  rankBannerSub: { fontSize: 11, fontWeight: '700', marginTop: 1 },
   rankBannerNum: { fontSize: 21, fontWeight: '700', letterSpacing: -0.4, minWidth: 30, textAlign: 'right' },
   sweepMask: { position: 'absolute', top: 0, bottom: 0, width: 70 },
+  closeHitbox: { position: 'absolute', right: 18, top: 48, width: 44, height: 44, zIndex: 3, alignSelf: 'auto' },
+  closeButton: { width: 44, height: 44, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  srOnly: { position: 'absolute', width: 1, height: 1, opacity: 0 },
 });

@@ -21,8 +21,11 @@ import type { ArenaKeyValueStore } from './match_store';
  * и активный матч живут секундами, и старое значение здесь хуже пустого.
  */
 
-export const ARENA_HOME_CACHE_KEY = 'arena.home.warm.v1';
-export const ARENA_HOME_CACHE_SCHEMA = 'arena-home-warm.v1' as const;
+// зачем: v2 — переход на звёздную лестницу (2026-08-23). Снимок v1 хранит
+// рейтинг в старых очках (сотни RP) и на звёздной шкале нарисовал бы
+// «Легенду» первым кадром; старый ключ просто перестаёт читаться.
+export const ARENA_HOME_CACHE_KEY = 'arena.home.warm.v2';
+export const ARENA_HOME_CACHE_SCHEMA = 'arena-home-warm.v2' as const;
 /** Дольше суток снимок не показывается: сезон и ранг за это время меняются. */
 export const ARENA_HOME_CACHE_TTL_MS = 24 * 60 * 60 * 1_000;
 
@@ -66,6 +69,7 @@ export function stripExpansionDaily(expansion: Record<string, unknown> | null): 
 }
 
 let warm: ArenaHomeWarm | null = null;
+const pendingWrites = new WeakMap<ArenaKeyValueStore, Promise<void>>();
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -117,19 +121,33 @@ export function arenaRememberHomeWarm(input: Readonly<{
   wallNowMs: number;
   store?: ArenaKeyValueStore;
 }>): ArenaHomeWarm {
+  const previous = warm;
+  const savedDayKey = arenaWarmDayKey(input.wallNowMs);
+  const sameWarmDay = previous?.savedDayKey === savedDayKey;
   const next: ArenaHomeWarm = {
     schemaVersion: ARENA_HOME_CACHE_SCHEMA,
     savedAtWallMs: Math.trunc(input.wallNowMs),
-    savedDayKey: arenaWarmDayKey(input.wallNowMs),
-    home: input.home === undefined ? stripDailyCounters(warm?.home ?? null) : arenaHomeWarmSanitize(input.home),
+    savedDayKey,
+    home: input.home === undefined
+      ? (sameWarmDay ? previous?.home ?? null : stripDailyCounters(previous?.home ?? null))
+      : arenaHomeWarmSanitize(input.home),
     expansion: input.expansion === undefined
-      ? stripExpansionDaily(warm?.expansion ?? null)
+      ? (sameWarmDay ? previous?.expansion ?? null : stripExpansionDaily(previous?.expansion ?? null))
       : (isRecord(input.expansion) ? input.expansion : null),
   };
   warm = next;
   if (input.store) {
-    // Ошибка записи глотается: тёплый снимок — удобство, а не данные.
-    void input.store.setItem(ARENA_HOME_CACHE_KEY, JSON.stringify(next)).catch(() => {});
+    const store = input.store;
+    const raw = JSON.stringify(next);
+    const write = () => store.setItem(ARENA_HOME_CACHE_KEY, raw).catch(() => {});
+    const previousWrite = pendingWrites.get(store);
+    // The first write starts immediately. Later writes for the same store wait
+    // their turn so an older slow write cannot overwrite a newer snapshot.
+    const currentWrite = previousWrite ? previousWrite.then(write, write) : write();
+    pendingWrites.set(store, currentWrite);
+    void currentWrite.finally(() => {
+      if (pendingWrites.get(store) === currentWrite) pendingWrites.delete(store);
+    }).catch(() => {});
   }
   return next;
 }

@@ -62,6 +62,7 @@ import {
   ARENA_V2_COLLECTIONS,
   ARENA_V2_COUNTDOWN_MS,
   ARENA_V2_INVITE_TTL_MS,
+  ARENA_V2_RENDEZVOUS_MS,
   ARENA_V2_MATCH_TTL_MS,
   ARENA_V2_MAX_TASK_DOC_READS,
   arenaModeOrder,
@@ -84,12 +85,12 @@ import {
   arenaDifficultyPlan,
   arenaAcceptanceOpen,
   buildArenaBotBlueprint,
-  arenaRankIndexFromRp,
+  arenaRankIndexFromStars,
   arenaObservedElapsedMs,
   arenaRanksCompatible,
   ARENA_DAILY_REWARD_MATCHES,
   arenaRareSpin,
-  arenaRpDelta,
+  arenaStarDeltaForOutcome,
   arenaSeasonLevelUnlocked,
   arenaSeasonReward,
   arenaSeasonStars,
@@ -103,6 +104,8 @@ import {
   toArenaPublicTask,
   validateArenaPrivateEnvelope,
 } from './arena_v2_core';
+import { buildUserNotification, userNotificationRef } from './user_notifications';
+import { sendExpoPush } from './friend_gifts';
 import { arenaBotAvatar, arenaBotDisplayName } from './arena_bot_identity';
 import { arenaConfigProblems } from './arena_config_contract';
 import {
@@ -191,6 +194,8 @@ type MatchPrivate = ArenaV2PrivateEnvelope & {
   pairLimitCommitted?: boolean;
   rewardsByStableUid?: Record<string, Json>;
   settledAtMs?: number;
+  /** DEV practice matches run the real engine but must never touch progression. */
+  progressionDisabled?: boolean;
   runKind?: 'match' | 'rival';
   seriesId?: string;
   gameIndex?: number;
@@ -242,6 +247,7 @@ function arenaDuelSlimOutcomes(outcomes: readonly ArenaTaskOutcome[]): ArenaTask
 const db = admin.firestore();
 const MAX_SPEED_ATTEMPT_IDS = 40;
 const CLEANUP_BATCH_LIMIT = 100;
+const ARENA_V2_EXPIRED_INVITE_RETENTION_MS = 7 * 24 * 60 * 60 * 1_000;
 let configCache: { loadedAtMs: number; data: Json } | null = null;
 
 function nowMs(): number {
@@ -355,6 +361,23 @@ function memberMarker(matchId: string, authUid: string, seatId: 'a' | 'b', now: 
   };
 }
 
+function inviteParticipantIdentityCurrent(
+  user: Json,
+  authLink: Json,
+  stableUid: string,
+  authUid: string,
+): boolean {
+  if (!stableUid || !authUid) return false;
+  if (user.hidden === true || user.deleted === true || user.banned === true) return false;
+  const userAuthUid = String(user.firebaseAuthUid ?? '').trim();
+  const linkedStableUid = String(authLink.stable_id ?? '').trim();
+  if (userAuthUid && userAuthUid !== authUid) return false;
+  if (linkedStableUid && linkedStableUid !== stableUid) return false;
+  // Legacy anonymous identities may have no auth_links document yet. Their
+  // direct stableUid === authUid ownership remains a valid ownership proof.
+  return userAuthUid === authUid || linkedStableUid === stableUid || stableUid === authUid;
+}
+
 async function actor(request: { auth?: { uid?: string } }): Promise<ArenaActor> {
   const authUid = String(request.auth?.uid ?? '').trim();
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -437,12 +460,23 @@ function playerSnapshot(stableUid: string, user: Json, profile: Json): Json {
   };
 }
 
+/**
+ * Маркер схемы рейтинга. Профиль без него хранит СТАРЫЕ очки ранга (RP,
+ * 100 на деление) — владелец (2026-08-23) велел полный сброс всем при
+ * переходе на звёздную лестницу, поэтому такой рейтинг читается нулём.
+ * Пожизненный лучший тир при этом НЕ трогаем: по нему уже выданы
+ * одноразовые награды, сброс выдал бы их второй раз.
+ */
+const ARENA_RANK_SCHEMA = 'arena-stars-v1';
+
 function profileDefaults(stableUid: string, data?: Json): Json {
-  const rating = Math.max(0, Math.trunc(Number(data?.rating ?? 0)));
+  const migrated = data?.rankSchema === ARENA_RANK_SCHEMA;
+  const rating = migrated ? Math.max(0, Math.trunc(Number(data?.rating ?? 0))) : 0;
   return {
     uid: stableUid,
     rating,
-    rank: arenaRankIndexFromRp(rating),
+    rankSchema: ARENA_RANK_SCHEMA,
+    rank: arenaRankIndexFromStars(rating),
     wins: Math.max(0, Math.trunc(Number(data?.wins ?? 0))),
     losses: Math.max(0, Math.trunc(Number(data?.losses ?? 0))),
     draws: Math.max(0, Math.trunc(Number(data?.draws ?? 0))),
@@ -556,6 +590,7 @@ function makeMatch(input: {
   now: number;
   bot?: boolean;
   botSeed?: string;
+  progressionDisabled?: boolean;
 }): { publicDoc: Json; privateDoc: MatchPrivate } {
   const participantStableUids = [String(input.left.uid), String(input.right.uid)];
   const participantAuthUids = [input.leftAuthUid, ...(input.rightAuthUid ? [input.rightAuthUid] : [])];
@@ -585,6 +620,7 @@ function makeMatch(input: {
     partner: configCache?.data.enabled === true && configCache?.data.arenaExpansionEnabled === true
       && configCache?.data.arenaPartnerEnabled === true,
   };
+  if (input.progressionDisabled === true) privateDoc.progressionDisabled = true;
   if (input.bot) {
     if (!input.botSeed) throw new HttpsError('internal', 'arena_bot_seed_missing');
     privateDoc.botSeed = input.botSeed;
@@ -623,7 +659,7 @@ function makeMatch(input: {
       // Клиент всегда видит 'human'. Настоящий тип соперника хранится только в
       // приватном документе: он нужен экономике и аналитике, но не пользователю.
       opponentKind: 'human',
-      /** Длина матча: быстрый — 5 заданий, остальные — 10. */
+      /** Длина матча: быстрый — 8 заданий, остальные — 10. */
       taskCount: arenaTaskCount(input.mode),
       players: publicPlayers,
       acceptedBy,
@@ -961,6 +997,7 @@ async function settleMatch(
 
   const expansionRunKind = privateDoc.runKind ?? 'match';
   const expansionEligibility = arenaRunEligibility(expansionRunKind, String(match.mode));
+  const persistentProgressionEnabled = privateDoc.progressionDisabled !== true;
   const rivalSeriesRef = expansionRunKind === 'rival' && privateDoc.seriesId
     ? db.collection(ARENA_EXPANSION_COLLECTIONS.series).doc(privateDoc.seriesId) : null;
   const rivalSeriesSnap = rivalSeriesRef ? await tx.get(rivalSeriesRef) : null;
@@ -979,7 +1016,8 @@ async function settleMatch(
     task: TournamentTask;
     taskIndex: number;
   }>>();
-  if (privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery && !forcedWinnerStableUid) {
+  if (persistentProgressionEnabled && privateDoc.expansionFlags?.mastery === true
+    && expansionEligibility.mastery && !forcedWinnerStableUid) {
     for (const entry of refs) {
       const evidence = await Promise.all(privateDoc.tasks.map(async (task, taskIndex) => {
         const ref = db.collection('users').doc(entry.uid)
@@ -1060,7 +1098,7 @@ async function settleMatch(
     const dailyRewardMatchesBefore = sameDay
       ? Math.max(0, Math.trunc(Number(seasonData.dailyRewardMatches
         ?? seasonData.dailyEligibleMatches ?? 0))) : 0;
-    const starsEarned = expansionEligibility.baseStars ? arenaSeasonStars({
+    const starsEarned = persistentProgressionEnabled && expansionEligibility.baseStars ? arenaSeasonStars({
       mode: match.mode,
       rawStars: privateDoc.totals[entry.uid]?.rawSeasonStars ?? 0,
       eligibleMatchIndex,
@@ -1073,7 +1111,8 @@ async function settleMatch(
     const correctAnswers = Math.max(0, Math.trunc(Number(privateDoc.totals[entry.uid]?.correct ?? 0)));
     // Серии соперничеств сезонный документ не пишут, поэтому и опыт там не
     // начисляется: потолок было бы негде хранить.
-    const xpReward = expansionRunKind !== 'rival' && arenaXpEligible(entry.uid)
+    const xpReward = expansionRunKind !== 'rival'
+      && persistentProgressionEnabled && arenaXpEligible(entry.uid)
       ? arenaMatchXpReward({
         mode: String(match.mode) as ArenaXpMode,
         correctAnswers,
@@ -1092,14 +1131,12 @@ async function settleMatch(
      * тир после того, как пакет собран, уже поздно.
      */
     const profileNow = profileDefaults(entry.uid, existing.profile);
-    const opponentUidNow = entry.uid === leftUid ? rightUid : leftUid;
-    const opponentSeatNow = privateDoc.seatByStableUid[opponentUidNow];
-    const opponentDivisionNow = Number((match.players as Json[])
-      .find((player) => player.uid === opponentSeatNow)?.rank ?? profileNow.rank);
-    const ratingDeltaNow = expansionEligibility.rating && match.mode === 'ranked'
-      ? arenaRpDelta(profileNow.rank, opponentDivisionNow, outcome) : 0;
+    // зачем: владелец (2026-08-23) — звёздная лестница: победа +1, поражение
+    // −1, ничья 0, без таблицы по разнице дивизионов. Соперник (человек или
+    // бот, подсунутый рейтинговым подбором) на дельту не влияет.
+    const ratingEligibleNow = expansionEligibility.rating && match.mode === 'ranked';
     const storedRankState: ArenaRankState = {
-      rp: profileNow.rating,
+      stars: profileNow.rating,
       seasonBestTierIndex: Math.max(0, Math.trunc(Number(profileNow.seasonBestTierIndex ?? 0))),
       // Пожизненный лучший тир: по нему выдаются награды, поэтому он не
       // обнуляется ни сбросом сезона, ни откатом.
@@ -1117,10 +1154,10 @@ async function settleMatch(
     const rankStateBefore = String(profileNow.rankSeasonId ?? '') !== season.seasonId
       ? arenaSoftReset(storedRankState)
       : storedRankState;
-    const rankChange = match.mode === 'ranked'
-      ? arenaApplyRankOutcome({ state: rankStateBefore, outcome, rpDelta: ratingDeltaNow })
-      // Нерейтинговый матч ранга не касается вовсе: ни очков, ни щита, ни серии.
-      : { next: rankStateBefore, rpDelta: 0, event: 'none' as const, tierBefore: 0, tierAfter: 0 };
+    const rankChange = ratingEligibleNow
+      ? arenaApplyRankOutcome({ state: rankStateBefore, outcome })
+      // Нерейтинговый матч ранга не касается вовсе: ни звёзд, ни тира.
+      : { next: rankStateBefore, starsDelta: 0, event: 'none' as const, tierBefore: 0, tierAfter: 0 };
 
     const userSnap = userSnapByUid.get(entry.uid);
     const xpPatch = userSnap && xpEarned > 0
@@ -1168,7 +1205,7 @@ async function settleMatch(
       })
       : [];
 
-    const prepared = userSnap && starOps.length
+    const prepared = persistentProgressionEnabled && userSnap && starOps.length
       ? await prepareStarOperations(tx, db, entry.uid, userSnap, starOps, {
         nowMs: now,
         activeSeasonId: season.seasonId,
@@ -1221,8 +1258,8 @@ async function settleMatch(
      * `arena_rank_parity`.
      */
     const rankChange = settle.rankChange;
-    const ratingDelta = rankChange.rpDelta;
-    const ratingAfter = rankChange.next.rp;
+    const ratingDelta = rankChange.starsDelta;
+    const ratingAfter = rankChange.next.stars;
     const { eligibleMatchIndex, dailyRewardMatchesBefore, sameDay, dailyStarsBefore, starsEarned } = settle;
     const starsAfter = Math.max(0, Math.trunc(Number(seasonData.stars ?? 0))) + starsEarned;
     const spinKey = String(process.env.ARENA_V2_SPIN_HMAC_KEY ?? '').trim();
@@ -1263,14 +1300,17 @@ async function settleMatch(
     const nextProfile = {
       ...profile,
       rating: ratingAfter,
-      rank: arenaRankIndexFromRp(ratingAfter),
+      rank: arenaRankIndexFromStars(ratingAfter),
       seasonBestTierIndex: rankChange.next.seasonBestTierIndex,
       lifetimeBestTierIndex: rankChange.next.lifetimeBestTierIndex,
       rankSeasonId: season.seasonId,
-      wins: profile.wins + (expansionEligibility.profileOutcome && outcome === 'win' ? 1 : 0),
-      losses: profile.losses + (expansionEligibility.profileOutcome && outcome === 'loss' ? 1 : 0),
-      draws: profile.draws + (expansionEligibility.profileOutcome && outcome === 'draw' ? 1 : 0),
-      matches: profile.matches + (expansionEligibility.profileOutcome ? 1 : 0),
+      wins: profile.wins + (persistentProgressionEnabled
+        && expansionEligibility.profileOutcome && outcome === 'win' ? 1 : 0),
+      losses: profile.losses + (persistentProgressionEnabled
+        && expansionEligibility.profileOutcome && outcome === 'loss' ? 1 : 0),
+      draws: profile.draws + (persistentProgressionEnabled
+        && expansionEligibility.profileOutcome && outcome === 'draw' ? 1 : 0),
+      matches: profile.matches + (persistentProgressionEnabled && expansionEligibility.profileOutcome ? 1 : 0),
       spinPity: spin.pityAfter,
       ...(privateDoc.expansionFlags?.wallet === true && walletRewardEligible ? {
         starWalletBalance: walletBefore + walletAward,
@@ -1347,6 +1387,14 @@ async function settleMatch(
       rankTierAfter: rankChange.tierAfter,
       ...(settle.tierRewards.length ? { tierRewards: settle.tierRewards } : {}),
     };
+    if (!persistentProgressionEnabled) {
+      // DEV friend-bot matches persist only match state. The sole player write
+      // releases the active-match lock; no profile counters, season document,
+      // receipt, XP/star journal, review/lab, mastery, partner activity or spin
+      // credit is created for practice.
+      tx.set(entry.profile, { activeMatchId: null, updatedAtMs: now }, { merge: true });
+      return;
+    }
     if (expansionRunKind === 'rival') {
       tx.set(entry.profile, { activeMatchId: null, updatedAtMs: now }, { merge: true });
     } else {
@@ -1657,8 +1705,24 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     if (existing.status === 'waiting' && existing.requestId !== requestId) {
       throw new HttpsError('already-exists', 'arena_queue_request_active');
     }
-    const profile = profileDefaults(who.stableUid, profileSnap.data());
-    if (profile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
+    let profile = profileDefaults(who.stableUid, profileSnap.data());
+    let activeMatchMissing = false;
+    if (profile.activeMatchId) {
+      const activeMatchId = String(profile.activeMatchId);
+      const [activeMatchSnap, activePrivateSnap] = await Promise.all([
+        tx.get(db.collection(ARENA_V2_COLLECTIONS.matches).doc(activeMatchId)),
+        tx.get(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(activeMatchId)),
+      ]);
+      if (!activeMatchSnap.exists || !activePrivateSnap.exists) {
+        // Матч уже исчез, но старый профиль/билет пережил его. Новый поиск сам
+        // лечит ссылку: пользователь не должен видеть «матча больше нет» и
+        // вручную сбрасывать очередь.
+        activeMatchMissing = true;
+        profile = { ...profile, activeMatchId: null };
+      } else {
+        throw new HttpsError('already-exists', 'arena_active_match_exists');
+      }
+    }
     if (mode === 'ranked') {
       const forfeits = Array.isArray(profileSnap.data()?.forfeitTimestampsMs)
         ? profileSnap.data()!.forfeitTimestampsMs.filter((value: unknown) => Number(value) > now - 24 * 60 * 60 * 1_000)
@@ -1731,7 +1795,7 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
           ? { botDueAtMs: ownJoinedAt + arenaQuickBotDelayMs(randomUnit()) }
           : {}),
       };
-      tx.set(ownProfileRef, { ...profile, updatedAtMs: now }, { merge: true });
+      tx.set(ownProfileRef, { ...profile, ...(activeMatchMissing ? { activeMatchId: null } : {}), updatedAtMs: now }, { merge: true });
       tx.set(ownQueueRef, queue);
       return { status: 'waiting' as const, queue, searchingNow };
     }
@@ -2075,6 +2139,52 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
   });
   return { ok: true, status: 'matched' as const, matchId: output.matchId, viewerSeat: output.viewerSeat ?? 'a',
     opponentKind: output.opponentKind };
+});
+
+export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  if (process.env.FUNCTIONS_EMULATOR !== 'true' && process.env.PHRASEMAN_ARENA_DEV_BOT !== '1') {
+    throw new HttpsError('permission-denied', 'arena_dev_bot_disabled');
+  }
+  const who = await arenaActor(request, 'friend');
+  const requestId = safeId(request.data?.requestId, 'request_id');
+  const digest = createHash('sha256').update(`${who.stableUid}|${requestId}`).digest('hex');
+  const delayMs = 1_000 + (parseInt(digest.slice(0, 4), 16) % 1_001);
+  await new Promise((resolve) => setTimeout(resolve, delayMs));
+  const matchId = `dev_friend_${digest.slice(0, 28)}`;
+  const botSeed = digest.slice(0, 32);
+  const now = nowMs();
+  const output = await db.runTransaction(async (tx) => {
+    const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
+    const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+    const [existing, profileSnap] = await Promise.all([tx.get(matchRef), tx.get(profileRef)]);
+    if (existing.exists) return { matchId, viewerSeat: 'a' as const };
+    const profile = profileDefaults(who.stableUid, profileSnap.data());
+    if (profile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
+    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, 'friend');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'friend');
+    const botUid = `bot_friend_${digest.slice(0, 10)}`;
+    const built = makeMatch({
+      matchId,
+      mode: 'friend',
+      left: playerSnapshot(who.stableUid, who.user, profile),
+      right: playerSnapshot(botUid, {
+        displayName: arenaBotDisplayName(botSeed, typeof who.user.lang === 'string' ? who.user.lang : undefined),
+        avatar: arenaBotAvatar(botSeed, who.user.avatar),
+      }, { rank: profile.rank, rating: profile.rating }),
+      leftAuthUid: who.authUid,
+      privateEnvelope,
+      now,
+      bot: true,
+      botSeed,
+      progressionDisabled: true,
+    });
+    tx.create(matchRef, built.publicDoc);
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
+    tx.create(memberRef(matchId, who.authUid), memberMarker(matchId, who.authUid, 'a', now));
+    tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    return { matchId, viewerSeat: 'a' as const };
+  });
+  return { ok: true, status: 'matched' as const, acceptedDelayMs: delayMs, ...output };
 });
 
 export const arenaV2MatchAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
@@ -2887,7 +2997,7 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
   const now = nowMs();
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(hash);
   const ownProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
-  await db.runTransaction(async (tx) => {
+  const committed = await db.runTransaction(async (tx) => {
     const [existing, outgoingFriend, incomingFriend, friendUser, profileSnap, activeInvites] = await Promise.all([
       tx.get(inviteRef),
       tx.get(db.collection('users').doc(who.stableUid).collection('friends').doc(friendStableUid)),
@@ -2897,11 +3007,20 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       tx.get(db.collection(ARENA_V2_COLLECTIONS.invites)
         .where('fromStableUid', '==', who.stableUid).where('status', '==', 'pending').limit(6)),
     ]);
-    if (existing.exists) return;
+    if (existing.exists) {
+      const existingData = existing.data() ?? {};
+      return {
+        created: false,
+        ...existingData,
+        expiresAtMs: Number(existingData.expiresAtMs ?? (now + ARENA_V2_INVITE_TTL_MS)),
+      };
+    }
     if (!outgoingFriend.exists || !incomingFriend.exists || !friendUser.exists) {
       throw new HttpsError('failed-precondition', 'arena_friendship_required');
     }
-    if (activeInvites.size >= 5) throw new HttpsError('resource-exhausted', 'arena_active_invite_limit');
+    if (activeInvites.docs.filter((doc) => Number(doc.data()?.expiresAtMs ?? 0) > now).length >= 5) {
+      throw new HttpsError('resource-exhausted', 'arena_active_invite_limit');
+    }
     const friendData = friendUser.data() ?? {};
     if (friendData.hidden === true || friendData.deleted === true || friendData.banned === true) {
       throw new HttpsError('failed-precondition', 'arena_invite_target_unavailable');
@@ -2914,21 +3033,54 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const createdToday = profileSnap.data()?.inviteDayKey === dayKey
       ? Math.max(0, Math.trunc(Number(profileSnap.data()?.inviteCreatedToday ?? 0))) : 0;
     if (createdToday >= 20) throw new HttpsError('resource-exhausted', 'arena_daily_invite_limit');
+    const fromName = String(who.user.nickname ?? who.user.displayName ?? who.user.name ?? 'Друг').trim().slice(0, 48) || 'Друг';
+    const toName = String(friendData.nickname ?? friendData.displayName ?? friendData.name ?? 'Друг').trim().slice(0, 48) || 'Друг';
+    const fromAvatar = String(who.user.avatar ?? '').slice(0, 200);
+    const toAvatar = String(friendData.avatar ?? '').slice(0, 200);
     tx.create(inviteRef, {
       schemaVersion: 'arena-v2-invite.v1', inviteHash: hash,
       fromStableUid: who.stableUid, toStableUid: friendStableUid,
       fromAuthUid: who.authUid, toAuthUid: friendAuthUid,
-      requestId, status: 'pending', createdAtMs: now, expiresAtMs: now + ARENA_V2_INVITE_TTL_MS,
+      requestId, inviteId: token, status: 'pending', createdAtMs: now, expiresAtMs: now + ARENA_V2_INVITE_TTL_MS,
+      fromName, toName, fromAvatar, toAvatar,
       expireAt: timestamp(now + ARENA_V2_INVITE_TTL_MS),
     });
+    tx.set(userNotificationRef(db, friendStableUid, `arena_friend_invite_${hash}`), buildUserNotification({
+      type: 'arena_friend_invite',
+      fromUid: who.stableUid,
+      fromName,
+      fromAvatar,
+      text: 'Дуэль: 10 заданий',
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_invite_${hash}`, action: 'duel_invite', inviteId: token },
+    }, now));
     tx.set(ownProfileRef, { ...profile, inviteDayKey: dayKey,
       inviteCreatedToday: createdToday + 1, updatedAtMs: now }, { merge: true });
+    return {
+      created: true,
+      fromName,
+      toName,
+      fromAvatar,
+      toAvatar,
+      friendPushToken: String(friendData.expoPushToken ?? ''),
+      expiresAtMs: now + ARENA_V2_INVITE_TTL_MS,
+    };
   });
+  if (committed.created && committed.friendPushToken) {
+    void sendExpoPush(
+      committed.friendPushToken,
+      `${committed.fromName} бросает вызов`,
+      'Десять заданий. Никаких кодов. Только вы двое.',
+      { type: 'arena_friend_invite', inviteId: token, eventId: `arena_friend_invite_${hash}`, actorStableUid: who.stableUid },
+    ).catch(() => {});
+  }
   return { ok: true, stableUid: who.stableUid, inviteId: token,
-    status: 'pending' as const, expiresAtMs: now + ARENA_V2_INVITE_TTL_MS };
+    status: 'pending' as const,
+    expiresAtMs: committed.expiresAtMs };
 });
 
-export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+// Сохранён как локальная реализация-эталон создания friend match; боевой accept
+// ниже теперь только открывает rendezvous, а создание переехало в InviteReady.
+const arenaV2InviteAcceptLegacy = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
   const token = safeId(request.data?.inviteId, 'invite_id');
   const hash = inviteHash(token);
@@ -3012,20 +3164,264 @@ export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
   return { ok: true, status: 'accepted' as const, ...output };
 });
 
+export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'friend');
+  const token = safeId(request.data?.inviteId, 'invite_id');
+  const hash = inviteHash(token);
+  const now = nowMs();
+  const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(hash);
+  const output = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(inviteRef);
+    if (!snap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
+    const data = snap.data() ?? {};
+    const hostUserSnap = await tx.get(db.collection('users').doc(String(data.fromStableUid ?? '')));
+    if (data.toStableUid !== who.stableUid || data.toAuthUid !== who.authUid) throw new HttpsError('permission-denied', 'arena_invite_invalid');
+    if (data.status === 'matched') return { status: 'matched' as const, matchId: String(data.matchId ?? ''), viewerSeat: 'b' as const };
+    if (data.status === 'accepted') return { status: 'accepted' as const, rendezvousExpiresAtMs: Number(data.rendezvousExpiresAtMs ?? 0), viewerSeat: 'b' as const };
+    if (data.status !== 'pending' || Number(data.expiresAtMs ?? 0) <= now) {
+      throw new HttpsError('failed-precondition', 'arena_invite_invalid');
+    }
+    const rendezvousExpiresAtMs = now + ARENA_V2_RENDEZVOUS_MS;
+    tx.set(inviteRef, { status: 'accepted', acceptedAtMs: now, rendezvousExpiresAtMs, toReadyAtMs: now }, { merge: true });
+    tx.set(userNotificationRef(db, String(data.fromStableUid), `arena_friend_accepted_${hash}`), buildUserNotification({
+      type: 'arena_friend_accepted',
+      fromUid: who.stableUid,
+      fromName: String(data.toName ?? 'Друг'),
+      fromAvatar: String(data.toAvatar ?? ''),
+      text: 'Вызов принят',
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_accepted_${hash}`, action: 'duel_state', inviteId: token },
+    }, now));
+    return {
+      status: 'accepted' as const,
+      rendezvousExpiresAtMs,
+      viewerSeat: 'b' as const,
+      hostPushToken: String(hostUserSnap.data()?.expoPushToken ?? ''),
+      guestName: String(data.toName ?? 'Друг'),
+    };
+  });
+  if ('hostPushToken' in output && output.status === 'accepted' && output.hostPushToken) {
+    void sendExpoPush(output.hostPushToken, `${output.guestName} принимает вызов`, 'Встречаемся на Арене. У вас 90 секунд.', { type: 'arena_friend_accepted', inviteId: token }).catch(() => {});
+  }
+  return { ok: true, ...output };
+});
+
+export const arenaV2InviteReady = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'friend');
+  const token = safeId(request.data?.inviteId, 'invite_id');
+  const hash = inviteHash(token);
+  const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(hash);
+  const now = nowMs();
+  const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
+  const output = await db.runTransaction(async (tx) => {
+    const inviteSnap = await tx.get(inviteRef);
+    if (!inviteSnap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
+    const invite = inviteSnap.data() ?? {};
+    const isHost = invite.fromStableUid === who.stableUid && invite.fromAuthUid === who.authUid;
+    const isGuest = invite.toStableUid === who.stableUid && invite.toAuthUid === who.authUid;
+    if (!isHost && !isGuest) throw new HttpsError('permission-denied', 'arena_invite_invalid');
+    const viewerSeat = isHost ? 'a' as const : 'b' as const;
+    if (invite.status === 'matched' && invite.matchId) return { status: 'matched' as const, matchId: String(invite.matchId), viewerSeat };
+    if (['declined', 'cancelled', 'expired'].includes(String(invite.status))) return { status: String(invite.status), viewerSeat };
+    if (invite.status === 'pending') {
+      if (!isHost) throw new HttpsError('failed-precondition', 'arena_invite_accept_required');
+      if (Number(invite.expiresAtMs ?? 0) <= now) {
+        return { status: 'expired' as const, viewerSeat };
+      }
+      tx.set(inviteRef, { fromReadyAtMs: Number(invite.fromReadyAtMs ?? 0) || now }, { merge: true });
+      return { status: 'pending' as const, expiresAtMs: Number(invite.expiresAtMs ?? 0), viewerSeat };
+    }
+    if (invite.status !== 'accepted') throw new HttpsError('failed-precondition', 'arena_invite_invalid');
+    if (Number(invite.rendezvousExpiresAtMs ?? 0) <= now) {
+      return { status: 'expired' as const, viewerSeat };
+    }
+    const fromReadyAtMs = Number(invite.fromReadyAtMs ?? 0) || (isHost ? now : 0);
+    const toReadyAtMs = Number(invite.toReadyAtMs ?? 0) || (isGuest ? now : 0);
+    if (!fromReadyAtMs || !toReadyAtMs) {
+      tx.set(inviteRef, { fromReadyAtMs, toReadyAtMs }, { merge: true });
+      return { status: 'accepted' as const, rendezvousExpiresAtMs: Number(invite.rendezvousExpiresAtMs), viewerSeat };
+    }
+
+    const fromStableUid = String(invite.fromStableUid);
+    const toStableUid = String(invite.toStableUid);
+    const fromAuthUid = String(invite.fromAuthUid);
+    const toAuthUid = String(invite.toAuthUid);
+    const hostQueueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(fromStableUid);
+    const guestQueueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(toStableUid);
+    const [
+      hostUserSnap,
+      guestUserSnap,
+      hostAuthLinkSnap,
+      guestAuthLinkSnap,
+      hostFriendSnap,
+      guestFriendSnap,
+      hostProfileSnap,
+      guestProfileSnap,
+      hostQueueSnap,
+      guestQueueSnap,
+    ] = await Promise.all([
+      tx.get(db.collection('users').doc(fromStableUid)),
+      tx.get(db.collection('users').doc(toStableUid)),
+      tx.get(db.collection('auth_links').doc(fromAuthUid)),
+      tx.get(db.collection('auth_links').doc(toAuthUid)),
+      tx.get(db.collection('users').doc(fromStableUid).collection('friends').doc(toStableUid)),
+      tx.get(db.collection('users').doc(toStableUid).collection('friends').doc(fromStableUid)),
+      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(fromStableUid)),
+      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(toStableUid)),
+      tx.get(hostQueueRef),
+      tx.get(guestQueueRef),
+    ]);
+    if (!hostUserSnap.exists || !guestUserSnap.exists) throw new HttpsError('failed-precondition', 'arena_invite_player_unavailable');
+    const hostUser = hostUserSnap.data() ?? {};
+    const guestUser = guestUserSnap.data() ?? {};
+    if (hostUser.hidden === true || hostUser.deleted === true || hostUser.banned === true
+      || guestUser.hidden === true || guestUser.deleted === true || guestUser.banned === true) {
+      throw new HttpsError('failed-precondition', 'arena_invite_player_unavailable');
+    }
+    if (!inviteParticipantIdentityCurrent(
+      hostUser, hostAuthLinkSnap.data() ?? {}, fromStableUid, fromAuthUid,
+    ) || !inviteParticipantIdentityCurrent(
+      guestUser, guestAuthLinkSnap.data() ?? {}, toStableUid, toAuthUid,
+    )) {
+      throw new HttpsError('failed-precondition', 'arena_invite_identity_changed');
+    }
+    if (!hostFriendSnap.exists || !guestFriendSnap.exists) {
+      throw new HttpsError('failed-precondition', 'arena_friendship_required');
+    }
+    const hostProfile = profileDefaults(fromStableUid, hostProfileSnap.data());
+    const guestProfile = profileDefaults(toStableUid, guestProfileSnap.data());
+    if (hostProfile.activeMatchId || guestProfile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
+    const contentDivision = arenaContentDivision(hostProfile.rank, guestProfile.rank);
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, 'friend');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'friend');
+    const built = makeMatch({
+      matchId,
+      mode: 'friend',
+      left: playerSnapshot(fromStableUid, hostUser, hostProfile),
+      right: playerSnapshot(toStableUid, guestUser, guestProfile),
+      leftAuthUid: fromAuthUid,
+      rightAuthUid: toAuthUid,
+      privateEnvelope,
+      now,
+    });
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
+    tx.create(memberRef(matchId, fromAuthUid), memberMarker(matchId, fromAuthUid, 'a', now));
+    tx.create(memberRef(matchId, toAuthUid), memberMarker(matchId, toAuthUid, 'b', now));
+    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(fromStableUid), { ...hostProfile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(toStableUid), { ...guestProfile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    if (hostQueueSnap.data()?.status === 'waiting') tx.set(hostQueueRef, { status: 'cancelled', closeReason: 'friend_match', cancelledAtMs: now, leaseExpiresAt: 0 }, { merge: true });
+    if (guestQueueSnap.data()?.status === 'waiting') tx.set(guestQueueRef, { status: 'cancelled', closeReason: 'friend_match', cancelledAtMs: now, leaseExpiresAt: 0 }, { merge: true });
+    tx.set(inviteRef, { status: 'matched', matchedAtMs: now, matchId, fromReadyAtMs, toReadyAtMs }, { merge: true });
+    return { status: 'matched' as const, matchId, viewerSeat };
+  });
+  return { ok: true, ...output };
+});
+
 export const arenaV2InviteDecline = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
   const token = safeId(request.data?.inviteId, 'invite_id');
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(inviteHash(token));
-  await db.runTransaction(async (tx) => {
+  const output = await db.runTransaction(async (tx) => {
     const snap = await tx.get(inviteRef);
-    if (!snap.exists) return;
+    if (!snap.exists) return { changed: false };
     const data = snap.data() ?? {};
     if (data.toStableUid !== who.stableUid || data.toAuthUid !== who.authUid) {
       throw new HttpsError('permission-denied', 'arena_invite_invalid');
     }
-    if (data.status === 'pending') tx.set(inviteRef, { status: 'declined', declinedAtMs: nowMs() }, { merge: true });
+    if (data.status !== 'pending') return { changed: false };
+    const hostUser = await tx.get(db.collection('users').doc(String(data.fromStableUid)));
+    const now = nowMs();
+    tx.set(inviteRef, { status: 'declined', declinedAtMs: now }, { merge: true });
+    tx.set(userNotificationRef(db, String(data.fromStableUid), `arena_friend_declined_${inviteRef.id}`), buildUserNotification({
+      type: 'arena_friend_declined', fromUid: who.stableUid, fromName: String(data.toName ?? 'Друг'), fromAvatar: String(data.toAvatar ?? ''), text: 'Сегодня без драмы',
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_declined_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+    }, now));
+    return { changed: true, hostPushToken: String(hostUser.data()?.expoPushToken ?? ''), guestName: String(data.toName ?? 'Друг') };
   });
+  if ('hostPushToken' in output && output.changed && output.hostPushToken) void sendExpoPush(output.hostPushToken, 'Сегодня без драмы', `${output.guestName} отклонил вызов.`, { type: 'arena_friend_declined', inviteId: token }).catch(() => {});
   return { ok: true };
+});
+
+export const arenaV2InviteCancel = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'friend');
+  const token = safeId(request.data?.inviteId, 'invite_id');
+  const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(inviteHash(token));
+  const output = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(inviteRef);
+    if (!snap.exists) return { changed: false };
+    const data = snap.data() ?? {};
+    if (data.fromStableUid !== who.stableUid || data.fromAuthUid !== who.authUid) throw new HttpsError('permission-denied', 'arena_invite_invalid');
+    if (!['pending', 'accepted'].includes(String(data.status))) return { changed: false };
+    const guestUser = await tx.get(db.collection('users').doc(String(data.toStableUid)));
+    const now = nowMs();
+    tx.set(inviteRef, { status: 'cancelled', cancelledAtMs: now }, { merge: true });
+    tx.set(userNotificationRef(db, String(data.toStableUid), `arena_friend_cancelled_${inviteRef.id}`), buildUserNotification({
+      type: 'arena_friend_cancelled', fromUid: who.stableUid, fromName: String(data.fromName ?? 'Друг'), fromAvatar: String(data.fromAvatar ?? ''), text: 'Вызов отменён',
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_cancelled_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+    }, now));
+    return { changed: true, guestPushToken: String(guestUser.data()?.expoPushToken ?? '') };
+  });
+  if ('guestPushToken' in output && output.changed && output.guestPushToken) void sendExpoPush(output.guestPushToken, 'Вызов отменён', 'Друг снял вызов. Без штрафов и обид.', { type: 'arena_friend_cancelled', inviteId: token }).catch(() => {});
+  return { ok: true };
+});
+
+export const arenaV2InviteStatus = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'friend');
+  const token = safeId(request.data?.inviteId, 'invite_id');
+  const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(inviteHash(token));
+  const now = nowMs();
+  const status = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(inviteRef);
+    if (!snap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
+    const data = snap.data() ?? {};
+    const isHost = data.fromStableUid === who.stableUid && data.fromAuthUid === who.authUid;
+    const isGuest = data.toStableUid === who.stableUid && data.toAuthUid === who.authUid;
+    if (!isHost && !isGuest) throw new HttpsError('permission-denied', 'arena_invite_invalid');
+    let effectiveStatus = String(data.status ?? 'pending');
+    const expired = (effectiveStatus === 'pending' && Number(data.expiresAtMs ?? 0) <= now)
+      || (effectiveStatus === 'accepted' && Number(data.rendezvousExpiresAtMs ?? 0) <= now);
+    let expiredNow = false;
+    let fromPushToken = '';
+    let toPushToken = '';
+    if (expired) {
+      const fromUserRef = db.collection('users').doc(String(data.fromStableUid ?? ''));
+      const toUserRef = db.collection('users').doc(String(data.toStableUid ?? ''));
+      const fromUserSnap = await tx.get(fromUserRef);
+      const toUserSnap = await tx.get(toUserRef);
+      effectiveStatus = 'expired';
+      expiredNow = true;
+      fromPushToken = String(fromUserSnap.data()?.expoPushToken ?? '');
+      toPushToken = String(toUserSnap.data()?.expoPushToken ?? '');
+      tx.set(inviteRef, { status: 'expired', expiredAtMs: now }, { merge: true });
+      tx.set(userNotificationRef(db, String(data.fromStableUid), `arena_friend_expired_${inviteRef.id}`), buildUserNotification({
+        type: 'arena_friend_expired', fromUid: String(data.toStableUid), fromName: String(data.toName ?? 'Друг'), fromAvatar: String(data.toAvatar ?? ''), text: 'Время вызова вышло',
+        nav: { kind: 'friend_event', actorStableUid: String(data.toStableUid), eventId: `arena_friend_expired_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+      }, now));
+      tx.set(userNotificationRef(db, String(data.toStableUid), `arena_friend_expired_${inviteRef.id}`), buildUserNotification({
+        type: 'arena_friend_expired', fromUid: String(data.fromStableUid), fromName: String(data.fromName ?? 'Друг'), fromAvatar: String(data.fromAvatar ?? ''), text: 'Время вызова вышло',
+        nav: { kind: 'friend_event', actorStableUid: String(data.fromStableUid), eventId: `arena_friend_expired_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+      }, now));
+    }
+    return {
+      status: effectiveStatus,
+      expiredNow,
+      fromPushToken,
+      toPushToken,
+      viewerSeat: isHost ? 'a' as const : 'b' as const,
+      matchId: String(data.matchId ?? ''),
+      expiresAtMs: Number(data.expiresAtMs ?? 0),
+      rendezvousExpiresAtMs: Number(data.rendezvousExpiresAtMs ?? 0),
+      counterpartStableUid: String(isHost ? data.toStableUid : data.fromStableUid),
+      counterpartName: String(isHost ? data.toName : data.fromName),
+      counterpartAvatar: String(isHost ? data.toAvatar : data.fromAvatar),
+    };
+  });
+  if (status.expiredNow) {
+    const pushData = { type: 'arena_friend_expired', inviteId: token };
+    if (status.fromPushToken) void sendExpoPush(status.fromPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
+    if (status.toPushToken) void sendExpoPush(status.toPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
+  }
+  return { ok: true, ...status };
 });
 
 /**
@@ -3224,12 +3620,93 @@ async function deleteSnapshot(snapshot: admin.firestore.QuerySnapshot): Promise<
   return snapshot.size;
 }
 
+async function cleanupExpiredArenaInvites(now: number): Promise<{ expired: number; deleted: number }> {
+  const due = await db.collection(ARENA_V2_COLLECTIONS.invites)
+    .where('expireAt', '<=', timestamp(now))
+    .limit(CLEANUP_BATCH_LIMIT)
+    .get();
+  let expired = 0;
+  let deleted = 0;
+  for (const inviteDoc of due.docs) {
+    const outcome = await db.runTransaction(async (tx) => {
+      const current = await tx.get(inviteDoc.ref);
+      if (!current.exists) return { kind: 'missing' as const };
+      const data = current.data() ?? {};
+      const status = String(data.status ?? 'pending');
+      const deadlineAtMs = status === 'accepted'
+        ? Number(data.rendezvousExpiresAtMs ?? 0)
+        : Number(data.expiresAtMs ?? 0);
+      if ((status === 'pending' || status === 'accepted') && deadlineAtMs > now) {
+        tx.set(inviteDoc.ref, { expireAt: timestamp(deadlineAtMs) }, { merge: true });
+        return { kind: 'deferred' as const };
+      }
+      if (status !== 'pending' && status !== 'accepted') {
+        tx.delete(inviteDoc.ref);
+        return { kind: 'deleted' as const };
+      }
+
+      const fromStableUid = String(data.fromStableUid ?? '');
+      const toStableUid = String(data.toStableUid ?? '');
+      const [fromUserSnap, toUserSnap] = await Promise.all([
+        tx.get(db.collection('users').doc(fromStableUid)),
+        tx.get(db.collection('users').doc(toStableUid)),
+      ]);
+      const inviteId = String(data.inviteId ?? '');
+      const eventId = `arena_friend_expired_${inviteDoc.id}`;
+      tx.set(inviteDoc.ref, {
+        status: 'expired', expiredAtMs: now,
+        expireAt: timestamp(now + ARENA_V2_EXPIRED_INVITE_RETENTION_MS),
+      }, { merge: true });
+      tx.set(userNotificationRef(db, fromStableUid, eventId), buildUserNotification({
+        type: 'arena_friend_expired',
+        fromUid: toStableUid,
+        fromName: String(data.toName ?? 'Друг'),
+        fromAvatar: String(data.toAvatar ?? ''),
+        text: 'Время вызова вышло',
+        nav: {
+          kind: 'friend_event', actorStableUid: toStableUid, eventId, action: 'duel_state',
+          ...(inviteId ? { inviteId } : {}),
+        },
+      }, now));
+      tx.set(userNotificationRef(db, toStableUid, eventId), buildUserNotification({
+        type: 'arena_friend_expired',
+        fromUid: fromStableUid,
+        fromName: String(data.fromName ?? 'Друг'),
+        fromAvatar: String(data.fromAvatar ?? ''),
+        text: 'Время вызова вышло',
+        nav: {
+          kind: 'friend_event', actorStableUid: fromStableUid, eventId, action: 'duel_state',
+          ...(inviteId ? { inviteId } : {}),
+        },
+      }, now));
+      return {
+        kind: 'expired' as const,
+        fromPushToken: String(fromUserSnap.data()?.expoPushToken ?? ''),
+        toPushToken: String(toUserSnap.data()?.expoPushToken ?? ''),
+        inviteId,
+      };
+    });
+    if (outcome.kind === 'deleted') deleted += 1;
+    if (outcome.kind !== 'expired') continue;
+    expired += 1;
+    const pushData = { type: 'arena_friend_expired', ...(outcome.inviteId ? { inviteId: outcome.inviteId } : {}) };
+    if (outcome.fromPushToken) {
+      void sendExpoPush(outcome.fromPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
+    }
+    if (outcome.toPushToken) {
+      void sendExpoPush(outcome.toPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
+    }
+  }
+  return { expired, deleted };
+}
+
 export const arenaV2CleanupHourly = onSchedule({
   region: 'us-central1', schedule: 'every 60 minutes', timeoutSeconds: 120,
   memory: '256MiB', maxInstances: 1, secrets: ARENA_V2_SECRET_NAMES,
 }, async () => {
   const now = nowMs();
   const nowTimestamp = timestamp(now);
+  const inviteCleanup = await cleanupExpiredArenaInvites(now);
   const orphans = await db.collection(ARENA_V2_COLLECTIONS.matches)
     .where('terminal', '==', false)
     .where('stateDeadlineAtMs', '<=', now - 60_000)
@@ -3249,7 +3726,6 @@ export const arenaV2CleanupHourly = onSchedule({
     db.collection(ARENA_V2_COLLECTIONS.queue).where('leaseExpiresAt', '<=', now - 2 * 60_000).limit(CLEANUP_BATCH_LIMIT),
     db.collection(ARENA_V2_COLLECTIONS.matches).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
     db.collection(ARENA_V2_COLLECTIONS.matchPrivate).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
-    db.collection(ARENA_V2_COLLECTIONS.invites).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
     db.collection(ARENA_V2_COLLECTIONS.pairLimits).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
     db.collectionGroup(ARENA_V2_COLLECTIONS.members).where('expireAt', '<=', nowTimestamp).limit(CLEANUP_BATCH_LIMIT),
     // Канал живого прогресса пишет клиент, поэтому серверного срока жизни у
@@ -3261,5 +3737,9 @@ export const arenaV2CleanupHourly = onSchedule({
   ];
   let deleted = 0;
   for (const query of queries) deleted += await deleteSnapshot(await query.get());
-  console.info(JSON.stringify({ event: 'arena_v2_cleanup', reconciled, deleted }));
+  console.info(JSON.stringify({
+    event: 'arena_v2_cleanup', reconciled, deleted,
+    expiredInvites: inviteCleanup.expired,
+    deletedInvites: inviteCleanup.deleted,
+  }));
 });

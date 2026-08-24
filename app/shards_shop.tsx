@@ -46,6 +46,7 @@ import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
+import { DebugLogger } from './debug-logger';
 import { ENABLE_DEV_TOOLS } from './config';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
@@ -1245,7 +1246,12 @@ export default function ShardsShopScreen() {
             });
             return;
           } else {
-            await commitConfirmedExternalShardEvent({
+            // зачем: раньше результат журнала ВЫБРАСЫВАЛСЯ. Сервер подтверждал
+            // факт, но локальный баланс применяет именно клиентский журнал —
+            // и если он отвечал failed (напр. stale_account_generation), экран
+            // всё равно рапортовал «DEV: начислено N жемчужин», а жемчуг не
+            // появлялся. Молчаливая ложь: владелец видел успех и пустой кошелёк.
+            const applied = await commitConfirmedExternalShardEvent({
               source: 'admin_dev_grant',
               eventId: serverGrant.eventId,
               delta: serverGrant.granted,
@@ -1256,6 +1262,30 @@ export default function ShardsShopScreen() {
                 payload: { amount: serverGrant.granted },
               },
             });
+            if (
+              applied.status !== 'applied'
+              && applied.status !== 'already-applied'
+              && applied.status !== 'already-satisfied'
+            ) {
+              const failTail = applied.status === 'failed' ? applied.reason : applied.status;
+              DebugLogger.error(
+                'shards_shop.tsx:buyPack(dev)',
+                new Error(`dev_grant_local_apply_failed:${failTail}`),
+                'error',
+              );
+              emitAppEvent('action_toast', {
+                type: 'error',
+                messageRu: `DEV: сервер подтвердил, но кошелёк не принял (${failTail}).`,
+                messageUk: `DEV: сервер підтвердив, але гаманець не прийняв (${failTail}).`,
+                messageEs: `DEV: el servidor confirmó, pero el monedero no lo aceptó (${failTail}).`,
+                messagePtBr: `DEV: o servidor confirmou, mas a carteira não aceitou (${failTail}).`,
+                messageVi: `DEV: máy chủ đã xác nhận nhưng ví không nhận (${failTail}).`,
+                messageId: `DEV: server mengonfirmasi, tetapi dompet menolak (${failTail}).`,
+                messageTr: `DEV: sunucu onayladı ama cüzdan kabul etmedi (${failTail}).`,
+                messagePl: `DEV: serwer potwierdził, ale portfel nie przyjął (${failTail}).`,
+              });
+              return;
+            }
           }
           void trackShardPackPurchase(packId).catch(() => {});
           void trackActivity('shards_shop:purchase_success', {

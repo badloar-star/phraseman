@@ -831,9 +831,34 @@ export default function SeasonPassScreen() {
             pl: `Poziom ${progress.level} z ${SEASON_PASS_LEVELS}`,
           })}
         </Text>
-        <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
-          {progress.totalStars} ⭐
-        </Text>
+        {/* зачем (владелец, 24.08): «в сезонном пропуске всё на руны вместо
+            звёздочек». Порог у каждого подарка уже показывал RuneGlyph, а шапка
+            всё ещё говорила эмодзи-звездой — один экран называл валюту двумя
+            разными знаками. Теперь везде один глиф руны.
+            Число оставлено отдельным Text с tabular-nums: глиф внутри той же
+            строки сбил бы моноширинность цифр и счётчик «прыгал» бы при росте.
+            Глиф декоративен (accessibilityElementsHidden внутри RuneGlyph),
+            поэтому подпись висит на группе — иначе скринридер прочитал бы
+            голое число без единицы измерения. */}
+        <View
+          accessible
+          accessibilityLabel={triLang(lang, {
+            ru: `${progress.totalStars} рун`,
+            uk: `${progress.totalStars} рун`,
+            es: `${progress.totalStars} runas`,
+            'pt-BR': `${progress.totalStars} runas`,
+            vi: `${progress.totalStars} rune`,
+            id: `${progress.totalStars} rune`,
+            tr: `${progress.totalStars} rün`,
+            pl: `${progress.totalStars} run`,
+          })}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}
+        >
+          <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+            {progress.totalStars}
+          </Text>
+          <RuneGlyph size={15} color={t.gold} />
+        </View>
       </View>
       {/* зачем 2026-08-03 (владелец: «смени текст "бесплатно и пропуск" на
           "пропуск и плюс пропуск"»): «БЕСПЛАТНО» врало — с гейтом покупки эта

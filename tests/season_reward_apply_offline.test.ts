@@ -20,16 +20,21 @@ describe('season-pass rewards apply locally', () => {
     ensureAccountGeneration('season-offline-account');
   });
 
-  test('collection magnet becomes active without a callable response', async () => {
+  // зачем (аудит 2026-08-24): раньше этот тест ЗАКРЕПЛЯЛ поломку — требовал,
+  // чтобы магнит писался в локальный AsyncStorage. Но шанс дропа карточек
+  // решает сервер (collectiblesClaimDrop), а он читает множитель из
+  // users/{uid}.progress; локального ключа он не видит никогда, и в cloud_sync
+  // этот ключ тоже не входит. Подарок из-за этого не делал ничего.
+  // Активация теперь идёт серверным seasonRedeemConsumable, поэтому локальной
+  // записи быть НЕ должно — иначе вернётся молчаливая пустышка.
+  test('collection magnet is server-owned and writes nothing locally', async () => {
     const result = await applySeasonRewardLocal(
       { kind: 'collection_magnet' },
       'season_1:11:pass',
     );
 
-    expect(result).toEqual({ ok: true });
-    const stored = await AsyncStorage.getItem('season_collection_magnet_v1');
-    expect(stored).not.toBeNull();
-    expect(JSON.parse(stored!)).toEqual(expect.objectContaining({ multiplier: 2 }));
+    expect(result).toEqual({ ok: true, pendingServer: true });
+    await expect(AsyncStorage.getItem('season_collection_magnet_v1')).resolves.toBeNull();
   });
 
   test('retired tournament ticket cannot recreate ticket state', async () => {

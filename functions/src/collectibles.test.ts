@@ -6,6 +6,8 @@ import {
   collectiblesDropConfigFromData,
   COLLECTIBLES_DROP_DEFAULTS,
   assertCollectibleRewardEventEligible,
+  collectiblesDropMultiplier,
+  COLLECTIBLES_MAX_DROP_MULTIPLIER,
 } from './collectibles';
 import { CollectiblePoolCard } from './collectibles_catalog';
 
@@ -317,5 +319,97 @@ describe('collectiblesDropConfigFromData (тюнинг из Пульта)', () =
     const cfg = collectiblesDropConfigFromData({ collectibles_daily_cap_free: 0 });
     const res = rollCollectibleDrop({ seedBase: 'cap', kind: 'lesson', owned: {}, state: freshState({ total: 2 }), isPremium: false, pool: POOL, config: cfg });
     expect(res).toEqual({ dropped: false, reason: 'daily_cap' });
+  });
+});
+
+/**
+ * зачем (аудит 2026-08-24): «Магнит коллекции» Season Pass обещал «24 часа
+ * карточки выпадают вдвое чаще», но НЕ РАБОТАЛ вообще — поле писали клиент и
+ * сервер, а ролл дропа его не читал. Эти тесты сторожат, что множитель реально
+ * применяется, ограничен сверху и не обходит дневные лимиты.
+ */
+describe('collection magnet (множитель шанса дропа)', () => {
+  const MAGNET_KEY = 'season_collection_magnet_v1';
+  const NOW = 1_800_000_000_000;
+  const active = JSON.stringify({ multiplier: 2, expiresAt: NOW + 3_600_000 });
+
+  test('нет магнита / пустой progress → множитель 1', () => {
+    expect(collectiblesDropMultiplier(undefined, NOW)).toBe(1);
+    expect(collectiblesDropMultiplier({}, NOW)).toBe(1);
+  });
+
+  test('активный магнит → множитель 2', () => {
+    expect(collectiblesDropMultiplier({ [MAGNET_KEY]: active }, NOW)).toBe(2);
+  });
+
+  test('истёкший магнит не действует', () => {
+    const expired = JSON.stringify({ multiplier: 2, expiresAt: NOW - 1 });
+    expect(collectiblesDropMultiplier({ [MAGNET_KEY]: expired }, NOW)).toBe(1);
+  });
+
+  test('мусор и повреждённое поле не роняют и не дают множителя', () => {
+    for (const raw of ['', 'not-json', '[]', '{}', null, undefined, 42]) {
+      expect(collectiblesDropMultiplier({ [MAGNET_KEY]: raw }, NOW)).toBe(1);
+    }
+  });
+
+  test('раздутый множитель клампится потолком (защита от порчи документа)', () => {
+    const huge = JSON.stringify({ multiplier: 999, expiresAt: NOW + 3_600_000 });
+    expect(collectiblesDropMultiplier({ [MAGNET_KEY]: huge }, NOW))
+      .toBe(COLLECTIBLES_MAX_DROP_MULTIPLIER);
+  });
+
+  test('с магнитом карточки падают ЧАЩЕ, чем без него', () => {
+    const state = freshState({ drops: 0, attempts: 0, total: 5 });
+    const count = (multiplier: number): number => {
+      let dropped = 0;
+      for (let i = 0; i < 600; i += 1) {
+        const res = rollCollectibleDrop({
+          seedBase: `magnet${i}`, kind: 'lesson', owned: {}, state,
+          isPremium: false, pool: POOL, dropChanceMultiplier: multiplier,
+        });
+        if (res.dropped) dropped += 1;
+      }
+      return dropped;
+    };
+    const plain = count(1);
+    const magnet = count(2);
+    // Ролл детерминирован по сиду, поэтому сравниваем именно рост, а не точный %.
+    expect(magnet).toBeGreaterThan(plain);
+    expect(magnet / 600).toBeGreaterThan(0.2);
+    expect(magnet / 600).toBeLessThan(0.42);
+  });
+
+  test('множитель по умолчанию 1 — без параметра поведение прежнее', () => {
+    const state = freshState({ drops: 1, attempts: 1, total: 3 });
+    for (let i = 0; i < 120; i += 1) {
+      const withoutParam = rollCollectibleDrop({
+        seedBase: `same${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL,
+      });
+      const withOne = rollCollectibleDrop({
+        seedBase: `same${i}`, kind: 'lesson', owned: {}, state,
+        isPremium: false, pool: POOL, dropChanceMultiplier: 1,
+      });
+      expect(withoutParam.dropped).toBe(withOne.dropped);
+    }
+  });
+
+  test('магнит НЕ обходит дневной кап дропов', () => {
+    const state = freshState({ drops: 3, attempts: 3, total: 9 });
+    const res = rollCollectibleDrop({
+      seedBase: 'capped', kind: 'lesson', owned: {}, state,
+      isPremium: false, pool: POOL, dropChanceMultiplier: 2,
+    });
+    expect(res).toEqual({ dropped: false, reason: 'daily_cap' });
+  });
+
+  test('магнит НЕ включает дроп там, где его нет вовсе (pronounce/dialog)', () => {
+    for (const kind of ['pronounce', 'dialog']) {
+      const res = rollCollectibleDrop({
+        seedBase: `${kind}-magnet`, kind, owned: {}, state: freshState(),
+        isPremium: false, pool: POOL, dropChanceMultiplier: 2,
+      });
+      expect(res).toEqual({ dropped: false, reason: 'no_luck' });
+    }
   });
 });

@@ -99,6 +99,12 @@ function dropChanceForKind(kind: string, config: CollectiblesDropConfig): number
   return config.flatDropChance;
 }
 
+/** Верхняя граница множителя магнита — защита от порчи данных в документе юзера. */
+export const COLLECTIBLES_MAX_DROP_MULTIPLIER = 2;
+
+/** Ключ «Магнита коллекции» в `users/{uid}.progress` — пишется season_pass.ts. */
+export const SEASON_COLLECTION_MAGNET_KEY = 'season_collection_magnet_v1';
+
 function clampNum(value: unknown, min: number, max: number, fallback: number): number {
   const n = Number(value);
   if (!Number.isFinite(n)) return fallback;
@@ -174,6 +180,35 @@ function parseJsonObject(raw: unknown): Record<string, unknown> {
   } catch {
     return {};
   }
+}
+
+/**
+ * Множитель шанса дропа от «Магнита коллекции» (награда Season Pass, ур. 11/29/47/58).
+ *
+ * зачем (аудит 2026-08-24): подарок обещал «24 часа карточки выпадают вдвое
+ * чаще», но НЕ РАБОТАЛ вообще. Магнит писали в `progress.season_collection_magnet_v1`
+ * и клиент, и сервер (season_pass.ts), однако решение о дропе принимает ТОЛЬКО
+ * сервер (rollCollectibleDrop), а он это поле не читал — потребителя не было ни
+ * одного во всём репозитории. Игрок видел «магнит включён» и получал ровно
+ * прежний шанс.
+ *
+ * Читается из УЖЕ загруженного `progress` юзер-транзакции — дополнительных
+ * чтений Firestore не добавляет.
+ *
+ * Срок ставит сервер при выдаче (season_pass.ts), подделать длительность с
+ * клиента нельзя. Множитель всё равно клампится: испорченное или раздутое
+ * значение в документе не должно превращаться в гарантированный дроп.
+ */
+export function collectiblesDropMultiplier(
+  progress: Record<string, unknown> | undefined,
+  nowMs: number,
+): number {
+  const parsed = parseJsonObject(progress?.[SEASON_COLLECTION_MAGNET_KEY]);
+  const expiresAt = Number(parsed.expiresAt);
+  if (!Number.isFinite(expiresAt) || expiresAt <= nowMs) return 1;
+  const multiplier = Number(parsed.multiplier);
+  if (!Number.isFinite(multiplier) || multiplier <= 1) return 1;
+  return Math.min(COLLECTIBLES_MAX_DROP_MULTIPLIER, multiplier);
 }
 
 function getProgress(data: FirebaseFirestore.DocumentData | undefined): Record<string, unknown> {
@@ -292,12 +327,24 @@ export function rollCollectibleDrop(params: {
   isPremium: boolean;
   pool?: CollectiblePoolCard[];
   config?: CollectiblesDropConfig;
+  /**
+   * Множитель шанса от «Магнита коллекции» (см. collectiblesDropMultiplier).
+   * По умолчанию 1 — без магнита поведение ровно прежнее.
+   */
+  dropChanceMultiplier?: number;
 }): DropDecision {
   const { seedBase, kind, owned, state, isPremium } = params;
   const pool = params.pool ?? COLLECTIBLE_POOL;
   const config = params.config ?? COLLECTIBLES_DROP_DEFAULTS;
 
-  const dropChance = dropChanceForKind(kind, config);
+  // зачем: магнит умножает ТОЛЬКО шанс. Дневной кап, лимит попыток и pity он
+  // не трогает — иначе подарок за 24 часа выкачал бы весь пул и обесценил
+  // коллекцию. Шанс клампится единицей: 15% × 2 = 30%, но никогда > 100%.
+  const magnet = Math.max(1, Math.min(
+    COLLECTIBLES_MAX_DROP_MULTIPLIER,
+    Number(params.dropChanceMultiplier) || 1,
+  ));
+  const dropChance = Math.min(1, dropChanceForKind(kind, config) * magnet);
   // Активность типа pronounce/dialog дроп не даёт вовсе (шанс 0).
   if (dropChance <= 0) return { dropped: false, reason: 'no_luck' };
 
@@ -460,11 +507,19 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
       state,
       isPremium,
       config: dropConfig,
+      // зачем (аудит 2026-08-24): «Магнит коллекции» Season Pass наконец влияет
+      // на шанс. `progress` уже прочитан этой же транзакцией — лишних чтений нет.
+      dropChanceMultiplier: collectiblesDropMultiplier(progress, now),
     });
 
     if (!decision.dropped) {
       // Попытку учитываем (отсекает перебор eventId), леджер не пишем:
-      // событие не «потрачено», детерминированный ролл всё равно не изменится.
+      // событие не «потрачено», а ролл детерминирован по сиду.
+      // зачем (аудит 2026-08-24): с «Магнитом коллекции» исход неудачной попытки
+      // перестал быть вечно неизменным — повтор ТОГО ЖЕ eventId под активным
+      // магнитом может выпасть, хотя без магнита не выпадал. Это безопасно:
+      // лимит попыток (dailyAttemptCap) и дневной кап дропов не обходятся, а
+      // удачный дроп по-прежнему пишет леджер и второй раз не выдаётся.
       const nextState: CollectiblesDropState = { ...state, attempts: state.attempts + 1 };
       tx.set(userRef, {
         progress: { [COLLECTIBLES_STATE_KEY]: JSON.stringify(nextState) },

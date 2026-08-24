@@ -17,20 +17,25 @@ describe('Season Pass non-pearl gift idempotency', () => {
     ensureAccountGeneration('season-effect-user');
   });
 
-  it('does not extend a magnet twice after a crash postponed physical inventory pruning', async () => {
-    const gift = await addSeasonPassGift('season_1', 12, 'pass', 'collection_magnet');
+  // зачем (аудит 2026-08-24): тест сторожит реальный контракт «краш не должен
+  // удваивать эффект», но раньше стоял на collection_magnet. Магнит переехал на
+  // сервер (шанс дропа решает collectiblesClaimDrop, локальная запись не
+  // работала вообще), поэтому контракт проверяем на turbo_regen — том же по
+  // форме локальном расходнике со сроком в ключе boon_energy_override_v1.
+  it('does not extend a timed consumable twice after a crash postponed physical inventory pruning', async () => {
+    const gift = await addSeasonPassGift('season_1', 12, 'pass', 'turbo_regen');
     const nowMs = Date.now();
     // This is the exact durable commit boundary. Simulate process death before
     // applySeasonRewardLocal can perform its optional physical array prune.
     await commitSeasonPassGiftEffect(gift.id, async () => [[
-      'season_collection_magnet_v1',
-      JSON.stringify({ multiplier: 2, activatedAt: nowMs, expiresAt: nowMs + 86_400_000 }),
+      'boon_energy_override_v1',
+      JSON.stringify({ expiresAt: nowMs + 86_400_000, recoveryMs: 60_000 }),
     ]]);
-    const first = JSON.parse(String(await AsyncStorage.getItem('season_collection_magnet_v1')));
+    const first = JSON.parse(String(await AsyncStorage.getItem('boon_energy_override_v1')));
 
-    await expect(applySeasonRewardLocal({ kind: 'collection_magnet' }, gift.id))
+    await expect(applySeasonRewardLocal({ kind: 'turbo_regen' }, gift.id))
       .resolves.toEqual({ ok: true });
-    const replay = JSON.parse(String(await AsyncStorage.getItem('season_collection_magnet_v1')));
+    const replay = JSON.parse(String(await AsyncStorage.getItem('boon_energy_override_v1')));
 
     expect(replay.expiresAt).toBe(first.expiresAt);
     await expect(loadSeasonPassGiftInventory()).resolves.toEqual([]);

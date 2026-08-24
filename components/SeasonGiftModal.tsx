@@ -19,6 +19,10 @@ import { emitAppEvent, actionToastTri } from '../app/events';
 import { pearlIconForTheme } from '../app/coin_icons';
 import { markSeasonPassGiftUsed } from '../app/season_pass_gift_inventory';
 import {
+  seasonRedeemConsumableOnServer,
+  seasonSendFriendShieldOnServer,
+} from '../app/season_pass_server';
+import {
   applySeasonRewardLocal,
   type ApplySeasonRewardResult,
 } from '../app/season_reward_apply';
@@ -30,7 +34,8 @@ import {
   seasonAuraStageIndex,
   type SeasonReward,
 } from '../app/season_pass_track_config';
-import { subscribeToFriends, type FriendEntry } from '../app/firestore_friend_requests';
+import type { FriendEntry } from '../app/firestore_friend_requests';
+import { friendsAccountStore } from '../app/friends_account_store';
 import { FlowText } from './text-integrity/FlowText';
 import { leaguePublicName } from '../app/league_public_name';
 import SeasonAuraRing from './SeasonAuraRing';
@@ -193,6 +198,15 @@ export function renderSeasonRewardArt(
   themeMode: ThemeMode,
   t: Theme,
   pearlIcon: ImageSourcePropType,
+  /**
+   * зачем (аудит 2026-08-17, скрин владельца): RewardImpactRings центрируется
+   * от РОДИТЕЛЯ (весь блок art), а не от иконки. Для наград с одиночной
+   * центрированной иконкой это совпадает, но у 'pearls' иконка стоит СЛЕВА от
+   * текста «+N» — кольцо визуально уезжало в промежуток между ними («пустой
+   * кружок» на скрине). Даём вызывающей стороне вставить кольца ИМЕННО вокруг
+   * иконки через этот слот, вместо угадывания сдвига по ширине текста.
+   */
+  impactRings?: React.ReactNode,
 ): React.ReactNode {
   if (!reward) return null;
   if (reward.kind === 'aura_stage') {
@@ -210,7 +224,10 @@ export function renderSeasonRewardArt(
   if (reward.kind === 'pearls') {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-        <Image source={pearlIcon} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
+        <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
+          {impactRings}
+          <Image source={pearlIcon} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
+        </View>
         <Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'] }}>+{reward.amount ?? 0}</Text>
       </View>
     );
@@ -265,12 +282,12 @@ interface Props {
    * сцена M3 «Сундук-награда») — герой (жемчужина/иконка награды) получает удар
    * ТОЛЬКО в фазе done (награда реально получена). Все 7 фаз (offer/choice/
    * friendPick/applying/done/noGap/serverError) и их контент — БЕЗ ИЗМЕНЕНИЙ,
-   * меняется только оболочка/вход. Боевой дефолт — 'classic'.
+   * меняется только оболочка/вход. Production default — hybrid; classic — rollback.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function SeasonGiftModal({ visible, reward, giftId, userName, onClose, motionVariant = 'classic' }: Props) {
+export default function SeasonGiftModal({ visible, reward, giftId, userName, onClose, motionVariant = 'hybrid' }: Props) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
@@ -302,7 +319,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
             if (!cancelled) setPhase('serverError');
             return;
           }
-          if (giftId) await markSeasonPassGiftUsed(giftId);
+          if (giftId) void markSeasonPassGiftUsed(giftId).catch(() => {});
           if (cancelled) return;
           if (res.avatarUnlock) setAvatarLabel(res.avatarUnlock.labelRu ?? null);
           setPhase('done');
@@ -319,7 +336,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
   // Друзья для щита — живой снапшот, пока открыт пикер.
   useEffect(() => {
     if (!visible || phase !== 'friendPick') return;
-    const unsub = subscribeToFriends((list: FriendEntry[]) => setFriends(list.slice(0, 24)));
+    const unsub = friendsAccountStore.subscribe((list: FriendEntry[]) => setFriends(list.slice(0, 24)));
     return () => { try { (unsub as unknown as () => void)?.(); } catch { /* snapshot detach best effort */ } };
   }, [visible, phase]);
 
@@ -338,10 +355,24 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     hapticTap();
     setPhase('applying');
     try {
+      // зачем (аудит 2026-08-24): «Магнит коллекции» — единственная награда,
+      // эффект которой считает СЕРВЕР. Шанс дропа карточек решает callable
+      // collectiblesClaimDrop, и он читает магнит из users/{uid}.progress.
+      // Раньше магнит писался только в локальный AsyncStorage, куда сервер не
+      // смотрит (в cloud_sync этот ключ тоже не входит) — подарок не делал
+      // ничего. Теперь активируем его серверным seasonRedeemConsumable,
+      // который и пишет авторитетное поле со сроком.
+      if (target.kind === 'collection_magnet') {
+        const magnet = await seasonRedeemConsumableOnServer({ giftId, kind: 'collection_magnet' });
+        if (!magnet?.ok) { setPhase('serverError'); return; }
+        void markSeasonPassGiftUsed(giftId).catch(() => {});
+        setPhase('done'); finishApplied();
+        return;
+      }
       const res: ApplySeasonRewardResult = await applySeasonRewardLocal(target, giftId);
       if (!res.ok && res.failReason === 'no_streak_gap') { setPhase('noGap'); return; }
       if (!res.ok) { setPhase('serverError'); return; }
-      await markSeasonPassGiftUsed(giftId);
+      void markSeasonPassGiftUsed(giftId).catch(() => {});
       if (res.avatarUnlock) setAvatarLabel(res.avatarUnlock.labelRu ?? null);
       setPhase('done'); finishApplied();
     } catch {
@@ -349,14 +380,22 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     }
   }, [reward, giftId, phase, finishApplied]);
 
+  // зачем (аудит 2026-08-24): подарок называется «Щит другу» и обещает защиту
+  // ДРУГУ, но раньше здесь звался applySeasonRewardLocal('friend_shield') —
+  // он пишет chain_shield в СВОЁ локальное хранилище. Выбранный друг
+  // использовался только для имени в тосте: игрок видел «отправлено {имя}»,
+  // а щит доставался ему самому, друг не получал ничего.
+  // Отправку умеет сервер — seasonSendFriendShield (functions/src/season_pass.ts):
+  // он проверяет реальную дружбу с ОБЕИХ сторон и идемпотентен по giftId.
+  // Локально ничего не пишем: щит адресован не нам.
   const onPickFriend = useCallback(async (friend: FriendEntry) => {
     if (!giftId || phase === 'applying') return;
     hapticTap();
     setPhase('applying');
     try {
-      const res = await applySeasonRewardLocal({ kind: 'friend_shield' }, giftId);
-      if (!res.ok) { setPhase('serverError'); return; }
-      await markSeasonPassGiftUsed(giftId);
+      const res = await seasonSendFriendShieldOnServer({ giftId, friendStableId: friend.uid });
+      if (!res?.ok) { setPhase('serverError'); return; }
+      void markSeasonPassGiftUsed(giftId).catch(() => {});
       setSentToName(leaguePublicName(friend.displayName, friend.uid));
       setPhase('done');
     } catch {
@@ -364,9 +403,20 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     }
   }, [giftId, phase]);
 
+  // зачем: вынесено из общего блока art — кольца удара должны обрамлять именно
+  // иконку награды, а не центр всей строки «иконка + число» (см. renderSeasonRewardArt).
+  const impactRingsEl = isHybrid ? (
+    <RewardImpactRings
+      show={impact.showRings}
+      dustCount={impact.dustCount}
+      color={t.gold}
+      ring0Style={impact.styles.ring0}
+      ring1Style={impact.styles.ring1}
+    />
+  ) : null;
   const art = useMemo(
-    () => renderSeasonRewardArt(reward, themeMode, t, pearlIcon),
-    [pearlIcon, reward, t, themeMode],
+    () => renderSeasonRewardArt(reward, themeMode, t, pearlIcon, impactRingsEl),
+    [pearlIcon, reward, t, themeMode, impactRingsEl],
   );
 
   if (!reward) return null;
@@ -380,7 +430,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     <View style={{ width: '100%', maxWidth: 370, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
 
           <View style={{ minHeight: 116, alignItems: 'center', justifyContent: 'center' }}>
-            {isHybrid && (
+            {isHybrid && reward.kind !== 'pearls' && (
               <RewardImpactRings
                 show={impact.showRings}
                 dustCount={impact.dustCount}

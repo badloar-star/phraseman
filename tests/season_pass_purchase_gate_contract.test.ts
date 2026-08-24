@@ -131,10 +131,26 @@ describe('кнопка покупки', () => {
     expect(SOURCE).toContain('if (passOwned || buying) return;');
   });
 
-  test('покупка оптимистична, но откатывается при отказе сервера', () => {
-    // Деньги: нельзя оставить дорожку открытой, если сервер не списал жемчуг.
+  // зачем (24.08): тест сторожил ОТМЕНЁННУЮ схему — «сначала разблокируй, при
+  // отказе откати» — и требовал буквальной строки `setPassOwned(false)`.
+  // Покупка давно переехала на commitShardPurchase: он атомарно списывает
+  // жемчуг и выдаёт пропуск, поэтому `setPassOwned(true)` стоит ТОЛЬКО в ветке
+  // подтверждённого списания, а при отказе пропуск не выдаётся вовсе — откатывать
+  // нечего. Требовать откат здесь значит требовать вернуть менее безопасный
+  // порядок. Сторожим сам денежный инвариант, а не исчезнувшую строку.
+  test('пропуск выдаётся ТОЛЬКО после подтверждённого списания жемчуга', () => {
+    // Деньги: дорожка не может открыться, если списание не подтверждено.
     expect(SOURCE).toContain('setPassOwned(true);');
-    expect(SOURCE).toContain('setPassOwned(false); // откат optimistic-разблокировки');
+    expect(SOURCE).toContain('commitShardCompositeOperation');
+    // Единственная выдача — внутри ветки успешного списания.
+    expect(SOURCE.match(/setPassOwned\(true\)/g)).toHaveLength(1);
+    const applied = SOURCE.indexOf("purchase.status === 'applied'");
+    const granted = SOURCE.indexOf('setPassOwned(true);');
+    expect(applied).toBeGreaterThan(-1);
+    expect(granted).toBeGreaterThan(applied);
+    // Отказ сервера НЕ отбирает уже оплаченный пропуск (баланс решает клиентский
+    // леджер, а не callable) — иначе оплативший терял покупку из-за сети.
+    expect(SOURCE).toContain('void seasonBuyPassOnServer().catch(() => null);');
   });
 
   test('прогресс дорожки виден и без пропуска', () => {

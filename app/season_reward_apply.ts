@@ -47,6 +47,13 @@ export const SEASON_GOLDEN_LESSON_KEY = 'season_golden_lesson_v1';
 export interface SeasonGoldenLessonState { multiplier: number; remaining: number; grantedAtMs: number }
 
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
+/**
+ * Поле магнита в users/{uid}.progress. Пишет его ТОЛЬКО сервер
+ * (functions/src/season_pass.ts), читает тоже только сервер
+ * (functions/src/collectibles.ts → collectiblesDropMultiplier).
+ * НЕ писать сюда локально: AsyncStorage сервер не читает, и подарок из-за
+ * этого не работал до аудита 2026-08-24.
+ */
 export const SEASON_COLLECTION_MAGNET_KEY = 'season_collection_magnet_v1';
 export const SEASON_TOURNAMENT_TICKET_KEY = 'season_tournament_ticket_v1';
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -269,17 +276,16 @@ export async function applySeasonRewardLocal(
       await grantSeasonFinale();
       syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
+    // зачем (аудит 2026-08-24): магнит — серверный расходник, а не локальный.
+    // Шанс дропа карточек решает callable collectiblesClaimDrop, и множитель он
+    // читает из users/{uid}.progress.season_collection_magnet_v1. Локальная
+    // запись в AsyncStorage не попадала туда никогда (ключа нет и в cloud_sync),
+    // поэтому подарок не работал вообще. Активация идёт через
+    // seasonRedeemConsumable (SeasonGiftModal), здесь эффекта быть не должно.
+    // Ветка оставлена явной, чтобы старый офлайн-клейм не проваливался в
+    // default с failReason 'unknown' и не показывал ложную ошибку.
     case 'collection_magnet':
-      return commitIncrementalSeasonGift(idempotencyKey, async () => {
-        const nowMs = Date.now();
-        const parsed = parseObject(await AsyncStorage.getItem(SEASON_COLLECTION_MAGNET_KEY));
-        const existingExpiry = Math.max(0, Number(parsed.expiresAt) || 0);
-        return [[SEASON_COLLECTION_MAGNET_KEY, JSON.stringify({
-          multiplier: 2,
-          activatedAt: nowMs,
-          expiresAt: Math.max(nowMs, existingExpiry) + DAY_MS,
-        })]];
-      });
+      return { ok: true, pendingServer: true };
     case 'tournament_ticket':
       if (!ENABLE_TOURNAMENTS) {
         // Legacy/offline ticket claims keep their value but cannot resurrect a

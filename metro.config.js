@@ -141,6 +141,12 @@ const storeReleaseDevModules = new Set([
   './_admin_sound_lab',
   './_pos_analytics_audit',
   './flashcards_market_dev',
+  // зачем 2026-08-24 (аудит бандла): витрина движения (_motion_showcase +
+  // components/dev/motion_showcase, 21 файл / ~264 КБ) и SQLCipher-smoke
+  // попадали в стор-бандл через роутер-контекст, минуя __DEV__-гейт —
+  // тот же класс дыры, что у _admin_*-лаб. Исключены в паре с router.ctx.js.
+  './_motion_showcase',
+  './_phone_state_sqlcipher_smoke',
 ]);
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
@@ -195,5 +201,10 @@ config.resolver.blockList = [
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),
   ),
 ];
+
+// Avatar DNA human_v2 ships canonical 3D models as static, offline GLB assets.
+// expo-sqlite imports its web runtime as a static WASM asset. Extend the Expo
+// defaults instead of replacing them so images/audio and both binary formats work.
+config.resolver.assetExts = [...config.resolver.assetExts, 'glb', 'wasm'];
 
 module.exports = config;

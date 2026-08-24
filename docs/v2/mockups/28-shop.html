@@ -1,0 +1,850 @@
+<title>Магазин Phraseman</title>
+<style>
+  /* Палитра и роли унаследованы из docs/v2/mockups/27-runes-wallet-and-boosts.html —
+     магазин обязан выглядеть продолжением кошелька рун, а не чужим экраном. */
+  :root {
+    --bg: #0d1020; --card: #161a2e; --surface2: #1f2440; --surface3: #272d4e;
+    --text: #eef1ff; --muted: #8b93b8; --accent: #7c8cff;
+    --correct: #45d47f; --gold: #ffc800; --danger: #ff6b6b;
+    --rune: #c9a84c; --rune-deep: #8a6f2a;
+    --pearl: #A78BFA; --pearl-deep: #6245B2;
+    --k: 1;
+    --ease: cubic-bezier(.38,.70,.125,1);
+  }
+  .light {
+    --bg: #F4F6F0; --card: #FCFDF9; --surface2: #ECEFE6; --surface3: #E2E6DA;
+    --text: #1B2018; --muted: #5F6B5C; --accent: #5B54C4;
+    /* Руна в светлой теме взята глубже: на переливе плитки #8A6F2A давал 4.42:1,
+       а цена — мелкий текст, ей нужны честные 4.5:1 (тот же класс правки, что и
+       у таймера в макете 27). */
+    --correct: #2E8B57; --gold: #B8860B; --rune: #755C21; --rune-deep: #5A4718;
+    --pearl: #6245B2; --pearl-deep: #4A3390;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0d1020; color: #eef1ff;
+    font: 15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 30px 20px 90px; }
+  h1 { font-size: 30px; font-weight: 800; margin: 0 0 6px; letter-spacing: -.4px; text-wrap: balance; }
+  .lede { color: #8b93b8; max-width: 800px; margin: 0 0 22px; }
+  .lede b { color: #eef1ff; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+  .toggle { background: #161a2e; color: #eef1ff; border: 0; border-radius: 999px;
+    padding: 9px 15px; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .toggle[aria-pressed="true"] { background: #7c8cff; color: #0b0e1b; }
+
+  .stagegrid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .demo { background: var(--card); border-radius: 22px; padding: 18px; }
+  .demo h3 { font-size: 16px; margin: 0 0 6px; font-weight: 800; color: var(--text); }
+  .demo p { color: var(--muted); font-size: 13.5px; margin: 0 0 14px; }
+  .demo p b { color: var(--text); }
+
+  /* ── Телефон ───────────────────────────────────────────────────── */
+  .screen { width: 320px; margin: 0 auto; background: var(--bg); border-radius: 26px;
+    overflow-y: auto; max-height: 620px; box-shadow: 0 18px 44px rgba(0,0,0,.42);
+    position: relative; }
+  .light .screen { box-shadow: 0 14px 34px rgba(27,32,24,.14); }
+  .screen::-webkit-scrollbar { width: 0; }
+  /* Демо-экраны «состояния» и «загрузка» показываются ЦЕЛИКОМ: подрезанный по
+     нижней границе телефон читается как дефект вёрстки, хотя это просто скролл. */
+  .screen.short { max-height: none; }
+  /* Главный экран — НЕПОДВИЖНАЯ рамка телефона фиксированной высоты. Скроллит
+     только .scrollarea внутри; лист покупки и док лежат поверх неё и потому
+     всегда стоят на нижней кромке экрана, как настоящие оверлеи. */
+  .screen.scrollable { height: 620px; max-height: 620px; overflow: hidden;
+    display: flex; flex-direction: column; }
+  .scrollarea { flex: 1; min-height: 0; overflow-y: auto; }
+  .scrollarea::-webkit-scrollbar { width: 0; }
+
+  /* ── Шапка: две валюты, обе кликабельны ────────────────────────── */
+  .navbar { position: sticky; top: 0; z-index: 3; background: var(--bg);
+    padding: 14px 16px 10px; }
+  .navrow { display: flex; align-items: center; gap: 10px; }
+  .navttl { font-size: 21px; font-weight: 900; color: var(--text); letter-spacing: -.3px; flex: 1; }
+  .navback { color: var(--muted); font-size: 20px; font-weight: 700; }
+  .wallets { display: flex; gap: 8px; margin-top: 12px; }
+  /* Кошелёк — не «чип-крошка», а полноценная плитка: по эталону «Статистика»
+     всё крупное. Активная валюта подсвечена тоном, не обводкой. */
+  .wallet { flex: 1; border-radius: 18px; padding: 11px 13px; cursor: pointer;
+    background: linear-gradient(215deg, var(--surface2), var(--card));
+    display: flex; align-items: center; gap: 10px;
+    transition: transform calc(140ms * var(--k)) var(--ease); }
+  .wallet:active { transform: scale(.975); }
+  .wallet .wico { width: 34px; height: 34px; border-radius: 12px; flex: 0 0 34px;
+    display: flex; align-items: center; justify-content: center; }
+  .wallet.runes .wico { background: linear-gradient(150deg, #8a6f2a, #4d3d13); }
+  .wallet.pearls .wico { background: linear-gradient(150deg, #6E56C8, #3E2C84); }
+  .wallet .wamt { font-size: 21px; font-weight: 900; color: var(--text); line-height: 1;
+    font-variant-numeric: tabular-nums; letter-spacing: -.4px; }
+  .wallet .wplus { margin-left: auto; font-size: 20px; font-weight: 800; color: var(--muted); line-height: 1; }
+  .wallet.pearls .wplus { color: var(--pearl); }
+  .wallet.bump { animation: bump calc(360ms * var(--k)) var(--ease); }
+  @keyframes bump { 0%{transform:scale(1)} 45%{transform:scale(1.16)} 100%{transform:scale(1)} }
+  .rune { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; color: #E3CC88;
+    line-height: 1; font-size: 19px; }
+  .pearlgem { width: 18px; height: 18px; border-radius: 5px 5px 8px 8px;
+    background: linear-gradient(150deg, #C4B5FD, #7C5CE0 65%, #5B3FBF);
+    box-shadow: 0 0 9px rgba(167,139,250,.5); }
+
+  /* ── Док категорий: капсула снизу по центру, список выезжает ВВЕРХ ──
+     Один в один поведение витрины достижений (AchievementCategoryDock):
+     капсула 52, стаггер 46мс, при открытии ряды всплывают снизу вверх,
+     затемнение .38, тап по фону закрывает. Параметры взяты из
+     ACHIEVEMENT_CATEGORY_DOCK_HYBRID, чтобы движение совпадало буквально. */
+  .dockscrim { position: absolute; inset: 0; background: #000; opacity: 0;
+    pointer-events: none; z-index: 5;
+    transition: opacity calc(220ms * var(--k)) ease; }
+  .dockscrim.on { opacity: .38; pointer-events: auto; }
+
+  /* 6 (отступ) + 52 (капсула) + 10 (зазор) — как dockBottomGap/capsuleMinHeight/menuGap. */
+  .dockmenu { position: absolute; left: 14px; right: 14px; bottom: 68px; z-index: 6;
+    display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+  .dockmenu.on { pointer-events: auto; }
+  .dockrow { display: flex; align-items: center; gap: 11px; min-height: 52px;
+    padding: 0 15px; border-radius: 17px; cursor: pointer;
+    background: var(--card); opacity: 0;
+    transform: translateY(18px) scale(.9);
+    transition: opacity calc(240ms * var(--k)) var(--ease),
+                transform calc(340ms * var(--k)) var(--ease); }
+  .dockmenu.on .dockrow { opacity: 1; transform: none; }
+  .dockrow.sel { background: linear-gradient(150deg, var(--surface3), var(--surface2)); }
+  .dockrow .dico { width: 34px; height: 34px; border-radius: 12px; flex: 0 0 34px;
+    display: flex; align-items: center; justify-content: center; font-size: 17px;
+    background: var(--surface2); }
+  .dockrow.sel .dico { background: rgba(124,140,255,.2); }
+  .dockrow .dlab { flex: 1; font-size: 14.5px; font-weight: 700; color: var(--text); }
+  .dockrow.sel .dlab { font-weight: 900; }
+  .dockrow .dchk { color: var(--accent); font-size: 17px; font-weight: 900; }
+  .dockrow .dcount { font-size: 13px; font-weight: 800; color: var(--muted);
+    font-variant-numeric: tabular-nums; }
+
+  .dockcap { position: absolute; left: 0; right: 0; bottom: 6px; z-index: 6;
+    display: flex; justify-content: center; pointer-events: none; }
+  .capsule { pointer-events: auto; min-height: 52px; display: flex; align-items: center;
+    gap: 10px; padding: 0 18px; border-radius: 26px; cursor: pointer;
+    background: var(--card); box-shadow: 0 8px 22px rgba(0,0,0,.4);
+    transition: transform calc(140ms * var(--k)) var(--ease); }
+  .light .capsule { box-shadow: 0 6px 18px rgba(27,32,24,.16); }
+  .capsule:active { transform: scale(.97); }
+  .capsule .cico { font-size: 17px; }
+  .capsule .clab { font-size: 14.5px; font-weight: 900; color: var(--text); }
+  .capsule .carrow { font-size: 12px; color: var(--muted); font-weight: 900;
+    transition: transform calc(280ms * var(--k)) var(--ease); }
+  .capsule.open .carrow { transform: rotate(180deg); }
+
+  /* ── Витрина: 3 в ряд ──────────────────────────────────────────── */
+  .seclab { font-size: 12px; font-weight: 900; color: var(--muted); letter-spacing: .5px;
+    padding: 0 16px; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+  .seclab .cur { color: var(--rune); }
+  .seclab .cur.p { color: var(--pearl); }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; padding: 0 16px; }
+
+  /* Товар. Разделение ТОНОМ: фон-перелив + тень, ни одной обводки. */
+  .tile { border-radius: 18px; padding: 12px 8px 10px; cursor: pointer; position: relative;
+    background: linear-gradient(200deg, var(--surface2), var(--card));
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+    transition: transform calc(140ms * var(--k)) var(--ease); overflow: hidden; }
+  .tile:active { transform: scale(.96); }
+  /* Медальон 52 — крупный, как требует эталон «Статистика». */
+  .tile .medal { width: 52px; height: 52px; border-radius: 17px; flex: 0 0 52px;
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+    background: linear-gradient(150deg, var(--surface3), var(--surface2)); }
+  .medal.xp     { background: linear-gradient(150deg, #4b3ea8, #241d52); color: #C7BDFF; }
+  .medal.shield { background: linear-gradient(150deg, #1d6b45, #0d3623); color: #7CE8AC; }
+  .medal.energy { background: linear-gradient(150deg, #8a6a12, #443105); color: #FFD666; }
+  .medal.hint   { background: linear-gradient(150deg, #1f6d7a, #0c3038); color: #7BE0F0; }
+  .medal.spin   { background: linear-gradient(150deg, #7C5CE0, #3A2678); color: #DCD0FF; }
+  .medal.theme  { background: linear-gradient(150deg, #b0562b, #4d2413); color: #FFC7A6; }
+  .medal.cards  { background: linear-gradient(150deg, #2f5fb0, #16294f); color: #B7D0FF; }
+  .medal.plus   { background: linear-gradient(150deg, #C9A84C, #6B551F); color: #23190A; }
+  .medal.aura   { background: linear-gradient(150deg, #a8397e, #4a1637); color: #FFB6DF; }
+  .tile .nm { font-size: 12.5px; font-weight: 800; color: var(--text); text-align: center;
+    line-height: 1.25; min-height: 31px; display: flex; align-items: center; }
+  /* Цена — самый крупный акцент плитки: игрок сканирует именно её. */
+  .tile .price { display: flex; align-items: center; gap: 4px; font-weight: 900;
+    font-size: 15px; font-variant-numeric: tabular-nums; }
+  .tile .price.r { color: var(--rune); }
+  .tile .price.p { color: var(--pearl); }
+  .tile .price .rune { font-size: 13px; color: inherit; }
+  .tile .price .pearlgem { width: 13px; height: 13px; box-shadow: none; }
+  /* Не хватает валюты — гасим ТОНОМ, а не opacity: подпись обязана остаться читаемой. */
+  .tile.poor .medal { filter: saturate(.22) brightness(.78); }
+  .tile.poor .nm, .tile.poor .price { color: var(--muted); }
+  .tile.owned .medal { filter: saturate(.3) brightness(.85); }
+  .tile .owned-lab { font-size: 11.5px; font-weight: 900; color: var(--correct); }
+  .light .tile .owned-lab { color: #1D6B45; }
+  .tile .timer { font-size: 11.5px; font-weight: 900; color: var(--correct);
+    font-variant-numeric: tabular-nums; }
+  .light .tile .timer { color: #1D6B45; }
+  .tile.live { background: linear-gradient(200deg, rgba(69,212,127,.18), var(--card)); }
+  /* Метка на товаре — угловая плашка, не рамка. */
+  .tag { position: absolute; top: 0; right: 0; font-size: 9.5px; font-weight: 900;
+    letter-spacing: .3px; padding: 3px 7px 4px 9px; border-radius: 0 18px 0 12px;
+    background: var(--accent); color: #0b0e1b; }
+  .tag.hot { background: var(--danger); color: #fff; }
+  .tag.best { background: var(--rune); color: #23190A; }
+
+  /* ── Пополнение жемчуга: широкие плитки, реальные пакеты ────────── */
+  .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; padding: 0 16px; }
+  .pack { border-radius: 18px; padding: 13px 8px 11px; cursor: pointer; position: relative;
+    background: linear-gradient(200deg, #2A2358, #191338);
+    display: flex; flex-direction: column; align-items: center; gap: 5px; overflow: hidden;
+    transition: transform calc(140ms * var(--k)) var(--ease); }
+  .light .pack { background: linear-gradient(200deg, #E4DDF7, #F3EFFC); }
+  .pack:active { transform: scale(.96); }
+  .pack .pgem { width: 34px; height: 34px; border-radius: 9px 9px 14px 14px;
+    background: linear-gradient(150deg, #C4B5FD, #7C5CE0 62%, #5B3FBF);
+    box-shadow: 0 0 16px rgba(167,139,250,.45); }
+  .pack .pamt { font-size: 19px; font-weight: 900; color: var(--text); line-height: 1;
+    font-variant-numeric: tabular-nums; }
+  .light .pack .pamt { color: #241A4D; }
+  .pack .pbonus { font-size: 11px; font-weight: 900; color: var(--correct); }
+  .light .pack .pbonus { color: #1D6B45; }
+  .pack .pprice { font-size: 13px; font-weight: 900; color: var(--text); margin-top: 3px; }
+  .light .pack .pprice { color: #241A4D; }
+
+  /* ── Модалка покупки ───────────────────────────────────────────── */
+  .scrim { position: absolute; inset: 0; background: rgba(6,8,18,.68);
+    backdrop-filter: blur(3px); opacity: 0; pointer-events: none;
+    transition: opacity calc(220ms * var(--k)) ease; z-index: 8; }
+  .scrim.on { opacity: 1; pointer-events: auto; }
+  /* зачем: лист подтверждения обязан выезжать от нижней кромки ВИДИМОЙ области.
+     С `bottom: 0` он липнул к низу всего контента (1770px), и при открытии
+     товара из верхней части списка лист уезжал на 392px за экран — покупку
+     не было видно вообще. Теперь скроллит только .scrollarea, а лист лежит
+     поверх неё и держится на bottom:0 рамки. */
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--card);
+    border-radius: 26px 26px 0 0; padding: 20px 18px 22px; transform: translateY(102%);
+    transition: transform calc(340ms * var(--k)) var(--ease); z-index: 9; }
+  .sheet.on { transform: translateY(0); }
+  .sheet .grab { width: 36px; height: 4px; border-radius: 2px; background: var(--surface3);
+    margin: 0 auto 16px; }
+  .sheet .bigmedal { width: 68px; height: 68px; border-radius: 22px; margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 34px; }
+  .sheet .mtitle { font-size: 19px; font-weight: 900; color: var(--text); text-align: center;
+    letter-spacing: -.2px; }
+  .sheet .mbody { font-size: 13.5px; color: var(--muted); text-align: center; margin: 8px 0 18px;
+    line-height: 1.5; }
+  .cta { width: 100%; border: 0; border-radius: 16px; padding: 15px; font-weight: 900;
+    font-size: 15px; cursor: pointer; background: var(--accent); color: #0b0e1b;
+    display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .cta.gold { background: linear-gradient(140deg, #E0C070, var(--rune)); color: #23190A; }
+  .cta.pearl { background: linear-gradient(140deg, #A78BFA, #6E56C8); color: #17103A; }
+  .cta.flat { background: var(--surface2); color: var(--text); margin-top: 9px; }
+  .cta .rune, .cta .pearlgem { font-size: 15px; }
+  .balrow { display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 12.5px; color: var(--muted); font-weight: 700; margin-top: 12px; }
+
+  /* ── Тост ──────────────────────────────────────────────────────── */
+  .toast { position: absolute; left: 14px; right: 14px; top: 12px; border-radius: 16px;
+    padding: 12px 14px; background: var(--surface3); display: flex; align-items: center; gap: 10px;
+    transform: translateY(-140%); opacity: 0; z-index: 10;
+    transition: transform calc(380ms * var(--k)) var(--ease),
+                opacity calc(240ms * var(--k)) ease; }
+  .toast.on { transform: translateY(0); opacity: 1; }
+  .toast .tico { font-size: 19px; }
+  .toast .ttxt { font-size: 13.5px; font-weight: 800; color: var(--text); }
+  .toast .tsub { font-size: 11.5px; color: #A2A9C9; font-weight: 700; margin-top: 1px; }
+  .light .toast .tsub { color: #4E5A4B; }
+  .toast.ok .tico { color: var(--correct); }
+  .toast.err .tico { color: var(--danger); }
+
+  /* Полёт валюты при покупке */
+  .flyer { position: absolute; pointer-events: none; opacity: 0; z-index: 7; }
+  .flyer.go { animation: fly calc(620ms * var(--k)) cubic-bezier(.33,.52,.25,.99) forwards; }
+  @keyframes fly {
+    0% { transform: translate(0,0) scale(1); opacity: 0; }
+    12% { opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(.5); opacity: 0; }
+  }
+
+  /* ── Пустое / скелет ───────────────────────────────────────────── */
+  .empty { text-align: center; padding: 30px 22px; }
+  .empty .eglyph { font-size: 40px; color: var(--surface3); }
+  .empty .etitle { font-size: 15.5px; font-weight: 800; color: var(--text); margin-top: 10px; }
+  .empty .ebody { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+  .skel { background: var(--surface2); border-radius: 14px;
+    animation: shimmer calc(1300ms * var(--k)) ease-in-out infinite; }
+  @keyframes shimmer { 0%,100%{opacity:.45} 50%{opacity:.85} }
+
+  .spec { background: var(--card); border-radius: 20px; padding: 18px 20px; margin-top: 26px; }
+  .spec h2 { font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 12px; font-weight: 900; }
+  .spec table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .spec td, .spec th { text-align: left; padding: 7px 10px 7px 0; vertical-align: top; }
+  .spec th { color: var(--muted); font-size: 11.5px; text-transform: uppercase;
+    letter-spacing: .6px; font-weight: 900; }
+  .spec tr + tr td { border-top: 1px solid rgba(255,255,255,.06); }
+  .light .spec tr + tr td { border-top: 1px solid rgba(27,32,24,.08); }
+  .spec td b { color: var(--text); }
+  .spec .r { color: var(--rune); font-weight: 900; white-space: nowrap; }
+  .spec .p { color: var(--pearl); font-weight: 900; white-space: nowrap; }
+  .spec .note { color: var(--muted); font-size: 12.5px; margin: 10px 0 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+  .rm * { animation: none !important; transition: none !important; }
+</style>
+
+<div class="wrap">
+  <h1>Магазин — макет</h1>
+  <p class="lede">Отдельный премиальный раздел. Две валюты с разными ролями: <b>руны</b> зарабатываются
+    в уроках и лигах и тратятся на усиления прогресса, <b>жемчуг</b> покупается за деньги и тратится на
+    спины, косметику и наборы. Сетка товаров — <b>3 в ряд</b>. Размеры взяты у эталона «Статистика»:
+    крупные медальоны 52, цены весом 900, разделение тоном и тенью — ни одной обводки.</p>
+
+  <div class="controls">
+    <button class="toggle" id="light" aria-pressed="false">Светлая тема</button>
+    <button class="toggle" id="slow" aria-pressed="false">Замедлить 4×</button>
+    <button class="toggle" id="rm" aria-pressed="false">Reduced motion</button>
+  </div>
+
+  <div class="stagegrid">
+
+    <!-- ══ 1. ГЛАВНЫЙ ЭКРАН ══════════════════════════════════════ -->
+    <div class="demo">
+      <h3>Магазин целиком</h3>
+      <p>Кликай по товарам — открывается лист покупки. Категории вверху фильтруют витрину.
+        Плитки, на которые не хватает валюты, <b>гаснут тоном</b>, но остаются читаемыми.</p>
+
+      <div class="screen scrollable" id="shopScreen">
+        <div class="toast" id="toast">
+          <div class="tico" id="toastIco">✓</div>
+          <div>
+            <div class="ttxt" id="toastTxt">Готово</div>
+            <div class="tsub" id="toastSub">—</div>
+          </div>
+        </div>
+
+        <div class="navbar">
+          <div class="navrow">
+            <div class="navback">‹</div>
+            <div class="navttl">Магазин</div>
+          </div>
+          <div class="wallets">
+            <div class="wallet runes" id="wRunes">
+              <div class="wico"><span class="rune">ᚠ</span></div>
+              <div class="wamt" id="runeAmt">240</div>
+              <div class="wplus">+</div>
+            </div>
+            <div class="wallet pearls" id="wPearls">
+              <div class="wico"><span class="pearlgem"></span></div>
+              <div class="wamt" id="pearlAmt">85</div>
+              <div class="wplus">+</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Скроллится ТОЛЬКО этот слой. Лист покупки, затемнение и док лежат
+             снаружи — как настоящие оверлеи поверх экрана, а не внутри списка. -->
+        <div class="scrollarea" id="shopScroll">
+        <div id="shopBody"></div>
+        <!-- Запас снизу: док-капсула висит поверх и не должна прятать товар. -->
+        <div style="height:78px"></div>
+        </div>
+
+        <div class="dockscrim" id="dockScrim"></div>
+        <div class="dockmenu" id="dockMenu"></div>
+        <div class="dockcap" id="dockCap"><div class="capsule" id="capsule">
+          <span class="cico" id="capIco">🗂</span>
+          <span class="clab" id="capLab">Всё</span>
+          <span class="carrow">▲</span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ══ 2. ЛИСТ ПОКУПКИ ══════════════════════════════════════ -->
+    <div class="demo">
+      <h3>Лист покупки</h3>
+      <p>Одно действие, одна кнопка. Баланс показан <b>под</b> кнопкой — чтобы решение принималось
+        по цене, а не по остатку. Нажатие мгновенно списывает и закрывает лист: сеть догоняет фоном.</p>
+      <div class="screen short" id="sheetDemo">
+        <div class="navbar"><div class="navrow"><div class="navttl">Усиления</div></div></div>
+        <div class="grid3" style="margin-top:6px">
+          <div class="tile"><div class="medal xp">⚡</div><div class="nm">Опыт ×2<br>1 час</div>
+            <div class="price r"><span class="rune">ᚠ</span>60</div></div>
+          <div class="tile"><div class="medal shield">🛡</div><div class="nm">Щит серии</div>
+            <div class="price r"><span class="rune">ᚠ</span>90</div></div>
+          <div class="tile"><div class="medal energy">🔋</div><div class="nm">Полная энергия</div>
+            <div class="price r"><span class="rune">ᚠ</span>50</div></div>
+        </div>
+        <div class="scrim on"></div>
+        <div class="sheet on">
+          <div class="grab"></div>
+          <div class="bigmedal xp" style="background:linear-gradient(150deg,#4b3ea8,#241d52);color:#C7BDFF">⚡</div>
+          <div class="mtitle">Опыт ×2 на час</div>
+          <div class="mbody">Весь опыт за уроки, тренировки и Арену удваивается на 60 минут.</div>
+          <button class="cta gold"><span class="rune">ᚠ</span> Купить за 60</button>
+          <div class="balrow"><span class="rune" style="font-size:12px">ᚠ</span> У тебя 240</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 3. СОСТОЯНИЯ ══════════════════════════════════════ -->
+    <div class="demo">
+      <h3>Состояния плитки</h3>
+      <p>Четыре случая, которые обязаны выглядеть по-разному, не полагаясь на цвет:
+        <b>доступно</b>, <b>не хватает валюты</b>, <b>уже активно</b> с таймером, <b>куплено навсегда</b>.</p>
+      <div class="screen short">
+        <div class="navbar"><div class="navrow"><div class="navttl">Состояния</div></div></div>
+        <div class="grid3" style="margin-top:6px">
+          <div class="tile"><div class="medal xp">⚡</div><div class="nm">Доступно</div>
+            <div class="price r"><span class="rune">ᚠ</span>60</div></div>
+          <div class="tile poor"><div class="medal spin">🎰</div><div class="nm">Не хватает</div>
+            <div class="price p"><span class="pearlgem"></span>120</div></div>
+          <div class="tile live"><div class="medal shield">🛡</div><div class="nm">Активно</div>
+            <div class="timer">42:10</div></div>
+        </div>
+        <div class="grid3" style="margin-top:9px">
+          <div class="tile owned"><div class="medal theme">🎨</div><div class="nm">Тема «Полночь»</div>
+            <div class="owned-lab">Куплено</div></div>
+          <div class="tile"><div class="medal plus">👑</div><div class="nm">Plus<br>7 дней</div>
+            <div class="tag best">ВЫГОДНО</div>
+            <div class="price p"><span class="pearlgem"></span>350</div></div>
+          <div class="tile"><div class="medal aura">✨</div><div class="nm">Аура аватара</div>
+            <div class="tag hot">НОВОЕ</div>
+            <div class="price p"><span class="pearlgem"></span>150</div></div>
+        </div>
+        <div style="height:16px"></div>
+      </div>
+    </div>
+
+    <!-- ══ 4. ПУСТОЕ И ЗАГРУЗКА ══════════════════════════════════════ -->
+    <div class="demo">
+      <h3>Первый кадр и пустая категория</h3>
+      <p>Скелет держит <b>ту же геометрию</b>, что и готовая витрина — первый кадр не прыгает.
+        Пустая категория не оставляет игрока в тупике, а ведёт туда, где товар появится.</p>
+      <div class="screen short">
+        <div class="navbar"><div class="navrow"><div class="navttl">Загрузка</div></div></div>
+        <div class="grid3" style="margin-top:6px">
+          <div class="tile" style="background:var(--card)">
+            <div class="skel" style="width:52px;height:52px;border-radius:17px"></div>
+            <div class="skel" style="width:80%;height:12px;margin-top:4px"></div>
+            <div class="skel" style="width:50%;height:13px"></div></div>
+          <div class="tile" style="background:var(--card)">
+            <div class="skel" style="width:52px;height:52px;border-radius:17px"></div>
+            <div class="skel" style="width:80%;height:12px;margin-top:4px"></div>
+            <div class="skel" style="width:50%;height:13px"></div></div>
+          <div class="tile" style="background:var(--card)">
+            <div class="skel" style="width:52px;height:52px;border-radius:17px"></div>
+            <div class="skel" style="width:80%;height:12px;margin-top:4px"></div>
+            <div class="skel" style="width:50%;height:13px"></div></div>
+        </div>
+        <div class="empty">
+          <div class="eglyph">ᚠ</div>
+          <div class="etitle">Здесь пока пусто</div>
+          <div class="ebody">Новые наборы открываются по мере прохождения курса.<br>Загляни после следующего урока.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ КАТАЛОГ ══════════════════════════════════════ -->
+  <div class="spec">
+    <h2>Каталог: что продаём за руны</h2>
+    <table>
+      <tr><th>Товар</th><th>Цена</th><th>Что даёт</th></tr>
+      <tr><td><b>Опыт ×2 · 1 час</b></td><td class="r">ᚠ 60</td><td>Есть в коде как буст лиги — переводим на руны.</td></tr>
+      <tr><td><b>Опыт ×2 · 2 часа</b></td><td class="r">ᚠ 90</td><td>Тот же буст, длиннее.</td></tr>
+      <tr><td><b>Опыт ×3 · 15 минут</b></td><td class="r">ᚠ 80</td><td>Короткий рывок перед закрытием недели лиги.</td></tr>
+      <tr><td><b>Щит серии</b></td><td class="r">ᚠ 90</td><td>Заморозка стрика.</td></tr>
+      <tr><td><b>Полная энергия</b></td><td class="r">ᚠ 50</td><td>Мгновенный дозаряд вместо ожидания 30 минут.</td></tr>
+      <tr><td><b>Клубный буст ×2</b></td><td class="r">ᚠ 100</td><td>На всю комнату лиги.</td></tr>
+      <tr><td><b>Банк опыта · 600</b></td><td class="r">ᚠ 120</td><td>Разовая выдача опыта; есть в каталоге спина.</td></tr>
+      <tr><td><b>Опыт ×2 до конца дня</b></td><td class="r">ᚠ 180</td><td>Верхняя ступень. Сейчас только подарок сезона — делаем покупаемой.</td></tr>
+    </table>
+    <p class="note">Цены за руны удвоены относительно ступеней бустов лиги (решение владельца 24.08):
+      руна должна ощущаться весомее жемчужины. Подсказки из витрины убраны.</p>
+  </div>
+
+  <div class="spec">
+    <h2>Каталог: что продаём за жемчуг</h2>
+    <table>
+      <tr><th>Товар</th><th>Цена</th><th>Что даёт</th></tr>
+      <tr><td><b>Спин рулетки</b></td><td class="p">◈ 40</td><td>Один прокрут. Каталог наград уже есть — от опыта до дней Plus.</td></tr>
+      <tr><td><b>3 спина</b></td><td class="p">◈ 100</td><td>Пакет со скидкой — плитка с меткой «ВЫГОДНО».</td></tr>
+      <tr><td><b>10 спинов</b></td><td class="p">◈ 300</td><td>Верхний пакет для тех, кто охотится за редкими наградами.</td></tr>
+      <tr><td><b>Тема оформления</b></td><td class="p">◈ 200</td><td>Премиальные темы поштучно, помимо подписки.</td></tr>
+      <tr><td><b>Случайная аура</b></td><td class="p">◈ 150</td><td>Выпадает случайная аура аватара. Иконка уже есть — <code>cosmetic_avatar_aura.webp</code> из наград спина.</td></tr>
+      <tr><td><b>Набор карточек</b></td><td class="p">◈ 80</td><td>Тематические наборы — механика покупки уже работает.</td></tr>
+      <tr><td><b>Plus · 3 дня</b></td><td class="p">◈ 180</td><td>Пробная подписка за внутриигровую валюту.</td></tr>
+      <tr><td><b>Plus · 7 дней</b></td><td class="p">◈ 350</td><td>Есть как награда спина — делаем покупаемой напрямую.</td></tr>
+      <tr><td><b>Обмен на руны</b></td><td class="p">◈ 50 → ᚠ 100</td><td>Односторонний мост: жемчуг → руны. Обратно нельзя, иначе руны обесценятся.</td></tr>
+    </table>
+    <p class="note">Секция «Жемчуг» показывает реальные пакеты из кода — 35 / 92 / 210 / 500
+      (номинал + бонус), цены подтягиваются из стора.</p>
+  </div>
+</div>
+
+<script>
+// Каталог макета. Цены сверены с кодом: клубный буст 50, бусты 20/30/40/45,
+// пакеты жемчуга 35/92/210/500 (app/shards_shop_catalog.ts).
+// Цены за руны удвоены по решению владельца (24.08): руна должна ощущаться
+// весомее, чем ступень бустов лиги. Подсказки из витрины убраны.
+const ITEMS = [
+  { cat:'boost', cur:'r', price:60,  med:'xp',     ico:'⚡', nm:'Опыт ×2<br>1 час',   full:'Опыт ×2 на час',        body:'Весь опыт за уроки, тренировки и Арену удваивается на 60 минут.' },
+  { cat:'boost', cur:'r', price:90,  med:'xp',     ico:'⚡', nm:'Опыт ×2<br>2 часа',  full:'Опыт ×2 на два часа',   body:'Тот же множитель, вдвое дольше. Выгоднее часового.' },
+  { cat:'boost', cur:'r', price:80,  med:'xp',     ico:'🔥', nm:'Опыт ×3<br>15 минут',full:'Опыт ×3 на 15 минут',   body:'Короткий рывок — успей закрыть неделю лиги.' },
+  { cat:'boost', cur:'r', price:90,  med:'shield', ico:'🛡', nm:'Щит серии',          full:'Щит серии',             body:'Пропущенный день не обнулит серию. Сработает сам.' },
+  { cat:'boost', cur:'r', price:50,  med:'energy', ico:'🔋', nm:'Полная энергия',     full:'Полная энергия',        body:'Мгновенно заполняет шкалу — не ждать полчаса.' },
+  { cat:'boost', cur:'r', price:100, med:'xp',     ico:'👥', nm:'Клубный буст ×2',    full:'Клубный буст ×2',       body:'Множитель на всю комнату лиги. Спасибо скажут все.', tag:'ХИТ', tagc:'hot' },
+  { cat:'boost', cur:'r', price:120, med:'xp',     ico:'🏦', nm:'Банк опыта<br>600',  full:'Банк опыта · 600',      body:'Разовая выдача 600 опыта прямо сейчас.' },
+  { cat:'boost', cur:'r', price:180, med:'xp',     ico:'🌙', nm:'Опыт ×2<br>до ночи', full:'Опыт ×2 до конца дня',  body:'Множитель работает до полуночи по твоему времени.', tag:'ВЫГОДНО', tagc:'best' },
+
+  { cat:'spin',  cur:'p', price:40,  med:'spin',  ico:'🎰', nm:'Спин рулетки',    full:'Спин рулетки',     body:'Один прокрут: опыт, жемчуг, руны, косметика или дни Plus.' },
+  { cat:'spin',  cur:'p', price:100, med:'spin',  ico:'🎰', nm:'3 спина',         full:'Три спина',        body:'Три прокрута по цене двух с половиной.', tag:'ВЫГОДНО', tagc:'best' },
+  { cat:'spin',  cur:'p', price:300, med:'spin',  ico:'🎰', nm:'10 спинов',       full:'Десять спинов',    body:'Лучшая цена за прокрут. Для охоты за редким.' },
+
+  { cat:'look',  cur:'p', price:200, med:'theme', ico:'🎨', nm:'Тема оформления', full:'Тема оформления',  body:'Премиальная тема приложения навсегда.' },
+  // Аура выпадает СЛУЧАЙНАЯ — как в спине. Ассет уже существует:
+  // assets/images/level-spin-rewards/cosmetic_avatar_aura.webp
+  { cat:'look',  cur:'p', price:150, med:'aura',  ico:'✨', nm:'Случайная аура',  full:'Случайная аура',   body:'Выпадет одна из аур аватара. Какая — узнаешь при открытии.', tag:'НОВОЕ', tagc:'hot', random:true },
+  { cat:'look',  cur:'p', price:180, med:'plus',  ico:'👑', nm:'Plus<br>3 дня',   full:'Plus на 3 дня',    body:'Безлимит энергии и все премиальные разделы.' },
+  { cat:'look',  cur:'p', price:350, med:'plus',  ico:'👑', nm:'Plus<br>7 дней',  full:'Plus на 7 дней',   body:'Неделя без ограничений. Выгоднее трёхдневного.', tag:'ВЫГОДНО', tagc:'best' },
+
+  { cat:'cards', cur:'p', price:80,  med:'cards', ico:'🗂', nm:'Набор карточек',  full:'Набор карточек',   body:'Тематический набор фраз в твою коллекцию.' },
+  { cat:'cards', cur:'p', price:80,  med:'cards', ico:'✈️', nm:'Набор «Поездка»', full:'Набор «Поездка»',  body:'Фразы для аэропорта, отеля и такси.' },
+  { cat:'cards', cur:'p', price:80,  med:'cards', ico:'💼', nm:'Набор «Работа»',  full:'Набор «Работа»',   body:'Созвоны, письма и переговоры на английском.' },
+  { cat:'cards', cur:'p', price:50,  med:'cards', ico:'🔁', nm:'Обмен<br>на руны',full:'Обмен на руны',    body:'50 жемчужин станут 100 рунами. Обратно обменять нельзя.' },
+];
+
+/** Аура выпадает случайной — список для показа результата. */
+const AURAS = ['Пламя', 'Иней', 'Гроза', 'Сакура', 'Бездна', 'Рассвет'];
+
+const PACKS = [
+  { amt:30,  bonus:5,  price:'199 ₽' },
+  { amt:80,  bonus:12, price:'449 ₽', tag:'ХИТ',     tagc:'hot' },
+  { amt:180, bonus:30, price:'899 ₽', tag:'ВЫГОДНО', tagc:'best' },
+];
+
+let runes = 240, pearls = 85, cat = 'all';
+const body = document.getElementById('shopBody');
+const runeAmt = document.getElementById('runeAmt');
+const pearlAmt = document.getElementById('pearlAmt');
+
+function priceHtml(it) {
+  return it.cur === 'r'
+    ? '<div class="price r"><span class="rune">ᚠ</span>' + it.price + '</div>'
+    : '<div class="price p"><span class="pearlgem"></span>' + it.price + '</div>';
+}
+
+function tileHtml(it, i) {
+  const bal = it.cur === 'r' ? runes : pearls;
+  const poor = bal < it.price ? ' poor' : '';
+  const tag = it.tag ? '<div class="tag ' + (it.tagc || '') + '">' + it.tag + '</div>' : '';
+  return '<div class="tile' + poor + '" data-i="' + i + '">' + tag +
+    '<div class="medal ' + it.med + '">' + it.ico + '</div>' +
+    '<div class="nm">' + it.nm + '</div>' + priceHtml(it) + '</div>';
+}
+
+function sectionHtml(title, cur, items) {
+  if (!items.length) return '';
+  const dot = cur === 'r'
+    ? '<span class="cur rune">ᚠ</span>'
+    : '<span class="cur p"><span class="pearlgem" style="width:11px;height:11px;box-shadow:none;display:inline-block"></span></span>';
+  return '<div class="seclab">' + dot + title + '</div><div class="grid3">' +
+    items.map((x) => tileHtml(x.it, x.i)).join('') + '</div>';
+}
+
+function render() {
+  runeAmt.textContent = runes;
+  pearlAmt.textContent = pearls;
+  const idx = ITEMS.map((it, i) => ({ it, i }));
+  const show = (c) => idx.filter((x) => x.it.cat === c && (cat === 'all' || cat === c));
+
+  let html = '';
+  if (cat === 'all' || cat === 'boost') html += sectionHtml('Усиления · за руны', 'r', show('boost'));
+  if (cat === 'all' || cat === 'spin')  html += sectionHtml('Спины · за жемчуг', 'p', show('spin'));
+  if (cat === 'all' || cat === 'look')  html += sectionHtml('Внешний вид · за жемчуг', 'p', show('look'));
+  if (cat === 'all' || cat === 'cards') html += sectionHtml('Наборы · за жемчуг', 'p', show('cards'));
+
+  if (cat === 'all' || cat === 'pearls') {
+    html += '<div class="seclab">Пополнить жемчуг</div><div class="packs">' +
+      PACKS.map((p, i) => {
+        const tag = p.tag ? '<div class="tag ' + p.tagc + '">' + p.tag + '</div>' : '';
+        return '<div class="pack" data-p="' + i + '">' + tag +
+          '<div class="pgem"></div><div class="pamt">' + p.amt + '</div>' +
+          '<div class="pbonus">+' + p.bonus + '</div>' +
+          '<div class="pprice">' + p.price + '</div></div>';
+      }).join('') + '</div>';
+  }
+  body.innerHTML = html;
+}
+
+// ── Лист покупки ────────────────────────────────────────────────
+const screen = document.getElementById('shopScreen');
+const shopScroll = document.getElementById('shopScroll');
+let sheetEl = null, scrimEl = null;
+/** Снимает оконные слушатели свайпа — иначе они копятся с каждым открытием. */
+let detachDrag = null;
+
+function closeSheet() {
+  if (!sheetEl) return;
+  sheetEl.classList.remove('on');
+  scrimEl.classList.remove('on');
+  const s = sheetEl, c = scrimEl;
+  sheetEl = null; scrimEl = null;
+  if (detachDrag) { detachDrag(); detachDrag = null; }
+  setTimeout(() => { s.remove(); c.remove(); }, 360);
+}
+
+function openSheet(it) {
+  closeSheet();
+  // Подчищаем узлы прежних листов немедленно: их отложенное удаление (360мс)
+  // не должно накладываться на новый лист — иначе в DOM копятся сироты.
+  screen.querySelectorAll('.sheet, .scrim').forEach((n) => n.remove());
+  if (typeof dockOpen !== 'undefined' && dockOpen) setDock(false);
+  const bal = it.cur === 'r' ? runes : pearls;
+  const enough = bal >= it.price;
+  const curName = it.cur === 'r' ? 'рун' : 'жемчужин';
+  const glyph = it.cur === 'r'
+    ? '<span class="rune" style="font-size:15px">ᚠ</span>'
+    : '<span class="pearlgem" style="width:14px;height:14px;box-shadow:none"></span>';
+
+  scrimEl = document.createElement('div');
+  scrimEl.className = 'scrim';
+  scrimEl.onclick = closeSheet;
+
+  sheetEl = document.createElement('div');
+  sheetEl.className = 'sheet';
+  sheetEl.innerHTML =
+    '<div class="grab"></div>' +
+    '<div class="bigmedal ' + it.med + '">' + it.ico + '</div>' +
+    '<div class="mtitle">' + it.full + '</div>' +
+    '<div class="mbody">' + it.body + '</div>' +
+    (enough
+      ? '<button class="cta ' + (it.cur === 'r' ? 'gold' : 'pearl') + '" id="buyBtn">' + glyph + ' Купить за ' + it.price + '</button>'
+      : '<button class="cta pearl" id="topupBtn">Пополнить жемчуг</button>') +
+    '<button class="cta flat" id="cancelBtn">Не сейчас</button>' +
+    '<div class="balrow">' + glyph + ' У тебя ' + bal + ' ' + curName + '</div>';
+
+  screen.appendChild(scrimEl);
+  screen.appendChild(sheetEl);
+  requestAnimationFrame(() => {
+    scrimEl.classList.add('on');
+    sheetEl.classList.add('on');
+  });
+
+  // Свайп вниз закрывает — обязательная привычка нижнего листа. Тянем только
+  // вниз, отпустили дальше 70px или быстрым рывком — закрываем.
+  // зачем: слушатели держат ССЫЛКУ на свой лист (`el`), а не глобальный
+  // sheetEl — тот обнуляется при закрытии, и «хвост» жеста падал с
+  // «Cannot read properties of null». Снимаются в closeSheet().
+  const el = sheetEl;
+  let dragY = 0, dragging = false, dragT = 0;
+  const onDown = (e) => {
+    dragging = true; dragY = (e.touches ? e.touches[0].clientY : e.clientY); dragT = performance.now();
+    el.style.transition = 'none';
+  };
+  const onMove = (e) => {
+    if (!dragging) return;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) - dragY;
+    if (y > 0) el.style.transform = 'translateY(' + y + 'px)';
+  };
+  const onUp = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    const endY = (e.changedTouches ? e.changedTouches[0].clientY : e.clientY) - dragY;
+    const fast = (performance.now() - dragT) < 240 && endY > 24;
+    el.style.transition = '';
+    el.style.transform = '';
+    if (endY > 70 || fast) closeSheet();
+  };
+  // Тянуть можно за ручку и «шапку» листа, но НЕ за кнопки — иначе покупка
+  // перестанет нажиматься.
+  el.addEventListener('mousedown', (e) => { if (!e.target.closest('.cta')) onDown(e); });
+  el.addEventListener('touchstart', (e) => { if (!e.target.closest('.cta')) onDown(e); }, { passive: true });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('mouseup', onUp);
+  window.addEventListener('touchend', onUp);
+  detachDrag = () => {
+    window.removeEventListener('mousemove', onMove);
+    window.removeEventListener('touchmove', onMove);
+    window.removeEventListener('mouseup', onUp);
+    window.removeEventListener('touchend', onUp);
+  };
+
+  sheetEl.querySelector('#cancelBtn').onclick = closeSheet;
+  const buy = sheetEl.querySelector('#buyBtn');
+  if (buy) buy.onclick = () => doBuy(it);
+  const top = sheetEl.querySelector('#topupBtn');
+  if (top) {
+    top.onclick = () => {
+      closeSheet();
+      setCat('pearls');
+      toast('err', '💎', 'Не хватает жемчуга', 'Показали, где пополнить');
+    };
+  }
+}
+
+// Optimistic: списываем и закрываем СРАЗУ, «сеть» подтверждает потом.
+function doBuy(it) {
+  if (it.cur === 'r') runes -= it.price; else pearls -= it.price;
+  const wallet = document.getElementById(it.cur === 'r' ? 'wRunes' : 'wPearls');
+  closeSheet();
+  render();
+  wallet.classList.remove('bump');
+  void wallet.offsetWidth;
+  wallet.classList.add('bump');
+  // Случайный товар обязан сказать, ЧТО именно выпало — иначе покупка ощущается
+  // как списание в никуда.
+  if (it.random) {
+    const got = AURAS[Math.floor(Math.random() * AURAS.length)];
+    toast('ok', '✨', 'Аура «' + got + '»', 'Уже надета на аватар');
+  } else {
+    toast('ok', '✓', it.full, 'Уже работает');
+  }
+}
+
+function flyTo(fromEl, toEl, glyph) {
+  const a = fromEl.getBoundingClientRect(), b = toEl.getBoundingClientRect();
+  const host = screen.getBoundingClientRect();
+  const f = document.createElement('div');
+  f.className = 'flyer';
+  f.innerHTML = glyph;
+  f.style.left = (a.left - host.left + a.width / 2) + 'px';
+  f.style.top = (a.top - host.top) + 'px';
+  f.style.setProperty('--dx', (b.left - a.left) + 'px');
+  f.style.setProperty('--dy', (b.top - a.top) + 'px');
+  screen.appendChild(f);
+  requestAnimationFrame(() => f.classList.add('go'));
+  setTimeout(() => f.remove(), 900);
+}
+
+let toastTimer = null;
+function toast(kind, ico, txt, sub) {
+  const t = document.getElementById('toast');
+  t.className = 'toast on ' + kind;
+  document.getElementById('toastIco').textContent = ico;
+  document.getElementById('toastTxt').textContent = txt;
+  document.getElementById('toastSub').textContent = sub;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = 'toast ' + kind; }, 2200);
+}
+
+// ── Док категорий (как в витрине достижений) ────────────────────
+const CATS = [
+  { id:'all',    ico:'🗂', lab:'Всё' },
+  { id:'boost',  ico:'⚡', lab:'Усиления' },
+  { id:'spin',   ico:'🎰', lab:'Спины' },
+  { id:'look',   ico:'✨', lab:'Внешний вид' },
+  { id:'cards',  ico:'📇', lab:'Наборы' },
+  { id:'pearls', ico:'💎', lab:'Пополнить жемчуг' },
+];
+const capsule = document.getElementById('capsule');
+const dockMenu = document.getElementById('dockMenu');
+const dockScrim = document.getElementById('dockScrim');
+const dockCap = document.getElementById('dockCap');
+let dockOpen = false;
+
+function catCount(id) {
+  if (id === 'all') return ITEMS.length;
+  if (id === 'pearls') return PACKS.length;
+  return ITEMS.filter((x) => x.cat === id).length;
+}
+
+function buildMenu() {
+  dockMenu.innerHTML = CATS.map((c) =>
+    '<div class="dockrow' + (c.id === cat ? ' sel' : '') + '" data-cat="' + c.id + '">' +
+      '<div class="dico">' + c.ico + '</div>' +
+      '<div class="dlab">' + c.lab + '</div>' +
+      (c.id === cat ? '<div class="dchk">✓</div>' : '<div class="dcount">' + catCount(c.id) + '</div>') +
+    '</div>').join('');
+  // Стаггер 46мс, как в ACHIEVEMENT_CATEGORY_DOCK_HYBRID. При ОТКРЫТИИ порядок
+  // обратный — нижний ряд трогается первым, список «растёт» от капсулы вверх.
+  const rows = [...dockMenu.children];
+  rows.forEach((r, i) => {
+    r.style.transitionDelay = ((rows.length - i - 1) * 46) + 'ms';
+  });
+}
+
+/** Док стоит на CSS-якорях от нижней кромки рамки — считать нечего. */
+function positionDock() {}
+
+function setDock(open) {
+  dockOpen = open;
+  dockMenu.classList.toggle('on', open);
+  dockScrim.classList.toggle('on', open);
+  capsule.classList.toggle('open', open);
+  if (open) {
+    const rows = [...dockMenu.children];
+    rows.forEach((r, i) => { r.style.transitionDelay = ((rows.length - i - 1) * 46) + 'ms'; });
+  } else {
+    [...dockMenu.children].forEach((r, i) => { r.style.transitionDelay = (i * 46) + 'ms'; });
+  }
+  positionDock();
+}
+
+function setCat(c) {
+  cat = c;
+  const def = CATS.find((x) => x.id === c) || CATS[0];
+  document.getElementById('capIco').textContent = def.ico;
+  document.getElementById('capLab').textContent = def.lab;
+  render();
+  buildMenu();
+  positionDock();
+}
+
+capsule.onclick = () => { if (!dockOpen) buildMenu(); setDock(!dockOpen); };
+dockScrim.onclick = () => setDock(false);
+dockMenu.onclick = (e) => {
+  const row = e.target.closest('.dockrow');
+  if (!row) return;
+  setCat(row.dataset.cat);
+  setDock(false);
+};
+shopScroll.addEventListener('scroll', positionDock, { passive: true });
+
+// Escape = аппаратная «назад» на Android: закрывает сначала лист, потом док.
+window.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (sheetEl) { closeSheet(); return; }
+  if (dockOpen) setDock(false);
+});
+
+body.onclick = (e) => {
+  const tile = e.target.closest('.tile');
+  if (tile) { openSheet(ITEMS[Number(tile.dataset.i)]); return; }
+  const pack = e.target.closest('.pack');
+  if (pack) {
+    const p = PACKS[Number(pack.dataset.p)];
+    pearls += p.amt + p.bonus;
+    const w = document.getElementById('wPearls');
+    render();
+    flyTo(pack, w, '<span class="pearlgem"></span>');
+    w.classList.remove('bump'); void w.offsetWidth; w.classList.add('bump');
+    toast('ok', '💎', '+' + (p.amt + p.bonus) + ' жемчужин', 'Зачислено');
+  }
+};
+
+document.getElementById('wRunes').onclick = () => setCat('boost');
+document.getElementById('wPearls').onclick = () => setCat('pearls');
+
+// ── Тумблеры демонстрации ───────────────────────────────────────
+const lightBtn = document.getElementById('light');
+lightBtn.onclick = () => {
+  const on = lightBtn.getAttribute('aria-pressed') === 'true';
+  lightBtn.setAttribute('aria-pressed', String(!on));
+  document.body.classList.toggle('light', !on);
+  document.body.style.background = !on ? '#F4F6F0' : '#0d1020';
+  document.body.style.color = !on ? '#1B2018' : '#eef1ff';
+};
+const slowBtn = document.getElementById('slow');
+slowBtn.onclick = () => {
+  const on = slowBtn.getAttribute('aria-pressed') === 'true';
+  slowBtn.setAttribute('aria-pressed', String(!on));
+  document.documentElement.style.setProperty('--k', !on ? '4' : '1');
+};
+const rmBtn = document.getElementById('rm');
+rmBtn.onclick = () => {
+  const on = rmBtn.getAttribute('aria-pressed') === 'true';
+  rmBtn.setAttribute('aria-pressed', String(!on));
+  document.body.classList.toggle('rm', !on);
+};
+
+render();
+buildMenu();
+positionDock();
+</script>

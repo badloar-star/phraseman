@@ -2,6 +2,15 @@ export type DevToolAction =
   | 'run-onboarding'
   | 'open-max-voice'
   | 'open-motion-showcase'
+  | 'open-paywall-a'
+  | 'open-paywall-b'
+  | 'open-paywall-c'
+  | 'open-paywall-d'
+  | 'open-paywall-e'
+  | 'open-paywall-f'
+  | 'open-paywall-g'
+  | 'open-paywall-onboarding'
+  | 'open-max-paywall'
   | 'preview-level-standard'
   | 'preview-level-milestone'
   | 'preview-lesson-results'
@@ -29,7 +38,8 @@ export type DevToolIcon =
   | 'shield-checkmark-outline'
   | 'bug-outline'
   | 'rocket-outline'
-  | 'color-wand-outline';
+  | 'color-wand-outline'
+  | 'card-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -47,7 +57,7 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline';
   testID: string;
   tools: readonly DevTool[];
 }>;
@@ -112,6 +122,109 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-max-voice',
         icon: 'call-outline',
         testID: 'dev-open-max-voice',
+      },
+    ],
+  },
+  // зачем 2026-08-24: кнопки paywall_a...g уже жили в «Витрине движения», но
+  // там их отфильтровывает isExecutableHybridItem (только пункты с "hybrid" в
+  // id реально доходят до экрана) — владелец не мог их открыть. Отдельная
+  // секция прямо в DEV-центре, без похода в витрину и без завязки на фильтр.
+  {
+    id: 'paywalls',
+    order: 6,
+    title: 'Пейволы',
+    icon: 'card-outline',
+    testID: 'dev-hub-section-paywalls',
+    tools: [
+      {
+        id: 'paywall-a',
+        order: 10,
+        title: 'Пейвол A · Компакт',
+        detail: 'Полноценный экран покупки, без скролла. Реальные цены из стора.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-a',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-a',
+      },
+      {
+        id: 'paywall-b',
+        order: 20,
+        title: 'Пейвол B',
+        detail: 'Полноценный экран покупки. Реальные цены из стора.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-b',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-b',
+      },
+      {
+        id: 'paywall-c',
+        order: 30,
+        title: 'Пейвол C',
+        detail: 'Полноценный экран покупки, с галереей доказательств. Реальные цены из стора.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-c',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-c',
+      },
+      {
+        id: 'paywall-d',
+        order: 40,
+        title: 'Пейвол D · Плитки',
+        detail: 'Тарифы плитками в ряд. Реальные цены из стора.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-d',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-d',
+      },
+      {
+        id: 'paywall-e',
+        order: 50,
+        title: 'Пейвол E · Один план',
+        detail: 'Один доминирующий оффер, остальные планы скрыты за «Другие варианты».',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-e',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-e',
+      },
+      {
+        id: 'paywall-f',
+        order: 60,
+        title: 'Пейвол F',
+        detail: 'Полноценный экран покупки. Реальные цены из стора.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-f',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-f',
+      },
+      {
+        id: 'paywall-g',
+        order: 70,
+        title: 'Пейвол G · С приманкой',
+        detail: 'С якорем «6 месяцев» между Годом и Месяцем.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-g',
+        icon: 'card-outline',
+        testID: 'dev-open-paywall-g',
+      },
+      {
+        id: 'paywall-onboarding',
+        order: 80,
+        title: 'Пейвол · вариант с онбординга',
+        detail: 'Тот же экран (текущий A/B-вариант), что видит новичок в конце онбординга: source=onboarding_plan, полноэкранный без слайда, Pro и MAX скрыты.',
+        actionLabel: 'Открыть',
+        action: 'open-paywall-onboarding',
+        icon: 'rocket-outline',
+        testID: 'dev-open-paywall-onboarding',
+      },
+      {
+        id: 'paywall-max',
+        order: 90,
+        title: 'Пейвол MAX',
+        detail: 'Тариф MAX: 120 минут звонков с ИИ-учителем в месяц. Реальная цена из стора.',
+        actionLabel: 'Открыть',
+        action: 'open-max-paywall',
+        icon: 'call-outline',
+        testID: 'dev-open-paywall-max',
       },
     ],
   },

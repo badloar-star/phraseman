@@ -44,6 +44,7 @@ import {
 import LeagueResultModal from '../../app/LeagueResultModal';
 import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
 import { MOTION_SHOWCASE_ROUTE } from '../../constants/devRoutes';
+import { resolveCurrentPaywallRoute } from '../../app/paywall_navigation';
 
 export type DevHubSheetProps = Readonly<{
   visible: boolean;
@@ -346,9 +347,48 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         // Полноценный режим, не preview: закрываем native Modal до смены route,
         // чтобы iOS не оставлял DEV-sheet поверх pre-start экрана звонка.
         requestClose(false, () => router.push({
-          pathname: '/max_call_prestart',
+          pathname: '/max_call_session',
           params: { devMode: '1' },
         } as never));
+        return;
+      // зачем 2026-08-24: прямые кнопки на каждый экран пейвола — «Витрина
+      // движения» их отфильтровывала (isExecutableHybridItem), владелец не
+      // мог их открыть. source: 'dev_hub' даёт честный контекст «generic»
+      // вместо синтетического direct, params остаются реальными (цены из
+      // стора через usePaywallPurchase — тут ничего не подменяется).
+      case 'open-paywall-a':
+        requestClose(false, () => router.push({ pathname: '/paywall_a', params: { source: 'dev_hub' } } as never));
+        return;
+      case 'open-paywall-b':
+        requestClose(false, () => router.push({ pathname: '/paywall_b', params: { source: 'dev_hub' } } as never));
+        return;
+      case 'open-paywall-c':
+        requestClose(false, () => router.push({ pathname: '/paywall_c', params: { source: 'dev_hub' } } as never));
+        return;
+      case 'open-paywall-d':
+        requestClose(false, () => router.push({ pathname: '/paywall_d', params: { source: 'dev_hub' } } as never));
+        return;
+      case 'open-paywall-e':
+        requestClose(false, () => router.push({ pathname: '/paywall_e', params: { source: 'dev_hub' } } as never));
+        return;
+      case 'open-paywall-f':
+        requestClose(false, () => router.push({ pathname: '/paywall_f', params: { source: 'dev_hub' } } as never));
+        return;
+      case 'open-paywall-g':
+        requestClose(false, () => router.push({ pathname: '/paywall_g', params: { source: 'dev_hub' } } as never));
+        return;
+      // зачем: source: 'onboarding_plan' — тот же флаг, что ставит настоящий
+      // онбординг (isOnboarding=true): полноэкранный без слайда, sticky-CTA,
+      // Pro и MAX скрыты. Роут берётся из resolveCurrentPaywallRoute() — это
+      // и есть текущий активный A/B-вариант, который реально увидит новичок.
+      case 'open-paywall-onboarding':
+        requestClose(false, () => router.push({
+          pathname: resolveCurrentPaywallRoute(),
+          params: { source: 'onboarding_plan' },
+        } as never));
+        return;
+      case 'open-max-paywall':
+        requestClose(false, () => router.push({ pathname: '/max_paywall', params: { source: 'dev_hub' } } as never));
         return;
       case 'preview-level-standard':
         openPreview('standard');

@@ -7,7 +7,7 @@
 // Списываемая сумма года (billed amount) показывается крупно — Apple 3.1.2(c).
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
@@ -32,6 +32,13 @@ interface Props {
   disabled?: boolean;
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
+  /**
+   * Витрина тарифа MAX рядом с Pro в том же ряду плиток — тап сразу открывает
+   * /max_paywall (там своя покупка через max_subscription_purchase), плитка
+   * не выбирается как план: MAX не входит в usePaywallPurchase (денежный
+   * путь Plus/Pro трогать рискованно без возможности проверить транзакцию).
+   */
+  onOpenMaxPaywall?: () => void;
 }
 
 interface TileSpec {
@@ -40,13 +47,15 @@ interface TileSpec {
   price: string;
   sub: string | null;
   badge: string | null;
+  /** Плитка-переход (MAX): тап вызывает это вместо onSelect. */
+  onNavigate?: () => void;
 }
 
 export default function PaywallPlanTiles({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, loading, disabled,
-  lifetimePrice, lifetimeAvailable,
+  lifetimePrice, lifetimeAvailable, onOpenMaxPaywall,
 }: Props) {
   const { themeMode } = useTheme();
   const isOlive = themeMode === 'olive';
@@ -118,22 +127,46 @@ export default function PaywallPlanTiles({
       badge: null,
     });
   }
+  if (onOpenMaxPaywall) {
+    tiles.push({
+      plan: 'monthly', // не участвует в выборе — плитка навигационная (onNavigate)
+      name: 'MAX',
+      price: triLang(lang, {
+        ru: '120 минут в месяц', uk: '120 хвилин на місяць', es: '120 minutos al mes',
+        'pt-BR': '120 minutos por mês', vi: '120 phút mỗi tháng', id: '120 menit per bulan',
+        tr: 'ayda 120 dakika', pl: '120 minut miesięcznie',
+      }),
+      sub: triLang(lang, {
+        ru: 'звонки с ИИ', uk: 'дзвінки з ШІ', es: 'llamadas con IA', 'pt-BR': 'ligações com IA',
+        vi: 'gọi với AI', id: 'panggilan AI', tr: 'yapay zekâ ile arama', pl: 'rozmowy z AI',
+      }),
+      badge: null,
+      onNavigate: onOpenMaxPaywall,
+    });
+  }
 
-  return (
-    <View style={S.row}>
-      {tiles.map((tile) => {
-        const sel = selected === tile.plan;
+  // зачем: 4 плитки (Месяц/Год/Pro/MAX) в жёстком ряду сжимаются ниже
+  // читаемой ширины на 390px-экране — комментарий в шапке файла уже
+  // предупреждал об этом риске для 3 плиток. При 4+ переключаемся на
+  // горизонтальный скролл с фиксированной шириной плитки; 2-3 плитки
+  // (без MAX/Pro) остаются как раньше — равномерный ряд без скролла.
+  const scrollable = tiles.length >= 4;
+  const tilesRow = (
+    <>
+      {tiles.map((tile, i) => {
+        const sel = !tile.onNavigate && selected === tile.plan;
         return (
           <TouchableOpacity
-            key={tile.plan}
-            accessibilityRole="radio"
+            key={tile.onNavigate ? `${tile.plan}-${i}` : tile.plan}
+            accessibilityRole={tile.onNavigate ? 'button' : 'radio'}
             accessibilityLabel={`${tile.name} ${tile.price}`.trim()}
-            accessibilityState={{ selected: sel, disabled: !!disabled }}
+            accessibilityState={tile.onNavigate ? { disabled: !!disabled } : { selected: sel, disabled: !!disabled }}
             activeOpacity={0.72}
             disabled={disabled}
-            onPress={() => onSelect(tile.plan)}
+            onPress={() => (tile.onNavigate ? tile.onNavigate() : onSelect(tile.plan))}
             style={[
               S.tile,
+              scrollable && S.tileFixedWidth,
               sel && !isOlive && S.tileSelected,
               {
                 borderColor: isOlive ? 'transparent' : sel ? tc.selectedCardBorder : cardBorder,
@@ -151,7 +184,7 @@ export default function PaywallPlanTiles({
             )}
             <View style={S.checkWrap}>
               <Ionicons
-                name={sel ? 'checkmark-circle' : 'ellipse-outline'}
+                name={tile.onNavigate ? 'chevron-forward-circle-outline' : sel ? 'checkmark-circle' : 'ellipse-outline'}
                 size={20}
                 color={sel ? tc.heroAccent : chrome.uncheckedBorder}
               />
@@ -173,14 +206,35 @@ export default function PaywallPlanTiles({
           </TouchableOpacity>
         );
       })}
-    </View>
+    </>
   );
+
+  // зачем: единственная проверка "4+ плиток" — раньше дублировалась здесь и
+  // в scrollable выше; теперь оба места читают один и тот же `scrollable`,
+  // порог не может рассинхронизироваться при будущей правке одного из них.
+  if (scrollable) {
+    return (
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={S.rowScroll}
+      >
+        {tilesRow}
+      </ScrollView>
+    );
+  }
+
+  return <View style={S.row}>{tilesRow}</View>;
 }
 
 const S = StyleSheet.create({
   // 390px-экран: wrap-паддинг экрана 22×2, gap 8×2 → плитка ~110px, всё влезает
-  // без обрезки крайних плиток и без горизонтального скролла.
+  // без обрезки крайних плиток и без горизонтального скролла (2-3 плитки).
   row: { flexDirection: 'row', gap: 8, marginTop: 16, alignItems: 'stretch' },
+  // 4+ плитки (добавлен MAX) переполняют жёсткий ряд — горизонтальный скролл
+  // с плитками фиксированной ширины вместо сжатия ниже читаемого предела.
+  rowScroll: { flexDirection: 'row', gap: 8, marginTop: 16, alignItems: 'stretch', paddingRight: 4 },
+  tileFixedWidth: { flex: 0, width: 112 },
   tile: {
     flex: 1,
     minHeight: 148,

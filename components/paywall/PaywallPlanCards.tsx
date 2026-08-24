@@ -37,17 +37,32 @@ interface Props {
    *  Когда задана — между «Годом» и «Месяцем» рендерится полноразмерная
    *  display-only карточка: без onSelect, не выбирается и не покупается. */
   decoyPriceString?: string | null;
+  /**
+   * Витрина тарифа MAX (120 мин/мес голосовых звонков). Карточка визуально
+   * идентична карточке Phraseman Pro (та же renderCard) и живёт под ТЕМ ЖЕ
+   * тогглом «Дополнительное предложение» — владелец 2026-08-24 отверг
+   * отдельный второй тоггл со своим текстом, обе карточки должны
+   * разворачиваться вместе, одним движением. Тап уводит на отдельный
+   * /max_paywall (там уже готова покупка через max_subscription_purchase),
+   * а не выбирает MAX как план здесь: usePaywallPurchase — это денежный путь
+   * Plus/Pro, вплетать в него параллельную покупку MAX рискованно без
+   * возможности протестировать реальную транзакцию в этой сессии.
+   */
+  onOpenMaxPaywall?: () => void;
 }
 
 export default function PaywallPlanCards({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, trialDays, loading, disabled,
-  lifetimePrice, lifetimeAvailable, decoyPriceString,
+  lifetimePrice, lifetimeAvailable, decoyPriceString, onOpenMaxPaywall,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, uncheckedBorder } = chrome;
-  const [showLifetimeOffer, setShowLifetimeOffer] = React.useState(false);
-  const lifetimeOfferExpanded = showLifetimeOffer || selected === 'lifetime';
+  const [showAdditionalOffer, setShowAdditionalOffer] = React.useState(false);
+  // зачем: один тоггл «Дополнительное предложение» открывает ОБЕ карточки —
+  // Pro и MAX — одним движением (владелец 2026-08-24 отверг второй отдельный
+  // тоггл со своим текстом). Выбор Pro как плана тоже держит секцию открытой.
+  const additionalOfferExpanded = showAdditionalOffer || selected === 'lifetime';
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
@@ -99,8 +114,15 @@ export default function PaywallPlanCards({
     sub: string | null,
     badge: string | null,
     hidePerMonth = false,
+    /**
+     * Карточка-переход, а не карточка-выбор (MAX): тап сразу открывает
+     * /max_paywall вместо onSelect. Визуально идентична карточке Pro —
+     * та же вёрстка/цвета/размеры renderCard, только вместо radio-кружка
+     * chevron-forward (навигация, не выбор плана здесь).
+     */
+    onNavigate?: () => void,
   ) => {
-    const sel = selected === plan;
+    const sel = !onNavigate && selected === plan;
     const planSurfaceColors = [
       `${tc.heroAccent}${sel ? '28' : '14'}`,
       sel ? chrome.cardBgStrong : cardBg,
@@ -108,12 +130,12 @@ export default function PaywallPlanCards({
     ] as [string, string, string];
     return (
       <TouchableOpacity
-        accessibilityRole="radio"
+        accessibilityRole={onNavigate ? 'button' : 'radio'}
         accessibilityLabel={`${name} ${price}`.trim()}
-        accessibilityState={{ selected: sel, disabled: !!disabled }}
+        accessibilityState={onNavigate ? { disabled: !!disabled } : { selected: sel, disabled: !!disabled }}
         activeOpacity={0.72}
         disabled={disabled}
-        onPress={() => onSelect(plan)}
+        onPress={() => (onNavigate ? onNavigate() : onSelect(plan))}
         style={[S.card, {
           backgroundColor: sel ? chrome.cardBgStrong : cardBg,
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
@@ -135,7 +157,7 @@ export default function PaywallPlanCards({
         <View style={S.planHeader}>
           <View style={S.nameWrap}>
             <Ionicons
-              name={sel ? 'checkmark-circle' : 'ellipse-outline'}
+              name={onNavigate ? 'chevron-forward' : sel ? 'checkmark-circle' : 'ellipse-outline'}
               size={24}
               color={sel ? tc.heroAccent : uncheckedBorder}
             />
@@ -221,7 +243,7 @@ export default function PaywallPlanCards({
     vi: '6 tháng', id: '6 bulan', tr: '6 ay', pl: '6 miesięcy',
   });
 
-  const lifetimeOfferTitle = triLang(lang, {
+  const additionalOfferTitle = triLang(lang, {
     ru: 'Дополнительное предложение',
     uk: 'Додаткова пропозиція',
     es: 'Oferta adicional',
@@ -231,20 +253,36 @@ export default function PaywallPlanCards({
     tr: 'Ek teklif',
     pl: 'Dodatkowa oferta',
   });
-  const lifetimeOfferSubtitle = triLang(lang, {
-    ru: 'Phraseman Pro · разовая покупка',
-    uk: 'Phraseman Pro · разова покупка',
-    es: 'Phraseman Pro · compra única',
-    'pt-BR': 'Phraseman Pro · compra única',
-    vi: 'Phraseman Pro · mua một lần',
-    id: 'Phraseman Pro · pembelian sekali',
-    tr: 'Phraseman Pro · tek seferlik satın alma',
-    pl: 'Phraseman Pro · zakup jednorazowy',
-  });
-  const toggleLifetimeOffer = () => {
-    const nextExpanded = !lifetimeOfferExpanded;
+  // зачем: подпись под тогглом честно отражает, что реально раскроется —
+  // и Pro, и MAX (если оба доступны), только Pro, или только MAX.
+  const additionalOfferSubtitle = lifetimeAvailable && onOpenMaxPaywall
+    ? triLang(lang, {
+        ru: 'Phraseman Pro и MAX', uk: 'Phraseman Pro та MAX', es: 'Phraseman Pro y MAX',
+        'pt-BR': 'Phraseman Pro e MAX', vi: 'Phraseman Pro và MAX', id: 'Phraseman Pro dan MAX',
+        tr: 'Phraseman Pro ve MAX', pl: 'Phraseman Pro i MAX',
+      })
+    : onOpenMaxPaywall
+      ? triLang(lang, {
+          ru: 'Тариф MAX · 120 минут в месяц с ИИ-учителем', uk: 'Тариф MAX · 120 хвилин на місяць із ШІ-вчителем',
+          es: 'Plan MAX · 120 minutos al mes con tu profesor de IA', 'pt-BR': 'Plano MAX · 120 minutos por mês com o professor de IA',
+          vi: 'Gói MAX · 120 phút mỗi tháng với gia sư AI', id: 'Paket MAX · 120 menit per bulan dengan guru AI',
+          tr: 'MAX planı · yapay zekâ öğretmeninle ayda 120 dakika', pl: 'Plan MAX · 120 minut miesięcznie z nauczycielem AI',
+        })
+      : triLang(lang, {
+          ru: 'Phraseman Pro · разовая покупка', uk: 'Phraseman Pro · разова покупка', es: 'Phraseman Pro · compra única',
+          'pt-BR': 'Phraseman Pro · compra única', vi: 'Phraseman Pro · mua một lần', id: 'Phraseman Pro · pembelian sekali',
+          tr: 'Phraseman Pro · tek seferlik satın alma', pl: 'Phraseman Pro · zakup jednorazowy',
+        });
+  // зачем: сброс на 'yearly' при закрытии специфичен только для Pro
+  // ('lifetime' — единственное non-monthly/yearly значение PaywallPlan).
+  // MAX сюда намеренно не попадает — он никогда не становится selected
+  // (renderCard с onNavigate всегда даёт sel=false, тап уходит на
+  // /max_paywall, а не в onSelect). Если MAX когда-нибудь станет настоящим
+  // PaywallPlan-значением — эту защиту придётся расширить на него тоже.
+  const toggleAdditionalOffer = () => {
+    const nextExpanded = !additionalOfferExpanded;
     if (!nextExpanded && selected === 'lifetime') onSelect('yearly');
-    setShowLifetimeOffer(nextExpanded);
+    setShowAdditionalOffer(nextExpanded);
   };
 
   return (
@@ -284,15 +322,15 @@ export default function PaywallPlanCards({
         null,
         null,
       )}
-      {lifetimeAvailable && (
+      {(lifetimeAvailable || onOpenMaxPaywall) && (
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={lifetimeOfferTitle}
-          accessibilityHint={lifetimeOfferSubtitle}
-          accessibilityState={{ expanded: lifetimeOfferExpanded, disabled: !!disabled }}
+          accessibilityLabel={additionalOfferTitle}
+          accessibilityHint={additionalOfferSubtitle}
+          accessibilityState={{ expanded: additionalOfferExpanded, disabled: !!disabled }}
           disabled={disabled}
           hitSlop={4}
-          onPress={toggleLifetimeOffer}
+          onPress={toggleAdditionalOffer}
           style={({ pressed }) => [
             S.offerToggle,
             { backgroundColor: cardBg },
@@ -300,17 +338,17 @@ export default function PaywallPlanCards({
           ]}
         >
           <View style={S.offerToggleCopy}>
-            <Text style={[S.offerToggleTitle, { color: textPrimary }]}>{lifetimeOfferTitle}</Text>
-            <Text style={[S.offerToggleSubtitle, { color: textMuted }]}>{lifetimeOfferSubtitle}</Text>
+            <Text style={[S.offerToggleTitle, { color: textPrimary }]}>{additionalOfferTitle}</Text>
+            <Text style={[S.offerToggleSubtitle, { color: textMuted }]}>{additionalOfferSubtitle}</Text>
           </View>
           <Ionicons
-            name={lifetimeOfferExpanded ? 'chevron-up' : 'chevron-down'}
+            name={additionalOfferExpanded ? 'chevron-up' : 'chevron-down'}
             size={20}
             color={textMuted}
           />
         </Pressable>
       )}
-      {lifetimeAvailable && lifetimeOfferExpanded && renderCard(
+      {lifetimeAvailable && additionalOfferExpanded && renderCard(
         'lifetime',
         'Phraseman Pro',
         lifetimePrice || '',
@@ -326,6 +364,23 @@ export default function PaywallPlanCards({
         }),
         triLang(lang, { ru: 'разовый', uk: 'разовий', es: 'único', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' }),
         true, // hidePerMonth — lifetime это не /мес
+      )}
+      {onOpenMaxPaywall && additionalOfferExpanded && renderCard(
+        'monthly', // зачем: MAX не план usePaywallPurchase — plan-параметр здесь не участвует в selected (onNavigate ставит sel=false всегда)
+        'MAX',
+        triLang(lang, {
+          ru: '120 минут в месяц', uk: '120 хвилин на місяць', es: '120 minutos al mes',
+          'pt-BR': '120 minutos por mês', vi: '120 phút mỗi tháng', id: '120 menit per bulan',
+          tr: 'ayda 120 dakika', pl: '120 minut miesięcznie',
+        }),
+        triLang(lang, {
+          ru: 'Разговор с ИИ-учителем', uk: 'Розмова з ШІ-вчителем', es: 'Conversación con tu profesor de IA',
+          'pt-BR': 'Conversa com o professor de IA', vi: 'Trò chuyện với gia sư AI', id: 'Ngobrol dengan guru AI',
+          tr: 'Yapay zekâ öğretmeninle konuşma', pl: 'Rozmowa z nauczycielem AI',
+        }),
+        null,
+        true, // hidePerMonth — MAX здесь показывает минуты, не цену/мес
+        onOpenMaxPaywall,
       )}
     </View>
   );

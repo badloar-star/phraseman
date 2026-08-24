@@ -10,7 +10,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useLocalSearchParams, Stack } from 'expo-router';
+import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 
 import { useLang } from '../components/LangContext';
@@ -65,6 +65,10 @@ export default function PaywallD() {
   const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
+  const router = useRouter();
+  // зачем: MAX — отдельный тариф со своей покупкой (modules/max_subscription/purchase),
+  // не план внутри usePaywallPurchase — витрина уводит на готовый /max_paywall.
+  const openMaxPaywall = () => router.push({ pathname: '/max_paywall', params: { source: `paywall_${VARIANT.toLowerCase()}` } });
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
@@ -175,6 +179,7 @@ export default function PaywallD() {
                   disabled={p.purchasing}
                   lifetimePrice={p.lifetimePrice}
                   lifetimeAvailable={p.lifetimeAvailable}
+                  onOpenMaxPaywall={isOnboarding ? undefined : openMaxPaywall}
                 />
               )}
             </PaywallEntrance>

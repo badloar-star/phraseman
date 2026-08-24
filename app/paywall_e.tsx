@@ -10,7 +10,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useLocalSearchParams, Stack } from 'expo-router';
+import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -62,6 +62,10 @@ export default function PaywallE() {
   const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
+  const router = useRouter();
+  // зачем: MAX — отдельный тариф со своей покупкой (modules/max_subscription/purchase),
+  // не план внутри usePaywallPurchase — витрина уводит на готовый /max_paywall.
+  const openMaxPaywall = () => router.push({ pathname: '/max_paywall', params: { source: `paywall_${VARIANT.toLowerCase()}` } });
 
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [showAltPlans, setShowAltPlans] = useState(false);
@@ -118,7 +122,11 @@ export default function PaywallE() {
     }));
   }
 
-  const altPlans: { plan: PaywallPlan; name: string; priceLabel: string }[] = [
+  // зачем: MAX — строка-переход в том же списке «Другие варианты», рядом с
+  // Pro (владелец 2026-08-24: MAX должен жить в собственном механизме
+  // пейвола рядом с Pro, не отдельным баннером). onNavigate вместо plan —
+  // тап сразу открывает /max_paywall, MAX не входит в usePaywallPurchase.
+  const altPlans: { plan: PaywallPlan; name: string; priceLabel: string; onNavigate?: () => void }[] = [
     {
       plan: 'monthly',
       name: triLang(lang as Lang, {
@@ -136,6 +144,19 @@ export default function PaywallE() {
         ru: 'разовая покупка', uk: 'разова покупка', es: 'compra única', 'pt-BR': 'compra única',
         vi: 'mua một lần', id: 'pembelian sekali', tr: 'tek seferlik satın alma', pl: 'zakup jednorazowy',
       })}`,
+    });
+  }
+  if (!isOnboarding) {
+    altPlans.push({
+      plan: 'monthly', // не участвует в выборе — строка навигационная (onNavigate)
+      name: 'MAX',
+      priceLabel: triLang(lang as Lang, {
+        ru: '120 мин · звонки с ИИ-учителем', uk: '120 хв · дзвінки з ШІ-вчителем',
+        es: '120 min · llamadas con tu profesor de IA', 'pt-BR': '120 min · ligações com o professor de IA',
+        vi: '120 phút · gọi với gia sư AI', id: '120 mnt · panggilan dengan guru AI',
+        tr: '120 dk · yapay zekâ öğretmeniyle arama', pl: '120 min · rozmowy z nauczycielem AI',
+      }),
+      onNavigate: openMaxPaywall,
     });
   }
 
@@ -261,23 +282,23 @@ export default function PaywallE() {
             </PaywallEntrance>
             {showAltPlans && (
               <PaywallEntrance index={0} style={S.altList}>
-                {altPlans.map((alt) => {
-                  const sel = p.selected === alt.plan;
+                {altPlans.map((alt, i) => {
+                  const sel = !alt.onNavigate && p.selected === alt.plan;
                   return (
                     <TouchableOpacity
-                      key={alt.plan}
-                      accessibilityRole="radio"
+                      key={alt.onNavigate ? `${alt.plan}-${i}` : alt.plan}
+                      accessibilityRole={alt.onNavigate ? 'button' : 'radio'}
                       accessibilityLabel={`${alt.name} ${alt.priceLabel}`.trim()}
-                      accessibilityState={{ selected: sel, disabled: p.purchasing }}
+                      accessibilityState={alt.onNavigate ? { disabled: p.purchasing } : { selected: sel, disabled: p.purchasing }}
                       disabled={p.purchasing}
-                      onPress={() => p.selectPlan(alt.plan)}
+                      onPress={() => (alt.onNavigate ? alt.onNavigate() : p.selectPlan(alt.plan))}
                       style={[S.altRow, {
                         borderColor: sel ? tc.selectedCardBorder : chrome.cardBorder,
                         backgroundColor: sel ? chrome.cardBgStrong : chrome.cardBg,
                       }]}
                     >
                       <Ionicons
-                        name={sel ? 'checkmark-circle' : 'ellipse-outline'}
+                        name={alt.onNavigate ? 'chevron-forward-circle-outline' : sel ? 'checkmark-circle' : 'ellipse-outline'}
                         size={18}
                         color={sel ? tc.heroAccent : chrome.uncheckedBorder}
                       />

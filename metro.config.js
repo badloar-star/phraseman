@@ -202,9 +202,10 @@ config.resolver.blockList = [
   ),
 ];
 
-// Avatar DNA human_v2 ships canonical 3D models as static, offline GLB assets.
 // expo-sqlite imports its web runtime as a static WASM asset. Extend the Expo
-// defaults instead of replacing them so images/audio and both binary formats work.
-config.resolver.assetExts = [...config.resolver.assetExts, 'glb', 'wasm'];
+// defaults instead of replacing them so images/audio and WASM all work.
+// зачем: 'glb' убран 2026-08-24 — 3D-путь аватара закрыт владельцем навсегда
+// (2.5D whole-renders), последний GLB и его конвейер удалены вместе с three.
+config.resolver.assetExts = [...config.resolver.assetExts, 'wasm'];
 
 module.exports = config;

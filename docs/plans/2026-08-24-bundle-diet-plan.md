@@ -30,7 +30,19 @@ diagnosis_training (~1.5 МБ), каталоги, карты URL.
 
 Итог фазы 0: **≈ −18 МБ** установки без единого риска для рантайма.
 
-## Фаза 1 — plan_content_* вон из бандла (−19 МБ JS) 🔜 ГЛАВНАЯ
+## Фаза 1 — plan_content_* вон из бандла (−19 МБ JS) — шаги 1–3 ✅ 2026-08-24
+
+> Статус 2026-08-24: шаги 1–3 СДЕЛАНЫ (коммиты 22e66c510, c93f579d9 + префетч).
+> Пак `release.20260824.e4381599` (546 дней: echo 84, gavan 126, impuls 140,
+> mitap 112, voyazh 84; 25.14 МБ JSON) выгружен и проверен по публичным URL
+> байт-в-байт. Отличия от первоначального наброска — сознательные:
+> · префикс `course-packs/plan_content/en/ru/<версия>` вместо `plan-content/<hash>`
+>   — storage.rules уже дают этому пути публичное чтение, деплой правил не нужен;
+> · plain JSON вместо json.gz — рантайм-цепочка (downloadFileAsync + sha256)
+>   доказана на несжатых объектах; gzip добавим после проверки на устройстве.
+> Сторож: tests/plan_content_prefetch_contract.test.ts (каноникализация
+> экспортёра = рантайму, rowPathFor, префикс, событийность префетча, 5 require).
+> Осталось: проверка на устройстве → одобрение владельца → шаг 4 (финал).
 
 Инфраструктура УЖЕ ЕСТЬ и включена (`VERIFIED_COURSE_PACK_REMOTE_ENABLED = true`):
 `course_pack_remote_loader.ts` (скачивание + дисковый кэш + sha256 + evict),
@@ -78,24 +90,44 @@ diagnosis_training (~1.5 МБ), каталоги, карты URL.
 
 `modules/learning-v2/content/source/*` — та же схема, тот же манифест.
 
-## Фаза 4 — картинки res/ (−9–12 МБ APK)
+## Фаза 4 — картинки res/ (−9–12 МБ APK) 🔶 ЧАСТИЧНО 2026-08-24
 
-- Пережать oversized webp под реальный размер отображения (17.8 → ~9 МБ):
-  `scripts/optimize-pngs.mjs` / `img:webp` уже есть — добавить размерный аудит.
-- Кандидаты на ленивую CDN-загрузку (не в первой сессии): achievements 4.5 МБ,
-  avatar-auras 2.9, streak_icons 2.1 (уже есть паттерн стриминга аудио — тот же
-  подход с дисковым кэшем).
-- ios-icon 1.2 МБ / android-icon ~1 МБ ×2 — пережать (иконки не должны весить
-  мегабайт).
+Отчёт: `docs/plans/2026-08-24-webp-size-audit.md`.
+
+- ✅ Размерный аудит: `npm run img:audit-sizes` — для каждого require()-ного webp
+  сравнивает пиксели файла с максимальным размером отображения ×3 (@3x).
+  Результат: 973 файла / 19.94 МБ, из них 83 oversized.
+- ✅ Пережатие по вайтлисту: `npm run img:resize-to-display -- --write`
+  (dry-run без флага). Применено к 79 webp: levels/generated-v5-dalle 512→256,
+  медали уроков →384, theme-icons 144→96, achievement_categories 256→160,
+  onboarding_icon_cutout 1024→256.
+- ✅ Иконки приложения: ios-icon 1178→652 КБ, android-icon-foreground и
+  -monochrome 966→397 КБ каждая (палитра-256, ошибка p99 ≤ 8/255). **−1.63 МБ.**
+- 🔶 Ждут коммита чужой сессии: `personal_plan_tasks_fit` (104 ф., ~1.6 МБ) и
+  `friends-shared-flame` (27 ф., ~0.55 МБ) — каталоги целиком untracked, скрипт
+  их пропускает намеренно (нечего откатывать). Повторить запуск после коммита.
+- ❌ НЕ трогать без решения владельца — сторожа требуют точной геометрии:
+  `level-spin-rewards` (512×512, `level_spin_reward_assets.test.ts`, потенциал
+  ~0.35 МБ) и `season/…` ауры (320×320, `season_aura_asset_safe_area.test.ts`,
+  ~0.15 МБ).
+- 🔴 Находка: `android-icon-monochrome.png` — побайтовая копия foreground, а не
+  монохромный силуэт. Темизированная иконка Android 13+ выглядит грязно.
+- Кандидаты на ленивую CDN-загрузку (не в первой сессии): achievements 4.13 МБ,
+  avatar-auras 2.50, streak_icons 1.77 (уже есть паттерн стриминга аудио — тот же
+  подход с дисковым кэшем). Итого ≈ 8.4 МБ — главный оставшийся рычаг.
 
 ## Фаза 5 — зависимости и натив (отдельные сессии)
 
-- `three` + `@react-three/fiber` + `expo-gl` — 3D-аватар отклонён владельцем
-  (2.5D whole-renders). Прод их не импортирует. Снять контракт
-  `avatar_dna_3d_runtime_contract` и выпилить зависимости (≈ −1 МБ натива +
-  защита от случайного импорта 1.2 МБ JS). ОТДЕЛЬНАЯ СЕССИЯ.
-- `chart.js`, `chartjs-plugin-zoom`, `hammerjs`, `react-native-web`,
-  `react-dom` → devDependencies (в нативный бандл не попадают, но чистота).
+- ✅ СДЕЛАНО 2026-08-24: `three` + `@react-three/fiber` + `expo-gl` выпилены с
+  корнями — владелец подтвердил «3D закрыт навсегда» (2.5D whole-renders):
+  12 тестов-стражей отменённого правила, `components/avatar-dna-3d`,
+  `local_assets.ts` + GLB и весь его конвейер (`scripts/avatar-dna/*human_v2*`,
+  `fetch_makehuman_cc0`, `lib/`), артефакты human_v3-рига, npm-скрипты
+  `avatar-dna:*`, babel-плагин static-block. Чистый TS в
+  `modules/avatar-dna-3d` (типы для живого 2D-рига) оставлен.
+- ✅ 2026-08-24: `chart.js`/`chartjs-plugin-zoom`/`hammerjs` УДАЛЕНЫ совсем
+  (решение владельца: админка грузит их с CDN unpkg, npm-пакеты никто не
+  импортировал); `react-native-web`/`react-dom` → devDependencies.
 - whisper.rn кладёт 2 копии .so (обычная + оптимизированная) — проверить
   апстрим-опцию отключения generic-варианта (−1.8 МБ/ABI).
 

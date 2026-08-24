@@ -48,10 +48,11 @@ const RUNTIME_PNGS = [
   'assets/images/flow_clean_202607/minutes_20.png',
   'assets/images/flow_clean_202607/intro_compass.png',
   'assets/images/flow_clean_202607/notifications.png',
-  'assets/images/flow_clean_202607/plan_result.png',
+  // зачем 2026-08-24: plan_result и benefit_plan удалены коммитом
+  // «Personal Plan retirement» (970f8e7b8) — артворк выведен из онбординга,
+  // ссылок в коде нет; сторож обновлён вслед за отменённым правилом.
   'assets/images/flow_clean_202607/start_plus.png',
   'assets/images/flow_clean_202607/start_free.png',
-  'assets/images/flow_clean_202607/benefit_plan.png',
   'assets/images/flow_clean_202607/benefit_speech.png',
   'assets/images/flow_clean_202607/benefit_repeat.png',
   'assets/images/flow_clean_202607/benefit_flow.png',

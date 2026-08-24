@@ -10,6 +10,38 @@ import {
 
 const MISSING_EVENTS: SoundEventId[] = [
   'pm.reward.vip_finale',
+  // зачем 2026-08-24: Арена завела 28 событий с source: null НАМЕРЕННО —
+  // файлы генерирует владелец через Firefly (docs/arena/SOUND_PROMPTS.md),
+  // директор молча пропускает события без источника. Сторож обновлён вслед
+  // за фактом: 61 -> 89 событий, включённых по-прежнему 60.
+  'pm.arena.search_start',
+  'pm.arena.search_loop',
+  'pm.arena.opponent_found',
+  'pm.arena.countdown_tick',
+  'pm.arena.countdown_go',
+  'pm.arena.task_in',
+  'pm.arena.option_tap',
+  'pm.arena.answer_correct',
+  'pm.arena.answer_first',
+  'pm.arena.answer_wrong',
+  'pm.arena.opponent_answered',
+  'pm.arena.timer_tick',
+  'pm.arena.timeout',
+  'pm.arena.combo_start',
+  'pm.arena.combo_up',
+  'pm.arena.combo_break',
+  'pm.arena.pair_match',
+  'pm.arena.pair_miss',
+  'pm.arena.pair_clear',
+  'pm.arena.result_win',
+  'pm.arena.result_loss',
+  'pm.arena.result_draw',
+  'pm.arena.star_fly',
+  'pm.arena.star_land',
+  'pm.arena.goal_complete',
+  'pm.arena.reward_unlock',
+  'pm.arena.rank_up',
+  'pm.arena.rank_down',
 ];
 
 describe('semantic sound event catalog', () => {
@@ -18,7 +50,7 @@ describe('semantic sound event catalog', () => {
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(61);
+    expect(ids).toHaveLength(89);
     expect(enabled).toHaveLength(60);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());

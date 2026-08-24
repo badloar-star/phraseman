@@ -71,6 +71,30 @@ describe('MAX Voice error normalization', () => {
       .toBe('server_timeout');
   });
 
+  // зачем: пробник пожизненный и один на аккаунт. Ступень voice_trial_paused
+  // режет звонок ДО резерва, штамп trialUsedAtMs не ставится — значит человек
+  // свой единственный звонок НЕ потерял, и текст обязан это сказать прямо.
+  // Без этого отказ читается как «пробник сгорел», и человек уходит.
+  it('пауза пробника обещает, что единственный звонок сохранён', () => {
+    const paused = maxVoiceFailureMessage('voice_trial_paused', 'ru');
+    expect(paused).toContain('Пробный звонок остался');
+    // Общий бюджетный отказ такого обещания не даёт: там пробник ни при чём.
+    expect(maxVoiceFailureMessage('voice_budget_exhausted', 'ru'))
+      .not.toContain('Пробный звонок остался');
+  });
+
+  it('обещание сохранности пробника переведено на все 8 языков', () => {
+    const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+    const seen = new Set<string>();
+    for (const lang of langs) {
+      const message = maxVoiceFailureMessage('voice_trial_paused', lang);
+      expect(message.length).toBeGreaterThan(0);
+      seen.add(message);
+    }
+    // Восемь разных строк — ни один язык не съехал на английский фолбэк.
+    expect(seen.size).toBe(langs.length);
+  });
+
   it('carries a safe machine reason across the transport boundary', () => {
     const error = new MaxVoiceStageError('voice_max_required', new Error('private raw detail'));
     expect(error.message).toBe('voice_max_required');

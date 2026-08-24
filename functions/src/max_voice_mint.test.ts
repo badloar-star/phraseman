@@ -472,13 +472,11 @@ describe('rate limit — 60 fresh mints/hour, reconnects excluded', () => {
   });
 });
 
-// зачем: владелец 2026-08-16 снял гейт подписки до релиза, поэтому ветка
-// «пробник» (access: 'trial') сейчас НЕДОСТИЖИМА — все получают полный доступ.
-// Тесты здесь сторожат новое поведение: израсходованный
-// пробник больше никого не закрывает, а звонок идёт по обычному сценарному капу.
-// зачем (владелец 2026-08-23): пейвол приехал, и ветка пробника снова живая.
-// Прежние три теста сторожили ОТМЕНЁННОЕ правило «пробник обходится, доступ
-// всем» — заменены на сторожей реального поведения.
+// зачем (владелец 2026-08-23): пейвол приехал, ветка пробника (access: 'trial')
+// живая. Прежние три теста сторожили ОТМЕНЁННОЕ правило «пробник обходится,
+// доступ всем» (гейт подписки был снят до релиза 2026-08-16) — заменены на
+// сторожей реального поведения: пожизненный пробник 3 минуты один раз на
+// аккаунт, израсходованный закрывает линию пейволом и НЕ обновляется никогда.
 describe('пробник без подписки', () => {
   it('подписчик MAX звонит полноценно, без пробникового варианта', async () => {
     mockResolveMaxTier.mockResolvedValue(true as never);
@@ -524,18 +522,46 @@ describe('budget ladder', () => {
     expect(docs.get(OPS_PATH)).toMatchObject({ mintRejectionReasons: { budget: 1 } });
   });
 
-  // Пробников больше нет (все — 'max'), поэтому ступень voice_trial_paused
-  // никого не режет; soft-кап сессии на 300с продолжает работать для всех.
   // Один минт на тест: успешный звонок оставляет живой резерв, и второй подряд
   // упёрся бы в voice_session_active — это защита от двух параллельных звонков.
-  it('80–100%: no trials to cut, sessions get capped at 300s', async () => {
-    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+  it('80–100%: платный тир не режется, сессия капается на 300с', async () => {
+    // Ступень soft режет только access:'trial'. Здесь проверяем, что MAX её НЕ
+    // трогает, поэтому даём тир MAX.
     mockResolveMaxTier.mockResolvedValue(true as never);
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
 
     const res = await callMint({ format: 'companion' }); // кап формата 480 → soft-кап 300
     expect(res.limits.reservedSec).toBe(320); // 300 + 20 хвоста
     expect(res.maxSeconds).toBe(300);
+  });
+
+  // зачем: ступень voice_trial_paused (max_voice_mint.ts) — единственное место,
+  // где бюджет режет пробник. Она НЕ была покрыта тестами, а цена регрессии
+  // высокая: пробник пожизненный и один на аккаунт, поэтому отказ по бюджету
+  // обязан отдавать человеку его 3 минуты обратно, а не сжигать их молча.
+  it('80–100%: пробник ставится на паузу отдельным кодом, а не общим отказом', async () => {
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
+    await expect(callMint({})).rejects.toMatchObject({
+      code: 'resource-exhausted',
+      message: 'voice_trial_paused',
+    });
+  });
+
+  it('80–100%: отказ по бюджету НЕ сжигает пожизненный пробник', async () => {
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
+    await expect(callMint({})).rejects.toMatchObject({ message: 'voice_trial_paused' });
+    // Штампа нет — человек сохранил своё единственное право на звонок.
+    expect(docs.get(QUOTA_PATH)?.trialUsedAtMs).toBeFalsy();
+    expect(docs.get(QUOTA_PATH)?.lifetimeTrialUsedAtMs).toBeFalsy();
+    // Провайдеру не платили: ephemeral-токен не выпускался.
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('80–100%: живой пробный звонок не рвётся — реконнект проходит паузу', async () => {
+    // Пробник уже потрачен и звонок идёт: лестница гейтит только НОВЫЕ сессии.
+    liveSession({ trialUsedAtMs: NOW });
+    docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
+    await expect(callMint({ reconnectOf: 's1' })).resolves.toMatchObject({ ok: true });
   });
 
   it("yesterday's counter does not throttle today", async () => {

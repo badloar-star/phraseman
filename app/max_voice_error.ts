@@ -193,7 +193,23 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
       pl: 'Ta kompilacja nie zawiera natywnego WebRTC. Zainstaluj nową kompilację DEV.',
     });
   }
-  if (reason === 'voice_budget_exhausted' || reason === 'voice_trial_paused') {
+  // зачем: пробник пожизненный и один на аккаунт, поэтому на этой ступени
+  // (voice_trial_paused — бюджет ставит пробники на паузу ДО резерва, штамп
+  // trialUsedAtMs не выставляется) человеку обязательно надо сказать, что его
+  // единственный звонок цел. Иначе отказ читается как «я только что его сжёг».
+  if (reason === 'voice_trial_paused') {
+    return triLang(lang, {
+      ru: 'Линия временно достигла дневного лимита. Пробный звонок остался у тебя — повтори позже.',
+      uk: 'Лінія тимчасово досягла денного ліміту. Пробний дзвінок лишився в тебе — повтори пізніше.',
+      es: 'La línea alcanzó temporalmente su límite diario. Tu llamada de prueba sigue disponible: inténtalo más tarde.',
+      'pt-BR': 'A linha atingiu temporariamente o limite diário. Sua chamada de teste continua disponível: tente mais tarde.',
+      vi: 'Đường dây tạm thời đã đạt giới hạn hằng ngày. Cuộc gọi dùng thử của bạn vẫn còn — hãy thử lại sau.',
+      id: 'Jalur sementara mencapai batas harian. Panggilan uji cobamu masih utuh — coba lagi nanti.',
+      tr: 'Hat geçici olarak günlük limite ulaştı. Deneme aramanı kaybetmedin — daha sonra tekrar dene.',
+      pl: 'Linia tymczasowo osiągnęła dzienny limit. Twoja rozmowa próbna nadal czeka — spróbuj później.',
+    });
+  }
+  if (reason === 'voice_budget_exhausted') {
     return triLang(lang, {
       ru: 'Линия временно достигла дневного лимита. Повтори звонок позже.',
       uk: 'Лінія тимчасово досягла денного ліміту. Повтори дзвінок пізніше.',

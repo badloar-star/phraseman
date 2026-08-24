@@ -178,6 +178,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Cecha, która nosi koronę na pierwszej literze, żeby nikt nie pomylił, gdzie dokładnie lubi się popisywać.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s09-word-eres",
+      targetText: "eres",
+      transcription: "/ˈeɾes/",
+      playfulMeaningByLocale: copy({
+        ru: "Та же связка, что и soy, только развернулась лицом к собеседнику вместо зеркала.",
+        uk: "Та сама зв’язка, що й soy, тільки розвернулася обличчям до співрозмовника замість дзеркала.",
+        es: "The same linking word as soy, just turned to face the listener instead of a mirror.",
+        en: "The same linking word as soy, just turned to face the listener instead of a mirror.",
+        "pt-BR": "A mesma ligação que soy, só que virada para o interlocutor em vez de um espelho.",
+        vi: "Cùng một từ nối như soy, chỉ là quay mặt về phía người nghe thay vì tấm gương.",
+        id: "Kata penghubung yang sama seperti soy, hanya saja menghadap ke pendengar, bukan ke cermin.",
+        tr: "Soy ile aynı bağlaç, sadece aynaya değil dinleyiciye dönük.",
+        pl: "Ten sam łącznik co soy, tylko odwrócony twarzą do słuchacza zamiast do lustra.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

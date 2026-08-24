@@ -2966,7 +2966,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           мгновенным после общих опций нижней модалки. */}
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', ...bottomModalAnimationOptions, animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="shards_shop" />
+      {/* зачем: магазин пока БЕЗ входа из приложения — открывается только из
+          DEV-центра. Маршрут зарегистрирован, чтобы router.push('/shop') работал;
+          в табы и меню он намеренно не выведен. */}
+      <Stack.Screen name="shop" />
       <Stack.Screen name="coin_exchange" />
+      {/* зачем: раздел «Руны» — открывается тапом по счётчику рун (шапка главной и «Обучения») */}
+      <Stack.Screen name="runes_wallet" />
       <Stack.Screen name="level_gifts_inventory" />
       <Stack.Screen name="level_reward_spin" />
       <Stack.Screen name="achievements_screen" />

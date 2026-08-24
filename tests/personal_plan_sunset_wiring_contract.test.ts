@@ -89,7 +89,12 @@ describe('Personal Plan sunset wiring contract', () => {
     const state = read('app/personal_plan_state.ts');
     const activation = read('app/personal_plan_activation.ts');
     expect(state).toMatch(/activatePersonalPlan[\s\S]*withPersonalPlanStateStorageLock[\s\S]*parseAnyPersonalPlanState[\s\S]*assertPersonalPlanActivationAllowed/);
-    expect(state).toMatch(/createdAt:\s*existing\.createdAt/);
+    // зачем (2026-08-24): суть правила — grandfather-дата СУЩЕСТВУЮЩЕГО плана
+    // обязана пережить пересоздание. Форма записи стала null-safe
+    // (`existing?.createdAt ?? base.createdAt`), потому что в dev-обходе заката
+    // плана может не быть вовсе и `existing.createdAt` ронял активацию.
+    // Сторожим правило, а не устаревший синтаксис.
+    expect(state).toMatch(/createdAt:\s*existing\??\.createdAt/);
     expect(activation).toMatch(/activatePendingPersonalPlanAfterPremium[\s\S]*activatePersonalPlan\(/);
   });
 

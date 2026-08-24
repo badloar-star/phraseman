@@ -2454,7 +2454,7 @@ export default function LessonsTab({
         // нет никогда, поэтому ведём на создание плана вместо скрытия.
         if (!state) {
           if (isPersonalPlanDevBypassActive()) {
-            router.push("/personal_plan_setup" as any);
+            router.push("/personal_plan_setup" as never);
             return;
           }
           setPersonalPlanSunsetTabVisible(false);

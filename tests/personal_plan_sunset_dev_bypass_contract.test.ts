@@ -83,6 +83,14 @@ describe('personal plan sunset dev bypass', () => {
       .toMatch(/if \(isPersonalPlanDevBypassActive\(\)\) return true;/);
   });
 
+  it('активация не падает без существующего плана (createdAt у null)', () => {
+    // История: обход пропускал assert, и следом `existing.createdAt` ронял
+    // активацию — «нажимаю начать план и ничего не происходит».
+    const state = read('app/personal_plan_state.ts');
+    expect(state).not.toContain('createdAt: existing.createdAt,');
+    expect(state).toContain('createdAt: existing?.createdAt ?? base.createdAt,');
+  });
+
   it('без плана таб ведёт на создание плана, а не прячет раздел', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
     // Ветка «плана нет» больше не гасит вкладку безусловно.

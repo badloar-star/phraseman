@@ -472,9 +472,15 @@ export async function activatePersonalPlan(input: {
     const existing = parseAnyPersonalPlanState(raw);
     const effectiveNowMs = await readPersonalPlanSunsetEffectiveNow();
     assertPersonalPlanActivationAllowed(existing, effectiveNowMs);
+    // зачем (владелец 2026-08-24): `existing.createdAt` рассчитан на продление
+    // ПЛАНА СТАРОГО ЮЗЕРА — grandfather-дата обязана пережить пересоздание.
+    // В dev-обходе заката плана нет вовсе (existing === null), и обращение к
+    // полю роняло активацию (`Cannot read property 'createdAt' of null`).
+    // Берём дату существующего плана, если он есть, иначе — дефолтную.
+    const base = createDefaultPersonalPlanState(input);
     const next = {
-      ...createDefaultPersonalPlanState(input),
-      createdAt: existing.createdAt,
+      ...base,
+      createdAt: existing?.createdAt ?? base.createdAt,
     };
     // This check is intentionally inside the storage queue and immediately before
     // the durable write. A tap made before sunset cannot wait behind another write

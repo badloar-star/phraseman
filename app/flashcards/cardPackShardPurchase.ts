@@ -107,13 +107,18 @@ export async function purchaseCardPackWithShards(
     },
     localWrites: [[flashcardsOwnedPacksKey(studyTarget), JSON.stringify(nextOwned)]],
   });
+  // зачем: «не хватило жемчуга» — это ФАКТ от журнала операций, а не мнение
+  // токена. Раньше проверка isOperationCurrent() стояла ВЫШЕ этой ветки, и
+  // если за время работы с диском генерация аккаунта успевала смениться,
+  // честная нехватка превращалась в «Покупку не удалось сохранить» — владелец
+  // получал ошибку вместо экрана «Недостаточно жемчуга» с кнопкой в магазин.
+  if (purchase.status === 'insufficient') {
+    const balanceAfter = await getShardsBalance();
+    emitAppEvent('shards_balance_updated', { balance: balanceAfter });
+    return 'insufficient';
+  }
   return withAccountTransitionLock(async () => {
     if (!isOperationCurrent()) return 'spend_failed';
-    if (purchase.status === 'insufficient') {
-      const balanceAfter = await getShardsBalance();
-      emitAppEvent('shards_balance_updated', { balance: balanceAfter });
-      return 'insufficient';
-    }
     if (purchase.status === 'failed') {
       // зачем: причина отказа раньше терялась целиком — владелец видел только
       // «Жемчуг не списан», и один и тот же класс бага ловили вслепую трижды

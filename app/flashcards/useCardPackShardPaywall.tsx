@@ -31,6 +31,11 @@ export function useCardPackShardPaywall(args: {
   onPurchaseStart?: (packId: string) => void;
   onPurchaseEnd?: () => void;
   onCommunityPackHiddenOnDevice?: () => void;
+  /**
+   * Экран уже сам является магазином жемчуга: вместо push дубля того же
+   * маршрута он просто переключает вкладку на пакеты.
+   */
+  onShowShardPacksInPlace?: () => void;
 }): {
   openPaywall: (pack: FlashcardMarketPack) => void;
   closePaywall: () => void;
@@ -47,6 +52,7 @@ export function useCardPackShardPaywall(args: {
     onPurchaseStart,
     onPurchaseEnd,
     onCommunityPackHiddenOnDevice,
+    onShowShardPacksInPlace,
   } = args;
   const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher' } | null>(null);
   const [purchasing, setPurchasing] = useState(false);
@@ -145,11 +151,19 @@ export function useCardPackShardPaywall(args: {
   }, [lang, onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
 
   const onGoToShards = useCallback(() => {
+    // зачем: наборы карточек продаются ТОЛЬКО с экрана магазина жемчуга, и
+    // старый push клал /shards_shop поверх самого себя — лишний дубль в стеке
+    // и «назад», ведущее на тот же экран. Если хозяин экрана умеет показать
+    // пакеты сам, просто переключаем вкладку.
+    if (onShowShardPacksInPlace) {
+      navigateAfterModalClose(() => setPaywall(null), onShowShardPacksInPlace);
+      return;
+    }
     navigateAfterModalClose(
       () => setPaywall(null),
       () => router.push({ pathname: '/shards_shop', params: { tab: 'catalog', source: 'card_pack_insufficient' } }),
     );
-  }, [router]);
+  }, [onShowShardPacksInPlace, router]);
 
   const CardPackPaywallModalEl =
     paywall != null ? (

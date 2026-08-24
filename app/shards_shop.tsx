@@ -1007,6 +1007,9 @@ export default function ShardsShopScreen() {
     onAfterPurchase: syncAfterStoreAction,
     onPurchaseStart: (id) => setBuyingShardPackId(id),
     onPurchaseEnd: () => setBuyingShardPackId(null),
+    // зачем: этот экран И ЕСТЬ магазин жемчуга. При нехватке показываем пакеты
+    // переключением вкладки, а не push того же маршрута поверх себя.
+    onShowShardPacksInPlace: () => setShopTab('catalog'),
   });
 
   useFocusEffect(

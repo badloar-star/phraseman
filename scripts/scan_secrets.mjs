@@ -96,6 +96,9 @@ const IGNORE_DIR_PARTS = new Set([
 // Files explicitly allowed to contain key-shaped placeholders (templates/docs
 // that the audit reviewed). The scanner skips these by exact relative path.
 const ALLOWLIST_FILES = new Set([
+  // зачем 2026-08-24: deliveryToken: 'delivery0000000001' — тестовая фикстура
+  // спин-журнала (последовательные нули), не ключ; ловилась как named-secret-assign.
+  'tests/phone_state_existing_journal_adapters.test.ts',
   '.env.local.template',
   'subscription-recovery/.env.example',
   'SECURITY_AUDIT_2026-06-07.md', // documents redacted/example key prefixes

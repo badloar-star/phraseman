@@ -1,0 +1,288 @@
+import type { LocalizedSource } from "./session_shard_from_source_v1";
+
+type Locale = "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl";
+type Selection = Readonly<{
+  correct: string;
+  distractors: readonly Readonly<{ value: string; sourceValue: string }>[];
+}>;
+const L = (value: Record<Locale, string>): LocalizedSource => value as LocalizedSource;
+const S = (correct: string, first: string, second: string): Selection => Object.freeze({
+  correct,
+  distractors: Object.freeze([
+    Object.freeze({ value: first, sourceValue: first }),
+    Object.freeze({ value: second, sourceValue: second }),
+  ]),
+});
+
+const SELECTIONS: Readonly<Record<string, Selection>> = Object.freeze({
+  ["phrase_builder\0He is not here."]: S("is", "She", "are"),
+  ["context_gap_grammar\0She is not here."]: S("is", "are", "am"),
+  ["phrase_builder\0She is not calm."]: S("is", "He", "are"),
+  ["speed_match\0She is not happy."]: S("not", "He is not happy.", "She is happy."),
+  ["phrase_builder\0He is not busy."]: S("is", "She", "are"),
+  ["listen_build_dictation\0She is not busy."]: S("is", "He", "are"),
+  ["context_gap_grammar\0He is not happy."]: S("is", "are", "am"),
+  ["context_gap_grammar\0He is not cold."]: S("is", "are", "am"),
+  ["listen_build_dictation\0She is not warm."]: S("is", "He", "are"),
+  ["phrase_builder\0She is not okay."]: S("is", "He", "are"),
+});
+
+export function episode01Session18TaskSelectionV1(family: string, target: string): Selection | undefined {
+  return SELECTIONS[`${family}\0${target}`];
+}
+
+const CHOICE_TARGETS: Readonly<Record<string, readonly [string, string]>> = Object.freeze({
+  "She is not tired.": ["She is not here.", "She is not calm."],
+  "He is not calm.": ["He is not happy.", "He is not busy."],
+});
+
+export function episode01Session18ChoiceTargetsV1(target: string): readonly [string, string] | undefined {
+  return CHOICE_TARGETS[target];
+}
+
+const FEEDBACK: Readonly<Record<string, LocalizedSource>> = Object.freeze({
+  ["She is not tired.\0She is not here."]: L({
+    ru: "She is not here. сохраняет женщину и отрицание, но here говорит об отсутствии в месте. Здесь отрицается усталость, поэтому нужно She is not tired.",
+    uk: "She is not here. зберігає жінку й заперечення, але here говорить про відсутність у місці. Тут заперечується втома: She is not tired.",
+    es: "She is not here. conserva a la mujer y la negación, pero here habla de su ausencia en un lugar. Aquí se niega el cansancio: She is not tired.",
+    "pt-BR": "She is not here. mantém a mulher e a negação, mas here fala da ausência em um lugar. Aqui se nega o cansaço: She is not tired.",
+    vi: "She is not here. giữ đúng người nữ và dạng phủ định nhưng here nói cô ấy không có mặt. Ý cần nghe là cô ấy không mệt: She is not tired.",
+    id: "She is not here. mempertahankan perempuan dan negasi, tetapi here menyatakan ia tidak berada di tempat itu. Yang disangkal ialah lelah: She is not tired.",
+    tr: "She is not here. kadın kişiyi ve olumsuzluğu korur, fakat here onun o yerde bulunmadığını söyler. Burada yorgunluk reddedilir: She is not tired.",
+    pl: "She is not here. zachowuje kobietę i przeczenie, lecz here mówi o nieobecności w miejscu. Tutaj negujemy zmęczenie: She is not tired.",
+  }),
+  ["She is not tired.\0She is not calm."]: L({
+    ru: "She is not calm. оставляет ту же женщину и тот же каркас, но calm отрицает спокойствие. Для значения «она не устала» выбирается tired: She is not tired.",
+    uk: "She is not calm. лишає ту саму жінку й той самий каркас, але calm заперечує спокій. Для значення «вона не втомилася» потрібне tired: She is not tired.",
+    es: "She is not calm. mantiene a la misma mujer y la misma estructura, pero calm niega la calma. Para «ella no está cansada» se necesita tired: She is not tired.",
+    "pt-BR": "She is not calm. mantém a mesma mulher e a mesma estrutura, mas calm nega a calma. Para «ela não está cansada» é preciso tired: She is not tired.",
+    vi: "She is not calm. giữ cùng người nữ và cùng khung câu nhưng calm phủ định sự bình tĩnh. Muốn nói cô ấy không mệt phải chọn tired: She is not tired.",
+    id: "She is not calm. mempertahankan perempuan dan kerangka yang sama, tetapi calm menyangkal ketenangan. Untuk arti tidak lelah gunakan tired: She is not tired.",
+    tr: "She is not calm. aynı kadın kişiyi ve kalıbı korur, ancak calm sakinliği reddeder. “Yorgun değil” anlamı için tired gerekir: She is not tired.",
+    pl: "She is not calm. zachowuje tę samą kobietę i konstrukcję, lecz calm zaprzecza spokojowi. Znaczenie „nie jest zmęczona” wymaga tired: She is not tired.",
+  }),
+  ["He is not calm.\0He is not busy."]: L({
+    ru: "He is not busy. сохраняет мужчину и отрицание, но busy говорит о занятости. Здесь отрицается спокойствие, поэтому нужно He is not calm.",
+    uk: "He is not busy. зберігає чоловіка й заперечення, але busy говорить про зайнятість. Тут заперечується спокій: He is not calm.",
+    es: "He is not busy. mantiene al hombre y la negación, pero busy habla de ocupación. Aquí se niega la calma, por eso corresponde He is not calm.",
+    "pt-BR": "He is not busy. mantém o homem e a negação, mas busy fala de ocupação. Aqui se nega a calma, portanto é He is not calm.",
+    vi: "He is not busy. giữ đúng người nam và phủ định nhưng busy nói anh ấy không bận. Ý cần nghe là không bình tĩnh: He is not calm.",
+    id: "He is not busy. mempertahankan laki-laki dan negasi, tetapi busy membicarakan kesibukan. Yang disangkal di sini ialah tenang: He is not calm.",
+    tr: "He is not busy. erkek kişiyi ve olumsuzluğu korur, fakat busy meşguliyetten söz eder. Burada sakinlik reddedilir: He is not calm.",
+    pl: "He is not busy. zachowuje mężczyznę i przeczenie, lecz busy mówi o zajęciu. Tutaj negujemy spokój: He is not calm.",
+  }),
+  ["He is not calm.\0He is not happy."]: L({
+    ru: "He is not happy. оставляет того же мужчину и правильное отрицание, но happy говорит о счастье. Нужное состояние — calm: He is not calm.",
+    uk: "He is not happy. лишає того самого чоловіка й правильне заперечення, але happy говорить про щастя. Потрібний стан — calm: He is not calm.",
+    es: "He is not happy. mantiene al mismo hombre y la negación correcta, pero happy habla de felicidad. El estado buscado es calm: He is not calm.",
+    "pt-BR": "He is not happy. mantém o mesmo homem e a negação correta, mas happy fala de felicidade. O estado pedido é calm: He is not calm.",
+    vi: "He is not happy. giữ đúng người nam và dạng phủ định nhưng happy nói về hạnh phúc. Trạng thái cần chọn là calm: He is not calm.",
+    id: "He is not happy. mempertahankan laki-laki dan negasi yang benar, tetapi happy berbicara tentang kebahagiaan. Keadaan yang dicari ialah calm: He is not calm.",
+    tr: "He is not happy. aynı erkek kişiyi ve doğru olumsuzluğu korur, fakat happy mutluluktan söz eder. Aranan durum calm olduğundan He is not calm. gerekir.",
+    pl: "He is not happy. zachowuje tego samego mężczyznę i poprawne przeczenie, ale happy mówi o szczęściu. Potrzebny stan to calm: He is not calm.",
+  }),
+  ["She is not happy.\0He is not happy."]: L({
+    ru: "He is not happy. отличается одним местоимением: состояние и not совпадают, но he означает мужчину. Женский участник требует she: She is not happy.",
+    uk: "He is not happy. відрізняється одним займенником: стан і not збігаються, але he означає чоловіка. Для жінки потрібне she: She is not happy.",
+    es: "He is not happy. solo cambia el pronombre: el estado y not coinciden, pero he identifica a un hombre. La referencia femenina exige she: She is not happy.",
+    "pt-BR": "He is not happy. muda apenas o pronome: o estado e not coincidem, mas he identifica um homem. A referência feminina exige she: She is not happy.",
+    vi: "He is not happy. chỉ khác ở đại từ: trạng thái và not đều đúng nhưng he chỉ người nam. Người nữ cần she: She is not happy.",
+    id: "He is not happy. hanya berbeda pada kata ganti: keadaan dan not sama, tetapi he menunjuk laki-laki. Untuk perempuan diperlukan she: She is not happy.",
+    tr: "He is not happy. yalnızca zamirde ayrılır: durum ve not aynıdır, fakat he erkek kişiyi gösterir. Kadın kişi için she gerekir: She is not happy.",
+    pl: "He is not happy. różni się tylko zaimkiem: stan i not są takie same, ale he wskazuje mężczyznę. Dla kobiety trzeba she: She is not happy.",
+  }),
+  ["She is not happy.\0She is happy."]: L({
+    ru: "She is happy. сохраняет женщину и состояние happy, но без not утверждает, что она счастлива. Чтобы это отрицать, нужно She is not happy.",
+    uk: "She is happy. зберігає жінку й стан happy, але без not стверджує, що вона щаслива. Для заперечення потрібне She is not happy.",
+    es: "She is happy. conserva a la mujer y el estado happy, pero sin not afirma que está feliz. Para negar esa información hace falta She is not happy.",
+    "pt-BR": "She is happy. mantém a mulher e o estado happy, mas sem not afirma que ela está feliz. Para negar essa informação é preciso She is not happy.",
+    vi: "She is happy. giữ đúng người nữ và từ happy nhưng thiếu not nên lại khẳng định cô ấy vui. Muốn phủ định phải nói She is not happy.",
+    id: "She is happy. mempertahankan perempuan dan kata happy, tetapi tanpa not kalimatnya menyatakan bahwa ia bahagia. Negasinya ialah She is not happy.",
+    tr: "She is happy. kadın kişiyi ve happy durumunu korur, ancak not olmayınca onun mutlu olduğunu bildirir. Olumsuz anlam için She is not happy. gerekir.",
+    pl: "She is happy. zachowuje kobietę i stan happy, lecz bez not stwierdza, że jest szczęśliwa. Przeczenie brzmi She is not happy.",
+  }),
+  ["He is not here.\0She"]: L({
+    ru: "Плитка She назвала бы женщину, хотя значение говорит о мужчине. Сохраните He первым и соберите He is not here. без лишнего местоимения.",
+    uk: "Плитка She назвала б жінку, хоча значення говорить про чоловіка. Залиште He першим і складіть He is not here. без зайвого займенника.",
+    es: "La ficha She nombraría a una mujer aunque el significado habla de un hombre. Mantén He al principio y forma He is not here. sin otro pronombre.",
+    "pt-BR": "A peça She nomearia uma mulher, embora o sentido fale de um homem. Mantenha He no início e monte He is not here. sem outro pronome.",
+    vi: "Ô She sẽ đổi người được nói tới thành nữ trong khi ý nghĩa chỉ người nam. Giữ He ở đầu và ghép He is not here. mà không thêm đại từ khác.",
+    id: "Keping She akan mengubah orangnya menjadi perempuan, padahal makna menunjuk laki-laki. Pertahankan He di awal dan susun He is not here. tanpa kata ganti tambahan.",
+    tr: "She taşı anlamdaki erkek kişiyi kadın kişiye çevirirdi. Başta He bırakın ve başka zamir eklemeden He is not here. cümlesini kurun.",
+    pl: "Kafelek She zmieniłby mężczyznę na kobietę, choć znaczenie dotyczy mężczyzny. Zostaw He na początku i ułóż He is not here. bez drugiego zaimka.",
+  }),
+  ["He is not here.\0are"]: L({
+    ru: "Are знакомо по you, но с одним he не согласуется. Здесь нужна форма третьего лица is, поэтому получается He is not here.",
+    uk: "Are знайоме з you, але з одним he не узгоджується. Тут потрібна форма третьої особи is, тому виходить He is not here.",
+    es: "Are resulta familiar con you, pero no concuerda con he singular. La tercera persona necesita is, por eso la forma es He is not here.",
+    "pt-BR": "Are é conhecido com you, mas não concorda com he no singular. A terceira pessoa precisa de is, portanto fica He is not here.",
+    vi: "Are từng đi với you nhưng không hòa hợp với he số ít. Ngôi thứ ba cần is, vì vậy câu đúng là He is not here.",
+    id: "Are dikenal bersama you, tetapi tidak cocok dengan he tunggal. Orang ketiga memerlukan is, sehingga bentuknya He is not here.",
+    tr: "Are, you ile tanıdıktır fakat tekil he ile uyuşmaz. Üçüncü kişi is istediği için doğru cümle He is not here. olur.",
+    pl: "Are jest znane z you, ale nie zgadza się z pojedynczym he. Trzecia osoba wymaga is, dlatego powstaje He is not here.",
+  }),
+  ["She is not calm.\0He"]: L({
+    ru: "Плитка He переключает фразу на мужчину и противоречит значению «она не спокойна». Начало должно быть She: She is not calm.",
+    uk: "Плитка He перемикає вислів на чоловіка й суперечить значенню «вона не спокійна». Початок має бути She: She is not calm.",
+    es: "La ficha He cambia la frase a un hombre y contradice «ella no está tranquila». El comienzo debe ser She: She is not calm.",
+    "pt-BR": "A peça He muda a frase para um homem e contradiz «ela não está calma». O início deve ser She: She is not calm.",
+    vi: "Ô He đổi câu sang người nam, trái với ý “cô ấy không bình tĩnh”. Câu phải bắt đầu bằng She: She is not calm.",
+    id: "Keping He mengubah kalimat menjadi tentang laki-laki dan bertentangan dengan arti perempuan tidak tenang. Awalnya harus She: She is not calm.",
+    tr: "He taşı cümleyi erkek kişi hakkında yapar ve “kadın sakin değil” anlamına ters düşer. Başlangıç She olmalıdır: She is not calm.",
+    pl: "Kafelek He zmienia zdanie na mężczyznę i przeczy znaczeniu „ona nie jest spokojna”. Początkiem musi być She: She is not calm.",
+  }),
+  ["She is not calm.\0are"]: L({
+    ru: "Are не подходит к одной женщине, обозначенной she. После she выбирается is, а not остаётся следом: She is not calm.",
+    uk: "Are не підходить до однієї жінки, позначеної she. Після she обираємо is, а not лишається далі: She is not calm.",
+    es: "Are no concuerda con una sola mujer expresada por she. Después de she va is y luego not: She is not calm.",
+    "pt-BR": "Are não concorda com uma única mulher indicada por she. Depois de she vem is e então not: She is not calm.",
+    vi: "Are không đi với một người nữ số ít được chỉ bằng she. Sau she phải là is rồi mới đến not: She is not calm.",
+    id: "Are tidak cocok dengan satu perempuan yang ditandai oleh she. Setelah she harus ada is lalu not: She is not calm.",
+    tr: "Are, she ile gösterilen tek bir kadınla uyuşmaz. She sonrasında is, ardından not gelir: She is not calm.",
+    pl: "Are nie zgadza się z jedną kobietą oznaczoną przez she. Po she potrzebne jest is, a potem not: She is not calm.",
+  }),
+  ["He is not busy.\0She"]: L({
+    ru: "She изменила бы мужчину на женщину, хотя занятость отрицается у него. Нужное местоимение — He: He is not busy.",
+    uk: "She змінила б чоловіка на жінку, хоча зайнятість заперечується в нього. Потрібний займенник — He: He is not busy.",
+    es: "She cambiaría al hombre por una mujer, aunque la falta de ocupación corresponde a él. El pronombre necesario es He: He is not busy.",
+    "pt-BR": "She trocaria o homem por uma mulher, embora a falta de ocupação seja dele. O pronome necessário é He: He is not busy.",
+    vi: "She sẽ đổi người nam thành người nữ dù ý nghĩa nói anh ấy không bận. Đại từ cần dùng là He: He is not busy.",
+    id: "She akan mengganti laki-laki dengan perempuan, padahal maknanya menyatakan dia laki-laki tidak sibuk. Gunakan He: He is not busy.",
+    tr: "She erkeği kadın kişiyle değiştirirdi, oysa meşgul olmama durumu erkeğe aittir. Gereken zamir He olur: He is not busy.",
+    pl: "She zmieniłoby mężczyznę na kobietę, choć to on nie jest zajęty. Potrzebnym zaimkiem jest He: He is not busy.",
+  }),
+  ["He is not busy.\0are"]: L({
+    ru: "Are требует другого подлежащего и ломает согласование с he. У одного мужчины форма связки is: He is not busy.",
+    uk: "Are вимагає іншого підмета й ламає узгодження з he. Для одного чоловіка форма зв’язки is: He is not busy.",
+    es: "Are exige otro sujeto y rompe la concordancia con he. Para un solo hombre la forma de la cópula es is: He is not busy.",
+    "pt-BR": "Are exige outro sujeito e quebra a concordância com he. Para um único homem a forma da ligação é is: He is not busy.",
+    vi: "Are cần chủ ngữ khác nên không hòa hợp với he. Với một người nam, dạng nối phải là is: He is not busy.",
+    id: "Are memerlukan subjek lain dan tidak selaras dengan he. Untuk satu laki-laki bentuk penghubungnya is: He is not busy.",
+    tr: "Are başka bir özne ister ve he ile uyumu bozar. Tek bir erkek kişi için bağlayıcı is olur: He is not busy.",
+    pl: "Are wymaga innego podmiotu i nie zgadza się z he. Dla jednego mężczyzny formą łącznika jest is: He is not busy.",
+  }),
+  ["She is not busy.\0He"]: L({
+    ru: "He звучит близко, но называет мужчину вместо женщины. Значение «она не занята» сохраняет She в начале: She is not busy.",
+    uk: "He звучить близько, але називає чоловіка замість жінки. Значення «вона не зайнята» зберігає She на початку: She is not busy.",
+    es: "He parece cercano, pero identifica a un hombre en lugar de una mujer. «Ella no está ocupada» conserva She al inicio: She is not busy.",
+    "pt-BR": "He parece próximo, mas identifica um homem em vez de uma mulher. «Ela não está ocupada» mantém She no início: She is not busy.",
+    vi: "He trông gần giống nhưng chỉ người nam thay vì người nữ. Ý “cô ấy không bận” phải giữ She ở đầu: She is not busy.",
+    id: "He tampak dekat, tetapi menunjuk laki-laki bukan perempuan. Arti perempuan tidak sibuk mempertahankan She di awal: She is not busy.",
+    tr: "He yakın görünür, fakat kadın yerine erkek kişiyi gösterir. “Kadın meşgul değil” anlamında başta She kalır: She is not busy.",
+    pl: "He wygląda podobnie, lecz wskazuje mężczyznę zamiast kobiety. Znaczenie „ona nie jest zajęta” zachowuje She: She is not busy.",
+  }),
+  ["She is not busy.\0are"]: L({
+    ru: "Are нельзя ставить после she: форма для третьего лица единственного числа — is. Отрицание добавляется после неё: She is not busy.",
+    uk: "Are не можна ставити після she: форма третьої особи однини — is. Заперечення додається після неї: She is not busy.",
+    es: "Are no puede seguir a she: la tercera persona singular usa is. La negación se coloca después de esa forma: She is not busy.",
+    "pt-BR": "Are não pode vir depois de she: a terceira pessoa do singular usa is. A negação fica depois dessa forma: She is not busy.",
+    vi: "Are không thể đứng sau she vì ngôi thứ ba số ít dùng is. Phần phủ định được đặt sau dạng ấy: She is not busy.",
+    id: "Are tidak dapat mengikuti she karena orang ketiga tunggal memakai is. Negasi ditempatkan sesudah bentuk itu: She is not busy.",
+    tr: "Are, she sonrasında kullanılamaz; üçüncü tekil kişi is alır. Olumsuzluk bu biçimin ardından gelir: She is not busy.",
+    pl: "Are nie może stać po she, ponieważ trzecia osoba liczby pojedynczej używa is. Przeczenie dodajemy potem: She is not busy.",
+  }),
+  ["She is not warm.\0He"]: L({
+    ru: "He сменил бы женщину на мужчину, хотя значение говорит «ей не тепло». Для женского участника первой остаётся She: She is not warm.",
+    uk: "He змінив би жінку на чоловіка, хоча значення говорить «їй не тепло». Для жіночої особи першою лишається She: She is not warm.",
+    es: "He cambiaría a la mujer por un hombre, aunque el significado dice que ella no está abrigada. La referencia femenina conserva She: She is not warm.",
+    "pt-BR": "He trocaria a mulher por um homem, embora o sentido diga que ela não está aquecida. A referência feminina mantém She: She is not warm.",
+    vi: "He sẽ đổi người nữ thành người nam dù ý nghĩa nói cô ấy không thấy ấm. Đối tượng nữ phải giữ She: She is not warm.",
+    id: "He akan mengganti perempuan dengan laki-laki, padahal maknanya menyatakan perempuan itu tidak hangat. Pertahankan She: She is not warm.",
+    tr: "He kadın kişiyi erkeğe çevirirdi, oysa anlam onun sıcak olmadığını söyler. Kadın kişi için She kalır: She is not warm.",
+    pl: "He zmieniłoby kobietę na mężczyznę, choć znaczenie mówi, że jej nie jest ciepło. Dla kobiety zostaje She: She is not warm.",
+  }),
+  ["She is not warm.\0are"]: L({
+    ru: "Are не согласуется с she и отвлекает от правильной середины is not. Для одной женщины фраза строится She is not warm.",
+    uk: "Are не узгоджується з she й відволікає від правильної середини is not. Для однієї жінки вислів будується She is not warm.",
+    es: "Are no concuerda con she y distrae del centro correcto is not. Para una sola mujer la frase se forma She is not warm.",
+    "pt-BR": "Are não concorda com she e desvia do centro correto is not. Para uma única mulher a frase fica She is not warm.",
+    vi: "Are không hòa hợp với she và làm mất phần giữa đúng is not. Với một người nữ, câu phải là She is not warm.",
+    id: "Are tidak selaras dengan she dan mengalihkan dari bagian tengah is not. Untuk satu perempuan bentuknya She is not warm.",
+    tr: "Are, she ile uyuşmaz ve doğru is not merkezini bozar. Tek bir kadın için cümle She is not warm. biçimindedir.",
+    pl: "Are nie zgadza się z she i odciąga od poprawnego środka is not. Dla jednej kobiety zdanie brzmi She is not warm.",
+  }),
+  ["She is not okay.\0He"]: L({
+    ru: "He дал бы тот же признак okay, но другому человеку. Когда не в порядке женщина, выбирается She: She is not okay.",
+    uk: "He дав би той самий стан okay, але іншій людині. Коли не гаразд жінці, обираємо She: She is not okay.",
+    es: "He atribuiría el mismo estado okay a otra persona, un hombre. Si quien no está bien es una mujer, se elige She: She is not okay.",
+    "pt-BR": "He daria o mesmo estado okay a outra pessoa, um homem. Se quem não está bem é uma mulher, escolhe-se She: She is not okay.",
+    vi: "He vẫn giữ trạng thái okay nhưng gán cho người nam khác. Khi người nữ không ổn, phải chọn She: She is not okay.",
+    id: "He mempertahankan keadaan okay tetapi memberikannya kepada laki-laki. Jika perempuan yang tidak baik-baik saja, pilih She: She is not okay.",
+    tr: "He aynı okay durumunu erkek kişiye yüklerdi. İyi olmayan kişi kadınsa She seçilir: She is not okay.",
+    pl: "He przypisałoby ten sam stan okay mężczyźnie. Gdy to kobieta nie czuje się dobrze, wybieramy She: She is not okay.",
+  }),
+  ["She is not okay.\0are"]: L({
+    ru: "Are похоже как форма be, но относится не к she в единственном числе. Здесь нужна связка is перед not: She is not okay.",
+    uk: "Are схоже як форма be, але не належить she в однині. Тут потрібна зв’язка is перед not: She is not okay.",
+    es: "Are es una forma de be, pero no corresponde a she singular. Aquí se necesita la cópula is antes de not: She is not okay.",
+    "pt-BR": "Are é uma forma de be, mas não corresponde a she no singular. Aqui é necessária a ligação is antes de not: She is not okay.",
+    vi: "Are cũng là dạng của be nhưng không đi với she số ít. Ở đây cần is đứng trước not: She is not okay.",
+    id: "Are memang bentuk be, tetapi bukan pasangan she tunggal. Di sini diperlukan is sebelum not: She is not okay.",
+    tr: "Are bir be biçimidir, fakat tekil she ile kullanılmaz. Burada not öncesinde is gerekir: She is not okay.",
+    pl: "Are jest formą be, lecz nie łączy się z pojedynczym she. Tutaj przed not potrzebne jest is: She is not okay.",
+  }),
+  ["She is not here.\0are"]: L({
+    ru: "Are подходит к you, we или they, но не к одной she. Пропуск после she заполняется is: She is not here.",
+    uk: "Are підходить до you, we або they, але не до однієї she. Пропуск після she заповнюється is: She is not here.",
+    es: "Are acompaña a you, we o they, pero no a una sola she. El hueco después de she se completa con is: She is not here.",
+    "pt-BR": "Are acompanha you, we ou they, mas não uma única she. A lacuna depois de she recebe is: She is not here.",
+    vi: "Are đi với you, we hoặc they chứ không đi với she số ít. Chỗ trống sau she cần is: She is not here.",
+    id: "Are berpasangan dengan you, we, atau they, bukan she tunggal. Celah setelah she harus diisi is: She is not here.",
+    tr: "Are, you, we ya da they ile kullanılır; tekil she ile değil. She sonrasındaki boşluğa is gelir: She is not here.",
+    pl: "Are łączy się z you, we albo they, lecz nie z pojedynczym she. Lukę po she wypełnia is: She is not here.",
+  }),
+  ["She is not here.\0am"]: L({
+    ru: "Am закреплено за I и говорит о самом говорящем. Здесь описывается другая женщина через she, поэтому нужна форма is: She is not here.",
+    uk: "Am закріплене за I й говорить про самого мовця. Тут описується інша жінка через she, тому потрібне is: She is not here.",
+    es: "Am pertenece a I y describe a quien habla. Aquí se describe a otra mujer mediante she, por eso corresponde is: She is not here.",
+    "pt-BR": "Am pertence a I e descreve quem fala. Aqui se descreve outra mulher com she, por isso a forma necessária é is: She is not here.",
+    vi: "Am chỉ đi với I để nói về chính người đang nói. Câu này dùng she cho người nữ khác, nên phải chọn is: She is not here.",
+    id: "Am hanya menjadi pasangan I dan membicarakan penutur. Di sini she menunjuk perempuan lain, jadi bentuk yang diperlukan is: She is not here.",
+    tr: "Am yalnızca I ile konuşanın kendisini anlatır. Burada she ile başka bir kadın tanımlandığı için is gerekir: She is not here.",
+    pl: "Am należy wyłącznie do I i opisuje mówiącego. Tutaj she wskazuje inną kobietę, dlatego potrzebne jest is: She is not here.",
+  }),
+  ["He is not happy.\0are"]: L({
+    ru: "Are — настоящая форма be, но она не согласуется с одним he. После he ставится is, затем not: He is not happy.",
+    uk: "Are — справжня форма be, але вона не узгоджується з одним he. Після he ставимо is, потім not: He is not happy.",
+    es: "Are sí es una forma de be, pero no concuerda con un solo he. Después de he va is y luego not: He is not happy.",
+    "pt-BR": "Are é uma forma de be, mas não concorda com um único he. Depois de he vem is e depois not: He is not happy.",
+    vi: "Are đúng là một dạng của be nhưng không hòa hợp với he số ít. Sau he phải là is rồi not: He is not happy.",
+    id: "Are memang bentuk be, tetapi tidak cocok dengan he tunggal. Setelah he harus ada is lalu not: He is not happy.",
+    tr: "Are gerçek bir be biçimidir, ancak tekil he ile uyuşmaz. He sonrasında is, ardından not gelir: He is not happy.",
+    pl: "Are jest formą be, ale nie zgadza się z pojedynczym he. Po he stawiamy is, a następnie not: He is not happy.",
+  }),
+  ["He is not happy.\0am"]: L({
+    ru: "Am всегда привязано к I, поэтому с he оно меняет грамматическое лицо. Для другого мужчины выбирается is: He is not happy.",
+    uk: "Am завжди прив’язане до I, тому з he воно змінює граматичну особу. Для іншого чоловіка обираємо is: He is not happy.",
+    es: "Am está unido a I, de modo que con he mezcla dos personas gramaticales. Para otro hombre se elige is: He is not happy.",
+    "pt-BR": "Am fica ligado a I, por isso com he mistura duas pessoas gramaticais. Para outro homem escolhe-se is: He is not happy.",
+    vi: "Am luôn gắn với I nên đặt cùng he sẽ trộn hai ngôi khác nhau. Khi nói về người nam khác phải dùng is: He is not happy.",
+    id: "Am selalu terikat pada I, sehingga bersama he mencampur dua orang gramatikal. Untuk laki-laki lain gunakan is: He is not happy.",
+    tr: "Am her zaman I ile bağlıdır; he yanında iki farklı kişiyi karıştırır. Başka bir erkek için is seçilir: He is not happy.",
+    pl: "Am jest przypisane do I, więc przy he miesza dwie osoby gramatyczne. Dla innego mężczyzny wybieramy is: He is not happy.",
+  }),
+  ["He is not cold.\0are"]: L({
+    ru: "Are отвлекает знакомой формой, но с he в единственном числе требуется is. Только так not правильно отрицает cold: He is not cold.",
+    uk: "Are відволікає знайомою формою, але з he в однині потрібне is. Лише так not правильно заперечує cold: He is not cold.",
+    es: "Are distrae porque es una forma conocida, pero he singular exige is. Solo así not niega correctamente cold: He is not cold.",
+    "pt-BR": "Are confunde por ser uma forma conhecida, mas he no singular exige is. Só assim not nega cold corretamente: He is not cold.",
+    vi: "Are gây nhiễu vì là dạng quen thuộc nhưng he số ít bắt buộc dùng is. Khi đó not mới phủ định cold đúng chỗ: He is not cold.",
+    id: "Are menggoda karena bentuknya dikenal, tetapi he tunggal wajib memakai is. Barulah not menyangkal cold pada posisi tepat: He is not cold.",
+    tr: "Are tanıdık olduğu için şaşırtır, fakat tekil he zorunlu olarak is alır. Böylece not cold durumunu doğru yerde reddeder: He is not cold.",
+    pl: "Are kusi jako znana forma, lecz pojedyncze he wymaga is. Dopiero wtedy not prawidłowo neguje cold: He is not cold.",
+  }),
+  ["He is not cold.\0am"]: L({
+    ru: "Am описывает I, то есть самого говорящего, а не мужчину he. Для третьего лица нужен is перед not: He is not cold.",
+    uk: "Am описує I, тобто самого мовця, а не чоловіка he. Для третьої особи потрібне is перед not: He is not cold.",
+    es: "Am describe a I, la persona que habla, no al hombre indicado por he. La tercera persona necesita is antes de not: He is not cold.",
+    "pt-BR": "Am descreve I, quem fala, e não o homem indicado por he. A terceira pessoa precisa de is antes de not: He is not cold.",
+    vi: "Am mô tả I, tức người đang nói, chứ không phải người nam he. Ngôi thứ ba cần is đứng trước not: He is not cold.",
+    id: "Am menggambarkan I, yaitu penutur, bukan laki-laki yang ditunjuk he. Orang ketiga memerlukan is sebelum not: He is not cold.",
+    tr: "Am konuşanın kendisi olan I zamirini anlatır, he ile gösterilen erkeği değil. Üçüncü kişi not öncesinde is ister: He is not cold.",
+    pl: "Am opisuje I, czyli mówiącego, a nie mężczyznę wskazanego przez he. Trzecia osoba potrzebuje is przed not: He is not cold.",
+  }),
+});
+
+export function episode01Session18TaskFeedbackV1(locale: Locale, target: string, wrong: string): string | undefined {
+  return FEEDBACK[`${target}\0${wrong}`]?.[locale];
+}

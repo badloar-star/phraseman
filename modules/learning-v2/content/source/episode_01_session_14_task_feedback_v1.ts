@@ -1,0 +1,228 @@
+import type { LocalizedSource } from "./session_shard_from_source_v1";
+
+type Locale = "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl";
+const L = (value: Record<Locale, string>): LocalizedSource =>
+  value as LocalizedSource;
+
+/** Explicit semantic contrasts for the four listening contacts in session 14. */
+const LISTEN_FEEDBACK: Readonly<Record<string, LocalizedSource>> =
+  Object.freeze({
+    "I am at home.\u0000You are in class.": L({
+      ru: "You are in class. говорит о собеседнике на занятии: отличаются и человек, и место. Здесь слышно I am at home. — говорящий сообщает о себе и произносит готовый блок at home.",
+      uk: "You are in class. говорить про співрозмовника на занятті: відрізняються і людина, і місце. Тут чути I am at home. — мовець повідомляє про себе та вимовляє блок at home.",
+      es: "You are in class. habla del interlocutor en clase: cambian tanto la persona como el lugar. Aquí se oye I am at home.; quien habla se refiere a sí mismo y usa el bloque at home.",
+      "pt-BR":
+        "You are in class. fala da outra pessoa na aula: mudam a pessoa e o lugar. Aqui se ouve I am at home.; quem fala se refere a si mesmo e usa o bloco at home.",
+      vi: "You are in class. nói về người nghe đang ở lớp nên cả người lẫn nơi đều khác. Ở đây nghe thấy I am at home.; người nói nói về mình và dùng trọn cụm at home.",
+      id: "You are in class. membicarakan lawan bicara yang sedang mengikuti kelas, jadi orang dan tempatnya berbeda. Di sini terdengar I am at home.; penutur memakai I dan kelompok at home.",
+      tr: "You are in class. dersteki karşınızdaki kişiyi anlatır; hem kişi hem yer değişir. Burada I am at home. duyulur: konuşan kendisinden söz eder ve at home grubunu kullanır.",
+      pl: "You are in class. mówi o rozmówcy na zajęciach, więc zmienia osobę i miejsce. Tutaj słychać I am at home.: mówiący wskazuje siebie i używa całego at home.",
+    }),
+    "I am at home.\u0000I am at work.": L({
+      ru: "I am at work. сохраняет того же говорящего, но помещает его на работу. В аудио после I am слышно at home, поэтому речь именно о доме: I am at home.",
+      uk: "I am at work. зберігає того самого мовця, але розміщує його на роботі. В аудіо після I am чути at home, тому йдеться саме про дім: I am at home.",
+      es: "I am at work. mantiene al mismo hablante, pero lo sitúa en el trabajo. En el audio, después de I am se oye at home, de modo que el lugar exacto es la casa: I am at home.",
+      "pt-BR":
+        "I am at work. mantém a mesma pessoa, mas a coloca no trabalho. No áudio, depois de I am ouve-se at home; portanto o lugar exato é a casa: I am at home.",
+      vi: "I am at work. vẫn nói về người nói nhưng đặt họ ở nơi làm việc. Trong âm thanh, sau I am là at home, nên địa điểm chính xác là nhà: I am at home.",
+      id: "I am at work. tetap membicarakan penutur, tetapi menempatkannya di tempat kerja. Dalam audio, setelah I am terdengar at home, jadi lokasi tepatnya rumah: I am at home.",
+      tr: "I am at work. aynı konuşanı korur fakat onu iş yerine koyar. Ses kaydında I am sonrasında at home duyulur; doğru yer evdir: I am at home.",
+      pl: "I am at work. zachowuje tę samą osobę, lecz umieszcza ją w pracy. W nagraniu po I am słychać at home, więc dokładnym miejscem jest dom: I am at home.",
+    }),
+    "You are in class.\u0000I am at home.": L({
+      ru: "I am at home. сообщает о говорящем дома, тогда как нужная реплика обращена к you и называет занятие. Сочетание You are in class. точно сохраняет услышанные человека и место.",
+      uk: "I am at home. повідомляє про мовця вдома, а потрібна репліка звернена до you й називає заняття. You are in class. точно зберігає почутих людину та місце.",
+      es: "I am at home. sitúa al hablante en casa, pero la frase oída se dirige a you y nombra una clase. You are in class. conserva exactamente la persona y el lugar del audio.",
+      "pt-BR":
+        "I am at home. coloca quem fala em casa, mas a frase ouvida se dirige a you e menciona uma aula. You are in class. preserva exatamente a pessoa e o lugar do áudio.",
+      vi: "I am at home. nói người nói đang ở nhà, còn câu cần chọn hướng tới you và nhắc đến lớp học. You are in class. giữ đúng cả người và nơi đã nghe.",
+      id: "I am at home. menempatkan penutur di rumah, sedangkan ucapan yang didengar ditujukan kepada you dan menyebut kelas. You are in class. mempertahankan orang dan tempat secara tepat.",
+      tr: "I am at home. konuşanı evde gösterir; duyulan söz ise you kişisine yönelir ve dersi söyler. You are in class. hem kişiyi hem yeri doğru korur.",
+      pl: "I am at home. umieszcza mówiącego w domu, a usłyszana wypowiedź dotyczy you i zajęć. You are in class. zachowuje dokładnie właściwą osobę oraz miejsce.",
+    }),
+    "You are in class.\u0000I am at work.": L({
+      ru: "I am at work. меняет собеседника на говорящего и занятие на работу. Здесь слышны You are и in class, поэтому правильная реплика обращена к человеку на занятии: You are in class.",
+      uk: "I am at work. змінює співрозмовника на мовця, а заняття — на роботу. Тут чути You are та in class, тому правильна репліка звернена до людини на занятті: You are in class.",
+      es: "I am at work. cambia al interlocutor por el hablante y la clase por el trabajo. Aquí se oyen You are e in class, así que la frase exacta es You are in class.",
+      "pt-BR":
+        "I am at work. troca a outra pessoa por quem fala e a aula pelo trabalho. Aqui se ouvem You are e in class, portanto a frase exata é You are in class.",
+      vi: "I am at work. đổi người nghe thành người nói và đổi lớp học thành nơi làm việc. Ở đây nghe rõ You are và in class, nên câu đúng là You are in class.",
+      id: "I am at work. mengganti lawan bicara dengan penutur dan kelas dengan tempat kerja. Di sini terdengar You are serta in class, jadi kalimat tepatnya You are in class.",
+      tr: "I am at work. karşınızdaki kişiyi konuşanla, dersi de işle değiştirir. Burada You are ve in class duyulur; tam karşılık You are in class. olur.",
+      pl: "I am at work. zmienia rozmówcę na mówiącego, a zajęcia na pracę. Tutaj słychać You are oraz in class, więc dokładna fraza to You are in class.",
+    }),
+    "I am at work.\u0000I am at home.": L({
+      ru: "I am at home. верно называет человека, но переносит его домой. В записи слышно окончание at work, поэтому место — работа, а полный ответ I am at work.",
+      uk: "I am at home. правильно називає людину, але переносить її додому. У записі чути закінчення at work, тому місце — робота, а повна відповідь I am at work.",
+      es: "I am at home. identifica bien al hablante, pero lo traslada a casa. En la grabación se oye el final at work, por eso el lugar es el trabajo y la respuesta completa I am at work.",
+      "pt-BR":
+        "I am at home. identifica corretamente quem fala, mas o leva para casa. Na gravação ouve-se o final at work, então o lugar é o trabalho e a resposta é I am at work.",
+      vi: "I am at home. đúng về người nói nhưng chuyển địa điểm về nhà. Trong âm thanh nghe thấy phần cuối at work, nên nơi cần chọn là chỗ làm: I am at work.",
+      id: "I am at home. benar mengenai penuturnya, tetapi memindahkan lokasi ke rumah. Dalam rekaman terdengar akhir at work, jadi tempatnya ialah pekerjaan: I am at work.",
+      tr: "I am at home. kişiyi doğru tutar fakat yeri eve taşır. Kayıtta at work sonu duyulur; yer iş yeridir ve tam cevap I am at work. olur.",
+      pl: "I am at home. poprawnie wskazuje mówiącego, lecz przenosi go do domu. W nagraniu słychać zakończenie at work, więc miejscem jest praca: I am at work.",
+    }),
+    "I am at work.\u0000You are in class.": L({
+      ru: "You are in class. говорит о другом человеке на занятии. Здесь слышно I am, а место выражено at work, поэтому говорящий находится на работе: I am at work.",
+      uk: "You are in class. говорить про іншу людину на занятті. Тут чути I am, а місце виражене at work, тому мовець перебуває на роботі: I am at work.",
+      es: "You are in class. habla de otra persona en clase. Aquí se oye I am y el lugar aparece como at work, de modo que el hablante está en el trabajo: I am at work.",
+      "pt-BR":
+        "You are in class. fala de outra pessoa na aula. Aqui se ouve I am e o lugar aparece como at work, portanto quem fala está no trabalho: I am at work.",
+      vi: "You are in class. nói về một người khác đang ở lớp. Ở đây nghe thấy I am và địa điểm là at work, nên người nói đang ở chỗ làm: I am at work.",
+      id: "You are in class. membicarakan orang lain yang sedang mengikuti kelas. Di sini terdengar I am dan tempatnya at work, jadi penutur berada di tempat kerja: I am at work.",
+      tr: "You are in class. dersteki başka kişiyi anlatır. Burada I am ve at work duyulur; konuşan iş yerindedir: I am at work.",
+      pl: "You are in class. mówi o innej osobie na zajęciach. Tutaj słychać I am, a miejsce ma postać at work, więc mówiący jest w pracy: I am at work.",
+    }),
+    "You are in the park.\u0000I am at home.": L({
+      ru: "I am at home. меняет и человека, и место: говорящий оказывается дома. В аудио обращаются к you и называют внутреннюю территорию парка, поэтому ответ You are in the park.",
+      uk: "I am at home. змінює і людину, і місце: мовець опиняється вдома. В аудіо звертаються до you та називають внутрішню територію парку, тому відповідь You are in the park.",
+      es: "I am at home. cambia la persona y el lugar: sitúa al hablante en casa. El audio se dirige a you y lo coloca dentro del parque, por eso corresponde You are in the park.",
+      "pt-BR":
+        "I am at home. muda a pessoa e o lugar: coloca quem fala em casa. O áudio se dirige a you e situa a pessoa dentro do parque, então a resposta é You are in the park.",
+      vi: "I am at home. đổi cả người lẫn nơi và đặt người nói ở nhà. Âm thanh hướng tới you rồi đặt người ấy bên trong công viên, nên đáp án là You are in the park.",
+      id: "I am at home. mengubah orang dan tempat dengan menaruh penutur di rumah. Audio ditujukan kepada you dan menempatkannya di dalam taman, jadi jawabannya You are in the park.",
+      tr: "I am at home. hem kişiyi hem yeri değiştirip konuşanı eve koyar. Ses you kişisine yönelir ve onu parkın içinde gösterir; cevap You are in the park. olur.",
+      pl: "I am at home. zmienia osobę i miejsce, umieszczając mówiącego w domu. Nagranie zwraca się do you i lokuje tę osobę wewnątrz parku, więc odpowiedź to You are in the park.",
+    }),
+    "You are in the park.\u0000You are in class.": L({
+      ru: "You are in class. сохраняет обращение к собеседнику, но помещает его на занятие. Здесь после You are слышно in the park, то есть человек находится внутри парка: You are in the park.",
+      uk: "You are in class. зберігає звернення до співрозмовника, але розміщує його на занятті. Тут після You are чути in the park, тобто людина перебуває всередині парку: You are in the park.",
+      es: "You are in class. conserva al interlocutor, pero lo coloca en una clase. Aquí, después de You are, se oye in the park: la persona está dentro del parque, así que corresponde You are in the park.",
+      "pt-BR":
+        "You are in class. mantém a outra pessoa, mas a coloca numa aula. Aqui, depois de You are, ouve-se in the park: a pessoa está dentro do parque, então a resposta é You are in the park.",
+      vi: "You are in class. vẫn nói về người nghe nhưng đặt họ trong lớp học. Ở đây sau You are là in the park, nghĩa là người ấy đang ở bên trong công viên: You are in the park.",
+      id: "You are in class. tetap membicarakan lawan bicara, tetapi menempatkannya di kelas. Di sini setelah You are terdengar in the park, jadi orang itu berada di dalam taman: You are in the park.",
+      tr: "You are in class. kişiyi korur fakat onu derse koyar. Burada You are sonrasında in the park duyulur; kişi parkın içindedir: You are in the park.",
+      pl: "You are in class. zachowuje rozmówcę, lecz umieszcza go na zajęciach. Tutaj po You are słychać in the park, czyli osoba jest wewnątrz parku: You are in the park.",
+    }),
+  });
+
+export function episode01Session14ListenFeedbackV1(
+  locale: Locale,
+  correct: string,
+  wrong: string,
+): string | undefined {
+  return LISTEN_FEEDBACK[`${correct}\u0000${wrong}`]?.[locale];
+}
+
+/** Exact preposition traps. The selected wrong form is named in every explanation. */
+const FORM_FEEDBACK: Readonly<Record<string, LocalizedSource>> = Object.freeze({
+  "I am at home.\u0000in": L({
+    ru: "In обычно передаёт нахождение внутри ограниченного пространства, поэтому кажется близким к русскому «в доме». Но английское значение «дома» хранится в готовом блоке at home; нужен at.",
+    uk: "In зазвичай передає перебування всередині обмеженого простору, тому нагадує українське «в домі». Але значення «вдома» зберігається в готовому блоці at home; потрібне at.",
+    es: "In suele expresar el interior de un espacio y por eso parece cercano a en casa. Sin embargo, el inglés guarda el sentido habitual de estar en casa en el bloque at home; aquí corresponde at.",
+    "pt-BR":
+      "In costuma indicar o interior de um espaço e por isso parece próximo de em casa. Porém o inglês guarda o sentido habitual no bloco at home; nesta frase é necessário at.",
+    vi: "In thường chỉ vị trí bên trong nên dễ bị chọn theo nghĩa “ở trong nhà”. Tuy nhiên tiếng Anh diễn đạt trạng thái ở nhà bằng cụm cố định at home; vị trí này cần at.",
+    id: "In biasanya menunjukkan bagian dalam sehingga tampak cocok dengan gagasan di dalam rumah. Namun keadaan berada di rumah dinyatakan dengan kelompok tetap at home; posisi ini memerlukan at.",
+    tr: "In genellikle kapalı bir alanın içini gösterdiği için “evin içinde” düşüncesine yakın görünür. Fakat İngilizce evde olma durumunu at home kalıbıyla verir; burada at gerekir.",
+    pl: "In zwykle wskazuje wnętrze, dlatego może przypominać dosłowne „w środku domu”. Jednak zwykłe znaczenie „w domu” tworzy gotowe at home; w tym miejscu potrzebne jest at.",
+  }),
+  "I am at home.\u0000on": L({
+    ru: "On связывают с поверхностью или транспортом, поэтому оно не образует значение «дома». У home в этой фразе свой готовый партнёр at: правильно I am at home., а не on home.",
+    uk: "On пов’язують із поверхнею або транспортом, тому воно не утворює значення «вдома». У home в цій фразі є готовий партнер at: правильно I am at home., а не on home.",
+    es: "On se asocia con superficies o transporte y no forma el sentido de estar en casa. Home tiene aquí su compañero fijo at: la frase es I am at home., no on home.",
+    "pt-BR":
+      "On se associa a superfícies ou transporte e não forma o sentido de estar em casa. Home tem aqui o parceiro fixo at: a frase é I am at home., não on home.",
+    vi: "On thường gắn với bề mặt hoặc phương tiện nên không tạo nghĩa “ở nhà”. Trong cách nói này home đi cùng at thành một khối: I am at home., không phải on home.",
+    id: "On biasanya berkaitan dengan permukaan atau kendaraan dan tidak membentuk arti berada di rumah. Dalam ungkapan ini home berpasangan dengan at: I am at home., bukan on home.",
+    tr: "On yüzey ya da taşıtla ilişkilidir ve “evde” anlamını kurmaz. Bu ifadede home sözcüğünün hazır eşi at biçimidir: I am at home. doğrudur, on home değil.",
+    pl: "On kojarzy się z powierzchnią lub transportem i nie tworzy znaczenia „w domu”. Home ma tutaj stałego partnera at: poprawnie I am at home., a nie on home.",
+  }),
+  "You are in class.\u0000at": L({
+    ru: "At может обозначать точку или место встречи, поэтому at class кажется правдоподобным. Но значение «быть на занятии и участвовать в нём» передаёт готовое in class; здесь нужен in.",
+    uk: "At може позначати точку або місце зустрічі, тому at class здається правдоподібним. Але значення «бути на занятті й брати в ньому участь» передає in class; тут потрібне in.",
+    es: "At puede marcar un punto y por eso at class parece posible. Pero el sentido de estar participando en una clase se expresa con el bloque in class; en esta frase corresponde in.",
+    "pt-BR":
+      "At pode marcar um ponto e por isso at class parece possível. Mas o sentido de participar de uma aula é expresso pelo bloco in class; nesta frase é necessário in.",
+    vi: "At có thể chỉ một điểm nên at class trông khá giống đáp án. Nhưng nghĩa đang tham gia giờ học được diễn đạt bằng cụm in class; câu này cần in.",
+    id: "At dapat menandai suatu titik sehingga at class tampak masuk akal. Namun makna sedang mengikuti pelajaran dinyatakan oleh kelompok in class; kalimat ini memerlukan in.",
+    tr: "At bir konum noktası gösterebildiği için at class olası görünebilir. Ancak derse katılma anlamını hazır in class kalıbı verir; burada in gerekir.",
+    pl: "At może oznaczać punkt, dlatego at class wygląda wiarygodnie. Jednak udział w trwającej lekcji wyraża gotowe in class; w tym zdaniu potrzebne jest in.",
+  }),
+  "You are in class.\u0000on": L({
+    ru: "On подходит к поверхности или поездке на транспорте, но class не является ни тем ни другим. Когда человек участвует в занятии, английский использует in class; выберите in.",
+    uk: "On пасує до поверхні або поїздки транспортом, але class не є ані тим, ані іншим. Коли людина бере участь у занятті, англійська використовує in class; оберіть in.",
+    es: "On encaja con una superficie o con ciertos medios de transporte, pero class no cumple ninguna de esas funciones. Para participar en una clase, el inglés usa in class; elige in.",
+    "pt-BR":
+      "On combina com superfície ou certos meios de transporte, mas class não tem nenhuma dessas funções. Para participar de uma aula, o inglês usa in class; escolha in.",
+    vi: "On phù hợp với bề mặt hoặc một số phương tiện, còn class không thuộc hai trường hợp ấy. Khi đang tham gia giờ học, tiếng Anh dùng in class; hãy chọn in.",
+    id: "On cocok untuk permukaan atau kendaraan tertentu, sedangkan class bukan keduanya. Saat seseorang mengikuti pelajaran, bahasa Inggris memakai in class; pilih in.",
+    tr: "On yüzey ya da belirli taşıtlarla kullanılır; class bunlardan biri değildir. Bir kişi derse katılırken İngilizce in class der; in seçilmelidir.",
+    pl: "On pasuje do powierzchni albo niektórych środków transportu, lecz class nie jest żadnym z nich. Udział w lekcji wyraża in class; wybierz in.",
+  }),
+  "I am at work.\u0000to": L({
+    ru: "To work легко выбрать, потому что это знакомое сочетание, но to показывает направление «на работу» или вводит действие. Здесь человек уже находится там, поэтому нужна позиция at work.",
+    uk: "To work легко обрати, бо це знайома сполука, але to показує напрямок «на роботу» або вводить дію. Тут людина вже перебуває там, тому потрібне at work.",
+    es: "To work resulta familiar, pero to señala dirección hacia el trabajo o introduce la acción de trabajar. Aquí la persona ya está en ese lugar, así que la ubicación exige at work.",
+    "pt-BR":
+      "To work parece familiar, mas to indica direção para o trabalho ou introduz a ação de trabalhar. Aqui a pessoa já está no local, portanto a posição pede at work.",
+    vi: "To work trông quen nhưng to chỉ hướng đi tới chỗ làm hoặc mở đầu hành động làm việc. Ở đây người nói đã có mặt tại đó, nên vị trí phải là at work.",
+    id: "To work tampak akrab, tetapi to menunjukkan arah menuju pekerjaan atau memperkenalkan tindakan bekerja. Di sini orangnya sudah berada di tempat itu, jadi lokasinya at work.",
+    tr: "To work tanıdık görünür; fakat to iş yerine yönelmeyi ya da çalışma eylemini başlatır. Burada kişi zaten o konumdadır, bu yüzden at work gerekir.",
+    pl: "To work wygląda znajomo, lecz to wskazuje kierunek do pracy albo wprowadza czynność pracowania. Tutaj osoba już znajduje się w tym miejscu, więc potrzebne jest at work.",
+  }),
+  "I am at work.\u0000on": L({
+    ru: "On work не является обычным названием местонахождения на работе: on требует другой конструкции и смысла. Для текущего рабочего места английский использует готовое at work; нужен at.",
+    uk: "On work не є звичайною назвою перебування на роботі: on потребує іншої конструкції та змісту. Для поточного робочого місця англійська використовує at work; потрібне at.",
+    es: "On work no es la expresión normal para estar en el lugar de trabajo; on necesitaría otra construcción y otro sentido. La ubicación actual se expresa con at work; corresponde at.",
+    "pt-BR":
+      "On work não é a expressão normal para estar no local de trabalho; on exigiria outra construção e outro sentido. A localização atual é at work; aqui cabe at.",
+    vi: "On work không phải cách thông thường để nói đang có mặt tại chỗ làm; on cần cấu trúc và nghĩa khác. Vị trí hiện tại được diễn đạt bằng at work; hãy dùng at.",
+    id: "On work bukan ungkapan biasa untuk berada di tempat kerja; on memerlukan konstruksi dan makna lain. Lokasi saat ini dinyatakan dengan at work; gunakan at.",
+    tr: "On work iş yerinde bulunmanın olağan ifadesi değildir; on başka yapı ve anlam ister. Mevcut çalışma konumu at work kalıbıyla verilir; at seçilmelidir.",
+    pl: "On work nie jest zwykłym określeniem przebywania w pracy; on wymagałoby innej konstrukcji i znaczenia. Aktualne miejsce pracy wyraża at work; wybierz at.",
+  }),
+  "You are in the park.\u0000at": L({
+    ru: "At the park грамматически возможно, когда парк рассматривают как точку встречи. Но здесь смысл специально говорит о нахождении внутри территории; это различие выражает in the park, поэтому нужен in.",
+    uk: "At the park граматично можливе, коли парк розглядають як точку зустрічі. Але тут зміст прямо говорить про перебування всередині території; це передає in the park, тому потрібне in.",
+    es: "At the park puede ser gramatical cuando el parque funciona como punto de encuentro. Aquí el sentido exige estar dentro del recinto; esa diferencia la expresa in the park, por eso corresponde in.",
+    "pt-BR":
+      "At the park pode ser gramatical quando o parque funciona como ponto de encontro. Aqui o sentido exige estar dentro da área; essa diferença é expressa por in the park, portanto cabe in.",
+    vi: "At the park có thể đúng khi coi công viên là một điểm hẹn. Nhưng ý trong câu yêu cầu vị trí bên trong khuôn viên; sự khác biệt ấy được thể hiện bằng in the park, nên cần in.",
+    id: "At the park dapat benar jika taman dipandang sebagai titik pertemuan. Namun makna di sini menuntut posisi di dalam kawasan; perbedaan itu dinyatakan oleh in the park, jadi gunakan in.",
+    tr: "At the park, parkı buluşma noktası sayarken dilbilgisel olabilir. Buradaki anlam alanın içinde bulunmayı özellikle ister; bu farkı in the park verir, dolayısıyla in gerekir.",
+    pl: "At the park może być poprawne, gdy park jest punktem spotkania. Tutaj znaczenie wyraźnie wymaga wnętrza terenu; tę różnicę oddaje in the park, więc potrzebne jest in.",
+  }),
+  "You are in the park.\u0000on": L({
+    ru: "On the park заставляет воспринимать парк как поверхность, а не территорию, внутри которой находится человек. Для точного смысла «внутри парка» английский выбирает in the park; нужен in.",
+    uk: "On the park змушує сприймати парк як поверхню, а не територію, усередині якої перебуває людина. Для точного змісту «всередині парку» англійська обирає in the park; потрібне in.",
+    es: "On the park trataría el parque como una superficie, no como un recinto dentro del cual está la persona. Para el sentido exacto de interior se usa in the park; elige in.",
+    "pt-BR":
+      "On the park trataria o parque como superfície, não como área dentro da qual a pessoa está. Para o sentido exato de interior usa-se in the park; escolha in.",
+    vi: "On the park khiến công viên giống một bề mặt chứ không phải khu vực mà người nghe đang ở bên trong. Muốn diễn đạt chính xác vị trí trong công viên, dùng in the park; chọn in.",
+    id: "On the park memperlakukan taman seperti permukaan, bukan kawasan yang ditempati seseorang. Untuk makna tepat berada di dalam taman, bahasa Inggris memakai in the park; pilih in.",
+    tr: "On the park parkı kişinin içinde bulunduğu alan değil, yüzey gibi gösterir. Parkın içinde olma anlamı için in the park kullanılır; in seçin.",
+    pl: "On the park przedstawiałoby park jako powierzchnię, a nie teren, wewnątrz którego jest osoba. Dokładne znaczenie wnętrza wyraża in the park; wybierz in.",
+  }),
+  "I am on the bus.\u0000in": L({
+    ru: "In the bus возможно при особом акценте на физическом внутреннем пространстве, например при поиске вещи. Здесь человек едет пассажиром, и обычное сочетание для поездки — on the bus; нужен on.",
+    uk: "In the bus можливе за особливого наголосу на фізичному внутрішньому просторі, наприклад під час пошуку речі. Тут людина їде пасажиром, і звичне поєднання — on the bus; потрібне on.",
+    es: "In the bus puede aparecer al destacar el espacio físico interior, por ejemplo al buscar un objeto. Aquí la persona viaja como pasajera y la expresión habitual es on the bus; corresponde on.",
+    "pt-BR":
+      "In the bus pode aparecer quando se destaca o espaço físico interno, por exemplo ao procurar um objeto. Aqui a pessoa viaja como passageira e a expressão habitual é on the bus; cabe on.",
+    vi: "In the bus có thể dùng khi nhấn mạnh khoang bên trong, chẳng hạn tìm một món đồ. Ở đây người nói đang đi xe như hành khách nên cách nói thông thường là on the bus; cần on.",
+    id: "In the bus dapat muncul saat menekankan ruang fisik di dalam, misalnya ketika mencari benda. Di sini orangnya bepergian sebagai penumpang dan ungkapan lazimnya on the bus; pilih on.",
+    tr: "In the bus, örneğin bir eşya ararken fiziksel iç alanı özellikle vurgulayabilir. Burada kişi yolcu olarak gider; olağan yolculuk kalıbı on the bus biçimidir ve on gerekir.",
+    pl: "In the bus może podkreślać fizyczne wnętrze, na przykład podczas szukania przedmiotu. Tutaj osoba podróżuje jako pasażer, a zwykłe połączenie to on the bus; potrzebne jest on.",
+  }),
+  "I am on the bus.\u0000at": L({
+    ru: "At the bus обозначало бы нахождение у автобуса как у точки, а не поездку внутри него. Значение говорит о пассажире в пути, поэтому английский использует on the bus; выберите on.",
+    uk: "At the bus означало б перебування біля автобуса як біля точки, а не поїздку в ньому. Значення говорить про пасажира в дорозі, тому англійська використовує on the bus; оберіть on.",
+    es: "At the bus situaría a la persona junto al autobús como punto, no viajando en él. El sentido habla de un pasajero en marcha, por eso el inglés usa on the bus; elige on.",
+    "pt-BR":
+      "At the bus colocaria a pessoa junto ao ônibus como ponto, não viajando nele. O sentido fala de um passageiro em movimento, por isso o inglês usa on the bus; escolha on.",
+    vi: "At the bus sẽ đặt người nói cạnh chiếc xe như một điểm hẹn, không phải đang đi trên xe. Ý nghĩa nói về hành khách trong chuyến đi nên tiếng Anh dùng on the bus; chọn on.",
+    id: "At the bus akan menempatkan orang di dekat bus sebagai titik, bukan sedang bepergian dengannya. Maknanya ialah penumpang dalam perjalanan, jadi bahasa Inggris memakai on the bus; pilih on.",
+    tr: "At the bus kişiyi otobüsün yanında bir noktada gösterir, otobüste yolculuk ederken değil. Anlam yoldaki yolcuyu anlattığı için İngilizce on the bus kullanır; on seçilmelidir.",
+    pl: "At the bus umieszczałoby osobę przy autobusie jako punkcie, a nie w podróży nim. Znaczenie dotyczy pasażera w drodze, dlatego angielski używa on the bus; wybierz on.",
+  }),
+});
+
+export function episode01Session14FormFeedbackV1(
+  locale: Locale,
+  target: string,
+  wrong: string,
+): string | undefined {
+  return FORM_FEEDBACK[`${target}\u0000${wrong}`]?.[locale];
+}

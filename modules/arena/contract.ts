@@ -150,7 +150,9 @@ export type ArenaSummary = Readonly<{
 }>;
 
 export const ARENA_QUESTION_COUNT = 10;
-export const ARENA_QUICK_QUESTION_COUNT = 5;
+/** Владелец (2026-08-21): быстрый матч — восемь заданий.
+ *  Зеркало ARENA_V2_QUICK_TASK_COUNT на сервере: расходиться нельзя. */
+export const ARENA_QUICK_QUESTION_COUNT = 8;
 
 /** Длина матча с запасом на документы, созданные до введения поля. */
 export function arenaMatchTaskCount(match?: Pick<ArenaMatch, 'taskCount' | 'mode'>): number {
@@ -158,8 +160,8 @@ export function arenaMatchTaskCount(match?: Pick<ArenaMatch, 'taskCount' | 'mode
   if (Number.isFinite(declared) && declared > 0) return Math.trunc(declared);
   return match?.mode === 'quick' ? ARENA_QUICK_QUESTION_COUNT : ARENA_QUESTION_COUNT;
 }
-/** Страховка: если сервер не прислал botDueAtMs, ждём не дольше этого. */
-export const ARENA_QUICK_FALLBACK_MAX_MS = 55_000;
+/** Страховка первого бота: серверное окно botDueAtMs не превышает 45 секунд. */
+export const ARENA_QUICK_FALLBACK_MAX_MS = 45_000;
 export const ARENA_RANKED_HEARTBEAT_MS = 15_000;
 
 export function isArenaTaskMode(value: unknown): value is ArenaTaskMode {

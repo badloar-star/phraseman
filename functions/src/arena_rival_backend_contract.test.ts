@@ -187,11 +187,8 @@ describe('Arena Rivalry Series backend contract', () => {
     expect(response).not.toMatch(/stableUid|authUid|token|answer|private/i);
   });
 
-  test('lets an empty-state user create their first rivalry and never offers leave over a live game', () => {
-    const route = read('app/arena_rivalries.tsx');
-
-    expect(route).toMatch(/state\s*===\s*['"]empty['"]|\[['"]ready['"],\s*['"]empty['"]\]|\[['"]loading['"],\s*['"]unavailable['"],\s*['"]error['"]\]\.includes\(state\)/);
-    expect(route).toMatch(/item\.leaveAllowed/);
-    expect(route).toContain('arenaRivalMute');
-  });
+  // зачем убран (владелец, 2026-08-16): клиентский экран /arena_rivalries
+  // удалён — дублировал ранги и добавлял сущность без новой задачи. Остальные
+  // тесты в этом файле проверяют серверный контракт (functions/src), который
+  // не тронут.
 });

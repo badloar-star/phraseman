@@ -16,6 +16,7 @@ type TransitionLock = <T>(work: () => Promise<T>) => Promise<T>;
 export type ArenaFinishDeliveryResult<Response> =
   | Readonly<{ status: 'sent'; response: Response }>
   | Readonly<{ status: 'queued' }>
+  | Readonly<{ status: 'storage_failed' }>
   | Readonly<{ status: 'rejected' }>
   | Readonly<{ status: 'stale' }>;
 
@@ -37,7 +38,7 @@ export async function arenaDeliverFinishedMatch<Response>(input: Readonly<{
   withTransitionLock: TransitionLock;
   reserveDispatch(): Promise<ArenaNetworkDispatch<Response> | null>;
 }>): Promise<ArenaFinishDeliveryResult<Response>> {
-  await input.withTransitionLock(async () => {
+  const durable = await input.withTransitionLock(async () => {
     if (!input.isAlive() || !input.isScopeCurrent(input.scope)) return false;
     const durable = await arenaOutboxEnqueue(
       input.store,
@@ -58,6 +59,7 @@ export async function arenaDeliverFinishedMatch<Response>(input: Readonly<{
   });
 
   if (!input.isAlive() || !input.isScopeCurrent(input.scope)) return { status: 'stale' };
+  if (!durable) return { status: 'storage_failed' };
 
   const dispatch = await input.reserveDispatch();
   if (!dispatch) return { status: 'stale' };

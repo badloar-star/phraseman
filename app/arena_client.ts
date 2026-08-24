@@ -7,6 +7,10 @@ import {
 } from '../modules/arena/outbox_storage';
 import { arenaOutboxHasGated } from '../modules/arena/result_outbox';
 import {
+  arenaRetryQueuedFinishDelivery,
+  type ArenaFinishRetryResult,
+} from '../modules/arena/finish_retry';
+import {
   arenaReserveAccountDispatch,
   type ArenaNetworkDispatch,
 } from '../modules/arena/account_dispatch';
@@ -25,6 +29,7 @@ import {
 import { ensureAnonUser } from './cloud_sync';
 import { getVersionForServerGate } from './app_version';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
+import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 import type {
   ArenaMatch,
   ArenaMatchReward,
@@ -48,7 +53,8 @@ import type {
   ArenaStarStoreResponse,
   ArenaTodayStartResponse,
 } from '../modules/arena/expansion_contract';
-import { normalizeArenaExpansionHome } from '../modules/arena/expansion_contract';
+import { arenaUnifiedStarsObservation, normalizeArenaExpansionHome } from '../modules/arena/expansion_contract';
+import { createArenaListenerScopeGate, type ArenaListenerScopeToken } from '../modules/arena/listener_scope';
 import { arenaParseMatchPlan, type ArenaMatchPlanWire } from '../modules/arena/duel_plan';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import {
@@ -203,15 +209,24 @@ export const arenaV2Forfeit = (matchId: string) => callArena<MatchMutationRespon
  * `arenaV2MatchFinish` принимает единственный отчёт. `arenaV2MatchSettle`
  * зовётся РОВНО ОДИН РАЗ и только если соперник не сдался к сроку.
  */
-export async function arenaV2MatchPlan(matchId: string): Promise<Readonly<{
+type ArenaMatchPlanResponseWire = Readonly<{
+  ok: true;
+  startedAtMs: number;
+  deadlineAtMs: number;
+  plan: unknown;
+}>;
+
+type ArenaMatchPlanResponse = Readonly<{
   ok: true;
   startedAtMs: number;
   deadlineAtMs: number;
   plan: ArenaMatchPlanWire;
-}> | null> {
-  const response = await callArena<Readonly<{
-    ok: true; startedAtMs: number; deadlineAtMs: number; plan: unknown;
-  }>>('arenaV2MatchPlan', { matchId });
+}>;
+
+function normalizeArenaMatchPlanResponse(
+  matchId: string,
+  response: ArenaMatchPlanResponseWire,
+): ArenaMatchPlanResponse | null {
   const plan = arenaParseMatchPlan(response?.plan);
   // Разбор закрытый: план, который не сошёлся целиком, к игре не допускается.
   // Начать матч с половиной заданий хуже, чем честно не начать.
@@ -223,6 +238,11 @@ export async function arenaV2MatchPlan(matchId: string): Promise<Readonly<{
     deadlineAtMs: Math.trunc(Number(response.deadlineAtMs ?? 0)),
     plan,
   };
+}
+
+export async function arenaV2MatchPlan(matchId: string): Promise<ArenaMatchPlanResponse | null> {
+  const response = await callArena<ArenaMatchPlanResponseWire>('arenaV2MatchPlan', { matchId });
+  return normalizeArenaMatchPlanResponse(matchId, response);
 }
 
 export type ArenaMatchFinishResponse = MatchMutationResponse & Readonly<{
@@ -262,6 +282,40 @@ function reserveArenaCall<T>(
     withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
     prepareDispatch: () => prepareArenaCall<T>(name, payload),
   });
+}
+
+export function arenaV2MatchAcceptDispatch(
+  matchId: string,
+  account: AccountGenerationToken,
+): Promise<ArenaNetworkDispatch<MatchMutationResponse> | null> {
+  return reserveArenaCall<MatchMutationResponse>('arenaV2MatchAccept', { matchId }, account);
+}
+
+export async function arenaV2MatchPlanDispatch(
+  matchId: string,
+  account: AccountGenerationToken,
+): Promise<ArenaNetworkDispatch<ArenaMatchPlanResponse | null> | null> {
+  const dispatch = await reserveArenaCall<ArenaMatchPlanResponseWire>(
+    'arenaV2MatchPlan',
+    { matchId },
+    account,
+  );
+  if (!dispatch) return null;
+  return {
+    networkPromise: dispatch.networkPromise.then((response) =>
+      normalizeArenaMatchPlanResponse(matchId, response)),
+  };
+}
+
+export function arenaV2SyncMatchDispatch(
+  matchId: string,
+  expectedVersion: number | undefined,
+  account: AccountGenerationToken,
+): Promise<ArenaNetworkDispatch<MatchMutationResponse> | null> {
+  return reserveArenaCall<MatchMutationResponse>('arenaV2SyncMatch',
+    expectedVersion === undefined ? { matchId } : { matchId, expectedVersion },
+    account,
+  );
 }
 
 /** Creates the native callable promise while the captured account owns the transition lock. */
@@ -382,20 +436,44 @@ export const arenaV2InviteCreate = (friendStableUid: string, requestId: string) 
   stableUid: string;
   inviteId: string;
   status: 'pending';
+  expiresAtMs: number;
 }>>('arenaV2InviteCreate', { friendStableUid, requestId });
 
-export async function arenaV2InviteAccept(inviteId: string): Promise<Readonly<{
+export type ArenaFriendInviteStatus = Readonly<{
   ok: true;
-  matchId: string;
-  status: 'accepted';
-  viewerSeat?: 'a' | 'b';
-}>> {
-  const response = await callArena<Readonly<{ ok: true; matchId: string; status: 'accepted'; viewerSeat?: 'a' | 'b' }>>('arenaV2InviteAccept', { inviteId });
-  rememberArenaViewerSeat(response.matchId, response.viewerSeat);
+  status: 'pending' | 'accepted' | 'matched' | 'declined' | 'cancelled' | 'expired';
+  matchId?: string;
+  viewerSeat: 'a' | 'b';
+  expiresAtMs?: number;
+  rendezvousExpiresAtMs?: number;
+  counterpartStableUid?: string;
+  counterpartName?: string;
+  counterpartAvatar?: string;
+}>;
+
+export async function arenaV2InviteAccept(inviteId: string): Promise<ArenaFriendInviteStatus> {
+  const response = await callArena<ArenaFriendInviteStatus>('arenaV2InviteAccept', { inviteId });
+  if (response.matchId) rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
 
 export const arenaV2InviteDecline = (inviteId: string) => callArena<{ ok: true }>('arenaV2InviteDecline', { inviteId });
+export const arenaV2InviteCancel = (inviteId: string) => callArena<{ ok: true }>('arenaV2InviteCancel', { inviteId });
+export async function arenaV2InviteReady(inviteId: string): Promise<ArenaFriendInviteStatus> {
+  const response = await callArena<ArenaFriendInviteStatus>('arenaV2InviteReady', { inviteId });
+  if (response.matchId) rememberArenaViewerSeat(response.matchId, response.viewerSeat);
+  return response;
+}
+export async function arenaV2InviteStatus(inviteId: string): Promise<ArenaFriendInviteStatus> {
+  const response = await callArena<ArenaFriendInviteStatus>('arenaV2InviteStatus', { inviteId });
+  if (response.matchId) rememberArenaViewerSeat(response.matchId, response.viewerSeat);
+  return response;
+}
+export async function arenaV2DevFriendBotCreate(requestId: string): Promise<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat: 'a'; acceptedDelayMs: number }>> {
+  const response = await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat: 'a'; acceptedDelayMs: number }>>('arenaV2DevFriendBotCreate', { requestId });
+  rememberArenaViewerSeat(response.matchId, response.viewerSeat);
+  return response;
+}
 
 export type ArenaFriendsBoardRow = Readonly<{
   stableUid: string;
@@ -420,29 +498,46 @@ export const arenaV2FriendsBoard = () => callArena<Readonly<{
   truncated: boolean;
 }>>('arenaV2FriendsBoard');
 
+/**
+ * зачем (владелец, 23.08): `reward` теперь всегда возвращается клиенту —
+ * раньше тип был `{ ok: true }` и `spin_credit`-приз, приходивший в теле
+ * ответа, оставался незамеченным. Единственный спин в приложении живёт в
+ * разделе «Подарки» (см. local_level_spins.ts); для `kind === 'spin_credit'`
+ * вызывающий должен выдать локальный кредит тем же способом, что и за
+ * ranked-победу — по идемпотентному ключу `${seasonId}_${level}_${side}`.
+ */
 export const arenaV2SeasonClaim = (input: Readonly<{
   seasonId?: string;
   level: number;
   side: 'free' | 'plus';
-}>) => callArena<{ ok: true }>('arenaV2SeasonClaim', { ...input })
+}>) => callArena<Readonly<{
+  ok: true;
+  seasonId: string;
+  level: number;
+  side: 'free' | 'plus';
+  reward: Readonly<{ kind: 'shards'; amount: number }> | Readonly<{ kind: 'spin_credit'; amount: 1 }>;
+}>>('arenaV2SeasonClaim', { ...input })
   .then(async (result) => {
-    await refreshShardsBalanceFromCloudAuthoritative().catch(() => null);
+    if (result.reward.kind === 'shards') {
+      await refreshShardsBalanceFromCloudAuthoritative().catch(() => null);
+    }
     return result;
   });
 
-export const arenaV2SpinStatus = () => callArena<Readonly<{ ok: true; spinsAvailable: number }>>('arenaV2SpinStatus');
-export const arenaV2SpinClaim = (requestId: string) => callArena<Readonly<{
-  ok: true;
-  receiptId: string;
-  reward?: Readonly<{ kind: 'shards'; amount: number }>;
-}>>('arenaV2SpinClaim', { requestId }).then(async (result) => {
-  await refreshShardsBalanceFromCloudAuthoritative().catch(() => null);
-  return result;
-});
-
 export async function arenaExpansionHome(): Promise<ArenaExpansionHome> {
+  const accountToken = captureAccountGeneration();
+  const ownerStableId = accountToken.stableId?.trim();
   const response = await callArena<ArenaExpansionHomeWire>('arenaExpansionHome');
-  return normalizeArenaExpansionHome(response);
+  const home = normalizeArenaExpansionHome(response);
+  if (!ownerStableId) return home;
+  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
+    throw new Error('arena_account_scope_stale');
+  }
+  await mergeLevelSpinServerStars(accountToken, arenaUnifiedStarsObservation(home));
+  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
+    throw new Error('arena_account_scope_stale');
+  }
+  return home;
 }
 
 export async function arenaTodayStart(requestId: string): Promise<ArenaTodayStartResponse> {
@@ -541,7 +636,20 @@ export const arenaPartnerClaimSpotlight = (partnershipId: string, requestId: str
   ok: true; partner: ArenaPartnerSummary;
 }>>('arenaPartnerClaimSpotlight', { partnershipId, requestId });
 
-export const arenaStarStore = () => callArena<ArenaStarStoreResponse>('arenaStarStore');
+export async function arenaStarStore(): Promise<ArenaStarStoreResponse> {
+  const accountToken = captureAccountGeneration();
+  const ownerStableId = accountToken.stableId?.trim();
+  const response = await callArena<ArenaStarStoreResponse>('arenaStarStore');
+  if (!ownerStableId) return response;
+  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
+    throw new Error('arena_account_scope_stale');
+  }
+  await mergeLevelSpinServerStars(accountToken, arenaUnifiedStarsObservation(response));
+  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
+    throw new Error('arena_account_scope_stale');
+  }
+  return response;
+}
 export const arenaStarPurchase = (itemId: string, catalogVersion: string | undefined, requestId: string) => callArena<ArenaPurchaseResponse>(
   'arenaStarPurchase', { itemId, catalogVersion, requestId },
 );
@@ -556,52 +664,87 @@ type ListenerState<T> = Readonly<{
   fresh: boolean;
 }>;
 
-function useArenaDocument<T>(collection: string, documentId: string | null, active: boolean): ListenerState<T> {
-  const [state, setState] = useState<ListenerState<T>>({ value: null, loading: Boolean(documentId), error: null, fresh: false });
-  const valueRef = useRef<T | null>(null);
+const arenaListenerNeutralState = <T,>(documentId: string | null): ListenerState<T> => ({
+  value: null,
+  loading: Boolean(documentId),
+  error: null,
+  fresh: false,
+});
+
+function useArenaDocument<T>(
+  collection: string,
+  documentId: string | null,
+  active: boolean,
+  ownerScopeKey = '',
+): ListenerState<T> {
+  const listenerKey = `${ownerScopeKey}:${collection}:${documentId ?? ''}`;
+  const gate = useRef(createArenaListenerScopeGate()).current;
+  const renderScope = gate.capture(listenerKey);
+  const [scopedState, setScopedState] = useState<Readonly<{
+    scope: ArenaListenerScopeToken;
+    state: ListenerState<T>;
+  }>>(() => ({ scope: renderScope, state: arenaListenerNeutralState<T>(documentId) }));
+  const valueRef = useRef<Readonly<{ scope: ArenaListenerScopeToken; value: T | null }>>({
+    scope: renderScope,
+    value: null,
+  });
+  if (!gate.current(valueRef.current.scope)) {
+    valueRef.current = { scope: renderScope, value: null };
+  }
 
   useEffect(() => {
+    const capturedScope = renderScope;
+    const publish = (state: ListenerState<T>) => {
+      if (!gate.current(capturedScope)) return;
+      setScopedState({ scope: capturedScope, state });
+    };
     if (!documentId) {
-      valueRef.current = null;
-      setState({ value: null, loading: false, error: null, fresh: false });
+      valueRef.current = { scope: capturedScope, value: null };
+      publish({ value: null, loading: false, error: null, fresh: false });
       return;
     }
-    setState((previous) => ({ ...previous, loading: previous.value === null, error: null }));
+    const visibleValue = valueRef.current.value;
+    publish({ value: visibleValue, loading: visibleValue === null, error: null, fresh: false });
     if (!active) return;
     let cancelled = false;
     let unsubscribe: (() => void) | null = null;
     void (async () => {
       try {
         const firestore = (await import('@react-native-firebase/firestore')).default;
-        if (cancelled) return;
+        if (cancelled || !gate.current(capturedScope)) return;
         unsubscribe = firestore().collection(collection).doc(documentId).onSnapshot(
           { includeMetadataChanges: true },
           (snapshot: any) => {
-            if (cancelled) return;
+            if (cancelled || !gate.current(capturedScope)) return;
             if (!snapshot?.exists) {
-              setState({ value: null, loading: false, error: 'not_found', fresh: !snapshot?.metadata?.fromCache });
+              valueRef.current = { scope: capturedScope, value: null };
+              publish({ value: null, loading: false, error: 'not_found', fresh: !snapshot?.metadata?.fromCache });
               return;
             }
             const next = snapshot.data() as T;
-            valueRef.current = next;
-            setState({ value: next, loading: false, error: null, fresh: !snapshot.metadata?.fromCache });
+            valueRef.current = { scope: capturedScope, value: next };
+            publish({ value: next, loading: false, error: null, fresh: !snapshot.metadata?.fromCache });
           },
           (error: unknown) => {
-            if (cancelled) return;
-            setState({ value: valueRef.current, loading: false, error: String(error), fresh: false });
+            if (cancelled || !gate.current(capturedScope)) return;
+            publish({ value: valueRef.current.value, loading: false, error: String(error), fresh: false });
           },
         );
       } catch (error) {
-        if (!cancelled) setState({ value: valueRef.current, loading: false, error: String(error), fresh: false });
+        if (!cancelled && gate.current(capturedScope)) {
+          publish({ value: valueRef.current.value, loading: false, error: String(error), fresh: false });
+        }
       }
     })();
     return () => {
       cancelled = true;
       unsubscribe?.();
     };
-  }, [active, collection, documentId]);
+  }, [active, collection, documentId, gate, ownerScopeKey, renderScope]);
 
-  return state;
+  return gate.current(scopedState.scope)
+    ? scopedState.state
+    : arenaListenerNeutralState<T>(documentId);
 }
 
 /** The only queue listener: the signed-in owner's document, never a query. */
@@ -610,8 +753,8 @@ export function useArenaQueue(stableUid: string | null, active: boolean) {
 }
 
 /** Once matched, callers disable useArenaQueue and own exactly this one match listener. */
-export function useArenaMatch(matchId: string | null, active: boolean) {
-  return useArenaDocument<ArenaMatch>('arena_v2_matches', matchId, active);
+export function useArenaMatch(matchId: string | null, active: boolean, ownerScopeKey = '') {
+  return useArenaDocument<ArenaMatch>('arena_v2_matches', matchId, active, ownerScopeKey);
 }
 
 /**
@@ -668,19 +811,34 @@ export async function arenaPublishLiveTicks(input: Readonly<{
  * Читаются напрямую: они уже пишутся при закрытии матча, читать их разрешено
  * только владельцу, и заводить под историю серверный вызов значило бы платить
  * дважды за то, что уже лежит. Разовое чтение при открытии экрана, не подписка.
+ *
+ * зачем stableUid, а не authUid (владелец, 2026-08-23: «в арене история не
+ * отображает результаты квик матча»): сервер пишет расписку в
+ * `users/{stableUid}/arena_v2_receipts` — stableUid приходит из
+ * `resolveStableUidForAuth`, и у связанного аккаунта (анонимный вход, затем
+ * Apple/Google, либо слияние) он НЕ равен authUid. Эта функция была
+ * единственным местом клиента Арены, читавшим по authUid: матчи закрывались,
+ * расписки писались, а экран читал пустую чужую ветку и честно показывал
+ * «матчей нет». Быстрый матч выпадал первым просто потому, что его играют чаще.
+ *
+ * зачем бросок вместо пустого массива: «отказ» и «матчей нет» — разные вещи,
+ * и различить их обязан ВЫЗЫВАЮЩИЙ. Раньше несостоявшееся чтение возвращало
+ * `[]`, экран засчитывал его за успех и писал игроку «матчей нет» — то есть
+ * враньё о нём самом.
  */
 export async function arenaFetchMatchHistory(limit = 30): Promise<readonly unknown[]> {
-  const { getApp } = await import('@react-native-firebase/app');
-  const authModule = await import('@react-native-firebase/auth');
-  const uid = authModule.default().currentUser?.uid;
-  if (!uid) return [];
+  const account = captureAccountGeneration();
+  const stableUid = account.phase === 'active' ? account.stableId : null;
+  if (!stableUid) throw new Error('arena_history_account_not_ready');
   const firestore = (await import('@react-native-firebase/firestore')).default;
-  void getApp;
   const snapshot = await firestore()
-    .collection('users').doc(uid).collection('arena_v2_receipts')
+    .collection('users').doc(stableUid).collection('arena_v2_receipts')
     .orderBy('settledAtMs', 'desc')
     .limit(Math.max(1, Math.min(100, Math.trunc(limit))))
     .get();
+  // Смена аккаунта во время чтения: чужую историю показывать нельзя, а пустой
+  // список тут был бы новым враньём — поэтому отказ, его экран покажет честно.
+  if (!isCurrentAccountGeneration(account, stableUid)) throw new Error('arena_history_account_stale');
   return snapshot.docs.map((doc: { data(): unknown }) => doc.data());
 }
 
@@ -754,6 +912,47 @@ export async function arenaFlushOutbox(): Promise<number> {
     },
   });
   return result.sent.length;
+}
+
+export type ArenaQueuedFinishRetryResult = ArenaFinishRetryResult<ArenaMatchFinishResponse>;
+
+/**
+ * Retries only the report owned by the still-mounted match screen.
+ *
+ * Unlike the generic hub/history flush this returns the typed callable body:
+ * the screen must retain caller-private review rows and the one-shot settle
+ * deadline before it can leave the final task for a coherent result.
+ */
+export async function arenaRetryQueuedFinish(
+  matchId: string,
+  account: AccountGenerationToken,
+): Promise<ArenaQueuedFinishRetryResult> {
+  const stableUid = account.phase === 'active' ? account.stableId : null;
+  if (!matchId || !stableUid || !isCurrentAccountGeneration(account, stableUid)) {
+    return { status: 'stale' };
+  }
+  const scope = { stableUid, accountGeneration: account.generation };
+  const current = () => isCurrentAccountGeneration(account, stableUid);
+  const adopted = await withAccountTransitionLock(async () => {
+    if (!current()) return false;
+    await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
+    return current();
+  });
+  if (!adopted) return { status: 'stale' };
+
+  return arenaRetryQueuedFinishDelivery({
+    store: AsyncStorage as unknown as ArenaKeyValueStore,
+    scope,
+    matchId,
+    wallNowMs: Date.now(),
+    isAlive: current,
+    isScopeCurrent: current,
+    withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
+    reserveDispatch: (entry) => arenaV2MatchFinishDispatch({
+      matchId: entry.matchId,
+      report: arenaMatchReportToWire(entry.report, entry.rulesVersion),
+    }, account),
+  });
 }
 
 /** Ждёт ли отчёт об этом матче отправки — чтобы экран результата не врал. */

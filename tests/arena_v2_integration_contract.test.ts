@@ -7,13 +7,12 @@ const read = (relative: string) => fs.readFileSync(path.join(ROOT, relative), 'u
 describe('Arena V2 integration boundary', () => {
   test('ships the new Arena without unlocking retired Tournaments', () => {
     const config = read('app/config.ts');
-    expect(config).toContain('export const ENABLE_ARENA = true;');
+    expect(config).not.toContain('ENABLE_ARENA');
     expect(config).toContain('export const ENABLE_TOURNAMENTS: false = false;');
 
     const layout = read('app/_layout.tsx');
-    expect(layout).toContain('<Stack.Protected guard={ENABLE_ARENA}>');
+    expect(layout).not.toContain('ENABLE_ARENA');
     for (const route of [
-      'arena',
       'arena_matchmaking',
       'arena_match',
       'arena_results',
@@ -22,11 +21,6 @@ describe('Arena V2 integration boundary', () => {
       'arena_ranks',
       'arena_season_pass',
       'arena_today',
-      'arena_match_lab',
-      'arena_ghost_duel',
-      'arena_rivalries',
-      'arena_mastery_map',
-      'arena_partner',
       'arena_star_wallet',
     ]) {
       expect(layout).toContain(`<Stack.Screen name="${route}"`);
@@ -41,9 +35,9 @@ describe('Arena V2 integration boundary', () => {
     expect(read('app/(tabs)/home.tsx')).not.toContain('<ArenaHomeCard />');
     expect(read('app/(tabs)/home.tsx')).not.toContain('ArenaHomeCard');
     const tabs = read('app/(tabs)/_layout.tsx');
-    expect(tabs).toContain("const ARENA_BAR_ROUTE = '/arena';");
-    expect(tabs).toMatch(/key: 'arena',[\s\S]{0,200}logicalIdx: -1,/);
-    expect(tabs).toContain('tabBarRouter.push(tab.route as never);');
+    expect(tabs).toContain("{ key: 'arena',");
+    expect(tabs).toContain("2: '/(tabs)/arena'");
+    expect(tabs).not.toContain('logicalIdx: -1');
   });
 
   test('uses only versioned Arena roots and does not import retired Tournament runtime', () => {
@@ -81,10 +75,15 @@ describe('Arena V2 integration boundary', () => {
       'arenaV2MatchAccept', 'arenaV2MatchDecline', 'arenaV2SubmitAnswer',
       'arenaV2SubmitSpeedAttempt', 'arenaV2SyncMatch', 'arenaV2Forfeit',
       'arenaV2InviteCreate', 'arenaV2InviteAccept', 'arenaV2InviteDecline',
-      'arenaV2SeasonClaim', 'arenaV2SpinStatus', 'arenaV2SpinClaim',
+      'arenaV2SeasonClaim',
       'arenaV2CleanupHourly',
     ]) {
       expect(index).toContain(name);
+    }
+    // Владелец (2026-08-23): отдельная рулетка Арены удалена — в приложении
+    // один спин, общий каталог подарков. Эти две функции больше не деплоятся.
+    for (const removed of ['arenaV2SpinStatus', 'arenaV2SpinClaim']) {
+      expect(index).not.toContain(removed);
     }
     // Стиль кавычек в точке входа переписывает форматирование, и держать
     // договор за него — значит краснеть от прогона prettier, а не от ошибки.

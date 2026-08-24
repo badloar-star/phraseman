@@ -24,8 +24,8 @@ export type ArenaEntryAccountScope = Readonly<{
 export type ArenaEntryPrefetchDependencies = Readonly<{
   captureAccountScope: () => ArenaEntryAccountScope | null;
   isAccountScopeCurrent: (scope: ArenaEntryAccountScope) => boolean;
-  accept: (matchId: string) => Promise<ArenaEntryAcceptResponse>;
-  loadPlan: (matchId: string) => Promise<ArenaPreparedEntry | null>;
+  accept: (matchId: string, scope: ArenaEntryAccountScope) => Promise<ArenaEntryAcceptResponse>;
+  loadPlan: (matchId: string, scope: ArenaEntryAccountScope) => Promise<ArenaPreparedEntry | null>;
   rememberViewerSeat: (matchId: string, seat: 'a' | 'b') => void;
   nowMs: () => number;
   wait: (ms: number) => Promise<void>;
@@ -37,6 +37,15 @@ export class ArenaNoOpponentError extends Error {
   constructor() {
     super('arena_match_no_opponent');
     this.name = 'ArenaNoOpponentError';
+  }
+}
+
+export class ArenaTerminalMatchError extends Error {
+  readonly failure = 'terminal' as const;
+
+  constructor() {
+    super('arena_match_terminal');
+    this.name = 'ArenaTerminalMatchError';
   }
 }
 
@@ -94,7 +103,7 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
       const startedAtMs = deps.nowMs();
       while (true) {
         assertCurrentScope(scope);
-        const accepted = await deps.accept(matchId);
+        const accepted = await deps.accept(matchId, scope);
         assertCurrentScope(scope);
         if (accepted.viewerSeat) deps.rememberViewerSeat(matchId, accepted.viewerSeat);
 
@@ -103,13 +112,14 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
           elapsedSinceEntryMs: deps.nowMs() - startedAtMs,
         });
         if (step === 'give_up') throw new ArenaNoOpponentError();
+        if (step === 'terminal') throw new ArenaTerminalMatchError();
         if (step === 'accept') {
           await deps.wait(ARENA_ACCEPT_RETRY_MS);
           assertCurrentScope(scope);
           continue;
         }
 
-        const planned = await deps.loadPlan(matchId);
+        const planned = await deps.loadPlan(matchId, scope);
         assertCurrentScope(scope);
         if (!planned) throw new Error('arena_match_plan_invalid');
         deps.rememberViewerSeat(matchId, planned.plan.viewerSeat);

@@ -63,6 +63,10 @@ export type ArenaPartnerSummary = Readonly<{
 export type ArenaWalletSummary = Readonly<{
   /** Spendable ledger. Never alias this to season progress stars. */
   walletStars: number;
+  /** Lifetime earned projection from users/{uid}.stars, distinct from this Arena season. */
+  starsEarnedTotal: number;
+  /** Monotonic unified-ledger revision used to accept legitimate post-spend decreases. */
+  starsSeq?: number;
   seasonStarsEarned: number;
   equippedBySlot: Readonly<Record<string, string>>;
 }>;
@@ -107,6 +111,8 @@ export type ArenaExpansionHomeWire = Readonly<{
   ok: true;
   availability: ArenaExpansionAvailability;
   walletStars: number;
+  starsEarnedTotal: number;
+  starsSeq?: number;
   seasonStarsEarned: number;
   equippedBySlot?: Readonly<Record<string, string>>;
   mastery: Readonly<Partial<Record<ArenaTaskMode, ArenaExpansionMasteryWire>>>;
@@ -267,6 +273,7 @@ export type ArenaPurchaseResponse = Readonly<{
   receiptId: string;
   itemId: string;
   balanceAfter: number;
+  starsSeq?: number;
   entitlement: Readonly<{ itemId: string; slot: ArenaCosmeticSlot }>;
 }>;
 
@@ -315,11 +322,25 @@ export function normalizeArenaExpansionHome(wire: ArenaExpansionHomeWire): Arena
     partner: partners[0],
     wallet: {
       walletStars: wire.walletStars,
+      starsEarnedTotal: wire.starsEarnedTotal,
+      ...(wire.starsSeq === undefined ? {} : {
+        starsSeq: Math.max(0, Math.trunc(wire.starsSeq)),
+      }),
       seasonStarsEarned: wire.seasonStarsEarned,
       equippedBySlot: wire.equippedBySlot ?? {},
     },
     activeRun: wire.activeRun,
   };
+}
+
+export function arenaUnifiedStarsObservation(
+  home: Pick<ArenaExpansionHome, 'wallet'>,
+): Readonly<{ stars: number; starsEarnedTotal: number; starsSeq?: number }> {
+  return Object.freeze({
+    stars: home.wallet.walletStars,
+    starsEarnedTotal: home.wallet.starsEarnedTotal,
+    ...(home.wallet.starsSeq === undefined ? {} : { starsSeq: home.wallet.starsSeq }),
+  });
 }
 
 export function coerceArenaHubSection(value: unknown): ArenaHubSection {

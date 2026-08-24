@@ -23,6 +23,7 @@
     "../../functions/src/arena_expansion_core.test.ts",
     "../../functions/src/arena_speed_progress_codec.test.ts",
     "../../functions/src/arena_v2_backend_contract.test.ts",
+    "../../functions/src/arena_v2_receipt_contract.test.ts",
     "../../functions/src/arena_rival_backend_contract.test.ts",
     "../../functions/src/arena_xp.test.ts"
   ]

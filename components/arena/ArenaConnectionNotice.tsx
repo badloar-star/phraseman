@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { arenaText } from '../../modules/arena/copy';
 import { useLang } from '../LangContext';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useTournamentPalette } from '../ui/v2_theme';
 
 export function ArenaConnectionNotice({ onRetry }: { onRetry: () => void }) {
   const { lang } = useLang();

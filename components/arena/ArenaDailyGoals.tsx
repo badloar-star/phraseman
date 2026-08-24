@@ -11,8 +11,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useLang } from '../LangContext';
-import { V2Card } from '../tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { V2Card } from '../ui/v2_ui';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { arenaText } from '../../modules/arena/copy';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useArenaSound } from '../../hooks/use_arena_sound';
@@ -102,9 +102,8 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel | null 
     <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
       <V2Card pad={16} style={styles.card}>
         <View style={styles.head}>
-          <Text numberOfLines={1} style={[styles.title, { color: P.text }]}>{arenaText(lang, 'goalsTitle')}</Text>
+          <Text style={[styles.title, { color: P.text }]}>{arenaText(lang, 'goalsTitle')}</Text>
           <Text
-            numberOfLines={1}
             accessibilityLabel={model === null ? `${arenaText(lang, 'goalsTitle')}: ${arenaText(lang, 'valueUnknown')}` : undefined}
             style={[styles.counter, { color: allComplete ? P.accent : P.muted }]}
           >

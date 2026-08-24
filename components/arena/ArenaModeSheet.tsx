@@ -10,12 +10,15 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticTap } from '../../hooks/use-haptics';
 import PressableHybrid from '../PressableHybrid';
+import { useLang } from '../LangContext';
+import { arenaText } from '../../modules/arena/copy';
+import EnergyCostBadge from '../EnergyCostBadge';
 
 /**
  * Выбор режима матча — шторка по кнопке «Матч», как в «Карточках 2.1».
@@ -25,7 +28,7 @@ import PressableHybrid from '../PressableHybrid';
  * При Reduce Motion всё становится мгновенным, без единого движения.
  *
  * зачем (аудит гибрида, 2026-08-16): раньше `visible` пробрасывался прямо в
- * RN `Modal`, и родитель (ArenaHubChrome) снимал его в тот же кадр, что вызывал
+ * RN `Modal`, и родительский экран снимал его в тот же кадр, что вызывал
  * onClose — Modal с animationType="none" размонтировался МГНОВЕННО, и написанная
  * ниже exit-анимация (sheet.value → 0) была недостижима: полотно исчезало без
  * доигрывания. Теперь шторка держит собственный `mounted` и снимает Modal только
@@ -39,7 +42,7 @@ export type ArenaModeOption = Readonly<{
   key: ArenaModeKey;
   icon: React.ComponentProps<typeof Ionicons>['name'];
   title: string;
-  body: string;
+  body?: string;
   badge: string;
   accent?: boolean;
   disabled?: boolean;
@@ -88,7 +91,7 @@ function ModeRow({
     <Animated.View style={style}>
       <PressableHybrid
         variant="card"
-        accessibilityLabel={`${option.title}. ${option.body}`}
+        accessibilityLabel={option.body ? `${option.title}. ${option.body}` : option.title}
         accessibilityState={{ disabled: Boolean(option.disabled) }}
         testID={`arena-mode-${option.key}`}
         disabled={option.disabled}
@@ -102,11 +105,14 @@ function ModeRow({
         </View>
         <View style={styles.copy}>
           <Text style={[styles.title, { color: P.text }]}>{option.title}</Text>
-          <Text style={[styles.body, bodyLine, { color: P.muted }]}>{option.body}</Text>
+          {option.body ? <Text style={[styles.body, bodyLine, { color: P.muted }]}>{option.body}</Text> : null}
         </View>
         <View style={[styles.badge, { backgroundColor: P.elev }]}>
-          <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
+          <Text style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
         </View>
+        {option.key !== 'friend' && !option.disabled ? (
+          <EnergyCostBadge compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />
+        ) : null}
       </PressableHybrid>
     </Animated.View>
   );
@@ -126,12 +132,13 @@ function ArenaModeSheetBase({
   onClose: () => void;
 }) {
   const P = useTournamentPalette();
+  const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const { height } = useWindowDimensions();
   const sheet = useSharedValue(0);
-  // Modal остаётся смонтированным, пока не доиграет exit — иначе родитель
-  // (ArenaHubChrome) снимает `visible` в тот же кадр и обрезает анимацию.
+  // Modal остаётся смонтированным, пока не доиграет exit, чтобы родитель не
+  // обрезал анимацию в тот же кадр, когда меняет `visible`.
   const [mounted, setMounted] = useState(visible);
   const unmount = useCallback(() => setMounted(false), []);
 
@@ -144,7 +151,7 @@ function ArenaModeSheetBase({
     }
     if (!mounted) return;
     if (reduceMotion) { sheet.value = 0; setMounted(false); return; }
-    sheet.value = withTiming(0, { duration: 160, easing: Easing.in(Easing.quad) }, (finished) => {
+    sheet.value = withTiming(0, { duration: 160, easing: Easing.out(Easing.quad) }, (finished) => {
       if (finished) runOnJS(unmount)();
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -164,7 +171,7 @@ function ArenaModeSheetBase({
         <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={title}
+          accessibilityLabel={arenaText(lang, 'closeModePicker')}
           style={StyleSheet.absoluteFill}
           onPress={onClose}
         />

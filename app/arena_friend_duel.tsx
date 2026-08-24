@@ -52,7 +52,7 @@ export default function ArenaFriendDuelScreen() {
   const [error, setError] = useState('');
   // Вызов друга = 1 ⚡ у инициатора (владелец 2026-08-23: единая экономика,
   // платим за ПОПЫТКУ — списание в create() ниже, до сетевого вызова).
-  const { isUnlimited: duelEnergyUnlimited, spendOne: spendDuelEnergy, refundOne: refundDuelEnergy } = useEnergy();
+  const { confirmSpendOne: confirmDuelEnergy, refundOne: refundDuelEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const requestIdRef = useRef(createArenaRequestId('friend_invite'));
   /**
@@ -141,11 +141,10 @@ export default function ArenaFriendDuelScreen() {
   const create = async () => {
     if (!selected || busy) return;
     let energyCharged = false;
-    if (!duelEnergyUnlimited) {
-      const ok = await spendDuelEnergy();
-      if (!ok) { setNoEnergyOpen(true); return; }
-      energyCharged = true;
-    }
+    const energyResult = await confirmDuelEnergy();
+    if (energyResult === 'cancelled') return;
+    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+    energyCharged = energyResult === 'spent';
     setBusy(true); setError('');
     try {
       const result = await arenaV2InviteCreate(selected.uid, requestIdRef.current);

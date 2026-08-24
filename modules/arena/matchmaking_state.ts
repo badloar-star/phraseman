@@ -1,22 +1,21 @@
 /**
- * зачем: 30 секунд — слишком рано. Живой соперник в рейтинге появляется не
- * мгновенно, а предложение уйти в быстрый матч на полминуте выглядит как
- * «здесь никого нет, не жди» и уводит людей из рейтинга ровно тогда, когда
- * очередь только набирается. Владелец (2026-08-16): предлагать через минуту,
- * поиск при этом НЕ прерывать — он продолжается фоном, и если живой встанет
- * в очередь, сервер сведёт с ним (см. arenaV2OnQueueWrite).
+ * Владелец (2026-08-21): поиск не превращается ни в предложение другого
+ * режима, ни в «соперник не найден». Он остаётся поиском до готового матча.
  */
-export const ARENA_RANKED_QUICK_OFFER_MS = 60_000;
-export const ARENA_RANKED_CALM_STATE_MS = 150_000;
+export type ArenaRankedWaitPresentation = 'searching';
 
-export type ArenaRankedWaitPresentation = 'searching' | 'quick_offer' | 'calm';
-
-/** Pure presentation only: the authoritative ranked queue keeps living on the server. */
-export function arenaRankedWaitPresentation(elapsedMs: number): ArenaRankedWaitPresentation {
-  const safe = Math.max(0, elapsedMs);
-  if (safe >= ARENA_RANKED_CALM_STATE_MS) return 'calm';
-  if (safe >= ARENA_RANKED_QUICK_OFFER_MS) return 'quick_offer';
+export function arenaRankedWaitPresentation(_elapsedMs: number): ArenaRankedWaitPresentation {
   return 'searching';
+}
+
+/** Следующий бот после сорванного назначения приходит примерно через минуту. */
+export const ARENA_REPLACEMENT_BOT_MIN_MS = 50_000;
+export const ARENA_REPLACEMENT_BOT_MAX_MS = 70_000;
+
+export function arenaReplacementBotDelayMs(randomUnit: number): number {
+  const unit = Math.max(0, Math.min(1, Number.isFinite(randomUnit) ? randomUnit : 0.5));
+  return Math.round(ARENA_REPLACEMENT_BOT_MIN_MS
+    + unit * (ARENA_REPLACEMENT_BOT_MAX_MS - ARENA_REPLACEMENT_BOT_MIN_MS));
 }
 
 export function arenaRankedElapsedMs(

@@ -53,7 +53,7 @@ Flattening to 40 is **+17.6 %** for the bottom band and **−16.7 %** for the to
 | R4 | Comparison basis | **Client-measured `raceElapsedMs`, quantised to 100 ms buckets.** `first = opponentHasNoCorrect \|\| bucket(mine) <= bucket(theirs)`. Equal bucket → both get 3. Never server receive time. | Both "raw ms strict `<`" (120 Hz devices carry a systematic ≤16.6 ms/tap advantage, ~166 ms over a ranked match) and "server receive time" (charges carrier latency). |
 | R5 | Optimistic vs pending third star | **Optimistic — and the server uses the identical player-favourable rule, so it is never retracted.** No `pending` state, no `wallet = max()`, no dual scoreboard. See R6. | Backend "base-2-then-upgrade" (silent batch upgrades offline), client-critic "`pending`" (decision 8 becomes dead code in every offline match), game-design "`wallet = max(displayed, recomputed)` + outcome from truth" (two numbers on one results screen). |
 | R6 | Offline double-first | **Legal and final.** One number: the star totals the server computes with the player-favourable rule are what is displayed, banked *and* used for the outcome, for **both** seats. Clamped to the mode ceiling. | Ranked reconciliation. It produces "you scored 40 / you lost to 36", which every player reads as a bug — the critic is right. |
-| R7 | speed_match scoring | **1 star per pair matched on the FIRST attempt for that left item.** Wrong tap → that pair is worth 0 but still resolves so the board completes. Max 4. Speed remains irrelevant. | Literal "1 star per correct pair": 4 pairs × 4 options = ≤16 taps in 18 s = a guaranteed 4 stars, the highest-value task in the match, requiring zero knowledge. **Flagged for owner sign-off in §15, but ship this version.** |
+| R7 | speed_match scoring | **1 star per pair matched on the FIRST attempt for that left item.** Wrong tap → that pair is worth 0 but still resolves so the board completes. Max 4. Speed remains irrelevant. | Literal "1 star per correct pair": 4 pairs × 4 options = ≤16 taps in the current 30 s window = a guaranteed 4 stars, the highest-value task in the match, requiring zero knowledge. **Flagged for owner sign-off in §15, but ship this version.** |
 | R8 | Combo across speed_match | **4/4 first-attempt increments; 3/4 holds without incrementing; ≤2/4 resets.** Ship relaxed from day one. | Strict reset — the combo becomes payable at idx 2 and is then immediately tested at idx 4 against the hardest requirement in the match; the game-design lens' own worked example fires it once in ten tasks. |
 | R9 | Tie-break time | **Two aggregates.** `raceElapsedMs` (raw clamped, first-bonus only) and `tieBreakElapsedMs` (`correct ? clamped : FULL WINDOW`). | Single raw-elapsed aggregate — a 400 ms wrong guess beats a 6 s correct answer. |
 | R10 | Draw band | **Delete `ARENA_V2_TIME_TIE_BREAK_MS`. Compare `tieBreakElapsedMs` in 100 ms buckets;** equal bucket → draw. | Both "exact-ms only" (unreachable draws + refresh-rate lottery) and "keep 2000 ms" (silently draws ~3 % of decided matches). One quantum, `ARENA_TIME_QUANTUM_MS = 100`, used for R4 and R10. |
@@ -339,7 +339,7 @@ Two-part delivery. **R20:** `startsAtMs` does not exist until the second accept.
 
 ### 4.1 `arenaV2MatchPlan({ matchId })` — creation-time half, idempotent, re-fetchable
 
-Called on accept-screen mount, and again as the recovery path after reinstall / storage purge / corrupt MMKV.
+Called on accept-screen mount, and again as the recovery path after reinstall / storage purge / a corrupt durable snapshot.
 
 ```ts
 export type ArenaMatchPlanWire = Readonly<{
@@ -614,7 +614,7 @@ export type ArenaLocalPhase =
 
 export function arenaLocalPhase(state: ArenaLocalMatchState, monoNowMs: number): ArenaLocalPhase;
 ```
-`remainingMs = phaseBudgetMs - (monoNow - phaseStartedAtMonoMs)`. **The answer timer runs from reading-end for exactly `ARENA_ANSWER_MS[mode]`.** `ARENA_V2_RECEIVE_GRACE_MS` is deleted from the client path entirely — there is no receive, so there is nothing to grant grace for. This is the fix for the 11-s-on-an-8-s-task defect.
+`remainingMs = phaseBudgetMs - (monoNow - phaseStartedAtMonoMs)`. **The answer timer runs from reading-end for exactly `ARENA_ANSWER_MS[mode]`.** `ARENA_V2_RECEIVE_GRACE_MS` is deleted from the client path entirely — there is no receive, so there is nothing to grant grace for. This is the fix for the 11-s-on-an-8-s-task defect; immersive modes use their explicit 25 s builder / 30 s matching budgets.
 
 ### 6.4 `hooks/use_arena_local_match.ts` — the only place with effects
 
@@ -720,7 +720,7 @@ Mode split (R16):
 | 2 | `users/{stableUid}/arena_v2_receipts/{matchId}` via `tx.create()` (`arena_v2.ts:901`) | **THE exactly-once gate for outcome + RP + profile counters.** Do not soften to `set({merge:true})`. |
 | 3 | `users/{stableUid}/arena_v2_receipts/{matchId}__stars` via `tx.create()` | **THE exactly-once gate for banked stars + XP + wallet + ledger.** Separate from layer 2 precisely so a late quick/friend report can bank stars against an already-decided match without colliding with an outcome receipt. |
 
-`clientRunId`, `reportId` and `finishToken` are **deleted** (R17). The natural key is `(stableUid, matchId)`: server-minted, unforgeable, uncollidable across users, already implemented, and — unlike a client-minted id — correct when a device is restored from an iCloud/Android backup and replays a stored MMKV plan.
+`clientRunId`, `reportId` and `finishToken` are **deleted** (R17). The natural key is `(stableUid, matchId)`: server-minted, unforgeable, uncollidable across users, already implemented, and — unlike a client-minted id — correct when a device is restored from an iCloud/Android backup and replays a stored durable plan.
 
 Client side: the run is written to the outbox **before** the first finish attempt and deleted only on `status:'settled'` or `replay:true`.
 
@@ -907,7 +907,7 @@ Keys: `arena.plan.v2.<matchId>` (immutable, ≤384 KB, written once), `arena.pro
 
 The plan blob must be excluded from telemetry payloads, log statements and crash-report attachments. A separate key makes that exclusion mechanical rather than a review-time promise.
 
-**Engine:** `react-native-mmkv`, because the background-transition write must be synchronous — AsyncStorage can lose the last snapshot when the OS suspends the process, and that snapshot is the one taken during the 14 s `translate_build` where suspension actually happens. **Verify against `package.json` before anything else in this design is committed** (§14 P-1). Without MMKV the fallback is not "a rare lost task": every backgrounded match resumes one task stale and that task is finalised as a timeout.
+**Engine:** the project-owned AsyncStorage boundary store (`modules/arena/match_store.ts`). The project has no MMKV dependency; the later owner decision records the accepted recovery rule: persist at every task boundary and on background transition, and if the final async write is lost, restore the last complete boundary and close only the interrupted task as a timeout. Plan and state remain one owner-scoped, compare-deleted snapshot, so a late completion cannot erase another account or match.
 
 ---
 
@@ -949,7 +949,7 @@ If (3) is deferred, the honest number is **3 writes/player**. Say so in the plan
 | `modules/arena/match_plan.ts` | `normalizeArenaMatchPlan`, `validateArenaMatchPlan` (validate-at-intake over every task), `arenaMatchPlanHash`. |
 | `modules/arena/answer_check.ts` | `arenaVerifyLocalAnswer`, `arenaVerifySpeedPair` — shared normalise+fingerprint routine, client twin of `verifyTournamentAnswer`. |
 | `modules/arena/result_outbox.ts` | Failure-classed offline queue, key-per-report, single-flight, oldest-first eviction. |
-| `modules/arena/match_store.ts` | MMKV plan/progress/active-pointer persistence with synchronous background write. |
+| `modules/arena/match_store.ts` | Owner-scoped AsyncStorage plan/progress snapshot with serialized boundary writes and compare-delete cleanup. |
 | `modules/arena/opponent_feed.ts` | `ArenaOpponentEvent`, `ArenaOpponentFeed`, `ArenaOpponentIndicator` types. |
 | `modules/arena/opponent_feed_registry.ts` | `setArenaOpponentFeedFactory` / `createArenaOpponentFeed`; no-op default. |
 | `hooks/use_arena_local_match.ts` | The only effectful layer: timers, AppState, persistence, feed wiring, outbox handoff. |

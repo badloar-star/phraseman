@@ -7,8 +7,8 @@ import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/aren
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { V2Card } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { V2Card } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
 import { arenaRankView } from '../modules/arena/rank_engine';
 import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';

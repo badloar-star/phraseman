@@ -1,6 +1,6 @@
 /** Чистые решения для постоянного хаба Арены и его overflow-меню. */
 export type ArenaHubMode = 'quick' | 'ranked' | 'friend';
-export type ArenaOverflowKey = 'ranks' | 'tops' | 'season' | 'history' | 'review' | 'wallet' | 'spin';
+export type ArenaOverflowKey = 'ranks' | 'tops' | 'season' | 'history' | 'review' | 'wallet';
 export type ArenaOverflowRoute = string | Readonly<{
   pathname: '/arena_review';
   params: Readonly<{ matchId: string }>;
@@ -14,24 +14,34 @@ export type ArenaOverflowChoice = Readonly<{
 }>;
 
 /**
- * Магазин звёзд закрыт до релиза.
+ * Магазин рун закрыт до релиза.
  *
  * зачем: владелец не хочет выпускать витрину, в которой пока нечего купить —
  * каталог наполнится нескоро. Экран и покупки живы целиком, скрыт только вход:
- * достаточно вернуть `true`, когда товары появятся. Пункт «Спин» ведёт на тот
- * же экран и остаётся — начисленный спин игрок обязан иметь возможность забрать.
+ * достаточно вернуть `true`, когда товары появятся.
+ *
+ * зачем (владелец, 23.08): место магазина в меню занял «Сезон» — вместо пустой
+ * витрины игрок попадает туда, где руны реально работают. Пункт магазина
+ * появится обратно вместе с товарами.
+ *
+ * зачем (владелец, 23.08, №2): пункт «Спин» убран целиком — Арена больше не
+ * держит свой отдельный кредит спина. Единственный спин в приложении живёт в
+ * разделе «Подарки» и выдаётся автоматически (экран результата матча для
+ * ranked-победы, `local_level_spins.ts`); отдельного «забрать спин» здесь
+ * больше не нужно.
  */
 export const ARENA_STAR_STORE_ENABLED = false;
 
 /** Secondary Arena destinations live behind the hub's top-right overflow. */
 export function arenaHubOverflowChoices(
   latestMatchId: string | null,
-  spinsAvailable = 0,
 ): readonly ArenaOverflowChoice[] {
   const choices: ArenaOverflowChoice[] = [
     { key: 'ranks', icon: 'podium-outline', label: 'ranks', route: '/arena_ranks', disabled: false },
     { key: 'tops', icon: 'trophy-outline', label: 'topsTab', route: '/arena_tops', disabled: false },
-    { key: 'season', icon: 'star-outline', label: 'season', route: '/season_pass', disabled: false },
+    // зачем: иконка «звезды» здесь путала — звезда в Арене означает ранг, а не
+    // валюту. Сезон — это дорожка наград, отсюда лента.
+    { key: 'season', icon: 'ribbon-outline', label: 'season', route: '/season_pass', disabled: false },
     { key: 'history', icon: 'time-outline', label: 'historyTab', route: '/arena_history', disabled: false },
     {
       key: 'review',
@@ -43,9 +53,6 @@ export function arenaHubOverflowChoices(
   ];
   if (ARENA_STAR_STORE_ENABLED) {
     choices.push({ key: 'wallet', icon: 'sparkles-outline', label: 'wallet', route: '/arena_star_wallet', disabled: false });
-  }
-  if (Number.isFinite(spinsAvailable) && spinsAvailable > 0) {
-    choices.push({ key: 'spin', icon: 'sync-circle-outline', label: 'spins', route: '/arena_star_wallet', disabled: false });
   }
   return choices;
 }

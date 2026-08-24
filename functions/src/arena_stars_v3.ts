@@ -73,10 +73,12 @@ export const ARENA_STAR_POLICY: Readonly<Record<ArenaEntryMode, ArenaStarPolicy>
 /**
  * Потолок за матч. Выводится из фиксированного порядка типов заданий:
  * рейтинг — 3+3+3+3+4 дважды = 32 базовых плюс 8 комбо начиная с третьего
- * задания; быстрый — 16 базовых плюс 3 комбо.
+ * задания; новый быстрый на 8 заданий — 25 базовых плюс 6 комбо.
+ * Потолок 5 оставлен для доигрывания уже созданных старых матчей.
  */
 export function arenaMatchStarCeiling(taskCount: number): number {
   if (taskCount === 5) return 19;
+  if (taskCount === 8) return 31;
   if (taskCount === 10) return 40;
   return 0;
 }

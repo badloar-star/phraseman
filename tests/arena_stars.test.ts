@@ -22,6 +22,7 @@ const MODES_10: readonly ArenaTaskMode[] = [
   'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match',
 ];
 const MODES_5 = MODES_10.slice(0, 5);
+const MODES_8 = MODES_10.slice(0, 8);
 
 it('даёт длинным immersive-заданиям новые полные окна ответа', () => {
   expect(ARENA_ANSWER_MS.translate_build).toBe(25_000);
@@ -131,11 +132,13 @@ describe('прогон матча', () => {
   it('упирает идеальный матч ровно в потолок режима', () => {
     expect(arenaMatchStarCeiling(10)).toBe(40);
     expect(arenaMatchStarCeiling(5)).toBe(19);
+    expect(arenaMatchStarCeiling(8)).toBe(31);
     const ranked = run(MODES_10, perfect);
     expect(ranked.matchStars).toBe(40);
     expect(ranked.rawMatchStars).toBe(40);
     expect(ranked.longestCombo).toBe(10);
     expect(run(MODES_5, perfect).matchStars).toBe(19);
+    expect(run(MODES_8, perfect).matchStars).toBe(31);
   });
 
   it('сводит вничью матч, где оба не ответили ни разу', () => {

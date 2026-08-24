@@ -25,8 +25,23 @@ describe('Arena V2 backend source contract', () => {
       'arenaV2MatchAccept', 'arenaV2MatchDecline', 'arenaV2SubmitAnswer',
       'arenaV2SubmitSpeedAttempt', 'arenaV2SyncMatch', 'arenaV2Forfeit',
       'arenaV2InviteCreate', 'arenaV2InviteAccept', 'arenaV2InviteDecline',
-      'arenaV2SeasonClaim', 'arenaV2SpinStatus', 'arenaV2SpinClaim', 'arenaV2CleanupHourly',
+      'arenaV2InviteCancel', 'arenaV2InviteReady', 'arenaV2InviteStatus', 'arenaV2DevFriendBotCreate',
+      'arenaV2SeasonClaim', 'arenaV2CleanupHourly',
     ]) expect(source).toContain(`export const ${name} =`);
+  });
+
+  /**
+   * Владелец (2026-08-23): в приложении существует ОДИН спин — общий каталог
+   * подарков (`local_level_spins.ts`). Отдельная рулетка Арены со своим призом
+   * (жемчужины 5/10/20) и своими кредитами `arena_v2_spin_credits` удалена;
+   * сервер теперь только подтверждает право на спин, а разыгрывает клиент.
+   */
+  it('keeps the separate Arena spin roulette deleted', () => {
+    for (const name of ['arenaV2SpinStatus', 'arenaV2SpinClaim']) {
+      expect(source).not.toContain(`export const ${name} =`);
+    }
+    expect(source).not.toContain("source: 'arena_v2_spin'");
+    expect(source).not.toContain('arena_spin_credit_expired');
   });
 
   it('reuses only pure Tournament publication contracts and never imports runtime', () => {
@@ -60,6 +75,110 @@ describe('Arena V2 backend source contract', () => {
       source.indexOf('privateRewards[entry.uid] = reward;'),
     );
     expect(privateReward).toContain('xpBreakdown: settle.xpBreakdown');
+  });
+
+  it('uses persistent friend invites, a readiness rendezvous, bell rows, and no immediate accept match', () => {
+    expect(core).toContain('ARENA_V2_INVITE_TTL_MS = 10 * 60 * 1_000');
+    expect(core).toContain('ARENA_V2_RENDEZVOUS_MS = 90 * 1_000');
+    expect(source).toContain("type: 'arena_friend_invite'");
+    expect(source).toContain("type: 'arena_friend_expired'");
+    expect(source).toContain("status: 'accepted', acceptedAtMs: now, rendezvousExpiresAtMs, toReadyAtMs: now");
+    expect(source).toContain("status: 'matched', matchedAtMs: now, matchId, fromReadyAtMs, toReadyAtMs");
+    expect(source).toContain("process.env.FUNCTIONS_EMULATOR !== 'true'");
+    expect(source).toContain('expiresAtMs: Number(existingData.expiresAtMs ?? (now + ARENA_V2_INVITE_TTL_MS))');
+    expect(source).toContain('expiresAtMs: committed.expiresAtMs');
+    expect(source).toContain('activeInvites.docs.filter((doc) => Number(doc.data()?.expiresAtMs ?? 0) > now).length >= 5');
+  });
+
+  it('expires offline friend invites through a notifying cleanup instead of deleting them silently', () => {
+    const cleanup = source.slice(
+      source.indexOf('async function cleanupExpiredArenaInvites('),
+      source.indexOf('export const arenaV2CleanupHourly ='),
+    );
+    const hourly = source.slice(source.indexOf('export const arenaV2CleanupHourly ='));
+
+    expect(cleanup).toContain("status: 'expired', expiredAtMs: now");
+    expect(cleanup).toContain("type: 'arena_friend_expired'");
+    expect(cleanup).toContain('sendExpoPush(');
+    expect(hourly).toContain('await cleanupExpiredArenaInvites(now)');
+    expect(hourly).not.toContain("db.collection(ARENA_V2_COLLECTIONS.invites).where('expireAt'");
+  });
+
+  it('keeps DEV friend-bot matches out of every persistent progression path', () => {
+    const quickFallback = source.slice(
+      source.indexOf('export const arenaV2QuickBotFallback ='),
+      source.indexOf('export const arenaV2DevFriendBotCreate ='),
+    );
+    const devCreate = source.slice(
+      source.indexOf('export const arenaV2DevFriendBotCreate ='),
+      source.indexOf('export const arenaV2MatchAccept ='),
+    );
+    const friendReady = source.slice(
+      source.indexOf('export const arenaV2InviteReady ='),
+      source.indexOf('export const arenaV2InviteDecline ='),
+    );
+    const settle = source.slice(
+      source.indexOf('async function settleMatch('),
+      source.indexOf('function clearActiveProfiles('),
+    );
+
+    expect(source).toContain('progressionDisabled?: boolean;');
+    expect(devCreate).toContain('progressionDisabled: true');
+    expect(quickFallback).not.toContain('progressionDisabled: true');
+    expect(friendReady).not.toContain('progressionDisabled: true');
+    expect(settle).toContain('const persistentProgressionEnabled = privateDoc.progressionDisabled !== true;');
+    expect(settle).toContain('persistentProgressionEnabled && arenaXpEligible(entry.uid)');
+    expect(settle).toContain('persistentProgressionEnabled && expansionEligibility.baseStars');
+    expect(settle).toContain('if (!persistentProgressionEnabled) {');
+
+    const noProgressGuard = settle.indexOf('if (!persistentProgressionEnabled) {');
+    expect(noProgressGuard).toBeGreaterThan(-1);
+    expect(noProgressGuard).toBeLessThan(settle.indexOf('tx.create(entry.receipt'));
+    expect(noProgressGuard).toBeLessThan(settle.indexOf('commitStarOperations('));
+    expect(noProgressGuard).toBeLessThan(settle.indexOf('ARENA_EXPANSION_COLLECTIONS.matchLabs'));
+  });
+
+  it('revalidates both identities and reciprocal friendship before Ready creates a match', () => {
+    const ready = source.slice(
+      source.indexOf('export const arenaV2InviteReady ='),
+      source.indexOf('export const arenaV2InviteDecline ='),
+    );
+
+    expect(ready).toContain("tx.get(db.collection('auth_links').doc(fromAuthUid))");
+    expect(ready).toContain("tx.get(db.collection('auth_links').doc(toAuthUid))");
+    expect(ready).toContain("collection('friends').doc(toStableUid)");
+    expect(ready).toContain("collection('friends').doc(fromStableUid)");
+    expect(ready).toContain('inviteParticipantIdentityCurrent(');
+    expect(ready).toContain("throw new HttpsError('failed-precondition', 'arena_invite_identity_changed')");
+    expect(ready).toContain("throw new HttpsError('failed-precondition', 'arena_friendship_required')");
+
+    const identityGuard = ready.indexOf('arena_invite_identity_changed');
+    const friendshipGuard = ready.indexOf('arena_friendship_required');
+    const matchCreation = ready.indexOf('const built = makeMatch({');
+    expect(identityGuard).toBeGreaterThan(-1);
+    expect(friendshipGuard).toBeGreaterThan(-1);
+    expect(identityGuard).toBeLessThan(matchCreation);
+    expect(friendshipGuard).toBeLessThan(matchCreation);
+  });
+
+  it('rejects unavailable or relinked invite participants while preserving legacy direct ownership', () => {
+    const start = source.indexOf('function inviteParticipantIdentityCurrent(');
+    const end = source.indexOf('\n}\n', start);
+    expect(start).toBeGreaterThan(-1);
+    const identityCurrent = new Function(
+      `${source.slice(start, end + 3)
+        .replace(/: Json/g, '')
+        .replace(/: string/g, '')
+        .replace(/\): boolean \{/g, ') {')}return inviteParticipantIdentityCurrent;`,
+    )() as (user: Record<string, unknown>, link: Record<string, unknown>, stableUid: string, authUid: string) => boolean;
+
+    expect(identityCurrent({ firebaseAuthUid: 'auth-a' }, { stable_id: 'stable-a' }, 'stable-a', 'auth-a')).toBe(true);
+    expect(identityCurrent({}, {}, 'direct-auth', 'direct-auth')).toBe(true);
+    expect(identityCurrent({ firebaseAuthUid: 'auth-a' }, { stable_id: 'stable-b' }, 'stable-a', 'auth-a')).toBe(false);
+    expect(identityCurrent({ firebaseAuthUid: 'auth-b' }, { stable_id: 'stable-a' }, 'stable-a', 'auth-a')).toBe(false);
+    for (const unavailable of [{ hidden: true }, { deleted: true }, { banned: true }]) {
+      expect(identityCurrent({ firebaseAuthUid: 'auth-a', ...unavailable }, {}, 'stable-a', 'auth-a')).toBe(false);
+    }
   });
 
   it('returns and persists only the submitting viewer review before settlement', () => {
@@ -155,8 +274,6 @@ describe('Arena V2 backend source contract', () => {
     expect(source).toContain('ARENA_V2_SPIN_HMAC_KEY');
     expect(source).toContain('tx.create(entry.receipt');
     expect(source).toContain("expireAt: timestamp(now + 400 * 24 * 60 * 60 * 1_000)");
-    expect(source).toContain("throw new HttpsError('failed-precondition', 'arena_spin_credit_expired')");
-    expect(source).toContain('tx.get(availableQuery)');
     expect(source).toContain("closeReason: 'friend_match'");
     expect(source).toContain("throw new HttpsError('failed-precondition', 'arena_invite_host_unavailable')");
     expect(source).not.toContain('randomInt(');
@@ -170,9 +287,8 @@ describe('Arena V2 backend source contract', () => {
     expect(jarvisContract).toContain('private XP settlement evidence; never a Jarvis business metric');
   });
 
-  it('publishes season and spin pearls as deterministic external facts only', () => {
+  it('publishes season pearls as deterministic external facts only', () => {
     expect(source).toContain("source: 'arena_v2_season'");
-    expect(source).toContain("source: 'arena_v2_spin'");
     expect(source).toContain('appendExternalEconomyEvent(tx, userRef');
     expect(source).not.toMatch(/(?:user|userSnap\.data\(\))\.shards\b/);
     expect(source).not.toMatch(/\bshards\s*:/);
@@ -201,6 +317,16 @@ describe('Arena V2 backend source contract', () => {
     expect(sync).toContain(terminalGuard);
     expect(accept.indexOf(terminalGuard)).toBeLessThan(accept.indexOf('closeMatchQueues('));
     expect(sync.indexOf(terminalGuard)).toBeLessThan(sync.indexOf('closeMatchQueues('));
+  });
+
+  it('lets a new search heal a matched queue whose match documents disappeared', () => {
+    const findMatch = source.slice(
+      source.indexOf('export const arenaV2FindMatch ='),
+      source.indexOf('/**\n * Свести ждущий билет', source.indexOf('export const arenaV2FindMatch =')),
+    );
+    expect(findMatch).toContain('activeMatchMissing');
+    expect(findMatch).toContain('!activeMatchSnap.exists || !activePrivateSnap.exists');
+    expect(findMatch).toContain("activeMatchId: null");
   });
 
   it('keeps pity across 63-day season boundaries in the Arena profile', () => {

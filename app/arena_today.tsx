@@ -51,7 +51,7 @@ export default function ArenaTodayScreen() {
   const [verdict, setVerdict] = useState<'correct' | 'wrong' | null>(null);
   // Старт «Задания дня» = 1 ⚡ (владелец 2026-08-23: единая экономика — платим
   // за ПОПЫТКУ, ошибки внутри задания энергию больше не трогают).
-  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaTodayEnergy, refundOne: refundArenaTodayEnergy } = useEnergy();
+  const { confirmSpendOne: confirmArenaTodayEnergy, refundOne: refundArenaTodayEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const ids = useRef(new Map<string, string>());
   const deadlineSyncs = useRef(new Set<string>());
@@ -120,18 +120,12 @@ export default function ArenaTodayScreen() {
       .catch(() => { hardExpirySync.current = null; setStatus('error'); });
   }, [active, applyMutation, hardExpiresAtMs, match, now, status]);
 
-  const start = () => {
+  const start = async () => {
     if (submitting) return;
-    if (!arenaEnergyUnlimited) {
-      // зачем: гейт ДО setSubmitting — отказ по энергии не блокирует кнопку
-      // и не трогает состояние загрузки, пользователь может пополнить и нажать снова.
-      void spendArenaTodayEnergy().then((ok) => {
-        if (!ok) { setNoEnergyOpen(true); return; }
-        beginArenaTodayMatch(true);
-      });
-      return;
-    }
-    beginArenaTodayMatch(false);
+    const energyResult = await confirmArenaTodayEnergy();
+    if (energyResult === 'cancelled') return;
+    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+    beginArenaTodayMatch(energyResult === 'spent');
   };
 
   const beginArenaTodayMatch = (energyCharged: boolean) => {

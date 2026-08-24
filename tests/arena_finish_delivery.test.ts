@@ -42,6 +42,29 @@ function deferred<T>(): Deferred<T> {
 }
 
 describe('finished Arena report delivery', () => {
+  it('does not send or claim a queue when the durable local write fails', async () => {
+    const store = fakeStore();
+    store.data.set(ARENA_MATCH_STORE_KEY, saved(A.stableUid, 'm1'));
+    store.setItem = async () => { throw new Error('disk_full'); };
+    const reserveDispatch = jest.fn(async () => ({ networkPromise: Promise.resolve({ settled: true }) }));
+
+    await expect(arenaDeliverFinishedMatch({
+      store,
+      scope: A,
+      report: report('m1'),
+      rulesVersion: 'v',
+      wallNowMs: 10,
+      isAlive: () => true,
+      isScopeCurrent: (scope) => scope === A,
+      withTransitionLock: async (work) => work(),
+      reserveDispatch,
+    })).resolves.toEqual({ status: 'storage_failed' });
+
+    expect(reserveDispatch).not.toHaveBeenCalled();
+    expect(store.data.get(ARENA_MATCH_STORE_KEY)).toBe(saved(A.stableUid, 'm1'));
+    expect(await arenaOutboxList(store, A)).toEqual([]);
+  });
+
   it('does not send when the owner switches immediately after the durable commit', async () => {
     const store = fakeStore();
     store.data.set(ARENA_MATCH_STORE_KEY, saved(A.stableUid, 'm1'));

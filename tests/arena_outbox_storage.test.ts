@@ -196,7 +196,7 @@ describe('очередь действительно подключена', () =>
   });
 
   it('хаб и экран результата досылают', () => {
-    expect(read('app/arena.tsx')).toContain('arenaFlushOutbox');
+    expect(read('components/arena/ArenaHubSurface.tsx')).toContain('arenaFlushOutbox');
     expect(read('app/arena_results.tsx')).toContain('arenaFlushOutbox');
   });
 
@@ -206,7 +206,7 @@ describe('очередь действительно подключена', () =>
    * никогда бы не узнал, почему награда не пришла.
    */
   it('застрявший из-за обновления отчёт виден на хабе', () => {
-    const hub = read('app/arena.tsx');
+    const hub = read('components/arena/ArenaHubSurface.tsx');
     expect(hub).toContain('arenaOutboxBlockedByUpdate');
     expect(hub).toContain("'reportBlocked'");
     expect(read('app/arena_client.ts')).toContain('arenaOutboxHasGated');
@@ -214,7 +214,9 @@ describe('очередь действительно подключена', () =>
 
   it('экран результата не называет матч засчитанным, пока отчёт не ушёл', () => {
     const source = read('app/arena_results.tsx');
-    expect(source).toContain('arenaOutboxPending');
-    expect(source).toContain("'reportQueued'");
+    expect(source).toContain('arenaFlushOutbox');
+    expect(source).toContain("surfaceKind === 'neutral_pending'");
+    expect(source).toContain('return null;');
+    expect(source).not.toContain("arenaText(lang, 'reportQueued')");
   });
 });

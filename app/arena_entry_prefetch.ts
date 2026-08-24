@@ -1,15 +1,17 @@
 import {
+  ArenaEntryAccountChangedError,
   createArenaEntryPrefetch,
   type ArenaEntryAccountScope,
 } from '../modules/arena/entry_prefetch';
 import {
-  arenaV2MatchAccept,
-  arenaV2MatchPlan,
+  arenaV2MatchAcceptDispatch,
+  arenaV2MatchPlanDispatch,
   rememberArenaViewerSeat,
 } from './arena_client';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  type AccountGenerationToken,
 } from './account_generation';
 
 function currentArenaEntryAccountScope(): ArenaEntryAccountScope | null {
@@ -27,11 +29,23 @@ function isArenaEntryAccountScopeCurrent(scope: ArenaEntryAccountScope): boolean
     && isCurrentAccountGeneration(account, scope.stableId);
 }
 
+function arenaEntryAccountToken(scope: ArenaEntryAccountScope): AccountGenerationToken {
+  return { stableId: scope.stableId, generation: scope.generation, phase: 'active' };
+}
+
 const arenaEntryPrefetch = createArenaEntryPrefetch({
   captureAccountScope: currentArenaEntryAccountScope,
   isAccountScopeCurrent: isArenaEntryAccountScopeCurrent,
-  accept: arenaV2MatchAccept,
-  loadPlan: arenaV2MatchPlan,
+  accept: async (matchId, scope) => {
+    const dispatch = await arenaV2MatchAcceptDispatch(matchId, arenaEntryAccountToken(scope));
+    if (!dispatch) throw new ArenaEntryAccountChangedError();
+    return dispatch.networkPromise;
+  },
+  loadPlan: async (matchId, scope) => {
+    const dispatch = await arenaV2MatchPlanDispatch(matchId, arenaEntryAccountToken(scope));
+    if (!dispatch) throw new ArenaEntryAccountChangedError();
+    return dispatch.networkPromise;
+  },
   rememberViewerSeat: rememberArenaViewerSeat,
   nowMs: () => Date.now(),
   wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),

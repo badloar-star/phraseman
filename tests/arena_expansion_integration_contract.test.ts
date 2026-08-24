@@ -4,13 +4,13 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 const read = (relative: string) => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 
+// зачем короче (владелец, 2026-08-16): клиентские экраны расширения
+// (лаборатория, призрачные дуэли, соперничества, карта мастерства, партнёр)
+// удалены — дублировали быстрый матч и ранги, добавляя сущности без новых
+// задач. Серверная часть НЕ тронута: функции, правила и индексы ниже по
+// файлу продолжают охранять реальный контракт, магазин звёзд остаётся.
 const ROUTES = [
   'arena_today',
-  'arena_match_lab',
-  'arena_ghost_duel',
-  'arena_rivalries',
-  'arena_mastery_map',
-  'arena_partner',
   'arena_star_wallet',
 ] as const;
 
@@ -43,15 +43,11 @@ const CALLABLES = [
 ] as const;
 
 describe('Arena Expansion integration boundary', () => {
-  test('registers every expansion route inside the Arena protected stack', () => {
+  test('registers every expansion route in the permanent Arena stack', () => {
     const layout = read('app/_layout.tsx');
-    const arenaBlock = layout.slice(
-      layout.indexOf('<Stack.Protected guard={ENABLE_ARENA}>'),
-      layout.indexOf('</Stack.Protected>', layout.indexOf('<Stack.Protected guard={ENABLE_ARENA}>')),
-    );
     for (const route of ROUTES) {
       expect(fs.existsSync(path.join(ROOT, 'app', `${route}.tsx`))).toBe(true);
-      expect(arenaBlock).toContain(`<Stack.Screen name="${route}"`);
+      expect(layout).toContain(`<Stack.Screen name="${route}"`);
       expect(read('app/product_analytics_screen_registry.ts')).toContain(`'${route}'`);
     }
   });
@@ -207,7 +203,34 @@ describe('Arena Expansion integration boundary', () => {
   test('documents gross season progress separately from spendable balance', () => {
     const contract = read('docs/arena/EXPANSION_PRODUCT_CONTRACT.md');
     expect(contract).toContain('season.stars');
-    expect(contract).toContain('profile.starWalletBalance');
+    expect(contract).toContain('users/{uid}.stars.balance');
     expect(contract).toContain('Покупка уменьшает только кошелёк');
+  });
+
+  test('Arena purchase prechecks and returns the unified revisioned stars ledger', () => {
+    const source = read('functions/src/arena_expansion.ts');
+    const start = source.indexOf('export const arenaStarPurchase');
+    const end = source.indexOf('export const arenaStarEquip', start);
+    const purchase = source.slice(start, end);
+    expect(purchase).toContain('normalizeStars(userSnap.data()?.stars)');
+    expect(purchase).not.toContain('Number(profile.starWalletBalance');
+    expect(purchase).toContain("errorCode === 'insufficient_stars'");
+    expect(purchase).toContain('starsSeq: purchaseResult.seq');
+  });
+
+  test('Arena home and store expose lifetime earned stars separately from season progress', () => {
+    const source = read('functions/src/arena_expansion.ts');
+    const home = source.slice(
+      source.indexOf('export const arenaExpansionHome'),
+      source.indexOf('export const arenaTodayStart'),
+    );
+    const store = source.slice(
+      source.indexOf('export const arenaStarStore'),
+      source.indexOf('export const arenaStarPurchase'),
+    );
+    expect(home).toContain('starsEarnedTotal: unifiedStars.earnedTotal');
+    expect(store).toContain('starsEarnedTotal: unifiedStars.earnedTotal');
+    expect(home).toContain('seasonStarsEarned:');
+    expect(store).toContain('seasonStarsEarned:');
   });
 });

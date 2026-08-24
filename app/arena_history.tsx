@@ -1,21 +1,23 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/arena/warm_cache';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
+import type { Lang } from '../constants/i18n';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
-import { V2Card } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import PressableHybrid from '../components/PressableHybrid';
+import { V2Card } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
-import { arenaHistoryRows, arenaHistorySummary } from '../modules/arena/history_view';
+import { arenaHistoryRows, arenaHistorySummary, type ArenaHistoryRow } from '../modules/arena/history_view';
 import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { arenaFetchMatchHistory, arenaV2Home, type ArenaHomeResponse } from './arena_client';
+import { arenaFetchMatchHistory } from './arena_client';
 
 /**
  * История матчей.
@@ -26,9 +28,18 @@ import { arenaFetchMatchHistory, arenaV2Home, type ArenaHomeResponse } from './a
  */
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 
+export function arenaHistoryAccessibilityLabel(lang: Lang, row: ArenaHistoryRow): string {
+  const outcome = arenaText(lang, row.outcome === 'win' ? 'victory' : row.outcome === 'loss' ? 'defeat' : 'draw');
+  const mode = arenaText(lang, row.mode === 'ranked' ? 'ranked' : 'quick');
+  const date = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'short' }).format(new Date(row.settledAtMs));
+  const rating = row.ratingDelta === 0 ? '' : `${row.ratingDelta > 0 ? '+' : ''}${row.ratingDelta} RP`;
+  return [outcome, mode, date, rating].filter(Boolean).join('. ');
+}
+
 export default function ArenaHistoryScreen() {
   const { lang } = useLang();
   const P = useTournamentPalette();
+  const router = useRouter();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   /**
@@ -40,7 +51,6 @@ export default function ArenaHistoryScreen() {
   const [raw, setRaw] = useState<readonly unknown[]>(
     Array.isArray(warmRows) ? warmRows as readonly unknown[] : [],
   );
-  const [home, setHome] = useState<ArenaHomeResponse | null>(null);
   const [loaded, setLoaded] = useState(Array.isArray(warmRows));
   const [failed, setFailed] = useState(false);
 
@@ -61,7 +71,6 @@ export default function ArenaHistoryScreen() {
     void arenaLoadWarm(warmStore, 'history', Date.now()).then((stored) => {
       if (Array.isArray(stored)) setRaw((current) => (current.length ? current : stored as readonly unknown[]));
     }).catch(() => {});
-    void arenaV2Home().then(setHome).catch(() => {});
   }, [active]);
 
   const rows = useMemo(() => arenaHistoryRows(raw), [raw]);
@@ -70,12 +79,7 @@ export default function ArenaHistoryScreen() {
   const view = arenaCachedLoadView({ state, cachedCount: rows.length, volatile: true });
 
   return (
-    <ArenaHubChrome
-      availability={home?.availability}
-      activeMatchId={home?.activeMatch?.matchId ?? null}
-      activeQueue={home?.activeQueue}
-    >
-      <ArenaScreen title={arenaText(lang, 'historyTab')} variant="table">
+    <ArenaScreen title={arenaText(lang, 'historyTab')} variant="table">
         <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
           <V2Card pad={16} style={styles.summary}>
             <View style={styles.summaryRow}>
@@ -126,7 +130,13 @@ export default function ArenaHistoryScreen() {
             key={row.matchId}
             entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.delay(Math.min(index, 8) * 40).duration(240)}
           >
-            <V2Card pad={12} style={styles.row}>
+            <PressableHybrid
+              variant="card"
+              accessibilityRole="button"
+              accessibilityLabel={arenaHistoryAccessibilityLabel(lang, row)}
+              onPress={() => router.push({ pathname: '/arena_review', params: { matchId: row.matchId } } as never)}
+              contentStyle={[styles.row, { backgroundColor: P.card }]}
+            >
               <View
                 style={[styles.dot, {
                   backgroundColor: row.outcome === 'win' ? P.accent
@@ -150,11 +160,10 @@ export default function ArenaHistoryScreen() {
                   {row.ratingDelta > 0 ? '+' : ''}{row.ratingDelta}
                 </Text>
               ) : null}
-            </V2Card>
+            </PressableHybrid>
           </Animated.View>
         ))}
-      </ArenaScreen>
-    </ArenaHubChrome>
+    </ArenaScreen>
   );
 }
 

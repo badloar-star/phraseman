@@ -10,6 +10,8 @@ export type ArenaHubWarmHome = Readonly<{
     rating: number;
     rank: number;
     spinsAvailable: number;
+    wins?: number;
+    losses?: number;
     rankName?: string;
     dailyDayKey?: string;
     todayKey?: string;
@@ -72,7 +74,9 @@ export function arenaWarmHome(value: unknown): ArenaHubWarmHome | null {
   const dailyMatches = optionalCount(value.profile, 'dailyMatches');
   const dailyFirstAnswers = optionalCount(value.profile, 'dailyFirstAnswers');
   const dailyWins = optionalCount(value.profile, 'dailyWins');
-  if (rankName === null || dailyDayKey === null || todayKey === null || dailyMatches === null || dailyFirstAnswers === null || dailyWins === null) return null;
+  const wins = optionalCount(value.profile, 'wins');
+  const losses = optionalCount(value.profile, 'losses');
+  if (rankName === null || dailyDayKey === null || todayKey === null || dailyMatches === null || dailyFirstAnswers === null || dailyWins === null || wins === null || losses === null) return null;
   return {
     ok: true,
     availability: {
@@ -83,7 +87,7 @@ export function arenaWarmHome(value: unknown): ArenaHubWarmHome | null {
       rewardsEnabled: value.availability.rewardsEnabled as boolean,
       spinEnabled: value.availability.spinEnabled as boolean,
     },
-    profile: { rating: value.profile.rating, rank: value.profile.rank, spinsAvailable: value.profile.spinsAvailable, ...(rankName === undefined ? {} : { rankName }), ...(dailyDayKey === undefined ? {} : { dailyDayKey }), ...(todayKey === undefined ? {} : { todayKey }), ...(dailyMatches === undefined ? {} : { dailyMatches }), ...(dailyFirstAnswers === undefined ? {} : { dailyFirstAnswers }), ...(dailyWins === undefined ? {} : { dailyWins }) },
+    profile: { rating: value.profile.rating, rank: value.profile.rank, spinsAvailable: value.profile.spinsAvailable, ...(wins === undefined ? {} : { wins }), ...(losses === undefined ? {} : { losses }), ...(rankName === undefined ? {} : { rankName }), ...(dailyDayKey === undefined ? {} : { dailyDayKey }), ...(todayKey === undefined ? {} : { todayKey }), ...(dailyMatches === undefined ? {} : { dailyMatches }), ...(dailyFirstAnswers === undefined ? {} : { dailyFirstAnswers }), ...(dailyWins === undefined ? {} : { dailyWins }) },
   };
 }
 
@@ -218,20 +222,24 @@ export function createArenaHubHydrationController<Home extends ArenaHubWarmHome,
   } as const;
 }
 
-/** Runs a spin without allowing a late completion to refresh an unmounted screen. */
+const runningSpinControllers = new WeakSet<object>();
+
+/** Runs a spin without allowing duplicate claims or late unmounted refreshes. */
 export function runArenaHubSpin(input: Readonly<{
   controller: Pick<ReturnType<typeof createArenaHubHydrationController>, 'mounted'>;
   claim: () => Promise<unknown>;
   onBusy: (busy: boolean) => void;
   onAccepted: () => void;
 }>): void {
-  if (!input.controller.mounted()) return;
+  if (!input.controller.mounted() || runningSpinControllers.has(input.controller)) return;
+  runningSpinControllers.add(input.controller);
   input.onBusy(true);
-  void input.claim().then(() => {
+  void Promise.resolve().then(input.claim).then(() => {
     if (input.controller.mounted()) input.onAccepted();
   }).catch(() => {
     // The row has no error surface; preserve its existing silent failure policy.
   }).finally(() => {
+    runningSpinControllers.delete(input.controller);
     if (input.controller.mounted()) input.onBusy(false);
   });
 }

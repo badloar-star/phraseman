@@ -1,6 +1,7 @@
 import {
   ArenaEntryAccountChangedError,
   ArenaNoOpponentError,
+  ArenaTerminalMatchError,
   createArenaEntryPrefetch,
   type ArenaEntryAccountScope,
   type ArenaPreparedEntry,
@@ -82,6 +83,29 @@ describe('Arena entry prefetch', () => {
     expect(planCalls).toBe(1);
     expect(seats).toEqual(['b', 'a']);
     expect(entry.start('match-1')).toBe(first);
+  });
+
+  it('passes the captured account scope through both reserved entry dispatches', async () => {
+    const dispatchedScopes: ArenaEntryAccountScope[] = [];
+    const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
+      accept: async (_matchId, scope) => {
+        dispatchedScopes.push(scope);
+        return { state: 'active', viewerSeat: 'a' };
+      },
+      loadPlan: async (_matchId, scope) => {
+        dispatchedScopes.push(scope);
+        return PREPARED;
+      },
+      rememberViewerSeat: () => {},
+      nowMs: () => 100,
+      wait: async () => {},
+    });
+
+    await entry.start('match-1');
+
+    expect(dispatchedScopes).toEqual([ACCOUNT_A, ACCOUNT_A]);
+    expect(dispatchedScopes[0]).toBe(dispatchedScopes[1]);
   });
 
   it('retries accepting responses on the shared accept retry cadence before loading', async () => {
@@ -211,24 +235,38 @@ describe('Arena entry prefetch', () => {
     expect(entry.peek('match-1')).toBeNull();
   });
 
-  it('uses a typed no-opponent failure for exhausted, aborted, and settled acceptance', async () => {
-    for (const state of ['accepting', 'aborted', 'settled']) {
-      let now = state === 'accepting' ? 12_000 : 0;
+  it('uses a typed no-opponent failure only when the accept window is exhausted', async () => {
+    let now = 12_000;
+    const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
+      accept: async () => ({ state: 'accepting' }),
+      loadPlan: async () => PREPARED,
+      rememberViewerSeat: () => {},
+      nowMs: () => now,
+      wait: async (ms) => { now += ms; },
+    });
+
+    const failure = await captureFailure(entry.start('match-accepting'));
+    expect(failure).toBeInstanceOf(ArenaNoOpponentError);
+    expect((failure as Error).message).toBe('arena_match_no_opponent');
+    expect(entry.peek('match-accepting')).toBeNull();
+  });
+
+  it('surfaces aborted and settled matches as terminal instead of no-opponent', async () => {
+    for (const state of ['aborted', 'settled']) {
       const entry = createArenaEntryPrefetch({
         ...fixedAccountScope(),
         accept: async () => ({ state }),
         loadPlan: async () => PREPARED,
         rememberViewerSeat: () => {},
-        nowMs: () => now,
-        wait: async (ms) => { now += ms; },
+        nowMs: () => 0,
+        wait: async () => {},
       });
 
       const failure = await captureFailure(entry.start(`match-${state}`));
-      expect(failure).toBeInstanceOf(ArenaNoOpponentError);
-      expect((failure as Error).message).toBe('arena_match_no_opponent');
-      const retryFailure = await captureFailure(entry.start(`match-${state}-retry`));
-      expect(retryFailure).toBeInstanceOf(ArenaNoOpponentError);
-      expect((retryFailure as Error).message).toBe('arena_match_no_opponent');
+      expect(failure).toBeInstanceOf(ArenaTerminalMatchError);
+      expect(failure).not.toBeInstanceOf(ArenaNoOpponentError);
+      expect((failure as Error).message).toBe('arena_match_terminal');
       expect(entry.peek(`match-${state}`)).toBeNull();
     }
   });
@@ -300,10 +338,15 @@ describe('Arena entry prefetch', () => {
 describe('Arena entry prefetch production singleton source contract', () => {
   test('wires one coordinator to the production match APIs', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '../app/arena_entry_prefetch.ts'), 'utf8');
+    const clientSource = fs.readFileSync(path.resolve(__dirname, '../app/arena_client.ts'), 'utf8');
 
     expect(source.match(/createArenaEntryPrefetch\(\{/g)).toHaveLength(1);
-    expect(source).toContain('accept: arenaV2MatchAccept');
-    expect(source).toContain('loadPlan: arenaV2MatchPlan');
+    expect(source).toContain('arenaV2MatchAcceptDispatch(matchId, arenaEntryAccountToken(scope))');
+    expect(source).toContain('arenaV2MatchPlanDispatch(matchId, arenaEntryAccountToken(scope))');
+    expect(source).not.toContain('accept: arenaV2MatchAccept');
+    expect(source).not.toContain('loadPlan: arenaV2MatchPlan');
+    expect(clientSource).toContain("return reserveArenaCall<MatchMutationResponse>('arenaV2MatchAccept', { matchId }, account);");
+    expect(clientSource).toContain("const dispatch = await reserveArenaCall<ArenaMatchPlanResponseWire>(");
     expect(source).toContain('rememberViewerSeat: rememberArenaViewerSeat');
     expect(source).toContain('captureAccountScope: currentArenaEntryAccountScope');
     expect(source).toContain('isAccountScopeCurrent: isArenaEntryAccountScopeCurrent');
@@ -326,17 +369,14 @@ describe('Arena entry prefetch production singleton source contract', () => {
     expect(matchmaking).toContain('if (!alive) return;');
   });
 
-  test('keeps an assigned match on the search card through entry failures', () => {
+  test('silently resumes matchmaking when an assigned match cannot start', () => {
     const matchmaking = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
 
-    expect(matchmaking).toContain('const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);');
     expect(matchmaking).toContain('const [entryRetryTick, setEntryRetryTick] = useState(0);');
-    expect(matchmaking).toContain("reason instanceof ArenaNoOpponentError ? 'no_opponent' : arenaEntryFailure(reason)");
-    expect(matchmaking).toContain('const assignedFailure = entryFailure ? arenaEntryFailureCopy(entryFailure) : null;');
-    expect(matchmaking).toContain('setEntryRetryTick((tick) => tick + 1);');
-    expect(matchmaking).toContain("params: { mode: 'quick', requestId: createArenaRequestId('queue') }");
-    expect(matchmaking).toContain("{arenaText(lang, 'home')}");
-    const assignedFailureAt = matchmaking.indexOf('const assignedFailure =');
-    expect(matchmaking.slice(assignedFailureAt)).not.toContain('arenaV2QueueCancel');
+    expect(matchmaking).toContain('resumeSearchAfterAssignedMatch');
+    expect(matchmaking).toContain('setMatchId(null);');
+    expect(matchmaking).toContain("requestIdRef.current = { key: requestIdKey, value: createArenaRequestId('queue') };");
+    expect(matchmaking).not.toContain('setEntryFailure(');
+    expect(matchmaking).not.toContain('assignedFailure');
   });
 });

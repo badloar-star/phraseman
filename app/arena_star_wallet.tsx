@@ -21,7 +21,7 @@ import { arenaCosmeticDefinition } from '../modules/arena/arena_cosmetics';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 import { ARENA_LOCALIZED_STORE_ITEM_IDS, type ArenaStoreItemId } from '../modules/arena/expansion_store_copy';
-import { arenaExpansionHome, arenaStarEquip, arenaStarPurchase, arenaStarStore, arenaV2SpinClaim, arenaV2SpinStatus, createArenaRequestId } from './arena_client';
+import { arenaExpansionHome, arenaStarEquip, arenaStarPurchase, arenaStarStore, createArenaRequestId } from './arena_client';
 
 /**
  * Системный масштаб шрифта — для высоты строки.
@@ -61,17 +61,15 @@ export default function ArenaStarWalletScreen() {
   const [state, setState] = useState<'loading' | 'ready' | 'empty' | 'unavailable' | 'insufficient' | 'success' | 'error'>('loading');
   const warmStoreValue = useMemo(() => readStoreWarm(arenaPeekWarm('store', Date.now())), []);
   const [store, setStore] = useState<ArenaStarStoreResponse | null>(warmStoreValue);
-  const [spins, setSpins] = useState(0);
   const [busySku, setBusySku] = useState<string | null>(null);
   /**
-   * Отказ ДЕЙСТВИЯ отдельно от отказа загрузки. Раньше и покупка, и надевание,
-   * и спин писали `state = 'error'` — то есть сорвавшаяся покупка выглядела
-   * как не загрузившийся магазин, и игрок не мог понять, списались его звёзды
-   * или нет. Для покупки это худший вопрос из возможных.
+   * Отказ ДЕЙСТВИЯ отдельно от отказа загрузки. Раньше и покупка, и надевание
+   * писали `state = 'error'` — то есть сорвавшаяся покупка выглядела как не
+   * загрузившийся магазин, и игрок не мог понять, списались его руны или нет.
+   * Для покупки это худший вопрос из возможных.
    */
-  const [actionError, setActionError] = useState<'purchase' | 'equip' | 'spin' | null>(null);
+  const [actionError, setActionError] = useState<'purchase' | 'equip' | null>(null);
   const purchaseIds = useRef(new Map<string, string>());
-  const spinId = useRef<string | null>(null);
   const load = useCallback(() => {
     const accountToken = captureAccountGeneration();
     const ownerStableId = accountToken.stableId?.trim();
@@ -79,13 +77,12 @@ export default function ArenaStarWalletScreen() {
     // нечего, иначе экран мигал бы пустотой поверх готового содержимого.
     setState((current) => (current === 'ready' ? current : 'loading'));
     setActionError(null);
-    void Promise.all([arenaExpansionHome(), arenaStarStore(), arenaV2SpinStatus().catch(() => ({ ok: true as const, spinsAvailable: 0 }))]).then(async ([home, response, spin]) => {
+    void Promise.all([arenaExpansionHome(), arenaStarStore()]).then(async ([home, response]) => {
       if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) return;
       if (!home.availability.store) { setState('unavailable'); return; }
       const next = { ...response, wallet: home.wallet };
       setStore(next);
       arenaRememberWarm({ key: 'store', value: next, wallNowMs: Date.now(), store: warmStore });
-      setSpins(spin.spinsAvailable);
       setState(response.items.length ? 'ready' : 'empty');
     }).catch(() => setState('error'));
   }, []);
@@ -133,22 +130,14 @@ export default function ArenaStarWalletScreen() {
     setBusySku(item.sku);
     void arenaStarEquip(item.sku, item.slot, requestId).then(() => load()).catch(() => setActionError('equip')).finally(() => setBusySku(null));
   };
-  const claimSpin = () => {
-    const requestId = spinId.current ?? createArenaRequestId('spin');
-    spinId.current = requestId;
-    setBusySku('spin');
-    void arenaV2SpinClaim(requestId).then(() => { spinId.current = null; setSpins((old) => Math.max(0, old - 1)); setState('success'); }).catch(() => setActionError('spin')).finally(() => setBusySku(null));
-  };
-
   const header = store ? <View style={styles.header}>
     <View style={styles.stats}><ArenaStat label={arenaExpansionText(lang, 'spendable')} value={store.wallet.walletStars} /><ArenaStat label={arenaExpansionText(lang, 'seasonEarned')} value={store.wallet.seasonStarsEarned} /></View>
-    {spins > 0 ? <V2Card style={styles.spin}><View style={styles.icon}><Ionicons name="sparkles" size={26} color={P.onGold} /></View><View style={styles.flex}><Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'spin')}</Text><Text style={[styles.body, { color: P.muted }]}>{spins}</Text></View><View style={styles.action}><V2Cta disabled={busySku === 'spin'} onPress={claimSpin}>{arenaExpansionText(lang, 'spinClaim')}</V2Cta></View></V2Card> : null}
     {state === 'error' ? <ArenaStateNotice state="error" onRetry={load} /> : null}
     {actionError ? (
       <ArenaStateCard
         state="error"
-        title={arenaExpansionText(lang, actionError === 'purchase' ? 'purchaseFailed' : actionError === 'equip' ? 'equipFailed' : 'spinFailed')}
-        body={arenaExpansionText(lang, actionError === 'purchase' ? 'purchaseFailedHint' : actionError === 'equip' ? 'equipFailedHint' : 'spinFailedHint')}
+        title={arenaExpansionText(lang, actionError === 'purchase' ? 'purchaseFailed' : 'equipFailed')}
+        body={arenaExpansionText(lang, actionError === 'purchase' ? 'purchaseFailedHint' : 'equipFailedHint')}
       />
     ) : null}
     {state === 'insufficient' || state === 'success' ? <ArenaStateCard state={state === 'insufficient' ? 'unavailable' : 'ready'} title={arenaExpansionText(lang, state === 'insufficient' ? 'insufficient' : 'purchaseSuccess')} /> : null}
@@ -175,10 +164,7 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center' },
   header: { gap: 12 },
   stats: { flexDirection: 'row', gap: 10 },
-  spin: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  icon: { width: 48, height: 48, borderRadius: 16, backgroundColor: '#F7C948', alignItems: 'center', justifyContent: 'center' },
   flex: { flex: 1 },
-  action: { minWidth: 120 },
   item: { flexDirection: 'row', alignItems: 'center', gap: 11 },
   itemIcon: { width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   itemAction: { width: 124 },

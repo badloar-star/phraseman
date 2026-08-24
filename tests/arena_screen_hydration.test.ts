@@ -249,10 +249,57 @@ describe('Arena hub hydration safety', () => {
     expect(onAccepted).not.toHaveBeenCalled();
   });
 
+  it('coalesces rapid spin presses while the same claim is in flight', async () => {
+    const pending = deferred<void>();
+    const controller = createArenaHubHydrationController({
+      fetchHome: async () => validHome,
+      fetchExpansion: async () => validExpansion,
+      remember: () => {},
+      onSnapshot: () => {},
+    });
+    const claim = jest.fn(() => pending.promise);
+    const onBusy = jest.fn();
+    const onAccepted = jest.fn();
+
+    runArenaHubSpin({ controller, claim, onBusy, onAccepted });
+    runArenaHubSpin({ controller, claim, onBusy, onAccepted });
+    await Promise.resolve();
+    expect(claim).toHaveBeenCalledTimes(1);
+    expect(onBusy).toHaveBeenCalledTimes(1);
+
+    pending.resolve();
+    await flush();
+    expect(onAccepted).toHaveBeenCalledTimes(1);
+    expect(onBusy).toHaveBeenLastCalledWith(false);
+  });
+
+  it('releases spin state when claim throws before returning a promise', async () => {
+    const controller = createArenaHubHydrationController({
+      fetchHome: async () => validHome,
+      fetchExpansion: async () => validExpansion,
+      remember: () => {},
+      onSnapshot: () => {},
+    });
+    const onBusy = jest.fn();
+    const onAccepted = jest.fn();
+
+    expect(() => runArenaHubSpin({
+      controller,
+      claim: () => { throw new Error('sync claim failure'); },
+      onBusy,
+      onAccepted,
+    })).not.toThrow();
+    await flush();
+
+    expect(onBusy).toHaveBeenNthCalledWith(1, true);
+    expect(onBusy).toHaveBeenLastCalledWith(false);
+    expect(onAccepted).not.toHaveBeenCalled();
+  });
+
   it('wires validated warm values and latest-only responses into the screen', () => {
-    const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena.tsx'), 'utf8');
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaHubSurface.tsx'), 'utf8');
     expect(source).toContain('createArenaHubHydrationController');
-    expect(source).toContain('runArenaHubSpin');
-    expect(source).toContain('quickDisabledHint');
+    expect(source).not.toContain('runArenaHubSpin');
+    expect(source).toContain('body: enabled');
   });
 });

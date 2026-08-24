@@ -26,6 +26,7 @@ import { ArenaComboMeter } from '../components/arena/ArenaComboMeter';
 import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
 import { V2Cta, V2Segments } from '../components/ui/v2_ui';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
 import { arenaAwardReasonText, arenaText } from '../modules/arena/copy';
 import type { ArenaMatch, ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
@@ -845,12 +846,15 @@ function ArenaMatchGenerationScreen({
               соперник не принял вызов»). Возвращаем в поиск одним нажатием,
               новым requestId — старый билет уже закрыт сервером. */}
           {entryFailure === 'no_opponent' ? (
-            <V2Cta onPress={() => router.replace({
-              pathname: '/arena_matchmaking',
-              params: { mode: 'quick', requestId: createArenaRequestId('queue') },
-            } as never)}>
-              {arenaText(lang, 'quick')}
-            </V2Cta>
+            <View style={{ position: 'relative' }}>
+              <V2Cta onPress={() => router.replace({
+                pathname: '/arena_matchmaking',
+                params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+              } as never)}>
+                {arenaText(lang, 'quick')}
+              </V2Cta>
+              <EnergyCostBadge testID="arena-match-retry-energy-cost" />
+            </View>
           ) : null}
           <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
         </View>

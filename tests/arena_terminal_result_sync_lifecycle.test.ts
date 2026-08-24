@@ -19,8 +19,9 @@ type SyncResponse = Readonly<{
 
 function deferred<T>() {
   let resolve!: (value: T) => void;
-  const promise = new Promise<T>((next) => { resolve = next; });
-  return { promise, resolve };
+  let reject!: (reason: unknown) => void;
+  const promise = new Promise<T>((next, fail) => { resolve = next; reject = fail; });
+  return { promise, resolve, reject };
 }
 
 const publicReward: ArenaMatchReward = { starsEarned: 0, xpEarned: 14 };
@@ -133,6 +134,170 @@ describe('Arena terminal private-sync hook lifecycle', () => {
     expect(accepted).toHaveBeenCalledTimes(1);
     expect(accepted).toHaveBeenCalledWith('private');
     expect(request).toHaveBeenCalledTimes(1);
+  });
+
+  it('re-arms the same terminal version after one transient request failure', async () => {
+    jest.useFakeTimers();
+    const accepted = jest.fn();
+    const request = jest.fn()
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce('private');
+    try {
+      await renderHook(() => useArenaTerminalResultSync({
+        active: true,
+        matchId: 'm1',
+        accountKey: 'A:1',
+        terminalSyncVersion: 5,
+        request,
+        onRequested: jest.fn(),
+        onResolved: accepted,
+      }));
+      await act(async () => { await Promise.resolve(); });
+      expect(request).toHaveBeenCalledTimes(1);
+
+      await act(async () => {
+        jest.advanceTimersByTime(800);
+        await Promise.resolve();
+        await Promise.resolve();
+      });
+      expect(request).toHaveBeenCalledTimes(2);
+      expect(accepted).toHaveBeenCalledWith('private');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('re-arms an exhausted retry burst when the same scope returns to foreground', async () => {
+    jest.useFakeTimers();
+    const accepted = jest.fn();
+    const onRequested = jest.fn();
+    const request = jest.fn()
+      .mockRejectedValueOnce(new Error('offline-1'))
+      .mockRejectedValueOnce(new Error('offline-2'))
+      .mockRejectedValueOnce(new Error('offline-3'))
+      .mockRejectedValueOnce(new Error('offline-4'))
+      .mockResolvedValueOnce('recovered');
+    type Props = Readonly<{ active: boolean; version: number | null }>;
+    try {
+      const hook = await renderHook((props: Props) => useArenaTerminalResultSync({
+        active: props.active,
+        matchId: 'm1',
+        accountKey: 'A:1',
+        terminalSyncVersion: props.version,
+        request,
+        onRequested,
+        onResolved: accepted,
+      }), { initialProps: { active: true, version: 5 } });
+      await act(async () => { await Promise.resolve(); });
+      await hook.rerender({ active: true, version: null });
+      for (const delay of [750, 1_500, 3_000]) {
+        await act(async () => {
+          jest.advanceTimersByTime(delay);
+          await Promise.resolve();
+          await Promise.resolve();
+        });
+      }
+      expect(request).toHaveBeenCalledTimes(4);
+      expect(accepted).not.toHaveBeenCalled();
+
+      await hook.rerender({ active: false, version: null });
+      await hook.rerender({ active: true, version: null });
+      await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+
+      expect(request).toHaveBeenCalledTimes(5);
+      expect(accepted).toHaveBeenCalledWith('recovered');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('retries a synchronous request throw on the same bounded cadence', async () => {
+    jest.useFakeTimers();
+    const accepted = jest.fn();
+    const request = jest.fn()
+      .mockImplementationOnce(() => { throw new Error('sync-preflight'); })
+      .mockResolvedValueOnce('private');
+    try {
+      await renderHook(() => useArenaTerminalResultSync({
+        active: true,
+        matchId: 'm1',
+        accountKey: 'A:1',
+        terminalSyncVersion: 5,
+        request,
+        onRequested: jest.fn(),
+        onResolved: accepted,
+      }));
+      await act(async () => {
+        jest.advanceTimersByTime(750);
+        await Promise.resolve();
+        await Promise.resolve();
+      });
+      expect(request).toHaveBeenCalledTimes(2);
+      expect(accepted).toHaveBeenCalledWith('private');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('does not let an exhausted old-account rejection erase the new-account retry', async () => {
+    jest.useFakeTimers();
+    const oldFourth = deferred<string>();
+    const newFirst = deferred<string>();
+    const accepted = jest.fn();
+    const oldRequest = jest.fn()
+      .mockRejectedValueOnce(new Error('old-1'))
+      .mockRejectedValueOnce(new Error('old-2'))
+      .mockRejectedValueOnce(new Error('old-3'))
+      .mockImplementationOnce(() => oldFourth.promise);
+    const newRequest = jest.fn()
+      .mockImplementationOnce(() => newFirst.promise)
+      .mockResolvedValueOnce('new-private');
+    type Props = Readonly<{ accountKey: string; version: number | null }>;
+    try {
+      const hook = await renderHook((props: Props) => useArenaTerminalResultSync({
+        active: true,
+        matchId: 'm1',
+        accountKey: props.accountKey,
+        terminalSyncVersion: props.version,
+        request: props.accountKey === 'A:1' ? oldRequest : newRequest,
+        onRequested: jest.fn(),
+        onResolved: accepted,
+      }), { initialProps: { accountKey: 'A:1', version: 5 } });
+      await act(async () => { await Promise.resolve(); });
+      await hook.rerender({ accountKey: 'A:1', version: null });
+      for (const delay of [750, 1_500, 3_000]) {
+        await act(async () => {
+          jest.advanceTimersByTime(delay);
+          await Promise.resolve();
+          await Promise.resolve();
+        });
+      }
+      expect(oldRequest).toHaveBeenCalledTimes(4);
+
+      await hook.rerender({ accountKey: 'B:2', version: 5 });
+      await act(async () => { await Promise.resolve(); });
+      await hook.rerender({ accountKey: 'B:2', version: null });
+      expect(newRequest).toHaveBeenCalledTimes(1);
+
+      await act(async () => {
+        oldFourth.reject(new Error('late-old'));
+        newFirst.reject(new Error('new-offline'));
+        await Promise.resolve();
+        await Promise.resolve();
+      });
+      await act(async () => {
+        jest.advanceTimersByTime(750);
+        await Promise.resolve();
+        await Promise.resolve();
+      });
+
+      expect(oldRequest).toHaveBeenCalledTimes(4);
+      expect(newRequest).toHaveBeenCalledTimes(2);
+      expect(accepted).toHaveBeenCalledWith('new-private');
+      expect(accepted).not.toHaveBeenCalledWith('late-old');
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it.each([

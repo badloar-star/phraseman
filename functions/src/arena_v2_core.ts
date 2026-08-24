@@ -550,12 +550,24 @@ export const ARENA_V2_SPIN_ODDS_BPS = Object.freeze({
   // внимательный игрок вычислял бы бота по статистике дропов.
   quick_bot: 50,
   quick_human: 50,
+  // Ranked без победы (поражение, ничья, матч с ботом) сохраняет прежний шанс:
+  // гарантия 2026-08-23 добавлена ТОЛЬКО поверх победы над человеком.
   ranked_human: 100,
 } as const);
 
+/**
+ * зачем (владелец, 23.08): спин за победу в рейтинге над реальным игроком
+ * обязан выпадать КАЖДЫЙ раз, а не по шансу — раньше `ranked_human` тоже шёл
+ * через `rollBps` (1%) с догоняющим pity на 80-м матче. Быстрые матчи (quick,
+ * против бота или человека) остаются вероятностными без изменений — правка
+ * касается только рейтинга. Обе защиты от фарма (минимум 8 ответов из 10,
+ * не больше одного спина в сутки с матча) остаются как были — решение
+ * владельца сохранить их при переходе на гарантию.
+ */
 export function arenaRareSpin(input: {
   mode: ArenaV2Mode;
   opponentKind: 'human' | 'bot';
+  outcome: 'win' | 'loss' | 'draw';
   rewardEligible: boolean;
   submittedAnswers: number;
   dropsToday: number;
@@ -563,6 +575,10 @@ export function arenaRareSpin(input: {
   pityBefore: number;
 }): { awarded: boolean; pityAfter: number } {
   const pityBefore = Math.max(0, Math.trunc(input.pityBefore));
+  const isRankedHumanWin = input.mode === 'ranked' && input.opponentKind === 'human' && input.outcome === 'win';
+  // Прежняя шкала шансов сохранена для ВСЕХ остальных случаев: ranked без
+  // победы (поражение, ничья, матч против бота) и любые быстрые матчи. Правка
+  // владельца добавляет гарантию за победу, а не отбирает шанс у остальных.
   const kind = input.mode === 'ranked' ? 'ranked_human'
     : input.mode === 'quick' && input.opponentKind === 'bot' ? 'quick_bot'
       : input.mode === 'quick' ? 'quick_human' : null;
@@ -570,6 +586,8 @@ export function arenaRareSpin(input: {
     && input.submittedAnswers >= ARENA_V2_SPIN_MINIMUM_ANSWERS
     && input.dropsToday < 1;
   if (!eligible || !kind) return { awarded: false, pityAfter: pityBefore };
+  // Победа над реальным человеком в рейтинге — гарантия, без ролла и pity.
+  if (isRankedHumanWin) return { awarded: true, pityAfter: 0 };
   const awarded = pityBefore >= ARENA_V2_SPIN_PITY_MATCHES - 1
     || (Number.isInteger(input.rollBps)
       && input.rollBps >= 0

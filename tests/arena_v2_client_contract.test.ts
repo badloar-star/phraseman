@@ -1,5 +1,5 @@
 import { ARENA_DUEL_BLUEPRINT, isValidArenaBlueprint, seededArenaBlueprint } from '../modules/arena/duel_blueprint';
-import { ARENA_TASK_MODES, type ArenaMatch, type ArenaPublicTask } from '../modules/arena/contract';
+import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_TASK_MODES, type ArenaMatch, type ArenaPublicTask } from '../modules/arena/contract';
 import { adaptArenaTask, encodeArenaSelection } from '../modules/arena/task_adapter';
 import { ARENA_RANKS, arenaRankForRating, isRankedOpponentEligible } from '../modules/arena/ranks';
 import { arenaClockPhase } from '../modules/arena/schedule';
@@ -121,16 +121,15 @@ describe('Arena V2 client contract', () => {
     expect([...cache.keys()]).toEqual(['m1:2:answer']);
   });
 
-  // Пороги 30/90 отменены владельцем 2026-08-16: на полуминуте предложение
-  // уйти в быстрый матч читалось как «здесь никого нет» и уводило людей из
-  // рейтинга, пока очередь только набирается. Стало 60/150.
-  test('shows the ranked quick offer at 60s and calm choice state at 150s', () => {
-    expect(arenaRankedWaitPresentation(30_000)).toBe('searching');
-    expect(arenaRankedWaitPresentation(59_999)).toBe('searching');
-    expect(arenaRankedWaitPresentation(60_000)).toBe('quick_offer');
-    expect(arenaRankedWaitPresentation(149_999)).toBe('quick_offer');
-    expect(arenaRankedWaitPresentation(150_000)).toBe('calm');
+  test('keeps the ranked search presentation unchanged until a match starts', () => {
+    for (const elapsed of [0, 30_000, 60_000, 150_000, 3_600_000]) {
+      expect(arenaRankedWaitPresentation(elapsed)).toBe('searching');
+    }
     expect(arenaRankedElapsedMs(100_000, 80_000, 10_000, 95_000)).toBe(5_000);
+  });
+
+  test('never lets the first-bot client fallback exceed forty-five seconds', () => {
+    expect(ARENA_QUICK_FALLBACK_MAX_MS).toBe(45_000);
   });
 
   test('has ranked wait copy in all eight interface locales', () => {

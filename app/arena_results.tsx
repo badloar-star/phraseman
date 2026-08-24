@@ -6,6 +6,7 @@ import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
 import { ArenaRewards } from '../components/arena/ArenaRewards';
 import { V2Card, V2Cta } from '../components/ui/v2_ui';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
 import { captureAccountGeneration } from './account_generation';
@@ -516,6 +517,7 @@ export default function ArenaResultsScreen() {
           pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
         } as never)}
         ctaSecondaryLabel={arenaText(lang, 'playAgain')}
+        secondaryShowsEnergyCost
         onCtaTertiary={() => router.replace('/arena' as never)}
         ctaTertiaryLabel={arenaText(lang, 'home')}
       />
@@ -614,18 +616,21 @@ export default function ArenaResultsScreen() {
           {arenaText(lang, 'playAgain')}
         </V2Cta>
       ) : (
-        <V2Cta
-          disabled={!replayMode}
-          onPress={() => {
-            if (!replayMode) return;
-            router.replace({
-              pathname: '/arena_matchmaking',
-              params: { mode: replayMode, requestId: createArenaRequestId('queue') },
-            } as never);
-          }}
-        >
-          {arenaText(lang, 'playAgain')}
-        </V2Cta>
+        <View style={{ position: 'relative' }}>
+          <V2Cta
+            disabled={!replayMode}
+            onPress={() => {
+              if (!replayMode) return;
+              router.replace({
+                pathname: '/arena_matchmaking',
+                params: { mode: replayMode, requestId: createArenaRequestId('queue') },
+              } as never);
+            }}
+          >
+            {arenaText(lang, 'playAgain')}
+          </V2Cta>
+          {replayMode ? <EnergyCostBadge testID="arena-results-replay-energy-cost" /> : null}
+        </View>
       )}
       <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
       {/*

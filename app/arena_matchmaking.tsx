@@ -51,8 +51,9 @@ export default function ArenaMatchmakingScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
-  const params = useLocalSearchParams<{ mode?: string; requestId?: string; stableUid?: string }>();
+  const params = useLocalSearchParams<{ mode?: string; requestId?: string; stableUid?: string; resumeQueue?: string }>();
   const mode: ArenaQueueMode = params.mode === 'ranked' ? 'ranked' : 'quick';
+  const resumesPaidQueue = params.resumeQueue === '1';
   const active = useRuntimeActive();
   const now = useVisibleWallClock(active, 1_000);
   const explicitRequestId = typeof params.requestId === 'string' && params.requestId
@@ -84,7 +85,7 @@ export default function ArenaMatchmakingScreen() {
   // Старт поиска матча = 1 ⚡ (владелец 2026-08-23: единая экономика — платим за
   // ПОПЫТКУ). Гейт стоит ДО подписки на очередь (energyGate ниже), чтобы при
   // отказе человек вообще не попадал в очередь матчмейкинга на сервере.
-  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaMatchEnergy, refundOne: refundArenaMatchEnergy } = useEnergy();
+  const { confirmSpendOne: confirmArenaMatchEnergy, refundOne: refundArenaMatchEnergy } = useEnergy();
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
   /** Плата за вход в очередь состоялась — при отмене поиска её возвращаем. */
   const energyChargedRef = useRef(false);
@@ -92,17 +93,21 @@ export default function ArenaMatchmakingScreen() {
   const playSound = useArenaSound();
 
   useEffect(() => {
-    if (arenaEnergyUnlimited) { setEnergyGate('ok'); return; }
+    if (resumesPaidQueue) { setEnergyGate('ok'); return; }
     let cancelled = false;
-    void spendArenaMatchEnergy().then((ok) => {
+    void confirmArenaMatchEnergy().then((result) => {
       if (cancelled) return;
+      if (result === 'cancelled') {
+        router.replace('/arena' as never);
+        return;
+      }
       // Помним факт оплаты: отмена поиска обязана вернуть единицу (см. cancel).
-      if (ok) energyChargedRef.current = true;
-      setEnergyGate(ok ? 'ok' : 'denied');
+      if (result === 'spent') energyChargedRef.current = true;
+      setEnergyGate(result === 'insufficient' ? 'denied' : 'ok');
     });
     return () => { cancelled = true; };
     // Ровно один расход на requestIdKey (смена requestId = новая попытка поиска).
-  }, [arenaEnergyUnlimited, requestIdKey, spendArenaMatchEnergy]);
+  }, [confirmArenaMatchEnergy, requestIdKey, resumesPaidQueue, router]);
 
   useEffect(() => {
     if (energyGate !== 'ok') return;

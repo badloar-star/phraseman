@@ -77,11 +77,10 @@ describe('отказ загрузки — не «недоступно»', () => 
   });
 
   it('ни один экран расширения не пишет слово «Загрузка»', () => {
-    for (const screen of [
-      'app/arena_today.tsx', 'app/arena_partner.tsx', 'app/arena_rivalries.tsx',
-      'app/arena_ghost_duel.tsx', 'app/arena_star_wallet.tsx', 'app/arena_mastery_map.tsx',
-      'app/arena_match_lab.tsx',
-    ]) {
+    // зачем короче (владелец, 2026-08-16): лаборатория, призрачные дуэли,
+    // соперничества и карта мастерства удалены — дублировали быстрый матч
+    // и ранги.
+    for (const screen of ['app/arena_today.tsx', 'app/arena_star_wallet.tsx']) {
       const source = fs.readFileSync(path.resolve(__dirname, '..', screen), 'utf8');
       expect(source).not.toContain("arenaExpansionText(lang, 'loading')");
     }
@@ -105,13 +104,8 @@ describe('отказ загрузки — не «недоступно»', () => 
  * заново, и тест этого не заметит.
  */
 const SCREENS: readonly string[] = [
-  'app/arena.tsx',
+  'components/arena/ArenaHubSurface.tsx',
   'app/arena_today.tsx',
-  'app/arena_mastery_map.tsx',
-  'app/arena_match_lab.tsx',
-  'app/arena_partner.tsx',
-  'app/arena_rivalries.tsx',
-  'app/arena_ghost_duel.tsx',
   'app/arena_star_wallet.tsx',
 ];
 
@@ -194,7 +188,7 @@ describe('подпись кнопки больше нигде не выдаёт�
   it('каждый отказ действия объясняет последствия', () => {
     expect(read('app/arena_friend_duel.tsx')).toContain("'inviteFailedHint'");
     expect(read('app/arena_invite.tsx')).toContain("'joinFailedHint'");
-    expect(read('app/arena_season_pass.tsx')).toContain("'claimFailedHint'");
+    expect(read('app/arena_season_pass.tsx')).toContain('Redirect href="/season_pass"');
   });
 
   it('объяснения переведены на восемь языков и не совпадают с подписью кнопки', () => {
@@ -274,10 +268,8 @@ describe('из пустоты есть выход', () => {
 
   it('пропуск сезона объясняет пустой список, но только после ответа сервера', () => {
     const source = read('app/arena_season_pass.tsx');
-    expect(source).toContain("'seasonEmpty'");
-    expect(source).toContain("'seasonEmptyHint'");
-    // До ответа — молчание, а не надпись: загрузку показывать нельзя.
-    expect(source).toContain('ListEmptyComponent={home ? (');
+    expect(source).toContain('Redirect href="/season_pass"');
+    expect(source).not.toContain('arenaV2SeasonClaim');
   });
 
   it('обещание про звёзды переведено на все языки', () => {

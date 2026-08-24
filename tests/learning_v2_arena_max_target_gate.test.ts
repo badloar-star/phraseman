@@ -17,10 +17,10 @@ describe('max_target_gate', () => {
   it('is available for English', () => {
     expect(maxVoiceContentAvailableForTarget('en')).toBe(true);
   });
-  it('is unavailable for Spanish', () => {
-    expect(maxVoiceContentAvailableForTarget('es')).toBe(false);
+  it('is available for Spanish', () => {
+    expect(maxVoiceContentAvailableForTarget('es')).toBe(true);
   });
-  it('is unavailable for French', () => {
-    expect(maxVoiceContentAvailableForTarget('fr')).toBe(false);
+  it('is available for French', () => {
+    expect(maxVoiceContentAvailableForTarget('fr')).toBe(true);
   });
 });

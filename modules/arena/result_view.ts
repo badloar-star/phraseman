@@ -1,4 +1,4 @@
-import { ARENA_TIER_KEYS, arenaRankView, type ArenaTierKey } from './rank_engine';
+import { ARENA_TIER_KEYS, arenaRankView, type ArenaRankView, type ArenaTierKey } from './rank_engine';
 
 /**
  * Что объявить игроку после матча.
@@ -16,10 +16,10 @@ import { ARENA_TIER_KEYS, arenaRankView, type ArenaTierKey } from './rank_engine
 
 export type ArenaRankAnnounce =
   | Readonly<{ kind: 'none' }>
-  | Readonly<{ kind: 'tier_up'; tierKey: ArenaTierKey; tierIndex: number }>
-  | Readonly<{ kind: 'tier_down'; tierKey: ArenaTierKey; tierIndex: number }>
-  | Readonly<{ kind: 'rank_up' }>
-  | Readonly<{ kind: 'rank_down' }>;
+  | Readonly<{ kind: 'tier_up'; tierKey: ArenaTierKey; tierIndex: number; before: ArenaRankView; after: ArenaRankView }>
+  | Readonly<{ kind: 'tier_down'; tierKey: ArenaTierKey; tierIndex: number; before: ArenaRankView; after: ArenaRankView }>
+  | Readonly<{ kind: 'rank_up'; before: ArenaRankView; after: ArenaRankView }>
+  | Readonly<{ kind: 'rank_down'; before: ArenaRankView; after: ArenaRankView }>;
 
 export type ArenaResultAnnounce = Readonly<{
   /** Изменение очков ранга. Ноль — строку не показывать вовсе. */
@@ -40,14 +40,20 @@ function int(value: unknown): number {
   return Number.isFinite(number) ? number : 0;
 }
 
-function tierOf(value: unknown): { tierKey: ArenaTierKey; tierIndex: number } | null {
-  // Отсутствие поля и «нулевой тир» — РАЗНЫЕ вещи. Через `Number(null) === 0`
-  // пропавшее поле превращалось бы в бронзу, и экран объявлял бы подъём в неё
-  // тому, кто никуда не поднимался.
-  if (typeof value !== 'number' || !Number.isFinite(value)) return null;
-  const index = Math.trunc(value);
-  if (index < 0 || index >= ARENA_TIER_KEYS.length) return null;
-  return { tierKey: ARENA_TIER_KEYS[index], tierIndex: index };
+function rankTransition(row: Record<string, unknown>): Exclude<ArenaRankAnnounce, { kind: 'none' }> | null {
+  if (typeof row.ratingAfter !== 'number' || !Number.isFinite(row.ratingAfter)) return null;
+  if (typeof row.ratingDelta !== 'number' || !Number.isFinite(row.ratingDelta)) return null;
+  const after = arenaRankView(row.ratingAfter);
+  const before = arenaRankView(row.ratingAfter - row.ratingDelta);
+  const derived = after.tierIndex > before.tierIndex ? 'tier_up'
+    : after.tierIndex < before.tierIndex ? 'tier_down'
+    : after.rankIndex > before.rankIndex ? 'rank_up'
+    : after.rankIndex < before.rankIndex ? 'rank_down'
+    : null;
+  if (!derived || row.rankEvent !== derived) return null;
+  return derived === 'tier_up' || derived === 'tier_down'
+    ? { kind: derived, tierKey: after.tierKey, tierIndex: after.tierIndex, before, after }
+    : { kind: derived, before, after };
 }
 
 /**
@@ -59,17 +65,7 @@ function tierOf(value: unknown): { tierKey: ArenaTierKey; tierIndex: number } | 
  */
 export function arenaResultAnnounce(reward: unknown): ArenaResultAnnounce {
   const row = isRecord(reward) ? reward : {};
-  const event = String(row.rankEvent ?? '');
-  const after = tierOf(row.rankTierAfter);
-  const before = tierOf(row.rankTierBefore);
-
-  let rank: ArenaRankAnnounce = { kind: 'none' };
-  if (event === 'tier_up' && after) rank = { kind: 'tier_up', ...after };
-  else if (event === 'tier_down' && after) rank = { kind: 'tier_down', ...after };
-  else if (event === 'rank_up') rank = { kind: 'rank_up' };
-  else if (event === 'rank_down') rank = { kind: 'rank_down' };
-  // Событие есть, а тира нет — молчим: назвать тир наугад значит соврать.
-  void before;
+  const rank: ArenaRankAnnounce = rankTransition(row) ?? { kind: 'none' };
 
   const rewards = Array.isArray(row.tierRewards) ? row.tierRewards : [];
   const unlockedItemIds = rewards

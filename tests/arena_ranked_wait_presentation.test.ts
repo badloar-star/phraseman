@@ -1,29 +1,20 @@
 import {
-  ARENA_RANKED_CALM_STATE_MS,
-  ARENA_RANKED_QUICK_OFFER_MS,
+  ARENA_REPLACEMENT_BOT_MAX_MS,
+  ARENA_REPLACEMENT_BOT_MIN_MS,
+  arenaReplacementBotDelayMs,
   arenaRankedElapsedMs,
   arenaRankedWaitPresentation,
 } from '../modules/arena/matchmaking_state';
 
 /**
- * Пороги ожидания в рейтинге. Тестов на них не было вовсе — значения меняли
- * вслепую. Владелец 2026-08-16: предлагать быстрый матч через минуту, а не
- * через полминуты, и поиск при этом НЕ прерывать.
+ * Владелец 2026-08-21: экран больше никогда не меняет поиск на предложения,
+ * «никого нет» или другие сообщения. Поиск живёт до назначения соперника.
  */
 describe('arena ranked wait presentation', () => {
-  it('offers quick match after a minute, not half of it', () => {
-    // Полминуты — ещё нормальное ожидание живого соперника. Предложение уйти
-    // в быстрый матч здесь читается как «никого нет» и уводит из рейтинга.
-    expect(ARENA_RANKED_QUICK_OFFER_MS).toBe(60_000);
-    expect(arenaRankedWaitPresentation(30_000)).toBe('searching');
-    expect(arenaRankedWaitPresentation(59_999)).toBe('searching');
-    expect(arenaRankedWaitPresentation(60_000)).toBe('quick_offer');
-  });
-
-  it('keeps the calm state well after the offer, never before it', () => {
-    expect(ARENA_RANKED_CALM_STATE_MS).toBeGreaterThan(ARENA_RANKED_QUICK_OFFER_MS);
-    expect(arenaRankedWaitPresentation(ARENA_RANKED_CALM_STATE_MS - 1)).toBe('quick_offer');
-    expect(arenaRankedWaitPresentation(ARENA_RANKED_CALM_STATE_MS)).toBe('calm');
+  it('never replaces searching, however long matchmaking takes', () => {
+    for (const elapsed of [-5_000, 0, 30_000, 60_000, 150_000, 60 * 60_000]) {
+      expect(arenaRankedWaitPresentation(elapsed)).toBe('searching');
+    }
   });
 
   it('never reads a negative wait as a finished one', () => {
@@ -38,5 +29,13 @@ describe('arena ranked wait presentation', () => {
     expect(arenaRankedElapsedMs(70_000, 60_000, 10_000)).toBe(60_000);
     // Явный перезапуск показа («продолжить поиск») ожидание обнуляет.
     expect(arenaRankedElapsedMs(70_000, 60_000, 10_000, 65_000)).toBe(5_000);
+  });
+
+  it('schedules a replacement bot roughly one minute after a cancelled assignment', () => {
+    expect(ARENA_REPLACEMENT_BOT_MIN_MS).toBe(50_000);
+    expect(ARENA_REPLACEMENT_BOT_MAX_MS).toBe(70_000);
+    expect(arenaReplacementBotDelayMs(-1)).toBe(ARENA_REPLACEMENT_BOT_MIN_MS);
+    expect(arenaReplacementBotDelayMs(0.5)).toBe(60_000);
+    expect(arenaReplacementBotDelayMs(2)).toBe(ARENA_REPLACEMENT_BOT_MAX_MS);
   });
 });

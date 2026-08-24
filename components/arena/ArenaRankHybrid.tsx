@@ -50,6 +50,7 @@ import PressableHybrid from '../PressableHybrid';
 import { ArenaStarGlyph } from './ArenaStarGlyph';
 import RuneGlyph from '../RuneGlyph';
 import { GoldDustFall, ImpactFlash, RaysHalo, fireImpactFlash } from './ArenaImpactFx';
+import EnergyCostBadge from '../EnergyCostBadge';
 
 const TIER_COPY: Record<ArenaTierKey, 'tierBronze' | 'tierSilver' | 'tierGold' | 'tierPlatinum' | 'tierDiamond' | 'tierMaster' | 'tierGrandmaster' | 'tierLegend'> = {
   bronze: 'tierBronze',
@@ -745,6 +746,7 @@ function ArenaRankShiftHybridImpl({ tierIndex, fromDivision, toDivision, directi
             <Text style={[styles.ctaText, { color: ARENA_RANK_HYBRID_COLORS.tierUpCtaText }]}>
               {arenaText(lang, up ? 'tierUpCta' : 'tierDownCta')}
             </Text>
+            {!up && onRevenge ? <EnergyCostBadge testID="arena-rank-revenge-energy-cost" /> : null}
           </DuoPressable>
           {!up ? (
             <PressableHybrid variant="secondary" accessibilityRole="button" onPress={onDone} contentStyle={styles.laterBtn}>
@@ -945,6 +947,7 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, fromStars, toStars, re
             style={[styles.cta, styles.ctaQuiet, { backgroundColor: P.elev }]}
           >
             <Text style={[styles.ctaText, { color: P.text }]}>{arenaText(lang, 'tierDownCta')}</Text>
+            {onRevenge ? <EnergyCostBadge testID="arena-rank-revenge-energy-cost" /> : null}
           </DuoPressable>
         </Reanimated.View>
       </Reanimated.View>

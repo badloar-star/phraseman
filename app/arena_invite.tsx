@@ -28,7 +28,7 @@ export default function ArenaInviteScreen() {
   const [busy, setBusy] = useState(false);
   // Принятие вызова друга = 1 ⚡ у принимающего (владелец 2026-08-23: единая
   // экономика, платим за ПОПЫТКУ — списание в accept() ниже).
-  const { isUnlimited: inviteEnergyUnlimited, spendOne: spendInviteEnergy, refundOne: refundInviteEnergy } = useEnergy();
+  const { confirmSpendOne: confirmInviteEnergy, refundOne: refundInviteEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [error, setError] = useState('');
   const [now, setNow] = useState(Date.now());
@@ -97,11 +97,10 @@ export default function ArenaInviteScreen() {
   const accept = async () => {
     if (!inviteId || busy) return;
     let energyCharged = false;
-    if (!inviteEnergyUnlimited) {
-      const ok = await spendInviteEnergy();
-      if (!ok) { setNoEnergyOpen(true); return; }
-      energyCharged = true;
-    }
+    const energyResult = await confirmInviteEnergy();
+    if (energyResult === 'cancelled') return;
+    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+    energyCharged = energyResult === 'spent';
     setBusy(true); setError('');
     try {
       const accepted = await arenaV2InviteAccept(inviteId);

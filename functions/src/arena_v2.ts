@@ -980,7 +980,6 @@ async function settleMatch(
     profile: db.collection(ARENA_V2_COLLECTIONS.profiles).doc(uid),
     season: db.collection('users').doc(uid).collection(ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId),
     receipt: db.collection('users').doc(uid).collection(ARENA_V2_COLLECTIONS.receipts).doc(String(match.matchId)),
-    credit: db.collection('users').doc(uid).collection(ARENA_V2_COLLECTIONS.spinCredits).doc(String(match.matchId)),
   }));
   const snapshots = await Promise.all(refs.flatMap((entry) => [
     tx.get(entry.profile), tx.get(entry.season), tx.get(entry.receipt),
@@ -1500,13 +1499,12 @@ async function settleMatch(
         expireAt: timestamp(now + 45 * 24 * 60 * 60 * 1_000),
       }, { merge: true });
     }
-    if (spin.awarded) {
-      tx.set(entry.credit, {
-        creditId: String(match.matchId), source: 'rare_match_drop', status: 'available', createdAtMs: now,
-        expiresAtMs: now + 30 * 24 * 60 * 60 * 1_000,
-        expireAt: timestamp(now + 30 * 24 * 60 * 60 * 1_000),
-      });
-    }
+    // зачем (владелец, 23.08): кредит в `arena_v2_spin_credits` больше НЕ
+    // создаётся. Забрать его было нечем — отдельная рулетка Арены удалена, в
+    // приложении один спин (раздел «Подарки», local_level_spins.ts). Факт
+    // награды уезжает клиенту полем `spinAwarded` в чеке матча, и клиент
+    // выдаёт кредит общего спина идемпотентно по matchId. Оставленная запись
+    // была бы платной записью Firestore в коллекцию, которую никто не читает.
   });
   const winnerStableUid = outcomes[leftUid] === 'win' ? leftUid : outcomes[rightUid] === 'win' ? rightUid : undefined;
   match.state = 'settled';
@@ -1598,14 +1596,17 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
   const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
   const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
   const seasonRef = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId);
-  const [profileSnap, queueSnap, seasonSnap, credits] = await Promise.all([
+  // зачем (владелец, 23.08): запрос к `arena_v2_spin_credits` убран — это было
+  // до 50 чтений Firestore на КАЖДОМ открытии Арены ради счётчика, который
+  // больше никто не показывает (отдельная рулетка Арены удалена, пункт «Спин»
+  // из меню тоже). Поле `spinsAvailable` остаётся в ответе нулём, чтобы старые
+  // сборки клиента не сломались на его отсутствии.
+  const [profileSnap, queueSnap, seasonSnap] = await Promise.all([
     profileRef.get(), queueRef.get(), seasonRef.get(),
-    db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinCredits)
-      .where('status', '==', 'available').where('expiresAtMs', '>', now).limit(50).get(),
   ]);
   const profile = profileDefaults(who.stableUid, profileSnap.data());
   const seasonData = seasonSnap.data() ?? {};
-  const spinsAvailable = credits.size;
+  const spinsAvailable = 0;
   const activeMatchId = typeof profile.activeMatchId === 'string' ? profile.activeMatchId : '';
   const [activeMatch, activePrivate] = activeMatchId ? await Promise.all([
     db.collection(ARENA_V2_COLLECTIONS.matches).doc(activeMatchId).get(),

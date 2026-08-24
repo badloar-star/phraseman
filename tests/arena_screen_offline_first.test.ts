@@ -1,8 +1,7 @@
 import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
 
-import ArenaHubScreen from '../app/arena';
-import { ArenaTabBar } from '../components/arena/ArenaTabBar';
+import ArenaHubScreen from '../components/arena/ArenaHubSurface';
 
 const h = React.createElement;
 
@@ -17,6 +16,8 @@ function deferred<T>(): Deferred<T> {
 const flush = () => new Promise<void>((resolve) => setImmediate(resolve));
 const homeRequests: Deferred<any>[] = [];
 const expansionRequests: Deferred<any>[] = [];
+const historyRequests: Deferred<any[]>[] = [];
+const reportBlockRequests: Deferred<boolean>[] = [];
 let diskWarm: Promise<any>;
 let memoryWarm: any = null;
 const rememberWarm = jest.fn();
@@ -62,24 +63,36 @@ jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) 
 jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }));
 jest.mock('../hooks/use_arena_font_scale', () => ({ useArenaFontScale: () => 1 }));
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
+jest.mock('../hooks/use-tab-content-bottom-pad', () => ({ useTabContentBottomPad: () => 0 }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: () => Promise.resolve(), hapticMediumImpact: () => Promise.resolve() }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ bottom: 0 }) }));
 jest.mock('../hooks/use_feature_intro', () => ({ useFeatureIntro: () => ({ visible: false, dismiss: jest.fn() }) }));
 jest.mock('../app/feature_intro_registry', () => ({ featureIntroById: () => null }));
 jest.mock('../components/FeatureIntroModal', () => () => null);
+jest.mock('../components/PressableHybrid', () => {
+  const ReactTest = jest.requireActual<typeof import('react')>('react');
+  return {
+    __esModule: true,
+    default: ({ children, contentStyle, disabled, onPress, ...props }: any) => ReactTest.createElement(
+      'Pressable',
+      { ...props, disabled, onPress: disabled ? undefined : onPress, style: contentStyle },
+      children,
+    ),
+  };
+});
 jest.mock('../app/arena_telemetry', () => ({ trackArenaTelemetry: jest.fn() }));
 jest.mock('../modules/arena/telemetry', () => ({ arenaFeatureOpenEvent: () => ({}) }));
-jest.mock('../components/tournament/tournament_theme', () => ({ useTournamentPalette: () => ({ text: '#fff', muted: '#aaa', elev2: '#222', accent: '#8EEA63', okInk: '#07110A' }) }));
+jest.mock('../components/ui/v2_theme', () => ({ useTournamentPalette: () => ({ bg: '#000', text: '#fff', muted: '#aaa', elev: '#111', elev2: '#222', accent: '#8EEA63', accentText: '#07110A', okInk: '#07110A' }) }));
 jest.mock('../modules/arena/copy', () => ({ arenaText: (_lang: string, key: string) => ({ title: 'Arena', ranks: 'Ranks', quick: 'Quick', quickHint: 'Quick hint', subtitle: 'Arena subtitle', spinNow: 'Spin', hubOfflineHint: 'Fresh data returns when the network returns.', arenaNotDeployedHint: 'Server unavailable.', maintenanceHint: 'Maintenance.', reportBlockedHint: 'Update required.' }[key] ?? key) }));
 jest.mock('../modules/arena/expansion_copy', () => ({ arenaExpansionText: (_lang: string, key: string) => ({ todayTitle: 'Today', todayBody: 'Ten tasks', todayStart: 'Start today', todayContinue: 'Continue today', todayComplete: 'Complete', wallet: 'Wallet', activeMatch: 'Active match', activeQueue: 'Searching', ghost: 'Ghost', recordingBadge: 'Recording' }[key] ?? key) }));
 
 jest.mock('../app/arena_client', () => ({
   arenaV2Home: () => homeRequests.shift()!.promise,
   arenaExpansionHome: () => expansionRequests.shift()!.promise,
-  arenaFetchMatchHistory: () => new Promise(() => {}),
+  arenaFetchMatchHistory: () => historyRequests.shift()?.promise ?? new Promise(() => {}),
   arenaV2FriendsBoard: () => new Promise(() => {}),
-  arenaFlushOutbox: () => new Promise(() => {}),
-  arenaOutboxBlockedByUpdate: () => new Promise(() => {}),
+  arenaFlushOutbox: async () => 0,
+  arenaOutboxBlockedByUpdate: () => reportBlockRequests.shift()?.promise ?? Promise.resolve(false),
   arenaV2SpinClaim: jest.fn(),
   createArenaRequestId: () => 'request-id',
 }));
@@ -90,10 +103,14 @@ jest.mock('../modules/arena/home_cache', () => ({
   arenaWarmDayKey: () => '2026-08-20',
 }));
 
-jest.mock('../components/arena/ArenaHubChrome', () => ({ ArenaHubChrome: ({ children, matchBlocked, matchBlockedHint }: any) => h('View', null, h('Pressable', { testID: 'central-play', accessibilityRole: 'button', disabled: matchBlocked, accessibilityHint: matchBlockedHint }), children) }));
 jest.mock('../components/arena/ArenaScreen', () => ({ ArenaScreen: ({ children, headerRight }: any) => h('View', null, headerRight, children) }));
-jest.mock('../components/tournament/tournament_v2_ui', () => ({ V2Card: ({ children }: any) => h('View', null, children), V2Cta: ({ children, disabled, accessibilityHint, onPress }: any) => h('Pressable', { accessibilityRole: 'button', accessibilityLabel: children, disabled, accessibilityHint, onPress }, h('Text', null, children)) }));
-jest.mock('../components/arena/ArenaHubLive', () => ({ ArenaHubLive: ({ model }: any) => h('Text', { testID: 'hub-live' }, model.rank ? `rank:${model.rank.rp}` : 'rank:unknown') }));
+jest.mock('../components/ui/v2_ui', () => ({ V2Card: ({ children }: any) => h('View', null, children), V2Cta: ({ children, disabled, accessibilityHint, onPress }: any) => h('Pressable', { accessibilityRole: 'button', accessibilityLabel: children, disabled, accessibilityHint, onPress }, h('Text', null, children)) }));
+jest.mock('../components/arena/ArenaHubSummary', () => ({ ArenaHubSummary: ({ model }: any) => h('View', null,
+  h('Text', { testID: 'hub-live' }, model.rank ? `rank:${model.rank.rp}` : 'rank:unknown'),
+  h('Text', { testID: 'last-match' }, model.lastMatch?.matchId ?? 'match:unknown'),
+) }));
+jest.mock('../components/arena/ArenaModeSheet', () => ({ ArenaModeSheet: ({ visible, options, onSelect }: any) => visible ? h('View', null, ...options.map((option: any) => h('Pressable', { key: option.key, accessibilityRole: 'button', accessibilityLabel: option.title, disabled: option.disabled, accessibilityHint: option.body, onPress: () => onSelect(option.key) }))) : null }));
+jest.mock('../components/arena/ArenaHubOverflowSheet', () => ({ ArenaHubOverflowSheet: () => null }));
 jest.mock('../components/arena/ArenaDailyGoals', () => ({ ArenaDailyGoals: ({ model }: any) => h('Text', { testID: 'daily-goals' }, model ? 'daily:known' : 'daily:unknown') }));
 jest.mock('../components/arena/ArenaConnectionNotice', () => ({ ArenaConnectionNotice: ({ onRetry }: any) => h('Pressable', { testID: 'arena-hub-offline', accessibilityRole: 'button', accessibilityLabel: 'Retry', onPress: onRetry }, h('Text', null, 'Offline')) }));
 jest.mock('../components/arena/ArenaExpansionUI', () => ({
@@ -108,6 +125,8 @@ describe('ArenaHubScreen offline-first orchestration', () => {
   beforeEach(() => {
     homeRequests.length = 0;
     expansionRequests.length = 0;
+    historyRequests.length = 0;
+    reportBlockRequests.length = 0;
     diskWarm = new Promise(() => {});
     memoryWarm = null;
     rememberWarm.mockClear();
@@ -127,14 +146,13 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     await screen.unmount();
   });
 
-  it('keeps yesterday rank and wallet but removes daily claims and active run', async () => {
+  it('keeps yesterday rank but removes daily claims and active run', async () => {
     memoryWarm = { savedDayKey: '2026-08-19', home: home(), expansion: expansion({ activeRun: { runId: 'old', runKind: 'today' } }) };
     homeRequests.push(deferred());
     expansionRequests.push(deferred());
     const screen = await render(h(ArenaHubScreen));
 
     expect(screen.getByTestId('hub-live').props.children).toBe('rank:900');
-    expect(screen.getByTestId('wallet').props.children).toBe('Wallet:20');
     expect(screen.getByTestId('daily-goals').props.children).toBe('daily:unknown');
     expect(screen.getByTestId('today-progress').props.children).toBe('unknown');
     expect(screen.queryByLabelText('Continue today')).toBeNull();
@@ -155,8 +173,8 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     });
 
     expect(screen.getByTestId('arena-hub-offline')).toBeTruthy();
-    expect(screen.getByTestId('central-play').props.disabled).toBe(true);
-    expect(screen.getByTestId('central-play').props.accessibilityHint).toBe('Fresh data returns when the network returns.');
+    expect(screen.getByTestId('arena-hub-play').props.accessibilityHint).toBe('Fresh data returns when the network returns.');
+    await fireEvent.press(screen.getByTestId('arena-hub-play'));
     expect(screen.getByLabelText('Quick').props.disabled).toBe(true);
     expect(screen.getByLabelText('Quick').props.accessibilityHint).toBe('Fresh data returns when the network returns.');
     expect(screen.getByLabelText('Start today').props.disabled).toBe(true);
@@ -200,32 +218,81 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     });
 
     expect(screen.getByTestId('hub-live').props.children).toBe('rank:777');
-    expect(screen.getByTestId('wallet').props.children).toBe('Wallet:77');
     expect(rememberWarm).not.toHaveBeenCalled();
     await screen.unmount();
   });
 
-  it('makes the real central match control unavailable with its reason and restores its press action when enabled', async () => {
-    const onMatch = jest.fn();
-    const tabs = [
-      { key: 'rating' as const, icon: 'podium-outline' as const, active: 'podium' as const, label: 'Ranks' },
-      { key: 'history' as const, icon: 'time-outline' as const, active: 'time' as const, label: 'History' },
-    ];
-    const screen = await render(h(ArenaTabBar, { tabs, active: 'rating', matchLabel: 'Play', matchBusy: true, matchDisabledHint: 'Fresh data returns when the network returns.', onSelect: jest.fn(), onMatch }));
-    const blocked = screen.getByTestId('arena-tab-match');
-    expect(blocked.props.accessibilityState).toEqual({ disabled: true });
-    expect(blocked.props.accessibilityHint).toBe('Fresh data returns when the network returns.');
-    // The host Pressable has no native press handler while disabled; RNTL's
-    // fireEvent intentionally bubbles past disabled hosts, unlike RN itself.
-    expect(blocked.props.onPress).toBeUndefined();
-    expect(onMatch).not.toHaveBeenCalled();
+  it('keeps the last visible match when a retry cannot refresh history', async () => {
+    const firstHome = deferred<any>(); const firstExpansion = deferred<any>();
+    const firstHistory = deferred<any[]>();
+    const retryHome = deferred<any>(); const retryExpansion = deferred<any>();
+    const retryHistory = deferred<any[]>();
+    homeRequests.push(firstHome, retryHome);
+    expansionRequests.push(firstExpansion, retryExpansion);
+    historyRequests.push(firstHistory, retryHistory);
+    const screen = await render(h(ArenaHubScreen));
+    await flush();
 
-    await screen.rerender(h(ArenaTabBar, { tabs, active: 'rating', matchLabel: 'Play', matchBusy: false, onSelect: jest.fn(), onMatch }));
-    const enabled = screen.getByTestId('arena-tab-match');
-    expect(enabled.props.accessibilityState).toEqual({ disabled: false });
-    expect(enabled.props.accessibilityHint).toBeUndefined();
-    await fireEvent.press(enabled);
-    expect(onMatch).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      firstHome.reject(new Error('network offline'));
+      firstExpansion.reject(new Error('network offline'));
+      firstHistory.resolve([{ matchId: 'kept', outcome: 'win', settledAtMs: 10, reward: {} }]);
+      await flush();
+    });
+    expect(screen.getByTestId('last-match').props.children).toBe('kept');
+
+    await act(async () => {
+      screen.getByTestId('arena-hub-offline').props.onPress();
+      retryHome.reject(new Error('network offline'));
+      retryExpansion.reject(new Error('network offline'));
+      retryHistory.reject(new Error('history offline'));
+      await flush();
+    });
+
+    expect(screen.getByTestId('last-match').props.children).toBe('kept');
+    await screen.unmount();
+  });
+
+  it('keeps actions unavailable until the pending-report guard is known', async () => {
+    const homeRequest = deferred<any>(); const expansionRequest = deferred<any>();
+    const reportBlocked = deferred<boolean>();
+    homeRequests.push(homeRequest); expansionRequests.push(expansionRequest); reportBlockRequests.push(reportBlocked);
+    const screen = await render(h(ArenaHubScreen));
+    await act(async () => {
+      homeRequest.resolve(home());
+      expansionRequest.resolve(expansion());
+      await flush();
+    });
+
+    const play = screen.getByTestId('arena-hub-play');
+    expect(play.props.accessibilityHint).toBe('valueUnknown');
+    await fireEvent.press(play);
+    expect(screen.getByLabelText('Quick').props.disabled).toBe(true);
+    expect(screen.getByLabelText('Quick').props.accessibilityHint).toBe('valueUnknown');
+
+    await act(async () => {
+      reportBlocked.resolve(false);
+      await flush();
+    });
+    expect(screen.getByLabelText('Quick').props.disabled).toBe(false);
+    await screen.unmount();
+  });
+
+  it('allows the central control to resume an active match during maintenance', async () => {
+    const homeRequest = deferred<any>(); const expansionRequest = deferred<any>();
+    homeRequests.push(homeRequest); expansionRequests.push(expansionRequest);
+    const screen = await render(h(ArenaHubScreen));
+    await act(async () => {
+      homeRequest.resolve(home({
+        availability: { ...home().availability, enabled: false },
+        activeMatch: { matchId: 'resume-me' },
+      }));
+      expansionRequest.resolve(expansion());
+      await flush();
+    });
+
+    await fireEvent.press(screen.getByTestId('arena-hub-play'));
+    expect(pushed).toContainEqual({ pathname: '/arena_match', params: { matchId: 'resume-me' } });
     await screen.unmount();
   });
 

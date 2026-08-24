@@ -12,7 +12,7 @@ import Animated, {
   interpolateColor,
   Easing,
 } from 'react-native-reanimated';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticLightImpact, hapticSuccess } from '../../hooks/use-haptics';
 
@@ -116,7 +116,10 @@ function ArenaComboMeterBase({
   const tint = heat > 0.5 ? P.gold : P.accent;
   return (
     <View style={size === 'compact' ? styles.holderCompact : styles.holder}>
-      <Animated.View pointerEvents="none" style={[styles.glow, glowStyle, { backgroundColor: tint }]} />
+      <Animated.View
+        pointerEvents="none"
+        style={[styles.glow, size === 'compact' ? styles.glowCompact : null, glowStyle, { backgroundColor: tint }]}
+      />
       <Animated.View
         accessibilityLiveRegion="polite"
         accessibilityLabel={active ? `${streak}. ${bonusLabel}` : String(streak)}
@@ -127,6 +130,7 @@ function ArenaComboMeterBase({
           {streak}
         </Text>
         {active && size !== 'compact' ? (
+          // eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- compact authored bonus label stays on one HUD line; the full value is exposed by accessibilityLabel above
           <Text numberOfLines={1} style={[styles.bonus, { color: tint }]}>{bonusLabel}</Text>
         ) : null}
       </Animated.View>
@@ -138,8 +142,10 @@ export const ArenaComboMeter = memo(ArenaComboMeterBase);
 
 const styles = StyleSheet.create({
   holder: { minHeight: 34, alignItems: 'center', justifyContent: 'center' },
-  holderCompact: { minHeight: 26, alignItems: 'center', justifyContent: 'center' },
+  // Свечение и scale-анимация целиком живут внутри 72 pt даже у правого края HUD.
+  holderCompact: { width: 72, minHeight: 30, alignItems: 'center', justifyContent: 'center' },
   glow: { position: 'absolute', width: 120, height: 34, borderRadius: 17 },
+  glowCompact: { width: 56, height: 26, borderRadius: 13 },
   plate: {
     minHeight: 32,
     borderRadius: 16,

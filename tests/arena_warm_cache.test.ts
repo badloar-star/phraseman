@@ -89,7 +89,6 @@ describe('экраны действительно пользуются сним�
   const SCREENS: readonly string[] = [
     'app/arena_history.tsx',
     'app/arena_tops.tsx',
-    'app/arena_review.tsx',
   ];
 
   it('каждый берёт первый кадр из снимка и сохраняет свежий', () => {
@@ -105,8 +104,9 @@ describe('экраны действительно пользуются сним�
    * почти всегда правда, а свежее приезжает той же секундой; покупку он не
    * решает — цену и остаток проверяет сервер.
    */
-  it('магазин и партнёр тоже открываются снимком', () => {
-    for (const screen of ['app/arena_star_wallet.tsx', 'app/arena_partner.tsx']) {
+  it('магазин тоже открывается снимком', () => {
+    // зачем короче (владелец, 2026-08-16): /arena_partner удалён.
+    for (const screen of ['app/arena_star_wallet.tsx']) {
       const source = read(screen);
       expect(source).toContain('arenaPeekWarm');
       expect(source).toContain('arenaRememberWarm');
@@ -121,18 +121,21 @@ describe('экраны действительно пользуются сним�
    */
   it('слова «Загрузка» нет НИ НА ОДНОМ экране Арены', () => {
     for (const screen of [
-      ...SCREENS, 'app/arena.tsx', 'app/arena_ranks.tsx', 'app/arena_match.tsx',
+      ...SCREENS, 'components/arena/ArenaHubSurface.tsx', 'app/arena_ranks.tsx', 'app/arena_match.tsx',
       'app/arena_results.tsx', 'app/arena_season_pass.tsx', 'app/arena_star_wallet.tsx',
-      'app/arena_partner.tsx', 'app/arena_today.tsx', 'app/arena_matchmaking.tsx',
+      'app/arena_today.tsx', 'app/arena_matchmaking.tsx',
     ]) {
       expect(read(screen)).not.toContain("arenaText(lang, 'loading')");
       expect(read(screen)).not.toContain("arenaExpansionText(lang, 'loading')");
     }
   });
 
-  /** Конец матча — не загрузка: считать уже нечего, счёт на экране. */
-  it('после матча написано, что идёт отправка итога', () => {
-    expect(read('app/arena_match.tsx')).toContain("'sendingResult'");
+  /** Конец матча — не отдельный loading-экран: целостный итог открывается атомарным handoff. */
+  it('после матча нет промежуточной загрузки перед целостным итогом', () => {
+    const source = read('app/arena_match.tsx');
+    expect(source).toContain('arenaResultHandoffReady(response, plan.mode)');
+    expect(source).toContain('openCoherentResult(response);');
+    expect(source).not.toContain("arenaText(lang, 'loading')");
   });
 
   /**
@@ -141,8 +144,10 @@ describe('экраны действительно пользуются сним�
    * выглядят настоящими.
    */
   it('разбор проверяет, что снимок про тот же матч', () => {
-    expect(read('app/arena_review.tsx')).toContain('readReviewWarm');
-    expect(read('app/arena_review.tsx')).toContain("matchId?: unknown }).matchId !== matchId");
+    const source = read('app/arena_review.tsx');
+    expect(source).toContain('arenaPeekScopedReview(reviewScope, matchId');
+    expect(source).toContain('arenaRememberScopedReview({ scope: reviewScope, matchId');
+    expect(source).toContain("account.phase === 'active' && account.stableId");
   });
 
   it('ранги берут ранг из снимка главного экрана, а не пишут «Загрузка»', () => {

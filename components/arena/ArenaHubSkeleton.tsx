@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import SkeletonBlock from '../SkeletonShimmer';
-import type { TournamentV2 } from '../tournament/tournament_theme';
+import type { TournamentV2 } from '../ui/v2_theme';
 
 /**
  * Первый кадр хаба Арены, пока нет ни тёплого снимка, ни ответа сети.

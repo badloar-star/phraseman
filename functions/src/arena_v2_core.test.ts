@@ -244,16 +244,52 @@ describe('Arena V2 pure product contract', () => {
   it('enforces spin eligibility, odds boundaries, day cap, and pity 80', () => {
     // Владелец (2026-08-12): шанс против бота выровнен с человеческим (50 bps),
     // иначе бота вычисляли бы по статистике дропов.
-    expect(arenaRareSpin({ mode: 'quick', opponentKind: 'bot', rewardEligible: true,
+    expect(arenaRareSpin({ mode: 'quick', opponentKind: 'bot', outcome: 'win', rewardEligible: true,
       submittedAnswers: 8, dropsToday: 0, rollBps: 49, pityBefore: 0 }).awarded).toBe(true);
-    expect(arenaRareSpin({ mode: 'quick', opponentKind: 'bot', rewardEligible: true,
+    expect(arenaRareSpin({ mode: 'quick', opponentKind: 'bot', outcome: 'win', rewardEligible: true,
       submittedAnswers: 8, dropsToday: 0, rollBps: 50, pityBefore: 0 }).awarded).toBe(false);
-    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', rewardEligible: true,
+    // Минимум ответов и дневной кап держат ranked-победу так же, как раньше.
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'win', rewardEligible: true,
       submittedAnswers: 7, dropsToday: 0, rollBps: 0, pityBefore: 79 })).toEqual({ awarded: false, pityAfter: 79 });
-    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', rewardEligible: true,
-      submittedAnswers: 8, dropsToday: 0, rollBps: 9_999, pityBefore: 79 })).toEqual({ awarded: true, pityAfter: 0 });
-    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', rewardEligible: true,
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'win', rewardEligible: true,
       submittedAnswers: 10, dropsToday: 1, rollBps: 0, pityBefore: 12 })).toEqual({ awarded: false, pityAfter: 12 });
+  });
+
+  /**
+   * Владелец (2026-08-23): спин за ranked-победу над реальным игроком —
+   * ГАРАНТИЯ, а не шанс. Раньше `ranked_human` шёл через тот же rollBps (100
+   * bps = 1%) с догоняющим pity на 80-м матче: игрок мог выиграть сотню
+   * рейтинговых матчей и не увидеть ни одного спина.
+   */
+  it('always awards the ranked spin for a human win, regardless of roll', () => {
+    // Худший возможный ролл и пустой pity — награда всё равно обязана выпасть.
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'win', rewardEligible: true,
+      submittedAnswers: 8, dropsToday: 0, rollBps: 9_999, pityBefore: 0 })).toEqual({ awarded: true, pityAfter: 0 });
+    // Гарантия не зависит и от HMAC-ключа: rollBps = -1 (ключ не настроен).
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'win', rewardEligible: true,
+      submittedAnswers: 10, dropsToday: 0, rollBps: -1, pityBefore: 0 }).awarded).toBe(true);
+  });
+
+  /**
+   * Гарантия добавлена ПОВЕРХ прежней шкалы, а не вместо неё. Ranked без
+   * победы (поражение, ничья, матч против бота) сохраняет тот же шанс
+   * 100 bps и догоняющий pity, что был до правки 2026-08-23: у владельца не
+   * было задачи отобрать награду у проигравших, только гарантировать её
+   * победителю.
+   */
+  it('keeps the old ranked odds for every outcome that is not a human win', () => {
+    // Ролл внутри порога — награда по шансу, как раньше.
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'loss', rewardEligible: true,
+      submittedAnswers: 10, dropsToday: 0, rollBps: 99, pityBefore: 0 }).awarded).toBe(true);
+    // Ролл вне порога — награды нет, но pity растёт и однажды догонит.
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'draw', rewardEligible: true,
+      submittedAnswers: 10, dropsToday: 0, rollBps: 100, pityBefore: 5 })).toEqual({ awarded: false, pityAfter: 6 });
+    // Догоняющая гарантия на 80-м матче осталась ровно там же.
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'human', outcome: 'loss', rewardEligible: true,
+      submittedAnswers: 10, dropsToday: 0, rollBps: 9_999, pityBefore: 79 })).toEqual({ awarded: true, pityAfter: 0 });
+    // Победа над ботом в рейтинге гарантии не даёт — только шанс.
+    expect(arenaRareSpin({ mode: 'ranked', opponentKind: 'bot', outcome: 'win', rewardEligible: true,
+      submittedAnswers: 10, dropsToday: 0, rollBps: 9_999, pityBefore: 0 }).awarded).toBe(false);
   });
 
   it('runs the quick match for eight balanced tasks and keeps ranked at ten', () => {

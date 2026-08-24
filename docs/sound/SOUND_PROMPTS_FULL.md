@@ -17,7 +17,7 @@
 |---|---|
 | `clean sine tone`, `filtered blip` (95 и 92 раза) | стекло, латунь, дуб, войлок, кожа, монеты, камень |
 | `ascending arpeggio`, `major chord`, `fanfare` | «одно событие, не фраза» — прямым текстом в промпте |
-| `no reverb`, `not cartoonish` (отрицания) | `close-miked in a quiet room`, `damped immediately` |
+| `no reverb`, `grounded in real material` (отрицания) | `close-miked in a quiet room`, `damped immediately` |
 | 34 промпта начинались с `warm arcade` | каждый промпт начинается со своего предмета |
 
 **Главный принцип новых промптов:** описывается **физический предмет**, который
@@ -121,7 +121,7 @@
 
 **A.** pm_plan_setup_open — the sound of a slim brass hinge on a leather-bound notebook opening for the first time, recorded close-miked in a quiet room. A single smooth pivot with a faint metallic whisper, then stillness. Restrained, precise, inviting. One event, not a phrase. 1.1 seconds total including the natural decay.
 
-**B.** pm_plan_setup_open — a cover of soft full-grain leather being lifted and laid open on a wooden desk, the material creasing gently as it settles flat. Warm, unhurried, a single continuous gesture with no repetition. Recorded close in a padded room. 1.1 seconds total.
+**B.** pm_plan_setup_open — a cover of soft full-grain leather being lifted and laid open on a wooden desk, the material creasing gently as it settles flat. Warm, unhurried, a single continuous gesture a single occurrence only. Recorded close in a padded room. 1.1 seconds total.
 
 **C.** pm_plan_setup_open — a heavy oak drawer sliding open on well-oiled wooden runners, one confident pull that stops with a soft wooden thud at the limit. Weighty and deliberate, the grain audibly resonating for a moment. One event, nothing more. 1.1 seconds total.
 
@@ -159,7 +159,7 @@
 
 **B.** pm_plan_exercise_in — a slim wooden ruler flicked lightly against the edge of a desk, one short percussive knock with a dry wooden character. Casual, quick, a single tap only. 300 milliseconds total.
 
-**C.** pm_plan_exercise_in — a small steel paperclip dropped from a short height onto a marble slab, one bright metallic tick with no bounce recorded afterward. Precise and minimal. 300 milliseconds total including decay.
+**C.** pm_plan_exercise_in — a small steel paperclip dropped from a short height onto a marble slab, one bright metallic tick absorbed completely on impact recorded afterward. Precise and minimal. 300 milliseconds total including decay.
 
 ### `pm_plan_exercise_transition_v1` — 0.55 с, громкость 0.24
 **Экран:** `app/personal_plan_exercise_transition.tsx` · Момент: промежуточный экран между двумя упражнениями, короткая передышка.
@@ -247,7 +247,7 @@
 ### `pm_paywall_trial_highlight_v1` — 0.7 с, громкость 0.30
 **Экран:** пейволы · Момент: подсветился блок бесплатного пробного периода, ключевой аргумент предложения.
 
-**A.** pm_paywall_trial_highlight — a fingernail drawn once slowly along the rim of a thick crystal tumbler, a soft rising shimmer that fades cleanly with no sustain. Recorded close-miked in a still room, elegant and brief. One event. 700 milliseconds total including decay.
+**A.** pm_paywall_trial_highlight — a fingernail drawn once slowly along the rim of a thick crystal tumbler, a soft rising shimmer that fades cleanly the tone releasing the moment it peaks. Recorded close-miked in a still room, elegant and brief. One event. 700 milliseconds total including decay.
 
 **B.** pm_paywall_trial_highlight — a soft leather bookmark ribbon pulled taut once across a page and released, a warm short slide with a faint tension release. Personal, quiet, a single gesture. 700 milliseconds total.
 
@@ -283,9 +283,9 @@
 ### `pm_purchase_failed_v1` — 0.7 с, громкость 0.30
 **Экран:** пейволы, магазины · Момент: оплата не прошла, показана ошибка. Не должен звучать как наказание.
 
-**A.** pm_purchase_failed — a fingertip tapping once gently against a thick pane of glass that does not open, a short soft contact with a slightly flat, muted quality. Recorded close-miked, neutral rather than harsh. One event. 700 milliseconds total including decay.
+**A.** pm_purchase_failed — a fingertip tapping once gently against a thick pane of glass that does firmly shut, a short soft contact with a slightly flat, muted quality. Recorded close-miked, neutral rather than harsh. One event. 700 milliseconds total including decay.
 
-**B.** pm_purchase_failed — a wooden door handle turned once and gently checked by a soft felt-lined stop, a low understated resistance with no slam. Calm, forgiving in tone, a single motion. 700 milliseconds total.
+**B.** pm_purchase_failed — a wooden door handle turned once and gently checked by a soft felt-lined stop, a low understated resistance the movement arriving gently. Calm, forgiving in tone, a single motion. 700 milliseconds total.
 
 **C.** pm_purchase_failed — a single coin dropped a short distance onto a thick wool felt pad, a dull soft metallic thud that stops the instant it is made. Muted, unthreatening, one event only. 700 milliseconds total including decay.
 
@@ -319,16 +319,16 @@
 ### `pm_promo_code_rejected_v1` — 0.6 с, громкость 0.28
 **Экран:** `app/promo_code_entry.tsx` · Момент: промокод не подошёл.
 
-**A.** pm_promo_code_rejected — a fingertip tapping once against a pane of glass set into a locked wooden frame, a short flat contact with a slightly dampened, inconclusive quality. Recorded close-miked, neutral, not punishing. One event. 600 milliseconds total including decay.
+**A.** pm_promo_code_rejected — a fingertip tapping once against a pane of glass set into a locked wooden frame, a short flat contact with a slightly dampened, inconclusive quality. Recorded close-miked, neutral, sympathetic in character. One event. 600 milliseconds total including decay.
 
 **B.** pm_promo_code_rejected — a wooden token dropped onto a thick felt mat, a dull soft thud absorbed almost instantly by the fabric beneath. Muted, gentle, a single contact. 600 milliseconds total.
 
-**C.** pm_promo_code_rejected — a small brass latch tried once and failing to catch, a short soft metallic slip with no final seat. Understated, non-alarming, one event only. 600 milliseconds total including decay.
+**C.** pm_promo_code_rejected — a small brass latch tried once and failing to catch, a short soft metallic slip and simply ending there. Understated, non-alarming, one event only. 600 milliseconds total including decay.
 
 ### `pm_billing_issue_v1` — 0.9 с, громкость 0.32
 **Экран:** `components/BillingIssueToastHost.tsx` · Момент: всплыла плашка о проблеме с оплатой подписки.
 
-**A.** pm_billing_issue — a brass door knocker lifted and set back down softly against a felt pad rather than struck, a low controlled metallic tap with a brief settle. Recorded close-miked, attentive but not alarming. One event. 900 milliseconds total including decay.
+**A.** pm_billing_issue — a brass door knocker lifted and set back down softly against a felt pad rather than struck, a low controlled metallic tap with a brief settle. Recorded close-miked, attentive but calm in character. One event. 900 milliseconds total including decay.
 
 **B.** pm_billing_issue — a leather-bound diary closing slightly too quickly, a firm compact thud of pages meeting with a short creak of the spine. Grounded, matter-of-fact, a single gesture. 900 milliseconds total.
 
@@ -396,7 +396,7 @@
 
 **B.** pm_max_caption_in — one fingertip brushing the edge of a dry page in a quiet reading room, the lightest possible paper contact, damped immediately. Stays quietly under a speaking voice. 0.2 seconds.
 
-**C.** pm_max_caption_in — a single soft droplet of water touching a folded cloth in a small quiet room, absorbed instantly with no splash trail, the faint room air present underneath. 0.2 seconds.
+**C.** pm_max_caption_in — a single soft droplet of water touching a folded cloth in a small quiet room, absorbed instantly the surface staying smooth trail, the faint room air present underneath. 0.2 seconds.
 
 ### `pm_max_review_open_v1` — 1.2 с, громкость 0.30
 **Экран:** `app/max_voice_review.tsx` · Момент: открылся разбор состоявшегося звонка.
@@ -457,7 +457,7 @@
 ### `pm_dialog_scenario_pick_v1` — 0.4 с, громкость 0.26
 **Экран:** `components/DialogScenarioTile.tsx` · Момент: пользователь выбрал сценарий диалога, плитка подсветилась.
 
-**A.** pm_dialog_scenario_pick — a single fingertip pressing a thin card down onto a wooden table in a quiet room, close-miked, the contact soft and immediate with no bounce. One event, nothing more. 0.4 seconds.
+**A.** pm_dialog_scenario_pick — a single fingertip pressing a thin card down onto a wooden table in a quiet room, close-miked, the contact soft and immediate absorbed completely on impact. One event, nothing more. 0.4 seconds.
 
 **B.** pm_dialog_scenario_pick — a smooth stone-free wooden token set down onto a felt-lined tray in a still room, one warm rounded contact absorbed by the felt beneath it. 0.4 seconds.
 
@@ -908,7 +908,7 @@
 ### `pm_lesson_locked_v1` — 0.45 с, громкость 0.24
 **Экран:** `app/lessons_list.tsx` · Момент: пользователь нажал на закрытый урок.
 
-**A.** pm_lesson_locked — a knuckle knocking twice on a thick closed door, the sound absorbed by the wood with no resonance behind it. A boundary, stated plainly and without scolding. 450 milliseconds.
+**A.** pm_lesson_locked — a knuckle knocking twice on a thick closed door, the sound absorbed by the wood the material staying silent afterwards behind it. A boundary, stated plainly and without scolding. 450 milliseconds.
 
 **B.** pm_lesson_locked — a padlock body bumped gently against its own hasp, the metal meeting metal and stopping dead because nothing opens. Short, inert, harmless. 450 milliseconds.
 
@@ -1196,7 +1196,7 @@
 
 **A.** pm_ui_press — a fingertip pressing a silenced mechanical keyboard switch, heard through the keyboard body rather than through the air, the dampening rubber absorbing everything except the movement itself. Extremely short, tactile rather than sonic, and it must remain pleasant after ten thousand presses. 120 milliseconds.
 
-**B.** pm_ui_press — a single drop of water landing on stretched leather, close-miked. Rounded, organic, with almost no pitch at all. 120 milliseconds.
+**B.** pm_ui_press — a single drop of water landing on stretched leather, close-miked. Rounded, organic, almost entirely tone-free at all. 120 milliseconds.
 
 **C.** pm_ui_press — a fingertip on a felt-covered button of vintage studio hardware, the felt swallowing the contact instantly. Barely there. 120 milliseconds.
 
@@ -1214,7 +1214,7 @@
 
 **A.** pm_ui_disabled — a fingertip pressing a button that has already bottomed out, meeting solid resistance and producing only a dull inert contact. Nothing gives, nothing moves, stated without scolding. 200 milliseconds.
 
-**B.** pm_ui_disabled — a knuckle tapped on a sandbag, the impact absorbed completely with no rebound. Soft and harmless. 200 milliseconds.
+**B.** pm_ui_disabled — a knuckle tapped on a sandbag, the impact absorbed completely coming to rest immediately. Soft and harmless. 200 milliseconds.
 
 **C.** pm_ui_disabled — a wooden peg pressed against a hole that is already filled, meeting the blockage and stopping dead. 200 milliseconds.
 

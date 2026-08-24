@@ -14,7 +14,7 @@
 // поправь и здесь, иначе витрина начнёт врать. Общий источник — данные и
 // resolveSaveOffer, а не копия логики.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -75,6 +75,8 @@ export default function DevCancelFlowPreview() {
   const [runIndex, setRunIndex] = useState<number | null>(null);
   /** Показать, что в бою здесь был бы выход в системный экран магазина. */
   const [storeNotice, setStoreNotice] = useState(false);
+  /** Замок навигации: двойной тап не должен открывать экран обращения дважды. */
+  const navBusyRef = useRef(false);
 
   const progress = PROGRESS_PRESETS[preset];
 
@@ -114,8 +116,12 @@ export default function DevCancelFlowPreview() {
    * витрина делалась именно для этого.
    */
   const acceptOffer = useCallback(() => {
+    if (navBusyRef.current) return;
     hapticTap();
     if (offer === 'support') {
+      // Тот же замок, что в боевом экране: двойной тап открывал бы экран
+      // обращения двумя слоями. Снимаем при следующем открытии сценария.
+      navBusyRef.current = true;
       setOpenedReason(null);
       setRunIndex(null);
       router.push('/ideas_submit');
@@ -141,6 +147,7 @@ export default function DevCancelFlowPreview() {
     hapticTap();
     // Пометка с прошлого прогона сбивала бы с толку: гасим на старте нового.
     setStoreNotice(false);
+    navBusyRef.current = false;
     setOpenedReason(null);
     setRunIndex(runnableScenarios.length > 0 ? 0 : null);
   }, [runnableScenarios.length]);
@@ -202,7 +209,7 @@ export default function DevCancelFlowPreview() {
               <TouchableOpacity
                 key={scenario.key}
                 accessibilityRole="button"
-                onPress={() => { hapticTap(); setStoreNotice(false); setRunIndex(null); setOpenedReason(scenario.key); }}
+                onPress={() => { hapticTap(); navBusyRef.current = false; setStoreNotice(false); setRunIndex(null); setOpenedReason(scenario.key); }}
                 style={[S.card, { backgroundColor: `${chrome.tc.heroAccent}10` }]}
               >
                 <View style={S.cardText}>

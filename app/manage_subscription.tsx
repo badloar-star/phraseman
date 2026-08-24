@@ -212,6 +212,11 @@ export default function ManageSubscription() {
   const [cancelStep, setCancelStep] = useState<'reasons' | 'offer'>('reasons');
   const [saveOffer, setSaveOffer] = useState<SaveOfferKind>('none');
   const [offerProgress, setOfferProgress] = useState<SaveOfferProgress | null>(null);
+  // зачем (2026-08-24): шит закрывается синхронно, но кадр с кнопкой ещё живёт —
+  // быстрый двойной тап успевал вызвать router.push дважды и открыть экран
+  // обращения двумя слоями. Ref, а не state: не требует перерисовки и не
+  // проигрывает гонку внутри одного кадра.
+  const saveOfferBusyRef = useRef(false);
   const screenAccountRef = useRef(screenAccount);
 
   useEffect(() => {
@@ -238,6 +243,9 @@ export default function ManageSubscription() {
       setCancelStep('reasons');
       setSaveOffer('none');
       setOfferProgress(null);
+      // Иначе взведённый тапом замок пережил бы смену аккаунта и новый владелец
+      // не смог бы нажать ни одну кнопку удержания.
+      saveOfferBusyRef.current = false;
       setScreenAccount(next);
     };
     acceptAccount(captureAccountGeneration());
@@ -388,6 +396,9 @@ export default function ManageSubscription() {
       return;
     }
     void trackEvent('cancel_save_offer_shown', { reason: cancelReason ?? 'unknown', offer });
+    // Замок снимаем ровно тогда, когда показываем шаг: следующий заход в отмену
+    // (человек вернулся на экран) обязан снова работать.
+    saveOfferBusyRef.current = false;
     setOfferProgress(progress);
     setSaveOffer(offer);
     setCancelStep('offer');
@@ -395,6 +406,8 @@ export default function ManageSubscription() {
 
   /** Человек остаётся. Никаких тарифов и сумм — только продукт и поддержка. */
   const acceptSaveOffer = useCallback(() => {
+    if (saveOfferBusyRef.current) return;
+    saveOfferBusyRef.current = true;
     hapticTap();
     void trackEvent('cancel_save_offer_accepted', { reason: cancelReason ?? 'unknown', offer: saveOffer });
     if (saveOffer === 'support') {
@@ -409,6 +422,8 @@ export default function ManageSubscription() {
 
   /** Отказ от удержания — уход в магазин остаётся живым и одним тапом. */
   const declineSaveOffer = useCallback(() => {
+    if (saveOfferBusyRef.current) return;
+    saveOfferBusyRef.current = true;
     hapticTap();
     void trackEvent('cancel_save_offer_declined', { reason: cancelReason ?? 'unknown', offer: saveOffer });
     openStoreCancel();

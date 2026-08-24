@@ -95,3 +95,87 @@ describe('удержание не работает с ценами', () => {
     }
   });
 });
+
+// ── Защита кнопок шага удержания (аудит логики 2026-08-24) ──────────────────
+// Тесты читают исходник экрана: полноценный рендер RN-компонента здесь
+// недоступен (jest ловит только *.test.ts, а 17 файлов *.test.tsx не
+// запускаются — см. package.json testMatch). Поэтому сторожим структуру кода:
+// она дешёвая, но ловит ровно те регрессии, которые уже случались.
+describe('кнопки шага удержания защищены от двойного тапа', () => {
+  const screen = fs.readFileSync(
+    path.join(__dirname, '..', 'app', 'manage_subscription.tsx'),
+    'utf8',
+  );
+
+  it('обе кнопки проверяют замок перед действием', () => {
+    // Быстрый двойной тап успевал вызвать router.push дважды: шит закрывается
+    // синхронно, но кадр с кнопкой ещё живёт.
+    const guards = screen.match(/if \(saveOfferBusyRef\.current\) return;/g) ?? [];
+    expect(guards.length).toBe(2);
+  });
+
+  it('замок объявлен до первого использования', () => {
+    // const в TDZ: использование выше объявления роняет экран в рантайме.
+    const declaration = screen.indexOf('const saveOfferBusyRef = useRef(false)');
+    const firstUse = screen.indexOf('saveOfferBusyRef.current = false');
+    expect(declaration).toBeGreaterThan(-1);
+    expect(firstUse).toBeGreaterThan(declaration);
+  });
+
+  it('замок снимается при показе шага и при смене аккаунта', () => {
+    // Иначе кнопки залипают навсегда: один раз нажал — больше не работают.
+    const releases = screen.match(/saveOfferBusyRef\.current = false;/g) ?? [];
+    expect(releases.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('уход в стор — единственная точка выхода, и он закрывает шит', () => {
+    expect(screen).toContain('const openStoreCancel');
+    expect(screen).toMatch(/openStoreCancel[\s\S]{0,200}closeCancelSheet\(\)/);
+  });
+
+  it('смена аккаунта сбрасывает шаг, предложение и прогресс', () => {
+    // Класс бага «чужие пиксели»: новый владелец устройства не должен видеть
+    // серию/уроки/опыт прошлого аккаунта.
+    const resetBlock = screen.slice(
+      screen.indexOf('setCancelReason(null)'),
+      screen.indexOf('setScreenAccount(next)'),
+    );
+    expect(resetBlock).toContain("setCancelStep('reasons')");
+    expect(resetBlock).toContain("setSaveOffer('none')");
+    expect(resetBlock).toContain('setOfferProgress(null)');
+  });
+});
+
+describe('витрина отписки повторяет боевое поведение', () => {
+  const preview = fs.readFileSync(
+    path.join(__dirname, '..', 'app', '_dev_cancel_flow_preview.tsx'),
+    'utf8',
+  );
+
+  it('«Написать нам» ведёт на настоящий экран обращения', () => {
+    // Регрессия 24.08: обе кнопки витрины вели на closeSheet, и главный
+    // переход — тот, ради которого витрина и делалась — не проверялся.
+    expect(preview).toContain("router.push('/ideas_submit')");
+  });
+
+  it('кнопки витрины различаются по действию', () => {
+    expect(preview).toContain('onPress={acceptOffer}');
+    expect(preview).toContain('onPress={declineOffer}');
+  });
+
+  it('витрина не открывает системный магазин', () => {
+    // Увело бы из приложения и ничего не показало: вместо этого — пометка.
+    expect(preview).not.toContain('Linking.openURL');
+    expect(preview).toContain('setStoreNotice');
+  });
+
+  it('витрина не работает с ценами', () => {
+    const code = preview
+      .split('\n')
+      .filter((line) => !line.trimStart().startsWith('//') && !line.trimStart().startsWith('*'))
+      .join('\n');
+    for (const banned of [/yearly/i, /discount/i, /скидк/i, /promo/i]) {
+      expect(code).not.toMatch(banned);
+    }
+  });
+});

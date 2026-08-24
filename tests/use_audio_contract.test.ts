@@ -103,13 +103,19 @@ describe('useAudio TTS resiliency', () => {
     expect(phraseAudioSource).toContain("cb?.onError?.(new Error('phrase clip failed to start'))");
   });
 
-  it('skips remote phrase audio immediately until connectivity is confirmed online', () => {
+  it('skips remote phrase audio only on a CONFIRMED offline, never on unknown', () => {
     expect(phraseAudioSource).toContain("import { getNetStatus } from '../app/net_status'");
-    expect(phraseAudioSource).toContain("if (getNetStatus() !== 'online') return null");
-    expect(phraseAudioSource).toContain("if (!cachedUri && getNetStatus() !== 'online') return false");
+    expect(phraseAudioSource).toContain("if (getNetStatus() === 'offline') return null");
+    expect(phraseAudioSource).toContain("if (!cachedUri && getNetStatus() === 'offline') return false");
     expect(phraseAudioSource.indexOf('if (file.exists)')).toBeLessThan(
-      phraseAudioSource.indexOf("if (getNetStatus() !== 'online') return null"),
+      phraseAudioSource.indexOf("if (getNetStatus() === 'offline') return null"),
     );
+    // Регрессия, ради которой этот тест и существует: `!== 'online'` считает
+    // стартовый статус 'unknown' за офлайн. Проба сети запускается только при
+    // первом подписчике, поэтому КАЖДЫЙ тап по озвучке до её ответа мгновенно
+    // падал на системный голос при живом интернете. Блокировать вправе только
+    // подтверждённый 'offline'.
+    expect(phraseAudioSource).not.toContain("getNetStatus() !== 'online'");
   });
 
   it('frees a failed native player immediately on the ExoPlayer idle-error signal', () => {

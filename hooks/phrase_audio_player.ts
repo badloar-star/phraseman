@@ -230,10 +230,17 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
     // fall through to download
   }
 
-  // Пока сеть не подтверждена как online, отсутствие файла в кэше окончательно:
-  // удалённый URL не открываем и сразу отдаём управление системному TTS. Это
-  // убирает многосекундную паузу при холодном старте без интернета.
-  if (getNetStatus() !== 'online') return null;
+  // Блокирует только ПОДТВЕРЖДЁННЫЙ офлайн: при нём удалённый URL не открываем и
+  // сразу отдаём управление системному TTS — так убирается многосекундная пауза
+  // при холодном старте без интернета.
+  //
+  // зачем: 'unknown' (статус до первой пробы сети) раньше попадал сюда вместе с
+  // 'offline' из-за условия `!== 'online'`. Проба стартует только при первом
+  // подписчике, поэтому КАЖДЫЙ тап по озвучке до её ответа мгновенно падал на
+  // системный голос при живом интернете. Теперь unknown = «пробуем»: скачивание
+  // и так прикрыто DOWNLOAD_TIMEOUT_MS, а вызывающая сторона — своим таймером
+  // фолбэка. Так же трактует статус hooks/phrase_audio_prefetch.ts.
+  if (getNetStatus() === 'offline') return null;
 
   let nativeDownload = inFlightDownloads.get(key);
   if (!nativeDownload) {
@@ -290,7 +297,9 @@ export async function ensurePhraseAudioCached(text: string, url: string): Promis
   } catch {
     // повреждённая запись — просто перекачаем
   }
-  if (getNetStatus() !== 'online') return false;
+  // зачем: см. разбор в getCachedOrDownload — 'unknown' не равен офлайну,
+  // иначе фоновая докачка не стартует до первой пробы сети.
+  if (getNetStatus() === 'offline') return false;
 
   let nativeDownload = inFlightDownloads.get(identity);
   if (!nativeDownload) {
@@ -363,7 +372,9 @@ export async function playPhraseByText(
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
   if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) return true;
-  if (!cachedUri && getNetStatus() !== 'online') return false;
+  // зачем: последний рубеж перед стримом с URL. Отдаём фразу системному TTS
+  // только при подтверждённом офлайне; на 'unknown' пробуем сыграть клип.
+  if (!cachedUri && getNetStatus() === 'offline') return false;
   const source: string = cachedUri ?? url;
 
   const voiceClaim = claimSpokenAudio(stopPhraseAudio);

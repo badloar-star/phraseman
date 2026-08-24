@@ -13,9 +13,14 @@ import { VERIFIED_COURSE_PACK_REMOTE_ENABLED } from './course_pack_loader';
 const STORAGE_HOST = 'https://firebasestorage.googleapis.com';
 const BUCKET = 'phraseman-ea0b3.firebasestorage.app';
 
-// The staging/shadow prefix the verified pack was uploaded to. This is a
-// staging copy (activationApproved=false); a production prefix is a later step.
-const PLAN_CONTENT_PREFIX = 'course-packs/plan_content/en/ru/staging.shadow.20260628.1';
+// зачем: Фаза 1 «Бандл-диеты» (docs/plans/2026-08-24-bundle-diet-plan.md) —
+// релизный пак, собранный scripts/export_plan_content_packs.mjs из ТЕКУЩЕГО
+// бандл-контента (546 дней, sha256 по canonicalCoursePackContent) и выгруженный
+// scripts/upload_plan_content_pack_to_storage.mjs. Префикс версионный и
+// неизменяемый: новая версия контента = новый экспорт + новый префикс здесь
+// (пока bundled-фолбэк жив, контент едет и в бандле — расхождений не бывает).
+// Прежний staging-префикс June'26 (staging.shadow.20260628.1) устарел от него.
+const PLAN_CONTENT_PREFIX = 'course-packs/plan_content/en/ru/release.20260824.e4381599';
 const MANIFEST_OBJECT = `${PLAN_CONTENT_PREFIX}/manifest.json`;
 
 export type PlanContentRemoteRegistration = {

@@ -93,4 +93,38 @@ describe('HomeRuneBalance', () => {
     expect(flatten(withReserve.getByTestId('a').props.style).minHeight).toBe(46);
     expect(flatten(compact.getByTestId('b').props.style).minHeight).toBeUndefined();
   });
+
+  // зачем: iconSize — не косметика, а решение вёрстки. В шапке Арены он 22, а не
+  // дефолтные 30: на 320pt вьетнамский заголовок «Đấu trường» с пятизначным
+  // балансом уезжал на вторую строку. Молчаливая потеря проброса вернула бы
+  // регрессию незаметно.
+  it('honours custom icon and value sizes instead of the header defaults', async () => {
+    const def = await render(
+      <HomeRuneBalance testID="def" balance={7} color="#fff" accessibilityLabel="def" />,
+    );
+    const small = await render(
+      <HomeRuneBalance
+        testID="small"
+        balance={7}
+        color="#fff"
+        iconSize={22}
+        valueSize={12}
+        accessibilityLabel="small"
+      />,
+    );
+
+    const flatten = (style: unknown): Record<string, unknown> => (Array.isArray(style)
+      ? Object.assign({}, ...style.filter(Boolean))
+      : (style as Record<string, unknown>) ?? {});
+
+    const defIcon = flatten(def.getByTestId('home-rune-asset', { includeHiddenElements: true }).props.style);
+    const smallIcon = flatten(small.getByTestId('home-rune-asset', { includeHiddenElements: true }).props.style);
+    expect(defIcon.width).toBe(30);
+    expect(defIcon.height).toBe(30);
+    expect(smallIcon.width).toBe(22);
+    expect(smallIcon.height).toBe(22);
+
+    expect(flatten(def.getByTestId('home-rune-balance-value').props.style).fontSize).toBe(14);
+    expect(flatten(small.getByTestId('home-rune-balance-value').props.style).fontSize).toBe(12);
+  });
 });

@@ -2687,6 +2687,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : 0;
         const homeLeagueChestReady = homeLeagueChestPct >= 100;
         const homeLeagueChestAccent = homeLeagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
+        // Одна метка на кнопку карточки и на чип рун: чип свою группу
+        // доступности отдаёт (standaloneA11y={false}), звучит только кнопка.
+        // Слово склоняется общим runeAmount — наивный шаблон читал «1 рун».
+        const homeLeagueRunesA11yLabel = `${triLang(lang, {
+            ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
+            vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
+        })}: ${runeAmount(lang, runesBalance)}`;
         const homeLeagueChestFill = homeLeagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
         const openHomeProfile = () => {
             hapticTap();
@@ -3503,7 +3510,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 onPress={() => { hapticTap(); nav.push('/league_screen'); }}
                 style={{ borderRadius: 24, overflow: 'hidden' }}
                 accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
+                // зачем (аудит 2026-08-24): метка была одним названием — незрячий
+                // не слышал ни прогресс, ни баланс, хотя оба нарисованы в карточке.
+                accessibilityLabel={`${triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}, ${homeLeagueChest.leagueName}, ${homeLeagueChestPct}%. ${homeLeagueRunesA11yLabel}`}
               >
                 <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayLeagueCardMinHeight, borderRadius: 24, borderWidth: 0, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, overflow: 'hidden' }}>
                   <Image pointerEvents="none" source={menuImages.league} style={{ position: 'absolute', right: -8, top: -22, width: homeLeagueWatermarkSize, height: homeLeagueWatermarkSize, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
@@ -3530,6 +3539,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       </Text>
                       {/* Иконка руны — тот же компонент, что в шапке Главной:
                           один источник ассета и формата числа на всё приложение. */}
+                      {/* зачем (аудит 2026-08-24): вся карточка — кнопка в лигу,
+                          поэтому чип НЕ объявляет свою группу доступности
+                          (standaloneA11y={false}): иначе VoiceOver нашёл бы
+                          отдельный фокус внутри кнопки. Баланс и процент звучат
+                          в метке самой кнопки — см. accessibilityLabel выше. */}
                       <HomeRuneBalance
                         testID="home-league-runes"
                         balance={runesBalance}
@@ -3537,12 +3551,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         iconSize={22}
                         valueSize={f.label}
                         reserveTapHeight={false}
-                        // Слово склоняется общим runeAmount: наивный шаблон читал
-                        // «1 рун» вместо «1 руна» (аудит 2026-08-24).
-                        accessibilityLabel={`${triLang(lang, {
-                          ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
-                          vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
-                        })}: ${runeAmount(lang, runesBalance)}`}
+                        standaloneA11y={false}
+                        accessibilityLabel={homeLeagueRunesA11yLabel}
                       />
                     </View>
                   </View>

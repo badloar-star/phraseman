@@ -100,6 +100,25 @@ type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; 
  */
 const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding', 'onboarding_plan']);
 
+/**
+ * Продажа «Phraseman Pro» (разовая покупка lifetime) СНЯТА С ВИТРИНЫ.
+ *
+ * Владелец 2026-08-24: «подписку Pro убери полностью», её место на пейволах
+ * занимает тариф MAX (карточка/плитка MAX уже живёт в PaywallPlanCards,
+ * PaywallPlanTiles и варианте E и уводит на /max_paywall).
+ *
+ * Это скрытие ПРОДАЖИ, а не отзыв доступа — прямое решение владельца:
+ * уже купившие Pro сохраняют полный доступ навсегда. Их премиум держится на
+ * entitlement RevenueCat (см. premium_guard/premium_revenuecat_state), а не на
+ * видимости этой карточки, поэтому здесь трогать нечего.
+ *
+ * зачем именно константа, а не только дефолт флага: флаг lifetime_button_enabled
+ * переопределяется из «Пульта» живьём, и случайный override вернул бы Pro на
+ * витрину незаметно. Код покупки lifetime намеренно оставлен рабочим — вернуть
+ * продажу можно снятием этой пломбы (одна строка) без разбора мёртвого кода.
+ */
+const LIFETIME_SALE_RETIRED = true;
+
 // Онбординг уже содержит собственный финальный экран и после покупки сразу
 // отдаёт управление приложению. Празднование Plus здесь стало бы вторым экраном
 // после подтверждённой покупки, что прямо запрещено контрактом онбординга.
@@ -394,7 +413,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // новичку на первом экране нужен выбор из двух (месяц/год), третий вариант
   // с ценой ×20 перегружает решение. Вне онбординга (после урока, энергия,
   // профиль) Pro остаётся — там пользователь уже вовлечён.
-  const lifetimeAvailable = lifetimeEnabled
+  const lifetimeAvailable = !LIFETIME_SALE_RETIRED
+    && lifetimeEnabled
     && !LIFETIME_HIDDEN_SOURCES.has(source)
     && (!!packages.lifetime || DEV_IAP_BYPASS);
 
@@ -469,7 +489,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     if (operationRef.current) return;
     // зачем: скрытый вариант нельзя купить ни при каких гонках — проверяем и
     // глобальный флаг, и гейт по источнику (в онбординге Pro скрыт).
-    if (selected === 'lifetime' && (!isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {
+    if (selected === 'lifetime' && (LIFETIME_SALE_RETIRED || !isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {
       setSelected('yearly');
       return;
     }

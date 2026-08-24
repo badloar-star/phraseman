@@ -273,15 +273,17 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
   league_startup_registration_enabled: true,
-  // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
-  // phraseman_premium_lifetime_v1 заведён в App Store + Google Play и привязан в
-  // RevenueCat (entitlement premium, пакет $rc_lifetime в default offering), т.е.
-  // условие «sell-switch» выполнено. Кнопка всё равно скрывается, если RevenueCat
-  // не вернёт пакет (см. lifetimeAvailable = флаг && !!packages.lifetime), так что
-  // в проде до одобрения Apple-продукта она не сломается. Выключение (Firestore-
-  // override «Пульт») прячет кнопку у всех без релиза/OTA — уже купившие сохраняют
-  // доступ (премиум держится на entitlement RevenueCat, а не на видимости кнопки).
-  lifetime_button_enabled: true,
+  // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт FALSE с 2026-08-24 —
+  // прямое решение владельца: подписку Pro убрать полностью, её место на витрине
+  // занимает тариф MAX. Это ИМЕННО скрытие продажи, а не отзыв доступа:
+  // уже купившие Pro сохраняют полный доступ навсегда, потому что премиум держится
+  // на entitlement RevenueCat, а не на видимости этой кнопки (см. premium_guard).
+  // Код покупки lifetime намеренно оставлен рабочим — Pro можно вернуть одним
+  // Firestore-override в «Пульте», без релиза/OTA.
+  // Дополнительный жёсткий гейт стоит в paywall_purchase → lifetimeAvailable
+  // (LIFETIME_SALE_RETIRED), чтобы случайный override в «Пульте» не вернул Pro
+  // на витрину незаметно для владельца.
+  lifetime_button_enabled: false,
   // «Объясни как для 5-летнего»: дефолт TRUE = kill-switch семантика (фича едет
   // с релизом во ВСЕХ сборках, не завязана на env-профиль EAS — раньше дефолт был
   // FALSE и фича пропадала в dev/preview-сборках без EXPO_PUBLIC_EXPLAIN_ENABLED).

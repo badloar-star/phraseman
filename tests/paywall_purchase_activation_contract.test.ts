@@ -108,8 +108,10 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     expect(sharedHook).toContain("if (plan === 'lifetime' && !lifetimeAvailable) return;");
     // Гейт покупки усилен 2026-07-27: помимо админ-килл-свитча учитывает источник
     // пейвола (в онбординге lifetime скрыт — значит и купить его нельзя).
+    // 2026-08-24 поверх встала пломба LIFETIME_SALE_RETIRED: владелец снял продажу
+    // Pro полностью, поэтому купить lifetime нельзя ни из какого источника.
     expect(sharedHook).toContain(
-      "if (selected === 'lifetime' && (!isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {",
+      "if (selected === 'lifetime' && (LIFETIME_SALE_RETIRED || !isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {",
     );
     expect(sharedHook).toContain("onAppEvent('remote_config_changed'");
     expect(sharedHook).toContain("if (!lifetimeAvailable && selected === 'lifetime') setSelected('yearly');");

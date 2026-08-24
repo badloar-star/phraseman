@@ -206,7 +206,6 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   dialog_analysis: 'chatbubbles',
   ai_voice_input: 'mic-circle',
   speaking: 'mic',
-  diagnosis_training: 'pulse',
   mistake_practice: 'refresh-circle',
   mastery: 'ribbon',
   stats: 'stats-chart',

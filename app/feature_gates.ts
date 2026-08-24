@@ -26,7 +26,6 @@ export type FeatureGate =
   | 'speaking'
   | 'ai_dialog'
   | 'personal_plan'
-  | 'diagnosis_training'
   | 'stats'
   | 'flashcards'
   | 'themes'
@@ -41,7 +40,6 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   speaking: 'gate_speaking_premium',
   ai_dialog: 'gate_ai_dialog_premium',
   personal_plan: 'gate_personal_plan_premium',
-  diagnosis_training: 'gate_diagnosis_training_premium',
   stats: 'gate_stats_premium',
   flashcards: 'gate_flashcards_premium',
   themes: 'gate_themes_premium',

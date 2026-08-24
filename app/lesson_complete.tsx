@@ -63,12 +63,10 @@ import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import ReviewPromptModal from '../components/ReviewPromptModal';
-import CoachToast from '../components/CoachToast';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
 import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
-import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
 import { finalizeLessonXpMultipliers } from './xp_manager';
@@ -591,22 +589,6 @@ export default function LessonComplete() {
   const params = useLocalSearchParams<{
     id: string;
     unlocked?: string;
-    coachCategory?: string;
-    coachMistakeCount?: string;
-    coachWeaknessScore?: string;
-    coachPriorityScore?: string;
-    coachRecoveryScore?: string;
-    coachFocusWords?: string;
-    coachMicroDiagnosis?: string;
-    coachMicroLabelRu?: string;
-    coachMicroLabelUk?: string;
-    coachMicroLabelEs?: string;
-    coachMicroLabelPtBr?: string;
-    coachMicroLabelVi?: string;
-    coachMicroLabelId?: string;
-    coachMicroLabelTr?: string;
-    coachMicroLabelPl?: string;
-    coachDiagnosisEvidenceCount?: string;
     earnedXp?: string | string[];
     earnedBaseXp?: string | string[];
     earnedMultipliers?: string | string[];
@@ -804,46 +786,6 @@ export default function LessonComplete() {
     return () => clearTimeout(timer);
   }, [pendingCardDrop, shownCardDrop, activeNotif, seqDone]);
 
-  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
-
-  useEffect(() => {
-    const decision = coachToastDecisionFromRouteParams({
-      coachCategory: params.coachCategory,
-      coachMistakeCount: params.coachMistakeCount,
-      coachWeaknessScore: params.coachWeaknessScore,
-      coachPriorityScore: params.coachPriorityScore,
-      coachRecoveryScore: params.coachRecoveryScore,
-      coachFocusWords: params.coachFocusWords,
-      coachMicroDiagnosis: params.coachMicroDiagnosis,
-      coachMicroLabelRu: params.coachMicroLabelRu,
-      coachMicroLabelUk: params.coachMicroLabelUk,
-      coachMicroLabelEs: params.coachMicroLabelEs,
-      coachMicroLabelPtBr: params.coachMicroLabelPtBr,
-      coachMicroLabelVi: params.coachMicroLabelVi,
-      coachMicroLabelId: params.coachMicroLabelId,
-      coachMicroLabelTr: params.coachMicroLabelTr,
-      coachMicroLabelPl: params.coachMicroLabelPl,
-      coachDiagnosisEvidenceCount: params.coachDiagnosisEvidenceCount,
-    });
-    setCoachToast(decision.show ? decision : null);
-  }, [
-    params.coachCategory,
-    params.coachMistakeCount,
-    params.coachWeaknessScore,
-    params.coachPriorityScore,
-    params.coachRecoveryScore,
-    params.coachFocusWords,
-    params.coachMicroDiagnosis,
-    params.coachMicroLabelRu,
-    params.coachMicroLabelUk,
-    params.coachMicroLabelEs,
-    params.coachMicroLabelPtBr,
-    params.coachMicroLabelVi,
-    params.coachMicroLabelId,
-    params.coachMicroLabelTr,
-    params.coachMicroLabelPl,
-    params.coachDiagnosisEvidenceCount,
-  ]);
   const scaleAnim  = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const bounceAnim = useRef(new Animated.Value(0)).current;
@@ -1787,35 +1729,6 @@ export default function LessonComplete() {
           router.push('/collectibles_screen' as any);
         }}
       />
-      {coachToast?.show && (
-        <CoachToast
-          category={coachToast.category}
-          labelRu={coachToast.labelRu}
-          labelUk={coachToast.labelUk}
-          labelEs={coachToast.labelEs}
-          labelPtBr={coachToast.labelPtBr}
-          labelVi={coachToast.labelVi}
-          labelId={coachToast.labelId}
-          labelTr={coachToast.labelTr}
-          labelPl={coachToast.labelPl}
-          mistakeCount={coachToast.mistakeCount}
-          weaknessScore={coachToast.weaknessScore}
-          priorityScore={coachToast.priorityScore}
-          recoveryScore={coachToast.recoveryScore}
-          focusWords={coachToast.focusWords}
-          microDiagnosisId={coachToast.microDiagnosisId}
-          microLabelRu={coachToast.microLabelRu}
-          microLabelUk={coachToast.microLabelUk}
-          microLabelEs={coachToast.microLabelEs}
-          microLabelPtBr={coachToast.microLabelPtBr}
-          microLabelVi={coachToast.microLabelVi}
-          microLabelId={coachToast.microLabelId}
-          microLabelTr={coachToast.microLabelTr}
-          microLabelPl={coachToast.microLabelPl}
-          diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
-          onDismiss={() => setCoachToast(null)}
-        />
-      )}
     </SafeAreaView>
     </ScreenGradient>
   );

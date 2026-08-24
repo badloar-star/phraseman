@@ -37,9 +37,6 @@ import {
   type WordCategory,
 } from './phrase_analytics';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
-import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
-import { frenchPersonalPracticeGateCopy, personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
-import { chooseDiagnosisForCategory } from './personal_practice_lesson_router';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { safeRouterBack } from './navigation_back';
@@ -193,14 +190,8 @@ function InsightRow({ insight }: { insight: PersonalInsight }) {
 
 function CategoryRow({
   stat,
-  router,
-  resolvedPersonalTrainings,
-  personalTrainingEnabled,
 }: {
   stat: WordCategoryStat;
-  router: Router;
-  resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
-  personalTrainingEnabled: boolean;
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -218,21 +209,7 @@ function CategoryRow({
   });
   const priorityScore = stat.priorityScore ?? stat.weaknessScore;
   const recoveryScore = stat.recoveryScore ?? 0;
-  const isWeak = priorityScore >= 55 || (stat.pct >= 15 && recoveryScore < 25);
   const pctOpacity = priorityScore >= 70 ? 1 : priorityScore >= 45 || stat.pct >= 15 ? 0.75 : 0.45;
-  const diagnosisId = isWeak && personalTrainingEnabled ? chooseDiagnosisForCategory(stat, resolvedPersonalTrainings) : null;
-  const openDiagnosis = () => {
-    if (!diagnosisId) return;
-    hapticTap();
-    router.push({
-      pathname: '/problem_coach',
-      params: {
-        microDiagnosisId: diagnosisId,
-        category: stat.category,
-      },
-    } as any);
-  };
-
   const inner = (
     <>
       <View style={styles.catMeta}>
@@ -246,60 +223,24 @@ function CategoryRow({
           {label}
         </Text>
         <ProgressBar pct={stat.pct} />
-        {diagnosisId && (
-          <View style={[styles.coachCta, { borderTopColor: t.border }]}>
-            <Ionicons name="school-outline" size={12} color={t.accent} />
-            <Text style={[styles.coachCtaText, { color: t.accent, fontSize: f.caption }]}>
-              {triLang(lang, {
-                ru: 'Персональное объяснение и упражнения',
-                uk: 'Персональне пояснення та вправи',
-                es: 'Explicación y ejercicios personalizados',
-                'pt-BR': 'Explicação e exercícios personalizados',
-                vi: 'Giải thích và bài tập cá nhân hóa',
-                id: 'Penjelasan dan latihan personal',
-                tr: 'Kişisel açıklama ve alıştırmalar',
-                pl: 'Personalne wyjaśnienie i ćwiczenia',
-              })}
-            </Text>
-            <Ionicons name="chevron-forward" size={12} color={t.accent} style={{ opacity: 0.6 }} />
-          </View>
-        )}
       </View>
     </>
   );
 
   return (
-    diagnosisId ? (
-      <TouchableOpacity
-        style={[
-          styles.catRow,
-          {
-            backgroundColor: t.bgCard,
-            borderColor: t.border,
-            borderRadius: rowRadius,
-            overflow: 'hidden',
-          },
-        ]}
-        onPress={openDiagnosis}
-        activeOpacity={0.86}
-      >
-        {inner}
-      </TouchableOpacity>
-    ) : (
-      <View
-        style={[
-          styles.catRow,
-          {
-            backgroundColor: t.bgCard,
-            borderColor: t.border,
-            borderRadius: rowRadius,
-            overflow: 'hidden',
-          },
-        ]}
-      >
-        {inner}
-      </View>
-    )
+    <View
+      style={[
+        styles.catRow,
+        {
+          backgroundColor: t.bgCard,
+          borderColor: t.border,
+          borderRadius: rowRadius,
+          overflow: 'hidden',
+        },
+      ]}
+    >
+      {inner}
+    </View>
   );
 }
 
@@ -388,18 +329,14 @@ export default function PhraseAnalyticsScreen() {
   const [cachedData, setCachedData] = useState<PhraseAnalyticsResult | null>(
     () => initialWarm?.value.data ?? null,
   );
-  const [cachedResolvedPersonalTrainings, setCachedResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(
-    () => initialWarm?.value.resolved ?? null,
-  );
   const data = loadedCacheKey === renderCacheKey ? cachedData : null;
-  const resolvedPersonalTrainings = loadedCacheKey === renderCacheKey ? cachedResolvedPersonalTrainings : null;
   const [loading, setLoading] = useState(() => initialWarm === null);
   const visibleLoading = loading || loadedCacheKey !== renderCacheKey;
   const [tab, setTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
-  const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
-  const analyticsSourceGateOpen = personalPracticeCoachEnabled;
-  const sourceGateCopy = frenchPersonalPracticeGateCopy(lang);
-  const showDevAudit = ENABLE_DEV_TOOLS && personalPracticeCoachEnabled;
+  // зачем: гейт закрывал разбор для French только потому, что для него не было
+  // персональных тренировок. Тренировки удалены вместе с разделом «Моя практика»
+  // (осколок 4ccd8c4f4), а французская аналитика самодостаточна — гейт снят.
+  const showDevAudit = ENABLE_DEV_TOOLS;
 
   const load = useCallback(async () => {
     const token = captureAccountGeneration();
@@ -410,7 +347,6 @@ export default function PhraseAnalyticsScreen() {
     if (warm && loadedCacheKey !== requestCacheKey) {
       setLoadedCacheKey(requestCacheKey);
       setCachedData(warm.value.data);
-      setCachedResolvedPersonalTrainings(warm.value.resolved);
     }
     if (warm?.isFresh) {
       setLoading(false);
@@ -418,25 +354,19 @@ export default function PhraseAnalyticsScreen() {
     }
     if (!warm) setLoading(true);
     try {
-      const [result, resolved] = await Promise.all([
-        analyticsSourceGateOpen
-          ? storageStudyTarget(studyTarget) === 'fr'
-            ? computeFrenchPhraseAnalytics({ sourceLocale })
-            : computePhraseAnalytics()
-          : Promise.resolve(null),
-        personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
-      ]);
-      if (commitPhraseAnalyticsWarm(request, { data: result, resolved })) {
+      const result = storageStudyTarget(studyTarget) === 'fr'
+        ? await computeFrenchPhraseAnalytics({ sourceLocale })
+        : await computePhraseAnalytics();
+      if (commitPhraseAnalyticsWarm(request, { data: result })) {
         setLoadedCacheKey(requestCacheKey);
         setCachedData(result);
-        setCachedResolvedPersonalTrainings(resolved);
       }
     } catch {
       // Quiet revalidation keeps the last known real data visible.
     } finally {
       if (isPhraseAnalyticsRequestCurrent(request)) setLoading(false);
     }
-  }, [analyticsSourceGateOpen, loadedCacheKey, personalPracticeCoachEnabled, renderCacheKey, sourceLocale, studyTarget, warmKey]);
+  }, [loadedCacheKey, renderCacheKey, sourceLocale, studyTarget, warmKey]);
 
   useFocusEffect(useCallback(() => { void load(); }, [load]));
 
@@ -570,19 +500,6 @@ export default function PhraseAnalyticsScreen() {
             </ContentWrap>
           </BouncyScrollView>
 
-        ) : !analyticsSourceGateOpen ? (
-          <View style={styles.center}>
-            <View style={[styles.emptyIconBox, { backgroundColor: t.accent + '18' }]}>
-              <Ionicons name="lock-closed-outline" size={40} color={t.accent} />
-            </View>
-            <Text style={[styles.emptyText, { color: t.textPrimary, fontSize: f.h2, fontWeight: '800' }]}>
-              {sourceGateCopy.title}
-            </Text>
-            <Text style={[styles.emptyText, { color: t.textSecond, fontSize: f.body }]}>
-              {sourceGateCopy.body}
-            </Text>
-          </View>
-
         ) : visibleLoading && !data ? (
           /* B7: скелетон первой загрузки — раньше первый кадр рисовал ложное «Пока нет данных» */
           (<View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
@@ -713,8 +630,6 @@ export default function PhraseAnalyticsScreen() {
                         key={stat.category}
                         stat={stat}
                         router={router}
-                        resolvedPersonalTrainings={resolvedPersonalTrainings}
-                        personalTrainingEnabled={personalPracticeCoachEnabled}
                       />
                     ))
                   )}

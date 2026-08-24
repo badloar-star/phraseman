@@ -10,7 +10,7 @@ const STATIC_SCREEN_NAMES = [
   'lingman_videos', 'manage_subscription', 'pack_opening', 'paywall_a', 'paywall_b', 'paywall_c',
   'paywall_d', 'paywall_e', 'paywall_f', 'paywall_g', 'max_paywall',
   'phrase_analytics_screen', 'premium_modal',
-  'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
+  'preposition_drill', 'privacy_screen', 'promo_code_entry',
   'referrals', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
   'mistake_practice_session',

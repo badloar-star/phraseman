@@ -2,7 +2,6 @@ import type { AccountGenerationToken } from './account_generation';
 import { isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import type { PhraseAnalyticsResult } from './phrase_analytics';
-import type { ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import {
   peekScreenSnapshotForToken,
   rememberScreenSnapshot,
@@ -14,7 +13,6 @@ const SCREEN_ID = 'phrase-analytics';
 
 export type PhraseAnalyticsWarmValue = {
   data: PhraseAnalyticsResult | null;
-  resolved: ResolvedPersonalTrainingsState | null;
 };
 
 type Entry = { key: string; value: PhraseAnalyticsWarmValue; updatedAt: number };

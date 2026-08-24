@@ -31,7 +31,6 @@ import { useEnergy } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
-import CoachToast from '../components/CoachToast';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
@@ -55,7 +54,6 @@ import { safeRouterBack } from './navigation_back';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
-import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { LESSON_DATA } from './lesson_data_all';
@@ -2754,7 +2752,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [voiceOut,   setVoiceOut]   = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
   const [allDone,    setAllDone]    = useState(false);
-  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
@@ -2862,15 +2859,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     });
     return () => task.cancel();
   }, [userNameProp]);
-
-  useEffect(() => {
-    if (!allDone) return;
-    let cancelled = false;
-    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru').then((decision) => {
-      if (!cancelled && decision.show) setCoachToast(decision);
-    });
-    return () => { cancelled = true; };
-  }, [allDone, lang, studyTarget]);
 
   const validQueue = useMemo(() => sanitizeTrainingQueue(queue), [queue]);
 
@@ -3090,7 +3078,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setChosen(null);
     applyLearnedCount(countLearnedWords(words, countsRef.current));
     setAllDone(false);
-    setCoachToast(null);
     wrongMistakesRef.current = [];
     locked.current = false;
     // [FeedbackKit] Новый прогон — разрешаем показать финальную мини-победу снова.
@@ -3179,35 +3166,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         }}
         confirmVariant="accent"
       />
-      {coachToast?.show && (
-        <CoachToast
-          category={coachToast.category}
-          labelRu={coachToast.labelRu}
-          labelUk={coachToast.labelUk}
-          labelEs={coachToast.labelEs}
-          labelPtBr={coachToast.labelPtBr}
-          labelVi={coachToast.labelVi}
-          labelId={coachToast.labelId}
-          labelTr={coachToast.labelTr}
-          labelPl={coachToast.labelPl}
-          mistakeCount={coachToast.mistakeCount}
-          weaknessScore={coachToast.weaknessScore}
-          priorityScore={coachToast.priorityScore}
-          recoveryScore={coachToast.recoveryScore}
-          focusWords={coachToast.focusWords}
-          microDiagnosisId={coachToast.microDiagnosisId}
-          microLabelRu={coachToast.microLabelRu}
-          microLabelUk={coachToast.microLabelUk}
-          microLabelEs={coachToast.microLabelEs}
-          microLabelPtBr={coachToast.microLabelPtBr}
-          microLabelVi={coachToast.microLabelVi}
-          microLabelId={coachToast.microLabelId}
-          microLabelTr={coachToast.microLabelTr}
-          microLabelPl={coachToast.microLabelPl}
-          diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
-          onDismiss={() => setCoachToast(null)}
-        />
-      )}
       {xpToastOverlay}
       {/* [FeedbackKit] Мини-победа «Слова закреплены» — карточка с пружиной,
           звук/конфетти, уходит сама или по тапу. Монтируется только на показ. */}

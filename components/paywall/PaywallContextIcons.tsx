@@ -99,7 +99,6 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
     { t: 'p', d: 'M26 11 a18 18 0 0 1 0 26', o: 0.75 },
     { t: 'p', d: 'M32 6 a25 25 0 0 1 0 36', o: 0.5 },
   ],
-  diagnosis_training: [{ t: 'p', d: 'M6 24 H14 L19 13 L26 35 L31 24 H42' }],
   mistake_practice: [
     { t: 'c', cx: 24, cy: 24, r: 16 },
     { t: 'p', d: 'M17 24 L22 29 L32 18' },

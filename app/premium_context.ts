@@ -27,8 +27,6 @@ export type PremiumContext =
   | 'speaking'
   /** Personal practice of captured learner errors. */
   | 'mistake_practice'
-  /** Personalized diagnosis training after the one free try. */
-  | 'diagnosis_training'
   /** Mastery — повторное прохождение урока за осколки либо безлимит на Premium. */
   | 'mastery'
   /** Стат-экран: heatmap, mistake patterns, percentiles за blur'ом. */
@@ -78,7 +76,6 @@ export const PREMIUM_CONTEXT_VALUES = [
   'ai_voice_input',
   'speaking',
   'mistake_practice',
-  'diagnosis_training',
   'mastery',
   'stats',
   'heatmap',

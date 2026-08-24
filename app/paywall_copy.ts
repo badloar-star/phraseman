@@ -43,7 +43,6 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   dialog_locked_level: { accent: '#58D6FF', accent2: '#FACC15', shardAmount: 180 },
   dialog_analysis: { accent: '#5EEAD4', accent2: '#F87171', shardAmount: 180 },
   ai_voice_input: { accent: '#67E8F9', accent2: '#A78BFA', shardAmount: 180 },
-  diagnosis_training: { accent: '#5EEAD4', accent2: '#60A5FA', shardAmount: 180 },
   mastery: { accent: '#86EFAC', accent2: '#FDE68A', shardAmount: 420 },
   stats: { accent: '#60A5FA', accent2: '#FDE68A', shardAmount: 180 },
   heatmap: { accent: '#34D399', accent2: '#A3E635', shardAmount: 180 },
@@ -217,15 +216,6 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleRu: 'Бесплатный диалог на сегодня пройден. Plus продолжает без дневной паузы — с разбором каждой реплики.',
     subtitleUk: 'Безкоштовний діалог на сьогодні пройдено. Plus продовжує без денної паузи — з розбором кожної репліки.',
     subtitleEs: 'El diálogo gratis de hoy está completo. Plus sigue sin pausa diaria, con análisis de cada frase.',
-  },
-  diagnosis_training: {
-    // Библия: «ошибка»→«разбор/что подтянуть», ≤10 слов/предложение, gain-framing.
-    titleRu: 'Разбирай слабые места без лимита',
-    titleUk: 'Розбирай слабкі місця без ліміту',
-    titleEs: 'Analiza tus puntos débiles sin límite',
-    subtitleRu: 'Plus открывает персональный разбор каждого слабого места. Понятное объяснение, верный вариант и тренировка на похожих фразах.',
-    subtitleUk: 'Plus відкриває персональний розбір кожного слабкого місця. Зрозуміле пояснення, правильний варіант і тренування на схожих фразах.',
-    subtitleEs: 'Plus abre un análisis personal de cada punto débil. Explicación clara, forma correcta y práctica con frases parecidas.',
   },
   mistake_practice: {
     titleRu: 'Исправляй свои ошибки в Plus',
@@ -456,16 +446,6 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
       id: 'Bersaing, dapatkan lebih banyak XP, dan tetap dalam ritme.',
       tr: 'Yarış, daha fazla XP kazan ve ritmini kaybetme.',
       pl: 'Rywalizuj, zdobywaj więcej XP i trzymaj rytm.',
-    },
-  },
-  diagnosis_training: {
-    title: { 'pt-BR': 'Novos pontos de melhoria no Plus', vi: 'Điểm cần cải thiện mới trong Plus', id: 'Titik berkembang baru ada di Plus', tr: 'Yeni gelişim noktaları Plus’da', pl: 'Nowe punkty wzrostu w Plus' },
-    subtitle: {
-      'pt-BR': 'A primeira análise pessoal é grátis. Plus abre cada ponto fraco: explicação clara, forma correta e prática com frases parecidas sem limite.',
-      vi: 'Phân tích cá nhân đầu tiên miễn phí. Plus mở từng điểm yếu: giải thích rõ, dạng đúng và luyện câu tương tự không giới hạn.',
-      id: 'Analisis personal pertama gratis. Plus membuka tiap titik lemah: penjelasan jelas, bentuk benar, dan latihan frasa mirip tanpa batas.',
-      tr: 'İlk kişisel analiz ücretsiz. Plus her zayıf noktayı açar: net açıklama, doğru biçim ve benzer ifadelerle sınırsız pratik.',
-      pl: 'Pierwsza analiza osobista jest darmowa. Plus otwiera każdy słabszy punkt: jasne wyjaśnienie, poprawną wersję i ćwiczenia na podobnych frazach bez limitu.',
     },
   },
   mistake_practice: {
@@ -946,11 +926,6 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     { ru: 'Понятный следующий шаг каждый день', uk: 'Зрозумілий наступний крок щодня', es: 'Un siguiente paso claro cada día', 'pt-BR': 'Um próximo passo claro todos os dias', vi: 'Mỗi ngày có bước tiếp theo rõ ràng', id: 'Langkah berikutnya jelas tiap hari', tr: 'Her gün net bir sonraki adım', pl: 'Jasny kolejny krok każdego dnia' },
     { ru: 'Плюс-опции сразу после активации', uk: 'Плюс-опції одразу після активації', es: 'Funciones Plus al instante', 'pt-BR': 'Funções Plus logo após ativar', vi: 'Tính năng Plus có ngay sau khi kích hoạt', id: 'Fitur Plus langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Plus özellikler', pl: 'Opcje Plus od razu po aktywacji' },
   ],
-  diagnosis_training: [
-    { ru: 'Каждое слабое место — точный персональный разбор', uk: 'Кожне слабке місце — точний персональний розбір', es: 'Cada punto débil tiene un análisis personal preciso', 'pt-BR': 'Cada ponto fraco vira uma análise pessoal precisa', vi: 'Mỗi điểm yếu thành phân tích cá nhân chính xác', id: 'Setiap titik lemah jadi analisis personal yang tepat', tr: 'Her zayıf nokta net kişisel analize dönüşür', pl: 'Każdy słaby punkt to dokładna analiza osobista' },
-    { ru: 'Понятное объяснение: где сбилась фраза и как сказать правильно', uk: 'Зрозуміле пояснення: де збилась фраза і як сказати правильно', es: 'Explicación clara: dónde falla la frase y cómo decirla bien', 'pt-BR': 'Explicação clara: onde a frase falhou e como corrigir', vi: 'Giải thích rõ: câu sai ở đâu và nói đúng thế nào', id: 'Penjelasan jelas: bagian frasa yang salah dan cara benarnya', tr: 'Net açıklama: ifade nerede bozuldu ve doğrusu ne', pl: 'Jasne wyjaśnienie: gdzie fraza się sypie i jak powiedzieć poprawnie' },
-    { ru: 'Тренировка на похожих фразах без лимита', uk: 'Тренування на схожих фразах без ліміту', es: 'Práctica con frases parecidas sin límite', 'pt-BR': 'Prática com frases parecidas sem limite', vi: 'Luyện câu tương tự không giới hạn', id: 'Latihan frasa mirip tanpa batas', tr: 'Benzer ifadelerle sınırsız pratik', pl: 'Ćwiczenia na podobnych frazach bez limitu' },
-  ],
   mistake_practice: [
     { ru: 'Все ошибки из уроков и карточек в одном месте', uk: 'Усі помилки з уроків і карток в одному місці', es: 'Todos tus errores de lecciones y tarjetas en un lugar', 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i fiszek w jednym miejscu' },
     { ru: 'Слова и фразы смешиваются автоматически', uk: 'Слова й фрази змішуються автоматично', es: 'Palabras y frases se mezclan automáticamente', 'pt-BR': 'Palavras e frases se misturam automaticamente', vi: 'Từ và câu được trộn tự động', id: 'Kata dan frasa dicampur otomatis', tr: 'Kelimeler ve ifadeler otomatik karışır', pl: 'Słowa i frazy mieszają się automatycznie' },
@@ -1126,11 +1101,6 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Mais prática sem limites', vi: 'Nhiều luyện tập hơn, không giới hạn', id: 'Lebih banyak latihan tanpa batas', tr: 'Sınırsız daha fazla pratik', pl: 'Więcej praktyki bez ograniczeń' },
     { 'pt-BR': 'Um próximo passo claro todos os dias', vi: 'Mỗi ngày có bước tiếp theo rõ ràng', id: 'Langkah berikutnya jelas tiap hari', tr: 'Her gün net bir sonraki adım', pl: 'Jasny kolejny krok każdego dnia' },
     { 'pt-BR': 'Funções Plus logo após ativar', vi: 'Tính năng Plus có ngay sau khi kích hoạt', id: 'Fitur Plus langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Plus özellikler', pl: 'Opcje Plus od razu po aktywacji' },
-  ],
-  diagnosis_training: [
-    { 'pt-BR': 'Pontos fracos viram análises pessoais precisas', vi: 'Điểm yếu thành phân tích cá nhân chính xác', id: 'Titik lemah jadi analisis personal yang tepat', tr: 'Zayıf noktalar net kişisel analizlere dönüşür', pl: 'Słabsze punkty zmieniają się w dokładne analizy osobiste' },
-    { 'pt-BR': 'Explicação clara: onde a frase saiu confusa e como melhorar', vi: 'Giải thích rõ: câu chưa tự nhiên ở đâu và cải thiện thế nào', id: 'Penjelasan jelas: bagian frasa yang kurang kuat dan cara memperbaikinya', tr: 'Net açıklama: ifade nerede zayıfladı ve nasıl güçlenir', pl: 'Jasne wyjaśnienie: gdzie fraza słabnie i jak ją poprawić' },
-    { 'pt-BR': 'Prática com frases parecidas sem limite', vi: 'Luyện câu tương tự không giới hạn', id: 'Latihan frasa mirip tanpa batas', tr: 'Benzer ifadelerle sınırsız pratik', pl: 'Ćwiczenia na podobnych frazach bez limitu' },
   ],
   mistake_practice: [
     { 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i fiszek w jednym miejscu' },

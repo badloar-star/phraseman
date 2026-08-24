@@ -101,7 +101,6 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/promo_code_entry',
   '/settings_edu',
   '/flashcards_voice_picker',
-  '/problem_coach',
   '/survey_screen',
   '/ai_dialog_briefing',
   '/ai_dialog_consent_gate',

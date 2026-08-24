@@ -126,7 +126,6 @@ export const SECTION: ShowcaseSection = {
     { id: 'promo-code-entry', title: cs('promo_code_entry_title'), kind: 'route', route: '/promo_code_entry', detail: cs('real_screen') },
     { id: 'diagnostic-test', title: cs('diagnostic_test_level_title'), kind: 'route', route: '/diagnostic_test', detail: cs('real_screen') },
     { id: 'exam-screen', title: cs('exam_screen_title'), kind: 'route', route: '/exam', detail: cs('real_screen') },
-    { id: 'problem-coach', title: cs('problem_coach_title'), kind: 'route', route: '/problem_coach', detail: cs('real_screen') },
     { id: 'survey-screen', title: cs('survey_screen_title'), kind: 'route', route: '/survey_screen', detail: cs('real_screen') },
     { id: 'ideas-submit', title: cs('ideas_submit_title'), kind: 'route', route: '/ideas_submit', detail: cs('real_screen') },
     { id: 'community-pack-create', title: cs('community_pack_create_title'), kind: 'route', route: '/community_pack_create', detail: cs('real_screen') },

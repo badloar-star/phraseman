@@ -64,7 +64,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   level_gifts_inventory: 'levelGifts',
   streak_stats: 'statistics',
   phrase_analytics_screen: 'statistics',
-  problem_coach: 'lessonPractice',
   club_screen: 'friends',
   league_screen: 'friends',
   settings_edu: 'settings',

@@ -2,7 +2,7 @@
 // зачем: каждый пункт запускает РЕАЛЬНУЮ поверхность приложения (не бутафорию).
 // Шард пополняется независимо от других (мультиагентная параллель без конфликтов).
 // Семья: ActionToast (5 типов через emitAppEvent('action_toast', …)),
-// AchievementToast, MedalToast (демо-медаль), CoachToast, InGameToast — render
+// AchievementToast, MedalToast (демо-медаль), InGameToast — render
 // с демо-пропсами; StreakRiskToastHost/BillingIssueToastHost — фоновые хосты
 // без своего UI, поэтому note с честной причиной (условия показа завязаны на
 // время суток / AsyncStorage / RevenueCat, безопасного мгновенного триггера нет).
@@ -15,7 +15,6 @@ import { actionToastTri, emitAppEvent } from '../../../../app/events';
 import { useTheme } from '../../../ThemeContext';
 import { useLang } from '../../../LangContext';
 import MedalToast from '../../../MedalToast';
-import CoachToast from '../../../CoachToast';
 import InGameToast from '../../../InGameToast';
 
 /** Обёртка-мост: MedalToast принимает Animated.Value (0→1) и themeMode из контекста темы.
@@ -38,27 +37,6 @@ function MedalToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () =>
       themeMode={themeMode}
       lang={lang}
       spanishUiActive={false}
-      onDismiss={onClose}
-      motionVariant={motionVariant}
-    />
-  );
-}
-
-function CoachToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () => void; motionVariant?: 'classic' | 'hybrid' }) {
-  return (
-    <CoachToast
-      category="verb"
-      labelRu={cs('coach_toast_demo_category_label')}
-      labelUk={"неправильні дієслова"} // pairedUK: перевод рядом
-      labelEs="verbos irregulares"
-      labelPtBr="verbos irregulares"
-      labelVi="động từ bất quy tắc"
-      labelId="kata kerja tidak beraturan"
-      labelTr="düzensiz fiiller"
-      labelPl="czasowniki nieregularne"
-      mistakeCount={4}
-      weaknessScore={78}
-      focusWords={['go — went', 'see — saw']}
       onDismiss={onClose}
       motionVariant={motionVariant}
     />
@@ -186,21 +164,6 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_component'),
       kind: 'render',
       render: ({ visible, onClose }) => (visible ? <MedalToastDemo onClose={onClose} motionVariant="hybrid" /> : null),
-    },
-    {
-      id: 'coach-toast',
-      title: cs('coach_toast_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (visible ? <CoachToastDemo onClose={onClose} /> : null),
-    },
-    {
-      id: 'coach-toast-hybrid',
-      approval: 'accepted',
-      title: cs('coach_toast_hybrid_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (visible ? <CoachToastDemo onClose={onClose} motionVariant="hybrid" /> : null),
     },
     {
       id: 'in-game-toast',

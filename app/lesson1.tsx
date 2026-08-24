@@ -67,7 +67,6 @@ import {
   shouldShowLessonTeachingNote,
   type ResolvedLessonTeachingNote,
 } from './lesson_teaching_notes';
-import { checkCoachToastNeededWithAnalytics, coachToastDecisionToRouteParams } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import {
@@ -3212,17 +3211,9 @@ function LessonScreen() {
         }, 'lesson1');
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
-        let coachRouteParams = {};
-        try {
-          const decision = await checkCoachToastNeededWithAnalytics(
-            lessonWrongMistakesRef.current,
-            studyTargetRef.current,
-            lang === 'uk' ? 'uk' : 'ru',
-          );
-          coachRouteParams = coachToastDecisionToRouteParams(decision);
-        } catch {
-          coachRouteParams = {};
-        }
+        // зачем: диагнозы тренера удалены вместе с разделом «Моя практика»
+        // (осколок коммита 4ccd8c4f4) — маршрут больше не несёт coach-параметров.
+        const coachRouteParams = {};
 
         const navigate = async () => {
           await Promise.all(pendingLessonXpAwardsRef.current);

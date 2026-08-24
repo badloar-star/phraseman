@@ -15,10 +15,6 @@ import { LESSON_NAMES_RU, LESSON_NAMES_UK, LESSON_NAMES_ES, lessonNamesForLang }
 import { DebugLogger } from './debug-logger';
 import { isUserFacingCategory, normalizeTokenKey, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot, type PosMasteryEntry } from './pos_workout_engine';
-import {
-  getPersonalTrainingResolvedAt,
-  loadResolvedPersonalTrainings,
-} from './diagnosis_training_progress';
 import type { PhraseWindowSummary } from './weekly_review_types';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { getStableId } from './stable_id';
@@ -611,7 +607,6 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
     for (const entry of await getPosMasterySnapshot()) {
       masteryByCategory.set(entry.category, entry);
     }
-    const resolvedPersonalTrainings = await loadResolvedPersonalTrainings();
 
     // ── Счётчики по категориям ────────────────────────────────────────────
     const catCount = new Map<WordCategory, number>();
@@ -634,13 +629,9 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
       const key = entry.phrase.trim().replace(/[.!?,;¿¡]+$/, '').toLowerCase();
       const indexEntry = phraseIndex?.get(key) ?? phraseIndex?.get(normalizePhraseKey(entry.phrase));
       const resolved = resolveEntryCategories(entry, indexEntry);
-      const activeCategories = resolved.categories.filter((cat) => {
-        const resolvedAt = getPersonalTrainingResolvedAt(resolvedPersonalTrainings, {
-          category: cat,
-          microDiagnosisId: entry.grammarTag,
-        });
-        return entry.ts > resolvedAt;
-      });
+      // зачем: диагнозы тренера удалены вместе с разделом «Моя практика» —
+      // «погашенных» тренировкой категорий больше нет, все ошибки активны.
+      const activeCategories = resolved.categories;
 
       if (resolved.categories.length > 0 && activeCategories.length === 0) {
         continue;

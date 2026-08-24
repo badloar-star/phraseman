@@ -50,6 +50,17 @@ export function validateSpinWeights(raw: unknown): WeightsValidation {
   if (Math.abs(sum - 100) > WEIGHTS_SUM_EPS) {
     return { ok: false, error: `SUM_MUST_BE_100 (got ${sum})` };
   }
+  // зачем (аудит 2026-08-24): сумма 100 сама по себе НЕ гарантирует, что розыгрыш
+  // выполним. На pity-спине (1-й и каждый 10-й) пул сужается до индексов >= PITY_MIN_INDEX,
+  // и веса вида [100,0,0,0,0,0] проходили валидацию, а referralSpinPickIndex потом падал
+  // с NO_POSITIVE_WEIGHTS внутри транзакции: игрок вместо приза видел ошибку.
+  // Требуем положительный вес в pity-пуле — конфиг, который нельзя разыграть, не сохраняется.
+  const pityPoolTotal = weights
+    .slice(PITY_MIN_INDEX)
+    .reduce((acc, w) => acc + w, 0);
+  if (pityPoolTotal <= 0) {
+    return { ok: false, error: `PITY_POOL_NEEDS_POSITIVE_WEIGHT (indices >= ${PITY_MIN_INDEX})` };
+  }
   return { ok: true, weights };
 }
 
@@ -115,28 +126,60 @@ export interface SpinDrawResult {
   reroll: boolean;
 }
 
+/** Суммарный вес индексов пула. Пул с нулевой суммой разыграть нельзя. */
+function poolWeightTotal(pool: readonly number[], weights: readonly number[]): number {
+  return pool.reduce((acc, i) => acc + (weights[i] ?? 0), 0);
+}
+
 /**
  * Полный чистый розыгрыш: pity-фильтр пула → weighted pick → джекпот-капы с reroll.
- * Бросает EMPTY_ALLOWED_POOL, если все индексы пула запрещены капами
- * (конфигурационная ошибка — на сервере превращается в internal с понятным логом).
+ *
+ * зачем (аудит 2026-08-24): раньше сужение пула (pity + джекпот-капы) могло оставить
+ * набор индексов с НУЛЕВЫМ суммарным весом, и referralSpinPickIndex бросал
+ * NO_POSITIVE_WEIGHTS прямо внутри серверной транзакции — игрок вместо приза получал
+ * ошибку. Пример: у игрока уже были джекпот и 180 дней (индексы 5 и 4 запрещены), а
+ * весь вес конфига сидит на них. Валидатор такое поймать не может: он не знает
+ * персональных капов. Поэтому здесь пул, который нельзя разыграть, честно
+ * расширяется — сначала снятием pity-сужения, затем откатом на дефолтные веса.
+ * Приоритет: выдать игроку приз, а не отказ.
  */
 export function spinDraw(input: SpinDrawInput): SpinDrawResult {
   const { weights, spinsUsedTotal, forbidden, rng } = input;
   const allIndices = REFERRAL_SPIN_PRIZE_DAYS.map((_, i) => i);
   const pity = spinsUsedTotal % PITY_PERIOD === 0;
-  const pool = pity ? allIndices.filter((i) => i >= PITY_MIN_INDEX) : allIndices;
+  const pityPool = allIndices.filter((i) => i >= PITY_MIN_INDEX);
 
-  let prizeIndex = referralSpinPickIndex(pool, weights, rng());
+  // Пул, в котором реально можно разыграть приз: pity-сужение снимается, если оно
+  // оставило нулевой вес (лучше отдать мелкий приз, чем отказать в спине).
+  const pool = pity && poolWeightTotal(pityPool, weights) > 0 ? pityPool : allIndices;
+  const effectivePity = pool === pityPool;
+
+  // Веса, которыми можно разыграть ЭТОТ пул. Если конфиг обнулил его целиком —
+  // берём дефолтные: они заведомо положительны на всех индексах.
+  const effectiveWeights = poolWeightTotal(pool, weights) > 0
+    ? weights
+    : REFERRAL_SPIN_DEFAULT_WEIGHTS;
+
+  let prizeIndex = referralSpinPickIndex(pool, effectiveWeights, rng());
   let reroll = false;
   if (forbidden.has(prizeIndex)) {
     const allowed = pool.filter((i) => !forbidden.has(i));
     if (allowed.length === 0) {
       throw new Error('EMPTY_ALLOWED_POOL: все призы пула запрещены джекпот-капами');
     }
-    prizeIndex = referralSpinPickIndex(allowed, weights, rng());
+    // Капы могли срезать как раз те индексы, на которых лежал весь вес.
+    const allowedWeights = poolWeightTotal(allowed, effectiveWeights) > 0
+      ? effectiveWeights
+      : REFERRAL_SPIN_DEFAULT_WEIGHTS;
+    prizeIndex = referralSpinPickIndex(allowed, allowedWeights, rng());
     reroll = true;
   }
-  return { prizeIndex, prizeDays: REFERRAL_SPIN_PRIZE_DAYS[prizeIndex] ?? 1, pity, reroll };
+  return {
+    prizeIndex,
+    prizeDays: REFERRAL_SPIN_PRIZE_DAYS[prizeIndex] ?? 1,
+    pity: effectivePity,
+    reroll,
+  };
 }
 
 /** Матожидание приза в днях (для админки: EV прокрута). */

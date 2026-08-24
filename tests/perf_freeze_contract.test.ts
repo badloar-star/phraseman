@@ -147,16 +147,19 @@ describe('perf freeze contract', () => {
 
   it('binds Friends and Settings network ownership to named runtime owners, not retired tab positions', () => {
     const arena = read('app/(tabs)/arena.tsx');
-    expect(arena).toContain("runtimeOwnerId === 'arena'");
+    expect(arena).toMatch(/runtimeOwnerId === ['"]arena['"]/);
 
     const friends = read('app/(tabs)/friends.tsx');
-    expect(friends).toContain("runtimeOwnerId === 'friends'");
+    expect(friends).toMatch(/runtimeOwnerId === ['"]friends['"]/);
     expect(friends).not.toContain('const friendsTabVisible = activeIdx === 3;');
 
     const settings = read('app/(tabs)/settings.tsx');
-    // зачем (аудит скорости 2026-08-22): settings.tsx фактически использует
-    // двойные кавычки для этого литерала — тест сторожил стиль, а не суть.
-    expect(settings).toContain('runtimeOwnerId === "settings"');
+    // зачем (2026-08-24): сторожим СУТЬ — привязку к именованному владельцу
+    // рантайма, а не стиль кавычек. Раньше тест требовал ровно двойные кавычки
+    // и упал после `fix(settings): вернул исходный стиль кавычек` (8397dd1c8),
+    // где файл вернулся к одинарным ради сканера локализации. Кавычки — забота
+    // форматтера, регрессия производительности — забота этого теста.
+    expect(settings).toMatch(/runtimeOwnerId === ['"]settings['"]/);
     expect(settings).not.toContain('const SETTINGS_TAB_IDX = 4;');
   });
 

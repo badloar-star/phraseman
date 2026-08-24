@@ -127,6 +127,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Słowo kameleon: zmień tylko ostatnią literę, a natychmiast zmienia swój własny rodzaj.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s04-word-verdadero",
+      targetText: "verdadero",
+      transcription: "/beɾðaˈðeɾo/",
+      playfulMeaningByLocale: copy({
+        ru: "Дальний родственник слова «правда», который решил стать прилагательным и обзавестись собственным гардеробом на -o и -a.",
+        uk: "Далекий родич слова «правда», який вирішив стати прикметником і обзавестися власним гардеробом на -o та -a.",
+        es: "A distant cousin of the word for truth that decided to become an adjective and get its own wardrobe of -o and -a.",
+        en: "A distant cousin of the word for truth that decided to become an adjective and get its own wardrobe of -o and -a.",
+        "pt-BR": "Um parente distante da palavra para verdade que decidiu virar adjetivo e ganhar seu próprio guarda-roupa de -o e -a.",
+        vi: "Người họ hàng xa của từ chỉ sự thật, quyết định trở thành tính từ và có tủ quần áo riêng gồm -o và -a.",
+        id: "Kerabat jauh dari kata untuk kebenaran yang memutuskan menjadi kata sifat dan punya lemari pakaian sendiri berisi -o dan -a.",
+        tr: "Doğruluk kelimesinin uzak akrabası, sıfat olmaya karar verip kendi -o ve -a gardırobunu edinmiş.",
+        pl: "Daleki krewny słowa oznaczającego prawdę, który postanowił zostać przymiotnikiem i dorobić się własnej garderoby z -o i -a.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

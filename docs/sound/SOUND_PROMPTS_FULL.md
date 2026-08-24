@@ -1,46 +1,59 @@
 # Phraseman — полная озвучка приложения: аудит и промпты
 
-Дата аудита: 2026-08-24
+Дата: 2026-08-24 · Редакция 2 (промпты переписаны полностью)
 Генератор: **Adobe Firefly Sounds**
 Реестр событий: `modules/audio/sound_events.ts`
 Формат ключа: `pm.<семейство>.<событие>` → файл `assets/audio/sfx/v1/<семейство>/<имя>_v1.m4a`
 
 ---
 
-## Как пользоваться этим документом
+## Что изменилось в редакции 2
 
-**Каждый промпт начинается с имени функции/события** — потому что Adobe кладёт
-первые слова промпта в название скачиваемого файла. Скачали пачку файлов с
-разными именами — по первым словам сразу видно, куда какой звук положить.
+Первая редакция провалилась: Firefly выдавал дешёвый писк, музыку вместо
+коротких звуков, и все звуки звучали одинаково. Причина — промпты были написаны
+языком синтезатора.
 
-Порядок работы:
+| Было в редакции 1 | Стало в редакции 2 |
+|---|---|
+| `clean sine tone`, `filtered blip` (95 и 92 раза) | стекло, латунь, дуб, войлок, кожа, монеты, камень |
+| `ascending arpeggio`, `major chord`, `fanfare` | «одно событие, не фраза» — прямым текстом в промпте |
+| `no reverb`, `not cartoonish` (отрицания) | `close-miked in a quiet room`, `damped immediately` |
+| 34 промпта начинались с `warm arcade` | каждый промпт начинается со своего предмета |
 
-1. Нашли нужный звук в документе (разделы ниже идут по экранам приложения).
-2. Взяли **один из трёх промптов** (A / B / C — три стиля, выбираете на слух).
-3. Сгенерировали в Firefly, скачали файл.
-4. Переименовали в `<имя файла>` из заголовка звука.
-5. Положили в папку из заголовка.
-6. Сказали мне — я подключу ключ в реестре одной строкой.
+**Главный принцип новых промптов:** описывается **физический предмет**, который
+издаёт звук, а не параметры синтеза. Не «чистый тон 400 мс», а «ноготь по краю
+толстого хрустального стакана, снято вплотную микрофоном в тихой комнате».
 
-Три стиля во всех промптах:
+Отрицания убраны сознательно: генераторы плохо их держат и часто выдают ровно
+запрещённое. Вместо «без реверберации» — «записано вплотную в тихой комнате».
 
-- **A — интерфейсный.** Минимализм, чистый синтез, ощущение дорогого софта.
-- **B — игровой.** Аркадная подача, тёплые тона, ближе к текущим звукам.
-- **C — кинематографичный.** Премиальная подача, слой воздуха и веса.
-
-Все промпты уникальны — ни один звук не повторяет другой ни описанием, ни
-характером. Промпты на английском: Firefly заметно точнее понимает английские
-описания звука.
-
-**Технические требования ко всем файлам:** моно, 48 кГц, формат m4a (или mp3 —
-сконвертирую), тишина в начале обрезана, нормализация −14 LUFS, пик −1 dBTP.
+Эталон качества: **звуки интерфейса Apple/iOS** — тихие, дорогие, физичные.
 
 ---
 
-## Результат аудита: что озвучено и что нет
+## Как пользоваться
 
-Проверено: 134 экрана в `app/`, 217 компонентов в корне `components/`,
-35 папок компонентов, 80 модалок/тостов/шторок.
+**Каждый промпт начинается с имени функции** — Adobe кладёт первые слова промпта
+в название скачиваемого файла. Скачали пачку — по именам сразу видно, что куда.
+
+1. Нашли звук в нужном разделе.
+2. Взяли **один из трёх** промптов (A / B / C — три разных предмета, не три
+   пересказа одного; выбираете на слух).
+3. Сгенерировали в Firefly, скачали файл.
+4. Переименовали в `<имя>_v1` из заголовка звука.
+5. Отдали мне — подключу ключ в реестре одной строкой.
+
+Три варианта устроены так: **A** — самый строгий и тихий, **B** — теплее
+(дерево, кожа, бумага), **C** — весомее (металл, камень, резонанс).
+
+**Технические требования:** моно, 48 кГц, m4a или mp3, тишина в начале обрезана,
+нормализация −14 LUFS, пик −1 dBTP.
+
+---
+
+## Результат аудита
+
+Проверено: 134 экрана в `app/`, 217 компонентов, 80 модалок и тостов.
 
 | Показатель | Значение |
 |---|---|
@@ -48,1351 +61,1161 @@
 | Из них **без звукового файла** (заглушка `null`) | **29** (вся Арена) |
 | Экранов из 134, где **нет ни одного звука** | **111** |
 | Модалок/тостов из 80, где **нет ни одного звука** | **72** |
-| Файлов приложения, где звук вызывается | ~50 |
+| Звуков в этом документе | **118** |
+| Промптов (по три на звук) | **354** |
 
 ### Что уже озвучено плотно (эталон)
 
 **Экран завершения урока** — `components/feedback/ResultsSequence.tsx` плюс
-таймлайн в `components/feedback/results_sequence_motion_plan.ts`. Там озвучен
-каждый шаг секвенции отдельным звуком:
+таймлайн в `components/feedback/results_sequence_motion_plan.ts`: медаль →
+звёзды по одной → старт XP-каунтера → тики → завершение → показ награды →
+распаковка подарка → множитель → апгрейд → финальный аккорд. Именно эту
+плотность документ распространяет на остальное приложение.
 
-медаль → звезда 1 → звезда 2 → звезда 3 → старт XP-каунтера → тики счётчика →
-завершение счётчика → показ активной награды → распаковка подарка → показ
-множителя → апгрейд множителя → финальный аккорд наград.
+### Крупнейшие дыры
 
-Именно эту плотность документ распространяет на всё остальное приложение.
-
-Также озвучены: спин уровня (8 звуков), паки карточек, лига (повышение/
-понижение/сундук), базовое обучение (верно/неверно/подсказка/таймер),
-голосовые сигналы, системные тосты, энергия, стрик, награды.
-
-### Что не озвучено вообще (крупные дыры)
-
-| Раздел | Экранов без звука | Комментарий |
-|---|---|---|
-| **Арена** | 29 событий-заглушек | Ключи расставлены, файлов нет — звучит тишина |
-| **Персональный план** | 13 | Целый продукт: настройка, теория, упражнения, квиз, финал |
-| **Пейволы** | 9 (`paywall_a`…`paywall_g`, premium_modal ×2) | Ни один показ/выбор/покупка не озвучены |
-| **MAX-звонок** | 8 | Прогрев, согласие, звонок, разбор, пейвол |
-| **Диалоги с ИИ** | 5 | Каталог, бриф, согласие, сессия, вердикт |
-| **Карточки (flashcards)** | 8 экранов | Каталог, паки, свайп, редактор, магазин |
-| **Магазины и валюты** | 5 | Магазин, осколки, обмен монет, руны, сезонный пропуск |
-| **Профиль и прогресс** | 7 | Достижения, коллекции, стрик, статистика, аккаунт |
-| **Настройки** | 6 | Темы, язык, уведомления, приватность, подписка |
-| **Соцчасть** | 6 | Клуб, лига, рефералы, приглашения, топы |
-| **Уроки-обвязка** | 9 | Список уроков, меню, теория, слова, глаголы, помощь |
-| **Онбординг** | 4 | Приветствие языка, старт, согласия |
+| Раздел | Экранов без звука |
+|---|---|
+| **Арена** | 29 событий-заглушек (ключи есть, файлов нет) |
+| **Персональный план** | 13 |
+| **Пейволы** | 9 |
+| **MAX-звонок** | 8 |
+| **Диалоги с ИИ** | 5 |
+| **Карточки** | 8 |
+| **Магазины и валюты** | 5 |
+| **Профиль и прогресс** | 7 |
+| **Настройки** | 6 |
+| **Соцчасть** | 6 |
+| **Уроки-обвязка** | 9 |
 
 ---
 
-## Важное ограничение: тап уже был отключён владельцем
+## Важно: нажатия ранее были отключены владельцем
 
-В `app/feedback/feedback_kit.ts` стоит явное решение:
+В `app/feedback/feedback_kit.ts` стоит прямое решение: «ЗВУК-«писк» при нажатии
+кнопок убран совсем — остаётся только тактильный отклик». Так же убраны `pop`,
+`whoosh` и звук ошибки.
 
-- `fk.tap()` — «ЗВУК-«писк» при нажатии кнопок убран совсем, остаётся только
-  тактильный отклик»;
-- `fk.pop()` — «звук 'pop' удалён»;
-- `fk.wrong()` — звук ошибки убирался по просьбе владельца;
-- `fk.transition()` — «звук 'whoosh' убран».
-
-Это совпадает с правилом «хаптик на управляющих кнопках, НЕ на плитках».
-Поэтому документ **не озвучивает каждое нажатие подряд**, а вместо этого даёт
-плотную озвучку по смыслу: появления, переходы, вердикты, накопления, награды,
-покупки, ошибки, завершения. Раздел 14 отдельно предлагает мягкий UI-слой из
-трёх звуков для нажатий — включать его или нет, решаете вы: это прямой возврат
-к тому, что раньше убрали.
+Поэтому основные разделы дают плотность **по смыслу** (появления, переходы,
+вердикты, накопления, покупки, завершения), а озвучка нажатий вынесена в
+раздел 14 отдельно — три звука на всё приложение, включаем только по решению
+владельца.
 
 ---
 
+## С чего начать
+
+1. **Арена (29)** — код уже расставлен и ждёт файлов, промпты в `docs/arena/SOUND_PROMPTS.md`
+2. **Пейволы и покупки (12)** — успешная оплата без звука читается как сбой
+3. **Модалки, тосты, навигация (10)** — закрывают 72 экрана малым набором
+4. **Персональный план (12)** — целый продукт, сейчас полностью немой
+5. **MAX и Диалоги (23)** — тихие звуки под живую речь
+6. **Остальное** — карточки, магазины, профиль, лига, уроки, настройки
+7. **Слой нажатий (3)** — только по решению владельца
+
+---
 # 1. Персональный план
 
-Целая ветка продукта без единого звука: настройка плана, теория, упражнения,
-квиз, переходы между заданиями, завершение задачи, финал плана.
-
-Папка: `assets/audio/sfx/v1/plan/` · Семейство: `plan`
-
----
-
-### `pm_plan_setup_open_v1` — 1.1 с, громкость 0.24
+### `pm_plan_setup_open` — 1.1 с, громкость 0.24
 **Экран:** `app/personal_plan_setup.tsx` · Момент: открылся мастер настройки плана, пользователь впервые видит вопросы о своей цели.
 
-**A.** pm_plan_setup_open — clean interface opening tone for a personal study plan setup wizard in a language-learning app, played the moment the first configuration question appears on screen. Two soft sine tones spaced a major second apart, gently fading in over 1.1 seconds, no percussion, no reverb tail, calm and inviting, sounds like an expensive productivity app preparing a blank page.
+**A.** pm_plan_setup_open — the sound of a slim brass hinge on a leather-bound notebook opening for the first time, recorded close-miked in a quiet room. A single smooth pivot with a faint metallic whisper, then stillness. Restrained, precise, inviting. One event, not a phrase. 1.1 seconds total including the natural decay.
 
-**B.** pm_plan_setup_open — friendly game-style opening chime for the study plan builder screen in a mobile language app. Warm marimba triad played softly upward, light bell shimmer on top, 1.1 seconds, dry and rounded, feels welcoming and unhurried, not fanfare-like.
+**B.** pm_plan_setup_open — a cover of soft full-grain leather being lifted and laid open on a wooden desk, the material creasing gently as it settles flat. Warm, unhurried, a single continuous gesture with no repetition. Recorded close in a padded room. 1.1 seconds total.
 
-**C.** pm_plan_setup_open — cinematic soft entrance for a personalized learning plan configuration screen. Distant warm string pad swelling gently with a single clean glass note resolving on top, 1.1 seconds, airy, premium, controlled short tail, evokes the calm before planning a journey.
+**C.** pm_plan_setup_open — a heavy oak drawer sliding open on well-oiled wooden runners, one confident pull that stops with a soft wooden thud at the limit. Weighty and deliberate, the grain audibly resonating for a moment. One event, nothing more. 1.1 seconds total.
 
 ### `pm_plan_setup_step_v1` — 0.36 с, громкость 0.26
 **Экран:** `app/personal_plan_setup.tsx` · Момент: пользователь ответил на один вопрос настройки, мастер перелистнулся на следующий шаг.
 
-**A.** pm_plan_setup_step — minimal UI advance cue for moving to the next question in a study plan setup wizard. Single crisp filtered blip with a short upward pitch step, 360 milliseconds, completely dry, neutral and precise, communicates progress without celebration.
+**A.** pm_plan_setup_step — a fingertip flicking a small polished glass bead across a smooth marble tray, one crisp point contact and a short bright roll that stops almost immediately. Delicate, precise, close-miked in a silent room. A single event. 360 milliseconds total including decay.
 
-**B.** pm_plan_setup_step — light arcade page-turn tick for advancing a step in a mobile learning setup flow. Quick soft wooden tap followed by a tiny plucked note, 360 milliseconds, warm and playful, no reverb, feels like flipping a card forward.
+**B.** pm_plan_setup_step — a thin card of stiff leather being turned over once on a wooden table, a soft directional swish with a light tap as it settles. Tactile and warm, one motion only, recorded close in a quiet space. 360 milliseconds total.
 
-**C.** pm_plan_setup_step — refined cinematic step transition inside a planning wizard. Short airy swish with a subtle low body underneath and a faint metallic glint, 360 milliseconds, elegant, barely present but clearly felt.
+**C.** pm_plan_setup_step — a small brass index tab clicking past a raised guide on a card-catalogue drawer, one crisp metallic notch. Compact and businesslike, a contact that stops dead afterward, a single mechanical step. 360 milliseconds total including decay.
 
 ### `pm_plan_ready_v1` — 1.6 с, громкость 0.46
 **Экран:** `app/personal_plan.tsx` · Момент: план собран и впервые показан пользователю целиком.
 
-**A.** pm_plan_ready — clean confident interface resolution for the moment a personalized study plan is fully assembled and revealed to the user. Three ascending sine notes resolving into a held major chord with a soft filter opening, 1.6 seconds, no reverb wash, modern and reassuring, sounds like a premium app confirming a plan is set.
+**A.** pm_plan_ready — a heavy crystal stopper being set into the neck of a decanter, one firm downward seat followed by a faint high resonance that fades cleanly. Recorded close-miked in a still room, expensive and exact. One event, not a phrase. 1.6 seconds total including the natural decay.
 
-**B.** pm_plan_ready — warm game reveal fanfare for a completed personal learning plan in a mobile app. Bright plucked synth arpeggio rising into a soft bell chord with a gentle shimmer tail, 1.6 seconds, encouraging and optimistic, arcade-warm but not loud.
+**B.** pm_plan_ready — a polished wooden box lid closing onto a felt-lined base, a soft deep clap of air followed by the wood settling and a last quiet creak. Warm, considered, a single confident close. 1.6 seconds total including decay.
 
-**C.** pm_plan_ready — cinematic reveal for a personalized learning roadmap appearing on screen. Airy upward swell with soft horn warmth underneath resolving into a bright clean chord, 1.6 seconds, premium and hopeful, controlled tail, feels like a path lighting up ahead.
+**C.** pm_plan_ready — a large brass ship's bell struck once with a padded mallet and immediately damped by the hand, a short round tone that stops cleanly rather than ringing out. Weighty and ceremonial in miniature. One strike, nothing more. 1.6 seconds total.
 
 ### `pm_plan_theory_open_v1` — 0.9 с, громкость 0.20
 **Экран:** `app/personal_plan_theory.tsx` · Момент: открылась карточка теории перед упражнениями.
 
-**A.** pm_plan_theory_open — quiet interface cue for a theory explanation card opening before exercises in a language app. Single soft sine note with a slow filter sweep opening underneath, 900 milliseconds, very restrained, dry, feels like a page settling into focus.
+**A.** pm_plan_theory_open — a pane of thin glass sliding a few centimetres inside a wooden display case runner, one smooth gliding pass ending in a soft stop. Quiet, precise, close-miked in a still room. A single event. 900 milliseconds total including decay.
 
-**B.** pm_plan_theory_open — gentle game-style book-open sound for a grammar explanation screen in a mobile learning app. Soft paper-like brush followed by a warm muted marimba note, 900 milliseconds, cozy and calm, no sharpness.
+**B.** pm_plan_theory_open — a leather portfolio cover being folded back and smoothed flat by a palm, a low continuous rustle that settles into silence. Warm and unhurried, one gesture only. 900 milliseconds total.
 
-**C.** pm_plan_theory_open — cinematic soft focus-in for a theory card in a premium education app. Low airy breath layered with a distant glass tone fading in, 900 milliseconds, contemplative, spacious but short-tailed.
+**C.** pm_plan_theory_open — a small brass reading-lamp switch clicking over with a felt-cushioned stop, one clean mechanical toggle and a faint afterglow of metal settling. Understated, no repetition. 900 milliseconds total including decay.
 
 ### `pm_plan_exercise_in_v1` — 0.3 с, громкость 0.22
 **Экран:** `app/personal_plan_exercise.tsx` · Момент: новое упражнение выезжает на экран.
 
-**A.** pm_plan_exercise_in — subtle UI transition for a new exercise card sliding into view in a personal study plan. Soft filtered swish with a faint pitched tail landing on a single note, 300 milliseconds, light, dry, unobtrusive.
+**A.** pm_plan_exercise_in — a fingertip tapping the rim of a thin crystal glass once, a light bright point of contact that decays almost instantly. Close-miked in a silent room, clean and small. A single event, nothing sustained. 300 milliseconds total including decay.
 
-**B.** pm_plan_exercise_in — light arcade card-in cue for a new practice task appearing in a mobile learning app. Quick warm whoosh ending in a small rounded pop, 300 milliseconds, friendly and snappy.
+**B.** pm_plan_exercise_in — a slim wooden ruler flicked lightly against the edge of a desk, one short percussive knock with a dry wooden character. Casual, quick, a single tap only. 300 milliseconds total.
 
-**C.** pm_plan_exercise_in — refined cinematic entrance for an exercise panel in a premium learning app. Short air sweep with gentle low weight beneath it, 300 milliseconds, smooth, elegant, no tail.
+**C.** pm_plan_exercise_in — a small steel paperclip dropped from a short height onto a marble slab, one bright metallic tick with no bounce recorded afterward. Precise and minimal. 300 milliseconds total including decay.
 
 ### `pm_plan_exercise_transition_v1` — 0.55 с, громкость 0.24
 **Экран:** `app/personal_plan_exercise_transition.tsx` · Момент: промежуточный экран между двумя упражнениями, короткая передышка.
 
-**A.** pm_plan_exercise_transition — clean interface breather cue between two exercises in a study plan. Soft descending pair of filtered sine notes with a gentle release, 550 milliseconds, neutral, dry, signals a small pause rather than an ending.
+**A.** pm_plan_exercise_transition — a palm brushing once across a sheet of fine-grit sandpaper mounted on wood, a short soft sweep with a dry textured whisper. Close-miked, unhurried, one pass only. 550 milliseconds total including decay.
 
-**B.** pm_plan_exercise_transition — warm arcade interlude tone between practice tasks in a mobile language game. Two mellow marimba notes falling a minor third with light air between them, 550 milliseconds, relaxed and friendly.
+**B.** pm_plan_exercise_transition — a thin leather strap being drawn once through a brass buckle loop, a soft continuous slide with a faint creak at the end. Warm, tactile, a single motion. 550 milliseconds total.
 
-**C.** pm_plan_exercise_transition — cinematic exhale between exercises in a premium learning flow. Soft airy release with a faint warm pad underneath settling downward, 550 milliseconds, calm, breathing, short tail.
+**C.** pm_plan_exercise_transition — a small pendulum weight on a desk clock swinging once and being caught by a felt stop, one smooth mechanical arc with a soft cushioned halt. Calm, exact. 550 milliseconds total including decay.
 
 ### `pm_plan_quiz_start_v1` — 1.0 с, громкость 0.28
 **Экран:** `app/personal_plan_quiz.tsx` · Момент: начинается проверочный квиз плана.
 
-**A.** pm_plan_quiz_start — focused interface cue announcing the start of a knowledge check inside a study plan. Two clean sine tones tightening upward with a subtle filter squeeze, 1 second, precise and dry, communicates focus without pressure.
+**A.** pm_plan_quiz_start — a brass desk-bell button pressed once with a fingertip, a short crisp mechanical click followed by a small bright ring that is damped immediately by the hand. Alert but composed. One event, not a phrase. 1 second total including decay.
 
-**B.** pm_plan_quiz_start — arcade quiz-start signal for a mobile language learning app. Bright synth pluck rising quickly into a short held note with a light bell ping, 1 second, energetic but friendly, no aggression.
+**B.** pm_plan_quiz_start — a wooden domino tile being set upright on a stone table with a firm fingertip tap, one solid contact and a brief wooden resonance. Focused, deliberate, a single placement. 1 second total.
 
-**C.** pm_plan_quiz_start — cinematic gathering cue before a comprehension test in a premium education app. Soft rising air with a faint low pulse and a clean bell strike on the peak, 1 second, attentive, controlled, no long tail.
+**C.** pm_plan_quiz_start — a stack of two heavy coins dropped a short distance onto a granite surface, one dense metallic clink with a fast natural decay. Weighty and immediate, no repetition. 1 second total including decay.
 
 ### `pm_plan_task_done_v1` — 1.2 с, громкость 0.48
 **Экран:** `app/personal_plan_task_done.tsx` · Момент: задача дня в плане закрыта.
 
-**A.** pm_plan_task_done — clean confident completion tone for finishing a daily task in a personal study plan. Rising three-note sine figure resolving to a bright sustained note with a soft filter bloom, 1.2 seconds, dry, satisfying, premium software feel.
+**A.** pm_plan_task_done — a polished brass latch on a wooden case snapping shut in one firm motion, a confident mechanical seat followed by a short resonant settle. Recorded close-miked in a quiet room, satisfying and exact. One event, nothing more. 1.2 seconds total including decay.
 
-**B.** pm_plan_task_done — warm arcade task-complete jingle for a mobile learning app. Cheerful plucked melody of four quick notes with a small bell sparkle at the end, 1.2 seconds, rewarding and light, not a big fanfare.
+**B.** pm_plan_task_done — a leather-bound stamp pressed once firmly onto a wooden desk pad, a soft deep thud with the leather creaking faintly as it lifts away. Warm, conclusive, a single gesture. 1.2 seconds total.
 
-**C.** pm_plan_task_done — cinematic small triumph for completing a study task in a premium app. Warm string swell with a clean glass bell resolving above it and a soft low thump underneath, 1.2 seconds, dignified, brief tail.
+**C.** pm_plan_task_done — a heavy brass coin dropped onto a small stack of others on a marble tray, one bright dense clink with a fast decay and the stack settling. Weighty, final, one event only. 1.2 seconds total including decay.
 
 ### `pm_plan_streak_step_v1` — 0.42 с, громкость 0.30
 **Экран:** `app/personal_plan.tsx` · Момент: шкала прогресса плана делает шаг вперёд, один день закрашивается.
 
-**A.** pm_plan_streak_step — minimal progress-tick for a study plan bar advancing one segment. Short clean sine blip with a subtle upward pitch and tiny filter click, 420 milliseconds, precise, dry, sounds like a slot locking into place.
+**A.** pm_plan_streak_step — a single glass marble dropped into a shallow crystal dish, one clean bright point of contact with an immediate stop, no roll. Close-miked, small and precise. A single event. 420 milliseconds total including decay.
 
-**B.** pm_plan_streak_step — arcade progress step for a learning streak bar filling one notch in a mobile app. Small bright plucked note with a soft wooden knock underneath, 420 milliseconds, warm, satisfying, snappy.
+**B.** pm_plan_streak_step — a thin wooden peg being pushed into a drilled hole on a game board, one firm short push with a soft wooden seat. Tactile, satisfying, a single motion. 420 milliseconds total.
 
-**C.** pm_plan_streak_step — cinematic notch-lock for a progress track advancing in a premium learning app. Tight metallic click layered with a faint low bloom, 420 milliseconds, weighty for its size, no tail.
+**C.** pm_plan_streak_step — a small brass gear tooth advancing one notch inside a hand-wound clock, a short precise mechanical click. Exact and understated, a contact that stops dead afterward. 420 milliseconds total including decay.
 
 ### `pm_plan_complete_v1` — 2.2 с, громкость 0.58
 **Экран:** `app/personal_plan_complete.tsx` · Момент: весь персональный план пройден до конца, крупная церемония.
 
-**A.** pm_plan_complete — premium interface ceremony for completing an entire personalized study plan in a language app. Wide ascending sine and glass chord opening through a slow filter into a bright sustained major resolution, 2.2 seconds, clean, no muddy reverb, feels expensive and earned.
+**A.** pm_plan_complete — a large crystal glass struck once at its rim with a metal spoon and left to ring fully, a bright pure tone that blooms and slowly fades to silence in a still room. Ceremonial, expensive, one strike, nothing more. 2.2 seconds total including the full natural decay.
 
-**B.** pm_plan_complete — celebratory arcade finale for finishing a full learning plan in a mobile app. Layered bell and pluck fanfare rising in two waves with a bright sparkle shower on the resolution, 2.2 seconds, joyful, warm, generous but not noisy.
+**B.** pm_plan_complete — a heavy oak door with a brass mechanism closing in one slow deliberate motion, a deep wooden thud followed by the brass bolt settling into its housing with a final soft click. Grand but composed, a single continuous gesture. 2.2 seconds total.
 
-**C.** pm_plan_complete — cinematic ceremony marking the completion of a long learning journey. Soft horn and string swell with choir-like air, a low timpani-style thump on the downbeat and a clean bell cascade resolving above, 2.2 seconds, majestic, controlled tail.
+**C.** pm_plan_complete — a large brass bell struck once with a proper mallet and allowed to ring out fully in an open stone room, a rich round tone that decays naturally and completely. Weighty, celebratory, one event only. 2.2 seconds total including full decay.
 
 ### `pm_plan_thank_you_v1` — 1.5 с, громкость 0.34
 **Экран:** `app/personal_plan_thank_you.tsx` · Момент: экран благодарности после плана, тёплое личное прощание.
 
-**A.** pm_plan_thank_you — warm quiet interface closing tone for a thank-you screen after finishing a study plan. Two soft sine notes settling downward into a gentle held fifth, 1.5 seconds, dry, sincere, understated, no celebration energy.
+**A.** pm_plan_thank_you — a small crystal chime touched once with a felt-tipped mallet, a soft warm tone that rings gently and fades slowly in a quiet room. Intimate, tender, one strike, nothing more. 1.5 seconds total including natural decay.
 
-**B.** pm_plan_thank_you — gentle game outro for a farewell screen in a mobile learning app. Soft music-box-like melody of three descending notes with a warm rounded tail, 1.5 seconds, affectionate and calm.
+**B.** pm_plan_thank_you — a soft leather-bound book being closed gently by hand, a slow warm compression of air and pages settling, followed by a faint creak of the spine. Personal, unhurried, a single gesture. 1.5 seconds total.
 
-**C.** pm_plan_thank_you — cinematic warm farewell for a closing screen in a premium education app. Distant string pad with a single glass note fading slowly into air, 1.5 seconds, tender, spacious, unhurried.
+**C.** pm_plan_thank_you — a small brass hand-bell tilted once and immediately cupped still by a palm, a brief warm ring caught and silenced by hand. Gentle, deliberate, one event. 1.5 seconds total including decay.
 
 ### `pm_plan_sunset_warning_v1` — 0.8 с, громкость 0.30
 **Экран:** `app/personal_plan_sunset_guard.tsx` · Момент: предупреждение, что план скоро закроется.
 
-**A.** pm_plan_sunset_warning — restrained interface caution tone for a notice that a study plan is about to expire. Two soft low sine notes falling a minor third with a slight filter dampening, 800 milliseconds, dry, serious but never harsh, no buzzer character.
+**A.** pm_plan_sunset_warning — a brass pocket-watch case snapping closed once, a firm compact mechanical click with a faint metallic aftertone. Recorded close-miked, measured and slightly urgent without being harsh. One event. 800 milliseconds total including decay.
 
-**B.** pm_plan_sunset_warning — gentle game-style heads-up cue for an expiring plan in a mobile learning app. Muted low marimba double-knock with a soft downward bend, 800 milliseconds, warm, cautionary, friendly rather than punishing.
+**B.** pm_plan_sunset_warning — a wooden ruler tapping once firmly against a stone windowsill, a short dry knock with a brief resonant echo off the stone. Attentive, grounded, a single tap. 800 milliseconds total.
 
-**C.** pm_plan_sunset_warning — cinematic soft warning for a fading deadline in a premium app. Low clarinet-like tone with a slow air fade and a faint distant bell, 800 milliseconds, melancholic, dignified, short tail.
-
----
+**C.** pm_plan_sunset_warning — a heavy iron key turning once in an old brass lock, a low mechanical grind followed by a solid final click. Serious in tone but contained, one motion only. 800 milliseconds total including decay.
 
 # 2. Пейволы, подписка и покупки
-
-Девять экранов пейвола (`paywall_a`…`paywall_g`, `premium_modal`,
-`premium_modal_v2`) и вся ветка оплаты — сейчас полностью беззвучны. Это
-самая денежная часть приложения, и она единственная не даёт слухового
-подтверждения ни на выборе тарифа, ни на успешной оплате.
-
-Папка: `assets/audio/sfx/v1/commerce/` · Семейство: `commerce`
-
----
 
 ### `pm_paywall_present_v1` — 1.3 с, громкость 0.30
 **Экран:** `app/paywall_a.tsx` … `paywall_g.tsx` · Момент: пейвол выехал на экран, пользователь впервые видит предложение подписки.
 
-**A.** pm_paywall_present — refined interface entrance for a premium subscription offer sliding onto the screen in a language-learning app. Slow filter opening under two clean sustained sine tones a fifth apart, 1.3 seconds, no percussion, completely dry, understated and expensive, must feel like an invitation rather than a sales pitch.
+**A.** pm_paywall_present — a pane of thick glass sliding smoothly up inside stone-lined channels, a low continuous glide that ends in one soft cushioned stop. Recorded close-miked, refined and unhurried. A single event, not a phrase. 1.3 seconds total including decay.
 
-**B.** pm_paywall_present — inviting game-style reveal for a premium upgrade screen in a mobile app. Soft ascending bell arpeggio with a warm pad blooming underneath, 1.3 seconds, generous and friendly, light sparkle on the final note, no aggressive fanfare.
+**B.** pm_paywall_present — a leather-covered presentation case opening on a hidden hinge, a slow warm creak followed by a soft settle as the lid reaches its full extent. Inviting, considered, one continuous gesture. 1.3 seconds total.
 
-**C.** pm_paywall_present — cinematic curtain-lift for a premium offer appearing in a polished mobile app. Wide airy swell with distant warm strings and a single clean glass tone rising through it, 1.3 seconds, luxurious, restrained, short controlled tail.
+**C.** pm_paywall_present — a heavy brass curtain rail sliding a short distance and stopping against a felt buffer, a low metallic glide with a firm cushioned halt. Weighty, deliberate, a single motion. 1.3 seconds total including decay.
 
 ### `pm_paywall_plan_select_v1` — 0.4 с, громкость 0.26
 **Экран:** пейволы · Момент: пользователь выбрал один из тарифов, карточка тарифа подсветилась.
 
-**A.** pm_paywall_plan_select — precise interface selection cue for choosing a subscription tier on a pricing screen. Single clean sine tick with a short upward pitch and a soft filter snap, 400 milliseconds, dry, decisive, confirms the choice without celebrating it.
+**A.** pm_paywall_plan_select — a fingertip tapping once on a thick polished glass panel, a small clean point of contact that stops the instant it is made. Close-miked in a silent room, precise and confident. A single event. 400 milliseconds total including decay.
 
-**B.** pm_paywall_plan_select — warm arcade selection tap for picking a pricing plan in a mobile app. Rounded plucked note with a small wooden knock underneath, 400 milliseconds, friendly, satisfying, no sharp edges.
+**B.** pm_paywall_plan_select — a thin wooden token being set down firmly on a felt-covered table, one soft-edged tap with a brief wooden resonance. Tactile, decisive, a single placement. 400 milliseconds total.
 
-**C.** pm_paywall_plan_select — cinematic lock-in for selecting a premium tier. Tight metallic click layered with a faint low resonance blooming under it, 400 milliseconds, weighty and confident, no tail.
+**C.** pm_paywall_plan_select — a small brass toggle switch flipped once with a felt-cushioned stop, a compact mechanical click with a faint metallic edge. Businesslike, exact. 400 milliseconds total including decay.
 
 ### `pm_paywall_trial_highlight_v1` — 0.7 с, громкость 0.30
 **Экран:** пейволы · Момент: подсветился блок бесплатного пробного периода, ключевой аргумент предложения.
 
-**A.** pm_paywall_trial_highlight — clean attention cue for a free-trial badge illuminating on a subscription screen. Soft rising sine glide resolving into a bright held note with a gentle filter bloom, 700 milliseconds, dry, optimistic, draws the eye without pressure.
+**A.** pm_paywall_trial_highlight — a fingernail drawn once slowly along the rim of a thick crystal tumbler, a soft rising shimmer that fades cleanly with no sustain. Recorded close-miked in a still room, elegant and brief. One event. 700 milliseconds total including decay.
 
-**B.** pm_paywall_trial_highlight — bright arcade sparkle for a free-trial offer lighting up in a mobile app. Quick bell shimmer with a small upward pluck underneath, 700 milliseconds, warm and cheerful, inviting.
+**B.** pm_paywall_trial_highlight — a soft leather bookmark ribbon pulled taut once across a page and released, a warm short slide with a faint tension release. Personal, quiet, a single gesture. 700 milliseconds total.
 
-**C.** pm_paywall_trial_highlight — cinematic glow for a trial-period highlight on a premium offer. Airy shimmer rising over a soft warm pad with a faint glass ring on the peak, 700 milliseconds, elegant, generous, brief tail.
+**C.** pm_paywall_trial_highlight — a small brass key catching light and being turned a quarter-turn in an ornate lock, a bright short mechanical scrape ending in a soft seat. Inviting, precise, one motion. 700 milliseconds total including decay.
 
 ### `pm_purchase_start_v1` — 0.6 с, громкость 0.32
 **Экран:** пейволы, `app/shop.tsx`, `app/shards_shop.tsx` · Момент: пользователь подтвердил покупку, ушёл запрос в магазин приложений.
 
-**A.** pm_purchase_start — focused interface commitment cue for the moment a purchase request is submitted to the app store. Two clean sine tones stepping upward with a subtle low pulse underneath, 600 milliseconds, dry, serious, communicates that something real is now in motion.
+**A.** pm_purchase_start — a heavy glass stopper lifted quickly from a decanter neck, a short bright suction release with an immediate stop. Recorded close-miked, crisp and purposeful. A single event. 600 milliseconds total including decay.
 
-**B.** pm_purchase_start — arcade confirm-and-send cue for initiating a purchase in a mobile game. Bright pluck with a quick upward bend and a soft whoosh trailing away, 600 milliseconds, energetic, warm, forward-moving.
+**B.** pm_purchase_start — a leather wallet snap-clasp releasing once with a firm flick, a soft mechanical pop with a faint leather creak trailing. Warm, quick, one motion only. 600 milliseconds total.
 
-**C.** pm_purchase_start — cinematic commit for a transaction being sent in a premium app. Low sub thump with an airy sweep lifting away from it, 600 milliseconds, weighty, decisive, no long tail.
+**C.** pm_purchase_start — a single heavy coin flicked upward off a thumb into the air, a short bright metallic spin caught abruptly before any landing. Confident, brief, one event. 600 milliseconds total including decay.
 
 ### `pm_purchase_success_v1` — 1.7 с, громкость 0.56
 **Экран:** пейволы, магазины · Момент: покупка прошла успешно, доступ выдан.
 
-**A.** pm_purchase_success — premium interface confirmation for a completed purchase unlocking access in a language app. Clean ascending three-note figure resolving into a wide sustained major chord with a slow filter opening, 1.7 seconds, no reverb wash, deeply satisfying and trustworthy, sounds like a high-end product confirming ownership.
+**A.** pm_purchase_success — the sound of a heavy brushed-aluminium latch closing on a luxury watch case, recorded close-miked in a quiet room. A single confident mechanical seat, then the metal body rings faintly for a moment and settles. Solid, expensive, understated. One event, not a phrase. 1.7 seconds total including the natural decay.
 
-**B.** pm_purchase_success — joyful arcade unlock fanfare for a successful in-app purchase. Layered bell and pluck melody rising in two quick waves with a bright shimmer cascade on the resolution, 1.7 seconds, generous and warm, celebratory without being loud.
+**B.** pm_purchase_success — a polished wooden jewellery box lid closing firmly onto a velvet-lined base, a deep soft thud of displaced air followed by a faint wooden creak settling into silence. Warm, conclusive, a single gesture. 1.7 seconds total.
 
-**C.** pm_purchase_success — cinematic unlock ceremony for a granted premium subscription. Warm horn and string swell with a low timpani-style thump and a clean bell cascade resolving above it, 1.7 seconds, majestic, earned, tightly controlled tail.
+**C.** pm_purchase_success — a stack of five heavy coins set down firmly on a marble counter in one motion, a dense bright clatter that resolves quickly into a settled clink. Weighty, celebratory, one event only. 1.7 seconds total including decay.
 
 ### `pm_purchase_restored_v1` — 1.0 с, громкость 0.38
 **Экран:** `app/manage_subscription.tsx` · Момент: покупки восстановлены, доступ вернулся.
 
-**A.** pm_purchase_restored — calm interface confirmation for restored purchases returning access to a user. Two clean sine notes rising a fourth into a softly held tone, 1 second, dry, reassuring, quieter and more matter-of-fact than a fresh purchase.
+**A.** pm_purchase_restored — a brass key turning smoothly back to its original position in a well-oiled lock, a clean mechanical rotation ending in a soft confirming click. Recorded close-miked, reassuring and precise. One event. 1 second total including decay.
 
-**B.** pm_purchase_restored — friendly arcade reconnection cue for restoring an existing subscription. Warm marimba pair with a light bell confirmation on top, 1 second, comforting, familiar, no fanfare.
+**B.** pm_purchase_restored — a leather-bound ledger closing gently after a final entry, a soft compression of air and pages settling into place. Calm, restorative, a single continuous gesture. 1 second total.
 
-**C.** pm_purchase_restored — cinematic quiet return for restored premium access. Soft string warmth fading in under a single clean glass note, 1 second, gentle, dignified, short tail.
+**C.** pm_purchase_restored — a heavy pendulum weight swinging back to rest against a felt-lined stop inside a wooden clock case, one smooth arc ending in a soft cushioned halt. Settled, dependable, a single motion. 1 second total including decay.
 
 ### `pm_purchase_failed_v1` — 0.7 с, громкость 0.30
 **Экран:** пейволы, магазины · Момент: оплата не прошла, показана ошибка. Не должен звучать как наказание.
 
-**A.** pm_purchase_failed — restrained interface failure tone for a declined payment in a mobile app. Two soft sine notes falling a minor third with a gentle filter closing, 700 milliseconds, dry, calm, informative, absolutely no buzzer or harsh error character.
+**A.** pm_purchase_failed — a fingertip tapping once gently against a thick pane of glass that does not open, a short soft contact with a slightly flat, muted quality. Recorded close-miked, neutral rather than harsh. One event. 700 milliseconds total including decay.
 
-**B.** pm_purchase_failed — gentle game-style setback cue for a failed transaction. Muted low marimba double-tap with a soft downward pitch bend, 700 milliseconds, warm, understanding, never punishing.
+**B.** pm_purchase_failed — a wooden door handle turned once and gently checked by a soft felt-lined stop, a low understated resistance with no slam. Calm, forgiving in tone, a single motion. 700 milliseconds total.
 
-**C.** pm_purchase_failed — cinematic soft decline for an unsuccessful purchase in a premium app. Low woodwind-like tone deflating slowly with a faint air release, 700 milliseconds, sympathetic, dignified, brief tail.
+**C.** pm_purchase_failed — a single coin dropped a short distance onto a thick wool felt pad, a dull soft metallic thud that stops the instant it is made. Muted, unthreatening, one event only. 700 milliseconds total including decay.
 
 ### `pm_premium_modal_open_v1` — 1.0 с, громкость 0.28
 **Экран:** `app/premium_modal.tsx`, `app/premium_modal_v2.tsx` · Момент: модалка премиума раскрылась поверх текущего экрана.
 
-**A.** pm_premium_modal_open — clean interface bloom for a premium modal expanding over the current screen. Single sustained sine note with a slow upward filter sweep and a faint high shimmer, 1 second, dry, spacious, feels like a layer of glass sliding into place.
+**A.** pm_premium_modal_open — a pane of fine glass lifted and set down flat onto a marble surface, a smooth brief glide followed by a soft precise landing. Recorded close-miked, refined and quiet. A single event. 1 second total including decay.
 
-**B.** pm_premium_modal_open — warm arcade panel-open cue for a premium offer popup in a mobile app. Soft rising pluck with a bell overtone and a light air swish, 1 second, welcoming, rounded, unhurried.
+**B.** pm_premium_modal_open — a leather presentation folder unfolding once on a wooden table, a low warm rustle ending in a soft flat settle. Inviting, unhurried, one continuous gesture. 1 second total.
 
-**C.** pm_premium_modal_open — cinematic reveal for a premium overlay rising into view. Airy upward sweep with a distant warm pad settling beneath a clean bell tone, 1 second, luxurious, refined, no long tail.
+**C.** pm_premium_modal_open — a brass display easel leg unfolding and locking into place with a short mechanical snap, a compact metallic click with a faint resonance. Considered, deliberate, a single motion. 1 second total including decay.
 
 ### `pm_subscription_manage_open_v1` — 0.8 с, громкость 0.22
 **Экран:** `app/manage_subscription.tsx` · Момент: открылся экран управления подпиской.
 
-**A.** pm_subscription_manage_open — neutral interface opening for a subscription management screen. Single clean mid sine tone with a short filter fade-in, 800 milliseconds, completely dry, businesslike, no emotional colour.
+**A.** pm_subscription_manage_open — a small brass drawer pull lifted and released once on a filing cabinet, a short clean metallic tick that stops the instant it is made. Recorded close-miked, businesslike and quiet. A single event. 800 milliseconds total including decay.
 
-**B.** pm_subscription_manage_open — plain warm game-style panel open for an account settings page. Soft muted marimba note with a light wooden tap, 800 milliseconds, calm, functional, friendly.
+**B.** pm_subscription_manage_open — a leather folder cover lifted and laid back gently on a desk, a soft low rustle settling into stillness. Calm, procedural, one gesture only. 800 milliseconds total.
 
-**C.** pm_subscription_manage_open — cinematic quiet entrance for an account management view. Low airy breath with a faint metallic sheen fading in, 800 milliseconds, understated, premium, short.
+**C.** pm_subscription_manage_open — a wooden filing drawer sliding open a short distance on smooth runners and stopping cleanly, a low controlled glide with a soft wooden halt. Orderly, precise. 800 milliseconds total including decay.
 
 ### `pm_promo_code_applied_v1` — 1.1 с, громкость 0.44
 **Экран:** `app/promo_code_entry.tsx` · Момент: промокод принят, бонус начислен.
 
-**A.** pm_promo_code_applied — bright clean interface confirmation for a valid promo code being accepted. Quick ascending sine triplet resolving to a sparkling high note with a crisp filter snap, 1.1 seconds, dry, delightful, feels like a lock clicking open.
+**A.** pm_promo_code_applied — a brass stamp pressed firmly once onto a waxed wooden surface, a solid mechanical thud followed by a brief metallic ring settling into silence. Recorded close-miked, confident and rewarding. One event, not a phrase. 1.1 seconds total including decay.
 
-**B.** pm_promo_code_applied — playful arcade reward cue for redeeming a promo code in a mobile app. Cheerful plucked run of four notes ending in a bright coin-like ping, 1.1 seconds, warm, fun, generous.
+**B.** pm_promo_code_applied — a leather ticket punch closing once through thick card, a firm compact crunch with a faint leather creak from the handle. Tactile, satisfying, a single motion. 1.1 seconds total.
 
-**C.** pm_promo_code_applied — cinematic small windfall for a successfully redeemed code. Soft rising air with a clean bell strike and a light metallic sparkle falling after it, 1.1 seconds, elegant, rewarding, controlled tail.
+**C.** pm_promo_code_applied — two heavy coins struck together once directly above a marble tray, a bright dense metallic clink with a fast clean decay. Weighty and celebratory, one event only. 1.1 seconds total including decay.
 
 ### `pm_promo_code_rejected_v1` — 0.6 с, громкость 0.28
 **Экран:** `app/promo_code_entry.tsx` · Момент: промокод не подошёл.
 
-**A.** pm_promo_code_rejected — soft interface rejection for an invalid promo code. Single low sine note with a quick downward pitch drop and immediate filter close, 600 milliseconds, dry, neutral, informative without blame.
+**A.** pm_promo_code_rejected — a fingertip tapping once against a pane of glass set into a locked wooden frame, a short flat contact with a slightly dampened, inconclusive quality. Recorded close-miked, neutral, not punishing. One event. 600 milliseconds total including decay.
 
-**B.** pm_promo_code_rejected — mild arcade decline tone for a code that does not work. Short muted wooden knock with a small deflating bend, 600 milliseconds, soft, harmless, friendly.
+**B.** pm_promo_code_rejected — a wooden token dropped onto a thick felt mat, a dull soft thud absorbed almost instantly by the fabric beneath. Muted, gentle, a single contact. 600 milliseconds total.
 
-**C.** pm_promo_code_rejected — cinematic quiet dismissal for a rejected code. Low breathy tone dropping gently with a faint dull thud, 600 milliseconds, subdued, respectful, no tail.
+**C.** pm_promo_code_rejected — a small brass latch tried once and failing to catch, a short soft metallic slip with no final seat. Understated, non-alarming, one event only. 600 milliseconds total including decay.
 
 ### `pm_billing_issue_v1` — 0.9 с, громкость 0.32
 **Экран:** `components/BillingIssueToastHost.tsx` · Момент: всплыла плашка о проблеме с оплатой подписки.
 
-**A.** pm_billing_issue — serious but calm interface alert for a billing problem notification appearing in an app. Two sustained low sine tones with a slow beating interference between them, 900 milliseconds, dry, attention-getting through weight rather than brightness, never alarming.
+**A.** pm_billing_issue — a brass door knocker lifted and set back down softly against a felt pad rather than struck, a low controlled metallic tap with a brief settle. Recorded close-miked, attentive but not alarming. One event. 900 milliseconds total including decay.
 
-**B.** pm_billing_issue — measured game-style notice for a payment problem banner. Low marimba triple-tap with a slight downward drift and a soft muted bell, 900 milliseconds, warm, concerned, non-threatening.
+**B.** pm_billing_issue — a leather-bound diary closing slightly too quickly, a firm compact thud of pages meeting with a short creak of the spine. Grounded, matter-of-fact, a single gesture. 900 milliseconds total.
 
-**C.** pm_billing_issue — cinematic muted concern for a billing warning in a premium app. Low cello-like swell with a faint distant metallic ring fading, 900 milliseconds, grave, restrained, short tail.
-
----
-
+**C.** pm_billing_issue — a heavy coin set down firmly but carefully on a stone ledge, a solid short metallic contact with a controlled, unhurried decay. Serious in tone but composed, one event only. 900 milliseconds total including decay.
 # 3. MAX — голосовой звонок с учителем
-
-Восемь экранов без звука: согласие, пре-старт, сам звонок, живые субтитры,
-разбор после звонка, пейвол MAX, настройки памяти.
-
-Особенность раздела: **во время звонка играет живая речь**, поэтому все звуки
-здесь тихие, короткие и обязаны уступать голосу (в реестре им ставится
-`deferAfterVoice`). Никаких аккордов поверх речи учителя.
-
-Папка: `assets/audio/sfx/v1/max/` · Семейство: `voice`
-
----
 
 ### `pm_max_prestart_ready_v1` — 0.9 с, громкость 0.26
 **Экран:** `app/max_call_prestart.tsx` · Момент: экран прогрева перед звонком, линия готова, можно звонить.
 
-**A.** pm_max_prestart_ready — clean interface readiness tone for a voice call standby screen, played when the connection is prepared and the user can start speaking. Two soft sine tones settling into a stable held fifth, 900 milliseconds, dry, calm, communicates a line is open and waiting.
+**A.** pm_max_prestart_ready — a fingertip brushing once across a taut sheet of silk stretched over a wooden hoop, recorded close in a treated room. The touch is light and settles instantly, a single readiness cue with a contact that stops dead or shimmer. Barely audible, felt more than heard. 0.9 seconds.
 
-**B.** pm_max_prestart_ready — warm game-style connection-ready cue for a voice tutor call in a mobile app. Gentle marimba pair with a soft bell confirmation, 900 milliseconds, friendly, reassuring, unhurried.
+**B.** pm_max_prestart_ready — a small wooden box lid lifted a few millimeters and eased back down onto its felt lining, one soft contact, nothing more. Warm and organic, like a case opening just enough to check what's inside. Close-miked in a quiet room. 0.9 seconds.
 
-**C.** pm_max_prestart_ready — cinematic quiet readiness for an open voice channel in a premium app. Distant warm pad with a faint clean tone settling above it, 900 milliseconds, spacious, composed, short tail.
+**C.** pm_max_prestart_ready — a single drop of water landing on the surface of a shallow ceramic bowl in a still, small room, the faint room tone giving it a sense of space. The contact is soft and damped immediately, no ripple trail. 0.9 seconds.
 
 ### `pm_max_call_connect_v1` — 0.8 с, громкость 0.34
 **Экран:** `app/max_call_session.tsx` · Момент: звонок соединился, учитель на линии.
 
-**A.** pm_max_call_connect — precise interface connection cue for a voice call successfully establishing. Two clean ascending sine blips with a crisp filter snap on the second, 800 milliseconds, dry, confident, unmistakably a line going live.
+**A.** pm_max_call_connect — two folded palms coming together in a single soft clap-like press, close-miked, the air between them pushed out in one clean contact. Dry and immediate, a private gesture rather than a public one. One event, nothing sustained after. 0.8 seconds.
 
-**B.** pm_max_call_connect — bright arcade connect signal for a tutor call starting in a mobile app. Quick rising pluck pair with a light bell ping on top, 800 milliseconds, warm, welcoming, energetic but small.
+**B.** pm_max_call_connect — a heavy paper envelope flap pressed down and sealed shut with one firm press of a palm, recorded very close, the paper's soft crease audible. Warm, tactile, a sense of a connection being made physically. 0.8 seconds.
 
-**C.** pm_max_call_connect — cinematic link-established cue for a premium voice session. Soft air rush resolving into a clean sustained tone with faint low weight underneath, 800 milliseconds, elegant, purposeful, no tail.
+**C.** pm_max_call_connect — a wooden door latch settling into its catch inside a small carpeted room, a single soft mechanical give wrapped in gentle room air. The room's quiet size is audible around the contact. 0.8 seconds.
 
 ### `pm_max_call_end_v1` — 1.1 с, громкость 0.32
 **Экран:** `app/max_call_session.tsx` · Момент: звонок завершён, линия закрылась.
 
-**A.** pm_max_call_end — clean interface disconnection tone for a voice call closing. Two sine notes descending a fourth with a slow filter closing beneath them, 1.1 seconds, dry, calm, final without sadness.
+**A.** pm_max_call_end — a soft exhale released slowly through barely parted lips, close-miked in a treated room, fading to silence as the breath runs out. A single closing gesture, unhurried, stopping cleanly with nothing after. 1.1 seconds.
 
-**B.** pm_max_call_end — warm arcade sign-off for ending a tutor call in a mobile app. Soft descending marimba trio with a rounded low landing note, 1.1 seconds, friendly, conclusive, gentle.
+**B.** pm_max_call_end — a cloth drawstring pouch pulled shut with one slow, even tug, the fabric folding softly against itself as the opening closes. Warm and domestic, recorded close in a quiet room. 1.1 seconds.
 
-**C.** pm_max_call_end — cinematic close for a finished voice session in a premium app. Warm pad settling downward with a single low glass tone fading into air, 1.1 seconds, graceful, unhurried, controlled tail.
+**C.** pm_max_call_end — a heavy wooden shutter easing closed and settling into its frame in a small stone-floored room, the faint room air trailing the motion before it stops cleanly. 1.1 seconds.
 
 ### `pm_max_turn_yours_v1` — 0.3 с, громкость 0.24
 **Экран:** `app/max_call_session.tsx` · Момент: учитель договорил, теперь очередь пользователя говорить. Обязан быть очень тихим и коротким.
 
-**A.** pm_max_turn_yours — extremely subtle interface prompt telling the user it is their turn to speak in a live voice conversation. Single soft sine blip with a faint upward inflection, 300 milliseconds, very quiet, completely dry, must never compete with speech.
+**A.** pm_max_turn_yours — the soft catch of breath a person makes just before speaking, captured very close on a studio microphone in a treated room. Intimate, human, almost subliminal. A single intake, nothing more, and it must sit comfortably under a speaking voice. 0.3 seconds.
 
-**B.** pm_max_turn_yours — tiny warm game cue handing the speaking turn to the player in a voice-based mobile app. Small rounded marimba tap with a light lift, 300 milliseconds, gentle, unobtrusive, friendly.
+**B.** pm_max_turn_yours — one fingertip tapping the back of a hand once, the lightest possible contact between skin and skin, recorded extremely close. Warm and quiet, a gentle nudge rather than a signal. 0.3 seconds.
 
-**C.** pm_max_turn_yours — cinematic whisper-light turn signal in a premium voice session. Faint airy tick with a barely-there pitched shimmer, 300 milliseconds, delicate, almost subliminal, no tail.
+**C.** pm_max_turn_yours — the faint give of a thin paper page turned a few millimeters and released in a hushed reading room, one brief contact that stays quietly under a speaking voice. 0.3 seconds.
 
 ### `pm_max_listening_start_v1` — 0.25 с, громкость 0.22
 **Экран:** `app/max_call_session.tsx` · Момент: микрофон открылся, приложение слушает пользователя.
 
-**A.** pm_max_listening_start — minimal interface cue for a microphone opening to capture speech. Very short clean sine tick with a small filter opening, 250 milliseconds, dry, precise, sounds like a gate lifting.
+**A.** pm_max_listening_start — a very short inhale drawn gently through the nose, close-miked in a silent treated room, cut off the instant it begins. Barely audible, felt more than heard, sitting comfortably under a speaking voice. 0.25 seconds.
 
-**B.** pm_max_listening_start — soft arcade mic-on blip for a voice input session in a mobile app. Tiny warm bubble pop with a light upward tail, 250 milliseconds, friendly, immediate.
+**B.** pm_max_listening_start — the soft give of a fingertip pressing into a cushion of folded wool cloth, one contact that yields and stops immediately. Warm, muffled, private. 0.25 seconds.
 
-**C.** pm_max_listening_start — cinematic breath-in for an open microphone in a premium voice app. Short inward air catch with a faint low body, 250 milliseconds, organic, quiet, no tail.
+**C.** pm_max_listening_start — a single soft footstep of a bare foot easing onto a thick rug in a quiet room, the faint compression of fabric giving the moment a sense of place. Damped immediately. 0.25 seconds.
 
 ### `pm_max_listening_stop_v1` — 0.25 с, громкость 0.22
 **Экран:** `app/max_call_session.tsx` · Момент: микрофон закрылся, реплика пользователя ушла на обработку.
 
-**A.** pm_max_listening_stop — minimal interface cue for a microphone closing after capturing speech. Very short clean sine tick with a small downward filter close, 250 milliseconds, dry, precise, the mirror of a gate lowering.
+**A.** pm_max_listening_stop — a very short exhale released through the nose, close-miked in a silent treated room, tapering to nothing almost instantly. Barely audible, a single closing breath under a speaking voice. 0.25 seconds.
 
-**B.** pm_max_listening_stop — soft arcade mic-off blip for the end of voice capture in a mobile app. Tiny warm pop with a light downward settle, 250 milliseconds, gentle, tidy.
+**B.** pm_max_listening_stop — a fingertip lifting off a cushion of folded wool cloth, the faint release of pressure as contact breaks, recorded very close. Soft, quiet, a single departure. 0.25 seconds.
 
-**C.** pm_max_listening_stop — cinematic breath-out closing a microphone in a premium voice app. Short outward air release with a faint low settle, 250 milliseconds, organic, calm, no tail.
+**C.** pm_max_listening_stop — a thin paper notebook cover easing shut in a hushed room, one soft contact absorbed by the pages beneath it, nothing lingering after. 0.25 seconds.
 
 ### `pm_max_caption_in_v1` — 0.2 с, громкость 0.16
 **Экран:** `app/max_call_live_caption_view.tsx` · Момент: новая строка живых субтитров появилась под речью.
 
-**A.** pm_max_caption_in — near-invisible interface tick for a new live caption line appearing under speech. Single filtered micro-click with almost no pitch, 200 milliseconds, extremely quiet, dry, designed to be felt rather than heard.
+**A.** pm_max_caption_in — the faint scratch of a soft pencil tip touching paper for a single instant, close-miked in a silent room, gone as soon as it starts. Barely audible, a single mark, nothing sustained. 0.2 seconds.
 
-**B.** pm_max_caption_in — tiny arcade text-in tap for a caption line landing in a mobile app. Small soft wooden tick, 200 milliseconds, warm, unobtrusive, light.
+**B.** pm_max_caption_in — one fingertip brushing the edge of a dry page in a quiet reading room, the lightest possible paper contact, damped immediately. Stays quietly under a speaking voice. 0.2 seconds.
 
-**C.** pm_max_caption_in — cinematic paper-soft tick for a subtitle line settling into place. Faint dry brush with a whisper of low air, 200 milliseconds, delicate, barely present.
+**C.** pm_max_caption_in — a single soft droplet of water touching a folded cloth in a small quiet room, absorbed instantly with no splash trail, the faint room air present underneath. 0.2 seconds.
 
 ### `pm_max_review_open_v1` — 1.2 с, громкость 0.30
 **Экран:** `app/max_voice_review.tsx` · Момент: открылся разбор состоявшегося звонка.
 
-**A.** pm_max_review_open — considered interface opening for a post-call analysis screen. Slow filter sweep under a clean sustained sine pair, resolving into a calm held tone, 1.2 seconds, dry, thoughtful, invites reflection rather than judgment.
+**A.** pm_max_review_open — a hardbound notebook cover opened slowly in a quiet room, the spine giving a soft creak and the pages settling with a light rustle, close-miked. One unhurried gesture, stopping cleanly as the cover lies flat. 1.2 seconds.
 
-**B.** pm_max_review_open — warm game-style debrief opening for a voice session summary in a mobile app. Soft rising marimba phrase with a light bell settling on top, 1.2 seconds, encouraging, gentle, calm.
+**B.** pm_max_review_open — a folded linen cloth unfurled gently in a still room, the fabric's soft unfolding audible close to the microphone, air moving faintly as it opens. Warm and unhurried. 1.2 seconds.
 
-**C.** pm_max_review_open — cinematic reflective entrance for a call review in a premium app. Distant string warmth with a single clean glass tone rising slowly through it, 1.2 seconds, contemplative, spacious, short tail.
+**C.** pm_max_review_open — a wooden drawer with felt-lined runners sliding open a short distance in a small quiet room, the room's faint size audible around the smooth motion, stopping softly at its limit. 1.2 seconds.
 
 ### `pm_max_goal_reached_v1` — 1.4 с, громкость 0.48
 **Экран:** `app/max_call_session.tsx`, `app/max_voice_review.tsx` · Момент: цель разговора достигнута — учитель отметил, что задача выполнена.
 
-**A.** pm_max_goal_reached — clean premium confirmation for a conversation goal being achieved in a voice tutoring session. Ascending sine figure resolving into a bright sustained chord with a soft filter bloom, 1.4 seconds, dry, proud, quietly triumphant.
+**A.** pm_max_goal_reached — a soft wooden reed instrument breathed into once with warm, rounded air, recorded close in a small treated room, the tone blooming gently and settling immediately. A single warm confirmation, stopping cleanly. 1.4 seconds.
 
-**B.** pm_max_goal_reached — warm arcade achievement cue for completing a speaking objective in a mobile app. Bright plucked run with a bell sparkle resolving upward, 1.4 seconds, encouraging, joyful, not overblown.
+**B.** pm_max_goal_reached — a ceramic cup set down onto a wooden saucer with a single warm, rounded contact in a quiet kitchen-sized room, the faint resonance of the ceramic settling immediately. Satisfying and human. 1.4 seconds.
 
-**C.** pm_max_goal_reached — cinematic quiet triumph for a conversational milestone in a premium tutor app. Warm horn-like swell with a clean glass bell resolving above and a soft low pulse underneath, 1.4 seconds, dignified, earned, controlled tail.
+**C.** pm_max_goal_reached — two palms pressed together and drawn apart slowly with a soft breathy release of air between them, recorded close in a still room, a single gentle gesture of completion with a natural room tail. 1.4 seconds.
 
 ### `pm_max_time_warning_v1` — 0.7 с, громкость 0.28
 **Экран:** `app/max_call_session.tsx` · Момент: минуты звонка на исходе, учитель предупреждает о скором завершении.
 
-**A.** pm_max_time_warning — calm interface time-remaining cue during a live voice call. Two soft low sine pulses with a slight downward drift, 700 milliseconds, dry, non-intrusive, informative, must never startle a speaking user.
+**A.** pm_max_time_warning — a single soft knuckle tap on a wooden tabletop in a small quiet room, close-miked, the contact damped almost immediately by the wood's density. Gentle and quiet, a private nudge. 0.7 seconds.
 
-**B.** pm_max_time_warning — gentle arcade clock cue for limited call time in a mobile app. Muted marimba double-pulse with a light downward bend, 700 milliseconds, warm, polite, unobtrusive.
+**B.** pm_max_time_warning — a thin reed instrument given one short, breathy pulse of air in a treated room, the tone soft-edged and brief, fading before it can ring. Must sit quietly under a speaking voice. 0.7 seconds.
 
-**C.** pm_max_time_warning — cinematic soft hourglass cue for a voice session nearing its end. Low breathy tone with a faint distant tick underneath, 700 milliseconds, understated, respectful, no tail.
+**C.** pm_max_time_warning — a folded paper fan snapped closed once in a still room, the quick soft rustle of paper against itself the only sound, stopping cleanly with the motion. 0.7 seconds.
 
 ### `pm_max_consent_granted_v1` — 0.8 с, громкость 0.30
 **Экран:** `app/max_voice_consent_gate.tsx`, `components/MaxVoiceConsentModal.tsx` · Момент: пользователь дал согласие на голосовой режим.
 
-**A.** pm_max_consent_granted — clean neutral interface confirmation for a user granting permission for voice features. Single clean sine tone stepping up to a stable held note, 800 milliseconds, dry, trustworthy, matter-of-fact, no celebration.
+**A.** pm_max_consent_granted — a wax-sealed letter pressed closed with one firm, warm contact in a quiet room, the paper and wax settling together in a single confirming press. Close-miked, a small ceremonial gesture. 0.8 seconds.
 
-**B.** pm_max_consent_granted — friendly game-style agreement cue for accepting voice permissions in a mobile app. Warm plucked pair rising gently with a soft bell confirmation, 800 milliseconds, reassuring, light.
+**B.** pm_max_consent_granted — a soft leather-bound cover closing over its pages with one gentle contact in a still room, the material's quiet give audible close to the microphone. Warm and deliberate. 0.8 seconds.
 
-**C.** pm_max_consent_granted — cinematic calm assent for granted voice access in a premium app. Soft air lift with a clean tone settling on top, 800 milliseconds, composed, respectful, short tail.
+**C.** pm_max_consent_granted — a palm pressed flat against a wooden door in a small room, one steady contact held briefly and released, the room's quiet air present around it. A single grounded gesture. 0.8 seconds.
 
 ### `pm_max_memory_saved_v1` — 0.9 с, громкость 0.32
 **Экран:** `app/max_memory_settings.tsx` · Момент: настройки памяти учителя сохранены.
 
-**A.** pm_max_memory_saved — precise interface save confirmation for tutor memory settings being stored. Two clean sine ticks with a soft filter click sealing the second, 900 milliseconds, dry, tidy, sounds like a drawer closing correctly.
+**A.** pm_max_memory_saved — a small wooden box lid closed and its brass-free wooden latch settling into place in a quiet room, one soft contact followed by a faint settle. Close-miked, private and final. 0.9 seconds.
 
-**B.** pm_max_memory_saved — warm arcade save cue for preferences stored in a mobile app. Soft plucked note with a rounded wooden knock and a light bell tail, 900 milliseconds, satisfying, friendly.
+**B.** pm_max_memory_saved — a folded cloth bundle tied once with a soft cotton cord in a still room, the gentle friction of fabric against fabric as the knot is drawn snug. Warm, unhurried. 0.9 seconds.
 
-**C.** pm_max_memory_saved — cinematic quiet commit for saved settings in a premium app. Low soft thud with a faint metallic sheen rising off it, 900 milliseconds, weighty, refined, no long tail.
-
----
+**C.** pm_max_memory_saved — a ceramic lid set down onto a ceramic jar in a small quiet kitchen room, one rounded contact that settles instantly with a faint resonance, nothing after. 0.9 seconds.
 
 # 4. Диалоги с ИИ
-
-Пять экранов без звука: каталог сценариев, бриф перед диалогом, согласие,
-сама сессия, финальный вердикт. Экран вердикта — полноэкранный финал, ему
-положена та же плотность, что и завершению урока.
-
-Папка: `assets/audio/sfx/v1/dialog/` · Семейство: `voice`
-
----
 
 ### `pm_dialog_catalog_open_v1` — 1.0 с, громкость 0.24
 **Экран:** `app/ai_dialog_home.tsx` · Момент: открылся каталог сценариев диалогов.
 
-**A.** pm_dialog_catalog_open — clean interface opening for a catalogue of conversation scenarios in a language app. Soft filter sweep beneath two sustained sine tones a third apart, 1 second, dry, calm, feels like a shelf of options coming into view.
+**A.** pm_dialog_catalog_open — a stack of thin cards fanned open with one smooth sweep of a thumb in a quiet room, the soft flutter of paper edges close to the microphone. A single unhurried gesture, settling as the fan stops. 1.0 seconds.
 
-**B.** pm_dialog_catalog_open — warm game-style menu open for a scenario picker in a mobile learning app. Rising marimba triad with a light shimmer overtone, 1 second, inviting, rounded, friendly.
+**B.** pm_dialog_catalog_open — a folded map unfolded one panel at a time in a still room, the paper's soft crease sounds overlapping briefly before settling flat. Warm and tactile. 1.0 seconds.
 
-**C.** pm_dialog_catalog_open — cinematic entrance for a scenario library in a premium app. Airy swell with distant warm pad and a single clean tone resolving above, 1 second, spacious, elegant, short tail.
+**C.** pm_dialog_catalog_open — a wooden shutter of a small cabinet swung open in a modestly sized room, the room's air and faint wood creak giving it a sense of place, stopping softly at full open. 1.0 seconds.
 
 ### `pm_dialog_scenario_pick_v1` — 0.4 с, громкость 0.26
 **Экран:** `components/DialogScenarioTile.tsx` · Момент: пользователь выбрал сценарий диалога, плитка подсветилась.
 
-**A.** pm_dialog_scenario_pick — decisive interface selection tick for choosing a conversation scenario. Single sine blip with a sharp upward step and a clean filter snap, 400 milliseconds, dry, purposeful, no emotional colour.
+**A.** pm_dialog_scenario_pick — a single fingertip pressing a thin card down onto a wooden table in a quiet room, close-miked, the contact soft and immediate with no bounce. One event, nothing more. 0.4 seconds.
 
-**B.** pm_dialog_scenario_pick — warm arcade tile-select cue for picking a dialogue scene in a mobile app. Rounded pluck with a small wooden knock beneath it, 400 milliseconds, satisfying, playful, snappy.
+**B.** pm_dialog_scenario_pick — a smooth stone-free wooden token set down onto a felt-lined tray in a still room, one warm rounded contact absorbed by the felt beneath it. 0.4 seconds.
 
-**C.** pm_dialog_scenario_pick — cinematic scene-lock for selecting a conversation setting. Tight click with a faint low bloom expanding underneath, 400 milliseconds, weighty, confident, no tail.
+**C.** pm_dialog_scenario_pick — a palm pressing lightly onto a folded cloth square in a small room, the fabric's soft give audible close to the microphone, damped instantly. 0.4 seconds.
 
 ### `pm_dialog_briefing_in_v1` — 1.1 с, громкость 0.26
 **Экран:** `app/ai_dialog_briefing.tsx` · Момент: показан бриф — кто вы в этой сцене и какая у вас задача.
 
-**A.** pm_dialog_briefing_in — focused interface cue for a mission briefing card appearing before a role-play conversation. Two clean sine tones converging with a slow filter narrowing, 1.1 seconds, dry, attentive, sets a task without tension.
+**A.** pm_dialog_briefing_in — a single sheet of paper drawn out of a thin folder in a quiet room, the soft slide and faint edge-rustle close to the microphone, stopping cleanly as the sheet clears. 1.1 seconds.
 
-**B.** pm_dialog_briefing_in — warm game briefing cue for a role-play setup screen in a mobile app. Soft plucked phrase of three notes with a light bell on the final, 1.1 seconds, friendly, purposeful, encouraging.
+**B.** pm_dialog_briefing_in — a folded letter opened out flat with two gentle motions in a still room, the paper's quiet unfolding the only sound, settling as it lies open. 1.1 seconds.
 
-**C.** pm_dialog_briefing_in — cinematic mission-setup tone for a conversational scenario brief. Low warm pad rising with a faint metallic glint settling on top, 1.1 seconds, purposeful, refined, short tail.
+**C.** pm_dialog_briefing_in — a wooden clipboard set down onto a desk in a small carpeted room, one soft contact with the room's quiet size audible around it, no bounce or ring. 1.1 seconds.
 
 ### `pm_dialog_scene_enter_v1` — 1.3 с, громкость 0.30
 **Экран:** `app/ai_dialog_session.tsx` · Момент: сцена диалога открылась, палитра места залила экран (кафе, аэропорт, отель).
 
-**A.** pm_dialog_scene_enter — clean interface transition into a themed conversation scene, played as the screen colour shifts to the location palette. Wide filter opening under a sustained sine pair with a subtle upward drift, 1.3 seconds, dry, immersive, feels like stepping through a door.
+**A.** pm_dialog_scene_enter — a heavy curtain of woven cloth drawn open in one slow sweep inside a modestly sized room, the fabric brushing against itself as it gathers to the side, revealing the room's natural air. 1.3 seconds.
 
-**B.** pm_dialog_scene_enter — warm arcade scene-entry cue for arriving in a role-play location in a mobile app. Soft whoosh into a warm marimba chord with a light bell shimmer, 1.3 seconds, welcoming, atmospheric, rounded.
+**B.** pm_dialog_scene_enter — a wooden door eased fully open in a small room, the faint creak of the hinge and a soft gust of room air marking the space opening up, stopping gently at its widest. 1.3 seconds.
 
-**C.** pm_dialog_scene_enter — cinematic arrival into a conversational setting. Airy sweep with distant room tone blooming and a clean tone settling above it, 1.3 seconds, atmospheric, premium, controlled tail.
+**C.** pm_dialog_scene_enter — a paper screen slid open along its wooden track in a quiet room, one smooth continuous motion ending in a soft stop, the room's ambience settling around it. 1.3 seconds.
 
 ### `pm_dialog_reply_sent_v1` — 0.3 с, громкость 0.22
 **Экран:** `app/ai_dialog_session.tsx` · Момент: реплика пользователя отправлена собеседнику.
 
-**A.** pm_dialog_reply_sent — light interface send cue for a user message going out in a conversation. Short clean sine blip with a quick upward departure, 300 milliseconds, dry, brisk, no weight.
+**A.** pm_dialog_reply_sent — a single fingertip flicking a thin paper card forward off a table edge in a quiet room, the brief release of paper into air captured close. One event, nothing more, sitting under a speaking voice. 0.3 seconds.
 
-**B.** pm_dialog_reply_sent — soft arcade send-off for a chat reply in a mobile app. Small warm pop with a light rising tail, 300 milliseconds, friendly, quick.
+**B.** pm_dialog_reply_sent — a small breath pushed out through pursed lips, close-miked in a treated room, brief and directional like sending something away. Barely audible. 0.3 seconds.
 
-**C.** pm_dialog_reply_sent — cinematic small dispatch for an outgoing conversational line. Faint air flick with a whisper of pitched movement, 300 milliseconds, delicate, fast.
+**C.** pm_dialog_reply_sent — a folded paper note pushed across a wooden desk with one quick fingertip motion in a still room, the soft slide-and-stop audible close to the microphone. 0.3 seconds.
 
 ### `pm_dialog_reply_in_v1` — 0.35 с, громкость 0.20
 **Экран:** `app/ai_dialog_session.tsx` · Момент: собеседник ответил, его реплика появилась на экране.
 
-**A.** pm_dialog_reply_in — light interface arrival cue for an incoming conversational reply. Short sine blip with a gentle downward settle, 350 milliseconds, dry, soft, the mirror of the outgoing cue.
+**A.** pm_dialog_reply_in — a thin paper card settling flat onto a wooden table after landing, the last soft flutter and contact captured close in a quiet room. Barely audible, felt more than heard. 0.35 seconds.
 
-**B.** pm_dialog_reply_in — warm arcade message-in tap for a partner reply in a mobile app. Small rounded marimba tap with a soft landing, 350 milliseconds, friendly, calm.
+**B.** pm_dialog_reply_in — a light exhale received rather than given, the faint stir of air brushing past a close microphone in a treated room, gone almost instantly. 0.35 seconds.
 
-**C.** pm_dialog_reply_in — cinematic soft arrival for an incoming line in a conversation. Faint air settle with a low rounded body, 350 milliseconds, gentle, present, no tail.
+**C.** pm_dialog_reply_in — a single soft knock of a fingertip against folded cloth in a small quiet room, damped immediately, a gentle arrival that stops dead on contact. 0.35 seconds.
 
 ### `pm_dialog_hint_used_v1` — 0.5 с, громкость 0.24
 **Экран:** `app/ai_dialog_session.tsx` · Момент: пользователь открыл подсказку во время диалога.
 
-**A.** pm_dialog_hint_used — quiet interface reveal for a hint being opened mid-conversation. Soft filtered sweep upward resolving into a faint clear tone, 500 milliseconds, dry, helpful, carries no shame or penalty.
+**A.** pm_dialog_hint_used — a small wooden matchbox drawer slid open a short distance in a quiet room, the soft friction of wood on wood captured close, stopping cleanly. A single revealing gesture. 0.5 seconds.
 
-**B.** pm_dialog_hint_used — gentle arcade hint cue for revealing help in a mobile learning app. Light bell shimmer with a small soft pluck underneath, 500 milliseconds, warm, kind, encouraging.
+**B.** pm_dialog_hint_used — a folded paper note unfolded once in a still room, the quiet crease-sound of paper opening the only event, settling flat immediately. 0.5 seconds.
 
-**C.** pm_dialog_hint_used — cinematic soft illumination for an opened hint. Faint airy rise with a distant glass ring, 500 milliseconds, gentle, generous, brief tail.
+**C.** pm_dialog_hint_used — a fingertip lifting the corner of a thin cloth cover in a small room, the soft drag of fabric against a wooden surface, damped as the corner settles back. 0.5 seconds.
 
 ### `pm_dialog_verdict_open_v1` — 1.5 с, громкость 0.42
 **Экран:** `components/DialogVerdictScreen.tsx` · Момент: диалог закончился, полноэкранный вердикт раскрылся.
 
-**A.** pm_dialog_verdict_open — premium full-screen reveal for a conversation verdict screen expanding after a role-play ends. Wide slow filter opening under an ascending sine chord resolving into a bright sustained tone, 1.5 seconds, clean, no reverb wash, ceremonial but composed.
+**A.** pm_dialog_verdict_open — a heavy paper scroll unrolled in one continuous motion across a wooden desk in a mid-sized room, the room's natural air audible as the paper settles flat with a soft final contact. 1.5 seconds.
 
-**B.** pm_dialog_verdict_open — arcade results-screen reveal for a completed conversation in a mobile app. Layered bell and pluck rise with a soft sparkle cascade on the resolution, 1.5 seconds, warm, celebratory, generous.
+**B.** pm_dialog_verdict_open — a wide wooden shutter opened fully in a room with generous natural reverb, the hinge's soft creak and a wash of room air marking a larger reveal than the in-call sounds. 1.5 seconds.
 
-**C.** pm_dialog_verdict_open — cinematic curtain-up for a conversation results screen. Warm string swell with an airy lift and a clean bell resolving above it, 1.5 seconds, majestic, controlled, short tail.
+**C.** pm_dialog_verdict_open — a heavy cloth drape lifted and drawn fully back in a spacious quiet hall, the fabric's slow motion and the room's gentle natural echo giving the moment real scale. 1.5 seconds.
 
 ### `pm_dialog_score_tick_v1` — 0.18 с, громкость 0.18
 **Экран:** `components/DialogVerdictScreen.tsx` · Момент: счётчик оценки диалога отсчитывает баллы вверх. Играет часто, подряд.
 
-**A.** pm_dialog_score_tick — rapid-fire interface counter tick for a score number climbing on a results screen. Tiny dry sine click with a fixed pitch, 180 milliseconds, extremely short, no tail, designed to repeat dozens of times without fatigue.
+**A.** pm_dialog_score_tick — a single fingertip flicking the edge of a thin paper card once in a quiet room, a very short crisp contact that stops instantly, light enough for comfortable rapid repetition. 0.18 seconds.
 
-**B.** pm_dialog_score_tick — small arcade counting blip for a rising score in a mobile game. Micro plucked note with a soft wooden edge, 180 milliseconds, warm, light, repeatable.
+**B.** pm_dialog_score_tick — one small wooden bead dropped a few millimeters onto a felt-lined tray in a still room, a brief soft knock damped immediately, suited to quick repetition. 0.18 seconds.
 
-**C.** pm_dialog_score_tick — cinematic micro-tick for an ascending score readout. Faint metallic tap with a whisper of low body, 180 milliseconds, precise, clean, no resonance.
+**C.** pm_dialog_score_tick — a fingertip tapping once against a dry wooden pencil in a quiet room, an extremely short contact with stopping dead on contact, light enough to repeat many times in a row. 0.18 seconds.
 
 ### `pm_dialog_victory_v1` — 1.8 с, громкость 0.54
 **Экран:** `components/DialogVictoryCelebration.tsx` · Момент: диалог пройден блестяще, запускается празднование.
 
-**A.** pm_dialog_victory — premium interface celebration for an excellent conversation result in a language app. Bright ascending sine and glass figure opening into a wide sustained major chord with a crisp filter bloom, 1.8 seconds, clean, exhilarating, no muddy reverb.
+**A.** pm_dialog_victory — a wide wooden reed instrument breathed into with a full, warm exhale in a room with generous natural air, the tone blooming richly and tapering slowly into the room's own reverb. Celebratory but never harsh. 1.8 seconds.
 
-**B.** pm_dialog_victory — joyful arcade victory fanfare for mastering a role-play conversation. Layered bell melody rising in two waves with a bright sparkle shower and a warm low landing, 1.8 seconds, exuberant, generous, warm.
+**B.** pm_dialog_victory — a double handful of dry paper confetti released and falling through still air in a spacious room, the soft cascading rustle building and settling naturally, warm and human. 1.8 seconds.
 
-**C.** pm_dialog_victory — cinematic triumph for a conversation performed brilliantly. Horn and string swell with choir-like air, a low impact on the downbeat and a clean bell cascade above, 1.8 seconds, glorious, tightly controlled tail.
+**C.** pm_dialog_victory — two palms clapped together once with real fullness in a room with soft natural reverb, the contact rich and rounded, its tail dissolving into the room's own ambience. 1.8 seconds.
 
 ### `pm_dialog_retry_v1` — 0.9 с, громкость 0.32
 **Экран:** `components/DialogVerdictScreen.tsx` · Момент: диалог не сдан, предлагается попробовать снова. Не должен унижать.
 
-**A.** pm_dialog_retry — encouraging interface tone for a conversation result that invites another attempt. Two sine notes stepping down then lifting slightly on the last, 900 milliseconds, dry, kind, communicates not yet rather than failure.
+**A.** pm_dialog_retry — a soft wooden pencil eraser drawn once across paper in a quiet room, the gentle friction sound warm and unhurried, stopping cleanly with a sense of starting fresh rather than failing. 0.9 seconds.
 
-**B.** pm_dialog_retry — warm arcade try-again cue in a mobile learning app. Soft marimba phrase dipping and rising back with a gentle bell, 900 milliseconds, friendly, supportive, hopeful.
+**B.** pm_dialog_retry — a page turned back gently in a hushed reading room, the paper's soft settle as it returns to an earlier point, kind and unhurried, close-miked. 0.9 seconds.
 
-**C.** pm_dialog_retry — cinematic gentle reset for another attempt at a conversation. Soft string dip with a warm air lift returning upward, 900 milliseconds, compassionate, dignified, short tail.
-
----
-
+**C.** pm_dialog_retry — a folded cloth smoothed flat with one slow palm pass in a still room, the fabric's quiet whisper conveying a calm reset rather than a setback. 0.9 seconds.
 # 5. Карточки (flashcards)
-
-Часть режимов уже озвучена (блиц, аудирование, речь, распаковка паков), но
-беззвучны каталог, список паков, свайп-режим, редактор карточек, мои паки,
-магазин паков и подбор голоса. Старые звуки лежат отдельно в
-`assets/sounds/fc/*.mp3` и не заведены в общий реестр — их стоит перенести
-в общую систему, чтобы работал арбитр приоритетов и общий тумблер громкости.
-
-Папка: `assets/audio/sfx/v1/cards/` · Семейство: `learning`
-
----
 
 ### `pm_cards_catalog_open_v1` — 0.9 с, громкость 0.22
 **Экран:** `app/flashcards.tsx` · Момент: открылся раздел карточек.
 
-**A.** pm_cards_catalog_open — clean interface opening for a flashcard section in a language app. Soft filter sweep under a single sustained sine tone with a gentle upper harmonic, 900 milliseconds, dry, tidy, feels like a card index sliding open.
+**A.** pm_cards_catalog_open — a slim wooden card box lid lifted off in one motion, a soft hollow knock as it clears the rim, recorded in a small quiet room with the microphone close to the box. The lid is set aside and the sound stops cleanly the instant it lands. A single event. 900 milliseconds.
 
-**B.** pm_cards_catalog_open — warm arcade section-open cue for a flashcard hub in a mobile app. Rising marimba pair with a soft paper-like brush underneath, 900 milliseconds, friendly, inviting, rounded.
+**B.** pm_cards_catalog_open — a thick stack of index cards fanned open with one thumb across the top edge, a soft cascading rustle of stiff paper corners. The fan settles flat and the room goes still immediately after. One continuous gesture, nothing repeated. 900 milliseconds.
 
-**C.** pm_cards_catalog_open — cinematic quiet entrance to a vocabulary card library. Airy lift with a distant warm pad and a faint glass tone above, 900 milliseconds, spacious, refined, short tail.
+**C.** pm_cards_catalog_open — a flat drawer of a small wooden card catalog cabinet pulled open on brass runners, one smooth glide ending in a soft stop against the frame. Close-miked so the runner texture is audible under the wood. A single pull, damped immediately at the end. 900 milliseconds.
 
 ### `pm_cards_pack_open_v1` — 0.7 с, громкость 0.28
 **Экран:** `app/flashcards_packs.tsx`, `app/flashcards_collection.tsx` · Момент: открылся пак карточек, колода развернулась.
 
-**A.** pm_cards_pack_open — precise interface cue for a card deck expanding into view. Clean sine tone with a quick upward fan and a crisp filter opening, 700 milliseconds, dry, satisfying, evokes cards spreading in a hand.
+**A.** pm_cards_pack_open — a sealed paper card pack's flap lifted and released in one motion, a short crisp tear-free peel followed immediately by a fan of thin cards spreading across a felt-free tabletop. Close-miked, dry and precise. Stops cleanly the instant the fan settles. 700 milliseconds.
 
-**B.** pm_cards_pack_open — warm arcade deck-open sound for a card pack in a mobile game. Quick riffling paper texture ending in a bright plucked note, 700 milliseconds, playful, tactile, warm.
+**B.** pm_cards_pack_open — a small wooden card box hinge swinging open and a bundle of cards sliding out onto a wood surface in one motion, warm and soft-edged. Recorded in a small quiet room, the slide ending in a light settle. A single event. 700 milliseconds.
 
-**C.** pm_cards_pack_open — cinematic deck reveal in a premium learning app. Soft air fan with a layered card-shuffle texture and a clean tone landing, 700 milliseconds, tactile, elegant, no tail.
+**C.** pm_cards_pack_open — a tin card case lid popped open with a small metallic click, followed by cards sliding against the tin's inner wall in one continuous motion. Close-miked so the thin metal resonance is present but brief. Stops cleanly, the tin resonance cut short by hand. 700 milliseconds.
 
 ### `pm_cards_swipe_know_v1` — 0.32 с, громкость 0.30
 **Экран:** `app/flashcards_swipe.tsx` · Момент: карточка улетела вправо — «знаю».
 
-**A.** pm_cards_swipe_know — confident interface swipe cue for a card being marked as known and flying right. Clean sine sweep rising quickly with a bright filter opening, 320 milliseconds, dry, affirmative, light and fast.
+**A.** pm_cards_swipe_know — a single playing card flicked off a stack across a smooth wooden tabletop, a short bright zip of card edge against wood ending the instant the card leaves the surface. Close-miked, one clean flick, nothing lingering after. 320 milliseconds.
 
-**B.** pm_cards_swipe_know — satisfying arcade swipe for sorting a card into the known pile. Quick warm whoosh with a bright plucked accent on release, 320 milliseconds, snappy, rewarding, cheerful.
+**B.** pm_cards_swipe_know — a thick paper card slid fast off the top of a deck held in the palm, a soft quick friction whisper against skin then air. Recorded in a small quiet room, one motion, damped immediately as the card clears the hand. 320 milliseconds.
 
-**C.** pm_cards_swipe_know — cinematic decisive flick for a card sent to the mastered pile. Short air whip with a clean metallic glint trailing, 320 milliseconds, crisp, premium, no tail.
+**C.** pm_cards_swipe_know — a thin brass shim flicked off the edge of a stack of coins, a short bright metallic slide ending in silence the moment it leaves contact. One strike, nothing more. Close-miked for a precise, weighted feel. 320 milliseconds.
 
 ### `pm_cards_swipe_learn_v1` — 0.34 с, громкость 0.26
 **Экран:** `app/flashcards_swipe.tsx` · Момент: карточка улетела влево — «учу дальше». Не должно звучать как ошибка.
 
-**A.** pm_cards_swipe_learn — neutral interface swipe cue for a card being kept for further study, flying left. Soft sine sweep drifting slightly downward with a mild filter close, 340 milliseconds, dry, calm, explicitly not a failure sound.
+**A.** pm_cards_swipe_learn — a single playing card lifted and turned edge-first off a stack in one calm motion, a soft low zip of card against card, close-miked and neutral in tone, never sharp or descending. Stops the instant the card clears the deck. 340 milliseconds.
 
-**B.** pm_cards_swipe_learn — gentle arcade swipe for returning a card to the learning pile. Muted whoosh with a soft rounded thud on landing, 340 milliseconds, warm, neutral, kind.
+**B.** pm_cards_swipe_learn — a stiff paper card pulled sideways across a stack of others in a small quiet room, a warm muted paper-on-paper friction, rounded and even throughout. One even motion, settling into silence right after. 340 milliseconds.
 
-**C.** pm_cards_swipe_learn — cinematic soft return for a card kept in rotation. Low air pass with a faint padded landing, 340 milliseconds, gentle, unjudging, no tail.
+**C.** pm_cards_swipe_learn — a smooth river stone slid a short distance across a bed of fine sand, a soft granular hiss that stays level in pitch throughout, close-miked. A single push, damped as the stone stops. 340 milliseconds.
 
 ### `pm_cards_flip_v1` — 0.28 с, громкость 0.26
 **Экран:** `components/flashcards/`, `app/flashcards/PhraseCard.tsx` · Момент: карточка перевернулась и показала обратную сторону.
 
-**A.** pm_cards_flip — clean interface flip for a card turning to reveal its back face. Short filtered swish with a small pitched click at the turn point, 280 milliseconds, dry, mechanical, precise.
+**A.** pm_cards_flip — a single playing card turned over on a hard tabletop with two fingers, a short crisp double-tap of card edge striking wood as it lands face up, close-miked. One strike, nothing more, decay stops immediately. 280 milliseconds.
 
-**B.** pm_cards_flip — tactile arcade card-flip for a mobile learning app. Quick paper snap with a warm wooden tick, 280 milliseconds, satisfying, physical, light.
+**B.** pm_cards_flip — a stiff paper card flipped end over end and caught flat on a wooden surface, a soft muted paper slap in a small quiet room. A single event, landing flat and still. 280 milliseconds.
 
-**C.** pm_cards_flip — cinematic card turn in a premium app. Crisp air flick with a faint low body and a subtle metallic edge, 280 milliseconds, refined, tactile, no tail.
+**C.** pm_cards_flip — a thin porcelain tile turned over and set down flat on a stone slab, a short clean ceramic tick as the edge makes contact. Close-miked, one motion, damped the instant it settles. 280 milliseconds.
 
 ### `pm_cards_editor_save_v1` — 0.8 с, громкость 0.34
 **Экран:** `app/flashcards_card_editor.tsx` · Момент: пользователь сохранил свою карточку.
 
-**A.** pm_cards_editor_save — precise interface save confirmation for a user-created flashcard being stored. Two clean sine ticks with a sealing filter click on the second, 800 milliseconds, dry, tidy, sounds like a record filed correctly.
+**A.** pm_cards_editor_save — a small wax seal stamp pressed firmly onto a folded paper card, a short warm press followed by the stamp lifting away clean, recorded close-miked in a silent room. A single event, nothing after the lift. 800 milliseconds.
 
-**B.** pm_cards_editor_save — warm arcade save cue for a custom card in a mobile app. Soft pluck with a wooden knock and a light bell tail, 800 milliseconds, satisfying, friendly.
+**B.** pm_cards_editor_save — a wooden card box lid closed and pressed shut with the palm, a soft solid thud of wood meeting wood then stillness. One motion, damped immediately, warm and grounded. 800 milliseconds.
 
-**C.** pm_cards_editor_save — cinematic commit for a saved custom card. Low soft thud with a metallic sheen rising off it, 800 milliseconds, weighty, refined, short.
+**C.** pm_cards_editor_save — a small brass clasp on a card case pressed closed, one firm metallic snap followed instantly by silence, close-miked so the mechanism detail is clear but brief. A single strike, nothing more. 800 milliseconds.
 
 ### `pm_cards_editor_delete_v1` — 0.6 с, громкость 0.30
 **Экран:** `app/flashcards_card_editor.tsx` · Момент: карточка удалена.
 
-**A.** pm_cards_editor_delete — restrained interface deletion cue for a card being removed. Single low sine tone with a quick downward slide and an abrupt clean cutoff, 600 milliseconds, dry, final, unemotional.
+**A.** pm_cards_editor_delete — a single playing card torn cleanly in half by hand, a short crisp rip through stiff paper, close-miked and dry. Stops the instant the tear completes, then silence. 600 milliseconds.
 
-**B.** pm_cards_editor_delete — soft arcade discard sound for deleting a card in a mobile app. Muted whoosh with a low rounded thud, 600 milliseconds, warm, harmless, tidy.
+**B.** pm_cards_editor_delete — a thin wooden matchstick-sized offcut snapped in half between two fingers, a soft dry crack in a small quiet room. A single break, nothing lingers. 600 milliseconds.
 
-**C.** pm_cards_editor_delete — cinematic quiet removal of an item. Low air sweep with a dull padded impact, 600 milliseconds, subdued, clean, no tail.
+**C.** pm_cards_editor_delete — a small ceramic tile dropped a short distance onto a stone surface and shattering into two or three pieces, a brief hard crack with immediate stop, close-miked. One event only. 600 milliseconds.
 
 ### `pm_cards_pack_created_v1` — 1.2 с, громкость 0.44
 **Экран:** `app/community_pack_create.tsx`, `app/flashcards_my_packs.tsx` · Момент: пользователь собрал и опубликовал свой пак.
 
-**A.** pm_cards_pack_created — clean premium confirmation for a user-built card pack being created. Ascending sine triplet resolving into a bright held chord with a crisp filter bloom, 1.2 seconds, dry, proud, feels like authorship being recognised.
+**A.** pm_cards_pack_created — a stack of stiff cards squared off by tapping the edges twice against a hard tabletop, then bound with a thin paper band pulled snug, close-miked and precise. Two taps and one wrap, ending in a clean settle. 1200 milliseconds.
 
-**B.** pm_cards_pack_created — cheerful arcade creation fanfare for publishing a custom pack. Bright plucked run with a bell sparkle and a warm low landing, 1.2 seconds, joyful, generous, warm.
+**B.** pm_cards_pack_created — a small wooden box lid closed and a brass latch flipped down to secure it, warm layered sounds recorded in a small quiet room, one continuous sequence ending in stillness. 1200 milliseconds.
 
-**C.** pm_cards_pack_created — cinematic small ceremony for a created collection. Warm string lift with a clean bell resolving and a soft low thump beneath, 1.2 seconds, dignified, earned, short tail.
+**C.** pm_cards_pack_created — a wax seal pressed onto a folded card followed by a short cascade of small quartz beads settling into a shallow tin dish, close-miked, layered but brief. A single sequence, damped at the end. 1200 milliseconds.
 
 ### `pm_cards_voice_preview_v1` — 0.5 с, громкость 0.24
 **Экран:** `app/flashcards_voice_picker.tsx` · Момент: пользователь прослушивает вариант голоса озвучки.
 
-**A.** pm_cards_voice_preview — neutral interface cue announcing a voice sample about to play. Single soft sine tone with a gentle filter opening, 500 milliseconds, dry, transparent, must not colour the voice that follows.
+**A.** pm_cards_voice_preview — a small glass bead dropped into an empty ceramic cup from a short height, one clean high tick with immediate stop, close-miked in a silent room. A single event, nothing more. 500 milliseconds.
 
-**B.** pm_cards_voice_preview — light arcade preview blip before a voice sample in a mobile app. Small warm pluck with an airy lift, 500 milliseconds, friendly, brief.
+**B.** pm_cards_voice_preview — a thin wooden dowel tapped once against a small hollow wooden box, a soft rounded knock that decays instantly. One strike, recorded close, a single clean tick. 500 milliseconds.
 
-**C.** pm_cards_voice_preview — cinematic soft cue before a voice audition. Faint air breath with a whisper of clean tone, 500 milliseconds, unobtrusive, elegant, no tail.
+**C.** pm_cards_voice_preview — a single small coin flicked and landing flat on a thin sheet of steel, a short bright metallic tick damped immediately by a resting palm. One event only. 500 milliseconds.
 
 ### `pm_cards_mastered_v1` — 1.3 с, громкость 0.48
 **Экран:** `app/flashcards_collection.tsx` · Момент: слово перешло в статус выученного, шкала силы слова заполнилась.
 
-**A.** pm_cards_mastered — clean premium confirmation for a vocabulary word reaching mastered status. Rising sine figure resolving into a bright sustained note with a crystalline shimmer above, 1.3 seconds, dry, deeply satisfying, feels like knowledge locking in.
+**A.** pm_cards_mastered — a short row of glass beads dropped one after another into a shallow ceramic bowl in quick succession, each tick slightly higher, ending with the bowl given one soft settling tap, close-miked in a silent room. 1300 milliseconds.
 
-**B.** pm_cards_mastered — warm arcade mastery cue for a word fully learned in a mobile app. Bright bell arpeggio with a soft plucked base and a sparkle finish, 1.3 seconds, rewarding, cheerful.
+**B.** pm_cards_mastered — a small wooden box filled by pouring in a handful of smooth wooden beads in one steady stream, a warm rounded clatter that thins out and stops as the last bead settles. Recorded in a small quiet room. 1300 milliseconds.
 
-**C.** pm_cards_mastered — cinematic crystallisation for a mastered word. Glass harmonic bloom over a warm string bed with a soft low pulse, 1.3 seconds, luminous, premium, controlled tail.
-
----
+**C.** pm_cards_mastered — a handful of small polished quartz stones poured from a cupped palm onto a thin sheet of steel, close-miked so each piece is distinct, rising then settling into stillness. A single pour. 1300 milliseconds.
 
 # 6. Магазины, валюты и экономика
-
-Беззвучны: магазин, магазин осколков, обмен монет, кошелёк рун, сезонный
-пропуск. Все начисления и списания валют проходят молча — при том что это
-именно те моменты, где слуховое подтверждение важнее всего.
-
-Папка: `assets/audio/sfx/v1/economy/` · Семейство: `reward`
-
----
 
 ### `pm_shop_open_v1` — 1.0 с, громкость 0.26
 **Экран:** `app/shop.tsx` · Момент: открылся магазин.
 
-**A.** pm_shop_open — clean interface opening for an in-app store screen. Warm filter sweep under two sustained sine tones with a faint coin-like overtone, 1 second, dry, inviting, premium retail feel without being commercial.
+**A.** pm_shop_open — a glass display cabinet door opened on a small metal hinge, one smooth swing ending in a soft stop against its frame, close-miked in a silent room. A single motion, nothing after the stop. 1000 milliseconds.
 
-**B.** pm_shop_open — welcoming arcade shop-open jingle for a mobile game store. Bright marimba triad with a light metallic chime and a soft air swish, 1 second, cheerful, warm, rounded.
+**B.** pm_shop_open — a wooden shop counter drawer slid open on wooden runners, a warm low glide ending in a gentle settle, recorded in a small quiet room. One continuous pull. 1000 milliseconds.
 
-**C.** pm_shop_open — cinematic entrance to a premium marketplace. Airy swell with distant warm pad and a clean metallic ring settling above, 1 second, luxurious, spacious, short tail.
+**C.** pm_shop_open — a heavy brass shop-bell arm lifted and released once against a thin metal plate, a short bright ring damped by hand a moment after it starts, close-miked. A single strike. 1000 milliseconds.
 
 ### `pm_shop_item_select_v1` — 0.35 с, громкость 0.26
 **Экран:** `app/shop.tsx`, `app/shards_shop.tsx` · Момент: выбран товар в витрине.
 
-**A.** pm_shop_item_select — precise interface selection tick for choosing a store item. Clean sine blip with an upward step and a tight filter snap, 350 milliseconds, dry, decisive, neutral.
+**A.** pm_shop_item_select — a fingertip tapped once against the inside of a glass display case, a short clean glass tick, close-miked in a silent room, damped the instant it lands. One event only. 350 milliseconds.
 
-**B.** pm_shop_item_select — warm arcade item-pick tap in a mobile game shop. Rounded pluck with a small metallic tick underneath, 350 milliseconds, playful, satisfying.
+**B.** pm_shop_item_select — a small wooden token picked up and set back down once on a wooden shop counter, a soft rounded tap recorded close in a small quiet room. A single motion. 350 milliseconds.
 
-**C.** pm_shop_item_select — cinematic item-lock in a premium store. Tight click with a faint low resonance blooming, 350 milliseconds, weighty, confident, no tail.
+**C.** pm_shop_item_select — a single coin tapped once against another coin held still in the palm, a short bright metallic click damped instantly by the hand. One strike, nothing more. 350 milliseconds.
 
 ### `pm_shards_spend_v1` — 0.7 с, громкость 0.36
 **Экран:** `app/shards_shop.tsx` · Момент: осколки списаны за покупку, счётчик уменьшился.
 
-**A.** pm_shards_spend — clean interface cue for a crystal currency balance decreasing after a purchase. Descending glass-like sine pair with a soft filter close and a faint crystalline scatter, 700 milliseconds, dry, precise, spending without regret.
+**A.** pm_shards_spend — a small handful of thin glass shards swept off a steel tray in one motion, a short bright scatter that thins quickly and stops, close-miked in a silent room. A single sweep, nothing lingers. 700 milliseconds.
 
-**B.** pm_shards_spend — arcade gem-spend sound for a mobile game currency being deducted. Bright crystal chime falling downward with a light coin rattle, 700 milliseconds, warm, tactile, satisfying.
+**B.** pm_shards_spend — a stack of thin wooden counting tiles pushed off the edge of a wooden tray in one motion, a soft clatter that falls away and stops. Recorded in a small quiet room, one continuous gesture. 700 milliseconds.
 
-**C.** pm_shards_spend — cinematic transaction for premium currency leaving a balance. Glass shards settling with a soft low thump underneath, 700 milliseconds, tactile, refined, controlled tail.
+**C.** pm_shards_spend — a small pile of coins slid off a stone ledge into a felt-lined tin box, a brief metallic tumble ending in a muffled settle, close-miked. A single motion, damped at the end. 700 milliseconds.
 
 ### `pm_shards_earned_v1` — 0.9 с, громкость 0.44
 **Экран:** `app/shards_shop.tsx`, начисления в игре · Момент: осколки начислены, счётчик вырос.
 
-**A.** pm_shards_earned — bright clean interface cue for crystal currency being added to a balance. Ascending glass-tone sparkle with a crisp filter opening and a light shimmer settle, 900 milliseconds, dry, delightful, distinctly the opposite motion of spending.
+**A.** pm_shards_earned — a small handful of thin glass shards poured from a cupped palm onto a sheet of steel, close-miked so each individual piece is audible. Bright and granular, rising in density then settling into silence. Real material, a single pour. 900 milliseconds.
 
-**B.** pm_shards_earned — cheerful arcade gem-gain sound for earned currency in a mobile game. Bright crystal cascade rising with a warm coin ping on the peak, 900 milliseconds, joyful, generous.
+**B.** pm_shards_earned — a handful of smooth wooden beads poured from a small wooden scoop into a shallow wooden bowl, a warm rounded clatter that rises and settles, recorded in a small quiet room. A single pour. 900 milliseconds.
 
-**C.** pm_shards_earned — cinematic influx of premium currency. Glass harmonics blooming upward over a warm low swell, 900 milliseconds, luminous, rewarding, short tail.
+**C.** pm_shards_earned — a handful of small polished stones dropped from a short height into a shallow brass dish, a bright cascading patter that thins and stops, close-miked. One continuous pour, damped at the end. 900 milliseconds.
 
 ### `pm_coin_exchange_v1` — 1.0 с, громкость 0.40
 **Экран:** `app/coin_exchange.tsx` · Момент: одна валюта обменена на другую, произошла конвертация.
 
-**A.** pm_coin_exchange — clean interface conversion cue for exchanging one currency for another. Two sine tones crossing in opposite directions with a filter swap at the midpoint, 1 second, dry, mechanical, unmistakably an exchange rather than a gain.
+**A.** pm_coin_exchange — a single coin dropped onto a small glass dish and immediately swapped for a second coin set down beside it, two close-miked ticks in quick succession in a silent room, ending in stillness. 1000 milliseconds.
 
-**B.** pm_coin_exchange — arcade currency-swap sound in a mobile game. Coin rattle passing into a bright crystal chime, 1 second, tactile, warm, playful.
+**B.** pm_coin_exchange — a wooden token dropped into a shallow wooden tray followed at once by a second token lifted out and set on the counter, a warm double tap recorded in a small quiet room. 1000 milliseconds.
 
-**C.** pm_coin_exchange — cinematic conversion of value. Metallic shimmer descending as a glass tone ascends through it, 1 second, balanced, refined, controlled tail.
+**C.** pm_coin_exchange — a brass coin struck once against a steel plate followed immediately by a second heavier coin set down beside it, a short bright-to-weighted pair of ticks, close-miked, ending cleanly. 1000 milliseconds.
 
 ### `pm_runes_balance_open_v1` — 0.8 с, громкость 0.26
 **Экран:** `app/runes_wallet.tsx` · Момент: открылся кошелёк рун — только баланс и источники, без магазина.
 
-**A.** pm_runes_balance_open — calm interface opening for a rune balance wallet screen. Low sustained sine with a slow ancient-feeling filter bloom and a faint stone-like tap, 800 milliseconds, dry, mysterious but restrained, no fantasy cliché.
+**A.** pm_runes_balance_open — a small flat quartz stone lifted off a stack and turned once in the fingers before being set back down, a soft dry mineral click, close-miked in a silent room. One motion, damped the instant it settles. 800 milliseconds.
 
-**B.** pm_runes_balance_open — warm game-style wallet open for a rune currency screen in a mobile app. Soft muted mallet strike with a low resonant hum, 800 milliseconds, earthy, calm, tactile.
+**B.** pm_runes_balance_open — a small wooden box lid lifted a short distance and held, a soft hollow creak-free knock as it clears the rim, recorded in a small quiet room. A single event, stopping cleanly. 800 milliseconds.
 
-**C.** pm_runes_balance_open — cinematic quiet unveiling of an ancient ledger. Low stone-textured knock with a distant metallic ring fading in, 800 milliseconds, weighty, atmospheric, short tail.
+**C.** pm_runes_balance_open — a thin brass disc lifted off a stack and set down again on a stone slab, a short cool metallic tick, damped the instant it lands, close-miked. One strike, nothing more. 800 milliseconds.
 
 ### `pm_season_pass_open_v1` — 1.3 с, громкость 0.34
 **Экран:** `app/season_pass.tsx`, `app/arena_season_pass.tsx` · Момент: открылся сезонный пропуск с дорожкой наград.
 
-**A.** pm_season_pass_open — premium interface reveal for a seasonal reward track expanding on screen. Wide filter opening under an ascending sine chord with a subtle metallic sheen, 1.3 seconds, dry, expansive, feels like a long road unrolling.
+**A.** pm_season_pass_open — a folded paper ticket unfolded in one smooth motion and laid flat on a glass surface, a soft crisp paper unfurl ending in a light tap as it settles, close-miked in a silent room. 1300 milliseconds.
 
-**B.** pm_season_pass_open — arcade season-track reveal for a battle-pass screen in a mobile game. Bright bell run rising with a warm pad bloom and a light banner-flap texture, 1.3 seconds, exciting, generous, warm.
+**B.** pm_season_pass_open — a long wooden ruler-like game board slid open across a wooden table in one continuous motion, a warm low glide ending in a gentle stop, recorded in a small quiet room. 1300 milliseconds.
 
-**C.** pm_season_pass_open — cinematic unfurling of a seasonal campaign track. Horn-like warmth swelling with an airy sweep and a clean bell resolving above, 1.3 seconds, grand, controlled, short tail.
+**C.** pm_season_pass_open — a hinged tin case opened and a folded metal strip inside unfolding flat in one motion, a bright thin metallic unfurl ending in a soft settle, close-miked. A single continuous gesture. 1300 milliseconds.
 
 ### `pm_season_tier_unlock_v1` — 1.0 с, громкость 0.46
 **Экран:** `app/season_pass.tsx` · Момент: открылся новый уровень сезонного пропуска, награда стала доступна.
 
-**A.** pm_season_tier_unlock — clean interface unlock for a seasonal tier becoming available. Sharp filter snap opening into a bright sustained sine with a metallic latch click, 1 second, dry, decisive, unmistakably an unlock.
+**A.** pm_season_tier_unlock — a small brass latch on a glass case flipped open followed immediately by the lid lifting a short distance, two close-miked events in quick succession in a silent room, ending in stillness. 1000 milliseconds.
 
-**B.** pm_season_tier_unlock — arcade tier-unlock cue in a mobile game battle pass. Metallic latch pop followed by a bright bell flourish, 1 second, exciting, warm, rewarding.
+**B.** pm_season_tier_unlock — a small wooden box's clasp released and the lid pushed open by hand, a warm double motion of latch then wood recorded in a small quiet room, stopping cleanly. 1000 milliseconds.
 
-**C.** pm_season_tier_unlock — cinematic seal breaking on a seasonal reward. Heavy metallic clank with a bright harmonic bloom rising off it, 1 second, weighty, satisfying, short tail.
-
----
+**C.** pm_season_tier_unlock — a wax seal cracked open on a folded card followed at once by a single coin dropped beside it on a steel plate, a short layered sequence, close-miked, damped immediately after. 1000 milliseconds.
 
 # 7. Профиль, прогресс и достижения
-
-Беззвучны: достижения, коллекции, статистика стрика, детали аккаунта,
-аналитика фраз, аватар, выбор аватара. Экран достижений — витрина гордости,
-и сейчас он полностью немой.
-
-Папка: `assets/audio/sfx/v1/profile/` · Семейство: `reward`
-
----
 
 ### `pm_achievements_open_v1` — 1.1 с, громкость 0.28
 **Экран:** `app/achievements_screen.tsx` · Момент: открылась витрина достижений.
 
-**A.** pm_achievements_open — clean premium opening for a trophy showcase screen. Slow filter bloom under a sustained sine chord with faint metallic overtones, 1.1 seconds, dry, dignified, feels like a display case lighting up.
+**A.** pm_achievements_open — a glass trophy case door opened on a small metal hinge, one smooth swing ending in a soft stop against its frame, close-miked in a silent room. A single motion, nothing after. 1100 milliseconds.
 
-**B.** pm_achievements_open — warm arcade trophy-room open for an achievements screen in a mobile game. Bright bell triad with a soft metallic shimmer and a warm pad, 1.1 seconds, proud, cheerful, generous.
+**B.** pm_achievements_open — a wooden display case with a sliding wooden panel drawn open in one continuous motion, a warm low glide ending in a gentle settle, recorded in a small quiet room. 1100 milliseconds.
 
-**C.** pm_achievements_open — cinematic hall-of-honour entrance for an achievements gallery. Distant string warmth with an airy lift and a clean metallic ring settling, 1.1 seconds, reverent, premium, short tail.
+**C.** pm_achievements_open — a hinged tin trophy box opened with a short metallic creak-free lift, close-miked, one continuous motion ending as the lid rests against its stop. 1100 milliseconds.
 
 ### `pm_achievement_card_reveal_v1` — 0.6 с, громкость 0.32
 **Экран:** `app/achievements_screen.tsx` · Момент: карточка достижения перевернулась и показала полученную награду.
 
-**A.** pm_achievement_card_reveal — crisp interface reveal for an achievement card flipping to show an earned badge. Clean filter snap opening into a bright short tone with a metallic glint, 600 milliseconds, dry, proud, compact.
+**A.** pm_achievement_card_reveal — a single card turned over on a hard tabletop with two fingers, a short crisp double-tap of card edge striking wood as it lands face up, close-miked. One motion, damped immediately. 600 milliseconds.
 
-**B.** pm_achievement_card_reveal — arcade badge-reveal for an unlocked achievement in a mobile game. Quick card flip texture ending in a bright bell ping, 600 milliseconds, satisfying, warm, playful.
+**B.** pm_achievement_card_reveal — a small wooden medallion turned face up on a wooden stand, a soft rounded knock as it settles into place, recorded in a small quiet room. A single event. 600 milliseconds.
 
-**C.** pm_achievement_card_reveal — cinematic badge unveiling in a premium app. Sharp air flick with a metallic shimmer blooming outward, 600 milliseconds, elegant, weighty, no tail.
+**C.** pm_achievement_card_reveal — a thin porcelain medal flipped and set down on a stone slab, a short clean ceramic tick, close-miked, damped the instant it settles. One strike, nothing more. 600 milliseconds.
 
 ### `pm_achievement_locked_v1` — 0.4 с, громкость 0.22
 **Экран:** `app/achievements_screen.tsx` · Момент: пользователь нажал на ещё не полученное достижение.
 
-**A.** pm_achievement_locked — soft interface cue for tapping a still-locked achievement. Muted low sine tick with a dampened filter and no resolution, 400 milliseconds, dry, neutral, communicates not yet without discouragement.
+**A.** pm_achievement_locked — a fingertip tapped once against the outside of a sealed glass case, a short muted glass tick, damped the instant it lands, close-miked in a silent room. One event, nothing more. 400 milliseconds.
 
-**B.** pm_achievement_locked — gentle arcade locked-item tap in a mobile game. Small muffled wooden knock with a faint low hum, 400 milliseconds, soft, harmless, friendly.
+**B.** pm_achievement_locked — a small wooden latch tested once and found fixed, a soft dry knock against a locked wooden panel, recorded in a small quiet room. A single motion. 400 milliseconds.
 
-**C.** pm_achievement_locked — cinematic dull tap on a sealed trophy case. Muted padded knock with a faint metallic dampening, 400 milliseconds, subdued, respectful, no tail.
+**C.** pm_achievement_locked — a fingernail tapped once against a small closed tin box, a short dull metallic tick, close-miked, damped instantly. One strike, nothing more. 400 milliseconds.
 
 ### `pm_collectibles_open_v1` — 1.0 с, громкость 0.26
 **Экран:** `app/collectibles_screen.tsx` · Момент: открылась коллекция собранных предметов.
 
-**A.** pm_collectibles_open — clean interface opening for a collectibles gallery. Filter sweep under a sine pair with faint glass overtones scattering upward, 1 second, dry, curious, feels like a cabinet of treasures opening.
+**A.** pm_collectibles_open — a small glass display drawer slid open on smooth metal runners, one continuous glide ending in a soft stop, close-miked in a silent room. A single motion. 1000 milliseconds.
 
-**B.** pm_collectibles_open — warm arcade collection-open cue in a mobile game. Light crystal scatter with a soft marimba base note, 1 second, playful, inviting, warm.
+**B.** pm_collectibles_open — a wooden curio cabinet door opened on a small wooden hinge, a warm low creak-free swing ending in a gentle settle, recorded in a small quiet room. 1000 milliseconds.
 
-**C.** pm_collectibles_open — cinematic vault-open for a premium collection screen. Low air release with glass harmonics blooming above a warm pad, 1 second, luxurious, spacious, short tail.
+**C.** pm_collectibles_open — a hinged tin collector's box lid lifted in one motion, a short bright metallic unlatch followed by a soft stop, close-miked. One continuous gesture. 1000 milliseconds.
 
 ### `pm_streak_stats_open_v1` — 0.9 с, громкость 0.26
 **Экран:** `app/streak_stats.tsx` · Момент: открылась статистика ударного режима, календарь дней.
 
-**A.** pm_streak_stats_open — clean interface opening for a streak calendar screen. Warm sine tone with a rhythmic filter pulse suggesting consecutive days, 900 milliseconds, dry, steady, quietly motivating.
+**A.** pm_streak_stats_open — a folded paper calendar card unfolded once on a glass tabletop, a short crisp paper unfurl ending in a light settle, close-miked in a silent room. A single motion. 900 milliseconds.
 
-**B.** pm_streak_stats_open — warm arcade calendar-open cue for a streak screen in a mobile app. Soft marimba pulse of three even notes with a light flame-like crackle texture, 900 milliseconds, cosy, encouraging.
+**B.** pm_streak_stats_open — a small wooden desk calendar block turned once to reveal a new page, a soft rounded wooden tick, recorded in a small quiet room. One event only. 900 milliseconds.
 
-**C.** pm_streak_stats_open — cinematic hearth-warm opening for a consistency tracker. Low warm swell with a faint ember texture and a clean tone settling, 900 milliseconds, intimate, premium, short tail.
+**C.** pm_streak_stats_open — a thin brass calendar plate flipped once against a stone base, a short cool metallic tick, damped the instant it lands, close-miked. A single strike. 900 milliseconds.
 
 ### `pm_stats_bar_fill_v1` — 0.5 с, громкость 0.26
 **Экран:** `app/streak_stats.tsx`, `components/stats/` · Момент: столбик статистики вырастает до своего значения.
 
-**A.** pm_stats_bar_fill — smooth interface cue for a statistics bar growing to its value. Rising filtered sine glide with a soft landing tick at the top, 500 milliseconds, dry, mechanical, precise.
+**A.** pm_stats_bar_fill — a thin stream of fine sand poured steadily into a narrow glass tube, close-miked so the grains are audible, rising evenly then stopping the instant the pour ends. A single continuous pour. 500 milliseconds.
 
-**B.** pm_stats_bar_fill — arcade bar-fill sound for a growing statistic in a mobile app. Warm pitched sweep upward with a small pop on arrival, 500 milliseconds, satisfying, snappy.
+**B.** pm_stats_bar_fill — a row of small wooden beads dropped one after another in quick even succession into a narrow wooden channel, a soft rising patter recorded in a small quiet room. One continuous sequence. 500 milliseconds.
 
-**C.** pm_stats_bar_fill — cinematic ascent for a data bar reaching its height. Airy rise with a faint metallic click landing on the peak, 500 milliseconds, refined, clean, no tail.
+**C.** pm_stats_bar_fill — fine quartz grit poured in a thin steady stream into a shallow brass groove, close-miked, a bright even hiss that stops cleanly the moment the pour ends. A single pour. 500 milliseconds.
 
 ### `pm_avatar_equip_v1` — 0.7 с, громкость 0.34
 **Экран:** `app/avatar_select.tsx`, `app/avatar_dna_studio.tsx` · Момент: пользователь надел новый элемент внешности на аватар.
 
-**A.** pm_avatar_equip — clean interface confirmation for an appearance item being equipped on an avatar. Soft fabric-like filtered swish resolving into a bright confirming tick, 700 milliseconds, dry, tactile, tidy.
+**A.** pm_avatar_equip — a small glass ornament piece set firmly into a fitted slot on a display stand, one clean click as it seats, close-miked in a silent room. A single event, damped immediately. 700 milliseconds.
 
-**B.** pm_avatar_equip — warm arcade dress-up cue for equipping a cosmetic item in a mobile game. Light cloth rustle with a cheerful plucked confirmation, 700 milliseconds, playful, satisfying.
+**B.** pm_avatar_equip — a small wooden peg pressed firmly into a fitted hole in a wooden puzzle stand, a soft solid knock as it seats fully, recorded in a small quiet room. One motion only. 700 milliseconds.
 
-**C.** pm_avatar_equip — cinematic garment settling into place on a character. Soft fabric fall with a faint metallic clasp click, 700 milliseconds, tactile, premium, no tail.
+**C.** pm_avatar_equip — a small brass fitting clicked firmly into place on a metal frame, a short precise mechanical snap, close-miked, stopping cleanly the instant it locks. A single strike. 700 milliseconds.
 
 ### `pm_avatar_studio_render_v1` — 1.0 с, громкость 0.30
 **Экран:** `app/avatar_dna_studio.tsx` · Момент: новый образ аватара собрался и отрисовался.
 
-**A.** pm_avatar_studio_render — clean interface materialisation for a rendered avatar appearing. Ascending filtered shimmer resolving into a stable clean tone, 1 second, dry, technological, feels like an image resolving into focus.
+**A.** pm_avatar_studio_render — several small glass pieces set down one after another onto a steel plate in quick succession, close-miked ticks rising then settling into one final firm placement. A single assembling sequence. 1000 milliseconds.
 
-**B.** pm_avatar_studio_render — arcade character-materialise cue in a mobile game. Bright sparkle sweep upward with a warm bell landing, 1 second, magical, warm, playful.
+**B.** pm_avatar_studio_render — a few wooden blocks stacked quickly one on top of another on a wooden table, soft successive knocks ending with one final firm settle, recorded in a small quiet room. 1000 milliseconds.
 
-**C.** pm_avatar_studio_render — cinematic materialisation of a character portrait. Airy particle rise with a low warm bloom and a clean glass tone settling, 1 second, elegant, luminous, short tail.
+**C.** pm_avatar_studio_render — a handful of small polished stones set down in quick succession onto a brass tray, close-miked, a short rising sequence ending in one final settled click. 1000 milliseconds.
 
 ### `pm_account_saved_v1` — 0.8 с, громкость 0.32
 **Экран:** `app/account_details.tsx`, `components/account/NicknameEditModal.tsx` · Момент: данные профиля сохранены.
 
-**A.** pm_account_saved — precise interface save confirmation for profile details being stored. Two clean sine ticks with a sealing click on the second, 800 milliseconds, dry, businesslike, trustworthy.
+**A.** pm_account_saved — a small wax seal stamp pressed firmly once onto a folded paper card and lifted away clean, close-miked in a silent room. A single event, nothing after the lift. 800 milliseconds.
 
-**B.** pm_account_saved — warm arcade save cue for profile changes in a mobile app. Soft pluck with a wooden knock and a light bell tail, 800 milliseconds, friendly, satisfying.
+**B.** pm_account_saved — a small wooden drawer pushed firmly shut with the palm, a soft solid thud of wood meeting wood then immediate stillness, recorded in a small quiet room. One motion. 800 milliseconds.
 
-**C.** pm_account_saved — cinematic quiet commit for saved profile data. Low soft thud with a faint metallic sheen, 800 milliseconds, weighty, refined, no tail.
-
----
-
+**C.** pm_account_saved — a small brass clasp on a document case pressed closed, one firm metallic snap followed instantly by silence, close-miked. A single strike, nothing more. 800 milliseconds.
 # 8. Соцчасть: клуб, лига, друзья, рефералы
-
-Озвучены только повышение/понижение в лиге и сундук. Беззвучны сам экран
-лиги, клуб, топы, история арены, приглашения, рефералы и вся ветка «Вместе».
-
-Папка: `assets/audio/sfx/v1/social/` · Семейство: `social`
-
----
 
 ### `pm_league_screen_open_v1` — 1.2 с, громкость 0.28
 **Экран:** `app/league_screen.tsx`, `app/club_screen.tsx` · Момент: открылась таблица лиги, видно своё место.
 
-**A.** pm_league_screen_open — clean interface opening for a competitive league standings table. Filter sweep under a sustained sine chord with a faint metallic edge, 1.2 seconds, dry, formal, feels like a leaderboard board settling into place.
+**A.** pm_league_screen_open — a heavy oak drawer of a card catalogue pulled smoothly open on brass runners, close-miked in a quiet library. Wood sliding against wood, ending with the soft seat of the drawer front. Orderly and institutional, the sound of records being consulted. 1.2 seconds.
 
-**B.** pm_league_screen_open — arcade leaderboard-open cue for a league screen in a mobile game. Bright bell triad with a light banner texture and a warm pad, 1.2 seconds, competitive, warm, energising.
+**B.** pm_league_screen_open — a stack of thick cotton-paper certificates laid down onto a leather desktop and squared with two taps of the fingers. Dense, dry, official. A single settling gesture, recorded very close. 1.2 seconds.
 
-**C.** pm_league_screen_open — cinematic arena-standings reveal in a premium app. Distant horn warmth with an airy lift and a clean metallic ring, 1.2 seconds, stately, controlled, short tail.
+**C.** pm_league_screen_open — a bronze plaque lifted and set against a stone wall, the metal humming quietly for a moment after contact. Weighty and ceremonial, recorded in a small hall with just enough room around it to feel public. 1.2 seconds.
 
 ### `pm_league_rank_move_v1` — 0.5 с, громкость 0.30
 **Экран:** `app/league_screen.tsx` · Момент: строка игрока переехала вверх или вниз в таблице.
 
-**A.** pm_league_rank_move — precise interface cue for a player row shifting position in a standings table. Short filtered glide with a directional pitch movement and a clean landing tick, 500 milliseconds, dry, mechanical, neutral about direction.
+**A.** pm_league_rank_move — a single brass name-plate slid one slot along the grooved rail of an old hotel key board, stopping against the next peg. Metal on metal, short travel, a firm stop. One movement, nothing more. 500 milliseconds.
 
-**B.** pm_league_rank_move — arcade position-shift sound in a mobile game leaderboard. Quick sliding pluck with a small wooden landing knock, 500 milliseconds, snappy, playful.
+**B.** pm_league_rank_move — a wooden peg lifted from one hole of a cribbage board and pressed into the next, close-miked so both the release and the seat are audible. Small, tactile, decisive. 500 milliseconds.
 
-**C.** pm_league_rank_move — cinematic rank shift on a competitive board. Air pass with a faint metallic slide and a soft settle, 500 milliseconds, refined, weighty, no tail.
+**C.** pm_league_rank_move — a magnetic tile repositioned on a steel scheduling board, the magnet breaking contact and grabbing again one row along. A short scrape and a confident click. 500 milliseconds.
 
 ### `pm_league_zone_enter_v1` — 0.8 с, громкость 0.36
 **Экран:** `app/league_screen.tsx` · Момент: игрок попал в зону повышения — строка подсветилась.
 
-**A.** pm_league_zone_enter — bright clean interface cue for a player entering the promotion zone in a league table. Rising sine pair resolving into a bright sustained tone with a warm filter bloom, 800 milliseconds, dry, hopeful, motivating.
+**A.** pm_league_zone_enter — a taut steel guitar string touched at the twelfth fret and plucked so only the harmonic sounds, bright and weightless, ringing briefly above the instrument body. Lifting, clean, effortless. A single touch. 800 milliseconds.
 
-**B.** pm_league_zone_enter — arcade promotion-zone cue in a mobile game leaderboard. Bright ascending bell pair with a warm sparkle, 800 milliseconds, encouraging, cheerful, energising.
+**B.** pm_league_zone_enter — a brass ring dropped onto a marble ledge, spinning up in brightness for a moment before a hand stops it. Warm metal, upward energy, an ending that feels chosen rather than faded. 800 milliseconds.
 
-**C.** pm_league_zone_enter — cinematic ascent into a qualifying position. Warm string lift with a clean glass tone rising above it, 800 milliseconds, uplifting, dignified, short tail.
+**C.** pm_league_zone_enter — a small temple bowl struck once on its rim with a wooden mallet, the tone blooming upward and opening out. Recorded close in a quiet room so the bloom stays intimate. 800 milliseconds.
 
 ### `pm_league_zone_risk_v1` — 0.8 с, громкость 0.30
 **Экран:** `app/league_screen.tsx` · Момент: игрок попал в зону вылета. Тревога без унижения.
 
-**A.** pm_league_zone_risk — restrained interface warning for a player falling into the relegation zone. Two low sine tones sinking a minor third with a slow filter dampening, 800 milliseconds, dry, serious, never mocking or harsh.
+**A.** pm_league_zone_risk — the lowest string of an upright bass plucked once and immediately palm-muted, leaving only the dark thud of the initial movement. Serious and grounded, sympathetic rather than punishing. One pluck. 800 milliseconds.
 
-**B.** pm_league_zone_risk — gentle arcade danger-zone cue in a mobile leaderboard. Muted low marimba pair drifting downward with a soft dulled bell, 800 milliseconds, warm, concerned, motivating rather than punishing.
+**B.** pm_league_zone_risk — a heavy woollen curtain drawn closed across a wooden rail, ending with the muffled knock of the leading edge meeting the frame. Soft, dimming, quietly final. 800 milliseconds.
 
-**C.** pm_league_zone_risk — cinematic sinking cue for a relegation position. Low cello-like descent with a faint air dampening, 800 milliseconds, grave, respectful, short tail.
+**C.** pm_league_zone_risk — a bronze weight lowered onto a felt pad, the metal settling with a low sigh of displaced air. Weighty and grave, recorded close so it feels personal rather than dramatic. 800 milliseconds.
 
 ### `pm_friend_invite_sent_v1` — 0.7 с, громкость 0.32
 **Экран:** `app/arena_invite.tsx`, `app/referrals.tsx` · Момент: приглашение другу отправлено.
 
-**A.** pm_friend_invite_sent — clean interface send cue for a friend invitation going out. Rising sine blip with a bright departure sweep and a soft filter release, 700 milliseconds, dry, optimistic, forward-moving.
+**A.** pm_friend_invite_sent — a stiff paper envelope slid across a polished wooden table and released, the card gliding away and leaving the hand. Light, forward-moving, generous. A single send. 700 milliseconds.
 
-**B.** pm_friend_invite_sent — warm arcade send-off for an invite in a mobile social app. Cheerful pluck with a light whoosh trailing upward, 700 milliseconds, friendly, buoyant.
+**B.** pm_friend_invite_sent — a small wax-sealed note dropped into a brass letter slot, the flap swinging shut behind it with a soft double contact. Warm, human, on its way. 700 milliseconds.
 
-**C.** pm_friend_invite_sent — cinematic dispatch of a personal invitation. Soft air lift with a clean tone rising and fading gently, 700 milliseconds, warm, elegant, short tail.
+**C.** pm_friend_invite_sent — a paper aeroplane launched from a hand, close-miked so the sharp release and the fading rush of air are both audible. Playful and buoyant, one throw. 700 milliseconds.
 
 ### `pm_friend_accepted_v1` — 1.0 с, громкость 0.42
 **Экран:** `app/(tabs)/friends.tsx` · Момент: друг принял приглашение, связь установлена.
 
-**A.** pm_friend_accepted — warm clean interface confirmation for a friend connection being established. Two sine tones converging into a consonant held interval with a soft bloom, 1 second, dry, human, quietly joyful.
+**A.** pm_friend_accepted — two matching brass tuning forks brought together until they touch, their tones merging into one steady shared note that fades naturally. Two things becoming one, warm and human. 1 second.
 
-**B.** pm_friend_accepted — cheerful arcade connection cue for a new friendship in a mobile app. Two plucked notes meeting on a warm bell chord, 1 second, friendly, heartfelt, playful.
+**B.** pm_friend_accepted — the clasp of a leather bracelet fastened around a wrist, the tongue seating into the buckle with a soft leather-and-metal click. Personal, tactile, quietly joyful. 1 second.
 
-**C.** pm_friend_accepted — cinematic bond forming between two people. Two warm tones drawing together into a soft consonant swell, 1 second, tender, premium, short tail.
+**C.** pm_friend_accepted — two hands clasping firmly in a greeting, close-miked so the skin contact and the small rustle of sleeves are both present. Human, warm, unmistakably a connection. 1 second.
 
 ### `pm_friend_high_five_v1` — 0.5 с, громкость 0.36
 **Экран:** `app/(tabs)/friends.tsx` · Момент: пользователь отправил другу «дай пять».
 
-**A.** pm_friend_high_five — bright snappy interface cue for sending a high-five to a friend. Sharp clean transient with a quick bright resonance and immediate decay, 500 milliseconds, dry, energetic, physical.
+**A.** pm_friend_high_five — two palms meeting hard in a single clap, recorded very close in a small room so the skin snap arrives before the room does. Bright, energetic, physical. One impact, nothing more. 500 milliseconds.
 
-**B.** pm_friend_high_five — playful arcade clap cue for a high-five in a mobile social app. Warm hand-clap-like snap with a bright plucked sparkle, 500 milliseconds, fun, punchy, cheerful.
+**B.** pm_friend_high_five — a flat hand slapped against a taut leather drum head, the head rebounding once and stopping. Warm, punchy, celebratory. 500 milliseconds.
 
-**C.** pm_friend_high_five — cinematic palm impact with warmth. Tight clap transient with a faint air burst and a short bright shimmer, 500 milliseconds, physical, premium, no tail.
+**C.** pm_friend_high_five — a wooden clapper board snapped shut in one decisive movement, close-miked. Sharp, joyful, unmistakably two things meeting. 500 milliseconds.
 
 ### `pm_together_level_up_v1` — 1.4 с, громкость 0.50
 **Экран:** `components/friends_together/` · Момент: уровень дружбы вырос.
 
-**A.** pm_together_level_up — clean premium celebration for a friendship level increasing. Two intertwining sine lines rising together into a bright shared chord, 1.4 seconds, dry, warm, distinctly about two people rather than one.
+**A.** pm_together_level_up — two steel strings tuned a fifth apart, both plucked at the same instant and allowed to ring together, their beating settling into agreement before the hand damps them. Shared, rising, distinctly about two people. 1.4 seconds.
 
-**B.** pm_together_level_up — joyful arcade duo level-up for a shared progress bar in a mobile app. Two plucked melodies weaving upward into a bell chord with sparkle, 1.4 seconds, playful, generous, warm.
+**B.** pm_together_level_up — two ceramic cups touched together in a toast, then a third gentle contact, the porcelain ringing warmly over a low wooden table. Intimate, celebratory, real material. 1.4 seconds.
 
-**C.** pm_together_level_up — cinematic shared ascent for a deepening bond. Two warm string lines rising in harmony with a clean bell resolving above, 1.4 seconds, tender, uplifting, controlled tail.
+**C.** pm_together_level_up — two bronze bells of different sizes struck one after the other, their tones overlapping and blooming into a single warm mass before fading. Ceremonial without being loud. 1.4 seconds.
 
 ### `pm_referral_reward_v1` — 1.3 с, громкость 0.48
 **Экран:** `app/referrals.tsx` · Момент: друг активировался, награда за приглашение выдана.
 
-**A.** pm_referral_reward — clean premium reward cue for a referral bonus being granted. Ascending sine figure with a bright coin-like resolution and a crisp filter bloom, 1.3 seconds, dry, generous, feels like a gift arriving.
+**A.** pm_referral_reward — a small drawstring pouch of coins emptied into an open palm, close-miked so the metal tumbles and settles into the skin. Abundant, warm, generous. A single pour. 1.3 seconds.
 
-**B.** pm_referral_reward — cheerful arcade referral payout in a mobile app. Bright coin cascade into a warm bell flourish, 1.3 seconds, joyful, abundant, playful.
+**B.** pm_referral_reward — a brass scale pan tipping as weights are added, the pan swinging down and the metal chiming as the arm comes to rest. Value arriving and being measured. 1.3 seconds.
 
-**C.** pm_referral_reward — cinematic windfall for an invited friend joining. Warm swell with a metallic sparkle shower resolving on a clean bell, 1.3 seconds, generous, premium, short tail.
+**C.** pm_referral_reward — a wooden gift box lid lifted and set aside, followed by a single bright metallic ring from whatever lies inside. Anticipation resolved, recorded close in a quiet room. 1.3 seconds.
 
 ### `pm_tops_reveal_v1` — 1.1 с, громкость 0.34
 **Экран:** `app/arena_tops.tsx` · Момент: открылась таблица лучших игроков, топ-3 подсветились.
 
-**A.** pm_tops_reveal — clean interface reveal for a top-players podium appearing. Three ascending bright sine tones landing on a sustained high note with metallic sheen, 1.1 seconds, dry, ceremonial, compact.
+**A.** pm_tops_reveal — three brass medals set down one after another onto a marble podium, each landing slightly brighter than the last, the third ringing on. Ceremonial, ordered, three distinct events. 1.1 seconds.
 
-**B.** pm_tops_reveal — arcade podium fanfare for a top-three leaderboard in a mobile game. Bright bell triplet with a warm brassy edge and light sparkle, 1.1 seconds, celebratory, energising.
+**B.** pm_tops_reveal — a velvet cloth pulled away from a trophy in one smooth movement, the fabric rushing off polished metal and the metal ringing faintly as it is exposed. An unveiling. 1.1 seconds.
 
-**C.** pm_tops_reveal — cinematic podium unveiling in a competitive app. Horn-like triple lift with an airy shimmer resolving above, 1.1 seconds, stately, proud, short tail.
+**C.** pm_tops_reveal — a gong tapped very lightly with a felt mallet, then the sound opening outward in a small hall. Restrained grandeur, a single strike. 1.1 seconds.
 
 ---
 
 # 9. Уроки: обвязка вокруг сессии
 
-Сама сессия обучения озвучена (верно/неверно/подсказка/таймер/завершение), но
-беззвучны список уроков, меню урока, теория, слова, глаголы, помощь,
-неправильные глаголы, тренажёр предлогов и практика ошибок.
-
-Папка: `assets/audio/sfx/v1/learning/` · Семейство: `learning`
-
----
-
 ### `pm_lessons_list_open_v1` — 0.9 с, громкость 0.22
 **Экран:** `app/lessons_list.tsx`, `app/(tabs)/lessons.tsx` · Момент: открылся список уроков, видна дорожка прогресса.
 
-**A.** pm_lessons_list_open — clean interface opening for a lesson roadmap screen. Gentle filter sweep under a sine pair with a subtle stepping rhythm, 900 milliseconds, dry, orderly, feels like a path laying itself out.
+**A.** pm_lessons_list_open — a linen-bound book opened flat on a desk, the spine giving slightly and the pages settling. Quiet, scholarly, inviting. A single opening gesture, close-miked in a still room. 900 milliseconds.
 
-**B.** pm_lessons_list_open — warm arcade map-open cue for a lesson path in a mobile learning game. Soft marimba steps rising with a light shimmer, 900 milliseconds, inviting, cheerful.
+**B.** pm_lessons_list_open — a folded paper map unfolded across a wooden table in one movement, the creases releasing as the sheet lies flat. A journey laid out. 900 milliseconds.
 
-**C.** pm_lessons_list_open — cinematic path-reveal for a learning journey screen. Airy lift with a distant warm pad and a clean tone settling, 900 milliseconds, spacious, premium, short tail.
+**C.** pm_lessons_list_open — a wooden shutter eased open on a quiet morning, the hinge turning softly and the panel resting against its stop. Something opening onto what comes next. 900 milliseconds.
 
 ### `pm_lesson_unlock_v1` — 1.1 с, громкость 0.46
 **Экран:** `app/lessons_list.tsx` · Момент: следующий урок разблокирован, замок открылся.
 
-**A.** pm_lesson_unlock — crisp interface unlock for the next lesson becoming available. Sharp filter snap with a metallic latch release opening into a bright sustained tone, 1.1 seconds, dry, decisive, unmistakably a lock giving way.
+**A.** pm_lesson_unlock — a brass padlock shackle springing free as the key turns, the mechanism releasing with a bright metallic snap and the body swinging loose. Unmistakably a lock giving way. One event. 1.1 seconds.
 
-**B.** pm_lesson_unlock — arcade unlock cue for a newly available level in a mobile game. Metallic latch pop followed by a bright rising bell flourish, 1.1 seconds, exciting, warm, rewarding.
+**B.** pm_lesson_unlock — the iron bolt of a heavy wooden door drawn back and the door easing off its latch, wood releasing wood. Substantial, satisfying, a threshold crossed. 1.1 seconds.
 
-**C.** pm_lesson_unlock — cinematic gate opening onto a new lesson. Heavy latch clank with a harmonic bloom and a soft air release, 1.1 seconds, weighty, satisfying, controlled tail.
+**C.** pm_lesson_unlock — a steel clasp on a travelling trunk flicked open, the sprung metal ringing briefly and the lid lifting a fraction. Bright release followed by weight moving. 1.1 seconds.
 
 ### `pm_lesson_locked_v1` — 0.45 с, громкость 0.24
 **Экран:** `app/lessons_list.tsx` · Момент: пользователь нажал на закрытый урок.
 
-**A.** pm_lesson_locked — soft interface cue for tapping a locked lesson. Muted low sine knock with a dampened filter and no resolution, 450 milliseconds, dry, neutral, communicates a boundary without scolding.
+**A.** pm_lesson_locked — a knuckle knocking twice on a thick closed door, the sound absorbed by the wood with no resonance behind it. A boundary, stated plainly and without scolding. 450 milliseconds.
 
-**B.** pm_lesson_locked — gentle arcade locked-door tap in a mobile game. Small muffled wooden double-knock with a faint low hum, 450 milliseconds, soft, friendly.
+**B.** pm_lesson_locked — a padlock body bumped gently against its own hasp, the metal meeting metal and stopping dead because nothing opens. Short, inert, harmless. 450 milliseconds.
 
-**C.** pm_lesson_locked — cinematic dull thud against a closed gate. Padded low impact with a faint metallic dampening, 450 milliseconds, subdued, respectful, no tail.
+**C.** pm_lesson_locked — a fingertip pressed against a pane of thick glass, producing only a dull muted contact. Nothing gives. Recorded very close. 450 milliseconds.
 
 ### `pm_lesson_menu_open_v1` — 0.7 с, громкость 0.24
 **Экран:** `app/lesson_menu.tsx` · Момент: открылось меню урока с выбором активностей.
 
-**A.** pm_lesson_menu_open — clean interface panel-open for a lesson activity menu. Short filter bloom under a single clear sine tone, 700 milliseconds, dry, tidy, functional.
+**A.** pm_lesson_menu_open — a wooden fan of sample cards spread open in the hand, the slats separating with a soft ratcheting rustle and stopping. Options laid out. A single spread. 700 milliseconds.
 
-**B.** pm_lesson_menu_open — warm arcade menu-open for a lesson hub in a mobile app. Soft marimba pair with a light air swish, 700 milliseconds, friendly, rounded.
+**B.** pm_lesson_menu_open — a small brass-hinged writing box opened, the lid rising and the hinge easing to its stop. Tidy, purposeful, close-miked. 700 milliseconds.
 
-**C.** pm_lesson_menu_open — cinematic soft panel rise for a lesson menu. Airy lift with a faint warm body settling, 700 milliseconds, elegant, quiet, no tail.
+**C.** pm_lesson_menu_open — a cloth roll of tools unrolled across a bench, the fabric releasing and the contents shifting quietly into view. Everything available at once. 700 milliseconds.
 
 ### `pm_theory_page_turn_v1` — 0.4 с, громкость 0.24
 **Экран:** `app/lesson_theory_v2.tsx`, `app/lesson_help_theory_ui.tsx` · Момент: перелистнулась страница теории.
 
-**A.** pm_theory_page_turn — clean interface page-advance cue in a grammar theory reader. Soft filtered swish with a small pitched tick at the end, 400 milliseconds, dry, precise, paper-like without literal foley.
+**A.** pm_theory_page_turn — a single sheet of heavy book paper turned and laid flat, the paper flexing through the air and settling against the page beneath. Recorded very close, one turn only. 400 milliseconds.
 
-**B.** pm_theory_page_turn — tactile arcade page-turn for a theory screen in a mobile app. Warm paper rustle with a light wooden tap, 400 milliseconds, cosy, satisfying.
+**B.** pm_theory_page_turn — a stiff card page of a photograph album lifted and dropped over, thicker and slower than ordinary paper, landing with a soft dry tap. 400 milliseconds.
 
-**C.** pm_theory_page_turn — cinematic page turning in a premium reader. Crisp paper sweep with a faint low body, 400 milliseconds, tactile, refined, no tail.
+**C.** pm_theory_page_turn — a fingertip drawn across the edge of a paper block to separate one sheet, then the sheet swinging over. Two small gestures inside one movement. 400 milliseconds.
 
 ### `pm_words_reveal_v1` — 0.5 с, громкость 0.28
 **Экран:** `app/lesson_words.tsx` · Момент: показано значение нового слова.
 
-**A.** pm_words_reveal — clean interface reveal for a word meaning being shown. Soft filter opening resolving into a clear bright tone, 500 milliseconds, dry, illuminating, satisfying comprehension.
+**A.** pm_words_reveal — a brass lamp pull-chain drawn once, the click of the switch followed by the faint hum of a filament coming up to light. Understanding arriving. One pull. 500 milliseconds.
 
-**B.** pm_words_reveal — warm arcade reveal for a vocabulary definition in a mobile app. Light bell shimmer over a soft plucked base, 500 milliseconds, friendly, bright.
+**B.** pm_words_reveal — a small paper flap lifted in a pop-up book to expose what is printed beneath, the paper releasing with a soft dry lift. Curiosity satisfied. 500 milliseconds.
 
-**C.** pm_words_reveal — cinematic illumination of a word meaning. Faint airy rise with a clean glass tone blooming, 500 milliseconds, luminous, elegant, short tail.
+**C.** pm_words_reveal — a match struck once and catching, the flare rising and steadying immediately. Light where there was none, recorded close in a quiet room. 500 milliseconds.
 
 ### `pm_verbs_form_correct_v1` — 0.45 с, громкость 0.34
 **Экран:** `app/lesson_verbs.tsx`, `app/lesson_irregular_verbs.tsx` · Момент: верная форма неправильного глагола подтверждена.
 
-**A.** pm_verbs_form_correct — precise interface confirmation for a correct verb form in a grammar drill. Two clean ascending sine ticks with a tight filter snap, 450 milliseconds, dry, affirmative, compact and repeatable.
+**A.** pm_verbs_form_correct — a typewriter key struck once, the typebar hitting the platen with a crisp mechanical stamp and returning. Precise, correct, decisive. A single strike. 450 milliseconds.
 
-**B.** pm_verbs_form_correct — warm arcade correct-form cue in a mobile grammar game. Bright plucked pair with a small bell accent, 450 milliseconds, cheerful, snappy.
+**B.** pm_verbs_form_correct — a wooden letterpress block seated into its frame with a firm push, wood meeting wood and locking flush. Satisfying and exact. 450 milliseconds.
 
-**C.** pm_verbs_form_correct — cinematic click of a correct grammatical form locking in. Tight metallic tick with a faint bright bloom, 450 milliseconds, precise, premium, no tail.
+**C.** pm_verbs_form_correct — a brass stamp pressed onto a document and lifted away, the impact short and the metal ringing very faintly after. Authoritative, one press. 450 milliseconds.
 
 ### `pm_preposition_snap_v1` — 0.35 с, громкость 0.30
 **Экран:** `app/preposition_drill.tsx` · Момент: предлог встал в правильный слот предложения.
 
-**A.** pm_preposition_snap — crisp interface snap for a word locking into the correct slot in a sentence. Tight filtered click with a short bright pitched body, 350 milliseconds, dry, mechanical, deeply satisfying.
+**A.** pm_preposition_snap — two strong magnets snapping together across a short gap, the collision sharp and the metal ringing for an instant before stopping. Inevitable and exact. One snap. 350 milliseconds.
 
-**B.** pm_preposition_snap — arcade slot-in sound for a puzzle piece landing correctly in a mobile game. Warm wooden snap with a bright plucked ping, 350 milliseconds, tactile, playful.
+**B.** pm_preposition_snap — a hardwood puzzle piece pressed into its cut-out and seating flush, the fit tight enough to produce a small pop of trapped air. Deeply satisfying. 350 milliseconds.
 
-**C.** pm_preposition_snap — cinematic magnetic snap of a piece into place. Sharp metallic click with a faint low pull underneath, 350 milliseconds, physical, refined, no tail.
+**C.** pm_preposition_snap — the shackle of a small steel clip clicking closed over a ring, close-miked. Short, bright, mechanically certain. 350 milliseconds.
 
 ### `pm_mistake_practice_start_v1` — 1.0 с, громкость 0.28
 **Экран:** `app/mistake_practice_session.tsx` · Момент: начата тренировка на своих ошибках. Тон поддерживающий, не карающий.
 
-**A.** pm_mistake_practice_start — supportive interface opening for a session practising previous mistakes. Warm sine pair rising gently with a soft filter bloom, 1 second, dry, encouraging, explicitly free of any error-tone association.
+**A.** pm_mistake_practice_start — a soft cloth wiped once across a slate board, clearing it completely, ending with the cloth lifting away. A clean start offered without judgement. One stroke. 1 second.
 
-**B.** pm_mistake_practice_start — kind arcade cue for starting a review of past errors in a mobile learning app. Gentle marimba lift with a warm bell settle, 1 second, friendly, motivating, no judgement.
+**B.** pm_mistake_practice_start — the low string of a cello bowed once, very quietly, swelling gently and released. Warm, encouraging, patient. 1 second.
 
-**C.** pm_mistake_practice_start — cinematic second-chance opening in a premium learning app. Soft string warmth lifting with a clean tone resolving above, 1 second, compassionate, dignified, short tail.
+**C.** pm_mistake_practice_start — a wooden chair drawn up to a table and settled into place, close-miked. Sitting back down to work, unhurried and kind. 1 second.
 
 ### `pm_mistake_fixed_v1` — 0.9 с, громкость 0.42
 **Экран:** `app/mistake_practice_session.tsx` · Момент: ранее допущенная ошибка исправлена — маленькое личное искупление.
 
-**A.** pm_mistake_fixed — clean interface redemption cue for a previously wrong answer now answered correctly. Rising sine figure resolving brightly with a warm filter bloom, 900 milliseconds, dry, quietly proud, noticeably warmer than a normal correct answer.
+**A.** pm_mistake_fixed — a guitar string that was buzzing against a fret suddenly seated correctly and ringing pure, the tone clearing and opening out. Something wrong becoming right. 900 milliseconds.
 
-**B.** pm_mistake_fixed — warm arcade redemption jingle for correcting an old mistake in a mobile app. Bright plucked run with a bell sparkle and a soft warm landing, 900 milliseconds, uplifting, rewarding.
+**B.** pm_mistake_fixed — a stuck brass mechanism freed with a small effort, the movement releasing and running smoothly, ending with a satisfied metallic settle. Warmer and fuller than an ordinary success. 900 milliseconds.
 
-**C.** pm_mistake_fixed — cinematic small redemption for a corrected error. Warm string lift with a clean glass resolution and a soft low pulse, 900 milliseconds, moving, dignified, short tail.
+**C.** pm_mistake_fixed — a cracked ceramic bowl set down and ringing cleanly despite expectation, the tone holding warm and true. Quiet redemption, recorded close. 900 milliseconds.
 
 ---
-
 # 10. Настройки, онбординг и системные экраны
-
-Беззвучны: темы, язык, уведомления, приватность, условия, опрос, идеи,
-приветствие языка, согласия. Экран выбора темы («примерочная») особенно
-заметен — там визуально всё меняется, а слух молчит.
-
-Папка: `assets/audio/sfx/v1/system/` · Семейство: `system`
-
----
 
 ### `pm_settings_toggle_on_v1` — 0.28 с, громкость 0.24
 **Экран:** `app/(tabs)/settings.tsx` и все экраны настроек · Момент: переключатель включён.
 
-**A.** pm_settings_toggle_on — precise interface cue for a settings switch turning on. Short clean sine tick with a small upward pitch step and a tight filter snap, 280 milliseconds, dry, mechanical, unmistakably the on direction.
+**A.** pm_settings_toggle_on — a precision toggle switch on vintage studio hardware flicked upward, the internal spring passing its detent and seating firmly. Machined, confident, upward in feel. One movement, close-miked in a quiet room. 280 milliseconds.
 
-**B.** pm_settings_toggle_on — warm arcade switch-on tap in a mobile app. Small rounded pop with a light upward pluck, 280 milliseconds, friendly, tactile.
+**B.** pm_settings_toggle_on — a small brass catch pushed home on a wooden instrument case, the metal seating into its keeper with a bright short contact. Tactile and reassuring. 280 milliseconds.
 
-**C.** pm_settings_toggle_on — cinematic toggle engaging with weight. Tight mechanical click with a faint bright resonance rising, 280 milliseconds, physical, premium, no tail.
+**C.** pm_settings_toggle_on — a smooth stone dropped into a shallow cup and coming to rest, close-miked so the single contact reads as settling into place. Quiet and deliberate. 280 milliseconds.
 
 ### `pm_settings_toggle_off_v1` — 0.28 с, громкость 0.22
 **Экран:** экраны настроек · Момент: переключатель выключен. Зеркало предыдущего звука.
 
-**A.** pm_settings_toggle_off — precise interface cue for a settings switch turning off. Short clean sine tick with a small downward pitch step and a damped filter close, 280 milliseconds, dry, mechanical, the exact mirror of the on cue.
+**A.** pm_settings_toggle_off — the same precision hardware toggle flicked downward, the spring passing its detent and coming to rest lower, slightly duller and shorter than the upward throw. The exact mirror of switching on. 280 milliseconds.
 
-**B.** pm_settings_toggle_off — warm arcade switch-off tap in a mobile app. Small rounded pop with a light downward settle, 280 milliseconds, friendly, tidy.
+**B.** pm_settings_toggle_off — a brass catch released and swinging free, the metal dropping away from its keeper with a soft downward contact. Something loosening. 280 milliseconds.
 
-**C.** pm_settings_toggle_off — cinematic toggle disengaging. Tight mechanical click with a faint low damping, 280 milliseconds, physical, restrained, no tail.
+**C.** pm_settings_toggle_off — a stone lifted out of a shallow cup and set on the cloth beside it, the second contact softer than the first. Withdrawal rather than arrival. 280 milliseconds.
 
 ### `pm_theme_preview_v1` — 0.6 с, громкость 0.30
 **Экран:** `app/settings_themes.tsx` · Момент: пользователь примеряет тему, палитра всего приложения меняется на лету.
 
-**A.** pm_theme_preview — clean interface cue for an entire colour theme sweeping across the app during preview. Wide filtered sweep with a shifting harmonic colour and a soft settle, 600 milliseconds, dry, transformative, sounds like light changing temperature.
+**A.** pm_theme_preview — a sheet of coloured gel slid across the front of a studio lamp, the plastic gliding over the barn doors and stopping. The sound of light being changed. One pass, close-miked. 600 milliseconds.
 
-**B.** pm_theme_preview — playful arcade palette-swap cue in a mobile app. Bright shimmer sweep with a warm plucked landing note, 600 milliseconds, magical, cheerful, light.
+**B.** pm_theme_preview — a wide brush loaded with wash drawn once across heavy watercolour paper, the bristles spreading and lifting away. Something being coloured in a single stroke. 600 milliseconds.
 
-**C.** pm_theme_preview — cinematic wash of new colour across an interface. Airy tonal sweep with a subtle spectral shift and a clean settle, 600 milliseconds, elegant, luminous, no tail.
+**C.** pm_theme_preview — a bolt of silk unrolled across a counter in one movement, the fabric releasing and settling flat. Smooth, luxurious, transformative. 600 milliseconds.
 
 ### `pm_theme_applied_v1` — 0.9 с, громкость 0.38
 **Экран:** `app/settings_themes.tsx` · Момент: тема выбрана окончательно и применена.
 
-**A.** pm_theme_applied — clean confident confirmation for a theme being committed across the app. Rising sine pair resolving into a bright held tone with a crisp filter bloom, 900 milliseconds, dry, decisive, satisfying.
+**A.** pm_theme_applied — a heavy glass pane lowered into a frame and seating on its gasket, the glass ringing very faintly as it settles and the frame taking the weight. Final and clean. 900 milliseconds.
 
-**B.** pm_theme_applied — warm arcade confirm cue for an applied visual theme. Bright bell pair with a soft sparkle settle, 900 milliseconds, cheerful, rewarding.
+**B.** pm_theme_applied — a wooden lid pressed down onto a fitted box, the air escaping around the rim as it closes flush. Complete, considered, satisfying. 900 milliseconds.
 
-**C.** pm_theme_applied — cinematic settling of a new visual identity. Warm swell with a clean glass resolution above it, 900 milliseconds, refined, premium, short tail.
+**C.** pm_theme_applied — a bronze seal pressed into warm wax and lifted away, leaving the impression. Committed, ceremonial, one press. 900 milliseconds.
 
 ### `pm_language_selected_v1` — 1.0 с, громкость 0.40
 **Экран:** `app/language_welcome.tsx`, `app/settings_language.tsx` · Момент: выбран язык изучения, вся жизнь в приложении переключилась.
 
-**A.** pm_language_selected — clean premium confirmation for choosing a learning language. Three ascending sine tones resolving into a warm sustained chord with a filter bloom, 1 second, dry, significant, marks a real commitment.
+**A.** pm_language_selected — a heavy brass key turned fully in an old door lock, the wards moving in sequence and the bolt throwing home with weight. A door to somewhere new, opened deliberately. 1 second.
 
-**B.** pm_language_selected — welcoming arcade cue for picking a language in a mobile learning app. Bright plucked triad with a warm bell landing and light sparkle, 1 second, joyful, inviting.
+**B.** pm_language_selected — a ship's brass bell struck once, clear and open, ringing out and beginning a passage. Recorded with a little air around it so it feels like a departure. 1 second.
 
-**C.** pm_language_selected — cinematic doorway opening onto a new language. Airy swell with warm string body and a clean bell resolving, 1 second, momentous, controlled tail.
+**C.** pm_language_selected — a wooden stamp of a passport pressed onto a page and lifted, followed by the page settling. Official, momentous, one impression. 1 second.
 
 ### `pm_notifications_enabled_v1` — 0.8 с, громкость 0.34
 **Экран:** `app/settings_notifications.tsx`, `components/NotificationPermissionModal.tsx` · Момент: пользователь разрешил уведомления.
 
-**A.** pm_notifications_enabled — clean interface confirmation for notification permission being granted. Two clear sine tones stepping up into a stable bright note, 800 milliseconds, dry, trustworthy, reassuring rather than celebratory.
+**A.** pm_notifications_enabled — a small shopkeeper's counter bell tapped once, the dome ringing brightly and openly before fading. An open channel, friendly and unmistakable. One tap. 800 milliseconds.
 
-**B.** pm_notifications_enabled — friendly arcade bell-on cue for enabled notifications in a mobile app. Small bright bell pair with a warm settle, 800 milliseconds, cheerful, light.
+**B.** pm_notifications_enabled — a brass hand-bell lifted and stopped mid-swing so it sounds only once, warm and rounded. Announcing without insisting. 800 milliseconds.
 
-**C.** pm_notifications_enabled — cinematic soft chime for an opened channel of communication. Clean bell strike with a faint warm air bloom, 800 milliseconds, elegant, calm, short tail.
+**C.** pm_notifications_enabled — a tuning fork struck on the knee and held to a wooden resonator, the note steadying and blooming quietly. Something switched on and listening. 800 milliseconds.
 
 ### `pm_privacy_consent_v1` — 0.9 с, громкость 0.30
 **Экран:** `app/privacy_settings.tsx`, `app/privacy_screen.tsx` · Момент: пользователь принял или изменил настройку приватности.
 
-**A.** pm_privacy_consent — neutral serious interface confirmation for a privacy preference being recorded. Single sustained sine tone with a clean sealing click, 900 milliseconds, dry, formal, deliberately unemotional.
+**A.** pm_privacy_consent — a rubber date stamp pressed onto a document and rocked once, the ink pad giving under it, then lifted. Formal, plain, recorded on a wooden desk in a quiet office. 900 milliseconds.
 
-**B.** pm_privacy_consent — plain warm confirm cue for a privacy setting in a mobile app. Soft muted pluck with a firm wooden knock, 900 milliseconds, calm, businesslike.
+**B.** pm_privacy_consent — a steel filing drawer pushed closed and its lock catching, close-miked. Records secured, unemotional and correct. 900 milliseconds.
 
-**C.** pm_privacy_consent — cinematic quiet seal on a recorded consent. Low soft thud with a faint metallic sheen, 900 milliseconds, weighty, respectful, no tail.
+**C.** pm_privacy_consent — a leather-bound ledger closed with both hands, the cover meeting the pages and the air pressing out. Matter settled. 900 milliseconds.
 
 ### `pm_survey_submitted_v1` — 1.1 с, громкость 0.40
 **Экран:** `app/survey_screen.tsx`, `app/ideas_submit.tsx` · Момент: пользователь отправил опрос или идею.
 
-**A.** pm_survey_submitted — clean interface confirmation for feedback being submitted. Rising sine figure with a bright dispatch sweep resolving to a warm held note, 1.1 seconds, dry, appreciative, feels like being heard.
+**A.** pm_survey_submitted — a folded paper slip pushed through the slot of a wooden ballot box and dropping onto the papers already inside. Sent, received, counted. One posting. 1.1 seconds.
 
-**B.** pm_survey_submitted — warm arcade thank-you cue for submitted feedback in a mobile app. Cheerful plucked run with a soft bell settle and a light whoosh, 1.1 seconds, friendly, grateful.
+**B.** pm_survey_submitted — a pneumatic tube capsule seated and whisked away, the rush of air departing and thinning out. Something sent somewhere it will be read. 1.1 seconds.
 
-**C.** pm_survey_submitted — cinematic acknowledgement of a sent message. Warm air lift with a clean bell resolving and a gentle fade, 1.1 seconds, gracious, premium, short tail.
+**C.** pm_survey_submitted — a hand releasing a card into a suggestion box, followed by a soft ceramic chime of acknowledgement from the desk beside it. Grateful and warm. 1.1 seconds.
 
 ### `pm_onboarding_step_v1` — 0.4 с, громкость 0.26
 **Экран:** `components/onboarding_aha/`, `components/OnboardingWelcomeSheet.tsx` · Момент: шаг онбординга сменился.
 
-**A.** pm_onboarding_step — clean forward-motion cue for advancing through an onboarding step. Single sine blip with a confident upward step and a light filter open, 400 milliseconds, dry, progressive, welcoming.
+**A.** pm_onboarding_step — a slide advanced in a carousel projector, the mechanism cycling once and the new frame seating. Forward motion, mechanical and certain. One advance. 400 milliseconds.
 
-**B.** pm_onboarding_step — friendly arcade step cue in a mobile app onboarding flow. Warm pluck with a small upward bend and a soft tap, 400 milliseconds, cheerful, encouraging.
+**B.** pm_onboarding_step — a single footstep on a wooden stair tread, close-miked, the wood taking the weight and releasing. Progress, one step at a time. 400 milliseconds.
 
-**C.** pm_onboarding_step — cinematic step forward in a guided introduction. Soft air push with a faint clean tone landing, 400 milliseconds, elegant, light, no tail.
+**C.** pm_onboarding_step — a wooden abacus bead pushed along its rod until it meets the next, stopping firmly. Counted, deliberate, small. 400 milliseconds.
 
 ### `pm_app_update_ready_v1` — 0.9 с, громкость 0.32
 **Экран:** `components/UpdateModal.tsx`, `components/ReleaseNotesModal.tsx` · Момент: доступно обновление приложения.
 
-**A.** pm_app_update_ready — clean informative interface cue for an available app update. Two sine tones rising a fourth with a subtle digital shimmer, 900 milliseconds, dry, fresh, neutral and modern.
+**A.** pm_app_update_ready — a fresh sheet of paper pulled crisply from a ream and laid on the desk, followed by a light tap of a fingertip to square it. Something new arriving, tidy and unhurried. 900 milliseconds.
 
-**B.** pm_app_update_ready — bright arcade news cue for a new version in a mobile app. Light bell pair with a soft sparkle rise, 900 milliseconds, friendly, upbeat.
+**B.** pm_app_update_ready — the split-flap of a station board turning over once to reveal a new line, the plastic clattering briefly and stopping. Fresh information. 900 milliseconds.
 
-**C.** pm_app_update_ready — cinematic soft announcement of something new. Airy lift with a clean metallic ring settling, 900 milliseconds, refined, calm, short tail.
+**C.** pm_app_update_ready — a package set down on a wooden doorstep, the box settling and the paper wrapping easing. Something waiting to be opened. 900 milliseconds.
 
 ---
 
 # 11. Модалки, шторки и тосты
 
-Из 80 модалок и тостов озвучены 8. Ниже — универсальные звуки слоёв, которые
-покрывают оставшиеся 72 разом: открытие, закрытие, подтверждение,
-разрушительное действие, поднявшаяся шторка.
-
-Папка: `assets/audio/sfx/v1/system/` · Семейство: `system`
-
----
-
 ### `pm_modal_open_v1` — 0.45 с, громкость 0.22
-**Момент:** любая модалка раскрылась поверх экрана (72 компонента).
+**Экран:** любая модалка раскрылась поверх экрана (72 компонента).
 
-**A.** pm_modal_open — universal clean interface cue for a modal layer expanding over the current screen. Soft upward filter bloom with a faint sustained sine, 450 milliseconds, dry, weightless, must work identically under dozens of different modals.
+**A.** pm_modal_open — a thin pane of glass lifted from a stack and raised into the air, the faint whisper of it separating and the air moving around it. Weightless, neutral, endlessly reusable under many different panels. 450 milliseconds.
 
-**B.** pm_modal_open — warm arcade panel-open for a popup in a mobile app. Light air swish with a small rounded pop, 450 milliseconds, friendly, neutral, reusable.
+**B.** pm_modal_open — a lightweight wooden tray lifted from a table, the contact releasing and the object rising. Small, plain, unobtrusive. 450 milliseconds.
 
-**C.** pm_modal_open — cinematic glass layer rising into view. Soft air lift with a faint crystalline edge, 450 milliseconds, elegant, unobtrusive, no tail.
+**C.** pm_modal_open — a linen sheet lifted and billowing open once before settling, close-miked. Soft, airy, a layer arriving. 450 milliseconds.
 
 ### `pm_modal_close_v1` — 0.4 с, громкость 0.20
-**Момент:** модалка закрылась, вернулся нижний экран.
+**Экран:** модалка закрылась, вернулся нижний экран.
 
-**A.** pm_modal_close — universal clean interface cue for a modal layer collapsing away. Soft downward filter close with a faint settling sine, 400 milliseconds, dry, the mirror of the open cue, quieter by design.
+**A.** pm_modal_close — the same thin glass pane lowered back onto its stack and released, the contact softer and shorter than the lift. The exact mirror of opening, quieter by design. 400 milliseconds.
 
-**B.** pm_modal_close — warm arcade panel-close for dismissing a popup. Light air swish descending with a small soft settle, 400 milliseconds, tidy, gentle.
+**B.** pm_modal_close — a wooden tray set back down on the table, the contact absorbing immediately that stops dead on contact. Tidy, finished. 400 milliseconds.
 
-**C.** pm_modal_close — cinematic layer sinking back out of view. Soft air fall with a faint low landing, 400 milliseconds, calm, refined, no tail.
+**C.** pm_modal_close — a linen sheet dropping and settling flat, the air pressing out from underneath. A layer sinking away. 400 milliseconds.
 
 ### `pm_sheet_snap_v1` — 0.35 с, громкость 0.24
-**Момент:** нижняя шторка встала в свою позицию после перетаскивания.
+**Экран:** нижняя шторка встала в свою позицию после перетаскивания.
 
-**A.** pm_sheet_snap — precise interface cue for a bottom sheet snapping to its detent position. Tight filtered click with a short damped body, 350 milliseconds, dry, mechanical, physical.
+**A.** pm_sheet_snap — a drawer pushed the last centimetre until its soft-close mechanism takes over and pulls it firmly shut, ending in a dense wooden seat. A detent being found. One movement. 350 milliseconds.
 
-**B.** pm_sheet_snap — tactile arcade snap for a drawer locking into position in a mobile app. Warm wooden knock with a small rounded resonance, 350 milliseconds, satisfying, physical.
+**B.** pm_sheet_snap — a sliding wooden panel meeting its stop and being held there by a magnet, the contact firm and completely damped. 350 milliseconds.
 
-**C.** pm_sheet_snap — cinematic magnetic detent for a settling panel. Firm muted impact with a faint magnetic pull underneath, 350 milliseconds, weighty, premium, no tail.
+**C.** pm_sheet_snap — a heavy book pushed into a shelf until it aligns flush with its neighbours, the spine seating against the backboard. 350 milliseconds.
 
 ### `pm_confirm_positive_v1` — 0.6 с, громкость 0.32
 **Экран:** `components/ThemedConfirmModal.tsx`, `components/ThemedChoiceModal.tsx` · Момент: пользователь подтвердил безопасное действие.
 
-**A.** pm_confirm_positive — clean interface confirmation for an approved safe action. Two clear sine ticks rising into a short bright resolution, 600 milliseconds, dry, decisive, agreeable.
+**A.** pm_confirm_positive — a wooden gavel tapped once, lightly, on a felt-topped block, the wood speaking clearly and stopping. Agreed, decided, unfussy. A single tap. 600 milliseconds.
 
-**B.** pm_confirm_positive — warm arcade yes-cue for confirming an action in a mobile app. Bright plucked pair with a soft bell tail, 600 milliseconds, friendly, positive.
+**B.** pm_confirm_positive — a brass switch on a control desk pressed and latching down, the mechanism confirming under the fingertip. Positive and certain. 600 milliseconds.
 
-**C.** pm_confirm_positive — cinematic assent for a confirmed choice. Clean tone with a faint warm bloom rising behind it, 600 milliseconds, composed, premium, no tail.
+**C.** pm_confirm_positive — a ceramic cup set down onto a saucer squarely, the two pieces meeting with a clean bright contact. Everything in its place. 600 milliseconds.
 
 ### `pm_confirm_destructive_v1` — 0.7 с, громкость 0.34
 **Экран:** `components/DeleteAccountConfirmModal.tsx` и другие удаления · Момент: подтверждено необратимое действие.
 
-**A.** pm_confirm_destructive — grave clean interface cue for an irreversible action being confirmed. Single low sine tone with a heavy filter close and a final damped click, 700 milliseconds, dry, sober, never dramatic or punishing.
+**A.** pm_confirm_destructive — a heavy steel safe door swinging closed and the bolt driving home, the impact deep and completely damped by mass. Irreversible, grave, respectful of the moment. One closure. 700 milliseconds.
 
-**B.** pm_confirm_destructive — measured arcade cue for a permanent deletion in a mobile app. Low muted knock with a slow downward settle and a dull final tap, 700 milliseconds, serious, warm, respectful.
+**B.** pm_confirm_destructive — a thick stone slab lowered into place, the weight settling and the dust pressing out from underneath. Permanent and quiet. 700 milliseconds.
 
-**C.** pm_confirm_destructive — cinematic weight of an irreversible decision. Deep padded impact with a slow air release, 700 milliseconds, grave, dignified, controlled tail.
+**C.** pm_confirm_destructive — a heavy hardwood lid dropped shut on a chest, the air forced out and the wood absorbing everything. Final, sober, without drama. 700 milliseconds.
 
 ### `pm_toast_neutral_v1` — 0.35 с, громкость 0.20
 **Экран:** `components/InGameToast.tsx`, `components/CoachToast.tsx` · Момент: появилась нейтральная информационная плашка.
 
-**A.** pm_toast_neutral — very light interface cue for a neutral informational toast sliding in. Single soft filtered blip with almost no pitch movement, 350 milliseconds, extremely restrained, dry, must not interrupt anything.
+**A.** pm_toast_neutral — a paper note slid under a door and coming to rest on the floor, close-miked. Barely there, informative, interrupting nothing. One arrival. 350 milliseconds.
 
-**B.** pm_toast_neutral — small warm arcade notice tap for an info banner in a mobile app. Tiny rounded pop with a soft tail, 350 milliseconds, friendly, unobtrusive.
+**B.** pm_toast_neutral — a small card placed face-down on a felt table, the contact almost entirely absorbed. Soft and unobtrusive. 350 milliseconds.
 
-**C.** pm_toast_neutral — cinematic whisper-light notice cue. Faint air tick with a hint of low body, 350 milliseconds, delicate, barely present, no tail.
+**C.** pm_toast_neutral — a leaf landing on still water, the surface accepting it with the faintest contact. Present but never demanding. 350 milliseconds.
 
 ---
 
 # 12. Навигация и оболочка приложения
 
-Таббар, свайпы между вкладками, возврат назад, обновление списка. По решению
-владельца обычные нажатия не звучат — поэтому здесь только четыре звука
-оболочки, самые сдержанные во всём документе.
-
-Папка: `assets/audio/sfx/v1/app/` · Семейство: `app`
-
----
-
 ### `pm_tab_switch_v1` — 0.25 с, громкость 0.16
 **Экран:** `app/(tabs)/_layout.tsx`, `app/TabSlider.tsx` · Момент: пользователь переключил вкладку. Очень тихий, звучит десятки раз за сессию.
 
-**A.** pm_tab_switch — near-subliminal interface tick for switching between main tabs in a mobile app. Micro filtered click with a barely perceptible pitch, 250 milliseconds, extremely quiet, completely dry, engineered to never fatigue across hundreds of repeats.
+**A.** pm_tab_switch — a fingernail brushing once across the edge of a stack of index cards, moving one divider aside. Almost inaudible, purely tactile, engineered to stay pleasant after hundreds of repeats in one session. 250 milliseconds.
 
-**B.** pm_tab_switch — tiny warm arcade tab tap in a mobile app navigation bar. Micro rounded pop, 250 milliseconds, soft, light, repeatable.
+**B.** pm_tab_switch — a felt-tipped lever nudged one notch along a track, the movement damped so only the travel is heard. Feather-light. 250 milliseconds.
 
-**C.** pm_tab_switch — cinematic micro-detent for a navigation change. Faint dry tap with a whisper of air, 250 milliseconds, delicate, refined, no resonance.
+**C.** pm_tab_switch — a fingertip tapping the taut skin of a small frame drum, muted immediately by the other hand. Soft, warm, gone at once. 250 milliseconds.
 
 ### `pm_nav_back_v1` — 0.3 с, громкость 0.18
-**Момент:** возврат на предыдущий экран.
+**Экран:** возврат на предыдущий экран.
 
-**A.** pm_nav_back — minimal interface cue for navigating back to a previous screen. Short filtered swish with a gentle downward pitch drift, 300 milliseconds, dry, quiet, directional.
+**A.** pm_nav_back — a page allowed to fall back over to the previous side, the paper travelling through the air and laying itself down. Retreating rather than advancing. One movement, very quiet. 300 milliseconds.
 
-**B.** pm_nav_back — soft arcade back-step cue in a mobile app. Small reversed whoosh with a light settle, 300 milliseconds, friendly, unobtrusive.
+**B.** pm_nav_back — a drawer eased open a few centimetres and stopped, the reverse of closing, soft and short. 300 milliseconds.
 
-**C.** pm_nav_back — cinematic soft retreat between screens. Faint reversed air pass with a low settle, 300 milliseconds, elegant, quiet, no tail.
+**C.** pm_nav_back — a hand withdrawn across a fabric surface, the fibres releasing as it lifts away. Barely audible, directional. 300 milliseconds.
 
 ### `pm_pull_refresh_v1` — 0.5 с, громкость 0.24
-**Момент:** пользователь потянул список вниз и запустил обновление.
+**Экран:** пользователь потянул список вниз и запустил обновление.
 
-**A.** pm_pull_refresh — clean interface cue for a pull-to-refresh gesture triggering a reload. Rising filtered sweep with an elastic pitch bend and a release tick, 500 milliseconds, dry, springy, mechanical.
+**A.** pm_pull_refresh — a rubber band stretched between two fingers and released, the tension rising audibly and snapping back with a bright recoil. Elastic, physical, unmistakably pull and release. 500 milliseconds.
 
-**B.** pm_pull_refresh — playful arcade elastic-release cue for refreshing a list in a mobile app. Rubber-band style pitch stretch snapping back with a bright pop, 500 milliseconds, fun, tactile.
+**B.** pm_pull_refresh — a roller blind pulled down a short distance and let go, the spring taking it back up with a soft mechanical whirr that stops quickly. 500 milliseconds.
 
-**C.** pm_pull_refresh — cinematic tension-and-release for a refresh gesture. Airy stretch with a soft snap and a clean settle, 500 milliseconds, physical, premium, no tail.
+**C.** pm_pull_refresh — a bow drawn back on a string and eased forward again without release, the wood and string creaking under tension then relaxing. Stored energy returned. 500 milliseconds.
 
 ### `pm_content_loaded_v1` — 0.4 с, громкость 0.20
-**Момент:** данные подгрузились, скелетон сменился реальным содержимым.
+**Экран:** данные подгрузились, скелетон сменился реальным содержимым.
 
-**A.** pm_content_loaded — light interface cue for skeleton placeholders resolving into real content. Soft filter opening with a brief clean tone settling, 400 milliseconds, dry, quiet, signals readiness without celebration.
+**A.** pm_content_loaded — a photographic print lifted from the developing tray and laid on the bench, the surface arriving fully formed. Something becoming real, quietly. One placement. 400 milliseconds.
 
-**B.** pm_content_loaded — small warm arcade cue for loaded content in a mobile app. Gentle pluck with a soft bloom, 400 milliseconds, friendly, understated.
+**B.** pm_content_loaded — a set of wooden letter tiles settling into their tray all at once, a brief soft clatter resolving into stillness. 400 milliseconds.
 
-**C.** pm_content_loaded — cinematic soft materialisation of loaded content. Faint air bloom with a clean low settle, 400 milliseconds, refined, quiet, no tail.
+**C.** pm_content_loaded — a curtain of fine sand finishing its fall and the last grains settling, close-miked. Completion without announcement. 400 milliseconds.
 
 ---
 
-# 13. Арена — 29 звуков уже ждут файлов
+# 13. Арена и самая редкая награда
 
-**Ключи уже расставлены в коде и в реестре, источник стоит `null`** — то есть
-места вызова работают, но звучит тишина. Как только файлы появятся, каждый
-включается изменением ровно одной строки.
-
-Промпты для этих 29 звуков **уже написаны** и лежат в отдельном файле:
-
-`docs/arena/SOUND_PROMPTS.md`
-
-Список ожидающих ключей: `search_start`, `search_loop`, `opponent_found`,
-`countdown_tick`, `countdown_go`, `task_in`, `option_tap`, `answer_correct`,
-`answer_first`, `answer_wrong`, `opponent_answered`, `timer_tick`, `timeout`,
-`combo_start`, `combo_up`, `combo_break`, `pair_match`, `pair_miss`,
-`pair_clear`, `result_win`, `result_loss`, `result_draw`, `star_fly`,
-`star_land`, `goal_complete`, `reward_unlock`, `rank_up`, `rank_down`.
-
-Плюс один звук в общем реестре без файла: `pm.reward.vip_finale`.
+Промпты для 29 звуков Арены лежат отдельно: `docs/arena/SOUND_PROMPTS.md`.
+Ниже — единственный звук общего реестра, у которого нет файла.
 
 ### `pm_reward_vip_finale_v1` — 1.85 с, громкость 0.64
-**Момент:** финальный аккорд VIP-распаковки — самое редкое и дорогое событие в приложении.
+**Экран:** финальный аккорд VIP-распаковки — самое редкое и дорогое событие в приложении.
 
-**A.** pm_reward_vip_finale — the most premium interface ceremony in the entire app, played at the final beat of a VIP reward unboxing. Wide ascending crystal and sine chord opening through a slow filter into a luminous sustained major resolution with a delicate shimmer trail, 1.85 seconds, immaculately clean, no muddy reverb, must feel rarer and more valuable than every other sound in the product.
+**A.** pm_reward_vip_finale — a large crystal chandelier drop struck once with a metal pick and left to ring in a marble hall, the tone opening enormously and hanging in the air before it decays. The rarest and most valuable sound in the entire product. One strike, allowed its full life. 1.85 seconds.
 
-**B.** pm_reward_vip_finale — grand arcade jackpot finale for the rarest reward in a mobile game. Layered bell and crystal fanfare rising in three waves with a golden sparkle shower and a warm triumphant landing, 1.85 seconds, exuberant, generous, unmistakably the top prize.
+**B.** pm_reward_vip_finale — the lid of a heavy jewellery vault lifted, followed by a cascade of faceted gemstones poured onto a silver tray, each stone bright and distinct, the tray humming underneath. Overwhelming abundance, recorded close and clean. 1.85 seconds.
 
-**C.** pm_reward_vip_finale — cinematic coronation for the rarest possible reward. Full horn and string swell with choir-like air, a deep timpani impact on the downbeat and a cascading crystal bell resolution above it, 1.85 seconds, majestic, glorious, tightly controlled tail.
+**C.** pm_reward_vip_finale — a deep temple gong struck with a soft mallet, the fundamental swelling from nothing into full bloom while a shower of small crystal pieces falls across a metal plate above it. Two layers, one event, unmistakably the top prize. 1.85 seconds.
 
 ---
 
 # 14. Опциональный слой: озвучка нажатий
 
-**Это отдельное решение владельца — не включаю без подтверждения.**
-
-В `app/feedback/feedback_kit.ts` звук нажатий был убран по прямой просьбе:
-«ЗВУК-«писк» при нажатии кнопок убран совсем — остаётся только тактильный
-отклик». Если хочется вернуть плотность на уровень нажатий, вот три звука,
-которые покроют всё приложение целиком, не создавая какофонии.
-
-Папка: `assets/audio/sfx/v1/ui/` · Семейство: `app`
-
----
+Владелец ранее убрал звук нажатий, оставив только вибрацию. Эти три звука —
+на случай, если решите вернуть. Они самые тихие во всём документе.
 
 ### `pm_ui_press_v1` — 0.12 с, громкость 0.14
-**Момент:** любое нажатие на кнопку или интерактив во всём приложении.
+**Экран:** любое нажатие на кнопку или интерактив во всём приложении.
 
-**A.** pm_ui_press — the quietest possible interface press tick, used on every button in a mobile app. Micro dry click with a single faint pitched partial, 120 milliseconds, no resonance, no tail, must remain pleasant after ten thousand repetitions in one session.
+**A.** pm_ui_press — a fingertip pressing a silenced mechanical keyboard switch, heard through the keyboard body rather than through the air, the dampening rubber absorbing everything except the movement itself. Extremely short, tactile rather than sonic, and it must remain pleasant after ten thousand presses. 120 milliseconds.
 
-**B.** pm_ui_press — micro warm arcade button tap for universal use in a mobile app. Tiny soft bubble pop, 120 milliseconds, rounded, friendly, featherweight.
+**B.** pm_ui_press — a single drop of water landing on stretched leather, close-miked. Rounded, organic, with almost no pitch at all. 120 milliseconds.
 
-**C.** pm_ui_press — cinematic micro-contact for a universal press. Faint dry tap with the barest hint of low body, 120 milliseconds, delicate, refined, silent tail.
+**C.** pm_ui_press — a fingertip on a felt-covered button of vintage studio hardware, the felt swallowing the contact instantly. Barely there. 120 milliseconds.
 
 ### `pm_ui_tile_v1` — 0.14 с, громкость 0.13
-**Момент:** нажатие на плитку/букву в игровых заданиях, где сейчас только вибрация.
+**Экран:** нажатие на плитку/букву в игровых заданиях, где сейчас только вибрация.
 
-**A.** pm_ui_tile — ultra-light interface tick for tapping a letter tile in a word game. Micro filtered click with a soft wooden edge and no pitch centre, 140 milliseconds, dry, neutral, designed for rapid repeated tapping.
+**A.** pm_ui_tile — a wooden letter tile touched with a fingertip against a felt board, the wood speaking for an instant and the felt taking it away. Designed for rapid repeated tapping without fatigue. 140 milliseconds.
 
-**B.** pm_ui_tile — tiny warm arcade tile tap for a mobile word game. Micro muted wood knock, 140 milliseconds, soft, tactile, unfatiguing.
+**B.** pm_ui_tile — a fingernail on a matte ceramic tile laid on cloth, a small dry contact that stops dead on contact. 140 milliseconds.
 
-**C.** pm_ui_tile — cinematic micro-tap of a physical tile. Faint padded contact with a whisper of resonance, 140 milliseconds, organic, quiet, no tail.
+**C.** pm_ui_tile — a bone domino nudged where it lies on green baize, the piece shifting a millimetre and stopping. 140 milliseconds.
 
 ### `pm_ui_disabled_v1` — 0.2 с, громкость 0.16
-**Момент:** нажатие на заблокированный элемент — ничего не произойдёт.
+**Экран:** нажатие на заблокированный элемент — ничего не произойдёт.
 
-**A.** pm_ui_disabled — soft interface cue for tapping a disabled control. Muted low click with a heavily damped filter and no pitch resolution, 200 milliseconds, dry, inert, communicates nothing-will-happen without scolding.
+**A.** pm_ui_disabled — a fingertip pressing a button that has already bottomed out, meeting solid resistance and producing only a dull inert contact. Nothing gives, nothing moves, stated without scolding. 200 milliseconds.
 
-**B.** pm_ui_disabled — gentle arcade dud-tap for an inactive button in a mobile app. Small dull thud with no bounce, 200 milliseconds, soft, harmless.
+**B.** pm_ui_disabled — a knuckle tapped on a sandbag, the impact absorbed completely with no rebound. Soft and harmless. 200 milliseconds.
 
-**C.** pm_ui_disabled — cinematic dead contact on an inactive control. Padded muted knock with immediate damping, 200 milliseconds, inert, respectful, no tail.
+**C.** pm_ui_disabled — a wooden peg pressed against a hole that is already filled, meeting the blockage and stopping dead. 200 milliseconds.
 
 ---
-
-# 15. Итоговый список файлов и порядок работы
-
-## Сколько звуков в документе
-
-| Раздел | Новых звуков |
-|---|---|
-| 1. Персональный план | 12 |
-| 2. Пейволы и покупки | 12 |
-| 3. MAX-звонок | 12 |
-| 4. Диалоги с ИИ | 11 |
-| 5. Карточки | 10 |
-| 6. Магазины и валюты | 8 |
-| 7. Профиль и прогресс | 9 |
-| 8. Соцчасть и лига | 10 |
-| 9. Уроки: обвязка | 10 |
-| 10. Настройки и системное | 10 |
-| 11. Модалки и тосты | 6 |
-| 12. Навигация | 4 |
-| 13. Арена (промпты готовы отдельно) | 29 + 1 |
-| 14. Опциональный слой нажатий | 3 |
-| **Итого новых звуков** | **117** (без Арены — 87) |
-| **Итого промптов** | **351** (по три на каждый звук) |
-
-## Рекомендуемый порядок генерации
-
-Не нужно делать всё сразу. Порядок по отдаче:
-
-1. **Арена (29)** — код уже готов и ждёт, это самая быстрая победа.
-2. **Пейволы и покупки (12)** — деньги; успешная оплата без звука ощущается как сбой.
-3. **Модалки, тосты, навигация (10)** — покрывают 72 экрана разом небольшим набором.
-4. **Персональный план (12)** — целый продукт, который сейчас полностью немой.
-5. **MAX и Диалоги (23)** — живой голос, звуки тихие и вспомогательные.
-6. **Остальное (по разделам)** — карточки, магазины, профиль, лига, уроки, настройки.
-7. **Слой нажатий (3)** — только если владелец решит вернуть то, что раньше убрал.
-
-## Что делаю я после того, как файлы появятся
-
-1. Кладу файлы в `assets/audio/sfx/v1/<семейство>/`.
-2. Добавляю ключи в `modules/audio/sound_events.ts` с указанными громкостью,
-   приоритетом, кулдауном и длительностью.
-3. Расставляю вызовы `soundDirector.request(...)` в экранах.
-4. Прогоняю контрактные тесты звука точечно, без полного сюита.
-
-Пока файла нет, ключ можно завести со значением `null` — директор молча
-пропускает такие события, приложение не ломается, заглушек в экранах не
-появляется. Именно так сейчас живёт Арена.

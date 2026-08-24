@@ -619,18 +619,24 @@ function DayReviewSheet({
               </ScrollView>
 
               {canReplay && (
-                <TouchableOpacity onPress={onReplayDay} activeOpacity={0.85} style={styles.replayBtn}>
-                  <LinearGradient
-                    colors={[chrome.accent, chrome.accent2]}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={styles.replayBtnInner}
-                  >
-                    <Ionicons name="refresh" size={18} color={chrome.bg[2]} />
-                    <Text style={[styles.replayBtnText, { color: chrome.bg[2] }]}>Пройти этот день заново</Text>
-                  </LinearGradient>
+                /* зачем: знак «−1 ⚡» торчит над кнопкой, а сама кнопка клипует
+                   содержимое (overflow:'hidden' в replayBtn держит градиент в
+                   скруглении) — внутри неё молния обрезалась. Бейдж вынесен
+                   соседом кнопки, в обёртку без клипа. */
+                <View style={styles.replayWrap}>
+                  <TouchableOpacity onPress={onReplayDay} activeOpacity={0.85} style={styles.replayBtn}>
+                    <LinearGradient
+                      colors={[chrome.accent, chrome.accent2]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={styles.replayBtnInner}
+                    >
+                      <Ionicons name="refresh" size={18} color={chrome.bg[2]} />
+                      <Text style={[styles.replayBtnText, { color: chrome.bg[2] }]}>Пройти этот день заново</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
                   {replayStartsPaid ? <EnergyCostBadge testID="personal-plan-stats-replay-energy-cost" /> : null}
-                </TouchableOpacity>
+                </View>
               )}
             </>
           )}
@@ -726,7 +732,10 @@ const styles = StyleSheet.create({
   phraseEn: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
   phraseTranslation: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 2 },
   sheetEmpty: { fontSize: 14, lineHeight: 20, fontWeight: '600', paddingVertical: 10 },
-  replayBtn: { marginTop: 14, borderRadius: 14, overflow: 'hidden' },
+  // Отступ живёт на обёртке: бейдж цены привязан к ней, и кнопка обязана
+  // совпадать с обёрткой по геометрии, иначе знак «−1 ⚡» уедет от угла.
+  replayWrap: { marginTop: 14, position: 'relative' },
+  replayBtn: { borderRadius: 14, overflow: 'hidden' },
   replayBtnInner: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15 },
   replayBtnText: { fontSize: 16, lineHeight: 20, fontWeight: '900' },
 });

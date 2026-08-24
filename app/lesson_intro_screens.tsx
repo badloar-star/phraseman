@@ -643,7 +643,9 @@ export default function LessonIntroScreens({
         },
       ]}
     >
-      <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
+      {/* position: relative — якорь для абсолютного бейджа цены, вынесенного
+          из кнопки наружу (внутри его резал клип лица кнопки). */}
+      <Animated.View style={{ position: 'relative', transform: [{ scale: btnPulse }] }}>
         <DuoPressable
           testID="lesson-intro-start"
           accessibilityLabel={startLabel}
@@ -667,8 +669,13 @@ export default function LessonIntroScreens({
           <View style={styles.ctaIconWrap}>
             <Ionicons name="arrow-forward" size={18} color={t.correctText} />
           </View>
-          {showEnergyCost ? <EnergyCostBadge testID="lesson-intro-start-energy-cost" /> : null}
         </DuoPressable>
+        {/* зачем: знак «−1 ⚡» торчит НАД кнопкой, а лицо кнопки клипует всё за
+            своими краями (overflow:'hidden' в ctaBtn держит градиент в
+            скруглении + DuoPressable сам клипует градиентную поверхность).
+            Внутри кнопки молния обрезалась по верхнему-правому углу, поэтому
+            бейдж живёт соседом кнопки — в обёртке без клипа. */}
+        {showEnergyCost ? <EnergyCostBadge testID="lesson-intro-start-energy-cost" /> : null}
       </Animated.View>
     </Animated.View>
   );

@@ -1695,22 +1695,27 @@ function PlanExerciseFeedbackInline({
   const showBareCta = isSuccess && hideBody && !loading && !children;
   if (showBareCta) {
     return (
-      <DuoPressable
-        accessibilityLabel={actionLabel}
-        onPress={onAction}
-        gradientColors={[accent, accent + 'BB']}
-        gradientStart={{ x: 0, y: 0 }}
-        gradientEnd={{ x: 1, y: 1 }}
-        edgeColor={accent + '99'}
-        edgeHeight={7}
-        style={styles.bareCtaSurface}
-      >
-        <Text style={[styles.bareCtaText, { color: actionText }]}>{actionLabel}</Text>
-        <View style={styles.bareCtaIcon}>
-          <Ionicons name="arrow-forward" size={18} color={actionText} />
-        </View>
+      /* зачем: градиентная DuoPressable клипует своё лицо (surfaceClip), чтобы
+         градиент не вылезал за скругление. Знак «−1 ⚡» торчит НАД кнопкой,
+         поэтому внутри неё он обрезался — держим его соседом кнопки. */
+      <View style={styles.bareCtaWrap}>
+        <DuoPressable
+          accessibilityLabel={actionLabel}
+          onPress={onAction}
+          gradientColors={[accent, accent + 'BB']}
+          gradientStart={{ x: 0, y: 0 }}
+          gradientEnd={{ x: 1, y: 1 }}
+          edgeColor={accent + '99'}
+          edgeHeight={7}
+          style={styles.bareCtaSurface}
+        >
+          <Text style={[styles.bareCtaText, { color: actionText }]}>{actionLabel}</Text>
+          <View style={styles.bareCtaIcon}>
+            <Ionicons name="arrow-forward" size={18} color={actionText} />
+          </View>
+        </DuoPressable>
         {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
-      </DuoPressable>
+      </View>
     );
   }
 
@@ -3181,6 +3186,7 @@ type PersonalPlanExerciseStyles = {
   primaryButton: ViewStyle;
   primaryButtonGradient: ViewStyle;
   primaryButtonText: TextStyle;
+  bareCtaWrap: ViewStyle;
   bareCtaSurface: ViewStyle;
   bareCtaText: TextStyle;
   bareCtaIcon: ViewStyle;
@@ -3488,6 +3494,8 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   primaryButtonText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
   // Голая объёмная CTA «Дальше» (как на интро-скринах урока): большая, без рамок
   // и без плашки-контейнера. Объём даёт DuoPressable (нижняя цветная кромка).
+  // Якорь для бейджа цены, вынесенного из клипующей градиентной кнопки.
+  bareCtaWrap: { position: 'relative' },
   bareCtaSurface: {
     flexDirection: 'row',
     alignItems: 'center',

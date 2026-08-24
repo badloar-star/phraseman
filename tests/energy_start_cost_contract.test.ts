@@ -366,4 +366,81 @@ describe('энергия платится за старт активности',
     expect(read('app/boons/boon_effects_energy.ts')).toContain('TURBO_REGEN_FACTOR = 2 / 3');
     expect(read('app/season_reward_apply.ts')).toContain('TURBO_REGEN_FACTOR');
   });
+  it('знак цены никогда не лежит внутри обрезающего контейнера', () => {
+    // Инцидент 2026-08-24: на кнопке «Начать тренировку» (интро урока) молния
+    // «−1 ⚡» рисовалась обрубком. Причина не в ассете: бейдж позиционируется
+    // абсолютно и торчит НАД кнопкой (top: -18), а лицо кнопки клипует всё за
+    // своими краями. Два источника клипа: собственный overflow:'hidden' в
+    // стиле кнопки и автоматический surfaceClip у DuoPressable с градиентом
+    // (он держит градиент в скруглении). Лечится выносом бейджа СОСЕДОМ
+    // кнопки — в обёртку без клипа, а не ослаблением клипа кнопки.
+    //
+    // Сторож разбирает JSX стеком тегов: находит непосредственного родителя
+    // каждого <EnergyCostBadge и валит сборку, если тот обрезает содержимое.
+    const roots = ['app', 'components', 'modules'];
+    const files: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of fs.readdirSync(path.join(process.cwd(), dir), { withFileTypes: true })) {
+        const rel = `${dir}/${entry.name}`;
+        if (entry.isDirectory()) walk(rel);
+        else if (entry.name.endsWith('.tsx')) files.push(rel);
+      }
+    };
+    for (const root of roots) walk(root);
+
+    // Имена стилей с overflow:'hidden' на верхнем уровне объекта стиля.
+    const clippingStyles = (source: string): Set<string> => {
+      const names = new Set<string>();
+      const re = /(\w+)\s*:\s*\{/g;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(source))) {
+        const start = m.index + m[0].length;
+        let depth = 1;
+        let i = start;
+        while (i < source.length && depth > 0) {
+          const c = source[i];
+          if (c === '{') depth += 1;
+          else if (c === '}') depth -= 1;
+          i += 1;
+        }
+        const top = source.slice(start, i).replace(/\{[^{}]*\}/g, '');
+        if (/overflow\s*:\s*['"]hidden['"]/.test(top)) names.add(m[1]);
+      }
+      return names;
+    };
+
+    const offenders: string[] = [];
+    for (const file of files) {
+      const source = read(file);
+      if (!source.includes('<EnergyCostBadge')) continue;
+      const clip = clippingStyles(source);
+      let at = -1;
+      while ((at = source.indexOf('<EnergyCostBadge', at + 1)) !== -1) {
+        const before = source.slice(0, at);
+        const stack: { name: string; attrs: string }[] = [];
+        const tagRe = /<(\/?)([A-Za-z][A-Za-z0-9_.]*)([^>]*?)(\/?)>/gs;
+        let t: RegExpExecArray | null;
+        while ((t = tagRe.exec(before))) {
+          const [, closing, name, attrs, selfClosing] = t;
+          if (closing) {
+            for (let k = stack.length - 1; k >= 0; k -= 1) {
+              if (stack[k].name === name) { stack.splice(k); break; }
+            }
+          } else if (!selfClosing) stack.push({ name, attrs });
+        }
+        const parent = stack[stack.length - 1];
+        if (!parent) continue;
+        const named = [...parent.attrs.matchAll(/styles\.(\w+)/g)].map(x => x[1]).filter(s => clip.has(s));
+        const inlineClip = /overflow\s*:\s*['"]hidden['"]/.test(parent.attrs);
+        // DuoPressable с градиентом клипует лицо кнопки сам (surfaceClip).
+        const gradientDuo = parent.name === 'DuoPressable' && /gradientColors/.test(parent.attrs);
+        if (named.length || inlineClip || gradientDuo) {
+          const line = before.split('\n').length;
+          offenders.push(`${file}:${line} внутри <${parent.name}>`);
+        }
+      }
+    }
+
+    expect(offenders).toEqual([]);
+  });
 });

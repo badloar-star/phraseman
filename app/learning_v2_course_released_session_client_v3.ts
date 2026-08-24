@@ -49,6 +49,7 @@ import {
   authoredLearningV2SessionShard,
   type AuthoredLearningV2SessionShard,
 } from "../modules/learning-v2/content/source/authored_sessions_v1";
+import { authoredEsLearningV2SessionShard } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
@@ -737,11 +738,18 @@ const BUNDLED_FINGERPRINT = "0".repeat(64);
 // ради одной. Это и лишняя работа на открытии экрана, и — главное — падение
 // любой недописанной сессии закрывало доступ ко всем готовым. Теперь строится
 // ровно запрошенная, а неготовая просто возвращает null и уходит в сеть.
+// зачем targetLanguage-ветка (владелец, 2026-08-24, "добавь язык везде, где
+// сейчас только номер сессии"): раньше бандл всегда читал английский источник
+// независимо от того, какой курс проходит человек — испанская сессия 1 не
+// могла дойти до экрана вообще. Английская ветка не меняет поведение ни на
+// бит: тот же вызов, тот же порядок аргументов.
 function bundledShardFor(
+  targetLanguage: string,
   lessonOrdinal: number,
   sessionOrdinal: number,
 ): AuthoredLearningV2SessionShard | null {
   if (lessonOrdinal !== 1) return null;
+  if (targetLanguage === "es") return authoredEsLearningV2SessionShard(sessionOrdinal);
   return authoredLearningV2SessionShard(sessionOrdinal);
 }
 
@@ -755,7 +763,11 @@ export function bundledLearningV2CourseSessionMaterialV3(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
   const locator = exactCurrentLocator(locatorInput);
-  const shard = bundledShardFor(locator.lessonOrdinal, locator.sessionOrdinal);
+  const shard = bundledShardFor(
+    locator.targetLanguage,
+    locator.lessonOrdinal,
+    locator.sessionOrdinal,
+  );
   if (!shard) return null;
   const courseSessionId = learningV2CourseSessionIdV1(
     locator.lessonOrdinal,

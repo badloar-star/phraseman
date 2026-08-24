@@ -1,4 +1,5 @@
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
+import { ES_SESSION_01_LOCALIZED_DETAILS } from './es_episode_01_session_01_localized_details_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 1 «Это легко».
@@ -28,7 +29,7 @@ import type { EpisodeSourcePhrase } from './episode_01_source_v1';
  * Поле `english` — историческое имя поля «целевая фраза», языконезависимое
  * (locale берётся из source.targetLanguage). Здесь в нём испанский.
  */
-export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
+const RAW_PHRASES: readonly Omit<EpisodeSourcePhrase, 'localizedDetails'>[] =
   Object.freeze([
     {
       id: 'es-e01-s01-es-facil',
@@ -43,23 +44,27 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'Eres',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Es',
               why: 'Eres — это «ты». Про «это» (безличную оценку) — только es.',
+              trapType: 'grammar',
             },
             {
               value: 'Soy',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Es',
               why: 'Soy — про себя. Оценка ситуации не о говорящем — es.',
+              trapType: 'grammar',
             },
             {
               value: 'Ser',
-              reasonCode: 'infinitive_not_finite',
+              reasonCode: 'infinitive_not_finite:Es',
               why: 'Ser — начальная форма, как «быть». В готовой фразе нужна личная: es.',
+              trapType: 'grammar',
             },
             {
               value: 'Está',
-              reasonCode: 'ser_estar_confusion',
+              reasonCode: 'ser_estar_confusion:Es',
               why: 'Está — от другого глагола, estar. Он про место и временное состояние, а не про постоянное свойство.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -69,13 +74,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'fácilmente',
-              reasonCode: 'adverb_for_adjective',
+              reasonCode: 'adverb_for_adjective:fácil',
               why: 'Fácilmente — «легко» как наречие при действии («сделал легко»). Признак самой вещи — fácil.',
+              trapType: 'grammar',
             },
             {
               value: 'facilidad',
-              reasonCode: 'noun_for_adjective',
+              reasonCode: 'noun_for_adjective:fácil',
               why: 'Facilidad — «лёгкость», предмет. Признак — fácil.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -95,18 +102,21 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'Eres',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Soy',
               why: 'Eres — это «ты». Про себя — soy.',
+              trapType: 'grammar',
             },
             {
               value: 'Es',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Soy',
               why: 'Es — про него, её или вежливое «вы». Про себя — soy.',
+              trapType: 'grammar',
             },
             {
               value: 'Estoy',
-              reasonCode: 'ser_estar_confusion',
+              reasonCode: 'ser_estar_confusion:Soy',
               why: 'Estoy — от estar, про временное состояние или место. Постоянное качество — soy.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -116,18 +126,21 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'rápida',
-              reasonCode: 'gender_agreement_mismatch',
+              reasonCode: 'gender_agreement_mismatch:rápido',
               why: 'Rápida говорит о себе женщина. Здесь говорит мужчина.',
+              trapType: 'grammar',
             },
             {
               value: 'rápidos',
-              reasonCode: 'number_agreement_mismatch',
+              reasonCode: 'number_agreement_mismatch:rápido',
               why: 'Rápidos — про нескольких. Здесь один человек про себя.',
+              trapType: 'grammar',
             },
             {
               value: 'rapidez',
-              reasonCode: 'noun_for_adjective',
+              reasonCode: 'noun_for_adjective:rápido',
               why: 'Rapidez — «скорость», предмет. Признак человека — rápido.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -147,13 +160,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'Nada',
-              reasonCode: 'negation_word_mismatch',
+              reasonCode: 'negation_word_mismatch:No',
               why: 'Nada — «ничего», отдельное слово-предмет. Глагол отрицают через no.',
+              trapType: 'grammar',
             },
             {
               value: 'Non',
-              reasonCode: 'orthographic_invalid',
+              reasonCode: 'orthographic_invalid:No',
               why: 'Non — не испанское слово. В испанском отрицание пишется no.',
+              trapType: 'orthographic',
             },
           ],
         },
@@ -163,13 +178,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'fácil',
-              reasonCode: 'antonym_confusion',
+              reasonCode: 'antonym_confusion:difícil',
               why: 'Fácil значит противоположное — «легко». Здесь нужно «трудно».',
+              trapType: 'semantic_neighbor',
             },
             {
               value: 'dificultad',
-              reasonCode: 'noun_for_adjective',
+              reasonCode: 'noun_for_adjective:difícil',
               why: 'Dificultad — «трудность», предмет. Признак — difícil.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -184,18 +201,38 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
         'Так подтверждают чужие слова в разговоре. Verdad — существительное, но с ser оно работает как оценка утверждения: «это есть правда».',
       words: [
         {
+          correct: 'Es',
+          category: 'ser',
+          distractors: [
+            {
+              value: 'Eres',
+              reasonCode: 'agreement_person_mismatch:Es',
+              why: 'Eres — это «ты». Про «это» (безличную оценку) — только es.',
+              trapType: 'grammar',
+            },
+            {
+              value: 'Soy',
+              reasonCode: 'agreement_person_mismatch:Es',
+              why: 'Soy — про себя. Оценка ситуации не о говорящем — es.',
+              trapType: 'grammar',
+            },
+          ],
+        },
+        {
           correct: 'verdad',
           category: 'truth-noun',
           distractors: [
             {
               value: 'verdadero',
-              reasonCode: 'adjective_for_fixed_phrase',
-              why: 'Verdadero — «истинный» как признак предмета (un hecho verdadero). Устойчивая реакция «это правда» — именно es verdad.',
+              reasonCode: 'adjective_for_fixed_phrase:verdad',
+              why: 'Verdadero — «истинный» как признак предмета (un hecho verdadero). Устойчивая реакция «это правда» — именно es verdad, с существительным, а не прилагательным.',
+              trapType: 'grammar',
             },
             {
               value: 'verdadera',
-              reasonCode: 'adjective_for_fixed_phrase',
-              why: 'То же самое в женском роде — здесь не подходит форма прилагательного, нужно существительное verdad.',
+              reasonCode: 'adjective_for_fixed_phrase:verdad',
+              why: 'То же самое в женском роде — здесь не подходит форма прилагательного verdadera, нужно существительное verdad.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -215,13 +252,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'esto',
-              reasonCode: 'demonstrative_for_manner',
+              reasonCode: 'demonstrative_for_manner:así',
               why: 'Esto — «это» как предмет. Способ, «так» — así.',
+              trapType: 'semantic_neighbor',
             },
             {
               value: 'aquí',
-              reasonCode: 'semantic_neighbor_deixis',
+              reasonCode: 'semantic_neighbor_deixis:así',
               why: 'Aquí — «здесь», про место. Здесь нужно «так», способ — así.',
+              trapType: 'semantic_neighbor',
             },
           ],
         },
@@ -241,13 +280,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'iguala',
-              reasonCode: 'invariable_adjective_wrongly_inflected',
+              reasonCode: 'invariable_adjective_wrongly_inflected:igual',
               why: 'Igual не меняется по роду — формы iguala не существует.',
+              trapType: 'grammar',
             },
             {
               value: 'igualmente',
-              reasonCode: 'adverb_for_adjective',
+              reasonCode: 'adverb_for_adjective:igual',
               why: 'Igualmente — «равным образом» при действии. Признак ситуации — igual.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -267,18 +308,21 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'Soy',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Eres',
               why: 'Soy — про себя. Спрашивают про собеседника — eres.',
+              trapType: 'grammar',
             },
             {
               value: 'Es',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Eres',
               why: 'Es — про третье лицо. Про «ты» — eres.',
+              trapType: 'grammar',
             },
             {
               value: 'Estás',
-              reasonCode: 'ser_estar_confusion',
+              reasonCode: 'ser_estar_confusion:Eres',
               why: 'Estás — от estar, про самочувствие или место сейчас. Постоянное качество — eres.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -298,8 +342,9 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'Nunca',
-              reasonCode: 'negation_word_mismatch',
+              reasonCode: 'negation_word_mismatch:No',
               why: 'Nunca — «никогда», про частоту во времени. Простое отрицание качества — no.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -309,13 +354,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'eres',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:soy',
               why: 'Eres — про тебя. Говорящий про себя — soy.',
+              trapType: 'grammar',
             },
             {
               value: 'estoy',
-              reasonCode: 'ser_estar_confusion',
+              reasonCode: 'ser_estar_confusion:soy',
               why: 'Estoy — от estar. Постоянное качество, а не временное состояние — soy.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -335,13 +382,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'Son',
-              reasonCode: 'agreement_person_mismatch',
+              reasonCode: 'agreement_person_mismatch:Somos',
               why: 'Son — «они» или вежливое «вы» много человек. Про себя вместе с кем-то — somos.',
+              trapType: 'grammar',
             },
             {
               value: 'Estamos',
-              reasonCode: 'ser_estar_confusion',
+              reasonCode: 'ser_estar_confusion:Somos',
               why: 'Estamos — от estar, про место или состояние. Количество людей — somos.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -361,13 +410,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'importanta',
-              reasonCode: 'invariable_adjective_wrongly_inflected',
+              reasonCode: 'invariable_adjective_wrongly_inflected:importante',
               why: 'Importante не меняется по роду — формы importanta не существует.',
+              trapType: 'grammar',
             },
             {
               value: 'importancia',
-              reasonCode: 'noun_for_adjective',
+              reasonCode: 'noun_for_adjective:importante',
               why: 'Importancia — «важность», предмет. Признак — importante.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -387,13 +438,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'simpático',
-              reasonCode: 'gender_agreement_mismatch',
+              reasonCode: 'gender_agreement_mismatch:simpática',
               why: 'Simpático — если говорят мужчине. Здесь про женщину.',
+              trapType: 'grammar',
             },
             {
               value: 'simpáticas',
-              reasonCode: 'number_agreement_mismatch',
+              reasonCode: 'number_agreement_mismatch:simpática',
               why: 'Simpáticas — если говорят нескольким женщинам.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -413,8 +466,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'mentira',
-              reasonCode: 'antonym_as_wrong_construction',
+              reasonCode: 'antonym_as_wrong_construction:verdad',
               why: 'Mentira значит «ложь» само по себе — это сказали бы Es mentira, без no. Здесь строим отрицание готовой фразы Es verdad.',
+              trapType: 'semantic_neighbor',
+            },
+            {
+              value: 'verdadero',
+              reasonCode: 'adjective_for_fixed_phrase:verdad',
+              why: 'Verdadero — «истинный» как признак предмета. Устойчивая реакция — именно (no) es verdad, с существительным, а не прилагательным.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -434,13 +494,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'tranquilo',
-              reasonCode: 'gender_agreement_mismatch',
+              reasonCode: 'gender_agreement_mismatch:tranquila',
               why: 'Tranquilo — если спрашивают мужчину. Здесь женщина.',
+              trapType: 'grammar',
             },
             {
               value: 'tranquilamente',
-              reasonCode: 'adverb_for_adjective',
+              reasonCode: 'adverb_for_adjective:tranquila',
               why: 'Tranquilamente — «спокойно» при действии. Признак характера — tranquila.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -460,13 +522,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'igual',
-              reasonCode: 'number_agreement_mismatch',
+              reasonCode: 'number_agreement_mismatch:iguales',
               why: 'Igual — единственное число. Речь о нескольких (somos) — нужно iguales.',
+              trapType: 'grammar',
             },
             {
               value: 'igualas',
-              reasonCode: 'invariable_adjective_wrongly_inflected',
+              reasonCode: 'invariable_adjective_wrongly_inflected:iguales',
               why: 'У igual нет родовых форм — только number меняется: igual/iguales, без -a.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -486,13 +550,15 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
           distractors: [
             {
               value: 'cara',
-              reasonCode: 'gender_agreement_mismatch',
+              reasonCode: 'gender_agreement_mismatch:caro',
               why: 'Cara согласуется с существительным женского рода (la casa es cara). Здесь безличная оценка «это» — по умолчанию мужской род: caro.',
+              trapType: 'grammar',
             },
             {
               value: 'caramente',
-              reasonCode: 'adverb_for_adjective',
+              reasonCode: 'adverb_for_adjective:caro',
               why: 'Caramente — «дорогой ценой» при действии. Признак предмета — caro.',
+              trapType: 'grammar',
             },
           ],
         },
@@ -500,3 +566,21 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
       features: ['ser', 'quality'],
     },
   ]);
+
+/**
+ * зачем сборка через .map(), а не ручная вставка в каждый из 15 объектов
+ * выше: id — единственный надёжный ключ связи между RAW_PHRASES и
+ * ES_SESSION_01_LOCALIZED_DETAILS. Ручная вставка в 15 местах рисковала бы
+ * рассинхроном (не тот id получил не тот перевод), сборка по ключу это
+ * структурно исключает — при отсутствии перевода для id тип это не поймает
+ * молча, а конвейер вернёт [[NEEDS_TRANSLATION]] на этапе сборки шарда.
+ */
+export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
+  Object.freeze(
+    RAW_PHRASES.map((phrase) =>
+      Object.freeze({
+        ...phrase,
+        localizedDetails: ES_SESSION_01_LOCALIZED_DETAILS[phrase.id],
+      }),
+    ),
+  );

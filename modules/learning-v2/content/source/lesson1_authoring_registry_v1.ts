@@ -13,6 +13,7 @@ export interface Lesson1AuthoringRegistryEntryV1 {
   readonly candidateFingerprint?: string;
   readonly forbiddenFutureFingerprint?: string;
   readonly ownerDecisionRef?: string;
+  readonly unlockDecisionRef?: string;
 }
 
 export interface Lesson1AuthoringPreflightV1 {
@@ -38,79 +39,131 @@ export function isV2AuthoringTargetLanguage(
   );
 }
 
-const OWNER_APPROVED_FIRST_TEN =
-  "owner-approved-first-ten-plus-task-distractor-variant-3-2026-08-21";
-const LOCKED_FIRST_TEN_FINGERPRINTS: Readonly<Record<number, string>> =
-  Object.freeze({
-    1: "92791663899cb0539d6aa55080701895715ad54597ab8304d4deefa817afef2f",
-    2: "ce9ec77ac058334b14b3e8a6ce7d8dbe262ddd6bcee14894330671ad3e5fbaf3",
-    3: "d14a88d3a0403f442e646433a82304186304a8f9b5f2ad002399335d6f98f2a6",
-    4: "3c277b5e3df63e04a06bc0e6e8f097300b31f7b426907729c82c23f72a6fa00d",
-    5: "6efe77a14f772415a32452fdd6f7782f1066d4f9ef1d3db8d5144b5879f0aa98",
-    6: "2048118cdfcfa3ab17faf377703f46a2497e6da57186a5f4799252686530ec04",
-    7: "65c66f37aad033a65e5758713b189ebb7f69268ad9ed1b1ec52b35fccbb927d0",
-    8: "4ac95fea5c0c404daf7c45015e6a1d80f1a3dc5917f8405ded6d6c4d2862fabd",
-    9: "1e2eb1d5a74c2bc9ecdd577553fdc64426e56da711c82a1971b14a008e9508d9",
-    10: "afc6510b255316d894cd92f5958be57034e61c7a8dda52b6574dcff663592686",
-  });
-const OWNER_APPROVED_SESSION_11 =
-  "owner-approved-session-11-task-distractor-variant-3-2026-08-21";
-const SESSION_11_LOCKED_FINGERPRINT =
-  "dc5882cc93aaa1a3dc50554d2c9871fab5fa5c89ffdc1293a48583e10b8452df";
-const OWNER_APPROVED_SESSION_12 =
-  "owner-approved-session-12-next-2026-08-21";
-const SESSION_12_LOCKED_FINGERPRINT =
-  "c444eb113e98c4ae6e88d965b5f810e057beb89f3ce461cd6292a18ce8dc20d2";
-const SESSION_13_AUTO_PASS_FINGERPRINT =
-  "6fecc3eb8a22cda2517e9ab57b33e9fbdff6172e03f171c9c641832ec6ad4ff7";
-const OWNER_APPROVED_SESSION_13 =
-  "owner-approved-session-13-next-2026-08-21";
-const SESSION_14_FORBIDDEN_FUTURE_FINGERPRINT =
-  "46df531c54ad9aaa685d849f6a5d6e8caf0d4baa167fb7b5686b051f6e17bf51";
-const SESSION_14_AUTO_PASS_FINGERPRINT =
-  "e29a9b532e9538fe9be3c51eec6f0897c89325ed6a9092b3f568cbe0e55569a1";
+const OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE =
+  "owner-unlocked-all-lesson1-word-first-rewrite-2026-08-24";
+const OWNER_CONTINUOUS_AUTHORING_CONTRACT =
+  "owner-continuous-lesson1-authoring-contract-2026-08-24";
+const SESSION_1_WORD_FIRST_FINGERPRINT =
+  "3eef3af914b37f711c70e0796edfe94957278f9d8910bc20021eabd431474f19";
+const SESSION_2_WORD_FIRST_FINGERPRINT =
+  "c5a952b8b9e71703e06216c5d40f5da7a43bc3fc1b799b6878ebc72bcb36d1ff";
+const SESSION_3_WORD_FIRST_FINGERPRINT =
+  "9d721ad71f2c832740b77948ace5dec2e03a719ffb8475f66e7af0e66f188df7";
+const SESSION_4_WORD_FIRST_FINGERPRINT =
+  "679939edbcb8ebce9a18eebb09bd7e33b32bd995e8fa4f741278974580ad03b8";
+const SESSION_5_WORD_FIRST_FINGERPRINT =
+  "887f390c8ac845131be128010ac14c327297eefc17e2b7c44f534dd589aace3e";
+const SESSION_6_WORD_FIRST_FINGERPRINT =
+  "651642745a8f0737b0fcc4aeb9780f76b3029321d312ba9930ad8703486aa08c";
+const SESSION_7_VOICE_FINGERPRINT =
+  "50f1731457ac1938ad08b0cf6ad9aca3aa66822a183e4a2939fbe3f33f6857e3";
+const SESSION_8_CHECKPOINT_FINGERPRINT =
+  "949b91bbd11d874476cb52a8cf8d28cd895ab53d4deec86bb38bf8c8df3993e3";
+const SESSION_9_WORD_FIRST_FINGERPRINT =
+  "dd740e01a62a049e4582a7d9976a63a10e8ef68bdc484f623b5c51384461b119";
+const SESSION_10_WORD_FIRST_FINGERPRINT =
+  "aebbaee093189564d88104d04bd02e7c032bad04b9c357875260ad3fb524f58e";
+const SESSION_11_FORBIDDEN_FUTURE_FINGERPRINT =
+  "2b8488fa0d82d83276f27060724d6da76be40f00857d593d18db0f5177b3e25d";
 
 function buildEnglishRegistry(): Lesson1AuthoringRegistryEntryV1[] {
   return Array.from({ length: 56 }, (_, index) => {
     const sessionOrdinal = index + 1;
-    if (sessionOrdinal <= 10) {
+    if (sessionOrdinal === 1) {
       return {
         sessionOrdinal,
         status: "LOCKED" as const,
-        lockedFingerprint: LOCKED_FIRST_TEN_FINGERPRINTS[sessionOrdinal],
-        ownerDecisionRef: OWNER_APPROVED_FIRST_TEN,
+        lockedFingerprint: SESSION_1_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 2) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_2_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 3) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_3_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 4) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_4_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 5) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_5_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 6) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_6_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 7) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_7_VOICE_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 8) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_8_CHECKPOINT_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 9) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_9_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
+      };
+    }
+    if (sessionOrdinal === 10) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: SESSION_10_WORD_FIRST_FINGERPRINT,
+        ownerDecisionRef: OWNER_CONTINUOUS_AUTHORING_CONTRACT,
+        unlockDecisionRef: OWNER_UNLOCKED_ALL_FOR_WORD_FIRST_REWRITE,
       };
     }
     if (sessionOrdinal === 11) {
       return {
         sessionOrdinal,
-        status: "LOCKED" as const,
-        lockedFingerprint: SESSION_11_LOCKED_FINGERPRINT,
-        ownerDecisionRef: OWNER_APPROVED_SESSION_11,
-      };
-    }
-    if (sessionOrdinal === 12) {
-      return {
-        sessionOrdinal,
-        status: "LOCKED" as const,
-        lockedFingerprint: SESSION_12_LOCKED_FINGERPRINT,
-        ownerDecisionRef: OWNER_APPROVED_SESSION_12,
-      };
-    }
-    if (sessionOrdinal === 13) {
-      return {
-        sessionOrdinal,
-        status: "LOCKED" as const,
-        lockedFingerprint: SESSION_13_AUTO_PASS_FINGERPRINT,
-        ownerDecisionRef: OWNER_APPROVED_SESSION_13,
-      };
-    }
-    if (sessionOrdinal === 14) {
-      return {
-        sessionOrdinal,
-        status: "AUTO_PASS" as const,
-        candidateFingerprint: SESSION_14_AUTO_PASS_FINGERPRINT,
-        forbiddenFutureFingerprint: SESSION_14_FORBIDDEN_FUTURE_FINGERPRINT,
+        status: "DRAFT" as const,
+        forbiddenFutureFingerprint: SESSION_11_FORBIDDEN_FUTURE_FINGERPRINT,
       };
     }
     return { sessionOrdinal, status: "DRAFT" as const };
@@ -139,6 +192,42 @@ function buildDraftRegistry(): Lesson1AuthoringRegistryEntryV1[] {
   return entries;
 }
 
+// зачем испанская сессия 1 LOCKED (владелец, 2026-08-24: "отлично сессия 1
+// одобряю (лок)"): владелец прошёл играбельный макет (СТАРТ ES.md раздел
+// 8-bis) и явно одобрил. lockedFingerprint вычислен той же
+// learningV2SessionContentFingerprint(source), что читает preflight —
+// расхождение с реальным содержимым источника даст HOLD немедленно
+// (lesson1_locked_fingerprint_drift), так и задумано: правка запертого
+// текста без нового решения владельца обязана остановить сборку.
+const ES_OWNER_APPROVED_SESSION_1_DECISION =
+  "owner-approved-es-lesson1-session1-2026-08-24";
+const ES_SESSION_1_LOCKED_FINGERPRINT =
+  "9f4d416d81a8fe2b73b21486690d7b2b387b6e989c0409655f7b9d008fddf7de";
+
+function buildEsRegistry(): Lesson1AuthoringRegistryEntryV1[] {
+  const draft = buildDraftRegistry();
+  const entries = [...draft];
+  entries[0] = {
+    sessionOrdinal: 1,
+    status: "LOCKED",
+    lockedFingerprint: ES_SESSION_1_LOCKED_FINGERPRINT,
+    ownerDecisionRef: ES_OWNER_APPROVED_SESSION_1_DECISION,
+  };
+  // зачем >= 3, а не >= 2 (как в buildDraftRegistry выше): после блокировки
+  // сессии 1 текущей становится сессия 2 — она сама разрешена, запрещённый
+  // диапазон начинается с forbiddenFrom = currentSessionOrdinal + 1 = 3
+  // (lesson1AuthoringPreflightV1). Отпечаток на sessionOrdinal 2 обязан
+  // покрывать именно этот диапазон, иначе preflight даёт
+  // lesson1_forbidden_future_fingerprint_drift.
+  const forbiddenFutureFingerprint = hashCanonicalBody(
+    entries
+      .filter((entry) => entry.sessionOrdinal >= 3)
+      .map((entry) => [entry.sessionOrdinal, null]),
+  );
+  entries[1] = { ...entries[1], forbiddenFutureFingerprint };
+  return entries;
+}
+
 const REGISTRY_BY_TARGET_LANGUAGE: Readonly<
   Record<
     V2AuthoringTargetLanguage,
@@ -149,7 +238,7 @@ const REGISTRY_BY_TARGET_LANGUAGE: Readonly<
     buildEnglishRegistry().map((entry) => Object.freeze(entry)),
   ),
   es: Object.freeze(
-    buildDraftRegistry().map((entry) => Object.freeze(entry)),
+    buildEsRegistry().map((entry) => Object.freeze(entry)),
   ),
 });
 

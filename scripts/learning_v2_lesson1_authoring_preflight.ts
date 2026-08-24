@@ -1,4 +1,5 @@
 import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
+import { allAuthoredEsEpisode01Sessions } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
 import {
   authoringRegistryForTargetLanguage,
   isV2AuthoringTargetLanguage,
@@ -37,6 +38,14 @@ function readTargetLanguage(argv: readonly string[]): V2AuthoringTargetLanguage 
   return raw;
 }
 
+// зачем испанская ветка читает allAuthoredEsEpisode01Sessions (владелец,
+// 2026-08-24, "добавь язык везде, где сейчас только номер сессии"): раньше
+// эта функция была захардкожена вернуть null для ЛЮБОГО targetLanguage кроме
+// "en" — испанский контур физически не мог получить LOCKED-статус, потому
+// что actualFingerprints[1] всегда был null и assertRegistryShape отвергал
+// бы любой lockedFingerprint как расхождение. Испанская сессия 1 теперь даёт
+// реальный отпечаток той же функцией, что и английская (learningV2Session-
+// ContentFingerprint = hashCanonicalBody(source), языконезависимая).
 function actualFingerprints(
   targetLanguage: V2AuthoringTargetLanguage,
 ): Readonly<Record<number, string | null>> {
@@ -44,19 +53,22 @@ function actualFingerprints(
   // fail-closed отклоняет undefined как значение (см. тест
   // learning_v2_authoring_registry_multilang_gate.ts) — каждая из 56 позиций
   // обязана присутствовать явно, даже когда контента ещё нет.
-  if (targetLanguage !== "en") {
-    return Object.freeze(
-      Object.fromEntries(Array.from({ length: 56 }, (_, index) => [index + 1, null])),
-    );
-  }
-  return Object.freeze(
-    Object.fromEntries(
-      AUTHORED_EPISODE_01_SESSIONS.map((source) => [
-        source.requiredSessionOrdinal,
-        learningV2SessionContentFingerprint(source),
-      ]),
-    ),
+  const base = Object.fromEntries(
+    Array.from({ length: 56 }, (_, index) => [index + 1, null as string | null]),
   );
+  if (targetLanguage === "en") {
+    for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+      base[source.requiredSessionOrdinal] = learningV2SessionContentFingerprint(source);
+    }
+    return Object.freeze(base);
+  }
+  if (targetLanguage === "es") {
+    for (const source of allAuthoredEsEpisode01Sessions()) {
+      base[source.requiredSessionOrdinal] = learningV2SessionContentFingerprint(source);
+    }
+    return Object.freeze(base);
+  }
+  return Object.freeze(base);
 }
 
 function rangeLabel(from: number | null, to: number): string {

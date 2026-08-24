@@ -63,6 +63,13 @@ function featureCopy(lang: Lang) {
   ];
 }
 
+// зачем: владелец выбрал вариант D («две карточки рядом») — тиры сравниваются
+// не строками таблицы, а двумя плитками: слева бесплатный лимит, справа MAX.
+// Поэтому кроме honest-строки `value` (её дословно сторожат контрактные тесты
+// и она несёт полную формулировку) нужны разрезанные куски: `amount` — число
+// крупно, `note` — условие тише под ним. Дублирование намеренное: склейка
+// через split(' ') развалилась бы на восьми языках, где число и единица
+// разделены по-разному («120 dk/ay», «120 phút/tháng», «3 mnt»).
 function minutesRows(lang: Lang) {
   return [
     {
@@ -78,6 +85,15 @@ function minutesRows(lang: Lang) {
         'pt-BR': '3 min · uma vez por conta', vi: '3 phút · một lần cho mỗi tài khoản', id: '3 mnt · sekali per akun',
         tr: '3 dk · hesap başına bir kez', pl: '3 min · raz na konto',
       }),
+      amount: triLang(lang, {
+        ru: '3 мин', uk: '3 хв', es: '3 min', 'pt-BR': '3 min',
+        vi: '3 phút', id: '3 mnt', tr: '3 dk', pl: '3 min',
+      }),
+      note: triLang(lang, {
+        ru: 'один раз на аккаунт', uk: 'один раз на акаунт', es: 'una vez por cuenta',
+        'pt-BR': 'uma vez por conta', vi: 'một lần cho mỗi tài khoản', id: 'sekali per akun',
+        tr: 'hesap başına bir kez', pl: 'raz na konto',
+      }),
       highlight: false,
     },
     {
@@ -87,6 +103,16 @@ function minutesRows(lang: Lang) {
         es: '120 min/mes · 20 min al día', 'pt-BR': '120 min/mês · 20 min por dia',
         vi: '120 phút/tháng · 20 phút mỗi ngày', id: '120 mnt/bln · 20 menit per hari',
         tr: '120 dk/ay · günde 20 dk', pl: '120 min/mies. · 20 min dziennie',
+      }),
+      amount: triLang(lang, {
+        ru: '120 мин', uk: '120 хв', es: '120 min', 'pt-BR': '120 min',
+        vi: '120 phút', id: '120 mnt', tr: '120 dk', pl: '120 min',
+      }),
+      note: triLang(lang, {
+        ru: 'в месяц · 20 мин в день', uk: 'на місяць · 20 хв на день',
+        es: 'al mes · 20 min al día', 'pt-BR': 'por mês · 20 min por dia',
+        vi: 'mỗi tháng · 20 phút mỗi ngày', id: 'per bulan · 20 menit per hari',
+        tr: 'ayda · günde 20 dk', pl: 'miesięcznie · 20 min dziennie',
       }),
       highlight: true,
     },
@@ -317,6 +343,8 @@ export default function MaxPaywall() {
   const features = featureCopy(lang as Lang);
   const rows = minutesRows(lang as Lang);
   const accentSoft = `${t.accent}24`;
+  // Плитка бесплатного тира: подложка тоном, без обводки (запрет владельца).
+  const neutralSoft = `${t.textPrimary}0F`;
 
   return (
     <ScreenGradient>
@@ -388,31 +416,46 @@ export default function MaxPaywall() {
                   tr: 'Sesli arama limitleri', pl: 'Limity rozmów głosowych',
                 })}
               </Text>
-              {/* зачем: владелец показал скрин, где «Бесплатно / Плюс / Про» и значение
-                  наезжали друг на друга (тексты без ограничения ширины + f.h2 у MAX).
-                  Просил две колонки: тир слева, лимит справа — каждая колонка переносит
-                  строки внутри себя и не пересекает соседнюю. */}
-              {rows.map((row) => (
-                <View
-                  key={row.label}
-                  style={row.highlight
-                    ? { flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: accentSoft, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 12 }
-                    : { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 }}
-                >
-                  <Text
-                    style={{ flex: 1, fontSize: row.highlight ? f.sub : f.body, fontWeight: row.highlight ? '900' : '700', color: row.highlight ? t.accent : t.textSecond, lineHeight: (row.highlight ? f.sub : f.body) * 1.3 }}
-                    maxFontSizeMultiplier={2}
+              {/* зачем: вариант D владельца — тиры не строками таблицы, а двумя
+                  плитками рядом. Прошлая табличная вёрстка на длинных языках
+                  (vi/tr/pl) рвала значение на две строки с рваным краем, а до
+                  того тексты и вовсе наезжали друг на друга. В плитках число
+                  ведёт, условие тише под ним, MAX выделен тоном — выигрыш виден
+                  без чтения. Колонки равной ширины (flex 1), высота выравнивается
+                  общей строкой заголовка. */}
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                {rows.map((row) => (
+                  <View
+                    key={row.label}
+                    accessibilityLabel={`${row.label}: ${row.value}`}
+                    style={{
+                      flex: 1,
+                      backgroundColor: row.highlight ? accentSoft : neutralSoft,
+                      borderRadius: 16,
+                      padding: 14,
+                    }}
                   >
-                    {row.label}
-                  </Text>
-                  <Text
-                    style={{ flex: 1.4, textAlign: 'right', fontSize: f.sub, fontWeight: '900', color: row.highlight ? t.accent : t.textPrimary, lineHeight: f.sub * 1.3, fontVariant: ['tabular-nums'] }}
-                    maxFontSizeMultiplier={2}
-                  >
-                    {row.value}
-                  </Text>
-                </View>
-              ))}
+                    <Text
+                      style={{ fontSize: f.label, fontWeight: row.highlight ? '900' : '800', color: row.highlight ? t.accent : t.textSecond, lineHeight: f.label * 1.28, minHeight: f.label * 1.28 * 2 }}
+                      maxFontSizeMultiplier={2}
+                    >
+                      {row.label}
+                    </Text>
+                    <Text
+                      style={{ fontSize: f.numMd, fontWeight: '900', color: row.highlight ? t.accent : t.textPrimary, lineHeight: f.numMd * 1.06, marginTop: 8, fontVariant: ['tabular-nums'] }}
+                      maxFontSizeMultiplier={1.4}
+                    >
+                      {row.amount}
+                    </Text>
+                    <Text
+                      style={{ fontSize: f.label, fontWeight: '700', color: t.textSecond, lineHeight: f.label * 1.3, marginTop: 5 }}
+                      maxFontSizeMultiplier={2}
+                    >
+                      {row.note}
+                    </Text>
+                  </View>
+                ))}
+              </View>
             </View>
           </PaywallEntrance>
 

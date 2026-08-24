@@ -81,13 +81,51 @@ describe('friends together claim response compatibility', () => {
 
     await expect(claimWeeklyChest('2026-W34')).resolves.toEqual({
       ok: true,
-      // зачем: старый сохранённый receipt не знает полей xpGranted/energyRefilled —
+      // зачем: повторный ответ обязан долетать до экрана флагом — опыт и энергию
+      // начисляет КЛИЕНТ, и без флага перезапуск после потери ответа сети выдал
+      // бы опыт второй раз (руны так не задвоить: их баланс считает сервер).
+      alreadyClaimed: true,
+      // Старый сохранённый receipt не знает полей xpGranted/energyRefilled —
       // нормализатор обязан подставить безопасные нули, а не undefined.
       rewards: { starsGranted: 135, xpBoostMinutes: 60, xpGranted: 0, energyRefilled: false, streakShield: true, aura: true },
       stars: 200,
       starsSeq: 8,
     });
     expect(mockMarkChest).toHaveBeenCalledWith('2026-W34');
+  });
+
+  it('marks a FRESH chest claim as not-already-claimed so rewards actually apply', async () => {
+    // зачем: обратный риск к предыдущему тесту. Если флаг залипнет в true на
+    // свежей выдаче, экран НИКОГДА не начислит опыт и энергию — награда станет
+    // чисто нарисованной. Сервер на свежем клейме шлёт alreadyClaimed: false.
+    mockCallableInvoker.mockResolvedValueOnce({
+      data: {
+        ok: true,
+        alreadyClaimed: false,
+        starsGranted: 175,
+        xpBoostMinutes: 120,
+        xpGranted: 2000,
+        energyRefilled: true,
+        streakShield: true,
+        aura: true,
+        starsBalance: 300,
+      },
+    });
+    const { claimWeeklyChest } = await import('../app/friends_together/claims_client');
+
+    await expect(claimWeeklyChest('2026-W35')).resolves.toEqual({
+      ok: true,
+      alreadyClaimed: false,
+      rewards: {
+        starsGranted: 175,
+        xpBoostMinutes: 120,
+        xpGranted: 2000,
+        energyRefilled: true,
+        streakShield: true,
+        aura: true,
+      },
+      stars: 300,
+    });
   });
 
   it('reuses the same durable request id after an ambiguous network failure', async () => {

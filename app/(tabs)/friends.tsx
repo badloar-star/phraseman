@@ -1488,7 +1488,12 @@ export default function FriendsTabScreen() {
         // зачем: опыт и энергия живут на устройстве — сервер их только
         // объявляет. Применяем локально и не ждём: модалка уже открыта,
         // шкала и счётчик догоняют в том же кадре (optimistic).
-        void applyChestRewardsLocally({
+        //
+        // alreadyClaimed — повторный ответ сервера с ТОЙ ЖЕ суммой опыта
+        // (потерялся ответ сети, перезапуск приложения). Награду показываем,
+        // но НЕ начисляем второй раз: замок в chest_reward_apply живёт в
+        // памяти и перезапуск не переживает, поэтому решает флаг сервера.
+        if (!result.alreadyClaimed) void applyChestRewardsLocally({
           weekKey: weeklyChestModel.weekKey,
           xpGranted: result.rewards.xpGranted,
           energyRefilled: result.rewards.energyRefilled,

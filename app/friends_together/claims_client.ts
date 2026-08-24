@@ -35,7 +35,7 @@ export type ClaimLevelResult =
   | { ok: false; reason: ClaimLevelErrorReason };
 
 export type ClaimChestResult =
-  | { ok: true; rewards: Readonly<{ starsGranted: number; xpBoostMinutes: number; xpGranted: number; energyRefilled: boolean; streakShield: boolean; aura: boolean }>; stars?: number; starsEarnedTotal?: number; starsSeq?: number }
+  | { ok: true; alreadyClaimed: boolean; rewards: Readonly<{ starsGranted: number; xpBoostMinutes: number; xpGranted: number; energyRefilled: boolean; streakShield: boolean; aura: boolean }>; stars?: number; starsEarnedTotal?: number; starsSeq?: number }
   | { ok: false; reason: ClaimChestErrorReason };
 
 function makeRequestId(prefix: string): string {
@@ -125,6 +125,8 @@ type LevelClaimWireResponse = Readonly<{
 type ChestRewardDrop = Readonly<{ kind?: unknown; amount?: unknown }>;
 type ChestClaimWireResponse = Readonly<{
   ok?: boolean;
+  /** Сервер уже выдавал награду за эту неделю — повторный ответ, не новая выдача. */
+  alreadyClaimed?: unknown;
   starsGranted?: unknown;
   xpBoostMinutes?: unknown;
   xpGranted?: unknown;
@@ -172,6 +174,12 @@ export function normalizeChestClaimResponse(data: ChestClaimWireResponse | undef
   const starsSeq = finiteNonNegative(data?.starsSeq);
   return {
     ok: true,
+    // зачем: опыт и энергию начисляет КЛИЕНТ, а не сервер. Повторный ответ несёт
+    // ту же сумму опыта, что и первый (сервер честно отдаёт содержимое выданного
+    // сундука) — без этого флага перезапуск приложения после потери ответа сети
+    // начислил бы опыт второй раз. Руны так не задвоить: их баланс авторитетно
+    // считает сервер, поэтому раньше флаг никому не был нужен.
+    alreadyClaimed: data?.alreadyClaimed === true,
     rewards: {
       starsGranted: finiteNonNegative(data?.starsGranted ?? data?.rewards?.stars) ?? 0,
       xpBoostMinutes: finiteNonNegative(data?.xpBoostMinutes) ?? (hasDrop('xp_boost') ? 60 : 0),

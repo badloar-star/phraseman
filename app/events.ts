@@ -24,8 +24,6 @@ export type AppEventMap = {
    * (Арена, флешкарты, диалоги). Payload — сколько единиц ушло.
    */
   energy_spent_on_start: { amount: number; target?: { x: number; y: number } };
-  /** Премиальный transfer-motion закончен; навигация может продолжаться. */
-  energy_spend_motion_complete: undefined;
   premium_activated: undefined;
   premium_deactivated: undefined;
   vip_activated: undefined;

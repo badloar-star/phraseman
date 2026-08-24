@@ -26,35 +26,12 @@ import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
-import { emitAppEvent, onAppEvent } from '../app/events';
-import EnergyStartConfirmModal from './EnergyStartConfirmModal';
+import { emitAppEvent } from '../app/events';
 import type { EnergyStartResult } from './energy_start_confirmation';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
 export const MAX_ENERGY = 5; // базовый минимум (уровень 1-9)
-const ENERGY_SPEND_MOTION_TIMEOUT_MS = 1_150;
-
-function createEnergySpendMotionWaiter(): { promise: Promise<void>; cancel: () => void } {
-  let settled = false;
-  let timer: ReturnType<typeof setTimeout> | null = null;
-  let subscription: { remove: () => void } | null = null;
-  let resolvePromise: (() => void) | null = null;
-  const finish = () => {
-    if (settled) return;
-    settled = true;
-    if (timer) clearTimeout(timer);
-    subscription?.remove();
-    resolvePromise?.();
-  };
-  const promise = new Promise<void>(resolve => {
-    resolvePromise = resolve;
-    subscription = onAppEvent('energy_spend_motion_complete', finish);
-    timer = setTimeout(finish, ENERGY_SPEND_MOTION_TIMEOUT_MS);
-  });
-  return { promise, cancel: finish };
-}
-
 // B2 (PERF_MASTER_PLAN): модульный peek-кеш последнего известного значения
 // энергии. EnergyProvider стартует с MAX_ENERGY, реальное значение приходит
 // асинхронно из load() — это даёт видимый "прыжок" (полная → реальная) на
@@ -312,8 +289,6 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // load() (тестерские тумблеры/точные гейты продолжают ждать live-данные).
   const [energyReady, setEnergyReady] = useState(false);
   const [appActive, setAppActive] = useState(() => AppState.currentState === 'active');
-  const [pendingConfirmationCost, setPendingConfirmationCost] = useState<number | null>(null);
-  const [confirmationTransferring, setConfirmationTransferring] = useState(false);
 
   // Refs for use inside callbacks without stale closures
   const energyRef = useRef(initialPeek?.energy ?? MAX_ENERGY);
@@ -350,53 +325,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const syncEnergyPushRef = useRef<(() => Promise<void>) | null>(null);
-  const pendingConfirmationRef = useRef<{
-    cost: number;
-    resolve: (confirmed: boolean) => void;
-  } | null>(null);
-  const confirmationCommitInFlightRef = useRef(false);
+  // Точка, ОТКУДА вылетает молния списания. Её задавала модалка подтверждения;
+  // после её удаления (владелец 2026-08-24) остаётся null, и EnergySpendFlightHost
+  // сам берёт запасной путь — от счётчика энергии вверху экрана.
   const motionTargetRef = useRef<{ x: number; y: number } | null>(null);
-
-  const finishPendingConfirmation = useCallback((confirmed: boolean) => {
-    const pending = pendingConfirmationRef.current;
-    if (!pending) return;
-    if (confirmationCommitInFlightRef.current) return;
-    if (confirmed) {
-      confirmationCommitInFlightRef.current = true;
-      setConfirmationTransferring(true);
-      pending.resolve(true);
-      return;
-    }
-    pendingConfirmationRef.current = null;
-    setPendingConfirmationCost(null);
-    pending.resolve(confirmed);
-  }, []);
-
-  const closeCommittedConfirmation = useCallback(() => {
-    pendingConfirmationRef.current = null;
-    confirmationCommitInFlightRef.current = false;
-    motionTargetRef.current = null;
-    setConfirmationTransferring(false);
-    setPendingConfirmationCost(null);
-  }, []);
-  const handleMotionTargetChange = useCallback((target: { x: number; y: number }) => {
-    motionTargetRef.current = target;
-  }, []);
-
-  const requestStartConfirmation = useCallback((cost: number): Promise<boolean> => {
-    if (pendingConfirmationRef.current || confirmationCommitInFlightRef.current) return Promise.resolve(false);
-    return new Promise(resolve => {
-      pendingConfirmationRef.current = { cost, resolve };
-      setPendingConfirmationCost(cost);
-    });
-  }, []);
-
-  useEffect(() => () => {
-    const pending = pendingConfirmationRef.current;
-    pendingConfirmationRef.current = null;
-    confirmationCommitInFlightRef.current = false;
-    pending?.resolve(false);
-  }, []);
 
   // ── Load and apply recovery ────────────────────────────────────────────────
   const runLoad = useCallback(async () => {
@@ -749,19 +681,23 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     if (isUnlimitedRef.current) return 'unlimited';
     if (bonusRef.current + energyRef.current < cost) return 'insufficient';
 
-    const confirmed = await requestStartConfirmation(cost);
-    if (!confirmed) return 'cancelled';
-    const motionWaiter = createEnergySpendMotionWaiter();
-    try {
-      const spent = cost === 1 ? await spendOne() : await spendAmount(cost);
-      if (!spent) return 'insufficient';
-      await motionWaiter.promise;
-      return 'spent';
-    } finally {
-      motionWaiter.cancel();
-      closeCommittedConfirmation();
-    }
-  }, [closeCommittedConfirmation, load, requestStartConfirmation, spendAmount, spendOne]);
+    // зачем: владелец 2026-08-24 — окно «Потратить 1 энергию и начать?» убрано.
+    // Лишний тап на каждый старт мешал, а цена и так видна прямо на кнопке
+    // знаком «−1 ⚡». Тап по кнопке = согласие: списываем сразу.
+    // Остальные ветки не тронуты — безлимит и нехватка энергии решаются выше,
+    // до этой точки, и экран «энергия кончилась» остаётся на месте.
+    // Анимация полёта энергии сохранена: без модалки у неё нет точки старта,
+    // поэтому она летит от счётчика энергии по запасному пути (см.
+    // EnergySpendFlightHost — target необязателен).
+    //
+    // Ждать её окончания больше НЕЛЬЗЯ: раньше эти ~1.15 с прятались за
+    // модалкой, а без модалки они превратились бы в заметную паузу между тапом
+    // и стартом. Молния летит фоном поверх уже открывшегося экрана —
+    // отклик мгновенный, а списание всё равно видно.
+    const spent = cost === 1 ? await spendOne() : await spendAmount(cost);
+    if (!spent) return 'insufficient';
+    return 'spent';
+  }, [load, spendAmount, spendOne]);
 
   const confirmSpendOne = useCallback(
     (): Promise<EnergyStartResult> => confirmSpendAmount(1),
@@ -861,14 +797,6 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   return (
     <EnergyContext.Provider value={value}>
       {children}
-      <EnergyStartConfirmModal
-        visible={pendingConfirmationCost !== null}
-        cost={pendingConfirmationCost ?? 1}
-        transferring={confirmationTransferring}
-        onTargetChange={handleMotionTargetChange}
-        onConfirm={() => finishPendingConfirmation(true)}
-        onCancel={() => finishPendingConfirmation(false)}
-      />
     </EnergyContext.Provider>
   );
 }

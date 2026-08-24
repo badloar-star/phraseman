@@ -32,7 +32,10 @@ function EnergySpendFlightHost() {
     animRef.current = null;
     runningRef.current = false;
     setVisible(false);
-    emitAppEvent('energy_spend_motion_complete');
+    // зачем: событие «анимация закончена» слушал только ожидатель в
+    // EnergyContext, который держал старт активности до конца полёта. Владелец
+    // 2026-08-24 убрал окно подтверждения, и это ожидание превратилось бы в
+    // паузу после тапа — ожидатель снят, событие осталось бы без адресата.
     const queued = queuedRequestRef.current;
     queuedRequestRef.current = null;
     if (queued !== null) requestAnimationFrame(() => playRef.current(queued));

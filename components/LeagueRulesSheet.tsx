@@ -58,144 +58,154 @@ type RuleSection = Readonly<{
 }>;
 
 /**
- * Разделы объяснялки. Порядок — от «что это» к деталям: сначала правила игры,
- * потом призы, потом тонкости.
+ * Разделы объяснялки.
  *
- * зачем (владелец, 2026-08-24): «"очко" — фу, нельзя» и «сделай премиально,
- * как у Apple тексты». Первая правка ушла в панибратство («зашёл посмотреть —
- * ноль», «камбэк — законный жанр») — это не тот тон. Новый регистр: спокойная
- * уверенность, одна фраза на раздел, без подмигиваний и восклицаний. Тёплая
- * нота допускается ровно одна на всю шторку — последняя строка про вид с
- * вершины; всё остальное — чистые утверждения.
+ * зачем (владелец, 2026-08-24, третья редакция): «тексты непонятны человеку»
+ * и «не пиши объяснения вообще, только фразы по 3-4 слова, броские как
+ * реклама». Две предыдущие попытки провалились по разным причинам: первая
+ * ушла в панибратство («камбэк — законный жанр»), вторая стала премиальной,
+ * но нечитаемой — «счёт ведут руны» не говорит, что ДЕЛАТЬ, «верхние 15%» —
+ * процент от неизвестного человеку числа, «зона вылета» — термин ниоткуда.
  *
- * Валюта названа «рунами» (решение владельца): именно они копятся в лиге, и
- * строка таблицы теперь показывает ассет руны вместо букв «XP». Слово «очки»
- * из UI лиги вычищено целиком — оно и грубовато, и называло несуществующую
- * сущность.
+ * Поэтому здесь НЕ объяснения. Смысл несёт заголовок раздела, тело — короткий
+ * рекламный удар в 3-5 слов. Регистр взят у уже утверждённого владельцем
+ * экрана кошелька рун («Руны приходят за дело») — одна интонация на всё
+ * приложение, а не своя в каждой шторке.
  *
- * Цифры сверены с кодом, не выдуманы: зона 15% — LEAGUE_RESULT_ZONE_RATIO,
- * два часа и ×2 — LEAGUE_HOT_HOURS_WINDOW_MS и LEAGUE_HOT_HOURS_MULTIPLIER,
- * «неделя без рун = спуск» — ветки iScored/inZeroZone в league_engine.
+ * Что при этом обязано читаться без терминов:
+ *  • откуда руны — «Занимаешься — получаешь руны» (решение владельца: связь
+ *    называем прямо, иначе весь остальной текст висит в воздухе);
+ *  • повышение/понижение — «людьми», без процентов: наверху списка и внизу
+ *    списка, а не «верхние 15%» (решение владельца);
+ *  • «зона вылета» вычищена как термин — вместо неё «внизу списка».
+ *
+ * Цифры вычищены почти полностью — они и делали текст «непонятным человеку».
+ * Осталось «два часа» в заголовке (LEAGUE_HOT_HOURS_WINDOW_MS) и «вдвойне»
+ * (LEAGUE_HOT_HOURS_MULTIPLIER): это единственное место, где число реально
+ * меняет поведение игрока. Вилка бонуса лиг 10-110% убрана сознательно — её
+ * точные проценты человек видит на карточках лиг, здесь важен сам факт.
+ * Правило «неделя без единой руны — спуск» (ветки iScored/inZeroZone в
+ * league_engine) свёрнуто в «Ноль за неделю — вниз»: факт сохранён, термина нет.
  */
 const SECTIONS: readonly RuleSection[] = [
   {
     id: 'what',
     icon: 'people-outline',
     title: (lang) => triLang(lang, {
-      ru: 'Комната на неделю',
-      uk: 'Кімната на тиждень',
-      es: 'Una sala por semana',
-      'pt-BR': 'Uma sala por semana',
-      vi: 'Phòng đấu theo tuần',
-      id: 'Satu ruang tiap pekan',
-      tr: 'Haftalık bir oda',
-      pl: 'Pokój na tydzień',
+      ru: 'Неделя с нуля',
+      uk: 'Тиждень з нуля',
+      es: 'La semana desde cero',
+      'pt-BR': 'A semana do zero',
+      vi: 'Tuần mới từ số không',
+      id: 'Sepekan dari nol',
+      tr: 'Hafta sıfırdan',
+      pl: 'Tydzień od zera',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Каждый понедельник вы с десятками других начинаете неделю с нуля. Счёт ведут руны.',
-      uk: 'Щопонеділка ви з десятками інших починаєте тиждень з нуля. Рахунок ведуть руни.',
-      es: 'Cada lunes empiezas la semana desde cero junto a decenas de personas. Las runas llevan la cuenta.',
-      'pt-BR': 'Toda segunda você recomeça a semana do zero com dezenas de pessoas. As runas fazem a contagem.',
-      vi: 'Mỗi thứ Hai, bạn cùng hàng chục người khác bắt đầu lại từ đầu. Rune giữ điểm số.',
-      id: 'Setiap Senin kamu dan puluhan orang lain memulai pekan dari nol. Rune yang menghitung.',
-      tr: 'Her pazartesi onlarca kişiyle birlikte haftaya sıfırdan başlarsınız. Skoru rünler tutar.',
-      pl: 'W każdy poniedziałek razem z dziesiątkami innych zaczynasz tydzień od zera. Liczą runy.',
+      ru: 'Занимаешься — получаешь руны.',
+      uk: 'Займаєшся — отримуєш руни.',
+      es: 'Practicas y ganas runas.',
+      'pt-BR': 'Você pratica, ganha runas.',
+      vi: 'Học là có rune.',
+      id: 'Berlatih, dapat rune.',
+      tr: 'Çalışırsın, rün kazanırsın.',
+      pl: 'Ćwiczysz — masz runy.',
     }),
   },
   {
     id: 'promotion',
     icon: 'trending-up',
     title: (lang) => triLang(lang, {
-      ru: 'Наверх и вниз',
-      uk: 'Угору й донизу',
-      es: 'Subir y bajar',
-      'pt-BR': 'Subir e descer',
-      vi: 'Lên và xuống',
-      tr: 'Yukarı ve aşağı',
-      id: 'Naik dan turun',
-      pl: 'W górę i w dół',
+      ru: 'Наверх или вниз',
+      uk: 'Угору або вниз',
+      es: 'Arriba o abajo',
+      'pt-BR': 'Para cima ou para baixo',
+      vi: 'Lên hoặc xuống',
+      tr: 'Yukarı ya da aşağı',
+      id: 'Naik atau turun',
+      pl: 'W górę albo w dół',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Верхние 15% поднимаются в следующую лигу, нижние 15% опускаются. Неделя без единой руны — тоже спуск.',
-      uk: 'Верхні 15% піднімаються в наступну лігу, нижні 15% опускаються. Тиждень без жодної руни — теж спуск.',
-      es: 'El 15% superior asciende de liga y el 15% inferior desciende. Una semana sin una sola runa también baja.',
-      'pt-BR': 'Os 15% do topo sobem de liga e os 15% de baixo descem. Uma semana sem nenhuma runa também desce.',
-      vi: 'Top 15% lên hạng, 15% cuối xuống hạng. Một tuần không có rune nào cũng là xuống hạng.',
-      id: 'Peringkat 15% teratas naik liga, 15% terbawah turun. Sepekan tanpa satu rune pun juga berarti turun.',
-      tr: 'İlk %15 bir üst lige çıkar, son %15 iner. Tek bir rün kazanılmayan hafta da düşüş demektir.',
-      pl: 'Górne 15% awansuje do wyższej ligi, dolne 15% spada. Tydzień bez ani jednej runy również oznacza spadek.',
+      ru: 'Верх — выше. Ноль — вниз.',
+      uk: 'Верх — вище. Нуль — вниз.',
+      es: 'Arriba subes. Cero baja.',
+      'pt-BR': 'Topo sobe. Zero desce.',
+      vi: 'Đầu bảng lên. Số 0 xuống.',
+      id: 'Puncak naik. Nol turun.',
+      tr: 'Zirve yükselir. Sıfır düşer.',
+      pl: 'Góra — awans. Zero — spadek.',
     }),
   },
   {
     id: 'chest',
     icon: 'cube-outline',
     title: (lang) => triLang(lang, {
-      ru: 'Общая цель',
-      uk: 'Спільна мета',
-      es: 'Una meta común',
-      'pt-BR': 'Uma meta comum',
-      vi: 'Mục tiêu chung',
-      id: 'Target bersama',
-      tr: 'Ortak hedef',
-      pl: 'Wspólny cel',
+      ru: 'Сундук комнаты',
+      uk: 'Скриня кімнати',
+      es: 'El cofre de la sala',
+      'pt-BR': 'O baú da sala',
+      vi: 'Rương của phòng',
+      id: 'Peti ruangan',
+      tr: 'Odanın sandığı',
+      pl: 'Skrzynia pokoju',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Руны всей комнаты идут в общий счёт. Когда цель недели взята, сундук открывается каждому.',
-      uk: 'Руни всієї кімнати йдуть у спільний рахунок. Щойно мету тижня взято, скриня відкривається кожному.',
-      es: 'Las runas de toda la sala suman a un marcador común. Alcanzada la meta semanal, el cofre se abre para todos.',
-      'pt-BR': 'As runas de toda a sala somam num placar comum. Alcançada a meta da semana, o baú abre para todos.',
-      vi: 'Rune của cả phòng dồn vào một chỉ số chung. Đạt mục tiêu tuần, rương mở cho tất cả mọi người.',
-      id: 'Rune seluruh ruangan masuk ke satu hitungan bersama. Begitu target pekan tercapai, peti terbuka untuk semua.',
-      tr: 'Tüm odanın rünleri ortak bir sayaca işler. Haftanın hedefi tutunca sandık herkese açılır.',
-      pl: 'Runy całego pokoju sumują się we wspólnym liczniku. Gdy cel tygodnia zostaje osiągnięty, skrzynia otwiera się dla każdego.',
+      ru: 'Общая цель — награда всем.',
+      uk: 'Спільна мета — нагорода всім.',
+      es: 'Meta común, premio para todos.',
+      'pt-BR': 'Meta comum, prêmio para todos.',
+      vi: 'Mục tiêu chung, thưởng cho tất cả.',
+      id: 'Target bersama, hadiah untuk semua.',
+      tr: 'Ortak hedef, herkese ödül.',
+      pl: 'Wspólny cel, nagroda dla wszystkich.',
     }),
   },
   {
     id: 'boosts',
     icon: 'flame-outline',
     title: (lang) => triLang(lang, {
-      ru: 'Горячие часы',
-      uk: 'Гарячі години',
-      es: 'Horas calientes',
-      'pt-BR': 'Horas quentes',
-      vi: 'Giờ nóng',
-      id: 'Jam panas',
-      tr: 'Kızgın saatler',
-      pl: 'Gorące godziny',
+      ru: 'Последние два часа',
+      uk: 'Останні дві години',
+      es: 'Las últimas dos horas',
+      'pt-BR': 'As duas últimas horas',
+      vi: 'Hai giờ cuối',
+      id: 'Dua jam terakhir',
+      tr: 'Son iki saat',
+      pl: 'Ostatnie dwie godziny',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'В последние два часа недели руны в зоне вылета удваиваются. Неделя решается в воскресенье вечером.',
-      uk: 'В останні дві години тижня руни в зоні вильоту подвоюються. Тиждень вирішується в неділю ввечері.',
-      es: 'En las dos últimas horas de la semana, las runas en zona de descenso se duplican. La semana se decide el domingo por la noche.',
-      'pt-BR': 'Nas duas últimas horas da semana, as runas na zona de rebaixamento dobram. A semana se decide no domingo à noite.',
-      vi: 'Trong hai giờ cuối tuần, rune ở nhóm xuống hạng được nhân đôi. Cả tuần được định đoạt vào tối Chủ nhật.',
-      id: 'Pada dua jam terakhir pekan, rune di zona degradasi digandakan. Pekan ini ditentukan pada Minggu malam.',
-      tr: 'Haftanın son iki saatinde küme hattındaki rünler ikiye katlanır. Hafta pazar akşamı belli olur.',
-      pl: 'W ostatnich dwóch godzinach tygodnia runy w strefie spadkowej się podwajają. Tydzień rozstrzyga się w niedzielny wieczór.',
+      ru: 'Внизу списка — руны вдвойне.',
+      uk: 'Внизу списку — руни вдвічі.',
+      es: 'Abajo de la lista, runas dobles.',
+      'pt-BR': 'No fim da lista, runas em dobro.',
+      vi: 'Cuối bảng, rune nhân đôi.',
+      id: 'Di dasar daftar, rune ganda.',
+      tr: 'Listenin dibinde rünler iki kat.',
+      pl: 'Na dole listy — runy podwójne.',
     }),
   },
   {
     id: 'bonus',
     icon: 'ribbon-outline',
     title: (lang) => triLang(lang, {
-      ru: 'Что даёт высота',
-      uk: 'Що дає висота',
-      es: 'Lo que da la altura',
-      'pt-BR': 'O que a altura dá',
-      vi: 'Lên cao được gì',
-      id: 'Apa yang diberi ketinggian',
-      tr: 'Yükseklik ne kazandırır',
-      pl: 'Co daje wysokość',
+      ru: 'Чем выше лига',
+      uk: 'Що вища ліга',
+      es: 'Cuanto más alta la liga',
+      'pt-BR': 'Quanto mais alta a liga',
+      vi: 'Hạng càng cao',
+      id: 'Makin tinggi liga',
+      tr: 'Lig ne kadar yüksekse',
+      pl: 'Im wyższa liga',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Каждая лига навсегда прибавляет опыт: от 10% в бронзе до 110% на вершине. И вид оттуда лучше.',
-      uk: 'Кожна ліга назавжди додає досвід: від 10% у бронзі до 110% на вершині. Та й краєвид звідти кращий.',
-      es: 'Cada liga añade experiencia para siempre: del 10% en bronce al 110% en la cima. Y las vistas son mejores.',
-      'pt-BR': 'Cada liga acrescenta experiência para sempre: de 10% no bronze a 110% no topo. E a vista lá de cima é melhor.',
-      vi: 'Mỗi hạng cộng thêm kinh nghiệm vĩnh viễn: từ 10% ở Đồng đến 110% trên đỉnh. Và cảnh từ trên đó cũng đẹp hơn.',
-      id: 'Setiap liga menambah pengalaman selamanya: dari 10% di perunggu hingga 110% di puncak. Pemandangan dari atas pun lebih baik.',
-      tr: 'Her lig kalıcı olarak deneyim ekler: bronzda %10, zirvede %110. Üstelik yukarıdan manzara da güzeldir.',
-      pl: 'Każda liga na stałe dodaje doświadczenie: od 10% w brązie do 110% na szczycie. A widok stamtąd jest lepszy.',
+      ru: 'Опыт быстрее. Навсегда.',
+      uk: 'Досвід швидше. Назавжди.',
+      es: 'Más experiencia. Para siempre.',
+      'pt-BR': 'Mais experiência. Para sempre.',
+      vi: 'Kinh nghiệm nhanh hơn. Mãi mãi.',
+      id: 'Pengalaman lebih cepat. Selamanya.',
+      tr: 'Deneyim daha hızlı. Kalıcı.',
+      pl: 'Doświadczenie szybciej. Na stałe.',
     }),
   },
 ];

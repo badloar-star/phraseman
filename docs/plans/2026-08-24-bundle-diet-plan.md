@@ -44,6 +44,24 @@ diagnosis_training (~1.5 МБ), каталоги, карты URL.
 > экспортёра = рантайму, rowPathFor, префикс, событийность префетча, 5 require).
 > Осталось: проверка на устройстве → одобрение владельца → шаг 4 (финал).
 
+> **⚠️ ПРИЁМКА НА УСТРОЙСТВЕ НЕ ПРОЙДЕНА (2026-08-24 вечер). ШАГ 4 ДЕЛАТЬ НЕЛЬЗЯ.**
+> Дев-лог на живом устройстве дважды показал:
+> `[plan_content] echo d1 theory → bundled_compatibility (reason: pack_not_cached)`
+> — контент дня взят из БАНДЛА, а не с сервера. Пак на Storage корректен
+> (проверено: паритет 546/546 побайтово, все 84 дня echo проходят sha256,
+> заголовки immutable), значит проблема на клиенте: либо не успевает дедлайн
+> 150 мс в `fetchPlanContentDayForScreenServerFirst`, либо пак не скачивается.
+> Выпил 5 require из `plan_content_registry.ts` до выяснения = гарантированная
+> дыра в контенте у пользователей.
+>
+> Что уже сделано для диагностики (коммиты 549ab7919, 953394c25):
+> · `[plan_content] <plan> d<N> <surface> → <source>` — источник каждого дня;
+> · `[plan_pack] ensure → <state> (<ms>)` — исход загрузки пака с деталями
+>   ошибки (`network_unavailable` / `manifest_invalid` / `integrity_failed`);
+> · `[plan_pack] row miss <path>` — строка дня не в кэше.
+> Всё только под `__DEV__`. Следующий шаг: снять эти строки на устройстве и
+> по ним найти настоящую причину.
+
 Инфраструктура УЖЕ ЕСТЬ и включена (`VERIFIED_COURSE_PACK_REMOTE_ENABLED = true`):
 `course_pack_remote_loader.ts` (скачивание + дисковый кэш + sha256 + evict),
 `plan_content_remote_readiness.ts` (сервер → кэш → bundled-фолбэк),

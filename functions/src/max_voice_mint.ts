@@ -18,7 +18,7 @@ import { createHash, randomUUID } from 'crypto';
 import type { Firestore } from 'firebase-admin/firestore';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { resolveIsMaxTier, resolvePremiumAccess } from './premium_status';
+import { resolveIsLifetimePlan, resolveIsMaxTier, resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 import { resolveMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
 import {
@@ -301,6 +301,38 @@ export type VoiceTrialVariant = 'companion' | 'scenario';
  * Вариант берём из trialMode: 'auto' даёт сценарий (кофейня с Mia) — он ярче
  * показывает живой голос, чем свободный разговор.
  */
+/**
+ * Разрешён ли пробный звонок этому тиру (Free / Плюс / Про).
+ *
+ * Сервер различает ровно три состояния — отдельных подписок «Плюс» и «Про» в
+ * продукте нет (см. premium_status):
+ *   Free — активного премиума нет;
+ *   Про  — активен премиум с разовой покупкой «Навсегда» (premium_plan='lifetime');
+ *   Плюс — любой другой активный премиум (monthly/yearly/annual/VIP/грант).
+ * Это то же деление, что показывает приложение (PremiumContext: Pro = premium
+ * && lifetimePlan), поэтому админский выключатель совпадает с плашкой у игрока.
+ *
+ * ЭКОНОМИЯ ЧТЕНИЙ: дорогой обход идентичностей (resolveIsLifetimePlan) делаем
+ * ТОЛЬКО когда флаги Плюса и Про различаются. Пока они равны — ответ известен
+ * без единого лишнего чтения Firestore, а это обычный случай.
+ */
+export async function isTrialEnabledForTier(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  authUid: string | undefined,
+  isPremium: boolean,
+  config: MaxVoiceConfig,
+  nowMs: number,
+): Promise<boolean> {
+  if (!isPremium) return config.trialEnabledFree;
+  if (config.trialEnabledPlus === config.trialEnabledPro) return config.trialEnabledPlus;
+
+  // Сбой чтения не должен молча раздавать платный пробник: считаем такого
+  // пользователя Плюсом (рекуррентная подписка — массовый случай), а не Про.
+  const isPro = await resolveIsLifetimePlan(db, stableUid, nowMs, authUid).catch(() => false);
+  return isPro ? config.trialEnabledPro : config.trialEnabledPlus;
+}
+
 export function resolveTrialAccess(
   quotaData: Record<string, unknown> | undefined,
   config: MaxVoiceConfig,
@@ -439,6 +471,27 @@ async function resolveVoiceGates(
   // reconnectOf переносит остаток прежней сессии (transferReserve ниже).
   const isReconnect = text(data.reconnectOf, 80) !== '';
   const trial = resolveTrialAccess(quotaData, config, nowMs);
+
+  // зачем: владелец 2026-08-24 — «чтобы не тратить деньги»: пробник платный, и
+  // админка обязана уметь погасить его отдельно для Free, Плюса и Про.
+  //
+  // Тир считаем ТОЛЬКО когда флаги реально расходятся, иначе лишнее чтение
+  // Firestore на каждый звонок. Если у всех трёх флагов одно значение, ответ
+  // уже известен и resolveIsLifetimePlan не вызывается.
+  //
+  // Реконнект проверяется ДО этой ветки (ниже): начатый звонок не рубим на
+  // полуслове — человек уже потратил свой единственный пробник.
+  if (trial && !isReconnect) {
+    const tierTrialEnabled = await isTrialEnabledForTier(
+      db, stableUid, authUid, isPremium, config, nowMs,
+    );
+    if (!tierTrialEnabled) {
+      console.warn('max_voice_mint rejected', { reason: 'voice_max_required', cause: 'trial_disabled_for_tier' });
+      await rejectBeforeReserve('paywall');
+      throw new HttpsError('permission-denied', 'voice_max_required');
+    }
+  }
+
   if (!trial && isReconnect) {
     return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'trial', trialVariant: 'scenario', nowMs };
   }

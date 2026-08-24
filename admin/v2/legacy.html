@@ -6705,6 +6705,22 @@ html[data-pm-motion="off"] .pm-v5-ripple { display: none !important; }
 .max-ops-section + .max-ops-section { padding-top:24px; border-top:1px solid var(--max-ops-line); }
 .max-ops-section h3 { margin:0; color:#fafafa; font-size:18px; }
 .max-ops-section > p { margin:-7px 0 0; color:var(--max-ops-muted); font-size:13px; }
+/* зачем 2026-08-24 (владелец): пробный звонок 3 минуты — платный, и его надо
+   гасить из админки отдельно по тирам, «чтобы не тратить деньги». Разделяем
+   тоном и фоном, без обводок вокруг блока — стиль владельца. */
+.max-trial-card { margin-bottom:18px; padding:18px 20px; border-radius:14px; background:#15171c; }
+.max-trial-card h3 { margin:0; color:#fafafa; font-size:17px; font-weight:800; }
+.max-trial-card > p { margin:6px 0 0; color:var(--max-ops-muted); font-size:12.5px; line-height:1.5; }
+.max-trial-rows { margin-top:14px; display:flex; flex-direction:column; }
+.max-trial-row { display:flex; align-items:center; gap:14px; padding:11px 8px; border-radius:10px; transition:background .15s ease; }
+.max-trial-row + .max-trial-row { border-top:1px solid var(--max-ops-line); }
+.max-trial-row:hover { background:rgba(255,255,255,.025); }
+.max-trial-ico { flex:none; width:30px; height:30px; border-radius:9px; display:grid; place-items:center; font-size:15px; background:rgba(129,140,248,.10); }
+.max-trial-name { flex:1; min-width:0; font-size:13.5px; font-weight:700; color:#e5e7eb; }
+.max-trial-switch { display:flex; align-items:center; gap:8px; cursor:pointer; user-select:none; }
+.max-trial-chip { min-width:38px; text-align:center; font-size:11.5px; font-weight:800; letter-spacing:.02em; color:#71717a; }
+.max-trial-chip[data-on="1"] { color:#4ade80; }
+.max-trial-status { margin-top:12px; font-size:12px; color:var(--max-ops-muted); }
 .max-ops-chart-grid,.max-ops-detail-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
 .max-ops-chart { min-width:0; }
 .max-ops-chart-title { margin-bottom:8px; color:#d4d4d8; font-size:13px; font-weight:750; }
@@ -15071,6 +15087,32 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 <section id="tab-max-ops" class="reports-tab pm-v4-page" data-pm-v4-section="max-ops" aria-labelledby="max-ops-title">
   <div class="pm-v4-section-header" data-pm-v4-header="max-ops"><div class="pm-v4-section-heading"><h2 id="max-ops-title" class="pm-v4-section-title">Здоровье MAX</h2><div class="pm-v4-section-sub">Надёжность звонка, разбора и памяти без содержимого разговоров.</div></div></div>
   <div class="max-ops-shell">
+    <!-- зачем 2026-08-24 (владелец): «чтобы не тратить деньги» — пробный звонок
+         платный, и его надо уметь выключить отдельно каждому бесплатному тиру,
+         не трогая релиз и не задевая месячный пакет MAX. -->
+    <section class="max-trial-card" aria-labelledby="max-trial-title">
+      <h3 id="max-trial-title">Пробный звонок 3 минуты</h3>
+      <p>Один пробный звонок на весь срок жизни аккаунта для тех, у кого нет подписки MAX. Выключение действует не позже чем через минуту и показывает пейвол MAX вместо звонка. Уже начатый звонок не обрывается, месячный пакет MAX не затрагивается.</p>
+      <div class="max-trial-rows">
+        <div class="max-trial-row">
+          <div class="max-trial-ico">🆓</div>
+          <div class="max-trial-name">Free — без подписки</div>
+          <label class="max-trial-switch"><input type="checkbox" id="max-trial-free" class="cp-toggle" onchange="saveMaxTrialTier('trialEnabledFree', this.checked)" disabled/><span id="max-trial-chip-free" class="max-trial-chip">…</span></label>
+        </div>
+        <div class="max-trial-row">
+          <div class="max-trial-ico">✨</div>
+          <div class="max-trial-name">Плюс — подписка на месяц или год</div>
+          <label class="max-trial-switch"><input type="checkbox" id="max-trial-plus" class="cp-toggle" onchange="saveMaxTrialTier('trialEnabledPlus', this.checked)" disabled/><span id="max-trial-chip-plus" class="max-trial-chip">…</span></label>
+        </div>
+        <div class="max-trial-row">
+          <div class="max-trial-ico">👑</div>
+          <div class="max-trial-name">Про — покупка «Навсегда»</div>
+          <label class="max-trial-switch"><input type="checkbox" id="max-trial-pro" class="cp-toggle" onchange="saveMaxTrialTier('trialEnabledPro', this.checked)" disabled/><span id="max-trial-chip-pro" class="max-trial-chip">…</span></label>
+        </div>
+      </div>
+      <div id="max-trial-status" class="max-trial-status" role="status" aria-live="polite">Загрузка…</div>
+    </section>
+
     <div class="max-ops-toolbar" aria-label="Параметры диагностики MAX">
       <div class="max-ops-control">
         <label for="max-ops-days">Период</label>
@@ -16998,6 +17040,88 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     }
     return _fnAdminGetMaxVoiceOpsDashboard;
   }
+
+  // ── Пробный звонок MAX: выключатели по тирам ─────────────────────────────
+  // зачем 2026-08-24 (владелец): пробник платный («чтобы не тратить деньги»),
+  // выключается отдельно для Free / Плюса / Про. Пишем через maxVoiceConfigAdmin
+  // (не setDoc напрямую): там серверный кламп и сброс кэша конфига.
+  let _fnMaxVoiceConfigAdmin = null;
+  function getMaxVoiceConfigAdminCallable() {
+    if (!_fnMaxVoiceConfigAdmin) {
+      _fnMaxVoiceConfigAdmin = httpsCallable(functionsUs, 'maxVoiceConfigAdmin');
+    }
+    return _fnMaxVoiceConfigAdmin;
+  }
+
+  const MAX_TRIAL_TIERS = {
+    trialEnabledFree: { input: 'max-trial-free', chip: 'max-trial-chip-free', name: 'Free' },
+    trialEnabledPlus: { input: 'max-trial-plus', chip: 'max-trial-chip-plus', name: 'Плюс' },
+    trialEnabledPro:  { input: 'max-trial-pro',  chip: 'max-trial-chip-pro',  name: 'Про' },
+  };
+
+  function maxTrialSetStatus(text, color) {
+    const el = document.getElementById('max-trial-status');
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = color || '';
+  }
+
+  function maxTrialRenderTier(key, on, { enable = true } = {}) {
+    const meta = MAX_TRIAL_TIERS[key];
+    if (!meta) return;
+    const input = document.getElementById(meta.input);
+    const chip = document.getElementById(meta.chip);
+    if (input) { input.checked = !!on; if (enable) input.disabled = false; }
+    if (chip) {
+      chip.textContent = on ? 'Вкл' : 'Выкл';
+      chip.setAttribute('data-on', on ? '1' : '0');
+    }
+  }
+
+  window.loadMaxTrialTiers = async function(force) {
+    if (window._maxTrialLoaded && !force) return;
+    if (window._maxTrialLoading) return;
+    window._maxTrialLoading = true;
+    maxTrialSetStatus('Загрузка…');
+    try {
+      const res = await getMaxVoiceConfigAdminCallable()({ action: 'get' });
+      const config = (res && res.data && res.data.config) || {};
+      Object.keys(MAX_TRIAL_TIERS).forEach((key) => {
+        // Поле может отсутствовать в старом доке — сервер клампит к true.
+        maxTrialRenderTier(key, config[key] !== false);
+      });
+      window._maxTrialLoaded = true;
+      maxTrialSetStatus('Изменения действуют не позже чем через минуту.');
+    } catch (e) {
+      const denied = e && String(e.code || '').includes('permission-denied');
+      maxTrialSetStatus(denied ? 'Нет прав администратора.' : 'Ошибка загрузки: ' + ((e && e.message) || e), '#f87171');
+    } finally {
+      window._maxTrialLoading = false;
+    }
+  };
+
+  window.saveMaxTrialTier = async function(key, checked) {
+    const meta = MAX_TRIAL_TIERS[key];
+    if (!meta) return;
+    const input = document.getElementById(meta.input);
+    const prev = !checked; // состояние до тапа — для отката
+    // Optimistic UI: чип меняется мгновенно, сеть догоняет. Инпут блокируем от
+    // двойного тапа, иначе две записи подряд гоняют конфиг туда-сюда.
+    maxTrialRenderTier(key, checked, { enable: false });
+    if (input) input.disabled = true;
+    maxTrialSetStatus('Сохранение…');
+    try {
+      await getMaxVoiceConfigAdminCallable()({ action: 'set', config: { [key]: !!checked } });
+      maxTrialRenderTier(key, checked);
+      maxTrialSetStatus(checked
+        ? '✅ ' + meta.name + ': пробник включён. Действует не позже чем через минуту.'
+        : '✅ ' + meta.name + ': пробник выключен. Эти люди увидят пейвол MAX.', '#4ade80');
+    } catch (e) {
+      // Откат: возвращаем прежнее состояние, чтобы админ не думал, что сохранил.
+      maxTrialRenderTier(key, prev);
+      maxTrialSetStatus('Не сохранено (' + ((e && e.message) || e) + '). Вернул как было.', '#f87171');
+    }
+  };
 
   function maxOpsNumber(value) {
     const number = Number(value);
@@ -22419,6 +22543,8 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
     if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
     if(tab==='max-ops' && !window._maxOpsLoaded && typeof window.maxOpsLoad === 'function') void window.maxOpsLoad(false);
+    // Выключатели пробника читаются один раз за сессию: это один документ конфига.
+    if(tab==='max-ops' && typeof window.loadMaxTrialTiers === 'function') void window.loadMaxTrialTiers(false);
     if(tab==='max-feedback' && typeof window.loadMaxVoiceFeedback === 'function') void window.loadMaxVoiceFeedback();
     if(tab==='ops-log' && !window._opsLoaded) loadOpsLog();
     if (tab === 'community-packs' && typeof window.setCommunityPacksSubtab === 'function') {

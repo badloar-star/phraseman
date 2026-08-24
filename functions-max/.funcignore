@@ -1,0 +1,19 @@
+# зачем 2026-08-24: деплой кодбазы MAX падал с «Function 'maxVoiceMint' is not
+# defined in the provided module» (Container Healthcheck failed). Причина не в
+# коде: Firebase CLI при упаковке уважает .gitignore, а корневой .gitignore
+# намеренно скрывает /functions-max/lib/ (сборка не должна лежать в репозитории).
+# В итоге в контейнер уезжал index.ts БЕЗ скомпилированного lib/ — рантайм не
+# находил экспортов и падал на старте.
+#
+# .funcignore имеет приоритет над .gitignore при упаковке: он возвращает lib/ в
+# пакет, не возвращая его в git. Правила git трогать нельзя — сборка в
+# репозитории даёт шум в диффах и конфликты параллельных сессий.
+#
+# Ниже — то, что действительно не нужно в контейнере.
+node_modules
+.git
+firebase-debug.log
+firebase-debug.*.log
+**/*.test.ts
+**/*.test.js
+**/*.map

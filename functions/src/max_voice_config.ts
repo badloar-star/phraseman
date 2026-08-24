@@ -99,6 +99,25 @@ export interface MaxVoiceConfig {
   budgetSoftPct: number;
   gate_ai_voice_call: boolean;
   /**
+   * Пробный звонок 3 минуты — отдельный выключатель на КАЖДЫЙ бесплатный тир.
+   * зачем: владелец 2026-08-24 — «чтобы не тратить деньги»: пробник платный
+   * (OpenAI Realtime), и его надо уметь погасить из админки мгновенно, не
+   * трогая релиз и не ломая месячный пакет MAX.
+   *
+   * Тиры здесь — те, что реально различает сервер (Plus/Pro как отдельных
+   * подписок в продукте нет, см. premium_status):
+   *   free — нет активного премиума;
+   *   plus — активный премиум с подпиской (monthly/yearly/annual/VIP);
+   *   pro  — активный премиум с разовой покупкой «Навсегда» (lifetime).
+   * MAX этими флагами НЕ управляется: у него свой месячный пакет.
+   *
+   * false = пробника нет вовсе, клиент получает тот же voice_max_required и
+   * показывает пейвол MAX. Уже начатый звонок и его реконнект не обрываются.
+   */
+  trialEnabledFree: boolean;
+  trialEnabledPlus: boolean;
+  trialEnabledPro: boolean;
+  /**
    * Аллоулист auth uid для DEV-теста закрытой линии (DEV Hub шлёт devMode).
    * Только для своих тестовых аккаунтов: сервер по-прежнему не верит телу
    * запроса, а решает по uid из проверенного токена. Пустой список = закрыто.
@@ -176,6 +195,11 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений».
   // Дефолт ВКЛ: линия открыта сразу, выключение — только явным админ-действием.
   gate_ai_voice_call: true,
+  // Дефолт — пробник включён на всех трёх тирах (текущее релизное поведение).
+  // Выключается из админки без релиза, действует не позже чем через 60с (TTL кэша).
+  trialEnabledFree: true,
+  trialEnabledPlus: true,
+  trialEnabledPro: true,
   // DEV-аллоулист больше не гейтит звонок (линия открыта всем). Поле оставлено
   // ради совместимости со схемой дока и админкой; на доступ оно не влияет.
   devTestUids: [],
@@ -322,6 +346,11 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     globalDailyBudgetUsd: clampNumber(r.globalDailyBudgetUsd, 0, 100_000, d.globalDailyBudgetUsd),
     budgetSoftPct: clampNumber(r.budgetSoftPct, 0.1, 1, d.budgetSoftPct),
     gate_ai_voice_call: coerceBool(r.gate_ai_voice_call, d.gate_ai_voice_call),
+    // Мусор/отсутствие поля → дефолт true: пробник может исчезнуть только по
+    // явному решению админа, а не из-за битого дока или сбоя чтения.
+    trialEnabledFree: coerceBool(r.trialEnabledFree, d.trialEnabledFree),
+    trialEnabledPlus: coerceBool(r.trialEnabledPlus, d.trialEnabledPlus),
+    trialEnabledPro: coerceBool(r.trialEnabledPro, d.trialEnabledPro),
     devTestUids: clampUidList(r.devTestUids),
     degradeMode: pickEnum(r.degradeMode, ['auto', 'force_fallback', 'off'] as const, d.degradeMode),
     maxFallbackRepliesDaily: clampInt(r.maxFallbackRepliesDaily, 0, 100_000, d.maxFallbackRepliesDaily),

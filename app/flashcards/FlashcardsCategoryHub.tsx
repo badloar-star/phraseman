@@ -100,6 +100,12 @@ const COLS = 3;
 const GAP = 10;
 const H_PAD = 16;
 const TILE_RADIUS = 18;
+/**
+ * Пропорция PNG-«веера» наборов (329x268 плюс прозрачные поля внутри кадра).
+ * зачем: чтобы `contain` вписывал картинку по ВЫСОТЕ бокса, а не по ширине —
+ * иначе иконка теряла ~20% размера и выглядела мелкой.
+ */
+const PACK_FAN_ASPECT = 329 / 268;
 
 /**
  * Инвариант проекта (layout_stability_contract): разделы открываются СТАТИЧНО —
@@ -416,8 +422,17 @@ export default function FlashcardsCategoryHub({
     return Math.max(96, Math.floor(inner / COLS));
   }, [winW]);
 
-  /** Плитки наборов: PNG/линия — крупный центр. */
-  const packTileIconSize = Math.max(72, Math.floor(tileW * 0.86));
+  /**
+   * Плитки наборов: PNG-«веер» — крупный центр.
+   *
+   * зачем: владелец жаловался, что иконки наборов выглядят крошечными. Теряли
+   * размер дважды: (1) веер имеет пропорцию 329x268, а `contain` в квадрате
+   * вписывал его по ШИРИНЕ — по высоте оставалось лишь ~0.81 от бокса;
+   * (2) внутри самого webp прозрачные поля — графика занимает ~0.83 ширины.
+   * Поэтому берём почти всю плитку и растим бокс по пропорции веера, компенсируя
+   * внутренние поля. Контейнер плитки с `overflow:'hidden'`, за края не вылезет.
+   */
+  const packTileIconSize = Math.max(84, Math.floor(tileW * 0.98));
   const labelSize = Math.max(9, Math.min(11, Math.floor(tileW * 0.11)));
 
   /**
@@ -623,11 +638,19 @@ export default function FlashcardsCategoryHub({
    */
   const packIcon = (pack: FlashcardMarketPack, size: number) => {
     const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
-    if (png) return <Image source={png} style={{ width: size, height: size }} contentFit="contain" />;
+    if (png) {
+      return (
+        <Image
+          source={png}
+          style={{ width: size * PACK_FAN_ASPECT, height: size }}
+          contentFit="contain"
+        />
+      );
+    }
     return (
       <Ionicons
         name={(packCategoryIonIcon(pack.category) || 'albums-outline') as keyof typeof Ionicons.glyphMap}
-        size={size}
+        size={Math.round(size * 0.62)}
         color={pack.isCommunityUgc ? t.accent : t.textPrimary}
       />
     );

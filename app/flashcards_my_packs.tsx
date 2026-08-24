@@ -73,6 +73,11 @@ import { type RuntimeStudyTarget } from './target_storage_keys';
 
 const COLS = 3;
 const GAP = 10;
+/**
+ * Пропорция PNG-«веера» наборов (329x268). Тот же расчёт, что в
+ * `FlashcardsCategoryHub` — иконка должна вписываться по высоте, не по ширине.
+ */
+const PACK_FAN_ASPECT = 329 / 268;
 const H_PAD = 16;
 const TILE_RADIUS = 18;
 
@@ -338,14 +343,21 @@ export default function FlashcardsMyPacksScreen() {
   const packIcon = useCallback(
     (pack: FlashcardMarketPack, tile: number) => {
       const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
-      /** Обложка занимает плитку почти целиком (как в хабе), иконка-дефолт — скромнее. */
+      /**
+       * Обложка занимает плитку почти целиком (как в хабе), иконка-дефолт — скромнее.
+       *
+       * зачем: владелец жаловался на крошечные иконки наборов. Размер терялся
+       * дважды — `contain` вписывал веер 329x268 в КВАДРАТ по ширине (минус ~20%
+       * высоты) плюс прозрачные поля внутри самого webp. Растим бокс по пропорции
+       * веера и вписываем по высоте; у плитки `overflow:'hidden'`, края не торчат.
+       */
       if (png) {
-        const size = Math.max(72, Math.floor(tile * 0.86));
+        const size = Math.max(84, Math.floor(tile * 0.98));
         return (
           <Image
             key={packTileArtRevision(pack)}
             source={png}
-            style={{ width: size, height: size }}
+            style={{ width: size * PACK_FAN_ASPECT, height: size }}
             contentFit="contain"
           />
         );
@@ -353,7 +365,7 @@ export default function FlashcardsMyPacksScreen() {
       return (
         <Ionicons
           name={(packCategoryIonIcon(pack.category) || 'albums-outline') as never}
-          size={Math.round(tile * 0.42)}
+          size={Math.round(tile * 0.6)}
           color={pack.isCommunityUgc ? t.accent : t.textPrimary}
         />
       );

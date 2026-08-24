@@ -37,6 +37,7 @@ import { ArenaConnectionNotice } from './ArenaConnectionNotice';
 import { arenaMatchButtonAction, arenaModeChoices } from '../../modules/arena/hub_nav';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import PressableHybrid from '../PressableHybrid';
+import RuneBalanceChip from '../RuneBalanceChip';
 import { ArenaNextRankToast } from './ArenaNextRankToast';
 import { arenaRankView } from '../../modules/arena/rank_engine';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -255,6 +256,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
         mode: action.mode,
         requestId: action.requestId,
         stableUid: action.stableUid,
+        resumeQueue: '1',
       } } as never);
       return;
     }
@@ -317,7 +319,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
           body={activeQueue.mode === 'ranked' ? arenaText(lang, 'rankedHint') : arenaText(lang, 'quickHint')}
           disabled={baseBlock !== 'ok'}
           disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
-          onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid } } as never)}
+          onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid, resumeQueue: '1' } } as never)}
         />
       ) : null}
       {expansionServerFailure ? <ArenaStateNotice state="error" onRetry={load} /> : null}
@@ -344,17 +346,28 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
         />
       ) : null}
       headerRight={(
-        <PressableHybrid
-          testID="arena-hub-overflow"
-          variant="icon"
-          accessibilityLabel={arenaText(lang, 'arenaMenu')}
-          hitSlop={8}
-          onPress={() => setOverflowOpen(true)}
-          style={styles.overflowHitbox}
-          contentStyle={[styles.overflow, { backgroundColor: P.elev }]}
-        >
-          <Ionicons name="ellipsis-horizontal" size={24} color={P.text} />
-        </PressableHybrid>
+        /* зачем: владелец 2026-08-24 — в Арене обязателен видимый общий счёт рун.
+           Валюта, ради которой играют матчи, раньше показывалась только в шапке
+           Главной: игрок не видел баланс там, где его зарабатывает. Тап ведёт
+           в раздел «Руны». */
+        <View style={styles.headerRight}>
+          {/* size=22, а не 26: на 320pt заголовок «Đấu trường» (вьетнамский) плюс
+              пятизначный баланс не помещались в строку и заголовок уезжал на
+              вторую строку. Сжимать шрифт нельзя (запрет владельца) — лечим
+              вёрсткой, отдавая заголовку место. */}
+          <RuneBalanceChip testID="arena-hub-runes" color={P.gold} size={22} active={active} />
+          <PressableHybrid
+            testID="arena-hub-overflow"
+            variant="icon"
+            accessibilityLabel={arenaText(lang, 'arenaMenu')}
+            hitSlop={8}
+            onPress={() => setOverflowOpen(true)}
+            style={styles.overflowHitbox}
+            contentStyle={[styles.overflow, { backgroundColor: P.elev }]}
+          >
+            <Ionicons name="ellipsis-horizontal" size={24} color={P.text} />
+          </PressableHybrid>
+        </View>
       )}
     >
       {offline ? <ArenaConnectionNotice onRetry={load} /> : null}
@@ -410,6 +423,7 @@ export default ArenaHubSurface;
 const styles = StyleSheet.create({
   play: { minHeight: 62, borderRadius: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
   playText: { fontSize: 19, fontWeight: '900' },
+  headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 },
   overflowHitbox: { width: 44, height: 44, alignSelf: 'auto' },
   overflow: { width: 44, height: 44, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
 });

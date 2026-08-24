@@ -1,22 +1,28 @@
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 
 /**
- * Испанский курс, эпизод 1 «¿Cómo estás?», сессия 1.
+ * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 1 «Это легко».
  *
  * Границы урока взяты из docs/v2/SPANISH_CURRICULUM_GRID.ru.md (урок 1 =
- * ТОЛЬКО estar, состояние и место), а не придуманы — правило №2
- * docs/v2/LESSON_DESIGN_RULES.ru.md запрещает придумывать границы на ходу.
+ * ser + признак, оценка и реакция), утверждено владельцем 2026-08-23.
+ * Карта сессии — es_episode_01_session_map_v1.ts, сессия 1: soy, первое
+ * лицо, отрицание, качественные прилагательные, базовое согласование рода.
  *
- * зачем ТОЛЬКО estoy/estás: сессия 1 держит одну мысль — «estar меняется по
- * лицу». Третье лицо (está), места и вопросы уходят в сессии 2-3 со своим
- * интро. Английская сессия 1 уже наступала на эти грабли: интро объясняло
- * связку, а карточки требовали приветствий и артикля, которых никто не
- * объяснял (см. комментарий в episode_01_source_v1.ts).
+ * зачем ТОЛЬКО soy: сессия 1 держит одну мысль — «ser + признак меняется по
+ * лицу». Второе и третье лицо, вопрос, множественное число уходят в сессии
+ * 9, 17, 25 со своим интро (правило «одна понятная мысль на странице»,
+ * СТАРТ В2 раздел 6).
  *
- * зачем ser здесь НЕТ вообще: ser — отдельный глагол, урок 2. Контраст
- * ser/estar — урок 3. Давать обе связки до того, как усвоена каждая,
- * порождает угадывание вместо понимания (СТАРТ В2, раздел 6: одна понятная
- * мысль на страницу).
+ * зачем НЕ «представиться»: владелец запретил анкетные формулы (Me llamo,
+ * Soy de México, Soy profesor, Mucho gusto) — тот же класс, что «My name is
+ * Anna» в английском курсе (docs/v2/LESSON_DESIGN_RULES правило 5, классы
+ * «мёртвый учебниковый язык» и «чужое имя»). Урок даёт ser там, где он
+ * звучит в жизни ежедневно — в оценке и реакции.
+ *
+ * зачем estar здесь НЕТ вообще: estar — отдельный глагол, урок 8 (место) и
+ * урок 13 (состояние). Контраст ser/estar — урок 14, после того как обе
+ * связки прожили по несколько уроков (VanPatten 1985/2010, ресерч в
+ * SPANISH_CURRICULUM_RESEARCH.ru.md).
  *
  * Язык курса: латиноамериканский нейтральный, без vosotros.
  * Поле `english` — историческое имя поля «целевая фраза», языконезависимое
@@ -25,228 +31,115 @@ import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
   Object.freeze([
     {
-      id: 'es-e01-s01-estoy-bien',
-      english: 'Estoy bien',
-      russian: 'Я в порядке',
+      id: 'es-e01-s01-es-facil',
+      english: 'Es fácil',
+      russian: 'Это легко',
       explanation:
-        'Ответ, который испаноязычный человек слышит и говорит каждый день. В русском мы обходимся без глагола — «я хорошо». В испанском состояние без глагола не выражают: estoy обязательно.',
+        'Самая частая оценка чего угодно — задачи, языка, решения. По-русски мы обходимся без глагола: «это легко». По-испански связка обязательна: без es фраза рассыпется на голое fácil.',
       words: [
         {
-          correct: 'Estoy',
-          category: 'estar',
+          correct: 'Es',
+          category: 'ser',
           distractors: [
             {
-              value: 'Estás',
+              value: 'Eres',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Estás — это «ты». Про себя говорят estoy.',
-            },
-            {
-              value: 'Está',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Está — про него, её или вас вежливо. Про себя — estoy.',
-            },
-            {
-              value: 'Estar',
-              reasonCode: 'infinitive_not_finite',
-              why: 'Estar — начальная форма, как «быть». В готовой фразе нужна личная: estoy.',
+              why: 'Eres — это «ты». Про «это» (безличную оценку) — только es.',
             },
             {
               value: 'Soy',
-              reasonCode: 'ser_estar_confusion',
-              why: 'Soy — от другого глагола, ser. Он про то, какой человек вообще, а не про состояние сейчас.',
-            },
-          ],
-        },
-        {
-          correct: 'bien',
-          category: 'state-adverb',
-          distractors: [
-            {
-              value: 'bueno',
-              reasonCode: 'adjective_for_adverb',
-              why: 'Bueno — «хороший», признак предмета. О самочувствии говорят bien.',
-            },
-            {
-              value: 'buena',
-              reasonCode: 'adjective_for_adverb',
-              why: 'Buena — «хорошая». Это тоже признак предмета, а не состояние.',
-            },
-            {
-              value: 'biene',
-              reasonCode: 'orthographic_invalid',
-              why: 'Такого слова нет. Правильно bien, без лишней буквы.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'first-person-singular', 'state'],
-    },
-    {
-      id: 'es-e01-s01-estoy-cansado',
-      english: 'Estoy cansado',
-      russian: 'Я устал',
-      explanation:
-        'Так говорят про себя в конце дня. Мужчина скажет cansado, женщина — cansada: признак подстраивается под того, кто говорит. Для русского это привычно — «устал» и «устала».',
-      words: [
-        {
-          correct: 'cansado',
-          category: 'adjective-gender',
-          distractors: [
-            {
-              value: 'cansada',
-              reasonCode: 'gender_agreement_mismatch',
-              why: 'Cansada говорит о себе женщина. Здесь говорит мужчина.',
-            },
-            {
-              value: 'cansados',
-              reasonCode: 'number_agreement_mismatch',
-              why: 'Cansados — про нескольких. Здесь один человек про себя.',
-            },
-            {
-              value: 'cansar',
-              reasonCode: 'infinitive_not_adjective',
-              why: 'Cansar — «утомлять», действие. Состояние — cansado.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'gender-agreement', 'state'],
-    },
-    {
-      id: 'es-e01-s01-estoy-en-casa',
-      english: 'Estoy en casa',
-      russian: 'Я дома',
-      explanation:
-        'Тот же глагол estar отвечает и на вопрос «где». Испанцу естественно сказать en casa — без артикля, это устойчивое сочетание про свой дом.',
-      words: [
-        {
-          correct: 'en',
-          category: 'preposition-place',
-          distractors: [
-            {
-              value: 'a',
-              reasonCode: 'preposition_direction_for_place',
-              why: 'A — про направление, куда идёшь. Здесь ты уже находишься там.',
-            },
-            {
-              value: 'de',
-              reasonCode: 'preposition_origin_for_place',
-              why: 'De — «из», откуда ты. Место, где находишься, — en.',
-            },
-            {
-              value: 'con',
-              reasonCode: 'preposition_semantic_mismatch',
-              why: 'Con — «с кем-то». К месту не относится.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'place', 'preposition-en'],
-    },
-    {
-      id: 'es-e01-s01-como-estas',
-      english: '¿Cómo estás?',
-      russian: 'Как дела?',
-      explanation:
-        'Главный вопрос при встрече. Estás — форма для «ты», поэтому местоимение не нужно: окончание уже говорит, к кому обращаются. Вопрос в испанском обрамляется двумя знаками — перевёрнутым в начале и обычным в конце.',
-      words: [
-        {
-          correct: 'estás',
-          category: 'estar',
-          distractors: [
-            {
-              value: 'estoy',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Estoy — про себя. Спрашивают про собеседника: estás.',
+              why: 'Soy — про себя. Оценка ситуации не о говорящем — es.',
             },
             {
-              value: 'está',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Está — про него или её. К «ты» идёт estás.',
+              value: 'Ser',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Ser — начальная форма, как «быть». В готовой фразе нужна личная: es.',
             },
             {
-              value: 'estas',
-              reasonCode: 'accent_missing',
-              why: 'Без ударения estas — «эти». Глагол пишется estás.',
-            },
-            {
-              value: 'eres',
+              value: 'Está',
               reasonCode: 'ser_estar_confusion',
-              why: 'Eres — от ser, про постоянное. Про состояние спрашивают через estar.',
+              why: 'Está — от другого глагола, estar. Он про место и временное состояние, а не про постоянное свойство.',
+            },
+          ],
+        },
+        {
+          correct: 'fácil',
+          category: 'quality-adjective',
+          distractors: [
+            {
+              value: 'fácilmente',
+              reasonCode: 'adverb_for_adjective',
+              why: 'Fácilmente — «легко» как наречие при действии («сделал легко»). Признак самой вещи — fácil.',
+            },
+            {
+              value: 'facilidad',
+              reasonCode: 'noun_for_adjective',
+              why: 'Facilidad — «лёгкость», предмет. Признак — fácil.',
             },
           ],
         },
       ],
-      features: ['estar', 'second-person-singular', 'question'],
+      features: ['ser', 'first-person-implicit', 'quality'],
     },
     {
-      id: 'es-e01-s01-estoy-ocupado',
-      english: 'Estoy ocupado',
-      russian: 'Я занят',
+      id: 'es-e01-s01-soy-rapido',
+      english: 'Soy rápido',
+      russian: 'Я быстрый',
       explanation:
-        'Вежливый способ сказать, что сейчас не до разговора. Женщина скажет ocupada — тот же принцип, что с cansado.',
+        'Так говорят о своём качестве — не о моменте, а вообще, всегда. Мужчина скажет rápido, женщина — rápida: признак подстраивается под того, кто говорит.',
       words: [
         {
-          correct: 'ocupado',
+          correct: 'Soy',
+          category: 'ser',
+          distractors: [
+            {
+              value: 'Eres',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Eres — это «ты». Про себя — soy.',
+            },
+            {
+              value: 'Es',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Es — про него, её или вежливое «вы». Про себя — soy.',
+            },
+            {
+              value: 'Estoy',
+              reasonCode: 'ser_estar_confusion',
+              why: 'Estoy — от estar, про временное состояние или место. Постоянное качество — soy.',
+            },
+          ],
+        },
+        {
+          correct: 'rápido',
           category: 'adjective-gender',
           distractors: [
             {
-              value: 'ocupada',
+              value: 'rápida',
               reasonCode: 'gender_agreement_mismatch',
-              why: 'Ocupada — про себя говорит женщина.',
+              why: 'Rápida говорит о себе женщина. Здесь говорит мужчина.',
             },
             {
-              value: 'ocupar',
-              reasonCode: 'infinitive_not_adjective',
-              why: 'Ocupar — «занимать», действие. Состояние — ocupado.',
-            },
-            {
-              value: 'ocupados',
+              value: 'rápidos',
               reasonCode: 'number_agreement_mismatch',
-              why: 'Ocupados — про нескольких людей.',
+              why: 'Rápidos — про нескольких. Здесь один человек про себя.',
+            },
+            {
+              value: 'rapidez',
+              reasonCode: 'noun_for_adjective',
+              why: 'Rapidez — «скорость», предмет. Признак человека — rápido.',
             },
           ],
         },
       ],
-      features: ['estar', 'gender-agreement', 'state'],
+      features: ['ser', 'first-person-singular', 'gender-agreement', 'quality'],
     },
     {
-      id: 'es-e01-s01-estoy-listo',
-      english: 'Estoy listo',
-      russian: 'Я готов',
+      id: 'es-e01-s01-no-es-dificil',
+      english: 'No es difícil',
+      russian: 'Это не трудно',
       explanation:
-        'Говорят перед выходом или началом дела. Женщина — lista. Обратите внимание: то же слово с ser значило бы «умный», но ser мы пока не трогаем.',
-      words: [
-        {
-          correct: 'listo',
-          category: 'adjective-gender',
-          distractors: [
-            {
-              value: 'lista',
-              reasonCode: 'gender_agreement_mismatch',
-              why: 'Lista — про себя говорит женщина.',
-            },
-            {
-              value: 'listos',
-              reasonCode: 'number_agreement_mismatch',
-              why: 'Listos — про нескольких.',
-            },
-            {
-              value: 'listo?',
-              reasonCode: 'orthographic_invalid',
-              why: 'Знак вопроса здесь не нужен: это утверждение, а не вопрос.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'gender-agreement', 'state'],
-    },
-    {
-      id: 'es-e01-s01-no-estoy-seguro',
-      english: 'No estoy seguro',
-      russian: 'Я не уверен',
-      explanation:
-        'Отрицание в испанском простое: no ставится прямо перед глаголом. Ничего больше менять не нужно.',
+        'Отрицание в испанском простое: no ставится прямо перед глаголом, больше ничего менять не нужно. Difícil — противоположность fácil из первой фразы.',
       words: [
         {
           correct: 'No',
@@ -255,269 +148,355 @@ export const ES_EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
             {
               value: 'Nada',
               reasonCode: 'negation_word_mismatch',
-              why: 'Nada — «ничего», отдельное слово. Глагол отрицают через no.',
-            },
-            {
-              value: 'Ni',
-              reasonCode: 'negation_word_mismatch',
-              why: 'Ni — «ни», для перечисления. Простое отрицание — no.',
+              why: 'Nada — «ничего», отдельное слово-предмет. Глагол отрицают через no.',
             },
             {
               value: 'Non',
               reasonCode: 'orthographic_invalid',
-              why: 'Non — не испанское слово. В испанском no.',
+              why: 'Non — не испанское слово. В испанском отрицание пишется no.',
+            },
+          ],
+        },
+        {
+          correct: 'difícil',
+          category: 'quality-adjective',
+          distractors: [
+            {
+              value: 'fácil',
+              reasonCode: 'antonym_confusion',
+              why: 'Fácil значит противоположное — «легко». Здесь нужно «трудно».',
+            },
+            {
+              value: 'dificultad',
+              reasonCode: 'noun_for_adjective',
+              why: 'Dificultad — «трудность», предмет. Признак — difícil.',
             },
           ],
         },
       ],
-      features: ['estar', 'negation', 'state'],
+      features: ['ser', 'negation', 'quality'],
     },
     {
-      id: 'es-e01-s01-estoy-aqui',
-      english: 'Estoy aquí',
-      russian: 'Я здесь',
+      id: 'es-e01-s01-es-verdad',
+      english: 'Es verdad',
+      russian: 'Это правда',
       explanation:
-        'Короткий ответ, когда тебя ищут или зовут. Aquí пишется с ударением на последнюю букву — оно слышно в речи.',
+        'Так подтверждают чужие слова в разговоре. Verdad — существительное, но с ser оно работает как оценка утверждения: «это есть правда».',
       words: [
         {
-          correct: 'aquí',
-          category: 'place-adverb',
+          correct: 'verdad',
+          category: 'truth-noun',
           distractors: [
             {
-              value: 'aqui',
-              reasonCode: 'accent_missing',
-              why: 'Без ударения слово читается неверно. Пишется aquí.',
+              value: 'verdadero',
+              reasonCode: 'adjective_for_fixed_phrase',
+              why: 'Verdadero — «истинный» как признак предмета (un hecho verdadero). Устойчивая реакция «это правда» — именно es verdad.',
             },
             {
-              value: 'allí',
+              value: 'verdadera',
+              reasonCode: 'adjective_for_fixed_phrase',
+              why: 'То же самое в женском роде — здесь не подходит форма прилагательного, нужно существительное verdad.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'fixed-reaction'],
+    },
+    {
+      id: 'es-e01-s01-no-es-asi',
+      english: 'No es así',
+      russian: 'Это не так',
+      explanation:
+        'Вежливое возражение, когда не согласен. Así — «так», указывает на способ, а не на предмет.',
+      words: [
+        {
+          correct: 'así',
+          category: 'manner-adverb',
+          distractors: [
+            {
+              value: 'esto',
+              reasonCode: 'demonstrative_for_manner',
+              why: 'Esto — «это» как предмет. Способ, «так» — así.',
+            },
+            {
+              value: 'aquí',
               reasonCode: 'semantic_neighbor_deixis',
-              why: 'Allí — «там», далеко от говорящего. Про себя — aquí.',
-            },
-            {
-              value: 'aquel',
-              reasonCode: 'demonstrative_for_adverb',
-              why: 'Aquel — «тот», указывает на предмет, а не на место.',
+              why: 'Aquí — «здесь», про место. Здесь нужно «так», способ — así.',
             },
           ],
         },
       ],
-      features: ['estar', 'place', 'first-person-singular'],
+      features: ['ser', 'negation', 'fixed-reaction'],
     },
     {
-      id: 'es-e01-s01-estoy-en-el-trabajo',
-      english: 'Estoy en el trabajo',
-      russian: 'Я на работе',
+      id: 'es-e01-s01-es-igual',
+      english: 'Es igual',
+      russian: 'Это всё равно',
       explanation:
-        'Частый ответ днём. Здесь артикль el нужен — в отличие от en casa, где его нет. Это устойчивая пара, её проще запомнить целиком.',
+        'Так говорят, когда выбор не важен — оба варианта одинаковы. Igual не меняется по роду: одна форма для всех.',
       words: [
         {
-          correct: 'el',
-          category: 'article',
+          correct: 'igual',
+          category: 'invariable-adjective',
           distractors: [
             {
-              value: 'la',
-              reasonCode: 'gender_agreement_mismatch',
-              why: 'Trabajo — слово мужского рода, к нему идёт el.',
+              value: 'iguala',
+              reasonCode: 'invariable_adjective_wrongly_inflected',
+              why: 'Igual не меняется по роду — формы iguala не существует.',
             },
             {
-              value: 'un',
-              reasonCode: 'article_definiteness_mismatch',
-              why: 'Un — «какая-то работа». Здесь речь про свою, конкретную.',
-            },
-            {
-              value: 'los',
-              reasonCode: 'number_agreement_mismatch',
-              why: 'Los — для множественного. Работа здесь одна.',
+              value: 'igualmente',
+              reasonCode: 'adverb_for_adjective',
+              why: 'Igualmente — «равным образом» при действии. Признак ситуации — igual.',
             },
           ],
         },
       ],
-      features: ['estar', 'place', 'article'],
+      features: ['ser', 'invariable-adjective'],
     },
     {
-      id: 'es-e01-s01-estoy-enfermo',
-      english: 'Estoy enfermo',
-      russian: 'Я болею',
+      id: 'es-e01-s01-eres-rapido',
+      english: '¿Eres rápido?',
+      russian: 'Ты быстрый?',
       explanation:
-        'Так предупреждают, что сегодня не придут. Женщина — enferma. Состояние временное, поэтому именно estar.',
+        'Вопрос про собеседника-мужчину. Eres — форма для «ты», поэтому местоимение не нужно: окончание уже показывает, к кому обращаются.',
       words: [
         {
-          correct: 'enfermo',
-          category: 'adjective-gender',
+          correct: 'Eres',
+          category: 'ser',
           distractors: [
             {
-              value: 'enferma',
-              reasonCode: 'gender_agreement_mismatch',
-              why: 'Enferma — про себя говорит женщина.',
-            },
-            {
-              value: 'enfermedad',
-              reasonCode: 'noun_for_adjective',
-              why: 'Enfermedad — «болезнь», предмет. Состояние человека — enfermo.',
-            },
-            {
-              value: 'enfermos',
-              reasonCode: 'number_agreement_mismatch',
-              why: 'Enfermos — про нескольких.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'gender-agreement', 'state'],
-    },
-    {
-      id: 'es-e01-s01-estas-cansada',
-      english: '¿Estás cansada?',
-      russian: 'Ты устала?',
-      explanation:
-        'Вопрос женщине. Здесь видно сразу два правила: estás — потому что «ты», cansada — потому что спрашивают женщину.',
-      words: [
-        {
-          correct: 'cansada',
-          category: 'adjective-gender',
-          distractors: [
-            {
-              value: 'cansado',
-              reasonCode: 'gender_agreement_mismatch',
-              why: 'Cansado — если спрашивают мужчину. Здесь женщина.',
-            },
-            {
-              value: 'cansadas',
-              reasonCode: 'number_agreement_mismatch',
-              why: 'Cansadas — если спрашивают нескольких женщин.',
-            },
-            {
-              value: 'cansancio',
-              reasonCode: 'noun_for_adjective',
-              why: 'Cansancio — «усталость», предмет. Про человека — cansada.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'second-person-singular', 'gender-agreement', 'question'],
-    },
-    {
-      id: 'es-e01-s01-no-estoy-en-casa',
-      english: 'No estoy en casa',
-      russian: 'Меня нет дома',
-      explanation:
-        'Отрицание и место вместе. По-русски мы говорим «меня нет», по-испански — «я не нахожусь»: глагол остаётся тот же, меняется только no перед ним.',
-      words: [
-        {
-          correct: 'estoy',
-          category: 'estar',
-          distractors: [
-            {
-              value: 'estás',
+              value: 'Soy',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Estás — про тебя. Говорящий про себя — estoy.',
+              why: 'Soy — про себя. Спрашивают про собеседника — eres.',
             },
             {
-              value: 'está',
+              value: 'Es',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Está — про третьего человека.',
+              why: 'Es — про третье лицо. Про «ты» — eres.',
             },
             {
-              value: 'soy',
+              value: 'Estás',
               reasonCode: 'ser_estar_confusion',
-              why: 'Soy — от ser. Место, где находишься, выражают через estar.',
+              why: 'Estás — от estar, про самочувствие или место сейчас. Постоянное качество — eres.',
             },
           ],
         },
       ],
-      features: ['estar', 'negation', 'place'],
+      features: ['ser', 'second-person-singular', 'question'],
     },
     {
-      id: 'es-e01-s01-estoy-nervioso',
-      english: 'Estoy nervioso',
-      russian: 'Я нервничаю',
+      id: 'es-e01-s01-no-soy-rapido',
+      english: 'No soy rápido',
+      russian: 'Я не быстрый',
       explanation:
-        'Про волнение перед важным делом. Женщина — nerviosa. По-русски это глагол, по-испански — состояние с estar.',
+        'Отрицание своего же качества из второй фразы. No встаёт перед soy, форма самого глагола не меняется.',
       words: [
         {
-          correct: 'nervioso',
-          category: 'adjective-gender',
+          correct: 'No',
+          category: 'negation',
           distractors: [
             {
-              value: 'nerviosa',
-              reasonCode: 'gender_agreement_mismatch',
-              why: 'Nerviosa — про себя говорит женщина.',
+              value: 'Nunca',
+              reasonCode: 'negation_word_mismatch',
+              why: 'Nunca — «никогда», про частоту во времени. Простое отрицание качества — no.',
+            },
+          ],
+        },
+        {
+          correct: 'soy',
+          category: 'ser',
+          distractors: [
+            {
+              value: 'eres',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Eres — про тебя. Говорящий про себя — soy.',
             },
             {
-              value: 'nervios',
+              value: 'estoy',
+              reasonCode: 'ser_estar_confusion',
+              why: 'Estoy — от estar. Постоянное качество, а не временное состояние — soy.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'negation', 'first-person-singular'],
+    },
+    {
+      id: 'es-e01-s01-somos-dos',
+      english: 'Somos dos',
+      russian: 'Нас двое',
+      explanation:
+        'Так отвечают на вопрос о количестве человек — например, в ресторане. По-русски «нас», по-испански — форма «мы» от ser.',
+      words: [
+        {
+          correct: 'Somos',
+          category: 'ser',
+          distractors: [
+            {
+              value: 'Son',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Son — «они» или вежливое «вы» много человек. Про себя вместе с кем-то — somos.',
+            },
+            {
+              value: 'Estamos',
+              reasonCode: 'ser_estar_confusion',
+              why: 'Estamos — от estar, про место или состояние. Количество людей — somos.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'first-person-plural', 'quantity'],
+    },
+    {
+      id: 'es-e01-s01-es-importante',
+      english: 'Es importante',
+      russian: 'Это важно',
+      explanation:
+        'Одна из самых частых оценок при обсуждении дел. Importante не меняется по роду — та же форма для мужского и женского.',
+      words: [
+        {
+          correct: 'importante',
+          category: 'invariable-adjective',
+          distractors: [
+            {
+              value: 'importanta',
+              reasonCode: 'invariable_adjective_wrongly_inflected',
+              why: 'Importante не меняется по роду — формы importanta не существует.',
+            },
+            {
+              value: 'importancia',
               reasonCode: 'noun_for_adjective',
-              why: 'Nervios — «нервы», предмет. Состояние — nervioso.',
-            },
-            {
-              value: 'nerviosos',
-              reasonCode: 'number_agreement_mismatch',
-              why: 'Nerviosos — про нескольких.',
+              why: 'Importancia — «важность», предмет. Признак — importante.',
             },
           ],
         },
       ],
-      features: ['estar', 'gender-agreement', 'state'],
+      features: ['ser', 'invariable-adjective'],
     },
     {
-      id: 'es-e01-s01-donde-estas',
-      english: '¿Dónde estás?',
-      russian: 'Ты где?',
+      id: 'es-e01-s01-eres-simpatica',
+      english: 'Eres simpática',
+      russian: 'Ты приятная',
       explanation:
-        'Самый частый вопрос в переписке. Dónde в вопросе пишется с ударением — это отличает его от dónde без вопроса.',
+        'Комплимент женщине. Здесь видно сразу два правила: eres — потому что «ты», simpática — потому что речь о женщине.',
       words: [
         {
-          correct: 'Dónde',
-          category: 'question-word',
-          distractors: [
-            {
-              value: 'Donde',
-              reasonCode: 'accent_missing',
-              why: 'В вопросе слово получает ударение: dónde.',
-            },
-            {
-              value: 'Cómo',
-              reasonCode: 'question_word_mismatch',
-              why: 'Cómo — «как», спрашивает о состоянии. О месте спрашивают dónde.',
-            },
-            {
-              value: 'Cuándo',
-              reasonCode: 'question_word_mismatch',
-              why: 'Cuándo — «когда», про время, а не про место.',
-            },
-          ],
-        },
-      ],
-      features: ['estar', 'second-person-singular', 'question', 'place'],
-    },
-    {
-      id: 'es-e01-s01-estoy-contento',
-      english: 'Estoy contento',
-      russian: 'Я доволен',
-      explanation:
-        'Про радость от чего-то конкретного — хорошей новости, удачного дня. Женщина — contenta.',
-      words: [
-        {
-          correct: 'contento',
+          correct: 'simpática',
           category: 'adjective-gender',
           distractors: [
             {
-              value: 'contenta',
+              value: 'simpático',
               reasonCode: 'gender_agreement_mismatch',
-              why: 'Contenta — про себя говорит женщина.',
+              why: 'Simpático — если говорят мужчине. Здесь про женщину.',
             },
             {
-              value: 'contentos',
+              value: 'simpáticas',
               reasonCode: 'number_agreement_mismatch',
-              why: 'Contentos — про нескольких.',
-            },
-            {
-              value: 'contentar',
-              reasonCode: 'infinitive_not_adjective',
-              why: 'Contentar — «радовать», действие. Состояние — contento.',
+              why: 'Simpáticas — если говорят нескольким женщинам.',
             },
           ],
         },
       ],
-      features: ['estar', 'gender-agreement', 'state'],
+      features: ['ser', 'second-person-singular', 'gender-agreement', 'quality'],
+    },
+    {
+      id: 'es-e01-s01-no-es-verdad',
+      english: 'No es verdad',
+      russian: 'Это неправда',
+      explanation:
+        'Прямое опровержение чужих слов. No встаёт перед es, verdad остаётся без изменений.',
+      words: [
+        {
+          correct: 'verdad',
+          category: 'truth-noun',
+          distractors: [
+            {
+              value: 'mentira',
+              reasonCode: 'antonym_as_wrong_construction',
+              why: 'Mentira значит «ложь» само по себе — это сказали бы Es mentira, без no. Здесь строим отрицание готовой фразы Es verdad.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'negation', 'fixed-reaction'],
+    },
+    {
+      id: 'es-e01-s01-eres-tranquila',
+      english: '¿Eres tranquila?',
+      russian: 'Ты спокойная?',
+      explanation:
+        'Вопрос о характере, не о моменте — поэтому ser, а не estar. Женский род tranquila согласуется с тем, к кому обращаются.',
+      words: [
+        {
+          correct: 'tranquila',
+          category: 'adjective-gender',
+          distractors: [
+            {
+              value: 'tranquilo',
+              reasonCode: 'gender_agreement_mismatch',
+              why: 'Tranquilo — если спрашивают мужчину. Здесь женщина.',
+            },
+            {
+              value: 'tranquilamente',
+              reasonCode: 'adverb_for_adjective',
+              why: 'Tranquilamente — «спокойно» при действии. Признак характера — tranquila.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'second-person-singular', 'gender-agreement', 'quality'],
+    },
+    {
+      id: 'es-e01-s01-no-somos-iguales',
+      english: 'No somos iguales',
+      russian: 'Мы не одинаковые',
+      explanation:
+        'Множественное число прилагательного igual — здесь оно всё-таки меняется, но только по числу, не по роду: iguales для всех родов.',
+      words: [
+        {
+          correct: 'iguales',
+          category: 'invariable-adjective-plural',
+          distractors: [
+            {
+              value: 'igual',
+              reasonCode: 'number_agreement_mismatch',
+              why: 'Igual — единственное число. Речь о нескольких (somos) — нужно iguales.',
+            },
+            {
+              value: 'igualas',
+              reasonCode: 'invariable_adjective_wrongly_inflected',
+              why: 'У igual нет родовых форм — только number меняется: igual/iguales, без -a.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'negation', 'first-person-plural', 'invariable-adjective'],
+    },
+    {
+      id: 'es-e01-s01-es-caro',
+      english: 'Es caro',
+      russian: 'Это дорого',
+      explanation:
+        'Оценка цены — одна из самых частых в поездке или магазине. Barato («дёшево») — противоположность, с той же конструкцией es + признак.',
+      words: [
+        {
+          correct: 'caro',
+          category: 'quality-adjective',
+          distractors: [
+            {
+              value: 'cara',
+              reasonCode: 'gender_agreement_mismatch',
+              why: 'Cara согласуется с существительным женского рода (la casa es cara). Здесь безличная оценка «это» — по умолчанию мужской род: caro.',
+            },
+            {
+              value: 'caramente',
+              reasonCode: 'adverb_for_adjective',
+              why: 'Caramente — «дорогой ценой» при действии. Признак предмета — caro.',
+            },
+          ],
+        },
+      ],
+      features: ['ser', 'quality'],
     },
   ]);

@@ -3,7 +3,12 @@ import { ES_EPISODE_01_SESSION_01_INTRO } from './es_episode_01_session_01_intro
 import { ES_EPISODE_01_SESSION_01_PHRASES } from './es_episode_01_session_01_phrases_v1';
 
 /**
- * Испанский курс, эпизод 1, сессия 1 — собранный источник.
+ * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 1 «Это легко» —
+ * собранный источник.
+ *
+ * Тема утверждена владельцем 2026-08-23 (docs/v2/SPANISH_CURRICULUM_GRID.ru.md).
+ * Заменяет прежнюю версию про estar, которая по итогам ресерча (VanPatten
+ * 1985/2010) стала уроками 8 (место) и 13 (состояние).
  *
  * Отдельный packageId и targetLanguage: 'es' — это то, что делает контур
  * независимым. Английский курс использует 'learning-v2-en-v1'/'en' и о
@@ -18,40 +23,40 @@ export const ES_EPISODE_01_SESSION_01_SOURCE: SessionSource = Object.freeze({
   targetLanguage: 'es',
   episodeOrdinal: 1,
   requiredSessionOrdinal: 1,
-  canDoOutcomeId: 'obj-es-e01-say-how-i-am',
-  generationInputFingerprint: 'authored-es-e01-s01-v1',
+  canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
+  generationInputFingerprint: 'authored-es-e01-s01-v2',
   title: {
-    ru: 'Как дела и где ты',
-    uk: 'Як справи і де ти',
-    es: '¿Cómo estás?',
-    en: 'How you are and where you are',
-    'pt-BR': 'Como você está e onde está',
-    vi: 'Bạn thế nào và đang ở đâu',
-    id: 'Apa kabar dan di mana kamu',
-    tr: 'Nasılsın ve neredesin',
-    pl: 'Jak się masz i gdzie jesteś',
+    ru: 'Это легко',
+    uk: 'Це легко',
+    es: 'Es fácil',
+    en: 'It is easy',
+    'pt-BR': 'É fácil',
+    vi: 'Điều này dễ',
+    id: 'Ini mudah',
+    tr: 'Bu kolay',
+    pl: 'To jest łatwe',
   },
   summary: {
-    ru: 'Одно слово отвечает и на «как ты», и на «где ты».',
-    uk: 'Одне слово відповідає і на «як ти», і на «де ти».',
-    es: 'Una sola palabra responde cómo estás y dónde estás.',
-    en: 'One word answers both how you are and where you are.',
-    'pt-BR': 'Uma palavra responde como você está e onde está.',
-    vi: 'Một từ trả lời cả “bạn thế nào” và “bạn ở đâu”.',
-    id: 'Satu kata menjawab “apa kabar” sekaligus “di mana kamu”.',
-    tr: 'Tek kelime hem nasıl olduğunu hem nerede olduğunu söyler.',
-    pl: 'Jedno słowo odpowiada i jak się masz, i gdzie jesteś.',
+    ru: 'Одно слово открывает любую оценку — легко, правда, важно.',
+    uk: 'Одне слово відкриває будь-яку оцінку — легко, правда, важливо.',
+    es: 'Una sola palabra abre cualquier juicio — fácil, verdad, importante.',
+    en: 'One word opens any verdict — easy, true, important.',
+    'pt-BR': 'Uma palavra abre qualquer veredito — fácil, verdade, importante.',
+    vi: 'Một từ mở đầu mọi nhận định — dễ, đúng, quan trọng.',
+    id: 'Satu kata membuka penilaian apa pun — mudah, benar, penting.',
+    tr: 'Tek kelime her yargıyı açar — kolay, doğru, önemli.',
+    pl: 'Jedno słowo otwiera każdy osąd — łatwe, prawda, ważne.',
   },
   learningGoal: {
-    ru: 'Сказать о своём состоянии и месте, спросить об этом собеседника.',
-    uk: 'Сказати про свій стан і місце, запитати про це співрозмовника.',
-    es: 'Decir cómo estás y dónde estás, y preguntárselo a otra persona.',
-    en: 'Say how and where you are, and ask the other person the same.',
-    'pt-BR': 'Dizer como e onde você está, e perguntar o mesmo à outra pessoa.',
-    vi: 'Nói bạn thế nào và đang ở đâu, và hỏi người khác điều đó.',
-    id: 'Mengatakan keadaan dan tempat Anda, serta menanyakannya kepada lawan bicara.',
-    tr: 'Nasıl ve nerede olduğunuzu söylemek, aynısını karşınızdakine sormak.',
-    pl: 'Powiedzieć, jak i gdzie jesteś, i zapytać o to rozmówcę.',
+    ru: 'Оценить что-то или кого-то, согласиться и возразить.',
+    uk: 'Оцінити щось або когось, погодитися і заперечити.',
+    es: 'Evaluar algo o a alguien, estar de acuerdo o no.',
+    en: 'Evaluate something or someone, agree and disagree.',
+    'pt-BR': 'Avaliar algo ou alguém, concordar e discordar.',
+    vi: 'Đánh giá điều gì đó hoặc ai đó, đồng ý và không đồng ý.',
+    id: 'Menilai sesuatu atau seseorang, setuju dan tidak setuju.',
+    tr: 'Bir şeyi veya birini değerlendirmek, katılmak ve katılmamak.',
+    pl: 'Ocenić coś lub kogoś, zgodzić się i nie zgodzić.',
   },
   introPages: ES_EPISODE_01_SESSION_01_INTRO,
   phrases: ES_EPISODE_01_SESSION_01_PHRASES,

@@ -81,6 +81,28 @@ export function inferLesson1WordFirstVocabularyCountV1(
   return 0;
 }
 
+/**
+ * Reconstructs the authored phrase inventory from a published word-first
+ * shard. Slots 1-3 are intro checks and every new word occupies three
+ * standalone contacts, so only the remaining application targets count.
+ */
+export function inferLesson1WordFirstPhraseCountV1(
+  targetTexts: readonly string[],
+  vocabularyCount: number,
+): number {
+  if (vocabularyCount === 0) return 1;
+  const phraseApplicationStart = 3 + vocabularyCount * 3;
+  return Math.max(
+    1,
+    new Set(
+      targetTexts
+        .slice(phraseApplicationStart)
+        .map((target) => target.normalize('NFC').trim())
+        .filter(Boolean),
+    ).size,
+  );
+}
+
 const introSteps = (phraseCount = 15): readonly Lesson1ChoreographyStepV1[] =>
   [0, 1, 2].map((sourcePhraseIndex) => ({
     family: 'phrase_builder' as const,
@@ -142,28 +164,56 @@ function wordsThenPhrasesSteps(
       learningStage,
     })),
   );
-  const phraseFamilies = [
+  const ordinaryPhraseFamilies = [
     'phrase_builder',
     'listen_choose',
     'context_gap_grammar',
     'listen_build_dictation',
     'speed_match',
   ] as const;
+  const extendedPhraseFamilies = [
+    ...ordinaryPhraseFamilies,
+    'sound_contrast',
+    'scripted_repeat_compare',
+  ] as const;
   const phraseInteractionCount = 17 - contacts.length;
   if (phraseInteractionCount < 2)
     throw new Error('lesson1_word_first_phrase_application_budget_invalid');
-  const applications = Array.from({ length: phraseInteractionCount }, (_, index) => ({
-    family: phraseFamilies[index % phraseFamilies.length]!,
-    purpose:
-      index < 2
-        ? ('guided_practice' as const)
-        : index < phraseInteractionCount - 2
-          ? ('near_transfer' as const)
-          : ('independent_check' as const),
-    targetKind: 'phrase' as const,
+
+  const ordinaryPairs = Array.from({ length: phraseInteractionCount }, (_, index) => ({
     sourcePhraseIndex: index % phraseCount,
-    learningStage: 'apply_in_phrase' as const,
+    family: ordinaryPhraseFamilies[index % ordinaryPhraseFamilies.length]!,
   }));
+  const ordinaryPairKeys = ordinaryPairs.map(
+    ({ sourcePhraseIndex, family }) => `${sourcePhraseIndex}\u0000${family}`,
+  );
+  const ordinarySequenceRepeats = new Set(ordinaryPairKeys).size !== ordinaryPairKeys.length;
+  const phraseFamilies = ordinarySequenceRepeats
+    ? extendedPhraseFamilies
+    : ordinaryPhraseFamilies;
+
+  if (phraseInteractionCount > phraseCount * phraseFamilies.length) {
+    throw new Error('lesson1_word_first_unique_target_family_budget_invalid');
+  }
+
+  const applications = Array.from({ length: phraseInteractionCount }, (_, index) => {
+    const sourcePhraseIndex = index % phraseCount;
+    const familyRound = Math.floor(index / phraseCount);
+    return {
+      family: ordinarySequenceRepeats
+        ? phraseFamilies[(sourcePhraseIndex + familyRound) % phraseFamilies.length]!
+        : ordinaryPairs[index]!.family,
+      purpose:
+        index < 2
+          ? ('guided_practice' as const)
+          : index < phraseInteractionCount - 2
+            ? ('near_transfer' as const)
+            : ('independent_check' as const),
+      targetKind: 'phrase' as const,
+      sourcePhraseIndex,
+      learningStage: 'apply_in_phrase' as const,
+    };
+  });
   return [...contacts, ...applications];
 }
 

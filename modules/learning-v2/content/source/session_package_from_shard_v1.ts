@@ -14,6 +14,7 @@ import {
   materializeLearningV2CourseSessionIntroChildV1,
   materializeLearningV2CourseSessionLearnerChildV1,
   materializeLearningV2CourseSessionSavablePhraseV1,
+  type LearningV2CourseSessionNewWordEncounterV1,
 } from '../../runtime/course_session_client_children_v1';
 import type {
   LearningV2GeneratedSessionCardV1,
@@ -31,6 +32,7 @@ import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evalua
 // хеш, но чистый JS, уже используется остальными файлами этого модуля.
 import { sha256Utf8 } from '../../policies/decision_registry';
 import {
+  inferLesson1WordFirstPhraseCountV1,
   inferLesson1WordFirstVocabularyCountV1,
   lesson1SessionChoreographyV1,
 } from './lesson1_session_choreography_v1';
@@ -72,6 +74,8 @@ import {
   episode01Session18TaskSelectionV1,
 } from './episode_01_session_18_task_feedback_v1';
 import { esEpisode01Session01FeedbackByTarget } from './es_episode_01_session_01_task_feedback_v1';
+import { learningV2NewWordCardEditorialV1 } from './learning_v2_new_word_card_editorial_v1';
+import { esLearningV2NewWordCardEditorialV1 } from './es_learning_v2_new_word_card_editorial_v1';
 
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
@@ -738,14 +742,17 @@ export function buildSessionChildBodiesFromShard(
   const choiceCards = shard.requiredSessionOrdinal === 15
     ? shard.cards
     : practiceCards;
-  const vocabularyCount = inferLesson1WordFirstVocabularyCountV1(
-    shard.cards.map((card) => card.contentItem.target.text),
+  const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
+  const vocabularyCount = inferLesson1WordFirstVocabularyCountV1(cardTargets);
+  const phraseCount = inferLesson1WordFirstPhraseCountV1(
+    cardTargets,
+    vocabularyCount,
   );
   const choreography = lesson1SessionChoreographyV1(
     shard.requiredSessionOrdinal,
     undefined,
     vocabularyCount,
-    1,
+    phraseCount,
   );
   const learner = materializeLearningV2CourseSessionLearnerChildV1({
     courseSessionId,
@@ -883,6 +890,11 @@ export function buildSessionChildBodiesFromShard(
       localizedResponseFeedback(card, choiceCards),
     ]),
   );
+  const newWordOrderByCardId = new Map(
+    practiceCards
+      .slice(0, vocabularyCount)
+      .map((card, index) => [card.cardId, index + 1] as const),
+  );
   // зачем interactionId переопределён для интро-карточек (инцидент
   // 2026-08-17): card.cardId (card-episode-01-s01-01) и
   // page.question.questionId (...:intro-q-1) — РАЗНЫЕ строки для одного и
@@ -900,6 +912,68 @@ export function buildSessionChildBodiesFromShard(
         card.taskSlot < 4 && introPage
           ? introPage.question.questionId
           : card.cardId;
+      const meaningByLocale = Object.fromEntries(
+        card.contentItem.learnerMeanings.map((meaning) => [
+          meaning.locale,
+          meaning.value,
+        ]),
+      ) as never;
+      const save = materializeLearningV2CourseSessionSavablePhraseV1({
+        targetLanguage: shard.targetLanguage,
+        targetText: card.contentItem.target.text,
+        // Only the translation is learner-safe here; accepted answers stay out.
+        meaningByLocale,
+      });
+      const newWordOrder = newWordOrderByCardId.get(card.cardId);
+      let newWordEncounter:
+        | LearningV2CourseSessionNewWordEncounterV1
+        | undefined;
+      if (newWordOrder !== undefined) {
+        const lexicalItemId = card.contentItem.intentId.replace(
+          /:contact-\d+$/u,
+          '',
+        );
+        if (lexicalItemId === card.contentItem.intentId) {
+          throw new Error(
+            `learning_v2_new_word_card_lexical_id_invalid:${card.contentItem.intentId}`,
+          );
+        }
+        // зачем испанская ветка отдельным вызовом, а не общей веткой внутри
+        // learning_v2_new_word_card_editorial_v1.ts (владелец, HANDOVER_ES.md,
+        // 2026-08-24): испанский текст пишется независимо, не как правка
+        // английского реестра. esLearningV2NewWordCardEditorialV1 возвращает
+        // undefined для незнакомого lexicalItemId (не бросает) — так один и
+        // тот же вызов работает для обоих контуров без ветвления по языку тут.
+        const editorial =
+          shard.targetLanguage === 'es'
+            ? esLearningV2NewWordCardEditorialV1({
+                targetLanguage: shard.targetLanguage,
+                lexicalItemId,
+                targetText: card.contentItem.target.text,
+              })
+            : undefined;
+        const resolvedEditorial =
+          editorial ??
+          learningV2NewWordCardEditorialV1({
+            targetLanguage: shard.targetLanguage,
+            lexicalItemId,
+            targetText: card.contentItem.target.text,
+          });
+        newWordEncounter = {
+          lexicalItemId,
+          transcription: resolvedEditorial.transcription,
+          playfulMeaningByLocale: resolvedEditorial.playfulMeaningByLocale,
+          motionVariant:
+            shard.requiredSessionOrdinal === 1 && newWordOrder === 1
+              ? ('lesson_hero_b' as const)
+              : ('premium_a' as const),
+          presentation: 'blocking_task_overlay' as const,
+          dismissal: 'continue_only' as const,
+          saveControl: 'bookmark_icon' as const,
+          orderWithinSession: newWordOrder,
+          save,
+        };
+      }
       return {
         interactionId,
         report: {
@@ -907,19 +981,7 @@ export function buildSessionChildBodiesFromShard(
           reportContextRef: card.cardId,
           screen: 'learning_v2_session',
         },
-        save: materializeLearningV2CourseSessionSavablePhraseV1({
-          targetLanguage: shard.targetLanguage,
-          targetText: card.contentItem.target.text,
-          // зачем: берём только перевод. acceptedAnswers лежат в том же
-          // объекте, и утащить их сюда значило бы отдать правильные ответы на
-          // телефон.
-          meaningByLocale: Object.fromEntries(
-            card.contentItem.learnerMeanings.map((meaning) => [
-              meaning.locale,
-              meaning.value,
-            ]),
-          ) as never,
-        }),
+        save,
         voice: {
           available: true,
           tapToRecordAllowed: true,
@@ -941,6 +1003,7 @@ export function buildSessionChildBodiesFromShard(
                 responseFeedbackByCardId.get(card.cardId) as never,
             }
           : {}),
+        ...(newWordEncounter ? { newWordEncounter } : {}),
       };
     });
   const auxiliaryApproximateBytes = new TextEncoder().encode(

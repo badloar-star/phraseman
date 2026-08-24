@@ -72,7 +72,8 @@ import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { useFeatureAccess } from '../components/PremiumContext';
+import { useFeatureAccess, usePremium } from '../components/PremiumContext';
+import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
 import BouncyScrollView from '../components/BouncyScrollView';
 
@@ -294,12 +295,19 @@ export default function CommunityPackCreateScreen() {
   // а не на кнопках — входов в него несколько (хаб категорий, «Мои наборы»).
   // Редактирование СВОЕГО существующего набора не гейтится: уже созданное не
   // отбираем (решение владельца), поэтому условие завязано на isEditMode.
+  // зачем accessResolved (аудит 2026-08-24): до резолва подписки hasPremiumAccess
+  // равен false — платящий человек на холодном старте получил бы пейвол вместо
+  // экрана. Канонический паттерн проекта: ждать резолва перед редиректом
+  // (см. ai_companion_session.tsx). Сохранение при этом закрыто уже по creatorGated.
+  const { accessResolved } = usePremium();
   const hasPremiumAccess = useFeatureAccess('flashcards');
-  const creatorLocked = !isEditMode && shouldGateCreator(hasPremiumAccess);
+  const creatorGated = !isEditMode && shouldGateCreator(hasPremiumAccess);
+  const creatorLocked = creatorGated && accessResolved;
   const creatorRedirectedRef = useRef(false);
   useEffect(() => {
     if (!creatorLocked || creatorRedirectedRef.current) return;
     creatorRedirectedRef.current = true;
+    void trackEvent('paywall_shown', { context: creatorPaywallContext('pack'), source: 'pack_create' });
     markNextNavigationAsReplace();
     router.replace({
       pathname: '/premium_modal',
@@ -783,7 +791,7 @@ export default function CommunityPackCreateScreen() {
     if (!payload) return;
     // Вторая линия защиты: сохранить новый набор без подписки нельзя, даже если
     // редирект на пейвол почему-то не отработал.
-    if (creatorLocked) return;
+    if (creatorGated) return;
     const err = localSaveError(payload);
     if (err) {
       emitAppEvent(
@@ -857,7 +865,7 @@ export default function CommunityPackCreateScreen() {
         setBusy(false);
       }
     })();
-  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, publishToCommunityInBackground, router, creatorLocked]);
+  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, publishToCommunityInBackground, router, creatorGated]);
 
   const bumpCardBack = useCallback((delta: number) => {
     setCardBackIdx((i) => {

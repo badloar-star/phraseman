@@ -24,7 +24,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
-import { useFeatureAccess } from '../components/PremiumContext';
+import { useFeatureAccess, usePremium } from '../components/PremiumContext';
+import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -119,12 +120,19 @@ export default function FlashcardsCardEditorScreen() {
   // в одном месте не оставляет обходного пути.
   // РЕДАКТИРОВАНИЕ существующей карточки НЕ гейтится — уже созданное не
   // отбираем (прямое решение владельца), поэтому условие завязано на isEdit.
+  // зачем accessResolved (аудит 2026-08-24): до резолва подписки hasPremiumAccess
+  // равен false, и на холодном старте ПЛАТЯЩИЙ человек получал бы пейвол вместо
+  // редактора. Канонический паттерн проекта — ждать резолва перед редиректом
+  // (см. ai_companion_session.tsx). Пока не резолвнуто, экран показывает скелет.
+  const { accessResolved } = usePremium();
   const hasPremiumAccess = useFeatureAccess('flashcards');
-  const creatorLocked = !isEdit && shouldGateCreator(hasPremiumAccess);
+  const creatorGated = !isEdit && shouldGateCreator(hasPremiumAccess);
+  const creatorLocked = creatorGated && accessResolved;
   const creatorRedirectedRef = useRef(false);
   useEffect(() => {
     if (!creatorLocked || creatorRedirectedRef.current) return;
     creatorRedirectedRef.current = true;
+    void trackEvent('paywall_shown', { context: creatorPaywallContext('card'), source: 'card_editor_create' });
     // replace, а не push: закрыв пейвол, человек возвращается в коллекцию, а не
     // в пустой редактор, который он всё равно не может использовать.
     markNextNavigationAsReplace();
@@ -340,14 +348,14 @@ export default function FlashcardsCardEditorScreen() {
     (isEdit && prefillTrRef.current.trim().length === 0 && hasOtherLangTranslation);
   // creatorLocked в условии — вторая линия защиты: даже если редирект на пейвол
   // почему-то не сработал, создать карточку без подписки нельзя.
-  const canSave = enOk && trOk && !saving && !loadingCard && !creatorLocked;
+  const canSave = enOk && trOk && !saving && !loadingCard && !creatorGated;
 
   // ── Сохранение (языковой инвариант — В ТОЧНОСТИ как handleSave) ────────────
   const handleSave = useCallback(async () => {
     // Пустой/пробельный EN не сохраняется (баг 9: onSubmitEditing обходил disabled-кнопку)
     // creatorLocked здесь по той же причине: onSubmitEditing с клавиатуры уже
     // однажды обходил disabled — создание без подписки должно быть закрыто и тут.
-    if (!draftEN.trim() || saving || loadingCard || creatorLocked) return;
+    if (!draftEN.trim() || saving || loadingCard || creatorGated) return;
     if (!(trVal.length > 0 || (isEdit && prefillTrRef.current.trim().length === 0 && hasOtherLangTranslation))) return;
     Keyboard.dismiss();
     setSaving(true);
@@ -408,7 +416,7 @@ export default function FlashcardsCardEditorScreen() {
     lang,
     leaveEditorAfterSave,
     loadingCard,
-    creatorLocked,
+    creatorGated,
     saving,
   ]);
 
@@ -466,7 +474,7 @@ export default function FlashcardsCardEditorScreen() {
             {/* зачем: при закрытом создании показываем ТОТ ЖЕ скелет, что при
                 загрузке — форма не мелькает за кадр до ухода на пейвол, и
                 геометрия первого кадра совпадает с обычной (layout stability). */}
-            {loadingCard || creatorLocked ? (
+            {loadingCard || creatorGated ? (
               <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 24, gap: 20 }}>
                 <View style={{ gap: 8 }}>
                   <Text style={fieldLabelStyle}>{s.editFront}</Text>

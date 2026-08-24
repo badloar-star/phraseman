@@ -43,18 +43,36 @@ describe('creator access (own cards and own packs are a subscription feature)', 
   it('gates CREATING a new card but never editing an existing one', () => {
     expect(editorSource).toContain("import { creatorPaywallContext, shouldGateCreator } from './creator_access';");
     // Гейт завязан на !isEdit — редактирование своей старой карточки открыто.
-    expect(editorSource).toContain('const creatorLocked = !isEdit && shouldGateCreator(hasPremiumAccess);');
+    expect(editorSource).toContain('const creatorGated = !isEdit && shouldGateCreator(hasPremiumAccess);');
     expect(editorSource).toContain("params: { context: creatorPaywallContext('card'), source: 'card_editor_create' },");
     // Вторая линия защиты: клавиатурный onSubmitEditing уже однажды обходил disabled.
-    expect(editorSource).toContain('|| creatorLocked) return;');
-    expect(editorSource).toContain('&& !creatorLocked;');
+    expect(editorSource).toContain('|| creatorGated) return;');
+    expect(editorSource).toContain('&& !creatorGated;');
   });
 
   it('gates CREATING a new pack but never editing an existing one', () => {
     expect(packCreateSource).toContain("import { creatorPaywallContext, shouldGateCreator } from './creator_access';");
-    expect(packCreateSource).toContain('const creatorLocked = !isEditMode && shouldGateCreator(hasPremiumAccess);');
+    expect(packCreateSource).toContain('const creatorGated = !isEditMode && shouldGateCreator(hasPremiumAccess);');
     expect(packCreateSource).toContain("params: { context: creatorPaywallContext('pack'), source: 'pack_create' },");
-    expect(packCreateSource).toContain('if (creatorLocked) return;');
+    expect(packCreateSource).toContain('if (creatorGated) return;');
+  });
+
+  // зачем (аудит 2026-08-24): до резолва подписки hasPremiumAccess равен false.
+  // Без ожидания accessResolved ПЛАТЯЩИЙ человек на холодном старте получал бы
+  // пейвол вместо своего экрана — регрессия прямо по деньгам.
+  it('never shows the paywall to a paying user before access resolves', () => {
+    for (const source of [editorSource, packCreateSource]) {
+      expect(source).toContain('const { accessResolved } = usePremium();');
+      // Редирект ждёт резолва…
+      expect(source).toContain('const creatorLocked = creatorGated && accessResolved;');
+      // …а запись закрыта СРАЗУ (creatorGated), пока доступ ещё неизвестен.
+      expect(source).toContain('creatorGated');
+    }
+  });
+
+  it('reports the paywall to analytics like other gates do', () => {
+    expect(editorSource).toContain("void trackEvent('paywall_shown', { context: creatorPaywallContext('card')");
+    expect(packCreateSource).toContain("void trackEvent('paywall_shown', { context: creatorPaywallContext('pack')");
   });
 
   it('keeps the gate on the screens themselves, not on individual buttons', () => {

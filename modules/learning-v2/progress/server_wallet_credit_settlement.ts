@@ -15,9 +15,18 @@ import {
 } from "../policies/decision_registry";
 import type { OwnerRepositoryWalletCreditAuthorityInput } from "./owner_repository";
 
+// зачем (аудит 2026-08-23): mistake_correction начисляется ДРУГИМ, отдельным
+// путём — materializeMistakeCorrectionCompositeCandidate в
+// mistake_correction_wallet_composite.ts, авторитет client_authoritative_
+// composite (клиентский композит + криптографический fingerprint), а не
+// trusted_server_boundary этого файла. REASONS (рантайм-валидация ниже) уже
+// не пускал mistake_correction — тип просто не был приведён в соответствие,
+// из-за чего COMBINATIONS не проходила `satisfies` (полный tsc падал по
+// памяти и это молчало). Не добавлять сюда mistake_correction: у него нет
+// подходящего receiptType/originKind в этой таблице — только composite-путь.
 export type ServerWalletCreditReason = Exclude<
   WalletOperationReason,
-  "initial_required_session" | "legacy_opening_balance"
+  "initial_required_session" | "legacy_opening_balance" | "mistake_correction"
 >;
 
 export interface ServerWalletCreditSettlementV1 {

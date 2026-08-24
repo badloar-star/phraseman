@@ -6,6 +6,9 @@ const REGION = 'us-central1';
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_DAYS = 90;
 const MAX_DOCS_PER_COLLECTION = 2000;
+const VOICE_SPLIT_TEXT_PRICE_DATE = '2026-08-21';
+const VOICE_LEGACY_TEXT_PER_M = 0.6;
+const VOICE_OUTPUT_TEXT_PER_M = 2.4;
 
 type Price = { input: number; cachedInput?: number; output: number };
 type UsageRow = {
@@ -63,7 +66,7 @@ function costUsd(model: string, inputTokens: number, outputTokens: number): numb
   return (inputTokens / 1_000_000) * p.input + (outputTokens / 1_000_000) * p.output;
 }
 
-function usageFromDoc(
+export function usageFromDoc(
   collectionName: string,
   feature: string,
   snap: FirebaseFirestore.QueryDocumentSnapshot,
@@ -71,11 +74,48 @@ function usageFromDoc(
   const data = snap.data() || {};
   const model = text(data.model, 80) || 'gpt-4o-mini';
 
+  if (collectionName === 'voice_call_billing') {
+    const hasSplitTextFields = Object.prototype.hasOwnProperty.call(data, 'textInputTokens')
+      && Object.prototype.hasOwnProperty.call(data, 'textOutputTokens');
+    const textInputTokens = num(data.textInputTokens);
+    const textOutputTokens = num(data.textOutputTokens);
+    const legacyUnsplitTextTokens = Math.max(
+      0,
+      num(data.textTokens) - textInputTokens - textOutputTokens,
+    );
+    const inputTokens = num(data.audioInputTokens) + num(data.cachedTokens) + textInputTokens;
+    // Для старых unsplit rows направление неизвестно; относим остаток к output,
+    // как и серверная консервативная оценка стоимости.
+    const outputTokens = num(data.audioOutputTokens) + textOutputTokens + legacyUnsplitTextTokens;
+    const storedUsesSplitTextPrices = hasSplitTextFields
+      && text(data.priceTableDate, 10) >= VOICE_SPLIT_TEXT_PRICE_DATE;
+    // Старый estCostUsd уже содержит эти токены по input-цене $0.60/M.
+    // Добавляем только разницу до output-цены, сохраняя его audio/cache/STT части.
+    const legacyTextPriceCorrectionUsd = storedUsesSplitTextPrices
+      ? 0
+      : (legacyUnsplitTextTokens / 1_000_000)
+        * (VOICE_OUTPUT_TEXT_PER_M - VOICE_LEGACY_TEXT_PER_M);
+    return {
+      id: snap.id,
+      feature,
+      collection: collectionName,
+      model,
+      inputTokens,
+      outputTokens,
+      totalTokens: inputTokens + outputTokens,
+      // Это all-in сумма: Realtime audio/text + cached + transcription.
+      // Пересчёт общей chat-формулой потерял бы почти всю стоимость звонка.
+      costUsd: num(data.estCostUsd) + legacyTextPriceCorrectionUsd,
+      uid: text(data.uid || data.authUid, 120),
+      createdAtMs: createdMs(data),
+    };
+  }
+
   // Разные фичи пишут токены в РАЗНЫХ полях. Три схемы:
   //  A) promptTokens/completionTokens        — dialog, weekly, stats, mistake, speaking, league-cron
   //  B) genPromptTokens/genCompletionTokens + judgePromptTokens/judgeCompletionTokens — explain, choice, compass
   // Суммируем все варианты — отсутствующие поля дают 0, поэтому одна формула
-  // корректно покрывает все 11 billing-коллекций без спец-веток на коллекцию.
+  // корректно покрывает обычные chat billing-коллекции; voice разобран выше.
   const inputTokens = num(data.promptTokens) + num(data.genPromptTokens) + num(data.judgePromptTokens);
   const outputTokens = num(data.completionTokens) + num(data.genCompletionTokens) + num(data.judgeCompletionTokens);
 
@@ -97,14 +137,23 @@ function usageFromDoc(
 async function openAiBudgetSafeGetDocs(
   collectionName: string,
   fromMs: number,
-): Promise<{ docs: FirebaseFirestore.QueryDocumentSnapshot[]; error?: string }> {
+): Promise<{ docs: FirebaseFirestore.QueryDocumentSnapshot[]; error?: string; truncated?: boolean; totalCount?: number }> {
   try {
-    const snap = await admin.firestore()
+    const base = admin.firestore()
       .collection(collectionName)
-      .where('createdAtMs', '>=', fromMs)
-      .limit(MAX_DOCS_PER_COLLECTION)
-      .get();
-    return { docs: snap.docs };
+      .where('createdAtMs', '>=', fromMs);
+    // зачем: удешевление 2026-08-24 — раньше дашборд молча резал каждую
+    // коллекцию до MAX_DOCS_PER_COLLECTION документов без индикации: при росте
+    // трафика (напр. диалоги на новых капах 10/200) владелец увидел бы заниженную
+    // сумму и не узнал бы об этом. count() — ОДНА операция чтения независимо от
+    // числа документов (агрегирующий запрос Firestore), поэтому проверка точного
+    // числа практически бесплатна рядом с уже идущим .limit()-запросом.
+    const [snap, countSnap] = await Promise.all([
+      base.limit(MAX_DOCS_PER_COLLECTION).get(),
+      base.count().get(),
+    ]);
+    const totalCount = countSnap.data().count;
+    return { docs: snap.docs, totalCount, truncated: totalCount > snap.docs.length };
   } catch (e) {
     console.warn('openAiBudgetSafeGetDocs failed', collectionName, e);
     return { docs: [], error: e instanceof Error ? e.message : String(e) };
@@ -224,6 +273,7 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     // ИИ-генератор турнирных заданий (адм. батчи): без регистрации здесь
     // дашборд повторил бы старый баг недосчёта трат.
     { collection: 'tournament_ai_billing', feature: 'Турниры: ИИ-генератор' },
+    { collection: 'voice_call_billing', feature: 'MAX voice' },
   ];
 
   const fetchedDocs = await Promise.all(
@@ -246,5 +296,10 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     errors: fetched
       .filter((item) => item.error)
       .map((item) => ({ collection: item.collection, error: item.error })),
+    // зачем: без этого поля срез в MAX_DOCS_PER_COLLECTION молча занижал сумму —
+    // владелец видел цифру и не мог понять, полная она или нет.
+    truncated: fetched
+      .filter((item) => item.truncated)
+      .map((item) => ({ collection: item.collection, feature: item.feature, totalCount: item.totalCount ?? null, shownCount: item.docs.length })),
   };
 });

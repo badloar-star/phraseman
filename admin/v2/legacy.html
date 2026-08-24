@@ -38441,6 +38441,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const featureRows = Array.isArray(data.features) ? data.features : [];
       const modelRows = Array.isArray(data.models) ? data.models : [];
       const errors = Array.isArray(data.errors) ? data.errors : [];
+      const truncated = Array.isArray(data.truncated) ? data.truncated : [];
       const topFeature = featureRows[0]?.label ? `Top: ${featureRows[0].label}` : '';
       summary.innerHTML = openAiBudgetSummaryCards([
         ['OpenAI estimated month', openAiBudgetUsd(totals.estimatedMonthUsd, 3), `period: ${openAiBudgetUsd(totals.costUsd, 4)}`],
@@ -38450,9 +38451,15 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         ['Users', openAiBudgetNum(totals.uniqueUsers), 'unique uid/authUid in logs'],
       ]);
       if (status) {
-        status.textContent = errors.length
+        // зачем: молчаливый срез в 2000 документов на коллекцию раньше давал
+        // заниженную сумму без предупреждения — владелец не мог отличить полные
+        // данные от урезанных. Явный статус честнее тихого недосчёта.
+        const truncatedMsg = truncated.length
+          ? ` ВНИМАНИЕ: ${truncated.map((t) => `${t.feature} показано ${t.shownCount} из ${t.totalCount}`).join('; ')} — сумма занижена, сократите период.`
+          : '';
+        status.textContent = (errors.length
           ? `Loaded with limited collections: ${errors.map((e) => e.collection).join(', ')}.`
-          : `Суммарно по всем 11 billing-коллекциям. Кэш-ввод считается по полной цене (небольшая переоценка); точный счёт — в кабинете OpenAI.`;
+          : `Суммарно по всем 11 billing-коллекциям. Кэш-ввод считается по полной цене (небольшая переоценка); точный счёт — в кабинете OpenAI.`) + truncatedMsg;
       }
       grid.innerHTML = [
         openAiBudgetSeriesChart(data.series, totals),
@@ -38460,7 +38467,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         openAiBudgetRowsTable('Model costs', 'Prices per 1M tokens; exact invoice remains OpenAI billing source of truth.', modelRows),
         openAiBudgetRecentCard(data.recent || []),
       ].join('');
-      if (errors.length === 0) _openAiBudgetLoaded = true;
+      if (errors.length === 0 && truncated.length === 0) _openAiBudgetLoaded = true;
       else _openAiBudgetLoaded = false;
     } catch (e) {
       _openAiBudgetLoaded = false;

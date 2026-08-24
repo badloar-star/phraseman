@@ -1082,7 +1082,13 @@ export const premiumDialogTranslate = onCall({
     throw new HttpsError('failed-precondition', 'openai_key_missing');
   }
 
-  const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
+  // зачем: удешевление 2026-08-24 — перевод ОДНОЙ короткой реплики не нуждается в
+  // диалоговой модели (gpt-4o-mini, ~1.5x дороже по входу, тарификация выхода та же).
+  // Задача переводчика проще ролевой игры: нет JSON-конверта, нет отыгрыша персонажа.
+  // Результат кэшируется в Firestore НАВСЕГДА (см. TRANSLATE_PROMPT_VERSION выше) —
+  // цена модели платится один раз за уникальную (фраза, язык), не на каждое чтение.
+  // При регрессии качества перевода идиом откат — одна константа здесь.
+  const translateModel = 'gpt-4.1-nano';
 
   // зачем: без правила про идиомы фразовые глаголы переводились дословно — реплика
   // кассира «Let me ring that up for you» («сейчас пробью на кассе») превращалась в
@@ -1111,7 +1117,7 @@ export const premiumDialogTranslate = onCall({
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: dialogModel,
+        model: translateModel,
         messages,
         max_tokens: MAX_TRANSLATE_OUTPUT_TOKENS,
         temperature: 0.2,
@@ -1122,7 +1128,7 @@ export const premiumDialogTranslate = onCall({
       const detail = await response.text().catch(() => '');
       console.error('premium_dialog_translate chat failed', {
         status: response.status,
-        model: dialogModel,
+        model: translateModel,
         targetLang,
         detail: detail.slice(0, 500),
       });
@@ -1132,14 +1138,14 @@ export const premiumDialogTranslate = onCall({
     json = (await response.json()) as OpenAIChatResponse;
     translation = text(json.choices?.[0]?.message?.content, MAX_TRANSLATE_TEXT);
     if (!translation) {
-      console.error('premium_dialog_translate empty reply', { model: dialogModel, targetLang });
+      console.error('premium_dialog_translate empty reply', { model: translateModel, targetLang });
       throw new HttpsError('unavailable', 'dialog_empty_reply');
     }
     assertDialogTranslationLanguage(translation, targetLang);
   } catch (error) {
     if (error instanceof HttpsError) throw error;
     console.error('premium_dialog_translate provider exception', {
-      model: dialogModel,
+      model: translateModel,
       targetLang,
       error: String((error as Error)?.message ?? error).slice(0, 500),
     });
@@ -1171,7 +1177,7 @@ export const premiumDialogTranslate = onCall({
     uid: stableUid,
     authUid,
     mode: 'translate',
-    model: dialogModel,
+    model: translateModel,
     targetLang,
     scenarioId: text(data.scenarioId, 80) || null,
     promptTokens: Number(usage.prompt_tokens ?? 0),

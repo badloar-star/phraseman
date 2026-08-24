@@ -2,6 +2,7 @@ export type DevToolAction =
   | 'run-onboarding'
   | 'open-max-voice'
   | 'open-motion-showcase'
+  | 'open-shop'
   | 'open-paywall-a'
   | 'open-paywall-b'
   | 'open-paywall-c'
@@ -39,7 +40,8 @@ export type DevToolIcon =
   | 'bug-outline'
   | 'rocket-outline'
   | 'color-wand-outline'
-  | 'card-outline';
+  | 'card-outline'
+  | 'cart-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -57,8 +59,15 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline';
   testID: string;
+  /**
+   * Секция свёрнута при открытии хаба.
+   * зачем (владелец, 24.08): девять пейволов развёрнутым списком оттесняли всё
+   * остальное вниз — до нужного инструмента приходилось листать. Заголовок
+   * секции становится кнопкой, содержимое раскрывается по тапу.
+   */
+  collapsed?: boolean;
   tools: readonly DevTool[];
 }>;
 
@@ -135,6 +144,7 @@ export const DEV_TOOL_SECTIONS = [
     title: 'Пейволы',
     icon: 'card-outline',
     testID: 'dev-hub-section-paywalls',
+    collapsed: true,
     tools: [
       {
         id: 'paywall-a',
@@ -225,6 +235,28 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-max-paywall',
         icon: 'call-outline',
         testID: 'dev-open-paywall-max',
+      },
+    ],
+  },
+  // зачем 2026-08-24: магазин пока БЕЗ входа из приложения — владелец не хочет
+  // показывать его игрокам до готовности. Единственная дверь — этот пункт;
+  // когда экран примут, вход появится в обычной навигации, а секция уйдёт.
+  {
+    id: 'shop',
+    order: 7,
+    title: 'Магазин · вход только отсюда',
+    icon: 'cart-outline',
+    testID: 'dev-hub-section-shop',
+    tools: [
+      {
+        id: 'shop-screen',
+        order: 10,
+        title: 'Магазин',
+        detail: 'Временно: другого входа в магазин в приложении нет. Две валюты, товары по 3 в ряд, фильтр снизу.',
+        actionLabel: 'Открыть',
+        action: 'open-shop',
+        icon: 'cart-outline',
+        testID: 'dev-open-shop',
       },
     ],
   },

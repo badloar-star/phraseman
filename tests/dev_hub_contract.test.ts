@@ -71,7 +71,9 @@ describe('DEV center bottom sheet', () => {
     expect(registry).toContain("action: 'revoke-plus'");
     expect(registry).toContain('satisfies readonly DevToolSection[]');
     expect(sheet).toContain('getOrderedDevToolSections()');
-    expect(sheet).toContain('.map((section) =>');
+    // Секции рисуются перебором. Стрелка со скобками — потому что свёрнутые
+    // секции (пейволы) считают своё состояние до возврата разметки.
+    expect(sheet).toContain('.map((section) => {');
     expect(sheet).toContain('.map((tool) =>');
 
     jest.resetModules();
@@ -82,6 +84,8 @@ describe('DEV center bottom sheet', () => {
       'onboarding-tools',
       'motion-showcase',
       'full-modes',
+      'paywalls',
+      'shop',
       'level-previews',
       'league',
       'subscription',
@@ -89,18 +93,61 @@ describe('DEV center bottom sheet', () => {
     expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
     expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual(['motion-showcase']);
     expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
-    expect(ordered[3].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    // Пейволов девять, и они СВЁРНУТЫ: развёрнутым списком они оттесняли
+    // остальные инструменты вниз (решение владельца 24.08).
+    expect(ordered[3].collapsed).toBe(true);
+    expect(ordered[3].tools).toHaveLength(9);
+    // Магазин: единственный вход в приложении — этот пункт. Если появится
+    // второй вход, правило владельца нарушено — тест обязан упасть.
+    expect(ordered[4].tools.map((tool: { id: string }) => tool.id)).toEqual(['shop-screen']);
+    expect(ordered[5].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',
       'lesson-results',
       'spin-reward',
     ]);
-    expect(ordered[4].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[6].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'league-promoted',
       'league-demoted',
       'league-stay',
       'league-rank-mismatch',
     ]);
+  });
+
+  // зачем (владелец, 24.08): «магазин пока делай дев хаб вход и больше нигде не
+  // делай вход». Сторож ловит появление второй двери — кнопки, ссылки или
+  // пункта меню на /shop где-либо, кроме DEV-центра.
+  it('в магазин ведёт ровно один вход — из DEV-центра', () => {
+    // Ищем grep-ом, а не чтением всего дерева в память: ts-jest в этом проекте
+    // и так берёт 2–3 ГБ, полный обход app/ + components/ ронял процесс.
+    const { execFileSync } = require('child_process');
+    const path = require('path');
+    const root = path.join(__dirname, '..');
+
+    let hits = '';
+    try {
+      hits = execFileSync('git', [
+        'grep', '-lE', "router\\.(push|replace|navigate)\\(\\s*['\"`]/shop['\"`]|SHOP_ROUTE",
+        '--', 'app/*.tsx', 'app/**/*.tsx', 'components/**/*.tsx', 'components/**/*.ts',
+      ], { cwd: root, encoding: 'utf8' });
+    } catch (error: unknown) {
+      // git grep выходит с кодом 1, когда совпадений нет — это успех.
+      const status = (error as { status?: number }).status;
+      if (status !== 1) throw error;
+    }
+
+    // Законные места: сам экран, DEV-центр (единственная дверь) и регистрация
+    // маршрута в навигаторе. Всё остальное — второй вход, которого быть не должно.
+    const allowed = new Set([
+      'app/shop.tsx',
+      'app/_layout.tsx',
+      'components/dev/DevHubSheet.tsx',
+    ]);
+    const offenders = hits.split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0 && !allowed.has(line));
+
+    expect(offenders).toEqual([]);
   });
 
   test('restarts the real onboarding overlay without touching profile or progress', () => {
@@ -137,7 +184,7 @@ describe('DEV center bottom sheet', () => {
     expect(sheet).toContain("case 'open-max-voice':");
     expect(sheet).toContain('if (!isMaxVoiceNativeAvailable())');
     expect(sheet).toContain('Metro обновляет только JavaScript');
-    expect(sheet).toContain("pathname: '/max_call_prestart'");
+    expect(sheet).toContain("pathname: '/max_call_session'");
     expect(sheet).toContain("params: { devMode: '1' }");
     expect(sheet).toContain('onClosed?.();');
   });

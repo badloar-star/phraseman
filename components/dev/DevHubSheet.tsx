@@ -43,7 +43,7 @@ import {
 } from './devToolRegistry';
 import LeagueResultModal from '../../app/LeagueResultModal';
 import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
-import { MOTION_SHOWCASE_ROUTE } from '../../constants/devRoutes';
+import { MOTION_SHOWCASE_ROUTE, SHOP_ROUTE } from '../../constants/devRoutes';
 import { resolveCurrentPaywallRoute } from '../../app/paywall_navigation';
 
 export type DevHubSheetProps = Readonly<{
@@ -137,6 +137,15 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_HIDDEN_Y)).current;
   const sections = useMemo(() => getOrderedDevToolSections(), []);
+  // зачем: свёрнутые секции (пейволы) не должны оттеснять остальные инструменты
+  // вниз. Храним только РАСКРЫТЫЕ id — состояние по умолчанию берётся из
+  // реестра, поэтому новая свёрнутая секция не требует правок здесь.
+  const [expandedSections, setExpandedSections] = useState<readonly string[]>([]);
+  const toggleSection = useCallback((id: string) => {
+    setExpandedSections((current) => (current.includes(id)
+      ? current.filter((item) => item !== id)
+      : [...current, id]));
+  }, []);
   const devSurfaceWanted = visible || preview !== null;
   const devSurfaceGranted = useOverlayVisible('devHub', devSurfaceWanted);
 
@@ -339,6 +348,10 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         // смены route, иначе iOS оставит DEV-sheet поверх сцены.
         requestClose(false, () => router.push(MOTION_SHOWCASE_ROUTE as never));
         return;
+      case 'open-shop':
+        // Магазин пока БЕЗ входа из приложения — эта кнопка единственная дверь.
+        requestClose(false, () => router.push(SHOP_ROUTE as never));
+        return;
       case 'open-max-voice':
         if (!isMaxVoiceNativeAvailable()) {
           setNotice('MAX Voice не встроен в установленную DEV-сборку. Metro обновляет только JavaScript — пересобери и установи приложение на iPhone.');
@@ -508,26 +521,55 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.content}
           >
-            {sections.map((section) => (
+            {sections.map((section) => {
+              const open = section.collapsed ? expandedSections.includes(section.id) : true;
+              return (
               <View key={section.id} testID={section.testID} style={styles.section}>
-                <View style={styles.sectionHeading}>
-                  <View style={[styles.sectionIcon, { backgroundColor: t.accentBg }]}>
-                    <Ionicons name={section.icon} size={18} color={t.accent} />
-                  </View>
-                  <Text style={[styles.sectionTitle, { color: t.textPrimary, fontSize: f.body }]}>{section.title}</Text>
-                </View>
-                <View style={styles.toolList}>
-                  {section.tools.map((tool) => (
-                    <ToolRow
-                      key={tool.id}
-                      tool={tool}
-                      disabled={busy || (section.id === 'subscription' && !accountReady)}
-                      onPress={() => handleTool(tool.action)}
+                {section.collapsed ? (
+                  <Pressable
+                    testID={`${section.testID}-toggle`}
+                    accessibilityRole="button"
+                    accessibilityState={{ expanded: open }}
+                    accessibilityLabel={section.title}
+                    onPress={() => toggleSection(section.id)}
+                    style={({ pressed }) => [styles.sectionHeading, { opacity: pressed ? 0.72 : 1 }]}
+                  >
+                    <View style={[styles.sectionIcon, { backgroundColor: t.accentBg }]}>
+                      <Ionicons name={section.icon} size={18} color={t.accent} />
+                    </View>
+                    <Text style={[styles.sectionTitle, { color: t.textPrimary, fontSize: f.body, flex: 1 }]}>{section.title}</Text>
+                    {/* Счётчик заменяет запрещённую подпись-расшифровку: сколько
+                        внутри — видно, не раскрывая. */}
+                    <Text style={[styles.sectionCount, { color: t.textMuted, fontSize: f.caption }]}>{section.tools.length}</Text>
+                    <Ionicons
+                      name={open ? 'chevron-up' : 'chevron-down'}
+                      size={18}
+                      color={t.textMuted}
                     />
-                  ))}
-                </View>
+                  </Pressable>
+                ) : (
+                  <View style={styles.sectionHeading}>
+                    <View style={[styles.sectionIcon, { backgroundColor: t.accentBg }]}>
+                      <Ionicons name={section.icon} size={18} color={t.accent} />
+                    </View>
+                    <Text style={[styles.sectionTitle, { color: t.textPrimary, fontSize: f.body }]}>{section.title}</Text>
+                  </View>
+                )}
+                {open ? (
+                  <View style={styles.toolList}>
+                    {section.tools.map((tool) => (
+                      <ToolRow
+                        key={tool.id}
+                        tool={tool}
+                        disabled={busy || (section.id === 'subscription' && !accountReady)}
+                        onPress={() => handleTool(tool.action)}
+                      />
+                    ))}
+                  </View>
+                ) : null}
               </View>
-            ))}
+              );
+            })}
             {notice ? (
               <Text
                 accessibilityLiveRegion="polite"
@@ -673,6 +715,7 @@ const styles = StyleSheet.create({
   sectionHeading: { flexDirection: 'row', alignItems: 'center', gap: 9, paddingHorizontal: 2 },
   sectionIcon: { width: 32, height: 32, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   sectionTitle: { fontWeight: '700' },
+  sectionCount: { fontWeight: '800', fontVariant: ['tabular-nums'] },
   toolList: { gap: 8 },
   toolRow: { minHeight: 72, borderRadius: 17, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 11 },
   toolIcon: { width: 40, height: 40, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },

@@ -385,19 +385,6 @@ describe('heisenberg UI locale audit', () => {
     expect(result.findings).toEqual([]);
   });
 
-  it('covers weekly review training titles through the diagnosis training title catalog gate', () => {
-    const result = analyzeUiLocaleSource(
-      'app/weekly_review_briefing.ts',
-      `
-        const label = triLang(lang, training.title) ?? training.title.ru;
-      `,
-    );
-
-    expect(result.staticTriLangCalls).toBe(1);
-    expect(result.dynamicTriLangCalls).toBe(0);
-    expect(result.findings).toEqual([]);
-  });
-
   it('detects legacy L(lang, ru, uk, es) helpers that bypass planned locales', () => {
     const result = analyzeUiLocaleSource(
       'app/hint.tsx',

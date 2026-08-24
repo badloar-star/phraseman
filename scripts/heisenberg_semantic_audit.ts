@@ -7,7 +7,6 @@ import { SYSTEM_CARDS } from '../app/flashcards/system-cards';
 import { IDIOMS } from '../app/idioms_data';
 import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
 import { LESSON_WORD_SOURCE_LOCALES_BY_EN } from '../app/lesson_words_source_locales';
-import { getAllDiagnosisTrainings } from '../app/diagnosis_trainings';
 import {
   HEISENBERG_BATCH_SOURCE_LOCALES,
   type HeisenbergSourceLocale,
@@ -36,7 +35,6 @@ type Surface =
   | 'flashcards'
   | 'irregular_verbs'
   | 'lesson_words'
-  | 'diagnosis_training'
   | 'runtime';
 
 type SemanticFinding = {
@@ -97,10 +95,6 @@ type DailyPhraseSeedRecord = {
   sourceLocales?: Partial<Record<HeisenbergSourceLocale, Partial<DailyPhraseCopy>>>;
 };
 
-const DIAGNOSIS_PLANNED_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES.filter(
-  (locale): locale is DiagnosisPlannedLocale => locale !== 'es',
-);
-
 function timestampSlug(): string {
   return new Date().toISOString().replace(/[:.]/g, '-');
 }
@@ -145,134 +139,6 @@ function isTriTextLike(value: unknown): value is TriTextLike {
       typeof (value as TriTextLike).uk === 'string' &&
       typeof (value as TriTextLike).es === 'string',
   );
-}
-
-function collectDiagnosisTriText(
-  value: unknown,
-  out: Array<{ path: string; text: TriTextLike }>,
-  currentPath: string,
-): void {
-  if (!value || typeof value !== 'object') return;
-  if (isTriTextLike(value)) {
-    out.push({ path: currentPath, text: value });
-    return;
-  }
-  if (Array.isArray(value)) {
-    value.forEach((entry, index) => collectDiagnosisTriText(entry, out, `${currentPath}[${index}]`));
-    return;
-  }
-
-  for (const [key, entry] of Object.entries(value)) {
-    if (
-      [
-        'sentence',
-        'answerOptions',
-        'correctAnswerId',
-        'focusWords',
-        'contrastSet',
-        'analyticsEvents',
-        'routing',
-      ].includes(key)
-    ) {
-      continue;
-    }
-    collectDiagnosisTriText(entry, out, `${currentPath}.${key}`);
-  }
-}
-
-function auditDiagnosisTrainingLocaleReadiness(findings: SemanticFinding[]): void {
-  const spanishPlaceholder = 'This training is available for this interface language.';
-
-  for (const training of getAllDiagnosisTrainings()) {
-    const triText: Array<{ path: string; text: TriTextLike }> = [];
-    collectDiagnosisTriText(training, triText, training.id);
-
-    const spanishPlaceholders = triText.filter((item) => item.text.es.trim() === spanishPlaceholder);
-    const weakSpanishSignal = triText.filter((item) => {
-      const text = item.text.es.trim();
-      if (text.length < 32 || text === spanishPlaceholder) return false;
-      if (/^[A-Za-z0-9\s'",.?!:;/()+\-]+$/.test(text) && !localeLanguageSignal('es', text).ok) return true;
-      return false;
-    });
-
-    if (!training.supportedLocales?.includes('es') && (spanishPlaceholders.length > 0 || weakSpanishSignal.length > 0)) {
-      const sample = spanishPlaceholders[0] ?? weakSpanishSignal[0];
-      pushFinding(findings, {
-        severity: 'warning',
-        code: 'diagnosis-training-es-not-ready',
-        surface: 'diagnosis_training',
-        locale: 'es',
-        id: training.id,
-        field: sample?.path,
-        message:
-          `Diagnosis training has ES fields but Spanish is not activated; ${spanishPlaceholders.length} placeholder(s), ` +
-          `${weakSpanishSignal.length} English-looking learner-facing item(s) need translation review.`,
-        sample: sample?.text.es,
-      });
-    }
-  }
-}
-
-function auditDiagnosisTrainingPlannedLocaleFallbacks(findings: SemanticFinding[]): void {
-  const appDir = path.join(process.cwd(), 'app');
-  const files = fs
-    .readdirSync(appDir)
-    .filter((file) => /^diagnosis_training_.+\.ts$/.test(file))
-    .sort();
-
-  for (const file of files) {
-    const source = fs.readFileSync(path.join(appDir, file), 'utf8');
-    if (!/planned\[['"]pt-BR['"]\]\s*\?\?\s*es/.test(source)) continue;
-    if (!/vi:\s*planned\.vi\s*\?\?\s*es/.test(source)) continue;
-    if (!/id:\s*planned\.id\s*\?\?\s*es/.test(source)) continue;
-    if (!/tr:\s*planned\.tr\s*\?\?\s*es/.test(source)) continue;
-    if (!/pl:\s*planned\.pl\s*\?\?\s*es/.test(source)) continue;
-
-    const trainingId = file.replace(/^diagnosis_training_/, '').replace(/\.ts$/, '');
-    pushFinding(findings, {
-      severity: 'warning',
-      code: 'diagnosis-training-planned-locale-es-fallback-risk',
-      surface: 'diagnosis_training',
-      id: trainingId,
-      field: 'tri',
-      message:
-        'Diagnosis training helper falls planned locales back to ES. Add explicit planned-locale copy or change the helper before activating planned languages to avoid language mixing.',
-      sample: file,
-    });
-  }
-}
-
-function auditDiagnosisTrainingPlannedLocaleCatchup(findings: SemanticFinding[]): void {
-  for (const training of getAllDiagnosisTrainings()) {
-    if (!training.supportedLocales?.includes('es')) continue;
-
-    const triText: Array<{ path: string; text: TriTextLike }> = [];
-    collectDiagnosisTriText(training, triText, training.id);
-    const missingByLocale: Partial<Record<DiagnosisPlannedLocale, number>> = {};
-
-    for (const item of triText) {
-      if (!item.text.es.trim()) continue;
-      for (const locale of DIAGNOSIS_PLANNED_LOCALES) {
-        if (!item.text[locale]?.trim()) {
-          missingByLocale[locale] = (missingByLocale[locale] ?? 0) + 1;
-        }
-      }
-    }
-
-    const missingLocales = DIAGNOSIS_PLANNED_LOCALES.filter((locale) => (missingByLocale[locale] ?? 0) > 0);
-    if (missingLocales.length === 0) continue;
-
-    pushFinding(findings, {
-      severity: 'warning',
-      code: 'diagnosis-training-planned-locale-behind-es',
-      surface: 'diagnosis_training',
-      id: training.id,
-      field: 'TriText',
-      message:
-        'Diagnosis training has ES active, but planned source locales are behind ES coverage. Add explicit planned-locale copy before moving all languages together.',
-      sample: missingLocales.map((locale) => `${locale}:${missingByLocale[locale]}`).join(', '),
-    });
-  }
 }
 
 function phraseAnchorFound(english: string, text: string): boolean {
@@ -883,9 +749,6 @@ export function runSemanticAudit(strict = false): { report: SemanticReport; outD
   auditFlashcards(findings);
   auditIrregularVerbs(findings);
   auditLessonWordSourceLocaleMap(findings);
-  auditDiagnosisTrainingLocaleReadiness(findings);
-  auditDiagnosisTrainingPlannedLocaleFallbacks(findings);
-  auditDiagnosisTrainingPlannedLocaleCatchup(findings);
   const reviewGroups = buildReviewGroups(findings);
 
   const report: SemanticReport = {

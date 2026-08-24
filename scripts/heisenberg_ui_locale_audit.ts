@@ -600,7 +600,6 @@ function isPrepositionExplanationCoveredByPlannedFallback(file: string, node: ts
 }
 
 let lessonWordSourceLocaleCoverageCache: Set<string> | null = null;
-let diagnosisTrainingTitleCoverageCache: boolean | null = null;
 
 function lessonWordSourceLocaleCoverage(): Set<string> {
   if (lessonWordSourceLocaleCoverageCache) return lessonWordSourceLocaleCoverageCache;
@@ -646,35 +645,6 @@ function isLessonWordCoveredBySourceLocaleMap(file: string, node: ts.ObjectLiter
   if (coverage.has(lowerEnglish)) return true;
   const pos = objectLiteralStringValue(node, 'pos');
   return Boolean(pos && coverage.has(`${lowerEnglish}::${pos}`));
-}
-
-function diagnosisTrainingTitlesHavePlannedLocaleCoverage(): boolean {
-  if (diagnosisTrainingTitleCoverageCache !== null) return diagnosisTrainingTitleCoverageCache;
-  try {
-    const {
-      getAllDiagnosisTrainings,
-    } = cjsRequire('../app/diagnosis_trainings') as typeof import('../app/diagnosis_trainings');
-    const trainings = getAllDiagnosisTrainings();
-    diagnosisTrainingTitleCoverageCache = trainings.length > 0 && trainings.every((training) => {
-      const title = training.title as Partial<Record<string, string>>;
-      return ['ru', 'uk', 'es', ...PLANNED_UI_LOCALES].every((locale) =>
-        typeof title[locale] === 'string' && Boolean(title[locale]?.trim()),
-      );
-    });
-  } catch {
-    diagnosisTrainingTitleCoverageCache = false;
-  }
-  return diagnosisTrainingTitleCoverageCache;
-}
-
-function expressionCoveredByExternalLocaleSource(file: string, expression: ts.Expression): boolean {
-  if (!normalizePath(file).endsWith('app/weekly_review_briefing.ts')) return false;
-  const node = unwrapExpression(expression);
-  return ts.isPropertyAccessExpression(node) &&
-    node.name.text === 'title' &&
-    ts.isIdentifier(node.expression) &&
-    node.expression.text === 'training' &&
-    diagnosisTrainingTitlesHavePlannedLocaleCoverage();
 }
 
 function isLocaleObjectCoveredElsewhere(file: string, node: ts.ObjectLiteralExpression): boolean {
@@ -815,7 +785,6 @@ export function analyzeUiLocaleSource(file: string, text: string): {
         if (
           copyExpression &&
           (
-            expressionCoveredByExternalLocaleSource(file, copyExpression) ||
             expressionProvesCompleteTriLangCopy(copyExpression, staticBindings, completeCopyTypes)
           )
         ) {

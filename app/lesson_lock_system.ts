@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { storageGet, storageSet, storageGetString, storageSetString } from '../lib/storage';
+import { withStorageLock } from './storage_mutex';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { BRONZE_UNLOCK_SCORE, FREE_LESSON_LIMIT } from './monetization_policy';
 import { isFeaturePremiumGated } from './feature_gates';
@@ -61,11 +62,18 @@ export const unlockLesson = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> => {
   try {
-    const key = unlockedLessonsKey(studyTarget);
-    const unlocked = (await storageGet<number[]>(key)) ?? [];
-    if (!unlocked.includes(lessonId)) {
-      await storageSet(key, [...unlocked, lessonId]);
-    }
+    // зачем (аудит 2026-08-24): read-modify-write МАССИВА разблокированных уроков без
+    // замка — классический lost update. isLessonUnlockedByEarnedProgress зовёт unlockLesson
+    // побочным эффектом при обычном ЧТЕНИИ, а меню уроков и главный экран проверяют
+    // доступ параллельно: два перекрывшихся вызова читали один и тот же старый массив,
+    // и урок, открытый первым, терялся при записи второго. Читаем и пишем под замком.
+    await withStorageLock(async () => {
+      const key = unlockedLessonsKey(studyTarget);
+      const unlocked = (await storageGet<number[]>(key)) ?? [];
+      if (!unlocked.includes(lessonId)) {
+        await storageSet(key, [...unlocked, lessonId]);
+      }
+    });
   } catch {}
 };
 

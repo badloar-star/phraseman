@@ -6,6 +6,8 @@ import { readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { captureAccountGeneration } from './account_generation';
 import { readGiftAccountValue, removeGiftAccountValue } from './gift_account_storage';
+import { withStorageLock } from './storage_mutex';
+import { emitAppEvent } from './events';
 
 export interface EnergyState {
   current: number;
@@ -228,15 +230,35 @@ export async function checkAndRecover(): Promise<EnergyState> {
  */
 export async function addEnergy(amount: number = 1): Promise<EnergyState> {
   try {
-    let state = await getEnergyState();
-    const newCurrent = Math.min(state.current + amount, await getEffectiveMaxEnergyValue());
-
-    state = {
-      ...state,
-      current: newCurrent,
-    };
-
-    await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
+    // зачем (аудит 2026-08-24): раньше read-modify-write шёл БЕЗ замка, тогда как
+    // EnergyContext все свои записи energy_state держит под withStorageLock. Подарок
+    // энергии, пришедший одновременно с тратой или восстановлением, читал старое
+    // состояние и перетирал свежее — единицы игрока пропадали. Читаем и пишем под
+    // тем же замком, что и остальные писатели, — гонка закрыта.
+    const state = await withStorageLock(async () => {
+      const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
+      const maxE = await getEffectiveMaxEnergyValue();
+      const prev: EnergyState = stored
+        ? (JSON.parse(stored) as EnergyState)
+        : { current: maxE, lastRecoveryTime: Date.now() };
+      const prevCurrent = Number.isFinite(prev.current) && prev.current >= 0
+        ? Math.min(prev.current, maxE)
+        : maxE;
+      const next: EnergyState = {
+        ...prev,
+        current: Math.min(prevCurrent + amount, maxE),
+        lastRecoveryTime: Number.isFinite(prev.lastRecoveryTime) && prev.lastRecoveryTime > 0
+          ? prev.lastRecoveryTime
+          : Date.now(),
+      };
+      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
+      return next;
+    });
+    // зачем: подарок пишет energy_state напрямую, мимо EnergyContext. Без события
+    // счётчики на уже открытых экранах врали до следующего фокуса, а запланированный
+    // пуш «энергия восстановлена» не пересчитывался. Тот же приём, что в
+    // energy_shard_refill.ts и season_reward_apply.ts.
+    emitAppEvent('energy_reload');
     return state;
   } catch (error) {
     DebugLogger.error('energy_system.ts:addEnergy', error, 'critical');

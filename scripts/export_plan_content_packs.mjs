@@ -87,6 +87,19 @@ function rowPathFor(planId, dayIndex) {
   return `plans/${planId}/day-${String(dayIndex).padStart(3, '0')}.json`;
 }
 
+/**
+ * Стабильная ISO-метка, выведенная из хэша графа контента: один и тот же контент
+ * всегда даёт одну и ту же метку, разный контент — разные. Не «время сборки»,
+ * а идентификатор версии контента в формате времени (поле обязано парситься
+ * как дата: этого требует validateCreatedAt в course_pack_manifest.ts).
+ */
+function deterministicStamp(graphHash) {
+  // Берём 8 hex-символов графа как смещение в секундах от эпохи пака.
+  const epoch = Date.parse('2026-01-01T00:00:00.000Z');
+  const offsetSec = parseInt(graphHash.slice(0, 8), 16) % (365 * 24 * 3600);
+  return new Date(epoch + offsetSec * 1000).toISOString();
+}
+
 function fail(message) {
   console.error(`FAIL: ${message}`);
   process.exit(1);
@@ -120,7 +133,12 @@ if (outputDir !== PACK_TEMP_ROOT && !outputDir.startsWith(`${PACK_TEMP_ROOT}${pa
   fail(`--out-dir must stay under ${path.relative(ROOT, PACK_TEMP_ROOT)} (gitignored temp root)`);
 }
 
-const generatedAt = new Date().toISOString();
+// зачем: пак ОБЯЗАН быть воспроизводимым — пересборка того же контента должна
+// давать тот же sha256, иначе меняется cacheKey и все устройства перекачивают
+// те же 25 МБ заново. Время сборки в байтах это ломало, поэтому generatedAt
+// детерминирован: либо задан флагом, либо выведен из хэша графа контента.
+// (На contentHash дня это не влияло и раньше — он считается только от content.)
+const generatedAt = readArg('--generated-at') ?? deterministicStamp(sourceGraphHash);
 const appVersion = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
 if (!/^[A-Za-z0-9._-]+$/.test(String(appVersion))) fail(`package.json version unusable as minAppVersion: ${appVersion}`);
 

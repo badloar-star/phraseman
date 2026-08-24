@@ -113,7 +113,12 @@ export async function prefetchPlanContentDayWindow(
  * контент лёг в кэш фоном, пока юзер смотрит первый день. Дедуп на сессию;
  * при обрыве сети остановится и повторится при следующем событии.
  */
-export function prefetchWholePlanContentInBackground(planId: string): void {
+export function prefetchWholePlanContentInBackground(plan: string | { planId: string }): void {
+  // зачем: пейвол присваивает состояние плана внутри async-колбэка, из-за чего
+  // TS сужает замыкание до never и обращение к `.planId` на call-site не
+  // компилируется. Принимаем объект целиком (как hasCurrentPersonalPlanSunsetAccess)
+  // и достаём id здесь — call-site остаётся чистым и типобезопасным.
+  const planId = typeof plan === 'string' ? plan : plan?.planId;
   if (!planId || wholePlanInFlight.has(planId)) return;
   wholePlanInFlight.add(planId);
   void (async () => {

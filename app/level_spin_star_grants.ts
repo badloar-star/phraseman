@@ -270,7 +270,16 @@ function observeCurrentSnapshot(projection: LevelSpinStarProjection): LevelSpinS
 function publishProjection(token: AccountGenerationToken, projection: LevelSpinStarProjection): void {
   if (!isCurrentAccountGeneration(token, projection.ownerStableId)) return;
   const visible = visibleProjection(projection);
-  patchAppSnapshot((current) => current.progress ? {
+  patchAppSnapshot((current) => current.progress ? (
+    // зачем (владелец, 2026-08-24, «цифра рун постоянно прыгает»): публикация
+    // зовётся часто (recover, sync, каждое начисление) и раньше ВСЕГДА создавала
+    // новый объект progress с updatedAt: Date.now(). shallowPatchChanged сравнивает
+    // секции по ссылке, поэтому будились ВСЕ подписчики снапшота на каждой
+    // публикации — лишние ре-рендеры Главной без единого изменения числа.
+    // Руны те же -> патча нет.
+    current.progress.stars === visible.balance
+    && current.progress.starsEarnedTotal === visible.earnedTotal
+  ) ? {} : {
     progress: {
       ...current.progress,
       source: 'local',

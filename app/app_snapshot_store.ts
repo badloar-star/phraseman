@@ -295,6 +295,14 @@ export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
         streak: progress.streakCount,
         shards: current.progress?.shards ?? 0,
         studyTarget: current.progress?.studyTarget ?? 'en',
+        // зачем (владелец, 2026-08-24): «на главной цифра рун постоянно прыгает».
+        // Этот патч собирает секцию progress ЗАНОВО, поэтому раньше он молча
+        // ронял stars/starsEarnedTotal — а зовут его на каждое начисление XP и
+        // смену серии. peekRunes() читал undefined -> 0, счётчик падал в ноль и
+        // возвращался, когда level_spin_star_grants публиковал проекцию.
+        // Руны здесь не наши — переносим как есть, писатель у них ровно один.
+        stars: current.progress?.stars ?? 0,
+        starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0,
       },
     };
   });

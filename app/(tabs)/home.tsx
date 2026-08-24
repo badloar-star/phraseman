@@ -1996,7 +1996,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // rather than letting that stale closure erase the league row.
                 homeLeagueChest: homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null,
             }, studyTarget, homeHydrationAccount);
-            patchAppSnapshot({
+            // Функциональная форма: секцию progress собираем ЗАНОВО, и руны надо
+            // взять из состояния на момент применения патча, а не из более раннего
+            // кадра — иначе между вычислением и записью может проскочить начисление.
+            patchAppSnapshot((currentSnapshot) => ({
                 profile: {
                     source: 'storage',
                     updatedAt: homeHydrationStartedAt,
@@ -2015,8 +2018,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     streak: currentStreakNum,
                     shards: shardsBal,
                     studyTarget: String(studyTarget ?? 'en'),
+                    // зачем (владелец, 2026-08-24): «цифра рун постоянно прыгает».
+                    // Гидратация Главной собирает progress ЗАНОВО и раньше роняла
+                    // stars — счётчик рун падал в ноль до следующей публикации
+                    // проекции. Руны сюда не приходят, переносим текущее значение.
+                    stars: currentSnapshot.progress?.stars ?? 0,
+                    starsEarnedTotal: currentSnapshot.progress?.starsEarnedTotal ?? 0,
                 },
-            });
+            }));
             if (mountedRef.current)
                 markHomeStatsReady();
             // Home never reads a foreign league group. Club owns the six-hour

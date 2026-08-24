@@ -31,10 +31,31 @@ describe('website privacy consent contract', () => {
     expect(stats).toContain('data-cookie-settings');
   });
 
-  it('does not declare a photo-library purpose when no image picker is used', () => {
-    const appConfig = read('app.json');
+  // зачем: Apple (ITMS-90683) требует purpose string для КАЖДОГО чувствительного
+  // API, на который ссылается любая слинкованная библиотека — даже когда само
+  // приложение им не пользуется. Сборку 113 отклонили именно за отсутствие
+  // NSCameraUsageDescription: его тянет react-native-webrtc (стек MAX-звонка),
+  // хотя видео там не снимается. Старая версия этого сторожа запрещала
+  // NSPhotoLibraryUsageDescription как «ненужное», но медиатеку тянут
+  // expo-file-system/expo-image, а react-native-view-shot сохраняет картинку
+  // с результатами — разрешение обосновано. Поэтому сторожим не отсутствие
+  // строк, а то, что каждая объявленная строка непустая и объясняет причину.
+  it('declares a purpose string for every sensitive API linked into the iOS build', () => {
+    const infoPlist = JSON.parse(read('app.json')).expo.ios.infoPlist;
 
-    expect(appConfig).not.toContain('NSPhotoLibraryUsageDescription');
+    // Камера — от react-native-webrtc; микрофон и распознавание речи — от
+    // произношения и MAX-звонка; медиатека — от сохранения результатов.
+    const required = [
+      'NSCameraUsageDescription',
+      'NSMicrophoneUsageDescription',
+      'NSSpeechRecognitionUsageDescription',
+      'NSPhotoLibraryUsageDescription',
+    ];
+
+    for (const key of required) {
+      expect(typeof infoPlist[key]).toBe('string');
+      expect(infoPlist[key].trim().length).toBeGreaterThan(20);
+    }
   });
 
   it('loads cookie settings on generated legal pages', () => {

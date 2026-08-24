@@ -1,3 +1,4 @@
+import { DebugLogger } from '../debug-logger';
 import { emitAppEvent } from '../events';
 import { logCardPackPurchasedShards } from '../firebase';
 import { commitShardCompositeOperation, getShardsBalance } from '../shards_system';
@@ -46,6 +47,15 @@ function emitSourceGatedPackToast(): void {
   });
 }
 
+function emitAccountNotReadyToast(): void {
+  emitAppEvent('action_toast', {
+    type: 'info',
+    messageRu: 'Аккаунт ещё загружается. Секунду — и повтори покупку.',
+    messageUk: 'Акаунт ще завантажується. Секунду — і повтори покупку.',
+    messageEs: 'La cuenta aún se está cargando. Espera un segundo y repite la compra.',
+  });
+}
+
 /**
  * Списати осколки й додати набір карток у «Мої».
  * Перевірка балансу всередині; toast при помилці списання.
@@ -62,15 +72,25 @@ export async function purchaseCardPackWithShards(
     emitSourceGatedPackToast();
     return 'source_gated';
   }
+  // зачем: покупка раньше падала НЕМО — эти две ветки закрывали модалку без
+  // единого слова, если личность аккаунта ещё не поднялась (холодный старт:
+  // getStableId() запускается в _layout через void, без await). Тап по «Купить»
+  // выглядел как «кнопка не работает». Теперь отказ всегда объясняется вслух.
   const operationToken = captureAccountGeneration();
   const operationOwnerStableId = operationToken.stableId;
   const isOperationCurrent = (): boolean => Boolean(
     operationOwnerStableId
     && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
   );
-  if (!isOperationCurrent()) return 'spend_failed';
+  if (!isOperationCurrent()) {
+    emitAccountNotReadyToast();
+    return 'spend_failed';
+  }
   const owned = await loadOwnedPackIds(studyTarget);
-  if (!isOperationCurrent()) return 'spend_failed';
+  if (!isOperationCurrent()) {
+    emitAccountNotReadyToast();
+    return 'spend_failed';
+  }
   if (owned.includes(pack.id)) return 'already_owned';
   const nextOwned = [...owned, pack.id];
   const purchase = await commitShardCompositeOperation({
@@ -95,6 +115,14 @@ export async function purchaseCardPackWithShards(
       return 'insufficient';
     }
     if (purchase.status === 'failed') {
+      // зачем: причина отказа раньше терялась целиком — владелец видел только
+      // «Жемчуг не списан», и один и тот же класс бага ловили вслепую трижды
+      // (см. историю правок покупки наборов). Теперь причина уходит в лог.
+      DebugLogger.error(
+        'cardPackShardPurchase.ts:purchaseCardPackWithShards',
+        new Error(`card_pack_spend_failed:${purchase.reason}:${pack.id}`),
+        'error',
+      );
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Покупку не удалось сохранить. Жемчуг не списан.',

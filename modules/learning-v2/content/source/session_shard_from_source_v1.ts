@@ -24,6 +24,7 @@ import type { V2ActivityFamily } from '../../contracts/activity';
 import type { V2SessionLearningFunction } from '../../contracts/session';
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 import { lesson1SessionChoreographyV1 } from './lesson1_session_choreography_v1';
+import type { SessionKind } from './episode_01_session_map_v1';
 import { hashCanonicalBody } from '../../policies/decision_registry';
 
 const HEX64_RE = /^[0-9a-f]{64}$/;
@@ -150,6 +151,46 @@ export interface LocalizedIntroRunsSource {
   >;
 }
 
+export type SessionVocabularyContactStageV1 =
+  | 'recognize'
+  | 'retrieve_meaning'
+  | 'build_form';
+
+export interface SessionVocabularyDistractorSourceV1 {
+  readonly value: string;
+  readonly reasonCode: string;
+  readonly trapType:
+    | 'grammar'
+    | 'semantic_neighbor'
+    | 'collocation_pragmatics'
+    | 'phonetic'
+    | 'orthographic'
+    | 'l1_transfer'
+    | 'phrase_assembly';
+  readonly feedback: LocalizedSource;
+}
+
+export interface SessionVocabularyContactSourceV1 {
+  /** One manually authored, stage-specific explanation in every locale. */
+  readonly guidance: LocalizedSource;
+  readonly distractors: readonly SessionVocabularyDistractorSourceV1[];
+}
+
+/**
+ * Explicit word learning unit. It is deliberately separate from phrases so a
+ * standalone word can never be passed through the pipeline as a one-word
+ * phrase merely to satisfy a stage label.
+ */
+export interface SessionVocabularySourceV1 {
+  readonly id: string;
+  readonly target: string;
+  readonly meaning: LocalizedSource;
+  readonly features: readonly string[];
+  readonly contacts: Readonly<
+    Record<SessionVocabularyContactStageV1, SessionVocabularyContactSourceV1>
+  >;
+}
+
 function expandLocalizedIntroRuns(
   source: LocalizedIntroRunsSource,
 ): LearningV2IntroRunsByLocaleV1 {
@@ -261,14 +302,31 @@ export interface SessionSource {
   readonly requiredSessionOrdinal: number;
   readonly canDoOutcomeId: string;
   readonly generationInputFingerprint: string;
+  /**
+   * зачем (владелец, 2026-08-23): lesson1SessionChoreographyV1 раньше молча
+   * доставала SessionKind из английской EPISODE_01_SESSION_MAP_V1 по
+   * requiredSessionOrdinal — для двух курсов с одинаковыми номерами сессий
+   * (английская сессия 1 и испанская сессия 1) это давало ОДНУ и ту же
+   * хореографию независимо от targetLanguage. Необязательное поле: не
+   * задано — поведение для существующих английских файлов не меняется ни
+   * на бит; задано (испанский контур) — используется явно вместо гадания
+   * по номеру.
+   */
+  readonly sessionKindOverride?: SessionKind;
   readonly title: LocalizedSource;
   readonly summary: LocalizedSource;
   readonly learningGoal: LocalizedSource;
+  /** Manual source is complete and must never be replaced by the legacy catalog. */
+  readonly distractorAuthorship?: 'manual';
   readonly introPages: readonly [
     SessionSourceIntroPage,
     SessionSourceIntroPage,
     SessionSourceIntroPage,
   ];
+  /** New lexical units authored for this session before phrase application. */
+  readonly newVocabulary?: readonly SessionVocabularySourceV1[];
+  /** Required when an ordinary teaching session intentionally adds no lexicon. */
+  readonly newVocabularyExceptionReason?: string;
   /**
    * Ровно 15 фраз: слоты 1–3 привязаны к вопросам интро, 4–15 — практика.
    *
@@ -359,6 +417,41 @@ const FAMILY_INSTRUCTION: Readonly<Record<string, LocalizedSource>> =
       pl: 'Powtórz na głos i porównaj ze wzorem.',
     },
   });
+
+const VOCABULARY_STAGE_INSTRUCTION: Readonly<
+  Record<SessionVocabularyContactStageV1, LocalizedSource>
+> = Object.freeze({
+  recognize: {
+    ru: 'Послушайте и выберите услышанное слово.',
+    uk: 'Послухайте й виберіть почуте слово.',
+    es: 'Escucha y elige la palabra que oyes.',
+    'pt-BR': 'Ouça e escolha a palavra que você ouviu.',
+    vi: 'Hãy nghe và chọn từ bạn vừa nghe.',
+    id: 'Dengarkan dan pilih kata yang Anda dengar.',
+    tr: 'Dinleyin ve duyduğunuz sözcüğü seçin.',
+    pl: 'Posłuchaj i wybierz usłyszane słowo.',
+  },
+  retrieve_meaning: {
+    ru: 'Выберите точное значение слова.',
+    uk: 'Виберіть точне значення слова.',
+    es: 'Elige el significado exacto de la palabra.',
+    'pt-BR': 'Escolha o significado exato da palavra.',
+    vi: 'Hãy chọn đúng nghĩa của từ.',
+    id: 'Pilih arti kata yang tepat.',
+    tr: 'Sözcüğün tam anlamını seçin.',
+    pl: 'Wybierz dokładne znaczenie słowa.',
+  },
+  build_form: {
+    ru: 'Выберите точную письменную форму.',
+    uk: 'Виберіть точну письмову форму.',
+    es: 'Elige la forma escrita exacta.',
+    'pt-BR': 'Escolha a forma escrita exata.',
+    vi: 'Hãy chọn đúng dạng viết.',
+    id: 'Pilih bentuk tulisan yang tepat.',
+    tr: 'Doğru yazılı biçimi seçin.',
+    pl: 'Wybierz poprawną formę zapisu.',
+  },
+});
 
 /**
  * Keeps the learned phrase visible once and only once in positive feedback.
@@ -526,10 +619,16 @@ export function buildSessionShardFromSource(
   // зачем 15 (владелец, 2026-08-17): контракт пакета требует 14–18 заданий в
   // профиле standard. 12 фраз давали ровно 12 заданий (3 вопроса интро + 9
   // карточек) — публикация падала. 15 фраз дают 15 заданий, середина диапазона.
-  if (source.phrases.length !== SESSION_PHRASE_COUNT_V1)
+  const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0;
+  if (!hasExplicitVocabulary && source.phrases.length !== SESSION_PHRASE_COUNT_V1)
     throw new Error(
       `session_source_requires_exactly_${SESSION_PHRASE_COUNT_V1}_phrases`,
     );
+  if (
+    hasExplicitVocabulary &&
+    (source.phrases.length < 1 || source.phrases.length > SESSION_PHRASE_COUNT_V1)
+  )
+    throw new Error('session_word_first_source_phrase_inventory_invalid');
   const episodeId = `episode-${pad(source.episodeOrdinal)}`;
   const sessionOrdinal = source.requiredSessionOrdinal;
   const generationInputFingerprint = normalizedGenerationInputFingerprint(
@@ -537,7 +636,12 @@ export function buildSessionShardFromSource(
     sessionOrdinal,
   );
   const sessionTemplateId = `${episodeId}:session-${pad(sessionOrdinal)}`;
-  const choreography = lesson1SessionChoreographyV1(sessionOrdinal);
+  const choreography = lesson1SessionChoreographyV1(
+    sessionOrdinal,
+    source.sessionKindOverride,
+    source.newVocabulary?.length ?? 0,
+    source.phrases.length,
+  );
 
   const introPages = source.introPages.map((page, index) => {
       const ordinal = (index + 1) as 1 | 2 | 3;
@@ -582,21 +686,54 @@ export function buildSessionShardFromSource(
 
   const cards = choreography.steps.map((step, index) => {
     const slot = index + 1;
-    const phrase = source.phrases[step.sourcePhraseIndex];
-    if (!phrase) throw new Error('session_source_choreography_phrase_missing');
     const family = step.family;
     const contentItemId = `content-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}`;
-    const targetText = phrase.english;
-    const meaningFor = (locale: LearningV2InterfaceLocale): string =>
-      phrase.localizedDetails?.[locale]?.meaning ??
-      (locale === 'ru'
-        ? phrase.russian
-        : `${UNTRANSLATED_MARKER}${phrase.russian}`);
+    const vocabularyStage = step.learningStage === 'recognize' ||
+      step.learningStage === 'retrieve_meaning' ||
+      step.learningStage === 'build_form'
+      ? step.learningStage
+      : null;
+    const vocabulary = step.targetKind === 'vocabulary'
+      ? source.newVocabulary?.[step.sourceVocabularyIndex ?? -1]
+      : undefined;
+    if (step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage))
+      throw new Error('session_source_choreography_vocabulary_missing');
+    const phrase = step.targetKind === 'phrase'
+      ? source.phrases[step.sourcePhraseIndex ?? -1]
+      : undefined;
+    if (step.targetKind === 'phrase' && !phrase)
+      throw new Error('session_source_choreography_phrase_missing');
+    const vocabularyContact = vocabulary && vocabularyStage
+      ? vocabulary.contacts[vocabularyStage]
+      : undefined;
+    const targetText = vocabulary?.target ?? phrase!.english;
+    const intentSourceId = vocabulary?.id ?? phrase!.id;
+    // зачем locale === 'es' читает 'en' (владелец, 2026-08-23): 'es' —
+    // историческая обязательная локаль объяснения английского курса. Когда
+    // targetLanguage сам испанский, 'es' объяснением не является вообще —
+    // курс объясняет себя через 'en'. Подставлять сюда UNTRANSLATED_MARKER
+    // было бы дефектом по правилу LESSON_DESIGN_RULES (любой
+    // [[NEEDS_TRANSLATION]] — ненаписанная сессия), а подставлять русский
+    // текст — обманом читателя, будто это испанское объяснение. Владелец
+    // распорядился заменить 'es' на полноценное значение 'en' для курсов,
+    // где 'es' не используется как локаль объяснения.
+    const expandedVocabularyMeaning = vocabulary
+      ? expandLocalized(vocabulary.meaning)
+      : null;
+    const meaningFor = (locale: LearningV2InterfaceLocale): string => {
+      if (expandedVocabularyMeaning) return expandedVocabularyMeaning[locale];
+      return phrase!.localizedDetails?.[locale]?.meaning ??
+        (locale === 'es'
+          ? (phrase!.localizedDetails?.en?.meaning ?? `${UNTRANSLATED_MARKER}${phrase!.russian}`)
+          : locale === 'ru'
+            ? phrase!.russian
+            : `${UNTRANSLATED_MARKER}${phrase!.russian}`);
+    };
     const contentItem = {
       schemaVersion: 'v2-content-item.v1' as const,
       contentItemId,
       episodeId,
-      intentId: `${phrase.id}:contact-${pad(slot)}`,
+      intentId: `${intentSourceId}:contact-${pad(slot)}`,
       target: {
         locale: source.targetLanguage,
         text: targetText,
@@ -621,18 +758,60 @@ export function buildSessionShardFromSource(
       acceptedAnswers: [targetText],
       // зачем: дистракторы из источника становятся отклонёнными ответами с причиной —
       // рантайм объясняет ошибку, а не просто красит красным.
-      rejectedAnswers: phrase.words.flatMap((word) =>
-        word.distractors.map((entry) => ({
-          value: entry.value,
-          reasonCode: entry.reasonCode,
-        })),
-      ),
-      linguisticFeatures: phrase.features,
+      rejectedAnswers: vocabularyContact
+        ? vocabularyContact.distractors.map((entry) => ({
+            value: entry.value,
+            // The task selector needs the tested correct form in position 2.
+            // Keep the author's stable suffix so audits can still identify the
+            // exact misconception rather than collapsing every trap by type.
+            reasonCode: `${entry.trapType}:${targetText}:${entry.value}:${entry.reasonCode}`,
+          }))
+        : phrase!.words.flatMap((word) =>
+            word.distractors.map((entry) => ({
+              value: entry.value,
+              reasonCode: entry.reasonCode,
+            })),
+          ),
+      linguisticFeatures: vocabulary?.features ?? phrase!.features,
       pronunciationTargets: [],
       prerequisiteContentItemIds: [],
       objectiveIds: [source.canDoOutcomeId],
       compatibleFamilies: [family],
     };
+    const learnerCopy = vocabularyContact && vocabularyStage && expandedVocabularyMeaning
+      ? (() => {
+          const guidance = expandLocalized(vocabularyContact.guidance);
+          const feedback = vocabularyContact.distractors.map((entry) => ({
+            value: entry.value,
+            byLocale: expandLocalized(entry.feedback),
+          }));
+          const localized = (
+            select: (locale: LearningV2InterfaceLocale) => string,
+          ): LearningV2Localized<string> => Object.fromEntries(
+            LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, select(locale)]),
+          ) as LearningV2Localized<string>;
+          return {
+            instructionByLocale: expandLocalized(
+              VOCABULARY_STAGE_INSTRUCTION[vocabularyStage],
+            ),
+            hintByLocale: guidance,
+            successMessageByLocale: localized((locale) =>
+              learningV2SingleTargetSuccessV1(targetText, guidance[locale]),
+            ),
+            retryMessageByLocale: localized((locale) =>
+              feedback[0]?.byLocale[locale] ?? guidance[locale],
+            ),
+            errorExplanationByLocale: localized((locale) =>
+              feedback
+                .map((entry) => `${entry.value} — ${entry.byLocale[locale]}`)
+                .join(' '),
+            ),
+            accessibilityLabelByLocale: localized(
+              (locale) => `${targetText}. ${expandedVocabularyMeaning[locale]}.`,
+            ),
+          };
+        })()
+      : cardCopy(phrase!, family);
     return {
       cardId: `card-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}`,
       taskSlot: slot,
@@ -646,7 +825,7 @@ export function buildSessionShardFromSource(
       introQuestionId:
         slot <= 3 ? intro.pages[slot - 1].question.questionId : null,
       contentItem,
-      ...cardCopy(phrase, family),
+      ...learnerCopy,
       audioScript: AUDIO_FAMILIES.has(family)
         ? {
             contentItemId,

@@ -1,6 +1,12 @@
 import type { SessionSource } from './session_shard_from_source_v1';
-import { ES_EPISODE_01_SESSION_01_INTRO } from './es_episode_01_session_01_intro_v1';
+import {
+  ES_EPISODE_01_SESSION_01_WORD_FIRST_GOAL,
+  ES_EPISODE_01_SESSION_01_WORD_FIRST_INTRO,
+  ES_EPISODE_01_SESSION_01_WORD_FIRST_SUMMARY,
+  ES_EPISODE_01_SESSION_01_WORD_FIRST_TITLE,
+} from './es_episode_01_session_01_intro_word_first_v1';
 import { ES_EPISODE_01_SESSION_01_PHRASES } from './es_episode_01_session_01_phrases_v1';
+import { ES_EPISODE_01_SESSION_01_VOCABULARY_V1 } from './es_episode_01_session_01_vocabulary_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 1 «Это легко» —
@@ -14,9 +20,14 @@ import { ES_EPISODE_01_SESSION_01_PHRASES } from './es_episode_01_session_01_phr
  * независимым. Английский курс использует 'learning-v2-en-v1'/'en' и о
  * существовании этого файла не знает.
  *
- * Тип сессии — `phrases` (позиция 1 в главе, «новое» по ритму главы из
- * docs/v2/LESSON_DESIGN_RULES.ru.md правило 8). Слоты 1-3 привязаны к
- * вопросам интро, 4-15 — практика.
+ * зачем word-first, а не phrases (владелец, 2026-08-24, "разблокировать все
+ * сессии и переписать их с самого начала... каждое новое слово должно быть
+ * всегда перед этим быть точки соприкосновения со словом"): копирует паттерн,
+ * который параллельная английская сессия реализовала первой для сессии 1
+ * (I/am/here/ready). Здесь слова — es, soy, fácil, verdad: каждое проходит
+ * recognize → retrieve_meaning → build_form (одиночное слово на экране, без
+ * пробела) до того, как встретится во фразе. Фразы применения — Es fácil и
+ * Es verdad, обе уже входят в утверждённый список ключевых фраз урока 1.
  */
 export const ES_EPISODE_01_SESSION_01_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -24,40 +35,24 @@ export const ES_EPISODE_01_SESSION_01_SOURCE: SessionSource = Object.freeze({
   episodeOrdinal: 1,
   requiredSessionOrdinal: 1,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
-  generationInputFingerprint: 'authored-es-e01-s01-v2',
-  title: {
-    ru: 'Это легко',
-    uk: 'Це легко',
-    es: 'Es fácil',
-    en: 'It is easy',
-    'pt-BR': 'É fácil',
-    vi: 'Điều này dễ',
-    id: 'Ini mudah',
-    tr: 'Bu kolay',
-    pl: 'To jest łatwe',
-  },
-  summary: {
-    ru: 'Одно слово открывает любую оценку — легко, правда, важно.',
-    uk: 'Одне слово відкриває будь-яку оцінку — легко, правда, важливо.',
-    es: 'Una sola palabra abre cualquier juicio — fácil, verdad, importante.',
-    en: 'One word opens any verdict — easy, true, important.',
-    'pt-BR': 'Uma palavra abre qualquer veredito — fácil, verdade, importante.',
-    vi: 'Một từ mở đầu mọi nhận định — dễ, đúng, quan trọng.',
-    id: 'Satu kata membuka penilaian apa pun — mudah, benar, penting.',
-    tr: 'Tek kelime her yargıyı açar — kolay, doğru, önemli.',
-    pl: 'Jedno słowo otwiera każdy osąd — łatwe, prawda, ważne.',
-  },
-  learningGoal: {
-    ru: 'Оценить что-то или кого-то, согласиться и возразить.',
-    uk: 'Оцінити щось або когось, погодитися і заперечити.',
-    es: 'Evaluar algo o a alguien, estar de acuerdo o no.',
-    en: 'Evaluate something or someone, agree and disagree.',
-    'pt-BR': 'Avaliar algo ou alguém, concordar e discordar.',
-    vi: 'Đánh giá điều gì đó hoặc ai đó, đồng ý và không đồng ý.',
-    id: 'Menilai sesuatu atau seseorang, setuju dan tidak setuju.',
-    tr: 'Bir şeyi veya birini değerlendirmek, katılmak ve katılmamak.',
-    pl: 'Ocenić coś lub kogoś, zgodzić się i nie zgodzić.',
-  },
-  introPages: ES_EPISODE_01_SESSION_01_INTRO,
-  phrases: ES_EPISODE_01_SESSION_01_PHRASES,
+  generationInputFingerprint: 'owner-word-first-rewrite-es-e01-s01-v1',
+  // зачем: без этого choreography молча берёт kind из английской карты по
+  // тому же номеру сессии (session_shard_from_source_v1.ts, sessionKindOverride).
+  sessionKindOverride: 'words_then_phrases',
+  title: ES_EPISODE_01_SESSION_01_WORD_FIRST_TITLE,
+  summary: ES_EPISODE_01_SESSION_01_WORD_FIRST_SUMMARY,
+  learningGoal: ES_EPISODE_01_SESSION_01_WORD_FIRST_GOAL,
+  introPages: ES_EPISODE_01_SESSION_01_WORD_FIRST_INTRO,
+  newVocabulary: ES_EPISODE_01_SESSION_01_VOCABULARY_V1,
+  // зачем именно эти две фразы (не срез с начала массива, как у английского
+  // эталона): единственные две фразы урока 1, состоящие ТОЛЬКО из четырёх
+  // изученных здесь слов (es, soy, fácil, verdad) плюс отрицания/связок, уже
+  // знакомых до этой сессии. Остальные 13 фраз вводят слова вне словаря этой
+  // сессии (rápido, difícil, así, igual...) — им нельзя быть в apply_in_phrase
+  // здесь, это и есть нарушение, которое чинит весь этот файл.
+  phrases: Object.freeze(
+    ES_EPISODE_01_SESSION_01_PHRASES.filter(
+      (phrase) => phrase.id === 'es-e01-s01-es-facil' || phrase.id === 'es-e01-s01-es-verdad',
+    ),
+  ),
 });

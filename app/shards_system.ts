@@ -27,6 +27,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import { SHARD_SPEND_OP_LEDGER_KEY } from '../constants/customization_storage_keys';
 import {
@@ -67,7 +68,6 @@ export type ShardSource =
   | 'lessons_5_perfect'     // +3 5 уроков подряд без ошибок
   | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
-  | 'trainer_perfect_session' // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
   | 'survey_completed';     // +1 Пройден опрос (сервер submitShardSurvey, идемпотентно).
                             // Сумма фиксирована на сервере (SURVEY_SHARD_AMOUNT = 1);
                             // rewardShards из конфига опроса на выплату НЕ влияет.
@@ -101,7 +101,6 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   lessons_5_perfect: 0,
   level_gift: 0,
   preposition_drill_perfect: 0,
-  trainer_perfect_session: 0,
   survey_completed: 1,
 };
 
@@ -1249,7 +1248,11 @@ export async function commitShardCompositeOperation(
     && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
   );
   if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
-  const recovered = await recoverPreparedClientShardOperation();
+  // зачем: покупка должна проверять ТОТ ЖЕ токен, что захватил вызывающий.
+  // Без проброса восстановление и коммит брали свежий captureAccountGeneration(),
+  // и покупка падала в stale_account_generation на ровном месте — начисление
+  // (commitShardCreditOperation) токен пробрасывает, списание было забыто.
+  const recovered = await recoverPreparedClientShardOperation({ accountToken: operationToken });
   if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
   if (recovered?.status === 'failed') return recovered;
   const operationId = input.operationId?.trim() || newShardOpId();
@@ -1262,7 +1265,7 @@ export async function commitShardCompositeOperation(
     grant: input.grant,
     localWrites: input.localWrites,
     semanticResult: true,
-  });
+  }, { accountToken: operationToken });
   if (
     result.status !== 'applied'
     && result.status !== 'already-applied'
@@ -1311,20 +1314,27 @@ export type CommitShardCreditOperationInput = Readonly<{
   grant: ClientShardGrant;
   localWrites?: readonly ClientShardLocalWrite[];
   showEarnModal?: boolean;
+  /** Bound caller identity for a reward already inside an account critical section. */
+  accountToken?: AccountGenerationToken;
+  /** Internal re-entrant capability from withAccountTransitionLock. */
+  accountTransitionLockLease?: AccountTransitionLockLease;
 }>;
 
 /** Client-authoritative ordinary reward. External events use another ledger. */
 export async function commitShardCreditOperation(
   input: CommitShardCreditOperationInput,
 ): Promise<CommitClientShardOperationResult> {
-  const operationToken = captureAccountGeneration();
+  const operationToken = input.accountToken ?? captureAccountGeneration();
   const operationOwnerStableId = operationToken.stableId;
   const isOperationCurrent = (): boolean => Boolean(
     operationOwnerStableId
     && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
   );
   if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
-  const recovered = await recoverPreparedClientShardOperation();
+  const recovered = await recoverPreparedClientShardOperation({
+    accountToken: operationToken,
+    accountTransitionLockLease: input.accountTransitionLockLease,
+  });
   if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
   if (recovered?.status === 'failed') return recovered;
   const result = await commitClientShardOperation({
@@ -1336,6 +1346,9 @@ export async function commitShardCreditOperation(
     grant: input.grant,
     localWrites: input.localWrites ?? [],
     semanticResult: true,
+  }, {
+    accountToken: operationToken,
+    accountTransitionLockLease: input.accountTransitionLockLease,
   });
   if (result.status !== 'applied' && result.status !== 'already-applied') return result;
   return withAccountTransitionLock(async () => {
@@ -1369,7 +1382,7 @@ export async function commitShardCreditOperation(
       .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
       .catch(() => {});
     return result;
-  });
+  }, input.accountTransitionLockLease);
 }
 
 export type ConfirmedExternalShardEventInput = Readonly<{

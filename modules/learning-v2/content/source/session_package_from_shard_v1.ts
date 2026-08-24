@@ -30,7 +30,10 @@ import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evalua
 // Metro падал с "Unable to resolve module node:crypto". sha256Utf8 — тот же
 // хеш, но чистый JS, уже используется остальными файлами этого модуля.
 import { sha256Utf8 } from '../../policies/decision_registry';
-import { lesson1SessionChoreographyV1 } from './lesson1_session_choreography_v1';
+import {
+  inferLesson1WordFirstVocabularyCountV1,
+  lesson1SessionChoreographyV1,
+} from './lesson1_session_choreography_v1';
 import {
   LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2InterfaceLocale,
@@ -49,6 +52,26 @@ import {
   episode01Session14FormFeedbackV1,
   episode01Session14ListenFeedbackV1,
 } from './episode_01_session_14_task_feedback_v1';
+import {
+  episode01Session15ChoiceFeedbackV1,
+  episode01Session15ChoiceTargetsV1,
+  episode01Session15FormFeedbackV1,
+} from './episode_01_session_15_task_feedback_v1';
+import {
+  episode01Session16TaskFeedbackV1,
+  episode01Session16TaskSelectionV1,
+} from './episode_01_session_16_task_feedback_v1';
+import {
+  episode01Session17ChoiceTargetsV1,
+  episode01Session17TaskFeedbackV1,
+  episode01Session17TaskSelectionV1,
+} from './episode_01_session_17_task_feedback_v1';
+import {
+  episode01Session18ChoiceTargetsV1,
+  episode01Session18TaskFeedbackV1,
+  episode01Session18TaskSelectionV1,
+} from './episode_01_session_18_task_feedback_v1';
+import { esEpisode01Session01FeedbackByTarget } from './es_episode_01_session_01_task_feedback_v1';
 
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
@@ -177,14 +200,18 @@ function singleChoiceOptions(
   card: LearningV2GeneratedSessionCardV1,
   correctText: string,
   distractors: readonly Readonly<{ text: string; feedback: string }>[],
+  caseSensitive = false,
 ): Pick<LearnerTaskProjection, 'responseOptions' | 'feedbackByResponseId'> {
+  const choiceKey = (value: string): string => {
+    const exact = value.normalize('NFKC').trim();
+    return caseSensitive ? exact : exact.toLowerCase();
+  };
   const candidates = [
     { text: correctText, feedback: null },
     ...distractors,
   ].filter((candidate, index, all) =>
     all.findIndex(
-      (item) => item.text.normalize('NFKC').trim().toLowerCase() ===
-        candidate.text.normalize('NFKC').trim().toLowerCase(),
+      (item) => choiceKey(item.text) === choiceKey(candidate.text),
     ) === index,
   ).slice(0, 3);
   if (candidates.length !== 3) {
@@ -218,6 +245,46 @@ const AUTHORED_FEEDBACK_LOCALES = [
 ] as const;
 type AuthoredFeedbackLocale = (typeof AUTHORED_FEEDBACK_LOCALES)[number];
 
+function sameLanguageEnglishFeedback(
+  card: LearningV2GeneratedSessionCardV1,
+  wrongValue: string,
+  correctValue: string,
+): string {
+  const target = card.contentItem.target.text;
+  const correct = normalizedToken(correctValue);
+  if (['at', 'in', 'on', 'to'].includes(correct)) {
+    return `“${wrongValue}” points to a different relationship with the place. In “${target}”, the exact location phrase uses “${correctValue}”.`;
+  }
+  if (['am', 'is', 'are', "i'm", "you're"].includes(correct)) {
+    return `“${wrongValue}” does not match the subject in “${target}”. This sentence needs the form “${correctValue}”.`;
+  }
+  return `“${wrongValue}” changes the form or meaning of “${target}”. The word required in this position is “${correctValue}”.`;
+}
+
+function embeddedAuthoredDistractorFeedback(
+  card: LearningV2GeneratedSessionCardV1,
+  wrongValue: string,
+  locale: LearningV2InterfaceLocale,
+): string | undefined {
+  const rejected = card.contentItem.rejectedAnswers.find(
+    (answer) => normalizedToken(answer.value) === normalizedToken(wrongValue),
+  );
+  if (!rejected) return undefined;
+  const copy = (card.errorExplanationByLocale as Record<string, string>)[locale] ?? '';
+  const marker = `${rejected.value} — `;
+  const copyKey = copy.toLocaleLowerCase();
+  const start = copyKey.indexOf(marker.toLocaleLowerCase());
+  if (start < 0) return undefined;
+  const bodyStart = start + marker.length;
+  const next = card.contentItem.rejectedAnswers
+    .filter((answer) => answer !== rejected)
+    .map((answer) => copyKey.indexOf(` ${answer.value} — `.toLocaleLowerCase(), bodyStart))
+    .filter((index) => index >= 0)
+    .sort((left, right) => left - right)[0];
+  const feedback = copy.slice(bodyStart, next ?? copy.length).trim();
+  return feedback || undefined;
+}
+
 function authoredDistractorFeedback(
   card: LearningV2GeneratedSessionCardV1,
   wrongValue: string,
@@ -234,6 +301,18 @@ function authoredDistractorFeedback(
   )
     ? (locale as AuthoredFeedbackLocale)
     : null;
+  const session17 = authoredLocale && card.cardId.includes('episode-01-s17-')
+    ? episode01Session17TaskFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session17) return session17;
+  const session18 = authoredLocale && card.cardId.includes('episode-01-s18-')
+    ? episode01Session18TaskFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session18) return session18;
+  const session16 = authoredLocale && card.cardId.includes('episode-01-s16-')
+    ? episode01Session16TaskFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session16) return session16;
   const session12 = authoredLocale && card.cardId.includes('episode-01-s12-')
     ? episode01Session12FormFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
     : undefined;
@@ -246,11 +325,36 @@ function authoredDistractorFeedback(
     ? episode01Session14FormFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
     : undefined;
   if (session14) return session14;
+  const session15 = authoredLocale && card.cardId.includes('episode-01-s15-')
+    ? episode01Session15FormFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session15) return session15;
+  // зачем target.locale === 'es', а не card.cardId (владелец, 2026-08-23,
+  // правило 8-bis СТАРТ ES.md): episodeId испанского и английского курса
+  // совпадает буквально (оба episode-01, episodeOrdinal тоже 1) — cardId
+  // испанской и английской сессии 1 идентичны по строке. target.locale
+  // приходит из targetLanguage самого SessionSource и однозначно различает
+  // курсы без риска коллизии. Разбор написан вручную на 9 языках, лежит в
+  // ES_SESSION_01_LOCALIZED_DETAILS — тот же паттерн, что сессии 12-15,
+  // только источник другой (испанский контур, не английский).
+  const esSession01 = card.contentItem.target.locale === 'es'
+    ? esEpisode01Session01FeedbackByTarget(locale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (esSession01) return esSession01;
+  const embeddedAuthored = embeddedAuthoredDistractorFeedback(
+    card,
+    wrongValue,
+    locale,
+  );
+  if (embeddedAuthored) return embeddedAuthored;
   const rejected = card.contentItem.rejectedAnswers.find(
     (answer) => normalizedToken(answer.value) === normalizedToken(wrongValue),
   );
   const [, storedCorrect = ''] = rejected?.reasonCode.split(':') ?? [];
   const correctToken = correctHint ?? storedCorrect;
+  if (locale === 'en' && correctToken) {
+    return sameLanguageEnglishFeedback(card, wrongValue, correctToken);
+  }
   const authored = correctToken
       ? lesson1DistractorChoicesV2(
         locale,
@@ -284,12 +388,22 @@ function semanticChoiceFeedback(
   )
     ? (locale as AuthoredFeedbackLocale)
     : null;
+  const session17 = authoredLocale && correctCard.cardId.includes('episode-01-s17-')
+    ? episode01Session17TaskFeedbackV1(authoredLocale, correct, wrong)
+    : undefined;
+  if (session17) return session17;
+  const session18 = authoredLocale && correctCard.cardId.includes('episode-01-s18-')
+    ? episode01Session18TaskFeedbackV1(authoredLocale, correct, wrong)
+    : undefined;
+  if (session18) return session18;
   const session12 = authoredLocale ? episode01Session12ListenFeedbackV1(authoredLocale, correct, wrong) : undefined;
   if (session12) return session12;
   const session13 = authoredLocale ? episode01Session13ListenFeedbackV1(authoredLocale, correct, wrong) : undefined;
   if (session13) return session13;
   const session14 = authoredLocale ? episode01Session14ListenFeedbackV1(authoredLocale, correct, wrong) : undefined;
   if (session14) return session14;
+  const session15 = authoredLocale ? episode01Session15ChoiceFeedbackV1(authoredLocale, correct, wrong) : undefined;
+  if (session15) return session15;
   const copy: Record<LearningV2InterfaceLocale, string> = {
     ru: `«${wrong}» значит «${wrongMeaning}». Здесь нужно «${correct}» — «${correctMeaning}»: тема близкая, но изменившееся слово даёт другой ответ.`,
     uk: `«${wrong}» означає «${wrongMeaning}». Тут потрібно «${correct}» — «${correctMeaning}»: тема близька, але змінене слово дає іншу відповідь.`,
@@ -306,18 +420,34 @@ function semanticChoiceFeedback(
   return copy[locale];
 }
 
+function taskDistractorSelection(card: LearningV2GeneratedSessionCardV1) {
+  const session17 = card.cardId.includes('episode-01-s17-')
+    ? episode01Session17TaskSelectionV1(card.family, card.contentItem.target.text)
+    : undefined;
+  if (session17) return session17;
+  const session18 = card.cardId.includes('episode-01-s18-')
+    ? episode01Session18TaskSelectionV1(card.family, card.contentItem.target.text)
+    : undefined;
+  if (session18) return session18;
+  const session16 = card.cardId.includes('episode-01-s16-')
+    ? episode01Session16TaskSelectionV1(card.family, card.contentItem.target.text)
+    : undefined;
+  if (session16) return session16;
+  return selectTaskDistractors({
+    family: card.family,
+    target: card.contentItem.target.text,
+    rejectedAnswers: card.contentItem.rejectedAnswers,
+    sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
+  });
+}
+
 function grammarGap(card: LearningV2GeneratedSessionCardV1): Readonly<{
   prompt: string;
   correct: string;
   distractors: readonly string[];
 }> {
   const tokens = targetTokens(card);
-  const selection = selectTaskDistractors({
-    family: card.family,
-    target: card.contentItem.target.text,
-    rejectedAnswers: card.contentItem.rejectedAnswers,
-    sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
-  });
+  const selection = taskDistractorSelection(card);
   const resolvedIndex = tokens.findIndex(
     (token) => normalizedToken(token) === normalizedToken(selection.correct),
   );
@@ -341,16 +471,34 @@ function learnerTaskProjection(
   const instruction =
     (card.instructionByLocale as Record<string, string>)[interfaceLocale] ?? '';
   const meaning = learnerMeaning(card, interfaceLocale);
-  const otherCards = practiceCards.filter((candidate) => candidate.cardId !== card.cardId);
+  const vocabularyContact =
+    targetTokens(card).length === 1 &&
+    card.contentItem.rejectedAnswers.length >= 2 &&
+    card.contentItem.rejectedAnswers.every(
+      (answer) => answer.reasonCode.split(':').length >= 4,
+    );
+  const desiredChoiceTargets = card.cardId.includes('episode-01-s17-')
+    ? episode01Session17ChoiceTargetsV1(card.contentItem.target.text)
+    : card.cardId.includes('episode-01-s18-')
+      ? episode01Session18ChoiceTargetsV1(card.contentItem.target.text)
+    : card.cardId.includes('episode-01-s15-')
+      ? episode01Session15ChoiceTargetsV1(card.contentItem.target.text)
+      : undefined;
+  const otherCards = desiredChoiceTargets
+    ? desiredChoiceTargets.map((target) => {
+        const candidate = practiceCards.find(
+          (entry) => entry.contentItem.target.text === target,
+        );
+        if (!candidate) {
+          throw new Error(`authored_choice_target_missing:${card.cardId}:${target}`);
+        }
+        return candidate;
+      })
+    : practiceCards.filter((candidate) => candidate.cardId !== card.cardId);
 
   if (card.family === 'phrase_builder' || card.family === 'listen_build_dictation') {
     const tiles = targetTiles(card);
-    const selection = selectTaskDistractors({
-      family: card.family,
-      target: card.contentItem.target.text,
-      rejectedAnswers: card.contentItem.rejectedAnswers,
-      sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
-    });
+    const selection = taskDistractorSelection(card);
     const trapValues = selection.distractors
       .map((item) => item.sourceValue)
       .slice(0, Math.min(2, Math.max(0, 8 - tiles.length)));
@@ -376,6 +524,44 @@ function learnerTaskProjection(
     };
   }
   if (card.family === 'listen_choose') {
+    if (vocabularyContact) {
+      const choices = singleChoiceOptions(
+        card,
+        card.contentItem.target.text,
+        card.contentItem.rejectedAnswers.map((answer) => ({
+          text: answer.value,
+          feedback: authoredDistractorFeedback(
+            card,
+            answer.value,
+            locale,
+            card.contentItem.target.text,
+          ),
+        })),
+        true,
+      );
+      return { prompt: instruction, ...choices };
+    }
+    if (
+      card.cardId.includes('episode-01-s02-') ||
+      card.cardId.includes('episode-01-s03-') ||
+      card.cardId.includes('episode-01-s04-')
+    ) {
+      const selection = taskDistractorSelection(card);
+      const choices = singleChoiceOptions(
+        card,
+        card.contentItem.target.text,
+        selection.distractors.map((item) => ({
+          text: item.value,
+          feedback: authoredDistractorFeedback(
+            card,
+            item.sourceValue,
+            locale,
+            selection.correct,
+          ),
+        })),
+      );
+      return { prompt: instruction, ...choices };
+    }
     const choices = singleChoiceOptions(
       card,
       meaning,
@@ -390,6 +576,23 @@ function learnerTaskProjection(
     };
   }
   if (card.family === 'context_gap_grammar') {
+    if (vocabularyContact) {
+      const choices = singleChoiceOptions(
+        card,
+        card.contentItem.target.text,
+        card.contentItem.rejectedAnswers.map((answer) => ({
+          text: answer.value,
+          feedback: authoredDistractorFeedback(
+            card,
+            answer.value,
+            locale,
+            card.contentItem.target.text,
+          ),
+        })),
+        true,
+      );
+      return { prompt: `${instruction} ${meaning}`, ...choices };
+    }
     const gap = grammarGap(card);
     const choices = singleChoiceOptions(
       card,
@@ -419,12 +622,7 @@ function learnerTaskProjection(
     };
   }
   if (card.family === 'speed_match') {
-    const selection = selectTaskDistractors({
-      family: card.family,
-      target: card.contentItem.target.text,
-      rejectedAnswers: card.contentItem.rejectedAnswers,
-      sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
-    });
+    const selection = taskDistractorSelection(card);
     const choices = singleChoiceOptions(
       card,
       card.contentItem.target.text,
@@ -537,15 +735,24 @@ export function buildSessionChildBodiesFromShard(
 
   // Практика начинается со слота 4: слоты 1–3 заняты вопросами интро.
   const practiceCards = shard.cards.filter((card) => card.taskSlot >= 4);
+  const choiceCards = shard.requiredSessionOrdinal === 15
+    ? shard.cards
+    : practiceCards;
+  const vocabularyCount = inferLesson1WordFirstVocabularyCountV1(
+    shard.cards.map((card) => card.contentItem.target.text),
+  );
   const choreography = lesson1SessionChoreographyV1(
     shard.requiredSessionOrdinal,
+    undefined,
+    vocabularyCount,
+    1,
   );
   const learner = materializeLearningV2CourseSessionLearnerChildV1({
     courseSessionId,
     targetLanguage: shard.targetLanguage,
     interactionProfile: choreography.interactionProfile,
     interactions: practiceCards.map((card, index) => {
-      const task = learnerTaskProjection(card, practiceCards, interfaceLocale);
+      const task = learnerTaskProjection(card, choiceCards, interfaceLocale);
       return {
         interactionId: card.cardId,
         ordinal: index + 4,
@@ -673,7 +880,7 @@ export function buildSessionChildBodiesFromShard(
   const responseFeedbackByCardId = new Map(
     practiceCards.map((card) => [
       card.cardId,
-      localizedResponseFeedback(card, practiceCards),
+      localizedResponseFeedback(card, choiceCards),
     ]),
   );
   // зачем interactionId переопределён для интро-карточек (инцидент

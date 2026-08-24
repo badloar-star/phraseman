@@ -1,15 +1,27 @@
 import React, { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
+import { runeAmount } from '../../constants/runes';
 import type { GroupMember } from '../../app/league_engine';
 import { leaguePublicName } from '../../app/league_public_name';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
 export type LeagueLeaderboardZone = 'promotion' | 'safe' | 'relegation';
+
+/**
+ * Ассет руны для строки таблицы.
+ *
+ * зачем: та же картинка, что в шапке Главной (HomeRuneBalance) и в карточке
+ * «Цель лиги». Путь дублируется вместо импорта компонента сознательно —
+ * HomeRuneBalance тянет собственную вёрстку с тап-целью и форматом числа,
+ * а здесь нужен только глиф рядом с уже отформатированным числом.
+ */
+const LEAGUE_ROW_RUNE_ASSET = require('../../assets/images/level-spin-rewards/stars_10.webp');
 
 interface LeagueLeaderboardRowProps {
   member: GroupMember;
@@ -34,7 +46,10 @@ function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, ren
   const reduceMotion = useReduceMotion();
   const place = index + 1;
   const displayName = leaguePublicName(member.name, member.uid ?? member.botId ?? member.name);
-  const label = `${place}. ${displayName}, ${member.points} XP${member.isMe ? `, ${triLang(lang, { ru: 'это вы', uk: 'це ви', es: 'eres tú', 'pt-BR': 'é você', vi: 'là bạn', id: 'ini kamu', tr: 'bu sensin', pl: 'to ty' })}` : ''}`;
+  // зачем: скринридер обязан назвать ту же валюту, что видит зрячий — раньше
+  // читал «12 XP» при иконке руны. runeAmount склоняет слово («1 руна», а не
+  // «1 рун») общей таблицей форм, своей здесь не заводим.
+  const label = `${place}. ${displayName}, ${runeAmount(lang, member.points)}${member.isMe ? `, ${triLang(lang, { ru: 'это вы', uk: 'це ви', es: 'eres tú', 'pt-BR': 'é você', vi: 'là bạn', id: 'ini kamu', tr: 'bu sensin', pl: 'to ty' })}` : ''}`;
 
   return (
     <Reanimated.View entering={reduceMotion || index >= 8 ? undefined : FadeInUp.delay(index * 50).duration(240)}>
@@ -63,7 +78,23 @@ function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, ren
         </View>
         <View style={styles.score}>
           <Text style={[styles.points, { color: palette.text }]}>{member.points.toLocaleString()}</Text>
-          <Text style={[styles.xp, { color: palette.muted }]}>XP</Text>
+          {/* зачем (владелец, 2026-08-24): «руны а не ХП, исправь хп на ассет».
+              В лиге копятся руны, а строка подписывала число буквами «XP» —
+              игрок видел одну валюту в шапке и другое слово в таблице. Ассет
+              берём ТОТ ЖЕ, что рисует HomeRuneBalance в шапке Главной и в цели
+              лиги: одна картинка на все экраны, иначе руна разойдётся сама с
+              собой. Число остаётся текстом — его читает скринридер. */}
+          {/* guard-ok: декоративный ассет — валюту строки озвучивает
+              accessibilityLabel всей строки («12 рун»), дублировать нельзя. */}
+          <Image
+            testID="league-row-rune-asset"
+            source={LEAGUE_ROW_RUNE_ASSET}
+            style={styles.runeIcon}
+            contentFit="contain"
+            accessible={false}
+            accessibilityElementsHidden
+            importantForAccessibility="no"
+          />
         </View>
       </Pressable>
     </Reanimated.View>
@@ -85,7 +116,9 @@ const styles = StyleSheet.create({
   metaRow: { minHeight: 18, marginTop: 3, flexDirection: 'row', alignItems: 'center', gap: 8 },
   meta: { fontSize: 11, fontWeight: '700' },
   boost: { fontSize: 11, fontWeight: '900' },
-  score: { alignItems: 'flex-end' },
-  points: { fontSize: 16, fontWeight: '900' },
-  xp: { fontSize: 10, fontWeight: '800', marginTop: 1 },
+  // Число и глиф встают в строку: подпись под числом раскачивала бы высоту
+  // строки, а 68px минимума здесь держат аватар и две строки имени.
+  score: { flexDirection: 'row', alignItems: 'center', gap: 3 },
+  points: { fontSize: 16, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  runeIcon: { width: 22, height: 22 },
 });

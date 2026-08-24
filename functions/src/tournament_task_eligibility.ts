@@ -78,14 +78,18 @@ export async function loadEligibleTournamentCellCounts(
   collection: FirebaseFirestore.CollectionReference,
   options?: { readonly forceFresh?: boolean },
 ): Promise<Record<string, number>> {
+  const forceFresh = options?.forceFresh === true;
   const now = Date.now();
-  if (options?.forceFresh === true) cellCountsCache = null;
+  if (forceFresh) cellCountsCache = null;
   const cached = cellCountsCache;
-  if (cached && now - cached.at < CELL_COUNTS_TTL_MS) return cached.value;
+  if (!forceFresh && cached && now - cached.at < CELL_COUNTS_TTL_MS) return cached.value;
 
   // зачем: параллельные вызовы внутри одного запроса (статистика зовёт
   // загрузчик дважды) не должны выкачивать пул дважды — второй ждёт первого.
-  if (cellCountsInFlight) return cellCountsInFlight;
+  // forceFresh намеренно НЕ переиспользует чужой запрос: тот мог стартовать до
+  // интересующей нас записи и вернул бы как раз те данные, ради обхода которых
+  // просили свежие.
+  if (!forceFresh && cellCountsInFlight) return cellCountsInFlight;
 
   cellCountsInFlight = (async () => {
     try {

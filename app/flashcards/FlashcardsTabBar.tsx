@@ -539,7 +539,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     (target: { pathname: string; params: Record<string, string> }) => {
       close();
       markNextNavigationAsReplace();
-      router.replace({ pathname: target.pathname, params: target.params } as any);
+      router.replace({ pathname: target.pathname, params: target.params } as never);
     },
     [close, router],
   );
@@ -556,7 +556,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
           plus_access: hasPremiumAccess,
         });
         if (!hasPremiumAccess) {
-          router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+          router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as never);
           return;
         }
         setMistakeSheetVisible(true);
@@ -575,7 +575,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       void hapticTap();
       close();
       const target = buildFcCreateRoute(option);
-      router.push({ pathname: target.pathname, params: target.params } as any);
+      router.push({ pathname: target.pathname, params: target.params } as never);
     },
     [close, router],
   );
@@ -644,7 +644,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       if (!option || deckDataMode !== fcTrainOptionPresetMode(option)) return;
       setPickerOption(null);
       const target = buildFcTrainRoute(option, preset, { fromPicker: true });
-      router.push({ pathname: target.pathname, params: target.params } as any);
+      router.push({ pathname: target.pathname, params: target.params } as never);
     },
     [deckDataMode, pickerOption, router],
   );
@@ -1028,7 +1028,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
           router.push({
             pathname: '/mistake_practice_session',
             params: { length },
-          } as any);
+          } as never);
         }}
       />
     </View>

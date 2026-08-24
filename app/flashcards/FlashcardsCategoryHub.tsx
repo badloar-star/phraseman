@@ -513,7 +513,7 @@ export default function FlashcardsCategoryHub({
     }
     // `from` нужен, чтобы «назад» из набора вернул РОВНО в каталог сообщества
     // одним POP_TO, без остановки на промежуточных экранах (см. fc_pack_open_back_contract).
-    router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, from: 'community' } } as any);
+    router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, from: 'community' } } as never);
   };
 
   /**
@@ -550,7 +550,7 @@ export default function FlashcardsCategoryHub({
       router.push({
         pathname: '/flashcards_collection',
         params: { pack: pack.id, preview: '1' },
-      } as any);
+      } as never);
     },
     [router, studyTarget],
   );
@@ -626,7 +626,7 @@ export default function FlashcardsCategoryHub({
     if (png) return <Image source={png} style={{ width: size, height: size }} contentFit="contain" />;
     return (
       <Ionicons
-        name={(packCategoryIonIcon(pack.category) || 'albums-outline') as any}
+        name={(packCategoryIonIcon(pack.category) || 'albums-outline') as keyof typeof Ionicons.glyphMap}
         size={size}
         color={pack.isCommunityUgc ? t.accent : t.textPrimary}
       />
@@ -688,7 +688,7 @@ export default function FlashcardsCategoryHub({
           <TouchableOpacity
             testID={`flashcards-hub-pack-edit-${pack.id}`}
             onPress={() =>
-              router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
+              router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as never)
             }
             style={{
               position: 'absolute',
@@ -765,7 +765,7 @@ export default function FlashcardsCategoryHub({
             : undefined
         }
         onEdit={() =>
-          router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
+          router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as never)
         }
       />
     );
@@ -861,7 +861,7 @@ export default function FlashcardsCategoryHub({
           {hasUnfinishedPackDraft ? (
             <TouchableOpacity
               testID="flashcards-packs-continue-draft"
-              onPress={() => router.push('/community_pack_create' as any)}
+              onPress={() => router.push('/community_pack_create' as never)}
               style={{
                 width: hubBarW,
                 marginBottom: 12,

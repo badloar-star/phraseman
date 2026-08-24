@@ -71,7 +71,9 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { useFeatureAccess } from '../components/PremiumContext';
+import { creatorPaywallContext, shouldGateCreator } from './creator_access';
 import BouncyScrollView from '../components/BouncyScrollView';
 
 type Row = {
@@ -286,6 +288,25 @@ export default function CommunityPackCreateScreen() {
   const communityPacksTargetEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const canUse = CLOUD_SYNC_ENABLED && !IS_EXPO_GO && isCommunityPacksCloudEnabled() && communityPacksTargetEnabled;
   const isEditMode = !!editPackId;
+
+  // зачем (владелец 2026-08-24): СОЗДАНИЕ своего набора — функция подписки
+  // (Plus/Pro/Max). Как и в редакторе карточек, гейт стоит на самом экране,
+  // а не на кнопках — входов в него несколько (хаб категорий, «Мои наборы»).
+  // Редактирование СВОЕГО существующего набора не гейтится: уже созданное не
+  // отбираем (решение владельца), поэтому условие завязано на isEditMode.
+  const hasPremiumAccess = useFeatureAccess('flashcards');
+  const creatorLocked = !isEditMode && shouldGateCreator(hasPremiumAccess);
+  const creatorRedirectedRef = useRef(false);
+  useEffect(() => {
+    if (!creatorLocked || creatorRedirectedRef.current) return;
+    creatorRedirectedRef.current = true;
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/premium_modal',
+      params: { context: creatorPaywallContext('pack'), source: 'pack_create' },
+    } as never);
+  }, [creatorLocked, router]);
+
   /** Create mode: false until local draft load/clear finished (avoid overwriting AsyncStorage). */
   const [draftHydrated, setDraftHydrated] = useState(() => isEditMode || !canUse);
 
@@ -760,6 +781,9 @@ export default function CommunityPackCreateScreen() {
 
   const onSubmit = useCallback(() => {
     if (!payload) return;
+    // Вторая линия защиты: сохранить новый набор без подписки нельзя, даже если
+    // редирект на пейвол почему-то не отработал.
+    if (creatorLocked) return;
     const err = localSaveError(payload);
     if (err) {
       emitAppEvent(
@@ -833,7 +857,7 @@ export default function CommunityPackCreateScreen() {
         setBusy(false);
       }
     })();
-  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, publishToCommunityInBackground, router]);
+  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, publishToCommunityInBackground, router, creatorLocked]);
 
   const bumpCardBack = useCallback((delta: number) => {
     setCardBackIdx((i) => {

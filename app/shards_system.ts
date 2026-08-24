@@ -50,6 +50,7 @@ export type ShardSpendReason =
   | 'league_boost'   // -X Персональный буст лиги
   | 'custom_avatar'
   | 'avatar_aura'
+  | 'theme_purchase'  // -200 Тема оформления за жемчуг (подписка её не открывает)
   | 'custom_avatar_restyle'
   | 'profile_card_upgrade'
   | 'season_pass_purchase'

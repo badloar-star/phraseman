@@ -24,6 +24,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useFeatureAccess } from '../components/PremiumContext';
+import { creatorPaywallContext, shouldGateCreator } from './creator_access';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { animateNextLayoutTransition } from './smooth_layout';
@@ -110,6 +112,27 @@ export default function FlashcardsCardEditorScreen() {
   const params = useLocalSearchParams<{ id?: string; create?: string; cat?: string }>();
   const editId = useMemo(() => firstParam(params.id), [params.id]);
   const isEdit = editId != null;
+
+  // зачем (владелец 2026-08-24): СОЗДАНИЕ своей карточки — функция подписки
+  // (Plus/Pro/Max). Гейт стоит здесь, а не на кнопках: в редактор ведут
+  // несколько входов (кнопка коллекции, легаси-диплинк ?create=1), и проверка
+  // в одном месте не оставляет обходного пути.
+  // РЕДАКТИРОВАНИЕ существующей карточки НЕ гейтится — уже созданное не
+  // отбираем (прямое решение владельца), поэтому условие завязано на isEdit.
+  const hasPremiumAccess = useFeatureAccess('flashcards');
+  const creatorLocked = !isEdit && shouldGateCreator(hasPremiumAccess);
+  const creatorRedirectedRef = useRef(false);
+  useEffect(() => {
+    if (!creatorLocked || creatorRedirectedRef.current) return;
+    creatorRedirectedRef.current = true;
+    // replace, а не push: закрыв пейвол, человек возвращается в коллекцию, а не
+    // в пустой редактор, который он всё равно не может использовать.
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/premium_modal',
+      params: { context: creatorPaywallContext('card'), source: 'card_editor_create' },
+    } as never);
+  }, [creatorLocked, router]);
 
   const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const s = STR[strLang];
@@ -315,12 +338,16 @@ export default function FlashcardsCardEditorScreen() {
   const trOk =
     trVal.length > 0 ||
     (isEdit && prefillTrRef.current.trim().length === 0 && hasOtherLangTranslation);
-  const canSave = enOk && trOk && !saving && !loadingCard;
+  // creatorLocked в условии — вторая линия защиты: даже если редирект на пейвол
+  // почему-то не сработал, создать карточку без подписки нельзя.
+  const canSave = enOk && trOk && !saving && !loadingCard && !creatorLocked;
 
   // ── Сохранение (языковой инвариант — В ТОЧНОСТИ как handleSave) ────────────
   const handleSave = useCallback(async () => {
     // Пустой/пробельный EN не сохраняется (баг 9: onSubmitEditing обходил disabled-кнопку)
-    if (!draftEN.trim() || saving || loadingCard) return;
+    // creatorLocked здесь по той же причине: onSubmitEditing с клавиатуры уже
+    // однажды обходил disabled — создание без подписки должно быть закрыто и тут.
+    if (!draftEN.trim() || saving || loadingCard || creatorLocked) return;
     if (!(trVal.length > 0 || (isEdit && prefillTrRef.current.trim().length === 0 && hasOtherLangTranslation))) return;
     Keyboard.dismiss();
     setSaving(true);
@@ -381,6 +408,7 @@ export default function FlashcardsCardEditorScreen() {
     lang,
     leaveEditorAfterSave,
     loadingCard,
+    creatorLocked,
     saving,
   ]);
 
@@ -435,7 +463,10 @@ export default function FlashcardsCardEditorScreen() {
               * поля появлялись скачком. Держим ту же раскладку — два подписанных
               * поля (высота = paddingV 16*2 + строка) и кнопку сохранения.
               */}
-            {loadingCard ? (
+            {/* зачем: при закрытом создании показываем ТОТ ЖЕ скелет, что при
+                загрузке — форма не мелькает за кадр до ухода на пейвол, и
+                геометрия первого кадра совпадает с обычной (layout stability). */}
+            {loadingCard || creatorLocked ? (
               <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 24, gap: 20 }}>
                 <View style={{ gap: 8 }}>
                   <Text style={fieldLabelStyle}>{s.editFront}</Text>

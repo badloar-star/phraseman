@@ -17,7 +17,9 @@ describe('ThemeContext default theme', () => {
     expect(source).toContain("from '../app/theme_access_policy';");
     expect(source).not.toContain('const PREMIUM_ONLY_THEMES');
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'midnight'[^}]*\}/);
-    expect(settingsThemesSource).toContain('isThemePlusOnly(candidate)');
+    // Замок кандидата считает единая политика (isThemeAvailable), а «Олива»
+    // осталась единственной подписочной темой — см. theme_access_policy.test.ts.
+    expect(settingsThemesSource).toContain('!isThemeAvailable(candidate)');
     expect(source).toContain('const valid = isSelectableThemeMode(migrated);');
     expect(source).toContain("'minimalDark', 'candyBlue'");
     expect(settingsThemesSource).not.toMatch(/\{\s*mode: '(?:minimalDark|candyBlue)'/);
@@ -57,10 +59,30 @@ describe('ThemeContext default theme', () => {
     ]);
   });
 
+  // зачем (2026-08-24): смысл правила не изменился — «дедушка» Полночи не теряет
+  // тему НИКОГДА. Изменилась реализация: три раздельных замка заменены единой
+  // политикой isThemeUnlockedFor, поэтому тест сторожит те же гарантии по новым
+  // строкам, а не по старым. Проверки специально идут по всем трём путям:
+  // загрузка сохранённой темы, применение темы и перебор тем.
   it('preserves every Midnight grandfather exception', () => {
     expect(source).toContain("const grandfathered = pairs[2]?.[1] === '1' || themeStr === 'midnight';");
-    expect(source).toContain("const premiumLocked = isThemePlusOnly(t) && !(t === 'midnight' && grandfathered);");
+    // 1) применение: явная ветка «дедушки» до любых замков
     expect(source).toContain("if (m === 'midnight' && midnightGrandfathered) {");
-    expect(source).toContain("if (mode === 'midnight' && midnightGrandfathered) return true;");
+    // 2) единая политика получает «дедушкины» темы, включая midnight
+    expect(source).toContain('grandfatheredModes: midnightGrandfathered');
+    expect(source).toMatch(/grandfatheredModes:[\s\S]{0,120}'midnight'/);
+    // 3) перебор тем (toggle) идёт через ту же политику, а не через свой замок
+    expect(source).toContain('const cycle = CYCLE.filter((mode) => isThemeAvailable(mode));');
+    // Загрузка сохранённой темы тоже решается политикой, а не локальным premiumLocked.
+    expect(source).toContain('const unlocked = isThemeUnlockedFor(t, {');
+    expect(source).not.toContain('const premiumLocked =');
+  });
+
+  // зачем: новые правила полок (владелец 2026-08-24) — покупка за жемчуг не
+  // должна «утечь» в подписку ни в одном из путей контекста.
+  it('never unlocks a shard-purchasable theme by subscription', () => {
+    expect(source).toContain("if (!DEV_THEME_UNLOCKS && isThemeShardPurchasable(m)) return;");
+    expect(source).toContain('markThemePurchased');
+    expect(source).toContain('ownedThemeModes');
   });
 });

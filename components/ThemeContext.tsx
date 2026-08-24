@@ -13,8 +13,16 @@ import { useFeatureAccess } from './PremiumContext';
 import {
   isSelectableThemeMode,
   isThemePlusOnly,
+  isThemeShardPurchasable,
+  isThemeUnlockedFor,
   SELECTABLE_THEME_MODES,
 } from '../app/theme_access_policy';
+import {
+  addOwnedThemeMode,
+  grandfatherActiveThemeIfNeeded,
+  loadGrandfatheredThemeModes,
+  loadOwnedThemeModes,
+} from '../app/theme_ownership_store';
 import { onAppEvent } from '../app/events';
 import { hasLeagueGoldThemeReward } from '../app/services/league_chest_rewards';
 import { setOskolokThemeMode } from '../app/oskolok';
@@ -164,6 +172,19 @@ interface ThemeCtx {
   isGoldThemeUnlocked: boolean;
   /** «Дедушка»: юзер жил на бесплатной «Полночи» до её ухода в премиум — тема остаётся ему доступной. */
   isMidnightGrandfathered: boolean;
+  /** Темы, купленные за жемчуг (2026-08-24). Подписка их не открывает. */
+  ownedThemeModes: ReadonlySet<ThemeMode>;
+  /**
+   * Единственная проверка «тема доступна этому человеку» для всех экранов:
+   * учитывает бесплатные полки, подписку («Олива»), покупку за жемчуг,
+   * награду лиги («Золото») и сохранённые темы «дедушек».
+   */
+  isThemeAvailable: (mode: ThemeMode) => boolean;
+  /**
+   * Отметить тему купленной. Мгновенно (optimistic) открывает её в UI,
+   * запись на диск догоняет фоном — покупка не ждёт ни диска, ни сети.
+   */
+  markThemePurchased: (mode: ThemeMode) => void;
   toggle:       () => void;  // cycles available app themes
   setThemeMode: (m: ThemeMode) => void;
   fontSize:     FontSize;
@@ -194,6 +215,9 @@ const ThemeContext = createContext<ThemeCtx>({
   setPreviewThemeMode: () => {},
   isGoldThemeUnlocked: false,
   isMidnightGrandfathered: false,
+  ownedThemeModes: new Set<ThemeMode>(),
+  isThemeAvailable: () => false,
+  markThemePurchased: () => {},
   toggle:       () => {},
   setThemeMode: () => {},
   fontSize:     'medium',
@@ -253,6 +277,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
   const [premiumThemeAccess, setPremiumThemeAccess] = useState(false);
   const [midnightGrandfathered, setMidnightGrandfathered] = useState(false);
+  // зачем: купленные за жемчуг темы и темы «дедушек» — два независимых списка.
+  // Держим их в состоянии (а не читаем с диска на каждый рендер), чтобы сетка
+  // тем и любой экран решали «открыто/закрыто» синхронно, без асинхронной
+  // задержки и без мигания замка на первом кадре.
+  const [ownedThemes, setOwnedThemes] = useState<ReadonlySet<string>>(() => new Set<string>());
+  const [grandfatheredThemes, setGrandfatheredThemes] = useState<ReadonlySet<string>>(() => new Set<string>());
 
   useEffect(() => {
     // зачем: осколки-виджет красится эффективной темой — примерка честная везде,
@@ -274,14 +304,25 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem(MIDNIGHT_GRANDFATHER_KEY, '1');
       }
       // Тот же смысл, что PremiumProvider: не опираться только на raw premium_active (RC/грейс/оверрайды).
-      const [isPremium, hasGoldReward] = await Promise.all([
+      const [isPremium, hasGoldReward, owned] = await Promise.all([
         getVerifiedPremiumStatus(),
         hasLeagueGoldThemeReward(),
+        loadOwnedThemeModes(),
       ]);
+      // зачем (2026-08-24): темы «Полночь/Янтарь/Сияние/Лайм/Форест» уехали из
+      // подписки в покупку за жемчуг. Тот, кто СЕЙЧАС сидит на такой теме и имел
+      // на неё право, теряет её на ровном месте — владелец это запретил. Разово
+      // закрепляем ровно активную тему за «дедушкой», до применения замков ниже.
+      const grandfatheredList = await grandfatherActiveThemeIfNeeded(themeStr, {
+        hadAccess: isPremium || liveThemeAccess || grandfathered,
+      });
       if (cancelled) return;
       setPremiumThemeAccess(isPremium);
       setGoldThemeUnlocked(hasGoldReward);
       setMidnightGrandfathered(grandfathered);
+      setOwnedThemes(new Set(owned));
+      // «Полночь» из старого флага остаётся дедушкиной даже без записи в новом списке.
+      setGrandfatheredThemes(new Set(grandfathered ? [...grandfatheredList, 'midnight'] : grandfatheredList));
       if (selectionEpoch !== themeSelectionEpochRef.current) {
         if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
         return;
@@ -303,10 +344,17 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const valid = isSelectableThemeMode(migrated);
       if (valid) {
         const t = migrated as ThemeMode;
-        const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
-        // «Полночь» у «дедушки» премиум-замком не считается.
-        const premiumLocked = isThemePlusOnly(t) && !(t === 'midnight' && grandfathered);
-        if ((!isPremium && !liveThemeAccess && !DEV_THEME_UNLOCKS && premiumLocked) || goldLocked) {
+        // зачем: одна проверка вместо трёх раздельных замков — покупка за жемчуг,
+        // подписка, награда и «дедушка» теперь решаются в theme_access_policy,
+        // и экран настроек с этим эффектом больше не могут разойтись.
+        const unlocked = isThemeUnlockedFor(t, {
+          hasPremium: isPremium || liveThemeAccess,
+          ownedThemeModes: owned,
+          isGoldUnlocked: hasGoldReward,
+          grandfatheredModes: grandfathered ? [...grandfatheredList, 'midnight'] : grandfatheredList,
+          devUnlockAll: DEV_THEME_UNLOCKS,
+        });
+        if (!unlocked) {
           setThemeModeState(DEFAULT_THEME_MODE);
           void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
         } else {
@@ -349,6 +397,14 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       commitThemeMode(m);
       return;
     }
+    // зачем: купленная за жемчуг тема применяется без единой сетевой проверки —
+    // покупка уже оплачена, а подписка её не открывает и не закрывает.
+    if (ownedThemes.has(m) || grandfatheredThemes.has(m)) {
+      commitThemeMode(m);
+      return;
+    }
+    // Тему, которая продаётся за жемчуг, подписка НЕ открывает: без покупки — отказ.
+    if (!DEV_THEME_UNLOCKS && isThemeShardPurchasable(m)) return;
     if (!DEV_THEME_UNLOCKS && isThemePlusOnly(m) && !premiumThemeAccess && !liveThemeAccess) {
       void getVerifiedPremiumStatus()
         .then((isPremium) => {
@@ -362,22 +418,44 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     commitThemeMode(m);
-  }, [commitThemeMode, goldThemeUnlocked, premiumThemeAccess, liveThemeAccess, midnightGrandfathered]);
+  }, [commitThemeMode, goldThemeUnlocked, premiumThemeAccess, liveThemeAccess, midnightGrandfathered, ownedThemes, grandfatheredThemes]);
+
+  /**
+   * Доступность темы для любого экрана. Та же политика, что применяется при
+   * загрузке и в setThemeMode — расхождение «плитка открыта, а применить нельзя»
+   * стало невозможным по построению.
+   */
+  const isThemeAvailable = useCallback((mode: ThemeMode) => isThemeUnlockedFor(mode, {
+    hasPremium: premiumThemeAccess || liveThemeAccess,
+    ownedThemeModes: ownedThemes,
+    isGoldUnlocked: goldThemeUnlocked,
+    grandfatheredModes: midnightGrandfathered
+      ? new Set([...grandfatheredThemes, 'midnight'])
+      : grandfatheredThemes,
+    devUnlockAll: DEV_THEME_UNLOCKS,
+  }), [premiumThemeAccess, liveThemeAccess, ownedThemes, goldThemeUnlocked, grandfatheredThemes, midnightGrandfathered]);
+
+  /**
+   * Покупка темы: сначала мгновенно открываем её в интерфейсе, запись на диск
+   * идёт фоном. Так замок исчезает в тот же кадр, что и списание жемчуга —
+   * пользователь не ждёт диск. Повторный вызов безопасен (Set + идемпотентная запись).
+   */
+  const markThemePurchased = useCallback((mode: ThemeMode) => {
+    setOwnedThemes((prev) => (prev.has(mode) ? prev : new Set([...prev, mode])));
+    void addOwnedThemeMode(mode).catch(() => {
+      /* fail-soft: тема уже открыта в этой сессии, повтор запишется при след. покупке */
+    });
+  }, []);
 
   const toggle = useCallback(() => {
     setThemeModeState(m => {
-      const cycle = CYCLE.filter((mode) => {
-        if (mode === 'gold') return goldThemeUnlocked || DEV_THEME_UNLOCKS;
-        if (mode === 'midnight' && midnightGrandfathered) return true;
-        if (isThemePlusOnly(mode)) return premiumThemeAccess || liveThemeAccess || DEV_THEME_UNLOCKS;
-        return true;
-      });
+      const cycle = CYCLE.filter((mode) => isThemeAvailable(mode));
       const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? DEFAULT_THEME_MODE;
       themeSelectionEpochRef.current += 1;
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });
-  }, [goldThemeUnlocked, premiumThemeAccess, liveThemeAccess, midnightGrandfathered]);
+  }, [isThemeAvailable]);
 
   const setFontSize = useCallback((s: FontSize) => {
     setFontSizeState(s);
@@ -435,6 +513,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       setPreviewThemeMode,
       isGoldThemeUnlocked: goldThemeUnlocked,
       isMidnightGrandfathered: midnightGrandfathered,
+      ownedThemeModes: ownedThemes as ReadonlySet<ThemeMode>,
+      isThemeAvailable,
+      markThemePurchased,
       toggle,
       setThemeMode,
       fontSize,
@@ -443,7 +524,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, effectiveThemeMode, themeMode, previewThemeMode, goldThemeUnlocked, midnightGrandfathered, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
+    [theme, isDark, statusBarLight, effectiveThemeMode, themeMode, previewThemeMode, goldThemeUnlocked, midnightGrandfathered, ownedThemes, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

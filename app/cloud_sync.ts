@@ -29,6 +29,11 @@ import {
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import {
+  GRANDFATHERED_THEMES_KEY,
+  OWNED_THEMES_KEY,
+  mergeOwnedThemesRestoreValue,
+} from './theme_ownership_merge';
 import { resumePendingShardDeltas } from './shards_system';
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
@@ -373,6 +378,11 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // «Вместе»: active_days_v1 мержится OR по датам между устройствами (см. функцию выше).
   active_days_v1: mergeActiveDaysRestoreValue,
   [ACHIEVEMENT_FOUNDATION_PROGRESS_KEY]: mergeFoundationProgressStorageValue,
+  // зачем: темы, купленные за жемчуг, и темы «дедушек» — списки, которые только
+  // растут. Перезапись облаком стёрла бы покупку, сделанную на другом устройстве
+  // (человек потерял бы 200 жемчужин), поэтому мержим объединением.
+  [OWNED_THEMES_KEY]: mergeOwnedThemesRestoreValue,
+  [GRANDFATHERED_THEMES_KEY]: mergeOwnedThemesRestoreValue,
 };
 
 export const SYNC_KEYS = [
@@ -539,6 +549,12 @@ export const SYNC_KEYS = [
   // ── UI / поведение ─────────────────────────────────────────────────────────
   // app_theme / app_font_size / haptics_tap — только локально на устройстве (см. wipeLocalAccountData KEEP).
   // Синк с облаком ломал тему: при restore облако перетирало выбор пользователя старым progress.
+  // зачем: САМА выбранная тема остаётся локальной (см. выше), но СПИСОК КУПЛЕННЫХ
+  // за жемчуг тем синхронизируется — это потраченная валюта, терять её при
+  // переустановке/переезде нельзя. Конфликта, который сломал `app_theme`, здесь
+  // быть не может: список только растёт и мержится объединением.
+  OWNED_THEMES_KEY,
+  GRANDFATHERED_THEMES_KEY,
   'user_settings',
   /** Last diagnostic result: date, score and recommended level. */
   'diagnostic_last',

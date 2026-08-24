@@ -36,6 +36,7 @@ import {
   hasBundledCompatibilityPlanContentTheoryEntry,
 } from './plan_content_readiness';
 import { ensurePlanContentPackReady } from './plan_content_remote_facade';
+import { prefetchPlanContentDayWindow } from './plan_content_prefetch';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
@@ -148,6 +149,7 @@ function ProgressRing({ pct, chrome, lang }: { pct: number; chrome: PlanChrome; 
   useEffect(() => {
     void ensurePlanContentPackReady().catch(() => { /* facade swallows; bundled fallback handles it */ });
   }, []);
+
 
   useEffect(() => {
     Animated.timing(animPct, {
@@ -364,6 +366,22 @@ function PersonalPlanScreen() {
       mistakePracticeReadyCount: 0,
     };
   });
+  // зачем (расследование 2026-08-24): экран плана грел ТОЛЬКО манифест пака, а
+  // сами день-строки не качал никто, кроме холодного старта (idle+4.5 с) — до
+  // него пользователь не доживал, и вход в день всегда падал на bundled
+  // (`pack_not_cached`). Здесь, зная текущий день, греем окно «текущий ±2»
+  // сразу при открытии плана: к моменту тапа по дню его json уже на диске.
+  // Идемпотентно и бесплатно на повторе: скачанные строки не перекачиваются.
+  const warmedDayWindowRef = useRef<string | null>(null);
+  const activePlanId = loaded?.state.planId ?? null;
+  const activeDayIndex = loaded?.state.currentDayIndex ?? null;
+  useEffect(() => {
+    if (!activePlanId || !activeDayIndex) return;
+    const key = `${activePlanId}:${activeDayIndex}`;
+    if (warmedDayWindowRef.current === key) return;
+    warmedDayWindowRef.current = key;
+    void prefetchPlanContentDayWindow(activePlanId, activeDayIndex);
+  }, [activePlanId, activeDayIndex]);
   // Тихая ревалидация: подпись последнего закоммиченного `loaded`, чтобы на повторных
   // фокусах (useFocusEffect) не звать setLoaded/энтранс-анимацию, если пересчитанные
   // plan/runtime/snapshot структурно совпадают с уже отображаемыми — не мигать контентом.

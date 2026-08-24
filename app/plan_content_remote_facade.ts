@@ -64,7 +64,9 @@ export async function ensurePlanContentPackReady(): Promise<string | null> {
       ? ` errors=${result.errors.slice(0, 2).join('; ')}`
       : result.state === 'integrity_failed'
         ? ` detail=${result.detail}`
-        : '';
+        : result.state === 'index_download_failed'
+          ? ' detail=index.json не скачался (проверь idempotent/права записи)'
+          : '';
     // eslint-disable-next-line no-console -- dev-only приёмочный сигнал
     console.log(`[plan_pack] ensure → ${result.state} (${ms}ms)${detail}`);
   }
@@ -141,7 +143,15 @@ export async function fetchPlanContentDayForScreen(
  *   - Offline / remote disabled / no registration: bundled wins immediately
  *     because the bridge resolves synchronously-equivalent in those branches.
  */
-const SERVER_DEADLINE_MS = 150;
+// зачем (расследование 2026-08-24): замер живой цепочки Storage дал
+// manifest 654 мс + index 848 мс + day-row 597 мс ≈ 2100 мс на ХОЛОДНОМ кэше,
+// а дедлайн стоял 150 мс — сервер не мог выиграть гонку НИКОГДА при первом
+// заходе, и экран всегда рисовал bundled (`pack_not_cached`). 150 мс — это
+// бюджет ТЁПЛОГО пути (чтение с диска — миллисекунды), он и остаётся целью.
+// Порог поднят до 1200 мс: тёплый кэш по-прежнему отвечает мгновенно, а на
+// холодном мы даём серверу реальный шанс, не заставляя пользователя ждать
+// дольше секунды — дальше всё равно рисуется bundled и апгрейдится фоном.
+const SERVER_DEADLINE_MS = 1200;
 
 export type PlanContentScreenFetch = {
   initial: PlanContentDay | null;

@@ -65,6 +65,34 @@ describe('plan content prefetch + release pack contract', () => {
     expect(read('app/personal_plan_complete.tsx')).toContain('prefetchWholePlanContentInBackground(');
   });
 
+  it('скачивание пака идемпотентно — иначе повторная загрузка падает и врёт «нет сети»', () => {
+    // КОРЕНЬ бага Ф1 (2026-08-24): нативный downloadFileAsync на Android бросает
+    // DestinationAlreadyExistsException, если файл существует и не передан
+    // idempotent:true. Без флага index.json не перекачивался НИКОГДА, ошибка
+    // маскировалась под network_unavailable, и пак не собирался.
+    const loader = read('app/course_pack_remote_loader.ts');
+    expect(loader).toMatch(/File\.downloadFileAsync\(\s*url,\s*file,\s*\{\s*idempotent:\s*true\s*\}/);
+    // Провал индекса обязан быть отличим от провала манифеста.
+    expect(loader).toContain("'index_download_failed'");
+  });
+
+  it('дедлайн сервера соразмерен реальной цепочке Storage', () => {
+    // Замер живого Storage: manifest 654 + index 848 + row 597 ≈ 2100 мс.
+    // Дедлайн 150 мс не мог быть выигран НИКОГДА на холодном кэше.
+    const facade = read('app/plan_content_remote_facade.ts');
+    const match = facade.match(/const SERVER_DEADLINE_MS = (\d+);/);
+    expect(match).not.toBeNull();
+    expect(Number(match?.[1])).toBeGreaterThanOrEqual(1000);
+  });
+
+  it('экран плана греет окно дней, а не только манифест', () => {
+    // Без этого день-строки качались лишь на холодном старте (idle+4.5 с),
+    // до которого пользователь не доживал при обычной навигации.
+    const screen = read('app/personal_plan.tsx');
+    expect(screen).toContain('prefetchPlanContentDayWindow');
+    expect(screen).toContain('ensurePlanContentPackReady');
+  });
+
   it('bundled-фолбэк ЖИВ: 5 require в plan_content_registry до одобрения владельца', () => {
     // Финальный шаг Ф1 (выпил require, −19 МБ из бандла) делается ОТДЕЛЬНЫМ
     // коммитом ПОСЛЕ проверки на устройстве и одобрения владельца — тогда этот

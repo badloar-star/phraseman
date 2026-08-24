@@ -50,6 +50,10 @@ export type CoursePackRemoteLoadResult =
   | { state: 'ready'; cacheDirUri: string; manifest: CoursePackManifest }
   | { state: 'manifest_invalid'; errors: string[] }
   | { state: 'integrity_failed'; detail: string }
+  // зачем (расследование 2026-08-24): раньше провал манифеста и провал загрузки
+  // index.json давали ОДИН И ТОТ ЖЕ 'network_unavailable', и по логу нельзя было
+  // понять, что именно не доехало. Теперь у индекса своё состояние.
+  | { state: 'index_download_failed' }
   | { state: 'network_unavailable' };
 
 const inFlightLoads = new Map<string, Promise<CoursePackRemoteLoadResult>>();
@@ -128,7 +132,19 @@ async function fetchJson<T>(url: string, timeoutMs: number): Promise<T | null> {
 
 async function downloadToFile(url: string, file: File, timeoutMs: number): Promise<boolean> {
   try {
-    const downloaded = await withTimeout(File.downloadFileAsync(url, file), timeoutMs);
+    // зачем (расследование 2026-08-24, КОРЕНЬ ПРОБЛЕМЫ Ф1): нативный
+    // downloadFileAsync на Android бросает DestinationAlreadyExistsException,
+    // если файл уже существует и НЕ передан `idempotent: true`
+    // (expo-file-system FileSystemModule.kt: `if (options?.idempotent != true
+    // && destination.exists()) throw`). Без флага КАЖДАЯ повторная загрузка
+    // index.json падала в catch и возвращалась как `network_unavailable` —
+    // пак не собирался никогда, а лог врал про «нет сети». Флаг делает
+    // загрузку перезаписывающей, что нам и нужно: содержимое версионного
+    // объекта неизменяемо, а частичный/битый файл обязан быть перезаписан.
+    const downloaded = await withTimeout(
+      File.downloadFileAsync(url, file, { idempotent: true }),
+      timeoutMs,
+    );
     if (!downloaded) return false;
     return Boolean(downloaded.exists) && (downloaded.size ?? 0) >= MIN_BYTES;
   } catch {
@@ -196,7 +212,7 @@ async function loadAndCache(
   const indexFile = fileIn(dir, manifest.entryIndex);
   if (!indexFile) return { state: 'integrity_failed', detail: 'entry index path is unsafe' };
   const indexOk = await downloadToFile(rowUrl(manifest.entryIndex), indexFile, ROW_TIMEOUT_MS);
-  if (!indexOk) return { state: 'network_unavailable' };
+  if (!indexOk) return { state: 'index_download_failed' };
 
   // Verify the whole-pack integrity signal we have at runtime: the index byte size
   // is the cheapest cross-check before trusting individual rows. Per-row sha256 is

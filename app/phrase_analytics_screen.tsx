@@ -15,7 +15,7 @@ import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { useFocusEffect, useRouter, type Router } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -629,7 +629,6 @@ export default function PhraseAnalyticsScreen() {
                       <CategoryRow
                         key={stat.category}
                         stat={stat}
-                        router={router}
                       />
                     ))
                   )}

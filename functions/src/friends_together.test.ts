@@ -401,7 +401,11 @@ describe('friendsClaimWeeklyChest', () => {
     expect(result.multiplier).toBe(1);
     expect(result.rewards.stars).toBeGreaterThan(0);
     expect(result.starsGranted).toBe(result.rewards.stars);
-    expect(result.xpBoostMinutes).toBe(60);
+    // зачем: буст ×2 XP растёт по тирам (30/60/120 мин), а не «всегда 60».
+    expect(result.xpBoostMinutes).toBe(30);
+    // Тир I: прямой опыт есть, полной энергии ещё нет — она с тира II.
+    expect(result.xpGranted).toBe(500);
+    expect(result.energyRefilled).toBe(false);
     expect(result.streakShield).toBe(false);
     expect(result.aura).toBe(false);
   });

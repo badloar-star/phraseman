@@ -151,6 +151,7 @@ import {
 // «Вместе» (friends_together) — ядро уже построено и протестировано отдельно
 // (app/friends_together/*), здесь только UI-слой за флагом.
 import { useFriendsTogetherEnabled } from '../friends_together/together_config';
+import { applyChestRewardsLocally } from '../friends_together/chest_reward_apply';
 import {
   getFriendsTogetherSnapshot,
   readWeeklyChestClaimedWeekKey,
@@ -1246,7 +1247,7 @@ export default function FriendsTabScreen() {
   const [chestClaimedWeekKey, setChestClaimedWeekKey] = useState<string | null>(null);
   const [togetherSheetSession, setTogetherSheetSession] = useState<FriendSheetSession<FriendProfile> | null>(null);
   const [levelUpModal, setLevelUpModal] = useState<{ friendUid: string; level: number; starsGranted: number } | null>(null);
-  const [chestModal, setChestModal] = useState<{ tier: number; starsGranted: number; xpBoostMinutes: number; streakShield: boolean; aura: boolean } | null>(null);
+  const [chestModal, setChestModal] = useState<{ tier: number; starsGranted: number; xpBoostMinutes: number; xpGranted: number; energyRefilled: boolean; streakShield: boolean; aura: boolean } | null>(null);
   const [chestClaimBusy, setChestClaimBusy] = useState(false);
   const [friendEvents, setFriendEvents] = useState<FriendSocialEvent[]>([]);
   const [friendMarkerClockMs, setFriendMarkerClockMs] = useState(Date.now());
@@ -1456,10 +1457,15 @@ export default function FriendsTabScreen() {
       setDevBotsState(devResult.state);
       if (!devResult.opened) return;
       const tier = weeklyChestModel.tier;
+      // зачем: DEV-витрина обязана показывать РОВНО серверную шкалу
+      // (functions/src/friends_together.ts → CHEST_RUNES_BY_TIER и соседи),
+      // иначе владелец проверяет глазами одну награду, а игрок получает другую.
       setChestModal({
         tier,
-        starsGranted: tier >= 3 ? 135 : tier >= 2 ? 35 : 10,
-        xpBoostMinutes: 60,
+        starsGranted: tier >= 3 ? 175 : tier >= 2 ? 50 : 15,
+        xpBoostMinutes: tier >= 3 ? 120 : tier >= 2 ? 60 : 30,
+        xpGranted: tier >= 3 ? 2000 : tier >= 2 ? 1000 : 500,
+        energyRefilled: tier >= 2,
         streakShield: tier >= 2,
         aura: tier >= 3,
       });
@@ -1474,8 +1480,20 @@ export default function FriendsTabScreen() {
           tier: weeklyChestModel.tier,
           starsGranted: result.rewards.starsGranted,
           xpBoostMinutes: result.rewards.xpBoostMinutes,
+          xpGranted: result.rewards.xpGranted,
+          energyRefilled: result.rewards.energyRefilled,
           streakShield: result.rewards.streakShield,
           aura: result.rewards.aura,
+        });
+        // зачем: опыт и энергия живут на устройстве — сервер их только
+        // объявляет. Применяем локально и не ждём: модалка уже открыта,
+        // шкала и счётчик догоняют в том же кадре (optimistic).
+        void applyChestRewardsLocally({
+          weekKey: weeklyChestModel.weekKey,
+          xpGranted: result.rewards.xpGranted,
+          energyRefilled: result.rewards.energyRefilled,
+          userName: myProfile?.name ?? '',
+          lang,
         });
       } else {
         emitAppEvent('action_toast', {
@@ -1493,7 +1511,7 @@ export default function FriendsTabScreen() {
     } finally {
       setChestClaimBusy(false);
     }
-  }, [weeklyChestModel, chestClaimBusy, devBotsState.chestScenarioTier]);
+  }, [weeklyChestModel, chestClaimBusy, devBotsState.chestScenarioTier, myProfile?.name, lang]);
 
   const NUDGE_ERROR_TEXT: Record<NudgeErrorReason, { ru: string; uk: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> = {
     disabled: { ru: 'Друг отключил зовы', uk: 'Друг вимкнув кличі', es: 'Tu amigo desactivó las llamadas', ptBr: 'Seu amigo desativou os chamados', vi: 'Bạn đã tắt lời gọi', id: 'Teman menonaktifkan panggilan', tr: 'Arkadaşın çağrıları kapattı', pl: 'Znajomy wyłączył wołania' },
@@ -3745,6 +3763,8 @@ export default function FriendsTabScreen() {
           tier={chestModal.tier}
           starsGranted={chestModal.starsGranted}
           xpBoostMinutes={chestModal.xpBoostMinutes}
+          xpGranted={chestModal.xpGranted}
+          energyRefilled={chestModal.energyRefilled}
           streakShield={chestModal.streakShield}
           aura={chestModal.aura}
           onClaim={() => setChestModal(null)}

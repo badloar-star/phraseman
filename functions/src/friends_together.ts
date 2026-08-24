@@ -322,7 +322,9 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
         ok: true,
         alreadyClaimed: true,
         starsGranted: starsAwarded,
-        xpBoostMinutes: drops.some((drop) => drop.kind === 'xp_boost') ? 60 : 0,
+        xpBoostMinutes: xpBoostMinutesFromDrops(drops, now),
+        xpGranted: sumXpGrantDrops(drops),
+        energyRefilled: drops.some((drop) => drop.kind === 'energy_refill'),
         streakShield: drops.some((drop) => drop.kind === 'streak_shield'),
         aura: drops.some((drop) => drop.kind === 'avatar_aura'),
         stars: currentStars.balance,
@@ -452,7 +454,11 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
       starsSeq,
       starsGranted: starsAwarded,
       stars: starsBalance ?? undefined,
-      xpBoostMinutes: drops.some((drop) => drop.kind === 'xp_boost') ? 60 : 0,
+      // зачем: минуты буста больше не константа 60 — они растут по тирам,
+      // поэтому берём фактический срок из самого дропа, а не из литерала.
+      xpBoostMinutes: xpBoostMinutesFromDrops(drops, now),
+      xpGranted: sumXpGrantDrops(drops),
+      energyRefilled: drops.some((drop) => drop.kind === 'energy_refill'),
       streakShield: drops.some((drop) => drop.kind === 'streak_shield'),
       aura: drops.some((drop) => drop.kind === 'avatar_aura'),
       ...claimData,
@@ -507,7 +513,54 @@ function activeDaysCountForWeek(active: ActiveDaysState | null, weekKey: string)
   return count;
 }
 
-/** §0/§1.2: I — ×2 XP 60 мин + 10★ · II — + щит цепи + 25★ · III — + 100★ + аура из каталога сундука лиги. */
+/**
+ * Награда сундука недели (шкала владельца, 2026-08-24).
+ *
+ * | Тир | Руны | Опыт | ×2 XP | Энергия | Щит | Аура |
+ * |-----|------|------|-------|---------|-----|------|
+ * | I   |  15  |  500 | 30 мин|    —    |  —  |  —   |
+ * | II  | +35  | +500 | 60 мин| полная  |  ✓  |  —   |
+ * | III | +125 |+1000 |120 мин| полная  |  ✓  |  ✓   |
+ *
+ * Итого по тирам: 15 / 50 / 175 рун и 500 / 1000 / 2000 опыта.
+ *
+ * зачем (владелец, 2026-08-24): было 10/35/135 рун, подписанных в модалке словом
+ * «жемчужин» (поле `stars` — это РУНЫ, переименование 23.08; жемчужины-осколки
+ * сундук не выдаёт вовсе). Руны подняты, и к ним добавлены прямой опыт и полное
+ * восстановление энергии, а буст ×2 XP перестал быть «те же 60 минут на любом
+ * тире» — теперь он тоже растёт. Множитель за свои дни (×1…×1.5) применяется и к
+ * рунам, и к опыту: награда за 7 активных дней должна ощущаться.
+ *
+ * Осознанное решение владельца: руны сундука пойдут в зачёт лиги, когда лига
+ * переедет на руны (docs/plans/2026-08-24-league-runes-plan.ru.md) — команда
+ * друзей и должна двигать таблицу.
+ */
+const CHEST_RUNES_BY_TIER: readonly number[] = [15, 35, 125];
+const CHEST_XP_BY_TIER: readonly number[] = [500, 500, 1000];
+const CHEST_XP_BOOST_MINUTES_BY_TIER: readonly number[] = [30, 60, 120];
+
+/** Сумма прямого опыта из дропов (kind 'xp_grant'); руны сюда не попадают. */
+function sumXpGrantDrops(drops: readonly RewardDrop[]): number {
+  return drops.reduce(
+    (sum, drop) => (drop.kind === 'xp_grant' ? sum + Math.max(0, parseInt0(drop.amount)) : sum),
+    0,
+  );
+}
+
+/**
+ * Фактический срок буста ×2 XP в минутах. Считаем из expiresAt самого дропа,
+ * чтобы срок не разошёлся с таблицей CHEST_XP_BOOST_MINUTES_BY_TIER.
+ * Повторный клейм читает сохранённый дроп, где expiresAt уже в прошлом — там
+ * возвращаем 0 минут вместо отрицательного числа.
+ */
+function xpBoostMinutesFromDrops(drops: readonly RewardDrop[], now: number): number {
+  const boost = drops.find((drop) => drop.kind === 'xp_boost');
+  if (!boost) return 0;
+  const expiresAt = parseInt0(boost.expiresAt);
+  if (expiresAt <= now) return 0;
+  return Math.max(0, Math.round((expiresAt - now) / 60_000));
+}
+
 function buildChestRewardDrops(
   tier: number,
   multiplier: number,
@@ -517,24 +570,34 @@ function buildChestRewardDrops(
   if (tier <= 0) return [];
   const drops: RewardDrop[] = [];
   const scaledStars = (base: number) => Math.floor(base * multiplier);
+  // зачем: опыт масштабируется тем же множителем за свои дни, что и руны —
+  // иначе «7 дней подряд» ощущалось бы только половиной награды.
+  const scaledXp = (base: number) => Math.floor(base * multiplier);
+  const cappedTier = Math.min(3, tier);
+  const boostMinutes = CHEST_XP_BOOST_MINUTES_BY_TIER[cappedTier - 1];
 
-  // Tier I: xp_boost 60 min + 10 stars.
   drops.push({
-    id: 'friends_chest_xp_boost_60m',
+    id: `friends_chest_xp_boost_${boostMinutes}m`,
     kind: 'xp_boost',
     rarity: 'rare',
     multiplier: 2,
     uses: 999,
-    expiresAt: now + 60 * 60 * 1000,
+    expiresAt: now + boostMinutes * 60 * 1000,
   });
-  drops.push({ id: 'friends_chest_stars_t1', kind: 'shards', rarity: 'common', amount: scaledStars(10) });
+  drops.push({ id: 'friends_chest_stars_t1', kind: 'shards', rarity: 'common', amount: scaledStars(CHEST_RUNES_BY_TIER[0]) });
+  drops.push({ id: 'friends_chest_xp_t1', kind: 'xp_grant', rarity: 'common', amount: scaledXp(CHEST_XP_BY_TIER[0]) });
 
   if (tier >= 2) {
     drops.push({ id: 'friends_chest_streak_shield', kind: 'streak_shield', rarity: 'rare', amount: 1 });
-    drops.push({ id: 'friends_chest_stars_t2', kind: 'shards', rarity: 'rare', amount: scaledStars(25) });
+    drops.push({ id: 'friends_chest_stars_t2', kind: 'shards', rarity: 'rare', amount: scaledStars(CHEST_RUNES_BY_TIER[1]) });
+    drops.push({ id: 'friends_chest_xp_t2', kind: 'xp_grant', rarity: 'rare', amount: scaledXp(CHEST_XP_BY_TIER[1]) });
+    // зачем: полная шкала энергии — «играй дальше прямо сейчас». Это самая
+    // желанная награда, поэтому она открывается со второго тира, а не с первого.
+    drops.push({ id: 'friends_chest_energy_refill', kind: 'energy_refill', rarity: 'rare' });
   }
   if (tier >= 3) {
-    drops.push({ id: 'friends_chest_stars_t3', kind: 'shards', rarity: 'epic', amount: scaledStars(100) });
+    drops.push({ id: 'friends_chest_stars_t3', kind: 'shards', rarity: 'epic', amount: scaledStars(CHEST_RUNES_BY_TIER[2]) });
+    drops.push({ id: 'friends_chest_xp_t3', kind: 'xp_grant', rarity: 'epic', amount: scaledXp(CHEST_XP_BY_TIER[2]) });
     // зачем: аура берётся из ТОГО ЖЕ каталога, что и league_chest (owner rule §0 — «без новых
     // валют/сущностей»); avatar_aura без auraId в buildRewardProgressPatch просто не применится,
     // поэтому конкретный auraId выбираем по тому же пулу AVATAR_AURA_IDS через league_chest —

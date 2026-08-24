@@ -81,7 +81,9 @@ describe('friends together claim response compatibility', () => {
 
     await expect(claimWeeklyChest('2026-W34')).resolves.toEqual({
       ok: true,
-      rewards: { starsGranted: 135, xpBoostMinutes: 60, streakShield: true, aura: true },
+      // зачем: старый сохранённый receipt не знает полей xpGranted/energyRefilled —
+      // нормализатор обязан подставить безопасные нули, а не undefined.
+      rewards: { starsGranted: 135, xpBoostMinutes: 60, xpGranted: 0, energyRefilled: false, streakShield: true, aura: true },
       stars: 200,
       starsSeq: 8,
     });

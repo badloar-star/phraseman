@@ -8,7 +8,10 @@ describe('friends chest human UI contract', () => {
 
   it('uses the shared celebratory bottom sheet and only the approved primary copy', () => {
     expect(modal).toContain('HybridSheetShell');
-    expect(modal).toContain("L('Общее пламя зажжено', 'Спільне полум’я запалено', 'Llama compartida encendida', 'Chama compartilhada acesa', 'Ngọn lửa chung đã bừng sáng', 'Api bersama telah menyala', 'Ortak alev parlıyor', 'Wspólny płomień rozpalony')");
+    // зачем: владелец 2026-08-24 снял заголовок «Общее пламя зажжено» — героем
+    // модалки стал сам ассет пламени, а подпись называет повод награды.
+    expect(modal).toContain("L('Награда за неделю вместе', 'Нагорода за тиждень разом', 'Recompensa por la semana juntos', 'Recompensa pela semana juntos', 'Phần thưởng cho tuần cùng nhau', 'Hadiah untuk sepekan bersama', 'Birlikte geçen hafta ödülü', 'Nagroda za tydzień razem')");
+    expect(modal).not.toContain('Общее пламя зажжено');
     expect(modal).toContain("'Забрать'");
     expect(modal).not.toContain('<Modal');
     expect(modal).not.toContain('×2 опыта');
@@ -64,5 +67,41 @@ describe('friends chest human UI contract', () => {
     }
     expect(card).toContain("color: t.correctText ?? '#0B0B0E'");
     expect(modal).toContain('color: t.correctText');
+  });
+  it('shows the shared flame asset as the hero and never the generic cube icon', () => {
+    // зачем: у общего пламени есть свой ассет по теме и стадии — тот же, что
+    // дышит на карточке. Кубик Ionicons был заглушкой и вернуться не должен.
+    expect(modal).toContain('resolveFriendsSharedFlameAsset');
+    expect(modal).toContain('friends-chest-modal-flame');
+    expect(modal).not.toContain('name="cube"');
+  });
+
+  it('calls the runes currency by its name and never "жемчужины"', () => {
+    // зачем: поле `stars` — это РУНЫ (constants/runes.ts, переименование 23.08).
+    // Жемчужины (осколки 💎) — другая валюта, и сундук её не выдаёт вовсе.
+    expect(modal).toContain('runeWord');
+    // Ищем именно ЛОКАЛИЗОВАННУЮ строку валюты (L('жемчужин', …)), а не любое
+    // вхождение слова: в шапке файла оно стоит осознанно — объясняет, почему
+    // подпись была неверной. Запрет на комментарий стёр бы это объяснение.
+    expect(modal).not.toMatch(/L\(\s*'жемчужин'/);
+    expect(modal).not.toMatch(/\$\{L\(\s*'жемчужин'/);
+  });
+
+  it('renders the direct xp and full-energy rewards granted by the chest', () => {
+    expect(modal).toContain('xpGranted');
+    expect(modal).toContain('energyRefilled');
+    expect(modal).toContain("L('Полная энергия'");
+  });
+
+  it('splits rewards into two levels so the top tier is not one long dotted list', () => {
+    // зачем: на тире III наград шесть; одной строкой они читались бы списком.
+    // Числовое (руны, опыт) — крупно, работающее (энергия/буст/щит/аура) — тише.
+    expect(modal).toContain('primaryRewards');
+    expect(modal).toContain('bonusRewards');
+    expect(modal).toContain('friends-chest-reward-bonus');
+    // Приглушённый уровень берёт СУЩЕСТВУЮЩИЙ токен темы: textSecondary в
+    // палитре нет, и опечатка сделала бы строку невидимой на всех темах.
+    expect(modal).toContain('t.textMuted');
+    expect(modal).not.toContain('t.textSecondary');
   });
 });

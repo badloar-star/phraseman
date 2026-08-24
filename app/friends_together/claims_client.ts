@@ -35,7 +35,7 @@ export type ClaimLevelResult =
   | { ok: false; reason: ClaimLevelErrorReason };
 
 export type ClaimChestResult =
-  | { ok: true; rewards: Readonly<{ starsGranted: number; xpBoostMinutes: number; streakShield: boolean; aura: boolean }>; stars?: number; starsEarnedTotal?: number; starsSeq?: number }
+  | { ok: true; rewards: Readonly<{ starsGranted: number; xpBoostMinutes: number; xpGranted: number; energyRefilled: boolean; streakShield: boolean; aura: boolean }>; stars?: number; starsEarnedTotal?: number; starsSeq?: number }
   | { ok: false; reason: ClaimChestErrorReason };
 
 function makeRequestId(prefix: string): string {
@@ -122,11 +122,13 @@ type LevelClaimWireResponse = Readonly<{
   starsSeq?: unknown;
 }>;
 
-type ChestRewardDrop = Readonly<{ kind?: unknown }>;
+type ChestRewardDrop = Readonly<{ kind?: unknown; amount?: unknown }>;
 type ChestClaimWireResponse = Readonly<{
   ok?: boolean;
   starsGranted?: unknown;
   xpBoostMinutes?: unknown;
+  xpGranted?: unknown;
+  energyRefilled?: unknown;
   streakShield?: unknown;
   aura?: unknown;
   stars?: unknown;
@@ -158,6 +160,13 @@ export function normalizeLevelClaimResponse(data: LevelClaimWireResponse | undef
 export function normalizeChestClaimResponse(data: ChestClaimWireResponse | undefined): Extract<ClaimChestResult, { ok: true }> {
   const drops = Array.isArray(data?.rewards?.drops) ? data.rewards.drops : [];
   const hasDrop = (kind: string) => drops.some((drop) => drop?.kind === kind);
+  // зачем: старые сохранённые claim-doc'и не знают полей верхнего уровня —
+  // для них сумму опыта восстанавливаем из самих дропов, как и всё остальное.
+  const sumDrops = (kind: string) => drops.reduce((sum, drop) => {
+    if (drop?.kind !== kind) return sum;
+    const amount = Number(drop?.amount);
+    return Number.isFinite(amount) ? sum + Math.max(0, Math.floor(amount)) : sum;
+  }, 0);
   const stars = finiteNonNegative(data?.stars ?? data?.starsBalance);
   const starsEarnedTotal = finiteNonNegative(data?.starsEarnedTotal);
   const starsSeq = finiteNonNegative(data?.starsSeq);
@@ -166,6 +175,8 @@ export function normalizeChestClaimResponse(data: ChestClaimWireResponse | undef
     rewards: {
       starsGranted: finiteNonNegative(data?.starsGranted ?? data?.rewards?.stars) ?? 0,
       xpBoostMinutes: finiteNonNegative(data?.xpBoostMinutes) ?? (hasDrop('xp_boost') ? 60 : 0),
+      xpGranted: finiteNonNegative(data?.xpGranted) ?? sumDrops('xp_grant'),
+      energyRefilled: data?.energyRefilled === true || hasDrop('energy_refill'),
       streakShield: data?.streakShield === true || hasDrop('streak_shield'),
       aura: data?.aura === true || hasDrop('avatar_aura'),
     },

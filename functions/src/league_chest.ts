@@ -54,6 +54,12 @@ type RewardRarity = 'common' | 'rare' | 'epic' | 'legendary';
 type RewardKind =
   | 'shards'
   | 'xp_boost'
+  // зачем (владелец, 2026-08-24): у сундука друзей появились прямые награды —
+  // пачка опыта и полное восстановление шкалы энергии. Оба вида ЖИВУТ ЗДЕСЬ,
+  // потому что RewardDrop общий для сундуков лиги и друзей; сундук лиги их
+  // просто не кладёт, так что его выдача не меняется ни на единицу.
+  | 'xp_grant'
+  | 'energy_refill'
   | 'energy_fast_recovery'
   | 'streak_shield'
   | 'pack_trial_48h'
@@ -335,6 +341,17 @@ function buildLeagueRewardDrops(params: {
   return drops;
 }
 
+/**
+ * Патч в `progress` по выданным дропам.
+ *
+ * ВАЖНО (2026-08-24): виды `xp_grant` и `energy_refill` здесь НАМЕРЕННО не
+ * обрабатываются — это не забытая ветка. Опыт и шкала энергии живут на
+ * устройстве (`app/xp_manager.ts`, `app/energy_system.ts`), сервер их только
+ * ОБЪЯВЛЯЕТ в `rewards.drops`, а применяет клиент
+ * (`app/friends_together/chest_reward_apply.ts`). Писать их в progress отсюда
+ * значило бы завести второй источник правды для опыта — ровно тот класс бага,
+ * из-за которого раздваивался счёт звёзд турнира (инцидент 2026-08-04).
+ */
 export function buildRewardProgressPatch(params: {
   drops: RewardDrop[];
   user: FirebaseFirestore.DocumentData | undefined;

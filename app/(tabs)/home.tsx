@@ -91,6 +91,7 @@ import {
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, onStreakUpdated } from '../shards_system';
+import { getRunesBalance, peekRunes } from '../runes_system';
 import { purchaseStreakFreeze } from '../streak_freeze_purchase';
 import { commitPremiumFreeFreeze } from '../economy/premium_free_freeze';
 import { coinIconForBalance } from '../coin_icons';
@@ -102,12 +103,14 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { peekLevelSpinBalance } from '../level_reward_spins_client';
 import { readLocalLevelSpinBalance } from '../local_level_spins';
-import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
+import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
+import HomeRuneBalance from '../../components/home/HomeRuneBalance';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
+import MaxMinutesBadge from '../../components/max/MaxMinutesBadge';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
@@ -127,8 +130,11 @@ import {
   prefetchMaxTutorPreview,
   type MaxCallParams,
 } from '../max_call_mint_request';
+import { maxTutorPreviewKey, peekMaxTutorPreview } from '../max_tutor_preview';
+import { parsePreflight } from '../max_call_prestart';
 import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
+import { maxVoiceTeacherAccessibilityLabel } from '../max_target_gate';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import {
@@ -606,14 +612,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         cefr: guessLearnerCefr(),
         devMode: false,
         interfaceLang: lang,
-        studyTarget: 'en',
-    }), [lang]);
+        studyTarget,
+    }), [lang, studyTarget]);
+    // зачем (владелец 2026-08-24): «в разделе MAX должен быть чёткий индикатор
+    // сколько минут осталось на сегодня». Остаток читаем из того же кэша,
+    // который уже прогревает prefetchMaxTutorPreview ниже — второго чтения
+    // Firestore это не добавляет, только достаёт то, что уже пришло.
+    const maxPreviewKey = maxTutorPreviewKey(maxTutorCallParams);
+    const [maxDayRemainingSec, setMaxDayRemainingSec] = useState<number | null>(null);
     useEffect(() => {
         if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;
-        void prefetchMaxTutorPreview(maxTutorCallParams).catch(() => {
+        const cached = peekMaxTutorPreview(maxPreviewKey, Date.now(), true);
+        if (cached?.limits) setMaxDayRemainingSec(parsePreflight({ limits: cached.limits }, 'tutor').dayRemainingSec);
+        void prefetchMaxTutorPreview(maxTutorCallParams).then((preview) => {
+            if (preview?.limits) setMaxDayRemainingSec(parsePreflight({ limits: preview.limits }, 'tutor').dayRemainingSec);
+        }).catch(() => {
             // Read-only warmup is opportunistic; prestart keeps a local fallback.
         });
-    }, [focusTick, homeRuntimeActive, maxTutorCallParams, maxVoiceVisible]);
+    }, [focusTick, homeRuntimeActive, maxPreviewKey, maxTutorCallParams, maxVoiceVisible]);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work.
     const homeDataDirtyRef = useRef(true);
@@ -962,6 +978,37 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const langRef = useRef(lang);
     useEffect(() => { langRef.current = lang; }, [lang]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
+    const [runesBalance, setRunesBalance] = useState(() => peekRunes());
+    const reconcileHomeRunes = useCallback((token = captureAccountGeneration()) => {
+        const stableId = token.stableId?.trim();
+        if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
+        void getRunesBalance().then(({ balance }) => {
+            if (mountedRef.current && isCurrentAccountGeneration(token, stableId)) {
+                setRunesBalance(balance);
+            }
+        }).catch(() => {
+            // Первый кадр уже взят из snapshot; durable-сверка может безопасно повториться на focus.
+        });
+    }, []);
+    useEffect(() => {
+        const unsubscribeRunesSnapshot = subscribeAppSnapshot(() => {
+            setRunesBalance(peekRunes());
+        });
+        const runesAccountSubscription = subscribeAccountGeneration((token) => {
+            // Никогда не показываем retained-значение предыдущего аккаунта.
+            setRunesBalance(0);
+            if (homeRuntimeActiveRef.current && token.phase === 'active') {
+                reconcileHomeRunes(token);
+            }
+        });
+        return () => {
+            unsubscribeRunesSnapshot();
+            runesAccountSubscription.remove();
+        };
+    }, [reconcileHomeRunes]);
+    useEffect(() => {
+        if (homeRuntimeActive) reconcileHomeRunes();
+    }, [focusTick, homeRuntimeActive, reconcileHomeRunes]);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
     const [homeLeagueCrownCount, setHomeLeagueCrownCount] = useState(() => hh?.homeLeagueCrownCount ?? 0);
@@ -2512,7 +2559,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
-        const homeLastLessonArtSize = 92;
+        const homeLastLessonArtSize = 124;
+        const homeLastLessonArtSlotWidth = 92;
+        const homeLastLessonArtSlotHeight = 72;
         const homeTodayIconSize = 112;
         const homeLeagueWatermarkSize = 164;
         const homeTodayLeagueCardMinHeight = 120;
@@ -2525,11 +2574,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Подпись-расшифровка мелким шрифтом под названием плитки запрещена стилем
         // владельца: название «МАКС» самодостаточно. Уточнение осталось только в
         // accessibilityLabel — оно не видно, но озвучивается скринридером.
-        const maxTeacherA11yLabel = triLang(lang, {
-            ru: 'МАКС, учитель английского', uk: 'МАКС, учитель англійської', es: 'MAX, profesor de inglés',
-            'pt-BR': 'MAX, professor de inglês', vi: 'MAX, giáo viên tiếng Anh', id: 'MAX, guru bahasa Inggris',
-            tr: 'MAX, İngilizce öğretmeni', pl: 'MAX, nauczyciel angielskiego',
-        });
+        const maxTeacherA11yLabel = maxVoiceTeacherAccessibilityLabel(lang, studyTarget);
         const quickItems = [
             {
                 key: 'lesson',
@@ -2574,7 +2619,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     });
                     nav.push({
                             pathname: '/max_call_prestart',
-                        params: { format: 'tutor', cefr: maxTutorCallParams.cefr },
+                        params: { format: 'tutor', cefr: maxTutorCallParams.cefr, studyTarget },
                     } as never);
                 },
             },
@@ -2622,6 +2667,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
         const homeHeaderShardIconSize = 34;
         const homeHeaderShardIconWidth = homeHeaderShardIconSize;
+        const homeHeaderCompact = CONTENT_W < 370;
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
         // освобождает место, вся шапка помещается в один ряд.
         const homeEnergyIconSize = 30;
@@ -3000,27 +3046,33 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             refreshDailyPhraseVisibility();
         }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
-          {/* ХЕДЕР: один ряд. Слева — осколки + бюст (карточка профиля).
+          {/* ХЕДЕР: один ряд на обычном экране, два устойчивых ряда на узком.
+              Слева — жемчужины, руны + бюст (карточка профиля).
               Справа — энергия (1 иконка + цифры), видео, чаты, колокольчик (единый центр событий и сообщений команды).
               Имя убрано с главной: оно есть в карточке профиля по тапу на бюст. */}
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 0 }}>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => {
-                    hapticTap();
-                    nav.push('/shards_shop');
-                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
-                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} жемчужин`, uk: `Баланс: ${shardsBalance} перлин`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })} />
-                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
-                  </Animated.View>
-                </TouchableOpacity>
+              <View style={{ flexDirection: homeHeaderCompact ? 'column' : 'row', alignItems: homeHeaderCompact ? 'stretch' : 'center', gap: 0 }}>
+                {/* зачем: жемчужины, руны и энергия уехали отсюда наверх карточки
+                    «Уровень» (см. home-stats-currency-row) — владелец захотел один
+                    центр статуса вместо двух. Контейнер остался ради колокольчика
+                    на широком экране и Dev Hub; на узком там пусто, поэтому ряд
+                    не рендерим совсем — иначе в колонке висит пустой блок. */}
+                {/* зачем: жемчужины и руны уехали в строку заголовка «Быстрый
+                    старт» (см. home-quickstart-currency-row). Контейнер остался
+                    ради колокольчика на широком экране и Dev Hub; на узком там
+                    пусто, поэтому ряд не рендерим совсем — иначе в колонке
+                    висит пустой блок. */}
+                {(!homeHeaderCompact || ENABLE_DEV_TOOLS) ? (
+                <View testID="home-header-currency-actions" style={{ flexDirection: 'row', alignItems: 'center', gap: 0 }}>
                 {/* зачем: владелец попросил поменять местами бюст/профиль и колокольчик —
                     теперь колокольчик (с бейджем непрочитанных) идёт сразу после осколков,
                     а аватар/бюст профиля уходит на дальний правый край, где раньше был
                     колокольчик. onPress/бейдж каждой кнопки не тронуты. */}
-                <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
+                {!homeHeaderCompact ? (
+                  <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
+                ) : null}
                 {ENABLE_DEV_TOOLS && (
                   <TouchableOpacity
                     testID="home-dev-hub-button"
@@ -3036,10 +3088,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     <Ionicons name="flask-outline" size={21} color={t.heroTextPrimary} />
                   </TouchableOpacity>
                 )}
-                <View style={{ flex: 1, minWidth: 0 }} />
-                {/* зачем: хедер сжат с 5 целей до 3 (осколки/профиль/колокольчик) —
-                {/* зачем: хедер — осколки/профиль/видео/колокольчик: владелец вернул
-                    видео-иконку; энергия живёт чипом у CTA (не пугает на входе). */}
+                </View>
+                ) : null}
+                {!homeHeaderCompact ? <View style={{ flex: 1, minWidth: 0 }} /> : null}
+                <View testID="home-header-secondary-actions" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: homeHeaderCompact ? 'flex-end' : 'flex-start', gap: 0 }}>
+                {homeHeaderCompact ? (
+                  <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
+                ) : null}
+                {/* зачем: энергия живёт в хедере (владелец вернул её сюда 2026-08-24),
+                    а жемчужины и руны уехали в строку заголовка «Быстрый старт».
+                    Хедер: энергия / видео / профиль / колокольчик. */}
                 {showHomeEnergy && (
                   <View ref={energyIconRef} collapsable={false} style={{ flexShrink: 0 }}>
                     <TouchableOpacity activeOpacity={0.7} accessibilityLabel={`qa-home-energy ${homeEnergyCountLabel}`} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
@@ -3057,6 +3115,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 )}
                 <LingmanVideosButton ownerActive={homeRuntimeActive} />
                 {renderHomeProfileButton()}
+                </View>
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -3094,13 +3153,64 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           <View>
             {/* Заголовок секции — тот же кегль/вес, что у «Сегодня» ниже: одна
                 типографическая ступень для всех разделов главного экрана. */}
-            <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
-              <FlowText testID="home-quickstart-title" provenance="authored" style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }}>
+            {/* зачем (владелец 2026-08-24): жемчужины и руны ушли из хедера и с
+                карточки уровня сюда — в правый край строки заголовка «Быстрый
+                старт». Ряд общий с заголовком, поэтому валюты не занимают
+                отдельную высоту и не двигают плитки вниз. Энергия осталась
+                в хедере — у неё своя подсказка по тапу. */}
+            <View style={{ marginHorizontal: 8, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <FlowText testID="home-quickstart-title" provenance="authored" style={{ flexShrink: 1, color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }}>
                 {triLang(lang, {
                   ru: 'Быстрый старт', uk: 'Швидкий старт', es: 'Inicio rápido', 'pt-BR': 'Início rápido',
                   vi: 'Bắt đầu nhanh', id: 'Mulai cepat', tr: 'Hızlı başlangıç', pl: 'Szybki start',
                 })}
               </FlowText>
+
+              <View style={{ flex: 1, minWidth: 0 }} />
+
+              <View testID="home-quickstart-currency-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+                <TouchableOpacity
+                  testID="home-quickstart-shards"
+                  activeOpacity={0.75}
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} жемчужин`, uk: `Баланс: ${shardsBalance} перлин`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })}
+                  onPress={() => {
+                    hapticTap();
+                    nav.push('/shards_shop');
+                  }}
+                  hitSlop={10}
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}
+                >
+                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                    {/* guard-ok: декоративная иконка — метка на кнопке-родителе */}
+                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
+                    <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{shardsBalance}</Text>
+                  </Animated.View>
+                </TouchableOpacity>
+
+                {/* зачем: владелец 2026-08-24 — тап по счётчику рун открывает раздел «Руны».
+                    Обёртка снаружи (как у жемчужин выше), сам HomeRuneBalance не трогаем —
+                    его параллельно правит другая сессия. Сторож: runes_wallet_no_shop_contract. */}
+                <TouchableOpacity
+                  testID="home-quickstart-runes"
+                  accessibilityRole="button"
+                  activeOpacity={0.75}
+                  hitSlop={10}
+                  onPress={() => {
+                    hapticTap();
+                    nav.push('/runes_wallet');
+                  }}
+                >
+                  <HomeRuneBalance
+                    balance={runesBalance}
+                    color={isGoldTheme ? GOLD_RICH.paleGold : t.gold}
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Баланс: ${runesBalance} рун`, uk: `Баланс: ${runesBalance} рун`, es: `Saldo: ${runesBalance} runas`, 'pt-BR': `Saldo: ${runesBalance} runas`,
+                      vi: `Số dư: ${runesBalance} rune`, id: `Saldo: ${runesBalance} rune`, tr: `Bakiye: ${runesBalance} rün`, pl: `Saldo: ${runesBalance} run`,
+                    })}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
             <View style={{ marginBottom: 12, paddingHorizontal: 8, gap: 14, flexDirection: 'row' }}>
               {visibleQuickItems.map((item, index) => {
@@ -3120,6 +3230,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       setCardsTileCenter({ x: x + width / 2, y: y + height / 2 });
                     } : undefined}
                   >
+                    {/* зачем (владелец 2026-08-24): «чёткий индикатор минут» на
+                        плитке MAX — бейдж живёт на внешней обёртке, а не внутри
+                        кнопки, потому что кнопка режет overflow:hidden под
+                        скруглённые углы и обрезала бы бейдж в углу. */}
+                    {item.key === 'max' ? (
+                      <MaxMinutesBadge testID="home-max-minutes-badge" dayRemainingSec={maxDayRemainingSec} lang={lang} />
+                    ) : null}
                     <TouchableOpacity
                       testID={item.testID}
                       accessible={true}
@@ -3198,8 +3315,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             >
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
-                  <View style={{ width: homeLastLessonArtSize, height: homeLastLessonArtSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }}>
+                  <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <LightSketchMenuImage source={lastLessonImage} width={homeLastLessonArtSize} height={homeLastLessonArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
@@ -3372,9 +3489,30 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         {homeLeagueChest.leagueName}
                       </Text>
                     </View>
-                    <Text style={{ color: homeLeagueChestAccent, fontSize: f.h2 + 2, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
-                      {homeLeagueChestPct}%
-                    </Text>
+                    {/* зачем: владелец 2026-08-24 — рядом с целью лиги обязателен
+                        общий счёт рун: очки лиги теперь считаются рунами, и игрок
+                        должен видеть свой запас прямо здесь, не уходя в кошелёк.
+                        Число берётся из уже живущего на экране runesBalance —
+                        второй подписки на кошелёк не создаём. */}
+                    <View style={{ alignItems: 'flex-end', flexShrink: 0 }}>
+                      <Text style={{ color: homeLeagueChestAccent, fontSize: f.h2 + 2, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                        {homeLeagueChestPct}%
+                      </Text>
+                      {/* Иконка руны — тот же компонент, что в шапке Главной:
+                          один источник ассета и формата числа на всё приложение. */}
+                      <HomeRuneBalance
+                        testID="home-league-runes"
+                        balance={runesBalance}
+                        color={leagueBonusPalette.textMuted}
+                        iconSize={22}
+                        valueSize={f.label}
+                        reserveTapHeight={false}
+                        accessibilityLabel={triLang(lang, {
+                          ru: `Баланс: ${runesBalance} рун`, uk: `Баланс: ${runesBalance} рун`, es: `Saldo: ${runesBalance} runas`, 'pt-BR': `Saldo: ${runesBalance} runas`,
+                          vi: `Số dư: ${runesBalance} rune`, id: `Saldo: ${runesBalance} rune`, tr: `Bakiye: ${runesBalance} rün`, pl: `Saldo: ${runesBalance} run`,
+                        })}
+                      />
+                    </View>
                   </View>
                   <View testID="home-league-progress" style={{ height: 9, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0, borderColor: leagueBonusPalette.trackBorder }}>
                     <LinearGradient colors={homeLeagueChestFill} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ height: '100%', width: `${homeLeagueChestPct}%` as any, borderRadius: 6 }}/>

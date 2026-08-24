@@ -1,10 +1,18 @@
 // ════════════════════════════════════════════════════════════════════════════
 // lifetime_purchase.test.ts — кнопка Phraseman Pro (lifetime) на пейволах.
 //
-// Покрывает «дремлющую» механику: код готов, но кнопка показывается ТОЛЬКО
-// когда (а) RevenueCat реально вернул lifetime-пакет И (б) админ-флаг включён.
-// Нет продукта в RC → пакета нет → кнопка скрыта (безопасное состояние релиза).
+// Покрывает «дремлющую» механику: код покупки готов и намеренно НЕ удалён,
+// но продажа снята с витрины.
+//
+// ОБНОВЛЕНО 2026-08-24: владелец убрал продажу Pro ПОЛНОСТЬЮ, её место на
+// пейволах занял тариф MAX. Дефолт флага теперь FALSE, а поверх флага в
+// app/paywall_purchase.ts стоит пломба LIFETIME_SALE_RETIRED — то есть даже
+// «флаг on + пакет есть» больше НЕ показывает Pro. Здесь остаётся проверка
+// самой сантехники (распознавание продукта, резолв пакетов): она нужна,
+// чтобы восстановление покупки у купивших продолжало работать.
 // ════════════════════════════════════════════════════════════════════════════
+import fs from 'fs';
+import path from 'path';
 import type { PurchasesPackage } from 'react-native-purchases';
 import { resolvePremiumPackages } from '../app/revenuecat_init';
 import { inferPremiumPlanFromProductId } from '../app/premium_revenuecat_state';
@@ -79,8 +87,8 @@ describe('lifetime Phraseman Pro — purchase plumbing', () => {
   describe('isLifetimeButtonEnabled (админ-флаг)', () => {
     beforeEach(() => __resetRemoteFlagsForTest());
 
-    it('по умолчанию включён (продукт заведён в RC с 2026-06-21)', () => {
-      expect(isLifetimeButtonEnabled()).toBe(true);
+    it('по умолчанию ВЫКЛЮЧЕН (продажа Pro снята владельцем 2026-08-24)', () => {
+      expect(isLifetimeButtonEnabled()).toBe(false);
     });
     it('включается из remote_config', () => {
       applyRemoteConfigSnapshot({ bools: { lifetime_button_enabled: true } });
@@ -108,9 +116,21 @@ describe('lifetime Phraseman Pro — purchase plumbing', () => {
       applyRemoteConfigSnapshot({ bools: { lifetime_button_enabled: true } });
       expect(isLifetimeButtonEnabled() && !!withoutLifetime.lifetime).toBe(false);
     });
-    it('флаг on + пакет есть → показывается', () => {
+    // зачем: раньше здесь было «показывается». После снятия продажи (2026-08-24)
+    // флаг и пакет — лишь ДВА из трёх условий: третьим стоит пломба
+    // LIFETIME_SALE_RETIRED в usePaywallPurchase, и она гасит витрину даже когда
+    // оба этих условия выполнены. Проверяем именно это, чтобы тест не создавал
+    // ложного впечатления, будто Pro всё ещё продаётся.
+    it('флаг on + пакет есть → всё равно НЕ продаётся: сверху пломба', () => {
       applyRemoteConfigSnapshot({ bools: { lifetime_button_enabled: true } });
       expect(isLifetimeButtonEnabled() && !!withLifetime.lifetime).toBe(true);
+
+      const hook = fs.readFileSync(
+        path.join(__dirname, '..', 'app', 'paywall_purchase.ts'),
+        'utf8',
+      );
+      expect(hook).toContain('const LIFETIME_SALE_RETIRED = true;');
+      expect(hook).toContain('const lifetimeAvailable = !LIFETIME_SALE_RETIRED');
     });
   });
 });

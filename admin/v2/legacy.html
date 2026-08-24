@@ -12037,7 +12037,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">♾️</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Кнопка «Навсегда» (lifetime)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Покажется только когда продукт заведён в RevenueCat. Купившие сохраняют доступ.</div></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Кнопка «Навсегда» (lifetime) — ПРОДАЖА СНЯТА</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Продажа Pro убрана 24.08.2026 по решению владельца, её место занял MAX. Этот тумблер сейчас НИ НА ЧТО не влияет: в коде стоит пломба LIFETIME_SALE_RETIRED (app/paywall_purchase.ts). Купившие Pro доступ сохраняют.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-lifetime_button_enabled" class="cp-toggle" onchange="saveControlPanelBool('lifetime_button_enabled', this.checked)" disabled/><span id="cp-bool-label-lifetime_button_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
@@ -32148,7 +32148,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
     { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: true },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
-    { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: true },
+    { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) — продажа снята 24.08.2026', def: false },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год Плюс за идею)', def: false },
     { key: 'paywall_timers_enabled', label: 'Пейволы: таймеры срочности (выкл = скрыть у всех)', def: true },
     { key: 'paywall_reviews_enabled', label: 'Пейволы: отзывы «что говорят ученики» (выкл = скрыть у всех)', def: true },
@@ -33515,7 +33515,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: true,  hint: 'Кнопка объяснения фразы (платный ИИ). Дефолт ON (kill-switch).' },
     { key: 'referral_enabled',         label: 'Реферальная программа',          def: true,  hint: 'Дефолт ON (kill-switch). Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
-    { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: true, hint: 'Продукт phraseman_premium_lifetime_v1 заведён в RC (2026-06-21). Покажется, когда RevenueCat вернёт пакет.' },
+    { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'ПРОДАЖА СНЯТА 24.08.2026 (владелец): Pro убран с пейволов, его место занял MAX. Тумблер сейчас ни на что не влияет — в коде пломба LIFETIME_SALE_RETIRED. Купившие сохраняют доступ.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год Плюс при одобрении (вкладка «Идеи»).' },
     { key: 'promo_codes_enabled',      label: 'Промокоды в настройках',          def: false, hint: 'Sell-switch. Вкл → пункт «Промокоды» виден в настройках и сервер принимает promoCodeRedeem; выкл → скрыто и promo_disabled.' },
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },

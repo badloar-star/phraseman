@@ -12,11 +12,17 @@ const IMG = path.join(__dirname, '..', 'assets', 'images');
 
 const PAIRS = [
   ['icon.webp', 'icon.png'],
-  ['android-icon-monochrome.webp', 'android-icon-monochrome.png'],
   ['android-icon-foreground.webp', 'android-icon-foreground.png'],
   ['splash-icon.webp', 'splash-icon.png'],
   ['favicon.webp', 'favicon.png'],
 ];
+
+// зачем (2026-08-24): android-icon-monochrome.png УБРАН из авто-регенерации.
+// Раньше он получался пересжатием цветного исходника и был его побайтовой
+// копией — Android 13+ ждёт одноцветный силуэт, а получал полноцветный арт и
+// рисовал грязную темизированную иконку. Теперь силуэт строит отдельный скрипт
+// scripts/build_android_monochrome_icon.mjs (порог яркости + замыкание), и
+// перегенерация отсюда молча затёрла бы его обратно.
 
 for (const [src, dst] of PAIRS) {
   const from = path.join(IMG, src);

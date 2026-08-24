@@ -7,19 +7,27 @@ function read(relativePath: string): string {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 }
 
-function sourceFilesIn(relativeDir: string): string[] {
+/**
+ * Обход исходников ГЕНЕРАТОРОМ, а не массивом.
+ *
+ * зачем (2026-08-24): прежняя версия собирала все ~2266 путей в массив, а затем
+ * в .filter() читала содержимое каждого файла — под ts-jest это давало heap OOM
+ * (падало даже с --max-old-space-size=2048), из-за чего сторож не запускался
+ * ВООБЩЕ и молча ничего не охранял. Генератор отдаёт по одному пути: содержимое
+ * файла живёт ровно один шаг цикла и сразу освобождается.
+ */
+function* sourceFilesIn(relativeDir: string): Generator<string> {
   const root = path.join(ROOT, relativeDir);
-  if (!fs.existsSync(root)) return [];
-  const files: string[] = [];
-  const visit = (dir: string): void => {
+  if (!fs.existsSync(root)) return;
+  const stack: string[] = [root];
+  while (stack.length > 0) {
+    const dir = stack.pop() as string;
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const absolute = path.join(dir, entry.name);
-      if (entry.isDirectory()) visit(absolute);
-      else if (/\.(?:ts|tsx|js|jsx)$/.test(entry.name)) files.push(absolute);
+      if (entry.isDirectory()) stack.push(absolute);
+      else if (/\.(?:ts|tsx|js|jsx)$/.test(entry.name)) yield absolute;
     }
-  };
-  visit(root);
-  return files;
+  }
 }
 
 const RUNTIME_PNGS = [
@@ -132,11 +140,16 @@ expoAutolinking.useExpoModules()
   });
 
   it('keeps vector icon imports and bundled font patterns limited to used families', () => {
-    const sourceFiles = ['app', 'components', 'constants', 'hooks', 'contexts', 'lib', 'modules']
-      .flatMap(sourceFilesIn);
-    const barrelImports = sourceFiles
-      .filter((file) => /from\s+['"]@expo\/vector-icons['"]/.test(fs.readFileSync(file, 'utf8')))
-      .map((file) => path.relative(ROOT, file).replace(/\\/g, '/'));
+    // Копим ТОЛЬКО нарушителей: в норме массив пустой, поэтому потребление
+    // памяти не зависит от размера кодовой базы.
+    const barrelImports: string[] = [];
+    for (const dir of ['app', 'components', 'constants', 'hooks', 'contexts', 'lib', 'modules']) {
+      for (const file of sourceFilesIn(dir)) {
+        if (/from\s+['"]@expo\/vector-icons['"]/.test(fs.readFileSync(file, 'utf8'))) {
+          barrelImports.push(path.relative(ROOT, file).replace(/\\/g, '/'));
+        }
+      }
+    }
     expect(barrelImports).toEqual([]);
 
     const appConfig = JSON.parse(read('app.json')) as {

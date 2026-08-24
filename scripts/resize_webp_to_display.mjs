@@ -14,8 +14,10 @@
 //     требует ровно 320×320;
 //   - assets/images/home_menu/           — рисуется до 164dp (лига-вотермарк) —
 //     текущие 384–512px НЕ избыточны;
-//   - achievements / avatar-auras / streak_icons — кандидаты на CDN, решение
-//     владельца отдельно (план Фазы 4);
+//   - assets/images/avatar-auras/        — все 117 файлов 320×320 под сторожем
+//     tests/season_aura_asset_safe_area.test.ts, И физически не избыточны:
+//     кольцо ауры = size × APPROVED_AURA_RING_SCALE 2.28, при size=112
+//     (SeasonGiftModal) это 255dp → 766px @3x, то есть 320px уже с дефицитом;
 //   - файлы с грязным git-статусом — их прямо сейчас ведёт параллельная сессия
 //     (asset-hygiene-safe.mjs), пропускаем молча в отчёт.
 //
@@ -60,6 +62,15 @@ const TARGETS = [
   // Иконка онбординга: 76dp → 228px, берём 256 (контракт проверяет только
   // существование .webp — путь не меняется).
   { file: 'assets/images/onboarding_icon_cutout.webp', targetPx: 256 },
+  // Достижения (решение владельца 2026-08-24: уменьшить, НЕ выносить в CDN —
+  // 70 статуэток остаются локальным fallback, чтобы полка никогда не пустовала).
+  // Максимум показа — BadgeShield size=132 в модалке карточки; с учётом
+  // uiScale<=1.22 это ~161dp → 483px @3x. Берём 512 с запасом.
+  { dir: 'assets/images/achievements/', targetPx: 512 },
+  // Иконки серий: StreakChainIcon до 72dp (крупнейший вызов), расчётный
+  // максимум numLg 28 × FONT_SCALE 1.30 × uiScale 1.22 × 1.45 ≈ 64dp.
+  // 72dp → 216px @3x; берём 256 с запасом.
+  { dir: 'assets/images/streak_icons/', targetPx: 256 },
 ];
 
 // Ресайз — это всегда ре-энкод; держим качество высоким, чтобы даунскейл

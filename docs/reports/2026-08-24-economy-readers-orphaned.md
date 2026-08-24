@@ -52,6 +52,27 @@
    Проверить: `npx jest --runTestsByPath functions/src/jarvis/jarvis_data_contract_guard.test.ts`
    (у меня светофор был занят 3/3, поэтому не запускал).
 
+## ✅ РЕШЕНИЕ ВЛАДЕЛЬЦА (2026-08-24)
+
+Выбран **вариант «читатели идут в PhoneState-чекпойнт»** + перенацелить сторожа
+в том же коммите + делать отдельной сессией, когда освободится слот светофора.
+
+Почему этот вариант возможен (проверено чтением кода, не предположение):
+- `modules/phone-state/domains/economy.ts:263-314` — редьюсер экономики держит
+  **готовые** `balance` и `openingBalance` в состоянии домена;
+- `modules/phone-state/checkpoints.ts` — чекпойнт содержит `projections`
+  (снимок состояния доменов), лежит в `users/{uid}/personal_sync_checkpoints`
+  (`firestore_repository.ts:91`);
+- `firestore_repository.ts:293-303` — **уже готовый** `latestCheckpoint()`:
+  `.where('accountGeneration','==',…).orderBy('createdAtMs','desc').limit(1)`
+  → ровно 1 чтение даёт актуальный баланс.
+
+Подтверждение диагноза: в архивной копии
+`.codex-tmp/avatar-dna-clean-aaf77b4bbc20/app/economy/client_shard_operation_sync.ts:132,153`
+сохранился СТАРЫЙ писатель (`.collection('client_economy_operations').doc(id)
+.set(clientShardOperationForCloud(operation))`). То есть писателя убрали при
+миграции на PhoneState, а четырёх читателей перевести забыли.
+
 ## Что делать (3 варианта, решение за владельцем)
 
 **А. Перенацелить читателей на PhoneState** (правильный путь).

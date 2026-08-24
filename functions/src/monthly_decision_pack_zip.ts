@@ -1,4 +1,3 @@
-import archiver from 'archiver';
 import { PassThrough } from 'node:stream';
 import { DECISION_PACK_FILE_NAMES, type DecisionPackFileName } from './monthly_decision_pack_core';
 
@@ -21,6 +20,13 @@ export async function createDecisionPackZip(files: Record<DecisionPackFileName, 
     });
     output.once('error', reject);
   });
+  // зачем (деплой 24.08): `archiver` стоил 1.4 с на КАЖДОМ холодном старте всех
+  // 488 функций — он тянет zip-stream/compress-commons/archiver-utils. Загрузка
+  // index.js занимала 7.2 с при лимите Firebase «10 с на анализ кода», и деплой
+  // падал пачкой `Failed to update function` / `Cannot determine backend
+  // specification. Timeout after 10000`. ZIP нужен ровно одной админской
+  // выгрузке, поэтому грузим его в момент вызова, а не при старте процесса.
+  const { default: archiver } = await import('archiver');
   const archive = archiver('zip', { zlib: { level: 9 } });
   archive.once('error', (error) => output.destroy(error));
   archive.pipe(output);

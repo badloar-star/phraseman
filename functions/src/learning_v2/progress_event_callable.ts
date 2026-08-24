@@ -182,6 +182,43 @@ function normalizeProgressGeneration(value: unknown): number {
   return value as number;
 }
 
+export const INITIAL_ACCOUNT_GENERATION = 1;
+
+/**
+ * Заводит accountGeneration=1 первому обратившемуся аккаунту, у которого поля нет.
+ *
+ * зачем (инцидент 2026-08-24): поле читали пять серверных путей, но НЕ ПИСАЛ
+ * НИКТО — ни регистрация, ни удаление аккаунта. На проде оно отсутствовало у
+ * всех 1203 пользователей, поэтому progressSubmitEvent отвечал
+ * `account_generation_unavailable`, клиент бесконечно клал событие обратно в
+ * очередь, и серверный прогресс не работал ни у кого с самого начала
+ * (0 принятых событий за всё время).
+ *
+ * Инициализация безопасна для смысла поля (счётчик пересозданий аккаунта):
+ *  - транзакция пишет значение ТОЛЬКО когда его нет, существующее (в том числе
+ *    поднятое будущим удалением/восстановлением) никогда не перезаписывается;
+ *  - барьер удаления (tombstone) проверяется ДО инициализации, поэтому аккаунт
+ *    «в процессе удаления» поля не получит;
+ *  - гонка двух параллельных вызовов разрешается транзакцией: второй прочитает
+ *    уже записанное значение.
+ * Стоимость: одна запись на аккаунт за всю его жизнь.
+ */
+async function ensureAccountGeneration(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  existing: unknown,
+): Promise<number> {
+  if (Number.isSafeInteger(existing) && (existing as number) >= 1) return existing as number;
+  const userRef = db.collection('users').doc(stableUid);
+  return db.runTransaction(async (tx) => {
+    const snap = await tx.get(userRef);
+    const current = snap.data()?.accountGeneration ?? snap.data()?.generation;
+    if (Number.isSafeInteger(current) && (current as number) >= 1) return current as number;
+    tx.set(userRef, { accountGeneration: INITIAL_ACCOUNT_GENERATION }, { merge: true });
+    return INITIAL_ACCOUNT_GENERATION;
+  });
+}
+
 /** Read a strict server-owned auth anchor, generation, and deletion barrier. */
 export async function readProgressAccountBinding(
   db: admin.firestore.Firestore,
@@ -200,7 +237,9 @@ export async function readProgressAccountBinding(
   if (tombstoneSnap.exists) throw new HttpsError('failed-precondition', 'account_delete_pending');
   const data = userSnap.data() ?? {};
   // accountGeneration is the V2 spelling; generation is accepted only as a legacy server field.
-  const accountGeneration = normalizeProgressGeneration(data.accountGeneration ?? data.generation);
+  const accountGeneration = normalizeProgressGeneration(
+    await ensureAccountGeneration(db, stableUid, data.accountGeneration ?? data.generation),
+  );
   return Object.freeze({ stableUid, accountGeneration });
 }
 

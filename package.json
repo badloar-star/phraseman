@@ -426,7 +426,8 @@
       }
     },
     "forceExit": true,
-    "maxWorkers": 1
+    "maxWorkers": 1,
+    "workerIdleMemoryLimit": "2GB"
   },
   "private": true,
   "expo": {

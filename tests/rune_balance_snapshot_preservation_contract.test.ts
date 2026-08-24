@@ -30,16 +30,35 @@ function read(...segments: string[]): string {
  * `progress`, обязан перенести руны.
  */
 describe('Rune balance survives every snapshot progress rebuild', () => {
-  it('patchAppSnapshotFromPersonalProgress carries stars over', () => {
+  it('every progress rebuild inside app_snapshot_store carries stars over', () => {
+    // ВАЖНО: проверяем файл ПОСЕКЦИОННО, а не «есть ли в нём слово stars».
+    //
+    // Первая версия этого сторожа держала app_snapshot_store.ts в allowlist
+    // целиком — и пропустила patchAppSnapshotFromAuthoritativeCloudProgress,
+    // третьего стирателя рун (нашёлся аудитом в тот же день). Одного вхождения
+    // `stars:` на файл НЕ достаточно: писателей секции в нём несколько.
     const store = read('app', 'app_snapshot_store.ts');
-    const start = store.indexOf('export function patchAppSnapshotFromPersonalProgress');
-    expect(start).toBeGreaterThan(-1);
-    const body = store.slice(start, store.indexOf('\n}\n', start));
+    const rebuilders = [
+      'export function patchAppSnapshotFromPersonalProgress',
+      'export function patchAppSnapshotFromAuthoritativeCloudProgress',
+    ];
 
-    // Секция собирается литералом — значит руны обязаны быть перенесены явно.
-    expect(body).toContain('progress: {');
-    expect(body).toContain('stars: current.progress?.stars ?? 0');
-    expect(body).toContain('starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0');
+    for (const marker of rebuilders) {
+      const start = store.indexOf(marker);
+      expect(start).toBeGreaterThan(-1);
+      const body = store.slice(start, store.indexOf('\n}\n', start));
+      expect(body).toContain('stars:');
+      expect(body).toContain('starsEarnedTotal:');
+    }
+  });
+
+  it('bootstrap hydration carries stars over', () => {
+    // Стартовая гидратация собирает progress заново и рун с диска не читает
+    // вовсе — без переноса первый кадр Главной показывал ноль рун.
+    const bootstrap = read('app', 'app_snapshot_bootstrap.ts');
+    expect(bootstrap).toContain('patchAppSnapshot((current) => ({');
+    expect(bootstrap).toContain('stars: current.progress?.stars ?? 0');
+    expect(bootstrap).toContain('starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0');
   });
 
   it('home hydration carries stars over', () => {
@@ -84,6 +103,7 @@ describe('Rune balance survives every snapshot progress rebuild', () => {
 
     const allowed = new Set([
       path.join('app', 'app_snapshot_store.ts'),
+      path.join('app', 'app_snapshot_bootstrap.ts'),
       path.join('app', 'level_spin_star_grants.ts'),
       path.join('app', '(tabs)', 'home.tsx'),
     ]);

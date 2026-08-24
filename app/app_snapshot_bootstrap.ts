@@ -8,6 +8,7 @@ import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   limitArray,
   patchAppSnapshot,
+  type AppSnapshot,
   type AppSnapshotFriends,
   type AppSnapshotProfile,
   type AppSnapshotProgress,
@@ -143,10 +144,21 @@ function buildProfileSnapshot(
   };
 }
 
+/**
+ * зачем (аудит 2026-08-24, «цифра рун прыгает»): секция progress собирается
+ * ЗАНОВО, а руны сюда не читаются вовсе — их писатель ровно один
+ * (level_spin_star_grants.publishProjection). Без явного переноса стартовая
+ * гидратация роняла stars в undefined -> peekRunes() -> 0, и первый кадр
+ * Главной показывал ноль рун вместо настоящего баланса.
+ *
+ * `current` приходит снаружи: patchAppSnapshot зовётся в функциональной форме,
+ * поэтому значение берётся на момент применения патча, а не раньше.
+ */
 function buildProgressSnapshot(
   values: Map<string, string | null>,
   studyTarget: RuntimeStudyTarget,
   now: number,
+  current: Readonly<AppSnapshot>,
 ): AppSnapshotProgress {
   return {
     source: 'storage',
@@ -154,6 +166,8 @@ function buildProgressSnapshot(
     streak: readInt(values.get('streak_count')),
     shards: readInt(values.get('shards_balance')),
     studyTarget: storageStudyTarget(studyTarget),
+    stars: current.progress?.stars ?? 0,
+    starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0,
   };
 }
 
@@ -245,9 +259,9 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   if (!isAccountCurrent()) return;
   const profile = buildProfileSnapshot(values, now, vipSnapshot, avatarDNA);
   if (!isAccountCurrent()) return;
-  patchAppSnapshot({
+  patchAppSnapshot((current) => ({
     profile,
-    progress: buildProgressSnapshot(values, studyTarget, now),
+    progress: buildProgressSnapshot(values, studyTarget, now, current),
     customization: buildCustomizationSnapshot(values, now, profile.level, avatarDNA ?? undefined),
     lessons: {
       source: 'storage',
@@ -258,7 +272,7 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     settings: buildSettingsSnapshot(values, now),
     ...(friends ? { friends } : {}),
     primedAt: now,
-  });
+  }));
 }
 
 export default function __RouteShim() { return null; }

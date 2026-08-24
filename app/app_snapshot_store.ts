@@ -376,6 +376,13 @@ export function patchAppSnapshotFromAuthoritativeCloudProgress(
       streak,
       shards: currentProgress?.shards ?? 0,
       studyTarget: currentProgress?.studyTarget ?? 'en',
+      // зачем (аудит 2026-08-24, «цифра рун прыгает»): облачная сверка авторитетна
+      // по XP и серии, но НЕ по рунам — их писатель ровно один
+      // (level_spin_star_grants.publishProjection), и в этом ответе их просто нет.
+      // Секция собирается заново, поэтому без явного переноса каждый облачный пул
+      // ронял stars в undefined -> peekRunes() -> 0 -> счётчик падал в ноль.
+      stars: currentProgress?.stars ?? 0,
+      starsEarnedTotal: currentProgress?.starsEarnedTotal ?? 0,
     };
   }
   patchAppSnapshot(patch);

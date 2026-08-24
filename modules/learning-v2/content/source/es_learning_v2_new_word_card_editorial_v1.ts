@@ -144,6 +144,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Daleki krewny słowa oznaczającego prawdę, który postanowił zostać przymiotnikiem i dorobić się własnej garderoby z -o i -a.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s05-word-rapido",
+      targetText: "rápido",
+      transcription: "/ˈrapiðo/",
+      playfulMeaningByLocale: copy({
+        ru: "Признак, который всегда куда-то торопится — даже произнести его нужно быстрее, чем соседние слова.",
+        uk: "Ознака, яка завжди кудись поспішає — навіть вимовити її треба швидше, ніж сусідні слова.",
+        es: "A quality that is always in a hurry — even saying it out loud takes less time than its neighbors.",
+        en: "A quality that is always in a hurry — even saying it out loud takes less time than its neighbors.",
+        "pt-BR": "Uma qualidade sempre com pressa — até dizê-la em voz alta leva menos tempo que as vizinhas.",
+        vi: "Một đặc điểm luôn vội vã — ngay cả nói ra cũng nhanh hơn những từ hàng xóm của nó.",
+        id: "Sifat yang selalu terburu-buru — bahkan mengucapkannya butuh waktu lebih sedikit daripada kata-kata tetangganya.",
+        tr: "Her zaman acelesi olan bir nitelik — söylemesi bile komşularından daha az sürer.",
+        pl: "Cecha, która zawsze się gdzieś spieszy — nawet wypowiedzenie jej trwa krócej niż sąsiednich słów.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

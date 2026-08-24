@@ -15458,6 +15458,38 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     <div id="tn-fill-result" aria-live="polite" style="margin-top:14px"></div>
   </div>
 
+  <!-- зачем 2026-08-24: карточка генератора вернута. Коммит 815fc4b45 (27.07)
+       убрал старую пакетную панель 10/20/30 — владелец забраковал её как
+       однотипную — но новую кнопку в разметку так и не добавил. Функция
+       tnAiTournament и callable adminGenerateTournamentAi всё это время были живы,
+       но вызвать их из админки было нечем: весь месяц генератор был недоступен.
+       Поля те же, что читает клиент и принимает сервер: level, topicHint, dryRun. -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Генератор турнира</div>
+    <p style="margin:0 0 12px;max-width:760px;font-size:12px;color:#9ca3af;line-height:1.55">
+      ИИ собирает турнир целиком — разные типы заданий и сложности за один запуск.
+      Всё попадает «На проверку» и без вашего одобрения в игру не уходит. Сборка занимает до минуты.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="tn-ai-level" aria-label="Уровень сложности турнира" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px;min-height:44px">
+        <option value="A1">A1 — новичок</option>
+        <option value="A2" selected>A2 — базовый</option>
+        <option value="B1">B1 — средний</option>
+        <option value="B2">B2 — уверенный</option>
+        <option value="C1">C1 — продвинутый</option>
+        <option value="C2">C2 — свободный</option>
+      </select>
+      <input type="text" id="tn-ai-topic" maxlength="120" placeholder="Тема (необязательно): аэропорт, собеседование…" aria-label="Тема заданий"
+        style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;min-width:260px;min-height:44px" />
+      <button type="button" onclick="tnAiTournament(true)" title="Собрать и показать турнир, ничего не сохраняя"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:9px 16px;min-height:44px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Посмотреть</button>
+      <button type="button" onclick="tnAiTournament(false)" title="Собрать турнир и положить задания на проверку"
+        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;min-height:44px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">🤖 Собрать турнир</button>
+      <span id="tn-ai-status" role="status" aria-live="polite" style="font-size:13px;color:#cbd5e1"></span>
+    </div>
+    <div id="tn-ai-result" aria-live="polite" style="margin-top:14px"></div>
+  </div>
+
   <!-- зачем 2026-07-27: владелец просил ОТДЕЛЬНЫЙ вход в пул одобренных
        заданий — тех, что реально попадают в игру. Раньше это был неприметный
        пункт фильтра, и было непонятно, что уже играет, а что ждёт проверки. -->
@@ -46000,7 +46032,22 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   };
 
   let _fnTnAiTournament = null;
+  // зачем: сборка идёт до минуты и стоит денег — каждый запуск это платные
+  // запросы к OpenAI и списание дневного лимита. Без замка нетерпеливый второй
+  // клик молча сжигал бы бюджет второй раз. Кнопки гаснут сразу, до ответа
+  // сервера, чтобы отклик был мгновенным.
+  let _tnAiInFlight = false;
+  function tnAiSetBusy(busy) {
+    document.querySelectorAll('button[onclick^="tnAiTournament"]').forEach((btn) => {
+      btn.disabled = busy;
+      btn.style.opacity = busy ? '0.55' : '';
+      btn.style.cursor = busy ? 'not-allowed' : 'pointer';
+    });
+  }
   window.tnAiTournament = async function tnAiTournament(dryRun) {
+    if (_tnAiInFlight) return;
+    _tnAiInFlight = true;
+    tnAiSetBusy(true);
     const status = document.getElementById('tn-ai-status');
     const result = document.getElementById('tn-ai-result');
     if (status) status.textContent = dryRun ? 'Собираю турнир…' : 'Собираю турнир, это до минуты…';
@@ -46043,6 +46090,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         ? 'Дневной лимит генераций исчерпан. Попробуйте завтра.'
         : 'Ошибка: ' + code;
       if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">${escapeHtml(nice)}</div>`;
+    } finally {
+      _tnAiInFlight = false;
+      tnAiSetBusy(false);
     }
   };
 

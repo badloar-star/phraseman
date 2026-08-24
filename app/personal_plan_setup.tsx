@@ -13,6 +13,7 @@ import PlusBadge from '../components/PlusBadge';
 import { hapticTap } from '../hooks/use-haptics';
 import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './personal_plan_catalog';
 import { activatePersonalPlan, readAnyPersonalPlanState } from './personal_plan_state';
+import { prefetchWholePlanContentInBackground } from './plan_content_prefetch';
 import { getPersonalPlanArt } from './personal_plan_art';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { queuePendingPersonalPlanActivation, readPendingPersonalPlanActivation } from './personal_plan_activation';
@@ -459,6 +460,9 @@ function PersonalPlanSetupScreen() {
       minutesPerDay: selectedMinutes,
       startDayIndex: 1,
     });
+    // зачем (Бандл-диета Ф1): план выбран → фоновый префетч всех его дней с
+    // сервера, чтобы к входу в любой день контент уже лежал в дисковом кэше.
+    prefetchWholePlanContentInBackground(planId);
     // Пометка replace держит честный стек согласованным: без неё setup остаётся
     // в in-memory стеке navigation_back.ts, и «назад» из плана возвращает на опрос
     // (см. app/personal_plan.tsx:397-401 — тот же паттерн на обратном переходе).

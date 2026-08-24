@@ -21,6 +21,7 @@ import {
   activatePersonalPlan,
   type PersonalPlanCompletionSummary,
 } from './personal_plan_state';
+import { prefetchWholePlanContentInBackground } from './plan_content_prefetch';
 import { readCompletedPlanTasks } from './personal_plan_progress';
 import { recommendNextPlanAfter, getPlanDefaultMinutes } from './personal_plan_recommendation';
 import { markNextNavigationAsReplace } from './navigation_back';
@@ -80,6 +81,9 @@ function PersonalPlanCompleteScreen() {
         planId: view.nextPlan.id,
         minutesPerDay: getPlanDefaultMinutes(view.nextPlan.id),
       });
+      // зачем (Бандл-диета Ф1): переход на следующий план → фоновый префетч
+      // всех его дней, как при первичном выборе плана.
+      prefetchWholePlanContentInBackground(view.nextPlan.id);
       // Свапаем экран завершения на новый план. Пометка replace убирает экран
       // завершения из честного стека — иначе «назад» из плана вернул бы на него,
       // а он (план уже не active) снова сделал бы replace на план → петля.

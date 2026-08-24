@@ -82,6 +82,18 @@ export function recordPlanContentSource(record: PlanContentTelemetryRecord): voi
     };
     void trackEvent('plan_content_source', baseProps);
 
+    // зачем (владелец 2026-08-24): телеметрия уходит в аналитику и в консоли
+    // Metro не видна, поэтому «с сервера или из бандла» нельзя было проверить
+    // глазами при приёмке Фазы 1 «Бандл-диеты». В dev-сборке дублируем решение
+    // строкой в консоль; в проде (__DEV__ === false) не печатается ничего.
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      // eslint-disable-next-line no-console -- dev-only приёмочный сигнал
+      console.log(
+        `[plan_content] ${record.planId} d${record.dayIndex} ${record.surface} → ${record.source}`
+        + (record.source === 'downloaded_pack' ? '' : ` (reason: ${record.reason || 'unknown'})`),
+      );
+    }
+
     if (record.source !== 'downloaded_pack') {
       void trackEvent('plan_content_fallback', {
         ...baseProps,

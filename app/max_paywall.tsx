@@ -436,19 +436,23 @@ export default function MaxPaywall() {
                     }}
                   >
                     <Text
-                      style={{ fontSize: f.label, fontWeight: row.highlight ? '900' : '800', color: row.highlight ? t.accent : t.textSecond, lineHeight: f.label * 1.28, minHeight: f.label * 1.28 * 2 }}
+                      style={{ fontSize: f.sub, fontWeight: row.highlight ? '900' : '800', color: row.highlight ? t.textPrimary : t.textSecond, lineHeight: f.sub * 1.28, minHeight: f.sub * 1.28 * 2 }}
                       maxFontSizeMultiplier={2}
                     >
                       {row.label}
                     </Text>
+                    {/* зачем: на плитке MAX текст красим textPrimary, а НЕ accent.
+                        Замер по 4 темам: акцент на своей же полупрозрачной подложке даёт
+                        2.98 («небо») и 4.05 («роза») — ниже порогов 3:1 (крупное) и
+                        4.5:1 (обычное). Выделяет плитку сама подложка accentSoft. */}
                     <Text
-                      style={{ fontSize: f.numMd, fontWeight: '900', color: row.highlight ? t.accent : t.textPrimary, lineHeight: f.numMd * 1.06, marginTop: 8, fontVariant: ['tabular-nums'] }}
+                      style={{ fontSize: f.numMd + 2, fontWeight: '900', color: t.textPrimary, lineHeight: (f.numMd + 2) * 1.06, marginTop: 8, fontVariant: ['tabular-nums'] }}
                       maxFontSizeMultiplier={1.4}
                     >
                       {row.amount}
                     </Text>
                     <Text
-                      style={{ fontSize: f.label, fontWeight: '700', color: t.textSecond, lineHeight: f.label * 1.3, marginTop: 5 }}
+                      style={{ fontSize: f.sub, fontWeight: '700', color: t.textSecond, lineHeight: f.sub * 1.3, marginTop: 5 }}
                       maxFontSizeMultiplier={2}
                     >
                       {row.note}

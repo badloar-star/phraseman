@@ -19,7 +19,7 @@
  * Вся чистая логика (состояние раскрытия, тайминги, сборка маршрутов) —
  * `tabbar_state.ts`; геометрия капсулы — `pill_tabbar_chrome.ts`.
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -58,7 +58,6 @@ import { getMistakePracticeReadyCount } from '../mistake_practice_insights';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
-import { type DeckRef } from './deck_sources';
 import { isLowPowerEffective } from './low_power';
 import { getLastPreset, type FcModePreset } from './mode_prefs';
 import { useFcReduceMotion } from './PhraseCard';
@@ -393,12 +392,17 @@ function TabMenuItem({
 export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null, hasAnyCards = true }: Props) {
   const router = useRouter();
   const { f, ds, themeMode } = useTheme();
-  const { tabBarHeight, bottomInset: screenBottomInset, width: screenWidth } = useScreen();
+  const { hasPremiumAccess } = usePremium();
+  const { studyTarget } = useStudyTarget();
+  const { tabBarHeight, bottomInset: screenBottomInset } = useScreen();
   const [menu, setMenu] = useState<FcTabMenu>('none');
   /** §6: для какого режима открыт шит выбора наборов (null — закрыт). */
   const [pickerOption, setPickerOption] = useState<FcTrainOption | null>(null);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
+  const [deckDataMode, setDeckDataMode] = useState<ReturnType<typeof fcTrainOptionPresetMode> | null>(null);
+  const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
+  const [mistakeReadyCount, setMistakeReadyCount] = useState(0);
   const reduceMotion = useFcReduceMotion();
   /** §8: «уменьшить движение» и слабые устройства — упрощённый вариант без потери функций. */
   const simple = reduceMotion || isLowPowerEffective() || Platform.OS === 'web';
@@ -452,17 +456,25 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     if (menu !== 'none') scroll?.expandNow();
   }, [menu, scroll]);
 
-  /** §5.2: системный «назад» сначала сворачивает раскрытую группу. */
+  /** Верхний слой всегда закрывается раньше, чем экран получает системный Back. */
   useEffect(() => {
-    if (Platform.OS !== 'android' || !open) return;
+    if (Platform.OS !== 'android' || (!open && !pickerOption && !mistakeSheetVisible)) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (pickerOption) {
+        setPickerOption(null);
+        return true;
+      }
+      if (mistakeSheetVisible) {
+        setMistakeSheetVisible(false);
+        return true;
+      }
       const next = consumeFcTabBackPress(menu);
       if (!next.handled) return false;
       setMenu(next.menu);
       return true;
     });
     return () => sub.remove();
-  }, [open, menu]);
+  }, [mistakeSheetVisible, open, menu, pickerOption]);
 
   /**
    * «Говорить» живёт за тем же remote kill-switch, что и «Устно» в уроках:
@@ -481,10 +493,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     [speakingEnabled],
   );
 
-  /**
-   * зачем (владелец): «Коллекция» ведёт в сохранённые+свои карточки раздела —
-   * пустая коллекция это пункт в никуда (onPacksOption просто закроет меню,
-   * alreadyHere/переход некуда). Прячем его вместо видимой, но бездействующей
   useEffect(() => {
     if (!trainOpen && !mistakeSheetVisible) return;
     if (studyTarget !== 'en' && studyTarget !== 'fr') {
@@ -505,6 +513,10 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     };
   }, [mistakeSheetVisible, studyTarget, trainOpen]);
 
+  /**
+   * зачем (владелец): «Коллекция» ведёт в сохранённые+свои карточки раздела —
+   * пустая коллекция это пункт в никуда (onPacksOption просто закроет меню,
+   * alreadyHere/переход некуда). Прячем его вместо видимой, но бездействующей
    * кнопки; «Мои наборы» и «Наборы сообщества» от количества карточек не зависят.
    */
   const packsOptions = useMemo(
@@ -536,10 +548,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     (option: FcTrainOption) => {
       void hapticTap();
       close();
-      void (async () => {
-        const preset = await getLastPreset(fcTrainOptionPresetMode(option)).catch(() => null);
-        const target = buildFcTrainRoute(option, preset);
-        router.push({ pathname: target.pathname, params: target.params } as any);
       if (option === 'errors') {
         trackMistakePracticeEvent('mistake_practice_menu_opened', {
           study_target: studyTarget,
@@ -554,17 +562,22 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         setMistakeSheetVisible(true);
         return;
       }
-      })();
+      setDeckOptions([]);
+      setDeckPreset(null);
+      setDeckDataMode(null);
+      setPickerOption(option);
     },
-    [close, router],
+    [close, hasPremiumAccess, mistakeReadyCount, router, studyTarget],
   );
 
   const onCreateOption = useCallback(
     (option: FcCreateOption) => {
       void hapticTap();
-      go(buildFcCreateRoute(option));
+      close();
+      const target = buildFcCreateRoute(option);
+      router.push({ pathname: target.pathname, params: target.params } as any);
     },
-    [go],
+    [close, router],
   );
 
   const onPacksOption = useCallback(
@@ -586,13 +599,14 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     [active, close, go],
   );
 
-  /**
-   * §6: шит мультивыбора наборов. Быстрый старт (обычный тап) идёт мимо него —
-   * ⚙ / долгий тап открывают выбор наборов и размера сессии.
-   */
+  /** §6: обычный тап, ⚙ и долгий тап ведут в один и тот же выбор наборов. */
   const onTrainOptionSetup = useCallback((option: FcTrainOption) => {
+    if (option === 'errors') return;
     void hapticTap();
     setMenu('none');
+    setDeckOptions([]);
+    setDeckPreset(null);
+    setDeckDataMode(null);
     setPickerOption(option);
   }, []);
 
@@ -603,6 +617,9 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     if (!pickerOption) return;
     let cancelled = false;
     const mode = fcTrainOptionPresetMode(pickerOption);
+    setDeckOptions([]);
+    setDeckPreset(null);
+    setDeckDataMode(null);
     void (async () => {
       const [decks, preset] = await Promise.all([
         loadFcDeckOptions(mode, lang).catch(() => [] as DeckSheetOption[]),
@@ -611,21 +628,25 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       if (cancelled) return;
       setDeckOptions(decks);
       setDeckPreset(preset);
+      setDeckDataMode(mode);
     })();
     return () => {
       cancelled = true;
     };
   }, [pickerOption, lang]);
 
+  const pickerMode = pickerOption ? fcTrainOptionPresetMode(pickerOption) : 'trainer';
+  const pickerDataReady = !!pickerOption && deckDataMode === pickerMode;
+
   const onPickerStart = useCallback(
     (preset: FcModePreset) => {
       const option = pickerOption;
+      if (!option || deckDataMode !== fcTrainOptionPresetMode(option)) return;
       setPickerOption(null);
-      if (!option) return;
       const target = buildFcTrainRoute(option, preset, { fromPicker: true });
       router.push({ pathname: target.pathname, params: target.params } as any);
     },
-    [pickerOption, router],
+    [deckDataMode, pickerOption, router],
   );
 
   const onTogglePress = useCallback((kind: 'train' | 'create' | 'packs') => {
@@ -651,6 +672,10 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       blitz: triLang(lang, {
         ru: 'Блиц', uk: 'Бліц', es: 'Blitz',
         'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
+      }),
+      errors: triLang(lang, {
+        ru: 'Ошибки', uk: 'Помилки', es: 'Errores',
+        'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy',
       }),
       packs: triLang(lang, {
         ru: 'Наборы', uk: 'Набори', es: 'Packs',
@@ -697,6 +722,10 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     listen: { icon: 'headset-outline', label: labels.listen },
     speak: { icon: 'mic-outline', label: labels.speak },
     blitz: { icon: 'flash-outline', label: labels.blitz },
+    errors: {
+      icon: 'alert-circle-outline',
+      label: `${labels.errors} · ${mistakeReadyCount}${hasPremiumAccess ? '' : ' · Plus'}`,
+    },
   };
   const createMeta: Record<FcCreateOption, { icon: keyof typeof Ionicons.glyphMap; label: string; testID: string }> = {
     card: { icon: 'add-circle-outline', label: labels.createCard, testID: 'fc-tabbar-create-card' },
@@ -725,12 +754,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
 
   /** Капсула — по содержимому и по центру экрана (три позиции, а не четыре). */
   const pillW = tabPillWidth(BAR_SLOTS.length);
-  /**
-   * Раскрывающиеся группы прижимаются к краям КАПСУЛЫ, а не экрана — иначе
-   * список висел бы в стороне от своей кнопки. Не уже прежнего отступа.
-   */
-  const menuSideInset = Math.max(ds.spacing.lg, (screenWidth - pillW) / 2);
-
   /**
    * Стартовое положение подсветки = финальное: первый кадр без «переезда».
    * Коллекция живёт в той же группе, что наборы, — подсвечиваем тот же слот,
@@ -819,12 +842,13 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       {/* Слой на весь экран: все всплывашки живут ВНУТРИ его границ — иначе на
           Android касание по кнопке, отрисованной выше родителя, не доходит. */}
       <View pointerEvents="box-none" style={StyleSheet.absoluteFillObject}>
-        {/* §5.2: список режимов выезжает ВВЕРХ над левой позицией «Тренировка» */}
+        {/* Все группы раскрываются по центральной оси экрана: длинные подписи не
+            уезжают к краям и сохраняют одну визуальную колонку. */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', left: menuSideInset, bottom: barTotalH + 10 }}
+          style={[styles.menuDock, { bottom: barTotalH + 10 }]}
         >
-          <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-start' }}>
+          <View pointerEvents="box-none" style={styles.menuList}>
             {trainOptions.map((option, i) => (
               <TabMenuItem
                 key={option}
@@ -837,7 +861,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 open={trainOpen}
                 simple={simple}
                 onPress={() => onTrainOption(option)}
-                onSetup={() => onTrainOptionSetup(option)}
+                onSetup={option === 'errors' ? undefined : () => onTrainOptionSetup(option)}
                 setupTestID={`fc-tabbar-train-option-${option}-setup`}
                 setupLabel={labels.pickDecks}
               />
@@ -845,12 +869,12 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
           </View>
         </View>
 
-        {/* Два раздела наборов раскрываются НАД правой позицией */}
+        {/* Разделы наборов используют ту же центральную колонку. */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', right: menuSideInset, bottom: barTotalH + 10 }}
+          style={[styles.menuDock, { bottom: barTotalH + 10 }]}
         >
-          <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-end' }}>
+          <View pointerEvents="box-none" style={styles.menuList}>
             {packsOptions.map((option, i) => (
               <TabMenuItem
                 key={option}
@@ -871,9 +895,9 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         {/* §5.2: две кнопки создания раскрываются НАД центральной «+» */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', left: 0, right: 0, bottom: barTotalH + 10, alignItems: 'center' }}
+          style={[styles.menuDock, { bottom: barTotalH + 10 }]}
         >
-          <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'center' }}>
+          <View pointerEvents="box-none" style={styles.menuList}>
             {FC_CREATE_OPTIONS.map((option, i) => (
               <TabMenuItem
                 key={option}
@@ -980,22 +1004,14 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         visible={!!pickerOption}
         onClose={closePicker}
         onStart={onPickerStart}
-        decks={deckOptions}
-        initialPreset={deckPreset}
+        decks={pickerDataReady ? deckOptions : []}
+        initialPreset={pickerDataReady ? deckPreset : null}
         lang={lang}
         t={t}
         f={f}
         reduceMotion={reduceMotion}
-        mode={pickerOption ? fcTrainOptionPresetMode(pickerOption) : 'trainer'}
+        mode={pickerMode}
       />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  /** Слой-«док»: держит капсулу по центру и несёт сжатие от скролла. */
-  pillDock: {
-    position: 'absolute',
       {/* Exact entry contract: fc-tabbar-train-option-errors */}
       <MistakePracticeSetupSheet
         visible={mistakeSheetVisible}
@@ -1015,6 +1031,25 @@ const styles = StyleSheet.create({
           } as any);
         }}
       />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  /** Единая центральная ось для меню всех трёх слотов таббара. */
+  menuDock: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  menuList: {
+    gap: 8,
+    alignItems: 'center',
+  },
+  /** Слой-«док»: держит капсулу по центру и несёт сжатие от скролла. */
+  pillDock: {
+    position: 'absolute',
     left: 0,
     right: 0,
     alignItems: 'center',

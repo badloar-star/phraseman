@@ -11,7 +11,7 @@
 //
 // Правила владельца соблюдены: контейнер без обводки (разделяем тоном), подписи
 // мелким шрифтом под названием нет, размер текста не ужимается.
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {

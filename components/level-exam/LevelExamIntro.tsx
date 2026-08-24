@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,6 +11,7 @@ import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
 import EnergyIcon from '../EnergyIcon';
+import EnergyCostBadge from '../EnergyCostBadge';
 
 type Props = {
   lang: Lang;
@@ -157,27 +158,24 @@ export default function LevelExamIntro({
               </Text>
             ) : null}
 
-            <TapScale
-              testID="level-exam-start"
-              onPress={handleStart}
-              disabled={disabled}
-              accessibilityLabel={startAccessibilityLabel}
-              accessibilityHint={copy.lessonRange}
-              accessibilityState={{ disabled }}
-              style={[styles.startButton, { minHeight: ds.buttonHeight, backgroundColor: disabled ? t.bgSurface2 : t.accent, paddingHorizontal: ds.spacing.lg }]}
-            >
-              <View testID="level-exam-start-content" style={styles.startButtonContent}>
-                <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                  {copy.startCta}
-                </Text>
-                {!unlimitedEnergy ? <View style={styles.costBadge}>
-                  <EnergyIcon filled={true} themeColor={disabled ? t.textMuted : t.correctText} themeMode={themeMode} size={18} animateChange={false} />
-                  <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                    {energyCost}
+            <View style={styles.startButtonWrap}>
+              <TapScale
+                testID="level-exam-start"
+                onPress={handleStart}
+                disabled={disabled}
+                accessibilityLabel={startAccessibilityLabel}
+                accessibilityHint={copy.lessonRange}
+                accessibilityState={{ disabled }}
+                style={[styles.startButton, { minHeight: ds.buttonHeight, backgroundColor: disabled ? t.bgSurface2 : t.accent, paddingHorizontal: ds.spacing.lg }]}
+              >
+                <View testID="level-exam-start-content" style={styles.startButtonContent}>
+                  <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
+                    {copy.startCta}
                   </Text>
-                </View> : null}
-              </View>
-            </TapScale>
+                </View>
+              </TapScale>
+              <EnergyCostBadge testID="level-exam-start-energy-cost" />
+            </View>
           </View>
         </View>
       </SafeAreaView>
@@ -201,5 +199,5 @@ const styles = StyleSheet.create({
   centerText: { textAlign: 'center' },
   startButton: { borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   startButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  costBadge: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  startButtonWrap: { position: 'relative', overflow: 'visible' },
 });

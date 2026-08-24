@@ -180,14 +180,14 @@ export default function MaxPaywall() {
       return true;
     }
     setError(triLang(lang, {
-      ru: 'Покупка ещё обрабатывается. Нажми «Проверить активацию» через минуту.',
-      uk: 'Покупка ще обробляється. Натисни «Перевірити активацію» за хвилину.',
-      es: 'La compra aún se está procesando. Comprueba la activación en un minuto.',
-      'pt-BR': 'A compra ainda está sendo processada. Verifique a ativação em um minuto.',
-      vi: 'Giao dịch vẫn đang được xử lý. Hãy kiểm tra lại sau một phút.',
-      id: 'Pembelian masih diproses. Periksa lagi dalam satu menit.',
-      tr: 'Satın alma hâlâ işleniyor. Bir dakika sonra tekrar kontrol et.',
-      pl: 'Zakup jest nadal przetwarzany. Sprawdź ponownie za minutę.',
+      ru: 'Покупка ещё обрабатывается. Нажми «Проверить активацию» позже.',
+      uk: 'Покупка ще обробляється. Натисни «Перевірити активацію» пізніше.',
+      es: 'La compra aún se está procesando. Comprueba la activación más tarde.',
+      'pt-BR': 'A compra ainda está sendo processada. Verifique a ativação mais tarde.',
+      vi: 'Giao dịch vẫn đang được xử lý. Hãy kiểm tra lại sau.',
+      id: 'Pembelian masih diproses. Periksa lagi nanti.',
+      tr: 'Satın alma hâlâ işleniyor. Daha sonra tekrar kontrol et.',
+      pl: 'Zakup jest nadal przetwarzany. Sprawdź ponownie później.',
     }));
     return false;
   };
@@ -388,17 +388,27 @@ export default function MaxPaywall() {
                   tr: 'Sesli arama limitleri', pl: 'Limity rozmów głosowych',
                 })}
               </Text>
+              {/* зачем: владелец показал скрин, где «Бесплатно / Плюс / Про» и значение
+                  наезжали друг на друга (тексты без ограничения ширины + f.h2 у MAX).
+                  Просил две колонки: тир слева, лимит справа — каждая колонка переносит
+                  строки внутри себя и не пересекает соседнюю. */}
               {rows.map((row) => (
                 <View
                   key={row.label}
                   style={row.highlight
-                    ? { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: accentSoft, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 10 }
-                    : { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 9 }}
+                    ? { flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: accentSoft, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 12 }
+                    : { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 }}
                 >
-                  <Text style={{ fontSize: row.highlight ? f.sub : f.body, fontWeight: row.highlight ? '900' : '700', color: row.highlight ? t.accent : t.textSecond }} maxFontSizeMultiplier={2}>
+                  <Text
+                    style={{ flex: 1, fontSize: row.highlight ? f.sub : f.body, fontWeight: row.highlight ? '900' : '700', color: row.highlight ? t.accent : t.textSecond, lineHeight: (row.highlight ? f.sub : f.body) * 1.3 }}
+                    maxFontSizeMultiplier={2}
+                  >
                     {row.label}
                   </Text>
-                  <Text style={{ fontSize: row.highlight ? f.h2 : f.sub, fontWeight: '900', color: row.highlight ? t.accent : t.textPrimary, fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={2}>
+                  <Text
+                    style={{ flex: 1.4, textAlign: 'right', fontSize: f.sub, fontWeight: '900', color: row.highlight ? t.accent : t.textPrimary, lineHeight: f.sub * 1.3, fontVariant: ['tabular-nums'] }}
+                    maxFontSizeMultiplier={2}
+                  >
                     {row.value}
                   </Text>
                 </View>

@@ -17,7 +17,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
 import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
@@ -158,6 +158,7 @@ function FeatureIntroModal({
           variant="secondary"
           onPress={handleLater}
           style={styles.secondaryBtn}
+          contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
         >
           <Text
             testID={`${testIdPrefix}-later`}

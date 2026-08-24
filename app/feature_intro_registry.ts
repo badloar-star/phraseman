@@ -6,7 +6,7 @@
 // участвует (всё локально, дёшево — ноль чтений/записей в Firestore).
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type React from 'react';
-import type { Ionicons } from '@expo/vector-icons';
+import type Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { captureAccountGeneration } from './account_generation';
 

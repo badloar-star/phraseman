@@ -13,7 +13,7 @@
  *   • у набора видно НИК автора, а не технический идентификатор;
  *   • своя (ещё не опубликованная) коллекция получает кнопку «Сделать публичным».
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo } from 'react';
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -24,6 +24,7 @@ import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import type { FcCollectionViewMode } from './collection_view_prefs';
 import type { FilterGroup } from './selectors';
+import EnergyCostBadge from '../../components/EnergyCostBadge';
 
 type Props = {
   t: Theme;
@@ -165,6 +166,7 @@ export default function CollectionHeader({
     a11y: string,
     onPress: (() => void) | undefined,
   ) => (
+    <View style={{ width: 34, height: 34, position: 'relative', overflow: 'visible' }}>
     <TouchableOpacity
       testID={key === 'listen' ? 'fc-listen-deck' : 'fc-train-deck'}
       accessibilityLabel={key === 'listen' ? 'qa-fc-listen-deck' : 'qa-fc-train-deck'}
@@ -187,6 +189,14 @@ export default function CollectionHeader({
     >
       <Ionicons name={icon} size={17} color={key === 'train' ? t.correctText : t.accent} />
     </TouchableOpacity>
+      <EnergyCostBadge
+        compact
+        testID={key === 'listen'
+          ? 'flashcards-collection-listen-energy-cost'
+          : 'flashcards-collection-train-energy-cost'}
+        style={{ right: -2 }}
+      />
+    </View>
   );
 
   return (

@@ -19,11 +19,12 @@
  * Лэйаут стабилен с первого кадра: пока владение читается, показываем тот же
  * каркас (заголовок + сетка-заглушка), а не пустоту, которая потом «прыгает».
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
+  ActivityIndicator,
   BackHandler,
   Platform,
   StatusBar,
@@ -40,6 +41,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMeta } from './community_packs/communityFirestore';
@@ -144,6 +146,9 @@ export default function FlashcardsMyPacksScreen() {
 
   // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
   const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget));
+  const [openingPackId, setOpeningPackId] = useState<string | null>(null);
+  const openingPackRef = useRef<string | null>(null);
+  const openingRequestGenerationRef = useRef(0);
 
   const contentLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -203,6 +208,9 @@ export default function FlashcardsMyPacksScreen() {
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
+      openingRequestGenerationRef.current += 1;
+      openingPackRef.current = null;
+      setOpeningPackId(null);
       void loadMine().then((next) => {
         if (cancelled) return;
         setGroups((prev) =>
@@ -211,6 +219,8 @@ export default function FlashcardsMyPacksScreen() {
       });
       return () => {
         cancelled = true;
+        openingRequestGenerationRef.current += 1;
+        openingPackRef.current = null;
       };
     }, [loadMine]),
   );
@@ -232,10 +242,35 @@ export default function FlashcardsMyPacksScreen() {
   }, [leave]);
 
   const openPack = useCallback(
-    (pack: FlashcardMarketPack) => {
-      /** КРИТИЧНО: staging СИНХРОННО перед push — первый кадр коллекции уже с карточками. */
-      if (pack.isCommunityUgc) stageCommunityPackCardsForNavigation(pack.id, studyTarget);
-      else stageOwnedPackCardsForNavigation(pack.id);
+    async (pack: FlashcardMarketPack) => {
+      if (openingPackRef.current) return;
+      const requestToken = ++openingRequestGenerationRef.current;
+      openingPackRef.current = pack.id;
+      setOpeningPackId(pack.id);
+      if (pack.isCommunityUgc) {
+        const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+        if (
+          openingRequestGenerationRef.current !== requestToken
+          || openingPackRef.current !== pack.id
+        ) return;
+        if (cards.length === 0) {
+          openingPackRef.current = null;
+          setOpeningPackId(null);
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
+            uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
+            es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
+            vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
+            id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
+            tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
+            pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
+          }));
+          return;
+        }
+      } else {
+        stageOwnedPackCardsForNavigation(pack.id, studyTarget);
+      }
       /** `from=mine` — «назад» из набора возвращает ровно сюда, без промежуточных остановок. */
       router.push({
         pathname: '/flashcards_collection',
@@ -341,7 +376,8 @@ export default function FlashcardsMyPacksScreen() {
           accessibilityRole="button"
           accessible
           activeOpacity={0.85}
-          onPress={() => openPack(pack)}
+          disabled={openingPackId !== null}
+          onPress={() => { void openPack(pack); }}
           style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
         >
           <View
@@ -359,6 +395,14 @@ export default function FlashcardsMyPacksScreen() {
             }}
           >
             {packIcon(pack, tileW)}
+            {openingPackId === pack.id ? (
+              <View
+                pointerEvents="none"
+                style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` }]}
+              >
+                <ActivityIndicator color={t.accent} />
+              </View>
+            ) : null}
             {pack.cardCount > 0 ? (
               <View
                 pointerEvents="none"
@@ -387,7 +431,7 @@ export default function FlashcardsMyPacksScreen() {
         </TouchableOpacity>
       );
     },
-    [contentLang, openPack, packIcon, t.accent, t.bgCard, t.bgSurface, t.border, t.textSecond, tileW],
+    [contentLang, openPack, openingPackId, packIcon, t.accent, t.bgCard, t.bgSurface, t.border, t.textSecond, tileW],
   );
 
   /** Раздел с заголовком и счётчиком; пустой раздел не рендерится вообще. */

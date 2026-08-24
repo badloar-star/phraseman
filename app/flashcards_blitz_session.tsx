@@ -27,7 +27,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -133,7 +133,7 @@ export default function FlashcardsBlitzSession() {
   // Старт/рестарт блиц-раунда = 1 ⚡ за попытку (владелец 2026-08-23: единая
   // экономика). Гейт стоит ДО эффекта старта раунда ниже — раунд не запускается,
   // пока энергия не подтверждена.
-  const { isUnlimited: blitzEnergyUnlimited, spendOne: spendBlitzEnergy } = useEnergy();
+  const { isUnlimited: blitzEnergyUnlimited, confirmSpendOne: confirmBlitzEnergy } = useEnergy();
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
 
   const queueRef = useRef<DeckCard[]>([]);
@@ -282,12 +282,16 @@ export default function FlashcardsBlitzSession() {
     blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
     let cancelled = false;
-    void spendBlitzEnergy().then((ok) => {
+    void confirmBlitzEnergy().then((result) => {
       if (cancelled) return;
-      setEnergyGate(ok ? 'ok' : 'denied');
+      if (result === 'cancelled') {
+        safeRouterBack(router, '/flashcards' as never);
+        return;
+      }
+      setEnergyGate(result === 'insufficient' ? 'denied' : 'ok');
     });
     return () => { cancelled = true; };
-  }, [loading, pool.length, roundId, blitzEnergyUnlimited, spendBlitzEnergy]);
+  }, [loading, pool.length, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, router]);
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {
@@ -683,6 +687,7 @@ export default function FlashcardsBlitzSession() {
         xpGained={0}
         learnLeft={0}
         onRetryWrong={restart}
+        retryShowsEnergyCost
         retryLabel={triLang(lang, {
           ru: 'Ещё разок!', uk: 'Ще разок!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',
           vi: 'Chơi lại!', id: 'Sekali lagi!', tr: 'Bir daha!', pl: 'Jeszcze raz!',

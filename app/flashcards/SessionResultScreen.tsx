@@ -12,13 +12,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
 import XpGainBadge from '../../components/XpGainBadge';
+import EnergyCostBadge from '../../components/EnergyCostBadge';
 import { triLang } from '../../constants/i18n';
 import { fcHaptic, playSfx } from './SoundService';
 
@@ -42,6 +43,8 @@ export type SessionResultScreenProps = {
   listeningStats?: boolean;
   /** E12 (блиц): текст CTA повтора («Ещё разок!») — показывает кнопку даже при learnLeft=0. */
   retryLabel?: string;
+  /** Повтор запускает новый оплачиваемый раунд. */
+  retryShowsEnergyCost?: boolean;
   /** E12 (блиц): пилюля счёта очков под заголовком («Счёт: 1250»). */
   scoreText?: string;
   testID?: string;
@@ -57,6 +60,7 @@ function SessionResultScreenImpl({
   accentColor,
   listeningStats = false,
   retryLabel,
+  retryShowsEnergyCost = false,
   scoreText,
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
@@ -144,24 +148,27 @@ function SessionResultScreenImpl({
             {/* CTA */}
             <View style={styles.ctaBlock}>
               {onRetryWrong && (learnLeft > 0 || retryLabel) ? (
-                <TouchableOpacity
-                  onPress={() => {
-                    fcHaptic('tap');
-                    onRetryWrong();
-                  }}
-                  testID={`${testID}-retry`}
-                  style={[styles.retryBtn, { borderColor: accent, backgroundColor: `${accent}14` }]}
-                >
-                  <Ionicons name="refresh" size={18} color={accent} />
-                  <Text style={{ color: accent, fontSize: f.body, fontWeight: '800' }}>
-                    {retryLabel ??
-                      triLang(lang, {
-                        ru: `Добить: Ещё учу (${learnLeft})`,
-                        uk: `Добити: Ще вчу (${learnLeft})`,
-                        es: `Rematar: Aprendiendo (${learnLeft})`,
-                      })}
-                  </Text>
-                </TouchableOpacity>
+                <View style={styles.retryWrap}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      fcHaptic('tap');
+                      onRetryWrong();
+                    }}
+                    testID={`${testID}-retry`}
+                    style={[styles.retryBtn, { borderColor: accent, backgroundColor: `${accent}14` }]}
+                  >
+                    <Ionicons name="refresh" size={18} color={accent} />
+                    <Text style={{ color: accent, fontSize: f.body, fontWeight: '800' }}>
+                      {retryLabel ??
+                        triLang(lang, {
+                          ru: `Добить: Ещё учу (${learnLeft})`,
+                          uk: `Добити: Ще вчу (${learnLeft})`,
+                          es: `Rematar: Aprendiendo (${learnLeft})`,
+                        })}
+                    </Text>
+                  </TouchableOpacity>
+                  {retryShowsEnergyCost ? <EnergyCostBadge testID={`${testID}-retry-energy-cost`} /> : null}
+                </View>
               ) : null}
               <TouchableOpacity
                 onPress={() => {
@@ -205,6 +212,7 @@ const styles = StyleSheet.create({
   stat: { flex: 1, alignItems: 'center', paddingVertical: 16, gap: 4 },
   statDivider: { width: StyleSheet.hairlineWidth },
   ctaBlock: { gap: 10 },
+  retryWrap: { position: 'relative', overflow: 'visible' },
   retryBtn: {
     flexDirection: 'row',
     alignItems: 'center',

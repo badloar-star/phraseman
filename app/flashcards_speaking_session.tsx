@@ -30,7 +30,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -147,7 +147,7 @@ export default function FlashcardsSpeakingSession() {
 
   const [loading, setLoading] = useState(true);
   // Старт сессии «Говорить» = 1 ⚡ (владелец 2026-08-23: единая экономика).
-  const { isUnlimited: speakEnergyUnlimited, spendOne: spendSpeakEnergy } = useEnergy();
+  const { confirmSpendOne: confirmSpeakEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const speakingEntryChargedRef = useRef(false);
   const [session, setSession] = useState<SpeakingSessionState>(() => initialSpeakingState([]));
@@ -199,11 +199,13 @@ export default function FlashcardsSpeakingSession() {
       // тут нет рестарта раунда, вся сессия — одна попытка).
       if (!speakingEntryChargedRef.current) {
         speakingEntryChargedRef.current = true;
-        if (!speakEnergyUnlimited) {
-          const ok = await spendSpeakEnergy();
-          if (cancelled) return;
-          if (!ok) { setNoEnergyOpen(true); setLoading(false); return; }
+        const energyResult = await confirmSpeakEnergy();
+        if (cancelled) return;
+        if (energyResult === 'cancelled') {
+          safeRouterBack(router, '/flashcards' as never);
+          return;
         }
+        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
       }
       const [pool, rawPrefs] = await Promise.all([
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch((): DeckCard[] => []),
@@ -227,7 +229,7 @@ export default function FlashcardsSpeakingSession() {
     };
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckKey, sessionSize, contentLang, clearAdvanceTimer, speakEnergyUnlimited, spendSpeakEnergy]);
+  }, [deckKey, sessionSize, contentLang, clearAdvanceTimer, confirmSpeakEnergy, router]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -460,6 +462,10 @@ export default function FlashcardsSpeakingSession() {
       f={f}
       reduceMotion={reduceMotion}
       mode="speaking"
+      showsEnergyCostForPreset={(preset) => {
+        const nextDeck = deckRouteParam(presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID)) || 'saved';
+        return parseDeckParams(nextDeck).map(deckRefKey).join(',') !== deckKey || preset.size !== sessionSize;
+      }}
     />
   );
 

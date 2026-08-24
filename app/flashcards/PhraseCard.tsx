@@ -39,7 +39,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Theme } from '../../constants/theme';
 import {
   FC_FLIP_PERSPECTIVE,
@@ -180,7 +180,7 @@ export type PhraseCardProps = {
   muted?: boolean;
   disabled?: boolean;
   testID?: string;
-  /** E13: «сила слова» из SRS (§2) — 1–3 точки в углу лица; null — не рисуем. */
+  /** E13: «сила слова» из проекции ошибок — 1–3 точки; null — не рисуем. */
   strength?: WordStrength | null;
 };
 
@@ -597,9 +597,18 @@ function PhraseCardImpl({
               style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
             />
           ) : null}
+          {!packTheme ? (
+            <LinearGradient
+              pointerEvents="none"
+              colors={t.cardGradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
+            />
+          ) : null}
           {renderFront ? renderFront() : defaultFront}
           {speakBtn('front', onSpeakFront)}
-          {/* E13: точки силы слова (Weak/Medium/Strong из SRS, §2) */}
+          {/* E13: точки силы слова из новой проекции ошибок. */}
           {strength ? (
             <WordStrengthDots
               strength={strength}
@@ -623,6 +632,15 @@ function PhraseCardImpl({
           {packTheme ? (
             <LinearGradient
               colors={[...packTheme.backGradient]}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
+            />
+          ) : null}
+          {!packTheme ? (
+            <LinearGradient
+              pointerEvents="none"
+              colors={[t.cardGradient[1], t.cardGradient[0]]}
               start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 0 }}
               style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}

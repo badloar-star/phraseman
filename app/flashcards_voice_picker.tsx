@@ -11,7 +11,7 @@
  *   speechRate из user_settings_store (та же настройка, что слайдер в settings_edu).
  * - Подсказка: улучшенные голоса докачиваются в настройках телефона (платформенно).
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';

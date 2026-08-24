@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -111,7 +111,7 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
 export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
-  const { isUnlimited, spendAmount, energy, bonusEnergy, energyReady } = useEnergy();
+  const { isUnlimited, confirmSpendAmount, energy, bonusEnergy, energyReady } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const unlimitedEnergy = isUnlimited || hasPremiumAccess;
   const examRuntimeActive = useRuntimeActive();
@@ -398,8 +398,13 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     if (!current || current.status !== 'active') return;
     beginQuizInFlightRef.current = true;
     try {
-      if (!unlimitedEnergy) {
-        if (energy + bonusEnergy < ENERGY_COST || !await spendAmount(ENERGY_COST)) {
+      {
+        const energyResult = await confirmSpendAmount(ENERGY_COST);
+        if (energyResult === 'cancelled') {
+          setPhase('intro');
+          return;
+        }
+        if (energyResult === 'insufficient') {
           setNoEnergy(true);
           setPhase('intro');
           return;
@@ -420,7 +425,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     } finally {
       beginQuizInFlightRef.current = false;
     }
-  }, [bonusEnergy, energy, level, spendAmount, unlimitedEnergy]);
+  }, [bonusEnergy, confirmSpendAmount, energy, level]);
 
   const pauseAndExit = useCallback(() => {
     const current = attemptRef.current;

@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAudioPlayer } from 'expo-audio';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -37,7 +37,7 @@ import {
 import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_store';
 import { prepareMistakePracticeSession } from './mistake_practice_session_runtime';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
   flushPendingMistakeCorrectionRewards,
   settleMistakePracticeAnswerRewards,
@@ -196,11 +196,11 @@ function MistakePracticeSessionScreen() {
   const copy = useMemo(() => sessionCopy(lang), [lang]);
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
-  const { spendOne } = useEnergy();
-  // зачем: ref — чтобы эффект подготовки сессии не пересоздавался из-за spendOne
+  const { confirmSpendOne } = useEnergy();
+  // зачем: ref — чтобы эффект подготовки сессии не пересоздавался из-за confirmSpendOne
   // и не готовил сессию заново (это лишние чтения журнала ошибок).
-  const spendOneRef = useRef(spendOne);
-  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+  const confirmSpendOneRef = useRef(confirmSpendOne);
+  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
   const [accountScope, setAccountScope] = useState<string | null>(null);
   const [session, setSession] = useState<MistakePracticeSession | null>(null);
   const [pendingSession, setPendingSession] = useState<MistakePracticeSession | null>(null);
@@ -242,6 +242,7 @@ function MistakePracticeSessionScreen() {
   const returnToMaxReview = params.returnTo === 'max_voice_review';
   const leavePractice = () => {
     if (returnToMaxReview) {
+      markNextNavigationAsReplace();
       router.replace({
         pathname: '/max_voice_review',
         params: typeof params.maxReviewSessionId === 'string'
@@ -271,6 +272,7 @@ function MistakePracticeSessionScreen() {
 
   useEffect(() => {
     if (!hasPremiumAccess) {
+      markNextNavigationAsReplace();
       router.replace({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
       return;
     }
@@ -292,6 +294,14 @@ function MistakePracticeSessionScreen() {
         focusMistakeId: focusedMistakeId,
       });
       if (!cancelled) {
+        if (!prepared.resumed) {
+          const energyResult = await confirmSpendOneRef.current();
+          if (cancelled) return;
+          if (energyResult === 'cancelled' || energyResult === 'insufficient') {
+            safeRouterBack(router, '/flashcards' as never);
+            return;
+          }
+        }
         trackMistakePracticeEvent('mistake_practice_session_started', {
           study_target: studyTarget,
           entry_source: entrySource,
@@ -302,11 +312,6 @@ function MistakePracticeSessionScreen() {
         setAccountScope(scope);
         setSession(prepared.session);
         setLoading(false);
-        // Старт отработки ошибок = 1 ⚡ (единое правило владельца 2026-08-23).
-        // зачем: у этого экрана обязателен премиум-доступ, поэтому spendOne здесь
-        // почти всегда no-op — но списание оставлено явным, чтобы правило было
-        // одинаковым во всех активностях и не отвалилось при смене гейта доступа.
-        if (!prepared.resumed) void spendOneRef.current().catch(() => {});
       }
     })().catch((error: unknown) => {
       if (cancelled) return;

@@ -26,7 +26,7 @@ import Reanimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
@@ -88,6 +88,8 @@ type Props = {
   mode?: FcPresetMode;
   /** Гибрид «Световод + Чекан» (HybridSheetShell вместо самодельного Modal). Дефолт — боевой 'classic'. */
   motionVariant?: 'classic' | 'hybrid';
+  /** Цена видна только если выбранный пресет действительно запустит новую сессию. */
+  showsEnergyCostForPreset?: (preset: FcModePreset) => boolean;
 };
 
 /**
@@ -243,6 +245,7 @@ export default function DeckPickerSheet({
   reduceMotion = false,
   mode = 'trainer',
   motionVariant = 'hybrid',
+  showsEnergyCostForPreset,
 }: Props) {
   const insets = useStableSafeAreaInsets();
   const { height: winH, width: winW } = useWindowDimensions();
@@ -332,16 +335,21 @@ export default function DeckPickerSheet({
   const selectedIds = useMemo(() => new Set<FcDeckId>(deckIds), [deckIds]);
   /** Нечего тренировать (0 выбрано или в выбранном нет карточек) → старт заблокирован. */
   const canStart = summary.deckCount > 0 && summary.cardCount > 0 && !starting;
+  const selectedPreset = useMemo<FcModePreset>(() => ({
+    deckId: deckIds[0],
+    deckIds: [...deckIds],
+    size,
+  }), [deckIds, size]);
+  const selectedPresetStartsPaidActivity = showsEnergyCostForPreset?.(selectedPreset) ?? true;
 
   const handleStart = useCallback(() => {
     if (!canStart || deckIds.length === 0) return;
     setStarting(true);
     fcHaptic('tap');
-    const preset: FcModePreset = { deckId: deckIds[0], deckIds: [...deckIds], size };
     // Оптимистик: сохраняем пресет и стартуем не дожидаясь записи (очередь mode_prefs)
-    void setLastPreset(mode, preset);
-    onStart(preset);
-  }, [canStart, deckIds, size, onStart, mode]);
+    void setLastPreset(mode, selectedPreset);
+    onStart(selectedPreset);
+  }, [canStart, deckIds.length, mode, onStart, selectedPreset]);
 
   if (!mounted) return null;
 
@@ -533,7 +541,7 @@ export default function DeckPickerSheet({
           {/* зачем: коммит 1f44e79df добавил бейдж только в 'classic' JSX ниже,
               но боевая ветка — 'hybrid' (дефолт motionVariant), там кнопка
               стартовала активность без видимой цены (владелец 2026-08-24). */}
-          {canStart ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
+          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
         </PressableHybrid>
       </HybridSheetShell>
     );
@@ -793,7 +801,7 @@ export default function DeckPickerSheet({
           </Pressable>
           {/* Цена входа видна до нажатия (владелец 2026-08-23). Пока набор не
               выбран (canStart=false) бейджа нет — списания не будет. */}
-          {canStart ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
+          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
           </View>
         </Reanimated.View>
       </View>

@@ -10,7 +10,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  * lowPower/reduceMotion — навигация без улёта (мгновенная подмена).
  * Текстовой подсказки про тап на экране нет (репорт владельца).
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';

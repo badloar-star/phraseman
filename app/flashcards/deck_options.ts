@@ -12,13 +12,18 @@
  * M карточек» дедуплицирует одну и ту же карточку в двух наборах (§6).
  * Ошибка любого отдельного набора не роняет список.
  */
-import type { Ionicons } from '@expo/vector-icons';
+import type Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
-import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
+import {
+  loadCommunityOwnedPackIds,
+  loadCommunityOwnedPackTitles,
+  type CommunityOwnedPackTitle,
+} from '../community_packs/communityOwnedStorage';
 import type { DeckSheetOption } from './DeckPickerSheet';
 import { loadDeckCards, type DeckRef } from './deck_sources';
 import {
   bundledPacksForOwned,
+  derivePackCodeName,
   loadAccessiblePackIds,
   packTitleForInterface,
   type FlashcardMarketPack,
@@ -31,10 +36,33 @@ type IconName = keyof typeof Ionicons.glyphMap;
 const contentLang = (lang: Lang): FlashcardContentLang =>
   lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
 
-/** Заголовок набора для списка: бандл знает названия, у остальных — код набора. */
-function packTitle(pack: FlashcardMarketPack | undefined, packId: string, lang: Lang): string {
+/**
+ * Заголовок набора для списка: бандл знает названия сам, community-пак — по
+ * заголовку, сохранённому рядом с id в момент добавления (`addCommunityOwnedPackId`).
+ *
+ * // зачем: community-паки (куплены/добавлены через каталог) не входят в
+ * BUNDLED_MARKETPLACE_PACKS, и раньше падали в фолбэк «packId.replace(...)» —
+ * в шите «Что слушаем?» показывался сырой id набора (напр. MQ2TYDZs19fYRfSIV02p)
+ * вместо названия. Первая попытка чинить это через тёплый in-memory кэш
+ * маркетплейса не сработала: тот кэш фильтруется до BUNDLED_MARKETPLACE_PACKS
+ * (`filterToBundledCatalog` в marketplace.ts) и НИКОГДА не содержит community-id —
+ * поэтому title теперь сохраняется отдельно, локально, без сети (см. ownedTitles).
+ * derivePackCodeName как последний фолбэк — человекочитаемее сырого id.
+ */
+function packTitle(
+  pack: FlashcardMarketPack | undefined,
+  ownedTitle: CommunityOwnedPackTitle | undefined,
+  packId: string,
+  lang: Lang,
+): string {
   if (pack) return packTitleForInterface(pack, contentLang(lang)) || pack.codeName || packId;
-  return packId.replace(/^official_/, '').replace(/_/g, ' ');
+  if (ownedTitle) {
+    const cl = contentLang(lang);
+    const byLang = cl === 'uk' ? ownedTitle.titleUk : cl === 'es' ? ownedTitle.titleEs : ownedTitle.titleRu;
+    const picked = byLang || ownedTitle.titleRu || ownedTitle.titleUk || ownedTitle.titleEs;
+    if (picked) return picked;
+  }
+  return derivePackCodeName(packId);
 }
 
 /**
@@ -53,11 +81,12 @@ export async function loadFcDeckOptions(
 ): Promise<DeckSheetOption[]> {
   void mode;
   const cl = contentLang(lang);
-  const [savedCards, customCards, ownedIds, communityIds] = await Promise.all([
+  const [savedCards, customCards, ownedIds, communityIds, ownedTitles] = await Promise.all([
     loadDeckCards({ kind: 'saved' }, cl).catch(() => []),
     loadDeckCards({ kind: 'custom' }, cl).catch(() => []),
     loadAccessiblePackIds().catch(() => [] as string[]),
     loadCommunityOwnedPackIds().catch(() => [] as string[]),
+    loadCommunityOwnedPackTitles().catch(() => ({}) as Record<string, CommunityOwnedPackTitle>),
   ]);
 
   const out: DeckSheetOption[] = [];
@@ -101,6 +130,7 @@ export async function loadFcDeckOptions(
         deckId: `pack:${packId}` as FcDeckId,
         title: packTitle(
           bundled.find((p) => p.id === packId),
+          ownedTitles[packId],
           packId,
           lang,
         ),

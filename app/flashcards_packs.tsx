@@ -15,7 +15,7 @@
  *   • фильтры — две круглые кнопки того же размера: «Популярные» (огонёк) и
  *     «Новые» (спарклы), без подписей, с обязательным accessibilityLabel.
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {

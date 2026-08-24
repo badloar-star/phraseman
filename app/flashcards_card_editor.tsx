@@ -7,7 +7,7 @@ import { customCardLocalizationForLang } from './flashcards/custom_card_localiza
 // каждое поле хранит ТОЛЬКО свой язык. Редактируем в UK — обновляется только `uk`,
 // `ru`/`es` берутся из существующей карточки; аналогично для RU и ES.
 // Запись — только через очередь `flashcards/custom_cards_store.ts`.
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {

@@ -22,14 +22,16 @@
  * Анимации §8: каскад FadeInDown секций, spring-press на карточках; только
  * transform/opacity, деградация при reduceMotion / lowPower.
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
+  ActivityIndicator,
   Pressable,
   Platform,
+  StyleSheet,
   Text,
   TouchableOpacity,
   useWindowDimensions,
@@ -52,7 +54,7 @@ import { isLowPowerEffective } from './low_power';
 
 import { stageOwnedPackCardsForNavigation } from './useCollectionData';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
-import { onAppEvent } from '../events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { topLikedPackIds } from '../community_packs/packSocial';
@@ -195,6 +197,8 @@ type CommunityPackTileProps = {
   onOpen: () => void;
   onLongPress?: () => void;
   onEdit: () => void;
+  opening?: boolean;
+  disabled?: boolean;
 };
 
 /**
@@ -203,7 +207,7 @@ type CommunityPackTileProps = {
  * в режиме просмотра.
  */
 function CommunityPackTileBase({
-  pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit,
+  pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit, opening, disabled,
 }: CommunityPackTileProps) {
   const authorName = useCommunityAuthorName(pack, lang);
   const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
@@ -217,6 +221,7 @@ function CommunityPackTileBase({
         reduceMotion={reduceMotion}
         onPress={onOpen}
         onLongPress={onLongPress}
+        disabled={disabled}
       >
         <View
           style={[
@@ -236,6 +241,11 @@ function CommunityPackTileBase({
           ]}
         >
           {icon}
+          {opening ? (
+            <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` }]}>
+              <ActivityIndicator color={t.accent} />
+            </View>
+          ) : null}
           {pack.cardCount > 0 ? (
             <View
               pointerEvents="none"
@@ -334,6 +344,8 @@ const CommunityPackTile = React.memo(CommunityPackTileBase, (prev, next) => (
   && prev.reduceMotion === next.reduceMotion
   && prev.showEdit === next.showEdit
   && prev.labelSize === next.labelSize
+  && prev.opening === next.opening
+  && prev.disabled === next.disabled
   // Наличие/отсутствие long-press меняет поведение, ссылка — нет.
   && (prev.onLongPress == null) === (next.onLongPress == null)
 ));
@@ -359,6 +371,9 @@ export default function FlashcardsCategoryHub({
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
   const [ugcReportHintPackId, setUgcReportHintPackId] = useState<string | null>(null);
   const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
+  const [openingPackId, setOpeningPackId] = useState<string | null>(null);
+  const openingPackRef = useRef<string | null>(null);
+  const openingRequestGenerationRef = useRef(0);
   /**
    * §1.3: «Добавить себе» — оптимистично. Локально помеченные наборы сразу читаются
    * как свои (плитка становится открываемой), сервер/сторедж догоняют по `onMarketRefresh`.
@@ -379,6 +394,9 @@ export default function FlashcardsCategoryHub({
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
+      openingRequestGenerationRef.current += 1;
+      openingPackRef.current = null;
+      setOpeningPackId(null);
       void (async () => {
         const ok = await hasMeaningfulCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setHasUnfinishedPackDraft(ok);
@@ -386,6 +404,8 @@ export default function FlashcardsCategoryHub({
       void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
+        openingRequestGenerationRef.current += 1;
+        openingPackRef.current = null;
       };
     }, [refreshHiddenCommunityPacks, studyTarget, lang]),
   );
@@ -461,13 +481,35 @@ export default function FlashcardsCategoryHub({
   }, []);
 
   const openOwnedPack = async (pack: FlashcardMarketPack) => {
+    if (openingPackRef.current) return;
+    const requestToken = ++openingRequestGenerationRef.current;
+    openingPackRef.current = pack.id;
     setUgcReportHintPackId(null);
+    setOpeningPackId(pack.id);
     if (pack.isCommunityUgc) {
-      /** Staging UGC синхронный: помечаем pack и уходим, карточки догружаются фоном. */
-      stageCommunityPackCardsForNavigation(pack.id, studyTarget);
+      const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+      if (
+        openingRequestGenerationRef.current !== requestToken
+        || openingPackRef.current !== pack.id
+      ) return;
+      if (cards.length === 0) {
+        openingPackRef.current = null;
+        setOpeningPackId(null);
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
+          uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
+          es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
+          vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
+          id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
+          tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
+          pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
+        }));
+        return;
+      }
     } else {
       /** КРИТИЧНО: staging СИНХРОННО перед router.push — первый кадр коллекции уже с карточками. */
-      stageOwnedPackCardsForNavigation(pack.id);
+      stageOwnedPackCardsForNavigation(pack.id, studyTarget);
     }
     // `from` нужен, чтобы «назад» из набора вернул РОВНО в каталог сообщества
     // одним POP_TO, без остановки на промежуточных экранах (см. fc_pack_open_back_contract).
@@ -479,9 +521,32 @@ export default function FlashcardsCategoryHub({
    * нельзя (`preview=1`). Карточки подгружаются тем же staging-путём, что и у своих.
    */
   const openPackPreview = useCallback(
-    (pack: FlashcardMarketPack) => {
+    async (pack: FlashcardMarketPack) => {
+      if (openingPackRef.current) return;
+      const requestToken = ++openingRequestGenerationRef.current;
+      openingPackRef.current = pack.id;
       setUgcReportHintPackId(null);
-      stageCommunityPackCardsForNavigation(pack.id, studyTarget);
+      setOpeningPackId(pack.id);
+      const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+      if (
+        openingRequestGenerationRef.current !== requestToken
+        || openingPackRef.current !== pack.id
+      ) return;
+      if (cards.length === 0) {
+        openingPackRef.current = null;
+        setOpeningPackId(null);
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
+          uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
+          es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
+          vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
+          id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
+          tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
+          pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
+        }));
+        return;
+      }
       router.push({
         pathname: '/flashcards_collection',
         params: { pack: pack.id, preview: '1' },
@@ -590,6 +655,7 @@ export default function FlashcardsCategoryHub({
           a11y={pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}
           width={tileW}
           reduceMotion={reduceMotion}
+          disabled={openingPackId !== null}
           onPress={() => void openOwnedPack(pack)}
         >
           <View
@@ -610,6 +676,11 @@ export default function FlashcardsCategoryHub({
             ]}
           >
             {packIcon(pack, packTileIconSize)}
+            {openingPackId === pack.id ? (
+              <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` }]}>
+                <ActivityIndicator color={t.accent} />
+              </View>
+            ) : null}
             {pack.cardCount > 0 ? countPill(String(pack.cardCount)) : null}
           </View>
         </HubTileShell>
@@ -675,12 +746,14 @@ export default function FlashcardsCategoryHub({
         showEdit={showAuthorEdit}
         labelSize={labelSize}
         icon={packIcon(pack, Math.floor(tileW * 0.68))}
+        opening={openingPackId === pack.id}
+        disabled={openingPackId !== null}
         onOpen={() => {
           void hapticTap();
           if (owned) {
             void openOwnedPack(pack);
           } else {
-            openPackPreview(pack);
+            void openPackPreview(pack);
           }
         }}
         onLongPress={

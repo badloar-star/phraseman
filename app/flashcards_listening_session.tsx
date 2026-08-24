@@ -29,7 +29,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -156,7 +156,7 @@ export default function FlashcardsListeningSession() {
 
   const [loading, setLoading] = useState(true);
   // Старт сессии «Слушать» = 1 ⚡ (владелец 2026-08-23: единая экономика).
-  const { isUnlimited: listenEnergyUnlimited, spendOne: spendListenEnergy } = useEnergy();
+  const { confirmSpendOne: confirmListenEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const listeningEntryChargedRef = useRef(false);
   const [cards, setCards] = useState<ListeningCard[]>([]);
@@ -306,11 +306,13 @@ export default function FlashcardsListeningSession() {
       // TTS-разрешение и сеть впустую. Латч на весь маунт экрана.
       if (!listeningEntryChargedRef.current) {
         listeningEntryChargedRef.current = true;
-        if (!listenEnergyUnlimited) {
-          const ok = await spendListenEnergy();
-          if (cancelled) return;
-          if (!ok) { setNoEnergyOpen(true); setLoading(false); return; }
+        const energyResult = await confirmListenEnergy();
+        if (cancelled) return;
+        if (energyResult === 'cancelled') {
+          safeRouterBack(router, '/flashcards' as any);
+          return;
         }
+        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
       }
       const [pool, rawPrefs] = await Promise.all([
         // cards-2.1 (§6): несколько наборов одной объединённой подборкой (дедуп по id + шаффл)
@@ -384,7 +386,7 @@ export default function FlashcardsListeningSession() {
     };
     // Пересоздание машины при смене deck/size — валидный сценарий только при новом пуше роута
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckKey, sessionSize, contentLang]);
+  }, [deckKey, sessionSize, contentLang, confirmListenEnergy, router]);
 
   // ── Выход: STOP глушит всё ───────────────────────────────────────────────
   useEffect(() => {
@@ -554,6 +556,10 @@ export default function FlashcardsListeningSession() {
       f={f}
       reduceMotion={reduceMotion}
       mode="listening"
+      showsEnergyCostForPreset={(preset) => {
+        const nextDeck = deckRouteParam(presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID)) || 'saved';
+        return parseDeckParams(nextDeck).map(deckRefKey).join(',') !== deckKey || preset.size !== sessionSize;
+      }}
     />
   );
 

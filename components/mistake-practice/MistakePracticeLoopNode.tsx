@@ -1,9 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import EnergyCostBadge from '../EnergyCostBadge';
 
 type Props = {
   count: number;
@@ -43,6 +44,7 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
             <Text style={[styles.plusText, { color: t.accent }]}>Plus</Text>
           </View>
         ) : <Ionicons name="chevron-forward" size={21} color={t.textMuted} />}
+        {!locked ? <EnergyCostBadge testID="mistake-practice-loop-energy-cost" /> : null}
       </Pressable>
     </View>
   );

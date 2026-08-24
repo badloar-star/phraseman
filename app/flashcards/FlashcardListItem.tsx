@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_CONTENT_UNLOCK } from '../config';
@@ -142,7 +142,7 @@ type Props = {
   editLabel?: string;
   /** E7: кнопка удаления в деталях — фолбэк свайпа на web (§3.2 плана). */
   onDeleteFromDetails?: ((item: CardItem, itemIdx: number) => void) | null;
-  /** E13: «сила слова» из SRS (word_strength.ts); null/undefined — точки не рисуем. */
+  /** E13: «сила слова» из проекции ошибок; null/undefined — точки не рисуем. */
   strength?: WordStrength | null;
 };
 
@@ -688,6 +688,15 @@ function FlashcardListItemImpl({
                   ]}
                 />
               )}
+              {!usePackFace && (
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={t.cardGradient}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFillObject}
+                />
+              )}
               <Text
                 style={
                   voiceSpeakOnRight
@@ -854,6 +863,15 @@ function FlashcardListItemImpl({
                   ]}
                 />
               )}
+              {!usePackFace && (
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={[t.cardGradient[1], t.cardGradient[0]]}
+                  start={{ x: 0, y: 1 }}
+                  end={{ x: 1, y: 0 }}
+                  style={StyleSheet.absoluteFillObject}
+                />
+              )}
               <Text
                 maxFontSizeMultiplier={1.35}
                 style={
@@ -960,7 +978,7 @@ function FlashcardListItemImpl({
             </Animated.View>
           </TouchableOpacity>
 
-          {/* E13: точки силы слова (Weak/Medium/Strong из SRS) — только на лице */}
+          {/* E13: точки силы слова из проекции ошибок — только на лице. */}
           {strength ? (
             <Animated.View
               pointerEvents="none"

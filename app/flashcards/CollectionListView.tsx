@@ -5,7 +5,7 @@
  * FlatList + FlashcardListItem, swipe-удаление, delete-hint онбординг,
  * escort-скролл к деталям, free-limit секция, нижняя панель «Слушать/Тренировать».
  */
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {

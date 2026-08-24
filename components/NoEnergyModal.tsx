@@ -249,7 +249,13 @@ function NoEnergyModal({
   // не вызывалась НИОТКУДА — канал существовал только в коде, игрок его не видел.
   // Владелец решил включить: это даёт жемчужинам применение и смягчает ожидание
   // тем, кто не покупает подписку.
-  const shardCost = energyRefillShardCost(maxEnergy);
+  // зачем (аудит экономики 2026-08-24): цена считается по НЕДОСТАЮЩЕЙ энергии,
+  // а не по потолку. Окно открывается не только при нуле — экзамен и другие
+  // активности требуют порога (minRequired), и раньше игрок с 3 из 5 видел цену
+  // полного заряда за 2 недостающие единицы. Кнопка обязана показывать ту же
+  // сумму, которую спишет refillEnergyWithShards, иначе списание разойдётся с
+  // обещанием на экране.
+  const shardCost = energyRefillShardCost(maxEnergy, energy);
   // peek — синхронный снимок без сети: кнопка видна в ПЕРВОМ кадре, без прыжка.
   const [shardBalance, setShardBalance] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
   const [refilling, setRefilling] = useState(false);

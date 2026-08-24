@@ -5,9 +5,23 @@ import { DebugLogger } from './debug-logger';
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 
-/** Цена полного заряда базовой энергии (как на главной). */
-export function energyRefillShardCost(maxEnergy: number): number {
-  return Math.max(1, maxEnergy);
+/**
+ * Цена дозаправки базовой энергии — по НЕДОСТАЮЩЕМУ количеству.
+ *
+ * зачем (аудит экономики 2026-08-24): цена была фиксированной (= maxEnergy),
+ * сколько бы единиц ни не хватало. Окно «мало энергии» открывается не только при
+ * нуле: экзамен и другие активности требуют порога (minRequired в NoEnergyModal),
+ * поэтому игрок с 3 из 5 платил полные 5 жемчужин за 2 недостающие единицы —
+ * переплата в 2,5 раза. Курс приложения прозрачен и равен 1 жемчужина = 1 слот =
+ * 30 минут ожидания; фиксированная цена его нарушала.
+ *
+ * baseEnergy не передан (старые вызовы, витрина магазина) — показываем цену
+ * полного заряда с нуля, как и раньше.
+ */
+export function energyRefillShardCost(maxEnergy: number, baseEnergy: number = 0): number {
+  const cap = Math.max(1, Math.floor(Number(maxEnergy) || 0));
+  const have = Math.max(0, Math.min(cap, Math.floor(Number(baseEnergy) || 0)));
+  return Math.max(1, cap - have);
 }
 
 export type RefillEnergyShardsFailReason =
@@ -32,7 +46,7 @@ export async function refillEnergyWithShards(params: {
   const { maxEnergy, baseEnergy, isUnlimited } = params;
   if (isUnlimited) return { ok: false, reason: 'unlimited' };
   if (baseEnergy >= maxEnergy) return { ok: false, reason: 'already_full' };
-  const cost = energyRefillShardCost(maxEnergy);
+  const cost = energyRefillShardCost(maxEnergy, baseEnergy);
   try {
     const esRaw = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
     const es = esRaw

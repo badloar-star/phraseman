@@ -102,6 +102,13 @@ export async function resolveRemoteOrBundledPlanContentDay(
     return { day: verified, source: 'downloaded_pack', recoveredFromCorruption: false };
   }
 
+  // зачем (приёмка Ф1): отличаем «строка не скачалась» от «скачалась, но не
+  // прошла проверку целостности» — по источнику контента это неразличимо.
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    // eslint-disable-next-line no-console -- dev-only приёмочный сигнал
+    console.log(`[plan_pack] row miss ${rowPath} (cacheKey=${cacheKey.slice(0, 24)}…)`);
+  }
+
   // Not cached yet (still downloading or never fetched): bundled fallback.
   const day = bundled(planId, dayIndex);
   return { day, source: day ? 'bundled_compatibility' : 'missing', recoveredFromCorruption: false };

@@ -52,7 +52,22 @@ export async function ensurePlanContentPackReady(): Promise<string | null> {
   // itself deduplicated, so this is belt-and-suspenders.
   if (cachedCacheKey && Date.now() - cachedCacheKeyAt < CACHE_KEY_TTL_MS) return cachedCacheKey;
 
+  const startedAt = Date.now();
   const result = await ensureRemoteCoursePack(reg.manifestUrl, (inPackPath) => planContentRowUrl(inPackPath));
+  // зачем (приёмка Ф1 «Бандл-диеты» 2026-08-24): дев-лог показал
+  // `bundled_compatibility (pack_not_cached)`, но по нему нельзя понять, доехал
+  // ли пак вообще — медленная сеть, ошибка загрузки или битый манифест выглядят
+  // одинаково. Печатаем исход загрузки пака и сколько он занял. Только dev.
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    const ms = Date.now() - startedAt;
+    const detail = result.state === 'manifest_invalid'
+      ? ` errors=${result.errors.slice(0, 2).join('; ')}`
+      : result.state === 'integrity_failed'
+        ? ` detail=${result.detail}`
+        : '';
+    // eslint-disable-next-line no-console -- dev-only приёмочный сигнал
+    console.log(`[plan_pack] ensure → ${result.state} (${ms}ms)${detail}`);
+  }
   if (result.state === 'ready') {
     cachedCacheKey = buildCoursePackCacheKey(result.manifest);
     cachedCacheKeyAt = Date.now();

@@ -81,7 +81,10 @@ import {
   resolveTournamentSemanticJobConfig,
   type TournamentSemanticJobConfig,
 } from './openai_jobs_config';
-import { loadEligibleTournamentCellCounts } from './tournament_task_eligibility';
+import {
+  invalidateEligibleTournamentCellCounts,
+  loadEligibleTournamentCellCounts,
+} from './tournament_task_eligibility';
 import { isOwnerApprovedTournamentMode } from './tournament_mode_contract';
 import { assertTournamentsReleased } from './tournament_release_gate';
 import {
@@ -705,6 +708,10 @@ export async function runTextGeneration(input: TextGenerationParams): Promise<Re
       await ledgerRef.set({ keys: nextKeys, phrases: nextPhrases, updatedAtMs: nowMs }, { merge: true });
     }
 
+    // зачем: та же причина, что и в соседних генераторах — содержимое уже
+    // одобренных заданий перезаписано, валидность могла измениться.
+    invalidateEligibleTournamentCellCounts();
+
     return {
       ok: true,
       dryRun: false,
@@ -1045,6 +1052,11 @@ export const adminMutateTournamentTasks = onCall(
       await batch.commit();
     }
 
+    // зачем: пул только что изменился (publish/unpublish/delete), а счётчики
+    // ячеек кэшируются в памяти инстанса. Без сброса админка ещё до пяти минут
+    // показывала бы готовность раундов по старым данным.
+    invalidateEligibleTournamentCellCounts();
+
     return { ok: true, action: params.action, affected, rejected };
   },
 );
@@ -1077,7 +1089,12 @@ export const ROUND_DIFFICULTIES: Readonly<Record<number, readonly number[]>> = O
  * 8 агрегатов вместо чтения тысяч документов: экономия по правилу владельца.
  */
 export const adminTournamentPoolStats = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  // зачем 2026-08-24: опций не было — значит дефолт 60 с и 256 МБ. Пул дорос до
+  // 8000 заданий: одна только выборка для счётчиков ячеек занимала 12–19 с и
+  // ~90 МБ heap, плюс десяток агрегатов рядом. Функция не укладывалась и падала
+  // как internal — админка показывала «сервер временно не ответил». Кэш снял
+  // повторные выборки, память и таймаут закрывают первый (холодный) вызов.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 120, memory: '512MiB' },
   async (request) => {
     requirePermission(request, 'content.read');
     onlyKeys(request.data, [], 'tournament_stats_invalid');
@@ -1418,6 +1435,11 @@ export async function runAudioGeneration(params: AudioGenerationParams): Promise
         updatedAtMs: nowMs,
       }, { merge: true });
     }
+    // зачем: перезапись содержимого уже одобренных заданий (wasPublished
+    // сохраняет статус, но payload меняется) может изменить их валидность для
+    // сборки раундов. Кэш счётчиков обязан это увидеть.
+    invalidateEligibleTournamentCellCounts();
+
 
     return {
       ok: true,
@@ -1598,6 +1620,11 @@ export async function runSpeedMatchGeneration(params: {
       updatedAtMs: nowMs,
     }, { merge: true });
   }
+  // зачем: перезапись содержимого уже одобренных заданий (wasPublished
+  // сохраняет статус, но payload меняется) может изменить их валидность для
+  // сборки раундов. Кэш счётчиков обязан это увидеть.
+  invalidateEligibleTournamentCellCounts();
+
 
   return {
     ok: true,
@@ -2664,7 +2691,10 @@ function productionV11Dependencies(db: FirebaseFirestore.Firestore): AdminTourna
  * now flow through the V11 candidate/review job and never through runTextGeneration.
  */
 export const adminFillTournamentPool = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540, secrets: [OPENAI_API_KEY] },
+  // зачем 2026-08-24: зовёт тот же загрузчик счётчиков ячеек, что и статистика
+  // пула. На холодном инстансе (кэш пуст) это ~9 МБ выборки по 8000 заданий —
+  // дефолтных 256 МБ мало, функция падала как internal.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540, memory: '512MiB', secrets: [OPENAI_API_KEY] },
   async (request) => {
     requirePermission(request, 'content.draft.write');
     return runAdminFillTournamentPoolV11(request.data, productionV11Dependencies(admin.firestore()));

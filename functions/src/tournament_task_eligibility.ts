@@ -48,9 +48,61 @@ export function eligibleTournamentCellCounts(docs: TournamentTaskSnapshot[]): Re
   return counts;
 }
 
+/**
+ * зачем 2026-08-24: админка в разделе «Турниры» показывала «сервер временно не
+ * ответил». Замер на проде: пул вырос до 8000 заданий, и этот запрос тянул их
+ * ЦЕЛИКОМ — 19 МБ сырых данных, +91 МБ heap при лимите функции 256 МБ и 25.8 с
+ * только на выкачку. Функция не укладывалась в дефолтные 60 с и падала как
+ * internal. Плюс это 8000 чтений Firestore на КАЖДОЕ открытие вкладки, а
+ * вызывается загрузчик из трёх мест (статистика, расписание, батч v11).
+ *
+ * Считать агрегатом count() нельзя: валидность задания известна только из его
+ * содержимого (payload/explanation прогоняются через
+ * validateTournamentTaskForNewRoom), а не из индексируемых полей.
+ *
+ * Поэтому кэш в памяти инстанса: одобренный пул меняет человек и меняет редко,
+ * а вкладку открывают часто. Три вызова подряд внутри одного запроса теперь
+ * стоят одну выборку вместо трёх. Кэш живёт в инстансе, отдельная коллекция и
+ * правила Firestore не нужны; после холодного старта он просто наполнится снова.
+ */
+const CELL_COUNTS_TTL_MS = 5 * 60 * 1000;
+let cellCountsCache: { value: Record<string, number>; at: number } | null = null;
+let cellCountsInFlight: Promise<Record<string, number>> | null = null;
+
+/** Сбрасывает кэш после записи в пул, чтобы админка не показывала старые цифры. */
+export function invalidateEligibleTournamentCellCounts(): void {
+  cellCountsCache = null;
+}
+
 export async function loadEligibleTournamentCellCounts(
   collection: FirebaseFirestore.CollectionReference,
+  options?: { readonly forceFresh?: boolean },
 ): Promise<Record<string, number>> {
-  const snap = await collection.where('verified', '==', true).where('source', '==', 'ai').get();
-  return eligibleTournamentCellCounts(snap.docs);
+  const now = Date.now();
+  if (options?.forceFresh === true) cellCountsCache = null;
+  const cached = cellCountsCache;
+  if (cached && now - cached.at < CELL_COUNTS_TTL_MS) return cached.value;
+
+  // зачем: параллельные вызовы внутри одного запроса (статистика зовёт
+  // загрузчик дважды) не должны выкачивать пул дважды — второй ждёт первого.
+  if (cellCountsInFlight) return cellCountsInFlight;
+
+  cellCountsInFlight = (async () => {
+    try {
+      const snap = await collection
+        .where('verified', '==', true)
+        .where('source', '==', 'ai')
+        // Только поля, которые читает eligibleTournamentCellCounts: остальное
+        // (история правок, служебные метки) по сети не едет.
+        .select('mode', 'isVoice', 'difficulty', 'payload', 'explanation', 'tags', 'verified', 'source')
+        .get();
+      const value = eligibleTournamentCellCounts(snap.docs);
+      cellCountsCache = { value, at: Date.now() };
+      return value;
+    } finally {
+      cellCountsInFlight = null;
+    }
+  })();
+
+  return cellCountsInFlight;
 }

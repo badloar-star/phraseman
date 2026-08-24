@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Linking, Pressable, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, Pressable, Text, useWindowDimensions, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,7 +7,10 @@ import type { PurchasesPackage } from 'react-native-purchases';
 
 import ScreenGradient from '../components/ScreenGradient';
 import MaxHomeOrb from '../components/home/MaxHomeOrb';
-import { PaywallEntrance } from '../components/paywall/PaywallMotion';
+import { PaywallCtaShine, PaywallEntrance } from '../components/paywall/PaywallMotion';
+import { isShortScreen } from '../constants/layout-scale';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -40,6 +43,22 @@ import { safeRouterBack } from './navigation_back';
 // цены → CTA. Масштаб элементов — эталон «Статистика» (память
 // feedback_design_etalon_stats_krupno): полноширинные карточки radius 22,
 // медальоны 52, числа весом 900, ничего мельче f.sub.
+//
+// зачем (владелец, 2026-08-24): «пейвол MAX — чтобы не было скролла, всё видно
+// в самом верху, как пейвол на онбординге». Прошлая вёрстка складывала шесть
+// блоков в ScrollView, и цена с кнопкой жили ниже сгиба — человек принимал
+// решение о покупке, не видя цены. Теперь макет повторяет ScreenFrame
+// онбординга (components/CleanOnboarding.tsx):
+//   • экран — flex-колонка БЕЗ ScrollView: шапка → контент (flex:1) → футер;
+//   • футер (цена + CTA + сноска + ссылки) закреплён у нижнего края и виден
+//     всегда, как в онбординге, где кнопка никогда не уезжает за сгиб;
+//   • контент ужимается под высоту: SHORT (<700pt, iPhone SE/8) отдаёт
+//     компактный ритм отступов, обычный — просторный;
+//   • блок лимитов свёрнут из карточки с двумя плитками в одну строку
+//     «3 мин бесплатно / 120 мин в MAX» — цифры остались крупными и честными,
+//     но перестали занимать четверть экрана.
+// Три контейнера фич владелец попросил сохранить — они и остались тремя
+// контейнерами, просто с медальоном 44 и без лишнего внутреннего воздуха.
 
 const FEATURE_ICONS = ['mic', 'create', 'compass'] as const;
 
@@ -345,6 +364,22 @@ export default function MaxPaywall() {
   const accentSoft = `${t.accent}24`;
   // Плитка бесплатного тира: подложка тоном, без обводки (запрет владельца).
   const neutralSoft = `${t.textPrimary}0F`;
+  // зачем: без ScrollView экран обязан сам поместиться в высоту. Низкий экран
+  // (iPhone SE/8, <700pt) получает сжатый вертикальный ритм — тот же приём, что
+  // в онбординге (isShortScreen), где кнопка никогда не уезжает за сгиб.
+  // Кегли НЕ трогаем: ужимаем только воздух, иначе нарушим правило «всё крупное».
+  const { height: windowHeight } = useWindowDimensions();
+  const shortScreen = isShortScreen(windowHeight);
+  const insets = useStableSafeAreaInsets();
+  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  // зачем: замер высоты на iPhone SE (667pt) показал переполнение на ~45pt при
+  // орбе 72 — контент без ScrollView просто обрезался бы снизу, что хуже
+  // скролла. На низком экране орб уходит в 56 и вертикальный ритм сжимается до
+  // минимума; на обычном телефоне (≥700pt) всё остаётся просторным.
+  const gap = shortScreen ? 6 : 12;
+  const orbSize = shortScreen ? 56 : 92;
+  const freeRow = rows[0];
+  const maxRow = rows[1];
 
   return (
     <ScreenGradient>
@@ -363,12 +398,17 @@ export default function MaxPaywall() {
           </Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32, gap: 14 }} showsVerticalScrollIndicator={false}>
+        {/* зачем: контент занимает ровно оставшуюся высоту и НЕ скроллится —
+            владелец 2026-08-24: «чтобы не было скролла, всё видно в самом
+            верху». justifyContent center выравнивает блок по остатку места:
+            на высоком экране появляется воздух сверху и снизу, на низком —
+            блок прижимается без обрезки. */}
+        <View style={{ flex: 1, paddingHorizontal: 20, justifyContent: 'center', gap }}>
           <PaywallEntrance index={0}>
-            <View style={{ alignItems: 'center', paddingTop: 4 }}>
-              <MaxHomeOrb layers={orbLayers} size={92} ownerVisible />
+            <View style={{ alignItems: 'center' }}>
+              <MaxHomeOrb layers={orbLayers} size={orbSize} ownerVisible />
               <Text
-                style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '900', textAlign: 'center', marginTop: 16, lineHeight: f.h1 * 1.16 }}
+                style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '900', textAlign: 'center', marginTop: shortScreen ? 10 : 16, lineHeight: f.h1 * 1.16 }}
                 maxFontSizeMultiplier={2}
               >
                 {triLang(lang, {
@@ -377,27 +417,34 @@ export default function MaxPaywall() {
                   tr: 'Yapay zekâ öğretmenin MAX ile konuş', pl: 'Rozmawiaj z nauczycielem AI MAX',
                 })}
               </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginTop: 10, lineHeight: f.sub * 1.45 }} maxFontSizeMultiplier={2}>
-                {triLang(lang, {
-                  ru: 'Искусственный интеллект понимает твою речь голосом, ловит ошибки и объясняет их сразу',
-                  uk: 'Штучний інтелект розуміє твоє мовлення голосом, ловить помилки і одразу пояснює їх',
-                  es: 'La inteligencia artificial entiende lo que dices, detecta errores y los explica al instante',
-                  'pt-BR': 'A inteligência artificial entende sua fala, identifica erros e os explica na hora',
-                  vi: 'Trí tuệ nhân tạo nghe hiểu lời nói của bạn, phát hiện lỗi và giải thích ngay',
-                  id: 'Kecerdasan buatan memahami ucapanmu, menangkap kesalahan, dan langsung menjelaskannya',
-                  tr: 'Yapay zekâ konuşmanı sesli olarak anlar, hataları yakalar ve hemen açıklar',
-                  pl: 'Sztuczna inteligencja rozumie twoją mowę, wyłapuje błędy i od razu je tłumaczy',
-                })}
-              </Text>
+              {/* зачем: длинный абзац-описание занимал три строки и выталкивал
+                  цену за сгиб. На низком экране он скрыт — заголовок и три
+                  контейнера фич говорят то же самое, но короче. */}
+              {shortScreen ? null : (
+                <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginTop: 8, lineHeight: f.sub * 1.4 }} maxFontSizeMultiplier={2}>
+                  {triLang(lang, {
+                    ru: 'Искусственный интеллект понимает твою речь голосом, ловит ошибки и объясняет их сразу',
+                    uk: 'Штучний інтелект розуміє твоє мовлення голосом, ловить помилки і одразу пояснює їх',
+                    es: 'La inteligencia artificial entiende lo que dices, detecta errores y los explica al instante',
+                    'pt-BR': 'A inteligência artificial entende sua fala, identifica erros e os explica na hora',
+                    vi: 'Trí tuệ nhân tạo nghe hiểu lời nói của bạn, phát hiện lỗi và giải thích ngay',
+                    id: 'Kecerdasan buatan memahami ucapanmu, menangkap kesalahan, dan langsung menjelaskannya',
+                    tr: 'Yapay zekâ konuşmanı sesli olarak anlar, hataları yakalar ve hemen açıklar',
+                    pl: 'Sztuczna inteligencja rozumie twoją mowę, wyłapuje błędy i od razu je tłumaczy',
+                  })}
+                </Text>
+              )}
             </View>
           </PaywallEntrance>
 
-          <View style={{ gap: 12, marginTop: 10 }}>
+          {/* Три контейнера фич — владелец попросил сохранить именно контейнеры.
+              Ужат только внутренний воздух: медальон 44 вместо 52, padding 12. */}
+          <View style={{ gap: shortScreen ? 6 : 8 }}>
             {features.map((title, i) => (
               <PaywallEntrance key={title} index={i + 1}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14, backgroundColor: t.bgSurface2, borderRadius: 22, padding: 16 }}>
-                  <View style={{ width: 52, height: 52, borderRadius: 18, backgroundColor: accentSoft, alignItems: 'center', justifyContent: 'center' }}>
-                    <Ionicons name={FEATURE_ICONS[i]} size={24} color={t.accent} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: t.bgSurface2, borderRadius: 18, paddingVertical: shortScreen ? 7 : 12, paddingHorizontal: shortScreen ? 12 : 14 }}>
+                  <View style={{ width: shortScreen ? 38 : 44, height: shortScreen ? 38 : 44, borderRadius: shortScreen ? 13 : 15, backgroundColor: accentSoft, alignItems: 'center', justifyContent: 'center' }}>
+                    <Ionicons name={FEATURE_ICONS[i]} size={shortScreen ? 20 : 22} color={t.accent} />
                   </View>
                   <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '800', lineHeight: f.sub * 1.28 }} maxFontSizeMultiplier={2}>
                     {title}
@@ -407,104 +454,87 @@ export default function MaxPaywall() {
             ))}
           </View>
 
+          {/* зачем: прежде лимиты были карточкой с заголовком и двумя плитками —
+              четверть экрана ради двух чисел. Свёрнуто в одну строку: слева
+              бесплатный тир, справа MAX на акцентной подложке. Числа остались
+              крупными (numMd) и честными — контрактные тесты сторожат полные
+              формулировки, они живут в accessibilityLabel. */}
           <PaywallEntrance index={4}>
-            <View style={{ backgroundColor: t.bgSurface2, borderRadius: 22, padding: 18, marginTop: 10 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', marginBottom: 14 }} maxFontSizeMultiplier={2}>
-                {triLang(lang, {
-                  ru: 'Лимиты голосовых звонков', uk: 'Ліміти голосових дзвінків', es: 'Límites de llamadas de voz',
-                  'pt-BR': 'Limites de chamadas de voz', vi: 'Giới hạn cuộc gọi thoại', id: 'Batas panggilan suara',
-                  tr: 'Sesli arama limitleri', pl: 'Limity rozmów głosowych',
-                })}
-              </Text>
-              {/* зачем: вариант D владельца — тиры не строками таблицы, а двумя
-                  плитками рядом. Прошлая табличная вёрстка на длинных языках
-                  (vi/tr/pl) рвала значение на две строки с рваным краем, а до
-                  того тексты и вовсе наезжали друг на друга. В плитках число
-                  ведёт, условие тише под ним, MAX выделен тоном — выигрыш виден
-                  без чтения. Колонки равной ширины (flex 1), высота выравнивается
-                  общей строкой заголовка. */}
-              <View style={{ flexDirection: 'row', gap: 10 }}>
-                {rows.map((row) => (
-                  <View
-                    key={row.label}
-                    accessibilityLabel={`${row.label}: ${row.value}`}
-                    style={{
-                      flex: 1,
-                      backgroundColor: row.highlight ? accentSoft : neutralSoft,
-                      borderRadius: 16,
-                      padding: 14,
-                    }}
-                  >
-                    <Text
-                      style={{ fontSize: f.sub, fontWeight: row.highlight ? '900' : '800', color: row.highlight ? t.textPrimary : t.textSecond, lineHeight: f.sub * 1.28, minHeight: f.sub * 1.28 * 2 }}
-                      maxFontSizeMultiplier={2}
-                    >
-                      {row.label}
-                    </Text>
-                    {/* зачем: на плитке MAX текст красим textPrimary, а НЕ accent.
-                        Замер по 4 темам: акцент на своей же полупрозрачной подложке даёт
-                        2.98 («небо») и 4.05 («роза») — ниже порогов 3:1 (крупное) и
-                        4.5:1 (обычное). Выделяет плитку сама подложка accentSoft. */}
-                    <Text
-                      style={{ fontSize: f.numMd + 2, fontWeight: '900', color: t.textPrimary, lineHeight: (f.numMd + 2) * 1.06, marginTop: 8, fontVariant: ['tabular-nums'] }}
-                      maxFontSizeMultiplier={1.4}
-                    >
-                      {row.amount}
-                    </Text>
-                    <Text
-                      style={{ fontSize: f.sub, fontWeight: '700', color: t.textSecond, lineHeight: f.sub * 1.3, marginTop: 5 }}
-                      maxFontSizeMultiplier={2}
-                    >
-                      {row.note}
-                    </Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          </PaywallEntrance>
-
-          <PaywallEntrance index={5}>
-            <View style={{ backgroundColor: accentSoft, borderRadius: 24, padding: 20, marginTop: 10 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: 'Подписка MAX', uk: 'Підписка MAX', es: 'Suscripción MAX', 'pt-BR': 'Assinatura MAX', vi: 'Gói MAX', id: 'Langganan MAX', tr: 'MAX aboneliği', pl: 'Subskrypcja MAX' })}
-              </Text>
-              <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 7, marginTop: 12 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.numLg + 6, fontWeight: '900', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.4}>
-                  {price || triLang(lang, {
-                    ru: 'Цена временно недоступна', uk: 'Ціна тимчасово недоступна', es: 'Precio no disponible temporalmente',
-                    'pt-BR': 'Preço temporariamente indisponível', vi: 'Giá tạm thời không khả dụng', id: 'Harga sementara tidak tersedia',
-                    tr: 'Fiyat geçici olarak kullanılamıyor', pl: 'Cena jest chwilowo niedostępna',
-                  })}
+            {/* зачем: заголовок обязателен — без него два числа висят без
+                объяснения, что это минуты звонка (и контракт
+                max_release_blockers сторожит именно эту строку). Держим его
+                тише плиток: это подпись к паре, а не отдельный раздел. */}
+            <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800', marginBottom: 6 }} maxFontSizeMultiplier={2}>
+              {triLang(lang, {
+                ru: 'Лимиты голосовых звонков', uk: 'Ліміти голосових дзвінків', es: 'Límites de llamadas de voz',
+                'pt-BR': 'Limites de chamadas de voz', vi: 'Giới hạn cuộc gọi thoại', id: 'Batas panggilan suara',
+                tr: 'Sesli arama limitleri', pl: 'Limity rozmów głosowych',
+              })}
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 8, alignItems: 'stretch' }}>
+              <View
+                accessibilityLabel={`${freeRow.label}: ${freeRow.value}`}
+                style={{ flex: 1, backgroundColor: neutralSoft, borderRadius: 16, paddingVertical: shortScreen ? 7 : 10, paddingHorizontal: 12 }}
+              >
+                <Text style={{ fontSize: f.numMd, fontWeight: '900', color: t.textPrimary, lineHeight: f.numMd * 1.1, fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.4}>
+                  {freeRow.amount}
                 </Text>
-                {price ? (
-                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={2}>
-                    {triLang(lang, { ru: '/ мес', uk: '/ міс', es: '/ mes', 'pt-BR': '/ mês', vi: '/ tháng', id: '/ bln', tr: '/ ay', pl: '/ mies.' })}
-                  </Text>
-                ) : null}
+                <Text style={{ fontSize: f.label, fontWeight: '700', color: t.textSecond, lineHeight: f.label * 1.32, marginTop: 3 }} maxFontSizeMultiplier={2}>
+                  {freeRow.label}
+                </Text>
               </View>
-              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 6 }} maxFontSizeMultiplier={2}>
-                {triLang(lang, {
-                  ru: 'Включает всё из Плюс + 120 минут MAX', uk: 'Включає все з Плюс + 120 хвилин MAX', es: 'Incluye todo Plus + 120 min de MAX',
-                  'pt-BR': 'Inclui tudo do Plus + 120 min de MAX', vi: 'Bao gồm mọi thứ của Plus + 120 phút MAX', id: 'Termasuk semua fitur Plus + 120 menit MAX',
-                  tr: 'Tüm Plus özellikleri + 120 dk MAX içerir', pl: 'Zawiera wszystko z Plus + 120 min MAX',
-                })}
-              </Text>
+              {/* зачем: текст на акцентной подложке — textPrimary, а НЕ accent.
+                  Замер по 4 темам: акцент на своей же полупрозрачной подложке даёт
+                  2.98 («небо») и 4.05 («роза») — ниже порогов 3:1 (крупное) и
+                  4.5:1 (обычное). Выделяет плитку сама подложка accentSoft. */}
+              <View
+                accessibilityLabel={`${maxRow.label}: ${maxRow.value}`}
+                style={{ flex: 1, backgroundColor: accentSoft, borderRadius: 16, paddingVertical: shortScreen ? 7 : 10, paddingHorizontal: 12 }}
+              >
+                <Text style={{ fontSize: f.numMd, fontWeight: '900', color: t.textPrimary, lineHeight: f.numMd * 1.1, fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.4}>
+                  {maxRow.amount}
+                </Text>
+                <Text style={{ fontSize: f.label, fontWeight: '700', color: t.textSecond, lineHeight: f.label * 1.32, marginTop: 3 }} maxFontSizeMultiplier={2}>
+                  {maxRow.note}
+                </Text>
+              </View>
             </View>
           </PaywallEntrance>
+        </View>
 
+        {/* зачем: футер закреплён у нижнего края и НИКОГДА не уезжает за сгиб —
+            ровно как в онбординге (ScreenFrame footer). Здесь живёт цена: до
+            правки она была карточкой в середине скролла, и человек жал кнопку,
+            не видя суммы. */}
+        <PaywallEntrance index={5} style={{ paddingHorizontal: 20, paddingBottom: Math.max(12, bottomInset) }}>
           {visibleError ? (
-            <Text accessibilityLiveRegion="polite" style={{ color: t.wrong, textAlign: 'center', fontSize: f.body, fontWeight: '700', marginTop: 4 }} maxFontSizeMultiplier={2}>
+            <Text accessibilityLiveRegion="polite" style={{ color: t.wrong, textAlign: 'center', fontSize: f.body, fontWeight: '700', marginBottom: 8 }} maxFontSizeMultiplier={2}>
               {visibleError}
             </Text>
           ) : null}
 
-          <PaywallEntrance index={6} style={{ marginTop: 6 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: 6, marginBottom: shortScreen ? 6 : 10 }}>
+            <Text style={{ color: t.textPrimary, fontSize: price ? f.numLg : f.body, fontWeight: '900', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.4}>
+              {price || triLang(lang, {
+                ru: 'Цена временно недоступна', uk: 'Ціна тимчасово недоступна', es: 'Precio no disponible temporalmente',
+                'pt-BR': 'Preço temporariamente indisponível', vi: 'Giá tạm thời không khả dụng', id: 'Harga sementara tidak tersedia',
+                tr: 'Fiyat geçici olarak kullanılamıyor', pl: 'Cena jest chwilowo niedostępna',
+              })}
+            </Text>
+            {price ? (
+              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={2}>
+                {triLang(lang, { ru: '/ мес', uk: '/ міс', es: '/ mes', 'pt-BR': '/ mês', vi: '/ tháng', id: '/ bln', tr: '/ ay', pl: '/ mies.' })}
+              </Text>
+            ) : null}
+          </View>
+
+          <View style={{ borderRadius: 28, overflow: 'hidden' }}>
             <Pressable
               accessibilityRole="button"
               accessibilityState={{ disabled: primaryDisabled, busy: busy !== null }}
               disabled={primaryDisabled}
               onPress={buy}
-              style={{ minHeight: 60, borderRadius: 28, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center', opacity: primaryDisabled ? 0.55 : 1 }}
+              style={{ minHeight: shortScreen ? 54 : 60, borderRadius: 28, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center', opacity: primaryDisabled ? 0.55 : 1 }}
             >
               {primarySpinner ? <ActivityIndicator color={t.correctText} /> : (
                 <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
@@ -514,61 +544,70 @@ export default function MaxPaywall() {
                 </Text>
               )}
             </Pressable>
-            {!loading && !maxPackage && !storeConfirmed ? (
-              <Pressable
-                accessibilityRole="button"
-                onPress={retryStoreOffer}
-                disabled={busy !== null}
-                style={{ minHeight: 44, alignItems: 'center', justifyContent: 'center', marginTop: 4 }}
-              >
-                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
-                  {triLang(lang, {
-                    ru: 'Повторить загрузку цены', uk: 'Повторити завантаження ціни', es: 'Volver a cargar el precio',
-                    'pt-BR': 'Recarregar o preço', vi: 'Tải lại giá', id: 'Muat ulang harga',
-                    tr: 'Fiyatı yeniden yükle', pl: 'Wczytaj cenę ponownie',
-                  })}
-                </Text>
-              </Pressable>
-            ) : null}
-            <Text style={{ color: t.textMuted, fontSize: f.label, textAlign: 'center', marginTop: 10, lineHeight: f.label * 1.4 }} maxFontSizeMultiplier={2}>
-                {price ? triLang(lang, {
-                  ru: `${price} / мес · без пробного периода · отмена в любой момент`, uk: `${price} / міс · без пробного періоду · скасування будь-коли`,
-                es: `${price} / mes · sin prueba · cancela cuando quieras`, 'pt-BR': `${price} / mês · sem teste · cancele quando quiser`,
-                vi: `${price} / tháng · không dùng thử · hủy bất cứ lúc nào`, id: `${price} / bln · tanpa uji coba · batalkan kapan saja`,
-                tr: `${price} / ay · deneme yok · istediğin an iptal et`, pl: `${price} / mies. · bez okresu próbnego · anuluj w każdej chwili`,
-                }) : triLang(lang, {
-                  ru: 'Цена будет показана магазином до подтверждения покупки.', uk: 'Магазин покаже ціну до підтвердження покупки.',
-                  es: 'La tienda mostrará el precio antes de confirmar la compra.', 'pt-BR': 'A loja mostrará o preço antes da confirmação da compra.',
-                  vi: 'Cửa hàng sẽ hiển thị giá trước khi xác nhận giao dịch.', id: 'Toko akan menampilkan harga sebelum pembelian dikonfirmasi.',
-                  tr: 'Satın alma onaylanmadan önce mağaza fiyatı gösterecek.', pl: 'Sklep pokaże cenę przed potwierdzeniem zakupu.',
-                })}
-            </Text>
+            {/* Блик по кнопке — тот же приём, что в пейволах A–G; гаснет вне
+                фокуса и при reduce-motion (PaywallMotion). */}
+            {primaryDisabled ? null : <PaywallCtaShine />}
+          </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', gap: 18, marginTop: 16 }}>
-                <Pressable
-                  onPress={restore}
-                  disabled={restoreDisabled}
-                  accessibilityRole="button"
-                  accessibilityState={{ disabled: restoreDisabled, busy: busy === 'restore' }}
-                style={{ minHeight: 44, justifyContent: 'center' }}
-              >
-                <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.label }} maxFontSizeMultiplier={2}>
-                  {triLang(lang, { ru: 'Восстановить', uk: 'Відновити', es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục', id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć' })}
-                </Text>
-              </Pressable>
-              <Pressable onPress={() => Linking.openURL('https://phraseman.app/terms').catch(() => {})} style={{ minHeight: 44, justifyContent: 'center' }}>
-                <Text style={{ color: t.textMuted, fontSize: f.label }} maxFontSizeMultiplier={2}>
-                  {triLang(lang, { ru: 'Условия', uk: 'Умови', es: 'Términos', 'pt-BR': 'Termos', vi: 'Điều khoản', id: 'Ketentuan', tr: 'Koşullar', pl: 'Warunki' })}
-                </Text>
-              </Pressable>
-              <Pressable onPress={() => Linking.openURL('https://phraseman.app/privacy').catch(() => {})} style={{ minHeight: 44, justifyContent: 'center' }}>
-                <Text style={{ color: t.textMuted, fontSize: f.label }} maxFontSizeMultiplier={2}>
-                  {triLang(lang, { ru: 'Конфиденциальность', uk: 'Конфіденційність', es: 'Privacidad', 'pt-BR': 'Privacidade', vi: 'Quyền riêng tư', id: 'Privasi', tr: 'Gizlilik', pl: 'Prywatność' })}
-                </Text>
-              </Pressable>
-            </View>
-          </PaywallEntrance>
-        </ScrollView>
+          {!loading && !maxPackage && !storeConfirmed ? (
+            <Pressable
+              accessibilityRole="button"
+              // зачем: кнопка гаснет на время покупки/восстановления, но без
+              // accessibilityState озвучка молчала и слепой пользователь жал
+              // мёртвую кнопку. Тот же паттерн, что у CTA и «Восстановить».
+              accessibilityState={{ disabled: busy !== null, busy: busy !== null }}
+              onPress={retryStoreOffer}
+              disabled={busy !== null}
+              style={{ minHeight: 44, alignItems: 'center', justifyContent: 'center', marginTop: 2 }}
+            >
+              <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
+                {triLang(lang, {
+                  ru: 'Повторить загрузку цены', uk: 'Повторити завантаження ціни', es: 'Volver a cargar el precio',
+                  'pt-BR': 'Recarregar o preço', vi: 'Tải lại giá', id: 'Muat ulang harga',
+                  tr: 'Fiyatı yeniden yükle', pl: 'Wczytaj cenę ponownie',
+                })}
+              </Text>
+            </Pressable>
+          ) : null}
+
+          <Text style={{ color: t.textMuted, fontSize: f.label, textAlign: 'center', marginTop: 8, lineHeight: f.label * 1.35 }} maxFontSizeMultiplier={2}>
+            {price ? triLang(lang, {
+              ru: `${price} / мес · без пробного периода · отмена в любой момент`, uk: `${price} / міс · без пробного періоду · скасування будь-коли`,
+              es: `${price} / mes · sin prueba · cancela cuando quieras`, 'pt-BR': `${price} / mês · sem teste · cancele quando quiser`,
+              vi: `${price} / tháng · không dùng thử · hủy bất cứ lúc nào`, id: `${price} / bln · tanpa uji coba · batalkan kapan saja`,
+              tr: `${price} / ay · deneme yok · istediğin an iptal et`, pl: `${price} / mies. · bez okresu próbnego · anuluj w każdej chwili`,
+            }) : triLang(lang, {
+              ru: 'Цена будет показана магазином до подтверждения покупки.', uk: 'Магазин покаже ціну до підтвердження покупки.',
+              es: 'La tienda mostrará el precio antes de confirmar la compra.', 'pt-BR': 'A loja mostrará o preço antes da confirmação da compra.',
+              vi: 'Cửa hàng sẽ hiển thị giá trước khi xác nhận giao dịch.', id: 'Toko akan menampilkan harga sebelum pembelian dikonfirmasi.',
+              tr: 'Satın alma onaylanmadan önce mağaza fiyatı gösterecek.', pl: 'Sklep pokaże cenę przed potwierdzeniem zakupu.',
+            })}
+          </Text>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', gap: 18, marginTop: 2 }}>
+            <Pressable
+              onPress={restore}
+              disabled={restoreDisabled}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: restoreDisabled, busy: busy === 'restore' }}
+              style={{ minHeight: 44, justifyContent: 'center' }}
+            >
+              <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.label }} maxFontSizeMultiplier={2}>
+                {triLang(lang, { ru: 'Восстановить', uk: 'Відновити', es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục', id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć' })}
+              </Text>
+            </Pressable>
+            <Pressable onPress={() => Linking.openURL('https://phraseman.app/terms').catch(() => {})} style={{ minHeight: 44, justifyContent: 'center' }}>
+              <Text style={{ color: t.textMuted, fontSize: f.label }} maxFontSizeMultiplier={2}>
+                {triLang(lang, { ru: 'Условия', uk: 'Умови', es: 'Términos', 'pt-BR': 'Termos', vi: 'Điều khoản', id: 'Ketentuan', tr: 'Koşullar', pl: 'Warunki' })}
+              </Text>
+            </Pressable>
+            <Pressable onPress={() => Linking.openURL('https://phraseman.app/privacy').catch(() => {})} style={{ minHeight: 44, justifyContent: 'center' }}>
+              <Text style={{ color: t.textMuted, fontSize: f.label }} maxFontSizeMultiplier={2}>
+                {triLang(lang, { ru: 'Конфиденциальность', uk: 'Конфіденційність', es: 'Privacidad', 'pt-BR': 'Privacidade', vi: 'Quyền riêng tư', id: 'Privasi', tr: 'Gizlilik', pl: 'Prywatność' })}
+              </Text>
+            </Pressable>
+          </View>
+        </PaywallEntrance>
       </SafeAreaView>
     </ScreenGradient>
   );

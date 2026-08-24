@@ -72,12 +72,14 @@ describe('personal plan sunset dev bypass', () => {
     // 1. probe: не уводит на сетевую верификацию премиума
     expect(read('app/personal_plan_sunset.ts'))
       .toMatch(/if \(devSunsetBypassActive\(\)\) return 'allowed';/);
-    // 2. гейт экрана: не редиректит на пейвол
+    // 2. гейт экрана: премиум СЧИТАЕТСЯ подтверждённым, а не «просто не проверяем
+    //    сетью» — иначе verifiedAccess остаётся false и ветка ниже уводит на
+    //    пейвол (эта дыра и давала «жму Маршрут, открываются уроки»).
     expect(read('app/personal_plan_sunset_guard.tsx'))
-      .toContain('!verifiedAccess && !isPersonalPlanDevBypassActive()');
-    // 3. таб: премиум не отправляет на пейвол
+      .toContain("premiumProbe === 'allowed' || isPersonalPlanDevBypassActive()");
+    // 3. таб: та же формулировка
     const lessons = read('app/(tabs)/lessons.tsx');
-    expect(lessons).toContain('!verifiedPlanAccess && !isPersonalPlanDevBypassActive()');
+    expect(lessons).toContain('premiumProbe === "allowed" || isPersonalPlanDevBypassActive()');
     // 4. кнопка создания плана
     expect(read('app/personal_plan_setup.tsx'))
       .toMatch(/if \(isPersonalPlanDevBypassActive\(\)\) return true;/);

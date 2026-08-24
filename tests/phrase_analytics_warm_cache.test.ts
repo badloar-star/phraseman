@@ -19,7 +19,7 @@ describe('phrase analytics warm cache', () => {
   it('keeps stale data readable while reporting freshness separately', () => {
     const token = ensureAccountGeneration('alice');
     const request = beginPhraseAnalyticsRequest(token, 'en:ru');
-    const value = { data: null, resolved: null };
+    const value = { data: null };
     expect(commitPhraseAnalyticsWarm(request, value, 1_000)).toBe(true);
     expect(readPhraseAnalyticsWarm(token, 'en:ru', 20_000)).toEqual({ value, isFresh: true });
     expect(readPhraseAnalyticsWarm(token, 'en:ru', 60_000)).toEqual({ value, isFresh: false });
@@ -31,10 +31,10 @@ describe('phrase analytics warm cache', () => {
     const latestRequest = beginPhraseAnalyticsRequest(alice, 'en:ru');
     expect(isPhraseAnalyticsRequestCurrent(staleRequest)).toBe(false);
     expect(isPhraseAnalyticsRequestCurrent(latestRequest)).toBe(true);
-    expect(commitPhraseAnalyticsWarm(staleRequest, { data: null, resolved: null })).toBe(false);
+    expect(commitPhraseAnalyticsWarm(staleRequest, { data: null })).toBe(false);
     ensureAccountGeneration('bob');
     expect(isPhraseAnalyticsRequestCurrent(latestRequest)).toBe(false);
-    expect(commitPhraseAnalyticsWarm(latestRequest, { data: null, resolved: null })).toBe(false);
+    expect(commitPhraseAnalyticsWarm(latestRequest, { data: null })).toBe(false);
     expect(readPhraseAnalyticsWarm(alice, 'en:ru')).toBeNull();
   });
 
@@ -47,18 +47,21 @@ describe('phrase analytics warm cache', () => {
     expect(source).toContain('if (isPhraseAnalyticsRequestCurrent(request)) setLoading(false)');
     expect(source).toContain('if (warm && loadedCacheKey !== requestCacheKey)');
     expect(source).toContain('const visibleLoading = loading || loadedCacheKey !== renderCacheKey');
-    expect(source).toContain('personalPracticeCoachEnabled, renderCacheKey, sourceLocale');
+    // зачем: сторожим, что deps загрузки держат ключи кэша (маскировка по
+    // аккаунту и контенту). Раньше в списке был personalPracticeCoachEnabled —
+    // он ушёл вместе с удалёнными диагнозами тренера, суть проверки та же.
+    expect(source).toContain('loadedCacheKey, renderCacheKey, sourceLocale');
   });
 
   it('fresh-key navigation supersedes a pending request for another key', () => {
     const token = ensureAccountGeneration('alice');
     const bSeed = beginPhraseAnalyticsRequest(token, 'b:ru');
-    const bValue = { data: null, resolved: null };
+    const bValue = { data: null };
     expect(commitPhraseAnalyticsWarm(bSeed, bValue, 1_000)).toBe(true);
     const pendingA = beginPhraseAnalyticsRequest(token, 'a:ru');
     const freshBVisit = beginPhraseAnalyticsRequest(token, 'b:ru');
     expect(isPhraseAnalyticsRequestCurrent(freshBVisit)).toBe(true);
-    expect(commitPhraseAnalyticsWarm(pendingA, { data: null, resolved: null }, 2_000)).toBe(false);
+    expect(commitPhraseAnalyticsWarm(pendingA, { data: null }, 2_000)).toBe(false);
     expect(readPhraseAnalyticsWarm(token, 'b:ru', 2_000)?.value).toEqual(bValue);
   });
 });

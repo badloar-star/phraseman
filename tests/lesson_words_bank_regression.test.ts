@@ -23,7 +23,6 @@ jest.mock('../components/EnergyContext', () => ({
   useEnergy: () => ({ energy: 10, isUnlimited: true }),
 }));
 jest.mock('../components/NoEnergyModal', () => () => null);
-jest.mock('../components/CoachToast', () => () => null);
 jest.mock('../components/ReportErrorButton', () => () => null);
 jest.mock('../components/ThemedConfirmModal', () => () => null);
 jest.mock('../components/ScreenGradient', () => ({ children }: any) => children);
@@ -34,7 +33,6 @@ jest.mock('../hooks/use-audio', () => ({ useAudio: () => ({ speakAudio: jest.fn(
 jest.mock('../app/settings_edu', () => ({ loadSettings: jest.fn() }));
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn() }));
 jest.mock('../app/shards_system', () => ({ addShards: jest.fn() }));
-jest.mock('../app/coach_toast_trigger', () => ({ checkCoachToastNeededWithAnalytics: jest.fn() }));
 jest.mock('../app/stats_daily_breakdown', () => ({ bumpStatsDaily: jest.fn() }));
 jest.mock('../app/feedback/feedback_kit', () => ({
   __esModule: true,

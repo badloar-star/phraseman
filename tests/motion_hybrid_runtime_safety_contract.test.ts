@@ -22,7 +22,6 @@ const DIRECT_HYBRID_DRIVERS = [
   'components/ActionToast.tsx',
   'components/AchievementToast.tsx',
   'components/MedalToast.tsx',
-  'components/CoachToast.tsx',
   'components/InGameToast.tsx',
   'components/modal_fx/HybridSheetShell.tsx',
   'components/modal_fx/HybridAlertShell.tsx',

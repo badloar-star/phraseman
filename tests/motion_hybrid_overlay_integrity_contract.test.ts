@@ -73,7 +73,6 @@ describe("motion hybrid overlay integrity", () => {
     "components/PromoBanner.tsx",
     "components/SaveProgressBanner.tsx",
     "components/RankChangeBanner.tsx",
-    "components/CoachToast.tsx",
     "components/InGameToast.tsx",
     "components/MedalToast.tsx",
   ])("%s uses toast timing instead of modal resolve timing", (file) => {

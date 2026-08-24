@@ -26,7 +26,6 @@ const HYBRID_DEFAULT_SURFACES = [
   'components/BoonActivatedModal.tsx',
   'components/BoonChestModal.tsx',
   'components/CertificateNameModal.tsx',
-  'components/CoachToast.tsx',
   'components/CollectibleDropModal.tsx',
   'components/DeleteAccountConfirmModal.tsx',
   'components/InGameToast.tsx',

@@ -15,6 +15,7 @@ import {
   isQuietHours,
   nudgeLimitBlockReason,
   friendsTogetherConfigFromNumbers,
+  starsForLevelRange,
   shiftDayKey,
   FRIENDSHIP_LEVEL_THRESHOLDS,
   CHEST_TIERS,
@@ -154,7 +155,24 @@ describe('friends_together_core: levels', () => {
   });
 });
 
+describe('friends_together_core: cumulative milestone rewards', () => {
+  test('awards every unclaimed milestone when a pair jumps several levels', () => {
+    expect(starsForLevelRange(1, 5)).toBe(5 + 10 + 20 + 50);
+    expect(starsForLevelRange(3, 5)).toBe(20 + 50);
+  });
+
+  test('does not award an already claimed or lower level again', () => {
+    expect(starsForLevelRange(5, 5)).toBe(0);
+    expect(starsForLevelRange(5, 3)).toBe(0);
+  });
+});
+
 describe('friends_together_core: weekly chest progress', () => {
+  test('uses the configured referral boost multiplier instead of a hardcoded x2', () => {
+    expect(weeklyChestProgress([
+      { friendUid: 'boosted', pairLevel: 2, weeklyXp: 500, boosted: true },
+    ], 2000, 10, 2, 3)).toBe(1500);
+  });
   function contrib(uid: string, pairLevel: number, weeklyXp: number, boosted = false): ChestFriendContribution {
     return { friendUid: uid, pairLevel, weeklyXp, boosted };
   }
@@ -395,6 +413,6 @@ describe('friends_together_core: remote_config overlay (friendsTogetherConfigFro
 
   test('out-of-range values are clamped, not rejected wholesale', () => {
     const cfg = friendsTogetherConfigFromNumbers({ friends_chest_top_n: 99999 });
-    expect(cfg.chestTopN).toBe(1000); // clamp max
+    expect(cfg.chestTopN).toBe(100); // callable itself reads at most 100 friends
   });
 });

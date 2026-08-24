@@ -29,35 +29,14 @@ describe("live admin gift certificates workflow", () => {
   const live = read("admin/v2/legacy.html");
   const server = read("functions/src/web_checkout.ts");
   const functionsIndex = read("functions/src/index.ts");
+  const firestoreRules = read("firestore.rules");
+  const jarvisContract = read("functions/src/jarvis/jarvis_data_contract_guard.test.ts");
 
-  test("parses callable result envelopes and surfaces structured errors", () => {
-    const parserSource = extractNamedFunction(
-      live,
-      "giftCertificateParseCallableEnvelope",
-    );
-    const parse = new Function(
-      `${parserSource}\nreturn giftCertificateParseCallableEnvelope;`,
-    )() as (
-      payload: Record<string, unknown>,
-      ok: boolean,
-      status: number,
-    ) => { data: unknown };
-
-    expect(parse({ result: { ok: true, count: 2 } }, true, 200)).toEqual({
-      data: { ok: true, count: 2 },
-    });
-    expect(() =>
-      parse(
-        {
-          error: {
-            code: "failed-precondition",
-            message: "delivery_not_authorized",
-          },
-        },
-        false,
-        400,
-      ),
-    ).toThrow("failed-precondition: delivery_not_authorized");
+  test("uses the Firebase callable SDK for authenticated envelopes and structured errors", () => {
+    const helper = extractNamedFunction(live, "createAdminAuthCallable");
+    expect(helper).toContain("return _fsHttpsCallable(functionsUs, name)");
+    expect(helper).not.toContain("fetch(");
+    expect(helper).not.toContain("X-Firebase-AppCheck");
   });
 
   test("keeps gift CSS in style and gift JS at module top level", () => {
@@ -174,24 +153,27 @@ describe("live admin gift certificates workflow", () => {
     expect(fs.existsSync(path.join(root, "admin/v2/index.html"))).toBe(false);
   });
 
-  test("uses App Check-protected server callables for issue/history/repair/send and never creates gift codes locally", () => {
+  test("uses Firebase-Auth-only server callables for issue/history/repair/send and never creates gift codes locally", () => {
     expect(live).toContain(
-      "createAppCheckProtectedGiftCallable('adminCreateGiftCertificateBatch')",
+      "createAdminAuthCallable('adminCreateGiftCertificateBatch')",
     );
     expect(live).toContain(
-      "createAppCheckProtectedGiftCallable('adminListGiftCertificates')",
+      "createAdminAuthCallable('adminGetGiftCertificateBatchOperation')",
     );
     expect(live).toContain(
-      "createAppCheckProtectedGiftCallable('adminUpdateGiftCertificatePersonalization')",
+      "createAdminAuthCallable('adminListGiftCertificates')",
     );
     expect(live).toContain(
-      "createAppCheckProtectedGiftCallable('adminGetGiftCertificateDownload')",
+      "createAdminAuthCallable('adminUpdateGiftCertificatePersonalization')",
     );
     expect(live).toContain(
-      "createAppCheckProtectedGiftCallable('adminReplaceSyntheticGiftCertificate')",
+      "createAdminAuthCallable('adminGetGiftCertificateDownload')",
     );
     expect(live).toContain(
-      "createAppCheckProtectedGiftCallable('adminSendPreparedGiftCertificate')",
+      "createAdminAuthCallable('adminReplaceSyntheticGiftCertificate')",
+    );
+    expect(live).toContain(
+      "createAdminAuthCallable('adminSendPreparedGiftCertificate')",
     );
     expect(server).toContain(
       "export const adminCreateGiftCertificateBatch = onCall(",
@@ -206,7 +188,8 @@ describe("live admin gift certificates workflow", () => {
       "hasClaimedPermission(auth.token, 'money.manual_access.write')",
     );
     expect(server).toContain("hasClaimedPermission(auth.token, 'money.read')");
-    expect(server).toContain("enforceAppCheck: true");
+    expect(server).toContain("enforceAppCheck: false");
+    expect(server).not.toContain("enforceAppCheck: true");
     expect(functionsIndex).toContain("adminCreateGiftCertificateBatch");
     expect(functionsIndex).toContain("adminListGiftCertificates");
     expect(functionsIndex).toContain("adminUpdateGiftCertificateRecipient");
@@ -224,7 +207,7 @@ describe("live admin gift certificates workflow", () => {
     );
   });
 
-  test("persists one account-scoped lowercase UUID-v4 and immutable request across reload until verified success or cancellation", () => {
+  test("persists a bounded multi-admin collection of opaque checkpoints and clears one acknowledged entry only", () => {
     const clientStart = live.indexOf("// -- GIFT CERTIFICATES:");
     const clientEnd = live.indexOf("// END GIFT CERTIFICATES", clientStart);
     expect(clientStart).toBeGreaterThan(0);
@@ -233,45 +216,134 @@ describe("live admin gift certificates workflow", () => {
 
     expect(client).toContain("let _giftCertificatePendingBatch = null;");
     expect(client).toContain(
-      "const GIFT_CERTIFICATE_PENDING_BATCH_STORAGE_PREFIX = 'phraseman_admin_gift_certificate_pending_batch_v1';",
+      "const GIFT_CERTIFICATE_OPERATION_CHECKPOINT_STORAGE_KEY = 'phraseman_admin_operation_checkpoints_v4:gift-certificates';",
     );
-    expect(client).toContain("auth.currentUser.uid");
+    expect(client).toContain("const GIFT_CERTIFICATE_OPERATION_CHECKPOINT_MAX_ENTRIES = 8;");
+    expect(client).not.toContain("ownerUid");
+    expect(client).not.toContain("auth.currentUser.uid");
     expect(client).toContain("localStorage.getItem(storageKey)");
-    expect(client).toContain(
-      "localStorage.setItem(storageKey, JSON.stringify(pendingBatch))",
-    );
-    expect(client).toContain("localStorage.removeItem(storageKey)");
+    expect(client).toContain("gift-certificate-operation-checkpoint-collection.v4");
+    expect(client).toContain("localStorage.setItem(storageKey, JSON.stringify(collection))");
     expect(client).toContain("crypto.randomUUID().toLowerCase()");
-    expect(client).toContain("Object.freeze([...form.recipientNames])");
-    expect(client).toContain("Object.freeze([...form.senderNames])");
-    expect(client).toContain("Object.freeze([...form.recipientEmails])");
+    expect(client).toContain("createdAtMs");
+    expect(client).not.toContain("submittedAtMs");
+    expect(client).not.toContain("requestHash");
+    const freezeSource = extractNamedFunction(live, "giftCertificateFreezePendingBatch");
+    const freeze = new Function(
+      `${freezeSource}\nreturn giftCertificateFreezePendingBatch;`,
+    )() as (input: Record<string, unknown>) => Record<string, unknown>;
+    expect(Object.keys(freeze({
+      operationId: "7d71d9f8-8428-4adb-88fa-508a5a59f206",
+      createdAtMs: 123,
+      submittedAtMs: 456,
+      ownerUid: "must-not-survive",
+      recipientEmail: "must-not-survive@example.com",
+    }))).toEqual(["operationId", "createdAtMs"]);
+    const persist = extractNamedFunction(live, "giftCertificatePersistPendingBatch");
+    expect(persist).not.toContain("recipientNames");
+    expect(persist).not.toContain("senderNames");
+    expect(persist).not.toContain("recipientEmails");
+    expect(persist).not.toContain("request:");
+    expect(client).toContain("giftCertificatePersistPendingBatch(checkpoint);");
+    expect(client).toContain("giftCertificateRemovePendingBatch(checkpoint.operationId");
+    expect(client).toContain("operationId: checkpoint.operationId");
+    expect(client).toContain("adminGetGiftCertificateBatchOperation");
+    expect(client).toContain("giftCertificateRecoverBatchReceipt");
+    expect(client).toContain("adminCancelGiftCertificateBatchOperation");
+    expect(client).toContain("checkpoint сохранён до подтверждённого результата");
+    expect(client).toContain("await giftCertificateCancelPendingBatch(checkpoint)");
+    expect(client).not.toContain("giftCertificateClearPendingBatch('explicit_cancellation')");
     expect(client).toContain(
-      "showRecipientName: form.showRecipientName !== false",
+      "response.data?.operationId !== checkpoint.operationId",
     );
-    expect(client).toContain("showSenderName: form.showSenderName !== false");
     expect(client).toContain(
-      "const pendingBatch = giftCertificatePendingBatchForCurrentAdmin() || giftCertificateCreatePendingBatch(form);",
+      "response.data.certificates.length !== form.count",
     );
-    expect(client).toContain("_giftCertificatePendingBatch = pendingBatch;");
-    expect(client).toContain(
-      "giftCertificatePersistPendingBatch(pendingBatch);",
-    );
-    expect(client).toContain("operationId: pendingBatch.operationId");
     expect(client).toMatch(
-      /if \(!confirmed\) \{\s+giftCertificateClearPendingBatch\('explicit_cancellation'\);/,
+      /response\.data\?\.operationId !== checkpoint\.operationId[\s\S]*?giftCertificateRemovePendingBatch\(checkpoint\.operationId, 'verified_success'\);[\s\S]*?const created/,
     );
     expect(client).toContain(
-      "response.data?.operationId !== pendingBatch.operationId",
+      "if (!['verified_success', 'server_cancelled'].includes(reason))",
     );
-    expect(client).toContain(
-      "response.data.certificates.length !== pendingBatch.request.count",
+    const signOut = live.slice(
+      live.indexOf("window.adminSignOut ="),
+      live.indexOf("function adminCloseBlockingShellOverlays", live.indexOf("window.adminSignOut =")),
     );
-    expect(client).toMatch(
-      /response\.data\?\.operationId !== pendingBatch\.operationId[\s\S]*?giftCertificateClearPendingBatch\('verified_success'\);[\s\S]*?const created/,
+    expect(signOut).toContain("giftCertificateResolveCheckpointBeforeAuthTransition");
+    expect(signOut).toContain("signOut(auth)");
+    expect(signOut).not.toContain("giftCertificateClearPendingBatch");
+    const transition = extractNamedFunction(live, "giftCertificateResolveCheckpointBeforeAuthTransition");
+    expect(transition).toContain("giftCertificateResolvePendingBatchForCurrentAdmin");
+    expect(transition).toContain("giftCertificateCancelPendingBatch");
+    expect(transition).not.toContain("'auth_transition'");
+    const cleanup = extractNamedFunction(live, "clearGiftPii");
+    expect(live).toContain("GIFT_CERTIFICATE_OPERATION_CHECKPOINT_STORAGE_KEY_LITERAL='phraseman_admin_operation_checkpoints_v4:gift-certificates'");
+    expect(cleanup).toMatch(/key\s*===\s*GIFT_CERTIFICATE_OPERATION_CHECKPOINT_STORAGE_KEY_LITERAL[\s\S]*?continue/);
+  });
+
+  test("keeps foreign admin checkpoints quarantined and recovers the same actor after an A-to-B-to-A browser transition", async () => {
+    const plannerSource = extractNamedFunction(live, "giftCertificatePlanCheckpointCollection");
+    const freezeSource = extractNamedFunction(live, "giftCertificateFreezePendingBatch");
+    const plan = new Function(
+      `const GIFT_CERTIFICATE_OPERATION_CHECKPOINT_MAX_ENTRIES = 2;\n${freezeSource}\n${plannerSource}\nreturn giftCertificatePlanCheckpointCollection;`,
+    )() as (entries: Array<Record<string, unknown>>, mutation: Record<string, unknown>) => Array<Record<string, unknown>>;
+    const a = { operationId: '7d71d9f8-8428-4adb-88fa-508a5a59f206', createdAtMs: 1 };
+    const b = { operationId: 'ea283384-2226-4c08-9742-9ed3275d51bd', createdAtMs: 2 };
+    expect(plan(plan([], { kind: 'add', checkpoint: a }), { kind: 'add', checkpoint: b })).toEqual([a, b]);
+    expect(plan([a, b], { kind: 'remove', operationId: b.operationId })).toEqual([a]);
+    expect(() => plan([a, b], {
+      kind: 'add',
+      checkpoint: { operationId: 'f55aeb6e-6379-4235-b85a-c4f573dbb66d', createdAtMs: 3 },
+    })).toThrow('gift_certificate_checkpoint_storage_full');
+
+    const resolverSource = extractNamedFunction(live, "giftCertificateResolvePendingBatchForCurrentAdmin");
+    const runResolution = (outcomes: Record<string, unknown>) => new Function(
+      'entries',
+      'outcomes',
+      `function giftCertificateReadPendingBatchEntries(){ return entries; }\n`
+        + `function giftCertificateOperationBelongsToAnotherActor(error){ return error?.code === 'functions/already-exists'; }\n`
+        + `async function giftCertificateRecoverBatchReceipt(checkpoint){ const value = outcomes[checkpoint.operationId]; if(value instanceof Error) throw value; return value; }\n`
+        + `function giftCertificateRemovePendingBatch(){ throw new Error('unexpected removal'); }\n`
+        + `${resolverSource}\nreturn giftCertificateResolvePendingBatchForCurrentAdmin;`,
+    )([a, b], outcomes) as () => Promise<Record<string, unknown> | null>;
+    const foreign = Object.assign(new Error('gift_certificate_operation_conflict'), { code: 'functions/already-exists' });
+    await expect(runResolution({
+      [a.operationId]: foreign,
+      [b.operationId]: { status: 'not_found' },
+    })()).resolves.toMatchObject({ checkpoint: b, recovery: { status: 'not_found' }, foreignCount: 1 });
+    await expect(runResolution({
+      [a.operationId]: { status: 'pending' },
+      [b.operationId]: foreign,
+    })()).resolves.toMatchObject({ checkpoint: a, recovery: { status: 'pending' }, foreignCount: 0 });
+
+    const signOut = live.slice(live.indexOf('window.adminSignOut ='), live.indexOf('function adminCloseBlockingShellOverlays'));
+    expect(signOut).toContain('Promise.race');
+    expect(signOut).not.toContain('giftCertificateRemovePendingBatch');
+  });
+
+  test("treats all server operation states explicitly and continues the same opaque id for pending/not-found", async () => {
+    const recoverSource = extractNamedFunction(live, "giftCertificateRecoverBatchReceipt");
+    const recoverFor = (payload: Record<string, unknown>) => new Function(
+      "payload",
+      `let _fnAdminGetGiftCertificateBatchOperation = async () => ({ data: payload });\n`
+        + `function createAdminAuthCallable(){ throw new Error('unexpected callable factory'); }\n`
+        + `${recoverSource}\nreturn giftCertificateRecoverBatchReceipt;`,
+    )(payload) as (checkpoint: { operationId: string }) => Promise<Record<string, unknown>>;
+    const checkpoint = { operationId: "7d71d9f8-8428-4adb-88fa-508a5a59f206" };
+    await expect(recoverFor({ status: "not_found" })(checkpoint)).resolves.toEqual({ status: "not_found" });
+    await expect(recoverFor({ status: "pending" })(checkpoint)).resolves.toEqual({ status: "pending" });
+    await expect(recoverFor({ status: "cancelled" })(checkpoint)).resolves.toEqual({ status: "cancelled" });
+    const receipt = { ok: true, operationId: checkpoint.operationId, certificates: [] };
+    await expect(recoverFor({ status: "completed", receipt })(checkpoint)).resolves.toEqual({ status: "completed", receipt });
+
+    const createFlow = live.slice(
+      live.indexOf("window.createGiftCertificateBatch = async function()"),
+      live.indexOf("window.giftCertificateReplaceSynthetic", live.indexOf("window.createGiftCertificateBatch = async function()")),
     );
-    expect(client).toContain(
-      "if (!['verified_success', 'explicit_cancellation'].includes(reason))",
-    );
+    expect(createFlow).toContain("recovery.status === 'completed'");
+    expect(extractNamedFunction(live, 'giftCertificateResolvePendingBatchForCurrentAdmin')).toContain("recovery.status === 'cancelled'");
+    expect(createFlow).toMatch(/recovery\.status === 'not_found'[\s\S]*?checkpoint\.operationId/);
+    expect(createFlow).toMatch(/recovery\.status === 'pending'[\s\S]*?checkpoint\.operationId/);
   });
 
   test("locks recipient fields for every ambiguous or final delivery state in both server and UI", () => {
@@ -316,10 +388,10 @@ describe("live admin gift certificates workflow", () => {
     const promoNav = live.indexOf("switchTab('promo-codes')");
     const giftNav = live.indexOf("switchTab('gift-certificates')", promoNav);
     const promoSectionStart = live.indexOf(
-      '<div id="tab-promo-codes" class="reports-tab">',
+      '<div id="tab-promo-codes"',
     );
     const giftSectionStart = live.indexOf(
-      '<div id="tab-gift-certificates" class="reports-tab">',
+      '<div id="tab-gift-certificates"',
     );
     expect(promoNav).toBeGreaterThan(0);
     expect(giftNav).toBeGreaterThan(promoNav);
@@ -364,6 +436,10 @@ describe("live admin gift certificates workflow", () => {
       "title: isRetry ? 'Повторить незавершённую операцию?' : 'Создать подарочные сертификаты?'",
     );
     expect(live).toContain('id="gift-certificates-history"');
+    expect(live).toContain('id="gift-certificate-history-filter"');
+    expect(live).toContain('<option value="inactive">Неактивные текущие</option>');
+    expect(live).toContain('<option value="archive">Архив / история</option>');
+    expect(live).toContain('id="gift-certificate-history-search"');
     expect(live).toContain('id="gift-personalization-recipient"');
     expect(live).toContain('id="gift-personalization-email"');
     expect(live).toContain(
@@ -387,7 +463,152 @@ describe("live admin gift certificates workflow", () => {
     expect(live).not.toContain(
       "return fetch(url, { method: 'GET', mode: 'cors'",
     );
-    expect(live).toContain("while (nextCursor)");
+    expect(live).toContain("giftCertificateFilterHistory(records)");
+    expect(live).toContain("Показаны последние ${records.length} записей");
+    expect(live).toContain("здесь не ищутся");
+    expect(live).not.toContain("Используй серверный экспорт");
+  });
+
+  test("renders redacted archive rows truthfully and disables actions that require hidden secrets", () => {
+    const rowSource = extractNamedFunction(live, "giftCertificateRowHtml");
+    const rowHtml = new Function(
+      `const GIFT_CERTIFICATE_ASSETS = {}; const GIFT_CERTIFICATE_PRODUCT_LABELS = {yearly:'Год'};\n`
+        + `function giftCertificateActivationBlocksActions(){ return true; }\n`
+        + `function giftCertificatePersonalizationIsLocked(){ return true; }\n`
+        + `function giftCertificateDisplayPersonalization(){ return {showPersonalization:false}; }\n`
+        + `function giftCertificateDate(value){ return String(value || ''); }\n`
+        + `function escapeHtml(value){ return String(value ?? ''); }\n`
+        + `${rowSource}\n`
+        + `return giftCertificateRowHtml;`,
+    )() as (record: Record<string, unknown>) => string;
+    const redacted = rowHtml({
+      publicId: "gift-archive-deadbeef",
+      product: "yearly",
+      archived: true,
+      archiveReason: "deleted",
+      activationStatus: "disabled",
+      activationStatusLabel: "Удалён",
+      createdAtMs: 1,
+      archivedAtMs: 2,
+      archiveSensitiveFields: "redacted",
+    });
+    expect(redacted).toContain("Код скрыт");
+    expect(redacted).not.toContain("undefined");
+    expect(redacted).not.toContain('data-gift-certificate-action="download"');
+    expect(redacted).not.toContain('data-gift-certificate-action="send"');
+    expect(redacted).not.toContain('data-gift-certificate-action="delete"');
+  });
+
+  test("places every non-active row in history and never renders delete without server canDelete", () => {
+    const filterSource = extractNamedFunction(live, "giftCertificateFilterHistory");
+    expect(filterSource).toContain("const historical = !active");
+    expect(filterSource).toContain("filter === 'archive' && !historical");
+    const rowSource = extractNamedFunction(live, "giftCertificateRowHtml");
+    expect(rowSource).toContain("record.canDelete === true");
+    expect(rowSource).not.toMatch(/deletedArchive \? '' : `<button[^`]*data-gift-certificate-action="delete"/);
+
+    const filter = new Function(
+      `const document={getElementById:(id)=>({value:id.includes('filter')?'archive':''})};\n${filterSource}\nreturn giftCertificateFilterHistory;`,
+    )() as (records: Array<Record<string, unknown>>) => Array<Record<string, unknown>>;
+    const records = [
+      { certificateId: 'active', activationStatus: 'available', archived: false },
+      { certificateId: 'redeemed', activationStatus: 'redeemed', archived: false },
+      { certificateId: 'expired', activationStatus: 'expired', archived: false },
+      { publicId: 'deleted', activationStatus: 'disabled', archived: true },
+    ];
+    expect(filter(records).map((record) => record.certificateId || record.publicId)).toEqual(['redeemed', 'expired', 'deleted']);
+  });
+
+  test("separates active certificates from the real archive and keeps counters searchable", () => {
+    const filterSource = extractNamedFunction(live, "giftCertificateFilterHistory");
+    expect(filterSource).toContain("activationStatus === 'available'");
+    expect(filterSource).toContain("filter === 'archive' && !historical");
+    expect(filterSource).toContain("filter === 'inactive'");
+    expect(filterSource).toContain("gift-certificate-history-search");
+    expect(live).toContain("Активные:");
+    expect(live).toContain("Архив:");
+    expect(server).toContain("GIFT_CERTIFICATE_ARCHIVE_COLLECTION");
+    expect(server).toContain("gift-certificate-archive.v1");
+    expect(firestoreRules).toContain("match /gift_certificate_archive/{document=**}");
+    expect(firestoreRules).toContain("match /gift_certificate_deliveries/{document=**}");
+    expect(firestoreRules).toContain("match /admin_gift_certificate_batch_operations/{document=**}");
+    expect(firestoreRules).toContain("collection != 'gift_certificate_deliveries'");
+    expect(firestoreRules).toContain("collection != 'admin_gift_certificate_batch_operations'");
+    expect(firestoreRules).toContain("collection != 'gift_certificate_archive'");
+    expect(jarvisContract).toContain("collection: 'gift_certificate_archive'");
+  });
+
+  test("requires manual-access permission for secret list fields and every code-bearing path", () => {
+    const listStart = server.indexOf('export const adminListGiftCertificates = onCall(');
+    const listEnd = server.indexOf('/** Deletes an unused certificate', listStart);
+    const listHandler = server.slice(listStart, listEnd);
+    expect(listHandler).toContain('giftCertificateListProjection');
+    expect(listHandler).toContain("canViewSecrets: canReadManualAccessSecrets");
+    const downloadStart = server.indexOf('export const adminGetGiftCertificateDownload = onCall(');
+    const downloadEnd = server.indexOf('/** Saves recipient identity', downloadStart);
+    const downloadHandler = server.slice(downloadStart, downloadEnd);
+    expect(downloadHandler).toContain('assertGiftCertificateAdminAccess(request.auth');
+    expect(downloadHandler).not.toContain('assertGiftCertificateAdminReadAccess(request.auth');
+    const operationStart = server.indexOf('export const adminGetGiftCertificateBatchOperation = onCall(');
+    const operationEnd = server.indexOf('/** Creates a fail-closed tombstone', operationStart);
+    const operationHandler = server.slice(operationStart, operationEnd);
+    expect(operationHandler).toContain('assertGiftCertificateAdminAccess(request.auth');
+    expect(operationHandler).not.toContain('assertGiftCertificateAdminReadAccess(request.auth');
+    expect(live).toContain("record.canViewSecrets !== true");
+    expect(live).toContain("record.canDownload === true");
+    expect(live).toContain("record.canSend === true");
+    expect(live).toContain("record.canDelete === true");
+    expect(live).toContain('Данные скрыты: требуется право ручного управления сертификатами');
+  });
+
+  test("stores no bearer code or recipient PII in any certificate audit document", () => {
+    const auditMatches = [...server.matchAll(/action: 'gift_certificate_[^']+'/g)];
+    expect(auditMatches.map((match) => match[0])).toEqual([
+      "action: 'gift_certificate_batch_create'",
+      "action: 'gift_certificate_delete'",
+      "action: 'gift_certificate_replace_synthetic'",
+      "action: 'gift_certificate_recipient_update'",
+      "action: 'gift_certificate_personalization_update'",
+    ]);
+    for (const match of auditMatches) {
+      const tsIndex = server.indexOf('ts:', match.index);
+      const auditTail = server.slice(match.index, server.indexOf('\n', tsIndex));
+      expect(auditTail).not.toMatch(/\b(?:certificateIds|certificateId|activationCode|oldCode|newCode|recipientEmail|giftTo|giftFrom)\b\s*[:,}]/);
+    }
+    const personalizationStart = server.indexOf('export function buildGiftCertificatePersonalizationUpdate');
+    const auditStart = server.indexOf('const auditDetails = {', personalizationStart);
+    const auditDetails = server.slice(auditStart, server.indexOf('return { patch', auditStart));
+    expect(auditDetails).not.toMatch(/certificateId|recipientEmail\s*[,}]/);
+    expect(auditDetails).toContain('recipientEmailSet');
+  });
+
+  test("binds gift search and filter through module listeners and keeps truncation in render state", () => {
+    expect(live).not.toMatch(/id="gift-certificate-history-filter"[^>]*onchange=/);
+    expect(live).not.toMatch(/id="gift-certificate-history-search"[^>]*oninput=/);
+    expect(live).toContain("giftCertificateBindHistoryControls()");
+    expect(live).toContain("addEventListener('change'");
+    expect(live).toContain("addEventListener('input'");
+    expect(live).toContain("let _giftCertificateHistoryTruncated = false;");
+    const render = extractNamedFunction(live, 'giftCertificateRenderHistory');
+    expect(render).toContain('_giftCertificateHistoryTruncated');
+
+    const binderSource = extractNamedFunction(live, 'giftCertificateBindHistoryControls');
+    const listeners: Record<string, () => void> = {};
+    const element = (id: string) => ({
+      dataset: {} as Record<string, string>,
+      addEventListener: (event: string, callback: () => void) => { listeners[`${id}:${event}`] = callback; },
+    });
+    const filter = element('filter');
+    const search = element('search');
+    const execute = new Function(
+      'rootDocument',
+      `${binderSource}\nconst _giftCertificateRecords = new Map([['id', {certificateId:'id'}]]); let renders = 0; function giftCertificateRenderHistory(records){ if(records.length === 1) renders += 1; } giftCertificateBindHistoryControls(rootDocument); return () => renders;`,
+    )({
+      getElementById: (id: string) => id === 'gift-certificate-history-filter' ? filter : search,
+    }) as () => number;
+    listeners['filter:change']();
+    listeners['search:input']();
+    expect(execute()).toBe(2);
   });
 
   test("downloads the complete public-style certificate composition from canonical server display data", () => {
@@ -1232,13 +1453,13 @@ describe("live admin gift certificates workflow", () => {
     },
   );
 
-  test("keeps the exact old synthetic replacement as an explicit two-step repair, never an automatic send", () => {
-    expect(live).toContain("GIFT-TEST-FRNRYV23VS");
-    expect(live).toContain(
-      "Simulated gift purchase; no payment; requested 2026-07-29; recipient badloar@gmail.com",
-    );
-    expect(live).toContain("badloar@gmail.com");
-    expect(live).toContain("Профессор Лингман");
+  test("keeps repair explicit without publishing recipient PII or the one-off target", () => {
+    expect(live).not.toContain("GIFT-TEST-FRNRYV23VS");
+    expect(live).not.toContain("Simulated gift purchase; no payment; requested 2026-07-29");
+    expect(live).not.toContain("badloar@gmail.com");
+    expect(live).not.toContain("Профессор Лингман");
+    expect(live).toMatch(/id="gift-repair-old-code"[^>]*value=""/);
+    expect(live).toMatch(/id="gift-repair-email"[^>]*value=""/);
     expect(live).toContain(
       "REPLACE_VERIFIED_SYNTHETIC_NO_PAYMENT_GIFT_CERTIFICATE",
     );

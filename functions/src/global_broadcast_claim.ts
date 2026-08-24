@@ -4,6 +4,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isPremiumAccessActive } from './premium_status';
 import { appendExternalEconomyEvent } from './external_economy_events';
+import { requireGlobalBroadcastPublicAuthority } from './global_broadcast_public_schema';
 
 const REGION = 'us-central1';
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -57,6 +58,26 @@ export function canonicalizeExistingGlobalBroadcastReceipt(existing: Row, user: 
     };
   }
   return existing;
+}
+
+export function resolveGlobalBroadcastClaimDecision(input: {
+  claimExists: boolean;
+  claimResponse: unknown;
+  broadcast: Row;
+  user: Row;
+  broadcastId?: string;
+}): Readonly<{ kind: 'replay'; response: Row } | { kind: 'first_grant'; broadcast: Row }> {
+  if (input.claimExists) {
+    const existing = record(input.claimResponse);
+    return Object.freeze({
+      kind: 'replay',
+      response: Object.keys(existing).length
+        ? canonicalizeExistingGlobalBroadcastReceipt(existing, input.user)
+        : { ok: true, broadcastId: input.broadcastId ?? '', rewardType: 'none', alreadyClaimed: true, legacyClaim: true },
+    });
+  }
+  requireGlobalBroadcastPublicAuthority(input.broadcast);
+  return Object.freeze({ kind: 'first_grant', broadcast: input.broadcast });
 }
 
 export function buildGlobalBroadcastRewardMutation(
@@ -145,18 +166,24 @@ export const globalBroadcastClaim = onCall({ region: REGION, enforceAppCheck: EN
     const [broadcastSnap, userSnap, claimSnap] = await Promise.all([
       tx.get(broadcastRef), tx.get(userRef), tx.get(claimRef),
     ]);
+    const user = record(userSnap.data());
+    const broadcast = record(broadcastSnap.data());
     if (claimSnap.exists) {
-      const existing = record(claimSnap.data()?.response);
-      return Object.keys(existing).length
-        ? canonicalizeExistingGlobalBroadcastReceipt(existing, record(userSnap.data()))
-        : { ok: true, broadcastId, rewardType: 'none', alreadyClaimed: true, legacyClaim: true };
+      const replay = resolveGlobalBroadcastClaimDecision({
+        claimExists: true,
+        claimResponse: claimSnap.data()?.response,
+        broadcast,
+        user,
+        broadcastId,
+      });
+      if (replay.kind !== 'replay') throw new HttpsError('internal', 'claim_replay_resolution_failed');
+      return replay.response;
     }
     if (!broadcastSnap.exists || !userSnap.exists) throw new HttpsError('not-found', 'broadcast_or_user_missing');
-    const broadcast = record(broadcastSnap.data());
+    resolveGlobalBroadcastClaimDecision({ claimExists: false, claimResponse: null, broadcast, user, broadcastId });
     if (broadcast.active !== true) throw new HttpsError('failed-precondition', 'broadcast_inactive');
     const expiresAt = int(broadcast.expiresAtMs ?? broadcast.expiresAt);
     if (expiresAt > 0 && expiresAt <= now) throw new HttpsError('failed-precondition', 'broadcast_expired');
-    const user = record(userSnap.data());
     const isPremium = isPremiumAccessActive(record(user.progress), now);
     const audience = String(broadcast.premiumAudience ?? 'all');
     if ((audience === 'premium' && !isPremium) || (audience === 'free' && isPremium)) {

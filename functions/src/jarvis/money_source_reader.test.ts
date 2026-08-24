@@ -1,4 +1,4 @@
-import { aggregateMoneyRows, buildMoneyEvidence, MONEY_REPORT_COLLECTIONS } from './money_source_reader';
+import { aggregateMoneyRows, buildMoneyEvidence, diagnosePersonalEconomy, MONEY_REPORT_COLLECTIONS } from './money_source_reader';
 
 describe('Jarvis money source reader — same eventType contract as admin_daily_digest.ts', () => {
   test('classifies INITIAL_PURCHASE (non-trial) and NON_RENEWING_PURCHASE as new paying', () => {
@@ -57,6 +57,7 @@ describe('Jarvis money source reader — honest evidence state', () => {
     });
     expect(evidence.state).toBe('truncated');
     expect(evidence.count).toBeNull();
+    expect(evidence.digest).toBe('');
   });
 
   test('failed source is error, not zero', () => {
@@ -65,6 +66,18 @@ describe('Jarvis money source reader — honest evidence state', () => {
     });
     expect(evidence.state).toBe('error');
     expect(evidence.count).toBeNull();
+    expect(evidence.digest).toBe('');
+  });
+
+  test('partial source exposes state and dropped count without a partial numeric digest', () => {
+    const evidence = buildMoneyEvidence({
+      sourceId: 'revenuecat_premium_events', state: 'partial', truncated: false, droppedCount: 3,
+      rows: [{ eventType: 'REFUND', periodType: null }], observedAtMs: 1_000,
+    });
+    expect(evidence.trustworthy).toBe(false);
+    expect(evidence.droppedCount).toBe(3);
+    expect(evidence.count).toBeNull();
+    expect(evidence.digest).toBe('');
   });
 });
 
@@ -73,4 +86,56 @@ test('money sources include both revenue signals and the read-only personal econ
     'revenuecat_premium_events', 'paywall_funnel', 'client_economy_opening',
     'client_economy_operations', 'external_economy_events',
   ]);
+});
+
+describe('Jarvis personal economy journal ordering', () => {
+  const operation = (ownerStableId: string, revision: number, createdAtMs: number, balanceBefore: number, delta: number) => ({
+    eventType: null,
+    periodType: null,
+    ownerStableId,
+    revision,
+    createdAtMs,
+    balanceBefore,
+    delta,
+    balanceAfter: balanceBefore + delta,
+  });
+
+  test('normalizes newest-first interleaved owners before continuity checks', () => {
+    const diagnostics = diagnosePersonalEconomy([{
+      sourceId: 'client_economy_operations',
+      state: 'ready',
+      truncated: false,
+      droppedCount: 0,
+      observedAtMs: 1_000,
+      rows: [
+        operation('owner-b', 2, 220, 15, -3),
+        operation('owner-a', 2, 200, 10, 5),
+        operation('owner-b', 1, 110, 0, 15),
+        operation('owner-a', 1, 100, 0, 10),
+      ],
+    }]);
+
+    expect(diagnostics.revisionDiscontinuities).toBe(0);
+    expect(diagnostics.balanceDiscontinuities).toBe(0);
+    expect(diagnostics.netClientDelta).toBe(27);
+  });
+
+  test('a newest-first truncated slice stays ordered and does not invent a missing pre-slice anomaly', () => {
+    const diagnostics = diagnosePersonalEconomy([{
+      sourceId: 'client_economy_operations',
+      state: 'ready',
+      truncated: true,
+      droppedCount: 1,
+      observedAtMs: 1_000,
+      rows: [
+        operation('owner-b', 4, 420, 20, 2),
+        operation('owner-a', 3, 300, 12, 3),
+        operation('owner-b', 3, 320, 18, 2),
+        operation('owner-a', 2, 200, 10, 2),
+      ],
+    }]);
+
+    expect(diagnostics.revisionDiscontinuities).toBe(0);
+    expect(diagnostics.balanceDiscontinuities).toBe(0);
+  });
 });

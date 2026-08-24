@@ -4,12 +4,15 @@ import {
 } from '../app/account_generation';
 import {
   commitLearningV2CoinExchangeReward,
+  commitLearningV2ServerWalletReward,
+  commitMistakeCorrectionWalletComposite,
   createLearningV2OwnerRepositoryAsyncStorage,
   parseLearningV2AccountBinding,
 } from '../app/learning_v2_owner_repository_runtime';
 import { materializeServerWalletRewardReceiptCandidate } from '../modules/learning-v2/progress/server_wallet_reward_receipt';
 import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
 import { deriveProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
+import { canonicalJsonV1, hashCanonicalBody, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
 
 const binding = {
   schemaVersion: 'learning-v2-account-binding.v2' as const,
@@ -98,9 +101,6 @@ describe('Learning V2 app Owner Repository runtime', () => {
     expect(memory.values.size).toBe(writesBeforeReplay);
   });
 
-  it('keeps one account-global wallet across a server generation rollover', async () => {
-    const memory = memoryStorage();
-    const token4 = beginAccountGeneration(binding.stableUid);
   it('atomically commits one client-authoritative mistake correction star and replays after crash', async () => {
     const token = beginAccountGeneration(binding.stableUid);
     const memory = memoryStorage();
@@ -218,6 +218,9 @@ describe('Learning V2 app Owner Repository runtime', () => {
     expect(replay.snapshot.walletState.balanceSubunits).toBe(10_000);
   });
 
+  it('keeps one account-global wallet across a server generation rollover', async () => {
+    const memory = memoryStorage();
+    const token4 = beginAccountGeneration(binding.stableUid);
     const first = materializeServerWalletRewardReceiptCandidate({
       rewardId: 'cx:rollover-first',
       operationId: 'coin-exchange:rollover-first',

@@ -47,12 +47,6 @@ export type HomeScreenHydration = {
     leaderName: string;
     leaderPoints: number;
   } | null;
-  // зачем: dueCount раньше стартовал с useState(0) и «прыгал» на
-  // реальное число вторым проходом (после belowFoldReady) при каждом повторном
-  // открытии таба — тот же класс бага, что и остальные поля тут. Кладём последнее
-  // известное значение в снапшот, чтобы первый рендер второго прохода уже показывал
-  // правду, а не 0.
-  dueCount?: number;
 };
 
 type OwnedHomeScreenHydration = Readonly<{
@@ -122,6 +116,37 @@ export function shouldApplyHomeSnapshotToStats(
     || profileSource === 'local'
     || progressSource === 'live'
     || progressSource === 'local';
+}
+
+function parseStoredNonNegativeInt(value: string | null | undefined): number {
+  const parsed = Number.parseInt(value ?? '0', 10);
+  return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+}
+
+/**
+ * Resolves the two headline counters during Home's delayed SQLite hydration.
+ * A validated live cloud projection wins over storage because Android may have
+ * returned missing/stale values after SQLITE_FULL. Local user actions still use
+ * `source: local` elsewhere and are not covered by this restore-only rule.
+ */
+export function resolveHomeStorageStats(params: {
+  storedTotalXp: string | null | undefined;
+  storedStreak: string | null | undefined;
+  profile?: { source: AppSnapshotSource; totalXp: number } | null;
+  progress?: { source: AppSnapshotSource; streak: number } | null;
+}): { totalXp: number; streak: number } {
+  const storedTotalXp = parseStoredNonNegativeInt(params.storedTotalXp);
+  const storedStreak = parseStoredNonNegativeInt(params.storedStreak);
+  const snapshotTotalXp = Math.max(0, Math.floor(Number(params.profile?.totalXp) || 0));
+  const snapshotStreak = Math.max(0, Math.floor(Number(params.progress?.streak) || 0));
+  return {
+    totalXp: params.profile?.source === 'live'
+      ? snapshotTotalXp
+      : (params.storedTotalXp == null ? snapshotTotalXp : storedTotalXp),
+    streak: params.progress?.source === 'live'
+      ? snapshotStreak
+      : (params.storedStreak == null ? snapshotStreak : storedStreak),
+  };
 }
 
 export function resolveHomeProfileVisuals(params: {

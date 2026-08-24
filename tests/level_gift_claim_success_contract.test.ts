@@ -26,7 +26,7 @@ describe('level gift claim success contract', () => {
     expect(single).toContain('markGiftClaimed(level, accountToken)');
     expect(single).toContain('saveClaimedGiftRarity(level, chosenWithReservation.rarity, accountToken)');
     expect(single).toContain('saveUnclaimedGift(level, chosenWithReservation, accountToken)');
-    expect(single.match(/studyTarget, accountToken/g)?.length).toBeGreaterThanOrEqual(2);
+    expect(single.match(/studyTarget,\s*accountToken/g)?.length).toBeGreaterThanOrEqual(2);
     expect(single).not.toContain('if (!isVisibleRef.current)');
     expect(single).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
 
@@ -41,8 +41,7 @@ describe('level gift claim success contract', () => {
     expect(dual).toContain('saveRemainingGiftAfterPartialDualClaim(level, prem, accountToken)');
     expect(dual).toContain('saveRemainingGiftAfterPartialDualClaim(level, f2p, accountToken)');
     expect(dual).toContain('saveUnclaimedDualGift(level, { f2p, prem }, accountToken)');
-    expect(dual.match(/studyTarget, accountToken/g)?.length).toBeGreaterThanOrEqual(2);
-    expect(dual).toContain('studyTarget,\n          accountToken,');
+    expect(dual.match(/studyTarget,\s*accountToken/g)?.length).toBeGreaterThanOrEqual(2);
     expect(dual).not.toContain('if (!wasVisibleRef.current)');
     expect(dual).toContain('if (!isCurrentAccountGeneration(accountToken)) return;');
     expect(inventoryScreen).toContain('(_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)');

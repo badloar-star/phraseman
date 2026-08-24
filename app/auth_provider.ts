@@ -68,6 +68,7 @@ import {
   captureAccountGeneration,
   invalidateAccountGeneration,
   isCurrentAccountGeneration,
+  withAccountTransitionLock,
   withAccountTransitionLockWithDeadline,
   waitForRestoreApplicationIdleWithDeadline,
 } from './account_generation';
@@ -93,6 +94,9 @@ import {
 import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
+import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
+import { clearMaxFinalizeOutbox } from './max_voice_finalize_outbox';
+import { clearMaxVoiceReviewReceipts } from './max_voice_finalize_client';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -1760,9 +1764,23 @@ async function runSignInWithProvider(
       const merge = preserveLocalProgress
         ? await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId)
         : null;
-      const canonicalStableId = merge?.ok && merge.canonicalStableId
-        ? merge.canonicalStableId
-        : outcome.remoteStableId;
+      let canonicalStableId: string;
+      if (merge?.ok && merge.canonicalStableId) {
+        canonicalStableId = merge.canonicalStableId;
+      } else {
+        // A HOT callable timeout does not cancel the server merge. Never turn a
+        // null/pending response into a destructive inferred swap: re-read the
+        // authoritative anchor after the reservation/copy boundary.
+        const authoritativeAfterMerge = await ensureStableAuthLinkForStableIdDetailed(
+          outcome.remoteStableId,
+          authLinkMetadata,
+          { requireAuthoritative: true },
+        );
+        if (!authoritativeAfterMerge.ok || !authoritativeAfterMerge.stableUid) {
+          return { result: 'error', error: 'merge_pending' };
+        }
+        canonicalStableId = authoritativeAfterMerge.stableUid;
+      }
 
       // Хвост D: погасить фоновый/отложенный sync ДО смены stable_id, иначе debounce-sync
       // со старым прогрессом запишется в users/{новый canonical} и затрёт слитый аккаунт.
@@ -1771,9 +1789,13 @@ async function runSignInWithProvider(
       // Clear account A while its id is still active, then install server-canonical B.
       // This prevents account A AsyncStorage from being observed under account B.
       await beginEntitlementSafeAccountTransition();
-      await wipeLocalAccountData();
-      await setStableId(canonicalStableId);
-      beginAccountGeneration(canonicalStableId);
+      await withAccountTransitionLock(async (transitionLease) => {
+        await clearMaxFinalizeOutbox(localStableId);
+        await clearMaxVoiceReviewReceipts(localStableId);
+        await wipeLocalAccountData(transitionLease);
+        await setStableId(canonicalStableId);
+        beginAccountGeneration(canonicalStableId);
+      });
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
       // Без сброса до 5 минут после свапа в UI виден чужой премиум-статус.
@@ -1843,9 +1865,13 @@ async function runSignInWithProvider(
         // Хвост D: гасим фоновый sync перед сменой stable_id (см. swap-ветку выше).
         await quiesceSyncBeforeStableIdSwap();
         await beginEntitlementSafeAccountTransition();
-        await wipeLocalAccountData();
-        await setStableId(canonicalStableId);
-        beginAccountGeneration(canonicalStableId);
+        await withAccountTransitionLock(async (transitionLease) => {
+          await clearMaxFinalizeOutbox(localStableId);
+          await clearMaxVoiceReviewReceipts(localStableId);
+          await wipeLocalAccountData(transitionLease);
+          await setStableId(canonicalStableId);
+          beginAccountGeneration(canonicalStableId);
+        });
         invalidatePremiumCache();
         await ensureAnonUser();
         await syncRevenueCatAfterAuthLink();
@@ -1944,7 +1970,7 @@ async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): 
     const cur = await AsyncStorage.getItem('onboarding_done');
     if (cur !== '1') {
       if (!isCurrent()) return;
-      await AsyncStorage.setItem('onboarding_done', '1');
+      await persistPortableProgressRegister('onboarding_done', '1');
     }
   } catch {
     /* ignore */
@@ -2031,6 +2057,8 @@ async function signOutAndWipeForAccountSwitchReserved(
         quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
       ]);
       try {
+        await clearMaxFinalizeOutbox(await getStableId());
+        await clearMaxVoiceReviewReceipts(await getStableId());
         await wipeLocalAccountData();
       } catch (e: any) {
         const detail = String(e?.message ?? e).slice(0, 80);
@@ -2207,6 +2235,8 @@ async function signOutAndWipeForAccountSwitchReserved(
     await signOutCurrentProvider();
     // 3. Сносим локальный прогресс.
     try {
+      await clearMaxFinalizeOutbox(switchOwnerStableId);
+      await clearMaxVoiceReviewReceipts(switchOwnerStableId);
       await wipeLocalAccountData();
     } catch (e: any) {
       const detail = String(e?.message ?? e).slice(0, 80);
@@ -2451,6 +2481,18 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
   // зачем: для связанной/неизвестной личности отказываем ДО стирания. Без замка
   // тот же провайдер вошёл бы снова и восстановил данные; аноним этим не связан.
   if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;
+  // The deletion guard above is the point of no return for linked identities.
+  // Only after it is durable may the deleted account's SQLCipher lineage/key be
+  // retired. This bounded local step never makes the UI await network work.
+  if (pendingDeleteStableId) {
+    await withLocalStepDeadline(
+      () => import('./phone_state_bootstrap')
+        .then(({ retirePhoneStateAfterDeletion }) => (
+          retirePhoneStateAfterDeletion(pendingDeleteStableId)
+        )),
+      undefined,
+    );
+  }
   // зачем: владелец (2026-07-27) — «даже анонимный пользователь должен иметь
   // возможность удалить всё; локальные данные стираются сразу и мгновенный
   // переход на первый экран онбординга». Поэтому локальная очистка живёт ЗДЕСЬ,
@@ -2461,6 +2503,8 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
   // Ошибку глушим: даже если часть ключей не снялась, отменять удаление нельзя —
   // фоновая фаза и resumePendingAccountDeleteLocalExit() дочистят.
   try {
+    if (pendingDeleteStableId) await clearMaxFinalizeOutbox(pendingDeleteStableId);
+    if (pendingDeleteStableId) await clearMaxVoiceReviewReceipts(pendingDeleteStableId);
     await wipeLocalAccountData();
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: local wipe failed', e);
@@ -2696,6 +2740,13 @@ export async function signOutCurrentProvider(): Promise<void> {
   // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому
   // (no-op, если PostHog выключен).
   void import('./posthog_client').then(({ resetPostHog }) => resetPostHog()).catch(() => {});
+  const maxPrivateAccountKey = await getStableId().catch(() => null);
+  if (maxPrivateAccountKey) {
+    await Promise.all([
+      clearMaxFinalizeOutbox(maxPrivateAccountKey),
+      clearMaxVoiceReviewReceipts(maxPrivateAccountKey),
+    ]).catch(() => {});
+  }
   if (!CLOUD_SYNC_ENABLED) return;
   // Google: revoke session чтобы при следующем signIn показался picker аккаунтов
   try {

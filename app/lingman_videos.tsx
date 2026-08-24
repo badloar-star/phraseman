@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Linking, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
 import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPickerSheet';
 import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
@@ -30,6 +31,7 @@ import {
   LINGMAN_CHANNEL_DISPLAY_NAME,
   LINGMAN_CHANNEL_ID,
   markLingmanYoutubeCatalogSeen,
+  markLingmanYoutubeSectionOpened,
   type LingmanYoutubeSnapshot,
   type LingmanYoutubeVideo,
 } from './lingman_youtube';
@@ -174,7 +176,12 @@ export default function LingmanVideosScreen() {
         catalogRef.current = value;
         setCatalog(value);
       } });
-      if (next) { catalogRef.current = next; setCatalog(next); setIssue('none'); }
+      if (next) {
+        catalogRef.current = next;
+        setCatalog(next);
+        setIssue('none');
+        void markLingmanYoutubeSectionOpened();
+      }
     } catch {
       setIssue(catalogRef.current ? 'offline' : 'error');
       if (!catalogRef.current) await loadLegacyFallback().catch(() => {});
@@ -314,14 +321,14 @@ export default function LingmanVideosScreen() {
             {Array.from({ length: 3 }).map((_, index) => <SkeletonBlock key={index} width="100%" height={190} borderRadius={20} />)}
           </View>
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
-          <ScrollView testID="youtube-catalog-empty" refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
+          <ScrollView testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
             <Ionicons name="videocam-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text>
           </ScrollView>
         ) : tab === 'playlists' ? (
-          catalog ? <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+          catalog ? <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
             : <ScrollView testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
         ) : (
-          <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
+          <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
             {hero ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer

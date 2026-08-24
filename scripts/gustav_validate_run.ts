@@ -6960,7 +6960,7 @@ function validateTranslationStartGateAudit(runDir: string, runId: string | null,
   if (
     forbiddenActions.length !== 10 ||
     !forbiddenActions.includes('Generate French lesson files.') ||
-    !forbiddenActions.includes('Translate phrases, words, quizzes, flashcards or My Practice nodes.')
+    !forbiddenActions.includes('Translate phrases, words, quizzes, flashcards or Mistake Practice nodes.')
   ) {
     pushFinding(findings, 'blocker', 'translation_start_gate_forbidden_actions_invalid', 'Translation start gate must include ten forbidden early actions including French file generation and translation.', auditPath);
   }

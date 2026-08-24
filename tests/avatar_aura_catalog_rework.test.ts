@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import {
   AVATAR_AURAS,
+  APPROVED_AVATAR_AURAS,
   getAvatarAuraById,
   getEffectiveAvatarAuraId,
   normalizeAvatarAuraId,
@@ -10,16 +11,7 @@ import { buildAuraCatalog } from '../app/customization_catalog';
 import { buildCustomizationSnapshot } from '../app/customization_snapshot';
 
 const ACTIVE_AURA_IDS = [
-  'aura-plus',
-  'aura-pro',
-  'aura-aurora',
-  'aura-ember',
-  'aura-mint',
-  'aura-violet',
-  'aura-coral',
-  'aura-prism',
-  'aura-lagoon',
-  'aura-sunset',
+  ...APPROVED_AVATAR_AURAS.map((aura) => aura.id),
   'aura-nimbus',
   'aura-season-1-stage-1',
   'aura-season-1-stage-2',
@@ -28,7 +20,7 @@ const ACTIVE_AURA_IDS = [
   'aura-season-1-secret',
 ] as const;
 
-const RETIRED_FROM_SHOP_AURA_IDS = [
+const RETURNED_TO_SHOP_AURA_IDS = [
   'aura-aurora',
   'aura-violet',
   'aura-coral',
@@ -45,7 +37,7 @@ const REMOVED_AURA_IDS = [
 ] as const;
 
 describe('avatar aura catalog rework', () => {
-  it('keeps active, retired-owned, Nimbus, and Season 1 auras renderable in one catalog', () => {
+  it('keeps all approved, Nimbus, and Season 1 auras renderable in one catalog', () => {
     expect(AVATAR_AURAS.map((aura) => aura.id)).toEqual(ACTIVE_AURA_IDS);
     expect(AVATAR_AURAS.some((aura) => aura.unlockLevel !== undefined)).toBe(false);
   });
@@ -61,8 +53,9 @@ describe('avatar aura catalog rework', () => {
     expect(normalizeAvatarAuraId(id)).toBe(id);
   });
 
-  it.each(RETIRED_FROM_SHOP_AURA_IDS)('keeps retired aura %s only for an existing owner', (id) => {
-    expect(getAvatarAuraById(id)).toMatchObject({ id, retiredFromShop: true });
+  it.each(RETURNED_TO_SHOP_AURA_IDS)('returns stable aura %s to the ordinary shop', (id) => {
+    expect(getAvatarAuraById(id)).toMatchObject({ id });
+    expect(getAvatarAuraById(id)?.retiredFromShop).not.toBe(true);
     expect(normalizeAvatarAuraId(id)).toBe(id);
     expect(getEffectiveAvatarAuraId(id, false, false, false)).toBe(id);
 
@@ -75,9 +68,8 @@ describe('avatar aura catalog rework', () => {
       isVip: false,
       isPro: false,
     };
-    expect(buildAuraCatalog(input).some((item) => item.id === id)).toBe(false);
-    expect(buildAuraCatalog({ ...input, ownedAuras: { [id]: true } }).find((item) => item.id === id))
-      .toMatchObject({ id, isOwned: true, availability: { kind: 'owned' } });
+    expect(buildAuraCatalog(input).find((item) => item.id === id))
+      .toMatchObject({ id, isOwned: false, availability: { kind: 'shards', cost: 120 } });
   });
 
   it.each(REMOVED_AURA_IDS)('removes obsolete aura %s from selection', (id) => {
@@ -85,7 +77,7 @@ describe('avatar aura catalog rework', () => {
     expect(normalizeAvatarAuraId(id)).toBeUndefined();
   });
 
-  it('preserves retired ownership records and keeps truly removed auras hidden', () => {
+  it('preserves stable ownership records and keeps truly removed auras hidden', () => {
     const snapshot = buildCustomizationSnapshot(new Map([
       ['avatar_aura_owned_v1', JSON.stringify({
         'aura-aurora': true,
@@ -101,10 +93,12 @@ describe('avatar aura catalog rework', () => {
     expect(AVATAR_AURAS.some((aura) => aura.id === 'aura-flame-51')).toBe(false);
   });
 
-  it('excludes retired auras from client-side reward grant paths', () => {
+  it('keeps one shared strict eligibility guard for both random-aura grant paths', () => {
     const levelGiftSource = fs.readFileSync(path.join(__dirname, '../app/level_gift_system.ts'), 'utf8');
     const leagueChestSource = fs.readFileSync(path.join(__dirname, '../app/services/league_chest_rewards.ts'), 'utf8');
-    expect(levelGiftSource.match(/!aura\.retiredFromShop/g)).toHaveLength(2);
+    expect(levelGiftSource).toContain('export function isRandomAvatarAuraGiftCandidate(');
+    expect(levelGiftSource).toContain('&& !aura.rewardOnly');
+    expect(levelGiftSource.match(/isRandomAvatarAuraGiftCandidate\(aura, owned\)/g)).toHaveLength(2);
     expect(leagueChestSource).toContain('!item.retiredFromShop');
   });
 

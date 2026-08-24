@@ -3,31 +3,35 @@ import path from 'path';
 
 const source = readFileSync(path.join(__dirname, '..', 'components', 'DuoPressable.tsx'), 'utf8');
 const popupSource = readFileSync(path.join(__dirname, '..', 'components', 'PopUpActionButton.tsx'), 'utf8');
-const trainerReportSource = readFileSync(path.join(__dirname, '..', 'app', 'trainer_session_report.tsx'), 'utf8');
 
 describe('DuoPressable contract', () => {
-  it('does not draw a decorative edge or reserve layout space for one', () => {
-    expect(source).not.toContain('styles.edge,');
-    expect(source).not.toContain('{ top: edgeHeight }');
-    expect(source).not.toContain('paddingBottom: edgeHeight');
-    expect(source).not.toContain('edgeDefault:');
+  it('draws a static edge layer only when edgeColor is passed, and reserves layout space for it', () => {
+    expect(source).toContain('hasEdge ? (');
+    expect(source).toContain("hasEdge ? { paddingBottom: edgeHeight } : null");
+    expect(source).toContain('backgroundColor: edgeColor');
   });
 
-  it('keeps caller opacity on the wrapper while the surface animates press feedback', () => {
+  it('keeps caller opacity on the wrapper while the face animates press feedback', () => {
     expect(source).toContain('surfaceOpacityStyle');
     expect(source).toContain('surfaceBaseStyle');
     expect(source).toContain('const { opacity: _opacity, ...restStyle }');
-    expect(source).toContain('style={[styles.wrap, surfaceOpacityStyle, wrapStyle]}');
-    expect(source).not.toContain('style={[styles.surface, style, gradientColors ? styles.surfaceClip : null, surfaceStyle]}');
+    expect(source).toContain('style={[styles.wrap, hasEdge ? { paddingBottom: edgeHeight } : null, surfaceOpacityStyle, wrapStyle]}');
   });
 
-  it('uses scale and opacity feedback without a colored outline or layout shift', () => {
-    expect(source).toContain('transform: [{ scale: interpolate(depth, [0, 1], [1, 0.97]) }]');
-    expect(source).toContain('opacity: interpolate(depth, [0, 1], [1, 0.88])');
-    expect(source).not.toContain('translateY: interpolate');
+  it('presses via translateY only — no scale, no opacity drop (real keycap physics, not a squish)', () => {
+    expect(source).toContain('const travel = hasEdge ? edgeHeight : FLAT_PRESS_TRANSLATE_Y');
+    expect(source).toContain('transform: [{ translateY: depth * travel }]');
+    expect(source).not.toContain('scale: interpolate');
+    expect(source).not.toContain('opacity: interpolate');
     expect(source).toContain(
-      '<Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, surfaceStyle]}',
+      '<Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, faceStyle]}',
     );
+  });
+
+  it('reduce motion snaps instantly instead of springing', () => {
+    expect(source).toContain('useReduceMotion');
+    expect(source).toContain('reduceMotion ? 1 : withTiming(1');
+    expect(source).toContain('reduceMotion ? 0 : withSpring(0');
   });
 
   it('starts visual press feedback immediately and before the native haptic bridge', () => {
@@ -39,15 +43,5 @@ describe('DuoPressable contract', () => {
 
   it('uses a dark foreground on bright green bottom actions', () => {
     expect(popupSource).toContain("textColor = '#07110A'");
-    expect(trainerReportSource).toContain('buttonForegroundForBackground(accent)');
-  });
-
-  it('moves every trainer report action off the old high-opacity TapScale feedback', () => {
-    expect(trainerReportSource).toContain("import DuoPressable from '../components/DuoPressable'");
-    expect(trainerReportSource).not.toContain("import TapScale from '../components/TapScale'");
-    expect(trainerReportSource).not.toContain('scaleTo={0.96}');
-    // The current report has four actions; the old contract still expected the
-    // two-button layout even though master had already expanded it to four.
-    expect(trainerReportSource.match(/<DuoPressable/g)).toHaveLength(4);
   });
 });

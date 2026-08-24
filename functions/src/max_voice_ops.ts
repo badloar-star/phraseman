@@ -10,7 +10,7 @@ const SCALAR_KEYS = [
   'reconnectRecovered', 'reconnectFailed', 'noRemoteAudio', 'emptyTranscript',
   'finalizationQueued', 'finalizationRetryable', 'finalizationTerminal', 'reviewsReady',
   'reviewsFailed', 'finalizationRetries', 'memoryUpdatesSucceeded', 'memoryUpdatesFailed',
-  'sensitiveMemoryCandidatesRejected', 'quotaReservations', 'quotaSettlements',
+  'sensitiveMemoryCandidatesRejected', 'mintRejections', 'quotaReservations', 'quotaSettlements',
   'watchdogSettlements', 'impossibleSequences',
   // зачем: владелец 2026-08-22 — телеметрия дисциплины БОЕВОЙ модели учителя
   // (симуляция показала слабые места слабой модели; проверяем настоящую).
@@ -29,6 +29,10 @@ const DURATION_BUCKETS = ['lt1m', '1to3m', '3to10m', 'gte10m'] as const;
 const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 const PROVIDER_KEYS = ['audioInputTokens', 'audioOutputTokens', 'cachedTokens', 'textTokens', 'estimatedCostMicros'] as const;
+export const MAX_VOICE_MINT_REJECTION_REASONS = [
+  'paywall', 'daily_quota', 'monthly_quota', 'kill_switch', 'budget', 'rate_limit',
+] as const;
+export type MaxVoiceMintRejectionReason = typeof MAX_VOICE_MINT_REJECTION_REASONS[number];
 
 type CounterRecord<K extends readonly string[]> = Readonly<Record<K[number], number>>;
 
@@ -58,6 +62,7 @@ export interface MaxVoiceOpsDailyV1 {
   readonly memoryUpdatesSucceeded: number;
   readonly memoryUpdatesFailed: number;
   readonly sensitiveMemoryCandidatesRejected: number;
+  readonly mintRejections: number;
   readonly quotaReservations: number;
   readonly quotaSettlements: number;
   readonly watchdogSettlements: number;
@@ -81,6 +86,7 @@ export interface MaxVoiceOpsDailyV1 {
   readonly localeCounts: CounterRecord<typeof LOCALES>;
   readonly levelCounts: CounterRecord<typeof LEVELS>;
   readonly providerUsage: CounterRecord<typeof PROVIDER_KEYS>;
+  readonly mintRejectionReasons: CounterRecord<typeof MAX_VOICE_MINT_REJECTION_REASONS>;
   readonly updatedAtMs: number;
 }
 
@@ -96,10 +102,11 @@ export type MaxVoiceOpsDelta = Partial<Record<typeof SCALAR_KEYS[number], number
   localeCounts: NestedDelta;
   levelCounts: NestedDelta;
   providerUsage: NestedDelta;
+  mintRejectionReasons: NestedDelta;
 }>;
 
 export type MaxVoiceOpsStage =
-  | 'mint_requested' | 'mint_succeeded' | 'mint_failed'
+  | 'mint_requested' | 'mint_succeeded' | 'mint_failed' | 'mint_rejected'
   | 'call_started' | 'call_connected' | 'first_remote_audio' | 'call_completed' | 'call_failed'
   | 'explicit_user_end' | 'watchdog_end'
   | 'reconnect_attempt' | 'reconnect_recovered' | 'reconnect_failed'
@@ -132,6 +139,7 @@ export interface MaxVoiceOpsEventV1 {
   readonly endReason?: typeof END_REASONS[number];
   readonly providerUsage?: Partial<CounterRecord<typeof PROVIDER_KEYS>>;
   readonly lesson?: MaxVoiceOpsLessonQuality;
+  readonly rejectionReason?: MaxVoiceMintRejectionReason;
 }
 
 export function maxVoiceOpsLocale(value: unknown): typeof LOCALES[number] | undefined {
@@ -153,6 +161,7 @@ const NESTED_KEYS = {
   localeCounts: LOCALES,
   levelCounts: LEVELS,
   providerUsage: PROVIDER_KEYS,
+  mintRejectionReasons: MAX_VOICE_MINT_REJECTION_REASONS,
 } as const;
 const TOP_LEVEL_FORBIDDEN_KEYS = new Set([
   'uid', 'userId', 'accountId', 'sessionId', 'name', 'email', 'history', 'transcript',
@@ -191,6 +200,7 @@ export function emptyMaxVoiceOpsDaily(dayKey: string, updatedAtMs: number): MaxV
     localeCounts: zeroes(LOCALES),
     levelCounts: zeroes(LEVELS),
     providerUsage: zeroes(PROVIDER_KEYS),
+    mintRejectionReasons: zeroes(MAX_VOICE_MINT_REJECTION_REASONS),
     updatedAtMs,
   };
 }
@@ -226,6 +236,7 @@ function latencyBucket(value: number, cuts: readonly number[], labels: readonly 
 
 const STAGE_COUNTER: Readonly<Record<MaxVoiceOpsStage, typeof SCALAR_KEYS[number] | null>> = {
   mint_requested: 'mintsRequested', mint_succeeded: 'mintsSucceeded', mint_failed: 'mintsFailed',
+  mint_rejected: 'mintRejections',
   call_started: 'callsStarted', call_connected: 'callsConnected', first_remote_audio: null,
   call_completed: 'callsCompleted', call_failed: 'callsFailed',
   explicit_user_end: 'explicitUserEnds', watchdog_end: 'watchdogEnds',
@@ -246,7 +257,12 @@ export function maxVoiceOpsDeltaForEvent(event: MaxVoiceOpsEventV1): MaxVoiceOps
   if (event.schemaVersion !== MAX_VOICE_OPS_EVENT_SCHEMA || !(event.stage in STAGE_COUNTER)) throw new Error('max_ops_event_invalid');
   const counter = STAGE_COUNTER[event.stage];
   const delta: MaxVoiceOpsDelta = counter === null ? {} : { [counter]: 1 };
-  if (event.stage === 'mint_succeeded') {
+  if (event.stage === 'mint_rejected') {
+    if (!event.rejectionReason || !(MAX_VOICE_MINT_REJECTION_REASONS as readonly string[]).includes(event.rejectionReason)) {
+      throw new Error('max_ops_event_invalid');
+    }
+    delta.mintRejectionReasons = { [event.rejectionReason]: 1 };
+  } else if (event.stage === 'mint_succeeded') {
     delta.preparationLatencyBuckets = { [latencyBucket(event.latencyMs ?? 0, [1_000, 3_000, 8_000], PREPARATION_BUCKETS)]: 1 };
     if (event.locale && (LOCALES as readonly string[]).includes(event.locale)) delta.localeCounts = { [event.locale]: 1 };
     if (event.level && (LEVELS as readonly string[]).includes(event.level)) delta.levelCounts = { [event.level]: 1 };

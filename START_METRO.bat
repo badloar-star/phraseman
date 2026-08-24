@@ -8,6 +8,12 @@ rem here breaks command parsing. All Russian hints are inside the .ps1.
 chcp 65001 >nul
 cd /d C:\appsprojects\phraseman
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "scripts\metro-phone.ps1" %*
+if %errorlevel% equ 20 (
+    echo.
+    echo Existing Metro stays running. The iPhone connection was not restarted.
+    ping.exe -n 4 127.0.0.1 >nul
+    exit /b 0
+)
 echo.
 echo Metro stopped. Press any key to close this window.
 pause >nul

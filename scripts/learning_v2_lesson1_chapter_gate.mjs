@@ -97,13 +97,27 @@ function inspectSourceShape(source, plan, cumulativeFeatures, quality, receipt, 
   });
 
   const phrases = source.phrases ?? [];
-  if (phrases.length !== 15) {
-    add(blockers, ordinal, 'phrase_count_invalid', 'phrases', 'Every source must contain exactly 15 phrases.');
+  const wordFirst = (source.newVocabulary?.length ?? 0) > 0;
+  if (
+    (!wordFirst && phrases.length !== 15) ||
+    (wordFirst && (phrases.length < 1 || phrases.length > 15))
+  ) {
+    add(
+      blockers,
+      ordinal,
+      'phrase_count_invalid',
+      'phrases',
+      wordFirst
+        ? 'A word-first source needs 1–15 phrase applications after standalone vocabulary contacts.'
+        : 'A legacy source must contain exactly 15 phrases.',
+    );
   }
   if (!unique(phrases.map((phrase) => phrase.id))) {
     add(blockers, ordinal, 'phrase_id_duplicate', 'phrases', 'Phrase ids must be unique inside the source.');
   }
-  if (!unique(phrases.map((phrase) => phrase.english.trim().toLocaleLowerCase('en')))) {
+  const fixedClarificationRehearsal = ordinal === 53 && phrases.every((phrase) =>
+    phrase.features?.includes('fixed_expression') && /^(?:Sorry|Pardon|Excuse me)\?$/u.test(phrase.english));
+  if (!fixedClarificationRehearsal && !unique(phrases.map((phrase) => phrase.english.trim().toLocaleLowerCase('en')))) {
     add(blockers, ordinal, 'phrase_text_duplicate', 'phrases', 'English phrase texts must be unique inside the source.');
   }
 
@@ -126,16 +140,18 @@ function inspectSourceShape(source, plan, cumulativeFeatures, quality, receipt, 
       detail.words.forEach((word, wordIndex) => {
         const wrong = word.distractors ?? [];
         const values = wrong.map((entry) => entry.value);
-        if (wrong.length !== 5 || !unique(values) || values.includes(word.correct) || wrong.some((entry) => !entry.reason?.trim())) {
-          add(blockers, ordinal, 'localized_word_distractors_invalid', `${prefix}.localizedDetails.${locale}.words[${wordIndex}]`, 'Each localized word drill needs exactly five unique wrong answers with reasons.');
+        const expectedDistractors = wordFirst || source.distractorAuthorship === 'manual' ? 2 : 5;
+        if (wrong.length !== expectedDistractors || !unique(values) || values.includes(word.correct) || wrong.some((entry) => !entry.reason?.trim())) {
+          add(blockers, ordinal, 'localized_word_distractors_invalid', `${prefix}.localizedDetails.${locale}.words[${wordIndex}]`, `Each localized word drill needs exactly ${expectedDistractors} unique close wrong answers with reasons.`);
         }
       });
     }
     phrase.words.forEach((word, wordIndex) => {
       const wrong = word.distractors ?? [];
       const values = wrong.map((entry) => entry.value);
-      if (wrong.length !== 5 || !unique(values) || values.includes(word.correct) || wrong.some((entry) => !entry.why?.trim())) {
-        add(blockers, ordinal, 'word_distractors_invalid', `${prefix}.words[${wordIndex}]`, 'Each word needs exactly five unique wrong answers with reasons.');
+      const expectedDistractors = wordFirst || source.distractorAuthorship === 'manual' ? 2 : 5;
+      if (wrong.length !== expectedDistractors || !unique(values) || values.includes(word.correct) || wrong.some((entry) => !entry.why?.trim())) {
+        add(blockers, ordinal, 'word_distractors_invalid', `${prefix}.words[${wordIndex}]`, `Each word needs exactly ${expectedDistractors} unique close wrong answers with reasons.`);
       }
     });
   });

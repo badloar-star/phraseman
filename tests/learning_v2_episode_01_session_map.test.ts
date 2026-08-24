@@ -70,13 +70,16 @@ describe("episode 1 session map", () => {
     for (const required of [
       "words_then_phrases",
       "phrases",
-      "irregular_verbs",
-      "prepositions",
       "voice",
       "recall",
       "checkpoint",
     ])
       expect(kinds.has(required as never)).toBe(true);
+    // These kinds remain part of the course-wide vocabulary, but belong to
+    // later lessons. Their presence here would reintroduce the old curriculum
+    // bug where Lesson 1 consumed material planned for Lessons 2–12.
+    expect(kinds.has("irregular_verbs" as never)).toBe(false);
+    expect(kinds.has("prepositions" as never)).toBe(false);
     const phraseShare =
       EPISODE_01_SESSION_MAP_V1.filter((entry) => entry.kind === "phrases")
         .length / EPISODE_01_SESSION_MAP_V1.length;
@@ -89,15 +92,16 @@ describe("episode 1 session map", () => {
   it("never ships a session that only drills words", () => {
     for (const entry of EPISODE_01_SESSION_MAP_V1)
       expect(entry.kind as string).not.toBe("vocabulary");
-    // Смешанных сессий должно быть больше, чем чисто фразовых: именно они несут
-    // новую лексику вместе с её применением.
-    const mixed = EPISODE_01_SESSION_MAP_V1.filter(
-      (entry) => entry.kind === "words_then_phrases",
+    // В сумме содержательных альтернатив чисто фразовым сессиям должно быть
+    // больше: слова+фразы, голос, припоминание и checkpoints не дают уроку
+    // превратиться в 56 одинаковых списков фраз.
+    const nonPhrase = EPISODE_01_SESSION_MAP_V1.filter(
+      (entry) => entry.kind !== "phrases",
     ).length;
     const phraseOnly = EPISODE_01_SESSION_MAP_V1.filter(
       (entry) => entry.kind === "phrases",
     ).length;
-    expect(mixed).toBeGreaterThan(phraseOnly);
+    expect(nonPhrase).toBeGreaterThan(phraseOnly);
   });
 
   it("gives every session kind a task family set", () => {
@@ -108,6 +112,8 @@ describe("episode 1 session map", () => {
   it("reports what a learner already knows at any point", () => {
     expect(featuresTaughtBySession(1).has("copula_be")).toBe(true);
     expect(featuresTaughtBySession(1).has("past_be")).toBe(false);
-    expect(featuresTaughtBySession(56).has("past_be")).toBe(true);
+    expect(featuresTaughtBySession(56).has("past_be")).toBe(false);
+    expect(featuresTaughtBySession(56).has("question_inversion")).toBe(true);
+    expect(featuresTaughtBySession(56).has("negative_contraction")).toBe(true);
   });
 });

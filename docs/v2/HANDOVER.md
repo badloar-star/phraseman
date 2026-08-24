@@ -1,5 +1,98 @@
 # Phraseman Learning V2 — мастер-хендовер
 
+## Owner contract 2026-08-24 — юмор карточек новых слов без шаблонов
+
+- Каждая карточка нового слова сохраняет отдельный точный locale-native перевод
+  и дополнительно получает короткую вручную написанную строку с живым уместным
+  юмором во всех активных interface-локалях.
+- Запрещены «Всё сделано. Можно начинать», «Так описывают человека…», «Это слово
+  означает…», «Так говорят, когда…» и любые общие рамки с подстановкой слова.
+- Юмор обязан помогать запомнить точное значение, не заменять его загадкой и не
+  вводить полную target-language фразу раньше word-first контактов.
+- Нормативные записи: `docs/v2/СТАРТ В2.md`,
+  `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` и
+  `docs/superpowers/specs/2026-08-24-learning-v2-premium-new-word-card-design.md`.
+- Измеримая часть будет защищена encounter gate: полный актуальный набор
+  непустых explicit locale
+  strings, запрет мета-шаблонов и normalized duplicates. Качество юмора требует
+  отдельного editorial review; структурный PASS его не доказывает.
+
+## UI delta 2026-08-24 — растровая руна в Home header
+
+- Прямое требование владельца: показать существующий растровый ассет руны
+  справа от жемчужин в шапке главной. Learner-facing контент, authoring-реестр,
+  экономика начисления/списания и соседние действия хедера не менялись.
+- Изменения этой сессии: `components/home/HomeRuneBalance.tsx`,
+  `tests/home_rune_asset_header_contract.test.ts`,
+  `tests/home_rune_balance_render.test.tsx`, запись теста в
+  `jest.rntl.config.cjs` и ограниченные вставки в уже изменённый другими
+  задачами `app/(tabs)/home.tsx`. Переиспользован существующий untracked
+  `assets/images/level-spin-rewards/stars_10.webp`; его байты не менялись.
+- Home показывает `stars_10.webp` сразу после жемчужин, берёт first-frame
+  значение через `peekRunes()`, слушает чистый account-scoped app snapshot и
+  выполняет generation-guarded `getRunesBalance()` при active/focus/account.
+  `subscribeRunesBalance` намеренно не используется, чтобы Home не активировал
+  dormant duplicate-event поведение consumer-подписки.
+- На ширине `<370dp` currency-actions и secondary-actions становятся двумя
+  рядами; колокольчик переносится во второй ряд, функции энергии, видео,
+  уведомлений и профиля сохранены. Большие числа рун визуально сокращаются до
+  `K/M/B/T/Q`, а полное число остаётся в accessibility label.
+- TDD: первый контракт RED на отсутствии asset wiring; RNTL RED на отсутствии
+  реального Image; lifecycle/compact RED на старой consumer-подписке и полном
+  `MAX_SAFE_INTEGER`. GREEN: `home_rune_asset_header_contract` 1/1,
+  `home_rune_balance_render` 1/1, прежний
+  `home_header_shards_left_contract` 1/1. Focused TypeScript нового компонента,
+  TSX syntax parse, WebP metadata (512×512, alpha) и `git diff --check` PASS.
+  Один объединённый ts-jest процесс после первого успешного suite упал по
+  4 ГБ OOM; все требуемые suites затем прошли раздельными свежими процессами.
+- Fresh `orbit-spec-reviewer`: PASS после исправления двух P2. Fresh
+  `orbit-red-team`: PASS после исправления четырёх P2; actionable P0–P2 нет.
+  Не проверены реальный device screenshot 320–369dp/200% font scale и
+  VoiceOver/TalkBack.
+- Репозиторий: `C:\appsprojects\phraseman`, branch
+  `feature/referral-roulette`, HEAD `92fa83a4b5e642d08411da281f540f468f6e78bf`.
+  Commit/push/deploy/release не выполнялись; большой dirty worktree и
+  существующие изменения этого handover сохранены.
+- Authoring status не изменён: fresh preflight PASS, `LOCKED 1–10`,
+  `CURRENT 11 DRAFT`, `FORBIDDEN 12–56`. Следующее действие по этому UI delta —
+  только optional device/screenshot QA; оно не блокирует authoring session 11.
+
+## Оперативное решение владельца 2026-08-24 — повтор задания внутри сессии запрещён
+
+- Владелец остановил authoring сессии 11 после визуальной проверки макета 1–10:
+  одна и та же фраза не может второй раз появляться в той же activity family
+  внутри одной сессии. Повтор фразы разрешён только через другую учебную
+  операцию/механику.
+- Воспроизведён реальный дефект сессии 2: четыре повторные пары target+family
+  (`I am not here`/`phrase_builder`, `I am not ready`/`listen_choose`,
+  `I am not here`/`context_gap_grammar`,
+  `I am not ready`/`listen_build_dictation`). Причина: независимые циклы двух
+  фраз и пяти families повторяли комбинацию через 10 применений.
+- Постоянный закон записан в `docs/v2/СТАРТ В2.md`. RED/GREEN gate:
+  `tests/learning_v2_lesson1_no_repeated_target_family_gate.ts`; он включён в
+  `npm run learning-v2:lesson1-authoring-gate`.
+- Корневой фикс находится в
+  `modules/learning-v2/content/source/lesson1_session_choreography_v1.ts`:
+  обычная раскладка сохраняется, пока уникальна; при коллизии используется
+  расширенный набор из семи families и декартова раскладка без повторов. Если
+  interaction budget нельзя заполнить уникально, сборка падает с
+  `lesson1_word_first_unique_target_family_budget_invalid`.
+- Валидатор и learner-package builder теперь восстанавливают реальное число
+  phrase targets общей функцией `inferLesson1WordFirstPhraseCountV1`, поэтому
+  source, validation и экран получают один план.
+- Свежая проверка: no-repeat gate PASS; session-02 focused gate PASS;
+  authoring preflight PASS (`LOCKED 1–10`, `CURRENT 11 DRAFT`);
+  task-specific distractor gates PASS; макет 1–10 пересобран; программный аудит
+  157 practice tasks нашёл `0` повторов target+family.
+- Узкий Jest mock test не является зелёным доказательством: он дошёл до
+  существующего устаревшего ожидания восьми ключей locale, тогда как текущая
+  envelope содержит девять (`ru,uk,es,en,pt-BR,vi,id,tr,pl`). Это отдельный
+  test-contract debt, не скрывать и не выдавать за PASS.
+- Точный следующий шаг после фикса: показать владельцу пересобранный макет,
+  затем вернуться к ручному authoring сессии 11. Созданный черновой файл
+  `episode_01_session_11_intro_word_first_v1.ts` ещё не подключён к source и не
+  считается готовым материалом.
+
 > **АКТУАЛЬНЫЙ ВХОД ДЛЯ НОВОГО КОМПЬЮТЕРА — 2026-08-15:** сначала полностью
 > прочитать
 > [`CODEX_NEXT_COMPUTER_START_HERE_2026-08-15.md`](./CODEX_NEXT_COMPUTER_START_HERE_2026-08-15.md).
@@ -5347,7 +5440,7 @@ npx jest --runTestsByPath tests/learning_v2_legacy_placement_policy.test.ts --no
 Verified: brief создан, 10.1A 4/4 PASS, migration/production writes отсутствуют.
 Partial: 10.1B ожидает owner decision. Unverified: будущий reader/session,
 persistent provenance, rehearsal и rollout. Push/deploy/release: отсутствуют.
-Exact next action: владелец утверждает A либо выбирает B/C.
+Superseded в 15.168: владелец окончательно утвердил A; выбор B/C не открывать.
 
 ## 15.3 — Phase 02 retained cleanup receipt и superseding review status (2026-07-18)
 
@@ -13594,3 +13687,1302 @@ production writes не выполнялись.
 ни один не прошёл без правок. Гейты добавлялись по мере того, как один и тот
 же дефект попадался руками дважды — это и есть механизм, который не даёт
 качеству просесть на 32 уроках.
+
+## 15.166 — Owner lock: Style Bible и кандидат первых десяти интро (2026-08-20)
+
+### Миссия и текущий запрос владельца
+
+Learning V2 остаётся курсом 32 × 56 со speaking-first progression, отдельными
+performance/access сущностями, Speaking Club как capstone, Personal Review и
+диалогами на общей системе, Content Studio, масштабированием языков и
+сохранением legacy до отдельного решения Phase 14. В этом срезе владелец
+утвердил старый стиль интро как неизменяемый, запретил внутри интро упоминать
+занятия/их прошлое/будущее, потребовал самостоятельное авторство для восьми
+активных локалей и разрешил писать новый кандидат первых десяти занятий урока 1.
+
+### Новые решения владельца
+
+1. `2026-08-20`: стиль старых интро первых десяти занятий — постоянный эталон
+   для всех уроков и языков.
+2. Интро не содержит слов о сессиях, прошлых/будущих шагах, карте или курсе;
+   первая строка сразу объясняет язык.
+3. `ru`, `uk`, `es`, `pt-BR`, `vi`, `id`, `tr`, `pl` пишутся одновременно как
+   восемь самостоятельных версий. Нерусский текст не объясняет через русский.
+4. Первые десять занятий урока 1 не выходят за `to be` и следуют актуальной
+   карте: `I am` → `I am not` → состояния → `I’m` → застывшие формулы →
+   профессии → голос → проверка → `you are` → `you are not`.
+
+Решения записаны в `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` и связаны с
+`README`, curriculum, `LESSON_DESIGN_RULES`, handover урока 1, картой источника
+и контрактными тестами. Прежний запрет Codex писать реальный контент уже был
+отменён владельцем в 15.163 и не является конфликтом.
+
+### Состояние Phase/Task
+
+Общий статус Phases 00–14 и Content Studio Tasks 0–15 не изменён этим
+авторским предпросмотром. Срез относится к Phase 07 E1 vertical slice и остаётся
+`IN PROGRESS`: нормативный стиль зафиксирован, locale-native интро-кандидат
+готов к визуальному owner review, но production source, полная локализация
+каждой практической карточки, GREEN всех content gates, device evidence и
+release gates не закрыты.
+
+### Репозиторий и сохранённые изменения
+
+- checkout: `C:\appsprojects\phraseman`;
+- branch: `feature/referral-roulette`;
+- HEAD на старте среза: `e63e6b901d96c95502633dc414abe61df3188d02`;
+- upstream: `origin/feature/referral-roulette`;
+- worktree был сильно dirty до этого среза; все посторонние изменения
+  сохранены и не откатывались;
+- commit, push, deploy, Firebase/Firestore mutation, TTS и release не
+  выполнялись.
+
+### Файлы этого среза
+
+- `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` — новый нормативный голос,
+  запреты, восемь эталонных примеров и checklist;
+- `docs/superpowers/specs/2026-08-20-learning-v2-intro-style-lock-design.md` —
+  утверждённое design-решение;
+- `docs/superpowers/plans/2026-08-20-learning-v2-intro-style-and-first-ten-content.md`
+  — bounded план;
+- `docs/v2/README.md`, `docs/v2/LESSON_DESIGN_RULES.ru.md`,
+  `docs/v2/03-learning-architecture-and-curriculum.md`,
+  `docs/v2/HANDOVER_2026-08-17_lesson1_bundle_and_audio.ru.md` — ссылки и
+  precedence;
+- `modules/learning-v2/content/source/episode_01_session_map_v1.ts` — ссылка на
+  Style Bible рядом со структурным контрактом;
+- `tests/learning_v2_intro_contract.test.ts` — сторож мета-рассказа и русской
+  опоры в нерусском интро;
+- `.superpowers/brainstorm/871-1787210859/content/lesson1-first-ten-full-candidate-data-v1.js`
+  — 8 локалей × 10 комплектов × 3 страницы и 150 English practice checks;
+- `.superpowers/brainstorm/871-1787210859/content/lesson1-first-ten-full-candidate-v1.html`
+  — интерактивный owner-review mock.
+
+### RED и проверка
+
+Команда:
+
+`npx jest --runTestsByPath tests/learning_v2_intro_contract.test.ts --no-cache --runInBand`
+
+Фактический RED: `1 suite failed`, `2 tests failed`, `5 passed`. Старый source
+не имеет `pt-BR/vi/id/tr/pl` во всех intro fields; новый сторож также нашёл
+мета-фразы «формула урока», «за семь занятий» и другие. Этот RED не скрыт и не
+ослаблен: он должен перейти в GREEN только после owner approval и переноса
+нового пакета в production source.
+
+Mock data проверен через `node --check`; структурный скан: `8 locales`, по
+`10 sessions` на локаль, `240 intro pages`, `150 practice checks`,
+`badMeta: 0`. HTTP-предпросмотр: HTML `200`, data JS `200` через `/files/`,
+турецкая и польская локали присутствуют.
+
+### Неполное и непроверенное
+
+Practice section в макете показывает все 150 английских correct/distractor
+наборов и locale-native generic feedback, но ещё не содержит самостоятельные
+перевод, объяснение каждого correct и отдельный разбор каждого distractor на
+всех восьми языках. Поэтому надпись «полный production content» запрещена, а
+Task 3/4 остаётся `PARTIAL`. Браузерный click smoke, production builders,
+locale coverage GREEN и episode phrase/intro alignment ещё не запускались.
+
+### Точный следующий исполнимый пакет
+
+После визуального ответа владельца на десять комплектов интро:
+
+1. сохранить принятые/исправленные тексты;
+2. расширить candidate data самостоятельными `translation`, `explanation` и
+   reason-coded distractor explanations для 150 карточек × 8 локалей;
+3. добавить automated completeness/meta/alignment validator для mock data;
+4. показать тот же полный макет повторно;
+5. только после явного owner approval перенести пакет в
+   `modules/learning-v2/content/source/episode_01_session_01..10*`, провести
+   RED/GREEN и все узкие content gates.
+
+Acceptance: 10 × 8 × 3 intro; 150 × 8 phrase translations/explanations;
+каждый distractor имеет локальный причинный разбор; ноль мета-лексики;
+episode-01 map alignment; focused Jest GREEN. Stop/escalate при конфликте с
+границей урока, незнакомой лексике или необходимости менять canonical schema.
+
+### Startup
+
+```powershell
+Set-Location 'C:\appsprojects\phraseman'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Get-Content -Raw -Encoding UTF8 docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md
+npx jest --runTestsByPath tests/learning_v2_intro_contract.test.ts --no-cache --runInBand
+```
+
+## 15.167 — Fail-closed гейт стиля интро и качества фраз (2026-08-20)
+
+### Решение владельца и исправление статуса
+
+Владелец отклонил кандидат из 15.166: последующие интро были сокращёнными и
+шаблонными и не сохраняли утверждённый старый эталон. Предыдущая формулировка
+«кандидат готов к owner review» больше не означает приемлемое качество. Активный
+browser preview возвращён на ранее одобренный калибровочный эталон; плохой
+кандидат не удалён и не считается источником. Новое абсолютное решение:
+материал не может перейти дальше, пока обязательный fail-closed гейт не даст
+PASS; интро допускаются только в плотном причинном стиле старого макета и ни в
+каком другом.
+
+### Реализованный bounded-срез
+
+- `modules/learning-v2/content/source/learning_content_quality_gate_v1.ts` —
+  автоматические блокеры интро, scope, фраз, word alignment, дистракторов и
+  stale/missing review receipts;
+- `modules/learning-v2/content/source/learning_content_quality_review_receipts_v1.ts`
+  — намеренно пустой реестр: автор/генератор не может сам выписать APPROVED;
+- `modules/learning-v2/content/source/authored_sessions_v1.ts` — обязательный
+  assert до `buildSessionShardFromSource`; это же блокирует app-bundle путь и
+  `functions/src/content_factory/learning_v2_publish_authored_course_v1.ts`;
+- `scripts/learning_v2_content_quality_gate.ts` и npm-команда
+  `learning-v2:content-gate` — единый локальный/CI отчёт;
+- `tests/learning_v2_content_quality_gate.test.ts` — RED/GREEN поведения;
+- `tests/learning_v2_content_quality_gate_wiring.test.ts` — защита подключения;
+- `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` — полный русский эталон и
+  нормативная цепочка `DRAFT → AUTO PASS → INTRO STYLE APPROVED → PHRASE
+  SELECTION APPROVED → 8 LOCALE APPROVED → PASS`;
+- `.superpowers/brainstorm/871-1787210859/content/approved-intro-reference-restored-after-style-regression.html`
+  — новый newest-file redirect на утверждённую калибровку.
+
+### Гейты и доказательства
+
+TDD RED:
+
+`npx jest --runTestsByPath tests/learning_v2_content_quality_gate.test.ts --no-cache --runInBand`
+
+Фактически: suite не компилировался только из-за отсутствующего
+`learning_content_quality_gate_v1` после исправления ошибок самой fixture.
+
+GREEN:
+
+- behavior: `1 suite / 4 tests PASS`;
+- wiring: `1 suite / 2 tests PASS`.
+
+Реальный материал:
+
+`npm run learning-v2:content-gate`
+
+Фактически и ожидаемо: exit `1`, `LEARNING V2 CONTENT GATE: HOLD (4098
+blockers)`. Главные группы: `distractor_reason_too_thin=2039`,
+`intro_locale_missing=1050`, `intro_body_too_thin=225`,
+`intro_question_not_grounded=173`, `intro_explanation_not_causal=156`,
+`quality_review_missing=10`. Полный лог:
+`.codex-tmp/learning-v2-content-gate/latest.log`.
+
+Независимое доказательство публикационного блока:
+
+`npx jest --runTestsByPath tests/learning_v2_authored_sessions_reach_the_player.test.ts --no-cache --runInBand`
+
+Фактически: `1 failed / 3 passed`; сборка shard остановлена ошибкой
+`learning_v2_content_quality_gate_blocked`. Это требуемый HOLD, а не новая
+попытка объявить текущий контент готовым.
+
+### Репозиторий и release-state
+
+- checkout: `C:\appsprojects\phraseman`;
+- branch: `feature/referral-roulette`;
+- HEAD: `374e94555b2162f0da4c720dcbc8bc42f4d9b687`;
+- worktree содержит большой объём чужих pre-existing изменений; они не
+  откатывались и не редактировались этим срезом;
+- commit, push, deploy, TTS, Firestore/Firebase mutation и release не
+  выполнялись;
+- общий Phase 07 E1 vertical slice остаётся `IN PROGRESS/HOLD`; таблица Phases
+  00–14 и Content Studio Tasks 0–15 выше не получает новых DONE.
+
+### Точный следующий исполнимый пакет
+
+Переписать интро и фразы **только по одному session-source за раз**, начиная с
+S01, сохраняя границу `to be` и восемь самостоятельных локалей. После каждого
+файла: AUTO gate; отдельный intro-style review; отдельный phrase-selection
+review другим reviewer; восемь locale approvals; запись receipt только с exact
+fingerprint. Затем повторно запустить behavior+wiring tests, полный
+`learning-v2:content-gate` и runtime-reach test. Не создавать receipt до
+реального review; не ослаблять пороги для GREEN; не переносить отклонённый mock
+в production source; не запускать TTS/deploy/release.
+
+Acceptance для каждого source: `concept → formula → trap`, три grounded
+вопроса, causal explanations, no meta, 15 самостоятельных живых фраз, все
+дистракторы причинные, scope только текущего участка `to be`, восемь locale
+approvals, exact fingerprint и ноль blockers. Intended commit subject после
+полного PASS: `feat(learning-v2): enforce reviewed intro and phrase quality gate`.
+
+## 15.168 — Owner-approved Reader A и планы завершения урока 1 (2026-08-20)
+
+### Миссия и намерение владельца
+
+Learning V2 остаётся курсом 32 × 56 со speaking-first progression, раздельными
+performance/mastery и stars/access, Speaking Club как capstone, Personal
+Review, диалогами на общей системе, Content Studio, масштабированием языков и
+сохранением legacy до отдельного решения Phase 14. Владелец окончательно выбрал
+A «Цельный ридер», аннулировал случайный C, одобрил письменную спецификацию,
+сохранил первые десять content sessions побайтово и поручил закрыть урок 1 до
+56 sessions с полными интро, практикой и fail-closed гейтами. Handover должен
+оставаться самодостаточным без памяти прошлой беседы.
+
+### Авторитет и precedence
+
+1. Текущее решение владельца: «вариант а» и «да спецификацию одобряю».
+2. `AGENTS.md` — workspace, safety, Motion Hybrid, firewall и legacy rules.
+3. `docs/v2/HANDOVER.md` — живой execution record.
+4. `docs/v2/README.md` — индекс нормативных документов.
+5. `docs/v2/00-research-and-skill-audit.md` — evidence/skill baseline.
+6. `docs/v2/01-current-state-audit.md` — исходное состояние.
+7. `docs/v2/02-competitor-and-learning-evidence.md` — evidence boundary.
+8. `docs/v2/03-learning-architecture-and-curriculum.md` — 32 × 56 curriculum.
+9. `docs/v2/04-activity-catalog-and-storyboards.md` — activities.
+10. `docs/v2/05-stars-progress-and-mastery.md` — progress/access separation.
+11. `docs/v2/06-runtime-content-admin-and-release.md` — delivery/release.
+12. `docs/v2/07-migration-analytics-testing.md` — migration/testing.
+13. `docs/v2/08-admin-content-studio-and-mode-authoring.md` — studio.
+14. `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md`.
+15. `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md`.
+16. `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` — immutable content voice.
+17. `docs/superpowers/specs/2026-08-20-learning-v2-intro-visual-and-lesson1-completion-design.md`
+    — APPROVED Reader A и Lesson 1 contract.
+
+Supersession: C «Смысловые островки» не является решением. Старые production
+S01–S10 не заменяют owner-approved candidate до exact-projection gate.
+Макетный вес `800–850` приведён к обязательному app-инварианту `400/700`:
+target остаётся заметно жирнее через `700` + размер + контрастный цвет.
+
+### Полный статус Phases 00–14
+
+| Phase | Status | Gate |
+|---|---|---|
+| 00 Security | DONE | предыдущая emulator/canonical evidence |
+| 01 Domain contracts | DONE | новые additive intro runs ещё не начаты |
+| 02 Progress/access | IN PROGRESS | export, device/release evidence открыты |
+| 03 UI evidence | BLOCKED | A approved; production/device/a11y evidence отсутствуют |
+| 04 Voice | BLOCKED | ждёт 02/03; TTS вне scope |
+| 05 P0 activities | PARTIAL | renderer есть; Reader A не реализован |
+| 06 Content delivery | PARTIAL | approved 1–10 не импортированы |
+| 07 E1 slice | IN PROGRESS / HOLD | 1–56, reviews и readback открыты |
+| 08 P1/E1–E8 | BLOCKED | ждёт E1 и chapter gate |
+| 09 Speaking Club | BLOCKED | ждёт voice/E1 governance |
+| 10 Placement/migration | IN PROGRESS | отдельный workstream, без изменений |
+| 11 Full pilot | BLOCKED | Lesson 1 и author-to-device не закрыты |
+| 12 Telemetry | NOT STARTED | runtime events не выпущены |
+| 13 Rollout | NOT STARTED | device/a11y/rollback/release открыты |
+| 14 Legacy decision | BLOCKED | parity/owner decision отсутствуют; legacy сохранён |
+
+### Полный статус Content Studio Tasks 0–15
+
+| Task | Status | Gate |
+|---:|---|---|
+| 0 | DONE | security boundary |
+| 1 | DONE | canonical contracts/hash corpus |
+| 2 | PARTIAL | app-support manifest closure open |
+| 3 | PARTIAL | ModeTemplate UI/release open |
+| 4 | PARTIAL | E1 authoring not released |
+| 5 | PARTIAL | integration/adversarial/export open |
+| 6 | NOT STARTED | Admin IA shell gate |
+| 7 | NOT STARTED | waits for 5/6 |
+| 8 | NOT STARTED | waits for authoring closure |
+| 9 | NOT STARTED | Preview Lab device/no-progress gates |
+| 10 | PARTIAL | maker-checker UI/release open |
+| 11 | PARTIAL | localization E2E open |
+| 12 | PARTIAL | provider/artifact DAG open |
+| 13 | PARTIAL | activation/rollback open |
+| 14 | BLOCKED | waits for complete E1 proof |
+| 15 | NOT STARTED | waits for E1 and rollout evidence |
+
+### Новые immutable owner decisions
+
+1. `2026-08-20`: active visual choice — A «Цельный ридер»; C аннулирован.
+2. Письменная спецификация явно APPROVED владельцем.
+3. Первые десять сохраняют candidate SHA-256
+   `746b30c49c9735cd57cde89cb4e488c40e6661b1be9ccba1ac7f202b09957f09`.
+4. UI интро не упоминает «сессию», прошлое или будущее; сразу объясняет язык.
+5. Все 8 locale versions самостоятельны; нерусские не объясняют через русский.
+6. Урок 1 только present `to be`; S14 не обучает выбору `in/on/at`.
+7. Unresolved owner questions: отсутствуют. Независимые reviews обязательны.
+
+### Репозиторий и сохранённая параллельная работа
+
+- checkout: `C:\appsprojects\phraseman`;
+- branch: `feature/referral-roulette`;
+- HEAD перед plan commit: `7d236e46b710d6a827165602ead29213668f2c64`;
+- bounded plan commit: `110510dca` —
+  `docs(learning-v2): plan intro reader A and lesson 1 completion`;
+- upstream: `origin/feature/referral-roulette`, ahead 308, behind 0;
+- merge-base `origin/master`: `53bb63352751f1ab3499fad3e8a035890e0d21f9`;
+- clean worktree `C:\appsprojects\phraseman\.claude\worktrees\unruffled-shtern-b9042d`
+  относится к daily phrase, не к V2; остальные worktrees owner-locked;
+- основной checkout был сильно dirty до среза. Все посторонние modified,
+  deleted и untracked paths сохранены; Arena/admin/auth/personal-plan/motion/
+  onboarding/Functions не трогались;
+- полный inventory воспроизводится `git status --short`. Task-owned paths —
+  три ниже и append этого раздела; `HANDOVER.md` имел pre-existing changes и
+  не должен целиком попадать в bounded commit без отделения чужих hunks;
+- push, deploy, Firebase/Firestore mutation, TTS и release: NOT RUN.
+
+### Изменённые файлы этого среза
+
+- `docs/superpowers/specs/2026-08-20-learning-v2-intro-visual-and-lesson1-completion-design.md`
+  — APPROVED и допустимые веса `400/700`.
+- `docs/superpowers/plans/2026-08-20-learning-v2-intro-reader-a.md` — TDD-план
+  semantic runs, compatibility, UI, themes и a11y.
+- `docs/superpowers/plans/2026-08-20-learning-v2-lesson1-sessions-11-56.md` —
+  import 1–10 и authoring 11–56; Appendix A даёт exact path всех координат.
+- `docs/v2/HANDOVER.md` — этот append; предыдущие hunks сохранены.
+
+### Проверка, failed approaches и открытые поверхности
+
+- placeholder scan двух планов: 0 matches после exact-path исправлений.
+- `git diff --check -- <two-plan-paths>`: exit 0.
+- candidate hash: `746B30C49C9735CD57CDE89CB4E488C40E6661B1BE9CCBA1AC7F202B09957F09`.
+- implementation tests не запускались: это plan-only срез.
+- две read-only PowerShell-команды сначала получили parser error (`@{u}` без
+  quotes; pipeline после `foreach`); исправлены, source не менялся.
+- полный `AGENTS.md` вывод был truncated и дочитан диапазонами 1–200,
+  201–400, 401–EOF.
+- Не реализованы: semantic runs, production Reader A, import 1–10, S11–S56,
+  reviews, device/a11y, package/readback и full mock.
+
+### Инварианты и запреты
+
+- single writer; нет delegated coding без прямого owner request;
+- fail-closed gate; автор не выписывает себе receipt;
+- правка текста инвалидирует exact fingerprint;
+- никакой эвристики «латиница = target language»;
+- legacy string fallback и legacy Lesson 1 сохраняются;
+- Motion Hybrid: только `400/700`, theme tokens, stable safe area,
+  DuoPressable/PressableHybrid, reduced motion;
+- bright CTA использует dark `correctText`, не белый;
+- project OpenAI API key запрещён; tests read-only;
+- no push/deploy/release/Firestore write.
+
+### План в трёх формах
+
+Mission: сначала добавить semantic runs и production Reader A с legacy
+readback; затем exact-import approved S01–S10 и по главам написать S11–S56 с
+auto gate, full mock и independent receipts; Lesson 1 закрывается только после
+package/readback, device/a11y и owner approval.
+
+Полный Phase/Task status повторён в таблицах выше.
+
+#### Точный следующий исполнимый task packet
+
+- Task: Reader A plan, Task 1 — RED semantic-runs contract.
+- Почему следующий: visual spec APPROVED; runs нужны UI и import S01–S10.
+- Read: `modules/learning-v2/content/generator_session_contract.ts`,
+  `modules/learning-v2/runtime/course_session_client_children_v1.ts`,
+  `modules/learning-v2/content/source/session_shard_from_source_v1.ts`,
+  `tests/learning_v2_course_session_client_children_v1.test.ts`.
+- Create: `tests/learning_v2_intro_semantic_runs_contract.test.ts`.
+- Modify in RED only: `tests/learning_v2_course_session_client_children_v1.test.ts`.
+- Non-goals: source implementation, UI, content, receipts, TTS, deploy/release.
+- RED: four roles; concatenation equals canonical body; legacy child accepted;
+  enriched fingerprint changes on `text`/`semantic`.
+
+```powershell
+npx jest --runTestsByPath tests/learning_v2_intro_semantic_runs_contract.test.ts tests/learning_v2_course_session_client_children_v1.test.ts --no-cache --runInBand
+```
+
+- Expected: FAIL only for absent approved module/field; legacy cases preserved.
+- GREEN boundary follows Reader A Task 2 only after RED evidence.
+- Reviews: spec reviewer checks no regex/fallback/fingerprint bypass; quality
+  reviewer checks exact keys and hostile input.
+- Acceptance: attributable RED, no unrelated mutation; intended commit
+  `test(learning-v2): require semantic intro runs`.
+- Stop: legacy fingerprint changes, schema migration expands scope,
+  Jarvis/Firestore reader found, or dirty overlapping hunk cannot be preserved.
+
+### Startup commands
+
+```powershell
+Set-Location 'C:\appsprojects\phraseman'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-08-20-learning-v2-intro-reader-a.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-08-20-learning-v2-lesson1-sessions-11-56.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/specs/2026-08-20-learning-v2-intro-visual-and-lesson1-completion-design.md
+npx jest --runTestsByPath tests/learning_v2_intro_semantic_runs_contract.test.ts tests/learning_v2_course_session_client_children_v1.test.ts --no-cache --runInBand
+```
+
+### Final state declaration
+
+Verified complete: owner approval recorded; A is the only active direction;
+два executable плана сохранены; candidate hash и plan gates проверены.
+
+Partial/unverified: вся implementation, content import/authoring, independent
+reviews, device/a11y, readback и full mock. Push/deploy/release остаются NOT RUN.
+
+Exact next action: выполнить Reader A Task 1 через RED и сохранить evidence.
+
+---
+
+## 2026-08-21 — Lesson 1 authoring continuation, owner-ordered full-lesson-first workflow
+
+Owner instruction supersedes the chapter-by-chapter review cadence for this
+content pass: finish all 56 sessions first, then run the strict intro, phrase,
+locale, scope and full-lesson gates once; do not interrupt the owner with
+intermediate mocks. The approved sessions 1–10 and Reader A visual direction
+remain immutable. Learner intro copy must not mention sessions, earlier/later
+material or course machinery. Every locale is independently authored; generic
+translation fallback and templated phrase explanations are blockers.
+
+Worktree remains `C:\appsprojects\phraseman`, branch
+`feature/referral-roulette`, HEAD observed before this authoring continuation:
+`be3b82780b25ce05e31a3e67b78363986676d6b7`. The checkout contains extensive
+pre-existing dirty work from other tasks; none of it was reverted, staged,
+committed, pushed, deployed or released.
+
+Learning V2 files materially advanced in this continuation:
+
+- `modules/learning-v2/content/source/episode_01_sessions_41_48_intro_data_v1.ts`
+  — untracked authoring data now contains distinct locale-native, three-page
+  intros for all sessions 41–48, including newly completed 46–48.
+- `modules/learning-v2/content/source/episode_01_sessions_41_48_support_v1.ts`
+  — tracked dirty source now consumes exact authored intro data instead of the
+  shared chapter-level intro template; fingerprint suffix advanced to `v2`.
+- `modules/learning-v2/content/source/episode_01_sessions_49_56_intro_data_v1.ts`
+  — new untracked authoring data contains complete three-page, eight-locale
+  intros for sessions 49–51. Sessions 52–56 remain to author.
+
+No Jest, TypeScript, content gate or review was run, by explicit owner order to
+verify only after the whole lesson is authored. Therefore none of the new work
+has PASS status. No review receipt was written. The next exact content action is
+to finish `AUTHORED_INTROS_49_TO_56` for 52–56, wire it into
+`episode_01_sessions_49_56_support_v1.ts`, replace Alex/Sam possessive examples
+with admissible family-owner phrases, and author locale-native phrase meanings,
+explanations and distractor reasons. Then remove remaining templated content in
+11–32. Only after all 1–56 sources are complete may the full gate and mock run.
+
+### 2026-08-21 continuation checkpoint — active full-lesson goal
+
+The owner explicitly set the terminal objective: finish all 56 Lesson 1
+sessions, then run the complete quality suite, repair every blocker, verify the
+result and build one owner-visible interactive mock. A Codex goal was created
+with that exact objective. It remains active and must not be marked complete
+before the full verified result exists.
+
+Additional authoring completed after the preceding checkpoint:
+
+- `episode_01_sessions_49_56_intro_data_v1.ts` now contains distinct three-page
+  locale-native intros for every session 49–56.
+- `episode_01_sessions_49_56_support_v1.ts` now consumes these exact authored
+  intros (`generationInputFingerprint` suffix `v2`) instead of the shared
+  chapter template. Alex/Sam placeholder ownership examples in S50 were
+  replaced by family-owner contexts.
+- `episode_01_sessions_11_16_intro_data_v1.ts` was created and S11 now has its
+  complete eight-locale three-page authored intro. S12–S16 are still absent.
+
+Inspection established that S11–16 and S17–24 still used one shared chapter
+intro template, so they are not complete even though source files exist. S25–32
+also require the final anti-template audit. No Jest, TypeScript or content gate
+was run, following the owner's full-lesson-first verification order. Nothing in
+this checkpoint has PASS status and no review receipt was issued.
+
+Exact next action: add complete authored intro records 12–16, wire them into
+`episode_01_sessions_11_16_support_v1.ts`, then create and wire equivalent
+per-session intro data for 17–24 and repair 25–32. After phrase-localization
+quality is complete for 11–56, run the single full gate, repair, and build the
+1–56 mock. Do not push, deploy, publish, generate TTS, or touch unrelated dirty
+files.
+### 2026-08-21 — редакторский макет фраз не считается полным макетом сессии
+
+- Владелец справедливо заметил, что показанный review-макет визуально повторяет один формат задания. Проверка подтвердила: экран показывал authored intro + phrase/word distractor data, но не материализованный `V2SessionCardPlanV2` и не разные runtime activity families.
+- Полный урок обязан иметь 56 сессий; текущий required-session compiler планирует ровно 12 cards на сессию, 3–4 distinct families и детерминированную кривую support/novelty.
+- Core required policy допускает семь families: `phrase_builder`, `listen_choose`, `sound_contrast`, `listen_build_dictation`, `context_gap_grammar`, `speed_match`, `scripted_repeat_compare`. Наличие 17 families в общем V2 catalog не означает использование всех 17 в каждой обязательной сессии.
+- Новый блокирующий критерий owner mock: он должен показывать не только все интро и phrase bank, но и реальное распределение 12 карточек по 3–4 families, их разные интерактивные состояния и угасание подсказок. Старый однотипный review-макет не является доказательством готовности.
+- Обнаружено расхождение формулировок контрактов: `session_compiler.ts` фиксирует 12 cards, тогда как `course_topology_v1.ts` задаёт стандартный target 16 planned primary learning interactions (14–18). До финального PASS нужно доказать, как card соотносится с interaction, либо устранить контрактное расхождение без самовольного ослабления любого гейта.
+- Контентное написание 1–56 продолжается; гейты ещё не запускались по прямому распоряжению владельца проверять только после полного завершения материала.
+
+### 2026-08-21 — полный кандидат урока 1, точный runtime-макет и честная граница review
+
+Авторский кандидат урока 1 теперь покрывает все 56 сессий. Для каждой сессии
+есть ровно три интро-экрана в порядке `concept → formula → trap` и 12
+практических взаимодействий. Практика материализуется в те же семь семейств,
+которые исполняет прямой device runtime: `phrase_builder`, `listen_choose`,
+`sound_contrast`, `listen_build_dictation`, `context_gap_grammar`,
+`speed_match`, `scripted_repeat_compare`.
+
+Исправлена критическая author-to-device дыра: learner child больше не получает
+пустой `responseOptions`. Для single-choice, ordered-token и scripted-speech
+карточек строятся реальные варианты/плитки/голосовой target, а правильный
+choice-token совпадает с локальным evaluator. Неизвестное family и недостаток
+трёх различимых вариантов fail closed.
+
+Созданы два отдельных макета:
+
+- `.superpowers/brainstorm/871-1787210859/content/lesson1-all-56-real-session-v1.html`
+  — точное ученическое прохождение: 56 сессий, в каждой 3 интро + 12 реальных
+  интерактивных заданий, переключение восьми локалей и девяти тем;
+- `.superpowers/brainstorm/871-1787210859/content/lesson1-all-56-review.html`
+  — весь созданный редакционный материал: интро, фразы, объяснения, word drills
+  и дистракторы. Он отделён от learner flow намеренно.
+
+Предыдущее расхождение «12 cards против 14–18 interactions» закрыто точным
+сопоставлением: 12 — количество практических карточек; вместе с тремя
+интерактивными вопросами интро device run содержит 15 interactions, что лежит
+в нормативном диапазоне 14–18.
+
+Свежая автоматическая проверка после полного написания:
+
+- `node scripts/learning_v2_lesson1_chapter_gate.mjs --from 1 --to 56 ...` →
+  `AUTO PASS`, 0 автоматических блокеров;
+- 56 сессий, 8 локалей, 1 344 локализованных интро-экрана, 840 фраз,
+  6 720 локализованных представлений, 3 001 word drill;
+- focused Jest: 9 suites / 58 tests PASS, включая карту, только present `to be`,
+  отсутствие преждевременной грамматики, интро-контракт, quality gate,
+  source→package игровые задания, точный mock и 56 candidate device runs.
+
+Граница не скрыта: итог `MANUAL HOLD`, 56/56 без независимых review receipts.
+Owner approval S01–S10 и визуального Reader A сохранён, но не выдаётся за
+отдельное intro review, phrase-selection review и восемь locale-native review.
+`learning_content_quality_review_receipts_v1.ts` намеренно остаётся пустым;
+production bundle продолжает fail closed. Никакого deploy, publish, push, TTS
+или сетевой генерации не выполнялось.
+
+### 2026-08-21 — аудит реального разнообразия сессий: прежний AUTO PASS недостаточен
+
+Владелец остановил дальнейшее редактирование макета и потребовал сначала
+перечитать нормативные документы Learning V2: типы заданий, требования к
+генерации и порядок сессий. Подтверждено, что learner-макет не должен показывать
+внутренние названия activity families (`Аудирование: выбор`, `Быстрое
+сопоставление` и подобные), а также `purpose`, `support` и `promptNovelty`.
+Пользователю достаточно естественной инструкции и самого задания; технические
+поля допустимы только в отдельном QA-inspector.
+
+Критический результат аудита: `episode_01_session_map_v1.ts` действительно
+задаёт разные сценарии (23 `phrases`, 18 `words_then_phrases`, 6 `voice`, 2
+`recall`, 7 `checkpoint`), но текущий source→shard путь почти не использует
+`SessionKind` для хореографии. `buildSessionShardFromSource()` требует ровно 15
+phrase rows, циклически назначает families из общей ordinal-policy, а package
+фиксирует профиль `standard`. Поэтому все 56 кандидатов получают одинаковую
+рамку 3 intro + 12 practice, тогда как word, voice, recall и checkpoint должны
+иметь разные учебные последовательности и бюджеты.
+
+Особенно не реализован контракт `words_then_phrases`: каждое новое слово должно
+пройти несколько контактов до использования во фразе (услышать/узнать → извлечь
+значение → выбрать или собрать форму → применить во фразе). Сейчас session kind
+существует главным образом как метаданные, а phrase rows не гарантируют эту
+последовательность. Голосовые сессии не получают профиль `voiceHeavy` 10–14,
+rapid word-сессии не получают 18–22, checkpoint не материализует отдельный
+контракт независимой проверки без новых слов/структур.
+
+Следовательно, прежний `AUTO PASS` доказывает структурную валидность, локали и
+исполняемые response options, но не педагогическую готовность 56 разных
+сессий. Он не закрывает coverage matrix, fake diversity, introduce-before-use,
+kind-specific choreography, word multi-touch, checkpoint independence или
+independent review receipts. Текущий learner-макет и весь урок остаются
+`MANUAL HOLD`; готовность урока 1 не подтверждена.
+
+Точный следующий пакет после подтверждения владельца: сначала написать RED
+контракты на скрытие технических labels, materialized session-kind
+choreography, word multi-touch, interaction profiles и checkpoint independence;
+затем добавить слой activity instances между authored inventory и device
+cards; перестроить learner-макет из этих instances; только после этого повторить
+полный content gate, coverage matrix, focused tests и независимое review.
+Никакой контент, макет, deploy, publish, push или TTS в ходе этого аудита не
+изменялся.
+
+### 2026-08-21 — owner lock: `СТАРТ В2`, drift-control и диагностические дистракторы
+
+Владелец потребовал единую обязательную точку входа, которую любая новая сессия
+исполнителя читает первой при любом запросе найти или продолжить Learning V2.
+Создан `docs/v2/СТАРТ В2.md`; обязательность закреплена в корневом `AGENTS.md`,
+а ссылка добавлена в `docs/v2/README.md` и `LESSON_DESIGN_RULES.ru.md`.
+
+`СТАРТ В2` перечисляет полный маршрут чтения нормативных документов и кода,
+фиксирует topology, реальные SessionKind-сценарии, activity families, строгий
+стиль интро, восемь locale-native версий, learner-mock boundary, gates и
+текущий `MANUAL HOLD` урока 1. Установлен fail-closed drift-control: каждые 10
+минут или после каждой готовой сессии (что раньше) выполняется короткий
+checkpoint; после каждых пяти сессий, новой ошибки, owner-решения, compaction,
+restart или handoff полностью перечитывается применимый набор источников. Без
+`ON TRACK` работа не продолжается; `ON TRACK` не является PASS.
+
+Новый постоянный distractor contract требует для каждой неверной опции
+релевантный `trapType`, конкретную ошибочную модель, доказанную
+правдоподобность и однозначную неверность в данном контексте. Зафиксированы
+классы `grammar`, `semantic_neighbor`, `collocation_pragmatics`, `phonetic`,
+`orthographic`, `l1_transfer`, `phrase_assembly`. Механические `s/ed/ing`,
+обрезания/перестановки, случайные слова и варианты «из другой пьесы» запрещены,
+если не отражают реальную ошибку. Feedback обязан назвать выбранный distractor,
+раскрыть его конкретную звуковую/смысловую/грамматическую/L1-ловушку,
+противопоставить правильную форму и дать переносимый признак для новой фразы.
+
+Правило продублировано в `LEARNING_CONTENT_STYLE_BIBLE.ru.md`, инвариантах и S3
+gate `GENERATOR_PIPELINE_SPEC_2026-08-15.md`, TASK-Q5/Q7
+`QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md`. Это normative/doc change;
+исполняемый semantic distractor gate и RED-тесты ещё не реализованы. Следующий
+кодовый пакет остаётся прежним, но его RED-набор обязательно включает
+trapType, no-random-filler, no-copied-feedback, contextual single-answer и
+locale-native L1-transfer checks. Контент/макет не переписывался, тесты не
+запускались, deploy/publish/push/TTS не выполнялись.
+
+### 2026-08-21 — мгновенное раскрытие карты урока Learning V2
+
+Владелец одобрил performance-план: карта 56 сессий должна отвечать в первый
+кадр и не создавать ощущения загрузки. Scope пакета — только accordion
+projection, виртуализация строк и motion. Non-goals соблюдены: содержание,
+`SessionKind`, objective/grammar/lexicon, восемь локалей, progress authority,
+economy, Firestore/Jarvis, release/publish/deploy/TTS не менялись. Статус урока
+1 остаётся `MANUAL HOLD`; этот пакет не является content PASS.
+
+Изменены `course_accordion_map_model_v1.ts`, `lessons.tsx`,
+`LearningV2InlineNodeReveal.tsx` и focused tests. Добавлены утверждённые design
+и implementation документы от 2026-08-21. Полная topology 32 × 56 и canonical
+hash удалены из tap projection; модель строит только 32 lesson rows и 63 строки
+раскрытого урока. `projectionScopeKey` обязателен и fail-closed, cache ограничен
+восемью immutable projections. Chapter/session rows стали отдельными items
+внешнего `FlatList`. Текущий урок готовится после interactions, любой другой —
+на `onPressIn`; подтверждённый press только меняет ordinal. Узлы видимы с
+opacity 0.88 в первом кадре и доводятся на UI thread за 150 ms; layout transition
+сокращён до 160 ms, reduced motion сохранён.
+
+TDD evidence: RED поймал старый topology builder, вложенный mount, нулевую
+opacity/130 ms hold и отсутствие prewarm. После реализации focused run
+`learning_v2_instant_map_hot_path`, accordion model, V2 surface и lesson-map
+screen: 4 suites / 21 tests PASS (`--no-cache`, 0 snapshots). Независимый
+ORBIT review сначала нашёл P2: optional scope с глобальным `default`; после
+обязательного scope и новых guards повторный review дал `APPROVE`, новых
+P0/P1/P2 нет. Узкий `tsc` model+motion и focused ESLint завершились exit 0;
+transpile diagnostics по шести затронутым TS/TSX-файлам: 0 syntax errors.
+Полный импортируемый typecheck `lessons.tsx` завершился OOM у Node на 4 GB и не
+считается PASS. Общий `layout_stability_contract` имеет два посторонних падения:
+новые Arena `adjustsFontSizeToFit` и stale baseline `app/streak_stats.tsx`;
+затронутые файлы в findings не фигурируют.
+
+Desktop diagnostic, 30 запусков: прежняя accordion model median 148.62 ms;
+новая cold empty median 0.09 ms, p95 0.21 ms; warm median 0.0012 ms. Худший
+локальный progress из всех 1 792 completed IDs: cold median 4.71 ms, p95
+11.18 ms, max 12.48 ms. Это не device proof. ADB 2026-08-21 13:50 +01:00 не
+показал подключённых устройств, поэтому release-device 20 cold/20 warm,
+press-to-first-painted-row p95, FPS и long tasks честно `NOT RUN`.
+
+Последний drift-check: 2026-08-21 13:50 +01:00, перечитаны `СТАРТ В2`, последняя
+запись HANDOVER, утверждённые performance design/plan и применимые живые map
+contracts; `ON TRACK`. Ближайшее действие: на подключённом среднем Android и
+iPhone выполнить release/minified trace по budgets design §7.2; до него не
+объявлять абсолютную perceptual/device гарантию.
+
+### 2026-08-21 — единый каталог наград Spin и единая валюта звёзд
+
+Прямое решение владельца: аватары и ауры полностью исключены из **новых**
+роллов Spin; исторические чеки и сама кастомизация не удаляются. Проценты
+удалены: каталог использует относительные целые веса, которые не обязаны давать
+100. Обычные награды имеют вес 10 000, редкие 1 000, ультраредкие 100,
+Plus на 3 дня — 10, Plus на 7 дней — 1. Убраны XP 1/10/25/50/100,
+жемчуг 1/3 и звёзды 1/3/5. Полный каталог и TDD-план зафиксированы в
+`docs/superpowers/specs/2026-08-21-level-spin-unified-rewards-design.md` и
+`docs/superpowers/plans/2026-08-21-level-spin-unified-rewards.md`.
+
+Звезда — одна общая валюта приложения: Spin синхронизирует подарочные звёзды в
+существующие `users/{stableUid}.stars` и `star_operations`. Эти случайные
+подарки имеют класс `grant`: увеличивают тратимый баланс и `grantedTotal`, но не
+`earnedTotal`, недельный или сезонный соревновательный прогресс. Второго
+клиентского star-баланса нет. Локальный результат Spin остаётся device-owned и
+не перебрасывается сервером; outbox по неизменному `requestId` переживает сеть
+и синхронизируется идемпотентно.
+
+Жемчуг начисляется через client-authoritative composite operation, XP — через
+occurrence-bound XP event, Plus складывается по 3/7 дней через account-scoped
+VIP snapshot и effect receipt. Новых Firestore коллекций/полей нет, поэтому
+Rules и Jarvis data-contract не менялись: используется уже закрытая
+`star_operations` и существующая карта `stars`.
+
+Focused evidence: app Spin catalog/definitions/currency/outbox — 4 suites,
+28/28 PASS; server unified stars ledger — 21/21 PASS; узкий TypeScript compile
+`level_spin_star_grant.ts` + `stars_ledger.ts` — exit 0.
+
+### 2026-08-21 — повторный аудит и исправление instant-map hot path
+
+Эта запись заменяет оптимистичные performance-утверждения предыдущего блока,
+но не переписывает его историю. По прямому запросу владельца повторный аудит
+нашёл два подтверждённых P1 и два P2: общий
+`animateNextLayoutTransition(160)` создавал parent opacity от нуля; cache lookup
+происходил лишь после повторного обхода/сортировки progress; unresolved
+reduced-motion считался `false`; тесты не фиксировали точный порядок,
+press-binding, reduced-motion и `accessibilityState.expanded`.
+
+Все findings исправлены. Progress теперь один раз валидируется в
+`prepareLearningV2CourseAccordionProgressV1`; opaque prepared token хранит
+закрытые internals, а bounded cache lookup по token/scope/expanded выполняется
+до генерации строк и не сканирует completed IDs. Экран создаёт token через
+`useMemo`; `onPressIn` готовит projection, а state-render использует тот же
+token и попадает в cache. Raw builder сохранён как fail-closed compatibility
+wrapper. Добавлен update-only `animateNextLayoutShiftWithoutEntryFade`: у него
+нет `create`, поэтому вставленные строки не получают parent alpha 0, но
+существующие карточки плавно сдвигаются. Новый tri-state
+`useReduceMotionPreference()` возвращает `null` до ответа платформы; для
+Learning V2 и `true`, и `null` означают финальный статичный кадр и полный
+пропуск LayoutAnimation. Старый boolean `useReduceMotion()` сохраняет прежний
+публичный контракт остальных компонентов.
+
+Scope пакета остался прежним: только accordion projection, press/reveal motion,
+reduced-motion и deterministic tests. Контент, порядок/типы сессий, восемь
+локалей, progress authority/storage format, auth, economy, Firestore/Jarvis,
+release/publish/deploy/TTS не менялись. Структура остаётся 32 урока; при
+раскрытии ровно 7 chapter rows и 56 session rows в точном порядке. Статус
+Lesson 1 остаётся `MANUAL HOLD`; performance-пакет не является content PASS.
+
+Изменённые файлы repair-пакета:
+
+- `modules/learning-v2/map/course_accordion_map_model_v1.ts`;
+- `app/(tabs)/lessons.tsx` (только V2 imports/row/projection/toggle wiring);
+- `app/smooth_layout.ts`;
+- `hooks/use_reduce_motion.ts`;
+- `components/LearningV2InlineNodeReveal.tsx`;
+- `tests/learning_v2_course_accordion_map_model_v1.test.ts`;
+- `tests/learning_v2_instant_map_hot_path.test.ts`;
+- `tests/learning_v2_layout_shift_without_entry_fade.test.ts`;
+- `tests/use_reduce_motion_preference.test.ts`;
+- `tests/lessons_v2_surface_contract.test.ts`.
+
+TDD и verification evidence:
+
+- RED: focused command на accordion/hot-path/layout/surface дал 4 failed suites,
+  8 passed tests из 12; отсутствовали prepared API, update-only helper и новое
+  screen wiring.
+- GREEN: шесть focused suites (`accordion`, `instant_map_hot_path`,
+  `layout_shift_without_entry_fade`, `use_reduce_motion_preference`, V2 surface,
+  lesson-map screen) — 6/6 suites, 28/28 tests PASS, 0 snapshots.
+- После усиления scope-test (один prepared token, два account/target scope)
+  accordion suite повторно прошёл 9/9.
+- Reference equivalence: 59 169 deterministic scenarios, mismatches `0`.
+- Desktop prepared projection: warm median ~`0.0005 ms`, p95 ~`0.0009 ms`;
+  cold median ~`0.083 ms`, p95 ~`0.379 ms`. Это diagnostic, не device proof.
+- Prettier scoped check, scoped ESLint и `git diff --check` — exit 0;
+  transpile diagnostics — `syntaxErrors=0`.
+- Общий `layout_stability_contract`: 33 tests passed, 2 unrelated failures
+  остались в dirty Arena `adjustsFontSizeToFit` и stale
+  `app/streak_stats.tsx` baseline; repair-пакет в findings не фигурирует.
+- Полный lint `lessons.tsx` по-прежнему показывает существующие вне пакета
+  text-integrity baseline/`numberOfLines` и два unused legacy symbols.
+
+Независимый fresh spec review: `PASS`, P0/P1/P2 не найдено. Следующий fresh
+adversarial review: `APPROVE`, findings P0–P3 нет. Оба review отдельно
+подтвердили prepared hot path, отсутствие create-opacity, conservative
+reduced-motion, точный порядок/роли, prewarm без state/navigation, scope,
+accessibility, keys и navigation.
+
+Непроверенная граница сохранена честно: `adb` в окружении отсутствует, поэтому
+release-device 20 cold/20 warm, press-to-first-painted-row p50/p95, viewport
+interactive p95, JS/UI FPS, long tasks и memory-repeat — `NOT RUN`. Полный
+импортируемый typecheck огромного dirty `lessons.tsx` не является PASS; focused
+Jest компиляция и TS transpile прошли. Jest после успешных assertions сообщает
+общий open-handle warning.
+
+Последний drift-check: 2026-08-21 15:19 +01:00, перечитан `СТАРТ В2`, scope
+сверен с живым кодом и tests — `ON TRACK`. Следующее точное действие при наличии
+устройства: выполнить release/minified device trace по performance design §7.2;
+до него не обещать численный device p95, хотя структурные причины подвисания и
+повторного O(n log n) обхода устранены и независимо одобрены.
+
+---
+
+## Learning V2 · task-specific distractors · 2026-08-21
+
+Владелец утвердил вариант 3 для сессий 1–10, сессии 11 и всего будущего
+материала. Общий срез первых rejected answers больше не используется как
+learner options. Канонический selector —
+`modules/learning-v2/content/source/task_specific_distractors_v1.ts`:
+
+- builder/dictation проверяют один слот близкими, но однозначно неверными
+  плитками; положительный prompt не получает отрицательные формы;
+- grammar gap всегда показывает locale-native смысл и имеет один допустимый
+  ответ;
+- speed match строит минимальные пары одной фразы (`at/in/on`), а не выбирает
+  другие правильные фразы;
+- короткие формулы получают вручную заданные sound/orthography/collocation
+  ловушки;
+- feedback для `are/is`, `are/do`, `at/in`, `at/on` написан отдельно во всех
+  восьми локалях; success target выводится ровно один раз.
+
+Постоянный gate: `npm run learning-v2:task-distractor-gate`; он включён в
+`npm run learning-v2:lesson1-authoring-gate`. Последний полный authoring gate
+прошёл: selector PASS, projection PASS, диапазон 1–11 PASS (144 practice cards,
+112 task selections, 1416 localized success copies), registry PASS, review
+scope PASS, target-language visual gate PASS.
+
+Owner approval зафиксирован exact fingerprint. Актуальный preflight:
+`LOCKED 1–11`, `CURRENT 12 (DRAFT)`, `FORBIDDEN 13–56`. Макет утверждённой
+сессии 11: `.codex-tmp/learning-v2-authoring-registry/session-11-real.html`.
+
+---
+
+## Learning V2 · Lesson 1 session 15 owner-approved and locked · 2026-08-24
+
+Миссия не менялась: последовательно закрыть 56 сессий образцового первого
+урока как основу 32-урочного speaking-first курса, сохраняя разделение
+stars/access, Speaking Club capstone, Personal Review, dialogs, Content Studio,
+масштабирование языков и legacy-поведение. Эта запись — дельта к полной таблице
+фаз и authority map выше, а не новый источник требований.
+
+Текущий machine state: `LOCKED 1–15`, `CURRENT 16 (DRAFT)`,
+`FORBIDDEN 17–56`. Владелец явно одобрил сессию 15 2026-08-24; owner receipt
+`owner-approved-session-15-2026-08-24`. Замороженный fingerprint:
+`84f9b6f498f34ea1e7a3d7780cd6e8903980ce59fa2c9bf464fac38a4b96cbd2`.
+
+Сессия 15 вручную спроектирована как voice/voice-heavy «пинг-понг» на знакомом
+материале: три редакторских интро и девять practice interactions. Она строится
+на 11–14 и возвращает 9, 11–14; новых конструкций не вводит. Exact phrase bank
+содержит 15 знакомых реплик вокруг `Are you…?`, `Am I…?`, `I am…` и `You’re…`.
+Три интро и объяснения всех фраз написаны отдельно для восьми interface locales;
+целевой английский размечен отдельными semantic runs. Четыре close-choice пары
+и десять видимых wrong-answer feedback записаны явно по каждой locale, без
+общего learner-facing distractor шаблона.
+
+Изменённые границы этого пакета: session map; support shard; session-15
+editorial phrase copy; intro bodies 11–15; session-15 task feedback;
+source→package projection; authoring registry; focused editorial gate; registry
+gate; canonical package script; bounded plan; статусный snapshot `СТАРТ В2`.
+Owner-макет и data projection находятся только в ignored `.codex-tmp`:
+`.codex-tmp/learning-v2-authoring-registry/session-15-real.html` и
+`session-15-real-data.js`. Jarvis Firestore fetchers не содержат ссылок на эти
+content-source контракты, поэтому Jarvis data-contract не менялся.
+
+RED/GREEN evidence: focused session-15 gate сначала упал на отсутствующей
+dependency 14; registry gate затем поймал отсутствие session-15 в canonical
+script и статус `DRAFT`; mock build поймал 16
+`intro_question_not_grounded`. После минимальных исправлений fresh canonical
+`npm run learning-v2:lesson1-authoring-gate` завершился exit 0: task-specific
+distractors PASS, session 12–15 editorial gates PASS, registry PASS, review
+scope PASS, target-language visual gate PASS. Fresh preflight показывает
+session 15 как единственную текущую `AUTO_PASS`. После явного owner approval
+registry RED корректно поймал старый статус, затем session 15 была переведена
+в `LOCKED`; review-scope RED поймал прежнюю запрещённую границу 16 и был
+перенесён на 17. Повторный полный authoring gate завершился exit 0. Финальный
+preflight показывает `LOCKED 1–15`, `CURRENT 16 (DRAFT)`, `FORBIDDEN 17–56`.
+Mock build: one session,
+3 intro + 9 practice = 12 экранов, locale order
+`ru, uk, es, pt-BR, vi, id, tr, pl`.
+
+Рабочее дерево: `C:\appsprojects\phraseman`, branch
+`feature/referral-roulette`, HEAD на момент checkpoint
+`92fa83a4b5e642d08411da281f540f468f6e78bf`. Дерево содержит многочисленные
+параллельные изменения; они сохранены и не откатывались. Этот пакет не
+коммитился, не пушился, не деплоился, release/TTS/OpenAI API не запускались.
+Независимый subagent review не запускался из-за действующего запрета на
+делегирование без прямого запроса владельца; owner review закрыт прямым
+решением владельца.
+
+Voice/audio boundary зафиксирована честно: по продуктовой задумке каждое
+`scripted_repeat_compare` должно дать эталонное аудио, повторное прослушивание,
+запись ответа и нейтральный recovery path. Текущий session-15 source package
+пока содержит `audioTargetIds: []`; аудиофайлы не сгенерированы и не привязаны.
+`voiceEvidenceEquivalent:false` запрещает считать текстовый fallback голосовым
+доказательством. Одобрение и lock относятся к редакторскому материалу и
+choreography, но не являются audio release PASS.
+
+Точный следующий executable packet: начать только сессию 16 после свежего
+preflight `--session 16`; зафиксировать её bounded task packet, написать RED и
+не изменять fingerprints 1–15. Audio authoring/release остаётся отдельным
+пакетом: он должен создать exact audio targets и пройти voice/audio gates, не
+подменяя их наличием текстового owner-макета.
+
+Находки и предложения: встроенный Browser automation отказался переходить на
+локальный `file:///` URL по собственной URL policy, поэтому макет следует
+открыть владельцу прямой локальной ссылкой; это не дефект содержимого или
+сборки. Открытый риск — реальные audio targets сессии 15 ещё не подключены;
+не объявлять эту сессию audio/release-ready до отдельного гейта.
+
+---
+
+## Learning V2 · Lesson 1 session 16 AUTO_PASS · 2026-08-24
+
+Сессия 16 «Я и ты целиком» завершена как checkpoint без новых конструкций.
+Machine state: `LOCKED 1–15`, `CURRENT 16 (AUTO_PASS)`, `FORBIDDEN 17–56`.
+Candidate fingerprint:
+`c4022e4701953d1bb1e2af55ecdc2f5d3766d1a0756a64d57f745a060cea16ad`.
+Статус не повышать до `OWNER_APPROVED`/`LOCKED` без явного решения владельца.
+
+Пакет содержит три вручную написанных интро, 15 фраз и 12 независимых
+checkpoint-заданий в точной choreography. Для 12 заданий вручную заданы
+близкие диагностические варианты; все 24 видимые ошибки имеют отдельный
+краткий разбор на `ru, uk, es, pt-BR, vi, id, tr, pl`. Общий selector для
+сессии 16 не используется. Semantic runs отдельно окрашивают целевой английский
+и язык объяснения. Реальный интерактивный owner-макет:
+`.codex-tmp/learning-v2-authoring-registry/session-16-real.html`; его data:
+`session-16-real-data.js`.
+
+RED/GREEN evidence: первоначальный реальный package build упал на
+`task_specific_distractors_insufficient:speed_match:Am I here?:here`; focused
+gate сначала упал на отсутствующем editorial intro module, затем chapter gate
+поймал шесть слишком коротких locale-вариантов первого интро. После ручного
+исправления `learning_v2_episode_01_session_16_editorial_gate.ts` и chapter
+gate 16–16 проходят, automatic blockers = 0. Canonical authoring gate был
+повторён после последней редакторской правки и завершился exit 0: task-specific
+distractors, projection, authored range, editorial gates 12–16, registry,
+review scope и visual semantic gate — PASS. Финальный preflight `--session 16`
+также PASS и показывает `CURRENT STATUS: AUTO_PASS`.
+
+Следующий шаг: владелец проходит `session-16-real.html`. После явного одобрения
+зафиксировать owner receipt и locked fingerprint, повторить canonical gate и
+только затем открыть сессию 17. Без одобрения learner-facing authoring 17-й
+запрещён.
+
+Находки и предложения: checkpoint действительно проверяет самостоятельное
+различение `I/am`, `you/are`, прямого и вопросительного порядка, отрицания и
+знакомых состояний; он не подсказывает новое правило. Аудио не создавалось и
+release/deploy не выполнялись.
+
+---
+
+## Learning V2 · Lesson 1 session 16 LOCKED, session 17 AUTO_PASS · 2026-08-24
+
+Миссия остаётся прежней: последовательно закрыть 56 образцовых сессий первого
+из 32 speaking-first уроков, не нарушая отдельные stars/access, Speaking Club,
+Personal Review, dialogs, Content Studio, масштабирование языков и сохранение
+legacy-поведения. Владелец после просмотра реального макета 16-й написал
+«отлично дальше работай без остановок до конца 1 урока». Это зафиксировано как
+явное одобрение сессии 16 и распоряжение продолжать последовательно; оно не
+считается предварительным одобрением ещё не показанных learner-facing текстов.
+
+Machine state после owner decision: `LOCKED 1–16`, `CURRENT 17 (AUTO_PASS)`,
+`FORBIDDEN 18–56`. Owner receipt 16:
+`owner-approved-session-16-excellent-continue-2026-08-24`; locked fingerprint:
+`c4022e4701953d1bb1e2af55ecdc2f5d3766d1a0756a64d57f745a060cea16ad`.
+Candidate fingerprint 17:
+`7b938654613d3c18d502c97f46f5cf82992a4e144edb5d751718d165ceb123aa`.
+
+Сессия 17 «Он и она» вручную заменяет прежний template-built материал и вводит
+только `he / she + is`; отрицания, вопросы, `it` и сокращения остаются за
+следующими позициями карты. Три intro bodies и semantic runs написаны отдельно
+для восьми локалей. Все 15 фраз имеют 120 явных locale-native meaning/
+explanation пар. Rapid words→phrases choreography материализует 17 practice:
+4 listen_choose, 4 speed_match, 4 phrase_builder, 4 context_gap_grammar и один
+independent phrase_builder. Для 34 видимых wrong states доступны 22 уникальных
+точных разбора ×8 локалей; текст повторяется только там, где target и выбранная
+ловушка совпадают буквально в двух механиках.
+
+RED/GREEN evidence: focused gate сначала упал с `MODULE_NOT_FOUND` для
+`episode_01_session_17_editorial_intro_v1`; после ручного пакета поймал
+недиагностичный третий listen distractor и затем точное допустимое число
+повторов feedback. Финальный focused gate PASS. Chapter gate 17–17:
+`AUTO PASS`, automatic blockers 0, manual review ordinal 17. Canonical
+authoring gate после learner-facing реализации завершился exit 0: distractor
+selector/projection/authored range, editorial gates 12–17, registry, review
+scope и target-language visual gate — PASS. После перевода registry в
+`AUTO_PASS` полный gate повторён свежим запуском и снова завершился exit 0;
+preflight `--session 17` PASS, status `AUTO_PASS`, forbidden 18–56.
+
+Owner-макет построен из реального source→shard→package:
+`.codex-tmp/learning-v2-authoring-registry/session-17-real.html`; data projection:
+`session-17-real-data.js`. В нём 3 intro + 17 practice = 20 экранов, 8 локалей и
+34 состояния ошибки. Baseline до ручной замены сохранён отдельно как
+`session-17-baseline.html` только в ignored temp.
+
+Следующий executable packet после owner review: при явном одобрении 17-й
+зафиксировать её `LOCKED`, вычислить forbidden fingerprint 19–56, открыть
+только сессию 18 и написать её вручную как phrases «Он не, она не» без захода
+в вопросительную форму сессии 19. До этого learner-facing изменения 18-й
+машинно запрещены. Не запускать TTS, deploy, publish, release, Firestore writes,
+OpenAI API или широкие тяжёлые проверки; в грязном дереве не откатывать чужие
+изменения.
+
+Находки и предложения: «без остановок» означает не терять темп между закрытыми
+пакетами, но не отменяет owner review точного fingerprint. Иначе невиденный
+текст пришлось бы самовольно объявлять owner-approved, что разрушило бы именно
+тот последовательный gate, который предотвращает прежнюю механическую муть.
+# Delta 2026-08-24 — session 17 approved, continuous lesson-1 goal
+
+- Владелец явно одобрил session 17 и поставил непрерывную цель: закончить все
+  56 сессий урока 1 без остановок на промежуточное подтверждение каждой.
+- Session 17 заморожена как `LOCKED` с fingerprint
+  `7b938654613d3c18d502c97f46f5cf82992a4e144edb5d751718d165ceb123aa`.
+- Начиная с session 18 разрешён автоматический переход `AUTO_PASS → LOCKED`
+  только после focused/chapter/canonical PASS, сохранения реального owner-макета
+  и fingerprint. Это не отменяет финальную owner-проверку всего урока и не
+  разрешает проходить мимо `HOLD`.
+
+## RED 2026-08-24 — новые слова показывались сразу внутри фраз
+
+- Владелец напомнил нормативное правило: незнакомое слово сначала учится как
+  слово и только затем применяется во фразе.
+- Новый gate `tests/learning_v2_lesson1_new_word_before_phrase_gate.ts`
+  обнаружил шесть `phrases`-сессий с новой лексикой (1, 11, 50, 51, 52, 53) и
+  четырнадцать `words_then_phrases`-сессий без единого standalone word contact
+  (3, 5, 6, 14, 17, 20, 22, 25, 26, 42, 43, 44, 45, 46).
+- Причина: `lesson1_session_choreography_v1.ts` называл стадии
+  `recognize/retrieve_meaning/build_form`, но все их `sourcePhraseIndex`
+  продолжали материализоваться как полные phrase targets. Metadata создавала
+  ложное разнообразие без обучения словам.
+- Gate включён первым в `learning-v2:lesson1-authoring-gate`; текущий статус
+  всего урока — `HOLD`. Ремонт LOCKED 1–17 требует явной owner-разблокировки,
+  новых fingerprints и повторной проверки, а не ослабления RED.
+
+## Owner decision 2026-08-24 — unlock all and restart lesson 1 word-first
+
+- Владелец явно распорядился разблокировать все сессии урока 1 и переписать их
+  с самого начала: каждое новое слово обязано получить самостоятельные точки
+  контакта до первого появления внутри фразы.
+- Decision ref:
+  `owner-unlocked-all-lesson1-word-first-rewrite-2026-08-24`.
+- Английский authoring-реестр переведён в `DRAFT 1–56`; старые approvals и
+  fingerprints сохранены только в истории и больше не определяют готовность.
+- Fresh machine state: `LOCKED none`, `CURRENT 1`, `FORBIDDEN 2–56`.
+  Aggregate fingerprint старого диапазона 2–56 остаётся защитой от скрытого
+  параллельного редактирования, пока сессия 1 не получит новый lock.
+- RED first: registry gate был изменён до source и ожидаемо упал на старых
+  `LOCKED 1–17`; после смены реестра тот же gate и authoring-preflight дали
+  PASS.
+- Следующий пакет: добавить настоящую word-target модель и choreography,
+  затем вручную пересобрать session 1 во всех восьми локалях. Нельзя зелёнить
+  проверку сменой `kind`, stage label или показом полной фразы вместо слова.
+
+### Additional owner rule — useful lexical growth when possible
+
+- Владелец добавил: каждая обычная учебная сессия по возможности должна
+  приносить новые слова, которых раньше не было.
+- Правило внесено в `СТАРТ В2`, `LESSON_DESIGN_RULES.ru.md` и карту урока 1.
+  Новизна не разрешает filler: слово должно быть частотным, служить can-do и
+  пройти word-first контакты до фразы.
+- `voice`, `recall` и `checkpoint` остаются без новой лексики. Для иной сессии
+  отсутствие новых слов допустимо только с конкретной редакторской причиной,
+  которую будущий source/gate должен сделать машинно видимой.
+
+## Session 1 word-first candidate — AUTO PASS, exact owner review pending
+
+- Session 1 вручную переписана как четыре standalone-слова `I`, `am`, `here`,
+  `ready`, затем две фразы `I am here` и `I am ready`. Три контакта каждого
+  слова используют разные publishable family: `listen_choose`, `speed_match`,
+  `context_gap_grammar`; после них идут восемь применений во фразах.
+- Интро остаётся ровно `concept → formula → trap`, написано отдельно на восьми
+  локалях и не содержит полной фразы до word contacts. Все phrase/vocabulary
+  distractors и их feedback написаны вручную; `I/i/l` сохраняют регистр как
+  проверяемую орфографическую ловушку.
+- Устранены четыре системных разрыва: `visual_discovery` вне required runtime,
+  потеря авторского feedback при package projection, подмена созвучных
+  vocabulary distractors чужими значениями и восстановление legacy
+  choreography валидатором публикации. Каждый класс защищён focused gate.
+- Fresh `learning-v2:lesson1-authoring-gate`: PASS. Chapter gate 1–1:
+  `AUTO PASS`, `MANUAL HOLD`; автоматических blockers 0. Exact content
+  fingerprint:
+  `3eef3af914b37f711c70e0796edfe94957278f9d8910bc20021eabd431474f19`.
+- Реальный owner-макет (3 intro + 17 practice = 20 шагов, 8 локалей):
+  `.codex-tmp/learning-v2-authoring-registry/session-01-real-word-first.html`.
+  Реестр честно остаётся `DRAFT`, `LOCKED none`, `FORBIDDEN 2–56`, пока exact
+  новая редакция не получит требуемое owner/review решение.
+
+Находки и предложения: правило «новая лексика по возможности» теперь не только
+описано, но и блокирует обычную teaching-сессию без `newVocabulary` или
+конкретной причины исключения. При следующих сессиях сначала выбирать полезную
+лексическую прибавку, затем бюджетировать по три самостоятельных контакта на
+слово; если бюджет не помещается, уменьшать число новых слов, а не прятать их
+внутри первой фразы.
+
+## Milestone 2026-08-24 — sessions 1–2 word-first LOCKED
+
+- Session 2 вручную переписана вокруг одного нового слова `not`: три
+  самостоятельных контакта `listen_choose → speed_match →
+  context_gap_grammar`, затем только знакомые фразы `I am not here` и
+  `I am not ready`. Практика содержит 17 package-interactions; вместе с тремя
+  страницами интро это 20 реальных шагов.
+- Все три интро написаны отдельно на восьми локалях в порядке
+  `concept → formula → trap`. Focused quality gate сначала дал 24
+  `intro_body_too_thin`; тексты не были пропущены или дополнены шаблонным
+  хвостом, а вручную переписаны до плотности эталона.
+- Селектор сессии 2 теперь проверяет позицию `not`, а не ранее знакомую `am`.
+  В реальной package-проекции близкие варианты — `no`, `now`, `note`; тот же
+  путь используется builder, gap, listen_choose и speed_match.
+- Исправлена Unicode-граница semantic runs: отдельные `n/o/t` больше не
+  вырезаются и не окрашиваются внутри обычных испанских, вьетнамских или
+  турецких слов. Регрессия входит в focused gate сессии 2.
+- Focused gates, chapter 2–2 (`AUTO PASS`, automatic blockers 0), реальная
+  package-сборка восьми локалей, полный task-distractor range gate, review
+  scope и target-language visual gate — PASS. Реальный owner-макет:
+  `.codex-tmp/learning-v2-authoring-registry/session-02-real-word-first.html`;
+  data projection: `session-02-real-word-first.data.js`.
+- Exact fingerprint сессии 2:
+  `c5a952b8b9e71703e06216c5d40f5da7a43bc3fc1b799b6878ebc72bcb36d1ff`.
+  По непрерывному owner contract сессия зафиксирована `LOCKED`; fresh
+  preflight: `LOCKED 1–2`, `CURRENT 3`, `FORBIDDEN 4–56`.
+
+Находки и предложения: правило полезной лексической новизны действует в двух
+слоях — нормативный текст плюс
+`learning_v2_lesson1_new_lexicon_per_teaching_session_gate.ts`. Для обычной
+teaching-сессии сначала выбирается минимальная полезная прибавка, затем на неё
+резервируются самостоятельные word contacts; voice/recall/checkpoint ничего
+нового не вводят. Сессия 3 должна расширять живые состояния, не повторяя
+`here/ready` как единственный материал и не заходя в сокращение `I’m` сессии 4.
+
+## Milestone 2026-08-24 — session 3 word-first LOCKED
+
+- Session 3 вручную закрыта темой состояний: новые слова `happy`, `sad`,
+  `tired`, `fine`; каждое получает три самостоятельных контакта до первой
+  полной фразы. Затем применяются `I am happy/sad/tired/fine` и знакомое
+  отрицание `I am not sad`; сокращение `I’m`, вопросы и `you` не вводятся.
+- Найден системный дефект реального прохождения: word-first choreography
+  помещала первые три словарных контакта в слоты 1–3, которые package заменяет
+  вопросами интро. Source-гейт был зелёным, но ученик этих контактов не видел.
+  Теперь intro slots остаются отдельными, все word contacts начинаются со
+  слота 4, а общий гейт сверяет собранный learner child. Реальные макеты 1–3
+  пересобраны и снова показывают все контакты до фраз.
+- Дистракторы фраз состояния заменены на грамматически возможные близкие
+  конкуренты: `happy/heavy/unhappy`, `sad/mad/bad`,
+  `tired/wired/fired`, `fine/kind/blind`; feedback каждого варианта отдельно
+  объясняет звук или смысл во всех восьми локалях.
+- Focused session-3 gate, общий new-word-before-phrase gate, task-distractor
+  gate, chapter 3–3 (`AUTO PASS`, automatic blockers 0), полный authoring gate,
+  review scope и visual gate — PASS. Реальный интерактивный макет:
+  `.codex-tmp/learning-v2-authoring-registry/session-03-real-word-first.html`.
+- Exact fingerprint сессии 3:
+  `9d721ad71f2c832740b77948ace5dec2e03a719ffb8475f66e7af0e66f188df7`.
+  По непрерывному owner contract сессия зафиксирована `LOCKED`; fresh
+  preflight: `LOCKED 1–3`, `CURRENT 4`, `FORBIDDEN 5–56`.
+
+Находки и предложения: rapid-профиль содержит 20 общих шагов — три интро и 17
+видимых заданий. Поэтому число новых слов напрямую уменьшает бюджет фразовых
+применений: сначала гарантируются три реальных контакта каждого слова, затем
+оставшийся бюджет отдаётся живым фразам. Нельзя снова считать скрытые source
+карточки доказательством того, что ученик увидел материал.
+
+## Milestone 2026-08-24 — session 4 word-first LOCKED
+
+- Session 4 вручную переписана вокруг единственной новой грамматической мысли
+  `I am → I’m` и одного полезного нового слова `busy`. Вопросы, `you` и формы
+  других лиц не вводятся. Семь применяемых фраз: `I’m here`, `I’m ready`,
+  `I’m happy`, `I’m tired`, `I’m fine`, `I’m busy`, `I’m not busy`.
+- `busy` получает три видимых самостоятельных контакта после интро:
+  `listen_choose → speed_match → context_gap_grammar`. Только после них
+  начинаются полные фразы. Реальный learner-пакет содержит 3 страницы интро и
+  17 practice-interactions.
+- Три интро написаны вручную для всех восьми локалей в порядке
+  `concept → formula → trap`; ловушка на сокращение сравнивает только близкие
+  формы `I’m / Im / I’am`. Каждое вхождение английского материала получает
+  semantic run.
+- При сборке owner-макета найден визуальный L1-дефект: польский союз `i`
+  ошибочно распознавался как английское местоимение `I` из-за сравнения без
+  учёта регистра. Разметка теперь требует точное заглавное `I`, а focused gate
+  запрещает окрашивать строчное нативное `i` как target-language.
+- Focused session-4 gate, new-word-before-phrase, new-lexicon,
+  task-distractor, chapter 4–4 (`AUTO PASS`, automatic blockers 0), полный
+  authoring gate, review scope и target-language visual gate — PASS. Реальный
+  интерактивный макет:
+  `.codex-tmp/learning-v2-authoring-registry/session-04-real-word-first.html`.
+- Exact fingerprint сессии 4:
+  `679939edbcb8ebce9a18eebb09bd7e33b32bd995e8fa4f741278974580ad03b8`.
+  По непрерывному owner contract сессия зафиксирована `LOCKED`; fresh
+  preflight: `LOCKED 1–4`, `CURRENT 5`, `FORBIDDEN 6–56`.
+
+Находки и предложения: semantic markup обязан учитывать письменность и регистр
+языка объяснения, а не только латинский алфавит. Проверка визуального разделения
+теперь дополняется точным focused assertion для L1-токена; сессия 5 должна
+сначала дать отдельные контакты каждому действительно новому слову и только
+затем использовать его в формуле вежливости.
+
+## Milestone 2026-08-24 — session 5 word-first LOCKED
+
+- Session 5 сокращена с прежних пятнадцати формул до четырёх базовых сигналов,
+  которые полностью закрывают карту без преждевременного `you`: `hi` — открыть
+  контакт, `thanks` — поблагодарить, `please` — смягчить просьбу, `bye` —
+  закончить разговор.
+- Каждая из четырёх новых единиц получает три видимых standalone-контакта:
+  сначала все четыре узнаются на слух, затем восстанавливается их значение,
+  затем точная письменная форма. Только после 12 контактов идут пять применений
+  готовых формул; реальный пакет содержит 3 интро + 17 заданий.
+- Три интро вручную написаны для восьми локалей без преждевременного показа
+  новых формул. Они объясняют одну причинную цепочку: намерение разговора →
+  готовая короткая формула → проверка точного звука и написания. В примерах
+  используются только уже знакомые `I am here` и `I’m busy`.
+- Дистракторы редакторские и близкие по проверяемому измерению:
+  `hi/high/he`, `thanks/thinks/tanks`, `please/pleas/place`,
+  `bye/bay/boy`. Feedback каждой пары отдельно называет звук, написание или
+  изменившееся значение во всех восьми локалях.
+- Focused session-5 gate, new-word-before-phrase, new-lexicon,
+  task-distractor, chapter 5–5 (`AUTO PASS`, automatic blockers 0), полный
+  authoring gate, review scope и target-language visual gate — PASS. Реальный
+  интерактивный макет:
+  `.codex-tmp/learning-v2-authoring-registry/session-05-real-word-first.html`.
+- Exact fingerprint сессии 5:
+  `887f390c8ac845131be128010ac14c327297eefc17e2b7c44f534dd589aace3e`.
+  По непрерывному owner contract сессия зафиксирована `LOCKED`; fresh
+  preflight: `LOCKED 1–5`, `CURRENT 6`, `FORBIDDEN 7–56`.
+
+Находки и предложения: при лимите 17 practice-interactions четыре новых слова
+дают 12 обязательных контактов и оставляют пять применений — это предельный
+разумный объём для одной word-first сессии. Пять новых слов оставили бы только
+два применения и не дали бы пройти все четыре речевых намерения. Session 6
+может теперь отдельно учить грамматическую роль `you`, не используя её скрыто в
+формуле `thank you` раньше положенного места.
+
+## Milestone 2026-08-24 — глава 1 полностью переписана и LOCKED 1–8
+
+- Сессия 6 вручную вводит только `a`, `an`, `teacher`, `artist`: 12 отдельных
+  словарных контактов предшествуют пяти применениям с уже знакомыми `I am / I’m`.
+  Exact fingerprint: `651642745a8f0737b0fcc4aeb9780f76b3029321d312ba9930ad8703486aa08c`.
+- Сессия 7 имеет настоящий `voice_heavy`-сценарий без новой лексики: 9
+  практических контактов, включая 4 `scripted_speech`, слуховое различение,
+  диктовку и аудиоскрипты только на материале 1–6. Exact fingerprint:
+  `50f1731457ac1938ad08b0cf6ad9aca3aa66822a183e4a2939fbe3f33f6857e3`.
+- Сессия 8 — независимый checkpoint без новой лексики и без поддержки:
+  12 заданий; первые шесть практических целей являются новыми сочетаниями
+  знакомых слов, а не копией тренировочных ответов. Exact fingerprint:
+  `949b91bbd11d874476cb52a8cf8d28cd895ab53d4deec86bb38bf8c8df3993e3`.
+- Реальный макет всей главы:
+  `.codex-tmp/learning-v2-authoring-registry/chapter-01-08-real.html`.
+  Chapter gate 1–8: `AUTO PASS`, 8 локалей, 192 интро-представления,
+  automatic blockers 0. Focused gates 1–8, new-lexicon, word-first,
+  task-distractor, registry, review-scope и visual gates — PASS.
+- Fresh authoring preflight после lock обязан показывать: `LOCKED 1–8`,
+  `CURRENT 9`, `FORBIDDEN 10–56`. Сессия 9 первой вводит `you`; ошибочная
+  старая приписка выше о `you` в session 6 исторически неверна и этим
+  milestone явно заменена.
+
+Находки и предложения: глава теперь доказывает три реально разные
+хореографии — word-first, voice и checkpoint. Следующую главу нельзя снова
+свести к одному шаблону; новые слова обычных teaching-сессий получают три
+контакта, а voice/checkpoint остаются намеренными исключениями без новизны.
+
+## Milestone 2026-08-24 — сессия 9 `You are` LOCKED
+
+- Сессия 9 вручную вводит `you` и `are`: шесть самостоятельных словарных
+  контактов идут раньше первого высказывания, затем 11 применений в девяти
+  положительных фразах. Отрицание принадлежит сессии 10, вопросы — сессии 11;
+  ни одна из этих тем в материал 9 не просачивается.
+- Три интро-экрана и все задания написаны отдельно для восьми локалей;
+  диагностические варианты различают `you / your / yoo` и `are / am / ar`,
+  а feedback объясняет конкретную уловку каждого выбора.
+- Реальный интерактивный макет:
+  `.codex-tmp/learning-v2-authoring-registry/session-09-real-word-first.html`.
+  Chapter gate 1–9: `AUTO PASS`, 8 локалей, 216 интро-представлений,
+  automatic blockers 0. Focused, word-first, new-lexicon, projection,
+  distractor, registry, review-scope и visual gates — PASS.
+- Exact fingerprint:
+  `dd740e01a62a049e4582a7d9976a63a10e8ef68bdc484f623b5c51384461b119`.
+  Fresh preflight обязан показывать `LOCKED 1–9`, `CURRENT 10`,
+  `FORBIDDEN 11–56`.
+
+Находки и предложения: два новых служебных слова в одной teaching-сессии дают
+достаточно места и для обязательных шести словарных контактов, и для длинной
+серии переносов. Это безопаснее, чем вводить четыре новых слова в каждой
+сессии только ради количества: новизна остаётся полезной, а не формальной.
+
+## Milestone 2026-08-24 — сессия 10 `You are not` LOCKED
+
+- Единственное новое слово — `alone`: три самостоятельных контакта различают
+  `alone / along / a lone / lonely / only` до первой фразы. Затем идут 14
+  применений отрицательной рамки на `alone` и уже знакомых состояниях.
+- Старые необученные `late`, `cold`, `hot`, `early`, `calm`, `safe`, `okay`
+  удалены из этой сессии. Интро объясняет грамматику только через ранее
+  знакомые `ready`, `tired`, `here`, поэтому само не обходит word-first.
+- Реальный интерактивный макет:
+  `.codex-tmp/learning-v2-authoring-registry/session-10-real-word-first.html`.
+  Chapter gate 1–10: `AUTO PASS`, 8 локалей, 240 интро-представлений,
+  automatic blockers 0. Полный authoring gate — PASS.
+- Exact fingerprint:
+  `aebbaee093189564d88104d04bd02e7c032bad04b9c357875260ad3fb524f58e`.
+  Fresh preflight обязан показывать `LOCKED 1–10`, `CURRENT 11`,
+  `FORBIDDEN 12–56`.
+
+Находки и предложения: правило «новые слова по возможности» не означает
+максимизировать их число. Здесь одно хорошо разобранное слово оставляет место
+для 14 переносов новой грамматики и даёт более сильное обучение, чем список
+из десяти скрытых прилагательных без самостоятельного знакомства.

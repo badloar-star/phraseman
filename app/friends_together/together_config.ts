@@ -66,11 +66,65 @@ export const FRIENDS_NUDGE_LIMITS = Object.freeze({
   perFriendPerDay: 1,
 });
 
+export type FriendsTogetherClientConfig = Readonly<{
+  levelThresholds: readonly number[];
+  chestTiers: readonly number[];
+  chestCapPerFriend: number;
+  chestTopN: number;
+  chestMinPairLevel: number;
+  chestMinDays: number;
+  chestMinWeeklyXp: number;
+  chestBoostMultiplier: number;
+  chestClaimAnyDay: boolean;
+}>;
+
+export const FRIENDS_TOGETHER_CLIENT_DEFAULTS: FriendsTogetherClientConfig = Object.freeze({
+  levelThresholds: FRIENDS_LEVEL_THRESHOLDS,
+  chestTiers: FRIENDS_CHEST_TIERS,
+  chestCapPerFriend: FRIENDS_CHEST_CAP_PER_FRIEND,
+  chestTopN: FRIENDS_CHEST_TOP_N,
+  chestMinPairLevel: 2,
+  chestMinDays: FRIENDS_CHEST_MIN_DAYS,
+  chestMinWeeklyXp: FRIENDS_CHEST_MIN_WEEKLY_XP,
+  chestBoostMultiplier: 2,
+  chestClaimAnyDay: false,
+});
+
+function clampInt(value: unknown, min: number, max: number, fallback: number): number {
+  const parsed = Math.trunc(Number(value));
+  return Number.isFinite(parsed) ? Math.max(min, Math.min(max, parsed)) : fallback;
+}
+
+function numberArray(value: unknown, fallback: readonly number[], min: number, max: number): readonly number[] {
+  if (!Array.isArray(value) || value.length !== fallback.length) return fallback;
+  const parsed = value.map((item) => clampInt(item, min, max, Number.NaN));
+  if (parsed.some((item) => !Number.isFinite(item))) return fallback;
+  for (let i = 1; i < parsed.length; i += 1) if (parsed[i] < parsed[i - 1]) return fallback;
+  return parsed;
+}
+
+export function friendsTogetherClientConfigFromNumbers(numbers: Record<string, unknown> | undefined): FriendsTogetherClientConfig {
+  const n = numbers ?? {};
+  const d = FRIENDS_TOGETHER_CLIENT_DEFAULTS;
+  return Object.freeze({
+    levelThresholds: numberArray(n.friends_level_thresholds, d.levelThresholds, 0, 100_000),
+    chestTiers: numberArray(n.friends_chest_tiers, d.chestTiers, 0, 10_000_000),
+    chestCapPerFriend: clampInt(n.friends_chest_cap_per_friend, 0, 1_000_000, d.chestCapPerFriend),
+    chestTopN: clampInt(n.friends_chest_top_n, 1, 100, d.chestTopN),
+    chestMinPairLevel: clampInt(n.friends_chest_min_pair_level, 1, 5, d.chestMinPairLevel),
+    chestMinDays: clampInt(n.friends_chest_min_days, 0, 7, d.chestMinDays),
+    chestMinWeeklyXp: clampInt(n.friends_chest_min_xp, 0, 1_000_000, d.chestMinWeeklyXp),
+    chestBoostMultiplier: clampInt(n.friends_chest_boost_multiplier, 1, 10, d.chestBoostMultiplier),
+    chestClaimAnyDay: n.friends_chest_claim_any_day === 1 || n.friends_chest_claim_any_day === true,
+  });
+}
+
 const FRIENDS_TOGETHER_FLAG_KEY = 'friends_together_enabled';
 
 /** Синхронный кэш последнего прочитанного значения — синхронное API нужно
  * не-реактивным местам (например nudge_client), а AsyncStorage асинхронен. */
 let _cachedEnabled = false;
+let _cachedConfig = FRIENDS_TOGETHER_CLIENT_DEFAULTS;
 let _hydrated = false;
 let _primePromise: Promise<void> | null = null;
 
@@ -78,8 +132,9 @@ async function readCacheOnce(): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
     if (!raw) { _hydrated = true; return; }
-    const parsed = JSON.parse(raw) as { bools?: Record<string, unknown> };
+    const parsed = JSON.parse(raw) as { bools?: Record<string, unknown>; numbers?: Record<string, unknown> };
     _cachedEnabled = parsed?.bools?.[FRIENDS_TOGETHER_FLAG_KEY] === true;
+    _cachedConfig = friendsTogetherClientConfigFromNumbers(parsed?.numbers);
   } catch {
     // best-effort: держим дефолт false
   } finally {
@@ -98,15 +153,21 @@ export function isFriendsTogetherEnabled(): boolean {
   return _cachedEnabled;
 }
 
+export function getFriendsTogetherConfig(): FriendsTogetherClientConfig {
+  return _cachedConfig;
+}
+
 export type FriendsTogetherFlagPolicy = Readonly<{
   enabled: boolean;
   remoteHydrated: boolean;
+  config: FriendsTogetherClientConfig;
 }>;
 
 function readPolicy(): FriendsTogetherFlagPolicy {
   return {
     enabled: _cachedEnabled,
     remoteHydrated: _hydrated,
+    config: _cachedConfig,
   };
 }
 
@@ -117,20 +178,12 @@ export function useFriendsTogetherEnabled(): FriendsTogetherFlagPolicy {
     // Первый маунт может опередить primeFriendsTogetherFlag() из bootstrap — подстрахуемся.
     void primeFriendsTogetherFlag().then(() => {
       const next = readPolicy();
-      setPolicy((current) => (
-        current.enabled === next.enabled && current.remoteHydrated === next.remoteHydrated
-          ? current
-          : next
-      ));
+      setPolicy(next);
     });
     const sub = onAppEvent('remote_config_changed', () => {
       void readCacheOnce().then(() => {
         const next = readPolicy();
-        setPolicy((current) => (
-          current.enabled === next.enabled && current.remoteHydrated === next.remoteHydrated
-            ? current
-            : next
-        ));
+        setPolicy(next);
       });
     });
     return () => sub.remove();

@@ -131,6 +131,16 @@ export function starsForLevel(level: number): number {
   return LEVEL_STAR_REWARDS[level - 1] ?? 0;
 }
 
+/** Сумма всех ещё не забранных вех при скачке через несколько уровней. */
+export function starsForLevelRange(claimedLevel: number, targetLevel: number): number {
+  const from = Math.max(1, Math.min(MAX_FRIENDSHIP_LEVEL, Math.floor(claimedLevel) || 1));
+  const to = Math.max(1, Math.min(MAX_FRIENDSHIP_LEVEL, Math.floor(targetLevel) || 1));
+  if (to <= from) return 0;
+  let total = 0;
+  for (let level = from + 1; level <= to; level += 1) total += starsForLevel(level);
+  return total;
+}
+
 /* ------------------------------ weekly chest ------------------------------- */
 
 export const CHEST_TIERS: readonly number[] = [6000, 12000, 20000];
@@ -160,12 +170,13 @@ export function weeklyChestProgress(
   cap: number = CHEST_CAP_PER_FRIEND,
   topN: number = CHEST_TOP_N,
   minPairLevel: number = CHEST_MIN_PAIR_LEVEL,
+  boostMultiplier: number = CHEST_BOOST_MULTIPLIER,
 ): number {
   const contributions = friends
     .filter((f) => f.pairLevel >= minPairLevel)
     .map((f) => {
       const capped = Math.min(Math.max(0, Math.floor(f.weeklyXp) || 0), cap);
-      return f.boosted ? capped * CHEST_BOOST_MULTIPLIER : capped;
+      return f.boosted ? capped * Math.max(1, Math.floor(boostMultiplier) || 1) : capped;
     })
     .sort((a, b) => b - a)
     .slice(0, Math.max(0, Math.floor(topN)));
@@ -178,12 +189,16 @@ export function weeklyChestTopContributors(
   topN: number = CHEST_TOP_N,
   cap: number = CHEST_CAP_PER_FRIEND,
   minPairLevel: number = CHEST_MIN_PAIR_LEVEL,
+  boostMultiplier: number = CHEST_BOOST_MULTIPLIER,
 ): { friendUid: string; contribution: number }[] {
   return friends
     .filter((f) => f.pairLevel >= minPairLevel)
     .map((f) => {
       const capped = Math.min(Math.max(0, Math.floor(f.weeklyXp) || 0), cap);
-      return { friendUid: f.friendUid, contribution: f.boosted ? capped * CHEST_BOOST_MULTIPLIER : capped };
+      return {
+        friendUid: f.friendUid,
+        contribution: f.boosted ? capped * Math.max(1, Math.floor(boostMultiplier) || 1) : capped,
+      };
     })
     .sort((a, b) => b.contribution - a.contribution)
     .slice(0, Math.max(0, Math.floor(topN)));
@@ -356,9 +371,10 @@ function clampInt(value: unknown, min: number, max: number, fallback: number): n
 }
 
 function clampNumberArray(value: unknown, fallback: readonly number[], min: number, max: number): readonly number[] {
-  if (!Array.isArray(value) || value.length === 0) return fallback;
+  if (!Array.isArray(value) || value.length !== fallback.length) return fallback;
   const out = value.map((v) => clampInt(v, min, max, NaN));
   if (out.some((n) => Number.isNaN(n))) return fallback;
+  for (let i = 1; i < out.length; i += 1) if (out[i] < out[i - 1]) return fallback;
   return out;
 }
 
@@ -376,7 +392,7 @@ export function friendsTogetherConfigFromNumbers(
     levelThresholds: clampNumberArray(n.friends_level_thresholds, d.levelThresholds, 0, 100000),
     chestTiers: clampNumberArray(n.friends_chest_tiers, d.chestTiers, 0, 10_000_000),
     chestCapPerFriend: clampInt(n.friends_chest_cap_per_friend, 0, 1_000_000, d.chestCapPerFriend),
-    chestTopN: clampInt(n.friends_chest_top_n, 1, 1000, d.chestTopN),
+    chestTopN: clampInt(n.friends_chest_top_n, 1, 100, d.chestTopN),
     chestMinPairLevel: clampInt(n.friends_chest_min_pair_level, 1, MAX_FRIENDSHIP_LEVEL, d.chestMinPairLevel),
     chestMinMyDays: clampInt(n.friends_chest_min_days, 0, 7, d.chestMinMyDays),
     chestMinMyWeeklyXp: clampInt(n.friends_chest_min_xp, 0, 1_000_000, d.chestMinMyWeeklyXp),

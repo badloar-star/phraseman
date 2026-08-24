@@ -10,6 +10,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { createHash, randomUUID } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
@@ -19,6 +20,8 @@ import {
   TOURNAMENT_CURATED_COLLECTION,
   TOURNAMENT_TASKS_COLLECTION,
   TOURNAMENT_SCHEDULE_COLLECTION,
+  TOURNAMENT_PRIVATE_STATE_COLLECTION,
+  TOURNAMENT_POOL_BARRIER_DOC,
   normalizeTournamentCuratedSet,
   tournamentRoomId,
   validateTournamentTask,
@@ -72,10 +75,72 @@ import {
   type SpeedMatchItem,
 } from './tournament_ai_generator';
 import { openAiChat } from './explain/explain_provider';
-import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
+import {
+  assertJobEnabled,
+  resolveJobConfig,
+  resolveTournamentSemanticJobConfig,
+  type TournamentSemanticJobConfig,
+} from './openai_jobs_config';
 import { loadEligibleTournamentCellCounts } from './tournament_task_eligibility';
 import { isOwnerApprovedTournamentMode } from './tournament_mode_contract';
 import { assertTournamentsReleased } from './tournament_release_gate';
+import {
+  ALL_V11_MODES,
+  buildTournamentV11Candidates,
+  type V11CandidateSourceDay,
+} from './tournament_pool_v11_candidates';
+import {
+  selectTournamentV11Candidates,
+  TOURNAMENT_V11_CELL_QUOTAS,
+} from './tournament_pool_v11_selector';
+import {
+  applySemanticJobCheckpoint,
+  applySemanticJobPendingReview,
+  assertSemanticJobReviewIdentity,
+  claimSemanticJobLease,
+  createInitialSemanticJobState,
+  dryRunTournamentSemanticJob,
+  runTournamentSemanticJobBatch,
+  settleSemanticJobBatch,
+  type SemanticJobRepository,
+  type SemanticJobState,
+  type SemanticJobReviewIdentity,
+  type TournamentSemanticJobBatchResult,
+  type TournamentSemanticJobDryRun,
+} from './tournament_semantic_job';
+import {
+  loadHistoricalTournamentSignatures,
+  type TournamentReadyBarrier,
+  type TournamentSemanticHistoryAdapter,
+} from './tournament_semantic_history';
+import {
+  createTournamentSemanticReceiptStore,
+  semanticReceiptId,
+  validateTournamentSemanticReceipt,
+  type TournamentSemanticReceipt,
+  type TournamentSemanticReceiptPersistence,
+} from './tournament_semantic_receipt_store';
+import {
+  reviewTournamentCandidate,
+  TOURNAMENT_SEMANTIC_PROMPTS,
+  type TournamentSemanticReviewProvider,
+} from './tournament_semantic_review';
+import { createTournamentSemanticOpenAiProvider } from './tournament_semantic_openai_provider';
+import {
+  allocateSemanticAttemptOrdinals,
+  createReservedSemanticAttempt,
+  resumeSemanticAttempt,
+  transitionSemanticAttempt,
+  type TournamentSemanticAttempt,
+} from './tournament_semantic_attempt_store';
+import {
+  finalizeTournamentV11Bundle,
+  tournamentV11BundlePublicationStatus,
+  type TournamentV11BundleJobBinding,
+} from './tournament_pool_v11_bundle';
+import { finalizeTournamentV11TaskPool } from './tournament_pool_v11_factory';
+import { auditTournamentV11RuntimePool } from './tournament_pool_v11_runtime_audit';
+import type { TournamentSemanticCandidate } from './tournament_semantic_contract';
 
 const REGION = 'us-central1';
 const ID_RE = /^[A-Za-z0-9._:-]{1,160}$/;
@@ -1549,107 +1614,1060 @@ export async function runSpeedMatchGeneration(params: {
 
 // ── Автодобор комплекта ─────────────────────────────────────────────────────
 
+export const TOURNAMENT_POOL_V11_VERSION = 'tpool_20260808_v11' as const;
+const TOURNAMENT_SEMANTIC_JOBS_COLLECTION = 'tournament_semantic_jobs';
+const TOURNAMENT_SEMANTIC_RECEIPTS_COLLECTION = 'tournament_semantic_review_receipts';
+const TOURNAMENT_POOL_V11_BUNDLES_COLLECTION = 'tournament_pool_v11_bundles';
+const V11_DEFAULT_MAX_CANDIDATES = 4;
+const V11_MAX_CANDIDATES = 6;
+
+export type AdminFillTournamentPoolAction = 'dry_run' | 'run_batch' | 'status';
+export type AdminFillTournamentPoolRequest = Readonly<{
+  action: AdminFillTournamentPoolAction;
+  poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
+  jobId?: string;
+  maxCandidates: number;
+}>;
+
+export type AdminTournamentV11Cells = Readonly<Record<string, Readonly<Record<string, number>>>>;
+type AdminTournamentV11DryRun = TournamentSemanticJobDryRun & Readonly<{
+  cells: AdminTournamentV11Cells;
+}>;
+type AdminTournamentV11Batch = TournamentSemanticJobBatchResult & Readonly<{
+  cells?: AdminTournamentV11Cells;
+  shortages?: readonly string[];
+}>;
+
+export interface AdminTournamentV11Dependencies {
+  dryRun(input: Readonly<{ poolVersion: typeof TOURNAMENT_POOL_V11_VERSION }>): Promise<AdminTournamentV11DryRun>;
+  runBatch(input: Readonly<{
+    poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
+    jobId?: string;
+    maxCandidates: number;
+  }>): Promise<AdminTournamentV11Batch>;
+  status(input: Readonly<{
+    poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
+    jobId: string;
+  }>): Promise<AdminTournamentV11Batch>;
+}
+
+export type AdminTournamentV11Response = Readonly<{
+  ok: true;
+  action: AdminFillTournamentPoolAction;
+  poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
+  jobId: string | null;
+  state: 'preflight' | 'running' | 'paused' | 'blocked' | 'ready';
+  continuation: boolean;
+  paused: boolean;
+  blocked: boolean;
+  shortage: boolean;
+  cursor: number;
+  totalCandidates: number;
+  processed: number;
+  approved: number;
+  rejected: number;
+  quarantined: number;
+  cacheHits: number;
+  providerAttempts: number;
+  transientRetries: number;
+  cells: AdminTournamentV11Cells;
+  shortages: readonly string[];
+  modes: typeof ALL_V11_MODES;
+  feasibility: TournamentSemanticJobDryRun | null;
+}>;
+
+export function parseAdminFillTournamentPoolRequest(data: unknown): AdminFillTournamentPoolRequest {
+  const record = onlyKeys(data, [
+    'action', 'dryRun', 'poolVersion', 'jobId', 'maxCandidates',
+    // Accepted only to keep the existing Admin v2 click envelope compatible.
+    'level', 'maxTasks', 'healthy',
+  ], 'tournament_fill_invalid');
+  if (record.dryRun !== undefined && typeof record.dryRun !== 'boolean') {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  const requestedAction = record.action === undefined ? '' : String(record.action);
+  if (requestedAction && !['dry_run', 'run_batch', 'status'].includes(requestedAction)) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  const action = (requestedAction || (record.dryRun === true ? 'dry_run' : 'run_batch')) as AdminFillTournamentPoolAction;
+  if (record.dryRun === true && action !== 'dry_run') {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  if (record.poolVersion !== undefined && record.poolVersion !== TOURNAMENT_POOL_V11_VERSION) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  if (record.level !== undefined && !isTournamentAiLevel(String(record.level).trim().toUpperCase())) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  if (record.maxTasks !== undefined && !Number.isFinite(Number(record.maxTasks))) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  if (record.healthy !== undefined && typeof record.healthy !== 'boolean') {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  const maxCandidates = record.maxCandidates === undefined
+    ? V11_DEFAULT_MAX_CANDIDATES : Number(record.maxCandidates);
+  if (!Number.isSafeInteger(maxCandidates) || maxCandidates < 1 || maxCandidates > V11_MAX_CANDIDATES) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  const jobId = record.jobId === undefined ? undefined : String(record.jobId).trim();
+  if (jobId !== undefined && !/^tsj_[a-f0-9]{64}$/u.test(jobId)) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  if (action === 'status' && !jobId) {
+    throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+  }
+  return Object.freeze({
+    action,
+    poolVersion: TOURNAMENT_POOL_V11_VERSION,
+    ...(jobId ? { jobId } : {}),
+    maxCandidates,
+  });
+}
+
+function progressResponse(
+  action: AdminFillTournamentPoolAction,
+  batch: AdminTournamentV11Batch,
+): AdminTournamentV11Response {
+  const shortages = Object.freeze([...(batch.shortages ?? [])]);
+  const state = batch.state === 'ready' && batch.continuation ? 'running' : batch.state;
+  return Object.freeze({
+    ok: true,
+    action,
+    poolVersion: TOURNAMENT_POOL_V11_VERSION,
+    jobId: batch.jobId,
+    state,
+    continuation: batch.continuation,
+    paused: state === 'paused',
+    blocked: state === 'blocked',
+    shortage: batch.shortage || shortages.length > 0,
+    cursor: batch.cursor,
+    totalCandidates: batch.totalCandidates,
+    processed: batch.processed,
+    approved: batch.approved,
+    rejected: batch.rejected,
+    quarantined: batch.quarantined,
+    cacheHits: batch.cacheHits,
+    providerAttempts: batch.providerAttempts,
+    transientRetries: batch.transientRetries,
+    cells: Object.freeze({ ...(batch.cells ?? {}) }),
+    shortages,
+    modes: ALL_V11_MODES,
+    feasibility: null,
+  });
+}
+
+export async function runAdminFillTournamentPoolV11(
+  data: unknown,
+  deps: AdminTournamentV11Dependencies,
+): Promise<AdminTournamentV11Response> {
+  const input = parseAdminFillTournamentPoolRequest(data);
+  if (input.action === 'dry_run') {
+    const feasibility = await deps.dryRun({ poolVersion: input.poolVersion });
+    const shortages = Object.freeze([...feasibility.diversityShortages]);
+    return Object.freeze({
+      ok: true,
+      action: 'dry_run',
+      poolVersion: input.poolVersion,
+      jobId: null,
+      state: feasibility.diversityFeasible ? 'preflight' : 'blocked',
+      continuation: false,
+      paused: false,
+      blocked: !feasibility.diversityFeasible,
+      shortage: shortages.length > 0,
+      cursor: 0,
+      totalCandidates: feasibility.sourceCandidates,
+      processed: 0,
+      approved: 0,
+      rejected: 0,
+      quarantined: 0,
+      cacheHits: 0,
+      providerAttempts: 0,
+      transientRetries: 0,
+      cells: feasibility.cells,
+      shortages,
+      modes: ALL_V11_MODES,
+      feasibility,
+    });
+  }
+  if (input.action === 'status') {
+    return progressResponse('status', await deps.status({
+      poolVersion: input.poolVersion,
+      jobId: input.jobId!,
+    }));
+  }
+  return progressResponse('run_batch', await deps.runBatch({
+    poolVersion: input.poolVersion,
+    jobId: input.jobId,
+    maxCandidates: input.maxCandidates,
+  }));
+}
+
+function jobStateFrom(data: FirebaseFirestore.DocumentData | undefined): SemanticJobState {
+  if (!data) throw new HttpsError('not-found', 'tournament_semantic_job_not_found');
+  return Object.freeze({
+    kind: data.kind,
+    jobId: data.jobId,
+    poolVersion: data.poolVersion,
+    queueSha256: data.queueSha256,
+    reviewContractVersion: data.reviewContractVersion,
+    promptSetSha256: data.promptSetSha256,
+    primaryModel: data.primaryModel,
+    adversarialModel: data.adversarialModel,
+    totalCandidates: data.totalCandidates,
+    revision: data.revision,
+    lifecycle: data.lifecycle,
+    cursor: data.cursor,
+    progress: Object.freeze({ ...(data.progress ?? {}) }),
+    pendingReview: data.pendingReview === null ? null : Object.freeze({
+      ...data.pendingReview,
+      evidenceRefs: Object.freeze([...(data.pendingReview?.evidenceRefs ?? [])]),
+    }),
+    lease: data.lease === null ? null : Object.freeze({ ...data.lease }),
+    pauseReason: data.pauseReason,
+    createdAtMs: data.createdAtMs,
+    updatedAtMs: data.updatedAtMs,
+  }) as SemanticJobState;
+}
+
+function batchFromState(
+  state: SemanticJobState,
+  cells: AdminTournamentV11Cells = {},
+  shortages: readonly string[] = [],
+): AdminTournamentV11Batch {
+  return Object.freeze({
+    jobId: state.jobId,
+    poolVersion: state.poolVersion,
+    state: state.lifecycle,
+    revision: state.revision,
+    cursor: state.cursor,
+    totalCandidates: state.totalCandidates,
+    ...state.progress,
+    continuation: state.lifecycle === 'running' || state.lifecycle === 'paused',
+    shortage: state.lifecycle === 'blocked' && state.pauseReason === 'candidate_shortage',
+    cells,
+    shortages: Object.freeze([...shortages]),
+  });
+}
+
+function tournamentV11BundleJobBinding(state: SemanticJobState): TournamentV11BundleJobBinding {
+  return Object.freeze({
+    jobId: state.jobId,
+    queueSha256: state.queueSha256,
+    reviewContractVersion: state.reviewContractVersion,
+    promptSetSha256: state.promptSetSha256,
+    primaryModel: state.primaryModel,
+    adversarialModel: state.adversarialModel,
+  });
+}
+
+function sourceDays(): readonly V11CandidateSourceDay[] {
+  // Lazy load: unit tests and status calls do not parse the 2.6 MiB corpus.
+  return require('./generated/tournament_content.json') as readonly V11CandidateSourceDay[];
+}
+
+function candidateCells(candidates: readonly TournamentSemanticCandidate[]): AdminTournamentV11Cells {
+  const counts: Record<string, { available: number; required: number }> = {};
+  for (const [cell, required] of Object.entries(TOURNAMENT_V11_CELL_QUOTAS)) {
+    counts[cell] = { available: 0, required };
+  }
+  for (const candidate of candidates) {
+    const cell = `${candidate.mode}:${candidate.difficulty}`;
+    if (counts[cell]) counts[cell].available += 1;
+  }
+  return Object.freeze(Object.fromEntries(Object.entries(counts).map(([key, value]) => (
+    [key, Object.freeze({ ...value })]
+  ))));
+}
+
+function receiptPersistence(db: FirebaseFirestore.Firestore): TournamentSemanticReceiptPersistence {
+  return {
+    async get(path) {
+      const snapshot = await db.doc(path).get();
+      return snapshot.exists ? snapshot.data() ?? null : null;
+    },
+    async create(path, value) {
+      try { await db.doc(path).create(value as FirebaseFirestore.DocumentData); }
+      catch (error) {
+        if ((error as { code?: number | string })?.code === 6
+          || (error as { code?: number | string })?.code === 'already-exists') throw new Error('already_exists');
+        throw error;
+      }
+    },
+  };
+}
+
+function semanticJobReviewIdentity(cfg: TournamentSemanticJobConfig): SemanticJobReviewIdentity {
+  return Object.freeze({
+    reviewContractVersion: TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
+    promptSetSha256: TOURNAMENT_SEMANTIC_PROMPTS.promptSetSha256,
+    primaryModel: cfg.primaryModel,
+    adversarialModel: cfg.adversarialModel,
+  });
+}
+
+function receiptPath(candidate: TournamentSemanticCandidate, cfg: TournamentSemanticJobConfig): string {
+  const id = semanticReceiptId(
+    candidate.contentSha256,
+    TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
+    TOURNAMENT_SEMANTIC_PROMPTS.promptSetSha256,
+    { primaryModel: cfg.primaryModel, adversarialModel: cfg.adversarialModel },
+  );
+  return `${TOURNAMENT_SEMANTIC_RECEIPTS_COLLECTION}/${id}`;
+}
+
+async function cachedTerminal(
+  persistence: TournamentSemanticReceiptPersistence,
+  candidate: TournamentSemanticCandidate,
+  cfg: TournamentSemanticJobConfig,
+) {
+  const path = receiptPath(candidate, cfg);
+  const raw = await persistence.get(path);
+  if (raw === null) return null;
+  validateTournamentSemanticReceipt(raw, candidate);
+  if (raw.decision !== 'PASS' && raw.decision !== 'REJECT') throw new Error('receipt_invalid');
+  return Object.freeze({ decision: raw.decision, reference: path });
+}
+
+async function readyBarrier(db: FirebaseFirestore.Firestore): Promise<TournamentReadyBarrier> {
+  const snapshot = await db.collection(TOURNAMENT_PRIVATE_STATE_COLLECTION)
+    .doc(TOURNAMENT_POOL_BARRIER_DOC).get();
+  const data = snapshot.data();
+  if (!data || data.state !== 'ready' || typeof data.generation !== 'string'
+    || !Number.isSafeInteger(data.revision)) throw new Error('semantic_history_barrier_invalid');
+  return Object.freeze({ state: 'ready', generation: data.generation, revision: data.revision });
+}
+
+function historyAdapter(
+  db: FirebaseFirestore.Firestore,
+  activeJobId?: string,
+): TournamentSemanticHistoryAdapter {
+  return {
+    async readBarrier() {
+      const snapshot = await db.collection(TOURNAMENT_PRIVATE_STATE_COLLECTION)
+        .doc(TOURNAMENT_POOL_BARRIER_DOC).get();
+      const data = snapshot.data();
+      return data ? { state: String(data.state ?? ''), generation: String(data.generation ?? ''), revision: Number(data.revision) } : null;
+    },
+    async readTaskSignaturePage(input) {
+      let query: FirebaseFirestore.Query = db.collection(TOURNAMENT_TASKS_COLLECTION)
+        .where('poolVersion', '==', input.generation)
+        .orderBy(admin.firestore.FieldPath.documentId())
+        .limit(input.limit);
+      if (input.cursor) query = query.startAfter(input.cursor);
+      const snapshot = await query.get();
+      return {
+        signatures: snapshot.docs.map((item) => item.get('semanticSignature')),
+        nextCursor: snapshot.size === input.limit ? snapshot.docs[snapshot.docs.length - 1].id : null,
+      };
+    },
+    async readApprovalSignaturePage(input) {
+      let query: FirebaseFirestore.Query = db.collection(TOURNAMENT_SEMANTIC_RECEIPTS_COLLECTION)
+        .orderBy(admin.firestore.FieldPath.documentId())
+        .limit(input.limit);
+      if (input.cursor) query = query.startAfter(input.cursor);
+      const snapshot = await query.get();
+      const signatures: string[] = [];
+      for (const item of snapshot.docs) {
+        const data = item.data();
+        const signature = historicalTournamentSemanticApprovalSignature(data, input, activeJobId);
+        if (signature) signatures.push(signature);
+      }
+      return {
+        signatures,
+        nextCursor: snapshot.size === input.limit ? snapshot.docs[snapshot.docs.length - 1].id : null,
+      };
+    },
+  };
+}
+
+async function candidateContext(
+  db: FirebaseFirestore.Firestore,
+  cfg: TournamentSemanticJobConfig,
+  activeJobId?: string,
+) {
+  const baseline = buildTournamentV11Candidates({ sourceDays: sourceDays() });
+  const barrier = await readyBarrier(db);
+  const history = await loadHistoricalTournamentSignatures(historyAdapter(db, activeJobId), barrier, {
+    reviewContractVersion: TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
+    promptSetSha256: TOURNAMENT_SEMANTIC_PROMPTS.promptSetSha256,
+    primaryModel: cfg.primaryModel,
+    adversarialModel: cfg.adversarialModel,
+  });
+  const build = buildTournamentV11Candidates({
+    sourceDays: sourceDays(),
+    historicalSemanticSignatures: history.signatures,
+  });
+  return Object.freeze({ baseline, build, history });
+}
+
+export function isHistoricalTournamentSemanticApproval(
+  data: Readonly<Record<string, unknown>>,
+  contract: Readonly<{
+    reviewContractVersion: string;
+    promptSetSha256: string;
+    primaryModel: string;
+    adversarialModel: string;
+  }>,
+  activeJobId?: string,
+): boolean {
+  return data.decision === 'PASS'
+    && data.reviewContractVersion === contract.reviewContractVersion
+    && data.promptSetSha256 === contract.promptSetSha256
+    && data.primaryModel === contract.primaryModel
+    && data.adversarialModel === contract.adversarialModel
+    && (activeJobId === undefined || data.generationJobId !== activeJobId);
+}
+
+export function historicalTournamentSemanticApprovalSignature(
+  data: Readonly<Record<string, unknown>>,
+  contract: Readonly<{
+    reviewContractVersion: string;
+    promptSetSha256: string;
+    primaryModel: string;
+    adversarialModel: string;
+  }>,
+  activeJobId?: string,
+): string | null {
+  return isHistoricalTournamentSemanticApproval(data, contract, activeJobId)
+    && typeof data.semanticSignature === 'string'
+    && /^[a-f0-9]{64}$/u.test(data.semanticSignature)
+    ? data.semanticSignature : null;
+}
+
+export function publicationContinuationForStatus(
+  lifecycle: SemanticJobState['lifecycle'],
+  bundleRootComplete: boolean,
+  checkpointPhase: unknown,
+): boolean {
+  if (lifecycle === 'running' || lifecycle === 'paused') return true;
+  return lifecycle === 'ready' && (!bundleRootComplete || checkpointPhase !== 'ready');
+}
+
+export function finalizeAndAuditTournamentV11Selection(
+  selection: Parameters<typeof finalizeTournamentV11TaskPool>[0]['selection'],
+  receipts: ReadonlyMap<string, TournamentSemanticReceipt>,
+) {
+  const finalized = finalizeTournamentV11TaskPool({ selection, receipts });
+  const runtimeAudit = auditTournamentV11RuntimePool(finalized);
+  return Object.freeze({ finalized, runtimeAudit });
+}
+
+export function semanticJobLeaseAuthorizesAttempt(
+  job: Readonly<{ lifecycle?: unknown; lease?: Readonly<{ token?: unknown; expiresAtMs?: unknown }> | null }>,
+  leaseToken: string,
+  nowMs: number,
+): boolean {
+  return job.lifecycle === 'running'
+    && job.lease?.token === leaseToken
+    && Number.isSafeInteger(job.lease.expiresAtMs)
+    && nowMs < Number(job.lease.expiresAtMs);
+}
+
+export function semanticProviderAttemptIdFromError(error: unknown): string | null {
+  if (!error || typeof error !== 'object' || Array.isArray(error)) return null;
+  const value = (error as Readonly<{ semanticAttemptId?: unknown }>).semanticAttemptId;
+  return typeof value === 'string' && /^tsa_[a-f0-9]{64}$/u.test(value) ? value : null;
+}
+
+class SemanticProviderAttemptFailure extends Error {
+  readonly semanticAttemptId: string;
+  readonly semanticAttemptOrdinal: number;
+  readonly semanticAttemptPassOrdinal: number;
+
+  constructor(
+    semanticAttemptId: string,
+    semanticAttemptOrdinal: number,
+    semanticAttemptPassOrdinal: number,
+    cause: unknown,
+  ) {
+    super(cause instanceof Error ? cause.message : 'semantic_provider_error');
+    this.name = 'SemanticProviderAttemptFailure';
+    this.semanticAttemptId = semanticAttemptId;
+    this.semanticAttemptOrdinal = semanticAttemptOrdinal;
+    this.semanticAttemptPassOrdinal = semanticAttemptPassOrdinal;
+  }
+}
+
+function firestoreJobRepository(
+  db: FirebaseFirestore.Firestore,
+  candidateById: ReadonlyMap<string, TournamentSemanticCandidate>,
+  active: { jobId: string; leaseToken: string },
+): SemanticJobRepository {
+  const root = (jobId: string) => db.collection(TOURNAMENT_SEMANTIC_JOBS_COLLECTION).doc(jobId);
+  const mutate = async (
+    jobId: string,
+    apply: (current: SemanticJobState) => SemanticJobState,
+  ): Promise<SemanticJobState> => db.runTransaction(async (tx) => {
+    const ref = root(jobId);
+    const snapshot = await tx.get(ref);
+    const current = jobStateFrom(snapshot.data());
+    const next = apply(current);
+    tx.set(ref, { ...next, cells: snapshot.get('cells') ?? {} });
+    return next;
+  });
+  return {
+    async createOrResume(input) {
+      return db.runTransaction(async (tx) => {
+        const ref = root(input.jobId);
+        const snapshot = await tx.get(ref);
+        active.jobId = input.jobId;
+        if (snapshot.exists) return jobStateFrom(snapshot.data());
+        const state = createInitialSemanticJobState(input);
+        tx.create(ref, { ...state, cells: {} });
+        return state;
+      });
+    },
+    async claimLease(input) {
+      const state = await mutate(input.jobId, (current) => claimSemanticJobLease(current, input));
+      active.jobId = input.jobId;
+      active.leaseToken = input.leaseToken;
+      return state;
+    },
+    async savePendingReview(input) {
+      return mutate(input.jobId, (current) => applySemanticJobPendingReview(current, input));
+    },
+    async checkpoint(input) {
+      return db.runTransaction(async (tx) => {
+        const ref = root(input.jobId);
+        const snapshot = await tx.get(ref);
+        const current = jobStateFrom(snapshot.data());
+        const next = applySemanticJobCheckpoint(current, input);
+        const terminalRef = ref.collection('terminals').doc(input.terminal.candidateId);
+        const terminalSnapshot = await tx.get(terminalRef);
+        const candidate = candidateById.get(input.terminal.candidateId);
+        if (!candidate || candidate.contentSha256 !== input.terminal.contentSha256) {
+          throw new Error('semantic_job_candidate_missing');
+        }
+        const terminalValue = {
+          ...input.terminal,
+          mode: candidate.mode,
+          difficulty: candidate.difficulty,
+          semanticSignature: candidate.semanticSignature,
+        };
+        if (terminalSnapshot.exists) {
+          if (JSON.stringify(terminalSnapshot.data()) !== JSON.stringify(terminalValue)) {
+            throw new Error('semantic_job_terminal_conflict');
+          }
+        } else tx.create(terminalRef, terminalValue);
+        const cells = { ...(snapshot.get('cells') ?? {}) } as Record<string, Record<string, number>>;
+        const cell = `${candidate.mode}:${candidate.difficulty}`;
+        const previous = cells[cell] ?? {};
+        cells[cell] = {
+          processed: Number(previous.processed ?? 0) + 1,
+          approved: Number(previous.approved ?? 0) + (input.terminal.decision === 'PASS' ? 1 : 0),
+          rejected: Number(previous.rejected ?? 0) + (input.terminal.decision === 'REJECT' ? 1 : 0),
+          quarantined: Number(previous.quarantined ?? 0) + (input.terminal.decision === 'QUARANTINED' ? 1 : 0),
+          cacheHits: Number(previous.cacheHits ?? 0) + (input.terminal.source === 'cache' ? 1 : 0),
+        };
+        tx.set(ref, { ...next, cells });
+        return next;
+      });
+    },
+    async settle(input) {
+      return mutate(input.jobId, (current) => settleSemanticJobBatch(current, input));
+    },
+  };
+}
+
+async function reserveSemanticAttempt(
+  db: FirebaseFirestore.Firestore,
+  active: { jobId: string; leaseToken: string },
+  candidate: TournamentSemanticCandidate,
+  pass: 'primary' | 'adversarial',
+  dailyCap: number,
+): Promise<TournamentSemanticAttempt | null> {
+  if (!active.jobId || !active.leaseToken) throw new Error('semantic_job_lease_missing');
+  const day = utcDateKey(Date.now());
+  const usageRef = db.collection(AI_USAGE_COLLECTION).doc(day);
+  const jobRef = db.collection(TOURNAMENT_SEMANTIC_JOBS_COLLECTION).doc(active.jobId);
+  const ordinalKey = createHash('sha256').update(`${candidate.candidateId}\n${pass}`, 'utf8').digest('hex');
+  return db.runTransaction(async (tx) => {
+    const jobSnapshot = await tx.get(jobRef);
+    const nowMs = Date.now();
+    if (!semanticJobLeaseAuthorizesAttempt(jobSnapshot.data() ?? {}, active.leaseToken, nowMs)) {
+      throw new Error('semantic_job_stale_lease');
+    }
+    const activeAttempts = { ...(jobSnapshot.get('semanticActiveAttempts') ?? {}) } as Record<string, string>;
+    const activeAttemptId = activeAttempts[ordinalKey];
+    let abandoned: TournamentSemanticAttempt | null = null;
+    if (typeof activeAttemptId === 'string' && /^tsa_[a-f0-9]{64}$/u.test(activeAttemptId)) {
+      const activeAttemptRef = jobRef.collection('attempts').doc(activeAttemptId);
+      const activeAttemptSnapshot = await tx.get(activeAttemptRef);
+      if (activeAttemptSnapshot.exists) {
+        const existing = activeAttemptSnapshot.data() as TournamentSemanticAttempt;
+        const resumed = resumeSemanticAttempt(existing, active.leaseToken);
+        if (resumed.action === 'reuse_returned' || resumed.action === 'already_recorded'
+          || resumed.action === 'transition_calling') return resumed.attempt;
+        abandoned = existing;
+      }
+    }
+    const usage = await tx.get(usageRef);
+    const used = Number(usage.get('semanticRequests') ?? 0);
+    if (used >= dailyCap) return null;
+    const ordinals = { ...(jobSnapshot.get('semanticAttemptOrdinals') ?? {}) } as Record<string, number>;
+    const allocated = allocateSemanticAttemptOrdinals({
+      globalOrdinal: Number(jobSnapshot.get('semanticGlobalAttemptOrdinal') ?? 0),
+      passOrdinal: Number(ordinals[ordinalKey] ?? 0),
+    });
+    ordinals[ordinalKey] = allocated.passOrdinal;
+    const attempt = createReservedSemanticAttempt({
+      jobId: active.jobId,
+      candidateId: candidate.candidateId,
+      pass,
+      ordinal: allocated.ordinal,
+      passOrdinal: allocated.passOrdinal,
+      leaseToken: active.leaseToken,
+      nowMs,
+    });
+    tx.set(usageRef, {
+      semanticRequests: used + 1,
+      updatedAtMs: nowMs,
+    }, { merge: true });
+    activeAttempts[ordinalKey] = attempt.internalAttemptId;
+    tx.set(jobRef, {
+      semanticGlobalAttemptOrdinal: allocated.ordinal,
+      semanticAttemptOrdinals: ordinals,
+      semanticActiveAttempts: activeAttempts,
+    }, { merge: true });
+    if (abandoned && (abandoned.state === 'reserved' || abandoned.state === 'calling')) {
+      tx.set(jobRef.collection('attempts').doc(abandoned.internalAttemptId), transitionSemanticAttempt(abandoned, {
+        kind: 'abandoned', leaseToken: abandoned.leaseToken, nowMs,
+      }));
+    }
+    tx.create(jobRef.collection('attempts').doc(attempt.internalAttemptId), attempt);
+    return attempt;
+  });
+}
+
+function returnedSemanticProviderResponse(attempt: TournamentSemanticAttempt) {
+  if ((attempt.state !== 'returned' && attempt.state !== 'recorded')
+    || !attempt.structuredResult || !Number.isSafeInteger(attempt.inputTokens)
+    || !Number.isSafeInteger(attempt.outputTokens)) {
+    throw new Error('semantic_attempt_response_invalid');
+  }
+  const raw = Object.prototype.hasOwnProperty.call(attempt.structuredResult, 'raw')
+    ? attempt.structuredResult.raw : attempt.structuredResult;
+  return Object.freeze({
+    raw,
+    inputTokens: attempt.inputTokens!,
+    outputTokens: attempt.outputTokens!,
+  });
+}
+
+async function callSemanticProvider(
+  db: FirebaseFirestore.Firestore,
+  cfg: TournamentSemanticJobConfig,
+  active: { jobId: string; leaseToken: string },
+  candidate: TournamentSemanticCandidate,
+  request: Parameters<TournamentSemanticReviewProvider['review']>[0],
+  invokeProvider?: () => ReturnType<TournamentSemanticReviewProvider['review']>,
+): Promise<{
+  response: Awaited<ReturnType<TournamentSemanticReviewProvider['review']>>;
+  attemptId: string;
+  ordinal: number;
+  passOrdinal: number;
+  providerCalled: boolean;
+}> {
+  const reserved = await reserveSemanticAttempt(db, active, candidate, request.pass, cfg.semanticDailyRequestCap);
+  if (!reserved) throw new Error('semantic_daily_cap_exhausted');
+  const jobRef = db.collection(TOURNAMENT_SEMANTIC_JOBS_COLLECTION).doc(active.jobId);
+  const attemptRef = jobRef.collection('attempts').doc(reserved.internalAttemptId);
+  const prepared = await db.runTransaction(async (tx) => {
+    const jobSnapshot = await tx.get(jobRef);
+    const attemptSnapshot = await tx.get(attemptRef);
+    const nowMs = Date.now();
+    if (!semanticJobLeaseAuthorizesAttempt(jobSnapshot.data() ?? {}, active.leaseToken, nowMs)) {
+      throw new Error('semantic_job_stale_lease');
+    }
+    if (!attemptSnapshot.exists) throw new Error('semantic_attempt_missing');
+    const latest = attemptSnapshot.data() as TournamentSemanticAttempt;
+    const resumed = resumeSemanticAttempt(latest, active.leaseToken);
+    if (resumed.action === 'reuse_returned' || resumed.action === 'already_recorded') {
+      return Object.freeze({ attempt: resumed.attempt, callProvider: false as const });
+    }
+    if (resumed.action !== 'transition_calling') throw new Error('semantic_attempt_reconcile_required');
+    const calling = transitionSemanticAttempt(resumed.attempt, {
+      kind: 'calling', leaseToken: active.leaseToken, nowMs,
+    });
+    tx.set(attemptRef, calling);
+    return Object.freeze({ attempt: calling, callProvider: true as const });
+  });
+  let response = prepared.callProvider ? undefined : returnedSemanticProviderResponse(prepared.attempt);
+  // Secret access is deliberately after durable budget authorization and only
+  // on this real provider-attempt path. Dry-run/status/cache hits never read it.
+  if (prepared.callProvider) {
+    try {
+      if (invokeProvider) response = await invokeProvider();
+      else {
+        const apiKey = String(OPENAI_API_KEY.value() || '').trim();
+        if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
+        response = await createTournamentSemanticOpenAiProvider({ apiKey }).review(request);
+      }
+    } catch (error) {
+      throw new SemanticProviderAttemptFailure(
+        reserved.internalAttemptId, reserved.ordinal, reserved.passOrdinal, error,
+      );
+    }
+    const raw = response.raw;
+    if (raw === undefined) throw new SemanticProviderAttemptFailure(
+      reserved.internalAttemptId, reserved.ordinal, reserved.passOrdinal, new Error('provider_response_invalid'),
+    );
+    const returned = transitionSemanticAttempt(prepared.attempt, {
+      kind: 'returned',
+      leaseToken: prepared.attempt.leaseToken,
+      nowMs: Date.now(),
+      responseHash: createHash('sha256').update(JSON.stringify(raw), 'utf8').digest('hex'),
+      structuredResult: { raw },
+      inputTokens: response.inputTokens,
+      outputTokens: response.outputTokens,
+    });
+    await db.runTransaction(async (tx) => {
+      const jobSnapshot = await tx.get(jobRef);
+      const latest = await tx.get(attemptRef);
+      const nowMs = Date.now();
+      if (!semanticJobLeaseAuthorizesAttempt(jobSnapshot.data() ?? {}, active.leaseToken, nowMs)
+        || latest.get('state') !== 'calling'
+        || latest.get('leaseToken') !== prepared.attempt.leaseToken) {
+        throw new Error('semantic_attempt_stale_lease');
+      }
+      tx.set(attemptRef, { ...returned, updatedAtMs: nowMs });
+    });
+  }
+  await db.runTransaction(async (tx) => {
+    const billingRef = db.collection(AI_BILLING_COLLECTION).doc(reserved.internalAttemptId);
+    const jobSnapshot = await tx.get(jobRef);
+    const latest = await tx.get(attemptRef);
+    const billing = await tx.get(billingRef);
+    const nowMs = Date.now();
+    if (!semanticJobLeaseAuthorizesAttempt(jobSnapshot.data() ?? {}, active.leaseToken, nowMs)) {
+      throw new Error('semantic_attempt_stale_lease');
+    }
+    const latestAttempt = latest.data() as TournamentSemanticAttempt;
+    if (latestAttempt.state === 'recorded' && billing.exists) return;
+    if (latestAttempt.state !== 'returned') throw new Error('semantic_attempt_response_invalid');
+    if (!billing.exists) tx.create(billingRef, {
+      internalAttemptId: latestAttempt.internalAttemptId,
+      jobId: active.jobId,
+      candidateId: candidate.candidateId,
+      pass: request.pass,
+      model: request.model,
+      inputTokens: latestAttempt.inputTokens,
+      outputTokens: latestAttempt.outputTokens,
+      responseHash: latestAttempt.responseHash,
+      recordedAtMs: nowMs,
+    });
+    tx.set(attemptRef, transitionSemanticAttempt(latestAttempt, {
+      kind: 'recorded', leaseToken: latestAttempt.leaseToken, nowMs,
+    }));
+  });
+  if (!response) throw new Error('semantic_attempt_response_invalid');
+  return {
+    response,
+    attemptId: reserved.internalAttemptId,
+    ordinal: reserved.ordinal,
+    passOrdinal: reserved.passOrdinal,
+    providerCalled: prepared.callProvider,
+  };
+}
+
+export async function callSemanticProviderForJob(input: Readonly<{
+  db: FirebaseFirestore.Firestore;
+  config: Pick<TournamentSemanticJobConfig, 'semanticDailyRequestCap'>;
+  active: { jobId: string; leaseToken: string };
+  candidate: TournamentSemanticCandidate;
+  request: Parameters<TournamentSemanticReviewProvider['review']>[0];
+  invokeProvider: () => ReturnType<TournamentSemanticReviewProvider['review']>;
+}>) {
+  return callSemanticProvider(
+    input.db,
+    input.config as TournamentSemanticJobConfig,
+    input.active,
+    input.candidate,
+    input.request,
+    input.invokeProvider,
+  );
+}
+
+async function reviewCandidateForJob(
+  db: FirebaseFirestore.Firestore,
+  cfg: TournamentSemanticJobConfig,
+  active: { jobId: string; leaseToken: string },
+  store: ReturnType<typeof createTournamentSemanticReceiptStore>,
+  candidate: TournamentSemanticCandidate,
+) {
+  let budgetPaused = false;
+  let lastAttemptId = '';
+  const attemptOrdinals: Partial<Record<'primary' | 'adversarial', number>> = {};
+  const provider: TournamentSemanticReviewProvider = {
+    async review(request) {
+      try {
+        const called = await callSemanticProvider(db, cfg, active, candidate, request);
+        lastAttemptId = called.attemptId;
+        attemptOrdinals[request.pass] = Math.max(attemptOrdinals[request.pass] ?? 0, called.passOrdinal);
+        return called.response;
+      } catch (error) {
+        lastAttemptId = semanticProviderAttemptIdFromError(error) ?? lastAttemptId;
+        if (error instanceof SemanticProviderAttemptFailure) {
+          attemptOrdinals[request.pass] = Math.max(
+            attemptOrdinals[request.pass] ?? 0,
+            error.semanticAttemptPassOrdinal,
+          );
+        }
+        if (error instanceof Error && error.message === 'semantic_daily_cap_exhausted') budgetPaused = true;
+        throw error;
+      }
+    },
+  };
+  const startedAtMs = Date.now();
+  const reviewed = await reviewTournamentCandidate(candidate, {
+    primaryModel: cfg.primaryModel,
+    adversarialModel: cfg.adversarialModel,
+  }, provider);
+  const cumulativeProviderAttempts = (attemptOrdinals.primary ?? 0) + (attemptOrdinals.adversarial ?? 0);
+  if (budgetPaused) return Object.freeze({
+    kind: 'BUDGET_PAUSED' as const,
+    providerAttempts: cumulativeProviderAttempts,
+    providerAttemptsCumulative: true as const,
+    reason: 'daily_cap_exhausted' as const,
+  });
+  const base = {
+    contentSha256: candidate.contentSha256,
+    canonicalTaskSnapshotHash: candidate.contentSha256,
+    semanticSignature: candidate.semanticSignature,
+    candidateId: candidate.candidateId,
+    mode: candidate.mode,
+    difficulty: candidate.difficulty,
+    provenanceKeys: candidate.provenanceKeys,
+    reviewContractVersion: TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
+    primaryPromptVersion: TOURNAMENT_SEMANTIC_PROMPTS.primary.version,
+    adversarialPromptVersion: TOURNAMENT_SEMANTIC_PROMPTS.adversarial.version,
+    promptSetSha256: TOURNAMENT_SEMANTIC_PROMPTS.promptSetSha256,
+    primaryModel: cfg.primaryModel,
+    adversarialModel: cfg.adversarialModel,
+    requestAccounting: reviewed.requestAccounting,
+    createdAtMs: startedAtMs,
+    completedAtMs: Date.now(),
+    generationJobId: active.jobId,
+  } as const;
+  if (reviewed.decision === 'PASS') {
+    const receipt: TournamentSemanticReceipt = {
+      ...base,
+      decision: 'PASS',
+      primaryVerdict: reviewed.primaryVerdict,
+      adversarialVerdict: reviewed.adversarialVerdict,
+    };
+    const stored = await store.createImmutable(receipt, candidate);
+    return Object.freeze({
+      kind: 'PASS' as const,
+      providerAttempts: cumulativeProviderAttempts,
+      providerAttemptsCumulative: true as const,
+      evidenceRef: stored.id,
+    });
+  }
+  if (reviewed.decision === 'REJECT') {
+    const receipt: TournamentSemanticReceipt = {
+      ...base,
+      decision: 'REJECT',
+      primaryVerdict: reviewed.primaryVerdict,
+      ...(reviewed.adversarialVerdict ? { adversarialVerdict: reviewed.adversarialVerdict } : {}),
+      blockingFindings: reviewed.blockingFindings,
+    };
+    const stored = await store.createImmutable(receipt, candidate);
+    return Object.freeze({
+      kind: 'REJECT' as const,
+      providerAttempts: cumulativeProviderAttempts,
+      providerAttemptsCumulative: true as const,
+      evidenceRef: stored.id,
+    });
+  }
+  if (!lastAttemptId) throw new Error('semantic_review_attempt_missing');
+  const evidence: TournamentSemanticReceipt = {
+    ...base,
+    decision: 'ERROR',
+    internalAttemptId: lastAttemptId,
+    completedPasses: reviewed.completedPasses,
+    failureCode: reviewed.failureCode,
+  };
+  const stored = await store.createEvidence(evidence);
+  return Object.freeze({
+    kind: reviewed.failureCode === 'provider_error' ? 'TRANSIENT_ERROR' as const : 'MALFORMED' as const,
+    providerAttempts: cumulativeProviderAttempts,
+    providerAttemptsCumulative: true as const,
+    evidenceRef: stored.id,
+  });
+}
+
+async function approvedSelection(
+  db: FirebaseFirestore.Firestore,
+  jobId: string,
+  candidateById: ReadonlyMap<string, TournamentSemanticCandidate>,
+) {
+  const snapshot = await db.collection(TOURNAMENT_SEMANTIC_JOBS_COLLECTION).doc(jobId)
+    .collection('terminals').where('decision', '==', 'PASS').limit(5_000).get();
+  const approved = snapshot.docs
+    .map((item) => candidateById.get(item.id))
+    .filter((item): item is TournamentSemanticCandidate => Boolean(item));
+  return selectTournamentV11Candidates({ candidates: approved });
+}
+
+function publicationPersistence(db: FirebaseFirestore.Firestore) {
+  return {
+    async get(path: string) {
+      const snapshot = await db.doc(path).get();
+      return snapshot.exists ? snapshot.data() ?? null : null;
+    },
+    async create(path: string, value: unknown) {
+      try { await db.doc(path).create(value as FirebaseFirestore.DocumentData); }
+      catch (error) {
+        if ((error as { code?: number | string })?.code === 6
+          || (error as { code?: number | string })?.code === 'already-exists') throw new Error('already_exists');
+        throw error;
+      }
+    },
+    async compareAndSet(path: string, expectedRevision: number, value: unknown) {
+      await db.runTransaction(async (tx) => {
+        const ref = db.doc(path);
+        const snapshot = await tx.get(ref);
+        if (snapshot.get('revision') !== expectedRevision) throw new Error('publication_revision_conflict');
+        tx.set(ref, value as FirebaseFirestore.DocumentData);
+      });
+    },
+  };
+}
+
+function productionV11Dependencies(db: FirebaseFirestore.Firestore): AdminTournamentV11Dependencies {
+  return {
+    async dryRun(input) {
+      const cfg = await resolveTournamentSemanticJobConfig(db);
+      assertJobEnabled(cfg, 'tournament');
+      const context = await candidateContext(db, cfg);
+      const persistence = receiptPersistence(db);
+      const report = await dryRunTournamentSemanticJob({
+        poolVersion: input.poolVersion,
+        candidates: context.baseline.candidates,
+        historicalSignatures: context.history.signatures,
+        lookupCachedTerminal: (candidate) => cachedTerminal(persistence, candidate, cfg),
+        assessDiversity: async (candidates) => {
+          const selection = selectTournamentV11Candidates({ candidates });
+          return selection.ok
+            ? { feasible: true, shortages: [] }
+            : { feasible: false, shortages: selection.shortages.map((item) => `${item.axis}:${item.key}:${item.available}/${item.required}`) };
+        },
+      });
+      return Object.freeze({ ...report, cells: candidateCells(context.baseline.candidates) });
+    },
+    async runBatch(input) {
+      const cfg = await resolveTournamentSemanticJobConfig(db);
+      assertJobEnabled(cfg, 'tournament');
+      const context = await candidateContext(db, cfg, input.jobId);
+      const candidateById = new Map(context.build.candidates.map((candidate) => [candidate.candidateId, candidate] as const));
+      const active = { jobId: '', leaseToken: '' };
+      const persistence = receiptPersistence(db);
+      const store = createTournamentSemanticReceiptStore(persistence);
+      const result = await runTournamentSemanticJobBatch({
+        reviewIdentity: semanticJobReviewIdentity(cfg),
+        repository: firestoreJobRepository(db, candidateById, active),
+        loadCandidates: async () => context.build.candidates,
+        lookupCachedTerminal: (candidate) => cachedTerminal(persistence, candidate, cfg),
+        reviewCandidate: (candidate) => reviewCandidateForJob(db, cfg, active, store, candidate),
+        assessSupply: async (state) => (await approvedSelection(db, state.jobId, candidateById)).ok ? 'ready' : 'continue',
+        nowMs: () => Date.now(),
+        createLeaseToken: () => randomUUID(),
+      }, {
+        poolVersion: input.poolVersion,
+        jobId: input.jobId,
+        maxCandidates: input.maxCandidates,
+        deadlineAtMs: Date.now() + 480_000,
+      });
+      const jobSnapshot = await db.collection(TOURNAMENT_SEMANTIC_JOBS_COLLECTION).doc(result.jobId).get();
+      const jobState = jobStateFrom(jobSnapshot.data());
+      const selection = await approvedSelection(db, result.jobId, candidateById);
+      let continuation = result.continuation;
+      let publicationConflict = false;
+      if (result.state === 'ready' && selection.ok) {
+        const receipts = new Map<string, TournamentSemanticReceipt>();
+        for (const candidate of selection.selected) {
+          const raw = await persistence.get(receiptPath(candidate, cfg));
+          validateTournamentSemanticReceipt(raw, candidate);
+          if (raw.decision !== 'PASS') throw new Error('bundle_receipt_missing');
+          receipts.set(candidate.contentSha256, raw);
+        }
+        const { finalized, runtimeAudit } = finalizeAndAuditTournamentV11Selection(selection, receipts);
+        try {
+          const bundle = await finalizeTournamentV11Bundle({
+            finalized,
+            runtimeAudit,
+            jobBinding: tournamentV11BundleJobBinding(jobState),
+            persistence: publicationPersistence(db),
+            maxOperations: 100,
+          });
+          continuation = bundle.continuation;
+        } catch (error) {
+          if (error instanceof Error && ['publication_plan_conflict', 'publication_conflict',
+            'publication_root_premature'].includes(error.message)) {
+            publicationConflict = true;
+            continuation = false;
+          } else throw error;
+        }
+      }
+      const shortages = publicationConflict ? ['publication_conflict']
+        : selection.ok ? [] : selection.shortages.map((item) => `${item.axis}:${item.key}:${item.available}/${item.required}`);
+      return Object.freeze({
+        ...result,
+        ...(publicationConflict ? { state: 'blocked' as const, shortage: false } : {}),
+        continuation,
+        cells: Object.freeze({ ...(jobSnapshot.get('cells') ?? {}) }),
+        shortages: Object.freeze(shortages),
+      });
+    },
+    async status(input) {
+      const cfg = await resolveTournamentSemanticJobConfig(db);
+      assertJobEnabled(cfg, 'tournament');
+      const snapshot = await db.collection(TOURNAMENT_SEMANTIC_JOBS_COLLECTION).doc(input.jobId).get();
+      const state = jobStateFrom(snapshot.data());
+      if (state.poolVersion !== input.poolVersion) throw new HttpsError('not-found', 'tournament_semantic_job_not_found');
+      assertSemanticJobReviewIdentity(state, semanticJobReviewIdentity(cfg));
+      const bundleRoot = db.collection(TOURNAMENT_POOL_V11_BUNDLES_COLLECTION).doc(input.poolVersion);
+      const [rootSnapshot, checkpointSnapshot] = await Promise.all([
+        bundleRoot.get(),
+        bundleRoot.collection('internal').doc('publication_checkpoint').get(),
+      ]);
+      const publicationStatus = tournamentV11BundlePublicationStatus(
+        rootSnapshot.exists ? rootSnapshot.data() : null,
+        checkpointSnapshot.exists ? checkpointSnapshot.data() : null,
+        tournamentV11BundleJobBinding(state),
+      );
+      const base = batchFromState(state, Object.freeze({ ...(snapshot.get('cells') ?? {}) }));
+      if (publicationStatus === 'conflict') return Object.freeze({
+        ...base,
+        state: 'blocked' as const,
+        continuation: false,
+        shortage: false,
+        shortages: Object.freeze(['publication_conflict']),
+      });
+      return Object.freeze({
+        ...base,
+        continuation: publicationContinuationForStatus(
+          state.lifecycle,
+          publicationStatus === 'ready',
+          publicationStatus === 'ready' ? 'ready' : publicationStatus,
+        ),
+      });
+    },
+  };
+}
+
 /**
- * Один вызов вместо ручного перебора режимов.
- *
- * зачем (владелец 2026-07-27): «генератор должен быть переписан — блокер
- * снимается, если генератор будет сразу создавать все задания». Раньше
- * владелец жал «сгенерировать» по одному режиму и не знал, хватает ли пула
- * на раунд: готовность считалась по сумме сложностей и врала. Теперь сервер
- * сам смотрит, каких ячеек режим×сложность не хватает, и заказывает только их.
- *
- * Дороговизна под контролем: за вызов закрывается не больше maxTasks заданий,
- * дневной кап OpenAI тот же, что у остальных генераторов. Владелец жмёт
- * повторно, пока комплект не станет зелёным.
+ * Existing callable name and security boundary are intentionally preserved.
+ * Legacy clicks are only an input compatibility envelope; all five text modes
+ * now flow through the V11 candidate/review job and never through runTextGeneration.
  */
 export const adminFillTournamentPool = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540, secrets: [OPENAI_API_KEY] },
   async (request) => {
     requirePermission(request, 'content.draft.write');
-    const record = onlyKeys(request.data, ['level', 'maxTasks', 'healthy', 'dryRun'],
-      'tournament_fill_invalid');
-    const level = String(record.level ?? 'A2').trim().toUpperCase();
-    // Потолок за вызов: 60 заданий ≈ 6 батчей. Больше — риск таймаута функции
-    // и неожиданного счёта за OpenAI одним нажатием.
-    const maxTasks = Math.max(6, Math.min(60, Math.trunc(Number(record.maxTasks ?? 30))));
-    const healthy = record.healthy === true;
-    const dryRun = record.dryRun === true;
-    if (!isTournamentAiLevel(level)) {
-      throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
-    }
-
-    const db = admin.firestore();
-    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
-
-    // Текущий комплект: агрегаты, документы не читаются.
-    // guard-ok: count() — серверные агрегаты.
-    const cellCounts = await loadEligibleTournamentCellCounts(collection);
-
-    const orders = planGenerationOrders(cellCounts, { maxTasks, healthy });
-    if (orders.length === 0) {
-      return {
-        ok: true,
-        complete: true,
-        poolReady: poolIsTournamentReady(cellCounts),
-        orders: [],
-        results: [],
-      };
-    }
-
-    if (dryRun) {
-      // Показать план, ничего не потратив: сколько и чего будет заказано.
-      return {
-        ok: true,
-        dryRun: true,
-        poolReady: poolIsTournamentReady(cellCounts),
-        orders,
-        results: [],
-      };
-    }
-
-    // Заказы выполняются ПОСЛЕДОВАТЕЛЬНО: параллельные вызовы OpenAI съели бы
-    // дневной кап рывком и мешали бы друг другу в реестре повторов.
-    const actor = String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin');
-    const results: Array<Record<string, unknown>> = [];
-    for (const order of orders) {
-      const isAudio = isTournamentAudioMode(order.mode);
-      const isSpeedMatch = order.mode === 'speed_match';
-      // Обычный батч даёт ~10 заданий, а в парах 10 пар = ОДНО поле (раунд),
-      // поэтому пачек нужно столько же, сколько заказано полей.
-      const batches = isSpeedMatch
-        ? Math.max(1, Math.min(3, order.count))
-        : Math.max(1, Math.min(3, Math.ceil(order.count / 10)));
-      try {
-        // Вызываем ОБЩУЮ логику напрямую: callable нельзя звать из callable
-        // (это был бы сетевой round-trip и вторая проверка прав на ту же
-        // операцию). Бюджет и учёт трат внутри самих runner-функций.
-        const response = isSpeedMatch
-          ? await runSpeedMatchGeneration({ level, batches, topicHint: '', dryRun: false, actor })
-          : isAudio
-          ? await runAudioGeneration({
-            mode: order.mode as TournamentAudioMode,
-            level,
-            batches,
-            topicHint: '',
-            dryRun: false,
-            actor,
-          })
-          : await runTextGeneration({ level, batches, topicHint: '', dryRun: false, actor });
-        results.push({ mode: order.mode, difficulty: order.difficulty, ok: true, ...response });
-      } catch (error) {
-        // Одна упавшая ячейка не должна отменять остальные: владелец увидит,
-        // что именно не сгенерилось, и повторит только это.
-        console.error('[tournament_fill] order failed', order.mode, error);
-        results.push({
-          mode: order.mode,
-          difficulty: order.difficulty,
-          ok: false,
-          error: String((error as { message?: string })?.message ?? 'failed'),
-        });
-      }
-    }
-
-    return { ok: true, dryRun: false, orders, results };
+    return runAdminFillTournamentPoolV11(request.data, productionV11Dependencies(admin.firestore()));
   },
 );
 

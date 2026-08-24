@@ -40,9 +40,11 @@ describe('avatar aura selection', () => {
 
     const labelKeys = ['nameRu', 'nameUk', 'nameEs', 'namePtBr', 'nameVi', 'nameId', 'nameTr', 'namePl'] as const;
     for (const key of labelKeys) {
-      expect(paidPlusAura![key]).toBe('Plus');
-      expect(vipAura![key]).toBe('Plus');
+      expect(paidPlusAura![key]).toBe(vipAura![key]);
+      expect(paidPlusAura![key].trim()).not.toBe('');
     }
+    expect(paidPlusAura?.nameRu).toBe('Солнечный Владыка');
+    expect(new Set(labelKeys.map((key) => paidPlusAura![key])).size).toBeGreaterThan(1);
   });
 
   it('exposes Pro only to a verified lifetime plan while still allowing locked preview lookup', () => {

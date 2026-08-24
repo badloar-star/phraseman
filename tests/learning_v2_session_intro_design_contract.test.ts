@@ -7,6 +7,7 @@ const source = (relative: string) =>
 test("Learning V2 uses a dedicated new intro renderer instead of the legacy lesson design", () => {
   const route = source("app/learning-v2/session/[id].tsx");
   const intro = source("app/learning_v2_session_intro.tsx");
+  const bridge = source("app/learning_v2_intro_semantic_bridge.ts");
 
   expect(route).toContain(
     'import LearningV2SessionIntro from "../../../app/learning_v2_session_intro"',
@@ -22,8 +23,15 @@ test("Learning V2 uses a dedicated new intro renderer instead of the legacy less
   expect(intro).not.toContain("styles.hero");
   expect(intro).not.toContain("styles.featuredLine");
   expect(intro).toContain("IntroReaderParagraph");
-  expect(intro).toContain('semantic === "targetCorrect"');
-  expect(intro).toContain('semantic === "targetWrong"');
+  // зачем: до 2026-08-23 экран красил текст напрямую по `semantic`, которого нет
+  // ни в одном файле контента (0 из 17 578 частей) — 61,5% разметки терялось.
+  // Роль куска теперь выводит мост над устаревшим `tone`; сторожим именно его,
+  // иначе регрессия вернёт серый текст и незачёркнутые ошибочные примеры.
+  expect(intro).toContain("introPartRole");
+  expect(intro).toContain('role === "target"');
+  expect(intro).toContain('role === "targetWrong"');
+  expect(bridge).toContain('case "danger":');
+  expect(bridge).toContain('return "targetWrong"');
   expect(intro).toContain("DuoPressable");
   expect(intro).toContain("PressableHybrid");
   expect(intro).toContain("useStableSafeAreaInsets");

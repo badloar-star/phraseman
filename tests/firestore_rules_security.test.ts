@@ -472,6 +472,8 @@ ${indent}}`,
     "intro_access_granted_at_ms",
     "loyalty_gift_until_ms",
     "loyalty_gift_granted_at_ms",
+    "achievement_access_plus_paid_v1",
+    "achievement_access_pro_paid_v1",
   ] as const;
 
   const SERVER_OWNED_PROGRESS_KEYS = [
@@ -485,6 +487,8 @@ ${indent}}`,
     "streak_count",
     "last_active_date",
     "streak_last_date",
+    "achievement_access_plus_paid_v1",
+    "achievement_access_pro_paid_v1",
     "collectibles_owned_v1",
     "collectibles_state_v1",
     "unlocked_lessons",
@@ -743,6 +747,116 @@ ${indent}}`,
     );
   });
 
+  test.each(['voice_call_reviews', 'voice_tutor_memory', 'max_voice_ops_daily'])(
+    'MAX server-owned collection %s denies every direct client and browser-admin operation',
+    (collection) => {
+      const blocks = exactRootMatchBlocks(`${collection}/{docId}`);
+      expect(blocks).toHaveLength(1);
+      expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+      const catchAll = exactRootMatchBlocks('{collection}/{document=**}');
+      expect(catchAll).toHaveLength(1);
+      expect(activeAllowLines(catchAll[0])[0]).toContain(`collection != '${collection}'`);
+    },
+  );
+
+  test('safety_flags is callable-only even for browser admins', () => {
+    const blocks = exactRootMatchBlocks('safety_flags/{docId}');
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+    const catchAll = exactRootMatchBlocks('{collection}/{document=**}');
+    expect(catchAll).toHaveLength(1);
+    expect(activeAllowLines(catchAll[0])[0]).toContain("collection != 'safety_flags'");
+  });
+
+  test('MAX safety guard state has no standalone collection contract', () => {
+    expect(exactRootMatchBlocks('max_voice_safety_guards/{docId}')).toHaveLength(0);
+  });
+
+  test('nested MAX safety guard quota is server-only even for browser admins', () => {
+    const blocks = exactRootMatchBlocks('voice_call_quotas/{docId}');
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+    const catchAll = exactRootMatchBlocks('{collection}/{document=**}');
+    expect(catchAll).toHaveLength(1);
+    expect(activeAllowLines(catchAll[0])[0]).toContain("collection != 'voice_call_quotas'");
+  });
+
+  test.each([
+    'gift_certificate_archive',
+    'admin_gift_certificate_batch_operations',
+    'admin_user_briefs_rate_limits',
+    'revenuecat_shard_refunds',
+  ])('server-owned admin collection %s is explicitly denied and excluded from catch-all', (collection) => {
+    const exact = exactRootMatchBlocks(`${collection}/{document=**}`);
+    expect(exact).toHaveLength(1);
+    expect(activeAllowLines(exact[0])).toEqual(['allow read, write: if false;']);
+    const catchAll = exactRootMatchBlocks('{collection}/{document=**}');
+    expect(catchAll).toHaveLength(1);
+    expect(activeAllowLines(catchAll[0])).toHaveLength(1);
+    expect(activeAllowLines(catchAll[0])[0]).toContain(`collection != '${collection}'`);
+  });
+
+  test('semantic server-owned guard detects an admin catch-all OR bypass', () => {
+    const protectedCollections = [
+      'gift_certificate_archive',
+      'admin_gift_certificate_batch_operations',
+      'admin_user_briefs_rate_limits',
+      'revenuecat_shard_refunds',
+    ];
+    const violations = (source: string) => {
+      const blocks = rootMatchBlocks(source);
+      const catchAll = blocks.find((block) => block.path === '{collection}/{document=**}');
+      const catchAllExpression = catchAll ? allowStatements(catchAll.source).map((entry) => entry.expression).join(' ') : '';
+      return protectedCollections.filter((collection) => {
+        const exact = blocks.find((block) => block.path === `${collection}/{document=**}`);
+        const exactDenied = exact && allowStatements(exact.source).some((entry) => (
+          entry.operations === 'read, write' && entry.expression === 'false'
+        ));
+        return !exactDenied || !catchAllExpression.includes(`collection != '${collection}'`);
+      });
+    };
+    expect(violations(rules)).toEqual([]);
+    const bypassed = rules.replace("&& collection != 'gift_certificate_archive'", '');
+    expect(violations(bypassed)).toContain('gift_certificate_archive');
+  });
+
+  test.each([
+    ['owner', true],
+    ['admin', true],
+    ['support', false],
+    ['analyst', false],
+    [undefined, true],
+  ])('admin_log read follows the server role boundary for %s', (adminRole, expected) => {
+    const helper = rules.match(/function canReadAdminAuditLog\(\) \{[\s\S]*?\n    \}/)?.[0] || '';
+    expect(helper).toContain('isAdmin()');
+    expect(helper).toContain("request.auth.token.adminRole == 'owner'");
+    expect(helper).toContain("request.auth.token.adminRole == 'admin'");
+    expect(helper).toContain("!request.auth.token.keys().hasAny(['adminRole'])");
+    const modeled = adminRole === undefined || adminRole === 'owner' || adminRole === 'admin';
+    expect(modeled).toBe(expected);
+
+    const block = exactRootMatchBlocks('admin_log/{docId}');
+    expect(block).toHaveLength(1);
+    expect(activeAllowLines(block[0])).toEqual([
+      'allow read: if canReadAdminAuditLog();',
+      'allow create: if isAdmin();',
+      'allow update, delete: if false;',
+    ]);
+    const catchAll = exactRootMatchBlocks('{collection}/{document=**}');
+    expect(activeAllowLines(catchAll[0])[0]).toContain("collection != 'admin_log'");
+    const explicitRead = modeled;
+    const overlappingCatchAllRead = false;
+    expect(explicitRead || overlappingCatchAllRead).toBe(expected);
+  });
+
+  test('promo_codes bearer authority is callable-only even for browser admins', () => {
+    const exact = exactRootMatchBlocks('promo_codes/{code}');
+    expect(exact).toHaveLength(1);
+    expect(activeAllowLines(exact[0])).toEqual(['allow read, write: if false;']);
+    const catchAll = exactRootMatchBlocks('{collection}/{document=**}');
+    expect(activeAllowLines(catchAll[0])[0]).toContain("collection != 'promo_codes'");
+  });
+
   test("Learning V2 required-session authority and transaction state stay server-only", () => {
     for (const path of [
       "content_v2_required_session_sets/{docId}",
@@ -926,6 +1040,7 @@ ${indent}}`,
     expect(rules).toMatch(
       /arena_v2_invites\/\{inviteId\} \{[\s\S]*?allow read, write: if false;/,
     );
+    expect(rules).not.toMatch(/arena_v2_invites[\s\S]{0,220}allow (?:get|list|create|update|delete): if true/);
   });
 
   test("Arena V2 user economy ledgers are server-written", () => {
@@ -1097,7 +1212,7 @@ ${indent}}`,
     expect(helper).toContain("collection == 'support_inbox'");
     expect(helper).toContain("collection == 'support_conversations'");
     expect(helper).toContain("collection == 'support_email_message_index'");
-    expect(helper).toContain("collection == 'admin_command_operations'");
+    expect(helper).toContain("(admin_command_operations|global_broadcast_modals)");
     expect(helper).toContain("collection == 'admin_config'");
   });
 
@@ -1671,6 +1786,72 @@ describe("RevenueCat premium lineage roots are server-only", () => {
     );
     expect(catchAll).not.toBeNull();
     expect(catchAll![0]).toContain("collection != 'revenuecat_premium_events'");
+  });
+});
+
+describe("immutable personal phone-state sync streams", () => {
+  const rules = readFileSync(rulesPath, "utf8");
+
+  function nestedUserBlock(pathPattern: string): string {
+    const marker = `match /${pathPattern} {`;
+    const start = rules.indexOf(marker);
+    if (start < 0) return "";
+    const next = rules.indexOf("\n      match /", start + marker.length);
+    return rules.slice(start, next < 0 ? rules.length : next);
+  }
+
+  test("personal sync segments are owner-create, immutable, bounded, and never deletable", () => {
+    const block = nestedUserBlock("personal_sync_segments/{segmentId}");
+    expect(block).toContain("allow read: if userDocOwnerMatchesAuth(userId)");
+    expect(block).toContain("authLinkMapsToUser(userId)");
+    expect(block).toContain("accountDeletionNotPending(userId)");
+    expect(block).toContain("request.resource.data.schemaVersion == 'personal-sync-segment.v1'");
+    expect(block).toContain("request.resource.data.payloadCanonical.size() <= 65536");
+    expect(block).toContain("request.resource.data.operationCount <= 50");
+    expect(block).toContain("request.resource.data == resource.data");
+    expect(block).toContain("allow delete: if false");
+  });
+
+  test("checkpoints and device manifests are bounded immutable owner data", () => {
+    const checkpoints = nestedUserBlock("personal_sync_checkpoints/{checkpointId}");
+    expect(checkpoints).toContain("request.resource.data.projectionsCanonical.size() <= 524288");
+    expect(checkpoints).toContain("request.resource.data == resource.data");
+    expect(checkpoints).toContain("allow delete: if false");
+
+    const devices = nestedUserBlock("sync_devices/{deviceId}");
+    expect(devices).toContain("request.resource.data.deviceId == deviceId");
+    expect(devices).toContain("request.resource.data == resource.data");
+    expect(devices).not.toContain("lastSequence");
+    expect(devices).toContain("allow delete: if false");
+  });
+
+  test("external personal events are owner-readable and client-write closed", () => {
+    const block = nestedUserBlock("personal_external_events/{eventId}");
+    expect(block).toContain("allow read: if userDocOwnerMatchesAuth(userId)");
+    expect(block).toContain("allow create, update, delete: if false");
+  });
+
+  test("access projection is owner-readable and fully server-write-owned", () => {
+    const block = nestedUserBlock("access_projection/current");
+    expect(block).toContain("allow read: if userDocOwnerMatchesAuth(userId)");
+    expect(block).toContain("allow create, update, delete: if false");
+  });
+
+  test("external event sequence head is completely server-only", () => {
+    const block = nestedUserBlock("personal_sync_server_state/{documentId}");
+    expect(block).toContain("allow read, write: if false");
+  });
+
+  test("personal segment cursor query has the exact bounded composite index", () => {
+    const indexes = JSON.parse(readFileSync(path.join(process.cwd(), "firestore.indexes.json"), "utf8"));
+    expect(indexes.indexes).toContainEqual({
+      collectionGroup: "personal_sync_segments",
+      queryScope: "COLLECTION",
+      fields: [
+        { fieldPath: "deviceId", order: "ASCENDING" },
+        { fieldPath: "lastSequence", order: "ASCENDING" },
+      ],
+    });
   });
 });
 

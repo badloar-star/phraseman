@@ -10,20 +10,20 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { type WordCategory } from '../app/phrase_analytics';
 import { useOverlayVisible } from './OverlayArbiter';
-import { LUM } from '../constants/motionHybrid';
+import { LUM, TOAST } from '../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-
-/** Минимальный отступ снизу — прежнее поведение на экранах без системной панели. */
-const COACH_BOTTOM_MIN = 24;
-/** Воздух между кнопками навигации Android и тостом. */
-const COACH_BOTTOM_GAP = 12;
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
-
 import { noAndroidOutline } from '../constants/androidGlow';
+
+/** Минимальный отступ снизу — прежнее поведение на экранах без системной панели. */
+const COACH_BOTTOM_MIN = 24;
+/** Воздух между кнопками навигации Android и тостом. */
+const COACH_BOTTOM_GAP = 12;
 interface CoachToastProps {
   category: WordCategory;
   labelRu: string;
@@ -50,7 +50,7 @@ interface CoachToastProps {
   microLabelPl?: string;
   diagnosisEvidenceCount?: number;
   onDismiss: () => void;
-  /** dev-only: витрина движения запускает гибрид рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
@@ -81,7 +81,7 @@ function CoachToast({
   microLabelPl,
   diagnosisEvidenceCount,
   onDismiss,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: CoachToastProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -93,6 +93,7 @@ function CoachToast({
   // Отступ считаем от безопасной зоны, минимум оставляем прежним.
   const insets = useStableSafeAreaInsets();
   const safeBottom = Math.max(COACH_BOTTOM_MIN, insets.bottom + COACH_BOTTOM_GAP);
+  const reduceMotion = useReduceMotion();
   const slideAnim = useRef(new Animated.Value(120)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
@@ -110,6 +111,10 @@ function CoachToast({
 
   const dismiss = useCallback(() => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    if (hybrid && reduceMotion) {
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, onDismiss);
+      return;
+    }
     // Гибрид: закон №15 — выход всегда короче входа (LUM.exitMs), без смещения
     // по Y (свет гаснет на месте, а не «падает» вниз). Classic — старое поведение.
     Animated.parallel(
@@ -122,7 +127,7 @@ function CoachToast({
     ).start(() => {
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, onDismiss);
     });
-  }, [hybrid, opacityAnim, onDismiss, slideAnim]);
+  }, [hybrid, opacityAnim, onDismiss, reduceMotion, slideAnim]);
 
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
@@ -134,8 +139,8 @@ function CoachToast({
     // БЕЗ отскока (LUM.settle) — без начальной y=120 подложки классики.
     if (hybrid) {
       slideAnim.setValue(0);
-      opacityAnim.setValue(0);
-      Animated.timing(opacityAnim, { toValue: 1, duration: LUM.resolveMs, useNativeDriver: true }).start();
+      opacityAnim.setValue(reduceMotion ? 1 : 0);
+      if (!reduceMotion) Animated.timing(opacityAnim, { toValue: 1, duration: TOAST.enterMs, useNativeDriver: true }).start();
     } else {
       Animated.parallel([
         Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, tension: 80, friction: 10 }),
@@ -145,7 +150,7 @@ function CoachToast({
 
     const timer = setTimeout(dismiss, AUTO_DISMISS_MS);
     return () => clearTimeout(timer);
-  }, [dismiss, hybrid, opacityAnim, overlayVisible, slideAnim]);
+  }, [dismiss, hybrid, opacityAnim, overlayVisible, reduceMotion, slideAnim]);
 
   const handleStart = () => {
     hapticTap();
@@ -237,10 +242,15 @@ function CoachToast({
   if (!overlayVisible) return null;
 
   return (
+    // зачем: аудит 2026-08-17 (скрин владельца, iPhone) — geometry (left/right)
+    // и transform на одном узле давали визуальную обрезку слева, тот же класс
+    // бага, что чинили в ActionToast.tsx. Разделяем на анкер (только геометрия,
+    // без transform) и внутренний слой (только transform/opacity).
+    <View style={[styles.containerAnchor, { bottom: safeBottom }]} pointerEvents="box-none">
     <Animated.View
       style={[
         styles.container,
-        { bottom: safeBottom, transform: [{ translateY: slideAnim }], opacity: opacityAnim },
+        { transform: [{ translateY: slideAnim }], opacity: opacityAnim },
       ]}
     >
       {/* зачем: обводка контейнера запрещена стилем владельца — отделяем тоном и тенью */}
@@ -250,7 +260,7 @@ function CoachToast({
             <Ionicons name="sparkles" size={21} color={t.accent} />
           </View>
           <View style={styles.textWrap}>
-            <Text style={[styles.eyebrow, { color: t.accent, fontSize: f.caption }]} numberOfLines={1}>
+            <Text style={[styles.eyebrow, { color: t.accent, fontSize: f.caption }]}>
               {confidenceText}
             </Text>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]}>
@@ -262,14 +272,14 @@ function CoachToast({
           </TapScale>
         </View>
 
-        <Text style={[styles.desc, { color: t.textSecond, fontSize: f.caption }]} numberOfLines={2}>
+        <Text style={[styles.desc, { color: t.textSecond, fontSize: f.caption }]}>
           {descText}
         </Text>
 
         <View style={styles.metaRow}>
           {focusText && (
             <View style={[styles.focusPill, { borderColor: t.border }]}>
-              <Text style={[styles.focusText, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+              <Text style={[styles.focusText, { color: t.textMuted, fontSize: f.caption }]}>
                 {focusText}
               </Text>
             </View>
@@ -322,18 +332,23 @@ function CoachToast({
         </View>
       </View>
     </Animated.View>
+    </View>
   );
 }
 
 export default memo(CoachToast);
 
 const styles = StyleSheet.create({
-  container: {
+  // зачем: геометрия (bottom/left/right) отделена от transform — см. комментарий
+  // у места использования выше.
+  containerAnchor: {
     position: 'absolute',
-    bottom: 24,
     left: 16,
     right: 16,
     zIndex: 100,
+  },
+  container: {
+    // геометрия ушла в containerAnchor, здесь остаётся только layout содержимого
   },
   card: {
     borderRadius: 16,

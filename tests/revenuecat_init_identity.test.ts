@@ -18,12 +18,15 @@ describe('RevenueCat identity bootstrap', () => {
         value: await work(),
       })),
     }));
-    jest.doMock('../app/premium_revenuecat_state', () => ({
-      inferPremiumPlanFromProductId: jest.fn(() => 'yearly'),
-      persistStorePremiumLocally: jest.fn(async () => true),
-      revenueCatCustomerInfoHasPremiumAccess: jest.fn((info: any) => !!info?.entitlements?.active?.premium),
-      revenueCatPremiumMetadata: jest.fn(() => ({})),
+    jest.doMock('../app/cloud_sync', () => ({ syncToCloud: jest.fn(async () => undefined) }));
+    jest.doMock('../app/premium_guard', () => ({
+      invalidatePremiumCache: jest.fn(),
+      markPremiumStoreSeenNow: jest.fn(async () => undefined),
     }));
+    jest.doMock('../app/premium_revenuecat_state', () => {
+      const actual = jest.requireActual('../app/premium_revenuecat_state');
+      return { ...actual, persistStorePremiumLocally: jest.fn(async () => true) };
+    });
     return {
       revenueCat: await import('../app/revenuecat_init'),
       purchases: (await import('react-native-purchases')).default as any,
@@ -109,6 +112,14 @@ describe('RevenueCat identity bootstrap', () => {
     expect(purchases.setAttributes).not.toHaveBeenCalled();
   });
 
+  it.each(['monthly', 'yearly', 'lifetime'] as const)(
+    'does not let a stale max_monthly cache override currently inferred %s access',
+    async (inferredPlan) => {
+      const { revenueCat } = await loadSubject();
+      expect(revenueCat.resolveRevenueCatStorePlan('max_monthly', inferredPlan)).toBe(inferredPlan);
+    },
+  );
+
   it('switches A to B with direct logIn and verifies B before attributes or CustomerInfo persistence', async () => {
     const { revenueCat, purchases, premiumState } = await loadSubject('stable-B');
     const premiumInfo = {
@@ -180,5 +191,62 @@ describe('RevenueCat identity bootstrap', () => {
 
     expect(purchases.setAttributes).not.toHaveBeenCalled();
     expect(premiumState.persistStorePremiumLocally).not.toHaveBeenCalled();
+  });
+
+  it('startup and the shared listener prefer MAX when premium and max are both active', async () => {
+    const { revenueCat, purchases, premiumState } = await loadSubject();
+    const dualInfo = {
+      entitlements: { active: {
+        premium: {
+          productIdentifier: 'phraseman_premium_monthly_399',
+          expirationDateMillis: 1_000,
+        },
+        max: {
+          productIdentifier: 'phraseman_max_monthly_v1:monthly-base',
+          expirationDateMillis: 9_000,
+        },
+      } },
+      activeSubscriptions: [
+        'phraseman_premium_monthly_399',
+        'phraseman_max_monthly_v1:monthly-base',
+      ],
+    };
+    purchases.addCustomerInfoUpdateListener = jest.fn();
+    purchases.isConfigured.mockResolvedValue(true);
+    purchases.getAppUserID.mockResolvedValue('stable-123');
+    purchases.getCustomerInfo.mockResolvedValue(dualInfo);
+
+    await revenueCat.initRevenueCat();
+
+    expect(premiumState.persistStorePremiumLocally).toHaveBeenCalledWith(
+      'max_monthly',
+      expect.objectContaining({
+        productId: 'phraseman_max_monthly_v1:monthly-base',
+        expiryMs: 9_000,
+      }),
+      expect.any(Function),
+      false,
+      true,
+    );
+    (premiumState.persistStorePremiumLocally as jest.Mock).mockClear();
+    let listenerPersisted!: () => void;
+    const listenerPersistence = new Promise<void>((resolve) => { listenerPersisted = resolve; });
+    (premiumState.persistStorePremiumLocally as jest.Mock).mockImplementationOnce(async () => {
+      listenerPersisted();
+      return true;
+    });
+
+    const listener = purchases.addCustomerInfoUpdateListener.mock.calls[0]?.[0];
+    expect(typeof listener).toBe('function');
+    listener();
+    await listenerPersistence;
+
+    expect(premiumState.persistStorePremiumLocally).toHaveBeenCalledWith(
+      'max_monthly',
+      expect.objectContaining({ productId: 'phraseman_max_monthly_v1:monthly-base' }),
+      expect.any(Function),
+      false,
+      true,
+    );
   });
 });

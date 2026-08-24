@@ -1,6 +1,7 @@
 import {
   buildGlobalBroadcastRewardMutation,
   canonicalizeExistingGlobalBroadcastReceipt,
+  resolveGlobalBroadcastClaimDecision,
 } from './global_broadcast_claim';
 
 describe('global broadcast server reward mutation', () => {
@@ -76,5 +77,21 @@ describe('global broadcast server reward mutation', () => {
       { ok: true, rewardType: 'wager_discount_25' },
       { progress: { wager_discount_uses_v1: '0' } },
     )).toMatchObject({ wagerDiscountUses: 0 });
+  });
+
+  test('replays an existing receipt before schema validation but rejects an invalid first grant', () => {
+    const invalidBroadcast = { active: true, rewardType: 'shards', rewardAmount: 10, internalNote: 'unsafe' };
+    expect(resolveGlobalBroadcastClaimDecision({
+      claimExists: true,
+      claimResponse: { ok: true, rewardType: 'shards', rewardAmount: 10 },
+      broadcast: invalidBroadcast,
+      user: {},
+    })).toMatchObject({ kind: 'replay', response: { rewardType: 'shards', rewardAmount: 10 } });
+    expect(() => resolveGlobalBroadcastClaimDecision({
+      claimExists: false,
+      claimResponse: null,
+      broadcast: invalidBroadcast,
+      user: {},
+    })).toThrow('broadcast_public_schema_invalid');
   });
 });

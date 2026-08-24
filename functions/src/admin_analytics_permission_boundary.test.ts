@@ -13,6 +13,14 @@ const insufficientAuth = {
   },
 };
 
+const supportAuth = {
+  uid: 'support-admin',
+  token: {
+    admin: true,
+    adminRole: 'support',
+  },
+};
+
 async function expectPermissionDenied(action: () => Promise<unknown>) {
   await expect(action()).rejects.toMatchObject({ code: 'permission-denied' });
 }
@@ -22,8 +30,9 @@ describe('analytics callable server permission boundary', () => {
     ['product analytics', (auth: unknown) => handleAdminProductAnalytics({ auth, data: {} } as never)],
     ['subscription analytics', (auth: unknown) => handleAdminSubscriptionAnalytics({ auth, data: {} } as never)],
     ['monthly decision pack', (auth: unknown) => generateMonthlyDecisionPackResponse({}, auth)],
-  ])('%s rejects unauthenticated and insufficient callers', async (_name, invoke) => {
-    await expectPermissionDenied(() => invoke(undefined));
-    await expectPermissionDenied(() => invoke(insufficientAuth));
-  });
+      ])('%s rejects unauthenticated and insufficient callers', async (_name, invoke) => {
+        await expectPermissionDenied(() => invoke(undefined));
+        await expectPermissionDenied(() => invoke(insufficientAuth));
+        await expectPermissionDenied(() => invoke(supportAuth));
+      });
 });

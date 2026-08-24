@@ -22,6 +22,15 @@ export const MAX_VOICE_CONFIG_DOC = 'openai_realtime_voice';
 /** Абсолютный потолок длительности сессии — зашит в код, админ-док его не двигает. */
 export const HARD_MAX_SESSION_SEC = 600;
 
+/** Денежные/доступные лимиты являются серверным контрактом, а не remote knobs. */
+export const MAX_VOICE_LIFETIME_TRIAL_SEC = 180;
+/** Technical teardown reserve; never increases user-visible trial talk time. */
+export const MAX_VOICE_HARD_GRACE_TAIL_SEC = 120;
+export const MAX_VOICE_LIFETIME_TRIAL_RESERVE_SEC =
+  MAX_VOICE_LIFETIME_TRIAL_SEC + MAX_VOICE_HARD_GRACE_TAIL_SEC;
+export const MAX_VOICE_DAILY_SEC = 1_200;
+export const MAX_VOICE_MONTHLY_SEC = 7_200;
+
 // Старые gpt-realtime(-mini) deprecated; закрытый whitelist не позволяет
 // Firestore-конфигу незаметно вернуть режим на снимаемую с поддержки модель.
 export const ALLOWED_REALTIME_MODELS = ['gpt-realtime-2.1-mini', 'gpt-realtime-2.1'] as const;
@@ -71,16 +80,7 @@ export interface MaxVoiceConfig {
   dailyVoiceSecMax: number;
   /** Месячный пакет тира MAX (отдельная подписка на голосового учителя). */
   monthlyVoiceSecMax: number;
-  /**
-   * Месячный пакет обычной подписки (Плюс/Про) — витрина MAX.
-   *
-   * зачем (владелец 2026-08-23): «Плюс/Про + отдельная MAX». Обычный подписчик
-   * платит те же деньги, а звонки идут сверху как чистый расход, поэтому пакет
-   * маленький: дать попробовать и захотеть MAX, но не жечь бюджет.
-   */
-  premiumMonthlyVoiceSecMax: number;
   trialCallSec: number;
-  trialRefreshDays: number;
   trialMode: VoiceTrialMode;
   maxResponseOutputTokens: Record<VoiceCefr, number> & { injected: number };
   vadEagerness: Record<VoiceCefr, VadEagerness>;
@@ -104,8 +104,6 @@ export interface MaxVoiceConfig {
    * запроса, а решает по uid из проверенного токена. Пустой список = закрыто.
    */
   devTestUids: string[];
-  /** v1: MAX-доступ = обычный премиум (голос идёт бетой внутри Premium). false — только будущий MAX-тариф. */
-  voiceForPremiumBeta: boolean;
   degradeMode: VoiceDegradeMode;
   maxFallbackRepliesDaily: number;
   audioBackchannelsEnabled: boolean;
@@ -120,7 +118,7 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   transcriptionModel: 'gpt-4o-mini-transcribe',
   // tutor — урок-звонок с учителем; учитель сам предупреждает и прощается,
   // клиент шлёт ему заметки времени (T−120с / T−45с).
-  sessionCapSec: { scenario: 300, companion: 480, trial: 180, tutor: 600 },
+  sessionCapSec: { scenario: 300, companion: 480, trial: MAX_VOICE_LIFETIME_TRIAL_SEC, tutor: 600 },
   tutorName: 'Max',
   tutorVoice: 'cedar',
   graceTailSec: 20,
@@ -128,19 +126,15 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   // были ТЕСТОВЫМИ («лимиты введу сам при релизе») и позволяли одному человеку
   // нажечь ~$173/мес. Теперь минуты разделены по тирам:
   //   MAX      — 120 мин/мес (2 часа), большой пакет отдельной подписки;
-  //   Плюс/Про — 15 мин/мес, витрина: попробовать и захотеть MAX;
-  //   free     — только пробный звонок 3 мин раз в 6 месяцев (ниже).
+  //   Free/Плюс/Про — один общий пробный звонок до 3 минут за весь срок жизни
+  //                    стабильного аккаунта; апгрейд не выдаёт новый пробник.
   // Дневной потолок 20 минут общий: он не мешает нормальному ученику (два урока
   // по 10 минут), но растягивает месячный пакет минимум на 6 дней и не даёт
   // выжечь его за один вечер.
-  dailyVoiceSecMax: 1_200,
-  monthlyVoiceSecMax: 7_200,
-  premiumMonthlyVoiceSecMax: 900,
-  trialCallSec: 180,
-  // Пробник free — раз в полгода (владелец 2026-08-23), а не раз в месяц:
-  // 3 минуты живого голоса дают почувствовать фичу, но повторять её каждый
-  // месяц бесплатно — чистый расход без выручки.
-  trialRefreshDays: 180,
+  dailyVoiceSecMax: MAX_VOICE_DAILY_SEC,
+  monthlyVoiceSecMax: MAX_VOICE_MONTHLY_SEC,
+  trialCallSec: MAX_VOICE_LIFETIME_TRIAL_SEC,
+  // Этот пробник не обновляется по календарю и принадлежит аккаунту, а не тиру.
   trialMode: 'auto',
   // зачем: владелец 2026-08-16 — «не договаривает до конца, будто обрывается»:
   // max_output_tokens считает АУДИО-токены (~20 на секунду речи), и 120/160
@@ -185,7 +179,6 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   // DEV-аллоулист больше не гейтит звонок (линия открыта всем). Поле оставлено
   // ради совместимости со схемой дока и админкой; на доступ оно не влияет.
   devTestUids: [],
-  voiceForPremiumBeta: true,
   degradeMode: 'auto',
   // Фолбэк half-duplex не ест обычный Premium-лимит — свой щедрый пул.
   maxFallbackRepliesDaily: 300,
@@ -291,17 +284,16 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     sessionCapSec: {
       scenario: capSec(caps.scenario, d.sessionCapSec.scenario),
       companion: capSec(caps.companion, d.sessionCapSec.companion),
-      trial: capSec(caps.trial, d.sessionCapSec.trial),
+      // Монетизируемый lifetime-пробник не управляется stale Firestore config.
+      trial: MAX_VOICE_LIFETIME_TRIAL_SEC,
       tutor: capSec(caps.tutor, d.sessionCapSec.tutor),
     },
     tutorName: String(r.tutorName ?? '').replace(/[^\p{L}\p{N} .'-]/gu, '').trim().slice(0, 24) || d.tutorName,
     tutorVoice: pickEnum(r.tutorVoice, ALLOWED_REALTIME_VOICES, d.tutorVoice),
-    graceTailSec: clampInt(r.graceTailSec, 0, 120, d.graceTailSec),
-    dailyVoiceSecMax: clampInt(r.dailyVoiceSecMax, 60, 14_400, d.dailyVoiceSecMax),
-    monthlyVoiceSecMax: clampInt(r.monthlyVoiceSecMax, 60, 172_800, d.monthlyVoiceSecMax),
-    premiumMonthlyVoiceSecMax: clampInt(r.premiumMonthlyVoiceSecMax, 0, 172_800, d.premiumMonthlyVoiceSecMax),
-    trialCallSec: clampInt(r.trialCallSec, 30, HARD_MAX_SESSION_SEC, d.trialCallSec),
-    trialRefreshDays: clampInt(r.trialRefreshDays, 1, 365, d.trialRefreshDays),
+    graceTailSec: clampInt(r.graceTailSec, 0, MAX_VOICE_HARD_GRACE_TAIL_SEC, d.graceTailSec),
+    dailyVoiceSecMax: MAX_VOICE_DAILY_SEC,
+    monthlyVoiceSecMax: MAX_VOICE_MONTHLY_SEC,
+    trialCallSec: MAX_VOICE_LIFETIME_TRIAL_SEC,
     trialMode: pickEnum(r.trialMode, ['auto', 'scenario', 'companion'] as const, d.trialMode),
     maxResponseOutputTokens: {
       ...cefrMap(tokens, tokenCap, d.maxResponseOutputTokens),
@@ -331,7 +323,6 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     budgetSoftPct: clampNumber(r.budgetSoftPct, 0.1, 1, d.budgetSoftPct),
     gate_ai_voice_call: coerceBool(r.gate_ai_voice_call, d.gate_ai_voice_call),
     devTestUids: clampUidList(r.devTestUids),
-    voiceForPremiumBeta: coerceBool(r.voiceForPremiumBeta, d.voiceForPremiumBeta),
     degradeMode: pickEnum(r.degradeMode, ['auto', 'force_fallback', 'off'] as const, d.degradeMode),
     maxFallbackRepliesDaily: clampInt(r.maxFallbackRepliesDaily, 0, 100_000, d.maxFallbackRepliesDaily),
     audioBackchannelsEnabled: coerceBool(r.audioBackchannelsEnabled, d.audioBackchannelsEnabled),

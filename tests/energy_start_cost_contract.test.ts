@@ -97,7 +97,7 @@ describe('энергия платится за старт активности',
     // Брифинг показывается лишь при ПЕРВОМ прохождении сценария; до аудита
     // все повторные диалоги были бесплатными — при том что это самая дорогая
     // активность (LLM + TTS).
-    expect(read('app/ai_dialog_session.tsx')).toContain('spendDialogEnergy');
+    expect(read('app/ai_dialog_session.tsx')).toContain('confirmDialogEnergy');
     // Двойной оплаты быть не должно: на брифинге списания нет.
     expect(read('app/ai_dialog_briefing.tsx')).not.toContain('spendOne');
   });
@@ -123,8 +123,15 @@ describe('энергия платится за старт активности',
     // Событие живёт в EnergyContext, а не в девяти экранах: иначе новая
     // активность легко забудет его отправить.
     const context = read('components/EnergyContext.tsx');
+    const flight = read('components/EnergySpendFlightHost.tsx');
     expect(context).toContain("emitAppEvent('energy_spent_on_start'");
     expect(read('app/_layout.tsx')).toContain('<EnergySpendFlightHost />');
+    expect(flight).toContain("require('../assets/images/energy/energy-start-cost.webp')");
+    expect(flight).toContain('const FLIGHT_MS = MOTION.durationMs;');
+    expect(flight).toContain('const FLIGHT_ASSET_SIZE = MOTION.assetSize;');
+    expect(flight).toContain('<Text style={styles.costLabel}>−{amount}</Text>');
+    expect(flight).toContain('source={ENERGY_START_COST_IMAGE}');
+    expect(flight).toContain('useReduceMotion');
   });
 
   it('цена входа видна на кнопках старта', () => {
@@ -139,6 +146,161 @@ describe('энергия платится за старт активности',
     ]) {
       expect(read(file)).toContain('EnergyCostBadge');
     }
+  });
+
+  it('общий знак стоимости использует один ассет без круга и показывает безлимит', () => {
+    const badge = read('components/EnergyCostBadge.tsx');
+    const motion = read('constants/motionHybrid.ts');
+    expect(motion).toContain('export const ENERGY_COST_BADGE_HYBRID');
+    expect(badge).toContain('ENERGY_COST_BADGE_HYBRID');
+    expect(badge).toContain(
+      "require('../assets/images/energy/energy-start-cost.webp')",
+    );
+    expect(badge).toContain('source={ENERGY_START_COST_IMAGE}');
+    expect(badge).toContain("isUnlimited ? '∞' : `−${cost}`");
+    expect(badge).not.toContain('if (isUnlimited) return null');
+    expect(badge).not.toContain('backgroundColor: urgent');
+    expect(badge).not.toContain('borderRadius: 15');
+    expect(badge).toContain('topRight: { top: -18, right: 0 }');
+    expect(badge).toContain('topRightCompact: { top: -14, right: 0 }');
+    expect(badge).toContain('right: 39');
+    expect(badge).toContain('labelCompact: { right: 30');
+    expect(badge).not.toContain('left: 33');
+    expect(badge).not.toContain('labelCompact: { left: 25');
+    expect(badge).toContain('LUM.contentMs');
+    expect(badge).toContain('useReduceMotion');
+    expect(badge).not.toContain('Animated.loop');
+  });
+
+  it('все темы используют один energy-ассет, а старые файлы удалены', () => {
+    const icon = read('components/EnergyIcon.tsx');
+    expect(icon).toContain('energy-start-cost.webp');
+    expect(icon).not.toContain('ENERGY_IMAGES');
+    expect(icon).not.toContain('...(tintColor ? { tintColor } : {})');
+    expect(icon).not.toContain('backgroundColor: tintColor');
+
+    const energyFiles = fs.readdirSync(path.join(process.cwd(), 'assets/images/energy')).sort();
+    expect(energyFiles).toEqual(['energy-start-cost.webp']);
+  });
+
+  it('каждая прямая платная кнопка старта и рестарта использует общий знак', () => {
+    const resultScreen = read('app/flashcards/SessionResultScreen.tsx');
+    const blitz = read('app/flashcards_blitz_session.tsx');
+    expect(resultScreen).toContain('retryShowsEnergyCost?: boolean');
+    expect(resultScreen).toContain('retryShowsEnergyCost ? <EnergyCostBadge');
+    expect(blitz).toContain('retryShowsEnergyCost');
+    expect(read('app/lesson_complete.tsx')).toContain('lesson-complete-repeat-energy-cost');
+
+    for (const [file, minimum] of [
+      ['app/diagnostic_test.tsx', 2],
+      ['app/exam.tsx', 2],
+      ['app/level_exam.tsx', 2],
+    ] as const) {
+      const source = read(file);
+      expect((source.match(/<EnergyCostBadge/g) ?? []).length).toBeGreaterThanOrEqual(minimum);
+    }
+
+    const v2ExamIntro = read('components/level-exam/LevelExamIntro.tsx');
+    expect(v2ExamIntro).toContain('<EnergyCostBadge testID="level-exam-start-energy-cost"');
+    expect(v2ExamIntro).not.toContain('<View style={styles.costBadge}>');
+
+    const dialogTile = read('components/DialogScenarioTile.tsx');
+    const dialogs = read('components/DialogsTabContent.tsx');
+    expect(dialogTile).toContain('showEnergyCost: boolean');
+    expect(dialogTile).toContain('showEnergyCost ? <EnergyCostBadge');
+    expect(dialogs).toContain('showEnergyCost={status === \'done\'}');
+
+    const navigation = read('app/personal_plan_navigation.ts');
+    const personalPlan = read('app/personal_plan.tsx');
+    expect(navigation).toContain('export function personalPlanTaskStartsPaidExercise');
+    expect(personalPlan).toContain('showEnergyCost={personalPlanTaskStartsPaidExercise(task)}');
+
+    const menu = read('app/lesson_menu.tsx');
+    const paidMenuItems = menu.slice(
+      menu.indexOf('const ENERGY_COST_MENU_ITEMS'),
+      menu.indexOf('function LessonMenu'),
+    );
+    expect(paidMenuItems).toContain("'lesson-menu-primary'");
+    expect(paidMenuItems).toContain("'lesson-menu-words'");
+    expect(paidMenuItems).toContain("'lesson-menu-irregular-verbs'");
+    expect(paidMenuItems).toContain("'lesson-menu-prepositions'");
+    expect(paidMenuItems).not.toContain("'lesson-menu-theory'");
+
+    const menuCards = menu.slice(
+      menu.indexOf('menuItems.filter(item => !item.hidden).map'),
+      menu.indexOf('{/* зачем: раньше здесь стоял ещё и lockStateLoaded'),
+    );
+    expect(menuCards).toContain("style={{ position: 'relative', overflow: 'visible' }}");
+    const cardCloseIndex = menuCards.indexOf('</PremiumCard>');
+    const energyBadgeIndex = menuCards.indexOf('{ENERGY_COST_MENU_ITEMS.has(item.testID)');
+    expect(cardCloseIndex).toBeGreaterThanOrEqual(0);
+    expect(energyBadgeIndex).toBeGreaterThan(cardCloseIndex);
+  });
+
+  it('обходные CTA платных активностей тоже показывают общий знак', () => {
+    for (const [file, marker] of [
+      ['app/flashcards/CollectionHeader.tsx', 'flashcards-collection-listen-energy-cost'],
+      ['app/flashcards/CollectionHeader.tsx', 'flashcards-collection-train-energy-cost'],
+      ['app/flashcards_swipe.tsx', 'flashcards-swipe-next-round-energy-cost'],
+      ['components/arena/ArenaModeSheet.tsx', 'arena-mode-energy-cost'],
+      ['app/arena_results.tsx', 'arena-results-replay-energy-cost'],
+      ['app/arena_match.tsx', 'arena-match-retry-energy-cost'],
+      ['components/DialogVerdictScreen.tsx', 'dialog-verdict-retry-energy-cost'],
+      ['components/mistake-practice/MistakePracticeLoopNode.tsx', 'mistake-practice-loop-energy-cost'],
+      ['app/WeeklyReviewCard.tsx', 'weekly-review-energy-cost'],
+      ['app/max_voice_review.tsx', 'max-voice-review-energy-cost'],
+      ['app/personal_plan_exercise_transition.tsx', 'personal-plan-transition-energy-cost'],
+      ['app/personal_plan_quiz.tsx', 'personal-plan-quiz-next-energy-cost'],
+      ['app/personal_plan_exercise.tsx', 'personal-plan-next-task-energy-cost'],
+      ['app/personal_plan_stats_screen.tsx', 'personal-plan-stats-replay-energy-cost'],
+    ] as const) {
+      expect(read(file)).toContain(marker);
+    }
+
+    expect(read('components/feedback/ResultsSequence.tsx')).toContain('secondaryShowsEnergyCost');
+    expect(read('components/arena/ArenaRankHybrid.tsx')).toContain('arena-rank-revenge-energy-cost');
+    expect(read('app/lesson_intro_screens.tsx')).toContain('showEnergyCost?: boolean');
+    expect(read('app/personal_plan_theory.tsx')).toContain('showEnergyCost={theoryStartsPaidTask}');
+  });
+
+  it('урок с MAX показывает цену и списывает энергию только при реальном старте', () => {
+    const prestart = read('app/max_call_prestart.tsx');
+    expect(prestart).toContain("import EnergyCostBadge from '../components/EnergyCostBadge'");
+    expect(prestart).toContain('testID="max-call-start-energy-cost"');
+    expect(prestart).toContain('confirmSpendOne: confirmMaxLessonEnergy');
+    expect(prestart).toContain('if (isTutor)');
+    expect(prestart).toContain('setMaxLessonNoEnergy(true)');
+    expect(prestart).toContain('<NoEnergyModal');
+  });
+
+  it('цена рисуется только когда конкретный тап действительно начинает новую оплату', () => {
+    const dialogs = read('components/DialogsTabContent.tsx');
+    expect(dialogs).toContain('heroStartsPaid');
+    expect(dialogs).toContain('heroStartsPaid ? <EnergyCostBadge');
+    expect(dialogs).toContain('style={{ right: -4 }}');
+
+    const picker = read('app/flashcards/DeckPickerSheet.tsx');
+    expect(picker).toContain('showsEnergyCostForPreset?: (preset: FcModePreset) => boolean');
+    expect(picker).toContain('selectedPresetStartsPaidActivity');
+    expect(read('app/flashcards_listening_session.tsx')).toContain('showsEnergyCostForPreset');
+    expect(read('app/flashcards_speaking_session.tsx')).toContain('showsEnergyCostForPreset');
+  });
+
+  it('Learning V2 реально списывает показанную цену и блокирует неоплаченный вход', () => {
+    const session = read('app/learning-v2/session/[id].tsx');
+    expect(session).toContain('LearningV2SessionEnergyGate');
+    expect(session).toContain('confirmLearningV2Energy');
+    expect(session).toContain('<NoEnergyModal');
+    expect(read('app/learning-v2/lesson/[id].tsx')).toContain('learning-v2-skip-theory-energy-cost');
+  });
+
+  it('возврат в уже активную очередь Арены не списывает энергию второй раз', () => {
+    const hub = read('components/arena/ArenaHubSurface.tsx');
+    const matchmaking = read('app/arena_matchmaking.tsx');
+    expect((hub.match(/resumeQueue: '1'/g) ?? []).length).toBeGreaterThanOrEqual(2);
+    expect(matchmaking).toContain("resumeQueue?: string");
+    expect(matchmaking).toContain("const resumesPaidQueue = params.resumeQueue === '1'");
+    expect(matchmaking).toContain("if (resumesPaidQueue)");
   });
 
   it('удалённые мёртвые ветки не вернулись', () => {

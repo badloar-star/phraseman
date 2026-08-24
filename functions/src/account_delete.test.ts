@@ -105,6 +105,8 @@ describe('accountDelete query plan', () => {
     expect(keys.has('friend_quests.participantUids.array-contains.stable-123')).toBe(true);
     expect(keys.has('user_reports.reporterUid.==.stable-123')).toBe(true);
     expect(keys.has('revenuecat_premium_events.candidates.array-contains.stable-123')).toBe(true);
+    expect(keys.has('safety_flags.uid.==.stable-123')).toBe(true);
+    expect(keys.has('safety_flags.authUid.==.auth-456')).toBe(true);
   });
 
   it('covers auth-uid arena and chat documents', () => {

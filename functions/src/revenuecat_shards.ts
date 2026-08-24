@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { createHash } from 'crypto';
+import { createHash, timingSafeEqual } from 'crypto';
 import { onRequest } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
 import { defineSecret } from 'firebase-functions/params';
@@ -26,6 +26,7 @@ import {
 import { appendExternalEconomyEvent } from './external_economy_events';
 import { recordPaymentWebhookFailure } from './payment_webhook_alert';
 import { markRefereeQualified } from './referral';
+import { writeAccessProjection, writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
@@ -250,10 +251,23 @@ function addCandidate(out: Set<string>, raw: unknown): void {
   if (id) out.add(id);
 }
 
+// зачем: аудит безопасности 2026-08-22 — сравнение секрета вебхука было через
+// строковый ===, теоретический тайминг-сайдчаннел (соседи stripeWebhook и
+// telegramPremiumWebhook уже используют timingSafeEqual). Длины буферов не
+// совпадают почти всегда (случайный секрет) — timingSafeEqual бросает на
+// разной длине, поэтому длину сверяем ДО вызова, как в web_checkout.ts.
+function safeEqual(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a, 'utf8');
+  const bBuf = Buffer.from(b, 'utf8');
+  return aBuf.length === bBuf.length && timingSafeEqual(aBuf, bBuf);
+}
+
 function authMatches(header: string | undefined, expected: string): boolean {
   const value = String(header ?? '').trim();
   if (!value) return false;
-  return value === expected || value.toLowerCase() === `bearer ${expected}`.toLowerCase();
+  const lowerValue = value.toLowerCase();
+  const lowerBearerExpected = `bearer ${expected}`.toLowerCase();
+  return safeEqual(value, expected) || safeEqual(lowerValue, lowerBearerExpected);
 }
 
 function parseShards(raw: unknown): number {
@@ -302,7 +316,8 @@ function entitlementIds(event: RevenueCatEvent): string[] {
 export function isManagedPremiumProductId(rawProductId: unknown): boolean {
   const productId = cleanId(rawProductId).toLowerCase();
   return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(productId)
-    || productId === 'phraseman_premium_lifetime_v1';
+    || productId === 'phraseman_premium_lifetime_v1'
+    || /^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId);
 }
 
 function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
@@ -318,16 +333,39 @@ function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
     'phraseman_premium_yearly_2999',
     'phraseman_premium_lifetime_v1',
   ]);
+  const isMaxProduct = /^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId);
   if (entitlements.length === 0) return legacyPremiumProducts.has(productId);
+  if (isMaxProduct) return entitlements.includes('max');
   if (!entitlements.includes('premium')) return false;
   return isManagedPremiumProductId(productId);
 }
 
-function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' {
+function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' | 'max_monthly' {
   const productId = cleanId(event.product_id).toLowerCase();
+  if (/^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId)) return 'max_monthly';
   if (/lifetime|forever|one.?time|onetime|perpetual/.test(productId)) return 'lifetime';
   if (/year|yearly|annual|12.?month/.test(productId)) return 'yearly';
   return 'monthly';
+}
+
+export function paidAccessAchievementGrant(event: Readonly<{
+  environment?: unknown;
+  type?: unknown;
+  period_type?: unknown;
+  product_id?: unknown;
+}>): { plus: boolean; pro: boolean } {
+  const environment = cleanId(event.environment).toUpperCase();
+  const eventType = cleanId(event.type).toUpperCase();
+  const periodType = cleanId(event.period_type).toUpperCase();
+  const productId = cleanId(event.product_id).toLowerCase();
+  if (environment !== 'PRODUCTION') return { plus: false, pro: false };
+  return {
+    plus: eventType === 'INITIAL_PURCHASE'
+      && periodType !== 'TRIAL'
+      && /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(productId),
+    pro: eventType === 'NON_RENEWING_PURCHASE'
+      && productId === 'phraseman_premium_lifetime_v1',
+  };
 }
 
 /**
@@ -730,7 +768,9 @@ export async function applyVerifiedPremiumSubscriptionEvent(
       const projectedLineages = existingLineages
         .filter((lineage) => lineage.lineageHash !== reduced.state.lineageHash)
         .concat(reduced.state);
-      const aggregate = aggregatePremiumLineages(projectedLineages, progress, Date.now());
+      const projectionNow = Date.now();
+      const aggregate = aggregatePremiumLineages(projectedLineages, progress, projectionNow);
+      const achievementGrant = paidAccessAchievementGrant(event);
       const lineageRef = db.collection('revenuecat_premium_lineages')
         .doc(premiumLineageDocId(uid, canonicalEvent.lineageHash));
       tx.set(lineageRef, {
@@ -740,10 +780,15 @@ export async function applyVerifiedPremiumSubscriptionEvent(
       }, { merge: false });
       tx.set(processedRef, receipt);
       tx.set(userRef, {
-        progress: aggregate.progressPatch,
-        updatedAt: Date.now(),
-        last_active_at: Date.now(),
+        progress: {
+          ...aggregate.progressPatch,
+          ...(achievementGrant.plus ? { achievement_access_plus_paid_v1: 'true' } : {}),
+          ...(achievementGrant.pro ? { achievement_access_pro_paid_v1: 'true' } : {}),
+        },
+        updatedAt: projectionNow,
+        last_active_at: projectionNow,
       }, { merge: true });
+      writeAccessProjection(tx, userRef, aggregate.progressPatch, projectionNow);
 
       return {
         updated: reduced.status === 'applied',
@@ -1264,7 +1309,8 @@ function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): 
   // Lifetime — это законный store-план (NON_RENEWING_PURCHASE phraseman_premium_lifetime_v1,
   // см. premiumPlanFromEvent). Без него TRANSFER от анонимного RC-id (купил «Навсегда»
   // до Purchases.logIn) возвращал null → доступ исчезал у реального аккаунта после логина.
-  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
+  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual'
+    || plan === 'lifetime' || plan === 'max_monthly';
   if (!isStorePlan) return null;
   const expiryMs = eventMs(progress.premium_expiry);
   const rcExpiryMs = eventMs(progress.premium_rc_expiry_ms);
@@ -1286,6 +1332,7 @@ function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): 
 
 function premiumProjectionStrength(progress: Record<string, unknown>): number {
   const plan = cleanId(progress.premium_plan).toLowerCase();
+  if (plan === 'max_monthly') return Number.MAX_SAFE_INTEGER;
   if (plan === 'lifetime') return Number.POSITIVE_INFINITY;
   if (plan !== 'monthly' && plan !== 'yearly' && plan !== 'annual') return 0;
   const expiryMs = eventMs(progress.premium_expiry);
@@ -1525,21 +1572,24 @@ async function handleTransferEvent(event: RevenueCatEvent, eventType: string, re
         updatedAt: now,
         last_active_at: now,
       });
+      writeAccessProjection(tx, recipientRef, projectedProgress, now);
 
       for (const donor of donorUsers) {
         if (donor.id === recipientId) continue;
         const donorProgress = (donor.snap.data()?.progress ?? {}) as Record<string, unknown>;
         if (!readDonorPremiumBlock(donorProgress, now)) continue;
+        const donorPatch = {
+          premium_plan: '',
+          premium_expiry: String(now),
+          premium_rc_active_lineage: '',
+          premium_rc_event_type: 'TRANSFER_OUT',
+          premium_rc_updated_at: String(now),
+        };
         tx.update(donor.ref, {
-          progress: {
-            premium_plan: '',
-            premium_expiry: String(now),
-            premium_rc_active_lineage: '',
-            premium_rc_event_type: 'TRANSFER_OUT',
-            premium_rc_updated_at: String(now),
-          },
+          progress: donorPatch,
           updatedAt: now,
         });
+        writeAccessProjectionFromPatch(tx, donor.ref, donorProgress, donorPatch, now);
       }
 
       return {
@@ -1627,6 +1677,7 @@ export const __revenueCatWebhookTestHooks = {
   isRevenueCatAnonymousId,
   looksLikePremiumSubscription,
   premiumPlanFromEvent,
+  paidAccessAchievementGrant,
   prioritizeUserCandidates,
   stableCandidateUserIds,
   transferTargetIds,

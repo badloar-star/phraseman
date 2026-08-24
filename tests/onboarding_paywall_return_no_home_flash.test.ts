@@ -57,6 +57,22 @@ describe('onboarding ← paywall return: no home flash, no 4s stall', () => {
     expect(fn).not.toContain("router.replace('/(tabs)/home'");
   });
 
+  it('does not queue a second celebration screen after an onboarding purchase or restore', () => {
+    expect(purchase).toContain("const ONBOARDING_PURCHASE_SOURCES = new Set(['onboarding', 'onboarding_plan'])");
+
+    const purchaseCommitStart = purchase.indexOf('const applied = await commitRevenueCatResultForGeneration', purchase.indexOf('const handlePurchase'));
+    const purchaseCommitEnd = purchase.indexOf("trackEvent('purchase_completed'", purchaseCommitStart);
+    const purchaseCommit = stripLineComments(purchase.slice(purchaseCommitStart, purchaseCommitEnd));
+    expect(purchaseCommit).toContain('if (!ONBOARDING_PURCHASE_SOURCES.has(source))');
+    expect(purchaseCommit).toContain('await markCelebrationPending');
+
+    const restoreCommitStart = purchase.indexOf('const applied = await commitRevenueCatResultForGeneration', purchase.indexOf('const handleRestore'));
+    const restoreCommitEnd = purchase.indexOf("trackEvent('subscription_restored'", restoreCommitStart);
+    const restoreCommit = stripLineComments(purchase.slice(restoreCommitStart, restoreCommitEnd));
+    expect(restoreCommit).toContain('if (!ONBOARDING_PURCHASE_SOURCES.has(source))');
+    expect(restoreCommit).toContain('await markCelebrationPending');
+  });
+
   it('layout listener raises the onboarding overlay synchronously before any await', () => {
     const start = layout.indexOf("onAppEvent('onboarding_paywall_completed'");
     expect(start).toBeGreaterThan(-1);

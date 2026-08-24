@@ -9,11 +9,21 @@ export type ShowcaseRenderProps = Readonly<{
   onClose: () => void;
 }>;
 
+/**
+ * Статус приёмки владельцем (2026-08-17).
+ * зачем: владелец потребовал видеть глазами, что он уже одобрил, а что ещё
+ * ждёт решения — иначе в списке из 47 гибридов невозможно понять, где смотреть.
+ * 'accepted' — одобрено словом владельца; 'pending' — ждёт его вердикта.
+ */
+export type ShowcaseApproval = 'accepted' | 'pending';
+
 export type ShowcaseItem = Readonly<{
   id: string;
   title: string;
   /** Короткая строка состояния: «гибрид готов» / «текущий вид» / причина note. */
   detail?: string;
+  /** Приёмка владельцем. Не задано = 'pending' (ещё не смотрел). */
+  approval?: ShowcaseApproval;
   kind: 'route' | 'event' | 'render' | 'note';
   /** kind=route: путь реального экрана (router.push). */
   route?: string;

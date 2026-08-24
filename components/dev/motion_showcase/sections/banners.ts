@@ -29,6 +29,7 @@ export const SECTION: ShowcaseSection = {
     // включает Reanimated-путь внутри реального OfflineBanner.
     {
       id: 'banner-offline-hybrid',
+      approval: 'pending',
       title: cs('banner_offline_hybrid_title'),
       detail: cs('banner_offline_detail'),
       kind: 'render',
@@ -46,6 +47,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'banner-promo-hybrid',
+      approval: 'pending',
       title: cs('banner_promo_hybrid_title'),
       detail: cs('banner_promo_detail'),
       kind: 'render',
@@ -63,6 +65,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'banner-save-progress-hybrid',
+      approval: 'pending',
       title: cs('banner_save_progress_hybrid_title'),
       detail: cs('banner_save_progress_detail'),
       kind: 'render',
@@ -84,6 +87,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'banner-rank-change-hybrid',
+      approval: 'pending',
       title: cs('banner_rank_change_hybrid_title'),
       detail: cs('arena_rank_change_banner_detail'),
       kind: 'render',
@@ -106,6 +110,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'banner-referral-invite-art-hybrid',
+      approval: 'pending',
       title: cs('banner_referral_invite_art_hybrid_title'),
       detail: cs('banner_referral_invite_art_detail'),
       kind: 'render',

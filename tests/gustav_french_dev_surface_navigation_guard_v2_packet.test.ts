@@ -12,7 +12,6 @@ describe('Gustav French dev surface navigation guard V2 packet', () => {
     expect(SOURCE).toContain('challengeSurfaceGuardsReady');
     expect(SOURCE).toContain('mistakePracticeTargetScopeReady');
     expect(SOURCE).toContain('challenge_surface_guards_not_ready');
-    expect(SOURCE).toContain('arena_surface_guards_not_ready');
     expect(SOURCE).toContain("'quiz_thematic_challenges_visible_while_source_gated'");
     expect(SOURCE).toContain("'mistake_practice_session_target_scope'");
     expect(SOURCE).toContain("'mistake_practice_store_target_scope'");

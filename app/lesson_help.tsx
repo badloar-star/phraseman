@@ -391,7 +391,7 @@ export default function LessonHelp() {
     }
     // Показываем previewXP сразу, потом обновим на реальный finalDelta
     setEarnedXP(previewXP);
-    const userName = await AsyncStorage.getItem('user_name') ?? '';
+    const userName = (await AsyncStorage.getItem('user_name')) ?? '';
     registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
       eventId: [
         'vocabulary',
@@ -455,178 +455,178 @@ export default function LessonHelp() {
 
   return (
     <ScreenGradient>
-    <SafeAreaView style={{ flex: 1 }}>
-      <ContentWrap>
-      {/* Header */}
-      <View style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderBottomWidth: 0.5,
-        borderBottomColor: t.border,
-      }}>
-        <TapScale onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} style={{ marginRight: 12, padding: 4 }}>
-          <Ionicons name="arrow-back" size={24} color={sx.primary} />
-        </TapScale>
-        <View style={{ flex: 1 }}>
-          <Text style={{ color: sx.muted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
-            {triLang(lang, {
-              uk: `Урок ${lessonId} — Теорія`,
-              ru: `Урок ${lessonId} — Теория`,
-              es: `Lección ${lessonId} — Teoría`,
-              'pt-BR': `Lição ${lessonId} — Teoria`,
-              vi: `Bài ${lessonId} — Lý thuyết`,
-              id: `Pelajaran ${lessonId} — Teori`,
-              tr: `Ders ${lessonId} — Teori`,
-              pl: `Lekcja ${lessonId} — Teoria`,
-            })}
-          </Text>
-          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
-            {isFrenchTarget
-              ? (frenchTheoryGateCopy?.title ?? frenchTheoryTitle ?? unavailableTheoryTitle)
-              : theory
-              ? theoryTitleForLang(lessonId, theory, lang, theoryTitleEs)
-              : unavailableTheoryTitle}
-          </Text>
-          <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
-            {triLang(lang, {
-              uk: 'Коротко: правило + приклади + 25 XP',
-              ru: 'Правило, примеры и +25 XP в конце',
-              es: 'Resumen: regla + ejemplos + 25 XP',
-              'pt-BR': 'Resumo: regra + exemplos + 25 XP',
-              vi: 'Tóm tắt: quy tắc + ví dụ + 25 XP',
-              id: 'Ringkas: aturan + contoh + 25 XP',
-              tr: 'Kısa özet: kural + örnekler + 25 XP',
-              pl: 'Krótko: zasada + przykłady + 25 XP',
-            })}
-          </Text>
-        </View>
-      </View>
-
-      {/* Content */}
-      <ScrollView
-        decelerationRate="normal"
-        contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
-        showsVerticalScrollIndicator={true}
-      >
-        {showSpanishTheoryNotice ? (
-          <Warn
-            t={t}
-            f={f}
-            text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español."
-          />
-        ) : null}
-        {isFrenchTarget && frenchTheoryGateCopy ? (
-          <Body
-            key="french-theory-source-gate"
-            t={t}
-            f={f}
-            text={frenchTheoryGateCopy.body}
-          />
-        ) : isFrenchTarget && frenchTheoryScreens?.length ? (
-          renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, t, lang, f)
-        ) : isFrenchTarget ? (
-          <Body
-            key="unavailable"
-            t={t}
-            f={f}
-            text={unavailableTheoryText}
-          />
-        ) : plannedTheoryScreens?.length ? (
-          renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, t, lang, f)
-        ) : plannedLocale ? (
-          <Body
-            key="planned-locale-theory-unavailable"
-            t={t}
-            f={f}
-            text={unavailableTheoryText}
-          />
-        ) : theory ? (
-          renderSpanishTheory ? theory.renderES!(t, f) : theory.render(t, renderLegacyAsUk, f)
-        ) : (
-          <Body
-            key="unavailable"
-            t={t}
-            f={f}
-            text={unavailableTheoryText}
-          />
-        )}
-
-        <ReportErrorButton
-          screen="theory"
-          dataId={`theory_lesson_${lessonId}`}
-          dataText={`theory_lesson_${lessonId}`} // зачем: служебная метка для репорта, не UI
-          style={{ alignSelf: 'flex-end', marginTop: 16 }}
-        />
-
-        {/* XP reward button at the bottom of theory */}
-        {canClaimTheoryXp ? (
-        <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
-          <TouchableOpacity
-            onPress={() => { fk.tap(); void handleClaimXP(); }}
-            disabled={xpClaimed || !xpClaimHydrated}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: xpClaimed || !xpClaimHydrated ? t.border : '#F5A623',
-              borderRadius: 16,
-              paddingVertical: 14,
-              paddingHorizontal: 28,
-              gap: 8,
-              opacity: xpClaimed || !xpClaimHydrated ? 0.6 : 1,
-            }}
-          >
-            <Ionicons name={xpClaimed ? 'checkmark-circle' : 'star'} size={22} color="#fff" />
-            <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-              {xpClaimed
-                ? triLang(lang, {
-                    uk: `XP отримано (+${earnedXP})`,
-                    ru: `Готово — +${earnedXP} XP`,
-                    es: `Has obtenido +${earnedXP} XP`,
-                    'pt-BR': `Você ganhou +${earnedXP} XP`,
-                    vi: `Đã nhận +${earnedXP} XP`,
-                    id: `Mendapat +${earnedXP} XP`,
-                    tr: `+${earnedXP} XP alındı`,
-                    pl: `Otrzymano +${earnedXP} XP`,
-                  })
-                : triLang(lang, {
-                    uk: `Отримати ${previewXP} XP`,
-                    ru: `Забрать ${previewXP} XP`,
-                    es: `Reclamar ${previewXP} XP`,
-                    'pt-BR': `Resgatar ${previewXP} XP`,
-                    vi: `Nhận ${previewXP} XP`,
-                    id: `Klaim ${previewXP} XP`,
-                    tr: `${previewXP} XP al`,
-                    pl: `Odbierz ${previewXP} XP`,
-                  })}
+      <SafeAreaView style={{ flex: 1 }}>
+        <ContentWrap>
+        {/* Header */}
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: 16,
+          paddingVertical: 12,
+          borderBottomWidth: 0.5,
+          borderBottomColor: t.border,
+        }}>
+          <TapScale onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} style={{ marginRight: 12, padding: 4 }}>
+            <Ionicons name="arrow-back" size={24} color={sx.primary} />
+          </TapScale>
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: sx.muted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
+              {triLang(lang, {
+                uk: `Урок ${lessonId} — Теорія`,
+                ru: `Урок ${lessonId} — Теория`,
+                es: `Lección ${lessonId} — Teoría`,
+                'pt-BR': `Lição ${lessonId} — Teoria`,
+                vi: `Bài ${lessonId} — Lý thuyết`,
+                id: `Pelajaran ${lessonId} — Teori`,
+                tr: `Ders ${lessonId} — Teori`,
+                pl: `Lekcja ${lessonId} — Teoria`,
+              })}
             </Text>
-          </TouchableOpacity>
-          {xpShown && (
-            <Animated.View style={{
-              marginTop: 10,
-              opacity: xpAnim,
-              transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
-            }}>
-            <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
-          </Animated.View>
-          )}
+            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
+              {isFrenchTarget
+                ? (frenchTheoryGateCopy?.title ?? frenchTheoryTitle ?? unavailableTheoryTitle)
+                : theory
+                ? theoryTitleForLang(lessonId, theory, lang, theoryTitleEs)
+                : unavailableTheoryTitle}
+            </Text>
+            <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+              {triLang(lang, {
+                uk: 'Коротко: правило + приклади + 25 XP',
+                ru: 'Правило, примеры и +25 XP в конце',
+                es: 'Resumen: regla + ejemplos + 25 XP',
+                'pt-BR': 'Resumo: regra + exemplos + 25 XP',
+                vi: 'Tóm tắt: quy tắc + ví dụ + 25 XP',
+                id: 'Ringkas: aturan + contoh + 25 XP',
+                tr: 'Kısa özet: kural + örnekler + 25 XP',
+                pl: 'Krótko: zasada + przykłady + 25 XP',
+              })}
+            </Text>
+          </View>
         </View>
-        ) : null}
-      </ScrollView>
-    </ContentWrap>
-    {/* [FeedbackKit] «Глава закрыта» — мини-победа поверх экрана теории на
-        успешный клейм XP. Без записи прогресса дочитанности (спек §10.2). */}
-    <VictoryBurst
-      visible={chapterBurstShown}
-      title={theoryChapterDoneTitle(lang)}
-      subtitle={theoryChapterDoneSubtitle(lang)}
-      heroIcon="book"
-      celebrateSound="chord"
-      onDone={() => setChapterBurstShown(false)}
-    />
-    </SafeAreaView>
+
+        {/* Content */}
+        <ScrollView
+          decelerationRate="normal"
+          contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+          showsVerticalScrollIndicator={true}
+        >
+          {showSpanishTheoryNotice ? (
+            <Warn
+              t={t}
+              f={f}
+              text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español."
+            />
+          ) : null}
+          {isFrenchTarget && frenchTheoryGateCopy ? (
+            <Body
+              key="french-theory-source-gate"
+              t={t}
+              f={f}
+              text={frenchTheoryGateCopy.body}
+            />
+          ) : isFrenchTarget && frenchTheoryScreens?.length ? (
+            renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, t, lang, f)
+          ) : isFrenchTarget ? (
+            <Body
+              key="unavailable"
+              t={t}
+              f={f}
+              text={unavailableTheoryText}
+            />
+          ) : plannedTheoryScreens?.length ? (
+            renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, t, lang, f)
+          ) : plannedLocale ? (
+            <Body
+              key="planned-locale-theory-unavailable"
+              t={t}
+              f={f}
+              text={unavailableTheoryText}
+            />
+          ) : theory ? (
+            renderSpanishTheory ? theory.renderES!(t, f) : theory.render(t, renderLegacyAsUk, f)
+          ) : (
+            <Body
+              key="unavailable"
+              t={t}
+              f={f}
+              text={unavailableTheoryText}
+            />
+          )}
+
+          <ReportErrorButton
+            screen="theory"
+            dataId={`theory_lesson_${lessonId}`}
+            dataText={`theory_lesson_${lessonId}`} // зачем: служебная метка для репорта, не UI
+            style={{ alignSelf: 'flex-end', marginTop: 16 }}
+          />
+
+          {/* XP reward button at the bottom of theory */}
+          {canClaimTheoryXp ? (
+          <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
+            <TouchableOpacity
+              onPress={() => { fk.tap(); void handleClaimXP(); }}
+              disabled={xpClaimed || !xpClaimHydrated}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: xpClaimed || !xpClaimHydrated ? t.border : '#F5A623',
+                borderRadius: 16,
+                paddingVertical: 14,
+                paddingHorizontal: 28,
+                gap: 8,
+                opacity: xpClaimed || !xpClaimHydrated ? 0.6 : 1,
+              }}
+            >
+              <Ionicons name={xpClaimed ? 'checkmark-circle' : 'star'} size={22} color="#fff" />
+              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+                {xpClaimed
+                  ? triLang(lang, {
+                      uk: `XP отримано (+${earnedXP})`,
+                      ru: `Готово — +${earnedXP} XP`,
+                      es: `Has obtenido +${earnedXP} XP`,
+                      'pt-BR': `Você ganhou +${earnedXP} XP`,
+                      vi: `Đã nhận +${earnedXP} XP`,
+                      id: `Mendapat +${earnedXP} XP`,
+                      tr: `+${earnedXP} XP alındı`,
+                      pl: `Otrzymano +${earnedXP} XP`,
+                    })
+                  : triLang(lang, {
+                      uk: `Отримати ${previewXP} XP`,
+                      ru: `Забрать ${previewXP} XP`,
+                      es: `Reclamar ${previewXP} XP`,
+                      'pt-BR': `Resgatar ${previewXP} XP`,
+                      vi: `Nhận ${previewXP} XP`,
+                      id: `Klaim ${previewXP} XP`,
+                      tr: `${previewXP} XP al`,
+                      pl: `Odbierz ${previewXP} XP`,
+                    })}
+              </Text>
+            </TouchableOpacity>
+            {xpShown && (
+              <Animated.View style={{
+                marginTop: 10,
+                opacity: xpAnim,
+                transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
+              }}>
+              <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
+            </Animated.View>
+            )}
+          </View>
+          ) : null}
+        </ScrollView>
+      </ContentWrap>
+      {/* [FeedbackKit] «Глава закрыта» — мини-победа поверх экрана теории на
+          успешный клейм XP. Без записи прогресса дочитанности (спек §10.2). */}
+      <VictoryBurst
+        visible={chapterBurstShown}
+        title={theoryChapterDoneTitle(lang)}
+        subtitle={theoryChapterDoneSubtitle(lang)}
+        heroIcon="book"
+        celebrateSound="chord"
+        onDone={() => setChapterBurstShown(false)}
+      />
+      </SafeAreaView>
     </ScreenGradient>
   );
 }

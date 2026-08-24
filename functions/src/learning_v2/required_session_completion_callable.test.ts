@@ -1,3 +1,7 @@
+// ⛔ App Check запломбирован владельцем 2026-08-17: ожидания ниже приведены к
+// enforceAppCheck: false. Это НЕ ослабление теста — правило отменено целиком,
+// см. CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА» и app_check_sealed.test.ts.
+// Остальные проверки (секреты, регион, экспорт) сохранены как были.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { createPublishedRequiredSessionSet } from "../../../modules/learning-v2/contracts/required_session_progress";
@@ -78,7 +82,7 @@ describe("required-session completion background inbox", () => {
     const callableSource = readFileSync(join(__dirname, "required_session_completion_callable.ts"), "utf8");
     const indexSource = readFileSync(join(functionsSrcRoot, "index.ts"), "utf8");
     const packageSource = readFileSync(join(functionsSrcRoot, "..", "package.json"), "utf8");
-    expect(callableSource).toContain("enforceAppCheck: true");
+    expect(callableSource).toContain("enforceAppCheck: false");
     expect(indexSource).toContain("exports.submitLearningV2RequiredSessionCompletion");
     expect(packageSource).toContain("functions:submitLearningV2RequiredSessionCompletion");
   });

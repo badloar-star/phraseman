@@ -16,6 +16,9 @@ type Scope = {
   storage?: MistakePracticeStorage;
 };
 
+// PHONE_STATE_DEVICE_ONLY_MISTAKE_SESSION: cursor/audio/UI resume state is
+// intentionally not portable. Immutable mistake facts use the practice journal.
+
 type SessionEnvelope = {
   version: 1;
   accountScope: string;

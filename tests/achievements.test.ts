@@ -253,16 +253,27 @@ describe('achievements', () => {
     expect(modalSource).not.toContain('+1 жемчужина');
   });
 
-  it('renders achievements screen as earned-only by default with a dev-only all rewards toggle', () => {
+  it('shows no achievement before unlock and keeps a dev-only catalog reveal', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
 
     expect(source).toContain('const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;');
     expect(source).toContain('ALL_ACHIEVEMENTS.filter(isVisibleAchievement)');
     expect(source).toContain('return !a.retired;');
+    expect(source).toContain('const earnedAchievements = useMemo(');
+    expect(source).toContain('showAllAchievements || !!stateMap.get(achievement.id)?.unlockedAt');
+    expect(source).toContain("shelfCategory === 'all'\n      ? earnedAchievements");
+    expect(source).toContain('const visibleCountLabel = achievementCountPairLabel(unlockedCount, totalCount, lang);');
+    expect(source).not.toContain('const collectionAchievements = useMemo(');
+    expect(source).not.toContain('!achievement.secret || showAllAchievements');
+    expect(source).toContain('const fallbackStates = await loadAchievementStates().catch(() => []);');
+    expect(source).toContain('shelfCategoryOptions.length > 2 && (');
+    expect(source).toContain('testID="achievements-back"');
+    expect(source).toContain('accessibilityState={{ selected: showAllAchievements }}');
+    expect(source).toContain('achievementConditionForLang');
+    expect(source).toContain('testID="achievement-gallery-condition"');
+    expect(source).toContain('testID="achievement-dossier-condition"');
     expect(source).toContain('testID="achievements-dev-show-all-toggle"');
-    expect(source).toContain('if (catAchs.length === 0) return [];');
-    expect(source).not.toContain('unlockedCount} / {total}');
   });
 
   // зачем: секция «Ближайшие награды» удалена с экрана по запросу владельца —

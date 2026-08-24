@@ -33,13 +33,17 @@ describe('clean onboarding auth placement contract', () => {
     expect(welcomeBlock).toContain('AppleSignInButton');
     expect(src).toContain('const handleAuth = useCallback(async (provider: AuthProviderId)');
     expect(src).toContain('signInWithProvider(provider)');
-    expect(src).toContain("new Error('signin_deadline-exceeded')");
+    expect(src).not.toContain('Promise.race([');
+    expect(src).not.toContain("new Error('signin_deadline-exceeded')");
+    expect(src).toContain('return await task;');
+    expect(src).toContain('onSlow();');
     expect(src).toContain('catch (error)');
-    expect(src).toContain("result.error.includes('google_signin_timeout')");
-    expect(src).toContain('Google не ответил вовремя');
+    expect(src).toContain("code.includes('google_signin_timeout')");
+    expect(src).toContain('Вход всё ещё выполняется');
+    expect(src).toContain('Кнопки останутся недоступны');
     expect(src).toContain('const ONBOARDING_AUTH_UI_TIMEOUT_MS = 8_000;');
-    expect(src).toContain("new Error('signin_deadline-exceeded')");
-    expect(src).toContain('Вход занимает слишком много времени');
+    expect(src).toContain('setAuthSlow(true)');
+    expect(src).toContain('disabled={!!authLoading}');
   });
 
 });

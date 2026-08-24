@@ -18,7 +18,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  Alert,
   Image,
   Pressable,
   ScrollView,
@@ -62,6 +61,7 @@ import {
   studyTargetLabelForSourceUiLang,
   type StudyTargetLang,
 } from './study_target_lang_dev';
+import { commitPhoneStateDurableAction } from './phone_state_recovery';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type WelcomeStep = 'welcome' | 'goal' | 'level' | 'done';
@@ -210,20 +210,15 @@ export default function LanguageWelcomeScreen() {
           });
           return;
         }
-        await saveLanguageProfile(target, { goal, level });
-        await applyStudyLanguageSelection(target, lang);
-        setStep('done'); // язык активирован → экран-подтверждение, а не молчаливый выход
+        const committed = await commitPhoneStateDurableAction(async () => {
+          await saveLanguageProfile(target, { goal, level });
+          await applyStudyLanguageSelection(target, lang);
+        });
+        if (committed) {
+          setStep('done'); // язык активирован → экран-подтверждение, а не молчаливый выход
+        }
       } catch {
-        // Сохранение/активация упали (сеть/сторедж) — без catch это был бы немой
-        // провал + unhandled rejection. Говорим пользователю и оставляем на шаге,
-        // чтобы он мог нажать ещё раз (setBusy(false) в finally уже разблокирует CTA).
-        Alert.alert(
-          tr('Не получилось', 'Не вдалося'),
-          tr(
-            'Не удалось сохранить выбор языка. Проверь соединение и попробуй ещё раз.',
-            'Не вдалося зберегти вибір мови. Перевір зʼєднання та спробуй ще раз.',
-          ),
-        );
+        // Local durability recovery owns retry and neutral user feedback.
       } finally {
         setBusy(false);
       }

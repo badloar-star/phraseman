@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "projectId": "phraseman-ea0b3",
+  "environment": "production",
+  "functionsStageReady": false,
+  "functionsStageEvidence": null,
+  "scrubVerificationReady": false,
+  "verificationEvidence": null,
+  "schemaConstrainedClientReleased": false,
+  "clientReleaseEvidence": null,
+  "minimumSupportedClientFloorVerified": false,
+  "clientFloorEvidence": null,
+  "rulesReleaseApproved": false,
+  "rulesApprovalEvidence": null
+}

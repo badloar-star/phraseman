@@ -1,0 +1,3009 @@
+{
+  "schemaVersion": "phone-state-legacy-inventory.v1",
+  "rows": [
+    {
+      "key": "account_switch_emergency_backup_latest_v1",
+      "domain": "account",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": ["async_storage", "last_sync_snapshot", "cloud_progress"],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "achievement_combo_best_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_daily_phrase_read_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_daily_phrase_save_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_energy_refill_count",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_flashcards_flip_count",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_flashcards_saved_count",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_flashcards_source_set_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_flashcards_view_streak_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_gift_sent_count",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "achievement_league_boost_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_league_champion_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_league_diamond_week_streak_v1",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_league_top3_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_shards_spent_total",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "achievement_share_count",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievement_streak_safety_used_v1",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievements_state",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "achievements_v1",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "active_days_v1",
+      "domain": "stats",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "admin_energy_command",
+      "domain": "economy",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "admin_premium_override",
+      "domain": "admin",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "anon_id",
+      "domain": "anon",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "app_font_size",
+      "domain": "app",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "app_lang",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": ["async_storage", "last_sync_snapshot", "cloud_progress"],
+      "legacyMirror": true,
+      "sensitivity": "low"
+    },
+    {
+      "key": "app_language",
+      "domain": "preferences",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "app_theme",
+      "domain": "preferences",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "app_version",
+      "domain": "app",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "arena_rating_screen_cache_v1",
+      "domain": "arena",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "arena_top100_remote_at_v1",
+      "domain": "arena",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "arena_top100_snapshot_v8",
+      "domain": "arena",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "auth_clean_install_recovery_v1",
+      "domain": "auth",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "avatar_aura_gift_owned_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "avatar_aura_owned_v1",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "best_pct",
+      "domain": "best",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "boon_comeback_granted_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "boon_granted_streak_saver_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "boon_mystery_monday_claimed_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "boon_perfect_week_claimed_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "cellIndex",
+      "domain": "cellIndex",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "chain_shield",
+      "domain": "chain",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "cloud_created_at_synced_v1",
+      "domain": "cloud",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "cloud_last_sync_snapshot_v1",
+      "domain": "cloud",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "cloud_migration_v1",
+      "domain": "cloud",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "club_gift_free_boost_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "club_remote_refresh_at_v2",
+      "domain": "club",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "collectibles_owned_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "collectibles_state_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "comeback_active",
+      "domain": "comeback",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "comeback_pending",
+      "domain": "comeback",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "community_local_author_packs_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "community_owned_pack_ids_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "community_owned_pack_titles_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "custom_avatar_gift_owned_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "custom_avatar_owned_v1",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "custom_flashcards_v2",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "daily_phrase_remote_cache_v1",
+      "domain": "stats",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "daily_phrase_v3",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "daily_stats",
+      "domain": "stats",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "device_platform",
+      "domain": "device",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "diagnostic_last",
+      "domain": "exams",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "energy_onboarding_shown",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "energy_state",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "errorReplayOverride",
+      "domain": "errorReplayOverride",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcard_delete_hint_seen",
+      "domain": "cards",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcard_pack_trial_gift_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "flashcards",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_market_built_cards_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_opened_packs_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_owned_packs_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_progress_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_swipe_hint_seen",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_swipe_memory_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_swipe_session_draft_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "flashcards_v1",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "friend_profiles_cache_v1",
+      "domain": "friend",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "friends_activity_feed_v1",
+      "domain": "friends",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "friends_activity_feed_v2",
+      "domain": "friends",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "friends_push_v1",
+      "domain": "friends",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "friends_tab_swr_v1",
+      "domain": "friends",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "gift_xp_bank_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "gift_xp_multiplier",
+      "domain": "economy",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "global_lb_cache",
+      "domain": "global",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "global_lb_cache_v4",
+      "domain": "global",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "had_premium_ever",
+      "domain": "had",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "haptics_tap",
+      "domain": "haptics",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "helpful_error_reports_confirmed_v1",
+      "domain": "helpful",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "hidden_community_pack_ids_v1",
+      "domain": "hidden",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "install_date",
+      "domain": "install",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "intro_full_access_started_at_v1",
+      "domain": "intro",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "irregular_verbs_global",
+      "domain": "irregular",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "lang",
+      "domain": "lang",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "language_profile_v1::en",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "language_profile_v1::fr",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "last_active_date",
+      "domain": "last",
+      "scope": "portable",
+      "reducer": "date_union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "last_known_league_rank",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "last_opened_lesson",
+      "domain": "last",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "last_phrase_date_v3",
+      "domain": "last",
+      "scope": "portable",
+      "reducer": "date_union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "leaderboard",
+      "domain": "leaderboard",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "leaderboard_cache_v1",
+      "domain": "leaderboard",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "league_chest_energy_override_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "league_chest_xp_override_v1",
+      "domain": "league",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "league_gold_theme_unlocked_at",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "league_gold_theme_unlocked_v1",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "league_personal_boost_v1",
+      "domain": "league",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "league_result_consumed_sig",
+      "domain": "league",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "league_result_pending",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "league_state_v3",
+      "domain": "league",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "legacy_free_lesson_cap_v1",
+      "domain": "legacy",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "legacy_free_lesson_migration_v1",
+      "domain": "legacy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "level_premium_pack_unlock_gifts_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "level_up_shown_levels_v1",
+      "domain": "level",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "lifetime_best_hall_rank_v1",
+      "domain": "lifetime",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "lingman_certificate_v1",
+      "domain": "exams",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "lingman_exam_available",
+      "domain": "exams",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "login_bonus_pending",
+      "domain": "login",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "login_bonus_v1",
+      "domain": "login",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "monthly_recap_scheduled",
+      "domain": "monthly",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "notif_permission_nudge_last_day",
+      "domain": "notif",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "notification_hour",
+      "domain": "notification",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "notification_minute",
+      "domain": "notification",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "notifications_enabled",
+      "domain": "notifications",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "onboarding_done",
+      "domain": "onboarding",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "onboarding_flow_version_v1",
+      "domain": "onboarding",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "onboarding_plan_goal",
+      "domain": "onboarding",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "onboarding_plan_level",
+      "domain": "onboarding",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "onboarding_plan_minutes",
+      "domain": "onboarding",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "onboarding_step",
+      "domain": "onboarding",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "open_diagnostic",
+      "domain": "open",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "pass_count",
+      "domain": "pass",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "passed",
+      "domain": "passed",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "pct",
+      "domain": "pct",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "per_day_notif_ids",
+      "domain": "per",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "personal_plan_completed_tasks_v1",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "personal_plan_progress_v1",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "personal_plan_state_v1",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "personal_plan_task_progress_v1",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "personal_plan_xp_ledger_v1",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "phrase_notif_scheduled",
+      "domain": "phrase",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "phraseman_foreground_daily_ms_v1",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "phraseman_foreground_usage_ms_v1",
+      "domain": "phraseman",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "phraseOrder",
+      "domain": "phraseOrder",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "pm_app_welcome_played_v1",
+      "domain": "pm",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "pos_mastery_v1",
+      "domain": "pos",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "premium_active",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_admin_grant_at",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_course_level",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_expiry",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_free_freeze_used",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_plan",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_rc_expiry_ms",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_rc_period_type",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_rc_product_id",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_rc_purchased_at_ms",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_rc_store",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "premium_rc_updated_at",
+      "domain": "premium",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "profile_card_level",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "profile_card_motion",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "profile_card_public_focus",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "profile_card_theme",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "progress_server_event_dead_letter_v1",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "progress_server_event_queue_v1",
+      "domain": "progress",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "progress_server_event_retry_v1",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "progress_server_snapshot_baseline_v1",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "progress_server_snapshot_migrated_v1",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "promo_vip_last_code",
+      "domain": "promo",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "season_cosmetics_v1",
+      "domain": "season",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "season_pass_owned_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "shard_survey_last_at_ms",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "shards_balance",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "shards_balance_meta_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "shards_lifetime_earned_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "shards_lifetime_spent_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "shards_one_time_events",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "stable_auth_link_cache_v1",
+      "domain": "stable",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "stats_daily_breakdown_v1",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "stats_insights_v1",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "stats_primary_metric_v1",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "streak_count",
+      "domain": "streak",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "streak_freeze",
+      "domain": "streak",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "streak_last_date",
+      "domain": "streak",
+      "scope": "portable",
+      "reducer": "date_union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "streak_last_shown",
+      "domain": "streak",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "streak_paywall_shown",
+      "domain": "streak",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "streak_revive_v1",
+      "domain": "streak",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "streak_wager_v2",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "streak_warning_scheduled",
+      "domain": "streak",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "study_languages_started_v1",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "tester_energy_disabled",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "tester_no_limits",
+      "domain": "tester",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "tester_no_premium",
+      "domain": "tester",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "unlocked_lessons",
+      "domain": "lessons",
+      "scope": "portable",
+      "reducer": "union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_avatar",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_avatar_aura",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_frame",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_lang",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_name",
+      "domain": "preferences",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "user_phrasm",
+      "domain": "user",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_prev_xp",
+      "domain": "xp",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_profile",
+      "domain": "user",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "user_settings",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_stats_v1",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "user_total_xp",
+      "domain": "xp",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "vip_active",
+      "domain": "vip",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "vip_admin_grant_at",
+      "domain": "vip",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "vip_admin_override",
+      "domain": "vip",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "vip_from",
+      "domain": "vip",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "vip_plan",
+      "domain": "vip",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "vip_until",
+      "domain": "vip",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "key": "wager_discount",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "wager_discount_uses_v1",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_board_meta",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_days_done",
+      "domain": "week",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_days_week_key",
+      "domain": "week",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_leaderboard",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_points",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_points_last_final",
+      "domain": "league",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_points_migrated_v1",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "week_points_v2",
+      "domain": "league",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "week_xp_peak_best_v1",
+      "domain": "week",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "weekly_pb_v1",
+      "domain": "weekly",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "weekly_recap_scheduled",
+      "domain": "weekly",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "weekly_review_v1",
+      "domain": "weekly",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "weekly_xp",
+      "domain": "xp",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "weekly_xp_period_start",
+      "domain": "xp",
+      "scope": "portable",
+      "reducer": "date_union",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "xp_migration_v2",
+      "domain": "xp",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    }
+  ],
+  "prefixRules": [
+    {
+      "prefix": "lesson",
+      "domain": "lessons",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "level_exam_",
+      "domain": "exams",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "bonus_hints_",
+      "domain": "bonus",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "fifty_fifty_",
+      "domain": "fifty",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "shards_topic_",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "v2:outbox:v1:",
+      "domain": "learning_v2",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "v2:outbox:v2:",
+      "domain": "learning_v2",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "cloud_sync_v2::",
+      "domain": "cloud",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "flashcards_v2::",
+      "domain": "cards",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "level_exams_v2::",
+      "domain": "exams",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "achievements_v2::",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "daily_phrase_v2::",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "target_stats_v2::",
+      "domain": "stats",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "theory_xp_claimed_",
+      "domain": "theory",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "achievement_lesson_",
+      "domain": "achievements",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "prep_drill_perfect_",
+      "domain": "prep",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "mistake_practice_v2::",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "theory_sections_seen_",
+      "domain": "theory",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "personal_practice_v2::",
+      "domain": "personal",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "client_shard_prepared_v1:",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "client_shard_operation_v1:",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "shards_5perfect_milestone_",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "friend_gift_send_outbox_v1::",
+      "domain": "economy",
+      "scope": "external",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "client_shard_cloud_synced_v1:",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "client_shard_ledger_state_v1:",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "client_shard_grant_receipt_v1:",
+      "domain": "economy",
+      "scope": "portable",
+      "reducer": "composite_economy",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "diagnosis_training_progress_v1:",
+      "domain": "practice",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "progress_server_event_queue_v1:",
+      "domain": "progress",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "progress_server_event_retry_v1:",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "progress_server_event_dead_letter_v1:",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "progress_server_snapshot_baseline_v1:",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "progress_server_snapshot_migrated_v1:",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "account_switch_emergency_backup_page_v1:",
+      "domain": "account",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    }
+  ]
+}

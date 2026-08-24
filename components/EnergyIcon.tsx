@@ -1,26 +1,11 @@
-import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, StyleSheet } from 'react-native';
-import { Image } from 'expo-image';
-import type { ThemeMode } from '../constants/theme';
-import { LUM } from '../constants/motionHybrid';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
+import React, { memo, useEffect, useRef } from "react";
+import { Animated, Easing, StyleSheet } from "react-native";
+import { Image } from "expo-image";
+import type { ThemeMode } from "../constants/theme";
+import { LUM } from "../constants/motionHybrid";
+import { useReduceMotion } from "../hooks/use_reduce_motion";
 
-const ENERGY_IMAGES: Record<ThemeMode, any> = {
-  dark: require('../assets/images/energy/energy-forest.webp'),
-  gold: require('../assets/images/energy/energy-gold.webp'),
-  olive: require('../assets/images/energy/energy-olive.webp'),
-  minimalDark: require('../assets/images/energy/energy-graphite.webp'),
-  business: require('../assets/images/energy/energy-business.webp'),
-  businessLight: require('../assets/images/energy/energy-businessLight.webp'),
-  sagePorcelain: require('../assets/images/energy/energy-sagePorcelain.webp'),
-  midnight: require('../assets/images/energy/energy-midnight.webp'),
-  ember: require('../assets/images/energy/energy-ember.webp'),
-  aurora: require('../assets/images/energy/energy-aurora.webp'),
-  volt: require('../assets/images/energy/energy-volt.webp'),
-  // Новые темы переиспользуют ассет minimalDark (graphite), без новых файлов.
-  candyBlue: require('../assets/images/energy/energy-graphite.webp'),
-  indigo: require('../assets/images/energy/energy-graphite.webp'),
-};
+const ENERGY_IMAGE = require("../assets/images/energy/energy-start-cost.webp");
 
 interface EnergyIconProps {
   filled: boolean;
@@ -46,15 +31,14 @@ function EnergyIcon({
   size = 30,
   animateChange = true,
   shouldShake = false,
-  themeMode,
-  tintColor,
   bloomOnRefill = false,
 }: EnergyIconProps) {
   const emptyOpacity = 0.4;
-  const opacityAnim = useRef(new Animated.Value(filled ? 1 : emptyOpacity)).current;
+  const opacityAnim = useRef(
+    new Animated.Value(filled ? 1 : emptyOpacity),
+  ).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
-  const energyImage = themeMode ? ENERGY_IMAGES[themeMode] : ENERGY_IMAGES.dark;
   const reduceMotion = useReduceMotion();
   const wasFilledRef = useRef(filled);
 
@@ -74,10 +58,30 @@ function EnergyIcon({
     if (shouldShake) {
       shakeAnim.setValue(0);
       Animated.sequence([
-        Animated.timing(shakeAnim, { toValue: -3, duration: 52, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(shakeAnim, { toValue: 3, duration: 72, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(shakeAnim, { toValue: -2, duration: 60, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(shakeAnim, { toValue: 0, duration: 80, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+        Animated.timing(shakeAnim, {
+          toValue: -3,
+          duration: 52,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: 3,
+          duration: 72,
+          easing: Easing.inOut(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: -2,
+          duration: 60,
+          easing: Easing.inOut(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: 0,
+          duration: 80,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
       ]).start();
     }
   }, [shouldShake, shakeAnim]);
@@ -89,8 +93,18 @@ function EnergyIcon({
     if (reduceMotion) return; // reduce motion = один кадр, без bloom
     glowAnim.setValue(0);
     Animated.sequence([
-      Animated.timing(glowAnim, { toValue: 0.8, duration: LUM.bloomMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-      Animated.timing(glowAnim, { toValue: 0, duration: LUM.bloomMs, easing: Easing.linear, useNativeDriver: true }),
+      Animated.timing(glowAnim, {
+        toValue: 0.8,
+        duration: LUM.bloomMs,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }),
+      Animated.timing(glowAnim, {
+        toValue: 0,
+        duration: LUM.bloomMs,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
     ]).start();
   }, [bloomOnRefill, filled, glowAnim, reduceMotion]);
 
@@ -109,7 +123,11 @@ function EnergyIcon({
           style={[
             StyleSheet.absoluteFillObject,
             styles.glow,
-            { backgroundColor: tintColor || '#FFD37A', opacity: glowAnim, transform: [{ scale: 1.6 }] },
+            {
+              backgroundColor: "#FFD37A",
+              opacity: glowAnim,
+              transform: [{ scale: 1.6 }],
+            },
           ]}
         />
       ) : null}
@@ -117,11 +135,10 @@ function EnergyIcon({
           счётчиком/текстом во всех местах вызова, сама картинка не несёт
           самостоятельного смысла для скринридера. */}
       <Image
-        source={energyImage}
+        source={ENERGY_IMAGE}
         style={{
           width: size,
           height: size,
-          ...(tintColor ? { tintColor } : {}),
         }}
         contentFit="contain"
         accessible={false}

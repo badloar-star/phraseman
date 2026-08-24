@@ -3,14 +3,17 @@ import type { CustomerInfo } from 'react-native-purchases';
 import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
 import { withAccountTransitionLock } from './account_generation';
-import { activeRevenueCatPremiumEntitlement } from './revenuecat_premium_access';
+import {
+  activeRevenueCatMaxEntitlement,
+  activeRevenueCatPremiumEntitlement,
+} from './revenuecat_premium_access';
 
 export {
   customerInfoConfirmsProductAccess,
   revenueCatCustomerInfoHasPremiumAccess,
 } from './revenuecat_premium_access';
 
-export type PremiumStorePlan = 'monthly' | 'yearly' | 'lifetime';
+export type PremiumStorePlan = 'monthly' | 'yearly' | 'lifetime' | 'max_monthly';
 
 export type RevenueCatPremiumMetadata = {
   productId?: string;
@@ -29,6 +32,7 @@ export function inferPremiumPlanFromProductId(
   defaultPlan: PremiumStorePlan = 'monthly',
 ): PremiumStorePlan {
   const id = clean(productId).toLowerCase();
+  if (/^phraseman_max_monthly_v1(?::monthly-base)?$/.test(id)) return 'max_monthly';
   // Lifetime (non-consumable) проверяем ПЕРВЫМ: его id может содержать слова,
   // которые иначе матчатся как подписка, а семантика «навсегда» важнее.
   if (/lifetime|forever|one.?time|onetime|perpetual/.test(id)) return 'lifetime';
@@ -62,7 +66,7 @@ export function revenueCatPremiumMetadata(
   info: CustomerInfo | null | undefined,
   defaultProductId?: string | null,
 ): RevenueCatPremiumMetadata {
-  const ent = activeRevenueCatPremiumEntitlement(info);
+  const ent = activeRevenueCatMaxEntitlement(info) ?? activeRevenueCatPremiumEntitlement(info);
   const productId =
     clean(defaultProductId) ||
     clean(ent?.productIdentifier) ||
@@ -76,6 +80,29 @@ export function revenueCatPremiumMetadata(
     ? ent.latestPurchaseDateMillis
     : null;
 
+  return {
+    ...(productId ? { productId } : {}),
+    ...(periodType ? { periodType } : {}),
+    ...(store ? { store } : {}),
+    ...(expiryMs != null ? { expiryMs } : {}),
+    ...(purchasedMs != null ? { purchasedMs } : {}),
+  };
+}
+
+export function revenueCatMaxMetadata(
+  info: CustomerInfo | null | undefined,
+  defaultProductId?: string | null,
+): RevenueCatPremiumMetadata {
+  const ent = activeRevenueCatMaxEntitlement(info);
+  const productId = clean(ent?.productIdentifier) || clean(defaultProductId);
+  const periodType = clean(ent?.periodType).toUpperCase();
+  const store = clean(ent?.store).toUpperCase();
+  const expiryMs = typeof ent?.expirationDateMillis === 'number'
+    ? ent.expirationDateMillis
+    : null;
+  const purchasedMs = typeof ent?.latestPurchaseDateMillis === 'number'
+    ? ent.latestPurchaseDateMillis
+    : null;
   return {
     ...(productId ? { productId } : {}),
     ...(periodType ? { periodType } : {}),

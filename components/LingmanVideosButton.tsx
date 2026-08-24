@@ -6,7 +6,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
-import { getActiveYoutubeChannel, getLingmanYoutubeSnapshot } from '../app/lingman_youtube';
+import { getActiveYoutubeChannel, getLingmanYoutubeSnapshot, markLingmanYoutubeCatalogSeen } from '../app/lingman_youtube';
 import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
 import { isVideoButtonEnabled } from '../app/remote_flags';
 import { onAppEvent } from '../app/events';
@@ -31,6 +31,7 @@ function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
   const initialVisibility = readVideoButtonVisibility();
   const [enabled, setEnabled] = useState(initialVisibility.enabled);
   const badgePulse = useRef(new Animated.Value(1)).current;
+  const latestVideoIdRef = useRef<string | null>(null);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const channelName = getActiveYoutubeChannel().displayName;
@@ -60,7 +61,10 @@ function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
     if (!isVideoButtonEnabled()) return () => {};
     let alive = true;
     void getLingmanYoutubeSnapshot().then((snapshot) => {
-      if (alive) setUnreadCount(snapshot.unreadCount);
+      if (alive) {
+        latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
+        setUnreadCount(snapshot.unreadCount);
+      }
     });
     return () => {
       alive = false;
@@ -140,6 +144,8 @@ function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
       accessibilityLabel={label}
       onPress={() => {
         hapticTap();
+        setUnreadCount(0);
+        void markLingmanYoutubeCatalogSeen(latestVideoIdRef.current);
         router.push('/lingman_videos' as any);
       }}
       style={styles.button}

@@ -40,7 +40,7 @@ import {
   parseKindItem,
   type ParsedKindItem,
 } from './tournament_ai_kind_items';
-import { judgeTournamentTask } from './tournament_ai_validator';
+import { judgeTournamentTaskPair } from './tournament_ai_validator';
 import { isTournamentAiLevel, type TournamentAiLevel } from './tournament_ai_generator';
 import {
   canPublishTournamentTask,
@@ -203,8 +203,8 @@ async function generateKindGroup(
       }
       // Separate judge: syntactically valid content still cannot reach the owner
       // before an independent model has checked the answer, traps and explanation.
-      const verdict = await judgeTournamentTask({ apiKey, model, item: item.item });
-      requests += 1;
+      const verdict = await judgeTournamentTaskPair({ apiKey, model, item: item.item });
+      requests += 2;
       promptTokens += verdict.promptTokens;
       completionTokens += verdict.completionTokens;
       if (verdict.ok) {

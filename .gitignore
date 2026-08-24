@@ -359,3 +359,6 @@ functions/src/generated/support_repo_context.json
 # ловит только корень, поэтому вложенные пути закрываем явно.
 functions-*/.env
 functions-*/.env.*
+
+# Светофор параллельных сессий: маркеры живут только локально
+.claude/locks/*.lock

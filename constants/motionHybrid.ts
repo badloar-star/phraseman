@@ -110,6 +110,39 @@ export const TOAST = {
   idleBreathMs: 1400,
 } as const;
 
+/** Угловой знак цены старта: один короткий вход и конечный световой импульс. */
+export const ENERGY_COST_BADGE_HYBRID = {
+  entryShiftPx: -6,
+  entryScale: 0.94,
+  pulseScale: 1.06,
+  idleRotationDeg: -4,
+  pulseRotationDeg: 4,
+} as const;
+
+/** Подтверждённая трата: заряд переносится из верхнего счётчика в CTA. */
+export const ENERGY_SPEND_TRANSFER_HYBRID = {
+  durationMs: 820,
+  enterMs: 110,
+  fadeMs: 210,
+  sourceTopPx: 62,
+  sourceRightPx: 78,
+  targetHeightRatio: 0.62,
+  curveLiftPx: 76,
+  impactStart: 0.68,
+  assetSize: 84,
+  reducedMotionMs: 160,
+} as const;
+
+/** Пре-экран урока MAX: конечная печать миссии и мягкое появление готовой CTA. */
+export const MAX_PRESTART_MISSION_HYBRID = {
+  characterMs: 34,
+  cardMinHeight: 108,
+  badgeSize: 32,
+  caretWidth: 2,
+  ctaStartShiftPx: 4,
+  ctaResolveMs: LUM.contentMs,
+} as const;
+
 /** Живая аура звонка MAX — геометрия утверждённого макета и спокойное дыхание. */
 export const MAX_CALL_HYBRID = {
   containerSize: 178,

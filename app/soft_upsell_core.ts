@@ -4,7 +4,6 @@ export const SOFT_UPSELL_TRIGGERS = [
   'weekly_review',
   'second_ai_dialogue',
   'streak_milestone',
-  'repeated_training',
 ] as const;
 
 export const SOFT_UPSELL_CONTEXTS = [
@@ -13,7 +12,6 @@ export const SOFT_UPSELL_CONTEXTS = [
   'weekly_review',
   'dialog_repeat_success',
   'streak_milestone',
-  'trainer_repeat_success',
 ] as const;
 
 export type SoftUpsellTrigger = (typeof SOFT_UPSELL_TRIGGERS)[number];
@@ -70,7 +68,6 @@ const TRIGGER_PRIORITY: Record<SoftUpsellTrigger, number> = {
   weekly_review: 4,
   streak_milestone: 3,
   first_lesson: 2,
-  repeated_training: 1,
 };
 
 const OPPORTUNITY_BY_TRIGGER: Record<
@@ -82,7 +79,6 @@ const OPPORTUNITY_BY_TRIGGER: Record<
   weekly_review: { context: 'weekly_review', destination: 'paywall' },
   second_ai_dialogue: { context: 'dialog_repeat_success', destination: 'paywall' },
   streak_milestone: { context: 'streak_milestone', destination: 'paywall' },
-  repeated_training: { context: 'trainer_repeat_success', destination: 'paywall' },
 };
 
 function selectCandidate(candidates: readonly SoftUpsellCandidate[]): SoftUpsellCandidate | undefined {
@@ -104,8 +100,7 @@ function hasValidValue(candidate: SoftUpsellCandidate): boolean {
       && candidate.value >= 1
       && candidate.value <= 32;
     case 'second_ai_dialogue': return candidate.value === 2;
-    case 'weekly_review':
-    case 'repeated_training': return candidate.value === 1;
+    case 'weekly_review': return candidate.value === 1;
     case 'streak_milestone': return [7, 14, 30].includes(candidate.value);
   }
 }

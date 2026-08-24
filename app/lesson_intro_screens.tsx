@@ -22,6 +22,7 @@ import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import TopFadeMask from '../components/TopFadeMask';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { hapticTap } from '../hooks/use-haptics';
@@ -63,6 +64,7 @@ interface LessonIntroScreensProps {
   lessonId: number;
   onComplete: () => void;
   onBack?: () => void;
+  showEnergyCost?: boolean;
 }
 
 const FADE_DURATION_MS = 1400; // длинный плавный фейд
@@ -383,6 +385,7 @@ export default function LessonIntroScreens({
   lessonId,
   onComplete,
   onBack,
+  showEnergyCost = false,
 }: LessonIntroScreensProps) {
   const lessonIntroRuntimeActive = useRuntimeActive();
   const { theme: t, f, themeMode } = useTheme();
@@ -664,6 +667,7 @@ export default function LessonIntroScreens({
           <View style={styles.ctaIconWrap}>
             <Ionicons name="arrow-forward" size={18} color={t.correctText} />
           </View>
+          {showEnergyCost ? <EnergyCostBadge testID="lesson-intro-start-energy-cost" /> : null}
         </DuoPressable>
       </Animated.View>
     </Animated.View>

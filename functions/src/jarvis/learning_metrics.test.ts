@@ -64,7 +64,7 @@ describe('server-owned learning cohort metrics', () => {
     });
   });
 
-  test.each(['lesson_complete', 'dialog_complete', 'exam_complete'])(
+  test.each(['lesson_complete', 'dialog_complete', 'exam_complete', 'plan_task_complete'])(
     'records %s as a trusted learning completion',
     async (eventType) => {
       const prepared = await prepareLearningCompletionMetrics({
@@ -74,6 +74,16 @@ describe('server-owned learning cohort metrics', () => {
       expect(prepared).toMatchObject({ recorded: true, cohortDate: '2026-08-01', horizonDays: 0 });
     },
   );
+
+  test('does not record an unapplied personal-plan completion', async () => {
+    const prepared = await prepareLearningCompletionMetrics({
+      db: db(), tx: txWith({}), stableUid, eventType: 'plan_task_complete',
+      completionApplied: false,
+      occurredAt: new Date('2026-08-01T12:00:00Z'), fields,
+    });
+
+    expect(prepared).toMatchObject({ recorded: false, writes: [] });
+  });
 
   test.each([
     [1, '2026-08-02', 'd1ReturningUsers'],
@@ -151,6 +161,9 @@ describe('server-owned learning cohort metrics', () => {
     expect(prepareIndex).toBeGreaterThan(0);
     expect(spinIndex).toBeGreaterThan(prepareIndex);
     expect(commitIndex).toBeGreaterThan(spinIndex);
+    expect(source).toContain(
+      "completionApplied: event.type !== 'plan_task_complete' || applied.xpDelta > 0",
+    );
   });
 
   test('both aggregate roots are denied to browser clients and excluded from the admin catch-all', () => {

@@ -53,7 +53,6 @@ import {
   lingmanCertificateKey,
   masteryFinishedOnceKey,
   masteryReplayCountKey,
-  mistakeLogKey,
   personalPracticeFreeAccessKey,
   personalPracticeTrainingProgressKey,
   posMasteryKey,

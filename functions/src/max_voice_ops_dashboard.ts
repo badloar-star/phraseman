@@ -132,7 +132,7 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
     'reconnectRecovered', 'reconnectFailed', 'noRemoteAudio', 'emptyTranscript',
     'finalizationQueued', 'finalizationRetryable', 'finalizationTerminal', 'reviewsReady',
     'reviewsFailed', 'finalizationRetries', 'memoryUpdatesSucceeded', 'memoryUpdatesFailed',
-    'sensitiveMemoryCandidatesRejected', 'quotaReservations', 'quotaSettlements',
+    'sensitiveMemoryCandidatesRejected', 'mintRejections', 'quotaReservations', 'quotaSettlements',
     'watchdogSettlements', 'impossibleSequences',
     // зачем: владелец 2026-08-22 — дисциплина учителя в панели (доли уроков).
     'lessonsFinalized', 'lessonsEndedByTutor', 'lessonsWithHomework', 'lessonsGoalAdvanced',
@@ -175,6 +175,7 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
       localeCounts: suppressSmallCells(sumRecord(rows, 'localeCounts')),
       levelCounts: suppressSmallCells(sumRecord(rows, 'levelCounts')),
       providerUsage: sumRecord(rows, 'providerUsage'),
+      mintRejectionReasons: sumRecord(rows, 'mintRejectionReasons'),
     },
     trend: rows.map((row) => ({
       dayKey: row.dayKey,

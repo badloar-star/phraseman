@@ -8,7 +8,6 @@ export type OnboardingStepId =
   | 'promise'
   | 'improve'
   | 'notifications'
-  | 'letsBuild'
   | 'trialReminder'
   | 'onboardingPaywall'
   | 'name';
@@ -35,11 +34,16 @@ export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
 // (предложение входа), «niceToMeet» — приветствие по имени, «promise» — график
 // роста на весь экран, «improve» — зачем анонимная статистика, «source» —
 // откуда узнал, язык — отдельным отключаемым блоком (language+level), пока не
-// добавлены языки, «notifications» — макет телефона с пушем, «letsBuild» —
-// пустой экран-переход, затем ОБЯЗАТЕЛЬНЫЙ «name» (согласия и возраст), честное
-// «trialReminder» и цены. Онбординг завершает пейвол (любой из его выходов),
-// а не «name» — поэтому финал прогресса = onboardingPaywall.
+// добавлены языки, «notifications» — макет телефона с пушем, затем ОБЯЗАТЕЛЬНЫЙ
+// «name» (согласия и возраст), честное «trialReminder» и цены. Онбординг
+// завершает пейвол (любой из его выходов), а не «name» — поэтому финал
+// прогресса = onboardingPaywall.
 // Порядок ВАЖЕН: он же — порядок экранов в приложении и в админке.
+//
+// зачем «letsBuild» больше нет (владелец, 2026-08-17): пустой экран-переход
+// «Теперь настроим всё под тебя» никуда не вёл и ничего не давал. Старые
+// сохранённые в remote_config списки с этим id безопасны — KNOWN_STEP_IDS
+// в parseEnabledOnboardingSteps молча отфильтрует неизвестный id.
 export const ONBOARDING_STEP_CATALOG: readonly {
   id: OnboardingStepId;
   label: string;
@@ -55,7 +59,6 @@ export const ONBOARDING_STEP_CATALOG: readonly {
   { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
   { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления с макетом пуша.' },
-  { id: 'letsBuild', label: 'Настроим под тебя', description: 'Пустой экран-переход перед согласиями («Теперь настроим всё под тебя»).' },
   {
     id: 'name',
     label: 'Имя и согласия',
@@ -81,13 +84,12 @@ const KNOWN_STEP_IDS = new Set<OnboardingStepId>(ALL_STEP_IDS);
 // Набор = ВСЕ id, которых не знал последний РЕЛИЗНЫЙ каталог (welcome, source,
 // language, level, notifications, onboardingPaywall, name). Панель тумблеров в
 // админке живёт с 12.07 — если список хоть раз публиковался, в нём нет ни одного
-// экрана из добавленных позже, а не только niceToMeet/letsBuild от 17.08.
+// экрана из добавленных позже, а не только niceToMeet от 17.08.
 export const ONBOARDING_STEPS_DEFAULT_ON: readonly OnboardingStepId[] = [
   'privacy',
   'niceToMeet',
   'promise',
   'improve',
-  'letsBuild',
   'trialReminder',
 ];
 export const ONBOARDING_STEPS_CATALOG_MARK = 'catalog_2026_08_17';
@@ -127,6 +129,18 @@ export function resolveEnabledOnboardingOrder(
     enabled.delete('level');
   }
   return ALL_STEP_IDS.filter((id) => enabled.has(id));
+}
+
+/**
+ * The explicit DEV QA launch must expose the complete local flow even when the
+ * production Remote Config has screens disabled. Outside that one runtime the
+ * server-provided allowlist stays authoritative.
+ */
+export function resolveRuntimeOnboardingSteps(
+  remotelyEnabled: readonly OnboardingStepId[],
+  forceFullCatalogForQa: boolean,
+): OnboardingStepId[] {
+  return forceFullCatalogForQa ? [...ALL_STEP_IDS] : [...remotelyEnabled];
 }
 
 export function resolveOnboardingStep(

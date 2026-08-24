@@ -8,6 +8,7 @@ import type {
   LocalizedSource,
   SessionSource,
 } from "../modules/learning-v2/content/source/session_shard_from_source_v1";
+import { upgradeLesson1SessionDistractorsV2 } from "../modules/learning-v2/content/source/lesson1_distractor_catalog_v2";
 
 type LocaleCopy = Readonly<
   Record<"ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl", string>
@@ -121,7 +122,7 @@ function candidate(): SessionSource {
     "quiet",
     "free",
   ];
-  return {
+  return upgradeLesson1SessionDistractorsV2({
     packageId: "quality-gate-fixture",
     targetLanguage: "en",
     episodeOrdinal: 1,
@@ -211,7 +212,7 @@ function candidate(): SessionSource {
       ],
       features: ["copula_be", "first_person_singular", "state_adjective"],
     })),
-  };
+  });
 }
 
 function approvedReceipt(

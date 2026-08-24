@@ -151,118 +151,10 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
   // ── MINIMAL LIGHT (warm parchment) ────────────────────────────────────────
 
   // ── MINIMAL DARK (clean dark / blue accent) ───────────────────────────────
-  minimalDark: {
-    heroAccent: '#6EA8FF',
-
-    selectedCardBorder: '#6EA8FF',
-    selectedCardBg: 'rgba(110,168,255,0.12)',
-    unselectedCardBg: 'rgba(35,36,40,0.88)',
-    panelBg: 'rgba(34,36,41,0.78)',
-    panelBgStrong: 'rgba(44,49,58,0.88)',
-    selectedCardShadow: '#6EA8FF',
-
-    savingsBadgeBg: '#E9B949',
-    savingsBadgeText: '#1A1A1A',
-
-    popularBadgeBg: '#6EA8FF',
-    popularBadgeText: '#0E1A2F',
-
-    ctaBg: '#6EA8FF',
-    ctaText: '#0E1A2F',
-    ctaShadow: '#6EA8FF',
-
-    pillBg: 'rgba(110,168,255,0.12)',
-    pillText: '#6EA8FF',
-    pillBorder: 'rgba(110,168,255,0.28)',
-
-    urgencyBg: 'rgba(233,185,73,0.10)',
-    urgencyTimerText: '#E9B949',
-    urgencyLabelText: '#A7ABB3',
-    urgencyStrikethroughColor: '#747A84',
-    urgencyCurrentPriceText: '#6EA8FF',
-
-    expandBtnText: '#6EA8FF',
-    expandBtnBorder: 'rgba(110,168,255,0.28)',
-
-    socialProofText: '#A7ABB3',
-    socialProofStarColor: '#E9B949',
-  },
 
   // ── BUSINESS (graphite and champagne) ─────────────────────────────────────
-  business: {
-    heroAccent: '#0095F6',
-
-    selectedCardBorder: '#0095F6',
-    selectedCardBg: 'rgba(0,149,246,0.12)',
-    unselectedCardBg: 'rgba(26,26,26,0.88)',
-    panelBg: 'rgba(24,24,24,0.82)',
-    panelBgStrong: 'rgba(24,39,56,0.88)',
-    selectedCardShadow: '#000000',
-
-    savingsBadgeBg: '#0095F6',
-    savingsBadgeText: '#FFFFFF',
-
-    popularBadgeBg: '#0095F6',
-    popularBadgeText: '#FFFFFF',
-
-    ctaBg: '#0095F6',
-    ctaText: '#FFFFFF',
-    ctaShadow: '#000000',
-
-    pillBg: 'rgba(0,149,246,0.10)',
-    pillText: '#E6E6E6',
-    pillBorder: 'rgba(0,149,246,0.22)',
-
-    urgencyBg: 'rgba(255,255,255,0.06)',
-    urgencyTimerText: '#F5F5F5',
-    urgencyLabelText: '#737373',
-    urgencyStrikethroughColor: '#4D4D4D',
-    urgencyCurrentPriceText: '#E6E6E6',
-
-    expandBtnText: '#F5F5F5',
-    expandBtnBorder: 'rgba(255,255,255,0.12)',
-
-    socialProofText: '#737373',
-    socialProofStarColor: '#E6E6E6',
-  },
 
   // ── BUSINESS LIGHT (ivory and champagne) ──────────────────────────────────
-  businessLight: {
-    heroAccent: '#0095F6',
-
-    selectedCardBorder: '#0095F6',
-    selectedCardBg: 'rgba(0,149,246,0.10)',
-    unselectedCardBg: 'rgba(255,255,255,0.92)',
-    panelBg: 'rgba(18,27,35,0.78)',
-    panelBgStrong: 'rgba(24,43,58,0.86)',
-    selectedCardShadow: 'rgba(0,0,0,0)',
-
-    savingsBadgeBg: '#0095F6',
-    savingsBadgeText: '#FFFFFF',
-
-    popularBadgeBg: '#0095F6',
-    popularBadgeText: '#FFFFFF',
-
-    ctaBg: '#0095F6',
-    ctaText: '#FFFFFF',
-    ctaShadow: 'rgba(0,0,0,0)',
-
-    pillBg: 'rgba(0,149,246,0.10)',
-    pillText: '#0095F6',
-    pillBorder: 'rgba(0,149,246,0.24)',
-
-    urgencyBg: 'rgba(0,0,0,0.05)',
-    urgencyTimerText: '#262626',
-    urgencyLabelText: '#8E8E8E',
-    urgencyStrikethroughColor: '#C7C7C7',
-    urgencyCurrentPriceText: '#0095F6',
-
-    expandBtnText: '#262626',
-    expandBtnBorder: 'rgba(0,0,0,0.12)',
-
-    socialProofText: '#8E8E8E',
-    socialProofStarColor: '#0095F6',
-  },
 
   // ── COMPASS (warm charcoal / champagne) ───────────────────────────────────
   midnight: {
@@ -410,42 +302,6 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#FFE85C',
   },
   // ── CANDY BLUE (тёмная синева / леденцовый голубой) ───────────────────────
-  candyBlue: {
-    heroAccent: '#D9EDF5',
-
-    selectedCardBorder: 'rgba(178,213,229,0.46)',
-    selectedCardBg: 'rgba(178,213,229,0.10)',
-    unselectedCardBg: 'rgba(28,50,59,0.88)',
-    panelBg: 'rgba(22,40,47,0.78)',
-    panelBgStrong: 'rgba(28,50,59,0.88)',
-    selectedCardShadow: '#3A5A68',
-
-    savingsBadgeBg: '#FFC53D',
-    savingsBadgeText: '#1A1408',
-
-    popularBadgeBg: '#B2D5E5',
-    popularBadgeText: '#07110A',
-
-    ctaBg: '#B2D5E5',
-    ctaText: '#07110A',
-    ctaShadow: '#3A5A68',
-
-    pillBg: 'rgba(178,213,229,0.12)',
-    pillText: '#B2D5E5',
-    pillBorder: 'rgba(178,213,229,0.28)',
-
-    urgencyBg: 'rgba(255,197,61,0.10)',
-    urgencyTimerText: '#FFC53D',
-    urgencyLabelText: '#9DB9C4',
-    urgencyStrikethroughColor: '#4E6A76',
-    urgencyCurrentPriceText: '#B2D5E5',
-
-    expandBtnText: '#B2D5E5',
-    expandBtnBorder: 'rgba(178,213,229,0.28)',
-
-    socialProofText: '#9DB9C4',
-    socialProofStarColor: '#FFC53D',
-  },
   // ── INDIGO (сумрачный индиго / лавандовый акцент) ─────────────────────────
   indigo: {
     heroAccent: '#E4E1FF',

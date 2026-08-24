@@ -9,7 +9,8 @@
 // - все shared values глушатся cancelAnimation на unmount;
 // - без Math.random в рендере (детерминированный seeded, стабильно при ремаунте);
 // - хаптики таймлайна макета (success на герое, medium impact на ударе);
-// - XP-счётчик чистится (clearInterval) и скрыт при xp<=0 (анти-фарм повтора).
+// - XP-счётчик идёт на UI-потоке без JS setInterval и скрыт при xp<=0
+//   (анти-фарм повтора).
 
 import fs from 'fs';
 import path from 'path';
@@ -22,6 +23,9 @@ const SOURCE = fs.readFileSync(
   path.join(__dirname, '..', 'components', 'DialogVictoryCelebrationHybrid.tsx'),
   'utf8',
 );
+const SOURCE_WITHOUT_COMMENTS = SOURCE
+  .replace(/\/\*[\s\S]*?\*\//g, '')
+  .replace(/^[ \t]*\/\/.*$/gm, '');
 
 describe('DialogVictoryCelebration contract', () => {
   it('exports the celebration component', () => {
@@ -38,7 +42,7 @@ describe('DialogVictoryCelebration contract', () => {
 
   it('cancels animations and timers on unmount', () => {
     expect(SOURCE).toContain('cancelAnimation');
-    expect(SOURCE).toContain('clearInterval');
+    expect(SOURCE_WITHOUT_COMMENTS).not.toMatch(/\bsetInterval\s*\(/);
     expect(SOURCE).toContain('clearTimeout');
   });
 

@@ -7,7 +7,7 @@ describe('friends display names contract', () => {
   const friendsTabSource = readFileSync(join(ROOT, 'app', '(tabs)', 'friends.tsx'), 'utf8');
 
   it('does not use an ellipsis as a visible fallback friend name', () => {
-    expect(friendsTabSource).toContain('function placeholderFriendProfile(uid: string, fallbackName?: string)');
+    expect(friendsTabSource).toContain('function placeholderFriendProfile(uid: string, candidateName?: string)');
     expect(friendsTabSource).toContain("name: sanitizedName || 'Phraseman'");
     expect(friendsTabSource).not.toContain("name: '…'");
   });

@@ -18,6 +18,7 @@ import { themedToastChrome } from '../constants/themedToastChrome';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { LUM, TOAST } from '../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 /** Минимальный отступ сверху — прежнее поведение на экранах без выреза. */
 const TOAST_TOP_MIN = 60;
@@ -29,7 +30,7 @@ interface Props {
   onHide: () => void;
   duration?: number;
   type?: 'error' | 'info';
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
@@ -61,15 +62,19 @@ function InGameToastHybrid({
   // уезжал под системную панель («вылазит за рамки экрана», замечание владельца).
   // Отступ берём от безопасной зоны, минимум сохраняем прежним.
   const insets = useStableSafeAreaInsets();
+  const reduceMotion = useReduceMotion();
   const safeTop = Math.max(TOAST_TOP_MIN, insets.top + TOAST_TOP_GAP);
   const opacity = useSharedValue(0);
   const y = useSharedValue(-14);
   const x = useSharedValue(0);
 
   useEffect(() => {
-    let cancelled = false;
-    opacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
-    if (type === 'error') {
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      x.value = 0;
+    } else if (type === 'error') {
+      opacity.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.out(Easing.cubic) });
       y.value = withSpring(0, TOAST.errorSpring);
       x.value = withDelay(
         LUM.resolveMs - 40,
@@ -78,31 +83,26 @@ function InGameToastHybrid({
         ),
       );
     } else {
+      opacity.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.out(Easing.cubic) });
       y.value = withSpring(0, LUM.settle);
     }
     const timer = setTimeout(() => {
+      if (reduceMotion) {
+        onHide();
+        return;
+      }
       opacity.value = withTiming(0, { duration: TOAST.exitMs, easing: Easing.out(Easing.cubic) }, (finished) => {
-        if (finished && !cancelled) {
-          runOnJSHide();
-        }
+        if (finished) runOnJS(onHide)();
       });
     }, duration);
-    // Reanimated worklet callback runs off the JS thread on Fabric; queueMicrotask
-    // hands control back safely, matching the classic path's dismiss timing style.
-    function runOnJSHide() {
-      queueMicrotask(() => {
-        if (!cancelled) onHide();
-      });
-    }
     return () => {
-      cancelled = true;
       clearTimeout(timer);
       cancelAnimation(opacity);
       cancelAnimation(y);
       cancelAnimation(x);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [message, type, duration]);
+  }, [message, type, duration, reduceMotion]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -111,10 +111,8 @@ function InGameToastHybrid({
   const icon = TONE_ICON[type];
 
   return (
-    <Reanimated.View
-      style={[styles.toast, { top: safeTop, shadowColor: chrome.shadowColor }, cardStyle]}
-      pointerEvents="none"
-    >
+    <View style={[styles.toastAnchor, { top: safeTop }]} pointerEvents="none">
+    <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor }, cardStyle]}>
       <LinearGradient colors={chrome.cardColors} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFillObject} />
       <View style={styles.hybridRow}>
         <Ionicons name={icon} size={18} color={chrome.accent} />
@@ -123,10 +121,11 @@ function InGameToastHybrid({
         </Text>
       </View>
     </Reanimated.View>
+    </View>
   );
 }
 
-function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVariant = 'classic' }: Props) {
+function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVariant = 'hybrid' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
   const isHybrid = motionVariant === 'hybrid';
@@ -169,13 +168,14 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
   const icon = TONE_ICON[type];
 
   return (
-    <Animated.View
-      pointerEvents="none"
-      style={[
-        styles.toast,
+    <View style={[styles.toastAnchor, { top: safeTop }]} pointerEvents="none">
+      <Animated.View
+        pointerEvents="none"
+        style={[
+        styles.toastCard,
         // зачем: обводка контейнера запрещена стилем владельца — разделяем тоном
         // и тенью; отступ сверху берём от безопасной зоны.
-        { top: safeTop, shadowColor: chrome.shadowColor, opacity: anim,
+        { shadowColor: chrome.shadowColor, opacity: anim,
           transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [-20, 0] }) }] },
       ]}
     >
@@ -186,19 +186,21 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
           {message}
         </Text>
       </View>
-    </Animated.View>
+      </Animated.View>
+    </View>
   );
 }
 
 export default memo(InGameToast);
 
 const styles = StyleSheet.create({
-  toast: {
+  toastAnchor: {
     position: 'absolute',
-    top: 60,
     left: 24,
     right: 24,
     zIndex: 999999,
+  },
+  toastCard: {
     borderRadius: 16,
     overflow: 'hidden',
     paddingVertical: 14,

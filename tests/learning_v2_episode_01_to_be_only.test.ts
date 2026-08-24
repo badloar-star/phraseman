@@ -13,6 +13,7 @@
 // типы, ссылки), а не то, ЧЕМУ сессия учит. Здесь проверяется именно смысл.
 //
 // Полные правила: docs/v2/LESSON_DESIGN_RULES.ru.md
+// Стиль ученического текста: docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md
 import {
   EPISODE_01_SESSION_MAP_V1,
   type EpisodeSessionPlanEntry,

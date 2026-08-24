@@ -34,15 +34,9 @@ HOME_TARGETS = [
     ("hero-map", 384, {"width": 302, "height": 326, "centerX": 192, "centerY": 192}),
 ]
 
-EXTRA_TARGETS = [
-    ("league-chest", "league-chest.png", "assets/images/league_bonus/{theme}-chest.webp", 512, {"width": 368, "height": 368, "centerX": 256, "centerY": 256}),
-]
+EXTRA_TARGETS = []
 
-SECONDARY_TARGETS = [
-    ("trainer-phrases", "trainer-phrases.png", "assets/images/trainer_theme_icons/{theme}/phrases.webp", 256, {"width": 210, "height": 210, "centerX": 128, "centerY": 128}),
-    ("trainer-words", "trainer-words.png", "assets/images/trainer_theme_icons/{theme}/words.webp", 256, {"width": 210, "height": 210, "centerX": 128, "centerY": 128}),
-    ("trainer-analytics", "trainer-analytics.png", "assets/images/trainer_theme_icons/{theme}/analytics.webp", 256, {"width": 210, "height": 210, "centerX": 128, "centerY": 128}),
-]
+SECONDARY_TARGETS = []
 
 
 def target_records() -> Iterable[dict]:

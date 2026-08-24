@@ -29,14 +29,9 @@ const HOME_TARGETS = [
   ['hero-map', 384, { width: 302, height: 326, centerX: 192, centerY: 192 }],
 ];
 
-const TRAINER_TARGETS = [
-  ['trainer-phrases', 'assets/images/trainer_theme_icons/{theme}/phrases.webp', 256, 0.78],
-  ['trainer-words', 'assets/images/trainer_theme_icons/{theme}/words.webp', 256, 0.78],
-  ['trainer-analytics', 'assets/images/trainer_theme_icons/{theme}/analytics.webp', 256, 0.78],
-];
+const TRAINER_TARGETS = [];
 
 const REWARD_TARGETS = [
-  ['league-chest', 'assets/images/league_bonus/{theme}-chest.webp', 512, 0.72],
   ['streak-fire', 'assets/images/streak_icons/{theme}/streak-fire-{theme}-100.webp', 80, 0.84],
   ['streak-freeze', 'assets/images/streak_icons/{theme}/streak-freeze-{theme}.webp', 80, 0.84],
   ['shard-single', 'assets/images/shards/{theme}-single.webp', 256, 0.72],

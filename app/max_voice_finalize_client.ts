@@ -75,6 +75,7 @@ export function parseMaxVoiceReviewReceipt(
     || !Number.isFinite(row.completedAtMs)
     || !Number.isFinite(row.durationSec)
     || (row.speechSec !== undefined && !Number.isFinite(row.speechSec))
+    || (row.studyTarget !== undefined && !['en', 'fr', 'es'].includes(String(row.studyTarget)))
     || !['completed', 'capped', 'dropped', 'background', 'failed'].includes(String(row.endReason))
     || !textList(row.worked, 3)
     || !textList(row.tomorrowActions, 3)
@@ -153,10 +154,15 @@ export async function drainOneMaxFinalize(
         nowMs,
       );
     }
-    const receipt = parseMaxVoiceReviewReceipt(response, accountKey, envelope.sessionId);
-    if (!receipt) {
+    const serverReceipt = parseMaxVoiceReviewReceipt(response, accountKey, envelope.sessionId);
+    if (!serverReceipt) {
       return scheduleRetry(accountKey, envelope.sessionId, envelope.attempts, retryDelay(envelope.attempts), nowMs);
     }
+    // The server receipt schema remains backward compatible. Preserve the
+    // target from the durable request in the local receipt used by review/retry.
+    const receipt: MaxVoiceReviewReceiptV1 = envelope.request.studyTarget
+      ? { ...serverReceipt, studyTarget: envelope.request.studyTarget }
+      : serverReceipt;
     // Receipt must survive a process death before the expiring transcript is removed.
     await persistReceipt(accountKey, receipt);
     await removeMaxFinalizeEnvelope(accountKey, envelope.sessionId);

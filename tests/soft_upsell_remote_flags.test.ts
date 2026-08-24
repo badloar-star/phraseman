@@ -11,14 +11,13 @@ const FLAGS = {
   weekly_review: 'soft_upsell_weekly_review_enabled',
   second_ai_dialogue: 'soft_upsell_second_ai_dialogue_enabled',
   streak_milestone: 'soft_upsell_streak_enabled',
-  repeated_training: 'soft_upsell_repeated_training_enabled',
 } as const;
 
 afterEach(__resetRemoteFlagsForTest);
 
 test('verified lesson switches default on while deferred integrations stay off', () => {
   expect(Object.values(FLAGS).map((key) => getRemoteBool(key))).toEqual([
-    true, true, false, false, false, false,
+    true, true, false, false, false,
   ]);
   expect(getSoftUpsellEnabledByTrigger()).toEqual({
     first_lesson: true,
@@ -26,7 +25,6 @@ test('verified lesson switches default on while deferred integrations stay off',
     weekly_review: false,
     second_ai_dialogue: false,
     streak_milestone: false,
-    repeated_training: false,
   });
 });
 

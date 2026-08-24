@@ -169,8 +169,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
   // тёмный фон. На светлой теме зелёный #34C759 давал контраст 2.2:1, серебро
   // подиума — 1.6:1, а «геройский» блок оставался чёрно-зелёной плитой посреди
   // белой карточки. Светлость определяем по реальной яркости поверхности, а не
-  // по имени темы: список светлых тем в приложении неполон (businessLight в
-  // него не входит) и назавтра снова про кого-нибудь забудут.
+  // по имени темы: новая светлая тема может появиться без обновления списка.
   const onLight = isLightSurface(t.bgCard);
   /**
    * Доводит фирменный цвет до читаемости на светлой карточке, сохраняя оттенок.
@@ -347,7 +346,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 
     if (reduceMotion) { finish(); return; }
     Animated.timing(exitProgress, {
-      toValue: 1, duration: 150, easing: Easing.in(Easing.quad), useNativeDriver: true,
+      toValue: 1, duration: 150, easing: Easing.out(Easing.quad), useNativeDriver: true,
     }).start(finish);
   }, [onClose, previewMode, reduceMotion, exitProgress]);
 

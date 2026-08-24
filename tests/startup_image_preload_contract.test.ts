@@ -30,8 +30,8 @@ describe('startup image preload contract', () => {
     expect(primarySource).not.toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
     expect(primarySource).not.toContain('OSKOLOK_IMAGE_SOURCES');
 
-    expect(deferredSource).toContain('LEVEL_GIFT_IMAGE_SOURCES');
-    expect(deferredSource).toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
+    expect(deferredSource).not.toContain('LEVEL_GIFT_IMAGE_SOURCES');
+    expect(deferredSource).not.toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
     expect(deferredSource).toContain('OSKOLOK_IMAGE_SOURCES');
 
     expect(deferredSource).not.toContain('CLUB_IMAGES');

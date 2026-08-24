@@ -1,26 +1,33 @@
 /* eslint-disable @typescript-eslint/no-require-imports, react/display-name, import/first */
 import React, { StrictMode } from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
+import { Animated } from 'react-native';
 
 jest.unmock('react-native');
 
 const mockBack = jest.fn();
 const mockSubmitSurvey: jest.Mock = jest.fn();
-const mockReplaceBalance: jest.Mock = jest.fn(() => Promise.resolve());
+const mockCommitEvent: jest.Mock = jest.fn(() => Promise.resolve({ status: 'applied' }));
 const mockMarkDone: jest.Mock = jest.fn(() => Promise.resolve());
 const mockBeginCache: jest.Mock = jest.fn(() => 17);
 const mockCommitCache: jest.Mock = jest.fn();
 const mockEmit: jest.Mock = jest.fn();
 const mockClearPrimed: jest.Mock = jest.fn();
+const mockGetCanonicalUserId: jest.Mock = jest.fn();
+const mockTakePrimedSurvey: jest.Mock = jest.fn();
+let mockRouteParams: Record<string, string | undefined> = {};
+let mockPrimedSurvey: Record<string, any> = {};
+let mockUtcDayKey = '2099-01-01';
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ back: mockBack }),
-  useLocalSearchParams: () => ({ surveyId: 'survey-a', stableId: 'account-a', dayKey: '2026-07-11', lang: 'en' }),
+  useLocalSearchParams: () => mockRouteParams,
+  usePathname: () => '/survey_screen',
 }));
 jest.mock('../app/navigation_back', () => ({ safeRouterBack: () => mockBack() }));
 jest.mock('../app/survey_client', () => ({ submitSurvey: (...args: unknown[]) => mockSubmitSurvey(...args) }));
 jest.mock('../app/shards_system', () => ({
-  replaceShardsBalanceForAccountGeneration: (...args: unknown[]) => mockReplaceBalance(...args),
+  commitConfirmedExternalShardEvent: (...args: unknown[]) => mockCommitEvent(...args),
   SHARD_REWARDS: { survey_completed: 1 },
 }));
 jest.mock('../app/survey_completion_marker', () => ({ markSurveyOfferDone: (...args: unknown[]) => mockMarkDone(...args) }));
@@ -30,18 +37,16 @@ jest.mock('../app/survey_offer_cache', () => ({
 }));
 jest.mock('../app/events', () => ({ emitAppEvent: (...args: unknown[]) => mockEmit(...args) }));
 jest.mock('../app/survey_handoff', () => ({
-  takePrimedSurvey: () => ({
-    surveyId: 'survey-a', title: 'Survey A', subtitle: 'Keep this subtitle', rewardShards: 3,
-    finalTitle: 'Thank you', finalSubtitle: 'Complete final copy',
-    questions: [{ id: 'q1', type: 'text', text: 'Your answer', options: [] }],
-  }),
+  takePrimedSurvey: (...args: unknown[]) => mockTakePrimedSurvey(...args),
   clearPrimedSurvey: () => mockClearPrimed(),
 }));
 jest.mock('../app/survey_offer_model', () => ({
   buildServerConfirmedLegacyCompletion: () => ({ phase: 'completed', survey: null, surveyId: 'survey-a', title: 'Survey A' }),
 }));
-jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(() => Promise.resolve('account-a')) }));
-jest.mock('../app/local_date', () => ({ getUtcDayKey: () => '2099-01-01' }));
+jest.mock('../app/user_id_policy', () => ({
+  getCanonicalUserId: (...args: unknown[]) => mockGetCanonicalUserId(...args),
+}));
+jest.mock('../app/local_date', () => ({ getUtcDayKey: () => mockUtcDayKey }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn() }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
 jest.mock('../components/ThemeContext', () => ({
@@ -68,7 +73,10 @@ jest.mock('../components/ContentWrap', () => {
 });
 jest.mock('react-native-safe-area-context', () => {
   const { View: MockView } = require('react-native');
-  return { SafeAreaView: ({ children }: any) => <MockView>{children}</MockView> };
+  return {
+    SafeAreaView: ({ children }: any) => <MockView>{children}</MockView>,
+    useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }),
+  };
 });
 jest.mock('@expo/vector-icons', () => {
   const { Text: MockText } = require('react-native');
@@ -93,6 +101,68 @@ jest.mock('../components/survey/SurveyRewardPanel', () => {
         : <MockPressable testID="done" onPress={props.onDone}><MockText>Done</MockText></MockPressable>}
     </MockView>
   );
+});
+jest.mock('../components/survey/SurveySheetModal', () => {
+  const { Pressable: MockPressable, Text: MockText, TextInput: MockTextInput, View: MockView } = require('react-native');
+  const { useSurveyFlowController } = require('../app/survey_flow_controller');
+  const MockRewardPanelModule = require('../components/survey/SurveyRewardPanel');
+  const MockRewardPanel = MockRewardPanelModule.default ?? MockRewardPanelModule;
+  return ({ visible, launch, onClose, onDismissed }: any) => {
+    const flow = useSurveyFlowController({ launch, onReconciled: onClose });
+    if (!visible) {
+      return <MockPressable testID="compat-native-dismiss" onPress={onDismissed} />;
+    }
+    const question = flow.currentQuestion;
+    if (flow.submission.phase !== 'editing') {
+      const error = flow.submission.messageKey === 'account_changed'
+        ? 'Аккаунт изменился. Вернись и открой опрос снова.'
+        : flow.submission.messageKey === 'rate_limited'
+          ? 'Слишком много опросов подряд. Попробуй позже.'
+          : flow.submission.messageKey === 'unknown_survey'
+            ? 'Опрос уже недоступен.'
+            : 'Не удалось отправить. Попробуй снова.';
+      return (
+        <MockView testID="compat-survey-sheet">
+          <MockRewardPanel
+            phase={flow.submission.phase}
+            reward={flow.submission.confirmedReward}
+            title={launch.survey.finalTitle ?? 'Спасибо!'}
+            subtitle={launch.survey.finalSubtitle ?? ''}
+            error={error}
+            onDone={onClose}
+            onRetry={() => { void flow.retrySubmit(); }}
+            retryDisabled={flow.submission.messageKey === 'account_changed'}
+            onBack={onClose}
+          />
+          <MockPressable testID="compat-native-dismiss" onPress={onDismissed} />
+        </MockView>
+      );
+    }
+    return (
+      <MockView testID="compat-survey-sheet">
+        <MockText>{launch.survey.title}</MockText>
+        <MockText testID="compat-launch-scope">{`${launch.stableId}|${launch.dayKey}|${launch.lang}`}</MockText>
+        <MockText>{question.text}</MockText>
+        {question.type === 'text' ? (
+          <MockTextInput
+            testID="compat-survey-input"
+            value={flow.answers[question.id]?.comment ?? ''}
+            placeholder="Напиши ответ…"
+            onChangeText={(text: string) => flow.setComment(question.id, text)}
+          />
+        ) : question.options.map((option: any) => (
+          <MockPressable key={option.id} onPress={() => flow.pickOption(question.id, option.id)}>
+            <MockText>{option.label}</MockText>
+          </MockPressable>
+        ))}
+        <MockPressable disabled={!flow.currentAnswered || flow.submitting} onPress={flow.goNext}>
+          <MockText>{flow.isLastStep ? 'Отправить' : 'Дальше'}</MockText>
+        </MockPressable>
+        <MockPressable testID="compat-close" onPress={onClose} />
+        <MockPressable testID="compat-native-dismiss" onPress={onDismissed} />
+      </MockView>
+    );
+  };
 });
 
 import SurveyScreen from '../app/survey_screen';
@@ -119,7 +189,27 @@ beforeEach(() => {
   jest.clearAllMocks();
   __resetAccountGenerationForTests();
   beginAccountGeneration('account-a');
-  mockReplaceBalance.mockResolvedValue('applied');
+  mockRouteParams = {
+    surveyId: 'survey-a',
+    stableId: 'account-a',
+    dayKey: '2099-01-01',
+    lang: 'en',
+  };
+  mockUtcDayKey = '2099-01-01';
+  jest.setSystemTime(new Date('2099-01-01T23:59:59.900Z'));
+  mockPrimedSurvey = {
+    surveyId: 'survey-a', title: 'Survey A', subtitle: 'Keep this subtitle', rewardShards: 3,
+    finalTitle: 'Thank you', finalSubtitle: 'Complete final copy',
+    questions: [{ id: 'q1', type: 'text', text: 'Your answer', options: [] }],
+  };
+  mockGetCanonicalUserId.mockResolvedValue('account-a');
+  mockTakePrimedSurvey.mockImplementation(() => mockPrimedSurvey);
+  jest.spyOn(Animated, 'timing').mockReturnValue({
+    start: jest.fn(),
+    stop: jest.fn(),
+    reset: jest.fn(),
+  } as never);
+  mockCommitEvent.mockResolvedValue({ status: 'applied' });
   mockMarkDone.mockResolvedValue(true);
   mockCommitCache.mockReturnValue(true);
 });
@@ -127,6 +217,7 @@ beforeEach(() => {
 afterEach(() => {
   jest.runOnlyPendingTimers();
   jest.useRealTimers();
+  jest.restoreAllMocks();
 });
 
 test('ordinary unmount still reconciles same-generation durable state without presentation effects', async () => {
@@ -137,19 +228,144 @@ test('ordinary unmount still reconciles same-generation durable state without pr
   await view.unmount();
 
   await act(async () => {
-    request.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+    request.resolve({ reward: 1, eventId: 'survey-a' });
     await request.promise;
     await Promise.resolve(); await Promise.resolve();
   });
   jest.runOnlyPendingTimers();
 
-  expect(mockReplaceBalance).toHaveBeenCalledWith(13, expect.any(Object), 'account-a', expect.any(Object));
-  expect(mockMarkDone).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'account-a', dayKey: '2026-07-11' }));
+  expect(mockCommitEvent).toHaveBeenCalledWith({
+    expectedOwnerStableId: 'account-a',
+    source: 'shard_survey',
+    eventId: 'survey-a',
+    delta: 1,
+    reason: 'survey_completed',
+    grant: {
+      kind: 'survey_reward',
+      subjectId: 'survey-a',
+      payload: { surveyId: 'survey-a' },
+    },
+  });
+  expect(mockMarkDone).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'account-a', dayKey: '2099-01-01' }));
   expect(mockCommitCache).toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
   expect(mockBack).not.toHaveBeenCalled();
   expect(errorSpy.mock.calls.flat().join(' ')).not.toMatch(/unmounted|state update/i);
   errorSpy.mockRestore();
+});
+
+test('unscoped identity rejection exits the loader through the unavailable state', async () => {
+  mockRouteParams = { surveyId: 'survey-a' };
+  mockGetCanonicalUserId.mockRejectedValue(new Error('identity unavailable'));
+
+  const view = await render(<SurveyScreen />);
+  await act(async () => {
+    await Promise.resolve();
+    await Promise.resolve();
+  });
+
+  expect(view.getByText('Опрос недоступен.')).toBeTruthy();
+  expect(mockSubmitSurvey).not.toHaveBeenCalled();
+  await view.unmount();
+});
+
+test('passes the validated route scope to the shared sheet and closes the route once', async () => {
+  const view = await render(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(mockTakePrimedSurvey).toHaveBeenCalledWith('survey-a', {
+    stableId: 'account-a', dayKey: '2099-01-01', lang: 'en',
+  });
+  expect(view.getByTestId('compat-launch-scope').props.children).toBe('account-a|2099-01-01|en');
+  await fireEvent.press(view.getByTestId('compat-close'));
+  expect(mockBack).not.toHaveBeenCalled();
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  expect(mockBack).toHaveBeenCalledTimes(1);
+  expect(mockClearPrimed).toHaveBeenCalledTimes(1);
+  await view.unmount();
+});
+
+test('rejects URL account A before reading its handoff when active identity is account B', async () => {
+  beginAccountGeneration('account-b');
+  mockGetCanonicalUserId.mockResolvedValue('account-b');
+  mockRouteParams = {
+    surveyId: 'survey-a', stableId: 'account-a', dayKey: '2099-01-01', lang: 'en',
+  };
+
+  const view = await render(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+
+  expect(mockTakePrimedSurvey).not.toHaveBeenCalled();
+  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
+  expect(view.getByText('Опрос недоступен.')).toBeTruthy();
+  await view.unmount();
+});
+
+test.each(['2098-12-31', '2099-01-02'])('rejects non-current route day %s before reading the handoff', async (dayKey) => {
+  mockRouteParams = { surveyId: 'survey-a', stableId: 'account-a', dayKey, lang: 'en' };
+
+  const view = await render(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+
+  expect(mockTakePrimedSurvey).not.toHaveBeenCalled();
+  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
+  expect(view.getByText('Опрос недоступен.')).toBeTruthy();
+  await view.unmount();
+});
+
+test('UTC rollover hides the route sheet before native dismissal navigates once', async () => {
+  const view = await render(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(view.getByTestId('compat-survey-sheet')).toBeTruthy();
+
+  mockUtcDayKey = '2099-01-02';
+  await act(async () => { jest.advanceTimersByTime(200); });
+
+  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
+  expect(mockBack).not.toHaveBeenCalled();
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  expect(mockBack).toHaveBeenCalledTimes(1);
+  await view.unmount();
+});
+
+test('same stable ID with a new account generation hides before native dismissal', async () => {
+  const view = await render(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(view.getByTestId('compat-survey-sheet')).toBeTruthy();
+
+  await act(async () => { beginAccountGeneration('account-a'); });
+  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
+  expect(mockBack).not.toHaveBeenCalled();
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  expect(mockBack).toHaveBeenCalledTimes(1);
+  await view.unmount();
+});
+
+test('route scope changes remount the controller with the new survey key', async () => {
+  const surveyA = mockPrimedSurvey;
+  const surveyB = {
+    ...surveyA,
+    surveyId: 'survey-b',
+    title: 'Survey B',
+    questions: [{ id: 'q2', type: 'text', text: 'Fresh answer', options: [] }],
+  };
+  mockTakePrimedSurvey.mockImplementation((surveyId: string) => surveyId === 'survey-b' ? surveyB : surveyA);
+  const view = await render(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  await fireEvent.changeText(view.getByTestId('compat-survey-input'), 'old answer');
+  expect(view.getByDisplayValue('old answer')).toBeTruthy();
+
+  mockRouteParams = {
+    surveyId: 'survey-b', stableId: 'account-a', dayKey: '2099-01-01', lang: 'en',
+  };
+  await view.rerender(<SurveyScreen />);
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+
+  expect(view.getByText('Survey B')).toBeTruthy();
+  expect(view.getByTestId('compat-launch-scope').props.children).toBe('account-a|2099-01-01|en');
+  expect(view.getByTestId('compat-survey-input').props.value).toBe('');
+  await view.unmount();
 });
 
 test('rejection after ordinary unmount has no dispatch, timer, or navigation', async () => {
@@ -176,47 +392,49 @@ test('account switch before account A resolves suppresses every local effect', a
   const request = deferred<any>();
   mockSubmitSurvey.mockReturnValue(request.promise);
   const view = await submitMounted();
-  beginAccountGeneration('account-b');
+  await act(async () => { beginAccountGeneration('account-b'); });
 
   await act(async () => {
-    request.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+    request.resolve({ reward: 1, eventId: 'survey-a' });
     await request.promise;
     await Promise.resolve();
   });
 
-  expect(mockReplaceBalance).not.toHaveBeenCalled();
+  expect(mockCommitEvent).not.toHaveBeenCalled();
   expect(mockMarkDone).not.toHaveBeenCalled();
   expect(mockCommitCache).not.toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
   expect(mockBack).not.toHaveBeenCalled();
-  expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
-  expect(view.getByText('Аккаунт изменился. Вернись и открой опрос снова.')).toBeTruthy();
-  expect(view.getByTestId('retry').props.accessibilityState).toEqual({ disabled: true });
-  expect(view.getByTestId('back')).toBeTruthy();
+  expect(view.queryByTestId('reward-phase')).toBeNull();
+  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  expect(mockBack).toHaveBeenCalledTimes(1);
   await view.unmount();
 });
 
-test('account switch while guarded balance reconciliation is pending stops marker, cache, and presentation', async () => {
-  const balance = deferred<'stale-generation'>();
-  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
-  mockReplaceBalance.mockReturnValue(balance.promise);
+test('account switch while the immutable event is pending stops marker, cache, and presentation', async () => {
+  const event = deferred<{ status: 'applied' }>();
+  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
+  mockCommitEvent.mockReturnValue(event.promise);
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); });
-  expect(mockReplaceBalance).toHaveBeenCalled();
-  beginAccountGeneration('account-b');
-  await act(async () => balance.resolve('stale-generation'));
+  expect(mockCommitEvent).toHaveBeenCalled();
+  await act(async () => { beginAccountGeneration('account-b'); });
+  await act(async () => event.resolve({ status: 'applied' }));
 
   expect(mockMarkDone).not.toHaveBeenCalled();
   expect(mockCommitCache).not.toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
   expect(mockBack).not.toHaveBeenCalled();
-  expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
-  expect(view.getByTestId('retry').props.accessibilityState).toEqual({ disabled: true });
+  expect(view.queryByTestId('reward-phase')).toBeNull();
+  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
+  expect(mockBack).toHaveBeenCalledTimes(1);
   await view.unmount();
 });
 
 test('reward zero reconciles completion without a shards event or positive reward display', async () => {
-  mockSubmitSurvey.mockResolvedValue({ reward: 0, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockSubmitSurvey.mockResolvedValue({ reward: 0, eventId: 'survey-a' });
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
   expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
@@ -226,17 +444,17 @@ test('reward zero reconciles completion without a shards event or positive rewar
   expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
 });
 
-test('balance or marker failure stays retryable and never records false completion', async () => {
-  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
-  mockReplaceBalance.mockResolvedValueOnce('failed');
-  const balanceFailure = await submitMounted();
+test('event or marker failure stays retryable and never records false completion', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
+  mockCommitEvent.mockResolvedValueOnce({ status: 'failed' });
+  const eventFailure = await submitMounted();
   await act(async () => { await Promise.resolve(); });
   expect(mockMarkDone).not.toHaveBeenCalled();
   expect(mockCommitCache).not.toHaveBeenCalled();
-  expect(balanceFailure.getByTestId('reward-phase').props.children).toBe('retryable-error');
-  await balanceFailure.unmount();
+  expect(eventFailure.getByTestId('reward-phase').props.children).toBe('retryable-error');
+  await eventFailure.unmount();
 
-  mockReplaceBalance.mockResolvedValue('applied');
+  mockCommitEvent.mockResolvedValue({ status: 'applied' });
   mockMarkDone.mockRejectedValueOnce(new Error('storage failed'));
   const markerFailure = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
@@ -245,19 +463,19 @@ test('balance or marker failure stays retryable and never records false completi
 });
 
 test('cache commit failure never presents success or emits a reward event', async () => {
-  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
   mockCommitCache.mockReturnValue(false);
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
-  expect(mockReplaceBalance).toHaveBeenCalled();
+  expect(mockCommitEvent).toHaveBeenCalled();
   expect(mockMarkDone).toHaveBeenCalled();
   expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
   expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
 });
 
-test('already-newer wallet outcome still completes marker and cache without retry loop', async () => {
-  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
-  mockReplaceBalance.mockResolvedValue('already-newer');
+test('already-applied immutable event still completes marker and cache without retry loop', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
+  mockCommitEvent.mockResolvedValue({ status: 'already-applied' });
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
   expect(mockMarkDone).toHaveBeenCalled();
@@ -288,7 +506,7 @@ test.each([
 });
 
 test('StrictMode effect replay leaves the mounted instance active and unmount clears reconciled return', async () => {
-  mockSubmitSurvey.mockResolvedValue({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
   const view = await render(<StrictMode><SurveyScreen /></StrictMode>);
   await fireEvent.changeText(view.getByPlaceholderText('Напиши ответ…'), 'strict answer');
   await fireEvent.press(view.getByText('Отправить'));
@@ -314,7 +532,7 @@ test('failure preserves the answer, retry is monotonic, and only reconciliation 
   expect(timeoutSpy).not.toHaveBeenCalledWith(expect.any(Function), 1400);
 
   await act(async () => {
-    second.resolve({ reward: 3, balanceAfter: 13, shardsUpdatedAtMs: 42 });
+    second.resolve({ reward: 1, eventId: 'survey-a' });
     await second.promise;
     await Promise.resolve();
     await Promise.resolve();
@@ -322,6 +540,8 @@ test('failure preserves the answer, retry is monotonic, and only reconciliation 
   expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
   expect(timeoutSpy).toHaveBeenCalledWith(expect.any(Function), 1400);
   await fireEvent.press(view.getByTestId('done'));
+  expect(mockBack).not.toHaveBeenCalled();
+  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
   await act(async () => { jest.advanceTimersByTime(1400); });
   expect(mockBack).toHaveBeenCalledTimes(1);
   timeoutSpy.mockRestore();

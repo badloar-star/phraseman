@@ -113,6 +113,7 @@ class PhraseGlanceWidget : GlanceAppWidget() {
     val chipBg = parse(t.chipBg, 0x2258CC89)
 
     val openIntent = actionStartActivity(deepLinkIntent(snapshot.deepLink))
+    val playIntent = actionStartActivity(deepLinkIntent(snapshot.playDeepLink))
 
     // Lit, dimensional surface: gradient + glow + hairline border baked into a
     // bitmap so it matches the in-app card and the iOS widget.

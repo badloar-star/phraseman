@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
@@ -33,7 +33,7 @@ export default function AvatarDNAStudioScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const copy = useMemo(() => avatarDNACopy(lang), [lang]);
   const account = useMemo(() => captureAccountGeneration(), []);

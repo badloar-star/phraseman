@@ -19,6 +19,7 @@ function decisionOf(department: string): Decision {
 const DEPARTMENT_KEYS = [
   'runQuality', 'runMoney', 'runGrowth', 'runContent',
   'runPayments', 'runSafety', 'runSupport', 'runFactory', 'runRetention',
+  'runMaxvoice',
 ] as const;
 
 describe('Jarvis cost regression — one button press must not multiply reads', () => {

@@ -234,6 +234,15 @@ describe('safeRouterBack', () => {
     expect(navigation.navigationRoutePolicyForAudit('/flashcards_collection?pack=x')).toEqual({ role: 'child', section: 'flashcards' });
   });
 
+  it('treats MAX paywall as a contextual non-back target', () => {
+    const navigation = loadNavigationBack();
+
+    expect(navigation.navigationRoutePolicyForAudit('/max_paywall?source=paywall_a')).toEqual({
+      role: 'portal',
+      section: null,
+    });
+  });
+
   it('sends section roots home and section children to their canonical root', () => {
     const navigation = loadNavigationBack();
 

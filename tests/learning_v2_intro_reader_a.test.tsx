@@ -194,4 +194,80 @@ describe("Learning V2 intro Reader A", () => {
     expect(view.getByTestId("learning-v2-intro-next").props.accessibilityState.disabled).toBe(false);
     expect(JSON.stringify(view.toJSON()).toLowerCase()).not.toContain("сесси");
   });
+
+  // зачем: прошлый набор тестов кормил рендерер самодельной фикстурой с полем
+  // `semantic`, которого нет НИ В ОДНОМ файле контента (0 из 17 578 частей).
+  // Тест был зелёный, а на экране 61,5% разметки теряло цвет. Здесь данные — в
+  // том формате, в каком они реально лежат в уроках: только устаревший `tone`.
+  test("colours real lesson content that carries legacy tone markup and no semantic field", async () => {
+    const realShape: LessonIntroScreen = {
+      lessonId: 3,
+      screenId: "real-1",
+      order: 1,
+      kind: "concept",
+      titleRU: "Когда действие обычное",
+      titleUK: "Title",
+      titleES: "Title",
+      linesRU: [
+        {
+          type: "wrong",
+          parts: [
+            { text: "Не так: ", tone: "warning" },
+            { text: "I am work here", tone: "danger" },
+          ],
+        },
+        {
+          type: "correct",
+          parts: [
+            { text: "Правильно: ", tone: "success" },
+            { text: "I work here", tone: "accent" },
+          ],
+        },
+      ],
+      learningV2EmbeddedQuestion: {
+        kind: "embedded_intro_question",
+        taskSlot: 1,
+        questionId: "real-question-1",
+        promptByLocale: localized("Какая фраза верна?"),
+        choicesByLocale: localized(["I am work here", "I work here"]),
+        correctChoiceIndex: 1,
+        explanationByLocale: localized("Смысловой глагол идёт сразу после «кто»."),
+      },
+    };
+
+    const view = await render(
+      <LearningV2SessionIntro
+        introScreens={[realShape]}
+        lessonId={3}
+        sessionOrdinal={1}
+        taskIds={["task-1", "task-2", "task-3"]}
+        onComplete={jest.fn()}
+        onBack={jest.fn()}
+      />,
+    );
+
+    // Ошибочный пример обязан быть красным и зачёркнутым — иначе ученик
+    // запомнит неверную форму как правильную.
+    const wrongExample = view.getByTestId("learning-v2-intro-part-0-1");
+    const wrongStyle = StyleSheet.flatten(wrongExample.props.style);
+    expect(wrongStyle.color).toBe(INDIGO.wrong);
+    expect(wrongStyle.textDecorationLine).toBe("line-through");
+    expect(wrongExample.props.accessibilityLabel).toContain("неверный пример");
+
+    // Верный пример на изучаемом языке — цветом языка, а НЕ цветом обычного текста.
+    const target = view.getByTestId("learning-v2-intro-part-1-1");
+    const targetStyle = StyleSheet.flatten(target.props.style);
+    expect(targetStyle.color).not.toBe(INDIGO.textOnCard);
+    expect(targetStyle.fontWeight).toBe("700");
+
+    // Служебные маркеры сохраняют свою роль, а не сливаются с текстом.
+    const warnMarker = StyleSheet.flatten(
+      view.getByTestId("learning-v2-intro-part-0-0").props.style,
+    );
+    expect(warnMarker.color).toBe(INDIGO.gold);
+    const okMarker = StyleSheet.flatten(
+      view.getByTestId("learning-v2-intro-part-1-0").props.style,
+    );
+    expect(okMarker.color).toBe(INDIGO.correct);
+  });
 });

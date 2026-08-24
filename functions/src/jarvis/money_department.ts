@@ -2,7 +2,13 @@ import type { AppTier } from './app_tier';
 import { tierThresholdMultiplier } from './app_tier';
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
-import { aggregateMoneyRows, buildMoneyEvidence, diagnosePersonalEconomy } from './money_source_reader';
+import {
+  MONEY_REPORT_COLLECTIONS,
+  aggregateMoneyRows,
+  buildMoneyEvidence,
+  diagnosePersonalEconomy,
+  type MoneyReportCollection,
+} from './money_source_reader';
 import { buildMetricTree, explainMetricChange } from './metric_tree';
 
 /**
@@ -57,9 +63,43 @@ interface RefundSpike {
   readonly rate: number;
 }
 
+const PERSONAL_ECONOMY_SOURCES = Object.freeze([
+  'client_economy_opening',
+  'client_economy_operations',
+  'external_economy_events',
+] as const);
+
+function trustworthy(fetch: FetchMoneySourceResult | undefined): fetch is FetchMoneySourceResult {
+  return Boolean(fetch)
+    && (fetch!.state === 'ready' || fetch!.state === 'empty')
+    && !fetch!.truncated
+    && fetch!.droppedCount === 0;
+}
+
+function missingFetch(sourceId: MoneyReportCollection, nowMs: number): FetchMoneySourceResult {
+  return Object.freeze({
+    sourceId,
+    state: 'error' as const,
+    truncated: false,
+    droppedCount: 0,
+    rows: Object.freeze([]),
+    observedAtMs: nowMs,
+  });
+}
+
+function requiredFetches(
+  fetches: readonly FetchMoneySourceResult[],
+  nowMs: number,
+): readonly FetchMoneySourceResult[] {
+  return MONEY_REPORT_COLLECTIONS.map((sourceId) => {
+    const matches = fetches.filter((fetch) => fetch.sourceId === sourceId);
+    return matches.length === 1 ? matches[0] : missingFetch(sourceId, nowMs);
+  });
+}
+
 function findRefundSpike(fetches: readonly FetchMoneySourceResult[], appTier: AppTier): RefundSpike | null {
   const revenuecat = fetches.find((fetch) => fetch.sourceId === 'revenuecat_premium_events');
-  if (!revenuecat) return null;
+  if (!trustworthy(revenuecat)) return null;
   const aggregate = aggregateMoneyRows(revenuecat.rows);
   if (aggregate.newPaying < MIN_NEW_PAYING_FOR_SIGNAL) return null;
   const rate = aggregate.refunds / aggregate.newPaying;
@@ -102,7 +142,7 @@ function explainMoneyBreakdown(
 ): string {
   if (!yesterday) return '';
   const revenuecat = fetches.find((fetch) => fetch.sourceId === 'revenuecat_premium_events');
-  if (!revenuecat) return '';
+  if (!trustworthy(revenuecat)) return '';
   const today = aggregateMoneyRows(revenuecat.rows);
 
   return explainMetricChange(buildMetricTree({
@@ -120,7 +160,8 @@ function explainMoneyBreakdown(
 }
 
 export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepartmentResult {
-  const evidence = input.fetches.map((fetch) => buildMoneyEvidence({
+  const fetches = requiredFetches(input.fetches, input.nowMs);
+  const evidence = fetches.map((fetch) => buildMoneyEvidence({
     sourceId: fetch.sourceId,
     state: fetch.state,
     truncated: fetch.truncated,
@@ -129,25 +170,28 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
     observedAtMs: fetch.observedAtMs,
   }));
 
+  const completeEvidence = evidence.every((item) => item.trustworthy);
   const appTier: AppTier = input.appTier ?? 'seed';
-  const spike = findRefundSpike(input.fetches, appTier);
-  const economy = diagnosePersonalEconomy(input.fetches);
-  const economyAnomaly = economy.invalidRows > 0
+  const spike = completeEvidence ? findRefundSpike(fetches, appTier) : null;
+  const personalFetches = PERSONAL_ECONOMY_SOURCES.map((sourceId) => fetches.find((fetch) => fetch.sourceId === sourceId));
+  const economy = completeEvidence && personalFetches.every(trustworthy) ? diagnosePersonalEconomy(fetches) : null;
+  const economyAnomaly = economy !== null && (economy.invalidRows > 0
     || economy.revisionDiscontinuities > 0
     || economy.balanceDiscontinuities > 0
-    || economy.duplicateExternalFacts > 0;
-  const completeEvidence = evidence.length > 0 && evidence.every((item) => item.trustworthy);
+    || economy.duplicateExternalFacts > 0);
 
   const shouldDecide = input.trigger === 'owner_request' || Boolean(spike) || economyAnomaly || !completeEvidence;
   if (!shouldDecide) return { decisions: [] };
 
-  const economyFinding = `Экономика: ${economy.operationCount} клиентских операций, ${economy.externalEventCount} внешних событий; некорректных строк ${economy.invalidRows}, разрывов ревизии ${economy.revisionDiscontinuities}, разрывов баланса ${economy.balanceDiscontinuities}, повторов внешних фактов ${economy.duplicateExternalFacts}.`;
+  const economyFinding = economy
+    ? `Экономика: ${economy.operationCount} клиентских операций, ${economy.externalEventCount} внешних событий; некорректных строк ${economy.invalidRows}, разрывов ревизии ${economy.revisionDiscontinuities}, разрывов баланса ${economy.balanceDiscontinuities}, повторов внешних фактов ${economy.duplicateExternalFacts}.`
+    : '';
   // зачем разбор (аудит 2026-08-16): «денег меньше» — это констатация,
   // с которой владелец идёт искать причину сам. Дерево называет часть,
   // объясняющую сдвиг, и делает это детерминированным кодом, а не догадкой.
-  const breakdown = explainMoneyBreakdown(input.fetches, input.yesterday ?? null);
+  const breakdown = completeEvidence ? explainMoneyBreakdown(fetches, input.yesterday ?? null) : '';
   const finding = [
-    buildFindingText(spike, input.fetches, completeEvidence),
+    buildFindingText(spike, fetches, completeEvidence),
     breakdown,
     economyFinding,
   ].filter(Boolean).join(' ');

@@ -102,6 +102,9 @@ function getActiveFeedUrl(): string {
 const STORAGE_LAST_SEEN_ID = 'lingman_youtube_last_seen_video_id_v2';
 const STORAGE_LAST_OPENED_AT = 'lingman_youtube_last_opened_at_ms_v2';
 const STORAGE_LAST_SUCCESSFUL_SNAPSHOT = 'lingman_youtube_last_successful_snapshot_v2';
+let seenMutationRevision = 0;
+let pendingSeenMutationRevision = 0;
+let latestSeenMutationVideoId: string | null = null;
 const KNOWN_SHORT_VIDEO_IDS = new Set(['xdISurogEds', 'KHn07unaGHU']);
 const SHORTS_MARKER_RE = /(?:^|\s)#shorts?\b/i;
 
@@ -432,9 +435,16 @@ export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]
 }
 
 export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapshot> {
-  const [lastSeenId] = await Promise.all([
+  const seenRevisionAtStart = seenMutationRevision;
+  const seenWritePendingAtStart = pendingSeenMutationRevision !== 0;
+  const [persistedLastSeenId] = await Promise.all([
     AsyncStorage.getItem(STORAGE_LAST_SEEN_ID),
   ]);
+  const effectiveLastSeenId = () => (
+    seenWritePendingAtStart || seenRevisionAtStart !== seenMutationRevision
+      ? latestSeenMutationVideoId ?? persistedLastSeenId
+      : persistedLastSeenId
+  );
 
   // Пришпиленные («ручные») видео из «Пульта» — идут В НАЧАЛЕ ленты как «новые»,
   // поверх канального фида (и канального кэша/фолбэка). Кэшируем ТОЛЬКО чистый
@@ -450,7 +460,7 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
     return {
       videos,
       latestVideoId,
-      unreadCount: getLingmanYoutubeUnreadCount(videos, lastSeenId),
+      unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
       fetchedAtMs: Date.now(),
     };
   } catch (error) {
@@ -466,7 +476,7 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
       latestVideoId,
       // Если фид упал, но есть пины — это не «ошибка пустой ленты»: пины показываем
       // без баннера сбоя (он бы зря пугал, когда контент в ленте есть из пиннов).
-      unreadCount: getLingmanYoutubeUnreadCount(videos, lastSeenId),
+      unreadCount: getLingmanYoutubeUnreadCount(videos, effectiveLastSeenId()),
       fetchedAtMs: Date.now(),
       error: feed.length === 0 && pinned.length > 0
         ? undefined
@@ -476,9 +486,20 @@ export async function getLingmanYoutubeSnapshot(): Promise<LingmanYoutubeSnapsho
 }
 
 export async function markLingmanYoutubeCatalogSeen(latestVideoId: string | null): Promise<void> {
+  const mutationRevision = ++seenMutationRevision;
+  pendingSeenMutationRevision = mutationRevision;
+  latestSeenMutationVideoId = latestVideoId;
   const entries: [string, string][] = [[STORAGE_LAST_OPENED_AT, String(Date.now())]];
   if (latestVideoId) entries.push([STORAGE_LAST_SEEN_ID, latestVideoId]);
-  await AsyncStorage.multiSet(entries);
+  try {
+    await AsyncStorage.multiSet(entries);
+  } finally {
+    if (pendingSeenMutationRevision === mutationRevision) pendingSeenMutationRevision = 0;
+  }
+}
+
+export async function markLingmanYoutubeSectionOpened(): Promise<void> {
+  await AsyncStorage.setItem(STORAGE_LAST_OPENED_AT, String(Date.now()));
 }
 
 export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boolean } = {}): string {

@@ -25,6 +25,7 @@ export type StatsDailyMetric =
   | 'words_learned'
   | 'flashcards_saved'
   | 'phrases_learned'
+  | 'plan_tasks_completed'
   | 'shards_earned'
   | 'shards_spent';
 
@@ -33,6 +34,7 @@ const METRICS_LIST: StatsDailyMetric[] = [
   'words_learned',
   'flashcards_saved',
   'phrases_learned',
+  'plan_tasks_completed',
   'shards_earned',
   'shards_spent',
 ];

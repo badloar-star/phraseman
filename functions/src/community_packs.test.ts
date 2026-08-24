@@ -962,9 +962,10 @@ describe('community pack callable ownership', () => {
 
   test('issues a global-broadcast grant only from an active matching authoritative document and audience', async () => {
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
-    mockDocs.set('global_broadcast_modals/gift-all', { active: true, rewardType: 'pack_trial_48h', premiumAudience: 'all' });
-    mockDocs.set('global_broadcast_modals/not-a-gift', { active: true, rewardType: 'shards', premiumAudience: 'all' });
-    mockDocs.set('global_broadcast_modals/premium-only', { active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium' });
+    const authority = { publicPayloadSchemaVersion: 1, publicPayloadValidatedV1: true };
+    mockDocs.set('global_broadcast_modals/gift-all', { ...authority, active: true, rewardType: 'pack_trial_48h', premiumAudience: 'all' });
+    mockDocs.set('global_broadcast_modals/not-a-gift', { ...authority, active: true, rewardType: 'shards', premiumAudience: 'all' });
+    mockDocs.set('global_broadcast_modals/premium-only', { ...authority, active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium' });
 
     await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
       stableId: 'victim', broadcastId: 'gift-all',
@@ -975,6 +976,31 @@ describe('community pack callable ownership', () => {
     await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
       stableId: 'victim', broadcastId: 'premium-only',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  test('rejects unmarked, marker-only, and unknown-field first grants but replays an existing receipt first', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('global_broadcast_modals/unmarked', { active: true, rewardType: 'pack_trial_48h', premiumAudience: 'all' });
+    mockDocs.set('global_broadcast_modals/marker-only', { publicPayloadSchemaVersion: 1, active: true, rewardType: 'pack_trial_48h', premiumAudience: 'all' });
+    mockDocs.set('global_broadcast_modals/unknown', {
+      publicPayloadSchemaVersion: 1, publicPayloadValidatedV1: true,
+      active: true, rewardType: 'pack_trial_48h', premiumAudience: 'all', internalNote: 'unsafe',
+    });
+    for (const broadcastId of ['unmarked', 'marker-only', 'unknown']) {
+      await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+        stableId: 'victim', broadcastId,
+      }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'broadcast_public_schema_invalid' });
+    }
+
+    mockDocs.set('flashcard_pack_gift_grants/global_broadcast_unmarked_victim', {
+      ownerStableUid: 'victim', source: 'global_broadcast', sourceId: 'unmarked',
+      occurrenceId: 'global_broadcast_unmarked_victim', expiresAt: 1_800_172_800_000,
+    });
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'unmarked',
+    }, 'auth-victim')).resolves.toMatchObject({
+      voucherId: 'global_broadcast_unmarked_victim', expiresAt: 1_800_172_800_000, replayed: true,
+    });
   });
 
   test('finds a pre-merge receipt under an alias and cannot claim the occurrence again', async () => {
@@ -1430,6 +1456,7 @@ describe('community pack callable ownership', () => {
   test('uses the authenticated canonical alias graph for premium broadcast audience access', async () => {
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
     mockDocs.set('global_broadcast_modals/premium-alias', {
+      publicPayloadSchemaVersion: 1, publicPayloadValidatedV1: true,
       active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium',
     });
     mockDocs.set('users/victim-premium-alias', {

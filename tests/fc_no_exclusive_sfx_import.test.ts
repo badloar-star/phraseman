@@ -1,6 +1,6 @@
 /**
  * cards-2.0 (E9): grep-тест изоляции доменов (§6 мастер-плана).
- * Домен карточек (app/flashcards/**, review, тренер-сессии, церемония пака,
+ * Домен карточек (app/flashcards/**, сессия ошибок, церемония пака,
  * настройки раздела) НЕ должен импортировать `exclusive_short_sfx` —
  * тот принадлежит чужим доменам (achievements, arena_match_found, level_up,
  * activity_complete, league_result). Сам файл живёт и не трогается.

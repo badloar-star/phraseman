@@ -2692,7 +2692,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
+function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2703,17 +2703,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const isLightTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
-  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, spendOne } = useEnergy();
-  const currentEnergyRef = useRef(currentEnergy);
-  const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
-  const spendOneRef = useRef(spendOne);
-  useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
-  useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
-  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+  const { confirmSpendOne } = useEnergy();
+  const confirmSpendOneRef = useRef(confirmSpendOne);
+  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
+  const onCancelStartRef = useRef(onCancelStart);
+  useEffect(() => { onCancelStartRef.current = onCancelStart; }, [onCancelStart]);
 
   // Старт тренировки слов = 1 ⚡ (владелец 2026-08-23: платим за попытку, не за ошибки).
   // зачем: пустой деп-массив — списываем РОВНО ОДИН РАЗ на монтирование экрана
@@ -2723,12 +2721,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   useEffect(() => {
     if (trainingEntryChargedRef.current) return;
     trainingEntryChargedRef.current = true;
-    if (testerEnergyDisabledRef.current) return;
-    if (currentEnergyRef.current <= 0) {
-      onNoEnergyRef.current();
-      return;
-    }
-    spendOneRef.current().catch(() => {});
+    let active = true;
+    void confirmSpendOneRef.current().then(result => {
+      if (!active) return;
+      if (result === 'insufficient') onNoEnergyRef.current();
+      if (result === 'cancelled') onCancelStartRef.current();
+    });
+    return () => { active = false; };
   }, []);
 
   const [practiceRepeatConfirm, setPracticeRepeatConfirm] = useState(false);
@@ -3551,7 +3550,6 @@ export default function LessonWords() {
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
-  const canTrain = energyUnlimited || energy > 0;
   const { id, tab: tabParam, qaFocusWords } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[] }>();
   const lessonId = parseInt(id || '1', 10);
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
@@ -3625,12 +3623,9 @@ export default function LessonWords() {
     return () => sub.remove();
   }, [router, lessonId, noEnergyModalOpen]);
 
-  /** null = «авто»: при 0 энергии сразу Словарь, при наличии — Повторение, без кадра с неверной вкладкой */
+  /** null = тренировка: нехватку энергии обрабатывает единый входной гейт. */
   const [userTab, setUserTab] = useState<'train' | 'list' | null>(initialTab);
-  const tab = userTab !== null ? userTab : (canTrain ? 'train' : 'list');
-  useEffect(() => {
-    if (!canTrain) setUserTab(null);
-  }, [canTrain]);
+  const tab = userTab !== null ? userTab : 'train';
   useEffect(() => {
     if (energyUnlimited || energy > 0) setNoEnergyModalOpen(false);
   }, [energyUnlimited, energy]);
@@ -3714,13 +3709,7 @@ export default function LessonWords() {
             learnedCounts={learnedCounts}
             lang={lang}
             lessonId={lessonId}
-            onStartTraining={() => {
-              if (!canTrain) {
-                setNoEnergyModalOpen(true);
-                return;
-              }
-              setUserTab('train');
-            }}
+            onStartTraining={() => setUserTab('train')}
           />
         ) : !wordProgressReady ? (
           <View testID="lesson-words-training-progress-loading" style={{ flex:1, justifyContent:'center', alignItems:'center', padding:20 }}>
@@ -3741,6 +3730,7 @@ export default function LessonWords() {
             initialCounts={learnedCounts}
             onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
             onNoEnergy={() => setNoEnergyModalOpen(true)}
+            onCancelStart={() => setUserTab('list')}
             studyTarget={studyTarget}
             onAndroidBackIntercept={setAndroidBackIntercept}
           />
@@ -3756,29 +3746,25 @@ export default function LessonWords() {
             ? (isActive ? 'pencil'  : 'pencil-outline')
             : (isActive ? 'list'    : 'list-outline');
           return (
+            <View key={key} style={{ flex: 1, position: 'relative', overflow: 'visible' }}>
             <TouchableOpacity key={key}
               testID={key === 'train' ? 'lesson-words-tab-train' : 'lesson-words-tab-list'}
-              style={{ flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center', paddingVertical:14, gap:8, borderTopWidth:isActive?2:0, borderTopColor:sx.second }}
+              style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', paddingVertical:14, gap:8, borderTopWidth:isActive?2:0, borderTopColor:sx.second }}
               onPress={() => {
-                if (key === 'train') {
-                  if (!canTrain) {
-                    setNoEnergyModalOpen(true);
-                    return;
-                  }
-                }
                 setUserTab(key);
               }}
             >
               <Ionicons name={icon as any} size={20} color={isActive?sx.primary:sx.ghost}/>
               <Text style={{ color:isActive?sx.primary:sx.ghost, fontSize:f.body, fontWeight:'500' }}>{label}</Text>
             </TouchableOpacity>
+            </View>
           );
         })}
       </View>
       )}
       </ContentWrap>
 
-      <NoEnergyModal visible={noEnergyModalOpen} onClose={() => setNoEnergyModalOpen(false)} />
+      <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('list'); }} />
     </SafeAreaView>
     </ScreenGradient>
   );

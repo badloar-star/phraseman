@@ -3,7 +3,15 @@
 
 import * as admin from 'firebase-admin';
 import { createHash } from 'node:crypto';
-import { TOURNAMENT_MODES } from './tournament_pool_plan';
+import {
+  TOURNAMENT_MODES,
+  TOURNAMENT_TASKS_PER_MODE_SLICE,
+} from './tournament_pool_plan';
+import {
+  TOURNAMENT_POOL_V11_VERSION,
+  TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS,
+  tournamentV11TaskId,
+} from './tournament_pool_v11_factory';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
@@ -85,6 +93,8 @@ import {
   tournamentRoomId,
   tournamentWeekId,
   TOURNAMENT_EXPOSURE_TAG_PATTERN,
+  TOURNAMENT_V11_EXPOSURE_DWELL_DAYS,
+  TOURNAMENT_V11_EXPOSURE_EPOCH_DAY,
   validateTournamentFillMutation,
   validateTournamentTask,
   validateTournamentTaskForNewRoom,
@@ -155,7 +165,7 @@ export function tournamentStartNowInternalErrorLog(
  * зачем 40: раунду нужно 6, но выборка идёт по сиду — запас даёт разные
  * наборы разным комнатам. Больше читать незачем: это деньги за чтения.
  */
-const TASKS_PER_MODE_SLICE = 40;
+const TASKS_PER_MODE_SLICE = TOURNAMENT_TASKS_PER_MODE_SLICE;
 // The reviewed production corpus contains 200 distinct profiles. Loading only
 // ROOM_SIZE * 2 made the remaining 168 documents unreachable forever. This
 // pool is cached for 60 seconds per warm instance, so room joins do not reread
@@ -544,6 +554,25 @@ export function parseTournamentTaskDocument(taskId: string, data: Row): Tourname
     // validly have no explanation, so omit the optional field altogether.
     ...(parsedExplanation ? { explanation: parsedExplanation } : {}),
     tags: Array.isArray(data.tags) ? data.tags.map((tag: unknown) => sanitizeString(tag, 40)).filter(Boolean) : [],
+    ...(data.provenanceKeys === undefined ? {} : {
+      provenanceKeys: Array.isArray(data.provenanceKeys)
+        ? [...data.provenanceKeys] as string[] : [],
+    }),
+    ...(data.source === undefined ? {} : { source: sanitizeString(data.source, 40) }),
+    ...(data.poolVersion === undefined ? {} : { poolVersion: sanitizeString(data.poolVersion, 80) }),
+    ...(data.exposureBucket === undefined ? {} : { exposureBucket: sanitizeString(data.exposureBucket, 160) }),
+    ...(data.lifecycle === undefined ? {} : { lifecycle: sanitizeString(data.lifecycle, 40) }),
+    ...(data.semanticSignature === undefined
+      ? {} : { semanticSignature: sanitizeString(data.semanticSignature, 64) }),
+    ...(data.contentSha256 === undefined ? {} : { contentSha256: sanitizeString(data.contentSha256, 64) }),
+    ...(data.semanticReceiptId === undefined
+      ? {} : { semanticReceiptId: sanitizeString(data.semanticReceiptId, 64) }),
+    ...(data.semanticReceiptSha256 === undefined
+      ? {} : { semanticReceiptSha256: sanitizeString(data.semanticReceiptSha256, 64) }),
+    ...(data.reviewContractVersion === undefined
+      ? {} : { reviewContractVersion: sanitizeString(data.reviewContractVersion, 160) }),
+    ...(data.promptSetSha256 === undefined
+      ? {} : { promptSetSha256: sanitizeString(data.promptSetSha256, 64) }),
     verified: data.verified === true,
   };
   return validateTournamentTask(task).ok ? task : null;
@@ -673,6 +702,10 @@ export type TournamentPoolBarrierToken = {
   revision: number;
   exposureBucketCounts?: Readonly<Record<string, number>>;
   exposureLayoutHash?: string;
+  taskCount?: number;
+  manifestSha256?: string;
+  bundleSha256?: string;
+  receiptLedgerSha256?: string;
 };
 
 const TOURNAMENT_BUCKETED_POOL_GENERATIONS = new Set(['tpool_20260801_v7', 'tpool_20260801_v8', 'tpool_20260801_v9']);
@@ -691,14 +724,9 @@ const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS: Readonly<Record<string, number
   // 3 слова», коммит 347f8eb29) — заданий стало 192, бакетов 5 вместо 10.
   speed_match: 5,
 });
-const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
-  guess_phrase: 14,
-  fill_gap: 14,
-  find_oddity: 20,
-  translate_build: 19,
-  speed_match: 42,
-});
-const TOURNAMENT_BUCKETED_EXPOSURE_EPOCH_DAY = Math.floor(Date.parse('2026-08-01T00:00:00.000Z') / 86_400_000);
+const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> =
+  TOURNAMENT_V11_EXPOSURE_DWELL_DAYS;
+const TOURNAMENT_BUCKETED_EXPOSURE_EPOCH_DAY = TOURNAMENT_V11_EXPOSURE_EPOCH_DAY;
 
 export function sameTournamentPoolBarrierToken(
   left: TournamentPoolBarrierToken,
@@ -707,6 +735,10 @@ export function sameTournamentPoolBarrierToken(
   return left.generation === right.generation
     && left.revision === right.revision
     && left.exposureLayoutHash === right.exposureLayoutHash
+    && left.taskCount === right.taskCount
+    && left.manifestSha256 === right.manifestSha256
+    && left.bundleSha256 === right.bundleSha256
+    && left.receiptLedgerSha256 === right.receiptLedgerSha256
     && JSON.stringify(left.exposureBucketCounts) === JSON.stringify(right.exposureBucketCounts);
 }
 
@@ -812,18 +844,30 @@ export function parseReadyTournamentPoolToken(
     || !Number.isSafeInteger(revision) || revision < 0) {
     throw new HttpsError('failed-precondition', 'tournament_pool_barrier_invalid');
   }
-  if (!TOURNAMENT_BUCKETED_POOL_GENERATIONS.has(generation)) return { generation, revision };
+  const isV11 = generation === TOURNAMENT_POOL_V11_VERSION;
+  if (!TOURNAMENT_BUCKETED_POOL_GENERATIONS.has(generation) && !isV11) return { generation, revision };
   const rawCounts = data.exposureBucketCounts;
   const exposureLayoutHash = typeof data.exposureLayoutHash === 'string'
     ? data.exposureLayoutHash.trim()
     : '';
+  const expectedCounts = isV11
+    ? TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS : TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS;
   const validCounts = rawCounts && typeof rawCounts === 'object' && !Array.isArray(rawCounts)
     && TOURNAMENT_MODES.every((mode) => (
       Number.isSafeInteger(rawCounts[mode])
-      && rawCounts[mode] === TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS[mode]
+      && rawCounts[mode] === expectedCounts[mode]
     ))
     && Object.keys(rawCounts).length === TOURNAMENT_MODES.length;
   if (!validCounts || !/^[a-f0-9]{64}$/u.test(exposureLayoutHash)) {
+    throw new HttpsError('failed-precondition', 'tournament_pool_barrier_invalid');
+  }
+  const taskCount = Number(data.taskCount);
+  const manifestSha256 = typeof data.manifestSha256 === 'string' ? data.manifestSha256.trim() : '';
+  const bundleSha256 = typeof data.bundleSha256 === 'string' ? data.bundleSha256.trim() : '';
+  const receiptLedgerSha256 = typeof data.receiptLedgerSha256 === 'string'
+    ? data.receiptLedgerSha256.trim() : '';
+  if (isV11 && (taskCount !== 4_000 || !/^[a-f0-9]{64}$/u.test(manifestSha256)
+    || !/^[a-f0-9]{64}$/u.test(bundleSha256) || !/^[a-f0-9]{64}$/u.test(receiptLedgerSha256))) {
     throw new HttpsError('failed-precondition', 'tournament_pool_barrier_invalid');
   }
   return {
@@ -833,6 +877,7 @@ export function parseReadyTournamentPoolToken(
       TOURNAMENT_MODES.map((mode) => [mode, rawCounts[mode]]),
     )),
     exposureLayoutHash,
+    ...(isV11 ? { taskCount, manifestSha256, bundleSha256, receiptLedgerSha256 } : {}),
   };
 }
 
@@ -860,6 +905,15 @@ type TournamentTaskSliceRow = {
   readonly exposureBucket?: unknown;
   readonly verified?: unknown;
   readonly source?: unknown;
+  readonly lifecycle?: unknown;
+  readonly provenanceKeys?: unknown;
+  readonly semanticSignature?: unknown;
+  readonly contentSha256?: unknown;
+  readonly semanticReceiptId?: unknown;
+  readonly semanticReceiptSha256?: unknown;
+  readonly reviewContractVersion?: unknown;
+  readonly promptSetSha256?: unknown;
+  readonly tags?: unknown;
 };
 
 export async function loadTournamentTaskSlicesForToken<T extends TournamentTaskSliceRow>(options: {
@@ -878,12 +932,36 @@ export async function loadTournamentTaskSlicesForToken<T extends TournamentTaskS
     }
     const bucket = tournamentExposureBucketId(options.token, mode, options.dayOrdinal);
     const rows = await options.readExposureBucket(mode, bucket, TASKS_PER_MODE_SLICE);
+    const isV11 = options.token.generation === TOURNAMENT_POOL_V11_VERSION;
     if (rows.length > TASKS_PER_MODE_SLICE || rows.some((row) => (
       row.mode !== mode
       || row.poolVersion !== options.token.generation
       || row.exposureBucket !== bucket
       || row.verified !== true
       || row.source !== 'ai'
+      || (isV11 && (
+        !Array.isArray(row.tags)
+        || row.tags.filter((tag) => tag === `pool:${TOURNAMENT_POOL_V11_VERSION}`).length !== 1
+        || row.tags.some((tag) => typeof tag !== 'string'
+          || (tag.startsWith('pool:') && tag !== `pool:${TOURNAMENT_POOL_V11_VERSION}`))
+        || row.tags.filter((tag) => typeof tag === 'string'
+          && tag.startsWith('provenance-parity:')).length !== 1
+        || row.tags.filter((tag) => /^provenance-parity:[01]$/u.test(String(tag))).length !== 1
+        || row.lifecycle !== 'published'
+        || typeof row.contentSha256 !== 'string'
+        || !/^[a-f0-9]{64}$/u.test(row.contentSha256)
+        || row.taskId !== tournamentV11TaskId(TOURNAMENT_POOL_V11_VERSION, row.contentSha256)
+        || !Array.isArray(row.provenanceKeys) || row.provenanceKeys.length < 1
+        || row.provenanceKeys.length > 6
+        || row.provenanceKeys.some((key) => typeof key !== 'string'
+          || !/^[^:\s]+:\d+:[^:\s]+$/u.test(key))
+        || new Set(row.provenanceKeys).size !== row.provenanceKeys.length
+        || !/^[a-f0-9]{64}$/u.test(String(row.semanticSignature ?? ''))
+        || !/^[a-f0-9]{64}$/u.test(String(row.semanticReceiptId ?? ''))
+        || !/^[a-f0-9]{64}$/u.test(String(row.semanticReceiptSha256 ?? ''))
+        || typeof row.reviewContractVersion !== 'string' || !row.reviewContractVersion.trim()
+        || !/^[a-f0-9]{64}$/u.test(String(row.promptSetSha256 ?? ''))
+      ))
     ))) {
       throw new HttpsError('failed-precondition', 'tournament_pool_exposure_task_mismatch');
     }
@@ -1065,6 +1143,7 @@ export function buildTournamentRounds(
 ): TournamentRound[] | null {
   const poolMap = new Map(pool.map((task) => [task.taskId, task]));
   const usedTaskIds = new Set<string>();
+  const usedProvenanceKeys = new Set<string>();
   const rounds: TournamentRound[] = [];
 
   for (let index = 0; index < TOURNAMENT_ROUND_MODE_PLAN.length; index += 1) {
@@ -1076,10 +1155,14 @@ export function buildTournamentRounds(
       && new Set(curatedIds).size === DEFAULT_TASKS_PER_ROUND
       && curatedIds.every((taskId) => poolMap.has(taskId) && !usedTaskIds.has(taskId))) {
       const selected = curatedIds.map((taskId) => poolMap.get(taskId)!);
+      const selectedProvenance = selected.flatMap((task) => task.provenanceKeys ?? []);
       const curatedModes = selected.map((task) => task.mode).sort();
       const expectedModes = [...plannedModes].sort();
-      if (curatedModes.every((mode, modeIndex) => mode === expectedModes[modeIndex])) {
+      if (curatedModes.every((mode, modeIndex) => mode === expectedModes[modeIndex])
+        && selectedProvenance.every((key) => !usedProvenanceKeys.has(key))
+        && new Set(selectedProvenance).size === selectedProvenance.length) {
         curatedIds.forEach((taskId) => usedTaskIds.add(taskId));
+        selectedProvenance.forEach((key) => usedProvenanceKeys.add(key));
         rounds.push({ roundNo, mode: 'mix', taskIds: [...curatedIds], results: {} });
         continue;
       }
@@ -1102,9 +1185,11 @@ export function buildTournamentRounds(
         count: DEFAULT_TASKS_PER_ROUND,
         modeKind: 'mix',
         excludedTaskIds: usesDeterministicExposureDeck ? usedTaskIds : undefined,
+        excludedProvenanceKeys: usedProvenanceKeys,
       })[0];
       if (!picked) return null;
       usedTaskIds.add(picked.taskId);
+      (picked.provenanceKeys ?? []).forEach((key) => usedProvenanceKeys.add(key));
       selected.push(picked);
     }
     rounds.push({

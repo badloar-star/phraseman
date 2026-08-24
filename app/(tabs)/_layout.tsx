@@ -1,7 +1,7 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing, AppState } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Animated, Easing, AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -15,6 +15,7 @@ import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 // зачем: гибрид таббара («жидкое золото») живёт в реальном таббаре под dev-флагом —
 // владелец требует видеть его на месте, а не в превью; default 'classic'.
@@ -69,6 +70,7 @@ type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
 let deferredLessonsScreen: TabScreenComponent | null = null;
+let deferredArenaScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
 
@@ -82,6 +84,11 @@ function loadFriendsScreen(): TabScreenComponent {
   return deferredFriendsScreen;
 }
 
+function loadArenaScreen(): TabScreenComponent {
+  deferredArenaScreen ??= (require('./arena') as DeferredTabModule).default;
+  return deferredArenaScreen;
+}
+
 function loadSettingsScreen(): TabScreenComponent {
   deferredSettingsScreen ??= (require('./settings') as DeferredTabModule).default;
   return deferredSettingsScreen;
@@ -90,8 +97,9 @@ function loadSettingsScreen(): TabScreenComponent {
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
     case 1: return loadLessonsScreen();
-    case 2: return loadFriendsScreen();
-    case 3: return loadSettingsScreen();
+    case 2: return loadArenaScreen();
+    case 3: return loadFriendsScreen();
+    case 4: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -280,20 +288,22 @@ type TabDef = {
 };
 
 /** Суффиксы основных табов. `/journal` остаётся legacy-якорем вкладки уроков. */
-const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/friends', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/arena', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
   '/journal': 1,
   '/lessons': 1,
-  '/friends': 2,
-  '/settings': 3,
+  '/arena': 2,
+  '/friends': 3,
+  '/settings': 4,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
   1: '/(tabs)/lessons',
-  2: '/(tabs)/friends',
-  3: '/(tabs)/settings',
+  2: '/(tabs)/arena',
+  3: '/(tabs)/friends',
+  4: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -322,11 +332,22 @@ const ENABLE_BACKGROUND_TAB_PREMOUNT = true;
 const ENABLE_TAB_FREEZE = true;
 const TAB_FREEZE_MIN_DISTANCE = 2;
 const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;
-const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
+// зачем (аудит задержки открытия «Уроки»): было 160 — Уроки, будучи первым в
+// BACKGROUND_TAB_PREMOUNT_ORDER, всё равно ждали лишний кадр раньше, чем idle-
+// очередь вообще ставила задачу. Тап часто приходит раньше, чем эти 160мс+idle
+// успевают отработать, и тогда require('./lessons') (3411 строк, 52 импорта)
+// синхронно грузится в момент тапа — вот и «полсекунды». 0 — задача уходит в
+// очередь в тот же тик, что событие «первый контент готов».
+const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 0;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
-const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
+// зачем: было 1200 — requestIdleCallback мог ждать секунду с лишним чистого
+// простоя JS-потока, прежде чем прогреть Уроки, хотя это первая (и обычно
+// единственная в этот момент) задача в очереди. 400мс достаточно, чтобы не
+// конкурировать с реальной анимацией входа на Главную, но не оставляет
+// пользователю запаса на тап раньше прогрева.
+const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
 // The entire capsule stays visible and only compacts slightly on downward scroll.
 const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
 const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
@@ -348,8 +369,9 @@ const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
   journal: 1,
   lessons: 1,
-  friends: 2,
-  settings: 3,
+  arena: 2,
+  friends: 3,
+  settings: 4,
 };
 
 /**
@@ -357,7 +379,7 @@ const SEGMENT_TO_TAB_IDX: Record<string, number> = {
  * Схлопнутый `/(tabs)` без дочернего сегмента = редирект из `app/(tabs)/index.tsx` на главную (0).
  *
  * Если URL — полноэкранный экран поверх группы табов (`/lessons_list`, `/lesson_menu`,
- * `/review`, …), здесь возвращаем `null`: не переопределяем activeIdx таб-слайдера
+ * модальными экранами, здесь возвращаем `null`: не переопределяем activeIdx таб-слайдера
  * (иначе маппинг падал бы в «Главная» и активная вкладка мигала бы под push-экраном).
  */
 function tabIdxFromRouter(pathnameRaw: string, segments: readonly string[]): number | null {
@@ -400,29 +422,13 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 const TABS: TabDef[] = [
   { key: 'home',        icon: 'home-outline',        active: 'home' },
   { key: 'lessons',     icon: 'book-outline',        active: 'book' },
+  { key: 'arena',       icon: 'shield-half-outline', active: 'shield-half' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
 ];
 
-/** Центральная кнопка таббара: Арена — полноэкранный push-маршрут, а не свайп-страница.
- *  logicalIdx = -1 намеренно: у неё нет физической страницы в TabSlider, поэтому
- *  свайпом в неё попасть нельзя и tab_page_model остаётся неизменной. */
-const ARENA_BAR_ROUTE = '/arena';
-type TabBarEntry = TabDef & { logicalIdx: number; route?: string; center?: boolean };
-
-const TAB_BAR_TABS: TabBarEntry[] = (() => {
-  const pages: TabBarEntry[] = TABS.map((tab, logicalIdx) => ({ ...tab, logicalIdx }));
-  const middle = Math.ceil(pages.length / 2);
-  const arena: TabBarEntry = {
-    key: 'arena',
-    icon: 'shield-half-outline',
-    active: 'shield-half',
-    logicalIdx: -1,
-    route: ARENA_BAR_ROUTE,
-    center: true,
-  };
-  return [...pages.slice(0, middle), arena, ...pages.slice(middle)];
-})();
+type TabBarEntry = TabDef & { logicalIdx: number };
+const TAB_BAR_TABS: TabBarEntry[] = TABS.map((tab, logicalIdx) => ({ ...tab, logicalIdx }));
 
 
 type TabScaffoldProps = {
@@ -448,17 +454,17 @@ function TabScaffold({
   onCloseDevHub,
   onOpenDevHub,
 }: TabScaffoldProps) {
-  const { theme: t, ds, statusBarLight, themeMode } = useTheme();
+  const { theme: t, ds, themeMode } = useTheme();
   const { lang } = useLang();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
-  const tabBarRouter = useRouter();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const [devOverlayVisible, setDevOverlayVisible] = useState(false);
   const topFadeScroll = useTopFadeScroll();
   /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
    * Тёмные состояния иконок держат контраст и в полном, и в компактном таббаре. */
   const tabMotionVariant = useDevTabBarMotionVariant();
+  const reduceMotion = useReduceMotion();
   const isTabHybrid = tabMotionVariant === 'hybrid';
   const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
   const isOliveTheme = themeMode === 'olive';
@@ -489,6 +495,10 @@ function TabScaffold({
 
   useEffect(() => {
     if (activeBarTabIdx < 0) return;
+    if (reduceMotion) {
+      tabHighlightAnim.setValue(activeBarTabIdx);
+      return;
+    }
     if (!ENABLE_TAB_HIGHLIGHT_TRAVEL) {
       tabHighlightAnim.setValue(activeBarTabIdx);
       return;
@@ -502,10 +512,10 @@ function TabScaffold({
         : { speed: 18, bounciness: 4 }),
       useNativeDriver: true,
     }).start();
-  }, [activeBarTabIdx, tabHighlightAnim, isTabHybrid]);
+  }, [activeBarTabIdx, tabHighlightAnim, isTabHybrid, reduceMotion]);
 
   useEffect(() => {
-    if (!isTabHybrid || activeBarTabIdx < 0) { tabBloomAnim.setValue(0); return; }
+    if (!isTabHybrid || reduceMotion || activeBarTabIdx < 0) { tabBloomAnim.setValue(0); return; }
     tabBloomAnim.setValue(0);
     const anim = Animated.sequence([
       Animated.timing(tabBloomAnim, { toValue: 1, duration: TABBAR_HYBRID.bloomMs, useNativeDriver: true }),
@@ -513,7 +523,7 @@ function TabScaffold({
     ]);
     anim.start();
     return () => anim.stop();
-  }, [activeBarTabIdx, isTabHybrid, tabBloomAnim]);
+  }, [activeBarTabIdx, isTabHybrid, reduceMotion, tabBloomAnim]);
 
   const endTabPress = useCallback(() => {
     if (!ENABLE_TAB_PRESS_LIFT) {
@@ -521,23 +531,33 @@ function TabScaffold({
       return;
     }
     tabPressAnim.stopAnimation();
+    if (reduceMotion) {
+      tabPressAnim.setValue(0);
+      setPressedTabIdx(null);
+      return;
+    }
     Animated.spring(tabPressAnim, {
       toValue: 0,
-      speed: 28,
-      bounciness: 4,
+      ...(isTabHybrid
+        ? { stiffness: TABBAR_HYBRID.press.stiffness, damping: TABBAR_HYBRID.press.damping, mass: TABBAR_HYBRID.press.mass }
+        : { speed: 28, bounciness: 4 }),
       useNativeDriver: true,
     }).start(({ finished }) => {
       if (finished) {
         setPressedTabIdx(null);
       }
     });
-  }, [tabPressAnim]);
+  }, [isTabHybrid, reduceMotion, tabPressAnim]);
 
   const beginTabPress = useCallback((idx: number) => {
     setPressedTabIdx(idx);
     hapticTap();
     if (!ENABLE_TAB_PRESS_LIFT) return;
     tabPressAnim.stopAnimation();
+    if (reduceMotion) {
+      tabPressAnim.setValue(0);
+      return;
+    }
     Animated.spring(tabPressAnim, {
       toValue: 1,
       ...(isTabHybrid
@@ -545,7 +565,7 @@ function TabScaffold({
         : { speed: 34, bounciness: 6 }),
       useNativeDriver: true,
     }).start();
-  }, [tabPressAnim, isTabHybrid]);
+  }, [tabPressAnim, isTabHybrid, reduceMotion]);
 
   const tabPillPressScale = tabPressAnim.interpolate({
     inputRange: [0, 1],
@@ -657,7 +677,6 @@ function TabScaffold({
 
   return (
     <ScreenGradient artBackdrop="home" style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
-      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
@@ -722,7 +741,7 @@ function TabScaffold({
 
               {TAB_BAR_TABS.map((tab, barIndex) => {
                 const visuallyFocused = activeBarTabIdx === barIndex;
-                const color = tab.center ? tabIconActive : visuallyFocused ? tabIconActive : tabIconMuted;
+                const color = visuallyFocused ? tabIconActive : tabIconMuted;
                 const iconScale = pressedTabIdx === barIndex
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;
@@ -730,18 +749,23 @@ function TabScaffold({
                   <TouchableOpacity
                     key={tab.key}
                     testID={`tab-${tab.key}`}
-                    accessibilityLabel={triLang(lang, { ru: tab.key === 'home' ? 'Главная' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзья' : 'Настройки', uk: tab.key === 'home' ? 'Головна' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзі' : 'Налаштування', es: tab.key === 'home' ? 'Inicio' : tab.key === 'lessons' ? 'Lecciones' : tab.key === 'friends' ? 'Amigos' : 'Ajustes', 'pt-BR': tab.key === 'home' ? 'Início' : tab.key === 'lessons' ? 'Lições' : tab.key === 'friends' ? 'Amigos' : 'Configurações', vi: tab.key === 'home' ? 'Trang chủ' : tab.key === 'lessons' ? 'Bài học' : tab.key === 'friends' ? 'Bạn bè' : 'Cài đặt', id: tab.key === 'home' ? 'Beranda' : tab.key === 'lessons' ? 'Pelajaran' : tab.key === 'friends' ? 'Teman' : 'Pengaturan', tr: tab.key === 'home' ? 'Ana sayfa' : tab.key === 'lessons' ? 'Dersler' : tab.key === 'friends' ? 'Arkadaşlar' : 'Ayarlar', pl: tab.key === 'home' ? 'Strona główna' : tab.key === 'lessons' ? 'Lekcje' : tab.key === 'friends' ? 'Znajomi' : 'Ustawienia' })}
+                    accessibilityLabel={triLang(lang, {
+                      ru: tab.key === 'home' ? 'Главная' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'arena' ? 'Арена' : tab.key === 'friends' ? 'Друзья' : 'Настройки',
+                      uk: tab.key === 'home' ? 'Головна' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'arena' ? 'Арена' : tab.key === 'friends' ? 'Друзі' : 'Налаштування',
+                      es: tab.key === 'home' ? 'Inicio' : tab.key === 'lessons' ? 'Lecciones' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Amigos' : 'Ajustes',
+                      'pt-BR': tab.key === 'home' ? 'Início' : tab.key === 'lessons' ? 'Lições' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Amigos' : 'Configurações',
+                      vi: tab.key === 'home' ? 'Trang chủ' : tab.key === 'lessons' ? 'Bài học' : tab.key === 'arena' ? 'Đấu trường' : tab.key === 'friends' ? 'Bạn bè' : 'Cài đặt',
+                      id: tab.key === 'home' ? 'Beranda' : tab.key === 'lessons' ? 'Pelajaran' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Teman' : 'Pengaturan',
+                      tr: tab.key === 'home' ? 'Ana sayfa' : tab.key === 'lessons' ? 'Dersler' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Arkadaşlar' : 'Ayarlar',
+                      pl: tab.key === 'home' ? 'Strona główna' : tab.key === 'lessons' ? 'Lekcje' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Znajomi' : 'Ustawienia',
+                    })}
                     accessible={true}
-                    accessibilityRole={tab.center ? 'button' : 'tab'}
-                    accessibilityState={tab.center ? undefined : { selected: visuallyFocused }}
+                    accessibilityRole="tab"
+                    accessibilityState={{ selected: visuallyFocused }}
                     style={s.tabBtn}
                     onPressIn={() => beginTabPress(barIndex)}
                     onPressOut={endTabPress}
                     onPress={() => {
-                      if (tab.route) {
-                        tabBarRouter.push(tab.route as never);
-                        return;
-                      }
                       goToTab(tab.logicalIdx);
                     }}
                     activeOpacity={1}
@@ -749,7 +773,7 @@ function TabScaffold({
                     {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused ? (
                       <View style={[s.tabActivePill, { backgroundColor: tabActiveBg }]} />
                     ) : null}
-                    {isTabHybrid && visuallyFocused && !tab.center ? (
+                    {isTabHybrid && visuallyFocused ? (
                       <Animated.View
                         pointerEvents="none"
                         style={[
@@ -763,7 +787,7 @@ function TabScaffold({
                       />
                     ) : null}
                     <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-                      <Ionicons name={tab.center || visuallyFocused ? tab.active : tab.icon} size={tab.center ? 29 : 26} color={color} />
+                      <Ionicons name={visuallyFocused ? tab.active : tab.icon} size={tab.key === 'arena' ? 29 : 26} color={color} />
                     </Animated.View>
                   </TouchableOpacity>
                 );
@@ -1099,8 +1123,9 @@ function ReleasedTabLayout() {
           shouldLoad={shouldLoad(1)}
         />
       ) : placeholder('ph-lessons'),
-      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabPane> : placeholder('ph-arena'),
+      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
   }, [activeIdx, mountedTabs, openDevHub, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 

@@ -37,7 +37,7 @@ import { TOAST } from '../constants/motionHybrid';
 type Props = {
   visible: boolean;
   onRequestClose: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'.
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path.
    * зачем: логика удаления (beginAccountDeletion и весь handleConfirmDelete) не тронута —
    * проп меняет только визуальную оболочку и CTA-компоненты. */
   motionVariant?: 'classic' | 'hybrid';
@@ -59,7 +59,7 @@ const ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360;
 /**
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
  */
-function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'classic' }: Props) {
+function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'hybrid' }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';

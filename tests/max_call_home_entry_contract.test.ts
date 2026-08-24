@@ -41,20 +41,30 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     expect(home).not.toContain('setInterval(prefetchMaxTutorPreview');
     const paramsStart = home.indexOf('const maxTutorCallParams');
     const paramsEnd = home.indexOf('useEffect(() =>', paramsStart);
-    expect(home.slice(paramsStart, paramsEnd)).toContain("studyTarget: 'en'");
-    // зачем (владелец 2026-08-23): видимая подпись «Учитель английского» под плиткой
-    // МАКС удалена (запрет на подписи-расшифровки мелким шрифтом). Уточнение живёт
-    // только в accessibilityLabel — сторожим его локали, а не вернувшуюся подпись.
+    expect(home.slice(paramsStart, paramsEnd)).toContain('studyTarget,');
+    expect(home.slice(paramsStart, paramsEnd)).not.toContain("studyTarget: 'en'");
+    // Видимая подпись-расшифровка по-прежнему не нужна, но screen reader
+    // обязан назвать учителя текущего курса, а не всегда английского.
     expect(home).not.toContain('maxTeacherSubtitle');
-    expect(home).toContain("ru: 'МАКС, учитель английского'");
-    expect(home).toContain("uk: 'МАКС, учитель англійської'");
-    expect(home).toContain("es: 'MAX, profesor de inglés'");
-    expect(home).toContain("'pt-BR': 'MAX, professor de inglês'");
-    expect(home).toContain("vi: 'MAX, giáo viên tiếng Anh'");
-    expect(home).toContain("id: 'MAX, guru bahasa Inggris'");
-    expect(home).toContain("tr: 'MAX, İngilizce öğretmeni'");
-    expect(home).toContain("pl: 'MAX, nauczyciel angielskiego'");
+    expect(home).toContain('maxVoiceTeacherAccessibilityLabel(lang, studyTarget)');
     expect(home).toContain("accessibilityLabel={item.key === 'max' ? maxTeacherA11yLabel : item.label}");
+  });
+
+  it('keeps MAX visible and openable for every current course while preserving its target through routes', () => {
+    expect(home).toContain('const maxVoiceVisible = useMemo(() => isMaxVoiceEntryVisible(), []);');
+    expect(home).not.toContain('isMaxVoiceEntryVisible() && maxVoiceContentAvailableForTarget');
+    expect(home).toContain("params: { format: 'tutor', cefr: maxTutorCallParams.cefr, studyTarget }");
+
+    for (const route of [prestart, session]) {
+      expect(route).not.toContain('maxVoiceContentAvailableForTarget');
+      expect(route).not.toContain('maxTargetSupported');
+    }
+
+    expect(prestart).toContain('studyTarget: callStudyTarget');
+    expect(session).toContain('studyTarget: callStudyTarget');
+    expect(review).toContain('nextParams.studyTarget = activeStudyTarget');
+    expect(prestart).not.toContain("studyTarget: format === 'tutor' ? 'en' : studyTarget");
+    expect(session).not.toContain("studyTarget: isTutor ? 'en' : studyTarget");
   });
 
   it('mounts preparation behind the MAX consent gate', () => {

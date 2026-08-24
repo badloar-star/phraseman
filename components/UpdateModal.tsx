@@ -351,6 +351,7 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
               backgroundColor: palette.secondaryBg,
             },
           ]}
+          contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
         >
           <Text
             style={[styles.closeBtnText, { color: palette.secondaryText, fontSize: Math.max(15, f.body) }]}

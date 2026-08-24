@@ -21,6 +21,7 @@ import { resolveMaxVoiceConfig } from './max_voice_config';
 import { asVoiceCefr } from './max_voice_prompt';
 import {
   VOICE_QUOTA_COLLECTION,
+  ensureCanonicalVoiceQuota,
   settleVoiceSessionWithXp,
   voiceQuotaDocId,
   voiceSessionClockStartMs,
@@ -298,7 +299,7 @@ type VoiceHeartbeatLifecycleResult = Readonly<{
 
 async function recordVoiceHeartbeatLifecycle(db: Firestore, args: VoiceHeartbeatUsageArgs): Promise<VoiceHeartbeatLifecycleResult> {
   const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.stableUid));
   return db.runTransaction(async (tx) => {
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     if (text(data.activeSessionId, 80) !== text(args.sessionId, 80) || num(data.reservedSec) <= 0) {
@@ -363,6 +364,7 @@ export const maxVoiceHeartbeat = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  await ensureCanonicalVoiceQuota(db, { authUid, stableUid });
   const lifecycle = await recordVoiceHeartbeatLifecycle(db, {
     authUid,
     stableUid,
@@ -371,7 +373,7 @@ export const maxVoiceHeartbeat = onCall({
     usage: sanitizeVoiceUsage(data.usage),
   });
   if (lifecycle.alive && lifecycle.firstHeartbeat) {
-    const markerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
+    const markerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(stableUid));
     const recordStage = (event: MaxVoiceOpsEventV1) => recordMaxVoiceOpsOnce(db, {
       markerRef,
       markerId: sessionId,
@@ -418,6 +420,7 @@ export const maxVoiceSessionEnd = onCall({
     resolveStableUidForAuth(db, authUid),
     resolveMaxVoiceConfig(db),
   ]);
+  await ensureCanonicalVoiceQuota(db, { authUid, stableUid, nowMs });
 
   // зачем (P1-13, 2026-08-23): раньше здесь шли ТРИ последовательных обращения
   // к одному документу voice_call_quotas — quotaRef.get() ради снимка, затем
@@ -432,7 +435,7 @@ export const maxVoiceSessionEnd = onCall({
   // и порядок вычислений сохранены 1:1 — менялась только «упаковка».
   // Ссылка на док квоты нужна и после транзакции — как markerRef для
   // идемпотентных ops-событий (recordMaxVoiceOpsOnce ниже).
-  const quotaRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
+  const quotaRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(stableUid));
 
   const clientElapsedSec = nonNegInt(data.elapsedSec);
   const reportedUsage = sanitizeVoiceUsage(data.usage);

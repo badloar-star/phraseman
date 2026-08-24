@@ -8,7 +8,7 @@ const STATIC_SCREEN_NAMES = [
   'league_screen', 'lesson_complete', 'lesson_help', 'lesson_irregular_verbs', 'lesson_menu',
   'lesson_theory_v2', 'lesson_words', 'level_exam', 'level_gifts_inventory',
   'lingman_videos', 'manage_subscription', 'pack_opening', 'paywall_a', 'paywall_b', 'paywall_c',
-  'paywall_d', 'paywall_e', 'paywall_f', 'paywall_g',
+  'paywall_d', 'paywall_e', 'paywall_f', 'paywall_g', 'max_paywall',
   'phrase_analytics_screen', 'premium_modal',
   'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
   'referrals', 'settings_edu', 'settings_language',

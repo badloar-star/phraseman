@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MarketFlow — Главный макет</title>
+    <style>
+      :root {
+        --bg: #0a0b16;
+        --bg-soft: #101428;
+        --bg-card: rgba(255, 255, 255, 0.06);
+        --line: rgba(255, 255, 255, 0.14);
+        --text: #eaf1ff;
+        --muted: #9fb2d2;
+        --deep: #120f2f;
+        --accent: #7c3aed;
+        --accent-2: #16d6ff;
+        --accent-3: #ff5f87;
+        --good: #24d39a;
+        --shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 700px at 80% -10%, rgba(124, 58, 237, 0.28), transparent 60%),
+          radial-gradient(900px 900px at 0% 100%, rgba(22, 214, 255, 0.18), transparent 52%),
+          linear-gradient(140deg, var(--bg) 0%, #0c132a 45%, #121c44 100%);
+        overflow-x: hidden;
+      }
+
+      .page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px clamp(14px, 3vw, 28px) 46px;
+        position: relative;
+      }
+
+      .spot {
+        position: absolute;
+        inset: auto;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .spot.a {
+        width: 320px;
+        height: 320px;
+        left: -140px;
+        top: -90px;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.33), transparent 68%);
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+      .spot.b {
+        width: 240px;
+        height: 240px;
+        right: -110px;
+        top: 260px;
+        background: radial-gradient(circle, rgba(255, 95, 135, 0.24), transparent 66%);
+        animation: drift 22s ease-in-out infinite alternate-reverse;
+      }
+      .spot.c {
+        width: 210px;
+        height: 210px;
+        right: 10%;
+        bottom: 120px;
+        background: radial-gradient(circle, rgba(22, 214, 255, 0.2), transparent 67%);
+        animation: drift 19s ease-in-out infinite alternate;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent), #d946ef);
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        color: white;
+        box-shadow: 0 8px 18px rgba(124, 58, 237, 0.4);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(1.05rem, 2vw, 1.2rem);
+        letter-spacing: 0.01em;
+      }
+
+      .nav {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .pill {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        position: relative;
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: clamp(18px, 4vw, 28px);
+        background: linear-gradient(150deg, rgba(124, 58, 237, 0.15), rgba(16, 20, 40, 0.9));
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 18px;
+        overflow: hidden;
+        backdrop-filter: blur(5px);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(130deg, rgba(255, 255, 255, 0.12), transparent 42%, transparent 58%, rgba(22, 214, 255, 0.16));
+        transform: translateX(-120%);
+        animation: shine 6.5s linear infinite;
+        pointer-events: none;
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: clamp(1.6rem, 4vw, 2.25rem);
+        line-height: 1.1;
+        max-width: 18ch;
+      }
+
+      .hero p {
+        margin: 0;
+        max-width: 63ch;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .hero .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 0;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 180ms ease, filter 180ms ease;
+        will-change: transform;
+      }
+
+      .btn:focus-visible,
+      .chip:focus-visible,
+      .card:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 2px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        color: #090a13;
+        font-weight: 700;
+      }
+
+      .btn-ghost {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.05);
+      }
+
+      .metrics {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .metric {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.045);
+        border-radius: 14px;
+        padding: 12px;
+        animation: rise .7s ease both;
+      }
+
+      .metric:nth-child(2) {
+        animation-delay: 0.07s;
+      }
+      .metric:nth-child(3) {
+        animation-delay: 0.14s;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 1.28rem;
+        color: white;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.93rem;
+      }
+
+      .section-title {
+        margin: 24px 0 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 12px;
+      }
+
+      .section-title h3 {
+        margin: 0;
+        font-size: 1.35rem;
+      }
+
+      .section-title small {
+        color: var(--muted);
+      }
+
+      .catalog {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        position: relative;
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px;
+        min-height: 210px;
+        transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+        cursor: pointer;
+      }
+
+      .card:hover,
+      .card:focus-visible {
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      .badge {
+        width: fit-content;
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        font-size: 0.78rem;
+        color: #d1dcff;
+      }
+
+      .price {
+        margin-top: 8px;
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: #f0f8ff;
+      }
+
+      .meta {
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .chip {
+        margin-top: auto;
+        width: max-content;
+        display: inline-block;
+        padding: 7px 10px;
+        border-radius: 9px;
+        font-size: 0.82rem;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+      }
+
+      .chip.green {
+        background: rgba(36, 211, 154, 0.15);
+        border-color: rgba(36, 211, 154, 0.4);
+        color: #a7fbe2;
+      }
+
+      .chip.orange {
+        background: rgba(255, 195, 75, 0.12);
+        border-color: rgba(255, 195, 75, 0.35);
+        color: #ffe29f;
+      }
+
+      .chip.purple {
+        background: rgba(172, 107, 255, 0.15);
+        border-color: rgba(172, 107, 255, 0.35);
+        color: #e8d8ff;
+      }
+
+      .footer-note {
+        margin-top: 16px;
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .pulse {
+        position: absolute;
+        right: 18px;
+        top: 16px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #24d39a;
+        box-shadow: 0 0 0 0 rgba(36, 211, 154, 0.6);
+        animation: ping 1.7s ease-out infinite;
+      }
+
+      .countdown {
+        margin-top: 10px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: var(--muted);
+      }
+
+      .countdown span {
+        display: inline-block;
+        min-width: 34px;
+        text-align: center;
+        padding: 4px 8px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      @keyframes shine {
+        45% { transform: translateX(-40%); }
+        100% { transform: translateX(120%); }
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes drift {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(22px);
+        }
+      }
+
+      @keyframes ping {
+        0% { box-shadow: 0 0 0 0 rgba(36, 211, 154, 0.56); }
+        80%, 100% { box-shadow: 0 0 0 18px rgba(36, 211, 154, 0); }
+      }
+
+      @media (max-width: 960px) {
+        .catalog {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+        .nav {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="spot a" aria-hidden="true"></div>
+      <div class="spot b" aria-hidden="true"></div>
+      <div class="spot c" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">MF</div>
+          <div>
+            <h1>MarketFlow</h1>
+            <small style="color: var(--muted)">Адаптивный лендинг витрины</small>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Главная навигация">
+          <a href="#" class="pill" style="text-decoration: none;">Магазины</a>
+          <a href="#" class="pill" style="text-decoration: none;">Скидки</a>
+          <a href="#" class="pill" style="text-decoration: none;">Партнерам</a>
+          <a href="#" class="pill" style="text-decoration: none;">Контакты</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="pulse" aria-hidden="true"></div>
+        <h2>Собирайте, продавайте и масштабируйте в одном экране</h2>
+        <p>
+          Макет для маркетплейса с чистой иконографикой, контрастными карточками, мягкими
+          анимациями и понятной иерархией блоков. На первом экране видны ключевые офферы,
+          затем — каталог и доверительные метрики.
+        </p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button">Открыть демонстрацию</button>
+          <button class="btn btn-ghost" type="button">Смотреть видео</button>
+        </div>
+        <div class="metrics">
+          <article class="metric">
+            <strong id="kpi-orders">0</strong>
+            <span>новых заявок сегодня</span>
+          </article>
+          <article class="metric">
+            <strong id="kpi-clicks">0</strong>
+            <span>переходов в карточки</span>
+          </article>
+          <article class="metric">
+            <strong id="kpi-utm">0</strong>
+            <span>топ кампаний активны</span>
+          </article>
+        </div>
+        <div class="countdown">
+          <span id="d1">00</span> :
+          <span id="d2">00</span> :
+          <span id="d3">00</span>
+          <small>&nbsp;до начала акции</small>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h3>Популярные карточки</h3>
+          <small>4 из 12 уже в избранном, обновление раз в 10 минут</small>
+        </div>
+        <div class="catalog">
+          <article class="card" tabindex="0">
+            <div class="badge">Тренд</div>
+            <h4>Умный домовый комплект</h4>
+            <p class="meta">Новый комплект: 5 сенсорных модулей + умный пульт.</p>
+            <div class="price">12 490 ₽</div>
+            <span class="chip green">Ожидает 15 заказов</span>
+          </article>
+          <article class="card" tabindex="0">
+            <div class="badge">Лучший</div>
+            <h4>Мягкая кроссовка Premium</h4>
+            <p class="meta">Ограниченная партия, нейтральные тона, размер 36-43.</p>
+            <div class="price">7 290 ₽</div>
+            <span class="chip purple">−18% для новых</span>
+          </article>
+          <article class="card" tabindex="0">
+            <div class="badge">Новые</div>
+            <h4>Готовый комплект для старта</h4>
+            <p class="meta">Мини-рюкзак, дневник заказов, упаковка и наклейки.</p>
+            <div class="price">2 990 ₽</div>
+            <span class="chip orange">Скоро в наличии</span>
+          </article>
+        </div>
+      </section>
+
+      <p class="footer-note">
+        Этот макет не содержит реальных данных, зато показывает, как можно быстро собрать
+        “живую” витрину с акцентом на читаемость, темп и лёгкую визуальную динамику.
+      </p>
+    </main>
+
+    <script>
+      const t = {
+        orders: document.getElementById('kpi-orders'),
+        clicks: document.getElementById('kpi-clicks'),
+        utm: document.getElementById('kpi-utm'),
+        d1: document.getElementById('d1'),
+        d2: document.getElementById('d2'),
+        d3: document.getElementById('d3'),
+      };
+
+      const target = {orders: 1284, clicks: 8762, utm: 24};
+      const duration = 1400;
+      let start = null;
+
+      function animateCounter(ts) {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        t.orders.textContent = Math.floor(target.orders * ease).toLocaleString('ru-RU');
+        t.clicks.textContent = Math.floor(target.clicks * ease).toLocaleString('ru-RU');
+        t.utm.textContent = Math.floor(target.utm * ease);
+        if (progress < 1) window.requestAnimationFrame(animateCounter);
+      }
+      window.requestAnimationFrame(animateCounter);
+
+      const endAt = Date.now() + 4 * 60 * 60 * 1000 + 18 * 60 * 1000 + 47 * 1000;
+      setInterval(() => {
+        const remain = Math.max(0, endAt - Date.now());
+        const h = Math.floor(remain / 3600000).toString().padStart(2, '0');
+        const m = Math.floor((remain % 3600000) / 60000).toString().padStart(2, '0');
+        const s = Math.floor((remain % 60000) / 1000).toString().padStart(2, '0');
+        t.d1.textContent = h;
+        t.d2.textContent = m;
+        t.d3.textContent = s;
+      }, 1000);
+    </script>
+  </body>
+</html>

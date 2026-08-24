@@ -8,7 +8,6 @@ import { emitAppEvent } from '../../../../app/events';
 import IntroFullAccessModal from '../../../IntroFullAccessModal';
 import NoEnergyModal from '../../../NoEnergyModal';
 import PremiumCelebrationModal from '../../../PremiumCelebrationModal';
-import PremiumCelebrationHybrid from '../../../premium_celebration/PremiumCelebrationHybrid';
 import VipCelebrationModal from '../../../VipCelebrationModal';
 import StreakReviveModal from '../../../StreakReviveModal';
 import CardPackShardPaywallModal from '../../../../app/flashcards/CardPackShardPaywallModal';
@@ -85,6 +84,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'intro_full_access_welcome_hybrid',
+      approval: 'accepted',
       title: cs('intro_full_access_welcome_hybrid_title'),
       detail: cs('real_modal'),
       kind: 'render',
@@ -109,6 +109,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'intro_full_access_ended_hybrid',
+      approval: 'accepted',
       title: cs('intro_full_access_ended_hybrid_title'),
       detail: cs('real_modal'),
       kind: 'render',

@@ -7,7 +7,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeekLeaderboard, getLastWeekFinalPoints } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
-import { rememberLeagueStateSnapshot, sanitizeLeagueState } from './league_open_cache_policy';
+import {
+  rememberLeagueStateSnapshot,
+  resolveLeagueStateSnapshot,
+  sanitizeLeagueState,
+} from './league_open_cache_policy';
 import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
@@ -358,6 +362,12 @@ export interface LeagueState {
 }
 
 export interface LeagueResult {
+  /** ISO-неделя результата; старые pending-снимки могут не иметь поля. */
+  weekId?: string;
+  /** Финальные очки пользователя за эту неделю. */
+  points?: number;
+  /** true только для документа league_week_results, записанного серверным cron. */
+  confirmed?: boolean;
   prevLeagueId: number;
   newLeagueId:  number;
   myRank:       number;
@@ -365,6 +375,21 @@ export interface LeagueResult {
   promoted:     boolean;
   demoted:      boolean;
   group:        GroupMember[];
+}
+
+/**
+ * Минимальный подтверждённый снимок для ретроактивного аудита достижений.
+ * Он намеренно не содержит UI-группу и не зависит от модуля achievements,
+ * чтобы не создавать цикл league_engine -> achievements -> league_engine.
+ */
+export interface ConfirmedLeagueAchievementEvidence {
+  weekId: string;
+  points: number;
+  prevLeagueId: number;
+  newLeagueId: number;
+  myRank: number;
+  totalInGroup: number;
+  confirmed: true;
 }
 
 const STATE_KEY  = 'league_state_v3';
@@ -582,6 +607,7 @@ const repairPendingResultForCurrentUser = async (
 };
 
 export const getLeagueResultSignature = (result: LeagueResult): string => JSON.stringify({
+  weekId: result.weekId ?? null,
   prevLeagueId: result.prevLeagueId,
   newLeagueId: result.newLeagueId,
   myRank: result.myRank,
@@ -651,10 +677,9 @@ export const loadLeagueState = async (): Promise<LeagueState | null> => {
     // глобальный ErrorBoundary роняет всё приложение. rememberLeagueStateSnapshot тоже
     // санитизирует — двойная защита (источник + кэш).
     const parsed = s ? sanitizeLeagueState(JSON.parse(s)) : null;
-    return rememberLeagueStateSnapshot(parsed);
+    return resolveLeagueStateSnapshot(parsed);
   } catch {
-    rememberLeagueStateSnapshot(null);
-    return null;
+    return resolveLeagueStateSnapshot(null);
   }
 };
 
@@ -882,6 +907,9 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
       && !promoted;
 
   return {
+    weekId: state.weekId,
+    points: Math.max(0, Math.floor(Number(myWeekPoints) || 0)),
+    confirmed: false,
     prevLeagueId: state.leagueId,
     newLeagueId:  promoted ? state.leagueId + 1 : demoted ? state.leagueId - 1 : state.leagueId,
     myRank,
@@ -974,6 +1002,45 @@ const fetchServerLeagueResultsAll = async (
 };
 
 /**
+ * Возвращает только серверно финализированные и структурно валидные недели.
+ * Экран достижений вызывает это один раз при открытии; повторная доставка
+ * безопасна, потому что achievement_progress_v2 дедуплицирует недели по weekId.
+ */
+export const loadConfirmedLeagueAchievementEvidence = async (): Promise<ConfirmedLeagueAchievementEvidence[]> => {
+  const uid = await getMyUidSafe();
+  if (!uid) return [];
+  const rows = await fetchServerLeagueResultsAll(uid);
+  if (!rows) return [];
+  return rows
+    .filter(({ weekId, result }) => {
+      const validWeek = /^\d{4}-W(?:0[1-9]|[1-4]\d|5[0-3])$/.test(weekId);
+      const validLeagues = Number.isInteger(result.prevLeagueId)
+        && Number.isInteger(result.newLeagueId)
+        && result.prevLeagueId >= 0
+        && result.prevLeagueId < CLUBS.length
+        && result.newLeagueId >= 0
+        && result.newLeagueId < CLUBS.length
+        && Math.abs(result.newLeagueId - result.prevLeagueId) <= 1;
+      const validPlacement = Number.isInteger(result.rank)
+        && Number.isInteger(result.total)
+        && result.rank >= 1
+        && result.total >= 1
+        && result.rank <= result.total;
+      return validWeek && validLeagues && validPlacement && Number.isFinite(result.points);
+    })
+    .sort((a, b) => compareWeekIds(a.weekId, b.weekId))
+    .map(({ weekId, result }) => ({
+      weekId,
+      points: Math.max(0, Math.floor(result.points)),
+      prevLeagueId: result.prevLeagueId,
+      newLeagueId: result.newLeagueId,
+      myRank: result.rank,
+      totalInGroup: result.total,
+      confirmed: true,
+    }));
+};
+
+/**
  * Собирает валидную цепочку серверных результатов за пропущенные недели:
  * недели из [startWeekId, endWeekId), отсортированные по возрастанию. Первое
  * звено должно стартовать из startLeagueId, каждое следующее — из лиги,
@@ -985,13 +1052,13 @@ const buildServerResultChain = (
   startWeekId: string,
   endWeekId: string,
   startLeagueId: number,
-): ServerLeagueWeekResult[] => {
+): { weekId: string; result: ServerLeagueWeekResult }[] => {
   if (!all) return [];
   const inRange = all
     .filter(({ weekId }) =>
       compareWeekIds(weekId, startWeekId) >= 0 && compareWeekIds(weekId, endWeekId) < 0)
     .sort((a, b) => compareWeekIds(a.weekId, b.weekId));
-  const chain: ServerLeagueWeekResult[] = [];
+  const chain: { weekId: string; result: ServerLeagueWeekResult }[] = [];
   let currentLeague = startLeagueId;
   for (const { weekId, result } of inRange) {
     const valid = result.prevLeagueId === currentLeague
@@ -1004,7 +1071,7 @@ const buildServerResultChain = (
       });
       break;
     }
-    chain.push(result);
+    chain.push({ weekId, result });
     currentLeague = result.newLeagueId;
   }
   return chain;
@@ -1036,15 +1103,24 @@ export const checkLeagueOnAppOpen = async (
   const currentWeekId = getWeekId();
   const myUid = await getMyUidSafe();
 
-  // Batch both reads into a single multiGet
-  const [[, pendingRaw], [, stateRaw]] = await AsyncStorage.multiGet([RESULT_KEY, STATE_KEY]);
+  // Batch both reads into a single multiGet. SQLITE_FULL may reject even reads;
+  // keep the cloud-projected memory snapshot instead of inventing Copper/level 0.
+  let pendingRaw: string | null = null;
+  let stateRaw: string | null = null;
+  try {
+    const pairs = await AsyncStorage.multiGet([RESULT_KEY, STATE_KEY]);
+    pendingRaw = pairs[0]?.[1] ?? null;
+    stateRaw = pairs[1]?.[1] ?? null;
+  } catch {
+    // Best-effort local cache. Account-scoped memory recovery is below.
+  }
 
   let pending: LeagueResult | null = null;
   try { pending = pendingRaw ? JSON.parse(pendingRaw) : null; } catch { pending = null; }
 
   let state: LeagueState | null = null;
-  try { state = stateRaw ? JSON.parse(stateRaw) : null; } catch { state = null; }
-  rememberLeagueStateSnapshot(state);
+  try { state = resolveLeagueStateSnapshot(stateRaw ? JSON.parse(stateRaw) : null); }
+  catch { state = resolveLeagueStateSnapshot(null); }
 
   if (pending) {
     const safePending = await repairPendingResultForCurrentUser(pending, myName, myUid);
@@ -1107,7 +1183,8 @@ export const checkLeagueOnAppOpen = async (
         )
       : [];
     if (serverChain.length > 0) {
-      const last = serverChain[serverChain.length - 1];
+      const lastEntry = serverChain[serverChain.length - 1];
+      const last = lastEntry.result;
       const chainTargetLeagueId = last.newLeagueId;
       const cappedLeagueId = capLeagueStep(state.leagueId, chainTargetLeagueId);
       if (cappedLeagueId !== chainTargetLeagueId) {
@@ -1116,6 +1193,9 @@ export const checkLeagueOnAppOpen = async (
         });
       }
       result = {
+        weekId: lastEntry.weekId,
+        points: Math.max(0, Math.floor(Number(last.points) || 0)),
+        confirmed: true,
         prevLeagueId: state.leagueId,
         newLeagueId: cappedLeagueId,
         myRank: last.rank,
@@ -1141,6 +1221,9 @@ export const checkLeagueOnAppOpen = async (
     }
     if (serverResult && serverResultValid) {
       result = {
+        weekId: state.weekId,
+        points: Math.max(0, Math.floor(Number(serverResult.points) || 0)),
+        confirmed: true,
         prevLeagueId: serverResult.prevLeagueId,
         newLeagueId: serverResult.newLeagueId,
         myRank: serverResult.rank,

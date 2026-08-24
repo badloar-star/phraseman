@@ -252,7 +252,6 @@ function main() {
   const storageCloudBridgeGate = readJsonIfExists(STORAGE_CLOUD_BRIDGE_GATE_PATH);
   const grammarDrillBridgeGate = readJsonIfExists(GRAMMAR_DRILL_BRIDGE_GATE_PATH);
   const aiPromptBridgeGate = readJsonIfExists(AI_PROMPT_BRIDGE_GATE_PATH);
-  const personalPracticeBridgeGate = readJsonIfExists(PERSONAL_PRACTICE_BRIDGE_GATE_PATH);
   const coreLessonDeliveryBridgeGate = readJsonIfExists(CORE_LESSON_DELIVERY_BRIDGE_GATE_PATH);
   const adminBridgeGate = readJsonIfExists(ADMIN_BRIDGE_GATE_PATH);
   const theoryVocabIntroBridgeReady = theoryVocabIntroBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
@@ -262,7 +261,6 @@ function main() {
   const storageCloudBridgeReady = storageCloudBridgeGate?.status === 'PASS_ISOLATION_READY_GLOBAL_FRENCH_HOLD';
   const grammarDrillBridgeReady = grammarDrillBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
   const aiPromptBridgeReady = aiPromptBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
-  const personalPracticeBridgeReady = personalPracticeBridgeGate?.status === 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD';
   const paritySurfaceIds = new Set((parityPlan.surfacePlan ?? []).map((surface) => surface.id));
   const blockers = [];
 
@@ -296,12 +294,6 @@ function main() {
         ? ['FRENCH_GRAMMAR_DRILL_RUNTIME_LOADER_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
       : isClosedAiPromptBridge
         ? ['AI_PROMPT_ADMIN_OBSERVABILITY_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
-      : isClosedPersonalPracticeBridge
-        ? [
-            'FRENCH_PERSONAL_PRACTICE_NATIVE_DIAGNOSIS_BANK_STILL_HOLD',
-            'PROBLEM_COACH_ROUTE_STILL_HOLD',
-            'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD',
-          ]
       : isClosedDailyPhraseBridge
         ? ['DAILY_PHRASE_LIVE_UPLOAD_STILL_HOLD', 'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD']
       : isClosedStorageCloudBridge
@@ -474,7 +466,6 @@ function main() {
         collectibleBridgeReady,
         grammarDrillBridgeReady,
         aiPromptBridgeReady,
-        personalPracticeBridgeReady,
         dailyPhraseBridgeReady,
         storageCloudBridgeReady,
       ].filter(Boolean).length,

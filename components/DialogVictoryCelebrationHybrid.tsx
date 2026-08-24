@@ -17,8 +17,9 @@
  * Закрытие — onDone (CTA, аппаратный «назад» через onRequestClose родителя,
  * поскольку это full-screen оверлей без Modal-обёртки — как и classic).
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Easing, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import type { TextProps } from 'react-native';
+import { Platform, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import Animated, {
   Easing as REasing,
@@ -39,28 +40,19 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { hapticMediumImpact, hapticSuccess } from '../hooks/use-haptics';
-import { LUM, CHK } from '../constants/motionHybrid';
+import { LUM, CHK, SUITE } from '../constants/motionHybrid';
+import { DIALOG_VICTORY_HYBRID_PALETTE } from '../constants/motionHybridPalettes';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { soundDirector } from '../modules/audio/sound_director';
-import { Platform } from 'react-native';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+// зачем: число опыта ведём по UI-потоку через animatedProps (как счётчик места
+// в лиге) — обёртка над Text нужна именно для этого, ре-рендеров JS не будет.
+const AnimatedText = Animated.createAnimatedComponent(Text);
 
 // Та же палитра «дорогого» праздника — единый язык с classic-вариантом.
-const PALETTE = {
-  backdrop: '#070b10',
-  glow: 'rgba(255, 206, 120, 0.22)',
-  gold: '#FFD27A',
-  goldBright: '#FFE9B8',
-  emerald: '#36E6A0',
-  ring: '#FFD27A',
-  ringTrack: 'rgba(255,255,255,0.10)',
-  text: '#FFF6E6',
-  textDim: 'rgba(255,246,230,0.62)',
-  card: 'rgba(255,255,255,0.06)',
-  cta: ['#0F8F66', '#36E6A0', '#0F8F66'] as [string, string, string],
-};
+const PALETTE = DIALOG_VICTORY_HYBRID_PALETTE;
 
 const CONFETTI_COUNT = 26;
 
@@ -80,7 +72,7 @@ function ConfettiPiece({ index, progress }: { index: number; progress: SharedVal
   const dy = Math.sin(angle) * distance - 60;
   const rot = (seeded(index, 3) - 0.5) * 1080;
   const size = 7 + seeded(index, 4) * 8;
-  const color = [PALETTE.gold, PALETTE.goldBright, PALETTE.emerald, '#FF9EC4', '#7CC8FF'][index % 5];
+  const color = [PALETTE.gold, PALETTE.goldBright, PALETTE.emerald, PALETTE.confettiPink, PALETTE.confettiBlue][index % 5];
   const isCircle = index % 3 === 0;
 
   const style = useAnimatedStyle(() => {
@@ -118,15 +110,21 @@ function MetricCard({
   icon,
   value,
   label,
+  reduceMotion,
 }: {
   index: number;
   icon: keyof typeof Ionicons.glyphMap;
   value: string;
   label: string;
+  reduceMotion: boolean;
 }) {
-  const enter = useSharedValue(0);
+  const enter = useSharedValue(reduceMotion ? 1 : 0);
 
   useEffect(() => {
+    if (reduceMotion) {
+      enter.value = 1;
+      return;
+    }
     // зачем: каскад метрик по общей лестнице LUM.ladder (закон №2 — неравномерная,
     // не метроном), отсчёт от старта — эффект запускает родитель через триггер ниже.
     enter.value = withDelay(
@@ -134,8 +132,7 @@ function MetricCard({
       withSpring(1, LUM.settle),
     );
     return () => cancelAnimation(enter);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
+  }, [enter, index, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
     opacity: enter.value,
@@ -179,7 +176,6 @@ export function DialogVictoryCelebrationHybrid({
   const { width } = useWindowDimensions();
   const reduceMotion = useReduceMotion();
   const lowEnd = isLowEndDevice(Platform);
-  const [xpDisplay, setXpDisplay] = useState(0);
 
   const backdrop = useSharedValue(0);
   const bloomOpacity = useSharedValue(0);
@@ -193,8 +189,11 @@ export function DialogVictoryCelebrationHybrid({
   const confettiProgress = useSharedValue(0);
   const titleAnim = useSharedValue(0);
   const ctaIn = useSharedValue(0);
-
-  const xpTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  // зачем: аудит 2026-08-17 — счётчик опыта крутился через setInterval(16мс)
+  // с setState, то есть ре-рендерил JS-поток 60 раз в секунду ровно тогда,
+  // когда на UI-потоке идут салют, кольцо и пружины. Ведём число по UI-потоку
+  // (тот же приём, что у счётчика места в лиге) — ре-рендеров ноль.
+  const xpTick = useSharedValue(0);
 
   const RING_SIZE = Math.min(width * 0.56, 220);
   const RING_R = (RING_SIZE - 18) / 2;
@@ -220,7 +219,7 @@ export function DialogVictoryCelebrationHybrid({
       titleAnim.value = 1;
       ctaIn.value = 1;
       void hapticSuccess();
-      if (xp > 0) setXpDisplay(xp);
+      xpTick.value = xp;
       return undefined;
     }
 
@@ -259,29 +258,23 @@ export function DialogVictoryCelebrationHybrid({
       }),
     );
 
-    titleAnim.value = withDelay(LUM.ladder[1] + 80, withSpring(1, { mass: 0.7, damping: 14, stiffness: 160 }));
+    titleAnim.value = withDelay(LUM.ladder[1] + 80, withSpring(1, SUITE.text));
 
     const ctaDelay = isFullClear ? LUM.ladder[2] + CHK.anticipMs + CHK.fallMs + 700 : ringDelay + ringDuration + 500;
-    ctaIn.value = withDelay(ctaDelay, withSpring(1, { damping: 14, stiffness: 130 }));
+    ctaIn.value = withDelay(ctaDelay, withSpring(1, SUITE.text));
 
     const hHero = setTimeout(() => {
       void hapticSuccess();
     }, LUM.ladder[1]);
 
     if (xp > 0) {
-      const xpStart = Date.now() + ctaDelay - 700;
-      const xpDuration = 1000;
-      xpTimerRef.current = setInterval(() => {
-        const now = Date.now();
-        if (now < xpStart) return;
-        const t = Math.min(1, (now - xpStart) / xpDuration);
-        const eased = 1 - Math.pow(1 - t, 3);
-        setXpDisplay(Math.round(eased * xp));
-        if (t >= 1 && xpTimerRef.current) {
-          clearInterval(xpTimerRef.current);
-          xpTimerRef.current = null;
-        }
-      }, 16);
+      // разгон числа на UI-потоке: та же кривая «out cubic» и та же секунда,
+      // но без единого ре-рендера JS — счётчик больше не конкурирует с салютом
+      xpTick.value = 0;
+      xpTick.value = withDelay(
+        Math.max(0, ctaDelay - 700),
+        withTiming(xp, { duration: 1000, easing: REasing.out(REasing.cubic) }),
+      );
     }
 
     return () => {
@@ -298,7 +291,7 @@ export function DialogVictoryCelebrationHybrid({
       cancelAnimation(confettiProgress);
       cancelAnimation(titleAnim);
       cancelAnimation(ctaIn);
-      if (xpTimerRef.current) clearInterval(xpTimerRef.current);
+      cancelAnimation(xpTick);
     };
     // зачем: пересобираем последовательность заново на каждый показ; shared values
     // не мутируются вне эффекта (нет setState в кадрах).
@@ -328,6 +321,14 @@ export function DialogVictoryCelebrationHybrid({
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_C * (1 - ringProgress.value),
   }));
+  // зачем: то же, что rankTextProps в LeagueResultHybrid — число печатается
+  // нативно из UI-потока; тип приводим к Partial<TextProps>, потому что у
+  // обёртки над Text нативных пропов text/defaultValue в типах нет.
+  const xpTextProps = useAnimatedProps<Partial<TextProps>>(() => ({
+    text: String(Math.round(xpTick.value)),
+    defaultValue: String(Math.round(xpTick.value)),
+  } as Partial<TextProps>));
+
   const titleStyle = useAnimatedStyle(() => ({
     opacity: titleAnim.value,
     transform: [{ translateY: interpolate(titleAnim.value, [0, 1], [14, 0]) }],
@@ -382,7 +383,7 @@ export function DialogVictoryCelebrationHybrid({
     <View style={StyleSheet.absoluteFill} pointerEvents="auto">
       <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
         <LinearGradient
-          colors={[PALETTE.backdrop, '#0c1219', PALETTE.backdrop]}
+          colors={[PALETTE.backdrop, PALETTE.backdropMid, PALETTE.backdrop]}
           style={StyleSheet.absoluteFill}
         />
       </Animated.View>
@@ -435,7 +436,9 @@ export function DialogVictoryCelebrationHybrid({
         {xp > 0 && (
           <View style={styles.xpRow}>
             <Text style={styles.xpPlus}>+</Text>
-            <Text style={styles.xpValue}>{xpDisplay}</Text>
+            <AnimatedText style={styles.xpValue} animatedProps={xpTextProps}>
+              {'0'}
+            </AnimatedText>
             <Text style={styles.xpUnit}>XP</Text>
           </View>
         )}
@@ -443,6 +446,7 @@ export function DialogVictoryCelebrationHybrid({
         <View style={styles.metricsRow}>
           <MetricCard
             index={0}
+            reduceMotion={reduceMotion}
             icon="chatbubble-ellipses"
             value={String(replies)}
             label={triLang(lang, {
@@ -452,6 +456,7 @@ export function DialogVictoryCelebrationHybrid({
           />
           <MetricCard
             index={1}
+            reduceMotion={reduceMotion}
             icon="flag"
             value={goalsTotal > 0 ? `${goalsMet}/${goalsTotal}` : '—'}
             label={triLang(lang, {
@@ -461,6 +466,7 @@ export function DialogVictoryCelebrationHybrid({
           />
           <MetricCard
             index={2}
+            reduceMotion={reduceMotion}
             icon={moodIcon}
             value={triLang(lang, {
               ru: 'Доволен', uk: 'Задоволений', es: 'Contento', 'pt-BR': 'Contente',
@@ -534,7 +540,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  ctaText: { color: '#04261A', fontSize: 17, fontWeight: '700', letterSpacing: 0.3 },
+  ctaText: { color: PALETTE.ctaText, fontSize: 17, fontWeight: '700', letterSpacing: 0.3 },
 });
 
 export default DialogVictoryCelebrationHybrid;

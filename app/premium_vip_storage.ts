@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   isCurrentAccountGeneration,
+  withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
@@ -112,6 +113,25 @@ export async function writeVipSnapshotForAccount(
   if (!stableId) throw new Error('vip_snapshot_owner_required');
   const values = normalizeVipValues(valuesValue);
   await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, values));
+}
+
+/**
+ * Cloud restore must never publish account A into the global compatibility
+ * mirrors after account B becomes active. The generation is checked under the
+ * same transition lock immediately before the native write begins.
+ */
+export async function writeVipSnapshotForGeneration(
+  generation: AccountGenerationToken,
+  valuesValue: Partial<VipStorageValues>,
+): Promise<boolean> {
+  const stableId = normalizeStableId(generation.stableId);
+  if (!stableId) return false;
+  const values = normalizeVipValues(valuesValue);
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(generation, stableId)) return false;
+    await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, values));
+    return isCurrentAccountGeneration(generation, stableId);
+  });
 }
 
 /** Trusted reads never adopt ownerless or foreign legacy mirrors. */

@@ -25,6 +25,11 @@ export type UserNotificationType =
   | 'arena_partner_nudge'
   // «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md §3.4): «Позвать».
   | 'friend_nudge'
+  | 'arena_friend_invite'
+  | 'arena_friend_accepted'
+  | 'arena_friend_declined'
+  | 'arena_friend_cancelled'
+  | 'arena_friend_expired'
   | 'report_reply';
 
 export interface UserNotificationInput {

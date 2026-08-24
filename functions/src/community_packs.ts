@@ -11,6 +11,7 @@ import { hasClaimedPermission } from './admin/permissions';
 import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
 import { resolvePremiumAccess } from './premium_status';
 import { appendExternalEconomyEvent } from './external_economy_events';
+import { requireGlobalBroadcastPublicAuthority } from './global_broadcast_public_schema';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -1908,13 +1909,14 @@ export const flashcardPackGiftGrantGlobalBroadcast = onCall({ enforceAppCheck: E
       tx.get(broadcastRef), tx.get(grantRef),
     ]);
     const broadcast = broadcastSnap.data() ?? {};
-    if (!broadcastSnap.exists || broadcast.active !== true || broadcast.rewardType !== 'pack_trial_48h') {
-      throw new HttpsError('failed-precondition', 'broadcast_pack_gift_not_eligible');
-    }
     if (grantSnap.exists) {
       const existing = grantSnap.data() ?? {};
       if (String(existing.ownerStableUid ?? '') !== stableUid) throw new HttpsError('permission-denied', 'voucher_owner_mismatch');
       return { voucherId, expiresAt: Number(existing.expiresAt ?? 0), replayed: true as const };
+    }
+    requireGlobalBroadcastPublicAuthority(broadcast);
+    if (!broadcastSnap.exists || broadcast.active !== true || broadcast.rewardType !== 'pack_trial_48h') {
+      throw new HttpsError('failed-precondition', 'broadcast_pack_gift_not_eligible');
     }
     const isPremium = await resolvePremiumAccess(db, stableUid, now, authUid, tx);
     const audience = String(broadcast.premiumAudience ?? 'all');

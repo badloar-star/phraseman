@@ -44,7 +44,7 @@ import {
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
 import { IDIOMS } from '../app/idioms_data';
-import { trainerThemeIconSource } from '../constants/trainerThemeIcons';
+import { getHomeSupportingArt } from '../app/home_supporting_art';
 import AddToFlashcard from './AddToFlashcard';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -57,6 +57,9 @@ import TonalSurface from './TonalSurface';
 
 // зачем: старт позиции листа под экраном для slide-up bottom sheet (владелец, 2026-08-04).
 const SHEET_SLIDE_DISTANCE = 420;
+const HOME_ADDITIONAL_ART_SIZE = 144;
+const HOME_ADDITIONAL_ART_SLOT_WIDTH = 112;
+const HOME_ADDITIONAL_ART_SLOT_HEIGHT = 72;
 
 interface Props {
   userLevel?: number;
@@ -82,6 +85,7 @@ function DailyPhraseCard({
   const homeAdditional = variant === 'homeAdditional';
   const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
+  const phraseOfDayArt = getHomeSupportingArt(themeMode).phraseOfDay;
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget, lang)
   ));
@@ -338,6 +342,11 @@ function DailyPhraseCard({
           </>
         )}
         <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
+          {homeAdditional && (
+            <View style={styles.homeAdditionalArtSlot}>
+              <Image source={phraseOfDayArt} style={styles.homeAdditionalArt} contentFit="contain" accessible={false} />
+            </View>
+          )}
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
               <Ionicons name="shield-checkmark-outline" size={22} color={chrome.title} />
@@ -400,7 +409,6 @@ function DailyPhraseCard({
     tr: phrase.sourceLocales?.tr?.meaning,
     pl: phrase.sourceLocales?.pl?.meaning,
   };
-  const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');
   const successOverlayOpacity = successAnim.interpolate({
     inputRange: [0, 0.08, 0.78, 1],
     outputRange: [0, 1, 1, 0],
@@ -604,13 +612,14 @@ function DailyPhraseCard({
           </>
         )}
         <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
+          {homeAdditional && (
+            <View style={styles.homeAdditionalArtSlot}>
+              <Image source={phraseOfDayArt} style={styles.homeAdditionalArt} contentFit="contain" accessible={false} />
+            </View>
+          )}
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
-              {dailyPhraseImage ? (
-                <Image source={dailyPhraseImage} style={styles.iconImage} contentFit="contain" />
-              ) : (
-                <Ionicons name="chatbubble-ellipses-outline" size={22} color={chrome.title} />
-              )}
+              <Ionicons name="chatbubble-ellipses-outline" size={22} color={chrome.title} />
             </View>
           )}
           <View style={[styles.plaqueCopy, homeAdditional && styles.homeAdditionalCopy]}>
@@ -713,11 +722,7 @@ function DailyPhraseCard({
 
             <View style={styles.sheetHeader}>
               <View style={[styles.sheetIcon, { backgroundColor: t.bgSurface2 }]}>
-                {dailyPhraseImage ? (
-                  <Image source={dailyPhraseImage} style={styles.sheetIconImage} contentFit="contain" />
-                ) : (
-                  <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.textMuted} />
-                )}
+                <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.textMuted} />
               </View>
               <View style={styles.sheetTitleWrap}>
                 <Text style={[styles.sheetKicker, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
@@ -948,7 +953,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 20,
     paddingHorizontal: 18,
-    paddingVertical: 14,
+    paddingVertical: 8,
+    overflow: 'hidden',
   },
   pressed: {
     opacity: 0.78,
@@ -961,10 +967,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  iconImage: {
-    width: 48,
-    height: 48,
-  },
   plaqueCopy: {
     flex: 1,
     minWidth: 0,
@@ -976,14 +978,27 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   homeAdditionalContent: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 10,
     zIndex: 2,
   },
-  homeAdditionalCopy: {
+  homeAdditionalArt: {
+    width: HOME_ADDITIONAL_ART_SIZE,
+    height: HOME_ADDITIONAL_ART_SIZE,
+  },
+  homeAdditionalArtSlot: {
+    width: HOME_ADDITIONAL_ART_SLOT_WIDTH,
+    height: HOME_ADDITIONAL_ART_SLOT_HEIGHT,
     alignItems: 'center',
-    flex: 0,
-    maxWidth: '100%',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  homeAdditionalCopy: {
+    alignItems: 'flex-start',
+    flex: 1,
+    minWidth: 0,
   },
   plaqueGlow: {
     position: 'absolute',
@@ -1014,25 +1029,25 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 26,
     flexShrink: 1,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   homeAdditionalKicker: {
     fontWeight: '900',
     letterSpacing: 0.7,
     marginBottom: 4,
-    textAlign: 'center',
+    textAlign: 'left',
     textTransform: 'uppercase',
   },
   homeAdditionalPhrase: {
     fontWeight: '900',
     flexShrink: 1,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   homeAdditionalSub: {
     fontWeight: '800',
     lineHeight: 19,
     marginTop: 5,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   homeAdditionalTeaser: {
     fontWeight: '900',
@@ -1112,10 +1127,6 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  sheetIconImage: {
-    width: 50,
-    height: 50,
   },
   sheetTitleWrap: {
     flex: 1,

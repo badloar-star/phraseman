@@ -218,6 +218,21 @@ describe('account-scoped VIP storage', () => {
     await expect(staleRead).resolves.toBeNull();
   });
 
+  it('generation-bound cloud writer checks ownership immediately before global mirrors', async () => {
+    const storage = await import('../app/premium_vip_storage');
+    const generation = await import('../app/account_generation');
+    generation.beginAccountGeneration('stable-A');
+    const tokenA = generation.captureAccountGeneration();
+    generation.beginAccountGeneration('stable-B');
+    multiSet.mockClear();
+    await expect(storage.writeVipSnapshotForGeneration(tokenA, {
+      vip_active: 'true', vip_plan: 'level_spin', vip_until: '9999999999999',
+    })).resolves.toBe(false);
+    expect(multiSet).not.toHaveBeenCalled();
+    expect(asyncStore.vip_plan).toBeUndefined();
+    expect(asyncStore[storage.vipSnapshotStorageKey('stable-B')]).toBeUndefined();
+  });
+
   it('does not let a late A VIP read overwrite B true in the shared guard cache', async () => {
     const storage = await import('../app/premium_vip_storage');
     const generation = await import('../app/account_generation');

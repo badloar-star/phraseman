@@ -25,6 +25,7 @@ import { loadMistakePracticeInsights } from './mistake_practice_insights';
 import { peekHomeScreenHydration } from './home_screen_hydration';
 import { getLessonData } from './lesson_data_all';
 import { lessonGrammarEntry } from './lesson_grammar_map';
+import { maxVoiceStudyTarget, type MaxVoiceStudyTarget } from './max_target_gate';
 import {
   buildStableTutorSceneCatalog,
   renderTutorSceneCatalog,
@@ -136,7 +137,7 @@ export interface MaxCallParams {
   devMode: boolean;
   /** Язык интерфейса (родной язык ученика) — учителю для объяснений новичкам. */
   interfaceLang?: string;
-  /** Изучаемый язык ('en' | 'fr') — учитель ведёт урок именно на нём и не переключается по просьбе. */
+  /** Изучаемый язык — учитель ведёт урок именно на нём и не переключается по просьбе. */
   studyTarget?: string;
 }
 
@@ -179,7 +180,7 @@ export function tutorSceneBlock(id: string): string | null {
  */
 export async function buildLearnerSnapshot(
   cefr: string | undefined,
-  studyTarget: 'en' | 'fr' = 'en',
+  studyTarget: MaxVoiceStudyTarget = 'en',
 ): Promise<string> {
   const lines: string[] = [];
   try {
@@ -191,12 +192,16 @@ export async function buildLearnerSnapshot(
       if (home.lastLessonId) lines.push(`last lesson: ${home.lastLessonId}`);
     }
   } catch {}
-  try {
-    const insights = await loadMistakePracticeInsights(studyTarget);
-    lines.push(`mistakes ready to practise: ${insights.dueWords + insights.duePhrases}`);
-    const words = insights.topMistakes.slice(0, 6).map((item) => item.phrase.trim()).filter(Boolean);
-    if (words.length > 0) lines.push(`frequent mistakes to revisit naturally: ${words.join(', ')}`);
-  } catch {}
+  // The mistake-practice store currently has isolated en/fr namespaces only.
+  // Never read the English namespace for a Spanish MAX lesson.
+  if (studyTarget !== 'es') {
+    try {
+      const insights = await loadMistakePracticeInsights(studyTarget);
+      lines.push(`mistakes ready to practise: ${insights.dueWords + insights.duePhrases}`);
+      const words = insights.topMistakes.slice(0, 6).map((item) => item.phrase.trim()).filter(Boolean);
+      if (words.length > 0) lines.push(`frequent mistakes to revisit naturally: ${words.join(', ')}`);
+    } catch {}
+  }
   if (cefr) lines.push(`level in the app: ${cefr}`);
   return lines.join('\n');
 }
@@ -215,11 +220,17 @@ export async function buildLearnerSnapshot(
  * за урок. Вынесенный отдельно, план одинаков у всех на этом уроке и попадает
  * в общий prompt cache.
  */
-export function buildLessonSyllabusBlock(): string {
+export function buildLessonSyllabusBlock(studyTarget: MaxVoiceStudyTarget = 'en'): string {
   const lines: string[] = [];
   try {
     const home = peekHomeScreenHydration();
     const current = Math.max(1, home?.lastLessonId ?? Math.max(1, (home?.lessonsCompleted ?? 0) + 1));
+    if (studyTarget !== 'en') {
+      const targetName = studyTarget === 'fr' ? 'French' : 'Spanish';
+      lines.push(`SYLLABUS — current ${targetName} app lesson ${current}.`);
+      lines.push(`Teach and practise 2-3 level-appropriate ${targetName} phrases for this lesson and the learner's CEFR. Never use English course phrases as target content.`);
+      return lines.join('\n');
+    }
     const phrasesOf = (lessonId: number, limit: number): string[] =>
       getLessonData(lessonId)
         .map((phrase) => String(phrase.english ?? '').trim())
@@ -297,7 +308,7 @@ export function prefetchMaxTutorPreview(
       format: 'tutor',
       cefr: params.cefr,
       interfaceLang: params.interfaceLang ?? 'ru',
-      studyTarget: params.studyTarget ?? 'en',
+      studyTarget: maxVoiceStudyTarget(params.studyTarget),
     });
     const envelope = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
     const preview = parseMaxTutorPreview(envelope.tutorPreview, params.interfaceLang ?? 'ru');
@@ -317,10 +328,11 @@ export function prefetchMaxTutorPreview(
  */
 export async function buildTutorMintExtras(params: MaxCallParams): Promise<Partial<MaxVoiceMintRequest>> {
   const cefr = params.cefr ?? guessLearnerCefr();
+  const callStudyTarget = maxVoiceStudyTarget(params.studyTarget);
   return {
     cefr,
     interfaceLang: params.interfaceLang ?? 'ru',
-    studyTarget: params.studyTarget ?? 'en',
+    studyTarget: callStudyTarget,
     // зачем (рычаг 2, кэш): каталог больше НЕ зависит ни от уровня, ни от дня —
     // одинаковая строка для всех попадает в общий prompt cache. Уровень каждой
     // сцены написан прямо в строке ("level A2"), а уровень ученика учитель
@@ -328,8 +340,8 @@ export async function buildTutorMintExtras(params: MaxCallParams): Promise<Parti
     sceneCatalog: renderTutorSceneCatalog(tutorStableSceneItems()),
     // Учебный план отдельным полем — он общий для всех на этом уроке и потому
     // кэшируется; личный снимок идёт следом и остаётся уникальным (рычаг 3).
-    syllabusBlock: buildLessonSyllabusBlock(),
-    learnerSnapshot: await buildLearnerSnapshot(cefr, params.studyTarget === 'fr' ? 'fr' : 'en'),
+    syllabusBlock: buildLessonSyllabusBlock(callStudyTarget),
+    learnerSnapshot: await buildLearnerSnapshot(cefr, callStudyTarget),
   };
 }
 

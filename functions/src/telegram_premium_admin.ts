@@ -9,6 +9,7 @@ import {
   ACCOUNT_DELETE_TOMBSTONES,
 } from './account_delete_job';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 type Row = Record<string, unknown>;
 type PremiumPlan = 'monthly' | 'yearly';
@@ -29,6 +30,32 @@ function text(value: unknown, max: number): string {
 function positiveMs(value: unknown): number {
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : 0;
+}
+
+export interface TelegramPromoInspectionInput {
+  readonly activationCode: string;
+}
+
+export function normalizeTelegramPromoInspectionInput(data: unknown): TelegramPromoInspectionInput {
+  if (!record(data)) throw new HttpsError('invalid-argument', 'promo inspection command required');
+  const activationCode = text(data.activationCode, 32).toUpperCase();
+  if (!/^[A-Z0-9_-]{3,32}$/.test(activationCode)) {
+    throw new HttpsError('invalid-argument', 'valid activation code required');
+  }
+  return Object.freeze({ activationCode });
+}
+
+export function telegramPromoInspectionProjection(
+  promo: Readonly<Row> | null,
+  canonicalUid: string,
+): Readonly<{ kind: 'code_pending' | 'redeemed' | 'redeemed_ambiguous'; redeemedBy: string; canonicalUid: string }> {
+  const redeemedBy = text(promo?.lastRedeemedBy, 160);
+  const hasMarker = Boolean(redeemedBy || positiveMs(promo?.lastRedeemedAtMs) || positiveMs(promo?.usedCount));
+  return Object.freeze({
+    kind: hasMarker ? (canonicalUid ? 'redeemed' : 'redeemed_ambiguous') : 'code_pending',
+    redeemedBy,
+    canonicalUid: text(canonicalUid, 160),
+  });
 }
 
 export interface TelegramManualActivationInput {
@@ -204,6 +231,28 @@ function requireMoneyAdmin(request: { auth?: { uid?: string; token?: Row } | nul
   return { actorUid, role };
 }
 
+/** Narrow server inspection for the Telegram UI; promo_codes stays browser-inaccessible. */
+export const adminInspectTelegramPromoCode = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
+  requireAdminAppCheck(request);
+  requireMoneyAdmin(request as { auth?: { uid?: string; token?: Row } | null });
+  const input = normalizeTelegramPromoInspectionInput(request.data);
+  const db = admin.firestore();
+  return db.runTransaction(async (tx) => {
+    const snapshot = await tx.get(db.collection('promo_codes').doc(input.activationCode));
+    const promo = snapshot.exists ? (snapshot.data() ?? {}) : null;
+    const redeemedBy = text(promo?.lastRedeemedBy, 160);
+    let canonicalUid = '';
+    if (redeemedBy) {
+      try {
+        canonicalUid = (await resolveCanonicalAdminAccessTarget(tx, db, redeemedBy)).uid;
+      } catch {
+        canonicalUid = '';
+      }
+    }
+    return { ok: true, ...telegramPromoInspectionProjection(promo, canonicalUid) };
+  });
+});
+
 export const adminActivateTelegramPremiumOrder = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
   requireAdminAppCheck(request);
   const input = normalizeTelegramManualActivationInput(request.data);
@@ -307,6 +356,13 @@ export const adminActivateTelegramPremiumOrder = onCall(ADMIN_SENSITIVE_WRITE_OP
     });
 
     tx.update(target.ref, { ...patch.updates, updatedAt: nowMs });
+    writeAccessProjectionFromPatch(
+      tx,
+      target.ref,
+      (target.snapshot.data()?.progress ?? {}) as Record<string, unknown>,
+      patch.updates,
+      nowMs,
+    );
     tx.update(orderRef, { ...orderAfter, activatedAt: String(nowMs) });
     tx.create(auditRef, audit);
     return {

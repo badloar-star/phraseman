@@ -32,6 +32,7 @@ import {
 } from './telegram_support';
 import { buildPromoVipPatch } from './promo_codes';
 import { activationRewardForPlan, generateActivationCode } from './web_checkout';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const REGION = 'us-central1';
@@ -771,6 +772,7 @@ async function recordTelegramRenewal(
       const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
       const vipPatch = buildPromoVipPatch(progress, nowMs, addDays, 'days', code);
       tx.set(userRef, { progress: vipPatch, updatedAt: nowMs }, { merge: true });
+      writeAccessProjectionFromPatch(tx, userRef, progress, vipPatch, nowMs);
       renewalOutcome = `extended_user_${addDays}d`;
     } else if (codeSnap?.exists) {
       tx.update(codeSnap.ref, { rewardDays: admin.firestore.FieldValue.increment(addDays) });

@@ -68,28 +68,17 @@ export default function TabSlider({
     }
   }, [W, tabWidth, translateX, currentIdx]);
 
-  // Programmatic tab changes travel through the same premium horizontal
-  // motion instead of teleporting to the destination.
+  // Programmatic tab changes come from an explicit tab-bar press. Commit the
+  // destination immediately; adding another transition here makes a warm tab
+  // feel delayed after React has already processed the press.
   useLayoutEffect(() => {
     if (currentIdx.value !== activeIndex) {
       currentIdx.value = activeIndex;
       cancelAnimation(translateX);
-      if (reducedMotion) {
-        isAnimating.value = false;
-        translateX.value = -activeIndex * W;
-        return;
-      }
-      isAnimating.value = true;
-      translateX.value = withTiming(
-        -activeIndex * W,
-        { duration: 260, easing: Easing.out(Easing.cubic) },
-        () => {
-          'worklet';
-          isAnimating.value = false;
-        },
-      );
+      isAnimating.value = false;
+      translateX.value = -activeIndex * W;
     }
-  }, [activeIndex, W, translateX, currentIdx, isAnimating, reducedMotion]);
+  }, [activeIndex, W, translateX, currentIdx, isAnimating]);
 
   const fireSwipeStart = useCallback((i: number) => { onSwipeStartRef.current?.(i); }, []);
   const fireSwipeComplete = useCallback((i: number) => { onSwipeCompleteRef.current?.(i); }, []);

@@ -6,12 +6,11 @@
  * (PRESS.releasePrimary при отпускании), остальное — тон, без удара
  * (закон «удар только у героя кульминации», тут кульминации нет).
  *
- * зачем: владелец (2026-08-15) — семья «Согласия и объяснения» переезжает на
- * гибрид; подключается ТОЛЬКО через AiConsentSheetModal.motionVariant='hybrid',
- * боевой путь (classic) не тронут.
+ * зачем: владелец (2026-08-20) одобрил production rollout семьи
+ * «Согласия и объяснения»; classic сохранён в родительском компоненте для QA/rollback.
  */
 import React, { memo, useCallback, useEffect } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -27,6 +26,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import AiBadge from './AiBadge';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 interface Props {
   visible: boolean;
@@ -41,19 +41,24 @@ interface Props {
 
 /** Один элемент каскада: opacity +小 translateY, вход по LUM.ladder[idx]. */
 function CascadeItem({ index, style, children }: { index: number; style?: object; children: React.ReactNode }) {
-  const opacity = useSharedValue(0);
-  const y = useSharedValue(14);
+  const reduceMotion = useReduceMotion();
+  const opacity = useSharedValue(reduceMotion ? 1 : 0);
+  const y = useSharedValue(reduceMotion ? 0 : 14);
   const delay = LUM.ladder[Math.min(index, LUM.ladder.length - 1)];
 
   useEffect(() => {
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      return;
+    }
     opacity.value = withDelay(delay, withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }));
     y.value = withDelay(delay, withSpring(0, LUM.settle));
     return () => {
       cancelAnimation(opacity);
       cancelAnimation(y);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [delay]);
+  }, [delay, opacity, reduceMotion, y]);
 
   const animStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -65,16 +70,18 @@ function CascadeItem({ index, style, children }: { index: number; style?: object
 
 function AcceptButton({ label, onPress, testID }: { label: string; onPress: () => void; testID: string }) {
   const { theme: t, f } = useTheme();
+  const reduceMotion = useReduceMotion();
   const scale = useSharedValue(1);
 
   const handlePressIn = useCallback(() => {
     hapticTap();
+    if (reduceMotion) return;
     scale.value = withTiming(PRESS.scale.primary, { duration: PRESS.downMs });
-  }, [scale]);
+  }, [reduceMotion, scale]);
 
   const handlePressOut = useCallback(() => {
-    scale.value = withSpring(1, PRESS.releasePrimary);
-  }, [scale]);
+    scale.value = reduceMotion ? 1 : withSpring(1, PRESS.releasePrimary);
+  }, [reduceMotion, scale]);
 
   const style = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
@@ -83,6 +90,7 @@ function AcceptButton({ label, onPress, testID }: { label: string; onPress: () =
       <Pressable
         testID={testID}
         accessibilityRole="button"
+        accessibilityLabel={label}
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
@@ -113,7 +121,7 @@ function AiConsentSheetModalHybrid({ visible, title, body, acceptLabel, declineL
       </CascadeItem>
 
       <CascadeItem index={1}>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{title}</Text>
+        <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{title}</Text>
       </CascadeItem>
 
       <CascadeItem index={2}>
@@ -125,6 +133,7 @@ function AiConsentSheetModalHybrid({ visible, title, body, acceptLabel, declineL
         <Pressable
           testID={`${testIdPrefix}-decline`}
           accessibilityRole="button"
+          accessibilityLabel={declineLabel}
           onPress={handleDecline}
           style={styles.secondaryBtn}
         >

@@ -36,8 +36,16 @@ jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
 
 /* eslint-disable import/first -- native/transport seams are mocked first */
 import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
-import { createLearningV2CourseSessionDeviceRunV1 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
-import { authoredLearningV2SessionCount } from "../modules/learning-v2/content/source/authored_sessions_v1";
+import {
+  createLearningV2CourseSessionDeviceRunV1,
+  getLearningV2CourseSessionDeviceRunSummaryV1,
+} from "../modules/learning-v2/runtime/course_session_device_run_v1";
+import {
+  AUTHORED_EPISODE_01_SESSIONS,
+  authoredLearningV2SessionCount,
+} from "../modules/learning-v2/content/source/authored_sessions_v1";
+import { buildSessionShardFromSource } from "../modules/learning-v2/content/source/session_shard_from_source_v1";
+import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 /* eslint-enable import/first */
 
 const LOCATOR = Object.freeze({
@@ -60,55 +68,55 @@ describe("bundled Learning V2 session material (no network)", () => {
     ).toBeNull();
   });
 
-  test("returns null for a session number beyond what's written", () => {
-    expect(
+  test("rejects a session coordinate beyond the 56-session topology", () => {
+    expect(() =>
       bundledLearningV2CourseSessionMaterialV3({
         ...LOCATOR,
         sessionOrdinal: authoredLearningV2SessionCount() + 1,
       }),
-    ).toBeNull();
+    ).toThrow("learning_v2_course_released_session_app_client_v3_invalid");
   });
 
-  test("every written session (1..N) produces material that starts a real device run", () => {
+  test("all 56 candidates produce the exact 3-intro + 12-practice real device run before review release", () => {
     const count = authoredLearningV2SessionCount();
-    expect(count).toBeGreaterThanOrEqual(10);
-    for (let sessionOrdinal = 1; sessionOrdinal <= count; sessionOrdinal += 1) {
-      const material = bundledLearningV2CourseSessionMaterialV3({
-        ...LOCATOR,
-        sessionOrdinal,
-      });
-      expect(material).not.toBeNull();
-      if (!material) continue;
-      expect(material.lessonOrdinal).toBe(1);
-      expect(material.sessionOrdinal).toBe(sessionOrdinal);
-      expect(material.courseSessionId).toBe(
-        `lesson-01:session:${String(sessionOrdinal).padStart(2, "0")}`,
+    expect(count).toBe(56);
+    for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+      const sessionOrdinal = source.requiredSessionOrdinal;
+      const courseSessionId = `lesson-01:session:${String(sessionOrdinal).padStart(2, "0")}`;
+      const children = buildSessionChildBodiesFromShard(
+        buildSessionShardFromSource(source),
+        "ru",
+        courseSessionId,
       );
-      // Не должно бросить — это и есть проверка, которую раньше никто не
-      // проходил до конца: courseSessionId, состав интро/капсулы/вспомогательного
-      // должны буквально совпадать между всеми четырьмя детьми.
-      expect(() =>
-        createLearningV2CourseSessionDeviceRunV1({
+      // Candidate playback intentionally uses the same canonical device run as
+      // the application, while released bundled material remains fail-closed
+      // until independent review receipts exist.
+      const run = createLearningV2CourseSessionDeviceRunV1({
           environment: LOCATOR.environment,
-          targetLanguage: LOCATOR.targetLanguage,
-          studyTarget: LOCATOR.studyTarget,
-          learnerSourceLocale: LOCATOR.learnerSourceLocale,
+          targetLanguage: "en",
+          studyTarget: "en",
+          learnerSourceLocale: "ru",
           seasonId: LOCATOR.seasonId,
-          releaseId: material.releaseId,
-          activeRootFingerprint: material.activeRootFingerprint,
-          activeHeadFingerprint: material.activeHeadFingerprint,
-          lessonId: material.lessonId,
-          lessonOrdinal: material.lessonOrdinal,
-          courseSessionId: material.courseSessionId,
-          sessionOrdinal: material.sessionOrdinal,
-          packageFingerprint: material.packageFingerprint,
-          childSetFingerprint: material.childSetFingerprint,
-          introChild: material.introChild,
-          learnerChild: material.learnerChild,
-          evaluatorCapsuleChild: material.evaluatorCapsuleChild,
-          auxiliaryChild: material.auxiliaryChild,
-        } as never),
-      ).not.toThrow();
+          releaseId: "candidate.lesson-01.v1",
+          activeRootFingerprint: "a".repeat(64),
+          activeHeadFingerprint: "b".repeat(64),
+          lessonId: "lesson-01",
+          lessonOrdinal: 1,
+          courseSessionId,
+          sessionOrdinal,
+          packageFingerprint: "c".repeat(64),
+          childSetFingerprint: "d".repeat(64),
+          introChild: children.intro,
+          learnerChild: children.learner,
+          evaluatorCapsuleChild: children.evaluatorCapsule,
+          auxiliaryChild: children.auxiliary,
+        } as never);
+      expect(getLearningV2CourseSessionDeviceRunSummaryV1(run)).toMatchObject({
+        sessionOrdinal,
+        introInteractionCount: 3,
+        practiceInteractionCount: 12,
+        interactionCount: 15,
+      });
     }
   });
 });

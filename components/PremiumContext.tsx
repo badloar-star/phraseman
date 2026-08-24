@@ -517,10 +517,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       const db = getFirestoreForPremiumListener() as {
         collection?: (name: string) => {
           doc: (id: string) => {
-            onSnapshot: (
-              onNext: (snap: { exists?: boolean; data?: () => Record<string, unknown> | undefined }) => void,
-              onError?: () => void,
-            ) => () => void;
+            collection: (childName: string) => {
+              doc: (childId: string) => {
+                onSnapshot: (
+                  onNext: (snap: { exists?: boolean; data?: () => Record<string, unknown> | undefined }) => void,
+                  onError?: () => void,
+                ) => () => void;
+              };
+            };
           };
         };
       } | null;
@@ -539,12 +543,32 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
           return;
         }
 
-        unsubscribe = db.collection('users').doc(uid).onSnapshot(
+        unsubscribe = db.collection('users').doc(uid).collection('access_projection').doc('current').onSnapshot(
           (snap) => {
             retryAttempt = 0; // живой снапшот — канал работает, отступ обнуляем
             if (!snap.exists || !isListenerCurrent()) return;
             const data = snap.data ? snap.data() : undefined;
-            const progress = (data?.progress ?? {}) as Record<string, unknown>;
+            const projectedVipActive = data?.vipActive === true;
+            const projectedPremiumPlan = typeof data?.premiumPlan === 'string' ? data.premiumPlan : '';
+            const projectedPremiumExpiry = Number(data?.premiumExpiresAtMs);
+            const projectedStorePlan = ['monthly', 'yearly', 'annual', 'lifetime', 'max_monthly'].includes(projectedPremiumPlan);
+            const progress = {
+              premium_active: data?.premiumActive === true ? 'true' : 'false',
+              premium_plan: projectedPremiumPlan,
+              premium_expiry: Number.isFinite(projectedPremiumExpiry) ? String(projectedPremiumExpiry) : '0',
+              ...(!projectedStorePlan ? {
+                admin_premium_override: data?.premiumActive === true ? 'true' : 'false',
+              } : {}),
+              ...(projectedVipActive ? {
+                vip_active: 'true',
+                vip_admin_override: 'true',
+                vip_plan: 'server_vip',
+                // The tiny projection deliberately carries no grant history. A finite
+                // compatibility window avoids incorrectly promoting generic VIP to Pro;
+                // locally cached VIP details remain the richer startup seed.
+                vip_until: String(Number.MAX_SAFE_INTEGER),
+              } : {}),
+            } satisfies Record<string, unknown>;
             const vipState = getVipProgressState(progress);
             if (!vipState) return;
 

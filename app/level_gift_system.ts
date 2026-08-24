@@ -69,6 +69,7 @@ import {
   AVATAR_AURA_OWNED_KEY,
   AVATAR_AURAS,
   USER_AVATAR_AURA_KEY,
+  type AvatarAuraDef,
 } from '../constants/avatar_auras';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import {
@@ -1529,12 +1530,23 @@ export const unlockRandomCustomAvatarGift = async (
   try { return await apply(); } catch { return null; }
 };
 
+export function isRandomAvatarAuraGiftCandidate(
+  aura: AvatarAuraDef,
+  owned: Readonly<Record<string, true | undefined>>,
+): boolean {
+  return !aura.premiumOnly
+    && !aura.proOnly
+    && !aura.rewardOnly
+    && !aura.retiredFromShop
+    && aura.unlockLevel === undefined
+    && !owned[aura.id];
+}
+
 export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock | null> => {
   try {
     const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
     const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
-    const candidates = AVATAR_AURAS.filter(aura =>
-      !aura.premiumOnly && !aura.retiredFromShop && aura.unlockLevel === undefined && !owned[aura.id]);
+    const candidates = AVATAR_AURAS.filter((aura) => isRandomAvatarAuraGiftCandidate(aura, owned));
     if (candidates.length === 0) return null;
     const aura = candidates[Math.floor(Math.random() * candidates.length)]!;
     const next = { ...owned, [aura.id]: true };
@@ -2040,8 +2052,7 @@ const applyAuraGiftForOccurrence = async (
   const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
     const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
     const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
-    const candidates = AVATAR_AURAS.filter(aura =>
-      !aura.premiumOnly && !aura.retiredFromShop && aura.unlockLevel === undefined && !owned[aura.id]);
+    const candidates = AVATAR_AURAS.filter((aura) => isRandomAvatarAuraGiftCandidate(aura, owned));
     const aura = candidates[Math.floor(Math.random() * candidates.length)];
     return {
       giftId: id,

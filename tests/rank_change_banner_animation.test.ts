@@ -14,7 +14,7 @@ describe('RankChangeBanner animation lifecycle', () => {
     expect(source).toContain('const onCloseRef = useRef(onClose);');
     expect(source).toContain('onCloseRef.current = onClose;');
     expect(animationBlock).toContain('onCloseRef.current()');
-    expect(animationBlock).toContain('}, [anim, duration, animationKey]);');
+    expect(animationBlock).toContain('}, [anim, duration, animationKey, isHybrid]);');
     expect(animationBlock).not.toContain('}, [anim, duration, onClose]);');
   });
 });

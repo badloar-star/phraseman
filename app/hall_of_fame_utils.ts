@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
 
 const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 import { checkAchievements } from './achievements';
@@ -377,7 +378,7 @@ export const updateStreakOnActivity = async (
     }
 
     // Сохраняем цепочку
-    await AsyncStorage.setItem('streak_count', String(streak));
+    await persistLegacyPersonalProgressScalar(AsyncStorage, 'streak_count', streak);
     await AsyncStorage.setItem(lastActiveKey, today);
 
     // зачем («Вместе», friends_together): рядом с last_active_date копим ПОЛНУЮ
@@ -400,6 +401,7 @@ export const updateStreakOnActivity = async (
 
     // Достижения по цепочке + пари (только при реальном изменении — не в firstLoads)
     if (!isSameLocalOrUtcDay(lastActive)) {
+      checkAchievements({ type: 'active_day', activeDate: today, previousActiveDate: lastActive }, accountToken).catch(() => {});
       checkAchievements({ type: 'streak', streak }, accountToken).catch(() => {});
       checkWagerProgress(streak).catch(() => {});
     }

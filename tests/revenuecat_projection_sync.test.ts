@@ -97,4 +97,67 @@ describe('RevenueCat client projection sync', () => {
     expect(source).toContain('MAX_TRACKED_ACCOUNTS');
     expect(source).not.toContain('stableId: stableUid');
   });
+
+  it('polls a bounded number of times until the exact MAX projection is confirmed', async () => {
+    const { confirmRevenueCatMaxProjectionForAccount } = require('../app/revenuecat_projection_sync');
+    mockCallable
+      .mockResolvedValueOnce({ data: { ok: true, active: false, reconciled: false } })
+      .mockResolvedValueOnce({ data: { ok: true, active: true, reconciled: true, source: 'revenuecat_v2', plan: 'monthly' } })
+      .mockResolvedValueOnce({ data: { ok: true, active: true, reconciled: true, source: 'revenuecat_v2', plan: 'max_monthly', maxActive: true } });
+
+    await expect(confirmRevenueCatMaxProjectionForAccount('stable-a', {
+      maxAttempts: 3,
+      retryDelayMs: 0,
+    })).resolves.toBe(true);
+    expect(mockCallable).toHaveBeenCalledTimes(3);
+  });
+
+  it('uses five 1.25 second default polls, matching the server MAX not-found retry window', () => {
+    const subject = require('../app/revenuecat_projection_sync');
+    expect(subject.MAX_ACTIVATION_DEFAULT_ATTEMPTS).toBe(5);
+    expect(subject.MAX_ACTIVATION_DEFAULT_RETRY_DELAY_MS).toBe(1_250);
+  });
+
+  it('stops polling when the purchase account generation becomes stale', async () => {
+    const { confirmRevenueCatMaxProjectionForAccount } = require('../app/revenuecat_projection_sync');
+    let current = true;
+    mockCallable.mockImplementation(async () => {
+      current = false;
+      return { data: { ok: true, active: false, reconciled: false } };
+    });
+
+    await expect(confirmRevenueCatMaxProjectionForAccount('stable-a', {
+      maxAttempts: 5,
+      retryDelayMs: 0,
+      isCurrent: () => current,
+    })).resolves.toBe(false);
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+  });
+
+  it('bypasses a cached Plus success only through the exact bounded MAX activation intent', async () => {
+    const {
+      confirmRevenueCatMaxProjectionForAccount,
+      syncRevenueCatProjectionForAccount,
+    } = require('../app/revenuecat_projection_sync');
+    mockCallable
+      .mockResolvedValueOnce({
+        data: { ok: true, active: true, reconciled: true, source: 'revenuecat_v2', plan: 'monthly' },
+      })
+      .mockResolvedValueOnce({
+        data: { ok: true, active: true, reconciled: true, source: 'revenuecat_v2', plan: 'max_monthly', maxActive: true },
+      });
+
+    await expect(syncRevenueCatProjectionForAccount('stable-a')).resolves.toBe(true);
+    await expect(confirmRevenueCatMaxProjectionForAccount('stable-a', {
+      maxAttempts: 1,
+      retryDelayMs: 0,
+    })).resolves.toBe(true);
+    await expect(syncRevenueCatProjectionForAccount('stable-a')).resolves.toBe(true);
+
+    expect(mockCallable).toHaveBeenCalledTimes(2);
+    expect(mockCallable.mock.calls).toEqual([
+      [{}],
+      [{ intent: 'max_activation', expectedProductId: 'phraseman_max_monthly_v1' }],
+    ]);
+  });
 });

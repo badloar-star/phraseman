@@ -60,8 +60,10 @@ describe('MAX Voice review server wiring', () => {
     expect(halo).toContain('const FEATHER_LAYERS = [');
     expect(halo).toContain('useSharedValue(1)');
     expect(halo).toContain('useReduceMotion()');
-    expect(prestart).toContain("studyTarget: format === 'tutor' ? 'en' : studyTarget");
-    expect(session).toContain("studyTarget: isTutor ? 'en' : studyTarget");
+    expect(prestart).toContain('studyTarget,');
+    expect(session).toContain('studyTarget,');
+    expect(prestart).not.toContain("studyTarget: format === 'tutor' ? 'en' : studyTarget");
+    expect(session).not.toContain("studyTarget: isTutor ? 'en' : studyTarget");
   });
 
   it('presents a calm worked, fix, tomorrow narrative before collapsed details', () => {
@@ -104,11 +106,9 @@ describe('MAX Voice review server wiring', () => {
     expect(screen).toContain('maxReviewSessionId: activeSessionId');
   });
 
-  it('persists every assigned tutor-homework item into account-scoped practice idempotently', () => {
-    expect(screen).toContain('homeworkSavedForRef');
-    expect(screen).toContain('localResult.tutor?.homeworkItems ?? []');
-    expect(screen).toContain('captureCurrentAccountObjectiveAttempt({');
-    expect(screen).toContain('attemptId: `max-tutor-homework:${sessionId}:${index}`');
-    expect(screen).toContain("sourceKind: 'voice_review'");
+  it('does not record assigned tutor homework as a learner mistake', () => {
+    expect(screen).not.toContain('homeworkSavedForRef');
+    expect(screen).not.toContain('max-tutor-homework:');
+    expect(screen).not.toContain(':homework:');
   });
 });

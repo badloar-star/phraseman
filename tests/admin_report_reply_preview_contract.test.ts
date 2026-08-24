@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
+// Единственная публикуемая поверхность админки. Замороженные копии не могут
+// служить snapshot-источником для контрактов живого UI.
+const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin/v2/legacy.html'), 'utf8');
 
 function readPreparedReplies() {
   const marker = 'PREPARED_REPORT_REPLIES = {';
@@ -38,7 +40,7 @@ test('the published admin preview is read from the single live surface', () => {
   const firebaseJson = JSON.parse(
     fs.readFileSync(path.join(__dirname, '..', 'firebase.json'), 'utf8'),
   ) as { hosting: Array<{ target?: string; public?: string }> };
-  expect(firebaseJson.hosting.find((entry) => entry.target === 'admin')?.public).toBe('admin');
+  expect(firebaseJson.hosting.find((entry) => entry.target === 'admin')?.public).toBe('admin/v2');
 });
 
 test('prepared replies expose resolution and reward metadata', () => {

@@ -918,7 +918,10 @@ describe('mergeStableAccounts', () => {
     expect(store.revenuecat_premium_lineages[canonicalLineageId]).toMatchObject({ ownerUid: 'winner', lineageHash });
     expect(store.account_identity_owner_map.loser).toMatchObject({ canonicalStableId: 'winner' });
     expect(Object.values(store.account_merge_outbox)).toEqual(expect.arrayContaining([
-      expect.objectContaining({ winnerStableId: 'winner', loserStableId: 'loser', status: 'pending' }),
+      expect.objectContaining({
+        winnerStableId: 'winner', loserStableId: 'loser',
+        publicationStatus: 'published', status: 'completed',
+      }),
     ]));
     expect(store.users.loser).toMatchObject({ identityHidden: true, canonicalStableId: 'winner' });
     expect((store.users.loser!.progress as DocData).premium_plan).toBeUndefined();
@@ -930,9 +933,6 @@ describe('mergeStableAccounts', () => {
     });
   });
 
-  it('merges two stable ids into the higher-XP one and hides the loser', async () => {
-    const { db, store } = makeDbStub({
-      users: {
   it.each([
     ['left', 'right', 10, 1],
     ['right', 'left', 1, 10],
@@ -1080,6 +1080,9 @@ describe('mergeStableAccounts', () => {
     },
   );
 
+  it('merges two stable ids into the higher-XP one and hides the loser', async () => {
+    const { db, store } = makeDbStub({
+      users: {
         'stable-tablet': {
           firebaseAuthUid: 'google-1',
           progress: { user_total_xp: '6812', streak_count: '2' },

@@ -1,7 +1,3 @@
-import type { ImageSourcePropType } from 'react-native';
-import type { ThemeMode } from './theme';
-import { PEARL_ICONS } from '../app/coin_icons';
-
 const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'chain_shield_1',
   'chain_shield_3',
@@ -42,92 +38,33 @@ const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'xp_bank_150',
   'xp_bank_300',
   'xp_bank_600',
+  'xp_500',
+  'xp_1000',
+  'xp_3000',
+  'xp_5000',
+  'xp_10000',
+  'xp_25000',
+  'xp_50000',
+  'pearls_5',
+  'pearls_10',
+  'pearls_20',
+  'pearls_50',
+  'pearls_100',
+  'pearls_250',
+  'pearls_500',
+  'stars_10',
+  'stars_20',
+  'stars_50',
+  'stars_100',
+  'stars_250',
+  'stars_500',
+  'stars_1000',
+  'plus_days_3',
+  'plus_days_7',
 ] as const;
 
+// Reward ids remain part of the inventory/data contract. Spin V2 rewards use
+// universal art; historical reward ids retain a code-native fallback.
 export const LEVEL_GIFT_REWARD_ICON_IDS: readonly string[] = LEVEL_GIFT_REWARD_ICON_KEYS;
 
-export type LevelGiftRewardIconId = typeof LEVEL_GIFT_REWARD_ICON_KEYS[number];
-
-const FALLBACK_LEVEL_GIFT_REWARD_ICON_ID: LevelGiftRewardIconId = 'choice_3_level';
-const DEFAULT_SHARD_ICON_THEME: ThemeMode = 'minimalDark';
-
-// зачем (2026-08-02, владелец): жемчужные подарки платили 0 и переделаны в мгновенный XP —
-// жемчужный орб больше не подменяет арт наград. Карта пуста, но остаётся точкой подмены,
-// если валютные подарки когда-нибудь вернут.
-const SHARD_GIFT_AMOUNTS: Partial<Record<LevelGiftRewardIconId, number>> = {};
-
-// зачем (2026-07-26, владелец): валюта — жемчуг, а награды-орбы рисовали синие
-// кристаллы-осколки старой валюты. Переиспользуем единый набор жемчужных иконок
-// (app/coin_icons.ts) вместо собственной копии путей — один источник на всё
-// приложение, новые темы больше не требуют правки в двух местах.
-const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = PEARL_ICONS;
-
-
-const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {
-  chain_shield_1: require('../assets/images/level_gift_reward_icons/chain_shield_1.webp'),
-  chain_shield_3: require('../assets/images/level_gift_reward_icons/chain_shield_3.webp'),
-  choice_3_level: require('../assets/images/level_gift_reward_icons/choice_3_level.webp'),
-  club_boost_free: require('../assets/images/level_gift_reward_icons/club_boost_free.webp'),
-  cosmetic_avatar_aura: require('../assets/images/level_gift_reward_icons/cosmetic_avatar_aura.webp'),
-  cosmetic_avatar_common: require('../assets/images/level_gift_reward_icons/cosmetic_avatar_common.webp'),
-  energy_full: require('../assets/images/level_gift_reward_icons/energy_full.webp'),
-  energy_plus1: require('../assets/images/level_gift_reward_icons/energy_plus1.webp'),
-  energy_plus2: require('../assets/images/level_gift_reward_icons/energy_plus2.webp'),
-  energy_plus3: require('../assets/images/level_gift_reward_icons/energy_plus3.webp'),
-  focus_10m_25: require('../assets/images/level_gift_reward_icons/focus_10m_25.webp'),
-  focus_15m_50: require('../assets/images/level_gift_reward_icons/focus_15m_50.webp'),
-  hint_1: require('../assets/images/level_gift_reward_icons/hint_1.webp'),
-  hint_3: require('../assets/images/level_gift_reward_icons/hint_3.webp'),
-  pack_voucher_48h: require('../assets/images/level_gift_reward_icons/pack_voucher_48h.webp'),
-  prem_level_unlock_dark_logic: require('../assets/images/level_gift_reward_icons/prem_level_unlock_dark_logic.webp'),
-  prem_level_unlock_negotiator: require('../assets/images/level_gift_reward_icons/prem_level_unlock_negotiator.webp'),
-  prem_level_unlock_peaky_blinders: require('../assets/images/level_gift_reward_icons/prem_level_unlock_peaky_blinders.webp'),
-  prem_level_unlock_royal_tea: require('../assets/images/level_gift_reward_icons/prem_level_unlock_royal_tea.webp'),
-  prem_level_unlock_wild_west: require('../assets/images/level_gift_reward_icons/prem_level_unlock_wild_west.webp'),
-  prem_pack_48h: require('../assets/images/level_gift_reward_icons/prem_pack_48h.webp'),
-  // зачем (2026-08-02): бывшие жемчужные подарки стали XP-подарками — арт тоже XP,
-  // старые *.webp с жемчугом остаются на диске ради контракта reward-icons (файл на каждый id).
-  prem_shards_10: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
-  prem_shards_15: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
-  prem_shards_20: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
-  premium_cosmetic_aura: require('../assets/images/level_gift_reward_icons/premium_cosmetic_aura.webp'),
-  premium_cosmetic_avatar: require('../assets/images/level_gift_reward_icons/premium_cosmetic_avatar.webp'),
-  premium_xp_bank_1000: require('../assets/images/level_gift_reward_icons/premium_xp_bank_1000.webp'),
-  shards_10: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
-  shards_3: require('../assets/images/level_gift_reward_icons/xp_100.webp'),
-  shards_6: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
-  wager_discount_25: require('../assets/images/level_gift_reward_icons/wager_discount_25.webp'),
-  xp_100: require('../assets/images/level_gift_reward_icons/xp_100.webp'),
-  xp_250: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
-  xp_2x_24h: require('../assets/images/level_gift_reward_icons/xp_2x_24h.webp'),
-  xp_2x_48h: require('../assets/images/level_gift_reward_icons/xp_2x_48h.webp'),
-  xp_50: require('../assets/images/level_gift_reward_icons/xp_50.webp'),
-  xp_bank_150: require('../assets/images/level_gift_reward_icons/xp_bank_150.webp'),
-  xp_bank_300: require('../assets/images/level_gift_reward_icons/xp_bank_300.webp'),
-  xp_bank_600: require('../assets/images/level_gift_reward_icons/xp_bank_600.webp'),
-};
-
-export const LEVEL_GIFT_REWARD_ICON_SOURCES: readonly ImageSourcePropType[] = [
-  ...Object.values(LEVEL_GIFT_REWARD_ICONS),
-  ...Object.values(THEMED_SHARD_GIFT_ICONS),
-];
-
-export function getLevelGiftRewardIcon(
-  giftId: string | null | undefined,
-  themeMode: ThemeMode = DEFAULT_SHARD_ICON_THEME,
-): ImageSourcePropType {
-  const shardAmount = SHARD_GIFT_AMOUNTS[giftId as LevelGiftRewardIconId] ?? 0;
-  if (shardAmount > 0) {
-    return THEMED_SHARD_GIFT_ICONS[themeMode] ?? THEMED_SHARD_GIFT_ICONS[DEFAULT_SHARD_ICON_THEME];
-  }
-
-  return (
-    LEVEL_GIFT_REWARD_ICONS[giftId as LevelGiftRewardIconId] ??
-    LEVEL_GIFT_REWARD_ICONS[FALLBACK_LEVEL_GIFT_REWARD_ICON_ID]
-  );
-}
-
-/** Тематическая иконка осколка (награда-орб для сундука недели и др. shard-наград). */
-export function getThemedShardIcon(themeMode: ThemeMode = DEFAULT_SHARD_ICON_THEME): ImageSourcePropType {
-  return THEMED_SHARD_GIFT_ICONS[themeMode] ?? THEMED_SHARD_GIFT_ICONS[DEFAULT_SHARD_ICON_THEME];
-}
+export type LevelGiftRewardIconId = (typeof LEVEL_GIFT_REWARD_ICON_KEYS)[number];

@@ -125,6 +125,10 @@ describe('critical admin write boundaries', () => {
       'adminSetReferralRouletteEnabled',
       'adminSetReferralRouletteEmergencyStop',
     ]],
+    ['admin_referral_purchase_repair.ts', [
+      'adminRepairPendingReferralPurchase',
+      'adminResumePendingReferralPurchaseRepair',
+    ]],
   ] as const)('%s uses the hard option and handler guard for every sensitive writer', (file, names) => {
     const source = read(file);
     for (const name of names) {

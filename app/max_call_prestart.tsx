@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { AccessibilityInfo, Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { AccessibilityInfo, Alert, Animated, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,16 +8,27 @@ import ScreenGradient from '../components/ScreenGradient';
 import StatsCardArtSurface from '../components/StatsCardArtSurface';
 import MaxHomeOrb from '../components/home/MaxHomeOrb';
 import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter';
+import MaxLessonMissionPlaque from '../components/max/MaxLessonMissionPlaque';
+import EnergyCostBadge from '../components/EnergyCostBadge';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { glassFill } from '../components/GlassSurface';
+import { useEnergy } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { triLang } from '../constants/i18n';
+import { MAX_PRESTART_MISSION_HYBRID } from '../constants/motionHybrid';
 import { safeRouterBack } from './navigation_back';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
 import { loadMaxVoiceNative } from './max_webrtc_module';
-import { isMaxVoiceFailureRetryable, maxVoiceFailureMessage, maxVoiceFailureReason } from './max_voice_error';
+import {
+  isMaxVoiceFailureRetryable,
+  maxVoiceFailureMessage,
+  maxVoiceFailureReason,
+  shouldOfferMaxUpgradeForVoiceReason,
+} from './max_voice_error';
 import {
   initialMintRequest,
   performMaxVoiceMint,
@@ -38,6 +49,8 @@ import {
   type MaxTutorPreview,
 } from './max_tutor_preview';
 import MaxVoiceConsentGate from './max_voice_consent_gate';
+import { maxVoiceStudyTarget } from './max_target_gate';
+import { onAppEvent } from './events';
 
 /**
  * Пре-экран «Позвонить» (спека, раздел 1: max_call_prestart).
@@ -64,10 +77,10 @@ const DEFAULT_CAP_SEC: Record<'scenario' | 'companion' | 'trial' | 'tutor', numb
 };
 /**
  * Дневной пул по умолчанию — до ответа сервера. Совпадает с серверным дефолтом
- * dailyVoiceSecMax (лимиты сняты владельцем 2026-08-16: 4ч/день), чтобы цифра
- * на карточке не «прыгала» 15 → 240, когда доезжает минт.
+ * dailyVoiceSecMax (релизный лимит владельца 2026-08-23: 20 мин/день), чтобы
+ * на первом кадре карточка не обещала больше минут, чем разрешит минт.
  */
-const DEFAULT_DAY_SEC = 14_400;
+const DEFAULT_DAY_SEC = 1_200;
 
 function finiteOrNull(value: unknown): number | null {
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -116,8 +129,15 @@ function MaxCallPrestartContent() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const reduceMotion = useReduceMotion();
   const router = useRouter();
-  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
+  const {
+    confirmSpendOne: confirmMaxLessonEnergy,
+    energyReady: maxLessonEnergyReady,
+  } = useEnergy();
+  const [maxLessonNoEnergy, setMaxLessonNoEnergy] = useState(false);
+  const startInFlightRef = useRef(false);
+  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string; studyTarget?: string }>();
 
   const format: 'scenario' | 'companion' | 'trial' | 'tutor' =
     params.format === 'companion' || params.format === 'trial' || params.format === 'tutor'
@@ -132,9 +152,10 @@ function MaxCallPrestartContent() {
   );
 
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
+  const callStudyTarget = maxVoiceStudyTarget(params.studyTarget ?? studyTarget);
   const callParams: MaxCallParams = useMemo(
-    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: format === 'tutor' ? 'en' : studyTarget }),
-    [format, scenarioId, cefr, devMode, lang, studyTarget],
+    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget }),
+    [format, scenarioId, cefr, devMode, lang, callStudyTarget],
   );
   const key = premintKey(callParams);
   const previewKey = maxTutorPreviewKey(callParams);
@@ -146,6 +167,7 @@ function MaxCallPrestartContent() {
   const [preflightReason, setPreflightReason] = useState<string | null>(null);
   const [prepState, setPrepState] = useState<PreparationState>('preparing');
   const [prepAttempt, setPrepAttempt] = useState(0);
+  const startCtaReveal = useRef(new Animated.Value(0)).current;
   const a11y = useMemo(() => ({
     backHint: triLang(lang, { ru: 'Закрывает подготовку MAX и возвращает на предыдущий экран', uk: 'Закриває підготовку MAX і повертає на попередній екран', es: 'Cierra la preparación de MAX y vuelve a la pantalla anterior', 'pt-BR': 'Fecha a preparação do MAX e volta à tela anterior', vi: 'Đóng phần chuẩn bị MAX và quay lại màn hình trước', id: 'Menutup persiapan MAX dan kembali ke layar sebelumnya', tr: 'MAX hazırlığını kapatıp önceki ekrana döner', pl: 'Zamyka przygotowanie MAX i wraca do poprzedniego ekranu' }),
     retryLabel: triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' }),
@@ -220,15 +242,26 @@ function MaxCallPrestartContent() {
   const remainingMin = Math.max(0, Math.floor(dayRemainingSec / 60));
   const dayMaxMin = Math.max(remainingMin, Math.round(dayMaxSec / 60));
   const noMinutesLeft = dayRemainingSec < 60;
-  /*
-   * зачем (владелец 2026-08-23): «убери "подготавливаем связь" и недоступную
-   * кнопку — раздел должен быть всегда прогрет». Кнопка блокируется ТОЛЬКО
-   * когда звонок физически невозможен (кончились минуты) или подготовка
-   * провалилась. Ожидание сети больше не запирает человека: экран звонка и так
-   * умеет дозреть параллельно с offer (см. startCall ниже), а заготовка теперь
-   * стартует ещё на главной, в момент тапа по плитке.
-   */
-  const startReady = prepState !== 'failed' && !noMinutesLeft;
+  // Premint дозревает на экране цели. CTA открывается только после готовности,
+  // чтобы первый тап вёл сразу в разговор, а не переносил ожидание в звонок.
+  const startReady = prepState === 'ready' && !noMinutesLeft && (!isTutor || maxLessonEnergyReady);
+
+  useEffect(() => {
+    startCtaReveal.stopAnimation();
+    if (!startReady || reduceMotion) {
+      startCtaReveal.setValue(startReady ? 1 : 0);
+      return undefined;
+    }
+
+    startCtaReveal.setValue(0);
+    const reveal = Animated.timing(startCtaReveal, {
+      toValue: 1,
+      duration: MAX_PRESTART_MISSION_HYBRID.ctaResolveMs,
+      useNativeDriver: true,
+    });
+    reveal.start();
+    return () => reveal.stop();
+  }, [reduceMotion, startCtaReveal, startReady]);
 
   const title =
     isTutor
@@ -270,8 +303,8 @@ function MaxCallPrestartContent() {
     }),
   };
   const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
-  const startCall = () => {
-    if (!startReady) return;
+  const startCall = async () => {
+    if (!startReady || startInFlightRef.current) return;
     hapticTap();
     const native = loadMaxVoiceNative();
     if (!native) {
@@ -300,10 +333,22 @@ function MaxCallPrestartContent() {
       );
       return;
     }
+    startInFlightRef.current = true;
+    if (isTutor) {
+      const energyResult = await confirmMaxLessonEnergy();
+      if (energyResult === 'cancelled') {
+        startInFlightRef.current = false;
+        return;
+      }
+      if (energyResult === 'insufficient') {
+        startInFlightRef.current = false;
+        setMaxLessonNoEnergy(true);
+        return;
+      }
+    }
     // Заготовку заберёт экран звонка — cleanup этого экрана её не отпустит.
     markPremintHandoff(key);
-    // Первый тап сразу открывает живой разговорный экран: никакого ожидания
-    // сети — минт либо уже готов, либо дозреет параллельно с offer.
+    // startReady гарантирует готовый premint: экран звонка не ждёт его сеть.
     router.replace({
       pathname: '/max_call_session',
       params: {
@@ -311,6 +356,7 @@ function MaxCallPrestartContent() {
         ...(format === 'companion' ? {} : { scenarioId }),
         ...(cefr !== undefined ? { cefr } : {}),
         ...(devMode ? { devMode: '1' } : {}),
+        studyTarget: callStudyTarget,
       },
     } as any);
   };
@@ -320,16 +366,28 @@ function MaxCallPrestartContent() {
     setPrepAttempt((attempt) => attempt + 1);
   };
 
+  useEffect(() => {
+    const sub = onAppEvent('premium_activated', () => {
+      setPrepAttempt((attempt) => attempt + 1);
+    });
+    return () => sub.remove();
+  }, []);
+
+  const openMaxPaywall = () => {
+    hapticTap();
+    router.push({ pathname: '/max_paywall', params: { source: 'voice_max_required' } } as any);
+  };
+
   if (isTutor) {
     const heroAccessibilityLabel = triLang(lang, {
-      ru: `Урок ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Уровень ${activeTutorPreview.goalLevel}. Осталось ${remainingMin} минут.`,
-      uk: `Урок ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Рівень ${activeTutorPreview.goalLevel}. Залишилося ${remainingMin} хвилин.`,
-      es: `Clase ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Nivel ${activeTutorPreview.goalLevel}. Quedan ${remainingMin} minutos.`,
-      'pt-BR': `Aula ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Nível ${activeTutorPreview.goalLevel}. Restam ${remainingMin} minutos.`,
-      vi: `Bài ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Trình độ ${activeTutorPreview.goalLevel}. Còn ${remainingMin} phút.`,
-      id: `Pelajaran ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Level ${activeTutorPreview.goalLevel}. Tersisa ${remainingMin} menit.`,
-      tr: `Ders ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Seviye ${activeTutorPreview.goalLevel}. ${remainingMin} dakika kaldı.`,
-      pl: `Lekcja ${activeTutorPreview.lessonOrdinal}. ${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Poziom ${activeTutorPreview.goalLevel}. Zostało ${remainingMin} minut.`,
+      ru: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Уровень ${activeTutorPreview.goalLevel}. Осталось ${remainingMin} минут.`,
+      uk: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Рівень ${activeTutorPreview.goalLevel}. Залишилося ${remainingMin} хвилин.`,
+      es: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Nivel ${activeTutorPreview.goalLevel}. Quedan ${remainingMin} minutos.`,
+      'pt-BR': `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Nível ${activeTutorPreview.goalLevel}. Restam ${remainingMin} minutos.`,
+      vi: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Trình độ ${activeTutorPreview.goalLevel}. Còn ${remainingMin} phút.`,
+      id: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Level ${activeTutorPreview.goalLevel}. Tersisa ${remainingMin} menit.`,
+      tr: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Seviye ${activeTutorPreview.goalLevel}. ${remainingMin} dakika kaldı.`,
+      pl: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Poziom ${activeTutorPreview.goalLevel}. Zostało ${remainingMin} minut.`,
     });
 
     return (
@@ -390,16 +448,8 @@ function MaxCallPrestartContent() {
                     <MaxHomeOrb layers={maxOrbLayers} size={118} ownerVisible />
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }} maxFontSizeMultiplier={2}>
-                      {triLang(lang, {
-                        ru: `Урок ${activeTutorPreview.lessonOrdinal}`, uk: `Урок ${activeTutorPreview.lessonOrdinal}`,
-                        es: `Clase ${activeTutorPreview.lessonOrdinal}`, 'pt-BR': `Aula ${activeTutorPreview.lessonOrdinal}`,
-                        vi: `Bài ${activeTutorPreview.lessonOrdinal}`, id: `Pelajaran ${activeTutorPreview.lessonOrdinal}`,
-                        tr: `Ders ${activeTutorPreview.lessonOrdinal}`, pl: `Lekcja ${activeTutorPreview.lessonOrdinal}`,
-                      })}
-                    </Text>
                     <Text
-                      style={{ color: t.textPrimary, fontSize: f.numMd + 4, fontWeight: '900', lineHeight: Math.round((f.numMd + 4) * 1.16), marginTop: 5 }}
+                      style={{ color: t.textPrimary, fontSize: f.numMd + 4, fontWeight: '900', lineHeight: Math.round((f.numMd + 4) * 1.16) }}
                       maxFontSizeMultiplier={2}
                     >
                       {activeTutorPreview.displayTitle}
@@ -437,15 +487,13 @@ function MaxCallPrestartContent() {
               </View>
             </StatsCardArtSurface>
 
-            <View accessibilityLiveRegion="polite" style={{ minHeight: 48, justifyContent: 'center', paddingHorizontal: 4, marginTop: 10 }}>
-              <Text style={{ color: prepState === 'failed' ? t.wrong : t.textMuted, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }} maxFontSizeMultiplier={2}>
-                {prepState === 'ready'
-                  ? triLang(lang, { ru: 'Можно начинать', uk: 'Можна починати', es: 'Todo listo', 'pt-BR': 'Tudo pronto', vi: 'Sẵn sàng bắt đầu', id: 'Siap dimulai', tr: 'Başlamaya hazır', pl: 'Możesz zaczynać' })
-                  : prepState === 'failed'
-                    ? maxVoiceFailureMessage(preflightReason ?? 'preflight_failed', lang)
-                    : ''}
-              </Text>
-            </View>
+            {prepState === 'failed' ? (
+              <View accessibilityLiveRegion="polite" style={{ paddingHorizontal: 4, marginTop: 10, marginBottom: 10 }}>
+                <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }} maxFontSizeMultiplier={2}>
+                  {maxVoiceFailureMessage(preflightReason ?? 'preflight_failed', lang)}
+                </Text>
+              </View>
+            ) : null}
 
             {noMinutesLeft ? (
               <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', textAlign: 'center', marginBottom: 12 }} maxFontSizeMultiplier={2}>
@@ -455,7 +503,18 @@ function MaxCallPrestartContent() {
 
             {/* зачем: аудит 2026-08-22 — при неретраебельной причине (минуты
                 кончились, линия выключена) кнопка повтора лишь дразнила. */}
-            {prepState === 'failed' && isMaxVoiceFailureRetryable(preflightReason) ? (
+                {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? (
+                  <Pressable
+                    testID="max-subscribe-button"
+                    accessibilityRole="button"
+                    onPress={openMaxPaywall}
+                    style={{ minHeight: 56, backgroundColor: t.accent, borderRadius: 18, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                      {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
+                    </Text>
+                  </Pressable>
+                ) : prepState === 'failed' && isMaxVoiceFailureRetryable(preflightReason) ? (
               <>
                 <TouchableOpacity
                   testID="max-preflight-retry-button"
@@ -472,37 +531,62 @@ function MaxCallPrestartContent() {
               </>
             ) : null}
 
-            <TouchableOpacity
-              testID="max-call-start-button"
-              accessibilityRole="button"
-              accessibilityLabel={a11y.startLabel}
-              accessibilityHint={a11y.startHint}
-              accessibilityState={{ disabled: !startReady, busy: prepState === 'preparing' }}
-              disabled={!startReady}
-              onPress={startCall}
-              style={{
-                minHeight: 60,
-                backgroundColor: startReady ? t.accent : t.bgSurface2,
-                borderRadius: 20,
-                paddingVertical: 17,
-                paddingHorizontal: 18,
-                marginTop: 2,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 10,
-              }}
-            >
-              <Ionicons name="call" size={22} color={startReady ? t.correctText : t.textGhost} />
-              <Text style={{ color: startReady ? t.correctText : t.textGhost, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                {/* зачем: кнопка больше не сообщает о подготовке — она зовёт
-                    начать. Если заготовка не дозрела, ожидание происходит уже
-                    внутри звонка, параллельно с открытием соединения. */}
-                {triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', es: 'Empezar la clase', 'pt-BR': 'Começar a aula', vi: 'Bắt đầu bài học', id: 'Mulai pelajaran', tr: 'Dersi başlat', pl: 'Rozpocznij lekcję' })}
-              </Text>
-            </TouchableOpacity>
+            {prepState === 'preparing' ? (
+              <MaxLessonMissionPlaque
+                mission={activeTutorPreview.outcome}
+                lang={lang}
+                reduceMotion={reduceMotion}
+              />
+            ) : startReady ? (
+              <Animated.View
+                style={{
+                  opacity: startCtaReveal,
+                  transform: [{
+                    translateY: startCtaReveal.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [MAX_PRESTART_MISSION_HYBRID.ctaStartShiftPx, 0],
+                    }),
+                  }],
+                }}
+              >
+                <TouchableOpacity
+                  testID="max-call-start-button"
+                  accessibilityRole="button"
+                  accessibilityLabel={a11y.startLabel}
+                  accessibilityHint={a11y.startHint}
+                  accessibilityState={{ disabled: false }}
+                  onPress={startCall}
+                  style={{
+                    minHeight: 60,
+                    backgroundColor: t.accent,
+                    position: 'relative',
+                    overflow: 'visible',
+                    borderRadius: 20,
+                    paddingVertical: 17,
+                    paddingHorizontal: 18,
+                    marginTop: 2,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 10,
+                  }}
+                >
+                  <EnergyCostBadge testID="max-call-start-energy-cost" />
+                  <Ionicons name="call" size={22} color={t.correctText} />
+                  <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                    {/* Подготовка остаётся на этом экране; эта CTA появляется
+                        только после готового premint и сразу принимает тап. */}
+                    {triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', es: 'Empezar la clase', 'pt-BR': 'Começar a aula', vi: 'Bắt đầu bài học', id: 'Mulai pelajaran', tr: 'Dersi başlat', pl: 'Rozpocznij lekcję' })}
+                  </Text>
+                </TouchableOpacity>
+              </Animated.View>
+            ) : null}
           </ScrollView>
         </SafeAreaView>
+        <NoEnergyModal
+          visible={maxLessonNoEnergy}
+          onClose={() => setMaxLessonNoEnergy(false)}
+        />
       </ScreenGradient>
     );
   }
@@ -666,7 +750,18 @@ function MaxCallPrestartContent() {
                   </Text>
                 ) : null}
               </View>
-              {isMaxVoiceFailureRetryable(preflightReason) ? (
+              {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? (
+                <Pressable
+                  testID="max-subscribe-button"
+                  accessibilityRole="button"
+                  onPress={openMaxPaywall}
+                  style={{ minHeight: 56, backgroundColor: t.accent, borderRadius: 18, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                    {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
+                  </Text>
+                </Pressable>
+              ) : isMaxVoiceFailureRetryable(preflightReason) ? (
                 <TouchableOpacity
                   testID="max-preflight-retry-button"
                   accessibilityRole="button"
@@ -715,8 +810,8 @@ function MaxCallPrestartContent() {
               gap: 10,
             }}
           >
-            {/* зачем: песочные часы вместо трубки читались как «жди» — кнопка
-                теперь активна всегда, значок только трубка. */}
+            {/* Подготовка остаётся на этом экране; значок звонка появляется
+                сразу, но CTA становится активной только при готовом premint. */}
             <Ionicons name="call" size={20} color={startReady ? t.correctText : t.textGhost} />
             <Text
               style={{

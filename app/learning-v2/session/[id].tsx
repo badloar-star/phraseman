@@ -6,6 +6,8 @@ import { LinearGradient } from "../../../components/SafeLinearGradient";
 import ReportErrorButton from "../../../components/ReportErrorButton";
 import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
+import { useEnergy } from "../../../components/EnergyContext";
+import NoEnergyModal from "../../../components/NoEnergyModal";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, {
   useCallback,
@@ -40,6 +42,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from "../../../app/account_generation";
+import { grantLocalCourseSessionCompletionSpin } from "../../../app/local_level_spins";
 import {
   ensureLearningV2CompletionBackgroundSchedulerInstalled,
   enterLearningV2InteractiveSurface,
@@ -64,6 +67,7 @@ import { captureCurrentAccountObjectiveAttempt } from "../../../app/mistake_prac
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
 import LearningV2SessionIntro from "../../../app/learning_v2_session_intro";
 import LearningV2DirectSessionPlayerV1 from "../../../app/learning_v2_direct_session_player_v1";
+import { safeRouterBack } from "../../../app/navigation_back";
 import {
   parseLearningV2ActivityAuxiliaryRouteScopeV1,
   useLearningV2ActivityAuxiliarySessionV1,
@@ -195,12 +199,17 @@ function LearningV2LegacySessionScreen() {
     releaseEnvironment?: string | string[];
     releaseSeasonId?: string | string[];
     releaseEpisodeId?: string | string[];
+    skipTheory?: string | string[];
   }>();
   const { lang } = useLang();
   const copy = useMemo(() => learningV2SessionCopy(lang), [lang]);
   const { studyTarget } = useStudyTarget();
   const sessionId = first(params.id);
   const isSessionRepeat = first(params.runKind) === "repeat";
+  // зачем: владелец — модалка карты получила кнопку «Пропустить теорию».
+  // Слоты 1-3 из 12 (встроенные вопросы интро) просто не начисляются —
+  // практика идёт сразу с 4-го слота, сессия честно становится из 9 заданий.
+  const skipTheory = first(params.skipTheory) === "1";
   const ordinal = SESSION_IDS.indexOf(sessionId) + 1;
   const auxiliaryScope = useMemo(
     () =>
@@ -255,7 +264,14 @@ function LearningV2LegacySessionScreen() {
   // Canonical slots 1–3 are answered inside the three intro pages. Practice
   // therefore starts at slot 4 and those tasks must never render twice.
   const [cardIndex, setCardIndex] = useState(3);
-  const [introComplete, setIntroComplete] = useState(false);
+  // зачем: skipTheory=1 из модалки карты — интро считается пройденным сразу.
+  // Сессия при этом ВСЕГДА остаётся из 12 слотов: конверт завершения
+  // (materializeRequiredSessionCompletionEnvelope) требует ровно 12 записей и
+  // запись для каждой карточки, иначе finish() падает. Поэтому пропуск не
+  // выкидывает слоты 1-3, а помечает их `skipped` — 0 звёзд, не ошибка
+  // ученика, повтор не нужен (см. эффект ниже). Счётчик «N из 12» и
+  // прогресс-бар остаются прежними и не лгут.
+  const [introComplete, setIntroComplete] = useState(() => skipTheory);
   const [releasedRuntime, setReleasedRuntime] =
     useState<LearningV2ActivityReleasedSessionRuntimeHandleV1 | null>(null);
   const [result, setResult] = useState<ResultState>("idle");
@@ -539,6 +555,26 @@ function LearningV2LegacySessionScreen() {
       );
     }).catch(() => undefined);
   }, [ordinal, session, sessionId]);
+  // зачем: владелец — кнопка «Пропустить теорию» в модалке карты. Три вопроса
+  // интро — это канонические слоты 1-3 из 12, а конверт завершения требует
+  // запись для КАЖДОГО слота (иначе finish() падает с
+  // required_session_completion_incomplete). Поэтому пропуск не выкидывает
+  // слоты, а помечает их `skipped`: 0 звёзд, не ошибка ученика, повтор не
+  // нужен. Эффект идёт СТРОГО после очистки taskCompletionsRef выше, иначе
+  // записи были бы стёрты стартом сессии.
+  useEffect(() => {
+    if (!skipTheory || !session || ordinal < 1 || !introTaskIds) return;
+    for (const taskId of introTaskIds) {
+      if (typeof taskId !== "string") continue;
+      taskCompletionsRef.current.set(taskId, {
+        taskId,
+        disposition: "skipped",
+        learnerAttempts: 0,
+        hintUsed: false,
+      });
+      awardedCardIdsRef.current.add(taskId);
+    }
+  }, [introTaskIds, ordinal, session, sessionId, skipTheory]);
   const progressStyle = useAnimatedStyle(() => ({
     transform: [{ scaleX: progress.value }],
   }));
@@ -888,6 +924,27 @@ function LearningV2LegacySessionScreen() {
       if (currentTaskId) awardCurrentCardStars(currentTaskId);
       void hapticSuccess();
     } else {
+      if ((studyTarget === "en" || studyTarget === "fr") && currentTaskId && correctAnswer) {
+        void captureCurrentAccountObjectiveAttempt({
+          attemptId: `learning-v2:${sessionId}:${cardIndex}:${currentTaskId}:${attempts}`,
+          studyTarget,
+          verdict: "wrong",
+          objective: true,
+          content: {
+            sourceKind: "learning_v2",
+            sourceId: currentTaskId,
+            canonicalTarget: correctAnswer,
+            sourceMeaning: prompt,
+            lessonId: payload.lessonId,
+            tokens: targetTokens,
+            distractors: tileTokens.map((tile) => tile.text),
+          },
+          facet: {
+            kind: isBuilder ? "word_order" : mode === "listen_choose" ? "listening" : "form",
+            expected: correctAnswer,
+          },
+        }).catch(() => {});
+      }
       const errorOrdinal = attempts;
       const releasedFeedback =
         auxiliaryActions.actionSession?.resolveWrongFeedback(errorOrdinal);
@@ -1030,6 +1087,22 @@ function LearningV2LegacySessionScreen() {
       });
       void hapticSuccess();
       localCommitCompletedRef.current = true;
+      // зачем: спин — обязательная награда за пройденную сессию (владелец,
+      // 23.08). Выдаём ПОСЛЕ подтверждённой локальной фиксации и в фоне: сама
+      // функция идемпотентна по sessionId, а её сбой не должен мешать игроку
+      // увидеть результат — кредит доедет при следующем заходе.
+      void (async () => {
+        try {
+          const stableId = await getStableId();
+          await grantLocalCourseSessionCompletionSpin(
+            sessionId,
+            "en",
+            ensureAccountGeneration(stableId),
+          );
+        } catch {
+          // Спин восстановится при повторном завершении: ключ тот же.
+        }
+      })();
       const breakdown = summarizeSessionStars(
         taskCompletionsRef.current.values(),
       );
@@ -1808,13 +1881,54 @@ function LearningV2LegacySessionScreen() {
   );
 }
 
+function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const {
+    confirmSpendOne: confirmLearningV2Energy,
+    energyReady,
+  } = useEnergy();
+  const attemptedRef = useRef(false);
+  const [gate, setGate] = useState<"checking" | "ok" | "denied">("checking");
+
+  useEffect(() => {
+    if (!energyReady || attemptedRef.current) return;
+    attemptedRef.current = true;
+    let cancelled = false;
+    void confirmLearningV2Energy().then((result) => {
+      if (cancelled) return;
+      if (result === "cancelled") {
+        safeRouterBack(router, "/(tabs)/lessons" as never);
+        return;
+      }
+      setGate(result === "insufficient" ? "denied" : "ok");
+    });
+    return () => { cancelled = true; };
+  }, [confirmLearningV2Energy, energyReady, router]);
+
+  if (gate === "ok") return <>{children}</>;
+  return (
+    <View style={styles.screen}>
+      <NoEnergyModal
+        visible={gate === "denied"}
+        onClose={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
+      />
+    </View>
+  );
+}
+
 export default function LearningV2SessionScreen() {
   const params = useLocalSearchParams<{
+    id?: string | string[];
     runtimeMode?: string | string[];
   }>();
-  if (first(params.runtimeMode) === "direct_v1")
-    return <LearningV2DirectSessionPlayerV1 />;
-  return <LearningV2LegacySessionScreen />;
+  const content = first(params.runtimeMode) === "direct_v1"
+    ? <LearningV2DirectSessionPlayerV1 />
+    : <LearningV2LegacySessionScreen />;
+  return (
+    <LearningV2SessionEnergyGate key={first(params.id) ?? "learning-v2-session"}>
+      {content}
+    </LearningV2SessionEnergyGate>
+  );
 }
 
 const styles = StyleSheet.create({

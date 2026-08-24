@@ -240,36 +240,30 @@ test('claimUnseenFriendGifts is quiet when stable user is unavailable', async ()
   expect(batchWrites).toEqual([]);
 });
 
-test('friends tab has an explicit received gift modal contract', () => {
+test('global host has the approved minimal received gift modal contract', () => {
   const fs = require('fs');
   const path = require('path');
-  const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'friends.tsx'), 'utf8');
+  const source = fs.readFileSync(path.join(process.cwd(), 'components', 'GlobalFriendGiftHost.tsx'), 'utf8');
 
-  expect(source).toContain('friend-gift-received-modal');
-  expect(source).toContain('friend-gift-received-card');
-  expect(source).toContain('friend-gift-received-open-inventory');
-  expect(source).toContain('friend-gift-received-ok');
-  expect(source).toContain('friend-gift-reply-thanks');
-  expect(source).toContain('friend-gift-reply-shield');
-  expect(source).toContain('friend-gift-reply-boost');
-  expect(source).toContain('Сохранено в разделе «Подарки»');
-  expect(source).toContain('friends-feedback');
-  expect(source).toContain('friend-gift-feedback');
-  expect(source).toContain('friend-gift-rank-');
-  expect(source).toContain('setIncomingGiftModal({ gifts })');
+  expect(source).toContain("useOverlayVisible('friendGift', pending.length > 0)");
+  expect(source).toContain('<HybridAlertShell');
+  expect(source).toContain('friend-gift-global-modal');
+  expect(source).toContain('Подарок от');
+  expect(source).toContain('Забрать');
+  expect(source).not.toContain('friend-gift-received-open-inventory');
+  expect(source).not.toContain('friend-gift-reply-thanks');
 });
 
-test('friends tab confirms successfully sent gifts explicitly', () => {
+test('friends tab sends only the selected gift and keeps retry on the main CTA', () => {
   const fs = require('fs');
   const path = require('path');
   const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'friends.tsx'), 'utf8');
 
-  expect(source).toContain('sentGiftReceipt');
-  expect(source).toContain('setSentGiftReceipt({');
-  expect(source).toContain('friend-gift-sent-modal');
-  expect(source).toContain('friend-gift-sent-card');
-  expect(source).toContain('friend-gift-sent-ok');
-  expect(source).toContain("emitAppEvent('action_toast'");
+  expect(source).toContain('selectedGiftId');
+  expect(source).toContain('friend-gift-send-cta');
+  expect(source).toContain('giftSendFailedId === selectedGift.id');
+  expect(source).toContain("? L('Повторить'");
+  expect(source).not.toContain('friend-gift-sent-modal');
 });
 
 test('friends tab renders the active friend quest progress contract', () => {

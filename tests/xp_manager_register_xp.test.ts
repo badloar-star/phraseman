@@ -107,6 +107,7 @@ jest.mock('../app/app_snapshot_store', () => ({
 jest.mock('../app/progress_events_client', () => ({
   prepareProgressMigrationSnapshot: jest.fn(async () => null),
   submitProgressEvent: jest.fn(async () => {}),
+  makeDeterministicProgressEventId: jest.fn((type: string) => `test-progress:${type}`),
 }));
 
 jest.mock('../app/level_up_reward_reconciler', () => ({
@@ -545,6 +546,7 @@ describe('registerXP', () => {
   it('treats SQLITE_FULL as a recoverable storage condition instead of a critical XP failure', async () => {
     const { registerXP } = await import('../app/xp_manager');
     const { DebugLogger } = await import('../app/debug-logger');
+    const { emitAppEvent } = await import('../app/events');
     (AsyncStorage.multiSet as jest.Mock).mockRejectedValueOnce(
       new Error('database or disk is full (code 13 SQLITE_FULL)'),
     );
@@ -560,6 +562,10 @@ describe('registerXP', () => {
       expect.any(Error),
       'warning',
     );
+    expect(emitAppEvent).toHaveBeenCalledWith('action_toast', expect.objectContaining({
+      type: 'warning',
+      messageRu: expect.stringContaining('хранилище Phraseman'),
+    }));
   });
 
   it('clamps a corrupted league tier to the real ladder before applying its XP bonus', async () => {

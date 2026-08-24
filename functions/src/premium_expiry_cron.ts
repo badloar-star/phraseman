@@ -35,6 +35,7 @@ import {
   MAX_OWNER_LINEAGES,
   type PremiumLineageState,
 } from './revenuecat_premium_lineage';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 
@@ -45,7 +46,7 @@ const REGION = 'us-central1';
  */
 export const RC_GRACE_MS = 72 * 60 * 60 * 1000;
 
-const STORE_PLANS = new Set(['monthly', 'yearly', 'annual']);
+const STORE_PLANS = new Set(['monthly', 'yearly', 'annual', 'max_monthly']);
 
 function cleanStr(value: unknown): string {
   return String(value ?? '').trim();
@@ -244,6 +245,7 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
             update[`progress.${key}`] = value;
           }
           tx.update(doc.ref, update);
+          writeAccessProjectionFromPatch(tx, doc.ref, currentProgress, decision.patch, now);
           return decision;
         })
           .then((decision) => {

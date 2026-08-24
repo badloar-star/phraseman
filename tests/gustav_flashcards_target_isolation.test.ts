@@ -380,6 +380,26 @@ describe('Gustav flashcards target isolation', () => {
     expect(mockStorage[englishKey]).toContain('market_en_1');
   });
 
+  it('does not persist an oversized rebuildable marketplace card cache', async () => {
+    const key = flashcardsMarketplaceBuiltCardsCacheKey('en');
+    const oversizedCard = {
+      id: 'market_oversized',
+      en: 'Large cache fixture',
+      ru: 'Большой тестовый кэш',
+      uk: 'Великий тестовий кеш',
+      categoryId: 'custom',
+      isSystem: true,
+      source: 'lesson',
+      sourceId: 'DEV:large_pack',
+      explanationRu: 'x'.repeat(300 * 1024),
+    } as const;
+
+    await saveBuiltMarketplaceCardsCache(['large_pack'], [oversizedCard], 'en');
+
+    expect(mockStorage[key]).toBeUndefined();
+    await expect(loadBuiltMarketplaceCardsCache('en')).resolves.toBeNull();
+  });
+
   it('keeps the DEV active flashcard pack marker per study target', async () => {
     await setDevActivePack('pack_en', 'en');
     await setDevActivePack('pack_fr', 'fr');

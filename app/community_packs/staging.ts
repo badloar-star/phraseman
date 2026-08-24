@@ -1,10 +1,18 @@
 import type { CardItem } from '../flashcards/types';
-import type { RuntimeStudyTarget } from '../target_storage_keys';
+import type { FlashcardMarketPack } from '../flashcards/marketplace';
+import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import { fetchCommunityPackCards } from './communityFirestore';
+import {
+  isLocalAuthorPackId,
+  loadLocalAuthorPacks,
+  localAuthorPackCardItems,
+} from './localAuthorPacks';
 
-let stagedCommunityPackMarketCards: CardItem[] | null = null;
+let stagedCommunityPackMarketCards: { key: string; cards: CardItem[] } | null = null;
+/** Метаданные нужны на том же первом кадре, что и карточки: без них тема пака мигает. */
+let stagedCommunityPackMeta: { key: string; pack: FlashcardMarketPack } | null = null;
 /** `packId` з останнього успішного `stageCommunityPackCardsForNavigation` — для перевірки `?pack=` до зчитування AsyncStorage. */
-let stagedNavigationPackId: string | null = null;
+let stagedNavigationPack: { key: string; packId: string; target: string } | null = null;
 
 /**
  * Картки наборів, які вже вдалося завантажити в цій сесії.
@@ -20,12 +28,16 @@ const communityPackCardsMemo = new Map<string, CardItem[]>();
 /** Память ограничена: наборы большие, храним только последние открытые. */
 const MEMO_LIMIT = 8;
 /** Запрос, запущенный последним `stage…` — коллекция ждёт именно его. */
-let pendingStagedFetch: { packId: string; cards: Promise<CardItem[]> } | null = null;
+let pendingStagedFetch: { key: string; cards: Promise<CardItem[]> } | null = null;
 
-function rememberCommunityPackCards(packId: string, cards: CardItem[]): void {
+function scopedPackKey(packId: string, studyTarget?: RuntimeStudyTarget): string {
+  return `${storageStudyTarget(studyTarget)}::${packId}`;
+}
+
+function rememberCommunityPackCards(key: string, cards: CardItem[]): void {
   if (cards.length === 0) return;
-  communityPackCardsMemo.delete(packId);
-  communityPackCardsMemo.set(packId, cards);
+  communityPackCardsMemo.delete(key);
+  communityPackCardsMemo.set(key, cards);
   while (communityPackCardsMemo.size > MEMO_LIMIT) {
     const oldest = communityPackCardsMemo.keys().next().value;
     if (oldest === undefined) break;
@@ -36,34 +48,74 @@ function rememberCommunityPackCards(packId: string, cards: CardItem[]): void {
 /**
  * Підготувати картки UGC-набору перед `router.push` на колекцію з `?pack=`.
  *
- * зачем: раньше вызывающий делал `await` перед навигацией — тап по своему
- * набору висел на сетевом чтении Firestore, и экран открывался с задержкой.
- * Теперь помечаем `packId` синхронно и уходим в навигацию сразу: карточки
- * уже открытого набора берутся из памяти тем же синхронным шагом, а свежие
- * данные догоняют через `stagedCommunityPackCardsPromise`.
+ * Навигация обязана дождаться результата: лучше оставить нажатую плитку с
+ * компактным progress, чем смонтировать коллекцию без карточек/темы и тут же
+ * перестроить весь экран. Memo-путь остаётся практически синхронным.
  */
-export function stageCommunityPackCardsForNavigation(
+export async function stageCommunityPackCardsForNavigation(
   packId: string,
   studyTarget?: RuntimeStudyTarget,
-): void {
-  const memo = communityPackCardsMemo.get(packId);
-  stagedCommunityPackMarketCards = memo && memo.length > 0 ? memo : null;
-  stagedNavigationPackId = packId;
-  const cards = fetchCommunityPackCards(packId, studyTarget)
+  packMeta?: FlashcardMarketPack,
+): Promise<CardItem[]> {
+  const key = scopedPackKey(packId, studyTarget);
+  const target = storageStudyTarget(studyTarget);
+  const memo = communityPackCardsMemo.get(key);
+  stagedCommunityPackMarketCards = memo && memo.length > 0 ? { key, cards: memo } : null;
+  stagedCommunityPackMeta = packMeta ? { key, pack: packMeta } : null;
+  stagedNavigationPack = { key, packId, target };
+  if (memo && memo.length > 0 && !isLocalAuthorPackId(packId)) {
+    // Не теряем прежний background-refresh: первый кадр берёт memo, а свежий
+    // ответ обновляет кэш для следующего входа и текущий staging без блокировки.
+    const refresh = fetchCommunityPackCards(packId, studyTarget)
+      .then((next) => {
+        if (next.length === 0) return memo;
+        rememberCommunityPackCards(key, next);
+        if (stagedNavigationPack?.key === key) stagedCommunityPackMarketCards = { key, cards: next };
+        return next;
+      })
+      .catch(() => memo);
+    pendingStagedFetch = { key, cards: refresh };
+    return memo;
+  }
+
+  const cards = (async (): Promise<CardItem[]> => {
+    if (isLocalAuthorPackId(packId)) {
+      const localPacks = await loadLocalAuthorPacks(studyTarget);
+      const localPack = localPacks.find((candidate) => candidate.id === packId);
+      if (localPack) return localAuthorPackCardItems(localPack);
+    }
+    return fetchCommunityPackCards(packId, studyTarget);
+  })()
     .then((next) => {
       if (next.length === 0) return next;
-      rememberCommunityPackCards(packId, next);
+      rememberCommunityPackCards(key, next);
       // Гонка: пока грузили, пользователь мог уйти в другой набор —
       // поздний ответ не должен подменять актуальный staging.
-      if (stagedNavigationPackId === packId) stagedCommunityPackMarketCards = next;
+      if (stagedNavigationPack?.key === key) stagedCommunityPackMarketCards = { key, cards: next };
       return next;
     })
     .catch((): CardItem[] => []);
-  pendingStagedFetch = { packId, cards };
+  pendingStagedFetch = { key, cards };
+  const result = await cards;
+  if (result.length === 0 && stagedNavigationPack?.key === key) {
+    // Не оставляем неудачный preload как ложное доказательство доступа для guard.
+    stagedCommunityPackMarketCards = null;
+    stagedCommunityPackMeta = null;
+    stagedNavigationPack = null;
+    pendingStagedFetch = null;
+  }
+  return result;
 }
 
-export function consumeStagedCommunityPackMarketCards(): CardItem[] | null {
-  const x = stagedCommunityPackMarketCards;
+export function consumeStagedCommunityPackMarketCards(
+  packId: string | null,
+  studyTarget?: RuntimeStudyTarget,
+): CardItem[] | null {
+  const key = packId ? scopedPackKey(packId, studyTarget) : null;
+  const x = key && stagedCommunityPackMarketCards?.key === key
+    ? stagedCommunityPackMarketCards.cards
+    : null;
+  if (!x) return null;
   stagedCommunityPackMarketCards = null;
   return x;
 }
@@ -72,22 +124,41 @@ export function consumeStagedCommunityPackMarketCards(): CardItem[] | null {
  * Промис карточек набора, подготовленного последним `stage…`.
  * Коллекция подписывается на него и рисует набор, как только пришёл ответ.
  */
-export function stagedCommunityPackCardsPromise(packId: string): Promise<CardItem[]> | null {
-  return pendingStagedFetch && pendingStagedFetch.packId === packId ? pendingStagedFetch.cards : null;
+export function stagedCommunityPackCardsPromise(
+  packId: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<CardItem[]> | null {
+  const key = scopedPackKey(packId, studyTarget);
+  return pendingStagedFetch?.key === key ? pendingStagedFetch.cards : null;
 }
 
 /** Карточки набора из памяти сессии (синхронно, без сети). */
-export function peekStagedCommunityPackCards(packId: string): CardItem[] | null {
-  const cards = communityPackCardsMemo.get(packId);
+export function peekStagedCommunityPackCards(
+  packId: string,
+  studyTarget?: RuntimeStudyTarget,
+): CardItem[] | null {
+  const cards = communityPackCardsMemo.get(scopedPackKey(packId, studyTarget));
   return cards && cards.length > 0 ? cards : null;
 }
 
-export function getStagedNavigationPackId(): string | null {
-  return stagedNavigationPackId;
+/** Метаданные выбранной плитки — готовая шапка/палитра до первого commit коллекции. */
+export function peekStagedCommunityPackMeta(
+  packId: string | null,
+  studyTarget?: RuntimeStudyTarget,
+): FlashcardMarketPack | null {
+  const key = packId ? scopedPackKey(packId, studyTarget) : null;
+  return key && stagedCommunityPackMeta?.key === key ? stagedCommunityPackMeta.pack : null;
+}
+
+export function getStagedNavigationPackId(studyTarget?: RuntimeStudyTarget): string | null {
+  return stagedNavigationPack?.target === storageStudyTarget(studyTarget)
+    ? stagedNavigationPack.packId
+    : null;
 }
 
 export function clearStagedNavigationPackId(): void {
-  stagedNavigationPackId = null;
+  stagedNavigationPack = null;
+  stagedCommunityPackMeta = null;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

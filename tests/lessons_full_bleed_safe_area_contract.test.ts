@@ -10,12 +10,13 @@ describe('lessons full-bleed safe-area contract', () => {
 
     expect(lessons).toContain('const insets = useStableSafeAreaInsets();');
     expect(lessons).toContain('<ScreenGradient forceFullBleed>');
-    expect(lessons).toContain('paddingTop: insets.top + 12');
-    expect(tabsLayout).toContain('marginTop: -topInset');
-    expect(tabsLayout).toContain('topInset={insets.top}');
+    expect(lessons).toContain('const headerTopPad = isRetainedTab ? 12 : insets.top + 12;');
+    expect(lessons).toContain('paddingTop: headerTopPad');
+    expect(tabsLayout).toContain('<ScreenGradient artBackdrop="home" style={{ flex: 1 }}');
+    expect(tabsLayout).toContain('style={{ flex: 1, paddingTop: insets.top }}');
 
-    const tabLayoutSource = tabsLayout.slice(tabsLayout.indexOf('export default function TabLayout()'));
-    expect(tabLayoutSource).toContain('const insets = useStableSafeAreaInsets();');
-    expect(tabLayoutSource).toContain('topInset={insets.top}');
+    const tabScaffoldSource = tabsLayout.slice(tabsLayout.indexOf('function TabScaffold'));
+    expect(tabScaffoldSource).toContain('const insets = useStableSafeAreaInsets();');
+    expect(tabsLayout).not.toContain('marginTop: -topInset');
   });
 });

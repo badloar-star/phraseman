@@ -6,7 +6,12 @@ import { readGiftAccessFromCloud } from './gift_access_cloud';
 import { syncRevenueCatProjectionForAccount } from './revenuecat_projection_sync';
 import { DebugLogger } from './debug-logger';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
-import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
+import {
+  activeRevenueCatMaxEntitlement,
+  activeRevenueCatPremiumEntitlement,
+  isRevenueCatMaxProductId,
+  revenueCatCustomerInfoHasPremiumAccess,
+} from './revenuecat_premium_access';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -339,10 +344,14 @@ function refreshRealPremiumInBackground(
           if (!accountGenerationIsCurrent(generation)) return;
           DebugLogger.error('premium_guard:revenuecat_projection_sync', error, 'warning');
         }
-        const entitlement = (info as any)?.entitlements?.active?.premium ?? {};
+        const entitlement = activeRevenueCatMaxEntitlement(info as any)
+          ?? activeRevenueCatPremiumEntitlement(info as any)
+          ?? {};
         const productId = String(entitlement.productIdentifier ?? (info as any)?.activeSubscriptions?.[0] ?? '').trim();
         const productKey = productId.toLowerCase();
-        const inferredPlan = /lifetime|forever|one.?time|onetime|perpetual/.test(productKey)
+        const inferredPlan = isRevenueCatMaxProductId(productId)
+          ? 'max_monthly'
+          : /lifetime|forever|one.?time|onetime|perpetual/.test(productKey)
           ? 'lifetime'
           : /year|yearly|annual|12.?month/.test(productKey)
             ? 'yearly'
@@ -426,7 +435,8 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   let lastSeen = parseInt(pairs.find(p => p[0] === RC_LAST_SEEN_KEY)?.[1] || '0') || 0;
   const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
   const normalizedPlan = String(plan ?? '').trim().toLowerCase();
-  const storePlan = normalizedPlan === 'monthly' || normalizedPlan === 'yearly' || normalizedPlan === 'annual' || normalizedPlan === 'lifetime';
+  const storePlan = normalizedPlan === 'monthly' || normalizedPlan === 'yearly'
+    || normalizedPlan === 'annual' || normalizedPlan === 'lifetime' || normalizedPlan === 'max_monthly';
   const hasVerifiedStoreEvidence = active === 'true' && storePlan && (
     normalizedPlan === 'lifetime' || lastSeen > 0 || rcExpiry > 0 || expiry > 0
   );

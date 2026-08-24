@@ -9,11 +9,14 @@ describe('level gifts inventory tonal design contract', () => {
   it('uses rarity/accent tonal surfaces for inventory gift cards', () => {
     expect(source).toContain('const giftTone =');
     expect(source).toContain('const emptyGiftSurface =');
-    expect(source).toContain('const giftCardSurface =');
+    expect(source).toContain('giftGradientBaseColor(themeMode');
+    expect(source).toContain('giftGradientAlpha(strongestRarity');
+    expect(source).toContain('giftGradientShape(strongestRarity');
     expect(source).toContain("colors={emptyGiftSurface}");
-    expect(source).toContain("colors={giftCardSurface}");
-    expect(source).toContain("giftTone(accent, '2E')");
-    expect(source).toContain("giftTone(accent, '70')");
+    expect(source).toMatch(/colors=\{\[giftTone\(accent,\s*gradientAlpha\),\s*surface\[0\],\s*surface\[1\]\]/);
+    expect(source).toContain('start={gradientShape.start}');
+    expect(source).toContain('end={gradientShape.end}');
+    expect(source).not.toContain('const giftCardSurface =');
   });
 
   it('keeps active gift chips borderless and separated by tonal fill', () => {

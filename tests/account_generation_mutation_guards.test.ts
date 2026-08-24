@@ -145,9 +145,6 @@ test('uninitialized identity cannot hydrate or mutate account-owned stores', asy
     .resolves.toEqual({ status: 'failed' });
   await expect(sendFriendGiftWithShards({ friendStableId: 'friend-boot', giftId: 'chain_shield_1' }))
     .rejects.toThrow('friend_gift_identity_changed');
-  logMistake('boot mistake', 1, 'lesson', 'wrong_pick', {}, 'fr');
-  await flushMistakeLog();
-
   expect(storage.getItem).not.toHaveBeenCalled();
   expect(storage.setItem).not.toHaveBeenCalled();
   expect(mockRegisterXP).not.toHaveBeenCalled();
@@ -173,40 +170,6 @@ test('pending lesson retry remains bound to the account that read the pending en
   await expect(retry).resolves.toBe(0);
   expect(mockRegisterXP).not.toHaveBeenCalled();
   expect(mockAddShards).not.toHaveBeenCalled();
-});
-
-test('mistake compaction discards an account A snapshot resolved after account B activates', async () => {
-  beginAccountGeneration('account-a');
-  const readA = deferred<string | null>();
-  storage.getItem.mockReturnValueOnce(readA.promise);
-
-  const compact = compactMistakeLog('fr');
-  for (let i = 0; i < 12 && storage.getItem.mock.calls.length === 0; i += 1) {
-    await Promise.resolve();
-  }
-  expect(storage.getItem).toHaveBeenCalledTimes(1);
-  beginAccountGeneration('account-b');
-  readA.resolve(JSON.stringify([{
-    phrase: 'from a', lessonId: 1, mode: 'lesson', what: 'wrong_pick', ts: Date.now(),
-  }]));
-
-  await compact;
-  expect(storage.setItem).not.toHaveBeenCalled();
-});
-
-test('mistake clear rechecks its account after waiting for the transition lock', async () => {
-  beginAccountGeneration('account-a');
-  const blocker = deferred<void>();
-  const occupied = withAccountTransitionLock(async () => blocker.promise);
-  await Promise.resolve();
-
-  const clear = clearMistakeLog('fr');
-  beginAccountGeneration('account-b');
-  blocker.resolve();
-  await occupied;
-  await clear;
-
-  expect(storage.removeItem).not.toHaveBeenCalled();
 });
 
 test('late collectible response from account A cannot write account B inventory, wallet, or events', async () => {
@@ -311,63 +274,17 @@ test('late account A custom-card read cannot hydrate account B instant cache', a
   expect(peekCustomCardsCache('fr')).toBeNull();
 });
 
-test('account-scoped mistake queues let B persist while a deferred A read is discarded', async () => {
-  beginAccountGeneration('account-a');
-  const readA = deferred<string | null>();
-  storage.getItem.mockReturnValueOnce(readA.promise).mockResolvedValueOnce(null);
-  logMistake('from account a', 1, 'lesson', 'wrong_pick', {}, 'fr');
-  await Promise.resolve();
-
-  beginAccountGeneration('account-b');
-  logMistake('from account b', 2, 'lesson', 'wrong_pick', {}, 'fr');
-  await Promise.resolve();
-  await Promise.resolve();
-
-  readA.resolve(null);
-  await flushMistakeLog();
-
-  const payloads = storage.setItem.mock.calls
-    .filter(([key]) => String(key).includes('mistake'))
-    .map(([, raw]) => JSON.parse(String(raw)) as Array<{ phrase: string }>);
-  expect(payloads).toHaveLength(1);
-  expect(payloads[0].map((entry) => entry.phrase)).toEqual(['from account b']);
-});
-
-test('current-account mistake compaction does not await a stale generation hanging read', async () => {
-  beginAccountGeneration('account-a');
-  const readA = deferred<string | null>();
-  storage.getItem.mockReturnValueOnce(readA.promise);
-  logMistake('from account a', 1, 'lesson', 'wrong_pick', {}, 'fr');
-  for (let i = 0; i < 12 && storage.getItem.mock.calls.length === 0; i += 1) {
-    await Promise.resolve();
-  }
-  expect(storage.getItem).toHaveBeenCalledTimes(1);
-
-  beginAccountGeneration('account-b');
-  storage.getItem.mockResolvedValue(null);
-  let compactSettled = false;
-  const compact = compactMistakeLog('fr').then(() => { compactSettled = true; });
-  for (let i = 0; i < 12 && !compactSettled; i += 1) await Promise.resolve();
-
-  expect(compactSettled).toBe(true);
-  readA.resolve(null);
-  await compact;
-  await flushMistakeLog();
-});
-
-test('hanging flashcard and mistake registries stay bounded across account generations', async () => {
+test('hanging flashcard registries stay bounded across account generations', async () => {
   const never = new Promise<string | null>(() => {});
   storage.getItem.mockImplementation(() => never);
 
   for (let i = 0; i < 20; i += 1) {
     beginAccountGeneration(`account-${i}`);
     void loadFlashcards('fr');
-    logMistake(`mistake-${i}`, i, 'lesson', 'wrong_pick', {}, 'fr');
   }
 
   expect(__getFlashcardPendingRegistrySizesForTests().loads).toBeLessThanOrEqual(8);
   expect(__getFlashcardPendingRegistrySizesForTests().writes).toBeLessThanOrEqual(8);
-  expect(__getMistakeLogPendingRegistrySizeForTests()).toBeLessThanOrEqual(8);
   storage.getItem.mockResolvedValue(null);
 });
 

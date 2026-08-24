@@ -24,12 +24,12 @@ describe('stable safe-area initial metrics contract', () => {
     expect(source).not.toContain('initialMetrics={initialWindowMetrics}');
   });
 
-  it('uses the same stable initial metrics for nested safe area providers', () => {
+  it('keeps retained tab content on root-owned stable insets without a nested provider', () => {
     const source = readProjectFile('app', '(tabs)', 'friends.tsx');
 
-    expect(source).toMatch(/import \{[^}]*stableInitialWindowMetrics[^}]*\} from '\.\.\/stable_safe_area_metrics';/);
-    expect(source).toContain('<SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>');
-    expect(source).not.toContain('initialMetrics={initialWindowMetrics}');
+    expect(source).toContain("import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';");
+    expect(source).toContain('const insets = useStableSafeAreaInsets();');
+    expect(source).not.toContain('SafeAreaProvider');
   });
 
   it('reserves the status-bar top inset before native safe-area updates arrive', () => {

@@ -67,7 +67,7 @@ interface NicknameEditModalProps {
   onRollback: (oldName: string) => void;
   /** Некритичная инлайн-плашка у родителя (null — скрыть). */
   onNotice: (text: string | null) => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
@@ -78,7 +78,7 @@ export default function NicknameEditModal({
   onOptimisticApply,
   onRollback,
   onNotice,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: NicknameEditModalProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();

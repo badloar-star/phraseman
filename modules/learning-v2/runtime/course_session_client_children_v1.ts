@@ -37,6 +37,18 @@ export type LearningV2CourseSessionSavablePhraseV1 = Readonly<{
   contentOrigin: "learner_safe_release_projection";
 }>;
 
+export type LearningV2CourseSessionNewWordEncounterV1 = Readonly<{
+  lexicalItemId: string;
+  transcription: string;
+  playfulMeaningByLocale: LocalizedText;
+  motionVariant: "lesson_hero_b" | "premium_a";
+  presentation: "blocking_task_overlay";
+  dismissal: "continue_only";
+  saveControl: "bookmark_icon";
+  orderWithinSession: number;
+  save: LearningV2CourseSessionSavablePhraseV1;
+}>;
+
 export interface LearningV2CourseSessionIntroQuestionV1 {
   readonly interactionId: string;
   readonly promptByLocale: LocalizedText;
@@ -140,6 +152,13 @@ export interface LearningV2CourseSessionAuxiliaryEntryV1 {
   }>;
   readonly secondErrorExplanationRef: string;
   readonly secondErrorExplanationByLocale: LocalizedText;
+  /**
+   * Optional for backward-compatible v1 reads; new authored packages provide
+   * exact feedback for every visible wrong response id.
+   */
+  readonly responseFeedbackById?: Readonly<Record<string, LocalizedText>>;
+  /** Present only on the first learner contact with a newly introduced word. */
+  readonly newWordEncounter?: LearningV2CourseSessionNewWordEncounterV1;
 }
 
 export interface LearningV2CourseSessionAuxiliaryChildV1 {
@@ -712,6 +731,17 @@ const AUX_ENTRY_KEYS = [
   "secondErrorExplanationRef",
   "secondErrorExplanationByLocale",
 ] as const;
+const NEW_WORD_ENCOUNTER_KEYS = [
+  "lexicalItemId",
+  "transcription",
+  "playfulMeaningByLocale",
+  "motionVariant",
+  "presentation",
+  "dismissal",
+  "saveControl",
+  "orderWithinSession",
+  "save",
+] as const;
 
 export function parseLearningV2CourseSessionAuxiliaryChildV1(
   raw: string,
@@ -728,7 +758,15 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
   const entries = Object.freeze(
     value.entries.map((entry) => {
       if (!record(entry)) fail();
-      exactKeys(entry, AUX_ENTRY_KEYS);
+      exactKeys(entry, [
+        ...AUX_ENTRY_KEYS,
+        ...(Object.prototype.hasOwnProperty.call(entry, "responseFeedbackById")
+          ? ["responseFeedbackById"]
+          : []),
+        ...(Object.prototype.hasOwnProperty.call(entry, "newWordEncounter")
+          ? ["newWordEncounter"]
+          : []),
+      ]);
       const interactionId = id(entry.interactionId);
       if (
         ids.has(interactionId) ||
@@ -737,6 +775,22 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
         !record(entry.voice)
       )
         fail();
+      let responseFeedbackById:
+        | Readonly<Record<string, LocalizedText>>
+        | undefined;
+      if ("responseFeedbackById" in entry) {
+        if (!record(entry.responseFeedbackById)) fail();
+        const feedbackEntries = Object.entries(entry.responseFeedbackById);
+        if (feedbackEntries.length > 8) fail();
+        responseFeedbackById = Object.freeze(
+          Object.fromEntries(
+            feedbackEntries.map(([responseId, copy]) => [
+              id(responseId),
+              localized(copy, 2_000),
+            ]),
+          ),
+        );
+      }
       ids.add(interactionId);
       exactKeys(entry.report, ["available", "reportContextRef", "screen"]);
       exactKeys(entry.save, [
@@ -773,6 +827,69 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
         entry.save.contentOrigin !== save.contentOrigin
       )
         fail();
+      let newWordEncounter:
+        | LearningV2CourseSessionNewWordEncounterV1
+        | undefined;
+      if (Object.prototype.hasOwnProperty.call(entry, "newWordEncounter")) {
+        if (!record(entry.newWordEncounter)) fail();
+        exactKeys(entry.newWordEncounter, NEW_WORD_ENCOUNTER_KEYS);
+        if (!record(entry.newWordEncounter.save)) fail();
+        exactKeys(entry.newWordEncounter.save, [
+          "available",
+          "savablePhraseRef",
+          "targetLanguage",
+          "targetText",
+          "meaningByLocale",
+          "sourceTextFingerprint",
+          "contentOrigin",
+        ]);
+        const encounterSave = materializeLearningV2CourseSessionSavablePhraseV1(
+          {
+            targetLanguage: entry.newWordEncounter.save
+              .targetLanguage as string,
+            targetText: entry.newWordEncounter.save.targetText as string,
+            meaningByLocale: entry.newWordEncounter.save
+              .meaningByLocale as LocalizedText,
+          },
+        );
+        const transcription = text(entry.newWordEncounter.transcription, 160);
+        const orderWithinSession = entry.newWordEncounter.orderWithinSession;
+        const motionVariant = entry.newWordEncounter.motionVariant;
+        if (
+          !/^\/.+\/$/u.test(transcription) ||
+          !Number.isInteger(orderWithinSession) ||
+          (orderWithinSession as number) < 1 ||
+          (orderWithinSession as number) > 20 ||
+          (motionVariant !== "lesson_hero_b" &&
+            motionVariant !== "premium_a") ||
+          entry.newWordEncounter.presentation !== "blocking_task_overlay" ||
+          entry.newWordEncounter.dismissal !== "continue_only" ||
+          entry.newWordEncounter.saveControl !== "bookmark_icon" ||
+          entry.newWordEncounter.save.available !== true ||
+          entry.newWordEncounter.save.savablePhraseRef !==
+            encounterSave.savablePhraseRef ||
+          entry.newWordEncounter.save.sourceTextFingerprint !==
+            encounterSave.sourceTextFingerprint ||
+          entry.newWordEncounter.save.contentOrigin !==
+            encounterSave.contentOrigin ||
+          encounterSave.savablePhraseRef !== save.savablePhraseRef
+        )
+          fail();
+        newWordEncounter = Object.freeze({
+          lexicalItemId: id(entry.newWordEncounter.lexicalItemId),
+          transcription,
+          playfulMeaningByLocale: localized(
+            entry.newWordEncounter.playfulMeaningByLocale,
+            400,
+          ),
+          motionVariant,
+          presentation: "blocking_task_overlay" as const,
+          dismissal: "continue_only" as const,
+          saveControl: "bookmark_icon" as const,
+          orderWithinSession: orderWithinSession as number,
+          save: encounterSave,
+        });
+      }
       return Object.freeze({
         interactionId,
         report: Object.freeze({
@@ -791,6 +908,8 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
           entry.secondErrorExplanationByLocale,
           2_000,
         ),
+        ...(responseFeedbackById ? { responseFeedbackById } : {}),
+        ...(newWordEncounter ? { newWordEncounter } : {}),
       });
     }),
   );

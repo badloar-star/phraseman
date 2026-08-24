@@ -57,7 +57,7 @@ function addProductRows(sections: NonNullable<DecisionPackInput['sections']>, sc
   addExecutiveRows(sections.executive_kpis!, scope, quality);
 
   for (const row of payloads(rows, 'daily_kpi')) {
-    for (const metricId of ['sessions', 'active_consented_app_instances', 'screen_views', 'lesson_starts', 'lesson_completes', 'review_answers']) {
+    for (const metricId of ['sessions', 'active_consented_app_instances', 'screen_views', 'lesson_starts', 'lesson_completes']) {
       const value = finite(row[metricId]);
       if (value != null) sections.daily_timeseries!.push({ scope, date: String(row.local_date ?? ''), metric_id: metricId, value, denominator: value, status: 'available' });
     }
@@ -98,22 +98,6 @@ function addProductRows(sections: NonNullable<DecisionPackInput['sections']>, sc
         status: 'mature_exact_calendar_day',
       });
     }
-  }
-
-  const review = first(rows, 'review_summary');
-  const reviewDenominator = finite(review.consented_app_instances);
-  for (const [metricId, key] of [
-    ['first_answer_accuracy', 'first_answer_accuracy'], ['delayed_recall_accuracy', 'delayed_recall_accuracy'],
-    ['persisted_answers', 'persisted_answers'], ['mastered_transitions', 'mastered_transitions'],
-  ] as const) {
-    const value = finite(review[key]);
-    if (value != null) sections.learning_outcomes!.push({ scope, metric_id: metricId, value, denominator: reviewDenominator, status: 'available' });
-  }
-  for (const row of payloads(rows, 'review_delay')) {
-    sections.learning_outcomes!.push({ scope, metric_id: 'delayed_recall_accuracy', value: finite(row.accuracy), denominator: finite(row.consented_app_instances), delay_bucket: String(row.delay_bucket ?? ''), status: 'available' });
-  }
-  for (const row of payloads(rows, 'review_content')) {
-    sections.content_diagnostics!.push({ scope, diagnostic_group: String(row.diagnostic_group ?? ''), answers: finite(row.answers), accuracy: finite(row.accuracy), denominator: finite(row.consented_app_instances), status: 'available' });
   }
 
   for (const row of payloads(rows, 'conversion_context')) {

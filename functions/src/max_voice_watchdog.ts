@@ -17,6 +17,7 @@ import { defineSecret } from 'firebase-functions/params';
 import type { Firestore } from 'firebase-admin/firestore';
 import {
   VOICE_QUOTA_COLLECTION,
+  ensureCanonicalVoiceQuota,
   releaseVoiceReservation,
   settleVoiceSession,
   voiceSessionClockStartMs,
@@ -106,6 +107,7 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
         stats.skippedAlive += 1;
         continue;
       }
+      await ensureCanonicalVoiceQuota(db, { authUid, stableUid, nowMs });
 
       const heartbeatElapsedSec = startedAtMs > 0
         ? Math.max(0, Math.ceil((lastHeartbeatMs - startedAtMs) / 1000))

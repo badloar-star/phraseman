@@ -550,6 +550,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'press-primitive-target-hybrid',
+      approval: 'accepted',
       title: cs('press_primitive_target_hybrid_title'),
       kind: 'note',
       note: cs('press_primitive_target_hybrid_note'),
@@ -557,6 +558,7 @@ export const SECTION: ShowcaseSection = {
     // ── Живая панель: единый пресс-стандарт (гибрид) уже реализован ──
     {
       id: 'press-hybrid-live-preview',
+      approval: 'accepted',
       title: cs('press_hybrid_panel_title'),
       kind: 'render',
       detail: cs('press_hybrid_panel_detail'),
@@ -613,6 +615,7 @@ export const SECTION: ShowcaseSection = {
       // характер движения настоящего таббара внизу (капсула «жидкое золото»,
       // bloom активной иконки). Default 'classic', в стор-сборке недоступно.
       id: 'tabbar-hybrid-real-toggle',
+      approval: 'pending',
       title: cs('tabbar_real_toggle_title'),
       detail: cs('tabbar_real_toggle_detail'),
       kind: 'event',
@@ -626,6 +629,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'tabbar-hybrid-live-preview',
+      approval: 'pending',
       title: cs('tabbar_hybrid_preview_title'),
       kind: 'render',
       detail: cs('tabbar_hybrid_preview_detail'),
@@ -642,6 +646,7 @@ export const SECTION: ShowcaseSection = {
     // ── Живая панель: огонь стрика (гибрид) ──
     {
       id: 'streak-flame-hybrid-live-preview',
+      approval: 'pending',
       title: cs('streak_flame_hybrid_title'),
       kind: 'render',
       detail: cs('streak_flame_hybrid_detail'),

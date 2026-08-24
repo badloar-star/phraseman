@@ -48,6 +48,27 @@ describe('MAX daily content-free operations', () => {
       .toEqual(expect.objectContaining({ callsCompleted: 1, callDurationBuckets: { '3to10m': 1 }, endReasons: { completed: 1 } }));
   });
 
+  test.each([
+    'paywall', 'daily_quota', 'monthly_quota', 'kill_switch', 'budget', 'rate_limit',
+  ] as const)('counts the bounded pre-reservation rejection reason %s', (rejectionReason) => {
+    expect(maxVoiceOpsDeltaForEvent({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'mint_rejected',
+      rejectionReason,
+    })).toEqual({
+      mintRejections: 1,
+      mintRejectionReasons: { [rejectionReason]: 1 },
+    });
+  });
+
+  test('rejects an unbounded or missing rejection reason', () => {
+    expect(() => maxVoiceOpsDeltaForEvent({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'mint_rejected',
+      rejectionReason: 'private free text',
+    } as never)).toThrow('max_ops_event_invalid');
+  });
+
   test('lesson_quality maps discipline flags to bounded counters without any text', () => {
     const delta = maxVoiceOpsDeltaForEvent({
       schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,

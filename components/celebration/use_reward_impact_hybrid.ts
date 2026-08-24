@@ -21,7 +21,7 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { CHK, LUM } from '../../constants/motionHybrid';
+import { CHK, LUM, SUITE } from '../../constants/motionHybrid';
 import { isLowEndDevice } from '../../hooks/device_perf_tier';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticSuccess } from '../../hooks/use-haptics';
@@ -52,8 +52,6 @@ export interface RewardImpactHybridOptions {
   scope: string;
 }
 
-const DUST_SLOTS = 12;
-
 export function useRewardImpactHybrid({
   visible,
   armed,
@@ -83,6 +81,8 @@ export function useRewardImpactHybrid({
   const ring1Opacity = useSharedValue(0.5);
   const textOpacity = useSharedValue(0);
   const textY = useSharedValue(10);
+  const subtitleOpacity = useSharedValue(0);
+  const subtitleY = useSharedValue(10);
   const rowsOpacity = useSharedValue(0);
   const rowsY = useSharedValue(10);
   const ctaOpacity = useSharedValue(0);
@@ -90,31 +90,39 @@ export function useRewardImpactHybrid({
 
   const onImpactRef = useRef<() => void>(() => {});
 
+  // Reanimated worklets must not dereference a mutable React ref on the UI
+  // thread. Hop to a stable JS callback first, then read the latest handler.
+  const dispatchImpact = useCallback(() => {
+    onImpactRef.current();
+  }, []);
+
   const handleImpact = useCallback(() => {
     'worklet';
     heroScaleY.value = withSpring(1, CHK.squash);
     heroScaleX.value = withSpring(1, CHK.squash);
     cardRecoilY.value = withSequence(
-      withTiming(CHK.recoilShiftPx, { duration: 0 }),
+      withTiming(CHK.recoilShiftPx, { duration: LUM.instantMs }),
       withSpring(0, CHK.recoil),
     );
     if (strength.rings && !lowEnd) {
-      ring0Scale.value = withTiming(3.2, { duration: 720, easing: Easing.out(Easing.cubic) });
-      ring0Opacity.value = withTiming(0, { duration: 720, easing: Easing.linear });
-      ring1Scale.value = withDelay(90, withTiming(4.2, { duration: 920, easing: Easing.out(Easing.cubic) }));
-      ring1Opacity.value = withDelay(90, withTiming(0, { duration: 920, easing: Easing.linear }));
+      ring0Scale.value = withTiming(3.2, { duration: CHK.ringPrimaryMs, easing: Easing.out(Easing.cubic) });
+      ring0Opacity.value = withTiming(0, { duration: CHK.ringPrimaryMs, easing: Easing.linear });
+      ring1Scale.value = withDelay(CHK.ringDelayMs, withTiming(4.2, { duration: CHK.ringSecondaryMs, easing: Easing.out(Easing.cubic) }));
+      ring1Opacity.value = withDelay(CHK.ringDelayMs, withTiming(0, { duration: CHK.ringSecondaryMs, easing: Easing.linear }));
     }
     runOnJS(hapticSuccess)();
-    runOnJS(onImpactRef.current)();
+    runOnJS(dispatchImpact)();
 
-    textOpacity.value = withDelay(80, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
-    textY.value = withDelay(80, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
-    rowsOpacity.value = withDelay(CHK.ladder[3], withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
-    rowsY.value = withDelay(CHK.ladder[3], withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
-    ctaOpacity.value = withDelay(CHK.ladder[4] + 60, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
-    ctaY.value = withDelay(CHK.ladder[4] + 60, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+    textOpacity.value = withDelay(CHK.impactTextDelayMs, withTiming(1, { duration: LUM.contentMs, easing: Easing.out(Easing.cubic) }));
+    textY.value = withDelay(CHK.impactTextDelayMs, withSpring(0, SUITE.text));
+    subtitleOpacity.value = withDelay(CHK.ladder[2], withTiming(1, { duration: LUM.contentMs, easing: Easing.out(Easing.cubic) }));
+    subtitleY.value = withDelay(CHK.ladder[2], withSpring(0, SUITE.text));
+    rowsOpacity.value = withDelay(CHK.ladder[3], withTiming(1, { duration: LUM.contentMs, easing: Easing.out(Easing.cubic) }));
+    rowsY.value = withDelay(CHK.ladder[3], withSpring(0, SUITE.text));
+    ctaOpacity.value = withDelay(CHK.ladder[4] + CHK.ctaExtraDelayMs, withTiming(1, { duration: LUM.contentMs, easing: Easing.out(Easing.cubic) }));
+    ctaY.value = withDelay(CHK.ladder[4] + CHK.ctaExtraDelayMs, withSpring(0, SUITE.text));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lowEnd, strength.rings]);
+  }, [dispatchImpact, lowEnd, strength.rings]);
 
   useEffect(() => {
     if (!visible) return undefined;
@@ -132,12 +140,12 @@ export function useRewardImpactHybrid({
       heroScaleY.value = 1;
       textOpacity.value = 1;
       textY.value = 0;
+      subtitleOpacity.value = 1;
+      subtitleY.value = 0;
       rowsOpacity.value = 1;
       rowsY.value = 0;
       ctaOpacity.value = 1;
       ctaY.value = 0;
-      void hapticSuccess();
-      onImpactRef.current();
       return undefined;
     }
 
@@ -158,15 +166,17 @@ export function useRewardImpactHybrid({
     ring1Opacity.value = 0.5;
     textOpacity.value = 0;
     textY.value = 10;
+    subtitleOpacity.value = 0;
+    subtitleY.value = 10;
     rowsOpacity.value = 0;
     rowsY.value = 10;
     ctaOpacity.value = 0;
     ctaY.value = 8;
 
     // ── фаза 1: блум (LUM.bloomMs) + карточка выходит из света (LUM.settle) ──
-    backdropOpacity.value = withTiming(1, { duration: 240, easing: Easing.out(Easing.cubic) });
+    backdropOpacity.value = withTiming(1, { duration: LUM.backdropMs, easing: Easing.out(Easing.cubic) });
     bloomOpacity.value = withTiming(1, { duration: LUM.bloomMs, easing: Easing.out(Easing.cubic) });
-    bloomScale.value = withTiming(strength.bloomTo, { duration: 900, easing: Easing.out(Easing.cubic) });
+    bloomScale.value = withTiming(strength.bloomTo, { duration: LUM.bloomDriftMs, easing: Easing.out(Easing.cubic) });
     cardOpacity.value = withDelay(LUM.ladder[1], withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }));
     cardScale.value = withDelay(LUM.ladder[1], withSpring(1, LUM.settle));
 
@@ -184,14 +194,19 @@ export function useRewardImpactHybrid({
   // зачем: отдельный эффект — удар может наступать позже входа (сундук: по тапу).
   const armedNow = armed === undefined ? visible : (visible && armed);
   useEffect(() => {
-    if (!armedNow || reduceMotion) return undefined;
+    if (!armedNow) return undefined;
+    if (reduceMotion) {
+      void hapticSuccess();
+      onImpactRef.current();
+      return undefined;
+    }
 
     const soundTimer = setTimeout(() => {
       soundDirector.request(impactSoundId, { scope, dedupeKey: scope });
     }, LUM.ladder[2]);
 
     const impactDelay = LUM.ladder[2] + 140;
-    heroOpacity.value = withDelay(impactDelay, withTiming(1, { duration: 110, easing: Easing.linear }));
+    heroOpacity.value = withDelay(impactDelay, withTiming(1, { duration: LUM.heroFadeMs, easing: Easing.linear }));
     heroY.value = withDelay(
       impactDelay,
       withSequence(
@@ -204,7 +219,7 @@ export function useRewardImpactHybrid({
     heroScale.value = withDelay(
       impactDelay,
       withSequence(
-        withTiming(1.42, { duration: 0 }),
+        withTiming(1.42, { duration: LUM.instantMs }),
         withTiming(1, { duration: CHK.anticipMs + CHK.fallMs, easing: Easing.bezier(...CHK.fallBezier) }),
       ),
     );
@@ -223,6 +238,8 @@ export function useRewardImpactHybrid({
       cancelAnimation(ring1Opacity);
       cancelAnimation(textOpacity);
       cancelAnimation(textY);
+      cancelAnimation(subtitleOpacity);
+      cancelAnimation(subtitleY);
       cancelAnimation(rowsOpacity);
       cancelAnimation(rowsY);
       cancelAnimation(ctaOpacity);
@@ -263,6 +280,10 @@ export function useRewardImpactHybrid({
     opacity: textOpacity.value,
     transform: [{ translateY: textY.value }],
   }));
+  const subtitleStyle = useAnimatedStyle(() => ({
+    opacity: subtitleOpacity.value,
+    transform: [{ translateY: subtitleY.value }],
+  }));
   const rowsStyle = useAnimatedStyle(() => ({
     opacity: rowsOpacity.value,
     transform: [{ translateY: rowsY.value }],
@@ -286,6 +307,7 @@ export function useRewardImpactHybrid({
       ring0: ring0Style,
       ring1: ring1Style,
       text: textStyle,
+      subtitle: subtitleStyle,
       rows: rowsStyle,
       cta: ctaStyle,
     },

@@ -11,19 +11,23 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 
 // ════════════════════════════════════════════════════════════════════════════
-// Сторож dev-обхода заката «Планов» (владелец 2026-08-24): раздел обязан быть
-// виден в dev-сборке БЕЗ старого плана, но обход НЕ смеет уехать в прод, НЕ
-// смеет отключать сам закат (таймер идёт как у старых юзеров) и НЕ смеет
-// ослаблять контрактных сторожей — под тестовым рантаймом он выключен.
+// Сторож dev-обхода заката «Планов» (владелец 2026-08-24).
+//
+// Раздел обязан быть ПОЛНОСТЬЮ проходимым в dev-сборке без старого плана и без
+// премиума: вкладка видна, тап открывает раздел (а не прячет его), план можно
+// создать. При этом обход НЕ смеет уехать в прод, НЕ смеет отключать закат
+// (таймер идёт как у старых юзеров) и НЕ смеет ослаблять контрактных сторожей.
+//
+// История: первая версия открыла только вкладку — по тапу раздел «пропадал»,
+// потому что стен было четыре (закат, премиум-гейт экрана, ветка «плана нет»
+// в табе, премиум-гейт кнопки создания плана).
 // ════════════════════════════════════════════════════════════════════════════
 describe('personal plan sunset dev bypass', () => {
   it('обход висит на прод-безопасном флаге, а не на голом DEV_MODE/__DEV__', () => {
     const sunset = read('app/personal_plan_sunset.ts');
     expect(sunset).toContain('DEV_CONTENT_UNLOCK');
-    // голый DEV_MODE/__DEV__ физически уезжает в стор-сборку — запрещено
     expect(sunset).not.toMatch(/if\s*\(\s*DEV_MODE\s*\)/);
     expect(sunset).not.toMatch(/if\s*\(\s*__DEV__\s*\)/);
-    // сам флаг обязан гаситься стор-релизом
     expect(read('app/config.ts'))
       .toContain('export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE');
   });
@@ -32,8 +36,6 @@ describe('personal plan sunset dev bypass', () => {
     const sunset = read('app/personal_plan_sunset.ts');
     expect(sunset).toContain('JEST_WORKER_ID');
     expect(sunset).toMatch(/return DEV_CONTENT_UNLOCK && !underTestRuntime;/);
-    // Живое доказательство: без grandfather-права доступа нет, хотя
-    // DEV_CONTENT_UNLOCK в этой среде истинен.
     expect(resolvePersonalPlanSunsetAccess({
       hasOriginalFeatureAccess: true,
       savedState: null,
@@ -64,5 +66,27 @@ describe('personal plan sunset dev bypass', () => {
     const bypassAt = sunset.indexOf('if (devSunsetBypassActive())');
     expect(expiredAt).toBeGreaterThan(-1);
     expect(bypassAt).toBeGreaterThan(expiredAt);
+  });
+
+  it('премиум-стены сняты во ВСЕХ четырёх точках, иначе раздел «пропадает» по тапу', () => {
+    // 1. probe: не уводит на сетевую верификацию премиума
+    expect(read('app/personal_plan_sunset.ts'))
+      .toMatch(/if \(devSunsetBypassActive\(\)\) return 'allowed';/);
+    // 2. гейт экрана: не редиректит на пейвол
+    expect(read('app/personal_plan_sunset_guard.tsx'))
+      .toContain('!verifiedAccess && !isPersonalPlanDevBypassActive()');
+    // 3. таб: премиум не отправляет на пейвол
+    const lessons = read('app/(tabs)/lessons.tsx');
+    expect(lessons).toContain('!verifiedPlanAccess && !isPersonalPlanDevBypassActive()');
+    // 4. кнопка создания плана
+    expect(read('app/personal_plan_setup.tsx'))
+      .toMatch(/if \(isPersonalPlanDevBypassActive\(\)\) return true;/);
+  });
+
+  it('без плана таб ведёт на создание плана, а не прячет раздел', () => {
+    const lessons = read('app/(tabs)/lessons.tsx');
+    // Ветка «плана нет» больше не гасит вкладку безусловно.
+    expect(lessons).not.toContain('if (access.status !== "allowed" || !state) {');
+    expect(lessons).toMatch(/if \(!state\) \{[\s\S]{0,200}isPersonalPlanDevBypassActive\(\)[\s\S]{0,120}personal_plan_setup/);
   });
 });

@@ -5,7 +5,7 @@ const NOW = Date.UTC(2026, 7, 21, 12);
 describe('Jarvis MAX snapshot — one fail-closed adapter', () => {
   test('runs the deterministic department with fetched aggregates', async () => {
     const fetchMaxvoice = jest.fn(async () => ({
-      state: 'ready' as const, sampledDays: 7, callsStarted: 20, callsConnected: 17,
+      state: 'ready' as const, sampledDays: 7, mintRejections: 2, callsStarted: 20, callsConnected: 17,
       callsCompleted: 20, reviewsReady: 20, reconnectAttempts: 10,
       reconnectRecovered: 10, firstAudioGte8s: 0, observedAtMs: NOW,
     }));

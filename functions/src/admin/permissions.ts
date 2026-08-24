@@ -128,3 +128,18 @@ export function hasClaimedPermission(token: unknown, permission: AdminPermission
   if (!hasAdminRole(claims.adminRole)) return true;
   return hasPermission(claims.adminRole, permission);
 }
+
+/**
+ * Callable handlers must authorize the framework-verified auth context, never
+ * accept a detached claim object supplied through request data or a helper.
+ */
+export function hasVerifiedCallablePermission(
+  auth: unknown,
+  permission: AdminPermission,
+): boolean {
+  if (!auth || typeof auth !== 'object') return false;
+  const verified = auth as { uid?: unknown; token?: unknown };
+  return typeof verified.uid === 'string'
+    && verified.uid.trim().length > 0
+    && hasClaimedPermission(verified.token, permission);
+}

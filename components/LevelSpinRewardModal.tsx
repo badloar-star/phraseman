@@ -16,15 +16,15 @@ import ReanimatedAnimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Image } from 'expo-image';
 
-import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
+import LevelSpinRewardArt from './LevelSpinRewardArt';
 import { triLang, type Lang } from '../constants/i18n';
 import { soundDirector } from '../modules/audio/sound_director';
 import {
   giftDisplayDescForLang,
   giftDisplayTitleForLang,
-  giftRarityUiLabel,
+  giftSpinTier,
+  giftSpinTierUiLabel,
   type GiftDef,
 } from '../app/level_gift_system';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -87,7 +87,7 @@ export default function LevelSpinRewardModal({
     icon.setValue(0);
     const rewardEvent = isPremium
       ? 'pm.spin.reward_premium'
-      : gift?.rarity === 'rare' || gift?.rarity === 'epic'
+      : gift && giftSpinTier(gift) !== 'ordinary'
         ? 'pm.spin.reward_rare'
         : 'pm.spin.reward_win';
     soundDirector.request(rewardEvent, {
@@ -148,9 +148,9 @@ export default function LevelSpinRewardModal({
       after();
       return;
     }
-    hybridBackdrop.value = withTiming(0, { duration: LUM.exitMs, easing: REasing.in(REasing.cubic) });
-    hybridPanelOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: REasing.in(REasing.cubic) });
-    hybridPanelScale.value = withTiming(0.97, { duration: LUM.exitMs, easing: REasing.in(REasing.cubic) });
+    hybridBackdrop.value = withTiming(0, { duration: LUM.exitMs, easing: REasing.out(REasing.cubic) });
+    hybridPanelOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: REasing.out(REasing.cubic) });
+    hybridPanelScale.value = withTiming(0.97, { duration: LUM.exitMs, easing: REasing.out(REasing.cubic) });
     // Панель остаётся смонтированной (hybridMounted) до конца LUM.exitMs —
     // родитель закрывается только после того, как хвост выхода фактически доиграл.
     setTimeout(() => {
@@ -170,14 +170,13 @@ export default function LevelSpinRewardModal({
 
   if (motionVariant === 'hybrid' ? !hybridMounted : !visible) return null;
 
-  const effectiveGiftId = gift?.id ?? giftId ?? 'choice_3_level';
   const title = gift
     ? giftDisplayTitleForLang(gift, lang)
     : triLang(lang, { ru: 'ПОДАРОК ПОЛУЧЕН', uk: 'ПОДАРУНОК ОТРИМАНО', es: 'REGALO RECIBIDO', 'pt-BR': 'PRESENTE RECEBIDO', vi: 'ĐÃ NHẬN QUÀ', id: 'HADIAH DITERIMA', tr: 'HEDİYE ALINDI', pl: 'PREZENT ODEBRANY' });
   const description = gift
     ? giftDisplayDescForLang(gift, lang)
     : triLang(lang, { ru: 'Награда сохранена в подарках', uk: 'Нагороду збережено в подарунках', es: 'La recompensa está guardada en regalos', 'pt-BR': 'A recompensa foi salva nos presentes', vi: 'Phần thưởng đã được lưu trong quà tặng', id: 'Hadiah disimpan di hadiah', tr: 'Ödül hediyelerde saklandı', pl: 'Nagroda jest zapisana w prezentach' });
-  const rarity = gift ? giftRarityUiLabel(gift.rarity, lang) : triLang(lang, { ru: 'НАГРАДА', uk: 'НАГОРОДА', es: 'RECOMPENSA', 'pt-BR': 'RECOMPENSA', vi: 'PHẦN THƯỞNG', id: 'HADIAH', tr: 'ÖDÜL', pl: 'NAGRODA' });
+  const rarity = gift ? giftSpinTierUiLabel(gift, lang) : triLang(lang, { ru: 'НАГРАДА', uk: 'НАГОРОДА', es: 'RECOMPENSA', 'pt-BR': 'RECOMPENSA', vi: 'PHẦN THƯỞNG', id: 'HADIAH', tr: 'ÖDÜL', pl: 'NAGRODA' });
   const ctaLabel = triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'TAMAM', pl: 'GOTOWE' });
   const claimA11yLabel = triLang(lang, { ru: 'Получить подарок', uk: 'Отримати подарунок', es: 'Recibir regalo', 'pt-BR': 'Receber presente', vi: 'Nhận phần thưởng', id: 'Ambil hadiah', tr: 'Hediyeyi al', pl: 'Odbierz prezent' });
 
@@ -205,11 +204,11 @@ export default function LevelSpinRewardModal({
             </Text>
             <ReanimatedAnimated.View style={[styles.iconStage, hybridIconPulseStyle]}>
               <View pointerEvents="none" style={[styles.iconHaloHybrid, { backgroundColor: `${t.gold}1F` }]} />
-              <Image
-                accessible={false}
-                source={getLevelGiftRewardIcon(effectiveGiftId, themeMode)}
-                style={styles.icon}
-                contentFit="contain"
+              <LevelSpinRewardArt
+                rewardId={gift?.id ?? giftId ?? 'choice_3_level'}
+                size={126}
+                accessibilityLabel={title}
+                fallbackColor={t.gold}
               />
             </ReanimatedAnimated.View>
             <Text style={[styles.rarity, { color: t.gold }]}>{rarity}</Text>
@@ -258,7 +257,12 @@ export default function LevelSpinRewardModal({
           <Animated.View style={[styles.iconStage, { transform: [{ translateY: iconY }, { scale: iconScale }] }]}>
             {/* guard-ok: classic-путь, задание требует сохранить без изменений 1:1 */}
             <View style={[styles.iconHalo, { borderColor: `${t.gold}88` }]} />
-            <Image accessible={false} source={getLevelGiftRewardIcon(effectiveGiftId, themeMode)} style={styles.icon} contentFit="contain" />
+            <LevelSpinRewardArt
+              rewardId={gift?.id ?? giftId ?? 'choice_3_level'}
+              size={126}
+              accessibilityLabel={title}
+              fallbackColor={t.gold}
+            />
           </Animated.View>
           <Text style={[styles.rarity, { color: t.gold }]}>{rarity}</Text>
           <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
@@ -286,7 +290,6 @@ const styles = StyleSheet.create({
   kicker: { fontSize: 12, lineHeight: 16, fontWeight: '900', letterSpacing: 2.2 },
   iconStage: { width: 164, height: 164, marginTop: 26, marginBottom: 18, alignItems: 'center', justifyContent: 'center' },
   iconHalo: { position: 'absolute', width: 150, height: 150, borderRadius: 75, borderWidth: 2, backgroundColor: '#F3C85C12' },
-  icon: { width: 126, height: 126 },
   rarity: { fontSize: 11, fontWeight: '900', letterSpacing: 1.6, textTransform: 'uppercase' },
   title: { marginTop: 10, fontSize: 27, lineHeight: 32, fontWeight: '900', textAlign: 'center' },
   description: { marginTop: 10, maxWidth: 310, fontSize: 15, lineHeight: 21, textAlign: 'center' },

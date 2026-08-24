@@ -4,12 +4,10 @@
 // герой-награда падает и БЬЁТ (squash + отдача карточки) → кольца/пыль по
 // редкости → каскад строк/CTA. Один движок с BoonActivatedHybrid/остальной
 // celebration-семьёй — useRewardImpactHybrid (constants/motionHybrid LUM/CHK).
-// Подключается ТОЛЬКО через <BoonChestModal motionVariant="hybrid">, боевой
-// путь (classic) не тронут.
+// После приёмки DEV Hub это production-default родительского BoonChestModal;
+// classic оставлен для QA/rollback.
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import type { ImageSourcePropType } from 'react-native';
-import { Image } from 'expo-image';
+import { Animated as RNAnimated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -21,22 +19,26 @@ import Animated, {
 } from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { SUITE } from '../../constants/motionHybrid';
 import { useTheme } from '../ThemeContext';
 import DuoPressable from '../DuoPressable';
 import PressableHybrid from '../PressableHybrid';
-import { paletteForRarity } from '../level_gift_box';
+import { GiftBox3D, type RegisterPalette } from '../level_gift_box';
 import { useRewardImpactHybrid, type RewardImpactRarity } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
+import RetiredRasterFallback from '../feedback/RetiredRasterFallback';
+import { rewardModalAccentColor, rewardModalPrimaryButtonColors, rewardModalPrimaryButtonText } from '../RewardModalBackdrop';
 
 export interface BoonChestHybridProps {
   visible: boolean;
   rarity: RewardImpactRarity;
-  rewardIcon: ImageSourcePropType;
+  palette: RegisterPalette;
   title: string;
   rewardLine: string;
   tapHint: string;
   claimCta: string;
   closeLabel: string;
+  laterLabel: string;
   onClaim: () => void;
   onClose: () => void;
 }
@@ -46,20 +48,34 @@ type Phase = 'box' | 'reveal';
 function BoonChestHybrid({
   visible,
   rarity,
-  rewardIcon,
+  palette,
   title,
   rewardLine,
   tapHint,
   claimCta,
   closeLabel,
+  laterLabel,
   onClaim,
   onClose,
 }: BoonChestHybridProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  // зачем: владелец 2026-08-23 — заголовок/кнопка сундука-награды красились в
+  // жёсткий цвет РЕДКОСТИ (palette.accent: голубой/фиолетовый/золотой), не
+  // связанный с активной темой приложения — модалка «не слушалась» темы.
+  // modalAccent = тот же хелпер, что уже красит LevelGiftModal по теме;
+  // palette (редкость) остаётся только на самом сундуке/эффектах открытия.
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
+  const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const [phase, setPhase] = useState<Phase>('box');
   const wasVisibleRef = useRef(false);
   const reduceMotion = useReduceMotion();
-  const palette = paletteForRarity(rarity);
+  const closedFloat = useRef(new RNAnimated.Value(0)).current;
+  const closedRockValue = useRef(new RNAnimated.Value(0)).current;
+  const closedScale = useRef(new RNAnimated.Value(1)).current;
+  const closedShake = useRef(new RNAnimated.Value(0)).current;
+  const closedLid = useRef(new RNAnimated.Value(0)).current;
+  const closedRock = closedRockValue.interpolate({ inputRange: [-1, 1], outputRange: ['0deg', '0deg'] });
 
   // зачем: лёгкое парение закрытого сундука (закон Световода — без отскока,
   // просто мягкий вертикальный дрейф), ЖИВЁТ отдельно от useRewardImpactHybrid
@@ -77,8 +93,8 @@ function BoonChestHybrid({
     }
     idleFloat.value = withRepeat(
       withSequence(
-        withTiming(-7, { duration: 1700, easing: Easing.inOut(Easing.ease) }),
-        withTiming(2, { duration: 1700, easing: Easing.inOut(Easing.ease) }),
+        withTiming(SUITE.idleFloatMinPx, { duration: SUITE.idleFloatMs, easing: Easing.inOut(Easing.ease) }),
+        withTiming(SUITE.idleFloatMaxPx, { duration: SUITE.idleFloatMs, easing: Easing.inOut(Easing.ease) }),
       ),
       -1,
     );
@@ -107,12 +123,12 @@ function BoonChestHybrid({
     setImpactArmed(false);
   }, [visible]);
 
-  useEffect(() => {
-    impact.setOnImpact(() => {
-      onClaim();
-      setPhase('reveal');
-    });
-  }, [impact, onClaim]);
+  // Регистрируем синхронно с рендером: при Reduce Motion armed-эффект может
+  // завершиться в первый же проход после тапа и не должен обогнать useEffect.
+  impact.setOnImpact(() => {
+    onClaim();
+    setPhase('reveal');
+  });
 
   const handleTap = () => {
     if (phase !== 'box' || impactArmed) return;
@@ -126,7 +142,9 @@ function BoonChestHybrid({
       onClose();
       return;
     }
-    onClaim();
+    // После удара награда уже выдана через onImpact. CTA только закрывает
+    // модалку; повторный onClaim здесь создавал второй grant на один показ.
+    if (phase !== 'reveal') return;
     onClose();
   };
 
@@ -137,9 +155,9 @@ function BoonChestHybrid({
         <Pressable style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={closeLabel} onPress={requestClose} />
 
         <View style={styles.stage} pointerEvents="box-none">
-          <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: `${t.accent}38` }, impact.styles.bloom]} />
+          <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: `${modalAccent}38` }, impact.styles.bloom]} />
 
-          <Animated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: t.accent }, impact.styles.card]} pointerEvents="box-none">
+          <Animated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: modalAccent }, impact.styles.card]} pointerEvents="box-none">
             {phase === 'box' && (
               <PressableHybrid
                 testID="boon-chest-hybrid-close"
@@ -147,18 +165,19 @@ function BoonChestHybrid({
                 onPress={requestClose}
                 variant="icon"
                 style={styles.closeX}
+                contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
               >
                 <Text style={[styles.closeXText, { color: t.textPrimary }]}>×</Text>
               </PressableHybrid>
             )}
 
-            <Text style={[styles.title, { color: t.accent }]}>{title}</Text>
+            <Text style={[styles.title, { color: modalAccent }]}>{title}</Text>
 
             <View style={styles.heroFrame}>
               <RewardImpactRings
                 show={impact.showRings}
                 dustCount={impact.dustCount}
-                color={t.accent}
+                color={palette.accent}
                 ring0Style={impact.styles.ring0}
                 ring1Style={impact.styles.ring1}
               />
@@ -170,20 +189,42 @@ function BoonChestHybrid({
                   disabled={impactArmed}
                   style={styles.chestTap}
                 >
-                  {/* зачем: до удара сундук — та же иконка награды в приглушённом виде; удар колец «открывает» её */}
-                  <Image source={rewardIcon} contentFit="contain" style={[styles.heroImage, styles.heroClosed]} accessible={false} />
+                  <Animated.View style={idleFloatStyle}>
+                    <GiftBox3D
+                      palette={palette}
+                      size={150}
+                      idle={false}
+                      opening={false}
+                      floatY={closedFloat}
+                      rock={closedRock}
+                      scale={closedScale}
+                      shakeX={closedShake}
+                      lidLift={closedLid}
+                    />
+                  </Animated.View>
                 </Pressable>
               ) : (
                 <Animated.View style={impact.styles.hero}>
                   {/* guard-ok: декоративная иконка награды — rewardLine ниже уже
                       называет награду словами, дублировать accessibilityLabel незачем. */}
-                  <Image source={rewardIcon} contentFit="contain" style={styles.heroImage} accessible={false} />
+                  <RetiredRasterFallback kind="gift" size={118} color={palette.accent} />
                 </Animated.View>
               )}
             </View>
 
             {phase === 'box' && !impactArmed && (
-              <Text style={[styles.hint, { color: t.textMuted }]}>{tapHint}</Text>
+              <>
+                <Text style={[styles.hint, { color: t.textMuted }]}>{tapHint}</Text>
+                <PressableHybrid
+                  testID="boon-chest-hybrid-later"
+                  accessibilityLabel={laterLabel}
+                  onPress={requestClose}
+                  style={styles.laterButton}
+                  contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Text style={[styles.laterText, { color: t.textMuted }]}>{laterLabel}</Text>
+                </PressableHybrid>
+              </>
             )}
 
             {phase === 'reveal' && (
@@ -199,9 +240,10 @@ function BoonChestHybrid({
                   onPress={requestClose}
                   edgeColor={t.bgSurface2}
                   edgeHeight={4}
-                  style={[styles.ctaBtn, { backgroundColor: t.accent }]}
+                  gradientColors={primaryButtonColors}
+                  style={styles.ctaBtn}
                 >
-                  <Text style={[styles.ctaText, { color: t.correctText }]}>{claimCta}</Text>
+                  <Text style={[styles.ctaText, { color: primaryButtonText }]}>{claimCta}</Text>
                 </DuoPressable>
               </Animated.View>
             )}
@@ -246,9 +288,9 @@ const styles = StyleSheet.create({
     top: 12,
     right: 12,
     zIndex: 5,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(3,5,10,0.42)',
@@ -263,9 +305,9 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   chestTap: { alignItems: 'center', justifyContent: 'center' },
-  heroImage: { width: 118, height: 118 },
-  heroClosed: { opacity: 0.72, transform: [{ scale: 0.94 }] },
   hint: { fontSize: 13, marginTop: 8, textAlign: 'center', fontWeight: '400' },
+  laterButton: { minHeight: 44, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center' },
+  laterText: { fontSize: 14, fontWeight: '700' },
   rewardText: { fontWeight: '700', textAlign: 'center', marginBottom: 18 },
   ctaWrap: { alignSelf: 'stretch' },
   ctaBtn: { height: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },

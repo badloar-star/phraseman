@@ -9,6 +9,7 @@ const {
   isRevenueCatAnonymousId,
   looksLikePremiumSubscription,
   premiumPlanFromEvent,
+  paidAccessAchievementGrant,
   prioritizeUserCandidates,
   stableCandidateUserIds,
   transferTargetIds,
@@ -17,6 +18,29 @@ const {
   handlePremiumSubscriptionEvent,
   qualifyReferralFromVerifiedPremiumOutcome,
 } = __revenueCatWebhookTestHooks;
+
+describe('paid access achievement facts', () => {
+  it('accepts only confirmed production Plus and lifetime Pro origins', () => {
+    expect(paidAccessAchievementGrant({
+      environment: 'PRODUCTION', type: 'INITIAL_PURCHASE', period_type: 'NORMAL',
+      product_id: 'phraseman_premium_yearly',
+    })).toEqual({ plus: true, pro: false });
+    expect(paidAccessAchievementGrant({
+      environment: 'PRODUCTION', type: 'NON_RENEWING_PURCHASE',
+      product_id: 'phraseman_premium_lifetime_v1',
+    })).toEqual({ plus: false, pro: true });
+  });
+
+  it('rejects trial, restore-like lifecycle and sandbox facts', () => {
+    for (const event of [
+      { environment: 'PRODUCTION', type: 'INITIAL_PURCHASE', period_type: 'TRIAL', product_id: 'phraseman_premium_yearly' },
+      { environment: 'PRODUCTION', type: 'RENEWAL', period_type: 'NORMAL', product_id: 'phraseman_premium_yearly' },
+      { environment: 'SANDBOX', type: 'INITIAL_PURCHASE', period_type: 'NORMAL', product_id: 'phraseman_premium_yearly' },
+    ]) {
+      expect(paidAccessAchievementGrant(event)).toEqual({ plus: false, pro: false });
+    }
+  });
+});
 
 describe('RevenueCat webhook premium matching', () => {
   it('normalizes lifecycle reason enums and rejects arbitrary text', () => {
@@ -50,7 +74,7 @@ describe('RevenueCat webhook premium matching', () => {
       '...normalizeRevenueCatFinancials(event)',
       'billingCadence: classifyRevenueCatBillingCadence(event)',
     ]) expect(source).toContain(field);
-    expect(source).toContain('progress: aggregate.progressPatch');
+    expect(source).toContain('...aggregate.progressPatch');
     expect(source).not.toContain('progressPatch.grossUsdMicros');
     expect(source).not.toContain('progressPatch.estimatedProceedsUsdMicros');
   });
@@ -100,6 +124,26 @@ describe('RevenueCat webhook premium matching', () => {
     expect(premiumPlanFromEvent(monthly)).toBe('monthly');
     expect(looksLikePremiumSubscription(yearly)).toBe(true);
     expect(premiumPlanFromEvent(yearly)).toBe('yearly');
+  });
+
+  it('accepts the exact MAX products from both stores only with the MAX entitlement', () => {
+    for (const productId of [
+      'phraseman_max_monthly_v1',
+      'phraseman_max_monthly_v1:monthly-base',
+    ]) {
+      const event = { product_id: productId, entitlement_ids: ['premium', 'max'] };
+      expect(looksLikePremiumSubscription(event)).toBe(true);
+      expect(premiumPlanFromEvent(event)).toBe('max_monthly');
+    }
+
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_max_monthly_v1',
+      entitlement_ids: ['premium'],
+    })).toBe(false);
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_max_monthly_v1_fake',
+      entitlement_ids: ['premium', 'max'],
+    })).toBe(false);
   });
 
   it('rejects lookalike product families, unsafe base-plan suffixes, and non-premium entitlements', () => {
@@ -479,7 +523,10 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
     };
     const snap = (coll: string, id: string, data: any) => ({ id, ref: docApi(coll, id), exists: !!data, data: () => data });
     const docApi = (coll: string, id: string) => ({
-      collection: coll,
+      collectionName: coll,
+      collection: (child: string) => ({
+        doc: (childId: string) => docApi(`${coll}/${id}/${child}`, childId),
+      }),
       id,
       path: `${coll}/${id}`,
       get: async () => snap(coll, id, store[coll]?.[id]),
@@ -517,7 +564,7 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
           get: async (ref: any) => ref.get(),
           set: async (ref: any, data: any) => ref.set(data),
           update: async (ref: any, data: any) => ref.update(data),
-          delete: async (ref: any) => { delete store[ref.collection][ref.id]; },
+          delete: async (ref: any) => { delete store[ref.collectionName][ref.id]; },
         };
         return fn(tx);
       },

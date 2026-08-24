@@ -16,6 +16,7 @@ import {
   ALL_LEVEL_GIFT_DEFS,
   type GiftDef,
 } from './level_gift_system';
+import { LEVEL_SPIN_REWARD_CATALOG } from './level_spin_reward_catalog';
 import {
   LEVEL_SPIN_BALANCE_CACHE_KEY,
   LEVEL_SPIN_GIFT_JOURNAL_KEY,
@@ -202,12 +203,15 @@ function giftWithSpinAuthority(
   lane: 'base' | 'premium',
 ): GiftDef {
   const gift = giftById(giftId);
+  const spinTier = LEVEL_SPIN_REWARD_CATALOG.find((entry) => entry.id === giftId)?.tier;
   if (receipt.localOnly) return {
     ...gift,
+    ...(spinTier ? { spinTier } : {}),
     choices: gift.choices?.map((choice) => ({ ...choice })),
   };
   return {
     ...gift,
+    ...(spinTier ? { spinTier } : {}),
     spinRewardReceipt: { requestId: receipt.requestId, lane, giftId },
     choices: gift.choices?.map((choice) => ({
       ...choice,

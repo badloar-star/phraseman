@@ -139,7 +139,7 @@ function EnergyBar({ size = 30, maxWidth, ownerActive = true }: Props) {
               animateChange={false}
               shouldShake={false}
               themeMode={themeMode}
-              tintColor={themeMode === 'business' || themeMode === 'businessLight' ? undefined : bonusAccent}
+              tintColor={bonusAccent}
             />
           </Animated.View>
         ))}

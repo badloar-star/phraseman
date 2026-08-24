@@ -6,6 +6,14 @@ const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'),
 const runtime = fs.readFileSync(path.join(__dirname, '..', 'app', 'mistake_practice_session_runtime.ts'), 'utf8');
 
 describe('mistake practice session screen', () => {
+  test('keeps the visual background edge-to-edge while safe area only offsets content', () => {
+    expect(screen).toContain("import ScreenGradient from '../components/ScreenGradient';");
+    expect(screen).toContain('function MistakePracticeScreenFrame');
+    expect(screen).toContain('<ScreenGradient>');
+    expect(screen).toContain('<SafeAreaView style={styles.screen}>');
+    expect(screen).not.toMatch(/<SafeAreaView[^>]*backgroundColor/);
+  });
+
   test('keeps completion self-explanatory without helper microcopy', () => {
     expect(screen).toContain('Сессия завершена');
     expect(screen).not.toContain('Ошибки уже обновлены');
@@ -16,7 +24,7 @@ describe('mistake practice session screen', () => {
   test('uses the new journal/session runtime and standard energy authority', () => {
     expect(screen).toContain('advanceMistakePracticeSession');
     expect(screen).toContain('appendMistakeEvent');
-    expect(screen).toContain('spendOne');
+    expect(screen).toContain('confirmSpendOne');
     expect(screen).toContain('saveMistakePracticeSession');
     expect(screen).toContain('submissionLatchRef.current');
     expect(screen).toContain('MISTAKE_EXERCISE_MODE_REGISTRY[entry.exercise.mode]');
@@ -50,7 +58,8 @@ describe('mistake practice session screen', () => {
     expect(screen).toContain('returnTo?: string');
     expect(screen).toContain('focusMistakeId: focusedMistakeId');
     expect(screen).toContain("params.returnTo === 'max_voice_review'");
-    expect(screen).toContain("router.replace('/max_voice_review' as any)");
+    expect(screen).toContain("pathname: '/max_voice_review'");
+    expect(screen).toContain('params.maxReviewSessionId');
     expect(screen).toContain("const persistSession = entrySource === 'cards'");
     expect(screen).toContain('prepareMistakePracticeSession');
     expect(runtime).toContain('input.persistSession');

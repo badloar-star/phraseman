@@ -15,16 +15,19 @@
  * сами решают, что показывать). Токены темы; fontWeight только 400/700; без
  * обводок (тон, TonalSurface).
  */
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  InteractionManager,
   Modal,
+  Platform,
   Pressable,
   StyleSheet,
   View,
-  useWindowDimensions,
+  type DimensionValue,
 } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
+  cancelAnimation,
   Easing as REasing,
   runOnJS,
   useAnimatedStyle,
@@ -34,12 +37,19 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
+import { NATIVE_MODAL_DISMISS_GAP_MS } from '../../app/safe_modal_navigation';
 import { hapticTap } from '../../hooks/use-haptics';
-import { LUM } from '../../constants/motionHybrid';
+import { LUM, SHEET } from '../../constants/motionHybrid';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useKeyboardBottomInset } from '../keyboardAvoidance';
 import { useTheme } from '../ThemeContext';
 import { LinearGradient } from '../SafeLinearGradient';
 import TonalSurface from '../TonalSurface';
+import {
+  createNativeModalDismissState,
+  reduceNativeModalDismiss,
+  type NativeModalDismissEvent,
+} from './native_modal_dismiss_coordinator';
 
 const SHEET_HIDDEN = 320;
 
@@ -47,27 +57,127 @@ interface HybridSheetShellProps {
   visible: boolean;
   /** Вызывается ровно один раз, когда шторка закрывается (крест/фон/свайп/системная «назад»). */
   onClose: () => void;
+  /** Fires after the native Modal is actually gone; unlike onClose, safe for another modal/navigation. */
+  onDismissed?: () => void;
+  /** Fires synchronously, exactly once, when any shell-owned dismiss path begins. */
+  onDismissRequested?: () => void;
   /** Ярлык для скринридера на зоне фона (обычно = подпись кнопки закрытия). */
   closeLabel: string;
+  /** Backdrop remains tappable, but can be hidden from screen readers when a visible close CTA exists. */
+  backdropAccessible?: boolean;
   testID?: string;
   /** Свечение сверху шита (паттерн AiConsentSheetModal/MistakeEli5Modal/ExplainSheet). */
   glowColor?: string;
-  children: React.ReactNode;
+  /** Optional fixed outer sheet height; padding/safe-area/keyboard inset stay inside this box. */
+  sheetHeight?: DimensionValue;
+  children: React.ReactNode | ((controls: { requestDismiss: () => void }) => React.ReactNode);
 }
 
 export default function HybridSheetShell({
   visible,
   onClose,
+  onDismissed,
+  onDismissRequested,
   closeLabel,
+  backdropAccessible = true,
   testID,
   glowColor,
+  sheetHeight,
   children,
 }: HybridSheetShellProps) {
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const { height: viewportHeight } = useWindowDimensions();
   const keyboardBottomInset = useKeyboardBottomInset(visible);
+  const reduceMotion = useReduceMotion();
+
+  const onDismissedRef = useRef(onDismissed);
+  onDismissedRef.current = onDismissed;
+  const dismissalEnabled = Boolean(onDismissed);
+  const dismissalEnabledRef = useRef(dismissalEnabled);
+  dismissalEnabledRef.current = dismissalEnabled;
+  const previousDismissalEnabledRef = useRef(dismissalEnabled);
+  const coordinatorRef = useRef(createNativeModalDismissState(visible));
+  const dispatchNativeDismissRef = useRef<(event: NativeModalDismissEvent) => void>(() => {});
+  const [nativePresentation, setNativePresentation] = useState(() => ({
+    visible,
+    token: coordinatorRef.current.token,
+  }));
+  const nativeDismissTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const nativeDismissInteractionRef = useRef<{ cancel?: () => void } | null>(null);
+  const cancelNativeDismissFallback = useCallback(() => {
+    if (nativeDismissTimeoutRef.current) {
+      clearTimeout(nativeDismissTimeoutRef.current);
+      nativeDismissTimeoutRef.current = null;
+    }
+    nativeDismissInteractionRef.current?.cancel?.();
+    nativeDismissInteractionRef.current = null;
+  }, []);
+  const dispatchNativeDismiss = useCallback((event: NativeModalDismissEvent) => {
+    const transition = reduceNativeModalDismiss(
+      coordinatorRef.current,
+      event,
+      Platform.OS === 'ios' ? 'ios' : 'android',
+    );
+    coordinatorRef.current = transition.state;
+    for (const command of transition.commands) {
+      if (command.type === 'set-native-visible') {
+        setNativePresentation({ visible: command.visible, token: transition.state.token });
+      } else if (command.type === 'cancel-android-barrier') {
+        cancelNativeDismissFallback();
+      } else if (command.type === 'schedule-android-barrier') {
+        cancelNativeDismissFallback();
+        nativeDismissInteractionRef.current = InteractionManager.runAfterInteractions(() => {
+          nativeDismissTimeoutRef.current = setTimeout(
+            () => dispatchNativeDismissRef.current({ type: 'android-barrier-elapsed', token: command.token }),
+            NATIVE_MODAL_DISMISS_GAP_MS,
+          );
+        });
+      } else if (command.type === 'notify-dismissed') {
+        onDismissedRef.current?.();
+      }
+    }
+  }, [cancelNativeDismissFallback]);
+  dispatchNativeDismissRef.current = dispatchNativeDismiss;
+  const handleNativeDismiss = useCallback((token: number) => {
+    dispatchNativeDismiss({ type: 'native-dismissed', token });
+  }, [dispatchNativeDismiss]);
+
+  useEffect(() => {
+    const wasEnabled = previousDismissalEnabledRef.current;
+    previousDismissalEnabledRef.current = dismissalEnabled;
+
+    if (!dismissalEnabled) {
+      if (wasEnabled) {
+        dispatchNativeDismiss({ type: 'dispose' });
+        coordinatorRef.current = createNativeModalDismissState(visible);
+      }
+      setNativePresentation(current => current.visible === visible ? current : { visible, token: current.token });
+      return;
+    }
+
+    // React StrictMode replays effect cleanup/setup without unmounting state.
+    // Recreate the coordinator after that synthetic dispose so visibility events
+    // continue to drive the same mounted sheet.
+    if (coordinatorRef.current.disposed) {
+      coordinatorRef.current = createNativeModalDismissState(visible);
+      setNativePresentation({ visible, token: coordinatorRef.current.token });
+      return;
+    }
+
+    if (!wasEnabled) {
+      cancelNativeDismissFallback();
+      coordinatorRef.current = createNativeModalDismissState(visible);
+      setNativePresentation({ visible, token: coordinatorRef.current.token });
+      return;
+    }
+
+    dispatchNativeDismiss({ type: 'sync-visible', visible });
+  }, [cancelNativeDismissFallback, dismissalEnabled, dispatchNativeDismiss, visible]);
+
+  useEffect(() => () => {
+    if (dismissalEnabledRef.current) dispatchNativeDismiss({ type: 'dispose' });
+  }, [dispatchNativeDismiss]);
 
   const backdropO = useSharedValue(0);
   const sheetY = useSharedValue(SHEET_HIDDEN);
@@ -75,44 +185,92 @@ export default function HybridSheetShell({
   const dragTranslateY = useSharedValue(0);
 
   useEffect(() => {
-    if (!visible) return;
+    if (!visible) {
+      backdropO.value = 0;
+      sheetY.value = SHEET_HIDDEN;
+      sheetOpacity.value = 0;
+      dragTranslateY.value = 0;
+      return;
+    }
+    if (reduceMotion) {
+      dragTranslateY.value = 0;
+      backdropO.value = 1;
+      sheetY.value = 0;
+      sheetOpacity.value = 1;
+      return;
+    }
     // Вход «из света»: подложка расцветает, лист поднимается БЕЗ отскока
     // (settle 150/22 — закон базы Световода, не пружина-перелёт старой версии).
     dragTranslateY.value = 0;
-    backdropO.value = withTiming(1, { duration: 240, easing: REasing.out(REasing.cubic) });
+    backdropO.value = withTiming(1, { duration: LUM.backdropMs, easing: REasing.out(REasing.cubic) });
     sheetY.value = SHEET_HIDDEN;
     sheetOpacity.value = withTiming(1, { duration: LUM.resolveMs });
     sheetY.value = withSpring(0, LUM.settle);
-  }, [visible, backdropO, sheetY, sheetOpacity, dragTranslateY]);
+    // зачем: аудит 2026-08-17 — единственный вход без очистки среди гибридов.
+    // Если шторку закрыть в середине появления (быстрый жест, переход экрана),
+    // пружина продолжала считаться на UI-потоке уже без потребителя.
+    return () => {
+      cancelAnimation(backdropO);
+      cancelAnimation(sheetY);
+      cancelAnimation(sheetOpacity);
+    };
+  }, [visible, reduceMotion, backdropO, sheetY, sheetOpacity, dragTranslateY]);
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
   const dismissFallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dismissCompletedRef = useRef(false);
+  const dismissRequestedRef = useRef(false);
+  const completeDismiss = useCallback(() => {
+    if (dismissCompletedRef.current) return;
+    dismissCompletedRef.current = true;
+    if (dismissFallbackRef.current) {
+      clearTimeout(dismissFallbackRef.current);
+      dismissFallbackRef.current = null;
+    }
+    handleCloseRef.current();
+  }, []);
+  useEffect(() => {
+    if (visible) {
+      dismissCompletedRef.current = false;
+      dismissRequestedRef.current = false;
+      return;
+    }
+    // Parent-driven hide invalidates every in-flight exit completion. Without
+    // this, a fallback/worklet callback could call onClose again after hide.
+    dismissCompletedRef.current = true;
+    if (dismissFallbackRef.current) {
+      clearTimeout(dismissFallbackRef.current);
+      dismissFallbackRef.current = null;
+    }
+  }, [visible]);
   useEffect(() => () => {
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
   }, []);
 
   const dismissSheet = useCallback(() => {
+    if (dismissRequestedRef.current || dismissCompletedRef.current) return;
+    dismissRequestedRef.current = true;
+    try {
+      onDismissRequested?.();
+    } catch {
+      // Observers may tear down presentation state, but cannot strand the shell mid-dismiss.
+    }
     hapticTap();
+    if (reduceMotion) {
+      completeDismiss();
+      return;
+    }
     backdropO.value = withTiming(0, { duration: LUM.exitMs });
     sheetOpacity.value = withTiming(0, { duration: LUM.exitMs });
     // зачем: страховка на случай finished=false (жест/отмена) — колбэк
     // Reanimated не всегда долетает, шит не должен «зависать открытым».
     if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
-    dismissFallbackRef.current = setTimeout(() => {
-      dismissFallbackRef.current = null;
-      handleCloseRef.current();
-    }, LUM.exitMs + 80);
+    dismissFallbackRef.current = setTimeout(completeDismiss, LUM.exitMs + 80);
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: LUM.exitMs, easing: REasing.out(REasing.cubic) }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
+      if (finished) runOnJS(completeDismiss)();
     });
-  }, [backdropO, sheetOpacity, sheetY]);
-
-  const closeAfterSwipe = useCallback(() => {
-    handleCloseRef.current();
-  }, []);
-
-  const swipeOffDistance = useMemo(() => Math.max(480, viewportHeight * 0.6), [viewportHeight]);
+  }, [backdropO, completeDismiss, onDismissRequested, reduceMotion, sheetOpacity, sheetY]);
 
   const panGesture = useMemo(
     () =>
@@ -128,14 +286,12 @@ export default function HybridSheetShell({
           'worklet';
           const shouldClose = dragTranslateY.value > 88 || e.velocityY > 900;
           if (shouldClose) {
-            dragTranslateY.value = withTiming(swipeOffDistance, { duration: LUM.exitMs }, (finished) => {
-              if (finished) runOnJS(closeAfterSwipe)();
-            });
+            runOnJS(dismissSheet)();
           } else {
-            dragTranslateY.value = withSpring(0, { damping: 22, stiffness: 300 });
+            dragTranslateY.value = reduceMotion ? 0 : withSpring(0, SHEET.dragReturn);
           }
         }),
-    [closeAfterSwipe, dragTranslateY, swipeOffDistance],
+    [dismissSheet, dragTranslateY, reduceMotion],
   );
 
   const backdropStyle = useAnimatedStyle(() => ({
@@ -147,9 +303,16 @@ export default function HybridSheetShell({
   }));
 
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet}>
+    <Modal key={nativePresentation.token} visible={onDismissed ? nativePresentation.visible : visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet} onDismiss={() => handleNativeDismiss(nativePresentation.token)}>
       <GestureHandlerRootView style={styles.root}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={dismissSheet} accessibilityLabel={closeLabel}>
+        <Pressable
+          style={StyleSheet.absoluteFill}
+          onPress={dismissSheet}
+          accessible={backdropAccessible}
+          accessibilityRole={backdropAccessible ? 'button' : undefined}
+          accessibilityLabel={backdropAccessible ? closeLabel : undefined}
+          importantForAccessibility={backdropAccessible ? 'auto' : 'no-hide-descendants'}
+        >
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </Pressable>
 
@@ -157,12 +320,16 @@ export default function HybridSheetShell({
           <GestureDetector gesture={panGesture}>
             <Animated.View
               testID={testID}
+              accessibilityViewIsModal
+              onAccessibilityEscape={dismissSheet}
+              importantForAccessibility="yes"
               style={[
                 styles.sheet,
                 {
                   backgroundColor: t.bgCard,
                   shadowColor: glowColor || t.accent,
                   paddingBottom: 20 + Math.max(bottomInset, keyboardBottomInset),
+                  height: sheetHeight,
                 },
                 sheetStyle,
               ]}
@@ -178,7 +345,11 @@ export default function HybridSheetShell({
               <View style={styles.grabber} pointerEvents="none">
                 <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
               </View>
-              {children}
+              {visible
+                ? (typeof children === 'function'
+                  ? children({ requestDismiss: dismissSheet })
+                  : children)
+                : null}
             </Animated.View>
           </GestureDetector>
         </View>

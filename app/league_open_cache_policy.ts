@@ -41,6 +41,31 @@ export function getCachedLeagueStateSync(): LeagueState | null {
   return cachedLeagueStateSnapshot;
 }
 
+/**
+ * Uses the durable state when available, otherwise preserves the latest
+ * account-scoped in-memory projection. This is the recovery path for Android
+ * SQLITE_FULL: cloud restore can update memory even when AsyncStorage cannot
+ * persist `league_state_v3`.
+ */
+export function resolveLeagueStateSnapshot(raw: unknown): LeagueState | null {
+  const persisted = sanitizeLeagueState(raw);
+  if (persisted) return rememberLeagueStateSnapshot(persisted);
+  return getCachedLeagueStateSync();
+}
+
+/** Projects a cloud restore into memory before any best-effort disk write. */
+export function projectCloudLeagueStateSnapshot(raw: unknown): LeagueState | null {
+  if (cachedLeagueStateSnapshot) return cachedLeagueStateSnapshot;
+  if (raw === null || raw === undefined) return null;
+  try {
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    const state = sanitizeLeagueState(parsed);
+    return state ? rememberLeagueStateSnapshot(state) : null;
+  } catch {
+    return null;
+  }
+}
+
 export function shouldShowLeagueEmptyParticipants(input: EmptyParticipantsInput): boolean {
   return input.localLeagueHydrated && input.participantCount <= 0;
 }

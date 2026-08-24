@@ -23,6 +23,16 @@ import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 
 const RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS = 1_500;
 
+export function resolveRevenueCatStorePlan(
+  existingStorePlan: PremiumStorePlan | null,
+  inferredPlan: PremiumStorePlan,
+): PremiumStorePlan {
+  // A cached MAX plan is stale after expiry/downgrade; current RevenueCat
+  // product metadata must be allowed to move back to an ordinary plan.
+  if (existingStorePlan === 'max_monthly') return inferredPlan;
+  return inferredPlan === 'max_monthly' ? inferredPlan : existingStorePlan ?? inferredPlan;
+}
+
 // Мгновенная доставка премиума: RevenueCat шлёт CustomerInfo при покупке/RENEWAL/
 // восстановлении. Без слушателя клиент узнаёт о продлении только через 5-мин кэш или
 // рестарт (риск «оплатил/продлилось, а премиум виден с задержкой»). Вешаем ОДИН раз.
@@ -59,6 +69,21 @@ export function resolvePremiumPackages(
     byId(/lifetime|forever|one.?time|onetime|perpetual/i);
 
   return { monthly, yearly, lifetime };
+}
+
+export function resolveMaxPackage(
+  offerings: { all?: Record<string, { availablePackages?: PurchasesPackage[] } | undefined> } | null | undefined,
+  expectedProductId?: string,
+): PurchasesPackage | undefined {
+  const packages = offerings?.all?.max?.availablePackages ?? [];
+  const expected = String(expectedProductId ?? '').trim().toLowerCase();
+  return packages.find((pkg) => {
+    const packageId = String(pkg?.identifier ?? '').trim().toLowerCase();
+    const productId = String(pkg?.product?.identifier ?? '').trim().toLowerCase();
+    if (packageId !== 'max_monthly') return false;
+    if (!/^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId)) return false;
+    return !expected || productId === expected;
+  });
 }
 
 function trimKey(raw: unknown): string {
@@ -399,13 +424,15 @@ async function _doInit(): Promise<void> {
             if (!isInitAccountCurrent()) return;
           }
           const existingStorePlan =
-            !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly' || existingPlan === 'lifetime')
+            !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly'
+              || existingPlan === 'lifetime' || existingPlan === 'max_monthly')
               ? existingPlan as PremiumStorePlan
               : null;
-          const plan = existingStorePlan ?? inferPremiumPlanFromProductId(
+          const inferredPlan = inferPremiumPlanFromProductId(
             metadata.productId ?? info.activeSubscriptions?.[0],
             'monthly',
           );
+          const plan = resolveRevenueCatStorePlan(existingStorePlan, inferredPlan);
           await persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false, true);
         }
       }

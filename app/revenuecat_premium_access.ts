@@ -4,12 +4,32 @@ function clean(raw: unknown): string {
   return String(raw ?? '').trim();
 }
 
+export function isRevenueCatMaxProductId(raw: unknown): boolean {
+  return /^phraseman_max_monthly_v1(?::monthly-base)?$/i.test(clean(raw));
+}
+
+export function activeRevenueCatMaxEntitlement(
+  info: CustomerInfo | null | undefined,
+): Record<string, any> | null {
+  const active = (info?.entitlements?.active ?? {}) as Record<string, Record<string, any>>;
+  const entitlement = active.max ?? null;
+  return entitlement && isRevenueCatMaxProductId(entitlement.productIdentifier)
+    ? entitlement
+    : null;
+}
+
+export function revenueCatCustomerInfoHasMaxAccess(
+  info: CustomerInfo | null | undefined,
+): boolean {
+  return activeRevenueCatMaxEntitlement(info) !== null;
+}
+
 /** The only RevenueCat entitlement that unlocks Phraseman Premium. */
 export function activeRevenueCatPremiumEntitlement(
   info: CustomerInfo | null | undefined,
 ): Record<string, any> | null {
   const active = (info?.entitlements?.active ?? {}) as Record<string, Record<string, any>>;
-  return active.premium ?? null;
+  return active.premium ?? activeRevenueCatMaxEntitlement(info);
 }
 
 /** Generic access checks must never accept unrelated RevenueCat products. */

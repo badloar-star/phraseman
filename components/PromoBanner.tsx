@@ -1,8 +1,9 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
+import { Animated, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
 import Reanimated, {
   cancelAnimation,
+  Easing as REasing,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -17,6 +18,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import { animateNextLayoutTransition } from '../app/smooth_layout';
 import { LUM, TOAST } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   getPromoBannerAudience,
   getPromoBannerCampaignId,
@@ -84,16 +86,17 @@ async function readState(lang: string, nowMs: number, isPremium: boolean): Promi
 }
 
 interface PromoBannerProps {
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerProps) {
+export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerProps) {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const { themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
   const translateX = useRef(new Animated.Value(0)).current;
   // зачем: гибрид «Световод» (закон Motion DNA) — вход сверху из света
   // (opacity + y -12→0, LUM.settle, без отскока). Свайп-смахивание остаётся
@@ -103,14 +106,18 @@ export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerPr
   const hybridY = useSharedValue(-12);
   useEffect(() => {
     if (!isHybrid) return;
-    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      hybridOpacity.value = 1;
+      hybridY.value = 0;
+      return;
+    }
+    hybridOpacity.value = withTiming(1, { duration: TOAST.enterMs, easing: REasing.out(REasing.cubic) });
     hybridY.value = withSpring(0, LUM.settle);
     return () => {
       cancelAnimation(hybridOpacity);
       cancelAnimation(hybridY);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHybrid]);
+  }, [isHybrid, reduceMotion, hybridOpacity, hybridY]);
   const hybridEntryStyle = useAnimatedStyle(() => ({
     opacity: hybridOpacity.value,
     transform: [{ translateY: hybridY.value }],

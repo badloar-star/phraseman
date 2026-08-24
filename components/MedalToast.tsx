@@ -15,7 +15,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { getMedalToastThemeStyle } from './medalToastThemeStyles';
 import { noAndroidOutline } from '../constants/androidGlow';
-import { LUM } from '../constants/motionHybrid';
+import { LUM, TOAST } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 interface MedalPalette {
   primary: string;
@@ -61,7 +62,7 @@ interface MedalToastProps {
   spanishUiActive: boolean;
   /** Swipe left/right or upward to dismiss immediately. */
   onDismiss?: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
@@ -223,9 +224,10 @@ function MedalToast({
   lang,
   spanishUiActive,
   onDismiss,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: MedalToastProps) {
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
   // зачем: гибрид «Световод» (закон Motion DNA) — вход из света БЕЗ отскока
   // (LUM.settle), в отличие от боевой пружины anim с перелётом scale 0.92→1.
   // Каждый sharedValue живёт независимо от boевого `anim`, поэтому классика
@@ -234,14 +236,18 @@ function MedalToast({
   const hybridY = useSharedValue(14);
   useEffect(() => {
     if (!isHybrid) return;
-    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      hybridOpacity.value = 1;
+      hybridY.value = 0;
+      return;
+    }
+    hybridOpacity.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.out(Easing.cubic) });
     hybridY.value = withSpring(0, LUM.settle);
     return () => {
       cancelAnimation(hybridOpacity);
       cancelAnimation(hybridY);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHybrid]);
+  }, [isHybrid, reduceMotion, hybridOpacity, hybridY]);
   const hybridWrapStyle = useAnimatedStyle(() => ({
     opacity: hybridOpacity.value,
     transform: [{ translateY: hybridY.value }],
@@ -304,20 +310,18 @@ function MedalToast({
   const palette = TIER_PALETTES[tier];
 
   // Цвета фона/текста под тему
-  const visualTheme = getMedalToastThemeStyle(themeMode ?? 'minimalDark');
+  const visualTheme = getMedalToastThemeStyle(themeMode ?? 'indigo');
   const tierAccent = visualTheme.tierAccents[tier] ?? palette.primary;
-  const tierGlow = visualTheme.tierGlows[tier] ?? palette.glow;
   const accent = promoted ? tierAccent : visualTheme.badgeDownColor;
 
   // зачем: гибрид рендерит через Reanimated.View (LUM.settle, без отскока
   // scale) — боевой путь остаётся на Animated.Value с прежней пружиной anim.
   const WrapView = isHybrid ? Reanimated.View : Animated.View;
   const wrapStyle = isHybrid
-    ? [styles.wrap, { bottom }, hybridWrapStyle]
+    ? [styles.wrapMotion, hybridWrapStyle]
     : [
-        styles.wrap,
+        styles.wrapMotion,
         {
-          bottom,
           opacity: anim,
           transform: [
             { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [22, 0] }) },
@@ -327,6 +331,7 @@ function MedalToast({
       ];
 
   return (
+    <View pointerEvents="box-none" style={[styles.wrapAnchor, { bottom }]}>
     <WrapView pointerEvents={onDismiss ? 'box-none' : 'none'} style={wrapStyle}>
       <Animated.View
         pointerEvents={onDismiss ? 'auto' : 'none'}
@@ -409,6 +414,7 @@ function MedalToast({
       </LinearGradient>
       </Animated.View>
     </WrapView>
+    </View>
   );
 }
 
@@ -436,10 +442,12 @@ function tierBadgeText(
 export default memo(MedalToast);
 
 const styles = StyleSheet.create({
-  wrap: {
+  wrapAnchor: {
     position: 'absolute',
     left: 20,
     right: 20,
+  },
+  wrapMotion: {
     // зачем: нейтральная мягкая тень вместо цветного свечения по акценту медали —
     // плашка остаётся приподнятой над фоном, но без ореола.
     // зачем: карточка внутри скруглена на 22 и с overflow:hidden, а фон даёт

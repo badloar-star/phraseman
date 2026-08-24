@@ -19,7 +19,7 @@ export type UseFeatureIntroResult = Readonly<{
   dismiss: (markSeen: boolean) => void;
 }>;
 
-export function useFeatureIntro(id: string): UseFeatureIntroResult {
+export function useFeatureIntro(id: string, enabled = true): UseFeatureIntroResult {
   const [visible, setVisible] = useState(false);
   // Один показ за время жизни экрана: повторный фокус (например, после
   // возврата с дочернего экрана) не должен снова поднимать модалку.
@@ -27,6 +27,7 @@ export function useFeatureIntro(id: string): UseFeatureIntroResult {
 
   useFocusEffect(
     useCallback(() => {
+      if (!enabled) return undefined;
       if (offeredOnceRef.current) return undefined;
       let alive = true;
       const timer = setTimeout(() => {
@@ -41,8 +42,7 @@ export function useFeatureIntro(id: string): UseFeatureIntroResult {
         alive = false;
         clearTimeout(timer);
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id]),
+    }, [enabled, id]),
   );
 
   // Сброс «один раз за экран» при смене id (тот же хук на разных фичах на
@@ -50,6 +50,13 @@ export function useFeatureIntro(id: string): UseFeatureIntroResult {
   useEffect(() => {
     offeredOnceRef.current = false;
   }, [id]);
+
+  // Главные вкладки живут внутри одного navigation route, поэтому потеря
+  // визуального владения не вызывает blur. Уже открытое интро обязано закрыться
+  // сразу, иначе нативная Modal останется поверх соседней вкладки.
+  useEffect(() => {
+    if (!enabled) setVisible(false);
+  }, [enabled]);
 
   const dismiss = useCallback((markSeen: boolean) => {
     setVisible(false);

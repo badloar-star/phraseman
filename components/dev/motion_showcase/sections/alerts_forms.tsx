@@ -65,6 +65,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'themed_confirm_default_hybrid',
+      approval: 'accepted',
       title: cs('confirm_neutral_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -104,6 +105,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'themed_confirm_accent_hybrid',
+      approval: 'accepted',
       title: cs('confirm_accent_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -124,6 +126,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'themed_confirm_destructive_hybrid',
+      approval: 'accepted',
       title: cs('confirm_destructive_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -165,6 +168,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'themed_choice_two_hybrid',
+      approval: 'accepted',
       title: cs('choice_two_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -203,6 +207,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'themed_choice_three_hybrid',
+      approval: 'accepted',
       title: cs('choice_three_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -239,6 +244,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'report_user_modal_hybrid',
+      approval: 'accepted',
       title: cs('report_user_hybrid_title'),
       detail: cs('report_user_detail'),
       kind: 'render',
@@ -289,6 +295,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'nickname_edit_modal_hybrid',
+      approval: 'accepted',
       title: cs('nickname_edit_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -320,6 +327,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'certificate_name_modal_hybrid',
+      approval: 'accepted',
       title: cs('certificate_name_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -347,6 +355,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'delete_account_confirm_modal_hybrid',
+      approval: 'accepted',
       title: cs('delete_account_confirm_hybrid_title'),
       kind: 'note',
       note: cs('delete_account_confirm_note'),
@@ -359,6 +368,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'review_prompt_modal_hybrid',
+      approval: 'accepted',
       title: cs('review_prompt_modal_hybrid_title'),
       kind: 'note',
       note: cs('review_prompt_modal_note'),

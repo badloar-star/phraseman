@@ -118,6 +118,7 @@ export default function DialogsTabContent({
   // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено», счётчиков
   // X/N в мирах и выбора первого незавершённого сценария в блоке «Продолжить».
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
+  const [heroStartsPaid, setHeroStartsPaid] = useState(false);
 
   // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
   // ручное, по тапу (эталонный паттерн разворота карточки).
@@ -387,6 +388,18 @@ export default function DialogsTabContent({
     return available.find((vm) => vm.status === 'available') ?? available[0];
   }, [courseGroupVMs, challengeVMs]);
 
+  useEffect(() => {
+    let cancelled = false;
+    if (!heroVM || heroVM.status === 'locked') {
+      setHeroStartsPaid(false);
+      return () => { cancelled = true; };
+    }
+    void hasSeenAiDialogIntro(studyTarget, heroVM.scenario.id)
+      .then((seen) => { if (!cancelled) setHeroStartsPaid(seen); })
+      .catch(() => { if (!cancelled) setHeroStartsPaid(false); });
+    return () => { cancelled = true; };
+  }, [heroVM, studyTarget]);
+
   // зачем: владелец просил заходить в «Диалоги» с полностью свёрнутыми
   // разделами — раньше мир героя («Каждый день») раскрывался сам, и экран
   // открывался уже развёрнутым. Теперь развороты — только по тапу.
@@ -460,6 +473,7 @@ export default function DialogsTabContent({
         fontSizes={{ body: f.body, bodyLg: f.bodyLg, sub: f.sub, label: f.label }}
         accessibilityLabel={`${title}. ${levelChip}. ${statusLabel}`}
         accessibilityHint={accessibilityHint}
+        showEnergyCost={status === 'done'}
       />
     );
   };
@@ -614,7 +628,7 @@ export default function DialogsTabContent({
               {/* зачем: цена входа видна ДО нажатия. Здесь бейдж особенно важен:
                   повторный сценарий идёт мимо брифинга (openScenarioDestination),
                   и без него человек нигде не увидел бы, что диалог стоит энергии. */}
-              <EnergyCostBadge testID="dialogs-hero-energy-cost" />
+              {heroStartsPaid ? <EnergyCostBadge testID="dialogs-hero-energy-cost" style={{ right: -4 }} /> : null}
             </View>
           </View>
         </TouchableOpacity>

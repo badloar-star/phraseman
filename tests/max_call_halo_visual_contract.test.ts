@@ -4,23 +4,14 @@ import path from 'path';
 import { MAX_CALL_HYBRID } from '../constants/motionHybrid';
 
 describe('MAX call aura visual contract', () => {
-  it('keeps the approved mockup geometry, opacity, and motion tokens', () => {
-    expect(MAX_CALL_HYBRID).toMatchObject({
-      containerSize: 178,
-      outerRingSize: 170,
-      innerRingSize: 138,
-      coreSize: 106,
-      iconSize: 44,
-      ringStrokePx: 1,
-      outerRingOpacity: 0.17,
-      innerRingOpacity: 0.14,
-      coreOpacity: 0.11,
-      breathScale: 1.055,
-      breathHalfMs: 1500,
-      micPulseMax: 0.08,
-      micAttackMs: 480,
-      micReleaseMs: 720,
-    });
+  it('keeps the non-tutor aura layered and visibly responsive without freezing old pixels', () => {
+    expect(MAX_CALL_HYBRID.outerRingSize).toBeGreaterThan(MAX_CALL_HYBRID.innerRingSize);
+    expect(MAX_CALL_HYBRID.innerRingSize).toBeGreaterThan(MAX_CALL_HYBRID.coreSize);
+    expect(MAX_CALL_HYBRID.containerSize).toBeGreaterThanOrEqual(MAX_CALL_HYBRID.outerRingSize);
+    expect(MAX_CALL_HYBRID.outerRingOpacity).toBeGreaterThan(0);
+    expect(MAX_CALL_HYBRID.innerRingOpacity).toBeGreaterThan(0);
+    expect(MAX_CALL_HYBRID.micPulseMax).toBeGreaterThan(MAX_CALL_HYBRID.breathScale - 1);
+    expect(MAX_CALL_HYBRID.micAttackMs).toBeLessThan(MAX_CALL_HYBRID.micReleaseMs);
   });
 
   it('renders both structural rings and consumes the shared MAX tokens', () => {

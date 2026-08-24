@@ -8,6 +8,9 @@ import {
   assertGiftCertificateSendCoherence,
   buildActivationEmail,
   buildGiftCertificateDeletePlan,
+  giftCertificateBatchOperationStatus,
+  giftCertificateHistoryProjection,
+  giftCertificateListProjection,
   buildGiftCertificateBatchRequestKey,
   createGiftCertificateBatchPlan,
   buildResendRequestHeaders,
@@ -23,13 +26,17 @@ import {
   GIFT_CERTIFICATE_PERSONALIZATION_UPDATE_AUTHORIZATION,
   GIFT_CERTIFICATE_SEND_AUTHORIZATION,
   GIFT_CERTIFICATE_MUTATION_OPTIONS,
+  GIFT_CERTIFICATE_READ_OPTIONS,
   GIFT_CERTIFICATE_REPAIR_OLD_CODE,
   GIFT_CERTIFICATE_REPAIR_OLD_NOTE,
   GIFT_CODE_TTL_DAYS,
   giftCodeExpiryMs,
   giftCertificateDisplayRecord,
+  mergeGiftCertificateHistoryRecords,
   giftPlanTitle,
   normalizeGiftCertificateBatchOperationId,
+  planGiftCertificateBatchOperationCancellation,
+  planGiftCertificateBatchOperationReservation,
   productNameForPlan,
   readBoundedGiftCertificateAssetBody,
   readGiftCertificateBatchReplay,
@@ -37,6 +44,10 @@ import {
   resendFailureOutcomeForHttpStatus,
 } from './web_checkout';
 import * as webCheckoutModule from './web_checkout';
+import {
+  APP_CHECK_SEALED_BY_OWNER_2026_08_17,
+  ENFORCE_APP_CHECK_ADMIN,
+} from './callable_options';
 import {
   GIFT_CERTIFICATE_PHRASES,
   resolveGiftPhrase,
@@ -174,8 +185,11 @@ describe('gift certificate batch', () => {
     expect(plan.auditDoc).toMatchObject({
       action: 'gift_certificate_batch_create',
       adminUid: 'owner-uid',
-      details: { batchId: base.batchId, product: 'yearly', count: 2 },
+      details: { batchId: base.batchId, count: 2 },
     });
+    expect(plan.auditDoc.details).toEqual({ batchId: base.batchId, count: 2 });
+    expect(JSON.stringify(plan.auditDoc)).not.toContain(base.codes[0]);
+    expect(JSON.stringify(plan.auditDoc)).not.toContain('badloar@gmail.com');
   });
 
   it.each([
@@ -341,6 +355,120 @@ describe('gift certificate batch', () => {
       requestKey,
     })).toThrow('gift_certificate_operation_corrupt');
   });
+
+  it('returns a bounded completed receipt without requiring recipient PII after reload', () => {
+    const operationId = '7d71d9f8-8428-4adb-88fa-508a5a59f206';
+    const response = {
+      ok: true as const,
+      operationId,
+      batchId: `gift-batch-${operationId}`,
+      certificates: [{ certificateId: 'GIFT-7QW8E9R2TY' }],
+    };
+    const persisted = {
+      schemaVersion: 'gift-certificate-batch-operation.v1',
+      operationId,
+      actorUid: 'owner-uid',
+      requestKey: 'a'.repeat(64),
+      response,
+    };
+
+    expect(giftCertificateBatchOperationStatus(undefined, {
+      operationId,
+      actorUid: 'owner-uid',
+    })).toEqual({ status: 'not_found' });
+    expect(giftCertificateBatchOperationStatus(persisted, {
+      operationId,
+      actorUid: 'owner-uid',
+    })).toEqual({ status: 'completed', receipt: response });
+    expect(() => giftCertificateBatchOperationStatus(persisted, {
+      operationId,
+      actorUid: 'different-admin',
+    })).toThrow('gift_certificate_operation_conflict');
+  });
+
+  it('models absent, pending, completed and cancelled actor-bound operation states', () => {
+    const operationId = '7d71d9f8-8428-4adb-88fa-508a5a59f206';
+    const actorUid = 'owner-uid';
+    const requestKey = 'a'.repeat(64);
+    const nowMs = Date.UTC(2026, 7, 20, 8, 0, 0);
+    const reservation = planGiftCertificateBatchOperationReservation(undefined, {
+      operationId, actorUid, requestKey, nowMs,
+    });
+    if (reservation.kind !== 'reserve') throw new Error('expected reservation');
+    expect(reservation).toEqual({
+      kind: 'reserve',
+      document: {
+        schemaVersion: 'gift-certificate-batch-operation.v2',
+        state: 'pending',
+        operationId,
+        actorUid,
+        requestKey,
+        createdAtMs: nowMs,
+        updatedAtMs: nowMs,
+      },
+    });
+    expect(giftCertificateBatchOperationStatus(reservation.document, { operationId, actorUid }))
+      .toEqual({ status: 'pending' });
+    expect(planGiftCertificateBatchOperationReservation(reservation.document, {
+      operationId, actorUid, requestKey, nowMs: nowMs + 1,
+    })).toEqual({ kind: 'continue' });
+
+    const response = {
+      ok: true as const,
+      operationId,
+      batchId: `gift-batch-${operationId}`,
+      certificates: [{ certificateId: 'GIFT-7QW8E9R2TY' }],
+    };
+    const completed = { ...reservation.document, state: 'completed', response, updatedAtMs: nowMs + 2 };
+    expect(planGiftCertificateBatchOperationReservation(completed, {
+      operationId, actorUid, requestKey, nowMs: nowMs + 3,
+    })).toEqual({ kind: 'replay', response });
+    expect(giftCertificateBatchOperationStatus(completed, { operationId, actorUid }))
+      .toEqual({ status: 'completed', receipt: response });
+
+    const cancelled = { ...reservation.document, state: 'cancelled', requestKey: '', updatedAtMs: nowMs + 4 };
+    expect(giftCertificateBatchOperationStatus(cancelled, { operationId, actorUid }))
+      .toEqual({ status: 'cancelled' });
+    expect(() => planGiftCertificateBatchOperationReservation(cancelled, {
+      operationId, actorUid, requestKey, nowMs: nowMs + 5,
+    })).toThrow('gift_certificate_operation_cancelled');
+  });
+
+  it('closes the status-not-found -> cancel -> late-create race with a server tombstone', () => {
+    const expected = {
+      operationId: '7d71d9f8-8428-4adb-88fa-508a5a59f206',
+      actorUid: 'owner-uid',
+    };
+    expect(giftCertificateBatchOperationStatus(undefined, expected)).toEqual({ status: 'not_found' });
+    const cancellation = planGiftCertificateBatchOperationCancellation(undefined, {
+      ...expected,
+      nowMs: 100,
+    });
+    if (cancellation.kind !== 'cancel') throw new Error('expected cancellation tombstone');
+    expect(cancellation.kind).toBe('cancel');
+    expect(cancellation.document).toMatchObject({ state: 'cancelled', requestKey: '' });
+    expect(() => planGiftCertificateBatchOperationReservation(cancellation.document, {
+      ...expected,
+      requestKey: 'b'.repeat(64),
+      nowMs: 101,
+    })).toThrow('gift_certificate_operation_cancelled');
+    expect(planGiftCertificateBatchOperationCancellation(cancellation.document, {
+      ...expected,
+      nowMs: 102,
+    })).toEqual({ kind: 'already_cancelled' });
+
+    const pending = planGiftCertificateBatchOperationReservation(undefined, {
+      ...expected,
+      requestKey: 'c'.repeat(64),
+      nowMs: 103,
+    });
+    if (pending.kind !== 'reserve') throw new Error('expected pending reservation');
+    expect(pending.kind).toBe('reserve');
+    expect(() => planGiftCertificateBatchOperationCancellation(pending.document, {
+      ...expected,
+      nowMs: 104,
+    })).toThrow('gift_certificate_operation_in_progress');
+  });
 });
 
 describe('gift certificate deletion', () => {
@@ -355,6 +483,13 @@ describe('gift certificate deletion', () => {
     batchId: 'gift-batch-delete-test',
     createdAtMs: nowMs - 1_000,
     updatedAtMs: nowMs - 500,
+    expiresAtMs: nowMs + 31_536_000_000,
+    codeExpiresAtMs: nowMs + 31_536_000_000,
+    plan: 'yearly',
+    rewardDays: 366,
+    rewardKind: 'days',
+    assetUrl: 'https://knowlyapps.com/assets/gift-certificates/gift-certificate-yearly.webp',
+    testIssue: false,
   };
   const promo = {
     certificateId,
@@ -364,9 +499,10 @@ describe('gift certificate deletion', () => {
     enabled: true,
     maxRedemptions: 1,
     usedCount: 0,
+    expiresAtMs: nowMs + 31_536_000_000,
   };
 
-  it('builds a privacy-safe audit plan for the linked certificate and promo code', () => {
+  it('builds an immutable archive snapshot and privacy-safe audit for the linked records', () => {
     expect(buildGiftCertificateDeletePlan({
       certificateId,
       expectedUpdatedAtMs: certificate.updatedAtMs,
@@ -375,24 +511,49 @@ describe('gift certificate deletion', () => {
       nowMs,
       actorUid: 'owner-uid',
       actorEmail: 'owner@example.com',
+      auditReference: 'audit-gift-delete-opaque',
       reason: 'Duplicate certificate',
     })).toEqual({
       certificateId,
+      archiveDoc: expect.objectContaining({
+        schemaVersion: 'gift-certificate-archive.v1',
+        archiveKey: `gift-certificate-delete:${certificateId}`,
+        certificateId,
+        archiveReason: 'deleted',
+        archivedAtMs: nowMs,
+        publicId: expect.stringMatching(/^gift-archive-[0-9a-f]{20}$/),
+        product: 'yearly',
+        certificate: expect.objectContaining({
+          activationCode: certificateId,
+          recipientEmail: '',
+          assetUrl: certificate.assetUrl,
+        }),
+      }),
       auditDoc: {
         action: 'gift_certificate_delete',
-        targetUid: certificateId,
-        reason: 'Duplicate certificate',
+        targetUid: 'audit-gift-delete-opaque',
         details: {
-          certificateId,
-          batchId: 'gift-batch-delete-test',
-          product: 'yearly',
-          deliveryStatus: 'generated',
+          batchPresent: true,
+          reasonProvided: true,
         },
-        adminEmail: 'owner@example.com',
         adminUid: 'owner-uid',
         ts: new Date(nowMs).toISOString(),
       },
     });
+  });
+
+  it('merges current and deleted archive records without duplicates and in newest-first order', () => {
+    expect(mergeGiftCertificateHistoryRecords([
+      { certificateId: 'GIFT-7QW8E9R2TY', createdAtMs: 100, activationStatus: 'available' },
+      { certificateId: 'GIFT-4AS5DF6GHJ', createdAtMs: 80, activationStatus: 'expired' },
+    ], [
+      { certificateId: 'GIFT-7QW8E9R2TY', createdAtMs: 100, archivedAtMs: 200, archived: true },
+      { certificateId: 'GIFT-ZXCVBNM234', createdAtMs: 90, archivedAtMs: 150, archived: true },
+    ])).toEqual([
+      expect.objectContaining({ certificateId: 'GIFT-7QW8E9R2TY', activationStatus: 'available' }),
+      expect.objectContaining({ certificateId: 'GIFT-ZXCVBNM234', archived: true }),
+      expect.objectContaining({ certificateId: 'GIFT-4AS5DF6GHJ', activationStatus: 'expired' }),
+    ]);
   });
 
   it.each([
@@ -469,6 +630,118 @@ describe('gift certificate deletion', () => {
       actorEmail: 'owner@example.com',
       reason: '',
     })).toThrow('gift_certificate_promo_invalid');
+  });
+
+  it.each([
+    ['disabled promo', certificate, { ...promo, enabled: false }],
+    ['reward mismatch', certificate, { ...promo, rewardKind: 'lifetime', rewardDays: 0 }],
+    ['expiry mismatch', certificate, { ...promo, expiresAtMs: certificate.expiresAtMs + 1 }],
+    ['plan mismatch', { ...certificate, plan: 'lifetime' }, promo],
+    ['asset mismatch', { ...certificate, assetUrl: 'https://example.com/not-canonical.webp' }, promo],
+    ['test issue', { ...certificate, testIssue: true }, promo],
+  ])('rejects destructive deletion for %s', (_label, certificateRecord, promoRecord) => {
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate: certificateRecord,
+      promo: promoRecord,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      auditReference: 'audit-gift-delete-archive',
+      reason: '',
+    })).toThrow();
+  });
+
+  it('redacts archive secrets for money.read and includes them only with manual-access capability', () => {
+    const archive = buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate: { ...certificate, recipientName: 'Recipient', recipientEmail: 'private@example.com' },
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      auditReference: 'audit-gift-delete-list',
+      reason: '',
+    }).archiveDoc;
+    const analyst = giftCertificateHistoryProjection(archive, false);
+    expect(analyst).toMatchObject({ archived: true, product: 'yearly' });
+    expect(JSON.stringify(analyst)).not.toContain(certificateId);
+    expect(JSON.stringify(analyst)).not.toContain('private@example.com');
+    expect(JSON.stringify(analyst)).not.toContain(certificate.assetUrl);
+    expect(analyst).not.toHaveProperty('recipientName');
+    expect(analyst).not.toHaveProperty('certificate');
+
+    const owner = giftCertificateHistoryProjection(archive, true);
+    expect(owner).toMatchObject({
+      certificateId,
+      activationCode: certificateId,
+      recipientName: 'Recipient',
+      recipientEmail: 'private@example.com',
+      assetUrl: certificate.assetUrl,
+      archived: true,
+    });
+  });
+
+  it('redacts both active and archived list rows unless manual-access capability is present', () => {
+    const active = giftCertificateDisplayRecord(certificateId, {
+      ...certificate,
+      recipientName: 'Private Recipient',
+      recipientEmail: 'private@example.com',
+      savedRecipientName: 'Saved Recipient',
+      savedSenderName: 'Saved Sender',
+    }, promo, nowMs);
+    const archive = giftCertificateHistoryProjection(buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate: { ...certificate, recipientEmail: 'archive@example.com' },
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      auditReference: 'audit-gift-delete-list',
+      reason: '',
+    }).archiveDoc, true);
+
+    for (const record of [active, archive]) {
+      const analyst = giftCertificateListProjection(record, false);
+      expect(analyst).toMatchObject({
+        canViewSecrets: false,
+        canDownload: false,
+        canSend: false,
+        canEdit: false,
+        canDelete: false,
+      });
+      const serialized = JSON.stringify(analyst);
+      expect(serialized).not.toContain(certificateId);
+      expect(serialized).not.toContain('@example.com');
+      expect(serialized).not.toContain('Private Recipient');
+      expect(serialized).not.toContain(certificate.assetUrl);
+      expect(analyst).not.toHaveProperty('activationCode');
+      expect(analyst).not.toHaveProperty('recipientEmail');
+      expect(analyst).not.toHaveProperty('savedRecipientName');
+      expect(analyst).not.toHaveProperty('savedSenderName');
+      expect(analyst).not.toHaveProperty('assetUrl');
+    }
+
+    const ownerActive = giftCertificateListProjection(active, true);
+    expect(ownerActive).toMatchObject({
+      certificateId,
+      activationCode: certificateId,
+      canViewSecrets: true,
+      canDownload: true,
+      canSend: true,
+      canEdit: true,
+      canDelete: true,
+    });
+    const redeemed = giftCertificateListProjection(giftCertificateDisplayRecord(
+      certificateId,
+      certificate,
+      { ...promo, usedCount: 1, lastRedeemedAtMs: nowMs - 1 },
+      nowMs,
+    ), true);
+    expect(redeemed).toMatchObject({ activationStatus: 'redeemed', canDelete: false });
   });
 });
 
@@ -788,8 +1061,6 @@ describe('gift certificate canonical personalization and activation presentation
       updatedAtMs: nowMs,
     });
     expect(result.auditDetails).toEqual({
-      certificateId,
-      personalizationMode: 'named',
       showRecipientName: true,
       showSenderName: true,
       recipientEmailSet: true,
@@ -1089,6 +1360,7 @@ describe('synthetic gift certificate replacement', () => {
     nowMs,
     actorUid: 'admin-uid',
     actorEmail: 'owner@example.com',
+    auditReference: 'audit-gift-repair-opaque',
     input: {
       authorization: GIFT_CERTIFICATE_REPLACEMENT_AUTHORIZATION,
       recipientEmail: 'recipient@example.com',
@@ -1161,6 +1433,19 @@ describe('synthetic gift certificate replacement', () => {
     expect(result.deliveryDoc).not.toHaveProperty('customerEmailSentAt');
     expect(result.deliveryDoc).not.toHaveProperty('provider');
     expect(result.deliveryDoc).not.toHaveProperty('amountCents');
+    expect(result.auditDoc).toMatchObject({
+      action: 'gift_certificate_replace_synthetic',
+      targetUid: 'audit-gift-repair-opaque',
+      details: {
+        recipientEmailSet: true,
+        recipientNameSet: true,
+        senderNameSet: true,
+      },
+    });
+    expect(Object.keys(result.auditDoc.details as Record<string, unknown>).sort()).toEqual([
+      'reasonProvided', 'recipientEmailSet', 'recipientNameSet', 'senderNameSet',
+    ]);
+    expect(JSON.stringify(result.auditDoc)).not.toMatch(/GIFT-|recipient@example\.com|Мария|Алексей/);
   });
 
   it.each([
@@ -1320,8 +1605,11 @@ describe('gift certificate prepared-delivery claim', () => {
     expect(resendFailureOutcomeForHttpStatus(409)).toBe('transport_unknown');
   });
 
-  it('hard-enforces App Check and binds Resend retries to the delivery id', () => {
-    expect(GIFT_CERTIFICATE_MUTATION_OPTIONS.enforceAppCheck).toBe(true);
+  it('keeps owner-sealed App Check off and binds Resend retries to the delivery id', () => {
+    expect(APP_CHECK_SEALED_BY_OWNER_2026_08_17).toBe(true);
+    expect(ENFORCE_APP_CHECK_ADMIN).toBe(false);
+    expect(GIFT_CERTIFICATE_MUTATION_OPTIONS.enforceAppCheck).toBe(false);
+    expect(GIFT_CERTIFICATE_READ_OPTIONS.enforceAppCheck).toBe(false);
     expect(buildResendRequestHeaders('resend-key', deliveryId)).toMatchObject({
       Authorization: 'Bearer resend-key',
       'Content-Type': 'application/json',

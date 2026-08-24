@@ -58,7 +58,7 @@ const REWARD_STREAM_IDS = [
   'energy_full', 'xp_250', 'xp_500', 'pearls_5', 'stars_10',
   'hint_1', 'xp_bank_150',
   'xp_2x_24h', 'energy_plus2', 'chain_shield_1', 'hint_3', 'xp_bank_300',
-  'xp_2x_48h', 'energy_plus3', 'xp_bank_600',
+  'xp_2x_48h', 'energy_plus3', 'xp_bank_600', 'cosmetic_avatar_aura',
 ] as const;
 const REWARD_STREAM_REPEATS = 3;
 const REWARD_STREAM_LENGTH = REWARD_STREAM_IDS.length * REWARD_STREAM_REPEATS;

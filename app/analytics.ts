@@ -174,6 +174,12 @@ export type AnalyticsEvent =
   | 'paywall_exit_offer_shown'    // exit-intent: показан тёплый триал-оффер при попытке уйти
   | 'paywall_exit_offer_accepted' // exit-intent: юзер согласился попробовать триал
   | 'paywall_exit_offer_declined' // exit-intent: юзер отказался и закрыл
+  // Удержание в момент отмены подписки (аудит 2026-08-24): причина отмены → шаг
+  // удержания. Пара shown/skipped показывает, на сколько отмен нашёлся ответ.
+  | 'cancel_save_offer_shown'     // показан шаг удержания (в payload: reason, offer)
+  | 'cancel_save_offer_skipped'   // предложить было нечего — ушёл в стор сразу
+  | 'cancel_save_offer_accepted'  // принял удержание (годовой / поддержка / остался)
+  | 'cancel_save_offer_declined'  // отказался и ушёл в стор отменять
   | 'paywall_inventory_resolved'
   | 'purchase_started'            // нажат CTA, открывается диалог стора
   | 'purchase_completed'

@@ -62,14 +62,9 @@ export default function PlusBadge({
   bloomOnMount = false,
 }: PlusBadgeProps) {
   const s = BADGE_SIZE[size];
-  // зачем: isLightThemeMode() в constants/theme.ts узнаёт только sagePorcelain
-  // — businessLight (тоже белый фон #FFFFFF) под неё не подпадает, но золото
-  // там точно так же слепнет. Не трогаем саму функцию (общая, 15+ мест
-  // зависят от её текущего поведения) — здесь просто добавляем вторую белую
-  // тему к локальной проверке.
-  const isLight = isLightThemeMode(themeMode as ThemeMode) || themeMode === 'businessLight';
+  const isLight = isLightThemeMode(themeMode as ThemeMode);
   const isOliveTheme = themeMode === 'olive';
-  const fg = isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : (themeMode === 'business' ? '#0A0A0A' : GOLD_RICH.bronzeDark);
+  const fg = isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : GOLD_RICH.bronzeDark;
   const gradientColors = isOliveTheme ? OLIVE_GRADIENTS.primaryButton : isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
 
   const reduceMotion = useReduceMotion();

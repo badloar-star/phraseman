@@ -22,6 +22,7 @@ export type MoneyReportCollection = typeof MONEY_REPORT_COLLECTIONS[number];
 export interface MoneyRawRow {
   readonly eventType: string | null;
   readonly periodType: string | null;
+  readonly environment?: string | null;
   readonly ownerStableId?: string | null;
   readonly openingBalance?: number | null;
   readonly direction?: string | null;
@@ -90,7 +91,15 @@ export function diagnosePersonalEconomy(
   fetches: readonly MoneySourceFetchResult[],
 ): PersonalEconomyDiagnostics {
   const openings = fetches.find((fetch) => fetch.sourceId === 'client_economy_opening')?.rows ?? [];
-  const operations = fetches.find((fetch) => fetch.sourceId === 'client_economy_operations')?.rows ?? [];
+  const operations = [...(fetches.find((fetch) => fetch.sourceId === 'client_economy_operations')?.rows ?? [])]
+    .sort((left, right) => {
+      const ownerOrder = (left.ownerStableId ?? '').localeCompare(right.ownerStableId ?? '');
+      if (ownerOrder !== 0) return ownerOrder;
+      const leftAt = Number.isSafeInteger(left.createdAtMs) ? Number(left.createdAtMs) : Number.MAX_SAFE_INTEGER;
+      const rightAt = Number.isSafeInteger(right.createdAtMs) ? Number(right.createdAtMs) : Number.MAX_SAFE_INTEGER;
+      if (leftAt !== rightAt) return leftAt - rightAt;
+      return Number(left.revision ?? 0) - Number(right.revision ?? 0);
+    });
   const external = fetches.find((fetch) => fetch.sourceId === 'external_economy_events')?.rows ?? [];
   let invalidRows = 0;
   let revisionDiscontinuities = 0;
@@ -146,6 +155,9 @@ export function diagnosePersonalEconomy(
 
 export function buildMoneyEvidence(fetch: MoneySourceFetchResult): Evidence {
   const aggregate = aggregateMoneyRows(fetch.rows);
+  const trustworthy = (fetch.state === 'ready' || fetch.state === 'empty')
+    && !fetch.truncated
+    && fetch.droppedCount === 0;
   return normalizeEvidence({
     sourceId: fetch.sourceId,
     state: fetch.state,
@@ -153,6 +165,6 @@ export function buildMoneyEvidence(fetch: MoneySourceFetchResult): Evidence {
     truncated: fetch.truncated,
     droppedCount: fetch.droppedCount,
     observedAtMs: fetch.observedAtMs,
-    digest: JSON.stringify(aggregate),
+    digest: trustworthy ? JSON.stringify(aggregate) : '',
   });
 }

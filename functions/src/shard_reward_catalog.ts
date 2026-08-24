@@ -73,7 +73,6 @@ const FIXED_REASON_CATALOG: Readonly<Record<string, CatalogEntry>> = Object.free
   lessons_5_perfect: { amounts: [0], perSourceDailyMax: 60 },
   level_gift: { amounts: [0], perSourceDailyMax: 100 },
   preposition_drill_perfect: { amounts: [0], perSourceDailyMax: 32 },
-  trainer_perfect_session: { amounts: [0], perSourceDailyMax: 20 },
   level_premium_gift: { amounts: [0], perSourceDailyMax: 100 },
   streak_wager_win: { amounts: [0], perSourceDailyMax: 60 },
   global_broadcast_modal: { amounts: [0], perSourceDailyMax: 30 },

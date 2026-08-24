@@ -197,11 +197,24 @@ export const seasonSendFriendShield = onCall(HOT_CALLABLE_OPTIONS, async (reques
   const senderRef = db.collection('users').doc(senderUid);
   const claimRef = senderRef.collection(REWARD_CLAIMS_COLLECTION).doc(`season_consumable_${giftId}`);
   const friendRef = db.collection('users').doc(friendStableId);
+  // зачем: аудит безопасности 2026-08-22 — раньше щит уходил ЛЮБОМУ известному
+  // uid без проверки дружбы (в отличие от friend_gifts.ts, который проверяет
+  // оба friends-документа). Тот же паттерн здесь.
+  const senderFriendRef = senderRef.collection('friends').doc(friendStableId);
+  const friendSenderRef = friendRef.collection('friends').doc(senderUid);
 
   return db.runTransaction(async (tx) => {
-    const [claimSnap, friendSnap] = await Promise.all([tx.get(claimRef), tx.get(friendRef)]);
+    const [claimSnap, friendSnap, senderFriendSnap, friendSenderSnap] = await Promise.all([
+      tx.get(claimRef),
+      tx.get(friendRef),
+      tx.get(senderFriendRef),
+      tx.get(friendSenderRef),
+    ]);
     if (claimSnap.exists) return { ok: true, alreadyClaimed: true };
     if (!friendSnap.exists) throw new HttpsError('not-found', 'friend_not_found');
+    if (!senderFriendSnap.exists || !friendSenderSnap.exists) {
+      throw new HttpsError('failed-precondition', 'not_friends');
+    }
 
     const friendData = friendSnap.data() ?? {};
     const progress = (friendData.progress ?? {}) as Record<string, unknown>;

@@ -27,7 +27,7 @@ type Props = {
   variant: 'welcome' | 'ended';
   onPrimaryPress: () => void;
   onSecondaryPress?: () => void;
-  /** default 'classic' — боевое поведение не меняется, пока не передан явно. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 };
 
@@ -130,7 +130,7 @@ const COPY = {
   },
 };
 
-function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPress, motionVariant = 'classic' }: Props) {
+function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPress, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
   const { theme, themeMode } = useTheme();
   const copy = COPY[lang as keyof typeof COPY] ?? COPY.ru;
@@ -237,6 +237,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
                   variant="secondary"
                   onPress={handleSecondaryPress}
                   style={styles.secondaryButton}
+                  contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.endedSecondary}</Text>
                 </PressableHybrid>
@@ -355,6 +356,8 @@ const styles = StyleSheet.create({
   // панель на 16 (styles.panel в HybridAlertShell), это и есть видимый угол.
   hybridScroll: {
     overflow: 'hidden',
+    width: '100%',
+    maxHeight: '100%',
   },
   hybridScrollContent: {
     flexGrow: 1,

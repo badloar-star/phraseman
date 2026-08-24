@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, AppState, Easing, View, type ViewStyle } from 'react-native';
 import { getAvatarAuraById } from '../constants/avatar_auras';
+import { getApprovedAvatarAuraAsset } from '../app/avatar_aura_assets';
 import { getSeasonAuraAssetForAvatarId } from '../app/season_pass_track_config';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -18,20 +19,23 @@ type Props = {
   ownerActive?: boolean;
 };
 
-// Exported layers keep a rotation-safe transparent margin. At 1.40x the
-// canvas stays compact while the visible art sits just outside the avatar.
+// Owner-approved midpoint between the too-small 1.92x and too-large 2.63x.
+// Season Pass layers retain their established compact scale.
+const APPROVED_AURA_RING_SCALE = 2.28;
 const SEASON_AURA_RING_SCALE = 1.40;
 const SEASON_AURA_LAYOUT_GUTTER = 12;
 
 function AvatarAura({ auraId, size, children, style, animate = true, ownerActive }: Props) {
   const aura = getAvatarAuraById(auraId);
   const { themeMode } = useTheme();
+  const approvedAsset = getApprovedAvatarAuraAsset(aura?.id);
   const seasonAsset = getSeasonAuraAssetForAvatarId(aura?.id, themeMode);
+  const layeredAsset = approvedAsset ?? seasonAsset;
   const auraPhase = useRef(new Animated.Value(0)).current;
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const runtimeActive = isFocused && (ownerActive ?? true);
-  const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined && seasonAsset === undefined;
+  const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined && layeredAsset === undefined;
 
   useEffect(() => {
     if (!shouldAnimate) {
@@ -75,9 +79,10 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
     );
   }
 
-  if (seasonAsset) {
+  if (layeredAsset) {
     const outer = size + SEASON_AURA_LAYOUT_GUTTER;
-    const ringSize = Math.round(size * SEASON_AURA_RING_SCALE);
+    const ringScale = approvedAsset ? APPROVED_AURA_RING_SCALE : SEASON_AURA_RING_SCALE;
+    const ringSize = Math.round(size * ringScale);
     return (
       <View
         style={[
@@ -102,7 +107,7 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
           }}
         >
           <SeasonAuraRing
-            asset={seasonAsset}
+            asset={layeredAsset}
             size={ringSize}
             active={animate && runtimeActive}
           />

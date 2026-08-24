@@ -479,6 +479,57 @@ test('iOS Apple sign-in sends SHA256(raw nonce) to Apple and the exact raw nonce
   });
 });
 
+test('iOS retries ERR_REQUEST_UNKNOWN once before continuing Apple sign-in', async () => {
+  jest.useFakeTimers();
+  try {
+    const unknownError: any = new Error('The authorization attempt failed for an unknown reason');
+    unknownError.code = 'ERR_REQUEST_UNKNOWN';
+    appleSignInImpl
+      .mockRejectedValueOnce(unknownError)
+      .mockResolvedValueOnce({
+        identityToken: 'fake-apple-id-token-after-retry',
+        email: 'apple@example.com',
+        fullName: { givenName: 'Apple', familyName: 'User' },
+      });
+    const { signInWithProvider } = loadAuthProvider(undefined, 'ios');
+
+    const pending = signInWithProvider('apple');
+    await jest.advanceTimersByTimeAsync(700);
+    const result = await pending;
+
+    expect(result.result).not.toBe('error');
+    expect(appleSignInImpl).toHaveBeenCalledTimes(2);
+    expect(logEvent).toHaveBeenCalledWith('auth_signin_apple_unknown_retry', {});
+    expect(authState.calls.filter((call) => call === 'signin')).toHaveLength(1);
+  } finally {
+    jest.useRealTimers();
+  }
+});
+
+test('iOS surfaces a second ERR_REQUEST_UNKNOWN without retrying forever', async () => {
+  jest.useFakeTimers();
+  try {
+    const unknownError: any = new Error('The authorization attempt failed for an unknown reason');
+    unknownError.code = 'ERR_REQUEST_UNKNOWN';
+    appleSignInImpl.mockRejectedValue(unknownError);
+    const { signInWithProvider } = loadAuthProvider(undefined, 'ios');
+
+    const pending = signInWithProvider('apple');
+    await jest.advanceTimersByTimeAsync(700);
+    const result = await pending;
+
+    expect(result).toEqual({
+      result: 'error',
+      error: expect.stringContaining('ERR_REQUEST_UNKNOWN'),
+    });
+    expect(appleSignInImpl).toHaveBeenCalledTimes(2);
+    expect(authState.calls).not.toContain('signin');
+    expect(authState.calls).not.toContain('link');
+  } finally {
+    jest.useRealTimers();
+  }
+});
+
 test('an iOS Apple cancellation mutates no Firebase identity and the retry uses a fresh nonce', async () => {
   const cancelled: any = new Error('cancelled');
   cancelled.code = 'ERR_REQUEST_CANCELED';

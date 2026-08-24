@@ -17,7 +17,7 @@ describe('MAX memory privacy settings contract', () => {
 
   it('registers the screen and all four server-owned callable controls', () => {
     expect(read('app/_layout.tsx')).toContain('<Stack.Screen name="max_memory_settings"');
-    const index = read('functions/src/index.ts');
+    const index = read('functions-max/index.ts');
     for (const name of ['maxVoiceGetMemory', 'maxVoiceUpdateMemory', 'maxVoiceDeleteMemoryItem', 'maxVoiceClearMemory']) {
       expect(index).toContain(name);
     }

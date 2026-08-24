@@ -64,31 +64,6 @@ function lengthGiveaway(options: readonly string[], correctIndex: number): boole
   return Math.abs(correctLen - mid) > Math.max(10, mid * 0.6);
 }
 
-function boundedUtf8(value: string, maxBytes: number): string {
-  if (bytes(value) <= maxBytes) return value;
-  let result = '';
-  for (const char of value) {
-    if (bytes(result + char) > maxBytes) break;
-    result += char;
-  }
-  return result.trim();
-}
-
-function choiceWrongOptionReasons(
-  options: readonly string[],
-  correctIndex: number,
-  ruleNote: string,
-): readonly string[] {
-  return Object.freeze(options.map((option, index) => (
-    index === correctIndex
-      ? ''
-      : boundedUtf8(
-        `Почему «${option}» — ловушка: ${ruleNote}`,
-        TOURNAMENT_TASK_LIMITS.explanationBytes,
-      )
-  )));
-}
-
 // ── Разобранное задание ─────────────────────────────────────────────────────
 
 export type ParsedKindItem = {
@@ -166,6 +141,9 @@ function parseChoice(
     : [];
   const correctIndex = Number(raw.correctIndex);
   const correctAnswer = String(raw.correctAnswer ?? '');
+  const wrongOptionReasons = Array.isArray(raw.wrongOptionReasons)
+    ? raw.wrongOptionReasons.map((reason) => String(reason ?? '').trim())
+    : [];
 
   if (options.length !== CHOICE_OPTIONS
     || options.some((option) => !option || bytes(option) > TOURNAMENT_TASK_LIMITS.optionBytes)) {
@@ -181,6 +159,22 @@ function parseChoice(
 
   const indexValid = Number.isInteger(correctIndex) && correctIndex >= 0 && correctIndex < CHOICE_OPTIONS;
   if (!indexValid) errors.push('kind_correct_index_invalid');
+
+  if (wrongOptionReasons.length !== CHOICE_OPTIONS
+    || wrongOptionReasons.some((reason) => bytes(reason) > TOURNAMENT_TASK_LIMITS.explanationBytes)) {
+    errors.push('kind_wrong_option_reasons_invalid');
+  } else if (indexValid) {
+    const wrongReasons = wrongOptionReasons.filter((_, index) => index !== correctIndex);
+    if (wrongOptionReasons[correctIndex] !== '' || wrongReasons.some((reason) => !reason)) {
+      errors.push('kind_wrong_option_reasons_invalid');
+    } else if (new Set(wrongReasons.map(normalizedText)).size !== CHOICE_OPTIONS - 1) {
+      errors.push('kind_wrong_option_reasons_not_specific');
+    } else if (wrongReasons.some((reason) => (
+      !HAS_CYRILLIC.test(reason) || normalizedText(reason).split(/\s+/u).filter(Boolean).length < 4
+    ))) {
+      errors.push('kind_wrong_option_reasons_invalid');
+    }
+  }
 
   if (indexValid && options.length === CHOICE_OPTIONS) {
     if (options[correctIndex] !== correctAnswer) errors.push('kind_correct_mismatch');
@@ -203,7 +197,7 @@ function parseChoice(
       scenario: common.scenario,
       ruleNote: common.ruleNote,
       example: common.example,
-      wrongOptionReasons: choiceWrongOptionReasons(options, correctIndex, common.ruleNote),
+      wrongOptionReasons: Object.freeze(wrongOptionReasons),
     }),
   };
 }

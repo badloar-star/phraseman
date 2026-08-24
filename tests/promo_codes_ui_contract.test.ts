@@ -64,7 +64,7 @@ describe('promo codes UI/admin contract', () => {
   });
 
   it('admin has a promo code section with generation and copy controls', () => {
-    const admin = read('admin/index.html');
+    const admin = read('admin/v2/legacy.html');
     const index = read('functions/src/index.ts');
     const fn = read('functions/src/promo_codes.ts');
 
@@ -82,7 +82,7 @@ describe('promo codes UI/admin contract', () => {
   });
 
   it('admin shows promo redemptions and backend grants VIP automatically', () => {
-    const admin = read('admin/index.html');
+    const admin = read('admin/v2/legacy.html');
     const fn = read('functions/src/promo_codes.ts');
 
     expect(fn).toContain("vip_active: 'true'");

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
   AppState,
@@ -18,6 +18,7 @@ import { glassFill } from '../components/GlassSurface';
 import { MaxTutorGoalStrip } from '../components/max/MaxTutorGoalStrip';
 import { MaxTutorLiveBoard } from '../components/max/MaxTutorLiveBoard';
 import { MaxCallOrb, type MaxCallOrbRef } from '../components/max/MaxCallOrb';
+import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -72,14 +73,9 @@ import {
   type MaxCallUiState,
 } from './max_call_ui_state';
 import { createTranscriptBuffer, TRANSCRIPT_FLUSH_MS, type TranscriptTurn } from './max_call_transcript';
-import {
-  computeCallDeadlines,
-  formatMinutesPill,
-  pillGranularity,
-  pillTone,
-} from './max_call_quota_view';
+import { computeCallDeadlines } from './max_call_quota_view';
 import { MaxCallHalo, type MaxCallHaloRef } from './max_call_halo';
-import { dailyQuotaFromLimits } from './max_call_daily_quota';
+import { dailyQuotaFromLimits, type MaxDailyQuotaStart } from './max_call_daily_quota';
 import {
   LIVE_CAPTION_INITIAL,
   reduceLiveCaption,
@@ -88,6 +84,7 @@ import {
 import { MaxCallLiveCaptionView } from './max_call_live_caption_view';
 import { setLastMaxCallResult } from './max_voice_review';
 import { invalidateMaxTutorPreview } from './max_tutor_preview';
+import { maxVoiceStudyTarget } from './max_target_gate';
 import { getMaxHomeOrbLayers } from './max_home_orb_assets';
 import { getStableId } from './stable_id';
 import { putMaxFinalizeEnvelope } from './max_voice_finalize_outbox';
@@ -147,8 +144,18 @@ function tutorGoalTitle(
 // Callable-обвязка и сборка промпт-полей минта — в max_call_mint_request
 // (общие с пре-экраном: заготовка минта собирается ТЕМ ЖЕ кодом).
 
-/** Остаток дневных секунд из limits минта (сервер — единственный источник). */
-function dayRemainingFromLimits(limits: Record<string, unknown> | undefined): number | null {
+/**
+ * Остаток дневных секунд из limits минта (сервер — единственный источник).
+ *
+ * зачем (аудит 2026-08-24): значение уже посчитано СЕРВЕРОМ за вычетом брони
+ * этого звонка — reserveVoiceSeconds в max_voice_quota.ts возвращает
+ * `dayRemaining - reservedSec` (бронь на весь sessionCapSec, не на фактически
+ * использованное время). Это готовый остаток «после этого звонка»: вычитать
+ * из него ещё и durationSec на клиенте (как раньше делал вызывающий код)
+ * было двойным вычетом — оно уже сюда включено. Комментарий предыдущей
+ * версии называл значение «before» и вводил в заблуждение.
+ */
+function dayRemainingAfterThisCall(limits: Record<string, unknown> | undefined): number | null {
   if (!limits) return null;
   const v = limits.dayRemainingSec ?? limits.day_remaining_sec;
   return typeof v === 'number' && Number.isFinite(v) ? Math.max(0, v) : null;
@@ -212,75 +219,6 @@ function hintMaxFromLimits(limits: Record<string, unknown> | undefined): number 
   return typeof raw === 'number' && Number.isFinite(raw) && raw >= 0 ? Math.floor(raw) : 4;
 }
 
-// ---------------------------------------------------------------------------
-// Пилюля минут: отдельный memo-компонент с СОБСТВЕННЫМ интервалом. Секундный
-// тик остатка не должен ре-рендерить сцену звонка — setState здесь происходит
-// только когда видимый текст/тон реально меняются (минутная гранулярность
-// почти весь звонок, посекундная — последние 60с; см. max_call_quota_view).
-
-const MinutesPill = memo(function MinutesPill({
-  hardAtMs,
-  minutesWord,
-  colors,
-  fontSize,
-  onLowMinutes,
-}: {
-  hardAtMs: number | null;
-  minutesWord: string;
-  colors: { normal: string; amber: string; red: string };
-  fontSize: number;
-  /** Однократный колбэк перехода в red-зону (≤60с): haptic low-minutes. */
-  onLowMinutes?: () => void;
-}) {
-  const [label, setLabel] = useState('');
-  const [tone, setTone] = useState<'normal' | 'amber' | 'red'>('normal');
-  const lowFiredRef = useRef(false);
-  const onLowMinutesRef = useRef(onLowMinutes);
-  onLowMinutesRef.current = onLowMinutes;
-
-  useEffect(() => {
-    if (hardAtMs === null) {
-      setLabel('');
-      return;
-    }
-    const tick = () => {
-      const remainingSec = Math.max(0, Math.round((hardAtMs - Date.now()) / 1000));
-      // Формула счёта минут — ТОЛЬКО в formatMinutesPill (каноника модуля);
-      // пилюля передаёт локализованное слово, а не дублирует Math.ceil.
-      const next = formatMinutesPill(remainingSec, pillGranularity(remainingSec), minutesWord);
-      setLabel((prev) => (prev === next ? prev : next));
-      const nextTone = pillTone(remainingSec);
-      if (nextTone === 'red' && !lowFiredRef.current) {
-        lowFiredRef.current = true;
-        onLowMinutesRef.current?.();
-      }
-      setTone((prev) => (prev === nextTone ? prev : nextTone));
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [hardAtMs, minutesWord]);
-
-  if (label === '') return null;
-  const color = tone === 'red' ? colors.red : tone === 'amber' ? colors.amber : colors.normal;
-  return (
-    <View
-      style={{
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        borderRadius: 12,
-        backgroundColor: 'rgba(0,0,0,0.18)',
-      }}
-    >
-      <Text style={{ color, fontSize, fontWeight: '800', fontVariant: ['tabular-nums'] }}>
-        {label}
-      </Text>
-    </View>
-  );
-});
-
-// ---------------------------------------------------------------------------
-
 function haloColorFor(phase: MaxCallUiPhase, t: { accent: string; textMuted: string; textGhost: string; gold: string }): string {
   switch (phase) {
     case 'connected_greeting':
@@ -302,12 +240,12 @@ function haloColorFor(phase: MaxCallUiPhase, t: { accent: string; textMuted: str
   }
 }
 
-export default function MaxCallSession() {
+function MaxCallSessionContent() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
-  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
+  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string; studyTarget?: string }>();
 
   const format: MaxVoiceMintRequest['format'] =
     params.format === 'companion' || params.format === 'trial' || params.format === 'tutor'
@@ -317,6 +255,7 @@ export default function MaxCallSession() {
   const scenarioId = String(params.scenarioId ?? 'coffee');
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
   const devMode = params.devMode === '1';
+  const callStudyTarget = maxVoiceStudyTarget(params.studyTarget ?? studyTarget);
 
   const scenario = useMemo(
     () => (format === 'companion' || format === 'tutor' ? undefined : getScenarioById(scenarioId)),
@@ -357,8 +296,8 @@ export default function MaxCallSession() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [muted, setMuted] = useState(false);
   const [hardAtMs, setHardAtMs] = useState<number | null>(null);
-  /** Дедлайн пилюли в шапке: min(конец сессии, конец дневного запаса). */
-  const [headerDeadlineAtMs, setHeaderDeadlineAtMs] = useState<number | null>(null);
+  const [dailyQuota, setDailyQuota] = useState<MaxDailyQuotaStart | null>(null);
+  const [startedAtMs, setStartedAtMs] = useState<number | null>(null);
   const [connectionRetryTick, setConnectionRetryTick] = useState(0);
   const maxOrbLayers = useMemo(() => getMaxHomeOrbLayers(themeMode), [themeMode]);
 
@@ -446,7 +385,7 @@ export default function MaxCallSession() {
       // прямой deeplink обязан деградировать честно, без краша.
       if (__DEV__) console.warn('[MAX Voice] native_unavailable: rebuild the iOS development client');
       // Заготовку пре-экрана никто не заберёт — вернуть резерв серверу.
-      abandonPremint(premintKey({ format, scenarioId, cefr, devMode }), releaseUnusedMint);
+      abandonPremint(premintKey({ format, scenarioId, cefr, devMode, studyTarget: callStudyTarget }), releaseUnusedMint);
       setUiState((prev) => reduceMaxCallUi(prev, { type: 'fail', reason: 'native_unavailable' }));
       return;
     }
@@ -454,7 +393,7 @@ export default function MaxCallSession() {
     const heartbeatCallable = maxVoiceCallable<unknown>('maxVoiceHeartbeat');
     const endCallable = maxVoiceCallable<unknown>('maxVoiceSessionEnd');
     const safetyReportCallable = maxVoiceCallable<unknown>('maxVoiceSafetyReport');
-    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: isTutor ? 'en' : studyTarget };
+    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget };
     const key = premintKey(callParams);
     if (isTutor) {
       // Тот же каталог, что ушёл в промпт — теперь СТАБИЛЬНЫЙ (рычаг 2, кэш):
@@ -462,6 +401,7 @@ export default function MaxCallSession() {
       // же функцию, иначе учитель предложит сцену, а клиент отвергнет её id.
       tutorRunnerRef.current = createTutorToolRunner({
         scenes: tutorStableSceneItems(),
+        studyTarget: callStudyTarget,
         sceneBlock: tutorSceneBlock,
         onSceneChange: (scene) => {
           const sc = scene ? getScenarioById(scene.id) : undefined;
@@ -552,17 +492,13 @@ export default function MaxCallSession() {
         if (!runner) return;
         const result = runner.handle(call.name, call.args);
         clientRef.current?.sendToolResult(call.callId, result.output, { respond: result.respond });
-        // зачем: владелец 2026-08-16 — опасные/грубые разговоры сразу в журнал и
-        // Telegram, не дожидаясь разбора после урока (приложение могут убить).
-        // Мгновенный репорт: дата, сессия, что говорил ученик + контекст.
+        // Опасный сигнал отправляется сразу, но только как категория с серверным
+        // sessionId и стабильным tool-call id. Реплики и note не покидают звонок.
         if (call.name === 'flag_safety' && result.output.startsWith('Noted')) {
-          const history = bufferRef.current.history().slice(-40).map((t) => ({ role: t.role, content: t.text }));
           void safetyReportCallable({
             sessionId: clientRef.current?.sessionId() ?? '',
+            reportId: call.callId,
             kind: String(call.args.kind ?? ''),
-            note: String(call.args.note ?? ''),
-            history,
-            mode: 'voice_tutor',
           }).catch(() => {
             // Не доехало — тот же флаг уйдёт с разбором после урока (safetyFlags).
           });
@@ -739,11 +675,11 @@ export default function MaxCallSession() {
   function onCallActivated(): void {
     const startedAt = Date.now();
     startedAtRef.current = startedAt;
+    setStartedAtMs(startedAt);
     const mint = clientRef.current?.mintResult();
     if (!mint) return;
-    // зачем: квота нужна только чтобы вычислить дедлайн пилюли. Держать её в
-    // состоянии смысла нет — это лишний ре-рендер сцены звонка на ровном месте.
     const quota = dailyQuotaFromLimits(mint.limits);
+    setDailyQuota(quota);
     // Таймер подсказок: пороги из limits минта (hintDelaySec per-CEFR,
     // hintMaxPerSession), вторая подсказка через +10с (спека §1).
     hintTimerRef.current = createHintTimer({
@@ -758,15 +694,6 @@ export default function MaxCallSession() {
       graceTailSec: GRACE_TAIL_SEC,
     });
     setHardAtMs(deadlines.hardAtMs);
-    // зачем (владелец 2026-08-23): «убери вот эту плашку вверху MAX». Раньше
-    // шапка показывала ЛИБО двухстрочную плашку дневного запаса, ЛИБО пилюлю
-    // сессии. Теперь всегда одна пилюля, а дедлайн для неё — наиболее ранний
-    // из двух: кончится раньше день — тикаем по дню, раньше сессия — по сессии.
-    // Пессимистично, как и весь расчёт квоты (см. max_call_quota_view).
-    const dayEndsAtMs = quota === null ? null : startedAt + quota.startRemainingSec * 1000;
-    setHeaderDeadlineAtMs(
-      dayEndsAtMs === null ? deadlines.hardAtMs : Math.min(deadlines.hardAtMs, dayEndsAtMs),
-    );
     if (isTutor) {
       if (mint.tutor?.name) setTutorName(mint.tutor.name);
       const plan = mint.tutor?.plan;
@@ -904,7 +831,7 @@ export default function MaxCallSession() {
       const sessionId = mint?.session_id;
       if (!sessionId) throw new Error('max_finalize_session_missing');
       const history = bufferRef.current.history();
-      const dayRemainingBefore = dayRemainingFromLimits(mint?.limits);
+      const dayRemainingAfter = dayRemainingAfterThisCall(mint?.limits);
       const tutor = isTutor
         ? {
             name: personaName,
@@ -936,6 +863,7 @@ export default function MaxCallSession() {
           ...(format === 'companion' ? {} : { scenarioId }),
           cefr: normalizedCefr,
           interfaceLang: lang,
+          studyTarget: callStudyTarget,
           endReason: endReasonRef.current,
           ...(tutor?.goalProgress?.goalId || tutor?.goal?.id
             ? { goalId: tutor.goalProgress?.goalId ?? tutor.goal?.id }
@@ -968,12 +896,15 @@ export default function MaxCallSession() {
         scenarioId: format === 'companion' ? undefined : scenarioId,
         cefr,
         devMode,
-        studyTarget: isTutor ? 'en' : studyTarget,
+        studyTarget: callStudyTarget,
         sessionId,
         personaName,
         endReason: endReasonRef.current,
-        dayRemainingSec:
-          dayRemainingBefore === null ? null : Math.max(0, dayRemainingBefore - durationSec),
+        // зачем (аудит 2026-08-24, исправление двойного вычета): dayRemainingAfter
+        // уже посчитан сервером за вычетом брони этого звонка — второй раз
+        // durationSec вычитать не нужно, иначе минуты занижаются и человеку
+        // могут честно, но неверно, сказать «минуты закончились».
+        dayRemainingSec: dayRemainingAfter,
         ...(tutor ? { tutor } : {}),
       });
       if (isTutor) invalidateMaxTutorPreview();
@@ -982,7 +913,7 @@ export default function MaxCallSession() {
     })().catch(() => {
       setFinalizePersistError(true);
     });
-  }, [uiState.phase, format, scenarioId, cefr, devMode, studyTarget, personaName, isTutor, lang, router, finalizeRetryTick]);
+  }, [uiState.phase, format, scenarioId, cefr, devMode, callStudyTarget, personaName, isTutor, lang, router, finalizeRetryTick]);
 
   // -------------------------------------------------------------------------
   const onEndPress = () => {
@@ -1002,6 +933,8 @@ export default function MaxCallSession() {
     learnerEndRequestedRef.current = false;
     endReasonRef.current = 'completed';
     setHardAtMs(null);
+    setDailyQuota(null);
+    setStartedAtMs(null);
     // зачем (аудит 2026-08-23): setDailyQuota осталась от рефакторинга, который
     // осознанно убрал квоту из состояния (см. комментарий у dailyQuotaFromLimits
     // выше) — сеттера больше не существует, и повторный звонок падал с
@@ -1094,16 +1027,16 @@ export default function MaxCallSession() {
   const breathing = phase === 'connecting' || phase === 'thinking';
   const hint = maxVoicePhaseLabel(phase, uiState.eqOwner, lang);
   const failureActions = maxVoiceFailureActions(lang);
-  const minutesWord = triLang(lang, {
-    ru: 'мин',
-    uk: 'хв',
-    es: 'min',
-    'pt-BR': 'min',
-    vi: 'phút',
-    id: 'mnt',
-    tr: 'dk',
-    pl: 'min',
-  });
+  const liveStatus = phase === 'connecting' && isTutor && tutorGoal.title !== ''
+    ? tutorGoal.title
+    : phase !== 'failed' ? hint : '';
+
+  useEffect(() => {
+    if (hardAtMs === null || phase === 'failed' || phase === 'ended') return undefined;
+    const delayMs = Math.max(0, hardAtMs - Date.now() - 60_000);
+    const timer = setTimeout(() => sfxRef.current?.midCall('low_minutes'), delayMs);
+    return () => clearTimeout(timer);
+  }, [hardAtMs, phase]);
 
   useEffect(() => {
     if (phase !== 'failed') {
@@ -1240,19 +1173,17 @@ export default function MaxCallSession() {
               </Text>
             )}
           </View>
-          {/* зачем (владелец 2026-08-23): «убери вот эту плашку вверху MAX».
-              Двухстрочная плашка «Дневной запас MAX» жила в слоте 116px —
-              подпись переносилась, а число («2 мин») выезжало за экран. Вместо
-              неё одна компактная пилюля: она и так тикает вниз по остатку дня,
-              потому что дедлайн берётся по наиболее раннему из двух пределов.
-              Полный дневной запас с полосой остался на пре-экране звонка. */}
-          <MinutesPill
-            hardAtMs={headerDeadlineAtMs}
-            minutesWord={minutesWord}
-            colors={{ normal: t.textMuted, amber: t.gold, red: t.wrong }}
-            fontSize={f.caption}
-            onLowMinutes={() => sfxRef.current?.midCall('low_minutes')}
-          />
+          {dailyQuota && startedAtMs !== null ? (
+            <View style={{ width: 132 }}>
+              <MaxDailyQuotaMeter
+                startRemainingSec={dailyQuota.startRemainingSec}
+                maxSec={dailyQuota.maxSec}
+                runningSinceMs={startedAtMs}
+                variant="compact"
+                lang={lang}
+              />
+            </View>
+          ) : null}
         </View>
 
         {isTutor && (
@@ -1322,25 +1253,21 @@ export default function MaxCallSession() {
           {/* зачем (владелец 2026-08-23): «пока идёт загрузка, пускай на экране
               будет написано, какая цель — что мы сегодня должны делать». Ждать
               первую фразу молча незачем: показываем цель урока, а не статус связи. */}
-          {phase === 'connecting' && isTutor && tutorGoal.title !== '' ? (
+          {liveStatus !== '' ? (
             <Text
               accessibilityLiveRegion="polite"
               style={{
-                color: t.textSecond,
-                fontSize: f.body,
-                fontWeight: '700',
+                color: phase === 'connecting' && isTutor ? t.textSecond : t.textMuted,
+                fontSize: phase === 'connecting' && isTutor ? f.body : f.caption,
+                fontWeight: phase === 'connecting' && isTutor ? '700' : '400',
                 marginTop: 14,
-                marginHorizontal: 32,
-                textAlign: 'center',
-                lineHeight: Math.round(f.body * 1.35),
+                marginHorizontal: phase === 'connecting' && isTutor ? 32 : 0,
+                textAlign: phase === 'connecting' && isTutor ? 'center' : 'auto',
+                lineHeight: phase === 'connecting' && isTutor ? Math.round(f.body * 1.35) : undefined,
               }}
               maxFontSizeMultiplier={2}
             >
-              {tutorGoal.title}
-            </Text>
-          ) : phase !== 'failed' && hint !== '' ? (
-            <Text accessibilityLiveRegion="polite" style={{ color: t.textMuted, fontSize: f.caption, marginTop: 14 }} maxFontSizeMultiplier={2}>
-              {hint}
+              {liveStatus}
             </Text>
           ) : null}
         </View>
@@ -1569,4 +1496,8 @@ export default function MaxCallSession() {
       </SafeAreaView>
     </ScreenGradient>
   );
+}
+
+export default function MaxCallSession() {
+  return <MaxCallSessionContent />;
 }

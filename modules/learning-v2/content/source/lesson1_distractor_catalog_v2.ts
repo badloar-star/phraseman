@@ -509,6 +509,7 @@ function upgradePhraseInPlace(phrase: EpisodeSourcePhrase, sessionOrdinal: numbe
  * slices with pair-specific, category-bounded traps before any shard is built.
  */
 export function upgradeLesson1SessionDistractorsV2(source: SessionSource): SessionSource {
+  if (source.distractorAuthorship === 'manual') return source;
   source.phrases.forEach((phrase) => upgradePhraseInPlace(phrase, source.requiredSessionOrdinal));
   return source;
 }

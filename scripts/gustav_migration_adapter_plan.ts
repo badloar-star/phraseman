@@ -331,7 +331,6 @@ async function main(): Promise<void> {
   const records = storage.records ?? [];
   const surfaceEntries = surfaces.surfaces ?? [];
   const unknownKeys = keysMatching(records, [/^<unknown>$/]);
-  const lessonTests = [/lesson/, /unlocked_lessons/];
   const quizTests = [/quiz/];
   const mistakePracticeTests = [/mistake_practice/, /preposition/, /prep_drill/];
   const flashcardTests = [/flashcard/, /irregular_verbs/];
@@ -610,7 +609,7 @@ async function main(): Promise<void> {
       implementationSteps: [
         'Prefix every diagnosis and recommendation id with studyTarget.',
         'Store localized feedback under studyTarget/sourceLocale, not under target-only progress.',
-        'Make My Practice recommendations consume target practice store snapshots.',
+        'Make diagnosis recommendations consume Mistake Practice projections.',
       ],
       testsRequired: [
         'fr:<id> and en:<id> diagnoses cannot collide.',
@@ -620,7 +619,7 @@ async function main(): Promise<void> {
         'Diagnosis v2 can be disabled and legacy English diagnostic_last kept as en-only.',
       ],
       blockers: [
-        'My Practice can otherwise mix English diagnosis and French recommendations.',
+        'Diagnosis can otherwise mix English mistakes and French recommendations.',
       ],
     }),
     adapter({
@@ -802,7 +801,7 @@ async function main(): Promise<void> {
       adapters: [],
       exitCriteria: [
         'No product runtime files are changed by this plan.',
-        'Adapter plan is reviewed with storage, cloud, route and My Practice risks visible.',
+        'Adapter plan is reviewed with storage, cloud, route and Mistake Practice risks visible.',
       ],
     },
     {

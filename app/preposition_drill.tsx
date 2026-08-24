@@ -144,15 +144,9 @@ export default function PrepositionDrillScreen() {
   //   • ошибки внутри сессии энергию НЕ трогают вообще;
   //   • не хватило на входе — модал, и тренажёр не начинается;
   //   • закрытие модала = выход (вход не был оплачен).
-  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
-  const energyRef = useRef(energy);
-  const energyUnlimitedRef = useRef(energyUnlimited);
-  const bonusEnergyRef = useRef(bonusEnergy);
-  const spendOneRef = useRef(spendOne);
-  useEffect(() => { energyRef.current = energy; }, [energy]);
-  useEffect(() => { energyUnlimitedRef.current = energyUnlimited; }, [energyUnlimited]);
-  useEffect(() => { bonusEnergyRef.current = bonusEnergy; }, [bonusEnergy]);
-  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+  const { confirmSpendOne, energyReady } = useEnergy();
+  const confirmSpendOneRef = useRef(confirmSpendOne);
+  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
@@ -165,12 +159,13 @@ export default function PrepositionDrillScreen() {
   useEffect(() => {
     if (!energyReady || drillEntryChargedRef.current) return;
     drillEntryChargedRef.current = true;
-    if (energyUnlimitedRef.current) return;
-    if (energyRef.current + bonusEnergyRef.current <= 0) {
-      setNoEnergyModalOpen(true);
-      return;
-    }
-    spendOneRef.current().catch(() => {});
+    let active = true;
+    void confirmSpendOneRef.current().then(result => {
+      if (!active) return;
+      if (result === 'insufficient') setNoEnergyModalOpen(true);
+      if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+    });
+    return () => { active = false; };
   }, [energyReady]);
 
   const onCloseEnergyModal = useCallback(() => {

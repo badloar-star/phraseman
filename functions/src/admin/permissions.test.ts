@@ -1,4 +1,10 @@
-import { explicitAdminRoleFromToken, hasClaimedPermission, hasPermission, type AdminPermission } from './permissions';
+import {
+  explicitAdminRoleFromToken,
+  hasClaimedPermission,
+  hasPermission,
+  hasVerifiedCallablePermission,
+  type AdminPermission,
+} from './permissions';
 
 describe('admin permission matrix', () => {
   it('allows content editors to manage drafts but not billing', () => {
@@ -121,6 +127,13 @@ describe('admin permission matrix', () => {
 });
 
 describe('claimed admin permissions', () => {
+  it('requires the verified callable auth seam, not a detached token', () => {
+    const token = { admin: true, adminRole: 'analyst' };
+    expect(hasVerifiedCallablePermission({ uid: 'analyst-1', token }, 'money.read')).toBe(true);
+    expect(hasVerifiedCallablePermission({ token }, 'money.read')).toBe(false);
+    expect(hasVerifiedCallablePermission(null, 'money.read')).toBe(false);
+  });
+
   it('allows money analytics only to claimed roles with money.read', () => {
     expect(hasClaimedPermission({ admin: true, adminRole: 'owner' }, 'money.read')).toBe(true);
     expect(hasClaimedPermission({ admin: true, adminRole: 'analyst' }, 'money.read')).toBe(true);

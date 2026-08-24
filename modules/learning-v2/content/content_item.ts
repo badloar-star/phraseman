@@ -160,7 +160,24 @@ export function validateV2ContentItem(value: unknown): V2ContentItemValidation {
       if (!isFilledString(entry.reasonCode)) issues.push('rejected_answer_reason_required');
       // зачем: один и тот же вариант не может быть одновременно принятым и отклонённым —
       // такое противоречие ломает проверку ответов ученика молча.
-      if (isFilledString(entry.value) && acceptedNormalized.has(normalizeAnswer(entry.value, targetLocale || 'en'))) {
+      const reasonParts = isFilledString(entry.reasonCode)
+        ? entry.reasonCode.split(':')
+        : [];
+      const explicitCaseTrap =
+        reasonParts[0] === 'orthographic' &&
+        reasonParts.length >= 4 &&
+        accepted?.some(
+          (answer) =>
+            normalizeAnswer(answer, targetLocale || 'en') ===
+              normalizeAnswer(entry.value as string, targetLocale || 'en') &&
+            answer.normalize('NFKC').trim() !==
+              (entry.value as string).normalize('NFKC').trim(),
+        );
+      if (
+        isFilledString(entry.value) &&
+        acceptedNormalized.has(normalizeAnswer(entry.value, targetLocale || 'en')) &&
+        !explicitCaseTrap
+      ) {
         issues.push('rejected_answer_conflicts_accepted');
       }
     }

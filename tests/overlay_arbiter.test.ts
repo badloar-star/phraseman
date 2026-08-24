@@ -250,7 +250,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'update', 'releaseNotes', 'broadcast', 'personalAdminMessage', 'leagueBonusAvailable', 'notifNudge',
     'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
-    'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+    'entitlementExpired', 'referralWelcome', 'friendGift', 'mysteryMondayChest', 'comebackDay',
     'perfectWeekReward', 'devHub', 'compassBriefing',
     // coinsMigration — одноразовый информ-модал «Осколки → Монеты»: награды нет,
     // но окно закрывает юзер — выселять таймером нельзя.

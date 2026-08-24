@@ -7,14 +7,16 @@ import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
+  runOnJS,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
-import { LUM, SUITE, TOAST } from '../constants/motionHybrid';
+import { LUM, TOAST } from '../constants/motionHybrid';
 import { hapticSoftImpact } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 // зачем: animatedProps (useAnimatedProps worklet) типизирован только у
 // Reanimated.createAnimatedComponent — RN Animated.createAnimatedComponent
@@ -30,7 +32,7 @@ interface Props {
   /** auto-dismiss через ms (default 5000). 0 — не скрывать сам. */
   duration?: number;
   onClose: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
@@ -62,28 +64,36 @@ function RankChangeHybridCard({
   duration: number;
   onDismiss: () => void;
 }) {
+  const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
   const y = useSharedValue(-12);
   const sweep = useSharedValue(-1);
   const numProgress = useSharedValue(0);
 
   useEffect(() => {
-    opacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      sweep.value = -1;
+      numProgress.value = 1;
+      void hapticSoftImpact();
+      if (duration <= 0) return;
+      const timer = setTimeout(onDismiss, duration);
+      return () => clearTimeout(timer);
+    }
+    opacity.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.out(Easing.cubic) });
     y.value = withSpring(0, LUM.settle);
-    sweep.value = withDelay(LUM.resolveMs, withTiming(2, { duration: 520, easing: Easing.out(Easing.cubic) }));
-    numProgress.value = withDelay(LUM.resolveMs, withTiming(1, { duration: 420, easing: Easing.out(Easing.cubic) }));
+    sweep.value = withDelay(TOAST.enterMs, withTiming(2, { duration: TOAST.sweepMs, easing: Easing.out(Easing.cubic) }));
+    numProgress.value = withDelay(TOAST.enterMs, withTiming(1, { duration: TOAST.countMs, easing: Easing.out(Easing.cubic) }));
     void hapticSoftImpact();
     let exitTimer: ReturnType<typeof setTimeout> | null = null;
     if (duration > 0) {
       exitTimer = setTimeout(() => {
         opacity.value = withTiming(0, { duration: TOAST.exitMs, easing: Easing.out(Easing.cubic) });
         y.value = withTiming(-10, { duration: TOAST.exitMs, easing: Easing.out(Easing.cubic) }, (finished) => {
-          if (finished) runOnJSDismiss();
+          if (finished) runOnJS(onDismiss)();
         });
       }, duration);
-    }
-    function runOnJSDismiss() {
-      queueMicrotask(onDismiss);
     }
     return () => {
       if (exitTimer) clearTimeout(exitTimer);
@@ -93,7 +103,7 @@ function RankChangeHybridCard({
       cancelAnimation(numProgress);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [duration]);
+  }, [duration, reduceMotion]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -109,9 +119,13 @@ function RankChangeHybridCard({
   }));
 
   const handlePress = () => {
+    if (reduceMotion) {
+      onDismiss();
+      return;
+    }
     opacity.value = withTiming(0, { duration: TOAST.exitMs, easing: Easing.out(Easing.cubic) });
     y.value = withTiming(-10, { duration: TOAST.exitMs, easing: Easing.out(Easing.cubic) }, (finished) => {
-      if (finished) queueMicrotask(onDismiss);
+      if (finished) runOnJS(onDismiss)();
     });
   };
 
@@ -137,15 +151,15 @@ function RankChangeHybridCard({
               editable={false}
               pointerEvents="none"
               animatedProps={numAnimatedProps as never}
-              style={{ color: accent, fontSize: 17, fontWeight: '800', minWidth: 44 }}
+              style={{ color: accent, fontSize: 17, fontWeight: '700', minWidth: 44 }}
             />
-            <Text style={{ color: accent, fontSize: 15, fontWeight: '700', flexShrink: 1 }} numberOfLines={1}>
+            <Text style={{ color: accent, fontSize: 15, fontWeight: '700', flexShrink: 1 }}>
               {title}
             </Text>
           </View>
           <Ionicons name="close" size={16} color={textColor} style={{ opacity: 0.5 }} />
         </View>
-        <Text style={{ color: textColor, fontSize: 12.5, marginTop: 4, fontWeight: '600', opacity: 0.82 }} /* guard-ok: не расшифровка заголовка — основной текст баннера (кого обогнал), роль как message в ActionToast */>
+        <Text style={{ color: textColor, fontSize: 12.5, marginTop: 4, fontWeight: '400', opacity: 0.82 }} /* guard-ok: не расшифровка заголовка — основной текст баннера (кого обогнал), роль как message in ActionToast */>
           {subtitle}
         </Text>
       </Pressable>
@@ -160,7 +174,7 @@ function RankChangeBanner({
   lang,
   duration = 5000,
   onClose,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: Props) {
   const { f, theme: t } = useTheme();
   const isHybrid = motionVariant === 'hybrid';
@@ -174,6 +188,7 @@ function RankChangeBanner({
   const animationKey = `${delta}:${passedName?.trim() ?? ''}:${lostToName?.trim() ?? ''}`;
 
   useEffect(() => {
+    if (isHybrid) return;
     anim.setValue(0);
     const seq: Animated.CompositeAnimation[] = [
       Animated.timing(anim, { toValue: 1, duration: 280, useNativeDriver: true }),
@@ -187,7 +202,7 @@ function RankChangeBanner({
       if (finished && duration > 0) onCloseRef.current();
     });
     return () => a.stop();
-  }, [anim, duration, animationKey]);
+  }, [anim, duration, animationKey, isHybrid]);
 
   const isUp = delta > 0;
   const absN = Math.abs(delta);
@@ -222,11 +237,14 @@ function RankChangeBanner({
     pl: 'w dół',
   });
 
+  // зачем: аудит 2026-08-17 — реальные эмодзи в тексте тоста (запрет владельца,
+  // правило 4). Направление уже показано иконкой trending-up/down рядом со
+  // счётчиком (см. RankChangeHybridCard) — эмодзи только дублировали её текстом.
   let title: string;
   if (isUp) {
-    title = `🚀 +${absN} ${positions} ${upDir}`;
+    title = `+${absN} ${positions} ${upDir}`;
   } else {
-    title = `📉 −${absN} ${positions} ${downDir}`;
+    title = `−${absN} ${positions} ${downDir}`;
   }
 
   let subtitle: string;
@@ -285,6 +303,22 @@ function RankChangeBanner({
   const titleColor = isUp ? '#34d399' : '#fbbf24';
   const bodyColor = isUp ? '#D8FBE8' : '#FFE9B5';
   const closeColor = 'rgba(255,255,255,0.68)';
+
+  if (isHybrid) {
+    return (
+      <RankChangeHybridCard
+        isUp={isUp}
+        absN={absN}
+        title={title}
+        subtitle={subtitle}
+        accent={isUp ? t.correct : t.gold}
+        cardBg={t.bgCard}
+        textColor={t.textPrimary}
+        duration={duration}
+        onDismiss={onClose}
+      />
+    );
+  }
 
   return (
     <Animated.View

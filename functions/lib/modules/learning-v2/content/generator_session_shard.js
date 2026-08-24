@@ -8,8 +8,19 @@ const decision_registry_1 = require("../policies/decision_registry");
 const content_item_1 = require("./content_item");
 const generator_course_contract_1 = require("./generator_course_contract");
 const generator_session_contract_1 = require("./generator_session_contract");
-const session_compiler_1 = require("./session_compiler");
 const course_topology_v1_1 = require("./course_topology_v1");
+const lesson1_session_choreography_v1_1 = require("./source/lesson1_session_choreography_v1");
+/**
+ * Назначение каждой карточки по её месту в сессии. Кривая нагрузки:
+ * проверка после интро → практика с опорой → практика с подсказкой →
+ * извлечение из памяти → перенос → самостоятельная проверка.
+ *
+ * зачем 15, а не 12 (владелец, 2026-08-17): контракт пакета сессии требует
+ * 14–18 заданий в профиле standard, а 12 карточек давали ровно 12 заданий —
+ * публикация падала. Владелец выбрал привести содержание к контракту.
+ * Три добавленных слота продолжают ту же кривую: закрепить (retrieval),
+ * применить в новом окружении (near_transfer), проверить себя без опоры.
+ */
 exports.LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
     'intro_check',
     'intro_check',
@@ -22,6 +33,9 @@ exports.LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
     'near_transfer',
     'independent_check',
     'delayed_review',
+    'independent_check',
+    'retrieval_practice',
+    'near_transfer',
     'independent_check',
 ]);
 const TOP_KEYS = Object.freeze([
@@ -117,20 +131,6 @@ function clean(value, code, max = 320) {
 function pad(value) {
     return String(value).padStart(2, '0');
 }
-function expectedZone(ordinal) {
-    if (ordinal <= 4)
-        return 'understand';
-    if (ordinal <= 8)
-        return 'use';
-    return 'master';
-}
-function expectedNovelty(zone) {
-    if (zone === 'understand')
-        return 'trained';
-    if (zone === 'use')
-        return 'varied';
-    return 'novel';
-}
 function assertExpected(expected) {
     if (!TOKEN_RE.test(expected.packageId) ||
         !LANGUAGE_RE.test(expected.targetLanguage) ||
@@ -204,8 +204,22 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
     const episodeId = `episode-${pad(expected.episodeOrdinal)}`;
     const sessionId = `session-${episodeId}-${pad(expected.requiredSessionOrdinal)}`;
     const sessionTemplateId = `${episodeId}:session-${pad(expected.requiredSessionOrdinal)}`;
-    const policy = session_compiler_1.REQUIRED_SESSION_POLICY_V1[expected.requiredSessionOrdinal - 1];
-    const zone = expectedZone(expected.requiredSessionOrdinal);
+    const rawCardTargets = Array.isArray(input.cards)
+        ? input.cards.map((raw) => {
+            if (!raw || typeof raw !== 'object' || Array.isArray(raw))
+                return '';
+            const contentItem = raw.contentItem;
+            if (!contentItem || typeof contentItem !== 'object' || Array.isArray(contentItem))
+                return '';
+            const target = contentItem.target;
+            return target && typeof target === 'object' && !Array.isArray(target)
+                ? String(target.text ?? '')
+                : '';
+        })
+        : [];
+    const vocabularyCount = (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstVocabularyCountV1)(rawCardTargets);
+    const phraseCount = (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstPhraseCountV1)(rawCardTargets, vocabularyCount);
+    const choreography = (0, lesson1_session_choreography_v1_1.lesson1SessionChoreographyV1)(expected.requiredSessionOrdinal, undefined, vocabularyCount, phraseCount);
     if (input.schemaVersion !== 'learning-v2-generated-session-shard.v1' ||
         input.packageId !== expected.packageId ||
         input.targetLanguage !== expected.targetLanguage ||
@@ -216,8 +230,8 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
         input.sessionTemplateId !== sessionTemplateId ||
         typeof input.canDoOutcomeId !== 'string' ||
         !TOKEN_RE.test(input.canDoOutcomeId) ||
-        input.zone !== zone ||
-        input.support !== policy.support ||
+        input.zone !== choreography.zone ||
+        input.support !== choreography.support ||
         input.generationInputFingerprint !== expected.generationInputFingerprint) {
         throw new Error('learning_v2_session_shard_identity_invalid');
     }
@@ -226,7 +240,11 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
     const intro = (0, generator_session_contract_1.validateLearningV2GeneratedSessionIntro)(input.intro);
     if (intro.sessionTemplateId !== sessionTemplateId)
         throw new Error('learning_v2_session_shard_intro_identity_invalid');
-    if (!Array.isArray(input.cards) || input.cards.length !== 12)
+    // Первые три карточки связывают три вопроса интро. В word-first rapid все
+    // standalone-контакты начинаются только со слота 4 и остаются видимыми в
+    // оставшихся 17 заданиях 20-слотового rapid-профиля.
+    if (!Array.isArray(input.cards) ||
+        input.cards.length !== choreography.steps.length)
         throw new Error('learning_v2_session_shard_cards_invalid');
     const cards = [];
     const contentIds = new Set();
@@ -237,18 +255,21 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
         const card = raw;
         exactKeys(card, CARD_KEYS, 'learning_v2_session_shard_card_fields_invalid');
         const slot = index + 1;
-        const family = policy.families[index % policy.families.length];
+        const step = choreography.steps[index];
+        if (!step)
+            throw new Error('learning_v2_session_shard_card_invalid');
+        const family = step.family;
         const contentItemId = `content-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`;
         const activityId = `activity-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}-${family}`;
         if (card.cardId !==
             `card-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}` ||
             card.taskSlot !== slot ||
-            card.purpose !== exports.LEARNING_V2_SESSION_CARD_PURPOSES[index] ||
+            card.purpose !== step.purpose ||
             card.activityId !== activityId ||
             card.family !== family ||
             card.learningFunction !== FAMILY_FUNCTION[family] ||
-            card.support !== policy.support ||
-            card.promptNovelty !== expectedNovelty(zone) ||
+            card.support !== choreography.support ||
+            card.promptNovelty !== choreography.promptNovelty ||
             card.promptId !==
                 `prompt-${episodeId}-${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`) {
             throw new Error('learning_v2_session_shard_card_identity_invalid');

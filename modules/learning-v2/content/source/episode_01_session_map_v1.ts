@@ -26,6 +26,8 @@
 // они не разбираются как грамматика и не порождают заданий на форму.
 //
 // Полные правила построения уроков: docs/v2/LESSON_DESIGN_RULES.ru.md
+// Неподвижный стиль интро и восьми локалей:
+// docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md
 //
 // ПРАВИЛА ВЛАДЕЛЬЦА, по которым построена эта карта:
 //
@@ -34,6 +36,9 @@
 //    словами — он же не знает их». Слово получает НЕСКОЛЬКО касаний за сессию
 //    (услышать → вспомнить → собрать → применить), а не один выбор из пяти:
 //    один выбор — это узнавание, а не отработка (владелец, 2026-08-17).
+// 2A. КАЖДАЯ ОБЫЧНАЯ УЧЕБНАЯ СЕССИЯ по возможности приносит новую полезную
+//    лексику. Если budget/чистая грамматическая цель этого не допускают, нужна
+//    явная редакторская причина. Voice, recall и checkpoint новых слов не дают.
 // 3. АКТИВНОЕ ПРИПОМИНАНИЕ. Фразы МОГУТ повторяться в поздних сессиях — это не
 //    дублирование, а извлечение из памяти после задержки.
 // 4. ГОЛОСОВЫЕ СЕССИИ отдельным типом.
@@ -153,7 +158,7 @@ export const EPISODE_01_SESSION_MAP_V1: readonly EpisodeSessionPlanEntry[] =
   Object.freeze([
     // ── Глава 1. Я: утверждение ───────────────────────────────────────────
     // Только I am. Ученик впервые говорит о себе и учится отрицанию.
-    { sessionOrdinal: 1, kind: 'phrases', title: 'Я здесь', teaches: ['copula_be', 'first_person_singular', 'state_adjective', 'adverb_place'], builtOn: [] },
+    { sessionOrdinal: 1, kind: 'words_then_phrases', title: 'Я здесь', teaches: ['copula_be', 'first_person_singular', 'state_adjective', 'adverb_place'], builtOn: [] },
     { sessionOrdinal: 2, kind: 'phrases', title: 'Я не', teaches: ['negation_not'], builtOn: [1], recalls: [1] },
     { sessionOrdinal: 3, kind: 'words_then_phrases', title: 'Как я себя чувствую', teaches: ['feeling_adjective'], builtOn: [1], recalls: [1, 2] },
     { sessionOrdinal: 4, kind: 'phrases', title: 'Я сокращаю: I am и I’m', teaches: ['contraction_im'], builtOn: [1, 2], recalls: [2, 3] },
@@ -170,7 +175,7 @@ export const EPISODE_01_SESSION_MAP_V1: readonly EpisodeSessionPlanEntry[] =
     { sessionOrdinal: 12, kind: 'phrases', title: 'Я готов? Вопрос о себе', teaches: [], builtOn: [11], recalls: [1, 11] },
     { sessionOrdinal: 13, kind: 'phrases', title: 'Ты сокращаешь: you’re', teaches: ['contraction_youre'], builtOn: [4, 9], recalls: [4, 10] },
     { sessionOrdinal: 14, kind: 'words_then_phrases', title: 'Где я и где ты', teaches: ['place_noun', 'preposition_place'], builtOn: [9], recalls: [1, 11] },
-    { sessionOrdinal: 15, kind: 'voice', title: 'Скажи вслух: спроси меня', teaches: [], builtOn: [11, 12, 13], recalls: [9, 11, 13] },
+    { sessionOrdinal: 15, kind: 'voice', title: 'Скажи вслух: спроси меня', teaches: [], builtOn: [11, 12, 13, 14], recalls: [9, 11, 12, 13, 14] },
     { sessionOrdinal: 16, kind: 'checkpoint', title: 'Я и ты целиком', teaches: [], builtOn: [9, 10, 11, 12, 13, 14, 15], recalls: [1, 9, 11, 13, 14] },
 
     // ── Глава 3. Он, она, оно ─────────────────────────────────────────────

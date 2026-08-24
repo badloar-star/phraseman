@@ -3,13 +3,25 @@ import {
   VOICE_CONFIRMED_GAP_WINDOW_SEC,
   VOICE_RESERVE_EXPIRY_GRACE_SEC,
   VOICE_DEAD_SESSION_SILENCE_MS,
+  confirmVoiceTrialMinted,
+  legacyVoiceQuotaDocId,
   releaseVoiceReservation,
   reserveVoiceSeconds,
   settleVoiceSession,
   settleVoiceSessionWithXp,
   transferReserve,
+  voiceQuotaIdentityClosureProof,
   voiceQuotaDocId,
 } from './max_voice_quota';
+
+jest.mock('./account_delete', () => ({
+  resolveAccountDeleteIdentityClosure: async (
+    _db: unknown,
+    _stableUid: string,
+    _authUid: string,
+    _transaction?: unknown,
+  ) => ['stable-1', 'auth-1'],
+}));
 
 type DocData = Record<string, any>;
 
@@ -24,32 +36,78 @@ const LIMITS = {
   graceTailSec: 20,
   dailyVoiceSecMax: 900,
   monthlyVoiceSecMax: 14_400,
+  quotaIdentityClosureProof: voiceQuotaIdentityClosureProof([STABLE, AUTH]),
 };
 
 // Мини-стаб Firestore: один док, транзакция коммитит записи только при успехе
 // коллбэка — брошенный HttpsError не должен оставлять частичных записей.
 function makeDb(initial?: DocData) {
   const state: { data?: DocData; id?: string; collection?: string } = { data: initial };
-  const ref = {
-    get: async () => ({ exists: !!state.data, data: () => state.data }),
-    set: async (d: DocData, o?: { merge?: boolean }) => {
-      state.data = o?.merge ? { ...(state.data ?? {}), ...d } : { ...d };
-    },
+  let transactionTail = Promise.resolve();
+  const docs = new Map<string, DocData>();
+  const initialPath = `voice_call_quotas/${voiceQuotaDocId(STABLE)}`;
+  if (initial) docs.set(initialPath, initial);
+
+  const makeRef = (collectionName: string, id: string) => {
+    const path = `${collectionName}/${id}`;
+    const ref = {
+      id,
+      path,
+      get: async () => ({
+        exists: docs.has(path),
+        ref,
+        data: () => docs.get(path),
+      }),
+      set: async (d: DocData, o?: { merge?: boolean }) => {
+        const next = o?.merge ? { ...(docs.get(path) ?? {}), ...d } : { ...d };
+        docs.set(path, next);
+        state.collection = collectionName;
+        state.id = id;
+        state.data = next;
+      },
+    };
+    return ref;
   };
   const db = {
     collection: (name: string) => {
       state.collection = name;
-      return { doc: (id: string) => { state.id = id; return ref; } };
+      return {
+        doc: (id: string) => makeRef(name, id),
+        where: (field: string, operator: string, value: unknown) => {
+          if (operator !== '==') throw new Error(`Unsupported test query operator: ${operator}`);
+          const query = (maxDocs = Number.POSITIVE_INFINITY) => ({
+            limit: (limit: number) => query(limit),
+            get: async () => ({
+              docs: [...docs.entries()]
+                .filter(([path, data]) => path.startsWith(`${name}/`) && data[field] === value)
+                .slice(0, maxDocs)
+                .map(([path, data]) => {
+                  const ref = makeRef(name, path.slice(name.length + 1));
+                  return { exists: true, ref, data: () => data };
+                }),
+            }),
+          });
+          return query();
+        },
+      };
     },
     runTransaction: async (fn: (tx: any) => Promise<any>) => {
-      const writes: Array<[DocData, any]> = [];
+      const previous = transactionTail;
+      let unlock = () => {};
+      transactionTail = new Promise<void>((resolve) => { unlock = resolve; });
+      await previous;
+      const writes: Array<[any, DocData, any]> = [];
       const tx = {
         get: async (r: any) => r.get(),
-        set: (r: any, d: DocData, o?: any) => { writes.push([d, o]); },
+        set: (r: any, d: DocData, o?: any) => { writes.push([r, d, o]); },
       };
-      const result = await fn(tx);
-      for (const [d, o] of writes) await ref.set(d, o);
-      return result;
+      try {
+        const result = await fn(tx);
+        for (const [r, d, o] of writes) await r.set(d, o);
+        return result;
+      } finally {
+        unlock();
+      }
     },
   };
   return { db: db as any, state };
@@ -82,11 +140,11 @@ afterEach(() => {
 });
 
 describe('doc id', () => {
-  it("follows the docId('vq', …) pattern from premium_dialog", () => {
-    const id = voiceQuotaDocId(AUTH, STABLE);
+  it('uses one canonical quota document per stable account across auth aliases', () => {
+    const id = voiceQuotaDocId(STABLE);
     expect(id).toMatch(/^vq_[0-9a-f]{48}$/);
-    expect(voiceQuotaDocId(AUTH, STABLE)).toBe(id); // детерминированность
-    expect(voiceQuotaDocId('other', STABLE)).not.toBe(id);
+    expect(voiceQuotaDocId(STABLE)).toBe(id);
+    expect(legacyVoiceQuotaDocId(AUTH, STABLE)).not.toBe(legacyVoiceQuotaDocId('other', STABLE));
   });
 });
 
@@ -98,7 +156,7 @@ describe('reserveVoiceSeconds', () => {
 
     expect(result).toEqual({ reservedSec: 320, dayRemainingSec: 580, monthRemainingSec: 14_080, staleRefundedSec: 0 });
     expect(state.collection).toBe('voice_call_quotas');
-    expect(state.id).toBe(voiceQuotaDocId(AUTH, STABLE));
+    expect(state.id).toBe(voiceQuotaDocId(STABLE));
     expect(state.data).toMatchObject({
       activeSessionId: 's1',
       reservedSec: 320,
@@ -114,6 +172,311 @@ describe('reserveVoiceSeconds', () => {
     expect(state.data!.monthResetAtMs).toBeGreaterThan(NOW);
   });
 
+  it('gives a same-month trial upgrader a fresh full MAX allowance atomically', async () => {
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + 86_400_000,
+      dailyUsedSec: 180,
+      monthlyUsedSec: 180,
+      trialUsedAtMs: NOW - 1_000,
+      trialReservationSessionId: 'trial-verified',
+      trialProviderMintedAtMs: NOW - 900,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-1',
+      maxMonthlyAllowance: true,
+      maxInitialTrialOffsetSec: 200,
+      nowMs: NOW,
+    });
+
+    expect(result).toMatchObject({ reservedSec: 320, monthRemainingSec: 6_880 });
+    expect(state.data).toMatchObject({
+      monthlyUsedSec: 500,
+      maxAllowanceUsageBaselineSec: 180,
+      maxAllowanceMonthResetAtMs: NOW + 86_400_000,
+    });
+  });
+
+  it('preserves MAX usage on repeated mint and downgrade/re-upgrade in the same month', async () => {
+    const monthResetAtMs = NOW + 86_400_000;
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs,
+      dailyUsedSec: 500,
+      monthlyUsedSec: 500,
+      maxAllowanceUsageBaselineSec: 180,
+      maxAllowanceMonthResetAtMs: monthResetAtMs,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-reentry',
+      maxMonthlyAllowance: true,
+      nowMs: NOW,
+    });
+
+    expect(result.monthRemainingSec).toBe(6_560);
+    expect(state.data).toMatchObject({
+      monthlyUsedSec: 820,
+      maxAllowanceUsageBaselineSec: 180,
+      maxAllowanceMonthResetAtMs: monthResetAtMs,
+    });
+  });
+
+  it('does not reset pre-deployment MAX usage when no current-month trial exists', async () => {
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + 86_400_000,
+      dailyUsedSec: 500,
+      monthlyUsedSec: 500,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-migration',
+      maxMonthlyAllowance: true,
+      maxInitialTrialOffsetSec: 200,
+      nowMs: NOW,
+    });
+
+    expect(result.monthRemainingSec).toBe(6_380);
+    expect(state.data?.maxAllowanceUsageBaselineSec).toBe(0);
+  });
+
+  it('does not offset current MAX usage using a prior-month trial marker', async () => {
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + 86_400_000,
+      dailyUsedSec: 500,
+      monthlyUsedSec: 500,
+      trialUsedAtMs: NOW - 40 * 86_400_000,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-old-trial',
+      maxMonthlyAllowance: true,
+      maxInitialTrialOffsetSec: 200,
+      nowMs: NOW,
+    });
+
+    expect(result.monthRemainingSec).toBe(6_380);
+    expect(state.data?.maxAllowanceUsageBaselineSec).toBe(0);
+  });
+
+  it('caps the first current-month trial offset at the passed trial reserve', async () => {
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + 86_400_000,
+      dailyUsedSec: 500,
+      monthlyUsedSec: 500,
+      trialUsedAtMs: NOW - 1_000,
+      trialReservationSessionId: 'trial-verified',
+      trialProviderMintedAtMs: NOW - 900,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-capped-trial',
+      maxMonthlyAllowance: true,
+      maxInitialTrialOffsetSec: 200,
+      nowMs: NOW,
+    });
+
+    expect(result.monthRemainingSec).toBe(6_580);
+    expect(state.data?.maxAllowanceUsageBaselineSec).toBe(200);
+  });
+
+  it('starts a fresh MAX allowance and baseline at UTC month rollover', async () => {
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW - 1,
+      dailyUsedSec: 0,
+      monthlyUsedSec: 7_200,
+      maxAllowanceUsageBaselineSec: 180,
+      maxAllowanceMonthResetAtMs: NOW - 1,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-new-month',
+      maxMonthlyAllowance: true,
+      nowMs: NOW,
+    });
+
+    const nextMonth = Date.UTC(new Date(NOW).getUTCFullYear(), new Date(NOW).getUTCMonth() + 1, 1);
+    expect(result.monthRemainingSec).toBe(6_880);
+    expect(state.data).toMatchObject({
+      monthlyUsedSec: 320,
+      maxAllowanceUsageBaselineSec: 0,
+      maxAllowanceMonthResetAtMs: nextMonth,
+    });
+  });
+
+  it('caps a stored MAX baseline at the shared monthly counter', async () => {
+    const monthResetAtMs = NOW + 86_400_000;
+    const { db, state } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs,
+      dailyUsedSec: 500,
+      monthlyUsedSec: 500,
+      maxAllowanceUsageBaselineSec: 9_999,
+      maxAllowanceMonthResetAtMs: monthResetAtMs,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      dailyVoiceSecMax: 7_200,
+      monthlyVoiceSecMax: 7_200,
+      sessionId: 'max-capped-baseline',
+      maxMonthlyAllowance: true,
+      nowMs: NOW,
+    });
+
+    expect(result.monthRemainingSec).toBe(6_880);
+    expect(state.data?.maxAllowanceUsageBaselineSec).toBe(500);
+  });
+
+  it('atomically consumes a lifetime trial in the same transaction as its initial reserve', async () => {
+    const { db, state } = makeDb();
+
+    await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      sessionId: 'trial-1',
+      consumeLifetimeTrial: true,
+      nowMs: NOW,
+    });
+
+    expect(state.data).toMatchObject({
+      trialUsedAtMs: NOW,
+      trialReservationSessionId: 'trial-1',
+      trialProviderMintedAtMs: 0,
+    });
+  });
+
+  it('rejects another lifetime trial even when the prior reservation is no longer active', async () => {
+    const { db } = makeDb({ trialUsedAtMs: NOW - 1, activeSessionId: null, reservedSec: 0 });
+
+    await expect(reserveVoiceSeconds(db, {
+      ...LIMITS,
+      authUid: 'new-auth-alias',
+      sessionId: 'trial-2',
+      consumeLifetimeTrial: true,
+      nowMs: NOW,
+    })).rejects.toMatchObject({ code: 'permission-denied', message: 'voice_max_required' });
+  });
+
+  it('allows only one of two concurrent auth aliases to reserve the lifetime trial', async () => {
+    const { db } = makeDb();
+    const attempt = (authUid: string, sessionId: string) => reserveVoiceSeconds(db, {
+      ...LIMITS,
+      authUid,
+      sessionId,
+      consumeLifetimeTrial: true,
+      nowMs: NOW,
+    });
+
+    const results = await Promise.allSettled([
+      attempt('auth-alias-a', 'trial-a'),
+      attempt('auth-alias-b', 'trial-b'),
+    ]);
+
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    const rejected = results.find((result) => result.status === 'rejected') as PromiseRejectedResult;
+    expect(rejected.reason).toMatchObject({ code: 'permission-denied', message: 'voice_max_required' });
+  });
+
+  it('restores the trial after provider failure only before provider mint is confirmed', async () => {
+    const { db, state } = makeDb();
+    await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      sessionId: 'trial-1',
+      consumeLifetimeTrial: true,
+      nowMs: NOW,
+    });
+
+    await releaseVoiceReservation(db, {
+      authUid: AUTH,
+      stableUid: STABLE,
+      sessionId: 'trial-1',
+      reason: 'mint_failed',
+      restoreLifetimeTrial: true,
+      nowMs: NOW + 1,
+    });
+
+    expect(state.data).toMatchObject({
+      trialUsedAtMs: null,
+      trialReservationSessionId: null,
+      trialProviderMintedAtMs: 0,
+    });
+  });
+
+  it('fails closed unless the caller proves that provider mint failed', async () => {
+    const { db, state } = makeDb();
+    await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      sessionId: 'trial-1',
+      consumeLifetimeTrial: true,
+      nowMs: NOW,
+    });
+    await releaseVoiceReservation(db, {
+      authUid: AUTH,
+      stableUid: STABLE,
+      sessionId: 'trial-1',
+      reason: 'confirmation_write_failed',
+      nowMs: NOW + 1,
+    });
+
+    expect(state.data!.trialUsedAtMs).toBe(NOW);
+    expect(state.data!.trialReservationSessionId).toBe('trial-1');
+  });
+
+  it('never restores a confirmed trial when its reservation is released', async () => {
+    const { db, state } = makeDb();
+    await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      sessionId: 'trial-1',
+      consumeLifetimeTrial: true,
+      nowMs: NOW,
+    });
+    await confirmVoiceTrialMinted(db, {
+      authUid: AUTH,
+      stableUid: STABLE,
+      sessionId: 'trial-1',
+      nowMs: NOW + 1,
+    });
+
+    await releaseVoiceReservation(db, {
+      authUid: AUTH,
+      stableUid: STABLE,
+      sessionId: 'trial-1',
+      reason: 'abandoned_after_mint',
+      nowMs: NOW + 2,
+    });
+
+    expect(state.data!.trialUsedAtMs).toBe(NOW);
+    expect(state.data!.trialProviderMintedAtMs).toBe(NOW + 1);
+  });
+
   it('is capped by the remaining day quota, not just the format cap', async () => {
     const { db } = makeDb(liveDoc({
       activeSessionId: null, reservedSec: 0, dailyUsedSec: 800, monthlyUsedSec: 800,
@@ -125,16 +488,38 @@ describe('reserveVoiceSeconds', () => {
     expect(result.dayRemainingSec).toBe(0);
   });
 
-  it('rejects with resource-exhausted when less than 60s remain (no token minted)', async () => {
+  it('returns the daily reason when less than 60s remain today (no token minted)', async () => {
     const { db, state } = makeDb(liveDoc({
       activeSessionId: null, reservedSec: 0, dailyUsedSec: 850, monthlyUsedSec: 850,
     }));
     const before = JSON.stringify(state.data);
 
     await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
-      .rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
+      .rejects.toMatchObject({
+        code: 'resource-exhausted',
+        message: 'voice_daily_quota_exhausted',
+        details: 'voice_quota_exhausted',
+      });
     expect(JSON.stringify(state.data)).toBe(before); // транзакция ничего не записала
     expect(MIN_VOICE_RESERVE_SEC).toBe(60);
+  });
+
+  it('returns the monthly reason when the package is exhausted, even if the day is also exhausted', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: null,
+      reservedSec: 0,
+      dailyUsedSec: 850,
+      monthlyUsedSec: 14_350,
+    }));
+    const before = JSON.stringify(state.data);
+
+    await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
+      .rejects.toMatchObject({
+        code: 'resource-exhausted',
+        message: 'voice_monthly_quota_exhausted',
+        details: 'voice_quota_exhausted',
+      });
+    expect(JSON.stringify(state.data)).toBe(before);
   });
 
   it('rejects with failed-precondition while another live session holds the reserve', async () => {
@@ -265,6 +650,7 @@ describe('settleVoiceSession', () => {
       dailyUsedSec: 200,
       monthlyUsedSec: 200,
       lastSettledSessionId: 's1',
+      lastSettledAtMs: NOW,
       lastEndReason: 'completed',
     });
   });
@@ -491,6 +877,8 @@ describe('settleVoiceSessionWithXp (P1-13: settle + XP + снимок одной
     expect(state.data!.activeSessionId).toBeNull();
     expect(state.data!.reservedSec).toBe(0);
     expect(state.data!.dailyUsedSec).toBe(160);
+    expect(state.data!.lastSettledSessionId).toBe('s1');
+    expect(state.data!.lastSettledAtMs).toBe(NOW);
     expect(state.data!.xpAwardedToday).toBe(100);
     expect(state.data!.xpDayKey).toBe(DAY);
   });

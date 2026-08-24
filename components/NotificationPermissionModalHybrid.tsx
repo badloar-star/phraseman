@@ -26,6 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { noAndroidOutline } from '../constants/androidGlow';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 interface Props {
   visible: boolean;
@@ -39,19 +40,24 @@ interface Props {
 }
 
 function CascadeItem({ index, style, children }: { index: number; style?: object; children: React.ReactNode }) {
-  const opacity = useSharedValue(0);
-  const y = useSharedValue(14);
+  const reduceMotion = useReduceMotion();
+  const opacity = useSharedValue(reduceMotion ? 1 : 0);
+  const y = useSharedValue(reduceMotion ? 0 : 14);
   const delay = LUM.ladder[Math.min(index, LUM.ladder.length - 1)];
 
   useEffect(() => {
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      return;
+    }
     opacity.value = withDelay(delay, withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }));
     y.value = withDelay(delay, withSpring(0, LUM.settle));
     return () => {
       cancelAnimation(opacity);
       cancelAnimation(y);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [delay]);
+  }, [delay, opacity, reduceMotion, y]);
 
   const animStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -63,16 +69,18 @@ function CascadeItem({ index, style, children }: { index: number; style?: object
 
 function ConfirmButton({ label, onPress, testID }: { label: string; onPress: () => void; testID: string }) {
   const { theme: t, f } = useTheme();
+  const reduceMotion = useReduceMotion();
   const scale = useSharedValue(1);
 
   const handlePressIn = useCallback(() => {
     hapticTap();
+    if (reduceMotion) return;
     scale.value = withTiming(PRESS.scale.primary, { duration: PRESS.downMs });
-  }, [scale]);
+  }, [reduceMotion, scale]);
 
   const handlePressOut = useCallback(() => {
-    scale.value = withSpring(1, PRESS.releasePrimary);
-  }, [scale]);
+    scale.value = reduceMotion ? 1 : withSpring(1, PRESS.releasePrimary);
+  }, [reduceMotion, scale]);
 
   const style = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 

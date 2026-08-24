@@ -12,7 +12,8 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BOT_NAMES } from '../constants/bot_names';
-import { LEVEL_THRESHOLDS, levelForDays } from './together_days';
+import { ENABLE_DEV_TOOLS } from '../config';
+import { LEVEL_THRESHOLDS, levelForDays, nextThreshold } from './together_days';
 import { FRIENDS_CHEST_TIERS, FRIENDS_CHEST_CAP_PER_FRIEND } from './together_config';
 
 const STORAGE_KEY = 'friends_together_dev_bots_v1';
@@ -34,6 +35,8 @@ export interface DevBotFriend {
   giftReady: boolean;
   /** Бот только что позвал меня (сценарий «входящий зов»). */
   incomingNudge: boolean;
+  /** Я уже нажал «Позвать» для этого DEV-бота. Реальный callable не вызывается. */
+  nudgedByMe: boolean;
   createdAtMs: number;
 }
 
@@ -41,16 +44,19 @@ export interface DevBotsState {
   bots: DevBotFriend[];
   /** Порог сундука, который последним выставил сценарий (0 = не взводили руками). */
   chestScenarioTier: number;
+  /** Открытый DEV-сундук. Не является наградой и никогда не уходит в Firestore. */
+  chestOpenedTier: number;
 }
 
-const EMPTY_STATE: DevBotsState = { bots: [], chestScenarioTier: 0 };
+const EMPTY_STATE: DevBotsState = { bots: [], chestScenarioTier: 0, chestOpenedTier: 0 };
 
 let memory: DevBotsState | null = null;
 
 function isDev(): boolean {
-  // зачем: двойной гейт — модуль физически не должен ничего делать в проде,
-  // даже если по ошибке импортирован (defense in depth поверх __DEV__ в UI).
-  return typeof __DEV__ !== 'undefined' && __DEV__ === true;
+  // зачем: тот же production-safe гейт, что у UI. В локальном browser/QA-preview
+  // Metro может подставить __DEV__=false, но ENABLE_DEV_TOOLS остаётся включён;
+  // store-сборка всё равно жёстко выключает его через IS_STORE_RELEASE.
+  return ENABLE_DEV_TOOLS;
 }
 
 async function persist(state: DevBotsState): Promise<void> {
@@ -68,8 +74,9 @@ export async function loadDevBots(): Promise<DevBotsState> {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     const parsed = raw ? (JSON.parse(raw) as Partial<DevBotsState>) : null;
     memory = {
-      bots: Array.isArray(parsed?.bots) ? parsed!.bots.filter(isValidBot) : [],
+      bots: Array.isArray(parsed?.bots) ? parsed!.bots.filter(isValidBot).map(normalizeBot) : [],
       chestScenarioTier: Number.isFinite(parsed?.chestScenarioTier) ? Math.max(0, Math.floor(Number(parsed!.chestScenarioTier))) : 0,
+      chestOpenedTier: Number.isFinite(parsed?.chestOpenedTier) ? Math.max(0, Math.floor(Number(parsed!.chestOpenedTier))) : 0,
     };
   } catch {
     memory = { ...EMPTY_STATE };
@@ -80,6 +87,22 @@ export async function loadDevBots(): Promise<DevBotsState> {
 function isValidBot(v: unknown): v is DevBotFriend {
   const b = v as Partial<DevBotFriend>;
   return !!b && typeof b.uid === 'string' && b.uid.startsWith(DEV_BOT_UID_PREFIX) && typeof b.name === 'string';
+}
+
+function normalizeBot(bot: DevBotFriend): DevBotFriend {
+  return {
+    ...bot,
+    colorIdx: Math.max(0, Math.floor(Number(bot.colorIdx) || 0)) % 6,
+    totalXp: Math.max(0, Math.floor(Number(bot.totalXp) || 0)),
+    weeklyXp: Math.max(0, Math.floor(Number(bot.weeklyXp) || 0)),
+    streak: Math.max(0, Math.floor(Number(bot.streak) || 0)),
+    days: Math.max(0, Math.floor(Number(bot.days) || 0)),
+    learnedToday: bot.learnedToday === true,
+    giftReady: bot.giftReady === true,
+    incomingNudge: bot.incomingNudge === true,
+    nudgedByMe: bot.nudgedByMe === true,
+    createdAtMs: Math.max(0, Math.floor(Number(bot.createdAtMs) || 0)),
+  };
 }
 
 /** Синхронный геттер для рендера — actions ниже всегда идут через load→mutate→persist. */
@@ -96,30 +119,35 @@ function randomBotName(taken: Set<string>): string {
   return `${pool[0] ?? 'Bot'} ${taken.size + 1}`;
 }
 
+function createDevBot(index: number, taken: Set<string>, now: number): DevBotFriend {
+  const seedDays = [0, LEVEL_THRESHOLDS[1] ?? 3, LEVEL_THRESHOLDS[2] ?? 10, LEVEL_THRESHOLDS[3] ?? 30];
+  const name = randomBotName(taken);
+  taken.add(name);
+  return {
+    uid: `${DEV_BOT_UID_PREFIX}${now}_${index}_${Math.random().toString(36).slice(2, 7)}`,
+    name,
+    colorIdx: index % 6,
+    totalXp: 500 + Math.floor(Math.random() * 4000),
+    weeklyXp: Math.floor(Math.random() * 1800),
+    streak: Math.floor(Math.random() * 40),
+    days: seedDays[index % seedDays.length] ?? 0,
+    learnedToday: false,
+    giftReady: false,
+    incomingNudge: false,
+    nudgedByMe: false,
+    createdAtMs: now,
+  };
+}
+
 /** Добавляет N ботов с разным стартовым уровнем дружбы (0/3/10/30 дней — по одному на каждый порог). */
 export async function addDevBots(count: number): Promise<DevBotsState> {
   const state = await loadDevBots();
   const taken = new Set(state.bots.map((b) => b.name));
-  const seedDays = [0, LEVEL_THRESHOLDS[1] ?? 3, LEVEL_THRESHOLDS[2] ?? 10, LEVEL_THRESHOLDS[3] ?? 30];
   const now = Date.now();
   const next: DevBotFriend[] = [...state.bots];
-  for (let i = 0; i < count; i++) { // guard-ok: чисто локальный массив в памяти, ни одного вызова Firestore в этом модуле
-    const name = randomBotName(taken);
-    taken.add(name);
-    const days = seedDays[next.length % seedDays.length] ?? 0;
-    next.push({
-      uid: `${DEV_BOT_UID_PREFIX}${now}_${next.length}_${Math.random().toString(36).slice(2, 7)}`,
-      name,
-      colorIdx: next.length % 6,
-      totalXp: 500 + Math.floor(Math.random() * 4000),
-      weeklyXp: Math.floor(Math.random() * 1800),
-      streak: Math.floor(Math.random() * 40),
-      days,
-      learnedToday: false,
-      giftReady: false,
-      incomingNudge: false,
-      createdAtMs: now,
-    });
+  const safeCount = Math.max(0, Math.min(20, Math.floor(Number(count) || 0)));
+  for (let i = 0; i < safeCount; i++) { // guard-ok: чисто локальный массив в памяти, ни одного вызова Firestore в этом модуле
+    next.push(createDevBot(next.length, taken, now));
   }
   const nextState: DevBotsState = { ...state, bots: next };
   await persist(nextState);
@@ -165,17 +193,61 @@ export async function setBotLevel(uid: string, level: number): Promise<DevBotsSt
 /** Взводит сундук недели: догоняет weeklyXp ботов до суммы, нужной для порога tier (1..3). */
 export async function setChestScenario(tier: number): Promise<DevBotsState> {
   const state = await loadDevBots();
-  const goal = FRIENDS_CHEST_TIERS[Math.max(0, Math.min(FRIENDS_CHEST_TIERS.length - 1, tier - 1))] ?? 0;
-  const eligible = state.bots.filter((b) => levelForDays(b.days) >= 2);
-  const pool = eligible.length > 0 ? eligible : state.bots;
-  if (pool.length === 0) {
-    await persist({ ...state, chestScenarioTier: tier });
-    return state;
+  const normalizedTier = Math.max(0, Math.min(FRIENDS_CHEST_TIERS.length, Math.floor(Number(tier) || 0)));
+  if (normalizedTier === 0) {
+    const nextState: DevBotsState = {
+      bots: state.bots.map((bot) => ({ ...bot, weeklyXp: 0 })),
+      chestScenarioTier: 0,
+      chestOpenedTier: 0,
+    };
+    await persist(nextState);
+    return nextState;
   }
-  const perBot = Math.min(FRIENDS_CHEST_CAP_PER_FRIEND, Math.ceil(goal / pool.length) + 50);
-  const poolUids = new Set(pool.map((b) => b.uid));
-  const bots = state.bots.map((b) => poolUids.has(b.uid) ? { ...b, weeklyXp: perBot } : b);
-  const nextState: DevBotsState = { bots, chestScenarioTier: tier };
+
+  const goal = FRIENDS_CHEST_TIERS[normalizedTier - 1] ?? 0;
+  const requiredBots = Math.ceil(goal / FRIENDS_CHEST_CAP_PER_FRIEND);
+  const taken = new Set(state.bots.map((bot) => bot.name));
+  const bots = [...state.bots];
+  const now = Date.now();
+  while (bots.length < requiredBots) { // guard-ok: максимум 10 локальных DEV-ботов для порога III
+    bots.push(createDevBot(bots.length, taken, now));
+  }
+
+  let remaining = goal;
+  const eligibleDays = LEVEL_THRESHOLDS[1] ?? 3;
+  const scenarioBots = bots.map((bot, index) => {
+    if (index >= requiredBots) return { ...bot, weeklyXp: 0 };
+    const weeklyXp = Math.min(FRIENDS_CHEST_CAP_PER_FRIEND, remaining);
+    remaining -= weeklyXp;
+    return { ...bot, days: Math.max(bot.days, eligibleDays), weeklyXp };
+  });
+  const nextState: DevBotsState = {
+    bots: scenarioBots,
+    chestScenarioTier: normalizedTier,
+    chestOpenedTier: state.chestOpenedTier,
+  };
+  await persist(nextState);
+  return nextState;
+}
+
+/**
+ * Открывает локальную витрину один раз. Здесь намеренно нет claimWeeklyChest,
+ * economy receipt или записи в Firestore: DEV-сценарий проверяет UI, а не выдаёт награду.
+ */
+export async function openDevChestScenario(): Promise<{ opened: boolean; state: DevBotsState }> {
+  const state = await loadDevBots();
+  if (state.chestScenarioTier <= 0 || state.chestOpenedTier > 0) {
+    return { opened: false, state };
+  }
+  const nextState: DevBotsState = { ...state, chestOpenedTier: state.chestScenarioTier };
+  await persist(nextState);
+  return { opened: true, state: nextState };
+}
+
+/** Явно разрешает повторную проверку текущего DEV-сундука, не меняя прогресс. */
+export async function resetDevChestScenario(): Promise<DevBotsState> {
+  const state = await loadDevBots();
+  const nextState: DevBotsState = { ...state, chestOpenedTier: 0 };
   await persist(nextState);
   return nextState;
 }
@@ -183,6 +255,14 @@ export async function setChestScenario(tier: number): Promise<DevBotsState> {
 export async function simulateIncomingNudge(uid: string): Promise<DevBotsState> {
   const state = await loadDevBots();
   const bots = state.bots.map((b) => b.uid === uid ? { ...b, incomingNudge: true, learnedToday: false } : b);
+  const nextState = { ...state, bots };
+  await persist(nextState);
+  return nextState;
+}
+
+export async function nudgeDevBot(uid: string): Promise<DevBotsState> {
+  const state = await loadDevBots();
+  const bots = state.bots.map((bot) => bot.uid === uid ? { ...bot, nudgedByMe: true } : bot);
   const nextState = { ...state, bots };
   await persist(nextState);
   return nextState;
@@ -211,4 +291,60 @@ export async function resetDevBots(): Promise<DevBotsState> {
 
 export function isDevBotUid(uid: string): boolean {
   return uid.startsWith(DEV_BOT_UID_PREFIX);
+}
+
+export interface DevBotFriendProfile {
+  uid: string;
+  name: string;
+  totalXp: number;
+  weeklyXp: number;
+  streak: number;
+  isPremium: false;
+  isVip: false;
+  isLifetime: false;
+  avatar: string;
+  frame: string;
+  aura: undefined;
+}
+
+export function devBotToFriendProfile(bot: DevBotFriend, avatar: string, frame: string): DevBotFriendProfile {
+  return {
+    uid: bot.uid,
+    name: bot.name,
+    totalXp: bot.totalXp,
+    weeklyXp: bot.weeklyXp,
+    streak: bot.streak,
+    isPremium: false,
+    isVip: false,
+    isLifetime: false,
+    avatar,
+    frame,
+    aura: undefined,
+  };
+}
+
+export interface DevBotTogetherMetrics {
+  level: number;
+  progressPercent: number;
+  learnedToday: boolean;
+  nudged: boolean;
+  incomingNudge: boolean;
+  giftReady: boolean;
+}
+
+export function devBotTogetherMetrics(bot: DevBotFriend): DevBotTogetherMetrics {
+  const level = levelForDays(bot.days);
+  const next = nextThreshold(level);
+  const previous = level <= 1 ? 0 : (nextThreshold(level - 1) ?? 0);
+  const progressPercent = next === null
+    ? 100
+    : Math.max(0, Math.min(100, Math.round(((bot.days - previous) / Math.max(1, next - previous)) * 100)));
+  return {
+    level,
+    progressPercent,
+    learnedToday: bot.learnedToday,
+    nudged: bot.nudgedByMe,
+    incomingNudge: bot.incomingNudge,
+    giftReady: bot.giftReady,
+  };
 }

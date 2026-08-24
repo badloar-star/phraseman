@@ -5,6 +5,7 @@ import { type AdminPermission, hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { isAllowedReportTransition } from './admin_reports_center';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 type Row = Record<string, unknown>;
 type CommandMeta = Readonly<{ reason: string; requestId: string; idempotencyKey: string }>;
@@ -441,11 +442,13 @@ export const adminMigrateLegacyAdminPremium = onCall(ADMIN_SENSITIVE_WRITE_OPTIO
       const hasLegacyProvenance = progress.premium_plan === 'admin_grant' && String(progress.admin_premium_override ?? '') === 'true';
       if (!hasLegacyProvenance || (expiry !== 0 && expiry <= nowMs)) { skipped.push(uid); return; }
       const grantAt = String(progress.premium_admin_grant_at || nowMs);
-      tx.update(snapshot.ref, {
+      const vipPatch = {
         'progress.vip_active': 'true', 'progress.vip_plan': 'admin_vip', 'progress.vip_from': grantAt,
         'progress.vip_until': String(expiry), 'progress.vip_admin_override': 'true',
-        'progress.vip_admin_grant_at': grantAt, 'progress.vip_migrated_from_admin_grant_at': String(nowMs), updatedAt: nowMs,
-      });
+        'progress.vip_admin_grant_at': grantAt, 'progress.vip_migrated_from_admin_grant_at': String(nowMs),
+      };
+      tx.update(snapshot.ref, { ...vipPatch, updatedAt: nowMs });
+      writeAccessProjectionFromPatch(tx, snapshot.ref, progress, vipPatch, nowMs);
       migrated.push(uid);
     });
     const audit = auditRecord(actor, 'migrate_legacy_admin_premium', { collection: 'users', id: 'explicit_candidates' }, input.reason, input.requestId, { requested: input.uids.length }, { migrated: migrated.length, skipped: skipped.length }, nowMs);

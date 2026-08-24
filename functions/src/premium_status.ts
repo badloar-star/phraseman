@@ -472,7 +472,10 @@ export async function resolveIsMaxTier(
       const data = snap.data() ?? {};
       add(data.canonicalStableId);
       const progress = (data.progress ?? {}) as Record<string, unknown>;
-      if (isMaxTierActive(progress, now)) {
+      // Hidden documents are historical aliases, never entitlement authorities.
+      // Otherwise a stale MAX snapshot on an alias can resurrect the tier after
+      // the visible canonical account was downgraded, expired, or revoked.
+      if (data.identityHidden !== true && isMaxTierActive(progress, now)) {
         maxActive = true;
       }
     }));

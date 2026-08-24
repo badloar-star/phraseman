@@ -218,6 +218,33 @@ test('returns the local decision first and syncs a managed RevenueCat entitlemen
   expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledWith('premium-guard-test');
 });
 
+test('background refresh preserves MAX when premium and max entitlements are both active', async () => {
+  getCustomerInfo.mockResolvedValue({
+    entitlements: { active: {
+      premium: {
+        productIdentifier: 'phraseman_premium_monthly_399',
+        expirationDateMillis: 1_000,
+      },
+      max: {
+        productIdentifier: 'phraseman_max_monthly_v1:monthly-base',
+        expirationDateMillis: 9_000,
+      },
+    } },
+    activeSubscriptions: [
+      'phraseman_premium_monthly_399',
+      'phraseman_max_monthly_v1:monthly-base',
+    ],
+  });
+  const { getVerifiedRealPremiumStatus, __waitForPremiumBackgroundRefreshForTests } = require('../app/premium_guard');
+
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await __waitForPremiumBackgroundRefreshForTests();
+
+  expect(asyncStore.premium_plan).toBe('max_monthly');
+  expect(asyncStore.premium_rc_product_id).toBe('phraseman_max_monthly_v1:monthly-base');
+  expect(asyncStore.premium_rc_expiry_ms).toBe('9000');
+});
+
 test('preserves local paid access and logs warning when projection sync fails', async () => {
   getCustomerInfo.mockResolvedValue({
     entitlements: {

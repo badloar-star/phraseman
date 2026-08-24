@@ -34,6 +34,7 @@ import {
   readTutorMemory,
   renderTutorMemoryBlock,
   selectTutorLessonType,
+  TUTOR_MEMORY_EMPTY,
   tutorLessonTypeFor,
 } from './max_voice_tutor_memory';
 import {
@@ -44,16 +45,21 @@ import {
   renderCanDoGoalBlock,
 } from './max_voice_can_do_goals';
 import { buildTutorPreview } from './max_voice_tutor_preview';
+import { maxVoiceStudyTarget, maxVoiceTargetLanguageName } from './max_voice_target_language';
 import {
+  LEGACY_VOICE_QUOTA_EXHAUSTED_REASON,
   VOICE_QUOTA_COLLECTION,
+  confirmVoiceTrialMinted,
+  ensureCanonicalVoiceQuota,
   releaseVoiceReservation,
-  markVoiceTrialUsed,
   reserveVoiceSeconds,
   transferReserve,
+  voiceQuotaExhaustedReason,
   voiceQuotaDocId,
 } from './max_voice_quota';
 import {
   MAX_VOICE_OPS_EVENT_SCHEMA,
+  type MaxVoiceMintRejectionReason,
   maxVoiceOpsLevel,
   maxVoiceOpsLocale,
   recordMaxVoiceOpsOnce,
@@ -260,23 +266,37 @@ export interface VoiceTrialState {
   usedAtMs: number;
 }
 
-/** Пробник доступен, если не использован либо прошло ≥ trialRefreshDays (ре-триал). */
+/**
+ * Пробник доступен ровно один раз за жизнь стабильного аккаунта.
+ *
+ * trialUsedAtMs — прежнее имя поля, но теперь это бессрочный штамп. Для
+ * fail-closed миграции учитываем детерминированную историю старых звонков:
+ * раньше Плюс/Про могли расходовать monthlyUsedSec без trialUsedAtMs. Истёкший
+ * monthResetAtMs не обнуляет сам факт такого использования.
+ */
 export function resolveTrialState(
   quotaData: Record<string, unknown> | undefined,
-  config: MaxVoiceConfig,
-  nowMs: number,
+  _config: MaxVoiceConfig,
+  _nowMs: number,
 ): VoiceTrialState {
-  const usedAtMs = Math.max(0, num(quotaData?.trialUsedAtMs));
-  const refreshMs = config.trialRefreshDays * 24 * 60 * 60 * 1000;
-  return { available: usedAtMs <= 0 || nowMs - usedAtMs >= refreshMs, usedAtMs };
+  const data = quotaData ?? {};
+  const legacyUsageMarker = Math.max(
+    0,
+    num(data.lifetimeTrialUsedAtMs),
+    num(data.trialUsedAtMs),
+    num(data.activatedAtMs),
+    num(data.lastSettledAtMs),
+    num(data.monthlyUsedSec) > 0 ? 1 : 0,
+  );
+  return { available: legacyUsageMarker <= 0, usedAtMs: legacyUsageMarker };
 }
 
 export type VoiceTrialVariant = 'companion' | 'scenario';
 
 /**
- * Пробный звонок для тех, у кого нет подписки: доступен, если ни разу не был
- * использован или прошло trialRefreshDays (владелец 2026-08-23 — раз в полгода).
- * null = пробник исчерпан или выключен, линия закрыта пейволом.
+ * Пробный звонок для Free/Плюс/Про: доступен, только если ни разу не был
+ * использован этим стабильным аккаунтом. null = пробник исчерпан, линия закрыта
+ * пейволом MAX. Смена обычного тира не меняет этот штамп.
  *
  * Вариант берём из trialMode: 'auto' даёт сценарий (кофейня с Mia) — он ярче
  * показывает живой голос, чем свободный разговор.
@@ -326,8 +346,8 @@ interface VoiceGateContext {
 }
 
 /**
- * Месячный пакет минут по тиру (владелец 2026-08-23, релизные лимиты):
- * MAX — большой, Плюс/Про — витринный, free — только пробный звонок.
+ * Пакет минут по тиру: MAX — 120 минут в месяц; Free/Плюс/Про — только один
+ * общий пожизненный пробный звонок, которому нужен технический резерв с хвостом.
  *
  * Дневной потолок общий для всех платных тиров: он растягивает месячный пакет,
  * а не режет доступ.
@@ -335,12 +355,11 @@ interface VoiceGateContext {
 export function monthlyVoiceCapFor(
   config: MaxVoiceConfig,
   isMaxTier: boolean,
-  isPremium: boolean,
+  _isPremium: boolean,
   access: 'max' | 'trial' = 'max',
 ): number {
   if (isMaxTier) return config.monthlyVoiceSecMax;
-  if (isPremium) return config.premiumMonthlyVoiceSecMax;
-  // Пробник без подписки: месячного пакета у него нет, но своя единственная
+  // У пробника месячного пакета нет, но своя единственная
   // сессия должна поместиться — иначе резерв упрётся в ноль и звонок не
   // состоится вовсе. Разовость держит trialUsedAtMs, а не месячный счётчик.
   if (access === 'trial') return config.trialCallSec + config.graceTailSec;
@@ -349,14 +368,15 @@ export function monthlyVoiceCapFor(
 
 /**
  * Гейты в порядке теста №11: kill switch (aiGloballyDisabled + gate_ai_voice_call)
- * → подписка (resolvePremiumAccess; MAX v1 = премиум при voiceForPremiumBeta)
- * ИЛИ пробник. Бросает HttpsError на первом же закрытом гейте.
+ * → серверный тариф (MAX / Plus / Pro) ИЛИ пробник. Бросает HttpsError на
+ * первом же закрытом гейте. Устаревший voiceForPremiumBeta больше не участвует.
  */
 async function resolveVoiceGates(
   authUid: string,
   data: Record<string, unknown>,
   nowMs: number,
   isAdmin: boolean,
+  rejectionMarkerId?: string,
 ): Promise<VoiceGateContext> {
   const db = admin.firestore();
 
@@ -370,8 +390,14 @@ async function resolveVoiceGates(
     resolveStableUidForAuth(db, authUid),
   ]);
 
+  const rejectBeforeReserve = async (reason: MaxVoiceMintRejectionReason): Promise<void> => {
+    if (!rejectionMarkerId) return;
+    await recordMintRejection(db, authUid, stableUid, rejectionMarkerId, reason, nowMs);
+  };
+
   // Kill switch №1: глобальный рубильник всего ИИ.
   if (globallyDisabled) {
+    await rejectBeforeReserve('kill_switch');
     throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   }
   // Kill switch №2: собственный гейт голосовых звонков.
@@ -384,33 +410,26 @@ async function resolveVoiceGates(
   // владелец сам снял галочку, а не потому что фича ещё не запущена.
   if (!config.gate_ai_voice_call) {
     console.warn('max_voice_mint rejected', { reason: 'voice_disabled' });
+    await rejectBeforeReserve('kill_switch');
     throw new HttpsError('failed-precondition', 'voice_disabled');
   }
 
   // Подписку резолвит сервер — телу запроса не верим (паттерн premium_dialog).
   // Подписка, тир MAX и док квоты — независимые чтения, поэтому параллельно.
-  const [isPremium, isMaxTier, quotaSnap] = await Promise.all([
+  const [isPremium, isMaxTier, quotaData] = await Promise.all([
     resolvePremiumAccess(db, stableUid, Date.now(), authUid),
     resolveIsMaxTier(db, stableUid, Date.now(), authUid),
-    db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get(),
+    ensureCanonicalVoiceQuota(db, { authUid, stableUid, nowMs }),
   ]);
-  const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
 
-  // зачем (владелец 2026-08-23, релизный пейвол): до этого доступ 'max' выдавался
-  // ВСЕМ безусловно — звонки не гейтились вовсе, и один человек мог нажечь
-  // ~$173/мес. Теперь тир решает размер месячного пакета:
-  //   MAX      -> 120 мин/мес;
-  //   Плюс/Про -> 15 мин/мес (витрина);
-  //   без подписки -> только пробный звонок 3 мин раз в 180 дней.
+  // MAX получает 120 мин/мес. Все остальные серверные тиры (Free/Плюс/Про)
+  // проходят одну и ту же пожизненную пробную ветку: апгрейд обычного тарифа
+  // не должен сбрасывать trialUsedAtMs или давать второй звонок.
   // Админ приравнен к MAX: свои тестовые звонки не должны упираться в пейвол.
   if (isMaxTier || isAdmin) {
     return { db, authUid, stableUid, config, isPremium, isMaxTier: true, quotaData, access: 'max', trialVariant: null, nowMs };
   }
-  if (isPremium) {
-    return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'max', trialVariant: null, nowMs };
-  }
-
-  // Без подписки — пробник. Исчерпан (или выключен) -> линия закрыта, клиент
+  // Free/Плюс/Про — общий пробник. Исчерпан -> линия закрыта, клиент
   // показывает пейвол MAX по коду voice_max_required.
   //
   // ⚠️ РЕКОННЕКТ ИСКЛЮЧЁН ИЗ ПЕЙВОЛА: он продолжает УЖЕ оплаченную и уже
@@ -425,6 +444,7 @@ async function resolveVoiceGates(
   }
   if (!trial) {
     console.warn('max_voice_mint rejected', { reason: 'voice_max_required' });
+    await rejectBeforeReserve('paywall');
     throw new HttpsError('permission-denied', 'voice_max_required');
   }
   return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'trial', trialVariant: trial, nowMs };
@@ -443,10 +463,44 @@ export function estimateQuotaRemaining(
   const monthlyCap = tier
     ? monthlyVoiceCapFor(config, tier.isMaxTier, tier.isPremium, tier.access)
     : config.monthlyVoiceSecMax;
+  const now = new Date(nowMs);
+  const currentMonthStartedAtMs = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1);
+  const markerMatchesWindow = nowMs < num(quotaData.monthResetAtMs)
+    && num(quotaData.maxAllowanceMonthResetAtMs) === num(quotaData.monthResetAtMs);
+  const trialUsedAtMs = num(quotaData.trialUsedAtMs);
+  const currentMonthTrialOffset = trialUsedAtMs >= currentMonthStartedAtMs
+    && trialUsedAtMs <= nowMs
+    && text(quotaData.trialReservationSessionId, 80) !== ''
+    && num(quotaData.trialProviderMintedAtMs) > 0
+    ? Math.min(monthlyUsed, config.trialCallSec + config.graceTailSec)
+    : 0;
+  const maxBaseline = tier?.isMaxTier
+    ? markerMatchesWindow
+      ? Math.min(monthlyUsed, Math.max(0, num(quotaData.maxAllowanceUsageBaselineSec)))
+      : currentMonthTrialOffset
+    : 0;
+  const effectiveMonthlyUsed = tier?.isMaxTier ? monthlyUsed - maxBaseline : monthlyUsed;
   return {
     dayRemainingSec: Math.max(0, config.dailyVoiceSecMax - dailyUsed),
-    monthRemainingSec: Math.max(0, monthlyCap - monthlyUsed),
+    monthRemainingSec: Math.max(0, monthlyCap - effectiveMonthlyUsed),
   };
+}
+
+async function recordMintRejection(
+  db: Firestore,
+  authUid: string,
+  stableUid: string,
+  markerId: string,
+  rejectionReason: MaxVoiceMintRejectionReason,
+  nowMs: number,
+): Promise<void> {
+  const markerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(stableUid));
+  await recordMaxVoiceOpsOnce(db, {
+    markerRef,
+    markerId,
+    event: { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'mint_rejected', rejectionReason },
+    nowMs,
+  }).catch(() => undefined);
 }
 
 type VoiceMintFormat = 'scenario' | 'companion' | 'trial' | 'tutor';
@@ -516,14 +570,20 @@ export const maxVoicePreflight = onCall({
     request.auth.token?.admin === true,
   );
   const { dayRemainingSec, monthRemainingSec } = estimateQuotaRemaining(ctx.quotaData, ctx.config, nowMs, { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access });
-  if (Math.min(dayRemainingSec, monthRemainingSec) < 60) {
-    console.warn('max_voice_preflight rejected', { reason: 'voice_quota_exhausted', dayRemainingSec, monthRemainingSec });
-    throw new HttpsError('resource-exhausted', 'voice_quota_exhausted');
+  const quotaReason = voiceQuotaExhaustedReason(dayRemainingSec, monthRemainingSec);
+  if (quotaReason) {
+    console.warn('max_voice_preflight rejected', { reason: quotaReason, dayRemainingSec, monthRemainingSec });
+    throw new HttpsError('resource-exhausted', quotaReason, LEGACY_VOICE_QUOTA_EXHAUSTED_REASON);
   }
   const format = formatOf(data, ctx.access, ctx.trialVariant);
+  const studyTarget = maxVoiceStudyTarget(data.studyTarget);
   const tutorPreview = format === 'tutor'
     ? buildTutorPreview({
-        memory: await readTutorMemory(ctx.db, ctx.authUid, ctx.stableUid),
+        // Tutor memory is not target-scoped yet. Never leak English homework
+        // into another course; those courses start from a clean preview.
+        memory: studyTarget === 'en'
+          ? await readTutorMemory(ctx.db, ctx.authUid, ctx.stableUid)
+          : TUTOR_MEMORY_EMPTY,
         cefr: asVoiceCefr(data.cefr),
         interfaceLang: text(data.interfaceLang, 8),
         tutorName: ctx.config.tutorName,
@@ -760,13 +820,20 @@ export const maxVoiceMint = onCall({
 
   const nowMs = Date.now();
   const data = (request.data ?? {}) as Record<string, unknown>;
+  const rejectionMarkerId = `vr_${randomUUID()}`;
   // Чтение дневного бюджета не зависит от гейтов и никогда не бросает —
   // стартуем параллельно с ними (латентность минта), а ПРОВЕРЯЕМ после,
   // чтобы порядок отказов остался прежним.
   const budgetSpentPromise = readVoiceBudgetSpentUsd(admin.firestore(), nowMs);
   // Порядок гейтов (тест №11): App Check (опция onCall) → kill switch →
   // подписка/пробник → бюджет → rate limit → резерв → минт.
-  const ctx = await resolveVoiceGates(request.auth.uid, data, nowMs, request.auth.token?.admin === true);
+  const ctx = await resolveVoiceGates(
+    request.auth.uid,
+    data,
+    nowMs,
+    request.auth.token?.admin === true,
+    rejectionMarkerId,
+  );
   const { db, authUid, stableUid, config } = ctx;
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
@@ -786,16 +853,19 @@ export const maxVoiceMint = onCall({
   if (tier === 'exhausted' && !reconnectOf) {
     // ≥100%: новые realtime-сессии не стартуем — клиент уходит в half-duplex-фолбэк.
     console.warn('max_voice_mint rejected', { reason: 'voice_budget_exhausted', spentUsd });
+    await recordMintRejection(db, authUid, stableUid, rejectionMarkerId, 'budget', nowMs);
     throw new HttpsError('resource-exhausted', 'voice_budget_exhausted');
   }
   if (tier === 'soft' && ctx.access === 'trial' && !reconnectOf) {
     // 80–100%: пробники — первое, что режется лестницей (но не живые пробные звонки).
     console.warn('max_voice_mint rejected', { reason: 'voice_trial_paused', spentUsd });
+    await recordMintRejection(db, authUid, stableUid, rejectionMarkerId, 'budget', nowMs);
     throw new HttpsError('resource-exhausted', 'voice_trial_paused');
   }
 
   const cefr = asVoiceCefr(data.cefr);
   const format = formatOf(data, ctx.access, ctx.trialVariant);
+  const studyTarget = maxVoiceStudyTarget(data.studyTarget);
 
   let reservedSec: number;
   let dayRemainingSec: number;
@@ -823,22 +893,66 @@ export const maxVoiceMint = onCall({
     monthRemainingSec = remaining.monthRemainingSec;
   } else {
     // Свежий минт: rate limit → транзакционный резерв (min(cap+хвост, день, месяц)).
-    await enforceVoiceMintRateLimit(db, authUid, stableUid, config.mintPerHourMax, nowMs);
+    const estimatedRemaining = estimateQuotaRemaining(
+      ctx.quotaData,
+      config,
+      nowMs,
+      { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access },
+    );
+    const estimatedQuotaReason = voiceQuotaExhaustedReason(
+      estimatedRemaining.dayRemainingSec,
+      estimatedRemaining.monthRemainingSec,
+    );
+    if (estimatedQuotaReason) {
+      const rejectionReason = estimatedQuotaReason === 'voice_monthly_quota_exhausted'
+        ? 'monthly_quota'
+        : 'daily_quota';
+      await recordMintRejection(db, authUid, stableUid, rejectionMarkerId, rejectionReason, nowMs);
+      throw new HttpsError('resource-exhausted', estimatedQuotaReason, LEGACY_VOICE_QUOTA_EXHAUSTED_REASON);
+    }
+    try {
+      await enforceVoiceMintRateLimit(db, authUid, stableUid, config.mintPerHourMax, nowMs);
+    } catch (error) {
+      if (error instanceof Error && error.message === 'voice_mint_rate_limited') {
+        await recordMintRejection(db, authUid, stableUid, rejectionMarkerId, 'rate_limit', nowMs);
+      }
+      throw error;
+    }
     let capSec = sessionCapFor(config, format);
     if (tier === 'soft') capSec = Math.min(capSec, VOICE_BUDGET_SOFT_SESSION_CAP_SEC);
     sessionId = `vs_${randomUUID()}`;
-    const reserve = await reserveVoiceSeconds(db, {
-      authUid,
-      stableUid,
-      sessionId,
-      formatCapSec: capSec,
-      graceTailSec: config.graceTailSec,
-      dailyVoiceSecMax: config.dailyVoiceSecMax,
-      // Месячный пакет — по тиру: MAX 120 мин, Плюс/Про 15 мин (владелец
-      // 2026-08-23). Пробник сюда не попадает: у него свой одноразовый лимит.
-      monthlyVoiceSecMax: monthlyVoiceCapFor(config, ctx.isMaxTier, ctx.isPremium, ctx.access),
-      nowMs,
-    });
+    let reserve;
+    try {
+      reserve = await reserveVoiceSeconds(db, {
+        authUid,
+        stableUid,
+        sessionId,
+        formatCapSec: capSec,
+        graceTailSec: config.graceTailSec,
+        dailyVoiceSecMax: config.dailyVoiceSecMax,
+        // MAX резервируется из пакета 120 мин/мес; Free/Плюс/Про — из одного
+        // пробного резерва до 3 минут. Разовость держит trialUsedAtMs.
+        monthlyVoiceSecMax: monthlyVoiceCapFor(config, ctx.isMaxTier, ctx.isPremium, ctx.access),
+        consumeLifetimeTrial: ctx.access === 'trial',
+        quotaIdentityClosureProof: text(ctx.quotaData.quotaIdentityClosureProof, 80),
+        maxMonthlyAllowance: ctx.isMaxTier,
+        maxInitialTrialOffsetSec: config.trialCallSec + config.graceTailSec,
+        nowMs,
+      });
+    } catch (error) {
+      const rawReason = error instanceof Error ? error.message : '';
+      if (rawReason === 'voice_daily_quota_exhausted' || rawReason === 'voice_monthly_quota_exhausted') {
+        await recordMintRejection(
+          db,
+          authUid,
+          stableUid,
+          rejectionMarkerId,
+          rawReason === 'voice_monthly_quota_exhausted' ? 'monthly_quota' : 'daily_quota',
+          nowMs,
+        );
+      }
+      throw error;
+    }
     reservedSec = reserve.reservedSec;
     dayRemainingSec = reserve.dayRemainingSec;
     monthRemainingSec = reserve.monthRemainingSec;
@@ -851,7 +965,7 @@ export const maxVoiceMint = onCall({
     }
   }
 
-  const opsMarkerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
+  const opsMarkerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(stableUid));
   const recordMintStage = (stage: 'mint_requested' | 'quota_reserved' | 'reconnect_attempt' | 'mint_succeeded' | 'mint_failed', extra: Record<string, unknown> = {}) => (
     recordMaxVoiceOpsOnce(db, {
       markerRef: opsMarkerRef,
@@ -879,7 +993,10 @@ export const maxVoiceMint = onCall({
   // Учитель: память ученика (сервер) и выжимка устава — параллельно, оба
   // никогда не бросают. Память — 1 чтение на минт, устав — кэш 1ч на инстанс.
   const [tutorMemory, appDigest] = isTutor
-    ? await Promise.all([readTutorMemory(db, authUid, stableUid), loadTutorAppDigest(db, nowMs)])
+    ? await Promise.all([
+        studyTarget === 'en' ? readTutorMemory(db, authUid, stableUid) : Promise.resolve(TUTOR_MEMORY_EMPTY),
+        loadTutorAppDigest(db, nowMs),
+      ])
     : [null, ''];
   // Карта целей (ступень 2): текущая цель по mastery и уровню. Уровень для выбора
   // цели — из закрытых целей, если они уже есть, иначе — cefr клиента.
@@ -898,7 +1015,7 @@ export const maxVoiceMint = onCall({
       })
     : null;
   const goalBlock = tutorMemory && currentGoal && goalProgressNow
-    ? renderCanDoGoalBlock(currentGoal, tutorMemory.goalMastery, goalProgressNow)
+    ? renderCanDoGoalBlock(currentGoal, tutorMemory.goalMastery, goalProgressNow, studyTarget)
     : '';
   const instructions = buildVoiceInstructions({
     cefr,
@@ -911,7 +1028,7 @@ export const maxVoiceMint = onCall({
     ...(isTutor
       ? {
           learnerLangName: learnerLangNameFor(text(data.interfaceLang, 8)),
-          targetLangName: 'English',
+          targetLangName: maxVoiceTargetLanguageName(studyTarget),
           appDigest,
           sceneCatalog: text(data.sceneCatalog, 2000),
           syllabusBlock: text(data.syllabusBlock, 1600),
@@ -933,7 +1050,12 @@ export const maxVoiceMint = onCall({
     // estUsd=0, но перенесённый остаток был забюджетирован ИСХОДНЫМ минтом и без
     // сторно повис бы навсегда (сессия закрыта, settle не наступит).
     const released = await releaseVoiceReservation(db, {
-      authUid, stableUid, sessionId, reason: 'mint_failed', nowMs: Date.now(),
+      authUid,
+      stableUid,
+      sessionId,
+      reason: 'mint_failed',
+      restoreLifetimeTrial: true,
+      nowMs: Date.now(),
     }).catch((e) => {
       console.error('max_voice_mint release after provider failure failed', e);
       return null;
@@ -952,15 +1074,29 @@ export const maxVoiceMint = onCall({
     throw new HttpsError('unavailable', 'voice_provider_failed');
   }
 
+  if (ctx.access === 'trial' && !reconnectOf) {
+    try {
+      await confirmVoiceTrialMinted(db, { authUid, stableUid, sessionId, nowMs: Date.now() });
+    } catch (error) {
+      // Provider уже выдал secret: lifetime stamp нельзя откатывать, иначе
+      // повтор даст второй provider mint. Сам secret наружу при этом не уходит.
+      const released = await releaseVoiceReservation(db, {
+        authUid, stableUid, sessionId, reason: 'trial_confirmation_failed', nowMs: Date.now(),
+      }).catch(() => null);
+      const refundedSec = released && !released.alreadySettled ? released.refundedSec : 0;
+      await refundVoiceBudgetEstimate(db, (refundedSec / 60) * VOICE_EST_COST_USD_PER_MIN, Date.now())
+        .catch(() => {});
+      await recordMintStage('mint_failed');
+      console.error('max_voice_mint trial confirmation failed', error);
+      throw new HttpsError('internal', 'voice_trial_commit_failed');
+    }
+  }
+
   await recordMintStage('mint_succeeded', {
     latencyMs: Math.max(0, Date.now() - nowMs),
     locale: maxVoiceOpsLocale(data.interfaceLang),
     level: maxVoiceOpsLevel(cefr),
   });
-
-  if (ctx.access === 'trial' && !reconnectOf) {
-    await markVoiceTrialUsed(db, { authUid, stableUid, nowMs }).catch(() => {});
-  }
 
   // Говоримое время: резерв минус хвост teardown'а. Клиент строит deadline от него.
   const maxSeconds = Math.max(0, reservedSec - config.graceTailSec);

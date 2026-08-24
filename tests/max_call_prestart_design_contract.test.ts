@@ -2,6 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'max_call_prestart.tsx'), 'utf8');
+const serverConfigSource = fs.readFileSync(path.join(__dirname, '..', 'functions', 'src', 'max_voice_config.ts'), 'utf8');
+
+function numericConstant(sourceText: string, pattern: RegExp): number {
+  const match = sourceText.match(pattern);
+  if (!match?.[1]) throw new Error(`Numeric constant not found: ${pattern}`);
+  return Number(match[1].replace(/_/g, ''));
+}
 
 describe('MAX tutor prestart approved Statistics-style design', () => {
   test('removes the rejected upcoming list and generic education icons', () => {
@@ -37,5 +44,12 @@ describe('MAX tutor prestart approved Statistics-style design', () => {
     expect(source).toContain('<MaxDailyQuotaMeter');
     expect(source).not.toContain('целей закрыто');
     expect(source).not.toContain('goalProgressLabel');
+  });
+
+  test('shows the server daily limit while the first mint response is pending', () => {
+    const clientFallbackSec = numericConstant(source, /const DEFAULT_DAY_SEC = ([\d_]+);/);
+    const serverDefaultSec = numericConstant(serverConfigSource, /dailyVoiceSecMax: ([\d_]+),/);
+
+    expect(clientFallbackSec).toBe(serverDefaultSec);
   });
 });

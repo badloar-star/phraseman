@@ -62,7 +62,8 @@ import { getCardStreakShieldStatus, type CardStreakShieldStatus } from '../app/p
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { syncToCloud } from '../app/cloud_sync';
-import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
+import { deleteFriend, sendFriendRequest } from '../app/firestore_friend_requests';
+import { friendsAccountStore } from '../app/friends_account_store';
 import {
   hasSyntheticFriendRequest,
   isSyntheticUid,
@@ -912,7 +913,7 @@ function PlayerProfileModalBody({
       setFriendUids(new Set());
       return;
     }
-    return subscribeToFriends((rows) => {
+    return friendsAccountStore.subscribe((rows) => {
       const nextFriendUids = new Set(rows.map((row) => row.uid));
       setFriendUids(nextFriendUids);
       setFriendRequestSentUids(prev => {
@@ -1431,7 +1432,7 @@ function PlayerProfileModalBody({
           // друзей — ник виден и незнакомцам. Без uid жаловаться некуда
           // (submitUserReport требует reportedUid), кнопку тогда не показываем.
           // Позиция под кнопкой друга, если она есть, иначе под крестиком.
-          <PressableHybrid
+          (<PressableHybrid
             testID="player-profile-report-user"
             variant="icon"
             onPress={() => setReportUserOpen(true)}
@@ -1468,14 +1469,14 @@ function PlayerProfileModalBody({
             })}
           >
             <Ionicons name="flag-outline" size={20} color={t.textSecond} />
-          </PressableHybrid>
+          </PressableHybrid>)
         ) : null}
         {isMe && !hasDevProfileCardLevelOverride && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
           // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
           // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
           // AURORA: стеклянный круг, кромка и стрелка в акценте СЛЕДУЮЩЕГО уровня
           // + его свечение (в превью — римский номер уровня вместо стрелки).
-          <PressableHybrid
+          (<PressableHybrid
             testID="player-profile-upgrade-card"
             variant="icon"
             accessibilityLabel={triLang(lang as Lang, {
@@ -1524,7 +1525,7 @@ function PlayerProfileModalBody({
                 </Text>
               )}
             </Animated.View>
-          </PressableHybrid>
+          </PressableHybrid>)
         ) : null}
       </>
     );
@@ -1539,7 +1540,7 @@ function PlayerProfileModalBody({
         {displayCardLevel > 0 && (
           // AURORA: пилюля уровня переехала из центра в ЛЕВЫЙ ВЕРХНИЙ УГОЛ —
           // floating glass pill, кромка и текст в акценте отображаемого уровня.
-          <View
+          (<View
             pointerEvents="none"
             style={{
               position: 'absolute',
@@ -1561,12 +1562,12 @@ function PlayerProfileModalBody({
             <Text style={{ color: cardVisual.accent, fontWeight: '800', fontSize: f.caption, letterSpacing: 0.4, flexShrink: 1 }}>
               {profileCardLevelRoman(displayCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
             </Text>
-          </View>
+          </View>)
         )}
         {prestigeActive && (
           // При смене уровня (превью/покупка) фон и эффекты мягко проявляются заново —
           // «морф» карточки вместо мгновенной подмены.
-          <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: levelSwitchAnim }]}>
+          (<Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: levelSwitchAnim }]}>
             <LinearGradient
               colors={cardVisual.gradient}
               start={{ x: 0, y: 0 }}
@@ -1584,7 +1585,7 @@ function PlayerProfileModalBody({
               glowBottom={cardVisual.glowBottom}
               glowTop={cardVisual.glowTop}
             />
-          </Animated.View>
+          </Animated.View>)
         )}
         <ScrollView
           bounces={false}
@@ -1598,7 +1599,7 @@ function PlayerProfileModalBody({
               <ProfileOrbitRing size={88} accent={cardVisual.accent} />
             ) : (
               // Уровень 0 — без кольца, простая тонкая кромка.
-              <View pointerEvents="none" style={{ position: 'absolute', width: 78, height: 78, borderRadius: 39, borderWidth: 1, borderColor: auroraGlass ? 'rgba(255,255,255,0.14)' : t.border }} />
+              (<View pointerEvents="none" style={{ position: 'absolute', width: 78, height: 78, borderRadius: 39, borderWidth: 1, borderColor: auroraGlass ? 'rgba(255,255,255,0.14)' : t.border }} />)
             )}
             {/* Уровень III+ — мягкое внешнее свечение кольца цветом уровня
                 (бывшее «усиленное кольцо», переосмысленное под стекло). */}
@@ -1664,7 +1665,7 @@ function PlayerProfileModalBody({
             {showPremium && (
               // Стеклянная пилюля подписки: PLUS — золотая с diamond, lifetime PRO —
               // синяя (pro=синий, как в PremiumCelebrationModal). Shimmer сохранён.
-              <Animated.View style={{ opacity: shimmerOpacity }}>
+              (<Animated.View style={{ opacity: shimmerOpacity }}>
                 <LinearGradient
                   // зачем: §0.D — цветную кромку заменяет более глубокий
                   // градиент того же тона (0.18→0.28 сверху): пилюля читается
@@ -1688,7 +1689,7 @@ function PlayerProfileModalBody({
                     {showPro ? 'PRO' : 'PLUS'}
                   </Text>
                 </LinearGradient>
-              </Animated.View>
+              </Animated.View>)
             )}
             <View style={{
               flexDirection: 'row',
@@ -1781,9 +1782,9 @@ function PlayerProfileModalBody({
                 {metric.value === null ? (
                   // Заглушка ровно под кегль 20/вес 800 — геометрия колонки та же,
                   // поэтому подстановка настоящей цифры не двигает лейаут.
-                  <View style={{ height: 24, alignItems: 'center', justifyContent: 'center' }}>
+                  (<View style={{ height: 24, alignItems: 'center', justifyContent: 'center' }}>
                     <SkeletonBlock width={46} height={18} borderRadius={5} />
-                  </View>
+                  </View>)
                 ) : (
                   <Text
                     style={{
@@ -1890,7 +1891,7 @@ function PlayerProfileModalBody({
           // месте, дёргая лэйаут. Скелетон держит ту же геометрию (высота
           // шапки 24 + gap 9 + ряд чипов 24 + паддинги 26 = 83), поэтому
           // первый кадр совпадает с финальным.
-          <View style={{
+          (<View style={{
             borderRadius: 16, backgroundColor: glassPanel,
             paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
           }}>
@@ -1902,13 +1903,13 @@ function PlayerProfileModalBody({
               <SkeletonBlock width={92} height={24} borderRadius={8} />
               <SkeletonBlock width={78} height={24} borderRadius={8} />
             </View>
-          </View>
+          </View>)
         )}
         {isMe && multipliers && (
           // AURORA: одна glass-панель — шапка (подпись капсом + крупный итог,
           // зелёный #35D07F когда бонус активен) и wrap-чипы модификаторов под ней.
           // зачем: §0.D — панель держится тоном подложки, кромка снята.
-          <View style={{
+          (<View style={{
             borderRadius: 16, backgroundColor: glassPanel,
             paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
           }}>
@@ -2064,7 +2065,7 @@ function PlayerProfileModalBody({
                 </Text>
               )}
             </View>
-          </View>
+          </View>)
         )}
         {/* Разблокировки уровней II «Выучено», III «Защита цепочки» (только себе)
             и IV «Путь» — ОДНА glass-панель: строки разделены волосяной линией,
@@ -2171,7 +2172,7 @@ function PlayerProfileModalBody({
         {displayCardLevel >= 5 && (
           // AURORA: акцентная строка легенды — корона + имя одной строкой
           // (вторая строка-подпись убрана по фидбеку владельца).
-          <View style={{
+          (<View style={{
             flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 11,
             // зачем: §0.D — строка легенды держится акцентным тоном уровня V.
             borderRadius: 16, backgroundColor: cardVisual.accentSoft,
@@ -2201,7 +2202,7 @@ function PlayerProfileModalBody({
                     pl: 'Legenda',
                   })}
             </Text>
-          </View>
+          </View>)
         )}
         </ScrollView>
         {isMe && !hasDevProfileCardLevelOverride && previewLevel !== null && (
@@ -2209,7 +2210,7 @@ function PlayerProfileModalBody({
           // здесь имя уровня, выход из превью и покупка СЛЕДУЮЩЕГО уровня.
           // Плавающая скруглённая панель без обводок — часть модала, а не «приклейка».
           // Выезжает снизу (previewPanelAnim).
-          <Animated.View style={{
+          (<Animated.View style={{
             position: 'absolute',
             left: 12,
             right: 12,
@@ -2278,12 +2279,12 @@ function PlayerProfileModalBody({
                 ) : (
                   // зачем: цена карточки — в жемчужинах, значит и значок обязан быть
                   // ассетом жемчужины (как в магазине/на Главной), а не Ionicons-«алмазом».
-                  <Image
+                  (<Image
                     source={pearlIconForTheme(themeMode)}
                     style={{ width: 20, height: 20 }}
                     contentFit="contain"
                     accessible={false}
-                  />
+                  />)
                 )}
               </TouchableOpacity>
             ) : (
@@ -2304,7 +2305,7 @@ function PlayerProfileModalBody({
                 </Text>
               </View>
             )}
-          </Animated.View>
+          </Animated.View>)
         )}
         {hasSeasonProfileFrame && <SeasonProfileCardFrame radius={30} />}
       </>

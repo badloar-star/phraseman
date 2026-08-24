@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   countUnreadNotifications,
+  deleteUserNotification,
+  markUserNotificationsRead,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
 } from '../app/user_notifications';
@@ -242,6 +244,36 @@ describe('notification cache account isolation', () => {
     expect(persisted.map((notification: { id: string }) => notification.id)).toEqual([
       'live-friend-request-cache',
     ]);
+  });
+
+  it('keeps read acknowledgements in the account-scoped cache even if the network write fails', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-read-cache');
+    mockDocsByUid['stable-read-cache'] = [{
+      id: 'friend-marker',
+      data: { type: 'friend_nudge', read: false, createdAt: 300 },
+    }];
+    await refreshUserNotificationsOnce({ force: true });
+
+    await markUserNotificationsRead(['friend-marker']);
+    await refreshUserNotificationsOnce({ force: true });
+
+    await expect(readCachedUserNotifications()).resolves.toEqual([
+      expect.objectContaining({ id: 'friend-marker', read: true }),
+    ]);
+  });
+
+  it('keeps deletions out of the account-scoped cache even if the network write fails', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-delete-cache');
+    mockDocsByUid['stable-delete-cache'] = [{
+      id: 'remove-me',
+      data: { type: 'friend_request', read: false, createdAt: 300 },
+    }];
+    await refreshUserNotificationsOnce({ force: true });
+
+    await deleteUserNotification('remove-me');
+    await refreshUserNotificationsOnce({ force: true });
+
+    await expect(readCachedUserNotifications()).resolves.toEqual([]);
   });
 
 });

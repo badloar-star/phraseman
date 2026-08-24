@@ -31,6 +31,13 @@ describe('MAX operations dashboard', () => {
       callsConnected: 11,
       callsCompleted: 10,
       reviewsReady: 9,
+      mintRejections: 9,
+      mintRejectionReasons: {
+        ...emptyMaxVoiceOpsDaily('x', 0).mintRejectionReasons,
+        paywall: 4,
+        daily_quota: 2,
+        budget: 3,
+      },
       localeCounts: { ...emptyMaxVoiceOpsDaily('x', 0).localeCounts, ru: 4, uk: 5 },
       levelCounts: { ...emptyMaxVoiceOpsDaily('x', 0).levelCounts, A1: 4, B2: 6 },
     };
@@ -40,6 +47,12 @@ describe('MAX operations dashboard', () => {
     expect((d.readDays as jest.Mock).mock.calls[0][0]).toHaveLength(30);
     expect(result.distributions.localeCounts).toEqual(expect.objectContaining({ ru: null, uk: 5 }));
     expect(result.distributions.levelCounts).toEqual(expect.objectContaining({ A1: null, B2: 6 }));
+    expect(result.totals.mintRejections).toBe(9);
+    expect(result.distributions.mintRejectionReasons).toEqual(expect.objectContaining({
+      paywall: 4,
+      daily_quota: 2,
+      budget: 3,
+    }));
     expect(d.appendAudit).toHaveBeenCalledWith({ action: 'max_ops_read', actorUid: 'admin-1', days: 30, createdAtMs: NOW });
     expect(JSON.stringify((d.appendAudit as jest.Mock).mock.calls[0][0])).not.toMatch(/metric|locale|level|session|uid.*uid/i);
   });

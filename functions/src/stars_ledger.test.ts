@@ -157,6 +157,42 @@ describe('единый журнал звёзд', () => {
     expect(result.grantedTotal).toBe(50);
   });
 
+  it('подарочные звёзды Спина попадают в единый баланс, но не в соревновательный прогресс', async () => {
+    const { result } = await run(undefined, [
+      op({
+        opId: 'level_spin:request0000000001',
+        delta: 250,
+        reason: 'level_spin_grant' as any,
+        sourceKind: 'level_spin',
+        sourceId: 'request0000000001',
+      }),
+    ]);
+    expect(result.balance).toBe(250);
+    expect(result.grantedTotal).toBe(250);
+    expect(result.earnedTotal).toBe(0);
+    expect(result.weekEarned).toBe(0);
+    expect(result.seasonEarned).toBe(0);
+  });
+
+  it('материализованный Spin credit сразу доступен следующей трате единого журнала', async () => {
+    const { result } = await run(undefined, [
+      op({
+        opId: 'level_spin:request0000000001.base', delta: 50,
+        reason: 'level_spin_grant' as any,
+        sourceKind: 'level_spin_client_composite', sourceId: 'request0000000001.base',
+      }),
+      op({
+        opId: 'spend_shop:after_spin', delta: -40,
+        reason: 'spend_shop', sourceKind: 'spend_shop', sourceId: 'after_spin',
+      }),
+    ]);
+    expect(result.outcomes.map((outcome) => outcome.status)).toEqual(['applied', 'applied']);
+    expect(starsSpendable(normalizeStars({
+      balance: result.balance, earnedTotal: result.earnedTotal,
+      grantedTotal: result.grantedTotal, spentTotal: result.spentTotal,
+    }))).toBe(10);
+  });
+
   it('переносит неделю лениво и сохраняет предыдущую', async () => {
     const stale = settled(30, { weekKey: '2026-W32', weekEarned: 30 });
     const { result } = await run(stale, [op({ delta: 5 })]);
@@ -215,6 +251,7 @@ describe('единый журнал звёзд', () => {
   it('держит таблицу классов операций закрытой', () => {
     expect(STAR_OP_CLASS.arena_match).toBe('earn');
     expect(STAR_OP_CLASS.coin_exchange).toBe('grant');
+    expect((STAR_OP_CLASS as Record<string, string>).level_spin_grant).toBe('grant');
     expect(STAR_OP_CLASS.spend_shop).toBe('spend');
     expect(starsSpendable(undefined)).toBe(0);
     expect(starsSpendable({ ...EMPTY_STARS_STATE, balance: 12 })).toBe(12);

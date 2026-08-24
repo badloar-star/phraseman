@@ -44,6 +44,8 @@ export type PersonalPlanTaskVisual = {
 };
 
 export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
+  "indigo",
+  "sagePorcelain",
   "midnight",
   "ember",
   "aurora",
@@ -54,21 +56,6 @@ export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
 ];
 
 const DEFAULT_VISUAL_THEME: ThemeMode = "midnight";
-
-const LEGACY_THEME_TASK_FALLBACK: Record<
-  PersonalPlanTaskVisualSource,
-  ImageSourcePropType
-> = {
-  core_lesson: require("../assets/images/personal_plan_tasks_fit/midnight/core_lesson.webp"),
-  route_phrase: require("../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp"),
-  recall: require("../assets/images/personal_plan_tasks_fit/midnight/recall.webp"),
-  practice: require("../assets/images/personal_plan_tasks_fit/midnight/practice.webp"),
-  choice: require("../assets/images/personal_plan_tasks_fit/midnight/choice.webp"),
-  listening: require("../assets/images/personal_plan_tasks_fit/midnight/listening.webp"),
-  sentence_build: require("../assets/images/personal_plan_tasks_fit/midnight/sentence_build.webp"),
-  speaking: require("../assets/images/personal_plan_tasks_fit/midnight/speaking.webp"),
-  flashcards: require("../assets/images/personal_plan_tasks_fit/midnight/flashcards.webp"),
-};
 
 const THEMED_TASK_ASSETS: Record<
   ThemeMode,
@@ -85,7 +72,17 @@ const THEMED_TASK_ASSETS: Record<
     speaking: require("../assets/images/personal_plan_tasks_fit/midnight/speaking.webp"),
     flashcards: require("../assets/images/personal_plan_tasks_fit/midnight/flashcards.webp"),
   },
-  indigo: LEGACY_THEME_TASK_FALLBACK,
+  indigo: {
+    core_lesson: require("../assets/images/personal_plan_tasks_fit/midnight/core_lesson.webp"),
+    route_phrase: require("../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp"),
+    recall: require("../assets/images/personal_plan_tasks_fit/midnight/recall.webp"),
+    practice: require("../assets/images/personal_plan_tasks_fit/midnight/practice.webp"),
+    choice: require("../assets/images/personal_plan_tasks_fit/midnight/choice.webp"),
+    listening: require("../assets/images/personal_plan_tasks_fit/midnight/listening.webp"),
+    sentence_build: require("../assets/images/personal_plan_tasks_fit/midnight/sentence_build.webp"),
+    speaking: require("../assets/images/personal_plan_tasks_fit/midnight/speaking.webp"),
+    flashcards: require("../assets/images/personal_plan_tasks_fit/midnight/flashcards.webp"),
+  },
   sagePorcelain: {
     core_lesson: require("../assets/images/personal_plan_tasks_fit/sagePorcelain/core_lesson.webp"),
     route_phrase: require("../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp"),
@@ -165,15 +162,6 @@ const THEMED_TASK_ASSETS: Record<
   },
 };
 
-const LEGACY_THEME_ROUTE_FALLBACK: Record<PersonalPlanId, ImageSourcePropType> =
-  {
-    gavan: require("../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp"),
-    voyazh: require("../assets/images/personal_plan_tasks_fit/midnight/route_voyazh.webp"),
-    mitap: require("../assets/images/personal_plan_tasks_fit/midnight/route_mitap.webp"),
-    impuls: require("../assets/images/personal_plan_tasks_fit/midnight/route_impuls.webp"),
-    echo: require("../assets/images/personal_plan_tasks_fit/midnight/route_echo.webp"),
-  };
-
 const THEMED_ROUTE_ASSETS: Record<
   ThemeMode,
   Record<PersonalPlanId, ImageSourcePropType>
@@ -185,7 +173,13 @@ const THEMED_ROUTE_ASSETS: Record<
     impuls: require("../assets/images/personal_plan_tasks_fit/midnight/route_impuls.webp"),
     echo: require("../assets/images/personal_plan_tasks_fit/midnight/route_echo.webp"),
   },
-  indigo: LEGACY_THEME_ROUTE_FALLBACK,
+  indigo: {
+    gavan: require("../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp"),
+    voyazh: require("../assets/images/personal_plan_tasks_fit/midnight/route_voyazh.webp"),
+    mitap: require("../assets/images/personal_plan_tasks_fit/midnight/route_mitap.webp"),
+    impuls: require("../assets/images/personal_plan_tasks_fit/midnight/route_impuls.webp"),
+    echo: require("../assets/images/personal_plan_tasks_fit/midnight/route_echo.webp"),
+  },
   sagePorcelain: {
     gavan: require("../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp"),
     voyazh: require("../assets/images/personal_plan_tasks_fit/sagePorcelain/route_voyazh.webp"),

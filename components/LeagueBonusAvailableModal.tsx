@@ -5,7 +5,6 @@ import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { triLang } from '../constants/i18n';
-import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -14,6 +13,7 @@ import type { LeagueBonusAvailability } from '../app/services/league_chest_rewar
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import LeagueBonusBeaconOrb from './league/LeagueBonusBeaconOrb';
+import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
@@ -48,7 +48,6 @@ function LeagueBonusAvailableModal({
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const glow = useRef(new Animated.Value(0)).current;
-  const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const modalTheme = getLeagueBonusPalette(t, themeMode).modal;
 
   // зачем: цикл «свечения» — только у классики; в гибриде своя хореография
@@ -157,7 +156,7 @@ function LeagueBonusAvailableModal({
                   {availability.isCrownWinner ? (
                     <Image source={LEAGUE_CROWN_ICON} contentFit="contain" style={styles.crownImage} />
                   ) : (
-                    <Image source={leagueBonusGiftImage} contentFit="contain" style={styles.leagueGiftImage} />
+                    <RetiredRasterFallback kind="league" size={96} color={modalTheme.eyebrow} />
                   )}
                 </View>
                 <Text style={[styles.eyebrow, { color: modalTheme.eyebrow }]}>

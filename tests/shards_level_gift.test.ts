@@ -174,15 +174,17 @@ describe('level_gift_system — shards_3', () => {
     expect(giftDisplayTitleForLang(gift, 'es')).not.toMatch(/plus/i);
   });
 
-  // Контракт честности: ни одна карточка пулов не обещает жемчуг/осколки —
-  // выплата валюты из level-gift отключена §7, обещание было бы обманом.
-  it('ни один подарок пула не обещает жемчуг или осколки в заголовке', () => {
+  // Исторические shards_* по-прежнему являются XP и не обещают валюту.
+  // Новые spin-only pearls_* честно платят через клиентский журнал операций.
+  it('только новые pearls_* обещают жемчуг, а исторические shards_* остаются XP', () => {
     const currencyPromise = /жемчуж|перлин|осколк|perla|pérola/i;
-    for (const g of ALL_LEVEL_GIFT_DEFS) {
-      expect(`${g.titleRU} ${g.titleUK} ${g.titleES ?? ''}`).not.toMatch(currencyPromise);
-      for (const choice of g.choices ?? []) {
-        expect(`${choice.titleRU} ${choice.titleUK} ${choice.titleES ?? ''}`).not.toMatch(currencyPromise);
-      }
+    for (const id of ['shards_3', 'shards_6', 'shards_10']) {
+      const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === id)!;
+      expect(`${gift.titleRU} ${gift.titleUK} ${gift.titleES ?? ''}`).not.toMatch(currencyPromise);
+    }
+    for (const id of ['pearls_5', 'pearls_10', 'pearls_20', 'pearls_50', 'pearls_100', 'pearls_250', 'pearls_500']) {
+      const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === id)!;
+      expect(`${gift.titleRU} ${gift.titleUK} ${gift.titleES ?? ''}`).toMatch(currencyPromise);
     }
   });
 });

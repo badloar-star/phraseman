@@ -101,7 +101,18 @@ export function resolvePersonalPlanPremiumProbe(input: {
   featureAccess: boolean;
 }): PersonalPlanPremiumProbe {
   if (input.mode === 'grandfathered-only' || !input.featureRequiresPremium) return 'allowed';
+  // зачем (владелец 2026-08-24): вкладка «Планы» открылась dev-обходом, но при
+  // тапе гейт экрана уводил на пейвол — планы платная фича, а dev-премиума нет
+  // (FORCE_PREMIUM_DEV_INTENT=false). В dev-сборке снимаем и это требование,
+  // иначе раздел физически невозможно проверить. Прод не затронут: тот же
+  // DEV_CONTENT_UNLOCK, гаснущий при EXPO_PUBLIC_STORE_RELEASE=1.
+  if (devSunsetBypassActive()) return 'allowed';
   return input.accessResolved && input.featureAccess ? 'allowed' : 'verify';
+}
+
+/** True, когда dev-обход планов активен (см. devSunsetBypassActive). */
+export function isPersonalPlanDevBypassActive(): boolean {
+  return devSunsetBypassActive();
 }
 
 export function isPersonalPlanSunsetDenial(error: unknown): boolean {

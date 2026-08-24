@@ -8,8 +8,8 @@ describe('friends profile focus revalidation', () => {
       'utf8',
     );
 
-    expect(source).toContain('const friendsTabVisible = activeIdx === 3;');
-    expect(source).toContain('if (!friendsTabVisible || uids.length === 0) return;');
-    expect(source).toContain('[friends, requests, friendsTabVisible, focusTick]');
+    expect(source).toContain('const friendsRuntimeActive = useRuntimeActive(friendsTabVisible);');
+    expect(source).toContain('if (!friendsRuntimeActive || uids.length === 0) return;');
+    expect(source).toContain('[friends, requests, friendsRuntimeActive, focusTick, friendsTogetherPolicy.enabled]');
   });
 });

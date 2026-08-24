@@ -7,7 +7,6 @@ const screens = [
   'app/club_screen.tsx',
   'app/lesson_menu.tsx',
   'app/streak_stats.tsx',
-  'app/trainer.tsx',
 ];
 
 describe('bouncy screen chrome contract', () => {

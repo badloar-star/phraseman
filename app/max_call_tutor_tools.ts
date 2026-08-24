@@ -14,6 +14,7 @@
 
 import type { DialogScenario } from './ai_dialog_scenarios';
 import type { TutorBoardPayload, TutorConversationMode } from './max_tutor_live_board_state';
+import type { MaxVoiceStudyTarget } from './max_target_gate';
 
 export type TutorBoardToolPayload = Omit<TutorBoardPayload, 'shownAtMs' | 'expiresAtMs'>;
 
@@ -133,6 +134,8 @@ export interface TutorToolResult {
 export interface TutorToolRunnerDeps {
   /** Каталог, который ушёл в промпт: только эти id принимаются. */
   scenes: readonly TutorSceneItem[];
+  /** Normalized language of this call; absent legacy callers remain English. */
+  studyTarget?: MaxVoiceStudyTarget;
   /** Полный блок сцены (role/setting/goal…) — тот же текст, что для формата scenario. */
   sceneBlock(id: string): string | null;
   onSceneChange?(scene: TutorSceneItem | null): void;
@@ -147,7 +150,7 @@ export interface TutorToolRunnerDeps {
 
 export type TutorLanguagePreference = 'more_target' | 'more_native' | 'default';
 
-/** Флаг безопасности, поставленный учителем (инструмент flag_safety) — уходит в разбор → safety_flags + Telegram. */
+/** Категория flag_safety: MAX отправляет только обезличенный сигнал без сохранения разговора. */
 export interface TutorSafetyFlag {
   kind: string;
   note: string;
@@ -212,6 +215,11 @@ function cleanBounded(value: unknown, maxChars: number): string | null {
 }
 
 export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunner {
+  const sceneLanguage = deps.studyTarget === 'fr'
+    ? 'French'
+    : deps.studyTarget === 'es'
+      ? 'Spanish'
+      : 'English';
   let homework: string[] = [];
   let homeworkMeanings: string[] = [];
   const phraseResults: TutorPhraseResult[] = [];
@@ -247,7 +255,7 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         try { deps.onSceneChange?.(scene); } catch {}
         return {
           output:
-            'SCENE STARTED. Play this role in English at the learner\'s level for 4-8 exchanges, then call end_scene():\n' +
+            `SCENE STARTED. Play this role in ${sceneLanguage} at the learner's level for 4-8 exchanges, then call end_scene():\n` +
             block,
           respond: true,
         };

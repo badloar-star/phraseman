@@ -5,10 +5,13 @@ const source = fs.readFileSync(path.resolve(__dirname, '..', 'app', '(tabs)', '_
 
 describe('tab bar motion and accessibility', () => {
   test('exposes selected tab semantics without delaying navigation', () => {
-    expect(source).toContain('accessibilityRole="tab"');
-    expect(source).toContain('accessibilityState={{ selected: visuallyFocused }}');
-    // Navigation uses the explicit model index shared with the swipe pager.
-    expect(source).toContain('onPress={() => goToTab(tab.logicalIdx)}');
+    // The four navigation destinations are tabs; the optional centre action
+    // opens a route and is therefore correctly exposed as a button.
+    expect(source).toContain("accessibilityRole={tab.center ? 'button' : 'tab'}");
+    expect(source).toContain('accessibilityState={tab.center ? undefined : { selected: visuallyFocused }}');
+    // Navigation uses the explicit model index shared with the swipe pager,
+    // after the centre-route branch has been handled synchronously.
+    expect(source).toContain('goToTab(tab.logicalIdx);');
   });
 
   test('keeps event-driven native-driver feedback', () => {

@@ -31,5 +31,7 @@ describe('home startup stability', () => {
     expect(rootLayout).toContain('primeSurveyOfferCacheFromStorage().catch(() => {})');
     expect(home).toContain('fetchActiveSurveyWithRetry');
     expect(home).toContain('<SurveyTaskCard');
+    expect(home).toContain("import SurveySheetModal from '../../components/survey/SurveySheetModal';");
+    expect(home).not.toContain("pathname: '/survey_screen'");
   });
 });

@@ -19,7 +19,7 @@ type Props = {
   lang: Lang;
   onClose: () => void;
   streakDays?: 7 | 14 | 30;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 };
 
@@ -38,7 +38,7 @@ function labelForContext(context: ReviewContext, lang: Lang): string {
   return triLang(lang, labels[context]);
 }
 
-function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motionVariant = 'classic' }: Props) {
+function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motionVariant = 'hybrid' }: Props) {
   const { theme: t, f } = useTheme();
   const { bottom: bottomInset } = useStableSafeAreaInsets();
   const [variant, setVariant] = useState<ReviewVariant | null>(null);

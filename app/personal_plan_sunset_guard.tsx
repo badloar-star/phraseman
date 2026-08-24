@@ -15,6 +15,7 @@ import {
   PERSONAL_PLAN_SUNSET_AT_MS,
   PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE,
   hasPersonalPlanRouteMarker,
+  isPersonalPlanDevBypassActive,
   resolvePersonalPlanPremiumProbe,
   resolvePersonalPlanSunsetAccess,
 } from './personal_plan_sunset';
@@ -67,7 +68,9 @@ function usePersonalPlanSunsetGuard(
             featureAccess: originalFeatureAccess,
           });
           let verifiedAccess = premiumProbe === 'allowed';
-          if (!verifiedAccess) {
+          // зачем: в dev-обходе сетевую проверку премиума не запускаем вовсе —
+          // она вернула бы false и увела на пейвол, спрятав раздел от разработчика.
+          if (!verifiedAccess && !isPersonalPlanDevBypassActive()) {
             invalidatePremiumCache();
             verifiedAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
           }

@@ -31,6 +31,7 @@ import {
   mistakePracticeEventDocIdForRecord,
   verifyMistakePracticeEventReplay,
 } from './mistake_practice_event_sync';
+import { writeAccessProjection } from './access_projection';
 
 const USERS = 'users';
 
@@ -532,6 +533,12 @@ async function mergeStableAccountsTransactionally(
   rawA: string,
   rawB: string,
   now: number,
+  publication?: Readonly<{
+    winnerStableId: string;
+    loserStableId: string;
+    outboxRef: FirebaseFirestore.DocumentReference;
+    leaseToken: string;
+  }>,
 ): Promise<MergeResult> {
   const authLinkRef = db.collection(AUTH_LINKS_COL).doc(authUid);
   const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
@@ -635,9 +642,18 @@ async function mergeStableAccountsTransactionally(
 
     const xpA = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     const xpB = asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
-    const bWins = xpB > xpA;
+    if (publication && new Set([resolvedA.stableId, resolvedB.stableId]).size !== 2) {
+      throw new HttpsError('failed-precondition', 'stable_identity_changed');
+    }
+    const bWins = publication
+      ? resolvedB.stableId === publication.winnerStableId
+      : xpB > xpA;
     const winner = bWins ? resolvedB : resolvedA;
     const loser = bWins ? resolvedA : resolvedB;
+    if (publication && (winner.stableId !== publication.winnerStableId ||
+      loser.stableId !== publication.loserStableId)) {
+      throw new HttpsError('failed-precondition', 'stable_identity_changed');
+    }
     if (winner.data.levelSpinMergePending === true || loser.data.levelSpinMergePending === true) {
       throw new HttpsError('failed-precondition', 'level_spin_merge_already_pending');
     }
@@ -649,6 +665,18 @@ async function mergeStableAccountsTransactionally(
       const loserAuthUid = cleanStr(loser.data.firebaseAuthUid);
       if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
         throw new HttpsError('permission-denied', 'stable_id_mismatch');
+      }
+    }
+    if (publication) {
+      const publicationSnap = await tx.get(publication.outboxRef);
+      const publicationData = publicationSnap.data() ?? {};
+      if (!publicationSnap.exists || publicationData.leaseToken !== publication.leaseToken ||
+        cleanStr(publicationData.winnerStableId) !== winner.stableId ||
+        cleanStr(publicationData.loserStableId) !== loser.stableId ||
+        cleanStr(publicationData.authUid) !== authUid ||
+        publicationData.publicationStatus !== 'reserved' ||
+        !publicationData.mistakePracticeEventsCopiedAt) {
+        throw new HttpsError('failed-precondition', 'account_merge_publication_not_ready');
       }
     }
 
@@ -665,18 +693,6 @@ async function mergeStableAccountsTransactionally(
     if (loserLineages.docs.length > MAX_MERGE_PREMIUM_LINEAGES
       || winnerLineages.docs.length > MAX_MERGE_PREMIUM_LINEAGES) {
       throw new HttpsError('resource-exhausted', 'premium_lineage_limit');
-    }
-    if (publication) {
-      const publicationSnap = await tx.get(publication.outboxRef);
-      const publicationData = publicationSnap.data() ?? {};
-      if (!publicationSnap.exists || publicationData.leaseToken !== publication.leaseToken ||
-        cleanStr(publicationData.winnerStableId) !== winner.stableId ||
-        cleanStr(publicationData.loserStableId) !== loser.stableId ||
-        cleanStr(publicationData.authUid) !== authUid ||
-        publicationData.publicationStatus !== 'reserved' ||
-        !publicationData.mistakePracticeEventsCopiedAt) {
-        throw new HttpsError('failed-precondition', 'account_merge_publication_not_ready');
-      }
     }
 
     const canonicalLineages = new Map<string, {
@@ -726,6 +742,7 @@ async function mergeStableAccountsTransactionally(
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
       levelSpinMergePending: true,
+      mistakePracticeMergePending: publication ? false : true,
       firebaseAuthUid: authUid,
       updatedAt: now,
       identityMergedAt: now,
@@ -736,25 +753,26 @@ async function mergeStableAccountsTransactionally(
       for (const obsoleteRef of lineage.obsoleteRefs) tx.delete(obsoleteRef);
     }
     tx.set(winner.ref, winnerUpdate, { merge: true });
+    writeAccessProjection(tx, winner.ref, reconciledMergedProgress, now);
     const loserUpdate: Record<string, unknown> = {
       levelSpinMergePending: true,
+      mistakePracticeMergePending: publication ? false : true,
       identityHidden: true,
       canonicalStableId: winner.stableId,
       duplicateOfStableId: winner.stableId,
-      mistakePracticeMergePending: publication ? false : true,
       identityMergedAt: now,
       updatedAt: now,
       anon_merge_claim: admin.firestore.FieldValue.delete(),
     };
     for (const key of PREMIUM_KEYS) loserUpdate[`progress.${key}`] = admin.firestore.FieldValue.delete();
     tx.update(loser.ref, loserUpdate);
+    writeAccessProjection(tx, loser.ref, {}, now);
     tx.set(db.collection(ACCOUNT_IDENTITY_OWNER_MAP).doc(loser.stableId), {
       canonicalStableId: winner.stableId,
       loserStableId: loser.stableId,
       updatedAt: now,
     }, { merge: true });
     tx.set(db.collection(ACCOUNT_MERGE_OUTBOX).doc(accountMergeOutboxId(winner.stableId, loser.stableId)), {
-      mistakePracticeMergePending: publication ? false : true,
       winnerStableId: winner.stableId,
       loserStableId: loser.stableId,
       ...(publication ? { publicationStatus: 'published' } : { status: 'pending' }),
@@ -773,21 +791,6 @@ async function mergeStableAccountsTransactionally(
   });
 
   if (outcome.alreadyMerged || !outcome.mergedFromStableId) {
-    return {
-      canonicalStableId: outcome.canonicalStableId,
-      mergedFromStableId: null,
-      alreadyMerged: true,
-    };
-  }
-
-  const winnerId = outcome.canonicalStableId;
-  const loserId = outcome.mergedFromStableId;
-  await cleanupLegacyAuthIdentityDuplicates(db, winnerId, authUid, {
-    reason: 'account_merge',
-  }).catch((error) => {
-    console.warn(JSON.stringify({
-      event: 'account_merge_cleanup_failed',
-      winnerId,
     for (const possibleLoser of [...new Set([cleanStr(rawA), cleanStr(rawB)])]) {
       if (!possibleLoser || possibleLoser === outcome.canonicalStableId) continue;
       const pendingRef = db.collection(ACCOUNT_MERGE_OUTBOX)
@@ -798,6 +801,29 @@ async function mergeStableAccountsTransactionally(
         db, outcome.canonicalStableId, possibleLoser, pendingRef, null, now,
       );
     }
+    return {
+      canonicalStableId: outcome.canonicalStableId,
+      mergedFromStableId: null,
+      alreadyMerged: true,
+    };
+  }
+
+  const winnerId = outcome.canonicalStableId;
+  const loserId = outcome.mergedFromStableId;
+  const mergeOutboxRef = db.collection(ACCOUNT_MERGE_OUTBOX)
+    .doc(accountMergeOutboxId(winnerId, loserId));
+  // The callable must not return a canonical winner until immutable mistake
+  // evidence is owner-rematerialized. The outbox repeats this idempotently for
+  // crash recovery, but it is not the first-restore correctness boundary.
+  await migrateMistakePracticeEventsAccountMerge(
+    db, winnerId, loserId, mergeOutboxRef, null, now,
+  );
+  await cleanupLegacyAuthIdentityDuplicates(db, winnerId, authUid, {
+    reason: 'account_merge',
+  }).catch((error) => {
+    console.warn(JSON.stringify({
+      event: 'account_merge_cleanup_failed',
+      winnerId,
       loserId,
       message: String((error as { message?: unknown })?.message ?? error).slice(0, 160),
     }));
@@ -807,14 +833,6 @@ async function mergeStableAccountsTransactionally(
       event: 'account_merge_referral_repoint_failed',
       winnerId,
       loserId,
-  const mergeOutboxRef = db.collection(ACCOUNT_MERGE_OUTBOX)
-    .doc(accountMergeOutboxId(winnerId, loserId));
-  // The callable must not return a canonical winner until immutable mistake
-  // evidence is owner-rematerialized. The outbox repeats this idempotently for
-  // crash recovery, but it is not the first-restore correctness boundary.
-  await migrateMistakePracticeEventsAccountMerge(
-    db, winnerId, loserId, mergeOutboxRef, null, now,
-  );
       message: String((error as { message?: unknown })?.message ?? error).slice(0, 160),
     }));
   });
@@ -842,17 +860,34 @@ export async function mergeStableAccounts(
   const a = cleanStr(stableIdA);
   const b = cleanStr(stableIdB);
   if (!a || !b) throw new HttpsError('invalid-argument', 'stable_ids_required');
-  return mergeStableAccountsTransactionally(db, authUid, a, b, now);
+  const reservation = await reserveStableAccountMerge(db, authUid, a, b, now);
+  if (reservation.alreadyMerged || !reservation.mergedFromStableId) {
+    return {
+      canonicalStableId: reservation.canonicalStableId,
+      mergedFromStableId: null,
+      alreadyMerged: true,
+    };
+  }
+  await processAccountMergeOutboxJob(
+    db,
+    accountMergeOutboxId(reservation.canonicalStableId, reservation.mergedFromStableId),
+    now,
+  );
+  return {
+    canonicalStableId: reservation.canonicalStableId,
+    mergedFromStableId: reservation.mergedFromStableId,
+    alreadyMerged: false,
+  };
 }
 
 const ACCOUNT_MERGE_LEASE_MS = 5 * 60_000;
 const ACCOUNT_MERGE_RECEIPT_PAGE_SIZE = 100;
 
-const ACCOUNT_MERGE_RECEIPT_FIELDS: Array<{
+const ACCOUNT_MERGE_RECEIPT_FIELDS: {
   collection: string;
   field: string;
   array?: boolean;
-}> = [
+}[] = [
   { collection: 'revenuecat_premium_events', field: 'uid' },
   { collection: 'revenuecat_premium_events', field: 'recipientId' },
   { collection: 'revenuecat_premium_events', field: 'candidates', array: true },
@@ -1028,38 +1063,6 @@ async function migrateLevelSpinAccountMerge(
   });
 }
 
-export async function processAccountMergeOutboxJob(
-  db: FirebaseFirestore.Firestore,
-  outboxId: string,
-  now = Date.now(),
-): Promise<{ status: 'completed' | 'already_completed' | 'cancelled'; updated: number }> {
-  const ref = db.collection(ACCOUNT_MERGE_OUTBOX).doc(outboxId);
-  const leaseToken = randomUUID();
-  const claim = await db.runTransaction(async (tx) => {
-    const snap = await tx.get(ref);
-    if (!snap.exists) return null;
-    const data = snap.data() ?? {};
-    if (data.status === 'completed') return {
-      alreadyCompleted: true as const,
-      winner: '',
-      loser: '',
-      tasks: [] as string[],
-    };
-    if (data.status === 'running' && Number(data.leaseUntilMs ?? 0) > now) {
-      throw new Error('account_merge_outbox_lease_active');
-    }
-    const winner = cleanStr(data.winnerStableId);
-    const loser = cleanStr(data.loserStableId);
-    if (!winner || !loser || winner === loser) throw new Error('account_merge_outbox_invalid');
-    const deletionGuards = await Promise.all([
-      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(winner)),
-      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(loser)),
-      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(winner))),
-      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(loser))),
-    ]);
-    if (deletionGuards.some((guard) => guard.exists)) {
-      tx.set(ref, { status: 'cancelled_by_deletion', leaseUntilMs: 0, updatedAt: now }, { merge: true });
-      return { cancelled: true as const, winner, loser, tasks: [] as string[] };
 const MISTAKE_PRACTICE_MERGE_PAGE_SIZE = 50;
 
 async function migrateMistakePracticeEventsAccountMerge(
@@ -1183,6 +1186,40 @@ async function migrateMistakePracticeEventsAccountMerge(
   }
 }
 
+export async function processAccountMergeOutboxJob(
+  db: FirebaseFirestore.Firestore,
+  outboxId: string,
+  now = Date.now(),
+): Promise<{ status: 'completed' | 'already_completed' | 'cancelled'; updated: number }> {
+  const ref = db.collection(ACCOUNT_MERGE_OUTBOX).doc(outboxId);
+  const leaseToken = randomUUID();
+  const claim = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    if (!snap.exists) return null;
+    const data = snap.data() ?? {};
+    if (data.status === 'completed') return {
+      alreadyCompleted: true as const,
+      winner: '',
+      loser: '',
+      tasks: [] as string[],
+      authUid: '',
+      publicationStatus: 'published',
+    };
+    if (data.status === 'running' && Number(data.leaseUntilMs ?? 0) > now) {
+      throw new Error('account_merge_outbox_lease_active');
+    }
+    const winner = cleanStr(data.winnerStableId);
+    const loser = cleanStr(data.loserStableId);
+    if (!winner || !loser || winner === loser) throw new Error('account_merge_outbox_invalid');
+    const deletionGuards = await Promise.all([
+      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(winner)),
+      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(loser)),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(winner))),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(loser))),
+    ]);
+    if (deletionGuards.some((guard) => guard.exists)) {
+      tx.set(ref, { status: 'cancelled_by_deletion', leaseUntilMs: 0, updatedAt: now }, { merge: true });
+      return { cancelled: true as const, winner, loser, tasks: [] as string[] };
     }
     tx.set(ref, {
       status: 'running',
@@ -1194,6 +1231,8 @@ async function migrateMistakePracticeEventsAccountMerge(
     return {
       winner,
       loser,
+      authUid: cleanStr(data.authUid),
+      publicationStatus: cleanStr(data.publicationStatus),
       tasks: Array.isArray(data.tasks)
         ? data.tasks.filter((task): task is string => typeof task === 'string')
         : [],
@@ -1205,6 +1244,25 @@ async function migrateMistakePracticeEventsAccountMerge(
 
   let updated = 0;
   try {
+    if (claim.publicationStatus === 'reserved') {
+      if (!claim.authUid) throw new Error('account_merge_outbox_invalid');
+      updated += await migrateMistakePracticeEventsAccountMerge(
+        db, claim.winner, claim.loser, ref, leaseToken, now,
+      );
+      await mergeStableAccountsTransactionally(
+        db,
+        claim.authUid,
+        claim.winner,
+        claim.loser,
+        now,
+        {
+          winnerStableId: claim.winner,
+          loserStableId: claim.loser,
+          outboxRef: ref,
+          leaseToken,
+        },
+      );
+    }
     if (claim.tasks.includes('level_spins')) {
       updated += await migrateLevelSpinAccountMerge(
         db,
@@ -1213,6 +1271,11 @@ async function migrateMistakePracticeEventsAccountMerge(
         ref,
         leaseToken,
         now,
+      );
+    }
+    if (claim.tasks.includes('mistake_practice_events')) {
+      updated += await migrateMistakePracticeEventsAccountMerge(
+        db, claim.winner, claim.loser, ref, leaseToken, now,
       );
     }
     for (const spec of ACCOUNT_MERGE_RECEIPT_FIELDS) {
@@ -1241,25 +1304,6 @@ async function migrateMistakePracticeEventsAccountMerge(
           }
 
           const guardedIdentities = [...new Set([claim.loser, claim.winner, canonicalWinner])];
-    if (claim.publicationStatus === 'reserved') {
-      if (!claim.authUid) throw new Error('account_merge_outbox_invalid');
-      updated += await migrateMistakePracticeEventsAccountMerge(
-        db, claim.winner, claim.loser, ref, leaseToken, now,
-      );
-      await mergeStableAccountsTransactionally(
-        db,
-        claim.authUid,
-        claim.winner,
-        claim.loser,
-        now,
-        {
-          winnerStableId: claim.winner,
-          loserStableId: claim.loser,
-          outboxRef: ref,
-          leaseToken,
-        },
-      );
-    }
           const deletionGuards: FirebaseFirestore.DocumentSnapshot[] = [];
           for (const identity of guardedIdentities) {
             deletionGuards.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)));
@@ -1270,11 +1314,6 @@ async function migrateMistakePracticeEventsAccountMerge(
           const currentDocs: FirebaseFirestore.DocumentSnapshot[] = [];
           for (const doc of snapshot.docs) currentDocs.push(await tx.get(doc.ref));
           if (deletionGuards.some((guard) => guard.exists)) {
-    if (claim.tasks.includes('mistake_practice_events')) {
-      updated += await migrateMistakePracticeEventsAccountMerge(
-        db, claim.winner, claim.loser, ref, leaseToken, now,
-      );
-    }
             tx.set(ref, {
               status: 'cancelled_by_deletion',
               leaseToken: admin.firestore.FieldValue.delete(),

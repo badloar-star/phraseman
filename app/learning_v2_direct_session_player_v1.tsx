@@ -26,6 +26,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import LearningV2AnswerChoice from "../components/LearningV2AnswerChoice";
+import LearningV2NewWordEncounterOverlay from "../components/learning-v2/LearningV2NewWordEncounterOverlay";
 import LearningV2SessionFinale from "../components/LearningV2SessionFinale";
 import ReportErrorButton from "../components/ReportErrorButton";
 import SaveToCardsButton from "../components/SaveToCardsButton";
@@ -47,6 +48,7 @@ import {
   evaluateLearningV2CourseSessionDeviceInteractionV1,
   getLearningV2CourseSessionAuxiliaryEntryV1,
   getLearningV2CourseSessionDeviceRunSummaryV1,
+  getLearningV2CourseSessionNewWordEncountersV1,
   getLearningV2CourseSessionPracticeInteractionV1,
   materializeLearningV2CourseSessionCompletedSummaryV1,
   type LearningV2CourseSessionDeviceRunHandleV1,
@@ -93,6 +95,21 @@ import LearningV2CheckpointOutcome, {
 import { learningV2CheckpointCopy } from "./learning_v2_checkpoint_copy";
 import { learningV2CourseSessionRoleV1 } from "../modules/learning-v2/content/course_topology_v1";
 import { learningV2SessionCopy } from "./learning_v2_session_copy";
+import type {
+  LearningV2NewWordAudioStateV1,
+  LearningV2NewWordSaveStateV1,
+} from "./learning_v2_new_word_encounter_copy";
+import {
+  createLearningV2NewWordEncounterFlowV1,
+  reduceLearningV2NewWordEncounterFlowV1,
+  type LearningV2NewWordEncounterFlowEventV1,
+  type LearningV2NewWordEncounterFlowStateV1,
+} from "./learning_v2_new_word_encounter_flow_v1";
+import {
+  isLearningV2NewWordEncounterSavedV1,
+  removeLearningV2NewWordEncounterFromCardsV1,
+  saveLearningV2NewWordEncounterToCardsV1,
+} from "./learning_v2_new_word_encounter_save_v1";
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 
 const first = (value: string | string[] | undefined) =>
@@ -124,7 +141,6 @@ function telemetrySessionKind(ordinal: number): LearningV2SessionKindCode {
   if (ordinal % 8 === 0) return "checkpoint";
   return "phrases";
 }
-
 
 function exactOrdinal(value: string, max: number): number | null {
   const parsed = Number(value);
@@ -240,13 +256,25 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
   const [loadRevision, setLoadRevision] = useState(0);
   const [introDone, setIntroDone] = useState(false);
+  const [newWordFlow, setNewWordFlow] =
+    useState<LearningV2NewWordEncounterFlowStateV1>(() =>
+      createLearningV2NewWordEncounterFlowV1([]),
+    );
+  const newWordFlowRef = useRef<LearningV2NewWordEncounterFlowStateV1>(
+    createLearningV2NewWordEncounterFlowV1([]),
+  );
+  const [newWordSaveStates, setNewWordSaveStates] = useState<
+    Readonly<Record<string, LearningV2NewWordSaveStateV1>>
+  >({});
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [result, setResult] = useState<ResultState>("idle");
   const [attempts, setAttempts] = useState(1);
   const [wrongCount, setWrongCount] = useState(0);
   const [hintUsed, setHintUsed] = useState(false);
   const [selectedChoiceId, setSelectedChoiceId] = useState<string | null>(null);
-  const [lastWrongResponseId, setLastWrongResponseId] = useState<string | null>(null);
+  const [lastWrongResponseId, setLastWrongResponseId] = useState<string | null>(
+    null,
+  );
   const [orderedIds, setOrderedIds] = useState<readonly string[]>([]);
   const [transcript, setTranscript] = useState("");
   const [savingPhrase, setSavingPhrase] = useState(false);
@@ -267,7 +295,9 @@ export default function LearningV2DirectSessionPlayerV1() {
   // зачем (спека SB-14, макет 26): проверка главы — отдельный сценарий, а не
   // обычное занятие со значком. Роль берём из топологии курса, а не угадываем.
   const sessionRole =
-    sessionOrdinal !== null ? learningV2CourseSessionRoleV1(sessionOrdinal) : null;
+    sessionOrdinal !== null
+      ? learningV2CourseSessionRoleV1(sessionOrdinal)
+      : null;
   const isCheckpoint =
     sessionRole === "chapter_checkpoint" || sessionRole === "final_exam";
   const checkpointCopy = useMemo(() => learningV2CheckpointCopy(lang), [lang]);
@@ -376,6 +406,151 @@ export default function LearningV2DirectSessionPlayerV1() {
         : null,
     [material],
   );
+  const newWordEncounters = useMemo(
+    () => (run ? getLearningV2CourseSessionNewWordEncountersV1(run) : []),
+    [run],
+  );
+  const newWordEncounterIds = useMemo(
+    () => newWordEncounters.map((encounter) => encounter.lexicalItemId),
+    [newWordEncounters],
+  );
+  const newWordAudioByLexicalItemId = useMemo(() => {
+    const audioById: Record<string, string | null> = {};
+    if (!run || !runSummary || !audioPreload) return audioById;
+    for (
+      let index = 0;
+      index < runSummary.practiceInteractionCount;
+      index += 1
+    ) {
+      const interaction = getLearningV2CourseSessionPracticeInteractionV1(
+        run,
+        index,
+      );
+      const encounter = getLearningV2CourseSessionAuxiliaryEntryV1(
+        run,
+        interaction.interactionId,
+      ).newWordEncounter;
+      if (!encounter) continue;
+      try {
+        audioById[encounter.lexicalItemId] =
+          resolveLearningV2CourseSessionFullPhraseAudioV1({
+            handle: audioPreload,
+            interactionId: interaction.interactionId,
+          })?.fileUri ?? null;
+      } catch {
+        audioById[encounter.lexicalItemId] = null;
+      }
+    }
+    return Object.freeze(audioById);
+  }, [audioPreload, run, runSummary]);
+
+  useEffect(() => {
+    const next = createLearningV2NewWordEncounterFlowV1(newWordEncounterIds);
+    newWordFlowRef.current = next;
+    setNewWordFlow(next);
+    setNewWordSaveStates({});
+  }, [newWordEncounterIds]);
+
+  const dispatchNewWordEvent = useCallback(
+    (event: LearningV2NewWordEncounterFlowEventV1) => {
+      const transition = reduceLearningV2NewWordEncounterFlowV1(
+        newWordFlowRef.current,
+        event,
+        newWordEncounterIds,
+      );
+      newWordFlowRef.current = transition.state;
+      setNewWordFlow(transition.state);
+      transition.effects.forEach((effect) => {
+        if (effect === "stop_current_audio") {
+          managedAudio.stop();
+          setAudioRequest(null);
+          return;
+        }
+        if (effect === "activate_task") {
+          sessionStageRef.current = "practice";
+          return;
+        }
+        if (transition.state.kind !== "presenting") return;
+        playLocalAudio(
+          newWordAudioByLexicalItemId[transition.state.encounterId] ?? null,
+        );
+      });
+    },
+    [
+      managedAudio,
+      newWordAudioByLexicalItemId,
+      newWordEncounterIds,
+      playLocalAudio,
+    ],
+  );
+
+  const currentNewWordEncounter =
+    newWordFlow.kind === "presenting"
+      ? (newWordEncounters[newWordFlow.index] ?? null)
+      : null;
+  const currentNewWordAudioUri = currentNewWordEncounter
+    ? (newWordAudioByLexicalItemId[currentNewWordEncounter.lexicalItemId] ??
+      null)
+    : null;
+  const currentNewWordAudioState: LearningV2NewWordAudioStateV1 =
+    !currentNewWordAudioUri
+      ? "unavailable"
+      : audioRequest?.fileUri === currentNewWordAudioUri && audioStatus.playing
+        ? "playing"
+        : "idle";
+  const practiceActivated = introDone && newWordFlow.kind === "completed";
+
+  useEffect(() => {
+    if (!currentNewWordEncounter) return;
+    const lexicalItemId = currentNewWordEncounter.lexicalItemId;
+    let cancelled = false;
+    void isLearningV2NewWordEncounterSavedV1(currentNewWordEncounter).then(
+      (saved) => {
+        if (cancelled) return;
+        setNewWordSaveStates((current) => ({
+          ...current,
+          [lexicalItemId]: saved ? "saved" : "not_saved",
+        }));
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [currentNewWordEncounter]);
+
+  const toggleCurrentNewWordSave = useCallback(async () => {
+    if (!currentNewWordEncounter) return;
+    const lexicalItemId = currentNewWordEncounter.lexicalItemId;
+    const currentState = newWordSaveStates[lexicalItemId] ?? "not_saved";
+    if (currentState === "saving") return;
+    void hapticTap();
+    setNewWordSaveStates((current) => ({
+      ...current,
+      [lexicalItemId]: "saving",
+    }));
+    if (currentState === "saved") {
+      const outcome = await removeLearningV2NewWordEncounterFromCardsV1({
+        encounter: currentNewWordEncounter,
+      });
+      setNewWordSaveStates((current) => ({
+        ...current,
+        [lexicalItemId]:
+          outcome === "removed" || outcome === "absent" ? "not_saved" : "saved",
+      }));
+      return;
+    }
+    const outcome = await saveLearningV2NewWordEncounterToCardsV1({
+      encounter: currentNewWordEncounter,
+      interfaceLocale: lang,
+    });
+    setNewWordSaveStates((current) => ({
+      ...current,
+      [lexicalItemId]:
+        outcome === "added" || outcome === "duplicate"
+          ? "saved"
+          : "save_failed",
+    }));
+  }, [currentNewWordEncounter, lang, newWordSaveStates]);
   const practice =
     run && runSummary && practiceIndex < runSummary.practiceInteractionCount
       ? getLearningV2CourseSessionPracticeInteractionV1(run, practiceIndex)
@@ -390,7 +565,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     setTranscript(value);
   }, []);
   const localVoice = useLearningV2LocalHoldToTalkV1({
-    enabled: auxiliary?.voice.available === true && result !== "correct",
+    enabled:
+      practiceActivated &&
+      auxiliary?.voice.available === true &&
+      result !== "correct",
     interactionId: practice?.interactionId ?? "no-practice-interaction",
     locale: runSummary?.targetLanguage ?? studyTarget,
     onTranscript: onLocalTranscript,
@@ -399,9 +577,9 @@ export default function LearningV2DirectSessionPlayerV1() {
   // подсказкой. Человек видит итог в конце, а не по ходу.
   const wrongExplanation =
     !isCheckpoint && wrongCount >= 2 && auxiliary
-      ? (lastWrongResponseId
+      ? ((lastWrongResponseId
           ? auxiliary.responseFeedbackById?.[lastWrongResponseId]?.[lang]
-          : null) ?? auxiliary.secondErrorExplanationByLocale[lang]
+          : null) ?? auxiliary.secondErrorExplanationByLocale[lang])
       : null;
   const progressOrdinal = introDone ? practiceIndex + 4 : 1;
   const totalInteractions = runSummary?.interactionCount ?? 10;
@@ -480,7 +658,12 @@ export default function LearningV2DirectSessionPlayerV1() {
   }, [managedAudio, resetInteraction]);
 
   useEffect(() => {
-    if (telemetryStartSentRef.current || !runSummary || !lessonOrdinal || !sessionOrdinal)
+    if (
+      telemetryStartSentRef.current ||
+      !runSummary ||
+      !lessonOrdinal ||
+      !sessionOrdinal
+    )
       return;
     telemetryStartSentRef.current = true;
     sessionStartedAtRef.current = Date.now();
@@ -495,20 +678,23 @@ export default function LearningV2DirectSessionPlayerV1() {
   }, [lessonOrdinal, runSummary, sessionOrdinal, studyTarget]);
 
   // Незавершённое занятие при уходе с экрана — главный сигнал обрыва.
-  useEffect(() => () => {
-    if (finishingRef.current || !telemetryStartSentRef.current) return;
-    if (!lessonOrdinal || !sessionOrdinal) return;
-    trackLearningV2Telemetry(
-      learningV2SessionAbandonEvent({
-        lessonOrdinal,
-        sessionOrdinal,
-        sessionKind: telemetrySessionKind(sessionOrdinal),
-        studyTarget,
-        durationMs: Date.now() - (sessionStartedAtRef.current ?? Date.now()),
-        stage: sessionStageRef.current,
-      }),
-    );
-  }, [lessonOrdinal, sessionOrdinal, studyTarget]);
+  useEffect(
+    () => () => {
+      if (finishingRef.current || !telemetryStartSentRef.current) return;
+      if (!lessonOrdinal || !sessionOrdinal) return;
+      trackLearningV2Telemetry(
+        learningV2SessionAbandonEvent({
+          lessonOrdinal,
+          sessionOrdinal,
+          sessionKind: telemetrySessionKind(sessionOrdinal),
+          studyTarget,
+          durationMs: Date.now() - (sessionStartedAtRef.current ?? Date.now()),
+          stage: sessionStageRef.current,
+        }),
+      );
+    },
+    [lessonOrdinal, sessionOrdinal, studyTarget],
+  );
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextState) => {
@@ -589,13 +775,15 @@ export default function LearningV2DirectSessionPlayerV1() {
             distractors: practice.responseOptions.map((option) => option.text),
           },
           facet: {
-            kind: practice.inputMode === "ordered_tokens"
-              ? "word_order"
-              : practice.inputMode === "scripted_speech"
-                ? "pronunciation"
-                : practice.family === "listen_choose" || practice.family === "sound_contrast"
-                  ? "listening"
-                  : "form",
+            kind:
+              practice.inputMode === "ordered_tokens"
+                ? "word_order"
+                : practice.inputMode === "scripted_speech"
+                  ? "pronunciation"
+                  : practice.family === "listen_choose" ||
+                      practice.family === "sound_contrast"
+                    ? "listening"
+                    : "form",
             expected: auxiliary.save.targetText,
           },
         }).catch(() => {});
@@ -604,10 +792,10 @@ export default function LearningV2DirectSessionPlayerV1() {
       setLastWrongResponseId(
         practice.inputMode === "single_choice"
           ? selectedChoiceId
-          : orderedIds.find(
+          : (orderedIds.find(
               (responseId) =>
                 auxiliary?.responseFeedbackById?.[responseId] !== undefined,
-            ) ?? null,
+            ) ?? null),
       );
       setAttempts((value) => Math.min(99, value + 1));
       setSelectedChoiceId(null);
@@ -633,7 +821,22 @@ export default function LearningV2DirectSessionPlayerV1() {
           }));
       }
     },
-    [attempts, auxiliary, hintUsed, lang, lessonOrdinal, material?.lessonId, orderedIds, practice, reducedMotion, result, run, selectedChoiceId, sessionOrdinal, studyTarget],
+    [
+      attempts,
+      auxiliary,
+      hintUsed,
+      lang,
+      lessonOrdinal,
+      material?.lessonId,
+      orderedIds,
+      practice,
+      reducedMotion,
+      result,
+      run,
+      selectedChoiceId,
+      sessionOrdinal,
+      studyTarget,
+    ],
   );
 
   const finish = useCallback(async () => {
@@ -861,10 +1064,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           <View style={styles.preparingContent}>
             <View
               accessibilityLiveRegion="polite"
-              style={[
-                styles.preparingCard,
-                { backgroundColor: t.bgCard },
-              ]}
+              style={[styles.preparingCard, { backgroundColor: t.bgCard }]}
             >
               <ActivityIndicator color={t.accent} size="small" />
               <Text style={[styles.preparingText, { color: t.textPrimary }]}>
@@ -930,7 +1130,9 @@ export default function LearningV2DirectSessionPlayerV1() {
           play
         />
         <Text style={[styles.checkpointTitle, { color: t.textPrimary }]}>
-          {isFinal ? checkpointCopy.finalTitle : checkpointCopy.entryTitle(chapter)}
+          {isFinal
+            ? checkpointCopy.finalTitle
+            : checkpointCopy.entryTitle(chapter)}
         </Text>
         <Text style={[styles.checkpointBody, { color: t.textMuted }]}>
           {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
@@ -990,7 +1192,11 @@ export default function LearningV2DirectSessionPlayerV1() {
               hintUsed: entry.hintUsed,
             }),
           );
-          sessionStageRef.current = "practice";
+          if (newWordEncounterIds.length === 0) {
+            sessionStageRef.current = "practice";
+          } else {
+            dispatchNewWordEvent({ kind: "intro_completed" });
+          }
           setIntroDone(true);
         }}
         onBack={() => safeRouterBack(router, "/learning-v2/course")}
@@ -1022,507 +1228,546 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   return (
     <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
-      <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={copy.close}
-          hitSlop={10}
-          onPress={() => safeRouterBack(router, "/learning-v2/course")}
-          style={({ pressed }) => [
-            styles.iconButton,
-            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+      <View
+        style={styles.screen}
+        pointerEvents={practiceActivated ? "auto" : "none"}
+        importantForAccessibility={
+          practiceActivated ? "auto" : "no-hide-descendants"
+        }
+      >
+        <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={copy.close}
+            hitSlop={10}
+            onPress={() => safeRouterBack(router, "/learning-v2/course")}
+            style={({ pressed }) => [
+              styles.iconButton,
+              { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+            ]}
+          >
+            <Ionicons name="close" size={22} color={t.textPrimary} />
+          </Pressable>
+          <View style={styles.progressColumn}>
+            <View
+              style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}
+            >
+              <View
+                style={[
+                  styles.progressFill,
+                  {
+                    backgroundColor: t.accent,
+                    width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
+                  },
+                ]}
+              />
+            </View>
+            <Text style={[styles.progressText, { color: t.textMuted }]}>
+              {progressOrdinal} / {totalInteractions}
+            </Text>
+          </View>
+          <ReportErrorButton
+            screen="learning_v2_session"
+            dataId={`${runSummary.courseSessionId}:${practice.interactionId}`}
+            dataText={practice.prompt}
+            userAnswer={
+              practice.inputMode === "single_choice"
+                ? practice.responseOptions.find(
+                    (entry) => entry.responseId === selectedChoiceId,
+                  )?.text
+                : practice.inputMode === "scripted_speech"
+                  ? transcript
+                  : selectedText
+            }
+            variant="icon-flag"
+            accessibilityLabel={copy.reportTask}
+          />
+        </View>
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.content,
+            { paddingBottom: insets.bottom + 148 },
           ]}
         >
-          <Ionicons name="close" size={22} color={t.textPrimary} />
-        </Pressable>
-        <View style={styles.progressColumn}>
-          <View
-            style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}
-          >
-            <View
-              style={[
-                styles.progressFill,
-                {
-                  backgroundColor: t.accent,
-                  width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
-                },
-              ]}
-            />
+          <View style={styles.modeRow}>
+            <View style={[styles.modeIcon, { backgroundColor: t.bgSurface2 }]}>
+              <Ionicons
+                name={MODE_ICONS[practice.family]}
+                size={22}
+                color={t.accent}
+              />
+            </View>
+            <View style={styles.modeCopy}>
+              <Text style={[styles.modeTitle, { color: t.textPrimary }]}>
+                {copy.modes[practice.family] ?? copy.independent}
+              </Text>
+              <Text style={[styles.modeNote, { color: t.textMuted }]}>
+                {copy.supportFades}
+              </Text>
+            </View>
           </View>
-          <Text style={[styles.progressText, { color: t.textMuted }]}>
-            {progressOrdinal} / {totalInteractions}
-          </Text>
-        </View>
-        <ReportErrorButton
-          screen="learning_v2_session"
-          dataId={`${runSummary.courseSessionId}:${practice.interactionId}`}
-          dataText={practice.prompt}
-          userAnswer={
-            practice.inputMode === "single_choice"
-              ? practice.responseOptions.find(
-                  (entry) => entry.responseId === selectedChoiceId,
-                )?.text
-              : practice.inputMode === "scripted_speech"
-                ? transcript
-                : selectedText
-          }
-          variant="icon-flag"
-          accessibilityLabel={copy.reportTask}
-        />
-      </View>
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          styles.content,
-          { paddingBottom: insets.bottom + 148 },
-        ]}
-      >
-        <View style={styles.modeRow}>
-          <View style={[styles.modeIcon, { backgroundColor: t.bgSurface2 }]}>
-            <Ionicons
-              name={MODE_ICONS[practice.family]}
-              size={22}
-              color={t.accent}
-            />
-          </View>
-          <View style={styles.modeCopy}>
-            <Text style={[styles.modeTitle, { color: t.textPrimary }]}>
-              {copy.modes[practice.family] ?? copy.independent}
-            </Text>
-            <Text style={[styles.modeNote, { color: t.textMuted }]}>
-              {copy.supportFades}
-            </Text>
-          </View>
-        </View>
-
-        {/* зачем (каталог активностей 04): переход к следующему заданию
+          {/* зачем (каталог активностей 04): переход к следующему заданию
             обязан быть 200-240мс, а не мгновенной подменой. Ключ по индексу
             перезапускает вход, поэтому новое задание въезжает, а не возникает.
             Геометрия зоны не меняется — прыжка контента нет. */}
-        <Animated.View
-          key={`practice-${practiceIndex}`}
-          entering={
-            reducedMotion ? undefined : FadeInDown.duration(220).easing(
-              Easing.bezier(0.23, 1, 0.32, 1).factory(),
-            )
-          }
-        >
-        <View style={styles.promptRow}>
-          <Text
-            style={[
-              styles.prompt,
-              styles.promptText,
-              { color: t.textPrimary, fontSize: f.h2 },
-            ]}
+          <Animated.View
+            key={`practice-${practiceIndex}`}
+            entering={
+              reducedMotion
+                ? undefined
+                : FadeInDown.duration(220).easing(
+                    Easing.bezier(0.23, 1, 0.32, 1).factory(),
+                  )
+            }
           >
-            {practice.prompt}
-          </Text>
-          {fullPhraseAudio && (
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={copy.listenOffline}
-              accessibilityHint={copy.audioOfflineHint}
-              hitSlop={8}
-              onPress={() => {
-                localVoice.cancel();
-                playLocalAudio(fullPhraseAudio.fileUri);
-              }}
-              style={({ pressed }) => [
-                styles.audioButton,
-                {
-                  backgroundColor: t.bgSurface2,
-                  opacity: pressed ? 0.72 : 1,
-                },
-              ]}
-            >
-              <Ionicons name="volume-high" size={21} color={t.accent} />
-            </Pressable>
-          )}
-        </View>
-
-        <Animated.View style={styles.answers}>
-          {practice.inputMode === "single_choice" &&
-            practice.responseOptions.map((option) => {
-              const selected = selectedChoiceId === option.responseId;
-              return (
-                <LearningV2AnswerChoice
-                  key={option.responseId}
-                  label={option.text}
-                  selected={selected}
-                  nudgeToken={
-                    wrongNudge.responseId === option.responseId
-                      ? wrongNudge.token
-                      : 0
-                  }
-                  disabled={result === "correct"}
-                  reduceMotion={reducedMotion}
-                  onPress={() => {
-                    localVoice.cancel();
-                    playSelectableAudio(option.responseId);
-                    setTranscript("");
-                    setSelectedChoiceId(option.responseId);
-                    evaluate({
-                      kind: "choice_token",
-                      value: option.responseId,
-                    });
-                  }}
-                  style={[
-                    styles.answer,
-                    {
-                      // зачем: владелец запретил обводки контейнеров — верный
-                      // ответ теперь виден заливкой, а не рамкой вокруг.
-                      backgroundColor:
-                        result === "correct" && selected
-                          ? t.correctBg
-                          : selected
-                            ? t.bgSurface2
-                            : t.bgCard,
-                    },
-                  ]}
-                  textStyle={[styles.answerText, { color: t.textPrimary }]}
-                />
-              );
-            })}
-
-          {practice.inputMode === "ordered_tokens" && (
-            <>
-              <View
+            <View style={styles.promptRow}>
+              <Text
                 style={[
-                  styles.assembled,
-                  { backgroundColor: t.bgCard },
+                  styles.prompt,
+                  styles.promptText,
+                  { color: t.textPrimary, fontSize: f.h2 },
                 ]}
               >
-                <Text
-                  style={[
-                    styles.assembledText,
-                    { color: selectedText ? t.textPrimary : t.textMuted },
+                {practice.prompt}
+              </Text>
+              {fullPhraseAudio && (
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={copy.listenOffline}
+                  accessibilityHint={copy.audioOfflineHint}
+                  hitSlop={8}
+                  onPress={() => {
+                    localVoice.cancel();
+                    playLocalAudio(fullPhraseAudio.fileUri);
+                  }}
+                  style={({ pressed }) => [
+                    styles.audioButton,
+                    {
+                      backgroundColor: t.bgSurface2,
+                      opacity: pressed ? 0.72 : 1,
+                    },
                   ]}
                 >
-                  {selectedText || copy.tapWords}
-                </Text>
-              </View>
-              <View style={styles.chips}>
-                {practice.responseOptions.map((option) => {
-                  const used = orderedIds.includes(option.responseId);
+                  <Ionicons name="volume-high" size={21} color={t.accent} />
+                </Pressable>
+              )}
+            </View>
+
+            <Animated.View style={styles.answers}>
+              {practice.inputMode === "single_choice" &&
+                practice.responseOptions.map((option) => {
+                  const selected = selectedChoiceId === option.responseId;
                   return (
-                    <Pressable
+                    <LearningV2AnswerChoice
                       key={option.responseId}
-                      accessibilityRole="button"
-                      accessibilityState={{ disabled: used }}
-                      disabled={used || result === "correct"}
+                      label={option.text}
+                      selected={selected}
+                      nudgeToken={
+                        wrongNudge.responseId === option.responseId
+                          ? wrongNudge.token
+                          : 0
+                      }
+                      disabled={result === "correct"}
+                      reduceMotion={reducedMotion}
                       onPress={() => {
                         localVoice.cancel();
                         playSelectableAudio(option.responseId);
                         setTranscript("");
-                        setOrderedIds((current) => [
-                          ...current,
-                          option.responseId,
-                        ]);
+                        setSelectedChoiceId(option.responseId);
+                        evaluate({
+                          kind: "choice_token",
+                          value: option.responseId,
+                        });
                       }}
-                      style={({ pressed }) => [
-                        styles.chip,
+                      style={[
+                        styles.answer,
                         {
-                          backgroundColor: t.bgCard,
-                          opacity: used ? 0.3 : pressed ? 0.72 : 1,
+                          // зачем: владелец запретил обводки контейнеров — верный
+                          // ответ теперь виден заливкой, а не рамкой вокруг.
+                          backgroundColor:
+                            result === "correct" && selected
+                              ? t.correctBg
+                              : selected
+                                ? t.bgSurface2
+                                : t.bgCard,
                         },
                       ]}
-                    >
-                      <Text style={[styles.chipText, { color: t.textPrimary }]}>
-                        {option.text}
-                      </Text>
-                    </Pressable>
+                      textStyle={[styles.answerText, { color: t.textPrimary }]}
+                    />
                   );
                 })}
-              </View>
-              {orderedIds.length > 0 && result !== "correct" && (
-                <Pressable
-                  accessibilityRole="button"
-                  onPress={() =>
-                    setOrderedIds((current) => current.slice(0, -1))
-                  }
-                  style={styles.undo}
-                >
-                  <Ionicons name="arrow-undo" size={18} color={t.textMuted} />
-                  <Text style={[styles.undoText, { color: t.textMuted }]}>
-                    Назад
-                  </Text>
-                </Pressable>
+
+              {practice.inputMode === "ordered_tokens" && (
+                <>
+                  <View
+                    style={[styles.assembled, { backgroundColor: t.bgCard }]}
+                  >
+                    <Text
+                      style={[
+                        styles.assembledText,
+                        { color: selectedText ? t.textPrimary : t.textMuted },
+                      ]}
+                    >
+                      {selectedText || copy.tapWords}
+                    </Text>
+                  </View>
+                  <View style={styles.chips}>
+                    {practice.responseOptions.map((option) => {
+                      const used = orderedIds.includes(option.responseId);
+                      return (
+                        <Pressable
+                          key={option.responseId}
+                          accessibilityRole="button"
+                          accessibilityState={{ disabled: used }}
+                          disabled={used || result === "correct"}
+                          onPress={() => {
+                            localVoice.cancel();
+                            playSelectableAudio(option.responseId);
+                            setTranscript("");
+                            setOrderedIds((current) => [
+                              ...current,
+                              option.responseId,
+                            ]);
+                          }}
+                          style={({ pressed }) => [
+                            styles.chip,
+                            {
+                              backgroundColor: t.bgCard,
+                              opacity: used ? 0.3 : pressed ? 0.72 : 1,
+                            },
+                          ]}
+                        >
+                          <Text
+                            style={[styles.chipText, { color: t.textPrimary }]}
+                          >
+                            {option.text}
+                          </Text>
+                        </Pressable>
+                      );
+                    })}
+                  </View>
+                  {orderedIds.length > 0 && result !== "correct" && (
+                    <Pressable
+                      accessibilityRole="button"
+                      onPress={() =>
+                        setOrderedIds((current) => current.slice(0, -1))
+                      }
+                      style={styles.undo}
+                    >
+                      <Ionicons
+                        name="arrow-undo"
+                        size={18}
+                        color={t.textMuted}
+                      />
+                      <Text style={[styles.undoText, { color: t.textMuted }]}>
+                        Назад
+                      </Text>
+                    </Pressable>
+                  )}
+                </>
               )}
-            </>
+
+              {practice.inputMode === "scripted_speech" && (
+                <View
+                  style={[
+                    styles.speechBox,
+                    {
+                      // Слушание уже читается по заливке — рамка была лишней.
+                      backgroundColor:
+                        localVoice.status === "listening"
+                          ? t.accentBg
+                          : t.bgCard,
+                    },
+                  ]}
+                >
+                  <Ionicons
+                    name={
+                      localVoice.status === "listening" ? "mic" : "mic-outline"
+                    }
+                    size={30}
+                    color={t.accent}
+                  />
+                  <Text style={[styles.speechTitle, { color: t.textPrimary }]}>
+                    {localVoice.status === "listening"
+                      ? copy.voiceSpeaking
+                      : (practice.scriptedAlternate?.instruction ??
+                        copy.startVoice)}
+                  </Text>
+                  <Text style={[styles.speechNote, { color: t.textMuted }]}>
+                    {copy.repeatPrivacy}
+                  </Text>
+                  <View style={styles.transcriptRow}>
+                    <Text style={[styles.transcript, { color: t.textPrimary }]}>
+                      {transcript || "—"}
+                    </Text>
+                  </View>
+                </View>
+              )}
+            </Animated.View>
+          </Animated.View>
+
+          {wrongExplanation && result !== "correct" && (
+            // зачем (каталог активностей 04): панель разбора ошибки обязана
+            // въезжать opacity + translateY 8 за 180-220мс, а не возникать
+            // мгновенно. reduce motion оставляет финальный кадр.
+            <Animated.View
+              accessibilityLiveRegion="polite"
+              entering={
+                reducedMotion
+                  ? undefined
+                  : FadeInDown.duration(200).easing(
+                      Easing.bezier(0.23, 1, 0.32, 1).factory(),
+                    )
+              }
+              style={[styles.explanation, { backgroundColor: t.bgSurface2 }]}
+            >
+              <Ionicons name="bulb-outline" size={20} color={t.accent} />
+              <Text style={[styles.explanationText, { color: t.textPrimary }]}>
+                {wrongExplanation}
+              </Text>
+            </Animated.View>
           )}
 
-          {practice.inputMode === "scripted_speech" && (
-            <View
-              style={[
-                styles.speechBox,
+          <View style={styles.actionRow}>
+            <SaveToCardsButton
+              label={copy.savePhrase}
+              savedLabel={copy.saveAdded}
+              saved={savedThisCard}
+              pulse={savePulse}
+              disabled={!auxiliary}
+              onSave={() => void savePhrase()}
+              colors={{
+                surface: t.bgCard,
+                text: t.textPrimary,
+                muted: t.textMuted,
+                accent: t.accent,
+              }}
+              testID="learning-v2-save-phrase"
+            />
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={
+                localVoice.status === "listening"
+                  ? copy.stopVoice
+                  : copy.startVoice
+              }
+              accessibilityHint={copy.voiceSpeaking}
+              accessibilityState={{
+                disabled: auxiliary.voice.available !== true,
+                selected: localVoice.status === "listening",
+                busy:
+                  localVoice.status === "requesting" ||
+                  localVoice.status === "finishing",
+              }}
+              disabled={
+                auxiliary.voice.available !== true || result === "correct"
+              }
+              onPressIn={() => {
+                void hapticTap();
+                void localVoice.start();
+              }}
+              onPressOut={localVoice.stop}
+              style={({ pressed }) => [
+                styles.compactAction,
                 {
-                  // Слушание уже читается по заливке — рамка была лишней.
                   backgroundColor:
-                    localVoice.status === "listening" ? t.accentBg : t.bgCard,
+                    localVoice.status === "listening" ? t.accent : t.bgCard,
+                  opacity:
+                    auxiliary.voice.available !== true
+                      ? 0.45
+                      : pressed
+                        ? 0.72
+                        : 1,
                 },
               ]}
             >
               <Ionicons
                 name={localVoice.status === "listening" ? "mic" : "mic-outline"}
-                size={30}
-                color={t.accent}
+                size={20}
+                color={
+                  localVoice.status === "listening"
+                    ? t.correctText
+                    : t.textPrimary
+                }
               />
-              <Text style={[styles.speechTitle, { color: t.textPrimary }]}>
+              <Text
+                style={[
+                  styles.compactActionText,
+                  {
+                    color:
+                      localVoice.status === "listening"
+                        ? t.correctText
+                        : t.textPrimary,
+                  },
+                ]}
+              >
                 {localVoice.status === "listening"
-                  ? copy.voiceSpeaking
-                  : (practice.scriptedAlternate?.instruction ??
-                    copy.startVoice)}
-              </Text>
-              <Text style={[styles.speechNote, { color: t.textMuted }]}>
-                {copy.repeatPrivacy}
-              </Text>
-              <View style={styles.transcriptRow}>
-                <Text style={[styles.transcript, { color: t.textPrimary }]}>
-                  {transcript || "—"}
-                </Text>
-              </View>
-            </View>
-          )}
-        </Animated.View>
-        </Animated.View>
-
-        {wrongExplanation && result !== "correct" && (
-          // зачем (каталог активностей 04): панель разбора ошибки обязана
-          // въезжать opacity + translateY 8 за 180-220мс, а не возникать
-          // мгновенно. reduce motion оставляет финальный кадр.
-          <Animated.View
-            accessibilityLiveRegion="polite"
-            entering={
-              reducedMotion
-                ? undefined
-                : FadeInDown.duration(200).easing(
-                    Easing.bezier(0.23, 1, 0.32, 1).factory(),
-                  )
-            }
-            style={[
-              styles.explanation,
-              { backgroundColor: t.bgSurface2 },
-            ]}
-          >
-            <Ionicons name="bulb-outline" size={20} color={t.accent} />
-            <Text style={[styles.explanationText, { color: t.textPrimary }]}>
-              {wrongExplanation}
-            </Text>
-          </Animated.View>
-        )}
-
-        <View style={styles.actionRow}>
-          <SaveToCardsButton
-            label={copy.savePhrase}
-            savedLabel={copy.saveAdded}
-            saved={savedThisCard}
-            pulse={savePulse}
-            disabled={!auxiliary}
-            onSave={() => void savePhrase()}
-            colors={{
-              surface: t.bgCard,
-              text: t.textPrimary,
-              muted: t.textMuted,
-              accent: t.accent,
-            }}
-            testID="learning-v2-save-phrase"
-          />
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={
-              localVoice.status === "listening"
-                ? copy.stopVoice
-                : copy.startVoice
-            }
-            accessibilityHint={copy.voiceSpeaking}
-            accessibilityState={{
-              disabled: auxiliary.voice.available !== true,
-              selected: localVoice.status === "listening",
-              busy:
-                localVoice.status === "requesting" ||
-                localVoice.status === "finishing",
-            }}
-            disabled={
-              auxiliary.voice.available !== true || result === "correct"
-            }
-            onPressIn={() => {
-              void hapticTap();
-              void localVoice.start();
-            }}
-            onPressOut={localVoice.stop}
-            style={({ pressed }) => [
-              styles.compactAction,
-              {
-                backgroundColor:
-                  localVoice.status === "listening" ? t.accent : t.bgCard,
-                opacity:
-                  auxiliary.voice.available !== true
-                    ? 0.45
-                    : pressed
-                      ? 0.72
-                      : 1,
-              },
-            ]}
-          >
-            <Ionicons
-              name={localVoice.status === "listening" ? "mic" : "mic-outline"}
-              size={20}
-              color={
-                localVoice.status === "listening"
-                  ? t.correctText
-                  : t.textPrimary
-              }
-            />
-            <Text
-              style={[
-                styles.compactActionText,
-                {
-                  color:
-                    localVoice.status === "listening"
-                      ? t.correctText
-                      : t.textPrimary,
-                },
-              ]}
-            >
-              {localVoice.status === "listening"
-                ? copy.stopVoice
-                : copy.startVoice}
-            </Text>
-          </Pressable>
-        </View>
-
-        {transcript && practice.inputMode !== "scripted_speech" && (
-          <View
-            accessibilityLiveRegion="polite"
-            style={[
-              styles.voiceTranscript,
-              { backgroundColor: t.bgSurface2 },
-            ]}
-          >
-            <Ionicons name="mic" size={18} color={t.accent} />
-            <Text
-              style={[styles.voiceTranscriptText, { color: t.textPrimary }]}
-            >
-              {transcript}
-            </Text>
-          </View>
-        )}
-
-        {localVoice.status === "permission_denied" && (
-          <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
-            {copy.voicePermission}
-          </Text>
-        )}
-        {localVoice.status === "local_recognition_unavailable" && (
-          <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
-            {copy.voiceUnavailable}
-          </Text>
-        )}
-        {localVoice.status === "error" && (
-          <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
-            {copy.voiceFailed}
-          </Text>
-        )}
-        {saveMessage && (
-          <Text
-            accessibilityLiveRegion="polite"
-            style={[styles.voiceStatus, { color: t.textMuted }]}
-          >
-            {saveMessage}
-          </Text>
-        )}
-      </ScrollView>
-
-      <View
-        style={[
-          styles.footer,
-          {
-            paddingBottom: insets.bottom + 12,
-            backgroundColor: t.bgPrimary,
-          },
-        ]}
-      >
-        {result === "correct" ? (
-          <Pressable
-            accessibilityRole="button"
-            disabled={finishing}
-            onPress={advance}
-            style={({ pressed }) => [
-              styles.primary,
-              {
-                backgroundColor: t.correct,
-                opacity: pressed || finishing ? 0.78 : 1,
-              },
-            ]}
-          >
-            <Text style={[styles.primaryText, { color: t.correctText }]}>
-              {practiceIndex + 1 >= runSummary.practiceInteractionCount
-                ? copy.finish
-                : copy.next}
-            </Text>
-          </Pressable>
-        ) : (
-          <View style={styles.footerRow}>
-            <Pressable
-              accessibilityRole="button"
-              onPress={() => {
-                completionsRef.current.set(practice.interactionId, {
-                  interactionId: practice.interactionId,
-                  disposition: "skipped",
-                  learnerAttempts: attempts - 1,
-                  hintUsed,
-                });
-                setResult("correct");
-              }}
-              style={({ pressed }) => [
-                styles.skip,
-                { opacity: pressed ? 0.72 : 1 },
-              ]}
-            >
-              <Text style={[styles.skipText, { color: t.textMuted }]}>
-                {copy.skip}
+                  ? copy.stopVoice
+                  : copy.startVoice}
               </Text>
             </Pressable>
+          </View>
+
+          {transcript && practice.inputMode !== "scripted_speech" && (
+            <View
+              accessibilityLiveRegion="polite"
+              style={[
+                styles.voiceTranscript,
+                { backgroundColor: t.bgSurface2 },
+              ]}
+            >
+              <Ionicons name="mic" size={18} color={t.accent} />
+              <Text
+                style={[styles.voiceTranscriptText, { color: t.textPrimary }]}
+              >
+                {transcript}
+              </Text>
+            </View>
+          )}
+
+          {localVoice.status === "permission_denied" && (
+            <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
+              {copy.voicePermission}
+            </Text>
+          )}
+          {localVoice.status === "local_recognition_unavailable" && (
+            <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
+              {copy.voiceUnavailable}
+            </Text>
+          )}
+          {localVoice.status === "error" && (
+            <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
+              {copy.voiceFailed}
+            </Text>
+          )}
+          {saveMessage && (
+            <Text
+              accessibilityLiveRegion="polite"
+              style={[styles.voiceStatus, { color: t.textMuted }]}
+            >
+              {saveMessage}
+            </Text>
+          )}
+        </ScrollView>
+
+        <View
+          style={[
+            styles.footer,
+            {
+              paddingBottom: insets.bottom + 12,
+              backgroundColor: t.bgPrimary,
+            },
+          ]}
+        >
+          {result === "correct" ? (
             <Pressable
               accessibilityRole="button"
-              disabled={
-                (practice.inputMode === "single_choice" &&
-                  !selectedChoiceId &&
-                  !transcript.trim()) ||
-                (practice.inputMode === "ordered_tokens" &&
-                  orderedIds.length === 0 &&
-                  !transcript.trim()) ||
-                (practice.inputMode === "scripted_speech" && !transcript.trim())
-              }
-              onPress={() => evaluate(response)}
+              disabled={finishing}
+              onPress={advance}
               style={({ pressed }) => [
                 styles.primary,
-                styles.flexPrimary,
                 {
-                  backgroundColor: t.accent,
-                  opacity:
-                    pressed ||
-                    (practice.inputMode === "single_choice" &&
-                      !selectedChoiceId &&
-                      !transcript.trim()) ||
-                    (practice.inputMode === "ordered_tokens" &&
-                      orderedIds.length === 0 &&
-                      !transcript.trim()) ||
-                    (practice.inputMode === "scripted_speech" &&
-                      !transcript.trim())
-                      ? 0.45
-                      : 1,
+                  backgroundColor: t.correct,
+                  opacity: pressed || finishing ? 0.78 : 1,
                 },
               ]}
             >
               <Text style={[styles.primaryText, { color: t.correctText }]}>
-                {copy.check}
+                {practiceIndex + 1 >= runSummary.practiceInteractionCount
+                  ? copy.finish
+                  : copy.next}
               </Text>
             </Pressable>
-          </View>
-        )}
+          ) : (
+            <View style={styles.footerRow}>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => {
+                  completionsRef.current.set(practice.interactionId, {
+                    interactionId: practice.interactionId,
+                    disposition: "skipped",
+                    learnerAttempts: attempts - 1,
+                    hintUsed,
+                  });
+                  setResult("correct");
+                }}
+                style={({ pressed }) => [
+                  styles.skip,
+                  { opacity: pressed ? 0.72 : 1 },
+                ]}
+              >
+                <Text style={[styles.skipText, { color: t.textMuted }]}>
+                  {copy.skip}
+                </Text>
+              </Pressable>
+              <Pressable
+                accessibilityRole="button"
+                disabled={
+                  (practice.inputMode === "single_choice" &&
+                    !selectedChoiceId &&
+                    !transcript.trim()) ||
+                  (practice.inputMode === "ordered_tokens" &&
+                    orderedIds.length === 0 &&
+                    !transcript.trim()) ||
+                  (practice.inputMode === "scripted_speech" &&
+                    !transcript.trim())
+                }
+                onPress={() => evaluate(response)}
+                style={({ pressed }) => [
+                  styles.primary,
+                  styles.flexPrimary,
+                  {
+                    backgroundColor: t.accent,
+                    opacity:
+                      pressed ||
+                      (practice.inputMode === "single_choice" &&
+                        !selectedChoiceId &&
+                        !transcript.trim()) ||
+                      (practice.inputMode === "ordered_tokens" &&
+                        orderedIds.length === 0 &&
+                        !transcript.trim()) ||
+                      (practice.inputMode === "scripted_speech" &&
+                        !transcript.trim())
+                        ? 0.45
+                        : 1,
+                  },
+                ]}
+              >
+                <Text style={[styles.primaryText, { color: t.correctText }]}>
+                  {copy.check}
+                </Text>
+              </Pressable>
+            </View>
+          )}
+        </View>
       </View>
+      {currentNewWordEncounter && newWordFlow.kind === "presenting" ? (
+        <LearningV2NewWordEncounterOverlay
+          encounter={currentNewWordEncounter}
+          locale={lang}
+          position={newWordFlow.index + 1}
+          total={newWordFlow.total}
+          saveState={
+            newWordSaveStates[currentNewWordEncounter.lexicalItemId] ??
+            "not_saved"
+          }
+          audioState={currentNewWordAudioState}
+          onContinue={() => {
+            void hapticTap();
+            dispatchNewWordEvent({ kind: "continue" });
+          }}
+          onToggleSave={() => {
+            void toggleCurrentNewWordSave();
+          }}
+          onPlayAudio={() => {
+            dispatchNewWordEvent({ kind: "audio_pressed" });
+            playLocalAudio(currentNewWordAudioUri);
+          }}
+        />
+      ) : null}
     </View>
   );
 }

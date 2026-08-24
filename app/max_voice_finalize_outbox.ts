@@ -67,6 +67,9 @@ function assertRequest(request: unknown): asserts request is MaxVoiceFinalizeReq
   if (!['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'].includes(String(value.interfaceLang))) {
     throw new Error('max_finalize_interface_lang_invalid');
   }
+  if (value.studyTarget !== undefined && !['en', 'fr', 'es'].includes(String(value.studyTarget))) {
+    throw new Error('max_finalize_study_target_invalid');
+  }
   if (!['completed', 'capped', 'dropped', 'background', 'failed'].includes(String(value.endReason))) {
     throw new Error('max_finalize_end_reason_invalid');
   }

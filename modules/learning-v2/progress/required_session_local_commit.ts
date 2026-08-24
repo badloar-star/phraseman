@@ -24,6 +24,7 @@ import {
 } from "./progress_store";
 import { withProgressStorageLock } from "./progress_storage_lock";
 import { createRequiredSessionSpoolIndex } from "./required_session_spool_index";
+import { commitPhoneStateLearningV2Completion } from "../../phone-state/learning_v2_runtime_bridge";
 
 interface RequiredSessionLocalCommitEntryV1 {
   readonly schemaVersion: "learning-v2-required-session-local-commit-entry.v1";
@@ -531,6 +532,19 @@ export const createRequiredSessionLocalCommitCoordinator = (
       return withProgressStorageLock(lockKey(scope), async () => {
         assertCurrent(scope);
         await recoverPreparedEntry(scope);
+        const sharedCommitted = await commitPhoneStateLearningV2Completion({
+          stableId: scope.stableId,
+          generation: scope.generation,
+          mutationId: entry.mutationId,
+          envelope: entry.completionEnvelope,
+        });
+        if (sharedCommitted) {
+          await projectLocalProgress(scope, entry);
+          return Object.freeze({
+            mutationId: entry.mutationId,
+            payloadFingerprint: entry.payloadFingerprint,
+          });
+        }
         const encoded = encodeEntry(entry);
         // Persist the exact learner completion before any migration/index
         // maintenance write. A process cut at the first durable write must

@@ -30,83 +30,6 @@ const DEFAULT_TIER_ACCENTS: Record<EarnedMedalTier, string> = {
 };
 
 export const MEDAL_TOAST_THEME_STYLES: Record<ThemeMode, MedalToastThemeStyle> = {
-  minimalDark: {
-    signature: 'graphite-blue-steel',
-    cardBgColors: ['rgba(20,25,34,0.97)', 'rgba(6,7,10,0.97)'],
-    borderColor: 'rgba(110,168,255,0.26)',
-    titleColor: '#F5F7FB',
-    subtitleColor: 'rgba(167,171,179,0.76)',
-    surfaceAccent: '#6EA8FF',
-    badgeDownColor: '#9CA3AF',
-    topShineColors: ['rgba(110,168,255,0)', 'rgba(110,168,255,0.50)', 'rgba(110,168,255,0)'],
-    topShineOpacity: 0.68,
-    haloOpacity: 0.22,
-    auraColor: 'rgba(110,168,255,0.12)',
-    medalPlateBg: 'rgba(110,168,255,0.06)',
-    medalPlateBorder: 'rgba(110,168,255,0.20)',
-    textureColor: 'rgba(215,231,255,0.045)',
-    textureOpacity: 0.48,
-    tierAccents: DEFAULT_TIER_ACCENTS,
-    tierGlows: {
-      bronze: 'rgba(208,140,74,0.30)',
-      silver: 'rgba(114,216,255,0.30)',
-      gold: 'rgba(242,196,74,0.32)',
-    },
-  },
-  business: {
-    signature: 'graphite-champagne',
-    cardBgColors: ['rgba(18,18,18,0.97)', 'rgba(0,0,0,0.97)'],
-    borderColor: 'rgba(255,255,255,0.12)',
-    titleColor: '#F5F5F5',
-    subtitleColor: 'rgba(144,147,155,0.80)',
-    surfaceAccent: '#0095F6',
-    badgeDownColor: '#737373',
-    topShineColors: ['rgba(0,149,246,0)', 'rgba(0,149,246,0.40)', 'rgba(0,149,246,0)'],
-    topShineOpacity: 0.68,
-    haloOpacity: 0.22,
-    auraColor: 'rgba(0,149,246,0.10)',
-    medalPlateBg: 'rgba(0,149,246,0.08)',
-    medalPlateBorder: 'rgba(0,149,246,0.20)',
-    textureColor: 'rgba(255,255,255,0.045)',
-    textureOpacity: 0.48,
-    tierAccents: {
-      bronze: '#A8A8A8',
-      silver: '#A8A8A8',
-      gold: '#E6E6E6',
-    },
-    tierGlows: {
-      bronze: 'rgba(168,168,168,0.14)',
-      silver: 'rgba(212,212,212,0.14)',
-      gold: 'rgba(255,255,255,0.18)',
-    },
-  },
-  businessLight: {
-    signature: 'ivory-champagne',
-    cardBgColors: ['rgba(255,255,255,0.98)', 'rgba(250,250,250,0.98)'],
-    borderColor: 'rgba(0,0,0,0.10)',
-    titleColor: '#262626',
-    subtitleColor: 'rgba(122,125,133,0.90)',
-    surfaceAccent: '#0095F6',
-    badgeDownColor: '#8E8E8E',
-    topShineColors: ['rgba(0,149,246,0)', 'rgba(0,149,246,0.30)', 'rgba(0,149,246,0)'],
-    topShineOpacity: 0.60,
-    haloOpacity: 0.18,
-    auraColor: 'rgba(0,149,246,0.10)',
-    medalPlateBg: 'rgba(0,149,246,0.08)',
-    medalPlateBorder: 'rgba(0,149,246,0.22)',
-    textureColor: 'rgba(0,0,0,0.035)',
-    textureOpacity: 0.40,
-    tierAccents: {
-      bronze: '#8E8E8E',
-      silver: '#8E8E8E',
-      gold: '#0095F6',
-    },
-    tierGlows: {
-      bronze: 'rgba(142,142,142,0.14)',
-      silver: 'rgba(142,142,142,0.12)',
-      gold: 'rgba(0,149,246,0.16)',
-    },
-  },
   sagePorcelain: {
     signature: 'sage-porcelain-reward',
     cardBgColors: ['#FCFDF9', '#E1E5DC'],
@@ -242,29 +165,6 @@ export const MEDAL_TOAST_THEME_STYLES: Record<ThemeMode, MedalToastThemeStyle> =
       gold: 'rgba(255,232,92,0.34)',
     },
   },
-  candyBlue: {
-    signature: 'candy-blue-frost',
-    cardBgColors: ['rgba(22,40,47,0.97)', 'rgba(7,13,16,0.97)'],
-    borderColor: 'rgba(178,213,229,0.26)',
-    titleColor: '#EAF4F8',
-    subtitleColor: 'rgba(157,185,196,0.76)',
-    surfaceAccent: '#B2D5E5',
-    badgeDownColor: '#9DB9C4',
-    topShineColors: ['rgba(178,213,229,0)', 'rgba(178,213,229,0.50)', 'rgba(178,213,229,0)'],
-    topShineOpacity: 0.68,
-    haloOpacity: 0.22,
-    auraColor: 'rgba(178,213,229,0.12)',
-    medalPlateBg: 'rgba(178,213,229,0.06)',
-    medalPlateBorder: 'rgba(178,213,229,0.20)',
-    textureColor: 'rgba(215,235,245,0.045)',
-    textureOpacity: 0.48,
-    tierAccents: DEFAULT_TIER_ACCENTS,
-    tierGlows: {
-      bronze: 'rgba(208,140,74,0.30)',
-      silver: 'rgba(114,216,255,0.30)',
-      gold: 'rgba(255,197,61,0.32)',
-    },
-  },
   indigo: {
     signature: 'indigo-dusk-lavender',
     cardBgColors: ['rgba(34,33,64,0.97)', 'rgba(10,9,18,0.97)'],
@@ -342,5 +242,5 @@ export const MEDAL_TOAST_THEME_STYLES: Record<ThemeMode, MedalToastThemeStyle> =
 };
 
 export function getMedalToastThemeStyle(themeMode: ThemeMode): MedalToastThemeStyle {
-  return MEDAL_TOAST_THEME_STYLES[themeMode] ?? MEDAL_TOAST_THEME_STYLES.minimalDark;
+  return MEDAL_TOAST_THEME_STYLES[themeMode] ?? MEDAL_TOAST_THEME_STYLES.indigo;
 }

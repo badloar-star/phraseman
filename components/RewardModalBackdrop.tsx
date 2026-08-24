@@ -51,7 +51,7 @@ export function RewardModalBackdrop({ themeMode, intensity = 'regular', visible,
     }
     fade.value = withTiming(visible ? 1 : 0, {
       duration: visible ? LUM.resolveMs : LUM.exitMs,
-      easing: visible ? Easing.out(Easing.cubic) : Easing.in(Easing.cubic),
+      easing: Easing.out(Easing.cubic),
     });
     return () => cancelAnimation(fade);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -176,8 +176,6 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return [...OLIVE_GRADIENTS.quietPanel];
     case 'gold':
       return ['#160F07', '#22190D', '#060503'];
-    case 'business':
-      return ['#101820', '#182536', '#070A0F'];
     case 'midnight':
       return ['#081124', '#0C1832', '#030711'];
     case 'ember':
@@ -186,10 +184,6 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['#071B1D', '#102035', '#04080D'];
     case 'volt':
       return ['#111905', '#1B2608', '#050702'];
-    case 'minimalDark':
-      return ['#0F141C', '#0A0D13', '#030508'];
-    case 'candyBlue':
-      return ['#0B161B', '#122229', '#04090C'];
     case 'indigo':
       return ['#14131F', '#1C1B2E', '#060510'];
     case 'sagePorcelain':
@@ -206,8 +200,6 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return OLIVE_RICH.champagne;
     case 'gold':
       return '#E8C36C';
-    case 'business':
-      return '#7DD3FC';
     case 'midnight':
       return '#8EA7FF';
     case 'ember':
@@ -216,10 +208,6 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#67E8F9';
     case 'volt':
       return '#C8F336';
-    case 'minimalDark':
-      return '#6EA8FF';
-    case 'candyBlue':
-      return '#B2D5E5';
     case 'indigo':
       return '#C8C3FF';
     case 'sagePorcelain':
@@ -236,8 +224,6 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
   switch (themeMode) {
     case 'gold':
       return 'rgba(232,195,108,0.48)';
-    case 'business':
-      return 'rgba(125,211,252,0.34)';
     case 'midnight':
       return 'rgba(142,167,255,0.34)';
     case 'ember':
@@ -246,10 +232,6 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(103,232,249,0.34)';
     case 'volt':
       return 'rgba(200,243,54,0.34)';
-    case 'minimalDark':
-      return 'rgba(110,168,255,0.30)';
-    case 'candyBlue':
-      return 'rgba(178,213,229,0.30)';
     case 'indigo':
       return 'rgba(200,195,255,0.30)';
     case 'sagePorcelain':
@@ -266,8 +248,6 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(244,236,216,0.07)';
     case 'gold':
       return 'rgba(232,195,108,0.10)';
-    case 'business':
-      return 'rgba(125,211,252,0.09)';
     case 'midnight':
       return 'rgba(142,167,255,0.09)';
     case 'ember':
@@ -276,10 +256,6 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(103,232,249,0.09)';
     case 'volt':
       return 'rgba(200,243,54,0.09)';
-    case 'minimalDark':
-      return 'rgba(110,168,255,0.08)';
-    case 'candyBlue':
-      return 'rgba(178,213,229,0.08)';
     case 'indigo':
       return 'rgba(200,195,255,0.08)';
     case 'sagePorcelain':
@@ -296,8 +272,6 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return [OLIVE_GRADIENTS.primaryButton[0], OLIVE_GRADIENTS.primaryButton[1]];
     case 'gold':
       return ['#F4D889', '#B9852E'];
-    case 'business':
-      return ['#DDF7FF', '#38BDF8'];
     case 'midnight':
       return ['#E0E7FF', '#818CF8'];
     case 'ember':
@@ -306,10 +280,6 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#CCFBF1', '#22D3EE'];
     case 'volt':
       return ['#ECFCCB', '#A3E635'];
-    case 'minimalDark':
-      return ['#D7E7FF', '#6EA8FF'];
-    case 'candyBlue':
-      return ['#E4F2F8', '#B2D5E5'];
     case 'indigo':
       return ['#ECEAFF', '#C8C3FF'];
     case 'sagePorcelain':
@@ -379,8 +349,6 @@ export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string
   switch (themeMode) {
     case 'gold':
       return ['#2A1707', '#171006', '#050302'];
-    case 'business':
-      return ['#102A3D', '#0E1624', '#05070B'];
     case 'midnight':
       return ['#101C46', '#081126', '#02040B'];
     case 'ember':
@@ -389,10 +357,6 @@ export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string
       return ['#063034', '#101A33', '#03070C'];
     case 'volt':
       return ['#22320A', '#101805', '#030501'];
-    case 'minimalDark':
-      return ['#101824', '#090D15', '#020407'];
-    case 'candyBlue':
-      return ['#122229', '#0B161B', '#020506'];
     case 'indigo':
       return ['#1C1B2E', '#14131F', '#040309'];
     case 'sagePorcelain':
@@ -407,8 +371,6 @@ export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, s
   switch (themeMode) {
     case 'gold':
       return ['#3A260C', '#1C1307', '#070402'];
-    case 'business':
-      return ['#12314A', '#132235', '#070A10'];
     case 'midnight':
       return ['#14235A', '#0B1731', '#030711'];
     case 'ember':
@@ -417,10 +379,6 @@ export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, s
       return ['#07383B', '#13213D', '#04080D'];
     case 'volt':
       return ['#2B3C0B', '#182206', '#050701'];
-    case 'minimalDark':
-      return ['#152032', '#0A101B', '#030508'];
-    case 'candyBlue':
-      return ['#1C323B', '#0E1C22', '#020506'];
     case 'indigo':
       return ['#2A2952', '#16152A', '#040309'];
     case 'sagePorcelain':
@@ -463,10 +421,6 @@ export function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 're
       return strong
         ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)']
         : ['rgba(12,8,2,0.24)', 'rgba(7,5,2,0.42)', 'rgba(0,0,0,0.66)'];
-    case 'minimalDark':
-      return strong
-        ? ['rgba(8,12,20,0.20)', 'rgba(5,8,13,0.48)', 'rgba(0,0,0,0.76)']
-        : ['rgba(8,12,20,0.12)', 'rgba(5,8,13,0.38)', 'rgba(0,0,0,0.64)'];
     case 'dark':
     default:
       return strong

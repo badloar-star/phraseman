@@ -1,0 +1,14 @@
+node_modules
+.git
+firebase-debug.log
+firebase-debug.*.log
+coverage
+**/*.test.ts
+**/*.test.ts.map
+.env
+.env.*
+
+# The deployed package entrypoint is compiled under lib/functions/src.
+# Root .gitignore excludes this generated tree, so Firebase must explicitly
+# package it instead of inheriting that repository-only ignore rule.
+!lib/**

@@ -16,7 +16,7 @@ describe('friends gift tonal design contract', () => {
     expect(friends).toContain('const friendGiftPillColors =');
     expect(friends).toContain('colors={friendGiftSheetColors}');
     expect(friends).toContain('colors={friendGiftPillColors}');
-    expect(friends).toContain('const giftAccentColor = friendGiftAccent(gift.id, t);');
+    expect(friends).toContain('const giftAccentColor = friendGiftAccent(gift.id, t, themeMode);');
     expect(friends).toContain('const optionColors =');
     expect(friends).toContain('colors={optionColors}');
     expect(friends).toContain('backgroundColor: glassFill(giftAccentColor');
@@ -26,7 +26,7 @@ describe('friends gift tonal design contract', () => {
   it('keeps the friend gift picker borderless and avoids heavy glass effects', () => {
     const friends = source();
     const giftPickerStart = friends.indexOf('visible={giftTarget !== null}');
-    const giftPickerEnd = friends.indexOf('visible={sentGiftReceipt !== null}', giftPickerStart);
+    const giftPickerEnd = friends.indexOf('visible={incomingGiftModal !== null}', giftPickerStart);
     const giftPicker = friends.slice(giftPickerStart, giftPickerEnd);
 
     expect(giftPickerStart).toBeGreaterThan(-1);

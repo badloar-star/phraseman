@@ -11,6 +11,12 @@ import {
   beginAccountGeneration,
 } from '../app/account_generation';
 
+let mockFriendsTogetherEnabled = true;
+
+jest.mock('../app/friends_together/together_config', () => ({
+  isFriendsTogetherEnabled: () => mockFriendsTogetherEnabled,
+}));
+
 jest.mock('../app/config', () => ({
   CLOUD_SYNC_ENABLED: false,
   IS_EXPO_GO: true,
@@ -136,6 +142,7 @@ describe('friendsTogether XP multiplier', () => {
     const { __xpManagerTestHooks } = await import('../app/xp_manager');
     __xpManagerTestHooks.resetXpRuntimeState();
     await AsyncStorage.clear();
+    mockFriendsTogetherEnabled = true;
   });
 
   // зачем: multiplierSnapshot.friendsTogether (как club/leagueGroup рядом) стартует
@@ -147,7 +154,7 @@ describe('friendsTogether XP multiplier', () => {
   it('applies the bonus percent when friends_together_bonus_v1.dayKey is today', async () => {
     const { registerXP } = await import('../app/xp_manager');
     await AsyncStorage.setItem('user_total_xp', '0');
-    await AsyncStorage.setItem('friends_together_bonus_v1', JSON.stringify({ dayKey: '2026-08-17', percent: 10 }));
+    await AsyncStorage.setItem('friends_together_bonus_v1::stable-uid', JSON.stringify({ dayKey: '2026-08-17', percent: 10 }));
 
     // Прогрев: первый вызов запускает фоновый refresh снапшота.
     await registerXP(1, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'friends-together:today-bonus:warmup' });
@@ -165,7 +172,7 @@ describe('friendsTogether XP multiplier', () => {
   it('does NOT apply a stale (yesterday) bonus', async () => {
     const { registerXP } = await import('../app/xp_manager');
     await AsyncStorage.setItem('user_total_xp', '0');
-    await AsyncStorage.setItem('friends_together_bonus_v1', JSON.stringify({ dayKey: '2026-08-16', percent: 15 }));
+    await AsyncStorage.setItem('friends_together_bonus_v1::stable-uid', JSON.stringify({ dayKey: '2026-08-16', percent: 15 }));
 
     await registerXP(1, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'friends-together:stale-bonus:warmup' });
     await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
@@ -175,6 +182,19 @@ describe('friendsTogether XP multiplier', () => {
     });
 
     expect(result.finalDelta).toBe(100); // stale bonus ignored
+  });
+
+  it('does not apply a cached current-day bonus after the remote kill-switch is disabled', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    mockFriendsTogetherEnabled = false;
+    await AsyncStorage.setItem('user_total_xp', '0');
+    await AsyncStorage.setItem('friends_together_bonus_v1::stable-uid', JSON.stringify({ dayKey: '2026-08-17', percent: 15 }));
+
+    await registerXP(1, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'friends-together:disabled:warmup' });
+    await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
+    const result = await registerXP(100, 'lesson_complete', 'Learner', 'ru', 1, { eventId: 'friends-together:disabled' });
+
+    expect(result.finalDelta).toBe(100);
   });
 
   it('is a no-op multiplier (1x) when no bonus key is stored at all', async () => {
@@ -191,7 +211,7 @@ describe('friendsTogether XP multiplier', () => {
   it('ignores malformed JSON in friends_together_bonus_v1 without throwing', async () => {
     const { registerXP } = await import('../app/xp_manager');
     await AsyncStorage.setItem('user_total_xp', '0');
-    await AsyncStorage.setItem('friends_together_bonus_v1', '{not valid json');
+    await AsyncStorage.setItem('friends_together_bonus_v1::stable-uid', '{not valid json');
 
     const result = await registerXP(100, 'lesson_complete', 'Learner', 'ru', 1, {
       eventId: 'friends-together:malformed-bonus',
@@ -203,7 +223,7 @@ describe('friendsTogether XP multiplier', () => {
   it('does not apply the earn-only multiplier to non-earned sources (e.g. wagers)', async () => {
     const { registerXP } = await import('../app/xp_manager');
     await AsyncStorage.setItem('user_total_xp', '0');
-    await AsyncStorage.setItem('friends_together_bonus_v1', JSON.stringify({ dayKey: '2026-08-17', percent: 15 }));
+    await AsyncStorage.setItem('friends_together_bonus_v1::stable-uid', JSON.stringify({ dayKey: '2026-08-17', percent: 15 }));
 
     // 'wager_win' is NOT in the isEarnedXP allowlist (xp_manager.ts) — bets/payouts
     // bypass every multiplier, including friendsTogether.

@@ -3,6 +3,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { VIP_SURVEY_ID, VIP_SURVEY_REWARD_DAYS } from './vip_survey_contract';
+import { writeAccessProjectionFromPatch } from './access_projection';
+import { isStorePremiumActive } from './premium_status';
 
 const USERS = 'users';
 const VIP_SURVEY_RESPONSES = 'vip_survey_responses';
@@ -101,13 +103,7 @@ function isOpenEndedOrFuture(untilMs: number, nowMs: number): boolean {
 }
 
 function isRealPremiumProgressActive(progress: Record<string, unknown>, nowMs: number): boolean {
-  const plan = cleanPlan(progress.premium_plan);
-  const override = cleanText(progress.admin_premium_override, 20).toLowerCase();
-  const expiryMs = parseMs(progress.premium_expiry);
-  const storePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual';
-  if (override === 'true' || plan === 'admin_grant') return false;
-  if (override === 'false' && !storePlan) return false;
-  return (storePlan || isTruthyProgressFlag(progress.premium_active)) && isOpenEndedOrFuture(expiryMs, nowMs);
+  return isStorePremiumActive(progress, nowMs);
 }
 
 function isVipProgressActive(progress: Record<string, unknown>, nowMs: number): boolean {
@@ -206,19 +202,21 @@ export const submitVipSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
     const vipFrom = nowMs;
     const vipUntil = nowMs + VIP_SURVEY_REWARD_DAYS * DAY_MS;
     const vipPlan = 'survey_vip';
+    const vipPatch = {
+      vip_active: 'true',
+      vip_plan: vipPlan,
+      vip_from: String(vipFrom),
+      vip_until: String(vipUntil),
+      vip_admin_override: 'true',
+      vip_admin_grant_at: String(nowMs),
+      vip_survey_claimed_at: String(nowMs),
+      vip_survey_message_id: messageId,
+    };
     tx.set(userRef, {
-      progress: {
-        vip_active: 'true',
-        vip_plan: vipPlan,
-        vip_from: String(vipFrom),
-        vip_until: String(vipUntil),
-        vip_admin_override: 'true',
-        vip_admin_grant_at: String(nowMs),
-        vip_survey_claimed_at: String(nowMs),
-        vip_survey_message_id: messageId,
-      },
+      progress: vipPatch,
       updatedAt: nowMs,
     }, { merge: true });
+    writeAccessProjectionFromPatch(tx, userRef, progress, vipPatch, nowMs);
     tx.set(responseRef, {
       ...responseBase,
       submittedAt: nowIso,

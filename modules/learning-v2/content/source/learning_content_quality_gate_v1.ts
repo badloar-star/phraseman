@@ -38,6 +38,13 @@ export type LearningV2ContentQualityIssueCode =
   | 'intro_russian_reference_in_other_locale'
   | 'intro_locale_service_tail'
   | 'intro_learning_chronology'
+  | 'vocabulary_count_invalid'
+  | 'vocabulary_target_invalid'
+  | 'vocabulary_locale_missing'
+  | 'vocabulary_contact_missing'
+  | 'vocabulary_distractors_invalid'
+  | 'vocabulary_distractor_feedback_invalid'
+  | 'vocabulary_distractor_trap_type_missing'
   | 'phrase_count_invalid'
   | 'phrase_duplicate'
   | 'phrase_not_standalone'
@@ -46,6 +53,10 @@ export type LearningV2ContentQualityIssueCode =
   | 'phrase_word_alignment_invalid'
   | 'phrase_distractors_invalid'
   | 'distractor_reason_too_thin'
+  | 'distractor_trap_type_missing'
+  | 'distractor_reason_code_generic'
+  | 'distractor_feedback_not_pair_specific'
+  | 'distractor_option_set_copied'
   | 'generic_feedback_template'
   | 'quality_review_missing'
   | 'quality_review_stale'
@@ -89,6 +100,20 @@ const MAX_BODY_CHARS = 700;
 const MIN_EXPLANATION_CHARS = 35;
 const MIN_PHRASE_EXPLANATION_CHARS = 100;
 const MIN_DISTRACTOR_REASON_CHARS = 40;
+const DISTRACTOR_TRAP_TYPES = new Set([
+  'grammar',
+  'semantic_neighbor',
+  'collocation_pragmatics',
+  'phonetic',
+  'orthographic',
+  'l1_transfer',
+  'phrase_assembly',
+]);
+const GENERIC_DISTRACTOR_REASON_CODES = new Set([
+  'approved_candidate_distractor',
+  'wrong_token',
+  'wrong_token_for_position',
+]);
 const OWNER_APPROVED_FIRST_TEN_SHA =
   '746b30c49c9735cd57cde89cb4e488c40e6661b1be9ccba1ac7f202b09957f09';
 
@@ -309,7 +334,12 @@ function inspectIntro(source: SessionSource, issues: LearningV2ContentQualityIss
         add(issues, 'intro_body_too_thin', `${path}.body`, 'Требуются минимум четыре законченных причинных предложения и плотность старого эталона.');
       if (body.length > MAX_BODY_CHARS)
         add(issues, 'intro_body_overloaded', `${path}.body`, `Текст длиннее ${MAX_BODY_CHARS} знаков и перестаёт быть одним экраном.`);
-      if (new Set(choices.map(normalized)).size !== 3 || choices.some((choice) => !choice))
+      if (
+        new Set(
+          choices.map((choice) => choice.normalize('NFKC').trim()),
+        ).size !== 3 ||
+        choices.some((choice) => !choice)
+      )
         add(issues, 'intro_question_choices_invalid', `${path}.question.choices`, 'Нужны ровно три непустых уникальных варианта.');
       const correctGrounded =
         body.toLocaleLowerCase('en').includes(correct.toLocaleLowerCase('en')) ||
@@ -327,13 +357,34 @@ function inspectIntro(source: SessionSource, issues: LearningV2ContentQualityIss
 }
 
 function inspectPhrases(source: SessionSource, issues: LearningV2ContentQualityIssue[]): void {
-  if (source.phrases.length !== 15)
-    add(issues, 'phrase_count_invalid', 'phrases', `Требуется ровно 15 фраз; получено ${source.phrases.length}.`);
+  const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0;
+  if (
+    hasExplicitVocabulary
+      ? source.phrases.length < 1 || source.phrases.length > 15
+      : source.phrases.length !== 15
+  )
+    add(
+      issues,
+      'phrase_count_invalid',
+      'phrases',
+      hasExplicitVocabulary
+        ? `Word-first source требует 1–15 фраз-применений; получено ${source.phrases.length}.`
+        : `Требуется ровно 15 фраз; получено ${source.phrases.length}.`,
+    );
   const seen = new Set<string>();
+  const optionSetTargets = new Map<
+    string,
+    Readonly<{ display: string; lexical: string }>
+  >();
+  const fixedClarificationRehearsal = source.requiredSessionOrdinal === 53 &&
+    source.phrases.every((phrase) =>
+      phrase.features.includes('fixed_expression') &&
+      /^(?:Sorry|Pardon|Excuse me)\?$/u.test(phrase.english),
+    );
   source.phrases.forEach((phrase, phraseIndex) => {
     const path = `phrases[${phraseIndex}]`;
     const phraseKey = normalized(phrase.english);
-    if (seen.has(phraseKey)) add(issues, 'phrase_duplicate', `${path}.english`, 'Дословный повтор внутри одной сессии запрещён.');
+    if (seen.has(phraseKey) && !fixedClarificationRehearsal) add(issues, 'phrase_duplicate', `${path}.english`, 'Дословный повтор внутри одной сессии запрещён.');
     seen.add(phraseKey);
 
     const admissibility = checkPhraseAdmissibility({ english: phrase.english, russian: phrase.russian });
@@ -351,13 +402,159 @@ function inspectPhrases(source: SessionSource, issues: LearningV2ContentQualityI
     phrase.words.forEach((word, wordIndex) => {
       const wordPath = `${path}.words[${wordIndex}]`;
       const options = word.distractors.map((item) => normalizedOption(item.value));
-      if (word.distractors.length < 3 || new Set(options).size !== options.length || options.includes(normalizedOption(word.correct)))
-        add(issues, 'phrase_distractors_invalid', `${wordPath}.distractors`, 'Нужны минимум три уникальных правдоподобных ошибки, не совпадающие с ответом.');
+      // Manually authored learner sources use the owner-approved three-option
+      // task contract: one answer plus two deliberately close traps. Legacy
+      // catalog sources without that authorship receipt still require three.
+      const minimumDistractors = hasExplicitVocabulary || source.distractorAuthorship === 'manual' ? 2 : 3;
+      if (word.distractors.length < minimumDistractors || new Set(options).size !== options.length || options.includes(normalizedOption(word.correct)))
+        add(issues, 'phrase_distractors_invalid', `${wordPath}.distractors`, `Нужны минимум ${minimumDistractors} уникальных правдоподобных ошибки, не совпадающие с ответом.`);
       word.distractors.forEach((distractor, distractorIndex) => {
+        const distractorPath = `${wordPath}.distractors[${distractorIndex}]`;
         if (distractor.why.trim().length < MIN_DISTRACTOR_REASON_CHARS)
-          add(issues, 'distractor_reason_too_thin', `${wordPath}.distractors[${distractorIndex}].why`, `Причина короче ${MIN_DISTRACTOR_REASON_CHARS} знаков.`);
+          add(issues, 'distractor_reason_too_thin', `${distractorPath}.why`, `Причина короче ${MIN_DISTRACTOR_REASON_CHARS} знаков.`);
+        if (!distractor.trapType || !DISTRACTOR_TRAP_TYPES.has(distractor.trapType))
+          add(issues, 'distractor_trap_type_missing', `${distractorPath}.trapType`, 'Каждая альтернатива обязана хранить один разрешённый trapType.');
+        if (GENERIC_DISTRACTOR_REASON_CODES.has(distractor.reasonCode))
+          add(issues, 'distractor_reason_code_generic', `${distractorPath}.reasonCode`, 'Общий код «не то слово» запрещён: код обязан фиксировать конкретную ошибочную модель.');
+        const why = normalized(distractor.why);
+        if (!why.includes(normalized(distractor.value)) || !why.includes(normalized(word.correct)))
+          add(issues, 'distractor_feedback_not_pair_specific', `${distractorPath}.why`, 'Feedback обязан прямо назвать выбранную альтернативу и правильную форму.');
       });
+
+      const signature = options.join('|');
+      const previousTarget = optionSetTargets.get(signature);
+      const lexicalTarget = normalized(word.correct);
+      if (previousTarget && previousTarget.lexical !== lexicalTarget)
+        add(issues, 'distractor_option_set_copied', `${wordPath}.distractors`, `Один набор вариантов скопирован для разных ответов: ${previousTarget.display} и ${word.correct}.`);
+      else
+        optionSetTargets.set(signature, {
+          display: word.correct,
+          // Sentence-initial Am and medial am are the same lexical answer.
+          // Case-only spelling traps remain represented by the options; they
+          // must not make a legitimate repeated voice target look copied.
+          lexical: lexicalTarget,
+        });
+
+      for (const locale of LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+        const localizedWord = phrase.localizedDetails?.[locale]?.words[wordIndex];
+        if (!localizedWord) continue;
+        localizedWord.distractors.forEach((distractor, distractorIndex) => {
+          const localizedPath = `${wordPath}.localizedDetails.${locale}.distractors[${distractorIndex}]`;
+          if (!distractor.trapType || !DISTRACTOR_TRAP_TYPES.has(distractor.trapType))
+            add(issues, 'distractor_trap_type_missing', `${localizedPath}.trapType`, 'Локальный разбор обязан сохранять trapType.');
+          const reason = normalized(distractor.reason);
+          if (!reason.includes(normalized(distractor.value)) || !reason.includes(normalized(localizedWord.correct)))
+            add(issues, 'distractor_feedback_not_pair_specific', `${localizedPath}.reason`, 'Локальный feedback обязан назвать выбранную и правильную пару.');
+        });
+      }
     });
+  });
+}
+
+function inspectVocabulary(
+  source: SessionSource,
+  issues: LearningV2ContentQualityIssue[],
+): void {
+  const vocabulary = source.newVocabulary ?? [];
+  if (vocabulary.length > 5)
+    add(
+      issues,
+      'vocabulary_count_invalid',
+      'newVocabulary',
+      'Не более пяти новых единиц: каждая обязана поместиться в полный word-first цикл.',
+    );
+
+  const seenTargets = new Set<string>();
+  const stages = ['recognize', 'retrieve_meaning', 'build_form'] as const;
+  vocabulary.forEach((entry, entryIndex) => {
+    const path = `newVocabulary[${entryIndex}]`;
+    const target = entry.target.normalize('NFKC').trim();
+    const targetKey = normalizedOption(target);
+    if (!target || seenTargets.has(targetKey))
+      add(
+        issues,
+        'vocabulary_target_invalid',
+        `${path}.target`,
+        'Новая единица должна иметь непустой уникальный target.',
+      );
+    seenTargets.add(targetKey);
+
+    for (const locale of LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+      const meaning = textFor(entry.meaning, locale);
+      if (!meaning || meaning.includes(UNTRANSLATED_MARKER))
+        add(
+          issues,
+          'vocabulary_locale_missing',
+          `${path}.meaning.${locale}`,
+          'Значение новой единицы обязательно пишется отдельно для каждой активной локали.',
+        );
+    }
+
+    for (const stage of stages) {
+      const contact = entry.contacts?.[stage];
+      const contactPath = `${path}.contacts.${stage}`;
+      if (!contact) {
+        add(
+          issues,
+          'vocabulary_contact_missing',
+          contactPath,
+          `Для target ${target} отсутствует обязательный standalone-контакт ${stage}.`,
+        );
+        continue;
+      }
+      for (const locale of LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+        const guidance = textFor(contact.guidance, locale);
+        if (!guidance || guidance.includes(UNTRANSLATED_MARKER))
+          add(
+            issues,
+            'vocabulary_locale_missing',
+            `${contactPath}.guidance.${locale}`,
+            'Подсказка контакта обязательна во всех восьми локалях без fallback.',
+          );
+      }
+
+      const alternatives = contact.distractors.map((item) =>
+        normalizedOption(item.value),
+      );
+      if (
+        contact.distractors.length < 2 ||
+        new Set(alternatives).size !== alternatives.length ||
+        alternatives.includes(targetKey)
+      )
+        add(
+          issues,
+          'vocabulary_distractors_invalid',
+          `${contactPath}.distractors`,
+          'Каждый словарный контакт требует минимум две разные близкие ловушки, не совпадающие с target.',
+        );
+
+      contact.distractors.forEach((distractor, distractorIndex) => {
+        const distractorPath = `${contactPath}.distractors[${distractorIndex}]`;
+        if (!DISTRACTOR_TRAP_TYPES.has(distractor.trapType))
+          add(
+            issues,
+            'vocabulary_distractor_trap_type_missing',
+            `${distractorPath}.trapType`,
+            'Словарная ловушка обязана иметь разрешённый диагностический trapType.',
+          );
+        for (const locale of LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+          const feedback = textFor(distractor.feedback, locale);
+          const normalizedFeedback = normalized(feedback);
+          if (
+            feedback.length < MIN_DISTRACTOR_REASON_CHARS ||
+            feedback.includes(UNTRANSLATED_MARKER) ||
+            !normalizedFeedback.includes(normalized(distractor.value)) ||
+            !normalizedFeedback.includes(normalized(target))
+          )
+            add(
+              issues,
+              'vocabulary_distractor_feedback_invalid',
+              `${distractorPath}.feedback.${locale}`,
+              'Feedback обязан назвать выбранную ловушку, правильный target и конкретное различие.',
+            );
+        }
+      });
+    }
   });
 }
 
@@ -395,6 +592,7 @@ export function evaluateLearningV2SessionContentQuality(
   const issues: LearningV2ContentQualityIssue[] = [];
   inspectForbiddenGenericFeedback(source, '', issues);
   inspectIntro(source, issues);
+  inspectVocabulary(source, issues);
   inspectPhrases(source, issues);
   inspectReceipt(source, receipt, issues);
   return { ok: issues.length === 0, issues };

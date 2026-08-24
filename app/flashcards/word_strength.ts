@@ -9,18 +9,16 @@ export type WordStrengthMap = Map<string, WordStrength>;
 
 const STRENGTH_RANK: Record<WordStrength, number> = { weak: 1, medium: 2, strong: 3 };
 
-/** Число точек для UI (1/2/3). */
-export function strengthDotCount(s: WordStrength): 1 | 2 | 3 {
-  return STRENGTH_RANK[s] as 1 | 2 | 3;
+export function strengthDotCount(strength: WordStrength): 1 | 2 | 3 {
+  return STRENGTH_RANK[strength] as 1 | 2 | 3;
 }
 
-export function strongerOf(a: WordStrength, b: WordStrength): WordStrength {
-  return STRENGTH_RANK[a] >= STRENGTH_RANK[b] ? a : b;
+export function strongerOf(left: WordStrength, right: WordStrength): WordStrength {
+  return STRENGTH_RANK[left] >= STRENGTH_RANK[right] ? left : right;
 }
 
-/** Нормализованный ключ EN-текста карточки/фразы. */
-export function strengthKey(en: string): string {
-  return englishRecallSurface(en ?? '').toLowerCase();
+export function strengthKey(value: string): string {
+  return englishRecallSurface(value ?? '').toLowerCase();
 }
 
 export function strengthFromMistake(item: MistakeProjectionItem): WordStrength {
@@ -41,23 +39,10 @@ export function buildWordStrengthMap(items: readonly MistakeProjectionItem[]): W
   return map;
 }
 
-/** Сила карточки по её EN; null — «не тренировалась» (точки не рисуем). */
-export function strengthFor(en: string, map: WordStrengthMap | null | undefined): WordStrength | null {
-  if (!map) return null;
-  return map.get(strengthKey(en)) ?? null;
+export function strengthFor(value: string, map: WordStrengthMap | null | undefined): WordStrength | null {
+  return map?.get(strengthKey(value)) ?? null;
 }
 
-function parseArray(raw: string | null): unknown[] {
-  if (!raw) return [];
-  try {
-    const p = JSON.parse(raw);
-    return Array.isArray(p) ? p : [];
-  } catch {
-    return [];
-  }
-}
-
-/** Прочитать оба SRS-источника из AsyncStorage и собрать карту (fail-soft → пустая). */
 export async function loadWordStrengthMap(): Promise<WordStrengthMap> {
   try {
     const studyTarget = storageStudyTarget();
@@ -69,5 +54,4 @@ export async function loadWordStrengthMap(): Promise<WordStrengthMap> {
   }
 }
 
-/* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

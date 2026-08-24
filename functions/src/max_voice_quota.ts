@@ -8,6 +8,7 @@
 // Клиенту в деньгах не верим: все переходы — транзакции Firestore.
 //
 // Поля дока: resetAtMs, monthResetAtMs, dailyUsedSec, monthlyUsedSec,
+// maxAllowanceMonthResetAtMs, maxAllowanceUsageBaselineSec,
 // trialUsedAtMs, activeSessionId, sessionStartedAtMs, activatedAtMs, reservedSec,
 // expiresAtMs, lastHeartbeatMs, reconnectChain{rootId, count, gapSecTotal}.
 //
@@ -23,11 +24,33 @@
 import { createHash } from 'crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
 import type { Firestore } from 'firebase-admin/firestore';
+import { resolveAccountDeleteIdentityClosure } from './account_delete';
+import { MAX_VOICE_LIFETIME_TRIAL_RESERVE_SEC } from './max_voice_config';
 
 export const VOICE_QUOTA_COLLECTION = 'voice_call_quotas';
 
 /** Минимальный осмысленный звонок: остаток меньше — отказ без токена. */
 export const MIN_VOICE_RESERVE_SEC = 60;
+
+/** Старый reason остаётся в HttpsError.details для уже выпущенных клиентов. */
+export const LEGACY_VOICE_QUOTA_EXHAUSTED_REASON = 'voice_quota_exhausted';
+
+export type VoiceQuotaExhaustedReason =
+  | 'voice_daily_quota_exhausted'
+  | 'voice_monthly_quota_exhausted';
+
+/**
+ * Точная причина отказа. Месяц имеет приоритет, когда закончились оба окна:
+ * дневной reset тогда не вернёт человеку доступ на следующий день.
+ */
+export function voiceQuotaExhaustedReason(
+  dayRemainingSec: number,
+  monthRemainingSec: number,
+): VoiceQuotaExhaustedReason | null {
+  if (monthRemainingSec < MIN_VOICE_RESERVE_SEC) return 'voice_monthly_quota_exhausted';
+  if (dayRemainingSec < MIN_VOICE_RESERVE_SEC) return 'voice_daily_quota_exhausted';
+  return null;
+}
 
 /**
  * Хвост после исчерпания резерва, в течение которого сессия ещё считается
@@ -64,13 +87,28 @@ export const VOICE_USAGE_ZERO = {
 
 // Локальная копия docId из premium_dialog.ts (там она не экспортируется —
 // намеренно не трогаем чужой модуль, но формат ID обязан совпадать по паттерну).
-function docId(prefix: string, authUid: string, stableUid: string): string {
-  const hash = createHash('sha256').update(`${prefix}|${authUid}|${stableUid}`).digest('hex').slice(0, 48);
+function docId(prefix: string, ...identities: string[]): string {
+  const hash = createHash('sha256').update([prefix, ...identities].join('|')).digest('hex').slice(0, 48);
   return `${prefix}_${hash}`;
 }
 
-export function voiceQuotaDocId(authUid: string, stableUid: string): string {
+/** Канонический владелец квоты — стабильный аккаунт, не сменяемый auth uid. */
+export function voiceQuotaDocId(stableUid: string): string {
+  return docId('vq', stableUid);
+}
+
+/** Старый auth+stable ID нужен только для fail-closed ленивой миграции. */
+export function legacyVoiceQuotaDocId(authUid: string, stableUid: string): string {
   return docId('vq', authUid, stableUid);
+}
+
+export const VOICE_QUOTA_IDENTITY_VERSION = 2;
+const MAX_VOICE_QUOTA_ALIAS_DOCS = 64;
+
+export interface EnsureCanonicalVoiceQuotaArgs {
+  authUid: string;
+  stableUid: string;
+  nowMs?: number;
 }
 
 function startOfNextUtcDay(nowMs: number): number {
@@ -83,6 +121,11 @@ function startOfNextUtcMonth(nowMs: number): number {
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1, 0, 0, 0, 0);
 }
 
+function startOfUtcMonth(nowMs: number): number {
+  const d = new Date(nowMs);
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1, 0, 0, 0, 0);
+}
+
 function num(value: unknown, fallback = 0): number {
   const n = Number(value);
   return Number.isFinite(n) ? n : fallback;
@@ -90,6 +133,12 @@ function num(value: unknown, fallback = 0): number {
 
 function str(value: unknown): string {
   return String(value ?? '').trim();
+}
+
+export function voiceQuotaIdentityClosureProof(identities: readonly string[]): string {
+  const normalized = [...new Set(identities.map(str).filter(Boolean))].sort();
+  const hash = createHash('sha256').update(JSON.stringify(normalized)).digest('hex');
+  return `v1:${normalized.length}:${hash}`;
 }
 
 interface QuotaWindows {
@@ -114,6 +163,200 @@ function normalizeWindows(data: Record<string, unknown>, nowMs: number): QuotaWi
   };
 }
 
+function positiveMin(values: number[], fallback = 0): number {
+  const positive = values.filter((value) => value > 0);
+  return positive.length > 0 ? Math.min(...positive) : fallback;
+}
+
+function hasLifetimeTrialEvidence(data: Record<string, unknown>): boolean {
+  return positiveMin([
+    num(data.lifetimeTrialUsedAtMs),
+    num(data.trialUsedAtMs),
+    num(data.trialProviderMintedAtMs),
+    num(data.activatedAtMs),
+    num(data.lastSettledAtMs),
+    num(data.monthlyUsedSec),
+  ]) > 0 || str(data.trialReservationSessionId) !== '';
+}
+
+export function mergeLegacyVoiceQuotaData(
+  rows: Record<string, unknown>[],
+  args: EnsureCanonicalVoiceQuotaArgs,
+): Record<string, unknown> {
+  const now = args.nowMs ?? Date.now();
+  const ranked = [...rows].sort((a, b) => num(b.updatedAtMs) - num(a.updatedAtMs));
+  const base = ranked[0] ?? {};
+  const windows = rows.map((row) => normalizeWindows(row, now));
+  const dailyUsedSec = windows.reduce((sum, win) => sum + win.dailyUsedSec, 0);
+  const monthlyUsedSec = windows.reduce((sum, win) => sum + win.monthlyUsedSec, 0);
+  const active = ranked.find((row) => str(row.activeSessionId) !== '' && num(row.reservedSec) > 0);
+  const lifetimeTrialUsedAtMs = positiveMin(rows.flatMap((row) => [
+    num(row.lifetimeTrialUsedAtMs),
+    num(row.trialUsedAtMs),
+    num(row.activatedAtMs),
+    num(row.lastSettledAtMs),
+    num(row.monthlyUsedSec) > 0 ? now : 0,
+  ]));
+  const explicitTrialRows = [...rows]
+    .filter((row) => num(row.trialUsedAtMs) > 0)
+    .sort((a, b) => num(a.trialUsedAtMs) - num(b.trialUsedAtMs));
+  // Any confirmed provider mint must dominate an unconfirmed reservation.
+  // Otherwise releasing the earlier unminted session could clear the merged
+  // lifetime-trial marker even though another linked account already used it.
+  const trialSource = explicitTrialRows.find((row) => num(row.trialProviderMintedAtMs) > 0)
+    ?? explicitTrialRows[0];
+  const resetAtMs = windows.reduce((value, win) => Math.max(value, win.resetAtMs), 0);
+  const monthResetAtMs = windows.reduce((value, win) => Math.max(value, win.monthResetAtMs), 0);
+  const hasCurrentMaxAllowanceMarker = rows.some((row, index) => (
+    num(row.maxAllowanceMonthResetAtMs) === windows[index].monthResetAtMs
+  ));
+  const currentMonthStartedAtMs = startOfUtcMonth(now);
+  const maxAllowanceUsageBaselineSec = hasCurrentMaxAllowanceMarker
+    ? rows.reduce((sum, row, index) => {
+        const win = windows[index];
+        const existingBaselineSec = num(row.maxAllowanceMonthResetAtMs) === win.monthResetAtMs
+          ? Math.min(win.monthlyUsedSec, Math.max(0, num(row.maxAllowanceUsageBaselineSec)))
+          : 0;
+        const trialUsedAtMs = num(row.trialUsedAtMs);
+        const hasVerifiedCurrentMonthTrial = trialUsedAtMs >= currentMonthStartedAtMs
+          && trialUsedAtMs <= now
+          && str(row.trialReservationSessionId) !== ''
+          && num(row.trialProviderMintedAtMs) > 0;
+        const verifiedTrialUsageSec = hasVerifiedCurrentMonthTrial
+          ? Math.min(win.monthlyUsedSec, MAX_VOICE_LIFETIME_TRIAL_RESERVE_SEC)
+          : 0;
+        // A valid row baseline may already include all or part of its trial.
+        // Taking the larger contribution preserves prior MAX use without
+        // forgiving the same confirmed trial twice on a later identity merge.
+        return sum + Math.max(existingBaselineSec, verifiedTrialUsageSec);
+      }, 0)
+    : 0;
+  return {
+    ...base,
+    quotaIdentityVersion: VOICE_QUOTA_IDENTITY_VERSION,
+    authUid: args.authUid,
+    stableUid: args.stableUid,
+    resetAtMs,
+    monthResetAtMs,
+    dailyUsedSec,
+    monthlyUsedSec,
+    lifetimeTrialUsedAtMs: lifetimeTrialUsedAtMs || null,
+    trialUsedAtMs: trialSource
+      ? Math.max(0, num(trialSource.trialUsedAtMs)) || null
+      : lifetimeTrialUsedAtMs || null,
+    trialReservationSessionId: trialSource ? str(trialSource.trialReservationSessionId) || null : null,
+    trialProviderMintedAtMs: trialSource ? Math.max(0, num(trialSource.trialProviderMintedAtMs)) : 0,
+    maxAllowanceMonthResetAtMs: hasCurrentMaxAllowanceMarker ? monthResetAtMs : 0,
+    maxAllowanceUsageBaselineSec,
+    activeSessionId: active ? str(active.activeSessionId) : null,
+    reservedSec: active ? Math.max(0, Math.floor(num(active.reservedSec))) : 0,
+    expiresAtMs: active ? Math.max(0, num(active.expiresAtMs)) : 0,
+    migratedLegacyQuotaCount: rows.length,
+    quotaIdentityMigratedAtMs: now,
+    updatedAtMs: now,
+  };
+}
+
+export async function ensureCanonicalVoiceQuota(
+  db: Firestore,
+  args: EnsureCanonicalVoiceQuotaArgs,
+): Promise<Record<string, unknown>> {
+  const now = args.nowMs ?? Date.now();
+  const collection = db.collection(VOICE_QUOTA_COLLECTION);
+  const canonicalRef = collection.doc(voiceQuotaDocId(args.stableUid));
+  const canonicalSnap = await canonicalRef.get();
+  const canonicalData = (canonicalSnap.data() ?? {}) as Record<string, unknown>;
+  const identities = await resolveAccountDeleteIdentityClosure(db, args.stableUid, args.authUid);
+  const closureProof = voiceQuotaIdentityClosureProof(identities);
+  if (num(canonicalData.quotaIdentityVersion) >= VOICE_QUOTA_IDENTITY_VERSION
+    && str(canonicalData.quotaIdentityClosureProof) === closureProof) return canonicalData;
+  const querySnaps = await Promise.all(identities.map((stableAlias) => collection
+    .where('stableUid', '==', stableAlias)
+    .limit(MAX_VOICE_QUOTA_ALIAS_DOCS + 1)
+    .get()));
+
+  if (querySnaps.some((snap) => snap.docs.length > MAX_VOICE_QUOTA_ALIAS_DOCS)) {
+    throw new HttpsError('resource-exhausted', 'voice_quota_identity_limit');
+  }
+  const legacyRefs = new Map<string, FirebaseFirestore.DocumentReference>();
+  for (const snap of querySnaps) {
+    for (const doc of snap.docs) {
+      if (doc.ref.path === canonicalRef.path) continue;
+      legacyRefs.set(doc.ref.path, doc.ref);
+      const migratedTo = str(doc.data()?.quotaIdentityMigratedTo);
+      if (migratedTo && migratedTo !== canonicalRef.id) {
+        const migratedTargetRef = collection.doc(migratedTo);
+        legacyRefs.set(migratedTargetRef.path, migratedTargetRef);
+      }
+    }
+  }
+  const directLegacyRef = collection.doc(legacyVoiceQuotaDocId(args.authUid, args.stableUid));
+  const directLegacySnap = await directLegacyRef.get();
+  if (directLegacySnap.exists) {
+    legacyRefs.set(directLegacyRef.path, directLegacyRef);
+    const migratedTo = str(directLegacySnap.data()?.quotaIdentityMigratedTo);
+    if (migratedTo && migratedTo !== canonicalRef.id) {
+      const migratedTargetRef = collection.doc(migratedTo);
+      legacyRefs.set(migratedTargetRef.path, migratedTargetRef);
+    }
+  }
+  if (!canonicalSnap.exists && legacyRefs.size === 0) {
+    return {
+      quotaIdentityVersion: VOICE_QUOTA_IDENTITY_VERSION,
+      quotaIdentityClosureProof: closureProof,
+    };
+  }
+
+  return db.runTransaction(async (tx) => {
+    const currentSnap = await tx.get(canonicalRef);
+    const currentData = (currentSnap.data() ?? {}) as Record<string, unknown>;
+    if (num(currentData.quotaIdentityVersion) >= VOICE_QUOTA_IDENTITY_VERSION
+      && str(currentData.quotaIdentityClosureProof) === closureProof) return currentData;
+    const legacyEntries = [...legacyRefs.values()];
+    const legacySnaps = await Promise.all(legacyEntries.map((ref) => tx.get(ref)));
+    const presentDocIds = new Set([
+      ...(currentSnap.exists ? [canonicalRef.id] : []),
+      ...legacyEntries.filter((_, index) => legacySnaps[index].exists).map((ref) => ref.id),
+    ]);
+    const pendingRows = legacySnaps.flatMap((snap) => {
+      if (!snap.exists) return [];
+      const data = snap.data() as Record<string, unknown>;
+      const migratedTo = str(data.quotaIdentityMigratedTo);
+      // Recheck the marker from the transactional snapshot. Query-time data can
+      // race another merge; recounting that tombstone would inflate usage.
+      if (migratedTo && presentDocIds.has(migratedTo)) return [];
+      return [data];
+    });
+    const rows = [
+      ...(currentSnap.exists ? [currentData] : []),
+      ...pendingRows,
+    ];
+    if (rows.length === 0) return {};
+    const liveReservationSessionIds = new Set(rows.flatMap((row) => {
+      const sessionId = str(row.activeSessionId);
+      return sessionId && num(row.reservedSec) > 0 ? [sessionId] : [];
+    }));
+    if (liveReservationSessionIds.size > 1) {
+      throw new HttpsError('failed-precondition', 'voice_quota_identity_sessions_conflict');
+    }
+    const merged = {
+      ...mergeLegacyVoiceQuotaData(rows, { ...args, nowMs: now }),
+      quotaIdentityClosureProof: closureProof,
+    };
+    tx.set(canonicalRef, merged, { merge: true });
+    for (const ref of legacyRefs.values()) {
+      tx.set(ref, {
+        quotaIdentityMigratedTo: canonicalRef.id,
+        activeSessionId: null,
+        reservedSec: 0,
+        expiresAtMs: 0,
+        updatedAtMs: now,
+      }, { merge: true });
+    }
+    return merged;
+  });
+}
+
 export interface VoiceReserveArgs {
   authUid: string;
   stableUid: string;
@@ -124,6 +367,14 @@ export interface VoiceReserveArgs {
   graceTailSec: number;
   dailyVoiceSecMax: number;
   monthlyVoiceSecMax: number;
+  /** Fresh Free/Plus/Pro mint: consume the sole lifetime call with the reserve. */
+  consumeLifetimeTrial?: boolean;
+  /** MAX receives a separate 120-minute allowance over the shared raw counter. */
+  maxMonthlyAllowance?: boolean;
+  /** Maximum verified current-month trial usage that may precede MAX. */
+  maxInitialTrialOffsetSec?: number;
+  /** Proof returned by ensureCanonicalVoiceQuota; revalidated in the reserve transaction. */
+  quotaIdentityClosureProof?: string;
   nowMs?: number;
 }
 
@@ -150,9 +401,52 @@ export interface VoiceReserveResult {
  */
 export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs): Promise<VoiceReserveResult> {
   const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  const collection = db.collection(VOICE_QUOTA_COLLECTION);
+  const ref = collection.doc(voiceQuotaDocId(args.stableUid));
   return db.runTransaction(async (tx) => {
+    const suppliedClosureProof = str(args.quotaIdentityClosureProof);
+    let resolvedIdentities: string[] | null = null;
+    if (suppliedClosureProof) {
+      resolvedIdentities = await resolveAccountDeleteIdentityClosure(db, args.stableUid, args.authUid, tx);
+      if (voiceQuotaIdentityClosureProof(resolvedIdentities) !== suppliedClosureProof) {
+        throw new HttpsError('failed-precondition', 'voice_quota_identity_changed');
+      }
+    }
+    if (args.consumeLifetimeTrial && resolvedIdentities) {
+      const identityQueries = [...new Set(resolvedIdentities.map(str).filter(Boolean))].map((identity) => (
+        collection.where('stableUid', '==', identity).limit(MAX_VOICE_QUOTA_ALIAS_DOCS + 1)
+      ));
+      const directLegacyRef = collection.doc(legacyVoiceQuotaDocId(args.authUid, args.stableUid));
+      const [querySnaps, directLegacySnap] = await Promise.all([
+        Promise.all(identityQueries.map((query) => tx.get(query))),
+        tx.get(directLegacyRef),
+      ]);
+      if (querySnaps.some((snap) => snap.docs.length > MAX_VOICE_QUOTA_ALIAS_DOCS)) {
+        throw new HttpsError('resource-exhausted', 'voice_quota_identity_limit');
+      }
+      const evidenceRows = new Map<string, Record<string, unknown>>();
+      for (const snap of querySnaps) {
+        for (const doc of snap.docs) {
+          evidenceRows.set(doc.ref.path, (doc.data() ?? {}) as Record<string, unknown>);
+        }
+      }
+      if (directLegacySnap.exists) {
+        evidenceRows.set(
+          directLegacyRef.path,
+          (directLegacySnap.data() ?? {}) as Record<string, unknown>,
+        );
+      }
+      // A tombstone is still authoritative negative evidence: an old revision
+      // can merge-write trial fields after migration without changing closure.
+      if ([...evidenceRows.values()].some(hasLifetimeTrialEvidence)) {
+        throw new HttpsError('permission-denied', 'voice_max_required');
+      }
+    }
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
+    if (args.consumeLifetimeTrial
+      && positiveMin([num(data.lifetimeTrialUsedAtMs), num(data.trialUsedAtMs)]) > 0) {
+      throw new HttpsError('permission-denied', 'voice_max_required');
+    }
     const win = normalizeWindows(data, now);
 
     const activeSessionId = str(data.activeSessionId);
@@ -180,28 +474,65 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
     }
 
     const dayRemaining = Math.max(0, Math.floor(args.dailyVoiceSecMax) - win.dailyUsedSec);
-    const monthRemaining = Math.max(0, Math.floor(args.monthlyVoiceSecMax) - win.monthlyUsedSec);
+    let maxAllowanceMonthResetAtMs = num(data.maxAllowanceMonthResetAtMs);
+    let maxAllowanceUsageBaselineSec = Math.min(
+      win.monthlyUsedSec,
+      Math.max(0, num(data.maxAllowanceUsageBaselineSec)),
+    );
+    if (args.maxMonthlyAllowance && maxAllowanceMonthResetAtMs !== win.monthResetAtMs) {
+      // First verified MAX reserve in this UTC month offsets only a verified
+      // current-month trial, capped by its known reserve. The marker is written
+      // in this same transaction, so a retry/reactivation cannot reset MAX use.
+      maxAllowanceMonthResetAtMs = win.monthResetAtMs;
+      const trialUsedAtMs = num(data.trialUsedAtMs);
+      const trialIsFromCurrentMonth = trialUsedAtMs >= startOfUtcMonth(now)
+        && trialUsedAtMs <= now
+        && str(data.trialReservationSessionId) !== ''
+        && num(data.trialProviderMintedAtMs) > 0;
+      maxAllowanceUsageBaselineSec = trialIsFromCurrentMonth
+        ? Math.min(
+            win.monthlyUsedSec,
+            Math.max(0, Math.floor(args.maxInitialTrialOffsetSec ?? 0)),
+          )
+        : 0;
+    }
+    const monthlyUsageForCap = args.maxMonthlyAllowance
+      ? Math.max(0, win.monthlyUsedSec - maxAllowanceUsageBaselineSec)
+      : win.monthlyUsedSec;
+    const monthRemaining = Math.max(0, Math.floor(args.monthlyVoiceSecMax) - monthlyUsageForCap);
     const reservedSec = Math.floor(Math.min(
       Math.max(0, args.formatCapSec) + Math.max(0, args.graceTailSec),
       dayRemaining,
       monthRemaining,
     ));
     if (reservedSec < MIN_VOICE_RESERVE_SEC) {
+      const quotaReason = voiceQuotaExhaustedReason(dayRemaining, monthRemaining);
+      const reason = quotaReason ?? LEGACY_VOICE_QUOTA_EXHAUSTED_REASON;
       console.warn('max_voice_quota reserve rejected', {
-        reason: 'voice_quota_exhausted',
+        reason,
         dayRemaining,
         monthRemaining,
       });
-      throw new HttpsError('resource-exhausted', 'voice_quota_exhausted');
+      throw new HttpsError(
+        'resource-exhausted',
+        reason,
+        quotaReason ? LEGACY_VOICE_QUOTA_EXHAUSTED_REASON : undefined,
+      );
     }
 
     tx.set(ref, {
+      quotaIdentityVersion: VOICE_QUOTA_IDENTITY_VERSION,
+      quotaIdentityClosureProof: suppliedClosureProof,
       authUid: args.authUid,
       stableUid: args.stableUid,
       resetAtMs: win.resetAtMs,
       monthResetAtMs: win.monthResetAtMs,
       dailyUsedSec: win.dailyUsedSec + reservedSec,
       monthlyUsedSec: win.monthlyUsedSec + reservedSec,
+      ...(args.maxMonthlyAllowance ? {
+        maxAllowanceMonthResetAtMs,
+        maxAllowanceUsageBaselineSec,
+      } : {}),
       activeSessionId: args.sessionId,
       sessionStartedAtMs: now,
       // Активацию поставит первый heartbeat; до него часы разговора не идут.
@@ -216,6 +547,12 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       lastHeartbeatElapsedSec: 0,
       // Свежий минт = новый корень чейна реконнектов.
       reconnectChain: { rootId: args.sessionId, count: 0, gapSecTotal: 0 },
+      ...(args.consumeLifetimeTrial ? {
+        lifetimeTrialUsedAtMs: now,
+        trialUsedAtMs: now,
+        trialReservationSessionId: args.sessionId,
+        trialProviderMintedAtMs: 0,
+      } : {}),
       updatedAtMs: now,
     }, { merge: true });
 
@@ -253,7 +590,7 @@ export interface VoiceSettleResult {
  */
 export async function settleVoiceSession(db: Firestore, args: VoiceSettleArgs): Promise<VoiceSettleResult> {
   const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.stableUid));
   return db.runTransaction(async (tx) => {
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
@@ -273,6 +610,7 @@ export async function settleVoiceSession(db: Firestore, args: VoiceSettleArgs): 
       reservedSec: 0,
       expiresAtMs: 0,
       lastSettledSessionId: args.sessionId,
+      lastSettledAtMs: now,
       lastEndReason: str(args.endReason).slice(0, 40) || 'completed',
       updatedAtMs: now,
     }, { merge: true });
@@ -334,7 +672,7 @@ export async function settleVoiceSessionWithXp(
   args: VoiceSettleWithXpArgs,
 ): Promise<VoiceSettleWithXpResult> {
   const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.stableUid));
   return db.runTransaction(async (tx) => {
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
@@ -365,6 +703,7 @@ export async function settleVoiceSessionWithXp(
       reservedSec: 0,
       expiresAtMs: 0,
       lastSettledSessionId: args.sessionId,
+      lastSettledAtMs: now,
       lastEndReason: str(args.endReason).slice(0, 40) || 'completed',
       xpDayKey: args.xpDayKey,
       xpAwardedToday: alreadyToday + xpAwarded,
@@ -381,7 +720,110 @@ export interface VoiceReleaseArgs {
   sessionId: string;
   /** Например 'briefing_abandoned' — отмена до connect. */
   reason?: string;
+  /** Caller proved that provider mint failed before any token was issued. */
+  restoreLifetimeTrial?: boolean;
   nowMs?: number;
+}
+
+export interface VoiceTrialMintArgs {
+  authUid: string;
+  stableUid: string;
+  sessionId: string;
+  nowMs?: number;
+}
+
+interface VoiceReservationOwner {
+  ref: FirebaseFirestore.DocumentReference;
+  data: Record<string, unknown>;
+}
+
+const MAX_VOICE_QUOTA_RESERVATION_OWNER_DOCS = MAX_VOICE_QUOTA_ALIAS_DOCS * 2;
+
+/**
+ * Finds the current quota document that owns this exact live reservation.
+ * Account linking can move it to the winner and tombstone the original quota
+ * between provider mint and confirmation/release, so closure resolution and
+ * owner selection must happen inside the same transaction as the write.
+ */
+async function resolveVoiceReservationOwner(
+  db: Firestore,
+  tx: FirebaseFirestore.Transaction,
+  args: Pick<VoiceTrialMintArgs, 'authUid' | 'stableUid' | 'sessionId'>,
+): Promise<VoiceReservationOwner | null> {
+  const identities = await resolveAccountDeleteIdentityClosure(
+    db,
+    args.stableUid,
+    args.authUid,
+    tx,
+  );
+  const collection = db.collection(VOICE_QUOTA_COLLECTION);
+  const seenPaths = new Set<string>();
+  const pending: FirebaseFirestore.DocumentReference[] = [];
+  const snapshots: VoiceReservationOwner[] = [];
+  const redirects = new Map<string, string>();
+  const enqueue = (ref: FirebaseFirestore.DocumentReference) => {
+    if (seenPaths.has(ref.path)) return;
+    if (seenPaths.size >= MAX_VOICE_QUOTA_RESERVATION_OWNER_DOCS) {
+      throw new HttpsError('resource-exhausted', 'voice_quota_identity_limit');
+    }
+    seenPaths.add(ref.path);
+    pending.push(ref);
+  };
+  for (const identity of new Set([args.stableUid, args.authUid, ...identities].map(str).filter(Boolean))) {
+    enqueue(collection.doc(voiceQuotaDocId(identity)));
+  }
+
+  while (pending.length > 0) {
+    const refs = pending.splice(0, pending.length);
+    const snaps = await Promise.all(refs.map((ref) => tx.get(ref)));
+    for (let index = 0; index < refs.length; index += 1) {
+      if (!snaps[index].exists) continue;
+      const data = (snaps[index].data() ?? {}) as Record<string, unknown>;
+      snapshots.push({ ref: refs[index], data });
+      const migratedTo = str(data.quotaIdentityMigratedTo);
+      if (migratedTo) {
+        const target = collection.doc(migratedTo);
+        redirects.set(refs[index].path, target.path);
+        enqueue(target);
+      }
+    }
+  }
+
+  for (const start of redirects.keys()) {
+    const chain = new Set<string>();
+    let path: string | undefined = start;
+    while (path && redirects.has(path)) {
+      if (chain.has(path)) {
+        throw new HttpsError('failed-precondition', 'voice_quota_identity_cycle');
+      }
+      chain.add(path);
+      path = redirects.get(path);
+    }
+  }
+
+  const owners = snapshots.filter(({ data }) => (
+    str(data.activeSessionId) === str(args.sessionId)
+    && Math.max(0, Math.floor(num(data.reservedSec))) > 0
+  ));
+  if (owners.length > 1) {
+    throw new HttpsError('failed-precondition', 'voice_session_identity_ambiguous');
+  }
+  return owners[0] ?? null;
+}
+
+export async function confirmVoiceTrialMinted(db: Firestore, args: VoiceTrialMintArgs): Promise<void> {
+  const now = args.nowMs ?? Date.now();
+  await db.runTransaction(async (tx) => {
+    const owner = await resolveVoiceReservationOwner(db, tx, args);
+    const validReservation = owner != null
+      && str(owner.data.trialReservationSessionId) === args.sessionId
+      && num(owner.data.trialUsedAtMs) > 0;
+    if (!validReservation) throw new HttpsError('failed-precondition', 'voice_trial_reservation_missing');
+    tx.set(owner.ref, {
+      trialProviderMintedAtMs: now,
+      updatedAtMs: now,
+    }, { merge: true });
+  });
 }
 
 /**
@@ -390,14 +832,21 @@ export interface VoiceReleaseArgs {
  */
 export async function releaseVoiceReservation(db: Firestore, args: VoiceReleaseArgs): Promise<VoiceSettleResult> {
   const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
   return db.runTransaction(async (tx) => {
-    const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
+    const owner = await resolveVoiceReservationOwner(db, tx, args);
+    if (!owner) return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
+    const { data, ref } = owner;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
     if (str(data.activeSessionId) !== str(args.sessionId) || reservedSec <= 0) {
       return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
     }
     const win = normalizeWindows(data, now);
+    const restoreUnmintedTrial = args.restoreLifetimeTrial === true
+      && str(data.trialReservationSessionId) === args.sessionId
+      && num(data.trialProviderMintedAtMs) <= 0;
+    const restoreLifetimeMarker = restoreUnmintedTrial
+      && (num(data.lifetimeTrialUsedAtMs) <= 0
+        || num(data.lifetimeTrialUsedAtMs) === num(data.trialUsedAtMs));
     tx.set(ref, {
       resetAtMs: win.resetAtMs,
       monthResetAtMs: win.monthResetAtMs,
@@ -407,6 +856,12 @@ export async function releaseVoiceReservation(db: Firestore, args: VoiceReleaseA
       reservedSec: 0,
       expiresAtMs: 0,
       lastReleaseReason: str(args.reason).slice(0, 40) || 'released',
+      ...(restoreUnmintedTrial ? {
+        ...(restoreLifetimeMarker ? { lifetimeTrialUsedAtMs: null } : {}),
+        trialUsedAtMs: null,
+        trialReservationSessionId: null,
+        trialProviderMintedAtMs: 0,
+      } : {}),
       updatedAtMs: now,
     }, { merge: true });
     return { chargedSec: 0, refundedSec: reservedSec, alreadySettled: false };
@@ -466,7 +921,7 @@ export interface VoiceTransferResult {
 export async function transferReserve(db: Firestore, args: VoiceTransferArgs): Promise<VoiceTransferResult> {
   const now = args.nowMs ?? Date.now();
   const freeGapCapSec = Math.max(0, Math.floor(args.freeGapCapSec ?? 60));
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.stableUid));
   return db.runTransaction(async (tx) => {
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
@@ -540,21 +995,3 @@ export async function transferReserve(db: Firestore, args: VoiceTransferArgs): P
 // серверный модуль, ни index.ts — только собственный тест. Живой путь умеет
 // больше (lifecycle-результат), и наличие второй, более слабой реализации на
 // тот же документ voice_call_quotas — приглашение случайно позвать не ту.
-
-export interface VoiceTrialArgs {
-  authUid: string;
-  stableUid: string;
-  nowMs?: number;
-}
-
-/** Штамп использования пробника (ре-триал через trialRefreshDays решает mint). */
-export async function markVoiceTrialUsed(db: Firestore, args: VoiceTrialArgs): Promise<void> {
-  const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
-  await ref.set({
-    authUid: args.authUid,
-    stableUid: args.stableUid,
-    trialUsedAtMs: now,
-    updatedAtMs: now,
-  }, { merge: true });
-}

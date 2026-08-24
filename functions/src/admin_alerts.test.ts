@@ -39,7 +39,9 @@ describe('formatContentReportAlert', () => {
     expect(text).toContain('I drink a coffee every morning');
     expect(text).toContain('lesson1');
     expect(text).toContain('lesson3_phrase_2');
-    expect(text).toContain('Лена');
+    // зачем: владелец запретил слать имена/uid во внешние каналы (Telegram) —
+    // только хвост uid для поиска в админке, полное имя никогда не должно уйти.
+    expect(text).not.toContain('Лена');
     expect(text).toContain('#1234'); // хвост stable uid
     expect(text).toContain('Premium');
   });

@@ -14,15 +14,22 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { LUM } from '../../constants/motionHybrid';
 
 function DustMote({ index, total, color }: { index: number; total: number; color: string }) {
+  const reduceMotion = useReduceMotion();
   const progress = useSharedValue(0);
 
   useEffect(() => {
+    if (reduceMotion) {
+      progress.value = 1;
+      return;
+    }
     progress.value = 0;
-    progress.value = withTiming(1, { duration: 820, easing: Easing.out(Easing.cubic) });
+    progress.value = withTiming(1, { duration: LUM.rimMs, easing: Easing.out(Easing.cubic) });
     return () => cancelAnimation(progress);
-  }, [progress]);
+  }, [progress, reduceMotion]);
 
   const angle = -Math.PI + (index / Math.max(1, total - 1)) * Math.PI;
   const dist = 42 + (index % 4) * 20;
@@ -43,6 +50,8 @@ function DustMote({ index, total, color }: { index: number; total: number; color
 interface RewardImpactRingsProps {
   show: boolean;
   dustCount: number;
+  /** Defaults to the established two-ring reward impact; daily boon uses one restrained ring. */
+  ringCount?: 1 | 2;
   color: string;
   // зачем: тип пружинного стиля из useAnimatedStyle конфликтует с web-CSS
   // типами reanimated при явной аннотации (тот же паттерн, что и в
@@ -52,12 +61,19 @@ interface RewardImpactRingsProps {
   ring1Style: StyleProp<ViewStyle>;
 }
 
-function RewardImpactRingsBase({ show, dustCount, color, ring0Style, ring1Style }: RewardImpactRingsProps) {
+function RewardImpactRingsBase({
+  show,
+  dustCount,
+  ringCount = 2,
+  color,
+  ring0Style,
+  ring1Style,
+}: RewardImpactRingsProps) {
   if (!show) return null;
   return (
     <View pointerEvents="none" style={styles.wrap}>
       <Animated.View style={[styles.ring, { borderColor: color }, ring0Style]} />
-      <Animated.View style={[styles.ring, { borderColor: color }, ring1Style]} />
+      {ringCount === 2 ? <Animated.View style={[styles.ring, { borderColor: color }, ring1Style]} /> : null}
       {Array.from({ length: dustCount }, (_, i) => (
         // guard-ok: фиксированный разовый разлёт частиц, список не переупорядочивается
         // и не вставляется — индекс как key безопасен (не карточки/строки данных).

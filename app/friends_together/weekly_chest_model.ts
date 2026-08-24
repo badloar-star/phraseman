@@ -9,11 +9,8 @@
  */
 import {
   chestMultiplierForMyDays,
-  FRIENDS_CHEST_CAP_PER_FRIEND,
-  FRIENDS_CHEST_MIN_DAYS,
-  FRIENDS_CHEST_MIN_WEEKLY_XP,
-  FRIENDS_CHEST_TIERS,
-  FRIENDS_CHEST_TOP_N,
+  FRIENDS_TOGETHER_CLIENT_DEFAULTS,
+  type FriendsTogetherClientConfig,
 } from './together_config';
 
 export type WeeklyChestFriendInput = Readonly<{
@@ -38,6 +35,7 @@ export type WeeklyChestModelInput = Readonly<{
    * состояние остаётся `active`. Не задано → считаем по устройству.
    */
   isClaimDay?: boolean;
+  config?: FriendsTogetherClientConfig;
 }>;
 
 export type WeeklyChestState = 'locked' | 'active' | 'ready' | 'claimed';
@@ -61,24 +59,25 @@ export interface WeeklyChestModel {
   eligibleByMyStats: boolean;
 }
 
-function contributionFor(friend: WeeklyChestFriendInput): number {
-  if (friend.pairLevel < 2) return 0;
-  const capped = Math.min(Math.max(0, Math.floor(friend.weeklyXp)), FRIENDS_CHEST_CAP_PER_FRIEND);
-  return friend.boostActive ? capped * 2 : capped;
+function contributionFor(friend: WeeklyChestFriendInput, config: FriendsTogetherClientConfig): number {
+  if (friend.pairLevel < config.chestMinPairLevel) return 0;
+  const capped = Math.min(Math.max(0, Math.floor(friend.weeklyXp)), config.chestCapPerFriend);
+  return friend.boostActive ? capped * config.chestBoostMultiplier : capped;
 }
 
 export function buildWeeklyChestModel(input: WeeklyChestModelInput): WeeklyChestModel {
+  const config = input.config ?? FRIENDS_TOGETHER_CLIENT_DEFAULTS;
   const eligibleFriends = input.friends
-    .filter((f) => f.pairLevel >= 2)
-    .map((f) => ({ uid: f.uid, contribution: contributionFor(f) }))
+    .filter((f) => f.pairLevel >= config.chestMinPairLevel)
+    .map((f) => ({ uid: f.uid, contribution: contributionFor(f, config) }))
     .sort((a, b) => b.contribution - a.contribution)
-    .slice(0, FRIENDS_CHEST_TOP_N);
+    .slice(0, config.chestTopN);
 
   const progress = eligibleFriends.reduce((sum, f) => sum + f.contribution, 0);
 
-  const tiersReached = FRIENDS_CHEST_TIERS.filter((t) => progress >= t).length;
-  const nextTierGoal = tiersReached < FRIENDS_CHEST_TIERS.length ? FRIENDS_CHEST_TIERS[tiersReached] : null;
-  const prevTierGoal = tiersReached > 0 ? FRIENDS_CHEST_TIERS[tiersReached - 1] : 0;
+  const tiersReached = config.chestTiers.filter((t) => progress >= t).length;
+  const nextTierGoal = tiersReached < config.chestTiers.length ? config.chestTiers[tiersReached] : null;
+  const prevTierGoal = tiersReached > 0 ? config.chestTiers[tiersReached - 1] : 0;
   const remaining = nextTierGoal !== null ? Math.max(0, nextTierGoal - progress) : 0;
   const percent = nextTierGoal !== null
     ? Math.min(100, Math.round(((progress - prevTierGoal) / (nextTierGoal - prevTierGoal)) * 100))
@@ -86,11 +85,11 @@ export function buildWeeklyChestModel(input: WeeklyChestModelInput): WeeklyChest
 
   const myDays = Math.max(0, Math.floor(input.myDays));
   const myWeeklyXp = Math.max(0, Math.floor(input.myWeeklyXp));
-  const eligibleByMyStats = myDays >= FRIENDS_CHEST_MIN_DAYS && myWeeklyXp >= FRIENDS_CHEST_MIN_WEEKLY_XP;
+  const eligibleByMyStats = myDays >= config.chestMinDays && myWeeklyXp >= config.chestMinWeeklyXp;
   const alreadyClaimed = input.claimedWeekKey === input.weekKey;
 
   // зачем: сундук открывается только в воскресенье (макет владельца) — до этого кнопки нет.
-  const isClaimDay = input.isClaimDay ?? (new Date().getDay() === 0);
+  const isClaimDay = input.isClaimDay ?? (config.chestClaimAnyDay || new Date().getDay() === 0);
   const canClaim = !alreadyClaimed && eligibleByMyStats && tiersReached > 0 && isClaimDay;
   const state: WeeklyChestState = alreadyClaimed
     ? 'claimed'

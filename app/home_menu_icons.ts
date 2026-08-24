@@ -122,17 +122,20 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require("../assets/images/home_menu/olive/home-olive-hero-map.webp"),
     };
   }
-  return {
-    lesson: require("../assets/images/home_menu/home-forest-lessons.webp"),
-    cards: require("../assets/images/home_menu/home-forest-cards.webp"),
-    league: require("../assets/images/home_menu/home-forest-league.webp"),
-    test: require("../assets/images/home_menu/home-forest-diagnostic-test.webp"),
-    practice: require("../assets/images/home_menu/home-forest-practice.webp"),
-    dialogs: require("../assets/images/home_menu/home-forest-dialogs.webp"),
-    exam: require("../assets/images/levels/exam-dark.webp"),
-    shop: require("../assets/images/levels/SHOP FOREST.webp"),
-    heroMap: require("../assets/images/levels/her man foret.webp"),
-  };
+  if (themeMode === "dark") {
+    return {
+      lesson: require("../assets/images/home_menu/home-forest-lessons.webp"),
+      cards: require("../assets/images/home_menu/home-forest-cards.webp"),
+      league: require("../assets/images/home_menu/home-forest-league.webp"),
+      test: require("../assets/images/home_menu/home-forest-diagnostic-test.webp"),
+      practice: require("../assets/images/home_menu/home-forest-practice.webp"),
+      dialogs: require("../assets/images/home_menu/home-forest-dialogs.webp"),
+      exam: require("../assets/images/levels/exam-dark.webp"),
+      shop: require("../assets/images/levels/SHOP FOREST.webp"),
+      heroMap: require("../assets/images/levels/her man foret.webp"),
+    };
+  }
+  throw new Error(`Unsupported live theme: ${themeMode}`);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -1,11 +1,10 @@
-// «Вместе» — карточка «Сундук недели» на вкладке Друзья.
-// зачем: макет 4.1/4.5 (docs/prototypes/2026-08-16-vmeste-friends-concept.html) —
-// крупно и без подписей: сундук + одна полоса с тремя порогами + одна пилюля-
-// статус + кнопка «Открыть», когда canClaim. Никаких цифр прогресса на карточке
-// (прогресс живёт в модалке результата, не здесь) — ровно то, что в макете.
-import React, { memo, useEffect } from 'react';
+// «Вместе» — карточка общего прогресса на вкладке Друзья.
+// зачем: одна полоса с тремя порогами, статус и действие. Никаких цифр
+// прогресса на карточке: они живут в модалке результата, не здесь.
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image as ExpoImage } from 'expo-image';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Rect, Stop } from 'react-native-svg';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -23,28 +22,8 @@ import { triLang } from '../../constants/i18n';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { WeeklyChestModel } from '../../app/friends_together/weekly_chest_model';
-
-const CHEST_GOLD_TOP = '#E8C878';
-const CHEST_GOLD_BOTTOM = '#8B6320';
-
-/** Иконка сундука — тот же силуэт, что в макете (chestSvg), без внешних ассетов. */
-function ChestGlyph({ size = 44 }: { size?: number }) {
-  return (
-    <Svg width={size} height={size * (56 / 64)} viewBox="0 0 64 56">
-      <Defs>
-        <SvgLinearGradient id="ftChestGrad" x1="0" x2="0" y1="0" y2="1">
-          <Stop offset="0" stopColor={CHEST_GOLD_TOP} />
-          <Stop offset="1" stopColor={CHEST_GOLD_BOTTOM} />
-        </SvgLinearGradient>
-      </Defs>
-      <Rect x={6} y={20} width={52} height={30} rx={6} fill="url(#ftChestGrad)" />
-      <Path d="M6 26a26 14 0 0 1 52 0v2H6z" fill={CHEST_GOLD_TOP} />
-      <Rect x={6} y={26} width={52} height={4} fill="#6a4a14" opacity={0.35} />
-      <Rect x={27} y={24} width={10} height={12} rx={2} fill="#4a3210" />
-      <Circle cx={32} cy={31} r={2} fill="#F5E6B8" />
-    </Svg>
-  );
-}
+import { resolveFriendsSharedFlameAsset } from './friends_flame_assets';
+import { friendsFlameVisual } from './friends_flame_model';
 
 export interface FriendsChestCardProps {
   model: WeeklyChestModel;
@@ -54,16 +33,18 @@ export interface FriendsChestCardProps {
   testID?: string;
   /** Вкладка Друзья видима (runtimeOwnerId === 'friends') — гейт бесконечного покачивания. */
   ownerVisible?: boolean;
+  /** DEV-витрина: явно отличает локальное открытие от реальной полученной награды. */
+  devMode?: boolean;
 }
 
 /** Статус-пилюля — ОДНО слово/фраза, без цифр (закон макета). */
-function statusLabel(model: WeeklyChestModel, L: (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) => string): string {
-  if (model.state === 'claimed') return L('забрано', 'забрано', 'забрано'.length ? 'reclamado' : 'reclamado', 'resgatado', 'đã nhận', 'diklaim', 'alındı', 'odebrano');
-  if (model.canClaim) return L('готов', 'готовий', 'listo', 'pronto', 'sẵn sàng', 'siap', 'hazır', 'gotowe');
-  if (model.tier >= 3) return L('порог III', 'поріг III', 'nivel III', 'nível III', 'mốc III', 'ambang III', 'eşik III', 'próg III');
-  if (model.tier >= 2) return L('порог II', 'поріг II', 'nivel II', 'nível II', 'mốc II', 'ambang II', 'eşik II', 'próg II');
-  if (model.tier >= 1) return L('порог I', 'поріг I', 'nivel I', 'nível I', 'mốc I', 'ambang I', 'eşik I', 'próg I');
-  return L('до порога I', 'до порогу I', 'hasta nivel I', 'até nível I', 'đến mốc I', 'menuju ambang I', 'eşik I\'e kadar', 'do progu I');
+function statusLabel(model: WeeklyChestModel, devMode: boolean, L: (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) => string): string {
+  if (devMode && model.state === 'claimed') return 'Собрано · DEV';
+  if (model.state === 'claimed') return L('Искры собраны', 'Іскри зібрано', 'Chispas recogidas', 'Faíscas coletadas', 'Đã thu thập tia lửa', 'Percikan terkumpul', 'Kıvılcımlar toplandı', 'Iskry zebrane');
+  if (model.canClaim) return L('Искры готовы', 'Іскри готові', 'Chispas listas', 'Faíscas prontas', 'Tia lửa đã sẵn sàng', 'Percikan siap', 'Kıvılcımlar hazır', 'Iskry gotowe');
+  if (model.tier >= 3) return L('Общее пламя', 'Спільне полум’я', 'Llama compartida', 'Chama compartilhada', 'Ngọn lửa chung', 'Api bersama', 'Ortak alev', 'Wspólny płomień');
+  if (model.tier >= 2) return L('Пламя', 'Полум’я', 'Llama', 'Chama', 'Ngọn lửa', 'Api', 'Alev', 'Płomień');
+  return L('Искра', 'Іскра', 'Chispa', 'Faísca', 'Tia lửa', 'Percikan', 'Kıvılcım', 'Iskra');
 }
 
 function TierTick({ leftPercent }: { leftPercent: number }) {
@@ -75,13 +56,17 @@ function TierTick({ leftPercent }: { leftPercent: number }) {
   );
 }
 
-function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = true, testID = 'friends-chest-card' }: FriendsChestCardProps) {
-  const { theme: t, f } = useTheme();
+function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = true, devMode = false, testID = 'friends-chest-card' }: FriendsChestCardProps) {
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
-  // зачем: бесконечное покачивание сундука обязано иметь владельца (runtime_lifecycle_ratchet /
-  // perf_freeze_contract) — крутится только пока вкладка Друзья в фокусе и приложение активно.
+  // зачем: бесконечное дыхание принадлежит вкладке Друзья и не живёт в фоне.
   const runtimeActive = useRuntimeActive(ownerVisible);
+  const visual = friendsFlameVisual(model);
+  const flameAsset = resolveFriendsSharedFlameAsset(themeMode, visual.stage);
+  const flameAssetKey = `friends-shared-flame-${themeMode}-${visual.stage}`;
+  const [failedFlameAssetKey, setFailedFlameAssetKey] = useState<string | null>(null);
+  const flameImageFailed = failedFlameAssetKey === flameAssetKey;
   const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
     triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
@@ -96,35 +81,63 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = tr
   const fillPercent = Math.max(0, Math.min(100, Math.round((model.progress / Math.max(1, totalGoal)) * 100)));
 
   const rock = useSharedValue(0);
+  const shouldBreathe = visual.animated && !reduceMotion && runtimeActive;
+
   useEffect(() => {
-    if (!model.canClaim || reduceMotion || !runtimeActive) {
+    setFailedFlameAssetKey(null);
+  }, [flameAssetKey]);
+
+  useEffect(() => {
+    if (!shouldBreathe) {
       cancelAnimation(rock);
       rock.value = 0;
       return;
     }
     rock.value = withRepeat(
       withSequence(
-        withTiming(-3, { duration: 850, easing: Easing.inOut(Easing.ease) }),
-        withTiming(3, { duration: 850, easing: Easing.inOut(Easing.ease) }),
+        withTiming(1, { duration: 1050, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0, { duration: 1050, easing: Easing.inOut(Easing.quad) }),
       ),
       -1,
       true,
     );
     return () => cancelAnimation(rock);
-  }, [model.canClaim, reduceMotion, runtimeActive, rock]);
-  const rockStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${rock.value}deg` }] }));
+  }, [rock, shouldBreathe]);
+  const flameStyle = useAnimatedStyle(() => ({
+    opacity: 0.96 + rock.value * 0.04,
+    transform: [{ scale: visual.scale * (1 + rock.value * 0.035) }],
+  }), [visual.scale]);
 
-  const openLabel = L('Открыть', 'Відкрити', 'Abrir', 'Abrir', 'Mở', 'Buka', 'Aç', 'Otwórz');
+  const claimLabel = L('Собрать искры', 'Зібрати іскри', 'Recoger chispas', 'Coletar faíscas', 'Thu thập tia lửa', 'Kumpulkan percikan', 'Kıvılcımları topla', 'Zbierz iskry');
 
   return (
     <TonalSurface testID={testID} tone="card" radius={18} style={styles.card}>
       <View style={styles.row}>
-        <Reanimated.View style={rockStyle}>
-          <ChestGlyph size={56} />
-        </Reanimated.View>
+        <View
+          style={styles.flameSlot}
+          pointerEvents="none"
+          accessible={false}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          <Reanimated.View style={flameStyle}>
+            {flameImageFailed ? (
+              <Ionicons name="flame" size={60} color={barColor} />
+            ) : (
+              <ExpoImage
+                source={flameAsset}
+                style={styles.flameImage}
+                contentFit="contain"
+                transition={160}
+                recyclingKey={flameAssetKey}
+                onError={() => setFailedFlameAssetKey(flameAssetKey)}
+              />
+            )}
+          </Reanimated.View>
+        </View>
         <View style={styles.grow}>
           <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }}>
-            {L('Сундук недели', 'Скриня тижня', 'Cofre semanal', 'Baú semanal', 'Rương tuần', 'Peti mingguan', 'Haftalık sandık', 'Skrzynia tygodnia')}
+            {L('Общее пламя', 'Спільне полум’я', 'Llama compartida', 'Chama compartilhada', 'Ngọn lửa chung', 'Api bersama', 'Ortak alev', 'Wspólny płomień')}
           </Text>
           <View style={styles.progWrap}>
             <View style={[styles.progTrack, { backgroundColor: t.bgSurface2 }]}>
@@ -136,7 +149,7 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = tr
           <View style={styles.statusRow}>
             <View style={[styles.pill, { backgroundColor: model.tier > 0 ? (isGold ? t.goldBg : t.accentBg) : t.bgSurface2 }]}>
               <Text style={{ color: model.tier > 0 ? barColor : t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
-                {statusLabel(model, L)}
+                {statusLabel(model, devMode, L)}
               </Text>
             </View>
           </View>
@@ -151,7 +164,7 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = tr
           style={[styles.claimBtn, { backgroundColor: t.accent, opacity: claimBusy ? 0.6 : 1 }]}
           wrapStyle={styles.claimWrap}
         >
-          <Text style={{ color: t.correctText ?? '#0B0B0E', fontSize: f.body, fontWeight: '700' }}>{openLabel}</Text>
+          <Text style={{ color: t.correctText ?? '#0B0B0E', fontSize: f.body, fontWeight: '700' }}>{claimLabel}</Text>
         </DuoPressable>
       )}
     </TonalSurface>
@@ -169,6 +182,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
+  },
+  // Фиксированный слот не даёт росту пламени сдвигать полосу или CTA.
+  flameSlot: {
+    width: 92,
+    height: 92,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flameImage: {
+    width: 92,
+    height: 92,
   },
   grow: { flex: 1, minWidth: 0 },
   progWrap: { marginTop: 10 },

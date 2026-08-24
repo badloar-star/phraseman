@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import {
   deriveComplianceCounts,
+  isMaxVoiceSafetyFlag,
   normalizeSafetyListInput,
   normalizeSafetyMarkInput,
   safetyFlagMatchesFilter,
@@ -31,6 +32,11 @@ describe('admin compliance pure contracts', () => {
     expect(() => normalizeSafetyListInput({ handled: 'nope' })).toThrow();
     expect(() => normalizeSafetyListInput({ handled: 'all', category: 'other' })).toThrow();
     expect(() => normalizeSafetyListInput({ handled: 'open', limit: 101 })).toThrow();
+    expect(normalizeSafetyListInput({ handled: 'all', identity: 'stable.user:123' })).toMatchObject({
+      identity: 'stable.user:123',
+    });
+    expect(() => normalizeSafetyListInput({ handled: 'all', identity: 'bad identity with spaces' })).toThrow();
+    expect(() => normalizeSafetyListInput({ handled: 'all', identity: 'stable-1', cursor: { phase: 'legacy', id: null } })).toThrow();
   });
 
   test('treats missing handled as open and validates commands fail closed', () => {
@@ -38,6 +44,16 @@ describe('admin compliance pure contracts', () => {
     expect(safetyFlagMatchesFilter({ category: 'abuse', handled: true }, { handled: 'open', category: 'abuse' })).toBe(false);
     expect(normalizeSafetyMarkInput({ ids: ['a', 'a', 'b'], reason: 'reviewed', requestId: 'req_1', idempotencyKey: 'idem_1' }).ids).toEqual(['a', 'b']);
     expect(() => normalizeSafetyMarkInput({ ids: ['a'], reason: '', requestId: 'req_1', idempotencyKey: 'idem_1' })).toThrow();
+  });
+
+  test('never returns historical MAX conversation rows to the admin browser', () => {
+    expect(isMaxVoiceSafetyFlag({ mode: 'voice_tutor', transcript: 'private' })).toBe(true);
+    expect(isMaxVoiceSafetyFlag({ mode: 'voice_call', userText: 'private' })).toBe(true);
+    expect(isMaxVoiceSafetyFlag({ mode: 'companion', userText: 'generic AI safety' })).toBe(false);
+    expect(safetyFlagMatchesFilter(
+      { mode: 'voice_tutor', category: 'self_harm', handled: false },
+      { handled: 'open', category: 'self_harm' },
+    )).toBe(false);
   });
 
   test('callable source enforces App Check, permissions, exact counts, audit and honest pagination', () => {
@@ -53,5 +69,7 @@ describe('admin compliance pure contracts', () => {
     expect(source).toContain('scanBoundReached');
     expect(source).toContain('createAuditRecord({');
     expect(source).toContain('requestFingerprint');
+    expect(source).toContain("where('uid', '==', filter.identity)");
+    expect(source).toContain("where('authUid', '==', filter.identity)");
   });
 });

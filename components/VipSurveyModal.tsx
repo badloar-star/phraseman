@@ -2,7 +2,6 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
-  Easing,
   Keyboard,
   KeyboardAvoidingView,
   Modal,
@@ -18,6 +17,7 @@ import {
 } from 'react-native';
 import Reanimated, {
   cancelAnimation,
+  Easing as REasing,
   useAnimatedStyle,
   useSharedValue,
   useReducedMotion,
@@ -56,7 +56,7 @@ type Props = {
   motionVariant?: 'classic' | 'hybrid';
 };
 
-function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVariant = 'classic' }: Props) {
+function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
   const { f, isDark } = useTheme();
   const insets = useStableSafeAreaInsets();
@@ -96,7 +96,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
     }
     hybridOpacity.value = 0;
     hybridScale.value = 1.03;
-    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: REasing.out(REasing.cubic) });
     hybridScale.value = withSpring(1, LUM.settle);
     return () => {
       cancelAnimation(hybridOpacity);

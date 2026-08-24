@@ -12,6 +12,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from './account_generation';
+import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
 
 const FUNCTIONS_REGION = 'us-central1';
 const FRIEND_QUEST_STATUS_CACHE_TTL_MS = 60 * 1000;
@@ -74,12 +75,12 @@ function callable<TReq, TRes>(name: string) {
 async function mirrorCallerXpWithoutRollback(
   callerXp: number,
 ): Promise<void> {
-  if (!Number.isFinite(callerXp)) return;
+  if (!Number.isSafeInteger(callerXp) || callerXp < 0) return;
   const serverXp = Math.max(0, Math.floor(callerXp));
   const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
   const localXp = Math.max(0, parseInt(localRaw ?? '0', 10) || 0);
   const nextXp = Math.max(localXp, serverXp);
-  await AsyncStorage.setItem('user_total_xp', String(nextXp));
+  await persistLegacyPersonalProgressScalar(AsyncStorage, 'user_total_xp', nextXp);
 }
 
 function exactSpinLevels(result: FriendQuestClaimResponse): number[] | null {

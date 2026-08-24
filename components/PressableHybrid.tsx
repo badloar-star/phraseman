@@ -64,7 +64,7 @@ function PressableHybrid({
     if (!silent && !unavailable && withHaptic) hapticTap();
     if (unavailable) return;
     if (reduceMotion) {
-      Animated.timing(opacity, { toValue: 0.82, duration: 70, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
+      Animated.timing(opacity, { toValue: 0.82, duration: PRESS.reducedDownMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
       return;
     }
     Animated.timing(scale, {
@@ -77,7 +77,7 @@ function PressableHybrid({
 
   const pressOut = useCallback(() => {
     if (reduceMotion) {
-      Animated.timing(opacity, { toValue: 1, duration: 90, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
+      Animated.timing(opacity, { toValue: 1, duration: PRESS.reducedUpMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
       return;
     }
     // Перелёт (~6%) только у primary — PRESS.releasePrimary; остальным —

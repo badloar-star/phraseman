@@ -20,6 +20,29 @@ const tier1Friends = (): WeeklyChestFriendInput[] => [
 ];
 
 describe('buildWeeklyChestModel', () => {
+  it('uses the hydrated remote cap, boost and tier thresholds', () => {
+    const model = buildWeeklyChestModel({
+      friends: [friend('boosted', 900, 2, true)],
+      myDays: 5,
+      myWeeklyXp: 1000,
+      weekKey: '2026-W34',
+      claimedWeekKey: null,
+      isClaimDay: true,
+      config: {
+        levelThresholds: [0, 3, 10, 30, 100],
+        chestTiers: [1500, 3000, 6000],
+        chestCapPerFriend: 600,
+        chestTopN: 10,
+        chestMinPairLevel: 2,
+        chestMinDays: 5,
+        chestMinWeeklyXp: 1000,
+        chestBoostMultiplier: 3,
+        chestClaimAnyDay: false,
+      },
+    });
+    expect(model.progress).toBe(1800);
+    expect(model.tier).toBe(1);
+  });
   it('excludes friends below level 2 from progress', () => {
     const model = buildWeeklyChestModel({
       friends: [friend('a', 1500, 1), friend('b', 1500, 2)],

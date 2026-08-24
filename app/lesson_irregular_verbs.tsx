@@ -222,7 +222,7 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, studyTarget }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
@@ -231,6 +231,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   onReset: () => void;
   lessonId?: number;
   onNoEnergy: () => void;
+  onCancelStart: () => void;
   studyTarget?: RuntimeStudyTarget;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
@@ -242,16 +243,14 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const isLightTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
-  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, spendOne } = useEnergy();
-  const currentEnergyRef = useRef(currentEnergy);
-  const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
-  const spendOneRef = useRef(spendOne);
-  useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
-  useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
-  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+  const { confirmSpendOne } = useEnergy();
+  const confirmSpendOneRef = useRef(confirmSpendOne);
+  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
+  const onCancelStartRef = useRef(onCancelStart);
+  useEffect(() => { onCancelStartRef.current = onCancelStart; }, [onCancelStart]);
 
   // Старт тренировки неправильных глаголов = 1 ⚡ (владелец 2026-08-23).
   // зачем: пустой деп-массив — ровно одно списание на монтирование экрана.
@@ -259,12 +258,13 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   useEffect(() => {
     if (verbsEntryChargedRef.current) return;
     verbsEntryChargedRef.current = true;
-    if (testerEnergyDisabledRef.current) return;
-    if (currentEnergyRef.current <= 0) {
-      onNoEnergyRef.current();
-      return;
-    }
-    spendOneRef.current().catch(() => {});
+    let active = true;
+    void confirmSpendOneRef.current().then(result => {
+      if (!active) return;
+      if (result === 'insufficient') onNoEnergyRef.current();
+      if (result === 'cancelled') onCancelStartRef.current();
+    });
+    return () => { active = false; };
   }, []);
 
   const [queue, setQueue] = useState<IrregularVerb[]>(() => [...verbs]);
@@ -1058,7 +1058,6 @@ export default function LessonIrregularVerbs() {
   const { studyTarget } = useStudyTarget();
   const rootPack = stringsForLang(lang);
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
-  const canTrain = energyUnlimited || energy > 0;
   const { id } = useLocalSearchParams<{ id: string }>();
   const lessonId = parseInt(id || '1', 10);
   useEffect(() => {
@@ -1078,19 +1077,12 @@ export default function LessonIrregularVerbs() {
     if (energyUnlimited || energy > 0) setNoEnergyModalOpen(false);
   }, [energyUnlimited, energy]);
 
-  /** null = по умолчанию «Словарь»; при 0 энергии нельзя остаться в «Учить» */
+  /** null = по умолчанию «Учить»; нехватку обрабатывает единый входной гейт. */
   const [userTab, setUserTab] = useState<null | 'dict' | 'learn'>(null);
-  const tab: 'dict' | 'learn' = userTab !== null ? userTab : 'dict';
+  const tab: 'dict' | 'learn' = userTab !== null ? userTab : 'learn';
   const [globalCounts, setGlobalCounts] = useState<Record<string, number>>({});
   const [practiceAll, setPracticeAll] = useState(false);
   const [learnTabKey, setLearnTabKey] = useState(0);
-
-  useEffect(() => {
-    if (!canTrain) {
-      setUserTab(null);
-      setPracticeAll(false);
-    }
-  }, [canTrain]);
 
   useLayoutEffect(() => {
     setUserTab(null);
@@ -1173,6 +1165,7 @@ export default function LessonIrregularVerbs() {
                     setLearnTabKey(k => k + 1);
                   }}
                   onNoEnergy={() => setNoEnergyModalOpen(true)}
+                  onCancelStart={() => setUserTab('dict')}
                 />
               : <DictTab
                   allVerbs={allVerbs}
@@ -1180,20 +1173,16 @@ export default function LessonIrregularVerbs() {
                   lang={lang}
                   lessonId={lessonId}
                   onStartLearn={() => {
-                    if (!canTrain) {
-                      setNoEnergyModalOpen(true);
-                      return;
-                    }
                     setUserTab('learn');
                   }}
                 />
             }
           </View>
 
-          {/* Tab bar — Словарь first, Учить second */}
+          {/* Tab bar — тренировка first, словарь second */}
           {!frenchIrregularBlocked && (
           <View style={{ flexDirection: 'row', borderTopWidth: 0.5, borderTopColor: sx.ghost }}>
-            {(['dict', 'learn'] as const).map(key => {
+            {(['learn', 'dict'] as const).map(key => {
               const isActive = tab === key;
               const label = key === 'dict'
                 ? triLang(lang, {
@@ -1220,16 +1209,11 @@ export default function LessonIrregularVerbs() {
                 ? (isActive ? 'list' : 'list-outline')
                 : (isActive ? 'flash' : 'flash-outline');
               return (
+                <View key={key} style={{ flex: 1, position: 'relative', overflow: 'visible' }}>
                 <TouchableOpacity key={key}
-                  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 13, gap: 8, borderTopWidth: isActive ? 2 : 0, borderTopColor: sx.second }}
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 13, gap: 8, borderTopWidth: isActive ? 2 : 0, borderTopColor: sx.second }}
                   onPress={() => {
                     Keyboard.dismiss();
-                    if (key === 'learn') {
-                      if (!canTrain) {
-                        setNoEnergyModalOpen(true);
-                        return;
-                      }
-                    }
                     setUserTab(key);
                     if (key === 'dict') setPracticeAll(false);
                   }}
@@ -1237,13 +1221,14 @@ export default function LessonIrregularVerbs() {
                   <Ionicons name={icon} size={20} color={isActive ? sx.primary : sx.ghost} />
                   <Text style={{ color: isActive ? sx.primary : sx.ghost, fontSize: f.body, fontWeight: '500' }}>{label}</Text>
                 </TouchableOpacity>
+                </View>
               );
             })}
           </View>
           )}
         </ContentWrap>
 
-        <NoEnergyModal visible={noEnergyModalOpen} onClose={() => setNoEnergyModalOpen(false)} />
+        <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} />
       </SafeAreaView>
     </ScreenGradient>
   );

@@ -4,15 +4,15 @@
 // лейауте, пропсом его не переключить). Тот же паттерн, что dev_force_low_end:
 // модульный стор + useSyncExternalStore, без провайдера.
 //
-// зачем: владелец требует видеть гибрид В РЕАЛЬНОМ таббаре (не в превью),
-// но по умолчанию боевое поведение не меняется — 'classic', пока не одобрено.
+// зачем: после приёмки DEV Hub гибрид включён в РЕАЛЬНОМ таббаре по умолчанию;
+// dev-переключатель сохраняет явный `classic` как быстрый путь отката.
 // ════════════════════════════════════════════════════════════════════════════
 
 import { useSyncExternalStore } from 'react';
 
 export type MotionVariant = 'classic' | 'hybrid';
 
-let tabBarVariant: MotionVariant = 'classic';
+let tabBarVariant: MotionVariant = 'hybrid';
 const listeners = new Set<() => void>();
 
 function emit() {
@@ -35,7 +35,7 @@ function subscribe(listener: () => void): () => void {
   return () => listeners.delete(listener);
 }
 
-/** В сторе-сборке всегда 'classic' (переключатель отключён на уровне __DEV__). */
+/** В store-сборке остаётся production-дефолт `hybrid`; setter отключён через __DEV__. */
 export function useDevTabBarMotionVariant(): MotionVariant {
   return useSyncExternalStore(subscribe, getDevTabBarMotionVariant, getDevTabBarMotionVariant);
 }

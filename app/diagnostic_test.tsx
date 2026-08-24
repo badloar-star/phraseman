@@ -24,6 +24,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
@@ -963,7 +964,7 @@ export default function DiagnosticTest() {
   const isFrenchDiagnostic = storageStudyTarget(studyTarget) === 'fr';
   const diagnosticSourceLocale = lang === 'uk' ? 'uk' : 'ru';
   const diagnosticUi = useMemo(() => diagnosticUiCopy(lang), [lang]);
-  const { isUnlimited, spendOne } = useEnergy();
+  const { isUnlimited, confirmSpendOne } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
   // зачем (аудит 2026-08-22): выход посреди диагностики был мгновенным без
   // предупреждения — попытка терялась молча. Подтверждение по образцу
@@ -1081,9 +1082,10 @@ export default function DiagnosticTest() {
       return;
     }
     void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
-    if (!isUnlimited) {
-      const ok = await spendOne();
-      if (!ok) {
+    {
+      const energyResult = await confirmSpendOne();
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') {
         void trackFeatureBlocked('diagnostic', 'start', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
         return;
@@ -1109,9 +1111,10 @@ export default function DiagnosticTest() {
       return;
     }
     void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
-    if (!isUnlimited) {
-      const ok = await spendOne();
-      if (!ok) {
+    {
+      const energyResult = await confirmSpendOne();
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') {
         void trackFeatureBlocked('diagnostic', 'restart', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
         return;
@@ -1617,18 +1620,21 @@ export default function DiagnosticTest() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center', marginTop: 12 }}
-          onPress={() => { void tryStartDiagnosticQuiz(); }}
-          activeOpacity={0.85}
-        >
-          <Text
-            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}
-            numberOfLines={2}
+        <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginTop: 12 }}>
+          <TouchableOpacity
+            style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center' }}
+            onPress={() => { void tryStartDiagnosticQuiz(); }}
+            activeOpacity={0.85}
           >
-            {s.diagnostic.startTest}
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}
+              numberOfLines={2}
+            >
+              {s.diagnostic.startTest}
+            </Text>
+          </TouchableOpacity>
+          <EnergyCostBadge testID="diagnostic-start-energy-cost" />
+        </View>
 
         {!isUnlimited && (
           <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 10 }}>
@@ -1711,14 +1717,17 @@ export default function DiagnosticTest() {
           )}
         </View>
 
-        <TouchableOpacity
-          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%', marginBottom: 12 }}
-          onPress={() => { void tryRestartDiagnosticQuiz(); }}
-        >
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-            {s.diagnostic.again}
-          </Text>
-        </TouchableOpacity>
+        <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginBottom: 12 }}>
+          <TouchableOpacity
+            style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%' }}
+            onPress={() => { void tryRestartDiagnosticQuiz(); }}
+          >
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
+              {s.diagnostic.again}
+            </Text>
+          </TouchableOpacity>
+          <EnergyCostBadge testID="diagnostic-restart-energy-cost" />
+        </View>
         <TapScale style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
           <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
         </TapScale>

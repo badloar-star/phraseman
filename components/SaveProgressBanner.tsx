@@ -26,6 +26,7 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, DeviceEventEmitter, Easing, Text, TouchableOpacity, View } from 'react-native';
 import Reanimated, {
   cancelAnimation,
+  Easing as REasing,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -44,7 +45,8 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { LUM } from '../constants/motionHybrid';
+import { LUM, TOAST } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LinearGradient } from './SafeLinearGradient';
 import PremiumCard from './PremiumCard';
 import RegistrationPromptModal from './RegistrationPromptModal';
@@ -85,14 +87,15 @@ async function shouldShow(isCurrent: () => boolean): Promise<boolean> {
 
 interface SaveProgressBannerProps {
   ownerActive?: boolean;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function SaveProgressBanner({ ownerActive = true, motionVariant = 'classic' }: SaveProgressBannerProps) {
+function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: SaveProgressBannerProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
 
   const [visible, setVisible] = useState(false);
   const [authModalVisible, setAuthModalVisible] = useState(false);
@@ -105,14 +108,18 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'classic' }: S
   const hybridY = useSharedValue(14);
   useEffect(() => {
     if (!isHybrid || !visible) return;
-    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      hybridOpacity.value = 1;
+      hybridY.value = 0;
+      return;
+    }
+    hybridOpacity.value = withTiming(1, { duration: TOAST.enterMs, easing: REasing.out(REasing.cubic) });
     hybridY.value = withSpring(0, LUM.settle);
     return () => {
       cancelAnimation(hybridOpacity);
       cancelAnimation(hybridY);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHybrid, visible]);
+  }, [isHybrid, reduceMotion, visible, hybridOpacity, hybridY]);
   const hybridEntryStyle = useAnimatedStyle(() => ({
     opacity: hybridOpacity.value,
     transform: [{ translateY: hybridY.value }],

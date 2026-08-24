@@ -26,6 +26,17 @@ export default function MotionShowcaseScreen() {
   const sections = useMemo(() => getShowcaseSections(), []);
   /** Смонтированный render-пункт (реальная модалка с демо-пропсами). */
   const [active, setActive] = useState<ShowcaseItem | null>(null);
+  const { acceptedCount, pendingCount } = useMemo(() => {
+    let accepted = 0;
+    let pending = 0;
+    for (const section of sections) {
+      for (const item of section.items) {
+        if (item.approval === 'accepted') accepted += 1;
+        else pending += 1;
+      }
+    }
+    return { acceptedCount: accepted, pendingCount: pending };
+  }, [sections]);
 
   // зачем: витрину часто открывают напрямую (deep link из DEV-инструментов,
   // автопрогон), и тогда журнал навигации пуст — экраны, запущенные пунктами
@@ -64,9 +75,16 @@ export default function MotionShowcaseScreen() {
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </View>
         </TapScale>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-          Движение · все поверхности
-        </Text>
+        <View style={styles.headerText}>
+          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {cs('screen_title')}
+          </Text>
+          {/* зачем: владелец смотрит витрину глазами и должен сразу видеть,
+              сколько поверхностей ещё ждут его вердикта, без пересчёта строк */}
+          <Text style={[styles.tally, { color: t.textMuted, fontSize: f.caption }]}>
+            {`${acceptedCount} ${cs('mark_accepted')} · ${pendingCount} ${cs('mark_pending')}`}
+          </Text>
+        </View>
       </View>
       <ScrollView
         contentContainerStyle={[styles.body, { paddingBottom: insets.bottom + 28 }]}
@@ -90,18 +108,40 @@ export default function MotionShowcaseScreen() {
                     <View
                       style={[
                         styles.row,
-                        index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border } : null,
+                        // зачем: разделяем строки ТОНОМ, не обводкой — запрет
+                        // владельца на borderWidth/borderColor вокруг блоков.
+                        index % 2 === 1 ? { backgroundColor: t.bgSurface } : null,
                       ]}
                     >
                       <View style={styles.rowText}>
-                        <Text
-                          style={[
-                            styles.rowTitle,
-                            { color: disabled ? t.textGhost : t.textPrimary, fontSize: f.body },
-                          ]}
-                        >
-                          {item.title}
-                        </Text>
+                        <View style={styles.rowTitleLine}>
+                          <Text
+                            style={[
+                              styles.rowTitle,
+                              { color: disabled ? t.textGhost : t.textPrimary, fontSize: f.body },
+                            ]}
+                          >
+                            {item.title}
+                          </Text>
+                          {/* зачем: владелец должен видеть глазами, что он уже
+                              одобрил, а что ждёт его решения — метка тоном,
+                              без подписи мелким шрифтом под названием. */}
+                          <View
+                            style={[
+                              styles.mark,
+                              { backgroundColor: item.approval === 'accepted' ? t.accent : t.bgCard },
+                            ]}
+                          >
+                            <Text
+                              style={[
+                                styles.markText,
+                                { color: item.approval === 'accepted' ? t.bgPrimary : t.textMuted, fontSize: f.caption },
+                              ]}
+                            >
+                              {item.approval === 'accepted' ? cs('mark_accepted') : cs('mark_pending')}
+                            </Text>
+                          </View>
+                        </View>
                         {item.detail ? (
                           <Text style={[styles.rowDetail, { color: t.textMuted, fontSize: f.caption }]}>
                             {item.detail}
@@ -177,7 +217,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: { fontWeight: '700', letterSpacing: -0.3, flex: 1 },
+  headerText: { flex: 1 },
+  title: { fontWeight: '700', letterSpacing: -0.3 },
+  tally: { marginTop: 2 },
   body: { paddingHorizontal: 16, paddingTop: 6 },
   section: { marginTop: 16 },
   sectionTitle: { fontWeight: '700', letterSpacing: -0.2, marginBottom: 8, marginLeft: 2 },
@@ -197,7 +239,10 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   rowText: { flex: 1, minWidth: 0 },
-  rowTitle: { fontWeight: '700' },
+  rowTitleLine: { flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap' },
+  rowTitle: { fontWeight: '700', flexShrink: 1 },
+  mark: { paddingHorizontal: 8, paddingVertical: 2, borderRadius: 8 },
+  markText: { fontWeight: '700' },
   rowDetail: { marginTop: 2 },
   escape: {
     position: 'absolute',

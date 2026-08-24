@@ -14,7 +14,7 @@ import { getUtcDayKey } from '../app/local_date';
 import { onAppEvent } from '../app/events';
 import { isEnergyFreeWindowActive, ENERGY_FREE_WINDOW_START_HOUR } from '../app/boons/boon_effects_energy';
 import type { BoonId } from '../app/boons/boon_types';
-import BoonActivatedModal from './BoonActivatedModal';
+import BoonActivatedSheet from './BoonActivatedSheet';
 import { usePremium } from './PremiumContext';
 
 /** Бонусы со своим отдельным модалом-наградой — здесь НЕ показываем. */
@@ -145,7 +145,7 @@ export default function BoonActivatedHost() {
     setWantShow(false);
   };
 
-  if (!visible) return null;
+  if (!visible || !boon) return null;
 
-  return <BoonActivatedModal visible={visible} boon={boon} onClose={close} />;
+  return <BoonActivatedSheet visible={visible} boon={boon} onClose={close} />;
 }

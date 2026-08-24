@@ -161,6 +161,9 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'app_activity', field: 'uid', values: 'stable' },
   { collection: 'app_errors', field: 'uid', values: 'stable' },
   { collection: 'error_reports', field: 'uid', values: 'stable' },
+  // Legacy MAX safety rows used both identities before the content-free 2026-08-21 boundary.
+  { collection: 'safety_flags', field: 'uid', values: 'stable' },
+  { collection: 'safety_flags', field: 'authUid', values: 'auth' },
   { collection: 'review_promo_claims', field: 'uid', values: 'stable' },
   { collection: 'vip_survey_responses', field: 'uid', values: 'stable' },
   { collection: 'shard_survey_responses', field: 'uid', values: 'stable' },
@@ -510,6 +513,7 @@ export async function resolveAccountDeleteIdentityClosure(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
   authUid: string,
+  transaction?: FirebaseFirestore.Transaction,
 ): Promise<string[]> {
   const identities = new Set<string>();
   const queue: string[] = [];
@@ -524,9 +528,26 @@ export async function resolveAccountDeleteIdentityClosure(
   };
   add(stableUid);
   add(authUid);
+  const read = (source: FirebaseFirestore.DocumentReference | FirebaseFirestore.Query): Promise<any> => (
+    transaction ? transaction.get(source as any) : source.get()
+  );
 
   for (let cursor = 0; cursor < queue.length; cursor += 1) {
     const canonicalId = queue[cursor];
+    const userRef = db.collection('users').doc(canonicalId);
+    const directOwnerMapRef = db.collection('account_identity_owner_map').doc(canonicalId);
+    const hiddenUsersQuery = db.collection('users')
+      .where('canonicalStableId', '==', canonicalId)
+      .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1);
+    const reverseOwnerMapsQuery = db.collection('account_identity_owner_map')
+      .where('canonicalStableId', '==', canonicalId)
+      .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1);
+    const mergeOutboxAsWinnerQuery = db.collection('account_merge_outbox')
+      .where('winnerStableId', '==', canonicalId)
+      .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1);
+    const mergeOutboxAsLoserQuery = db.collection('account_merge_outbox')
+      .where('loserStableId', '==', canonicalId)
+      .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1);
     const [
       userSnap,
       directOwnerMap,
@@ -535,24 +556,12 @@ export async function resolveAccountDeleteIdentityClosure(
       mergeOutboxAsWinner,
       mergeOutboxAsLoser,
     ] = await Promise.all([
-      db.collection('users').doc(canonicalId).get(),
-      db.collection('account_identity_owner_map').doc(canonicalId).get(),
-      db.collection('users')
-        .where('canonicalStableId', '==', canonicalId)
-        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
-        .get(),
-      db.collection('account_identity_owner_map')
-        .where('canonicalStableId', '==', canonicalId)
-        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
-        .get(),
-      db.collection('account_merge_outbox')
-        .where('winnerStableId', '==', canonicalId)
-        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
-        .get(),
-      db.collection('account_merge_outbox')
-        .where('loserStableId', '==', canonicalId)
-        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
-        .get(),
+      read(userRef),
+      read(directOwnerMapRef),
+      read(hiddenUsersQuery),
+      read(reverseOwnerMapsQuery),
+      read(mergeOutboxAsWinnerQuery),
+      read(mergeOutboxAsLoserQuery),
     ]);
     if (hiddenUsers.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
       || reverseOwnerMaps.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
@@ -564,10 +573,10 @@ export async function resolveAccountDeleteIdentityClosure(
       add(userSnap.data()?.canonicalStableId);
     }
     if (directOwnerMap.exists) add(directOwnerMap.data()?.canonicalStableId);
-    hiddenUsers.docs.forEach((doc) => add(doc.id));
-    reverseOwnerMaps.docs.forEach((doc) => add(doc.id));
-    mergeOutboxAsWinner.docs.forEach((doc) => add(doc.data()?.loserStableId));
-    mergeOutboxAsLoser.docs.forEach((doc) => add(doc.data()?.winnerStableId));
+    hiddenUsers.docs.forEach((doc: FirebaseFirestore.QueryDocumentSnapshot) => add(doc.id));
+    reverseOwnerMaps.docs.forEach((doc: FirebaseFirestore.QueryDocumentSnapshot) => add(doc.id));
+    mergeOutboxAsWinner.docs.forEach((doc: FirebaseFirestore.QueryDocumentSnapshot) => add(doc.data()?.loserStableId));
+    mergeOutboxAsLoser.docs.forEach((doc: FirebaseFirestore.QueryDocumentSnapshot) => add(doc.data()?.winnerStableId));
   }
 
   return [...identities];

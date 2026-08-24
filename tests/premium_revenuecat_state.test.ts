@@ -67,6 +67,34 @@ describe('premium RevenueCat state sync', () => {
     });
   });
 
+  it('prefers verified MAX plan and metadata when premium and max are both active', () => {
+    const info = {
+      entitlements: { active: {
+        premium: {
+          productIdentifier: 'phraseman_premium_monthly_399',
+          expirationDateMillis: 1_000,
+          store: 'APP_STORE',
+        },
+        max: {
+          productIdentifier: 'phraseman_max_monthly_v1:monthly-base',
+          expirationDateMillis: 9_000,
+          store: 'PLAY_STORE',
+        },
+      } },
+      activeSubscriptions: [
+        'phraseman_premium_monthly_399',
+        'phraseman_max_monthly_v1:monthly-base',
+      ],
+    } as any;
+
+    expect(inferPremiumPlanFromCustomerInfo(info)).toBe('max_monthly');
+    expect(revenueCatPremiumMetadata(info)).toEqual(expect.objectContaining({
+      productId: 'phraseman_max_monthly_v1:monthly-base',
+      expiryMs: 9_000,
+      store: 'PLAY_STORE',
+    }));
+  });
+
   it('confirms only the product returned for the selected purchase package', () => {
     const info = {
       entitlements: {

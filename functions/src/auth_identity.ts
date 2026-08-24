@@ -126,6 +126,18 @@ async function assertStableDeletionNotPending(
   }
 }
 
+async function assertStableAccountMergeNotPending(
+  db: admin.firestore.Firestore,
+  stableIds: readonly string[],
+): Promise<void> {
+  for (const stableId of [...new Set(stableIds.map(normalizeStableId).filter(Boolean))]) {
+    const snapshot = await readIdentityOrThrow(db.collection(USERS).doc(stableId).get());
+    if (snapshot.exists && snapshot.data()?.mistakePracticeMergePending === true) {
+      throw new HttpsError('failed-precondition', 'account_merge_pending');
+    }
+  }
+}
+
 async function assertSelectionDeletionNotPending(
   db: admin.firestore.Firestore,
   selection: StableIdentitySelection,
@@ -280,7 +292,7 @@ function pickBestStableIdentityCandidate(
 }
 
 function collectStableIdentityCandidates(
-  docs: Array<{ id: string; data: () => FirebaseFirestore.DocumentData | undefined }>,
+  docs: { id: string; data: () => FirebaseFirestore.DocumentData | undefined }[],
   authUid: string,
   liveCanonicalIds?: ReadonlySet<string>,
 ): Map<string, StableIdentityCandidate> {
@@ -318,7 +330,7 @@ async function findStableUidForProviderAuth(
       : readIdentityOrThrow(db.collection(USERS).where('linkedAuth.providerUid', '==', authUid).limit(20).get()),
   ]);
 
-  const docs: Array<{ id: string; data: () => FirebaseFirestore.DocumentData | undefined }> = [];
+  const docs: { id: string; data: () => FirebaseFirestore.DocumentData | undefined }[] = [];
   const seen = new Set<string>();
 
   for (const snap of [byFirebaseAuthUidSnap, byLinkedAuthUidSnap]) {
@@ -855,6 +867,7 @@ async function ensureStableIdentityPair(
   provider: AuthProvider | null,
   metadata?: AuthLinkMetadata,
 ): Promise<void> {
+  await assertStableAccountMergeNotPending(db, selection.sourceStableIds);
   const ownerProof = await assertStableOwner(db, authUid, selection.stableUid, {
     allowProviderRelink: Boolean(provider),
     allowAnonRelink: !provider,
@@ -1643,6 +1656,7 @@ export async function ensureStableLinkForAuth(
     }
     if (bootstrap.status === 'authoritative') {
       await assertStableDeletionNotPending(db, bootstrap.stableUid);
+      await assertStableAccountMergeNotPending(db, [bootstrap.stableUid]);
       if (!bootstrap.identityReady) {
         await ensureStableIdentityPair(db, authUid, {
           stableUid: bootstrap.stableUid,

@@ -9,7 +9,6 @@ import { getDiagnosisTrainingForTarget } from './diagnosis_trainings';
 import { chooseAvailableDiagnosisForCategory } from './personal_practice_lesson_router';
 import {
   computePhraseAnalytics,
-  summarizePhraseMistakeWindows,
   type LessonMistakeStat,
   type PhraseAnalyticsResult,
   type WordCategoryStat,
@@ -191,8 +190,24 @@ export async function buildWeeklyReviewBriefing(
     deps.loadResolvedTrainings(options.studyTarget),
   ]);
 
-  const entries = mistakesSettled.status === 'fulfilled' ? mistakesSettled.value : [];
-  const windows = summarizePhraseMistakeWindows(entries, nowMs);
+  const insights = mistakesSettled.status === 'fulfilled' ? mistakesSettled.value : null;
+  const emptyWindow = { mistakes: 0, uniquePhrases: 0, repeatedMistakes: 0, recoveredPhrases: 0, accuracyPct: null };
+  const windows = insights ? {
+    last7: {
+      ...emptyWindow,
+      mistakes: insights.mistakeCount7d,
+      uniquePhrases: insights.uniqueMistakes7d,
+      repeatedMistakes: Math.max(0, insights.mistakeCount7d - insights.uniqueMistakes7d),
+    },
+    last30: {
+      ...emptyWindow,
+      mistakes: insights.mistakeCount30d,
+      uniquePhrases: insights.uniqueMistakes30d,
+      repeatedMistakes: Math.max(0, insights.mistakeCount30d - insights.uniqueMistakes30d),
+      recoveredPhrases: insights.corrected,
+    },
+    delta: { accuracyPct: null, mistakes: insights.mistakeCount7d - insights.mistakeCountPrevious7d },
+  } : { last7: emptyWindow, last30: emptyWindow, delta: { accuracyPct: null, mistakes: 0 } };
   const activity = activitySettled.status === 'fulfilled' ? activitySettled.value : null;
   const activity7 = activity ? summarizeActivityWindow(activity.days, 7, nowMs) : null;
   const activity30 = activity ? summarizeActivityWindow(activity.days, 30, nowMs) : null;
@@ -251,7 +266,7 @@ export async function buildWeeklyReviewBriefing(
   const recommendations = buildRecommendations(weakStats, analytics.lessonStats, insights, resolvedSettled.value, options.studyTarget, options.lang);
   const activityWeek = activity7!;
   const activityMonth = activity30!;
-  const topMistakePhrases = phraseRows(entries, nowMs);
+  const topMistakePhrases = phraseRows(insights);
   const evidenceRegistry = nonEmptyEvidence([
     ['mistakes.last7.mistakes', windows.last7.mistakes],
     ['mistakes.last30.mistakes', windows.last30.mistakes],

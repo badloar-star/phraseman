@@ -15,6 +15,7 @@
  * CTA — меняется только ПОДАЧА и ДВИЖЕНИЕ, не содержимое.
  */
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Modal,
   Platform,
@@ -48,7 +49,8 @@ import { hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { isLowEndDevice } from '../../hooks/device_perf_tier';
 import { soundDirector } from '../../modules/audio/sound_director';
-import { LUM, CHK } from '../../constants/motionHybrid';
+import { LUM, CHK, SUITE } from '../../constants/motionHybrid';
+import { PREMIUM_CELEBRATION_HYBRID_COLORS } from '../../constants/motionHybridPalettes';
 import {
   CELEBRATION_FEATURES,
   CELEBRATION_PALETTES,
@@ -155,7 +157,7 @@ function PremiumCelebrationHybrid({ visible, onClose, variant = 'premium' }: Pre
 
     // эмблема выходит из света в центре (LUM.resolve + back-выброс)
     embOpacity.value = withDelay(LUM.bloomMs, withTiming(1, { duration: LUM.resolveMs, easing: REasing.out(REasing.quad) }));
-    embScale.value = withDelay(LUM.bloomMs, withSpring(1, { mass: 0.8, damping: 12, stiffness: 130 }));
+    embScale.value = withDelay(LUM.bloomMs, withSpring(1, SUITE.hero));
 
     // зажигание по одной звезде — неравномерная лестница, хаптик-тап на каждую
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -186,7 +188,7 @@ function PremiumCelebrationHybrid({ visible, onClose, variant = 'premium' }: Pre
     timers.push(strikeTimer);
 
     headingT.value = withDelay(strikeAt, withTiming(1, { duration: LUM.resolveMs, easing: REasing.out(REasing.quad) }));
-    ctaT.value = withDelay(ctaAt, withSpring(1, { mass: 0.6, damping: 12, stiffness: 120 }));
+    ctaT.value = withDelay(ctaAt, withSpring(1, SUITE.cta));
 
     return () => { timers.forEach(clearTimeout); clearAll(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -322,12 +324,12 @@ function PremiumCelebrationHybrid({ visible, onClose, variant = 'premium' }: Pre
               <Reanimated.View style={[styles.embGlowWrap, { shadowColor: palette.main }, embSquashStyle]}>
                 <View style={styles.embDisc}>
                   <LinearGradient
-                    colors={[`${palette.main}33`, '#0f0b03']}
+                    colors={[`${palette.main}33`, PREMIUM_CELEBRATION_HYBRID_COLORS.emblemDiscBottom]}
                     start={{ x: 0.4, y: 0.2 }}
                     end={{ x: 0.6, y: 1 }}
                     style={StyleSheet.absoluteFill}
                   />
-                  <Text style={styles.embEmoji}>{palette.emblem}</Text>
+                  <Ionicons name={palette.emblemIcon} size={46} color={palette.bright} />
                 </View>
               </Reanimated.View>
             </Reanimated.View>
@@ -354,8 +356,8 @@ function PremiumCelebrationHybrid({ visible, onClose, variant = 'premium' }: Pre
             <View style={styles.restList} pointerEvents="none">
               {restFeatures.map((feat, idx) => (
                 <View key={`${variant}_rest_${idx}`} style={styles.restRow}>
-                  <Text style={styles.restEmoji}>{feat.emoji}</Text>
-                  <Text style={[styles.restTitle, { color: palette.rowText, fontSize: f.caption }]} numberOfLines={1}>
+                  <Ionicons name={feat.icon} size={14} color={palette.rowText} />
+                  <Text style={[styles.restTitle, { color: palette.rowText, fontSize: f.caption }]}>
                     {localeText(feat.title, lang)}
                   </Text>
                 </View>
@@ -409,7 +411,7 @@ function StarSlot({
 
   useEffect(() => {
     if (reduceMotion) { fly.value = 1; return; }
-    fly.value = withDelay(flyDelay, withSpring(1, { mass: 0.8, damping: 14, stiffness: 120 }));
+    fly.value = withDelay(flyDelay, withSpring(1, SUITE.orbit));
     return () => cancelAnimation(fly);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion, flyDelay]);
@@ -417,7 +419,7 @@ function StarSlot({
   useEffect(() => {
     if (reduceMotion) { glow.value = lit ? 1 : 0; labelT.value = lit ? 1 : 0; return; }
     if (!lit) { glow.value = 0; labelT.value = 0; return; }
-    glow.value = withSpring(1, { mass: 0.5, damping: 10, stiffness: 190 });
+    glow.value = withSpring(1, SUITE.glow);
     labelT.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.quad) });
     return () => { cancelAnimation(glow); cancelAnimation(labelT); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -446,11 +448,10 @@ function StarSlot({
         <View style={styles.starTile}>
           <View style={[StyleSheet.absoluteFill, styles.starTileBase]} />
           <View style={[StyleSheet.absoluteFill, styles.starTileTint, { backgroundColor: `${palette.main}33` }]} />
-          <Text style={styles.starEmoji}>{feature.emoji}</Text>
+          <Ionicons name={feature.icon} size={18} color={palette.rowText} />
         </View>
       </Reanimated.View>
       <Reanimated.Text
-        numberOfLines={1}
         style={[styles.starLabel, { color: palette.rowText, fontSize: f.caption }, labelStyle]}
       >
         {localeText(feature.title, lang)}
@@ -464,7 +465,7 @@ export default memo(PremiumCelebrationHybrid);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   skipHint: { position: 'absolute', right: 18, paddingVertical: 6, paddingHorizontal: 12, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.28)' },
-  skipHintText: { color: 'rgba(255,255,255,0.5)', fontSize: 12.5, fontWeight: '600' },
+  skipHintText: { color: 'rgba(255,255,255,0.5)', fontSize: 12.5, fontWeight: '700' },
 
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
   stage: { alignItems: 'center', justifyContent: 'center' },
@@ -478,7 +479,6 @@ const styles = StyleSheet.create({
     flex: 1, borderRadius: 46,
     alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
-  embEmoji: { fontSize: 46 },
 
   star: { position: 'absolute', alignItems: 'center', width: 64 },
   starGlowWrap: {
@@ -491,22 +491,20 @@ const styles = StyleSheet.create({
   },
   starTileBase: { borderRadius: 22, backgroundColor: 'rgba(8,10,9,0.82)' },
   starTileTint: { borderRadius: 22 },
-  starEmoji: { fontSize: 21 },
   starLabel: { marginTop: 4, fontWeight: '700', textAlign: 'center' },
 
   heading: { marginTop: 34, alignItems: 'center' },
   title: {
-    fontWeight: '900', textAlign: 'center', letterSpacing: 0.3,
+    fontWeight: '700', textAlign: 'center', letterSpacing: 0.3,
     textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 12,
   },
-  subtitle: { textAlign: 'center', marginTop: 8, opacity: 0.85, fontWeight: '600', lineHeight: 20 },
+  subtitle: { textAlign: 'center', marginTop: 8, opacity: 0.85, fontWeight: '700', lineHeight: 20 },
 
   restList: { marginTop: 18, gap: 6, alignItems: 'center' },
   restRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  restEmoji: { fontSize: 14 },
   restTitle: { fontWeight: '700' },
 
   ctaWrap: { position: 'absolute', left: 24, right: 24 },
   ctaGradient: { height: 58, borderRadius: 19, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
-  ctaText: { fontWeight: '900', letterSpacing: 0.3 },
+  ctaText: { fontWeight: '700', letterSpacing: 0.3 },
 });

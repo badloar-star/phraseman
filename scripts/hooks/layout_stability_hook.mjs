@@ -96,7 +96,7 @@ const loadingNull = relative.startsWith('app/') && relative.endsWith('.tsx')
   : 0;
 if (loadingNull > (baseline.loadingReturnsNull?.[relative] || 0)) {
   findings.push(
-    '• `if (loading) return null` — пустой кадр и «впрыгивание» контента. Дайте SkeletonBlock с финальной геометрией (эталон app/review.tsx) или синхронную peek-гидрацию.',
+    '• `if (loading) return null` — пустой кадр и «впрыгивание» контента. Дайте SkeletonBlock с финальной геометрией или синхронную peek-гидрацию.',
   );
 }
 

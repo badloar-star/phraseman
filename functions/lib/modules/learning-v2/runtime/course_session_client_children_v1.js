@@ -9,6 +9,7 @@ exports.materializeLearningV2CourseSessionLearnerChildV1 = materializeLearningV2
 exports.parseLearningV2CourseSessionAuxiliaryChildV1 = parseLearningV2CourseSessionAuxiliaryChildV1;
 exports.materializeLearningV2CourseSessionAuxiliaryChildV1 = materializeLearningV2CourseSessionAuxiliaryChildV1;
 const generator_course_contract_1 = require("../content/generator_course_contract");
+const intro_semantic_runs_v1_1 = require("../content/intro_semantic_runs_v1");
 const decision_registry_1 = require("../policies/decision_registry");
 exports.LEARNING_V2_COURSE_SESSION_INTRO_CHILD_SCHEMA_V1 = "learning-v2-course-session-intro-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1 = "learning-v2-course-session-learner-child.v1";
@@ -99,6 +100,23 @@ function localizedChoices(value) {
     }
     return Object.freeze(result);
 }
+function localizedIntroRuns(value) {
+    let validated;
+    try {
+        validated = (0, intro_semantic_runs_v1_1.validateLearningV2IntroRunsByLocaleV1)(value);
+    }
+    catch {
+        fail();
+    }
+    const result = {};
+    for (const locale of generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES) {
+        result[locale] = Object.freeze(validated[locale].map((run) => Object.freeze({
+            text: text(run.text, 1000),
+            semantic: run.semantic,
+        })));
+    }
+    return Object.freeze(result);
+}
 function preflight(value) {
     const stack = [{ value, depth: 0 }];
     let nodes = 0;
@@ -162,12 +180,21 @@ const INTRO_ROOT_KEYS = [
     "releaseAuthority",
     "introFingerprint",
 ];
-const INTRO_PAGE_KEYS = [
+const INTRO_PAGE_KEYS_LEGACY = [
     "pageOrdinal",
     "pageId",
     "kind",
     "titleByLocale",
     "bodyByLocale",
+    "question",
+];
+const INTRO_PAGE_KEYS_WITH_RUNS = [
+    "pageOrdinal",
+    "pageId",
+    "kind",
+    "titleByLocale",
+    "bodyByLocale",
+    "bodyRunsByLocale",
     "question",
 ];
 const INTRO_QUESTION_KEYS = [
@@ -190,7 +217,8 @@ function parseLearningV2CourseSessionIntroChildV1(raw) {
     const pages = value.pages.map((entry, index) => {
         if (!record(entry))
             fail();
-        exactKeys(entry, INTRO_PAGE_KEYS);
+        const hasBodyRuns = Object.prototype.hasOwnProperty.call(entry, "bodyRunsByLocale");
+        exactKeys(entry, hasBodyRuns ? INTRO_PAGE_KEYS_WITH_RUNS : INTRO_PAGE_KEYS_LEGACY);
         if (entry.pageOrdinal !== index + 1 ||
             !["concept", "formula", "example", "trap", "tip"].includes(String(entry.kind)) ||
             !record(entry.question))
@@ -200,12 +228,22 @@ function parseLearningV2CourseSessionIntroChildV1(raw) {
         if (ids.has(interactionId))
             fail();
         ids.add(interactionId);
+        const bodyByLocale = localized(entry.bodyByLocale, 4000);
+        const bodyRunsByLocale = hasBodyRuns
+            ? localizedIntroRuns(entry.bodyRunsByLocale)
+            : undefined;
+        if (bodyRunsByLocale &&
+            generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.some((locale) => (0, intro_semantic_runs_v1_1.introRunsPlainTextV1)(bodyRunsByLocale[locale]) !==
+                bodyByLocale[locale])) {
+            fail();
+        }
         return Object.freeze({
             pageOrdinal: (index + 1),
             pageId: id(entry.pageId),
             kind: entry.kind,
             titleByLocale: localized(entry.titleByLocale, 240),
-            bodyByLocale: localized(entry.bodyByLocale, 4000),
+            bodyByLocale,
+            ...(bodyRunsByLocale ? { bodyRunsByLocale } : {}),
             question: Object.freeze({
                 interactionId,
                 promptByLocale: localized(entry.question.promptByLocale, 1000),
@@ -436,6 +474,17 @@ const AUX_ENTRY_KEYS = [
     "secondErrorExplanationRef",
     "secondErrorExplanationByLocale",
 ];
+const NEW_WORD_ENCOUNTER_KEYS = [
+    "lexicalItemId",
+    "transcription",
+    "playfulMeaningByLocale",
+    "motionVariant",
+    "presentation",
+    "dismissal",
+    "saveControl",
+    "orderWithinSession",
+    "save",
+];
 function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
     const value = parseCanonical(raw);
     exactKeys(value, AUX_ROOT_KEYS);
@@ -447,13 +496,33 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
     const entries = Object.freeze(value.entries.map((entry) => {
         if (!record(entry))
             fail();
-        exactKeys(entry, AUX_ENTRY_KEYS);
+        exactKeys(entry, [
+            ...AUX_ENTRY_KEYS,
+            ...(Object.prototype.hasOwnProperty.call(entry, "responseFeedbackById")
+                ? ["responseFeedbackById"]
+                : []),
+            ...(Object.prototype.hasOwnProperty.call(entry, "newWordEncounter")
+                ? ["newWordEncounter"]
+                : []),
+        ]);
         const interactionId = id(entry.interactionId);
         if (ids.has(interactionId) ||
             !record(entry.report) ||
             !record(entry.save) ||
             !record(entry.voice))
             fail();
+        let responseFeedbackById;
+        if ("responseFeedbackById" in entry) {
+            if (!record(entry.responseFeedbackById))
+                fail();
+            const feedbackEntries = Object.entries(entry.responseFeedbackById);
+            if (feedbackEntries.length > 8)
+                fail();
+            responseFeedbackById = Object.freeze(Object.fromEntries(feedbackEntries.map(([responseId, copy]) => [
+                id(responseId),
+                localized(copy, 2000),
+            ])));
+        }
         ids.add(interactionId);
         exactKeys(entry.report, ["available", "reportContextRef", "screen"]);
         exactKeys(entry.save, [
@@ -486,6 +555,62 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
             entry.save.sourceTextFingerprint !== save.sourceTextFingerprint ||
             entry.save.contentOrigin !== save.contentOrigin)
             fail();
+        let newWordEncounter;
+        if (Object.prototype.hasOwnProperty.call(entry, "newWordEncounter")) {
+            if (!record(entry.newWordEncounter))
+                fail();
+            exactKeys(entry.newWordEncounter, NEW_WORD_ENCOUNTER_KEYS);
+            if (!record(entry.newWordEncounter.save))
+                fail();
+            exactKeys(entry.newWordEncounter.save, [
+                "available",
+                "savablePhraseRef",
+                "targetLanguage",
+                "targetText",
+                "meaningByLocale",
+                "sourceTextFingerprint",
+                "contentOrigin",
+            ]);
+            const encounterSave = materializeLearningV2CourseSessionSavablePhraseV1({
+                targetLanguage: entry.newWordEncounter.save
+                    .targetLanguage,
+                targetText: entry.newWordEncounter.save.targetText,
+                meaningByLocale: entry.newWordEncounter.save
+                    .meaningByLocale,
+            });
+            const transcription = text(entry.newWordEncounter.transcription, 160);
+            const orderWithinSession = entry.newWordEncounter.orderWithinSession;
+            const motionVariant = entry.newWordEncounter.motionVariant;
+            if (!/^\/.+\/$/u.test(transcription) ||
+                !Number.isInteger(orderWithinSession) ||
+                orderWithinSession < 1 ||
+                orderWithinSession > 20 ||
+                (motionVariant !== "lesson_hero_b" &&
+                    motionVariant !== "premium_a") ||
+                entry.newWordEncounter.presentation !== "blocking_task_overlay" ||
+                entry.newWordEncounter.dismissal !== "continue_only" ||
+                entry.newWordEncounter.saveControl !== "bookmark_icon" ||
+                entry.newWordEncounter.save.available !== true ||
+                entry.newWordEncounter.save.savablePhraseRef !==
+                    encounterSave.savablePhraseRef ||
+                entry.newWordEncounter.save.sourceTextFingerprint !==
+                    encounterSave.sourceTextFingerprint ||
+                entry.newWordEncounter.save.contentOrigin !==
+                    encounterSave.contentOrigin ||
+                encounterSave.savablePhraseRef !== save.savablePhraseRef)
+                fail();
+            newWordEncounter = Object.freeze({
+                lexicalItemId: id(entry.newWordEncounter.lexicalItemId),
+                transcription,
+                playfulMeaningByLocale: localized(entry.newWordEncounter.playfulMeaningByLocale, 400),
+                motionVariant,
+                presentation: "blocking_task_overlay",
+                dismissal: "continue_only",
+                saveControl: "bookmark_icon",
+                orderWithinSession: orderWithinSession,
+                save: encounterSave,
+            });
+        }
         return Object.freeze({
             interactionId,
             report: Object.freeze({
@@ -501,6 +626,8 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
             }),
             secondErrorExplanationRef: id(entry.secondErrorExplanationRef),
             secondErrorExplanationByLocale: localized(entry.secondErrorExplanationByLocale, 2000),
+            ...(responseFeedbackById ? { responseFeedbackById } : {}),
+            ...(newWordEncounter ? { newWordEncounter } : {}),
         });
     }));
     const body = {

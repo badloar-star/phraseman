@@ -113,6 +113,7 @@ import { readAnyPersonalPlanState } from "../personal_plan_state";
 import {
   PERSONAL_PLAN_SUNSET_AT_MS,
   resolvePersonalPlanPremiumProbe,
+  isPersonalPlanDevBypassActive,
   resolvePersonalPlanSunsetAccess,
 } from "../personal_plan_sunset";
 import { readPersonalPlanSunsetEffectiveNow } from "../personal_plan_sunset_clock";
@@ -2444,7 +2445,18 @@ export default function LessonsTab({
           savedState: state,
           nowMs: effectiveNowMs,
         });
-        if (access.status !== "allowed" || !state) {
+        if (access.status !== "allowed") {
+          setPersonalPlanSunsetTabVisible(false);
+          return;
+        }
+        // зачем (владелец 2026-08-24): раньше отсутствие плана прятало вкладку
+        // прямо по тапу — раздел «исчезал». В dev-обходе плана у разработчика
+        // нет никогда, поэтому ведём на создание плана вместо скрытия.
+        if (!state) {
+          if (isPersonalPlanDevBypassActive()) {
+            router.push("/personal_plan_setup" as any);
+            return;
+          }
           setPersonalPlanSunsetTabVisible(false);
           return;
         }
@@ -2455,7 +2467,9 @@ export default function LessonsTab({
           featureAccess: planAccess,
         });
         let verifiedPlanAccess = premiumProbe === "allowed";
-        if (!verifiedPlanAccess) {
+        // зачем: в dev-обходе сетевая проверка премиума вернула бы false и
+        // увела на пейвол — раздел снова стал бы недоступен разработчику.
+        if (!verifiedPlanAccess && !isPersonalPlanDevBypassActive()) {
           invalidatePremiumCache();
           verifiedPlanAccess = await getVerifiedPremiumAccessStatus().catch(
             () => false,
@@ -3254,35 +3268,43 @@ export default function LessonsTab({
             >
               {page === "v2" ? (
                 <Reanimated.View style={learningV2WalletPulseStyle}>
-                  <View
-                    ref={learningV2WalletChipRef}
-                    collapsable={false}
-                    accessibilityLabel={`${learningV2WalletStarsLabel} ${runeWord(
-                      lang,
-                      Math.round(learningV2WalletRunesValue ?? 0),
-                    )}`}
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 6,
-                      backgroundColor: t.bgCard,
-                      borderRadius: 999,
-                      paddingHorizontal: 12,
-                      paddingVertical: 7,
-                    }}
+                  {/* зачем: владелец 2026-08-24 — тап по счётчику рун открывает раздел «Руны».
+                      Ref остаётся на внутреннем View: он — мишень полёта глифов. */}
+                  <TapScale
+                    withHaptic={true}
+                    onPress={() => router.push("/runes_wallet")}
                   >
-                    <RuneGlyph size={14} color={t.gold} />
-                    <Text
+                    <View
+                      ref={learningV2WalletChipRef}
+                      collapsable={false}
+                      accessibilityRole="button"
+                      accessibilityLabel={`${learningV2WalletStarsLabel} ${runeWord(
+                        lang,
+                        Math.round(learningV2WalletRunesValue ?? 0),
+                      )}`}
                       style={{
-                        color: t.textPrimary,
-                        fontSize: 14,
-                        fontWeight: "700",
-                        fontVariant: ["tabular-nums"],
+                        flexDirection: "row",
+                        alignItems: "center",
+                        gap: 6,
+                        backgroundColor: t.bgCard,
+                        borderRadius: 999,
+                        paddingHorizontal: 12,
+                        paddingVertical: 7,
                       }}
                     >
-                      {learningV2WalletStarsLabel}
-                    </Text>
-                  </View>
+                      <RuneGlyph size={14} color={t.gold} />
+                      <Text
+                        style={{
+                          color: t.textPrimary,
+                          fontSize: 14,
+                          fontWeight: "700",
+                          fontVariant: ["tabular-nums"],
+                        }}
+                      >
+                        {learningV2WalletStarsLabel}
+                      </Text>
+                    </View>
+                  </TapScale>
                 </Reanimated.View>
               ) : null}
               <EnergyBar size={30} ownerActive={lessonsRuntimeActive} />

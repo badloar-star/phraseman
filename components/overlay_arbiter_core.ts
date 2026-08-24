@@ -16,6 +16,7 @@ export type OverlayKey =
   | 'streakRevive'
   | 'entitlementExpired'
   | 'referralWelcome'
+  | 'friendGift'
   | 'mysteryMondayChest'
   | 'comebackDay'
   | 'perfectWeekReward'
@@ -58,6 +59,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
+  'friendGift',
   'mysteryMondayChest',
   'comebackDay',
   'boonActivated',
@@ -146,6 +148,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
+  'friendGift',
   'themedAlert',
   'mysteryMondayChest',
   'comebackDay',
@@ -201,6 +204,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   streakRevive: false,
   entitlementExpired: false,
   referralWelcome: false,
+  friendGift: false,
   mysteryMondayChest: false,
   comebackDay: false,
   perfectWeekReward: false,

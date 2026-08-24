@@ -5,11 +5,3 @@ inherit = "core"
 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "0"
 CLAUDE_FLOW_HOOKS_ENABLED = "false"
 CLAUDE_FLOW_V3_ENABLED = "false"
-
-[mcp_servers.ruflo]
-command = "npx"
-args = [
-    "ruflo@latest",
-    "mcp",
-    "start",
-]

@@ -11,7 +11,7 @@
  * появление карточки + парящая/«дышащая» иконка + мягкое свечение за ней.
  */
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -19,9 +19,9 @@ import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { getBoonCopy } from '../app/boons/boon_copy';
 import type { BoonId } from '../app/boons/boon_types';
-import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 import { GiftOpenBurst } from './GiftOpenEffects';
 import BoonActivatedHybrid from './celebration/BoonActivatedHybrid';
+import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface BoonActivatedModalProps {
@@ -32,13 +32,13 @@ interface BoonActivatedModalProps {
   /**
    * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
    * сцена M3 «Сундук-награда») живёт РЯДОМ со старой версией под флагом.
-   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   * Production default — hybrid; explicit `classic` сохранён для rollback/QA.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'classic' }: BoonActivatedModalProps) {
-  const { theme: t, f, themeMode } = useTheme();
+function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'hybrid' }: BoonActivatedModalProps) {
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
 
   const isClassic = motionVariant === 'classic';
@@ -112,11 +112,6 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'classic' 
   if (!boon) return null;
 
   const copy = getBoonCopy(boon, lang);
-  const iconSource = weeklyBoonIconSource(boon, themeMode);
-
-  if (motionVariant === 'hybrid') {
-    return <BoonActivatedHybrid visible={visible} title={copy.title} subtitle={copy.subtitle} iconSource={iconSource} onClose={onClose} />;
-  }
   const kicker = triLang(lang, {
     ru: 'Бонус дня активирован',
     uk: 'Бонус дня активовано',
@@ -137,6 +132,19 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'classic' 
     tr: 'Harika',
     pl: 'Świetnie',
   });
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <BoonActivatedHybrid
+        visible={visible}
+        kicker={kicker}
+        title={copy.title}
+        subtitle={copy.subtitle}
+        ctaLabel={ctaLabel}
+        onClose={onClose}
+      />
+    );
+  }
 
   const cardScale = entrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const cardY = entrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
@@ -199,7 +207,7 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'classic' 
                 ],
               }}
             >
-              <Image source={iconSource} resizeMode="contain" style={styles.iconImage} />
+              <RetiredRasterFallback kind="boon" size={104} color={t.accent} />
             </Animated.View>
           </View>
 

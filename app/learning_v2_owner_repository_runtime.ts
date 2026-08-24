@@ -25,6 +25,11 @@ import {
 } from './account_generation';
 import type { CoinExchangeWalletRewardRequest } from './coin_exchange_client';
 import { publishLearningV2WalletBalanceState } from './learning_v2_wallet_balance_store';
+import {
+  createMistakeCorrectionCompositeAuthority,
+  parseMistakeCorrectionWalletComposite,
+  type MistakeCorrectionWalletCompositeV1,
+} from '../modules/learning-v2/progress/mistake_correction_wallet_composite';
 
 export interface LearningV2AccountBindingV1 {
   readonly schemaVersion: 'learning-v2-account-binding.v2';
@@ -262,9 +267,18 @@ export async function mountLearningV2OwnerRepository(
       candidateScope.accountScopeHash === binding.economicAccountScopeHash &&
       candidateScope.generation === binding.accountGeneration,
     {
-      materializeWalletCredit: createServerWalletRewardReceiptAuthority({
-        resolveRewardReceipt,
-      }),
+      materializeWalletCredit: (() => {
+        const serverAuthority = createServerWalletRewardReceiptAuthority({
+          resolveRewardReceipt,
+        });
+        const mistakeAuthority = createMistakeCorrectionCompositeAuthority();
+        return (input) => (
+          isRecord(input.candidate)
+          && input.candidate.schemaVersion === 'mistake-correction-wallet-composite.v1'
+            ? mistakeAuthority(input)
+            : serverAuthority(input)
+        );
+      })(),
       materializeCourseUnlock: createServerCourseUnlockReceiptAuthority({
         resolveCourseUnlockReceipt,
       }),
@@ -310,6 +324,20 @@ export async function commitLearningV2ServerWalletReward(
 ): Promise<OwnerRepositoryWalletCreditCommitResult> {
   const runtime = await mountLearningV2OwnerRepository(dependencies);
   const result = await runtime.repository.commitWalletCreditV3(runtime.scope, request);
+  publishLearningV2WalletBalanceState(result.snapshot.walletState, runtime.accountToken);
+  return result;
+}
+
+export async function commitMistakeCorrectionWalletComposite(
+  candidate: MistakeCorrectionWalletCompositeV1,
+  dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},
+): Promise<OwnerRepositoryWalletCreditCommitResult> {
+  const parsed = parseMistakeCorrectionWalletComposite(candidate);
+  const runtime = await mountLearningV2OwnerRepository(dependencies);
+  if (parsed.accountScopeHash !== runtime.scope.accountScopeHash) {
+    throw new Error('mistake_correction_wallet_composite_owner_mismatch');
+  }
+  const result = await runtime.repository.commitWalletCreditV3(runtime.scope, parsed);
   publishLearningV2WalletBalanceState(result.snapshot.walletState, runtime.accountToken);
   return result;
 }

@@ -49,5 +49,20 @@ export function dailyQuotaView(remainingSec: number, maxSec: number): {
   return { minutes: Math.floor(safeRemaining / 60), fraction, tone };
 }
 
+/**
+ * Минуты до следующего сброса дневной квоты MAX. Сервер обнуляет счётчик по
+ * UTC-дню (см. utcDayKey в functions/src/max_voice_mint.ts) — таймер здесь
+ * обязан считать до той же полуночи UTC, а не до местной, иначе честное
+ * ожидание разъедется с реальным моментом, когда минуты правда вернутся.
+ */
+export function minutesUntilDailyQuotaResetUtc(nowMs: number): number {
+  // зачем (аудит 2026-08-24): NaN на входе раньше протекал в «через NaN мин»
+  // на экране — safe-парсинг тем же паттерном, что finite() выше в файле.
+  const safeNow = Number.isFinite(nowMs) ? nowMs : Date.now();
+  const now = new Date(safeNow);
+  const nextUtcMidnight = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
+  return Math.max(1, Math.ceil((nextUtcMidnight - safeNow) / 60_000));
+}
+
 // Expo Router treats every file in app/ as a route; the pure helpers stay named.
 export default function MaxCallDailyQuotaRouteShim() { return null; }

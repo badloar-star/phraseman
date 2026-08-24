@@ -2,6 +2,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -1645,26 +1646,29 @@ export default function LessonComplete() {
               Фон/текст берём из bgCard+textPrimary (не accentBg+accent): в золотой
               теме accentBg — бронзовая дымка, а accent-текст на ней сливался в
               «пустую» плитку. Акцент сохраняем через accent-кромку, рамку и иконку. */}
-          <DuoPressable
-            testID="lesson-complete-repeat"
-            edgeColor={t.accent}
-            disabled={repeatOpening}
-            accessibilityState={{ busy: repeatOpening }}
-            pressedExternally={repeatOpening}
-            wrapStyle={{ marginBottom: 14, opacity: repeatOpening ? 0.72 : 1 }}
-            style={{
-              width: '100%', backgroundColor: t.bgCard,
-              borderRadius: 16, padding: 16,
-              borderWidth: 0, borderColor: t.accent,
-              flexDirection: 'row', justifyContent: 'center', gap: 8,
-              overflow: 'hidden',
-            }}
-            onPress={handleRepeatLesson}
-          >
-            <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '600' }}>
-              ↺ {c.repeatLesson}
-            </Text>
-          </DuoPressable>
+          <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginBottom: 14 }}>
+            <DuoPressable
+              testID="lesson-complete-repeat"
+              edgeColor={t.accent}
+              disabled={repeatOpening}
+              accessibilityState={{ busy: repeatOpening }}
+              pressedExternally={repeatOpening}
+              wrapStyle={{ opacity: repeatOpening ? 0.72 : 1 }}
+              style={{
+                width: '100%', backgroundColor: t.bgCard,
+                borderRadius: 16, padding: 16,
+                borderWidth: 0, borderColor: t.accent,
+                flexDirection: 'row', justifyContent: 'center', gap: 8,
+                overflow: 'hidden',
+              }}
+              onPress={handleRepeatLesson}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '600' }}>
+                ↺ {c.repeatLesson}
+              </Text>
+            </DuoPressable>
+            <EnergyCostBadge testID="lesson-complete-repeat-energy-cost" />
+          </View>
 
           {/* Поделиться результатом */}
           <TouchableOpacity

@@ -15,11 +15,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { glassFill } from '../components/GlassSurface';
 import ScreenGradient from '../components/ScreenGradient';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from './analytics';
+import { minutesUntilDailyQuotaResetUtc } from './max_call_daily_quota';
 import type { TranscriptTurn } from './max_call_transcript';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { submitMaxVoiceFeedback } from './max_voice_feedback_client';
@@ -163,6 +165,13 @@ export default function MaxVoiceReview() {
   const pendingSinceRef = useRef<number | null>(null);
   const readyAnnouncedRef = useRef<string | null>(null);
   const readyTitleRef = useRef<Text>(null);
+  // зачем (владелец 2026-08-24, аудит после первого прохода): хуки обязаны
+  // жить выше ранних return (loading/empty/error) ниже по компоненту — иначе
+  // порядок хуков между рендерами меняется (нарушение Rules of Hooks). Сам
+  // useEffect идёт чуть ниже (после pendingRequest, всё ещё до return) —
+  // ему нужен reviewState.kind === 'pending', который к этой строке ещё не
+  // разобран.
+  const [resetMinutes, setResetMinutes] = useState(() => minutesUntilDailyQuotaResetUtc(Date.now()));
 
   useEffect(() => {
     let cancelled = false;
@@ -239,35 +248,46 @@ export default function MaxVoiceReview() {
     })();
   }, []);
 
-  const homeworkSavedForRef = useRef<string | null>(null);
-  useEffect(() => {
-    if (!localResult || localResult.format !== 'tutor') return;
-    const sessionId = localResult.sessionId ?? 'local';
-    if (homeworkSavedForRef.current === sessionId) return;
-    homeworkSavedForRef.current = sessionId;
-    void Promise.all((localResult.tutor?.homeworkItems ?? []).map(async (item, index) => {
-      try {
-        await captureCurrentAccountObjectiveAttempt({
-          attemptId: `max-tutor-homework:${sessionId}:${index}`,
-          studyTarget: localResult.studyTarget === 'fr' ? 'fr' : 'en',
-          verdict: 'wrong',
-          objective: true,
-          content: {
-            sourceKind: 'voice_review',
-            sourceId: `${sessionId}:homework:${index}`,
-            canonicalTarget: item.text,
-            ...(item.meaning ? { sourceMeaning: item.meaning } : {}),
-          },
-          facet: { kind: 'form', expected: item.text },
-        });
-      } catch {
-        // One local practice-item failure must not block the review.
-      }
-    }));
-  }, [localResult]);
-
   const projection = reviewState.kind === 'ready' ? projectMaxReview(reviewState.receipt) : null;
   const pendingRequest = reviewState.kind === 'pending' ? reviewState.envelope.request : null;
+  // зачем (владелец 2026-08-24): вычислено здесь (до ранних return ниже), а
+  // не рядом с остальными «endedInBackground»-переменными — эффект таймера
+  // до сброса квоты обязан жить выше ранних return вместе с остальными
+  // хуками (Rules of Hooks запрещают условные хуки), поэтому и его входные
+  // данные считаются здесь же.
+  const activeEndReason = reviewState.kind === 'ready'
+    ? reviewState.receipt.endReason
+    : pendingRequest?.endReason ?? localResult?.endReason;
+  // зачем (аудит 2026-08-24): endReason==='capped' сервер ставит и при обычном
+  // лимите ФОРМАТА (sessionCapSec), не только при исчерпании дня — точную
+  // причину и таймер до сброса можно показать, только когда жив localResult
+  // (свежий звонок на ЭТОМ устройстве, module-level переменная, не переживает
+  // перезапуск процесса). После перезапуска / входа по deep link localResult
+  // пуст — тогда честный, но МЯГКИЙ текст без конкретного числа минут и без
+  // отбора кнопки «Позвонить ещё раз» (решение владельца): врать неточным
+  // таймером хуже, чем не показывать его вовсе.
+  // Порог <=60 совпадает с dailyQuotaView.tone (max_call_daily_quota.ts) —
+  // тот же момент, когда полоса/бейдж уже красные, экран итогов тоже
+  // считает день исчерпанным, без расхождения на границе в одну секунду.
+  const endedCapped = activeEndReason === 'capped'
+    && localResult?.dayRemainingSec !== null
+    && localResult?.dayRemainingSec !== undefined
+    && localResult.dayRemainingSec <= 60;
+  const endedCappedNoQuotaData = activeEndReason === 'capped' && !endedCapped
+    && (localResult?.dayRemainingSec === null || localResult?.dayRemainingSec === undefined);
+  useEffect(() => {
+    if (!endedCapped) return undefined;
+    const id = setInterval(() => setResetMinutes(minutesUntilDailyQuotaResetUtc(Date.now())), 30_000);
+    return () => clearInterval(id);
+  }, [endedCapped]);
+  const activeStudyTarget = localResult?.studyTarget
+    ?? pendingRequest?.studyTarget
+    ?? (reviewState.kind === 'ready' ? reviewState.receipt.studyTarget : undefined);
+  const correctionPracticeTarget = activeStudyTarget === 'fr'
+    ? 'fr'
+    : activeStudyTarget === 'es'
+      ? null
+      : 'en';
   const durationSec = projection?.durationSec ?? pendingRequest?.durationSec ?? localResult?.durationSec ?? 0;
   const speechSec = reviewState.kind === 'ready'
     ? reviewState.receipt.speechSec ?? localResult?.speechSec ?? null
@@ -291,6 +311,7 @@ export default function MaxVoiceReview() {
       if (localResult.cefr) nextParams.cefr = localResult.cefr;
       if (localResult.devMode) nextParams.devMode = '1';
     }
+    if (activeStudyTarget) nextParams.studyTarget = activeStudyTarget;
     router.replace({ pathname: '/max_call_prestart', params: nextParams } as any);
   };
 
@@ -299,10 +320,16 @@ export default function MaxVoiceReview() {
     if (!correction || practiceOpening) return;
     hapticTap();
     setPracticeOpening(true);
+    // Mistake Practice currently owns en/fr stores only. Do not silently write
+    // a Spanish correction into the English journal.
+    if (!correctionPracticeTarget) {
+      setPracticeOpening(false);
+      return;
+    }
     try {
       const captured = await captureCurrentAccountObjectiveAttempt({
         attemptId: `max-review-correction:${activeSessionId}`,
-        studyTarget: localResult?.studyTarget === 'fr' ? 'fr' : 'en',
+        studyTarget: correctionPracticeTarget,
         verdict: 'wrong',
         objective: true,
         content: {
@@ -422,9 +449,36 @@ export default function MaxVoiceReview() {
 
   // зачем: аудит 2026-08-22 — урок, оборванный сворачиванием приложения,
   // выглядел как нормально завершённый; человек не понимал, почему он короткий.
-  const endedInBackground = (reviewState.kind === 'ready'
-    ? reviewState.receipt.endReason
-    : pendingRequest?.endReason ?? localResult?.endReason) === 'background';
+  const endedInBackground = activeEndReason === 'background';
+  // зачем (владелец 2026-08-24): звонок, оборванный по дневному лимиту, тоже
+  // выглядел как обычное «Разговор завершён» — человек не понимал, что дело
+  // не в учителе, а в исчерпанных минутах, и «Позвонить ещё раз» вёл на
+  // пре-экран, который тут же откажет («Минуты закончились»). endedCapped уже
+  // посчитан выше (вместе с хуком таймера, до ранних return) — переиспользуем
+  // ту же переменную здесь, без промежуточного алиаса.
+  const resetHours = Math.floor(resetMinutes / 60);
+  const resetMinutesRest = resetMinutes % 60;
+  const resetInLabel = resetHours > 0
+    ? triLang(lang, {
+        ru: `Новые минуты — через ${resetHours} ч ${resetMinutesRest} мин`,
+        uk: `Нові хвилини — через ${resetHours} год ${resetMinutesRest} хв`,
+        es: `Nuevos minutos en ${resetHours} h ${resetMinutesRest} min`,
+        'pt-BR': `Novos minutos em ${resetHours} h ${resetMinutesRest} min`,
+        vi: `Phút mới sau ${resetHours} giờ ${resetMinutesRest} phút`,
+        id: `Menit baru dalam ${resetHours} jam ${resetMinutesRest} mnt`,
+        tr: `Yeni dakikalar ${resetHours} sa ${resetMinutesRest} dk sonra`,
+        pl: `Nowe minuty za ${resetHours} godz. ${resetMinutesRest} min`,
+      })
+    : triLang(lang, {
+        ru: `Новые минуты — через ${resetMinutesRest} мин`,
+        uk: `Нові хвилини — через ${resetMinutesRest} хв`,
+        es: `Nuevos minutos en ${resetMinutesRest} min`,
+        'pt-BR': `Novos minutos em ${resetMinutesRest} min`,
+        vi: `Phút mới sau ${resetMinutesRest} phút`,
+        id: `Menit baru dalam ${resetMinutesRest} mnt`,
+        tr: `Yeni dakikalar ${resetMinutesRest} dk sonra`,
+        pl: `Nowe minuty za ${resetMinutesRest} min`,
+      });
 
   return (
     <ScreenGradient>
@@ -553,6 +607,43 @@ export default function MaxVoiceReview() {
             {endedInBackground ? (
               <Text testID="max-voice-review-background-note" style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.endedBackground}</Text>
             ) : null}
+            {endedCapped ? (
+              <View testID="max-voice-review-capped-note" style={{ marginTop: 14, borderRadius: 14, backgroundColor: glassFill(t.bgCard, 0.55), padding: 12 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.4) }} maxFontSizeMultiplier={2}>
+                  {triLang(lang, {
+                    ru: 'Разговор завершился — закончились минуты MAX на сегодня',
+                    uk: 'Розмова завершилася — закінчилися хвилини MAX на сьогодні',
+                    es: 'La conversación terminó: se acabaron los minutos de MAX de hoy',
+                    'pt-BR': 'A conversa terminou: acabaram os minutos de MAX de hoje',
+                    vi: 'Cuộc trò chuyện kết thúc — hết phút MAX hôm nay',
+                    id: 'Percakapan berakhir — menit MAX hari ini habis',
+                    tr: 'Konuşma sona erdi — bugünkü MAX dakikaları bitti',
+                    pl: 'Rozmowa się zakończyła — skończyły się dzisiejsze minuty MAX',
+                  })}
+                </Text>
+                <Text accessibilityLiveRegion="polite" style={{ color: t.accent, fontSize: f.sub, fontWeight: '800', marginTop: 6 }} maxFontSizeMultiplier={2}>
+                  {resetInLabel}
+                </Text>
+              </View>
+            ) : null}
+            {endedCappedNoQuotaData ? (
+              // зачем (аудит 2026-08-24): capped без localResult (перезапуск
+              // приложения / deep link) — точную причину и таймер показать
+              // нечестно, сервер не хранит dayRemainingSec в receipt. Мягкий
+              // текст без числа минут; кнопка «Позвонить ещё раз» остаётся.
+              <Text testID="max-voice-review-capped-soft-note" style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 10 }} maxFontSizeMultiplier={2}>
+                {triLang(lang, {
+                  ru: 'Разговор завершился по лимиту времени MAX',
+                  uk: 'Розмова завершилася через ліміт часу MAX',
+                  es: 'La conversación terminó por el límite de tiempo de MAX',
+                  'pt-BR': 'A conversa terminou pelo limite de tempo do MAX',
+                  vi: 'Cuộc trò chuyện kết thúc do giới hạn thời gian MAX',
+                  id: 'Percakapan berakhir karena batas waktu MAX',
+                  tr: 'Konuşma MAX süre sınırı nedeniyle sona erdi',
+                  pl: 'Rozmowa zakończyła się z powodu limitu czasu MAX',
+                })}
+              </Text>
+            ) : null}
             {reviewState.kind === 'pending' ? (
               <View style={{ marginTop: 14 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -597,12 +688,13 @@ export default function MaxVoiceReview() {
                 <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', marginTop: 14, textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.say}</Text>
                 <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900', marginTop: 4 }} maxFontSizeMultiplier={2}>{projection.correction.target}</Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 10 }} maxFontSizeMultiplier={2}>{projection.correction.explanation}</Text>
-                <TouchableOpacity testID="max-voice-review-practice" accessibilityRole="button" accessibilityLabel={c.practice} accessibilityHint={c.practiceHint} accessibilityState={{ busy: practiceOpening, disabled: practiceOpening }} disabled={practiceOpening} onPress={() => void practiceCorrection()} style={{ minHeight: 54, borderRadius: 16, backgroundColor: t.accent, marginTop: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 }}>
+                {correctionPracticeTarget ? <TouchableOpacity testID="max-voice-review-practice" accessibilityRole="button" accessibilityLabel={c.practice} accessibilityHint={c.practiceHint} accessibilityState={{ busy: practiceOpening, disabled: practiceOpening }} disabled={practiceOpening} onPress={() => void practiceCorrection()} style={{ minHeight: 54, borderRadius: 16, backgroundColor: t.accent, marginTop: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 }}>
                   {/* зачем: аудит 2026-08-22 — busy был только в accessibility, зрячий не видел отклика */}
                   {practiceOpening
                     ? <ActivityIndicator size="small" color={t.correctText} />
                     : <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>{c.practice}</Text>}
-                </TouchableOpacity>
+                  <EnergyCostBadge testID="max-voice-review-energy-cost" />
+                </TouchableOpacity> : null}
               </>
             ) : <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 12 }} maxFontSizeMultiplier={2}>{projection ? c.noFix : c.pending}</Text>}
           </View>
@@ -653,8 +745,20 @@ export default function MaxVoiceReview() {
             </View>
           ) : null}
 
-          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.home} accessibilityHint={c.closeHint} onPress={goHome} style={{ minHeight: 52, borderRadius: 16, borderWidth: 1, borderColor: t.border, marginTop: 18, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '900' }}>{c.home}</Text></TouchableOpacity>
-          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.callAgain} accessibilityHint={c.callAgainHint} onPress={callAgain} style={{ minHeight: 58, borderRadius: 18, backgroundColor: t.accent, marginTop: 10, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' }}><Ionicons name="call" size={20} color={t.correctText} /><Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }}>{c.callAgain}</Text></TouchableOpacity>
+          {endedCapped ? (
+            <TouchableOpacity testID="max-voice-review-home-primary" accessibilityRole="button" accessibilityLabel={c.home} accessibilityHint={c.closeHint} onPress={goHome} style={{ minHeight: 58, borderRadius: 18, backgroundColor: t.accent, marginTop: 18, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name="home" size={20} color={t.correctText} />
+              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }}>{c.home}</Text>
+            </TouchableOpacity>
+          ) : (
+            <>
+              {/* зачем (аудит 2026-08-24): владелец запрещает обводки контейнеров —
+                  была borderWidth/borderColor, заменил на заливку тоном (bgCard),
+                  как у прочих вторичных кнопок этого экрана. */}
+              <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.home} accessibilityHint={c.closeHint} onPress={goHome} style={{ minHeight: 52, borderRadius: 16, backgroundColor: t.bgCard, marginTop: 18, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '900' }}>{c.home}</Text></TouchableOpacity>
+              <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.callAgain} accessibilityHint={c.callAgainHint} onPress={callAgain} style={{ minHeight: 58, borderRadius: 18, backgroundColor: t.accent, marginTop: 10, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' }}><Ionicons name="call" size={20} color={t.correctText} /><Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }}>{c.callAgain}</Text></TouchableOpacity>
+            </>
+          )}
         </ScrollView>
       </SafeAreaView>
     </ScreenGradient>

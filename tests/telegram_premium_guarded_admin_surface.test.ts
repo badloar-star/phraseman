@@ -15,7 +15,8 @@ describe('canonical Telegram Premium admin activation surface', () => {
 
   it('shows diagnostic orders and nickname candidates but only exposes the paid-plan activation command', () => {
     expect(live).toContain("collection(db, 'telegram_premium_orders')");
-    expect(live).toContain("collection(db, 'promo_codes')");
+    expect(live).toContain("httpsCallable(functionsUs, 'adminInspectTelegramPromoCode')");
+    expect(live).not.toContain("getDoc(doc(db, 'promo_codes'");
     expect(live).toContain('loadTelegramPremiumOrders');
     expect(live).toContain('findTelegramPremiumUserCandidates');
     expect(live).toContain('renderTelegramPremiumCandidates');
@@ -37,7 +38,7 @@ describe('canonical Telegram Premium admin activation surface', () => {
     expect(live).not.toContain("updateDoc(doc(db, 'telegram_premium_orders'");
     // зачем: важен сам экспорт, а не стиль кавычек — Prettier в functions/ ставит двойные.
     expect(index).toMatch(
-      /export \{ adminActivateTelegramPremiumOrder \} from ['"]\.\/telegram_premium_admin['"];/,
+      /export \{ adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode \} from ['"]\.\/telegram_premium_admin['"];/,
     );
   });
 

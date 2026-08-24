@@ -285,6 +285,11 @@ interface SafetyFlagContext {
   retainUntilMs?: number;
 }
 
+interface MaxVoiceSafetySignalContext {
+  mode: 'voice_tutor' | 'voice_call';
+  source: 'keywords' | 'moderation' | 'tutor_tool';
+}
+
 /** Срок хранения записей сейфти-журнала голосовых уроков: 2 года. */
 export const SAFETY_FLAG_RETENTION_MS = 2 * 365 * 24 * 60 * 60 * 1000;
 
@@ -365,5 +370,29 @@ export async function recordSafetyFlag(
     }
   } catch (error) {
     console.error('[ai_safety] failed to send safety alert', error);
+  }
+}
+
+/**
+ * MAX-specific operator signal. The owner-approved MAX privacy boundary forbids
+ * conversation content, learner identity and session identifiers in safety
+ * alerts or durable storage. This path deliberately does not touch Firestore.
+ */
+export async function recordMaxVoiceSafetySignal(
+  verdict: SafetyVerdict,
+  ctx: MaxVoiceSafetySignalContext,
+): Promise<boolean> {
+  if (!verdict.flagged || !verdict.category) return false;
+  try {
+    const msg =
+      `🆘 <b>MAX safety signal</b>\n` +
+      `<b>Category:</b> ${escapeHtml(verdict.category)}\n` +
+      `<b>Mode:</b> ${escapeHtml(ctx.mode)}\n` +
+      `<b>Source:</b> ${escapeHtml(ctx.source)}\n` +
+      'Conversation content and learner identity are not retained.';
+    return await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value() || process.env.ADMIN_ALERT_BOT_TOKEN || '', msg, null);
+  } catch (error) {
+    console.error('[ai_safety] failed to send redacted MAX safety signal', error);
+    return false;
   }
 }

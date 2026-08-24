@@ -29,11 +29,13 @@ import { upsertEmailContact } from './email_contacts';
 import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
 import { GIFT_CERTIFICATE_PHRASES, resolveGiftPhrase } from './gift_certificate_phrases';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
 const DEAD_LETTER_COLLECTION = 'web_checkout_dead_letter';
 const GIFT_CERTIFICATE_DELIVERIES_COLLECTION = 'gift_certificate_deliveries';
+const GIFT_CERTIFICATE_ARCHIVE_COLLECTION = 'gift_certificate_archive';
 const CONFIG_DOC = 'web_checkout/config';
 const TELEGRAM_ADMIN_CONFIG_DOC = 'telegram_premium_bot/config';
 const SITE_ORIGIN = 'https://knowlyapps.com';
@@ -191,11 +193,55 @@ type AnyRequest = {
   headers: Record<string, string | string[] | undefined>;
   body?: unknown;
   rawBody?: Buffer;
+  ip?: string;
+  socket?: { remoteAddress?: string };
 };
 type AnyResponse = {
   set: (key: string, value: string) => void;
   status: (code: number) => { send: (body: string) => void; json: (body: unknown) => void };
 };
+
+// зачем: аудит безопасности 2026-08-22 — публичные checkout-эндпоинты (без
+// auth по дизайну — это воронка оплаты с сайта) не имели IP-throttle, в
+// отличие от siteStatsTrack. Спам создания заказов раздувает вызовы
+// Stripe/PayPal API и Firestore-записи (деньги украсть нельзя — оплата
+// подтверждается отдельным подписанным вебхуком/капчей провайдера, но
+// нагрузка/стоимость реальны). Тот же паттерн, что site_stats.ts:84-107.
+const CHECKOUT_RATE_COLLECTION = 'web_checkout_rate_limits';
+
+function checkoutClientIp(req: AnyRequest): string {
+  const forwarded = req.headers['x-forwarded-for'];
+  const first = Array.isArray(forwarded) ? forwarded[0] : forwarded;
+  return String(first ?? '').split(',')[0]?.trim() || req.ip || req.socket?.remoteAddress || 'unknown';
+}
+
+/** true = лимит не превышен, запрос можно обрабатывать. windowMs/max настраиваются per-эндпоинт. */
+async function reserveCheckoutRate(
+  db: FirebaseFirestore.Firestore,
+  req: AnyRequest,
+  bucket: string,
+  windowMs: number,
+  max: number,
+): Promise<boolean> {
+  const ip = checkoutClientIp(req);
+  const ipHash = createHash('sha256').update(ip).digest('hex').slice(0, 32);
+  const now = Date.now();
+  const ref = db.collection(CHECKOUT_RATE_COLLECTION).doc(`${bucket}_${ipHash}`);
+  return db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    const data = snap.data() || {};
+    const windowStartMs = Number(data.windowStartMs) || 0;
+    const sameWindow = now - windowStartMs < windowMs;
+    const count = sameWindow ? Number(data.count) || 0 : 0;
+    if (count >= max) return false;
+    tx.set(ref, {
+      windowStartMs: sameWindow ? windowStartMs : now,
+      count: count + 1,
+      updatedAt: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    return true;
+  });
+}
 
 function applyCors(req: AnyRequest, res: AnyResponse): boolean {
   const origin = typeof req.headers.origin === 'string' ? req.headers.origin : undefined;
@@ -364,6 +410,132 @@ export function readGiftCertificateBatchReplay(
   return response as GiftCertificateBatchResponse;
 }
 
+export function giftCertificateBatchOperationStatus(
+  persisted: FirebaseFirestore.DocumentData | undefined,
+  expected: { operationId: string; actorUid: string },
+): { status: 'not_found' | 'pending' | 'cancelled' }
+  | { status: 'completed'; receipt: GiftCertificateBatchResponse } {
+  if (!persisted) return { status: 'not_found' };
+  if (persisted.operationId !== expected.operationId
+    || persisted.actorUid !== expected.actorUid) {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  if (persisted.schemaVersion === 'gift-certificate-batch-operation.v2') {
+    if (persisted.state === 'cancelled') return { status: 'cancelled' };
+    if (persisted.state === 'pending') return { status: 'pending' };
+    if (persisted.state !== 'completed') {
+      throw new HttpsError('internal', 'gift_certificate_operation_corrupt');
+    }
+  } else if (persisted.schemaVersion !== 'gift-certificate-batch-operation.v1') {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  const persistedRequestKey = String(persisted.requestKey ?? '');
+  if (!/^[0-9a-f]{64}$/.test(persistedRequestKey)) {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  const response = persisted.response as Partial<GiftCertificateBatchResponse> | null | undefined;
+  if (response?.ok !== true
+    || response.operationId !== expected.operationId
+    || typeof response.batchId !== 'string'
+    || !response.batchId
+    || !Array.isArray(response.certificates)
+    || response.certificates.length < 1
+    || response.certificates.length > 200) {
+    throw new HttpsError('internal', 'gift_certificate_operation_corrupt');
+  }
+  const receipt = response as GiftCertificateBatchResponse;
+  return { status: 'completed', receipt };
+}
+
+type GiftCertificateBatchOperationIdentity = {
+  operationId: string;
+  actorUid: string;
+};
+
+type GiftCertificateBatchOperationReservationInput = GiftCertificateBatchOperationIdentity & {
+  requestKey: string;
+  nowMs: number;
+};
+
+export function planGiftCertificateBatchOperationReservation(
+  persisted: FirebaseFirestore.DocumentData | undefined,
+  input: GiftCertificateBatchOperationReservationInput,
+): { kind: 'reserve'; document: Record<string, unknown> }
+  | { kind: 'continue' }
+  | { kind: 'replay'; response: GiftCertificateBatchResponse } {
+  if (!/^[0-9a-f]{64}$/.test(input.requestKey)) {
+    throw new HttpsError('invalid-argument', 'gift_certificate_operation_request_key_invalid');
+  }
+  if (!persisted) {
+    return {
+      kind: 'reserve',
+      document: {
+        schemaVersion: 'gift-certificate-batch-operation.v2',
+        state: 'pending',
+        operationId: input.operationId,
+        actorUid: input.actorUid,
+        requestKey: input.requestKey,
+        createdAtMs: input.nowMs,
+        updatedAtMs: input.nowMs,
+      },
+    };
+  }
+  if (persisted.operationId !== input.operationId
+    || persisted.actorUid !== input.actorUid
+    || (persisted.requestKey && persisted.requestKey !== input.requestKey)) {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  if (persisted.schemaVersion === 'gift-certificate-batch-operation.v1') {
+    const response = readGiftCertificateBatchReplay(persisted, input);
+    if (!response) throw new HttpsError('internal', 'gift_certificate_operation_corrupt');
+    return { kind: 'replay', response };
+  }
+  if (persisted.schemaVersion !== 'gift-certificate-batch-operation.v2') {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  if (persisted.state === 'cancelled') {
+    throw new HttpsError('failed-precondition', 'gift_certificate_operation_cancelled');
+  }
+  if (persisted.state === 'pending') return { kind: 'continue' };
+  if (persisted.state === 'completed') {
+    const status = giftCertificateBatchOperationStatus(persisted, input);
+    if (status.status !== 'completed') {
+      throw new HttpsError('internal', 'gift_certificate_operation_corrupt');
+    }
+    return { kind: 'replay', response: status.receipt };
+  }
+  throw new HttpsError('internal', 'gift_certificate_operation_corrupt');
+}
+
+export function planGiftCertificateBatchOperationCancellation(
+  persisted: FirebaseFirestore.DocumentData | undefined,
+  input: GiftCertificateBatchOperationIdentity & { nowMs: number },
+): { kind: 'cancel'; document: Record<string, unknown> }
+  | { kind: 'already_cancelled' } {
+  if (!persisted) {
+    return {
+      kind: 'cancel',
+      document: {
+        schemaVersion: 'gift-certificate-batch-operation.v2',
+        state: 'cancelled',
+        operationId: input.operationId,
+        actorUid: input.actorUid,
+        requestKey: '',
+        createdAtMs: input.nowMs,
+        updatedAtMs: input.nowMs,
+      },
+    };
+  }
+  if (persisted.operationId !== input.operationId || persisted.actorUid !== input.actorUid) {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  if (persisted.schemaVersion === 'gift-certificate-batch-operation.v2'
+    && persisted.state === 'cancelled') {
+    return { kind: 'already_cancelled' };
+  }
+  throw new HttpsError('failed-precondition', 'gift_certificate_operation_in_progress');
+}
+
 /** Pure validation/planning boundary shared by the callable and focused tests. */
 export function createGiftCertificateBatchPlan(params: {
   input: GiftCertificateBatchInput;
@@ -506,8 +678,7 @@ export function createGiftCertificateBatchPlan(params: {
     auditDoc: {
       action: 'gift_certificate_batch_create',
       targetUid: batchId,
-      details: { batchId, product: input.product, count, certificateIds: codes },
-      adminEmail: cleanShortText(params.actorEmail, 200),
+      details: { batchId, count },
       adminUid: cleanShortText(params.actorUid, 128),
       ts: new Date(params.nowMs).toISOString(),
     },
@@ -527,8 +698,9 @@ export function buildGiftCertificateDeletePlan(params: {
   nowMs: number;
   actorUid: string;
   actorEmail: string;
+  auditReference?: unknown;
   reason: unknown;
-}): { certificateId: string; auditDoc: Record<string, unknown> } {
+}): { certificateId: string; archiveDoc: Record<string, unknown>; auditDoc: Record<string, unknown> } {
   const certificateId = cleanShortText(params.certificateId, 32).toUpperCase();
   const product = isWebPlan(params.certificate.product) ? params.certificate.product : null;
   if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)
@@ -559,23 +731,175 @@ export function buildGiftCertificateDeletePlan(params: {
     || usedCount !== 0) {
     throw new HttpsError('failed-precondition', 'gift_certificate_promo_invalid');
   }
+  const expectedReward = activationRewardForPlan(product);
+  const certificateExpiresAtMs = Number(params.certificate.expiresAtMs);
+  const certificateCodeExpiresAtMs = Number(params.certificate.codeExpiresAtMs);
+  const promoExpiresAtMs = Number(params.promo.expiresAtMs);
+  if (params.promo.enabled !== true) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_delete_disabled');
+  }
+  if (params.certificate.testIssue === true) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_delete_test_issue');
+  }
+  if (params.certificate.plan !== undefined && params.certificate.plan !== product) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_delete_plan_mismatch');
+  }
+  if (params.certificate.assetUrl !== GIFT_CERTIFICATE_ART[product]) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_delete_asset_mismatch');
+  }
+  if (Number(params.certificate.rewardDays) !== expectedReward.rewardDays
+    || params.certificate.rewardKind !== expectedReward.rewardKind
+    || Number(params.promo.rewardDays) !== expectedReward.rewardDays
+    || params.promo.rewardKind !== expectedReward.rewardKind) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_delete_reward_mismatch');
+  }
+  if (!Number.isSafeInteger(certificateExpiresAtMs)
+    || !Number.isSafeInteger(certificateCodeExpiresAtMs)
+    || !Number.isSafeInteger(promoExpiresAtMs)
+    || certificateExpiresAtMs !== certificateCodeExpiresAtMs
+    || certificateExpiresAtMs !== promoExpiresAtMs) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_delete_expiry_mismatch');
+  }
+  const archivedDisplay = giftCertificateDisplayRecord(
+    certificateId,
+    params.certificate,
+    { ...params.promo, enabled: false },
+    params.nowMs,
+  );
+  const auditReference = cleanShortText(params.auditReference, 128);
+  if (!auditReference) throw new HttpsError('invalid-argument', 'gift_certificate_audit_reference_required');
   return {
     certificateId,
+    archiveDoc: {
+      schemaVersion: 'gift-certificate-archive.v1',
+      archiveKey: `gift-certificate-delete:${certificateId}`,
+      publicId: `gift-archive-${createHash('sha256').update(`gift-certificate-archive:${certificateId}`, 'utf8').digest('hex').slice(0, 20)}`,
+      certificateId,
+      product,
+      archiveReason: 'deleted',
+      createdAtMs: Math.max(0, Math.trunc(Number(params.certificate.createdAtMs ?? params.nowMs)) || 0),
+      archivedAtMs: params.nowMs,
+      certificate: {
+        certificateId,
+        activationCode: certificateId,
+        batchId: cleanShortText(archivedDisplay.batchId, 120),
+        recipientName: cleanShortText(archivedDisplay.recipientName, 60),
+        recipientEmail: cleanEmail(archivedDisplay.recipientEmail) ?? '',
+        savedRecipientName: cleanShortText(archivedDisplay.savedRecipientName, 60),
+        savedSenderName: cleanShortText(archivedDisplay.savedSenderName, 60),
+        displayRecipientName: cleanShortText(archivedDisplay.displayRecipientName, 60),
+        displaySenderName: cleanShortText(archivedDisplay.displaySenderName, 60),
+        assetUrl: params.certificate.assetUrl,
+        expiresAtMs: certificateExpiresAtMs,
+        status: deliveryStatus || 'generated',
+        archived: true,
+        archiveReason: 'deleted',
+        archivedAtMs: params.nowMs,
+        activationStatus: 'disabled',
+        activationStatusLabel: 'Удалён',
+      },
+    },
     auditDoc: {
       action: 'gift_certificate_delete',
-      targetUid: certificateId,
-      reason: cleanShortText(params.reason, 500),
+      targetUid: auditReference,
       details: {
-        certificateId,
-        batchId: cleanShortText(params.certificate.batchId, 120),
-        product,
-        deliveryStatus: deliveryStatus || 'generated',
+        batchPresent: Boolean(cleanShortText(params.certificate.batchId, 120)),
+        reasonProvided: Boolean(cleanShortText(params.reason, 500)),
       },
-      adminEmail: cleanShortText(params.actorEmail, 200),
       adminUid: cleanShortText(params.actorUid, 128),
       ts: new Date(params.nowMs).toISOString(),
     },
   };
+}
+
+export function giftCertificateHistoryProjection(
+  archive: Record<string, unknown>,
+  canReadManualAccessSecrets: boolean,
+): Record<string, unknown> {
+  const certificate = archive.certificate && typeof archive.certificate === 'object'
+    ? archive.certificate as Record<string, unknown>
+    : {};
+  const common = {
+    publicId: cleanShortText(archive.publicId, 64),
+    product: isWebPlan(archive.product) ? archive.product : null,
+    createdAtMs: Math.max(0, Math.trunc(Number(archive.createdAtMs ?? 0)) || 0),
+    archivedAtMs: Math.max(0, Math.trunc(Number(archive.archivedAtMs ?? 0)) || 0),
+    archived: true,
+    archiveReason: cleanShortText(archive.archiveReason, 40) || 'deleted',
+    activationStatus: 'disabled',
+    activationStatusLabel: 'Удалён',
+  };
+  if (!canReadManualAccessSecrets) return common;
+  return {
+    ...certificate,
+    ...common,
+    certificateId: cleanShortText(archive.certificateId ?? certificate.certificateId, 32),
+    activationCode: cleanShortText(certificate.activationCode ?? archive.certificateId, 32),
+  };
+}
+
+/**
+ * Least-privilege list row shared by current and immutable archive history.
+ * A certificate id is itself a bearer activation code, so read-only analysts
+ * receive only a deterministic non-bearer public id and operational status.
+ */
+export function giftCertificateListProjection(
+  record: Record<string, unknown>,
+  canReadManualAccessSecrets: boolean,
+): Record<string, unknown> {
+  const certificateId = cleanShortText(record.certificateId, 32).toUpperCase();
+  const publicId = cleanShortText(record.publicId, 64)
+    || (certificateId
+      ? `gift-history-${createHash('sha256').update(`gift-certificate-history:${certificateId}`, 'utf8').digest('hex').slice(0, 20)}`
+      : '');
+  const archived = record.archived === true;
+  const activationStatus = cleanShortText(record.activationStatus, 40) || 'invalid';
+  const active = !archived && activationStatus === 'available';
+  const actionAllowed = canReadManualAccessSecrets && active;
+  const capabilities = {
+    canViewSecrets: canReadManualAccessSecrets,
+    canDownload: actionAllowed,
+    canSend: actionAllowed,
+    canEdit: actionAllowed,
+    canDelete: actionAllowed,
+  };
+  const common = {
+    publicId,
+    product: isWebPlan(record.product) ? record.product : '',
+    productTitle: cleanShortText(record.productTitle, 100),
+    giftPhrase: cleanShortText(record.giftPhrase, 240),
+    createdAtMs: Math.max(0, Math.trunc(Number(record.createdAtMs ?? 0)) || 0),
+    updatedAtMs: Math.max(0, Math.trunc(Number(record.updatedAtMs ?? record.createdAtMs ?? 0)) || 0),
+    expiresAtMs: Math.max(0, Math.trunc(Number(record.expiresAtMs ?? 0)) || 0),
+    status: cleanShortText(record.status, 40),
+    activationStatus,
+    activationStatusLabel: cleanShortText(record.activationStatusLabel, 80) || 'Недоступен',
+    lastRedeemedAtMs: Math.max(0, Math.trunc(Number(record.lastRedeemedAtMs ?? 0)) || 0),
+    archived,
+    archiveReason: archived ? (cleanShortText(record.archiveReason, 40) || 'deleted') : '',
+    ...capabilities,
+  };
+  if (!canReadManualAccessSecrets) return common;
+  return { ...record, ...common, ...capabilities };
+}
+
+export function mergeGiftCertificateHistoryRecords(
+  current: readonly Record<string, unknown>[],
+  archived: readonly Record<string, unknown>[],
+): Record<string, unknown>[] {
+  const merged = new Map<string, Record<string, unknown>>();
+  for (const record of current) {
+    const certificateId = cleanShortText(record.certificateId, 32);
+    if (certificateId) merged.set(certificateId, record);
+  }
+  for (const record of archived) {
+    const certificateId = cleanShortText(record.certificateId ?? record.publicId, 64);
+    if (certificateId && !merged.has(certificateId)) merged.set(certificateId, record);
+  }
+  return [...merged.values()].sort((left, right) => {
+    const byCreatedAt = Number(right.createdAtMs ?? 0) - Number(left.createdAtMs ?? 0);
+    return byCreatedAt || String(right.certificateId ?? '').localeCompare(String(left.certificateId ?? ''));
+  });
 }
 
 export function assertGiftCertificateAssetResponse(input: {
@@ -934,8 +1258,6 @@ export function buildGiftCertificatePersonalizationUpdate(params: {
     updatedByUid: cleanShortText(params.actorUid, 128),
   };
   const auditDetails = {
-    certificateId,
-    personalizationMode,
     showRecipientName,
     showSenderName,
     recipientEmailSet: Boolean(recipientEmail),
@@ -1065,6 +1387,7 @@ export function buildSyntheticGiftCertificateReplacement(params: {
   nowMs: number;
   actorUid: string;
   actorEmail: string;
+  auditReference: unknown;
   input: SyntheticGiftCertificateReplacementInput;
   oldDoc: FirebaseFirestore.DocumentData;
 }): {
@@ -1110,6 +1433,8 @@ export function buildSyntheticGiftCertificateReplacement(params: {
   if (!/^yearly-\d{2}$/.test(giftPhraseId)) throw new HttpsError('invalid-argument', 'invalid_gift_phrase');
   const reason = cleanShortText(input.reason, 500);
   if (reason.length < 10) throw new HttpsError('invalid-argument', 'replacement_reason_required');
+  const auditReference = cleanShortText(params.auditReference, 128);
+  if (!auditReference) throw new HttpsError('invalid-argument', 'gift_certificate_audit_reference_required');
 
   const expiresAtMs = giftCodeExpiryMs(params.nowMs, true);
   const commonActor = {
@@ -1173,10 +1498,13 @@ export function buildSyntheticGiftCertificateReplacement(params: {
     },
     auditDoc: {
       action: 'gift_certificate_replace_synthetic',
-      targetUid: oldCode,
-      reason,
-      details: { oldCode, newCode, recipientEmail, giftTo, giftFrom, expiresAtMs },
-      adminEmail: params.actorEmail,
+      targetUid: auditReference,
+      details: {
+        recipientEmailSet: Boolean(recipientEmail),
+        recipientNameSet: Boolean(giftTo),
+        senderNameSet: Boolean(giftFrom),
+        reasonProvided: Boolean(reason),
+      },
       adminUid: params.actorUid,
       ts: new Date(params.nowMs).toISOString(),
     },
@@ -1683,16 +2011,38 @@ export const adminCreateGiftCertificateBatch = onCall(
     const db = getFirestore();
     const promoRefs = plan.items.map((item) => db.collection('promo_codes').doc(item.activationCode));
     const certificateRefs = plan.items.map((item) => db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(item.certificateId));
+    const archiveRefs = plan.items.map((item) => db.collection(GIFT_CERTIFICATE_ARCHIVE_COLLECTION).doc(item.certificateId));
     const operationRef = db.collection(GIFT_CERTIFICATE_BATCH_OPERATIONS_COLLECTION).doc(operationId);
     const auditRef = db.collection('admin_log').doc();
+    const initialReservation = await db.runTransaction(async (tx) => {
+      const operationSnapshot = await tx.get(operationRef);
+      const reservation = planGiftCertificateBatchOperationReservation(operationSnapshot.data(), {
+        operationId,
+        actorUid,
+        requestKey,
+        nowMs,
+      });
+      if (reservation.kind === 'reserve') tx.create(operationRef, reservation.document);
+      return reservation;
+    });
+    if (initialReservation.kind === 'replay') return initialReservation.response;
     return db.runTransaction(async (tx) => {
       const [operationSnapshot, ...snapshots] = await Promise.all([
         tx.get(operationRef),
         ...promoRefs.map((ref) => tx.get(ref)),
         ...certificateRefs.map((ref) => tx.get(ref)),
+        ...archiveRefs.map((ref) => tx.get(ref)),
       ]);
-      const replay = readGiftCertificateBatchReplay(operationSnapshot.data(), { operationId, actorUid, requestKey });
-      if (replay) return replay;
+      const reservation = planGiftCertificateBatchOperationReservation(operationSnapshot.data(), {
+        operationId,
+        actorUid,
+        requestKey,
+        nowMs,
+      });
+      if (reservation.kind === 'replay') return reservation.response;
+      if (reservation.kind !== 'continue') {
+        throw new HttpsError('internal', 'gift_certificate_operation_reservation_missing');
+      }
       assertGiftCertificateRefsAvailable(snapshots.map((snapshot) => snapshot.exists));
       const response: GiftCertificateBatchResponse = {
         ok: true,
@@ -1710,54 +2060,113 @@ export const adminCreateGiftCertificateBatch = onCall(
         tx.create(certificateRefs[index], item.certificateDoc);
       });
       tx.create(auditRef, plan.auditDoc);
-      tx.create(operationRef, {
-        schemaVersion: 'gift-certificate-batch-operation.v1',
-        operationId,
-        actorUid,
+      tx.set(operationRef, {
+        ...(operationSnapshot.data() ?? {}),
+        schemaVersion: 'gift-certificate-batch-operation.v2',
+        state: 'completed',
         actorEmail,
-        requestKey,
         response,
-        createdAtMs: nowMs,
+        updatedAtMs: nowMs,
       });
       return response;
     });
   },
 );
 
-/** Read-only paginated history; the browser follows every cursor to show all records. */
+/** Recovers a completed idempotent receipt for manual-access administrators only. */
+export const adminGetGiftCertificateBatchOperation = onCall(
+  GIFT_CERTIFICATE_READ_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    const operationId = normalizeGiftCertificateBatchOperationId(request.data?.operationId);
+    const actorUid = String(request.auth?.uid ?? '');
+    const snapshot = await getFirestore()
+      .collection(GIFT_CERTIFICATE_BATCH_OPERATIONS_COLLECTION)
+      .doc(operationId)
+      .get();
+    return {
+      ok: true,
+      ...giftCertificateBatchOperationStatus(snapshot.data(), { operationId, actorUid }),
+    };
+  },
+);
+
+/** Creates a fail-closed tombstone only before the create callable reserves the operation. */
+export const adminCancelGiftCertificateBatchOperation = onCall(
+  GIFT_CERTIFICATE_MUTATION_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    const operationId = normalizeGiftCertificateBatchOperationId(request.data?.operationId);
+    const actorUid = String(request.auth?.uid ?? '');
+    const db = getFirestore();
+    const operationRef = db.collection(GIFT_CERTIFICATE_BATCH_OPERATIONS_COLLECTION).doc(operationId);
+    await db.runTransaction(async (tx) => {
+      const snapshot = await tx.get(operationRef);
+      const cancellation = planGiftCertificateBatchOperationCancellation(snapshot.data(), {
+        operationId,
+        actorUid,
+        nowMs: Date.now(),
+      });
+      if (cancellation.kind === 'cancel') tx.create(operationRef, cancellation.document);
+    });
+    return { ok: true, operationId, status: 'cancelled' as const };
+  },
+);
+
+/** Read-only bounded history combining current and immutable deleted snapshots. */
 export const adminListGiftCertificates = onCall(
   GIFT_CERTIFICATE_READ_OPTIONS,
   async (request) => {
     assertGiftCertificateAdminReadAccess(request.auth as GiftCertificateAdminAuth);
     const db = getFirestore();
-    const pageSize = 100;
-    const cursorCreatedAtMs = Number(request.data?.cursor?.createdAtMs ?? 0);
-    const cursorCertificateId = cleanShortText(request.data?.cursor?.certificateId, 32);
-    let queryRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION)
+    const historyCap = 500;
+    const canReadManualAccessSecrets = hasClaimedPermission(
+      request.auth?.token as Record<string, unknown> | undefined,
+      'money.manual_access.write',
+    );
+    const [snapshot, archiveSnapshot] = await Promise.all([
+      db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION)
       .orderBy('createdAtMs', 'desc')
       .orderBy(FieldPath.documentId(), 'desc')
-      .limit(pageSize);
-    if (cursorCreatedAtMs > 0 && cursorCertificateId) {
-      queryRef = queryRef.startAfter(cursorCreatedAtMs, cursorCertificateId);
-    }
-    const snapshot = await queryRef.get();
+      .limit(historyCap)
+      .get(),
+      db.collection(GIFT_CERTIFICATE_ARCHIVE_COLLECTION)
+        .orderBy('createdAtMs', 'desc')
+        .orderBy(FieldPath.documentId(), 'desc')
+        .limit(historyCap)
+        .get(),
+    ]);
     const validCertificates = snapshot.docs.filter((certificate) => /^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificate.id));
     const promoRefs = validCertificates.map((certificate) => db.collection('promo_codes').doc(certificate.id));
     const promoSnapshots = promoRefs.length ? await db.getAll(...promoRefs) : [];
     const statusEvaluatedAtMs = Date.now();
-    const certificates = validCertificates.map((certificate, index) => giftCertificateDisplayRecord(
+    const currentCertificates = validCertificates.map((certificate, index) => giftCertificateDisplayRecord(
       certificate.id,
       certificate.data() ?? {},
       promoSnapshots[index]?.data() ?? {},
       statusEvaluatedAtMs,
     ));
-    const last = snapshot.docs[snapshot.docs.length - 1];
+    const archivedCertificates = archiveSnapshot.docs
+      .filter((archive) => /^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(archive.id))
+      .map((archive) => giftCertificateHistoryProjection({
+        ...archive.data(),
+        certificateId: archive.id,
+      }, true));
+    const certificates = mergeGiftCertificateHistoryRecords(currentCertificates, archivedCertificates)
+      .map((record) => giftCertificateListProjection(record, canReadManualAccessSecrets));
     return {
       ok: true,
       certificates,
-      nextCursor: snapshot.size === pageSize && last
-        ? { createdAtMs: Number(last.data()?.createdAtMs ?? 0), certificateId: last.id }
-        : null,
+      capabilities: {
+        canViewSecrets: canReadManualAccessSecrets,
+        canDownload: canReadManualAccessSecrets,
+        canSend: canReadManualAccessSecrets,
+        canEdit: canReadManualAccessSecrets,
+        canDelete: canReadManualAccessSecrets,
+      },
+      archiveSensitiveFields: canReadManualAccessSecrets ? 'included' : 'redacted',
+      nextCursor: null,
+      truncated: snapshot.size === historyCap || archiveSnapshot.size === historyCap,
     };
   },
 );
@@ -1774,6 +2183,7 @@ export const adminDeleteGiftCertificate = onCall(
     const db = getFirestore();
     const certificateRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(certificateId);
     const promoRef = db.collection('promo_codes').doc(certificateId);
+    const archiveRef = db.collection(GIFT_CERTIFICATE_ARCHIVE_COLLECTION).doc(certificateId);
     const auditRef = db.collection('admin_log').doc();
     const nowMs = Date.now();
     const actorUid = String(request.auth?.uid ?? '');
@@ -1797,10 +2207,12 @@ export const adminDeleteGiftCertificate = onCall(
         nowMs,
         actorUid,
         actorEmail,
+        auditReference: auditRef.id,
         reason: request.data?.reason,
       });
       tx.delete(certificateRef);
       tx.delete(promoRef);
+      tx.create(archiveRef, plan.archiveDoc);
       tx.create(auditRef, plan.auditDoc);
     });
     return { ok: true, certificateId, promoCodeDeleted: true };
@@ -1811,7 +2223,7 @@ export const adminDeleteGiftCertificate = onCall(
 export const adminGetGiftCertificateDownload = onCall(
   GIFT_CERTIFICATE_READ_OPTIONS,
   async (request) => {
-    assertGiftCertificateAdminReadAccess(request.auth as GiftCertificateAdminAuth);
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
     const certificateId = cleanShortText(request.data?.certificateId, 32).toUpperCase();
     if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)) {
       throw new HttpsError('invalid-argument', 'invalid_gift_certificate_id');
@@ -1880,9 +2292,8 @@ export const adminUpdateGiftCertificateRecipient = onCall(
       tx.update(certificateRef, result.patch);
       tx.create(auditRef, {
         action: 'gift_certificate_recipient_update',
-        targetUid: certificateId,
-        details: { certificateId, recipientEmailSet: Boolean(result.record.recipientEmail) },
-        adminEmail: actorEmail,
+        targetUid: auditRef.id,
+        details: { recipientEmailSet: Boolean(result.record.recipientEmail) },
         adminUid: actorUid,
         ts: new Date(nowMs).toISOString(),
       });
@@ -1924,9 +2335,8 @@ export const adminUpdateGiftCertificatePersonalization = onCall(
       tx.update(certificateRef, result.patch);
       tx.create(auditRef, {
         action: 'gift_certificate_personalization_update',
-        targetUid: certificateId,
+        targetUid: auditRef.id,
         details: result.auditDetails,
-        adminEmail: actorEmail,
         adminUid: actorUid,
         ts: new Date(nowMs).toISOString(),
       });
@@ -1970,7 +2380,8 @@ export const adminReplaceSyntheticGiftCertificate = onCall(
       if (!oldSnap.exists) throw new HttpsError('not-found', 'old_certificate_not_found');
       if (newSnap.exists || deliverySnap.exists) throw new HttpsError('already-exists', 'replacement_code_collision');
       const writes = buildSyntheticGiftCertificateReplacement({
-        oldCode, newCode, nowMs, actorUid, actorEmail, input, oldDoc: oldSnap.data() ?? {},
+        oldCode, newCode, nowMs, actorUid, actorEmail, auditReference: auditRef.id,
+        input, oldDoc: oldSnap.data() ?? {},
       });
       tx.update(oldRef, writes.oldCodePatch);
       tx.create(newRef, writes.newCodeDoc);
@@ -2201,6 +2612,10 @@ export const webCheckoutCreate = onRequest(
     }
 
     const db = getFirestore();
+    if (!(await reserveCheckoutRate(db, req as unknown as AnyRequest, 'create', 10 * 60 * 1000, 20))) {
+      res.status(429).json({ ok: false, error: 'rate_limited' });
+      return;
+    }
     const config = await readConfig(db);
     const amountCents = config.priceCents[plan];
 
@@ -2284,6 +2699,7 @@ async function handleSubscriptionRenewal(invoice: Record<string, unknown>): Prom
       const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
       const vipPatch = buildPromoVipPatch(progress, nowMs, addDays, 'days', code);
       tx.set(userRef, { progress: vipPatch, updatedAt: nowMs }, { merge: true });
+      writeAccessProjectionFromPatch(tx, userRef, progress, vipPatch, nowMs);
       result = `extended_user_${addDays}d`;
     } else if (codeSnap?.exists) {
       // Код ещё не введён → наращиваем награду самого кода.
@@ -2472,6 +2888,10 @@ export const paypalOrderCreate = onRequest(
     }
 
     const db = getFirestore();
+    if (!(await reserveCheckoutRate(db, req as unknown as AnyRequest, 'create', 10 * 60 * 1000, 20))) {
+      res.status(429).json({ ok: false, error: 'rate_limited' });
+      return;
+    }
     const config = await readConfig(db);
     const amountCents = config.priceCents[plan];
 
@@ -2542,6 +2962,10 @@ export const paypalOrderCapture = onRequest(
     }
 
     const db = getFirestore();
+    if (!(await reserveCheckoutRate(db, req as unknown as AnyRequest, 'capture', 10 * 60 * 1000, 20))) {
+      res.status(429).json({ ok: false, error: 'rate_limited' });
+      return;
+    }
     const config = await readConfig(db);
 
     try {
@@ -2670,6 +3094,12 @@ export const webOrderStatus = onRequest(
 
     try {
       const db = getFirestore();
+      // Щедрее, чем create/capture: страница «спасибо» легитимно опрашивает
+      // этот эндпоинт каждые несколько секунд, пока ждёт вебхук.
+      if (!(await reserveCheckoutRate(db, req as unknown as AnyRequest, 'status', 10 * 60 * 1000, 120))) {
+        res.status(429).json({ ok: false, error: 'rate_limited' });
+        return;
+      }
       const field = sessionId ? 'stripeSessionId' : 'paypalOrderId';
       const value = sessionId || paypalOrderId;
       const snap = await db.collection(ORDERS_COLLECTION).where(field, '==', value).limit(1).get();

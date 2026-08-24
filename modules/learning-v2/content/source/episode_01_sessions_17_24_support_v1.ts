@@ -1,4 +1,6 @@
 import type { EpisodeSourcePhrase, EpisodeSourcePhraseLocalizedDetails } from './episode_01_source_v1';
+import { EPISODE_01_SESSION_17_EDITORIAL_COPY_V1 } from './episode_01_session_17_editorial_copy_v1';
+import { EPISODE_01_SESSION_18_EDITORIAL_COPY_V1 } from './episode_01_session_18_editorial_copy_v1';
 import type { SessionKind } from './episode_01_session_map_v1';
 import type { LocalizedIntroRunsSource, LocalizedSource, SessionSource } from './session_shard_from_source_v1';
 
@@ -269,6 +271,28 @@ function translateMeaning(locale: Locale, english: string): string {
 
 function phrase(ordinal: number, position: number, english: string, features: readonly string[]): EpisodeSourcePhrase {
   const details = localizedDetails(english);
+  if (ordinal === 17) {
+    const editorial = EPISODE_01_SESSION_17_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 17 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      details[locale] = {
+        ...details[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
+  if (ordinal === 18) {
+    const editorial = EPISODE_01_SESSION_18_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 18 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      details[locale] = {
+        ...details[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
   return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: details.ru.meaning, explanation: details.ru.explanation, words: tokenise(english).map((correct) => ({ correct, category: wordCategory(correct), distractors: wordAlternatives(correct).map((value) => ({ value, reasonCode: 'wrong_token', why: localizedReason('ru', correct, value) })) })), localizedDetails: details, features };
 }
 
@@ -301,6 +325,89 @@ const TITLES: Record<Locale, readonly string[]> = {
   id: ['He dan she memakai is', 'Penyangkalan dengan he dan she', 'Pertanyaan dengan is', 'It: benda dan cuaca', 'Bentuk singkat dengan ’s', 'Keluarga saya', 'Berbicara tentang orang dan benda', 'Gabungan he, she, it'],
   tr: ['He ve she ile is', 'He ve she ile olumsuzluk', 'Is ile sorular', 'It: nesneler ve hava', '’s ile kısa biçimler', 'Benim ailem', 'Kişiler ve nesneler hakkında konuşmak', 'He, she, it bir arada'],
   pl: ['He i she z is', 'Przeczenie z he i she', 'Pytania z is', 'It: rzeczy i pogoda', 'Krótkie formy z ’s', 'Moja rodzina', 'Mówimy o osobach i rzeczach', 'Razem: he, she, it'],
+};
+
+const PAGE_TITLES: Record<Locale, readonly (readonly [string, string, string])[]> = {
+  ru: [
+    ['Один человек выбирает is', 'He или she + is + признак', 'Без is слова не соединяются'],
+    ['Not отрицает признак', 'Is not остаётся после человека', 'Не переносите not перед is'],
+    ['Вопрос слышен с первого Is', 'Is выходит перед he или she', 'Интонация не заменяет порядок'],
+    ['It называет вещь и погоду', 'Для одного it нужна форма is', 'Человека для погоды не ищут'],
+    ['Апостроф хранит целое is', 'He’s, she’s и it’s — один блок', 'Притяжательное ’s выглядит похоже'],
+    ['My называет моего близкого', 'Один родственник требует is', 'Family noun не становится местоимением'],
+    ['Смысл должен пережить произнесение', 'Говорите связку вместе с фразой', 'Не проглатывайте is и not'],
+    ['Сначала определите намерение', 'Форма и порядок работают вместе', 'Похожие слова могут сообщать разное'],
+  ],
+  uk: [
+    ['Одна людина обирає is', 'He або she + is + ознака', 'Без is слова не з’єднуються'],
+    ['Not заперечує ознаку', 'Is not лишається після людини', 'Не ставте not перед is'],
+    ['Питання чути з першого Is', 'Is виходить перед he або she', 'Інтонація не замінює порядок'],
+    ['It називає річ і погоду', 'Для одного it потрібне is', 'Для погоди не шукають людину'],
+    ['Апостроф зберігає ціле is', 'He’s, she’s та it’s — один блок', 'Присвійне ’s лише схоже'],
+    ['My називає мого близького', 'Один родич потребує is', 'Назва родича не є займенником'],
+    ['Зміст має зберегтися у вимові', 'Вимовляйте зв’язку разом із фразою', 'Не ковтайте is та not'],
+    ['Спершу визначте намір', 'Форма й порядок працюють разом', 'Схожі слова можуть сказати різне'],
+  ],
+  es: [
+    ['Una persona elige is', 'He o she + is + descripción', 'Sin is no hay unión'],
+    ['Not niega la característica', 'Is not sigue al sujeto', 'Not no va delante de is'],
+    ['La pregunta se oye desde Is', 'Is pasa delante de he o she', 'La entonación no cambia el orden'],
+    ['It nombra cosas y tiempo', 'Un solo it selecciona is', 'El tiempo no necesita persona'],
+    ['El apóstrofo conserva is', 'He’s, she’s e it’s forman un bloque', 'El ’s posesivo cumple otra función'],
+    ['My identifica a mi familiar', 'Un familiar selecciona is', 'El nombre familiar no es pronombre'],
+    ['El sentido debe sobrevivir al habla', 'Pronuncia la cópula dentro del bloque', 'No tragues is ni not'],
+    ['Primero decide la intención', 'Forma y orden trabajan juntos', 'Palabras parecidas dicen cosas distintas'],
+  ],
+  'pt-BR': [
+    ['Uma pessoa escolhe is', 'He ou she + is + descrição', 'Sem is não há ligação'],
+    ['Not nega a característica', 'Is not permanece após o sujeito', 'Not não vem antes de is'],
+    ['A pergunta começa a soar em Is', 'Is passa antes de he ou she', 'Entonação não substitui ordem'],
+    ['It nomeia coisas e clima', 'Um único it escolhe is', 'O clima não precisa de pessoa'],
+    ['O apóstrofo preserva is', 'He’s, she’s e it’s formam um bloco', 'O ’s possessivo faz outro trabalho'],
+    ['My identifica meu familiar', 'Um familiar escolhe is', 'O nome familiar não vira pronome'],
+    ['O sentido precisa sobreviver à fala', 'Pronuncie a ligação dentro do bloco', 'Não engula is nem not'],
+    ['Primeiro decida a intenção', 'Forma e ordem trabalham juntas', 'Palavras parecidas dizem coisas diferentes'],
+  ],
+  vi: [
+    ['Một người đi với is', 'He hoặc she + is + miêu tả', 'Thiếu is thì câu không nối được'],
+    ['Not phủ định đặc điểm', 'Is not đứng sau chủ thể', 'Không đưa not lên trước is'],
+    ['Câu hỏi bắt đầu bằng Is', 'Is đứng trước he hoặc she', 'Ngữ điệu không thay được trật tự'],
+    ['It gọi đồ vật và thời tiết', 'Một it đi với is', 'Thời tiết không cần một người'],
+    ['Dấu nháy vẫn giữ is', 'He’s, she’s và it’s thành một cụm', '’s sở hữu có nhiệm vụ khác'],
+    ['My chỉ người thân của tôi', 'Một người thân đi với is', 'Tên người thân không phải đại từ'],
+    ['Ý nghĩa phải rõ khi nói', 'Phát âm dạng nối trong cả cụm', 'Đừng nuốt mất is hoặc not'],
+    ['Xác định mục đích trước', 'Hình thức và trật tự cùng làm việc', 'Từ gần giống có thể khác ý'],
+  ],
+  id: [
+    ['Satu orang memilih is', 'He atau she + is + keterangan', 'Tanpa is kata-kata tidak terhubung'],
+    ['Not menyangkal sifat', 'Is not tetap setelah subjek', 'Jangan taruh not sebelum is'],
+    ['Pertanyaan terdengar sejak Is', 'Is berpindah sebelum he atau she', 'Intonasi tidak mengganti urutan'],
+    ['It menamai benda dan cuaca', 'Satu it memilih is', 'Cuaca tidak memerlukan orang'],
+    ['Apostrof tetap menyimpan is', 'He’s, she’s, dan it’s menjadi satu blok', '’s kepemilikan bertugas lain'],
+    ['My menunjuk keluarga saya', 'Satu anggota keluarga memilih is', 'Nama keluarga bukan kata ganti'],
+    ['Makna harus bertahan saat diucapkan', 'Ucapkan penghubung di dalam blok', 'Jangan hilangkan is atau not'],
+    ['Tentukan maksud lebih dahulu', 'Bentuk dan urutan bekerja bersama', 'Kata mirip dapat membawa maksud berbeda'],
+  ],
+  tr: [
+    ['Tek kişi is biçimini seçer', 'He ya da she + is + açıklama', 'Is olmadan bağ kurulmaz'],
+    ['Not özelliği olumsuz yapar', 'Is not özneden sonra kalır', 'Not biçimini is önüne koymayın'],
+    ['Soru ilk Is ile duyulur', 'Is, he ya da she önüne geçer', 'Tonlama sıranın yerini tutmaz'],
+    ['It nesneyi ve havayı anlatır', 'Tek it, is biçimini seçer', 'Hava için kişi aranmaz'],
+    ['Kesme işareti is biçimini korur', 'He’s, she’s ve it’s tek bloktur', 'Sahiplik ’s başka görev yapar'],
+    ['My benim yakınımı gösterir', 'Tek aile üyesi is biçimini seçer', 'Aile adı zamire dönüşmez'],
+    ['Anlam söylenirken korunmalı', 'Bağlayıcıyı blok içinde söyleyin', 'Is ve not biçimlerini yutmayın'],
+    ['Önce amacı belirleyin', 'Biçim ve sıra birlikte çalışır', 'Benzer sözcükler farklı şey söyler'],
+  ],
+  pl: [
+    ['Jedna osoba wybiera is', 'He albo she + is + opis', 'Bez is słowa się nie łączą'],
+    ['Not przeczy cesze', 'Is not zostaje po podmiocie', 'Nie stawiaj not przed is'],
+    ['Pytanie słychać od pierwszego Is', 'Is przechodzi przed he albo she', 'Intonacja nie zastępuje szyku'],
+    ['It nazywa rzeczy i pogodę', 'Jedno it wybiera is', 'Pogoda nie potrzebuje osoby'],
+    ['Apostrof zachowuje całe is', 'He’s, she’s i it’s tworzą jeden blok', 'Dzierżawcze ’s ma inne zadanie'],
+    ['My wskazuje mojego bliskiego', 'Jedna osoba z rodziny wybiera is', 'Nazwa krewnego nie jest zaimkiem'],
+    ['Sens musi przetrwać wymowę', 'Wymawiaj łącznik wewnątrz bloku', 'Nie połykaj is ani not'],
+    ['Najpierw ustal intencję', 'Forma i szyk działają razem', 'Podobne słowa mogą mówić co innego'],
+  ],
 };
 
 const TOPICS: Record<Locale, readonly string[]> = {
@@ -427,18 +534,15 @@ export function buildEpisode01Session17To24(ordinal: 17 | 18 | 19 | 20 | 21 | 22
     return [locale, `${TOPICS[locale][topicIndex]} ${pageRule(locale, ordinal, index)} ${introTail(locale, pageTarget)}`];
   })) as unknown as LocalizedSource);
   const title = Object.fromEntries(LOCALES.map((locale) => [locale, TITLES[locale][topicIndex]])) as unknown as LocalizedSource;
-  const pageLabels: Record<Locale, readonly string[]> = {
-    ru: ['Кого описываем', 'Точный порядок', 'Где легко ошибиться'], uk: ['Кого описуємо', 'Точний порядок', 'Де легко помилитися'], es: ['A quién describimos', 'El orden exacto', 'Dónde es fácil fallar'], 'pt-BR': ['Quem descrevemos', 'A ordem exata', 'Onde é fácil errar'], vi: ['Ta đang nói về ai', 'Trật tự chính xác', 'Chỗ dễ sai'], id: ['Siapa yang dijelaskan', 'Urutan yang tepat', 'Bagian yang mudah keliru'], tr: ['Kimi anlatıyoruz', 'Kesin sıra', 'Kolay hata noktası'], pl: ['Kogo opisujemy', 'Dokładny szyk', 'Łatwa pułapka'],
-  };
   const introPages = bodies.map((body, index) => {
-    const pageTitle = Object.fromEntries(LOCALES.map((locale) => [locale, `${title[locale]}: ${pageLabels[locale][index]}`])) as unknown as LocalizedSource;
+    const pageTitle = Object.fromEntries(LOCALES.map((locale) => [locale, PAGE_TITLES[locale][topicIndex][index]])) as unknown as LocalizedSource;
     const pageTarget = PHRASES[ordinal][index];
     const pageWrongOne = pageTarget.replace(/\bis\b/u, 'are').replace(/\bIs\b/u, 'Are').replace(/’s/u, ' are');
     const pageWrongTwo = pageTarget.includes(' not ') ? pageTarget.replace(' not ', ' ') : pageTarget.replace(/\bIs\b/u, 'Is not').replace(/\bis\b/u, 'is not').replace(/’s/u, ' is not');
     const explanation = Object.fromEntries(LOCALES.map((locale) => [locale, answerExplanation(locale, pageTarget, SESSION_RULES[ordinal].formula)])) as unknown as LocalizedSource;
     return { kind: (['concept', 'formula', 'trap'] as const)[index], title: pageTitle, body, bodyRuns: runs(body, pageTarget), question: { prompt: Object.fromEntries(LOCALES.map((locale) => [locale, QUIZ_PROMPT[locale](translateMeaning(locale, pageTarget))])) as unknown as LocalizedSource, choices: [L(() => pageTarget), L(() => pageWrongOne), L(() => pageWrongTwo)], correctChoiceIndex: 0 as const, explanation } };
   }) as unknown as SessionSource['introPages'];
-  return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: 'obj-e01-third-person-is', generationInputFingerprint: `authored-e01-s${ordinal}-v1`, title, summary: L((copy) => copy.explanation), learningGoal: L((copy) => copy.formula), introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
+  return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: 'obj-e01-third-person-is', generationInputFingerprint: `authored-e01-s${ordinal}-v2`, title, summary: Object.fromEntries(LOCALES.map((locale) => [locale, TOPICS[locale][topicIndex]])) as unknown as LocalizedSource, learningGoal: Object.fromEntries(LOCALES.map((locale) => [locale, `${PAGE_TITLES[locale][topicIndex][0]}. ${PAGE_TITLES[locale][topicIndex][1]}.`])) as unknown as LocalizedSource, introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
 }
 
 export function assertEpisode01Session17To24Contract(source: SessionSource, ordinal: number, kind: SessionKind, teaches: readonly string[]): void {

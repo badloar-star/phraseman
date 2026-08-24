@@ -25,6 +25,10 @@ export type LevelAvatarTileItem = {
 
 export type CatalogCardItem = CustomizationCatalogItem | LevelAvatarTileItem;
 
+// At the approved 38% avatar-to-aura ratio this keeps the full generated art
+// inside a three-column phone tile. Non-aura previews retain their old size.
+const AURA_CATALOG_PREVIEW_SIZE = 48;
+
 interface Props {
   item: CatalogCardItem;
   selected: boolean;
@@ -94,12 +98,12 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
       <LinearGradient colors={[t.bgSurface, t.bgCard]} start={{ x: 0.2, y: 0 }} end={{ x: 0.8, y: 1 }} style={styles.tile}>
         {item.kind === 'custom-avatar'
           ? <CustomAvatarBadge value={item.previewValue} size={68} />
-          : <AvatarView
-              avatar={item.previewAvatar}
-              auraId={item.kind === 'aura' ? item.auraId : null}
-              size={64}
-              animateAura={false}
-            />}
+              : <AvatarView
+                  avatar={item.previewAvatar}
+                  auraId={item.kind === 'aura' ? item.auraId : null}
+                  size={item.kind === 'aura' ? AURA_CATALOG_PREVIEW_SIZE : 64}
+                  animateAura={false}
+                />}
         {!selected ? <AvailabilityChip item={item} pearlIcon={pearlIconForTheme(themeMode)} /> : null}
         {selected ? (
           <View style={[styles.mark, { backgroundColor: t.accent }]}>

@@ -36,14 +36,14 @@ describe('report replies in home notification center', () => {
     expect(model).toContain("LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1'");
 
     expect(button).toContain("import { claimReportReplyCoinsOptimistically } from '../app/app_messages'");
-    expect(button).toContain("import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
+    expect(button).toContain("import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
     expect(button).toContain("import MotionModal from './MotionModal'");
     expect(button).toContain('<MotionModal');
     expect(button).not.toContain('<Modal');
     expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(button).toContain('minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
     expect(button).not.toContain('subscribeUserNotifications((list)');
-    expect(button).not.toContain('force: true');
+    expect(button).toContain('refreshUserNotificationsOnce({ force: true })');
     expect(button).toContain("AppState.addEventListener('change'");
     expect(button).toContain("row.type === 'report_reply' && row.reportReply");
     expect(button).toContain('notification-report-reply-claim-cta');

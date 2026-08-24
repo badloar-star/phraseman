@@ -14,7 +14,7 @@ const ICON_SOURCES = [
   'constants/socialIconAssets.ts',
   'constants/leagueBonusGiftImages.ts',
   'constants/weeklyCompassIcons.ts',
-  'constants/trainerThemeIcons.ts',
+  'constants/dailyPhraseThemeArt.ts',
   'constants/boonIconAssets.ts',
   'constants/streakIconAssets.ts',
 ];

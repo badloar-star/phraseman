@@ -114,6 +114,22 @@ export { runCohortRetentionDepartment, COHORT_RETENTION_MIN_SAMPLE } from './coh
 export { fetchCohortRetentionMetrics } from './learning_metrics';
 export type { CohortRetentionMetric } from './learning_metrics';
 
+// ── Департамент «MAX» (десятый): техническая надёжность без диалогов ──────
+export {
+  runMaxvoiceDepartment,
+  MAXVOICE_CONNECTION_MIN_SAMPLE,
+  MAXVOICE_CONNECTION_MIN_RATIO,
+  MAXVOICE_REVIEW_MIN_SAMPLE,
+  MAXVOICE_REVIEW_MIN_RATIO,
+  MAXVOICE_RECONNECT_MIN_SAMPLE,
+  MAXVOICE_RECONNECT_MIN_RATIO,
+  MAXVOICE_FIRST_AUDIO_MIN_SAMPLE,
+  MAXVOICE_FIRST_AUDIO_SLOW_MAX_RATIO,
+} from './maxvoice_department';
+export { buildMaxvoiceSnapshot } from './maxvoice_snapshot';
+export { fetchMaxvoiceSource, MAXVOICE_SOURCE_DAYS } from './maxvoice_firestore_fetcher';
+export type { FetchMaxvoiceSourceResult } from './maxvoice_firestore_fetcher';
+
 // ── Approvals: кнопки подтверждения в Telegram ─────────────────────────────
 export { jarvisTelegramApprovalWebhook, JARVIS_TELEGRAM_CONFIG } from './approval_webhook';
 export { issueApprovalToken, consumeApprovalToken, JARVIS_APPROVAL_COLLECTION } from './approval_store';

@@ -50,20 +50,6 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
   // читатель вернёт пустоту, и Джарвис бодро отчитается, что всё в порядке.
   // Именно этот сценарий описан в CLAUDE.md как «молчаливая ложь».
   {
-    department: 'money',
-    writtenIn: 'admin_user_profile.ts',
-    readIn: 'jarvis/money_firestore_fetcher.ts',
-    field: 'openingBalance',
-    breaks: 'баланс экономики стал бы неизмеримым, а расхождения — невидимыми',
-  },
-  {
-    department: 'money',
-    writtenIn: 'admin_analytics.ts',
-    readIn: 'jarvis/money_firestore_fetcher.ts',
-    field: 'eventTimestampMs',
-    breaks: 'события выручки выпали бы из окна выборки, и доход выглядел бы нулевым',
-  },
-  {
     department: 'payments',
     writtenIn: 'telegram_premium_bot.ts',
     readIn: 'jarvis/payments_firestore_fetcher.ts',
@@ -196,9 +182,120 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     field: 'comparisons',
     breaks: 'Джарвис потерял бы current-vs-previous динамику и снова видел бы только текущие счётчики',
   },
+  ...[
+    'callsStarted',
+    'callsConnected',
+    'callsCompleted',
+    'reviewsReady',
+    'reconnectAttempts',
+    'reconnectRecovered',
+    'firstAudioLatencyBuckets',
+    'mintRejections',
+    'mintRejectionReasons',
+  ].map((field): FieldContract => ({
+    department: 'maxvoice',
+    writtenIn: 'max_voice_ops.ts',
+    readIn: 'jarvis/maxvoice_firestore_fetcher.ts',
+    field,
+    breaks: `надёжность MAX по полю ${field} превратилась бы в ложный ноль`,
+  })),
 ];
 
+// Immutable per-user purchase facts are deliberately not Jarvis metrics. Money
+// continues to read the bounded RevenueCat receipt collection; these two fields
+// exist only so the client can observe an already-confirmed purchase outcome.
+const INTENTIONALLY_UNREAD_SERVER_PROGRESS_FIELDS = [
+  {
+    field: 'achievement_access_plus_paid_v1',
+    writer: 'revenuecat_shards.ts',
+    authority: 'RevenueCat production INITIAL_PURCHASE, non-trial Plus only',
+  },
+  {
+    field: 'achievement_access_pro_paid_v1',
+    writer: 'revenuecat_shards.ts',
+    authority: 'RevenueCat production NON_RENEWING_PURCHASE lifetime Pro only',
+  },
+] as const;
+
+const MONEY_WRITER_CONTRACTS = [
+  {
+    writer: 'app/economy/client_shard_operation_sync.ts',
+    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    field: 'openingBalance',
+    writerPattern: /\.collection\('client_economy_opening'\)[\s\S]{0,500}openingRef\.set\(\{[\s\S]{0,300}\bopeningBalance\b/,
+    readerPattern: /\bopeningBalance:\s*number\(data\.openingBalance\)/,
+  },
+  {
+    writer: 'app/economy/client_shard_operation_sync.ts',
+    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    field: 'createdAtMs',
+    writerPattern: /\.collection\('client_economy_operations'\)[\s\S]{0,300}\.set\(clientShardOperationForCloud\(operation\)/,
+    readerPattern: /\.where\('createdAtMs',\s*'<='\s*,\s*input\.nowMs\)/,
+  },
+  {
+    writer: 'functions/src/revenuecat_shards.ts',
+    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    field: 'eventTimestampMs',
+    writerPattern: /const processedRef\s*=\s*db\.collection\('revenuecat_premium_events'\)[\s\S]{0,8000}const receipt\s*=\s*\{[\s\S]{0,1600}\beventTimestampMs\s*:[\s\S]{0,1200}tx\.set\(processedRef,\s*receipt\)/,
+    readerPattern: /\.where\('eventTimestampMs',\s*'<='\s*,\s*input\.nowMs\)/,
+  },
+  {
+    writer: 'app/paywall_funnel.ts',
+    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    field: 'ts',
+    writerPattern: /\.collection\(COLLECTION\)\.add\(\{[\s\S]{0,500}\bstep,[\s\S]{0,500}\bts,[\s\S]{0,300}\bdev:/,
+    readerPattern: /\.where\('ts',\s*'<='\s*,\s*input\.nowMs\)/,
+  },
+] as const;
+
 const ISOLATED_COLLECTION_CONTRACTS = [
+  {
+    collection: 'voice_call_reviews',
+    writer: 'functions/src/max_voice_finalize.ts',
+    authority: 'intentionally_unread_personal_payload',
+    fields: ['studyTarget'],
+  },
+  {
+    collection: 'voice_tutor_memory',
+    writer: 'functions/src/max_voice_tutor_memory.ts',
+    authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'voice_call_quotas',
+    writer: 'functions/src/max_voice_safety.ts',
+    authority: 'server-only quota ownership and opaque bounded safetyGuard state; intentionally unread by Jarvis and every browser client',
+    fields: ['quotaIdentityClosureProof', 'lifetimeTrialUsedAtMs'],
+  },
+  {
+    collection: 'access_projection',
+    writer: 'functions/src/access_projection.ts',
+    authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'personal_sync_segments',
+    writer: 'modules/phone-state/firestore_repository.ts',
+    authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'personal_sync_checkpoints',
+    writer: 'modules/phone-state/firestore_repository.ts',
+    authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'sync_devices',
+    writer: 'modules/phone-state/firestore_repository.ts',
+    authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'personal_external_events',
+    writer: 'functions Admin SDK personal external-event writers',
+    authority: 'intentionally_unread_personal_payload',
+  },
+  {
+    collection: 'personal_sync_server_state',
+    writer: 'functions/src/personal_external_events.ts',
+    authority: 'intentionally_unread_personal_payload',
+  },
   {
     collection: 'client_economy_operations',
     writer: 'app/economy/client_shard_operation_sync.ts',
@@ -224,9 +321,129 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     writer: 'functions Admin SDK cosmetic asset archive controls',
     authority: 'server-managed sale availability; not a Jarvis business projection',
   },
+  {
+    collection: 'gift_certificate_archive',
+    writer: 'functions Admin SDK gift certificate deletion transaction',
+    authority: 'immutable server-only deletion history; read through a bounded admin projection only',
+  },
+  {
+    collection: 'global_broadcast_modals',
+    writer: 'functions Admin SDK global broadcast admin callables',
+    authority: 'public app payload schema v1 only; both first-grant paths and the bounded authenticated public-list callable share the exact server validation allowlist; all browser reads/writes denied; owner scrub uses opaque cursors and Rules rollout requires a hash-bound aggregate server receipt',
+  },
+  {
+    collection: 'promo_codes',
+    writer: 'functions Admin SDK promo redemption and manual-access admin callables',
+    authority: 'server-owned bearer money authority; never direct browser or Jarvis access',
+  },
+  {
+    collection: 'admin_user_briefs_rate_limits',
+    writer: 'functions Admin SDK adminUserBriefs transactional quota',
+    authority: 'server-only per-actor read-amplification guard; never a Jarvis business projection',
+  },
+  {
+    collection: 'revenuecat_shard_refunds',
+    writer: 'functions Admin SDK RevenueCat shard refund webhook',
+    authority: 'server-only real-money refund receipts; read only through the bounded admin projection',
+  },
 ] as const;
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {
+  test('MAX daily operations are an explicit bounded Jarvis source', () => {
+    const writer = readSource('max_voice_ops.ts');
+    const reader = readSource('jarvis/maxvoice_firestore_fetcher.ts');
+    const callable = readSource('jarvis/all_departments_callables.ts');
+    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+
+    expect(writer).toContain("MAX_VOICE_OPS_COLLECTION = 'max_voice_ops_daily'");
+    expect(callable).toContain("db.collection('max_voice_ops_daily')");
+    expect(reader).toContain("limit(MAXVOICE_SOURCE_DAYS)");
+    expect(reader).toContain('MAXVOICE_SOURCE_DAYS = 7');
+    expect(rules).toContain('match /max_voice_ops_daily/{docId}');
+  });
+
+  test('MAX review and tutor memory remain intentionally unread personal payloads', () => {
+    for (const collection of ['voice_call_reviews', 'voice_tutor_memory']) {
+      expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+        collection,
+        authority: 'intentionally_unread_personal_payload',
+      }));
+    }
+    expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+      collection: 'voice_call_reviews',
+      fields: expect.arrayContaining(['studyTarget']),
+    }));
+  });
+
+  test('MAX nested safety guard remains server-only and intentionally unread', () => {
+    const contract = ISOLATED_COLLECTION_CONTRACTS.find(({ collection }) => collection === 'voice_call_quotas');
+    const writer = readSource('max_voice_safety.ts');
+    const quotaWriter = readSource('max_voice_quota.ts');
+    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+    const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+      .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+      .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+      .join('\n');
+
+    expect(contract).toEqual(expect.objectContaining({
+      writer: 'functions/src/max_voice_safety.ts',
+      authority: expect.stringContaining('opaque bounded safetyGuard'),
+      fields: expect.arrayContaining(['quotaIdentityClosureProof', 'lifetimeTrialUsedAtMs']),
+    }));
+    expect(writer).toContain('safetyGuard');
+    expect(quotaWriter).toContain('quotaIdentityClosureProof');
+    expect(quotaWriter.match(/lastSettledAtMs:\s*now/g)).toHaveLength(2);
+    expect(rules).toMatch(/match \/voice_call_quotas\/\{docId\}\s*\{\s*allow read, write: if false;/);
+    expect(jarvisReaders).not.toContain("collection('voice_call_quotas')");
+  });
+
+  test.each(INTENTIONALLY_UNREAD_SERVER_PROGRESS_FIELDS)(
+    'server progress fact $field stays writer-backed, client-blocked and intentionally unread',
+    ({ field, writer, authority }) => {
+      const writerSource = readSource(writer);
+      const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+      const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+        .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+        .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+        .join('\n');
+      expect(writerSource).toContain(field);
+      expect(rules).toContain(`'${field}'`);
+      expect(jarvisReaders).not.toContain(field);
+      expect(authority.length).toBeGreaterThan(30);
+    },
+  );
+  test('personal sync collections are explicitly intentionally unread by Jarvis', () => {
+    for (const collection of [
+      'access_projection',
+      'personal_sync_segments',
+      'personal_sync_checkpoints',
+      'sync_devices',
+      'personal_external_events',
+      'personal_sync_server_state',
+    ]) {
+      expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+        collection,
+        authority: 'intentionally_unread_personal_payload',
+      }));
+    }
+  });
+
+  test.each(MONEY_WRITER_CONTRACTS)(
+    'money writer $writer contextually writes $field and its reader consumes the same contract',
+    ({ writer, reader, writerPattern, readerPattern, field }) => {
+      const writerSource = fs.readFileSync(path.join(root, writer), 'utf8');
+      const readerSource = fs.readFileSync(path.join(root, reader), 'utf8');
+      const writerVerdict = writerPattern.test(writerSource)
+        ? 'ok'
+        : `REAL WRITER CONTRACT MISSING: ${writer} no longer writes ${field} in the expected collection write`;
+      const readerVerdict = readerPattern.test(readerSource)
+        ? 'ok'
+        : `JARVIS MONEY READER DRIFT: ${reader} no longer bounds/reads ${field}`;
+      expect(writerVerdict).toBe('ok');
+      expect(readerVerdict).toBe('ok');
+    },
+  );
+
   test('the real safety_flags writer and Jarvis share one explicit age taxonomy contract', () => {
     const { SAFETY_FLAG_WRITER_AGE_CONTRACT } = require('../ai_safety') as typeof import('../ai_safety');
     const { JARVIS_SAFETY_FLAG_AGE_CONTRACT } = require('./safety_firestore_fetcher') as typeof import('./safety_firestore_fetcher');
@@ -367,5 +584,36 @@ describe('level reward spin Jarvis impact', () => {
     expect(readers).not.toContain('level_spin_credits');
     expect(readers).not.toContain('level_spin_results');
     expect(readers).not.toContain('level_reward_spin_balance');
+  });
+});
+
+describe('Arena friend invite and notification isolation', () => {
+  test('does not silently treat social lifecycle rows as authoritative business metrics', () => {
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const readers = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+    expect(readers).not.toContain("collection('arena_v2_invites')");
+    expect(readers).not.toContain("collection('notifications')");
+  });
+
+  test('MAX review receipts stay private, transcript-free, and deletable without becoming a Jarvis content source', () => {
+    const writer = fs.readFileSync(path.join(functionsSrc, 'max_voice_finalize.ts'), 'utf8');
+    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+    const deletion = fs.readFileSync(path.join(functionsSrc, 'account_delete.ts'), 'utf8');
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const jarvisReaders = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('.ts') && !file.includes('.test.'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+
+    expect(writer).toContain("const REVIEW_COLLECTION = 'voice_call_reviews'");
+    expect(writer).not.toMatch(/tx\.set\([^\n]+(?:history|transcript|audio)/i);
+    expect(rules).toContain('match /voice_call_reviews/{docId}');
+    expect(rules).toContain('allow read, write: if false;');
+    expect(deletion).toContain("{ collection: 'voice_call_reviews', field: 'stableUid', values: 'stable' }");
+    expect(deletion).toContain("{ collection: 'voice_call_reviews', field: 'authUid', values: 'auth' }");
+    expect(jarvisReaders).not.toContain("collection('voice_call_reviews')");
   });
 });

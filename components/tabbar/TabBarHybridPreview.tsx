@@ -5,6 +5,7 @@ import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { cs } from '../dev/motion_showcase/showcase_copy';
+import { TABBAR_HYBRID } from '../../constants/motionHybrid';
 
 // ─── Таббар · «жидкое золото» — ЖИВАЯ превью-копия для витрины движения ───
 // зачем: макет-эталон .motion-mockups/phraseman-hybrid.html, сцена B5
@@ -38,17 +39,7 @@ const ICON_SIZE = 24;
 const LABEL_HEIGHT = 14;
 const BLOB_SIZE = 44;
 const DROP_SIZE = 6;
-const WAVE_NUDGE_PX = 2.5;
-const WAVE_STEP_MS = 55;
-const STRETCH_DURATION_MS = 160;
-const DROP_APPEAR_MS = 90;
-const DROP_APPEAR_DELAY_MS = 200;
-const DROP_FALL_MS = 170;
-/** Эквиваленты RS(mass,damping,stiffness) макета в терминах RN Animated.spring. */
-const BLOB_TRAVEL_SPRING = { stiffness: 160, damping: 15, mass: 0.9 };
-const BLOB_SETTLE_SPRING = { stiffness: 170, damping: 11, mass: 0.6 };
-const ICON_POP_SPRING = { stiffness: 200, damping: 9, mass: 0.5 };
-const WAVE_RETURN_SPRING = { stiffness: 210, damping: 12, mass: 0.5 };
+const PREVIEW_MOTION = TABBAR_HYBRID.preview;
 
 function withAlpha(color: string, alpha: number): string {
   if (color[0] !== '#') return color;
@@ -80,7 +71,7 @@ function TabBarHybridPreview({ initialActiveIndex = 0, onActiveChange }: TabBarH
   const blobScaleX = useRef(new Animated.Value(1)).current;
   const blobScaleY = useRef(new Animated.Value(1)).current;
   const dropOpacity = useRef(new Animated.Value(0)).current;
-  const dropY = useRef(new Animated.Value(-6)).current;
+  const dropY = useRef(new Animated.Value(PREVIEW_MOTION.dropStartY)).current;
   const iconPopScales = useRef(TAB_DEFS.map(() => new Animated.Value(1))).current;
   const waveNudges = useRef(TAB_DEFS.map(() => new Animated.Value(0))).current;
 
@@ -112,39 +103,39 @@ function TabBarHybridPreview({ initialActiveIndex = 0, onActiveChange }: TabBarH
 
     // Блоб вытягивается по ходу движения и сжимается при посадке (метабол-ощущение).
     Animated.timing(blobScaleX, {
-      toValue: 1 + dist * 0.22,
-      duration: STRETCH_DURATION_MS,
+      toValue: 1 + dist * PREVIEW_MOTION.stretchPerTab,
+      duration: PREVIEW_MOTION.stretchMs,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start(({ finished }) => {
       if (!finished || !isMountedRef.current) return;
-      Animated.spring(blobScaleX, { toValue: 1, ...BLOB_SETTLE_SPRING, useNativeDriver: true }).start();
+      Animated.spring(blobScaleX, { toValue: 1, ...PREVIEW_MOTION.blobSettle, useNativeDriver: true }).start();
     });
     Animated.timing(blobScaleY, {
-      toValue: 0.82,
-      duration: STRETCH_DURATION_MS,
+      toValue: PREVIEW_MOTION.stretchY,
+      duration: PREVIEW_MOTION.stretchMs,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start(({ finished }) => {
       if (!finished || !isMountedRef.current) return;
-      Animated.spring(blobScaleY, { toValue: 1, ...BLOB_SETTLE_SPRING, useNativeDriver: true }).start();
+      Animated.spring(blobScaleY, { toValue: 1, ...PREVIEW_MOTION.blobSettle, useNativeDriver: true }).start();
     });
-    Animated.spring(blobX, { toValue: idx, ...BLOB_TRAVEL_SPRING, useNativeDriver: true }).start();
+    Animated.spring(blobX, { toValue: idx, ...PREVIEW_MOTION.blobTravel, useNativeDriver: true }).start();
 
     // Капля падает в прибывшую иконку.
     dropOpacity.setValue(0);
-    dropY.setValue(-6);
+    dropY.setValue(PREVIEW_MOTION.dropStartY);
     Animated.timing(dropOpacity, {
       toValue: 1,
-      duration: DROP_APPEAR_MS,
-      delay: DROP_APPEAR_DELAY_MS,
+      duration: PREVIEW_MOTION.dropAppearMs,
+      delay: PREVIEW_MOTION.dropDelayMs,
       easing: Easing.linear,
       useNativeDriver: true,
     }).start();
     Animated.timing(dropY, {
-      toValue: 10,
-      duration: DROP_FALL_MS,
-      delay: DROP_APPEAR_DELAY_MS,
+      toValue: PREVIEW_MOTION.dropEndY,
+      duration: PREVIEW_MOTION.dropFallMs,
+      delay: PREVIEW_MOTION.dropDelayMs,
       easing: Easing.bezier(0.6, 0, 0.9, 0.6),
       useNativeDriver: true,
     }).start(({ finished }) => {
@@ -152,8 +143,8 @@ function TabBarHybridPreview({ initialActiveIndex = 0, onActiveChange }: TabBarH
       dropOpacity.setValue(0);
       const popScale = iconPopScales[idx];
       if (!popScale) return;
-      popScale.setValue(0.9);
-      Animated.spring(popScale, { toValue: 1, ...ICON_POP_SPRING, useNativeDriver: true }).start();
+      popScale.setValue(PREVIEW_MOTION.iconImpactScale);
+      Animated.spring(popScale, { toValue: 1, ...PREVIEW_MOTION.iconPop, useNativeDriver: true }).start();
     });
 
     // Волна: соседние вкладки по пути пролёта кивают и возвращаются.
@@ -164,14 +155,14 @@ function TabBarHybridPreview({ initialActiveIndex = 0, onActiveChange }: TabBarH
       const nudge = waveNudges[m];
       if (!nudge) continue;
       Animated.timing(nudge, {
-        toValue: WAVE_NUDGE_PX,
-        duration: 110,
-        delay: 60 + (m - lo) * WAVE_STEP_MS,
+        toValue: PREVIEW_MOTION.waveNudgePx,
+        duration: PREVIEW_MOTION.waveNudgeMs,
+        delay: PREVIEW_MOTION.waveLeadMs + (m - lo) * PREVIEW_MOTION.waveStepMs,
         easing: Easing.out(Easing.cubic),
         useNativeDriver: true,
       }).start(({ finished }) => {
         if (!finished || !isMountedRef.current) return;
-        Animated.spring(nudge, { toValue: 0, ...WAVE_RETURN_SPRING, useNativeDriver: true }).start();
+        Animated.spring(nudge, { toValue: 0, ...PREVIEW_MOTION.waveReturn, useNativeDriver: true }).start();
       });
     }
   }, [blobScaleX, blobScaleY, blobX, dropOpacity, dropY, iconPopScales, waveNudges]);
@@ -252,10 +243,7 @@ function TabBarHybridPreview({ initialActiveIndex = 0, onActiveChange }: TabBarH
                 </View>
                 <View style={styles.labelSlot}>
                   {focused ? (
-                    <Animated.Text
-                      numberOfLines={1}
-                      style={[styles.label, { color: t.accent, opacity: focused ? 1 : 0 }]}
-                    >
+                    <Animated.Text style={[styles.label, { color: t.accent, opacity: focused ? 1 : 0 }]}>
                       {tab.label}
                     </Animated.Text>
                   ) : null}
@@ -306,17 +294,6 @@ const styles = StyleSheet.create({
 
 export default memo(TabBarHybridPreview);
 
-// ─── Точки вживления в app/(tabs)/_layout.tsx (НЕ применено — витрина/демо-компонент) ───
-// 1. Флаг: const TABBAR_MOTION_VARIANT: 'classic' | 'hybrid' = 'classic' (dev-переключатель
-//    из витрины движения читал бы persisted-значение через тот же канал, что и остальные
-//    dev-флаги — DevHub, не проп экрана: таббар не принимает variant-проп от роутера).
-// 2. Капсула активной вкладки (s.tabActivePill, строки ~646-666 _layout.tsx) заменяется
-//    на блоб-градиент: translateX той же интерполяцией по tabHighlightAnim (уже есть),
-//    но с добавлением scaleX/scaleY на разгоне/посадке — как здесь.
-// 3. Капля-акцент — новый Animated.View поверх иконки таба, синхронизированная с уже
-//    существующим tabPressAnim/iconScale по приходу.
-// 4. Волна соседей — новый массив Animated.Value по числу табов (TAB_BAR_TABS.length),
-//    запускается в том же эффекте, что и Animated.spring(tabHighlightAnim, ...).
-// 5. LUM/PRESS токены (constants/motionHybrid.ts) — базовые тайминги посадки/пресса,
-//    сверх уже откалиброванных tabHighlightAnim spring(18/4)/tabPressAnim остаются как есть
-//    до отдельной задачи миграции.
+// Реальный таббар переключается отдельным соседним пунктом DEV Hub через
+// useDevTabBarMotionVariant(). Это превью остаётся изолированной лабораторной
+// сценой расширенной хореографии; release-проверку замены делает real-toggle.

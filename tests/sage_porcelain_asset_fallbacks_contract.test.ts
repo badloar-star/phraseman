@@ -54,11 +54,10 @@ describe('sage porcelain static asset coverage', () => {
     [
       { file: 'app/coin_icons.ts', businessLightBlocks: 1, slots: 1 },
       { file: 'app/flashcards/FlashcardsCategoryHub.tsx', businessLightBlocks: 1, slots: 5 },
-      { file: 'components/EnergyIcon.tsx', businessLightBlocks: 1, slots: 1 },
       { file: 'constants/generatedThemeIconAssets.ts', businessLightBlocks: 1, slots: 1 },
       { file: 'constants/socialIconAssets.ts', businessLightBlocks: 2, slots: 2 },
       { file: 'constants/streakIconAssets.ts', businessLightBlocks: 5, slots: 11 },
-      { file: 'constants/trainerThemeIcons.ts', businessLightBlocks: 3, slots: 3 },
+      { file: 'constants/dailyPhraseThemeArt.ts', businessLightBlocks: 1, slots: 1 },
       { file: 'constants/weeklyCompassIcons.ts', businessLightBlocks: 1, slots: 1 },
       { file: 'constants/boonIconAssets.ts', businessLightBlocks: 2, slots: 10 },
       { file: 'constants/leagueBonusGiftImages.ts', businessLightBlocks: 1, slots: 1 },
@@ -68,8 +67,8 @@ describe('sage porcelain static asset coverage', () => {
   it('keeps all Sage require paths literal and backed by existing assets', () => {
     const files = [
       'app/coin_icons.ts', 'app/flashcards/FlashcardsCategoryHub.tsx',
-      'components/EnergyIcon.tsx', 'constants/generatedThemeIconAssets.ts',
-      'constants/socialIconAssets.ts', 'constants/streakIconAssets.ts', 'constants/trainerThemeIcons.ts',
+      'constants/generatedThemeIconAssets.ts',
+      'constants/socialIconAssets.ts', 'constants/streakIconAssets.ts', 'constants/dailyPhraseThemeArt.ts',
       'constants/weeklyCompassIcons.ts', 'constants/boonIconAssets.ts', 'constants/leagueBonusGiftImages.ts',
     ];
     for (const file of files) {
@@ -120,23 +119,17 @@ describe('sage porcelain static asset coverage', () => {
     }
   });
 
-  it('uses Sage-specific trainer and streak chrome with the fixed porcelain palette', () => {
-    const trainer = source('constants/trainerThemeIcons.ts');
+  it('uses Sage-specific Daily Phrase art and streak chrome', () => {
+    const dailyPhrase = source('constants/dailyPhraseThemeArt.ts');
     const streak = source('constants/streakIconAssets.ts');
-    const trainerPaths = themeBlocks(trainer, 'sagePorcelain')
+    const dailyPhrasePaths = themeBlocks(dailyPhrase, 'sagePorcelain')
       .map(requires)
-      .find((paths) => paths.length === 3) ?? [];
+      .find((paths) => paths.length === 1) ?? [];
     const streakFirePaths = themeBlocks(streak, 'sagePorcelain')
       .map(requires)
       .find((paths) => paths.length === 10) ?? [];
-    expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("primary: '#315F50'");
-    expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("secondary: '#8B6320'");
-    expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("stroke: '#17201D'");
-    expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("muted: '#FCFDF9'");
-    expect(trainerPaths).toEqual([
+    expect(dailyPhrasePaths).toEqual([
       '../assets/images/trainer_theme_icons/sagePorcelain/phrases.webp',
-      '../assets/images/trainer_theme_icons/sagePorcelain/words.webp',
-      '../assets/images/trainer_theme_icons/sagePorcelain/analytics.webp',
     ]);
     expect(streakFirePaths).toEqual([
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp',
@@ -209,7 +202,7 @@ describe('sage porcelain static asset coverage', () => {
       "sagePorcelain: require('../assets/images/currency/pearl_sagePorcelain.webp')",
     );
     expect(source('components/EnergyIcon.tsx')).toContain(
-      "sagePorcelain: require('../assets/images/energy/energy-sagePorcelain.webp')",
+      'energy-start-cost.webp',
     );
     expect(source('constants/generatedThemeIconAssets.ts')).toContain(
       "sagePorcelain: require('../assets/images/generated_theme_icons/lesson-exam-sagePorcelain.webp')",

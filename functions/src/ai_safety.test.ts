@@ -19,7 +19,8 @@ jest.mock('./admin_alerts', () => ({
 }));
 
 import * as admin from 'firebase-admin';
-import { evaluateSafety, moderateUserText, recordSafetyFlag } from './ai_safety';
+import { sendTelegramAlert } from './admin_alerts';
+import { evaluateSafety, moderateUserText, recordMaxVoiceSafetySignal, recordSafetyFlag } from './ai_safety';
 
 describe('evaluateSafety — keyword layer', () => {
   it('flags suicide phrases (existing behaviour intact)', () => {
@@ -137,6 +138,38 @@ describe('recordSafetyFlag — server-authoritative age evidence', () => {
       ageEvidence: 'unavailable',
       ageBracket: null,
     }));
+  });
+});
+
+describe('recordMaxVoiceSafetySignal — content-free operator signal', () => {
+  const firestoreMock = admin.firestore as unknown as jest.Mock;
+  const telegramMock = sendTelegramAlert as jest.Mock;
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('does not touch Firestore and sends only bounded MAX metadata', async () => {
+    telegramMock.mockResolvedValue(true);
+    await expect(recordMaxVoiceSafetySignal(
+      { flagged: true, category: 'self_harm', matched: 'keyword:private words' },
+      { mode: 'voice_tutor', source: 'keywords' },
+    )).resolves.toBe(true);
+
+    expect(firestoreMock).not.toHaveBeenCalled();
+    expect(telegramMock).toHaveBeenCalledTimes(1);
+    const message = String(telegramMock.mock.calls[0]?.[1] ?? '');
+    expect(message).toContain('self_harm');
+    expect(message).toContain('voice_tutor');
+    expect(message).not.toMatch(/private words|User:|Message:|UID|session/i);
+  });
+
+  test('propagates a false delivery result instead of claiming success', async () => {
+    telegramMock.mockResolvedValue(false);
+    await expect(recordMaxVoiceSafetySignal(
+      { flagged: true, category: 'self_harm', matched: 'private' },
+      { mode: 'voice_tutor', source: 'keywords' },
+    )).resolves.toBe(false);
   });
 });
 

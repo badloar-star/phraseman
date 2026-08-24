@@ -5,7 +5,7 @@ const NOW = Date.UTC(2026, 7, 21, 12);
 
 function source(over: Partial<FetchMaxvoiceSourceResult> = {}): FetchMaxvoiceSourceResult {
   return {
-    state: 'ready', sampledDays: 7, callsStarted: 100, callsConnected: 96,
+    state: 'ready', sampledDays: 7, mintRejections: 2, callsStarted: 100, callsConnected: 96,
     callsCompleted: 90, reviewsReady: 88, reconnectAttempts: 20,
     reconnectRecovered: 16, firstAudioGte8s: 5, observedAtMs: NOW,
     ...over,
@@ -54,7 +54,7 @@ describe('Jarvis MAX reliability department — deterministic release signals', 
   });
 
   test('unreadable aggregates are insufficient evidence and never a reliability collapse', () => {
-    const decisions = run({ state: 'error', sampledDays: 0, callsStarted: null, callsConnected: null, callsCompleted: null, reviewsReady: null, reconnectAttempts: null, reconnectRecovered: null, firstAudioGte8s: null }, 'owner_request').decisions;
+    const decisions = run({ state: 'error', sampledDays: 0, mintRejections: null, callsStarted: null, callsConnected: null, callsCompleted: null, reviewsReady: null, reconnectAttempts: null, reconnectRecovered: null, firstAudioGte8s: null }, 'owner_request').decisions;
     expect(decisions).toHaveLength(1);
     expect(decisions[0].status).toBe('insufficient_evidence');
     expect(decisions[0].finding).toMatch(/не удалось|недоступ/i);

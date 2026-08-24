@@ -132,18 +132,18 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       return;
     }
     if (!res.ok && res.reason === 'sync_failed') {
-      // Прогресс не доехал до облака — выход отменён, данные целы.
+      // Локальная durable-копия цела; только account-boundary upload ещё pending.
       Alert.alert(
-        L('Прогресс не сохранён', 'Прогрес не збережено', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
+        L('На телефоне всё сохранено', 'На телефоні все збережено', 'Todo está guardado en el teléfono', 'Tudo está salvo no telefone', 'Mọi thứ đã được lưu trên điện thoại', 'Semuanya tersimpan di ponsel', 'Her şey telefona kaydedildi', 'Wszystko zapisano w telefonie'),
         L(
-          'Не удалось надёжно сохранить прогресс — похоже, нет соединения. Выход отменён, всё осталось на месте. Проверь интернет и попробуй снова.',
-          'Не вдалося надійно зберегти прогрес — схоже, немає з’єднання. Вихід скасовано, все залишилося на місці. Перевір інтернет і спробуй ще раз.',
-          'No pudimos guardar tu progreso de forma segura: parece que no hay conexión. La salida se canceló y todo sigue en su lugar. Revisa tu internet e inténtalo de nuevo.',
-          'Não foi possível salvar seu progresso com segurança — parece que não há conexão. A saída foi cancelada e tudo continua no lugar. Verifique a internet e tente novamente.',
-          'Không thể lưu tiến độ an toàn — có vẻ mất kết nối. Việc đăng xuất đã bị hủy, mọi thứ vẫn nguyên. Kiểm tra internet và thử lại.',
-          'Kami tidak bisa menyimpan progres dengan aman — sepertinya tidak ada koneksi. Keluar dibatalkan dan semuanya tetap aman. Periksa internet lalu coba lagi.',
-          'İlerlemen güvenle kaydedilemedi — bağlantı yok gibi görünüyor. Çıkış iptal edildi, her şey yerinde. İnterneti kontrol edip tekrar dene.',
-          'Nie udało się bezpiecznie zapisać postępu — wygląda na brak połączenia. Wylogowanie zostało anulowane, wszystko zostało na miejscu. Sprawdź internet i spróbuj ponownie.',
+          'Облачная копия ещё не подтверждена, поэтому выход отменён. Данные остаются на телефоне; попробуй выйти позже.',
+          'Хмарну копію ще не підтверджено, тому вихід скасовано. Дані залишаються на телефоні; спробуй вийти пізніше.',
+          'La copia en la nube aún no está confirmada, así que se canceló la salida. Los datos siguen en el teléfono; inténtalo más tarde.',
+          'A cópia na nuvem ainda não foi confirmada, então a saída foi cancelada. Os dados continuam no telefone; tente mais tarde.',
+          'Bản sao nền chưa được xác nhận nên việc đăng xuất đã bị hủy. Dữ liệu vẫn ở trên điện thoại; hãy thử lại sau.',
+          'Salinan latar belum dikonfirmasi, jadi keluar dibatalkan. Data tetap ada di ponsel; coba lagi nanti.',
+          'Arka plan kopyası henüz onaylanmadığı için çıkış iptal edildi. Veriler telefonda kalır; daha sonra tekrar dene.',
+          'Kopia w tle nie została jeszcze potwierdzona, więc wylogowanie anulowano. Dane pozostają w telefonie; spróbuj później.',
         ),
         [okButton, forcedLogoutButton],
       );

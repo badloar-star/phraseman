@@ -26,15 +26,14 @@ describe('global level-up sheet contract', () => {
     // зачем 2026-08-16: Hybrid ведёт вход/выход своим reanimated-движком —
     // родителю (app/_layout.tsx) больше не нужны Animated.Value-драйверы
     // (opacity/translateY/glow). Тот же порядок и тайминг переходов
-    // (220мс спин-финализация, 300мс обычный dismiss) сохранён через
-    // setTimeout вместо Animated.timing(...).start(callback).
+    // (220мс спин-финализация) сохранён через setTimeout вместо
+    // Animated.timing(...).start(callback). Отдельного gift-dismiss больше нет.
     expect(source).not.toContain('levelUpOpacity');
     expect(source).not.toContain('levelUpTranslateY');
     expect(source).not.toContain('levelUpGlow');
     expect(source).not.toContain('USE_ELITE_LEVEL_UP_MODAL');
     expect(source).toContain('const exitTimer = setTimeout(() => {');
     expect(source).toMatch(/}, 220\);/);
-    expect(source).toMatch(/}, 300\);/);
   });
 
   it('keeps DEV previews isolated from the real pending queue', () => {
@@ -45,12 +44,12 @@ describe('global level-up sheet contract', () => {
     expect(devSheetSource).not.toContain('flushQueue');
   });
 
-  it('acknowledges a pending level only after the native modal is actually shown', () => {
-    expect(source).toContain('const acknowledgeNativeLevelUpShown = useCallback');
+  it('acknowledges the Spin receipt only through the explicit completion action', () => {
     expect(source).toContain('onShow={() => {');
-    expect(source).toContain('if (!currentIsSpin) acknowledgeNativeLevelUpShown();');
+    expect(source).toContain('onContinue={finalizeSpinLevelUp}');
+    expect(source).toContain('await acknowledgePendingLevelSpinLevelUp(level)');
     expect(source).toContain('canAcknowledgeLevelUpForAccount');
-    expect(source).toContain('await acknowledgePendingLevelUpShown(shownLevel)');
+    expect(source).not.toContain('acknowledgeNativeLevelUpShown');
     expect(source).not.toContain('removeShownLevelFromPersistentQueue');
   });
 
@@ -77,24 +76,19 @@ describe('global level-up sheet contract', () => {
     expect(source).toContain('await flushQueue();');
   });
 
-  it('uses the exact durable gift shape, including a legacy single remainder', () => {
-    expect(source).toContain('loadUnclaimedDualGifts()');
-    expect(source).toContain('const savedPair = dualMap[lvl]');
-    expect(source).toContain('const savedGift = singleMap[lvl]');
-    expect(source).toContain('setGiftPreRolledPair(savedPair ?? undefined)');
-    expect(source).toContain('setGiftPreRolled(savedPair ? undefined : savedGift ?? undefined)');
-    expect(source).toContain('setLevelGiftDualMode(!!savedPair)');
-    expect(source).toContain('preRolledPair={giftPreRolledPair}');
-    expect(source).not.toContain('setLevelGiftDualMode(!!hasPremiumAccess)');
+  it('keeps the automatic level-up presentation Spin-only', () => {
+    expect(source).toContain('loadPendingLevelSpinLevelUps()');
+    expect(source).not.toContain('<LevelGiftModal');
+    expect(source).not.toContain('<LevelGiftDualModal');
+    expect(source).not.toContain('preRolledPair={giftPreRolledPair}');
   });
 
-  it('labels catch-up level rewards without exposing account reconciliation details', () => {
+  it('labels catch-up levels without reserving gift-copy space', () => {
     expect(source).toContain("AsyncStorage.multiGet(['user_name', 'user_total_xp'])");
     expect(source).toContain('const [currentAccountLevel, setCurrentAccountLevel] = useState(0)');
     expect(source).toContain('const isCatchUpLevelReward = currentAccountLevel > currentLevel');
     expect(source).toContain('levelUpKickerText');
-    expect(source).toContain('levelUpMessageText');
-    expect(source).toContain('Это твоя награда за уровень ${currentLevel}. Забирай подарок.');
+    expect(source).toContain("message={''}");
     expect(source).not.toContain('Сейчас у тебя уровень ${currentAccountLevel}');
     expect(source).not.toContain('Now you have level');
   });

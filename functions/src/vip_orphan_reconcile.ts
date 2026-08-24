@@ -18,6 +18,7 @@
  */
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 const USERS = 'users';
@@ -166,8 +167,11 @@ export const vipReconcileOrphanGrant = functions.firestore.onDocumentWritten(
       if (decision.kind === 'transfer') {
         // Копируем VIP-блок на canonical (vip_grant_at → празднование у клиента).
         tx.set(canonicalRef, { progress: decision.vipPatch, updatedAt: now }, { merge: true });
+        writeAccessProjectionFromPatch(tx, canonicalRef, canonicalProgress, decision.vipPatch, now);
       }
       // И в transfer, и в extinguish гасим VIP в осиротевшем доке (анти-цикл + анти-дубль).
-      tx.set(orphanRef, { progress: extinguishPatch(canonicalStableId, now) }, { merge: true });
+      const orphanPatch = extinguishPatch(canonicalStableId, now);
+      tx.set(orphanRef, { progress: orphanPatch }, { merge: true });
+      writeAccessProjectionFromPatch(tx, orphanRef, orphanProgress, orphanPatch, now);
     });
   });

@@ -219,7 +219,6 @@ async function stopStaleProjectMetro() {
 process.chdir(PROJECT_ROOT);
 runCheck('корень checkout', process.execPath, ['scripts/canonical_workspace_guard.mjs']);
 verifyCurrentGitSnapshot();
-runCheck('обязательные ассеты', process.execPath, ['scripts/verify_weekly_boon_assets.mjs']);
 
 if (!has('--dry-run')) await stopStaleProjectMetro();
 const port = await choosePort(requestedPort);

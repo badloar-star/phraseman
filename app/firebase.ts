@@ -197,10 +197,6 @@ export function logExitTrialOfferDeclined(context: string, plan: string) {
   logEvent('exit_trial_offer_declined', { context, plan, source: paywallSourceForContext(context) });
 }
 
-export function logTrainerDirectGateBlocked(route: string) {
-  logEvent('trainer_direct_gate_blocked', { route });
-}
-
 // ── Flashcard events ──────────────────────────────────────────────────────────
 
 export function logFlashcardAdded() {

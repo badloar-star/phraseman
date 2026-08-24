@@ -94,6 +94,26 @@ function seasonLayers(slug: string): CosmeticAuraLayers {
   });
 }
 
+function approvedAuraLayers(id: string): CosmeticAuraLayers {
+  return Object.freeze({
+    baseUrl: `${ASSET_HOST}/avatar-auras/${id}/base.webp`,
+    flowUrl: `${ASSET_HOST}/avatar-auras/${id}/flow.webp`,
+    particlesUrl: `${ASSET_HOST}/avatar-auras/${id}/accents.webp`,
+  });
+}
+
+const APPROVED_AURA_IDS = new Set([
+  'aura-plus', 'aura-pro', 'aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet',
+  'aura-coral', 'aura-prism', 'aura-lagoon', 'aura-sunset', 'aura-still-halo',
+  'aura-moonline', 'aura-pearl-breath', 'aura-frost-petal', 'aura-storm-vine',
+  'aura-sunflower-pulse', 'aura-neon-circuit', 'aura-data-ring', 'aura-plasma-gear',
+  'aura-holo-scan', 'aura-lunar-sigil', 'aura-solar-eclipse', 'aura-star-choir',
+  'aura-astral-eyes', 'aura-magma-rift', 'aura-thunder-fang', 'aura-inferno-crown',
+  'aura-acid-surge', 'aura-bubble-pop', 'aura-pixel-party', 'aura-rainbow-loop',
+  'aura-gilded-laurel', 'aura-diamond-orbit', 'aura-velvet-gold', 'aura-regal-wings',
+  'aura-void-thorn', 'aura-blood-moon', 'aura-obsidian-smoke', 'aura-phantom-chain',
+]);
+
 const SEASON_AURA_SLUGS: Readonly<Record<string, string>> = Object.freeze({
   'aura-season-1-stage-1': 'stage-1',
   'aura-season-1-stage-2': 'stage-2',
@@ -109,29 +129,59 @@ function aura(
   delivery: CosmeticDelivery,
 ): CosmeticAssetInventoryItem {
   const slug = SEASON_AURA_SLUGS[id];
+  const approved = APPROVED_AURA_IDS.has(id);
   return Object.freeze({
     id,
     category: 'aura' as const,
     name,
     defaultForSale,
     delivery,
-    render: slug ? 'aura-layers' as const : 'aura-ring' as const,
-    palette: AURA_PALETTES[id],
-    ...(slug ? { layers: seasonLayers(slug) } : {}),
+    render: approved || slug ? 'aura-layers' as const : 'aura-ring' as const,
+    ...(!approved && AURA_PALETTES[id] ? { palette: AURA_PALETTES[id] } : {}),
+    ...(approved ? { layers: approvedAuraLayers(id) } : slug ? { layers: seasonLayers(slug) } : {}),
   });
 }
 
 const AURA_ITEMS: readonly CosmeticAssetInventoryItem[] = [
-  aura('aura-plus', 'Plus', false, 'subscription'),
-  aura('aura-pro', 'Pro', false, 'subscription'),
-  aura('aura-aurora', 'Аврора', false, 'legacy'),
-  aura('aura-ember', 'Искра', true, 'purchase'),
-  aura('aura-mint', 'Мята', true, 'purchase'),
-  aura('aura-violet', 'Виолет', false, 'legacy'),
-  aura('aura-coral', 'Коралл', false, 'legacy'),
-  aura('aura-prism', 'Призма', true, 'purchase'),
-  aura('aura-lagoon', 'Лагуна', false, 'legacy'),
-  aura('aura-sunset', 'Закат', false, 'legacy'),
+  aura('aura-plus', 'Solar Sovereign', false, 'subscription'),
+  aura('aura-pro', 'Reality Breaker', false, 'subscription'),
+  aura('aura-aurora', 'Quiet Orbit', true, 'purchase'),
+  aura('aura-ember', 'Ember Claw', true, 'purchase'),
+  aura('aura-mint', 'Moss Current', true, 'purchase'),
+  aura('aura-violet', 'Quantum Grid', true, 'purchase'),
+  aura('aura-coral', 'Coral Bloom', true, 'purchase'),
+  aura('aura-prism', 'Candy Comet', true, 'purchase'),
+  aura('aura-lagoon', 'Soft Tide', true, 'purchase'),
+  aura('aura-sunset', 'Nebula Gate', true, 'purchase'),
+  aura('aura-still-halo', 'Still Halo', true, 'purchase'),
+  aura('aura-moonline', 'Moonline', true, 'purchase'),
+  aura('aura-pearl-breath', 'Pearl Breath', true, 'purchase'),
+  aura('aura-frost-petal', 'Frost Petal', true, 'purchase'),
+  aura('aura-storm-vine', 'Storm Vine', true, 'purchase'),
+  aura('aura-sunflower-pulse', 'Sunflower Pulse', true, 'purchase'),
+  aura('aura-neon-circuit', 'Neon Circuit', true, 'purchase'),
+  aura('aura-data-ring', 'Data Ring', true, 'purchase'),
+  aura('aura-plasma-gear', 'Plasma Gear', true, 'purchase'),
+  aura('aura-holo-scan', 'Holo Scan', true, 'purchase'),
+  aura('aura-lunar-sigil', 'Lunar Sigil', true, 'purchase'),
+  aura('aura-solar-eclipse', 'Solar Eclipse', true, 'purchase'),
+  aura('aura-star-choir', 'Star Choir', true, 'purchase'),
+  aura('aura-astral-eyes', 'Astral Eyes', true, 'purchase'),
+  aura('aura-magma-rift', 'Magma Rift', true, 'purchase'),
+  aura('aura-thunder-fang', 'Thunder Fang', true, 'purchase'),
+  aura('aura-inferno-crown', 'Inferno Crown', true, 'purchase'),
+  aura('aura-acid-surge', 'Acid Surge', true, 'purchase'),
+  aura('aura-bubble-pop', 'Bubble Pop', true, 'purchase'),
+  aura('aura-pixel-party', 'Pixel Party', true, 'purchase'),
+  aura('aura-rainbow-loop', 'Rainbow Loop', true, 'purchase'),
+  aura('aura-gilded-laurel', 'Gilded Laurel', true, 'purchase'),
+  aura('aura-diamond-orbit', 'Diamond Orbit', true, 'purchase'),
+  aura('aura-velvet-gold', 'Velvet Gold', true, 'purchase'),
+  aura('aura-regal-wings', 'Regal Wings', true, 'purchase'),
+  aura('aura-void-thorn', 'Void Thorn', true, 'purchase'),
+  aura('aura-blood-moon', 'Blood Moon', true, 'purchase'),
+  aura('aura-obsidian-smoke', 'Obsidian Smoke', true, 'purchase'),
+  aura('aura-phantom-chain', 'Phantom Chain', true, 'purchase'),
   aura('aura-nimbus', 'Нимб', false, 'reward'),
   aura('aura-season-1-stage-1', 'Пульс I', false, 'reward'),
   aura('aura-season-1-stage-2', 'Поток II', false, 'reward'),

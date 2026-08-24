@@ -13,9 +13,7 @@ describe('monthly decision pack source projection', () => {
       generatedAtMs: Date.parse('2026-07-13T12:00:00Z'),
       productMonthRows: [
         { row_kind: 'quality', payload: JSON.stringify({ consented_app_instances: 120, sessions: 300, screen_views: 800, data_through_micros: 1_751_328_000_000_000 }) },
-        { row_kind: 'review_summary', payload: JSON.stringify({ persisted_answers: 200, first_answer_accuracy: 0.7, delayed_recall_accuracy: null, consented_app_instances: 40 }) },
-        { row_kind: 'review_delay', payload: JSON.stringify({ delay_bucket: 'd30_plus', accuracy: null, consented_app_instances: 20 }) },
-        { row_kind: 'daily_kpi', payload: JSON.stringify({ local_date: '2026-06-01', sessions: 20, active_consented_app_instances: 12, screen_views: 80, lesson_starts: 15, lesson_completes: 10, review_answers: 30 }) },
+        { row_kind: 'daily_kpi', payload: JSON.stringify({ local_date: '2026-06-01', sessions: 20, active_consented_app_instances: 12, screen_views: 80, lesson_starts: 15, lesson_completes: 10 }) },
         { row_kind: 'true_retention_day', payload: JSON.stringify({ cohort_date: '2026-06-01', eligible_d1: 20, exact_returned_d1: 8, exact_d1_rate: 0.4, eligible_d7: 20, exact_returned_d7: 5, exact_d7_rate: 0.25 }) },
         { row_kind: 'experiment_exposure', payload: JSON.stringify({ experiment_id: 'paywall_v4', definition_version: 1, variant_id: 'control', exposures: 30, consented_app_instances: 20 }) },
       ],
@@ -39,7 +37,7 @@ describe('monthly decision pack source projection', () => {
       expect.objectContaining({ scope: 'reporting_month', metric_id: 'revenue.subscription_chain_ltv_30d_gross_usd.v1', value_micros: 2_500_000, denominator: 10, status: 'mature' }),
     ]));
     expect(input.sections?.subscriptions_revenue).not.toContainEqual(expect.objectContaining({ metric_id: 'estimated_proceeds_usd' }));
-    expect(input.sections?.learning_outcomes).toContainEqual(expect.objectContaining({ delay_bucket: 'd30_plus', value: null, denominator: 20 }));
+    expect(input.sections?.learning_outcomes).toEqual([]);
     expect(input.sections?.daily_timeseries).toContainEqual(expect.objectContaining({ scope: 'reporting_month', date: '2026-06-01', metric_id: 'sessions', value: 20 }));
     expect(input.sections?.retention_cohorts).toContainEqual(expect.objectContaining({ cohort: '2026-06-01', day: 7, eligible_instances: 20, returned_instances: 5, rate: 0.25 }));
     expect(JSON.stringify(input)).not.toContain('user@example.com');

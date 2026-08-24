@@ -33,6 +33,9 @@ import {
 // обязаны совпадать — расхождение закреплено тестом.
 export const TASKS_PER_ROUND = 4;
 
+/** Maximum number of documents the production room loader reads from one mode bucket. */
+export const TOURNAMENT_TASKS_PER_MODE_SLICE = 40;
+
 /**
  * Режимы, играбельные в турнире.
  *

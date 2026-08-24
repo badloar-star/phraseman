@@ -5,6 +5,7 @@
 // Тест гоняет конвертер на НАСТОЯЩЕЙ сессии 1, а не на выдуманной, — иначе он
 // доказывал бы только то, что код не падает на удобных данных.
 import { EPISODE_01_SESSION_01_SOURCE } from "../modules/learning-v2/content/source/episode_01_session_01_v1";
+import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
 import { buildSessionShardFromSource } from "../modules/learning-v2/content/source/session_shard_from_source_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 
@@ -63,6 +64,92 @@ describe("session package children built from an authored shard", () => {
     expect(
       (children.learner as { interactions: readonly unknown[] }).interactions,
     ).toHaveLength(practiceCount);
+  });
+
+  // зачем: раньше responseOptions всегда был пустым. Экран показывал название
+  // механики, но человеку нечего было выбирать и не из чего было собирать
+  // фразу. Этот тест проверяет настоящий путь source -> shard -> learner child
+  // для всех семи обязательных семейств, а не отдельную демонстрационную DTO.
+  it("materializes playable family-specific tasks for every practice card", () => {
+    const seenFamilies = new Set<string>();
+    const instructionByFamily: Readonly<Record<string, string>> = {
+      listen_choose: "Послушайте и выберите то, что услышали.",
+      phrase_builder: "Соберите фразу из слов.",
+      speed_match: "Быстро подберите правильное слово.",
+      sound_contrast: "Различите похожие по звучанию слова.",
+      context_gap_grammar: "Поставьте нужную форму по смыслу.",
+      listen_build_dictation: "Послушайте и восстановите фразу.",
+      scripted_repeat_compare: "Повторите вслух и сравните с образцом.",
+    };
+
+    for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+      const sourceShard = buildSessionShardFromSource(source);
+      const children = buildSessionChildBodiesFromShard(
+        sourceShard,
+        "ru",
+        `lesson-01:session:${String(source.requiredSessionOrdinal).padStart(2, "0")}`,
+      );
+      const interactions = (children.learner as {
+        interactions: readonly {
+          interactionId: string;
+          family: string;
+          inputMode: string;
+          prompt: string;
+          responseOptions: readonly { responseId: string; text: string }[];
+        }[];
+      }).interactions;
+
+      for (const interaction of interactions) {
+        const card = sourceShard.cards.find(
+          (candidate) => candidate.cardId === interaction.interactionId,
+        );
+        expect(card).toBeDefined();
+        const target = card!.contentItem.target.text;
+        const meaning = card!.contentItem.learnerMeanings.find(
+          (entry) => entry.locale === "ru",
+        )!.value;
+        const optionTexts = interaction.responseOptions.map((option) => option.text);
+        expect(new Set(interaction.responseOptions.map((option) => option.responseId)).size)
+          .toBe(interaction.responseOptions.length);
+        expect(interaction.prompt).toContain(instructionByFamily[interaction.family]);
+        seenFamilies.add(interaction.family);
+
+        if (interaction.inputMode === "ordered_tokens") {
+          expect(optionTexts.length).toBeGreaterThan(0);
+          expect(optionTexts.length).toBeLessThanOrEqual(8);
+          expect(optionTexts.join(" ")).toBe(
+            target.replace(/[?.!,]/gu, "").split(/\s+/u).filter(Boolean).join(" "),
+          );
+          expect(interaction.prompt).toContain(meaning);
+        } else if (interaction.family === "listen_choose") {
+          expect(optionTexts).toHaveLength(3);
+          expect(optionTexts).toContain(meaning);
+          expect(interaction.prompt).not.toContain(target);
+        } else if (interaction.family === "context_gap_grammar") {
+          expect(interaction.prompt).toContain("____");
+          expect(optionTexts).toHaveLength(3);
+        } else if (
+          interaction.family === "sound_contrast" ||
+          interaction.family === "speed_match"
+        ) {
+          expect(optionTexts).toHaveLength(3);
+          expect(optionTexts).toContain(target);
+        } else if (interaction.inputMode === "scripted_speech") {
+          expect(interaction.prompt).toContain(target);
+          expect(optionTexts).toHaveLength(0);
+        }
+      }
+    }
+
+    expect([...seenFamilies].sort()).toEqual([
+      "context_gap_grammar",
+      "listen_build_dictation",
+      "listen_choose",
+      "phrase_builder",
+      "scripted_repeat_compare",
+      "sound_contrast",
+      "speed_match",
+    ]);
   });
 
   // зачем: незнакомое семейство заданий не должно молча стать выбором из

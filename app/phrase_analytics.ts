@@ -106,7 +106,7 @@ function normalizedMistakePhrase(value: string): string {
   return value.trim().replace(/[.!?,;¿¡]+$/, '').toLocaleLowerCase();
 }
 
-function summarizeMistakeWindow(entries: readonly MistakeEntry[]): PhraseWindowSummary {
+function summarizeMistakeWindow(entries: readonly AnalyticsMistakeEntry[]): PhraseWindowSummary {
   const counts = new Map<string, number>();
   for (const entry of entries) {
     const key = normalizedMistakePhrase(entry.phrase);
@@ -124,7 +124,7 @@ function summarizeMistakeWindow(entries: readonly MistakeEntry[]): PhraseWindowS
 }
 
 export function summarizePhraseMistakeWindows(
-  entries: readonly MistakeEntry[],
+  entries: readonly AnalyticsMistakeEntry[],
   nowMs = Date.now(),
 ): PhraseAnalyticsWindows {
   const dayMs = 24 * 60 * 60 * 1000;
@@ -209,6 +209,11 @@ export interface PhraseMistakeSignal {
   category?: WordCategory;
   grammarTag?: string;
   mode?: string;
+}
+
+export interface AnalyticsMistakeEntry extends PhraseMistakeSignal {
+  readonly ts: number;
+  readonly lessonId: number;
 }
 
 export type PhraseMistakeInput = string | PhraseMistakeSignal;
@@ -577,7 +582,21 @@ const ANALYTICS_WINDOW_MS = ANALYTICS_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
 export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
   try {
-    const entries = await loadMistakeLog();
+    const studyTarget = storageStudyTarget();
+    const accountScope = await getStableId();
+    const journal = await loadMistakeEventJournal({ accountScope, studyTarget });
+    const entries: AnalyticsMistakeEntry[] = journal.events
+      .filter((event) => event.type === 'captured')
+      .map((event) => ({
+        phrase: typeof event.payload.canonicalTarget === 'string' ? event.payload.canonicalTarget : '',
+        tokenText: typeof event.payload.expected === 'string' ? event.payload.expected : undefined,
+        tokenIndex: typeof event.payload.tokenIndex === 'number' ? event.payload.tokenIndex : undefined,
+        expected: typeof event.payload.expected === 'string' ? event.payload.expected : undefined,
+        mode: typeof event.payload.sourceKind === 'string' ? event.payload.sourceKind : undefined,
+        lessonId: Number.parseInt(String(event.payload.lessonId ?? '0').replace(/^lesson-/, ''), 10) || 0,
+        ts: event.occurredAtMs,
+      }))
+      .filter((entry) => entry.phrase.trim().length > 0);
     const now = Date.now();
     const windowStart = now - ANALYTICS_WINDOW_MS;
     const recent = entries.filter((e) => e.ts >= windowStart);

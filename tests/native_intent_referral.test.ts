@@ -38,18 +38,15 @@ test('redirectSystemPath opens a new Arena V2 friend invite without reviving leg
   );
 });
 
-test('redirectSystemPath opens only bounded opaque Arena Ghost invites', () => {
+// зачем: экран /arena_ghost_duel удалён (владелец, 2026-08-16). Старая
+// ссылка на призрачную дуэль больше никуда не ведёт содержательно — падает
+// в живой корень Арены, тот же дом, что у остальных retired-ссылок.
+test('redirectSystemPath sends retired Arena Ghost links to the live Arena root', () => {
   const inviteToken = `${'a'.repeat(64)}.5Jp7tYQ8zW2nL4aK9mVx`;
   const productionToken = `${'b'.repeat(64)}5Jp7tYQ8zW2nL4aK9mVx`;
-  expect(redirect(`phraseman://arena/ghost/${inviteToken}`)).toBe(
-    `/arena_ghost_duel?inviteToken=${inviteToken}`,
-  );
-  expect(redirect(`https://knowlyapps.com/arena/ghost/${inviteToken}`)).toBe(
-    `/arena_ghost_duel?inviteToken=${inviteToken}`,
-  );
-  expect(redirect(`phraseman://arena/ghost/${productionToken}`)).toBe(
-    `/arena_ghost_duel?inviteToken=${productionToken}`,
-  );
+  expect(redirect(`phraseman://arena/ghost/${inviteToken}`)).toBe('/arena');
+  expect(redirect(`https://knowlyapps.com/arena/ghost/${inviteToken}`)).toBe('/arena');
+  expect(redirect(`phraseman://arena/ghost/${productionToken}`)).toBe('/arena');
   expect(redirect('phraseman://arena/ghost/short')).toBe('/home');
   expect(redirect('https://knowlyapps.com/arena/ghost/has%20spaces')).toBe('/home');
 });

@@ -1,30 +1,30 @@
 /**
- * GlobalFriendGiftHost — глобальный поллер подарков от друзей.
- *
- * Проблема: claimUnseenFriendGifts вызывался только на вкладке Friends.
- * Юзер, не заходя на Friends, никогда не видел уведомление.
- *
- * Решение: хост в _layout.tsx опрашивает при старте и при переходе
- * в foreground. Он помечает подарки seen — friends.tsx тогда получает
- * пустой ответ и не задваивает тост.
- *
- * Антиспам: поллинг не чаще POLL_INTERVAL_MS. Тост = reward-тип.
+ * GlobalFriendGiftHost — единственный владелец получения и показа подарков.
+ * Подарок виден на любом экране, ждёт свободного слота OverlayArbiter и не
+ * дублируется обычным тостом. claimUnseenFriendGifts уже сохраняет его в инвентарь.
  */
-import { useEffect, useRef } from 'react';
-import { AppState } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { emitAppEvent } from '../app/events';
-import { claimUnseenFriendGifts } from '../app/friend_gift_inbox';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { claimUnseenFriendGifts, type IncomingFriendGift } from '../app/friend_gift_inbox';
 import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
-import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from '../app/account_generation';
 import { accountScopeKey } from '../app/account_scope_key';
+import { useOverlayVisible } from './OverlayArbiter';
+import HybridAlertShell from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import { soundDirector } from '../modules/audio/sound_director';
+import { onAppEvent } from '../app/events';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
+const GIFT_SOUND = { soundEventId: 'pm.social.gift_received' as const };
 const LAST_POLL_KEY = 'global_friend_gift_last_poll';
 
-function giftLabel(gift: Awaited<ReturnType<typeof claimUnseenFriendGifts>>[number], lang: ReturnType<typeof useLang>['lang']): string {
+function giftLabel(gift: IncomingFriendGift, lang: ReturnType<typeof useLang>['lang']): string {
   if (lang === 'uk') return gift.giftLabelUk ?? gift.giftLabel;
   if (lang === 'es') return gift.giftLabelEs ?? gift.giftLabel;
   if (lang === 'pt-BR') return gift.giftLabelPtBr ?? gift.giftLabel;
@@ -37,13 +37,31 @@ function giftLabel(gift: Awaited<ReturnType<typeof claimUnseenFriendGifts>>[numb
 
 export default function GlobalFriendGiftHost() {
   const { lang } = useLang();
-  const langRef = useRef(lang);
-  langRef.current = lang;
+  const { theme: t, f } = useTheme();
   const runningRef = useRef(false);
+  const forcePollPendingRef = useRef(false);
   const scheduledRef = useRef<{ cancel: () => void } | null>(null);
+  const [pending, setPending] = useState<IncomingFriendGift[]>([]);
+  const visible = useOverlayVisible('friendGift', pending.length > 0);
+  const first = pending[0] ?? null;
 
-  const poll = async () => {
-    if (runningRef.current) return;
+  const dismiss = useCallback(() => {
+    setPending((current) => current.slice(1));
+  }, []);
+
+  useEffect(() => {
+    if (!visible || !first) return;
+    soundDirector.request(GIFT_SOUND.soundEventId, {
+      scope: 'friend-gift-modal',
+      dedupeKey: first.id,
+    });
+  }, [first, visible]);
+
+  const poll = async (force = false) => {
+    if (runningRef.current) {
+      if (force) forcePollPendingRef.current = true;
+      return;
+    }
     runningRef.current = true;
     try {
       const accountToken = captureAccountGeneration();
@@ -54,34 +72,20 @@ export default function GlobalFriendGiftHost() {
       if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
       const last = lastRaw ? Number(lastRaw) : 0;
       const now = Date.now();
-      if (now - last < POLL_INTERVAL_MS) return;
-
+      if (!force && now - last < POLL_INTERVAL_MS) return;
       const gifts = await claimUnseenFriendGifts();
       if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
       await AsyncStorage.setItem(pollKey, String(now));
-      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
-      if (!gifts.length) return;
-
-      const l = langRef.current;
-      const first = gifts[0];
-      const from = first.fromName || triLang(l, { ru: 'друг', uk: 'друг', es: 'amigo', 'pt-BR': 'amigo', vi: 'bạn', id: 'teman', tr: 'arkadaş', pl: 'znajomy' });
-      const label = giftLabel(first, l);
-
-      const messageRu = gifts.length === 1
-        ? `${from} подарил тебе: ${label} 🎁`
-        : triLang(l, { ru: `Новые подарки от друзей: ${gifts.length} 🎁`, uk: `Нові подарунки від друзів: ${gifts.length} 🎁`, es: `Regalos nuevos: ${gifts.length} 🎁`, 'pt-BR': `Novos presentes: ${gifts.length} 🎁`, vi: `Quà mới: ${gifts.length} 🎁`, id: `Hadiah baru: ${gifts.length} 🎁`, tr: `Yeni hediyeler: ${gifts.length} 🎁`, pl: `Nowe prezenty: ${gifts.length} 🎁` });
-
-      emitAppEvent('action_toast', {
-        type: 'reward',
-        soundEventId: 'pm.social.gift_received',
-        messageRu,
-        messageUk: gifts.length === 1 ? `${from} подарував тобі: ${giftLabel(first, 'uk')} 🎁` : undefined,
-        messageEs: gifts.length === 1 ? `${from} te regaló: ${giftLabel(first, 'es')} 🎁` : undefined,
-      });
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId) || gifts.length === 0) return;
+      setPending((current) => [...current, ...gifts.filter((gift) => !current.some((item) => item.id === gift.id))]);
     } catch {
-      /* ignore — optional enhancement */
+      /* Подарок останется unseen и будет подобран следующим безопасным poll. */
     } finally {
       runningRef.current = false;
+      if (forcePollPendingRef.current) {
+        forcePollPendingRef.current = false;
+        void poll(true);
+      }
     }
   };
 
@@ -102,5 +106,53 @@ export default function GlobalFriendGiftHost() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return null;
+  useEffect(() => subscribeAccountGeneration(() => {
+    // Never let account B see a gift modal queued for account A.
+    setPending([]);
+    forcePollPendingRef.current = false;
+    scheduledRef.current?.cancel();
+    scheduledRef.current = scheduleCoalescedForegroundTask('global_friend_gift_poll', () => poll(true));
+  }).remove,
+  // Process-lifetime host; poll validates the new account generation.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  []);
+
+  useEffect(() => {
+    const sub = onAppEvent('friend_gift_push_opened', () => {
+      scheduledRef.current?.cancel();
+      scheduledRef.current = null;
+      void poll(true);
+    });
+    return () => sub.remove();
+    // Один process-lifetime listener; poll защищён runningRef и account generation.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const from = first?.fromName || triLang(lang, { ru: 'друга', uk: 'друга', es: 'un amigo', 'pt-BR': 'um amigo', vi: 'một người bạn', id: 'teman', tr: 'bir arkadaş', pl: 'znajomego' });
+  const title = triLang(lang, { ru: `Подарок от ${from}`, uk: `Подарунок від ${from}`, es: `Regalo de ${from}`, 'pt-BR': `Presente de ${from}`, vi: `Quà từ ${from}`, id: `Hadiah dari ${from}`, tr: `${from} adlı arkadaşından hediye`, pl: `Prezent od ${from}` });
+  const claim = triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' });
+
+  return (
+    <HybridAlertShell visible={visible} onRequestClose={dismiss} testID="friend-gift-global-modal" shadowColor={t.gold}>
+      <View style={[styles.card, { backgroundColor: t.bgCard }]}>
+        <View style={[styles.hero, { backgroundColor: t.goldBg }]}>
+          <Ionicons name="gift" size={46} color={t.gold} />
+        </View>
+        <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
+        <Text style={[styles.gift, { color: t.textPrimary, fontSize: f.h3 }]}>{first ? giftLabel(first, lang) : ''}</Text>
+        <DuoPressable testID="friend-gift-global-claim" onPress={dismiss} edgeColor={t.gold} style={[styles.cta, { backgroundColor: t.gold }]}>
+          <Text style={[styles.ctaText, { color: t.correctText }]}>{claim}</Text>
+        </DuoPressable>
+      </View>
+    </HybridAlertShell>
+  );
 }
+
+const styles = StyleSheet.create({
+  card: { padding: 24, alignItems: 'center' },
+  hero: { width: 92, height: 92, borderRadius: 46, alignItems: 'center', justifyContent: 'center' },
+  title: { marginTop: 18, fontWeight: '700', textAlign: 'center' },
+  gift: { marginTop: 14, marginBottom: 24, fontWeight: '700', textAlign: 'center' },
+  cta: { width: '100%', minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
+});

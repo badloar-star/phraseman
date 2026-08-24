@@ -1,4 +1,12 @@
 import type { EpisodeSourcePhrase, EpisodeSourcePhraseLocalizedDetails } from './episode_01_source_v1';
+import {
+  AUTHORED_INTROS_41_TO_48,
+  type AuthoredIntroPage41To48,
+} from './episode_01_sessions_41_48_intro_data_v1';
+import {
+  buildEpisode01WorldLocalizedDetails,
+  episode01WorldDistractorReason,
+} from './episode_01_phrase_localization_41_56_v1';
 import type { LocalizedIntroRunsSource, LocalizedSource, SessionSource } from './session_shard_from_source_v1';
 
 type Locale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
@@ -21,15 +29,29 @@ const L = (pick: (copy: Copy) => string): LocalizedSource => Object.fromEntries(
 const words = (english: string) => english.replace(/[?.!]/gu, '').split(/\s+/u).filter(Boolean);
 const vocabulary = ['this', 'that', 'my', 'your', 'book', 'bag', 'cup', 'key', 'red', 'blue', 'green', 'big', 'small', 'one', 'two', 'ten', 'old', 'kind', 'funny', 'quiet', 'is', 'are', 'am', 'he', 'she', 'they'];
 const alternatives = (word: string) => vocabulary.filter((item) => item !== word.toLowerCase()).slice(0, 5);
-const localizedDetails = (english: string): Record<Locale, EpisodeSourcePhraseLocalizedDetails> => Object.fromEntries(LOCALES.map((locale) => {
-  const copy = COPY[locale]; const phraseWords = words(english);
-  return [locale, { meaning: `${copy.meaning}: ${english}`, explanation: `${copy.explanation} ${english}`, distractors: alternatives(phraseWords[0]).map((value) => ({ value, reason: copy.wrong })), words: phraseWords.map((correct) => ({ correct, prompt: `${copy.prompt} ${correct}`, distractors: alternatives(correct).map((value) => ({ value, reason: copy.wrong })) })) }];
-})) as unknown as Record<Locale, EpisodeSourcePhraseLocalizedDetails>;
+const localizedDetails = (english: string): Record<Locale, EpisodeSourcePhraseLocalizedDetails> =>
+  buildEpisode01WorldLocalizedDetails(english, words(english), alternatives);
 const phrase = (ordinal: number, position: number, english: string, features: readonly string[]): EpisodeSourcePhrase => {
   const localized = localizedDetails(english);
-  return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: localized.ru.meaning, explanation: localized.ru.explanation, localizedDetails: localized, features, words: words(english).map((correct) => ({ correct, category: /^(am|is|are)$/u.test(correct) ? 'to-be' : 'lexical', distractors: alternatives(correct).map((value) => ({ value, reasonCode: 'wrong_token_for_position', why: 'Wrong word for this position.' })) })) };
+  return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: localized.ru.meaning, explanation: localized.ru.explanation, localizedDetails: localized, features, words: words(english).map((correct) => ({ correct, category: /^(am|is|are)$/u.test(correct) ? 'to-be' : 'lexical', distractors: alternatives(correct).map((value) => ({ value, reasonCode: 'wrong_token_for_position', why: episode01WorldDistractorReason('ru', correct, value) })) })) };
 };
-const runs = (body: LocalizedSource, target: string): LocalizedIntroRunsSource => Object.fromEntries(LOCALES.map((locale) => { const text = body[locale] as string; const index = text.indexOf(target); return [locale, index < 0 ? [{ text, semantic: 'explanation' as const }] : [{ text: text.slice(0, index), semantic: 'explanation' as const }, { text: target, semantic: 'targetCorrect' as const }, { text: text.slice(index + target.length), semantic: 'explanation' as const }]]; })) as unknown as LocalizedIntroRunsSource;
+const runs = (body: LocalizedSource, target: string): LocalizedIntroRunsSource => Object.fromEntries(LOCALES.map((locale) => { const text = body[locale] as string; const index = text.indexOf(target); return [locale, index < 0 ? [{ text, semantic: 'explanation' as const }] : [{ text: text.slice(0, index), semantic: 'explanation' as const }, { text: target, semantic: 'targetCorrect' as const }, { text: text.slice(index + target.length), semantic: 'explanation' as const }].filter((run) => run.text.length > 0)]; })) as unknown as LocalizedIntroRunsSource;
+
+const localizeEnglishChoice = (value: string): LocalizedSource =>
+  Object.fromEntries(LOCALES.map((locale) => [locale, value])) as unknown as LocalizedSource;
+
+const authoredIntroPage = (
+  page: AuthoredIntroPage41To48,
+): SessionSource['introPages'][number] => {
+  const body = page.body;
+  return {
+    kind: page.kind,
+    title: page.title,
+    body,
+    bodyRuns: runs(body, page.choices[0]),
+    question: { prompt: page.prompt, choices: [localizeEnglishChoice(page.choices[0]), localizeEnglishChoice(page.choices[1]), localizeEnglishChoice(page.choices[2])], correctChoiceIndex: 0, explanation: page.explanation },
+  };
+};
 
 const PHRASES: Record<number, readonly string[]> = {
   41: ['This is my book.', 'That is your bag.', 'This is a cup.', 'That is a key.', 'My book is here.', 'Your bag is here.', 'Is this my cup?', 'Is that your key?', 'This is my key.', 'That is your cup.', 'My bag is here.', 'Your book is here.', 'Is this your book?', 'Is that my bag?', 'This is your key.'],
@@ -41,19 +63,23 @@ const PHRASES: Record<number, readonly string[]> = {
   47: ['This is a red bag.', 'That is a small cup.', 'My book is green.', 'Your key is blue.', 'He is kind.', 'She is funny.', 'He is ten years old.', 'She is eleven years old.', 'This bag is big.', 'That key is small.', 'Is this your book?', 'Is that my cup?', 'How old is he?', 'How old is she?', 'They are quiet.'],
   48: ['This is my red bag.', 'That is your small cup.', 'My green book is here.', 'Your blue key is here.', 'Two bags are here.', 'Three cups are here.', 'He is kind.', 'She is funny.', 'He is ten years old.', 'She is eleven years old.', 'Is this a big bag?', 'Is that a small key?', 'How old are you?', 'How old is he?', 'They are happy.'],
 };
-const FEATURES: Record<number, readonly string[]> = { 41: ['copula_be', 'everyday_object_noun'], 42: ['copula_be', 'colour_adjective'], 43: ['copula_be', 'size_adjective', 'adjective_before_noun'], 44: ['copula_be', 'plural_noun', 'number_vocabulary'], 45: ['copula_be', 'age_expression', 'question_inversion'], 46: ['copula_be', 'descriptive_adjective'], 47: ['copula_be', 'spoken_production'], 48: ['copula_be'] };
+const FEATURES: Record<number, readonly string[]> = { 41: ['copula_be', 'everyday_object_noun'], 42: ['copula_be', 'colour_adjective'], 43: ['copula_be', 'size_adjective', 'adjective_before_noun'], 44: ['copula_be', 'plural_noun', 'number_1_20'], 45: ['copula_be', 'age_expression', 'question_inversion'], 46: ['copula_be', 'descriptive_adjective'], 47: ['copula_be', 'spoken_production'], 48: ['copula_be'] };
 const OUTCOME: Record<number, string> = { 41: 'obj-e01-everyday-objects', 42: 'obj-e01-colours', 43: 'obj-e01-size-and-order', 44: 'obj-e01-numbers', 45: 'obj-e01-age', 46: 'obj-e01-people-description', 47: 'obj-e01-world-voice', 48: 'obj-e01-world-checkpoint' };
 
 export function buildEpisode01Session41To48(ordinal: 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48): SessionSource {
-  const target = PHRASES[ordinal][0]; const title = L((copy) => copy.title);
-  const bodies = [L((copy) => `${copy.concept} ${target}`), L((copy) => `${copy.formula} ${target}`), L((copy) => `${copy.trap} ${target}`)];
-  const introPages = bodies.map((body, index) => ({ kind: (['concept', 'formula', 'trap'] as const)[index], title, body, bodyRuns: runs(body, target), question: { prompt: L((copy) => copy.prompt), choices: [L(() => target), L(() => PHRASES[ordinal][1]), L(() => target.replace(/\b(am|is|are)\b/gu, 'be'))], correctChoiceIndex: 0 as const, explanation: L((copy) => copy.correct) } })) as unknown as SessionSource['introPages'];
-  return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: OUTCOME[ordinal], generationInputFingerprint: `authored-e01-s${ordinal}-v1`, title, summary: L((copy) => copy.explanation), learningGoal: L((copy) => copy.formula), introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
+  const authored = AUTHORED_INTROS_41_TO_48[ordinal];
+  if (!authored) throw new Error(`Missing authored intro for episode 1 session ${ordinal}`);
+  const introPages: SessionSource['introPages'] = [
+    authoredIntroPage(authored.pages[0]),
+    authoredIntroPage(authored.pages[1]),
+    authoredIntroPage(authored.pages[2]),
+  ];
+  return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: OUTCOME[ordinal], generationInputFingerprint: `authored-e01-s${ordinal}-v2`, title: authored.title, summary: authored.summary, learningGoal: authored.learningGoal, introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
 }
 
 export function assertEpisode01Sessions41To48Contract(sources: readonly SessionSource[]): void {
   const chapter = sources.filter((source) => source.requiredSessionOrdinal >= 41 && source.requiredSessionOrdinal <= 48);
   expect(chapter.map((source) => source.requiredSessionOrdinal)).toEqual([41, 42, 43, 44, 45, 46, 47, 48]);
   chapter.forEach((source) => { expect(source.phrases).toHaveLength(15); expect(source.introPages.map((page) => page.kind)).toEqual(['concept', 'formula', 'trap']); source.phrases.forEach((item) => { expect(Object.keys(item.localizedDetails ?? {}).sort()).toEqual([...LOCALES].sort()); expect(item.english).not.toMatch(/\b(?:do|does|have|had|will|can|like|want|go|see|there)\b/iu); item.words.forEach((word) => expect(new Set(word.distractors.map((entry) => entry.value)).size).toBe(5)); }); source.introPages.forEach((page) => LOCALES.forEach((locale) => expect(page.bodyRuns?.[locale]?.map((run) => run.text).join('')).toBe(page.body[locale]))); });
-  expect(chapter[0].phrases.some((item) => item.features.includes('everyday_object_noun'))).toBe(true); expect(chapter[1].phrases.some((item) => item.features.includes('colour_adjective'))).toBe(true); expect(chapter[2].phrases.some((item) => item.features.includes('adjective_before_noun'))).toBe(true); expect(chapter[3].phrases.some((item) => item.features.includes('number_vocabulary'))).toBe(true); expect(chapter[4].phrases.every((item) => !/\bhave\b/iu.test(item.english))).toBe(true); expect(chapter[6].phrases.every((item) => !/\b(?:have|do|does|will|can)\b/iu.test(item.english))).toBe(true);
+  expect(chapter[0].phrases.some((item) => item.features.includes('everyday_object_noun'))).toBe(true); expect(chapter[1].phrases.some((item) => item.features.includes('colour_adjective'))).toBe(true); expect(chapter[2].phrases.some((item) => item.features.includes('adjective_before_noun'))).toBe(true); expect(chapter[3].phrases.some((item) => item.features.includes('number_1_20'))).toBe(true); expect(chapter[4].phrases.every((item) => !/\bhave\b/iu.test(item.english))).toBe(true); expect(chapter[6].phrases.every((item) => !/\b(?:have|do|does|will|can)\b/iu.test(item.english))).toBe(true);
 }

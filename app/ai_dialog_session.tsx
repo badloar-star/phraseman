@@ -191,7 +191,7 @@ function AiDialogSession() {
   //
   // Латч живёт на монтирование: родительский маршрут даёт key=scenarioId, то
   // есть на каждый новый диалог компонент пересоздаётся и платится честно.
-  const { isUnlimited: dialogEnergyUnlimited, spendOne: spendDialogEnergy, energyReady: dialogEnergyReady } = useEnergy();
+  const { confirmSpendOne: confirmDialogEnergy, energyReady: dialogEnergyReady } = useEnergy();
   const [dialogNoEnergy, setDialogNoEnergy] = useState(false);
   const dialogEntryChargedRef = useRef(false);
   useEffect(() => {
@@ -199,11 +199,11 @@ function AiDialogSession() {
     // placeholder (isUnlimited=false, energy=MAX) — списали бы у подписчика.
     if (!dialogEnergyReady || dialogEntryChargedRef.current) return;
     dialogEntryChargedRef.current = true;
-    if (dialogEnergyUnlimited) return;
-    void spendDialogEnergy().then((ok) => {
-      if (!ok) setDialogNoEnergy(true);
+    void confirmDialogEnergy().then((result) => {
+      if (result === 'insufficient') setDialogNoEnergy(true);
+      if (result === 'cancelled') safeRouterBack(router, '/(tabs)/home' as any);
     });
-  }, [dialogEnergyReady, dialogEnergyUnlimited, spendDialogEnergy]);
+  }, [confirmDialogEnergy, dialogEnergyReady, router]);
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {

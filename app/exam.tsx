@@ -27,6 +27,7 @@ import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import ScreenGradient from '../components/ScreenGradient';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
@@ -410,7 +411,7 @@ export default function ExamScreen() {
     tr: string,
     pl: string,
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  const { isUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  const { isUnlimited, confirmSpendAmount, energy, bonusEnergy } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
   // Блокировка двойного тапа по «Начать тест»: спендим энергию ровно один раз, см. H12.
   const [examStarting, setExamStarting] = useState(false);
@@ -591,30 +592,6 @@ export default function ExamScreen() {
     if (examStartCommitInFlightRef.current) return;
     examStartCommitInFlightRef.current = true;
     try {
-      if (!isUnlimited) {
-        if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
-          void trackFeatureBlocked('exam', 'start', 'no_energy', {
-            energy,
-            bonusEnergy,
-            required: LINGMAN_EXAM_ENERGY,
-          }, 'exam');
-          setPhase('intro');
-          setNoEnergy(true);
-          return;
-        }
-        const ok = await spendAmount(LINGMAN_EXAM_ENERGY);
-        if (!ok) {
-          void trackFeatureBlocked('exam', 'start', 'energy_spend_failed', {
-            energy,
-            bonusEnergy,
-            required: LINGMAN_EXAM_ENERGY,
-          }, 'exam');
-          setPhase('intro');
-          setNoEnergy(true);
-          return;
-        }
-      }
-
       // All content checks and countdown work are already complete. Make the
       // paid transition the final async step, then expose the first question
       // immediately so no technical work can consume energy without play.
@@ -636,7 +613,7 @@ export default function ExamScreen() {
     } finally {
       examStartCommitInFlightRef.current = false;
     }
-  }, [bonusEnergy, energy, isUnlimited, questions.length, spendAmount]);
+  }, [questions.length]);
 
   useEffect(() => {
     if (phase !== 'countdown') {
@@ -725,12 +702,12 @@ export default function ExamScreen() {
     setExamStarting(true);
     try {
       examAttemptIdRef.current = makeExamAttemptId();
-      if (!isUnlimited) {
-        if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
-          void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
-          setNoEnergy(true);
-          return;
-        }
+      const energyResult = await confirmSpendAmount(LINGMAN_EXAM_ENERGY);
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') {
+        void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
+        setNoEnergy(true);
+        return;
       }
       setIdx(0);
       setChoices(Array(questions.length).fill(null));
@@ -1063,16 +1040,19 @@ export default function ExamScreen() {
               </View>
             </View>
           ))}
-          <TouchableOpacity
-            style={{backgroundColor:t.bgSurface,borderRadius:16,padding:18,alignItems:'center',marginTop:12,opacity: examStarting ? 0.6 : 1}}
-            onPress={() => { void startExam(); }}
-            disabled={examStarting}
-            activeOpacity={0.85}
-          >
-            <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700'}}>
-              {t3('Начать тест', 'Почати тест', 'Empezar', 'Começar', 'Bắt đầu', 'Mulai', 'Başla', 'Rozpocznij')}
-            </Text>
-          </TouchableOpacity>
+          <View style={{position:'relative',overflow:'visible',marginTop:12}}>
+            <TouchableOpacity
+              style={{backgroundColor:t.bgSurface,borderRadius:16,padding:18,alignItems:'center',opacity: examStarting ? 0.6 : 1}}
+              onPress={() => { void startExam(); }}
+              disabled={examStarting}
+              activeOpacity={0.85}
+            >
+              <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700'}}>
+                {t3('Начать тест', 'Почати тест', 'Empezar', 'Começar', 'Bắt đầu', 'Mulai', 'Başla', 'Rozpocznij')}
+              </Text>
+            </TouchableOpacity>
+            <EnergyCostBadge testID="exam-start-energy-cost" />
+          </View>
           {!isUnlimited && (
             <Text style={{color:sx.muted,fontSize:f.caption,textAlign:'center',marginTop:10}}>
               {t3(
@@ -1419,14 +1399,17 @@ export default function ExamScreen() {
                 </View>
               </TouchableOpacity>)
             ) : null}
-            <TouchableOpacity
-              style={{backgroundColor:t.bgCard,borderRadius:14,padding:16,width:'100%',alignItems:'center',marginBottom:12}}
-              onPress={() => { void startExam(); }}
-            >
-              <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}}>
-                {t3('🔄 Попробовать ещё раз', '🔄 Спробувати ще раз', '🔄 Intentar otra vez', '🔄 Tentar de novo', '🔄 Thử lại', '🔄 Coba lagi', '🔄 Tekrar dene', '🔄 Spróbuj ponownie')}
-              </Text>
-            </TouchableOpacity>
+            <View style={{position:'relative',overflow:'visible',width:'100%',marginBottom:12}}>
+              <TouchableOpacity
+                style={{backgroundColor:t.bgCard,borderRadius:14,padding:16,width:'100%',alignItems:'center'}}
+                onPress={() => { void startExam(); }}
+              >
+                <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}}>
+                  {t3('🔄 Попробовать ещё раз', '🔄 Спробувати ще раз', '🔄 Intentar otra vez', '🔄 Tentar de novo', '🔄 Thử lại', '🔄 Coba lagi', '🔄 Tekrar dene', '🔄 Spróbuj ponownie')}
+                </Text>
+              </TouchableOpacity>
+              <EnergyCostBadge testID="exam-restart-energy-cost" />
+            </View>
             <TouchableOpacity
               style={{flexDirection:'row',alignItems:'center',gap:8,padding:12,marginBottom:4}}
               onPress={() => { void shareExamResult(); }}

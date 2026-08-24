@@ -9,7 +9,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
-import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
@@ -17,7 +16,6 @@ import { getUtcDayKey } from '../app/local_date';
 import { checkComebackEligible, COMEBACK_GRANTED_KEY } from '../app/boons/comeback';
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
-import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
 import {
   ruKnowledgeShardsAfterNumber,
   ukKnowledgeShardsAfterNumber,
@@ -30,7 +28,6 @@ function makeL(lang: Lang) {
 }
 
 export default function ComebackBoonHost() {
-  const { themeMode } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -112,7 +109,6 @@ export default function ComebackBoonHost() {
     <BoonChestModal
       visible={visible}
       rarity="common"
-      rewardIcon={getThemedShardIcon(themeMode)}
       title={title}
       rewardLine={rewardLine}
       tapHint={tapHint}

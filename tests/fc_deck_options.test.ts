@@ -6,8 +6,11 @@
  * `DeckPickerSheet` остался в репозитории, но его больше никто не открывал:
  * мультивыбор наборов был недостижим из UI. Эти тесты держат сборку списка.
  */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { saveFlashcards, type Flashcard } from '../hooks/use-flashcards';
 import { __resetCustomCardsStoreForTests, upsertCustomCard } from '../app/flashcards/custom_cards_store';
+import { addCommunityOwnedPackId } from '../app/community_packs/communityOwnedStorage';
+import { saveBuiltMarketplaceCardsCache } from '../app/flashcards/marketplace';
 import {
   countAvailableFcCards,
   loadAllFcDeckRefs,
@@ -96,6 +99,61 @@ describe('loadFcDeckOptions', () => {
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids).toEqual(expect.arrayContaining(['saved', 'custom']));
     expect(decks.find((d) => d.deckId === 'saved')?.count).toBe(0);
+  });
+
+  /**
+   * Регрессия владельца (2026-08-16, скриншот шита «Что слушаем?»): набор,
+   * добавленный из каталога сообщества (не входит в BUNDLED_MARKETPLACE_PACKS),
+   * показывал сырой id документа Firestore вместо названия. Заголовок теперь
+   * сохраняется рядом с id в момент добавления (`addCommunityOwnedPackId`) и
+   * читается отсюда синхронно с диска — без сети.
+   */
+  it('у community-набора показывается сохранённое название, а не сырой id', async () => {
+    const communityPackId = 'MQ2TYDZs19fYRfSIV02p';
+    await addCommunityOwnedPackId(communityPackId, undefined, {
+      titleRu: 'Разговорный английский',
+      titleUk: 'Розмовна англійська',
+      titleEs: 'Inglés conversacional',
+    });
+    await saveBuiltMarketplaceCardsCache(
+      [communityPackId],
+      [{
+        id: 'cc1', en: 'hello', ru: 'привет', uk: 'привіт',
+        categoryId: 'custom', isSystem: false, sourceId: `DEV:${communityPackId}`,
+      } as CardItem],
+    );
+
+    const decks = await loadFcDeckOptions('listening', 'ru');
+    const deck = decks.find((d) => d.deckId === `pack:${communityPackId}`);
+
+    expect(deck).toBeDefined();
+    expect(deck?.title).toBe('Разговорный английский');
+    expect(deck?.title).not.toBe(communityPackId);
+    expect(deck?.title).not.toMatch(/^[A-Za-z0-9]{15,}$/);
+
+    /** Изоляция: community owned-id/title и built-cards cache не должны утекать в другие тесты. */
+    await (AsyncStorage as unknown as { __reset: () => void }).__reset();
+  });
+
+  it('community-набор без сохранённого названия показывает читаемый код, а не сырой id', async () => {
+    const communityPackId = 'ZZ9anotherRawFirestoreDocId';
+    await addCommunityOwnedPackId(communityPackId);
+    await saveBuiltMarketplaceCardsCache(
+      [communityPackId],
+      [{
+        id: 'cc2', en: 'bye', ru: 'пока', uk: 'бувай',
+        categoryId: 'custom', isSystem: false, sourceId: `DEV:${communityPackId}`,
+      } as CardItem],
+    );
+
+    const decks = await loadFcDeckOptions('listening', 'ru');
+    const deck = decks.find((d) => d.deckId === `pack:${communityPackId}`);
+
+    expect(deck).toBeDefined();
+    expect(deck?.title).not.toBe(communityPackId);
+
+    /** Изоляция: community owned-id/title и built-cards cache не должны утекать в другие describe. */
+    await (AsyncStorage as unknown as { __reset: () => void }).__reset();
   });
 });
 

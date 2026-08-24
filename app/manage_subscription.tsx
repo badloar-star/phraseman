@@ -57,6 +57,12 @@ import {
   isManageSubscriptionOperationCurrent,
 } from './manage_subscription_purchase';
 import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_identity';
+import { peekHomeScreenHydration } from './home_screen_hydration';
+import {
+  resolveSaveOffer,
+  type SaveOfferKind,
+  type SaveOfferProgress,
+} from './manage_subscription_save_offer';
 
 type ManageSubscriptionCopy = {
   ru: string;
@@ -138,7 +144,7 @@ function formatDate(ms: number | null, lang: Lang): string | null {
 function normalizeStoredPremiumPlan(plan: unknown): PremiumStorePlan | null {
   const normalized = String(plan ?? '').trim().toLowerCase();
   if (normalized === 'annual') return 'yearly';
-  return normalized === 'monthly' || normalized === 'yearly' || normalized === 'lifetime'
+  return normalized === 'monthly' || normalized === 'yearly' || normalized === 'lifetime' || normalized === 'max_monthly'
     ? normalized
     : null;
 }
@@ -200,6 +206,12 @@ export default function ManageSubscription() {
   const [showCancelSheet, setShowCancelSheet] = useState(false);
   const [cancelReason, setCancelReason] = useState<string | null>(null);
   const [cancelText, setCancelText] = useState('');
+  // зачем (аудит 2026-08-24): шаг удержания живёт ВНУТРИ того же шита, а не
+  // вторым модальным окном поверх первого — модалка над модалкой на телефоне
+  // читается как ловушка и мешает уйти. 'reasons' → 'offer' → стор.
+  const [cancelStep, setCancelStep] = useState<'reasons' | 'offer'>('reasons');
+  const [saveOffer, setSaveOffer] = useState<SaveOfferKind>('none');
+  const [offerProgress, setOfferProgress] = useState<SaveOfferProgress | null>(null);
   const screenAccountRef = useRef(screenAccount);
 
   useEffect(() => {
@@ -220,6 +232,12 @@ export default function ManageSubscription() {
       setShowCancelSheet(false);
       setCancelReason(null);
       setCancelText('');
+      // зачем: шаг удержания и прогресс тоже принадлежат прошлому аккаунту —
+      // без сброса новый владелец устройства увидел бы чужие стрик/уроки/опыт
+      // (класс бага «чужие пиксели после смены аккаунта»).
+      setCancelStep('reasons');
+      setSaveOffer('none');
+      setOfferProgress(null);
       setScreenAccount(next);
     };
     acceptAccount(captureAccountGeneration());
@@ -274,9 +292,12 @@ export default function ManageSubscription() {
   const nextDate = formatDate(metadata.expiryMs ?? null, L);
   const isLifetime = currentPlan === 'lifetime';
   const isMonthly = currentPlan === 'monthly';
+  const isMax = currentPlan === 'max_monthly';
 
   const planLabel = isLifetime
     ? 'Phraseman Pro'
+    : isMax
+      ? LP('Подписка MAX', 'Підписка MAX', 'Suscripción MAX', 'Assinatura MAX', 'Gói MAX', 'Langganan MAX', 'MAX aboneliği', 'Subskrypcja MAX')
     : currentPlan === 'yearly'
       ? LP('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
       : currentPlan === 'monthly'
@@ -320,10 +341,26 @@ export default function ManageSubscription() {
     }
   }, [changing, yearlyPkg, metadata.productId, fallbackPlan]);
 
-  // ── отмена: опрос → стор ────────────────────────────────────────────────────
+  const closeCancelSheet = useCallback(() => {
+    setShowCancelSheet(false);
+    setCancelStep('reasons');
+    setSaveOffer('none');
+    setOfferProgress(null);
+  }, []);
+
+  /** Уход в системный экран отмены — единственная точка выхода в стор. */
+  const openStoreCancel = useCallback(() => {
+    closeCancelSheet();
+    void Linking.openURL(getStoreManageUrl()).catch(() => {});
+  }, [closeCancelSheet]);
+
+  // ── отмена: опрос → удержание → стор ────────────────────────────────────────
+  // зачем (аудит 2026-08-24): опрос причины уже собирался, но никак не влиял на
+  // происходящее — человека сразу отпускали в магазин. Теперь причина решает,
+  // что показать. Нечего показать → ведём в магазин ровно как раньше.
   const submitCancel = useCallback(() => {
     if (!isManageSubscriptionOperationCurrent(screenAccount)) {
-      setShowCancelSheet(false);
+      closeCancelSheet();
       setCancelReason(null);
       setCancelText('');
       return;
@@ -331,9 +368,60 @@ export default function ManageSubscription() {
     hapticTap();
     logCancelSurvey(cancelReason ?? 'unknown', cancelText, 'manage');
     void trackEvent('subscription_cancel_survey', { reason: cancelReason ?? 'unknown' });
-    setShowCancelSheet(false);
-    void Linking.openURL(getStoreManageUrl()).catch(() => {});
-  }, [cancelReason, cancelText, screenAccount]);
+
+    // Прогресс берём из уже прогретого снапшота главной: 0 чтений Firestore и
+    // мгновенный рендер. peek сам вернёт null после смены аккаунта, поэтому
+    // чужие цифры показаться не могут.
+    const hydration = peekHomeScreenHydration();
+    const progress: SaveOfferProgress | null = hydration
+      ? {
+          streak: hydration.displayStreak || hydration.streak || 0,
+          totalXP: hydration.totalXP || 0,
+          lessonsCompleted: hydration.lessonsCompleted || 0,
+        }
+      : null;
+    const offer = resolveSaveOffer({
+      reason: cancelReason,
+      canSwitchToYearly: isMonthly && !!yearlyPkg,
+      progress,
+    });
+
+    if (offer === 'none') {
+      void trackEvent('cancel_save_offer_skipped', { reason: cancelReason ?? 'unknown' });
+      openStoreCancel();
+      return;
+    }
+    void trackEvent('cancel_save_offer_shown', { reason: cancelReason ?? 'unknown', offer });
+    setOfferProgress(progress);
+    setSaveOffer(offer);
+    setCancelStep('offer');
+  }, [cancelReason, cancelText, screenAccount, isMonthly, yearlyPkg, closeCancelSheet, openStoreCancel]);
+
+  /** Человек принял удержание — что именно, зависит от вида предложения. */
+  const acceptSaveOffer = useCallback(() => {
+    hapticTap();
+    void trackEvent('cancel_save_offer_accepted', { reason: cancelReason ?? 'unknown', offer: saveOffer });
+    if (saveOffer === 'switch_yearly') {
+      closeCancelSheet();
+      void handleChangePlan();
+      return;
+    }
+    if (saveOffer === 'support') {
+      // ideas_submit не принимает параметров — ведём без них, чтобы ссылка не
+      // притворялась, будто передаёт контекст обращения.
+      closeCancelSheet();
+      router.push('/ideas_submit');
+      return;
+    }
+    closeCancelSheet();
+  }, [saveOffer, cancelReason, closeCancelSheet, handleChangePlan, router]);
+
+  /** Отказ от удержания — уход в магазин остаётся живым и одним тапом. */
+  const declineSaveOffer = useCallback(() => {
+    hapticTap();
+    void trackEvent('cancel_save_offer_declined', { reason: cancelReason ?? 'unknown', offer: saveOffer });
+    openStoreCancel();
+  }, [saveOffer, cancelReason, openStoreCancel]);
 
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
@@ -341,10 +429,12 @@ export default function ManageSubscription() {
         <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
           <PaywallCloseButton onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }} chrome={chrome} />
 
-          <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A`, borderColor: `${chrome.tc.heroAccent}40` }]}>
+          <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A` }]}>
             <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} />
             <Text style={[S.statusText, { color: chrome.tc.heroAccent }]}>
-              {LP('Plus активирован', 'Plus активовано', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
+              {isMax
+                ? LP('MAX активирован', 'MAX активовано', 'MAX activado', 'MAX ativado', 'MAX đã kích hoạt', 'MAX aktif', 'MAX etkinleştirildi', 'MAX aktywowany')
+                : LP('Plus активирован', 'Plus активовано', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
             </Text>
           </View>
 
@@ -359,7 +449,7 @@ export default function ManageSubscription() {
           ) : (
             <>
               {!isLifetime && nextDate && (
-                <View style={[S.infoCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+                <View style={[S.infoCard, { backgroundColor: chrome.cardBg }]}>
                   <View style={S.infoRow}>
                     <Text style={[S.infoLabel, { color: chrome.textMuted }]}>
                       {LP('Следующее списание', 'Наступне списання', 'Próximo cobro', 'Próxima cobrança', 'Lần thanh toán tiếp theo', 'Tagihan berikutnya', 'Sonraki ödeme', 'Następna płatność')}
@@ -377,7 +467,7 @@ export default function ManageSubscription() {
               <Text style={[S.sectionTitle, { color: chrome.textMuted }]}>
                 {LP('ЧТО ВКЛЮЧЕНО', 'ЩО ВКЛЮЧЕНО', 'QUÉ INCLUYE', 'O QUE INCLUI', 'BAO GỒM', 'YANG TERMASUK', 'NELER DAHİL', 'CO ZAWIERA')}
               </Text>
-              <View style={[S.infoCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+              <View style={[S.infoCard, { backgroundColor: chrome.cardBg }]}>
                 {INCLUDED.map((b, i) => (
                   <View key={i} style={[S.benefitRow, i > 0 && { marginTop: 10 }]}>
                     <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} style={{ marginTop: 1 }} />
@@ -392,7 +482,7 @@ export default function ManageSubscription() {
                   activeOpacity={0.85}
                   onPress={handleChangePlan}
                   disabled={changing}
-                  style={[S.changeCard, { borderColor: `${chrome.tc.heroAccent}55`, backgroundColor: `${chrome.tc.heroAccent}10` }]}
+                  style={[S.changeCard, { backgroundColor: `${chrome.tc.heroAccent}10` }]}
                 >
                   <View style={{ flex: 1 }}>
                     <Text style={[S.changeTitle, { color: chrome.textPrimary }]}>
@@ -423,9 +513,9 @@ export default function ManageSubscription() {
         </ScrollView>
 
         {/* ── шит-опрос отмены ── */}
-        {showCancelSheet && (
+        {showCancelSheet && cancelStep === 'reasons' && (
           <View style={S.sheetOverlay}>
-            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a', borderColor: chrome.cardBorder }]}>
+            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
               <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
                 {LP('Почему уходишь?', 'Чому йдеш?', '¿Por qué te vas?', 'Por que você vai sair?', 'Vì sao bạn rời đi?', 'Mengapa kamu pergi?', 'Neden ayrılıyorsun?', 'Dlaczego odchodzisz?')}
               </Text>
@@ -438,7 +528,7 @@ export default function ManageSubscription() {
                   <TouchableOpacity
                     key={r.key}
                     onPress={() => { hapticTap(); setCancelReason(r.key); }}
-                    style={[S.reasonRow, { borderColor: sel ? chrome.tc.heroAccent : chrome.cardBorder, backgroundColor: sel ? `${chrome.tc.heroAccent}14` : 'transparent' }]}
+                    style={[S.reasonRow, { backgroundColor: sel ? `${chrome.tc.heroAccent}14` : 'transparent' }]}
                   >
                     <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={18} color={sel ? chrome.tc.heroAccent : chrome.textMuted} />
                     <Text style={[S.reasonText, { color: chrome.textPrimary }]}>{LP(r.ru, r.uk, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
@@ -451,7 +541,7 @@ export default function ManageSubscription() {
                   onChangeText={setCancelText}
                   placeholder={LP('Расскажи подробнее…', 'Розкажи детальніше…', 'Cuéntanos más…', 'Conte mais…', 'Nói rõ hơn…', 'Ceritakan lebih lanjut…', 'Biraz daha anlat…', 'Napisz więcej…')}
                   placeholderTextColor={chrome.textMuted}
-                  style={[S.input, { color: chrome.textPrimary, borderColor: chrome.cardBorder }]}
+                  style={[S.input, { color: chrome.textPrimary }]}
                   multiline
                 />
               )}
@@ -464,9 +554,99 @@ export default function ManageSubscription() {
                   {LP('Перейти к отмене', 'Перейти до скасування', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => { hapticTap(); setShowCancelSheet(false); }} style={S.sheetSecondary}>
+              <TouchableOpacity onPress={() => { hapticTap(); closeCancelSheet(); }} style={S.sheetSecondary}>
                 <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
-                  {LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
+                  {isMax
+                    ? LP('Остаться в MAX', 'Залишитися в MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
+                    : LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+
+        {/* ── шаг удержания: ответ на названную причину ──
+            Кнопка отмены остаётся живой и видимой (требование ревью сторов):
+            один дополнительный экран — да, препятствие отмене — нет. */}
+        {showCancelSheet && cancelStep === 'offer' && (
+          <View style={S.sheetOverlay}>
+            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
+              <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
+                {saveOffer === 'switch_yearly'
+                  ? LP('Годовой выходит дешевле', 'Річний виходить дешевше', 'El plan anual sale más barato', 'O plano anual sai mais barato', 'Gói năm rẻ hơn', 'Paket tahunan lebih murah', 'Yıllık plan daha ucuz', 'Roczny wychodzi taniej')
+                  : saveOffer === 'support'
+                    ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
+                    : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
+              </Text>
+              <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
+                {saveOffer === 'switch_yearly'
+                  ? LP('В пересчёте на месяц годовая подписка стоит меньше месячной.', 'У перерахунку на місяць річна підписка коштує менше місячної.', 'Por mes, la suscripción anual cuesta menos que la mensual.', 'Por mês, a assinatura anual custa menos que a mensal.', 'Tính theo tháng, gói năm rẻ hơn gói tháng.', 'Per bulan, langganan tahunan lebih murah daripada bulanan.', 'Aylık hesapta yıllık abonelik aylıktan daha ucuz.', 'W przeliczeniu na miesiąc subskrypcja roczna kosztuje mniej niż miesięczna.')
+                  : saveOffer === 'support'
+                    ? LP('Мы читаем каждое обращение и чиним то, что мешает.', 'Ми читаємо кожне звернення і лагодимо те, що заважає.', 'Leemos cada mensaje y arreglamos lo que molesta.', 'Lemos cada mensagem e corrigimos o que atrapalha.', 'Chúng tôi đọc mọi phản hồi và sửa những gì gây cản trở.', 'Kami membaca setiap pesan dan memperbaiki yang mengganggu.', 'Her mesajı okuyoruz ve engel olan şeyi düzeltiyoruz.', 'Czytamy każde zgłoszenie i naprawiamy to, co przeszkadza.')
+                    : LP('Прогресс останется с тобой, но занятия придётся продолжать без Plus.', 'Прогрес залишиться з тобою, але заняття доведеться продовжувати без Plus.', 'Tu progreso se queda, pero seguirás sin Plus.', 'Seu progresso fica, mas você seguirá sem o Plus.', 'Tiến trình vẫn còn, nhưng bạn sẽ học tiếp mà không có Plus.', 'Progresmu tetap ada, tetapi kamu akan lanjut tanpa Plus.', 'İlerlemen kalır, ama Plus olmadan devam edeceksin.', 'Twoje postępy zostaną, ale będziesz uczyć się bez Plus.')}
+              </Text>
+
+              {saveOffer === 'progress' && offerProgress && (
+                <View style={S.offerStats}>
+                  {offerProgress.streak > 0 && (
+                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
+                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{offerProgress.streak}</Text>
+                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
+                        {LP('дней подряд', 'днів поспіль', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
+                      </Text>
+                    </View>
+                  )}
+                  {offerProgress.lessonsCompleted > 0 && (
+                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
+                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{offerProgress.lessonsCompleted}</Text>
+                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
+                        {LP('уроков', 'уроків', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
+                      </Text>
+                    </View>
+                  )}
+                  {offerProgress.totalXP > 0 && (
+                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
+                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{offerProgress.totalXP}</Text>
+                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
+                        {LP('опыта', 'досвіду', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}
+                      </Text>
+                    </View>
+                  )}
+                </View>
+              )}
+
+              <TouchableOpacity
+                onPress={acceptSaveOffer}
+                disabled={changing}
+                accessibilityRole="button"
+                accessibilityState={{ disabled: changing, busy: changing }}
+                accessibilityLabel={saveOffer === 'switch_yearly'
+                  ? LP('Перейти на годовой', 'Перейти на річний', 'Cambiar al anual', 'Mudar para o anual', 'Chuyển sang gói năm', 'Beralih ke tahunan', 'Yıllığa geç', 'Przejdź na roczny')
+                  : saveOffer === 'support'
+                    ? LP('Написать нам', 'Написати нам', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
+                    : LP('Остаться с подпиской', 'Залишитися з підпискою', 'Mantener la suscripción', 'Manter a assinatura', 'Giữ gói đăng ký', 'Tetap berlangganan', 'Aboneliği sürdür', 'Zostaw subskrypcję')}
+                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg, opacity: changing ? 0.6 : 1 }]}
+              >
+                {changing ? (
+                  <ActivityIndicator color={chrome.tc.ctaText} />
+                ) : (
+                  <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
+                    {saveOffer === 'switch_yearly'
+                      ? (yearlyPriceStr
+                          ? LP(`Перейти на годовой — ${yearlyPriceStr}`, `Перейти на річний — ${yearlyPriceStr}`, `Cambiar al anual — ${yearlyPriceStr}`, `Mudar para o anual — ${yearlyPriceStr}`, `Chuyển sang gói năm — ${yearlyPriceStr}`, `Beralih ke tahunan — ${yearlyPriceStr}`, `Yıllığa geç — ${yearlyPriceStr}`, `Przejdź na roczny — ${yearlyPriceStr}`)
+                          : LP('Перейти на годовой', 'Перейти на річний', 'Cambiar al anual', 'Mudar para o anual', 'Chuyển sang gói năm', 'Beralih ke tahunan', 'Yıllığa geç', 'Przejdź na roczny'))
+                      : saveOffer === 'support'
+                        ? LP('Написать нам', 'Написати нам', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
+                        : (isMax
+                            ? LP('Остаться в MAX', 'Залишитися в MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
+                            : LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus'))}
+                  </Text>
+                )}
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={declineSaveOffer} accessibilityRole="button" style={S.sheetSecondary}>
+                <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
+                  {LP('Всё равно отменить', 'Все одно скасувати', 'Cancelar de todos modos', 'Cancelar mesmo assim', 'Vẫn hủy', 'Tetap batalkan', 'Yine de iptal et', 'Anuluj mimo to')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -514,4 +694,9 @@ const S = StyleSheet.create({
   sheetPrimaryText: { fontSize: 16, fontWeight: '900' },
   sheetSecondary: { minHeight: 44, alignItems: 'center', justifyContent: 'center', marginTop: 4 },
   sheetSecondaryText: { fontSize: 14, fontWeight: '700' },
+  // Плитки прогресса: разделены тоном подложки, без обводок (правило владельца).
+  offerStats: { flexDirection: 'row', gap: 8, marginTop: 4, marginBottom: 4 },
+  offerStat: { flex: 1, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 8, alignItems: 'center', gap: 2 },
+  offerStatNum: { fontSize: 20, fontWeight: '700', letterSpacing: -0.3 },
+  offerStatLabel: { fontSize: 12, fontWeight: '400', textAlign: 'center' },
 });

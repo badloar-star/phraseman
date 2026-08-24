@@ -36,12 +36,25 @@ function fakeDb() {
   return {
     collection: (name: string) => ({
       doc: (id: string) => refFor(`${name}/${id}`),
+      where: (field: string, _op: string, value: unknown) => ({
+        limit: () => ({
+          get: async () => ({
+            docs: [...docs.entries()]
+              .filter(([pathKey, data]) => pathKey.startsWith(`${name}/`) && data[field] === value)
+              .map(([pathKey, data]) => ({ ref: refFor(pathKey), data: () => data })),
+          }),
+        }),
+      }),
     }),
     runTransaction: async <T>(fn: (tx: any) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const tx = {
         get: (ref: any) => ref.get(),
         set: (ref: any, data: DocData, opts?: { merge?: boolean }) => {
+          if (failTrialConfirmationWrites && Number(data.trialProviderMintedAtMs) > 0) {
+            failTrialConfirmationWrites = false;
+            throw new Error('injected_trial_confirmation_write_failure');
+          }
           writes.push(() => {
             docs.set(ref.path, opts?.merge ? deepMerge(docs.get(ref.path) ?? {}, data) : { ...data });
           });
@@ -56,9 +69,11 @@ function fakeDb() {
 
 class FakeHttpsError extends Error {
   readonly code: string;
-  constructor(code: string, message: string) {
+  readonly details: unknown;
+  constructor(code: string, message: string, details?: unknown) {
     super(message);
     this.code = code;
+    this.details = details;
   }
 }
 
@@ -81,6 +96,10 @@ jest.mock('firebase-admin', () => {
 const mockResolveStableUid = jest.fn(async () => 'stable-1');
 jest.mock('./auth_identity', () => ({
   resolveStableUidForAuth: (...args: unknown[]) => mockResolveStableUid(...(args as [])),
+}));
+
+jest.mock('./account_delete', () => ({
+  resolveAccountDeleteIdentityClosure: async (_db: unknown, stableUid: string, authUid: string) => [stableUid, authUid],
 }));
 
 const mockResolvePremium = jest.fn(async () => false);
@@ -125,12 +144,14 @@ const preflight = preflightRaw as unknown as (request: CallableRequest) => Promi
 const NOW = 1_800_000_000_000;
 const AUTH = 'auth-1';
 const STABLE = 'stable-1';
-const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(AUTH, STABLE)}`;
+const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(STABLE)}`;
 const RATE_PATH = `voice_mint_rate_limits/${voiceMintRateDocId(AUTH, STABLE)}`;
 const BUDGET_PATH = 'voice_cost_daily/current';
+const OPS_PATH = `max_voice_ops_daily/${utcDayKey(NOW)}`;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 const fetchMock = jest.fn();
+let failTrialConfirmationWrites = false;
 
 function setConfig(patch: DocData = {}) {
   currentConfig = clampMaxVoiceConfig({ gate_ai_voice_call: true, ...patch });
@@ -184,6 +205,7 @@ beforeEach(() => {
   mockAiDisabled.mockReset().mockResolvedValue(false as never);
   mockResolveStableUid.mockClear();
   fetchMock.mockReset();
+  failTrialConfirmationWrites = false;
   okProvider();
   (global as any).fetch = fetchMock;
   jest.spyOn(console, 'warn').mockImplementation(() => {});
@@ -213,8 +235,8 @@ describe('gate order (App Check → kill switch → subscription → quota → m
 
   // зачем (владелец 2026-08-23, релизный пейвол): до этого access:'max' выдавался
   // ВСЕМ безусловно — звонки не гейтились вовсе, один человек мог нажечь ~$173/мес.
-  // Теперь тир решает: MAX -> 120 мин/мес, Плюс/Про -> 15 мин/мес, без подписки ->
-  // только пробник раз в 180 дней. Эти тесты сторожат сам пейвол.
+  // Теперь MAX получает 120 мин/мес, а Free/Плюс/Про делят один и тот же
+  // пожизненный пробный звонок до 3 минут на стабильный аккаунт.
   it('без подписки и с израсходованным пробником линия ЗАКРЫТА пейволом', async () => {
     setConfig({ devTestUids: [] });
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник использован вчера
@@ -224,6 +246,11 @@ describe('gate order (App Check → kill switch → subscription → quota → m
       message: 'voice_max_required',
     });
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(docs.get(OPS_PATH)).toMatchObject({
+      mintRejections: 1,
+      mintRejectionReasons: { paywall: 1 },
+      quotaReservations: 0,
+    });
   });
 
   it('подписчик MAX получает линию и большой месячный пакет', async () => {
@@ -234,17 +261,78 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
     // 120 мин/мес = 7200 с; за вычетом резерва этой сессии остаток меньше, но
     // существенно больше витринного пакета Плюс (900 с).
-    expect(Number(res.limits.monthRemainingSec)).toBeGreaterThan(900);
+    expect(res.limits.reservedSec).toBe(320);
+    expect(res.limits.monthRemainingSec).toBe(7_200 - 320);
   });
 
-  it('подписчик Плюс/Про получает линию, но витринный пакет 15 минут', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+  it.each([
+    ['Free', false],
+    ['Plus', true],
+    ['Pro/lifetime', true],
+  ])('%s получает одинаковый единственный пробный звонок 180с', async (_tier, isPremium) => {
+    mockResolvePremium.mockResolvedValue(isPremium as never);
 
     const res = await callMint();
     expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
-    // Пакет Плюс — 900 с всего, поэтому остаток не может превышать его.
-    expect(Number(res.limits.monthRemainingSec)).toBeLessThanOrEqual(900);
+    expect(res.trialVariant).toBeTruthy();
+    expect(res.maxSeconds).toBe(180);
+    expect(res.limits.reservedSec).toBe(200);
+    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBe(NOW);
+  });
+
+  it('never grants more than 180 spoken trial seconds from hostile runtime config', async () => {
+    setConfig({
+      trialCallSec: 600,
+      sessionCapSec: { trial: 600 },
+      graceTailSec: 600,
+    });
+
+    const res = await callMint();
+
+    expect(res.maxSeconds).toBe(180);
+    expect(res.limits).toMatchObject({
+      reservedSec: 300,
+      graceTailSec: 120,
+    });
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ reservedSec: 300 });
+  });
+
+  it('апгрейд Free -> Плюс/Про не выдаёт второй пробный звонок', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 3 * 365 * DAY_MS });
+
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('не выдаёт дополнительный пробник старому пользователю с legacy-историей звонка', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, {
+      monthResetAtMs: NOW - DAY_MS,
+      monthlyUsedSec: 60,
+      sessionStartedAtMs: NOW - 200 * DAY_MS,
+    });
+
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
+  });
+
+  it.each([
+    ['trial marker', { trialUsedAtMs: NOW - 10 * 365 * DAY_MS }],
+    ['activation marker', { activatedAtMs: NOW - 10 * 365 * DAY_MS }],
+    ['settlement marker', { lastSettledAtMs: NOW - 10 * 365 * DAY_MS }],
+    ['legacy quota usage', { monthResetAtMs: NOW - DAY_MS, monthlyUsedSec: 1 }],
+  ])('не позволяет обойти пробник через старый %s', async (_label, marker) => {
+    docs.set(QUOTA_PATH, marker);
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
   });
 
   it('без подписки, но со свежим пробником — звонок в пробном формате', async () => {
@@ -268,6 +356,11 @@ describe('gate order (App Check → kill switch → subscription → quota → m
   it('keeps the admin kill switch working when the owner turns it off explicitly', async () => {
     setConfig({ gate_ai_voice_call: false });
     await expect(callMint()).rejects.toMatchObject({ message: 'voice_disabled' });
+    expect(docs.get(OPS_PATH)).toMatchObject({
+      mintRejections: 1,
+      mintRejectionReasons: { kill_switch: 1 },
+      quotaReservations: 0,
+    });
   });
 
   it('fires gates strictly in order: kill switches → quota → mint', async () => {
@@ -291,24 +384,46 @@ describe('gate order (App Check → kill switch → subscription → quota → m
       monthResetAtMs: NOW + DAY_MS,
       dailyUsedSec: 14_400,
     });
-    await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'resource-exhausted',
+      message: 'voice_daily_quota_exhausted',
+      details: 'voice_quota_exhausted',
+    });
     expect(fetchMock).not.toHaveBeenCalled(); // до минта ни разу не дошли
+    expect(docs.get(OPS_PATH)).toMatchObject({ mintRejectionReasons: { daily_quota: 1 } });
 
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
     await expect(callMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  // зачем: до релиза подписка звонок не гейтит (решение владельца 2026-08-16).
-  // Ни отсутствие премиума, ни снятый voiceForPremiumBeta не закрывают линию —
-  // voice_max_required вернётся только вместе с пейволом перед релизом.
+  it('counts monthly package refusal before creating a reservation', async () => {
+    mockResolveMaxTier.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, {
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + DAY_MS,
+      dailyUsedSec: 0,
+      monthlyUsedSec: 7_170,
+    });
+
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'resource-exhausted',
+      message: 'voice_monthly_quota_exhausted',
+      details: 'voice_quota_exhausted',
+    });
+    expect(docs.get(OPS_PATH)).toMatchObject({
+      mintRejections: 1,
+      mintRejectionReasons: { monthly_quota: 1 },
+      quotaReservations: 0,
+    });
+  });
+
   // зачем: прежний тест сторожил ОТМЕНЁННОЕ правило «доступ без подписки».
   // Владелец 2026-08-23 поставил пейвол — теперь сторожим обратное: без тира
-  // и без пробника линия закрыта, сколько бы флагов ни было выключено.
-  it('флаг беты не открывает линию без подписки — решает тир', async () => {
+  // и без пробника линия закрыта. Устаревший voiceForPremiumBeta удалён.
+  it('без подписки и пробника линия закрыта — решает серверный тир', async () => {
     mockResolvePremium.mockResolvedValue(false as never);
     mockResolveMaxTier.mockResolvedValue(false as never);
-    setConfig({ voiceForPremiumBeta: false });
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
     await expect(callMint()).rejects.toMatchObject({ message: 'voice_max_required' });
   });
@@ -326,6 +441,7 @@ describe('rate limit — 60 fresh mints/hour, reconnects excluded', () => {
     docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 60 });
     await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_mint_rate_limited' });
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(docs.get(OPS_PATH)).toMatchObject({ mintRejectionReasons: { rate_limit: 1 } });
   });
 
   it('counts a fresh mint into the window', async () => {
@@ -387,10 +503,12 @@ describe('пробник без подписки', () => {
     });
   });
 
-  it('пробник снова доступен через trialRefreshDays (полгода)', async () => {
-    // 181 день назад — окно обновления прошло.
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 181 * DAY_MS });
-    await expect(callMint({})).resolves.toMatchObject({ ok: true });
+  it('пробник не обновляется ни через полгода, ни через несколько лет', async () => {
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 3 * 365 * DAY_MS, monthResetAtMs: NOW - DAY_MS });
+    await expect(callMint({})).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
   });
 });
 
@@ -403,6 +521,7 @@ describe('budget ladder', () => {
     mockResolvePremium.mockResolvedValue(true as never);
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 25 });
     await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_budget_exhausted' });
+    expect(docs.get(OPS_PATH)).toMatchObject({ mintRejectionReasons: { budget: 1 } });
   });
 
   // Пробников больше нет (все — 'max'), поэтому ступень voice_trial_paused
@@ -426,7 +545,7 @@ describe('budget ladder', () => {
   });
 
   it('a successful mint reserves the session cost estimate in the daily counter', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     await callMint(); // scenario: резерв 320с
     const budget = docs.get(BUDGET_PATH)!;
     expect(budget.dayKey).toBe(utcDayKey(NOW));
@@ -499,7 +618,7 @@ describe('reconnect vs gates & budget — live sessions are never dropped', () =
   });
 
   it('a fresh mint over a stale silent session refunds its tail to the budget', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 1 });
     // Мёртвая сессия: прожито 100с из 320 по heartbeat → хвост 220с.
     liveSession({
@@ -521,7 +640,7 @@ describe('reconnect vs gates & budget — live sessions are never dropped', () =
 
 describe('mint response contract — both key spellings + limits', () => {
   it('returns camelCase and snake_case duplicates of expiresAt/sessionId/maxSeconds', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     const res = await callMint({ cefr: 'B1' });
 
     expect(res.expires_at).toBe(res.expiresAt);
@@ -553,7 +672,7 @@ describe('mint response contract — both key spellings + limits', () => {
 
 describe('server-pinned session config (section 4)', () => {
   it('retries one transient OpenAI mint failure without double-reserving quota', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     fetchMock
       .mockResolvedValueOnce({ ok: false, status: 503, text: async () => 'temporary' })
       .mockResolvedValueOnce({
@@ -568,7 +687,7 @@ describe('server-pinned session config (section 4)', () => {
   });
 
   it('falls back to the official minimal profile when an advanced field is rejected', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     fetchMock
       .mockResolvedValueOnce({
         ok: false,
@@ -611,7 +730,7 @@ describe('server-pinned session config (section 4)', () => {
   });
 
   it('sends the full realtime session config; the client controls none of it', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     const res = await callMint({
       cefr: 'A1',
       format: 'scenario',
@@ -680,7 +799,7 @@ describe('server-pinned session config (section 4)', () => {
   });
 
   it('releases the reservation, the budget estimate and the rate slot when OpenAI fails', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     fetchMock.mockResolvedValue({ ok: false, status: 500, text: async () => 'boom' });
 
     await expect(callMint()).rejects.toMatchObject({ code: 'unavailable', message: 'voice_provider_failed' });
@@ -695,6 +814,27 @@ describe('server-pinned session config (section 4)', () => {
     // F9: сбой провайдера возвращает rate-слот (декремент до floor 0) —
     // пользователь не платит попыткой за чужую аварию.
     expect(docs.get(RATE_PATH)!.count).toBe(0);
+  });
+
+  it('returns no token and never permits a second mint when trial confirmation write fails', async () => {
+    failTrialConfirmationWrites = true;
+
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'internal',
+      message: 'voice_trial_commit_failed',
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(docs.get(QUOTA_PATH)).toMatchObject({
+      trialUsedAtMs: NOW,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
+
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -721,7 +861,27 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
     // Потолок дня поднят до 14400с — «почти выбран» теперь это 14370, а не 870.
     docs.set(QUOTA_PATH, { resetAtMs: NOW + 3_600_000, monthResetAtMs: NOW + DAY_MS, dailyUsedSec: 14_370 });
     await expect(preflight({ auth: { uid: AUTH }, data: {} }))
-      .rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
+      .rejects.toMatchObject({
+        code: 'resource-exhausted',
+        message: 'voice_daily_quota_exhausted',
+        details: 'voice_quota_exhausted',
+      });
+  });
+
+  it('rejects with the monthly reason when the monthly package is exhausted', async () => {
+    mockResolveMaxTier.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, {
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + DAY_MS,
+      dailyUsedSec: 0,
+      monthlyUsedSec: 7_170,
+    });
+    await expect(preflight({ auth: { uid: AUTH }, data: {} }))
+      .rejects.toMatchObject({
+        code: 'resource-exhausted',
+        message: 'voice_monthly_quota_exhausted',
+        details: 'voice_quota_exhausted',
+      });
   });
 
   it('honours the kill switch', async () => {
@@ -765,7 +925,7 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
 
 describe("format 'tutor' — личный учитель", () => {
   it('минт учителя: свой голос, инструменты, память и устав в instructions, tutor-блок в ответе', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     okProvider();
     docs.set(`voice_tutor_memory/${voiceTutorMemoryDocId(AUTH, STABLE)}`, {
       facts: ['name is Olga', 'lives in Kyiv'],
@@ -832,14 +992,15 @@ describe("format 'tutor' — личный учитель", () => {
     expect(res.tutor.preview).toMatchObject({ lessonOrdinal: 4, displayTitle: 'Перший контакт' });
   });
 
-  it('первый урок без памяти и без устава: MAX остаётся английским учителем для устаревшего studyTarget=fr', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+  it('первый урок без памяти и без устава: MAX преподаёт язык выбранного курса', async () => {
+    mockResolveMaxTier.mockResolvedValue(true as never);
     okProvider();
     __resetTutorCharterCacheForTests(); // выжимка устава кэшируется на инстанс 1ч
     const res = await callMint({ format: 'tutor', cefr: 'B1', interfaceLang: 'ru', studyTarget: 'fr' });
     const instr: string = lastFetchBody().session.instructions;
-    expect(instr).toContain('personal English TEACHER');
-    expect(instr).not.toContain('personal French TEACHER');
+    expect(instr).toContain('personal French TEACHER');
+    expect(instr).not.toContain('personal English TEACHER');
+    expect(instr).toContain('the learner is studying French');
     expect(instr).toContain('FIRST lesson');
     expect(instr).toContain('Trainer (flashcards)'); // TUTOR_APP_DIGEST_FALLBACK
     expect(instr).toContain('their NATIVE language is Russian');
@@ -847,7 +1008,7 @@ describe("format 'tutor' — личный учитель", () => {
   });
 
   it('совместимый профиль поднимает учителя без инструментов (аварийный путь), сцены/компаньон tutor-блока не получают', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+    mockResolveMaxTier.mockResolvedValue(true as never);
     fetchMock
       .mockResolvedValueOnce({ ok: false, status: 400, text: async () => 'bad tools' })
       .mockResolvedValueOnce({ ok: true, json: async () => ({ value: 'ek_compat', expires_at: 1 }) });

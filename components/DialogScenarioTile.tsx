@@ -15,6 +15,7 @@ import { Text, View } from 'react-native';
 import type { DialogSceneTheme } from '../constants/dialogSceneThemes';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { PressableScale } from './feedback/PressableScale';
+import EnergyCostBadge from './EnergyCostBadge';
 
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -42,6 +43,7 @@ interface DialogScenarioTileProps {
   fontSizes: { body: number; bodyLg: number; sub: number; label: number };
   accessibilityLabel: string;
   accessibilityHint: string;
+  showEnergyCost: boolean;
 }
 
 export default function DialogScenarioTile({
@@ -59,6 +61,7 @@ export default function DialogScenarioTile({
   fontSizes,
   accessibilityLabel,
   accessibilityHint,
+  showEnergyCost,
 }: DialogScenarioTileProps) {
   const reduceMotion = useReduceMotion();
   const locked = status === 'locked';
@@ -67,7 +70,7 @@ export default function DialogScenarioTile({
   const glyphColor = locked ? colors.textMuted : scene.hue;
 
   return (
-    <Reanimated.View entering={entering}>
+    <Reanimated.View entering={entering} style={{ position: 'relative', overflow: 'visible' }}>
       <PressableScale
         accessibilityLabel={accessibilityLabel}
         accessibilityHint={accessibilityHint}
@@ -139,6 +142,7 @@ export default function DialogScenarioTile({
           <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
         )}
       </PressableScale>
+      {showEnergyCost ? <EnergyCostBadge testID="dialog-scenario-repeat-energy-cost" /> : null}
     </Reanimated.View>
   );
 }

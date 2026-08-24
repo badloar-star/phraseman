@@ -122,10 +122,16 @@ function shallowPatchChanged(current: AppSnapshot, patch: Partial<AppSnapshot>):
   return Object.entries(patch).some(([key, value]) => current[key as keyof AppSnapshot] !== value);
 }
 
-function preserveNewerProfile(
+function preserveNewerSnapshotSections(
   current: Readonly<AppSnapshot>,
   patch: Partial<AppSnapshot>,
 ): Partial<AppSnapshot> {
+  const storageCannotReplaceLiveProfile = Boolean(
+    patch.profile
+    && current.profile
+    && patch.profile.source === 'storage'
+    && current.profile.source === 'live',
+  );
   const storageHydrationLostSameTick = Boolean(
     patch.profile
     && current.profile
@@ -133,17 +139,53 @@ function preserveNewerProfile(
     && patch.profile.source === 'storage'
     && current.profile.source !== 'storage',
   );
-  if (
-    !patch.profile
-    || !current.profile
-    || (
-      patch.profile.updatedAt >= current.profile.updatedAt
-      && !storageHydrationLostSameTick
-    )
-  ) {
+  const profileMustStayCurrent = Boolean(
+    patch.profile
+    && current.profile
+    && (
+      patch.profile.updatedAt < current.profile.updatedAt
+      || storageHydrationLostSameTick
+    ),
+  );
+  const progressMustStayCurrent = Boolean(
+    patch.progress
+    && current.progress
+    && patch.progress.source === 'storage'
+    && current.progress.source === 'live',
+  );
+  if (!storageCannotReplaceLiveProfile && !profileMustStayCurrent && !progressMustStayCurrent) {
     return patch;
   }
-  return { ...patch, profile: current.profile };
+  const nextPatch: Partial<AppSnapshot> = { ...patch };
+  if (storageCannotReplaceLiveProfile && patch.profile && current.profile) {
+    // SQLite owns local entitlement/customization fields, but cannot lower the
+    // validated cloud XP identity. Keep the section live so another delayed
+    // storage pass is subject to the same rule.
+    nextPatch.profile = {
+      ...patch.profile,
+      source: 'live',
+      updatedAt: Math.max(patch.profile.updatedAt, current.profile.updatedAt),
+      name: current.profile.name || patch.profile.name,
+      avatar: current.profile.avatar && current.profile.avatar !== '1'
+        ? current.profile.avatar
+        : patch.profile.avatar,
+      frame: current.profile.frame || patch.profile.frame,
+      aura: current.profile.aura ?? patch.profile.aura,
+      totalXp: current.profile.totalXp,
+      level: current.profile.level,
+    };
+  } else if (profileMustStayCurrent) {
+    nextPatch.profile = current.profile;
+  }
+  if (progressMustStayCurrent && patch.progress && current.progress) {
+    nextPatch.progress = {
+      ...patch.progress,
+      source: 'live',
+      updatedAt: Math.max(patch.progress.updatedAt, current.progress.updatedAt),
+      streak: current.progress.streak,
+    };
+  }
+  return nextPatch;
 }
 
 function preserveAvatarDNASnapshotConsistency(
@@ -197,7 +239,7 @@ export function subscribeAppSnapshot(listener: Listener): () => void {
 export function patchAppSnapshot(patchOrFn: Patch): void {
   const requestedPatch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
   const preservedPatch = requestedPatch
-    ? preserveNewerProfile(snapshot, requestedPatch)
+    ? preserveNewerSnapshotSections(snapshot, requestedPatch)
     : requestedPatch;
   const patch = preservedPatch
     ? preserveAvatarDNASnapshotConsistency(snapshot, preservedPatch)
@@ -225,6 +267,34 @@ export function patchAppSnapshotCustomizationSelection(customization: Customizat
         updatedAt: Math.max(Date.now(), customization.updatedAt, current.profile.updatedAt + 1),
         avatar: customization.activeAvatar,
         aura: customization.storedAuraSelection || undefined,
+      },
+    };
+  });
+}
+
+export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
+  totalXp: number;
+  level: number;
+  streakCount: number;
+}>): void {
+  patchAppSnapshot((current) => {
+    const now = Date.now();
+    return {
+      ...(current.profile ? {
+        profile: {
+          ...current.profile,
+          source: 'local' as const,
+          updatedAt: now,
+          totalXp: progress.totalXp,
+          level: progress.level,
+        },
+      } : {}),
+      progress: {
+        source: 'local' as const,
+        updatedAt: now,
+        streak: progress.streakCount,
+        shards: current.progress?.shards ?? 0,
+        studyTarget: current.progress?.studyTarget ?? 'en',
       },
     };
   });

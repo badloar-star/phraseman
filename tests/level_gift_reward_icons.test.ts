@@ -18,59 +18,35 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 
 import fs from 'fs';
 import path from 'path';
-
 import { ALL_LEVEL_GIFT_DEFS } from '../app/level_gift_system';
-import {
-  LEVEL_GIFT_REWARD_ICON_IDS,
-  LEVEL_GIFT_REWARD_ICON_SOURCES,
-  getLevelGiftRewardIcon,
-} from '../constants/levelGiftRewardIcons';
+import { LEVEL_GIFT_REWARD_ICON_IDS } from '../constants/levelGiftRewardIcons';
 
-describe('level gift reward icons', () => {
-  it('has a reward icon for every concrete level gift definition', () => {
+describe('level gift reward art', () => {
+  it('preserves every reward id as a data contract', () => {
     const iconIds = new Set(LEVEL_GIFT_REWARD_ICON_IDS);
+    for (const gift of ALL_LEVEL_GIFT_DEFS) expect(iconIds.has(gift.id)).toBe(true);
+  });
 
-    for (const gift of ALL_LEVEL_GIFT_DEFS) {
-      expect(iconIds.has(gift.id)).toBe(true);
-      expect(getLevelGiftRewardIcon(gift.id)).toBeTruthy();
+  it('removes gift raster sources from the preload pipeline', () => {
+    const preload = fs.readFileSync(path.join(process.cwd(), 'app', 'image_preload.ts'), 'utf8');
+    expect(preload).not.toContain('LEVEL_GIFT_IMAGE_SOURCES');
+    expect(preload).not.toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
+    expect(preload).toContain('OSKOLOK_IMAGE_SOURCES');
+  });
 
-      const assetPath = path.join(
-        process.cwd(),
-        'assets',
-        'images',
-        'level_gift_reward_icons',
-        `${gift.id}.webp`,
-      );
-      expect(fs.existsSync(assetPath)).toBe(true);
+  it('uses universal Level Spin art at every gift render site', () => {
+    for (const file of [
+      'components/LevelGiftModal.tsx',
+      'components/LevelGiftDualModal.tsx',
+      'components/LevelSpinRewardModal.tsx',
+      'components/LevelSpinFinishLine.tsx',
+      'app/level_gifts_inventory.tsx',
+    ]) {
+      const component = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
+      expect(component).toContain('LevelSpinRewardArt');
+      expect(component).not.toContain('<RetiredRasterFallback');
     }
-  });
-
-  it('falls back to the choice reward icon for unknown gifts', () => {
-    expect(getLevelGiftRewardIcon('unknown_gift')).toBe(getLevelGiftRewardIcon('choice_3_level'));
-  });
-
-  it('exports reward icon sources for startup preloading', () => {
-    const preloadSources = new Set(LEVEL_GIFT_REWARD_ICON_SOURCES);
-
-    for (const iconId of LEVEL_GIFT_REWARD_ICON_IDS) {
-      expect(preloadSources.has(getLevelGiftRewardIcon(iconId))).toBe(true);
-    }
-  });
-
-  it('keeps reward icons in the global image preload pipeline', () => {
-    const preloadSource = fs.readFileSync(path.join(process.cwd(), 'app', 'image_preload.ts'), 'utf8');
-
-    expect(preloadSource).toContain('LEVEL_GIFT_IMAGE_SOURCES');
-    expect(preloadSource).toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
-    expect(preloadSource).toContain('OSKOLOK_IMAGE_SOURCES');
-    expect(preloadSource).toContain('...LEVEL_GIFT_IMAGE_SOURCES');
-    expect(preloadSource).toContain('...LEVEL_GIFT_REWARD_ICON_SOURCES');
-    expect(preloadSource).toContain('...OSKOLOK_IMAGE_SOURCES');
-  });
-
-  it('uses concrete reward icons in the gifts inventory card art slot', () => {
-    const inventorySource = fs.readFileSync(path.join(process.cwd(), 'app', 'level_gifts_inventory.tsx'), 'utf8');
-
-    expect(inventorySource).toContain('getLevelGiftRewardIcon(primaryGift.id, themeMode)');
+    const inventory = fs.readFileSync(path.join(process.cwd(), 'app/level_gifts_inventory.tsx'), 'utf8');
+    expect(inventory).not.toContain('oskolokImageForPackShards');
   });
 });

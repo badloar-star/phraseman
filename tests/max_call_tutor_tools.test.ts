@@ -63,12 +63,16 @@ describe('buildTutorSceneCatalog', () => {
 });
 
 describe('createTutorToolRunner', () => {
-  function makeRunner(currentGoal: { id: string; mastery: number; sceneIds?: string[] } | null = null) {
+  function makeRunner(
+    currentGoal: { id: string; mastery: number; sceneIds?: string[] } | null = null,
+    studyTarget: 'en' | 'fr' | 'es' = 'en',
+  ) {
     const events: string[] = [];
     const liveBoards: TutorBoardToolPayload[] = [];
     const liveTopics: { topic: string; mode: TutorConversationMode }[] = [];
     const runner = createTutorToolRunner({
       scenes: buildTutorSceneCatalog(ALL, 'A2'),
+      studyTarget,
       sceneBlock: (id) => (ALL.some((s) => s.id === id && s.active) ? `SCENARIO ${id}` : null),
       onSceneChange: (scene) => events.push(`scene:${scene ? scene.id : 'none'}`),
       onHomework: (p) => events.push(`hw:${p.join('|')}`),
@@ -94,6 +98,19 @@ describe('createTutorToolRunner', () => {
     expect(bad.output).toContain('Unknown scene_id "nope"');
     expect(bad.output).toContain('a2_extra_00'); // список каталога дня в подсказке
     expect(runner.activeScene()?.id).toBe('a2_one'); // активная не сбилась
+  });
+
+  it.each([
+    ['en', 'English'],
+    ['fr', 'French'],
+    ['es', 'Spanish'],
+  ] as const)('start_scene keeps the %s course language inside the scene', (studyTarget, languageName) => {
+    const { runner } = makeRunner(null, studyTarget);
+    const result = runner.handle('start_scene', { scene_id: 'a2_one' });
+    expect(result.output).toContain(`Play this role in ${languageName}`);
+    for (const wrongLanguage of ['English', 'French', 'Spanish'].filter((name) => name !== languageName)) {
+      expect(result.output).not.toContain(`Play this role in ${wrongLanguage}`);
+    }
   });
 
   it('сцена вне каталога дня, но известная приложению, — принимается (учитель мог помнить id)', () => {

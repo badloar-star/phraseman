@@ -34,6 +34,25 @@ function fakeDb() {
   return {
     collection: (name: string) => ({
       doc: (id?: string) => refFor(`${name}/${id || `auto-${++autoId}`}`),
+      where: (field: string, op: string, value: unknown) => ({
+        limit: (limitN: number) => ({
+          get: async () => {
+            if (op !== '==') throw new Error(`unsupported op ${op}`);
+            const prefix = `${name}/`;
+            const matched = [...docs.entries()]
+              .filter(([path]) => path.startsWith(prefix) && !path.slice(prefix.length).includes('/'))
+              .filter(([, data]) => data[field] === value)
+              .slice(0, limitN);
+            return {
+              docs: matched.map(([path, data]) => {
+                const ref = refFor(path);
+                return { ...ref, id: path.slice(prefix.length), ref, data: () => data };
+              }),
+              empty: matched.length === 0,
+            };
+          },
+        }),
+      }),
     }),
     runTransaction: async <T>(fn: (tx: any) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
@@ -122,11 +141,12 @@ const sessionEnd = endRaw as unknown as (request: CallableRequest) => Promise<Do
 const NOW = 1_800_000_000_000;
 const AUTH = 'auth-1';
 const STABLE = 'stable-1';
-const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(AUTH, STABLE)}`;
+const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(STABLE)}`;
 const BUDGET_PATH = 'voice_cost_daily/current';
 
 function liveQuota(overrides: DocData = {}): void {
   docs.set(QUOTA_PATH, {
+    quotaIdentityVersion: 2,
     authUid: AUTH,
     stableUid: STABLE,
     resetAtMs: NOW + 3_600_000,

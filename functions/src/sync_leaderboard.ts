@@ -65,12 +65,6 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
         : 'balanced';
       const streak = parseInt(progress['streak_count'] ?? '0') || null;
 
-      const root = doc.data() ?? {};
-      const firebaseAuthUid =
-        typeof root.firebaseAuthUid === 'string' && root.firebaseAuthUid.trim().length > 0
-          ? root.firebaseAuthUid.trim()
-          : null;
-
       // Недельные очки
       let weekPoints = 0;
       try {
@@ -120,7 +114,6 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
         profileCardPublicFocus,
         streak,
         leagueId,
-        ...(firebaseAuthUid ? { firebaseAuthUid } : {}),
         isBot: false,
         syncVersion: 2,
         updatedAt: Date.now(),

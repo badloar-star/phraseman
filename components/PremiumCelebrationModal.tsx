@@ -13,6 +13,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
  * НЕ hapticSuccess/Impact — у них cooldown 4.5с, они бы «съелись».
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Animated as RNAnim,
   Modal,
@@ -148,7 +149,7 @@ function FeatureRow({ feature, lang, lit, palette, f, reduceMotion }: {
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.rowTint, { backgroundColor: `${palette.main}1F` }]} />
       <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.rowFlash, { backgroundColor: palette.main }, flashStyle]} />
       <View style={[styles.rowIco, { borderColor: `${palette.main}4D`, backgroundColor: `${palette.main}1A` }]}>
-        <Text style={styles.rowEmoji}>{feature.emoji}</Text>
+        <Ionicons name={feature.icon} size={20} color={palette.rowText} />
       </View>
       <View style={styles.rowText}>
         <Text style={[styles.rowTitle, { color: palette.rowText, fontSize: f.bodyLg }]}>
@@ -420,7 +421,7 @@ function PremiumCelebrationModalClassic({ visible, onClose, variant = 'premium' 
                 end={{ x: 0.6, y: 1 }}
                 style={StyleSheet.absoluteFill}
               />
-              <Text style={styles.emblemEmoji}>{palette.emblem}</Text>
+              <Ionicons name={palette.emblemIcon} size={52} color={palette.bright} />
             </View>
           </View>
 
@@ -531,7 +532,6 @@ const styles = StyleSheet.create({
     width: 96, height: 96, borderRadius: 48, borderWidth: 0,
     alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
-  emblemEmoji: { fontSize: 52 },
   title: {
     fontWeight: '900', textAlign: 'center', letterSpacing: 0.3,
     textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 12,
@@ -554,7 +554,6 @@ const styles = StyleSheet.create({
   rowTint: { borderRadius: 17 },
   rowFlash: { borderRadius: 17 },
   rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 0, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
-  rowEmoji: { fontSize: 21 },
   rowText: { flex: 1, minWidth: 0 },
   rowTitle: { fontWeight: '800', letterSpacing: 0.1 },
   rowSub: { fontWeight: '500', marginTop: 1 },

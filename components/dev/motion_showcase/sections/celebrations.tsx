@@ -19,7 +19,6 @@ import ReferralFriendRewardModal from '../../../referral_friend_reward_modal';
 import { DialogVictoryCelebration } from '../../../DialogVictoryCelebration';
 import type { GiftDef } from '../../../../app/level_gift_system';
 import type { PremPair } from '../../../../app/level_gift_inventory';
-import { getLevelGiftRewardIcon } from '../../../../constants/levelGiftRewardIcons';
 import type { SeasonReward } from '../../../../app/season_pass_track_config';
 import { cs } from '../showcase_copy';
 
@@ -78,6 +77,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-level-gift-hybrid',
+      approval: 'pending',
       title: cs('celebrations_level_gift_hybrid_title'),
       detail: cs('celebrations_level_gift_detail'),
       kind: 'render',
@@ -113,6 +113,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-level-gift-dual-hybrid',
+      approval: 'pending',
       title: cs('celebrations_level_gift_dual_hybrid_title'),
       detail: cs('celebrations_level_gift_dual_detail'),
       kind: 'render',
@@ -138,7 +139,6 @@ export const SECTION: ShowcaseSection = {
         <BoonChestModal
           visible={visible}
           rarity="epic"
-          rewardIcon={getLevelGiftRewardIcon('shards_10', 'dark')}
           title={cs('celebrations_boon_chest_modal_title')}
           rewardLine={cs('celebrations_boon_chest_reward_line')}
           tapHint={cs('celebrations_boon_chest_tap_hint')}
@@ -151,6 +151,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-boon-chest-hybrid',
+      approval: 'pending',
       title: cs('celebrations_boon_chest_hybrid_title'),
       detail: cs('celebrations_boon_chest_detail'),
       kind: 'render',
@@ -158,7 +159,6 @@ export const SECTION: ShowcaseSection = {
         <BoonChestModal
           visible={visible}
           rarity="epic"
-          rewardIcon={getLevelGiftRewardIcon('shards_10', 'dark')}
           title={cs('celebrations_boon_chest_modal_title')}
           rewardLine={cs('celebrations_boon_chest_reward_line')}
           tapHint={cs('celebrations_boon_chest_tap_hint')}
@@ -181,6 +181,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-boon-activated-hybrid',
+      approval: 'pending',
       title: cs('celebrations_boon_activated_hybrid_title'),
       detail: cs('celebrations_boon_activated_detail'),
       kind: 'render',
@@ -199,6 +200,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-weekly-boon-detail-hybrid',
+      approval: 'pending',
       title: cs('celebrations_weekly_boon_detail_hybrid_title'),
       detail: cs('celebrations_weekly_boon_detail_detail'),
       kind: 'render',
@@ -223,6 +225,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-season-gift-hybrid',
+      approval: 'pending',
       title: cs('celebrations_season_gift_hybrid_title'),
       detail: cs('celebrations_season_gift_detail'),
       kind: 'render',
@@ -257,6 +260,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-season-reward-info-hybrid',
+      approval: 'pending',
       title: cs('celebrations_season_reward_info_hybrid_title'),
       detail: cs('celebrations_season_reward_info_detail'),
       kind: 'render',
@@ -295,6 +299,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'celebrations-collectible-drop-hybrid',
+      approval: 'pending',
       title: cs('celebrations_collectible_drop_hybrid_title'),
       detail: cs('celebrations_collectible_drop_detail'),
       kind: 'render',

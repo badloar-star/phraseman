@@ -17,8 +17,12 @@ import {
   validateLearningV2GeneratedSessionIntro,
   type LearningV2GeneratedSessionIntro,
 } from './generator_session_contract';
-import { REQUIRED_SESSION_POLICY_V1 } from './session_compiler';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from './course_topology_v1';
+import {
+  inferLesson1WordFirstPhraseCountV1,
+  inferLesson1WordFirstVocabularyCountV1,
+  lesson1SessionChoreographyV1,
+} from './source/lesson1_session_choreography_v1';
 
 /**
  * Назначение каждой карточки по её месту в сессии. Кривая нагрузки:
@@ -220,20 +224,6 @@ function pad(value: number): string {
   return String(value).padStart(2, '0');
 }
 
-function expectedZone(ordinal: number): 'understand' | 'use' | 'master' {
-  if (ordinal <= 4) return 'understand';
-  if (ordinal <= 8) return 'use';
-  return 'master';
-}
-
-function expectedNovelty(
-  zone: 'understand' | 'use' | 'master',
-): 'trained' | 'varied' | 'novel' {
-  if (zone === 'understand') return 'trained';
-  if (zone === 'use') return 'varied';
-  return 'novel';
-}
-
 function assertExpected(
   expected: LearningV2GeneratedSessionShardExpected,
 ): void {
@@ -336,9 +326,28 @@ export function validateLearningV2GeneratedSessionShardV1(
   const episodeId = `episode-${pad(expected.episodeOrdinal)}`;
   const sessionId = `session-${episodeId}-${pad(expected.requiredSessionOrdinal)}`;
   const sessionTemplateId = `${episodeId}:session-${pad(expected.requiredSessionOrdinal)}`;
-  const policy =
-    REQUIRED_SESSION_POLICY_V1[expected.requiredSessionOrdinal - 1];
-  const zone = expectedZone(expected.requiredSessionOrdinal);
+  const rawCardTargets = Array.isArray(input.cards)
+    ? input.cards.map((raw) => {
+        if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return '';
+        const contentItem = (raw as Record<string, unknown>).contentItem;
+        if (!contentItem || typeof contentItem !== 'object' || Array.isArray(contentItem)) return '';
+        const target = (contentItem as Record<string, unknown>).target;
+        return target && typeof target === 'object' && !Array.isArray(target)
+          ? String((target as Record<string, unknown>).text ?? '')
+          : '';
+      })
+    : [];
+  const vocabularyCount = inferLesson1WordFirstVocabularyCountV1(rawCardTargets);
+  const phraseCount = inferLesson1WordFirstPhraseCountV1(
+    rawCardTargets,
+    vocabularyCount,
+  );
+  const choreography = lesson1SessionChoreographyV1(
+    expected.requiredSessionOrdinal,
+    undefined,
+    vocabularyCount,
+    phraseCount,
+  );
   if (
     input.schemaVersion !== 'learning-v2-generated-session-shard.v1' ||
     input.packageId !== expected.packageId ||
@@ -350,8 +359,8 @@ export function validateLearningV2GeneratedSessionShardV1(
     input.sessionTemplateId !== sessionTemplateId ||
     typeof input.canDoOutcomeId !== 'string' ||
     !TOKEN_RE.test(input.canDoOutcomeId) ||
-    input.zone !== zone ||
-    input.support !== policy.support ||
+    input.zone !== choreography.zone ||
+    input.support !== choreography.support ||
     input.generationInputFingerprint !== expected.generationInputFingerprint
   ) {
     throw new Error('learning_v2_session_shard_identity_invalid');
@@ -371,13 +380,12 @@ export function validateLearningV2GeneratedSessionShardV1(
   );
   if (intro.sessionTemplateId !== sessionTemplateId)
     throw new Error('learning_v2_session_shard_intro_identity_invalid');
-  // зачем 15, а не 12 (владелец, 2026-08-17): контракт пакета сессии требует
-  // 14-18 заданий в профиле standard (3 вопроса интро + 12 карточек), а 12
-  // карточек давали ровно 12 заданий — публикация падала. См.
-  // LEARNING_V2_SESSION_CARD_PURPOSES и SESSION_PHRASE_COUNT_V1.
+  // Первые три карточки связывают три вопроса интро. В word-first rapid все
+  // standalone-контакты начинаются только со слота 4 и остаются видимыми в
+  // оставшихся 17 заданиях 20-слотового rapid-профиля.
   if (
     !Array.isArray(input.cards) ||
-    input.cards.length !== LEARNING_V2_SESSION_CARD_PURPOSES.length
+    input.cards.length !== choreography.steps.length
   )
     throw new Error('learning_v2_session_shard_cards_invalid');
   const cards: LearningV2GeneratedSessionCardV1[] = [];
@@ -389,19 +397,21 @@ export function validateLearningV2GeneratedSessionShardV1(
     const card = raw as Record<string, unknown>;
     exactKeys(card, CARD_KEYS, 'learning_v2_session_shard_card_fields_invalid');
     const slot = index + 1;
-    const family = policy.families[index % policy.families.length];
+    const step = choreography.steps[index];
+    if (!step) throw new Error('learning_v2_session_shard_card_invalid');
+    const family = step.family;
     const contentItemId = `content-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`;
     const activityId = `activity-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}-${family}`;
     if (
       card.cardId !==
         `card-${episodeId}-s${pad(expected.requiredSessionOrdinal)}-${pad(slot)}` ||
       card.taskSlot !== slot ||
-      card.purpose !== LEARNING_V2_SESSION_CARD_PURPOSES[index] ||
+      card.purpose !== step.purpose ||
       card.activityId !== activityId ||
       card.family !== family ||
       card.learningFunction !== FAMILY_FUNCTION[family] ||
-      card.support !== policy.support ||
-      card.promptNovelty !== expectedNovelty(zone) ||
+      card.support !== choreography.support ||
+      card.promptNovelty !== choreography.promptNovelty ||
       card.promptId !==
         `prompt-${episodeId}-${pad(expected.requiredSessionOrdinal)}-${pad(slot)}`
     ) {

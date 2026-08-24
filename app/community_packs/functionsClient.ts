@@ -2,6 +2,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
+import type { LevelSpinStarCreditExactResult } from '../../modules/phone-state/domains/economy';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
@@ -181,6 +182,26 @@ export async function callLevelSpinActivatePackGift(data: {
     typeof data,
     { voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }
   >('levelSpinActivatePackGift', data);
+}
+
+export type LevelSpinStarMaterializationAck = Readonly<{
+  materialized: true;
+  operationId: string;
+  requestFingerprint: string;
+  replayed: boolean;
+  starsBalance: number;
+  starsEarnedTotal: number;
+  starsSeq: number;
+}>;
+
+/** Persists an already committed client composite; the server never selects its reward. */
+export async function callLevelSpinStarComposite(
+  operation: LevelSpinStarCreditExactResult,
+): Promise<LevelSpinStarMaterializationAck> {
+  return callFunction<{ operation: LevelSpinStarCreditExactResult }, LevelSpinStarMaterializationAck>(
+    'levelSpinStarGrant',
+    { operation },
+  );
 }
 
 export async function callLevelGiftActivatePackGift(data: {

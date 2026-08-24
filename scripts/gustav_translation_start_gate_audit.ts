@@ -359,7 +359,7 @@ async function main(): Promise<void> {
   ];
   const forbiddenEarlyActions = [
     'Generate French lesson files.',
-    'Translate phrases, words, quizzes, flashcards or My Practice nodes.',
+    'Translate phrases, words, quizzes, flashcards or Mistake Practice nodes.',
     'Create generated_content_audit.json as if French exists.',
     'Modify production app files.',
     'Create production test files in tests/.',
@@ -407,9 +407,9 @@ async function main(): Promise<void> {
     },
     {
       id: 'my_practice_personalization_auditor',
-      department: 'My Practice',
+      department: 'Mistake Practice',
       responsibility: 'Maps personal-practice diagnosis nodes to French-safe remediation lessons.',
-      prompt: 'You are the My Practice Personalization Auditor. Keep diagnosis state target-scoped and reject any personalized lesson that cannot be traced to a French grammar or usage need.',
+      prompt: 'You are the Mistake Practice Auditor. Keep mistake state target-scoped and reject any exercise that cannot be traced to a French grammar or usage need.',
       blocksIfMissing: true,
     },
     {

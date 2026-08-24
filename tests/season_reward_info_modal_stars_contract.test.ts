@@ -31,7 +31,8 @@ describe('SeasonRewardInfoModal — цена «upcoming» в звёздах, н�
   });
 
   test('подсказка «upcoming» показывает звёзды, а не level', () => {
-    expect(SOURCE).toMatch(/Нужно накопить \$\{starsToUnlock\} ⭐/);
-    expect(SOURCE).toMatch(/Потрібно назбирати \$\{starsToUnlock\} ⭐/);
+    expect(SOURCE).toMatch(/Нужно накопить \$\{starsToUnlock\} звёзд/);
+    expect(SOURCE).toMatch(/Потрібно назбирати \$\{starsToUnlock\} зірок/);
+    expect(SOURCE).not.toContain('⭐');
   });
 });

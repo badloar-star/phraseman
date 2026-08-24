@@ -39,7 +39,6 @@ describe('soft upsell policy', () => {
       'weekly_review',
       'second_ai_dialogue',
       'streak_milestone',
-      'repeated_training',
     ]);
     expect(SOFT_UPSELL_CONTEXTS).toEqual([
       'first_lesson_success',
@@ -47,7 +46,6 @@ describe('soft upsell policy', () => {
       'weekly_review',
       'dialog_repeat_success',
       'streak_milestone',
-      'trainer_repeat_success',
     ]);
     expect(SOFT_UPSELL_GLOBAL_COOLDOWN_MS).toBe(7 * DAY_MS);
     expect(SOFT_UPSELL_CONTEXT_COOLDOWN_MS).toBe(7 * DAY_MS);
@@ -61,7 +59,6 @@ describe('soft upsell policy', () => {
     ['streak_milestone', 7, 'streak_milestone', 'paywall'],
     ['streak_milestone', 14, 'streak_milestone', 'paywall'],
     ['streak_milestone', 30, 'streak_milestone', 'paywall'],
-    ['repeated_training', 1, 'trainer_repeat_success', 'paywall'],
   ] as const)('maps %s value %i to its opportunity', (trigger, value, context, destination) => {
     expect(decideSoftUpsell(input({
       candidates: [candidate(trigger, value, 'fr')],
@@ -81,7 +78,6 @@ describe('soft upsell policy', () => {
 
   test('selects candidates in deterministic priority order including descending streak values', () => {
     const candidates = [
-      candidate('repeated_training', 1),
       candidate('first_lesson', 1),
       candidate('streak_milestone', 7),
       candidate('streak_milestone', 30),
@@ -102,7 +98,6 @@ describe('soft upsell policy', () => {
     ['second_ai_dialogue', 2, 'weekly_review', 1],
     ['weekly_review', 1, 'streak_milestone', 30],
     ['streak_milestone', 7, 'first_lesson', 1],
-    ['first_lesson', 1, 'repeated_training', 1],
   ] as const)(
     'prioritizes %s (%i) over adjacent lower-priority %s (%i)',
     (higherTrigger, higherValue, lowerTrigger, lowerValue) => {
@@ -136,7 +131,7 @@ describe('soft upsell policy', () => {
     ['first_lesson', 0], ['first_lesson', 2],
     ['free_lessons_complete', 0], ['free_lessons_complete', 33],
     ['second_ai_dialogue', 1], ['second_ai_dialogue', 3],
-    ['weekly_review', 2], ['repeated_training', 2],
+    ['weekly_review', 2],
     ['streak_milestone', 6], ['streak_milestone', 8], ['streak_milestone', 31],
   ] as const)('rejects invalid %s value %i', (trigger, value) => {
     expect(decideSoftUpsell(input({
@@ -147,8 +142,8 @@ describe('soft upsell policy', () => {
 
   test('uses the selected candidate before suppression checks', () => {
     expect(decideSoftUpsell(input({
-      candidates: [candidate('first_lesson', 99), candidate('repeated_training', 1)],
-      enabled: { first_lesson: true, repeated_training: true },
+      candidates: [candidate('free_lessons_complete', 99), candidate('first_lesson', 1)],
+      enabled: { free_lessons_complete: true, first_lesson: true },
     }))).toEqual({ status: 'suppressed', reason: 'invalid_trigger_value' });
   });
 

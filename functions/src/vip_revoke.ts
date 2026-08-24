@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 
@@ -36,13 +37,14 @@ export const vipRevokeMine = onCall(
     const db = admin.firestore();
     const stableUid = await resolveStableUidForAuth(db, request.auth.uid);
     const nowMs = Date.now();
-    await db.collection('users').doc(stableUid).set(
-      {
-        progress: vipRevokeProgressFields(nowMs),
-        updatedAt: nowMs,
-      },
-      { merge: true },
-    );
+    const userRef = db.collection('users').doc(stableUid);
+    await db.runTransaction(async (tx) => {
+      const current = await tx.get(userRef);
+      const progress = (current.data()?.progress ?? {}) as Record<string, unknown>;
+      const patch = vipRevokeProgressFields(nowMs);
+      tx.set(userRef, { progress: patch, updatedAt: nowMs }, { merge: true });
+      writeAccessProjectionFromPatch(tx, userRef, progress, patch, nowMs);
+    });
     return { ok: true };
   },
 );

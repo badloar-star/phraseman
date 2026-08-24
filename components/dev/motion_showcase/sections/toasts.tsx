@@ -93,6 +93,7 @@ export const SECTION: ShowcaseSection = {
     // payload включает ActionToastHybridCard, боевые эмиты этого поля не передают.
     {
       id: 'action-toast-success-hybrid',
+      approval: 'pending',
       title: cs('toast_success_hybrid_title'),
       detail: cs('real_event'),
       kind: 'event',
@@ -107,6 +108,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'action-toast-error-hybrid',
+      approval: 'pending',
       title: cs('toast_error_hybrid_title'),
       detail: cs('real_event'),
       kind: 'event',
@@ -121,6 +123,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'action-toast-info-hybrid',
+      approval: 'pending',
       title: cs('toast_info_hybrid_title'),
       detail: cs('real_event'),
       kind: 'event',
@@ -135,6 +138,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'action-toast-warning-hybrid',
+      approval: 'pending',
       title: cs('toast_warning_hybrid_title'),
       detail: cs('real_event'),
       kind: 'event',
@@ -149,6 +153,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'action-toast-reward-hybrid',
+      approval: 'pending',
       title: cs('toast_reward_hybrid_title'),
       detail: cs('real_event'),
       kind: 'event',
@@ -162,6 +167,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'achievement-toast-hybrid',
+      approval: 'pending',
       title: cs('achievement_toast_hybrid_title'),
       kind: 'note',
       note: cs('achievement_toast_hybrid_note'),
@@ -175,6 +181,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'medal-toast-hybrid',
+      approval: 'pending',
       title: cs('medal_toast_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -189,6 +196,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'coach-toast-hybrid',
+      approval: 'accepted',
       title: cs('coach_toast_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -203,6 +211,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'in-game-toast-hybrid',
+      approval: 'pending',
       title: cs('in_game_toast_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',

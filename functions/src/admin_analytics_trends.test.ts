@@ -163,6 +163,15 @@ describe('admin analytics trends request and callable security contract', () => 
     expect(Object.isFrozen(parsed.filters)).toBe(true);
   });
 
+  test('accepts max_monthly as a fixed recurring plan filter', () => {
+    const parsed = parseAdminAnalyticsTrendsRequest({
+      scope: 'paywall',
+      filters: { plan: 'max_monthly' },
+    }, NOW);
+
+    expect(parsed.filters.plan).toBe('max_monthly');
+  });
+
   test('uses v2 App Check, authenticated money.read claims, and a fixed index export', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_analytics_trends.ts'), 'utf8');
     const index = fs.readFileSync(path.join(process.cwd(), 'src', 'index.ts'), 'utf8');
@@ -173,7 +182,7 @@ describe('admin analytics trends request and callable security contract', () => 
     expect(source).toContain("hasClaimedPermission(request.auth?.token, 'money.read')");
     expect(source).toContain("new HttpsError('unauthenticated'");
     expect(source).toContain("new HttpsError('permission-denied'");
-    expect(index).toContain("export { adminGetAnalyticsTrends } from './admin_analytics_trends';");
+    expect(index).toMatch(/export \{ adminGetAnalyticsTrends \} from ["']\.\/admin_analytics_trends["'];/);
   });
 
   test('uses only fixed Firestore collections, fields, directions, and hard caps', () => {

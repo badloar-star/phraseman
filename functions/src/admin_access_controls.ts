@@ -4,6 +4,7 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
@@ -162,7 +163,15 @@ export const adminGrantAccess = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (req
     const op = await tx.get(opRef); if (op.exists) { const d = op.data() ?? {}; if (d.requestFingerprint !== fingerprint || d.actorUid !== a.actorUid) throw new HttpsError('already-exists', 'idempotency key replay mismatch'); return { ...(record(d.result) ? d.result : {}), replayed: true }; }
     const target = await resolveCanonicalAdminAccessTarget(tx, db, input.uid); const patch = buildAdminAccessPatch(target.snapshot.data() ?? {}, input, now);
     const audit = createAuditRecord({ action: `${input.active ? 'grant' : 'revoke'}_${input.kind}`, actorUid: a.actorUid, role: a.role, entity: { collection: 'users', id: target.uid }, reason: input.reason, before: patch.before, after: patch.after, requestId: input.requestId, timestamp: new Date(now).toISOString() });
-    tx.update(target.ref, { ...patch.updates, updatedAt: now }); tx.create(auditRef, { ...audit, operationId: opRef.id }); const result = { ok: true, kind: input.kind, active: input.active, uid: target.uid, requestedUid: input.uid, expiresAtMs: patch.expiresAtMs, auditId: auditRef.id };
+    tx.update(target.ref, { ...patch.updates, updatedAt: now });
+    writeAccessProjectionFromPatch(
+      tx,
+      target.ref,
+      record(target.snapshot.data()?.progress) ? target.snapshot.data()!.progress as Row : {},
+      patch.updates,
+      now,
+    );
+    tx.create(auditRef, { ...audit, operationId: opRef.id }); const result = { ok: true, kind: input.kind, active: input.active, uid: target.uid, requestedUid: input.uid, expiresAtMs: patch.expiresAtMs, auditId: auditRef.id };
     tx.create(opRef, { action: 'grant_access', requestFingerprint: fingerprint, actorUid: a.actorUid, auditId: auditRef.id, result, createdAt: admin.firestore.FieldValue.serverTimestamp() }); return result;
   });
 });

@@ -14,7 +14,7 @@ describe('admin subscription analytics callable contract', () => {
 
   it('requires money.read and returns aggregate limitations without identifiers', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_subscription_analytics.ts'), 'utf8');
-    expect(source).toContain("hasClaimedPermission(request.auth?.token, 'money.read')");
+    expect(source).toContain("hasVerifiedCallablePermission(request.auth, 'money.read')");
     expect(source).toContain('reasons_available_for_new_webhook_events_only');
     expect(source).toContain('historical_cancel_reason_not_stored');
     expect(source).toContain('historical_expiration_reason_not_stored');

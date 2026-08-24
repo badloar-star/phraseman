@@ -10,8 +10,7 @@
  * Видимостью управляет OverlayArbiter в хосте; сюда приходит готовый visible.
  */
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import type { ImageSourcePropType } from 'react-native';
+import { Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -19,10 +18,11 @@ import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
-import { RewardModalLiquidGlass } from './RewardModalBackdrop';
+import { RewardModalLiquidGlass, rewardModalAccentColor, rewardModalPanelColors, rewardModalPrimaryButtonColors, rewardModalPrimaryButtonText, rewardModalSoftSurface } from './RewardModalBackdrop';
 import { soundDirector } from '../modules/audio/sound_director';
 import BoonChestHybrid from './celebration/BoonChestHybrid';
 import type { RewardImpactRarity } from './celebration/use_reward_impact_hybrid';
+import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const STAGE_SIZE = 150;
@@ -38,8 +38,6 @@ export interface BoonChestModalProps {
   visible: boolean;
   /** Цвет/«дороговизна» сундука. */
   rarity: BoonChestRarity;
-  /** Иконка награды-орба (тематический осколок и т.п.). */
-  rewardIcon: ImageSourcePropType;
   /** Заголовок окна (над сундуком). */
   title: string;
   /** Подпись под наградой в фазе reveal (напр. «5 осколков — теперь твои»). */
@@ -57,7 +55,7 @@ export interface BoonChestModalProps {
   /**
    * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
    * сцена M3 «Сундук-награда») живёт РЯДОМ со старой версией под флагом.
-   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   * Production default — hybrid; explicit `classic` сохранён для rollback/QA.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
@@ -70,7 +68,6 @@ function toImpactRarity(rarity: BoonChestRarity): RewardImpactRarity {
 export default function BoonChestModal({
   visible,
   rarity,
-  rewardIcon,
   title,
   rewardLine,
   tapHint,
@@ -78,7 +75,7 @@ export default function BoonChestModal({
   closeLabel,
   onClaim,
   onClose,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: BoonChestModalProps) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
@@ -231,12 +228,13 @@ export default function BoonChestModal({
       <BoonChestHybrid
         visible={visible}
         rarity={toImpactRarity(rarity)}
-        rewardIcon={rewardIcon}
+        palette={paletteForRarity(rarity)}
         title={title}
         rewardLine={rewardLine}
         tapHint={tapHint}
         claimCta={claimCta}
         closeLabel={closeLabel}
+        laterLabel={laterLabel}
         onClaim={onClaim}
         onClose={onClose}
       />
@@ -244,7 +242,13 @@ export default function BoonChestModal({
   }
 
   const palette = paletteForRarity(rarity);
-  const accent = palette.accent;
+  // зачем: владелец 2026-08-23 — заголовок/рамка/кнопка сундука-награды
+  // красились в жёсткий цвет РЕДКОСТИ (palette.accent), не связанный с
+  // активной темой приложения. accent теперь = тема (как в LevelGiftModal);
+  // palette (редкость) остаётся только на самом сундуке/эффектах открытия.
+  const accent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
+  const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
 
   const rock = rockAnim.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
@@ -277,12 +281,12 @@ export default function BoonChestModal({
         >
           <LinearGradient
             pointerEvents="none"
-            colors={[palette.panelTop, palette.panelBottom]}
+            colors={[rewardModalPanelColors(themeMode, t)[0], rewardModalPanelColors(themeMode, t)[1]]}
             start={{ x: 0.5, y: 0 }}
             end={{ x: 0.5, y: 1 }}
             style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
           />
-          <View pointerEvents="none" style={[styles.topGlow, { backgroundColor: palette.accentSoft }]} />
+          <View pointerEvents="none" style={[styles.topGlow, { backgroundColor: rewardModalSoftSurface(themeMode, t) }]} />
           <RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />
 
           {phase === 'box' && (
@@ -339,7 +343,7 @@ export default function BoonChestModal({
               <View style={styles.orbStage}>
                 <GiftOpenBurst key={`${rarity}-burst`} tier={animTierF2p(rarity)} size={STAGE_SIZE} />
                 <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
-                  <Image source={rewardIcon} resizeMode="contain" style={styles.orbIcon} />
+                  <RetiredRasterFallback kind="gift" size={108} color={paletteForRarity(rarity).accent} />
                 </Animated.View>
               </View>
 
@@ -354,13 +358,13 @@ export default function BoonChestModal({
               >
                 <LinearGradient
                   pointerEvents="none"
-                  colors={palette.button}
+                  colors={primaryButtonColors}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
                 <View pointerEvents="none" style={styles.claimBtnGloss} />
-                <Text style={[styles.claimBtnText, { color: palette.buttonInk }]}>{claimCta}</Text>
+                <Text style={[styles.claimBtnText, { color: primaryButtonText }]}>{claimCta}</Text>
               </TouchableOpacity>
               {/* зачем: «Позже» в фазе reveal вела на тот же requestClose, что и
                   «Продолжить» — награда уже начислена, откладывать нечего. Две
@@ -422,7 +426,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 6,
   },
-  orbIcon: { width: 108, height: 108 },
   rewardText: {
     color: '#FFFFFF',
     fontSize: 18,

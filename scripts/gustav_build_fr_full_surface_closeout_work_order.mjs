@@ -109,7 +109,6 @@ function main() {
   const correctionCandidateImportDryRun = readJson(INPUTS.correctionCandidateImportDryRun);
   const theory = readJson(INPUTS.theory);
   const grammar = readJson(INPUTS.grammar);
-  const personalPractice = readJson(INPUTS.personalPractice);
   const flashcards = readJson(INPUTS.flashcards);
   const collectibles = readJson(INPUTS.collectibles);
   const dailyPhrases = readJson(INPUTS.dailyPhrases);

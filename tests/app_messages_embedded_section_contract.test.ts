@@ -30,4 +30,11 @@ describe('team messages inside notification center', () => {
     expect(source).toContain('testID="team-message-undo"');
     expect(source).toContain('messages.length === 0 && !undoMessage');
   });
+
+  it('lets the outer notification FlatList own team-detail scrolling', () => {
+    const detailStart = source.indexOf('const renderUnifiedDetail =');
+    const nextSection = source.indexOf('\n  if (mode ===', detailStart);
+    const unifiedDetail = source.slice(detailStart, nextSection);
+    expect(unifiedDetail).not.toContain('<ScrollView');
+  });
 });

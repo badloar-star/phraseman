@@ -17,12 +17,16 @@ const REVENUECAT_SECRET_API_KEY = defineSecret('REVENUECAT_SECRET_API_KEY');
 const REQUEST_TIMEOUT_MS = 8_000;
 const LEASE_MS = 30_000;
 const RETRY_COOLDOWN_MS = 5 * 60 * 1000;
+const MAX_ACTIVATION_NOT_FOUND_RETRY_MS = 1_000;
+const MAX_ACTIVATION_RAPID_NOT_FOUND_LIMIT = 5;
+const MAX_ACTIVATION_RAPID_WINDOW_MS = RETRY_COOLDOWN_MS;
 const SUCCESS_COOLDOWN_MS = 6 * 60 * 60 * 1000;
 const MAX_SUBSCRIPTION_PAGES = 5;
 const MAX_SUBSCRIPTIONS = 100;
 
 type Row = Record<string, unknown>;
 type FetchLike = (input: string, init: RequestInit) => Promise<Response>;
+type ReconciliationScope = 'premium' | 'max_activation';
 
 function row(value: unknown): Row | null {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -55,6 +59,16 @@ function hasActivePremiumEntitlement(subscription: Row): boolean {
   });
 }
 
+function hasActiveMaxEntitlement(subscription: Row): boolean {
+  const entitlements = row(subscription.entitlements);
+  const items = Array.isArray(entitlements?.items) ? entitlements.items : [];
+  return items.some((item) => {
+    const entitlement = row(item);
+    return text(entitlement?.lookup_key).toLowerCase() === 'max'
+      && text(entitlement?.state).toLowerCase() === 'active';
+  });
+}
+
 function eligibleSubscription(subscription: Row, nowMs: number): boolean {
   const environment = text(subscription.environment).toLowerCase();
   const ownership = text(subscription.ownership).toLowerCase();
@@ -68,7 +82,7 @@ function eligibleSubscription(subscription: Row, nowMs: number): boolean {
     && ownership === 'purchased'
     && subscription.gives_access === true
     && (store === 'play_store' || store === 'app_store')
-    && hasActivePremiumEntitlement(subscription)
+    && (hasActivePremiumEntitlement(subscription) || hasActiveMaxEntitlement(subscription))
     && endsAtMs !== null
     && endsAtMs > nowMs
   );
@@ -79,7 +93,10 @@ function selectEligiblePremiumSubscription(items: unknown[], nowMs: number): Row
   return items
     .map(row)
     .filter((item): item is Row => item !== null && eligibleSubscription(item, nowMs))
-    .sort((left, right) => (subscriptionEndsAtMs(right) ?? 0) - (subscriptionEndsAtMs(left) ?? 0))[0]
+    .sort((left, right) => {
+      const maxPriority = Number(hasActiveMaxEntitlement(right)) - Number(hasActiveMaxEntitlement(left));
+      return maxPriority || (subscriptionEndsAtMs(right) ?? 0) - (subscriptionEndsAtMs(left) ?? 0);
+    })[0]
     ?? null;
 }
 
@@ -93,6 +110,7 @@ function mapSubscriptionToSyntheticEvent(
   const subscriptionId = text(subscription.id);
   const originalTransactionId = text(subscription.store_subscription_identifier);
   const productId = text(storeIdentifier);
+  const isMaxProduct = /^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId);
   const authoritativeAppId = text(appId, 128);
   const purchasedAtMs = positiveMs(subscription.starts_at);
   const periodStartsAtMs = positiveMs(subscription.current_period_starts_at);
@@ -100,6 +118,12 @@ function mapSubscriptionToSyntheticEvent(
   const rawStore = text(subscription.store).toLowerCase();
   if (!isManagedPremiumProductId(productId)) {
     throw new Error('revenuecat_reconcile_unmanaged_product');
+  }
+  if (isMaxProduct && !hasActiveMaxEntitlement(subscription)) {
+    throw new Error('revenuecat_reconcile_max_entitlement_unverified');
+  }
+  if (!isMaxProduct && !hasActivePremiumEntitlement(subscription)) {
+    throw new Error('revenuecat_reconcile_premium_entitlement_unverified');
   }
   if (
     !ownerUid
@@ -126,7 +150,7 @@ function mapSubscriptionToSyntheticEvent(
     original_app_user_id: ownerUid,
     aliases: [],
     product_id: productId,
-    entitlement_ids: ['premium'],
+    entitlement_ids: isMaxProduct ? ['premium', 'max'] : ['premium'],
     store: rawStore.toUpperCase(),
     environment: 'PRODUCTION',
     original_transaction_id: originalTransactionId,
@@ -149,8 +173,12 @@ function reconcileReservationDecision(
   return { kind: 'acquire' };
 }
 
-function reservationId(stableUid: string): string {
-  return createHash('sha256').update(stableUid).digest('hex');
+function reservationId(
+  stableUid: string,
+  scope: ReconciliationScope = 'premium',
+): string {
+  const material = scope === 'premium' ? stableUid : `${stableUid}|${scope}`;
+  return createHash('sha256').update(material).digest('hex');
 }
 
 async function fetchRevenueCatJson(
@@ -241,12 +269,26 @@ async function hasActiveStorePremiumProjection(
   return isStorePremiumActive(progress, nowMs);
 }
 
+async function activeStorePremiumPlan(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  nowMs: number,
+): Promise<string | null> {
+  const snapshot = await db.collection('users').doc(stableUid).get();
+  if (!snapshot.exists) return null;
+  const progress = (snapshot.data()?.progress ?? {}) as Record<string, unknown>;
+  if (!isStorePremiumActive(progress, nowMs)) return null;
+  const plan = text(progress.premium_plan).toLowerCase();
+  return plan || null;
+}
+
 async function acquireReservation(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
   nowMs: number,
+  scope: ReconciliationScope = 'premium',
 ): Promise<'acquired' | 'cooldown' | 'in_progress'> {
-  const ref = db.collection('revenuecat_reconcile_reservations').doc(reservationId(stableUid));
+  const ref = db.collection('revenuecat_reconcile_reservations').doc(reservationId(stableUid, scope));
   return db.runTransaction(async (transaction) => {
     const snapshot = await transaction.get(ref);
     const decision = reconcileReservationDecision(snapshot.data() ?? {}, nowMs);
@@ -266,14 +308,70 @@ async function finishReservation(
   stableUid: string,
   nowMs: number,
   outcome: 'active' | 'not_found' | 'error',
+  scope: ReconciliationScope = 'premium',
 ): Promise<void> {
-  const cooldown = outcome === 'active' ? SUCCESS_COOLDOWN_MS : RETRY_COOLDOWN_MS;
-  await db.collection('revenuecat_reconcile_reservations').doc(reservationId(stableUid)).set({
+  const ref = db.collection('revenuecat_reconcile_reservations').doc(reservationId(stableUid, scope));
+  if (scope === 'max_activation' && outcome === 'not_found') {
+    await db.runTransaction(async (transaction) => {
+      const snapshot = await transaction.get(ref);
+      const rapid = maxActivationNotFoundDecision(snapshot.data() ?? {}, nowMs);
+      transaction.set(ref, {
+        leaseUntilMs: 0,
+        nextAllowedAtMs: nowMs + rapid.cooldownMs,
+        completedAtMs: nowMs,
+        outcome,
+        rapidNotFoundCount: rapid.rapidNotFoundCount,
+        rapidWindowStartedAtMs: rapid.rapidWindowStartedAtMs,
+      }, { merge: true });
+    });
+    return;
+  }
+  const cooldown = reservationCooldownMs(outcome, scope);
+  await ref.set({
     leaseUntilMs: 0,
     nextAllowedAtMs: nowMs + cooldown,
     completedAtMs: nowMs,
     outcome,
+    ...(scope === 'max_activation' && outcome === 'active' ? {
+      rapidNotFoundCount: 0,
+      rapidWindowStartedAtMs: 0,
+    } : {}),
   }, { merge: true });
+}
+
+function maxActivationNotFoundDecision(
+  state: Record<string, unknown>,
+  nowMs: number,
+): { rapidNotFoundCount: number; rapidWindowStartedAtMs: number; cooldownMs: number } {
+  const priorStartedAtMs = Number(state.rapidWindowStartedAtMs) || 0;
+  const withinWindow = priorStartedAtMs > 0
+    && nowMs >= priorStartedAtMs
+    && nowMs - priorStartedAtMs < MAX_ACTIVATION_RAPID_WINDOW_MS;
+  const priorCount = withinWindow
+    ? Math.min(MAX_ACTIVATION_RAPID_NOT_FOUND_LIMIT, Math.max(0, Math.floor(Number(state.rapidNotFoundCount) || 0)))
+    : 0;
+  const rapidNotFoundCount = Math.min(MAX_ACTIVATION_RAPID_NOT_FOUND_LIMIT, priorCount + 1);
+  return {
+    rapidNotFoundCount,
+    rapidWindowStartedAtMs: withinWindow ? priorStartedAtMs : nowMs,
+    cooldownMs: rapidNotFoundCount >= MAX_ACTIVATION_RAPID_NOT_FOUND_LIMIT
+      ? RETRY_COOLDOWN_MS
+      : MAX_ACTIVATION_NOT_FOUND_RETRY_MS,
+  };
+}
+
+function reservationCooldownMs(
+  outcome: 'active' | 'not_found' | 'error',
+  scope: ReconciliationScope = 'premium',
+): number {
+  if (outcome === 'active') return SUCCESS_COOLDOWN_MS;
+  // A just-completed store purchase may not be visible on RevenueCat's first
+  // read. Permit the next bounded client poll, while errors and ordinary
+  // reconciliation retain the anti-hammering cooldown.
+  if (scope === 'max_activation' && outcome === 'not_found') {
+    return MAX_ACTIVATION_NOT_FOUND_RETRY_MS;
+  }
+  return RETRY_COOLDOWN_MS;
 }
 
 async function reconcileMine(
@@ -283,9 +381,21 @@ async function reconcileMine(
   secret: string,
   nowMs: number,
   fetchImpl: FetchLike = fetch,
+  scope: ReconciliationScope = 'premium',
 ): Promise<Record<string, unknown>> {
-  const reservation = await acquireReservation(db, stableUid, nowMs);
+  const reservation = await acquireReservation(db, stableUid, nowMs, scope);
   if (reservation !== 'acquired') {
+    const plan = await activeStorePremiumPlan(db, stableUid, nowMs);
+    if (plan) {
+      return {
+        ok: true,
+        active: true,
+        reconciled: true,
+        source: 'revenuecat_v2',
+        plan,
+        maxActive: plan === 'max_monthly',
+      };
+    }
     return { ok: true, active: false, reconciled: false, reason: reservation };
   }
 
@@ -298,8 +408,12 @@ async function reconcileMine(
       fetchImpl,
     );
     if (!subscription) {
-      await finishReservation(db, stableUid, Date.now(), 'not_found');
+      await finishReservation(db, stableUid, Date.now(), 'not_found', scope);
       return { ok: true, active: false, reconciled: false, reason: 'no_verified_subscription' };
+    }
+    if (scope === 'max_activation' && !hasActiveMaxEntitlement(subscription)) {
+      await finishReservation(db, stableUid, Date.now(), 'not_found', scope);
+      return { ok: true, active: false, reconciled: false, reason: 'no_verified_max_subscription' };
     }
 
     const revenueCatProductId = text(subscription.product_id);
@@ -327,10 +441,19 @@ async function reconcileMine(
     if (!isCacheablePaidLineageOutcome(outcome, existingStoreProjectionActive)) {
       throw new Error('revenuecat_reconcile_paid_lineage_unconfirmed');
     }
-    await finishReservation(db, stableUid, Date.now(), 'active');
-    return { ok: true, active: true, reconciled: true, source: 'revenuecat_v2' };
+    await finishReservation(db, stableUid, Date.now(), 'active', scope);
+    const plan = /^phraseman_max_monthly_v1(?::monthly-base)?$/.test(storeIdentifier)
+      ? 'max_monthly'
+      : undefined;
+    return {
+      ok: true,
+      active: true,
+      reconciled: true,
+      source: 'revenuecat_v2',
+      ...(plan ? { plan, maxActive: true } : {}),
+    };
   } catch (error) {
-    await finishReservation(db, stableUid, Date.now(), 'error').catch(() => undefined);
+    await finishReservation(db, stableUid, Date.now(), 'error', scope).catch(() => undefined);
     throw error;
   }
 }
@@ -353,7 +476,13 @@ export const revenueCatPremiumReconcileMine = onCall({
   const secret = REVENUECAT_SECRET_API_KEY.value().trim();
   if (!secret) throw new HttpsError('failed-precondition', 'revenuecat_reconcile_unconfigured');
   try {
-    return await reconcileMine(db, stableUid, authUid, secret, Date.now());
+    const data = row(request.data) ?? {};
+    const scope: ReconciliationScope =
+      text(data.intent).toLowerCase() === 'max_activation'
+      && text(data.expectedProductId).toLowerCase() === 'phraseman_max_monthly_v1'
+        ? 'max_activation'
+        : 'premium';
+    return await reconcileMine(db, stableUid, authUid, secret, Date.now(), fetch, scope);
   } catch {
     throw new HttpsError('unavailable', 'revenuecat_reconcile_unavailable');
   }
@@ -363,6 +492,11 @@ export const __revenueCatReconcileTestHooks = {
   selectEligiblePremiumSubscription,
   mapSubscriptionToSyntheticEvent,
   reconcileReservationDecision,
+  reservationId,
+  acquireReservation,
+  finishReservation,
+  maxActivationNotFoundDecision,
+  reservationCooldownMs,
   fetchRevenueCatJson,
   fetchEligiblePremiumSubscription,
   isCacheablePaidLineageOutcome,

@@ -1,8 +1,6 @@
 import { Image, type ImageSourcePropType } from 'react-native';
 import { Asset } from 'expo-asset';
 import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets';
-import { LEVEL_GIFT_IMAGE_SOURCES } from '../constants/levelGiftImages';
-import { LEVEL_GIFT_REWARD_ICON_SOURCES } from '../constants/levelGiftRewardIcons';
 import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
 import { REFERRAL_INVITE_BANNER_IMAGES } from '../components/ReferralInviteBannerArt';
 
@@ -97,8 +95,6 @@ export const preloadPrimaryTabImages = async () => {
 export const preloadDeferredNonPrimaryImages = async () => {
   try {
     await warmImageSources([
-      ...LEVEL_GIFT_IMAGE_SOURCES,
-      ...LEVEL_GIFT_REWARD_ICON_SOURCES,
       ...OSKOLOK_IMAGE_SOURCES,
     ]);
   } catch {
@@ -114,8 +110,6 @@ export const preloadImages = async () => {
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
       ...REFERRAL_INVITE_BANNER_IMAGES,
-      ...LEVEL_GIFT_IMAGE_SOURCES,
-      ...LEVEL_GIFT_REWARD_ICON_SOURCES,
       ...OSKOLOK_IMAGE_SOURCES,
     ];
     await warmImageSources(allImages);

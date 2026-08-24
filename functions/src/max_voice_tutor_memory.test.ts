@@ -67,6 +67,9 @@ describe('parseTutorMemory', () => {
   it.each([
     'my password is qwerty',
     'card 4111 1111 1111 1111',
+    'email me at learner@example.com',
+    'my phone is +1 (415) 555-2671',
+    'мой телефон 8 999 123-45-67',
     'I live at 12 Main Street',
     'diagnosed with depression',
     'my sister is being sued for fraud',

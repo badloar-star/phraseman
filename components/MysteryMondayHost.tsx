@@ -13,7 +13,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
-import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { emitAppEvent, onAppEvent } from '../app/events';
 import { triLang, type Lang } from '../constants/i18n';
@@ -27,7 +26,6 @@ import {
   MYSTERY_MONDAY_CLAIM_KEY,
   type BoonReward,
 } from '../app/boons/boon_rewards';
-import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
 import {
   ruKnowledgeShardsAfterNumber,
   ukKnowledgeShardsAfterNumber,
@@ -64,7 +62,6 @@ function rarityForShards(shards: number): BoonChestRarity {
 }
 
 export default function MysteryMondayHost() {
-  const { themeMode } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -188,7 +185,6 @@ export default function MysteryMondayHost() {
     <BoonChestModal
       visible={visible}
       rarity={rarity}
-      rewardIcon={getThemedShardIcon(themeMode)}
       title={title}
       rewardLine={rewardLine}
       tapHint={tapHint}

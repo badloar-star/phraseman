@@ -25,11 +25,13 @@ describe('Jarvis MAX voice fetcher — bounded content-free daily aggregates', (
       daily('2026-08-21', {
         callsStarted: 20, callsConnected: 18, callsCompleted: 15, reviewsReady: 14,
         reconnectAttempts: 3, reconnectRecovered: 2,
+        mintRejections: 4,
         firstAudioLatencyBuckets: { lt1s: 5, '1to3s': 10, '3to8s': 2, gte8s: 1 },
       }),
       daily('2026-08-20', {
         callsStarted: 10, callsConnected: 9, callsCompleted: 8, reviewsReady: 8,
         reconnectAttempts: 2, reconnectRecovered: 2,
+        mintRejections: 3,
         firstAudioLatencyBuckets: { lt1s: 4, '1to3s': 4, '3to8s': 1, gte8s: 0 },
       }),
     ]);
@@ -43,6 +45,7 @@ describe('Jarvis MAX voice fetcher — bounded content-free daily aggregates', (
       state: 'ready', sampledDays: 2, callsStarted: 30, callsConnected: 27,
       callsCompleted: 23, reviewsReady: 22, reconnectAttempts: 5,
       reconnectRecovered: 4, firstAudioGte8s: 1,
+      mintRejections: 7,
     });
     expect(JSON.stringify(result)).not.toMatch(/uid|session|transcript|audioText/i);
   });

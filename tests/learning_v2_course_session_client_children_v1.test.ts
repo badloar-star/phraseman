@@ -12,7 +12,17 @@ import {
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 import { canonicalJsonV1 } from "../modules/learning-v2/policies/decision_registry";
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+const locales = [
+  "ru",
+  "uk",
+  "es",
+  "en",
+  "pt-BR",
+  "vi",
+  "id",
+  "tr",
+  "pl",
+] as const;
 const localized = (prefix: string) =>
   Object.freeze(
     Object.fromEntries(
@@ -101,6 +111,9 @@ function auxiliary() {
       },
       secondErrorExplanationRef: `error-${index + 1}`,
       secondErrorExplanationByLocale: localized(`Explanation ${index + 1}`),
+      responseFeedbackById: {
+        [`wrong-${index + 1}`]: localized(`Chosen trap ${index + 1}`),
+      },
     })),
   });
 }
@@ -178,6 +191,13 @@ describe("Learning V2 direct session learner child contracts", () => {
     expect(parsed.secondWrongBehavior).toBe(
       "show_localized_server_approved_explanation",
     );
+    expect(
+      parsed.entries.every((entry, index) =>
+        entry.responseFeedbackById?.[`wrong-${index + 1}`]?.ru.includes(
+          `Chosen trap ${index + 1}`,
+        ),
+      ),
+    ).toBe(true);
   });
 
   test("rejects answer leakage, duplicate intro IDs and action omissions", () => {

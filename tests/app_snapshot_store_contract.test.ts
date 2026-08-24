@@ -161,6 +161,43 @@ describe('app snapshot store contract', () => {
     });
   });
 
+  it('does not let delayed SQLite hydration roll authoritative cloud stats back to zero', () => {
+    patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: true,
+      progress: {
+        user_name: 'Vitalii',
+        user_total_xp: '564776',
+        streak_count: '93',
+      },
+    }, 500);
+
+    patchAppSnapshot({
+      profile: {
+        source: 'storage',
+        updatedAt: 600,
+        name: 'Vitalii',
+        avatar: '1',
+        frame: '',
+        totalXp: 0,
+        level: 1,
+        premiumActive: true,
+        vipActive: false,
+      },
+      progress: {
+        source: 'storage',
+        updatedAt: 600,
+        streak: 0,
+        shards: 882,
+        studyTarget: 'en',
+      },
+    });
+
+    expect(getAppSnapshot()).toMatchObject({
+      profile: { source: 'live', totalXp: 564776, level: 50, premiumActive: true },
+      progress: { source: 'live', streak: 93, shards: 882 },
+    });
+  });
+
   it('rejects untrusted or malformed cloud progress instead of rendering defaults', () => {
     expect(patchAppSnapshotFromAuthoritativeCloudProgress({
       progressServerAuthoritative: false,

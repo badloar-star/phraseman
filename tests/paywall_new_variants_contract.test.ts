@@ -52,9 +52,10 @@ describe('paywall D/E/F/G routing', () => {
     for (const name of ['paywall_d', 'paywall_e', 'paywall_f', 'paywall_g']) {
       expect(layout).toContain(`<Stack.Screen name="${name}" options={paywallScreenStackOptions(onboardingPaywallActive)} />`);
     }
-    // Онбординг-роутинг умеет уводить на новые экраны.
-    expect(layout).toContain("D: '/paywall_d'");
-    expect(layout).toContain("G: '/paywall_g'");
+    // Выбор варианта централизован в paywall_navigation.ts; root layout только
+    // регистрирует экраны и не должен держать вторую расходящуюся таблицу роутов.
+    expect(layout).not.toContain("D: '/paywall_d'");
+    expect(layout).not.toContain("G: '/paywall_g'");
   });
 
   it('premium_modal dispatcher imports and renders the new screens', () => {
@@ -93,7 +94,7 @@ describe('paywall G decoy (anchor) compliance', () => {
   it('decoy card has no selection wiring at all (visual anchor, never selectable)', () => {
     const plans = read('components/paywall/PaywallPlanCards.tsx');
     const decoyStart = plans.indexOf('const renderDecoyCard');
-    const decoyEnd = plans.indexOf('const lifetimeOfferTitle');
+    const decoyEnd = plans.indexOf('const additionalOfferTitle');
     expect(decoyStart).toBeGreaterThan(-1);
     expect(decoyEnd).toBeGreaterThan(decoyStart);
     const decoy = plans.slice(decoyStart, decoyEnd);

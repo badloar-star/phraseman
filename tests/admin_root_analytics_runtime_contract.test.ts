@@ -93,7 +93,6 @@ describe('live admin analytics runtime', () => {
     expect(typeof runtime.AdminAnalyticsLanguage.header).toBe('function');
     expect(typeof runtime.renderProductSessions).toBe('function');
     expect(typeof runtime.renderLearningDiagnostics).toBe('function');
-    expect(typeof runtime.renderLearningOutcomes).toBe('function');
     expect(typeof runtime.renderConversionDiagnostics).toBe('function');
     expect(typeof runtime.renderRetentionDiagnostics).toBe('function');
     expect(typeof runtime.renderExperimentsAndReliability).toBe('function');
@@ -122,7 +121,7 @@ describe('live admin analytics runtime', () => {
     elements.set('product-analytics-range', makeElement('28'));
     elements.set('product-analytics-platform', makeElement('android'));
     ['product-analytics-status', 'product-analytics-sessions', 'product-analytics-screens',
-      'product-analytics-lessons', 'product-analytics-learning-dropoff', 'product-analytics-learning-outcomes',
+      'product-analytics-lessons', 'product-analytics-learning-dropoff',
       'product-analytics-conversion', 'product-analytics-retention', 'product-analytics-experiments',
       'product-analytics-reliability', 'product-analytics-quality'].forEach((id) => elements.set(id, makeElement()));
 
@@ -137,7 +136,6 @@ describe('live admin analytics runtime', () => {
       screens: [{ screen_id: 'home', views: 30 }],
       lessons: [{ lesson_id: 1, starts: 5, completes: 4 }],
       learningDropoff: {},
-      learningOutcomes: {},
       behavioralConversion: {},
       activation: {},
       trueRetention: {},

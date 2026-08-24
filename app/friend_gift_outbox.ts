@@ -13,6 +13,7 @@ import {
   type FriendGiftId,
   type FriendGiftSendResponse,
 } from './friend_gifts';
+import { requestPhoneStateBackgroundSync } from './phone_state_background_sync_bridge';
 
 const PREFIX = 'friend_gift_send_outbox_v1::';
 const MAX_PENDING = 16;
@@ -163,6 +164,7 @@ export async function enqueueFriendGiftSend(
     await storage.setItem(keyFor(entry), JSON.stringify(entry));
   });
   const completion = processEntry(entry, token, dependencies);
+  void completion.catch(() => { requestPhoneStateBackgroundSync(); });
   return { entry, completion };
 }
 

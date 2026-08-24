@@ -12,7 +12,6 @@ describe('XP award caller contracts', () => {
     const diagnostic = read('app/diagnostic_test.tsx');
     const irregularVerbs = read('app/lesson_irregular_verbs.tsx');
     const prepositions = read('app/preposition_drill.tsx');
-    const review = read('app/review.tsx');
 
     expect(lesson).toContain("registerXP(xpAmount, 'lesson_answer', userNameRef.current || ''");
     expect(lesson).not.toContain("registerXP(batch.baseTotal, 'lesson_complete'");
@@ -27,15 +26,5 @@ describe('XP award caller contracts', () => {
     expect(prepositions).toContain("registerXP(POINTS_PER_CORRECT, 'preposition_drill_answer', userNameRef.current || ''");
     expect(prepositions).not.toMatch(/if\s*\(userNameRef\.current\)\s*\{[\s\S]{0,700}?registerXP\(POINTS_PER_CORRECT/);
 
-    expect(review).toContain("registerXP(5, 'review_answer', userNameRef.current || ''");
-    expect(review).not.toMatch(/if\s*\(userNameRef\.current\)\s*\{[\s\S]{0,700}?registerXP\(5, 'review_answer'/);
-  });
-
-  it('keeps SRS review XP event ids scoped to the review session', () => {
-    const review = read('app/review.tsx');
-
-    expect(review).toContain('const makeReviewSessionId');
-    expect(review).toContain('const reviewSessionIdRef = useRef(makeReviewSessionId())');
-    expect(review).toContain('safeReviewEventPart(reviewSessionIdRef.current, 32)');
   });
 });

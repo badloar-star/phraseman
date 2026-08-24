@@ -275,8 +275,31 @@ describe('friendsTogetherClaimLevel', () => {
     expect(result.daysTogether).toBe(5);
     expect(result.starsAwarded).toBe(5);
     expect(result.starsBalance).toBe(5);
+    expect(result.starsGranted).toBe(5);
+    expect(result.stars).toBe(5);
+    expect(result.starsSeq).toBe(1);
     const pair = docs.get('friend_pairs/alice__bob');
     expect((pair?.claimedLevel as Record<string, number>).alice).toBe(2);
+  });
+
+  test('a jump to level 5 grants every previously unclaimed milestone', async () => {
+    const dates = Array.from({ length: 100 }, (_, i) => new Date(
+      Date.parse('2026-08-21T00:00:00.000Z') - i * 86400000,
+    ).toISOString().slice(0, 10));
+    for (const uid of ['alice', 'bob']) {
+      const user = docs.get(`users/${uid}`) as DocData;
+      docs.set(`users/${uid}`, {
+        ...user,
+        progress: {
+          ...(user.progress as DocData),
+          active_days_v1: JSON.stringify(encode('2026-08-21', dates)),
+        },
+      });
+    }
+
+    const result = await claimLevel({ level: 5 });
+    expect(result.starsAwarded).toBe(5 + 10 + 20 + 50);
+    expect(result.starsGranted).toBe(5 + 10 + 20 + 50);
   });
 
   test('not_friends when friendship edge is missing', async () => {
@@ -377,6 +400,10 @@ describe('friendsClaimWeeklyChest', () => {
     expect(result.tier).toBeGreaterThanOrEqual(1);
     expect(result.multiplier).toBe(1);
     expect(result.rewards.stars).toBeGreaterThan(0);
+    expect(result.starsGranted).toBe(result.rewards.stars);
+    expect(result.xpBoostMinutes).toBe(60);
+    expect(result.streakShield).toBe(false);
+    expect(result.aura).toBe(false);
   });
 
   function seedExtraFriend(uid: string, commonDays: number) {
@@ -446,6 +473,28 @@ describe('friendsNudge', () => {
     expect((senderDoc?.sent as Record<string, number>).bob).toBeDefined();
     const receiverDoc = docs.get('users/bob/friend_nudges/2026-08-23');
     expect(receiverDoc?.receivedCount).toBe(1);
+    expect(docs.get('users/bob/notifications/friends_together_nudge_alice_2026-08-23')).toMatchObject({
+      type: 'friend_nudge',
+      fromUid: 'alice',
+      text: 'Пять минут на английский?',
+      nav: {
+        kind: 'friend_event',
+        actorStableUid: 'alice',
+        eventId: 'friends_together_nudge_alice_2026-08-23',
+        action: 'study_invite',
+      },
+    });
+    const pushRequest = (global.fetch as jest.Mock).mock.calls[0]?.[1] as { body?: string } | undefined;
+    const pushRows = JSON.parse(String(pushRequest?.body || '[]')) as Array<Record<string, unknown>>;
+    expect(pushRows[0]).toMatchObject({
+      title: 'Alice: пять минут английского?',
+      body: 'Одно маленькое занятие.',
+      data: expect.objectContaining({
+        type: 'friend_nudge',
+        eventId: 'friends_together_nudge_alice_2026-08-23',
+        actorStableUid: 'alice',
+      }),
+    });
   });
 
   test('not_friends when friendship edge missing', async () => {
@@ -518,6 +567,24 @@ describe('friendsNudge', () => {
 });
 
 describe('applyReferralPairBonus', () => {
+  test('can join an existing transaction so qualification, pair grant, and receipt commit atomically', async () => {
+    const { applyReferralPairBonusInTransaction } = require('./friends_together');
+    const admin = require('firebase-admin');
+    const db = admin.firestore();
+
+    await db.runTransaction(async (tx: unknown) => {
+      await applyReferralPairBonusInTransaction(
+        db,
+        tx,
+        'alice',
+        'bob',
+        Date.parse('2026-08-17T10:00:00.000Z'),
+      );
+    });
+
+    expect(docs.get('friend_pairs/alice__bob')).toMatchObject({ bonusDays: 3 });
+  });
+
   test('sets bonusDays=3 and boostUntilWeekKey to next week on first call', async () => {
     const { applyReferralPairBonus } = require('./friends_together');
     const admin = require('firebase-admin');

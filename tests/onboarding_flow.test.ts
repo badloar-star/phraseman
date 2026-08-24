@@ -7,6 +7,7 @@ import {
   getOnboardingProgress,
   parseEnabledOnboardingSteps,
   resolveEnabledOnboardingOrder,
+  resolveRuntimeOnboardingSteps,
   resolveOnboardingStep,
   runOnboardingTransitionEffects,
   type OnboardingStepId,
@@ -20,6 +21,8 @@ describe('configurable onboarding flow', () => {
   // зачем (2026-08-17): сохранённый список — allowlist; экраны, добавленные в
   // каталог позже сохранения, иначе молча выключались бы на проде. Список без
   // метки каталога = старое сохранение → новые id включены; с меткой — буквально.
+  // letsBuild убран владельцем 2026-08-17 (пустой экран-переход, никуда не вёл) —
+  // ни в DEFAULT_ON, ни в каталоге его больше нет.
   it('treats catalog ids added after an old save as enabled until the toggles are re-saved', () => {
     // Набор = все id, которых не знал последний РЕЛИЗНЫЙ каталог, а не только 17.08:
     // панель тумблеров публиковалась с 12.07, старый список не содержит ни одного из них.
@@ -28,7 +31,6 @@ describe('configurable onboarding flow', () => {
       'niceToMeet',
       'promise',
       'improve',
-      'letsBuild',
       'trialReminder',
     ]);
     // Старое сохранение (без метки): новых id нет в списке — они всё равно включены,
@@ -39,7 +41,6 @@ describe('configurable onboarding flow', () => {
       'niceToMeet',
       'promise',
       'improve',
-      'letsBuild',
       'name',
       'trialReminder',
     ]);
@@ -50,9 +51,9 @@ describe('configurable onboarding flow', () => {
       'name',
     ]);
     // Метка — не шаг: в результат не попадает.
-    expect(parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'letsBuild', ONBOARDING_STEPS_CATALOG_MARK]))).toEqual([
+    expect(parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'improve', ONBOARDING_STEPS_CATALOG_MARK]))).toEqual([
       'welcome',
-      'letsBuild',
+      'improve',
       'name',
     ]);
   });
@@ -86,6 +87,15 @@ describe('configurable onboarding flow', () => {
       'level',
       'name',
     ]);
+  });
+
+  it('forces the full local catalog only for the explicit QA runtime', () => {
+    const remote = ['welcome', 'name'] as OnboardingStepId[];
+
+    expect(resolveRuntimeOnboardingSteps(remote, false)).toEqual(remote);
+    expect(resolveRuntimeOnboardingSteps(remote, true)).toEqual(
+      ONBOARDING_STEP_CATALOG.map(({ id }) => id),
+    );
   });
 
   it('skips adjacent disabled steps in both directions', () => {
@@ -126,9 +136,11 @@ describe('configurable onboarding flow', () => {
   );
 
   it('never fires paywall effects on the way into the mandatory consent step', () => {
-    // letsBuild → name: цены ещё впереди, эффекты пейвола здесь — ошибка.
-    const order = resolveEnabledOnboardingOrder(['letsBuild', 'name', 'trialReminder', 'onboardingPaywall'], false);
-    expect(decideOnboardingTransition(order, 'letsBuild')).toEqual({
+    // notifications → name: цены ещё впереди, эффекты пейвола здесь — ошибка.
+    // (letsBuild убран владельцем 2026-08-17 — пустой экран-переход, который
+    // никуда не вёл; тест держит ту же проверку на живом соседнем шаге.)
+    const order = resolveEnabledOnboardingOrder(['notifications', 'name', 'trialReminder', 'onboardingPaywall'], false);
+    expect(decideOnboardingTransition(order, 'notifications')).toEqual({
       destination: 'name',
       preparePaywall: false,
       createPendingPlan: false,

@@ -11,6 +11,10 @@ jest.mock('../app/friend_gifts', () => ({
 }));
 
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+const requestPhoneStateBackgroundSync = jest.fn();
+jest.mock('../app/phone_state_background_sync_bridge', () => ({
+  requestPhoneStateBackgroundSync: () => requestPhoneStateBackgroundSync(),
+}));
 
 const makeStorage = () => {
   const values = new Map<string, string>();
@@ -89,6 +93,7 @@ describe('friend gift durable background outbox', () => {
     });
     await expect(queued.completion).rejects.toBe(offline);
     expect(storage.values.size).toBe(1);
+    expect(requestPhoneStateBackgroundSync).toHaveBeenCalledTimes(1);
 
     const replay = jest.fn(async () => receipt);
     await expect(resumePendingFriendGiftSends({

@@ -151,7 +151,7 @@ describe('sticky-ветка restore подмешивает уроковые кл
 
   it('sticky-ветка (localXP ≥ cloudXP) содержит монотонный уроковый merge', () => {
     const gateIdx = source.indexOf('if (!shouldRestoreCloudProgress)');
-    const writeIdx = source.indexOf('await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs))');
+    const writeIdx = source.indexOf('await applyPersonalPlanRestorePairs(stickyPairs)');
     expect(gateIdx).toBeGreaterThan(-1);
     expect(writeIdx).toBeGreaterThan(gateIdx);
     const stickyBranch = source.slice(gateIdx, writeIdx);

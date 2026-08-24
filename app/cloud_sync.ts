@@ -19,6 +19,12 @@ import { getVipProgressState, parsePremiumProgressMs } from './premium_progress'
 import { mergeStreakByActivityDate, normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
 import { mergeActiveDays } from './friends_together/together_days';
 import {
+  ACHIEVEMENT_ACCESS_PLUS_PAID_KEY,
+  ACHIEVEMENT_ACCESS_PRO_PAID_KEY,
+  ACHIEVEMENT_FOUNDATION_PROGRESS_KEY,
+  mergeFoundationProgressStorageValue,
+} from './achievement_progress_v2';
+import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
@@ -44,6 +50,8 @@ import {
   beginInitialAccountGeneration,
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  type AccountGenerationToken,
+  type AccountTransitionLockLease,
   withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
@@ -60,6 +68,15 @@ import {
   clearCachedLeagueStateSnapshot,
   projectCloudLeagueStateSnapshot,
 } from './league_open_cache_policy';
+import {
+  cloudSyncSnapshotValueMatches,
+  encodeCloudSyncSnapshotRecord,
+  encodeCloudSyncSnapshotValue,
+} from './cloud_sync_snapshot_codec';
+import {
+  filterLegacyProgressForPhoneState,
+  isPhoneStateCoreProgressKey,
+} from '../modules/phone-state/cloud_boundary';
 import { clearScreenSnapshots } from './screen_snapshot_store';
 import {
   invalidatePersonalPlanStateCache,
@@ -68,8 +85,10 @@ import {
 import { withPlanXpLedgerStorageLock } from './personal_plan_xp_ledger';
 import {
   isVipSnapshotStorageKey,
+  readVipSnapshotForGeneration,
   VIP_STORAGE_KEYS,
-  writeVipSnapshotForAccount,
+  type VipStorageValues,
+  writeVipSnapshotForGeneration,
 } from './premium_vip_storage';
 import {
   extractExamBestPctOverlay,
@@ -96,6 +115,51 @@ import {
 // при смене аккаунта — иначе чужие данные переживут выход из аккаунта (тот же
 // класс бага, что «чужие пиксели после смены аккаунта»).
 const LEGACY_TODAY_ACCOUNT_STORAGE_KEYS = ['today_recommendation_history_v1'] as const;
+
+/**
+ * VIP restore is a monotonic entitlement merge. A locally committed Spin Plus
+ * receipt is client-authored ordinary gameplay and an older cloud snapshot is
+ * never allowed to revoke it. Lifetime access always dominates finite access.
+ */
+export function mergeCloudVipWithLocalSpinGrant(
+  cloud: VipStorageValues,
+  local: VipStorageValues | null,
+): VipStorageValues {
+  if (!local || local.vip_active !== 'true') return cloud;
+  const localPlan = local.vip_plan.trim().toLowerCase();
+  const localUntil = Math.max(0, Number(local.vip_until) || 0);
+  const localLifetimePlan = localPlan === 'lifetime' || localPlan === 'pro_lifetime';
+  const localLifetime = localUntil <= 0 || localLifetimePlan;
+  const normalizedLocal = localLifetimePlan && localUntil > 0
+    ? { ...local, vip_until: '0' }
+    : local;
+  const localSpinGrant = localPlan === 'level_spin';
+  if (!localLifetime && !localSpinGrant) return cloud;
+
+  const cloudPlan = cloud.vip_plan.trim().toLowerCase();
+  const cloudUntil = Math.max(0, Number(cloud.vip_until) || 0);
+  const cloudActive = cloud.vip_active === 'true';
+  const cloudLifetimePlan = cloudPlan === 'lifetime' || cloudPlan === 'pro_lifetime';
+  const cloudLifetime = cloudActive && (cloudUntil <= 0 || cloudLifetimePlan);
+  if (cloudLifetime) return cloudLifetimePlan && cloudUntil > 0 ? { ...cloud, vip_until: '0' } : cloud;
+  if (localLifetime || !cloudActive || localUntil > cloudUntil) return normalizedLocal;
+  return cloud;
+}
+
+export async function writeMergedCloudVipSnapshot(
+  generation: AccountGenerationToken,
+  cloud: VipStorageValues,
+  dependencies: Readonly<{
+    read: typeof readVipSnapshotForGeneration;
+    write: typeof writeVipSnapshotForGeneration;
+  }> = Object.freeze({ read: readVipSnapshotForGeneration, write: writeVipSnapshotForGeneration }),
+): Promise<boolean> {
+  const stableId = generation.stableId?.trim();
+  if (!stableId || !isCurrentAccountGeneration(generation, stableId)) return false;
+  const local = await dependencies.read(generation);
+  if (!isCurrentAccountGeneration(generation, stableId)) return false;
+  return dependencies.write(generation, mergeCloudVipWithLocalSpinGrant(cloud, local));
+}
 import {
   achievementStateKey,
   achievementLessonPerfectPassesKey,
@@ -308,6 +372,7 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // `fc_deck_best_stars_v1` больше нет ни в SYNC_KEYS, ни в merge-стратегиях.
   // «Вместе»: active_days_v1 мержится OR по датам между устройствами (см. функцию выше).
   active_days_v1: mergeActiveDaysRestoreValue,
+  [ACHIEVEMENT_FOUNDATION_PROGRESS_KEY]: mergeFoundationProgressStorageValue,
 };
 
 export const SYNC_KEYS = [
@@ -372,6 +437,9 @@ export const SYNC_KEYS = [
   'achievement_energy_refill_count',
   'achievement_league_boost_count',
   'achievement_gift_sent_count',
+  ACHIEVEMENT_FOUNDATION_PROGRESS_KEY,
+  ACHIEVEMENT_ACCESS_PLUS_PAID_KEY,
+  ACHIEVEMENT_ACCESS_PRO_PAID_KEY,
   'onboarding_done',
   'lang',
   'app_lang',
@@ -562,12 +630,12 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
 ] as const;
 
 const ACCOUNT_LOCAL_KEY_PREFIXES = [
+  'mistake_practice_v2::',
   'personal_plan_day_runtime_v1:',
   'learning_v2_lesson1_progress:',
   'learning_v2_progress:',
   'v2:outbox:v1:',
   'v2:outbox:v2:',
-  'mistake_practice_v2::',
   'v2:required-session-local-commit:v1:',
   'v2:required-session-local-commit:v2:',
   'v2:required-session-local-commit:v3:',
@@ -584,6 +652,11 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'client_shard_cloud_synced_v1:',
   'client_shard_conflict_v1:',
   'client_shard_semantic_paid_v1:',
+  // Owner-scoped level-Spin star composite journal and local projection.
+  'level_spin_star_grant_outbox_v1:',
+  'level_spin_star_projection_v1:',
+  'level_spin_star_prepared_v1:',
+  'level_spin_star_operation_v1:',
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;
@@ -723,7 +796,7 @@ function buildRestoreSnapshot(
     // cloudData по пути restore мутируется — защищаемся, чтобы undefined-значение
     // не «залипло» в снапшоте и не сломало последующее сравнение previousSnapshot.
     if (value === undefined) continue;
-    snapshot[key] = value;
+    snapshot[key] = encodeCloudSyncSnapshotValue(value);
   }
   return snapshot;
 }
@@ -809,6 +882,20 @@ let syncInFlight: Promise<void> | null = null;
 let pendingSync = false;
 let lastSuccessfulSyncAt = 0;
 let lastActivityStampAt = 0;
+
+function phoneStateOwnsCoreProgress(stableUid: string | null): boolean {
+  if (!stableUid) return false;
+  try {
+    // Lazy require avoids cloud_sync -> xp_manager -> PhoneState cutover startup cycles.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const cutover = require('./phone_state_progress_cutover') as
+      typeof import('./phone_state_progress_cutover');
+    return cutover.isPhoneStateCutoverEnabled(stableUid);
+  } catch {
+    return false;
+  }
+}
+
 export type CloudAccessFailureReason =
   | 'app_check_unavailable'
   | 'identity_unavailable'
@@ -1104,6 +1191,8 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   // не даёт общей синхронизации спорить с отдельным projection callable.
   'profile_card_level',
   'shard_survey_last_at_ms',
+  ACHIEVEMENT_ACCESS_PLUS_PAID_KEY,
+  ACHIEVEMENT_ACCESS_PRO_PAID_KEY,
 ]);
 
 export const isServerOwnedProgressKey = (key: string): boolean => {
@@ -2656,15 +2745,15 @@ async function doSyncToCloud(): Promise<void> {
     // идентичностью — иначе очередь может дописать чужому аккаунту.
     const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid);
     if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== uid || !isSyncGenerationCurrent()) return;
+    for (const target of SYNC_STUDY_TARGETS) {
+      await uploadMistakePracticeEvents({ accountScope: uid, studyTarget: target });
+      if (!isSyncGenerationCurrent()) return;
+    }
     await resumePendingReportReplyShardClaims().catch(() => {});
     if (!isSyncGenerationCurrent()) return;
     // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
     await resumePendingShardDeltas().catch(() => {});
     if (!isSyncGenerationCurrent()) return;
-    for (const target of SYNC_STUDY_TARGETS) {
-      await uploadMistakePracticeEvents({ accountScope: uid, studyTarget: target });
-      if (!isSyncGenerationCurrent()) return;
-    }
     await repairDevSeededStreakInStorage();
     if (!isSyncGenerationCurrent()) return;
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
@@ -2682,6 +2771,12 @@ async function doSyncToCloud(): Promise<void> {
 
     await addTodayLessonHelperSnapshots(data);
     if (!isSyncGenerationCurrent()) return;
+    const phoneStateOwnsCore = phoneStateOwnsCoreProgress(uid);
+    if (phoneStateOwnsCore) {
+      for (const key of Object.keys(data)) {
+        if (isPhoneStateCoreProgressKey(key)) delete data[key];
+      }
+    }
 
     // Сравниваем с последним синкнутым снапшотом и отправляем только изменённые поля.
     // Это снижает сетевой шум и частоту "пустых" write-операций.
@@ -2702,7 +2797,7 @@ async function doSyncToCloud(): Promise<void> {
       // Server-owned ключи (Сокровищница): пишет только CF, исходящая запись
       // была бы отклонена rules и уронила бы весь set.
       if (isServerOwnedProgressKey(key)) continue;
-      if (previousSnapshot[key] !== value) progressPatch[key] = value;
+      if (!cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) progressPatch[key] = value;
     }
 
     // Set created_at without per-sync read to reduce Firestore read costs.
@@ -2745,7 +2840,9 @@ async function doSyncToCloud(): Promise<void> {
     const snapshotData: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
       if (isServerOwnedProgressKey(key)) continue;
-      if (shouldSyncPremiumProgressField(key, value, data)) snapshotData[key] = value;
+      if (shouldSyncPremiumProgressField(key, value, data)) {
+        snapshotData[key] = encodeCloudSyncSnapshotValue(value);
+      }
     }
     if (!isSyncGenerationCurrent()) return;
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(() => {});
@@ -2767,7 +2864,7 @@ async function applyRestoreFromUserDoc(
   doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
   isCurrent: () => boolean = () => true,
   afterLegacyRestore?: (root: Record<string, unknown>) => void,
-  vipOwnerStableId?: string,
+  vipGeneration?: AccountGenerationToken,
 ): Promise<boolean> {
   const assertCurrent = () => {
     if (!isCurrent()) throw new Error('stale_account_generation');
@@ -2775,11 +2872,13 @@ async function applyRestoreFromUserDoc(
   assertCurrent();
   if (!doc.exists) return false;
   const root = doc.data() ?? {};
+  const vipOwnerStableId = vipGeneration?.stableId?.trim();
+  const phoneStateOwnsCore = phoneStateOwnsCoreProgress(vipOwnerStableId ?? null);
   const completeRestore = (applied: boolean): boolean => {
     try { afterLegacyRestore?.(root); } catch { /* visual overlay must never alter restore */ }
     return applied;
   };
-  const progressServerAuthoritative = root.progressServerAuthoritative === true;
+  const progressServerAuthoritative = !phoneStateOwnsCore && root.progressServerAuthoritative === true;
   if (root.created_at) {
     assertCurrent();
     AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
@@ -2787,7 +2886,10 @@ async function applyRestoreFromUserDoc(
   const progressData = root.progress && typeof root.progress === 'object' && !Array.isArray(root.progress)
     ? root.progress as Record<string, unknown>
     : {};
-  const cloudData: Record<string, string | null> = { ...progressData } as Record<string, string | null>;
+  const cloudData = filterLegacyProgressForPhoneState(
+    progressData as Record<string, string | null>,
+    phoneStateOwnsCore,
+  );
   // Keep league recovery independent from SQLite capacity. The account cache is
   // cleared on sign-out/switch and this projection never overwrites a state that
   // the current account already loaded into memory.
@@ -2900,7 +3002,7 @@ async function applyRestoreFromUserDoc(
   const cloudXP = parseProgressInt(cloudData['user_total_xp']);
   const localStreak = parseProgressInt(localStreakRaw);
   const cloudStreak = parseProgressInt(cloudData['streak_count']);
-  const hasPendingProgressEvents = await (async () => {
+  const hasPendingProgressEvents = phoneStateOwnsCore ? false : await (async () => {
     try {
       const progressEventsClient = await import('./progress_events_client');
       if (typeof progressEventsClient.hasPendingProgressServerEvents !== 'function') return false;
@@ -2929,7 +3031,8 @@ async function applyRestoreFromUserDoc(
     });
   }
   const shouldRestoreCloudProgress =
-    (progressServerAuthoritative && !hasPendingProgressEvents)
+    phoneStateOwnsCore
+    || (progressServerAuthoritative && !hasPendingProgressEvents)
     || (shouldPreferCloudOnSuspiciousGap && !hasPendingProgressEvents)
     || cloudXP > localXP
     || (cloudXP === localXP && cloudStreak > localStreak);
@@ -3168,8 +3271,8 @@ async function applyRestoreFromUserDoc(
       appliedStickyState = true;
     }
     // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
-    if (cloudVipActive !== null && !stripPremiumActive && vipOwnerStableId) {
-      await writeVipSnapshotForAccount(vipOwnerStableId, {
+    if (cloudVipActive !== null && !stripPremiumActive && vipGeneration && vipOwnerStableId) {
+      await writeMergedCloudVipSnapshot(vipGeneration, {
         vip_active: cloudVipActive ? 'true' : 'false',
         vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
         vip_from: cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0',
@@ -3211,6 +3314,7 @@ async function applyRestoreFromUserDoc(
   const currentRestoreWeekStart = getUtcWeekStartIso(new Date());
   const currentRestoreWeekId = getUtcIsoWeekId(new Date());
   for (const key of getRuntimeSyncKeys()) {
+    if (phoneStateOwnsCore && isPhoneStateCoreProgressKey(key)) continue;
     if (
       key === 'streak_count' ||
       key === 'last_active_date' ||
@@ -3249,10 +3353,10 @@ async function applyRestoreFromUserDoc(
       )]);
     }
   }
-  if (mergedStreak.streak > 0 || cloudData['streak_count'] != null) {
+  if (!phoneStateOwnsCore && (mergedStreak.streak > 0 || cloudData['streak_count'] != null)) {
     pairs.push(['streak_count', String(mergedStreak.streak)]);
   }
-  if (mergedStreak.lastActive) {
+  if (!phoneStateOwnsCore && mergedStreak.lastActive) {
     pairs.push(['last_active_date', mergedStreak.lastActive]);
     pairs.push(['streak_last_date', mergedStreak.lastActive]);
   }
@@ -3274,8 +3378,8 @@ async function applyRestoreFromUserDoc(
   }
   if (cloudVipActive !== null && !stripPremiumActive) {
     assertCurrent();
-    if (vipOwnerStableId) {
-      await writeVipSnapshotForAccount(vipOwnerStableId, {
+    if (vipGeneration && vipOwnerStableId) {
+      await writeMergedCloudVipSnapshot(vipGeneration, {
         vip_active: cloudVipActive ? 'true' : 'false',
         vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
         vip_from: cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0',
@@ -3314,6 +3418,7 @@ function tryPublishExamBestPctOverlay(
   canPublish: (() => boolean) | undefined,
 ): void {
   try {
+    if (phoneStateOwnsCoreProgress(stableId)) return;
     if (!canPublish || !isCurrent() || !canPublish()) return;
     if (root.progressServerAuthoritative !== true) return;
     const progress = root.progress;
@@ -3410,16 +3515,9 @@ async function restoreAndMigrateFromCloudResult(
           isCurrent,
           options.canPublishExamBestPctOverlay,
         )
-        : undefined, uid)
+        : undefined, accountGeneration)
     ));
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
-    return completedCloudRestoreAttempt(applied);
-  } catch (error) {
-    return failedCloudRestoreAttempt(
-      cloudRestoreFailureForStableLink(classifyCloudAccessFailure(error, appCheckReady)),
-    );
-  }
-}
     for (const target of SYNC_STUDY_TARGETS) {
       await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
@@ -3430,6 +3528,13 @@ async function restoreAndMigrateFromCloudResult(
       await flushPendingMistakeCorrectionRewards({ accountScope: uid, studyTarget: target });
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     }
+    return completedCloudRestoreAttempt(applied);
+  } catch (error) {
+    return failedCloudRestoreAttempt(
+      cloudRestoreFailureForStableLink(classifyCloudAccessFailure(error, appCheckReady)),
+    );
+  }
+}
 
 // ── Восстановить прогресс из облака ─────────────────────────────────────────
 // Вызывается при старте приложения ПОСЛЕ того как определён uid.
@@ -3586,8 +3691,10 @@ export async function forceSyncToCloud(): Promise<boolean> {
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
     await addTodayLessonHelperSnapshots(data);
+    const phoneStateOwnsCore = phoneStateOwnsCoreProgress(uid);
     for (const [key, value] of Object.entries({ ...data })) {
-      if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
+      if (phoneStateOwnsCore && isPhoneStateCoreProgressKey(key)) delete data[key];
+      else if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
       // Premium/VIP-поля клиент в облако не пишет (авторитет — RevenueCat/Admin SDK).
       // Иначе Firestore rules отклонят force-sync целиком при смене устройства/аккаунта
       // и юзер не сможет завершить миграцию прогресса. См. progressHasNoPremiumWrites.
@@ -3624,7 +3731,10 @@ export async function forceSyncToCloud(): Promise<boolean> {
     lastSuccessfulSyncAt = now;
     lastActivityStampAt = now;
     pendingSync = false;
-    await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(data)).catch(() => {});
+    await AsyncStorage.setItem(
+      LAST_SYNC_SNAPSHOT_KEY,
+      JSON.stringify(encodeCloudSyncSnapshotRecord(data)),
+    ).catch(() => {});
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
     }
@@ -3870,6 +3980,8 @@ export async function saveAccountSwitchEmergencyBackup(
 }
 
 async function wipeLocalAccountDataUnsafe(): Promise<void> {
+  const { closePhoneStateBeforeLocalWipe } = await import('./phone_state_bootstrap');
+  await closePhoneStateBeforeLocalWipe();
   await withPersonalPlanStateStorageLock(() =>
     withPlanXpLedgerStorageLock(wipeLocalAccountDataUnsafeBody));
 }
@@ -3916,6 +4028,8 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   lastActivityStampAt = 0;
   pendingSync = false;
   resetAppSnapshotForAccountSwitch();
+  const { resetPersonalProgressForAccountTransition } = await import('./personal_progress_store');
+  resetPersonalProgressForAccountTransition();
   invalidatePersonalPlanStateCache();
   // зачем: без этого PlayerProfileModal мог мгновенно отрендерить множители
   // XP предыдущего аккаунта (см. комментарий у resetMultiplierBreakdownCache).
@@ -3935,8 +4049,10 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   }
 }
 
-export async function wipeLocalAccountData(): Promise<void> {
-  await withAccountTransitionLock(wipeLocalAccountDataUnsafe);
+export async function wipeLocalAccountData(
+  inheritedLease?: AccountTransitionLockLease,
+): Promise<void> {
+  await withAccountTransitionLock(wipeLocalAccountDataUnsafe, inheritedLease);
 }
 
 const CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS = [

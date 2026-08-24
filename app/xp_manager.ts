@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
 import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
 import { markCloudSyncPending } from './cloud_sync';
 import { enqueueLevelSpinLevelUps } from './level_spin_level_up_queue';
@@ -47,6 +48,8 @@ import {
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { isFriendsTogetherEnabled } from './friends_together/together_config';
+import { recordShadowXpGrant } from './phone_state_shadow_adapters';
+import { tryGrantXpThroughPhoneState } from './phone_state_progress_cutover';
 // cards-2.0 (E13): XP-буст ×1.5 за идеальную сессию карточек (§4).
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
@@ -71,7 +74,12 @@ async function getClubWeekTierMultiplier(): Promise<number> {
  */
 async function getFriendsTogetherXpMultiplier(): Promise<number> {
   try {
-    const raw = await storageGetString('friends_together_bonus_v1');
+    // Kill-switch должен выключать не только UI: иначе сохранённый сегодня бонус
+    // продолжал начислять XP после аварийного отключения «Вместе».
+    if (!isFriendsTogetherEnabled()) return 1;
+    const uid = await getCanonicalUserId();
+    if (!uid) return 1;
+    const raw = await storageGetString(`friends_together_bonus_v1::${uid}`);
     if (!raw) return 1;
     const parsed = JSON.parse(raw) as { dayKey?: unknown; percent?: unknown };
     if (typeof parsed?.dayKey !== 'string' || parsed.dayKey !== getLocalDayKey()) return 1;
@@ -112,7 +120,8 @@ export type XPSource =
   | 'daily_phrase_quest'
   | 'exam_complete'
   | 'achievement_reward'
-  | 'level_up_bonus';
+  | 'level_up_bonus'
+  | 'plan_task_complete';    // Завершение задачи персонального плана
 
 interface XPResult {
   finalDelta: number;
@@ -153,6 +162,7 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'exam_complete':
     case 'achievement_reward':
     case 'level_up_bonus':
+    case 'plan_task_complete':
     case 'wager_win':
       return source;
     case 'wager_bet':
@@ -239,6 +249,26 @@ function isStorageFullError(error: unknown): boolean {
   return message.includes('sqlite_full')
     || message.includes('database or disk is full')
     || message.includes('disk full');
+}
+
+const STORAGE_FULL_NOTICE_COOLDOWN_MS = 10 * 60 * 1000;
+let lastStorageFullNoticeAt = 0;
+
+function notifyStorageFullOnce(): void {
+  const now = Date.now();
+  if (now - lastStorageFullNoticeAt < STORAGE_FULL_NOTICE_COOLDOWN_MS) return;
+  lastStorageFullNoticeAt = now;
+  emitAppEvent('action_toast', {
+    type: 'warning',
+    messageRu: 'Локальное хранилище Phraseman переполнено. Не очищайте данные приложения; обратитесь в поддержку.',
+    messageUk: 'Локальне сховище Phraseman переповнене. Не очищуйте дані застосунку; зверніться до підтримки.',
+    messageEs: 'El almacenamiento local de Phraseman está lleno. No borres los datos de la aplicación; contacta con soporte.',
+    messagePtBr: 'O armazenamento local do Phraseman está cheio. Não apague os dados do aplicativo; fale com o suporte.',
+    messageVi: 'Bộ nhớ cục bộ của Phraseman đã đầy. Đừng xóa dữ liệu ứng dụng; hãy liên hệ bộ phận hỗ trợ.',
+    messageId: 'Penyimpanan lokal Phraseman penuh. Jangan hapus data aplikasi; hubungi dukungan.',
+    messageTr: 'Phraseman yerel depolaması dolu. Uygulama verilerini silme; destekle iletişime geç.',
+    messagePl: 'Lokalna pamięć Phraseman jest pełna. Nie usuwaj danych aplikacji; skontaktuj się ze wsparciem.',
+  });
 }
 
 async function reserveLocalProgressEvent(eventId?: string): Promise<boolean> {
@@ -453,6 +483,8 @@ export const registerXP = async (
   return enqueueXpOperation(accountToken, async () => {
   let resolvedName = userName;
   let appliedDelta = amount;
+  let committedTotalForShadow: number | null = null;
+  let shadowXpScheduled = false;
   let scoreWritten = false;
   let totalXpWritten = false;
   let weeklyXpWritten = false;
@@ -603,7 +635,38 @@ export const registerXP = async (
           payload: baseFallbackPayload,
         };
       }
-      const reservation = await withXpAccountCommitLock(async () => {
+      const cutoverPayload = fallbackEventType && finalDelta > 0 ? {
+        xpDelta: finalDelta,
+        baseAmount: amount,
+        source,
+        lessonId: lessonNumber ?? null,
+        lessonNumber: lessonNumber ?? null,
+        multiplier: totalMultiplier,
+        ...(options?.payload ?? {}),
+      } : null;
+      const stableXpEventId = fallbackEventType && cutoverPayload
+        ? progressEventRequest?.eventId
+          || options?.eventId
+          || makeDeterministicProgressEventId(fallbackEventType, cutoverPayload)
+        : null;
+      const phoneStateCommit = stableXpEventId && fallbackEventType
+        ? await tryGrantXpThroughPhoneState(accountToken.stableId, {
+          eventId: stableXpEventId,
+          amount: finalDelta,
+          source,
+          activityDate: getLocalDayKey(),
+          exactResult: Object.freeze({
+            finalDelta,
+            multiplier: totalMultiplier,
+            source,
+            lessonNumber: lessonNumber ?? null,
+          }),
+        })
+        : null;
+      if (phoneStateCommit?.duplicate) {
+        return { finalDelta: 0, multiplier: totalMultiplier, isBonus: false };
+      }
+      const reservation = phoneStateCommit ? { stale: false, reserved: true } : await withXpAccountCommitLock(async () => {
         if (!isXpAccountGenerationCurrent(accountToken)) return { stale: true, reserved: false };
         const reserved = finalDelta <= 0
           || await reserveLocalProgressEvent(progressEventRequest?.eventId);
@@ -622,12 +685,19 @@ export const registerXP = async (
     let currentTotal = 0;
     let newTotal = 0;
     let scoreAvatar: string | undefined;
-    const localCommit = await withXpAccountCommitLock(async () => {
+    const localCommit = phoneStateCommit ? (() => {
+      currentTotal = Math.max(0, phoneStateCommit.totalXp - finalDelta);
+      newTotal = phoneStateCommit.totalXp;
+      patchProfileXpSnapshot(newTotal);
+      totalXpWritten = true;
+      weeklyXpWritten = true;
+      return true;
+    })() : await withXpAccountCommitLock(async () => {
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
     currentTotal = await storageGetNumber('user_total_xp', 0);
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
     newTotal = Math.max(0, currentTotal + finalDelta);
-    await storageSetString('user_total_xp', String(newTotal));
+    await persistLegacyPersonalProgressScalar(AsyncStorage, 'user_total_xp', newTotal);
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
     patchProfileXpSnapshot(newTotal);
     totalXpWritten = true;
@@ -670,6 +740,31 @@ export const registerXP = async (
     return isXpAccountGenerationCurrent(accountToken);
     });
     if (!localCommit) return staleResult(totalMultiplier);
+    committedTotalForShadow = newTotal;
+    const shadowEventType = fallbackEventType;
+    if (!phoneStateCommit && finalDelta > 0 && shadowEventType) {
+      const shadowPayload = {
+        xpDelta: finalDelta,
+        baseAmount: amount,
+        source,
+        lessonId: lessonNumber ?? null,
+        lessonNumber: lessonNumber ?? null,
+        multiplier: totalMultiplier,
+        ...(options?.payload ?? {}),
+      };
+      const shadowEventId = progressEventRequest?.eventId
+        || options?.eventId
+        || makeDeterministicProgressEventId(shadowEventType, shadowPayload);
+      shadowXpScheduled = true;
+      void recordShadowXpGrant({
+        eventId: shadowEventId,
+        amount: finalDelta,
+        resultingTotalXp: newTotal,
+        source,
+        lessonId: lessonNumber ?? null,
+        payload: options?.payload,
+      });
+    }
     if (finalDelta > 0) refreshWeeklyRecapNotificationAfterXpChange(lang);
 
     // 3.1. Уведомляем все подписчики о смене XP
@@ -804,11 +899,13 @@ export const registerXP = async (
     // A full AsyncStorage database is an environmental persistence condition,
     // not an XP-engine fault. The fallback below keeps the in-process award
     // flow alive, while cloud restore remains the durable recovery path.
+    const storageFull = isStorageFullError(error);
     DebugLogger.error(
       'xp_manager.ts:registerXP',
       error,
-      isStorageFullError(error) ? 'warning' : 'critical',
+      storageFull ? 'warning' : 'critical',
     );
+    if (storageFull) notifyStorageFullOnce();
     const fallbackDelta = Number.isFinite(appliedDelta) ? appliedDelta : amount;
     const fallbackCommitted = await withXpAccountCommitLock(async () => {
     if (!isXpAccountGenerationCurrent(accountToken)) return false;
@@ -820,9 +917,10 @@ export const registerXP = async (
         const currentTotal = await storageGetNumber('user_total_xp', 0);
         if (!isXpAccountGenerationCurrent(accountToken)) return false;
         const fallbackTotal = Math.max(0, currentTotal + fallbackDelta);
-        await storageSetString('user_total_xp', String(fallbackTotal));
+        await persistLegacyPersonalProgressScalar(AsyncStorage, 'user_total_xp', fallbackTotal);
         if (!isXpAccountGenerationCurrent(accountToken)) return false;
         patchProfileXpSnapshot(fallbackTotal);
+        committedTotalForShadow = fallbackTotal;
         totalXpWritten = true;
       } catch (storageError) {
         if (__DEV__) console.warn('[xp_manager]', storageError);
@@ -839,6 +937,34 @@ export const registerXP = async (
     return isXpAccountGenerationCurrent(accountToken);
     });
     if (!fallbackCommitted) return staleResult();
+    const fallbackEventType = progressEventTypeForSource(source);
+    if (
+      fallbackDelta > 0
+      && fallbackEventType
+      && committedTotalForShadow !== null
+      && !shadowXpScheduled
+    ) {
+      const shadowPayload = {
+        xpDelta: fallbackDelta,
+        baseAmount: amount,
+        source,
+        lessonId: lessonNumber ?? null,
+        lessonNumber: lessonNumber ?? null,
+        multiplier: 1,
+        ...(options?.payload ?? {}),
+      };
+      const shadowEventId = options?.eventId
+        || makeDeterministicProgressEventId(fallbackEventType, shadowPayload);
+      shadowXpScheduled = true;
+      void recordShadowXpGrant({
+        eventId: shadowEventId,
+        amount: fallbackDelta,
+        resultingTotalXp: committedTotalForShadow,
+        source,
+        lessonId: lessonNumber ?? null,
+        payload: options?.payload,
+      });
+    }
     if (fallbackDelta > 0 && isXpAccountGenerationCurrent(accountToken)) {
       emitAppEvent('xp_changed');
     }

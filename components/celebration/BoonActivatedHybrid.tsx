@@ -2,28 +2,28 @@
 // зачем: макет-эталон .motion-mockups/phraseman-hybrid.html, сцена M3
 // «Сундук-награда» — блум → карточка выходит из света → иконка бонуса падает
 // и БЬЁТ (squash + отдача карточки) → кольца/пыль (rare-сила по умолчанию,
-// у бонуса нет редкости героя) → каскад текста → CTA. Подключается ТОЛЬКО
-// через <BoonActivatedModal motionVariant="hybrid">, боевой путь не тронут.
+// у бонуса нет редкости героя) → каскад текста → CTA. После приёмки DEV Hub
+// это production-default родительского BoonActivatedModal; classic оставлен для rollback.
 import React, { memo } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import type { ImageSourcePropType } from 'react-native';
-import { Image } from 'expo-image';
 import Animated from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
+import RetiredRasterFallback from '../feedback/RetiredRasterFallback';
 import DuoPressable from '../DuoPressable';
 import { useRewardImpactHybrid } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
 
 interface BoonActivatedHybridProps {
   visible: boolean;
+  kicker: string;
   title: string;
   subtitle: string;
-  iconSource: ImageSourcePropType;
+  ctaLabel: string;
   onClose: () => void;
 }
 
-function BoonActivatedHybrid({ visible, title, subtitle, iconSource, onClose }: BoonActivatedHybridProps) {
+function BoonActivatedHybrid({ visible, kicker, title, subtitle, ctaLabel, onClose }: BoonActivatedHybridProps) {
   const { theme: t, f } = useTheme();
   const impact = useRewardImpactHybrid({ visible, rarity: 'rare', scope: 'boon-activated-hybrid' });
 
@@ -50,11 +50,12 @@ function BoonActivatedHybrid({ visible, title, subtitle, iconSource, onClose }: 
               <Animated.View style={impact.styles.hero}>
                 {/* guard-ok: декоративная иконка бонуса — заголовок карточки ниже уже
                     называет бонус словами, дублировать accessibilityLabel незачем. */}
-                <Image source={iconSource} contentFit="contain" style={styles.heroImage} accessible={false} />
+                <RetiredRasterFallback kind="boon" size={104} color={t.accent} />
               </Animated.View>
             </View>
 
             <Animated.View style={impact.styles.text}>
+              <Text style={[styles.kicker, { color: t.accent }]}>{kicker}</Text>
               <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
               <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}>{subtitle}</Text>
             </Animated.View>
@@ -66,7 +67,7 @@ function BoonActivatedHybrid({ visible, title, subtitle, iconSource, onClose }: 
                 edgeHeight={4}
                 style={[styles.ctaBtn, { backgroundColor: t.accent }]}
               >
-                <Text style={[styles.ctaText, { color: t.correctText }]}>{title}</Text>
+                <Text style={[styles.ctaText, { color: t.correctText }]}>{ctaLabel}</Text>
               </DuoPressable>
             </Animated.View>
           </Animated.View>
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   heroImage: { width: 104, height: 104 },
+  kicker: { fontSize: 12, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase', textAlign: 'center', marginBottom: 6 },
   title: { fontWeight: '700', textAlign: 'center', marginBottom: 8 },
   subtitle: { fontWeight: '400', lineHeight: 22, textAlign: 'center', marginBottom: 20 },
   ctaWrap: { alignSelf: 'stretch' },

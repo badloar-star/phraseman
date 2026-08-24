@@ -1,4 +1,16 @@
-import { collectAuditRawRows, mergeAuditRowsForList, parseAuditListRequest, projectAuditRow, summarizeAuditSourceHealth } from './admin_audit_log';
+import { canReadSensitiveAdminAudit, collectAuditRawRows, mergeAuditRowsForList, parseAuditListRequest, projectAuditRow, summarizeAuditSourceHealth } from './admin_audit_log';
+
+describe('sensitive admin audit role boundary', () => {
+  it.each([
+    ['owner', true],
+    ['admin', true],
+    ['support', false],
+    ['analyst', false],
+    ['developer', false],
+  ])('%s => %s', (role, expected) => {
+    expect(canReadSensitiveAdminAudit(role)).toBe(expected);
+  });
+});
 
 function cursorFor(id: string, timestampMs: number): string {
   return Buffer.from(JSON.stringify({ id, timestampMs }), 'utf8').toString('base64url');

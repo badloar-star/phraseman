@@ -199,7 +199,7 @@ describe('owner runtime direction contract', () => {
       // Звонок MAX: подсказка-тайминг (только фаза listening), флаш буфера
       // транскрипта (250мс, один setState на снапшот) и минутная пилюля (1с) —
       // все три живут только пока экран звонка на месте, чистятся на unmount.
-      'app/max_call_session.tsx': 3,
+      'app/max_call_session.tsx': 2,
       // Дедлайн доступа к плану («закат»): секундный тик локального отображения
       // времени, гейтован alive/unmount; не сеть — время держит peekPersonalPlanSunsetEffectiveNow.
       'app/personal_plan.tsx': 1,

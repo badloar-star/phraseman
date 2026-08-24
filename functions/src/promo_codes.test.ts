@@ -127,25 +127,36 @@ describe('promo code deletion', () => {
       nowMs,
       actorUid: 'owner-uid',
       actorEmail: 'owner@example.com',
+      auditReference: 'audit-promo-delete-opaque',
       reason: 'Campaign retired',
     })).toEqual({
       code: 'WELCOME7',
       auditDoc: {
         action: 'promo_code_delete',
-        targetUid: 'WELCOME7',
-        reason: 'Campaign retired',
+        targetUid: 'audit-promo-delete-opaque',
         details: {
           enabled: true,
           maxRedemptions: 1,
           rewardDays: 30,
           rewardKind: 'days',
           usedCount: 0,
+          reasonProvided: true,
         },
-        adminEmail: 'owner@example.com',
         adminUid: 'owner-uid',
         ts: new Date(nowMs).toISOString(),
       },
     });
+    expect(JSON.stringify(buildPromoCodeDeletePlan({
+      code: 'SECRET-CODE',
+      expectedUpdatedAtMs: nowMs,
+      promo: { ...code(), updatedAtMs: nowMs },
+      giftCertificateExists: false,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      auditReference: 'audit-promo-delete-opaque',
+      reason: '',
+    }).auditDoc)).not.toContain('SECRET-CODE');
   });
 
   it.each([

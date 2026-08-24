@@ -1,9 +1,11 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   buildLingmanEmbedHtml,
   LINGMAN_CHANNEL_HANDLE,
   LINGMAN_CHANNEL_ID,
   LINGMAN_CHANNEL_URL,
   getLingmanYoutubeUnreadCount,
+  getLingmanYoutubeSnapshot,
   getLingmanYoutubeWatchUrl,
   getTrustedLingmanYoutubeUrl,
   isLingmanLongFormVideo,
@@ -12,6 +14,8 @@ import {
   parseYoutubeVideoId,
   parsePinnedVideos,
   mergePinnedVideos,
+  markLingmanYoutubeCatalogSeen,
+  markLingmanYoutubeSectionOpened,
   type LingmanYoutubeVideo,
 } from '../app/lingman_youtube';
 
@@ -139,6 +143,50 @@ describe('lingman_youtube', () => {
     expect(getLingmanYoutubeUnreadCount(videos, 'middle')).toBe(1);
     expect(getLingmanYoutubeUnreadCount(videos, 'seen')).toBe(2);
     expect(getLingmanYoutubeUnreadCount(videos, 'missing')).toBe(1);
+  });
+
+  it('does not resurrect the badge while the seen marker is still being persisted', async () => {
+    const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+    await storage.clear();
+    let finishWrite: (() => void) | undefined;
+    const pendingWrite = new Promise<void>((resolve) => { finishWrite = resolve; });
+    storage.multiSet.mockImplementationOnce(async () => pendingWrite);
+    const originalFetch = global.fetch;
+    global.fetch = jest.fn(async () => ({
+      ok: true,
+      text: async () => `<?xml version="1.0" encoding="UTF-8"?>
+        <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+          <entry>
+            <yt:videoId>latestvid01</yt:videoId>
+            <title>Latest lesson</title>
+            <published>2026-08-21T10:00:00+00:00</published>
+            <updated>2026-08-21T10:00:00+00:00</updated>
+            <media:group><media:description>Full lesson.</media:description></media:group>
+          </entry>
+        </feed>`,
+    })) as unknown as typeof fetch;
+
+    try {
+      const markPromise = markLingmanYoutubeCatalogSeen('latestvid01');
+      const snapshot = await getLingmanYoutubeSnapshot();
+
+      expect(snapshot.latestVideoId).toBe('latestvid01');
+      expect(snapshot.unreadCount).toBe(0);
+      finishWrite?.();
+      await markPromise;
+    } finally {
+      global.fetch = originalFetch;
+    }
+  });
+
+  it('does not replace the RSS badge cursor with a video id from the primary catalog', async () => {
+    const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+    await storage.clear();
+    await markLingmanYoutubeCatalogSeen('rsslatest01');
+
+    await markLingmanYoutubeSectionOpened();
+
+    await expect(storage.getItem('lingman_youtube_last_seen_video_id_v2')).resolves.toBe('rsslatest01');
   });
 
   it('only returns trusted YouTube URLs for external fallbacks', () => {

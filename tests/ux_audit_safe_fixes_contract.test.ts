@@ -3,7 +3,7 @@ import path from 'path';
 
 const read = (...p: string[]) => fs.readFileSync(path.join(process.cwd(), ...p), 'utf8');
 
-describe('UX-аудит: безопасные фиксы (arena / SRS)', () => {
+describe('UX-аудит: безопасные фиксы (arena / ошибки)', () => {
   describe('arena_leaderboard: ошибка не маскируется под «пусто»', () => {
     const source = read('app', 'arena_leaderboard.tsx');
 
@@ -24,21 +24,19 @@ describe('UX-аудит: безопасные фиксы (arena / SRS)', () => {
     });
   });
 
-  describe('home: SRS-счётчик считается в проде (без __DEV__-гейта)', () => {
+  describe('home: счётчик ошибок считается в проде (без __DEV__-гейта)', () => {
     const source = read('app', '(tabs)', 'home.tsx');
 
-    // Берём строку ВЫЗОВА (с .then(...Array...)), а не строку импорта.
-    const callLine = source
-      .split('\n')
-      .find((l) => l.includes('getTrainerTotalDue(') && l.includes('.then('));
+    const callStart = source.indexOf('getMistakePracticeReadyCount(studyTarget)');
+    const callBlock = source.slice(callStart, callStart + 220);
 
-    it('getTrainerTotalDue вызывается без обёртки __DEV__ ?', () => {
-      expect(callLine).toBeTruthy();
-      expect(callLine).not.toMatch(/__DEV__\s*\?/);
+    it('getMistakePracticeReadyCount вызывается без обёртки __DEV__ ?', () => {
+      expect(callStart).toBeGreaterThanOrEqual(0);
+      expect(callBlock).not.toMatch(/__DEV__\s*\?/);
     });
 
     it('есть защита .catch на случай сбоя локального чтения', () => {
-      expect(callLine).toContain('.catch(');
+      expect(callBlock).toContain('.catch(');
     });
   });
 });

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
@@ -18,12 +18,12 @@ interface Props {
   screen: 'leaderboard' | 'profile';
   lang: Lang;
   onClose: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'classic' }: Props) {
-  const { theme: t, themeMode, f } = useTheme();
+function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'hybrid' }: Props) {
+  const { theme: t, f } = useTheme();
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
   const [loading, setLoading] = useState(false);
@@ -204,8 +204,15 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         backdropColor="rgba(0,0,0,0.53)"
         testID="report-user-modal-hybrid"
       >
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          {panelContent}
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ width: '100%', maxHeight: '100%' }}>
+          <ScrollView
+            style={{ width: '100%' }}
+            contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            {panelContent}
+          </ScrollView>
         </KeyboardAvoidingView>
       </HybridAlertShell>
     );

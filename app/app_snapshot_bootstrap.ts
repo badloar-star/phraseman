@@ -18,6 +18,7 @@ import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
 import { buildCustomizationSnapshot } from './customization_snapshot';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { hydratePersonalProgress } from './personal_progress_store';
 import {
   migrateLegacyVipSnapshotOnce,
   readVipSnapshotForGeneration,
@@ -189,6 +190,10 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   const ownerStableId = accountGeneration.stableId;
   if (!ownerStableId) return;
   const isAccountCurrent = () => isCurrentAccountGeneration(accountGeneration, ownerStableId);
+  if (!isAccountCurrent()) return;
+  // PhoneState hydration is local-only and wins for the cutover cohort. Legacy
+  // storage remains the compatibility source for everyone else.
+  await hydratePersonalProgress().catch(() => null);
   if (!isAccountCurrent()) return;
   await migrateLegacyVipSnapshotOnce(accountGeneration).catch(() => false);
   if (!isAccountCurrent()) return;

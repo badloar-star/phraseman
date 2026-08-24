@@ -18,7 +18,7 @@ import { parseWalletAppliedReceipt } from "./wallet_reducer";
 
 export type ServerWalletRewardReason = Exclude<
   WalletOperationReason,
-  "legacy_opening_balance"
+  "legacy_opening_balance" | "mistake_correction"
 >;
 
 export interface ServerWalletRewardReceiptV1 {

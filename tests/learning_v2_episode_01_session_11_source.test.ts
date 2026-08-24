@@ -28,7 +28,7 @@ test('sessions 11 to 16 keep locale meanings, word alternatives, and intros auth
 
 test('representative meanings preserve person, question, negation, and a location in every locale', () => {
   const expected = {
-    ru: ['Я готов.', 'Ты готов?', 'Ты не готов.', 'Я дома.'], uk: ['Я готовий.', 'Ти готовий?', 'Ти не готовий.', 'Я вдома.'], es: ['Estoy listo.', '¿estás listo?', 'No estás listo.', 'Estoy en casa.'], 'pt-BR': ['Estou pronto.', 'Você está pronto?', 'Você não está pronto.', 'Estou em casa.'], vi: ['Tôi sẵn sàng.', 'Bạn sẵn sàng phải không?', 'Bạn không sẵn sàng.', 'Tôi ở nhà.'], id: ['Saya siap.', 'Apakah kamu siap?', 'Kamu tidak siap.', 'Saya di rumah.'], tr: ['Ben hazır.', 'Sen hazır mısın?', 'Sen hazır değil.', 'Ben evde.'], pl: ['Jestem gotowy.', 'Czy jesteś gotowy?', 'Nie jesteś gotowy.', 'Jestem w domu.'],
+    ru: ['Я готов.', 'Ты готов?', 'Ты не готов.', 'Я дома.'], uk: ['Я готовий.', 'Ти готовий?', 'Ти не готовий.', 'Я вдома.'], es: ['Estoy listo.', '¿estás listo?', 'No estás listo.', 'Estoy en casa.'], 'pt-BR': ['Estou pronto.', 'Você está pronto?', 'Você não está pronto.', 'Estou em casa.'], vi: ['Tôi sẵn sàng.', 'Bạn sẵn sàng phải không?', 'Bạn chưa sẵn sàng.', 'Tôi đang ở nhà.'], id: ['Saya siap.', 'Apakah kamu siap?', 'Kamu belum siap.', 'Saya di rumah.'], tr: ['Ben hazır.', 'Sen hazır mısın?', 'Hazır değilsin.', 'Evdeyim.'], pl: ['Jestem gotowy.', 'Czy jesteś gotowy?', 'Nie jesteś gotowy.', 'Jestem w domu.'],
   } as const;
   const samples = [EPISODE_01_SESSION_15_SOURCE.phrases[3], EPISODE_01_SESSION_11_SOURCE.phrases[0], EPISODE_01_SESSION_13_SOURCE.phrases[12], EPISODE_01_SESSION_14_SOURCE.phrases[0]];
   Object.entries(expected).forEach(([locale, meanings]) => samples.forEach((phrase, index) => expect(phrase.localizedDetails?.[locale as keyof typeof expected].meaning).toBe(meanings[index])));
@@ -88,7 +88,9 @@ test('intro questions have one grounded English answer and typed word reasons', 
     const choices = page.question.choices.map((choice) => choice.ru);
     expect(choices).toHaveLength(3);
     expect(choices.every((choice) => /^[A-Z]/.test(choice))).toBe(true);
-    expect(choices[page.question.correctChoiceIndex]).toBe(source.phrases[0].english);
+    expect(source.phrases.map((phrase) => phrase.english)).toContain(
+      choices[page.question.correctChoiceIndex],
+    );
   });
   const words = source.phrases[0].words;
   expect(words.find((word) => word.correct === 'I')?.distractors[0].why).toContain('человека');

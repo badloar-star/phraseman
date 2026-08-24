@@ -1,7 +1,15 @@
+import { materializePhoneStateLineage } from '../modules/phone-state/account_secret';
+
 export type AccountGenerationToken = Readonly<{
   generation: number;
   stableId: string | null;
   phase: 'uninitialized' | 'active' | 'transitioning';
+}>;
+
+export type PhoneStateAccountContext = Readonly<{
+  stableUid: string;
+  lineage: number;
+  runtimeToken: AccountGenerationToken;
 }>;
 
 declare const ACCOUNT_TRANSITION_LOCK_LEASE: unique symbol;
@@ -90,6 +98,25 @@ export function isCurrentAccountGeneration(
   if (currentPhase !== 'active') return false;
   if (expectedStableId !== undefined && (expectedStableId?.trim() || null) !== currentStableId) return false;
   return true;
+}
+
+export async function resolvePhoneStateAccountContext(
+  stableUid: string,
+  runtimeToken: AccountGenerationToken,
+  readLineage: (stableUid: string) => Promise<number> = materializePhoneStateLineage,
+): Promise<PhoneStateAccountContext> {
+  const normalized = normalizedStableId(stableUid);
+  if (!normalized || !isCurrentAccountGeneration(runtimeToken, normalized)) {
+    throw new Error('phone_state_generation_stale');
+  }
+  const lineage = await readLineage(normalized);
+  if (!isCurrentAccountGeneration(runtimeToken, normalized)) {
+    throw new Error('phone_state_generation_stale');
+  }
+  if (!Number.isSafeInteger(lineage) || lineage < 1) {
+    throw new Error('phone_state_lineage_invalid');
+  }
+  return Object.freeze({ stableUid: normalized, lineage, runtimeToken });
 }
 
 export async function withRestoreApplicationLock<T>(work: () => Promise<T>): Promise<T> {

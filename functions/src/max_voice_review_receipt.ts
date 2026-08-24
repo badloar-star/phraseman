@@ -1,9 +1,13 @@
+import type { MaxVoiceStudyTarget } from './max_voice_target_language';
+
 export type MaxVoiceReceiptEndReason = 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
 
 export interface MaxVoiceReviewReceiptV1 {
   readonly schemaVersion: 'max-voice-review.v1';
   readonly sessionId: string;
   readonly stableUid: string;
+  /** Optional for receipts committed by older production versions. */
+  readonly studyTarget?: MaxVoiceStudyTarget;
   readonly completedAtMs: number;
   readonly durationSec: number;
   readonly speechSec?: number;
@@ -85,6 +89,7 @@ export function sanitizeMaxVoiceReviewReceipt(args: {
   durationSec: number;
   speechSec?: number;
   endReason: MaxVoiceReceiptEndReason;
+  studyTarget?: MaxVoiceStudyTarget;
   projection: unknown;
   fallbackAction: string;
   fallbackTargetPhrase?: string;
@@ -110,10 +115,14 @@ export function sanitizeMaxVoiceReviewReceipt(args: {
   if (actions.length === 0 && nextTopic) actions.push(nextTopic);
   if (actions.length === 0) actions.push(safeText(args.fallbackAction) || 'Review one useful phrase.');
   const useful = worked.length > 0 || correction !== null || Boolean(targetPhrase) || Boolean(nextTopic);
+  const studyTarget = args.studyTarget === 'fr' || args.studyTarget === 'es' || args.studyTarget === 'en'
+    ? args.studyTarget
+    : undefined;
   return {
     schemaVersion: 'max-voice-review.v1',
     sessionId: text(args.sessionId),
     stableUid: text(args.stableUid),
+    ...(studyTarget ? { studyTarget } : {}),
     completedAtMs: Math.max(0, Math.floor(args.completedAtMs)),
     durationSec: Math.max(0, Math.floor(args.durationSec)),
     ...(typeof args.speechSec === 'number' && Number.isFinite(args.speechSec)
@@ -137,6 +146,7 @@ export function isMaxVoiceReviewReceiptV1(value: unknown): value is MaxVoiceRevi
   return row.schemaVersion === 'max-voice-review.v1'
     && typeof row.sessionId === 'string'
     && typeof row.stableUid === 'string'
+    && (row.studyTarget === undefined || row.studyTarget === 'en' || row.studyTarget === 'fr' || row.studyTarget === 'es')
     && (row.status === 'ready' || row.status === 'limited')
     && Array.isArray(row.worked)
     && Array.isArray(row.tomorrowActions)

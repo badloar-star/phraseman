@@ -31,6 +31,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import {
   assertPersonalPlanActivationAllowed,
+  isPersonalPlanDevBypassActive,
   PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE,
 } from './personal_plan_sunset';
 import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
@@ -47,6 +48,11 @@ type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
  * здесь после удаления ассистента: делегируем в тот же shouldGateFeature.
  */
 function canActivatePlan(input: { hasPremiumAccess: boolean }): boolean {
+  // зачем (владелец 2026-08-24): в dev-сборке премиума нет
+  // (FORCE_PREMIUM_DEV_INTENT=false), поэтому кнопка «начать план» уводила на
+  // пейвол и план невозможно было создать для проверки раздела. Тот же
+  // DEV_CONTENT_UNLOCK-обход, что и у заката; в стор-сборке гаснет.
+  if (isPersonalPlanDevBypassActive()) return true;
   return !shouldGateFeature('personal_plan', input.hasPremiumAccess);
 }
 

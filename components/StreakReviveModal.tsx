@@ -263,8 +263,8 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
 
   const accent = isOliveTheme ? OLIVE_RICH.champagne : '#FF7A45';
   const accentDarkText = isOliveTheme ? OLIVE_RICH.piano : '#241008';
-  // зачем: раньше светлость проверялась по УДАЛЁННОЙ теме businessLight — ветка
-  // была мертва, и sagePorcelain получала тёмную карту #171824 при тёмном тексте
+  // зачем: раньше светлость проверялась по имени темы — ветка могла быть
+  // мертва, и sagePorcelain получала тёмную карту #171824 при тёмном тексте
   // темы (нечитаемо). Центральный классификатор + фарфоровая карта и шалфейный CTA.
   const isLightTheme = isLightThemeMode(themeMode);
   const passSurface = isOliveTheme ? OLIVE_RICH.panel : isLightTheme ? '#FCFDF9' : '#171824';
@@ -368,6 +368,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
                   disabled={busy}
                   accessibilityLabel={secondaryLabel}
                   style={styles.secondaryButton}
+                  contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Text style={[styles.secondaryText, { color: t.textMuted }]}>{secondaryLabel}</Text>
                 </PressableHybrid>

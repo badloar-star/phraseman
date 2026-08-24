@@ -3,6 +3,7 @@ import {
   patchHomeScreenHydration,
   peekHomeScreenHydration,
   rememberHomeScreenHydration,
+  resolveHomeStorageStats,
   resolveHomeProfileVisuals,
   type HomeScreenHydration,
 } from '../app/home_screen_hydration';
@@ -13,6 +14,22 @@ import {
   invalidateAccountGeneration,
   captureAccountGeneration,
 } from '../app/account_generation';
+
+it('uses authoritative in-memory stats when SQLite values are absent or stale', () => {
+  expect(resolveHomeStorageStats({
+    storedTotalXp: null,
+    storedStreak: null,
+    profile: { source: 'live', totalXp: 564776 },
+    progress: { source: 'live', streak: 93 },
+  })).toEqual({ totalXp: 564776, streak: 93 });
+
+  expect(resolveHomeStorageStats({
+    storedTotalXp: '0',
+    storedStreak: '0',
+    profile: { source: 'live', totalXp: 564776 },
+    progress: { source: 'live', streak: 93 },
+  })).toEqual({ totalXp: 564776, streak: 93 });
+});
 
 const base: HomeScreenHydration = {
   userName: 'A', totalXP: 1, streak: 1, displayStreak: 1, weekDone: [], weekPoints: 0,

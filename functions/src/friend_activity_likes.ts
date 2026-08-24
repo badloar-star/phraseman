@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+import { sendExpoPush, type FriendGiftPushTransport } from './friend_gifts';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -145,9 +146,10 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   const now = Date.now();
   const nowIso = new Date(now).toISOString();
 
-  return db.runTransaction(async (tx) => {
-    const [senderSnap, targetFriendSnap, eventSnap, statsSnap, sentLikeSnap, legacyLikeSnap] = await Promise.all([
+  const result = await db.runTransaction(async (tx) => {
+    const [senderSnap, targetSnap, targetFriendSnap, eventSnap, statsSnap, sentLikeSnap, legacyLikeSnap] = await Promise.all([
       tx.get(senderRef),
+      tx.get(targetRef),
       tx.get(targetFriendRef),
       isProfileLike ? Promise.resolve(null) : tx.get(eventRef),
       tx.get(statsRef),
@@ -218,6 +220,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     const eventType = cleanId(eventData.type);
     const leagueGroupId = cleanDocId(eventData.groupId);
     const senderName = resolveSenderName(senderData, (request.data as Record<string, unknown>)?.senderDisplayName);
+    const notificationId = likeNotificationId(receiptId);
 
     if (!isProfileLike) {
       tx.set(eventRef, {
@@ -258,13 +261,19 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
 
     // Единый центр событий: «X поставил вам лайк» (раньше жило только в ленте друзей).
     tx.set(
-      userNotificationRef(db, targetStableId, likeNotificationId(receiptId)),
+      userNotificationRef(db, targetStableId, notificationId),
       buildUserNotification({
         type: 'activity_like',
         fromUid: senderStableId,
         fromName: senderName,
         fromAvatar: resolveSenderAvatar(senderData),
-        nav: { kind: 'friends' },
+        text: 'Пятюня на удачу уже здесь.',
+        nav: {
+          kind: 'friend_event',
+          actorStableUid: senderStableId,
+          eventId: notificationId,
+          action: 'high_five',
+        },
       }, now),
     );
 
@@ -284,8 +293,37 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       eventId,
       activityLikeCount: eventLikeCount,
       targetActivityLikeTotal: totalLikeCount,
+      _pushToken: typeof targetSnap.data()?.expoPushToken === 'string'
+        ? targetSnap.data()!.expoPushToken as string
+        : '',
+      _senderName: senderName,
+      _notificationId: notificationId,
     };
   });
+
+  const pushToken = (result as { _pushToken?: string })._pushToken ?? '';
+  const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
+  const notificationId = (result as { _notificationId?: string })._notificationId ?? '';
+  if (pushToken && notificationId) {
+    void sendExpoPush(
+      pushToken,
+      `${senderName} даёт пять`,
+      'Пятюня получена.',
+      {
+        type: 'activity_like',
+        eventId: notificationId,
+        actorStableUid: senderStableId,
+        nav: 'friends',
+      },
+    ).then((transport: FriendGiftPushTransport) => {
+      if (transport !== 'sent' && transport !== 'skipped') {
+        console.warn('friend_activity_like_push_failed', { transport });
+      }
+    }).catch(() => {});
+  }
+
+  const { _pushToken, _senderName, _notificationId, ...publicResult } = result as Record<string, unknown>;
+  return publicResult;
 });
 
 /**
@@ -303,15 +341,11 @@ export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: EN
   const statsRef = targetRef.collection('activity_like_stats').doc('summary');
   const today = todayStrUtc();
   const recordId = activityLikeRecordId(targetStableId, eventId);
-  const receiptId = activityLikeReceiptId(senderStableId, targetStableId, eventId);
   const sentLikeRef = senderRef.collection('friend_activity_likes_sent').doc(recordId);
   const legacyLikeQuery = senderRef.collection('friend_activity_like_daily_limits')
     .where('targetUid', '==', targetStableId)
     .where('eventId', '==', eventId)
     .limit(1);
-  const receivedRef = targetRef
-    .collection('activity_likes_received')
-    .doc(receiptId);
   const now = Date.now();
 
   return db.runTransaction(async (tx) => {
@@ -378,14 +412,8 @@ export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: EN
 
     if (sentLikeMatches) tx.delete(sentLikeRef);
     if (limitMatchesThisLike) tx.delete(legacyLikeDoc.ref);
-    tx.delete(receivedRef);
-    tx.delete(userNotificationRef(db, targetStableId, likeNotificationId(receiptId)));
-
-    const legacyDate = cleanId(sentLikeData?.legacyDate) || (limitMatchesThisLike ? legacyLikeDoc.id : '');
-    if (legacyDate) {
-      tx.delete(targetRef.collection('activity_likes_received').doc(`${legacyDate}_${senderStableId}_${eventId}`));
-      tx.delete(userNotificationRef(db, targetStableId, `like_${legacyDate}_${senderStableId}_${eventId}`));
-    }
+    // A delivered high-five is historical recipient state. Turning off the sender-side
+    // toggle adjusts counters but must not erase the receiver event or bell entry.
 
     if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
       tx.set(db.collection('league_groups').doc(leagueGroupId), {

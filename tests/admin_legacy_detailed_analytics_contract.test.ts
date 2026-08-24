@@ -3,7 +3,7 @@ import { join } from 'path';
 import { runInNewContext } from 'vm';
 
 const root = join(__dirname, '..');
-const html = readFileSync(join(root, 'admin', 'legacy.html'), 'utf8');
+const html = readFileSync(join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
 const script = (name: string) => readFileSync(join(root, 'admin', 'v2', 'scripts', 'pages', name), 'utf8');
 
 describe('live legacy detailed analytics integration', () => {
@@ -12,7 +12,7 @@ describe('live legacy detailed analytics integration', () => {
       'product-analytics-panel', 'product-analytics-range', 'product-analytics-platform',
       'product-analytics-status', 'product-analytics-summary', 'product-analytics-sessions',
       'product-analytics-screens', 'product-analytics-lessons', 'product-analytics-learning-dropoff',
-      'product-analytics-learning-outcomes', 'product-analytics-conversion', 'product-analytics-retention',
+      'product-analytics-conversion', 'product-analytics-retention',
       'product-analytics-experiments', 'product-analytics-reliability', 'product-analytics-quality',
       'subscription-analytics-panel', 'subscription-analytics-range', 'subscription-analytics-store',
       'subscription-analytics-status', 'subscription-analytics-content',
@@ -79,7 +79,7 @@ describe('live legacy detailed analytics integration', () => {
     files.forEach((file) => runInNewContext(readFileSync(file, 'utf8'), context, { filename: file }));
     for (const name of [
       'AdminAnalyticsLanguage', 'renderProductSessions', 'renderLearningDiagnostics',
-      'renderConversionDiagnostics', 'renderRetentionDiagnostics', 'renderLearningOutcomes',
+      'renderConversionDiagnostics', 'renderRetentionDiagnostics',
       'renderExperimentsAndReliability', 'loadProductAnalytics', 'loadSubscriptionAnalytics',
     ]) expect(window[name]).toBeDefined();
   });

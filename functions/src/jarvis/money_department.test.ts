@@ -20,13 +20,58 @@ function fetchResult(overrides: Partial<FetchMoneySourceResult> = {}): FetchMone
 const REFUND_ROWS = Array.from({ length: 8 }, () => ({ eventType: 'REFUND', periodType: null }));
 const NEW_PAYING_ROWS = Array.from({ length: 20 }, () => ({ eventType: 'INITIAL_PURCHASE', periodType: 'NORMAL' }));
 
+function completeFetches(revenueRows: FetchMoneySourceResult['rows'] = []): FetchMoneySourceResult[] {
+  return [
+    fetchResult({ sourceId: 'revenuecat_premium_events', rows: revenueRows }),
+    fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
+    fetchResult({ sourceId: 'client_economy_opening', rows: [] }),
+    fetchResult({ sourceId: 'client_economy_operations', rows: [] }),
+    fetchResult({ sourceId: 'external_economy_events', rows: [] }),
+  ];
+}
+
+describe('Jarvis money department — required trustworthy sources', () => {
+  test('a missing required source is explicit insufficient_evidence', () => {
+    const fetches = completeFetches(NEW_PAYING_ROWS).filter((fetch) => fetch.sourceId !== 'paywall_funnel');
+    const result = runMoneyDepartment({ fetches, trigger: 'owner_request', nowMs: 10_000 });
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0].status).toBe('insufficient_evidence');
+    expect(result.decisions[0].evidence.find((item) => item.sourceId === 'paywall_funnel')).toMatchObject({
+      state: 'error', trustworthy: false, count: null, digest: '',
+    });
+  });
+
+  test.each([
+    { state: 'partial' as const, truncated: false, droppedCount: 1 },
+    { state: 'ready' as const, truncated: true, droppedCount: 1 },
+    { state: 'error' as const, truncated: false, droppedCount: 0 },
+  ])('untrustworthy RevenueCat evidence cannot emit a numeric refund spike or breakdown: %j', (health) => {
+    const fetches = completeFetches([...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS]);
+    fetches[0] = fetchResult({ ...health, rows: [...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS] });
+    const result = runMoneyDepartment({
+      fetches, trigger: 'owner_request', nowMs: 10_000,
+      yesterday: { newPaying: 100, renewals: 50, refunds: 1 },
+    });
+    expect(result.decisions[0].status).toBe('insufficient_evidence');
+    expect(result.decisions[0].finding).not.toMatch(/8 возвратов|10 новых платящих|Новые платящие|Продления|Возвраты:/i);
+  });
+
+  test('personal economy diagnostics are numeric only when all three journal sources are trustworthy', () => {
+    const complete = runMoneyDepartment({ fetches: completeFetches(), trigger: 'owner_request', nowMs: 10_000 });
+    expect(complete.decisions[0].finding).toMatch(/Экономика: 0 клиентских операций, 0 внешних событий/);
+
+    const incompleteFetches = completeFetches();
+    incompleteFetches[3] = fetchResult({ sourceId: 'client_economy_operations', state: 'error' });
+    const incomplete = runMoneyDepartment({ fetches: incompleteFetches, trigger: 'owner_request', nowMs: 10_000 });
+    expect(incomplete.decisions[0].status).toBe('insufficient_evidence');
+    expect(incomplete.decisions[0].finding).not.toMatch(/Экономика: \d+ клиентских операций/);
+  });
+});
+
 describe('Jarvis money department — a decision only when the signal is real', () => {
   test('no decision on an ordinary day with no refund spike', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: NEW_PAYING_ROWS }),
-        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-      ],
+      fetches: completeFetches(NEW_PAYING_ROWS),
       trigger: 'scheduled',
       nowMs: 10_000,
     });
@@ -35,10 +80,7 @@ describe('Jarvis money department — a decision only when the signal is real', 
 
   test('raises a decision when refunds exceed the spike threshold relative to new paying', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS] }),
-        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-      ],
+      fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS]),
       trigger: 'scheduled',
       nowMs: 10_000,
     });
@@ -51,25 +93,25 @@ describe('Jarvis money department — a decision only when the signal is real', 
     expect(decision.options.length).toBeLessThanOrEqual(3);
   });
 
-  test('a failed source does not block the decision but lowers confidence', () => {
+  test('a failed required source blocks numeric spike, breakdown, hypothesis and action', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS] }),
-        fetchResult({ sourceId: 'paywall_funnel', state: 'error' }),
-      ],
+      fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS])
+        .map((fetch) => fetch.sourceId === 'paywall_funnel' ? fetchResult({ sourceId: 'paywall_funnel', state: 'error' }) : fetch),
       trigger: 'scheduled',
       nowMs: 10_000,
+      yesterday: { newPaying: 100, renewals: 50, refunds: 1 },
     });
     expect(result.decisions).toHaveLength(1);
-    expect(result.decisions[0].confidence).toBeLessThan(1);
+    const [decision] = result.decisions;
+    expect(decision.status).toBe('insufficient_evidence');
+    expect(decision.finding).not.toMatch(/8 возвратов|10 новых платящих|Новые платящие|Продления|Возвраты:/i);
+    expect(decision.hypothesis).toBe('Недостаточно данных для гипотезы.');
+    expect(decision.recommendation).toBe('Продолжить наблюдение без вмешательства');
   });
 
   test('every source failing yields insufficient_evidence, not silence', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ state: 'error' }),
-        fetchResult({ sourceId: 'paywall_funnel', state: 'error' }),
-      ],
+      fetches: completeFetches().map((fetch) => fetchResult({ sourceId: fetch.sourceId, state: 'error' })),
       trigger: 'scheduled',
       nowMs: 10_000,
     });
@@ -86,10 +128,11 @@ describe('Jarvis money department — a decision only when the signal is real', 
     '%s run reports insufficient_evidence when %s errors and %s is empty',
     (trigger, failedSource, emptySource) => {
       const result = runMoneyDepartment({
-        fetches: [
-          fetchResult({ sourceId: failedSource, state: 'error' }),
-          fetchResult({ sourceId: emptySource, state: 'empty' }),
-        ],
+        fetches: completeFetches().map((fetch) => {
+          if (fetch.sourceId === failedSource) return fetchResult({ sourceId: failedSource, state: 'error' });
+          if (fetch.sourceId === emptySource) return fetchResult({ sourceId: emptySource, state: 'empty' });
+          return fetch;
+        }),
         trigger,
         nowMs: 10_000,
       });
@@ -102,7 +145,7 @@ describe('Jarvis money department — a decision only when the signal is real', 
 
   test('owner_request always answers even without a spike', () => {
     const result = runMoneyDepartment({
-      fetches: [fetchResult({ rows: NEW_PAYING_ROWS }), fetchResult({ sourceId: 'paywall_funnel', rows: [] })],
+      fetches: completeFetches(NEW_PAYING_ROWS),
       trigger: 'owner_request',
       question: 'Как дела с возвратами?',
       nowMs: 10_000,
@@ -111,16 +154,13 @@ describe('Jarvis money department — a decision only when the signal is real', 
     expect(result.decisions[0].question).toBe('Как дела с возвратами?');
   });
 
-  test('every decision carries both evidence rows', () => {
+  test('every decision carries every required evidence row', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS] }),
-        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-      ],
+      fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 10), ...REFUND_ROWS]),
       trigger: 'scheduled',
       nowMs: 10_000,
     });
-    expect(result.decisions[0].evidence).toHaveLength(2);
+    expect(result.decisions[0].evidence).toHaveLength(5);
   });
 });
 
@@ -131,10 +171,7 @@ describe('Jarvis money department — app tier scales the spike threshold', () =
   // поднимается до 60% — сигнал остаётся шумом маленькой выборки.
   test('a rate that trips the base threshold stays silent on the seed tier (small-base noise)', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS] }),
-        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-      ],
+      fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS]),
       trigger: 'scheduled',
       nowMs: 10_000,
       appTier: 'seed',
@@ -144,10 +181,7 @@ describe('Jarvis money department — app tier scales the spike threshold', () =
 
   test('the same rate raises a decision on the mature tier — same signal, larger base, real', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS] }),
-        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-      ],
+      fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS]),
       trigger: 'scheduled',
       nowMs: 10_000,
       appTier: 'mature',
@@ -157,10 +191,7 @@ describe('Jarvis money department — app tier scales the spike threshold', () =
 
   test('no appTier argument defaults to the most cautious tier (seed) — never silently loosens', () => {
     const result = runMoneyDepartment({
-      fetches: [
-        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS] }),
-        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-      ],
+      fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS]),
       trigger: 'scheduled',
       nowMs: 10_000,
     });
@@ -174,10 +205,7 @@ describe('Jarvis money department — app tier scales the spike threshold', () =
 
     function runWithYesterday(yesterday: { newPaying: number; renewals: number; refunds: number } | null) {
       return runMoneyDepartment({
-        fetches: [
-          fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 4), ...REFUND_ROWS] }),
-          fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-        ],
+        fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 4), ...REFUND_ROWS]),
         trigger: 'owner_request',
         nowMs: 10_000,
         yesterday,
@@ -199,10 +227,7 @@ describe('Jarvis money department — app tier scales the spike threshold', () =
       // зачем: «изменений нет» каждый день — шум, из-за которого
       // перестают читать находку целиком.
       const result = runMoneyDepartment({
-        fetches: [
-          fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 4), ...REFUND_ROWS] }),
-          fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-        ],
+        fetches: completeFetches([...NEW_PAYING_ROWS.slice(0, 4), ...REFUND_ROWS]),
         trigger: 'owner_request',
         nowMs: 10_000,
         yesterday: { newPaying: 4, renewals: 0, refunds: REFUND_ROWS.length },

@@ -124,6 +124,7 @@ export type FlashcardMarketPack = {
 
 /** Підняти при зміні бандлів / схеми карт — інвалідує старий кеш на пристроях. */
 export const MARKETPLACE_BUILT_CARDS_CACHE_EPOCH = 12;
+export const MARKETPLACE_BUILT_CARDS_CACHE_MAX_BYTES = 256 * 1024;
 
 type BuiltMarketplaceCardsCache = {
   epoch: number;
@@ -131,6 +132,15 @@ type BuiltMarketplaceCardsCache = {
   ownedKey: string;
   cards: CardItem[];
 };
+
+function marketplaceCacheUtf8Bytes(value: string): number {
+  let bytes = 0;
+  for (const char of value) {
+    const code = char.codePointAt(0) ?? 0;
+    bytes += code <= 0x7f ? 1 : code <= 0x7ff ? 2 : code <= 0xffff ? 3 : 4;
+  }
+  return bytes;
+}
 
 export function marketOwnedIdsCacheKey(ownedIds: string[]): string {
   return [...ownedIds].sort().join('\0');
@@ -152,6 +162,10 @@ export async function loadBuiltMarketplaceCardsCache(
   try {
     const raw = await AsyncStorage.getItem(key);
     if (!raw) return null;
+    if (marketplaceCacheUtf8Bytes(raw) > MARKETPLACE_BUILT_CARDS_CACHE_MAX_BYTES) {
+      await AsyncStorage.removeItem(key).catch(() => {});
+      return null;
+    }
     const p = JSON.parse(raw) as BuiltMarketplaceCardsCache;
     if (!p || p.epoch !== MARKETPLACE_BUILT_CARDS_CACHE_EPOCH) return null;
     if (typeof p.ownedKey !== 'string' || !Array.isArray(p.cards)) return null;
@@ -188,7 +202,12 @@ export async function saveBuiltMarketplaceCardsCache(
   // Defer serialization to avoid blocking the JS thread during frame renders.
   await new Promise<void>(resolve => setTimeout(resolve, 0));
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(payload));
+    const raw = JSON.stringify(payload);
+    if (marketplaceCacheUtf8Bytes(raw) > MARKETPLACE_BUILT_CARDS_CACHE_MAX_BYTES) {
+      await AsyncStorage.removeItem(key).catch(() => {});
+      return;
+    }
+    await AsyncStorage.setItem(key, raw);
   } catch {
     // ignore
   }
@@ -855,7 +874,47 @@ const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
  * читают тот же массив (та же ссылка) — нет ре-маунта тайлов при повторном focus.
  */
 let warmMarketplacePacks: FlashcardMarketPack[] | null = null;
+let warmMarketplacePacksAtMs = 0;
 let loadMarketplaceInflight: Promise<FlashcardMarketPack[]> | null = null;
+export const MARKETPLACE_REMOTE_REFRESH_TTL_MS = 6 * 60 * 60 * 1000;
+const MARKETPLACE_PACKS_SNAPSHOT_KEY = 'flashcards_marketplace_packs_snapshot_v1';
+const MARKETPLACE_PACKS_SNAPSHOT_VERSION = 1;
+let marketplaceSnapshotRead: Promise<void> | null = null;
+
+async function hydrateMarketplacePacksSnapshot(): Promise<void> {
+  if (warmMarketplacePacks || marketplaceSnapshotRead) return marketplaceSnapshotRead ?? Promise.resolve();
+  marketplaceSnapshotRead = (async () => {
+    try {
+      const raw = await AsyncStorage.getItem(MARKETPLACE_PACKS_SNAPSHOT_KEY);
+      if (!raw || raw.length > MARKETPLACE_BUILT_CARDS_CACHE_MAX_BYTES) return;
+      const parsed = JSON.parse(raw) as { version?: unknown; savedAtMs?: unknown; packs?: unknown };
+      if (
+        parsed.version !== MARKETPLACE_PACKS_SNAPSHOT_VERSION
+        || !Number.isSafeInteger(parsed.savedAtMs)
+        || Number(parsed.savedAtMs) < 0
+        || !Array.isArray(parsed.packs)
+      ) return;
+      const packs = parsed.packs.filter((pack): pack is FlashcardMarketPack => Boolean(
+        pack
+        && typeof pack === 'object'
+        && typeof (pack as FlashcardMarketPack).id === 'string',
+      ));
+      warmMarketplacePacks = packs;
+      warmMarketplacePacksAtMs = Number(parsed.savedAtMs);
+    } catch {
+      /* malformed/absent cache simply causes a bounded remote refresh */
+    }
+  })();
+  return marketplaceSnapshotRead;
+}
+
+function persistMarketplacePacksSnapshot(packs: readonly FlashcardMarketPack[], savedAtMs: number): void {
+  void AsyncStorage.setItem(MARKETPLACE_PACKS_SNAPSHOT_KEY, JSON.stringify({
+    version: MARKETPLACE_PACKS_SNAPSHOT_VERSION,
+    savedAtMs,
+    packs,
+  })).catch(() => {});
+}
 
 export function peekWarmMarketplacePacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): FlashcardMarketPack[] | null {
   if (storageStudyTarget(studyTarget) === 'fr') {
@@ -874,6 +933,18 @@ export async function loadMarketplacePacks(studyTarget?: RuntimeStudyTarget, sou
   const p = (async (): Promise<FlashcardMarketPack[]> => {
     /** Cards 2.1 §1.1: официальные наборы показываем только их владельцам. */
     const accessible = await loadAccessiblePackIds(studyTarget).catch(() => [] as string[]);
+    await hydrateMarketplacePacksSnapshot();
+    const now = Date.now();
+    if (
+      warmMarketplacePacks
+      && now - warmMarketplacePacksAtMs < MARKETPLACE_REMOTE_REFRESH_TTL_MS
+    ) {
+      return normalizeMarketplaceResult(
+        filterCatalogPacksByOwnership(warmMarketplacePacks, accessible),
+        studyTarget,
+        sourceLocale,
+      );
+    }
     try {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
         const reserve = normalizeMarketplaceResult(
@@ -902,6 +973,8 @@ export async function loadMarketplacePacks(studyTarget?: RuntimeStudyTarget, sou
         sourceLocale,
       );
       warmMarketplacePacks = result;
+      warmMarketplacePacksAtMs = now;
+      persistMarketplacePacksSnapshot(result, now);
       return result;
     } catch {
       const prev = warmMarketplacePacks;

@@ -2,10 +2,10 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
+  AccessibilityInfo,
   Alert,
   Animated,
   AppState,
-  Dimensions,
   Easing,
   Image,
   ImageSourcePropType,
@@ -22,6 +22,9 @@ import {
   Text,
   TextInput,
   View,
+  findNodeHandle,
+  useWindowDimensions,
+  type LayoutChangeEvent,
   type StyleProp,
   type TextStyle,
   type ViewStyle,
@@ -45,13 +48,16 @@ import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { computeHeightScale, isShortScreen } from '../constants/layout-scale';
 import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
 import AccountDeletedNotice from './AccountDeletedNotice';
 import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
 import { warmAuthSignInCallables } from '../app/cloud_sync';
 import { noAndroidOutline, softShadow } from '../constants/androidGlow';
-import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
+import { LUM, SUITE } from '../constants/motionHybrid';
+import { ENABLE_DEV_STUDY_TARGET_LANG, ENABLE_DEV_TOOLS, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
 // рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
 import { confirmAdultAgeAttestation, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
@@ -59,7 +65,13 @@ import { setAnalyticsConsent } from '../app/analytics_consent';
 import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
 import { usePaywallPurchase, type PaywallPlan } from '../app/paywall_purchase';
+import { buildSubscriptionDisclosureRu } from '../app/paywall_trial_info';
 import { requestNotificationPermissionWithFallback, scheduleDailyReminder } from '../app/notifications';
+import {
+  readOnboardingNotificationChoice,
+  setOnboardingNotificationChoice,
+  type OnboardingNotificationChoice,
+} from '../app/onboarding_notification_choice';
 import { GENERATED_NICKNAME_PENDING_KEY, resumePendingGeneratedNickname } from '../app/nickname_guard';
 import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
@@ -70,6 +82,7 @@ import {
   decideOnboardingTransition,
   getOnboardingProgress,
   resolveEnabledOnboardingOrder,
+  resolveRuntimeOnboardingSteps,
   resolveOnboardingAdvance,
   resolveOnboardingStep,
   runOnboardingTransitionEffects,
@@ -135,7 +148,6 @@ export type CleanOnboardingStep =
   | 'promise'
   | 'improve'
   | 'notifications'
-  | 'letsBuild'
   | 'trialReminder'
   | 'onboardingPaywall'
   | 'name';
@@ -147,33 +159,37 @@ export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_17b
 // зачем: владелец 2026-08-22 — было 45 с без обратной связи. После ускорения
 // входа подсказка «Вход всё ещё выполняется» появляется уже через 8 с.
 const ONBOARDING_AUTH_UI_TIMEOUT_MS = 8_000;
+const FORCE_ONBOARDING_QA =
+  typeof __DEV__ !== 'undefined'
+  && __DEV__
+  && process.env.EXPO_PUBLIC_FORCE_ONBOARDING_QA === '1';
 
-async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
-  let timer: ReturnType<typeof setTimeout> | null = null;
+async function withOnboardingAuthSlowNotice<T>(task: Promise<T>, onSlow: () => void): Promise<T> {
+  const timer = setTimeout(() => {
+    onSlow();
+  }, ONBOARDING_AUTH_UI_TIMEOUT_MS);
   try {
-    return await Promise.race([
-      task,
-      new Promise<never>((_, reject) => {
-        timer = setTimeout(
-          () => reject(new Error('signin_deadline-exceeded')),
-          ONBOARDING_AUTH_UI_TIMEOUT_MS,
-        );
-      }),
-    ]);
+    // The provider operation itself is deliberately awaited. Unlocking the UI at
+    // the notice deadline would let a second sign-in overlap the still-live first.
+    return await task;
   } finally {
-    if (timer) clearTimeout(timer);
+    clearTimeout(timer);
   }
 }
 const SHOW_ONBOARDING_LANGUAGE_STEP = false;
 // Флоу ровно по скриншотам Bevel (владелец, 2026-08-17): welcome → privacy (сейф:
 // вход и «данные не передаются») → niceToMeet (приветствие по имени) → promise
 // (график на весь экран) → improve → source → блок языка (выключен, пока язык
-// один) → уведомления (макет телефона с пушем) → letsBuild (пустой экран-переход)
-// → name (согласия и возраст, «All set» с конфетти) → честное «предупредим до
-// конца пробного» → пейвол.
+// один) → уведомления (макет телефона с пушем) → name (согласия и возраст,
+// «All set» с конфетти) → честное «предупредим до конца пробного» → пейвол.
+//
 // зачем «name» стоит ДО цен: так у Bevel; обязательный шаг (MANDATORY_ONBOARDING_STEP)
 // собирает согласия, а онбординг ЗАВЕРШАЕТ уже пейвол — любым из трёх выходов
 // (крестик, «Продолжить бесплатно», покупка) через completeOnboarding().
+//
+// зачем letsBuild убран (владелец, 2026-08-17): пустой экран-переход «Теперь
+// настроим всё под тебя» никуда не вёл и ничего не давал — просто лишний тап
+// между уведомлениями и согласиями. Уведомления ведут на 'name' напрямую.
 export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'welcome',
   'privacy',
@@ -183,7 +199,6 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'source',
   ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : []),
   'notifications',
-  'letsBuild',
   'name',
   'trialReminder',
   'onboardingPaywall',
@@ -276,6 +291,38 @@ function firstNameOf(displayName: string | null | undefined): string | null {
   return first || null;
 }
 
+/**
+ * Человеческий текст ошибки входа + сырой код в DEV-сборке.
+ *
+ * зачем 2026-08-17: владелец нажал «Продолжить с Apple» на сейфе и сразу получил
+ * «Не получилось войти» без причины. Провайдер логирует настоящий код только в
+ * аналитику (auth_signin_error, stage native/firebase) — с экрана его не прочитать.
+ * Один разбор на оба экрана входа: людям — понятная фраза, разработчику в DEV —
+ * код под ней, чтобы диагноз ставился с одного тапа, а не вслепую.
+ */
+function describeAuthError(raw: string): string {
+  const code = String(raw || '');
+  let human = 'Не получилось войти. Попробуй ещё раз.';
+  if (code === 'account_delete_pending' || code.includes('user-disabled')) {
+    human = 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.';
+  } else if (code.includes('google_signin_timeout')) {
+    human = 'Вход занимает слишком много времени. Вернись в приложение и попробуй ещё раз.';
+  } else if (code.includes('apple_auth_module_unavailable')) {
+    human = 'Вход через Apple не встроен в эту сборку приложения.';
+  } else if (code.includes('apple_signin_nonce')) {
+    human = 'Не удалось подготовить безопасный вход через Apple. Попробуй ещё раз.';
+  } else if (code.includes('apple_signin_no_id_token') || code.includes('apple_oauth_')) {
+    human = 'Apple не подтвердил вход. Попробуй ещё раз.';
+  } else if (code.includes('network-request-failed') || code.includes('Network')) {
+    human = 'Нет связи. Проверь интернет и попробуй ещё раз.';
+  } else if (code.includes('operation-not-allowed')) {
+    human = 'Этот способ входа сейчас выключен на сервере.';
+  } else if (code.includes('invalid-credential') || code.includes('invalid_credential')) {
+    human = 'Сервер не принял данные входа. Попробуй ещё раз.';
+  }
+  return ENABLE_DEV_TOOLS && code ? `${human}\n${code.slice(0, 120)}` : human;
+}
+
 // ── Русские даты без Intl (макет телефона и пуш о конце пробного) ────────────
 const WEEKDAYS_RU_SHORT = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 const MONTHS_RU_SHORT = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
@@ -283,6 +330,12 @@ const RU_MONTHS_GENITIVE = ['января', 'февраля', 'марта', 'а�
 /** «Вс, 17 авг» — дата на локскрине макета телефона. */
 function formatRuLockDate(d: Date): string {
   return `${WEEKDAYS_RU_SHORT[d.getDay()]}, ${d.getDate()} ${MONTHS_RU_SHORT[d.getMonth()]}`;
+}
+// зачем (владелец): часы на локскрине были захардкожены «9:41» (маркетинговый
+// стиль Apple) — макет должен показывать РЕАЛЬНОЕ время устройства, не выдумку.
+/** «14:37» — время на локскрине макета телефона, 24-часовой формат. */
+function formatRuLockTime(d: Date): string {
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
 /** «20 августа 2026» — дата в теле пуша «Отмени до …» (Bevel показывает с годом). */
 function formatRuDateLong(d: Date): string {
@@ -294,21 +347,6 @@ function pluralDays(n: number): string {
   if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return 'дня';
   return 'дней';
 }
-// зачем: владелец — триал 3 дня, а не 7; хук отдаёт trialDays из стора, но до
-// ответа магазина (и в dev без IAP) показываем ровно этот дефолт. Когда магазин
-// ОТВЕТИЛ и триала нет — дефолт не подставляем: обещать нечего.
-const DEFAULT_TRIAL_DAYS = 3;
-/** Дни триала для копирайта: число, пока ждём стор / если триал есть; null —
- *  стор ответил, что триала нет (тексты честно без «N дней бесплатно»). */
-function resolveEffectiveTrialDays(
-  trialDays: number | null | undefined,
-  loading: boolean,
-  offeringsFailed: boolean,
-): number | null {
-  if (trialDays) return trialDays;
-  return loading || offeringsFailed ? DEFAULT_TRIAL_DAYS : null;
-}
-
 // Пейвол по макету Bevel (владелец, 2026-08-17): список выгод «плитка-иконка +
 // заголовок + подпись» вместо таблицы FREE/PLUS. Набор — из боевой выкладки
 // (paywall_copy.ts → CONTEXT_BENEFITS) БЕЗ «Персонального плана»: планы удалены.
@@ -467,35 +505,44 @@ function FadeUp({
   children,
   delay = 0,
   style,
+  onLayout,
 }: {
   children: React.ReactNode;
   delay?: number;
   style?: StyleProp<ViewStyle>;
+  /** Нужен ScreenFrame: измеряет текст и футер, чтобы ужать макет телефона. */
+  onLayout?: (e: LayoutChangeEvent) => void;
 }) {
+  const reduceMotion = useReduceMotion();
   const anim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    const a = Animated.timing(anim, { toValue: 1, duration: 260, delay, useNativeDriver: true });
+    if (reduceMotion) {
+      anim.setValue(1);
+      return;
+    }
+    const a = Animated.timing(anim, { toValue: 1, duration: LUM.contentMs, delay, useNativeDriver: true });
     a.start();
     return () => a.stop();
-  }, [anim, delay]);
+  }, [anim, delay, reduceMotion]);
   const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [12, 0] });
   return (
-    <Animated.View style={[style, { opacity: anim, transform: [{ translateY }] }]}>
+    <Animated.View style={[style, { opacity: anim, transform: [{ translateY }] }]} onLayout={onLayout}>
       {children}
     </Animated.View>
   );
 }
 
-/** Плавная смена шагов всего онбординга: выход влево 130мс, вход справа 210мс. */
+/** Смена шагов по LUM-токенам; при Reduced Motion — мгновенно. */
 function useStepSlide(step: CleanOnboardingStep): {
   displayStep: CleanOnboardingStep;
   slideStyle: Animated.WithAnimatedObject<ViewStyle>;
 } {
+  const reduceMotion = useReduceMotion();
   const [displayStep, setDisplayStep] = useState<CleanOnboardingStep>(step);
   const opacity = useRef(new Animated.Value(1)).current;
   const translateX = useRef(new Animated.Value(0)).current;
   // зачем: welcome рисуется bare (без слайд-обёртки) — гасить ему нечего, а
-  // out-фаза 130мс гналась вхолостую: мёртвый экран после «Начать» и мигание
+  // out-фаза раньше гналась вхолостую: мёртвый экран после «Начать» и мигание
   // welcome при резюме на другом шаге. С welcome переключаемся синхронно: и в
   // рендере (shownStep), и в state — без единого кадра старого шага.
   const instant = displayStep === 'welcome';
@@ -509,27 +556,38 @@ function useStepSlide(step: CleanOnboardingStep): {
 
   useEffect(() => {
     if (step === displayStep) return;
+    if (reduceMotion) {
+      opacity.setValue(1);
+      translateX.setValue(0);
+      setDisplayStep(step);
+      return;
+    }
     if (instant) { setDisplayStep(step); return; }
     const out = Animated.parallel([
-      Animated.timing(opacity, { toValue: 0, duration: 130, useNativeDriver: true }),
-      Animated.timing(translateX, { toValue: -20, duration: 130, useNativeDriver: true }),
+      Animated.timing(opacity, { toValue: 0, duration: LUM.exitMs, useNativeDriver: true }),
+      Animated.timing(translateX, { toValue: -20, duration: LUM.exitMs, useNativeDriver: true }),
     ]);
     out.start(({ finished }) => {
       if (finished) setDisplayStep(step);
     });
     return () => out.stop();
-  }, [displayStep, instant, opacity, step, translateX]);
+  }, [displayStep, instant, opacity, reduceMotion, step, translateX]);
 
   useEffect(() => {
+    if (reduceMotion) {
+      opacity.setValue(1);
+      translateX.setValue(0);
+      return;
+    }
     opacity.setValue(0);
     translateX.setValue(20);
     const enter = Animated.parallel([
-      Animated.timing(opacity, { toValue: 1, duration: 210, useNativeDriver: true }),
-      Animated.timing(translateX, { toValue: 0, duration: 210, useNativeDriver: true }),
+      Animated.timing(opacity, { toValue: 1, duration: LUM.contentMs, useNativeDriver: true }),
+      Animated.timing(translateX, { toValue: 0, duration: LUM.contentMs, useNativeDriver: true }),
     ]);
     enter.start();
     return () => enter.stop();
-  }, [shownStep, opacity, translateX]);
+  }, [shownStep, opacity, reduceMotion, translateX]);
 
   const slideStyle = useMemo(
     () => ({ opacity, transform: [{ translateX }] }),
@@ -563,34 +621,34 @@ function PagerDots({ total, active }: { total: number; active: number }) {
   );
 }
 
-/** Логотип welcome: появление scale-in с overshoot + мягкое «дыхание».
+/** Логотип welcome: спокойное scale-in без отскока + мягкое «дыхание».
  *  Дыхание — конечный ping-pong через рекурсию с гейтом фокуса/AppState
  *  (Performance Bible: бесконечные лупы под гейтом). */
 function WelcomeLogo() {
   const isFocused = useIsScreenFocused();
+  const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   const breathe = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const a = Animated.spring(enter, {
-      toValue: 1,
-      friction: 6,
-      tension: 70,
-      useNativeDriver: true,
-    });
+    if (reduceMotion) {
+      enter.setValue(1);
+      return;
+    }
+    const a = Animated.spring(enter, { toValue: 1, ...LUM.settle, useNativeDriver: true });
     a.start();
     return () => a.stop();
-  }, [enter]);
+  }, [enter, reduceMotion]);
 
   useEffect(() => {
-    if (!isFocused) { breathe.stopAnimation(); return; }
+    if (!isFocused || reduceMotion) { breathe.stopAnimation(); breathe.setValue(0); return; }
     let loop: Animated.CompositeAnimation | null = null;
     const start = () => {
       if (loop) return;
       loop = Animated.loop(
         Animated.sequence([
-          Animated.timing(breathe, { toValue: 1, duration: 2400, useNativeDriver: true }),
-          Animated.timing(breathe, { toValue: 0, duration: 2400, useNativeDriver: true }),
+          Animated.timing(breathe, { toValue: 1, duration: SUITE.idleFloatMs, useNativeDriver: true }),
+          Animated.timing(breathe, { toValue: 0, duration: SUITE.idleFloatMs, useNativeDriver: true }),
         ]),
       );
       loop.start();
@@ -601,18 +659,22 @@ function WelcomeLogo() {
       if (s === 'active') start(); else stop();
     });
     return () => { sub.remove(); stop(); };
-  }, [breathe, isFocused]);
+  }, [breathe, isFocused, reduceMotion]);
 
-  const scale = Animated.add(
-    enter.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }),
-    breathe.interpolate({ inputRange: [0, 1], outputRange: [0, 0.03] }),
-  );
+  // Android New Architecture can remove one native interpolation node while
+  // Animated.add still references it during the welcome -> privacy unmount.
+  // Keep the entrance and ambient scale on separate view nodes: visually this
+  // is the same combined scale, but cleanup cannot leave a dangling Add node.
+  const enterScale = enter.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] });
+  const breatheScale = breathe.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
 
   return (
-    <Animated.View style={[styles.logoImageLarge, { opacity: enter, transform: [{ scale }] }]}>
-      {/* Bevel, кадр 1: тиснёный знак тон-в-тон с градиентом фона — без плитки
-          и ореола. Смысл несёт заголовок. */}
-      <EmbossedMark size={168} />
+    <Animated.View style={[styles.logoImageLarge, styles.logoEnterLayer, { opacity: enter, transform: [{ scale: enterScale }] }]}>
+      <Animated.View style={[styles.logoBreatheLayer, { transform: [{ scale: breatheScale }] }]}>
+        {/* Bevel, кадр 1: тиснёный знак тон-в-тон с градиентом фона — без плитки
+            и ореола. Смысл несёт заголовок. */}
+        <EmbossedMark size={168} />
+      </Animated.View>
     </Animated.View>
   );
 }
@@ -701,16 +763,18 @@ function OptionCard<T extends string | number>({
   onPress: () => void;
   testID?: string;
 }) {
+  const reduceMotion = useReduceMotion();
   // Галочка «ставится» пружиной при выборе (native driver); фон карточки не
   // меняется — состояние показывает только чекбокс (макет Bevel, кадр 6).
   const check = useRef(new Animated.Value(selected ? 1 : 0)).current;
   useEffect(() => {
     if (!selected) { check.setValue(0); return; }
+    if (reduceMotion) { check.setValue(1); return; }
     check.setValue(0.5);
-    const a = Animated.spring(check, { toValue: 1, friction: 5, tension: 140, useNativeDriver: true });
+    const a = Animated.spring(check, { toValue: 1, ...SUITE.pulse, useNativeDriver: true });
     a.start();
     return () => a.stop();
-  }, [check, selected]);
+  }, [check, reduceMotion, selected]);
   return (
     <Pressable
       testID={testID}
@@ -786,10 +850,10 @@ const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
 
 /** Экран оплаты исключён намеренно (см. выше). privacy и notifications — тоже:
  *  у них уже есть своя серая ссылка («Позже» / «Не сейчас»), вторая серая
- *  строка подряд читалась бы как дубль. letsBuild и trialReminder — потому что
- *  «Пропустить» ведёт на «name»: с letsBuild это просто «Продолжить», а с
- *  trialReminder (после name) — шаг НАЗАД под видом пропуска. */
-const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'letsBuild', 'trialReminder'];
+ *  строка подряд читалась бы как дубль. trialReminder — потому что
+ *  «Пропустить» ведёт на «name», а trialReminder идёт ПОСЛЕ name —
+ *  это был бы шаг НАЗАД под видом пропуска. */
+const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'trialReminder'];
 
 function OnboardingSkipLink({ step }: { step: CleanOnboardingStep }) {
   const skip = React.useContext(OnboardingSkipContext);
@@ -823,6 +887,7 @@ function ScreenFrame({
   titleSize = 'lg',
   titleStyle,
   subtitle,
+  phoneBackdrop,
 }: {
   step: CleanOnboardingStep;
   title?: string;
@@ -840,9 +905,48 @@ function ScreenFrame({
   titleStyle?: StyleProp<TextStyle>;
   /** Серый подзаголовок под заголовком, в том же FadeUp. */
   subtitle?: string;
+  /**
+   * Макет телефона (notifications/trialReminder) — рисуется АБСОЛЮТНЫМ фоновым
+   * слоем экрана, а не ребёнком скролла. Только так низ корпуса может физически
+   * уйти ПОД footer (кнопку) и обрезаться нижним краем экрана, как на референсе
+   * Bevel: «полноразмерное» устройство крупным планом, а не миниатюра в отступах
+   * со всех сторон. Заголовок/подзаголовок/футер рисуются ПОСЛЕ (выше по zIndex)
+   * и остаются читаемыми поверх телефона.
+   */
+  phoneBackdrop?: React.ReactNode;
 }) {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const { height: windowHeight } = useWindowDimensions();
+  // Низкий экран (iPhone SE/8 и ниже) — ужимаем вертикальный ритм текста.
+  const shortScreen = isShortScreen(windowHeight);
+
+  // зачем (владелец, 2026-08-23): телефон-макет — абсолютный фоновый слой, он
+  // НЕ знает про текст рядом и потому налезал на него на низких экранах.
+  // Считаем, сколько места реально остаётся, и отдаём это число вниз. Первая
+  // оценка синхронная (консервативная, до onLayout) — первый кадр сразу
+  // близок к финальному, без «сначала большой, потом прыжок».
+  const [textBlockHeight, setTextBlockHeight] = useState<number | null>(null);
+  const [childrenHeight, setChildrenHeight] = useState<number | null>(null);
+  const [footerHeight, setFooterHeight] = useState<number | null>(null);
+  const phoneAvailableHeight = useMemo(() => {
+    if (!phoneBackdrop) return undefined;
+    const header = 52 + insets.top;
+    // Текст живёт в двух местах: проп title/subtitle И children (trialReminder
+    // кладёт свой абзац именно туда) — считаем оба, иначе половина текста
+    // остаётся невидимой для расчёта и телефон снова налезает.
+    const text = (textBlockHeight ?? (title ? 96 : 48)) + (childrenHeight ?? 0);
+    const foot = footerHeight ?? (footer ? 132 : 0);
+    // 12pt воздуха между текстом и корпусом — иначе они целуются впритык.
+    return Math.max(240, windowHeight - header - text - foot - 12);
+  }, [phoneBackdrop, insets.top, textBlockHeight, childrenHeight, footerHeight, title, footer, windowHeight]);
+
+  const phoneLayer = phoneBackdrop
+    ? React.isValidElement(phoneBackdrop)
+      // Прокидываем измеренную высоту, не меняя вызовы на местах.
+      ? React.cloneElement(phoneBackdrop as React.ReactElement<{ availableHeight?: number }>, { availableHeight: phoneAvailableHeight })
+      : phoneBackdrop
+    : null;
 
   return (
     // зачем: только 'top' — низ уже учтён вручную (footer.paddingBottom =
@@ -850,6 +954,19 @@ function ScreenFrame({
     // edges bottom нижний inset складывался дважды.
     <SafeAreaView style={styles.safe} edges={['top']}>
       <StatusBar barStyle="dark-content" />
+      {phoneLayer ? (
+        <View pointerEvents="none" style={styles.phoneBackdropLayer}>
+          {phoneLayer}
+          {/* зачем (владелец, 2026-08-17): корпус телефона НЕ режется — целиком
+              на месте. Иллюзию «тонет в фоне» даёт только этот градиент поверх
+              нижней трети корпуса, как на референсе Bevel. */}
+          <LinearGradient
+            colors={['rgba(245,246,250,0)', 'rgba(245,246,250,0.85)', '#F5F6FA']}
+            locations={[0, 0.55, 1]}
+            style={styles.phoneFadeMask}
+          />
+        </View>
+      ) : null}
       <ProgressHeader step={step} onBack={onBack} onClose={onClose} closeLabel={closeLabel} headerRight={headerRight} />
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.keyboard}>
         <ScrollView
@@ -867,22 +984,34 @@ function ScreenFrame({
           showsVerticalScrollIndicator={false}
         >
           {title ? (
-            <FadeUp>
+            <FadeUp onLayout={phoneBackdrop ? (e) => setTextBlockHeight(e.nativeEvent.layout.height) : undefined}>
               {plainTitle ? (
-                <Text style={[styles.plainTitle, titleSize === 'md' && styles.plainTitleMd, titleStyle]}>{title}</Text>
+                <Text style={[styles.plainTitle, titleSize === 'md' && styles.plainTitleMd, shortScreen && styles.plainTitleShort, titleStyle]}>{title}</Text>
               ) : (
                 <CompassBubble compact>{title}</CompassBubble>
               )}
-              {subtitle ? <Text style={styles.screenSubtitle}>{subtitle}</Text> : null}
+              {subtitle ? <Text style={[styles.screenSubtitle, shortScreen && styles.screenSubtitleShort]}>{subtitle}</Text> : null}
             </FadeUp>
           ) : null}
           {/* зачем: при center контент обязан стоять по вертикальному центру
-              оставшегося места (niceToMeet/improve/letsBuild) — flexGrow сам
-              по себе лишь растягивал обёртку и выкладывал детей от верха. */}
-          <FadeUp delay={90} style={[styles.frameChildren, center && styles.frameChildrenCenter]}>{children}</FadeUp>
+              оставшегося места (niceToMeet/improve) — flexGrow сам по себе
+              лишь растягивал обёртку и выкладывал детей от верха. phoneBackdrop
+              рисуется отдельным слоем — children здесь используется только
+              когда телефона на экране нет. */}
+          <FadeUp
+            delay={90}
+            style={[styles.frameChildren, center && styles.frameChildrenCenter]}
+            onLayout={phoneBackdrop ? (e) => setChildrenHeight(e.nativeEvent.layout.height) : undefined}
+          >
+            {children}
+          </FadeUp>
         </ScrollView>
         {footer ? (
-          <FadeUp delay={150} style={[styles.footer, { paddingBottom: Math.max(30, bottomInset) }]}>
+          <FadeUp
+            delay={150}
+            style={[styles.footer, { paddingBottom: Math.max(30, bottomInset) }]}
+            onLayout={phoneBackdrop ? (e) => setFooterHeight(e.nativeEvent.layout.height) : undefined}
+          >
             {footer}
             <OnboardingSkipLink step={step} />
           </FadeUp>
@@ -895,45 +1024,27 @@ function ScreenFrame({
 // Эмодзи-приветствие niceToMeet (Bevel, кадр 3): один «взмах» на маунт —
 // конечная последовательность на native driver, без лупов.
 function WaveEmoji({ emoji = '👋' }: { emoji?: string }) {
+  const reduceMotion = useReduceMotion();
   const wave = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (reduceMotion) {
+      wave.setValue(0);
+      return;
+    }
     const a = Animated.sequence([
-      Animated.delay(220),
-      Animated.timing(wave, { toValue: 1, duration: 160, useNativeDriver: true }),
-      Animated.timing(wave, { toValue: -1, duration: 160, useNativeDriver: true }),
-      Animated.timing(wave, { toValue: 0.6, duration: 140, useNativeDriver: true }),
-      Animated.spring(wave, { toValue: 0, friction: 5, tension: 120, useNativeDriver: true }),
+      Animated.delay(LUM.backdropMs),
+      Animated.timing(wave, { toValue: 1, duration: LUM.heroFadeMs, useNativeDriver: true }),
+      Animated.timing(wave, { toValue: -1, duration: LUM.heroFadeMs, useNativeDriver: true }),
+      Animated.timing(wave, { toValue: 0.6, duration: LUM.heroFadeMs, useNativeDriver: true }),
+      Animated.spring(wave, { toValue: 0, ...SUITE.pulse, useNativeDriver: true }),
     ]);
     a.start();
     return () => a.stop();
-  }, [wave]);
+  }, [reduceMotion, wave]);
   const rotate = wave.interpolate({ inputRange: [-1, 0, 1], outputRange: ['-14deg', '0deg', '16deg'] });
   return (
     <Animated.Text style={[styles.niceEmoji, { transform: [{ rotate }] }]} accessible={false}>
       {emoji}
-    </Animated.Text>
-  );
-}
-
-// Единственный объект экрана letsBuild (Bevel, кадр 8): текст с чуть более
-// «дорогим» входом — 420мс, Easing.out(cubic), native driver.
-function LetsBuildTitle() {
-  const enter = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    const a = Animated.timing(enter, {
-      toValue: 1,
-      duration: 420,
-      delay: 160,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    });
-    a.start();
-    return () => a.stop();
-  }, [enter]);
-  const translateY = enter.interpolate({ inputRange: [0, 1], outputRange: [16, 0] });
-  return (
-    <Animated.Text style={[styles.letsBuildTitle, { opacity: enter, transform: [{ translateY }] }]}>
-      {'Теперь настроим всё\nпод тебя.'}
     </Animated.Text>
   );
 }
@@ -953,31 +1064,36 @@ const IMPROVE_BUBBLES: readonly { cx: number; cy: number; r: number }[] = [
 ];
 function ImproveConstellation() {
   const isFocused = useIsScreenFocused();
+  const reduceMotion = useReduceMotion();
   const anims = useRef([0, 1, 2, 3, 4].map(() => new Animated.Value(0))).current;
   const beat = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     const [lines, heart, top, left, right] = anims;
+    if (reduceMotion) {
+      [lines, heart, top, left, right].forEach((value) => value.setValue(1));
+      return;
+    }
     const a = Animated.parallel([
-      Animated.sequence([Animated.delay(200), Animated.timing(lines, { toValue: 1, duration: 320, useNativeDriver: true })]),
-      Animated.sequence([Animated.delay(120), Animated.spring(heart, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true })]),
-      Animated.sequence([Animated.delay(300), Animated.spring(top, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true })]),
-      Animated.sequence([Animated.delay(420), Animated.spring(left, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true })]),
-      Animated.sequence([Animated.delay(540), Animated.spring(right, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true })]),
+      Animated.sequence([Animated.delay(LUM.ladder[2]), Animated.timing(lines, { toValue: 1, duration: LUM.contentMs, useNativeDriver: true })]),
+      Animated.sequence([Animated.delay(LUM.ladder[1]), Animated.spring(heart, { toValue: 1, ...SUITE.hero, useNativeDriver: true })]),
+      Animated.sequence([Animated.delay(LUM.ladder[3]), Animated.spring(top, { toValue: 1, ...SUITE.row, useNativeDriver: true })]),
+      Animated.sequence([Animated.delay(LUM.ladder[4]), Animated.spring(left, { toValue: 1, ...SUITE.row, useNativeDriver: true })]),
+      Animated.sequence([Animated.delay(LUM.ladder[5]), Animated.spring(right, { toValue: 1, ...SUITE.row, useNativeDriver: true })]),
     ]);
     a.start();
     return () => a.stop();
-  }, [anims]);
+  }, [anims, reduceMotion]);
   // Сердцебиение: конечный цикл под гейтом фокуса/AppState (Performance Bible).
   useEffect(() => {
-    if (!isFocused) { beat.stopAnimation(); return; }
+    if (!isFocused || reduceMotion) { beat.stopAnimation(); beat.setValue(0); return; }
     let loop: Animated.CompositeAnimation | null = null;
     const start = () => {
       if (loop) return;
       loop = Animated.loop(
         Animated.sequence([
-          Animated.delay(1900),
-          Animated.timing(beat, { toValue: 1, duration: 220, useNativeDriver: true }),
-          Animated.timing(beat, { toValue: 0, duration: 260, useNativeDriver: true }),
+          Animated.delay(SUITE.idleFloatMs),
+          Animated.timing(beat, { toValue: 1, duration: LUM.backdropMs, useNativeDriver: true }),
+          Animated.timing(beat, { toValue: 0, duration: LUM.contentMs, useNativeDriver: true }),
         ]),
       );
       loop.start();
@@ -988,15 +1104,13 @@ function ImproveConstellation() {
       if (s === 'active') start(); else stop();
     });
     return () => { sub.remove(); stop(); };
-  }, [beat, isFocused]);
+  }, [beat, isFocused, reduceMotion]);
   const pop = (index: number) => ({
     opacity: anims[index],
     transform: [{ scale: anims[index].interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }],
   });
-  const heartScale = Animated.multiply(
-    anims[1].interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }),
-    beat.interpolate({ inputRange: [0, 1], outputRange: [1, 1.05] }),
-  );
+  const heartEnterScale = anims[1].interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] });
+  const heartBeatScale = beat.interpolate({ inputRange: [0, 1], outputRange: [1, 1.05] });
   return (
     <View style={styles.improveArt}>
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: anims[0] }]}>
@@ -1012,8 +1126,9 @@ function ImproveConstellation() {
           ))}
         </Svg>
       </Animated.View>
-      <Animated.View style={[styles.improveHeart, { opacity: anims[1], transform: [{ scale: heartScale }] }]}>
-        <Svg width={96} height={96} viewBox="0 0 24 24">
+      <Animated.View style={[styles.improveHeart, { opacity: anims[1], transform: [{ scale: heartEnterScale }] }]}>
+        <Animated.View style={[styles.improveHeartBeatLayer, { transform: [{ scale: heartBeatScale }] }]}>
+          <Svg width={96} height={96} viewBox="0 0 24 24">
           <Defs>
             <SvgLinearGradient id="improveHeartFill" x1="0" y1="0" x2="0.4" y2="1">
               <Stop offset="0" stopColor="#FFFFFF" />
@@ -1023,7 +1138,8 @@ function ImproveConstellation() {
           <Path d={IMPROVE_HEART_PATH} fill="rgba(12,17,27,0.05)" transform="translate(0 1.4) scale(1.03)" />
           <Path d={IMPROVE_HEART_PATH} fill="rgba(12,17,27,0.07)" transform="translate(0 0.7)" />
           <Path d={IMPROVE_HEART_PATH} fill="url(#improveHeartFill)" />
-        </Svg>
+          </Svg>
+        </Animated.View>
       </Animated.View>
       <Animated.View style={[styles.improveSatellite, styles.improveSatelliteTop, pop(2)]}>
         <Text style={styles.improveSatelliteEmoji} accessible={false}>👍</Text>
@@ -1047,54 +1163,63 @@ function ImproveConstellation() {
 const VAULT_TICKS = Array.from({ length: 12 }, (_, index) => index * 30);
 function PrivacyVault() {
   const isFocused = useIsScreenFocused();
+  const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   const breathe = useRef(new Animated.Value(0)).current;
   const dial = useRef(new Animated.Value(0)).current;
   const pointer = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    const a = Animated.spring(enter, { toValue: 1, friction: 7, tension: 60, useNativeDriver: true });
+    if (reduceMotion) {
+      enter.setValue(1);
+      return;
+    }
+    const a = Animated.spring(enter, { toValue: 1, ...LUM.settle, useNativeDriver: true });
     a.start();
     return () => a.stop();
-  }, [enter]);
+  }, [enter, reduceMotion]);
   // Диск докручивается и указатель проявляется ОДИН раз на маунт — конечные
   // анимации, им гейт фокуса не нужен (а перезапуск при смене фокуса заново
   // «крутил» уже севший диск).
   useEffect(() => {
+    if (reduceMotion) {
+      dial.setValue(0.93);
+      pointer.setValue(1);
+      return;
+    }
     const spin = Animated.sequence([
-      Animated.delay(350),
-      Animated.timing(dial, { toValue: 1, duration: 1500, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-      Animated.spring(dial, { toValue: 0.93, friction: 5, tension: 120, useNativeDriver: true }),
+      Animated.delay(LUM.ladder[3]),
+      Animated.timing(dial, { toValue: 1, duration: SUITE.idleFloatMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
+      Animated.spring(dial, { toValue: 0.93, ...SUITE.anchor, useNativeDriver: true }),
     ]);
     const point = Animated.sequence([
-      Animated.delay(1750),
-      Animated.timing(pointer, { toValue: 1, duration: 200, useNativeDriver: true }),
+      Animated.delay(SUITE.idleFloatMs),
+      Animated.timing(pointer, { toValue: 1, duration: LUM.backdropMs, useNativeDriver: true }),
     ]);
     spin.start();
     point.start();
     return () => { spin.stop(); point.stop(); };
-  }, [dial, pointer]);
+  }, [dial, pointer, reduceMotion]);
   // Дыхание корпуса — бесконечный цикл, поэтому только под гейтом фокуса.
   useEffect(() => {
-    if (!isFocused) return;
+    if (!isFocused || reduceMotion) { breathe.stopAnimation(); breathe.setValue(0); return; }
     let alive = true;
     const loop = (toValue: number) => {
       if (!alive) return;
-      Animated.timing(breathe, { toValue, duration: 2600, easing: Easing.inOut(Easing.sin), useNativeDriver: true })
+      Animated.timing(breathe, { toValue, duration: SUITE.idleFloatMs, easing: Easing.inOut(Easing.sin), useNativeDriver: true })
         .start(({ finished }) => { if (finished) loop(toValue === 1 ? 0 : 1); });
     };
     loop(1);
     return () => { alive = false; breathe.stopAnimation(); };
-  }, [breathe, isFocused]);
-  const scale = Animated.multiply(
-    enter.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] }),
-    breathe.interpolate({ inputRange: [0, 1], outputRange: [1, 1.02] }),
-  );
+  }, [breathe, isFocused, reduceMotion]);
+  const enterScale = enter.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
+  const breatheScale = breathe.interpolate({ inputRange: [0, 1], outputRange: [1, 1.02] });
   const rotate = dial.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '160deg'] });
   const pointerY = pointer.interpolate({ inputRange: [0, 1], outputRange: [-4, 0] });
   return (
     <View style={styles.vaultWrap}>
-      <Animated.View style={[styles.vaultShadowHost, { opacity: enter, transform: [{ scale }] }]}>
-        <LinearGradient colors={['#FFFFFF', '#F3F5F8', '#E4E8EE']} locations={[0, 0.55, 1]} start={{ x: 0.15, y: 0 }} end={{ x: 0.85, y: 1 }} style={styles.vaultBody}>
+      <Animated.View style={[styles.vaultShadowHost, { opacity: enter, transform: [{ scale: enterScale }] }]}>
+        <Animated.View style={[styles.vaultBreatheLayer, { transform: [{ scale: breatheScale }] }]}>
+          <LinearGradient colors={['#FFFFFF', '#F3F5F8', '#E4E8EE']} locations={[0, 0.55, 1]} start={{ x: 0.15, y: 0 }} end={{ x: 0.85, y: 1 }} style={styles.vaultBody}>
           {/* Кромки корпуса — светлая верхняя/левая, тёмная нижняя/правая фаски. */}
           <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.95)', 'rgba(255,255,255,0)']} style={styles.vaultLipTop} />
           <LinearGradient pointerEvents="none" colors={['rgba(96,108,130,0)', 'rgba(96,108,130,0.16)']} style={styles.vaultLipBottom} />
@@ -1131,7 +1256,8 @@ function PrivacyVault() {
               </View>
             </LinearGradient>
           </View>
-        </LinearGradient>
+          </LinearGradient>
+        </Animated.View>
       </Animated.View>
     </View>
   );
@@ -1139,10 +1265,8 @@ function PrivacyVault() {
 
 // ── График promise на весь экран (Bevel, кадр 4) ──────────────────────────────
 // SVG-пути статичны (native driver с Path не дружит), «рисование» делает шторка
-// цвета фона, уезжающая вправо на native driver. Размер графика фиксирован и
-// считается ОДИН раз из Dimensions (ширина − поля 40, высота — доля экрана в
-// коридоре 280…440): никакого onLayout-пересчёта SVG — первый кадр = финальная
-// геометрия. Контейнер flex:1 центрирует график в свободном месте.
+// цвета фона, уезжающая вправо на native driver. Размер следует за живым окном,
+// поэтому поворот и split-screen пересчитывают SVG без перезапуска приложения.
 type Pt = { x: number; y: number };
 function cubicAt(p0: Pt, c1: Pt, c2: Pt, p3: Pt, t: number): Pt {
   const mt = 1 - t;
@@ -1181,36 +1305,41 @@ function chevronPath(pt: Pt, dir: Pt, size: number): string {
   return `M${f1(a.x)} ${f1(a.y)} L${f1(pt.x)} ${f1(pt.y)} L${f1(b.x)} ${f1(b.y)}`;
 }
 const PROMISE_CHART_MIN_HEIGHT = 280;
-const PROMISE_CHART_SIZE: { w: number; h: number } = (() => {
-  const { width, height } = Dimensions.get('window');
-  return {
+function PromiseChart() {
+  const reduceMotion = useReduceMotion();
+  const { width, height } = useWindowDimensions();
+  const size = useMemo(() => ({
     w: Math.max(200, Math.round(width - 40)),
     h: Math.min(440, Math.max(PROMISE_CHART_MIN_HEIGHT, Math.round(height * 0.42))),
-  };
-})();
-function PromiseChart() {
-  const size = PROMISE_CHART_SIZE;
+  }), [height, width]);
   const reveal = useRef(new Animated.Value(0)).current;
   const badgeUp = useRef(new Animated.Value(0)).current;
   const badgeDown = useRef(new Animated.Value(0)).current;
   const axes = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (reduceMotion) {
+      reveal.setValue(1);
+      badgeUp.setValue(1);
+      badgeDown.setValue(1);
+      axes.setValue(1);
+      return;
+    }
     const a = Animated.sequence([
-      Animated.delay(240),
-      Animated.timing(reveal, { toValue: 1, duration: 1300, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
+      Animated.delay(LUM.backdropMs),
+      Animated.timing(reveal, { toValue: 1, duration: SUITE.idleFloatMs, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
     ]);
     const up = Animated.sequence([
-      Animated.delay(1300),
-      Animated.spring(badgeUp, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
+      Animated.delay(LUM.bloomDriftMs),
+      Animated.spring(badgeUp, { toValue: 1, ...SUITE.pulse, useNativeDriver: true }),
     ]);
     const down = Animated.sequence([
-      Animated.delay(700),
-      Animated.spring(badgeDown, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
+      Animated.delay(LUM.rimMs),
+      Animated.spring(badgeDown, { toValue: 1, ...SUITE.pulse, useNativeDriver: true }),
     ]);
-    const ax = Animated.timing(axes, { toValue: 1, duration: 260, delay: 300, useNativeDriver: true });
+    const ax = Animated.timing(axes, { toValue: 1, duration: LUM.contentMs, delay: LUM.ladder[3], useNativeDriver: true });
     a.start(); up.start(); down.start(); ax.start();
     return () => { a.stop(); up.stop(); down.stop(); ax.stop(); };
-  }, [axes, badgeDown, badgeUp, reveal]);
+  }, [axes, badgeDown, badgeUp, reduceMotion, reveal]);
 
   const geom = useMemo(() => {
     const { w, h } = size;
@@ -1281,7 +1410,7 @@ function PromiseChart() {
       {/* Шторка цвета фона экрана: кривые проявляются слева направо. */}
       <Animated.View pointerEvents="none" style={[styles.promiseReveal, { transform: [{ translateX }] }]} />
       <Animated.View pointerEvents="none" style={[styles.promiseBadgeUp, geom.badgeUpPos, badgePop(badgeUp, 6)]}>
-        <Ionicons name="sparkles" size={12} color="#FFFFFF" />
+        <Ionicons name="sparkles" size={12} color="#07110A" />
         <Text style={styles.promiseBadgeUpText}>С Phraseman</Text>
       </Animated.View>
       <Animated.View pointerEvents="none" style={[styles.promiseBadgeDown, geom.badgeDownPos, badgePop(badgeDown)]}>
@@ -1300,47 +1429,101 @@ function PromiseChart() {
 // иконкой приложения, два плейсхолдера, три кольца. Размер считается один раз
 // синхронно — первый кадр = финальная геометрия. Пуш ВЪЕЗЖАЕТ СВЕРХУ пружиной
 // из-за верхней кромки экрана (стартует выше часов, а не «материализуется»).
-// зачем 0.40 (было 0.44): экран уведомлений обязан влезать на 844pt без скролла.
-const PHONE_MOCK_HEIGHT = Math.min(372, Math.max(300, Math.round(Dimensions.get('window').height * 0.40)));
-const PHONE_RING_CIRCUMFERENCE = 2 * Math.PI * 18;
-// зачем «целиком или никак»: пуш никогда не режется — ужимаются/пропадают
-// плейсхолдеры. Их число считается СТАТИЧЕСКИ от высоты макета (не onLayout):
-// 258 = рамка + шапка локскрина + кольца; в остатке пуш 66 и по 60 на плейсхолдер.
-const PHONE_FEED_HEIGHT = PHONE_MOCK_HEIGHT - 258;
-const PHONE_PLACEHOLDER_COUNT = PHONE_FEED_HEIGHT >= 66 + 120 ? 2 : PHONE_FEED_HEIGHT >= 66 + 60 ? 1 : 0;
+//
+// зачем 2026-08-17 (владелец, скрины Bevel): телефон обязан выглядеть как
+// РЕАЛЬНОЕ устройство, положенное на стол крупным планом — верх (статус-бар,
+// дата, часы) виден целиком, корпус помещается ПОЛНОСТЬЮ (никакого физического
+// среза/overflow:hidden — владелец явно отверг обрезку), а низ РАСТВОРЯЕТСЯ в
+// белый фон экрана через LinearGradient-маску поверх нижней трети телефона
+// (ScreenFrame.phoneBackdrop рисует маску последним слоем, поверх корпуса).
+// Телефон рисуется фоновым слоем позади заголовка/футера, крупным планом.
+// Три декоративных кольца прогресса убраны (владелец) — их нет на референсе.
+// зачем 2026-08-17 (владелец, скриншот): при 22pt выступа с каждой стороны и
+// PHONE_MOCK_WIDTH ≈ 92% экрана главная плашка ФИЗИЧЕСКИ вылезала за реальные
+// границы экрана устройства (не только за нарисованный корпус) на обычной
+// ширине телефона — 403pt плашка при 390pt экране. Свободного места вокруг
+// корпуса — примерно (100% − 92%)/2 = 4% ширины экрана с каждой стороны;
+// 10pt держит выступ надёжно внутри экрана с запасом на паддинги ScreenFrame.
+// Один и тот же выступ у всех плашек — раньше боковые были уже, отличие само
+// по себе читалось как непреднамеренная нестыковка.
+const PHONE_PUSH_OVERHANG = 10;
 // Стартовая точка пуша: на карточку с зазором выше места посадки — въезжает
 // сверху поверх шапки локскрина (пуш вне клипа плейсхолдеров).
-const PHONE_PUSH_OFFSCREEN_Y = -(66 + 16);
+const PHONE_PUSH_OFFSCREEN_Y = -(78 + 18);
 function PhoneMock({
   push,
-  rings = [0.4, 0.6, 0.75],
   lockDate,
-  pushDelayMs = 420,
+  pushDelayMs = LUM.bloomMs,
+  availableHeight,
   testID,
 }: {
   push: { title: string; body: string; when?: string };
-  rings?: readonly number[];
   lockDate?: Date;
   pushDelayMs?: number;
+  /**
+   * Высота места, реально свободного под телефон: экран минус шапка, минус
+   * футер, минус текст над ним. Считает ScreenFrame — только он знает всех
+   * соседей. Без неё телефон падает на старую оценку от высоты окна.
+   */
+  availableHeight?: number;
   testID?: string;
 }) {
+  const reduceMotion = useReduceMotion();
+  const { width, height } = useWindowDimensions();
+  const phoneWidth = Math.min(380, Math.max(280, Math.round(width * 0.92)));
+  // зачем (владелец, 2026-08-23 — скриншот SE): раньше высота считалась только
+  // от высоты ОКНА с жёстким минимумом 420. На 667pt пропорция давала 373, но
+  // минимум подтягивал обратно до 420 — телефон занимал 92% свободного места
+  // вместо 56%, и заголовок с подзаголовком физически ложились ему на корпус.
+  // Теперь корпус ограничен ещё и реально свободным местом, а нижняя граница
+  // пропорциональна высоте экрана (computeHeightScale), а не константа.
+  const heightScale = computeHeightScale(height);
+  const byWindow = Math.round(height * 0.56);
+  // Желаемая высота: пропорция от окна, но не ниже ужатого по высоте минимума.
+  const desired = Math.min(640, Math.max(Math.round(420 * heightScale), byWindow));
+  // Свободное место — ЖЁСТКИЙ потолок, а не ещё один кандидат в Math.max.
+  // зачем: минимум, применённый ПОСЛЕ ограничения, снова раздувал корпус выше
+  // доступного места и наложение возвращалось — ровно тот баг, что чиним.
+  // 200pt — предел, ниже которого корпус перестаёт читаться как телефон;
+  // до него доходят только экраны, где текст и так занял почти всё.
+  const phoneHeight = availableHeight
+    ? Math.max(200, Math.min(desired, Math.round(availableHeight)))
+    : desired;
   const dateLabel = useMemo(() => formatRuLockDate(lockDate ?? new Date()), [lockDate]);
+  // зачем (владелец): «9:41» было захардкожено (маркетинговый стиль Apple) —
+  // макет обязан показывать РЕАЛЬНОЕ время устройства. Разово при монтировании,
+  // как и dateLabel рядом — экран статичен, тикающие часы здесь не нужны.
+  const timeLabel = useMemo(() => formatRuLockTime(lockDate ?? new Date()), [lockDate]);
   const pushAnim = useRef(new Animated.Value(0)).current;
-  const rest = useRef(new Animated.Value(0)).current;
-  const ringsAnim = useRef(new Animated.Value(0)).current;
+  const cardOneAnim = useRef(new Animated.Value(0)).current;
+  const cardTwoAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (reduceMotion) {
+      pushAnim.setValue(1);
+      cardOneAnim.setValue(1);
+      cardTwoAnim.setValue(1);
+      return;
+    }
     const a = Animated.parallel([
       Animated.sequence([
         Animated.delay(pushDelayMs),
-        // friction 9: гасим перелёт (~21pt при 7), которым пуш нырял в плейсхолдер.
-        Animated.spring(pushAnim, { toValue: 1, friction: 9, tension: 62, useNativeDriver: true }),
+        // friction 9: гасим перелёт (~21pt при 7), которым пуш нырял в карточку под ним.
+        Animated.spring(pushAnim, { toValue: 1, ...LUM.settle, useNativeDriver: true }),
       ]),
-      Animated.timing(rest, { toValue: 1, duration: 260, delay: 640, useNativeDriver: true }),
-      Animated.timing(ringsAnim, { toValue: 1, duration: 300, delay: 720, useNativeDriver: true }),
+      // зачем: две доп. плашки въезжают ПОСЛЕ главного пуша, каждая своим прыжком —
+      // тот же каскад, что у реальных уведомлений в центре уведомлений iOS.
+      Animated.sequence([
+        Animated.delay(pushDelayMs + LUM.backdropMs),
+        Animated.spring(cardOneAnim, { toValue: 1, ...LUM.settle, useNativeDriver: true }),
+      ]),
+      Animated.sequence([
+        Animated.delay(pushDelayMs + LUM.resolveMs),
+        Animated.spring(cardTwoAnim, { toValue: 1, ...LUM.settle, useNativeDriver: true }),
+      ]),
     ]);
     a.start();
     return () => a.stop();
-  }, [pushAnim, pushDelayMs, rest, ringsAnim]);
+  }, [cardOneAnim, cardTwoAnim, pushAnim, pushDelayMs, reduceMotion]);
   const pushStyle = {
     opacity: pushAnim.interpolate({ inputRange: [0, 0.12, 1], outputRange: [0, 1, 1] }),
     transform: [
@@ -1348,78 +1531,76 @@ function PhoneMock({
       { scale: pushAnim.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1] }) },
     ],
   };
-  const ringsStyle = {
-    opacity: ringsAnim,
-    transform: [{ translateY: ringsAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
-  };
+  const stackCardStyle = (anim: Animated.Value) => ({
+    opacity: anim.interpolate({ inputRange: [0, 0.12, 1], outputRange: [0, 1, 1] }),
+    transform: [
+      { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [-18, 0] }) },
+      { scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.97, 1] }) },
+    ],
+  });
   return (
-    <View style={styles.phoneBezel} testID={testID}>
-      <View style={styles.phoneScreen}>
-        <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
-          <Defs>
-            <RadialGradient id="phoneG1" cx="30%" cy="25%" r="55%">
-              <Stop offset="0" stopColor="#8CD39B" stopOpacity="0.95" />
-              <Stop offset="1" stopColor="#8CD39B" stopOpacity="0" />
-            </RadialGradient>
-            <RadialGradient id="phoneG2" cx="78%" cy="78%" r="60%">
-              <Stop offset="0" stopColor="#F29A5C" stopOpacity="0.95" />
-              <Stop offset="1" stopColor="#F29A5C" stopOpacity="0" />
-            </RadialGradient>
-            <RadialGradient id="phoneG3" cx="55%" cy="45%" r="45%">
-              <Stop offset="0" stopColor="#FFD27A" stopOpacity="0.6" />
-              <Stop offset="1" stopColor="#FFD27A" stopOpacity="0" />
-            </RadialGradient>
-          </Defs>
-          <Rect x="0" y="0" width="100%" height="100%" fill="#35604F" />
-          <Rect x="0" y="0" width="100%" height="100%" fill="url(#phoneG1)" />
-          <Rect x="0" y="0" width="100%" height="100%" fill="url(#phoneG2)" />
-          <Rect x="0" y="0" width="100%" height="100%" fill="url(#phoneG3)" />
-        </Svg>
-        <View style={styles.phoneIsland} />
-        <Text style={styles.phoneDate}>{dateLabel}</Text>
-        <Text style={styles.phoneClock}>9:41</Text>
-        <Text style={styles.phoneCenterLabel}>Центр уведомлений</Text>
-        {/* зачем: пуш — «целиком или никак» (flexShrink 0, вне клипа); ужимаются
-            и режутся только плейсхолдеры в своей зоне (flex:1, overflow hidden).
-            Кольца стоят в потоке ПОСЛЕДНИМИ и никогда не наезжают на карточки. */}
-        <View style={styles.phoneFeed}>
-          <Animated.View style={[styles.phonePush, pushStyle]}>
-            <Image source={APP_ICON_SOURCE} style={styles.phonePushIcon} resizeMode="cover" accessible={false} />
-            <View style={styles.phonePushCopy}>
-              <View style={styles.phonePushTitleRow}>
-                <Text style={styles.phonePushTitle} numberOfLines={1}>{push.title}</Text>
-                <Text style={styles.phonePushWhen}>{push.when ?? 'сейчас'}</Text>
-              </View>
-              <Text style={styles.phonePushBody} numberOfLines={2}>{push.body}</Text>
-            </View>
-          </Animated.View>
-          <View style={styles.phonePlaceholders}>
-            {PHONE_PLACEHOLDER_COUNT >= 1 ? (
-              <Animated.View style={[styles.phonePlaceholder, styles.phonePlaceholderFirst, { opacity: rest }]} />
-            ) : null}
-            {PHONE_PLACEHOLDER_COUNT >= 2 ? (
-              <Animated.View style={[styles.phonePlaceholder, styles.phonePlaceholderSecond, { opacity: rest }]} />
-            ) : null}
+    <View style={[styles.phoneStage, { width: phoneWidth }]} testID={testID}>
+      <View style={[styles.phoneBezel, { width: phoneWidth, height: phoneHeight }]}>
+        <View style={styles.phoneScreen}>
+          <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
+            <Defs>
+              <RadialGradient id="phoneG1" cx="30%" cy="25%" r="55%">
+                <Stop offset="0" stopColor="#8CD39B" stopOpacity="0.95" />
+                <Stop offset="1" stopColor="#8CD39B" stopOpacity="0" />
+              </RadialGradient>
+              <RadialGradient id="phoneG2" cx="78%" cy="78%" r="60%">
+                <Stop offset="0" stopColor="#F29A5C" stopOpacity="0.95" />
+                <Stop offset="1" stopColor="#F29A5C" stopOpacity="0" />
+              </RadialGradient>
+              <RadialGradient id="phoneG3" cx="55%" cy="45%" r="45%">
+                <Stop offset="0" stopColor="#FFD27A" stopOpacity="0.6" />
+                <Stop offset="1" stopColor="#FFD27A" stopOpacity="0" />
+              </RadialGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill="#35604F" />
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#phoneG1)" />
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#phoneG2)" />
+            <Rect x="0" y="0" width="100%" height="100%" fill="url(#phoneG3)" />
+          </Svg>
+          {/* Статус-бар справа: сигнал/Wi-Fi/батарея — как на референсе Bevel.
+              Слева на реальном iOS-локскрине оператора нет, поэтому не рисуем. */}
+          <View style={styles.phoneStatusRow} pointerEvents="none">
+            <Ionicons name="cellular" size={15} color="rgba(255,255,255,0.92)" />
+            <Ionicons name="wifi" size={15} color="rgba(255,255,255,0.92)" />
+            <Ionicons name="battery-half" size={17} color="rgba(255,255,255,0.92)" />
           </View>
+          <View style={styles.phoneIsland} />
+          <Text style={styles.phoneDate}>{dateLabel}</Text>
+          <Text style={styles.phoneClock}>{timeLabel}</Text>
+          <Text style={styles.phoneCenterLabel}>Центр уведомлений</Text>
         </View>
-        <Animated.View style={[styles.phoneRingsRow, ringsStyle]}>
-          {rings.map((value, index) => (
-            <Svg key={index} width={44} height={44} viewBox="0 0 44 44">
-              <Circle cx={22} cy={22} r={18} stroke="rgba(255,255,255,0.28)" strokeWidth={5} fill="none" />
-              <Circle
-                cx={22}
-                cy={22}
-                r={18}
-                stroke="#FFFFFF"
-                strokeWidth={5}
-                strokeLinecap="round"
-                fill="none"
-                strokeDasharray={`${PHONE_RING_CIRCUMFERENCE}`}
-                strokeDashoffset={PHONE_RING_CIRCUMFERENCE * (1 - Math.min(1, Math.max(0, value)))}
-                transform="rotate(-90 22 22)"
-              />
-            </Svg>
-          ))}
+        {/* зачем: рендерится ВНЕ phoneScreen (у него overflow:hidden под скругление
+            и градиент) — position:absolute с отрицательными left/right, чтобы карточки
+            физически выступали за боковые края корпуса, как на референсе Bevel. */}
+        <Animated.View style={[styles.phonePush, pushStyle]} pointerEvents="none">
+          <Image source={APP_ICON_SOURCE} style={styles.phonePushIcon} resizeMode="cover" accessible={false} />
+          <View style={styles.phonePushCopy}>
+            <View style={styles.phonePushTitleRow}>
+              <Text style={styles.phonePushTitle} numberOfLines={1}>{push.title}</Text>
+              <Text style={styles.phonePushWhen}>{push.when ?? 'сейчас'}</Text>
+            </View>
+            <Text style={styles.phonePushBody} numberOfLines={2}>{push.body}</Text>
+          </View>
+        </Animated.View>
+        {/* Две доп. плашки под главным пушем — «остальной центр уведомлений»
+            (Bevel-референс: зелёный чат-пузырь и розовое сердце). Свои иконки
+            и цвета, содержание — про Phraseman, а не системные Messages/Health. */}
+        <Animated.View style={[styles.phoneStackCard, styles.phoneStackCardOne, stackCardStyle(cardOneAnim)]} pointerEvents="none">
+          <View style={[styles.phoneStackIcon, { backgroundColor: '#34C759' }]}>
+            <Ionicons name="chatbubble" size={15} color="#FFFFFF" />
+          </View>
+          <View style={styles.phoneStackBar} />
+        </Animated.View>
+        <Animated.View style={[styles.phoneStackCard, styles.phoneStackCardTwo, stackCardStyle(cardTwoAnim)]} pointerEvents="none">
+          <View style={[styles.phoneStackIcon, { backgroundColor: '#FF375F' }]}>
+            <Ionicons name="heart" size={14} color="#FFFFFF" />
+          </View>
+          <View style={styles.phoneStackBar} />
         </Animated.View>
       </View>
     </View>
@@ -1477,15 +1658,17 @@ const BenefitGlyph = memo(function BenefitGlyph({ id, size = 24, color = '#0C111
 // Строка выгоды: плитка-иконка + заголовок + подпись (подпись — часть макета
 // Bevel, владелец разрешил именно здесь). Каскадный вход, native driver.
 function PaywallBenefitRow({ glyph, title, caption, index = 0 }: { glyph: BenefitGlyphId; title: string; caption: string; index?: number }) {
+  const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (reduceMotion) { enter.setValue(1); return; }
     const a = Animated.sequence([
-      Animated.delay(120 + index * 70),
-      Animated.timing(enter, { toValue: 1, duration: 300, useNativeDriver: true }),
+      Animated.delay(LUM.ladder[Math.min(index + 1, LUM.ladder.length - 1)] ?? LUM.ladder[LUM.ladder.length - 1]),
+      Animated.timing(enter, { toValue: 1, duration: LUM.contentMs, useNativeDriver: true }),
     ]);
     a.start();
     return () => a.stop();
-  }, [enter, index]);
+  }, [enter, index, reduceMotion]);
   const translateY = enter.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
   return (
     <Animated.View style={[styles.benefitRow, { opacity: enter, transform: [{ translateY }] }]}>
@@ -1524,14 +1707,16 @@ function PaywallPlanTile({
   onPress: (plan: PaywallPlan) => void;
   testID: string;
 }) {
+  const reduceMotion = useReduceMotion();
   const check = useRef(new Animated.Value(selected ? 1 : 0)).current;
   useEffect(() => {
     if (!selected) { check.setValue(0); return; }
+    if (reduceMotion) { check.setValue(1); return; }
     check.setValue(0.6);
-    const a = Animated.spring(check, { toValue: 1, friction: 5, tension: 140, useNativeDriver: true });
+    const a = Animated.spring(check, { toValue: 1, ...SUITE.pulse, useNativeDriver: true });
     a.start();
     return () => a.stop();
-  }, [check, selected]);
+  }, [check, reduceMotion, selected]);
   return (
     <Pressable
       testID={testID}
@@ -1547,11 +1732,11 @@ function PaywallPlanTile({
             длинная валюта (₺1.299,99 / R$ 199,90) — кегль 18 вместо 19, а не
             обрез и не сжатие шрифта. */}
         {loading ? <View style={styles.planTileSkeletonPrice} /> : (
-          <Text style={[styles.planTilePrice, price.length > 10 && styles.planTilePriceLong]} numberOfLines={1}>{price}</Text>
+          <Text style={[styles.planTilePrice, price.length > 10 && styles.planTilePriceLong]}>{price}</Text>
         )}
       </View>
       <View style={styles.planTileCaptionSlot}>
-        {loading ? <View style={styles.planTileSkeletonCaption} /> : caption ? <Text style={styles.planTileCaption} numberOfLines={1}>{caption}</Text> : null}
+        {loading ? <View style={styles.planTileSkeletonCaption} /> : caption ? <Text style={styles.planTileCaption}>{caption}</Text> : null}
       </View>
       <View style={[styles.planRadio, selected && styles.planRadioSelected]}>
         {selected ? (
@@ -1573,7 +1758,7 @@ function PaywallPlanTile({
 function ReassureLine({ label, dark = false, style }: { label: string; dark?: boolean; style?: StyleProp<ViewStyle> }) {
   return (
     <View style={[styles.reassureRow, style]}>
-      <Ionicons name="checkmark" size={15} color={dark ? 'rgba(255,255,255,0.62)' : '#7C8394'} />
+      <Ionicons name="checkmark" size={15} color={dark ? 'rgba(255,255,255,0.78)' : '#5B6270'} />
       <Text style={[styles.reassureText, dark && styles.reassureTextDark]}>{label}</Text>
     </View>
   );
@@ -1642,6 +1827,9 @@ function MoreOffersSheet({
   restoring,
   purchasing,
   trialDays,
+  offeringsFailed,
+  selectedAvailable,
+  onRestoreFocus,
 }: {
   visible: boolean;
   selected: PaywallPlan;
@@ -1656,47 +1844,73 @@ function MoreOffersSheet({
   loading: boolean;
   restoring: boolean;
   purchasing: boolean;
+  offeringsFailed: boolean;
+  selectedAvailable: boolean;
+  onRestoreFocus: () => void;
   /** null — стор ответил, что триала нет: CTA «Продолжить», без обещания дней. */
   trialDays: number | null;
 }) {
   const insets = useStableSafeAreaInsets();
+  const reduceMotion = useReduceMotion();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const [mounted, setMounted] = useState(visible);
   const scrim = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_OFFSCREEN_Y)).current;
   const closingRef = useRef(false);
   const pendingRef = useRef<OffersAction | null>(null);
+  const titleRef = useRef<Text | null>(null);
 
   useEffect(() => {
     if (visible) { closingRef.current = false; setMounted(true); }
   }, [visible]);
   useEffect(() => {
     if (!mounted) return;
+    const task = InteractionManager.runAfterInteractions(() => {
+      const node = findNodeHandle(titleRef.current);
+      if (node) AccessibilityInfo.setAccessibilityFocus(node);
+    });
+    return () => task.cancel();
+  }, [mounted]);
+  useEffect(() => {
+    if (!mounted) return;
+    if (reduceMotion) {
+      scrim.setValue(1);
+      sheetY.setValue(0);
+      return;
+    }
     scrim.setValue(0);
     sheetY.setValue(SHEET_OFFSCREEN_Y);
     const a = Animated.parallel([
-      Animated.timing(scrim, { toValue: 1, duration: 220, useNativeDriver: true }),
-      Animated.spring(sheetY, { toValue: 0, friction: 9, tension: 70, useNativeDriver: true }),
+      Animated.timing(scrim, { toValue: 1, duration: LUM.backdropMs, useNativeDriver: true }),
+      Animated.spring(sheetY, { toValue: 0, ...LUM.settle, useNativeDriver: true }),
     ]);
     a.start();
     return () => a.stop();
-  }, [mounted, scrim, sheetY]);
+  }, [mounted, reduceMotion, scrim, sheetY]);
 
   const close = useCallback((action?: OffersAction) => {
     if (closingRef.current) return;
     closingRef.current = true;
     pendingRef.current = action ?? null;
+    if (reduceMotion) {
+      setMounted(false);
+      onClose();
+      const pending = pendingRef.current;
+      pendingRef.current = null;
+      if (pending) onAction(pending); else onRestoreFocus();
+      return;
+    }
     Animated.parallel([
-      Animated.timing(scrim, { toValue: 0, duration: 180, useNativeDriver: true }),
-      Animated.timing(sheetY, { toValue: SHEET_OFFSCREEN_Y, duration: 200, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
+      Animated.timing(scrim, { toValue: 0, duration: LUM.exitMs, useNativeDriver: true }),
+      Animated.timing(sheetY, { toValue: SHEET_OFFSCREEN_Y, duration: LUM.exitMs, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
     ]).start(() => {
       setMounted(false);
       onClose();
       const pending = pendingRef.current;
       pendingRef.current = null;
-      if (pending) onAction(pending);
+      if (pending) onAction(pending); else onRestoreFocus();
     });
-  }, [onAction, onClose, scrim, sheetY]);
+  }, [onAction, onClose, onRestoreFocus, reduceMotion, scrim, sheetY]);
 
   useEffect(() => {
     if (!visible && mounted && !closingRef.current) close();
@@ -1719,8 +1933,13 @@ function MoreOffersSheet({
       <Animated.View style={[styles.offersScrim, { opacity: scrim }]}>
         <Pressable style={StyleSheet.absoluteFill} onPress={() => close()} accessibilityLabel="Закрыть" accessibilityRole="button" />
       </Animated.View>
-      <Animated.View style={[styles.offersSheet, { paddingBottom: Math.max(bottomInset, 16) + 6, transform: [{ translateY: sheetY }] }]}>
+      <Animated.View
+        style={[styles.offersSheet, { paddingBottom: Math.max(bottomInset, 16) + 6, transform: [{ translateY: sheetY }] }]}
+        accessibilityViewIsModal
+        onAccessibilityEscape={() => close()}
+      >
         <View style={styles.offersCloseRow}>
+          <Text ref={titleRef} style={styles.offersTitle} accessibilityRole="header">Больше предложений</Text>
           <Pressable
             testID="onboarding-paywall-offers-close"
             onPressIn={() => { void hapticTap(); }}
@@ -1733,6 +1952,11 @@ function MoreOffersSheet({
             <Ionicons name="close" size={18} color="#FFFFFF" />
           </Pressable>
         </View>
+        <ScrollView
+          style={styles.offersScroll}
+          contentContainerStyle={styles.offersScrollContent}
+          showsVerticalScrollIndicator={false}
+        >
         <View style={styles.offerList}>
           <OfferRow
             testID="onboarding-paywall-offer-yearly"
@@ -1771,12 +1995,14 @@ function MoreOffersSheet({
           testID="onboarding-paywall-offers-continue"
           onPressIn={() => { if (!loading && !purchasing) void hapticTap(); }}
           onPress={() => close('continue')}
-          disabled={loading || purchasing}
-          style={({ pressed }) => [styles.offersCta, pressed && styles.pressed, loading && styles.disabled]}
+          disabled={loading || purchasing || offeringsFailed || !selectedAvailable}
+          style={({ pressed }) => [styles.offersCta, pressed && styles.pressed, (loading || offeringsFailed || !selectedAvailable) && styles.disabled]}
           accessibilityRole="button"
-          accessibilityState={{ disabled: loading, busy: purchasing }}
+          accessibilityState={{ disabled: loading || offeringsFailed || !selectedAvailable, busy: purchasing }}
         >
-          {purchasing ? <ActivityIndicator size="small" color="#17191F" /> : <Text style={styles.offersCtaText}>{ctaLabel}</Text>}
+          {purchasing ? <ActivityIndicator size="small" color="#17191F" /> : (
+            <Text style={styles.offersCtaText}>{offeringsFailed ? 'Не удалось загрузить предложения' : ctaLabel}</Text>
+          )}
         </Pressable>
         <ReassureLine dark label={reassureLabel} style={styles.offersReassure} />
         {/* Второй выход с пейвола (владелец): продолжить без покупки — онбординг
@@ -1795,16 +2021,17 @@ function MoreOffersSheet({
         </Pressable>
         {/* Сервисные ссылки — то, что раньше жило в светлом меню «···». */}
         <View style={styles.offersLinksRow}>
-          <Pressable testID="onboarding-paywall-menu-promo" onPress={() => close('promo')} accessibilityRole="button" hitSlop={8}>
+          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-promo" onPress={() => close('promo')} accessibilityRole="button">
             <Text style={styles.offersLinkText}>Промокод</Text>
           </Pressable>
-          <Pressable testID="onboarding-paywall-menu-referral" onPress={() => close('referral')} accessibilityRole="button" hitSlop={8}>
+          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-menu-referral" onPress={() => close('referral')} accessibilityRole="button">
             <Text style={styles.offersLinkText}>Код друга</Text>
           </Pressable>
-          <Pressable testID="onboarding-paywall-restore" onPress={() => close('restore')} disabled={restoring} accessibilityRole="button" hitSlop={8}>
+          <Pressable style={styles.offersLinkButton} testID="onboarding-paywall-restore" onPress={() => close('restore')} disabled={restoring} accessibilityRole="button">
             <Text style={styles.offersLinkText}>{restoring ? 'Восстанавливаем…' : 'Восстановить'}</Text>
           </Pressable>
         </View>
+        </ScrollView>
       </Animated.View>
     </Modal>
   );
@@ -1821,15 +2048,17 @@ const CONFETTI_PIECES = Array.from({ length: 24 }, (_, i) => ({
   w: 6 + (i % 3) * 2,
   h: 9 + (i % 2) * 4,
   color: CONFETTI_COLORS[i % 6],
-  delay: (i * 53) % 480,
-  duration: 1500 + ((i * 71) % 800),
+  delay: (i * LUM.heroFadeMs) % LUM.rimMs,
+  duration: SUITE.idleFloatMs + ((i * LUM.ladder[1]) % LUM.rimMs),
   spin: (i % 2 ? 1 : -1) * (240 + ((i * 97) % 360)),
   sway: (i % 2 ? 1 : -1) * (8 + ((i * 13) % 12)),
   fall: 260 + ((i * 29) % 80),
 }));
 function ConfettiBurst() {
+  const reduceMotion = useReduceMotion();
   const values = useRef(CONFETTI_PIECES.map(() => new Animated.Value(0))).current;
   useEffect(() => {
+    if (reduceMotion) return;
     const a = Animated.parallel(CONFETTI_PIECES.map((p, i) => Animated.timing(values[i], {
       toValue: 1,
       duration: p.duration,
@@ -1839,7 +2068,8 @@ function ConfettiBurst() {
     })));
     a.start();
     return () => a.stop();
-  }, [values]);
+  }, [reduceMotion, values]);
+  if (reduceMotion) return null;
   return (
     <View pointerEvents="none" style={styles.confettiLayer}>
       {CONFETTI_PIECES.map((p, i) => (
@@ -1871,14 +2101,16 @@ function ConfettiBurst() {
  *  сжатие в useEffect давало 1-кадровую вспышку и срабатывало на маунт с
  *  checked=true. Первый рендер не анимируем (mountedRef). */
 function ConsentRing({ checked, pop }: { checked: boolean; pop: Animated.Value }) {
+  const reduceMotion = useReduceMotion();
   const mountedRef = useRef(false);
   useEffect(() => {
     if (!mountedRef.current) { mountedRef.current = true; return; }
     if (!checked) return;
-    const a = Animated.spring(pop, { toValue: 1, friction: 5, tension: 160, useNativeDriver: true });
+    if (reduceMotion) { pop.setValue(1); return; }
+    const a = Animated.spring(pop, { toValue: 1, ...SUITE.pulse, useNativeDriver: true });
     a.start();
     return () => a.stop();
-  }, [checked, pop]);
+  }, [checked, pop, reduceMotion]);
   return (
     <Animated.View style={[styles.consentDecisionIcon, checked && styles.consentDecisionIconOn, { transform: [{ scale: pop }] }]}>
       {checked ? <Ionicons name="checkmark" size={14} color="#FFFFFF" /> : null}
@@ -1887,22 +2119,28 @@ function ConsentRing({ checked, pop }: { checked: boolean; pop: Animated.Value }
 }
 
 function SuccessCheck() {
+  const reduceMotion = useReduceMotion();
   const enter = useRef(new Animated.Value(0)).current;
   const tick = useRef(new Animated.Value(0)).current;
   useEffect(() => {
+    if (reduceMotion) {
+      enter.setValue(1);
+      tick.setValue(1);
+      return;
+    }
     const a = Animated.parallel([
-      Animated.spring(enter, { toValue: 1, friction: 5, tension: 90, delay: 100, useNativeDriver: true }),
-      Animated.spring(tick, { toValue: 1, friction: 6, tension: 120, delay: 300, useNativeDriver: true }),
+      Animated.spring(enter, { toValue: 1, ...SUITE.hero, delay: LUM.heroFadeMs, useNativeDriver: true }),
+      Animated.spring(tick, { toValue: 1, ...SUITE.pulse, delay: LUM.contentMs, useNativeDriver: true }),
     ]);
     a.start();
     return () => a.stop();
-  }, [enter, tick]);
+  }, [enter, reduceMotion, tick]);
   return (
     <View style={styles.successWrap}>
       <View style={styles.successGlow} />
       <Animated.View style={[styles.successCircle, { opacity: enter, transform: [{ scale: enter.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }) }] }]}>
         <Animated.View style={{ transform: [{ scale: tick }] }}>
-          <Ionicons name="checkmark" size={42} color="#FFFFFF" />
+          <Ionicons name="checkmark" size={42} color="#07110A" />
         </Animated.View>
       </Animated.View>
     </View>
@@ -1916,6 +2154,12 @@ function CleanOnboarding({
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
+  const reduceMotion = useReduceMotion();
+  // зачем (владелец, 2026-08-23): на низких экранах (iPhone SE/8) элементы
+  // налезали друг на друга. Экраны, кладущие текст в children (а не в проп
+  // subtitle), ужимают его этим флагом — ScreenFrame их стилями не управляет.
+  const { height: onboardingWindowHeight } = useWindowDimensions();
+  const shortScreen = isShortScreen(onboardingWindowHeight);
   // зачем: подтверждение только что выполненного удаления аккаунта. Забираем
   // пометку в инициализаторе useState — ровно один раз за монтирование, ДО
   // первого кадра, поэтому плашка не «доезжает» вторым кадром и не дёргает
@@ -1926,6 +2170,7 @@ function CleanOnboarding({
   const [authMode, setAuthMode] = useState(false);
   const [authLoading, setAuthLoading] = useState<AuthProviderId | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [authSlow, setAuthSlow] = useState(false);
   // зачем: почта провайдера, под которой аккаунта не нашлось. Не null → показываем
   // вопрос «такого аккаунта нет, создать?» вместо кнопок входа. Пустая строка —
   // валидное значение (провайдер не отдал email), поэтому признак именно null/не-null.
@@ -1936,6 +2181,7 @@ function CleanOnboarding({
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
+  const [notificationChoice, setNotificationChoice] = useState<OnboardingNotificationChoice | null>(null);
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
@@ -1953,7 +2199,10 @@ function CleanOnboarding({
   const [codeValue, setCodeValue] = useState('');
   const [codeBusy, setCodeBusy] = useState(false);
   const [codeFeedback, setCodeFeedback] = useState<{ ok: boolean; text: string } | null>(null);
-  const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
+  const paywallMenuButtonRef = useRef<View | null>(null);
+  const codeInputRef = useRef<TextInput | null>(null);
+  const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(() =>
+    resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
   // зачем: оба рубильника читаются как обычные kill-switch'и и обновляются по
   // тому же событию remote_config_changed, что и список экранов — владелец
   // выключает их из админки без релиза, живые сессии подхватывают за секунды.
@@ -1963,6 +2212,35 @@ function CleanOnboarding({
   );
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
+
+  const restorePaywallMenuFocus = useCallback(() => {
+    InteractionManager.runAfterInteractions(() => {
+      const node = findNodeHandle(paywallMenuButtonRef.current);
+      if (node) AccessibilityInfo.setAccessibilityFocus(node);
+    });
+  }, []);
+  const focusCodeInput = useCallback(() => {
+    InteractionManager.runAfterInteractions(() => {
+      codeInputRef.current?.focus();
+      const node = findNodeHandle(codeInputRef.current);
+      if (node) AccessibilityInfo.setAccessibilityFocus(node);
+    });
+  }, []);
+  const closeCodeSheet = useCallback(() => {
+    if (codeBusy) return;
+    setCodeSheet(null);
+    restorePaywallMenuFocus();
+  }, [codeBusy, restorePaywallMenuFocus]);
+
+  useEffect(() => {
+    if (legalError) AccessibilityInfo.announceForAccessibility(legalError);
+  }, [legalError]);
+  useEffect(() => {
+    if (codeFeedback) AccessibilityInfo.announceForAccessibility(codeFeedback.text);
+  }, [codeFeedback]);
+  useEffect(() => {
+    if (authError) AccessibilityInfo.announceForAccessibility(authError);
+  }, [authError]);
 
   const selectedLevel = level ?? 'a2';
   const {
@@ -1979,6 +2257,7 @@ function CleanOnboarding({
     purchasing: paywallPurchasing,
     offeringsFailed: paywallOfferingsFailed,
     ctaDisabled: paywallCtaDisabled,
+    selectedAvailable: paywallSelectedAvailable,
     reloadOfferings,
     handleRestore,
     handlePurchase: paywallHandlePurchase,
@@ -2051,7 +2330,7 @@ function CleanOnboarding({
 
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
-      setRemoteEnabledSteps(getEnabledOnboardingSteps());
+      setRemoteEnabledSteps(resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
       setSkipEnabled(getRemoteBool('onboarding_skip_enabled'));
       setWelcomeSheetEnabled(getRemoteBool('onboarding_welcome_sheet_enabled'));
     });
@@ -2077,6 +2356,14 @@ function CleanOnboarding({
 
   useEffect(() => {
     let active = true;
+    void readOnboardingNotificationChoice().then((choice) => {
+      if (active) setNotificationChoice(choice);
+    });
+    return () => { active = false; };
+  }, []);
+
+  useEffect(() => {
+    let active = true;
     if (startAtNameStep) {
       // Возврат после покупки (событие onboarding_paywall_completed): согласия и
       // возраст уже собраны шагом «name» ДО пейвола, показывать нечего —
@@ -2097,7 +2384,7 @@ function CleanOnboarding({
         if (DISCOVERY_OPTIONS.some((item) => item.id === savedSource)) setSource(savedSource as DiscoverySource);
         const savedStep = normalizedStoredStep(map.get(STEP_KEY) ?? null);
         const savedVersion = map.get(FLOW_VERSION_KEY);
-        if (savedVersion === CLEAN_ONBOARDING_FLOW_VERSION && savedStep) {
+        if (!FORCE_ONBOARDING_QA && savedVersion === CLEAN_ONBOARDING_FLOW_VERSION && savedStep) {
           setStep(resolveOnboardingStep(enabledOrder, savedStep, 'current-or-forward'));
         } else {
           void persistStep('welcome');
@@ -2134,21 +2421,20 @@ function CleanOnboarding({
     if (authLoading) return;
     setAuthLoading(provider);
     setAuthError(null);
+    setAuthSlow(false);
     try {
-      const result = await withOnboardingAuthUiDeadline(signInWithProvider(provider));
-      if (result.result === 'cancelled') return;
+      const result = await withOnboardingAuthSlowNotice(
+        signInWithProvider(provider),
+        () => setAuthSlow(true),
+      );
+      if (result.result === 'cancelled') {
+        setAuthSlow(false);
+        return;
+      }
       if (result.result === 'error') {
-        setAuthError(result.error === 'account_delete_pending'
-          ? 'Этот аккаунт ещё удаляется. Попробуй позже.'
-          // зачем: удаление аккаунта двухфазное — Firebase-юзер сначала блокируется
-          // (disabled), а стирается фоновым воркером через 2-3 минуты. Вход в это окно
-          // возвращает auth/user-disabled и раньше падал в общую заглушку «не получилось
-          // войти» — владелец удалил аккаунт, попробовал войти и не понял, что происходит.
-          : result.error.includes('user-disabled')
-            ? 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.'
-            : result.error.includes('google_signin_timeout')
-              ? 'Google не ответил вовремя. Закрой окно входа, вернись в приложение и попробуй ещё раз.'
-              : 'Не получилось войти. Попробуй ещё раз.');
+        // Удаление аккаунта двухфазное (disabled → стирание через 2-3 минуты), вход в
+        // это окно даёт auth/user-disabled — describeAuthError говорит об этом прямо.
+        setAuthError(describeAuthError(result.error));
         return;
       }
       // зачем: юзер нажал «У меня уже есть аккаунт» — он ЗАЯВИЛ, что возвращается.
@@ -2175,10 +2461,9 @@ function CleanOnboarding({
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
-      setAuthError(detail.includes('signin_deadline-exceeded')
-        ? 'Вход занимает слишком много времени. Вернись в приложение и попробуй ещё раз.'
-        : 'Не получилось войти. Попробуй ещё раз.');
+      setAuthError(describeAuthError(detail));
     } finally {
+      setAuthSlow(false);
       setAuthLoading(null);
     }
   }, [authLoading, onDone]);
@@ -2191,13 +2476,23 @@ function CleanOnboarding({
     if (authLoading) return;
     setAuthLoading(provider);
     setAuthError(null);
+    setAuthSlow(false);
     try {
-      const result = await withOnboardingAuthUiDeadline(signInWithProvider(provider));
-      if (result.result === 'cancelled') return;
+      const result = await withOnboardingAuthSlowNotice(
+        signInWithProvider(provider),
+        () => setAuthSlow(true),
+      );
+      if (result.result === 'cancelled') {
+        setAuthSlow(false);
+        return;
+      }
       if (result.result === 'error') {
-        setAuthError(result.error.includes('user-disabled')
-          ? 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.'
-          : 'Не получилось войти. Попробуй ещё раз.');
+        // зачем: раньше любой отказ схлопывался в «Не получилось войти» — владелец
+        // ткнул Apple на сейфе, получил ошибку и не смог понять причину. Теперь
+        // причины различаются так же, как на экране «уже есть аккаунт», а в
+        // DEV-сборке под текстом виден сырой код ошибки (native/firebase) —
+        // без него диагностировать вход вслепую невозможно.
+        setAuthError(describeAuthError(result.error));
         return;
       }
       if (result.result === 'created_new') {
@@ -2213,9 +2508,11 @@ function CleanOnboarding({
       ]).catch(() => {});
       await AsyncStorage.removeItem(STEP_KEY).catch(() => {});
       onDone();
-    } catch {
-      setAuthError('Не получилось войти. Попробуй ещё раз.');
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : String(error);
+      setAuthError(describeAuthError(detail));
     } finally {
+      setAuthSlow(false);
       setAuthLoading(null);
     }
   }, [authLoading, go, onDone]);
@@ -2281,7 +2578,7 @@ function CleanOnboarding({
   }, []);
 
   const continueAfterNotificationDialog = useCallback(() => {
-    InteractionManager.runAfterInteractions(() => go('letsBuild'));
+    InteractionManager.runAfterInteractions(() => go('name'));
   }, [go]);
 
   const requestPracticeNotification = useCallback(async () => {
@@ -2292,11 +2589,15 @@ function CleanOnboarding({
         () => ({ granted: false, blocked: false, openedSettings: false }),
       );
       if (granted) {
+        await setOnboardingNotificationChoice('allow').catch(() => {});
+        setNotificationChoice('allow');
         await scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
-        go('letsBuild');
+        go('name');
         return;
       }
       if (blocked) {
+        await setOnboardingNotificationChoice('blocked').catch(() => {});
+        setNotificationChoice('blocked');
         Alert.alert(
           'Напоминание не включилось',
           'Разрешение на уведомления отключено. Включить его можно в настройках телефона.',
@@ -2306,18 +2607,28 @@ function CleanOnboarding({
               text: 'Открыть настройки',
               onPress: () => {
                 Linking.openSettings().catch(() => {});
-                go('letsBuild');
+                go('name');
               },
             },
           ],
         );
         return;
       }
-      go('letsBuild');
+      // Даже обычный отказ в системном диалоге — уже сделанный выбор. Не просим
+      // разрешение второй раз через несколько экранов в этой же сессии.
+      await setOnboardingNotificationChoice('skip').catch(() => {});
+      setNotificationChoice('skip');
+      go('name');
     } finally {
       setNotificationBusy(false);
     }
   }, [continueAfterNotificationDialog, go, lang, notificationBusy, studyTarget]);
+
+  const skipPracticeNotification = useCallback(async () => {
+    await setOnboardingNotificationChoice('skip').catch(() => {});
+    setNotificationChoice('skip');
+    go('name');
+  }, [go]);
 
   const choosePaywallPlan = useCallback((next: PaywallPlan) => {
     selectBillingPlan(next);
@@ -2431,7 +2742,7 @@ function CleanOnboarding({
           });
           // Доступ уже выдан — цены больше не нужны, согласия собраны раньше:
           // завершаем онбординг.
-          setTimeout(() => { setCodeSheet(null); void completeOnboardingRef.current(); }, 900);
+          setTimeout(() => { setCodeSheet(null); void completeOnboardingRef.current(); }, LUM.bloomDriftMs);
           return;
         }
         const text = res.status === 'not_found' ? 'Такого кода нет. Проверь опечатки.'
@@ -2452,7 +2763,7 @@ function CleanOnboarding({
           ok: true,
           text: status === 'applied' ? 'Код друга принят!' : 'Этот аккаунт уже привязан к другу.',
         });
-        setTimeout(() => setCodeSheet(null), 900);
+        setTimeout(() => closeCodeSheet(), LUM.bloomDriftMs);
         return;
       }
       const text = status === 'invalid' ? 'Код выглядит неверно. Проверь опечатки.'
@@ -2465,7 +2776,7 @@ function CleanOnboarding({
     } finally {
       setCodeBusy(false);
     }
-  }, [codeBusy, codeSheet, codeValue]);
+  }, [closeCodeSheet, codeBusy, codeSheet, codeValue]);
 
   const finish = useCallback(async () => {
     if (finishingRef.current || paywallTransitionBusyRef.current) return;
@@ -2606,14 +2917,16 @@ function CleanOnboarding({
       onDone();
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
-      void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
+      if (notificationChoice === 'allow') {
+        void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
+      }
     } catch {
       // Запись не удалась — даём выходу повториться, а не запираем пейвол навсегда.
       completedRef.current = false;
     } finally {
       finishingRef.current = false;
     }
-  }, [lang, onDone, selectedLevel, studyTarget, welcomeSheetEnabled]);
+  }, [lang, notificationChoice, onDone, selectedLevel, studyTarget, welcomeSheetEnabled]);
   const completeOnboardingRef = useRef(completeOnboarding);
   completeOnboardingRef.current = completeOnboarding;
 
@@ -2718,7 +3031,11 @@ function CleanOnboarding({
               {!googleAvailable && !appleAvailable ? (
                 <Text style={styles.errorText}>Вход через Google или Apple недоступен на этом устройстве.</Text>
               ) : null}
-              {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
+              {authSlow ? (
+                <Text style={styles.errorText} accessibilityLiveRegion="polite">
+                  Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.
+                </Text>
+              ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
               <SecondaryButton
                 label="Назад"
                 onPress={() => { setAuthMode(false); setAuthError(null); }}
@@ -2787,7 +3104,11 @@ function CleanOnboarding({
               onPress={() => { void authFromPrivacy('google'); }}
             />
           ) : null}
-          {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
+          {authSlow ? (
+            <Text style={styles.errorText} accessibilityLiveRegion="polite">
+              Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.
+            </Text>
+          ) : authError ? <Text style={styles.errorText} accessibilityLiveRegion="polite">{authError}</Text> : null}
           <SecondaryButton label="Позже" onPress={() => go('niceToMeet')} testID="onboarding-privacy-later" />
         </>
       )}
@@ -2893,7 +3214,7 @@ function CleanOnboarding({
   const renderPromise = () => (
     <ScreenFrame
       step="promise"
-      title="Ты заговоришь. Это устроено так."
+      title="Так готовые фразы переходят в речь."
       plainTitle
       subtitle="Каждое повторение приходит в момент, когда ты почти забыл — так фразы остаются."
       onBack={back}
@@ -2916,7 +3237,6 @@ function CleanOnboarding({
       <Text style={styles.improveTitle}>Помоги сделать Phraseman лучше</Text>
       <Text style={styles.improveBody}>
         Мы видим только цифры: где урок даётся легко, а где все спотыкаются.
-        Ни имени, ни голоса — ничего личного.
       </Text>
     </ScreenFrame>
   );
@@ -2933,7 +3253,7 @@ function CleanOnboarding({
           <Pressable
             testID="onboarding-notifications-skip"
             onPressIn={() => { void hapticTap(); }}
-            onPress={() => go('letsBuild')}
+            onPress={() => { void skipPracticeNotification(); }}
             style={styles.textButton}
             accessibilityRole="button"
           >
@@ -2941,44 +3261,39 @@ function CleanOnboarding({
           </Pressable>
         </>
       }
+      phoneBackdrop={
+        <PhoneMock
+          push={{ title: 'Пора повторить', body: '5 фраз ждут — 3 минуты', when: 'сейчас' }}
+          testID="onboarding-notifications-phone"
+        />
+      }
     >
-      <Ionicons name="notifications-outline" size={40} color="#7C8394" style={styles.notificationsBell} />
-      <Text style={styles.sectionTitle}>Напомним, когда пора</Text>
-      <Text style={[styles.screenSubtitle, styles.screenSubtitleNotifications]}>Короткое напоминание в удобное время — и фразы не забываются.</Text>
-      <PhoneMock
-        push={{ title: 'Пора повторить', body: '5 фраз ждут — 3 минуты', when: 'сейчас' }}
-        testID="onboarding-notifications-phone"
-      />
-    </ScreenFrame>
-  );
-
-  // Пустой экран-переход (Bevel «Now, let's build…», кадр 8): одна строка по центру.
-  const renderLetsBuild = () => (
-    <ScreenFrame
-      step="letsBuild"
-      onBack={back}
-      center
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('name')} testID="onboarding-lets-build-continue" />}
-    >
-      <LetsBuildTitle />
+      <Ionicons name="notifications-outline" size={40} color="#5B6270" style={styles.notificationsBell} />
+      <Text style={[styles.sectionTitle, shortScreen && styles.sectionTitleShort]}>Напомним, когда пора</Text>
+      <Text style={[styles.screenSubtitle, styles.screenSubtitleNotifications, shortScreen && styles.screenSubtitleShort]}>Короткое напоминание в удобное время — и фразы не забываются.</Text>
     </ScreenFrame>
   );
 
   // Честность до цен (Bevel, кадр 10): тот же макет телефона с пушем «пробный
   // период заканчивается — отмени до {дата}», под кнопкой «сейчас ничего не
-  // спишем». Триал 3 дня (владелец), дата — сегодня + trialDays.
+  // спишем». Длительность берётся только из подтверждённой стором trial-фазы.
   const renderTrialReminder = () => {
     // Стор ответил «триала нет» → пуш без даты и без обещания «не спишем».
-    const trialDays = resolveEffectiveTrialDays(paywallTrialDays, paywallLoading, paywallOfferingsFailed);
+    const trialDays = paywallTrialDays;
     // Заголовок в ОДНУ строку на 140pt; «не спишем» уже говорит ReassureLine
     // под кнопкой — в теле пуша только дата.
-    const pushBody = trialDays
-      ? `Отмени до ${formatRuDateLong(addDays(new Date(), trialDays))}`
-      : 'Напомним заранее — отменить можно в любой момент';
+    // зачем 2026-08-17: дословный перевод текста Bevel («Free trial ending soon» /
+    // «Cancel before {дата} to avoid being charged.») — владелец забраковал прежнее
+    // «Отмени до {дата}» как обрывок без причины (отмени ЗАЧЕМ?).
+    const reminderEnabled = notificationChoice === 'allow';
+    const pushTitle = trialDays && reminderEnabled ? 'Пробный период скоро закончится' : 'Условия подписки';
+    const pushBody = trialDays && reminderEnabled
+      ? `Отмени до ${formatRuDateLong(addDays(new Date(), trialDays))}, чтобы не списали деньги.`
+      : 'Точную цену и период увидишь перед подтверждением покупки.';
     return (
       <ScreenFrame
         step="trialReminder"
-        title={trialDays ? 'Напомним до конца пробного' : 'Напомним перед списанием'}
+        title={trialDays && reminderEnabled ? 'Напомним до конца пробного' : 'Перед покупкой всё проверим'}
         plainTitle
         onBack={back}
         footer={(
@@ -2989,17 +3304,22 @@ function CleanOnboarding({
               loading={paywallBusy}
               testID="onboarding-trial-reminder-continue"
             />
-            <ReassureLine label={trialDays ? 'Сейчас ничего не спишем' : 'Отмена в любой момент'} />
+            <ReassureLine label={trialDays ? 'Сейчас ничего не спишем' : 'Сначала увидишь точные условия'} />
           </>
         )}
-      >
-        <View style={styles.trialPhoneWrap}>
+        phoneBackdrop={
           <PhoneMock
-            push={{ title: 'Конец пробного ⏰', body: pushBody, when: 'сейчас' }}
-            pushDelayMs={320}
+            push={{ title: pushTitle, body: pushBody, when: 'сейчас' }}
+            pushDelayMs={LUM.ladder[3]}
             testID="onboarding-trial-reminder-phone"
           />
-        </View>
+        }
+      >
+        <Text style={[styles.screenSubtitle, shortScreen && styles.screenSubtitleShort]}>
+          {trialDays
+            ? `Попробуй Plus бесплатно ${trialDays} ${pluralDays(trialDays)}. ${reminderEnabled ? 'Мы напомним заранее, чтобы ты сам решил, продлевать ли доступ.' : 'Ты сам решишь, продлевать ли доступ; включить напоминания можно позже в настройках.'}`
+            : 'Перед подтверждением покажем точную цену, период оплаты и условия отмены.'}
+        </Text>
       </ScreenFrame>
     );
   };
@@ -3021,7 +3341,7 @@ function CleanOnboarding({
     // зачем: обещаем ровно тот триал, который отдал магазин; пока стор молчит
     // (или упал) — дефолт владельца, стор ответил «триала нет» — честное
     // «Продолжить» вместо выдуманных дней.
-    const effectiveTrialDays = resolveEffectiveTrialDays(paywallTrialDays, paywallLoading, paywallOfferingsFailed);
+    const effectiveTrialDays = paywallTrialDays;
     const trialCta = paywallOfferingsFailed
       ? 'Повторить'
       : isLifetime
@@ -3034,6 +3354,19 @@ function CleanOnboarding({
       : effectiveTrialDays
         ? 'Сейчас ничего не спишем'
         : 'Отмена в любой момент';
+    const selectedSubscriptionPrice = selectedBillingPlan === 'yearly' ? yearlyPrice : monthlyPrice;
+    const selectedSubscriptionPeriod = selectedBillingPlan === 'yearly' ? 'год' : 'месяц';
+    const subscriptionDisclosure = isLifetime
+      ? `${lifetimeLabel}. Разовая покупка — без подписки.`
+      : selectedSubscriptionPrice
+        ? buildSubscriptionDisclosureRu({
+            trialDays: effectiveTrialDays,
+            price: selectedSubscriptionPrice,
+            period: selectedSubscriptionPeriod,
+          })
+        : paywallOfferingsFailed
+          ? 'Не удалось получить условия магазина. Нажми «Повторить».'
+          : 'Загружаем точную цену и условия магазина…';
     return (
       <ScreenFrame
         step="onboardingPaywall"
@@ -3044,6 +3377,7 @@ function CleanOnboarding({
         closeLabel="Продолжить бесплатно"
         headerRight={(
           <Pressable
+            ref={paywallMenuButtonRef}
             testID="onboarding-paywall-menu"
             onPressIn={() => { void hapticTap(); }}
             onPress={() => setOffersSheetOpen(true)}
@@ -3070,8 +3404,9 @@ function CleanOnboarding({
               flat
             />
             <ReassureLine label={reassure} />
+            <Text style={styles.subscriptionDisclosure}>{subscriptionDisclosure}</Text>
             <Text style={styles.paywallLegalNote}>
-              Отмена в любой момент в настройках магазина.{' '}
+              Подписка продлевается автоматически. Отменить можно в настройках магазина.{' '}
               <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
               {' '}·{' '}
               <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
@@ -3125,6 +3460,7 @@ function CleanOnboarding({
           selected={selectedBillingPlan}
           onSelect={choosePaywallPlan}
           onClose={() => setOffersSheetOpen(false)}
+          onRestoreFocus={restorePaywallMenuFocus}
           onAction={(action) => {
             if (action === 'continue') void continueFromOnboardingPaywall();
             else if (action === 'free') void completeOnboarding();
@@ -3138,31 +3474,58 @@ function CleanOnboarding({
           lifetimePrice={lifetimeLabel}
           lifetimeAvailable={lifetimeAvailable}
           loading={paywallLoading}
+          offeringsFailed={paywallOfferingsFailed}
+          selectedAvailable={paywallSelectedAvailable}
           restoring={paywallRestoring}
           purchasing={paywallBusy || paywallPurchasing}
           trialDays={effectiveTrialDays}
         />
         {codeSheet ? (
-          <Modal transparent animationType="fade" visible onRequestClose={() => setCodeSheet(null)}>
-            <Pressable style={styles.codeScrim} onPress={() => { if (!codeBusy) setCodeSheet(null); }} accessibilityLabel="Закрыть ввод кода">
-              <Pressable style={styles.codeCard} onPress={() => {}}>
-                <Text style={styles.codeTitle}>{codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}</Text>
+          <Modal
+            transparent
+            animationType={reduceMotion ? 'none' : 'fade'}
+            visible
+            onRequestClose={closeCodeSheet}
+            onShow={focusCodeInput}
+          >
+            <View style={styles.codeScrim}>
+              <Pressable
+                style={StyleSheet.absoluteFill}
+                onPress={closeCodeSheet}
+                accessibilityLabel="Закрыть ввод кода"
+                accessibilityRole="button"
+              />
+              <ScrollView
+                style={styles.codeCardScroll}
+                contentContainerStyle={styles.codeCard}
+                keyboardShouldPersistTaps="handled"
+                accessibilityViewIsModal
+                onAccessibilityEscape={closeCodeSheet}
+              >
+                <Text style={styles.codeTitle} accessibilityRole="header">
+                  {codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}
+                </Text>
                 <TextInput
+                  ref={codeInputRef}
                   testID="onboarding-code-input"
                   style={styles.codeInput}
                   value={codeValue}
                   onChangeText={(next) => { setCodeValue(next); setCodeFeedback(null); }}
                   autoCapitalize="characters"
                   autoCorrect={false}
-                  autoFocus
                   placeholder={codeSheet === 'promo' ? 'PHRASE20' : 'КОД ДРУГА'}
-                  placeholderTextColor="#9AA1B0"
+                  placeholderTextColor="#596170"
                   editable={!codeBusy}
+                  accessibilityLabel={codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}
                   onSubmitEditing={() => { void submitCode(); }}
                   returnKeyType="done"
                 />
                 {codeFeedback ? (
-                  <Text style={[styles.codeFeedback, codeFeedback.ok ? styles.codeFeedbackOk : styles.codeFeedbackError]}>
+                  <Text
+                    style={[styles.codeFeedback, codeFeedback.ok ? styles.codeFeedbackOk : styles.codeFeedbackError]}
+                    accessibilityLiveRegion="polite"
+                    accessibilityRole={codeFeedback.ok ? 'text' : 'alert'}
+                  >
                     {codeFeedback.text}
                   </Text>
                 ) : null}
@@ -3175,14 +3538,15 @@ function CleanOnboarding({
                   flat
                 />
                 <Pressable
-                  onPress={() => { if (!codeBusy) setCodeSheet(null); }}
+                  onPress={closeCodeSheet}
                   style={styles.codeCancel}
                   accessibilityRole="button"
+                  accessibilityState={{ disabled: codeBusy }}
                 >
                   <Text style={styles.codeCancelText}>Отмена</Text>
                 </Pressable>
-              </Pressable>
-            </Pressable>
+              </ScrollView>
+            </View>
           </Modal>
         ) : null}
       </ScreenFrame>
@@ -3275,7 +3639,13 @@ function CleanOnboarding({
           </Pressable>
         </View>
         {/* Слот ошибки зарезервирован всегда — текст появляется без сдвига макета. */}
-        <Text style={styles.finalErrorSlot}>{legalError ?? ' '}</Text>
+        <Text
+          style={styles.finalErrorSlot}
+          accessibilityLiveRegion="polite"
+          accessibilityRole={legalError ? 'alert' : 'text'}
+        >
+          {legalError ?? ' '}
+        </Text>
       </FadeUp>
     </ScreenFrame>
   );
@@ -3292,7 +3662,6 @@ function CleanOnboarding({
       case 'promise': return renderPromise();
       case 'improve': return renderImprove();
       case 'notifications': return renderNotifications();
-      case 'letsBuild': return renderLetsBuild();
       case 'trialReminder': return renderTrialReminder();
       case 'onboardingPaywall': return renderOnboardingPaywall();
       case 'name': return renderName();
@@ -3346,6 +3715,20 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
   },
+  // Слой телефона: под шапкой/скроллом/футером по DOM-порядку (значит и по
+  // z), прижат к нижнему краю ВСЕГО экрана — не к скроллу, не к footer'у.
+  // Телефон целиком помещается (никакого overflow/среза), fade-маска поверх
+  // него имитирует «уход в фон» — не физическая обрезка. Кнопка в footer'е
+  // прозрачна и стоит визуально поверх нижней (уже полупрозрачной) части.
+  phoneBackdropLayer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
   keyboard: {
     flex: 1,
   },
@@ -3364,17 +3747,17 @@ const styles = StyleSheet.create({
   },
   // Макет .circbtn: круг 44 на белом с мягкой тенью.
   backButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: '#FFFFFF' }),
   },
   headerRightSpacer: {
-    width: 44,
-    height: 44,
+    width: 48,
+    height: 48,
   },
   hidden: {
     opacity: 0,
@@ -3410,6 +3793,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
   },
+  // зачем (владелец, 2026-08-23): на экранах ниже 700pt (iPhone SE/8) заголовок
+  // 27/31 занимал две-три строки и вместе с подзаголовком ложился на макет
+  // телефона. Ужимаем сам кегль и вертикальный ритм статическим стилем —
+  // динамическое ужатие шрифта под контейнер в проекте запрещено (лечим
+  // вёрсткой, а не сжатием глифов), и это сторожит контракт онбординга.
+  plainTitleShort: {
+    fontSize: 23,
+    lineHeight: 27,
+    letterSpacing: -0.5,
+    marginBottom: 6,
+  },
+  // Подзаголовок на низком экране: тот же приём, ритм плотнее.
+  screenSubtitleShort: {
+    fontSize: 14.5,
+    lineHeight: 19,
+    marginBottom: 4,
+  },
   // Bevel «md»-заголовок (privacy): 22/28/600.
   plainTitleMd: {
     fontSize: 22,
@@ -3421,7 +3821,7 @@ const styles = StyleSheet.create({
   },
   // Серый подзаголовок под заголовком экрана (privacy, promise).
   screenSubtitle: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 15.5,
     lineHeight: 22,
     fontWeight: '400',
@@ -3448,6 +3848,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: -0.4,
     textAlign: 'center',
+  },
+  // Заголовок children на низком экране — тот же приём, что plainTitleShort.
+  sectionTitleShort: {
+    fontSize: 19,
+    lineHeight: 24,
   },
   // Единый серый подзаголовок (screenSubtitle) — на notifications лишь свой
   // вертикальный ритм: под заголовком в children и над макетом телефона.
@@ -3478,6 +3883,16 @@ const styles = StyleSheet.create({
     height: 168,
     alignSelf: 'center',
     marginBottom: 28,
+  },
+  logoEnterLayer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoBreatheLayer: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   // Три слоя тиснения: тень → блик → тело (тон-в-тон с фоном, чуть темнее).
   embossShadow: {
@@ -3571,7 +3986,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   secondaryButtonText: {
-    color: '#8A91A1',
+    color: '#596170',
     fontSize: 16,
     fontWeight: '500',
     textAlign: 'center',
@@ -3690,24 +4105,24 @@ const styles = StyleSheet.create({
   textButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 44,
+    minHeight: 48,
   },
   textButtonLabel: {
-    color: '#8A91A1',
+    color: '#596170',
     fontSize: 16,
     fontWeight: '500',
   },
   // зачем: «Пропустить» — вспомогательный выход, а не второе главное действие.
   // Тише основной кнопки (приглушённый тон, вес 700 по DESIGN.md), но с полной
-  // зоной нажатия 44pt, чтобы попадать пальцем без промаха.
+  // зоной нажатия 48pt, чтобы попадать пальцем без промаха.
   skipButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 44,
+    minHeight: 48,
     marginTop: 2,
   },
   skipLabel: {
-    color: '#8A91A1',
+    color: '#596170',
     fontSize: 15,
     fontWeight: '500',
   },
@@ -3729,7 +4144,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
   },
   niceSubtitle: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 15.5,
     lineHeight: 22,
     fontWeight: '400',
@@ -3737,39 +4152,38 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 16,
   },
-  // ── letsBuild (Bevel, кадр 8) ──────────────────────────────────────────────
-  letsBuildTitle: {
-    color: '#0C111B',
-    fontSize: 22,
-    lineHeight: 30,
-    fontWeight: '600',
-    letterSpacing: -0.4,
-    textAlign: 'center',
-    paddingHorizontal: 16,
-    alignSelf: 'center',
-  },
   // ── notifications (Bevel, кадр 7) ──────────────────────────────────────────
   notificationsBell: {
     alignSelf: 'center',
     marginTop: 0,
     marginBottom: 14,
   },
-  // ── макет телефона (кадры 7 и 10) ──────────────────────────────────────────
+  // ── макет телефона (кадры 7 и 10) — полноразмерный корпус, как на референсе.
+  // phoneStage — просто центрирующая обёртка; сам клип и прижатие к низу даёт
+  // родитель (ScreenFrame.phoneBackdropLayer: bottom:0 + safe.overflow:hidden).
+  phoneStage: {
+    alignItems: 'center',
+  },
   phoneBezel: {
-    width: 292,
-    height: PHONE_MOCK_HEIGHT,
-    borderRadius: 48,
+    borderRadius: 54,
     backgroundColor: '#17181C',
-    padding: 9,
-    alignSelf: 'center',
-    ...softShadow({ color: '#0C111B', radius: 24, opacity: 0.18, offsetY: 14, backgroundColor: '#17181C' }),
+    padding: 11,
+    ...softShadow({ color: '#0C111B', radius: 30, opacity: 0.2, offsetY: 18, backgroundColor: '#17181C' }),
   },
   phoneScreen: {
     flex: 1,
-    borderRadius: 40,
+    borderRadius: 44,
     overflow: 'hidden',
     backgroundColor: '#35604F',
-    paddingTop: 28,
+    paddingTop: 32,
+  },
+  phoneStatusRow: {
+    position: 'absolute',
+    top: 14,
+    right: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
   },
   phoneIsland: {
     position: 'absolute',
@@ -3780,6 +4194,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: '#17181C',
   },
+  // зачем (владелец, скриншот): дата и часы «слипались» — у phoneClock
+  // lineHeight (60) был МЕНЬШЕ его fontSize (64), из-за чего строка часов
+  // визуально обрезалась и наезжала на дату сверху. lineHeight ≥ fontSize
+  // и явный marginTop/marginBottom развели оба текста с честным зазором.
   phoneDate: {
     color: 'rgba(255,255,255,0.92)',
     fontSize: 15,
@@ -3787,11 +4205,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: -0.1,
     textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 4,
   },
   phoneClock: {
     color: '#FFFFFF',
     fontSize: 64,
-    lineHeight: 60,
+    lineHeight: 72,
     fontWeight: '200',
     letterSpacing: -1.5,
     textAlign: 'center',
@@ -3804,31 +4224,28 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
   },
-  // Зона пуша и плейсхолдеров между шапкой и кольцами. БЕЗ клипа: пуш въезжает
-  // сверху поверх шапки и никогда не режется.
-  phoneFeed: {
-    flex: 1,
-  },
-  // Клип только вокруг плейсхолдеров: они ужимаются (flexShrink) и режутся, пуш — нет.
-  phonePlaceholders: {
-    flex: 1,
-    overflow: 'hidden',
-  },
+  // Карточка пуша: абсолютная, СНАРУЖИ phoneScreen (в phoneBezel) — отрицательные
+  // left/right физически выносят её за боковые края корпуса телефона, как на
+  // референсе Bevel (карточка «лежит» поверх экрана и стола одновременно).
   phonePush: {
+    position: 'absolute',
+    left: -PHONE_PUSH_OVERHANG,
+    right: -PHONE_PUSH_OVERHANG,
+    top: 96,
     flexShrink: 0,
-    marginHorizontal: 12,
-    minHeight: 66,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.86)',
-    padding: 12,
+    minHeight: 78,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255,255,255,0.92)',
+    padding: 14,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 10,
+    gap: 11,
+    ...softShadow({ color: '#0C111B', radius: 22, opacity: 0.24, offsetY: 10, backgroundColor: 'rgba(255,255,255,0.92)' }),
   },
   phonePushIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 8,
+    width: 36,
+    height: 36,
+    borderRadius: 9,
     overflow: 'hidden',
   },
   phonePushCopy: {
@@ -3843,54 +4260,75 @@ const styles = StyleSheet.create({
   phonePushTitle: {
     flex: 1,
     color: '#0C111B',
-    fontSize: 13.5,
-    lineHeight: 17,
+    fontSize: 14.5,
+    lineHeight: 18,
     fontWeight: '700',
     letterSpacing: -0.1,
   },
   phonePushBody: {
     color: '#2A303B',
-    fontSize: 13,
-    lineHeight: 17,
+    fontSize: 13.5,
+    lineHeight: 18,
     fontWeight: '400',
     marginTop: 1,
   },
   phonePushWhen: {
     color: '#6B7280',
-    fontSize: 12,
-    lineHeight: 15,
+    fontSize: 12.5,
+    lineHeight: 16,
     fontWeight: '400',
   },
-  phonePlaceholder: {
-    flexShrink: 1,
-    minHeight: 0,
-    maxHeight: 52,
-    height: 52,
-    marginTop: 8,
-    marginHorizontal: 12,
-    borderRadius: 20,
-  },
-  phonePlaceholderFirst: {
-    backgroundColor: 'rgba(255,255,255,0.32)',
-  },
-  phonePlaceholderSecond: {
-    backgroundColor: 'rgba(255,255,255,0.22)',
-  },
-  // Кольца — в потоке, последним блоком: никогда не наезжают на карточки.
-  phoneRingsRow: {
+  // Две компактные плашки «остального центра уведомлений» — стоят В ПОТОКЕ под
+  // главным пушем (top считается от низа phonePush: 96 + 78 минимум + зазор).
+  // зачем (владелец): в рамках НАРИСОВАННОГО корпуса — не выступают вообще,
+  // в отличие от главного пуша выше. left/right: 8 держит их чуть уже ширины
+  // экрана телефона (тот же паддинг, что у самого phoneBezel).
+  phoneStackCard: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    minHeight: 44,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255,255,255,0.78)',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 18,
-    paddingTop: 10,
-    paddingBottom: 14,
+    alignItems: 'center',
+    gap: 10,
+    ...softShadow({ color: '#0C111B', radius: 14, opacity: 0.14, offsetY: 6, backgroundColor: 'rgba(255,255,255,0.78)' }),
   },
-  // ── trialReminder (Bevel, кадр 10) ─────────────────────────────────────────
-  trialPhoneWrap: {
-    flex: 1,
+  phoneStackCardOne: {
+    top: 96 + 78 + 14,
+  },
+  phoneStackCardTwo: {
+    top: 96 + 78 + 14 + 44 + 10,
+  },
+  phoneStackIcon: {
+    width: 26,
+    height: 26,
+    borderRadius: 7,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 8,
-    paddingBottom: 12,
+  },
+  // Заглушка строки текста внутри доп. плашек — форма важнее содержания
+  // (реальный пуш уже сказал главное), как «свёрнутые» карточки в референсе.
+  phoneStackBar: {
+    flex: 1,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(12,17,27,0.14)',
+  },
+  // зачем: телефон уходит за bottom:0 всего экрана (SafeAreaView.overflow:hidden
+  // режет низ корпуса). Маска поверх места среза растворяет обрезанный край
+  // в фон экрана вместо жёсткой прямой линии — см. ScreenFrame.phoneBackdrop.
+  phoneFadeMask: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    // Треть высоты корпуса — на всю ширину экрана (телефон уже центрирован
+    // уже своей шириной; маска шире, чтобы фон вокруг корпуса тоже был ровным).
+    height: '40%',
   },
   // ── paywall (Bevel, кадр 11): выгоды, тарифы, ссылки ───────────────────────
   // Ритм ужат (владелец: пейвол обязан влезать без скролла на 844pt).
@@ -3924,7 +4362,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.2,
   },
   benefitCaption: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 13,
     lineHeight: 17,
     fontWeight: '400',
@@ -3962,7 +4400,7 @@ const styles = StyleSheet.create({
     paddingRight: 30,
   },
   planTilePriceSlot: {
-    height: 24,
+    minHeight: 24,
     marginTop: 6,
     justifyContent: 'center',
   },
@@ -3978,12 +4416,12 @@ const styles = StyleSheet.create({
     letterSpacing: -0.5,
   },
   planTileCaptionSlot: {
-    height: 16,
+    minHeight: 16,
     marginTop: 3,
     justifyContent: 'center',
   },
   planTileCaption: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 12,
     lineHeight: 16,
   },
@@ -4036,7 +4474,7 @@ const styles = StyleSheet.create({
   },
   moreOffersLink: {
     alignSelf: 'center',
-    minHeight: 40,
+    minHeight: 48,
     justifyContent: 'center',
     paddingHorizontal: 12,
     marginTop: 2,
@@ -4057,7 +4495,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   reassureText: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 13.5,
     lineHeight: 18,
     fontWeight: '500',
@@ -4080,15 +4518,25 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     paddingHorizontal: 18,
     paddingTop: 16,
+    maxHeight: '92%',
   },
   offersCloseRow: {
-    height: 34,
+    minHeight: 48,
     marginBottom: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  offersTitle: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: '800',
   },
   offersClose: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: 'rgba(255,255,255,0.14)',
     alignItems: 'center',
     justifyContent: 'center',
@@ -4096,12 +4544,19 @@ const styles = StyleSheet.create({
   offerList: {
     gap: 8,
   },
+  offersScroll: {
+    flexGrow: 0,
+  },
+  offersScrollContent: {
+    paddingBottom: 2,
+  },
   // Обводка 1.5 всегда, видна только у выбранной (radio-выбор).
   offerRow: {
-    height: 64,
+    minHeight: 64,
     borderRadius: 16,
     backgroundColor: 'rgba(255,255,255,0.06)',
     paddingHorizontal: 16,
+    paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -4159,7 +4614,7 @@ const styles = StyleSheet.create({
   },
   offersFreeLink: {
     alignSelf: 'center',
-    minHeight: 40,
+    minHeight: 48,
     justifyContent: 'center',
     paddingHorizontal: 12,
     marginTop: 4,
@@ -4171,11 +4626,17 @@ const styles = StyleSheet.create({
   },
   offersLinksRow: {
     marginTop: 12,
-    minHeight: 36,
+    minHeight: 48,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 22,
+  },
+  offersLinkButton: {
+    minHeight: 48,
+    minWidth: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   offersLinkText: {
     color: 'rgba(255,255,255,0.72)',
@@ -4203,7 +4664,7 @@ const styles = StyleSheet.create({
   },
   finalErrorSlot: {
     minHeight: 22,
-    color: '#E5563B',
+    color: '#B42318',
     fontSize: 13.5,
     lineHeight: 18,
     fontWeight: '600',
@@ -4278,7 +4739,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    minHeight: 44,
+    minHeight: 48,
     paddingHorizontal: 4,
   },
   // Кольцо-чекбокс — контрол, обводка допустима.
@@ -4324,6 +4785,10 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
   },
   vaultShadowHost: {
+    width: 250,
+    height: 250,
+  },
+  vaultBreatheLayer: {
     width: 250,
     height: 250,
     borderRadius: 44,
@@ -4484,7 +4949,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   vaultLegalNote: {
-    color: '#9AA1B0',
+    color: '#596170',
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',
@@ -4502,6 +4967,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 82,
     top: 70,
+    width: 96,
+    height: 96,
+  },
+  improveHeartBeatLayer: {
     width: 96,
     height: 96,
   },
@@ -4543,7 +5012,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   improveBody: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '400',
@@ -4551,8 +5020,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   // ── promise: график на весь экран (Bevel, кадр 4) ──────────────────────────
-  // зачем: без overflow:hidden — подпись «Прогресс» стоит правее контейнера
-  // (right:-26), а тень зелёного бейджа выходит за его край; резать их нельзя.
+  // зачем: без overflow:hidden тень зелёного бейджа выходит за край контейнера
+  // и резать её нельзя. Подпись «Прогресс» (см. promiseAxisY) раньше стояла
+  // ЗА пределами контейнера (right:-26) и обрезалась на узких экранах —
+  // владелец увидел это на скриншоте; теперь подпись внутри правого края.
   // Шторка проявления и так уезжает за пределы экрана — её не видно.
   promiseChartFill: {
     flex: 1,
@@ -4583,7 +5054,7 @@ const styles = StyleSheet.create({
     ...softShadow({ color: '#27B36B', radius: 10, opacity: 0.30, offsetY: 4, backgroundColor: '#27B36B' }),
   },
   promiseBadgeUpText: {
-    color: '#FFFFFF',
+    color: '#07110A',
     fontSize: 13,
     fontWeight: '700',
     letterSpacing: -0.1,
@@ -4602,10 +5073,10 @@ const styles = StyleSheet.create({
   },
   promiseAxisY: {
     position: 'absolute',
-    right: -26,
+    right: 4,
     top: '46%',
     transform: [{ rotate: '90deg' }],
-    color: '#9AA1B0',
+    color: '#596170',
     fontSize: 12,
     fontWeight: '600',
     letterSpacing: 0.2,
@@ -4614,7 +5085,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
     alignSelf: 'center',
-    color: '#9AA1B0',
+    color: '#596170',
     fontSize: 12,
     fontWeight: '600',
   },
@@ -4628,7 +5099,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   errorText: {
-    color: '#E5563B',
+    color: '#B42318',
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '800',
@@ -4637,7 +5108,7 @@ const styles = StyleSheet.create({
   },
   // ── welcome: sign-in-wrap согласие над кнопкой «Начать» ────────────────────
   welcomeLegalNote: {
-    color: '#7C8394',
+    color: '#5B6270',
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',
@@ -4650,21 +5121,29 @@ const styles = StyleSheet.create({
   },
   // ── paywall / final: мелкая юридическая строка ─────────────────────────────
   paywallLegalNote: {
-    color: '#9AA1B0',
+    color: '#596170',
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',
     marginTop: 0,
   },
+  subscriptionDisclosure: {
+    color: '#4F5665',
+    fontSize: 13,
+    lineHeight: 19,
+    textAlign: 'center',
+    marginTop: 2,
+    paddingHorizontal: 4,
+  },
   paywallLegalLink: {
-    color: '#7C8394',
+    color: '#5B6270',
     textDecorationLine: 'underline',
   },
   // ── paywall: кнопка «···» ──────────────────────────────────────────────────
   paywallMenuButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -4677,8 +5156,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 26,
   },
-  codeCard: {
+  codeCardScroll: {
     alignSelf: 'stretch',
+    maxHeight: '86%',
+  },
+  codeCard: {
     borderRadius: 20,
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 18,
@@ -4719,15 +5201,16 @@ const styles = StyleSheet.create({
     color: '#12805A',
   },
   codeFeedbackError: {
-    color: '#E5563B',
+    color: '#B42318',
   },
   codeCancel: {
     alignItems: 'center',
-    paddingVertical: 10,
+    justifyContent: 'center',
+    minHeight: 48,
     marginTop: 2,
   },
   codeCancelText: {
-    color: '#8A91A1',
+    color: '#596170',
     fontSize: 15,
     fontWeight: '600',
   },

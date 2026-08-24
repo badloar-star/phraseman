@@ -843,7 +843,6 @@ function AppMessagesInbox({
             <Text style={[styles.pollQuestion, { color: chrome.text }]}>{pickAppMessagePollQuestion(poll, lang)}</Text>
           </View>
         </View>
-
         <View style={styles.pollOptions}>
           {poll.options.map((option) => {
             const selectedOption = message.pollOptionId === option.id;
@@ -888,7 +887,6 @@ function AppMessagesInbox({
             );
           })}
         </View>
-
         <Text style={[styles.pollFooter, { color: chrome.soft }]}>
           {showResults ? `${copy.pollVotes}: ${totalVotes}` : copy.pollResultsHint}
         </Text>

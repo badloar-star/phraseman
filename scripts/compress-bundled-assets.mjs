@@ -37,11 +37,9 @@ const MIN_SAVING_BYTES = 1024;
 // валит тесты и ломает вёрстку, поэтому здесь они пережимаются только по качеству,
 // без изменения геометрии. Список сверен с tests/*.test.ts, где есть width).toBe(N):
 //   league-v6-icons — tests/league_icon_assets.test.ts (384x384)
-//   weekly_boon_icons                 — tests/boon_icon_assets.test.ts (256x256)
 //   weekly_compass_icons              — tests/weekly_bonus_theme_assets.test.ts
 const FIXED_GEOMETRY_DIRS = [
   'assets/images/levels/league-v6-icons/',
-  'assets/images/weekly_boon_icons/',
   'assets/images/weekly_compass_icons/',
 ];
 const hasFixedGeometry = (rel) => FIXED_GEOMETRY_DIRS.some((d) => rel.startsWith(d));

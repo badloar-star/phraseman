@@ -1875,7 +1875,7 @@ const INTRO_FOCUS: Record<
       "Не подменяйте форму we is.",
     ],
     [
-      "Здесь they может быть людьми или вещами.",
+      "They может обозначать людей или вещи.",
       "Отметьте множественный смысл после are.",
       "Не теряйте множественность у предметов.",
     ],
@@ -1917,7 +1917,7 @@ const INTRO_FOCUS: Record<
       "Не підміняйте форму we is.",
     ],
     [
-      "They тут означає людей або речі.",
+      "They може позначати людей або речі.",
       "Позначте множинний зміст після are.",
       "Не губіть множину предметів.",
     ],
@@ -2365,9 +2365,8 @@ export function buildEpisode01Session25To32(
       const pageBody = L((locale) =>
         introBody(locale, ordinal, kind, pageTarget),
       );
-      const pageTitle = L(
-        (locale) =>
-          `${title[locale]} — ${kind === "concept" ? ({ ru: "Кого описываем", uk: "Кого описуємо", es: "A quién describimos", "pt-BR": "Quem descrevemos", vi: "Ta đang nói về ai", id: "Siapa yang dijelaskan", tr: "Kimi anlatıyoruz", pl: "Kogo opisujemy" } as Record<Locale, string>)[locale] : kind === "formula" ? ({ ru: "Точный порядок", uk: "Точний порядок", es: "El orden exacto", "pt-BR": "A ordem exata", vi: "Trật tự chính xác", id: "Urutan yang tepat", tr: "Kesin sıra", pl: "Dokładny szyk" } as Record<Locale, string>)[locale] : ({ ru: "Где легко ошибиться", uk: "Де легко помилитися", es: "Dónde es fácil fallar", "pt-BR": "Onde é fácil errar", vi: "Chỗ dễ sai", id: "Bagian yang mudah keliru", tr: "Kolay hata noktası", pl: "Łatwa pułapka" } as Record<Locale, string>)[locale]}`,
+      const pageTitle = L((locale) =>
+        INTRO_FOCUS[locale][ordinal - 25][index].replace(/[.!?]+$/u, ""),
       );
       return {
         kind,
@@ -2395,10 +2394,10 @@ export function buildEpisode01Session25To32(
     episodeOrdinal: 1,
     requiredSessionOrdinal: ordinal,
     canDoOutcomeId: "obj-e01-full-present-to-be",
-    generationInputFingerprint: `authored-e01-s${ordinal}-v1`,
+    generationInputFingerprint: `authored-e01-s${ordinal}-v2`,
     title,
     summary: L((locale) => TOPICS[locale][ordinal - 25]),
-    learningGoal: L((locale) => TOPICS[locale][ordinal - 25]),
+    learningGoal: L((locale) => FORMULAS[locale][ordinal - 25]),
     introPages,
     phrases: PHRASES[ordinal].map((english, index) =>
       phrase(ordinal, index, english),

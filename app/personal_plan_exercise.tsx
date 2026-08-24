@@ -74,6 +74,7 @@ import {
 } from './speaking_hold_recorder';
 import SpeakingScoreStars from '../components/SpeakingScoreStars';
 import DuoPressable from '../components/DuoPressable';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
 import { hasBundledCompatibilityPlanContentDay } from './plan_content_readiness';
@@ -96,7 +97,7 @@ import {
   clearPlanTaskProgress,
 } from './personal_plan_task_progress';
 import { resolveNextPlanTask } from './personal_plan_next_task';
-import { openPersonalPlanTask } from './personal_plan_navigation';
+import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './personal_plan_navigation';
 import { startPlanExerciseSession } from './personal_plan_exercise_session';
 import { submitAndStorePlanExerciseAnswer } from './personal_plan_exercise_submission_store';
 import { createPlanRecoveryDefaultHandlers } from './personal_plan_recovery_default_handlers';
@@ -239,6 +240,7 @@ function PlanGradientButton({
   onPress,
   disabled,
   style,
+  showEnergyCost = false,
 }: {
   label: string;
   accent: string;
@@ -246,6 +248,7 @@ function PlanGradientButton({
   onPress: () => void;
   disabled?: boolean;
   style?: ViewStyle;
+  showEnergyCost?: boolean;
 }) {
   return (
     <TouchableOpacity
@@ -267,6 +270,7 @@ function PlanGradientButton({
       >
         <Text style={[styles.primaryButtonText, { color: disabled ? actionText + '66' : actionText }]}>{label}</Text>
       </LinearGradient>
+      {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
     </TouchableOpacity>
   );
 }
@@ -1654,6 +1658,7 @@ function PlanExerciseFeedbackInline({
   actionLabel,
   onAction,
   loading,
+  showEnergyCost = false,
   hideBody,
   children,
 }: {
@@ -1668,6 +1673,7 @@ function PlanExerciseFeedbackInline({
   actionLabel: string;
   onAction: () => void;
   loading?: boolean;
+  showEnergyCost?: boolean;
   /**
    * Скрыть «плашку» подтверждения (заголовок + тело-текст), оставив только эхо
    * правильного ответа (children) и кнопку действия. Для верного ответа в плане
@@ -1703,6 +1709,7 @@ function PlanExerciseFeedbackInline({
         <View style={styles.bareCtaIcon}>
           <Ionicons name="arrow-forward" size={18} color={actionText} />
         </View>
+        {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
       </DuoPressable>
     );
   }
@@ -1732,6 +1739,7 @@ function PlanExerciseFeedbackInline({
         style={[styles.inlineFeedbackButton, { borderColor, backgroundColor: isSuccess ? accent : 'transparent' }]}
       >
         <Text style={[styles.inlineFeedbackButtonText, { color: buttonTextColor }]}>{actionLabel}</Text>
+        {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
       </TouchableOpacity>
     </View>
   );
@@ -1847,10 +1855,8 @@ function PersonalPlanExerciseScreen() {
   const { playCorrect } = useCorrectSound();
   // зачем: с 2026-08-23 энергия платится за ВХОД в задание, а ошибки внутри её
   // не трогают — единое правило владельца, как в уроках и тренировках.
-  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
-  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
-  const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });
-  useEffect(() => { energyRef.current = { energy, bonusEnergy, energyUnlimited }; }, [energy, bonusEnergy, energyUnlimited]);
+  // Премиум/тестер обходят подтверждение внутри confirmSpendOne.
+  const { confirmSpendOne, energyReady } = useEnergy();
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleExerciseScroll = useCallback((e: any) => {
@@ -1887,12 +1893,13 @@ function PersonalPlanExerciseScreen() {
   useEffect(() => {
     if (!energyReady || planEntryChargedRef.current) return;
     planEntryChargedRef.current = true;
-    if (energyRef.current.energyUnlimited) return;
-    if (energy + bonusEnergy <= 0) {
-      if (!energyGateDismissedRef.current) setNoEnergyModalOpen(true);
-      return;
-    }
-    spendOne().catch(() => {});
+    let active = true;
+    void confirmSpendOne().then(result => {
+      if (!active) return;
+      if (result === 'insufficient' && !energyGateDismissedRef.current) setNoEnergyModalOpen(true);
+      if (result === 'cancelled') safeRouterBack(router, '/personal_plan');
+    });
+    return () => { active = false; };
   }, [energyReady]);
 
   const params = useLocalSearchParams();
@@ -1931,6 +1938,7 @@ function PersonalPlanExerciseScreen() {
   // Идёт авто-переход на следующее задание (replace) — подавляем финал-модал дня,
   // чтобы он не мелькнул между завершением и навигацией.
   const [advancing, setAdvancing] = useState(false);
+  const [nextTaskStartsPaid, setNextTaskStartsPaid] = useState(false);
   // Синхронный lock закрывает окно двойного тапа до следующего React render.
   const advancingRef = useRef(false);
   // XP/resume side-effects запускаются один раз, даже если загрузка следующего шага требует retry.
@@ -2167,6 +2175,18 @@ function PersonalPlanExerciseScreen() {
     })();
   }, [answerAudioSource, answerAudioPlayer, managedAnswerAudio, speakPhraseFallback]);
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
+  const currentCorrectIds = item ? [...new Set([...correctIds, item.id])] : correctIds;
+  const currentCorrectFinishesTask = Boolean(item)
+    && (index + 1 >= items.length || currentCorrectIds.length >= targetCorrect);
+  useEffect(() => {
+    let cancelled = false;
+    void resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget })
+      .then((nextTask) => {
+        if (!cancelled) setNextTaskStartsPaid(Boolean(nextTask && personalPlanTaskStartsPaidExercise(nextTask.task)));
+      })
+      .catch(() => { if (!cancelled) setNextTaskStartsPaid(false); });
+    return () => { cancelled = true; };
+  }, [planTaskId, studyTarget]);
   // Финал дня разрешён только после успешного persisted completion + успешного resolver result `null`.
   const done = !advancing && completed;
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
@@ -2260,6 +2280,7 @@ function PersonalPlanExerciseScreen() {
           surfaceColor={t.bgCard}
           textPrimaryColor={t.textPrimary}
           loading={false}
+          showEnergyCost={currentCorrectFinishesTask && nextTaskStartsPaid}
         >
           {isRecallMode && item && 'targetText' in item ? (
             <Text style={[styles.recallAnswer, { color: accent }]}>{item.targetText}</Text>
@@ -2852,6 +2873,7 @@ function PersonalPlanExerciseScreen() {
                   accent={accent}
                   actionText={actionText}
                   disabled={saving || pronunciationScoring}
+                  showEnergyCost={currentCorrectFinishesTask && nextTaskStartsPaid}
                   onPress={() => void completePronunciation()}
                   style={{ marginTop: 18 }}
                 />
@@ -2952,6 +2974,7 @@ function PersonalPlanExerciseScreen() {
                     surfaceColor={t.bgCard}
                     textPrimaryColor={t.textPrimary}
                     loading={false}
+                    showEnergyCost={currentCorrectFinishesTask && nextTaskStartsPaid}
                   />
                 </View>
               ) : lastResult === 'wrong' && usesOptionFeedback ? (

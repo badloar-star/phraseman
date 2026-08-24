@@ -80,6 +80,15 @@ export interface JobConfig {
   enabled: boolean;
   aiV2Enabled: boolean;
   rolloutPct: number;
+  primaryModel?: JobModel;
+  adversarialModel?: JobModel;
+  semanticDailyRequestCap?: number;
+}
+
+export interface TournamentSemanticJobConfig extends JobConfig {
+  primaryModel: JobModel;
+  adversarialModel: JobModel;
+  semanticDailyRequestCap: number;
 }
 
 function text(value: unknown, max = 120): string {
@@ -119,7 +128,7 @@ function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | unde
     | undefined;
   const def = JOB_DEFAULTS[job];
   const allowedModels = allowedModelsForJob(job);
-  return {
+  const base: JobConfig = {
     model: normalizeModel(d?.model, def.model, allowedModels),
     globalDailyCap: normalizeCap(d?.globalDailyCap, def.globalDailyCap, job === 'weekly' ? 1 : 0),
     // enabled по умолчанию TRUE (kill-switch семантика): фича работает, выключается вручную.
@@ -128,6 +137,17 @@ function jobFromData(job: OpenAiJob, data: FirebaseFirestore.DocumentData | unde
       ? (d?.aiV2Enabled == null ? def.aiV2Enabled === true : d.aiV2Enabled === true)
       : false,
     rolloutPct: job === 'weekly' ? normalizeRolloutPct(d?.rolloutPct, def.rolloutPct ?? 0) : 0,
+  };
+  if (job !== 'tournament') return base;
+  const primaryModel = normalizeModel(d?.primaryModel, 'gpt-4.1-mini', ALLOWED_JOB_MODELS);
+  const requestedAdversarial = normalizeModel(d?.adversarialModel, 'gpt-4.1', ALLOWED_JOB_MODELS);
+  return {
+    ...base,
+    primaryModel,
+    adversarialModel: requestedAdversarial === primaryModel
+      ? (primaryModel === 'gpt-4.1' ? 'gpt-4.1-mini' : 'gpt-4.1')
+      : requestedAdversarial,
+    semanticDailyRequestCap: normalizeCap(d?.semanticDailyRequestCap, 600),
   };
 }
 
@@ -138,7 +158,7 @@ function mergeJobConfigForSet(
 ): JobConfig {
   const def = JOB_DEFAULTS[job];
   const allowedModels = allowedModelsForJob(job);
-  return {
+  const base: JobConfig = {
     model: update.model == null ? previous.model : normalizeModel(update.model, def.model, allowedModels),
     globalDailyCap:
       update.globalDailyCap == null
@@ -155,6 +175,23 @@ function mergeJobConfigForSet(
           ? previous.rolloutPct
           : normalizeRolloutPct(update.rolloutPct, def.rolloutPct ?? 0))
         : 0,
+  };
+  if (job !== 'tournament') return base;
+  const primaryModel = update.primaryModel == null
+    ? previous.primaryModel ?? 'gpt-4.1-mini'
+    : normalizeModel(update.primaryModel, 'gpt-4.1-mini', ALLOWED_JOB_MODELS);
+  const requestedAdversarial = update.adversarialModel == null
+    ? previous.adversarialModel ?? 'gpt-4.1'
+    : normalizeModel(update.adversarialModel, 'gpt-4.1', ALLOWED_JOB_MODELS);
+  return {
+    ...base,
+    primaryModel,
+    adversarialModel: requestedAdversarial === primaryModel
+      ? (primaryModel === 'gpt-4.1' ? 'gpt-4.1-mini' : 'gpt-4.1')
+      : requestedAdversarial,
+    semanticDailyRequestCap: update.semanticDailyRequestCap == null
+      ? previous.semanticDailyRequestCap ?? 600
+      : normalizeCap(update.semanticDailyRequestCap, 600),
   };
 }
 
@@ -188,8 +225,17 @@ export async function resolveJobConfig(
     if (job === 'weekly') {
       return { ...jobFromData(job, undefined), aiV2Enabled: false, rolloutPct: 0 };
     }
+    if (job === 'tournament') {
+      return { ...jobFromData(job, undefined), enabled: false, semanticDailyRequestCap: 0 };
+    }
     return jobFromData(job, undefined);
   }
+}
+
+export async function resolveTournamentSemanticJobConfig(
+  db: FirebaseFirestore.Firestore,
+): Promise<TournamentSemanticJobConfig> {
+  return await resolveJobConfig(db, 'tournament') as TournamentSemanticJobConfig;
 }
 
 /** Бросает resource-exhausted, если джоб выключен админом. Вызывать в начале CF. */

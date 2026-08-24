@@ -90,7 +90,7 @@ function countRawSafeAreaInsetsImports(source: string): number {
 /**
  * Экран, который на время загрузки отдаёт `return null` — это пустой кадр и
  * «впрыгивание» всего контента разом. Вместо этого — SkeletonBlock с финальной
- * геометрией (эталон: app/review.tsx) или синхронная гидрация из peek-кэша.
+ * геометрией или синхронная гидрация из peek-кэша.
  */
 const LOADING_RETURNS_NULL_RE =
   /if\s*\(\s*[^)]{0,80}(?:[Ll]oading|[Pp]ending|[Bb]usy)[^)]{0,80}\)\s*\{?\s*return\s+null/g;
@@ -170,7 +170,7 @@ describe('layout stability contract (первый кадр = финальная 
     expectRatchet(
       collectCounts(files, countLoadingReturnsNull),
       baseline.loadingReturnsNull,
-      'if (loading) return null = пустой кадр и «впрыгивание» контента. Дайте SkeletonBlock с финальной геометрией (эталон app/review.tsx).',
+      'if (loading) return null = пустой кадр и «впрыгивание» контента. Дайте SkeletonBlock с финальной геометрией.',
     );
   });
 

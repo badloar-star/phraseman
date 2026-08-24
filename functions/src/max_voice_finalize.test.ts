@@ -97,6 +97,20 @@ function harness(options: { foreign?: boolean; processing?: boolean } = {}) {
 }
 
 describe('MAX durable finalizer', () => {
+  it('preserves the selected course target for review instead of rejecting or coercing it', async () => {
+    const h = harness();
+    const payload = input('session-spanish');
+    (payload.data as { request: Record<string, unknown> }).request.studyTarget = 'es';
+
+    const first = await finalizeMaxVoiceRequest(payload, h.deps);
+    const retry = await finalizeMaxVoiceRequest(payload, h.deps);
+
+    expect(h.review.mock.calls[0][0].request.studyTarget).toBe('es');
+    expect(first).toEqual(expect.objectContaining({ studyTarget: 'es' }));
+    expect(retry).toEqual(expect.objectContaining({ studyTarget: 'es' }));
+    expect(h.review).toHaveBeenCalledTimes(1);
+  });
+
   it('returns the same completed receipt on retry without reviewing twice', async () => {
     const h = harness();
     const first = await finalizeMaxVoiceRequest(input('session-1'), h.deps);
@@ -275,6 +289,12 @@ describe('maxVoiceReviewSystemPrompt', () => {
     expect(maxVoiceReviewSystemPrompt('A1', 'id')).toContain('JSON only in Indonesian');
     expect(maxVoiceReviewSystemPrompt('A1', 'tr')).toContain('JSON only in Turkish');
     expect(maxVoiceReviewSystemPrompt('A1', 'pl')).toContain('JSON only in Polish');
+  });
+
+  it('reviews the language of the selected course, not English unconditionally', () => {
+    expect(maxVoiceReviewSystemPrompt('A2', 'ru', 'fr')).toContain('spoken French lesson');
+    expect(maxVoiceReviewSystemPrompt('A1', 'uk', 'es')).toContain('spoken Spanish lesson');
+    expect(maxVoiceReviewSystemPrompt('B1', 'ru', 'en')).toContain('spoken English lesson');
   });
 
   it('still forbids pronunciation/accent assessment (pre-existing safety rule stays intact)', () => {

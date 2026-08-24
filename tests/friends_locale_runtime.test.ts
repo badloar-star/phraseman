@@ -76,7 +76,7 @@ describe('friends tab locale runtime', () => {
     expect(source).toContain('ReferralAccessEndedModal');
   });
 
-  it('keeps Firestore friend/league helpers free of locale fallback audit markers', () => {
+  it('keeps Firestore friend/league helpers free of legacy locale runtime markers', () => {
     const files = [
       '../app/firestore_friends.ts',
       '../app/firestore_leagues.ts',
@@ -84,8 +84,8 @@ describe('friends tab locale runtime', () => {
 
     for (const file of files) {
       const source = fs.readFileSync(path.join(__dirname, file), 'utf8');
-      expect(source).not.toContain('fallback');
-      expect(source).not.toContain('Fallback');
+      const legacyLocalePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b)\b/u;
+      expect(source).not.toMatch(legacyLocalePattern);
     }
   });
 });

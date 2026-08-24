@@ -20,6 +20,7 @@ function failClosed(observedAtMs: number): FetchMaxvoiceSourceResult {
   return Object.freeze({
     state: 'error' as const,
     sampledDays: 0,
+    mintRejections: null,
     callsStarted: null,
     callsConnected: null,
     callsCompleted: null,

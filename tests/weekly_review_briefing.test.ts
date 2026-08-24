@@ -84,16 +84,7 @@ function dependencies(overrides: Partial<BuildBriefingDependencies> = {}): Build
   }));
   return {
     nowMs: () => NOW,
-    loadMistakeEntries: async () => [
-      mistake('I have a dog', 1),
-      mistake('I have a dog', 2),
-      mistake('She has a cat', 3),
-      mistake('We have time', 5),
-      mistake('They have lunch', 6),
-      mistake('Old repeated phrase', 9),
-      mistake('Old repeated phrase', 10),
-      mistake('Thirty day signal', 20),
-    ],
+    loadMistakeInsights: async () => INSIGHTS,
     computeAnalytics: async () => ANALYTICS,
     loadActivity: async () => ({
       days,
@@ -120,7 +111,14 @@ describe('weekly review briefing V2', () => {
       lang: 'ru',
       studyTarget: 'en',
       isPremium: false,
-      deps: dependencies({ loadMistakeEntries: async () => [mistake('One', 1), mistake('Two', 2)] }),
+      deps: dependencies({ loadMistakeInsights: async () => ({
+        ...INSIGHTS,
+        mistakeCount7d: 2,
+        mistakeCountPrevious7d: 0,
+        mistakeCount30d: 2,
+        uniqueMistakes7d: 2,
+        uniqueMistakes30d: 2,
+      }) }),
     });
 
     expect(result.status).toBe('insufficient');

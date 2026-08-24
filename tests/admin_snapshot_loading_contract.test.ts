@@ -36,7 +36,7 @@ function extractWindowFn(source: string, name: string): string {
 
 describe('admin snapshot loading contract', () => {
   it('does not refresh Firestore user data after the page has loaded', () => {
-    const source = read('admin/index.html');
+    const source = read('admin/v2/legacy.html');
 
     // No realtime listeners anywhere — the admin reads point-in-time snapshots,
     // never a live Firestore subscription.
@@ -56,7 +56,7 @@ describe('admin snapshot loading contract', () => {
   });
 
   it('loads users via pagination and defaults to search-first mode', () => {
-    const source = read('admin/index.html');
+    const source = read('admin/v2/legacy.html');
 
     // No leftover "lightweight users" experiment.
     expect(source).not.toContain('LITE_USERS_LIMIT');

@@ -10,9 +10,9 @@ import type { CustomAvatarLogoColor } from '../../constants/custom_avatars';
 
 export type RewardCardIcon =
   | { type: 'image'; source: ImageSourcePropType; scale?: 'large' | 'normal' }
+  | { type: 'fallback'; kind: 'gift' | 'league' | 'boon' }
   | { type: 'avatar'; avatarId: string; gradientId: string; logoColor: CustomAvatarLogoColor }
-  | { type: 'aura'; auraId: string; avatarId: string; gradientId: string; logoColor: CustomAvatarLogoColor }
-  | { type: 'goldTheme'; source: ImageSourcePropType };
+  | { type: 'aura'; auraId: string; avatarId: string; gradientId: string; logoColor: CustomAvatarLogoColor };
 
 export type RewardCard = {
   title: string;

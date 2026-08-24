@@ -77,7 +77,7 @@ describe('MAX tutor live components', () => {
     expect(view.getByText('Вежливо предложить другое время')).toBeTruthy();
     expect(view.queryByText('Weekend plans')).toBeNull();
     expect(view.getByLabelText('Прогресс цели: 2 из 3')).toBeTruthy();
-    expect(view.getByTestId('max-tutor-goal-strip').props.accessibilityLiveRegion).toBe('polite');
+    expect(view.getByTestId('max-tutor-goal-strip').props.accessibilityLiveRegion).toBeUndefined();
   });
 
   it('shows the current topic inside the same strip in free-talk mode', async () => {

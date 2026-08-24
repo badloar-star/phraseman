@@ -64,6 +64,8 @@ export function getLevelGiftGradient(
   };
 }
 
+// Kept as a compatibility contract for themed modal chrome. Reward pictures
+// themselves are universal V2 assets and are not registered here.
 export const LEVEL_GIFT_IMAGE_SOURCES: readonly never[] = [];
 
 function withAlpha(hex: string, alpha: string): string {

@@ -371,7 +371,7 @@ export interface PremiumDialogReviewRequest {
   nextTopic?: string;
   /** tutor: просьба ученика, как говорить (set_language_preference). */
   languagePreference?: string;
-  /** voice/tutor: флаги безопасности учителя (flag_safety) — сервер пишет safety_flags + Telegram. */
+  /** voice/tutor: категории flag_safety; MAX отправляет только обезличенный сигнал без записи разговора. */
   safetyFlags?: { kind: string; note: string }[];
   /** voice/tutor: id сессии звонка (дедуп журнала с мгновенными репортами). */
   sessionId?: string;

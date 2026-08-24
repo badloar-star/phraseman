@@ -41,7 +41,10 @@ export function redirectSystemPath({
 
   // Personal-plan developer surfaces can modify local plan state. Store builds
   // must fail closed even when an old/system deep link targets them directly.
-  if (/(?:^|\/)personal_plan(?:_[^/?#]+)?(?:[/?#]|$)/i.test(raw)) {
+  if (
+    IS_STORE_RELEASE &&
+    /(?:^|\/)personal_plan_(?:runtime_)?dev(?:[/?#]|$)/i.test(raw)
+  ) {
     return '/home';
   }
 
@@ -54,14 +57,16 @@ export function redirectSystemPath({
     return `/arena_invite?inviteId=${encodeURIComponent(arenaInviteMatch[1])}`;
   }
 
-  // Arena Ghost tokens are opaque challenge capabilities. Resolve only a
-  // bounded token into the dedicated disclosure screen; malformed/legacy
-  // Arena links continue into the safe retired-link fallback below.
+  // зачем: экран /arena_ghost_duel удалён (владелец, 2026-08-16 — экраны
+  // расширения убраны совсем, не только из таббара). Старая ссылка на
+  // призрачную дуэль больше никуда не ведёт содержательно, поэтому падает в
+  // тот же безопасный дом, что и остальные retired-ссылки ниже: живой корень
+  // Арены, а не мёртвый экран или экран с ошибкой параметров.
   const arenaGhostMatch = raw.match(
     /(?:^|\/)arena\/ghost\/([A-Za-z0-9_.-]{20,200})(?:[/?#]|$)/i,
   );
   if (arenaGhostMatch?.[1]) {
-    return `/arena_ghost_duel?inviteToken=${encodeURIComponent(arenaGhostMatch[1])}`;
+    return '/arena';
   }
 
   // Arena V2 снова является живым продуктом. Старый catch-all ниже нужен для

@@ -40,8 +40,6 @@ type Report = {
     destinationSelfGatesReady: boolean;
     challengeSurfaceGuardsReady: boolean;
     challengeSurfaceProbes: number;
-    arenaSurfaceGuardsReady: boolean;
-    arenaSurfaceProbes: number;
     englishFallbackAbsent: boolean;
     productionActivationStillClosed: true;
     probesPassed: number;
@@ -164,7 +162,6 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- AI dialog source gates ready: ${report.summary.aiDialogSourceGatesReady}`,
     `- Destination self gates ready: ${report.summary.destinationSelfGatesReady}`,
     `- Challenge surface guards ready/probes: ${report.summary.challengeSurfaceGuardsReady}/${report.summary.challengeSurfaceProbes}`,
-    `- Arena surface guards ready/probes: ${report.summary.arenaSurfaceGuardsReady}/${report.summary.arenaSurfaceProbes}`,
     `- English fallback absent: ${report.summary.englishFallbackAbsent}`,
     `- Production activation still closed: ${report.summary.productionActivationStillClosed}`,
     `- Probes: ${report.summary.probesPassed}/${report.summary.probes}`,
@@ -274,13 +271,9 @@ function main(): void {
     'dialogs_tab_content_challenges_visible',
   ];
   const challengeSurfaceProbes = probes.filter((probe) => challengeSurfaceProbeIds.includes(probe.id));
-  const arenaSurfaceProbes = probes.filter((probe) => arenaSurfaceProbeIds.includes(probe.id));
   const challengeSurfaceGuardsReady =
     challengeSurfaceProbes.length === challengeSurfaceProbeIds.length &&
     challengeSurfaceProbes.every((probe) => probe.passed);
-  const arenaSurfaceGuardsReady =
-    arenaSurfaceProbes.length === arenaSurfaceProbeIds.length &&
-    arenaSurfaceProbes.every((probe) => probe.passed);
   const englishFallbackAbsent = probes
     .filter((probe) => probe.id.includes('no_direct') || probe.id.includes('no_'))
     .every((probe) => probe.passed);
@@ -318,8 +311,6 @@ function main(): void {
       destinationSelfGatesReady,
       challengeSurfaceGuardsReady,
       challengeSurfaceProbes: challengeSurfaceProbes.length,
-      arenaSurfaceGuardsReady,
-      arenaSurfaceProbes: arenaSurfaceProbes.length,
       englishFallbackAbsent,
       productionActivationStillClosed: true,
       probesPassed: probes.filter((probe) => probe.passed).length,

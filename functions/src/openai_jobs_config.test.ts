@@ -68,6 +68,38 @@ describe('openai_jobs_config — weekly V2 configuration', () => {
 });
 
 describe('openai_jobs_config — resolveJobConfig', () => {
+  it('resolves bounded tournament semantic model-pair and request-cap fields', async () => {
+    expect(__openAiJobsConfigTestHooks.jobFromData('tournament', {
+      tournament: {
+        primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1',
+        semanticDailyRequestCap: 600,
+      },
+    })).toEqual(expect.objectContaining({
+      primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1', semanticDailyRequestCap: 600,
+    }));
+    expect(__openAiJobsConfigTestHooks.jobFromData('tournament', {
+      tournament: {
+        primaryModel: 'invalid', adversarialModel: 'invalid', semanticDailyRequestCap: -4,
+      },
+    })).toEqual(expect.objectContaining({
+      primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1', semanticDailyRequestCap: 0,
+    }));
+    expect(__openAiJobsConfigTestHooks.jobFromData('tournament', {
+      tournament: { primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1-mini' },
+    })).toEqual(expect.objectContaining({
+      primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1',
+    }));
+  });
+
+  it('fails closed for tournament paid work when configuration cannot be read', async () => {
+    const db = {
+      collection: () => ({ doc: () => ({ get: async () => { throw new Error('offline'); } }) }),
+    } as unknown as FirebaseFirestore.Firestore;
+    await expect(resolveJobConfig(db, 'tournament')).resolves.toMatchObject({
+      enabled: false, semanticDailyRequestCap: 0,
+    });
+  });
+
   it('no doc → defaults per job (enabled=true)', async () => {
     const db = fakeDb(undefined);
     const stats = await resolveJobConfig(db, 'stats');

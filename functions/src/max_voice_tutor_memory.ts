@@ -190,6 +190,8 @@ export interface TutorMemoryCandidateEvidence {
 
 const SENSITIVE_MEMORY_PATTERNS: readonly RegExp[] = [
   /\b(password|passcode|pin\s*(?:code)?|api\s*key|secret\s*key|парол|пін(?:-код)?|senha|contraseña)\b/iu,
+  /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/iu,
+  /(?:^|[^\p{L}\p{N}])\+?\d(?:[\s().-]*\d){6,14}(?:[^\p{L}\p{N}]|$)/u,
   /\b(?:\d[ -]*?){13,19}\b/u,
   /\b\d{1,6}\s+[\p{L}][\p{L}.'’-]*(?:\s+[\p{L}][\p{L}.'’-]*){0,4}\s+(?:street|st\.?|road|rd\.?|avenue|ave\.?|lane|ln\.?|drive|dr\.?|boulevard|blvd\.?|улиц|вулиц|calle|rua|jalan|sokak|ulica)\b/iu,
   /\b(diagnosed|diagnosis|medical\s+condition|depression|bipolar|cancer|hiv|aids|суицид|депресс|діагноз|depresión|depressão)\b/iu,

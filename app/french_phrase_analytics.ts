@@ -87,12 +87,18 @@ export async function computeFrenchPhraseAnalytics(
 ): Promise<PhraseAnalyticsResult> {
   const now = Date.now();
   const windowStart = now - FRENCH_ANALYTICS_WINDOW_MS;
-  const entries = (await loadMistakeLog('fr')).filter((entry) => entry.ts >= windowStart);
+  const accountScope = await getStableId();
+  const journal = await loadMistakeEventJournal({ accountScope, studyTarget: 'fr' });
+  const entries = journal.events
+    .filter((event) => event.type === 'captured' && event.occurredAtMs >= windowStart)
+    .map((event) => ({
+      phrase: typeof event.payload.canonicalTarget === 'string' ? event.payload.canonicalTarget : '',
+      lessonId: Number.parseInt(String(event.payload.lessonId ?? '0').replace(/^lesson-/, ''), 10) || 0,
+      ts: event.occurredAtMs,
+    }))
+    .filter((entry) => entry.phrase.trim().length > 0);
   if (entries.length === 0) return emptyFrenchAnalytics();
-  const resolvedPersonalTrainings = await loadResolvedPersonalTrainings({
-    studyTarget: 'fr',
-    sourceLocale: options.sourceLocale,
-  });
+  void options.sourceLocale;
 
   const categoryCounts = new Map<WordCategory, number>();
   const categoryWords = new Map<WordCategory, Map<string, number>>();
@@ -101,27 +107,7 @@ export async function computeFrenchPhraseAnalytics(
   let activeMistakeCount = 0;
 
   for (const entry of entries) {
-    const category = getMistakeEntryCategory(entry);
-    const resolvedAt = category
-      ? getPersonalTrainingResolvedAt(resolvedPersonalTrainings, {
-          category,
-          microDiagnosisId: entry.grammarTag,
-        })
-      : 0;
-    if (resolvedAt > 0 && entry.ts <= resolvedAt) {
-      continue;
-    }
-
     activeMistakeCount += 1;
-    if (category) {
-      categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1);
-      const word = (entry.tokenText || entry.expected || entry.picked || entry.phrase).trim();
-      if (word) {
-        const words = categoryWords.get(category) ?? new Map<string, number>();
-        words.set(word, (words.get(word) ?? 0) + 1);
-        categoryWords.set(category, words);
-      }
-    }
     if (entry.lessonId > 0) {
       lessonCounts.set(entry.lessonId, (lessonCounts.get(entry.lessonId) ?? 0) + 1);
     }

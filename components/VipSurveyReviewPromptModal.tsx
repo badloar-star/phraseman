@@ -169,6 +169,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             accessibilityLabel={laterLabel}
             onPress={close}
             style={styles.laterButton}
+            contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
               {laterLabel}

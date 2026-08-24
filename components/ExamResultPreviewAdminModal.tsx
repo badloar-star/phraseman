@@ -250,6 +250,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                 variant="chip"
                 onPress={() => { setShowCert(s => !s); }}
                 style={[styles.toggleBtn, { backgroundColor: showCert ? 'rgba(34,197,94,0.14)' : 'rgba(249,115,22,0.14)' }]}
+                contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
               >
                 <Text style={{ color: showCert ? '#22c55e' : '#f97316', fontSize: f.caption, fontWeight: '700' }}>
                   {showCert ? (hasName ? 'WITH CERT' : 'CTA ONLY') : 'NO CERT'}
@@ -258,14 +259,14 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
             ) : (
               // guard-ok: classic-путь не трогаем (владелец не просил менять
               // существующий вид) — обводка-индикатор тут pre-existing.
-              <TouchableOpacity
+              (<TouchableOpacity
                 onPress={() => { hapticTap(); setShowCert(s => !s); }}
                 style={[styles.toggleBtn, { borderColor: showCert ? '#22c55e' : '#f97316' }]}
               >
                 <Text style={{ color: showCert ? '#22c55e' : '#f97316', fontSize: f.caption, fontWeight: '700' }}>
                   {showCert ? (hasName ? 'WITH CERT' : 'CTA ONLY') : 'NO CERT'}
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity>)
             )}
           </View>
 
@@ -327,7 +328,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
 
             {showCert && hasName && (
               // Имя введено — показываем сам диплом + кнопки.
-              <View
+              (<View
                 style={{
                   backgroundColor: '#0a1620', borderRadius: 18, padding: 18,
                   borderWidth: 1.2, borderColor: '#d4a017', width: '100%',
@@ -393,13 +394,13 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                     })}
                   </Text>
                 </TouchableOpacity>
-              </View>
+              </View>)
             )}
             {showCert && !hasName && (
               // Имени нет — диплом НЕ показываем, только CTA на ввод. Так и
               // должен видеть юзер на боевом экране: без имени никакой
               // подписи на дипломе он не получит.
-              <TouchableOpacity
+              (<TouchableOpacity
                 activeOpacity={0.88}
                 onPress={() => { hapticTap(); setNameModalVisible(true); }}
                 style={{
@@ -445,7 +446,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                     })}
                   </Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity>)
             )}
 
             {isHybrid ? (
@@ -495,6 +496,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
               <PressableHybrid
                 variant="secondary"
                 style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, padding: 12, marginBottom: 4 }}
+                contentStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}
                 onPress={() => { void handleShareExam(); }}
               >
                 <Ionicons name="share-outline" size={18} color={t.textSecond} />
@@ -515,7 +517,12 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
               </TouchableOpacity>
             )}
             {isHybrid ? (
-              <PressableHybrid variant="secondary" style={{ padding: 14 }} onPress={onClose}>
+              <PressableHybrid
+                variant="secondary"
+                style={{ padding: 14 }}
+                contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
+                onPress={onClose}
+              >
                 <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline', textAlign: 'center' }}>
                   {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
                 </Text>

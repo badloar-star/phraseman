@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
 import { DARK, GOLD, OLIVE, MIDNIGHT, EMBER, AURORA, VOLT, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
@@ -9,6 +9,7 @@ import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { useFeatureAccess } from './PremiumContext';
 import {
   isSelectableThemeMode,
   isThemePlusOnly,
@@ -237,9 +238,11 @@ const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'busines
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
+  const liveThemeAccess = useFeatureAccess('themes');
   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
   const [themeMode, setThemeModeState] = useState<ThemeMode>(DEFAULT_THEME_MODE);
+  const themeSelectionEpochRef = useRef(0);
   // зачем: «Примерочная» на экране «Тем» — фри-юзер по тапу видит ЛЮБУЮ тему вживую,
   // применение остаётся под замком setThemeMode. Не персистится, сбрасывается при
   // выходе с экрана тем (cleanup на unmount экрана).
@@ -259,6 +262,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     let cancelled = false;
+    const selectionEpoch = themeSelectionEpochRef.current;
     (async () => {
       const pairs = await AsyncStorage.multiGet(['app_theme', 'app_font_size', MIDNIGHT_GRANDFATHER_KEY]);
       const themeStr = pairs[0]?.[1] ?? null;
@@ -278,6 +282,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       setPremiumThemeAccess(isPremium);
       setGoldThemeUnlocked(hasGoldReward);
       setMidnightGrandfathered(grandfathered);
+      if (selectionEpoch !== themeSelectionEpochRef.current) {
+        if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
+        return;
+      }
       // Миграция: ocean/sakura больше не поддерживаются → заменяем на dark
       let migrated = themeStr;
       if (themeStr === 'ocean' || themeStr === 'sakura') {
@@ -298,7 +306,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
         // «Полночь» у «дедушки» премиум-замком не считается.
         const premiumLocked = isThemePlusOnly(t) && !(t === 'midnight' && grandfathered);
-        if ((!isPremium && !DEV_THEME_UNLOCKS && premiumLocked) || goldLocked) {
+        if ((!isPremium && !liveThemeAccess && !DEV_THEME_UNLOCKS && premiumLocked) || goldLocked) {
           setThemeModeState(DEFAULT_THEME_MODE);
           void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
         } else {
@@ -313,7 +321,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [liveThemeAccess]);
 
   useEffect(() => {
     const subGold = onAppEvent('gold_theme_unlocked', () => {
@@ -328,45 +336,48 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  const commitThemeMode = useCallback((m: ThemeMode) => {
+    themeSelectionEpochRef.current += 1;
+    setThemeModeState(m);
+    void AsyncStorage.setItem('app_theme', m);
+  }, []);
+
   const setThemeMode = useCallback((m: ThemeMode) => {
     if (m === 'gold' && !goldThemeUnlocked && !DEV_THEME_UNLOCKS) return;
     if (m === 'midnight' && midnightGrandfathered) {
       // «Дедушка»: старый бесплатный юзер «Полночи» может вернуться на неё всегда.
-      setThemeModeState(m);
-      void AsyncStorage.setItem('app_theme', m);
+      commitThemeMode(m);
       return;
     }
-    if (!DEV_THEME_UNLOCKS && isThemePlusOnly(m) && !premiumThemeAccess) {
+    if (!DEV_THEME_UNLOCKS && isThemePlusOnly(m) && !premiumThemeAccess && !liveThemeAccess) {
       void getVerifiedPremiumStatus()
         .then((isPremium) => {
           setPremiumThemeAccess(isPremium);
           const next = isPremium ? m : DEFAULT_THEME_MODE;
-          setThemeModeState(next);
-          void AsyncStorage.setItem('app_theme', next);
+          commitThemeMode(next);
         })
         .catch(() => {
-          setThemeModeState(DEFAULT_THEME_MODE);
-          void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
+          commitThemeMode(DEFAULT_THEME_MODE);
         });
       return;
     }
-    setThemeModeState(m);
-    void AsyncStorage.setItem('app_theme', m);
-  }, [goldThemeUnlocked, premiumThemeAccess, midnightGrandfathered]);
+    commitThemeMode(m);
+  }, [commitThemeMode, goldThemeUnlocked, premiumThemeAccess, liveThemeAccess, midnightGrandfathered]);
 
   const toggle = useCallback(() => {
     setThemeModeState(m => {
       const cycle = CYCLE.filter((mode) => {
         if (mode === 'gold') return goldThemeUnlocked || DEV_THEME_UNLOCKS;
         if (mode === 'midnight' && midnightGrandfathered) return true;
-        if (isThemePlusOnly(mode)) return premiumThemeAccess || DEV_THEME_UNLOCKS;
+        if (isThemePlusOnly(mode)) return premiumThemeAccess || liveThemeAccess || DEV_THEME_UNLOCKS;
         return true;
       });
       const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? DEFAULT_THEME_MODE;
+      themeSelectionEpochRef.current += 1;
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });
-  }, [goldThemeUnlocked, premiumThemeAccess, midnightGrandfathered]);
+  }, [goldThemeUnlocked, premiumThemeAccess, liveThemeAccess, midnightGrandfathered]);
 
   const setFontSize = useCallback((s: FontSize) => {
     setFontSizeState(s);

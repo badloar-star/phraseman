@@ -30,7 +30,7 @@ import { buildAchievementShareMessage } from '../app/achievement_share';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
-import { LUM, SUITE } from '../constants/motionHybrid';
+import { LUM, SUITE, TOAST } from '../constants/motionHybrid';
 import { triLang } from '../constants/i18n';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useOverlayVisible } from './OverlayArbiter';
@@ -47,6 +47,7 @@ import {
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 import { soundDirector } from '../modules/audio/sound_director';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 const AUTO_DISMISS_MS = 3800;
 const { width: SW } = Dimensions.get('window');
@@ -59,20 +60,21 @@ const TOAST_VECTOR_ICON_SIZE = 38;
  * Монтируется один раз в корне приложения (_layout.tsx), поверх всего.
  * Работает с очередью из AchievementContext.
  *
- * зачем: motionVariant — dev-only проп (default 'classic'), витрина движения
- * рендерит гибрид рядом с боевым видом. Гибрид НЕ трогает боевую логику
+ * зачем: после приёмки DEV Hub гибрид стал боевым дефолтом; явный `classic`
+ * остаётся быстрым путём отката. Гибрид НЕ трогает боевую логику
  * drag-to-dismiss/PanResponder (владелец запретил переписывать рабочее) —
  * это отдельный Reanimated-слой поверх карточки: bloom-подложка из света
  * (LUM) + микро-пульс иконки (SUITE.pulse), синхронизированные с моментом
  * появления карточки.
  */
-function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'classic' | 'hybrid' }) {
+function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'classic' | 'hybrid' }) {
   const { currentToast, dismissCurrent } = useAchievement();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const toastOverlayVisible = useOverlayVisible('achievementToast', currentToast != null);
   const hybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
   const bloom = useSharedValue(0);
   const iconPulse = useSharedValue(1);
 
@@ -226,14 +228,14 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
       );
 
       // Slide up + fade in + scale
-      translateY.setValue(160);
+      translateY.setValue(hybrid && reduceMotion ? 0 : 160);
       swipeDy.setValue(0);
       swipeDx.setValue(0);
-      opacity.setValue(0);
-      scale.setValue(0.88);
+      opacity.setValue(hybrid && reduceMotion ? 1 : 0);
+      scale.setValue(hybrid && reduceMotion ? 1 : 0.88);
       /** Откладываем старт на следующий кадр: даём Fabric закоммитить
        *  Animated.View, иначе connectAnimatedNodeToView падает (RedBox в dev). */
-      rafInRef.current = requestAnimationFrame(() => {
+      if (!(hybrid && reduceMotion)) rafInRef.current = requestAnimationFrame(() => {
         rafInRef.current = null;
         Animated.parallel([
           Animated.spring(translateY, {
@@ -255,12 +257,12 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
       // Гибрид: bloom-подложка загорается следом за карточкой, потом иконка
       // получает микро-пульс (SUITE.pulse) — «удар» кульминации, но лёгкий
       // (это не единственный герой награды, тот случай — RewardImpactRings).
-      if (hybrid) {
+      if (hybrid && !reduceMotion) {
         bloom.value = 0;
         iconPulse.value = 1;
-        bloom.value = withDelay(LUM.resolveMs * 0.4, withTiming(1, { duration: 260, easing: ReanimatedEasing.out(ReanimatedEasing.cubic) }));
+        bloom.value = withDelay(TOAST.enterMs * 0.4, withTiming(1, { duration: TOAST.enterMs, easing: ReanimatedEasing.out(ReanimatedEasing.cubic) }));
         iconPulse.value = withDelay(
-          LUM.resolveMs + 40,
+          TOAST.enterMs + 40,
           withSequence(
             withSpring(1.14, SUITE.pulse),
             withSpring(1, SUITE.pulse),
@@ -284,7 +286,7 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
       cancelAnimation(bloom);
       cancelAnimation(iconPulse);
     };
-  }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent, hybrid, bloom, iconPulse]);
+  }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent, hybrid, reduceMotion, bloom, iconPulse]);
 
   // Гибрид: bloom-подложка (opacity 0→~0.5) и микро-пульс иконки — тот же
   // приём, что и в ActionToastHybridCard (components/ActionToast.tsx).
@@ -292,6 +294,11 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
   const iconPulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: iconPulse.value }] }));
 
   const animateOut = (forceDismiss = false) => {
+    if (hybrid && reduceMotion) {
+      if (!forceDismiss && modalVisibleRef.current) return;
+      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, dismissCurrent);
+      return;
+    }
     Animated.parallel([
       Animated.timing(translateY, { toValue: 160, duration: MOTION_DURATION.slow, useNativeDriver: true }),
       Animated.timing(opacity,    { toValue: 0,   duration: MOTION_DURATION.normal, useNativeDriver: true }),
@@ -434,21 +441,21 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
 
   return (
     <>
-      <Animated.View
-        style={[
-          s.container,
-          { bottom: bottomOffset },
-          {
-            transform: [
-              { translateY: Animated.add(translateY, swipeDy) },
-              { translateX: swipeDx },
-              { scale },
-            ],
-            opacity,
-          },
-        ]}
-        {...panResponder.panHandlers}
-      >
+      <View style={[s.containerAnchor, { bottom: bottomOffset }]}>
+        <Animated.View
+          style={[
+            s.containerMotion,
+            {
+              transform: [
+                { translateY: Animated.add(translateY, swipeDy) },
+                { translateX: swipeDx },
+                { scale },
+              ],
+              opacity,
+            },
+          ]}
+          {...panResponder.panHandlers}
+        >
         <TouchableOpacity
           activeOpacity={0.92}
           onPress={handlePress}
@@ -500,7 +507,8 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
           {/* Мерцающий индикатор */}
           <Text style={[s.sparks, { fontSize: f.numMd }]}>✦</Text>
         </TouchableOpacity>
-      </Animated.View>
+        </Animated.View>
+      </View>
 
       {/* Модал при тапе */}
       {modalVisible && (
@@ -585,12 +593,15 @@ function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'clas
 export default memo(AchievementToast);
 
 const s = StyleSheet.create({
-  container: {
+  containerAnchor: {
     position:  'absolute',
     bottom:    0,
     left:      14,
     right:     14,
     zIndex:    9999,
+  },
+  containerMotion: {
+    width: '100%',
   },
   card: {
     flexDirection:  'row',

@@ -5,6 +5,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 
 import { resolveStableUidForAuth } from './auth_identity';
+import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import {
   VOICE_TUTOR_MEMORY_COLLECTION,
@@ -15,7 +16,7 @@ import {
   type TutorMemoryUpdate,
 } from './max_voice_tutor_memory';
 import { VOICE_BILLING_COLLECTION } from './max_voice_session_end';
-import { VOICE_QUOTA_COLLECTION, voiceQuotaDocId } from './max_voice_quota';
+import { VOICE_QUOTA_COLLECTION, ensureCanonicalVoiceQuota, voiceQuotaDocId } from './max_voice_quota';
 import {
   MAX_VOICE_OPS_EVENT_SCHEMA,
   recordMaxVoiceOpsOnce,
@@ -33,6 +34,11 @@ import {
   type MaxVoiceReviewMemoryProjection,
   type MaxVoiceReviewReceiptV1,
 } from './max_voice_review_receipt';
+import {
+  maxVoiceStudyTarget,
+  maxVoiceTargetLanguageName,
+  type MaxVoiceStudyTarget,
+} from './max_voice_target_language';
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -58,6 +64,7 @@ interface FinalizeRequest {
   scenarioId?: string;
   cefr: VoiceCefr;
   interfaceLang: InterfaceLang;
+  studyTarget: MaxVoiceStudyTarget;
   endReason: MaxVoiceReceiptEndReason;
   goalId?: string;
   // зачем: паритет с premiumDialogReview (аудит 2026-08-22) — без этих полей
@@ -148,9 +155,9 @@ export interface MaxVoiceFinalizeDependencies {
   }): Promise<MaxVoiceFinalizeLeaseResult>;
   review(input: MaxVoiceFinalizeReviewInput): Promise<unknown>;
   /**
-   * Пост-разбор безопасности (словарь + Moderation + флаги учителя) → safety_flags
-   * и Telegram. Best-effort: никогда не должен ронять финализацию. Дедуп по
-   * категориям сессии живёт внутри reviewVoiceSafety, поэтому ретраи безопасны.
+   * Пост-разбор безопасности (словарь + Moderation + флаги учителя) отправляет
+   * только обезличенные категориальные сигналы без записи разговора/UID/session.
+   * Best-effort: никогда не должен ронять финализацию.
    */
   reviewSafety(input: MaxVoiceFinalizeReviewInput): Promise<void>;
   commitReady(args: {
@@ -216,7 +223,7 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
   }
   const requestRaw = object(top.request, 'max_finalize_request_invalid');
   onlyKeys(requestRaw, [
-    'history', 'durationSec', 'speechSec', 'format', 'scenarioId', 'cefr', 'interfaceLang',
+    'history', 'durationSec', 'speechSec', 'format', 'scenarioId', 'cefr', 'interfaceLang', 'studyTarget',
     'endReason', 'goalId', 'sceneOutcome', 'goalProgress', 'phraseResults', 'tutorEvidence',
   ]);
   if (!Array.isArray(requestRaw.history) || requestRaw.history.length > MAX_HISTORY_TURNS) {
@@ -243,6 +250,10 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
   if (!['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'].includes(interfaceLang)) {
     throw new HttpsError('invalid-argument', 'max_finalize_interface_lang_invalid');
   }
+  if (requestRaw.studyTarget !== undefined && !['en', 'fr', 'es'].includes(cleanText(requestRaw.studyTarget, 2, true))) {
+    throw new HttpsError('invalid-argument', 'max_finalize_study_target_invalid');
+  }
+  const studyTarget = maxVoiceStudyTarget(requestRaw.studyTarget);
   const endReason = cleanText(requestRaw.endReason, 20, true);
   if (!['completed', 'capped', 'dropped', 'background', 'failed'].includes(endReason)) {
     throw new HttpsError('invalid-argument', 'max_finalize_end_reason_invalid');
@@ -322,6 +333,7 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
       ...(requestRaw.scenarioId === undefined ? {} : { scenarioId: cleanText(requestRaw.scenarioId, 256) }),
       cefr: cefr as VoiceCefr,
       interfaceLang: interfaceLang as InterfaceLang,
+      studyTarget,
       endReason: endReason as MaxVoiceReceiptEndReason,
       ...(requestRaw.goalId === undefined ? {} : { goalId: cleanText(requestRaw.goalId, 256) }),
       ...(sceneOutcome === undefined ? {} : { sceneOutcome }),
@@ -337,8 +349,8 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
         // (acceptMemoryCandidate внутри mergeTutorMemory), что и прочие факты.
         ...(evidenceRaw.preferredName === undefined ? {} : { preferredName: cleanText(evidenceRaw.preferredName, 60) }),
         ...(evidenceRaw.learningGoal === undefined ? {} : { learningGoal: cleanText(evidenceRaw.learningGoal, 160) }),
-        // зачем: аудит 2026-08-22 — флаги учителя уходят в reviewSafety (журнал
-        // safety_flags + Telegram); раньше они здесь молча выбрасывались.
+        // Флаги учителя уходят в reviewSafety как обезличенные категории;
+        // note, UID, session и разговор не попадают в операторские поверхности.
         safetyFlags,
         ...(evidenceRaw.endedByTutor === undefined ? {} : { endedByTutor: evidenceRaw.endedByTutor === true }),
       },
@@ -395,9 +407,9 @@ export async function finalizeMaxVoiceRequest(
     authUid: input.authUid,
     stableUid: input.stableUid,
   };
-  // зачем: safety-журнал обязан отработать даже если AI-разбор упал (владелец
-  // 2026-08-16 — «сохранение всех опасных разговоров»); параллельно, как в
-  // premium_dialog_review. Ошибка safety никогда не роняет финализацию.
+  // Safety-проверка обязана отработать даже если AI-разбор упал, но по новому
+  // owner-контракту наружу уходит только обезличенная категория без разговора,
+  // UID или sessionId. Ошибка сигнала никогда не роняет финализацию.
   const [reviewSettled] = await Promise.allSettled([
     deps.review(reviewInput),
     deps.reviewSafety(reviewInput).catch(() => undefined),
@@ -426,6 +438,7 @@ export async function finalizeMaxVoiceRequest(
     durationSec: ownership.durationSec ?? data.request.durationSec,
     speechSec: data.request.speechSec,
     endReason: data.request.endReason,
+    studyTarget: data.request.studyTarget,
     projection,
     fallbackAction: FALLBACK_ACTION[data.request.interfaceLang],
     fallbackTargetPhrase: firstPhrase,
@@ -439,7 +452,9 @@ export async function finalizeMaxVoiceRequest(
     receipt,
     memoryProjection,
     memoryUpdate: {
-      isTutor: data.request.format === 'tutor',
+      // The persisted tutor memory is currently the legacy English namespace.
+      // Do not mix another course into it until storage becomes target-scoped.
+      isTutor: data.request.format === 'tutor' && data.request.studyTarget === 'en',
       sessionId: data.sessionId,
       cefr: data.request.cefr,
       ...memoryProjection,
@@ -498,7 +513,7 @@ async function verifySessionOwner(db: Firestore, args: {
     };
   }
   const quota = await db.collection(VOICE_QUOTA_COLLECTION)
-    .doc(voiceQuotaDocId(args.authUid, args.stableUid))
+    .doc(voiceQuotaDocId(args.stableUid))
     .get();
   const row = (quota.data() ?? {}) as Record<string, unknown>;
   const owned = row.stableUid === args.stableUid
@@ -529,9 +544,14 @@ const MAX_VOICE_REVIEW_LANGUAGE_NAMES: Record<InterfaceLang, string> = {
  * то-то" — не должно быть так, должно быть "вы"». Модель писала в третьем
  * лице, потому что промпт не задавал точку зрения явно.
  */
-export function maxVoiceReviewSystemPrompt(cefr: string, interfaceLang: InterfaceLang): string {
+export function maxVoiceReviewSystemPrompt(
+  cefr: string,
+  interfaceLang: InterfaceLang,
+  studyTarget: MaxVoiceStudyTarget = 'en',
+): string {
   const languageName = MAX_VOICE_REVIEW_LANGUAGE_NAMES[interfaceLang];
-  return `Review a spoken English lesson for a ${cefr} learner. Return JSON only in ${languageName}. Schema: {"worked":[max 3 short strings],"correction":{"said":"","target":"","explanation":""}|null,"tomorrowActions":[1-3 concrete actions],"targetPhrase":string|null,"nextTopic":string|null,"memory":{"facts":[max 6],"recurringErrors":[max 5],"resolvedErrors":[max 5]}}. Use only evidence in the conversation. Never assess pronunciation, accent, phonemes, fluency scores, or audio quality. Do not mention internal policy. Write every user-visible string DIRECTLY TO the learner in second person ("you did…", "вы сказали…") — never in third person about "the learner"/"ученик"/"the student". Use the polite second-person form where the language has one.`;
+  const targetLanguageName = maxVoiceTargetLanguageName(studyTarget);
+  return `Review a spoken ${targetLanguageName} lesson for a ${cefr} learner. Return JSON only in ${languageName}. Schema: {"worked":[max 3 short strings],"correction":{"said":"","target":"","explanation":""}|null,"tomorrowActions":[1-3 concrete actions],"targetPhrase":string|null,"nextTopic":string|null,"memory":{"facts":[max 6],"recurringErrors":[max 5],"resolvedErrors":[max 5]}}. Use only evidence in the conversation. Corrections and target phrases must be in ${targetLanguageName}, the selected course language. Never assess pronunciation, accent, phonemes, fluency scores, or audio quality. Do not mention internal policy. Write every user-visible string DIRECTLY TO the learner in second person ("you did…", "вы сказали…") — never in third person about "the learner"/"ученик"/"the student". Use the polite second-person form where the language has one.`;
 }
 
 function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalizeDependencies {
@@ -596,7 +616,7 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
             messages: [
               {
                 role: 'system',
-                content: maxVoiceReviewSystemPrompt(request.cefr, request.interfaceLang),
+                content: maxVoiceReviewSystemPrompt(request.cefr, request.interfaceLang, request.studyTarget),
               },
               { role: 'user', content: transcript },
             ],
@@ -627,7 +647,7 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
       // зачем: аудит 2026-08-22 — прод-путь финализации не запускал пост-скан
       // безопасности вовсе (словарь+Moderation+флаги учителя работали только в
       // legacy premiumDialogReview, который клиент для звонков не зовёт).
-      // reviewVoiceSafety внутри никогда не бросает и дедупит по sessionId.
+      // reviewVoiceSafety внутри никогда не бросает и не сохраняет содержание.
       await reviewVoiceSafety({
         apiKey,
         authUid,
@@ -636,6 +656,7 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
         history: request.history.map((turn) => ({ role: turn.role, content: turn.text })),
         clientFlags: sanitizeClientSafetyFlags(request.tutorEvidence.safetyFlags),
         sessionId,
+        allowSettled: true,
       });
     },
     commitReady: async (args) => {
@@ -753,7 +774,7 @@ export const maxVoiceFinalize = onCall({
   // грузит 12 функций = 78 МБ, запас к лимиту трёхкратный.
   memory: '256MiB',
   maxInstances: 20,
-  secrets: [OPENAI_API_KEY],
+  secrets: [OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
@@ -764,6 +785,7 @@ export const maxVoiceFinalize = onCall({
     undefined,
     { repairLinks: false, requireKnownIdentity: true },
   );
+  await ensureCanonicalVoiceQuota(db, { authUid, stableUid });
   const apiKey = cleanText(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   return finalizeMaxVoiceRequest(
     { authUid, stableUid, data: request.data },

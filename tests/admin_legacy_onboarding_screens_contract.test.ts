@@ -29,7 +29,7 @@ function adminCatalogIds(): string[] {
 describe("Admin legacy onboarding screens section", () => {
   it("is registered as a real tab across every wiring point", () => {
     expect(legacy).toContain("'onboarding-screens',");
-    expect(legacy).toContain("'onboarding-screens': 'Onboarding screens'");
+    expect(legacy).toContain("'onboarding-screens': 'Онбординг'");
     expect(legacy).toContain("'onboarding-screens': 'core'");
     expect(legacy).toContain("switchTab('onboarding-screens')");
     expect(legacy).toContain('id="tab-onboarding-screens"');
@@ -66,8 +66,12 @@ describe("Admin legacy onboarding screens section", () => {
   });
 
   it("reads the exit funnel from the single per-user onboarding_exit event", () => {
-    expect(legacy).toContain("r.action === 'onboarding_exit'");
+    expect(legacy).toContain("where('action', '==', 'onboarding_exit')");
     expect(legacy).toContain("where('createdAtMs', '>=', fromMs)");
-    expect(legacy).toContain("limit(3000)");
+    expect(legacy).toContain("where('createdAtMs', '<=', toMs)");
+    expect(legacy).toContain("orderBy('createdAtMs', 'desc')");
+    expect(legacy).toContain("limit(ONBOARDING_EXIT_CAP + 1)");
+    expect(legacy).toContain("['Пропустили онбординг', 'n/a']");
+    expect(legacy).toContain("['Завершили онбординг', 'n/a']");
   });
 });

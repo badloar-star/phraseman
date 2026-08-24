@@ -25,6 +25,12 @@ export type UserNotificationType =
   | 'friend_gift_thanks'
   | 'arena_partner_invite'
   | 'arena_partner_nudge'
+  | 'friend_nudge'
+  | 'arena_friend_invite'
+  | 'arena_friend_accepted'
+  | 'arena_friend_declined'
+  | 'arena_friend_cancelled'
+  | 'arena_friend_expired'
   | 'report_reply';
 
 export interface UserNotificationNavFriends {
@@ -41,9 +47,25 @@ export interface UserNotificationNavArenaPartner {
   partnershipId: string;
 }
 
+export type UserNotificationFriendEventAction =
+  | 'high_five'
+  | 'study_invite'
+  | 'duel_invite'
+  | 'duel_state'
+  | 'gift';
+
+export interface UserNotificationNavFriendEvent {
+  kind: 'friend_event';
+  actorStableUid: string;
+  eventId: string;
+  action: UserNotificationFriendEventAction;
+  inviteId?: string;
+}
+
 export type UserNotificationNav =
   | UserNotificationNavFriends
   | UserNotificationNavArenaPartner
+  | UserNotificationNavFriendEvent
   | UserNotificationNavReportReply;
 
 export interface UserNotificationReportReply {
@@ -68,7 +90,7 @@ export interface UserNotification {
   createdAt: number;
 }
 
-const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<UserNotificationType>([
+export const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<UserNotificationType>([
   'friend_request',
   'friend_accepted',
   'activity_like',
@@ -76,6 +98,12 @@ const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<UserNotific
   'friend_gift_thanks',
   'arena_partner_invite',
   'arena_partner_nudge',
+  'friend_nudge',
+  'arena_friend_invite',
+  'arena_friend_accepted',
+  'arena_friend_declined',
+  'arena_friend_cancelled',
+  'arena_friend_expired',
   'report_reply',
 ]);
 
@@ -109,6 +137,42 @@ function cleanText(value: unknown, maxLen: number): string {
   return String(value ?? '').trim().slice(0, maxLen);
 }
 
+const FRIEND_EVENT_ACTIONS: ReadonlySet<string> = new Set<UserNotificationFriendEventAction>([
+  'high_five',
+  'study_invite',
+  'duel_invite',
+  'duel_state',
+  'gift',
+]);
+
+export function parseUserNotificationNav(value: unknown): UserNotificationNav | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const row = value as Record<string, unknown>;
+  const kind = cleanText(row.kind, 32);
+  if (kind === 'friends') return { kind: 'friends' };
+  if (kind === 'report_reply') {
+    const messageId = cleanText(row.messageId, 128);
+    return messageId ? { kind: 'report_reply', messageId } : null;
+  }
+  if (kind === 'arena_partner') {
+    const partnershipId = cleanText(row.partnershipId, 160);
+    return partnershipId ? { kind: 'arena_partner', partnershipId } : null;
+  }
+  if (kind !== 'friend_event') return null;
+  const actorStableUid = cleanText(row.actorStableUid, 160);
+  const eventId = cleanText(row.eventId, 160);
+  const action = cleanText(row.action, 32);
+  if (!actorStableUid || !eventId || !FRIEND_EVENT_ACTIONS.has(action)) return null;
+  const inviteId = cleanText(row.inviteId, 256);
+  return {
+    kind: 'friend_event',
+    actorStableUid,
+    eventId,
+    action: action as UserNotificationFriendEventAction,
+    ...(inviteId ? { inviteId } : {}),
+  };
+}
+
 function normalizeReportReply(value: unknown): UserNotificationReportReply | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const row = value as Record<string, unknown>;
@@ -127,7 +191,7 @@ function normalizeReportReply(value: unknown): UserNotificationReportReply | nul
 }
 
 function normalizeNotification(id: string, data: Record<string, unknown>): UserNotification {
-  const nav = data.nav && typeof data.nav === 'object' ? (data.nav as UserNotificationNav) : null;
+  const nav = parseUserNotificationNav(data.nav);
   return {
     id,
     type: String(data.type || '') as UserNotificationType,
@@ -144,7 +208,25 @@ function normalizeNotification(id: string, data: Record<string, unknown>): UserN
 
 const cachedMemoryByOwner = new Map<string, UserNotification[]>();
 const refreshInFlightByOwner = new Map<string, Promise<UserNotification[]>>();
+const locallyReadIdsByOwner = new Map<string, Set<string>>();
+const locallyDeletedIdsByOwner = new Map<string, Set<string>>();
 let legacyCacheCleanupStarted = false;
+
+function notificationIdSet(map: Map<string, Set<string>>, ownerUid: string): Set<string> {
+  const existing = map.get(ownerUid);
+  if (existing) return existing;
+  const created = new Set<string>();
+  map.set(ownerUid, created);
+  return created;
+}
+
+function applyOwnerNotificationOverrides(ownerUid: string, list: readonly UserNotification[]): UserNotification[] {
+  const readIds = locallyReadIdsByOwner.get(ownerUid);
+  const deletedIds = locallyDeletedIdsByOwner.get(ownerUid);
+  return list
+    .filter((row) => !deletedIds?.has(row.id))
+    .map((row) => readIds?.has(row.id) && !row.read ? { ...row, read: true } : row);
+}
 
 function ownerStorageKey(prefix: string, ownerUid: string): string {
   return `${prefix}${encodeURIComponent(ownerUid)}`;
@@ -157,6 +239,8 @@ function rememberOwnerCache(ownerUid: string, list: UserNotification[]): void {
     const oldestOwnerUid = cachedMemoryByOwner.keys().next().value;
     if (typeof oldestOwnerUid !== 'string') break;
     cachedMemoryByOwner.delete(oldestOwnerUid);
+    locallyReadIdsByOwner.delete(oldestOwnerUid);
+    locallyDeletedIdsByOwner.delete(oldestOwnerUid);
   }
 }
 
@@ -187,7 +271,7 @@ export async function readCachedUserNotifications(): Promise<UserNotification[]>
     if (currentOwnerUid !== ownerUid) return [];
     const stored = parsed.filter((row) =>
       row && typeof row === 'object' && typeof row.id === 'string') as UserNotification[];
-    const list = onlyVisibleUserNotifications(stored);
+    const list = applyOwnerNotificationOverrides(ownerUid, onlyVisibleUserNotifications(stored));
     rememberOwnerCache(ownerUid, list);
     if (list.length !== stored.length) {
       // Physically purge retired/unknown records from the account-scoped cache
@@ -211,10 +295,20 @@ function getNotificationsQuery(ownerUid: string): any | null {
     .limit(MAX_NOTIFICATIONS);
 }
 
-function writeCache(ownerUid: string, list: UserNotification[]): void {
-  const visible = onlyVisibleUserNotifications(list);
+function writeCache(ownerUid: string, list: UserNotification[]): UserNotification[] {
+  const visible = applyOwnerNotificationOverrides(ownerUid, onlyVisibleUserNotifications(list));
   rememberOwnerCache(ownerUid, visible);
   AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(visible)).catch(() => {});
+  return visible;
+}
+
+async function updateOwnerCache(
+  ownerUid: string,
+  update: (list: readonly UserNotification[]) => UserNotification[],
+): Promise<void> {
+  const current = cachedMemoryByOwner.get(ownerUid) ?? await readCachedUserNotifications();
+  if (await getNotificationOwnerUid() !== ownerUid) return;
+  writeCache(ownerUid, update(current));
 }
 
 async function readLastRefreshMs(ownerUid: string): Promise<number> {
@@ -271,9 +365,9 @@ export async function refreshUserNotificationsOnce(options: {
       const list = onlyVisibleUserNotifications(
         (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {})),
       );
-      writeCache(ownerUid, list);
+      const cachedList = writeCache(ownerUid, list);
       await writeLastRefreshMs(ownerUid, now);
-      return list;
+      return cachedList;
     } catch {
       const currentOwnerUid = await getNotificationOwnerUid();
       return currentOwnerUid === ownerUid ? readCachedUserNotifications() : [];
@@ -291,29 +385,48 @@ export async function refreshUserNotificationsOnce(options: {
 
 /** Пометить события прочитанными (батчем; правила пускают только read/readAt/updatedAt). */
 export async function markUserNotificationsRead(ids: string[]): Promise<void> {
-  const db = getFirestore();
-  if (!db || ids.length === 0) return;
+  const normalizedIds = new Set(ids.slice(0, MAX_NOTIFICATIONS).map((id) => String(id || '').trim()).filter(Boolean));
+  if (normalizedIds.size === 0) return;
   const stableUid = await getNotificationOwnerUid();
   if (!stableUid) return;
+  const locallyReadIds = notificationIdSet(locallyReadIdsByOwner, stableUid);
+  normalizedIds.forEach((id) => locallyReadIds.add(id));
+  const markCachedRowsRead = (list: readonly UserNotification[]) => list.map((row) => (
+    normalizedIds.has(row.id) ? { ...row, read: true } : row
+  ));
+  await updateOwnerCache(stableUid, markCachedRowsRead);
+  const db = getFirestore();
+  if (!db) return;
   const now = Date.now();
   try {
     const batch = db.batch();
-    ids.slice(0, MAX_NOTIFICATIONS).forEach((id) => {
+    normalizedIds.forEach((id) => {
       const ref = db.collection('users').doc(stableUid).collection('notifications').doc(id);
       batch.update(ref, { read: true, readAt: now, updatedAt: now });
     });
     await batch.commit();
   } catch {
     // best-effort: непрочитанность догонит следующий снапшот
+  } finally {
+    await updateOwnerCache(stableUid, markCachedRowsRead);
   }
 }
 
 export async function deleteUserNotification(id: string): Promise<void> {
-  const db = getFirestore();
-  if (!db || !id) return;
+  const notificationId = String(id || '').trim();
+  if (!notificationId) return;
   const stableUid = await getNotificationOwnerUid();
   if (!stableUid) return;
+  notificationIdSet(locallyDeletedIdsByOwner, stableUid).add(notificationId);
+  const removeCachedRow = (list: readonly UserNotification[]) => list.filter((row) => row.id !== notificationId);
+  await updateOwnerCache(stableUid, removeCachedRow);
+  const db = getFirestore();
+  if (!db) return;
   try {
-    await db.collection('users').doc(stableUid).collection('notifications').doc(id).delete();
-  } catch {}
+    await db.collection('users').doc(stableUid).collection('notifications').doc(notificationId).delete();
+  } catch {
+    // Keep the user's explicit local deletion even while offline.
+  } finally {
+    await updateOwnerCache(stableUid, removeCachedRow);
+  }
 }

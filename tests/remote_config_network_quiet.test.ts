@@ -169,6 +169,25 @@ test('reserved prototype keys cannot smuggle inherited Remote Config sections', 
   expect(getterRuns).toBe(0);
 });
 
+test('preserves only the allowlisted friends-together numeric arrays in the local cache', async () => {
+  mockGet.mockResolvedValueOnce({
+    exists: true,
+    data: () => ({
+      bools: { friends_together_enabled: true },
+      numbers: {
+        friends_level_thresholds: [0, 4, 12, 40, 120],
+        friends_chest_tiers: [7000, 14000, 21000],
+        arbitrary_array: [1, 2, 3],
+      },
+    }),
+  });
+  await loadRemoteConfig();
+  const cached = JSON.parse(String(await AsyncStorage.getItem('remote_config_cache_v1')));
+  expect(cached.numbers.friends_level_thresholds).toEqual([0, 4, 12, 40, 120]);
+  expect(cached.numbers.friends_chest_tiers).toEqual([7000, 14000, 21000]);
+  expect(cached.numbers.arbitrary_array).toBeUndefined();
+});
+
 test('rejects an oversized persisted cache before JSON parsing it', async () => {
   const oversized = `{"texts":{"value":"${'x'.repeat(70 * 1024)}"}}`;
   const multibyteOversized = `{"texts":{"value":"${'😀'.repeat(20 * 1024)}"}}`;

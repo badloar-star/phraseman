@@ -6,6 +6,13 @@ import { buildUserNotification, userNotificationRef } from './user_notifications
 import { getLevelFromXP } from './xp_levels';
 import { appendExternalEconomyEvent } from './external_economy_events';
 import {
+  daysTogether,
+  FRIENDS_TOGETHER_DEFAULTS,
+  friendsTogetherConfigFromNumbers,
+  levelForDays as togetherLevelForDays,
+  type ActiveDaysState,
+} from './friends_together_core';
+import {
   commitPreparedLevelSpinMinting,
   LEVEL_SPIN_PROTOCOL,
   prepareLevelSpinMinting,
@@ -233,6 +240,47 @@ function getExistingField(data: FirebaseFirestore.DocumentData | undefined, key:
   return data?.[key] ?? progress[key];
 }
 
+function activeDaysFromUser(data: FirebaseFirestore.DocumentData | undefined): ActiveDaysState | null {
+  const raw = parseJsonObject(getExistingField(data, 'active_days_v1'));
+  const anchor = typeof raw.anchor === 'string' ? raw.anchor : '';
+  const bits = typeof raw.bits === 'string' ? raw.bits : '';
+  return anchor && bits ? { anchor, bits } : null;
+}
+
+/** L3 «Друзья»+: подарок этому конкретному другу стоит на 25% меньше. */
+function togetherGiftCost(
+  gift: GiftCatalogItem,
+  senderData: FirebaseFirestore.DocumentData | undefined,
+  recipientData: FirebaseFirestore.DocumentData | undefined,
+  pairData: FirebaseFirestore.DocumentData | undefined,
+  levelThresholds: readonly number[],
+): number {
+  const commonDays = daysTogether(
+    activeDaysFromUser(senderData),
+    activeDaysFromUser(recipientData),
+    parseProgressInt(pairData?.bonusDays),
+  );
+  return togetherLevelForDays(commonDays, levelThresholds) >= 3
+    ? Math.max(1, Math.floor(gift.costShards * 0.75))
+    : gift.costShards;
+}
+
+let giftLevelConfigCache: { expiresAtMs: number; thresholds: readonly number[] } | null = null;
+
+async function resolveGiftLevelThresholds(db: admin.firestore.Firestore): Promise<readonly number[]> {
+  const now = Date.now();
+  if (giftLevelConfigCache && giftLevelConfigCache.expiresAtMs > now) return giftLevelConfigCache.thresholds;
+  try {
+    const snap = await db.collection('remote_config').doc('app').get();
+    const numbers = (snap.data() as { numbers?: Record<string, unknown> } | undefined)?.numbers;
+    const thresholds = friendsTogetherConfigFromNumbers(numbers).levelThresholds;
+    giftLevelConfigCache = { expiresAtMs: now + 60_000, thresholds };
+    return thresholds;
+  } catch {
+    return FRIENDS_TOGETHER_DEFAULTS.levelThresholds;
+  }
+}
+
 function replayFriendGiftResult(
   idempotencyData: FirebaseFirestore.DocumentData | undefined,
   idempotencyKey: string,
@@ -401,10 +449,12 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
   if (linkedSender.stableUid !== senderStableId) {
     throw new HttpsError('failed-precondition', 'sender_stable_id_changed');
   }
+  const giftLevelThresholds = await resolveGiftLevelThresholds(db);
   const senderRef = db.collection('users').doc(senderStableId);
   const recipientRef = db.collection('users').doc(friendStableId);
   const senderFriendRef = senderRef.collection('friends').doc(friendStableId);
   const recipientFriendRef = recipientRef.collection('friends').doc(senderStableId);
+  const pairRef = db.collection('friend_pairs').doc([senderStableId, friendStableId].sort().join('__'));
   const now = Date.now();
   const nowIso = new Date(now).toISOString();
   const today = todayStrUtc();
@@ -426,6 +476,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       recipientSnap,
       senderFriendSnap,
       recipientFriendSnap,
+      pairSnap,
       dailyLimitSnap,
       senderCurrentQuestSnap,
       recipientCurrentQuestSnap,
@@ -437,6 +488,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       tx.get(recipientRef),
       tx.get(senderFriendRef),
       tx.get(recipientFriendRef),
+      tx.get(pairRef),
       tx.get(dailyLimitRef),
       tx.get(senderCurrentQuestRef),
       tx.get(recipientCurrentQuestRef),
@@ -465,6 +517,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     if (idempotencySnap?.exists) {
       return replayFriendGiftResult(idempotencySnap.data(), idempotencyKey, friendStableId, gift);
     }
+    const costShards = togetherGiftCost(gift, senderData, recipientSnap.data(), pairSnap.data(), giftLevelThresholds);
 
     const dailyData = dailyLimitSnap.exists ? dailyLimitSnap.data() ?? {} : {};
     const totalSentToday = parseShards(dailyData.totalSent);
@@ -488,7 +541,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       source: 'friend_gift',
       eventId: idempotencyKey,
       ownerStableId: senderStableId,
-      delta: -gift.costShards,
+      delta: -costShards,
       reason: 'friend_gift',
       kind: 'person_to_person_gift',
       subjectId: gift.id,
@@ -501,7 +554,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     tx.set(senderRef.collection('shard_log').doc(), {
       ts: nowIso,
       type: 'spend',
-      amount: gift.costShards,
+      amount: costShards,
       reason: 'friend_gift',
       giftId: gift.id,
       targetUid: friendStableId,
@@ -536,7 +589,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     tx.set(sentGiftRef, {
       ts: nowIso,
       giftId: gift.id,
-      costShards: gift.costShards,
+      costShards,
       toUid: friendStableId,
       toName: cleanDisplayName(recipientSnap.data()?.displayName) || '',
     });
@@ -544,7 +597,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     tx.set(receivedGiftRef, {
       ts: nowIso,
       giftId: gift.id,
-      costShards: gift.costShards,
+      costShards,
       fromUid: senderStableId,
       fromName: senderName,
       seen: false,
@@ -581,7 +634,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       giftLabelId: gift.labelId,
       giftLabelTr: gift.labelTr,
       giftLabelPl: gift.labelPl,
-      costShards: gift.costShards,
+      costShards,
       peerUid: friendStableId,
     });
 
@@ -598,7 +651,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       giftLabelId: gift.labelId,
       giftLabelTr: gift.labelTr,
       giftLabelPl: gift.labelPl,
-      costShards: gift.costShards,
+      costShards,
       peerUid: senderStableId,
       peerName: senderName,
       seen: false,
@@ -665,7 +718,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     const publicResult: FriendGiftTxResult = {
       ok: true,
       giftId: gift.id,
-      costShards: gift.costShards,
+      costShards,
       dailyRemaining: Math.max(0, MAX_DAILY_GIFTS_TOTAL - totalSentToday - 1),
       questStarted,
       questBlockedReason,

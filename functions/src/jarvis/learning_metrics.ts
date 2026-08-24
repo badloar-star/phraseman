@@ -8,6 +8,7 @@ const TRUSTED_LEARNING_COMPLETION_EVENTS = new Set([
   'lesson_complete',
   'dialog_complete',
   'exam_complete',
+  'plan_task_complete',
 ]);
 
 export interface LearningMetricFields {
@@ -34,6 +35,7 @@ export interface PrepareLearningCompletionMetricsInput {
   readonly tx: FirebaseFirestore.Transaction;
   readonly stableUid: string;
   readonly eventType: string;
+  readonly completionApplied?: boolean;
   readonly occurredAt: Date;
   readonly fields: LearningMetricFields;
 }
@@ -102,6 +104,7 @@ export function hashLearningMemberKey(stableUid: string): string {
 export async function prepareLearningCompletionMetrics(
   input: PrepareLearningCompletionMetricsInput,
 ): Promise<PreparedLearningMetrics> {
+  if (input.completionApplied === false) return emptyPrepared();
   if (!TRUSTED_LEARNING_COMPLETION_EVENTS.has(input.eventType)) return emptyPrepared();
 
   const activityDate = utcDayKey(input.occurredAt);

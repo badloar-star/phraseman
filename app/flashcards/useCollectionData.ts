@@ -57,6 +57,7 @@ import {
   consumeStagedCommunityPackMarketCards,
   getStagedNavigationPackId,
   peekStagedCommunityPackCards,
+  peekStagedCommunityPackMeta,
   stagedCommunityPackCardsPromise,
 } from '../community_packs/staging';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
@@ -159,7 +160,7 @@ export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget)
     loadFlashcards(studyTarget).catch((): Flashcard[] => []),
     readCustomCards(studyTarget).catch(() => null),
     loadAccessiblePackIds(studyTarget).catch((): string[] => []),
-    loadBuiltMarketplaceCardsCache().catch((): null => null),
+    loadBuiltMarketplaceCardsCache(studyTarget).catch((): null => null),
     /**
      * зачем (владелец, 2026-08-16, «все разделы должны быть уже загружены, когда
      * открываем карточки»): без каталога наборов экран «Мои наборы» стартовал
@@ -179,11 +180,37 @@ export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget)
  * Викликати синхронно в `router.push` перед відкриттям колекції з `?pack=` —
  * тоді перший кадр уже містить картки з бандла (без порожнього «створити картку»).
  */
-let stagedOwnedPackMarketCards: CardItem[] | null = null;
+let stagedOwnedPackMarketCards: { key: string; cards: CardItem[] } | null = null;
 
-export function stageOwnedPackCardsForNavigation(packId: string): void {
-  const packs = bundledPacksForOwned([packId]);
-  stagedOwnedPackMarketCards = packs.length > 0 ? buildMarketplaceOwnedCards(packs) : null;
+function ownedPackStageKey(packId: string, studyTarget?: RuntimeStudyTarget): string {
+  return `${storageStudyTarget(studyTarget)}::${packId}`;
+}
+
+function consumeStagedOwnedPackMarketCards(
+  packId: string | null,
+  studyTarget?: RuntimeStudyTarget,
+): CardItem[] | null {
+  const key = packId ? ownedPackStageKey(packId, studyTarget) : null;
+  const cards = key && stagedOwnedPackMarketCards?.key === key
+    ? stagedOwnedPackMarketCards.cards
+    : null;
+  // Любой mount коллекции завершает одноразовую передачу. Несовпавший снимок
+  // нельзя оставлять для будущего direct-deeplink без свежего открытия плитки.
+  stagedOwnedPackMarketCards = null;
+  return cards;
+}
+
+export function stageOwnedPackCardsForNavigation(
+  packId: string,
+  studyTarget?: RuntimeStudyTarget,
+): void {
+  const packs = bundledPacksForOwned([packId], studyTarget);
+  stagedOwnedPackMarketCards = packs.length > 0
+    ? {
+        key: ownedPackStageKey(packId, studyTarget),
+        cards: buildMarketplaceOwnedCards(packs, undefined, studyTarget),
+      }
+    : null;
 }
 
 /** Результат полного цикла loadAll — контейнер решает restore/deeplink/DEV-пак. */
@@ -268,19 +295,31 @@ export function useCollectionData(opts: {
   const [customCards, setCustomCards] = useState<CardItem[]>(_customCardsCache ?? []);
   const [marketCards, setMarketCards] = useState<CardItem[]>(() => {
     if (!officialPacksEnabled && !communityPacksEnabled) {
-      consumeStagedCommunityPackMarketCards();
+      consumeStagedCommunityPackMarketCards(opts.deeplinkPackId ?? null, studyTarget);
       stagedOwnedPackMarketCards = null;
       return [];
     }
-    const com = communityPacksEnabled ? consumeStagedCommunityPackMarketCards() : null;
+    const com = communityPacksEnabled
+      ? consumeStagedCommunityPackMarketCards(opts.deeplinkPackId ?? null, studyTarget)
+      : null;
     if (com && com.length > 0) return com;
-    const snap = stagedOwnedPackMarketCards;
-    stagedOwnedPackMarketCards = null;
+    const snap = consumeStagedOwnedPackMarketCards(opts.deeplinkPackId ?? null, studyTarget);
     return snap ?? [];
   });
-  const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(
-    () => (officialPacksEnabled ? reserveBundledMarketPacks(studyTarget, lang) : []),
-  );
+  /**
+   * Полный первый кадр открываемого набора: ранняя AsyncStorage-гидратация не
+   * должна временно выбрасывать staged-метаданные до ответа общего каталога.
+   */
+  const marketCatalogSeed = useMemo(() => {
+    const base = officialPacksEnabled ? reserveBundledMarketPacks(studyTarget, lang) : [];
+    const stagedMeta = communityPacksEnabled
+      ? peekStagedCommunityPackMeta(opts.deeplinkPackId ?? null, studyTarget)
+      : null;
+    return stagedMeta && !base.some((pack) => pack.id === stagedMeta.id)
+      ? [...base, stagedMeta]
+      : base;
+  }, [communityPacksEnabled, lang, officialPacksEnabled, opts.deeplinkPackId, studyTarget]);
+  const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(marketCatalogSeed);
   /** Список купленных паков из хранилища — для `?pack=` до отрисовки `marketCards` (иначе гонка с кэшем). */
   const [ownedPackIdList, setOwnedPackIdList] = useState<string[]>([]);
   /** Куплені UGC-набори (окремий ключ AsyncStorage). */
@@ -353,7 +392,7 @@ export function useCollectionData(opts: {
           readFlashcardsProgress(studyTarget),
           AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
           loadAccessiblePackIds(studyTarget),
-          loadBuiltMarketplaceCardsCache().catch((): null => null),
+          loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((): null => null),
           loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
         ]);
       const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
@@ -369,16 +408,16 @@ export function useCollectionData(opts: {
         setCardsIfChanged(setMarketCards, builtMarketCache.cards);
         setIdsIfChanged(setOwnedPackIdList, ownedIdsEarly);
         setIdsIfChanged(setCommunityOwnedIdList, communityOwnedEarly);
-        setMarketPackCatalog(reserveBundledMarketPacks());
+        setMarketPackCatalog(marketCatalogSeed);
       } else if (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) {
         /** Одразу з бандла — не чекаємо Firestore у `marketPromise`, інакше `?pack=` показує порожній custom. */
         setIdsIfChanged(setOwnedPackIdList, ownedIdsEarly);
         setIdsIfChanged(setCommunityOwnedIdList, communityOwnedEarly);
-        const ownedBundled = bundledPacksForOwned(ownedIdsEarly);
+        const ownedBundled = bundledPacksForOwned(ownedIdsEarly, studyTarget, lang);
         if (ownedBundled.length > 0) {
-          setCardsIfChanged(setMarketCards, buildMarketplaceOwnedCards(ownedBundled));
+          setCardsIfChanged(setMarketCards, buildMarketplaceOwnedCards(ownedBundled, lang, studyTarget));
         }
-        setMarketPackCatalog(reserveBundledMarketPacks());
+        setMarketPackCatalog(marketCatalogSeed);
       }
       /**
        * Блокуємо лоадер лише якщо без маркет-кешу користувач побачить порожній список
@@ -426,7 +465,7 @@ export function useCollectionData(opts: {
           return updated;
         });
         if (needsSave) {
-          await saveFlashcards(migratedLocal);
+          await saveFlashcards(migratedLocal, studyTarget);
         }
         const mappedAfter = migratedLocal.map(savedToCard);
         _savedCardsCache = mappedAfter;
@@ -469,7 +508,7 @@ export function useCollectionData(opts: {
         }
         setMarketPackCatalog(mergedCatalog);
         const ownedOfficialPacks = marketPacks.filter((pack) => ownedIds.includes(pack.id));
-        const officialBuilt = buildMarketplaceOwnedCards(ownedOfficialPacks);
+        const officialBuilt = buildMarketplaceOwnedCards(ownedOfficialPacks, lang, studyTarget);
         const authorCommunityIds =
           userSid == null
             ? []
@@ -497,7 +536,12 @@ export function useCollectionData(opts: {
          * Локальные наборы в кэш не пишем: они меняются на устройстве и всегда читаются заново.
          * Просматриваемый (ещё не добавленный) набор в кэш «моих» тоже не попадает.
          */
-        void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket);
+        void saveBuiltMarketplaceCardsCache(
+          [...ownedIds, ...communityIdsToLoad].sort(),
+          builtMarket,
+          studyTarget,
+          lang,
+        );
         if (mustDelayForEmptyMarketOnly) setLoading(false);
         return {
           ownedIds,
@@ -523,21 +567,11 @@ export function useCollectionData(opts: {
       });
     } catch {
       setLoading(false);
-      setOwnedPackIdList([]);
-      setCommunityOwnedIdList([]);
       setLoadError(true);
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('error', {
-          ru: 'Не удалось загрузить карточки.',
-          uk: 'Не вдалося завантажити картки.',
-          es: 'No se pudieron cargar las tarjetas.',
-        }),
-      );
     } finally {
       setCollectionDataReady(true);
     }
-  }, [isDevMarketEnabled]);
+  }, [isDevMarketEnabled, lang, marketCatalogSeed, setCardsIfChanged, setIdsIfChanged, studyTarget]);
 
   /**
    * `?pack=` из «Моих наборов» / каталога: карточки набора уже поехали в
@@ -554,12 +588,12 @@ export function useCollectionData(opts: {
       if (cards.length === 0) return;
       setMarketCards((prev) => (prev.some((c) => c.sourceId === sourceId) ? prev : [...prev, ...cards]));
     };
-    const memo = peekStagedCommunityPackCards(deeplinkPackId);
+    const memo = peekStagedCommunityPackCards(deeplinkPackId, studyTarget);
     if (memo) {
       apply(memo);
       return;
     }
-    const pending = stagedCommunityPackCardsPromise(deeplinkPackId);
+    const pending = stagedCommunityPackCardsPromise(deeplinkPackId, studyTarget);
     if (!pending) return;
     let cancelled = false;
     void pending.then((cards) => {
@@ -568,7 +602,7 @@ export function useCollectionData(opts: {
     return () => {
       cancelled = true;
     };
-  }, [communityPacksEnabled, deeplinkPackId]);
+  }, [communityPacksEnabled, deeplinkPackId, studyTarget]);
 
   return {
     savedCards,
@@ -662,6 +696,7 @@ export function usePackDeeplinkGuard(args: {
   /** Набор неизвестен/не куплен → назад на хаб (роутинг контейнера). */
   onDenied: (reason: 'unknown' | 'not_owned') => void;
 }): void {
+  const { studyTarget } = useStudyTarget();
   const {
     collectionDataReady, packDeeplink, marketPackCatalog,
     ownedPackIdList, communityOwnedIdList, accessStableId, previewMode, onDenied,
@@ -682,7 +717,7 @@ export function usePackDeeplinkGuard(args: {
       !!packMeta.authorStableId &&
       !!accessStableId &&
       packMeta.authorStableId === accessStableId;
-    const stagedFromHub = getStagedNavigationPackId() === pid;
+    const stagedFromHub = getStagedNavigationPackId(studyTarget) === pid;
     /** Режим просмотра: набор сообщества можно открыть и не добавляя его себе. */
     if (previewMode && packMeta.isCommunityUgc) {
       if (stagedFromHub) clearStagedNavigationPackId();
@@ -691,11 +726,11 @@ export function usePackDeeplinkGuard(args: {
     const owned =
       ownedPackIdList.includes(pid) ||
       communityOwnedIdList.includes(pid) ||
-      isAuthorUgc ||
-      stagedFromHub;
+      isAuthorUgc;
     if (owned) {
       if (stagedFromHub) clearStagedNavigationPackId();
     } else {
+      if (stagedFromHub) clearStagedNavigationPackId();
       emitAppEvent(
         'action_toast',
         actionToastTri('info', {
@@ -708,7 +743,7 @@ export function usePackDeeplinkGuard(args: {
     }
   }, [
     collectionDataReady, packDeeplink, marketPackCatalog,
-    ownedPackIdList, communityOwnedIdList, accessStableId, previewMode,
+    ownedPackIdList, communityOwnedIdList, accessStableId, previewMode, studyTarget,
   ]);
 }
 
@@ -869,7 +904,7 @@ export function useFlashcardViewTracking() {
         })
         .catch(() => {});
     }
-  }, []);
+  }, [studyTarget]);
 
   const trackCardFlip = useCallback((_cardId: string) => {}, []);
 

@@ -124,6 +124,10 @@ module.exports = function buildExpoConfig({ config } = {}) {
     ...appJsonExpo,
     ...(updates ? { updates } : {}),
   };
+  expoConfig.ios = {
+    ...(expoConfig.ios || {}),
+    appleTeamId: 'KZPP5PAG8Y',
+  };
   const speechRecognitionPlugin = [
     'expo-speech-recognition',
     {
@@ -151,6 +155,15 @@ module.exports = function buildExpoConfig({ config } = {}) {
       : plugin === 'expo-speech-recognition'
   ))) {
     expoConfig.plugins.push(speechRecognitionPlugin);
+  }
+  const phoneStateSqlitePlugin = [
+    'expo-sqlite',
+    { useSQLCipher: true, enableFTS: false },
+  ];
+  if (!expoConfig.plugins.some((plugin) => (
+    Array.isArray(plugin) ? plugin[0] === 'expo-sqlite' : plugin === 'expo-sqlite'
+  ))) {
+    expoConfig.plugins.push(phoneStateSqlitePlugin);
   }
 
   if (expoConfig.updates) {

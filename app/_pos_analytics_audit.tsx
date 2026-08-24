@@ -80,11 +80,11 @@ function CompactRows({ rows }: { rows: Array<{ label: string; value: string | nu
 function runtimeRows(snapshot: MistakePracticeInsights | null) {
   if (!snapshot) return [];
   return [
-    { label: 'total events', value: snapshot.total },
-    { label: 'exact events', value: snapshot.exact },
-    { label: 'legacy phrase-only', value: snapshot.legacy },
-    { label: 'unresolved', value: snapshot.unresolved },
-    { label: 'exact coverage', value: `${snapshot.exactCoveragePct}%` },
+    { label: 'tracked mistakes', value: snapshot.totalTracked },
+    { label: 'active', value: snapshot.active },
+    { label: 'corrected', value: snapshot.corrected },
+    { label: 'ready words', value: snapshot.dueWords },
+    { label: 'ready phrases', value: snapshot.duePhrases },
   ];
 }
 
@@ -103,6 +103,7 @@ export default function PosAnalyticsAuditScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const audit = useMemo<PosCoverageAudit>(() => auditPhrasePosCoverage(), []);
   const [snapshot, setSnapshot] = useState<MistakePracticeInsights | null>(null);
   const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(null);
@@ -123,7 +124,7 @@ export default function PosAnalyticsAuditScreen() {
       }
     });
     return () => { cancelled = true; };
-  }, []);
+  }, [studyTarget]);
 
   const readyColor = audit.releaseReady ? '#22C55E' : '#FB7185';
   const title = triLang(lang, {
@@ -186,9 +187,9 @@ export default function PosAnalyticsAuditScreen() {
             <CompactRows rows={runtimeRows(snapshot)} />
             <View style={{ height: 1, backgroundColor: t.border }} />
             <CompactRows rows={analyticsRows(analytics)} />
-            {snapshot?.events.slice(0, 5).map((event, index) => (
-              <Text key={`${event.ts}-${index}`} style={{ color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35 }} numberOfLines={2}>
-                {event.mode} · {event.resolvedCategory ?? 'unresolved'} · {event.tokenText ?? event.expected ?? event.phrase}
+            {snapshot?.topMistakes.slice(0, 5).map((item) => (
+              <Text key={item.mistakeId} style={{ color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35 }} numberOfLines={2}>
+                {item.facet} · {item.count} · {item.phrase}
               </Text>
             ))}
           </Section>

@@ -31,12 +31,13 @@ export interface PremintKeyParams {
   scenarioId?: string;
   cefr?: string;
   devMode?: boolean;
+  studyTarget?: string;
 }
 
 /** Ключ заготовки: те же параметры, из которых сервер строит instructions. */
 export function premintKey(params: PremintKeyParams): string {
   const scenario = params.format === 'companion' ? '' : (params.scenarioId ?? '');
-  return [params.format, scenario, params.cefr ?? '', params.devMode ? 'dev' : ''].join('|');
+  return [params.format, scenario, params.cefr ?? '', params.devMode ? 'dev' : '', params.studyTarget ?? 'en'].join('|');
 }
 
 type PremintState = 'pending' | 'handoff' | 'claimed' | 'abandoned';

@@ -14,6 +14,7 @@ import {
   LEVEL_SPIN_GIFT_JOURNAL_KEY,
   LEVEL_SPIN_PENDING_REVEAL_KEY,
 } from './level_up_storage_keys';
+import { isLocalSpinCreditId } from './level_spin_credit_ids';
 import {
   localJournalEntryForReceipt,
   mergeLocalSpinJournal,
@@ -21,6 +22,7 @@ import {
   type LocalLevelSpinJournalEntry,
   type LocalLevelSpinReceipt,
 } from './level_spin_local_contract';
+import { pickLevelSpinReward } from './level_spin_reward_catalog';
 export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './level_spin_local_contract';
 
 /**
@@ -28,12 +30,19 @@ export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './
  * is permitted on the interactive Spin path.
  */
 export const LOCAL_LEVEL_SPIN_STATE_KEY = 'local_level_spin_state_v1';
+
+/**
+ * Разрешённые идентификаторы кредита спина — ОДИН список на оба фильтра
+ * загрузки (сам кредит и ключ идемпотентности).
+ *
+ * зачем (инцидент 2026-08-23): списки были продублированы вручную и разошлись
+ * с источниками. Незнакомый префикс молча вырезался при загрузке состояния:
+ * пропадал ключ идемпотентности (тот же матч/сессия выдавали спин ПОВТОРНО) и
+ * пропадал сам кредит (игрок терял заработанный спин после перезапуска).
+ * Добавляешь новый источник спина — добавь его префикс СЮДА, и оба фильтра
+ * подхватят его вместе. Сторож: tests/local_level_spins.test.ts.
+ */
 const LOCAL_RESULT_TTL_MS = 72 * 60 * 60 * 1000;
-const LOCAL_GIFT_IDS = [
-  'energy_full', 'xp_100', 'xp_250', 'hint_1', 'xp_bank_150', 'xp_2x_24h',
-  'energy_plus2', 'chain_shield_1', 'hint_3', 'xp_bank_300', 'cosmetic_avatar_common',
-  'xp_2x_48h', 'energy_plus3', 'xp_bank_600',
-] as const;
 
 type LocalSpinCredit = { id: string; level: number };
 type LocalSpinState = {
@@ -70,7 +79,10 @@ function normalizeState(raw: string | null, owner: string): LocalSpinState {
     }
     const credits = parsed.credits
       .map((credit) => ({ id: String(credit?.id ?? ''), level: Number(credit?.level) }))
-      .filter((credit) => /^local_spin_(?:v1_\d{3}|dev_[A-Za-z0-9_-]{1,96}|lesson_[A-Za-z0-9_-]{1,96})$/.test(credit.id) && Number.isInteger(credit.level) && credit.level >= 2 && credit.level <= 60)
+      // зачем (2026-08-23): тот же список источников, что и у фильтра
+      // issuedCreditIds ниже. Незнакомый префикс здесь стирал САМ кредит —
+      // игрок терял заработанный спин при первом же перезапуске приложения.
+      .filter((credit) => isLocalSpinCreditId(credit.id) && Number.isInteger(credit.level) && credit.level >= 2 && credit.level <= 60)
       .filter((credit, index, all) => all.findIndex((candidate) => candidate.id === credit.id) === index)
       .sort((left, right) => left.level - right.level);
     return {
@@ -78,7 +90,7 @@ function normalizeState(raw: string | null, owner: string): LocalSpinState {
       credits,
       issuedLevels: normalizeLevels(parsed.issuedLevels ?? credits.map((credit) => credit.level)),
       issuedCreditIds: Array.isArray(parsed.issuedCreditIds)
-        ? parsed.issuedCreditIds.map(String).filter((id) => /^local_spin_(?:v1_\d{3}|dev_[A-Za-z0-9_-]{1,96}|lesson_[A-Za-z0-9_-]{1,96})$/.test(id)).slice(-160)
+        ? parsed.issuedCreditIds.map(String).filter(isLocalSpinCreditId).slice(-160)
         : credits.map((credit) => credit.id),
       activeReceipt: parsed.activeReceipt && typeof parsed.activeReceipt === 'object'
         ? parsed.activeReceipt as LocalLevelSpinReceipt : null,
@@ -88,12 +100,6 @@ function normalizeState(raw: string | null, owner: string): LocalSpinState {
   } catch {
     return { owner, credits: [], issuedLevels: [], issuedCreditIds: [], activeReceipt: null, closedRequestIds: [] };
   }
-}
-
-function chooseGift(requestId: string): string {
-  let hash = 0;
-  for (const char of requestId) hash = ((hash * 31) + char.charCodeAt(0)) >>> 0;
-  return LOCAL_GIFT_IDS[hash % LOCAL_GIFT_IDS.length];
 }
 
 async function writeLocalState(state: LocalSpinState): Promise<void> {
@@ -152,8 +158,69 @@ async function persistLocalReceipt(receipt: LocalLevelSpinReceipt, owner: string
 
 async function restoreActiveReceipt(state: LocalSpinState): Promise<LocalLevelSpinReceipt | null> {
   const receipt = state.activeReceipt;
-  if (!receipt || state.closedRequestIds.includes(receipt.requestId)) return null;
-  if (receipt.stableUid !== state.owner || receipt.expiresAtMs <= Date.now()) return null;
+  if (!receipt) return null;
+
+  const closed = typeof receipt.requestId === 'string' && state.closedRequestIds.includes(receipt.requestId);
+  const parsedReceipt = closed ? null : parseLocalPendingReveal(
+    JSON.stringify({ owner: state.owner, receipt }),
+    state.owner,
+  );
+  const activeShapeValid = parsedReceipt !== null
+    && receipt.ok === true
+    && receipt.status === 'awaiting_ack'
+    && (receipt.revealState === undefined || receipt.revealState === 'pending')
+    && receipt.premiumGiftId === null
+    && receipt.deliveries?.base?.state === 'unclaimed'
+    && Number.isSafeInteger(receipt.balanceAfter)
+    && receipt.balanceAfter >= 0
+    && (receipt.kind === 'standard' || receipt.kind === 'milestone')
+    && receipt.kind === (receipt.level % 5 === 0 ? 'milestone' : 'standard')
+    && receipt.expiresAtMs > Date.now();
+
+  if (!activeShapeValid) {
+    const rawCreditId = typeof receipt.creditId === 'string' ? receipt.creditId : '';
+    const creditId = rawCreditId.replace(/^level_spin_v1_/, 'local_spin_v1_');
+    const level = Number(receipt.level);
+    const recoverableCredit = !closed
+      && receipt.stableUid === state.owner
+      && isLocalSpinCreditId(creditId)
+      && Number.isInteger(level)
+      && level >= 2
+      && level <= 60
+      && (!creditId.startsWith('local_spin_v1_')
+        || creditId === `local_spin_v1_${String(level).padStart(3, '0')}`);
+    const alreadyQueued = state.credits.some((candidate) => candidate.id === creditId);
+    const credits = recoverableCredit && !alreadyQueued
+      ? [...state.credits, { id: creditId, level }].sort((left, right) => left.level - right.level)
+      : state.credits;
+    await writeLocalState({
+      ...state,
+      credits,
+      issuedLevels: recoverableCredit && creditId.startsWith('local_spin_v1_')
+        ? normalizeLevels([...state.issuedLevels, level])
+        : state.issuedLevels,
+      issuedCreditIds: recoverableCredit
+        ? [...new Set([...state.issuedCreditIds, creditId])].slice(-160)
+        : state.issuedCreditIds,
+      activeReceipt: null,
+    });
+    const pendingRaw = await AsyncStorage.getItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+    let pendingMatchesInvalidReceipt = false;
+    try {
+      const pending = pendingRaw ? JSON.parse(pendingRaw) as {
+        owner?: unknown;
+        receipt?: { requestId?: unknown };
+      } : null;
+      pendingMatchesInvalidReceipt = pending?.owner === state.owner
+        && pending.receipt?.requestId === receipt.requestId;
+    } catch {
+      pendingMatchesInvalidReceipt = false;
+    }
+    if (pendingMatchesInvalidReceipt) {
+      await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+    }
+    return null;
+  }
   await persistLocalReceipt(receipt, state.owner);
   return receipt;
 }
@@ -162,6 +229,11 @@ export async function readLocalLevelSpinBalance(): Promise<number> {
   const owner = ownerFromDevice();
   if (!owner) return 0;
   const token = captureAccountGeneration();
+  void import('./level_spin_star_grants')
+    .then(({ recoverAndHydrateLevelSpinStarGrants }) => (
+      recoverAndHydrateLevelSpinStarGrants(token)
+    ))
+    .catch(() => {});
   const state = await loadLocalState(owner);
   return isCurrentAccountGeneration(token, owner) ? state.credits.length : 0;
 }
@@ -234,6 +306,75 @@ export async function grantLocalLessonCompletionSpin(
   });
 }
 
+/**
+ * Первое прохождение каждой сессии курса Learning V2 даёт ровно один спин.
+ *
+ * зачем (владелец, 23.08): спин обязан быть наградой и за повышение уровня, и
+ * за пройденную сессию. Уровни уже покрыты очередью level-up, урок — функцией
+ * выше; здесь закрывается курс V2. Повторы спин НЕ дают: иначе одну лёгкую
+ * сессию можно было бы перепроходить ради призов (решение владельца — только
+ * первое прохождение).
+ *
+ * Идемпотентность — по `issuedCreditIds`, как у уроков: тот же ключ второй раз
+ * не создаёт кредит, поэтому повторный вызов при ретрае безопасен.
+ */
+export async function grantLocalCourseSessionCompletionSpin(
+  sessionId: string, studyTarget: string | null | undefined, token: AccountGenerationToken,
+): Promise<boolean> {
+  const owner = token.stableId;
+  const safeSession = String(sessionId ?? '').trim();
+  if (!owner || !safeSession) return false;
+  const scope = `${String(studyTarget ?? 'default').replace(/[^A-Za-z0-9_-]/g, '_')}-${safeSession.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 64)}`;
+  const id = `local_spin_session_${scope}`;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const current = await loadLocalState(owner);
+    if (current.issuedCreditIds.includes(id)) return false;
+    await writeLocalState({
+      ...current,
+      credits: [...current.credits, { id, level: 2 }],
+      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+    });
+    return true;
+  });
+}
+
+/**
+ * Победа в рейтинговом матче Арены над реальным игроком даёт ровно один спин
+ * из ОБЩЕГО каталога подарков — тот же, что за уровень и сессию.
+ *
+ * зачем (владелец, 23.08): раньше победа в Арене копила отдельный «кредит
+ * Арены» на сервере (`arena_v2_spin_credits`), который разыгрывался своей
+ * рулеткой (только жемчужины 5/10/20) через отдельный экран звёздного
+ * кошелька. Владелец прямо запретил параллельные спины — в приложении должен
+ * существовать один спин, доступный из раздела «Подарки». Сервер теперь лишь
+ * гарантирует сам факт награды (`reward.spinAwarded`, см. `arenaRareSpin` в
+ * functions/src/arena_v2_core.ts) и присылает `spinReceiptId` = matchId;
+ * розыгрыш приза остаётся локальным, как у остальных источников спина.
+ *
+ * Идемпотентность — по matchId: тот же матч не может выдать кредит дважды,
+ * даже если экран результата перемонтируется или сервер повторит ответ.
+ */
+export async function grantLocalArenaRankedWinSpin(
+  matchId: string, token: AccountGenerationToken,
+): Promise<boolean> {
+  const owner = token.stableId;
+  const safeMatchId = String(matchId ?? '').trim();
+  if (!owner || !safeMatchId) return false;
+  const id = `local_spin_arena_ranked_${safeMatchId.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 80)}`;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const current = await loadLocalState(owner);
+    if (current.issuedCreditIds.includes(id)) return false;
+    await writeLocalState({
+      ...current,
+      credits: [...current.credits, { id, level: 2 }],
+      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+    });
+    return true;
+  });
+}
+
 export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | null> {
   const owner = ownerFromDevice();
   if (!owner) return null;
@@ -279,7 +420,7 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
         ? credit.id : `level_spin_v1_${String(credit.level).padStart(3, '0')}`,
       level: credit.level,
       kind: credit.level % 5 === 0 ? 'milestone' : 'standard',
-      baseGiftId: chooseGift(requestId),
+      baseGiftId: pickLevelSpinReward(requestId).id,
       premiumGiftId: null,
       createdAtMs: nowMs,
       expiresAtMs: nowMs + LOCAL_RESULT_TTL_MS,
@@ -287,8 +428,8 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
       status: 'awaiting_ack',
       revealState: 'pending',
       deliveries: { base: { state: 'unclaimed' } },
-      catalogVersion: 1,
-      schemaVersion: 1,
+      catalogVersion: 3,
+      schemaVersion: 2,
       localOnly: true,
     };
     const rawJournal = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);

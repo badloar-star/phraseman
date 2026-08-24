@@ -15,10 +15,10 @@ const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'
 describe('Onboarding skip link', () => {
   // 2026-08-17: privacy и notifications тоже без «Пропустить» — у них уже есть
   // своя серая ссылка («Позже» / «Не сейчас»), вторая подряд читалась бы дублем.
-  // 2026-08-17b: letsBuild и trialReminder тоже — «Пропустить» ведёт на «name»:
-  // с letsBuild это просто «Продолжить», а с trialReminder — шаг НАЗАД.
+  // 2026-08-17b: trialReminder тоже без «Пропустить»: он стоит после «name»,
+  // поэтому общий переход на обязательный шаг выглядел бы как шаг НАЗАД.
   it('is hidden on the paywall, the mandatory step and screens with their own grey exit', () => {
-    expect(onboarding).toContain("const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'letsBuild', 'trialReminder']");
+    expect(onboarding).toContain("const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'trialReminder']");
     expect(onboarding).toContain('if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null');
   });
 

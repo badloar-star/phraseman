@@ -1,5 +1,8 @@
 import {
   HARD_MAX_SESSION_SEC,
+  MAX_VOICE_DAILY_SEC,
+  MAX_VOICE_LIFETIME_TRIAL_SEC,
+  MAX_VOICE_MONTHLY_SEC,
   MAX_VOICE_CONFIG_CACHE_TTL_MS,
   MAX_VOICE_CONFIG_DEFAULTS,
   MAX_VOICE_CONFIG_DOC,
@@ -32,6 +35,21 @@ afterEach(() => {
 });
 
 describe('clampMaxVoiceConfig', () => {
+  it('drops the retired voiceForPremiumBeta access flag', () => {
+    expect(clampMaxVoiceConfig({ voiceForPremiumBeta: false })).not.toHaveProperty('voiceForPremiumBeta');
+    expect(MAX_VOICE_CONFIG_DEFAULTS).not.toHaveProperty('voiceForPremiumBeta');
+  });
+
+  it('drops the retired renewable Plus and trial-window quota knobs', () => {
+    const config = clampMaxVoiceConfig({
+      premiumMonthlyVoiceSecMax: 900,
+      trialRefreshDays: 180,
+    });
+    expect(config).not.toHaveProperty('premiumMonthlyVoiceSecMax');
+    expect(config).not.toHaveProperty('trialRefreshDays');
+    expect(MAX_VOICE_CONFIG_DEFAULTS).not.toHaveProperty('premiumMonthlyVoiceSecMax');
+    expect(MAX_VOICE_CONFIG_DEFAULTS).not.toHaveProperty('trialRefreshDays');
+  });
   it('keeps turn detection responsive without cutting off beginner pauses', () => {
     expect(MAX_VOICE_CONFIG_DEFAULTS.vadEagerness).toEqual({
       A1: 'medium',
@@ -70,7 +88,6 @@ describe('clampMaxVoiceConfig', () => {
       dailyVoiceSecMax: 10_000_000,
       monthlyVoiceSecMax: -1,
       trialCallSec: 10_000,
-      trialRefreshDays: 0,
       truncationRetentionRatio: 42,
       reinjectEveryTurns: 500,
       hintMaxPerSession: 999,
@@ -86,10 +103,9 @@ describe('clampMaxVoiceConfig', () => {
       xpDailyCap: -1,
     });
     expect(cfg.graceTailSec).toBe(120);
-    expect(cfg.dailyVoiceSecMax).toBe(14_400);
-    expect(cfg.monthlyVoiceSecMax).toBe(60);
-    expect(cfg.trialCallSec).toBe(HARD_MAX_SESSION_SEC);
-    expect(cfg.trialRefreshDays).toBe(1);
+    expect(cfg.dailyVoiceSecMax).toBe(MAX_VOICE_DAILY_SEC);
+    expect(cfg.monthlyVoiceSecMax).toBe(MAX_VOICE_MONTHLY_SEC);
+    expect(cfg.trialCallSec).toBe(MAX_VOICE_LIFETIME_TRIAL_SEC);
     expect(cfg.truncationRetentionRatio).toBe(1);
     expect(cfg.reinjectEveryTurns).toBe(50);
     expect(cfg.hintMaxPerSession).toBe(20);
@@ -103,6 +119,20 @@ describe('clampMaxVoiceConfig', () => {
     expect(cfg.maxFallbackRepliesDaily).toBe(0);
     expect(cfg.xpRatePerSpeechMin).toBe(100);
     expect(cfg.xpDailyCap).toBe(0);
+  });
+
+  it('pins monetized voice allowances in server code despite stale remote config', () => {
+    const cfg = clampMaxVoiceConfig({
+      dailyVoiceSecMax: 14_400,
+      monthlyVoiceSecMax: 172_800,
+      trialCallSec: 600,
+      sessionCapSec: { trial: 600 },
+    });
+
+    expect(cfg.dailyVoiceSecMax).toBe(1_200);
+    expect(cfg.monthlyVoiceSecMax).toBe(7_200);
+    expect(cfg.trialCallSec).toBe(180);
+    expect(cfg.sessionCapSec.trial).toBe(180);
   });
 
   it('clamps per-CEFR maps and keeps valid entries', () => {

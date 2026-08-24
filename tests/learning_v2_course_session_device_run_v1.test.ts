@@ -2,6 +2,7 @@ import {
   createLearningV2CourseSessionDeviceRunV1,
   evaluateLearningV2CourseSessionDeviceInteractionV1,
   getLearningV2CourseSessionDeviceRunSummaryV1,
+  getLearningV2CourseSessionNewWordEncountersV1,
   isLearningV2CourseSessionDeviceRunHandleV1,
   materializeLearningV2CourseSessionCompletedSummaryV1,
 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
@@ -13,7 +14,17 @@ import {
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 import { materializeLearningV2CourseSessionEvaluatorCapsuleChildV1 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+const locales = [
+  "ru",
+  "uk",
+  "es",
+  "en",
+  "pt-BR",
+  "vi",
+  "id",
+  "tr",
+  "pl",
+] as const;
 const localized = (text: string) =>
   Object.freeze(
     Object.fromEntries(locales.map((locale) => [locale, text])),
@@ -112,6 +123,25 @@ function children() {
       },
       secondErrorExplanationRef: `explanation-${index}`,
       secondErrorExplanationByLocale: localized(`Explanation ${index}`),
+      ...(index === 3
+        ? {
+            newWordEncounter: {
+              lexicalItemId: "e01-s01-word-i",
+              transcription: "/aɪ/",
+              playfulMeaningByLocale: localized("The speaker takes the stage."),
+              motionVariant: "lesson_hero_b" as const,
+              presentation: "blocking_task_overlay" as const,
+              dismissal: "continue_only" as const,
+              saveControl: "bookmark_icon" as const,
+              orderWithinSession: 1,
+              save: materializeLearningV2CourseSessionSavablePhraseV1({
+                targetLanguage: "en-US",
+                targetText: `phrase ${index + 1}`,
+                meaningByLocale: localized(`Meaning ${index + 1}`),
+              }),
+            },
+          }
+        : {}),
     })),
   });
   return { introChild, learnerChild, evaluatorCapsuleChild, auxiliaryChild };
@@ -138,6 +168,16 @@ function run() {
 }
 
 describe("Learning V2 direct device session run", () => {
+  test("exposes the ordered new-word encounter queue without parsing intent ids in UI", () => {
+    expect(getLearningV2CourseSessionNewWordEncountersV1(run())).toMatchObject([
+      {
+        lexicalItemId: "e01-s01-word-i",
+        orderWithinSession: 1,
+        motionVariant: "lesson_hero_b",
+      },
+    ]);
+  });
+
   test("owns correctness locally and exposes no server recheck path", () => {
     const handle = run();
     expect(isLearningV2CourseSessionDeviceRunHandleV1(handle)).toBe(true);

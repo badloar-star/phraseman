@@ -10,7 +10,7 @@
 // видимости управляется родителем (TodaysBoonStrip) через visible/onClose.
 
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -19,7 +19,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useModalBackdropFade } from '../hooks/useModalBackdropFade';
 import { getBoonCopy, getMysteryChestClaimedDetail } from '../app/boons/boon_copy';
 import type { BoonId } from '../app/boons/boon_types';
-import { weeklyBoonIconSource } from '../constants/boonIconAssets';
+import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import DuoPressable from './DuoPressable';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -36,12 +36,12 @@ interface WeeklyBoonDetailModalProps {
   /**
    * зачем: гибрид «Световод» (макет .motion-mockups/phraseman-hybrid.html,
    * семья «Алерты и формы») — информационная модалка без удара-кульминации:
-   * вход из света + каскад строк. Боевой дефолт — 'classic'.
+   * вход из света + каскад строк. Production default — hybrid; classic — rollback.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motionVariant = 'classic' }: WeeklyBoonDetailModalProps) {
+function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motionVariant = 'hybrid' }: WeeklyBoonDetailModalProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const isClassic = motionVariant === 'classic';
@@ -81,7 +81,6 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
   if (!boon) return null;
 
   const copy = getBoonCopy(boon, lang);
-  const iconSource = weeklyBoonIconSource(boon, themeMode);
   // «Сундук недели» уже забран → не зовём «открой и забери», а сообщаем, что награда уже у юзера.
   const paragraphs = boon === 'mystery_monday' && claimed
     ? getMysteryChestClaimedDetail(lang)
@@ -112,7 +111,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
                     style={StyleSheet.absoluteFill}
                   />
                 </View>
-                <Image source={iconSource} resizeMode="contain" style={styles.iconImage} />
+                <RetiredRasterFallback kind="boon" size={96} color={t.accent} />
               </View>
             </View>
           </CascadeItem>
@@ -195,7 +194,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
                 />
               </Animated.View>
               <Animated.View style={{ transform: [{ translateY: iconTranslateY }, { scale: iconScale }] }}>
-                <Image source={iconSource} resizeMode="contain" style={styles.iconImage} />
+                <RetiredRasterFallback kind="boon" size={96} color={t.accent} />
               </Animated.View>
             </View>
           </View>

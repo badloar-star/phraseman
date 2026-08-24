@@ -31,6 +31,7 @@ function evidenceOf(fetch: FetchMaxvoiceSourceResult): Evidence {
     observedAtMs: fetch.observedAtMs,
     digest: JSON.stringify({
       sampledDays: fetch.sampledDays,
+      mintRejections: fetch.mintRejections,
       callsStarted: fetch.callsStarted,
       callsConnected: fetch.callsConnected,
       callsCompleted: fetch.callsCompleted,

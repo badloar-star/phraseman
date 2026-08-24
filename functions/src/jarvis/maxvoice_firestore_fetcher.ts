@@ -8,6 +8,7 @@ export type MaxvoiceSourceState = 'ready' | 'empty' | 'stale' | 'error';
 export interface FetchMaxvoiceSourceResult {
   readonly state: MaxvoiceSourceState;
   readonly sampledDays: number;
+  readonly mintRejections: number | null;
   readonly callsStarted: number | null;
   readonly callsConnected: number | null;
   readonly callsCompleted: number | null;
@@ -48,6 +49,7 @@ function nullResult(observedAtMs: number): FetchMaxvoiceSourceResult {
   return Object.freeze({
     state: 'error' as const,
     sampledDays: 0,
+    mintRejections: null,
     callsStarted: null,
     callsConnected: null,
     callsCompleted: null,
@@ -61,6 +63,7 @@ function nullResult(observedAtMs: number): FetchMaxvoiceSourceResult {
 
 function readDaily(value: unknown): {
   readonly callsStarted: number;
+  readonly mintRejections: number;
   readonly callsConnected: number;
   readonly callsCompleted: number;
   readonly reviewsReady: number;
@@ -75,13 +78,14 @@ function readDaily(value: unknown): {
   const row = value as Record<string, unknown>;
   const dayKey = typeof row.dayKey === 'string' ? row.dayKey : '';
   const templateKeys = new Set(Object.keys(emptyMaxVoiceOpsDaily(dayKey, 0)));
+  const additiveLegacyKeys = new Set(['mintRejections', 'mintRejectionReasons']);
   if (row.schemaVersion !== MAX_VOICE_OPS_SCHEMA || !/^\d{4}-\d{2}-\d{2}$/.test(dayKey)) {
     throw new Error('Jarvis MAX: daily aggregate schema is invalid');
   }
   if (Object.keys(row).some((key) => CONTENT_KEYS.has(key.toLowerCase()) || !templateKeys.has(key))) {
     throw new Error('Jarvis MAX: daily aggregate contains an unapproved field');
   }
-  if ([...templateKeys].some((key) => !(key in row))) {
+  if ([...templateKeys].some((key) => !(key in row) && !additiveLegacyKeys.has(key))) {
     throw new Error('Jarvis MAX: daily aggregate is incomplete');
   }
   const firstAudio = row.firstAudioLatencyBuckets;
@@ -90,6 +94,7 @@ function readDaily(value: unknown): {
   }
   return Object.freeze({
     callsStarted: safeCount(row.callsStarted),
+    mintRejections: safeCount(row.mintRejections ?? 0),
     callsConnected: safeCount(row.callsConnected),
     callsCompleted: safeCount(row.callsCompleted),
     reviewsReady: safeCount(row.reviewsReady),
@@ -110,6 +115,7 @@ export async function fetchMaxvoiceSource(
       return Object.freeze({
         state: 'empty' as const,
         sampledDays: 0,
+        mintRejections: 0,
         callsStarted: 0,
         callsConnected: 0,
         callsCompleted: 0,
@@ -130,6 +136,7 @@ export async function fetchMaxvoiceSource(
     return Object.freeze({
       state: input.nowMs - observedAtMs > MAX_EVIDENCE_AGE_MS ? ('stale' as const) : ('ready' as const),
       sampledDays: rows.length,
+      mintRejections: sum('mintRejections'),
       callsStarted: sum('callsStarted'),
       callsConnected: sum('callsConnected'),
       callsCompleted: sum('callsCompleted'),

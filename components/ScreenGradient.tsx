@@ -27,16 +27,12 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   dark: 1,
   gold: 1,
   olive: 1,
-  minimalDark: 1,
-  business: 1,
-  businessLight: 1,
   sagePorcelain: 1,
   // «Чёрное кино»: альфы зашиты в стопы CinemaBloom, слой не глушим.
   midnight: 1,
   ember: 1,
   aurora: 1,
   volt: 1,
-  candyBlue: 1,
   indigo: 1,
 };
 
@@ -56,18 +52,14 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   dark: { bloomA: '#2F8A42', bloomB: '#47C870' },
   gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' },
   olive: { bloomA: '#1A1E12', bloomB: '#030303' },
-  minimalDark: { bloomA: '#6EA8FF', bloomB: '#9CA3AF' },
   // «Бизнес»: строгая моно-тема — нейтральный серый блум без цвета.
   // «Бизнес» (плоский IG-режим): блум невидим — совпадает с чёрным фоном.
-  business: { bloomA: '#000000', bloomB: '#000000' },
   // «Бизнес светлый»: тёплый бумажный блум без цвета.
-  businessLight: { bloomA: '#FFFFFF', bloomB: '#FFFFFF' },
   sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#DCE1D8' },
   midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
   volt: { bloomA: CINEMA.volt.bloomA, bloomB: CINEMA.volt.bloomB },
-  candyBlue: { bloomA: '#B2D5E5', bloomB: '#3A5A68' },
   indigo: { bloomA: '#C8C3FF', bloomB: '#273468' },
 };
 
@@ -86,31 +78,12 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   ],
   // Olive Noir stays intentionally still: no particles, bloom, or decorative orbs.
   olive: [],
-  // Graphite (minimalDark): monochrome cool-dark shading with blue accents.
-  minimalDark: [
-    { x: W * 0.82, y: 84,       r: 205, color: '#6B7280', opacity: 0.16 },
-    { x: W * 0.08, y: H * 0.46, r: 160, color: '#4B5563', opacity: 0.14 },
-    { x: W * 0.58, y: H * 0.80, r: 140, color: '#374151', opacity: 0.12 },
-    { x: W * 0.28, y: H * 0.20, r:  80, color: '#9CA3AF', opacity: 0.08 },
-  ],
-  // Compass: reference-matched graphite field; warm amber is reserved for assets and CTA.
-  // «Бизнес»: строгий чистый чёрный фон без орбов — никакого цветного свечения.
-  business: [],
-  // «Бизнес светлый»: чистая бумажная подложка без орбов.
-  businessLight: [],
   sagePorcelain: [],
   // «Чёрное кино»: вместо орбов — слой CinemaBloom (двухцветный блум снизу + звёзды).
   midnight: [],
   ember: [],
   aurora: [],
   volt: [],
-  // Legacy candyBlue compatibility gradient.
-  candyBlue: [
-    { x: W * 0.82, y: 84,       r: 205, color: '#7FA0AD', opacity: 0.14 },
-    { x: W * 0.08, y: H * 0.46, r: 160, color: '#3A5A68', opacity: 0.13 },
-    { x: W * 0.58, y: H * 0.80, r: 140, color: '#1C323B', opacity: 0.12 },
-    { x: W * 0.28, y: H * 0.20, r:  80, color: '#B2D5E5', opacity: 0.07 },
-  ],
   // «Индиго»: мягкие лавандовые орбы на сумрачном индиго.
   indigo: [
     { x: W * 0.82, y: 84,       r: 205, color: '#9A95C2', opacity: 0.14 },

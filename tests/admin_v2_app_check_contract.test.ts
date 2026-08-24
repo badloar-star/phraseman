@@ -8,35 +8,22 @@ const read = (relativePath: string) =>
 describe("live admin web App Check contract", () => {
   const live = read("admin/v2/legacy.html");
   const giftServer = read("functions/src/web_checkout.ts");
+  const referralAdmin = read("functions/src/admin_referrals.ts");
+  const callableOptions = read("functions/src/callable_options.ts");
 
-  test("initializes the registered Enterprise provider before any Firebase service is constructed", () => {
-    expect(live).toContain(
-      "import { initializeAppCheck, ReCaptchaEnterpriseProvider, getToken as getAppCheckToken } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js';",
-    );
-    expect(live).toContain(
-      "const ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY = '6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR';",
-    );
-    expect(live).toContain(
-      "provider: new ReCaptchaEnterpriseProvider(ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY)",
-    );
-    expect(live).toContain("isTokenAutoRefreshEnabled: true");
-    expect(live).toContain("getAppCheckToken(_adminAppCheck, false)");
-
-    const appCheckInit = live.indexOf("initializeAppCheck(app, {");
-    const firestoreInit = live.indexOf("const db = getFirestore(app);");
-    const authInit = live.indexOf("const auth = getAuth(app);");
-    const functionsInit = live.indexOf(
-      "const functionsUs = getFunctions(app, 'us-central1');",
-    );
-    expect(appCheckInit).toBeGreaterThan(0);
-    expect(firestoreInit).toBeGreaterThan(appCheckInit);
-    expect(authInit).toBeGreaterThan(appCheckInit);
-    expect(functionsInit).toBeGreaterThan(appCheckInit);
+  test("does not initialize or request a client App Check token while owner policy is sealed off", () => {
+    expect(live).not.toContain("firebase-app-check.js");
+    expect(live).not.toContain("initializeAppCheck");
+    expect(live).not.toContain("ReCaptchaEnterpriseProvider");
+    expect(live).not.toContain("getAppCheckToken");
+    expect(live).not.toContain("X-Firebase-AppCheck");
+    expect(live).not.toContain("ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY");
+    expect(live).not.toContain("requireAdminAppCheckForGiftCertificates");
   });
 
-  test("fails closed and explicitly sends both Firebase credentials for gift callables", () => {
+  test("uses the authenticated admin callable transport and sends only Firebase Auth", () => {
     const helperStart = live.indexOf(
-      "function createAppCheckProtectedGiftCallable(name)",
+      "function createAdminAuthCallable(name)",
     );
     const helperEnd = live.indexOf(
       "const functionsUs = getFunctions(app, 'us-central1');",
@@ -45,42 +32,48 @@ describe("live admin web App Check contract", () => {
     const helper = live.slice(helperStart, helperEnd);
     expect(helperStart).toBeGreaterThan(0);
     expect(helperEnd).toBeGreaterThan(helperStart);
-    expect(helper).toContain(
-      "const appCheckToken = await requireAdminAppCheckForGiftCertificates();",
-    );
-    expect(helper).toContain(
-      "const idToken = await auth.currentUser?.getIdToken();",
-    );
-    expect(helper).toContain("Authorization: `Bearer ${idToken}`");
-    expect(helper).toContain("'X-Firebase-AppCheck': appCheckToken");
-    expect(helper).toContain("body: JSON.stringify({ data })");
-    expect(helper).toContain(
-      "return giftCertificateParseCallableEnvelope(payload, response.ok, response.status);",
-    );
-    expect(helper).not.toContain("httpsCallable(functionsUs, name)");
-    expect(live).toContain(
-      "Защита App Check недоступна. Обновите страницу и повторите действие — запрос не отправлен.",
-    );
-
+    expect(helper).toContain("return _fsHttpsCallable(functionsUs, name)");
+    expect(helper).not.toContain("AppCheck");
+    expect(helper).not.toContain("appCheck");
+    expect(helper).not.toContain("fetch(");
+    expect(helper).not.toContain("Authorization:");
     for (const name of [
       "adminCreateGiftCertificateBatch",
+      "adminGetGiftCertificateBatchOperation",
+      "adminCancelGiftCertificateBatchOperation",
       "adminListGiftCertificates",
+      "adminDeleteGiftCertificate",
       "adminUpdateGiftCertificatePersonalization",
       "adminGetGiftCertificateDownload",
       "adminReplaceSyntheticGiftCertificate",
       "adminSendPreparedGiftCertificate",
     ]) {
-      expect(live).toContain(`createAppCheckProtectedGiftCallable('${name}')`);
+      expect(live).toContain(`createAdminAuthCallable('${name}')`);
       expect(live).not.toContain(`httpsCallable(functionsUs, '${name}')`);
     }
   });
 
-  test("does not weaken server enforcement or copy App Check initialization to redirect stubs", () => {
+  test("keeps server admin App Check enforcement sealed off and does not copy initialization to redirect stubs", () => {
     expect(giftServer).toContain(
-      "export const GIFT_CERTIFICATE_MUTATION_OPTIONS = { region: REGION, enforceAppCheck: true } as const;",
+      "export const GIFT_CERTIFICATE_MUTATION_OPTIONS = { region: REGION, enforceAppCheck: false } as const;",
     );
     expect(giftServer).toContain(
-      "export const GIFT_CERTIFICATE_READ_OPTIONS = { region: REGION, enforceAppCheck: true } as const;",
+      "export const GIFT_CERTIFICATE_READ_OPTIONS = { region: REGION, enforceAppCheck: false } as const;",
+    );
+    expect(callableOptions).toContain(
+      "export const APP_CHECK_SEALED_BY_OWNER_2026_08_17 = true as const;",
+    );
+    expect(callableOptions).toContain(
+      "export const ENFORCE_APP_CHECK_ADMIN = false;",
+    );
+    expect(callableOptions).toContain(
+      "enforceAppCheck: ENFORCE_APP_CHECK_ADMIN",
+    );
+    expect(referralAdmin).toContain(
+      "const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN } as const;",
+    );
+    expect(referralAdmin).not.toContain(
+      "const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;",
     );
 
     for (const frozen of [

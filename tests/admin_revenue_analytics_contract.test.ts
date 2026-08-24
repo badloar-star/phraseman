@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('admin revenue analytics contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
+  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
   const adminModuleScript = adminHtml.match(/<script type="module">([\s\S]*?)<\/script>/)?.[1] || '';
   const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
   const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
@@ -43,9 +43,9 @@ describe('admin revenue analytics contract', () => {
     expect(paywallASource).toContain("|| 'direct'");
     expect(onboardingSource).toContain("trackEvent('onboarding_plan_paywall_view'");
     expect(onboardingSource).toContain("trackOnboardingActivity('onboarding_plan_paywall_view'");
-    expect(onboardingSource).not.toContain('onPersonalPlanPaywallStart');
     expect(onboardingSource).not.toContain('queuePendingPersonalPlanActivation');
-    expect(onboardingSource).toContain('AsyncStorage.setItem(PLAN_BILLING_KEY, billing)');
+    expect(onboardingSource).toContain('AsyncStorage.setItem(PLAN_BILLING_KEY, next)');
+    expect(onboardingSource).toContain('[PLAN_BILLING_KEY, billing]');
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {
@@ -56,12 +56,12 @@ describe('admin revenue analytics contract', () => {
       'id="an2-paying"',
       'id="an2-rc-real"',
       'id="an2-summary"',
-      'function an2Fetch()',
+      'async function an2Fetch(force = false)',
       'function an2RenderFunnels()',
       'function an2RenderSummary()',
-      'revenuecat_premium_events',
-      'revenuecat_shard_transactions',
-      'paywall_funnel',
+      "httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot')",
+      "httpsCallable(functionsUs, 'adminGetAnalyticsTrends')",
+      "httpsCallable(functionsUs, 'adminGetRevenueCatOverviewMetrics')",
     ].forEach((needle) => expect(adminHtml).toContain(needle));
   });
 
@@ -75,11 +75,11 @@ describe('admin revenue analytics contract', () => {
       "window.loadOnboardingSources",
       "collection(db, 'app_activity')",
       "where('action', '==', 'onboarding_source_select')",
-      "orderBy('createdAtMs', 'asc')",
-      "limit(ONBOARDING_SOURCE_QUERY_PAGE_SIZE)",
-      "startAfter(cursor)",
+      "orderBy('createdAtMs', 'desc')",
+      "limit(ONBOARDING_SOURCE_MAX_ROWS + 1)",
+      "const truncated = snap.docs.length > ONBOARDING_SOURCE_MAX_ROWS",
       "const latestByUser = new Map()",
-      "Latest answers",
+      "Последние ответы",
       "onboarding_source_mix",
       "'onboarding-sources'",
       "Onboarding sources",
@@ -91,46 +91,25 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('keeps analytics visible before Firestore data loads or when one query fails', () => {
-    expect(adminHtml).toContain('function revenueFallbackCards');
-    expect(adminHtml).toContain('function revenueSafeGetDocs');
-    expect(adminHtml).toContain("revenueSafeGetDocs('app_activity'");
-    expect(adminHtml).toContain("revenueSafeGetDocs('revenuecat_premium_events'");
-    expect(adminHtml).toContain("revenueSafeGetDocs('revenuecat_shard_transactions'");
-    expect(adminHtml).toContain('Loading paywall funnel');
-    expect(adminHtml).toContain('Loaded with limited data');
-    expect(adminHtml).toContain('_revenueAnalyticsLoaded = false');
+    expect(adminHtml).toContain('function an2SourceExact(snapshot, sourceId)');
+    expect(adminHtml).toContain("state === 'ready' || state === 'empty'");
+    expect(adminHtml).toContain("return exact ? AN2_NUM(value) : 'n/a'");
+    expect(adminHtml).toContain('an2RenderSourceHealth');
+    expect(adminHtml).toContain('серверная выборка частичная');
   });
 
   it('separates protected RevenueCat active totals from cancelled subscriptions that still have access', () => {
     expect(adminHtml).toContain('id="an2-pay-cancelled"');
     expect(adminHtml).toContain('Cancelled, access active');
-    expect(adminHtml).toContain('function an2CurrentCancelledUids(events)');
-    expect(adminHtml).toContain("e.type === 'CANCELLATION'");
-    expect(adminHtml).toContain("e.type === 'UNCANCELLATION'");
-    expect(adminHtml).toContain("const isStoreSubscription = info.active && info.source === 'revenuecat' && !isLifetime");
-    expect(adminHtml).toContain('if (isCancelled && isStoreSubscription) cancelled += 1');
-    expect(adminHtml).toContain("an2Set('an2-pay-cancelled', lifecycleReadable ? AN2_NUM(cancelled) : 'n/a')");
-    expect(adminHtml).toContain("an2Set('an2-pay-total', overviewReadable ? AN2_NUM(_an2.rcOverview.activeSubscriptions) : 'n/a')");
-    expect(adminHtml).toContain('Active store subscriptions now.');
-    expect(adminHtml).toContain('Cancellation keeps access until the paid period ends');
+    expect(adminHtml).toContain("an2Set('an2-pay-cancelled', 'n/a')");
+    expect(adminHtml).toContain('Авторитетного current-cancelled поля нет.');
+    expect(adminHtml).toContain('overview?.activeSubscriptions');
+    expect(adminHtml).toContain('an2ExactCell(overviewExact, overview?.activeSubscriptions)');
   });
 
-  it('uses the latest RevenueCat lifecycle state per user when classifying cancellations', () => {
-    const match = adminHtml.match(/function an2CurrentCancelledUids\(events\) \{([\s\S]*?)\r?\n  \}\r?\n\r?\n  \/\/ Current totals/);
-    expect(match).not.toBeNull();
-    const classify = new Function(`return function an2CurrentCancelledUids(events) {${match?.[1] || ''}\n}`)() as
-      (events: Array<Record<string, unknown>>) => Set<string>;
-    const cancelled = classify([
-      { uid: 'cancelled', originalTransactionId: 'a', type: 'INITIAL_PURCHASE', env: 'PRODUCTION', ms: 100 },
-      { uid: 'cancelled', originalTransactionId: 'a', type: 'CANCELLATION', env: 'PRODUCTION', ms: 200 },
-      { uid: 'restored', originalTransactionId: 'b', type: 'CANCELLATION', env: 'PRODUCTION', ms: 100 },
-      { uid: 'restored', originalTransactionId: 'b', type: 'UNCANCELLATION', env: 'PRODUCTION', ms: 200 },
-      { uid: 'repurchased', originalTransactionId: 'old', type: 'CANCELLATION', env: 'PRODUCTION', ms: 100 },
-      { uid: 'repurchased', originalTransactionId: 'new', type: 'INITIAL_PURCHASE', env: 'PRODUCTION', ms: 300 },
-      { uid: 'sandbox-only', originalTransactionId: 's', type: 'CANCELLATION', env: 'SANDBOX', ms: 400 },
-    ]);
-
-    expect([...cancelled]).toEqual(['cancelled']);
+  it('does not infer a current cancellation total from historical lifecycle events', () => {
+    expect(adminHtml).not.toContain('function an2CurrentCancelledUids(events)');
+    expect(adminHtml).toContain("an2Set('an2-pay-cancelled', 'n/a')");
   });
 
   it('keeps the revenue analytics dashboard compact without horizontal overflow', () => {
@@ -152,10 +131,10 @@ describe('admin revenue analytics contract', () => {
 
   it('supports selectable revenue date windows and adjustable chart scale', () => {
     expect(adminHtml).toContain('id="an2-range"');
-    expect(adminHtml).toContain('<option value="7">7 days</option>');
-    expect(adminHtml).toContain('<option value="30" selected>30 days</option>');
-    expect(adminHtml).toContain('<option value="90">90 days</option>');
-    expect(adminHtml).toContain('function an2RangeRows()');
+    expect(adminHtml).toContain('<option value="7">7 дней</option>');
+    expect(adminHtml).toContain('<option value="28" selected>28 дней</option>');
+    expect(adminHtml).toContain('<option value="90">90 дней</option>');
+    expect(adminHtml).toContain('rangeDays: _an2.range');
     expect(adminHtml).toContain('function an2Series()');
   });
 
@@ -197,7 +176,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('function applyGroupedAdminTabs');
     expect(adminHtml).toContain('function applyAdminTabFilter');
     expect(adminHtml).toContain('function setupAdminTabSearch');
-    expect(adminHtml).toContain("content: 'Sections' !important");
+    expect(adminHtml).toContain("content: 'Разделы' !important");
     expect(adminHtml).toContain("tabsBox.dataset.filterEmpty");
     expect(adminHtml).toContain("visibleGroups.add(tabEl.dataset.adminGroup)");
     expect(adminHtml).toContain("if (matched) tabEl.style.removeProperty('display')");
@@ -255,7 +234,7 @@ describe('admin revenue analytics contract', () => {
     expect(safetyLoader).not.toContain("collection(db, 'safety_flags')");
     expect(safetyLoader).toContain('filteredTotal');
     expect(safetyLoader).toContain('scanBoundReached');
-    expect(safetyLoader.indexOf('window._safetyFlagsLoaded = true')).toBeGreaterThan(safetyLoader.indexOf('renderSafetyFlags(_allSafetyFlags)'));
+    expect(safetyLoader.indexOf('window._safetyFlagsLoaded = _safetyFlagsComplete')).toBeGreaterThan(safetyLoader.indexOf('renderSafetyFlags(_allSafetyFlags)'));
     expect(safetyLoader.indexOf('window._safetyFlagsLoaded = false')).toBeGreaterThan(safetyLoader.indexOf('catch(e)'));
 
     expect(ageLoader).toContain('getAdminGetComplianceOverviewCallable()');
@@ -281,10 +260,10 @@ describe('admin revenue analytics contract', () => {
 
   it('cleans admin menu labels and decodes mojibake text at runtime', () => {
     expect(adminHtml).toContain('const ADMIN_CLEAN_TAB_LABELS');
-    expect(adminHtml).toContain("users: 'Users'");
-    expect(adminHtml).toContain("analytics: 'Analytics'");
+    expect(adminHtml).toContain("users: 'Пользователи'");
+    expect(adminHtml).toContain("analytics: 'Доход и paywall'");
     expect(adminHtml).toContain("'app-messages': 'Плашки и сообщения'");
-    expect(adminHtml).toContain("'push-notify': 'Push'");
+    expect(adminHtml).toContain("'push-notify': 'Push-уведомления'");
     expect(adminHtml).toContain('function applyCleanAdminTabLabels');
     expect(adminHtml).toContain('function decodeAdminMojibake');
     expect(adminHtml).toContain('function normalizeAdminStatusText');
@@ -298,8 +277,8 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain(`onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>`);
-    expect(adminHtml).toContain('placeholder="UID or name"');
-    expect(adminHtml).toContain('>Sign out</button>');
+    expect(adminHtml).toContain('placeholder="Никнейм или UID"');
+    expect(adminHtml).toContain('>Выйти</button>');
     expect(adminHtml).not.toContain(`onclick="switchTab('users')" data-i18n-es="👥 Usuarios">👥 Пользователи</div>`);
     expect(adminHtml).not.toContain(`onclick="location.href='testers.html'" data-i18n-es="🧪 Testers">🧪 Тестеры</div>`);
     expect(adminHtml).not.toContain(`onclick="switchTab('analytics')" data-i18n-es="📊 Analítica">📊 Аналитика</div>`);
@@ -366,7 +345,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('<div class="label" data-i18n-es="Racha media">Avg streak</div>');
     expect(adminHtml).toContain('<div class="label" data-i18n-es="Tema">Theme</div>');
     expect(adminHtml).toContain('<div class="label">Language</div>');
-    expect(adminHtml).toContain('<div class="label">Platform</div>');
+    expect(adminHtml).toContain('<div class="label">Платформа</div>');
     expect(adminHtml).toContain('<div class="label" data-i18n-es="Fragmentos medios">Avg shards</div>');
     expect(adminHtml).not.toContain('<div class="label" data-i18n-es="Tema: oscuro">');
     expect(adminHtml).not.toContain('<div class="label">🇷🇺 / 🇺🇦</div>');
@@ -454,13 +433,14 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#tab-cancel-surveys .report-card button');
     expect(adminHtml).toContain('applyCleanPremiumChrome');
     expect(adminHtml).toContain('pr-pill');
-    expect(adminHtml).toContain('Plus list refreshed');
+    expect(adminHtml).toContain('function applyCleanPremiumChrome()');
     expect(adminHtml).toContain('Plus accounts');
     expect(adminHtml).toContain('Real Plus only: RevenueCat metadata');
     expect(adminHtml).toContain('Search UID, email, name...');
     expect(adminHtml).toContain('No Plus users match this filter.');
     expect(countOccurrences(adminHtml, 'window.renderPremiumList = function renderPremiumList()')).toBe(1);
-    expect(adminHtml.lastIndexOf('Plus list refreshed')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadPremiumData = async function loadPremiumData(force)'));
+    expect(adminHtml).toContain('window.loadPremiumData = async function loadPremiumData()');
+    expect(adminHtml).toContain('window.renderPremiumList?.()');
     expect(adminHtml).toContain('applyCleanCancelSurveysChrome');
     expect(adminHtml).toContain('cs-pill');
     expect(adminHtml).toContain('Loading cancel surveys...');
@@ -497,7 +477,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('class="report-card ugc-purchase-card"');
     expect(adminHtml).toContain('Loading UGC purchases...');
     expect(adminHtml).toContain('No purchases for this filter.');
-    expect(adminHtml).toContain('Refund UGC purchase');
+    expect(adminHtml).toContain('class="ugc-purchase-refund"');
     expect(adminHtml).toContain('applyCleanCardPacksChrome');
     expect(adminHtml).toContain('class="report-card cp-pack-card"');
     expect(adminHtml).toContain('Loading card packs...');
@@ -713,13 +693,13 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml.lastIndexOf('Loading ban list...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadBanList = async function loadBanList(force)'));
     expect(adminHtml).toContain('applyCleanWebsiteInboxChrome');
     expect(adminHtml).toContain('wi-pill');
-    expect(adminHtml).toContain('Loading site support...');
-    expect(adminHtml).toContain('Site support loaded');
+    expect(adminHtml).toContain('Loading first site-support page…');
+    expect(adminHtml).toContain('Site support updated');
     expect(adminHtml).toContain('Mark read');
     expect(adminHtml).toContain('No site support messages for this filter.');
     expect(adminHtml).toContain('Messages from the public contact page.');
     expect(adminHtml.lastIndexOf('renderWebsiteInbox = function renderWebsiteInbox(rows)')).toBeGreaterThan(adminHtml.indexOf('function renderWebsiteInbox(rows)'));
-    expect(adminHtml.lastIndexOf('Loading site support...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadWebsiteInbox = async function loadWebsiteInbox(force)'));
+    expect(adminHtml.lastIndexOf('Loading first site-support page…')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadWebsiteInbox = async function loadWebsiteInbox(force, append = false)'));
     expect(adminHtml).toContain('#tab-review-promo .review-promo-lang');
     expect(adminHtml).toContain('applyCleanVipSurveyChrome');
     expect(adminHtml).toContain('vs-pill');
@@ -754,11 +734,15 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('missing or insufficient permissions');
   });
 
-  it('reads app_activity and RevenueCat purchase collections for the dashboard', () => {
-    expect(adminHtml).toContain("collection(db, 'app_activity')");
-    expect(adminHtml).toContain("collection(db, 'revenuecat_premium_events')");
-    expect(adminHtml).toContain("collection(db, 'revenuecat_shard_transactions')");
-    expect(adminHtml).toContain("where('createdAtMs', '>=',");
-    expect(adminHtml).toContain("where('createdAtMs', '<=',");
+  it('reads revenue evidence through the authoritative bounded server projection', () => {
+    const from = adminHtml.indexOf('async function revenueSafeGetDocs(');
+    const to = adminHtml.indexOf('const ADMIN_BADGE_CACHE_MS', from);
+    expect(from).toBeGreaterThanOrEqual(0);
+    expect(to).toBeGreaterThan(from);
+    const revenueWorkspace = adminHtml.slice(from, to);
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsSnapshot')");
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'adminGetAnalyticsTrends')");
+    expect(revenueWorkspace).not.toMatch(/collection\(db, '(?:app_activity|revenuecat_premium_events|revenuecat_shard_transactions)'\)/);
+    expect(revenueWorkspace).not.toMatch(/\bgetDocs\s*\(/);
   });
 });

@@ -132,12 +132,6 @@ const ES: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'barbell-outline',
-      title: '«Mi práctica» está abierta del todo',
-      body: 'Sin límite diario de sesiones y sin premium para el entrenador. Practica todo lo que quieras.',
-      reassuring: true,
-    },
-    {
       icon: 'people-outline',
       title: 'La pantalla «Amigos» se ha ido',
       body: 'Lo que de verdad usabas — competir e invitar — está ahora en Torneo y en las invitaciones. Esa pestaña solo cogía polvo.',
@@ -169,12 +163,6 @@ const PT_BR: ReleaseNotesTexts = {
       icon: 'ticket-outline',
       title: 'Entrar no torneio é grátis',
       body: 'Antes custava pérolas. Fizemos as contas e concluímos que cobrar pela vontade de competir não era boa ideia.',
-      reassuring: true,
-    },
-    {
-      icon: 'barbell-outline',
-      title: '«Minha prática» está totalmente liberada',
-      body: 'Sem limite diário de sessões e sem premium para o treinador. Pratique o quanto quiser.',
       reassuring: true,
     },
     {
@@ -212,12 +200,6 @@ const VI: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'barbell-outline',
-      title: '«Luyện tập của tôi» mở hoàn toàn',
-      body: 'Bỏ giới hạn số buổi mỗi ngày, không cần bản premium cho phần luyện tập. Tập bao nhiêu tuỳ bạn.',
-      reassuring: true,
-    },
-    {
       icon: 'people-outline',
       title: 'Màn hình «Bạn bè» đã rời đi',
       body: 'Những gì bạn thật sự dùng — thi đấu và mời bạn — nay nằm trong Giải đấu và phần lời mời. Thẻ riêng kia chỉ nằm không.',
@@ -249,12 +231,6 @@ const ID: ReleaseNotesTexts = {
       icon: 'ticket-outline',
       title: 'Masuk turnamen gratis',
       body: 'Dulu perlu mutiara. Setelah dihitung, menarik bayaran karena ingin bertanding rasanya kurang masuk akal.',
-      reassuring: true,
-    },
-    {
-      icon: 'barbell-outline',
-      title: '«Latihanku» terbuka sepenuhnya',
-      body: 'Batas sesi harian dihapus dan premium tidak lagi diperlukan untuk latihan. Berlatihlah sepuasnya.',
       reassuring: true,
     },
     {
@@ -292,12 +268,6 @@ const TR: ReleaseNotesTexts = {
       reassuring: true,
     },
     {
-      icon: 'barbell-outline',
-      title: '«Pratiğim» tamamen açık',
-      body: 'Günlük oturum sınırı kalktı, alıştırma için premium gerekmiyor. İstediğiniz kadar çalışın.',
-      reassuring: true,
-    },
-    {
       icon: 'people-outline',
       title: '«Arkadaşlar» ekranı gitti',
       body: 'Gerçekten kullandığınız her şey — yarışmak ve davet etmek — artık Turnuva ve davetlerde. O sekme sadece tozlanıyordu.',
@@ -329,12 +299,6 @@ const PL: ReleaseNotesTexts = {
       icon: 'ticket-outline',
       title: 'Wejście do turnieju jest darmowe',
       body: 'Wcześniej kosztowało perły. Policzyliśmy i uznaliśmy, że pobieranie opłaty za chęć rywalizacji to słaby pomysł.',
-      reassuring: true,
-    },
-    {
-      icon: 'barbell-outline',
-      title: '«Moja praktyka» otwarta w całości',
-      body: 'Dzienny limit sesji zniknął, premium do trenażera nie jest już potrzebne. Ćwiczcie, ile chcecie.',
       reassuring: true,
     },
     {

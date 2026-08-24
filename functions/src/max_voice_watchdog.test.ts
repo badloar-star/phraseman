@@ -30,28 +30,33 @@ function refFor(pathKey: string) {
   };
 }
 
-type Filter = { field: string; op: string; value: number };
+type Filter = { field: string; op: string; value: unknown };
 
 function applyFilters(name: string, filters: Filter[], limitN: number) {
   const prefix = `${name}/`;
   const matched = Array.from(docs.entries())
     .filter(([p]) => p.startsWith(prefix) && !p.slice(prefix.length).includes('/'))
     .filter(([, data]) => filters.every((f) => {
+      if (f.op === '==') return data[f.field] === f.value;
       const v = Number(data[f.field] ?? 0);
-      if (f.op === '>') return v > f.value;
-      if (f.op === '<=') return v <= f.value;
+      const expected = Number(f.value);
+      if (f.op === '>') return v > expected;
+      if (f.op === '<=') return v <= expected;
       throw new Error(`unsupported op ${f.op}`);
     }))
     .slice(0, limitN);
   return {
-    docs: matched.map(([p, data]) => ({ id: p.slice(prefix.length), data: () => data })),
+    docs: matched.map(([p, data]) => {
+      const ref = refFor(p);
+      return { ...ref, id: p.slice(prefix.length), ref, data: () => data };
+    }),
     empty: matched.length === 0,
   };
 }
 
 function queryFor(name: string, filters: Filter[]) {
   return {
-    where: (field: string, op: string, value: number) => queryFor(name, [...filters, { field, op, value }]),
+    where: (field: string, op: string, value: unknown) => queryFor(name, [...filters, { field, op, value }]),
     limit: (n: number) => ({ get: async () => applyFilters(name, filters, n) }),
   };
 }
@@ -61,7 +66,7 @@ function fakeDb() {
     collection: (name: string) => ({
       // Без id — авто-ID (billing-строки watchdog'а пишутся через .doc()).
       doc: (id?: string) => refFor(`${name}/${id || `auto-${++autoId}`}`),
-      where: (field: string, op: string, value: number) => queryFor(name, [{ field, op, value }]),
+      where: (field: string, op: string, value: unknown) => queryFor(name, [{ field, op, value }]),
     }),
     runTransaction: async <T>(fn: (tx: any) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
@@ -128,7 +133,7 @@ const maxVoiceMintModule = jest.requireActual<typeof import('./max_voice_mint')>
 const NOW = 1_800_000_000_000;
 const AUTH = 'auth-1';
 const STABLE = 'stable-1';
-const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(AUTH, STABLE)}`;
+const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(STABLE)}`;
 const RATE_PATH = `voice_mint_rate_limits/${voiceMintRateDocId(AUTH, STABLE)}`;
 const BUDGET_PATH = 'voice_cost_daily/current';
 
@@ -140,6 +145,7 @@ function billingDocs(): DocData[] {
 
 function hangingReserve(overrides: DocData = {}): DocData {
   return {
+    quotaIdentityVersion: 2,
     authUid: AUTH,
     stableUid: STABLE,
     resetAtMs: NOW + 3_600_000,

@@ -1,6 +1,7 @@
 export type MaxVoiceFormat = 'scenario' | 'companion' | 'trial' | 'tutor';
 export type MaxVoiceCefr = 'A1' | 'A2' | 'B1' | 'B2';
 export type MaxVoiceInterfaceLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+export type MaxVoiceStudyTarget = 'en' | 'fr' | 'es';
 export type MaxVoiceEndReason = 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
 export type MaxVoicePhraseResult = 'pass' | 'needs_work' | 'uncertain' | 'invalid';
 
@@ -12,6 +13,7 @@ export interface MaxVoiceFinalizeRequestV1 {
   readonly scenarioId?: string;
   readonly cefr: MaxVoiceCefr;
   readonly interfaceLang: MaxVoiceInterfaceLang;
+  readonly studyTarget?: MaxVoiceStudyTarget;
   readonly endReason: MaxVoiceEndReason;
   readonly goalId?: string;
   // зачем: аудит 2026-08-22 — сервер двигает goalMastery/сцены и заполняет
@@ -58,6 +60,8 @@ export interface MaxVoiceReviewReceiptV1 {
   readonly schemaVersion: 'max-voice-review.v1';
   readonly sessionId: string;
   readonly stableUid: string;
+  /** Local routing context; old server receipts may omit it. */
+  readonly studyTarget?: MaxVoiceStudyTarget;
   readonly completedAtMs: number;
   readonly durationSec: number;
   readonly speechSec?: number;

@@ -44,7 +44,6 @@ const CONTEXT_BY_TRIGGER: Record<SoftUpsellCandidate['trigger'], SoftUpsellConte
   weekly_review: 'weekly_review',
   second_ai_dialogue: 'dialog_repeat_success',
   streak_milestone: 'streak_milestone',
-  repeated_training: 'trainer_repeat_success',
 };
 
 const TRIGGER_PRIORITY: Record<SoftUpsellCandidate['trigger'], number> = {
@@ -53,7 +52,6 @@ const TRIGGER_PRIORITY: Record<SoftUpsellCandidate['trigger'], number> = {
   weekly_review: 4,
   streak_milestone: 3,
   first_lesson: 2,
-  repeated_training: 1,
 };
 
 function signature(candidates: readonly SoftUpsellCandidate[]): string {

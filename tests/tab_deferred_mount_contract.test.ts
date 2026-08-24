@@ -27,6 +27,7 @@ describe('tab background pre-mount contract', () => {
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const');
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400');
     expect(source).toContain("onAppEvent('app_first_content_ready', startPremount)");
     expect(source).toContain('setTimeout(startPremount, BACKGROUND_TAB_PREMOUNT_FALLBACK_MS)');
     expect(source).toContain("AppState.currentState !== 'active'");
@@ -65,11 +66,11 @@ describe('tab background pre-mount contract', () => {
   it('supports retained-tab and push presentations for Lessons without background work', () => {
     const source = fs.readFileSync(lessonsPath, 'utf8');
 
-    expect(source).toContain("presentation = 'push'");
-    expect(source).toContain("const isRetainedTab = presentation === 'tab';");
-    expect(source).toContain("const lessonsTabVisible = isRetainedTab && runtimeOwnerId === 'lessons';");
+    expect(source).toContain('presentation = "push"');
+    expect(source).toContain('const isRetainedTab = presentation === "tab";');
+    expect(source).toContain('const lessonsTabVisible = isRetainedTab && runtimeOwnerId === "lessons";');
     expect(source).toContain('const lessonsRuntimeActive = useRuntimeActive(');
-    expect(source).toContain('useFocusEffect(useCallback(() => {');
+    expect(source).toContain('useFocusEffect(\r\n    useCallback(() => {');
     expect(source).toContain('void loadScores();');
     expect(source).toContain('const scoresLoadRef = useRef<{');
     expect(source).toContain('if (isRetainedTab) return;');

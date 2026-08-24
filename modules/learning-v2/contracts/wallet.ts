@@ -20,6 +20,7 @@ export type WalletOperationKind =
 export type WalletOperationReason =
   | "initial_required_session"
   | "repeat_session"
+  | "mistake_correction"
   | "plan_completion"
   | "dictionary_activity"
   | "irregular_verbs_activity"
@@ -34,6 +35,13 @@ export type WalletOperationOrigin =
       readonly studyTarget: string;
       readonly requiredSessionOrdinal: number;
     }
+  | {
+      readonly kind: "mistake_correction";
+      readonly studyTarget: "en" | "fr";
+      readonly mistakeId: string;
+      readonly cycleId: string;
+      readonly correctionEventId: string;
+    }
   | { readonly kind: "tournament"; readonly tournamentId: string }
   | { readonly kind: "coin_exchange"; readonly tradeId: string }
   | {
@@ -45,6 +53,7 @@ export interface WalletSourceReceiptRef {
   readonly receiptType:
     | "required_session_credit_settlement"
     | "repeat_reward_settlement"
+    | "mistake_correction_composite"
     | "plan_reward_settlement"
     | "dictionary_reward_settlement"
     | "irregular_verbs_reward_settlement"
@@ -58,7 +67,7 @@ export interface WalletSourceReceiptRef {
 export interface WalletAuthorizedOperationV1 {
   readonly schemaVersion: "learning-v2-wallet-authorized-operation.v1";
   /** Transport precondition only. A hash or this label is not authentication. */
-  readonly authority: "trusted_server_boundary";
+  readonly authority: "trusted_server_boundary" | "client_authoritative_composite";
   readonly operationId: string;
   readonly semanticSubjectFingerprint: string;
   readonly accountScopeHash: string;
@@ -161,17 +170,35 @@ const parseOrigin = (input: unknown): WalletOperationOrigin => {
   } else if (input.kind === "legacy_opening") {
     if (!exactKeys(input, ["kind", "importVersion", "sourceSnapshotFingerprint"]) ||
       input.importVersion !== 1 || !validHash(input.sourceSnapshotFingerprint)) throw new Error("wallet_operation_invalid");
+  } else if (input.kind === "mistake_correction") {
+    if (!exactKeys(input, ["kind", "studyTarget", "mistakeId", "cycleId", "correctionEventId"]) ||
+      (input.studyTarget !== "en" && input.studyTarget !== "fr") ||
+      !validId(input.mistakeId) || !validId(input.cycleId) || !validId(input.correctionEventId)) {
+      throw new Error("wallet_operation_invalid");
+    }
   } else throw new Error("wallet_operation_invalid");
   return input as unknown as WalletOperationOrigin;
 };
 const parseSourceReceiptRef = (input: unknown): WalletSourceReceiptRef => {
   if (!isRecord(input) || !exactKeys(input, ["receiptType", "receiptId", "receiptFingerprint"]) ||
-    !["required_session_credit_settlement", "repeat_reward_settlement", "plan_reward_settlement", "dictionary_reward_settlement", "irregular_verbs_reward_settlement", "tournament_reward", "coin_exchange_trade", "legacy_wallet_snapshot"].includes(String(input.receiptType)) ||
+    !["required_session_credit_settlement", "repeat_reward_settlement", "mistake_correction_composite", "plan_reward_settlement", "dictionary_reward_settlement", "irregular_verbs_reward_settlement", "tournament_reward", "coin_exchange_trade", "legacy_wallet_snapshot"].includes(String(input.receiptType)) ||
     !validId(input.receiptId) || !validHash(input.receiptFingerprint)) throw new Error("wallet_operation_invalid");
   return input as unknown as WalletSourceReceiptRef;
 };
 
 const validateCombination = (value: Record<string, unknown>, origin: WalletOperationOrigin): void => {
+  if (value.authority === "client_authoritative_composite") {
+    const source = value.sourceReceiptRef as WalletSourceReceiptRef;
+    if (value.kind !== "earning_credit" || value.earningCategory !== "repeat" ||
+      value.operationReason !== "mistake_correction" ||
+      Number(value.amountSubunits) !== WALLET_SUBUNITS_PER_STAR ||
+      source.receiptType !== "mistake_correction_composite" ||
+      origin.kind !== "mistake_correction") throw new Error("wallet_operation_invalid");
+    return;
+  }
+  if (value.operationReason === "mistake_correction" || origin.kind === "mistake_correction") {
+    throw new Error("wallet_operation_invalid");
+  }
   const category = value.earningCategory;
   if (value.kind === "earning_credit") {
     const categoryByReason: Readonly<Record<string, WalletEarningCategory>> = {
@@ -237,7 +264,8 @@ export const createWalletAuthorizedOperation = (input: unknown): WalletAuthorize
   const materialized = Object.prototype.hasOwnProperty.call(value, "operationFingerprint");
   if (!(materialized ? exactKeys(value, OPERATION_KEYS) : exactKeys(value, BODY_KEYS)) ||
     value.schemaVersion !== "learning-v2-wallet-authorized-operation.v1" ||
-    value.authority !== "trusted_server_boundary" || !validId(value.operationId) ||
+    (value.authority !== "trusted_server_boundary" && value.authority !== "client_authoritative_composite") ||
+    !validId(value.operationId) ||
     !validHash(value.semanticSubjectFingerprint) ||
     typeof value.accountScopeHash !== "string" || !/^[a-f0-9]{16,128}$/.test(value.accountScopeHash) ||
     !validSafe(value.accountGeneration) || value.currency !== "access_star" ||
@@ -255,7 +283,7 @@ export const createWalletAuthorizedOperation = (input: unknown): WalletAuthorize
   if (value.semanticSubjectFingerprint !== derivedSubject) throw new Error("wallet_operation_invalid");
   const base = {
     schemaVersion: "learning-v2-wallet-authorized-operation.v1" as const,
-    authority: "trusted_server_boundary" as const,
+    authority: value.authority as WalletAuthorizedOperationV1["authority"],
     operationId: value.operationId,
     semanticSubjectFingerprint: value.semanticSubjectFingerprint,
     accountScopeHash: value.accountScopeHash,

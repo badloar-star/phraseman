@@ -78,6 +78,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'ai-dialog-consent-hybrid',
+      approval: 'accepted',
       title: cs('ai_dialog_consent_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -107,6 +108,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'ai-explain-consent-hybrid',
+      approval: 'accepted',
       title: cs('ai_explain_consent_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -136,6 +138,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'notification-permission-hybrid',
+      approval: 'accepted',
       title: cs('notification_permission_hybrid_title'),
       detail: cs('notification_permission_detail'),
       kind: 'render',
@@ -186,6 +189,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'onboarding-welcome-sheet-hybrid',
+      approval: 'accepted',
       title: cs('onboarding_welcome_sheet_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',
@@ -213,6 +217,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'fc-deck-picker-sheet-hybrid',
+      approval: 'pending',
       title: cs('fc_deck_picker_sheet_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',

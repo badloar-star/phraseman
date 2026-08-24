@@ -296,7 +296,7 @@ describe('tutor instructions', () => {
     // Первый ход — только приветствие и один вопрос; план и время под запретом.
     expect(instr).toContain('no plan, no lesson\n   length, no agenda');
     expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Say ONLY a short, warm hello and ONE simple question');
-    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('do NOT open in English');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('do NOT open in the course language');
     expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Do NOT describe the plan');
     // Бюджет времени учитель знает, но вслух в приветствии не произносит.
     expect(tutorGreetingInstructionsFor(180)).toContain('3 minutes');
@@ -386,15 +386,22 @@ describe('tutor instructions', () => {
     expect(instr).toContain('This applies even when YOU bring up the example, not only when the learner does');
   });
 
-  it('MAX пока преподаёт только английский, даже если устаревший клиент прислал французский target', () => {
+  it('teaches the selected course language instead of silently falling back to English', () => {
     const fr = buildVoiceInstructions({
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'French',
     });
-    expect(fr).toContain('personal English TEACHER');
+    expect(fr).toContain('personal French TEACHER');
     expect(fr).toContain('level is A2 and their NATIVE language is Russian');
-    expect(fr).toContain('ONE COURSE PER LESSON: the learner is studying English');
+    expect(fr).toContain('ONE COURSE PER LESSON: the learner is studying French');
     expect(fr).toContain('other languages can be chosen as a separate study language in the app settings');
-    expect(fr).not.toContain('personal French TEACHER');
+    expect(fr).not.toContain('personal English TEACHER');
+
+    const es = buildVoiceInstructions({
+      cefr: 'A1', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Ukrainian', targetLangName: 'Spanish',
+    });
+    expect(es).toContain('personal Spanish TEACHER');
+    expect(es).toContain('the learner is studying Spanish');
+    expect(es).not.toContain('the learner is studying English');
   });
 
   it('SAFETY PLAYBOOK: кризис, секс/флирт, травля, насилие/незаконное, несовершеннолетние, политика, инъекции — вежливый отказ и возврат к уроку', () => {

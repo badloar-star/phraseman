@@ -25,7 +25,7 @@ describe('parseProductAnalyticsPayload', () => {
 describe('admin product analytics input contract', () => {
   it('requires the server-side money.read permission', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
-    expect(source).toContain("hasClaimedPermission(request.auth?.token, 'money.read')");
+    expect(source).toContain("hasVerifiedCallablePermission(request.auth, 'money.read')");
   });
 
   it('limits the query window to supported periods', () => {

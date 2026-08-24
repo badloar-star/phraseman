@@ -32,10 +32,6 @@ function text(value: unknown): string | null {
   return typeof value === 'string' && value.trim() ? value.trim() : null;
 }
 
-function dayString(ms: number): string {
-  return new Date(ms).toISOString().slice(0, 10);
-}
-
 function packResult(sourceId: MoneyReportCollection, rows: readonly MoneyRawRow[], truncated: boolean, droppedCount: number, observedAtMs: number): FetchMoneySourceResult {
   return Object.freeze({
     sourceId,
@@ -55,20 +51,36 @@ function number(value: unknown): number | null {
   return Number.isSafeInteger(value) ? Number(value) : null;
 }
 
+function inWindow(value: unknown, sinceMs: number, nowMs: number): value is number {
+  return Number.isSafeInteger(value) && Number(value) >= sinceMs && Number(value) <= nowMs;
+}
+
+function boundedDocs(snapshot: { readonly docs: readonly FirebaseFirestore.QueryDocumentSnapshot[] }): {
+  readonly kept: readonly FirebaseFirestore.QueryDocumentSnapshot[];
+  readonly truncated: boolean;
+} {
+  const truncated = snapshot.docs.length > MAX_MONEY_ROWS_PER_SOURCE;
+  return { kept: snapshot.docs.slice(0, MAX_MONEY_ROWS_PER_SOURCE), truncated };
+}
+
 async function fetchPersonalEconomy(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
   const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
   try {
     const snapshot = await input.collection
       .where('createdAtMs', '>=', sinceMs)
-      .orderBy('createdAtMs', 'asc')
+      .where('createdAtMs', '<=', input.nowMs)
+      .orderBy('createdAtMs', 'desc')
       .limit(MAX_MONEY_ROWS_PER_SOURCE + 1)
       .get();
-    const docs = snapshot.docs;
-    const truncated = docs.length > MAX_MONEY_ROWS_PER_SOURCE;
-    const kept = truncated ? docs.slice(0, MAX_MONEY_ROWS_PER_SOURCE) : docs;
-    const rows = kept.map((snap) => {
+    const { kept, truncated } = boundedDocs(snapshot);
+    let invalidRows = 0;
+    const rows = kept.flatMap((snap) => {
       const data = snap.data() as Record<string, unknown>;
-      return Object.freeze({
+      if (!inWindow(data.createdAtMs, sinceMs, input.nowMs)) {
+        invalidRows += 1;
+        return [];
+      }
+      return [Object.freeze({
         eventType: input.sourceId === 'external_economy_events' ? text(data.eventId) : null,
         periodType: null,
         ownerStableId: text(data.ownerStableId),
@@ -80,9 +92,9 @@ async function fetchPersonalEconomy(input: FetchMoneySourceInput): Promise<Fetch
         revision: number(data.revision),
         source: text(data.source),
         createdAtMs: number(data.createdAtMs),
-      });
+      })];
     });
-    return packResult(input.sourceId, rows, truncated, truncated ? docs.length - MAX_MONEY_ROWS_PER_SOURCE : 0, input.nowMs);
+    return packResult(input.sourceId, rows, truncated, invalidRows + (truncated ? 1 : 0), input.nowMs);
   } catch {
     return errorResult(input.sourceId, input.nowMs);
   }
@@ -92,42 +104,57 @@ async function fetchRevenuecatEvents(input: FetchMoneySourceInput): Promise<Fetc
   const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
   try {
     const snapshot = await input.collection
+      .where('environment', '==', 'PRODUCTION')
       .where('eventTimestampMs', '>=', sinceMs)
+      .where('eventTimestampMs', '<=', input.nowMs)
       .orderBy('eventTimestampMs', 'desc')
       .limit(MAX_MONEY_ROWS_PER_SOURCE + 1)
       .get();
-    const docs = snapshot.docs;
-    const truncated = docs.length > MAX_MONEY_ROWS_PER_SOURCE;
-    const kept = truncated ? docs.slice(0, MAX_MONEY_ROWS_PER_SOURCE) : docs;
-    const rows = kept.map((snap) => {
+    const { kept, truncated } = boundedDocs(snapshot);
+    let invalidRows = 0;
+    const rows = kept.flatMap((snap) => {
       const data = snap.data() as Record<string, unknown>;
-      return Object.freeze({ eventType: text(data.eventType), periodType: text(data.periodType) });
+      const environment = text(data.environment)?.toUpperCase() ?? null;
+      if (environment !== 'PRODUCTION' || !inWindow(data.eventTimestampMs, sinceMs, input.nowMs)) {
+        invalidRows += 1;
+        return [];
+      }
+      return [Object.freeze({
+        eventType: text(data.eventType),
+        periodType: text(data.periodType),
+        environment,
+        createdAtMs: number(data.eventTimestampMs),
+      })];
     });
-    return packResult('revenuecat_premium_events', rows, truncated, truncated ? docs.length - MAX_MONEY_ROWS_PER_SOURCE : 0, input.nowMs);
+    return packResult('revenuecat_premium_events', rows, truncated, invalidRows + (truncated ? 1 : 0), input.nowMs);
   } catch {
     return errorResult('revenuecat_premium_events', input.nowMs);
   }
 }
 
-/** Тот же паттерн, что admin_daily_digest.ts:721-744: ключ day — строка, окно 24ч перекрывает максимум два дня. */
 async function fetchPaywallFunnel(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
   const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
   try {
-    const fromDay = dayString(sinceMs);
-    const toDay = dayString(input.nowMs);
     const snapshot = await input.collection
-      .where('day', '>=', fromDay)
-      .where('day', '<=', toDay)
+      .where('step', '==', 'purchase_completed')
+      .where('dev', '==', false)
+      .where('ts', '>=', sinceMs)
+      .where('ts', '<=', input.nowMs)
+      .orderBy('ts', 'desc')
       .limit(MAX_MONEY_ROWS_PER_SOURCE + 1)
       .get();
-    const docs = snapshot.docs;
-    const truncated = docs.length > MAX_MONEY_ROWS_PER_SOURCE;
-    const kept = truncated ? docs.slice(0, MAX_MONEY_ROWS_PER_SOURCE) : docs;
+    const { kept, truncated } = boundedDocs(snapshot);
+    let invalidRows = 0;
     const rows = kept
       .map((snap) => snap.data() as Record<string, unknown>)
-      .filter((data) => data.dev !== true && data.step === 'purchase_completed')
-      .map(() => Object.freeze({ eventType: 'purchase_completed', periodType: null }));
-    return packResult('paywall_funnel', rows, truncated, truncated ? docs.length - MAX_MONEY_ROWS_PER_SOURCE : 0, input.nowMs);
+      .flatMap((data) => {
+        if (data.dev !== false || data.step !== 'purchase_completed' || !inWindow(data.ts, sinceMs, input.nowMs)) {
+          invalidRows += 1;
+          return [];
+        }
+        return [Object.freeze({ eventType: 'purchase_completed', periodType: null, createdAtMs: number(data.ts) })];
+      });
+    return packResult('paywall_funnel', rows, truncated, invalidRows + (truncated ? 1 : 0), input.nowMs);
   } catch {
     return errorResult('paywall_funnel', input.nowMs);
   }

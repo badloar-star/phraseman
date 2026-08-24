@@ -35,6 +35,7 @@ import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, get
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { usePremium } from '../components/PremiumContext';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
@@ -564,8 +565,8 @@ export default function LevelExam() {
   const [blockedText, setBlockedText] = useState('');
   const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
   // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
-  // Премиум/тестер обходят списание внутри spendAmount (isUnlimited).
-  const { isUnlimited: energyUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  // Премиум/тестер обходят подтверждение внутри confirmSpendAmount.
+  const { isUnlimited: energyUnlimited, confirmSpendAmount, energy, bonusEnergy } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const examEnergyUnlimited = energyUnlimited || hasPremiumAccess;
   const [noEnergy, setNoEnergy] = useState(false);
@@ -761,14 +762,10 @@ export default function LevelExam() {
     setExamStarting(true);
     try {
       // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
-      if (!examEnergyUnlimited) {
-        if (energy + bonusEnergy < LEVEL_EXAM_ENERGY) {
-          void trackFeatureBlocked('level_exam', 'start', 'no_energy', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
-          setNoEnergy(true);
-          return;
-        }
-        const ok = await spendAmount(LEVEL_EXAM_ENERGY);
-        if (!ok) {
+      {
+        const energyResult = await confirmSpendAmount(LEVEL_EXAM_ENERGY);
+        if (energyResult === 'cancelled') return;
+        if (energyResult === 'insufficient') {
           void trackFeatureBlocked('level_exam', 'start', 'energy_spend_failed', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
           setNoEnergy(true);
           return;
@@ -783,7 +780,7 @@ export default function LevelExam() {
     } finally {
       setExamStarting(false);
     }
-  }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, examEnergyUnlimited, energy, bonusEnergy, spendAmount]);
+  }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, energy, bonusEnergy, confirmSpendAmount]);
 
   const { flashKey, flash } = useWordFlash();
   const mistakeCaptureRunRef = React.useRef(`level-exam-${Date.now().toString(36)}`);
@@ -1244,39 +1241,27 @@ export default function LevelExam() {
                   </View>
                 ) : null}
 
-                <TouchableOpacity
-                  activeOpacity={0.92}
-                  onPress={() => { hapticTap(); void startExam(); }}
-                  disabled={examStarting}
-                  style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4, opacity: examStarting ? 0.6 : 1 }}
-                >
-                  <LinearGradient
-                    colors={isOliveTheme ? ['#F0DEA5', '#C9A84C', '#9C7A29'] : ['#FFE9A8', '#E8C040', '#C99516']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 10,
-                      paddingVertical: 16,
-                    }}
+                <View style={{ position: 'relative', overflow: 'visible', marginTop: 4 }}>
+                  <TouchableOpacity
+                    activeOpacity={0.92}
+                    onPress={() => { hapticTap(); void startExam(); }}
+                    disabled={examStarting}
+                    style={{ borderRadius: 18, overflow: 'hidden', opacity: examStarting ? 0.6 : 1 }}
                   >
-                    <Ionicons name="sparkles" size={20} color={LX.ink} />
-                    <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
-                      {triLang(lang, {
-                        ru: 'Начать зачёт',
-                        uk: 'Почати залік',
-                        es: 'Empezar examen',
-                        'pt-BR': "Começar teste",
-                        vi: "Bắt đầu bài kiểm tra",
-                        id: "Mulai ujian",
-                        tr: "Sınava başla",
-                        pl: "Rozpocznij test",
-                      })}
-                    </Text>
-                  </LinearGradient>
-                </TouchableOpacity>
+                    <LinearGradient
+                      colors={isOliveTheme ? ['#F0DEA5', '#C9A84C', '#9C7A29'] : ['#FFE9A8', '#E8C040', '#C99516']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingVertical: 16 }}
+                    >
+                      <Ionicons name="sparkles" size={20} color={LX.ink} />
+                      <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
+                        {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', es: 'Empezar examen', 'pt-BR': "Começar teste", vi: "Bắt đầu bài kiểm tra", id: "Mulai ujian", tr: "Sınava başla", pl: "Rozpocznij test" })}
+                      </Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+                  <EnergyCostBadge testID="level-exam-legacy-start-energy-cost" />
+                </View>
               </View>
 
               <View style={{ alignItems: 'center', marginTop: 18 }}>
@@ -1517,38 +1502,26 @@ export default function LevelExam() {
             )}
 
             {/* Кнопки */}
-            <TouchableOpacity
-              onPress={() => { hapticTap(); void startExam(); }}
-              style={{
-                borderRadius: 14,
-                borderWidth: isGoldTheme ? 0.5 : 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
-                overflow: 'hidden',
-                ...(isGoldTheme ? goldShadow(1) : {}),
-              }}
-            >
-              <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-                end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-                style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 16 }}
+            <View style={{ position: 'relative', overflow: 'visible' }}>
+              <TouchableOpacity
+                onPress={() => { hapticTap(); void startExam(); }}
+                style={{ borderRadius: 14, borderWidth: isGoldTheme ? 0.5 : 0, borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent', overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : {}) }}
               >
-                {isGoldTheme && <GoldBevel radius={14} intensity="quiet" />}
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
-                {triLang(lang, {
-                  ru: 'Попробовать ещё раз',
-                  uk: 'Спробувати ще раз',
-                  es: 'Intentar de nuevo',
-                  'pt-BR': "Tentar de novo",
-                  vi: "Thử lại",
-                  id: "Coba lagi",
-                  tr: "Tekrar dene",
-                  pl: "Spróbuj ponownie",
-                })}
-              </Text>
-              </LinearGradient>
-            </TouchableOpacity>
+                <LinearGradient
+                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
+                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                  start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+                  end={isGoldTheme ? { x: 1, y: 1 } : undefined}
+                  style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 16 }}
+                >
+                  {isGoldTheme && <GoldBevel radius={14} intensity="quiet" />}
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
+                    {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': "Tentar de novo", vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Spróbuj ponownie" })}
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+              <EnergyCostBadge testID="level-exam-legacy-restart-energy-cost" />
+            </View>
             <TouchableOpacity
               onPress={() => { void leaveResultAfterReview(); }}
               style={{

@@ -23,40 +23,58 @@ const SITUATION = {
   prompt: 'Официант принёс не то блюдо. Что скажешь?',
   options: [
     'Sorry, this is not what I ordered.',
-    'You brought me the wrong dish again.',
-    'I demand another dish immediately now.',
-    'This food here is a mistake of yours.',
+    'Sorry, this are not what I ordered.',
+    'Sorry, this is not what I order yesterday.',
+    'Sorry, this is not what I have order.',
   ],
   correctIndex: 0,
   correctAnswer: 'Sorry, this is not what I ordered.',
   scenario: 'кафе',
-  ruleNote: 'Верно первое: вежливое сомнение. Остальные грамматичны, но звучат грубо.',
+  ruleNote: 'После this нужен is; yesterday требует Past Simple; после have нужен ordered.',
   example: 'I think this is not what I ordered. — Кажется, это не то, что я заказывал.',
+  wrongOptionReasons: [
+    '',
+    'This — единственное число, поэтому форма are здесь грамматически невозможна.',
+    'Yesterday требует ordered, а не форму настоящего времени order.',
+    'После have требуется причастие ordered, а не базовая форма order.',
+  ],
 };
 
 const GAP = {
-  prompt: 'I have been looking ___ my keys all morning.',
-  options: ['for', 'at', 'after', 'to'],
+  prompt: 'She has ___ the report already.',
+  options: ['finished', 'finish', 'finishing', 'finishes'],
   correctIndex: 0,
-  correctAnswer: 'for',
-  scenario: 'дом',
-  ruleNote: 'look for — искать. look after — заботиться, look at — смотреть на.',
-  example: 'I am looking for my phone. — Я ищу телефон.',
+  correctAnswer: 'finished',
+  scenario: 'работа',
+  ruleNote: 'После has в Present Perfect требуется причастие finished.',
+  example: 'I have finished my work. — Я закончил работу.',
+  wrongOptionReasons: [
+    '',
+    'После has нужна третья форма finished, а базовая форма finish невозможна.',
+    'После has без been форма finishing грамматически невозможна.',
+    'После вспомогательного has форма finishes грамматически невозможна.',
+  ],
 };
 
 const ODDITY = {
   prompt: 'Какая фраза звучит неправильно?',
   options: [
-    'I feel good today.',
-    'I feel myself good today.',
-    'I am feeling great now.',
-    'I feel a bit tired.',
+    'I do a great job.',
+    'He do a great job.',
+    'She does a great job.',
+    'They do a great job.',
   ],
   correctIndex: 1,
-  correctAnswer: 'I feel myself good today.',
-  scenario: 'самочувствие',
-  ruleNote: 'Калька с русского: feel myself — грубая ошибка, feel не требует myself.',
-  example: 'I feel good today. — Сегодня я хорошо себя чувствую.',
+  correctAnswer: 'He do a great job.',
+  scenario: 'работа',
+  ruleNote: 'С he в Present Simple требуется does, а не do.',
+  example: 'He does a great job. — Он отлично справляется.',
+  wrongOptionReasons: [
+    'С I форма do грамматически корректна.',
+    '',
+    'С she форма does грамматически корректна.',
+    'С they форма do грамматически корректна.',
+  ],
 };
 
 const ASSEMBLY = {
@@ -185,6 +203,26 @@ describe('четыре типа: брак ловится', () => {
     const result = parseKindItem(broken, 'gap');
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.errors).toContain('kind_options_not_unique');
+  });
+
+  it('choice: отклоняет общую отписку вместо отдельной причины для каждой ловушки', () => {
+    const broken = {
+      ...GAP,
+      wrongOptionReasons: ['', 'Неверно.', 'Неверно.', 'Неверно.'],
+    };
+    const result = parseKindItem(broken, 'gap');
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors).toContain('kind_wrong_option_reasons_not_specific');
+  });
+
+  it('choice: требует содержательные русские причины, а не английские заглушки', () => {
+    const broken = {
+      ...GAP,
+      wrongOptionReasons: ['', 'Wrong verb form here.', 'Invalid form in context.', 'This option is ungrammatical.'],
+    };
+    const result = parseKindItem(broken, 'gap');
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors).toContain('kind_wrong_option_reasons_invalid');
   });
 
   it('choice: правильный выдаётся длиной → kind_length_giveaway', () => {

@@ -1,7 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import {
   collectTimestampRows,
@@ -44,14 +43,17 @@ function millis(value: unknown): number {
   return 0;
 }
 
+export function canReadSensitiveAdminAudit(role: unknown): boolean {
+  return role === 'owner' || role === 'admin';
+}
+
 function requireAuditPermission(
   request: { auth?: { uid?: string; token?: Row } | null },
-  permission: AdminPermission,
 ): { actorUid: string; role: AdminRole } {
   if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) throw new HttpsError('permission-denied', 'Admin only');
   const claimedRole = request.auth.token.adminRole;
-  const role: AdminRole = hasAdminRole(claimedRole) ? claimedRole : 'admin';
-  if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
+  const role: AdminRole = hasAdminRole(claimedRole) ? claimedRole : 'owner';
+  if (!canReadSensitiveAdminAudit(role)) throw new HttpsError('permission-denied', 'Role cannot read sensitive audit history');
   return { actorUid: String(request.auth.uid), role };
 }
 
@@ -180,7 +182,7 @@ export async function collectAuditRawRows(db: FirebaseFirestore.Firestore, input
 export const adminListAuditLog = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 20, memory: '512MiB' },
   async (request) => {
-    requireAuditPermission(request as { auth?: { uid?: string; token?: Row } }, 'diagnostics.read');
+    requireAuditPermission(request as { auth?: { uid?: string; token?: Row } });
     const input = parseAuditListRequest(request.data);
     const db = admin.firestore();
     const sinceMs = Date.now() - input.sinceDays * 24 * 60 * 60 * 1000;

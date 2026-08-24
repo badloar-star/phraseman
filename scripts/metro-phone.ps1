@@ -93,6 +93,28 @@ function Get-LanIp {
     Select-Object -First 1 -ExpandProperty IPAddress
 }
 
+# Повторный запуск ярлыка не должен ронять уже подключённый iPhone. Раньше
+# новый watchdog сначала убивал старый watchdog и его Metro, поэтому живой HMR
+# socket обрывался при каждом повторном клике. Переиспользуем сервер только
+# когда он отвечает, адрес принадлежит текущей Wi-Fi сети и режим остаётся LAN.
+$lanIp = Get-LanIp
+$expectedLanUrl = if ($lanIp) { "http://{0}:{1}" -f $lanIp, $Port } else { "" }
+$existingUrl = if (Test-Path -LiteralPath $UrlFile) {
+  [string](Get-Content -LiteralPath $UrlFile -Raw -ErrorAction SilentlyContinue).Trim()
+} else {
+  ""
+}
+$existingMetroAlive = Test-MetroAlive $Port
+if ($existingMetroAlive -and -not $Clear -and -not $Tunnel -and $existingUrl -eq $expectedLanUrl) {
+  Say "Metro уже работает: $existingUrl. Сохраняю процесс и соединение iPhone без перезапуска."
+  Write-Host ""
+  Write-Host "  ==================================================" -ForegroundColor Green
+  Write-Host ("   Сервер: {0}" -f $existingUrl) -ForegroundColor Green
+  Write-Host "   Можно закрыть это новое окно — старый Metro продолжает работать." -ForegroundColor Green
+  Write-Host "  ==================================================" -ForegroundColor Green
+  exit 20
+}
+
 # ─────────────────────────────────────────────────────────────────────────────
 # ПРИЧИНА 0 → ОДИН WATCHDOG. Гасить чужие Metro мало: если запущены ДВА
 # сторожа, каждый при старте убивает Metro другого, тот поднимает заново, и

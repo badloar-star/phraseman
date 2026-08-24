@@ -15,6 +15,10 @@ jest.mock('../app/hall_of_fame_utils', () => ({
 }));
 
 import { getOrCreateLeagueGroup } from '../app/firestore_leagues';
+import {
+  clearCachedLeagueStateSnapshot,
+  projectCloudLeagueStateSnapshot,
+} from '../app/league_open_cache_policy';
 
 import {
   calculateResult,
@@ -147,9 +151,37 @@ describe('league step cap (multi-week chain)', () => {
 describe('league weekly rollover', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
+    clearCachedLeagueStateSnapshot();
     __resetRemoteFlagsForTest();
     __resetLeagueResultSessionGuardForTests();
     jest.clearAllMocks();
+  });
+
+  it('keeps a cloud-restored league in memory when SQLite has no state', async () => {
+    const cloudState: LeagueState = {
+      leagueId: 9,
+      weekId: getWeekId(),
+      group: [{ uid: 'me', name: 'QA Monday', points: 0, isMe: true }],
+    };
+    projectCloudLeagueStateSnapshot(JSON.stringify(cloudState));
+
+    const opened = await checkLeagueOnAppOpen('QA Monday', 0);
+
+    expect(opened.state).toMatchObject({ leagueId: 9, weekId: getWeekId() });
+    expect(getOrCreateLeagueGroup).toHaveBeenCalledWith(
+      getWeekId(),
+      9,
+      'QA Monday',
+      0,
+    );
+  });
+
+  it('projects league state during cloud restore before storage writes', () => {
+    const source = require('fs').readFileSync(
+      require('path').join(__dirname, '..', 'app/cloud_sync.ts'),
+      'utf8',
+    );
+    expect(source).toContain("projectCloudLeagueStateSnapshot(cloudData['league_state_v3'])");
   });
 
   it('promotes the top result zone with a real group size', () => {

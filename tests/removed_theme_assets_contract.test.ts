@@ -10,12 +10,9 @@ const sourceFiles = [
   'app/home_menu_icons.ts',
   'app/image_preload.ts',
   'components/ReferralInviteBannerArt.tsx',
-  'constants/boonIconAssets.ts',
   'constants/generatedThemeIconAssets.ts',
-  'constants/leagueBonusGiftImages.ts',
   'constants/socialIconAssets.ts',
   'constants/streakIconAssets.ts',
-  'constants/trainerThemeIcons.ts',
   'constants/weeklyCompassIcons.ts',
 ];
 

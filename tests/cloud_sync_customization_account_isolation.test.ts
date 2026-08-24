@@ -3,6 +3,7 @@ import type { V2CompiledRequiredSession } from '../modules/learning-v2/content/s
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
+  withAccountTransitionLock,
 } from '../app/account_generation';
 import { restoreAccountSwitchEmergencyBackupIfSafe } from '../app/account_switch_backup_restore';
 import {
@@ -33,6 +34,11 @@ import {
   legacyFreeLessonCapKey,
   legacyFreeLessonMigrationKey,
 } from '../app/target_storage_keys';
+import {
+  createDefaultPersonalPlanState,
+  getCachedPersonalPlanState,
+  savePersonalPlanState,
+} from '../app/personal_plan_state';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/user_id_policy', () => ({
@@ -205,6 +211,21 @@ it('removes purchase recovery and spend ledger during account switch wipe', asyn
   expect(getAppSnapshot().customization).toBeUndefined();
 });
 
+it('clears the in-memory personal-plan state when the current account is wiped', async () => {
+  await savePersonalPlanState(createDefaultPersonalPlanState({
+    planId: 'gavan',
+    minutesPerDay: 5,
+    planInstanceId: 'account-a-cached-plan',
+  }));
+  expect(getCachedPersonalPlanState()?.planInstanceId).toBe('account-a-cached-plan');
+
+  await wipeLocalAccountData();
+
+  expect(getCachedPersonalPlanState()).not.toEqual(
+    expect.objectContaining({ planInstanceId: 'account-a-cached-plan' }),
+  );
+});
+
 it('removes legacy lesson caps and migration markers during account switch wipe', async () => {
   const legacyKeys = [
     legacyFreeLessonCapKey('en'),
@@ -316,6 +337,32 @@ it('keeps account B isolated when a deferred account A callback writes replay st
   store['personal_plan_day_runtime_v1:account_b_plan:gavan:1'] = 'account-b-runtime';
   expect(store.personal_plan_attempt_events_v1).toBe('account-b-attempt');
   expect(store['personal_plan_day_runtime_v1:account_b_plan:gavan:1']).toBe('account-b-runtime');
+});
+
+it('serializes a late entitlement write before the account-swap wipe without reentrant deadlock', async () => {
+  let releaseLateWrite!: () => void;
+  let lateWriteStarted!: () => void;
+  const canWrite = new Promise<void>((resolve) => { releaseLateWrite = resolve; });
+  const started = new Promise<void>((resolve) => { lateWriteStarted = resolve; });
+
+  const lateWrite = withAccountTransitionLock(async () => {
+    lateWriteStarted();
+    await canWrite;
+    await AsyncStorage.multiSet([
+      ['premium_active', 'true'],
+      ['premium_plan', 'max_monthly'],
+    ]);
+  });
+  await started;
+
+  const swapWipe = withAccountTransitionLock(async (transitionLease) => {
+    await wipeLocalAccountData(transitionLease);
+  });
+  releaseLateWrite();
+  await Promise.all([lateWrite, swapWipe]);
+
+  expect(store.premium_active).toBeUndefined();
+  expect(store.premium_plan).toBeUndefined();
 });
 
 it('fails closed when wildcard account-key discovery is unavailable', async () => {

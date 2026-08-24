@@ -13,22 +13,45 @@ describe('level-up spin sheet cutover', () => {
     expect(modalSource).not.toContain('level-up-spin-later');
     expect(modalSource).toContain('testID="level-up-dismiss-hybrid"');
     expect(source).toContain("PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY");
-    expect(source).toContain('onContinue={currentIsSpin ? finalizeSpinLevelUp : dismissLevelUp}');
+    expect(source).toContain('onContinue={finalizeSpinLevelUp}');
     expect(source).not.toContain('onSpin={() => finalizeSpinLevelUp(true)}');
   });
 
   test('does not repeat the redundant spin-delivery explanation or reserve empty message space', () => {
-    expect(source).toContain("const levelUpMessageText = currentIsSpin\n    ? ''");
+    expect(source).toContain("message={''}");
     expect(source).not.toContain('Спин уже добавлен');
     expect(source).not.toContain('Tu giro ya está listo');
     expect(modalSource).toContain('{message ? (');
   });
 
-  test('keeps legacy gift modals while spin queue entries bypass legacy gift entitlement', () => {
-    expect(source).toContain('<LevelGiftModal');
-    expect(source).toContain('<LevelGiftDualModal');
+  test('keeps level-up runtime Spin-only while gift inventory retains legacy application modals', () => {
+    const inventory = readFileSync(join(process.cwd(), 'app', 'level_gifts_inventory.tsx'), 'utf8');
+    expect(source).not.toContain("import LevelGiftModal from '../components/LevelGiftModal'");
+    expect(source).not.toContain("import LevelGiftDualModal from '../components/LevelGiftDualModal'");
+    expect(source).not.toContain('<LevelGiftModal');
+    expect(source).not.toContain('<LevelGiftDualModal');
     expect(source).toContain('loadPendingLevelSpinLevelUps');
     expect(source).toContain('acknowledgePendingLevelSpinLevelUp');
+    expect(source).not.toContain('const onGiftClose');
+    expect(source).not.toContain('showGiftModal');
+    expect(source).not.toContain('singleGiftsRef');
+    expect(source).not.toContain('dualGiftsRef');
+    expect(source).not.toContain('acquireLevelGiftDisplay');
+    expect(source).not.toContain('reserveLevelGiftForDisplay');
+    expect(inventory).toContain('<LevelGiftModal');
+    expect(inventory).toContain('<LevelGiftDualModal');
+  });
+
+  test('keeps the level-5 after-win upsell reachable only after the final Spin completes', () => {
+    expect(source).toContain('showLevelFiveUpsellAfterFinalSpin(level, accountToken)');
+    expect(source).toMatch(/if \(queueRef\.current\.length > 0\)[\s\S]{0,300}else \{[\s\S]{0,300}showLevelFiveUpsellAfterFinalSpin\(level, accountToken\)/);
+    expect(source).toContain('if (completedLevel !== 5 || hasPremiumAccess) return;');
+    expect(source).toContain('if (introState?.expiredUnseen === true) return;');
+    expect(source).toContain('if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;');
+    const navigateAt = source.indexOf("source: 'afterwin_levelup'");
+    const markAt = source.indexOf('await markAfterWinUpsellShown(Date.now())', navigateAt);
+    expect(navigateAt).toBeGreaterThan(0);
+    expect(markAt).toBeGreaterThan(navigateAt);
   });
 
   test('preserves the deterministic fixed +100 XP level-up bonus', () => {

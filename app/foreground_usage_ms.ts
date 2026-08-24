@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, type AppStateStatus } from 'react-native';
+import { emitAppEvent } from './events';
 
 const STORAGE_KEY = 'phraseman_foreground_usage_ms_v1';
 /** UTC-календарный день → миллисекунды только в foreground (активное окно). */
@@ -87,10 +88,13 @@ async function addDelta(delta: number, rangeStart: number): Promise<number> {
   const capped = Math.min(delta, 48 * 60 * 60 * 1000);
   const cur = await readTotal();
   const next = cur + capped;
+  let persisted = false;
   try {
     await AsyncStorage.setItem(STORAGE_KEY, String(next));
+    persisted = true;
   } catch { /* */ }
   await mergeDeltaIntoDailyBuckets(capped, rangeStart);
+  if (persisted) emitAppEvent('foreground_usage_changed', { totalMs: next });
   return next;
 }
 

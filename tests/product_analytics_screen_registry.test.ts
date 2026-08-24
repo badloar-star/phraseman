@@ -14,6 +14,7 @@ describe('product analytics screen registry', () => {
     ['/arena_today?source=home', 'arena_today'],
     ['/arena_star_wallet', 'arena_star_wallet'],
     ['/manage_subscription', 'manage_subscription'],
+    ['/max_paywall', 'max_paywall'],
   ])('maps %s to %s without leaking parameters', (pathname, expected) => {
     expect(productAnalyticsScreenId(pathname)).toBe(expected);
   });

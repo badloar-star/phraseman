@@ -52,6 +52,8 @@ describe('premintKey', () => {
       .not.toBe(premintKey({ format: 'scenario', scenarioId: 'hotel' }));
     expect(premintKey({ format: 'scenario', scenarioId: 'coffee', devMode: true }))
       .not.toBe(premintKey({ format: 'scenario', scenarioId: 'coffee' }));
+    expect(premintKey({ format: 'tutor', studyTarget: 'es' }))
+      .not.toBe(premintKey({ format: 'tutor', studyTarget: 'en' }));
   });
 });
 

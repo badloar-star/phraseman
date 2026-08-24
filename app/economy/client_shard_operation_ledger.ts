@@ -4,6 +4,8 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
+  type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from '../account_generation';
 import { getStableId } from '../stable_id';
 import { withStorageLock } from '../storage_mutex';
@@ -11,6 +13,7 @@ import {
   CLIENT_SHARD_SEMANTIC_PAID_PREFIX,
   reduceClientShardGrant,
 } from './client_shard_semantic_reducer';
+import { commitPhoneStateEconomyOperation } from '../phone_state_economy_bridge';
 
 const BALANCE_KEY = 'shards_balance';
 const BALANCE_META_KEY = 'shards_balance_meta_v1';
@@ -483,17 +486,23 @@ async function commitUnlocked(
 
 export async function commitClientShardOperation(
   input: CommitClientShardOperationInput,
+  options: Readonly<{
+    accountToken?: AccountGenerationToken;
+    accountTransitionLockLease?: AccountTransitionLockLease;
+  }> = {},
 ): Promise<CommitClientShardOperationResult> {
   try {
     const ownerStableId = String(await getStableId()).trim();
     if (input.expectedOwnerStableId !== undefined && ownerStableId !== input.expectedOwnerStableId) {
       return { status: 'failed', reason: 'external_event_owner_changed' };
     }
-    const accountToken = captureAccountGeneration();
-    if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) {
+    const accountToken = options.accountToken ?? captureAccountGeneration();
+    if (!ownerStableId
+      || accountToken.stableId !== ownerStableId
+      || !isCurrentAccountGeneration(accountToken, ownerStableId)) {
       return { status: 'failed', reason: 'stale_account_generation' };
     }
-    return await withAccountTransitionLock(async () => withStorageLock(async () => {
+    const result = await withAccountTransitionLock(async () => withStorageLock(async () => {
       if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
         return { status: 'failed', reason: 'stale_account_generation' } as const;
       }
@@ -541,7 +550,17 @@ export async function commitClientShardOperation(
         const reason = error instanceof Error ? error.message : 'unknown';
         return { status: 'failed', reason } as const;
       }
-    }));
+    }), options.accountTransitionLockLease);
+    if (
+      (result.status === 'applied' || result.status === 'already-applied')
+      && result.operation.authority === 'client'
+    ) {
+      // The compatibility ledger remains the crash-safe materialization while
+      // PhoneState is the single portable/background journal. A local SQL
+      // failure is retried by opening import and never takes away the grant.
+      await commitPhoneStateEconomyOperation(result.operation);
+    }
+    return result;
   } catch (error) {
     return { status: 'failed', reason: error instanceof Error ? error.message : 'unknown' };
   }
@@ -565,7 +584,12 @@ function parsePrepared(raw: string | null, ownerStableId: string): PreparedOpera
 }
 
 /** Recover the one owner-scoped operation that may have crossed a crash boundary. */
-export async function recoverPreparedClientShardOperation(): Promise<CommitClientShardOperationResult | null> {
+export async function recoverPreparedClientShardOperation(
+  options: Readonly<{
+    accountToken?: AccountGenerationToken;
+    accountTransitionLockLease?: AccountTransitionLockLease;
+  }> = {},
+): Promise<CommitClientShardOperationResult | null> {
   try {
     const ownerStableId = String(await getStableId()).trim();
     if (!ownerStableId) return null;
@@ -579,7 +603,7 @@ export async function recoverPreparedClientShardOperation(): Promise<CommitClien
     if (fingerprint !== prepared.requestFingerprint) {
       return { status: 'failed', reason: 'prepared_operation_fingerprint_mismatch' };
     }
-    return commitClientShardOperation(prepared.input);
+    return commitClientShardOperation(prepared.input, options);
   } catch (error) {
     return { status: 'failed', reason: error instanceof Error ? error.message : 'unknown' };
   }

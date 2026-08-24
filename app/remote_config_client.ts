@@ -31,6 +31,7 @@ const REMOTE_CONFIG_MAX_CACHE_BYTES = 64 * 1024;
 const REMOTE_CONFIG_MAX_KEYS_PER_SECTION = 256;
 const REMOTE_CONFIG_MAX_KEY_LENGTH = 100;
 const REMOTE_CONFIG_MAX_TEXT_LENGTH = 4_096;
+const REMOTE_CONFIG_NUMBER_ARRAY_KEYS = new Set(['friends_level_thresholds', 'friends_chest_tiers']);
 
 type RawConfig = {
   numbers?: Record<string, unknown>;
@@ -97,12 +98,29 @@ function sanitizeRaw(raw: unknown): RawConfig {
   const numberInput = dataRecord(top?.numbers) ?? {};
   const boolInput = dataRecord(top?.bools) ?? {};
   const textInput = dataRecord(top?.texts) ?? {};
-  const numbers: Record<string, number> = {};
+  const numbers: Record<string, unknown> = {};
   const bools: Record<string, boolean> = {};
   const texts: Record<string, string> = {};
 
   for (const [key, value] of Object.entries(numberInput)) {
-    if (typeof value === 'number' && Number.isFinite(value)) numbers[key] = value;
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      // Keep the persisted wire snapshot canonical too; remote_flags repeats
+      // the clamp at consumption so malformed cache/network input cannot widen
+      // the PhoneState cohort after restart.
+      numbers[key] = key === 'phone_state_cutover_percent'
+        ? Math.round(Math.max(0, Math.min(100, value)))
+        : value;
+    } else if (
+      REMOTE_CONFIG_NUMBER_ARRAY_KEYS.has(key)
+      && Array.isArray(value)
+      && value.length > 0
+      && value.length <= 10
+      && value.every((item) => typeof item === 'number' && Number.isFinite(item))
+    ) {
+      // Эти две серверные ручки по контракту являются массивами. Сохраняем только
+      // узкий allowlist; общий remote-config по-прежнему отбрасывает произвольные массивы.
+      numbers[key] = [...value];
+    }
   }
   for (const [key, value] of Object.entries(boolInput)) {
     if (typeof value === 'boolean') bools[key] = value;

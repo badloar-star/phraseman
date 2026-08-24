@@ -39,6 +39,8 @@ describe('home social notification center', () => {
     expect(openHandler).toContain('refreshUserNotificationsOnce({ force: true })');
     expect(button).toContain('markedReadIdsRef.current.has(row.id)');
     expect(button).toContain('setItems((current) => current.map');
+    expect(openHandler).toContain('const refreshedUnreadIds = visibleList');
+    expect(openHandler).toContain('void markUserNotificationsRead(refreshedUnreadIds)');
   });
 
   it('clears private bell state immediately and safely when the Firebase account changes', () => {

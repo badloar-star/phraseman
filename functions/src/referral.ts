@@ -44,6 +44,7 @@ import { isStorePremiumActive } from './premium_status';
 // «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md §1.4/§3.5):
 // квалификация реферала стартует пару с bonusDays=3 «дней вместе» + недельный буст сундука.
 import { applyReferralPairBonus } from './friends_together';
+import { writeAccessProjectionFromPatch } from './access_projection';
 
 const REGION = 'us-central1';
 
@@ -1124,6 +1125,13 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
           updatedAt: nowMs,
         },
         { merge: true },
+      );
+      writeAccessProjectionFromPatch(
+        tx,
+        userRef,
+        (userData as { progress?: Record<string, unknown> }).progress ?? {},
+        referrerVipPatch,
+        nowMs,
       );
 
       const rewardRef = userRef.collection('shard_rewards').doc();

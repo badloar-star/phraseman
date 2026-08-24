@@ -1,9 +1,15 @@
 import type { ThemeMode } from '../constants/theme';
 
 export const APP_ART_THEME_MODES = [
+  'indigo',
+  'sagePorcelain',
+  'olive',
+  'midnight',
+  'ember',
+  'aurora',
+  'volt',
   'dark',
   'gold',
-  'minimalDark',
 ] as const satisfies readonly ThemeMode[];
 
 export const APP_ART_BACKDROP_NAMES = [

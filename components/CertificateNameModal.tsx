@@ -26,11 +26,11 @@ type Props = {
   initialName?: string;
   onSave: (name: string) => void;
   onSkip: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 };
 
-function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motionVariant = 'classic' }: Props) {
+function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motionVariant = 'hybrid' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
@@ -180,9 +180,18 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
         shadowColor="#000000"
         testID="certificate-name-modal-hybrid"
       >
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          {cardContent}
-        </KeyboardAvoidingView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView
+            style={{ width: '100%', maxHeight: '100%' }}
+            contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ width: '100%' }}>
+              {cardContent}
+            </KeyboardAvoidingView>
+          </ScrollView>
+        </TouchableWithoutFeedback>
       </HybridAlertShell>
     );
   }

@@ -57,7 +57,9 @@ const correct: ReviewSubject = {
   declaredRole: 'correct',
   text: 'connect',
   completedText: 'Please connect to the call.',
-  metadata: { sourceRole: 'answer', tokenIndex: '1' },
+  metadata: {
+    sourceRole: 'answer', tokenIndex: '1', partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true',
+  },
 };
 
 const distractors: readonly ReviewSubject[] = [
@@ -69,6 +71,7 @@ const distractors: readonly ReviewSubject[] = [
     completedText: 'Please contact to the call.',
     trapType: 'government',
     reason: '“contact” does not take “to” with this meaning.',
+    metadata: { partOfSpeech: 'verb', grammaticality: 'invalid', minimalTwin: 'true' },
   },
   {
     subjectId: 'choice:connected',
@@ -78,15 +81,17 @@ const distractors: readonly ReviewSubject[] = [
     completedText: 'Please connected to the call.',
     trapType: 'morphology',
     reason: '“connected” cannot follow “Please” as a bare imperative.',
+    metadata: { partOfSpeech: 'verb', grammaticality: 'invalid', minimalTwin: 'true' },
   },
   {
     subjectId: 'choice:connection',
     kind: 'choice_option',
     declaredRole: 'distractor',
-    text: 'connection',
-    completedText: 'Please connection to the call.',
-    trapType: 'function_choice',
-    reason: '“connection” is a noun, not the required imperative verb.',
+    text: 'connects',
+    completedText: 'Please connects to the call.',
+    trapType: 'agreement',
+    reason: '“connects” cannot follow “Please” as a bare imperative.',
+    metadata: { partOfSpeech: 'verb', grammaticality: 'invalid', minimalTwin: 'true' },
   },
 ];
 
@@ -226,18 +231,21 @@ function oddityInput(): TournamentSemanticCandidateInput {
         kind: 'choice_option',
         declaredRole: 'safe',
         text: 'I connected to the call.',
+        metadata: { partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true' },
       },
       {
         subjectId: 'oddity:safe-2',
         kind: 'choice_option',
         declaredRole: 'safe',
         text: 'She connected to the call.',
+        metadata: { partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true' },
       },
       {
         subjectId: 'oddity:safe-3',
         kind: 'choice_option',
         declaredRole: 'safe',
         text: 'They connected to the call.',
+        metadata: { partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true' },
       },
       {
         subjectId: 'oddity:odd',
@@ -247,6 +255,7 @@ function oddityInput(): TournamentSemanticCandidateInput {
         completedText: 'He connects to the call.',
         trapType: 'single_oddity_error',
         reason: '“connect” lacks third-person singular agreement.',
+        metadata: { partOfSpeech: 'verb', grammaticality: 'invalid', minimalTwin: 'true' },
       },
     ],
   };
@@ -302,7 +311,7 @@ function speedInput(): TournamentSemanticCandidateInput {
 describe('tournament semantic candidate identity', () => {
   test('exports the frozen schema and review contract versions', () => {
     expect(TOURNAMENT_SEMANTIC_SCHEMA_VERSION).toBe('tournament-semantic-candidate-v1');
-    expect(TOURNAMENT_REVIEW_CONTRACT_VERSION).toBe('tournament-semantic-review-v1');
+    expect(TOURNAMENT_REVIEW_CONTRACT_VERSION).toBe('tournament-semantic-review-v2');
   });
 
   test('is independent of review-subject and provenance presentation order', () => {
@@ -329,7 +338,12 @@ describe('tournament semantic candidate identity', () => {
         authoredSentence: 'Please connect to the call.',
       },
       reviewSubjects: [
-        { ...correct, metadata: { tokenIndex: '1', sourceRole: 'answer' } },
+        {
+          ...correct,
+          metadata: {
+            tokenIndex: '1', sourceRole: 'answer', partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true',
+          },
+        },
         ...distractors,
       ],
     });
@@ -350,7 +364,7 @@ describe('tournament semantic candidate identity', () => {
       ...input,
       reviewSubjects: input.reviewSubjects.map((subject) => (
         subject.declaredRole === 'distractor'
-          ? { ...subject, trapType: 'collocation' as const }
+          ? { ...subject, trapType: 'morphology' as const }
           : subject
       )),
     })],
@@ -379,13 +393,18 @@ describe('tournament semantic candidate identity', () => {
           return {
             ...subject,
             declaredRole: 'distractor' as const,
-            trapType: 'lexical_meaning' as const,
+            trapType: 'morphology' as const,
             reason: '“connect” is declared wrong in this changed key.',
+            metadata: { ...subject.metadata, grammaticality: 'invalid' },
           };
         }
         if (index === 1) {
           const { reason: _reason, trapType: _trapType, ...rest } = subject;
-          return { ...rest, declaredRole: 'correct' as const };
+          return {
+            ...rest,
+            declaredRole: 'correct' as const,
+            metadata: { ...rest.metadata, grammaticality: 'valid' },
+          };
         }
         return subject;
       }),
@@ -417,6 +436,14 @@ describe('tournament semantic candidate identity', () => {
     expect(presentationOnly.contentSha256).not.toBe(first.contentSha256);
   });
 
+  it('does not let guess prompt-family framing change semantic identity', () => {
+    const first = makeCandidate({ context: { topic: 'test', promptFamily: 'situation' } });
+    const reframed = makeCandidate({ context: { topic: 'test', promptFamily: 'dialogue' } });
+
+    expect(reframed.semanticSignature).toBe(first.semanticSignature);
+    expect(reframed.contentSha256).not.toBe(first.contentSha256);
+  });
+
   test('pins the reviewed canonical hash vector', () => {
     const candidate = makeCandidate();
 
@@ -424,8 +451,8 @@ describe('tournament semantic candidate identity', () => {
       contentSha256: candidate.contentSha256,
       semanticSignature: candidate.semanticSignature,
     }).toEqual({
-      contentSha256: 'eb89d56ccb69731f2ea327517b3ff272b0358fc8d037bcb582559efb3afbfd1f',
-      semanticSignature: 'e4032fb0ec1d5219100e2046c9e3d0d07b92763a6eecd864d4aa532a14699454',
+      contentSha256: '66a458ff0af7d708b0663890a9a073a9532c9f74f8472c9f9dae748c540fad46',
+      semanticSignature: 'b1f617b32bdfe97e1911835b3f786452beb5cb6add5551d8aa65111868640687',
     });
   });
 
@@ -437,11 +464,15 @@ describe('tournament semantic candidate identity', () => {
     }],
     ['metadata', {
       reviewSubjects: baseInput.reviewSubjects.map((subject, index) => (
-        index === 0 ? { ...subject, metadata: { sourceRole: 'answer', tokenIndex: '2' } } : subject
+        index === 0 ? {
+          ...subject,
+          metadata: {
+            sourceRole: 'answer', tokenIndex: '2', partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true',
+          },
+        } : subject
       )),
     }],
     ['mode', { mode: 'guess_phrase' as const }],
-    ['difficulty', { difficulty: 3 as const }],
   ])('changes both identities when %s changes', (_field, patch) => {
     const first = makeCandidate();
     const changed = makeCandidate(patch);
@@ -450,8 +481,16 @@ describe('tournament semantic candidate identity', () => {
     expect(changed.semanticSignature).not.toBe(first.semanticSignature);
   });
 
+  it('treats difficulty as publication metadata rather than different semantics', () => {
+    const first = makeCandidate({ difficulty: 1 });
+    const moved = makeCandidate({ difficulty: 3 });
+
+    expect(moved.contentSha256).not.toBe(first.contentSha256);
+    expect(moved.semanticSignature).toBe(first.semanticSignature);
+  });
+
   test.each([
-    ['semantic context', { context: { ...baseInput.context, testedMeaning: 'Другое значение.' } }],
+    ['semantic context', { context: { ...baseInput.context, translation: 'Другое значение.' } }],
     ['subject text', {
       reviewSubjects: baseInput.reviewSubjects.map((subject, index) => (
         index === 0 ? { ...subject, text: 'join' } : subject
@@ -463,13 +502,18 @@ describe('tournament semantic candidate identity', () => {
           return {
             ...subject,
             declaredRole: 'distractor' as const,
-            trapType: 'lexical_meaning' as const,
+            trapType: 'morphology' as const,
             reason: '“connect” is wrong under the changed key.',
+            metadata: { ...subject.metadata, grammaticality: 'invalid' },
           };
         }
         if (index === 1) {
           const { reason: _reason, trapType: _trapType, ...rest } = subject;
-          return { ...rest, declaredRole: 'correct' as const };
+          return {
+            ...rest,
+            declaredRole: 'correct' as const,
+            metadata: { ...rest.metadata, grammaticality: 'valid' },
+          };
         }
         return subject;
       }),
@@ -480,6 +524,61 @@ describe('tournament semantic candidate identity', () => {
 });
 
 describe('tournament semantic candidate validation', () => {
+  test.each(['lexical_meaning', 'collocation', 'reference', 'function_choice'] as const)(
+    'rejects %s as a grammar-choice distractor even when it is semantically wrong',
+    (trapType) => {
+      const reviewSubjects = baseInput.reviewSubjects.map((subject, index) => (
+        index === 1 ? { ...subject, trapType } : subject
+      ));
+
+      expect(() => makeCandidate({ mode: 'guess_phrase', reviewSubjects }))
+        .toThrow('invalid_tournament_semantic_candidate:subject_contract_invalid');
+    },
+  );
+
+  test.each(['lexical_meaning', 'collocation', 'reference', 'function_choice'] as const)(
+    'rejects %s on the broken oddity option even when metadata falsely declares it ungrammatical',
+    (trapType) => {
+      const reviewSubjects = oddityInput().reviewSubjects.map((subject) => (
+        subject.declaredRole === 'odd'
+          ? {
+            ...subject,
+            text: 'She looks ready.',
+            completedText: 'She is ready.',
+            trapType,
+            reason: 'Подложное объяснение ошибки.',
+            metadata: { partOfSpeech: 'verb', grammaticality: 'invalid', minimalTwin: 'true' },
+          }
+          : subject
+      ));
+
+      expect(() => createTournamentSemanticCandidate({ ...oddityInput(), reviewSubjects }))
+        .toThrow('invalid_tournament_semantic_candidate:subject_contract_invalid');
+    },
+  );
+
+  test('rejects a grammar-choice set whose options do not share one part of speech', () => {
+    const reviewSubjects = baseInput.reviewSubjects.map((subject, index) => (
+      index === 2
+        ? { ...subject, metadata: { ...subject.metadata, partOfSpeech: 'noun' } }
+        : subject
+    ));
+
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_contract_invalid');
+  });
+
+  test('rejects a grammar-choice option without explicit minimal-twin evidence', () => {
+    const reviewSubjects = baseInput.reviewSubjects.map((subject, index) => {
+      if (index !== 3 || !subject.metadata) return subject;
+      const { minimalTwin: _minimalTwin, ...metadata } = subject.metadata;
+      return { ...subject, metadata };
+    });
+
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_contract_invalid');
+  });
+
   test('accepts the exact contract for every v11 mode', () => {
     const inputs: TournamentSemanticCandidateInput[] = [
       { ...baseInput, mode: 'guess_phrase' },
@@ -650,6 +749,9 @@ describe('tournament semantic candidate validation', () => {
     const nullPrototypeMetadata = Object.assign(Object.create(null), {
       sourceRole: 'answer',
       tokenIndex: '1',
+      partOfSpeech: 'verb',
+      grammaticality: 'valid',
+      minimalTwin: 'true',
     }) as Readonly<Record<string, string>>;
     const nestedNullPrototype = Object.assign(Object.create(null), {
       beta: [null, true, false, 42, 'value'],
@@ -674,7 +776,12 @@ describe('tournament semantic candidate validation', () => {
         testedMeaning: 'Пожалуйста, подключитесь к звонку.',
       },
       reviewSubjects: [
-        { ...correct, metadata: { tokenIndex: '1', sourceRole: 'answer' } },
+        {
+          ...correct,
+          metadata: {
+            tokenIndex: '1', sourceRole: 'answer', partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true',
+          },
+        },
         ...distractors,
       ],
     });
@@ -750,7 +857,7 @@ describe('tournament semantic candidate validation', () => {
       expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: true });
     }
     expect(new Set(candidates.map((candidate) => candidate.contentSha256)).size).toBe(3);
-    expect(new Set(candidates.map((candidate) => candidate.semanticSignature)).size).toBe(3);
+    expect(new Set(candidates.map((candidate) => candidate.semanticSignature)).size).toBe(1);
   });
 
   test.each<HiddenStateKind>([

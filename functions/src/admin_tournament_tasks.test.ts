@@ -7,6 +7,17 @@
  * комнаты, которые создаются и тут же отменяются, списывая билеты.
  */
 
+import * as tournamentAdmin from './admin_tournament_tasks';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import {
+  isCompleteTournamentV11BundleForJob,
+  isCompleteTournamentV11BundleRoot,
+  tournamentV11BundlePublicationStatus,
+} from './tournament_pool_v11_bundle';
+import { createOnlyPublicationPlanSha256 } from './tournament_bundle_publication';
+
 import {
   parseAiGenerateRequest,
   parseCuratedSetRequest,
@@ -21,6 +32,15 @@ import {
   humanApprovalAfterTournamentTaskPublish,
   ROUND_DIFFICULTIES,
   ROUND_TASK_TARGET,
+  TOURNAMENT_POOL_V11_VERSION,
+  isHistoricalTournamentSemanticApproval,
+  historicalTournamentSemanticApprovalSignature,
+  parseAdminFillTournamentPoolRequest,
+  publicationContinuationForStatus,
+  semanticJobLeaseAuthorizesAttempt,
+  semanticProviderAttemptIdFromError,
+  runAdminFillTournamentPoolV11,
+  type AdminTournamentV11Dependencies,
 } from './admin_tournament_tasks';
 import type { TournamentTask } from './tournament_core';
 
@@ -35,6 +55,333 @@ describe('старый текстовый генератор', () => {
     })).rejects.toThrow('tournament_text_modes_retired');
   });
 
+});
+
+describe('adminFillTournamentPool v11 router', () => {
+  const batch = {
+    jobId: `tsj_${'a'.repeat(64)}`,
+    poolVersion: 'tpool_20260808_v11',
+    state: 'running' as const,
+    revision: 2,
+    cursor: 1,
+    totalCandidates: 12,
+    processed: 1,
+    approved: 1,
+    rejected: 0,
+    quarantined: 0,
+    cacheHits: 0,
+    providerAttempts: 2,
+    transientRetries: 0,
+    continuation: true,
+    shortage: false,
+  };
+
+  function dependencies(): AdminTournamentV11Dependencies & {
+    calls: string[];
+  } {
+    const calls: string[] = [];
+    return {
+      calls,
+      async dryRun(input) {
+        calls.push(`dry:${input.poolVersion}`);
+        return {
+          poolVersion: input.poolVersion,
+          sourceCandidates: 20,
+          hardGateRejections: 1,
+          duplicateRejections: 2,
+          historicalExclusions: 3,
+          eligibleCandidates: 14,
+          cachePasses: 4,
+          cacheRejects: 1,
+          projectedPrimaryRequests: 9,
+          projectedAdversarialRequests: 9,
+          transientRetryUpperBound: 36,
+          diversityFeasible: false,
+          diversityShortages: ['fill_gap:1'],
+          cells: { 'fill_gap:1': { available: 14, required: 160 } },
+        };
+      },
+      async runBatch(input) {
+        calls.push(`run:${input.poolVersion}:${input.jobId ?? 'new'}:${input.maxCandidates}`);
+        return { ...batch, jobId: input.jobId ?? batch.jobId };
+      },
+      async status(input) {
+        calls.push(`status:${input.poolVersion}:${input.jobId}`);
+        return {
+          ...batch,
+          jobId: input.jobId,
+          cells: { 'guess_phrase:1': { processed: 1, approved: 1 } },
+          shortages: [],
+        };
+      },
+    };
+  }
+
+  it('maps legacy dryRun:true to a zero-write v11 feasibility response', async () => {
+    const deps = dependencies();
+    const retiredGenerator = jest.spyOn(tournamentAdmin, 'runTextGeneration');
+    const result = await runAdminFillTournamentPoolV11({ dryRun: true }, deps);
+
+    expect(deps.calls).toEqual([`dry:${TOURNAMENT_POOL_V11_VERSION}`]);
+    expect(retiredGenerator).not.toHaveBeenCalled();
+    expect(result).toEqual(expect.objectContaining({
+      action: 'dry_run',
+      poolVersion: TOURNAMENT_POOL_V11_VERSION,
+      jobId: null,
+      state: 'blocked',
+      continuation: false,
+      paused: false,
+      blocked: true,
+      shortage: true,
+      cursor: 0,
+      totalCandidates: 20,
+      approved: 0,
+      rejected: 0,
+      quarantined: 0,
+      cacheHits: 0,
+      providerAttempts: 0,
+      transientRetries: 0,
+      cells: { 'fill_gap:1': { available: 14, required: 160 } },
+      shortages: ['fill_gap:1'],
+      modes: ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'],
+    }));
+    retiredGenerator.mockRestore();
+  });
+
+  it('never reports a feasible dry-run or an incomplete publication as ready', async () => {
+    const deps = dependencies();
+    deps.dryRun = async (input) => ({
+      poolVersion: input.poolVersion,
+      sourceCandidates: 4_000, hardGateRejections: 0, duplicateRejections: 0,
+      historicalExclusions: 0, eligibleCandidates: 4_000, cachePasses: 4_000,
+      cacheRejects: 0, projectedPrimaryRequests: 0, projectedAdversarialRequests: 0,
+      transientRetryUpperBound: 0, diversityFeasible: true, diversityShortages: [], cells: {},
+    });
+    await expect(runAdminFillTournamentPoolV11({ dryRun: true }, deps)).resolves.toMatchObject({
+      action: 'dry_run', state: 'preflight', continuation: false, blocked: false,
+    });
+    deps.runBatch = async () => ({ ...batch, state: 'ready', continuation: true });
+    await expect(runAdminFillTournamentPoolV11({ action: 'run_batch' }, deps)).resolves.toMatchObject({
+      action: 'run_batch', state: 'running', continuation: true,
+    });
+  });
+
+  it('maps a real legacy click to one bounded resumable v11 batch', async () => {
+    const deps = dependencies();
+    const first = await runAdminFillTournamentPoolV11({ level: 'A2', maxTasks: 30 }, deps);
+    const resumed = await runAdminFillTournamentPoolV11({
+      action: 'run_batch', jobId: batch.jobId, maxCandidates: 6,
+    }, deps);
+
+    expect(deps.calls).toEqual([
+      `run:${TOURNAMENT_POOL_V11_VERSION}:new:4`,
+      `run:${TOURNAMENT_POOL_V11_VERSION}:${batch.jobId}:6`,
+    ]);
+    expect(first).toEqual(expect.objectContaining({
+      action: 'run_batch', jobId: batch.jobId, state: 'running', continuation: true,
+      paused: false, blocked: false, cursor: 1, totalCandidates: 12,
+    }));
+    expect(resumed.jobId).toBe(batch.jobId);
+  });
+
+  it('returns persisted progress through status without starting a batch', async () => {
+    const deps = dependencies();
+    const result = await runAdminFillTournamentPoolV11({ action: 'status', jobId: batch.jobId }, deps);
+
+    expect(deps.calls).toEqual([`status:${TOURNAMENT_POOL_V11_VERSION}:${batch.jobId}`]);
+    expect(result).toEqual(expect.objectContaining({
+      action: 'status', jobId: batch.jobId, state: 'running', continuation: true,
+      cells: { 'guess_phrase:1': { processed: 1, approved: 1 } }, shortages: [],
+    }));
+  });
+
+  it('fails closed on invalid actions, identities, versions, batch sizes and extra keys', () => {
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ action: 'delete' }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ action: 'status' }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ action: 'status', jobId: 'job-1' }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ poolVersion: 'tpool_other_v11' }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ maxCandidates: 0 }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ maxCandidates: 7 }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ maxCandidates: 1.5 }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ dryRun: true, action: 'run_batch' }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ dryRun: 'true' }));
+    expectRejected(() => parseAdminFillTournamentPoolRequest({ extra: true }));
+  });
+
+  it('preserves the exported callable permission/App Check boundary and never routes through legacy text generation', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_tournament_tasks.ts'), 'utf8');
+    const start = source.indexOf('export const adminFillTournamentPool = onCall(');
+    const end = source.indexOf('// ── Проценты распределения типов по раундам', start);
+    const callable = source.slice(start, end);
+    const indexSource = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
+
+    expect(start).toBeGreaterThan(-1);
+    expect(end).toBeGreaterThan(start);
+    expect(callable).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
+    expect(callable).toContain("requirePermission(request, 'content.draft.write');");
+    expect(callable).toContain('runAdminFillTournamentPoolV11(');
+    expect(callable).not.toContain('runTextGeneration(');
+    expect(indexSource).toContain('adminFillTournamentPool,');
+  });
+
+  it('keeps current-job approvals resumable and reports unfinished bundle publication', () => {
+    const contract = {
+      reviewContractVersion: 'review-v1',
+      promptSetSha256: 'a'.repeat(64),
+      primaryModel: 'primary-model',
+      adversarialModel: 'adversarial-model',
+    };
+    const receipt = { decision: 'PASS', generationJobId: batch.jobId, ...contract };
+
+    expect(isHistoricalTournamentSemanticApproval(receipt, contract, batch.jobId)).toBe(false);
+    expect(isHistoricalTournamentSemanticApproval(receipt, contract, undefined)).toBe(true);
+    expect(publicationContinuationForStatus('ready', false, undefined)).toBe(true);
+    expect(publicationContinuationForStatus('ready', false, 'verifying')).toBe(true);
+    expect(publicationContinuationForStatus('ready', true, 'ready')).toBe(false);
+    expect(publicationContinuationForStatus('running', false, undefined)).toBe(true);
+    expect(historicalTournamentSemanticApprovalSignature({
+      ...receipt,
+      semanticSignature: 'b'.repeat(64),
+      contentSha256: 'c'.repeat(64),
+    }, contract, undefined)).toBe('b'.repeat(64));
+    expect(historicalTournamentSemanticApprovalSignature({
+      ...receipt,
+      semanticSignature: 'not-a-hash',
+    }, contract, undefined)).toBeNull();
+  });
+
+  it('reports ready only for an exact canonically pinned runtime-audit root', () => {
+    const canonical = (value: unknown): string => {
+      if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
+      if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
+      if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+      const entries = Object.entries(value as Record<string, unknown>)
+        .filter(([, item]) => item !== undefined).sort(([left], [right]) => left.localeCompare(right));
+      return `{${entries.map(([key, item]) => `${JSON.stringify(key)}:${canonical(item)}`).join(',')}}`;
+    };
+    const hash = (value: unknown) => createHash('sha256').update(canonical(value), 'utf8').digest('hex');
+    const pin = 'a'.repeat(64);
+    const auditBody = {
+      kind: 'tournament_pool_v11_runtime_audit_v1', poolVersion: 'tpool_20260808_v11',
+      days: 730, roomSeries: 2, roomsSimulated: 1_460, tasksPerRoom: 16, taskCount: 4_000,
+      bucketCount: 102, maxAdjacentTaskOverlap: 0, maxAdjacentProvenanceOverlap: 0,
+      provenanceCollisions: 0, fullTaskCoverage: true, fullBucketCoverage: true,
+      speedBoardsChecked: 1, speedBoardsWithSixProvenance: 1,
+      taskIdsSha256: pin, bucketIdsSha256: pin, manifestSha256: pin, bundleSha256: pin,
+      receiptLedgerSha256: pin, exposureLayoutHash: pin,
+    } as const;
+    const root = {
+      kind: 'tournament_pool_v11_bundle_v1', poolVersion: 'tpool_20260808_v11', taskCount: 4_000,
+      jobId: `tsj_${'b'.repeat(64)}`, queueSha256: 'c'.repeat(64),
+      reviewContractVersion: 'tournament-semantic-review-v2', promptSetSha256: 'd'.repeat(64),
+      primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1',
+      publicationPlanSha256: 'e'.repeat(64), publicationEntriesSha256: '1'.repeat(64),
+      exposureBucketCounts: { guess_phrase: 38, fill_gap: 13, find_oddity: 8, translate_build: 38, speed_match: 5 },
+      exposureLayoutHash: pin, manifestSha256: pin, bundleSha256: pin, receiptLedgerSha256: pin,
+      runtimeAudit: { ...auditBody, auditSha256: hash(auditBody) },
+    };
+    expect(isCompleteTournamentV11BundleRoot(root)).toBe(true);
+    expect(isCompleteTournamentV11BundleRoot({
+      ...root, runtimeAudit: { ...root.runtimeAudit, auditSha256: 'b'.repeat(64) },
+    })).toBe(false);
+    expect(isCompleteTournamentV11BundleRoot({ ...root, unexpected: true })).toBe(false);
+    const checkpointBinding = {
+        jobId: root.jobId, queueSha256: root.queueSha256,
+        reviewContractVersion: root.reviewContractVersion, promptSetSha256: root.promptSetSha256,
+        primaryModel: root.primaryModel, adversarialModel: root.adversarialModel,
+        manifestSha256: root.manifestSha256, bundleSha256: root.bundleSha256,
+        receiptLedgerSha256: root.receiptLedgerSha256, exposureLayoutHash: root.exposureLayoutHash,
+        runtimeAuditSha256: root.runtimeAudit.auditSha256,
+        publicationPlanSha256: root.publicationPlanSha256,
+        publicationEntriesSha256: root.publicationEntriesSha256,
+    };
+    const checkpoint = {
+      kind: 'create_only_publication_checkpoint_v1',
+      publicationId: `${TOURNAMENT_POOL_V11_VERSION}_${root.publicationPlanSha256}`,
+      planSha256: createOnlyPublicationPlanSha256({
+        publicationId: `${TOURNAMENT_POOL_V11_VERSION}_${root.publicationPlanSha256}`,
+        checkpointPath: `tournament_pool_v11_bundles/${TOURNAMENT_POOL_V11_VERSION}/internal/publication_checkpoint`,
+        entriesSha256: root.publicationEntriesSha256,
+        root: { path: `tournament_pool_v11_bundles/${TOURNAMENT_POOL_V11_VERSION}`, value: root },
+        binding: checkpointBinding,
+      }),
+      binding: checkpointBinding,
+      revision: 3, phase: 'ready', writeCursor: 4_000, verifyCursor: 4_000,
+    };
+    const jobBinding = {
+      jobId: root.jobId, queueSha256: root.queueSha256,
+      reviewContractVersion: root.reviewContractVersion, promptSetSha256: root.promptSetSha256,
+      primaryModel: root.primaryModel, adversarialModel: root.adversarialModel,
+    };
+    const roomSeriesAuditBody = { ...auditBody, roomSeries: 1 };
+    const bucketCountAuditBody = { ...auditBody, bucketCount: 1 };
+    expect({
+      roomSeries: isCompleteTournamentV11BundleRoot({
+        ...root,
+        runtimeAudit: { ...roomSeriesAuditBody, auditSha256: hash(roomSeriesAuditBody) },
+      }),
+      bucketCount: isCompleteTournamentV11BundleRoot({
+        ...root,
+        runtimeAudit: { ...bucketCountAuditBody, auditSha256: hash(bucketCountAuditBody) },
+      }),
+      checkpointPlan: isCompleteTournamentV11BundleForJob(root, {
+        ...checkpoint, planSha256: 'f'.repeat(64),
+      }, jobBinding),
+    }).toEqual({ roomSeries: false, bucketCount: false, checkpointPlan: false });
+    expect(isCompleteTournamentV11BundleForJob(root, checkpoint, jobBinding)).toBe(true);
+    expect(tournamentV11BundlePublicationStatus(root, checkpoint, jobBinding)).toBe('ready');
+    expect(tournamentV11BundlePublicationStatus(null, {
+      ...checkpoint, phase: 'writing', writeCursor: 20, verifyCursor: 0,
+    }, jobBinding)).toBe('writing');
+    expect(isCompleteTournamentV11BundleForJob(root, checkpoint, {
+      ...jobBinding, queueSha256: 'f'.repeat(64),
+    })).toBe(false);
+    expect(isCompleteTournamentV11BundleForJob(root, {
+      ...checkpoint, binding: { ...checkpoint.binding, primaryModel: 'gpt-4.1-nano' },
+    }, jobBinding)).toBe(false);
+    expect(tournamentV11BundlePublicationStatus(root, {
+      ...checkpoint, binding: { ...checkpoint.binding, primaryModel: 'gpt-4.1-nano' },
+    }, jobBinding)).toBe('conflict');
+  });
+
+  it('fences paid attempts to the current lease and preserves failed-call audit identity', () => {
+    expect(semanticJobLeaseAuthorizesAttempt({
+      lifecycle: 'running', lease: { token: 'lease-1', expiresAtMs: 200 },
+    }, 'lease-1', 199)).toBe(true);
+    expect(semanticJobLeaseAuthorizesAttempt({
+      lifecycle: 'running', lease: { token: 'lease-1', expiresAtMs: 200 },
+    }, 'lease-2', 199)).toBe(false);
+    expect(semanticJobLeaseAuthorizesAttempt({
+      lifecycle: 'running', lease: { token: 'lease-1', expiresAtMs: 200 },
+    }, 'lease-1', 200)).toBe(false);
+    expect(semanticProviderAttemptIdFromError({ semanticAttemptId: `tsa_${'b'.repeat(64)}` }))
+      .toBe(`tsa_${'b'.repeat(64)}`);
+    expect(semanticProviderAttemptIdFromError({ semanticAttemptId: '../bad' })).toBeNull();
+
+    const source = fs.readFileSync(path.join(__dirname, 'admin_tournament_tasks.ts'), 'utf8');
+    expect(source).toContain('finalizeTournamentV11TaskPool({ selection, receipts })');
+    expect(source).toContain('auditTournamentV11RuntimePool(finalized)');
+    expect(source).toContain("jobSnapshot.get('semanticGlobalAttemptOrdinal')");
+    expect(source).toContain('semanticGlobalAttemptOrdinal: allocated.ordinal');
+    expect(source).toContain('semanticAttemptPassOrdinal');
+    const providerStart = source.indexOf('async function callSemanticProvider(');
+    const providerEnd = source.indexOf('async function reviewCandidateForJob(', providerStart);
+    const providerPath = source.slice(providerStart, providerEnd);
+    expect(providerPath).toContain('resumeSemanticAttempt(latest, active.leaseToken)');
+    expect(providerPath).toContain('const jobSnapshot = await tx.get(jobRef);');
+    expect(providerPath.indexOf("kind: 'returned'")).toBeLessThan(providerPath.indexOf('const billingRef'));
+    const returnedPersistence = providerPath.slice(
+      providerPath.indexOf('const returned ='),
+      providerPath.indexOf('const billingRef'),
+    );
+    expect(returnedPersistence).toContain('const jobSnapshot = await tx.get(jobRef);');
+    expect(returnedPersistence).toContain('semanticJobLeaseAuthorizesAttempt(jobSnapshot.data()');
+    expect(returnedPersistence).toContain("latest.get('leaseToken') !== prepared.attempt.leaseToken");
+    const billingPersistence = providerPath.slice(providerPath.indexOf('const billingRef'));
+    expect(billingPersistence).toContain('semanticJobLeaseAuthorizesAttempt(jobSnapshot.data()');
+    expect(providerPath).not.toContain('await attemptRef.set(calling)');
+    expect(source).toContain('assertSemanticJobReviewIdentity(state, semanticJobReviewIdentity(cfg))');
+  });
 });
 
 describe('разбор запроса списка', () => {

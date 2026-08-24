@@ -1,6 +1,9 @@
 import {
   MaxVoiceStageError,
+  isMaxVoiceFailureRetryable,
+  maxVoiceFailureMessage,
   maxVoiceFailureReason,
+  shouldOfferMaxUpgradeForVoiceReason,
 } from '../app/max_voice_error';
 
 describe('MAX Voice error normalization', () => {
@@ -16,6 +19,40 @@ describe('MAX Voice error normalization', () => {
       .toBe('voice_quota_exhausted');
     expect(maxVoiceFailureReason(new Error('voice_provider_failed'), 'mint_failed'))
       .toBe('voice_provider_failed');
+  });
+
+  it('distinguishes daily and monthly quota exhaustion while accepting the legacy detail', () => {
+    expect(maxVoiceFailureReason({
+      message: 'voice_daily_quota_exhausted',
+      details: 'voice_quota_exhausted',
+    }, 'mint_failed')).toBe('voice_daily_quota_exhausted');
+    expect(maxVoiceFailureReason({
+      message: 'voice_monthly_quota_exhausted',
+      details: 'voice_quota_exhausted',
+    }, 'mint_failed')).toBe('voice_monthly_quota_exhausted');
+  });
+
+  it('explains the real reset window and keeps both quota failures non-retryable', () => {
+    expect(maxVoiceFailureMessage('voice_daily_quota_exhausted', 'ru'))
+      .toContain('сегодня');
+    const monthlyMessage = maxVoiceFailureMessage('voice_monthly_quota_exhausted', 'ru');
+    expect(monthlyMessage).toContain('следующ');
+    expect(monthlyMessage).not.toContain('сегодня');
+    expect(isMaxVoiceFailureRetryable('voice_daily_quota_exhausted')).toBe(false);
+    expect(isMaxVoiceFailureRetryable('voice_monthly_quota_exhausted')).toBe(false);
+  });
+
+  it('offers MAX upgrade only when the lifetime trial is unavailable', () => {
+    expect(shouldOfferMaxUpgradeForVoiceReason('voice_max_required')).toBe(true);
+    expect(shouldOfferMaxUpgradeForVoiceReason('voice_monthly_quota_exhausted')).toBe(false);
+    expect(shouldOfferMaxUpgradeForVoiceReason('voice_daily_quota_exhausted')).toBe(false);
+    expect(isMaxVoiceFailureRetryable('voice_monthly_quota_exhausted')).toBe(false);
+  });
+
+  it('uses device-neutral microphone settings copy on every platform', () => {
+    const message = maxVoiceFailureMessage('media_failed', 'ru');
+    expect(message).toContain('настройках устройства');
+    expect(message).not.toMatch(/iPhone|Android/i);
   });
 
   // DEV-гейт снят навсегда (владелец 2026-08-16) — свежий сервер этот reason не

@@ -465,7 +465,7 @@ export default function PhraseAnalyticsScreen() {
         {/* ── Header ── */}
         <View style={styles.header}>
           <TapScale
-            onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+            onPress={() => { hapticTap(); safeRouterBack(router, '/flashcards_collection' as any); }}
             style={styles.backBtn}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
@@ -585,7 +585,7 @@ export default function PhraseAnalyticsScreen() {
 
         ) : visibleLoading && !data ? (
           /* B7: скелетон первой загрузки — раньше первый кадр рисовал ложное «Пока нет данных» */
-          <View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
+          (<View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
             <SkeletonBlock width="100%" height={72} borderRadius={16} />
             <View style={{ flexDirection: 'row', gap: 10, marginTop: 16 }}>
               <SkeletonBlock width={96} height={34} borderRadius={17} />
@@ -594,7 +594,7 @@ export default function PhraseAnalyticsScreen() {
             </View>
             <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 16 }} />
             <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 10 }} />
-          </View>
+          </View>)
 
         ) : !data || data.totalMistakes === 0 ? (
           <View style={styles.center}>

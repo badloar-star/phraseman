@@ -114,9 +114,7 @@ export async function saveLanguageProfile(
   profile: Omit<LanguageProfile, 'savedAt'>,
 ): Promise<LanguageProfile> {
   const full: LanguageProfile = { ...profile, savedAt: new Date().toISOString() };
-  try {
-    await AsyncStorage.setItem(languageProfileKey(target), JSON.stringify(full));
-  } catch {}
+  await AsyncStorage.setItem(languageProfileKey(target), JSON.stringify(full));
   return full;
 }
 

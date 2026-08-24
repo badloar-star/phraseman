@@ -873,7 +873,7 @@ function LessonMenu() {
           return;
         }
         if (LESSONS_WITH_WORDS.has(lessonId)) {
-          router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'list' } });
+          router.push({ pathname: '/lesson_words', params: { id: lessonId, tab: 'train' } });
         } else {
           setSoonOpen('vocab');
         }
@@ -1379,7 +1379,8 @@ function LessonMenu() {
       {/* Меню */}
       <View style={{paddingHorizontal:16,gap:10}}>
         {menuItems.filter(item => !item.hidden).map((item)=>(
-          <PremiumCard key={item.testID} testID={item.testID} level={2} onPress={() => {
+          <View key={item.testID} style={{ position: 'relative', overflow: 'visible' }}>
+          <PremiumCard testID={item.testID} level={2} onPress={() => {
             if (item.disabled) return;
             // [FeedbackKit] Карточка раздела уже объёмная (PremiumCard со своим
             // press-откликом) — НЕ оборачиваем в PressableScale; добавляем только
@@ -1449,15 +1450,13 @@ function LessonMenu() {
               <Text style={{color:t.textMuted,fontSize: f.sub,marginTop:3}}>{item.sub}</Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>
-            {/* зачем: цена входа видна ДО нажатия (владелец 2026-08-23). Только
-                на пунктах, которые реально стартуют активность и списывают
-                энергию: продолжить урок, слова, глаголы, предлоги. Теория
-                (lesson-menu-theory) энергию не тратит — там бейджа нет.
-                Недоступный пункт тоже без бейджа: списания не будет. */}
+          </PremiumCard>
+            {/* Бейдж лежит поверх карточки отдельным слоем, как на CTA старта.
+                Теория бесплатна; недоступный пункт не обещает списание. */}
             {ENERGY_COST_MENU_ITEMS.has(item.testID) && !item.disabled && !item.unavailable ? (
               <EnergyCostBadge testID={`${item.testID}-energy-cost`} />
             ) : null}
-          </PremiumCard>
+          </View>
         ))}
       </View>
 

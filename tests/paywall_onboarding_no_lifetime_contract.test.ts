@@ -20,7 +20,7 @@ const source = fs.readFileSync(
 describe('onboarding paywall hides the lifetime plan', () => {
   it('declares onboarding_plan as a source where lifetime is hidden', () => {
     expect(source).toContain('const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string>');
-    expect(source).toContain("new Set(['onboarding_plan'])");
+    expect(source).toContain("new Set(['onboarding', 'onboarding_plan'])");
   });
 
   it('gates lifetimeAvailable by source, not only by the admin flag', () => {

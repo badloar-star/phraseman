@@ -30,6 +30,7 @@ import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import AiBadge from './AiBadge';
 import type { MistakeEli5State } from './MistakeEli5Modal';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 interface Props {
   visible: boolean;
@@ -40,19 +41,24 @@ interface Props {
 }
 
 function CascadeItem({ index, style, children }: { index: number; style?: object; children: React.ReactNode }) {
-  const opacity = useSharedValue(0);
-  const y = useSharedValue(14);
+  const reduceMotion = useReduceMotion();
+  const opacity = useSharedValue(reduceMotion ? 1 : 0);
+  const y = useSharedValue(reduceMotion ? 0 : 14);
   const delay = LUM.ladder[Math.min(index, LUM.ladder.length - 1)];
 
   useEffect(() => {
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      return;
+    }
     opacity.value = withDelay(delay, withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }));
     y.value = withDelay(delay, withSpring(0, LUM.settle));
     return () => {
       cancelAnimation(opacity);
       cancelAnimation(y);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [delay]);
+  }, [delay, opacity, reduceMotion, y]);
 
   const animStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,

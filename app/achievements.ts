@@ -8,6 +8,7 @@ import {
   type AchievementDefinitionV2,
 } from './achievement_catalog_v2';
 import { evaluateFoundationAchievements } from './achievement_evaluator_v2';
+import { resolveCleanStreakDays } from './achievement_clean_streak_v2';
 import {
   ACHIEVEMENT_ACCESS_PLUS_PAID_KEY,
   ACHIEVEMENT_ACCESS_PRO_PAID_KEY,
@@ -904,6 +905,20 @@ export function achievementDescForLang(a: Achievement, lang: Lang): string {
   return localized ?? a.descRu;
 }
 
+/**
+ * The owner-approved museum pass separates the human story from the exact
+ * unlock condition. RU/UK currently share that canonical condition; other
+ * locales keep their existing localized one-line description until their
+ * dedicated condition copy is approved, so the UI never shows Russian text in
+ * a different locale.
+ */
+export function achievementConditionForLang(a: Achievement, lang: Lang): string | undefined {
+  if (lang === 'ru') return a.conditionRu;
+  if (lang === 'uk') return a.conditionUk;
+  if (lang === 'es') return a.conditionEs;
+  return undefined;
+}
+
 // Список достижений пополняется без миграции: новые id подхватываются loadAchievementStates().
 
 export const ALL_ACHIEVEMENTS: Achievement[] = [...ACHIEVEMENT_CATALOG_V2];
@@ -1346,10 +1361,12 @@ const addStoredNumberSetValue = async (
   return values.length;
 };
 
+const ACHIEVEMENT_STREAK_SAFETY_USED_KEY = 'achievement_streak_safety_used_v1';
+
 const markStreakSafetyUsed = async (accountToken: AccountGenerationToken): Promise<void> => {
   const streak = await readStoredCounter('streak_count');
   if (!isCurrentAccountGeneration(accountToken)) return;
-  await commitAchievementStoragePairs([['achievement_streak_safety_used_v1', JSON.stringify({
+  await commitAchievementStoragePairs([[ACHIEVEMENT_STREAK_SAFETY_USED_KEY, JSON.stringify({
     streak,
     day: localDayKey(),
   })]], accountToken);
@@ -1468,14 +1485,26 @@ function enqueueAchievementOperation<T>(
   return result;
 }
 
-const readCleanStreakDays = async (streakDays: number): Promise<number> => {
+const readCleanStreakDays = async (
+  streakDays: number,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
   try {
-    const raw = await AsyncStorage.getItem('achievement_streak_safety_used_v1');
+    const raw = await AsyncStorage.getItem(ACHIEVEMENT_STREAK_SAFETY_USED_KEY);
+    if (!isCurrentAccountGeneration(accountToken)) return 0;
     const parsed = raw ? JSON.parse(raw) as { streak?: unknown } : null;
     const lastSafetyStreak = Math.max(0, Math.floor(Number(parsed?.streak) || 0));
-    return lastSafetyStreak > 0 ? Math.max(0, streakDays - lastSafetyStreak) : streakDays;
+    const resolution = resolveCleanStreakDays(streakDays, lastSafetyStreak);
+    if (resolution.resetDetected) {
+      const cleared = await commitAchievementStoragePairs([[
+        ACHIEVEMENT_STREAK_SAFETY_USED_KEY,
+        JSON.stringify({ streak: 0, day: '' }),
+      ]], accountToken);
+      if (!cleared) return 0;
+    }
+    return isCurrentAccountGeneration(accountToken) ? resolution.cleanStreakDays : 0;
   } catch {
-    return streakDays;
+    return isCurrentAccountGeneration(accountToken) ? streakDays : 0;
   }
 };
 
@@ -1590,6 +1619,7 @@ const evaluateFoundationSnapshot = async (
   event: AchievementEvent,
   states: readonly AchievementState[],
   progress: AchievementFoundationProgressV2,
+  accountToken: AccountGenerationToken,
 ): Promise<string[]> => {
   const [storedStreak, storedXp, foregroundMs, activeDaysTotal, paidPairs] = await Promise.all([
     readStoredCounter('streak_count'),
@@ -1602,7 +1632,7 @@ const evaluateFoundationSnapshot = async (
   const totalXpBeforeAchievementRewards = event.type === 'xp'
     ? Math.max(storedXp, event.totalXP)
     : storedXp;
-  const cleanStreakDays = await readCleanStreakDays(streakDays);
+  const cleanStreakDays = await readCleanStreakDays(streakDays, accountToken);
   const createdAtMs = peekCurrentAccountCreatedAtMs();
   const accountAgeDays = createdAtMs === null
     ? 0
@@ -1617,7 +1647,7 @@ const evaluateFoundationSnapshot = async (
     totalXpBeforeAchievementRewards,
     maxEligibleShardBalance: progress.maxEligibleShardBalance,
     reachedLeagueIds: progress.reachedLeagueIds,
-    championCount: progress.legacyChampionCount + progress.championWeeks.length,
+    championCount: Math.max(progress.legacyChampionCount, progress.championWeeks.length),
     championLeagueIds: progress.championLeagueIds,
     diamondPlusConsecutiveWeeks: progress.diamondPlusConsecutiveWeeks,
     foregroundMs: event.type === 'foreground_usage'
@@ -1677,7 +1707,7 @@ export const checkAchievements = async (
     if (!isCurrentAccountGeneration(operationToken)) return [];
     const progress = await reduceFoundationEventProgress(event, operationToken);
     if (!isCurrentAccountGeneration(operationToken)) return [];
-    const eligibleIds = await evaluateFoundationSnapshot(event, states, progress);
+    const eligibleIds = await evaluateFoundationSnapshot(event, states, progress, operationToken);
     if (!isCurrentAccountGeneration(operationToken)) return [];
     const silentBackfill = event.type === 'backfill'
       || event.type === 'league_history'

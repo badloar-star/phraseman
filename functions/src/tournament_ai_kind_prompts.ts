@@ -16,17 +16,18 @@ import { KIND_TO_FORMAT } from './tournament_ai_blueprint';
 // ── Типы ловушек (ресёрч по item-writing, RU→EN интерференция) ──────────────
 
 /**
- * Именованные типы дистракторов. Общая просьба «сделай правдоподобные ловушки»
- * не работает — модель скатывается к вариантам «из соседней фразы», которые
- * отсеиваются без знания языка. Парадигматический (синоним той же части речи)
- * по исследованиям самый сильный, поэтому идёт первым.
+ * Именованные грамматические типы дистракторов. Общая просьба «сделай
+ * правдоподобные ловушки» не работает — модель скатывается к синонимам и
+ * вариантам «из соседней фразы», которые грамматичны и отсеиваются по смыслу.
+ * Здесь разрешены только формы, делающие завершённую фразу неграмматичной.
  */
 export const DISTRACTOR_TAXONOMY = [
-  'PARADIGMATIC: a close synonym of the same part of speech that does not fit this exact context (strongest trap — use it most)',
-  'FALSE_FRIEND: a word that looks like a Russian one but means something else (magazine/магазин, sympathetic/симпатичный)',
-  'L1_LITERAL: the word-for-word calque a Russian speaker produces (make a photo instead of take a photo)',
-  'COLLOCATION: a word that collocates with part of the phrase but is wrong here (heavy rain vs heavy traffic)',
-  'GRAMMAR_NUANCE: right vocabulary, wrong tense, aspect, article or preposition',
+  'AGREEMENT: same lexical answer, wrong subject-verb or determiner agreement',
+  'TENSE_ASPECT_FORM: same verb role, but a tense/aspect/participle form that is impossible here',
+  'ARTICLE_DETERMINER: same determiner slot, but an article/determiner that makes the completed phrase ungrammatical',
+  'PREPOSITION_GOVERNMENT: same preposition slot, but a form rejected by the governing verb/adjective/noun',
+  'PRONOUN_CASE: same pronoun slot, but the wrong grammatical case',
+  'AUXILIARY_OR_NUMBER_FORM: same grammatical role, but the wrong auxiliary or singular/plural form',
 ] as const;
 
 /** Общие правила честности — действуют для любого типа задания. */
@@ -51,18 +52,18 @@ type KindSpec = {
 
 const KIND_SPECS: Readonly<Record<TournamentAiKind, KindSpec>> = Object.freeze({
   situation: {
-    task: 'Write a vivid one-sentence situation in RUSSIAN (what just happened, where), then four ENGLISH replies a person could say next. Exactly one is natural and appropriate; the other three are grammatically fine but wrong in this moment — too rude, too formal, or simply not what this situation calls for.',
-    example: 'prompt: "Официант принёс не то блюдо. Что скажешь?" options: ["Sorry, this is not what I ordered.", "You brought the wrong thing.", "I demand another dish immediately.", "This food is a mistake of yours."] — the first is natural, the rest are rude or unnatural.',
+    task: 'Write a vivid one-sentence situation in RUSSIAN, then four minimal-twin ENGLISH replies built on one sentence frame. Exactly one reply is grammatical and appropriate. ALL THREE wrong options must be grammatically invalid; contextual, rude, stylistic, collocational, or meaning-only errors are forbidden.',
+    example: 'prompt: "Официант принёс не то блюдо. Что скажешь?" options: ["Sorry, this is not what I ordered.", "Sorry, this are not what I ordered.", "Sorry, this is not what I order yesterday.", "Sorry, this is not what I have order."] — only the first is grammatical.',
     promptRule: 'The "prompt" field holds the Russian situation, 4-8 normalized words, ending with a question.',
   },
   gap: {
-    task: 'Write one natural ENGLISH sentence with exactly one gap marked as ___ , and four candidates for that gap. The gap must sit on a point Russian speakers really get wrong: a preposition, a phrasal-verb particle, an article, or a tense form. Exactly one candidate is correct.',
-    example: 'prompt: "I have been looking ___ my keys all morning." options: ["for", "at", "after", "to"] — only "for" works; each wrong one is a real learner mistake.',
+    task: 'Write one natural ENGLISH sentence with exactly one gap marked as ___ , and four candidates for that gap. Exactly one completed sentence is grammatical. ALL THREE wrong options must be grammatically invalid; a merely different meaning or awkward style is forbidden.',
+    example: 'prompt: "She has ___ the report already." options: ["finished", "finish", "finishing", "finishes"] — only "finished" is possible after "has" here.',
     promptRule: 'The "prompt" field holds the English sentence WITH the ___ gap. Options are short — one to three words each.',
   },
   oddity: {
-    task: 'Write four short ENGLISH sentences on one everyday topic. Three are correct, natural English. Exactly ONE is a mistake a Russian speaker typically makes — a calque, a wrong preposition, or a false friend. The player must find the wrong one.',
-    example: 'prompt: "Какая фраза звучит неправильно?" options: ["I feel good today.", "I feel myself good today.", "I am feeling great.", "I feel a bit tired."] — the second is a classic Russian calque.',
+    task: 'Write four short minimal-twin ENGLISH sentences on one everyday topic and one sentence frame. There must be exactly ONE grammatically invalid sentence. The other three must be grammatical minimal twins; the player finds the single broken one.',
+    example: 'prompt: "Какая фраза звучит неправильно?" options: ["I do a great job.", "He do a great job.", "She does a great job.", "They do a great job."] — only the second breaks subject-verb agreement.',
     promptRule: 'The "prompt" field is a short RUSSIAN instruction like "Какая фраза звучит неправильно?". The correct answer is the BROKEN sentence.',
   },
   assembly: {
@@ -90,7 +91,7 @@ const CHOICE_SCHEMA = Object.freeze({
       items: {
         type: 'object',
         additionalProperties: false,
-        required: ['prompt', 'options', 'correctIndex', 'correctAnswer', 'scenario', 'ruleNote', 'example'],
+        required: ['prompt', 'options', 'correctIndex', 'correctAnswer', 'scenario', 'ruleNote', 'example', 'wrongOptionReasons'],
         properties: {
           prompt: { type: 'string' },
           options: { type: 'array', items: { type: 'string' } },
@@ -99,6 +100,12 @@ const CHOICE_SCHEMA = Object.freeze({
           scenario: { type: 'string' },
           ruleNote: { type: 'string' },
           example: { type: 'string' },
+          wrongOptionReasons: {
+            type: 'array',
+            minItems: 4,
+            maxItems: 4,
+            items: { type: 'string' },
+          },
         },
       },
     },
@@ -173,9 +180,16 @@ export function buildKindTask(params: KindPromptParams): string {
 
   if (KIND_TO_FORMAT[params.kind] === 'choice') {
     lines.push(
-      `Distractors — the heart of the question. Use these named trap types:\n${DISTRACTOR_TAXONOMY.map((trap) => `  - ${trap}`).join('\n')}`,
-      'Within one item use THREE DIFFERENT trap types — three variations of the same trap turn the question into a coin flip.',
+      params.kind === 'oddity'
+        ? `The ONE broken answer must use one of these grammar-error types:\n${DISTRACTOR_TAXONOMY.map((trap) => `  - ${trap}`).join('\n')}`
+        : `Distractors — the heart of the question. Use only these grammar-error types:\n${DISTRACTOR_TAXONOMY.map((trap) => `  - ${trap}`).join('\n')}`,
+      params.kind === 'oddity'
+        ? 'The four sentences must share one frame and the same tested part of speech: exactly one grammatical error, while all other three are valid.'
+        : 'ALL THREE wrong options must be grammatically invalid minimal twins of the answer. Within one item every option must test the same part of speech and use the same sentence frame; never substitute an unrelated or merely semantically wrong phrase.',
       '"correctIndex" is 0-3 and "correctAnswer" must be byte-identical to options[correctIndex]. Exactly four unique options.',
+      params.kind === 'oddity'
+        ? '"wrongOptionReasons" must contain exactly four Russian strings in option order: an empty string for the declared broken answer and three DIFFERENT concrete proofs that the selected safe options are grammatical. The broken answer error is proved in "ruleNote".'
+        : '"wrongOptionReasons" must contain exactly four Russian strings in option order: an empty string for the correct index and three DIFFERENT concrete grammatical proofs for the wrong options. Never reuse one generic explanation.',
     );
   } else {
     lines.push(
@@ -185,9 +199,13 @@ export function buildKindTask(params: KindPromptParams): string {
   }
 
   lines.push(
-    `Difficulty: all ${params.count} items must be "${params.difficultyWord}" for this level — easy is direct recognition, medium needs one contextual or grammatical distinction, hard needs a subtle tense, preposition or collocation call with strong competitors.`,
+    KIND_TO_FORMAT[params.kind] === 'choice'
+      ? `Difficulty: all ${params.count} items must be "${params.difficultyWord}" for this level — easy is direct recognition, medium needs one grammatical distinction, and hard needs a subtle tense, agreement, article, pronoun-case, or government distinction with strong same-role competitors.`
+      : `Difficulty: all ${params.count} items must be "${params.difficultyWord}" for this level — easy is direct recognition, medium needs one contextual or grammatical distinction, and hard may use a subtle tense, preposition, or collocation competitor.`,
     'Write "scenario" as 1-3 Russian words naming the everyday area (кафе, аэропорт, работа). Vary it across items.',
-    'Write "ruleNote" in Russian, up to 200 characters: why the answer is right and what trap each wrong option sets.',
+    params.kind === 'oddity'
+      ? 'Write "ruleNote" in Russian, up to 200 characters: why the declared answer is the only grammatical error and why the other three sentence frames remain valid.'
+      : 'Write "ruleNote" in Russian, up to 200 characters: why the answer is right and what grammatical error each wrong option creates.',
     'Write "example" as one natural English sentence followed by a Russian translation, up to 240 characters. It must illustrate the correct construction, not repeat an option verbatim.',
     ...FAIRNESS_RULES,
   );

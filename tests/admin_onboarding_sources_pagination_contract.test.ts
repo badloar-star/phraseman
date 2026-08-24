@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('admin onboarding source statistics pagination contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
+  const adminHtml = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
   const fetchSource = adminHtml.match(
     /async function onboardingSourceFetchRows[\s\S]*?(?=\n  function onboardingSourceRowsCard)/,
   )?.[0] ?? '';
@@ -17,12 +17,12 @@ describe('admin onboarding source statistics pagination contract', () => {
     }>;
   };
 
-  it('queries only source answers and paginates through the complete selected period', () => {
+  it('queries only source answers as a latest-first bounded sample', () => {
     expect(fetchSource).toContain("where('action', '==', 'onboarding_source_select')");
-    expect(fetchSource).toContain("orderBy('createdAtMs', 'asc')");
-    expect(fetchSource).toContain('startAfter(cursor)');
-    expect(fetchSource).toContain('while (true)');
-    expect(fetchSource).not.toContain('limit(3000)');
+    expect(fetchSource).toContain("orderBy('createdAtMs', 'desc')");
+    expect(fetchSource).toContain('limit(ONBOARDING_SOURCE_MAX_ROWS + 1)');
+    expect(fetchSource).toContain('truncated');
+    expect(fetchSource).not.toContain('while (true)');
   });
 
   it('declares the composite index required by the exact source-answer query', () => {
@@ -32,7 +32,7 @@ describe('admin onboarding source statistics pagination contract', () => {
         queryScope: 'COLLECTION',
         fields: [
           { fieldPath: 'action', order: 'ASCENDING' },
-          { fieldPath: 'createdAtMs', order: 'ASCENDING' },
+          { fieldPath: 'createdAtMs', order: 'DESCENDING' },
         ],
       }),
     ]));

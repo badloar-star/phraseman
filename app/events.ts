@@ -19,11 +19,13 @@ export type AppEventMap = {
   energy_reload: undefined;
   /**
    * Энергия списана за СТАРТ активности (владелец 2026-08-23: платим за вход).
-   * Глобальный оверлей рисует улетающую вверх молнию, чтобы списание было
+   * Глобальный оверлей рисует световой перенос молнии к подтверждённой CTA,
    * видно на любом экране — в том числе там, где счётчика энергии нет в шапке
    * (Арена, флешкарты, диалоги). Payload — сколько единиц ушло.
    */
-  energy_spent_on_start: { amount: number };
+  energy_spent_on_start: { amount: number; target?: { x: number; y: number } };
+  /** Премиальный transfer-motion закончен; навигация может продолжаться. */
+  energy_spend_motion_complete: undefined;
   premium_activated: undefined;
   premium_deactivated: undefined;
   vip_activated: undefined;

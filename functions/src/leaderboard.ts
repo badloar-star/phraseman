@@ -240,7 +240,6 @@ export const leaderboardUpdateDailyAnalytics = onCall(HOT_CALLABLE_OPTIONS, asyn
     daily7xp,
     daily7time_ms,
     dailyAnalyticsUpdatedAt: Date.now(),
-    firebaseAuthUid: authUid,
   }, { merge: true });
   return { ok: true };
 });
@@ -348,7 +347,11 @@ export const nameGenerateAndReserve = onCall(HOT_CALLABLE_OPTIONS, async (reques
       identityHidden: admin.firestore.FieldValue.delete(),
       updatedAt: now,
     }, { merge: true });
-    tx.set(db.collection('leaderboard').doc(stableUid), { name: chosen.name, nameLower: chosen.nameLower, firebaseAuthUid: authUid, updatedAt: now }, { merge: true });
+    // зачем: аудит безопасности 2026-08-22 — firebaseAuthUid раньше писался и
+    // сюда, а leaderboard читает любой авторизованный юзер (firestore.rules) —
+    // внутренний auth-uid утекал наружу без пользы (клиент его отсюда не
+    // читает, идентичность живёт в users/{uid}, см. canonicalUserMatchesAuth).
+    tx.set(db.collection('leaderboard').doc(stableUid), { name: chosen.name, nameLower: chosen.nameLower, updatedAt: now }, { merge: true });
     tx.set(userRef, {
       progress: {
         user_name: chosen.name,
@@ -457,7 +460,6 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       tx.set(db.collection('leaderboard').doc(stableUid), {
         name,
         nameLower,
-        firebaseAuthUid: authUid,
         updatedAt: now,
       }, { merge: true });
 

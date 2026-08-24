@@ -19,7 +19,7 @@ type Props = {
   /**
    * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
    * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
-   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   * Production default — hybrid; explicit `classic` сохранён для rollback/QA.
    */
   motionVariant?: 'classic' | 'hybrid';
 };
@@ -34,7 +34,7 @@ function NotificationPermissionModal({
   points,
   confirmLabel,
   cancelLabel,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
 

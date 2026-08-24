@@ -33,6 +33,12 @@ const rel = (abs: string) => path.relative(ROOT, abs).split(path.sep).join('/');
 const MODAL_LIKE = /(Modal|Toast|Sheet|Banner|Celebration|Prompt)\w*\.tsx$/;
 const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal/;
 
+function hasHybridEntry(file: string): boolean {
+  return /Hybrid\w*\.tsx$/.test(path.basename(file))
+    || /import\s+\w*Hybrid\b/.test(fs.readFileSync(file, 'utf8'))
+    || HYBRID_ENTRY.test(fs.readFileSync(file, 'utf8'));
+}
+
 /** Кнопки-действия без вдавливания: плоское затемнение вместо клавиши. */
 const FLAT_PRESS = /opacity:\s*pressed\s*\?/;
 
@@ -43,6 +49,90 @@ function stripComments(src: string): string {
   return src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^[ \t]*\/\/.*$/gm, '');
 }
 
+function extractBalancedCalls(source: string, callee: string): string[] {
+  const calls: string[] = [];
+  const escaped = callee.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`\\b${escaped}\\s*\\(`, 'g');
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(source))) {
+    const open = source.indexOf('(', match.index);
+    let depth = 1;
+    let quote: string | null = null;
+    let escapedChar = false;
+    for (let index = open + 1; index < source.length; index += 1) {
+      const char = source[index];
+      if (quote) {
+        if (escapedChar) escapedChar = false;
+        else if (char === '\\') escapedChar = true;
+        else if (char === quote) quote = null;
+        continue;
+      }
+      if (char === "'" || char === '"' || char === '`') quote = char;
+      else if (char === '(') depth += 1;
+      else if (char === ')') {
+        depth -= 1;
+        if (depth === 0) {
+          calls.push(source.slice(open + 1, index));
+          break;
+        }
+      }
+    }
+  }
+  return calls;
+}
+
+function splitTopLevelArguments(source: string): string[] {
+  const args: string[] = [];
+  let start = 0;
+  let round = 0;
+  let square = 0;
+  let curly = 0;
+  let quote: string | null = null;
+  let escapedChar = false;
+  for (let index = 0; index < source.length; index += 1) {
+    const char = source[index];
+    if (quote) {
+      if (escapedChar) escapedChar = false;
+      else if (char === '\\') escapedChar = true;
+      else if (char === quote) quote = null;
+      continue;
+    }
+    if (char === "'" || char === '"' || char === '`') quote = char;
+    else if (char === '(') round += 1;
+    else if (char === ')') round -= 1;
+    else if (char === '[') square += 1;
+    else if (char === ']') square -= 1;
+    else if (char === '{') curly += 1;
+    else if (char === '}') curly -= 1;
+    else if (char === ',' && round === 0 && square === 0 && curly === 0) {
+      args.push(source.slice(start, index).trim());
+      start = index + 1;
+    }
+  }
+  args.push(source.slice(start).trim());
+  return args;
+}
+
+function surveyMotionViolations(source: string): string[] {
+  const violations: string[] = [];
+  for (const callee of ['Animated.timing', 'withTiming']) {
+    for (const call of extractBalancedCalls(source, callee)) {
+      if (/\bduration\s*:\s*-?\d+(?:\.\d+)?\b/.test(call)) violations.push(`${callee}:numeric-duration`);
+    }
+  }
+  for (const call of extractBalancedCalls(source, 'withDelay')) {
+    const [delay] = splitTopLevelArguments(call);
+    if (/^-?\d+(?:\.\d+)?$/.test(delay)) violations.push('withDelay:numeric-delay');
+  }
+  for (const call of extractBalancedCalls(source, 'withSpring')) {
+    const [, config = ''] = splitTopLevelArguments(call);
+    if (/\b(?:mass|damping|stiffness|restDisplacementThreshold|restSpeedThreshold)\s*:\s*-?\d+(?:\.\d+)?\b/.test(config)) {
+      violations.push('withSpring:inline-numeric-config');
+    }
+  }
+  return violations;
+}
+
 describe('motion hybrid contract', () => {
   const files = [...walk(path.join(ROOT, 'components')), ...walk(path.join(ROOT, 'app'))];
   const modalLike = files.filter((f) => MODAL_LIKE.test(path.basename(f)));
@@ -51,7 +141,7 @@ describe('motion hybrid contract', () => {
 
   it('every NEW modal-like surface enters through the hybrid (motionVariant or shared shells)', () => {
     const offenders = modalLike
-      .filter((f) => !HYBRID_ENTRY.test(fs.readFileSync(f, 'utf8')))
+      .filter((f) => !hasHybridEntry(f))
       .map(rel)
       .filter((r) => !legacySet.has(r));
     expect(offenders).toEqual([]);
@@ -59,7 +149,7 @@ describe('motion hybrid contract', () => {
 
   it('legacy list only shrinks (ratchet)', () => {
     const stillLegacy = modalLike
-      .filter((f) => !HYBRID_ENTRY.test(fs.readFileSync(f, 'utf8')))
+      .filter((f) => !hasHybridEntry(f))
       .map(rel);
     // Всё, что осталось без гибрида, обязано быть в baseline; вычищенные файлы
     // из baseline можно (и нужно) удалять — но добавлять новые нельзя.
@@ -69,7 +159,7 @@ describe('motion hybrid contract', () => {
 
   it('hybrid surfaces have no flat opacity-only press feedback on action buttons', () => {
     const offenders = modalLike
-      .filter((f) => HYBRID_ENTRY.test(fs.readFileSync(f, 'utf8')))
+      .filter((f) => hasHybridEntry(f))
       .filter((f) => FLAT_PRESS.test(stripComments(fs.readFileSync(f, 'utf8'))))
       .map(rel)
       // Классические ветки старых файлов сохраняют прежний вид намеренно —
@@ -104,5 +194,48 @@ describe('motion hybrid contract', () => {
       })
       .map(rel);
     expect(offenders).toEqual([]);
+  });
+
+  it('keeps the survey sheet motion token-driven, finite, and compositor-only', () => {
+    const surveyMotionFiles = [
+      'components/survey/SurveyQuestionTransition.tsx',
+      'components/survey/useSurveyRewardImpact.ts',
+      'components/survey/SurveyRewardPanel.tsx',
+      'components/survey/SurveySheetModal.tsx',
+    ];
+    const sources = surveyMotionFiles.map((file) => ({
+      file,
+      source: fs.readFileSync(path.join(ROOT, file), 'utf8'),
+    }));
+    const combined = sources.map(({ source }) => stripComments(source)).join('\n');
+
+    for (const { file, source } of sources) {
+      if (/with(?:Timing|Spring)\s*\(/.test(source)) {
+        expect(source).toContain('constants/motionHybrid');
+      }
+      expect(surveyMotionViolations(stripComments(source))).toEqual([]);
+      expect(source).not.toMatch(/animatedHeight|height:\s*\w+\.value/);
+      expect(file).not.toBe('');
+    }
+    expect(combined).not.toMatch(/setInterval|withRepeat|Animated\.loop|BlurView|LayoutAnimation/);
+    expect(combined).toContain('sheetHeight="86%"');
+  });
+
+  it('detects numeric motion literals anywhere inside balanced nested calls', () => {
+    const longNestedConfig = `withTiming(value, { easing: curve(${Array.from({ length: 80 }, () => 'token').join(',')}), duration: 240 })`;
+    const badSource = [
+      'Animated.timing(value, { duration: 120 })',
+      longNestedConfig,
+      'withDelay(90, withTiming(value, { duration: LUM.contentMs }))',
+      'withSpring(value, { damping: 20, stiffness: LUM.settle.stiffness })',
+    ].join('\n');
+
+    expect(surveyMotionViolations(badSource)).toEqual(expect.arrayContaining([
+      'Animated.timing:numeric-duration',
+      'withTiming:numeric-duration',
+      'withDelay:numeric-delay',
+      'withSpring:inline-numeric-config',
+    ]));
+    expect(surveyMotionViolations('withDelay(LUM.ladder[0], withSpring(value, LUM.settle))')).toEqual([]);
   });
 });

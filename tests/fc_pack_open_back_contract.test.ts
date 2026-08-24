@@ -22,19 +22,59 @@ describe('открытие набора идёт без промежуточно
   const data = read('flashcards', 'useCollectionData.ts');
   const collection = read('flashcards_collection.tsx');
 
-  it('staging отдаёт карточки уже открытого набора синхронно и делится промисом', () => {
+  it('staging завершает ready-snapshot до навигации и сохраняет быстрый memo-путь', () => {
     expect(staging).toContain('const communityPackCardsMemo = new Map<string, CardItem[]>()');
     expect(staging).toContain('export function stagedCommunityPackCardsPromise(');
     expect(staging).toContain('export function peekStagedCommunityPackCards(');
-    // Синхронный шаг перед router.push: memo → staged, без await.
-    expect(staging).toContain('stagedCommunityPackMarketCards = memo && memo.length > 0 ? memo : null;');
-    expect(staging).not.toMatch(/export async function stageCommunityPackCardsForNavigation/);
+    expect(staging).toContain('export async function stageCommunityPackCardsForNavigation');
+    expect(staging).toContain('loadLocalAuthorPacks(studyTarget)');
+    expect(staging).toContain('localAuthorPackCardItems(localPack)');
+    expect(staging).toContain('stagedCommunityPackMeta = packMeta ? { key, pack: packMeta } : null;');
+    expect(staging).toContain('stagedCommunityPackMarketCards = memo && memo.length > 0 ? { key, cards: memo } : null;');
   });
 
-  it('коллекция ждёт именно staging-запрос набора, а не весь цикл загрузки', () => {
+  it('коллекция получает и карточки, и метаданные набора на первом кадре', () => {
     expect(data).toContain('peekStagedCommunityPackCards');
-    expect(data).toContain('stagedCommunityPackCardsPromise(deeplinkPackId)');
+    expect(data).toContain('stagedCommunityPackCardsPromise(deeplinkPackId, studyTarget)');
+    expect(data).toContain('peekStagedCommunityPackMeta(opts.deeplinkPackId ?? null, studyTarget)');
     expect(collection).toContain('deeplinkPackId: packDeeplink,');
+  });
+
+  it('staging не считается разрешением на доступ к чужому набору', () => {
+    const guardStart = data.indexOf('export function usePackDeeplinkGuard');
+    const guard = data.slice(guardStart, data.indexOf('// ── E11: undo', guardStart));
+    const ownedStart = guard.indexOf('const owned =');
+    const ownedEnd = guard.indexOf(';', ownedStart);
+
+    expect(guard.slice(ownedStart, ownedEnd)).not.toContain('stagedFromHub');
+  });
+
+  it('режимы набора появляются только после подтверждения владения', () => {
+    expect(collection).toContain('const packTrainingAccessReady = !packDeeplink || (collectionDataReady && packOwnedByMe);');
+    expect(collection).toContain('packTrainingAccessReady && trainDeckId !== null');
+  });
+
+  it('оба экрана ждут cold staging и только потом делают push', () => {
+    const hub = read('flashcards', 'FlashcardsCategoryHub.tsx');
+    const myPacks = read('flashcards_my_packs.tsx');
+
+    for (const source of [hub, myPacks]) {
+      const awaited = source.indexOf('await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack)');
+      const pushed = source.indexOf("pathname: '/flashcards_collection'", awaited);
+      expect(awaited).toBeGreaterThan(-1);
+      expect(pushed).toBeGreaterThan(awaited);
+    }
+  });
+
+  it('поздний ответ старого открытия не проходит ABA-проверку того же pack id', () => {
+    const hub = read('flashcards', 'FlashcardsCategoryHub.tsx');
+    const myPacks = read('flashcards_my_packs.tsx');
+
+    for (const source of [hub, myPacks]) {
+      expect(source).toContain('const requestToken = ++openingRequestGenerationRef.current;');
+      expect(source).toContain('openingRequestGenerationRef.current !== requestToken');
+      expect(source).toContain('openingRequestGenerationRef.current += 1;');
+    }
   });
 
   it('вкладка набора не перебивается восстановлением позиции', () => {
@@ -50,9 +90,7 @@ describe('открытие набора идёт без промежуточно
   });
 
   it('заглушка «пусто» не показывается, пока карточки набора в пути', () => {
-    expect(collection).toContain(
-      'const packCardsPending = !!packDeeplink && !collectionDataReady && filteredCards.length === 0;',
-    );
+    expect(collection).toContain('!!packDeeplink && !collectionDataReady && (filteredCards.length === 0 || !currentMarketPack);');
     expect(collection).toContain('const isEmpty = !loading && !packCardsPending && filteredCards.length === 0;');
   });
 });
@@ -81,7 +119,9 @@ describe('«Мои наборы»: иконки и два раздела', () =>
   const myPacks = read('flashcards_my_packs.tsx');
 
   it('иконка набора берётся так же, как в каталоге сообщества', () => {
-    expect(myPacks).toContain("import { bundledPackTilePng, packTileImageForPack } from './flashcards/packMarketplaceIcons';");
+    expect(myPacks).toContain('bundledPackTilePng,');
+    expect(myPacks).toContain('packTileImageForPack,');
+    expect(myPacks).toContain("from './flashcards/packMarketplaceIcons';");
     expect(myPacks).toContain('const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);');
     expect(myPacks).toContain('packCategoryIonIcon(pack.category)');
     expect(myPacks).toContain("import { Image } from 'expo-image';");

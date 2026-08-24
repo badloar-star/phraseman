@@ -103,6 +103,25 @@ describe('protected Telegram Premium manual activation', () => {
     expect(Object.keys(patch.updates).some((key) => key.includes('premium'))).toBe(false);
   });
 
+  it('projects only the redemption state needed by the Telegram admin UI', () => {
+    const { telegramPromoInspectionProjection } = loadSubject();
+    expect(telegramPromoInspectionProjection({
+      usedCount: 1,
+      lastRedeemedAtMs: 123,
+      lastRedeemedBy: 'redeemed-alias',
+      note: 'SECRET-CODE recipient@example.com',
+    }, 'redeemed-canonical')).toEqual({
+      kind: 'redeemed',
+      redeemedBy: 'redeemed-alias',
+      canonicalUid: 'redeemed-canonical',
+    });
+    expect(telegramPromoInspectionProjection(null, '')).toEqual({
+      kind: 'code_pending',
+      redeemedBy: '',
+      canonicalUid: '',
+    });
+  });
+
   it('fails closed when a deletion job is queued for the canonical recipient', () => {
     const { assertTelegramTargetDeletionNotPending } = loadSubject();
     expect(() => assertTelegramTargetDeletionNotPending({
@@ -169,5 +188,7 @@ describe('protected Telegram Premium manual activation', () => {
     );
     expect(redeemedBranch).not.toContain('tx.update(');
     expect(replayBranch).not.toContain('tx.update(');
+    expect(source).toContain('export const adminInspectTelegramPromoCode = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS');
+    expect(source).toContain("db.collection('promo_codes').doc(input.activationCode)");
   });
 });

@@ -20,6 +20,10 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from './account_generation';
+import {
+  commitPhoneStatePracticeFact,
+  mergePhoneStatePracticeFacts,
+} from './phone_state_practice_bridge';
 
 export interface MistakePracticeStorage {
   getItem(key: string): Promise<string | null>;
@@ -95,6 +99,20 @@ const emptyJournal = (
   studyTarget,
   events: Object.freeze([]),
 });
+
+async function mergePhoneStateJournal(journal: MistakeEventJournal): Promise<MistakeEventJournal> {
+  const facts = await mergePhoneStatePracticeFacts(
+    'mistake',
+    Object.fromEntries(journal.events.map((event) => [event.eventId, event])),
+    journal.accountScope,
+  );
+  return mergeMistakeEventJournals(journal, {
+    version: 1,
+    accountScope: journal.accountScope,
+    studyTarget: journal.studyTarget,
+    events: Object.freeze(Object.values(facts)),
+  });
+}
 
 const normalizedScope = (value: string): string => {
   const scope = String(value ?? '').trim();
@@ -178,7 +196,7 @@ export async function loadMistakeEventJournal(
   const accountScope = normalizedScope(input.accountScope);
   const storage = input.storage ?? AsyncStorage;
   const raw = await storage.getItem(mistakePracticeEventsKey(accountScope, input.studyTarget));
-  if (!raw) return emptyJournal(accountScope, input.studyTarget);
+  if (!raw) return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
   let rootCandidate: unknown;
   try { rootCandidate = JSON.parse(raw); } catch { /* v1 parser reports canonical error */ }
   if (
@@ -220,16 +238,16 @@ export async function loadMistakeEventJournal(
       }
     }
     if (journal.events.length !== root.eventCount) throw new Error('mistake_practice_events_corrupt');
-    return journal;
+    return mergePhoneStateJournal(journal);
   }
   const parsed = parseMistakeEventJournal(raw);
   if (
     parsed.accountScope !== accountScope
     || parsed.studyTarget !== input.studyTarget
   ) {
-    return emptyJournal(accountScope, input.studyTarget);
+    return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
   }
-  return parsed;
+  return mergePhoneStateJournal(parsed);
 }
 
 export async function appendMistakeEvent(
@@ -277,6 +295,11 @@ export async function mergeMistakeEvents(
       return Object.freeze({ appendedCount, journal });
     }
     assertCurrentOwner();
+    for (const event of journal.events) {
+      if (currentIds.has(event.eventId)) continue;
+      await commitPhoneStatePracticeFact('mistake', event.eventId, event, accountScope);
+      assertCurrentOwner();
+    }
     await persistMistakeEventJournal({
       storage,
       accountScope,

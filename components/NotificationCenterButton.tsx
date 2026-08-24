@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSequence, withTiming, Easing } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
@@ -15,6 +15,7 @@ import AppMessagesInbox from './AppMessagesInbox';
 import { claimReportReplyCoinsOptimistically } from '../app/app_messages';
 import {
   countUnreadNotifications,
+  deleteUserNotification,
   isUserNotificationVisible,
   markUserNotificationsRead,
   readCachedUserNotifications,
@@ -22,6 +23,13 @@ import {
   type UserNotification,
   type UserNotificationType,
 } from '../app/user_notifications';
+import {
+  hideNotificationIds,
+  NOTIFICATION_DELETE_UNDO_MS,
+  stageNotificationDeletion,
+  undoNotificationDeletion,
+  type PendingNotificationDeletion,
+} from '../app/notification_delete_undo';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
 import MotionModal from './MotionModal';
@@ -47,14 +55,14 @@ function centerCopy(lang: Lang) {
   return {
     title: triLang(lang, { ru: 'Уведомления', uk: 'Сповіщення', es: 'Notificaciones', 'pt-BR': 'Notificações', vi: 'Thông báo', id: 'Notifikasi', tr: 'Bildirimler', pl: 'Powiadomienia' }),
     empty: triLang(lang, {
-      ru: 'Пока нет событий. Здесь появятся лайки, ответы и заявки в друзья.',
-      uk: 'Поки немає подій. Тут зʼявляться лайки, відповіді та заявки в друзі.',
-      es: 'Sin eventos todavía. Aquí verás likes, respuestas y solicitudes.',
-      'pt-BR': 'Sem eventos ainda. Aqui vão aparecer likes, respostas e pedidos.',
-      vi: 'Chưa có sự kiện. Lượt thích, trả lời và lời mời sẽ hiện ở đây.',
-      id: 'Belum ada acara. Suka, balasan, dan permintaan akan muncul di sini.',
-      tr: 'Henüz olay yok. Beğeniler, yanıtlar ve istekler burada görünecek.',
-      pl: 'Brak zdarzeń. Tutaj pojawią się polubienia, odpowiedzi i zaproszenia.',
+      ru: 'Здесь пока тихо',
+      uk: 'Тут поки тихо',
+      es: 'Aquí todo está tranquilo',
+      'pt-BR': 'Tudo tranquilo por aqui',
+      vi: 'Ở đây vẫn yên tĩnh',
+      id: 'Masih sepi di sini',
+      tr: 'Burası şimdilik sessiz',
+      pl: 'Na razie jest tu cicho',
     }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
   };
@@ -96,6 +104,18 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return triLang(lang, { ru: 'приглашает стать Арена-парой', uk: 'запрошує стати Арена-парою', es: 'te invita a formar una Pareja de Arena', 'pt-BR': 'convida você para uma Dupla da Arena', vi: 'mời bạn lập Cặp đôi Arena', id: 'mengundangmu menjadi Partner Arena', tr: 'seni Arena Eşleşmesine davet ediyor', pl: 'zaprasza cię do Pary Areny' });
     case 'arena_partner_nudge':
       return triLang(lang, { ru: 'ждёт вас в Арена-паре', uk: 'чекає на вас в Арена-парі', es: 'te espera en Pareja de Arena', 'pt-BR': 'espera por você na Dupla da Arena', vi: 'đang chờ bạn trong Cặp đôi Arena', id: 'menunggumu di Partner Arena', tr: 'Arena Eşleşmesinde seni bekliyor', pl: 'czeka na ciebie w Parze Areny' });
+    case 'friend_nudge':
+      return triLang(lang, { ru: 'зовёт позаниматься', uk: 'кличе позайматися', es: 'te invita a estudiar', 'pt-BR': 'chama você para estudar', vi: 'rủ bạn học', id: 'mengajakmu belajar', tr: 'seni çalışmaya çağırıyor', pl: 'zaprasza do nauki' });
+    case 'arena_friend_invite':
+      return 'бросает вызов';
+    case 'arena_friend_accepted':
+      return 'принимает вызов';
+    case 'arena_friend_declined':
+      return 'сегодня без драмы';
+    case 'arena_friend_cancelled':
+      return 'отменил(а) вызов';
+    case 'arena_friend_expired':
+      return 'вызов истёк';
     case 'report_reply':
       return reportReplyCopy(lang).reportReply;
     default:
@@ -112,6 +132,12 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'friend_gift_thanks': return 'happy-outline';
     case 'arena_partner_invite': return 'people-circle-outline';
     case 'arena_partner_nudge': return 'flash-outline';
+    case 'friend_nudge': return 'book-outline';
+    case 'arena_friend_invite': return 'flash-outline';
+    case 'arena_friend_accepted': return 'checkmark-circle-outline';
+    case 'arena_friend_declined': return 'hand-left-outline';
+    case 'arena_friend_cancelled': return 'close-circle-outline';
+    case 'arena_friend_expired': return 'time-outline';
     case 'report_reply': return 'chatbox-ellipses-outline';
     default: return 'notifications-outline';
   }
@@ -153,6 +179,10 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
   const notificationTargetRef = useRef<View>(null);
   const requestGenerationRef = useRef(0);
   const [identityRevision, setIdentityRevision] = useState(0);
+  const [pendingDeletion, setPendingDeletion] = useState<PendingNotificationDeletion<UserNotification> | null>(null);
+  const pendingDeletionRef = useRef<PendingNotificationDeletion<UserNotification> | null>(null);
+  const hiddenNotificationIdsRef = useRef<Set<string>>(new Set());
+  const deleteTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     try {
@@ -165,6 +195,11 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         setTeamDetailOpen(false);
         markedReadIdsRef.current.clear();
         optimisticReportClaimIdsRef.current.clear();
+        if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
+        deleteTimerRef.current = null;
+        pendingDeletionRef.current = null;
+        hiddenNotificationIdsRef.current.clear();
+        setPendingDeletion(null);
         setIdentityRevision((current) => current + 1);
       });
     } catch {
@@ -183,13 +218,13 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
       }).then((list) => {
         if (alive && requestGenerationRef.current === generation) {
           authoritativeResultApplied = true;
-          setItems(list);
+          setItems(hideNotificationIds(list, hiddenNotificationIdsRef.current));
         }
       });
     };
     void readCachedUserNotifications().then((cached) => {
       if (alive && requestGenerationRef.current === generation && !authoritativeResultApplied && cached.length) {
-        setItems((cur) => (cur.length ? cur : cached));
+        setItems((cur) => (cur.length ? cur : hideNotificationIds(cached, hiddenNotificationIdsRef.current)));
       }
     });
     refreshOnce();
@@ -230,6 +265,46 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
   }, [bellShakeDeg, combinedUnreadCount, reduceMotion]);
   const bellShakeStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${bellShakeDeg.value}deg` }] }));
 
+  const commitPendingDeletion = useCallback(() => {
+    const deletion = pendingDeletionRef.current;
+    if (!deletion) return;
+    if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
+    deleteTimerRef.current = null;
+    pendingDeletionRef.current = null;
+    setPendingDeletion(null);
+    void deleteUserNotification(deletion.row.id);
+  }, []);
+
+  const stageDelete = useCallback((row: UserNotification) => {
+    commitPendingDeletion();
+    const staged = stageNotificationDeletion(items, row.id, Date.now());
+    if (!staged.deletion) return;
+    hapticTap();
+    hiddenNotificationIdsRef.current.add(row.id);
+    setItems(staged.rows);
+    pendingDeletionRef.current = staged.deletion;
+    setPendingDeletion(staged.deletion);
+    deleteTimerRef.current = setTimeout(commitPendingDeletion, NOTIFICATION_DELETE_UNDO_MS);
+  }, [commitPendingDeletion, items]);
+
+  const undoDelete = useCallback(() => {
+    const deletion = pendingDeletionRef.current;
+    if (!deletion) return;
+    hapticTap();
+    if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
+    deleteTimerRef.current = null;
+    pendingDeletionRef.current = null;
+    hiddenNotificationIdsRef.current.delete(deletion.row.id);
+    setPendingDeletion(null);
+    setItems((current) => undoNotificationDeletion(current, deletion));
+  }, []);
+
+  useEffect(() => () => {
+    if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
+    const deletion = pendingDeletionRef.current;
+    if (deletion) void deleteUserNotification(deletion.row.id);
+  }, []);
+
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
   const open = useCallback(() => {
     setVisible(true);
@@ -238,7 +313,16 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     // the user opens the center, reconcile it immediately so its badge and list
     // cannot describe different server snapshots.
     void refreshUserNotificationsOnce({ force: true }).then((list) => {
-      if (requestGenerationRef.current === generation) setItems(list);
+      if (requestGenerationRef.current !== generation) return;
+      const visibleList = hideNotificationIds(list, hiddenNotificationIdsRef.current);
+      const refreshedUnreadIds = visibleList
+        .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
+        .map((row) => row.id);
+      refreshedUnreadIds.forEach((id) => markedReadIdsRef.current.add(id));
+      setItems(visibleList.map((row) => (
+        refreshedUnreadIds.includes(row.id) ? { ...row, read: true } : row
+      )));
+      if (refreshedUnreadIds.length) void markUserNotificationsRead(refreshedUnreadIds);
     });
     const unreadIds = visibleItems
       .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
@@ -254,9 +338,10 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
 
   const close = useCallback(() => {
     hapticTap();
+    commitPendingDeletion();
     setSelectedId(null);
     setVisible(false);
-  }, []);
+  }, [commitPendingDeletion]);
 
   const backToList = useCallback(() => {
     hapticTap();
@@ -290,10 +375,23 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     setVisible(false);
     const nav = row.nav;
     if (!nav) return;
-    if (nav.kind === 'arena_partner') {
-      router.push('/arena_partner' as any);
+    if (nav.kind === 'friend_event') {
+      if ((nav.action === 'duel_invite' || nav.action === 'duel_state') && nav.inviteId) {
+        router.push({ pathname: '/arena_invite', params: { inviteId: nav.inviteId } } as never);
+        return;
+      }
+      router.push({
+        pathname: '/(tabs)/friends',
+        params: {
+          focusFriend: nav.actorStableUid,
+          socialEventId: nav.eventId,
+        },
+      } as never);
       return;
     }
+    // зачем: /arena_partner удалён (владелец, 2026-08-16). Старое уведомление
+    // о партнёре Арены — если у кого-то ещё лежит непрочитанным — теперь
+    // падает в тот же безопасный дом, что и уведомления о друзьях.
     router.push('/(tabs)/friends' as any);
   }, []);
 
@@ -335,6 +433,78 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
       </ScrollView>
     );
   };
+
+  const renderNotificationRow = ({ item: row }: { item: UserNotification }) => {
+    const label = notificationLabel(row.type, lang as Lang);
+    const rowTitle = row.type === 'report_reply'
+      ? (row.reportReply?.title || row.text || copy.reportReply)
+      : `${row.fromName || '·'}${label ? ` ${label}` : ''}`;
+    const rowPreview = row.type === 'report_reply'
+      ? (row.reportReply?.body || row.text || '')
+      : row.text;
+    const hasAvatar = !!row.fromAvatar;
+    return (
+      <TouchableOpacity
+        testID={`notification-row-${row.id}`}
+        activeOpacity={0.82}
+        onPress={() => openNotification(row)}
+        style={[styles.notificationRow, { backgroundColor: t.bgSurface }]}
+      >
+        {hasAvatar ? (
+          <AvatarView avatar={row.fromAvatar!} size={38} animateAura={false} />
+        ) : (
+          <View style={[styles.notificationIcon, { backgroundColor: t.bgCard }]}>
+            <Ionicons name={notificationIcon(row.type)} size={18} color={notificationIconColor(row.type, t.textMuted)} />
+          </View>
+        )}
+        <View style={styles.notificationCopy}>
+          <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800', lineHeight: Math.round(f.caption * 1.3) }}>
+            {rowTitle}
+          </Text>
+          {rowPreview ? (
+            <Text style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 2 }}>
+              {rowPreview}
+            </Text>
+          ) : null}
+        </View>
+        <View style={styles.notificationMeta}>
+          <Text style={{ color: t.textGhost, fontSize: Math.max(9, f.caption - 2), fontWeight: '800' }}>
+            {timeLabel(row.createdAt)}
+          </Text>
+          <Ionicons name={notificationIcon(row.type)} size={13} color={notificationIconColor(row.type, t.textGhost)} />
+        </View>
+        <TouchableOpacity
+          testID={`notification-delete-${row.id}`}
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang as Lang, { ru: 'Удалить уведомление', uk: 'Видалити сповіщення', es: 'Eliminar notificación', 'pt-BR': 'Excluir notificação', vi: 'Xóa thông báo', id: 'Hapus notifikasi', tr: 'Bildirimi sil', pl: 'Usuń powiadomienie' })}
+          activeOpacity={0.72}
+          onPress={(event) => {
+            event.stopPropagation?.();
+            stageDelete(row);
+          }}
+          style={styles.notificationDelete}
+        >
+          <Ionicons name="trash-outline" size={18} color={t.textGhost} />
+        </TouchableOpacity>
+        {!row.read && !markedReadIdsRef.current.has(row.id) ? (
+          <View style={styles.notificationUnreadDot} />
+        ) : null}
+      </TouchableOpacity>
+    );
+  };
+
+  const teamInboxSection = (
+    <AppMessagesInbox
+      key={identityRevision}
+      mode="notification-center"
+      centerVisible={visible}
+      onUnreadCountChange={setTeamUnreadCount}
+      onMessageCountChange={setTeamMessageCount}
+      onDetailOpenChange={setTeamDetailOpen}
+      notificationTargetRef={notificationTargetRef}
+      ownerActive={isHomeTabActive}
+    />
+  );
 
   return (
     <>
@@ -387,82 +557,32 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
             </TouchableOpacity>
           </View>
           {selected ? renderReportReplyDetail(selected) : (
-          <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24, gap: 8 }}>
-            <AppMessagesInbox
-              key={identityRevision}
-              mode="notification-center"
-              centerVisible={visible}
-              onUnreadCountChange={setTeamUnreadCount}
-              onMessageCountChange={setTeamMessageCount}
-              onDetailOpenChange={setTeamDetailOpen}
-              notificationTargetRef={notificationTargetRef}
-              ownerActive={isHomeTabActive}
-            />
-            {teamDetailOpen ? null : visibleItems.length === 0 && teamMessageCount === 0 ? (
+          <FlatList
+            data={teamDetailOpen ? [] : visibleItems}
+            keyExtractor={(row) => row.id}
+            renderItem={renderNotificationRow}
+            ListHeaderComponent={teamInboxSection}
+            ListEmptyComponent={!teamDetailOpen && teamMessageCount === 0 ? (
               <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>
                 <Ionicons name="notifications-off-outline" size={40} color={t.textGhost} />
                 <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>
                   {copy.empty}
                 </Text>
               </View>
-            ) : visibleItems.map((row) => {
-              const label = notificationLabel(row.type, lang as Lang);
-              const rowTitle = row.type === 'report_reply'
-                ? (row.reportReply?.title || row.text || copy.reportReply)
-                : `${row.fromName || '·'}${label ? ` ${label}` : ''}`;
-              const rowPreview = row.type === 'report_reply'
-                ? (row.reportReply?.body || row.text || '')
-                : row.text;
-              const hasAvatar = !!row.fromAvatar;
-              return (
-                <TouchableOpacity
-                  key={row.id}
-                  testID={`notification-row-${row.id}`}
-                  activeOpacity={0.82}
-                  onPress={() => openNotification(row)}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 10,
-                    borderRadius: 14,
-                    borderWidth: 0,
-                    borderColor: t.border,
-                    backgroundColor: t.bgSurface,
-                    paddingHorizontal: 12,
-                    paddingVertical: 10,
-                  }}
-                >
-                  {hasAvatar ? (
-                    <AvatarView avatar={row.fromAvatar!} size={38} animateAura={false} />
-                  ) : (
-                    <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
-                      <Ionicons name={notificationIcon(row.type)} size={18} color={notificationIconColor(row.type, t.textMuted)} />
-                    </View>
-                  )}
-                  <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text numberOfLines={2} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800', lineHeight: Math.round(f.caption * 1.3) }}>
-                      {rowTitle}
-                    </Text>
-                    {rowPreview ? (
-                      <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 2 }}>
-                        {rowPreview}
-                      </Text>
-                    ) : null}
-                  </View>
-                  <View style={{ alignItems: 'flex-end', gap: 4 }}>
-                    <Text style={{ color: t.textGhost, fontSize: Math.max(9, f.caption - 2), fontWeight: '800' }}>
-                      {timeLabel(row.createdAt)}
-                    </Text>
-                    <Ionicons name={notificationIcon(row.type)} size={13} color={notificationIconColor(row.type, t.textGhost)} />
-                  </View>
-                  {!row.read && !markedReadIdsRef.current.has(row.id) ? (
-                    <View style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderRadius: 4, backgroundColor: HOME_NOTIFICATION_BADGE_COLOR }} />
-                  ) : null}
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
+            ) : null}
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: Math.max(24, insets.bottom + 24), gap: 8 }}
+            showsVerticalScrollIndicator={false}
+          />
           )}
+          {pendingDeletion ? (
+            <View style={[styles.notificationUndo, { bottom: Math.max(12, insets.bottom + 8), backgroundColor: t.bgSurface }]}>
+              <Text style={[styles.notificationUndoText, { color: t.textPrimary }]}>Уведомление удалено</Text>
+              <TouchableOpacity accessibilityRole="button" onPress={undoDelete} style={styles.notificationUndoButton}>
+                <Text style={[styles.notificationUndoAction, { color: t.accent }]}>Вернуть</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
         </View>
       </MotionModal>
     </>
@@ -526,6 +646,77 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  notificationRow: {
+    minHeight: 64,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    borderRadius: 14,
+    borderWidth: 0,
+    paddingLeft: 12,
+    paddingVertical: 10,
+  },
+  notificationIcon: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  notificationCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  notificationMeta: {
+    alignItems: 'flex-end',
+    gap: 4,
+  },
+  notificationDelete: {
+    width: 44,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  notificationUnreadDot: {
+    position: 'absolute',
+    top: 8,
+    right: 48,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
+  },
+  notificationUndo: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    minHeight: 52,
+    borderRadius: 16,
+    paddingLeft: 16,
+    paddingRight: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.18,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 8,
+  },
+  notificationUndoText: {
+    flex: 1,
+    fontSize: 13,
+    fontWeight: '800',
+  },
+  notificationUndoButton: {
+    minWidth: 72,
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  notificationUndoAction: {
+    fontSize: 13,
+    fontWeight: '900',
   },
   detailContent: {
     paddingHorizontal: 18,

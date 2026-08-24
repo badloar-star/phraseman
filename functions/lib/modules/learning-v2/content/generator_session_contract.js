@@ -10,6 +10,7 @@ exports.learningV2AudioNeedsRegeneration = learningV2AudioNeedsRegeneration;
 exports.validateLearningV2GeneratedSessionIntro = validateLearningV2GeneratedSessionIntro;
 const decision_registry_1 = require("../policies/decision_registry");
 const generator_course_contract_1 = require("./generator_course_contract");
+const intro_semantic_runs_v1_1 = require("./intro_semantic_runs_v1");
 /** The only voices the Learning V2 content generator may assign. */
 exports.LEARNING_V2_OPENAI_TTS_VOICES = Object.freeze([
     'ash',
@@ -125,6 +126,15 @@ function validateLearningV2GeneratedSessionIntro(input) {
         pageIds.add(pageId);
         (0, generator_course_contract_1.assertLearningV2LocalizedEnvelope)(page.titleByLocale, 'intro_page_title');
         (0, generator_course_contract_1.assertLearningV2LocalizedEnvelope)(page.bodyByLocale, 'intro_page_body');
+        if (page.bodyRunsByLocale !== undefined) {
+            const runsByLocale = (0, intro_semantic_runs_v1_1.validateLearningV2IntroRunsByLocaleV1)(page.bodyRunsByLocale);
+            for (const locale of generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES) {
+                if ((0, intro_semantic_runs_v1_1.introRunsPlainTextV1)(runsByLocale[locale]) !==
+                    page.bodyByLocale[locale]) {
+                    throw new Error('learning_v2_generator_intro_runs_body_mismatch');
+                }
+            }
+        }
         const question = page.question;
         const id = clean(question.questionId, 'intro_question_id', 128);
         if (ids.has(id))

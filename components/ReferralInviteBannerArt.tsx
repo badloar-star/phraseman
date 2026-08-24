@@ -1,9 +1,10 @@
 import React, { memo, useEffect } from 'react';
-import { Easing, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, {
   cancelAnimation,
+  Easing as REasing,
   useAnimatedStyle,
   useSharedValue,
   withSequence,
@@ -13,6 +14,7 @@ import Reanimated, {
 import { useTheme } from './ThemeContext';
 import type { ThemeMode } from '../constants/theme';
 import { LUM } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LinearGradient } from './SafeLinearGradient';
 
 const THEME_BANNERS: Record<ThemeMode, number> = {
@@ -40,9 +42,10 @@ interface ReferralInviteBannerArtProps {
 }
 
 /** New DALL·E artwork is intentionally unique for every interface theme. */
-function ReferralInviteBannerArt({ motionVariant = 'classic' }: ReferralInviteBannerArtProps) {
+function ReferralInviteBannerArt({ motionVariant = 'hybrid' }: ReferralInviteBannerArtProps) {
   const { themeMode, theme } = useTheme();
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
   // зачем: без recyclingKey expo-image переиспользует нативную вьюху и держит
   // кадр прошлой темы — баннер не менялся при переключении темы. Ключ по теме
   // заставляет сбросить закешированный кадр ровно на смене темы (не каждый рендер).
@@ -53,21 +56,26 @@ function ReferralInviteBannerArt({ motionVariant = 'classic' }: ReferralInviteBa
   const rimOpacity = useSharedValue(0);
   useEffect(() => {
     if (!isHybrid) return;
-    entryOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      entryOpacity.value = 1;
+      entryY.value = 0;
+      rimOpacity.value = 0;
+      return;
+    }
+    entryOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: REasing.out(REasing.cubic) });
     entryY.value = withSpring(0, LUM.settle);
     // Микро-перелив по кромке ОДИН РАЗ при появлении (после посадки листа).
     rimOpacity.value = withSequence(
       withTiming(0, { duration: LUM.resolveMs }),
       withTiming(1, { duration: 0 }),
-      withTiming(0, { duration: LUM.rimMs, easing: Easing.linear }),
+      withTiming(0, { duration: LUM.rimMs, easing: REasing.linear }),
     );
     return () => {
       cancelAnimation(entryOpacity);
       cancelAnimation(entryY);
       cancelAnimation(rimOpacity);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHybrid]);
+  }, [isHybrid, reduceMotion, entryOpacity, entryY, rimOpacity]);
   const hybridEntryStyle = useAnimatedStyle(() => ({
     opacity: entryOpacity.value,
     transform: [{ translateY: entryY.value }],

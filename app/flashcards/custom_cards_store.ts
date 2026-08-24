@@ -9,6 +9,10 @@
 // незнакомые поля элементов не отбрасываются). Ключ существующий — новых не вводим.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { customFlashcardsKey } from '../target_storage_keys';
+import {
+  commitPhoneStateCustomCards,
+  readPhoneStateCustomCards,
+} from '../phone_state_cards_bridge';
 
 /** Ключ сохранённых custom-карточек текущей цели обучения (см. target_storage_keys). */
 const FLASHCARDS_CUSTOM_KEY = customFlashcardsKey();
@@ -46,12 +50,16 @@ function parseStored(raw: string | null): CardItem[] {
  */
 async function loadFromDisk(): Promise<CardItem[]> {
   const raw = await AsyncStorage.getItem(FLASHCARDS_CUSTOM_KEY);
-  const cards = parseStored(raw);
+  const cards = await readPhoneStateCustomCards(parseStored(raw));
   cache = cards;
   return cards;
 }
 
-async function commit(cards: CardItem[]): Promise<void> {
+async function commit(previous: CardItem[], cards: CardItem[]): Promise<void> {
+  // Encrypted local state commits first; AsyncStorage is a compatibility mirror.
+  // If the new store is locally unavailable, the existing durable mirror keeps
+  // the user's action and the next opening import retries silently.
+  await commitPhoneStateCustomCards(previous, cards).catch(() => undefined);
   await AsyncStorage.setItem(FLASHCARDS_CUSTOM_KEY, JSON.stringify(cards));
   cache = cards;
 }
@@ -67,7 +75,7 @@ export function updateCustomCards(
     const current = await loadFromDisk();
     const next = mutator(current);
     if (next !== current) {
-      await commit(next);
+      await commit(current, next);
     }
     return next;
   });

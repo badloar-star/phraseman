@@ -290,6 +290,16 @@ function sessionSource(ordinal: number): SessionSource | null {
 }
 
 /**
+ * Authoring gates need one exact source without materializing all 56 sessions.
+ * Runtime may use the same narrow accessor when it needs source metadata.
+ */
+export function authoredLearningV2SessionSource(
+  ordinal: number,
+): SessionSource | null {
+  return sessionSource(ordinal);
+}
+
+/**
  * Все написанные сессии урока 1, по порядку прохождения.
  *
  * ВНИМАНИЕ: обращение к этому списку строит ВСЕ сессии — это дорого и нужно

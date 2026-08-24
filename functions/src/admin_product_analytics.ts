@@ -1,7 +1,10 @@
 import { BigQuery } from '@google-cloud/bigquery';
 import { HttpsError, onCall, type CallableRequest } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasClaimedPermission } from './admin/permissions';
+import { ENFORCE_APP_CHECK_ADMIN } from './callable_options';
+import {
+  hasVerifiedCallablePermission,
+  roleFromAdminToken,
+} from './admin/permissions';
 import { parseProductAnalyticsPayloadValue } from './admin_analytics_trends_core';
 
 const REGION = 'us-central1';
@@ -62,14 +65,6 @@ WITH raw_base AS (
     ) AS session_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'screen_id') AS screen_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'study_target') AS study_target,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'review_session_id') AS review_session_id,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'review_mode') AS review_mode,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'content_version') AS content_version,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'actual_delay_bucket') AS actual_delay_bucket,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'due_status') AS due_status,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'previous_mastery_state') AS previous_mastery_state,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'next_mastery_state') AS next_mastery_state,
-    (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'mastery_transition') AS mastery_transition,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'experiment_id') AS experiment_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'variant_id') AS experiment_variant_id,
     (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'control_variant_id') AS experiment_control_variant_id,
@@ -164,22 +159,6 @@ WITH raw_base AS (
       (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'load_attempts'),
       SAFE_CAST((SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'load_attempts') AS INT64)
     ) AS load_attempts,
-    COALESCE(
-      (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'response_time_ms'),
-      SAFE_CAST((SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'response_time_ms') AS INT64)
-    ) AS response_time_ms,
-    COALESCE(
-      (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'planned_item_count'),
-      SAFE_CAST((SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'planned_item_count') AS INT64)
-    ) AS planned_item_count,
-    COALESCE(
-      (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'answered_item_count'),
-      SAFE_CAST((SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'answered_item_count') AS INT64)
-    ) AS answered_item_count,
-    COALESCE(
-      (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'correct_item_count'),
-      SAFE_CAST((SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'correct_item_count') AS INT64)
-    ) AS correct_item_count,
     ROW_NUMBER() OVER (PARTITION BY COALESCE(
       (SELECT value.string_value FROM UNNEST(event_params) WHERE key = 'event_id'),
       CONCAT(event_name, ':', user_pseudo_id, ':', CAST(event_timestamp AS STRING))
@@ -197,8 +176,6 @@ WITH raw_base AS (
       'onboarding_complete',
       'experiment_exposure',
       'product_operation_failure',
-      'learning_review_session_start', 'learning_review_answer',
-      'learning_review_session_complete', 'learning_review_session_abandoned',
       'paywall_view', 'paywall_plan_select', 'paywall_cta_click',
       'paywall_continue_free', 'paywall_close', 'premium_purchased',
       'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_failed',
@@ -213,7 +190,7 @@ base AS (
   SELECT * EXCEPT(duplicate_rank) FROM raw_base
   WHERE duplicate_rank = 1
     AND (
-      NOT (STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_'))
+      NOT (STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_'))
       OR schema_version = 1
     )
 ),
@@ -844,160 +821,6 @@ acquisition_channel_rows AS (
   FROM first_touch_instance_facts
   GROUP BY channel
 ),
-review_answers AS (
-  SELECT * FROM base WHERE event_name = 'learning_review_answer'
-),
-review_summary_row AS (
-  SELECT 'review_summary' AS row_kind, TO_JSON_STRING(STRUCT(
-    COUNT(*) AS persisted_answers,
-    COUNT(DISTINCT user_pseudo_id) AS consented_app_instances,
-    COUNTIF(correct = 1) AS correct_answers,
-    SAFE_DIVIDE(COUNTIF(correct = 1), COUNT(*)) AS first_answer_accuracy,
-    COUNTIF(actual_delay_bucket IN ('d1_to_d6', 'd7_to_d29', 'd30_plus')) AS delayed_answers,
-    COUNTIF(correct = 1 AND actual_delay_bucket IN ('d1_to_d6', 'd7_to_d29', 'd30_plus')) AS correct_delayed_answers,
-    SAFE_DIVIDE(
-      COUNTIF(correct = 1 AND actual_delay_bucket IN ('d1_to_d6', 'd7_to_d29', 'd30_plus')),
-      COUNTIF(actual_delay_bucket IN ('d1_to_d6', 'd7_to_d29', 'd30_plus'))
-    ) AS delayed_recall_accuracy,
-    APPROX_QUANTILES(response_time_ms, 100)[OFFSET(50)] AS p50_response_time_ms
-  )) AS payload
-  FROM review_answers
-),
-review_delay_rows AS (
-  SELECT 'review_delay' AS row_kind, TO_JSON_STRING(STRUCT(
-    IFNULL(actual_delay_bucket, 'unknown') AS delay_bucket,
-    COUNT(*) AS answers,
-    COUNTIF(correct = 1) AS correct_answers,
-    SAFE_DIVIDE(COUNTIF(correct = 1), COUNT(*)) AS accuracy,
-    COUNT(DISTINCT user_pseudo_id) AS consented_app_instances
-  )) AS payload
-  FROM review_answers
-  GROUP BY delay_bucket
-),
-mastery_transition_rows AS (
-  SELECT 'mastery_transition' AS row_kind, TO_JSON_STRING(STRUCT(
-    IFNULL(mastery_transition, 'none') AS transition,
-    COUNT(*) AS events,
-    COUNT(DISTINCT user_pseudo_id) AS consented_app_instances
-  )) AS payload
-  FROM review_answers
-  GROUP BY transition
-),
-review_content_lesson_samples AS (
-  SELECT lesson_id, COUNT(DISTINCT user_pseudo_id) AS lesson_app_instances
-  FROM review_answers
-  GROUP BY lesson_id
-),
-review_content_labeled_events AS (
-  SELECT
-    r.*,
-    IF(s.lesson_app_instances >= 5, CAST(r.lesson_id AS STRING), 'suppressed_small_sample') AS diagnostic_group,
-    IF(s.lesson_app_instances >= 5, r.lesson_id, NULL) AS output_lesson_id
-  FROM review_answers r
-  JOIN review_content_lesson_samples s USING (lesson_id)
-),
-review_content_grouped AS (
-  SELECT
-    diagnostic_group,
-    output_lesson_id,
-    COUNT(*) AS answers,
-    COUNTIF(correct = 1) AS correct_answers,
-    COUNTIF(mastery_transition = 'mastered') AS mastered_transitions,
-    COUNTIF(mastery_transition = 'durable_mastered') AS durable_mastered_transitions,
-    COUNTIF(mastery_transition = 'lapsed') AS lapses,
-    COUNT(DISTINCT user_pseudo_id) AS app_instances
-  FROM review_content_labeled_events
-  GROUP BY diagnostic_group, output_lesson_id
-),
-review_content_rows AS (
-  SELECT 'review_content' AS row_kind, TO_JSON_STRING(STRUCT(
-    diagnostic_group,
-    output_lesson_id AS lesson_id,
-    answers,
-    correct_answers,
-    SAFE_DIVIDE(correct_answers, answers) AS accuracy,
-    mastered_transitions,
-    durable_mastered_transitions,
-    lapses,
-    app_instances AS consented_app_instances
-  )) AS payload
-  FROM review_content_grouped
-),
-review_session_facts AS (
-  SELECT
-    user_pseudo_id,
-    review_session_id,
-    COUNTIF(event_name = 'learning_review_session_start') > 0 AS has_start,
-    COUNTIF(event_name = 'learning_review_session_complete') > 0 AS has_complete,
-    COUNTIF(event_name = 'learning_review_session_abandoned') > 0 AS has_abandoned,
-    MAX(IF(event_name = 'learning_review_session_complete', duration_ms, NULL)) AS completed_duration_ms
-  FROM base
-  WHERE event_name IN (
-    'learning_review_session_start',
-    'learning_review_session_complete',
-    'learning_review_session_abandoned'
-  )
-    AND user_pseudo_id IS NOT NULL
-    AND review_session_id IS NOT NULL
-  GROUP BY user_pseudo_id, review_session_id
-),
-review_session_summary_row AS (
-  SELECT 'review_session_summary' AS row_kind, TO_JSON_STRING(STRUCT(
-    COUNTIF(has_start) AS starts,
-    COUNTIF(has_start AND has_complete) AS completes,
-    COUNTIF(has_start AND has_abandoned AND NOT has_complete) AS abandons,
-    SAFE_DIVIDE(COUNTIF(has_start AND has_complete), COUNTIF(has_start)) AS completion_rate,
-    COUNT(DISTINCT user_pseudo_id) AS consented_app_instances,
-    APPROX_QUANTILES(IF(has_start AND has_complete, completed_duration_ms, NULL), 100)[OFFSET(50)] AS p50_completed_duration_ms
-  )) AS payload
-  FROM review_session_facts
-),
-meaningful_learning_events AS (
-  SELECT
-    user_pseudo_id,
-    event_timestamp,
-    DATE(TIMESTAMP_MICROS(event_timestamp)) AS activity_date,
-    event_name,
-    correct,
-    actual_delay_bucket
-  FROM base
-  WHERE user_pseudo_id IS NOT NULL
-    AND event_name IN ('lesson_complete', 'learning_review_answer')
-),
-weekly_effective_instance_facts AS (
-  SELECT
-    DATE_TRUNC(activity_date, WEEK(MONDAY)) AS week_start_utc,
-    user_pseudo_id,
-    COUNT(DISTINCT activity_date) AS meaningful_learning_days,
-    COUNTIF(
-      event_name = 'learning_review_answer'
-      AND correct = 1
-      AND actual_delay_bucket IN ('d1_to_d6', 'd7_to_d29', 'd30_plus')
-    ) AS correct_delayed_reviews,
-    MAX(event_timestamp) AS data_through_micros
-  FROM meaningful_learning_events
-  GROUP BY week_start_utc, user_pseudo_id
-),
-weekly_effective_learner_rows AS (
-  SELECT 'weekly_effective_learner' AS row_kind, TO_JSON_STRING(STRUCT(
-    CAST(week_start_utc AS STRING) AS week_start_utc,
-    (
-      week_start_utc >= PARSE_DATE('%Y%m%d', @fromSuffix)
-      AND data_through_date >= DATE_ADD(week_start_utc, INTERVAL 7 DAY)
-    ) AS is_complete_week,
-    COUNT(*) AS active_consented_app_instances,
-    COUNTIF(meaningful_learning_days >= 2 AND correct_delayed_reviews >= 1) AS weekly_effective_learners,
-    SAFE_DIVIDE(
-      COUNTIF(meaningful_learning_days >= 2 AND correct_delayed_reviews >= 1),
-      COUNT(*)
-    ) AS weekly_effective_learner_rate,
-    SUM(correct_delayed_reviews) AS delayed_success_count,
-    MAX(data_through_micros) AS data_through_micros
-  )) AS payload
-  FROM weekly_effective_instance_facts
-  CROSS JOIN warehouse_watermark
-  GROUP BY week_start_utc, data_through_date
-),
 experiment_exposure_rows AS (
   SELECT 'experiment_exposure' AS row_kind, TO_JSON_STRING(STRUCT(
     experiment_id,
@@ -1056,8 +879,7 @@ daily_kpi_rows AS (
     COUNT(DISTINCT IF(event_name = 'product_session_start', user_pseudo_id, NULL)) AS active_consented_app_instances,
     COUNTIF(event_name = 'product_screen_view') AS screen_views,
     COUNTIF(event_name = 'lesson_start') AS lesson_starts,
-    COUNTIF(event_name = 'lesson_complete') AS lesson_completes,
-    COUNTIF(event_name = 'learning_review_answer') AS review_answers
+    COUNTIF(event_name = 'lesson_complete') AS lesson_completes
   )) AS payload
   FROM base
   GROUP BY local_date
@@ -1070,10 +892,10 @@ quality_row AS (
       COUNTIF(event_name = 'product_screen_view' AND (screen_id IS NULL OR screen_id = 'unknown_screen')),
       COUNTIF(event_name = 'product_screen_view')
     ) AS unknown_screen_rate,
-    COUNTIF((STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND event_id IS NULL) AS missing_event_ids,
-    COUNTIF((STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND session_id IS NULL) AS missing_session_ids,
-    (SELECT COUNTIF(duplicate_rank > 1) FROM raw_base WHERE STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AS duplicate_events,
-    (SELECT COUNTIF((STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND IFNULL(schema_version, -1) != 1) FROM raw_base) AS invalid_schema_events,
+    COUNTIF((STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND event_id IS NULL) AS missing_event_ids,
+    COUNTIF((STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND session_id IS NULL) AS missing_session_ids,
+    (SELECT COUNTIF(duplicate_rank > 1) FROM raw_base WHERE STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AS duplicate_events,
+    (SELECT COUNTIF((STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_')) AND IFNULL(schema_version, -1) != 1) FROM raw_base) AS invalid_schema_events,
     COUNT(DISTINCT IF(event_name = 'product_session_start', session_id, NULL)) AS sessions,
     COUNT(DISTINCT IF(STARTS_WITH(event_name, 'product_'), user_pseudo_id, NULL)) AS consented_app_instances,
     COUNT(DISTINCT IF(
@@ -1100,7 +922,7 @@ quality_row AS (
       )),
       COUNT(DISTINCT user_pseudo_id)
     ) AS first_touch_coverage_rate,
-    MAX(IF(STARTS_WITH(event_name, 'learning_review_') OR STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_'), event_timestamp, NULL)) AS data_through_micros
+    MAX(IF(STARTS_WITH(event_name, 'product_') OR STARTS_WITH(event_name, 'experiment_'), event_timestamp, NULL)) AS data_through_micros
   )) AS payload FROM base
 )
 SELECT * FROM screen_rows
@@ -1118,12 +940,6 @@ UNION ALL SELECT * FROM true_retention_summary_row
 UNION ALL SELECT * FROM active_day_bucket_rows
 UNION ALL SELECT * FROM activation_summary_row
 UNION ALL SELECT * FROM acquisition_channel_rows
-UNION ALL SELECT * FROM review_summary_row
-UNION ALL SELECT * FROM review_delay_rows
-UNION ALL SELECT * FROM mastery_transition_rows
-UNION ALL SELECT * FROM review_content_rows
-UNION ALL SELECT * FROM review_session_summary_row
-UNION ALL SELECT * FROM weekly_effective_learner_rows
 UNION ALL SELECT * FROM experiment_exposure_rows
 UNION ALL SELECT * FROM release_adoption_rows
 UNION ALL SELECT * FROM operation_failure_rows
@@ -1285,12 +1101,17 @@ export function isAnalyticsExportPendingError(error: unknown): boolean {
 export async function handleAdminProductAnalytics(
   request: CallableRequest<Record<string, unknown>>,
 ): Promise<unknown> {
-  if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
+  if (!hasVerifiedCallablePermission(request.auth, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
 
   const rangeDays = clampProductAnalyticsDays(request.data?.rangeDays);
   const platform = normalizeProductAnalyticsPlatform(request.data?.platform);
+  console.info('admin_product_analytics authorized', {
+    role: roleFromAdminToken(request.auth?.token),
+    rangeDays,
+    platform,
+  });
   const cacheKey = `${rangeDays}:${platform}`;
   const cached = cache.get(cacheKey);
   if (cached && cached.expiresAtMs > Date.now()) return cached.value;
@@ -1317,10 +1138,6 @@ export async function handleAdminProductAnalytics(
   const sessionBuckets: Record<string, unknown>[] = [];
   const sessionEntryScreens: Record<string, unknown>[] = [];
   const sessionLastScreens: Record<string, unknown>[] = [];
-  const reviewDelayBuckets: Record<string, unknown>[] = [];
-  const masteryTransitions: Record<string, unknown>[] = [];
-  const reviewContentDiagnostics: Record<string, unknown>[] = [];
-  const weeklyEffectiveLearners: Record<string, unknown>[] = [];
   const experimentExposures: Record<string, unknown>[] = [];
   const releaseAdoption: Record<string, unknown>[] = [];
   const operationFailures: Record<string, unknown>[] = [];
@@ -1329,8 +1146,6 @@ export async function handleAdminProductAnalytics(
   let retentionSummary: Record<string, unknown> = {};
   let trueRetentionSummary: Record<string, unknown> = {};
   let activationSummary: Record<string, unknown> = {};
-  let reviewSummary: Record<string, unknown> = {};
-  let reviewSessionSummary: Record<string, unknown> = {};
   let quality: Record<string, unknown> = exportPending
     ? { export_status: 'waiting_for_first_daily_export' }
     : {};
@@ -1352,12 +1167,6 @@ export async function handleAdminProductAnalytics(
     else if (row.row_kind === 'active_day_bucket') activeDayBuckets.push(payload);
     else if (row.row_kind === 'activation_summary') activationSummary = payload;
     else if (row.row_kind === 'acquisition_channel') acquisitionChannels.push(payload);
-    else if (row.row_kind === 'review_summary') reviewSummary = payload;
-    else if (row.row_kind === 'review_delay') reviewDelayBuckets.push(payload);
-    else if (row.row_kind === 'mastery_transition') masteryTransitions.push(payload);
-    else if (row.row_kind === 'review_content') reviewContentDiagnostics.push(payload);
-    else if (row.row_kind === 'review_session_summary') reviewSessionSummary = payload;
-    else if (row.row_kind === 'weekly_effective_learner') weeklyEffectiveLearners.push(payload);
     else if (row.row_kind === 'experiment_exposure') experimentExposures.push(payload);
     else if (row.row_kind === 'release_adoption') releaseAdoption.push(payload);
     else if (row.row_kind === 'operation_failure') operationFailures.push(payload);
@@ -1442,20 +1251,6 @@ export async function handleAdminProductAnalytics(
       entryScreens: sessionEntryScreens.sort((a, b) => Number(b.sessions ?? 0) - Number(a.sessions ?? 0)),
       lastObservedScreens: sessionLastScreens.sort((a, b) => Number(b.sessions ?? 0) - Number(a.sessions ?? 0)),
     },
-    learningOutcomes: {
-      review: reviewSummary,
-      reviewSessions: reviewSessionSummary,
-      delayBuckets: reviewDelayBuckets,
-      masteryTransitions,
-      contentDiagnostics: reviewContentDiagnostics,
-      weeklyEffectiveLearners: weeklyEffectiveLearners.sort((a, b) => (
-        String(b.week_start_utc ?? '').localeCompare(String(a.week_start_utc ?? ''))
-      )),
-      entity: 'consent_observed_app_instance',
-      weekDefinition: 'utc_monday_start',
-      masteryDefinition: 'observed_correct_recall_after_7d_v1',
-      durableMasteryDefinition: 'observed_correct_recall_after_30d_v1',
-    },
     experiments: {
       exposures: experimentExposures,
       causalOutcomeStatus: 'unavailable_until_predeclared_metric_maturity_and_sample_are_met',
@@ -1480,7 +1275,7 @@ export async function handleAdminProductAnalytics(
 
 export const adminProductAnalytics = onCall({
   region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
+  enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
   timeoutSeconds: 60,
   memory: '512MiB',
 }, handleAdminProductAnalytics);

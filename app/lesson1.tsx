@@ -1965,7 +1965,7 @@ function LessonScreen() {
   const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
   const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonStorageId, LESSON_DATA.length, effectiveTotal, studyTarget);
   const initialOverridePhraseCell = getInitialOverridePhraseCell(lessonStorageId, effectiveTotal, studyTarget);
-  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, spendOne, energyReady } = useEnergy();
+  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, confirmSpendOne, energyReady } = useEnergy();
   useEffect(() => {
     let cancelled = false;
     void (async () => {
@@ -1975,14 +1975,8 @@ function LessonScreen() {
     return () => { cancelled = true; };
   }, [lessonId, router, studyTarget]);
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
-  const currentEnergyRef = useRef(currentEnergy);
-  const bonusEnergyRef = useRef(bonusEnergy);
-  const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
-  const spendOneRef = useRef(spendOne);
-  useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
-  useEffect(() => { bonusEnergyRef.current = bonusEnergy; }, [bonusEnergy]);
-  useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
-  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+  const confirmSpendOneRef = useRef(confirmSpendOne);
+  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
   // cellIndex — позиция в прогресс-баре (0..49), двигается строго по кругу
   const [cellIndex,    setCellIndex]    = useState(initialStartCell);
@@ -2551,15 +2545,15 @@ function LessonScreen() {
   // нет. Размонтирование экрана сбрасывает ref естественным образом.
   useEffect(() => {
     if (!energyReady) return;
-    if (testerEnergyDisabled) return;
     if (entryEnergyGateLessonRef.current === lessonId) return;
     entryEnergyGateLessonRef.current = lessonId;
-    if (currentEnergy <= 0 && bonusEnergy <= 0) {
-      showEnergyEmptyFeedback();
-      return;
-    }
-    // Оптимистично: spendOne сразу двигает локальный счётчик, запись догоняет.
-    spendOneRef.current().catch(() => {});
+    let active = true;
+    void confirmSpendOneRef.current().then(result => {
+      if (!active) return;
+      if (result === 'insufficient') showEnergyEmptyFeedback();
+      if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+    });
+    return () => { active = false; };
   }, [energyReady, lessonId, currentEnergy, bonusEnergy, testerEnergyDisabled, showEnergyEmptyFeedback]);
 
   const loadData = async () => {

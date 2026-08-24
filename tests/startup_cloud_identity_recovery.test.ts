@@ -98,7 +98,10 @@ describe('startup cloud identity recovery regression', () => {
     const listener = premiumContext.slice(listenerStart, listenerEnd);
     const ensure = listener.indexOf('ensureStableAuthLinkForStableIdDetailed(uid)');
     const identityGate = listener.indexOf('stableLink.stableUid !== uid', ensure);
-    const protectedListener = listener.indexOf("db.collection('users').doc(uid).onSnapshot", identityGate);
+    const protectedListener = listener.indexOf(
+      "db.collection('users').doc(uid).collection('access_projection').doc('current').onSnapshot",
+      identityGate,
+    );
     const mismatchBranch = listener.slice(
       listener.indexOf("stableLink?.failure === 'stable_id_mismatch'", ensure),
       identityGate,

@@ -23,7 +23,6 @@ import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { LUM } from '../../constants/motionHybrid';
-import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
 import { hapticSoftImpact, hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
@@ -33,6 +32,7 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { leagueBonusBeaconCopy, leagueBonusBeaconDayLabel } from './league_bonus_beacon_copy';
+import RetiredRasterFallback from '../feedback/RetiredRasterFallback';
 
 const LEAGUE_CROWN_ICON = require('../../assets/images/league/league_crown.webp');
 
@@ -97,7 +97,6 @@ function LeagueBonusBeaconOrb({
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const reduceMotion = useReduceMotion();
-  const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const modalTheme = getLeagueBonusPalette(t, themeMode).modal;
 
   const days = Math.max(0, Math.min(7, Math.round(activeDaysThisWeek)));
@@ -338,7 +337,7 @@ function LeagueBonusBeaconOrb({
             </View>
           ) : (
             <View pointerEvents="none" style={styles.giftBadge}>
-              <Image source={leagueBonusGiftImage} contentFit="contain" style={styles.giftImage} accessible={false} />
+              <RetiredRasterFallback kind="league" size={40} color={modalTheme.eyebrow} />
             </View>
           )}
         </View>

@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, type Lang } from '../constants/i18n';
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
+import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
 
 export type { Lang };
 const RU = {
@@ -1155,13 +1156,13 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
   const [langHydrated, setLangHydrated] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.getItem('app_lang')
+    readPortablePreference('app_lang')
       .then(v => {
         writePeekAppLang(typeof v === 'string' ? v : null);
         const storedLang = coerceInterfaceLang(v);
         if (!storedLang) {
           if (typeof v === 'string') {
-            AsyncStorage.removeItem('app_lang').catch(() => {});
+            persistPortablePreference('app_lang', 'ru').catch(() => {});
             setLangState('ru');
           }
           return;
@@ -1179,12 +1180,12 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setLang = useCallback(async (l: Lang) => {
     if (!isInterfaceLangEnabled(l)) {
-      AsyncStorage.removeItem('app_lang').catch(() => {});
+      persistPortablePreference('app_lang', 'ru').catch(() => {});
       writePeekAppLang(null);
       setLangState('ru');
       return;
     }
-    await AsyncStorage.setItem('app_lang', l);
+    await persistPortablePreference('app_lang', l);
     writePeekAppLang(l);
     setLangState(l);
     if (STUDY_TARGET_RESET_LANGS.has(l)) {

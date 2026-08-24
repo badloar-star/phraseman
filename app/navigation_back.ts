@@ -87,6 +87,7 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/paywall_e',
   '/paywall_f',
   '/paywall_g',
+  '/max_paywall',
   '/manage_subscription',
   '/shards_shop',
   '/coin_exchange',
@@ -122,6 +123,7 @@ const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_e',
   '/paywall_f',
   '/paywall_g',
+  '/max_paywall',
 ]);
 
 // Эти экраны владеют особыми Android Back-сценариями (подтверждение выхода,

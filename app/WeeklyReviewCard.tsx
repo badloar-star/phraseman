@@ -4,6 +4,7 @@ import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import PlusBadge from '../components/PlusBadge';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -271,6 +272,9 @@ function PlusReview({ review, copy, onAction, textColor, mutedColor, accent, acc
                 <View style={[styles.orderDot, { backgroundColor: accentText }]}><Text style={[styles.orderText, { color: accent }]}>{step.order}</Text></View>
                 <Text style={[styles.planText, { color: accentText }]}>{step.expectedOutcome}</Text>
                 <Ionicons name="arrow-forward" size={18} color={accentText} />
+                {step.actionKind === 'open_mistake_practice' ? (
+                  <EnergyCostBadge testID={`weekly-review-energy-cost-${step.order}`} />
+                ) : null}
               </Pressable>
             ))}
           </View>

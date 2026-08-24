@@ -63,7 +63,7 @@ describe('lesson replay XP contract', () => {
   it('breaks the lesson combo after mistakes during replay attempts', () => {
     const wrongStart = source.indexOf("np[progressCell] = 'wrong';");
     expect(wrongStart).toBeGreaterThanOrEqual(0);
-    const wrongEnd = source.indexOf('// [SRS]', wrongStart);
+    const wrongEnd = source.indexOf('// Новая долгосрочная система «Ошибки»', wrongStart);
     const wrongBlock = source.slice(wrongStart, wrongEnd > wrongStart ? wrongEnd : wrongStart + 900);
 
     expect(wrongBlock).toContain('correctStreakRef.current = 0;');

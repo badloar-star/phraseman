@@ -26,11 +26,34 @@ import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
-import { emitAppEvent } from '../app/events';
+import { emitAppEvent, onAppEvent } from '../app/events';
+import EnergyStartConfirmModal from './EnergyStartConfirmModal';
+import type { EnergyStartResult } from './energy_start_confirmation';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
 export const MAX_ENERGY = 5; // базовый минимум (уровень 1-9)
+const ENERGY_SPEND_MOTION_TIMEOUT_MS = 1_150;
+
+function createEnergySpendMotionWaiter(): { promise: Promise<void>; cancel: () => void } {
+  let settled = false;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let subscription: { remove: () => void } | null = null;
+  let resolvePromise: (() => void) | null = null;
+  const finish = () => {
+    if (settled) return;
+    settled = true;
+    if (timer) clearTimeout(timer);
+    subscription?.remove();
+    resolvePromise?.();
+  };
+  const promise = new Promise<void>(resolve => {
+    resolvePromise = resolve;
+    subscription = onAppEvent('energy_spend_motion_complete', finish);
+    timer = setTimeout(finish, ENERGY_SPEND_MOTION_TIMEOUT_MS);
+  });
+  return { promise, cancel: finish };
+}
 
 // B2 (PERF_MASTER_PLAN): модульный peek-кеш последнего известного значения
 // энергии. EnergyProvider стартует с MAX_ENERGY, реальное значение приходит
@@ -66,8 +89,12 @@ export interface EnergyContextValue {
   isUnlimited: boolean;      // premium or tester mode
   restoringPremium: boolean; // true while animating premium energy restore
   spendOne: () => Promise<boolean>;  // returns false if no energy
+  /** Ask before a paid start and return a distinct cancel/no-energy outcome. */
+  confirmSpendOne: () => Promise<EnergyStartResult>;
   /** Spend N units: bonus first, then base. Returns false if total available < n (atomic). */
   spendAmount: (n: number) => Promise<boolean>;
+  /** Multi-energy equivalent of confirmSpendOne. */
+  confirmSpendAmount: (n: number) => Promise<EnergyStartResult>;
   /**
    * Вернуть 1 единицу, если оплаченный старт НЕ состоялся (упала сеть, сервер
    * отказал, экран закрылся до входа).
@@ -97,7 +124,9 @@ const EnergyContext = createContext<EnergyContextValue>({
   isUnlimited: false,
   restoringPremium: false,
   spendOne: async () => true,
+  confirmSpendOne: async () => 'spent',
   spendAmount: async () => true,
+  confirmSpendAmount: async () => 'spent',
   refundOne: async () => {},
   reload: async () => {},
   refillToMax: async () => true,
@@ -283,6 +312,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // load() (тестерские тумблеры/точные гейты продолжают ждать live-данные).
   const [energyReady, setEnergyReady] = useState(false);
   const [appActive, setAppActive] = useState(() => AppState.currentState === 'active');
+  const [pendingConfirmationCost, setPendingConfirmationCost] = useState<number | null>(null);
+  const [confirmationTransferring, setConfirmationTransferring] = useState(false);
 
   // Refs for use inside callbacks without stale closures
   const energyRef = useRef(initialPeek?.energy ?? MAX_ENERGY);
@@ -319,6 +350,53 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const syncEnergyPushRef = useRef<(() => Promise<void>) | null>(null);
+  const pendingConfirmationRef = useRef<{
+    cost: number;
+    resolve: (confirmed: boolean) => void;
+  } | null>(null);
+  const confirmationCommitInFlightRef = useRef(false);
+  const motionTargetRef = useRef<{ x: number; y: number } | null>(null);
+
+  const finishPendingConfirmation = useCallback((confirmed: boolean) => {
+    const pending = pendingConfirmationRef.current;
+    if (!pending) return;
+    if (confirmationCommitInFlightRef.current) return;
+    if (confirmed) {
+      confirmationCommitInFlightRef.current = true;
+      setConfirmationTransferring(true);
+      pending.resolve(true);
+      return;
+    }
+    pendingConfirmationRef.current = null;
+    setPendingConfirmationCost(null);
+    pending.resolve(confirmed);
+  }, []);
+
+  const closeCommittedConfirmation = useCallback(() => {
+    pendingConfirmationRef.current = null;
+    confirmationCommitInFlightRef.current = false;
+    motionTargetRef.current = null;
+    setConfirmationTransferring(false);
+    setPendingConfirmationCost(null);
+  }, []);
+  const handleMotionTargetChange = useCallback((target: { x: number; y: number }) => {
+    motionTargetRef.current = target;
+  }, []);
+
+  const requestStartConfirmation = useCallback((cost: number): Promise<boolean> => {
+    if (pendingConfirmationRef.current || confirmationCommitInFlightRef.current) return Promise.resolve(false);
+    return new Promise(resolve => {
+      pendingConfirmationRef.current = { cost, resolve };
+      setPendingConfirmationCost(cost);
+    });
+  }, []);
+
+  useEffect(() => () => {
+    const pending = pendingConfirmationRef.current;
+    pendingConfirmationRef.current = null;
+    confirmationCommitInFlightRef.current = false;
+    pending?.resolve(false);
+  }, []);
 
   // ── Load and apply recovery ────────────────────────────────────────────────
   const runLoad = useCallback(async () => {
@@ -500,7 +578,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     // всюду сама и не может «забыться» в новой активности.
     // Шлём синхронно, до записи в хранилище — картинка должна отзываться
     // на нажатие мгновенно, запись догоняет.
-    emitAppEvent('energy_spent_on_start', { amount: 1 });
+    emitAppEvent('energy_spent_on_start', { amount: 1, target: motionTargetRef.current ?? undefined });
 
     // Spend from bonus first (it expires tomorrow, use it before base energy)
     if (bonusRef.current > 0) {
@@ -617,7 +695,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     if (e < nFromBase) return false;
 
     // Та же анимация списания, что и в spendOne (экзамены ходят сюда).
-    emitAppEvent('energy_spent_on_start', { amount: n });
+    emitAppEvent('energy_spent_on_start', { amount: n, target: motionTargetRef.current ?? undefined });
 
     const newBonus = bonusRef.current - takeB;
     const newE = e - nFromBase;
@@ -663,6 +741,32 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
     return true;
   }, [load]);
+
+  const confirmSpendAmount = useCallback(async (n: number): Promise<EnergyStartResult> => {
+    const cost = Math.max(0, Math.floor(n));
+    if (cost <= 0) return 'unlimited';
+    if (!energyReadyRef.current) await load();
+    if (isUnlimitedRef.current) return 'unlimited';
+    if (bonusRef.current + energyRef.current < cost) return 'insufficient';
+
+    const confirmed = await requestStartConfirmation(cost);
+    if (!confirmed) return 'cancelled';
+    const motionWaiter = createEnergySpendMotionWaiter();
+    try {
+      const spent = cost === 1 ? await spendOne() : await spendAmount(cost);
+      if (!spent) return 'insufficient';
+      await motionWaiter.promise;
+      return 'spent';
+    } finally {
+      motionWaiter.cancel();
+      closeCommittedConfirmation();
+    }
+  }, [closeCommittedConfirmation, load, requestStartConfirmation, spendAmount, spendOne]);
+
+  const confirmSpendOne = useCallback(
+    (): Promise<EnergyStartResult> => confirmSpendAmount(1),
+    [confirmSpendAmount],
+  );
 
   // ── Sync energy-full push с текущим состоянием ──────────────────────────────
   // Безлимит/полная энергия → отменяем пуш. Иначе планируем на момент полного
@@ -745,16 +849,26 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<EnergyContextValue>(() => ({
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    spendOne, spendAmount, refundOne, reload, refillToMax, energyReady,
+    spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
+    refundOne, reload, refillToMax, energyReady,
   }), [
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    spendOne, spendAmount, refundOne, reload, refillToMax, energyReady,
+    spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
+    refundOne, reload, refillToMax, energyReady,
   ]);
 
   return (
     <EnergyContext.Provider value={value}>
       {children}
+      <EnergyStartConfirmModal
+        visible={pendingConfirmationCost !== null}
+        cost={pendingConfirmationCost ?? 1}
+        transferring={confirmationTransferring}
+        onTargetChange={handleMotionTargetChange}
+        onConfirm={() => finishPendingConfirmation(true)}
+        onCancel={() => finishPendingConfirmation(false)}
+      />
     </EnergyContext.Provider>
   );
 }

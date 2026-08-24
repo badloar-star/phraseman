@@ -22,7 +22,7 @@ type Props = {
   message: string;
   choices: ThemedChoice[];
   onRequestClose: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 };
 
@@ -32,7 +32,7 @@ function ThemedChoiceModal({
   message,
   choices,
   onRequestClose,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const reduceMotion = useReduceMotion();

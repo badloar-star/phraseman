@@ -1,4 +1,11 @@
-import { isGiftAccessActive, isPremiumAccessActive, isVipActive, parseProgressMs, resolvePremiumAccess } from './premium_status';
+import {
+  isGiftAccessActive,
+  isPremiumAccessActive,
+  isVipActive,
+  parseProgressMs,
+  resolveIsMaxTier,
+  resolvePremiumAccess,
+} from './premium_status';
 
 const NOW = 1_700_000_000_000;
 const FUTURE = NOW + 86_400_000;
@@ -171,6 +178,44 @@ describe('premium_status — серверный источник правды п
         },
       };
     }
+
+    describe('resolveIsMaxTier canonical authority', () => {
+      it('does not resurrect MAX from an owned hidden alias after canonical downgrade', async () => {
+        const db = fakeDb({
+          canonical: { firebaseAuthUid: 'auth-max', progress: { premium_plan: 'monthly', premium_expiry: '0' } },
+          stale_max_alias: {
+            identityHidden: true, canonicalStableId: 'canonical', firebaseAuthUid: 'auth-max',
+            progress: { premium_plan: 'max_monthly', premium_expiry: '0' },
+          },
+        }, { 'auth-max': { stable_id: 'canonical' } }) as any;
+
+        await expect(resolveIsMaxTier(db, 'canonical', NOW, 'auth-max')).resolves.toBe(false);
+      });
+
+      it('does not resurrect MAX from a hidden alias after canonical revoke', async () => {
+        const db = fakeDb({
+          canonical: {
+            firebaseAuthUid: 'auth-revoked',
+            progress: { premium_plan: 'max_monthly', premium_expiry: String(PAST) },
+          },
+          stale_max_alias: {
+            identityHidden: true, canonicalStableId: 'canonical', firebaseAuthUid: 'auth-revoked',
+            progress: { premium_plan: 'max_monthly', premium_expiry: '0' },
+          },
+        }, { 'auth-revoked': { stable_id: 'canonical' } }) as any;
+
+        await expect(resolveIsMaxTier(db, 'canonical', NOW, 'auth-revoked')).resolves.toBe(false);
+      });
+
+      it('still finds active MAX on the visible canonical identity reached through auth_links', async () => {
+        const db = fakeDb({
+          legacy_auth_doc: { identityHidden: true, canonicalStableId: 'canonical', progress: {} },
+          canonical: { firebaseAuthUid: 'auth-live', progress: { premium_plan: 'max_monthly', premium_expiry: '0' } },
+        }, { 'auth-live': { stable_id: 'canonical' } }) as any;
+
+        await expect(resolveIsMaxTier(db, 'legacy_auth_doc', NOW, 'auth-live')).resolves.toBe(true);
+      });
+    });
 
     it('routes auth link, provider, user, and reverse-alias reads through the supplied transaction', async () => {
       const users: Record<string, Record<string, unknown>> = {

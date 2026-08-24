@@ -58,7 +58,7 @@ export function phraseWordRowsForStudyTarget(
 }
 
 /**
- * Каноническая строка для проверки ответа и SRS: склейка активных слотов (`words` / `wordsEn`).
+ * Каноническая строка для проверки ответа и журнала ошибок: активные слоты (`words` / `wordsEn`).
  */
 export function phraseCanonicalAnswer(phrase: LessonPhrase | null | undefined, studyTarget: StudyTargetLang): string {
   if (!phrase) return '';

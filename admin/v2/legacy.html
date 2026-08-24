@@ -15139,6 +15139,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
           <div><div class="max-ops-chart-title">Квота и watchdog</div><dl id="max-ops-quota-metrics" class="max-ops-metric-list"></dl></div>
           <div><div class="max-ops-chart-title">Использование провайдера</div><dl id="max-ops-provider-metrics" class="max-ops-metric-list"></dl></div>
           <div><div class="max-ops-chart-title">Причины завершения</div><div id="max-ops-end-reasons" class="max-ops-bars"></div></div>
+          <div data-tooltip="Серверные отказы, случившиеся до создания резерва секунд; содержание звонков и данные пользователя не записываются."><div class="max-ops-chart-title">Причины отказа до резерва</div><div id="max-ops-mint-rejections" class="max-ops-bars"></div></div>
         </div>
       </div>
 
@@ -15380,36 +15381,39 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     </p>
   </div>
 
-  <!-- Готовность режима -->
+  <!-- Готовность текущего опубликованного режима. v11 ниже живой пул не меняет. -->
+  <div style="font-size:12px;font-weight:800;color:#cbd5e1;margin:0 0 7px">Текущий живой пул</div>
   <div id="tn-stats" style="margin-bottom:18px"></div>
 
-  <!-- Шаг 1: ИИ-генератор (единственный источник турнирных заданий) -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Наполнить пул заданиями</div>
-    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      Одна кнопка создаёт недостающие задания всех активных типов. Каждый черновик проходит
-      автоматический валидатор и остаётся вне игрового пула. Только ваше явное решение человека
-      на следующем шаге добавляет выбранное задание в игру.
-    </p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <select id="tn-fill-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="A1">A1 — новичок</option>
-        <option value="A2" selected>A2 — базовый</option>
-        <option value="B1">B1 — средний</option>
-        <option value="B2">B2 — уверенный</option>
-      </select>
-      <select id="tn-fill-max" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="12">до 12 заданий</option>
-        <option value="30" selected>до 30 заданий</option>
-        <option value="60">до 60 заданий</option>
-      </select>
-      <button type="button" onclick="tnFillPool(true)" title="Показать, что будет создано — ничего не тратя"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Предпросмотр</button>
-      <button type="button" onclick="tnFillPool(false)" title="Создать недостающие задания всех типов"
-        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">🤖 Наполнить пул</button>
-      <span id="tn-fill-status" style="font-size:13px;color:#9ca3af"></span>
+  <!-- Шаг 1: безопасная проверка кандидатов v11. Здесь нет активации пула. -->
+  <div id="tn-v11-review-card" style="background:#12121a;border:1px solid #2a2a3a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <style>
+      #tn-v11-review-card .tn-v11-action { min-height:44px; transition:border-color .15s ease,opacity .15s ease; }
+      #tn-v11-review-card .tn-v11-action:focus-visible { outline:3px solid #93c5fd; outline-offset:2px; }
+      #tn-v11-review-card .tn-v11-action:disabled { cursor:not-allowed; opacity:.55; }
+      #tn-v11-review-card.tn-v11-ready { border-color:#4ade80; }
+      @media (prefers-reduced-motion: reduce) { #tn-v11-review-card .tn-v11-action { transition:none; } }
+    </style>
+    <div style="display:flex;gap:12px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+      <div>
+        <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">Проверка качества v11</div>
+        <p style="margin:0 0 12px;max-width:760px;font-size:12px;color:#9ca3af;line-height:1.55">
+          Сначала проверьте объём и недоборы, затем запустите ограниченные пакеты двойной семантической проверки.
+          Задание можно безопасно продолжить после перезагрузки страницы. Не переключает живой пул и не публикует задания игрокам.
+        </p>
+      </div>
+      <span style="border:1px solid #3f3f4f;border-radius:999px;padding:5px 9px;font-size:11px;color:#cbd5e1">v11 · черновой контур</span>
     </div>
-    <div id="tn-fill-result" style="margin-top:14px"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button id="tn-v11-dry-run" class="tn-v11-action" type="button" onclick="tnFillPool(true)"
+        title="Проверить объём и недоборы без запуска проверки и без записи"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#bfdbfe;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Проверить план</button>
+      <button id="tn-v11-run" class="tn-v11-action" data-tn-v11-primary="true" type="button" onclick="tnFillPool(false)"
+        title="Запустить или возобновить ограниченную проверку v11; живой пул не изменится"
+        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">Начать / продолжить проверку v11</button>
+      <span id="tn-fill-status" role="status" aria-live="polite" style="font-size:13px;color:#cbd5e1"></span>
+    </div>
+    <div id="tn-fill-result" aria-live="polite" style="margin-top:14px"></div>
   </div>
 
   <!-- зачем 2026-07-27: владелец просил ОТДЕЛЬНЫЙ вход в пул одобренных
@@ -17023,6 +17027,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     lt2s:'< 2 с', '2to5s':'2–5 с', gte15s:'≥ 15 с',
     lt1m:'< 1 мин', '1to3m':'1–3 мин', '3to10m':'3–10 мин', gte10m:'≥ 10 мин',
     ru:'Русский', uk:'Українська', es:'Español', 'pt-BR':'Português', vi:'Tiếng Việt', id:'Bahasa Indonesia', tr:'Türkçe', pl:'Polski',
+    paywall:'Нет доступа MAX', daily_quota:'Дневной лимит', monthly_quota:'Месячный лимит', kill_switch:'Линия выключена', budget:'Бюджет', rate_limit:'Слишком много попыток',
   });
 
   function maxOpsRenderBars(id, values) {
@@ -17138,6 +17143,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     maxOpsRenderBars('max-ops-dist-reconnect', distributions.reconnectRecoveryBuckets);
     maxOpsRenderBars('max-ops-dist-duration', distributions.callDurationBuckets);
     maxOpsRenderBars('max-ops-end-reasons', distributions.endReasons);
+    maxOpsRenderBars('max-ops-mint-rejections', distributions.mintRejectionReasons);
     maxOpsRenderBars('max-ops-locales', distributions.localeCounts);
     maxOpsRenderBars('max-ops-levels', distributions.levelCounts);
     maxOpsRenderMetrics('max-ops-finalize-metrics', [
@@ -22118,17 +22124,19 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         else if (repBadge && violationCount > 0) repBadge.textContent = String(violationCount);
         else if (repBadge) repBadge.remove();
       } else if (kind === 'safety') {
-        // зачем: владелец 2026-08-17 — в карточке ученика должен быть раздел, где
-        // видно, где были флаги и что юзер говорил. Читаем safety_flags по обоим
-        // id (stable/auth), 30+30 записей, сортировка по времени на клиенте.
+        // Сервер исключает MAX-строки до сериализации ответа. Браузер никогда
+        // не читает safety_flags напрямую, даже как резервный источник.
         const safetyResults = await Promise.allSettled([
-          u360Query('safety_flags', 'uid', uid, 'createdAtMs', 30),
-          u360Query('safety_flags', 'authUid', uid, 'createdAtMs', 30),
+          getAdminListSafetyFlagsCallable()({ handled:'all', identity:uid, limit:60 }),
         ]);
         const sourceHealth = [];
-        const byStable = u360SettledRows(safetyResults[0], 'safety_flags stable UID', sourceHealth);
-        const byAuth = u360SettledRows(safetyResults[1], 'safety_flags auth UID', sourceHealth);
-        const rows = u360MergeRowsById(byStable, byAuth)
+        const safetyResponse = u360SettledValue(safetyResults[0], 'safety_flags callable', sourceHealth);
+        if (safetyResponse?.data && sourceHealth.length) {
+          sourceHealth[sourceHealth.length - 1].complete = safetyResponse.data.complete === true;
+          sourceHealth[sourceHealth.length - 1].state = safetyResponse.data.complete === true ? 'ready' : 'partial';
+          sourceHealth[sourceHealth.length - 1].truncated = safetyResponse.data.complete !== true;
+        }
+        const rows = (Array.isArray(safetyResponse?.data?.rows) ? safetyResponse.data.rows : [])
           .sort((a, b) => Number(b.createdAtMs || 0) - Number(a.createdAtMs || 0));
         const badge = document.querySelector('.dsec-acc[data-acc="safety"] .acc-badge');
         const open = rows.filter(r => !r.handled).length;
@@ -28675,23 +28683,15 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   };
 
   // ── Safety flags (опасные сообщения в ИИ-диалоге) ──
+  function isMaxVoiceSafetyFlag(row) {
+    return row?.mode === 'voice_tutor' || row?.mode === 'voice_call';
+  }
   let _allSafetyFlags = [];
   let _safetyFlagsCursor = null;
   let _safetyFlagsExactTotal = 0;
   let _safetyFlagsComplete = false;
   let _safetyFlagsExhausted = false;
   let _safetyFlagsScanBoundReached = false;
-  const SAFETY_FLAGS_FALLBACK_PAGE = 500;
-  async function fetchSafetyFlagsFirestoreFallback(handled, category) {
-    const snap = await getDocs(query(collection(db, 'safety_flags'), orderBy('createdAtMs', 'desc'), limit(SAFETY_FLAGS_FALLBACK_PAGE + 1)));
-    const truncated = snap.docs.length > SAFETY_FLAGS_FALLBACK_PAGE;
-    let rows = snap.docs.slice(0, SAFETY_FLAGS_FALLBACK_PAGE).map((d) => ({ id:d.id, ...d.data() }));
-    if (handled === 'open') rows = rows.filter((row) => row.handled !== true);
-    else if (handled === 'handled') rows = rows.filter((row) => row.handled === true);
-    if (category) rows = rows.filter((row) => String(row.category || '') === String(category));
-    return { rows:rows.slice(0, 200), truncated };
-  }
-
   async function fetchSafetyFlagsPage(reset) {
     const list = document.getElementById('sf-list');
     if (!list) return;
@@ -28711,7 +28711,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const category = document.getElementById('sf-filter-category').value || null;
       const response = await getAdminListSafetyFlagsCallable()({ handled, category, limit: 50, cursor: _safetyFlagsCursor });
       const data = response?.data || {};
-      const incoming = Array.isArray(data.rows) ? data.rows : [];
+      const incoming = Array.isArray(data.rows) ? data.rows.filter((row) => !isMaxVoiceSafetyFlag(row)) : [];
       _allSafetyFlags = reset ? incoming : _allSafetyFlags.concat(incoming);
       _safetyFlagsCursor = data.nextCursor || null;
       _safetyFlagsExactTotal = Number(data.filteredTotal || 0);
@@ -28721,35 +28721,13 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       renderSafetyFlags(_allSafetyFlags);
       window._safetyFlagsLoaded = _safetyFlagsComplete;
     } catch(e) {
-      const handled = document.getElementById('sf-filter-handled')?.value || 'all';
-      const category = document.getElementById('sf-filter-category')?.value || null;
-      try {
-        const fallback = await fetchSafetyFlagsFirestoreFallback(handled, category);
-        const fallbackRows = fallback.rows;
-        _allSafetyFlags = fallbackRows;
-        _safetyFlagsCursor = null;
-        _safetyFlagsExactTotal = null;
-        _safetyFlagsComplete = false;
-        _safetyFlagsExhausted = true;
-        _safetyFlagsScanBoundReached = true;
-        renderSafetyFlags(_allSafetyFlags);
-        const countEl = document.getElementById('sf-count');
-        if (countEl) countEl.textContent = `${fallbackRows.length} в резервной выборке${fallback.truncated ? ' · старые записи здесь не показаны' : ''}`;
-        const notice = document.createElement('div');
-        notice.className = 'pm-v9-source-notice';
-        notice.textContent = 'Основной серверный агрегат временно не ответил. Показаны последние доступные записи из Firestore.';
-        list.prepend(notice);
-        window._safetyFlagsLoaded = false;
-        return { status:'partial', source:'safety_flags_firestore_fallback', message:'Показан резервный источник' };
-      } catch (fallbackError) {
-        window._safetyFlagsLoaded = false;
-        const friendly = window.pmV9FriendlyError ? window.pmV9FriendlyError(e) : 'Источник временно недоступен.';
-        const retained = _allSafetyFlags.length ? `<div class="pm-v9-source-notice">Сохранены ${_allSafetyFlags.length} ранее загруженных записей.</div>` : '';
-        list.innerHTML = retained + `<div class="reports-empty pm-v9-retry-state"><strong>Не удалось получить свежие данные</strong><span>${escapeHtml(friendly)}</span><button type="button" onclick="loadSafetyFlags()">Повторить</button></div>` + (_allSafetyFlags.length ? renderSafetyFlagsHtml(_allSafetyFlags) : '');
-        const countEl = document.getElementById('sf-count');
-        if (countEl) countEl.textContent = 'источник временно недоступен';
-        return { status:'error', source:'safety_flags', error:e, fallbackError };
-      }
+      window._safetyFlagsLoaded = false;
+      const friendly = window.pmV9FriendlyError ? window.pmV9FriendlyError(e) : 'Источник временно недоступен.';
+      const retained = _allSafetyFlags.length ? `<div class="pm-v9-source-notice">Сохранены ${_allSafetyFlags.length} ранее загруженных записей.</div>` : '';
+      list.innerHTML = retained + `<div class="reports-empty pm-v9-retry-state"><strong>Не удалось получить свежие данные</strong><span>${escapeHtml(friendly)}</span><button type="button" onclick="loadSafetyFlags()">Повторить</button></div>` + (_allSafetyFlags.length ? renderSafetyFlagsHtml(_allSafetyFlags) : '');
+      const countEl = document.getElementById('sf-count');
+      if (countEl) countEl.textContent = 'источник временно недоступен';
+      return { status:'error', source:'safety_flags', error:e };
     }
   }
 
@@ -28786,7 +28764,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   }
 
   function renderSafetyFlagsHtml(flags) {
-    return flags.map(r => {
+    return flags.filter((row) => !isMaxVoiceSafetyFlag(row)).map(r => {
       const catColor = r.category === 'suicide' || r.category === 'self_harm' || r.category === 'sexual_minors' ? '#f87171' : '#fbbf24';
       const when = r.createdAtMs ? new Date(r.createdAtMs).toLocaleString() : '—';
       const uidShort = r.uid ? escapeHtml(String(r.uid).slice(-10)) : '—';
@@ -45733,56 +45711,165 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   };
 
   /**
-   * Автодобор комплекта.
-   *
-   * зачем: раньше приходилось угадывать, каких заданий не хватает — статистика
-   * считала готовность по сумме сложностей и врала. Сервер сам смотрит ячейки
-   * «режим × сложность» и заказывает только дырявые, сначала блокирующие.
+   * Resumable v11 semantic review. This surface can inspect and build the
+   * server-only bundle, but it never activates that bundle for live rooms.
    */
+  const TN_V11_POOL_VERSION = 'tpool_20260808_v11';
+  const TN_V11_JOB_STORAGE_KEY = 'phraseman_tournament_v11_job_id';
   let _fnTnFill = null;
-  window.tnFillPool = async function tnFillPool(dryRun) {
+  let _tnV11InFlight = false;
+
+  function tnV11StoredJobId() {
+    try { return localStorage.getItem(TN_V11_JOB_STORAGE_KEY) || ''; } catch (_error) { return ''; }
+  }
+
+  function tnV11RememberJob(data) {
+    if (!data || typeof data.jobId !== 'string' || !data.jobId) return;
+    try { localStorage.setItem(TN_V11_JOB_STORAGE_KEY, data.jobId); } catch (_error) { /* storage is optional */ }
+  }
+
+  function tnV11PageStillActive() {
+    const tab = document.getElementById('tab-tournaments');
+    return document.visibilityState !== 'hidden' && !!tab && getComputedStyle(tab).display !== 'none';
+  }
+
+  function tnV11Yield() {
+    return new Promise((resolve) => setTimeout(resolve, 80));
+  }
+
+  function tnV11SetBusy(busy, dryRun) {
+    const buttons = [document.getElementById('tn-v11-dry-run'), document.getElementById('tn-v11-run')].filter(Boolean);
+    buttons.forEach((button) => {
+      if (!button.dataset.defaultText) button.dataset.defaultText = button.textContent;
+      button.disabled = busy;
+      button.setAttribute('aria-busy', busy ? 'true' : 'false');
+      button.textContent = busy
+        ? (dryRun ? 'Проверяю план…' : 'Проверяю пакет…')
+        : button.dataset.defaultText;
+    });
+  }
+
+  function tnV11Number(value) {
+    return Number.isFinite(Number(value)) ? Number(value) : 0;
+  }
+
+  function tnV11Render(data) {
+    const card = document.getElementById('tn-v11-review-card');
     const status = document.getElementById('tn-fill-status');
     const result = document.getElementById('tn-fill-result');
-    if (status) status.textContent = dryRun ? 'Считаю план…' : 'Добираю, это может занять пару минут…';
+    if (!result || !data) return;
+
+    const cursor = tnV11Number(data.cursor);
+    const total = tnV11Number(data.totalCandidates);
+    const cells = data.cells && typeof data.cells === 'object' ? data.cells : {};
+    const cellRows = Object.entries(cells).sort(([a], [b]) => a.localeCompare(b)).map(([cell, counts]) => {
+      const safeCounts = counts && typeof counts === 'object' ? counts : {};
+      const details = Object.entries(safeCounts).map(([key, value]) => `${escapeHtml(key)}: ${tnV11Number(value)}`).join(' · ');
+      return `<div style="padding:5px 0;border-bottom:1px solid #232332;font-size:12px;color:#cbd5e1"><strong>${escapeHtml(cell)}</strong><span style="color:#9ca3af"> · ${details}</span></div>`;
+    }).join('') || '<div style="font-size:12px;color:#9ca3af">Ячейки пока не рассчитаны.</div>';
+
+    const shortages = Array.isArray(data.shortages) ? data.shortages : [];
+    const shortageCopy = shortages.length
+      ? `<div style="margin-top:10px;color:#fbbf24;font-size:12px"><strong>Недобор:</strong> ${shortages.map(escapeHtml).join(', ')}</div>`
+      : '<div style="margin-top:10px;color:#cbd5e1;font-size:12px"><strong>Недобор:</strong> не обнаружен.</div>';
+
+    let nextAction = 'Нажмите «Начать / продолжить проверку v11».';
+    let stateCopy = 'План рассчитан без запуска проверки и без записи.';
+    let stateColor = '#93c5fd';
+    const exactReady = data.action !== 'dry_run'
+      && data.state === 'ready'
+      && data.continuation !== true
+      && data.paused !== true
+      && data.blocked !== true
+      && data.shortage !== true;
+    if (exactReady) {
+      stateCopy = 'Готово: все глобальные проверки v11 пройдены. Живой пул не переключён.';
+      nextAction = 'Следующее действие: отдельная ручная, hash-pinned миграция после решения владельца.';
+      stateColor = '#4ade80';
+    } else if (data.continuation && data.state !== 'paused') {
+      stateCopy = 'Проверка идёт последовательными ограниченными пакетами. Прогресс сохранён.';
+      nextAction = 'Следующее действие: дождаться завершения или вернуться позже и продолжить тот же job.';
+      stateColor = '#c4b5fd';
+    } else if (data.state === 'paused') {
+      stateCopy = 'Пауза: сервер сохранил прогресс и не потеряет уже полученные результаты.';
+      nextAction = 'Следующее действие: устранить причину паузы и нажать продолжение.';
+      stateColor = '#fbbf24';
+    } else if (data.state === 'blocked') {
+      stateCopy = data.shortage
+        ? 'Заблокировано: кандидатов недостаточно для обязательных квот.'
+        : 'Заблокировано: сервер остановил работу на обязательной проверке.';
+      nextAction = 'Следующее действие: исправить указанный недобор или blocker; повторный клик продолжит тот же job.';
+      stateColor = '#fbbf24';
+    }
+
+    if (card) card.classList.toggle('tn-v11-ready', exactReady);
+    if (status) status.textContent = `${cursor} из ${total} кандидатов`;
+    result.innerHTML = `
+      <div style="border:1px solid #2a2a3a;border-radius:10px;padding:12px;background:#0d0d14">
+        <div style="font-size:13px;font-weight:800;color:${stateColor};margin-bottom:9px">${escapeHtml(stateCopy)}</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px">
+          <div style="font-size:12px;color:#cbd5e1">Обработано: <strong>${tnV11Number(data.processed)}</strong></div>
+          <div style="font-size:12px;color:#cbd5e1">Одобрено: <strong>${tnV11Number(data.approved)}</strong></div>
+          <div style="font-size:12px;color:#cbd5e1">Отклонено: <strong>${tnV11Number(data.rejected)}</strong></div>
+          <div style="font-size:12px;color:#cbd5e1">Карантин: <strong>${tnV11Number(data.quarantined)}</strong></div>
+          <div style="font-size:12px;color:#cbd5e1">Из кэша: <strong>${tnV11Number(data.cacheHits)}</strong></div>
+          <div style="font-size:12px;color:#cbd5e1">Запросов к проверке: <strong>${tnV11Number(data.providerAttempts)}</strong></div>
+          <div style="font-size:12px;color:#cbd5e1">Повторных попыток: <strong>${tnV11Number(data.transientRetries)}</strong></div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:#9ca3af">Бюджет контролируется сервером; эта страница не обходит лимит. Job: ${escapeHtml(data.jobId || 'ещё не создан')}</div>
+        ${shortageCopy}
+        <details style="margin-top:10px"><summary style="cursor:pointer;color:#cbd5e1;font-size:12px">Прогресс по режимам и сложностям</summary><div style="margin-top:6px">${cellRows}</div></details>
+        <div style="margin-top:10px;font-size:12px;color:#cbd5e1"><strong>Следующее действие:</strong> ${escapeHtml(nextAction.replace(/^Следующее действие:\s*/u, ''))}</div>
+      </div>`;
+  }
+
+  window.tnFillPool = async function tnFillPool(dryRun) {
+    if (_tnV11InFlight) return;
+    _tnV11InFlight = true;
+    const status = document.getElementById('tn-fill-status');
+    const result = document.getElementById('tn-fill-result');
+    tnV11SetBusy(true, dryRun === true);
+    if (status) status.textContent = dryRun ? 'Проверяю план без записи…' : 'Запускаю ограниченный пакет…';
     if (result) result.innerHTML = '';
     try {
       _fnTnFill = tnFn(_fnTnFill, 'adminFillTournamentPool');
-      const res = await _fnTnFill({
-        level: document.getElementById('tn-fill-level')?.value || 'A2',
-        maxTasks: Number(document.getElementById('tn-fill-max')?.value || 30),
-        dryRun: dryRun === true,
+      if (dryRun === true) {
+        const response = await _fnTnFill({
+          action: 'dry_run',
+          dryRun: true,
+          poolVersion: TN_V11_POOL_VERSION,
+        });
+        tnV11Render(response?.data || {});
+        return;
+      }
+
+      let response = await _fnTnFill({
+        action: 'run_batch',
+        jobId: tnV11StoredJobId() || undefined,
+        maxCandidates: 4,
+        poolVersion: TN_V11_POOL_VERSION,
       });
-      const data = res?.data || {};
-      if (status) status.textContent = '';
-
-      if (data.complete) {
-        if (result) result.innerHTML = '<div style="font-size:13px;color:#4ade80">Комплект полный — добирать нечего.</div>';
-        return;
+      let data = response?.data || {};
+      tnV11RememberJob(data);
+      tnV11Render(data);
+      while (data.continuation && !data.paused && !data.blocked && tnV11PageStillActive()) {
+        await tnV11Yield();
+        response = await _fnTnFill({
+          action: 'run_batch',
+          jobId: data.jobId || tnV11StoredJobId(),
+          maxCandidates: 4,
+          poolVersion: TN_V11_POOL_VERSION,
+        });
+        data = response?.data || {};
+        tnV11RememberJob(data);
+        tnV11Render(data);
       }
-
-      const orders = Array.isArray(data.orders) ? data.orders : [];
-      const orderRows = orders.map((o) =>
-        `<div style="font-size:13px;padding:3px 0;color:#cbd5e1">${escapeHtml(TN_ACTIVE_MODE_LABEL[o.mode] || o.mode)} · ${TN_DIFF_LABEL[o.difficulty] || o.difficulty} → <b style="color:#93c5fd">${o.count}</b></div>`).join('');
-
-      if (dryRun) {
-        if (result) {
-          result.innerHTML = `<div style="font-size:13px;color:#93c5fd;margin-bottom:8px">Будет заказано (ничего не потрачено):</div>${orderRows}`;
-        }
-        return;
-      }
-
-      const results = Array.isArray(data.results) ? data.results : [];
-      const done = results.filter((r) => r.ok).reduce((sum, r) => sum + (r.written || 0), 0);
-      const failed = results.filter((r) => !r.ok);
-      const failRow = failed.length
-        ? `<div style="font-size:12px;color:#fbbf24;margin-top:8px">Не получилось: ${failed.map((r) => escapeHtml(TN_ACTIVE_MODE_LABEL[r.mode] || r.mode)).join(', ')} — можно повторить.</div>` : '';
-      if (result) {
-        result.innerHTML = `<div style="font-size:13px;color:#4ade80;margin-bottom:8px">Создано <b>${done}</b> заданий — лежат «На проверку».</div>${orderRows}${failRow}`;
-      }
-      tnOpenTab();
     } catch (e) {
-      if (status) status.textContent = '';
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#f87171">${escapeHtml(tnError(e))}</div>`;
+      if (status) status.textContent = 'Проверка остановлена';
+      if (result) result.innerHTML = `<div role="alert" style="font-size:13px;color:#f87171">Ошибка: ${escapeHtml(tnError(e))}. Сохранённый job можно продолжить повторным нажатием.</div>`;
+    } finally {
+      _tnV11InFlight = false;
+      tnV11SetBusy(false, dryRun === true);
     }
   };
 

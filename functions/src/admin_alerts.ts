@@ -79,6 +79,15 @@ function clip(value: unknown, max: number): string {
   return out.length > max ? `${out.slice(0, max - 1)}…` : out;
 }
 
+// зачем: владелец запретил уходить именам/uid во внешние каналы (Telegram) —
+// только количества/хвосты для поиска в админке. escapeHtml защищает от HTML,
+// но не маскирует PII, поэтому имя всегда отбрасываем и оставляем хвост uid,
+// как уже сделано в payment_webhook_alert.ts и в formatContentReportAlert.
+function maskUserRef(uid: unknown): string {
+  const s = String(uid ?? '').trim();
+  return s ? `#${s.slice(-4)}` : '—';
+}
+
 /**
  * Send a message to the configured Telegram chat. No-op (returns false) when
  * alerts are disabled or no chatId is set. Never throws — an alert failure must
@@ -136,8 +145,8 @@ export const adminAlertOnUserReport = onDocumentCreated(
     if (!alertTypeEnabled(cfg, 'userReport')) return;
     const data = event.data?.data() || {};
     const reason = escapeHtml(data.reason || data.category || 'не указана');
-    const offender = escapeHtml(data.reportedName || data.reportedUid || '—');
-    const reporter = escapeHtml(data.reporterName || data.reporterUid || '—');
+    const offender = escapeHtml(maskUserRef(data.reportedUid));
+    const reporter = escapeHtml(maskUserRef(data.reporterUid));
     const text =
       `🚩 <b>Новая жалоба на пользователя</b>\n\n` +
       `Нарушитель: <b>${offender}</b>\n` +
@@ -162,14 +171,13 @@ export const adminAlertOnCriticalError = onDocumentCreated(
     const errorName = clip(data.errorName, 120);
     const feature = escapeHtml(clip(data.feature || data.context, 120) || '—');
     const screen = clip(data.screen, 120);
-    const uid = escapeHtml(data.uid || '—');
-    const userName = clip(data.userName, 60);
+    const uid = escapeHtml(maskUserRef(data.uid));
     const appVersion = clip(data.appVersion, 40);
     const stack = clip(data.stack, 700);
     const text =
       `🔴 <b>Critical error</b>\n\n` +
       `Feature: ${feature}${screen ? ` · ${escapeHtml(screen)}` : ''}\n` +
-      `UID: ${uid}${userName ? ` (${escapeHtml(userName)})` : ''}\n` +
+      `UID: ${uid}\n` +
       `App: v${escapeHtml(appVersion || '?')} (${escapeHtml(clip(data.platform, 20) || '?')})\n` +
       `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
       `${stack ? `<pre>${escapeHtml(stack)}</pre>\n` : ''}` +
@@ -204,9 +212,8 @@ export function formatContentReportAlert(
   const comment = clip(data.comment, limits.comment) || '—';
   const content = clip(data.dataText, limits.content);
   const answer = clip(data.userAnswer, limits.answer);
-  const uid = String(data.uid ?? '');
   const userLine = [
-    `${clip(data.userName, 60) || 'аноним'}${uid ? ` #${uid.slice(-4)}` : ''}`,
+    maskUserRef(data.uid),
     `Lv${Number(data.userLevel) || 0}`,
     `${Number(data.userXP) || 0} XP`,
     `стрик ${Number(data.userStreak) || 0}`,

@@ -2,22 +2,19 @@
 
 Run: `2026-05-19_fr_inventory_v0a1`
 
-Status: `BLOCK`
+Status: `PASS`
 
-Generated at: 2026-08-13T02:01:33.091Z
+Generated at: 2026-08-20T14:16:08.712Z
 
 ## Summary
 
 - Checks/findings: 27132
-- Blockers: 2
+- Blockers: 0
 - Warnings: 0
 
 ## Findings
 
-- `blocker` `required_dir_missing_curriculum`: Missing required path: /Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/curriculum
-  Artifact: `/Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/curriculum`
-- `blocker` `required_dir_missing_generated`: Missing required path: /Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/generated
-  Artifact: `/Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/generated`
+No findings.
 
 ## Notes
 

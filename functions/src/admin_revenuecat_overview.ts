@@ -1,7 +1,6 @@
 import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { hasPermission } from './admin/permissions';
-import { hasAdminRole, type AdminRole } from './admin/roles';
+import { hasClaimedPermission, roleFromAdminToken } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
@@ -78,10 +77,6 @@ export function parseRevenueCatOverview(payload: unknown): RevenueCatOverviewMet
   };
 }
 
-function resolveRole(token: Record<string, unknown>): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
-}
-
 let cached: AdminRevenueCatOverviewResponse | null = null;
 
 async function loadRevenueCatOverview(): Promise<AdminRevenueCatOverviewResponse> {
@@ -132,8 +127,8 @@ export const adminGetRevenueCatOverviewMetrics = onCall(
   },
   async (request): Promise<AdminRevenueCatOverviewResponse> => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-    const role = resolveRole(request.auth.token as Record<string, unknown>);
-    if (!role || !hasPermission(role, 'money.read')) {
+    const role = roleFromAdminToken(request.auth.token);
+    if (!role || !hasClaimedPermission(request.auth.token, 'money.read')) {
       throw new HttpsError('permission-denied', 'Role cannot read RevenueCat metrics');
     }
     return loadRevenueCatOverview();

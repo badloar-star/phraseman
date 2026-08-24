@@ -1,7 +1,10 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall, type CallableRequest } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
-import { hasClaimedPermission } from './admin/permissions';
+import { ENFORCE_APP_CHECK_ADMIN } from './callable_options';
+import {
+  hasVerifiedCallablePermission,
+  roleFromAdminToken,
+} from './admin/permissions';
 import {
   aggregateSubscriptionAnalytics,
   type SubscriptionAnalyticsRow,
@@ -42,13 +45,20 @@ function firestoreTimestampMs(value: unknown): number | null {
 export async function handleAdminSubscriptionAnalytics(
   request: CallableRequest<Record<string, unknown>>,
 ): Promise<unknown> {
-  if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
+  if (!hasVerifiedCallablePermission(request.auth, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
 
   const rangeDays = clampSubscriptionAnalyticsDays(request.data?.rangeDays);
   const store = normalizeSubscriptionStore(request.data?.store);
   const productId = normalizeProductId(request.data?.productId);
+  console.info('admin_subscription_analytics authorized', {
+    role: roleFromAdminToken(request.auth?.token),
+    rangeDays,
+    store,
+    productFilter: Boolean(productId),
+    documentCap: DOCUMENT_CAP,
+  });
   const fromMs = Date.now() - rangeDays * 24 * 60 * 60 * 1000;
   const rows: (SubscriptionAnalyticsRow & ServerRevenueRow)[] = [];
   let cursor: FirebaseFirestore.QueryDocumentSnapshot | null = null;
@@ -112,7 +122,7 @@ export async function handleAdminSubscriptionAnalytics(
 
 export const adminSubscriptionAnalytics = onCall({
   region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
+  enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
   timeoutSeconds: 60,
   memory: '512MiB',
 }, handleAdminSubscriptionAnalytics);

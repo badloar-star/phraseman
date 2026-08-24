@@ -29,24 +29,15 @@ describe('level gift server reservation contract', () => {
     expect(client).toContain("'levelGiftReserve'");
   });
 
-  test('the root host acquires a server display receipt before showing a queued level gift', () => {
+  test('the root host is Spin-only while inventory modals retain canonical reservation handling', () => {
     const rootLayout = read('app/_layout.tsx');
-    const showNext = rootLayout.slice(
-      rootLayout.indexOf('const showNext = useCallback'),
-      rootLayout.indexOf('const flushQueue = useCallback'),
-    );
-    expect(showNext).toContain('await acquireLevelGiftDisplay');
-    expect(showNext).toContain('await reserveLevelGiftForDisplay');
-    expect(showNext).toContain('await saveUnclaimedGift');
-    expect(showNext).toContain('await saveUnclaimedDualGift');
-    expect(showNext).toContain('persistedGift?.levelGiftReservation?.reservationId');
-    expect(showNext).toContain('persistedPair?.f2p.levelGiftReservation?.reservationId');
-    expect(showNext).toContain("displayStatus === 'already_displayed'");
-    expect(showNext).toContain("displayStatus === 'unavailable'");
-    const displayReceipt = showNext.indexOf('await acquireLevelGiftDisplay');
-    const giftModalOpen = showNext.indexOf('setShowLevelUp(true)', displayReceipt);
-    expect(displayReceipt).toBeGreaterThanOrEqual(0);
-    expect(giftModalOpen).toBeGreaterThan(displayReceipt);
+    expect(rootLayout).not.toContain('acquireLevelGiftDisplay');
+    expect(rootLayout).not.toContain('reserveLevelGiftForDisplay');
+    expect(rootLayout).not.toContain('saveUnclaimedGift');
+    expect(rootLayout).not.toContain('saveUnclaimedDualGift');
+    expect(singleModal).toContain('rollF2pLevelGiftForUser(level, { studyTarget })');
+    expect(dualModal).toContain('rollF2pLevelGiftForUser(level, { premiumSafe: true, studyTarget })');
+    expect(dualModal).toContain('rollPremiumLevelGiftForUser(level, { studyTarget })');
   });
 
   test('pack access activates a server grant and carries its voucher into local state/redemption', () => {

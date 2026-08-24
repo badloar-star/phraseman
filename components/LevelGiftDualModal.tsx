@@ -16,7 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Image } from 'expo-image';
+import Reanimated from 'react-native-reanimated';
 import {
   applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
   isEnergyBonusGiftId,
@@ -31,13 +31,14 @@ import type { Theme, ThemeMode } from '../constants/theme';
 import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './GiftOpenEffects';
 import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
 import PlusBadge from './PlusBadge';
 import { GiftBox3D, paletteForRarity, GIFT_PALETTES } from './level_gift_box';
 import { getBestAvatarForLevel } from '../constants/avatars';
-import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
+import LevelSpinRewardArt from './LevelSpinRewardArt';
 import {
   RewardModalPanelBackdrop,
   rewardModalAccentColor,
@@ -151,7 +152,6 @@ const RARITY_BORDER: Record<string, string> = {
   epic:   '#B8860B88',
 };
 const USE_ELITE_DUAL_LEVEL_GIFT_MODAL = true;
-const DUAL_CHEST_IMAGE_SIZE = USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 88 : 82;
 const DUAL_CHEST_STAGE_SIZE = USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 108 : 98;
 const MINI_REWARD_STAGE_SIZE = 116;
 const MINI_REWARD_ICON_SIZE = 94;
@@ -161,8 +161,6 @@ const dualGiftModalPanelBackground = (themeMode: ThemeMode, t: Theme): string =>
   switch (themeMode) {
     case 'gold':
       return '#140E06';
-    case 'minimalDark':
-      return '#070B11';
     case 'sagePorcelain':
       return '#FCFDF9';
     case 'dark':
@@ -229,8 +227,8 @@ interface Props {
    * зачем: владелец (2026-08-16) — GiftOpenBurst статичен по прошлой просьбе
    * (без частиц/движения). В hybrid каждый из двух мини-сундуков получает
    * СВОЙ единственный удар героя-награды (RewardImpactRings) в момент, когда
-   * его открыли — chest/opening-хореография (Animated ниже) НЕ трогается.
-   * Боевой дефолт — 'classic'.
+   * его открыли. Hybrid пропускает старую JS shake/idle-хореографию.
+   * Production default — hybrid; explicit `classic` сохранён для rollback/QA.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
@@ -238,11 +236,13 @@ interface Props {
 /** pair: сундуки + мини-раскрытие (только названия); full: описания + «Получить всё» */
 type Phase = 'pair' | 'full';
 
-function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', presentationMode = 'open', studyTarget, motionVariant = 'classic' }: Props) {
+function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', presentationMode = 'open', studyTarget, motionVariant = 'hybrid' }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
   const storesOnly = deliveryMode === 'inventory';
+  const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
 
   const [f2pGift, setF2pGift]   = useState<GiftDef | null>(null);
   const [premGift, setPremGift] = useState<GiftDef | null>(null);
@@ -322,14 +322,14 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       f2pApplyPromiseRef.current = null;
       premApplyPromiseRef.current = null;
       resetAnims();
-      if (USE_ELITE_DUAL_LEVEL_GIFT_MODAL) {
+      if (USE_ELITE_DUAL_LEVEL_GIFT_MODAL && !isHybrid && !reduceMotion) {
         Animated.spring(modalEntrance, {
           toValue: 1,
           useNativeDriver: true,
           tension: 110,
           friction: 12,
         }).start();
-      }
+      } else modalEntrance.setValue(1);
       setF2pGift(null);
       setPremGift(null);
       if (preRolledPair) {
@@ -361,13 +361,18 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         })();
       }
     }
-  }, [visible, level, preRolledPair, resetAnims, modalEntrance, presentationMode, studyTarget, onClose]);
+  }, [visible, level, preRolledPair, resetAnims, modalEntrance, presentationMode, studyTarget, onClose, isHybrid, reduceMotion]);
 
   useEffect(() => {
     if (!visible || presentationMode !== 'apply' || phase !== 'pair' || opened.size !== 2 || !f2pGift || !premGift) return;
     fadeReveal.setValue(0);
     detailScale.setValue(0.96);
     ctaShine.setValue(0);
+    if (isHybrid || reduceMotion) {
+      fadeReveal.setValue(1);
+      detailScale.setValue(1);
+      return;
+    }
     const reveal = Animated.parallel([
       Animated.timing(fadeReveal, {
         toValue: 1,
@@ -405,7 +410,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       reveal.stop();
       shine.stop();
     };
-  }, [visible, presentationMode, phase, opened.size, f2pGift, premGift, fadeReveal, detailScale, ctaShine]);
+  }, [visible, presentationMode, phase, opened.size, f2pGift, premGift, fadeReveal, detailScale, ctaShine, isHybrid, reduceMotion]);
 
   useEffect(() => {
     if (!visible || !storesOnly || !f2pGift || !premGift) return;
@@ -416,7 +421,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
 
   // Idle: оба сундука (или один оставшийся) качаются с разной фазой
   useEffect(() => {
-    if (!visible || !f2pGift || !premGift || phase !== 'pair' || opening) return;
+    if (!visible || !f2pGift || !premGift || phase !== 'pair' || opening || isHybrid || reduceMotion) return;
     const mkLoop = (fA: Animated.Value, delayMs: number) => {
       const loop = Animated.loop(
         Animated.sequence([
@@ -451,7 +456,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       idleLeft.current?.stop();
       idleRight.current?.stop();
     };
-  }, [visible, f2pGift, premGift, phase, opening, opened, fFloat, fRock, pFloat, pRock]);
+  }, [visible, f2pGift, premGift, phase, opening, opened, fFloat, fRock, pFloat, pRock, isHybrid, reduceMotion]);
 
   const fRockI = fRock.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
   const pRockI = pRock.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
@@ -553,6 +558,51 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     idleLeft.current?.stop();
     idleRight.current?.stop();
 
+    const completeOpen = () => {
+      if (!isCurrentOpening(accountToken)) return;
+      floatA.setValue(0);
+      rockA.setValue(0);
+      scaleA.setValue(1);
+      lidA.setValue(1);
+      setOpening(null);
+      setOpened(prev => {
+        const next = new Set(prev);
+        next.add(which);
+        return next;
+      });
+      if (which === 'prem' || g.rarity === 'epic' || g.rarity === 'rare') void hapticSuccess();
+      else void hapticTap();
+      if (storesOnly) {
+        if (closeAfterOpenRef.current) {
+          closeAfterOpenRef.current = false;
+          void handleCloseMidWith(which);
+        }
+        return;
+      }
+      const applyResultP = applyGift(g, userName, energy, maxEnergy, setEnergyFn, {
+        isPremium: true,
+        studyTarget,
+        accountToken,
+        occurrenceId: `level:${level}:${which}`,
+      }).catch(() => ({ success: false }));
+      if (which === 'f2p') f2pApplyPromiseRef.current = applyResultP;
+      else premApplyPromiseRef.current = applyResultP;
+      void applyResultP.then((result) => {
+        if (!isCurrentOpening(accountToken)) return;
+        if (which === 'f2p') setF2pAppliedMeta(result);
+        else setPremAppliedMeta(result);
+      });
+      if (closeAfterOpenRef.current) {
+        closeAfterOpenRef.current = false;
+        void handleCloseMidWith(which);
+      }
+    };
+
+    if (isHybrid || reduceMotion) {
+      completeOpen();
+      return;
+    }
+
     Animated.sequence([
       Animated.parallel([
         Animated.timing(shakeA, { toValue:  9,  duration: 34,  useNativeDriver: true }),
@@ -567,47 +617,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         Animated.spring(scaleA, { toValue: 1.06, tension: 200, friction: 8, useNativeDriver: true }),
         Animated.timing(lidA, { toValue: 1, duration: 340, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
       ]).start(() => {
-        if (!isCurrentOpening(accountToken)) return;
-        floatA.setValue(0);
-        rockA.setValue(0);
-        scaleA.setValue(1);
-        // Сразу показываем мини-награду (иконка + название) — не ждём AsyncStorage/apply.
-        setOpening(null);
-        setOpened(prev => {
-          const next = new Set(prev);
-          next.add(which);
-          return next;
-        });
-        if (which === 'prem' || g.rarity === 'epic' || g.rarity === 'rare') void hapticSuccess();
-        else void hapticTap();
-        if (storesOnly) {
-          // Крестик нажали во время анимации — закрываемся после её конца.
-          if (closeAfterOpenRef.current) {
-            closeAfterOpenRef.current = false;
-            void handleCloseMidWith(which);
-          }
-          return;
-        }
-        const applyResultP = applyGift(g, userName, energy, maxEnergy, setEnergyFn, {
-          isPremium: true,
-          studyTarget,
-          accountToken,
-          occurrenceId: `level:${level}:${which}`,
-        })
-          .catch(() => ({ success: false }));
-        if (which === 'f2p') f2pApplyPromiseRef.current = applyResultP;
-        else premApplyPromiseRef.current = applyResultP;
-        void applyResultP.then((result) => {
-          if (!isCurrentOpening(accountToken)) return;
-          if (which === 'f2p') setF2pAppliedMeta(result);
-          else setPremAppliedMeta(result);
-        });
-        // Крестик нажали во время анимации — apply уже стартовал, закрываемся
-        // как partial claim (оставшийся сундук сохранится).
-        if (closeAfterOpenRef.current) {
-          closeAfterOpenRef.current = false;
-          void handleCloseMidWith(which);
-        }
+        completeOpen();
       });
     });
   };
@@ -881,6 +891,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                     {opened.has('f2p') && f2pGift ? (
                       <MiniRewardPeekStage
                         gift={f2pGift}
+                        lang={lang}
                         themeMode={themeMode}
                         burstTier={animTierF2p(f2pGift.rarity)}
                         motionVariant={motionVariant}
@@ -922,6 +933,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                     {opened.has('prem') && premGift ? (
                       <MiniRewardPeekStage
                         gift={premGift}
+                        lang={lang}
                         themeMode={themeMode}
                         burstTier={animTierPrem()}
                         motionVariant={motionVariant}
@@ -1136,16 +1148,18 @@ export default memo(LevelGiftDualModal);
  * влёт. Название/бейдж рисует слот — так сцена обоих сундуков занимает
  * одинаковую высоту (симметрия слотов).
  */
-function MiniRewardPeekStage({ gift, themeMode, burstTier, motionVariant = 'classic', impactScope }: {
+function MiniRewardPeekStage({ gift, lang, themeMode, burstTier, motionVariant = 'hybrid', impactScope }: {
   gift:        GiftDef;
+  lang:        Lang;
   themeMode:   ThemeMode;
   burstTier:   GiftAnimTier;
-  /** зачем: единственный удар героя (RewardImpactRings) — только в hybrid, chest-анимация ниже не трогается. */
+  /** зачем: единственный удар героя (RewardImpactRings) — только в hybrid. */
   motionVariant?: 'classic' | 'hybrid';
   impactScope?: string;
 }) {
   const entry = useRef(new Animated.Value(0)).current;
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
   const impact = useRewardImpactHybrid({
     visible: isHybrid,
     rarity: gift.rarity,
@@ -1155,6 +1169,10 @@ function MiniRewardPeekStage({ gift, themeMode, burstTier, motionVariant = 'clas
 
   useEffect(() => {
     entry.setValue(0);
+    if (isHybrid || reduceMotion) {
+      entry.setValue(1);
+      return;
+    }
     const pop = Animated.spring(entry, {
       toValue: 1,
       tension: 145,
@@ -1163,7 +1181,7 @@ function MiniRewardPeekStage({ gift, themeMode, burstTier, motionVariant = 'clas
     });
     pop.start();
     return () => pop.stop();
-  }, [entry, gift.id]);
+  }, [entry, gift.id, isHybrid, reduceMotion]);
 
   const entryScale = entry.interpolate({ inputRange: [0, 1], outputRange: [0.68, 1] });
   const entryY = entry.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
@@ -1180,16 +1198,14 @@ function MiniRewardPeekStage({ gift, themeMode, burstTier, motionVariant = 'clas
           ring1Style={impact.styles.ring1}
         />
       )}
-      <Image
-        source={getLevelGiftRewardIcon(gift.id, themeMode)}
-        style={{
-          width: MINI_REWARD_ICON_SIZE,
-          height: MINI_REWARD_ICON_SIZE,
-          zIndex: 2,
-          position: 'relative',
-        }}
-        contentFit="contain"
-      />
+      <Reanimated.View style={isHybrid ? impact.styles.hero : undefined}>
+        <LevelSpinRewardArt
+          rewardId={gift.id}
+          size={MINI_REWARD_ICON_SIZE}
+          accessibilityLabel={giftDisplayTitleForLang(gift, lang)}
+          fallbackColor={paletteForRarity(gift.rarity).accent}
+        />
+      </Reanimated.View>
     </Animated.View>
   );
 }
@@ -1221,7 +1237,12 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
         {label} · {giftRarityUiLabel(rarity, lang)}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <Image source={getLevelGiftRewardIcon(g.id, themeMode)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} contentFit="contain" />
+        <LevelSpinRewardArt
+          rewardId={g.id}
+          size={DETAIL_REWARD_ICON_SIZE}
+          accessibilityLabel={giftDisplayTitleForLang(g, lang)}
+          fallbackColor={paletteForRarity(g.rarity).accent}
+        />
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900', flexShrink: 1 }}>{giftDisplayTitleForLang(g, lang)}</Text>

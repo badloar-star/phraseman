@@ -1,11 +1,9 @@
 import type { MistakeProjectionItem } from '../modules/mistake-practice/projection';
 import {
   buildWordStrengthMap,
-  loadWordStrengthMap,
   strengthDotCount,
   strengthFor,
-  strengthFromSrs,
-  strengthFromStreak,
+  strengthFromMistake,
   strengthKey,
   strongerOf,
 } from '../app/flashcards/word_strength';
@@ -38,16 +36,11 @@ describe('word strength from the new mistake projection', () => {
     expect(strengthFor('Put Off', map)).toBe('medium');
     expect(strengthFor('unknown', map)).toBeNull();
   });
-});
 
-describe('утилиты', () => {
-  it('strengthDotCount: weak=1, medium=2, strong=3', () => {
+  test('utility contracts remain stable', () => {
     expect(strengthDotCount('weak')).toBe(1);
     expect(strengthDotCount('medium')).toBe(2);
     expect(strengthDotCount('strong')).toBe(3);
-  });
-
-  it('strongerOf берёт лучший прогресс', () => {
     expect(strongerOf('weak', 'strong')).toBe('strong');
     expect(strengthKey('Somebody - planted a - tree')).toBe('somebody planted a tree');
   });

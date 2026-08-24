@@ -20,7 +20,7 @@ import { ensureStableLinkForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush, type FriendGiftPushTransport } from './friend_gifts';
 import { buildRewardProgressPatch, type RewardDrop } from './league_chest';
-import { prepareStarOperations, commitStarOperations, type StarOpRequest } from './stars_ledger';
+import { normalizeStars, prepareStarOperations, commitStarOperations, type StarOpRequest } from './stars_ledger';
 import {
   type ActiveDaysState,
   type ChestFriendContribution,
@@ -29,7 +29,7 @@ import {
   friendsTogetherConfigFromNumbers,
   daysTogether,
   levelForDays,
-  starsForLevel,
+  starsForLevelRange,
   weeklyChestProgress,
   weeklyChestTopContributors,
   chestTierForProgress,
@@ -217,7 +217,9 @@ export const friendsTogetherClaimLevel = onCall(CALLABLE_BASE, async (request) =
       throw new HttpsError('already-exists', 'claimed');
     }
 
-    const stars = starsForLevel(level);
+    // Если пара перескочила несколько уровней до первого клейма, промежуточные
+    // награды не должны исчезнуть: выплачиваем диапазон claimedLevel+1..level.
+    const stars = starsForLevelRange(Math.max(1, claimedLevel), level);
     const starOps: StarOpRequest[] = stars > 0 ? [{
       opId: `friends_level:${requestId}`,
       delta: stars,
@@ -229,7 +231,7 @@ export const friendsTogetherClaimLevel = onCall(CALLABLE_BASE, async (request) =
       meta: { friendUid, level },
     }] : [];
 
-    let starsResult: { balance: number } | null = null;
+    let starsResult: { balance: number; earnedTotal: number; seq: number } | null = null;
     if (starOps.length > 0) {
       const prepared = await prepareStarOperations(tx, db, stableUid, userSnap, starOps, {
         nowMs: now,
@@ -238,7 +240,7 @@ export const friendsTogetherClaimLevel = onCall(CALLABLE_BASE, async (request) =
         authUid: request.auth!.uid,
       });
       const committed = commitStarOperations(tx, prepared);
-      starsResult = { balance: committed.balance };
+      starsResult = { balance: committed.balance, earnedTotal: committed.earnedTotal, seq: committed.seq };
     }
 
     const nextClaimed = { ...parseJsonObject(pairData.claimedLevel), [stableUid]: level };
@@ -254,6 +256,12 @@ export const friendsTogetherClaimLevel = onCall(CALLABLE_BASE, async (request) =
       daysTogether: days,
       starsAwarded: stars,
       starsBalance: starsResult?.balance ?? null,
+      // Канонические имена клиентского контракта. Старые aliases выше оставлены
+      // для уже выпущенных клиентов и исторических логов.
+      starsGranted: stars,
+      stars: starsResult?.balance ?? undefined,
+      starsEarnedTotal: starsResult?.earnedTotal ?? undefined,
+      starsSeq: starsResult?.seq ?? undefined,
       requestId,
     };
     tx.set(receiptRef, { friendUid, level, response, createdAt: now });
@@ -295,7 +303,7 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
 
   // Читаем список друзей ДО транзакции (может быть большим, ограничиваем разумным пределом —
   // как friendsGetProfiles: топ-N всё равно берёт немного, но users не бесконечны в друзьях).
-  const friendsSnap = await userRef.collection('friends').limit(200).get();
+  const friendsSnap = await userRef.collection('friends').limit(100).get();
   const friendUids = friendsSnap.docs.map((d) => d.id);
 
   return db.runTransaction(async (tx) => {
@@ -305,7 +313,23 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
       throw new HttpsError('permission-denied', 'user_does_not_match_auth');
     }
     if (claimSnap.exists) {
-      return { ok: true, alreadyClaimed: true, ...(claimSnap.data() as Record<string, unknown>) };
+      const claimData = claimSnap.data() as Record<string, unknown>;
+      const currentStars = normalizeStars(userSnap.data()?.stars);
+      const rewards = parseJsonObject(claimData.rewards);
+      const drops = Array.isArray(rewards.drops) ? rewards.drops as RewardDrop[] : [];
+      const starsAwarded = parseInt0(rewards.stars);
+      return {
+        ok: true,
+        alreadyClaimed: true,
+        starsGranted: starsAwarded,
+        xpBoostMinutes: drops.some((drop) => drop.kind === 'xp_boost') ? 60 : 0,
+        streakShield: drops.some((drop) => drop.kind === 'streak_shield'),
+        aura: drops.some((drop) => drop.kind === 'avatar_aura'),
+        stars: currentStars.balance,
+        starsEarnedTotal: currentStars.earnedTotal,
+        starsSeq: currentStars.seq,
+        ...claimData,
+      };
     }
 
     const pairRefs = friendUids.map((uid) => db.collection('friend_pairs').doc(pairId(stableUid, uid)));
@@ -344,7 +368,11 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
     });
 
     const progress = weeklyChestProgress(
-      contributions, config.chestCapPerFriend, config.chestTopN, config.chestMinPairLevel,
+      contributions,
+      config.chestCapPerFriend,
+      config.chestTopN,
+      config.chestMinPairLevel,
+      config.chestBoostMultiplier,
     );
     const tier = chestTierForProgress(progress, config.chestTiers);
     const blockReason = chestClaimBlockReason({
@@ -357,7 +385,7 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
     if (blockReason) throw new HttpsError('failed-precondition', blockReason);
 
     const multiplier = chestRewardMultiplier(myDaysThisWeek);
-    const drops = buildChestRewardDrops(tier, multiplier, now);
+    const drops = buildChestRewardDrops(tier, multiplier, now, userSnap.data());
     const starsAwarded = drops
       .filter((d) => d.kind === 'shards')
       .reduce((sum, d) => sum + Math.floor((d.amount ?? 0)), 0);
@@ -371,6 +399,8 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
     });
 
     let starsBalance: number | null = null;
+    let starsEarnedTotal: number | null = null;
+    let starsSeq: number | null = null;
     if (starsAwarded > 0) {
       const starOps: StarOpRequest[] = [{
         opId: `friends_chest:${requestId}`,
@@ -390,12 +420,18 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
       });
       const committed = commitStarOperations(tx, prepared, rewardPatch);
       starsBalance = committed.balance;
+      starsEarnedTotal = committed.earnedTotal;
+      starsSeq = committed.seq;
     } else if (Object.keys(rewardPatch).length > 0) {
       tx.set(userRef, { ...rewardPatch, updatedAt: now }, { merge: true });
     }
 
     const topContributors = weeklyChestTopContributors(
-      contributions, config.chestTopN, config.chestCapPerFriend, config.chestMinPairLevel,
+      contributions,
+      config.chestTopN,
+      config.chestCapPerFriend,
+      config.chestMinPairLevel,
+      config.chestBoostMultiplier,
     );
     const claimData = {
       tier,
@@ -408,7 +444,19 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
     };
     tx.set(claimRef, claimData);
 
-    return { ok: true, alreadyClaimed: false, starsBalance, ...claimData };
+    return {
+      ok: true,
+      alreadyClaimed: false,
+      starsBalance,
+      starsEarnedTotal,
+      starsSeq,
+      starsGranted: starsAwarded,
+      stars: starsBalance ?? undefined,
+      xpBoostMinutes: drops.some((drop) => drop.kind === 'xp_boost') ? 60 : 0,
+      streakShield: drops.some((drop) => drop.kind === 'streak_shield'),
+      aura: drops.some((drop) => drop.kind === 'avatar_aura'),
+      ...claimData,
+    };
   });
 });
 
@@ -460,7 +508,12 @@ function activeDaysCountForWeek(active: ActiveDaysState | null, weekKey: string)
 }
 
 /** §0/§1.2: I — ×2 XP 60 мин + 10★ · II — + щит цепи + 25★ · III — + 100★ + аура из каталога сундука лиги. */
-function buildChestRewardDrops(tier: number, multiplier: number, now: number): RewardDrop[] {
+function buildChestRewardDrops(
+  tier: number,
+  multiplier: number,
+  now: number,
+  userData: FirebaseFirestore.DocumentData | undefined,
+): RewardDrop[] {
   if (tier <= 0) return [];
   const drops: RewardDrop[] = [];
   const scaledStars = (base: number) => Math.floor(base * multiplier);
@@ -486,7 +539,11 @@ function buildChestRewardDrops(tier: number, multiplier: number, now: number): R
     // валют/сущностей»); avatar_aura без auraId в buildRewardProgressPatch просто не применится,
     // поэтому конкретный auraId выбираем по тому же пулу AVATAR_AURA_IDS через league_chest —
     // здесь достаточно kind:'avatar_aura' с auraId, т.к. league_chest сам фильтрует уже владеемые.
-    drops.push({ id: 'friends_chest_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-prism' });
+    const ownedAuras = parseJsonObject(getField(userData, 'avatar_aura_owned_v1'));
+    const auraId = ['aura-ember', 'aura-mint', 'aura-prism'].find((id) => ownedAuras[id] !== true);
+    if (auraId) {
+      drops.push({ id: 'friends_chest_aura', kind: 'avatar_aura', rarity: 'epic', auraId });
+    }
   }
   return drops;
 }
@@ -517,6 +574,7 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
   const senderNudgeRef = userRef.collection('friend_nudges').doc(dayKey);
   const receiverNudgeRef = friendRef.collection('friend_nudges').doc(dayKey);
   const receiptRef = userRef.collection('friends_together_nudge_receipts').doc(requestId);
+  const notificationId = `friends_together_nudge_${stableUid}_${dayKey}`;
 
   const result = await db.runTransaction(async (tx) => {
     const [userSnap, friendSnap, ownFriend, reciprocal, senderNudgeSnap, receiverNudgeSnap, receiptSnap] = await Promise.all([
@@ -582,12 +640,17 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
       updatedAt: now,
     }, { merge: true });
 
-    tx.set(userNotificationRef(db, friendUid, `friends_together_nudge_${stableUid}_${dayKey}`), buildUserNotification({
+    tx.set(userNotificationRef(db, friendUid, notificationId), buildUserNotification({
       type: 'friend_nudge',
       fromUid: stableUid,
       fromName: senderName,
-      text: 'friends_together_nudge',
-      nav: { kind: 'friends' },
+      text: 'Пять минут на английский?',
+      nav: {
+        kind: 'friend_event',
+        actorStableUid: stableUid,
+        eventId: notificationId,
+        action: 'study_invite',
+      },
     }, now));
 
     const response = { ok: true, requestId, sentAtMs: now };
@@ -605,9 +668,15 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
   if (pushToken) {
     void sendExpoPush(
       pushToken,
-      `👋 ${senderName}`,
-      `${senderName} зовёт: 5 минут — и цепь цела`,
-      { type: 'friend_nudge', fromName: senderName, nav: 'friends' },
+      `${senderName}: пять минут английского?`,
+      'Одно маленькое занятие.',
+      {
+        type: 'friend_nudge',
+        fromName: senderName,
+        eventId: notificationId,
+        actorStableUid: stableUid,
+        nav: 'friends',
+      },
     ).then((transport: FriendGiftPushTransport) => {
       if (transport !== 'sent' && transport !== 'skipped') {
         console.warn('friends_together_nudge_push_failed', { transport });
@@ -631,8 +700,9 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
  * Вызывающий (referral.ts) оборачивает это в try/catch — реферальная квалификация
  * НИКОГДА не должна падать из-за этой фичи (сформулировано в задании).
  */
-export async function applyReferralPairBonus(
+export async function applyReferralPairBonusInTransaction(
   db: admin.firestore.Firestore,
+  tx: admin.firestore.Transaction,
   inviterUid: string,
   inviteeUid: string,
   now: number,
@@ -642,17 +712,26 @@ export async function applyReferralPairBonus(
   if (!a || !b || a === b) return;
   const ref = db.collection('friend_pairs').doc(pairId(a, b));
   const boostUntilWeekKey = nextIsoWeekKey(now);
+  const snap = await tx.get(ref);
+  const data = snap.data() ?? {};
+  // Идемпотентность: если bonusDays уже стоит (>=3), реферальный бонус этой паре уже выдан —
+  // повторный вызов (retry вебхука, двойной триггер) ничего не делает.
+  if (parseInt0(data.bonusDays) >= 3) return;
+  tx.set(ref, {
+    uids: [a, b],
+    bonusDays: 3,
+    boostUntilWeekKey,
+    updatedAt: now,
+  }, { merge: true });
+}
+
+export async function applyReferralPairBonus(
+  db: admin.firestore.Firestore,
+  inviterUid: string,
+  inviteeUid: string,
+  now: number,
+): Promise<void> {
   await db.runTransaction(async (tx) => {
-    const snap = await tx.get(ref);
-    const data = snap.data() ?? {};
-    // Идемпотентность: если bonusDays уже стоит (>=3), реферальный бонус этой паре уже выдан —
-    // повторный вызов (retry вебхука, двойной триггер) ничего не делает.
-    if (parseInt0(data.bonusDays) >= 3) return;
-    tx.set(ref, {
-      uids: [a, b],
-      bonusDays: 3,
-      boostUntilWeekKey,
-      updatedAt: now,
-    }, { merge: true });
+    await applyReferralPairBonusInTransaction(db, tx, inviterUid, inviteeUid, now);
   });
 }

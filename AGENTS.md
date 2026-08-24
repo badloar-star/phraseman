@@ -293,6 +293,12 @@ App Check; (2) прописать ключ в `admin/v2/legacy.html`; (3) убе
 - Treat generated output, runtime state, screenshots, image/audio/video assets, archives, caches, logs, native build output, package manager output, and previous agent/session state as out of context by default.
 - Before using broad file discovery, prefer targeted `rg` searches with globs that exclude heavy areas such as `node_modules/`, `.git/`, `.codex*/`, `.claude*/`, `.superpowers/`, `.artifacts/`, `.logs/`, `docs/reports/`, `maestro-results/`, `assets/images/`, `admin/avatars/`, `android/.gradle/`, `android/app/build/`, `dist/`, `builds/`, `exports/`, `lingman-*`, and `subscription-recovery/`.
 - Do not run broad Jest suites, whole-project typechecks, global asset scans, or recursive report generation as an automatic session habit. Run only the narrow verification needed for the active task unless the user explicitly asks for a broad gate.
+- **СВЕТОФОР тяжёлых проверок (владелец, 2026-08-23) — ОБЯЗАТЕЛЕН.** На репозитории одновременно работает 10+ сессий Claude/Codex. Полный `tsc --noEmit` держит 4–8 ГБ, `ts-jest` — 2–3 ГБ на процесс; 23.08.2026 машина вылетела при 39 процессах node. Перед любой тяжёлой командой (`tsc`, `jest`, сборка, массовый скан) возьми слот и обязательно верни его:
+  ```
+  bash .claude/semaphore/slot.sh acquire "tsc (проверка типов)"
+  bash .claude/semaphore/slot.sh release
+  ```
+  Слотов три — больше машина не тянет; захват атомарный (`mkdir`), протухшие слоты снимаются через 15 минут. Хук `heavy-process-traffic-light.js` блокирует тяжёлую команду без слота. Нет свободного слота — это НЕ повод обойти светофор: сузь объём проверки или подожди. Не заводи параллельных «своих» замков — светофор один на весь репозиторий.
 - Do not start background workers, MCP servers, swarm/agent daemons, memory sync jobs, Telegram relays, auto-installers, or hook-based automation during normal sessions. Start them only for a request that explicitly needs that service, then stop them before finishing.
 - Compact regularly in long sessions. If the active conversation becomes large, after major milestones, after broad logs/test output, or before starting a new unrelated task, compact/summarize the session and continue from the compacted state.
 - Never keep huge command output in the active response context. Summarize the important lines and write bulky logs only to ignored temp/report directories.

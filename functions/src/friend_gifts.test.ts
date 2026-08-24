@@ -219,6 +219,35 @@ test('friendSendGift returns immediately after commit without awaiting Expo tran
   }
 });
 
+test('friendSendGift applies the level-3 Together discount to the durable composite operation', async () => {
+  const dates = Array.from({ length: 10 }, (_, i) => new Date(
+    Date.parse('2026-06-12T00:00:00.000Z') - i * 86400000,
+  ).toISOString().slice(0, 10));
+  const encode = (anchor: string) => ({ anchor, bits: '1'.repeat(dates.length) });
+  for (const uid of ['sender', 'recipient']) {
+    const user = docs.get(`users/${uid}`) as DocData;
+    docs.set(`users/${uid}`, {
+      ...user,
+      progress: {
+        ...(user.progress as DocData),
+        active_days_v1: JSON.stringify(encode('2026-06-12')),
+      },
+    });
+  }
+  docs.set('friend_pairs/recipient__sender', {
+    uids: ['sender', 'recipient'],
+    claimedLevel: {},
+    bonusDays: 0,
+  });
+
+  const result = await sendGift({ giftId: 'xp_boost_2x_24h' });
+
+  expect(result).toMatchObject({ ok: true, costShards: 22 });
+  expect(docs.get('users/sender/friend_gifts_sent/idem_fg_fixture_0001')).toMatchObject({ costShards: 22 });
+  const received = Array.from(docs.entries()).find(([path]) => path.startsWith('users/recipient/friend_gifts_received/'))?.[1];
+  expect(received).toMatchObject({ costShards: 22 });
+});
+
 test('friendSendGift starts one weekly friend quest after a successful gift', async () => {
   const result = await sendGift();
 

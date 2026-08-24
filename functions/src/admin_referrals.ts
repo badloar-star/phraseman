@@ -14,7 +14,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import {
   ADMIN_SENSITIVE_WRITE_OPTIONS,
-  ENFORCE_APP_CHECK,
+  ENFORCE_APP_CHECK_ADMIN,
   requireAdminAppCheck,
 } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
@@ -23,6 +23,7 @@ import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import {
   REFERRAL_SPIN_PRIZE_DAYS,
+  REFERRAL_SPIN_PRIZE_PEARLS,
   referralSpinWeightsFromData,
   validateSpinWeights,
 } from './referral_spin_logic';
@@ -42,9 +43,10 @@ import {
 } from './referral_spin_ledger';
 import { summarizeReferralAdminDrain } from './referral_admin_drain_metrics';
 import { resolveReferralSoftOffAtMs } from './referral_admin_soft_toggle';
+import { listPendingReferralPurchaseRepairOperations } from './admin_referral_purchase_repair';
 
 const REGION = 'us-central1';
-const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
+const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN } as const;
 
 const USERS = 'users';
 const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
@@ -195,6 +197,7 @@ export type ReferralDashboardRow = Readonly<{
   refCode: string;
   createdAtMs: number;
   plusPurchased: boolean;
+  repairEligible: boolean;
   purchasedAtMs: number;
   roulette:
     | Readonly<{ state: 'not_spun' }>
@@ -309,6 +312,7 @@ export function projectReferralDashboardRow(input: Readonly<{
     refCode: String(input.attribution.refCode ?? '').trim(),
     createdAtMs: tsToMs(input.attribution.createdAt) || tsToMs(input.attribution.createdAtMs),
     plusPurchased,
+    repairEligible: String(input.attribution.status ?? 'pending') === 'pending' && plusPurchased,
     purchasedAtMs: plusPurchased
       ? parseProgressMs(input.refereeProgress?.premium_rc_purchased_at_ms)
         || tsToMs(input.attribution.qualifiedAt)
@@ -354,12 +358,6 @@ export function displayNameFromUser(data: FirebaseFirestore.DocumentData | undef
   return referralDisplayNameFromUserData(data);
 }
 
-function prizeAggregateKey(receipt: ReferralDashboardSpinReceipt): string {
-  return receipt.prizeKind === 'pearls'
-    ? `pearls:${Math.max(0, Math.floor(Number(receipt.prizePearls) || 0))}`
-    : `days:${Math.max(0, Math.floor(Number(receipt.prizeDays) || 0))}`;
-}
-
 export function summarizeReferralDashboardPurchases(input: Readonly<{
   attributionIds: readonly string[];
   progressByRefereeId: ReadonlyMap<string, Record<string, unknown>>;
@@ -387,6 +385,11 @@ function assertAdmin(request: { auth?: { uid: string; token?: Record<string, unk
 function adminRoleFromToken(token: Record<string, unknown> | undefined): AdminRole | null {
   const role = token?.adminRole;
   return hasAdminRole(role) ? role : null;
+}
+
+export function canReadReferralDashboard(token: unknown): boolean {
+  const role = roleFromAdminToken(token);
+  return Boolean(role && hasPermission(role, 'money.read'));
 }
 
 function clampLimit(raw: unknown, fallback: number): number {
@@ -881,10 +884,16 @@ export const adminListReferrals = onCall(CALLABLE_BASE, async (request) => {
 
 export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) => {
   assertAdmin(request);
+  const role = roleFromAdminToken(request.auth?.token);
+  if (!role || !canReadReferralDashboard(request.auth?.token)) {
+    throw new HttpsError('permission-denied', 'MONEY_READ_REQUIRED');
+  }
   const limit = clampLimit(request.data?.limit, 100);
   const cursor = referralDashboardCursorFromData(request.data?.cursor);
+  const canRepair = role === 'owner' && hasPermission(role, 'money.manual_access.write');
   const nowMs = Date.now();
   const db = admin.firestore();
+  const spinsCol = db.collectionGroup(SPINS_SUBCOLLECTION);
 
   let pageQuery: admin.firestore.Query = db
     .collection(REFERRAL_ATTRIBUTIONS)
@@ -897,37 +906,47 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
     );
   }
 
-  const [pageSnap, allAttributionsSnap, allSpinsSnap] = await Promise.all([
-    pageQuery.limit(limit).get(),
-    db.collection(REFERRAL_ATTRIBUTIONS).select().get(),
-    db.collectionGroup(SPINS_SUBCOLLECTION)
-      .select('creditId', 'creditSource', 'prizeDays', 'prizeKind', 'prizePearls', 'createdAt', 'createdAtMs')
-      .get(),
+  const [pageSnap, totalInvited, rouletteSpun, totalSpins, pendingRepairState] = await Promise.all([
+    pageQuery.limit(limit + 1).get(),
+    countOf(db.collection(REFERRAL_ATTRIBUTIONS)),
+    countOf(spinsCol.where('creditSource', '==', 'referral')),
+    countOf(spinsCol),
+    canRepair
+      ? listPendingReferralPurchaseRepairOperations(db, request.auth!.uid)
+      : Promise.resolve({ rows: [], truncated: false }),
   ]);
 
-  const pageAttributions: ReferralDashboardAttribution[] = pageSnap.docs.map((doc) => ({
+  const truncated = pageSnap.docs.length > limit;
+  const pageAttributions: ReferralDashboardAttribution[] = pageSnap.docs.slice(0, limit).map((doc) => ({
     id: doc.id,
     ...(doc.data() as Omit<ReferralDashboardAttribution, 'id'>),
   }));
-  const allAttributionIds = allAttributionsSnap.docs.map((doc) => doc.id);
   const pageUserIds = pageAttributions.flatMap((row) => [
     row.id,
     String(row.referrerStableId ?? ''),
   ]);
-  const [pageUsers, allRefereeUsers] = await Promise.all([
-    getUsersById(db, pageUserIds),
-    getUsersById(db, allAttributionIds),
-  ]);
+  const pageUsers = await getUsersById(db, pageUserIds);
 
   const pageCreditIds = pageAttributions.map((row) => referralCreditId(row.id));
   const pageSpinReceipts: ReferralDashboardSpinReceipt[] = [];
+  const seenReceiptCreditIds = new Set<string>();
+  let receiptIntegrityError = false;
   for (const creditIds of chunked(pageCreditIds, FIRESTORE_IN_BATCH)) {
     // eslint-disable-next-line no-await-in-loop
     const snap = await db.collectionGroup(SPINS_SUBCOLLECTION)
       .where('creditId', 'in', creditIds)
+      .limit(creditIds.length + 1)
       .get();
+    if (snap.docs.length > creditIds.length) receiptIntegrityError = true;
     for (const doc of snap.docs) {
-      pageSpinReceipts.push(doc.data() as ReferralDashboardSpinReceipt);
+      const receipt = doc.data() as ReferralDashboardSpinReceipt;
+      const creditId = String(receipt.creditId ?? '');
+      if (!creditId || seenReceiptCreditIds.has(creditId)) {
+        receiptIntegrityError = true;
+        continue;
+      }
+      seenReceiptCreditIds.add(creditId);
+      pageSpinReceipts.push(receipt);
     }
   }
 
@@ -947,41 +966,67 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
     nowMs,
   }));
 
-  const allProgressByRefereeId = new Map<string, Record<string, unknown>>();
-  for (const [id, data] of allRefereeUsers.entries()) {
-    allProgressByRefereeId.set(id, (data.progress ?? {}) as Record<string, unknown>);
-  }
-  const purchaseSummary = summarizeReferralDashboardPurchases({
-    attributionIds: allAttributionIds,
-    progressByRefereeId: allProgressByRefereeId,
-    nowMs,
-  });
-
-  const allSpinReceipts = allSpinsSnap.docs.map((doc) => (
-    spinReceiptFromData(doc.data() as ReferralDashboardSpinReceipt)
-  ));
   const byPrize: Record<string, number> = {};
-  const spunReferralCreditIds = new Set<string>();
-  for (const receipt of allSpinReceipts) {
-    const key = prizeAggregateKey(receipt);
-    byPrize[key] = (byPrize[key] ?? 0) + 1;
-    if (receipt.creditSource === 'referral' && receipt.creditId) {
-      spunReferralCreditIds.add(String(receipt.creditId));
-    }
+  const prizeCounts = await Promise.all(REFERRAL_SPIN_PRIZE_DAYS.map(async (days, index) => {
+    const pearls = REFERRAL_SPIN_PRIZE_PEARLS[index] ?? 0;
+    const [allAtIndex, pearlCount] = await Promise.all([
+      countOf(spinsCol.where('prizeDays', '==', days)),
+      countOf(spinsCol.where('prizeKind', '==', 'pearls').where('prizePearls', '==', pearls)),
+    ]);
+    return { days, pearls, dayCount: Math.max(0, allAtIndex - pearlCount), pearlCount };
+  }));
+  for (const count of prizeCounts) {
+    if (count.dayCount > 0) byPrize[`days:${count.days}`] = count.dayCount;
+    if (count.pearlCount > 0) byPrize[`pearls:${count.pearls}`] = count.pearlCount;
   }
+  const knownPrizeCount = Object.values(byPrize).reduce((sum, count) => sum + count, 0);
+  const purchaseCountLoaded = rows.filter((row) => row.plusPurchased).length;
+  const purchaseSourceComplete = !cursor && !truncated && pageAttributions.length === totalInvited;
 
   return {
     ok: true,
     rows,
     summary: {
-      ...purchaseSummary,
-      rouletteSpun: spunReferralCreditIds.size,
+      totalInvited,
+      plusPurchased: purchaseSourceComplete ? purchaseCountLoaded : null,
+      plusPurchasedLoaded: purchaseCountLoaded,
+      rouletteSpun,
     },
     roulette: {
-      totalSpins: allSpinReceipts.length,
+      totalSpins,
       byPrize,
     },
-    nextCursor: rows.length === limit && pageAttributions[pageAttributions.length - 1]
+    pendingRepairs: pendingRepairState.rows,
+    capabilities: {
+      canRepair,
+    },
+    sourceHealth: {
+      attributions: { state: 'ready', complete: true, total: totalInvited },
+      page: { state: truncated ? 'partial' : 'ready', complete: !truncated, truncated, loaded: rows.length },
+      purchases: {
+        state: purchaseSourceComplete ? 'ready' : 'partial',
+        complete: purchaseSourceComplete,
+        loaded: rows.length,
+      },
+      receipts: {
+        state: receiptIntegrityError ? 'error' : 'ready',
+        complete: !receiptIntegrityError,
+        loaded: pageSpinReceipts.length,
+      },
+      pendingRepairs: {
+        state: pendingRepairState.truncated ? 'partial' : 'ready',
+        complete: !pendingRepairState.truncated,
+        truncated: pendingRepairState.truncated,
+        loaded: pendingRepairState.rows.length,
+      },
+      roulette: {
+        state: knownPrizeCount === totalSpins ? 'ready' : 'partial',
+        complete: knownPrizeCount === totalSpins,
+        total: totalSpins,
+        classified: knownPrizeCount,
+      },
+    },
+    nextCursor: truncated && pageAttributions[pageAttributions.length - 1]
       ? referralDashboardCursorFromAttribution(pageAttributions[pageAttributions.length - 1])
       : null,
   };

@@ -12,7 +12,7 @@ const valid: ExperimentPassport = {
   controlVariant: 'A',
   audience: 'paywall_eligible',
   primaryMetric: 'conversion.behavioral_purchase_completed.v1',
-  guardrails: ['learning.weekly_effective_learner.v1', 'reliability.operation_failure.v1'],
+  guardrails: ['learning.mistake_correction.v1', 'reliability.operation_failure.v1'],
   startUtc: '2026-07-14T00:00:00.000Z',
   endUtc: '2026-08-14T00:00:00.000Z',
   minimumSample: 500,

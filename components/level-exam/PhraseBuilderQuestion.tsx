@@ -4,7 +4,7 @@ import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated'
 
 import type { LevelExamPhraseBuilderTask } from '../../app/level_exam_types';
 import { useTheme } from '../ThemeContext';
-import { V2Chip, V2ChipGhost } from '../tournament/tournament_v2_ui';
+import { V2Chip, V2ChipGhost } from '../ui/v2_ui';
 
 type Props = {
   task: LevelExamPhraseBuilderTask;

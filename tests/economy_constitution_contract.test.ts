@@ -108,16 +108,17 @@ describe('Economy Constitution — client authority is a permanent source contra
 
   test('multi-device sync uses a closed semantic result and never asks the server for permission', () => {
     const sync = read('app/economy/client_shard_operation_sync.ts');
-    expect(sync).toContain(".collection('client_economy_operations')");
-    expect(sync).toContain('mergeReplay: true');
-    expect(sync).toContain('mergeSemanticResult: true');
-    expect(sync).toContain('isValidPortableClientShardGrant(operation.grant)');
-    expect(sync).not.toContain('operation.localWrites');
-    expect(sync).toContain('localOperation.requestFingerprint !== operation.requestFingerprint');
+    expect(sync).toContain('requestPhoneStateEconomySync');
+    expect(sync).not.toContain('getAllKeys');
+    expect(sync).not.toContain(".collection('client_economy_operations')");
     expect(sync).not.toContain(".update({ shards:");
-    const reducer = read('app/economy/client_shard_semantic_reducer.ts');
-    expect(reducer).toContain('reducePortableClientShardGrant');
-    expect(reducer).toContain('Cloud data never chooses an AsyncStorage key');
+    const bridge = read('app/phone_state_economy_bridge.ts');
+    expect(bridge).toContain("kind: 'composite'");
+    expect(bridge).toContain('exactResult: composite.grant');
+    expect(bridge).not.toContain('localWrites');
+    const reducer = read('modules/phone-state/domains/economy.ts');
+    expect(reducer).toContain('phone_state_economy_operation_id_reused');
+    expect(reducer).toContain('opening_balance');
     const rules = read('firestore.rules');
     expect(rules).toContain('match /client_economy_opening/{version}');
     expect(rules).toContain("request.resource.data == resource.data");
@@ -167,6 +168,24 @@ describe('Economy Constitution — client authority is a permanent source contra
       'client_shard_cloud_synced_v1:',
       'client_shard_conflict_v1:',
       'client_shard_semantic_paid_v1:',
+      'level_spin_star_grant_outbox_v1:',
+      'level_spin_star_projection_v1:',
+      'level_spin_star_prepared_v1:',
+      'level_spin_star_operation_v1:',
     ]) expect(cloudSync).toContain(`'${prefix}'`);
+  });
+
+  test('Spin star persistence overlays unacked composites and accepts only newer server revisions', () => {
+    const client = read('app/level_spin_star_grants.ts');
+    const friends = read('app/friends_together/claims_client.ts');
+    const bootstrap = read('app/local_level_spins.ts');
+    expect(client).toContain('unacknowledgedTotal(projection)');
+    expect(client).toContain('seq > current.serverSeq');
+    expect(client).toContain('? balance : current.serverBalance');
+    expect(client).not.toMatch(/Math\.max\(current\.serverBalance/);
+    expect(client).toContain('ack.requestFingerprint !== operation.requestFingerprint');
+    expect(client).not.toMatch(/stars:\s*ack\.starsBalance/);
+    expect(friends).toContain('mergeLevelSpinServerStars(token');
+    expect(bootstrap).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
   });
 });

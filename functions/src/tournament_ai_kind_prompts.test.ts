@@ -24,4 +24,34 @@ describe('tournament kind prompt mirrors the fail-closed content limits', () => 
       expect(prompt).not.toContain('4-12 words');
     },
   );
+
+  it.each(['situation', 'gap'] as const)(
+    'requires all three %s distractors to be minimal grammatical errors in one part of speech',
+    (kind) => {
+      const prompt = buildKindTask({ ...baseParams, kind });
+
+      expect(prompt).toContain('ALL THREE wrong options must be grammatically invalid');
+      expect(prompt).toContain('same part of speech');
+      expect(prompt).toContain('minimal twin');
+      expect(prompt).not.toContain('grammatically fine but wrong in this moment');
+    },
+  );
+
+  it('keeps find_oddity solvable with exactly one grammatical error', () => {
+    const prompt = buildKindTask({ ...baseParams, kind: 'oddity' });
+
+    expect(prompt).toContain('exactly ONE grammatically invalid sentence');
+    expect(prompt).toContain('other three must be grammatical minimal twins');
+    expect(prompt).toContain('three DIFFERENT concrete proofs that the selected safe options are grammatical');
+    expect(prompt).toContain('why the declared answer is the only grammatical error');
+    expect(prompt).not.toContain('three DIFFERENT concrete grammatical proofs for the wrong options');
+    expect(prompt).not.toContain('what trap each wrong option sets');
+  });
+
+  it.each(['situation', 'gap'] as const)(
+    'does not re-allow collocation-only traps through %s difficulty copy',
+    (kind) => {
+      expect(buildKindTask({ ...baseParams, kind })).not.toContain('collocation call');
+    },
+  );
 });

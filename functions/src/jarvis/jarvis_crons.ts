@@ -43,6 +43,8 @@ import { fetchQualitySource } from './quality_firestore_fetcher';
 import { buildQualitySnapshot } from './quality_snapshot';
 import { fetchMoneySource } from './money_firestore_fetcher';
 import { buildMoneySnapshot } from './money_snapshot';
+import { fetchMaxvoiceSource } from './maxvoice_firestore_fetcher';
+import { buildMaxvoiceSnapshot } from './maxvoice_snapshot';
 import { fetchGrowthSource } from './growth_firestore_fetcher';
 import { buildGrowthSnapshot } from './growth_snapshot';
 import { fetchContentSource } from './content_firestore_fetcher';
@@ -318,6 +320,11 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       trigger: 'scheduled',
       nowMs,
       appTier,
+    }),
+    runMaxvoice: () => buildMaxvoiceSnapshot({
+      fetchMaxvoice: () => fetchMaxvoiceSource({ collection: db.collection('max_voice_ops_daily'), nowMs }),
+      trigger: 'scheduled',
+      nowMs,
     }),
     runPayments: (appTier) => buildPaymentsSnapshot({
       fetchers: {

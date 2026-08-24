@@ -22,14 +22,14 @@ type OskolokThemeMode = ThemeMode;
 /** Все жемчужные спрайты — для прогрева кэша изображений на старте. */
 export const OSKOLOK_IMAGE_SOURCES: readonly ImageSourcePropType[] = Object.values(PEARL_ICONS);
 
-let currentOskolokThemeMode: OskolokThemeMode = 'minimalDark';
+let currentOskolokThemeMode: OskolokThemeMode = 'indigo';
 
 export function setOskolokThemeMode(themeMode: OskolokThemeMode): void {
   currentOskolokThemeMode = themeMode;
 }
 
 function pearlForTheme(themeMode: OskolokThemeMode): ImageSourcePropType {
-  return PEARL_ICONS[themeMode] ?? PEARL_ICONS.minimalDark;
+  return PEARL_ICONS[themeMode] ?? PEARL_ICONS.indigo;
 }
 
 /**

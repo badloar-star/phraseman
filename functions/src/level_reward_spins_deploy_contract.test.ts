@@ -13,6 +13,7 @@ describe('level reward spin deploy manifest', () => {
       'levelRewardSpinAcknowledge',
       'levelRewardSpinDelivery',
       'levelRewardSpinEnrollV1',
+      'levelSpinStarGrant',
       'levelSpinActivatePackGift',
     ];
     for (const callable of exported) {

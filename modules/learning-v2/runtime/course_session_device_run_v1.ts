@@ -15,6 +15,7 @@ import {
   type LearningV2CourseSessionIntroPageV1,
   type LearningV2CourseSessionIntroChildV1,
   type LearningV2CourseSessionLearnerChildV1,
+  type LearningV2CourseSessionNewWordEncounterV1,
   type LearningV2CourseSessionPracticeInteractionV1,
 } from "./course_session_client_children_v1";
 import {
@@ -415,6 +416,23 @@ export function getLearningV2CourseSessionAuxiliaryEntryV1(
   );
   if (!found) fail();
   return found;
+}
+
+export function getLearningV2CourseSessionNewWordEncountersV1(
+  handle: LearningV2CourseSessionDeviceRunHandleV1,
+): readonly LearningV2CourseSessionNewWordEncounterV1[] {
+  const encounters = material(handle)
+    .auxiliary.entries.flatMap((entry) =>
+      entry.newWordEncounter ? [entry.newWordEncounter] : [],
+    )
+    .sort((left, right) => left.orderWithinSession - right.orderWithinSession);
+  if (
+    encounters.some(
+      (encounter, index) => encounter.orderWithinSession !== index + 1,
+    )
+  )
+    fail();
+  return Object.freeze(encounters);
 }
 
 export function evaluateLearningV2CourseSessionDeviceInteractionV1(

@@ -45,8 +45,7 @@ const toHex = (channel: number): string =>
 
 /**
  * Светлая ли поверхность. Считаем по реальной яркости цвета, а не по имени
- * темы: список светлых тем в приложении неполон (businessLight в него не
- * входит), а новая тема добавится завтра и снова про него забудут.
+ * темы: новая светлая тема может появиться без обновления списка имён.
  */
 export function isLightSurface(backgroundColor: string): boolean {
   const background = parseHexColor(backgroundColor);

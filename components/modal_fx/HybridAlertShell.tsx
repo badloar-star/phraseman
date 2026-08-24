@@ -11,11 +11,12 @@
 // Подключение — через motionVariant?: 'classic'|'hybrid' (default 'classic'),
 // боевое поведение не меняется, пока проп явно не передан.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import Reanimated, {
   Easing,
   cancelAnimation,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -56,9 +57,34 @@ function HybridAlertShell({
   const backdropOpacity = useSharedValue(0);
   const panelOpacity = useSharedValue(0);
   const panelScale = useSharedValue(1.04);
+  const onRequestCloseRef = useRef(onRequestClose);
+  onRequestCloseRef.current = onRequestClose;
+  const exitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const exitCompletedRef = useRef(false);
+
+  const completeExit = useCallback(() => {
+    if (exitCompletedRef.current) return;
+    exitCompletedRef.current = true;
+    if (exitTimerRef.current) {
+      clearTimeout(exitTimerRef.current);
+      exitTimerRef.current = null;
+    }
+    onRequestCloseRef.current();
+  }, []);
 
   useEffect(() => {
-    if (!visible) return;
+    if (!visible) {
+      exitCompletedRef.current = true;
+      if (exitTimerRef.current) {
+        clearTimeout(exitTimerRef.current);
+        exitTimerRef.current = null;
+      }
+      backdropOpacity.value = 0;
+      panelOpacity.value = 0;
+      panelScale.value = 1.04;
+      return;
+    }
+    exitCompletedRef.current = false;
     if (reduceMotion) {
       // Reduce Motion = один кадр (закон движения проекта): без промежуточных
       // состояний, сразу конечная геометрия.
@@ -67,7 +93,7 @@ function HybridAlertShell({
       panelScale.value = 1;
       return;
     }
-    backdropOpacity.value = withTiming(1, { duration: 240, easing: Easing.out(Easing.cubic) });
+    backdropOpacity.value = withTiming(1, { duration: LUM.backdropMs, easing: Easing.out(Easing.cubic) });
     panelOpacity.value = withDelay(
       LUM.ladder[1],
       withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }),
@@ -81,21 +107,24 @@ function HybridAlertShell({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, reduceMotion]);
 
-  const runExit = (after: () => void) => {
+  useEffect(() => () => {
+    if (exitTimerRef.current) clearTimeout(exitTimerRef.current);
+  }, []);
+
+  const runExit = useCallback(() => {
+    if (exitCompletedRef.current) return;
     if (reduceMotion) {
-      after();
+      completeExit();
       return;
     }
-    backdropOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.in(Easing.cubic) });
-    panelOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.in(Easing.cubic) });
-    panelScale.value = withTiming(0.97, { duration: LUM.exitMs, easing: Easing.in(Easing.cubic) });
-    // Панель смонтирована до конца выхода (260мс) — модалка закрывается родителем
-    // сразу же (onRequestClose синхронный), сама анимация выхода — визуальный
-    // хвост поверх уже невидимого Modal нежелателен, поэтому запускаем закрытие
-    // родителя сразу, а локальную пружину используем только когда компонент
-    // остаётся смонтированным (см. вызов ниже: onRequestClose дергается сразу).
-    after();
-  };
+    backdropOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.out(Easing.cubic) });
+    panelOpacity.value = withTiming(0, { duration: LUM.exitMs, easing: Easing.out(Easing.cubic) }, (finished) => {
+      if (finished) runOnJS(completeExit)();
+    });
+    panelScale.value = withTiming(0.97, { duration: LUM.exitMs, easing: Easing.out(Easing.cubic) });
+    if (exitTimerRef.current) clearTimeout(exitTimerRef.current);
+    exitTimerRef.current = setTimeout(completeExit, LUM.exitMs + 80);
+  }, [backdropOpacity, completeExit, panelOpacity, panelScale, reduceMotion]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
   const panelStyle = useAnimatedStyle(() => ({
@@ -104,14 +133,14 @@ function HybridAlertShell({
   }));
 
   return (
-    <Modal visible={visible} transparent animationType="none" onRequestClose={onRequestClose}>
+    <Modal visible={visible} transparent animationType="none" onRequestClose={runExit}>
       {/* guard-ok: скрим-фон закрывает модалку по тапу вовне, у него нет своего
           смысла для VoiceOver/TalkBack — озвучиваемые элементы (заголовок,
           кнопки) идут внутри children панели. */}
       <Pressable
         testID={testID}
         style={StyleSheet.absoluteFillObject}
-        onPress={() => runExit(onRequestClose)}
+        onPress={runExit}
         accessible={false}
       >
         <Reanimated.View style={[styles.backdrop, { backgroundColor: backdropColor }, backdropStyle]} />
@@ -120,7 +149,7 @@ function HybridAlertShell({
               её единственная роль такая же декоративная, как у самого скрима. */}
           <Pressable onPress={(e) => e.stopPropagation()} style={styles.pressableWrap}>
             <Reanimated.View style={[styles.panel, { shadowColor }, panelStyle, noAndroidOutline]}>
-              {children}
+              {visible ? children : null}
             </Reanimated.View>
           </Pressable>
         </View>
@@ -175,9 +204,11 @@ const styles = StyleSheet.create({
   pressableWrap: {
     width: '100%',
     maxWidth: 360,
+    maxHeight: '100%',
   },
   panel: {
     width: '100%',
+    maxHeight: '100%',
     borderRadius: 16,
     overflow: 'hidden',
     shadowOpacity: 0.35,

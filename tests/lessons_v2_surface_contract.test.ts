@@ -22,9 +22,14 @@ describe("lessons V2 — одна карта раскрывается прямо
     expect(lessonsSource).toMatch(/label="V2"/);
     expect(lessonsSource).toMatch(/setPage\(["']v2["']\)/);
     expect(lessonsSource).toMatch(/learningV2=\{page\s*===\s*["']v2["']\}/);
-    expect(lessonsSource).toContain("buildLearningV2CourseAccordionMapModelV1");
+    expect(lessonsSource).toContain(
+      "buildLearningV2CourseAccordionMapFromPreparedProgressV1",
+    );
     expect(lessonsSource).toContain("expandedLearningV2Lesson");
-    expect(lessonsSource).toContain("LearningV2InlineMap");
+    expect(lessonsSource).toContain("LearningV2InlineMapRow");
+    expect(lessonsSource).toContain('kind: "v2_chapter"');
+    expect(lessonsSource).toContain('kind: "v2_session"');
+    expect(lessonsSource).not.toContain("function LearningV2InlineMap(");
     expect(lessonsSource).toMatch(
       /current\s*===\s*lessonOrdinal\s*\?\s*null\s*:\s*lessonOrdinal/,
     );

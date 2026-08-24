@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "personal_sync_segments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "deviceId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lastSequence",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "friend_activity_like_daily_limits",
       "queryScope": "COLLECTION",
       "fields": [
@@ -71,6 +85,52 @@
         {
           "fieldPath": "createdAtMs",
           "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "app_activity",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "action",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "revenuecat_premium_events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "environment",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "eventTimestampMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "paywall_funnel",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "step",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "dev",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ts",
+          "order": "DESCENDING"
         }
       ]
     },
@@ -247,6 +307,14 @@
       ]
     },
     {
+      "collectionGroup": "error_reports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "user_ideas",
       "queryScope": "COLLECTION",
       "fields": [
@@ -286,6 +354,14 @@
           "fieldPath": "createdAt",
           "order": "DESCENDING"
         }
+      ]
+    },
+    {
+      "collectionGroup": "user_reports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
       ]
     },
     {
@@ -342,6 +418,46 @@
           "fieldPath": "createdAt",
           "order": "DESCENDING"
         }
+      ]
+    },
+    {
+      "collectionGroup": "community_pack_purchases",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "refundedAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "revenuecat_premium_events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "eventType", "order": "ASCENDING" },
+        { "fieldPath": "eventTimestampMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "community_pack_reports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "explain_report_entries",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAtMs", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "app_errors",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
       ]
     },
     {
@@ -517,6 +633,42 @@
         {
           "fieldPath": "createdAtMs",
           "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "referral_spins",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "prizeKind",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "prizePearls",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "admin_command_operations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "action",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "actorUid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "phase",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAtMs",
+          "order": "DESCENDING"
         }
       ]
     },
@@ -1161,6 +1313,26 @@
     {
       "collectionGroup": "referral_spins",
       "fieldPath": "creditId",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "referral_spins",
+      "fieldPath": "creditSource",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "referral_spins",
+      "fieldPath": "prizeDays",
       "indexes": [
         {
           "order": "ASCENDING",

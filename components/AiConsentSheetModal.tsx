@@ -51,14 +51,14 @@ interface Props {
   /**
    * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
    * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
-   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   * Production default — hybrid; explicit `classic` сохранён для rollback/QA.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
 
 const SHEET_HIDDEN = 320;
 
-function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix, motionVariant = 'classic' }: Props) {
+function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix, motionVariant = 'hybrid' }: Props) {
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -161,14 +161,16 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={dismissSheet}
-          accessibilityRole="button"
-          accessibilityLabel={declineLabel}
+          accessible={false}
+          importantForAccessibility="no-hide-descendants"
         >
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </Pressable>
 
         <GestureDetector gesture={panGesture}>
           <Animated.View
+            accessibilityViewIsModal
+            onAccessibilityEscape={dismissSheet}
             style={[
               styles.sheet,
               {
@@ -196,7 +198,7 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
               <AiBadge />
             </View>
 
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
+            <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
               {title}
             </Text>
             <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
@@ -206,6 +208,7 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
             <Pressable
               testID={`${testIdPrefix}-accept`}
               accessibilityRole="button"
+              accessibilityLabel={acceptLabel}
               onPress={handleAccept}
               style={({ pressed }) => [
                 styles.primaryBtn,
@@ -221,6 +224,7 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
             <Pressable
               testID={`${testIdPrefix}-decline`}
               accessibilityRole="button"
+              accessibilityLabel={declineLabel}
               onPress={() => { hapticTap(); onDecline(); }}
               style={({ pressed }) => [styles.secondaryBtn, pressed && styles.pressed]}
             >

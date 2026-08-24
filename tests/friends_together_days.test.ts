@@ -13,6 +13,8 @@ import {
   mergeActiveDays,
   nextThreshold,
   starRewardForLevel,
+  starRewardForLevelRange,
+  friendGiftCostForLevel,
   type ActiveDays,
 } from '../app/friends_together/together_days';
 
@@ -39,6 +41,20 @@ describe('together_days codec', () => {
     const encoded = encodeActiveDays([anchor, farDate], anchor);
     expect(encoded.bits.length).toBeLessThanOrEqual(MAX_WINDOW_DAYS);
     expect(decodeActiveDays(encoded).has(farDate)).toBe(false);
+  });
+});
+
+describe('Together milestone and gift perks', () => {
+  it('keeps every unclaimed milestone reward when several levels are crossed', () => {
+    expect(starRewardForLevelRange(1, 5)).toBe(85);
+    expect(starRewardForLevelRange(3, 5)).toBe(70);
+    expect(starRewardForLevelRange(5, 5)).toBe(0);
+  });
+
+  it('applies the 25% friend-gift discount from level 3', () => {
+    expect(friendGiftCostForLevel(8, 2)).toBe(8);
+    expect(friendGiftCostForLevel(8, 3)).toBe(6);
+    expect(friendGiftCostForLevel(30, 5)).toBe(22);
   });
 });
 

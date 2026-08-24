@@ -14,7 +14,7 @@ function expectBefore(source: string, earlier: string, later: string) {
 }
 
 describe('speaking Android recognizer availability contract', () => {
-  it('checks recognizer availability before starting lesson/trainer SpeakingPanel', () => {
+  it('checks recognizer availability before starting the shared SpeakingPanel', () => {
     const source = read('components', 'SpeakingPanel.tsx');
 
     expect(source).toContain('isSpeechRecognitionAvailable,');

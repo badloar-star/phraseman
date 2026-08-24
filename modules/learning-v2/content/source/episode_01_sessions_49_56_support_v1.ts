@@ -1,4 +1,12 @@
 import type { EpisodeSourcePhrase, EpisodeSourcePhraseLocalizedDetails } from './episode_01_source_v1';
+import {
+  AUTHORED_INTROS_49_TO_56,
+  type AuthoredIntroPage49To56,
+} from './episode_01_sessions_49_56_intro_data_v1';
+import {
+  buildEpisode01WorldLocalizedDetails,
+  episode01WorldDistractorReason,
+} from './episode_01_phrase_localization_41_56_v1';
 import type { LocalizedIntroRunsSource, LocalizedSource, SessionSource } from './session_shard_from_source_v1';
 
 type Locale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
@@ -22,19 +30,33 @@ const L = (pick: (copy: Copy) => string): LocalizedSource => Object.fromEntries(
 const tokens = (english: string) => english.replace(/[?.!]/gu, '').split(/\s+/u).filter(Boolean);
 const VOCABULARY = ['this', 'that', 'whose', 'mine', 'yours', 'his', 'hers', 'my', 'your', 'her', 'book', 'bag', 'cup', 'key', 'red', 'blue', 'green', 'big', 'small', 'kind', 'funny', 'quiet', 'happy', 'ready', 'here', 'home', 'am', 'is', 'are', 'and', 'but', 'too', 'I', 'you', 'he', 'she', 'we', 'they', 'Sorry', 'Pardon', 'Excuse', 'me'];
 const alternatives = (word: string) => VOCABULARY.filter((item) => item.toLowerCase() !== word.toLowerCase()).slice(0, 5);
-const details = (english: string): Record<Locale, EpisodeSourcePhraseLocalizedDetails> => Object.fromEntries(LOCALES.map((locale) => {
-  const copy = COPY[locale]; const phraseTokens = tokens(english);
-  return [locale, { meaning: `${copy.meaning}: ${english}`, explanation: `${copy.explanation} ${copy.correct}`, distractors: alternatives(phraseTokens[0]).map((value) => ({ value, reason: copy.wrong })), words: phraseTokens.map((correct) => ({ correct, prompt: copy.prompt, distractors: alternatives(correct).map((value) => ({ value, reason: copy.wrong })) })) }];
-})) as unknown as Record<Locale, EpisodeSourcePhraseLocalizedDetails>;
+const details = (english: string): Record<Locale, EpisodeSourcePhraseLocalizedDetails> =>
+  buildEpisode01WorldLocalizedDetails(english, tokens(english), alternatives);
 const phrase = (ordinal: number, position: number, english: string, features: readonly string[]): EpisodeSourcePhrase => {
   const localizedDetails = details(english);
-  return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: localizedDetails.ru.meaning, explanation: localizedDetails.ru.explanation, localizedDetails, features, words: tokens(english).map((correct) => ({ correct, category: /^(am|is|are)$/iu.test(correct) ? 'to-be' : 'lexical', distractors: alternatives(correct).map((value) => ({ value, reasonCode: 'wrong_token_for_position', why: 'Wrong word for this position.' })) })) };
+  return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: localizedDetails.ru.meaning, explanation: localizedDetails.ru.explanation, localizedDetails, features, words: tokens(english).map((correct) => ({ correct, category: /^(am|is|are)$/iu.test(correct) ? 'to-be' : 'lexical', distractors: alternatives(correct).map((value) => ({ value, reasonCode: 'wrong_token_for_position', why: episode01WorldDistractorReason('ru', correct, value) })) })) };
 };
-const runs = (body: LocalizedSource, target: string): LocalizedIntroRunsSource => Object.fromEntries(LOCALES.map((locale) => { const text = body[locale] as string; const index = text.indexOf(target); return [locale, index < 0 ? [{ text, semantic: 'explanation' as const }] : [{ text: text.slice(0, index), semantic: 'explanation' as const }, { text: target, semantic: 'targetCorrect' as const }, { text: text.slice(index + target.length), semantic: 'explanation' as const }]]; })) as unknown as LocalizedIntroRunsSource;
+const runs = (body: LocalizedSource, target: string): LocalizedIntroRunsSource => Object.fromEntries(LOCALES.map((locale) => { const text = body[locale] as string; const index = text.indexOf(target); return [locale, index < 0 ? [{ text, semantic: 'explanation' as const }] : [{ text: text.slice(0, index), semantic: 'explanation' as const }, { text: target, semantic: 'targetCorrect' as const }, { text: text.slice(index + target.length), semantic: 'explanation' as const }].filter((run) => run.text.length > 0)]; })) as unknown as LocalizedIntroRunsSource;
+
+const localizeEnglishChoice = (value: string): LocalizedSource =>
+  Object.fromEntries(LOCALES.map((locale) => [locale, value])) as unknown as LocalizedSource;
+
+const authoredIntroPage = (
+  page: AuthoredIntroPage49To56,
+): SessionSource['introPages'][number] => {
+  const body = page.body;
+  return {
+    kind: page.kind,
+    title: page.title,
+    body,
+    bodyRuns: runs(body, page.choices[0]),
+    question: { prompt: page.prompt, choices: [localizeEnglishChoice(page.choices[0]), localizeEnglishChoice(page.choices[1]), localizeEnglishChoice(page.choices[2])], correctChoiceIndex: 0, explanation: page.explanation },
+  };
+};
 
 const PHRASES: Record<number, readonly string[]> = {
   49: ['This is my book.', 'That is your bag.', 'This cup is red.', 'That key is blue.', 'Is this your book?', 'Is that my bag?', 'This bag is big.', 'That cup is small.', 'This is a green key.', 'That is a red book.', 'Is this a blue cup?', 'Is that a small bag?', 'My book is here.', 'Your key is here.', 'This is your cup.'],
-  50: ["Whose book is this?", "Whose bag is that?", "This is Alex's book.", "That is Sam's bag.", "Whose cup is this?", "This is Alex's cup.", "Whose key is that?", "That is Sam's key.", "Is this Alex's book?", "Is that Sam's bag?", "This is Alex's red bag.", "That is Sam's blue cup.", "Whose green book is this?", "Whose small key is that?", "This is Sam's book."],
+  50: ["Whose book is this?", "Whose bag is that?", "This is my mother's book.", "That is your father's bag.", "Whose cup is this?", "This is her sister's cup.", "Whose key is that?", "That is his brother's key.", "Is this your mother's book?", "Is that his father's bag?", "This is her sister's red bag.", "That is my brother's blue cup.", "Whose green book is this?", "Whose small key is that?", "This is your mother's book."],
   51: ['This book is mine.', 'That bag is yours.', 'This cup is his.', 'That key is hers.', 'Is this book mine?', 'Is that bag yours?', 'The red bag is his.', 'The blue cup is hers.', 'My book is mine.', 'Your key is yours.', 'Is this cup his?', 'Is that key hers?', 'This green book is mine.', 'That small bag is yours.', 'The red cup is hers.'],
   52: ['I am happy and I am ready.', 'She is kind and she is funny.', 'This bag is red but that bag is blue.', 'He is quiet but he is happy.', 'I am ready too.', 'This cup is small too.', 'We are here and they are home.', 'My book is green but your book is blue.', 'She is calm and he is kind.', 'This key is mine but that key is yours.', 'You are ready too.', 'They are quiet and we are happy.', 'That bag is big but this bag is small.', 'He is funny too.', 'Her cup is red and his cup is blue.'],
   53: ['Sorry?', 'Pardon?', 'Excuse me?', 'Sorry?', 'Pardon?', 'Excuse me?', 'Sorry?', 'Pardon?', 'Excuse me?', 'Sorry?', 'Pardon?', 'Excuse me?', 'Sorry?', 'Pardon?', 'Excuse me?'],
@@ -46,10 +68,14 @@ const FEATURES: Record<number, readonly string[]> = { 49: ['copula_be', 'demonst
 const OUTCOME: Record<number, string> = { 49: 'obj-e01-demonstrative-distance', 50: 'obj-e01-whose-possession', 51: 'obj-e01-possessive-pronouns', 52: 'obj-e01-connected-to-be', 53: 'obj-e01-fixed-clarification', 54: 'obj-e01-full-recall', 55: 'obj-e01-connected-voice', 56: 'obj-e01-final-checkpoint' };
 
 export function buildEpisode01Session49To56(ordinal: 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56): SessionSource {
-  const target = PHRASES[ordinal][0]; const title = L((copy) => copy.title);
-  const bodies = [L((copy) => `${copy.concept} ${target}`), L((copy) => `${copy.formula} ${target}`), L((copy) => `${copy.trap} ${target}`)];
-  const introPages = bodies.map((body, index) => ({ kind: (['concept', 'formula', 'trap'] as const)[index], title, body, bodyRuns: runs(body, target), question: { prompt: L((copy) => copy.prompt), choices: [L(() => target), L(() => PHRASES[ordinal][1]), L(() => target.replace(/\b(am|is|are)\b/gu, 'be'))], correctChoiceIndex: 0 as const, explanation: L((copy) => copy.correct) } })) as unknown as SessionSource['introPages'];
-  return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: OUTCOME[ordinal], generationInputFingerprint: `authored-e01-s${ordinal}-v1`, title, summary: L((copy) => copy.explanation), learningGoal: L((copy) => copy.formula), introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
+  const authored = AUTHORED_INTROS_49_TO_56[ordinal];
+  if (!authored) throw new Error(`Missing authored intro for episode 1 session ${ordinal}`);
+  const introPages: SessionSource['introPages'] = [
+    authoredIntroPage(authored.pages[0]),
+    authoredIntroPage(authored.pages[1]),
+    authoredIntroPage(authored.pages[2]),
+  ];
+  return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: OUTCOME[ordinal], generationInputFingerprint: `authored-e01-s${ordinal}-v2`, title: authored.title, summary: authored.summary, learningGoal: authored.learningGoal, introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
 }
 
 const FIXED_CLARIFICATION = new Set(['Sorry?', 'Pardon?', 'Excuse me?']);
@@ -62,6 +88,9 @@ export function assertEpisode01Sessions49To56Contract(sources: readonly SessionS
   expect(chapter[2].phrases.some((item) => item.features.includes('possessive_pronoun'))).toBe(true);
   expect(chapter[3].phrases.every((item) => /^(?:I|You|He|She|It|We|They|This|That|My|Your|Her|His)\b.*\b(am|is|are)\b/iu.test(item.english))).toBe(true);
   expect(chapter[4].phrases.every((item) => FIXED_CLARIFICATION.has(item.english))).toBe(true);
+  expect(chapter[4].phrases.filter((item) => item.english === 'Sorry?')).toHaveLength(5);
+  expect(chapter[4].phrases.filter((item) => item.english === 'Pardon?')).toHaveLength(5);
+  expect(chapter[4].phrases.filter((item) => item.english === 'Excuse me?')).toHaveLength(5);
   const checkpointEnglish = chapter[7].phrases.map((item) => item.english).join(' ');
   ['I am not tired.', 'Are you ready?', 'He is kind.', 'We are here.', 'This is my red bag.', 'Whose book is that?'].forEach((sample) => expect(checkpointEnglish).toContain(sample));
 }

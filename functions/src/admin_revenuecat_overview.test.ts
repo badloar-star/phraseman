@@ -19,10 +19,27 @@ jest.mock('firebase-functions/params', () => ({
 
 import {
   REVENUECAT_PROJECT_ID,
+  adminGetRevenueCatOverviewMetrics,
   parseRevenueCatOverview,
 } from './admin_revenuecat_overview';
 
 describe('RevenueCat overview metrics', () => {
+  const callable = adminGetRevenueCatOverviewMetrics as unknown as (request: {
+    auth?: { uid: string; token: Record<string, unknown> } | null;
+  }) => Promise<unknown>;
+
+  beforeEach(() => {
+    global.fetch = jest.fn(async () => ({
+      ok: true,
+      json: async () => ({
+        metrics: [
+          { id: 'active_trials', value: 5 },
+          { id: 'active_subscriptions', value: 56 },
+        ],
+      }),
+    })) as unknown as typeof fetch;
+  });
+
   it('extracts the live active subscription and trial totals', () => {
     expect(parseRevenueCatOverview({
       metrics: [
@@ -49,5 +66,19 @@ describe('RevenueCat overview metrics', () => {
         { id: 'active_trials', value: 5 },
       ],
     })).toThrow('RevenueCat active subscription metric is unavailable');
+  });
+
+  it('uses canonical legacy-owner role resolution and claimed money.read permissions', async () => {
+    await expect(callable({ auth: { uid: 'legacy-owner', token: { admin: true } } })).resolves.toMatchObject({
+      activeSubscriptions: 56,
+      activeTrials: 5,
+    });
+    await expect(callable({ auth: { uid: 'analyst', token: { admin: true, adminRole: 'analyst' } } })).resolves.toMatchObject({
+      activeSubscriptions: 56,
+    });
+    await expect(callable({ auth: { uid: 'support', token: { admin: true, adminRole: 'support' } } }))
+      .rejects.toMatchObject({ code: 'permission-denied' });
+    await expect(callable({ auth: { uid: 'not-admin', token: { admin: false } } }))
+      .rejects.toMatchObject({ code: 'permission-denied' });
   });
 });

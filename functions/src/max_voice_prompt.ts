@@ -381,7 +381,7 @@ export const TUTOR_TOOLS = Object.freeze([
   {
     type: 'function',
     name: 'assign_homework',
-    description: "2-3 English phrases confidently practised today (mark_phrase_result = pass), each with a non-empty meaning in the learner's native language. Say them aloud first.",
+    description: "2-3 course-language phrases confidently practised today (mark_phrase_result = pass), each with a non-empty meaning in the learner's native language. Say them aloud first.",
     parameters: {
       type: 'object',
       properties: {
@@ -495,7 +495,7 @@ export const TUTOR_TOOLS = Object.freeze([
 // простой вопрос. План, время и цель придут позже, когда диалог уже начался.
 export const TUTOR_GREETING_INSTRUCTIONS =
   'This is the very first moment of the call. Say ONLY a short, warm hello and ONE simple question, then STOP and listen. ' +
-  'Follow the LANGUAGE POLICY for their level: at A1/A2 speak in the learner\'s native language — do NOT open in English. ' +
+  'Follow the LANGUAGE POLICY for their level: at A1/A2 speak in the learner\'s native language — do NOT open in the course language. ' +
   'Greet them by name if you know it. ' +
   'Maximum TWO short sentences, under eight seconds. ' +
   'Do NOT describe the plan, do NOT list what you will do today, do NOT state the lesson length, do NOT teach anything yet. ' +
@@ -536,7 +536,7 @@ export interface VoiceInstructionOpts {
   personaRole: string;
   /** Учитель: родной язык ученика (по interfaceLang) — язык объяснений для новичков. */
   learnerLangName?: string;
-  /** Legacy-вход старых клиентов; текущий MAX-учитель всегда преподаёт English. */
+  /** Язык текущего курса: English, French или Spanish. */
   targetLangName?: string;
   /** Учитель: выжимка устава/продукта (сервер, доверенная). */
   appDigest?: string;
@@ -648,6 +648,7 @@ export function buildVoiceInstructions(opts: VoiceInstructionOpts): string {
 function buildTutorInstructions(opts: VoiceInstructionOpts, cefr: 'A1' | 'A2' | 'B1' | 'B2'): string {
   const tutorName = inlineText(opts.personaName, 24) || 'Max';
   const learnerLang = inlineText(opts.learnerLangName, 40) || 'English';
+  const targetLang = inlineText(opts.targetLangName, 40) || 'English';
   // зачем (владелец 2026-08-23, «минута стоит дорого»): prompt cache OpenAI
   // совпадает по ТОЧНОМУ префиксу и общий на всю организацию. Раньше имя,
   // уровень и родной язык подставлялись ПО ВСЕМУ тексту, и первая подстановка
@@ -656,7 +657,12 @@ function buildTutorInstructions(opts: VoiceInstructionOpts, cefr: 'A1' | 'A2' | 
   // 36 комбинаций «уровень × язык» получался свой префикс.
   // Теперь префикс — байт-в-байт одинаковая константа для всех учеников, а
   // персональные данные уехали в короткий блок YOUR LEARNER в самый конец.
-  const parts: string[] = [VOICE_TUTOR_PREFIX];
+  // Preserve the established English prompt byte-for-byte. Other course targets
+  // reuse the same audited policy with the target-language terms substituted.
+  const tutorPrefix = targetLang === 'English'
+    ? VOICE_TUTOR_PREFIX
+    : VOICE_TUTOR_PREFIX.replace(/\bEnglish\b/g, targetLang).replace(/\bENGLISH\b/g, 'TARGET');
+  const parts: string[] = [tutorPrefix];
 
   const appDigest = blockText(opts.appDigest, 2400);
   if (appDigest) parts.push(appDigest);
@@ -695,7 +701,7 @@ function buildTutorInstructions(opts: VoiceInstructionOpts, cefr: 'A1' | 'A2' | 
   // стоит здесь, весь текст выше остаётся общим префиксом и попадает в кэш.
   parts.push(
     `YOUR LEARNER\nYou are ${tutorName}. This learner's level is ${cefr} and their NATIVE language is `
-    + `${learnerLang}. Apply the LANGUAGE POLICY and the level rules above to exactly this level and `
+    + `${learnerLang}. Their course language is ${targetLang}. Apply the LANGUAGE POLICY and the level rules above to exactly this level and `
     + `this NATIVE language.`,
   );
   parts.push(VOICE_UNTRUSTED_ANCHOR);

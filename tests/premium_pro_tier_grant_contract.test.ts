@@ -155,7 +155,7 @@ describe('settings copy derives the tier name instead of hardcoding Plus', () =>
     );
 
     // Тир берётся из контекста, а не из локального premium_plan.
-    expect(source).toContain("const tierName = isPro ? 'Pro' : 'Plus'");
+    expect(source).toContain("const tierName = premiumPlan === 'max_monthly' ? 'MAX' : isPro ? 'Pro' : 'Plus'");
     expect(source).not.toContain("premiumPlan === 'lifetime' ? 'Pro' : 'Plus'");
 
     // Строки, которые владелец видел неверными, больше не зашивают слово Plus.

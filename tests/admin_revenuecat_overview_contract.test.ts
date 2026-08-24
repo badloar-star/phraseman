@@ -18,23 +18,23 @@ describe("live admin RevenueCat overview contract", () => {
     expect(html).toContain(
       "httpsCallable(functionsUs, 'adminGetRevenueCatOverviewMetrics')",
     );
-    expect(html).toMatch(
-      /an2Set\('an2-pay-total',[^;]*AN2_NUM\(_an2\.rcOverview\.activeSubscriptions\)/,
-    );
-    expect(html).toMatch(
-      /an2Set\('an2-pay-trial',[^;]*AN2_NUM\(_an2\.rcOverview\.activeTrials\)/,
-    );
+    expect(html).toContain("overview?.activeSubscriptions");
+    expect(html).toContain("overview?.activeTrials");
+    expect(html).toContain("an2ExactCell(overviewExact, overview?.activeSubscriptions)");
+    expect(html).toContain("an2ExactCell(overviewExact, overview?.activeTrials)");
+    expect(html).toContain("an2Set('an2-pay-cancelled', 'n/a')");
     expect(html).toContain("REVENUECAT API · ACTIVE_SUBSCRIPTIONS");
     expect(html).toContain("REVENUECAT API · ACTIVE_TRIALS");
   });
 
   test("the secret stays server-side behind admin money.read permission", () => {
     expect(server).toContain("defineSecret('REVENUECAT_SECRET_API_KEY')");
-    expect(server).toContain("hasPermission(role, 'money.read')");
+    expect(server).toContain('roleFromAdminToken(request.auth.token)');
+    expect(server).toContain("hasClaimedPermission(request.auth.token, 'money.read')");
     expect(server).toContain("https://api.revenuecat.com/v2/projects/");
     expect(html).not.toContain("REVENUECAT_SECRET_API_KEY");
-    expect(exportsFile).toContain(
-      "export { adminGetRevenueCatOverviewMetrics } from './admin_revenuecat_overview';",
+    expect(exportsFile).toMatch(
+      /export\s*\{\s*adminGetRevenueCatOverviewMetrics\s*\}\s*from\s*["']\.\/admin_revenuecat_overview["'];/,
     );
   });
 });

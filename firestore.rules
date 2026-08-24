@@ -43,6 +43,13 @@ service cloud.firestore {
         || collection.matches('content_v2_(required_session|season_release|activity_auxiliary_release|activity_learner_core_release|activity_server_evaluator_release)_.*');
     }
 
+    // Existing tournament roots plus semantic-review state and unpublished v11
+    // bundles are excluded from the browser-admin catch-all. One exact regex
+    // keeps the expression below Firestore Rules' complexity ceiling.
+    function isBrowserAdminExcludedTournamentRoot(collection) {
+      return collection.matches('(tournamentSchedule|tournamentRooms|tournamentTasks|tournamentSeasons|tournamentBank|botProfiles|tournament_semantic_jobs|tournament_semantic_review_receipts|tournament_pool_v11_bundles)');
+    }
+
     // Support correspondence, sealed delivery operations, broadcast mutations,
     // Telegram review state, and the automation switch are callable/Admin-SDK only. Keeping this list in
     // one helper also keeps the legacy browser-admin catch-all below the Rules
@@ -1842,10 +1849,9 @@ service cloud.firestore {
     }
 
     // ── AI safety flags (self-harm/suicide/abuse detected in AI dialogue) ──
-    // Пишет ТОЛЬКО сервер (Admin SDK обходит правила); читать/обрабатывать — только admin.
+    // Пишет ТОЛЬКО сервер; админ читает/обрабатывает только через permission-gated callables.
     match /safety_flags/{docId} {
-      allow create: if false;
-      allow read, update, delete: if isAdmin();
+      allow read, write: if false;
     }
 
     // MAX durable review receipts contain only a bounded learning projection.
@@ -1862,9 +1868,16 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    // Content-free operational aggregates are read only by bounded server
-    // callables and Jarvis. Direct reads still reveal internal reliability and
-    // cost data, so the browser never receives collection access.
+    // MAX quota documents contain account ownership plus the nested opaque
+    // safetyGuard. Both are Admin-SDK-only, including for browser admins.
+    match /voice_call_quotas/{docId} {
+      allow read, write: if false;
+    }
+
+    // Content-free operational aggregates, including bounded pre-reservation
+    // rejection buckets, are read only by bounded server callables and Jarvis.
+    // Direct reads still reveal internal reliability and cost data, so the
+    // browser never receives collection access.
     match /max_voice_ops_daily/{docId} {
       allow read, write: if false;
     }
@@ -2977,8 +2990,10 @@ service cloud.firestore {
         && collection != 'agent_telegram_tokens'
         && collection != 'jarvis_approval_tokens'
         && collection != 'admin_log'
+        && collection != 'safety_flags'
         && collection != 'voice_call_reviews'
         && collection != 'voice_tutor_memory'
+        && collection != 'voice_call_quotas'
         && collection != 'max_voice_ops_daily'
         && collection != 'promo_codes'
         && collection != 'gift_certificate_deliveries'
@@ -3015,12 +3030,7 @@ service cloud.firestore {
         && collection != 'coin_exchange_trades'
         && collection != 'coin_migrations'
         && !isServerOwnedContentStudioRoot(collection)
-        && collection != 'tournamentSchedule'
-        && collection != 'tournamentRooms'
-        && collection != 'tournamentTasks'
-        && collection != 'tournamentSeasons'
-        && collection != 'tournamentBank'
-        && collection != 'botProfiles'
+        && !isBrowserAdminExcludedTournamentRoot(collection)
         // Retired Quiz/Arena collections remain sealed even for browser admins.
         // Firestore overlapping matches are OR-combined, so every retired root
         // must also be excluded from this legacy compatibility catch-all.
@@ -3442,6 +3452,19 @@ service cloud.firestore {
         && request.resource.data.atMs is int;
     }
     match /tournamentTasks/{taskId} {
+      allow read, write: if false;
+    }
+    // V11 semantic candidates, raw two-pass verdict evidence, resumable job
+    // state, and unpublished bundles are Admin-SDK/callable only. Recursive
+    // denies are required because every nested checkpoint/evidence/task must
+    // remain sealed from ordinary and browser-admin credentials alike.
+    match /tournament_semantic_jobs/{document=**} {
+      allow read, write: if false;
+    }
+    match /tournament_semantic_review_receipts/{document=**} {
+      allow read, write: if false;
+    }
+    match /tournament_pool_v11_bundles/{document=**} {
       allow read, write: if false;
     }
     match /tournamentSeasons/{weekId} {

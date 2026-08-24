@@ -51,4 +51,12 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
       /await ensureStableIdentityPair\(db, authUid,[\s\S]{0,420}return \{ ok: true, stableUid[^}]*identityReady: true \};/,
     );
   });
+
+  test('authoritative stable-link repair fails closed while either merge identity is reserved', () => {
+    expect(source).toContain('assertStableAccountMergeNotPending');
+    expect(source).toContain("throw new HttpsError('failed-precondition', 'account_merge_pending')");
+    expect(source).toMatch(
+      /await assertStableAccountMergeNotPending\(db, selection\.sourceStableIds\)[\s\S]{0,260}repairIdentityDocumentsAtomically/,
+    );
+  });
 });

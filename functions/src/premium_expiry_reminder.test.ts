@@ -44,6 +44,14 @@ describe('resolveExpiringAccess — только конкретный срок �
     expect(r).toEqual({ kind: 'subscription', expiryMs: IN_3_DAYS });
   });
 
+  test('MAX monthly with a concrete recurring expiry → subscription', () => {
+    const r = resolveExpiringAccess(
+      { premium_plan: 'max_monthly', premium_expiry: '0', premium_rc_expiry_ms: String(IN_3_DAYS) },
+      NOW,
+    );
+    expect(r).toEqual({ kind: 'subscription', expiryMs: IN_3_DAYS });
+  });
+
   test('lifetime (бессрочный, expiry=0 без rc) → null, продлевать нечего', () => {
     expect(resolveExpiringAccess({ premium_plan: 'lifetime', premium_expiry: '0' }, NOW)).toBeNull();
   });
@@ -158,6 +166,20 @@ describe('selectExpiryReminderCandidates + build', () => {
     // ровно один 💛
     expect((subMsg.title.match(/💛/g) || []).length).toBe(1);
   });
+
+  test.each(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'])(
+    'MAX monthly reminder names MAX, not Plus, in %s',
+    (lang) => {
+      const candidate = classifyExpiryReminder(user({
+        premium_plan: 'max_monthly',
+        premium_expiry: String(IN_3_DAYS),
+      }, { pushTokenLang: lang }), NOW);
+      expect(candidate).not.toBeNull();
+      const message = buildExpiryReminderMessage(candidate!);
+      expect(message.title).toContain('MAX');
+      expect(message.title).not.toContain('Plus');
+    },
+  );
 
   test('неизвестный язык падает на ru', () => {
     const msg = buildExpiryReminderMessage({ uid: 'u', token: TOKEN, lang: 'zz', kind: 'subscription', expiryMs: IN_3_DAYS });

@@ -1,4 +1,5 @@
 import { B2_CAN_DO_GOALS } from './max_voice_can_do_goals_b2';
+import { maxVoiceTargetLanguageName, type MaxVoiceStudyTarget } from './max_voice_target_language';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // max_voice_can_do_goals.ts — карта речевых целей учителя (ступень 2 плана
@@ -11,8 +12,8 @@ import { B2_CAN_DO_GOALS } from './max_voice_can_do_goals_b2';
 //
 // Единый источник — сервер: минт выбирает текущую цель и кладёт её в промпт и в
 // ответ (клиент показывает «14 / 60 до B1»), разбор пишет mastery в память.
-// Текущий MAX-учитель преподаёт только английский. Будущие языки обязаны
-// получить собственные фразы/грамматику, а не перевод этой карты моделью на лету.
+// Коммуникативные цели общие для курсов. Английский сохраняет каталог опорных
+// фраз; для остальных целей модель подбирает фразы строго на языке курса.
 // ═══════════════════════════════════════════════════════════════════════════
 
 export type CanDoLevel = 'A1' | 'A2' | 'B1' | 'B2';
@@ -317,12 +318,20 @@ export function levelFromMastery(mastery: CanDoMastery, fallback: string): CanDo
 }
 
 /** Блок цели для промпта учителя (в хвост памяти). */
-export function renderCanDoGoalBlock(goal: CanDoGoal, mastery: CanDoMastery, _progress: ReturnType<typeof canDoProgress>): string {
+export function renderCanDoGoalBlock(
+  goal: CanDoGoal,
+  mastery: CanDoMastery,
+  _progress: ReturnType<typeof canDoProgress>,
+  studyTarget: MaxVoiceStudyTarget = 'en',
+): string {
   const m = mastery[goal.id] ?? 0;
+  const targetName = maxVoiceTargetLanguageName(studyTarget);
   const lines = [
     'CURRENT SPEAKING GOAL (the learner\'s progress map; lead them to close it)',
     `Goal ${goal.id} (${goal.level}): the learner can ${goal.canDo}. Mastery so far: ${m}/3.`,
-    `Target phrases: ${goal.phrases.join(' | ')}. Grammar focus: ${goal.grammar}.`,
+    studyTarget === 'en'
+      ? `Target phrases: ${goal.phrases.join(' | ')}. Grammar focus: ${goal.grammar}.`
+      : `Course language: ${targetName}. Select 2-3 level-appropriate ${targetName} phrases for this goal. Never use the English catalog phrases as target content. Use grammar appropriate to this goal and level in ${targetName}.`,
     goal.sceneIds.length > 0 ? `Check it in a scene task, e.g. start_scene("${goal.sceneIds[0]}").` : 'Check it with a mini role-play you invent.',
     'At the end call mark_goal_progress: 1 = tried with help, 2 = mostly independent, 3 = independent transfer after prior evidence plus a relevant completed scene (or a changed-context mini role-play when no scene is catalogued).',
     'Do not announce an aggregate count of completed goals. Keep the learner focused on the one current speaking goal.',

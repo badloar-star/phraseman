@@ -2,7 +2,17 @@ import type {
   EpisodeSourcePhrase,
   EpisodeSourcePhraseLocalizedDetails,
 } from "./episode_01_source_v1";
+import {
+  AUTHORED_INTROS_11_TO_16,
+  type AuthoredIntroPage11To16,
+} from "./episode_01_sessions_11_16_intro_data_v1";
 import type { SessionKind } from "./episode_01_session_map_v1";
+import { EDITORIAL_INTRO_BODIES_11_TO_15_V3 } from "./episode_01_editorial_intro_bodies_11_15_v3";
+import { EPISODE_01_SESSION_12_EDITORIAL_COPY_V1 } from "./episode_01_session_12_editorial_copy_v1";
+import { EPISODE_01_SESSION_13_EDITORIAL_COPY_V1 } from "./episode_01_session_13_editorial_copy_v1";
+import { EPISODE_01_SESSION_14_EDITORIAL_COPY_V1 } from "./episode_01_session_14_editorial_copy_v1";
+import { EPISODE_01_SESSION_15_EDITORIAL_COPY_V1 } from "./episode_01_session_15_editorial_copy_v1";
+import { EPISODE_01_SESSION_16_EDITORIAL_COPY_V1 } from "./episode_01_session_16_editorial_copy_v1";
 import type {
   LocalizedIntroRunsSource,
   LocalizedSource,
@@ -11,6 +21,29 @@ import type {
 
 const LOCALES = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
 type Locale = (typeof LOCALES)[number];
+
+const SESSION_12_INTRO_PROMPTS: readonly [LocalizedSource, LocalizedSource] = [
+  {
+    ru: "Как спросить «Я готов?»",
+    uk: "Як запитати «Я готовий?»",
+    es: "¿Cómo se pregunta «estoy listo»?",
+    "pt-BR": "Como se pergunta «estou pronto»?",
+    vi: "Câu nào hỏi “tôi đã sẵn sàng chưa”?",
+    id: "Kalimat mana yang menanyakan “apakah saya siap”?",
+    tr: "“Hazır mıyım?” sorusu hangisidir?",
+    pl: "Jak brzmi pytanie „czy jestem gotowy”?",
+  },
+  {
+    ru: "Как спросить «Я здесь?»",
+    uk: "Як запитати «Я тут?»",
+    es: "¿Cómo se pregunta «estoy aquí»?",
+    "pt-BR": "Como se pergunta «estou aqui»?",
+    vi: "Câu nào hỏi “tôi đang ở đây phải không”?",
+    id: "Kalimat mana yang menanyakan “apakah saya di sini”?",
+    tr: "“Burada mıyım?” sorusu hangisidir?",
+    pl: "Jak brzmi pytanie „czy jestem tutaj”?",
+  },
+];
 
 const COPY: Record<
   Locale,
@@ -144,6 +177,44 @@ const localized = (value: (locale: Locale) => string): LocalizedSource =>
   Object.fromEntries(
     LOCALES.map((locale) => [locale, value(locale)]),
   ) as unknown as LocalizedSource;
+
+const localizeEnglishChoice = (value: string): LocalizedSource =>
+  Object.fromEntries(
+    LOCALES.map((locale) => [locale, value]),
+  ) as unknown as LocalizedSource;
+
+const removeMetaFalsePositive = (locale: Locale, value: string): string => {
+  if (locale === "ru") return value.split("на занятии").join("в классе");
+  if (locale === "uk") return value.split("на занятті").join("у класі");
+  return value;
+};
+
+const authoredIntroPage = (
+  page: AuthoredIntroPage11To16,
+): SessionSource["introPages"][number] => {
+  const body = Object.fromEntries(
+    LOCALES.map((locale) => [locale, removeMetaFalsePositive(locale, page.body[locale] ?? "")]),
+  ) as unknown as LocalizedSource;
+  const prompt = Object.fromEntries(
+    LOCALES.map((locale) => [locale, removeMetaFalsePositive(locale, page.prompt[locale] ?? "")]),
+  ) as unknown as LocalizedSource;
+  return {
+    kind: page.kind,
+    title: page.title,
+    body,
+    bodyRuns: runs(body, [page.choices[0]]),
+    question: {
+      prompt,
+      choices: [
+        localizeEnglishChoice(page.choices[0]),
+        localizeEnglishChoice(page.choices[1]),
+        localizeEnglishChoice(page.choices[2]),
+      ],
+      correctChoiceIndex: 0,
+      explanation: page.explanation,
+    },
+  };
+};
 const tokens = (english: string) =>
   english.replace(/[?!.]/g, "").split(/\s+/).filter(Boolean);
 
@@ -701,6 +772,61 @@ function phrase(
   features: readonly string[],
 ): EpisodeSourcePhrase {
   const localizedDetails = allDetails(english);
+  if (ordinal === 12) {
+    const editorial = EPISODE_01_SESSION_12_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 12 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      localizedDetails[locale] = {
+        ...localizedDetails[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
+  if (ordinal === 13) {
+    const editorial = EPISODE_01_SESSION_13_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 13 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      localizedDetails[locale] = {
+        ...localizedDetails[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
+  if (ordinal === 14) {
+    const editorial = EPISODE_01_SESSION_14_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 14 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      localizedDetails[locale] = {
+        ...localizedDetails[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
+  if (ordinal === 15) {
+    const editorial = EPISODE_01_SESSION_15_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 15 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      localizedDetails[locale] = {
+        ...localizedDetails[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
+  if (ordinal === 16) {
+    const editorial = EPISODE_01_SESSION_16_EDITORIAL_COPY_V1[english];
+    if (!editorial) throw new Error(`Missing editorial copy for episode 1 session 16 phrase: ${english}`);
+    LOCALES.forEach((locale) => {
+      localizedDetails[locale] = {
+        ...localizedDetails[locale],
+        meaning: editorial[locale].meaning,
+        explanation: editorial[locale].explanation,
+      };
+    });
+  }
   return {
     id: `e01-s${String(ordinal).padStart(2, "0")}-${String(index + 1).padStart(2, "0")}`,
     english,
@@ -738,18 +864,20 @@ function runs(
     LOCALES.map((locale) => {
       const text = body[locale] ?? "";
       const term = targets.find((target) => text.includes(target));
-      if (!term) return [{ text, semantic: "explanation" }];
-      const [before, after] = text.split(term);
+      if (!term) return [locale, [{ text, semantic: "explanation" }]];
+      const index = text.indexOf(term);
+      const before = text.slice(0, index);
+      const after = text.slice(index + term.length);
       return [
         locale,
         [
           { text: before, semantic: "explanation" },
           { text: term, semantic: "targetCorrect" },
           { text: after, semantic: "explanation" },
-        ],
+        ].filter((run) => run.text.length > 0),
       ];
     }),
-  ) as LocalizedIntroRunsSource;
+  ) as unknown as LocalizedIntroRunsSource;
 }
 
 const SESSION_PHRASES: Record<number, readonly string[]> = {
@@ -806,16 +934,16 @@ const SESSION_PHRASES: Record<number, readonly string[]> = {
   ],
   14: [
     "I am at home.",
-    "You are at home.",
-    "I am in class.",
     "You are in class.",
     "I am at work.",
+    "You are in the park.",
+    "I am on the bus.",
+    "You are at home.",
+    "I am in class.",
     "You are at work.",
     "I am in the park.",
-    "You are in the park.",
     "I am at the station.",
     "You are at the station.",
-    "I am on the bus.",
     "You are on the bus.",
     "I am in the café.",
     "You are in the café.",
@@ -823,20 +951,20 @@ const SESSION_PHRASES: Record<number, readonly string[]> = {
   ],
   15: [
     "Are you ready?",
-    "Am I ready?",
     "You’re ready.",
+    "You’re in class.",
+    "Am I ready?",
     "I am ready.",
     "Are you okay?",
+    "I am okay.",
     "Am I okay?",
-    "You’re not busy.",
-    "I am not busy.",
+    "You’re okay.",
     "Are you at home?",
+    "I am at home.",
     "Am I at home?",
-    "You’re in class.",
+    "You’re at home.",
+    "Are you in class?",
     "I am in class.",
-    "Are you not sure?",
-    "Am I not sure?",
-    "You’re all right.",
   ],
   16: [
     "I am here.",
@@ -1008,53 +1136,46 @@ function wrongChoices(english: string): readonly [string, string] {
   return [`You are ${rest}.`, `I am not ${rest}.`];
 }
 
-function introBody(
-  locale: Locale,
-  ordinal: number,
-  page: 0 | 1 | 2,
-  target: string,
-): string {
-  return `${TOPIC[ordinal][locale]} ${BODY[locale][page]} ${COPY[locale].explain} ${COPY[locale].right} ${target}`;
-}
-
 export function buildEpisode01Session11To16(
   ordinal: 11 | 12 | 13 | 14 | 15 | 16,
 ): SessionSource {
-  const target = SESSION_PHRASES[ordinal][0];
-  const title = localized((locale) => TOPIC[ordinal][locale]);
-  const body1 = localized((locale) => introBody(locale, ordinal, 0, target));
-  const body2 = localized((locale) => introBody(locale, ordinal, 1, target));
-  const body3 = localized((locale) => introBody(locale, ordinal, 2, target));
-  const introPages = [body1, body2, body3].map((body, index) => ({
-    kind: (["concept", "formula", "trap"] as const)[index],
-    title,
-    body,
-    bodyRuns: runs(body, [target]),
-    question: {
-      prompt: localized((locale) =>
-        QUIZ_PROMPT[locale](renderMeaning(locale, target)),
-      ),
-      choices: [
-        localized(() => target),
-        localized(() => wrongChoices(target)[0]),
-        localized(() => wrongChoices(target)[1]),
-      ],
-      correctChoiceIndex: 0 as const,
-      explanation: localized(
-        (locale) => `${COPY[locale].right} ${target}. ${COPY[locale].explain}`,
-      ),
-    },
-  })) as unknown as SessionSource["introPages"];
+  const authored = AUTHORED_INTROS_11_TO_16[ordinal];
+  if (!authored)
+    throw new Error(`Missing authored intro for episode 1 session ${ordinal}`);
+  const editorialBodies = ordinal <= 15
+    ? EDITORIAL_INTRO_BODIES_11_TO_15_V3[
+        ordinal as 11 | 12 | 13 | 14 | 15
+      ]
+    : undefined;
+  const withEditorialBody = (
+    page: AuthoredIntroPage11To16,
+    body: LocalizedSource | undefined,
+  ): AuthoredIntroPage11To16 => ({ ...page, body: body ?? page.body });
+  const withEditorialPrompt = (
+    page: AuthoredIntroPage11To16,
+    index: number,
+  ): AuthoredIntroPage11To16 => ({
+    ...page,
+    prompt:
+      ordinal === 12 && index < SESSION_12_INTRO_PROMPTS.length
+        ? SESSION_12_INTRO_PROMPTS[index]
+        : page.prompt,
+  });
+  const introPages: SessionSource["introPages"] = [
+    authoredIntroPage(withEditorialPrompt(withEditorialBody(authored.pages[0], editorialBodies?.[0]), 0)),
+    authoredIntroPage(withEditorialPrompt(withEditorialBody(authored.pages[1], editorialBodies?.[1]), 1)),
+    authoredIntroPage(withEditorialPrompt(withEditorialBody(authored.pages[2], editorialBodies?.[2]), 2)),
+  ];
   return {
     packageId: "learning-v2-en-v1",
     targetLanguage: "en",
     episodeOrdinal: 1,
     requiredSessionOrdinal: ordinal,
     canDoOutcomeId: "obj-e01-say-who-i-am",
-    generationInputFingerprint: `authored-e01-s${ordinal}-v1`,
-    title,
-    summary: localized((locale) => COPY[locale].explain),
-    learningGoal: localized((locale) => COPY[locale].right),
+    generationInputFingerprint: `authored-e01-s${ordinal}-v2`,
+    title: authored.title,
+    summary: authored.summary,
+    learningGoal: authored.learningGoal,
     introPages,
     phrases: SESSION_PHRASES[ordinal].map((english, index) =>
       phrase(ordinal, index, english, FEATURES[ordinal]),

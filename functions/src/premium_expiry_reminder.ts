@@ -32,7 +32,7 @@ export const REMIND_MAX_MS = 4 * DAY_MS;
 /** Не повторять напоминание про один и тот же срок чаще раза в N дней (анти-спам). */
 export const REMINDER_COOLDOWN_DAYS = 5;
 
-const STORE_PLANS = new Set(['monthly', 'yearly', 'annual']);
+const STORE_PLANS = new Set(['monthly', 'yearly', 'annual', 'max_monthly']);
 
 function cleanStr(value: unknown): string {
   return String(value ?? '').trim();
@@ -74,6 +74,7 @@ export interface ExpiryReminderCandidate {
   token: string;
   lang: string;
   kind: ExpiringKind;
+  subscriptionPlan?: 'plus' | 'max';
   /** До какого срока продлён доступ (ms) — для stamping (не слать повторно про тот же). */
   expiryMs: number;
 }
@@ -106,7 +107,7 @@ export function resolveExpiringAccess(
 ): { kind: ExpiringKind; expiryMs: number } | null {
   const data = progress ?? {};
 
-  // ── Store-подписка (RevenueCat monthly/yearly/annual; НЕ lifetime — он бессрочный) ──
+  // ── Recurring store subscription (including MAX; lifetime is non-expiring) ──
   const plan = cleanPlan(data.premium_plan);
   const override = cleanStr(data.admin_premium_override).toLowerCase();
   if (STORE_PLANS.has(plan) && override !== 'true') {
@@ -170,6 +171,9 @@ export function classifyExpiryReminder(
     token: u.expoPushToken as string,
     lang: u.pushTokenLang || 'ru',
     kind: access.kind,
+    ...(access.kind === 'subscription' ? {
+      subscriptionPlan: cleanPlan(u.progress?.premium_plan) === 'max_monthly' ? 'max' : 'plus',
+    } : {}),
     expiryMs: access.expiryMs,
   };
 }
@@ -208,6 +212,17 @@ const SUBSCRIPTION_COPY: Record<CopyLang, Copy> = {
   pl: { title: '💛 Twój Plus wkrótce się odnowi', body: 'Zostały około 3 dni. Jeśli wszystko gra, nie musisz nic robić — kontynuujemy razem.' },
 };
 
+const MAX_SUBSCRIPTION_COPY: Record<CopyLang, Copy> = {
+  ru: { ...SUBSCRIPTION_COPY.ru, title: '💛 Твой MAX скоро продлится' },
+  uk: { ...SUBSCRIPTION_COPY.uk, title: '💛 Твій MAX скоро подовжиться' },
+  es: { ...SUBSCRIPTION_COPY.es, title: '💛 Tu MAX se renovará pronto' },
+  'pt-BR': { ...SUBSCRIPTION_COPY['pt-BR'], title: '💛 Seu MAX vai renovar em breve' },
+  vi: { ...SUBSCRIPTION_COPY.vi, title: '💛 Gói MAX của bạn sắp gia hạn' },
+  id: { ...SUBSCRIPTION_COPY.id, title: '💛 MAX kamu akan segera diperpanjang' },
+  tr: { ...SUBSCRIPTION_COPY.tr, title: '💛 MAX üyeliğin yakında yenilenecek' },
+  pl: { ...SUBSCRIPTION_COPY.pl, title: '💛 Twój MAX wkrótce się odnowi' },
+};
+
 // VIP-доступ: не продлевается сам — мягко предупреждаем, что скоро закончится.
 const VIP_COPY: Record<CopyLang, Copy> = {
   ru: { title: '💛 Твой доступ Plus скоро закончится', body: 'Осталось около 3 дней. Успей взять максимум — а захочешь остаться, продлить легко.' },
@@ -223,7 +238,9 @@ const VIP_COPY: Record<CopyLang, Copy> = {
 /** Локализованное сообщение для кандидата (чистая функция). */
 export function buildExpiryReminderMessage(c: ExpiryReminderCandidate): ExpoPushMessage {
   const lang = normLang(c.lang);
-  const copy = c.kind === 'vip' ? VIP_COPY[lang] : SUBSCRIPTION_COPY[lang];
+  const copy = c.kind === 'vip'
+    ? VIP_COPY[lang]
+    : c.subscriptionPlan === 'max' ? MAX_SUBSCRIPTION_COPY[lang] : SUBSCRIPTION_COPY[lang];
   return {
     to: c.token,
     title: copy.title,

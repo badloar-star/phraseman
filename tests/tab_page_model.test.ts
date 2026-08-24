@@ -1,4 +1,6 @@
 import {
+  LOGICAL_TAB_IDS,
+  PHYSICAL_PAGE_IDS,
   logicalTabToPhysicalPage,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
@@ -11,18 +13,20 @@ describe('Tab page model', () => {
   // снова появится страница, сдвиг обязан вернуться СЮДА, в одну точку правды,
   // а не расползтись по _layout.tsx.
   test('maps every logical tab onto the same physical page', () => {
-    expect(logicalTabToPhysicalPage(0)).toBe(0);
-    expect(logicalTabToPhysicalPage(3)).toBe(3);
-    expect(physicalPageToLogicalTab(0)).toBe(0);
-    expect(physicalPageToLogicalTab(3)).toBe(3);
+    expect(LOGICAL_TAB_IDS).toEqual(['home', 'lessons', 'arena', 'friends', 'settings']);
+    expect(PHYSICAL_PAGE_IDS).toEqual(LOGICAL_TAB_IDS);
+    for (const index of [0, 1, 2, 3, 4]) {
+      expect(physicalPageToLogicalTab(logicalTabToPhysicalPage(index))).toBe(index);
+    }
   });
 
   // Турниров среди runtime-владельцев нет: скрытая вкладка не должна оставаться
   // физической страницей, доступной горизонтальным свайпом.
   test('assigns one runtime owner to every physical page', () => {
-    expect([0, 1, 2, 3].map(physicalPageToRuntimeOwner)).toEqual([
+    expect([0, 1, 2, 3, 4].map(physicalPageToRuntimeOwner)).toEqual([
       'home',
       'lessons',
+      'arena',
       'friends',
       'settings',
     ]);
@@ -30,8 +34,8 @@ describe('Tab page model', () => {
 
   test('rejects invalid indexes instead of silently clamping them', () => {
     expect(() => logicalTabToPhysicalPage(-1)).toThrow(RangeError);
-    expect(() => logicalTabToPhysicalPage(4)).toThrow(RangeError);
+    expect(() => logicalTabToPhysicalPage(5)).toThrow(RangeError);
     expect(() => physicalPageToLogicalTab(-1)).toThrow(RangeError);
-    expect(() => physicalPageToRuntimeOwner(4)).toThrow(RangeError);
+    expect(() => physicalPageToRuntimeOwner(5)).toThrow(RangeError);
   });
 });

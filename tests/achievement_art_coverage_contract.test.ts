@@ -2,14 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /**
- * Контракт: у КАЖДОГО достижения всегда есть источник арта.
- *
- * зачем: арт вынесен в Firebase Storage (−5.9 МБ из бандла). Требование
- * владельца — пользователь не должен НИКОГДА увидеть отсутствие иконки.
- * Этот тест стережёт все три слоя защиты:
- *   1) «ядро» первых достижений реально лежит в бандле (офлайн, мгновенно);
- *   2) для остальных есть URL в сгенерированной карте;
- *   3) ни одно достижение не осталось вообще без источника.
+ * Контракт Foundation V2: все 70 активных статуэток имеют bundled fallback,
+ * а legacy comeback остаётся отдельным офлайн-ассетом. Remote URL и prefetch
+ * сохраняются как более свежий первый источник для non-core наград.
  */
 
 const ROOT = process.cwd();
@@ -18,65 +13,68 @@ const read = (p: string) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 const coreSrc = read('constants/achievementCoreArt.ts');
 const registrySrc = read('constants/achievementImageAssets.ts');
 const urlMapSrc = read('constants/achievementImageUrlMap.generated.ts');
-const achievementsSrc = read('app/achievements.ts');
+const manifest = JSON.parse(read('content/achievement-art-v2/manifest.json')) as {
+  assets: Array<{ id: string; status: string; output: string }>;
+};
 
-const CORE_IDS = [...coreSrc.matchAll(/^\s*'([a-z0-9_]+)',/gm)].map((m) => m[1]);
-const BUNDLED = new Map(
-  [...registrySrc.matchAll(/^\s{2}([a-z0-9_]+):\s*require\('\.\.\/assets\/images\/achievements\/([^']+)'\)/gm)]
-    .map((m) => [m[1], m[2]] as const),
+const CORE_IDS = [...coreSrc.matchAll(/^\s*'([a-z0-9_]+)',/gm)].map((match) => match[1]);
+const REGISTRY = new Map(
+  [...registrySrc.matchAll(/^\s{2}([a-z0-9_]+):\s*require\('\.\.\/(assets\/images\/[^']+)'\)/gm)]
+    .map((match) => [match[1], match[2]] as const),
 );
 const REMOTE_IDS = new Set(
-  [...urlMapSrc.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"https:/gm)].map((m) => m[1]),
+  [...urlMapSrc.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"https:/gm)].map((match) => match[1]),
 );
+const ACTIVE_IDS = manifest.assets.map((row) => row.id).sort();
 
 describe('achievement art coverage', () => {
   it('каждый CORE id реально забандлен и файл лежит на диске', () => {
     expect(CORE_IDS.length).toBeGreaterThan(0);
     for (const id of CORE_IDS) {
-      const file = BUNDLED.get(id);
+      const file = REGISTRY.get(id);
       expect(file).toBeTruthy();
-      expect(fs.existsSync(path.join(ROOT, 'assets/images/achievements', file!))).toBe(true);
+      expect(fs.existsSync(path.join(ROOT, file!))).toBe(true);
     }
   });
 
-  it('в бандле остаётся ТОЛЬКО ядро — иначе экономия веса потеряна', () => {
-    expect([...BUNDLED.keys()].sort()).toEqual([...CORE_IDS].sort());
-  });
+  it('ровно 70 активных V2 статуэток имеют один static require и один WebP', () => {
+    expect(ACTIVE_IDS).toHaveLength(70);
+    expect(manifest.assets.every((row) => row.status === 'connected')).toBe(true);
 
-  it('ядровой арт перечислен в app.json (попадёт в OTA и в бинарь)', () => {
-    const appJson = read('app.json');
-    for (const file of BUNDLED.values()) {
-      expect(appJson).toContain(`assets/images/achievements/${file}`);
+    const bundledActive = [...REGISTRY.entries()]
+      .filter(([, file]) => file.startsWith('assets/images/achievements/'))
+      .map(([id]) => id)
+      .sort();
+    expect(bundledActive).toEqual(ACTIVE_IDS);
+
+    for (const id of ACTIVE_IDS) {
+      const expected = `assets/images/achievements/${id}.webp`;
+      expect(REGISTRY.get(id)).toBe(expected);
+      expect(fs.existsSync(path.join(ROOT, expected))).toBe(true);
     }
-    // Общий паттерн вернул бы все 223 файла в бандл — он должен остаться убранным.
-    expect(appJson).not.toContain('"assets/images/achievements/*"');
+
+    const files = fs.readdirSync(path.join(ROOT, 'assets/images/achievements'))
+      .filter((name) => name.endsWith('.webp'))
+      .map((name) => name.slice(0, -5))
+      .sort();
+    expect(files).toEqual(ACTIVE_IDS);
   });
 
-  it('у каждого достижения из логики есть арт: бандл или URL', () => {
-    // Только настоящие объявления достижений: `id:` в одной строке с `category:`.
-    // Иначе в выборку попадают локализации, где `id:` — это код языка
-    // (индонезийский), а не идентификатор достижения.
-    const declared = [...achievementsSrc.matchAll(/id:\s*'([a-z0-9_]+)'\s*,[^\n]*\bcategory:/g)]
-      .map((m) => m[1]);
-    expect(declared.length).toBeGreaterThan(50);
-
-    const missing = [...new Set(declared)].filter(
-      (id) => !BUNDLED.has(id) && !REMOTE_IDS.has(id),
-    );
-    expect(missing).toEqual([]);
+  it('legacy comeback сохраняет отдельный bundled fallback вне набора V2', () => {
+    expect(ACTIVE_IDS).not.toContain('comeback');
+    expect(REGISTRY.get('comeback')).toBe('assets/images/legacy-achievements/comeback.webp');
+    expect(fs.existsSync(path.join(ROOT, REGISTRY.get('comeback')!))).toBe(true);
   });
 
-  it('URL-карта ссылается на публичный бакет достижений', () => {
-    expect(REMOTE_IDS.size).toBeGreaterThan(100);
+  it('URL-карта по-прежнему ссылается на публичный бакет достижений', () => {
+    expect(REMOTE_IDS.size).toBe(35);
     expect(urlMapSrc).toContain('/achievement-images%2F');
-    // Правило чтения обязано существовать, иначе арт не отдастся приложению.
     expect(read('storage.rules')).toContain('match /achievement-images/{allPaths=**}');
   });
 
   it('фоновый прогрев кэша подключён к старту приложения', () => {
     const layout = read('app/_layout.tsx');
     expect(layout).toContain('prefetchAchievementArtInBackground');
-    // Прогрев обязан идти после первого кадра, а не блокировать старт.
     expect(layout).toMatch(/runAfterInteractions\(\(\) => \{\s*prefetchAchievementArtInBackground\(\);/);
   });
 });

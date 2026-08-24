@@ -38,5 +38,22 @@ test('server claim validates active/audience and records claim with reward in on
 });
 
 test('functions index exports the server-authoritative broadcast claim', () => {
-  expect(read('functions/src/index.ts')).toContain("export { globalBroadcastClaim } from './global_broadcast_claim';");
+  expect(read('functions/src/index.ts')).toMatch(/export\s*\{\s*globalBroadcastClaim\s*\}\s*from\s*["']\.\/global_broadcast_claim["'];/);
+});
+
+test('active broadcasts use one bounded authenticated callable projection and no browser Firestore read', () => {
+  const client = read('app/global_broadcast_modal.ts');
+  const server = read('functions/src/global_broadcast_public.ts');
+  const index = read('functions/src/index.ts');
+  const functionsPackage = JSON.parse(read('functions/package.json')) as { scripts: Record<string, string> };
+  expect(client).toContain("'globalBroadcastListActive'");
+  expect(client).not.toContain("collection(COLLECTION)");
+  expect(client).not.toContain("'global_broadcast_modals'");
+  expect(client).toContain('sourceHealth?.complete !== true');
+  expect(server).toContain("if (!request.auth?.uid)");
+  expect(server).toContain("where('active', '==', true)");
+  expect(server).toContain('limit(inputLimit + 1)');
+  expect(server).toContain('inspectGlobalBroadcastPublicAuthority');
+  expect(index).toMatch(/export\s*\{\s*globalBroadcastListActive\s*\}\s*from\s*["']\.\/global_broadcast_public["'];/);
+  expect(functionsPackage.scripts['deploy:admin-global-broadcast-stage-functions']).toContain('functions:globalBroadcastListActive');
 });

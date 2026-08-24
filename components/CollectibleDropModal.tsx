@@ -49,12 +49,12 @@ interface CollectibleDropModalProps {
   /**
    * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
    * сцена M3 «Сундук-награда») — удар только у карты (RewardImpactRings),
-   * HoloFoilCard-эффекты внутри не трогаем. Боевой дефолт — 'classic'.
+   * HoloFoilCard-эффекты внутри не трогаем. Production default — hybrid; classic — rollback.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function CollectibleDropModal({ outcome, onClose, onOpenCollection, motionVariant = 'classic' }: CollectibleDropModalProps) {
+export default function CollectibleDropModal({ outcome, onClose, onOpenCollection, motionVariant = 'hybrid' }: CollectibleDropModalProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
@@ -176,6 +176,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
                 onPress={onOpenCollection}
                 variant="secondary"
                 style={styles.collectionBtn}
+                contentStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}
               >
                 <Ionicons name="albums-outline" size={16} color={t.textSecond} />
                 <Text style={[styles.collectionBtnText, { color: t.textSecond, fontSize: f.sub }]}>{collectionLabel}</Text>

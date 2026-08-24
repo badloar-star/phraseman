@@ -49,7 +49,7 @@ describe('MAX tutor context strip', () => {
     expect(view.getByText(/Цель урока/)).toBeTruthy();
     expect(view.getByText('Вежливо предложить другое время')).toBeTruthy();
     expect(view.queryByText('Weekend plans')).toBeNull();
-    expect(view.getByTestId('max-tutor-goal-strip').props.accessibilityLiveRegion).toBe('polite');
+    expect(view.getByTestId('max-tutor-goal-strip').props.accessibilityLiveRegion).toBeUndefined();
   });
 
   it('replaces the goal with the current free-talk topic inside the same strip', async () => {

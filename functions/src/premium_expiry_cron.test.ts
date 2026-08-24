@@ -41,6 +41,24 @@ describe('premium_expiry_cron — снимаем ТОЛЬКО просрочен
       expect(d!.patch.premium_expiry).toBe(String(RC_DEAD));
       expect(d!.reasons).toEqual(['store_rc_expired']);
     });
+    it('MAX monthly follows the same recurring expiry lifecycle', () => {
+      expect(planExpiryDeactivation(
+        { premium_plan: 'max_monthly', premium_expiry: '0', premium_rc_expiry_ms: String(FUTURE) }, NOW,
+      )).toBeNull();
+
+      const expired = planExpiryDeactivation(
+        { premium_plan: 'max_monthly', premium_expiry: '0', premium_rc_expiry_ms: String(RC_DEAD) }, NOW,
+      );
+      expect(expired).toMatchObject({
+        patch: { premium_plan: '', premium_expiry: String(RC_DEAD) },
+        reasons: ['store_rc_expired'],
+      });
+    });
+    it('lifetime remains non-expiring', () => {
+      expect(planExpiryDeactivation(
+        { premium_plan: 'lifetime', premium_expiry: '0' }, NOW,
+      )).toBeNull();
+    });
     it('конкретный expiry в будущем → НЕ снимается', () => {
       expect(planExpiryDeactivation(
         { premium_plan: 'monthly', premium_expiry: String(FUTURE) }, NOW,

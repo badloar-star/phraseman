@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -29,6 +30,7 @@ describe('standalone survey delivery', () => {
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
     const card = fs.readFileSync(path.join(ROOT, 'components', 'SurveyTaskCard.tsx'), 'utf8');
     const screen = fs.readFileSync(path.join(ROOT, 'app', 'survey_screen.tsx'), 'utf8');
+    const controller = fs.readFileSync(path.join(ROOT, 'app', 'survey_flow_controller.ts'), 'utf8');
 
     expect(client).toContain('export async function fetchActiveSurveyWithRetry');
     expect(client).toContain('options.attempts ?? 3');
@@ -38,8 +40,11 @@ describe('standalone survey delivery', () => {
     expect(home).toContain('fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang })');
     expect(home).toContain('dayKey: getUtcDayKey()');
     expect(home).toContain('<SurveyTaskCard');
-    expect(home).toContain('primeSurvey({ survey: challenge.survey, stableId: surveyOffer.stableId');
-    expect(home).toContain("pathname: '/survey_screen'");
+    expect(home).toContain('setOpenSurveyLaunch({');
+    expect(home).toContain('survey: challenge.survey');
+    expect(home).toContain('<SurveySheetModal');
+    expect(home).not.toContain('primeSurvey({ survey: challenge.survey');
+    expect(home).not.toContain("pathname: '/survey_screen'");
     expect(card).toContain('challenge: SurveyOfferSnapshot');
     expect(card).toContain('onOpen: (challenge: SurveyOfferSnapshot) => void');
     expect(card).not.toContain('useFocusEffect');
@@ -49,7 +54,10 @@ describe('standalone survey delivery', () => {
     expect(card).not.toContain('useState');
     expect(card).not.toContain('primeSurvey');
     expect(screen).toContain('takePrimedSurvey(surveyId, scope)');
-    expect(screen).toContain('markSurveyOfferDone({');
+    expect(screen).toContain('<SurveySheetModal');
+    expect(controller).toContain('await markSurveyOfferDone({');
+    expect(controller).toContain('stableId,');
+    expect(controller).toContain('dayKey,');
   });
 
   it('defaults to three attempts and does not wait after the final attempt', async () => {

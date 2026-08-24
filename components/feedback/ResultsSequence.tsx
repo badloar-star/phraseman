@@ -43,6 +43,7 @@ import fk from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
+import EnergyCostBadge from '../EnergyCostBadge';
 import {
   getResultsSequenceAudioPlan,
   getResultsSequenceMotionPlan,
@@ -100,6 +101,8 @@ export interface ResultsSequenceProps {
   stars: number;
   /** XP-only surfaces hide the whole star row instead of presenting zero stars. */
   showStars?: boolean;
+  /** Completion mark is meaningful in lessons, but Arena already states the outcome. */
+  showFinaleMark?: boolean;
   xp: number;
   title: string;
   subtitle?: string;
@@ -113,6 +116,7 @@ export interface ResultsSequenceProps {
   ctaPrimaryLabel: string;
   onCtaSecondary?: () => void;
   ctaSecondaryLabel?: string;
+  secondaryShowsEnergyCost?: boolean;
   onCtaTertiary?: () => void;
   ctaTertiaryLabel?: string;
   /** 'quiet' — без конфетти-грозы (экзамены). */
@@ -208,6 +212,7 @@ function RewardPill({
 export function ResultsSequence({
   stars,
   showStars = true,
+  showFinaleMark = true,
   xp,
   title,
   subtitle,
@@ -218,6 +223,7 @@ export function ResultsSequence({
   ctaPrimaryLabel,
   onCtaSecondary,
   ctaSecondaryLabel,
+  secondaryShowsEnergyCost = false,
   onCtaTertiary,
   ctaTertiaryLabel,
   intensity = 'major',
@@ -597,13 +603,15 @@ export function ResultsSequence({
             </RewardPill>
           ))}
         </View>
-        <View style={styles.finaleSlot}>
-          {finaleVisible ? (
+        {showFinaleMark ? (
+          <View style={styles.finaleSlot}>
+            {finaleVisible ? (
             <Animated.View style={[styles.finaleMark, finaleStyle]}>
               <Text style={[styles.finaleText, { color: t.gold }]}>✓</Text>
             </Animated.View>
-          ) : null}
-        </View>
+            ) : null}
+          </View>
+        ) : null}
       </View>
 
       <Animated.View style={[styles.ctaWrap, ctaStyle]}>
@@ -629,6 +637,7 @@ export function ResultsSequence({
             <Text style={[styles.ctaSecondaryText, { color: t.textMuted }]}>
               {ctaSecondaryLabel}
             </Text>
+            {secondaryShowsEnergyCost ? <EnergyCostBadge testID="results-secondary-energy-cost" /> : null}
           </TouchableOpacity>
         ) : null}
         {onCtaTertiary && ctaTertiaryLabel ? (
@@ -651,8 +660,8 @@ export function ResultsSequence({
 
 const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 48, paddingHorizontal: 28 },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  badgeSlot: { marginBottom: 20 },
+  center: { width: '100%', maxWidth: 584, flex: 1, alignItems: 'center', justifyContent: 'center' },
+  badgeSlot: { width: '100%', marginBottom: 20 },
   starsRow: { flexDirection: 'row', gap: 10, marginBottom: 20 },
   star: { fontSize: 44, fontWeight: '900' },
   title: { fontSize: 28, fontWeight: '900', textAlign: 'center', letterSpacing: 0.3 },

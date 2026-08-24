@@ -316,6 +316,31 @@ describe('progress_events engine', () => {
     expect(applyProgressEvent({}, event, now).xpDelta).toBe(100);
   });
 
+  it('accepts personal-plan task completion and caps its XP', () => {
+    const event = normalizeProgressEvent({
+      eventId: 'plan:en:instance-1:task-1:complete',
+      type: 'plan_task_complete',
+      clientLocalDate: '2026-06-13',
+      payload: { xpDelta: 100000, planInstanceId: 'instance-1', planTaskId: 'task-1' },
+    });
+
+    expect(event.type).toBe('plan_task_complete');
+    expect(applyProgressEvent({}, event, now).xpDelta).toBe(1500);
+  });
+
+  it('rejects personal-plan completion without canonical plan and task ids', () => {
+    for (const payload of [
+      { xpDelta: 6, planInstanceId: '', planTaskId: 'task-1' },
+      { xpDelta: 6, planInstanceId: 'instance-1', planTaskId: '../task' },
+    ]) {
+      expect(() => normalizeProgressEvent({
+        eventId: 'plan:en:instance-1:task-1:complete',
+        type: 'plan_task_complete',
+        payload,
+      })).toThrow('bad_plan_completion_identity');
+    }
+  });
+
   it('accepts level_up_bonus only as the canonical +100 XP for an authoritative reached level', () => {
     const valid = normalizeProgressEvent({
       eventId: 'level_up:5:bonus',

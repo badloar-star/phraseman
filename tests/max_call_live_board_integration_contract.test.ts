@@ -36,11 +36,11 @@ describe('MAX tutor live-board call integration', () => {
     expect(session).toContain("clientRef.current?.end('completed')");
   });
 
-  it('keeps terminal connection failure visible with both learner choices', () => {
-    expect(session).toContain('testID="max-call-terminal-failure"');
-    expect(session).toContain('testID="max-call-retry-connection"');
-    expect(session).toContain('testID="max-call-finish-failed"');
-    expect(session).not.toContain('exitFailedCallForHome');
+  it('keeps retry and finish behavior independent of the reconnect screen layout', () => {
+    expect(session).toContain("client?.phase() === 'reconnect_failed'");
+    expect(session).toContain('client.retryReconnect()');
+    expect(session).toContain("void client.end('failed')");
+    expect(session).toContain("reduceMaxCallUi(prev, { type: 'end' })");
   });
 
   it('connects validated tools and clears transient UI across lifecycle boundaries', () => {
@@ -79,22 +79,15 @@ describe('MAX tutor live-board call integration', () => {
     expect(session).toMatch(/event\.type === 'response_done'[\s\S]{0,180}event\.type === 'reconnect_started'/);
   });
 
-  // зачем (владелец 2026-08-23): «убери вот эту плашку вверху MAX». Двухстрочная
-  // плашка «Дневной запас MAX» из шапки удалена — она не влезала в слот 116px,
-  // подпись переносилась, а число («2 мин») выезжало за экран. Само ПРАВИЛО
-  // осталось: дневной запас продолжает убывать на глазах и по-прежнему не может
-  // пережить жёсткий дедлайн звонка — теперь это делает компактная пилюля,
-  // считающая по наиболее раннему из двух дедлайнов. Полная плашка с полосой
-  // живёт на пре-экране (app/max_call_prestart.tsx) — там для неё есть место.
+  // Согласованный вариант сохраняет числовой остаток, но дополняет его постоянно
+  // видимой убывающей полосой в компактном варианте дневного meter-компонента.
   it('shows the decreasing daily MAX allowance while preserving the hard call deadline', () => {
     expect(session).toContain('dailyQuotaFromLimits(mint.limits)');
     expect(session).toContain('setHardAtMs(deadlines.hardAtMs)');
-    // Пилюля шапки обязана учитывать дневной запас, а не только сессию.
-    expect(session).toContain('setHeaderDeadlineAtMs(');
-    expect(session).toMatch(/Math\.min\(deadlines\.hardAtMs,\s*dayEndsAtMs\)/);
-    expect(session).toContain('hardAtMs={headerDeadlineAtMs}');
-    // Шапка звонка больше не носит двухстрочную плашку запаса.
-    expect(session).not.toContain('<MaxDailyQuotaMeter');
+    expect(session).toContain("import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter'");
+    expect(session).toContain('<MaxDailyQuotaMeter');
+    expect(session).toContain('variant="compact"');
+    expect(session).toContain('runningSinceMs={startedAtMs}');
   });
 
   it('keeps the full daily allowance meter on the call pre-screen', () => {
@@ -113,6 +106,9 @@ describe('MAX tutor live-board call integration', () => {
     expect(session).toContain('visibleAssistantText={visibleAssistantText}');
     expect(session).toContain('completedAssistantText={completedAssistantText}');
     expect(session).toContain('testID="max-call-caption-visibility-toggle"');
-    expect(session).toMatch(/testID="max-call-captions-button"[\s\S]{0,500}setSheetOpen\(true\)/);
+    const buttonStart = session.indexOf('testID="max-call-captions-button"');
+    const buttonEnd = session.indexOf('</TouchableOpacity>', buttonStart);
+    expect(buttonStart).toBeGreaterThan(-1);
+    expect(session.slice(buttonStart, buttonEnd)).toContain('setSheetOpen(true)');
   });
 });

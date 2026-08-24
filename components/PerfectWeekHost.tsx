@@ -9,7 +9,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
-import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { onAppEvent } from '../app/events';
 import { isBoonModifierActive } from '../app/boons/boon_engine';
@@ -20,7 +19,6 @@ import {
   PERFECT_WEEK_CLAIMED_KEY,
   PERFECT_WEEK_REWARD,
 } from '../app/boons/perfect_week';
-import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
 import {
   ruKnowledgeShardsAfterNumber,
   ukKnowledgeShardsAfterNumber,
@@ -33,7 +31,6 @@ function makeL(lang: Lang) {
 }
 
 export default function PerfectWeekHost() {
-  const { themeMode } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -137,7 +134,6 @@ export default function PerfectWeekHost() {
     <BoonChestModal
       visible={visible}
       rarity="epic"
-      rewardIcon={getThemedShardIcon(themeMode)}
       title={title}
       rewardLine={rewardLine}
       tapHint={tapHint}

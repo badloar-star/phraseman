@@ -19,7 +19,10 @@
    писать ТОЛЬКО в admin/v2/legacy.html». Ни одно из этих правил не относится
    напрямую к Learning V2 уроку 1, но они соседствуют по коду (functions/src/
    и admin/v2), и одно неосторожное «заодно поправлю» там ломает боевой прод.
-2. `docs/v2/LESSON_DESIGN_RULES.ru.md` — правила построения ЛЮБОГО урока курса
+2. `docs/v2/LESSON_DESIGN_RULES.ru.md` — правила построения ЛЮБОГО урока курса;
+   рядом обязательно прочитать `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` —
+   неподвижный стиль интро, запрет мета-упоминаний и восемь самостоятельных
+   языковых версий
    (не только урока 1). Написаны сегодня, отражают решения владельца.
 3. `docs/v2/03-learning-architecture-and-curriculum.md` — исходная
    спецификация курса (32 урока, разбивка по грамматике на урок).
@@ -846,6 +849,8 @@ authored_sessions_v1.ts — не завершён.
 
 ### Правила и документация
 - `docs/v2/LESSON_DESIGN_RULES.ru.md` — как строить ЛЮБОЙ урок курса.
+- `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md` — как обязаны звучать интро,
+  фразы и разборы на всех восьми языках.
 - `docs/v2/03-learning-architecture-and-curriculum.md` — исходная
   спецификация (32 урока).
 - `modules/learning-v2/content/source/phrase_admissibility_filter_v1.ts` —

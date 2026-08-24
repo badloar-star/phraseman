@@ -23,6 +23,7 @@ import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { appendExternalEconomyEvent } from './external_economy_events';
+import { writeAccessProjectionFromPatch } from './access_projection';
 import {
   assertAuthStableLink,
   resolveReferralRoulettePolicy,
@@ -317,6 +318,15 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
     // production-drain credits so a dev-only balance cannot keep roulette open.
     const spinsLeft = Math.max(0, eligibleSummary.availableCount - 1);
     const aggregateSpinsLeft = Math.max(0, allSummary.availableCount - 1);
+    const vipProgressPatch: Record<string, unknown> = prizeKind === 'days' ? {
+      vip_active: 'true',
+      vip_plan: 'referral_spin',
+      vip_from: String(Math.min(currentUntil || nowMs, nowMs)),
+      vip_until: String(vipUntil),
+      vip_admin_override: 'true',
+      vip_admin_grant_at: String(nowMs),
+      referral_vip_last_source: 'referral_spin',
+    } : {};
 
     tx.set(userRef.collection(REFERRAL_SPIN_LEDGER).doc(selectedCredit.id), {
       status: 'consumed',
@@ -331,15 +341,7 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
         progress: {
           // Дни Plus стакаются только для prizeKind='days'; жемчужный приз
           // Pro не пишет vip_* вовсе (начисление — клиентский claim по логу).
-          ...(prizeKind === 'days' ? {
-            vip_active: 'true',
-            vip_plan: 'referral_spin',
-            vip_from: String(Math.min(currentUntil || nowMs, nowMs)),
-            vip_until: String(vipUntil),
-            vip_admin_override: 'true',
-            vip_admin_grant_at: String(nowMs),
-            referral_vip_last_source: 'referral_spin',
-          } : {}),
+          ...vipProgressPatch,
           referral_spin_credits: aggregateSpinsLeft,
           referral_spin_ledger_version: REFERRAL_SPIN_LEDGER_VERSION,
           ...(migrateLegacyAggregate
@@ -351,6 +353,9 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       },
       { merge: true },
     );
+    if (prizeKind === 'days') {
+      writeAccessProjectionFromPatch(tx, userRef, progress, vipProgressPatch, nowMs);
+    }
 
     tx.set(spinRef, {
       prizeIndex,

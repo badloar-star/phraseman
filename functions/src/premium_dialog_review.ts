@@ -3,12 +3,19 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
-import { applyTutorMemoryUpdate } from './max_voice_tutor_memory';
+import {
+  applyTutorMemoryUpdate,
+  sanitizeTutorSessionId,
+  type TutorMemory,
+  type TutorMemoryUpdate,
+} from './max_voice_tutor_memory';
 import { reviewVoiceSafety, sanitizeClientSafetyFlags } from './max_voice_safety';
-import { canDoProgress } from './max_voice_can_do_goals';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
 import { resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
+import { resolvePremiumAccess } from './premium_status';
+import { resolveRemoteBool } from './remote_gates';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -36,7 +43,8 @@ const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MAX_REVIEW_TURNS = 40;
 const MAX_TURN_CHARS = 600;
 const MAX_REVIEW_OUTPUT_TOKENS = 900;
-const MAX_CORRECTIONS = 8;
+const MAX_TEXT_CORRECTIONS = 8;
+const MAX_VOICE_CORRECTIONS = 3;
 
 const LEARNER_LANG_NAME: Record<string, string> = {
   ru: 'Russian',
@@ -164,6 +172,7 @@ export function buildReviewSystemPrompt(
 ): string {
   const goalLine = goalEn ? `\nThe scenario goal was: ${goalEn}.` : '';
   const targetName = studyTargetName(studyTarget);
+  const maxCorrections = mode === 'text' ? MAX_TEXT_CORRECTIONS : MAX_VOICE_CORRECTIONS;
   // voice: транскрипт — это ASR-текст произнесённой речи, а не напечатанный текст.
   // Модели нужно явно сказать не путать эти два жанра ошибок, иначе она либо
   // придирается к устной речи как к письму (жалуется на "um", отсутствие точек),
@@ -171,7 +180,7 @@ export function buildReviewSystemPrompt(
   // спрятанные среди естественных заминок разговорной речи.
   const modeLine =
     mode === 'voice' || mode === 'tutor'
-      ? `\nThis transcript is from a SPOKEN phone call (speech-to-text), not written chat. Do NOT flag spoken-only features as mistakes: filler words ("um", "uh", "like"), false starts the learner self-corrected, informal contractions, or missing punctuation/capitalization — that is just how speech sounds and text-to-speech is transcribed. DO still flag real grammar, word choice, and word order mistakes that a listener would actually notice in speech.`
+      ? `\nThis transcript is from a SPOKEN phone call (speech-to-text), not written chat. Do NOT flag spoken-only features as mistakes: filler words ("um", "uh", "like"), false starts the learner self-corrected, informal contractions, or missing punctuation/capitalization. If a fragment is ambiguous or could plausibly be a speech-recognition error, skip it instead of inventing a correction. Never diagnose pronunciation from this transcript alone. DO still flag clear grammar, word choice, and word order mistakes that a listener would actually notice in speech.`
       : '';
   // зачем: учитель (вариант A) помнит ученика между уроками: разбор извлекает
   // факты и повторяющиеся ошибки для voice_tutor_memory. Урок двуязычный
@@ -190,7 +199,7 @@ export function buildReviewSystemPrompt(
   // не зачёркивает исходник) и всегда идут ПОСЛЕ настоящих ошибок.
   const polishRule =
     mode === 'voice' || mode === 'tutor'
-      ? `\n- Every learner line deserves a look. If a line is grammatically fine but a native speaker at level ${cefr} would say it more naturally, add an item with "kind": "polish": "original" = the learner's line, "corrected" = the more natural version, "note" = one warm sentence in ${learnerLangName} that clearly says the line was already correct and this is just a nicer way to say it. Mistakes are "kind": "fix" (or omit "kind"). Add at most 3 polish items and put them AFTER all real mistakes.`
+      ? `\n- Scan every learner line, but add at most 1 polish item. If a correct line has a clearly more natural version at level ${cefr}, use "kind": "polish", keep the learner's meaning, and say warmly in ${learnerLangName} that the original was already correct. Put it AFTER all real mistakes.`
       : '';
   return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}${modeLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
@@ -200,11 +209,11 @@ Review ONLY the learner's lines. Respond with a single JSON object and nothing e
 
 Rules:
 - "praise": 1-2 warm, specific sentences in ${learnerLangName} about what the learner genuinely did well (a phrase they used, politeness, persistence). Never invent things they did not say, never use empty flattery.
-- "corrections": go through EVERY learner line. For each line with a language mistake add one item:
+- "corrections": scan all learner lines, then return only the most useful items for the next conversation:
   - "original": the learner's line exactly as they wrote it (shorten to the broken part if the line is long);
   - "corrected": the natural ${targetName} a friendly native speaker would use for the same idea, kept at level ${cefr};
   - "note": ONE short, kind sentence in ${learnerLangName} explaining the fix in everyday words — no grammar jargon, no mockery, never shame the learner.
-  Skip lines that are already fine. At most ${MAX_CORRECTIONS} items — if there are more mistakes, pick the most useful ones.
+  Skip lines that are already fine. At most ${maxCorrections} items total${mode === 'text' ? '' : ': one main focus plus up to two details'}.
 - "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended ${targetName} phrase in ${targetName}.
 - Comment ONLY on language. Never scold the learner for rudeness, topics, or how the scene went.
 - If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.${polishRule}${tutorRule}`;
@@ -219,7 +228,10 @@ interface OpenAIChatResponse {
  * Разбор JSON-ответа ревью. Бережный: снимает ```-ограждения, режет длины,
  * отбрасывает битые элементы. null — совсем не распарсилось.
  */
-export function parseReviewEnvelope(raw: string): DialogReviewResult | null {
+export function parseReviewEnvelope(
+  raw: string,
+  modeOrLimit: DialogReviewMode | number = 'text',
+): DialogReviewResult | null {
   const unfenced = raw.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
   let parsed: Record<string, unknown> | null = null;
   try {
@@ -231,17 +243,27 @@ export function parseReviewEnvelope(raw: string): DialogReviewResult | null {
 
   const rawCorrections = Array.isArray(parsed.corrections) ? parsed.corrections : [];
   const corrections: DialogReviewCorrection[] = [];
-  for (const item of rawCorrections.slice(0, MAX_CORRECTIONS)) {
+  let polishSeen = false;
+  const voiceLike = typeof modeOrLimit === 'number' || modeOrLimit === 'voice' || modeOrLimit === 'tutor';
+  const correctionLimit = typeof modeOrLimit === 'number'
+    ? Math.min(MAX_TEXT_CORRECTIONS, Math.max(0, Math.floor(modeOrLimit)))
+    : modeOrLimit === 'text' ? MAX_TEXT_CORRECTIONS : MAX_VOICE_CORRECTIONS;
+  const originalMax = voiceLike ? 160 : 300;
+  const correctedMax = voiceLike ? 160 : 300;
+  const noteMax = voiceLike ? 180 : 300;
+  for (const item of rawCorrections.slice(0, correctionLimit)) {
     const c = (item ?? {}) as Record<string, unknown>;
-    const original = text(c.original, 300);
-    const corrected = text(c.corrected, 300);
+    const original = text(c.original, originalMax);
+    const corrected = text(c.corrected, correctedMax);
     if (!original || !corrected) continue;
     const kind = text(c.kind, 10) === 'polish' ? 'polish' : 'fix';
-    corrections.push({ original, corrected, note: text(c.note, 300), kind });
+    if (voiceLike && kind === 'polish' && polishSeen) continue;
+    if (voiceLike && kind === 'polish') polishSeen = true;
+    corrections.push({ original, corrected, note: text(c.note, noteMax), kind });
   }
 
-  const praise = text(parsed.praise, 500);
-  const tip = text(parsed.tip, 400);
+  const praise = text(parsed.praise, voiceLike ? 240 : 500);
+  const tip = text(parsed.tip, voiceLike ? 220 : 400);
   if (!praise && corrections.length === 0 && !tip) return null;
   const rawMemory = parsed.memory && typeof parsed.memory === 'object' ? (parsed.memory as Record<string, unknown>) : null;
   const list = (v: unknown, max: number): string[] =>
@@ -256,13 +278,66 @@ export function parseReviewEnvelope(raw: string): DialogReviewResult | null {
   return memory ? { praise, corrections, tip, memory } : { praise, corrections, tip };
 }
 
+/** Клиентские итоги урока не зависят от ответа провайдера и сохраняются первыми. */
+function buildTutorEvidenceUpdate(data: DialogReviewRequest, cefr: string, nowMs: number): TutorMemoryUpdate {
+  const list = (v: unknown, max: number): string[] =>
+    Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
+  return {
+    sessionId: data.sessionId,
+    enforceHomeworkEvidence: true,
+    homework: list(data.homework, 3),
+    nextTopic: text(data.nextTopic, 140),
+    cefr,
+    // 'default' → сброс на политику уровня; пусто/нет поля → предпочтение не трогаем.
+    languagePreference: text(data.languagePreference, 16) === '' ? undefined : text(data.languagePreference, 16),
+    phraseResults: Array.isArray(data.phraseResults)
+      ? data.phraseResults.slice(0, 12).map((r) => {
+          const item = (r ?? {}) as Record<string, unknown>;
+          const raw = text(item.result, 16);
+          const result = (raw === 'pass' || raw === 'needs_work' || raw === 'uncertain' || raw === 'invalid'
+            ? raw
+            : typeof item.ok === 'boolean'
+              ? (item.ok ? 'pass' : 'needs_work')
+              : 'invalid') as 'pass' | 'needs_work' | 'uncertain' | 'invalid';
+          return { text: text(item.text, 140), result };
+        }).filter((r) => r.text !== '')
+      : [],
+    sceneOutcome: text(data.sceneOutcome, 12),
+    goalProgress: data.goalProgress && typeof data.goalProgress === 'object'
+      ? {
+          goalId: (data.goalProgress as Record<string, unknown>).goalId,
+          mastery: (data.goalProgress as Record<string, unknown>).mastery,
+          evidence: (data.goalProgress as Record<string, unknown>).evidence,
+          sceneId: (data.goalProgress as Record<string, unknown>).sceneId,
+        }
+      : null,
+    nowMs,
+  };
+}
+
+function tutorMemoryProjection(memory: TutorMemory, data: DialogReviewRequest) {
+  const requested = data.goalProgress && typeof data.goalProgress === 'object'
+    ? data.goalProgress as Record<string, unknown>
+    : null;
+  const goalId = text(requested?.goalId, 40);
+  const acceptedGoalProgress = goalId
+    ? { goalId, mastery: memory.goalMastery[goalId] ?? 0 }
+    : undefined;
+  return {
+    callCount: memory.callCount,
+    homework: memory.homework,
+    nextTopic: memory.nextTopic,
+    ...(acceptedGoalProgress ? { acceptedGoalProgress } : {}),
+  };
+}
+
 export const premiumDialogReview = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '256MiB',
   maxInstances: 20,
-  secrets: [OPENAI_API_KEY],
+  secrets: [OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {
   if (!request.auth?.uid) {
     console.warn('premium_dialog_review rejected', { reason: 'auth_required' });
@@ -273,13 +348,15 @@ export const premiumDialogReview = onCall({
 
   const history = sanitizeReviewHistory(data.history);
   const learnerTurns = history.filter((t) => t.role === 'user');
-  if (learnerTurns.length === 0) {
+  const mode = asReviewMode(data.mode);
+  if (learnerTurns.length === 0 && mode !== 'tutor') {
     console.warn('premium_dialog_review rejected', { reason: 'history_required' });
     throw new HttpsError('invalid-argument', 'history_required');
   }
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
-  if (!apiKey) {
+  // Для text/voice сохраняем прежний fail-fast до любых Firestore-действий.
+  if (!apiKey && mode !== 'tutor') {
     console.error('premium_dialog_review rejected', { reason: 'openai_key_missing' });
     throw new HttpsError('failed-precondition', 'openai_key_missing');
   }
@@ -287,16 +364,50 @@ export const premiumDialogReview = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  const cefr = asCefr(data.cefr);
+  const tutorEvidenceNowMs = Date.now();
+  const tutorEvidence = mode === 'tutor' ? buildTutorEvidenceUpdate(data, cefr, tutorEvidenceNowMs) : undefined;
+
+  // Детерминированные итоги уже известны клиенту: пишем и дожидаемся транзакции
+  // ДО rate-limit/model/fetch, чтобы сбой API не стирал домашку и прогресс урока.
+  const tutorEvidenceMemory = tutorEvidence
+    ? await applyTutorMemoryUpdate(db, authUid, stableUid, tutorEvidence, { strict: true })
+    : undefined;
+
+  if (learnerTurns.length === 0 && tutorEvidenceMemory) {
+    return {
+      ok: true,
+      praise: '',
+      corrections: [],
+      tip: '',
+      tutorMemory: tutorMemoryProjection(tutorEvidenceMemory, data),
+    };
+  }
+
+  if (!apiKey) {
+    console.error('premium_dialog_review rejected', { reason: 'openai_key_missing' });
+    throw new HttpsError('failed-precondition', 'openai_key_missing');
+  }
+
+  // зачем: аудит безопасности 2026-08-22 — разбор диалога (заведомо платный
+  // OpenAI-вызов ниже) вызывается напрямую в обход premiumDialogSend и раньше
+  // не гейтился подпиской вообще, только общим часовым лимитом. Тот же гейт и
+  // тот же рубильник, что у send/translate — при gate_ai_dialog_premium=false
+  // фича намеренно общая для всех.
+  const aiDialogGatedByPremium = await resolveRemoteBool(db, 'gate_ai_dialog_premium', true);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  if (!isPremium && aiDialogGatedByPremium) {
+    console.warn('premium_dialog_review rejected', { reason: 'dialog_plus_required' });
+    throw new HttpsError('permission-denied', 'dialog_plus_required');
+  }
 
   // Общий rate-limit с send/translate: разбор — один вызов на диалог, окна хватает.
   await enforceRateLimit(authUid, stableUid);
 
-  const cefr = asCefr(data.cefr);
   const interfaceLang = asInterfaceLang(data.interfaceLang);
   const learnerLangName = LEARNER_LANG_NAME[interfaceLang] ?? LEARNER_LANG_NAME.ru;
   const goalEn = text(data.goalEn, 200);
   const studyTarget = resolveStudyTarget(data.studyTarget);
-  const mode = asReviewMode(data.mode);
 
   const partnerLabel = mode === 'tutor' ? 'Teacher' : 'Partner';
   const transcript = history
@@ -306,9 +417,9 @@ export const premiumDialogReview = onCall({
   const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
   const useJsonFormat = modelSupportsJsonObject(dialogModel);
 
-  // Сейфти-журнал голосовых уроков/звонков (владелец 2026-08-16): флаги учителя +
-  // словарь + модерация → safety_flags с полным транскриптом + Telegram. Идёт
-  // ПАРАЛЛЕЛЬНО с разбором и никогда не бросает.
+  // MAX safety-проверка использует транскрипт только во время текущего разбора.
+  // Оператор получает обезличенную категорию; текст, UID и session не сохраняются
+  // и не отправляются. Проверка идёт параллельно и никогда не роняет разбор.
   const safetyPromise = mode === 'voice' || mode === 'tutor'
     ? reviewVoiceSafety({
         apiKey,
@@ -358,7 +469,7 @@ export const premiumDialogReview = onCall({
       }
 
       json = (await response.json()) as OpenAIChatResponse;
-      review = parseReviewEnvelope(text(json.choices?.[0]?.message?.content, 6000));
+      review = parseReviewEnvelope(text(json.choices?.[0]?.message?.content, 6000), mode);
       if (!review) {
         console.error('premium_dialog_review unparseable reply', {
           model: dialogModel,
@@ -403,36 +514,24 @@ export const premiumDialogReview = onCall({
   // Учитель: обновить память между уроками (домашка/тема — от клиента, из
   // инструментов учителя; факты/ошибки — из разбора). Ошибка записи — не
   // причина ронять разбор.
-  let tutorMemoryOut: { callCount: number; homework: string[]; nextTopic: string; goalsDone: number; goalsTotal: number } | undefined;
-  if (mode === 'tutor') {
-    const list = (v: unknown, max: number): string[] =>
-      Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
-    const next = await applyTutorMemoryUpdate(db, authUid, stableUid, {
+  let tutorMemoryOut: ReturnType<typeof tutorMemoryProjection> | undefined;
+  if (tutorEvidence) {
+    const reviewMemory = {
       facts: review.memory?.facts ?? [],
       recurringErrors: review.memory?.recurringErrors ?? [],
       resolvedErrors: review.memory?.resolvedErrors ?? [],
-      homework: list(data.homework, 4),
-      nextTopic: text(data.nextTopic, 140),
-      cefr,
-      // 'default' → сброс на политику уровня; пусто/нет поля → предпочтение не трогаем.
-      languagePreference: text(data.languagePreference, 16) === '' ? undefined : text(data.languagePreference, 16),
-      phraseResults: Array.isArray(data.phraseResults)
-        ? data.phraseResults.slice(0, 12).map((r) => {
-            const item = (r ?? {}) as Record<string, unknown>;
-            return { text: text(item.text, 140), ok: item.ok === true };
-          }).filter((r) => r.text !== '')
-        : [],
-      sceneOutcome: text(data.sceneOutcome, 12),
-      goalProgress: data.goalProgress && typeof data.goalProgress === 'object'
-        ? { goalId: (data.goalProgress as Record<string, unknown>).goalId, mastery: (data.goalProgress as Record<string, unknown>).mastery }
-        : null,
-      nowMs: Date.now(),
-    });
-    const progress = canDoProgress(next.goalMastery);
-    tutorMemoryOut = {
-      callCount: next.callCount, homework: next.homework, nextTopic: next.nextTopic,
-      goalsDone: progress.done, goalsTotal: progress.total,
     };
+    // С sessionId повторяем полную запись: транзакция либо увидит первый этап и
+    // возьмёт только review-поля, либо восстановит весь урок, если первая запись
+    // не удалась. Legacy-клиент без id использует явный reviewOnly, чтобы не
+    // превратить один урок в два.
+    const next = await applyTutorMemoryUpdate(db, authUid, stableUid, {
+      ...(sanitizeTutorSessionId(data.sessionId)
+        ? tutorEvidence
+        : { reviewOnly: true, nowMs: tutorEvidenceNowMs }),
+      ...reviewMemory,
+    }, { strict: true });
+    tutorMemoryOut = tutorMemoryProjection(next, data);
   }
 
   // Память — внутренняя кухня учителя: клиенту она не нужна и не уходит.

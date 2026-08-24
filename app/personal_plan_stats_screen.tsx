@@ -19,6 +19,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import { triLang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
@@ -26,7 +27,7 @@ import { useAudio } from '../hooks/use-audio';
 import { getPlanById, type PersonalPlanDefinition, type PlanDay } from './personal_plan_catalog';
 import { readPersonalPlanState } from './personal_plan_state';
 import { phrasesForPlanDay, type PlanDayPhrase } from './personal_plan_day_phrases';
-import { openPersonalPlanTask } from './personal_plan_navigation';
+import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './personal_plan_navigation';
 import { allTasksForDay } from './personal_plan_catalog';
 import { readCompletedPlanTasks } from './personal_plan_progress';
 import { buildPersonalPlanStats, type PersonalPlanStatsSummary } from './personal_plan_stats';
@@ -299,6 +300,10 @@ function PersonalPlanStatsScreen() {
     () => (reviewDay ? phrasesForPlanDay(reviewDay) : []),
     [reviewDay],
   );
+  const reviewReplayStartsPaid = useMemo(() => {
+    const firstTask = reviewDay ? allTasksForDay(reviewDay)[0] : undefined;
+    return firstTask ? personalPlanTaskStartsPaidExercise(firstTask) : false;
+  }, [reviewDay]);
 
   const playReviewPhrase = useCallback((en: string) => {
     if (!en) return;
@@ -518,6 +523,7 @@ function PersonalPlanStatsScreen() {
         phrases={reviewPhrases}
         chrome={chrome}
         canReplay={plan != null && reviewDay != null && allTasksForDay(reviewDay).length > 0}
+        replayStartsPaid={reviewReplayStartsPaid}
         onPlayPhrase={playReviewPhrase}
         onReplayDay={replayDay}
         onClose={closeDayReview}
@@ -529,12 +535,13 @@ function PersonalPlanStatsScreen() {
 export default withPersonalPlanSunsetGuard(PersonalPlanStatsScreen);
 
 function DayReviewSheet({
-  day, phrases, chrome, canReplay, onPlayPhrase, onReplayDay, onClose,
+  day, phrases, chrome, canReplay, replayStartsPaid, onPlayPhrase, onReplayDay, onClose,
 }: {
   day: PlanDay | null;
   phrases: PlanDayPhrase[];
   chrome: StatsChrome;
   canReplay: boolean;
+  replayStartsPaid: boolean;
   onPlayPhrase: (en: string) => void;
   onReplayDay: () => void;
   onClose: () => void;
@@ -622,6 +629,7 @@ function DayReviewSheet({
                     <Ionicons name="refresh" size={18} color={chrome.bg[2]} />
                     <Text style={[styles.replayBtnText, { color: chrome.bg[2] }]}>Пройти этот день заново</Text>
                   </LinearGradient>
+                  {replayStartsPaid ? <EnergyCostBadge testID="personal-plan-stats-replay-energy-cost" /> : null}
                 </TouchableOpacity>
               )}
             </>

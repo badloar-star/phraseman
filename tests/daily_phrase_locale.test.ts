@@ -137,12 +137,13 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     expect(source).not.toContain('{homeAdditionalMeaning}');
   });
 
-  it('uses the phrases theme icon for Daily Phrase instead of a home-menu image from another topic', () => {
+  it('uses a code-native Daily Phrase icon instead of retired theme raster art', () => {
     const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
     const source = fs.readFileSync(componentPath, 'utf8');
 
-    expect(source).toContain("import { trainerThemeIconSource } from '../constants/trainerThemeIcons';");
-    expect(source).toContain("const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');");
+    expect(source).toContain("import Ionicons from '@expo/vector-icons/Ionicons';");
+    expect(source).toContain('name="chatbubble-ellipses-outline"');
+    expect(source).not.toContain('dailyPhraseThemeArtSource');
     expect(source).not.toContain('DAILY_PHRASE_IMAGES');
     expect(source).not.toContain('home_menu/home-forest-daily-phrase.webp');
     expect(source).not.toContain('home_menu/home-minimal-dark-daily-phrase.webp');

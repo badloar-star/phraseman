@@ -4,12 +4,9 @@
  * Поведенческая часть (объединение/дедуп/перемешивание) покрыта в
  * fc_deck_sources.test.ts. Здесь — то, что экраны сессий действительно
  * подключены к мультиколоде:
- *  - words-сессия и блиц читают ?deck= как СПИСОК (parseDeckParams) и грузят
- *    объединённый пул (loadDeckCardsMulti), а не одну колоду;
- *  - words-сессия пишет ошибку с источником КОНКРЕТНОЙ карточки (DeckCard.source),
- *    иначе при «saved + pack» ошибка из пака уехала бы в чужую очередь повторения;
+ *  - блиц читает ?deck= как СПИСОК (parseDeckParams) и грузит объединённый пул
+ *    (loadDeckCardsMulti), а не одну колоду;
  *  - блиц собирает дефолт «сохранённые + свои» тем же загрузчиком;
- *  - режим БЕЗ ?deck= в words-сессии остаётся обычной due-очередью тренера;
  *  - удалённой звёздной механики раздела (§3) в сессиях нет.
  */
 import { readFileSync } from 'fs';
@@ -43,38 +40,7 @@ jest.mock('../app/account_generation', () => ({
 
 const src = (rel: string) => readFileSync(path.join(__dirname, '..', rel), 'utf8');
 
-const WORDS = src('app/trainer_words_session.tsx');
 const BLITZ = src('app/flashcards_blitz_session.tsx');
-
-describe('words-сессия: мультиколода (§6)', () => {
-  it('параметр ?deck= читается как список, пул грузится объединённым', () => {
-    expect(WORDS).toMatch(/parseDeckParams\(/);
-    expect(WORDS).toMatch(/loadDeckCardsMulti\(deckRefs, cardContentLang\)/);
-    // Старое одиночное API больше не используется
-    expect(WORDS).not.toMatch(/parseDeckParam\(/);
-    expect(WORDS).not.toMatch(/\bloadDeckCards\(/);
-  });
-
-  it('лишнего перемешивания нет — только срез по размеру сессии', () => {
-    expect(WORDS).toMatch(/pool\.slice\(0, sessionSize\)/);
-    expect(WORDS).not.toMatch(/shuffleArr/);
-  });
-
-  it('ошибка пишется с источником конкретной карточки', () => {
-    expect(WORDS).toMatch(/c\.source \?\? fallbackSource/);
-    expect(WORDS).toMatch(/mistakeSourceForDecks\(/);
-    expect(WORDS).not.toMatch(/mistakeSourceForDeck\(/);
-  });
-
-  it('без ?deck= сессия остаётся обычной due-очередью тренера', () => {
-    // Пустой список колод -> ветка getDueItems + markTrainerResult (SRS тренера)
-    expect(parseDeckParams(undefined)).toEqual([]);
-    expect(WORDS).toMatch(/deckRefs\.length === 0/);
-    expect(WORDS).toMatch(/deckRefs\.length > 0/);
-    expect(WORDS).toMatch(/getDueItems\('words', /);
-    expect(WORDS).toMatch(/markTrainerResult\(card\.item\.key, 'words', answeredCorrectly/);
-  });
-});
 
 describe('блиц: несколько наборов (§6)', () => {
   it('список наборов + объединённый пул одним загрузчиком', () => {
@@ -108,11 +74,8 @@ describe('блиц: несколько наборов (§6)', () => {
 });
 
 describe('звёздной механики раздела в сессиях нет (§3)', () => {
-  it.each([
-    ['app/trainer_words_session.tsx', WORDS],
-    ['app/flashcards_blitz_session.tsx', BLITZ],
-  ])('%s', (_file, code) => {
-    expect(code).not.toMatch(/stars_system|stars_config|awardSessionStars|recordDeckBest/);
+  it('не возвращает её в блиц', () => {
+    expect(BLITZ).not.toMatch(/stars_system|stars_config|awardSessionStars|recordDeckBest/);
   });
 });
 

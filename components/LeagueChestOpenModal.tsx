@@ -3,7 +3,6 @@ import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import type { ImageSourcePropType } from 'react-native';
 import { isActiveLeagueChestReward, type LeagueChestRewardDrop } from '../app/services/league_chest_rewards';
 import { getAvatarAuraById } from '../constants/avatar_auras';
 import {
@@ -19,9 +18,7 @@ import {
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
 import { triLang, type Lang } from '../constants/i18n';
-import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
-import { getLevelGiftRewardIcon, type LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import type { ThemeMode } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -33,6 +30,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import LeagueChestSlitOpen from './league/LeagueChestSlitOpen';
 import type { RewardCard } from './league/leagueChestRewardCard';
+import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
@@ -50,7 +48,6 @@ type Props = {
 };
 
 const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
-const LEAGUE_GOLD_THEME_REWARD_ICON = require('../assets/images/league_bonus/gold-theme-card-reward.webp');
 const FALLBACK_CUSTOM_AVATAR_ID = 'custom-gen-04';
 const FALLBACK_CUSTOM_GRADIENT_ID = 'noirgold';
 const FALLBACK_CUSTOM_LOGO_COLOR: CustomAvatarLogoColor = 'black';
@@ -59,35 +56,6 @@ const REWARD_COSMETIC_ICON_SIZE = 58;
 
 function rewardAmount(drop: LeagueChestRewardDrop): number {
   return Math.max(0, Math.floor(Number(drop.amount) || 0));
-}
-
-function getLeagueChestRewardIconId(drop: LeagueChestRewardDrop): LevelGiftRewardIconId | null {
-  switch (drop.kind) {
-    case 'shards':
-      return rewardAmount(drop) >= 18 ? 'prem_shards_20' : rewardAmount(drop) >= 10 ? 'shards_10' : 'shards_6';
-    case 'gold_theme_duplicate':
-      return 'prem_shards_20';
-    case 'xp_boost':
-      return 'xp_2x_24h';
-    case 'energy_fast_recovery':
-      return 'energy_full';
-    case 'streak_shield':
-      return rewardAmount(drop) >= 3 ? 'chain_shield_3' : 'chain_shield_1';
-    case 'pack_trial_48h':
-      return 'pack_voucher_48h';
-    case 'avatar_aura':
-      return 'cosmetic_avatar_aura';
-    case 'custom_avatar':
-      return 'cosmetic_avatar_common';
-    case 'gold_theme':
-    default:
-      return null;
-  }
-}
-
-function getLeagueChestRewardIconSource(drop: LeagueChestRewardDrop): ImageSourcePropType {
-  const iconId = getLeagueChestRewardIconId(drop);
-  return iconId ? getLevelGiftRewardIcon(iconId) : LEAGUE_GOLD_THEME_REWARD_ICON;
 }
 
 function slavicPlural(count: number, one: string, few: string, many: string): string {
@@ -149,7 +117,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
       title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', es: 'Energía', 'pt-BR': 'Energia', vi: 'Năng lượng', id: 'Energi', tr: 'Enerji', pl: 'Energia' }),
       subtitle: triLang(lang, { ru: `${minutes} мин быстрее`, uk: `${minutes} хв швидше`, es: `${minutes} min rápido`, 'pt-BR': `${minutes} min mais rápido`, vi: `${minutes} phút nhanh hơn`, id: `${minutes} menit lebih cepat`, tr: `${minutes} dk daha hızlı`, pl: `${minutes} min szybciej` }),
       accent: '#7BE7C8',
-      icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
+      icon: { type: 'fallback', kind: 'gift' },
     };
   }
 
@@ -158,7 +126,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
       title: triLang(lang, { ru: 'Щит серии', uk: 'Щит серії', es: 'Escudo', 'pt-BR': 'Escudo de sequência', vi: 'Khiên chuỗi', id: 'Perisai streak', tr: 'Seri kalkanı', pl: 'Tarcza serii' }),
       subtitle: `+${rewardAmount(drop) || 1}`,
       accent: '#A7F3D0',
-      icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
+      icon: { type: 'fallback', kind: 'gift' },
     };
   }
 
@@ -167,7 +135,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
       title: triLang(lang, { ru: 'Пак фраз', uk: 'Пак фраз', es: 'Pack', 'pt-BR': 'Pacote de frases', vi: 'Gói cụm từ', id: 'Paket frasa', tr: 'İfade paketi', pl: 'Pakiet fraz' }),
       subtitle: triLang(lang, { ru: '48 часов', uk: '48 годин', es: '48 horas', 'pt-BR': '48 horas', vi: '48 giờ', id: '48 jam', tr: '48 saat', pl: '48 godzin' }),
       accent: '#BFA5FF',
-      icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
+      icon: { type: 'fallback', kind: 'gift' },
     };
   }
 
@@ -206,7 +174,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
       title: triLang(lang, { ru: 'Тема «Золото»', uk: 'Тема «Золото»', es: 'Tema Oro', 'pt-BR': 'Tema «Ouro»', vi: 'Chủ đề «Vàng»', id: 'Tema «Emas»', tr: '«Altın» teması', pl: 'Motyw «Złoto»' }),
       subtitle: triLang(lang, { ru: 'Золотая карточка', uk: 'Золота картка', es: 'Tarjeta dorada', 'pt-BR': 'Cartão dourado', vi: 'Thẻ vàng', id: 'Kartu emas', tr: 'Altın kart', pl: 'Złota karta' }),
       accent: '#F8D982',
-      icon: { type: 'goldTheme', source: LEAGUE_GOLD_THEME_REWARD_ICON },
+      icon: { type: 'fallback', kind: 'league' },
     };
   }
 
@@ -232,7 +200,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
         title: `x${Math.max(2, Number(drop.multiplier) || 2)} XP`,
         subtitle: triLang(lang, { ru: 'Бонус опыта', uk: 'Бонус досвіду', es: 'Bono de XP', 'pt-BR': 'Bônus de XP', vi: 'Thưởng XP', id: 'Bonus XP', tr: 'XP bonusu', pl: 'Bonus XP' }),
         accent: '#F7D774',
-        icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
+        icon: { type: 'fallback', kind: 'gift' },
       };
   }
 
@@ -240,13 +208,12 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
   return {
     title: triLang(lang, { ru: 'Награда', uk: 'Нагорода', es: 'Recompensa', 'pt-BR': 'Recompensa', vi: 'Phần thưởng', id: 'Hadiah', tr: 'Ödül', pl: 'Nagroda' }),
     accent: '#9FDBFF',
-    icon: { type: 'image', source: getLeagueChestRewardIconSource(drop) },
+    icon: { type: 'fallback', kind: 'gift' },
   };
 }
 
-function RewardIcon({ card, drop }: { card: RewardCard; drop: LeagueChestRewardDrop }) {
-  const fallbackSource = getLeagueChestRewardIconSource(drop);
-  const icon = card.icon ?? { type: 'image' as const, source: fallbackSource };
+function RewardIcon({ card }: { card: RewardCard; drop: LeagueChestRewardDrop }) {
+  const icon = card.icon;
 
   if (icon.type === 'avatar') {
     return (
@@ -276,10 +243,10 @@ function RewardIcon({ card, drop }: { card: RewardCard; drop: LeagueChestRewardD
     );
   }
 
-  if (icon.type === 'goldTheme') {
+  if (icon.type === 'fallback') {
     return (
-      <View style={styles.goldThemeIconSlot}>
-        <Image source={icon.source} contentFit="contain" style={styles.goldThemeIconImage} />
+      <View style={styles.rewardIconSlot}>
+        <RetiredRasterFallback kind={icon.kind} size={REWARD_IMAGE_ICON_SIZE} color={card.accent} />
       </View>
     );
   }
@@ -325,7 +292,6 @@ function LeagueChestOpenModal({
   );
   const rewardCards = useMemo(() => visibleRewards.map((drop) => ({ drop, card: formatReward(drop, lang, themeMode) })), [visibleRewards, lang, themeMode]);
   const hasAvatarCosmetic = visibleRewards.some((drop) => drop.kind === 'avatar_aura' || drop.kind === 'custom_avatar');
-  const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const modalTheme = getLeagueBonusPalette(t, themeMode).modal;
 
   useEffect(() => {
@@ -482,7 +448,7 @@ function LeagueChestOpenModal({
                     {isCrownWinner ? (
                       <Image source={LEAGUE_CROWN_ICON} contentFit="contain" style={styles.crownImage} />
                     ) : (
-                      <Image source={leagueBonusGiftImage} contentFit="contain" style={styles.leagueGiftImage} />
+                      <RetiredRasterFallback kind="league" size={96} color={modalTheme.eyebrow} />
                     )}
                   </View>
                   </View>

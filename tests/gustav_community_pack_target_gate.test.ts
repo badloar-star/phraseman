@@ -186,7 +186,7 @@ describe('Gustav community pack target gate', () => {
     expect(hubSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
     expect(hubSource).toContain('loadAuthorCommunityPacksPendingUpdate(sid, studyTarget)');
     expect(hubSource).toContain('fetchCommunityPackMeta(id, studyTarget)');
-    expect(categoryHubSource).toContain('stageCommunityPackCardsForNavigation(pack.id, studyTarget)');
+    expect(categoryHubSource).toContain('stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack)');
     /**
      * E11: загрузка каталога/карточек уехала из монолита `flashcards_collection.tsx`
      * в хук данных — контракт проверяем в модуле, который этими вызовами владеет.

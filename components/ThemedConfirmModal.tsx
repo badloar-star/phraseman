@@ -30,7 +30,7 @@ type Props = {
   /** Accent confirm button (e.g. go to shop) */
   confirmVariant?: 'default' | 'accent';
   testIDPrefix?: string;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
   /** Деструктивное действие (например, «Удалить») — на подтверждение играет
    * одна дрожь TOAST.errorShakePx (макет M1: «приглушённый тон + дрожь»). */
@@ -48,7 +48,7 @@ function ThemedConfirmModal({
   onConfirm,
   confirmVariant = 'accent',
   testIDPrefix,
-  motionVariant = 'classic',
+  motionVariant = 'hybrid',
   destructive = false,
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();

@@ -34,6 +34,7 @@ import {
   AchievementState,
   achievementNameForLang,
   achievementDescForLang,
+  achievementConditionForLang,
   checkAchievements,
 } from './achievements';
 // зачем: секция «Ближайшие награды» удалена с экрана — импорт больше не нужен здесь
@@ -617,6 +618,7 @@ function AchievementModal({
   const iconName = ACHIEVEMENT_ICON[achievement.id] ?? 'star';
   const name     = achievementNameForLang(achievement, lang);
   const desc     = achievementDescForLang(achievement, lang);
+  const condition = achievementConditionForLang(achievement, lang);
   const showLockedDetails = !achievement.secret || revealLockedDetails;
   const prog     = !unlocked && showLockedDetails
     ? getAchievementProgress(achievement.id, stats)
@@ -743,6 +745,28 @@ function AchievementModal({
               })}
             </Text>
           </View>
+
+          {condition && (unlocked || showLockedDetails) ? (
+            <View
+              testID="achievement-dossier-condition"
+              style={{
+                width: '100%', backgroundColor: t.bgSurface2, borderRadius: 15,
+                paddingHorizontal: 14, paddingVertical: 13, gap: 6,
+                borderWidth: StyleSheet.hairlineWidth, borderColor: t.border,
+              }}
+            >
+              <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+                {triLang(lang, {
+                  ru: 'Как получить', uk: 'Як отримати', es: 'Cómo conseguirlo',
+                  'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
+                  tr: 'Nasıl kazanılır', pl: 'Jak zdobyć',
+                })}
+              </Text>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.45) }}>
+                {condition}
+              </Text>
+            </View>
+          ) : null}
 
           {prog && prog[1] > 0 && (
             <View style={{ width: '100%', gap: 9, backgroundColor: t.bgSurface2, borderRadius: 15, padding: 14, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}>
@@ -955,13 +979,12 @@ export default function AchievementsScreen() {
           setAchievementsLoaded(true);
         }
       })
-      .catch(() => {
-        void loadAchievementStates().then((nextStates) => {
-          if (!cancelled) {
-            setStates(nextStates);
-            setAchievementsLoaded(true);
-          }
-        });
+      .catch(async () => {
+        const fallbackStates = await loadAchievementStates().catch(() => []);
+        if (!cancelled) {
+          setStates(fallbackStates);
+          setAchievementsLoaded(true);
+        }
       });
     const interaction = InteractionManager.runAfterInteractions(() => {
       loadAchievementStats().then(setStats);
@@ -1044,6 +1067,7 @@ export default function AchievementsScreen() {
     const state = stateMap.get(achievement.id);
     const markerColor = achievementCategoryColor(achievement.category, themeMode);
     const plaqueIcon = ACHIEVEMENT_ICON[achievement.id] ?? CAT_ICON[achievement.category];
+    const condition = achievementConditionForLang(achievement, lang);
     const unlockedAt = state?.unlockedAt
       ? new Date(state.unlockedAt).toLocaleDateString(ACHIEVEMENT_DATE_LOCALES[lang], {
         day: 'numeric', month: 'long', year: 'numeric',
@@ -1100,6 +1124,27 @@ export default function AchievementsScreen() {
         <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}>
           {achievementDescForLang(achievement, lang)}
         </Text>
+        {condition ? (
+          <View
+            testID="achievement-gallery-condition"
+            style={{
+              backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 13,
+              paddingVertical: 11, gap: 5, borderWidth: StyleSheet.hairlineWidth,
+              borderColor: t.border,
+            }}
+          >
+            <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+              {triLang(lang, {
+                ru: 'Как получить', uk: 'Як отримати', es: 'Cómo conseguirlo',
+                'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
+                tr: 'Nasıl kazanılır', pl: 'Jak zdobyć',
+              })}
+            </Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', lineHeight: Math.round(f.sub * 1.42) }}>
+              {condition}
+            </Text>
+          </View>
+        ) : null}
         {unlockedAt && (
           <View style={{ alignSelf: 'flex-start', minHeight: 32, borderRadius: 11, backgroundColor: t.bgSurface, paddingHorizontal: 11, paddingVertical: 7, flexDirection: 'row', alignItems: 'center', gap: 7, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}>
             <Ionicons name="calendar-outline" size={15} color={t.textMuted} />
@@ -1110,7 +1155,7 @@ export default function AchievementsScreen() {
         )}
       </LinearGradient>
     );
-  }, [f.body, f.h3, f.sub, lang, stateMap, t.accent, t.bgCard, t.bgSurface, t.bgSurface2, t.border, t.borderHighlight, t.shadowDark, t.textMuted, t.textPrimary, t.textSecond, themeMode]);
+  }, [f.body, f.caption, f.h3, f.sub, lang, stateMap, t.accent, t.bgCard, t.bgSurface, t.bgSurface2, t.border, t.borderHighlight, t.shadowDark, t.textMuted, t.textPrimary, t.textSecond, themeMode]);
   // зачем: nearestAchievements (питал удалённую секцию «Ближайшие награды») больше не нужен
   const achievementSections = useMemo((): AchievementListSection[] => {
     const sections = CATEGORIES.flatMap(cat => {
@@ -1119,7 +1164,9 @@ export default function AchievementsScreen() {
       const catIconImage = CAT_ICON_IMAGE[cat];
       const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
       const allCatAchs = visibleAchievementDefinitions.filter(a => a.category === cat);
-      const catAchs = allCatAchs.filter(a => showAllAchievements || !!stateMap.get(a.id)?.unlockedAt);
+      const catAchs = allCatAchs.filter(a =>
+        showAllAchievements || !!stateMap.get(a.id)?.unlockedAt,
+      );
       if (catAchs.length === 0) return [];
       const catUnlocked = allCatAchs.filter(a => !!stateMap.get(a.id)?.unlockedAt).length;
       const rows: AchievementGridRow[] = [];
@@ -1147,12 +1194,8 @@ export default function AchievementsScreen() {
 
   const unlockedCount = visibleAchievementDefinitions.filter(a => !!stateMap.get(a.id)?.unlockedAt).length;
   const totalCount = visibleAchievementDefinitions.length;
-  const visibleCountLabel = showAllAchievements
-    ? achievementCountPairLabel(unlockedCount, totalCount, lang)
-    : achievementCountLabel(unlockedCount, lang);
-  const headerCountLabel = showAllAchievements
-    ? `${unlockedCount}/${totalCount}`
-    : String(unlockedCount);
+  const visibleCountLabel = achievementCountPairLabel(unlockedCount, totalCount, lang);
+  const headerCountLabel = `${unlockedCount}/${totalCount}`;
 
   return (
     <ScreenGradient artBackdrop="achievements">
@@ -1161,7 +1204,15 @@ export default function AchievementsScreen() {
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TapScale onPress={() => safeRouterBack(router)} style={{ flexShrink: 0 }}>
+          <TapScale
+            testID="achievements-back"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+              vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+            })}
+            onPress={() => safeRouterBack(router)}
+            style={{ flexShrink: 0 }}
+          >
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TapScale>
           <View style={{ flex: 1, marginLeft: 8, minWidth: 0 }}>
@@ -1178,6 +1229,14 @@ export default function AchievementsScreen() {
           {ENABLE_DEV_TOOLS && (
             <TouchableOpacity
               testID="achievements-dev-show-all-toggle"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Показать весь каталог для проверки', uk: 'Показати весь каталог для перевірки',
+                es: 'Mostrar todo el catálogo para revisión', 'pt-BR': 'Mostrar todo o catálogo para revisão',
+                vi: 'Hiện toàn bộ danh mục để kiểm tra', id: 'Tampilkan seluruh katalog untuk pemeriksaan',
+                tr: 'İnceleme için tüm kataloğu göster', pl: 'Pokaż cały katalog do kontroli',
+              })}
+              accessibilityState={{ selected: showAllAchievements }}
               onPress={() => setDevShowAllAchievements(prev => !prev)}
               activeOpacity={0.8}
               style={{
@@ -1185,6 +1244,8 @@ export default function AchievementsScreen() {
                 borderRadius: 10,
                 paddingHorizontal: 10,
                 paddingVertical: 6,
+                minHeight: 44,
+                justifyContent: 'center',
                 borderWidth: 1,
                 borderColor: showAllAchievements ? t.gold + '77' : t.bgSurface2,
                 marginRight: 8,
@@ -1248,23 +1309,25 @@ export default function AchievementsScreen() {
 
       </ContentWrap>
 
-      <AchievementCategoryDock
-        options={shelfCategoryOptions}
-        selectedId={shelfCategory}
-        onSelect={setShelfCategory}
-        openLabel={triLang(lang, {
-          ru: 'Выбрать категорию достижений', uk: 'Обрати категорію досягнень',
-          es: 'Elegir categoría de logros', 'pt-BR': 'Escolher categoria de conquistas',
-          vi: 'Chọn hạng mục thành tựu', id: 'Pilih kategori pencapaian',
-          tr: 'Başarı kategorisini seç', pl: 'Wybierz kategorię osiągnięć',
-        })}
-        closeLabel={triLang(lang, {
-          ru: 'Закрыть выбор категорий', uk: 'Закрити вибір категорій',
-          es: 'Cerrar categorías', 'pt-BR': 'Fechar categorias',
-          vi: 'Đóng danh mục', id: 'Tutup kategori',
-          tr: 'Kategorileri kapat', pl: 'Zamknij kategorie',
-        })}
-      />
+      {achievementsLoaded && shelfCategoryOptions.length > 2 && (
+        <AchievementCategoryDock
+          options={shelfCategoryOptions}
+          selectedId={shelfCategory}
+          onSelect={setShelfCategory}
+          openLabel={triLang(lang, {
+            ru: 'Выбрать категорию достижений', uk: 'Обрати категорію досягнень',
+            es: 'Elegir categoría de logros', 'pt-BR': 'Escolher categoria de conquistas',
+            vi: 'Chọn hạng mục thành tựu', id: 'Pilih kategori pencapaian',
+            tr: 'Başarı kategorisini seç', pl: 'Wybierz kategorię osiągnięć',
+          })}
+          closeLabel={triLang(lang, {
+            ru: 'Закрыть выбор категорий', uk: 'Закрити вибір категорій',
+            es: 'Cerrar categorías', 'pt-BR': 'Fechar categorias',
+            vi: 'Đóng danh mục', id: 'Tutup kategori',
+            tr: 'Kategorileri kapat', pl: 'Zamknij kategorie',
+          })}
+        />
+      )}
 
       {/* Модальное окно */}
       {selected && isVisibleAchievement(selected) && (

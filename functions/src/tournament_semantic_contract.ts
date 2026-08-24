@@ -6,7 +6,7 @@ import {
 } from './tournament_mode_contract';
 
 export const TOURNAMENT_SEMANTIC_SCHEMA_VERSION = 'tournament-semantic-candidate-v1' as const;
-export const TOURNAMENT_REVIEW_CONTRACT_VERSION = 'tournament-semantic-review-v1' as const;
+export const TOURNAMENT_REVIEW_CONTRACT_VERSION = 'tournament-semantic-review-v2' as const;
 
 export type TournamentModeKind = OwnerApprovedTournamentMode;
 declare const TOURNAMENT_PROVENANCE_KEY_BRAND: unique symbol;
@@ -110,6 +110,11 @@ const TRAP_TYPES = new Set<ReviewTrapType>([
   'build_decoy',
 ]);
 const ERROR_ROLES = new Set(['distractor', 'odd', 'decoy']);
+const GRAMMAR_CHOICE_TRAPS = new Set<ReviewTrapType>([
+  'morphology',
+  'government',
+  'agreement',
+]);
 const SUBJECT_ID_BYTES = 160;
 const PROVENANCE_KEY_BYTES = 256;
 const METADATA_KEY_BYTES = 64;
@@ -270,6 +275,11 @@ function compareLexically(left: string, right: string): number {
 }
 
 function canonicalSubject(subject: ReviewSubject, includeReason: boolean): Record<string, unknown> {
+  const metadata = subject.metadata === undefined ? null : Object.fromEntries(
+    Object.entries(subject.metadata).filter(([key]) => (
+      includeReason || (key !== 'provenanceKey' && key !== 'rawTranslation')
+    )),
+  );
   return {
     subjectId: subject.subjectId,
     kind: subject.kind,
@@ -278,7 +288,7 @@ function canonicalSubject(subject: ReviewSubject, includeReason: boolean): Recor
     completedText: subject.completedText ?? null,
     trapType: subject.trapType ?? null,
     reason: includeReason ? (subject.reason ?? null) : null,
-    metadata: subject.metadata ?? null,
+    metadata,
   };
 }
 
@@ -307,10 +317,16 @@ function semanticHash(candidate: TournamentSemanticCandidate): string {
       return canonical;
     })
     .sort((left, right) => compareLexically(stableJson(left), stableJson(right)));
+  const semanticContextKeys = new Set([
+    'authoredSentence', 'translation', 'correctValue', 'slotIndex', 'grammarRuleId',
+    'ruleCatalogVersion', 'ruleCatalogSha256', 'safePolicyVersion', 'correctedText',
+    'rejectedValue', 'authoredTokenText', 'requiredSequence', 'decoySourceWord',
+    'decoyPartOfSpeech', 'decoyRelationship', 'pairCount', 'sourceKind',
+  ]);
   return sha256({
     mode: candidate.mode,
-    difficulty: candidate.difficulty,
-    context: candidate.context,
+    context: Object.fromEntries(Object.entries(candidate.context)
+      .filter(([key]) => semanticContextKeys.has(key))),
     reviewSubjects,
   });
 }
@@ -384,6 +400,29 @@ function countRole(subjects: readonly ReviewSubject[], role: ReviewSubject['decl
   return subjects.filter((subject) => subject.declaredRole === role).length;
 }
 
+function hasStrictChoiceGrammarEvidence(
+  mode: 'guess_phrase' | 'fill_gap' | 'find_oddity',
+  subjects: readonly ReviewSubject[],
+): boolean {
+  const partsOfSpeech = new Set<string>();
+  for (const subject of subjects) {
+    const partOfSpeech = subject.metadata?.partOfSpeech?.normalize('NFKC').trim().toLocaleLowerCase('en');
+    if (!partOfSpeech) return false;
+    partsOfSpeech.add(partOfSpeech);
+    if (subject.metadata?.minimalTwin !== 'true') return false;
+    const shouldBeInvalid = mode === 'find_oddity'
+      ? subject.declaredRole === 'odd'
+      : subject.declaredRole === 'distractor';
+    if (subject.metadata?.grammaticality !== (shouldBeInvalid ? 'invalid' : 'valid')) return false;
+    if (shouldBeInvalid) {
+      const grammarTrap = subject.trapType !== undefined && GRAMMAR_CHOICE_TRAPS.has(subject.trapType);
+      const oddityGrammarTrap = mode === 'find_oddity' && subject.trapType === 'single_oddity_error';
+      if (!grammarTrap && !oddityGrammarTrap) return false;
+    }
+  }
+  return partsOfSpeech.size === 1;
+}
+
 function validateModeSubjects(
   mode: TournamentModeKind,
   subjects: readonly ReviewSubject[],
@@ -396,7 +435,9 @@ function validateModeSubjects(
     if (new Set(values).size !== values.length) return 'subject_value_duplicate';
     const correctCount = countRole(subjects, 'correct');
     if (correctCount === 0) return 'declared_key_invalid';
-    return correctCount === 1 && countRole(subjects, 'distractor') === 3
+    return correctCount === 1
+      && countRole(subjects, 'distractor') === 3
+      && hasStrictChoiceGrammarEvidence(mode, subjects)
       ? null
       : 'subject_contract_invalid';
   }
@@ -408,7 +449,9 @@ function validateModeSubjects(
     if (new Set(values).size !== values.length) return 'subject_value_duplicate';
     const oddCount = countRole(subjects, 'odd');
     if (oddCount === 0) return 'declared_key_invalid';
-    return oddCount === 1 && countRole(subjects, 'safe') === 3
+    return oddCount === 1
+      && countRole(subjects, 'safe') === 3
+      && hasStrictChoiceGrammarEvidence(mode, subjects)
       ? null
       : 'subject_contract_invalid';
   }

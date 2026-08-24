@@ -78,6 +78,18 @@
       "port": 8844
     },
     {
+      "name": "avatar-studio-mock",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8846",
+        "--directory",
+        "C:/Temp/claude/C--appsprojects-phraseman/0701a29d-f788-402e-9fd2-ae5e90261fb2/scratchpad"
+      ],
+      "port": 8846
+    },
+    {
       "name": "krug-prototype",
       "runtimeExecutable": "python",
       "runtimeArgs": [
@@ -88,6 +100,18 @@
         "C:/appsprojects/phraseman/docs/prototypes"
       ],
       "port": 8845
+    },
+    {
+      "name": "voice-audition",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8847",
+        "--directory",
+        "C:/appsprojects/phraseman/.codex-tmp/voice-audition"
+      ],
+      "port": 8847
     }
   ]
 }

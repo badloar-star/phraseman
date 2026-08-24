@@ -11,7 +11,7 @@ const onboardingCopy = read('components/onboarding_aha/aha_scenes.ts');
 const dialog = read('app/ai_dialog_session.tsx');
 
 describe('canonical speaking push-to-talk UI contract', () => {
-  it('never auto-starts the lesson/trainer microphone when the panel opens', () => {
+  it('never auto-starts a practice microphone when the panel opens', () => {
     expect(panel).not.toContain('autoStartedRef');
     expect(panel).not.toContain('void startListening();\n  }, [isPreview, holdSupported');
     expect(panel).toContain("const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle')");

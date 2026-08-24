@@ -98,8 +98,16 @@ function normalizeCursor(value: unknown): SafetyCursor | null {
   return Object.freeze({ phase: 'dated' as const, createdAtMs, id });
 }
 
-export function normalizeSafetyListInput(value: unknown): Readonly<{ handled: SafetyFilter; category: string | null; limit: number; cursor: SafetyCursor | null }> {
+export function normalizeSafetyListInput(value: unknown): Readonly<{
+  handled: SafetyFilter;
+  category: string | null;
+  identity: string | null;
+  limit: number;
+  cursor: SafetyCursor | null;
+}> {
   const data = record(value) ? value : {};
+  const allowedKeys = new Set(['handled', 'category', 'identity', 'limit', 'cursor']);
+  if (Object.keys(data).some((key) => !allowedKeys.has(key))) throw new HttpsError('invalid-argument', 'Invalid safety list field');
   const handled = data.handled == null ? 'open' : data.handled;
   if (handled !== 'open' && handled !== 'handled' && handled !== 'all') throw new HttpsError('invalid-argument', 'Invalid handled filter');
   const category = data.category == null || data.category === '' ? null : requiredText(data.category, 'category', 40);
@@ -107,12 +115,21 @@ export function normalizeSafetyListInput(value: unknown): Readonly<{ handled: Sa
   const requestedLimit = data.limit == null ? 50 : Number(data.limit);
   if (!Number.isInteger(requestedLimit) || requestedLimit < 1 || requestedLimit > MAX_PAGE) throw new HttpsError('invalid-argument', 'limit must be 1..100');
   const cursor = normalizeCursor(data.cursor);
-  return Object.freeze({ handled, category, limit: requestedLimit, cursor });
+  const identity = data.identity == null || data.identity === '' ? null : requiredText(data.identity, 'identity', 180);
+  if (identity && !SAFE_ID.test(identity)) throw new HttpsError('invalid-argument', 'Invalid identity');
+  if (identity && cursor) throw new HttpsError('invalid-argument', 'Identity query does not accept cursor');
+  return Object.freeze({ handled, category, identity, limit: requestedLimit, cursor });
 }
 
 export function safetyFlagMatchesFilter(row: Row, filter: Pick<ReturnType<typeof normalizeSafetyListInput>, 'handled' | 'category'>): boolean {
+  if (isMaxVoiceSafetyFlag(row)) return false;
   if (filter.category && row.category !== filter.category) return false;
   return filter.handled === 'all' || (filter.handled === 'handled' ? row.handled === true : row.handled !== true);
+}
+
+/** MAX conversation safety rows are excluded before any admin response is built. */
+export function isMaxVoiceSafetyFlag(row: Row): boolean {
+  return row.mode === 'voice_tutor' || row.mode === 'voice_call';
 }
 
 export function normalizeSafetyMarkInput(value: unknown) {
@@ -161,10 +178,49 @@ export const adminGetComplianceOverview = onCall({
 async function exactFilteredTotal(db: FirebaseFirestore.Firestore, filter: ReturnType<typeof normalizeSafetyListInput>) {
   let base: FirebaseFirestore.Query = db.collection(SAFETY);
   if (filter.category) base = base.where('category', '==', filter.category);
-  const total = await count(base);
+  const visibleCount = async (query: FirebaseFirestore.Query) => {
+    const [total, maxTutor, maxCall] = await Promise.all([
+      count(query),
+      count(query.where('mode', '==', 'voice_tutor')),
+      count(query.where('mode', '==', 'voice_call')),
+    ]);
+    return Math.max(0, total - maxTutor - maxCall);
+  };
+  const total = await visibleCount(base);
   if (filter.handled === 'all') return total;
-  const handled = await count(base.where('handled', '==', true));
+  const handled = await visibleCount(base.where('handled', '==', true));
   return filter.handled === 'handled' ? handled : Math.max(0, total - handled);
+}
+
+async function listSafetyFlagsForIdentity(
+  db: FirebaseFirestore.Firestore,
+  filter: ReturnType<typeof normalizeSafetyListInput>,
+) {
+  if (!filter.identity) throw new HttpsError('invalid-argument', 'Identity required');
+  const [byStable, byAuth] = await Promise.all([
+    db.collection(SAFETY).where('uid', '==', filter.identity).limit(MAX_SCAN).get(),
+    db.collection(SAFETY).where('authUid', '==', filter.identity).limit(MAX_SCAN).get(),
+  ]);
+  const unique = new Map<string, Row>();
+  for (const snapshot of [byStable, byAuth]) {
+    for (const doc of snapshot.docs) {
+      const data = doc.data();
+      if (safetyFlagMatchesFilter(data, filter)) unique.set(doc.id, { id: doc.id, ...data });
+    }
+  }
+  const visible = [...unique.values()].sort((a, b) => Number(b.createdAtMs ?? 0) - Number(a.createdAtMs ?? 0));
+  const scanComplete = byStable.size < MAX_SCAN && byAuth.size < MAX_SCAN;
+  const complete = scanComplete && visible.length <= filter.limit;
+  return {
+    rows: visible.slice(0, filter.limit),
+    filteredTotal: visible.length,
+    complete,
+    pageComplete: complete,
+    scanBoundReached: !scanComplete,
+    exhausted: complete,
+    nextCursor: null,
+    scanned: byStable.size + byAuth.size,
+  };
 }
 
 export const adminListSafetyFlags = onCall({
@@ -173,6 +229,7 @@ export const adminListSafetyFlags = onCall({
   requireAdmin(request, 'diagnostics.read');
   const filter = normalizeSafetyListInput(request.data);
   const db = admin.firestore();
+  if (filter.identity) return listSafetyFlagsForIdentity(db, filter);
   const exactTotal = await exactFilteredTotal(db, filter);
   let cursor: SafetyCursor = filter.cursor ?? { phase: 'dated', createdAtMs: Number.MAX_SAFE_INTEGER, id: '\uf8ff' };
   let scanned = 0;

@@ -22,8 +22,6 @@ import {
   ukKnowledgeShardsAfterNumber,
 } from '../constants/shard_plurals';
 
-const COLLECTION = 'global_broadcast_modals';
-
 export type GlobalBroadcastKind = 'general' | 'review_promo';
 export type GlobalBroadcastPremiumAudience = 'all' | 'free' | 'premium';
 
@@ -74,6 +72,13 @@ export type GlobalBroadcastRewardType =
   | 'club_boost_free'
   | 'wager_discount_25'
   | 'pack_trial_48h';
+
+type GlobalBroadcastPublicListResponse = {
+  ok: boolean;
+  items: Array<Record<string, unknown> & { id: string }>;
+  truncated: boolean;
+  sourceHealth: { state: 'ready' | 'partial' | 'error'; complete: boolean; truncated: boolean; droppedCount: number };
+};
 
 function dismissKey(id: string, token: AccountGenerationToken = captureAccountGeneration()): string {
   return `global_broadcast_modal_dismissed_${id}::${accountScopeKey(token) ?? 'inactive'}`;
@@ -169,8 +174,20 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   };
 }
 
+// зачем: запрет владельца на эмодзи в UI — icon раньше был '💎'/'🔥'/... прямо
+// в тексте. Теперь это имя иконки из набора проекта (@expo/vector-icons/Ionicons),
+// GlobalBroadcastModal рендерит её через <Ionicons name={reward.icon} />.
+export type GlobalBroadcastRewardIconName =
+  | 'diamond'
+  | 'flame'
+  | 'rocket'
+  | 'shield-checkmark'
+  | 'people'
+  | 'dice'
+  | 'cube';
+
 export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPayload): {
-  icon: string;
+  icon: GlobalBroadcastRewardIconName;
   labelRu: string;
   labelUk: string;
   labelEs: string;
@@ -186,7 +203,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       return null;
     case 'shards':
       return {
-        icon: '💎',
+        icon: 'diamond',
         // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
         labelRu: `+${amount} ${ruKnowledgeShardsAfterNumber(amount)}`,
         labelUk: `+${amount} ${ukKnowledgeShardsAfterNumber(amount)}`,
@@ -202,7 +219,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'xp_boost_2x_24h':
       return {
-        icon: '🔥',
+        icon: 'flame',
         labelRu: 'x2 XP на 24 часа',
         labelUk: 'x2 XP на 24 години',
         labelEs: 'x2 XP durante 24 horas',
@@ -214,7 +231,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'xp_boost_2x_48h':
       return {
-        icon: '🚀',
+        icon: 'rocket',
         labelRu: 'x2 XP на 48 часов',
         labelUk: 'x2 XP на 48 годин',
         labelEs: 'x2 XP durante 48 horas',
@@ -226,7 +243,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'chain_shield_1':
       return {
-        icon: '🛡️',
+        icon: 'shield-checkmark',
         labelRu: 'Щит цепочки на 1 день',
         labelUk: 'Щит стріку на 1 день',
         labelEs: 'Escudo de racha: 1 día',
@@ -238,7 +255,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'chain_shield_3':
       return {
-        icon: '🛡️',
+        icon: 'shield-checkmark',
         labelRu: 'Щит цепочки на 3 дня',
         labelUk: 'Щит стріку на 3 дні',
         labelEs: 'Escudo de racha: 3 días',
@@ -250,7 +267,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'club_boost_free':
       return {
-        icon: '👥',
+        icon: 'people',
         labelRu: 'Бесплатный буст лиги',
         labelUk: 'Безкоштовний буст ліги',
         labelEs: 'Impulso de liga gratuito',
@@ -262,7 +279,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'wager_discount_25':
       return {
-        icon: '🎲',
+        icon: 'dice',
         labelRu: 'Скидка на пари 25%',
         labelUk: 'Знижка на парі 25%',
         labelEs: '25 % de descuento en apuestas',
@@ -274,7 +291,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
       };
     case 'pack_trial_48h':
       return {
-        icon: '📦',
+        icon: 'cube',
         labelRu: 'Пробный набор на 48 часов',
         labelUk: 'Пробний набір на 48 годин',
         labelEs: 'Paquete de prueba de 48 horas',
@@ -439,16 +456,23 @@ export async function fetchPendingGlobalBroadcastModal(
   if (!isCurrentAccountGeneration(accountToken, uid)) return null;
 
   try {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const listActive = httpsCallable<{ limit: number }, GlobalBroadcastPublicListResponse>(
+      getFunctions(getApp(), 'us-central1'),
+      'globalBroadcastListActive',
+    );
+    const listResult = await withCallableTimeout(listActive({ limit: 20 }), 'globalBroadcastListActive');
+    const listData = listResult.data;
+    if (!listData || listData.ok !== true || !Array.isArray(listData.items)
+      || listData.truncated === true || listData.sourceHealth?.complete !== true) {
+      throw new Error('broadcast_public_source_incomplete');
+    }
+    if (!isCurrentAccountGeneration(accountToken, uid)) return null;
+    if (listData.items.length === 0) return null;
+    const activeDocs = listData.items.map((row) => ({ id:String(row.id || ''), data:row }));
+
     const firestoreModule = await import('@react-native-firebase/firestore');
     const db = firestoreModule.default();
-    const activeSnap = await db.collection(COLLECTION).where('active', '==', true).limit(20).get();
-    if (!isCurrentAccountGeneration(accountToken, uid)) return null;
-    if (activeSnap.empty) return null;
-
-    const activeDocs = activeSnap.docs.map((d: any) => ({
-      id: d.id,
-      data: d.data() ?? {},
-    }));
     for (const doc of activeDocs) {
       const payload = normalizePayload(doc.id, doc.data);
       if (isRetiredLeagueSystemBroadcast(payload)) {

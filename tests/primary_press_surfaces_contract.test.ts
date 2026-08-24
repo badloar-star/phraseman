@@ -4,11 +4,12 @@ import path from 'path';
 const root = path.resolve(__dirname, '..');
 
 describe('primary interaction surfaces', () => {
-  test('PrimaryButton uses the canonical primary press response', () => {
+  test('PrimaryButton uses a real keycap press response (edge layer + translateY, no scale)', () => {
     const source = fs.readFileSync(path.join(root, 'components', 'ui', 'PrimaryButton.tsx'), 'utf8');
-    expect(source).toContain("import PressableScale from '../PressableScale'");
-    expect(source).toContain('variant="primary"');
-    expect(source).toContain('busy={loading}');
+    expect(source).toContain("import DuoPressable from '../DuoPressable'");
+    expect(source).toContain('edgeColor={edgeColor}');
+    expect(source).toContain('edgeHeight={5}');
+    expect(source).toContain('disabled={isDisabled}');
   });
 
   test('notification icon uses one canonical icon response without duplicate haptic', () => {

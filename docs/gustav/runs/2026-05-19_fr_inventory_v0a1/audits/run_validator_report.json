@@ -1,38 +1,25 @@
 {
   "schemaVersion": "gustav-run-validator-report-v0",
-  "generatedAt": "2026-08-13T02:01:33.091Z",
+  "generatedAt": "2026-08-20T14:16:08.712Z",
   "command": {
     "argv": [
-      "/usr/local/bin/node",
-      "/Users/maksymbabiev/Documents/phraseman/scripts/gustav_validate_run.ts",
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\appsprojects\\phraseman\\scripts\\gustav_validate_run.ts",
       "--run",
       "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
     ],
-    "cwd": "/Users/maksymbabiev/Documents/phraseman",
-    "nodeVersion": "v24.14.1"
+    "cwd": "C:\\appsprojects\\phraseman",
+    "nodeVersion": "v24.14.0"
   },
-  "runDir": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1",
+  "runDir": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "status": "BLOCK",
+  "status": "PASS",
   "summary": {
     "checks": 27132,
-    "blockers": 2,
+    "blockers": 0,
     "warnings": 0
   },
-  "findings": [
-    {
-      "severity": "blocker",
-      "code": "required_dir_missing_curriculum",
-      "message": "Missing required path: /Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/curriculum",
-      "artifact": "/Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/curriculum"
-    },
-    {
-      "severity": "blocker",
-      "code": "required_dir_missing_generated",
-      "message": "Missing required path: /Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/generated",
-      "artifact": "/Users/maksymbabiev/Documents/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/generated"
-    }
-  ],
+  "findings": [],
   "notes": [
     "This validator checks run structure and safety gates only.",
     "A PASS here does not approve French generation.",

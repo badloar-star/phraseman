@@ -11,6 +11,7 @@ describe('MAX voice static accessibility release gates', () => {
   const memory = read('app/max_memory_settings.tsx');
   const captions = read('app/max_call_live_caption_view.tsx');
   const orb = read('components/max/MaxCallOrb.tsx');
+  const goalStrip = read('components/max/MaxTutorGoalStrip.tsx');
 
   test('the animated orb is decorative and respects reduced motion', () => {
     expect(orb).toContain('accessible={false}');
@@ -22,14 +23,18 @@ describe('MAX voice static accessibility release gates', () => {
   test('captions announce one completed turn without a competing live region', () => {
     expect(captions).toContain('AccessibilityInfo.announceForAccessibility(`MAX: ${value}`)');
     expect(captions).not.toContain('accessibilityLiveRegion');
-    expect(captions).toContain("style={{ minHeight: 132");
-    expect(captions).not.toContain('height: 132,');
-    expect(captions).not.toContain("overflow: 'hidden'");
-    expect(captions).toContain('fontScale >= 1.6 ? 6');
+    expect(captions).toContain('const USER_LANE_LINES = 2');
+    expect(captions).toContain('const AI_LANE_LINES = 4');
+    expect(captions).toContain('height: CAPTION_BOX_HEIGHT');
+    expect(captions).toContain('numberOfLines={USER_LANE_LINES}');
+    expect(captions).toContain('numberOfLines={AI_LANE_LINES}');
+    expect(captions).toContain('const wordLimit = fontScale >= 1.6');
+    expect(captions).toContain('maxFontSizeMultiplier={2}');
   });
 
   test('the live call has one polite status owner and explicit terminal focus', () => {
     expect(session.match(/accessibilityLiveRegion="polite"/g)).toHaveLength(1);
+    expect(goalStrip).not.toContain('accessibilityLiveRegion');
     expect(session).toContain('accessibilityLiveRegion="assertive"');
     expect(session).toContain('AccessibilityInfo.setAccessibilityFocus(node)');
     expect(session).toContain('accessibilityLabel={failureActions.retry}');

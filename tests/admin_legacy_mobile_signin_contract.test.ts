@@ -25,7 +25,7 @@ function extractBracedBlock(source: string, marker: string, fromIndex = 0): stri
 // Этот контракт сторожит именно боевой файл.
 describe('admin legacy mobile sign-in contract', () => {
   const adminHtml = fs.readFileSync(
-    path.join(process.cwd(), 'admin', 'legacy.html'),
+    path.join(process.cwd(), 'admin/v2/legacy.html'),
     'utf8',
   );
 
@@ -121,20 +121,19 @@ describe('admin legacy mobile sign-in contract', () => {
     expect(adminHtml).toContain('if (auth.currentUser) return;');
   });
 
-  it('denies non-admin accounts without exposing identity or operator commands', () => {
+  it('fails closed without destroying a recoverable owner session', () => {
     const forcedRefresh = adminHtml.indexOf('tr = await user.getIdTokenResult(true)');
     const denialBranch = extractBracedBlock(
       adminHtml,
-      'if (!tr.claims || tr.claims.admin !== true) {',
+      "if ((!tr.claims || tr.claims.admin !== true) && managedAccessResult?.granted !== true) {",
       forcedRefresh + 1,
     );
-    const signOut = denialBranch.indexOf('await signOut(auth);');
-    const genericError = denialBranch.indexOf('У этого Google-аккаунта нет доступа к админке.');
+    const preserved = denialBranch.indexOf('Сессия сохранена');
 
     expect(forcedRefresh).toBeGreaterThan(-1);
-    expect(signOut).toBeGreaterThan(-1);
-    expect(genericError).toBeGreaterThan(signOut);
-    expect(denialBranch).not.toMatch(/user\s*\.\s*uid|user\s*\.\s*email/i);
+    expect(denialBranch).not.toContain('await signOut(auth);');
+    expect(preserved).toBeGreaterThan(-1);
+    expect(denialBranch).toContain('showAdminLoginShell()');
     expect(denialBranch).not.toMatch(/service[\W_]*account/i);
     expect(denialBranch).not.toMatch(/set[\W_]*admin[\W_]*claim/i);
     expect(denialBranch).not.toMatch(/\bnode(?:\.exe)?\s+/i);

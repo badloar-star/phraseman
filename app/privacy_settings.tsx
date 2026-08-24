@@ -10,10 +10,9 @@
  * общий экран настроек показывает один ряд «Приватность и данные» → сюда.
  */
 import React, { useCallback, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ScreenGradient from '../components/ScreenGradient';
 import SectionSheetHeader from '../components/SectionSheetHeader';
@@ -34,6 +33,11 @@ import { getAnalyticsConsentState, setAnalyticsConsent } from './analytics_conse
 import { recordConsentToCloud } from './age_consent_cloud';
 import { getAiExplainConsentState, setAiExplainConsent, recordAiExplainConsentToCloud } from './ai_explain_consent';
 import { getAiDialogConsentState, setAiDialogConsent, recordAiDialogConsentToCloud } from './ai_dialog_consent';
+import {
+  getAiVoiceConsentState,
+  recordAiVoiceConsentToCloud,
+  setAiVoiceConsent,
+} from './max_voice_consent';
 
 /** Строка на 8 UI-языках (форма triLang). */
 interface Text8 {
@@ -56,6 +60,7 @@ export default function PrivacySettings() {
   const [analyticsOn, setAnalyticsOn] = useState(getAnalyticsConsentState() === 'granted');
   const [aiExplainOn, setAiExplainOn] = useState(getAiExplainConsentState() === 'granted');
   const [aiDialogOn, setAiDialogOn] = useState(getAiDialogConsentState() === 'granted');
+  const [aiVoiceOn, setAiVoiceOn] = useState(getAiVoiceConsentState() === 'granted');
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   // Отзыв/выдача согласия применяется сразу (тумблер — это и есть выбор): локально
@@ -88,6 +93,18 @@ export default function PrivacySettings() {
     void (async () => {
       await setAiDialogConsent(val ? 'granted' : 'denied');
       void recordAiDialogConsentToCloud();
+    })();
+  }, []);
+
+  // Голосовые разговоры MAX имеют отдельное явное согласие. Выключение
+  // останавливает новые звонки, но не стирает ученическую память без команды
+  // пользователя — ею можно управлять отдельной строкой ниже.
+  const toggleAiVoice = useCallback((val: boolean) => {
+    void hapticTap();
+    setAiVoiceOn(val);
+    void (async () => {
+      await setAiVoiceConsent(val ? 'granted' : 'denied');
+      void recordAiVoiceConsentToCloud();
     })();
   }, []);
 
@@ -157,17 +174,39 @@ export default function PrivacySettings() {
                 hideChevron
                 right={<CustomSwitch value={aiDialogOn} onValueChange={toggleAiDialog} />}
               />
+              <SettingsRow
+                testID="privacy-ai-voice-consent"
+                icon="mic"
+                color="purple"
+                label={L({ ru: 'Голосовые разговоры с MAX', uk: 'Голосові розмови з MAX', es: 'Conversaciones de voz con MAX', 'pt-BR': 'Conversas por voz com o MAX', vi: 'Trò chuyện thoại với MAX', id: 'Percakapan suara dengan MAX', tr: 'MAX ile sesli konuşmalar', pl: 'Rozmowy głosowe z MAX' })}
+                sub={aiVoiceOn
+                  ? L({ ru: 'MAX может слушать и отвечать во время звонка', uk: 'MAX може слухати й відповідати під час дзвінка', es: 'MAX puede escuchar y responder durante la llamada', 'pt-BR': 'O MAX pode ouvir e responder durante a chamada', vi: 'MAX có thể nghe và trả lời trong cuộc gọi', id: 'MAX dapat mendengar dan menjawab selama panggilan', tr: 'MAX arama sırasında dinleyip yanıt verebilir', pl: 'MAX może słuchać i odpowiadać podczas rozmowy' })
+                  : L({ ru: 'Новые звонки с MAX выключены', uk: 'Нові дзвінки з MAX вимкнено', es: 'Las nuevas llamadas con MAX están desactivadas', 'pt-BR': 'Novas chamadas com o MAX estão desativadas', vi: 'Các cuộc gọi MAX mới đang tắt', id: 'Panggilan baru dengan MAX dimatikan', tr: 'Yeni MAX aramaları kapalı', pl: 'Nowe rozmowy z MAX są wyłączone' })}
+                hideChevron
+                right={<CustomSwitch value={aiVoiceOn} onValueChange={toggleAiVoice} />}
+              />
+              <SettingsRow
+                testID="privacy-max-memory"
+                icon="albums"
+                color="purple"
+                label={L({ ru: 'Память MAX', uk: 'Пам’ять MAX', es: 'Memoria de MAX', 'pt-BR': 'Memória do MAX', vi: 'Bộ nhớ MAX', id: 'Memori MAX', tr: 'MAX hafızası', pl: 'Pamięć MAX' })}
+                sub={L({ ru: 'Посмотреть, изменить или удалить учебные заметки', uk: 'Переглянути, змінити або видалити навчальні нотатки', es: 'Ver, editar o eliminar notas de aprendizaje', 'pt-BR': 'Ver, editar ou excluir notas de aprendizado', vi: 'Xem, sửa hoặc xóa ghi chú học tập', id: 'Lihat, ubah, atau hapus catatan belajar', tr: 'Öğrenme notlarını gör, düzenle veya sil', pl: 'Wyświetl, edytuj lub usuń notatki do nauki' })}
+                onPress={() => {
+                  void hapticTap();
+                  router.push('/max_memory_settings' as any);
+                }}
+              />
             </SettingsGroup>
             <Text style={{ color: t.textMuted, fontSize: 12, lineHeight: 17, fontWeight: '600', marginHorizontal: 20, marginTop: 8 }}>
               {L({
-                ru: 'Работает только с включённой функцией: текст уходит в OpenAI. Выключено — приложение работает как обычно, просто без ответов ИИ.',
-                uk: 'Працює лише з увімкненою функцією: текст іде в OpenAI. Вимкнено — застосунок працює як завжди, просто без відповідей ІІ.',
-                es: 'Solo funciona con la función activada: el texto se envía a OpenAI. Desactivada, la app funciona igual, solo sin respuestas de IA.',
-                'pt-BR': 'Só funciona com a função ativada: o texto vai para a OpenAI. Desativada, o app funciona normalmente, só sem respostas da IA.',
-                vi: 'Chỉ hoạt động khi bật: văn bản được gửi tới OpenAI. Tắt đi, ứng dụng vẫn chạy bình thường, chỉ là không có phản hồi từ AI.',
-                id: 'Hanya berfungsi saat fitur aktif: teks dikirim ke OpenAI. Dimatikan, aplikasi tetap berjalan normal, hanya tanpa balasan AI.',
-                tr: 'Yalnızca özellik açıkken çalışır: metin OpenAI\'ye gönderilir. Kapalıyken uygulama normal çalışır, sadece yapay zeka yanıtı olmaz.',
-                pl: 'Działa tylko przy włączonej funkcji: tekst trafia do OpenAI. Wyłączone — aplikacja działa normalnie, tylko bez odpowiedzi AI.',
+                ru: 'Каждая функция работает только после отдельного согласия. В зависимости от функции в OpenAI отправляется текст или речь. Выключено — новые запросы не отправляются.',
+                uk: 'Кожна функція працює лише після окремої згоди. Залежно від функції до OpenAI надсилається текст або мовлення. Вимкнено — нові запити не надсилаються.',
+                es: 'Cada función requiere un consentimiento separado. Según la función, se envía texto o voz a OpenAI. Al desactivarla, no se envían solicitudes nuevas.',
+                'pt-BR': 'Cada função exige um consentimento separado. Conforme a função, texto ou voz é enviado à OpenAI. Desativada, nenhuma nova solicitação é enviada.',
+                vi: 'Mỗi tính năng cần sự đồng ý riêng. Tùy tính năng, văn bản hoặc giọng nói được gửi tới OpenAI. Khi tắt, không có yêu cầu mới nào được gửi.',
+                id: 'Setiap fitur memerlukan persetujuan terpisah. Tergantung fiturnya, teks atau suara dikirim ke OpenAI. Saat dimatikan, tidak ada permintaan baru yang dikirim.',
+                tr: 'Her özellik ayrı onay gerektirir. Özelliğe göre OpenAI\'ye metin veya konuşma gönderilir. Kapatıldığında yeni istek gönderilmez.',
+                pl: 'Każda funkcja wymaga osobnej zgody. Zależnie od funkcji do OpenAI trafia tekst lub mowa. Po wyłączeniu nowe żądania nie są wysyłane.',
               })}
             </Text>
 

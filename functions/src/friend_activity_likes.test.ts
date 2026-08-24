@@ -26,6 +26,10 @@ function receivedLikePath(targetUid: string, eventId: string, senderUid = 'sende
   return `users/${targetUid}/activity_likes_received/${likeReceiptId(senderUid, targetUid, eventId)}`;
 }
 
+function likeNotificationPath(targetUid: string, eventId: string, senderUid = 'sender'): string {
+  return `users/${targetUid}/notifications/like_${likeReceiptId(senderUid, targetUid, eventId)}`;
+}
+
 type FakeRef = {
   kind: 'ref';
   path: string;
@@ -155,6 +159,10 @@ jest.mock('firebase-functions/v2/https', () => ({
 
 jest.mock('firebase-admin', () => ({
   firestore: jest.fn(() => buildDb()),
+}));
+
+jest.mock('./friend_gifts', () => ({
+  sendExpoPush: jest.fn(async () => 'sent'),
 }));
 
 function seedUsersAndEvent() {
@@ -380,6 +388,25 @@ describe('friendLikeActivity', () => {
     expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 2 });
   });
 
+  test('sends the approved high-five push after the durable notification exists', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    const { sendExpoPush } = require('./friend_gifts') as { sendExpoPush: jest.Mock };
+
+    await callProfileLike();
+
+    expect(docs.get(likeNotificationPath('target', '__profile__'))).toMatchObject({
+      type: 'activity_like',
+      text: 'Пятюня на удачу уже здесь.',
+      nav: expect.objectContaining({ kind: 'friend_event', action: 'high_five' }),
+    });
+    expect(sendExpoPush).toHaveBeenCalledWith(
+      'ExponentPushToken[target]',
+      'Sender Name даёт пять',
+      'Пятюня получена.',
+      expect.objectContaining({ type: 'activity_like', actorStableUid: 'sender' }),
+    );
+  });
+
   test('mirrors league group boost event likes into the league group document', async () => {
     const boostEventId = 'league_group_boost_2026-20_group-1_1000';
     docs.set(`users/target/my_events/${boostEventId}`, {
@@ -531,9 +558,11 @@ describe('friendLikeActivity profile-mode (user card)', () => {
 });
 
 describe('friendUnlikeActivity (toggle off)', () => {
-  test('removes a persistent profile like: decrements total and clears sent + received', async () => {
+  test('turns off the sender toggle without erasing the delivered high-five history', async () => {
     await callProfileLike();
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+    const deliveredHistory = docs.get(receivedLikePath('target', '__profile__'));
+    const deliveredNotification = docs.get(likeNotificationPath('target', '__profile__'));
 
     const result = await callUnlike();
 
@@ -546,7 +575,8 @@ describe('friendUnlikeActivity (toggle off)', () => {
     });
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 0 });
     expect(docs.get(sentLikePath('target', '__profile__'))).toBeUndefined();
-    expect(docs.get(receivedLikePath('target', '__profile__'))).toBeUndefined();
+    expect(docs.get(receivedLikePath('target', '__profile__'))).toEqual(deliveredHistory);
+    expect(docs.get(likeNotificationPath('target', '__profile__'))).toEqual(deliveredNotification);
   });
 
   test('can like a different user after unliking without any daily quota', async () => {
@@ -582,7 +612,14 @@ describe('friendUnlikeActivity (toggle off)', () => {
 
     expect(result).toMatchObject({ removed: true, activityLikeCount: 0, targetActivityLikeTotal: 0 });
     expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 0 });
-    expect(docs.get(receivedLikePath('target', 'event-1'))).toBeUndefined();
+    expect(docs.get(receivedLikePath('target', 'event-1'))).toMatchObject({
+      fromUid: 'sender',
+      eventId: 'event-1',
+    });
+    expect(docs.get(likeNotificationPath('target', 'event-1'))).toMatchObject({
+      type: 'activity_like',
+      fromUid: 'sender',
+    });
   });
 });
 

@@ -12,6 +12,8 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 const COIN_ICONS_PATH = path.join(ROOT, 'app', 'coin_icons.ts');
 const THEME_PATH = path.join(ROOT, 'constants', 'theme.ts');
+const THEME_ACCESS_POLICY_PATH = path.join(ROOT, 'app', 'theme_access_policy.ts');
+const PEARL_BUILDER_PATH = path.join(ROOT, 'scripts', 'build_theme_pearl_assets.mjs');
 
 function coinIconsSource(): string {
   return fs.readFileSync(COIN_ICONS_PATH, 'utf8');
@@ -22,6 +24,16 @@ function requiredAssetPaths(source: string): string[] {
   return [...source.matchAll(/require\('([^']+)'\)/g)].map((m) => m[1]);
 }
 
+function requiredThemeAssets(source: string): Array<{ theme: string; relativePath: string }> {
+  const block = source.match(/PEARL_ICONS[^=]*=\s*\{([\s\S]*?)\}\s*as const;/);
+  expect(block).toBeTruthy();
+
+  return [...block![1].matchAll(/(\w+)\s*:\s*require\('([^']+)'\)/g)].map((match) => ({
+    theme: match[1],
+    relativePath: match[2],
+  }));
+}
+
 /** Список тем из ThemeMode в constants/theme.ts. */
 function themeModes(): string[] {
   const src = fs.readFileSync(THEME_PATH, 'utf8');
@@ -29,6 +41,18 @@ function themeModes(): string[] {
   expect(decl).toBeTruthy();
 
   return [...decl![1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
+}
+
+function selectableThemeModes(): string[] {
+  const source = fs.readFileSync(THEME_ACCESS_POLICY_PATH, 'utf8');
+  const block = source.match(/SELECTABLE_THEME_MODES\s*=\s*\[([\s\S]*?)\]\s*as const/);
+  expect(block).toBeTruthy();
+  return [...block![1].matchAll(/'([^']+)'/g)].map((match) => match[1]);
+}
+
+function generatedThemeModes(): string[] {
+  const source = fs.readFileSync(PEARL_BUILDER_PATH, 'utf8');
+  return [...source.matchAll(/^  (\w+): \{ shadow:/gm)].map((match) => match[1]);
 }
 
 /** RIFF....WEBP — сигнатура валидного webp-контейнера. */
@@ -84,4 +108,23 @@ describe('currency icon assets', () => {
     expect(modes.filter((mode) => !keys.includes(mode))).toEqual([]);
     expect(keys.filter((key) => !modes.includes(key))).toEqual([]);
   });
+
+  it('отдельные жемчужины существуют только для девяти подключённых тем', () => {
+    const assets = requiredThemeAssets(coinIconsSource());
+    const selectable = selectableThemeModes();
+
+    expect(assets).toHaveLength(themeModes().length);
+    expect(assets.map((asset) => asset.theme).sort()).toEqual([...selectable].sort());
+    expect(new Set(assets.map((asset) => asset.relativePath)).size).toBe(selectable.length);
+
+    const bundled = fs.readdirSync(path.join(ROOT, 'assets', 'images', 'currency'))
+      .filter((name) => /^pearl_.*\.webp$/.test(name))
+      .sort();
+    expect(bundled).toEqual(selectable.map((theme) => `pearl_${theme}.webp`).sort());
+  });
+
+  it('генератор следует реальному порядку тем из пользовательского селектора', () => {
+    expect(generatedThemeModes()).toEqual(selectableThemeModes());
+  });
+
 });

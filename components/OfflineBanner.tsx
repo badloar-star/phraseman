@@ -10,7 +10,7 @@
 // Смахивание/авто-скрытие держатся до возврата сети: при повторном офлайне
 // (online→offline) баннер показывается заново.
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, PanResponder, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   Easing,
@@ -30,8 +30,8 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { subscribeNetStatus } from '../app/net_status';
 import { useTheme } from './ThemeContext';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM, TOAST } from '../constants/motionHybrid';
-import { hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { triLang, type Lang } from '../constants/i18n';
@@ -70,34 +70,44 @@ function OfflineBannerHybridCard({
   textColor: string;
   runtimeActive: boolean;
 }) {
+  const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
   const y = useSharedValue(-12);
   const breathe = useSharedValue(1);
   const stateOpacity = useSharedValue(1);
 
   useEffect(() => {
-    opacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      return;
+    }
+    opacity.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.out(Easing.cubic) });
     y.value = withSpring(0, LUM.settle);
     return () => {
       cancelAnimation(opacity);
       cancelAnimation(y);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [reduceMotion]);
 
   // Дыхание — единственный цикл этого компонента, крутится только пока
   // экран в фокусе и приложение активно (закон Performance Bible).
   useEffect(() => {
+    if (reduceMotion) {
+      breathe.value = 1;
+      return;
+    }
     if (!runtimeActive || online) {
-      breathe.value = withTiming(1, { duration: 220, easing: Easing.out(Easing.cubic) });
+      breathe.value = withTiming(1, { duration: TOAST.feedbackMs, easing: Easing.out(Easing.cubic) });
       return;
     }
     breathe.value = withDelay(
       900,
       withRepeat(
         withSequence(
-          withTiming(0.82, { duration: 1400, easing: Easing.inOut(Easing.cubic) }),
-          withTiming(1, { duration: 1400, easing: Easing.inOut(Easing.cubic) }),
+          withTiming(0.82, { duration: TOAST.idleBreathMs, easing: Easing.inOut(Easing.cubic) }),
+          withTiming(1, { duration: TOAST.idleBreathMs, easing: Easing.inOut(Easing.cubic) }),
         ),
         -1,
         false,
@@ -105,14 +115,18 @@ function OfflineBannerHybridCard({
     );
     return () => cancelAnimation(breathe);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [runtimeActive, online]);
+  }, [reduceMotion, runtimeActive, online]);
 
   // Кросс-фейд НА МЕСТЕ при возврате сети — не перевход, а смена содержимого.
   useEffect(() => {
+    if (reduceMotion) {
+      stateOpacity.value = 1;
+      return;
+    }
     stateOpacity.value = 0;
-    stateOpacity.value = withTiming(1, { duration: 180, easing: Easing.out(Easing.cubic) });
+    stateOpacity.value = withTiming(1, { duration: TOAST.stateResolveMs, easing: Easing.out(Easing.cubic) });
     return () => cancelAnimation(stateOpacity);
-  }, [online]);
+  }, [online, reduceMotion, stateOpacity]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: opacity.value * breathe.value,
@@ -127,7 +141,7 @@ function OfflineBannerHybridCard({
       <View style={[styles.hybridSpine, { backgroundColor: accent }]} />
       <Reanimated.View style={[styles.hybridRow, contentStyle]}>
         <Ionicons name={online ? 'checkmark-circle' : 'wifi-outline'} size={18} color={accent} />
-        <Text style={[styles.hybridText, { color: textColor }]} numberOfLines={1}>
+        <Text style={[styles.hybridText, { color: textColor }]}>
           {online ? onlineText : offlineText}
         </Text>
       </Reanimated.View>
@@ -137,16 +151,17 @@ function OfflineBannerHybridCard({
 
 interface OfflineBannerProps {
   lang: string;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
 // lang приходит пропом (не из LangContext): баннер монтируется в _layout,
 // где язык уже есть, — так он не зависит от места в дереве провайдеров.
-export default function OfflineBanner({ lang, motionVariant = 'classic' }: OfflineBannerProps) {
+export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: OfflineBannerProps) {
   const insets = useStableSafeAreaInsets();
   const { theme: t } = useTheme();
   const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
   const runtimeActive = useRuntimeActive();
   const [offline, setOffline] = useState(false);
   // Локально скрыт (смахнули или прошло 10с). Сбрасывается при возврате сети.
@@ -167,18 +182,22 @@ export default function OfflineBanner({ lang, motionVariant = 'classic' }: Offli
   }, []);
 
   // Плавно смахнуть/скрыть баннер.
-  const hide = useRef(() => {
+  const hide = useCallback(() => {
+    if (isHybrid && reduceMotion) {
+      setDismissed(true);
+      return;
+    }
     Animated.parallel([
       Animated.timing(opacity, { toValue: 0, duration: 180, useNativeDriver: true }),
       Animated.timing(translateY, { toValue: -80, duration: 180, useNativeDriver: true }),
     ]).start(() => setDismissed(true));
-  }).current;
+  }, [isHybrid, opacity, reduceMotion, translateY]);
 
   // Жест «смахнуть вверх» для закрытия. В гибриде своя карточка на Reanimated —
   // classic-жест (Animated.Value) ей не подходит, смахивание остаётся дефолтным.
-  const panResponder = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: (_e, g) => !isHybrid && Math.abs(g.dy) > 6 && Math.abs(g.dy) > Math.abs(g.dx),
+  const panResponder = useMemo(
+    () => PanResponder.create({
+      onMoveShouldSetPanResponder: (_e, g) => Math.abs(g.dy) > 6 && Math.abs(g.dy) > Math.abs(g.dx),
       onPanResponderMove: (_e, g) => {
         // Тянем только вверх (dy < 0), вниз не уводим.
         translateY.setValue(Math.min(0, g.dy));
@@ -191,12 +210,17 @@ export default function OfflineBanner({ lang, motionVariant = 'classic' }: Offli
         }
       },
     }),
-  ).current;
+    [hide, translateY],
+  );
 
   useEffect(() => {
     // Гибрид анимирует вход/дыхание сам на Reanimated — classic Animated.Value
     // не участвует, чтобы не задваивать анимацию (тот же приём, что ActionToast).
-    if (isHybrid) return;
+    if (isHybrid) {
+      opacity.setValue(visible ? 1 : 0);
+      if (visible) translateY.setValue(0);
+      return;
+    }
     Animated.timing(opacity, {
       toValue: visible ? 1 : 0,
       duration: 220,
@@ -222,14 +246,14 @@ export default function OfflineBanner({ lang, motionVariant = 'classic' }: Offli
   useEffect(() => {
     if (!isHybrid || !visible) return;
     if (autoHideRef.current) clearTimeout(autoHideRef.current);
-    autoHideRef.current = setTimeout(() => setDismissed(true), AUTO_HIDE_MS);
+    autoHideRef.current = setTimeout(hide, AUTO_HIDE_MS);
     return () => {
       if (autoHideRef.current) {
         clearTimeout(autoHideRef.current);
         autoHideRef.current = null;
       }
     };
-  }, [isHybrid, visible]);
+  }, [hide, isHybrid, visible]);
 
   if (!visible) return null;
 
@@ -256,17 +280,22 @@ export default function OfflineBanner({ lang, motionVariant = 'classic' }: Offli
       pl: 'Znowu online',
     });
     return (
-      <View style={[styles.hybridHost, { top: insets.top + 4 }]} pointerEvents="none">
-        <OfflineBannerHybridCard
-          online={!offline}
-          offlineText={offlineText}
-          onlineText={onlineText}
-          accentOffline={t.wrong}
-          accentOnline={t.correct}
-          cardBg={t.bgCard}
-          textColor={t.textPrimary}
-          runtimeActive={runtimeActive}
-        />
+      <View style={[styles.hybridAnchor, { top: insets.top + 4 }]}>
+        <Animated.View
+          {...panResponder.panHandlers}
+          style={[styles.hybridMotion, { opacity, transform: [{ translateY }] }]}
+        >
+          <OfflineBannerHybridCard
+            online={!offline}
+            offlineText={offlineText}
+            onlineText={onlineText}
+            accentOffline={t.wrong}
+            accentOnline={t.correct}
+            cardBg={t.bgCard}
+            textColor={t.textPrimary}
+            runtimeActive={runtimeActive}
+          />
+        </Animated.View>
       </View>
     );
   }
@@ -276,7 +305,7 @@ export default function OfflineBanner({ lang, motionVariant = 'classic' }: Offli
       {...panResponder.panHandlers}
       style={[styles.banner, { top: insets.top + 4, opacity, transform: [{ translateY }] }]}
     >
-      <Text style={styles.text} numberOfLines={1}>
+      <Text style={styles.text}>
         {offlineText}
       </Text>
     </Animated.View>
@@ -301,11 +330,14 @@ const styles = StyleSheet.create({
     fontSize: 12.5,
     fontWeight: '600',
   },
-  hybridHost: {
+  hybridAnchor: {
     position: 'absolute',
     left: 12,
     right: 12,
     zIndex: 9999,
+  },
+  hybridMotion: {
+    width: '100%',
     alignItems: 'center',
   },
   hybridCard: {

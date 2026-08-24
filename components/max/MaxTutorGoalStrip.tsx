@@ -54,7 +54,6 @@ export function MaxTutorGoalStrip({ mode, title, currentTopic, sceneTitle, maste
     // у названия). Фон и обводку не вводим — разделяем тоном и размером.
     <View
       testID="max-tutor-goal-strip"
-      accessibilityLiveRegion="polite"
       accessibilityLabel={contextTitle === '' ? kindLabel : `${kindLabel}: ${contextTitle}`}
       style={{
         // Высота фиксирована под метку + две строки названия: цель приходит не

@@ -79,7 +79,7 @@ describe('применение переживает закрытие модал�
     // фоновое применение доходит до конца. Оборвать его может только реальная
     // смена пользователя — там обрыв как раз правильный.
     const applyAt = MODAL.indexOf('const result = await applyGift(');
-    const tail = MODAL.slice(applyAt, applyAt + 400);
+    const tail = MODAL.slice(applyAt, applyAt + 900);
     expect(tail).toContain('isCurrentAccountGeneration');
   });
 
@@ -91,6 +91,12 @@ describe('применение переживает закрытие модал�
     const at = MODAL.indexOf('openingAccountTokenRef.current = ');
     // Присваивание живёт в ветке «модалка только что открылась».
     expect(MODAL.slice(Math.max(0, at - 400), at)).toContain('if (!justOpened) return;');
+  });
+
+  test('двойной подарок тоже сохраняет токен до завершения фонового применения', () => {
+    const assignments = DUAL_MODAL.match(/openingAccountTokenRef\.current = /g) ?? [];
+    expect(assignments).toHaveLength(1);
+    expect(DUAL_MODAL).not.toContain('openingAccountTokenRef.current = null');
   });
 
   test('после фонового результата пользователь получает явный success или error', () => {

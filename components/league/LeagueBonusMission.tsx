@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { Pressable, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+import React, { memo, useEffect, useMemo, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import { Image, type ImageSource } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -11,12 +11,14 @@ import { leaguePublicName } from '../../app/league_public_name';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LeagueChestRing } from './LeagueChestRing';
 import type { LeagueHubPalette } from './leagueHubPalette';
+import RetiredRasterFallback from '../feedback/RetiredRasterFallback';
+import { useTheme } from '../ThemeContext';
+import { getLeagueWeeklyGoalAsset } from './leagueWeeklyGoalAssets';
 
 interface LeagueBonusMissionProps {
   model: LeagueBonusMissionModel;
   lang: Lang;
   palette: LeagueHubPalette;
-  giftImage: ImageSourcePropType;
   renderContributorAvatar: (member: GroupMember, size: number) => React.ReactNode;
   onClaim: () => void;
   onBoost: () => void;
@@ -29,10 +31,16 @@ interface LeagueBonusMissionProps {
   onChestPress: () => void;
 }
 
-function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank, onChestPress }: LeagueBonusMissionProps) {
+function LeagueBonusMissionComponent({ model, lang, palette, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank, onChestPress }: LeagueBonusMissionProps) {
   const reduceMotion = useReduceMotion();
+  const { themeMode } = useTheme();
+  const weeklyGoalAsset = useMemo(() => getLeagueWeeklyGoalAsset(themeMode), [themeMode]);
+  const [weeklyGoalAssetLoaded, setWeeklyGoalAssetLoaded] = useState(false);
   const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
   const boostLeagueLabel = triLang(lang, { ru: 'Ускорить лигу', uk: 'Прискорити лігу', es: 'Impulsar la liga', 'pt-BR': 'Impulsionar a liga', vi: 'Tăng tốc giải đấu', id: 'Percepat liga', tr: 'Ligi hızlandır', pl: 'Przyspiesz ligę' });
+  const chestAccessibilityLabel = triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' });
+
+  useEffect(() => setWeeklyGoalAssetLoaded(false), [weeklyGoalAsset]);
 
   return (
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(120).duration(240)} style={[styles.shell, { backgroundColor: model.canClaim ? palette.accent : palette.surface }]} testID="league-bonus-mission">
@@ -56,7 +64,24 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
             fillColor={model.canClaim ? palette.accentText : palette.warning}
             testID="league-chest-ring"
           >
-            <Image source={giftImage as ImageSource} style={{ width: 44, height: 44 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
+            <View style={styles.chestArt}>
+              {!weeklyGoalAssetLoaded ? (
+                <RetiredRasterFallback
+                  kind="league"
+                  size={44}
+                  color={model.canClaim ? palette.accentText : palette.warning}
+                  accessibilityLabel={chestAccessibilityLabel}
+                />
+              ) : null}
+              <Image
+                source={weeklyGoalAsset as ImageSource}
+                contentFit="contain"
+                accessible={false}
+                onLoad={() => setWeeklyGoalAssetLoaded(true)}
+                onError={() => setWeeklyGoalAssetLoaded(false)}
+                style={[StyleSheet.absoluteFill, { opacity: weeklyGoalAssetLoaded ? 1 : 0 }]}
+              />
+            </View>
           </LeagueChestRing>
         </View>
         </Pressable>
@@ -121,6 +146,7 @@ export const LeagueBonusMission = memo(LeagueBonusMissionComponent);
 
 const styles = StyleSheet.create({
   shell: { borderRadius: 26, padding: 17, gap: 11, overflow: 'hidden' },
+  chestArt: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center' },
   headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 48 },
   headingText: { flex: 1, minWidth: 0 },
   eyebrow: { fontSize: 13, fontWeight: '900', letterSpacing: 0.8 },

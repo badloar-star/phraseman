@@ -31,6 +31,8 @@ const KNOWN_REASONS = [
   'voice_max_required',
   'voice_mint_rate_limited',
   'voice_provider_failed',
+  'voice_daily_quota_exhausted',
+  'voice_monthly_quota_exhausted',
   'voice_quota_exhausted',
   'voice_session_active',
   'voice_trial_paused',
@@ -75,12 +77,22 @@ const NON_RETRYABLE_REASONS: ReadonlySet<string> = new Set([
   'voice_budget_exhausted',
   'voice_disabled',
   'voice_max_required',
+  'voice_daily_quota_exhausted',
+  'voice_monthly_quota_exhausted',
   'voice_quota_exhausted',
   'voice_trial_paused',
 ]);
 
 export function isMaxVoiceFailureRetryable(reason: string | null | undefined): boolean {
   return !NON_RETRYABLE_REASONS.has(String(reason ?? ''));
+}
+
+export function shouldOfferMaxUpgradeForVoiceReason(
+  reason: string | null | undefined,
+): boolean {
+  // Месячная квота теперь существует только у уже активного тарифа MAX.
+  // Пейвол нужен лишь Free/Плюс/Про после единственного пробного звонка.
+  return reason === 'voice_max_required';
 }
 
 /** Ошибка с reason, который транспорт может безопасно передать UI-автомату. */
@@ -105,7 +117,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
       pl: 'Linia głosowa jest wyłączona na serwerze. Spróbuj później.',
     });
   }
-  if (reason === 'voice_quota_exhausted') {
+  if (reason === 'voice_daily_quota_exhausted') {
     return triLang(lang, {
       ru: 'Минуты MAX на сегодня закончились. Лимит восстановится автоматически.',
       uk: 'Хвилини MAX на сьогодні закінчилися. Ліміт відновиться автоматично.',
@@ -115,6 +127,30 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
       id: 'Menit MAX hari ini habis. Batas akan pulih otomatis.',
       tr: 'Bugünkü MAX dakikaları bitti. Limit otomatik yenilenecek.',
       pl: 'Dzisiejsze minuty MAX się skończyły. Limit odnowi się automatycznie.',
+    });
+  }
+  if (reason === 'voice_monthly_quota_exhausted') {
+    return triLang(lang, {
+      ru: 'Месячный запас минут MAX закончился. Он восстановится в следующем месяце.',
+      uk: 'Місячний запас хвилин MAX закінчився. Він відновиться наступного місяця.',
+      es: 'Se acabaron los minutos MAX del mes. Se renovarán el próximo mes.',
+      'pt-BR': 'Os minutos MAX do mês acabaram. Eles serão renovados no próximo mês.',
+      vi: 'Số phút MAX trong tháng đã hết. Hạn mức sẽ được làm mới vào tháng tới.',
+      id: 'Menit MAX bulan ini habis. Batas akan diperbarui bulan depan.',
+      tr: 'Bu ayın MAX dakikaları bitti. Gelecek ay yenilenecek.',
+      pl: 'Miesięczny zapas minut MAX się skończył. Odnowi się w przyszłym miesiącu.',
+    });
+  }
+  if (reason === 'voice_quota_exhausted') {
+    return triLang(lang, {
+      ru: 'Доступных минут MAX недостаточно. Лимит восстановится автоматически.',
+      uk: 'Доступних хвилин MAX недостатньо. Ліміт відновиться автоматично.',
+      es: 'No quedan suficientes minutos MAX. El límite se renovará automáticamente.',
+      'pt-BR': 'Não há minutos MAX suficientes. O limite será renovado automaticamente.',
+      vi: 'Không còn đủ phút MAX. Giới hạn sẽ tự động được đặt lại.',
+      id: 'Menit MAX yang tersedia tidak cukup. Batas akan pulih otomatis.',
+      tr: 'Yeterli MAX dakikası kalmadı. Limit otomatik yenilenecek.',
+      pl: 'Brakuje dostępnych minut MAX. Limit odnowi się automatycznie.',
     });
   }
   if (reason === 'voice_max_required') {
@@ -135,14 +171,14 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
   // ради старых сборок в проде — они получат общий текст «связь не установилась».
   if (reason === 'media_failed') {
     return triLang(lang, {
-      ru: 'Не удалось запустить микрофон. Проверь разрешение микрофона в настройках iPhone.',
-      uk: 'Не вдалося запустити мікрофон. Перевір дозвіл мікрофона в налаштуваннях iPhone.',
-      es: 'No se pudo iniciar el micrófono. Revisa su permiso en los ajustes del iPhone.',
-      'pt-BR': 'Não foi possível iniciar o microfone. Verifique a permissão nos ajustes do iPhone.',
-      vi: 'Không thể bật micrô. Hãy kiểm tra quyền micrô trong cài đặt iPhone.',
-      id: 'Mikrofon tidak dapat dimulai. Periksa izin mikrofon di pengaturan iPhone.',
-      tr: 'Mikrofon başlatılamadı. iPhone ayarlarından mikrofon iznini kontrol et.',
-      pl: 'Nie udało się uruchomić mikrofonu. Sprawdź uprawnienie w ustawieniach iPhone’a.',
+      ru: 'Не удалось запустить микрофон. Проверь разрешение микрофона в настройках устройства.',
+      uk: 'Не вдалося запустити мікрофон. Перевір дозвіл мікрофона в налаштуваннях пристрою.',
+      es: 'No se pudo iniciar el micrófono. Revisa su permiso en los ajustes del dispositivo.',
+      'pt-BR': 'Não foi possível iniciar o microfone. Verifique a permissão nas configurações do dispositivo.',
+      vi: 'Không thể bật micrô. Hãy kiểm tra quyền micrô trong phần cài đặt thiết bị.',
+      id: 'Mikrofon tidak dapat dimulai. Periksa izin mikrofon di pengaturan perangkat.',
+      tr: 'Mikrofon başlatılamadı. Cihaz ayarlarından mikrofon iznini kontrol et.',
+      pl: 'Nie udało się uruchomić mikrofonu. Sprawdź uprawnienie w ustawieniach urządzenia.',
     });
   }
   if (reason === 'native_unavailable') {

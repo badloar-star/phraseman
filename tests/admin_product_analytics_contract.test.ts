@@ -89,14 +89,14 @@ describe("live legacy admin product analytics contract", () => {
     const callable = read("functions/src/admin_product_analytics.ts");
     const index = read("functions/src/index.ts");
     expect(callable).toContain(
-      "hasClaimedPermission(request.auth?.token, 'money.read')",
+      "hasVerifiedCallablePermission(request.auth, 'money.read')",
     );
     expect(callable).toContain("new HttpsError('permission-denied'");
     expect(callable).toContain("ANALYTICS_BIGQUERY_DATASET");
     expect(callable).toContain("dataThroughMs");
     expect(callable).toContain("consented_app_instances");
-    expect(index).toContain(
-      "export { adminProductAnalytics } from './admin_product_analytics';",
-    );
+      expect(index).toMatch(
+        /export \{ adminProductAnalytics \} from ["']\.\/admin_product_analytics["'];/,
+      );
   });
 });

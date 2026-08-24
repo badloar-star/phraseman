@@ -720,6 +720,19 @@ export type TournamentTask = {
   /** Frozen into room secrets; never included in an active public task. */
   explanation?: TournamentTaskExplanation;
   tags: string[];
+  /** Canonical authored-source identities. Required for v11, optional for legacy/v10 compatibility. */
+  provenanceKeys?: string[];
+  /** Server-only immutable v11 publication identity; absent on legacy/v10 tasks. */
+  source?: string;
+  poolVersion?: string;
+  exposureBucket?: string;
+  lifecycle?: string;
+  semanticSignature?: string;
+  contentSha256?: string;
+  semanticReceiptId?: string;
+  semanticReceiptSha256?: string;
+  reviewContractVersion?: string;
+  promptSetSha256?: string;
   verified: boolean;
 };
 
@@ -771,6 +784,8 @@ export const TOURNAMENT_TASK_LIMITS = Object.freeze({
   tokenBytes: 128,
   tagBytes: 64,
   maxTags: 12,
+  provenanceKeyBytes: 256,
+  maxProvenanceKeys: 6,
   maxWordBankItems: 32,
   maxCorrectTokens: 32,
   maxTimeattackItems: 8,
@@ -873,6 +888,34 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
     maxItemBytes: TOURNAMENT_TASK_LIMITS.tagBytes,
     allowEmpty: true,
   })) return { ok: false, reason: 'task_tags_invalid' };
+  const v11PoolTag = 'pool:tpool_20260808_v11';
+  const isV11 = task.poolVersion === 'tpool_20260808_v11' || task.tags.includes(v11PoolTag);
+  if (task.provenanceKeys !== undefined || isV11) {
+    if (!boundedStringArray(task.provenanceKeys, {
+      maxItems: TOURNAMENT_TASK_LIMITS.maxProvenanceKeys,
+      maxItemBytes: TOURNAMENT_TASK_LIMITS.provenanceKeyBytes,
+    }) || task.provenanceKeys.some((key) => !/^[^:\s]+:\d+:[^:\s]+$/u.test(key))
+      || new Set(task.provenanceKeys).size !== task.provenanceKeys.length) {
+      return { ok: false, reason: 'task_provenance_invalid' };
+    }
+  }
+  if (isV11) {
+    const hash = /^[a-f0-9]{64}$/u;
+    const poolTags = task.tags.filter((tag) => tag.startsWith('pool:'));
+    const parityTags = task.tags.filter((tag) => tag.startsWith('provenance-parity:'));
+    if (poolTags.length !== 1 || poolTags[0] !== v11PoolTag
+      || parityTags.length !== 1 || !/^provenance-parity:[01]$/u.test(parityTags[0])
+      || task.source !== 'ai' || task.poolVersion !== 'tpool_20260808_v11'
+      || task.lifecycle !== 'published'
+      || typeof task.exposureBucket !== 'string'
+      || !/^tpool_20260808_v11:[a-z_]+:\d{3}$/u.test(task.exposureBucket)
+      || !hash.test(task.semanticSignature ?? '') || !hash.test(task.contentSha256 ?? '')
+      || !hash.test(task.semanticReceiptId ?? '') || !hash.test(task.semanticReceiptSha256 ?? '')
+      || !boundedString(task.reviewContractVersion, 160)
+      || !hash.test(task.promptSetSha256 ?? '')) {
+      return { ok: false, reason: 'task_v11_review_identity_invalid' };
+    }
+  }
   if (!Number.isInteger(task.difficulty) || task.difficulty < 1 || task.difficulty > 3) {
     return { ok: false, reason: 'task_difficulty_invalid' };
   }
@@ -2597,6 +2640,8 @@ export type TaskSelectionParams = {
   count: number;
   /** Already consumed task ids. Kept outside the exposure deck so removal cannot shift its calendar cursor. */
   excludedTaskIds?: ReadonlySet<string> | readonly string[];
+  /** Already consumed authored-source identities across every prior room task. */
+  excludedProvenanceKeys?: ReadonlySet<string> | readonly string[];
   /** 'single' — один режим на раунд; 'mix' — любые режимы. */
   modeKind: 'single' | 'mix';
 };
@@ -2614,7 +2659,41 @@ export type TaskSelectionParams = {
  * держит собственную копию той же проверки для боевого рантайма и раньше страдала
  * от того же класса бага со своим отдельным жёстким списком v5-v9.
  */
-export const TOURNAMENT_EXPOSURE_TAG_PATTERN = /^pool:tpool_20260801_v\d+$/;
+export const TOURNAMENT_EXPOSURE_TAG_PATTERN = /^pool:tpool_\d{8}_v\d+$/;
+export const TOURNAMENT_V11_EXPOSURE_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
+  guess_phrase: 14,
+  fill_gap: 14,
+  find_oddity: 20,
+  translate_build: 19,
+  speed_match: 42,
+});
+export const TOURNAMENT_V11_EXPOSURE_EPOCH_DAY = Math.floor(
+  Date.parse('2026-08-01T00:00:00.000Z') / 86_400_000,
+);
+export const TOURNAMENT_V11_EXPOSURE_LANES_PER_DAY = 2;
+
+/**
+ * V11 assigns the two published daily room lanes consecutive, non-overlapping
+ * portions of each parity deck. A hash offset can make the lanes collide and
+ * leave an item unseen during an odd-length bucket dwell.
+ */
+export function tournamentV11ExposureCellOffset(
+  dayOrdinal: number,
+  roomSeries: string,
+  shard: number,
+  dailyCellQuota: number,
+  occurrence: number,
+): number {
+  const parityVisit = Math.floor((dayOrdinal - TOURNAMENT_V11_EXPOSURE_EPOCH_DAY) / 2);
+  // roomSeries has already had its YYYY-MM-DD suffix removed. Its parity is a
+  // stable series lane; shard bands keep same-series rooms distinct without
+  // putting a full-date room hash back into the exposure cursor.
+  const lane = Math.max(0, Math.trunc(shard)) * TOURNAMENT_V11_EXPOSURE_LANES_PER_DAY
+    + tournamentHash32(roomSeries) % TOURNAMENT_V11_EXPOSURE_LANES_PER_DAY;
+  return parityVisit * TOURNAMENT_V11_EXPOSURE_LANES_PER_DAY * dailyCellQuota
+    + lane * dailyCellQuota
+    + occurrence;
+}
 
 type TournamentRoomDeckPosition = {
   readonly dayOrdinal: number;
@@ -2656,12 +2735,27 @@ function tournamentExposureCellOffsetBeforeDay(mode: string, difficulty: number,
   return cycles * (evenQuota + oddQuota) + (dayOrdinal % 2 === 1 ? evenQuota : 0);
 }
 
+function tournamentV11ProvenanceParityDeck(
+  ordered: readonly TournamentTask[],
+  dayParity: number,
+): TournamentTask[] {
+  const tagged = ordered.map((task) => ({
+    task,
+    parityTags: task.tags?.filter((tag) => tag.startsWith('provenance-parity:')) ?? [],
+  }));
+  if (tagged.some(({ parityTags }) => parityTags.length !== 1
+    || !/^provenance-parity:[01]$/u.test(parityTags[0]))) return [];
+  return tagged.filter(({ parityTags }) => Number(parityTags[0].slice(-1)) === dayParity)
+    .map(({ task }) => task);
+}
+
 function selectTournamentExposureDeck(
   candidates: readonly TournamentTask[],
   roomId: string,
   roundNo: number,
   count: number,
   excludedTaskIds: TaskSelectionParams['excludedTaskIds'],
+  excludedProvenanceKeys?: TaskSelectionParams['excludedProvenanceKeys'],
 ): TournamentTask[] | null {
   if (candidates.length === 0) return null;
   const firstTags = candidates[0].tags ?? [];
@@ -2692,11 +2786,44 @@ function selectTournamentExposureDeck(
     [...cell].sort((left, right) => left.taskId.localeCompare(right.taskId)),
     `tournament-${exposureTag.slice(exposureTag.lastIndexOf('_') + 1)}-exposure:${mode}:d${difficulty}`,
   );
-  const rotated = Array.from({ length: ordered.length }, (_, index) => ordered[(offset + index) % ordered.length]);
+  // V11 keeps consecutive UTC days in disjoint halves of each exposure cell.
+  // The bucket itself intentionally dwells for weeks; without this partition a
+  // small real cell can repeat at the day boundary even when its offset moves.
+  // Older generations retain their exact historical deck semantics.
+  const isV11 = exposureTag === 'pool:tpool_20260808_v11';
+  const v11Parity = ((roomPosition.dayOrdinal % 2) + 2) % 2;
+  const appearsOnEvenDays = tournamentDailyExposureCellQuota(mode, difficulty, 0) > 0;
+  const appearsOnOddDays = tournamentDailyExposureCellQuota(mode, difficulty, 1) > 0;
+  const needsAdjacentDayPartition = isV11 && appearsOnEvenDays && appearsOnOddDays;
+  const usesProvenancePartition = needsAdjacentDayPartition;
+  const deck = usesProvenancePartition
+    ? tournamentV11ProvenanceParityDeck(ordered, v11Parity)
+    : ordered;
+  if (deck.length === 0) return usesProvenancePartition ? [] : null;
+  const v11Offset = tournamentV11ExposureCellOffset(
+    roomPosition.dayOrdinal,
+    roomPosition.roomSeries,
+    roomPosition.shard,
+    tournamentDailyExposureCellQuota(mode, difficulty, v11Parity),
+    earlierOccurrence,
+  );
+  const effectiveOffset = usesProvenancePartition ? v11Offset : offset;
+  const rotated = Array.from({ length: deck.length }, (_, index) => deck[(effectiveOffset + index) % deck.length]);
   const excluded = excludedTaskIds instanceof Set
     ? excludedTaskIds
     : new Set(excludedTaskIds ?? []);
-  return rotated.filter((task) => !excluded.has(task.taskId)).slice(0, Math.max(0, count));
+  const excludedProvenance = excludedProvenanceKeys instanceof Set
+    ? excludedProvenanceKeys
+    : new Set(excludedProvenanceKeys ?? []);
+  const available = (items: readonly TournamentTask[]) => items.filter((task) => (
+    !excluded.has(task.taskId)
+      && !(task.provenanceKeys ?? []).some((key) => excludedProvenance.has(key))
+  ));
+  const selected = available(rotated).slice(0, Math.max(0, count));
+  // V11 never crosses into the other day's provenance-component partition.
+  // A short result makes fallback callers fail closed instead of repeating a
+  // source key across adjacent rooms. Older generations keep their old deck.
+  return selected;
 }
 
 /**
@@ -2705,7 +2832,7 @@ function selectTournamentExposureDeck(
  * ответы по тому же seed (§6).
  */
 export function selectRoundTasks(params: TaskSelectionParams): TournamentTask[] {
-  const { pool, roomId, roundNo, count, modeKind, excludedTaskIds } = params;
+  const { pool, roomId, roundNo, count, modeKind, excludedTaskIds, excludedProvenanceKeys } = params;
   const seed = roundSeed(roomId, roundNo);
   const allowedDifficulties = roundNo === 1 ? [1]
     : roundNo === 2 ? [1, 2]
@@ -2713,12 +2840,19 @@ export function selectRoundTasks(params: TaskSelectionParams): TournamentTask[] 
         : roundNo === 4 ? [2, 3]
           : [];
   const voiceEnabled = Boolean(tournamentFeatureGates().voiceScoring.enabled);
-  const verified = pool.filter((candidate) => {
+  const excludedIds = excludedTaskIds instanceof Set ? excludedTaskIds : new Set(excludedTaskIds ?? []);
+  const excludedProvenance = excludedProvenanceKeys instanceof Set
+    ? excludedProvenanceKeys : new Set(excludedProvenanceKeys ?? []);
+  const eligible = pool.filter((candidate) => {
     const validation = validateTournamentTaskForNewRoom(candidate);
     return validation.ok
       && (validation.kind !== 'voice' || voiceEnabled)
       && allowedDifficulties.includes(candidate.difficulty);
   });
+  const verified = eligible.filter((candidate) => (
+    !excludedIds.has(candidate.taskId)
+      && !(candidate.provenanceKeys ?? []).some((key) => excludedProvenance.has(key))
+  ));
   let candidates = verified;
   if (modeKind === 'single' && verified.length > 0) {
     // зачем 2026-07-27: режим выбирался среди ВСЕХ встреченных, включая те, где
@@ -2741,7 +2875,23 @@ export function selectRoundTasks(params: TaskSelectionParams): TournamentTask[] 
       candidates = verified.filter((t) => t.mode === mode);
     }
   }
-  const exposureDeck = selectTournamentExposureDeck(candidates, roomId, roundNo, count, excludedTaskIds);
+  const usesV11StableExposureCell = pool.some((task) => (
+    task.poolVersion === 'tpool_20260808_v11'
+      || task.tags?.includes('pool:tpool_20260808_v11')
+  ));
+  const selectedModes = new Set(candidates.map((task) => task.mode));
+  const exposureCandidates = usesV11StableExposureCell
+    ? eligible.filter((task) => selectedModes.has(task.mode))
+    : candidates;
+  const exposureDeck = selectTournamentExposureDeck(
+    exposureCandidates,
+    roomId,
+    roundNo,
+    count,
+    excludedTaskIds,
+    usesV11StableExposureCell ? excludedProvenanceKeys : undefined,
+  );
+  if (usesV11StableExposureCell) return exposureDeck ?? [];
   if (exposureDeck) return exposureDeck;
   return seededShuffle(candidates, seed).slice(0, Math.max(0, count));
 }

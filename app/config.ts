@@ -106,13 +106,6 @@ export const ENABLE_DEV_TOOLS =
 export const ENABLE_TOURNAMENTS: false = false;
 
 /**
- * OWNER DECISION (2026-08-11): Arena V2 is a new server-authoritative duel
- * product. It deliberately does not unlock the retired Tournament routes or
- * any legacy Arena collection.
- */
-export const ENABLE_ARENA = true;
-
-/**
  * Карточка профиля — лестница из 5 уровней за осколки (публичный статус: бейдж уровня
  * у имени в списках, прокачанная карточка в профиле, новые блоки статистики по уровням).
  *

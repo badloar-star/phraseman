@@ -27,6 +27,7 @@ export const PROGRESS_EVENT_TYPES = [
   'preposition_drill_perfect',
   'mistake_practice_answer',
   'diagnostic_test',
+  'plan_task_complete',
   'wager_win',
 ] as const;
 
@@ -106,6 +107,7 @@ export type MigrationProvenance = {
 
 const EVENT_TYPE_SET = new Set<string>(PROGRESS_EVENT_TYPES);
 const EVENT_ID_RE = /^[a-z][a-z0-9_]{1,32}:[A-Za-z0-9_.:-]{1,140}$/;
+const PLAN_COMPLETION_ID_RE = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$/;
 const DAY_MS = 24 * 60 * 60 * 1000;
 const FINGERPRINT_EXCLUDED_PAYLOAD_KEYS = new Set<string>([
   'localTotalBeforeServer',
@@ -145,6 +147,7 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   preposition_drill_perfect: 1500,
   mistake_practice_answer: 150,
   diagnostic_test: 2500,
+  plan_task_complete: 1500,
   wager_win: 20000,
 };
 
@@ -441,6 +444,21 @@ export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
   if (!EVENT_TYPE_SET.has(typeRaw)) {
     throw new HttpsError('invalid-argument', 'bad_progress_event_type');
   }
+  const payload = normalizePayload(data.payload);
+  if (typeRaw === 'plan_task_complete') {
+    const planInstanceId = payload.planInstanceId;
+    const planTaskId = payload.planTaskId;
+    if (
+      typeof planInstanceId !== 'string'
+      || planInstanceId !== planInstanceId.trim()
+      || !PLAN_COMPLETION_ID_RE.test(planInstanceId)
+      || typeof planTaskId !== 'string'
+      || planTaskId !== planTaskId.trim()
+      || !PLAN_COMPLETION_ID_RE.test(planTaskId)
+    ) {
+      throw new HttpsError('invalid-argument', 'bad_plan_completion_identity');
+    }
+  }
   return {
     eventId,
     type: typeRaw as ProgressEventType,
@@ -449,7 +467,7 @@ export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
     appVersion: cleanString(data.appVersion, 32) || undefined,
     platform: cleanString(data.platform, 32) || undefined,
     levelSpinProtocol: data.levelSpinProtocol === LEVEL_SPIN_PROTOCOL ? LEVEL_SPIN_PROTOCOL : undefined,
-    payload: normalizePayload(data.payload),
+    payload,
   };
 }
 
@@ -1049,6 +1067,7 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       tx,
       stableUid,
       eventType: event.type,
+      completionApplied: event.type !== 'plan_task_complete' || applied.xpDelta > 0,
       occurredAt: now,
       fields: {
         increment: (value) => admin.firestore.FieldValue.increment(value),

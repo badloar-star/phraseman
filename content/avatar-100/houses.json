@@ -1,0 +1,62 @@
+{
+  "1": {
+    "nameRu": "Проводники",
+    "medium": "titanium, transparent sapphire glass, engraved cartographic routes",
+    "accents": ["#194C80", "#63C9FF"],
+    "avoid": ["generic fantasy", "hoods", "crowns", "blue forehead crystal"]
+  },
+  "2": {
+    "nameRu": "Мастера",
+    "medium": "hand-worked copper, wood, amber enamel, warm craft lighting",
+    "accents": ["#7B3E17", "#FFB14A"],
+    "avoid": ["factory robot", "steampunk cliché", "visible letters", "tools crossing the safe zone"]
+  },
+  "3": {
+    "nameRu": "Стратеги",
+    "medium": "gunmetal steel, rubber, modular brutalist construction, ruby detail",
+    "accents": ["#711D2D", "#FF5C72"],
+    "avoid": ["weapons as violence", "military insignia", "medal pedestal", "chess-piece portrait"]
+  },
+  "4": {
+    "nameRu": "Связующие",
+    "medium": "rose gold, coral enamel, smooth connected forms",
+    "accents": ["#8A3850", "#FF7B91"],
+    "avoid": ["national costumes", "flags", "romance-heart cliché", "speech text"]
+  },
+  "5": {
+    "nameRu": "Мечтатели",
+    "medium": "moon glass, cloud resin, soft internal illumination",
+    "accents": ["#58328D", "#BC8CFF"],
+    "avoid": ["wizard robe", "astrology symbols", "existing constellations", "storybook text"]
+  },
+  "6": {
+    "nameRu": "Хранители",
+    "medium": "patinated bronze, wood, botanical bio-sculpture",
+    "accents": ["#236B45", "#59DA8C"],
+    "avoid": ["eco-logo", "religious tree", "calendar numbers", "round achievement medal"]
+  },
+  "7": {
+    "nameRu": "Технонавты",
+    "medium": "black chrome, clear acrylic, holographic cyan light, physical circuitry",
+    "accents": ["#075F75", "#40E8FF", "#C8FF00"],
+    "avoid": ["brand logo", "screen text", "generic robot head", "flat app icon"]
+  },
+  "8": {
+    "nameRu": "Провидцы",
+    "medium": "carved obsidian, amethyst and opal, restrained mysterious lighting",
+    "accents": ["#54206C", "#D478FF"],
+    "avoid": ["religious symbol", "zodiac", "tarot card", "hooded oracle"]
+  },
+  "9": {
+    "nameRu": "Ясные",
+    "medium": "matte ivory porcelain, paper, graphite, one exact gesture",
+    "accents": ["#6A6E72", "#ECE7DC"],
+    "avoid": ["busy ornament", "golden luxury", "medal", "empty generic circle"]
+  },
+  "10": {
+    "nameRu": "Трикстеры",
+    "medium": "iridescent polymer, pop-glitch construction, coral and neon-lime enamel",
+    "accents": ["#FF6B82", "#C8FF00"],
+    "avoid": ["brand mascot", "scary clown", "casino symbol", "emoji copy"]
+  }
+}

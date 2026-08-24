@@ -11,9 +11,9 @@ describe('Olive season and tournament chrome', () => {
   });
 
   it('gives tournament tokens an explicit Olive branch without decorative breathing', () => {
-    const theme = read('components/tournament/tournament_theme.ts');
-    const backdrop = read('components/tournament/TournamentBackdrop.tsx');
-    const ui = read('components/tournament/tournament_v2_ui.tsx');
+    const theme = read('components/ui/v2_theme.ts');
+    const backdrop = read('components/ui/V2Backdrop.tsx');
+    const ui = read('components/ui/v2_ui.tsx');
     expect(theme).toContain("const isOlive = themeMode === 'olive'");
     expect(theme).toContain("ctaGradA: isOlive ? '#F0DEA5'");
     expect(theme).toContain("sheen: isOlive ? 'transparent'");

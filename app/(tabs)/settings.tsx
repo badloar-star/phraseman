@@ -1021,7 +1021,7 @@ export default function SettingsMain() {
   // premium_plan: пожизненный доступ бывает и безденежным (сертификат «Pro —
   // навсегда», промокод, бессрочная выдача из админки), и раньше такой человек
   // видел «Plus активирован» вопреки тому, что написано на его сертификате.
-  const tierName = isPro ? 'Pro' : 'Plus';
+  const tierName = premiumPlan === 'max_monthly' ? 'MAX' : isPro ? 'Pro' : 'Plus';
 
   const vipExpiryText = vipUntilMs > 0
     ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
@@ -1082,7 +1082,9 @@ export default function SettingsMain() {
     ? `${tierName} ${L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
     : 'Phraseman Plus';
   const plusRowValue = hasPremiumAccess && isPremium
-    ? (premiumPlan === 'yearly'
+    ? (premiumPlan === 'max_monthly'
+      ? 'MAX'
+      : premiumPlan === 'yearly'
       ? L('Год', 'Рік', 'Anual', 'Anual', 'Năm', 'Tahunan', 'Yıllık', 'Rok')
       : premiumPlan === 'monthly'
         ? L('Месяц', 'Місяць', 'Mensual', 'Mensal', 'Tháng', 'Bulanan', 'Aylık', 'Miesiąc')

@@ -909,7 +909,7 @@ function FlashcardsSwipeScreen() {
   const [loadError, setLoadError] = useState('');
   // Старт тренировки карточек = 1 ⚡ (владелец 2026-08-23: единая экономика —
   // платим за ПОПЫТКУ, ошибки внутри свайп-тренировки энергию не трогают).
-  const { isUnlimited: swipeEnergyUnlimited, spendOne: spendSwipeEnergy, refundOne: refundSwipeEnergy } = useEnergy();
+  const { confirmSpendOne: confirmSwipeEnergy, refundOne: refundSwipeEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [phase, setPhase] = useState<Phase>('select');
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
@@ -1904,11 +1904,10 @@ function FlashcardsSwipeScreen() {
     }
     if (selectedSources.length === 0 || starting) return;
     let energyCharged = false;
-    if (!swipeEnergyUnlimited) {
-      const ok = await spendSwipeEnergy();
-      if (!ok) { setNoEnergyOpen(true); return; }
-      energyCharged = true;
-    }
+    const energyResult = await confirmSwipeEnergy();
+    if (energyResult === 'cancelled') return;
+    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+    energyCharged = energyResult === 'spent';
     draftRestoreAttemptedRef.current = true;
     void hapticTap();
     setStarting(true);
@@ -1962,7 +1961,7 @@ function FlashcardsSwipeScreen() {
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, refundSwipeEnergy, spendSwipeEnergy, starting, studyTarget, swipeEnergyUnlimited]);
+  }, [buildPromptQueue, buildSessionCards, confirmSwipeEnergy, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, refundSwipeEnergy, starting, studyTarget]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -2900,6 +2899,7 @@ function FlashcardsSwipeScreen() {
             >
               <Ionicons name="play" size={18} color={t.correctText} />
               <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.nextRound}</Text>
+              <EnergyCostBadge testID="flashcards-swipe-next-round-energy-cost" />
             </DuoPressable>
             <TouchableOpacity
               onPress={openSettings}

@@ -7,6 +7,7 @@ exports.getLearningV2CourseSessionDeviceRunSummaryV1 = getLearningV2CourseSessio
 exports.getLearningV2CourseSessionIntroPageV1 = getLearningV2CourseSessionIntroPageV1;
 exports.getLearningV2CourseSessionPracticeInteractionV1 = getLearningV2CourseSessionPracticeInteractionV1;
 exports.getLearningV2CourseSessionAuxiliaryEntryV1 = getLearningV2CourseSessionAuxiliaryEntryV1;
+exports.getLearningV2CourseSessionNewWordEncountersV1 = getLearningV2CourseSessionNewWordEncountersV1;
 exports.evaluateLearningV2CourseSessionDeviceInteractionV1 = evaluateLearningV2CourseSessionDeviceInteractionV1;
 exports.materializeLearningV2CourseSessionCompletedSummaryV1 = materializeLearningV2CourseSessionCompletedSummaryV1;
 exports.parseLearningV2CourseSessionCompletedSummaryV1 = parseLearningV2CourseSessionCompletedSummaryV1;
@@ -229,6 +230,14 @@ function getLearningV2CourseSessionAuxiliaryEntryV1(handle, interactionId) {
     if (!found)
         fail();
     return found;
+}
+function getLearningV2CourseSessionNewWordEncountersV1(handle) {
+    const encounters = material(handle)
+        .auxiliary.entries.flatMap((entry) => entry.newWordEncounter ? [entry.newWordEncounter] : [])
+        .sort((left, right) => left.orderWithinSession - right.orderWithinSession);
+    if (encounters.some((encounter, index) => encounter.orderWithinSession !== index + 1))
+        fail();
+    return Object.freeze(encounters);
 }
 function evaluateLearningV2CourseSessionDeviceInteractionV1(handle, interactionId, response) {
     const found = material(handle);

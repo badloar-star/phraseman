@@ -13,6 +13,7 @@ import { getLocalDayKey } from '../local_date';
 import { getWeekKey } from '../hall_of_fame_utils';
 import { getCanonicalUserId } from '../user_id_policy';
 import type { FriendProfileBatchRecord } from '../friends_profiles_batch';
+import { getFriendsTogetherConfig } from './together_config';
 import {
   bonusPercentForLevel,
   daysTogether,
@@ -25,7 +26,13 @@ import {
 const SNAPSHOT_KEY = 'friends_together_snapshot_v1';
 const BONUS_KEY = 'friends_together_bonus_v1';
 const PAIRS_CACHE_KEY = 'friends_together_pairs_cache_v1';
+const CHEST_CLAIM_KEY_PREFIX = 'friends_together_chest_claimed_v1';
 const PAIRS_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // владелец: чужие цифры не чаще раза в 6ч
+const PAIRS_CACHE_SCHEMA_VERSION = 2;
+
+function scopedKey(base: string, uid: string): string {
+  return `${base}::${uid}`;
+}
 
 export type FriendPairServerState = Readonly<{
   friendUid: string;
@@ -56,8 +63,9 @@ export type FriendsTogetherSnapshot = Readonly<{
 }>;
 
 type PairsCachePayload = Readonly<{
+  schemaVersion: typeof PAIRS_CACHE_SCHEMA_VERSION;
   fetchedAtMs: number;
-  pairs: Record<string, { bonusDays: number; claimedLevel: number; boostActive: boolean }>;
+  pairs: Record<string, { bonusDays: number; claimedLevel: number; boostUntilWeekKey: string | null }>;
 }>;
 
 // ── Firestore access (lazy require — тот же паттерн, что firestore_friend_requests.ts) ──
@@ -79,24 +87,25 @@ function parsePairsCache(raw: string | null): PairsCachePayload | null {
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as unknown;
-    if (!isRecord(parsed) || typeof parsed.fetchedAtMs !== 'number' || !isRecord(parsed.pairs)) return null;
+    if (
+      !isRecord(parsed)
+      || parsed.schemaVersion !== PAIRS_CACHE_SCHEMA_VERSION
+      || typeof parsed.fetchedAtMs !== 'number'
+      || !isRecord(parsed.pairs)
+    ) return null;
     const pairs: PairsCachePayload['pairs'] = {};
     for (const [uid, v] of Object.entries(parsed.pairs)) {
       if (!isRecord(v)) continue;
       pairs[uid] = {
         bonusDays: Number.isFinite(v.bonusDays) ? Math.max(0, Math.floor(Number(v.bonusDays))) : 0,
         claimedLevel: Number.isFinite(v.claimedLevel) ? Math.max(0, Math.floor(Number(v.claimedLevel))) : 0,
-        boostActive: v.boostActive === true,
+        boostUntilWeekKey: typeof v.boostUntilWeekKey === 'string' ? v.boostUntilWeekKey : null,
       };
     }
-    return { fetchedAtMs: parsed.fetchedAtMs, pairs };
+    return { schemaVersion: PAIRS_CACHE_SCHEMA_VERSION, fetchedAtMs: parsed.fetchedAtMs, pairs };
   } catch {
     return null;
   }
-}
-
-function pairId(a: string, b: string): string {
-  return [a, b].sort().join('__');
 }
 
 /**
@@ -115,22 +124,32 @@ export async function loadFriendPairsServerState(
   }
   if (uniqueUids.length === 0) return out;
 
+  const myUid = await getCanonicalUserId();
+  if (!myUid) return out;
+  const pairsCacheKey = scopedKey(PAIRS_CACHE_KEY, myUid);
   const now = Date.now();
-  const cachedRaw = await AsyncStorage.getItem(PAIRS_CACHE_KEY).catch(() => null);
+  const cachedRaw = await AsyncStorage.getItem(pairsCacheKey).catch(() => null);
   const cached = parsePairsCache(cachedRaw);
   const cacheIsFresh = !!cached && now - cached.fetchedAtMs < PAIRS_CACHE_TTL_MS;
 
   if (cached) {
+    const currentWeekKey = getWeekKey(new Date());
     for (const uid of uniqueUids) {
       const hit = cached.pairs[uid];
-      if (hit) out[uid] = { friendUid: uid, ...hit };
+      if (hit) {
+        out[uid] = {
+          friendUid: uid,
+          bonusDays: hit.bonusDays,
+          claimedLevel: hit.claimedLevel,
+          boostActive: !!hit.boostUntilWeekKey && hit.boostUntilWeekKey >= currentWeekKey,
+        };
+      }
     }
   }
   if (!options.force && cacheIsFresh) return out;
 
   const db = getFirestore();
-  const myUid = await getCanonicalUserId();
-  if (!db || !myUid) return out; // офлайн/Expo Go: отдаём кэш как есть
+  if (!db) return out; // офлайн/Expo Go: отдаём кэш как есть
 
   try {
     // Firebase-экономия: жёсткий потолок на случай аномального числа пар —
@@ -156,12 +175,16 @@ export async function loadFriendPairsServerState(
       // зачем: сервер считает буст ×2 только пока boostUntilWeekKey ≥ текущей недели —
       // клиентская полоса сундука должна совпадать, иначе после первой недели она врёт вверх.
       const boostActive = !!boostUntilWeekKey && boostUntilWeekKey >= getWeekKey(new Date());
-      fetchedPairs[otherUid] = { bonusDays, claimedLevel, boostActive };
+      fetchedPairs[otherUid] = { bonusDays, claimedLevel, boostUntilWeekKey };
       if (uniqueUids.includes(otherUid)) {
         out[otherUid] = { friendUid: otherUid, bonusDays, claimedLevel, boostActive };
       }
     });
-    await AsyncStorage.setItem(PAIRS_CACHE_KEY, JSON.stringify({ fetchedAtMs: now, pairs: fetchedPairs })).catch(() => {});
+    await AsyncStorage.setItem(pairsCacheKey, JSON.stringify({
+      schemaVersion: PAIRS_CACHE_SCHEMA_VERSION,
+      fetchedAtMs: now,
+      pairs: fetchedPairs,
+    })).catch(() => {});
   } catch {
     // сеть недоступна — кэш уже применён выше, молча остаёмся на нём
   }
@@ -171,16 +194,87 @@ export async function loadFriendPairsServerState(
 
 /** Синхронное чтение снапшота из памяти после prime/refresh — для мгновенного первого кадра. */
 let _memorySnapshot: FriendsTogetherSnapshot | null = null;
+let _memorySnapshotUid: string | null = null;
 
 export function getFriendsTogetherSnapshot(): FriendsTogetherSnapshot | null {
   return _memorySnapshot;
 }
 
+/**
+ * Сразу после успешного серверного клейма обновляет память И оба дисковых кэша.
+ * Иначе после перезапуска старый 6-часовой pair-cache снова показывал модалку уже
+ * забранного уровня.
+ */
+export async function markFriendLevelClaimedLocally(friendUid: string, level: number): Promise<void> {
+  const myUid = await getCanonicalUserId();
+  if (!myUid) return;
+  const claimedLevel = Math.max(1, Math.floor(level));
+  const pair = _memorySnapshot?.pairs[friendUid];
+  if (_memorySnapshot && pair) {
+    _memorySnapshot = {
+      ..._memorySnapshot,
+      pairs: {
+        ..._memorySnapshot.pairs,
+        [friendUid]: { ...pair, claimedLevel: Math.max(pair.claimedLevel, claimedLevel) },
+      },
+    };
+    await AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(_memorySnapshot)).catch(() => {});
+  }
+
+  const pairsCacheKey = scopedKey(PAIRS_CACHE_KEY, myUid);
+  const cached = parsePairsCache(await AsyncStorage.getItem(pairsCacheKey).catch(() => null));
+  const cachedPair = cached?.pairs[friendUid];
+  if (cached && cachedPair) {
+    await AsyncStorage.setItem(pairsCacheKey, JSON.stringify({
+      ...cached,
+      pairs: {
+        ...cached.pairs,
+        [friendUid]: { ...cachedPair, claimedLevel: Math.max(cachedPair.claimedLevel, claimedLevel) },
+      },
+    })).catch(() => {});
+  }
+}
+
+function chestClaimStorageKey(uid: string): string {
+  return `${CHEST_CLAIM_KEY_PREFIX}::${uid}`;
+}
+
+/** Серверный claim-doc — источник правды после перезапуска/на втором устройстве. */
+export async function readWeeklyChestClaimedWeekKey(weekKey: string): Promise<string | null> {
+  const myUid = await getCanonicalUserId();
+  if (!myUid || !weekKey) return null;
+  const key = chestClaimStorageKey(myUid);
+  const cached = await AsyncStorage.getItem(key).catch(() => null);
+  if (cached === weekKey) return weekKey;
+  const db = getFirestore();
+  if (!db) return null;
+  try {
+    const snap = await db.collection('users').doc(myUid).collection('friends_chest_claims').doc(weekKey).get();
+    if (!snap.exists) return null;
+    await AsyncStorage.setItem(key, weekKey).catch(() => {});
+    return weekKey;
+  } catch {
+    // Старый weekKey полезен только как локальный след, но не должен помечать
+    // новый сундук забранным при временной ошибке сети.
+    return cached === weekKey ? weekKey : null;
+  }
+}
+
+export async function markWeeklyChestClaimedLocally(weekKey: string): Promise<void> {
+  const myUid = await getCanonicalUserId();
+  if (!myUid || !weekKey) return;
+  await AsyncStorage.setItem(chestClaimStorageKey(myUid), weekKey).catch(() => {});
+}
+
 /** Прогреть снапшот из AsyncStorage (вызывать рядом со стартовым прогревом друзей). */
 export async function primeFriendsTogetherSnapshot(): Promise<FriendsTogetherSnapshot | null> {
-  if (_memorySnapshot) return _memorySnapshot;
+  const myUid = await getCanonicalUserId();
+  if (!myUid) return null;
+  if (_memorySnapshot && _memorySnapshotUid === myUid) return _memorySnapshot;
+  _memorySnapshot = null;
+  _memorySnapshotUid = myUid;
   try {
-    const raw = await AsyncStorage.getItem(SNAPSHOT_KEY);
+    const raw = await AsyncStorage.getItem(scopedKey(SNAPSHOT_KEY, myUid));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as unknown;
     if (!isRecord(parsed) || !isRecord(parsed.pairs) || typeof parsed.updatedAtMs !== 'number') return null;
@@ -213,6 +307,7 @@ export async function refreshFriendsTogether(
   profiles: readonly FriendProfileBatchRecord[],
   options: { forcePairsRefresh?: boolean } = {},
 ): Promise<FriendsTogetherSnapshot> {
+  const myUid = await getCanonicalUserId();
   const myActiveDays = await readMyActiveDays();
   const myDayKey = getLocalDayKey();
   const friendUids = profiles.map((p) => p.uid).filter(Boolean);
@@ -226,7 +321,7 @@ export async function refreshFriendsTogether(
     const friendActiveDays = profile.activeDays ?? null;
     const server = pairsServerState[profile.uid] ?? { friendUid: profile.uid, bonusDays: 0, claimedLevel: 0, boostActive: false };
     const days = daysTogether(myActiveDays, friendActiveDays, server.bonusDays);
-    const level = levelForDays(days);
+    const level = levelForDays(days, getFriendsTogetherConfig().levelThresholds);
     const todayCommon = hasCommonDay(myActiveDays, friendActiveDays, myDayKey);
     const bonusPercent = bonusPercentForLevel(level);
 
@@ -248,11 +343,14 @@ export async function refreshFriendsTogether(
 
   const snapshot: FriendsTogetherSnapshot = { updatedAtMs: Date.now(), myDayKey, pairs };
   _memorySnapshot = snapshot;
+  _memorySnapshotUid = myUid;
 
-  await Promise.all([
-    AsyncStorage.setItem(SNAPSHOT_KEY, JSON.stringify(snapshot)).catch(() => {}),
-    AsyncStorage.setItem(BONUS_KEY, JSON.stringify({ dayKey: myDayKey, percent: bestBonusPercent })).catch(() => {}),
-  ]);
+  if (myUid) {
+    await Promise.all([
+      AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(snapshot)).catch(() => {}),
+      AsyncStorage.setItem(scopedKey(BONUS_KEY, myUid), JSON.stringify({ dayKey: myDayKey, percent: bestBonusPercent })).catch(() => {}),
+    ]);
+  }
 
   return snapshot;
 }

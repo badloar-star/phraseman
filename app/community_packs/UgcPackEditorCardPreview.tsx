@@ -328,7 +328,6 @@ export default function UgcPackEditorCardPreview({
           </View>
         ) : null}
       </View>
-
       {detailsExpanded && hasDescription ? (
         <View
           style={{
@@ -356,7 +355,6 @@ export default function UgcPackEditorCardPreview({
           <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '600', lineHeight: 22 }}>{uk.trim()}</Text>
         </View>
       ) : null}
-
       {editing ? (
         <View style={[styles.toolBtn, { marginTop: 8 }]}>
           <Ionicons name="create-outline" size={18} color={t.accent} />

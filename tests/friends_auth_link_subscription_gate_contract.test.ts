@@ -1,25 +1,19 @@
 import fs from 'fs';
 import path from 'path';
 
-const readFriendsTab = () => fs.readFileSync(
-  path.join(__dirname, '..', 'app', '(tabs)', 'friends.tsx'),
-  'utf8',
-);
+const read = (...parts: string[]) => fs.readFileSync(path.join(__dirname, '..', ...parts), 'utf8');
 
-test('Friends tab prepares its live-subscription auth link once and gates both listeners', () => {
-  const source = readFriendsTab();
-  const calls = source.match(/ensureFriendRequestViewerAuthLink\s*\(/g) ?? [];
+test('Friends tab delegates its live friends listener and auth repair to the shared store', () => {
+  const source = read('app', '(tabs)', 'friends.tsx');
+  const store = read('app', 'friends_account_store.ts');
   const cachedFriendsIndex = source.indexOf('setFriends(w.friends)');
-  const authLinkIndex = source.indexOf('const authLinkReady = await ensureFriendRequestViewerAuthLink(uid);');
-  const friendsSubscriptionIndex = source.indexOf('unsubFriends = subscribeToFriends');
+  const friendsSubscriptionIndex = source.indexOf('unsubFriends = friendsAccountStore.subscribe');
   const requestsSubscriptionIndex = source.indexOf('unsubRequests = subscribeToIncomingRequests');
 
-  expect(calls).toHaveLength(1);
   expect(cachedFriendsIndex).toBeGreaterThan(-1);
-  expect(authLinkIndex).toBeGreaterThan(cachedFriendsIndex);
-  expect(friendsSubscriptionIndex).toBeGreaterThan(authLinkIndex);
-  expect(requestsSubscriptionIndex).toBeGreaterThan(authLinkIndex);
-  expect(source.slice(authLinkIndex, friendsSubscriptionIndex)).toContain(
-    'if (!authLinkReady || cancelled) return;',
-  );
+  expect(friendsSubscriptionIndex).toBeGreaterThan(cachedFriendsIndex);
+  expect(requestsSubscriptionIndex).toBeGreaterThan(friendsSubscriptionIndex);
+  expect(source).not.toContain('ensureFriendRequestViewerAuthLink(');
+  expect(source).not.toContain('subscribeToFriends(');
+  expect(store).toContain('repairAuthLink: () => ensureFriendRequestViewerAuthLink()');
 });

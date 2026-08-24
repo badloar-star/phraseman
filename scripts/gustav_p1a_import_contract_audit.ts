@@ -127,10 +127,6 @@ function writeProbeFile(root: string, relativePath: string, content: string): st
   return outPath;
 }
 
-function unique<T>(values: T[]): T[] {
-  return Array.from(new Set(values));
-}
-
 function findCycles(edges: DependencyEdge[]): string[][] {
   const graph = new Map<string, string[]>();
   for (const edge of edges) {

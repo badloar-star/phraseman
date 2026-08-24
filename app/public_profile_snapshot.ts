@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureAuthoritativeIdentityForCloudMutation } from './cloud_sync';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
@@ -198,9 +199,10 @@ async function syncPublicProfileSnapshotUnsafe(
   if (!isCurrent()) return;
   const xpFresh = cache.xpSyncedAt !== undefined && now - cache.xpSyncedAt < PUBLIC_PROFILE_XP_TTL_MS;
   if (input.reason === 'daily_xp' && xpFresh && !ownerState.dirty) return;
+  if (input.totalXp === undefined) await hydratePersonalProgress().catch(() => null);
   const [nameRaw, xpRaw, langRaw, avatarRaw, frameRaw, auraRaw, leagueRaw] = await Promise.all([
     input.name !== undefined ? Promise.resolve(input.name) : readString('user_name'),
-    input.totalXp !== undefined ? Promise.resolve(String(input.totalXp)) : readString('user_total_xp'),
+    Promise.resolve(String(input.totalXp ?? getPersonalProgressSnapshot().totalXp)),
     input.lang !== undefined ? Promise.resolve(input.lang) : readString('app_lang'),
     input.avatar !== undefined ? Promise.resolve(input.avatar ?? '') : readString('user_avatar'),
     input.frame !== undefined ? Promise.resolve(input.frame ?? '') : readString('user_frame'),

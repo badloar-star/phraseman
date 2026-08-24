@@ -30,6 +30,16 @@ describe('MAX voice privacy lifecycle contract', () => {
     }
   });
 
+  test('every MAX callable that can emit a safety alert binds the Telegram secret', () => {
+    for (const name of ['max_voice_safety.ts', 'max_voice_finalize.ts', 'premium_dialog_review.ts']) {
+      const source = src(name);
+      expect(source).toContain("import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts'");
+      expect(source).toMatch(/secrets:\s*\[[^\]]*ADMIN_ALERT_BOT_TOKEN[^\]]*\]/);
+    }
+    expect(src('max_voice_finalize.ts')).toMatch(/secrets:\s*\[[^\]]*OPENAI_API_KEY[^\]]*ADMIN_ALERT_BOT_TOKEN[^\]]*\]/);
+    expect(src('premium_dialog_review.ts')).toMatch(/secrets:\s*\[[^\]]*OPENAI_API_KEY[^\]]*ADMIN_ALERT_BOT_TOKEN[^\]]*\]/);
+  });
+
   test('clear is durable, account deletion covers receipts and memory, and privacy copy is explicit', () => {
     const controls = src('max_voice_memory_controls.ts');
     expect(controls).toContain('memoryClearedAtMs');

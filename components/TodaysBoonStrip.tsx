@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AppState, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AppState, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -16,8 +16,8 @@ import { getTodaysBoons } from '../app/boons/boon_engine';
 import { getBoonCopy } from '../app/boons/boon_copy';
 import { currentWeekId, MYSTERY_MONDAY_CLAIM_KEY } from '../app/boons/boon_rewards';
 import type { BoonId } from '../app/boons/boon_types';
-import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 import WeeklyBoonDetailModal from './WeeklyBoonDetailModal';
+import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 
 interface TodaysBoonStripProps {
   /** Доп. отступ сверху (по умолчанию 14, как у pulse-hint в карточке статистики). */
@@ -27,7 +27,7 @@ interface TodaysBoonStripProps {
 }
 
 export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: TodaysBoonStripProps) {
-  const { theme: t, themeMode } = useTheme();
+  const { theme: t } = useTheme();
   const { lang } = useLang();
   const [primary, setPrimary] = useState<BoonId | null>(() => getTodaysBoons().primary);
   // зачем: null = «ещё не читали claim-флаг». Стартовый false заставлял плитку
@@ -85,7 +85,6 @@ export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: To
 
   const copy = getBoonCopy(primary, lang);
   const subtitle = copy.subtitle;
-  const iconSource = weeklyBoonIconSource(primary, themeMode);
 
   const openDetail = () => {
     hapticTap();
@@ -111,7 +110,7 @@ export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: To
           importantForAccessibility="no"
           style={styles.iconFrame}
         >
-          <Image source={iconSource} resizeMode="contain" style={styles.iconImage} />
+          <RetiredRasterFallback kind="boon" size={50} color={t.accent} />
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <Text

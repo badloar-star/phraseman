@@ -1,4 +1,6 @@
 import { ALL_LEVEL_GIFT_DEFS, type GiftDef } from './level_gift_system';
+import { isLocalSpinReceiptCreditId } from './level_spin_credit_ids';
+import { LEVEL_SPIN_REWARD_CATALOG } from './level_spin_reward_catalog';
 
 export type LocalLevelSpinReceipt = {
   ok: true;
@@ -15,8 +17,8 @@ export type LocalLevelSpinReceipt = {
   status: 'awaiting_ack' | 'acknowledged';
   revealState?: 'pending' | 'acknowledged';
   deliveries: { base: { state: 'unclaimed' } };
-  catalogVersion: 1;
-  schemaVersion: 1;
+  catalogVersion: 1 | 2 | 3;
+  schemaVersion: 1 | 2;
   localOnly: true;
 };
 
@@ -75,9 +77,17 @@ function giftById(giftId: string): GiftDef {
 
 export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt): LocalLevelSpinInventory {
   if (receipt.localOnly !== true || !Number.isInteger(receipt.level) || receipt.level < 2 || receipt.level > 60
-    || (!/^local_spin_(?:dev_[A-Za-z0-9_-]{1,96}|lesson_[A-Za-z0-9_-]{1,96})$/.test(receipt.creditId)
+    || !isLocalSpinReceiptCreditId(receipt.creditId)
+    || (receipt.creditId.startsWith('level_spin_v1_')
       && receipt.creditId !== `level_spin_v1_${String(receipt.level).padStart(3, '0')}`)
-    || receipt.expiresAtMs !== receipt.createdAtMs + 259_200_000) throw new Error('local_spin_receipt_invalid');
+    || receipt.expiresAtMs !== receipt.createdAtMs + 259_200_000
+    || !((receipt.catalogVersion === 1 && receipt.schemaVersion === 1)
+      || (receipt.catalogVersion === 2 && receipt.schemaVersion === 2)
+      || (receipt.catalogVersion === 3 && receipt.schemaVersion === 2))
+    || ((receipt.catalogVersion === 2 || receipt.catalogVersion === 3)
+      && !LEVEL_SPIN_REWARD_CATALOG.some((entry) => entry.id === receipt.baseGiftId))) {
+    throw new Error('local_spin_receipt_invalid');
+  }
   return { kind: 'single', level: receipt.level, receivedAtMs: receipt.createdAtMs, gift: giftById(receipt.baseGiftId) };
 }
 

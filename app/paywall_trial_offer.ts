@@ -36,7 +36,7 @@ export function shouldShowExitTrialOffer(params: {
   // самый высокий ROI среди re-engagement-механик (Superwall: 17% revenue от abandon).
   const EXIT_TRIAL_CONTEXTS = new Set([
     'course_after_lesson3', 'no_energy',
-    'intro_ended', 'streak', 'trainer_limit', 'flashcard_limit',
+    'intro_ended', 'streak', 'flashcard_limit',
   ]);
   return (
     EXIT_TRIAL_CONTEXTS.has(params.context) &&

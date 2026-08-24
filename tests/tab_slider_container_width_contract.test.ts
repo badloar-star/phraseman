@@ -20,4 +20,16 @@ describe('TabSlider container width contract', () => {
     expect(source).toContain('{ width: W }');
     expect(source).not.toContain('const { width: W } = useScreen();');
   });
+
+  it('commits programmatic tab changes without a second transition delay', () => {
+    const source = readSlider();
+    const programmaticSyncStart = source.indexOf('// Programmatic tab changes');
+    const programmaticSyncEnd = source.indexOf('const fireSwipeStart');
+    const programmaticSync = source.slice(programmaticSyncStart, programmaticSyncEnd);
+
+    expect(programmaticSyncStart).toBeGreaterThan(-1);
+    expect(programmaticSyncEnd).toBeGreaterThan(programmaticSyncStart);
+    expect(programmaticSync).toContain('translateX.value = -activeIndex * W;');
+    expect(programmaticSync).not.toContain('withTiming(');
+  });
 });

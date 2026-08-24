@@ -17,8 +17,8 @@
  * каркас HybridSheetShell (подъём из света, без отскока, settle LUM.settle)
  * вместо ReferralSheetShell; герой (заголовок/текст) въезжает тем же settle
  * без пружинного перелёта; CTA — DuoPressable с кромкой (edgeHeight 6, единая
- * клавиша по constants/motionHybrid.ts). Боевой путь — 'classic' (дефолт),
- * ничего не меняется без явного включения (правило владельца).
+ * клавиша по constants/motionHybrid.ts). Боевой путь — 'hybrid' (дефолт),
+ * explicit 'classic' остаётся rollback/QA-путём.
  */
 import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -39,6 +39,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 
 interface Props {
@@ -47,7 +48,7 @@ interface Props {
   userName?: string | null;
   onClose: () => void;
   testID?: string;
-  /** Гибрид «Световод + Чекан» (HybridSheetShell + DuoPressable). Дефолт — боевой 'classic'. */
+  /** Гибрид «Световод + Чекан» (HybridSheetShell + DuoPressable). Дефолт — боевой 'hybrid'. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
@@ -59,17 +60,23 @@ function HybridHero({ title, lead, note, t, f }: {
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
 }) {
+  const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
   const y = useSharedValue(14);
 
   useEffect(() => {
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      return;
+    }
     opacity.value = withTiming(1, { duration: LUM.resolveMs, easing: REasing.out(REasing.cubic) });
     y.value = withSpring(0, LUM.settle);
     return () => {
       cancelAnimation(opacity);
       cancelAnimation(y);
     };
-  }, [opacity, y]);
+  }, [opacity, reduceMotion, y]);
 
   const heroStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -108,7 +115,7 @@ export function welcomeSheetTitle(userName?: string | null, lang: Lang = 'ru'): 
     : triLang(lang, { ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn bạn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!' });
 }
 
-function OnboardingWelcomeSheet({ visible, userName, onClose, testID, motionVariant = 'classic' }: Props) {
+function OnboardingWelcomeSheet({ visible, userName, onClose, testID, motionVariant = 'hybrid' }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const L = (copy: Record<Lang, string>) => triLang(lang, copy);

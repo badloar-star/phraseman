@@ -312,14 +312,14 @@ describe('auth provider stable-id linking', () => {
     expect(mergeSwapSource).toContain('await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId)');
   });
 
-  test('remote stable-id swap degrades to plain swap when server merge cannot own both accounts', () => {
-    // Server merge only succeeds when it can prove ownership of BOTH accounts
-    // (XP-merge branch). On the returning-user branch the local anonymous account
-    // is not owned by the new uid, so merge returns null — we must fall back to a
-    // plain swap to remote, NOT error out (that branch worked before this change).
+  test('remote stable-id swap never adopts a fallback owner after merge timeout or pending reservation', () => {
+    // A timed-out merge may still be copying immutable history. Only a fresh
+    // authoritative auth-link read may authorize the destructive local wipe/swap.
     expect(mergeSwapSource).toContain('merge?.ok && merge.canonicalStableId');
-    expect(mergeSwapSource).toContain(': outcome.remoteStableId');
-    expect(mergeSwapSource).not.toContain("return { result: 'error', error: 'merge_failed' }");
+    expect(mergeSwapSource).not.toContain(': outcome.remoteStableId');
+    expect(mergeSwapSource).toContain('requireAuthoritative: true');
+    expect(mergeSwapSource).toContain('authoritativeAfterMerge.stableUid');
+    expect(mergeSwapSource).toContain("return { result: 'error', error: 'merge_pending' }");
     // Server merge must run BEFORE setStableId — we swap to the canonical winner.
     expect(mergeSwapSource.indexOf('await mergeStableAccountsViaServer(')).toBeLessThan(
       mergeSwapSource.indexOf('await setStableId('),

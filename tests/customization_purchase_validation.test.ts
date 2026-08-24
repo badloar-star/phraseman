@@ -40,7 +40,10 @@ describe('customization purchase validation', () => {
     expect(validateCustomizationPurchase(intent({ cost: 1 }), noPlus)).toBe(false);
   });
 
-  it.each(['aura-mint', 'aura-prism'])('accepts retained shard aura %s at the catalog price', (itemId) => {
+  it.each([
+    'aura-mint', 'aura-prism', 'aura-aurora', 'aura-violet', 'aura-coral',
+    'aura-lagoon', 'aura-sunset', 'aura-rainbow-loop',
+  ])('accepts approved shard aura %s at the catalog price', (itemId) => {
     expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(true);
     expect(validateCustomizationPurchase(intent({ itemId, cost: 119 }), noPlus)).toBe(false);
   });
@@ -49,11 +52,6 @@ describe('customization purchase validation', () => {
     'aura-flame-51',
     'aura-season',
     'aura-premium',
-    'aura-aurora',
-    'aura-violet',
-    'aura-coral',
-    'aura-lagoon',
-    'aura-sunset',
   ])('rejects removed or non-purchasable aura %s', (itemId) => {
     expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(false);
   });

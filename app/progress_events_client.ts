@@ -17,6 +17,8 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from './account_generation';
+import { recordShadowProgressEvent } from './phone_state_shadow_adapters';
+import { trySubmitProgressThroughPhoneState } from './phone_state_progress_cutover';
 
 export type ProgressEventType =
   | 'lesson_answer'
@@ -34,6 +36,7 @@ export type ProgressEventType =
   | 'preposition_drill_perfect'
   | 'mistake_practice_answer'
   | 'diagnostic_test'
+  | 'plan_task_complete'
   // зачем: порядок обязан совпадать с PROGRESS_EVENT_TYPES в functions/src/progress_events.ts —
   // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события
   // нельзя было завести только на одной стороне.
@@ -759,13 +762,37 @@ export async function submitProgressEvent(
   }
   const stableId = await getCanonicalUserId();
   if (!stableId) throw new Error('progress_stable_id_unavailable');
+  const eventId = request.eventId || makeDeterministicProgressEventId(request.type, request.payload);
+  const localProjection = await trySubmitProgressThroughPhoneState(stableId, {
+    eventId,
+    type: request.type,
+    payload: request.payload,
+  });
+  if (localProjection) {
+    const activeDate = localProjection.activityDates[localProjection.activityDates.length - 1]
+      ?? localDateKey();
+    return {
+      ok: true,
+      stableUid: stableId,
+      eventId,
+      type: request.type,
+      duplicate: false,
+      xpDelta: Number(request.payload.xpDelta) || 0,
+      totalXp: localProjection.totalXp,
+      level: localProjection.level,
+      streakCount: localProjection.streakCount,
+      activeDate,
+      weekKey: getCurrentWeekStartIso(),
+      weekXp: localProjection.weeklyXp,
+    };
+  }
   const [[, clientStreakCount], [, clientLastActive], [, clientStreakLast]] = await AsyncStorage.multiGet([
     'streak_count',
     'last_active_date',
     'streak_last_date',
   ]);
   const event: QueuedProgressEvent = {
-    eventId: request.eventId || makeDeterministicProgressEventId(request.type, request.payload),
+    eventId,
     type: request.type,
     clientLocalDate: localDateKey(),
     clientCreatedAt: Date.now(),
@@ -782,6 +809,16 @@ export async function submitProgressEvent(
   // Commit to the durable outbox before any network work. A crash during the
   // request must not lose a completed answer or its XP event.
   await enqueue(event);
+  // Completion facts only: XP is recorded once by xp_manager after its local
+  // total is durable. Shadow failure cannot affect this legacy server queue.
+  if (event.type === 'lesson_complete' || event.type === 'exam_complete') {
+    void recordShadowProgressEvent({
+      eventId: event.eventId,
+      type: event.type,
+      payload: event.payload,
+      createdAtMs: event.clientCreatedAt,
+    });
+  }
   try {
     await ensureProgressSnapshotMigratedWithBaseline(stableId, options?.migrationSnapshot);
     await flushPendingProgressEventsForOwner(stableId);

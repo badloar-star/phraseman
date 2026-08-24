@@ -1,4 +1,4 @@
-import { getTrialInfo, trialDaysOrDefault } from '../app/paywall_trial_info';
+import { buildSubscriptionDisclosureRu, getTrialInfo } from '../app/paywall_trial_info';
 import type { PurchasesPackage } from 'react-native-purchases';
 
 const pkg = (product: Record<string, unknown>): PurchasesPackage =>
@@ -10,40 +10,52 @@ describe('paywall_trial_info — getTrialInfo', () => {
     expect(getTrialInfo(undefined)).toEqual({ hasTrial: false, days: null });
   });
 
-  it('iOS introPrice бесплатный, дни из periodNumberOfUnits+periodUnit', () => {
-    const info = getTrialInfo(pkg({ introPrice: { price: 0, periodNumberOfUnits: 3, periodUnit: 'DAY' } }));
+  it('iOS показывает бесплатный introPrice только при подтверждённой eligibility', () => {
+    const product = pkg({ introPrice: { price: 0, periodNumberOfUnits: 3, periodUnit: 'DAY' } });
+    expect(getTrialInfo(product, 'unknown')).toEqual({ hasTrial: false, days: null });
+    expect(getTrialInfo(product, 'ineligible')).toEqual({ hasTrial: false, days: null });
+    const info = getTrialInfo(product, 'eligible');
     expect(info).toEqual({ hasTrial: true, days: 3 });
   });
 
   it('неделя → 7 дней', () => {
-    expect(getTrialInfo(pkg({ introPrice: { price: 0, periodNumberOfUnits: 1, periodUnit: 'WEEK' } })))
+    expect(getTrialInfo(pkg({ introPrice: { price: 0, periodNumberOfUnits: 1, periodUnit: 'WEEK' } }), 'eligible'))
       .toEqual({ hasTrial: true, days: 7 });
   });
 
-  it('Android introductoryPrice ISO-период P3D', () => {
-    expect(getTrialInfo(pkg({ introductoryPrice: { price: 0, period: 'P3D' } })))
+  it('Android использует применимую defaultOption.freePhase без синтетического fallback', () => {
+    expect(getTrialInfo(pkg({
+      defaultOption: {
+        freePhase: {
+          price: { amountMicros: 0 },
+          billingPeriod: { unit: 'DAY', value: 3, iso8601: 'P3D' },
+        },
+      },
+    })))
       .toEqual({ hasTrial: true, days: 3 });
   });
 
   it('платная intro-фаза (price>0) НЕ триал', () => {
-    expect(getTrialInfo(pkg({ introPrice: { price: 1.99, periodNumberOfUnits: 7, periodUnit: 'DAY' } })))
+    expect(getTrialInfo(pkg({ introPrice: { price: 1.99, periodNumberOfUnits: 7, periodUnit: 'DAY' } }), 'eligible'))
       .toEqual({ hasTrial: false, days: null });
   });
 
-  it('есть триал, но длина не парсится → days=null', () => {
-    expect(getTrialInfo(pkg({ introPrice: { price: 0 } })))
-      .toEqual({ hasTrial: true, days: null });
+  it('не показывает триал, если магазин не сообщил его длительность', () => {
+    expect(getTrialInfo(pkg({ introPrice: { price: 0 } }), 'eligible'))
+      .toEqual({ hasTrial: false, days: null });
   });
 });
 
-describe('paywall_trial_info — trialDaysOrDefault', () => {
-  it('возвращает дни если известны', () => {
-    expect(trialDaysOrDefault({ hasTrial: true, days: 7 })).toBe(7);
+describe('paywall_trial_info — обязательное раскрытие условий', () => {
+  it('показывает длительность, следующую цену, период, автопродление и отмену', () => {
+    expect(buildSubscriptionDisclosureRu({ trialDays: 3, price: '€24,99', period: 'год' })).toBe(
+      '3 дня бесплатно, затем €24,99 в год. Подписка продлевается автоматически. Отменить можно в настройках магазина.',
+    );
   });
-  it('fallback 3 если триал есть, но дни неизвестны', () => {
-    expect(trialDaysOrDefault({ hasTrial: true, days: null })).toBe(3);
-  });
-  it('кастомный fallback', () => {
-    expect(trialDaysOrDefault({ hasTrial: true, days: null }, 14)).toBe(14);
+
+  it('без подтверждённого триала показывает обычные условия подписки', () => {
+    expect(buildSubscriptionDisclosureRu({ trialDays: null, price: '€4,99', period: 'месяц' })).toBe(
+      '€4,99 в месяц. Подписка продлевается автоматически. Отменить можно в настройках магазина.',
+    );
   });
 });

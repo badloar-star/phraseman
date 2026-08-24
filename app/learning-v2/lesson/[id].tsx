@@ -1286,6 +1286,7 @@ export default function LearningV2LessonMap() {
             <Text style={[styles.sheetSkipText, { color: t.textMuted }]}>
               Пропустить теорию
             </Text>
+            <EnergyCostBadge testID="learning-v2-skip-theory-energy-cost" />
           </Pressable>
         )}
       </LessonMapSheet>

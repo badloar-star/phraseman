@@ -1,18 +1,21 @@
 import React, { memo } from 'react';
 import PremiumCelebrationModal from './PremiumCelebrationModal';
 
-// зачем: тонкая обёртка над PremiumCelebrationModal (тот уже умеет гибрид) —
-// пробрасываем motionVariant, чтобы VIP-празднование включалось тем же флагом.
+// зачем: тонкая обёртка над PremiumCelebrationModal с зелёной палитрой VIP.
+// promoCode прокидывается для активации промокода: тогда перед актом 1
+// показывается штамп самого кода (см. хореографию v6).
+// motionVariant удалён вместе со старым classic/hybrid-разделением — движок
+// теперь один.
 function VipCelebrationModal({
   visible,
   onClose,
-  motionVariant = 'classic',
+  promoCode = null,
 }: {
   visible: boolean;
   onClose: () => void;
-  motionVariant?: 'classic' | 'hybrid';
+  promoCode?: string | null;
 }) {
-  return <PremiumCelebrationModal visible={visible} onClose={onClose} variant="vip" motionVariant={motionVariant} />;
+  return <PremiumCelebrationModal visible={visible} onClose={onClose} variant="vip" promoCode={promoCode} />;
 }
 
 export default memo(VipCelebrationModal);

@@ -111,6 +111,29 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.reward.premium_finale': event(require('../../assets/audio/sfx/v1/reward/pm_reward_premium_finale_v1.m4a'), 0.62, 95, 8000, 1650, 'reward'),
   'pm.reward.vip_open': event(require('../../assets/audio/sfx/v1/reward/pm_reward_vip_open_v1.m4a'), 0.62, 96, 10000, 1550, 'reward'),
   'pm.reward.vip_finale': event(null, 0.64, 97, 10000, 1850, 'reward'),
+
+  // ─── Празднование покупки v6 «Золотая палата» (владелец 2026-08-24) ───
+  // зачем: у каждой сцены СВОЙ звук — иначе одиннадцать разных механик звучат
+  // одинаково и превращаются в шум. Тайминги атак (карты ударов) описаны в
+  // docs/design/CELEBRATION_SOUND_PROMPTS.md и продублированы в sound_motion.ts.
+  // source=null до появления файлов в assets/audio/sfx/v1/celebration/:
+  // директор молча пропускает такой запрос, экран работает без звука.
+  // Громкости идут волнами (сцены 1, 4 и 8 заметнее) — правило усталости уха.
+  'pm.celebration.open_rift': event(null, 0.62, 96, 6000, 1450, 'reward'),
+  'pm.celebration.energy_break': event(null, 0.50, 90, 2000, 1210, 'reward'),
+  'pm.celebration.locks_off': event(null, 0.44, 90, 2000, 780, 'reward'),
+  'pm.celebration.cards_stack': event(null, 0.44, 90, 2000, 1100, 'reward'),
+  'pm.celebration.dialog_spark': event(null, 0.50, 90, 2000, 900, 'reward'),
+  'pm.celebration.voice_score': event(null, 0.46, 90, 2000, 1170, 'reward'),
+  'pm.celebration.coach_heal': event(null, 0.42, 90, 2000, 1180, 'reward'),
+  'pm.celebration.error_fix': event(null, 0.44, 90, 2000, 1180, 'reward'),
+  'pm.celebration.plan_route': event(null, 0.50, 90, 2000, 1060, 'reward'),
+  'pm.celebration.stats_rise': event(null, 0.44, 90, 2000, 1040, 'reward'),
+  'pm.celebration.streak_shield': event(null, 0.52, 90, 2000, 1000, 'reward'),
+  'pm.celebration.aura_bloom': event(null, 0.48, 90, 2000, 1030, 'reward'),
+  'pm.celebration.max_awaken': event(null, 0.60, 92, 4000, 2200, 'reward'),
+  'pm.celebration.finale_chord': event(null, 0.64, 96, 6000, 1600, 'reward'),
+  'pm.celebration.promo_stamp': event(null, 0.56, 94, 4000, 850, 'reward'),
   // зачем: лёгкое предвкушение на входе в экран распаковки, ДО первого флипа —
   // не путать с финальным pack_complete (тот громче и играет один раз в конце).
   // Однократность на mount экрана держит вызывающий код; cooldown — защита от

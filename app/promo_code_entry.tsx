@@ -205,6 +205,9 @@ export default function PromoCodeEntryScreen() {
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [celebrationVisible, setCelebrationVisible] = useState(false);
   const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
+  // зачем: празднование v6 показывает САМ код штампом перед разломом — человек
+  // видит, что сработал именно тот код, который он ввёл.
+  const [celebrationCode, setCelebrationCode] = useState<string | null>(null);
   const autoRedeemTriedRef = useRef(false);
 
   // Кнопка активна только для кода валидного формата (зеркало серверного CODE_RE
@@ -234,6 +237,7 @@ export default function PromoCodeEntryScreen() {
         });
         if (!generation.stableId || !isCurrentAccountGeneration(generation, generation.stableId)) return;
         setCelebrationMarker(marker);
+        setCelebrationCode(normalizePromoCodeInput(rawCode));
         // VIP обновился на сервере — сбрасываем кэш и оповещаем приложение.
         invalidatePremiumCache();
         emitAppEvent('vip_activated');
@@ -263,6 +267,7 @@ export default function PromoCodeEntryScreen() {
     const marker = celebrationMarker;
     setCelebrationVisible(false);
     setCelebrationMarker(null);
+    setCelebrationCode(null);
     if (marker) void consumeVipCelebration(marker);
     safeRouterBack(router, '/(tabs)/settings' as any);
   }, [celebrationMarker, router]);
@@ -360,7 +365,7 @@ export default function PromoCodeEntryScreen() {
             </TonalSurface>
           </ScrollView>
         </KeyboardAvoidingView>
-        <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} />
+        <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} promoCode={celebrationCode} />
       </SafeAreaView>
     </ScreenGradient>
   );

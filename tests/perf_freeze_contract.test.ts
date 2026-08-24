@@ -81,7 +81,6 @@ describe('perf freeze contract', () => {
     // (хвост догардить и УДАЛЯТЬ отсюда; добавлять новые файлы сюда нельзя без причины).
     const legacyAllowlist = new Set([
       'components/PremiumCelebrationModal.tsx', // модалка, unmount on close
-      'components/premium_celebration/AuroraBackground.tsx', // внутри той же модалки
       'app/flashcards/CardPackShardPaywallModal.tsx', // модалка, unmount on close
       // зачем (аудит скорости 2026-08-22): оба используются ТОЛЬКО в app/arena_match.tsx —
       // единственном push-экране (кроме exam) в explicit freezeOnBlur:false allowlist

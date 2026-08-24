@@ -73,6 +73,25 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.reward.premium_open': { audibleMs: 867, attackMs: 234, hits: [164, 234, 305, 375, 445, 516], shape: 'multi', bright: 0.01 },
   'pm.reward.premium_finale': { audibleMs: 398, attackMs: 23, hits: [23, 94], shape: 'double', bright: 0.01 },
   'pm.reward.vip_open': { audibleMs: 609, attackMs: 141, hits: [47, 141, 211, 281, 375], shape: 'multi', bright: 0.01 },
+  // ─── Празднование v6: карты ударов из docs/design/CELEBRATION_SOUND_PROMPTS.md ───
+  // зачем: визуальные события сцен стоят ровно на этих миллисекундах
+  // (components/premium_celebration/CelebrationSceneViews.tsx). Правишь тут —
+  // правь и там, и в документе: иначе звук уедет от картинки.
+  'pm.celebration.open_rift': { audibleMs: 1450, attackMs: 0, hits: [0, 150, 158, 260, 900, 990, 1010], shape: 'multi', bright: 0.62 },
+  'pm.celebration.energy_break': { audibleMs: 1210, attackMs: 600, hits: [110, 580, 600, 790, 810], shape: 'multi', bright: 0.7 },
+  'pm.celebration.locks_off': { audibleMs: 780, attackMs: 70, hits: [70, 116, 162, 208, 254, 300, 550], shape: 'multi', bright: 0.82 },
+  'pm.celebration.cards_stack': { audibleMs: 1100, attackMs: 90, hits: [90, 178, 266, 354, 442, 700], shape: 'multi', bright: 0.44 },
+  'pm.celebration.dialog_spark': { audibleMs: 900, attackMs: 120, hits: [120, 300, 520], shape: 'triple', bright: 0.6 },
+  'pm.celebration.voice_score': { audibleMs: 1170, attackMs: 690, hits: [70, 510, 690, 720], shape: 'multi', bright: 0.55 },
+  'pm.celebration.coach_heal': { audibleMs: 1180, attackMs: 160, hits: [160, 350, 540], shape: 'triple', bright: 0.3 },
+  'pm.celebration.error_fix': { audibleMs: 1180, attackMs: 560, hits: [320, 560, 800], shape: 'triple', bright: 0.5 },
+  'pm.celebration.plan_route': { audibleMs: 1060, attackMs: 100, hits: [100, 160, 230, 290, 360, 420, 490, 550, 620], shape: 'multi', bright: 0.72 },
+  'pm.celebration.stats_rise': { audibleMs: 1040, attackMs: 640, hits: [80, 132, 184, 236, 288, 340, 392, 444, 496, 640], shape: 'multi', bright: 0.66 },
+  'pm.celebration.streak_shield': { audibleMs: 1000, attackMs: 400, hits: [110, 400], shape: 'double', bright: 0.2 },
+  'pm.celebration.aura_bloom': { audibleMs: 1030, attackMs: 220, hits: [220, 420, 478, 536, 594, 652], shape: 'multi', bright: 0.85 },
+  'pm.celebration.max_awaken': { audibleMs: 2200, attackMs: 80, hits: [80, 420, 460, 480, 700, 1020], shape: 'swell', bright: 0.18 },
+  'pm.celebration.finale_chord': { audibleMs: 1600, attackMs: 200, hits: [0, 200, 440], shape: 'swell', bright: 0.4 },
+  'pm.celebration.promo_stamp': { audibleMs: 850, attackMs: 410, hits: [60, 410, 830], shape: 'double', bright: 0.5 },
   'pm.reward.pack_reveal_start': { audibleMs: 328, attackMs: 234, hits: [234], shape: 'sustain', bright: 0.9432 },
   'pm.reward.pack_complete': { audibleMs: 891, attackMs: 875, hits: [875], shape: 'swell', bright: 0.6416 },
   'pm.league.promoted': { audibleMs: 1008, attackMs: 281, hits: [94, 141, 281, 328, 375, 469, 727], shape: 'multi', bright: 0.07 },

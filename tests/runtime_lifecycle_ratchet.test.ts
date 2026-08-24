@@ -228,7 +228,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/onboarding_aha/SpeechBeat.tsx': guarded('Microphone pulse uses screen focus and AppState.'),
   'components/onboarding_aha/TypewriterText.tsx': guarded('Cursor loop uses screen focus and AppState.'),
   'components/paywall/PaywallMotion.tsx': guarded('Paywall motion loops use screen focus and AppState.'),
-  'components/premium_celebration/AuroraBackground.tsx': owned('Aurora receives an explicit active owner prop and cancels both worklets.', ['if (!active)', 'cancelAnimation(drift)', 'cancelAnimation(breathe)']),
   'components/reward_v2/RewardCardV2.tsx': runtime('Reward halo requires focused foreground runtime without replaying its entrance.', ['!rewardRuntimeActive', 'entrancePlayedRef.current', 'haloLoop.stop()']),
   'components/stats/AiBlockNote.tsx': guarded('AI note motion uses screen focus and AppState.'),
   // зачем 2026-07-27: кнопка озвучки турнира (аудио-режимы) пришла с бесконечным

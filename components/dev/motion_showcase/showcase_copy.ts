@@ -301,8 +301,17 @@ const RU = {
   intro_full_access_ended_title: 'Подарок закончился — выбор',
   intro_full_access_ended_hybrid_title: 'Подарок закончился — выбор · гибрид',
   premium_modal_title: 'Пейвол-диспетчер (premium_modal)',
-  premium_celebration_title: 'Празднование покупки Premium',
-  vip_celebration_title: 'Празднование покупки VIP/Pro',
+  // ─── Празднования v6 «Золотая палата» (владелец 2026-08-24) ───
+  // зачем: владелец потребовал проверять КАЖДЫЙ тир вживую, а не гадать по
+  // макету — все четыре прогона запускают реальную модалку приложения.
+  premium_celebration_title: 'Празднование · Plus (11 сцен)',
+  vip_celebration_title: 'Празднование · Plus зелёный (выдача/опрос)',
+  pro_celebration_title: 'Празднование · Pro (разовая покупка)',
+  max_celebration_title: 'Празднование · MAX (11 сцен + звонок)',
+  promo_celebration_title: 'Празднование · Промокод (штамп кода)',
+  celebration_full_detail: 'реальная модалка — полный прогон, тап пропускает',
+  celebration_max_detail: 'реальная модалка — те же сцены плюс пробуждение сферы',
+  celebration_promo_detail: 'реальная модалка — код впечатывается перед разломом',
   vip_celebration_hybrid_title: 'Празднование VIP · гибрид',
   premium_celebration_plus_hybrid_title: 'Празднование Plus · гибрид',
   premium_celebration_pro_hybrid_title: 'Pro · гибрид',

@@ -4,7 +4,6 @@ import path from 'node:path';
 const HYBRID_SURFACES = [
   'components/arena/ArenaRankHybrid.tsx',
   'components/league/LeagueResultHybrid.tsx',
-  'components/premium_celebration/PremiumCelebrationHybrid.tsx',
 ] as const;
 
 describe('motion hybrid typography contract', () => {

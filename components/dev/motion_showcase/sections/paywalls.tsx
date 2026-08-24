@@ -130,10 +130,15 @@ export const SECTION: ShowcaseSection = {
       kind: 'route',
       route: '/premium_modal',
     },
+    // ─── Празднования v6: все четыре тира + промокод ───
+    // зачем: владелец проверяет каждый прогон вживую (2026-08-24). Каждый пункт
+    // монтирует РЕАЛЬНУЮ модалку приложения с боевой хореографией, ничего не
+    // начисляет и не пишет в AsyncStorage — onClose только закрывает превью.
     {
       id: 'premium_celebration',
       title: cs('premium_celebration_title'),
-      detail: cs('real_modal'),
+      detail: cs('celebration_full_detail'),
+      approval: 'pending',
       kind: 'render',
       render: ({ visible, onClose }) => (
         <PremiumCelebrationModal visible={visible} onClose={onClose} variant="premium" />
@@ -142,9 +147,40 @@ export const SECTION: ShowcaseSection = {
     {
       id: 'vip_celebration',
       title: cs('vip_celebration_title'),
-      detail: cs('real_modal'),
+      detail: cs('celebration_full_detail'),
+      approval: 'pending',
       kind: 'render',
       render: ({ visible, onClose }) => <VipCelebrationModal visible={visible} onClose={onClose} />,
+    },
+    {
+      id: 'pro_celebration',
+      title: cs('pro_celebration_title'),
+      detail: cs('celebration_full_detail'),
+      approval: 'pending',
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <PremiumCelebrationModal visible={visible} onClose={onClose} variant="pro" />
+      ),
+    },
+    {
+      id: 'max_celebration',
+      title: cs('max_celebration_title'),
+      detail: cs('celebration_max_detail'),
+      approval: 'pending',
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <PremiumCelebrationModal visible={visible} onClose={onClose} variant="max" />
+      ),
+    },
+    {
+      id: 'promo_celebration',
+      title: cs('promo_celebration_title'),
+      detail: cs('celebration_promo_detail'),
+      approval: 'pending',
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <VipCelebrationModal visible={visible} onClose={onClose} promoCode="PHRASE30" />
+      ),
     },
 {
       id: 'no_energy_modal',

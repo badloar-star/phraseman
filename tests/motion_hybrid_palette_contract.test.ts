@@ -5,7 +5,6 @@ const HYBRID_SURFACES = [
   'components/arena/ArenaRankHybrid.tsx',
   'components/league/LeagueResultHybrid.tsx',
   'components/DialogVictoryCelebrationHybrid.tsx',
-  'components/premium_celebration/PremiumCelebrationHybrid.tsx',
 ] as const;
 
 describe('motion hybrid palette contract', () => {

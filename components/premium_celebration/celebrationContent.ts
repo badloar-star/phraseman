@@ -21,7 +21,8 @@ export type CelebrationIconName = ComponentProps<typeof Ionicons>['name'];
 //  - 'pro'     → разовая покупка Phraseman Pro (синяя палитра)
 // Внутренние ключи ('premium'/'vip') не меняем — это сломало бы вызовы и тесты;
 // пользователю показываем только новые названия (Plus/Pro) в заголовках/эмблемах.
-export type CelebrationVariant = 'premium' | 'vip' | 'pro';
+//  - 'max'     → подписка MAX (голосовой учитель), синяя палитра орба
+export type CelebrationVariant = 'premium' | 'vip' | 'pro' | 'max';
 
 export interface CelebrationFeature {
   icon: CelebrationIconName;
@@ -99,6 +100,22 @@ export const CELEBRATION_PALETTES: Record<CelebrationVariant, CelebrationPalette
     ctaText: '#04140d',
     auroraRgb: ['52,211,153', '16,185,129', '134,239,172'],
     emblemIcon: 'sparkles', // раньше был текст «VIP»; теперь нейтральная эмблема Plus (зелёная палитра)
+  },
+  // MAX = подписка на голосового учителя. Палитра взята от орба MAX
+  // (#8DBBFF, constants/motionHybrid → MAX_CALL_HYBRID.innerRingColor), чтобы
+  // празднование говорило на языке уже существующей сферы, а не изобретало свой.
+  max: {
+    bg: ['#0d2242', '#061426', '#02060d'],
+    main: '#8DBBFF',
+    bright: '#D6E8FF',
+    titleGrad: ['#F2F8FF', '#8DBBFF', '#2A4E80'],
+    text: '#BBD6FF',
+    rowText: '#EAF4FF',
+    rowSub: '#9FBBDD',
+    cta: ['#4E86D8', '#8DBBFF', '#4E86D8'],
+    ctaText: '#06121f',
+    auroraRgb: ['141,187,255', '78,134,216', '214,232,255'],
+    emblemIcon: 'mic',
   },
   // Pro = разовая покупка Phraseman Pro. Синяя «дорогая» палитра, отличная от Plus.
   pro: {

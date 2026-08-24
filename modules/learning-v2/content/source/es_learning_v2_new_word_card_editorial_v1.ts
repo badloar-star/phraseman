@@ -161,6 +161,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Cecha, która zawsze się gdzieś spieszy — nawet wypowiedzenie jej trwa krócej niż sąsiednich słów.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s06-word-unico",
+      targetText: "único",
+      transcription: "/ˈuniko/",
+      playfulMeaningByLocale: copy({
+        ru: "Признак, который носит корону на первой букве, чтобы никто не перепутал, где именно он важничает.",
+        uk: "Ознака, яка носить корону на першій літері, щоб ніхто не переплутав, де саме вона пишається.",
+        es: "A quality that wears a crown on its first letter so no one mistakes where it likes to show off.",
+        en: "A quality that wears a crown on its first letter so no one mistakes where it likes to show off.",
+        "pt-BR": "Uma qualidade que usa uma coroa na primeira letra para ninguém errar onde ela gosta de se exibir.",
+        vi: "Một đặc điểm đội vương miện trên chữ cái đầu tiên để không ai nhầm nó đang khoe khoang ở đâu.",
+        id: "Sifat yang memakai mahkota di huruf pertamanya agar tak ada yang salah menebak di mana ia suka pamer.",
+        tr: "İlk harfinde bir taç taşıyan, böylece kimsenin nerede gösteriş yaptığını yanlış anlamayacağı bir nitelik.",
+        pl: "Cecha, która nosi koronę na pierwszej literze, żeby nikt nie pomylił, gdzie dokładnie lubi się popisywać.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

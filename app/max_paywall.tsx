@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Linking, Pressable, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, Linking, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -49,7 +49,15 @@ import { safeRouterBack } from './navigation_back';
 // блоков в ScrollView, и цена с кнопкой жили ниже сгиба — человек принимал
 // решение о покупке, не видя цены. Теперь макет повторяет ScreenFrame
 // онбординга (components/CleanOnboarding.tsx):
-//   • экран — flex-колонка БЕЗ ScrollView: шапка → контент (flex:1) → футер;
+//   • экран — flex-колонка: шапка → контент → закреплённый футер;
+//     ВАЖНО (исправлено 2026-08-24 по скриншоту владельца): контент — не View
+//     с flex:1, а ScrollView с flexGrow:1. Голый flex:1 в RN включает и
+//     flexShrink:1 — контейнер сжимался ниже своего содержимого, дети
+//     вылезали за его границы, и футер с ценой рисовался ПОВЕРХ плиток
+//     лимитов («$22.99 / мес» поверх «3 мин / 120 мин»). Пока контент влезает,
+//     скролла не видно и ощущение «всё в самом верху» сохраняется; когда не
+//     влезает — прокрутка честнее наложения. Возвращать сюда View с flex:1
+//     нельзя: это ровно тот баг;
 //   • футер (цена + CTA + сноска + ссылки) закреплён у нижнего края и виден
 //     всегда, как в онбординге, где кнопка никогда не уезжает за сгиб;
 //   • контент ужимается под высоту: SHORT (<700pt, iPhone SE/8) отдаёт
@@ -364,7 +372,7 @@ export default function MaxPaywall() {
   const accentSoft = `${t.accent}24`;
   // Плитка бесплатного тира: подложка тоном, без обводки (запрет владельца).
   const neutralSoft = `${t.textPrimary}0F`;
-  // зачем: без ScrollView экран обязан сам поместиться в высоту. Низкий экран
+  // зачем: экран стремится поместиться в высоту без прокрутки. Низкий экран
   // (iPhone SE/8, <700pt) получает сжатый вертикальный ритм — тот же приём, что
   // в онбординге (isShortScreen), где кнопка никогда не уезжает за сгиб.
   // Кегли НЕ трогаем: ужимаем только воздух, иначе нарушим правило «всё крупное».
@@ -373,8 +381,8 @@ export default function MaxPaywall() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   // зачем: замер высоты на iPhone SE (667pt) показал переполнение на ~45pt при
-  // орбе 72 — контент без ScrollView просто обрезался бы снизу, что хуже
-  // скролла. На низком экране орб уходит в 56 и вертикальный ритм сжимается до
+  // орбе 72. Сжатый ритм ниже нужен, чтобы прокрутка на таких экранах вообще
+  // не понадобилась. На низком экране орб уходит в 56 и ритм сжимается до
   // минимума; на обычном телефоне (≥700pt) всё остаётся просторным.
   const gap = shortScreen ? 6 : 12;
   const orbSize = shortScreen ? 56 : 92;
@@ -403,7 +411,25 @@ export default function MaxPaywall() {
             верху». justifyContent center выравнивает блок по остатку места:
             на высоком экране появляется воздух сверху и снизу, на низком —
             блок прижимается без обрезки. */}
-        <View style={{ flex: 1, paddingHorizontal: 20, justifyContent: 'center', gap }}>
+        {/* зачем (2026-08-24, баг владельца «цена налезла на плитки лимитов»):
+            раньше здесь был View с flex:1 — а flex:1 в RN означает и
+            flexShrink:1, поэтому при нехватке высоты контейнер сжимался НИЖЕ
+            своего содержимого. Дети не ужимаются вместе с ним: они вылезали
+            наружу, и закреплённый футер с ценой рисовался ПОВЕРХ плиток
+            «3 мин / 120 мин». Скриншот с наложением $22.99 — ровно этот случай.
+
+            Теперь тот же блок — ScrollView: пока контент влезает, он ведёт себя
+            как прежде (flexGrow:1 + justifyContent:'center' держат центрирование
+            и воздух сверху/снизу, полоса прокрутки не появляется), а когда не
+            влезает — честно прокручивается вместо наложения. Правило владельца
+            «цена и кнопка всегда на виду» не нарушено: футер остаётся отдельным
+            закреплённым сиблингом ниже и никогда не уезжает за сгиб. */}
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, justifyContent: 'center', gap }}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
           <PaywallEntrance index={0}>
             <View style={{ alignItems: 'center' }}>
               <MaxHomeOrb layers={orbLayers} size={orbSize} ownerVisible />
@@ -500,7 +526,7 @@ export default function MaxPaywall() {
               </View>
             </View>
           </PaywallEntrance>
-        </View>
+        </ScrollView>
 
         {/* зачем: футер закреплён у нижнего края и НИКОГДА не уезжает за сгиб —
             ровно как в онбординге (ScreenFrame footer). Здесь живёт цена: до

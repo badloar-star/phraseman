@@ -191,7 +191,12 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
         >
           <LevelSpinRewardArt
             rewardId={primaryGift.id}
-            size={size * 0.62}
+            // зачем (владелец, 2026-08-24): «пусть подарки будут больше внутри
+            // своих контейнеров» — арт занимал 0.62 плитки, а contentFit="contain"
+            // ужимал узкие предметы (кристалл, руна) ещё сильнее, и плитка читалась
+            // пустой. 0.82 оставляет поля под угловые бейджи (таймер справа,
+            // «2» слева сидят на отступе 8) и не даёт им лечь на рисунок.
+            size={size * 0.82}
             accessibilityLabel={title}
             fallbackColor={accent}
           />

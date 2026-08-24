@@ -334,7 +334,10 @@
     "preset": "ts-jest",
     "testEnvironment": "node",
     "testMatch": [
-      "<rootDir>/tests/**/*.test.ts"
+      "<rootDir>/tests/**/*.test.ts",
+      "<rootDir>/tests/max_tutor_live_components.test.tsx",
+      "<rootDir>/tests/max_voice_accessibility.test.tsx",
+      "<rootDir>/tests/home_rune_balance_render.test.tsx"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"

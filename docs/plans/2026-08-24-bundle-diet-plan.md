@@ -62,6 +62,31 @@ diagnosis_training (~1.5 МБ), каталоги, карты URL.
 > Всё только под `__DEV__`. Следующий шаг: снять эти строки на устройстве и
 > по ним найти настоящую причину.
 
+> **✅ ПРИЧИНА НАЙДЕНА И УСТРАНЕНА (2026-08-24, коммит 4baa9d518).**
+> Диагностика на живом устройстве дала `[plan_pack] ensure → network_unavailable
+> (1787ms)` — при том, что Storage отдавал объекты нормально (curl: 200, 193 КБ,
+> 859 мс). Расследование вскрыло ТРИ независимые причины:
+>
+> 1. **КОРЕНЬ**: `downloadFileAsync` вызывался БЕЗ `idempotent: true`. Нативный
+>    Android бросает `DestinationAlreadyExistsException`, если файл существует
+>    (`FileSystemModule.kt`: `if (options?.idempotent != true && destination
+>    .exists()) throw`). Исключение глоталось общим catch → `network_unavailable`.
+>    Пак не собирался НИКОГДА, а лог врал про сеть.
+> 2. `SERVER_DEADLINE_MS` = 150 мс против реальной холодной цепочки ~2100 мс
+>    (замер: manifest 654 + index 848 + row 597). Сервер не мог выиграть гонку.
+>    Поднято до 1200 мс — тёплый диск отвечает ~8 мс и выигрывает с запасом.
+> 3. Экран плана грел только манифест; день-строки качались лишь на холодном
+>    старте (idle+4.5 с). Добавлен прогрев окна «текущий ±2» при открытии плана.
+>
+> Плюс `network_unavailable` разделён: у провала index.json теперь своё
+> состояние `index_download_failed`.
+> Сторожа: `tests/course_pack_download_idempotent_contract.test.ts` (мок
+> воспроизводит нативный контракт; проверено обратным экспериментом — без флага
+> падает 2 из 3) и три новых кейса в `plan_content_prefetch_contract`.
+>
+> **ОСТАЛОСЬ ДО ШАГА 4**: подтвердить на устройстве строку
+> `[plan_content] … → downloaded_pack`. Только после этого выпиливать 5 require.
+
 Инфраструктура УЖЕ ЕСТЬ и включена (`VERIFIED_COURSE_PACK_REMOTE_ENABLED = true`):
 `course_pack_remote_loader.ts` (скачивание + дисковый кэш + sha256 + evict),
 `plan_content_remote_readiness.ts` (сервер → кэш → bundled-фолбэк),

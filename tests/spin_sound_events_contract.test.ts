@@ -9,14 +9,14 @@ describe('Spin sound event contract', () => {
 
   test('ships dedicated assets for every Spin beat', () => {
     const names = [
-      'pm_spin_button_press_v1.wav',
-      'pm_spin_reel_start_v1.wav',
-      'pm_spin_reel_loop_v1.wav',
-      'pm_spin_reel_stop_rollback_v1.wav',
-      'pm_spin_reward_lock_v1.wav',
-      'pm_spin_reward_win_v1.wav',
-      'pm_spin_reward_rare_v1.wav',
-      'pm_spin_reward_premium_v1.wav',
+      'pm_spin_button_press_v1.m4a',
+      'pm_spin_reel_start_v1.m4a',
+      'pm_spin_reel_loop_v1.m4a',
+      'pm_spin_reel_stop_rollback_v1.m4a',
+      'pm_spin_reward_lock_v1.m4a',
+      'pm_spin_reward_win_v1.m4a',
+      'pm_spin_reward_rare_v1.m4a',
+      'pm_spin_reward_premium_v1.m4a',
     ];
     names.forEach((name) => {
       expect(existsSync(join(process.cwd(), 'assets', 'audio', 'sfx', 'v1', 'spin', name))).toBe(true);
@@ -60,6 +60,6 @@ describe('Spin sound event contract', () => {
   });
 
   test('keeps the rollback cue within the physical braking window', () => {
-    expect(eventSource).toContain("'pm.spin.reel_stop_rollback': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_stop_rollback_v1.wav'), 0.52, 90, 0, 1200, 'reward')");
+    expect(eventSource).toContain("'pm.spin.reel_stop_rollback': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_stop_rollback_v1.m4a'), 0.52, 90, 0, 1200, 'reward')");
   });
 });

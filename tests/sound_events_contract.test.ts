@@ -54,14 +54,16 @@ describe('semantic sound event catalog', () => {
 
   test('keeps the rejected lesson combo cue deleted', () => {
     const rejectedEventId = 'pm.learn.combo_up';
-    const rejectedAsset = path.resolve(
+    // зачем: sfx переехали wav -> m4a (экономия ~13 МБ в APK); сторож обязан
+    // ловить возврат отклонённого звука в ЛЮБОМ формате, не только старом wav.
+    const rejectedAssets = ['.wav', '.m4a'].map((ext) => path.resolve(
       __dirname,
-      '../assets/audio/sfx/v1/learning/pm_learn_combo_up_v1.wav',
-    );
+      `../assets/audio/sfx/v1/learning/pm_learn_combo_up_v1${ext}`,
+    ));
     const lessonSource = fs.readFileSync(path.resolve(__dirname, '../app/lesson1.tsx'), 'utf8');
 
     expect(SOUND_EVENTS).not.toHaveProperty(rejectedEventId);
-    expect(fs.existsSync(rejectedAsset)).toBe(false);
+    rejectedAssets.forEach((asset) => expect(fs.existsSync(asset)).toBe(false));
     expect(lessonSource).not.toContain(rejectedEventId);
   });
 });

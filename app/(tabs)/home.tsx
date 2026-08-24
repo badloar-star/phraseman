@@ -109,6 +109,8 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
 import HomeRuneBalance from '../../components/home/HomeRuneBalance';
+import { runeAmount } from '../../constants/runes';
+import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
 import MaxMinutesBadge from '../../components/max/MaxMinutesBadge';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
@@ -2665,8 +2667,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
-        const homeHeaderShardIconSize = 34;
-        const homeHeaderShardIconWidth = homeHeaderShardIconSize;
+        // зачем (аудит 2026-08-24): валюты переехали в строку заголовка «Быстрый
+        // старт», где текст 13px. Прежние 34px (жемчужина) и 30px (руна по
+        // умолчанию) там и спорили между собой, и подавляли заголовок втрое.
+        // Один размер на обе валюты, соразмерный строке.
+        const homeQuickCurrencyIconSize = 22;
+        // Метка одна на кнопку и на чип: чип свою группу доступности отдаёт.
+        const homeRunesA11yLabel = `${triLang(lang, {
+            ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
+            vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
+        })}: ${runeAmount(lang, runesBalance)}`;
         const homeHeaderCompact = CONTENT_W < 370;
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
         // освобождает место, вся шапка помещается в один ряд.
@@ -3112,13 +3122,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 {renderHomeProfileButton()}
                 </View>
               </View>
-              {/* Анимация начисления осколков */}
-              <Animated.Text style={{
-                position: 'absolute', top: -18, right: 0,
-                color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 13, fontWeight: '700',
-                opacity: shardsBonusAnim,
-                transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
-            }}>{shardsBonusText}</Animated.Text>
+              {/* зачем (аудит 2026-08-24): всплывающее «+N» переехало отсюда к самой
+                  иконке жемчужин в строке «Быстрый старт». Иконка уехала туда, а
+                  надпись осталась в хедере и всплывала над пустым местом — награда
+                  визуально отрывалась от счётчика, который она увеличивает. */}
             </View>
           </View>
           </Animated.View>
@@ -3168,19 +3175,39 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   testID="home-quickstart-shards"
                   activeOpacity={0.75}
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} жемчужин`, uk: `Баланс: ${shardsBalance} перлин`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })}
+                  // зачем (аудит 2026-08-24): слово склоняется хелпером, иначе
+                  // скринридер читал «1 жемчужин» вместо «1 жемчужина». Тот же
+                  // класс бага уже чинили у рун через runeAmount.
+                  accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} ${ruKnowledgeShardsAfterNumber(shardsBalance)}`, uk: `Баланс: ${shardsBalance} ${ukKnowledgeShardsAfterNumber(shardsBalance)}`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })}
                   onPress={() => {
                     hapticTap();
                     nav.push('/shards_shop');
                   }}
-                  hitSlop={10}
+                  // зачем (аудит 2026-08-24): по горизонтали hitSlop убран — сосед
+                  // (руны) стоит через gap:10, и två по 10px перекрывались ровно
+                  // посередине зазора, отчего тап у края открывал не тот экран.
+                  // По вертикали запас нужен: ряд плотный.
+                  hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
                   style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}
                 >
                   <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                     {/* guard-ok: декоративная иконка — метка на кнопке-родителе */}
-                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
+                    <Image source={homeHeaderShardIconSource} style={{ width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
                     <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{shardsBalance}</Text>
                   </Animated.View>
+                  {/* Всплывающее «+N» держится у самой иконки, которую увеличивает. */}
+                  <Animated.Text
+                    testID="home-shards-bonus"
+                    accessibilityElementsHidden
+                    importantForAccessibility="no"
+                    style={{
+                      position: 'absolute', top: -16, right: 0,
+                      color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 13, fontWeight: '700',
+                      opacity: shardsBonusAnim,
+                      // guard-ok: -14 — сдвиг надписи вверх в пикселях, не баланс.
+                      transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
+                    }}
+                  >{shardsBonusText}</Animated.Text>
                 </TouchableOpacity>
 
                 {/* зачем: владелец 2026-08-24 — тап по счётчику рун открывает раздел «Руны».
@@ -3189,8 +3216,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 <TouchableOpacity
                   testID="home-quickstart-runes"
                   accessibilityRole="button"
+                  // зачем (аудит 2026-08-24): метка живёт на кнопке, а чип внутри
+                  // отдаёт свою группу доступности (standaloneA11y={false}) —
+                  // иначе скринридер видел два фокуса на одном чипе и читал
+                  // баланс дважды. Тот же приём, что в RuneBalanceChip.
+                  accessibilityLabel={homeRunesA11yLabel}
                   activeOpacity={0.75}
-                  hitSlop={10}
+                  hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
                   onPress={() => {
                     hapticTap();
                     nav.push('/runes_wallet');
@@ -3199,10 +3231,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   <HomeRuneBalance
                     balance={runesBalance}
                     color={isGoldTheme ? GOLD_RICH.paleGold : t.gold}
-                    accessibilityLabel={triLang(lang, {
-                      ru: `Баланс: ${runesBalance} рун`, uk: `Баланс: ${runesBalance} рун`, es: `Saldo: ${runesBalance} runas`, 'pt-BR': `Saldo: ${runesBalance} runas`,
-                      vi: `Số dư: ${runesBalance} rune`, id: `Saldo: ${runesBalance} rune`, tr: `Bakiye: ${runesBalance} rün`, pl: `Saldo: ${runesBalance} run`,
-                    })}
+                    iconSize={homeQuickCurrencyIconSize}
+                    valueSize={15}
+                    // Строка заголовка плотная: резерв 46px под тап-цель шапки
+                    // раздувал её и толкал плитки вниз. Зону нажатия даёт hitSlop.
+                    reserveTapHeight={false}
+                    standaloneA11y={false}
+                    accessibilityLabel={homeRunesA11yLabel}
                   />
                 </TouchableOpacity>
               </View>
@@ -3502,10 +3537,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         iconSize={22}
                         valueSize={f.label}
                         reserveTapHeight={false}
-                        accessibilityLabel={triLang(lang, {
-                          ru: `Баланс: ${runesBalance} рун`, uk: `Баланс: ${runesBalance} рун`, es: `Saldo: ${runesBalance} runas`, 'pt-BR': `Saldo: ${runesBalance} runas`,
-                          vi: `Số dư: ${runesBalance} rune`, id: `Saldo: ${runesBalance} rune`, tr: `Bakiye: ${runesBalance} rün`, pl: `Saldo: ${runesBalance} run`,
-                        })}
+                        // Слово склоняется общим runeAmount: наивный шаблон читал
+                        // «1 рун» вместо «1 руна» (аудит 2026-08-24).
+                        accessibilityLabel={`${triLang(lang, {
+                          ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
+                          vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
+                        })}: ${runeAmount(lang, runesBalance)}`}
                       />
                     </View>
                   </View>

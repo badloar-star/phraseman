@@ -55,10 +55,41 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     // Валюты идут ПОСЛЕ заголовка в том же ряду — значит, справа от него.
     expect(currencyIndex).toBeGreaterThan(titleIndex);
 
-    const currencyBlock = home.slice(currencyIndex, currencyIndex + 3000);
+    // Срез до ряда плиток, а не окном фиксированной длины: окно ложно падало,
+    // как только в блок добавляли комментарии (класс бага formatting-drift).
+    const tilesIndex = home.indexOf('visibleQuickItems.map', currencyIndex);
+    expect(tilesIndex).toBeGreaterThan(currencyIndex);
+    const currencyBlock = home.slice(currencyIndex, tilesIndex);
     expect(currencyBlock).toContain('testID="home-quickstart-shards"');
     expect(currencyBlock).toContain('<HomeRuneBalance');
     expect(currencyBlock).toContain('balance={runesBalance}');
+
+    // Порядок: жемчужины левее рун. Без этой проверки перестановку не заметить.
+    const shardsIndex = home.indexOf('testID="home-quickstart-shards"', currencyIndex);
+    const runesIndex = home.indexOf('testID="home-quickstart-runes"', currencyIndex);
+    expect(shardsIndex).toBeGreaterThan(0);
+    expect(runesIndex).toBeGreaterThan(shardsIndex);
+
+    // Плотная строка: чип рун не резервирует 46px тап-цели шапки и не заводит
+    // вторую группу доступности внутри кнопки (иначе баланс читается дважды).
+    expect(currencyBlock).toContain('reserveTapHeight={false}');
+    expect(currencyBlock).toContain('standaloneA11y={false}');
+
+    // Обе валюты одного размера — иначе строка выглядит рассогласованно.
+    expect(currencyBlock).toContain('iconSize={homeQuickCurrencyIconSize}');
+    expect(currencyBlock).toContain('width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize');
+
+    // Склонение: «1 жемчужина», а не «1 жемчужин»; у рун — общий runeAmount.
+    expect(currencyBlock).toContain('ruKnowledgeShardsAfterNumber(shardsBalance)');
+    expect(home).toContain('runeAmount(lang, runesBalance)');
+
+    // Соседние кнопки не перекрывают зоны нажатия по горизонтали.
+    expect(currencyBlock).not.toContain('hitSlop={10}');
+
+    // Всплывающее «+N» живёт рядом с иконкой жемчужин, а не в хедере.
+    const bonusIndex = home.indexOf('testID="home-shards-bonus"');
+    expect(bonusIndex).toBeGreaterThan(currencyIndex);
+    expect(bonusIndex).toBeLessThan(tilesIndex);
     // Распорка между заголовком и валютами прижимает их к правому краю.
     expect(home.slice(titleIndex, currencyIndex)).toContain('flex: 1, minWidth: 0');
 
@@ -83,11 +114,18 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
 
     const secondaryIndex = home.indexOf('testID="home-header-secondary-actions"');
     expect(secondaryIndex).toBeGreaterThanOrEqual(0);
-    const secondaryBlock = home.slice(secondaryIndex, secondaryIndex + 3000);
+    // Срез до кнопки профиля — она закрывает вторичный ряд хедера. Граница по
+    // смыслу, а не окно фиксированной длины (см. коммент выше про drift).
+    const profileIndex = home.indexOf('renderHomeProfileButton()', secondaryIndex);
+    expect(profileIndex).toBeGreaterThan(secondaryIndex);
+    const secondaryBlock = home.slice(secondaryIndex, profileIndex);
 
     expect(secondaryBlock).toContain('<EnergyIcon');
     expect(secondaryBlock).toContain('ref={energyIconRef}');
     expect(secondaryBlock).toContain('onPress={showEnergyTooltip}');
     expect(secondaryBlock).toContain('{showHomeEnergy && (');
+    // Само правило, а не только его наличие: энергия видна ТОЛЬКО без Plus.
+    // Без этой строки перепутанное отрицание прошло бы незамеченным.
+    expect(home).toContain('const showHomeEnergy = !hasPremiumAccess;');
   });
 });

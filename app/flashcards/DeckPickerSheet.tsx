@@ -530,6 +530,10 @@ export default function DeckPickerSheet({
           >
             {startLabel}
           </Text>
+          {/* зачем: коммит 1f44e79df добавил бейдж только в 'classic' JSX ниже,
+              но боевая ветка — 'hybrid' (дефолт motionVariant), там кнопка
+              стартовала активность без видимой цены (владелец 2026-08-24). */}
+          {canStart ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
         </PressableHybrid>
       </HybridSheetShell>
     );

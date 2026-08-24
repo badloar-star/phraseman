@@ -5,6 +5,8 @@ import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
+import { captureAccountGeneration } from '../app/account_generation';
+import { readDevLocalPlusOverride } from '../app/dev_plus_controls';
 import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
 import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from '../app/boons/boon_effects_energy';
@@ -157,6 +159,21 @@ async function readUnlimited(): Promise<boolean> {
   // EnergyContext.spendOne — основной путь траты (не energy_system.spendEnergy),
   // поэтому окно ОБЯЗАНО проверяться здесь, иначе бонус не работает.
   if (isEnergyFreeWindowActive()) return true;
+
+  // зачем (владелец 2026-08-24): DEV-центр → «Снять Plus» переключает только
+  // PremiumContext (dev_local_plus_override_v1), а EnergyContext спрашивал
+  // getVerifiedPremiumStatus() напрямую — эта функция override не видит.
+  // Итог: кнопка молчаливо не действовала на энергию — трата и вся связанная
+  // с ней анимация не включались, хотя PremiumContext честно писал «неактивен».
+  // Override должен побеждать здесь так же, как в PremiumContext.
+  const devAccountGeneration = captureAccountGeneration();
+  const devStableId = devAccountGeneration.phase === 'active' ? devAccountGeneration.stableId : null;
+  const devOverride = devStableId
+    ? await readDevLocalPlusOverride(devStableId).catch(() => 'inherit' as const)
+    : 'inherit';
+  if (devOverride === 'removed') return false;
+  if (devOverride === 'granted') return true;
+
   return isPremium || tester === 'true' || noLimits;
 }
 

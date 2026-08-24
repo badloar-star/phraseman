@@ -93,13 +93,28 @@ describe('plan content prefetch + release pack contract', () => {
     expect(screen).toContain('ensurePlanContentPackReady');
   });
 
-  it('bundled-фолбэк ЖИВ: 5 require в plan_content_registry до одобрения владельца', () => {
-    // Финальный шаг Ф1 (выпил require, −19 МБ из бандла) делается ОТДЕЛЬНЫМ
-    // коммитом ПОСЛЕ проверки на устройстве и одобрения владельца — тогда этот
-    // тест обновляется сознательно, в том же коммите.
+  it('ФИНАЛ Ф1: контент планов НЕ тянется в бандл (−19 МБ)', () => {
+    // Выпил сделан 2026-08-24 по решению владельца ПОСЛЕ приёмки на живом
+    // устройстве (`[plan_content] echo d1 theory → downloaded_pack`).
+    // Возврат require = возврат 19 МБ в бандл, поэтому сторожим отсутствие.
     const registry = read('app/plan_content_registry.ts');
     for (const planId of ['mitap', 'gavan', 'impuls', 'echo', 'voyazh']) {
-      expect(registry).toContain(`require('./plan_content_${planId}')`);
+      // Ищем именно исполняемый require, а не упоминание в комментарии.
+      const executable = new RegExp(
+        `^(?!\\s*(?://|\\*)).*require\\('\\./plan_content_${planId}'\\)`,
+        'm',
+      );
+      expect(registry).not.toMatch(executable);
     }
+    // Ни один статический импорт контента тоже не допускается.
+    expect(registry).not.toMatch(/^import .*plan_content_(mitap|gavan|impuls|echo|voyazh)/m);
+  });
+
+  it('сервер — единственный источник контента дня после выпила', () => {
+    // Мост обязан продолжать спрашивать реестр (совместимость API) и брать
+    // верифицированный серверный день, иначе экраны останутся ни с чем.
+    const readiness = read('app/plan_content_remote_readiness.ts');
+    expect(readiness).toContain('readVerifiedCoursePackDay');
+    expect(readiness).toContain('ensureCachedCoursePackRow');
   });
 });

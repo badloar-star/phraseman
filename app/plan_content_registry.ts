@@ -40,30 +40,31 @@ function keyFor(planId: string, dayIndex: number): string {
 /** Module-level cache: one entry per plan, populated on first access. */
 const PLAN_CONTENT_DAYS_CACHE = new Map<PlanId, readonly PlanContentDay[]>();
 
-/** Synchronous, lazy, cached load of a single plan's authored content days. */
-function loadPlanContentDays(planId: PlanId): readonly PlanContentDay[] {
-  const cached = PLAN_CONTENT_DAYS_CACHE.get(planId);
-  if (cached) return cached;
-
-  // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lazy per-plan require keeps unused ~20MB plan data out of memory (PERF D1)
-  const days: readonly PlanContentDay[] = (() => {
-    switch (planId) {
-      case 'mitap':
-        return (require('./plan_content_mitap') as { MITAP_CONTENT_DAYS: readonly PlanContentDay[] }).MITAP_CONTENT_DAYS;
-      case 'gavan':
-        return (require('./plan_content_gavan') as { GAVAN_CONTENT_DAYS: readonly PlanContentDay[] }).GAVAN_CONTENT_DAYS;
-      case 'impuls':
-        return (require('./plan_content_impuls') as { IMPULS_CONTENT_DAYS: readonly PlanContentDay[] }).IMPULS_CONTENT_DAYS;
-      case 'echo':
-        return (require('./plan_content_echo') as { ECHO_CONTENT_DAYS: readonly PlanContentDay[] }).ECHO_CONTENT_DAYS;
-      case 'voyazh':
-        return (require('./plan_content_voyazh') as { VOYAZH_CONTENT_DAYS: readonly PlanContentDay[] }).VOYAZH_CONTENT_DAYS;
-    }
-  })();
-
-  PLAN_CONTENT_DAYS_CACHE.set(planId, days);
-  return days;
+/**
+ * ФИНАЛ Фазы 1 «Бандл-диеты» (docs/plans/2026-08-24-bundle-diet-plan.md),
+ * решение владельца 2026-08-24 после приёмки на живом устройстве
+ * (`[plan_content] echo d1 theory → downloaded_pack`).
+ *
+ * Пять `require('./plan_content_<plan>')` тянули ~19 МБ TS-контента в JS-бандл.
+ * Контент целиком переехал на Firebase Storage (пак release.20260824.e4381599,
+ * 546 дней; паритет с бандлом доказан побайтово 546/546), и рантайм читает его
+ * через course_pack_remote_loader → plan_content_remote_readiness.
+ *
+ * Теперь реестр НЕ содержит контента вовсе: он остаётся точкой входа для
+ * совместимости API (screens зовут getAuthoredPlanContentDay), но всегда
+ * отвечает «нет данных» — единственным источником стал сервер с дисковым кэшем.
+ *
+ * ОТКАТ: `git revert` этого коммита возвращает require и bundled-фолбэк.
+ *
+ * ИЗВЕСТНЫЙ РИСК (принят владельцем): юзер без сети и без прогретого кэша
+ * увидит день без контента. Прогрев работает при открытии плана (окно ±2),
+ * при покупке/выборе плана (весь план) и на холодном старте.
+ */
+function loadPlanContentDays(_planId: PlanId): readonly PlanContentDay[] {
+  return EMPTY_PLAN_CONTENT_DAYS;
 }
+
+const EMPTY_PLAN_CONTENT_DAYS: readonly PlanContentDay[] = Object.freeze([]);
 
 /** Per-plan key->day maps, built lazily alongside loadPlanContentDays. */
 const CONTENT_BY_KEY_CACHE = new Map<PlanId, ReadonlyMap<string, PlanContentDay>>();

@@ -7,8 +7,8 @@
 // (VERIFIED_COURSE_PACK_REMOTE_ENABLED=true), не хватало экспортёра пака.
 //
 // Что делает:
-//   1. Читает ВСЕ авторские дни планов через app/plan_content_registry.ts —
-//      тот же код, которым их читает приложение (никакого парсинга руками).
+//   1. Читает ВСЕ авторские дни планов из app/plan_content_<plan>.ts напрямую
+//      (реестр опустошён финалом Ф1 — контент больше не едет в бандл).
 //   2. Пишет пак: manifest.json (CoursePackManifest, совместим с
 //      buildCoursePackCacheKey) + index.json (PlanContentPackIndex) +
 //      plans/<planId>/day-NNN.json ({contentHash, content} — ровно формат
@@ -39,7 +39,31 @@ const ROOT = path.resolve(__dirname, '..');
 const require = createRequire(import.meta.url);
 require('tsx/cjs');
 
-const { loadAllPlanContentDays } = require('../app/plan_content_registry.ts');
+// зачем (ФИНАЛ Ф1, 2026-08-24): plan_content_registry БОЛЬШЕ НЕ содержит
+// контента — 5 require выпилены, чтобы 19 МБ не ехали в JS-бандл. Экспортёр
+// обязан продолжать работать (им пересобирается пак при правках контента),
+// поэтому читаем исходные файлы планов НАПРЯМУЮ. Это единственное место в
+// репозитории, которому нужен весь контент сразу, и оно не входит в приложение.
+const PLAN_SOURCES = [
+  ['mitap', 'MITAP_CONTENT_DAYS'],
+  ['gavan', 'GAVAN_CONTENT_DAYS'],
+  ['impuls', 'IMPULS_CONTENT_DAYS'],
+  ['echo', 'ECHO_CONTENT_DAYS'],
+  ['voyazh', 'VOYAZH_CONTENT_DAYS'],
+];
+
+function loadAllPlanContentDays() {
+  const all = [];
+  for (const [planId, exportName] of PLAN_SOURCES) {
+    const mod = require(`../app/plan_content_${planId}.ts`);
+    const days = mod[exportName];
+    if (!Array.isArray(days) || days.length === 0) {
+      throw new Error(`plan_content_${planId}.ts не отдал ${exportName}`);
+    }
+    all.push(...days);
+  }
+  return all;
+}
 const { validatePlanContentDay } = require('../app/plan_content_schema.ts');
 const {
   COURSE_PACK_SCHEMA_VERSION,

@@ -1,28 +1,25 @@
 import type { PlanContentDay } from './plan_content_schema';
 
 /**
- * Registry of authored PlanContentDay content from the new pipeline, keyed by
- * `${planId}:${dayIndex}`. This is the single place the runtime looks up "do we have
- * real agent-authored content for this plan day?" — if yes, the runtime uses the
- * pipeline (full explanations, day vocabulary, authored POS + distractors); if no, it
- * falls back to the old template path.
+ * Точка входа рантайма за контентом дня плана — БЕЗ САМОГО КОНТЕНТА.
  *
- * As more days are authored through the content-agent pipeline, they are registered
- * here (e.g. MITAP_CONTENT_DAYS, etc.). Pure module.
+ * ИСТОРИЯ (Фаза 1 «Бандл-диеты», 2026-08-24): здесь лежали пять
+ * `require('./plan_content_<plan>')`, тянувшие ~19 МБ TS в JS-бандл. Контент
+ * переехал на Firebase Storage (пак release.20260824.e4381599, 546 дней;
+ * паритет с бандлом доказан побайтово 546/546, приёмка на устройстве пройдена).
+ * Единственный источник теперь — сервер с дисковым кэшем:
+ *   plan_content_remote_facade → plan_content_remote_readiness
+ *   → course_pack_remote_loader (скачивание + sha256 + evict).
  *
- * PERF (D1): each plan's content file is ~3-5MB. We used to statically import all 5
- * (~20MB) so simply touching this module built every plan's data in memory, even
- * though a screen only ever needs the ONE active plan. Now each plan is loaded via a
- * synchronous `require()` the first time it's actually asked for, keyed by planId, and
- * cached in PLAN_CONTENT_DAYS_CACHE below. Metro's inline-require makes this a
- * standard, supported pattern — no async refactor needed, callers are unchanged.
+ * Модуль СОХРАНЁН как API-шов: экраны и мост по-прежнему зовут
+ * getAuthoredPlanContentDay/hasAuthoredPlanContent, просто теперь эти функции
+ * всегда отвечают «данных нет», и вызывающая сторона идёт на сервер. Так
+ * `git revert` финального коммита возвращает bundled-фолбэк одним движением,
+ * не трогая ни один экран.
  *
- * SEAM FOR SERVER MIGRATION: this module is the single access point the runtime uses
- * to fetch plan content. Today `loadPlanContentDays()` is a lazy local `require()`;
- * once content moves to the server (see quiz_phrases_loader.ts / French remote pack
- * for the established pattern), this function becomes the place that fetches from the
- * server with an on-disk cache instead. Screens call `getAuthoredPlanContentDay()` /
- * `hasAuthoredPlanContent()` etc. either way and never need to change.
+ * ВАЖНО для пересборки контента: экспортёр пака
+ * (scripts/export_plan_content_packs.mjs) читает исходные plan_content_*.ts
+ * НАПРЯМУЮ — через этот реестр он получил бы ноль дней.
  */
 
 type PlanId = 'mitap' | 'gavan' | 'impuls' | 'echo' | 'voyazh';
@@ -36,9 +33,6 @@ function isKnownPlanId(planId: string): planId is PlanId {
 function keyFor(planId: string, dayIndex: number): string {
   return `${planId}:${dayIndex}`;
 }
-
-/** Module-level cache: one entry per plan, populated on first access. */
-const PLAN_CONTENT_DAYS_CACHE = new Map<PlanId, readonly PlanContentDay[]>();
 
 /**
  * ФИНАЛ Фазы 1 «Бандл-диеты» (docs/plans/2026-08-24-bundle-diet-plan.md),
@@ -60,11 +54,11 @@ const PLAN_CONTENT_DAYS_CACHE = new Map<PlanId, readonly PlanContentDay[]>();
  * увидит день без контента. Прогрев работает при открытии плана (окно ±2),
  * при покупке/выборе плана (весь план) и на холодном старте.
  */
+const EMPTY_PLAN_CONTENT_DAYS: readonly PlanContentDay[] = Object.freeze([]);
+
 function loadPlanContentDays(_planId: PlanId): readonly PlanContentDay[] {
   return EMPTY_PLAN_CONTENT_DAYS;
 }
-
-const EMPTY_PLAN_CONTENT_DAYS: readonly PlanContentDay[] = Object.freeze([]);
 
 /** Per-plan key->day maps, built lazily alongside loadPlanContentDays. */
 const CONTENT_BY_KEY_CACHE = new Map<PlanId, ReadonlyMap<string, PlanContentDay>>();

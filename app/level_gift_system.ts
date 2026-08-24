@@ -1808,17 +1808,23 @@ const applyEnergyFullForOccurrence = async (
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
-  const energyRaw = await AsyncStorage.getItem('energy_state');
-  if (!isCurrentAccountGeneration(accountToken)) {
-    throw new Error('level_gift_effect_account_changed');
-  }
-  const energyState = energyRaw
-    ? JSON.parse(energyRaw) as { lastRecoveryTime?: number }
-    : {};
-  await AsyncStorage.setItem('energy_state', JSON.stringify({
-    current: planned.target,
-    lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || Date.now()),
-  }));
+  // зачем (аудит 2026-08-24): read-modify-write energy_state шёл БЕЗ замка, тогда
+  // как EnergyContext все свои записи держит под withStorageLock. Подарок «полная
+  // энергия», пришедший одновременно с тратой, читал старое состояние и перетирал
+  // свежее. Теперь чтение и запись — под тем же замком, что у остальных писателей.
+  await withStorageLock(async () => {
+    const energyRaw = await AsyncStorage.getItem('energy_state');
+    if (!isCurrentAccountGeneration(accountToken)) {
+      throw new Error('level_gift_effect_account_changed');
+    }
+    const energyState = energyRaw
+      ? JSON.parse(energyRaw) as { lastRecoveryTime?: number }
+      : {};
+    await AsyncStorage.setItem('energy_state', JSON.stringify({
+      current: planned.target,
+      lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || Date.now()),
+    }));
+  });
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
@@ -2391,12 +2397,19 @@ const applyGiftUnlocked = async (
         if (!isCurrentAccountGeneration(accountToken)) {
           throw new Error('level_gift_effect_account_changed');
         }
-        const esRaw = await AsyncStorage.getItem('energy_state');
-        if (!isCurrentAccountGeneration(accountToken)) {
-          throw new Error('level_gift_effect_account_changed');
-        }
-        const es = esRaw ? (JSON.parse(esRaw) as { current: number; lastRecoveryTime: number }) : { lastRecoveryTime: Date.now() };
-        await AsyncStorage.setItem('energy_state', JSON.stringify({ current: maxEnergy, lastRecoveryTime: es.lastRecoveryTime }));
+        // зачем (аудит 2026-08-24): тот же класс гонки, что в applyEnergyFullForOccurrence —
+        // read-modify-write energy_state мимо withStorageLock перетирал свежую трату.
+        await withStorageLock(async () => {
+          const esRaw = await AsyncStorage.getItem('energy_state');
+          if (!isCurrentAccountGeneration(accountToken)) {
+            throw new Error('level_gift_effect_account_changed');
+          }
+          const es = esRaw
+            ? (JSON.parse(esRaw) as { current?: number; lastRecoveryTime?: number })
+            : {};
+          const lastRecoveryTime = Math.max(0, Number(es.lastRecoveryTime) || Date.now());
+          await AsyncStorage.setItem('energy_state', JSON.stringify({ current: maxEnergy, lastRecoveryTime }));
+        });
         if (!isCurrentAccountGeneration(accountToken)) {
           throw new Error('level_gift_effect_account_changed');
         }

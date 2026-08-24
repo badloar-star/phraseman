@@ -993,6 +993,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => { langRef.current = lang; }, [lang]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [runesBalance, setRunesBalance] = useState(() => peekRunes());
+    // зачем: помним, ЧЕЙ баланс сейчас на экране, чтобы отличить смену аккаунта
+    // (обнулять обязательно) от инициализации того же аккаунта на старте (нельзя).
+    const runesOwnerRef = useRef<string | null>(captureAccountGeneration().stableId?.trim() || null);
     const reconcileHomeRunes = useCallback((token = captureAccountGeneration()) => {
         const stableId = token.stableId?.trim();
         if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
@@ -1010,7 +1013,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         const runesAccountSubscription = subscribeAccountGeneration((token) => {
             // Никогда не показываем retained-значение предыдущего аккаунта.
-            setRunesBalance(0);
+            //
+            // зачем (владелец, 2026-08-24: «счёт рун на секунду показал неправду»):
+            // раньше здесь стоял БЕЗУСЛОВНЫЙ ноль. Но это событие летит не только
+            // при смене аккаунта — cloud_sync зовёт beginInitialAccountGeneration(uid)
+            // на обычном старте, уже ПОСЛЕ первого кадра Главной. Правильный баланс
+            // успевал отрисоваться, затем падал в 0 и через сеть возвращался обратно.
+            // Обнуляем только когда владелец баланса на экране реально сменился.
+            const previousOwner = runesOwnerRef.current;
+            const nextOwner = token.stableId?.trim() || null;
+            const ownerChanged = previousOwner !== null && previousOwner !== nextOwner;
+            runesOwnerRef.current = nextOwner;
+            if (ownerChanged) setRunesBalance(0);
             if (homeRuntimeActiveRef.current && token.phase === 'active') {
                 reconcileHomeRunes(token);
             }
@@ -1774,7 +1788,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             // Данные успешно прочитаны — снимаем баннер ошибки, если он был после прошлого сбоя.
             if (mountedRef.current && loadFailedNoData) setLoadFailedNoData(false);
             setWeekMarkers(currentWeekMarkers);
-            setShardsBalance(shardsBal);
+            // зачем (владелец, 2026-08-24: «счёт жемчужин на секунду показал неправду»):
+            // getShardsBalance() отдаёт 0 не только как настоящий ноль, но и как
+            // «не знаю» — когда генерация аккаунта устарела прямо во время чтения
+            // (её зовёт cloud_sync уже после первого кадра Главной). Раньше этот
+            // ноль писался безусловно и стирал правильную цифру до следующей сверки.
+            // Ноль принимаем только от аккаунта, который к концу чтения всё ещё свой.
+            const shardsReadIsTrustworthy = shardsBal > 0
+                || isCurrentAccountGeneration(homeHydrationAccount, homeHydrationAccount.stableId);
+            if (shardsReadIsTrustworthy) setShardsBalance(shardsBal);
             if (!selectedTitleHydratedRef.current) {
                 selectedTitleHydratedRef.current = true;
                 setSelectedTitleKey(storedTitleKey || null);

@@ -39,7 +39,15 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(home).toContain('const [runesBalance, setRunesBalance] = useState(() => peekRunes());');
     expect(home).toContain('const unsubscribeRunesSnapshot = subscribeAppSnapshot');
     expect(home).toContain('const runesAccountSubscription = subscribeAccountGeneration');
-    expect(home).toContain('setRunesBalance(0);');
+    // зачем (владелец, 2026-08-24: «счёт рун на секунду показал неправду»):
+    // обнуление при смене аккаунта обязано остаться — но ТОЛЬКО условным.
+    // Безусловный ноль срабатывал и на обычном старте (cloud_sync зовёт
+    // beginInitialAccountGeneration уже после первого кадра), и правильный
+    // баланс на секунду падал в ноль. Сторожим оба требования сразу.
+    expect(home).toContain('if (ownerChanged) setRunesBalance(0);');
+    expect(home).not.toContain('            setRunesBalance(0);\n');
+    expect(home).toContain('const ownerChanged = previousOwner !== null && previousOwner !== nextOwner;');
+    expect(home).toContain('runesOwnerRef.current = nextOwner;');
     expect(home).toContain('void getRunesBalance().then');
     expect(home).toContain('unsubscribeRunesSnapshot();');
     expect(home).toContain('runesAccountSubscription.remove();');

@@ -53,7 +53,65 @@ describe('purchased theme ownership survives sync', () => {
     // merge-стратегиях облако её перезапишет. Нужны обе.
     expect(cloudSyncSource).toContain('OWNED_THEMES_KEY]: mergeOwnedThemesRestoreValue');
     expect(cloudSyncSource).toContain('GRANDFATHERED_THEMES_KEY]: mergeOwnedThemesRestoreValue');
-    expect(cloudSyncSource).toMatch(/SYNC_KEYS = \[[\s\S]*OWNED_THEMES_KEY,/);
-    expect(cloudSyncSource).toMatch(/SYNC_KEYS = \[[\s\S]*GRANDFATHERED_THEMES_KEY,/);
+    const syncStart = cloudSyncSource.indexOf('export const SYNC_KEYS = [');
+    expect(syncStart).toBeGreaterThan(0);
+    const syncBlock = cloudSyncSource.slice(syncStart, cloudSyncSource.indexOf('\n];', syncStart));
+    expect(syncBlock).toContain('OWNED_THEMES_KEY,');
+    expect(syncBlock).toContain('GRANDFATHERED_THEMES_KEY,');
+  });
+
+  // зачем (аудит 2026-08-24): FC_RESTORE_MERGE_STRATEGIES покрывает только
+  // французскую и sticky-ветки restore. ГЛАВНАЯ ветка идёт через
+  // mergeLessonRestoreValue, где нераспознанный ключ возвращает cloudValue —
+  // облако затирало бы офлайн-покупку, и человек терял бы 200 жемчужин.
+  it('is protected in the MAIN restore branch too, not only the sticky one', () => {
+    // Ключи признаны «владением» — это включает их во все owned-пути restore.
+    // зачем срезом, а не regex по всему файлу: cloud_sync.ts > 4000 строк, и
+    // жадный [\s\S]* по нему валит jest-воркер по памяти на этой машине.
+    const unionStart = cloudSyncSource.indexOf('OWNED_UNION_RESTORE_BASE_KEYS = new Set');
+    expect(unionStart).toBeGreaterThan(0);
+    const unionBlock = cloudSyncSource.slice(unionStart, cloudSyncSource.indexOf(']);', unionStart));
+    expect(unionBlock).toContain('OWNED_THEMES_KEY,');
+    expect(unionBlock).toContain('GRANDFATHERED_THEMES_KEY,');
+    // И отдельная ветка в mergeLessonRestoreValue — раньше общего union,
+    // чтобы сохранялась фильтрация удалённых тем.
+    expect(cloudSyncSource).toContain('if (key === OWNED_THEMES_KEY || key === GRANDFATHERED_THEMES_KEY) {');
+    const themeBranch = cloudSyncSource.indexOf('if (key === OWNED_THEMES_KEY || key === GRANDFATHERED_THEMES_KEY) {');
+    const unionBranch = cloudSyncSource.indexOf('if (isOwnedUnionRestoreKey(key)) {');
+    expect(themeBranch).toBeGreaterThan(0);
+    expect(themeBranch).toBeLessThan(unionBranch);
+  });
+
+  // зачем (аудит 2026-08-24): без разового маркера закрепление «дедушки»
+  // срабатывало на КАЖДОМ запуске. Активный подписчик, переключаясь между
+  // темами, накопил бы их все навсегда — и после отмены подписки сохранил бы
+  // весь платный набор, а темы за жемчуг перестал бы покупать вовсе.
+  it('grandfathers themes exactly once, not on every launch', () => {
+    const storeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8');
+    expect(storeSource).toContain('GRANDFATHER_MIGRATION_KEY');
+    // Ранний выход, когда миграция уже прошла.
+    expect(storeSource).toContain("if (alreadyMigrated === '1') return current;");
+    // Маркер ставится ДО проверки прав — иначе миграция осталась бы «открытой».
+    const markerSet = storeSource.indexOf("setItem(GRANDFATHER_MIGRATION_KEY, '1')");
+    const accessCheck = storeSource.indexOf('if (!opts.hadAccess) return current;');
+    expect(markerSet).toBeGreaterThan(0);
+    expect(markerSet).toBeLessThan(accessCheck);
+  });
+
+  it('keeps the migration marker device-local, never synced', () => {
+    // Если бы маркер ездил в облако, на втором телефоне миграция считалась бы
+    // сделанной и НЕ закрепила бы тему, которой человек там пользуется.
+    expect(cloudSyncSource).not.toContain('theme_grandfather_migrated_v1');
+    expect(cloudSyncSource).not.toContain('GRANDFATHER_MIGRATION_KEY');
+  });
+
+  it('never resurrects a theme that no longer exists in the app', () => {
+    // Старое облако может помнить удалённые темы (coral/vanilla). Они не должны
+    // попадать в список «купленных» — общий union такой фильтрации не делает.
+    const merged = JSON.parse(store.mergeOwnedThemesRestoreValue(
+      JSON.stringify(['ember']),
+      JSON.stringify(['coral', 'vanilla', 'minimalDark', 'volt']),
+    ));
+    expect(merged.sort()).toEqual(['ember', 'volt']);
   });
 });

@@ -33,6 +33,17 @@ export {
   mergeThemeModeLists,
 };
 
+/**
+ * Маркер «разовая миграция дедушек уже проведена на ЭТОМ устройстве».
+ *
+ * зачем НЕ в SYNC_KEYS: маркер устройства, а не аккаунта. Если бы он ездил в
+ * облако, то на втором телефоне миграция считалась бы уже сделанной и НЕ
+ * закрепила бы тему, которой человек там пользуется — он потерял бы её.
+ * Сам результат миграции (список тем) синхронизируется, поэтому повторный
+ * прогон на другом устройстве только дополняет список, но ничего не ломает.
+ */
+const GRANDFATHER_MIGRATION_KEY = 'theme_grandfather_migrated_v1';
+
 async function readList(key: string): Promise<string[]> {
   try {
     return parseModes(await AsyncStorage.getItem(key));
@@ -85,6 +96,17 @@ export async function grandfatherActiveThemeIfNeeded(
   opts: { hadAccess: boolean },
 ): Promise<string[]> {
   const current = await loadGrandfatheredThemeModes();
+  // зачем маркер (аудит 2026-08-24): БЕЗ него закрепление срабатывало на КАЖДОМ
+  // запуске, и активный подписчик, переключаясь между темами, копил их все в
+  // «дедушки» — после отмены подписки у него навсегда остался бы весь платный
+  // набор, а темы за жемчуг он бы просто не покупал. Миграция обязана быть
+  // одноразовой: она нужна лишь чтобы никто не потерял тему В МОМЕНТ смены
+  // правил, а не чтобы раздавать темы дальше.
+  const alreadyMigrated = await AsyncStorage.getItem(GRANDFATHER_MIGRATION_KEY);
+  if (alreadyMigrated === '1') return current;
+  // Маркер ставится в любом случае — даже когда закреплять нечего, иначе
+  // миграция осталась бы «открытой» и сработала бы позже, уже не по делу.
+  await AsyncStorage.setItem(GRANDFATHER_MIGRATION_KEY, '1');
   if (!opts.hadAccess) return current;
   if (!activeMode || !isSelectableThemeMode(activeMode)) return current;
   return addGrandfatheredThemeMode(activeMode);

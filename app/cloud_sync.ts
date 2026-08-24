@@ -1463,6 +1463,14 @@ const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
   'community_owned_pack_ids_v1',   // ["packId", ...]
   'flashcards_market_dev_owned_v1',// ["packId", ...]
   'level_up_shown_levels_v1',      // [2, 3, ...] — acknowledged modals are strictly additive
+  // зачем (аудит 2026-08-24): темы, купленные за 200 жемчужин, и темы «дедушек» —
+  // такое же владение, как паки и ауры. Одной FC_RESTORE_MERGE_STRATEGIES было
+  // МАЛО: она применяется только во французской и sticky-ветках, а ГЛАВНАЯ ветка
+  // restore (цикл по getRuntimeSyncKeys) идёт через mergeLessonRestoreValue, где
+  // нераспознанный ключ возвращает cloudValue — облако затёрло бы офлайн-покупку,
+  // и человек потерял бы жемчуг. Регистрация здесь закрывает все ветки разом.
+  OWNED_THEMES_KEY,                // ["ember", ...]
+  GRANDFATHERED_THEMES_KEY,        // ["midnight", ...]
 ]);
 
 function isOwnedUnionRestoreKey(key: string): boolean {
@@ -1837,6 +1845,13 @@ function mergeLessonRestoreValue(
   // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
   if (isMonotonicCounterRestoreKey(key)) {
     return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+  }
+  // зачем (аудит 2026-08-24): темы идут ПЕРЕД общим union — их мерж дополнительно
+  // отсеивает имена тем, которых в приложении больше нет («coral», «vanilla»).
+  // Общий mergeOwnedRestoreValue такой фильтрации не делает, и удалённая тема
+  // воскресла бы из старого облака, попав в список «купленных».
+  if (key === OWNED_THEMES_KEY || key === GRANDFATHERED_THEMES_KEY) {
+    return mergeOwnedThemesRestoreValue(localValue, cloudValue);
   }
   // K2: владение (покупки/выдачи) строго аддитивно — union вместо перезаписи облаком.
   if (isOwnedUnionRestoreKey(key)) {

@@ -377,6 +377,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     });
     const subCloud = onAppEvent('cloud_profile_hydrated', () => {
       void hasLeagueGoldThemeReward().then(setGoldThemeUnlocked).catch(() => {});
+      // зачем (аудит 2026-08-24): облачный restore приносит темы, купленные на
+      // другом устройстве, — но состояние в памяти читалось только один раз при
+      // старте. Без этой перечитки купленная тема оставалась закрытой до
+      // перезапуска приложения (и до смены аккаунта показывала бы чужие покупки).
+      void Promise.all([loadOwnedThemeModes(), loadGrandfatheredThemeModes()])
+        .then(([owned, grandfathered]) => {
+          setOwnedThemes(new Set(owned));
+          setGrandfatheredThemes(new Set(grandfathered));
+        })
+        .catch(() => { /* fail-soft: останется состояние с прошлого чтения */ });
     });
     return () => {
       subGold.remove();

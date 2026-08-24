@@ -208,21 +208,30 @@ function practiceScreen(t){const f=document.createDocumentFragment(),eye=documen
 function feedback(text,type,shake=false){const e=$('#feedback');if(!e)return;e.className='feedback '+type;semanticText(e,text,task()?.targetTerms??session().targetTerms);if(shake){e.classList.add('shake');setTimeout(()=>e.classList.remove('shake'),260)}}
 function renderFooter(){const t=task(),hint=$('#hint'),next=$('#next'),blocked=wordQueue.length>0&&wordIndex<wordQueue.length;hint.style.visibility=t&&t.support==='none'?'hidden':'visible';hint.disabled=blocked;hint.onclick=()=>feedback(t?loc(t.hintByLocale):loc(session().intro[step].explanation),'');next.textContent=step===total()-1?'Завершить':'Продолжить';next.disabled=blocked||(t?.inputMode==='ordered_tokens'?!selected.length:!done);next.onclick=()=>{if(blocked)return;if(t?.inputMode==='ordered_tokens'&&!done){const opts=t.responseOptionsByLocale[locale],answer=selected.map(id=>opts.find(o=>o.responseId===id)?.text||'').join(' ');if(norm(answer)===norm(t.correctText)){done=true;feedback(loc(t.successByLocale),'ok')}else{attempts++;const trapId=selected.find(id=>t.responseFeedbackById?.[id]);feedback(loc(t.responseFeedbackById?.[trapId])||loc(t.retryByLocale),'bad',true)}renderFooter();return}if(!done)return;if(step<total()-1){step++;reset()}else{complete()}}}
 function render(){const s=session();$('#sessionTitle').textContent=String(s.ordinal).padStart(2,'0')+' · '+loc(s.title);semanticText($('#sessionSubtitle'),loc(s.summary),s.targetTerms);$('#counter').textContent=(step+1)+' / '+total();$('#progress').style.width=((step+1)/total()*100)+'%';const screen=$('#screen');screen.replaceChildren(step<3?introScreen(s.intro[step]):practiceScreen(s.practice[step-3]));renderFooter();const overlay=$('#wordOverlay');overlay.replaceChildren();overlay.style.display=wordQueue.length&&wordIndex<wordQueue.length?'block':'none';if(wordQueue.length&&wordIndex<wordQueue.length)overlay.append(wordOverlayScreen())}
-function complete(){const e=$('#screen');e.innerHTML='<div class="complete"><div class="eyebrow">'+total()+' / '+total()+'</div><h1>Готово</h1><p>Сессия 1 пройдена целиком.</p></div>';$('#next').disabled=false;$('#next').textContent='Начать заново';$('#next').onclick=()=>{step=0;reset()};$('#hint').style.visibility='hidden'}
+function complete(){const e=$('#screen');e.innerHTML='<div class="complete"><div class="eyebrow">'+total()+' / '+total()+'</div><h1>Готово</h1><p>Сессия '+session().ordinal+' пройдена целиком.</p></div>';$('#next').disabled=false;$('#next').textContent='Начать заново';$('#next').onclick=()=>{step=0;reset()};$('#hint').style.visibility='hidden'}
 function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function applyTheme(name){const p=palettes[name],r=document.documentElement.style;['--page','--surface','--surface2','--text','--muted','--target','--wrong','--ok','--on'].forEach((k,i)=>r.setProperty(k,p[i]));r.setProperty('--line','color-mix(in srgb,'+p[5]+' 18%,transparent)');r.setProperty('--glow','color-mix(in srgb,'+p[5]+' 16%,transparent)')}
 d.localeOrder.forEach(code=>{const o=document.createElement('option');o.value=code;o.textContent=code;$('#locale').append(o)});$('#locale').onchange=e=>{locale=e.target.value;reset()};$('#theme').onchange=e=>applyTheme(e.target.value);$('#back').onclick=()=>{if(step>0){step--;reset()}};applyTheme('indigo');render()})();
 </script></body></html>`;
 }
 
+// зачем --session (владелец, 2026-08-24, "приступай к написанию второй"):
+// раньше скрипт был жёстко привязан к сессии 1. Флаг выбирает нужный файл
+// источника без правки скрипта на каждую новую сессию; по умолчанию — 1,
+// чтобы старое поведение (без флага) не изменилось ни на бит.
 export async function buildEsSessionMock(args = process.argv.slice(2)) {
+  const sessionOrdinal = Number.parseInt(valueAfter(args, '--session') ?? '1', 10);
+  if (!Number.isInteger(sessionOrdinal) || sessionOrdinal < 1 || sessionOrdinal > 56) {
+    throw new Error(`es_session_mock_ordinal_invalid: use --session <1..56>, got ${String(valueAfter(args, '--session'))}`);
+  }
+  const padded = String(sessionOrdinal).padStart(2, '0');
   const outputPath = resolve(
     ROOT,
-    valueAfter(args, '--output') ?? resolve(DEFAULT_DIR, 'es-lesson1-session01-real-v1.html'),
+    valueAfter(args, '--output') ?? resolve(DEFAULT_DIR, `es-lesson1-session${padded}-real-v1.html`),
   );
   const dataPath = resolve(
     ROOT,
-    valueAfter(args, '--data-output') ?? resolve(DEFAULT_DIR, 'es-lesson1-session01-real-data-v1.js'),
+    valueAfter(args, '--data-output') ?? resolve(DEFAULT_DIR, `es-lesson1-session${padded}-real-data-v1.js`),
   );
   const shardBuilder = tsxRequire(
     resolve(ROOT, 'modules/learning-v2/content/source/session_shard_from_source_v1.ts'),
@@ -233,10 +242,13 @@ export async function buildEsSessionMock(args = process.argv.slice(2)) {
     import.meta.url,
   );
   const sourceModule = tsxRequire(
-    resolve(ROOT, 'modules/learning-v2/content/source/es_episode_01_session_01_v1.ts'),
+    resolve(ROOT, `modules/learning-v2/content/source/es_episode_01_session_${padded}_v1.ts`),
     import.meta.url,
   );
-  const source = sourceModule.ES_EPISODE_01_SESSION_01_SOURCE;
+  const source = sourceModule[`ES_EPISODE_01_SESSION_${padded}_SOURCE`];
+  if (!source) {
+    throw new Error(`es_session_mock_source_export_missing:ES_EPISODE_01_SESSION_${padded}_SOURCE`);
+  }
   const data = {
     version: 1,
     localeOrder: ES_REVIEW_LOCALES,

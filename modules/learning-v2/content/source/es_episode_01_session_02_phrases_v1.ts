@@ -12,7 +12,7 @@ const RAW_PHRASES: readonly Omit<EpisodeSourcePhrase, 'localizedDetails'>[] =
       english: 'No es fácil',
       russian: 'Это не легко',
       explanation:
-        'Прямое возражение на оценку из прошлого занятия. No встаёт перед es, fácil остаётся без изменений — отрицается вся фраза целиком.',
+        'Прямое возражение на оценку кого-то другого. No встаёт перед es, fácil остаётся без изменений — отрицается вся фраза целиком.',
       words: [
         {
           correct: 'No',
@@ -137,4 +137,12 @@ const RAW_PHRASES: readonly Omit<EpisodeSourcePhrase, 'localizedDetails'>[] =
     },
   ]);
 
-export const ES_EPISODE_01_SESSION_02_RAW_PHRASES = RAW_PHRASES;
+export const ES_EPISODE_01_SESSION_02_PHRASES: readonly EpisodeSourcePhrase[] =
+  Object.freeze(
+    RAW_PHRASES.map((phrase) =>
+      Object.freeze({
+        ...phrase,
+        localizedDetails: ES_SESSION_02_LOCALIZED_DETAILS[phrase.id],
+      }),
+    ),
+  );

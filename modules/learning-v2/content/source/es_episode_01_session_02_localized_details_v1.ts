@@ -11,7 +11,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
   Record<string, Readonly<Record<LocaleWithoutEs, EpisodeSourcePhraseLocalizedDetails>>>
 > = Object.freeze({
   'es-e01-s02-no-es-facil': {
-    ru: { meaning: 'Это не легко', explanation: 'Прямое возражение на оценку из прошлого занятия. No встаёт перед es, fácil остаётся без изменений.', distractors: [
+    ru: { meaning: 'Это не легко', explanation: 'Прямое возражение на чужую оценку. No встаёт перед es, fácil остаётся без изменений.', distractors: [
       { value: 'Nada', reason: 'Nada — «ничего», отдельное слово-предмет. Глагол отрицают через no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non — не испанское слово. В испанском отрицание пишется no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres — это «ты». Про «это» (безличную оценку) — только es.', trapType: 'grammar' },
@@ -33,7 +33,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad — «лёгкость», предмет. Признак — fácil.', trapType: 'grammar' },
         ]},
       ]},
-    uk: { meaning: 'Це не легко', explanation: 'Пряме заперечення оцінки з минулого заняття. No стає перед es, fácil лишається без змін.', distractors: [
+    uk: { meaning: 'Це не легко', explanation: 'Пряме заперечення чужої оцінки. No стає перед es, fácil лишається без змін.', distractors: [
       { value: 'Nada', reason: 'Nada — «нічого», окреме слово-предмет. Дієслово заперечують через no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non — не іспанське слово. В іспанській заперечення пишеться no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres — це «ти». Про «це» (безособову оцінку) — тільки es.', trapType: 'grammar' },
@@ -55,7 +55,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad — «легкість», предмет. Ознака — fácil.', trapType: 'grammar' },
         ]},
       ]},
-    en: { meaning: 'It is not easy', explanation: 'A direct pushback on the verdict from the previous session. No goes before es; fácil stays unchanged.', distractors: [
+    en: { meaning: 'It is not easy', explanation: 'A direct pushback on someone else’s verdict. No goes before es; fácil stays unchanged.', distractors: [
       { value: 'Nada', reason: 'Nada means "nothing", a separate thing-word. The verb is negated with no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non is not a Spanish word. Spanish negation is spelled no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres is "you". For "this" (an impersonal verdict), only es works.', trapType: 'grammar' },
@@ -77,7 +77,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad is the noun "ease". The quality is fácil.', trapType: 'grammar' },
         ]},
       ]},
-    'pt-BR': { meaning: 'Não é fácil', explanation: 'Uma discordância direta do veredito da sessão anterior. No fica antes de es; fácil não muda.', distractors: [
+    'pt-BR': { meaning: 'Não é fácil', explanation: 'Uma discordância direta do veredito de outra pessoa. No fica antes de es; fácil não muda.', distractors: [
       { value: 'Nada', reason: 'Nada significa "nada", uma palavra-coisa separada. O verbo é negado com no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non não é palavra do espanhol. A negação em espanhol se escreve no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres é "você". Para "isso" (um veredito impessoal), só es funciona.', trapType: 'grammar' },
@@ -99,7 +99,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad é o substantivo "facilidade". A qualidade é fácil.', trapType: 'grammar' },
         ]},
       ]},
-    vi: { meaning: 'Điều này không dễ', explanation: 'Sự phản đối trực tiếp với nhận định của buổi trước. No đứng trước es; fácil không đổi.', distractors: [
+    vi: { meaning: 'Điều này không dễ', explanation: 'Sự phản đối trực tiếp với nhận định của người khác. No đứng trước es; fácil không đổi.', distractors: [
       { value: 'Nada', reason: 'Nada nghĩa là "không có gì", một từ-sự vật riêng. Động từ được phủ định bằng no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non không phải từ tiếng Tây Ban Nha. Phủ định tiếng Tây Ban Nha viết là no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres nghĩa là "bạn". Với "điều này" (nhận định vô nhân xưng), chỉ es mới đúng.', trapType: 'grammar' },
@@ -121,7 +121,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad là danh từ "sự dễ dàng". Đặc điểm là fácil.', trapType: 'grammar' },
         ]},
       ]},
-    id: { meaning: 'Ini tidak mudah', explanation: 'Sanggahan langsung terhadap penilaian dari sesi sebelumnya. No berada sebelum es; fácil tidak berubah.', distractors: [
+    id: { meaning: 'Ini tidak mudah', explanation: 'Sanggahan langsung terhadap penilaian orang lain. No berada sebelum es; fácil tidak berubah.', distractors: [
       { value: 'Nada', reason: 'Nada berarti "tidak ada apa-apa", kata benda tersendiri. Kata kerja disangkal dengan no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non bukan kata bahasa Spanyol. Penyangkalan bahasa Spanyol ditulis no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres berarti "kamu". Untuk "ini" (penilaian impersonal), hanya es yang tepat.', trapType: 'grammar' },
@@ -143,7 +143,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad adalah kata benda "kemudahan". Sifatnya adalah fácil.', trapType: 'grammar' },
         ]},
       ]},
-    tr: { meaning: 'Bu kolay değil', explanation: 'Önceki oturumun yargısına doğrudan bir itiraz. No, es\'ten önce gelir; fácil değişmez.', distractors: [
+    tr: { meaning: 'Bu kolay değil', explanation: 'Başkasının yargısına doğrudan bir itiraz. No, es\'ten önce gelir; fácil değişmez.', distractors: [
       { value: 'Nada', reason: 'Nada "hiçbir şey" demektir, ayrı bir isim-sözcüktür. Fiil no ile olumsuzlanır.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non İspanyolca bir kelime değildir. İspanyolca olumsuzlama no yazılır.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres "sen" demektir. "Bu" hakkında kişisiz bir yargıda sadece es kullanılır.', trapType: 'grammar' },
@@ -165,7 +165,7 @@ export const ES_SESSION_02_LOCALIZED_DETAILS: Readonly<
           { value: 'facilidad', reason: 'Facilidad "kolaylık" anlamına gelen bir isimdir. Nitelik fácil\'dir.', trapType: 'grammar' },
         ]},
       ]},
-    pl: { meaning: 'To nie jest łatwe', explanation: 'Bezpośredni sprzeciw wobec osądu z poprzedniej sesji. No stoi przed es; fácil się nie zmienia.', distractors: [
+    pl: { meaning: 'To nie jest łatwe', explanation: 'Bezpośredni sprzeciw wobec cudzego osądu. No stoi przed es; fácil się nie zmienia.', distractors: [
       { value: 'Nada', reason: 'Nada znaczy „nic”, osobne słowo-rzecz. Czasownik zaprzecza się przez no.', trapType: 'semantic_neighbor' },
       { value: 'Non', reason: 'Non nie jest hiszpańskim słowem. Hiszpańskie przeczenie zapisuje się no.', trapType: 'orthographic' },
       { value: 'eres', reason: 'Eres to „ty”. Dla „to” (bezosobowy osąd) pasuje tylko es.', trapType: 'grammar' },

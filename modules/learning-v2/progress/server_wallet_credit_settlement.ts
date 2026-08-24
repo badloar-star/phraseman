@@ -15,19 +15,27 @@ import {
 } from "../policies/decision_registry";
 import type { OwnerRepositoryWalletCreditAuthorityInput } from "./owner_repository";
 
-// зачем (аудит 2026-08-23): mistake_correction начисляется ДРУГИМ, отдельным
-// путём — materializeMistakeCorrectionCompositeCandidate в
-// mistake_correction_wallet_composite.ts, авторитет client_authoritative_
-// composite (клиентский композит + криптографический fingerprint), а не
-// trusted_server_boundary этого файла. REASONS (рантайм-валидация ниже) уже
-// не пускал mistake_correction — тип просто не был приведён в соответствие,
-// из-за чего COMBINATIONS не проходила `satisfies` (полный tsc падал по
-// памяти и это молчало). Не добавлять сюда mistake_correction: у него нет
-// подходящего receiptType/originKind в этой таблице — только composite-путь.
-export type ServerWalletCreditReason = Exclude<
-  WalletOperationReason,
-  "initial_required_session" | "legacy_opening_balance" | "mistake_correction"
->;
+// зачем (владелец, 2026-08-24): раньше ServerWalletCreditReason был отдельным
+// Exclude-типом от WalletOperationReason, а REASONS (рантайм-валидация ниже)
+// — отдельным литеральным списком. Они могли разойтись молча: тип
+// математически включал причину, которую REASONS уже не пускал
+// (mistake_correction — она начисляется другим путём, см.
+// mistake_correction_wallet_composite.ts, авторитет
+// client_authoritative_composite), а компилятор об этом узнавал только через
+// провал `satisfies` у COMBINATIONS. Полный tsc падал по памяти, и это
+// молчало неделями.
+//
+// Теперь ЕДИНСТВЕННЫЙ источник правды для ЛОКАЛЬНОЙ логики файла — REASONS:
+// тип выводится из него через typeof, а не наоборот, поэтому COMBINATIONS
+// физически не может разойтись с ним. Новую причину начисления этим путём
+// достаточно добавить в REASONS — тип и COMBINATIONS сами откажутся
+// компилироваться, пока под неё не заведена запись.
+//
+// Отдельно: EXHAUSTIVE_REASON_CHECK ниже ловит другой класс дрейфа — если в
+// WalletOperationReason (контракт) заведут НОВУЮ причину и забудут решить,
+// каким путём она начисляется (этим файлом или отдельным composite, как
+// mistake_correction), тип провалится с понятной ошибкой вместо тихой дыры.
+export type ServerWalletCreditReason = typeof REASONS[number];
 
 export interface ServerWalletCreditSettlementV1 {
   readonly schemaVersion: "learning-v2-server-wallet-credit-settlement.v1";
@@ -89,6 +97,20 @@ const REASONS = [
   "tournament_reward",
   "coin_exchange",
 ] as const;
+// зачем (владелец, 2026-08-24): REASONS — источник правды для этого файла,
+// но он ОТВЯЗАН от WalletOperationReason (контракта). Эта проверка страхует
+// именно от того дрейфа: заведут в контракте новую причину и забудут решить,
+// начисляется она этим файлом или отдельным composite-путём — тип провалится
+// здесь с понятной ошибкой, а не молча пропустит причину мимо обеих таблиц.
+// Причины ВНЕ этого файла (кто уже решён и живёт в composite-пути) явно
+// перечислены справа — как mistake_correction сейчас.
+type _ExhaustiveReasonCheck = Exclude<
+  WalletOperationReason,
+  ServerWalletCreditReason
+  | "initial_required_session" | "legacy_opening_balance" | "mistake_correction"
+> extends never ? true : ["добавь новую причину в REASONS выше или в список исключений"];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- type-only guard, не значение
+const _exhaustiveReasonCheck: _ExhaustiveReasonCheck = true as _ExhaustiveReasonCheck;
 const MAX_BYTES = 128 * 1024;
 const MAX_AMOUNT = 1_000_000_000_000;
 const ACCOUNT = /^[a-f0-9]{16,128}$/;

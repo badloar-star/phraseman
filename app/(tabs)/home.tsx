@@ -152,6 +152,8 @@ import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
+import { prefetchActivePlanContentOnColdStart } from '../plan_content_prefetch';
+import { readPersonalPlanState } from '../personal_plan_state';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -641,6 +643,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         homeRuntimeActiveRef.current = homeRuntimeActive;
     }, [homeRuntimeActive]);
+    // зачем (Бандл-диета Ф1): холодный старт — в idle после первого кадра греем
+    // серверный plan_content-пак ТОЛЬКО для активного плана (окно «текущий ±2»),
+    // чтобы вход в день никогда не ждал сеть. Один раз за сессию, без таймеров;
+    // нет активного плана — ни одного сетевого запроса.
+    useEffect(() => {
+        prefetchActivePlanContentOnColdStart(async () => {
+            const state = await readPersonalPlanState();
+            return state ? { planId: state.planId, currentDayIndex: state.currentDayIndex } : null;
+        });
+    }, []);
     useEffect(() => {
         if (!homeRuntimeActive) return undefined;
         let cancelled = false;

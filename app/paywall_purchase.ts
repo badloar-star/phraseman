@@ -62,6 +62,7 @@ import { useEnergy } from '../components/EnergyContext';
 import { invalidatePremiumCache } from './premium_guard';
 import { resumeLessonAfterPremium } from './paywall_lesson_continuation';
 import { activatePendingPersonalPlanAfterPremium } from './personal_plan_activation';
+import { prefetchWholePlanContentInBackground } from './plan_content_prefetch';
 import type { PersonalPlanState } from './personal_plan_state';
 import {
   hasCurrentPersonalPlanSunsetAccess,
@@ -571,6 +572,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return isCommitCurrent();
       });
       if (applied.status !== 'ok' || !applied.value) return;
+      // зачем (Бандл-диета Ф1): план куплен → сразу фоновый префетч всех его
+      // день-строк с сервера, чтобы контент лежал в кэше до входа в любой день.
+      if (activatedPersonalPlan) prefetchWholePlanContentInBackground(activatedPersonalPlan.planId);
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
       if (pkgTrial.hasTrial) {
@@ -774,6 +778,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           return isCommitCurrent();
         });
         if (applied.status !== 'ok' || !applied.value) return;
+        // зачем (Бандл-диета Ф1): восстановленная покупка тоже активирует план —
+        // греем его контент фоном, как при обычной покупке.
+        if (activatedPersonalPlan) prefetchWholePlanContentInBackground(activatedPersonalPlan.planId);
         // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.

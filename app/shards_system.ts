@@ -293,6 +293,28 @@ const normalizeShardBalanceOp = (value: unknown): ShardBalanceMeta['op'] => (
     : 'replace'
 );
 
+/**
+ * Заполнить peek-память балансом, который стартовая гидратация уже прочитала с диска.
+ *
+ * зачем (владелец, 2026-08-24, «жемчужины на Главной ждут подгрузки»): peek-память
+ * живёт только внутри JS-процесса, и на холодном старте она пуста — до первого
+ * `getShardsBalance()` любой экран, читающий peek, честно получал `null` и рисовал 0.
+ * Загрузчик снапшота в этот момент УЖЕ держит настоящее число в руках (ключ
+ * `shards_balance` входит в его multiGet), но раньше никому его не отдавал.
+ * Теперь отдаёт — второго похода на диск это не стоит.
+ *
+ * Значение проходит те же проверки владельца, что и обычная запись: чужую
+ * генерацию аккаунта или мусор `setShardsBalanceMemory` отвергнет сам.
+ */
+export const primeShardsBalanceMemoryFromBoot = (
+  balance: number,
+  accountToken: AccountGenerationToken,
+): void => {
+  // Уже читали в этой сессии — свежая запись авторитетнее стартового снимка.
+  if (shardsBalanceMemory) return;
+  setShardsBalanceMemory(balance, accountToken);
+};
+
 /** Последний известный баланс (после чтения/записи в этой сессии). null — ещё не читали с диска. */
 export const peekLastKnownShardsBalance = (): number | null => {
   const accountToken = captureAccountGeneration();

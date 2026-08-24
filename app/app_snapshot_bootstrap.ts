@@ -3,7 +3,7 @@ import {
   CUSTOMIZATION_STORAGE_KEYS,
   USER_AVATAR_AURA_KEY,
 } from '../constants/customization_storage_keys';
-import { getLevelFromXP } from '../constants/theme';
+import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   limitArray,
@@ -20,6 +20,9 @@ import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_
 import { buildCustomizationSnapshot } from './customization_snapshot';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { hydratePersonalProgress } from './personal_progress_store';
+import { primeShardsBalanceMemoryFromBoot } from './shards_system';
+import { primeEnergyPeekFromBoot } from './energy_peek_cache';
+import { getMaxEnergy as getConfiguredBaseEnergy } from './remote_flags';
 import {
   migrateLegacyVipSnapshotOnce,
   readVipSnapshotForGeneration,
@@ -151,6 +154,18 @@ function buildProfileSnapshot(
  * гидратация роняла stars в undefined -> peekRunes() -> 0, и первый кадр
  * Главной показывал ноль рун вместо настоящего баланса.
  *
+ * зачем (владелец, 2026-08-24, «счёт рун ждёт подгрузки»): переноса из памяти
+ * мало. На ХОЛОДНОМ старте память процесса пуста, переносить нечего — и первый
+ * кадр всё равно рисовал ноль, пока асинхронное восстановление не догоняло.
+ * Поэтому загрузчик теперь читает руны с диска (`bootRunes`, один getItem) и
+ * кладёт их в снапшот вместе с остальными числами. `null` = прочитать не вышло:
+ * тогда сохраняем прежнее значение из памяти, но никогда не пишем 0 поверх.
+ *
+ * Диск не побеждает память безусловно: пока шло чтение, спин мог начислить руны и
+ * опубликовать их в снапшот (`publishProjection` пишет туда неподтверждённые
+ * начисления). Такое значение свежее прочитанного, поэтому берём БОЛЬШЕЕ —
+ * занизить баланс на глазах у игрока хуже, чем на миг отстать.
+ *
  * `current` приходит снаружи: patchAppSnapshot зовётся в функциональной форме,
  * поэтому значение берётся на момент применения патча, а не раньше.
  */
@@ -159,6 +174,7 @@ function buildProgressSnapshot(
   studyTarget: RuntimeStudyTarget,
   now: number,
   current: Readonly<AppSnapshot>,
+  bootRunes: Readonly<{ balance: number; earnedTotal: number }> | null,
 ): AppSnapshotProgress {
   return {
     source: 'storage',
@@ -166,8 +182,8 @@ function buildProgressSnapshot(
     streak: readInt(values.get('streak_count')),
     shards: readInt(values.get('shards_balance')),
     studyTarget: storageStudyTarget(studyTarget),
-    stars: current.progress?.stars ?? 0,
-    starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0,
+    stars: Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0),
+    starsEarnedTotal: Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0),
   };
 }
 
@@ -225,7 +241,7 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     BOOT_LEAGUE_STATE_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
-  const [storageRead, friends, , avatarDNA] = await Promise.all([
+  const [storageRead, friends, , avatarDNA, bootRunes] = await Promise.all([
     AsyncStorage.multiGet(keys).then(
       (pairs) => ({ ok: true as const, pairs }),
       () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
@@ -236,6 +252,15 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
       ownerStableId,
       accountGeneration.generation,
     ).catch(() => null),
+    // зачем: руны в общий multiGet не входят — их ключ зависит от владельца
+    // (level_spin_star_projection_v1:<uid>). Читаем параллельно, чтобы старт не
+    // стал длиннее ни на один лишний последовательный поход в хранилище.
+    // Импорт ленивый: модуль грантов весит ~740 строк, и тянуть его в стартовый
+    // бандл ради одного getItem противоречит Performance Bible (_layout.tsx
+    // подключает его тем же `await import`).
+    import('./level_spin_star_grants')
+      .then((module) => module.peekStoredLevelSpinStarsForBoot(accountGeneration))
+      .catch(() => null),
   ]);
 
   if (!isAccountCurrent()) return;
@@ -259,9 +284,19 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   if (!isAccountCurrent()) return;
   const profile = buildProfileSnapshot(values, now, vipSnapshot, avatarDNA);
   if (!isAccountCurrent()) return;
+  // зачем: отдать уже прочитанный баланс жемчужин в общий peek — экраны, которые
+  // читают его синхронно (Главная), рисуют настоящее число сразу, а не ноль до
+  // первого собственного похода на диск.
+  primeShardsBalanceMemoryFromBoot(readInt(values.get('shards_balance')), accountGeneration);
+  // зачем: уровень уже посчитан из профиля, поэтому потолок энергии известен здесь
+  // без второго чтения XP. Прогрев не блокирует патч снапшота: провайдер энергии
+  // читает peek на своём маунте, а не сейчас.
+  void primeEnergyPeekFromBoot(
+    getMaxEnergyForLevel(profile.level, getConfiguredBaseEnergy()),
+  ).catch(() => {});
   patchAppSnapshot((current) => ({
     profile,
-    progress: buildProgressSnapshot(values, studyTarget, now, current),
+    progress: buildProgressSnapshot(values, studyTarget, now, current, bootRunes),
     customization: buildCustomizationSnapshot(values, now, profile.level, avatarDNA ?? undefined),
     lessons: {
       source: 'storage',

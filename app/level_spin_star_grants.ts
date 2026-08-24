@@ -486,6 +486,38 @@ export async function readUnifiedLevelSpinStars(
   return visibleProjection(await recoverProjection(token));
 }
 
+/**
+ * Дешёвое чтение баланса рун для СТАРТОВОЙ гидратации снапшота.
+ *
+ * зачем (владелец, 2026-08-24, «руны на Главной ждут подгрузки и показывают
+ * ноль»): полное восстановление (`readUnifiedLevelSpinStars` -> `recoverProjection`)
+ * сканирует ВСЕ ключи AsyncStorage, чинит outbox и пишет обратно — на холодном
+ * старте это дорого и поздно, поэтому загрузчик его не звал вовсе. В итоге
+ * `buildProgressSnapshot` брал руны из пустой памяти процесса (`stars ?? 0`), и
+ * первый кадр честно рисовал ноль.
+ *
+ * Здесь только один `getItem` уже записанной проекции: без починки, без записи,
+ * без сканирования. Результат — то же число, что покажет полное восстановление
+ * секундой позже, поэтому «прыжка» после догрузки не будет. Битая или пустая
+ * проекция даёт `null` — загрузчик тогда просто не трогает секцию, а не обнуляет её.
+ */
+export async function peekStoredLevelSpinStarsForBoot(
+  token: AccountGenerationToken,
+): Promise<Readonly<{ balance: number; earnedTotal: number }> | null> {
+  const ownerStableId = token.stableId?.trim();
+  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return null;
+  try {
+    const raw = await AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId));
+    if (raw === null) return null;
+    if (!isCurrentAccountGeneration(token, ownerStableId)) return null;
+    return visibleProjection(parseProjection(raw, ownerStableId));
+  } catch {
+    // Проекция битая — её починит recoverProjection в обычном потоке. Показать
+    // «неизвестно» и дать снапшоту остаться прежним честнее, чем нарисовать 0.
+    return null;
+  }
+}
+
 export async function enqueueLevelSpinStarGrant(
   input: Readonly<{
     token: AccountGenerationToken;

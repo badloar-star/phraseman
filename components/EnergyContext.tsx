@@ -28,25 +28,22 @@ import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import { emitAppEvent } from '../app/events';
 import type { EnergyStartResult } from './energy_start_confirmation';
+import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
 export const MAX_ENERGY = 5; // базовый минимум (уровень 1-9)
-// B2 (PERF_MASTER_PLAN): модульный peek-кеш последнего известного значения
-// энергии. EnergyProvider стартует с MAX_ENERGY, реальное значение приходит
-// асинхронно из load() — это даёт видимый "прыжок" (полная → реальная) на
-// каждом холодном старте/ремаунте провайдера. Кешируем последнее известное
-// {energy, maxEnergy} в модульной переменной (переживает ремаунты компонента
-// в рамках одного JS-процесса, как peekProfilesCache/peekFriendsTabSwrWarm)
-// и читаем её синхронно в useState-инициализаторах ниже. Если кеша ещё нет
-// (первый запуск процесса) — поведение не меняется: MAX_ENERGY, как раньше.
-let peekEnergyState: { energy: number; maxEnergy: number } | null = null;
-function peekEnergy(): { energy: number; maxEnergy: number } | null {
-  return peekEnergyState;
-}
-function writePeekEnergy(energy: number, maxEnergy: number): void {
-  peekEnergyState = { energy, maxEnergy };
-}
+// B2 (PERF_MASTER_PLAN): последнее известное значение энергии читается синхронно
+// в useState-инициализаторах ниже, иначе провайдер стартует с MAX_ENERGY и шкала
+// заметно "прыгает" (полная -> реальная), когда load() досчитает настоящее число.
+//
+// зачем (владелец, 2026-08-24, «энергия не показывает правильную цифру сразу при
+// входе»): раньше кэш жил прямо здесь и переживал только ремаунты провайдера — на
+// ХОЛОДНОМ старте он был пуст, и первый кадр рисовал полную шкалу. Теперь кэш живёт
+// в app/energy_peek_cache.ts и заполняется ещё стартовой гидратацией, которая
+// читает диск раньше, чем этот провайдер вообще смонтируется. Модуль вынесен
+// отдельно намеренно: импортируй загрузчик сам EnergyContext — холодный старт
+// потянул бы весь React-провайдер со всеми его зависимостями.
 
 interface StoredEnergy {
   current: number;

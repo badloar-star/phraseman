@@ -59,6 +59,18 @@ type RuleSection = Readonly<{
  * Разделы объяснялки. Порядок — от «что это» к деталям: сначала правила игры,
  * потом призы, потом тонкости. Тон: дружелюбный взрослый с лёгкой иронией,
  * без сюсюканья и без слова «рулетка» (запреты владельца).
+ *
+ * зачем (владелец, 2026-08-24): «тексты объяснений вообще не игровые, очень
+ * много написано — надо сжато и с юморком, а не так распинаться». Аудит той
+ * версии: 950 знаков на пять разделов, по 27–37 слов в абзаце — стена, которую
+ * в нижней шторке дочитывают до третьего предложения единицы, а шутка как раз
+ * и жила в третьем. Правило нового тона: факт в первой строке, шутка сразу за
+ * ним, 12–18 слов на раздел. Цифры сверены с кодом, не выдуманы: зона 15% —
+ * LEAGUE_RESULT_ZONE_RATIO, два часа и ×2 — LEAGUE_HOT_HOURS_WINDOW_MS и
+ * LEAGUE_HOT_HOURS_MULTIPLIER, «ноль очков = спуск» — ветки iScored/inZeroZone
+ * в league_engine. Про личные усиления клуба ×2/×3 намеренно не пишем: они
+ * живут на своём экране и в объяснялке лиги были пятым фактом в четвёртом
+ * абзаце — ровно тем перегрузом, который владелец и просил убрать.
  */
 const SECTIONS: readonly RuleSection[] = [
   {
@@ -75,14 +87,14 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Pokój na tydzień',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'В понедельник тебя подселяют к десяткам таких же упрямых. Всю неделю вы соревнуетесь очками: очко — это заработанная руна. Просто зашёл посмотреть — очков не прибавилось, увы.',
-      uk: 'У понеділок тебе підселяють до десятків таких самих упертих. Цілий тиждень ви змагаєтесь очками: очко — це зароблена руна. Просто зайшов подивитися — очок не побільшало, на жаль.',
-      es: 'El lunes te agrupan con decenas de personas igual de tercas. Toda la semana competís por puntos: un punto es una runa ganada. Entrar solo a mirar no suma nada.',
-      'pt-BR': 'Na segunda você entra num grupo com dezenas de pessoas igualmente teimosas. A semana toda vocês competem por pontos: um ponto é uma runa conquistada. Entrar só para olhar não soma nada.',
-      vi: 'Thứ Hai, bạn được xếp vào nhóm với hàng chục người cũng lì lợm như vậy. Cả tuần các bạn đua điểm: một điểm là một rune kiếm được. Chỉ vào ngó thôi thì không cộng gì cả.',
-      id: 'Setiap Senin kamu ditempatkan bersama puluhan orang yang sama keras kepalanya. Sepekan penuh kalian beradu poin: satu poin adalah satu rune yang kamu peroleh. Sekadar membuka aplikasi tidak menambah apa pun.',
-      tr: 'Pazartesi seni, senin kadar inatçı onlarca kişiyle aynı odaya koyarız. Tüm hafta puanlarla yarışırsınız: bir puan, kazanılmış bir rün demek. Sadece bakmak için girmek hiçbir şey eklemez.',
-      pl: 'W poniedziałek trafiasz do grupy kilkudziesięciu równie upartych osób. Przez cały tydzień rywalizujecie punktami: punkt to zdobyta runa. Samo zajrzenie nic nie doda.',
+      ru: 'В понедельник тебя селят к десяткам таких же упрямых. Очко — заработанная руна. Зашёл посмотреть — ноль.',
+      uk: 'У понеділок тебе селять до десятків таких самих упертих. Очко — зароблена руна. Зайшов подивитися — нуль.',
+      es: 'El lunes te meten con decenas de tercos como tú. Un punto es una runa ganada. Solo mirar: cero.',
+      'pt-BR': 'Na segunda você cai num grupo de dezenas de teimosos. Um ponto é uma runa conquistada. Só olhar: zero.',
+      vi: 'Thứ Hai bạn được xếp cùng hàng chục người lì như bạn. Một điểm là một rune kiếm được. Chỉ vào ngó: 0.',
+      id: 'Tiap Senin kamu masuk ke ruang berisi puluhan orang sekeras kepala kamu. Satu poin sama dengan satu rune. Cuma menengok: nol.',
+      tr: 'Pazartesi seni senin kadar inatçı onlarca kişiyle aynı odaya koyarız. Puan, kazanılmış rün demek. Sadece bakmak: sıfır.',
+      pl: 'W poniedziałek trafiasz do kilkudziesięciu równie upartych. Punkt to zdobyta runa. Samo zajrzenie: zero.',
     }),
   },
   {
@@ -99,14 +111,14 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'W górę i w dół',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'В ночь на понедельник комната закрывается. Верхние 15% уезжают в лигу выше, нижние 15% — этажом ниже. И отдельное правило для наблюдателей: неделя с нулём очков — это спуск, даже если все вокруг тоже ленились не сильно.',
-      uk: 'У ніч на понеділок кімната зачиняється. Верхні 15% їдуть у лігу вище, нижні 15% — поверхом нижче. І окреме правило для спостерігачів: тиждень із нулем очок — це спуск, навіть якщо всі навколо теж не надто старалися.',
-      es: 'La noche del domingo al lunes la sala se cierra. El 15% de arriba sube de liga y el 15% de abajo baja un piso. Y una regla aparte para los espectadores: una semana con cero puntos significa bajar, aunque los demás tampoco se hayan esforzado mucho.',
-      'pt-BR': 'Na virada para segunda a sala fecha. Os 15% de cima sobem de liga e os 15% de baixo descem um andar. E uma regra à parte para os espectadores: uma semana com zero pontos significa descer, mesmo que os outros também tenham feito pouco.',
-      vi: 'Rạng sáng thứ Hai, phòng đấu đóng lại. Top 15% lên hạng, 15% cuối xuống một bậc. Và một luật riêng cho người chỉ đứng xem: một tuần với 0 điểm là xuống hạng, kể cả khi những người khác cũng chẳng chăm chỉ hơn.',
-      id: 'Menjelang Senin ruang ditutup. 15% teratas naik liga, 15% terbawah turun satu tingkat. Ada aturan khusus untuk penonton: sepekan dengan nol poin berarti turun, meski yang lain juga tidak terlalu rajin.',
-      tr: 'Pazartesiye geçerken oda kapanır. Üstteki %15 bir üst lige çıkar, alttaki %15 bir kat aşağı iner. İzleyiciler için ayrı bir kural var: sıfır puanlı bir hafta düşüş demektir, etraftakiler de pek çabalamamış olsa bile.',
-      pl: 'W nocy z niedzieli na poniedziałek pokój się zamyka. Górne 15% awansuje, dolne 15% spada piętro niżej. I osobna zasada dla obserwatorów: tydzień z zerem punktów oznacza spadek, nawet jeśli inni też się nie przemęczali.',
+      ru: 'Верхние 15% — этажом выше, нижние 15% — этажом ниже. Неделя с нулём очков — спуск без обсуждения.',
+      uk: 'Верхні 15% — поверхом вище, нижні 15% — поверхом нижче. Тиждень із нулем очок — спуск без обговорення.',
+      es: 'El 15% de arriba sube un piso; el 15% de abajo baja. Semana con cero puntos: bajas, sin discusión.',
+      'pt-BR': 'Os 15% de cima sobem um andar; os 15% de baixo descem. Semana com zero pontos: desce, sem discussão.',
+      vi: 'Top 15% lên một tầng, 15% cuối xuống một tầng. Tuần 0 điểm là xuống hạng, khỏi bàn.',
+      id: 'Atas 15% naik satu lantai, bawah 15% turun. Sepekan nol poin: turun, tanpa diskusi.',
+      tr: 'Üstteki %15 bir kat yukarı, alttaki %15 bir kat aşağı. Sıfır puanlı hafta: düşersin, tartışmasız.',
+      pl: 'Górne 15% piętro wyżej, dolne 15% piętro niżej. Tydzień z zerem punktów: spadek, bez dyskusji.',
     }),
   },
   {
@@ -123,38 +135,38 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Skrzynia dla wszystkich',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'У комнаты есть общая цель недели. Очки всех участников идут в один котёл, и когда он заполнится — сундук открывается для всей комнаты. Редкий случай, когда соперники внезапно оказываются коллегами.',
-      uk: 'У кімнати є спільна ціль тижня. Очки всіх учасників ідуть в один казан, і коли він наповниться — скриня відкривається для всієї кімнати. Рідкісний випадок, коли суперники раптом виявляються колегами.',
-      es: 'La sala tiene una meta común para la semana. Los puntos de todos van a un mismo bote y, cuando se llena, el cofre se abre para toda la sala. Uno de esos raros momentos en que los rivales resultan ser colegas.',
-      'pt-BR': 'A sala tem uma meta comum da semana. Os pontos de todos vão para o mesmo caldeirão e, quando ele enche, o baú abre para a sala inteira. Um daqueles raros momentos em que os rivais viram colegas.',
-      vi: 'Cả phòng có một mục tiêu chung cho tuần. Điểm của mọi người dồn vào một nồi, và khi đầy thì rương mở ra cho cả phòng. Một dịp hiếm hoi khi đối thủ bỗng thành đồng đội.',
-      id: 'Ruangan punya target bersama tiap pekan. Poin semua orang masuk ke satu wadah, dan begitu penuh, peti terbuka untuk seluruh ruangan. Momen langka ketika lawan tiba-tiba menjadi rekan.',
-      tr: 'Odanın haftalık ortak bir hedefi var. Herkesin puanı aynı kazana gider ve kazan dolduğunda sandık tüm odaya açılır. Rakiplerin birden meslektaşa dönüştüğü o nadir anlardan biri.',
-      pl: 'Pokój ma wspólny cel tygodnia. Punkty wszystkich trafiają do jednego kotła, a gdy się zapełni, skrzynia otwiera się dla całego pokoju. Rzadki moment, gdy rywale okazują się współpracownikami.',
+      ru: 'Очки комнаты копятся в общий котёл. Заполнили — сундук открывается всем. Соперники внезапно коллеги.',
+      uk: 'Очки кімнати збираються в спільний казан. Наповнили — скриня відкривається всім. Суперники раптом колеги.',
+      es: 'Los puntos de la sala llenan un bote común. Lleno: el cofre se abre para todos. Rivales que resultan colegas.',
+      'pt-BR': 'Os pontos da sala enchem um caldeirão comum. Cheio: o baú abre para todos. Rivais que viram colegas.',
+      vi: 'Điểm cả phòng dồn vào một nồi chung. Đầy nồi là rương mở cho tất cả. Đối thủ bỗng thành đồng đội.',
+      id: 'Poin seruangan mengisi satu wadah bersama. Penuh: peti terbuka untuk semua. Lawan mendadak jadi rekan.',
+      tr: 'Odanın puanları ortak bir kazanda birikir. Dolunca sandık herkese açılır. Rakipler birden meslektaş olur.',
+      pl: 'Punkty pokoju zbierają się we wspólnym kotle. Pełny: skrzynia otwiera się dla wszystkich. Rywale nagle współpracownikami.',
     }),
   },
   {
     id: 'boosts',
     icon: 'flame-outline',
     title: (lang) => triLang(lang, {
-      ru: 'Горячие часы и усиления',
-      uk: 'Гарячі години та підсилення',
-      es: 'Horas calientes y refuerzos',
-      'pt-BR': 'Horas quentes e reforços',
-      vi: 'Giờ nóng và tăng cường',
-      id: 'Jam panas dan penguat',
-      tr: 'Kızgın saatler ve güçlendirmeler',
-      pl: 'Gorące godziny i wzmocnienia',
+      ru: 'Горячие часы',
+      uk: 'Гарячі години',
+      es: 'Horas calientes',
+      'pt-BR': 'Horas quentes',
+      vi: 'Giờ nóng',
+      id: 'Jam panas',
+      tr: 'Kızgın saatler',
+      pl: 'Gorące godziny',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Последние два часа недели — горячие: тем, кто висит в зоне вылета, очки идут вдвойне. Плюс личные усиления клуба множат твои очки на ×2 или ×3. Камбэк в воскресенье вечером — законный жанр.',
-      uk: 'Останні дві години тижня — гарячі: тим, хто висить у зоні вильоту, очки йдуть удвічі. Плюс особисті підсилення клубу множать твої очки на ×2 або ×3. Камбек у неділю ввечері — цілком законний жанр.',
-      es: 'Las últimas dos horas de la semana son calientes: quien está en zona de descenso suma puntos dobles. Además, los refuerzos personales del club multiplican tus puntos por ×2 o ×3. La remontada del domingo por la noche es un género legítimo.',
-      'pt-BR': 'As duas últimas horas da semana são quentes: quem está na zona de rebaixamento soma pontos em dobro. Além disso, os reforços pessoais do clube multiplicam seus pontos por ×2 ou ×3. A virada no domingo à noite é um gênero legítimo.',
-      vi: 'Hai giờ cuối tuần là giờ nóng: ai đang ở nhóm xuống hạng sẽ được nhân đôi điểm. Ngoài ra, các gói tăng cường cá nhân của câu lạc bộ nhân điểm của bạn lên ×2 hoặc ×3. Lội ngược dòng tối Chủ nhật là chuyện hoàn toàn hợp lệ.',
-      id: 'Dua jam terakhir pekan itu panas: yang berada di zona degradasi mendapat poin ganda. Ditambah penguat pribadi klub yang mengalikan poinmu ×2 atau ×3. Comeback pada Minggu malam adalah genre yang sah.',
-      tr: 'Haftanın son iki saati kızgındır: küme düşme hattındakiler puanları iki katı alır. Ayrıca kulübün kişisel güçlendirmeleri puanlarını ×2 ya da ×3 yapar. Pazar akşamı geri dönüş, gayet meşru bir tür.',
-      pl: 'Ostatnie dwie godziny tygodnia są gorące: kto wisi w strefie spadkowej, zdobywa podwójne punkty. Do tego osobiste wzmocnienia klubu mnożą twoje punkty ×2 lub ×3. Powrót w niedzielny wieczór to w pełni legalny gatunek.',
+      ru: 'Последние два часа недели в зоне вылета очки идут вдвойне. Камбэк в воскресенье вечером — законный жанр.',
+      uk: 'Останні дві години тижня в зоні вильоту очки йдуть удвічі. Камбек у неділю ввечері — цілком законний жанр.',
+      es: 'En las últimas dos horas, en zona de descenso los puntos van dobles. La remontada del domingo es un género legítimo.',
+      'pt-BR': 'Nas duas últimas horas, na zona de rebaixamento os pontos contam em dobro. A virada de domingo é gênero legítimo.',
+      vi: 'Hai giờ cuối tuần, ai ở nhóm xuống hạng được nhân đôi điểm. Lội ngược dòng tối Chủ nhật là chuyện hợp lệ.',
+      id: 'Dua jam terakhir, di zona degradasi poin dihitung ganda. Comeback Minggu malam itu genre yang sah.',
+      tr: 'Haftanın son iki saatinde küme hattındakilere puanlar iki katı. Pazar akşamı geri dönüş meşru bir türdür.',
+      pl: 'W ostatnie dwie godziny w strefie spadkowej punkty liczą się podwójnie. Powrót w niedzielny wieczór to legalny gatunek.',
     }),
   },
   {
@@ -171,14 +183,14 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Po co piąć się wyżej',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Каждая лига добавляет постоянный бонус к опыту — от +10% в бронзе до +110% в высшей. Уровень растёт быстрее просто потому, что ты забрался повыше. Ну и вид оттуда приятнее.',
-      uk: 'Кожна ліга додає постійний бонус до досвіду — від +10% у бронзі до +110% у вищій. Рівень росте швидше просто тому, що ти забрався вище. Та й краєвид звідти приємніший.',
-      es: 'Cada liga añade una bonificación permanente de experiencia: desde +10% en bronce hasta +110% en la suprema. Tu nivel sube más rápido solo por haber escalado. Y las vistas desde arriba son mejores.',
-      'pt-BR': 'Cada liga adiciona um bônus permanente de experiência: de +10% no bronze até +110% na suprema. Seu nível sobe mais rápido só por você ter escalado. E a vista lá de cima é melhor.',
-      vi: 'Mỗi hạng đấu cộng thêm phần thưởng kinh nghiệm cố định: từ +10% ở Đồng đến +110% ở hạng cao nhất. Cấp độ tăng nhanh hơn chỉ vì bạn đã leo cao hơn. Với lại, cảnh từ trên đó cũng đẹp hơn.',
-      id: 'Setiap liga menambah bonus pengalaman permanen: dari +10% di perunggu sampai +110% di liga tertinggi. Levelmu naik lebih cepat hanya karena kamu memanjat lebih tinggi. Lagi pula, pemandangan dari atas lebih bagus.',
-      tr: 'Her lig kalıcı bir deneyim bonusu ekler: bronzda +%10’dan en üst ligde +%110’a kadar. Seviyen sırf yukarı tırmandığın için daha hızlı yükselir. Üstelik yukarıdan manzara da güzel.',
-      pl: 'Każda liga daje stały bonus do doświadczenia: od +10% w brązie do +110% w najwyższej. Poziom rośnie szybciej tylko dlatego, że wspiąłeś się wyżej. No i widok z góry jest ładniejszy.',
+      ru: 'Каждая лига добавляет опыт навсегда: от +10% в бронзе до +110% на вершине. И вид оттуда приятнее.',
+      uk: 'Кожна ліга додає досвід назавжди: від +10% у бронзі до +110% на вершині. Та й краєвид звідти приємніший.',
+      es: 'Cada liga suma experiencia para siempre: de +10% en bronce a +110% en la cima. Y las vistas son mejores.',
+      'pt-BR': 'Cada liga soma experiência para sempre: de +10% no bronze a +110% no topo. E a vista lá de cima é melhor.',
+      vi: 'Mỗi hạng cộng kinh nghiệm vĩnh viễn: từ +10% ở Đồng đến +110% trên đỉnh. Cảnh trên đó cũng đẹp hơn.',
+      id: 'Tiap liga menambah pengalaman selamanya: dari +10% di perunggu sampai +110% di puncak. Pemandangannya juga lebih bagus.',
+      tr: 'Her lig kalıcı deneyim ekler: bronzda +%10, zirvede +%110. Üstelik yukarıdan manzara da güzel.',
+      pl: 'Każda liga dodaje doświadczenie na stałe: od +10% w brązie do +110% na szczycie. I widok stamtąd ładniejszy.',
     }),
   },
 ];

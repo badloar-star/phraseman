@@ -120,12 +120,25 @@ export default function ArenaTodayScreen() {
       .catch(() => { hardExpirySync.current = null; setStatus('error'); });
   }, [active, applyMutation, hardExpiresAtMs, match, now, status]);
 
+  // зачем: до 2026-08-24 второй тап отбивала модалка подтверждения траты
+  // (пока окно висело, повторный запрос возвращался отказом). Окно убрано по
+  // требованию владельца, и защита обязана жить здесь. setSubmitting не годится:
+  // это состояние React, оно не видно второму тапу в том же кадре и вдобавок
+  // ставится только ПОСЛЕ await. Латч — синхронный ref, снимается на каждой
+  // ветке выхода, иначе кнопка залипнет навсегда.
+  const startChargeInFlightRef = useRef(false);
+
   const start = async () => {
-    if (submitting) return;
-    const energyResult = await confirmArenaTodayEnergy();
-    if (energyResult === 'cancelled') return;
-    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
-    beginArenaTodayMatch(energyResult === 'spent');
+    if (submitting || startChargeInFlightRef.current) return;
+    startChargeInFlightRef.current = true;
+    try {
+      const energyResult = await confirmArenaTodayEnergy();
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+      beginArenaTodayMatch(energyResult === 'spent');
+    } finally {
+      startChargeInFlightRef.current = false;
+    }
   };
 
   const beginArenaTodayMatch = (energyCharged: boolean) => {

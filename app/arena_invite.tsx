@@ -94,14 +94,27 @@ export default function ArenaInviteScreen() {
     return () => { if (timer) clearTimeout(timer); };
   }, [active, status?.status]);
 
+  // Синхронный латч оплаты входа (см. комментарий внутри accept).
+  const chargeInFlightRef = useRef(false);
+
   const accept = async () => {
-    if (!inviteId || busy) return;
+    if (!inviteId || busy || chargeInFlightRef.current) return;
+    // зачем: окно подтверждения траты убрано 2026-08-24, а раньше именно оно
+    // отбивало второй тап. busy тут не спасает — это состояние React, оно
+    // ставится только ПОСЛЕ await и не видно второму тапу в том же кадре.
+    // Латч закрывает щель между проверкой и setBusy(true); дальше защищает busy.
+    chargeInFlightRef.current = true;
     let energyCharged = false;
-    const energyResult = await confirmInviteEnergy();
-    if (energyResult === 'cancelled') return;
-    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
-    energyCharged = energyResult === 'spent';
-    setBusy(true); setError('');
+    let energyResult: Awaited<ReturnType<typeof confirmInviteEnergy>>;
+    try {
+      energyResult = await confirmInviteEnergy();
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+      energyCharged = energyResult === 'spent';
+      setBusy(true); setError('');
+    } finally {
+      chargeInFlightRef.current = false;
+    }
     try {
       const accepted = await arenaV2InviteAccept(inviteId);
       if (handleStatus(accepted)) return;

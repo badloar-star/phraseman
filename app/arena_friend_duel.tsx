@@ -138,14 +138,30 @@ export default function ArenaFriendDuelScreen() {
     return () => { if (timer) clearTimeout(timer); };
   }, [active, invite]);
 
+  // Синхронный латч оплаты старта (см. комментарий внутри create).
+  const chargeInFlightRef = useRef(false);
+
   const create = async () => {
-    if (!selected || busy) return;
+    if (!selected || busy || chargeInFlightRef.current) return;
+    // зачем: окно подтверждения траты убрано 2026-08-24, а раньше именно оно
+    // отбивало второй тап, пока висело на экране. busy тут не спасает — это
+    // состояние React, оно ставится только ПОСЛЕ await и не видно второму тапу
+    // в том же кадре. Латч закрывает щель между проверкой и setBusy(true);
+    // дальше эстафету принимает busy.
+    chargeInFlightRef.current = true;
     let energyCharged = false;
-    const energyResult = await confirmDuelEnergy();
-    if (energyResult === 'cancelled') return;
-    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
-    energyCharged = energyResult === 'spent';
-    setBusy(true); setError('');
+    let energyResult: Awaited<ReturnType<typeof confirmDuelEnergy>>;
+    try {
+      energyResult = await confirmDuelEnergy();
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+      energyCharged = energyResult === 'spent';
+      setBusy(true); setError('');
+    } finally {
+      // Снимаем ровно тогда, когда эстафету уже принял busy (или мы вышли
+      // раньше): держать дольше нельзя — кнопка залипнет на всё время сети.
+      chargeInFlightRef.current = false;
+    }
     try {
       const result = await arenaV2InviteCreate(selected.uid, requestIdRef.current);
       const stored: StoredInvite = { inviteId: result.inviteId, requestId: requestIdRef.current, selected, expiresAtMs: result.expiresAtMs };

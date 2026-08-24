@@ -951,6 +951,8 @@ function FlashcardsSwipeScreen() {
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
+  // Синхронный латч оплаты старта (см. комментарий внутри startSession).
+  const startChargeInFlightRef = useRef(false);
   /**
    * зачем: найденный черновик незавершённой тренировки. Держим НАГОТОВЕ, но не
    * применяем сами — иначе экран прыгает в сессию без спроса. Юзер решает
@@ -1902,16 +1904,26 @@ function FlashcardsSwipeScreen() {
       openFlashcardsPlusPaywall('flashcards_training_start');
       return;
     }
-    if (selectedSources.length === 0 || starting) return;
+    if (selectedSources.length === 0 || starting || startChargeInFlightRef.current) return;
+    // зачем: окно подтверждения траты убрано 2026-08-24, а раньше именно оно
+    // отбивало второй тап. starting тут не спасает — это состояние React, оно
+    // ставится только ПОСЛЕ await и не видно второму тапу в том же кадре.
+    // Латч закрывает щель между проверкой и setStarting(true).
+    startChargeInFlightRef.current = true;
     let energyCharged = false;
-    const energyResult = await confirmSwipeEnergy();
-    if (energyResult === 'cancelled') return;
-    if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
-    energyCharged = energyResult === 'spent';
-    draftRestoreAttemptedRef.current = true;
-    void hapticTap();
-    setStarting(true);
-    setLoadError('');
+    let energyResult: Awaited<ReturnType<typeof confirmSwipeEnergy>>;
+    try {
+      energyResult = await confirmSwipeEnergy();
+      if (energyResult === 'cancelled') return;
+      if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
+      energyCharged = energyResult === 'spent';
+      draftRestoreAttemptedRef.current = true;
+      void hapticTap();
+      setStarting(true);
+      setLoadError('');
+    } finally {
+      startChargeInFlightRef.current = false;
+    }
     try {
       const memory = await loadSwipeMemory(studyTarget);
       memoryRef.current = memory;

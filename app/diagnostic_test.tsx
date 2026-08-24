@@ -1016,6 +1016,11 @@ export default function DiagnosticTest() {
   const answersRef  = useRef<boolean[]>([]);
   const userNameRef = useRef<string>('');
   const diagnosticAttemptIdRef = useRef<string>(makeDiagnosticAttemptId());
+  // зачем: до 2026-08-24 второй тап по «Начать» отбивала модалка подтверждения
+  // траты (пока окно висело, повторный запрос возвращал отказ). Окно убрано по
+  // требованию владельца, а своей защиты у диагностики не было вовсе —
+  // синхронный латч закрывает окно между тапом и сменой фазы экрана.
+  const diagnosticChargeInFlightRef = useRef(false);
 
   const captureDiagnosticWrong = (question: Question, questionIndex: number, mode: string) => {
     if (studyTarget !== 'en' && studyTarget !== 'fr') return;
@@ -1082,7 +1087,9 @@ export default function DiagnosticTest() {
       return;
     }
     void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
-    {
+    if (diagnosticChargeInFlightRef.current) return;
+    diagnosticChargeInFlightRef.current = true;
+    try {
       const energyResult = await confirmSpendOne();
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') {
@@ -1090,6 +1097,8 @@ export default function DiagnosticTest() {
         setNoEnergy(true);
         return;
       }
+    } finally {
+      diagnosticChargeInFlightRef.current = false;
     }
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     setPhase('quiz');
@@ -1111,7 +1120,9 @@ export default function DiagnosticTest() {
       return;
     }
     void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
-    {
+    if (diagnosticChargeInFlightRef.current) return;
+    diagnosticChargeInFlightRef.current = true;
+    try {
       const energyResult = await confirmSpendOne();
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') {
@@ -1119,6 +1130,8 @@ export default function DiagnosticTest() {
         setNoEnergy(true);
         return;
       }
+    } finally {
+      diagnosticChargeInFlightRef.current = false;
     }
     setIdx(0);
     setScore(0);

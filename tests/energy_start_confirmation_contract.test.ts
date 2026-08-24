@@ -102,4 +102,39 @@ describe('старт платной активности: без окна под
     expect(flight).toContain('measuredTarget');
     expect(tokens).toContain('reducedMotionMs: 160');
   });
+  it('каждый платный тап защищён синхронным латчем от двойного нажатия', () => {
+    // Инцидент аудита 2026-08-24: убрав окно подтверждения, я снял вместе с ним
+    // и защиту от двойного тапа — раньше пока модалка висела, повторный запрос
+    // отбивался (pendingConfirmationRef). После её удаления в пяти экранах
+    // осталась щель: `if (busy) return` → `await confirmSpend*()` → `setBusy(true)`.
+    // Флаг состояния React ставится ПОСЛЕ await и не виден второму тапу в том же
+    // кадре, поэтому два быстрых нажатия списывали энергию дважды.
+    //
+    // Правильная защита — синхронный ref, взведённый ДО await. Сторож требует,
+    // чтобы у каждого платного тапа он был; экраны, где списание происходит один
+    // раз на монтирование (латч входа), в проверку не входят — там гонки нет.
+    const tapPaidScreens: { file: string; latch: string }[] = [
+      { file: 'app/arena_today.tsx', latch: 'startChargeInFlightRef' },
+      { file: 'app/arena_friend_duel.tsx', latch: 'chargeInFlightRef' },
+      { file: 'app/arena_invite.tsx', latch: 'chargeInFlightRef' },
+      { file: 'app/flashcards_swipe.tsx', latch: 'startChargeInFlightRef' },
+      { file: 'app/diagnostic_test.tsx', latch: 'diagnosticChargeInFlightRef' },
+      { file: 'app/max_call_prestart.tsx', latch: 'startInFlightRef' },
+    ];
+
+    for (const { file, latch } of tapPaidScreens) {
+      const source = read(file);
+      // Латч обязан быть синхронным ref, а не useState.
+      expect(source).toContain(`const ${latch} = useRef(false)`);
+      // Он читается как условие раннего выхода (до любого await).
+      const readsBeforeCharge =
+        source.includes(`|| ${latch}.current) return`)
+        || source.includes(`if (${latch}.current) return`);
+      expect(readsBeforeCharge).toBe(true);
+      // ...взводится...
+      expect(source).toContain(`${latch}.current = true`);
+      // ...и обязательно снимается, иначе кнопка залипнет навсегда.
+      expect(source).toContain(`${latch}.current = false`);
+    }
+  });
 });

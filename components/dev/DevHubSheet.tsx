@@ -43,7 +43,7 @@ import {
 } from './devToolRegistry';
 import LeagueResultModal from '../../app/LeagueResultModal';
 import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
-import { MOTION_SHOWCASE_ROUTE, SHOP_ROUTE } from '../../constants/devRoutes';
+import { CANCEL_FLOW_PREVIEW_ROUTE, MOTION_SHOWCASE_ROUTE, SHOP_ROUTE } from '../../constants/devRoutes';
 import { resolveCurrentPaywallRoute } from '../../app/paywall_navigation';
 
 export type DevHubSheetProps = Readonly<{
@@ -426,6 +426,14 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         return;
       case 'preview-league-rank-mismatch':
         openLeaguePreview('rank-mismatch');
+        return;
+      case 'open-cancel-flow':
+        // Витрина сценариев отписки — обычный маршрут; закрываем native Modal
+        // до смены route, иначе iOS оставит DEV-sheet поверх сцены.
+        requestClose(false, () => router.push(CANCEL_FLOW_PREVIEW_ROUTE as never));
+        return;
+      case 'open-manage-subscription':
+        requestClose(false, () => router.push({ pathname: '/manage_subscription', params: { source: 'dev_hub' } } as never));
         return;
       case 'grant-plus':
         void applyPlusOverride('granted');

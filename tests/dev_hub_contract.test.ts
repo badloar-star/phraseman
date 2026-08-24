@@ -56,6 +56,7 @@ describe('DEV center bottom sheet', () => {
     expect(registry).toContain("id: 'level-previews'");
     expect(registry).toContain("id: 'league'");
     expect(registry).toContain("id: 'subscription'");
+    expect(registry).toContain("id: 'cancel-flow'");
     expect(registry).toContain("action: 'run-onboarding'");
     expect(registry).toContain("action: 'open-motion-showcase'");
     expect(registry).toContain("action: 'preview-level-standard'");
@@ -89,6 +90,9 @@ describe('DEV center bottom sheet', () => {
       'level-previews',
       'league',
       'subscription',
+      // Витрина сценариев отписки (владелец, 24.08): шаг удержания при отмене
+      // подписки нельзя проверить без настоящей платной подписки.
+      'cancel-flow',
     ]);
     expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
     expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual(['motion-showcase']);

@@ -380,11 +380,7 @@ export default function ManageSubscription() {
           lessonsCompleted: hydration.lessonsCompleted || 0,
         }
       : null;
-    const offer = resolveSaveOffer({
-      reason: cancelReason,
-      canSwitchToYearly: isMonthly && !!yearlyPkg,
-      progress,
-    });
+    const offer = resolveSaveOffer({ reason: cancelReason, progress });
 
     if (offer === 'none') {
       void trackEvent('cancel_save_offer_skipped', { reason: cancelReason ?? 'unknown' });
@@ -395,17 +391,12 @@ export default function ManageSubscription() {
     setOfferProgress(progress);
     setSaveOffer(offer);
     setCancelStep('offer');
-  }, [cancelReason, cancelText, screenAccount, isMonthly, yearlyPkg, closeCancelSheet, openStoreCancel]);
+  }, [cancelReason, cancelText, screenAccount, closeCancelSheet, openStoreCancel]);
 
-  /** Человек принял удержание — что именно, зависит от вида предложения. */
+  /** Человек остаётся. Никаких тарифов и сумм — только продукт и поддержка. */
   const acceptSaveOffer = useCallback(() => {
     hapticTap();
     void trackEvent('cancel_save_offer_accepted', { reason: cancelReason ?? 'unknown', offer: saveOffer });
-    if (saveOffer === 'switch_yearly') {
-      closeCancelSheet();
-      void handleChangePlan();
-      return;
-    }
     if (saveOffer === 'support') {
       // ideas_submit не принимает параметров — ведём без них, чтобы ссылка не
       // притворялась, будто передаёт контекст обращения.
@@ -414,7 +405,7 @@ export default function ManageSubscription() {
       return;
     }
     closeCancelSheet();
-  }, [saveOffer, cancelReason, closeCancelSheet, handleChangePlan, router]);
+  }, [saveOffer, cancelReason, closeCancelSheet, router]);
 
   /** Отказ от удержания — уход в магазин остаётся живым и одним тапом. */
   const declineSaveOffer = useCallback(() => {
@@ -572,18 +563,14 @@ export default function ManageSubscription() {
           <View style={S.sheetOverlay}>
             <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
               <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
-                {saveOffer === 'switch_yearly'
-                  ? LP('Годовой выходит дешевле', 'Річний виходить дешевше', 'El plan anual sale más barato', 'O plano anual sai mais barato', 'Gói năm rẻ hơn', 'Paket tahunan lebih murah', 'Yıllık plan daha ucuz', 'Roczny wychodzi taniej')
-                  : saveOffer === 'support'
-                    ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
-                    : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
+                {saveOffer === 'support'
+                  ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
+                  : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
               </Text>
               <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
-                {saveOffer === 'switch_yearly'
-                  ? LP('В пересчёте на месяц годовая подписка стоит меньше месячной.', 'У перерахунку на місяць річна підписка коштує менше місячної.', 'Por mes, la suscripción anual cuesta menos que la mensual.', 'Por mês, a assinatura anual custa menos que a mensal.', 'Tính theo tháng, gói năm rẻ hơn gói tháng.', 'Per bulan, langganan tahunan lebih murah daripada bulanan.', 'Aylık hesapta yıllık abonelik aylıktan daha ucuz.', 'W przeliczeniu na miesiąc subskrypcja roczna kosztuje mniej niż miesięczna.')
-                  : saveOffer === 'support'
-                    ? LP('Мы читаем каждое обращение и чиним то, что мешает.', 'Ми читаємо кожне звернення і лагодимо те, що заважає.', 'Leemos cada mensaje y arreglamos lo que molesta.', 'Lemos cada mensagem e corrigimos o que atrapalha.', 'Chúng tôi đọc mọi phản hồi và sửa những gì gây cản trở.', 'Kami membaca setiap pesan dan memperbaiki yang mengganggu.', 'Her mesajı okuyoruz ve engel olan şeyi düzeltiyoruz.', 'Czytamy każde zgłoszenie i naprawiamy to, co przeszkadza.')
-                    : LP('Прогресс останется с тобой, но занятия придётся продолжать без Plus.', 'Прогрес залишиться з тобою, але заняття доведеться продовжувати без Plus.', 'Tu progreso se queda, pero seguirás sin Plus.', 'Seu progresso fica, mas você seguirá sem o Plus.', 'Tiến trình vẫn còn, nhưng bạn sẽ học tiếp mà không có Plus.', 'Progresmu tetap ada, tetapi kamu akan lanjut tanpa Plus.', 'İlerlemen kalır, ama Plus olmadan devam edeceksin.', 'Twoje postępy zostaną, ale będziesz uczyć się bez Plus.')}
+                {saveOffer === 'support'
+                  ? LP('Мы читаем каждое обращение и чиним то, что мешает.', 'Ми читаємо кожне звернення і лагодимо те, що заважає.', 'Leemos cada mensaje y arreglamos lo que molesta.', 'Lemos cada mensagem e corrigimos o que atrapalha.', 'Chúng tôi đọc mọi phản hồi và sửa những gì gây cản trở.', 'Kami membaca setiap pesan dan memperbaiki yang mengganggu.', 'Her mesajı okuyoruz ve engel olan şeyi düzeltiyoruz.', 'Czytamy każde zgłoszenie i naprawiamy to, co przeszkadza.')
+                  : LP('Прогресс останется с тобой, но занятия придётся продолжать без Plus.', 'Прогрес залишиться з тобою, але заняття доведеться продовжувати без Plus.', 'Tu progreso se queda, pero seguirás sin Plus.', 'Seu progresso fica, mas você seguirá sem o Plus.', 'Tiến trình vẫn còn, nhưng bạn sẽ học tiếp mà không có Plus.', 'Progresmu tetap ada, tetapi kamu akan lanjut tanpa Plus.', 'İlerlemen kalır, ama Plus olmadan devam edeceksin.', 'Twoje postępy zostaną, ale będziesz uczyć się bez Plus.')}
               </Text>
 
               {saveOffer === 'progress' && offerProgress && (
@@ -617,31 +604,16 @@ export default function ManageSubscription() {
 
               <TouchableOpacity
                 onPress={acceptSaveOffer}
-                disabled={changing}
                 accessibilityRole="button"
-                accessibilityState={{ disabled: changing, busy: changing }}
-                accessibilityLabel={saveOffer === 'switch_yearly'
-                  ? LP('Перейти на годовой', 'Перейти на річний', 'Cambiar al anual', 'Mudar para o anual', 'Chuyển sang gói năm', 'Beralih ke tahunan', 'Yıllığa geç', 'Przejdź na roczny')
-                  : saveOffer === 'support'
-                    ? LP('Написать нам', 'Написати нам', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
-                    : LP('Остаться с подпиской', 'Залишитися з підпискою', 'Mantener la suscripción', 'Manter a assinatura', 'Giữ gói đăng ký', 'Tetap berlangganan', 'Aboneliği sürdür', 'Zostaw subskrypcję')}
-                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg, opacity: changing ? 0.6 : 1 }]}
+                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg }]}
               >
-                {changing ? (
-                  <ActivityIndicator color={chrome.tc.ctaText} />
-                ) : (
-                  <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
-                    {saveOffer === 'switch_yearly'
-                      ? (yearlyPriceStr
-                          ? LP(`Перейти на годовой — ${yearlyPriceStr}`, `Перейти на річний — ${yearlyPriceStr}`, `Cambiar al anual — ${yearlyPriceStr}`, `Mudar para o anual — ${yearlyPriceStr}`, `Chuyển sang gói năm — ${yearlyPriceStr}`, `Beralih ke tahunan — ${yearlyPriceStr}`, `Yıllığa geç — ${yearlyPriceStr}`, `Przejdź na roczny — ${yearlyPriceStr}`)
-                          : LP('Перейти на годовой', 'Перейти на річний', 'Cambiar al anual', 'Mudar para o anual', 'Chuyển sang gói năm', 'Beralih ke tahunan', 'Yıllığa geç', 'Przejdź na roczny'))
-                      : saveOffer === 'support'
-                        ? LP('Написать нам', 'Написати нам', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
-                        : (isMax
-                            ? LP('Остаться в MAX', 'Залишитися в MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
-                            : LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus'))}
-                  </Text>
-                )}
+                <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
+                  {saveOffer === 'support'
+                    ? LP('Написать нам', 'Написати нам', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
+                    : (isMax
+                        ? LP('Остаться в MAX', 'Залишитися в MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
+                        : LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus'))}
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={declineSaveOffer} accessibilityRole="button" style={S.sheetSecondary}>

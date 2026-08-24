@@ -21,7 +21,10 @@ export type DevToolAction =
   | 'preview-league-stay'
   | 'preview-league-rank-mismatch'
   | 'grant-plus'
-  | 'revoke-plus';
+  | 'revoke-plus'
+  // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
+  | 'open-cancel-flow'
+  | 'open-manage-subscription';
 
 export type DevToolIcon =
   | 'call-outline'
@@ -41,7 +44,9 @@ export type DevToolIcon =
   | 'rocket-outline'
   | 'color-wand-outline'
   | 'card-outline'
-  | 'cart-outline';
+  | 'cart-outline'
+  | 'exit-outline'
+  | 'list-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -389,6 +394,39 @@ export const DEV_TOOL_SECTIONS = [
         icon: 'remove-circle-outline',
         testID: 'dev-plus-remove',
         tone: 'danger',
+      },
+    ],
+  },
+  // зачем (владелец, 24.08.2026): шаг удержания при отмене подписки нельзя
+  // проверить руками — нужна настоящая платная подписка, и опрос причины
+  // проходится заново ради каждой ветки. Здесь все сценарии в один тап.
+  // Цены в удержании НЕ участвуют (запрет владельца) — сценариев с тарифами тут нет.
+  {
+    id: 'cancel-flow',
+    order: 32,
+    title: 'Отписка',
+    icon: 'card-outline',
+    testID: 'dev-hub-section-cancel-flow',
+    tools: [
+      {
+        id: 'cancel-flow-preview',
+        order: 10,
+        title: 'Сценарии удержания',
+        detail: 'Все ветки шага отмены: прогресс, поддержка, тихий уход. Прогресс подменяется — обычный, новичок, рекордный, пусто. Есть сквозной прогон.',
+        actionLabel: 'Открыть',
+        action: 'open-cancel-flow',
+        icon: 'list-outline',
+        testID: 'dev-open-cancel-flow',
+      },
+      {
+        id: 'manage-subscription-live',
+        order: 20,
+        title: 'Живой экран подписки',
+        detail: 'Боевой экран управления подпиской целиком: опрос причины, шаг удержания, выход в стор.',
+        actionLabel: 'Открыть',
+        action: 'open-manage-subscription',
+        icon: 'exit-outline',
+        testID: 'dev-open-manage-subscription',
       },
     ],
   },

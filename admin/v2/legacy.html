@@ -11943,10 +11943,15 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   <div class="tab" onclick="switchTab('community-packs')" data-i18n-es="Comunidad">Community</div>
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
-  <!-- зачем 2026-08-23 (владелец): турниры выключены фулл, 32 из 33 турнирных
-       функций удалены с сервера. Вкладки убраны, иначе клик по ним отвечал бы
-       «функция не найдена» и выглядел как поломка админки. Разметка разделов
-       ниже сохранена — вернуть вкладки = вернуть эти две строки. -->
+  <!-- зачем 2026-08-24: вкладки турниров ВЕРНУТЫ. 23.08 их убрали потому, что
+       32 из 33 турнирных функций были удалены с сервера и клик отвечал бы
+       «функция не найдена». Сегодня проверено: на сервере снова 31 турнирная
+       функция, вся админская часть и игровая (tournamentJoin/Finalize/
+       ClaimReward) отвечают 403 (авторизация), а не отсутствием. Причина
+       скрытия отпала — без этих строк раздел существовал, но попасть в него из
+       меню было нельзя. -->
+  <div class="tab" onclick="switchTab('tournaments')" title="Задания турниров: генерация, проверка, публикация, расписание" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">🏆 Турниры</div>
+  <div class="tab" onclick="switchTab('tournament-pool')" title="Полный пул одобренных заданий внутри единой админки">🗂️ Пул турниров</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
   <div class="tab" onclick="switchTab('max-ops')" title="Сводная серверная диагностика звонков MAX без содержимого разговоров">Здоровье MAX</div>
@@ -50561,9 +50566,10 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     setTheme(currentTheme(), false);
     ensureThemeButton(); wrapToast(); observeErrors(); queueLayoutHeal();
     const hash = String(location.hash || '').replace(/^#/,'');
-    // зачем 2026-08-23: 'tournament-pool' убран — его функции удалены с сервера,
-    // прямая ссылка #tournament-pool открывала бы раздел, который отвечает ошибкой.
-    if (hash === 'beta-testers' || hash === 'site-admin') { try { window.switchTab?.(hash,{replaceHash:true}); } catch (_) {} }
+    // зачем 2026-08-24: 'tournament-pool' возвращён вместе с вкладками — его
+    // функции снова на сервере (проверено: отвечают 403, а не отсутствием),
+    // поэтому прямая ссылка #tournament-pool больше не ведёт в раздел с ошибкой.
+    if (hash === 'beta-testers' || hash === 'site-admin' || hash === 'tournament-pool') { try { window.switchTab?.(hash,{replaceHash:true}); } catch (_) {} }
   }
   document.addEventListener('pm:section-opened',(event) => {
     const tab = event.detail?.tab;

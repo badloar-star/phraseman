@@ -110,6 +110,27 @@ describe('plan content prefetch + release pack contract', () => {
     expect(registry).not.toMatch(/^import .*plan_content_(mitap|gavan|impuls|echo|voyazh)/m);
   });
 
+  it('НОВЫЙ юзер не качает контент вообще, СТАРЫЙ перестаёт в дату отключения', () => {
+    // Требование владельца 2026-08-24: «на телефонах новых юзеров он грузиться
+    // не должен вообще, а у старых отключится в нужный момент».
+    const facade = read('app/plan_content_remote_facade.ts');
+    // Право качать проверяется В САМОЙ загрузке, а не только «до сюда не дойти».
+    expect(facade).toContain('devicePackDownloadAllowed');
+    expect(facade).toMatch(/if \(!\(await devicePackDownloadAllowed\(\)\)\)/);
+    // Тем же резолвером, что и видимость раздела: not_grandfathered у новых,
+    // expired после даты отключения.
+    expect(facade).toContain('resolvePersonalPlanSunsetAccess');
+    // Часы монотонные — перевод времени назад не открывает доступ обратно.
+    expect(facade).toContain('readPersonalPlanSunsetEffectiveNow');
+    // Не смогли выяснить право — не качаем (fail closed).
+    expect(facade).toMatch(/catch \{[\s\S]{0,200}return false;/);
+  });
+
+  it('холодный старт без активного плана не делает ни одного запроса', () => {
+    const prefetch = read('app/plan_content_prefetch.ts');
+    expect(prefetch).toMatch(/const active = await readActivePlan\(\);\s*\n\s*if \(!active\) return;/);
+  });
+
   it('сервер — единственный источник контента дня после выпила', () => {
     // Мост обязан продолжать спрашивать реестр (совместимость API) и брать
     // верифицированный серверный день, иначе экраны останутся ни с чем.

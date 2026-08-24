@@ -22,6 +22,9 @@ import {
   getPlanContentRemoteRegistration,
   planContentRowUrl,
 } from './plan_content_remote_registration';
+import { readAnyPersonalPlanState } from './personal_plan_state';
+import { resolvePersonalPlanSunsetAccess } from './personal_plan_sunset';
+import { readPersonalPlanSunsetEffectiveNow } from './personal_plan_sunset_clock';
 import {
   recordPlanContentSource,
   telemetryFromRemoteDay,
@@ -44,9 +47,46 @@ let cachedCacheKey: string | null = null;
 let cachedCacheKeyAt = 0;
 const CACHE_KEY_TTL_MS = 5 * 60 * 1000;
 
+/**
+ * Имеет ли ЭТОТ телефон право качать контент планов.
+ *
+ * зачем (владелец 2026-08-24): «на телефонах новых юзеров он грузиться не должен
+ * вообще, а у старых отключится в нужный момент». Раньше это держалось только на
+ * том, что до экранов плана не добраться — но любая будущая точка вызова начала
+ * бы качать 25 МБ у человека, которому раздел не положен. Теперь право
+ * проверяется в самой загрузке, тем же резолвером, что и видимость раздела:
+ *   · новый юзер (плана до 20.08.2026 нет) → not_grandfathered → НЕ качаем;
+ *   · старый юзер после 20.10.2026 → expired → качать перестаём сами собой;
+ *   · старый юзер до этой даты → allowed → качаем.
+ * Часы монотонные (readPersonalPlanSunsetEffectiveNow), поэтому перевод времени
+ * назад не открывает доступ обратно.
+ */
+async function devicePackDownloadAllowed(): Promise<boolean> {
+  try {
+    const savedState = await readAnyPersonalPlanState();
+    const nowMs = await readPersonalPlanSunsetEffectiveNow();
+    return resolvePersonalPlanSunsetAccess({
+      hasOriginalFeatureAccess: true,
+      savedState,
+      nowMs,
+    }).status === 'allowed';
+  } catch {
+    // Не смогли выяснить право — не качаем: лишний трафик хуже пустого экрана,
+    // который и так прикрыт bundled/кэшем на разрешённых устройствах.
+    return false;
+  }
+}
+
 export async function ensurePlanContentPackReady(): Promise<string | null> {
   const reg = getPlanContentRemoteRegistration();
   if (!reg) return null;
+  if (!(await devicePackDownloadAllowed())) {
+    if (typeof __DEV__ !== 'undefined' && __DEV__) {
+      // eslint-disable-next-line no-console -- dev-only acceptance signal
+      console.log('[plan_pack] skip: device is not entitled to plan content');
+    }
+    return null;
+  }
   // Cheap memo: a successful manifest fetch a few minutes ago is good enough to
   // skip a network round-trip on every screen mount. ensureRemoteCoursePack is
   // itself deduplicated, so this is belt-and-suspenders.

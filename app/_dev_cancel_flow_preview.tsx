@@ -73,6 +73,8 @@ export default function DevCancelFlowPreview() {
   const [openedReason, setOpenedReason] = useState<string | null>(null);
   /** Сквозной прогон: индекс сценария, который показываем сейчас. */
   const [runIndex, setRunIndex] = useState<number | null>(null);
+  /** Показать, что в бою здесь был бы выход в системный экран магазина. */
+  const [storeNotice, setStoreNotice] = useState(false);
 
   const progress = PROGRESS_PRESETS[preset];
 
@@ -96,7 +98,6 @@ export default function DevCancelFlowPreview() {
   }, []);
 
   const stepNext = useCallback(() => {
-    hapticTap();
     setRunIndex((current) => {
       if (current === null) return null;
       const next = current + 1;
@@ -104,8 +105,42 @@ export default function DevCancelFlowPreview() {
     });
   }, [runnableScenarios.length]);
 
+  /**
+   * Главная кнопка — ровно то же, что в бою (acceptSaveOffer):
+   * «Написать нам» открывает настоящий экран обращения, «Остаться» закрывает шит.
+   *
+   * зачем (владелец, 24.08): в первой версии витрины ОБЕ кнопки просто закрывали
+   * шит — «Написать нам» никуда не вело, и проверить переход было нельзя, хотя
+   * витрина делалась именно для этого.
+   */
+  const acceptOffer = useCallback(() => {
+    hapticTap();
+    if (offer === 'support') {
+      setOpenedReason(null);
+      setRunIndex(null);
+      router.push('/ideas_submit');
+      return;
+    }
+    if (runIndex !== null) stepNext();
+    else closeSheet();
+  }, [offer, runIndex, router, stepNext, closeSheet]);
+
+  /**
+   * «Всё равно отменить» — в бою это уход в системный экран магазина. Открывать
+   * его из витрины нельзя (увёл бы из приложения и ничего не показал), поэтому
+   * говорим словами, что именно произошло бы.
+   */
+  const declineOffer = useCallback(() => {
+    hapticTap();
+    setStoreNotice(true);
+    if (runIndex !== null) stepNext();
+    else closeSheet();
+  }, [runIndex, stepNext, closeSheet]);
+
   const startRun = useCallback(() => {
     hapticTap();
+    // Пометка с прошлого прогона сбивала бы с толку: гасим на старте нового.
+    setStoreNotice(false);
     setOpenedReason(null);
     setRunIndex(runnableScenarios.length > 0 ? 0 : null);
   }, [runnableScenarios.length]);
@@ -122,6 +157,20 @@ export default function DevCancelFlowPreview() {
           <Text style={[S.lead, { color: chrome.textMuted }]}>
             Шаг удержания при отмене подписки. Причина решает, что увидит человек. Цены и тарифы здесь не участвуют.
           </Text>
+
+          {storeNotice && (
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Скрыть пометку об уходе в магазин"
+              onPress={() => { hapticTap(); setStoreNotice(false); }}
+              style={[S.notice, { backgroundColor: `${chrome.tc.heroAccent}1A` }]}
+            >
+              <Ionicons name="exit-outline" size={18} color={chrome.tc.heroAccent} />
+              <Text style={[S.noticeText, { color: chrome.textPrimary }]}>
+                В бою здесь открылся бы системный экран отмены подписки. Из витрины не открываем — нажми, чтобы скрыть.
+              </Text>
+            </TouchableOpacity>
+          )}
 
           <Text style={[S.groupLabel, { color: chrome.textMuted }]}>ПРОГРЕСС</Text>
           <View style={S.presetRow}>
@@ -153,7 +202,7 @@ export default function DevCancelFlowPreview() {
               <TouchableOpacity
                 key={scenario.key}
                 accessibilityRole="button"
-                onPress={() => { hapticTap(); setRunIndex(null); setOpenedReason(scenario.key); }}
+                onPress={() => { hapticTap(); setStoreNotice(false); setRunIndex(null); setOpenedReason(scenario.key); }}
                 style={[S.card, { backgroundColor: `${chrome.tc.heroAccent}10` }]}
               >
                 <View style={S.cardText}>
@@ -244,7 +293,7 @@ export default function DevCancelFlowPreview() {
 
               <TouchableOpacity
                 accessibilityRole="button"
-                onPress={runIndex !== null ? stepNext : closeSheet}
+                onPress={acceptOffer}
                 style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg }]}
               >
                 <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
@@ -258,7 +307,7 @@ export default function DevCancelFlowPreview() {
 
               <TouchableOpacity
                 accessibilityRole="button"
-                onPress={runIndex !== null ? stepNext : closeSheet}
+                onPress={declineOffer}
                 style={S.sheetSecondary}
               >
                 <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
@@ -280,6 +329,8 @@ const S = StyleSheet.create({
   title: { fontSize: 28, fontWeight: '700', letterSpacing: -0.5, marginTop: 8 },
   lead: { fontSize: 14, marginTop: 6, marginBottom: 22, lineHeight: 20 },
   groupLabel: { fontSize: 12, fontWeight: '700', letterSpacing: 1, marginTop: 18, marginBottom: 10 },
+  notice: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12 },
+  noticeText: { flex: 1, fontSize: 13, lineHeight: 18 },
   presetRow: { flexDirection: 'row', gap: 8 },
   preset: { flex: 1, borderRadius: 12, paddingVertical: 10, alignItems: 'center' },
   presetText: { fontSize: 13, fontWeight: '700' },

@@ -3054,11 +3054,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
               <View style={{ flexDirection: homeHeaderCompact ? 'column' : 'row', alignItems: homeHeaderCompact ? 'stretch' : 'center', gap: 0 }}>
-                {/* зачем: жемчужины, руны и энергия уехали отсюда наверх карточки
-                    «Уровень» (см. home-stats-currency-row) — владелец захотел один
-                    центр статуса вместо двух. Контейнер остался ради колокольчика
-                    на широком экране и Dev Hub; на узком там пусто, поэтому ряд
-                    не рендерим совсем — иначе в колонке висит пустой блок. */}
                 {/* зачем: жемчужины и руны уехали в строку заголовка «Быстрый
                     старт» (см. home-quickstart-currency-row). Контейнер остался
                     ради колокольчика на широком экране и Dev Hub; на узком там

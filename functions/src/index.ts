@@ -14,6 +14,18 @@ import {
 
 admin.initializeApp();
 
+// зачем: 24.08.2026 админка во всех блоках турниров показывала «сервер временно
+// не ответил». Код и экспорты были целы, функции числились в списке — но Cloud
+// Run не мог поднять их ревизии: «Quota exceeded for total allowable CPU per
+// project per region». Причина в том, что setGlobalOptions не вызывался нигде, и
+// из 441 функции только 52 задавали maxInstances сами. Остальным доставался
+// дефолт Cloud Run (до 1000 инстансов на функцию), поэтому суммарный потолок CPU
+// по региону выбирался целиком и новые ревизии падали на healthcheck.
+// Потолок общий и мягкий: функции, у которых есть свой maxInstances/minInstances
+// (включая тёплые auth_identity и maxVoiceMint), сохраняют своё значение —
+// глобальные опции действуют только там, где своё не задано.
+functions.setGlobalOptions({ maxInstances: 10 });
+
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resetWeeklyXp } = require("./reset_weekly_xp");

@@ -66,6 +66,13 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
     'pt-BR': `${model.minutes} min`, vi: `${model.minutes} phút`, id: `${model.minutes} mnt`,
     tr: `${model.minutes} dk`, pl: `${model.minutes} min`,
   });
+  // Один источник заголовка для обоих вариантов: hero ставит его слева от
+  // числа, compact — тише под числом.
+  const quotaTitle = triLang(lang, {
+    ru: 'Дневной запас MAX', uk: 'Денний запас MAX', es: 'Minutos MAX de hoy',
+    'pt-BR': 'Minutos MAX de hoje', vi: 'Số phút MAX hôm nay', id: 'Menit MAX hari ini',
+    tr: 'Bugünkü MAX süresi', pl: 'Dzisiejsze minuty MAX',
+  });
   const label = triLang(lang, {
     ru: `Осталось ${model.minutes} минут MAX сегодня из ${totalMinutes}`,
     uk: `Залишилося ${model.minutes} хвилин MAX сьогодні з ${totalMinutes}`,
@@ -79,23 +86,43 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
 
   return (
     <View testID={`max-daily-quota-${variant}`} accessible accessibilityLabel={label}>
-      <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
-        <Text
-          style={{ color: t.textMuted, fontSize: variant === 'hero' ? f.sub : f.label, fontWeight: '800' }}
-          maxFontSizeMultiplier={2}
-        >
-          {triLang(lang, {
-            ru: 'Дневной запас MAX', uk: 'Денний запас MAX', es: 'Minutos MAX de hoy',
-            'pt-BR': 'Minutos MAX de hoje', vi: 'Số phút MAX hôm nay', id: 'Menit MAX hari ini',
-            tr: 'Bugünkü MAX süresi', pl: 'Dzisiejsze minuty MAX',
-          })}
-        </Text>
+      {/* зачем (владелец 2026-08-24, «цифра справа вылазит»): в компактной
+          пилюле шапки звонка заголовок и число стояли в ОДИН ряд через
+          space-between внутри жёстких 132pt. Русское «Дневной запас MAX»
+          переносится на две строки, забирает всю ширину, и число выдавливалось
+          за правый край карточки — на скриншоте от «12 мин» видна только «1».
+          Компактный вариант теперь колонка: число ведёт (оно и есть ответ на
+          вопрос «сколько осталось»), заголовок тише под ним и переносится
+          свободно. Лечение именно вёрсткой: кегли остались прежние, сжатие
+          шрифта запрещено правилами владельца. Hero-вариант — прежний ряд:
+          там ширина карточки полная и переполнения не было. */}
+      <View
+        style={variant === 'hero'
+          ? { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }
+          : { flexDirection: 'column', alignItems: 'flex-start' }}
+      >
+        {variant === 'hero' ? (
+          <Text
+            style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}
+            maxFontSizeMultiplier={2}
+          >
+            {quotaTitle}
+          </Text>
+        ) : null}
         <Text
           style={{ color, fontSize: variant === 'hero' ? f.numMd + 2 : f.sub, fontWeight: '900', fontVariant: ['tabular-nums'] }}
           maxFontSizeMultiplier={2}
         >
           {minutesValue}
         </Text>
+        {variant === 'hero' ? null : (
+          <Text
+            style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', marginTop: 1 }}
+            maxFontSizeMultiplier={2}
+          >
+            {quotaTitle}
+          </Text>
+        )}
       </View>
       {/* зачем (аудит 2026-08-24): scaleY пульса растягивает бар из его
           собственного центра — если рамка трека держит overflow:'hidden' по

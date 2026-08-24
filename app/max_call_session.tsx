@@ -1174,7 +1174,12 @@ function MaxCallSessionContent() {
             )}
           </View>
           {dailyQuota && startedAtMs !== null ? (
-            <View style={{ width: 132 }}>
+            // зачем (владелец 2026-08-24, «цифра справа вылазит»): жёсткие
+            // width:132 не давали блоку ужаться под длинное имя персонажа и
+            // не давали расшириться под длинный заголовок — число упиралось в
+            // край. Диапазон вместо фикса: блок берёт нужное, но не больше
+            // 150pt, чтобы не съесть имя собеседника слева.
+            <View style={{ minWidth: 104, maxWidth: 150, flexShrink: 0 }}>
               <MaxDailyQuotaMeter
                 startRemainingSec={dailyQuota.startRemainingSec}
                 maxSec={dailyQuota.maxSec}

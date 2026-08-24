@@ -3,12 +3,12 @@
  * prune_achievement_images_in_storage.mjs
  *
  * зачем: когда достижение удаляется из app/achievements.ts, его арт остаётся
- * висеть и в Firebase Storage, и в constants/achievementImageUrlMap.generated.ts.
- * Это мёртвый вес: занимает место в бакете и раздувает карту URL, которая
- * целиком лежит в бандле приложения.
+ * висеть в Firebase Storage мёртвым весом.
  *
- * Скрипт сверяет карту URL с реальным списком достижений и удаляет всё, чего
- * в приложении больше нет: сначала объекты в Storage, затем строки в карте.
+ * Скрипт перечисляет объекты в бакете и удаляет те, которым в приложении больше
+ * не соответствует ни одно достижение. Карту URL править не нужно: адрес
+ * выводится из id формулой (constants/achievement_image_urls.ts), поэтому
+ * рассинхронизации «карта против бакета» больше не существует.
  *
  * Run:
  *   node scripts/prune_achievement_images_in_storage.mjs --dry   (только отчёт)
@@ -24,7 +24,6 @@ const ROOT = path.resolve(__dirname, '..');
 
 const BUCKET = 'phraseman-ea0b3.firebasestorage.app';
 const STORAGE_PREFIX = 'achievement-images';
-const MAP_TS = path.join(ROOT, 'constants', 'achievementImageUrlMap.generated.ts');
 
 const DRY = process.argv.includes('--dry');
 
@@ -38,12 +37,39 @@ if (LIVE.size < 50) {
   process.exit(1);
 }
 
-const mapSrc = fs.readFileSync(MAP_TS, 'utf8');
-const mapped = [...mapSrc.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"([^"]+)"/gm)].map((m) => m[1]);
-const orphans = mapped.filter((id) => !LIVE.has(id));
+const mintToken = () => {
+  const r = spawnSync('node', [path.join(__dirname, '_mint_fb_token.mjs')], { encoding: 'utf8' });
+  if (r.status !== 0 || !r.stdout?.trim()) throw new Error(`token mint failed: ${r.stderr || r.stdout}`);
+  return r.stdout.trim();
+};
+
+const token = mintToken();
+
+/** Что реально лежит в бакете под префиксом — источник правды о «сиротах». */
+async function listStoredIds() {
+  const ids = [];
+  let pageToken = '';
+  do {
+    const url = `https://storage.googleapis.com/storage/v1/b/${BUCKET}/o`
+      + `?prefix=${encodeURIComponent(STORAGE_PREFIX + '/')}&fields=items(name),nextPageToken`
+      + (pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : '');
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!res.ok) throw new Error(`list ${res.status}: ${(await res.text()).slice(0, 200)}`);
+    const json = await res.json();
+    for (const item of json.items || []) {
+      const m = item.name.match(/^achievement-images\/([a-z0-9_]+)\.webp$/);
+      if (m) ids.push(m[1]);
+    }
+    pageToken = json.nextPageToken || '';
+  } while (pageToken);
+  return ids;
+}
+
+const stored = await listStoredIds();
+const orphans = stored.filter((id) => !LIVE.has(id));
 
 console.log(`живых достижений: ${LIVE.size}`);
-console.log(`записей в карте URL: ${mapped.length}`);
+console.log(`объектов в бакете: ${stored.length}`);
 console.log(`осиротевших (арт есть, достижения нет): ${orphans.length}`);
 if (orphans.length) console.log('  ' + orphans.join(', '));
 
@@ -57,13 +83,6 @@ if (DRY) {
   process.exit(0);
 }
 
-const mintToken = () => {
-  const r = spawnSync('node', [path.join(__dirname, '_mint_fb_token.mjs')], { encoding: 'utf8' });
-  if (r.status !== 0 || !r.stdout?.trim()) throw new Error(`token mint failed: ${r.stderr || r.stdout}`);
-  return r.stdout.trim();
-};
-
-const token = mintToken();
 let deleted = 0;
 let missing = 0;
 let failed = 0;
@@ -83,17 +102,3 @@ for (const id of orphans) {
 }
 
 console.log(`\nStorage: удалено ${deleted}, отсутствовало ${missing}, ошибок ${failed}`);
-
-// Чистим карту URL: убираем строки осиротевших id.
-const orphanSet = new Set(orphans);
-const kept = mapSrc
-  .split('\n')
-  .filter((line) => {
-    const m = line.match(/^\s{2}"([a-z0-9_]+)":\s*"https:/);
-    return !(m && orphanSet.has(m[1]));
-  })
-  .join('\n')
-  .replace(/\/\/ Entries: \d+\./, `// Entries: ${mapped.length - orphans.length}.`);
-
-fs.writeFileSync(MAP_TS, kept, 'utf8');
-console.log(`Карта URL обновлена: ${mapped.length} -> ${mapped.length - orphans.length} записей`);

@@ -1,6 +1,8 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { AvatarAuraDef } from '../constants/avatar_auras';
 import type { SeasonAuraAsset } from './season_pass_track_config';
+import { isCoreAvatarAuraArt } from '../constants/avatar_aura_core_art';
+import { getAvatarAuraLayerUrl } from '../constants/avatar_aura_image_urls';
 
 type ApprovedAuraMotion = NonNullable<AvatarAuraDef['motion']>;
 type MotionRecipe = Omit<SeasonAuraAsset, 'baseSource' | 'flowSource' | 'particlesSource'>;
@@ -18,174 +20,117 @@ const MOTION_RECIPES: Readonly<Record<ApprovedAuraMotion, MotionRecipe>> = Objec
   pro: { pulseMs: 4000, baseSpinMs: 24000, flowSpinMs: 11000, particlesSpinMs: 7000, flowReverse: true, particlesReverse: false },
 });
 
-function auraAsset(
-  motion: ApprovedAuraMotion,
-  baseSource: ImageSourcePropType,
-  flowSource: ImageSourcePropType,
-  particlesSource: ImageSourcePropType,
-): SeasonAuraAsset {
-  return Object.freeze({ baseSource, flowSource, particlesSource, ...MOTION_RECIPES[motion] });
-}
-
-const APPROVED_AVATAR_AURA_ASSETS: Readonly<Record<string, SeasonAuraAsset>> = Object.freeze({
-  'aura-plus': auraAsset('plus',
+/**
+ * Ауры подписки живут в бандле: их видят сразу после оплаты, когда сети может
+ * не быть. Всё остальное стримится из Storage (см. avatar_aura_remote_art.ts).
+ */
+const CORE_AURA_LAYERS: Readonly<Record<string, readonly [ImageSourcePropType, ImageSourcePropType, ImageSourcePropType]>> = Object.freeze({
+  'aura-plus': [
     require('../assets/images/avatar-auras/aura-plus/base.webp'),
     require('../assets/images/avatar-auras/aura-plus/flow.webp'),
-    require('../assets/images/avatar-auras/aura-plus/accents.webp')),
-  'aura-pro': auraAsset('pro',
+    require('../assets/images/avatar-auras/aura-plus/accents.webp'),
+  ],
+  'aura-pro': [
     require('../assets/images/avatar-auras/aura-pro/base.webp'),
     require('../assets/images/avatar-auras/aura-pro/flow.webp'),
-    require('../assets/images/avatar-auras/aura-pro/accents.webp')),
-  'aura-aurora': auraAsset('calm',
-    require('../assets/images/avatar-auras/aura-aurora/base.webp'),
-    require('../assets/images/avatar-auras/aura-aurora/flow.webp'),
-    require('../assets/images/avatar-auras/aura-aurora/accents.webp')),
-  'aura-ember': auraAsset('energy',
-    require('../assets/images/avatar-auras/aura-ember/base.webp'),
-    require('../assets/images/avatar-auras/aura-ember/flow.webp'),
-    require('../assets/images/avatar-auras/aura-ember/accents.webp')),
-  'aura-mint': auraAsset('nature',
-    require('../assets/images/avatar-auras/aura-mint/base.webp'),
-    require('../assets/images/avatar-auras/aura-mint/flow.webp'),
-    require('../assets/images/avatar-auras/aura-mint/accents.webp')),
-  'aura-violet': auraAsset('tech',
-    require('../assets/images/avatar-auras/aura-violet/base.webp'),
-    require('../assets/images/avatar-auras/aura-violet/flow.webp'),
-    require('../assets/images/avatar-auras/aura-violet/accents.webp')),
-  'aura-coral': auraAsset('nature',
-    require('../assets/images/avatar-auras/aura-coral/base.webp'),
-    require('../assets/images/avatar-auras/aura-coral/flow.webp'),
-    require('../assets/images/avatar-auras/aura-coral/accents.webp')),
-  'aura-prism': auraAsset('playful',
-    require('../assets/images/avatar-auras/aura-prism/base.webp'),
-    require('../assets/images/avatar-auras/aura-prism/flow.webp'),
-    require('../assets/images/avatar-auras/aura-prism/accents.webp')),
-  'aura-lagoon': auraAsset('calm',
-    require('../assets/images/avatar-auras/aura-lagoon/base.webp'),
-    require('../assets/images/avatar-auras/aura-lagoon/flow.webp'),
-    require('../assets/images/avatar-auras/aura-lagoon/accents.webp')),
-  'aura-sunset': auraAsset('mystic',
-    require('../assets/images/avatar-auras/aura-sunset/base.webp'),
-    require('../assets/images/avatar-auras/aura-sunset/flow.webp'),
-    require('../assets/images/avatar-auras/aura-sunset/accents.webp')),
-  'aura-still-halo': auraAsset('calm',
-    require('../assets/images/avatar-auras/aura-still-halo/base.webp'),
-    require('../assets/images/avatar-auras/aura-still-halo/flow.webp'),
-    require('../assets/images/avatar-auras/aura-still-halo/accents.webp')),
-  'aura-moonline': auraAsset('calm',
-    require('../assets/images/avatar-auras/aura-moonline/base.webp'),
-    require('../assets/images/avatar-auras/aura-moonline/flow.webp'),
-    require('../assets/images/avatar-auras/aura-moonline/accents.webp')),
-  'aura-pearl-breath': auraAsset('calm',
-    require('../assets/images/avatar-auras/aura-pearl-breath/base.webp'),
-    require('../assets/images/avatar-auras/aura-pearl-breath/flow.webp'),
-    require('../assets/images/avatar-auras/aura-pearl-breath/accents.webp')),
-  'aura-frost-petal': auraAsset('nature',
-    require('../assets/images/avatar-auras/aura-frost-petal/base.webp'),
-    require('../assets/images/avatar-auras/aura-frost-petal/flow.webp'),
-    require('../assets/images/avatar-auras/aura-frost-petal/accents.webp')),
-  'aura-storm-vine': auraAsset('nature',
-    require('../assets/images/avatar-auras/aura-storm-vine/base.webp'),
-    require('../assets/images/avatar-auras/aura-storm-vine/flow.webp'),
-    require('../assets/images/avatar-auras/aura-storm-vine/accents.webp')),
-  'aura-sunflower-pulse': auraAsset('nature',
-    require('../assets/images/avatar-auras/aura-sunflower-pulse/base.webp'),
-    require('../assets/images/avatar-auras/aura-sunflower-pulse/flow.webp'),
-    require('../assets/images/avatar-auras/aura-sunflower-pulse/accents.webp')),
-  'aura-neon-circuit': auraAsset('tech',
-    require('../assets/images/avatar-auras/aura-neon-circuit/base.webp'),
-    require('../assets/images/avatar-auras/aura-neon-circuit/flow.webp'),
-    require('../assets/images/avatar-auras/aura-neon-circuit/accents.webp')),
-  'aura-data-ring': auraAsset('tech',
-    require('../assets/images/avatar-auras/aura-data-ring/base.webp'),
-    require('../assets/images/avatar-auras/aura-data-ring/flow.webp'),
-    require('../assets/images/avatar-auras/aura-data-ring/accents.webp')),
-  'aura-plasma-gear': auraAsset('tech',
-    require('../assets/images/avatar-auras/aura-plasma-gear/base.webp'),
-    require('../assets/images/avatar-auras/aura-plasma-gear/flow.webp'),
-    require('../assets/images/avatar-auras/aura-plasma-gear/accents.webp')),
-  'aura-holo-scan': auraAsset('tech',
-    require('../assets/images/avatar-auras/aura-holo-scan/base.webp'),
-    require('../assets/images/avatar-auras/aura-holo-scan/flow.webp'),
-    require('../assets/images/avatar-auras/aura-holo-scan/accents.webp')),
-  'aura-lunar-sigil': auraAsset('mystic',
-    require('../assets/images/avatar-auras/aura-lunar-sigil/base.webp'),
-    require('../assets/images/avatar-auras/aura-lunar-sigil/flow.webp'),
-    require('../assets/images/avatar-auras/aura-lunar-sigil/accents.webp')),
-  'aura-solar-eclipse': auraAsset('mystic',
-    require('../assets/images/avatar-auras/aura-solar-eclipse/base.webp'),
-    require('../assets/images/avatar-auras/aura-solar-eclipse/flow.webp'),
-    require('../assets/images/avatar-auras/aura-solar-eclipse/accents.webp')),
-  'aura-star-choir': auraAsset('mystic',
-    require('../assets/images/avatar-auras/aura-star-choir/base.webp'),
-    require('../assets/images/avatar-auras/aura-star-choir/flow.webp'),
-    require('../assets/images/avatar-auras/aura-star-choir/accents.webp')),
-  'aura-astral-eyes': auraAsset('mystic',
-    require('../assets/images/avatar-auras/aura-astral-eyes/base.webp'),
-    require('../assets/images/avatar-auras/aura-astral-eyes/flow.webp'),
-    require('../assets/images/avatar-auras/aura-astral-eyes/accents.webp')),
-  'aura-magma-rift': auraAsset('energy',
-    require('../assets/images/avatar-auras/aura-magma-rift/base.webp'),
-    require('../assets/images/avatar-auras/aura-magma-rift/flow.webp'),
-    require('../assets/images/avatar-auras/aura-magma-rift/accents.webp')),
-  'aura-thunder-fang': auraAsset('energy',
-    require('../assets/images/avatar-auras/aura-thunder-fang/base.webp'),
-    require('../assets/images/avatar-auras/aura-thunder-fang/flow.webp'),
-    require('../assets/images/avatar-auras/aura-thunder-fang/accents.webp')),
-  'aura-inferno-crown': auraAsset('energy',
-    require('../assets/images/avatar-auras/aura-inferno-crown/base.webp'),
-    require('../assets/images/avatar-auras/aura-inferno-crown/flow.webp'),
-    require('../assets/images/avatar-auras/aura-inferno-crown/accents.webp')),
-  'aura-acid-surge': auraAsset('energy',
-    require('../assets/images/avatar-auras/aura-acid-surge/base.webp'),
-    require('../assets/images/avatar-auras/aura-acid-surge/flow.webp'),
-    require('../assets/images/avatar-auras/aura-acid-surge/accents.webp')),
-  'aura-bubble-pop': auraAsset('playful',
-    require('../assets/images/avatar-auras/aura-bubble-pop/base.webp'),
-    require('../assets/images/avatar-auras/aura-bubble-pop/flow.webp'),
-    require('../assets/images/avatar-auras/aura-bubble-pop/accents.webp')),
-  'aura-pixel-party': auraAsset('playful',
-    require('../assets/images/avatar-auras/aura-pixel-party/base.webp'),
-    require('../assets/images/avatar-auras/aura-pixel-party/flow.webp'),
-    require('../assets/images/avatar-auras/aura-pixel-party/accents.webp')),
-  'aura-rainbow-loop': auraAsset('playful',
-    require('../assets/images/avatar-auras/aura-rainbow-loop/base.webp'),
-    require('../assets/images/avatar-auras/aura-rainbow-loop/flow.webp'),
-    require('../assets/images/avatar-auras/aura-rainbow-loop/accents.webp')),
-  'aura-gilded-laurel': auraAsset('luxury',
-    require('../assets/images/avatar-auras/aura-gilded-laurel/base.webp'),
-    require('../assets/images/avatar-auras/aura-gilded-laurel/flow.webp'),
-    require('../assets/images/avatar-auras/aura-gilded-laurel/accents.webp')),
-  'aura-diamond-orbit': auraAsset('luxury',
-    require('../assets/images/avatar-auras/aura-diamond-orbit/base.webp'),
-    require('../assets/images/avatar-auras/aura-diamond-orbit/flow.webp'),
-    require('../assets/images/avatar-auras/aura-diamond-orbit/accents.webp')),
-  'aura-velvet-gold': auraAsset('luxury',
-    require('../assets/images/avatar-auras/aura-velvet-gold/base.webp'),
-    require('../assets/images/avatar-auras/aura-velvet-gold/flow.webp'),
-    require('../assets/images/avatar-auras/aura-velvet-gold/accents.webp')),
-  'aura-regal-wings': auraAsset('luxury',
-    require('../assets/images/avatar-auras/aura-regal-wings/base.webp'),
-    require('../assets/images/avatar-auras/aura-regal-wings/flow.webp'),
-    require('../assets/images/avatar-auras/aura-regal-wings/accents.webp')),
-  'aura-void-thorn': auraAsset('dark',
-    require('../assets/images/avatar-auras/aura-void-thorn/base.webp'),
-    require('../assets/images/avatar-auras/aura-void-thorn/flow.webp'),
-    require('../assets/images/avatar-auras/aura-void-thorn/accents.webp')),
-  'aura-blood-moon': auraAsset('dark',
-    require('../assets/images/avatar-auras/aura-blood-moon/base.webp'),
-    require('../assets/images/avatar-auras/aura-blood-moon/flow.webp'),
-    require('../assets/images/avatar-auras/aura-blood-moon/accents.webp')),
-  'aura-obsidian-smoke': auraAsset('dark',
-    require('../assets/images/avatar-auras/aura-obsidian-smoke/base.webp'),
-    require('../assets/images/avatar-auras/aura-obsidian-smoke/flow.webp'),
-    require('../assets/images/avatar-auras/aura-obsidian-smoke/accents.webp')),
-  'aura-phantom-chain': auraAsset('dark',
-    require('../assets/images/avatar-auras/aura-phantom-chain/base.webp'),
-    require('../assets/images/avatar-auras/aura-phantom-chain/flow.webp'),
-    require('../assets/images/avatar-auras/aura-phantom-chain/accents.webp')),
+    require('../assets/images/avatar-auras/aura-pro/accents.webp'),
+  ],
 });
 
+/**
+ * Каталог одобренных аур: id → «характер» движения. Сами слои больше не
+ * перечисляются здесь по одному — путь слоя однозначно выводится из id
+ * (`<auraId>/<layer>.webp`), а источник выбирается в getApprovedAvatarAuraAsset:
+ * ядро из бандла, остальное по URL из карты Storage.
+ *
+ * зачем именно так: 111 из 117 слоёв (2.4 МБ) больше не едут в нативный бинарь
+ * (Фаза 4 «Бандл-диеты», решение владельца 2026-08-24), а каталог остался
+ * единственной точкой правды о составе аур.
+ */
+const APPROVED_AVATAR_AURA_MOTION: Readonly<Record<string, ApprovedAuraMotion>> = Object.freeze({
+  'aura-plus': 'plus',
+  'aura-pro': 'pro',
+  'aura-aurora': 'calm',
+  'aura-ember': 'energy',
+  'aura-mint': 'nature',
+  'aura-violet': 'tech',
+  'aura-coral': 'nature',
+  'aura-prism': 'playful',
+  'aura-lagoon': 'calm',
+  'aura-sunset': 'mystic',
+  'aura-still-halo': 'calm',
+  'aura-moonline': 'calm',
+  'aura-pearl-breath': 'calm',
+  'aura-frost-petal': 'nature',
+  'aura-storm-vine': 'nature',
+  'aura-sunflower-pulse': 'nature',
+  'aura-neon-circuit': 'tech',
+  'aura-data-ring': 'tech',
+  'aura-plasma-gear': 'tech',
+  'aura-holo-scan': 'tech',
+  'aura-lunar-sigil': 'mystic',
+  'aura-solar-eclipse': 'mystic',
+  'aura-star-choir': 'mystic',
+  'aura-astral-eyes': 'mystic',
+  'aura-magma-rift': 'energy',
+  'aura-thunder-fang': 'energy',
+  'aura-inferno-crown': 'energy',
+  'aura-acid-surge': 'energy',
+  'aura-bubble-pop': 'playful',
+  'aura-pixel-party': 'playful',
+  'aura-rainbow-loop': 'playful',
+  'aura-gilded-laurel': 'luxury',
+  'aura-diamond-orbit': 'luxury',
+  'aura-velvet-gold': 'luxury',
+  'aura-regal-wings': 'luxury',
+  'aura-void-thorn': 'dark',
+  'aura-blood-moon': 'dark',
+  'aura-obsidian-smoke': 'dark',
+  'aura-phantom-chain': 'dark',
+});
+
+/** Собранные ассеты кэшируем: объект стабилен по ссылке, memo не сбрасывается. */
+const assetCache = new Map<string, SeasonAuraAsset | undefined>();
+
+function buildAsset(auraId: string): SeasonAuraAsset | undefined {
+  const motion = APPROVED_AVATAR_AURA_MOTION[auraId];
+  if (!motion) return undefined;
+
+  if (isCoreAvatarAuraArt(auraId)) {
+    const layers = CORE_AURA_LAYERS[auraId];
+    if (!layers) return undefined;
+    return Object.freeze({
+      baseSource: layers[0],
+      flowSource: layers[1],
+      particlesSource: layers[2],
+      ...MOTION_RECIPES[motion],
+    });
+  }
+
+  const base = getAvatarAuraLayerUrl(auraId, 'base');
+  const flow = getAvatarAuraLayerUrl(auraId, 'flow');
+  const accents = getAvatarAuraLayerUrl(auraId, 'accents');
+  // Нет всех трёх слоёв в карте — ауры для рантайма не существует, и
+  // AvatarAura тихо рисует свой градиентный ореол вместо кольца.
+  if (!base || !flow || !accents) return undefined;
+
+  return Object.freeze({
+    baseSource: { uri: base },
+    flowSource: { uri: flow },
+    particlesSource: { uri: accents },
+    ...MOTION_RECIPES[motion],
+  });
+}
+
 export function getApprovedAvatarAuraAsset(auraId: string | null | undefined): SeasonAuraAsset | undefined {
-  return auraId ? APPROVED_AVATAR_AURA_ASSETS[auraId] : undefined;
+  if (!auraId) return undefined;
+  if (assetCache.has(auraId)) return assetCache.get(auraId);
+  const asset = buildAsset(auraId);
+  assetCache.set(auraId, asset);
+  return asset;
+}
+
+/** Все id одобренных аур — для прогрева и сторожей. */
+export function approvedAvatarAuraIds(): readonly string[] {
+  return Object.keys(APPROVED_AVATAR_AURA_MOTION);
 }

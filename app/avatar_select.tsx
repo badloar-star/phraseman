@@ -25,6 +25,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import AvatarView from '../components/AvatarView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
+import { prefetchAllAvatarAuraArt } from './avatar_aura_art_prefetch';
 import { pearlIconForTheme } from './coin_icons';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -453,6 +454,12 @@ export default function AvatarSelect() {
       setPreviewStoredAuraSelection(appSnapshotCustomization.storedAuraSelection);
     }
   }, [appSnapshotCustomization]);
+
+  // зачем: слои колец живут в Storage (Фаза 4 «Бандл-диеты», 2026-08-24), а
+  // здесь ауры и показываются, и примеряются. Греем каталог по входу на экран,
+  // а не по таймеру: к моменту примерки слои уже на диске. Повторно ничего не
+  // качается — прогретые URL помнятся в рамках сессии.
+  useEffect(() => { prefetchAllAvatarAuraArt(); }, []);
 
   useFocusEffect(useCallback(() => {
     if (Date.now() - lastValidationRef.current < REVALIDATE_TTL_MS) return undefined;

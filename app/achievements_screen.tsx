@@ -148,6 +148,7 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
 // сохранён, чтобы не трогать импорты в AchievementToast и других местах.
 export { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
 import { achievementImageSource } from '../constants/achievementImageAssets';
+import { prefetchAllAchievementArt } from './achievement_art_prefetch';
 
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
 export const ACHIEVEMENT_ICON: Record<string, any> = {
@@ -962,6 +963,11 @@ export default function AchievementsScreen() {
   const [devShowAllAchievements, setDevShowAllAchievements] = useState(false);
   const [shelfCategory, setShelfCategory] = useState<ShelfCategory>('all');
   const [shelfSelectedId, setShelfSelectedId] = useState<string | null>(null);
+
+  // зачем: статуэтки живут в Storage (Фаза 4 «Бандл-диеты», 2026-08-24) — здесь
+  // видна вся полка сразу, поэтому прогреваем её арт по входу на экран, а не по
+  // таймеру. Уже прогретое не перекачивается: URL помнятся в рамках сессии.
+  useEffect(() => { prefetchAllAchievementArt(); }, []);
 
   useEffect(() => {
     let cancelled = false;

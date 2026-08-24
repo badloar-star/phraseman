@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, AppState, Easing, View, type ViewStyle } from 'react-native';
 import { getAvatarAuraById } from '../constants/avatar_auras';
 import { getApprovedAvatarAuraAsset } from '../app/avatar_aura_assets';
@@ -35,7 +35,23 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const runtimeActive = isFocused && (ownerActive ?? true);
-  const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined && layeredAsset === undefined;
+
+  // зачем: слои колец приходят из Storage (Фаза 4 «Бандл-диеты», 2026-08-24).
+  // Пока базовый слой не отрисован — под ним живёт градиентный ореол ТОЙ ЖЕ
+  // геометрии в цвете ауры. Пользователь видит ауру с первого кадра, вёрстка не
+  // прыгает, спиннера нет; если слой так и не доехал, ореол остаётся навсегда
+  // и выглядит как задуманный вид, а не как поломка.
+  const [ringPainted, setRingPainted] = useState(false);
+  const handleRingLoaded = useCallback(() => setRingPainted(true), []);
+  // Ошибку не отличаем от ожидания: в обоих случаях показываем ореол.
+  const handleRingFailed = useCallback(() => setRingPainted(false), []);
+
+  // Смена ауры — снова ждём её слой, иначе новое кольцо унаследует «готово».
+  useEffect(() => { setRingPainted(false); }, [aura?.id]);
+
+  // Ореол крутится и когда ауры-картинки нет вовсе, и пока её слой едет.
+  const haloVisible = layeredAsset === undefined || !ringPainted;
+  const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined && haloVisible;
 
   useEffect(() => {
     if (!shouldAnimate) {
@@ -71,6 +87,17 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
     };
   }, [auraPhase, shouldAnimate]);
 
+  // Дыхание ореола-подложки: то же движение, что у обычного ореола, но глуше —
+  // подложка не должна спорить с кольцом в момент проявления.
+  const placeholderScale = auraPhase.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.98, 1.03, 0.98],
+  });
+  const placeholderOpacity = auraPhase.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.30, 0.46, 0.30],
+  });
+
   if (!aura || size < 36) {
     return (
       <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
@@ -96,6 +123,32 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
           style,
         ]}
       >
+        {/* Ореол-подложка: держит цвет ауры, пока слой кольца едет из Storage.
+            Живёт ПОД кольцом и не снимается до его отрисовки, поэтому подмена
+            идёт без «моргания» и без скачка вёрстки — геометрия одна и та же. */}
+        {haloVisible && (
+          <Animated.View
+            testID="avatar-aura-ring-placeholder"
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              width: outer,
+              height: outer,
+              borderRadius: outer / 2,
+              opacity: placeholderOpacity,
+              overflow: 'hidden',
+              transform: [{ scale: placeholderScale }],
+            }}
+          >
+            <ExpoLinearGradient
+              colors={[aura.softColor, aura.color, aura.color2 ?? aura.color, aura.color3 ?? aura.color]}
+              locations={[0, 0.34, 0.68, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Animated.View>
+        )}
         <View
           pointerEvents="none"
           style={{
@@ -110,6 +163,8 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
             asset={layeredAsset}
             size={ringSize}
             active={animate && runtimeActive}
+            onBaseLoaded={handleRingLoaded}
+            onBaseFailed={handleRingFailed}
           />
         </View>
         <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>

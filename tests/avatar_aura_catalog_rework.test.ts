@@ -112,20 +112,34 @@ describe('avatar aura catalog rework', () => {
 
 describe('AvatarAura compact renderer contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '../components/AvatarAura.tsx'), 'utf8');
+  // зачем (Фаза 4 «Бандл-диеты», 2026-08-24): у слоёв колец появилась
+  // ореол-подложка на время загрузки из Storage — это ЧЕТВЁРТЫЙ Animated.View,
+  // но он живёт в ветке layeredAsset, а не в компактном ореоле. Считаем слои
+  // именно компактной ветки, чтобы сторож по-прежнему ловил её раздувание.
+  const compactHalo = source.slice(source.indexOf('const outer = size + 8;'));
 
   it('uses compact independently animated soft-edge and rotating halo layers', () => {
     expect(source).toContain('const outer = size + 8;');
     expect(source).toContain("outputRange: ['0deg', '360deg']");
     expect(source).toContain('outputRange: [0.98, 1.04, 0.98]');
     expect(source).toContain('duration: 7200');
-    expect(source.match(/<Animated\.View/g)).toHaveLength(3);
+    expect(compactHalo.match(/<Animated\.View/g)).toHaveLength(3);
   });
 
   it('renders Pro satin texture inside the same compact layered halo', () => {
     expect(source).toContain("aura.material === 'satin'");
     expect(source).toContain('satinColors');
     expect(source).toContain('satinLocations');
-    expect(source.match(/<Animated\.View/g)).toHaveLength(3);
+    expect(compactHalo.match(/<Animated\.View/g)).toHaveLength(3);
+  });
+
+  it('держит РОВНО одну ореол-подложку под кольцом и не даёт ей стать спиннером', () => {
+    // Подложка обязана быть: без неё пользователь увидит пустоту, пока слой
+    // кольца едет из Storage. И ровно одна — иначе это уже «лишние кольца».
+    const beforeCompact = source.slice(0, source.indexOf('const outer = size + 8;'));
+    expect(beforeCompact.match(/<Animated\.View/g)).toHaveLength(1);
+    expect(source).toContain('avatar-aura-ring-placeholder');
+    expect(source).not.toMatch(/ActivityIndicator|Spinner/);
   });
 
   it('contains no decorative SVG, symbols, particles, or extra aura rings', () => {

@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 import { APPROVED_AVATAR_AURAS } from '../constants/avatar_auras';
+import { CORE_AVATAR_AURA_IDS } from '../constants/avatar_aura_core_art';
 import { APPROVED_AVATAR_AURA_LAYER_SHA256 } from './fixtures/avatar_aura_v2_sha256';
 
 const ROOT = path.join(__dirname, '..');
@@ -32,14 +33,31 @@ async function visibleBounds(file: string) {
 }
 
 describe('approved avatar aura static asset registry', () => {
-  it('contains 39 runtime entries and exactly 117 unique literal static requires', () => {
+  // зачем (Фаза 4 «Бандл-диеты», 2026-08-24): сторож ПЕРЕВЁРНУТ. Раньше он
+  // требовал ровно 117 static require; теперь 111 слоёв стримятся из Storage, и
+  // требование обратное — в бандле остаётся ТОЛЬКО «ядро» (ауры подписки).
+  // Геометрия и sha256 всех 117 файлов проверяются ниже без изменений.
+  it('бандлит ровно ядро (aura-plus/aura-pro), остальные слои — из Storage', () => {
     const source = fs.readFileSync(REGISTRY_FILE, 'utf8');
     const requires = [...source.matchAll(/require\('\.\.\/assets\/images\/avatar-auras\/([^']+\/(?:base|flow|accents)\.webp)'\)/g)]
       .map((match) => match[1]);
-    expect(requires).toHaveLength(117);
-    expect(new Set(requires).size).toBe(117);
+    expect(requires).toHaveLength(CORE_AVATAR_AURA_IDS.length * 3);
+    expect(new Set(requires).size).toBe(CORE_AVATAR_AURA_IDS.length * 3);
+    for (const coreId of CORE_AVATAR_AURA_IDS) {
+      expect(requires.filter((item) => item.startsWith(`${coreId}/`))).toHaveLength(3);
+    }
+    // Ни одного слоя не-ядровой ауры в бандле быть не должно.
     for (const aura of APPROVED_AVATAR_AURAS) {
-      expect(requires.filter((item) => item.startsWith(`${aura.id}/`))).toHaveLength(3);
+      if ((CORE_AVATAR_AURA_IDS as readonly string[]).includes(aura.id)) continue;
+      expect(requires.filter((item) => item.startsWith(`${aura.id}/`))).toHaveLength(0);
+    }
+  });
+
+  it('каждая одобренная аура имеет запись в каталоге движения', () => {
+    const source = fs.readFileSync(REGISTRY_FILE, 'utf8');
+    const catalogIds = [...source.matchAll(/^  '(aura-[a-z0-9-]+)':/gm)].map((match) => match[1]);
+    for (const aura of APPROVED_AVATAR_AURAS) {
+      expect(catalogIds).toContain(aura.id);
     }
   });
 

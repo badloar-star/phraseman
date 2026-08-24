@@ -67,6 +67,20 @@ service firebase.storage {
       allow write: if false;
     }
 
+    // Public, read-only avatar aura art (base/flow/accents webp per aura id).
+    // Та же модель, что у achievement-images: стрим по HTTPS + дисковый кэш,
+    // чтобы 117 слоёв колец (2.5 MB) не ехали в нативный бинарь. Слои заливаются
+    // БЕЗ пережатия, байт-в-байт с репозиторием — их sha256 и геометрию 320×320
+    // сторожит tests/avatar_aura_v2_assets.test.ts. Ауры подписки (aura-plus /
+    // aura-pro) остаются в бандле и работают офлайн
+    // (constants/avatar_aura_core_art.ts), поэтому пустого кольца не бывает.
+    // Заливает только scripts/upload_avatar_aura_images_to_storage.mjs (в обход правил).
+    match /aura-images/{allPaths=**} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+
     // Default deny for any other path.
     match /{allPaths=**} {
       allow read, write: if false;

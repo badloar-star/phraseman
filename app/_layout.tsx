@@ -145,7 +145,8 @@ import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_mon
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
-import { prefetchAchievementArtInBackground } from './achievement_art_prefetch';
+import { prefetchAchievementArtInBackground, prefetchAllAchievementArt } from './achievement_art_prefetch';
+import { prefetchAllAvatarAuraArt } from './avatar_aura_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
@@ -907,6 +908,18 @@ function GlobalLevelUpHandler() {
       sub.remove();
     };
   }, [drainLevelUpBonusOutbox, flushQueue]);
+
+  // зачем: слои аур живут в Storage (Фаза 4 «Бандл-диеты», 2026-08-24). За уровни
+  // выдают новые ауры, и подарок показывает кольцо СРАЗУ — поэтому прогреваем
+  // каталог по событию повышения уровня, задолго до открытия подарка. Награда
+  // за достижение может всплыть тостом в тот же момент, поэтому греем и полку.
+  useEffect(() => {
+    const sub = onAppEvent('level_up_pending', () => {
+      prefetchAllAvatarAuraArt();
+      prefetchAllAchievementArt();
+    });
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     const wasLevelSpinRoute = wasLevelSpinRouteRef.current;

@@ -1,8 +1,16 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, AppState, Easing, View } from 'react-native';
+import { Image as ExpoImage } from 'expo-image';
 import type { SeasonAuraAsset } from '../app/season_pass_track_config';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+
+// зачем: слои аур больше не все лежат в бандле — 111 из 117 приходят из Storage
+// (Фаза 4 «Бандл-диеты», 2026-08-24). RN-Image для удалённых URL полагается на
+// платформенный HTTP-кэш, который не гарантирует, что кольцо переживёт
+// перезапуск. expo-image с cachePolicy="memory-disk" даёт настоящий дисковый
+// кэш: скачали один раз — дальше кольцо рисуется офлайн и мгновенно.
+const AnimatedExpoImage = Animated.createAnimatedComponent(ExpoImage);
 
 export type SeasonAuraVisibleLayers = Readonly<{
   base?: boolean;
@@ -15,6 +23,14 @@ interface Props {
   size: number;
   active?: boolean;
   visibleLayers?: SeasonAuraVisibleLayers;
+  /**
+   * Базовый слой отрисован. Пока false, AvatarAura держит под кольцом свой
+   * градиентный ореол той же геометрии — пользователь видит ауру в её цвете,
+   * а не пустоту, и вёрстка не прыгает при подмене.
+   */
+  onBaseLoaded?: () => void;
+  /** Базовый слой не смог загрузиться — остаёмся на ореоле навсегда. */
+  onBaseFailed?: () => void;
 }
 
 function rotation(value: Animated.Value, reverse: boolean) {
@@ -24,7 +40,7 @@ function rotation(value: Animated.Value, reverse: boolean) {
   });
 }
 
-function SeasonAuraRing({ asset, size, active = true, visibleLayers = {} }: Props) {
+function SeasonAuraRing({ asset, size, active = true, visibleLayers = {}, onBaseLoaded, onBaseFailed }: Props) {
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const shouldAnimate = active && isFocused && !reduceMotion;
@@ -87,9 +103,14 @@ function SeasonAuraRing({ asset, size, active = true, visibleLayers = {} }: Prop
   return (
     <View style={{ width: size, height: size }} accessible={false}>
       {visibleLayers.base !== false ? (
-        <Animated.Image
+        <AnimatedExpoImage
           source={asset.baseSource}
-          resizeMode="contain"
+          contentFit="contain"
+          cachePolicy="memory-disk"
+          // Мягкое проявление поверх ореола — подмена не «моргает».
+          transition={180}
+          onLoad={onBaseLoaded}
+          onError={onBaseFailed}
           style={[
             layerStyle,
             {
@@ -100,9 +121,11 @@ function SeasonAuraRing({ asset, size, active = true, visibleLayers = {} }: Prop
         />
       ) : null}
       {visibleLayers.flow !== false ? (
-        <Animated.Image
+        <AnimatedExpoImage
           source={asset.flowSource}
-          resizeMode="contain"
+          contentFit="contain"
+          cachePolicy="memory-disk"
+          transition={180}
           style={[
             layerStyle,
             {
@@ -113,9 +136,11 @@ function SeasonAuraRing({ asset, size, active = true, visibleLayers = {} }: Prop
         />
       ) : null}
       {visibleLayers.particles !== false ? (
-        <Animated.Image
+        <AnimatedExpoImage
           source={asset.particlesSource}
-          resizeMode="contain"
+          contentFit="contain"
+          cachePolicy="memory-disk"
+          transition={180}
           style={[
             layerStyle,
             {

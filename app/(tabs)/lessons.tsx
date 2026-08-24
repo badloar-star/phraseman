@@ -2466,10 +2466,12 @@ export default function LessonsTab({
           featureRequiresPremium: personalPlanFeatureRequiresPremium,
           featureAccess: planAccess,
         });
-        let verifiedPlanAccess = premiumProbe === "allowed";
-        // зачем: в dev-обходе сетевая проверка премиума вернула бы false и
-        // увела на пейвол — раздел снова стал бы недоступен разработчику.
-        if (!verifiedPlanAccess && !isPersonalPlanDevBypassActive()) {
+        // зачем: та же правка, что в personal_plan_sunset_guard — в dev-обходе
+        // премиум СЧИТАЕТСЯ подтверждённым. Пропуск одной лишь сетевой проверки
+        // оставлял verifiedPlanAccess=false и уводил на пейвол.
+        let verifiedPlanAccess =
+          premiumProbe === "allowed" || isPersonalPlanDevBypassActive();
+        if (!verifiedPlanAccess) {
           invalidatePremiumCache();
           verifiedPlanAccess = await getVerifiedPremiumAccessStatus().catch(
             () => false,

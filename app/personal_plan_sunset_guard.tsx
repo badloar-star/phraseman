@@ -67,10 +67,12 @@ function usePersonalPlanSunsetGuard(
             featureRequiresPremium,
             featureAccess: originalFeatureAccess,
           });
-          let verifiedAccess = premiumProbe === 'allowed';
-          // зачем: в dev-обходе сетевую проверку премиума не запускаем вовсе —
-          // она вернула бы false и увела на пейвол, спрятав раздел от разработчика.
-          if (!verifiedAccess && !isPersonalPlanDevBypassActive()) {
+          // зачем: в dev-обходе премиум СЧИТАЕТСЯ подтверждённым, а не просто
+          // «не проверяем сетью». Прошлая версия пропускала сетевой запрос, но
+          // оставляла verifiedAccess=false, и ветка ниже всё равно уводила на
+          // пейвол — снаружи это выглядело как «жму Маршрут, открываются уроки».
+          let verifiedAccess = premiumProbe === 'allowed' || isPersonalPlanDevBypassActive();
+          if (!verifiedAccess) {
             invalidatePremiumCache();
             verifiedAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
           }

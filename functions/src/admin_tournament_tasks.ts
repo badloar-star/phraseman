@@ -1196,7 +1196,9 @@ export const adminTournamentPoolStats = onCall(
 // ── Расписание и включение слотов ───────────────────────────────────────────
 
 export const adminSetTournamentSchedule = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  // зачем 2026-08-24: зовёт загрузчик счётчиков ячеек (8000 заданий на холодном
+  // инстансе) — дефолтных 60 с / 256 МБ не хватает, см. adminTournamentPoolStats.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 120, memory: '512MiB' },
   async (request) => {
     // Включение слотов = запуск режима для живых игроков: право публикации.
     requirePermission(request, 'content.publish');
@@ -2714,7 +2716,9 @@ const MODE_MIX_DOC = 'modeMix';
  * сразу, чтобы настройка не расходилась с реальностью.
  */
 export const adminGetTournamentModeMix = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  // зачем 2026-08-24: зовёт загрузчик счётчиков ячеек (8000 заданий на холодном
+  // инстансе) — дефолтных 60 с / 256 МБ не хватает, см. adminTournamentPoolStats.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 120, memory: '512MiB' },
   async (request) => {
     requirePermission(request, 'content.read');
     onlyKeys(request.data, [], 'tournament_mix_invalid');

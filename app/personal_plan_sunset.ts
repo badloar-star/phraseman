@@ -1,3 +1,5 @@
+import { DEV_CONTENT_UNLOCK } from './config';
+
 export const PERSONAL_PLAN_GRANDFATHER_CUTOFF_AT_MS = Date.parse(
   '2026-08-20T23:59:59.999Z',
 );
@@ -24,6 +26,18 @@ export type PersonalPlanSunsetAccess = {
   grandfathered: boolean;
 };
 
+/**
+ * Dev-обход действует только на устройстве в dev-сборке. Под тестовым
+ * рантаймом он выключен: контрактные сторожа обязаны продолжать проверять
+ * НАСТОЯЩЕЕ правило заката («fails closed» без grandfather-права), иначе обход
+ * тихо снял бы защиту. Тот же приём определения тестового рантайма, что в
+ * cloud_sync.ts / firestore_leaderboard.ts.
+ */
+function devSunsetBypassActive(): boolean {
+  const underTestRuntime = typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
+  return DEV_CONTENT_UNLOCK && !underTestRuntime;
+}
+
 function validGrandfatheredCreatedAt(savedState: SavedPersonalPlanForSunset): boolean {
   if (
     !savedState
@@ -39,8 +53,18 @@ export function resolvePersonalPlanSunsetAccess(input: {
   savedState: SavedPersonalPlanForSunset;
   nowMs: number;
 }): PersonalPlanSunsetAccess {
+  // зачем (владелец 2026-08-24): в dev-сборке у разработчика нет «старого» плана,
+  // созданного до 20.08.2026, поэтому раздел «Планы» не показывался вообще и его
+  // нельзя было проверить. DEV_CONTENT_UNLOCK открывает раздел независимо от
+  // grandfather-права — но НЕ отключает сам закат: дата 20.10.2026 и видимый
+  // таймер работают ровно как у старых юзеров (ветка 'expired' стоит выше).
+  // Флаг гаснет в стор-сборке (EXPO_PUBLIC_STORE_RELEASE=1), поэтому в прод это
+  // не уедет — тот же щит, что у dev-разблокировки уроков.
   if (input.nowMs >= PERSONAL_PLAN_SUNSET_AT_MS) {
     return { status: 'expired', grandfathered: false };
+  }
+  if (devSunsetBypassActive()) {
+    return { status: 'allowed', grandfathered: true };
   }
   if (!Number.isFinite(input.nowMs) || !validGrandfatheredCreatedAt(input.savedState)) {
     return { status: 'not_grandfathered', grandfathered: false };

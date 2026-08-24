@@ -152,6 +152,9 @@ export function useAudio() {
     lastSpeakAtRef.current = now;
 
     const settings = getUserSettingsSnapshot();
+    // зачем: скорость применяется ТОЛЬКО к системному TTS. Готовые клипы озвучки
+    // играют в оригинальной длине (решение владельца 2026-08-24) — им safeRate
+    // не передаётся, см. playPhraseByText ниже и phrase_audio_player.ts.
     const safeRate = normalizeSpeechRate(rate ?? settings.speechRate);
     const language = opts?.language?.trim() || inferExpoSpeechLanguage(spokenText);
     // cards-2.0 (E13): voiceId — алиас voice для voice picker карточек. Явный
@@ -209,7 +212,6 @@ export function useAudio() {
           onDone: opts?.onDone,
           onError: fallbackOnce,
         },
-        safeRate,
       )
         .then((played) => {
           clearClipStartTimer();

@@ -26,11 +26,14 @@ type PlayCallbacks = {
   onError?: (e: Error) => void;
 };
 
-// Clamp the clip playback rate to the slider's usable range. Below ~0.8 the
-// pre-generated voice distorts/garbles; above ~1.3 it gets too fast for a
-// learner. The clips are recorded at a calm pace, so 1.0 already sounds natural.
-const MIN_CLIP_RATE = 0.8;
-const MAX_CLIP_RATE = 1.3;
+// зачем: решение владельца 2026-08-24 — готовые клипы озвучки играют ТОЛЬКО в
+// оригинальной длине; слайдер скорости из настроек на них не влияет вообще.
+// Клипы начитаны диктором в спокойном темпе, а слайдер откалиброван под машинный
+// expo-speech (там 1.0 = быстрая синтезированная речь). Одно и то же число в двух
+// шкалах давало двойной учёт: при 0.9 клип уже почти разогнан, при 1.3 живая
+// запись гнала на треть быстрее. Слайдер остаётся, но управляет только TTS-фолбэком.
+// Сторож: tests/phrase_clip_original_rate_contract.test.ts.
+const CLIP_RATE_LOCKED_TO_ORIGINAL = true;
 const DOWNLOAD_TIMEOUT_MS = 4500;
 const MIN_VALID_AUDIO_BYTES = 200;
 const CACHE_MAX_BYTES = 96 * 1024 * 1024;
@@ -46,11 +49,6 @@ const CACHE_SWEEP_INTERVAL_MS = 10 * 60 * 1000;
 // to cover a cold first-play + short buffering; the caller has its own longer
 // CLIP_START_TIMEOUT backstop.
 const CLIP_PLAY_WATCHDOG_MS = 3500;
-
-function clampPlaybackRate(rate: number | undefined): number {
-  if (typeof rate !== 'number' || !isFinite(rate)) return 1;
-  return Math.min(MAX_CLIP_RATE, Math.max(MIN_CLIP_RATE, rate));
-}
 
 let currentPlayer: AudioPlayer | null = null;
 // Слушатель playbackStatusUpdate текущего плеера. Держим ссылку, чтобы снять его
@@ -350,7 +348,6 @@ export function stopPhraseAudio(): void {
 export async function playPhraseByText(
   text: string,
   cb?: PlayCallbacks,
-  rate?: number,
 ): Promise<boolean> {
   const url = getPhraseAudioUrl(text);
   if (!url) return false;
@@ -394,14 +391,9 @@ export async function playPhraseByText(
     } catch {
       // ignore on runtimes without a settable volume
     }
-    // Honor the user's speed slider on the pre-generated clip, with pitch
-    // correction so a slowed-down voice stays natural (not deep/garbled).
-    try {
-      player.shouldCorrectPitch = true;
-      player.setPlaybackRate(clampPlaybackRate(rate), 'high');
-    } catch {
-      // older/edge runtimes: ignore, play at natural rate
-    }
+    // зачем: клип играет в оригинальной длине — setPlaybackRate здесь запрещён
+    // (см. CLIP_RATE_LOCKED_TO_ORIGINAL выше). Ничего не выставляем: дефолт
+    // нативного плеера — 1.0, то есть ровно та запись, которую начитал диктор.
 
     let finished = false;
     let started = false;

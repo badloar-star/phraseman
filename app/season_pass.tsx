@@ -11,7 +11,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type ListRenderItemInfo } from 'react-native';
+import { FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type ListRenderItemInfo } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
@@ -55,6 +55,7 @@ import PlusBadge from '../components/PlusBadge';
 import SeasonAuraRing from '../components/SeasonAuraRing';
 import SeasonGiftModal from '../components/SeasonGiftModal';
 import SeasonRewardInfoModal, { type SeasonRewardCardStatus } from '../components/SeasonRewardInfoModal';
+import SeasonPassBuyButton from '../components/SeasonPassBuyButton';
 import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
 import { seasonBuyPassOnServer } from './season_pass_server';
 import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
@@ -937,35 +938,25 @@ export default function SeasonPassScreen() {
           вообще не видел, что вход платный. Скрываем ТОЛЬКО у уже купивших. */}
       {!passBought && (
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingBottom: insets.bottom + 14, paddingTop: 10 }}>
-          <TouchableOpacity /* guard-ok: видимый текст «Открыть пропуск 250» внутри — реальный лейбл, не декоративная кнопка */
+          {/* зачем 2026-08-24 (владелец: «исправь кнопку купить пропуск, сделай
+              другой дизайн кнопки, сделай её анимированной»): плоская заливка
+              t.gold заменена на живой CTA — металлический градиент из токена
+              темы, бегущий блик, дыхание свечения, отклик на нажатие.
+              Вся вёрстка и анимации живут в SeasonPassBuyButton, чтобы экран
+              (уже 1000+ строк) не рос дальше. */}
+          <SeasonPassBuyButton
             testID="season-pass-buy"
-            activeOpacity={0.85}
             onPress={onBuyPress}
-            accessibilityRole="button"
-            accessibilityState={{ busy: buying }}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              borderRadius: 18,
-              paddingVertical: 16,
-              backgroundColor: t.gold,
-              opacity: buying ? 0.7 : 1,
-            }}
-          >
-            {buying ? <ActivityIndicator size="small" color={t.textOnGold} /> : null}
-            <Text style={{ color: t.textOnGold, fontSize: 16, fontWeight: '900' }}>
-              {triLang(lang, {
-                ru: 'Открыть пропуск', uk: 'Відкрити перепустку', es: 'Abrir pase', 'pt-BR': 'Abrir passe',
-                vi: 'Mở vé mùa', id: 'Buka pass', tr: 'Bileti aç', pl: 'Otwórz przepustkę',
-              })}
-            </Text>
-            <Image source={pearlIcon} style={{ width: 18, height: 18 }} resizeMode="contain" accessible={false} />
-            <Text style={{ color: t.textOnGold, fontSize: 16, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
-              {SEASON_PASS_PRICE_PEARLS}
-            </Text>
-          </TouchableOpacity>
+            busy={buying}
+            gold={t.gold}
+            textOnGold={t.textOnGold}
+            pearlIcon={pearlIcon}
+            price={SEASON_PASS_PRICE_PEARLS}
+            label={triLang(lang, {
+              ru: 'Открыть пропуск', uk: 'Відкрити перепустку', es: 'Abrir pase', 'pt-BR': 'Abrir passe',
+              vi: 'Mở vé mùa', id: 'Buka pass', tr: 'Bileti aç', pl: 'Otwórz przepustkę',
+            })}
+          />
         </View>
       )}
       {/* Подтверждение покупки: цена + что даёт, кнопки «Позже»/«Купить». */}

@@ -16,6 +16,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 
 export type RuneSourceKey = 'arena' | 'learning' | 'friends' | 'spin' | 'exchange' | 'other';
 
@@ -36,6 +41,13 @@ const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const SOURCE_KEYS: readonly RuneSourceKey[] = ['arena', 'learning', 'friends', 'spin', 'exchange', 'other'];
 
 let memoryStats: RunesServerStats | null = null;
+/**
+ * Токен поколения аккаунта, при котором снимок положен в память. Синхронный
+ * peek обязан проверять его: после смены аккаунта память ещё держит цифры
+ * старого uid, а первый кадр не должен мигать чужими пикселями (класс бага
+ * из памяти проекта: account_generation_stale_cache_class).
+ */
+let memoryStatsToken: AccountGenerationToken | null = null;
 
 function normalizeCount(value: unknown): number {
   const n = Math.trunc(Number(value));
@@ -73,6 +85,10 @@ function parseCachedStats(raw: string | null, uid: string): RunesServerStats | n
 
 /** Синхронный снимок для первого кадра. null = ещё не загружали в этой сессии. */
 export function peekRunesServerStats(): RunesServerStats | null {
+  if (!memoryStats || !memoryStatsToken) return null;
+  // Паттерн runes_system: токен валиден, пока поколение аккаунта не сменилось.
+  const stableId = memoryStatsToken.stableId?.trim();
+  if (!stableId || !isCurrentAccountGeneration(memoryStatsToken, stableId)) return null;
   return memoryStats;
 }
 
@@ -84,12 +100,17 @@ export async function loadRunesServerStats(): Promise<RunesServerStats | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return memoryStats;
   let uid: string | null = null;
   try { uid = await getCanonicalUserId(); } catch { uid = null; }
-  if (!uid) return memoryStats;
+  // зачем: без uid нельзя понять, чьи цифры в памяти — не показываем ничьи.
+  // Класс бага «чужие пиксели после смены аккаунта» (память проекта).
+  if (!uid) return null;
 
   if (!memoryStats || memoryStats.uid !== uid) {
     const cachedRaw = await AsyncStorage.getItem(CACHE_KEY).catch(() => null);
     const cached = parseCachedStats(cachedRaw, uid);
-    if (cached) memoryStats = cached;
+    if (cached) {
+      memoryStats = cached;
+      memoryStatsToken = captureAccountGeneration();
+    }
   }
   if (memoryStats && memoryStats.uid === uid
     && Date.now() - memoryStats.fetchedAtMs < CACHE_TTL_MS) {
@@ -110,10 +131,12 @@ export async function loadRunesServerStats(): Promise<RunesServerStats | null> {
       fetchedAtMs: Date.now(),
     });
     memoryStats = stats;
+    memoryStatsToken = captureAccountGeneration();
     AsyncStorage.setItem(CACHE_KEY, JSON.stringify(stats)).catch(() => {});
     return stats;
   } catch {
-    // Сеть недоступна — живём на последнем известном снимке, не занижаем до нуля.
-    return memoryStats;
+    // Сеть недоступна — живём на последнем известном снимке ЭТОГО аккаунта;
+    // снимок чужого uid (смена аккаунта + офлайн) не отдаём никогда.
+    return memoryStats && memoryStats.uid === uid ? memoryStats : null;
   }
 }

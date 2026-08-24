@@ -32,7 +32,12 @@ const LEGEND_CARD_NAME_GOLD = {
 } as const;
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
+import LeagueRulesSheet from '../components/LeagueRulesSheet';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { markFeatureIntroSeen, shouldShowFeatureIntro } from './feature_intro_registry';
+
+/** Ключ «объяснялку лиги уже показывали» на диске (по аккаунту). */
+const LEAGUE_RULES_INTRO_ID = 'league_rules_first_visit';
 import { glassFill } from '../components/GlassSurface';
 import {
   LEAGUES,
@@ -414,6 +419,13 @@ export default function ClubScreen() {
   }
   const initialLeagueState = initialLeagueStateRef.current;
 
+  // зачем (владелец, 2026-08-24): объяснялка лиги показывается сама ОДИН раз
+  // при первом заходе на экран и дальше — только по круглой кнопке «?».
+  // Флаг живёт в feature_intro_registry (диск, по аккаунту): переживает
+  // перезапуск, но новый игрок на том же устройстве объяснение увидит.
+  const [rulesSheetVisible, setRulesSheetVisible] = useState(false);
+  const rulesAutoShownRef = useRef(false);
+
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
@@ -487,6 +499,33 @@ export default function ClubScreen() {
     });
     return () => sub.remove();
   }, []);
+  // Автопоказ объяснялки при ПЕРВОМ заходе в лигу. Читаем диск, не Firestore —
+  // ноль стоимости. Ref гасит повтор при ре-рендере до ответа диска.
+  //
+  // зачем ждать pendingLeagueResult: если в первый заход висит модалка итогов
+  // недели, объяснялка не показывается (она уступает дорогу) — и пометить её
+  // «показанной» в этот момент значило бы сжечь единственный автопоказ впустую.
+  // Поэтому «показано» пишем ровно в тот кадр, когда шторка реально открылась.
+  // зачем (аудит 2026-08-24): visible гасится runtimeActive, но само состояние
+  // оставалось true — свернул приложение с открытым листом, вернулся, и лист
+  // выезжал сам, будто его позвали. Уход с экрана закрывает справку по-настоящему.
+  useEffect(() => {
+    if (!runtimeActive) setRulesSheetVisible(false);
+  }, [runtimeActive]);
+
+  useEffect(() => {
+    if (rulesAutoShownRef.current || pendingLeagueResult) return;
+    rulesAutoShownRef.current = true;
+    let cancelled = false;
+    void shouldShowFeatureIntro(LEAGUE_RULES_INTRO_ID).then((show) => {
+      if (cancelled || !show || !isMountedRef.current) return;
+      setRulesSheetVisible(true);
+      void markFeatureIntroSeen(LEAGUE_RULES_INTRO_ID);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [pendingLeagueResult]);
   useEffect(() => {
     const uids = group.map((m) => m.uid).filter((uid): uid is string => !!uid);
     if (uids.length === 0) {
@@ -1530,6 +1569,73 @@ export default function ClubScreen() {
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TapScale>
         <View style={{ flex: 1 }} />
+        {/* зачем (владелец, 24.08): «пусть ещё в разделе лига будет где-то
+            кнопка» открыть сезонный пропуск. Раньше единственный вход жил в
+            overflow-меню Арены («три точки»), и игрок, живущий в лиге, дорожку
+            наград просто не находил. Вход в Арене НЕ трогаем — это второй вход
+            в тот же экран, а не перенос.
+            Кнопка стоит ЛЕВЕЕ чипов бонуса и таймера намеренно: чипы —
+            изменчивое состояние недели, они появляются и исчезают, и навигация
+            рядом с ними «прыгала» бы по строке при каждом заходе. Иконка та же
+            (ribbon-outline), что у пункта «Сезон» в меню Арены — один экран
+            должен опознаваться одним знаком. */}
+        <TapScale
+          testID="league-season-pass-entry"
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Сезонный пропуск',
+            uk: 'Сезонна перепустка',
+            es: 'Pase de temporada',
+            'pt-BR': 'Passe de temporada',
+            vi: 'Vé mùa giải',
+            id: 'Season pass',
+            tr: 'Sezon bileti',
+            pl: 'Przepustka sezonowa',
+          })}
+          hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+          onPress={() => {
+            void hapticTap();
+            router.push('/season_pass' as any);
+          }}
+          style={{ width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', marginRight: 4 }}
+        >
+          <Ionicons name="ribbon-outline" size={22} color={t.gold} />
+        </TapScale>
+        {/* зачем (владелец, 2026-08-24): «кнопка вопрос кругленькая, её в правый
+            верхний угол» — вызывает объяснялку лиги в любой момент. Стоит правее
+            сезонного пропуска, то есть последней в ряду навигации: правила —
+            справка, а не действие, и не должна перехватывать взгляд у наград.
+            Круг заливается тоном (bgCard), без обводки — запрет владельца. */}
+        <TapScale
+          testID="league-rules-help"
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Как устроена лига',
+            uk: 'Як влаштована ліга',
+            es: 'Cómo funciona la liga',
+            'pt-BR': 'Como a liga funciona',
+            vi: 'Giải đấu hoạt động thế nào',
+            id: 'Cara kerja liga',
+            tr: 'Lig nasıl işler',
+            pl: 'Jak działa liga',
+          })}
+          hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+          onPress={() => {
+            void hapticTap();
+            setRulesSheetVisible(true);
+          }}
+          style={{
+            width: 36,
+            height: 36,
+            borderRadius: 18,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: t.bgCard,
+            marginRight: 8,
+          }}
+        >
+          <Ionicons name="help" size={20} color={sx.primary} />
+        </TapScale>
         {leagueBonusPct > 0 ? (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: hubChipFill.bonus, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
             <Ionicons name="flash" size={12} color={hubPalette.positive} />
@@ -1884,6 +1990,14 @@ export default function ClubScreen() {
         isCrownWinner={leagueChestOpenModal?.isCrownWinner}
         rewards={leagueChestOpenModal?.rewards}
         onClose={() => setLeagueChestOpenModal(null)}
+      />
+
+      {/* зачем: объяснялка уступает дорогу итогам недели — две шторки одновременно
+          перекрыли бы друг друга, а итог недели важнее справки и ждать не может. */}
+      <LeagueRulesSheet
+        visible={rulesSheetVisible && runtimeActive && !pendingLeagueResult}
+        onClose={() => setRulesSheetVisible(false)}
+        lang={lang}
       />
 
       {pendingLeagueResult && (

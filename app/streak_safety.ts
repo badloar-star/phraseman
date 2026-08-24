@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
 
 type ProgressMap = Record<string, string | null | undefined>;
 
@@ -33,6 +34,14 @@ const dateKeyOrNull = (value: unknown): string | null =>
  * реальный стрик синхронизируется по «более продвинутому» устройству, а не
  * теряется — обратное (брать более раннюю дату) чаще давало бы устаревший стрик.
  */
+/** Разница в календарных днях между двумя ключами YYYY-MM-DD (>= 0). */
+function daysBetweenDateKeys(earlier: string, later: string): number {
+  const a = Date.parse(`${earlier}T00:00:00.000Z`);
+  const b = Date.parse(`${later}T00:00:00.000Z`);
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return Number.POSITIVE_INFINITY;
+  return Math.round((b - a) / 86400000);
+}
+
 export function mergeStreakByActivityDate(
   local: StreakRestoreState,
   incoming: StreakRestoreState,
@@ -43,13 +52,36 @@ export function mergeStreakByActivityDate(
   const incomingDate = dateKeyOrNull(incoming.lastActive) ?? dateKeyOrNull(incoming.streakLast);
 
   if (localDate && incomingDate) {
-    if (incomingDate > localDate) return { streak: incomingStreak, lastActive: incomingDate };
-    if (localDate > incomingDate) return { streak: localStreak, lastActive: localDate };
-    return { streak: Math.max(localStreak, incomingStreak), lastActive: localDate };
+    if (incomingDate === localDate) {
+      return { streak: Math.max(localStreak, incomingStreak), lastActive: localDate };
+    }
+    const incomingIsFresher = incomingDate > localDate;
+    const fresherDate = incomingIsFresher ? incomingDate : localDate;
+    const stalerDate = incomingIsFresher ? localDate : incomingDate;
+    const fresherStreak = incomingIsFresher ? incomingStreak : localStreak;
+    const stalerStreak = incomingIsFresher ? localStreak : incomingStreak;
+
+    // зачем (аудит 2026-08-24): дату задаёт свежая сторона — так было и раньше.
+    // Но её СЧЁТЧИК брался вслепую, и цепочка на 50 дней обесценивалась до 1,
+    // когда второе устройство (переустановка, новый телефон, откатившийся кэш)
+    // отмечалось сегодня со стриком 1. Контракт владельца — «поздний синк не
+    // откатывает значения» (tests/owner_direction_runtime_contract.test.ts),
+    // XP и week_points уже сливаются максимумом.
+    //
+    // Максимум применим ТОЛЬКО когда даты соседние (разрыв в один день): тогда
+    // свежая сторона — продолжение той же цепочки, и её меньшее значение
+    // означает потерю данных, а не сгорание. При разрыве в два дня и больше
+    // цепочка обязана быть сгоревшей — там побеждает счётчик свежей стороны,
+    // иначе честно сгоревший стрик воскресал бы из устаревшего снимка облака.
+    const gapDays = daysBetweenDateKeys(stalerDate, fresherDate);
+    const streak = gapDays <= 1 ? Math.max(fresherStreak, stalerStreak) : fresherStreak;
+    return { streak, lastActive: fresherDate };
   }
 
-  if (incomingDate) return { streak: incomingStreak, lastActive: incomingDate };
-  if (localDate) return { streak: localStreak, lastActive: localDate };
+  // Одна сторона без даты: её счётчик не теряем — судить о сгорании нечем,
+  // а дату задаёт та сторона, у которой она есть.
+  if (incomingDate) return { streak: Math.max(localStreak, incomingStreak), lastActive: incomingDate };
+  if (localDate) return { streak: Math.max(localStreak, incomingStreak), lastActive: localDate };
   return { streak: Math.max(localStreak, incomingStreak), lastActive: null };
 }
 
@@ -61,7 +93,7 @@ function hasDevSeedFingerprint(data: ProgressMap): boolean {
     const login = JSON.parse(String(data.login_bonus_v1 ?? '{}'));
     if (parseIntSafe(login?.consecutiveDays) === 365) score += 1;
   } catch {}
-  return score >= 3;
+  return score >= 2;
 }
 
 function activeDatesFromStats(raw: unknown): string[] {
@@ -142,7 +174,7 @@ export async function repairDevSeededStreakInStorage(): Promise<number | null> {
   const current = parseIntSafe(data.streak_count);
   const normalized = normalizeDevSeededStreakValue(current, data);
   if (normalized !== current) {
-    await AsyncStorage.setItem('streak_count', String(normalized));
+    await persistLegacyPersonalProgressScalar(AsyncStorage, 'streak_count', normalized);
     return normalized;
   }
   return null;

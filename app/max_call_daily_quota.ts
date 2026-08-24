@@ -41,12 +41,33 @@ export function dailyQuotaView(remainingSec: number, maxSec: number): {
   minutes: number;
   fraction: number;
   tone: MaxDailyQuotaTone;
+  /**
+   * Целые секунды остатка — нужны ТОЛЬКО последней минуте (см. lastMinute).
+   * Выше минуты UI ими не пользуется: посекундная цифра на 20 минутах
+   * дёргалась бы каждую секунду и мешала разговору.
+   */
+  seconds: number;
+  /**
+   * зачем (аудит 2026-08-24): minutes считается floor'ом, поэтому последние
+   * 59 секунд разговора счётчик показывал «0 мин» — человек видит ноль, а
+   * разговор идёт. Читается как сломанный счётчик или обман. Флаг говорит
+   * экрану: здесь показывай секунды, а не минуты.
+   */
+  lastMinute: boolean;
 } {
   const safeMax = Math.max(1, maxSec);
   const safeRemaining = Math.max(0, Math.min(safeMax, remainingSec));
   const fraction = safeRemaining / safeMax;
   const tone: MaxDailyQuotaTone = safeRemaining <= 60 ? 'red' : fraction <= 0.15 ? 'amber' : 'normal';
-  return { minutes: Math.floor(safeRemaining / 60), fraction, tone };
+  const seconds = Math.ceil(safeRemaining);
+  return {
+    minutes: Math.floor(safeRemaining / 60),
+    fraction,
+    tone,
+    seconds,
+    // Ровно 60с — это ещё честная «1 мин», секунды нужны строго ниже минуты.
+    lastMinute: safeRemaining < 60,
+  };
 }
 
 /**

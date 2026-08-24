@@ -69,6 +69,23 @@ export const VOICE_RESERVE_EXPIRY_GRACE_SEC = 120;
 export const VOICE_DEAD_SESSION_SILENCE_MS = 75_000;
 
 /**
+ * Окно жизни резерва, по которому НЕ БЫЛО НИ ОДНОГО heartbeat (activatedAtMs=0).
+ *
+ * зачем (аудит 2026-08-24): такой резерв — это premint с пре-экрана, который
+ * ещё не стал звонком. Убийство приложения на пре-экране не даёт клиенту
+ * послать maxVoiceSessionEnd, и до этой правки заготовка блокировала новые
+ * звонки на 12 минут (cap 600с + grace 20с + expiry grace 120с), отвечая
+ * voice_session_active. Живому старту хватает секунд: минт → offer → SDP →
+ * первый heartbeat. 45с дают тройной запас на медленную сеть и при этом не
+ * дают брошенной заготовке держать линию.
+ *
+ * Два ПАРАЛЛЕЛЬНЫХ живых звонка по-прежнему невозможны: как только сессия
+ * активирована, окно становится VOICE_DEAD_SESSION_SILENCE_MS, а живой клиент
+ * шлёт heartbeat каждые ~30с.
+ */
+export const VOICE_UNACTIVATED_RESERVE_GRACE_MS = 45_000;
+
+/**
  * Начало часов разговора: момент активации (первый heartbeat), а до неё —
  * момент минта. Единственный источник для settle/watchdog/transfer.
  */
@@ -454,7 +471,24 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
     let staleRefundedSec = 0;
     if (activeSessionId && prevReserved > 0) {
       const lastHeartbeatMs = num(data.lastHeartbeatMs, num(data.sessionStartedAtMs));
-      const heartbeatFresh = now - lastHeartbeatMs <= VOICE_DEAD_SESSION_SILENCE_MS;
+      // зачем (аудит 2026-08-24, владелец «связь не установилась»): резерв
+      // пишет lastHeartbeatMs = now ПРИ СОЗДАНИИ, ещё до звонка. Поэтому
+      // premint, брошенный убийством приложения на пре-экране, выглядел живым
+      // и держал voice_session_active все 12 минут (cap+grace): в логах три
+      // отказа подряд, человек видел «Связь не установилась. Проверь интернет».
+      // Разделяем два случая по activatedAtMs (его ставит ПЕРВЫЙ heartbeat,
+      // то есть реальное «алло»):
+      //   • сессия активирована — окно прежнее, два живых звонка по-прежнему
+      //     невозможны (у живого heartbeat всегда свежее окна);
+      //   • резерв без единого heartbeat — живёт лишь короткое окно на долёт
+      //     offer/SDP; дальше это брошенная заготовка, и свежий минт её
+      //     вытесняет, дозакрыв нулём прожитых секунд (часы идут от активации,
+      //     см. voiceSessionClockStartMs — человек ничего не теряет).
+      const activated = num(data.activatedAtMs) > 0;
+      const silenceWindowMs = activated
+        ? VOICE_DEAD_SESSION_SILENCE_MS
+        : VOICE_UNACTIVATED_RESERVE_GRACE_MS;
+      const heartbeatFresh = now - lastHeartbeatMs <= silenceWindowMs;
       // Живая = резерв не истёк И heartbeat свежий. Истёкшая ИЛИ замолчавшая
       // дольше окна — мертва и вытесняется (см. VOICE_DEAD_SESSION_SILENCE_MS).
       if (num(data.expiresAtMs) > now && heartbeatFresh) {

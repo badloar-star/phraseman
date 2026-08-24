@@ -3,6 +3,7 @@ import {
   VOICE_CONFIRMED_GAP_WINDOW_SEC,
   VOICE_RESERVE_EXPIRY_GRACE_SEC,
   VOICE_DEAD_SESSION_SILENCE_MS,
+  VOICE_UNACTIVATED_RESERVE_GRACE_MS,
   confirmVoiceTrialMinted,
   legacyVoiceQuotaDocId,
   releaseVoiceReservation,
@@ -523,7 +524,10 @@ describe('reserveVoiceSeconds', () => {
   });
 
   it('rejects with failed-precondition while another live session holds the reserve', async () => {
-    const { db, state } = makeDb(liveDoc());
+    // activatedAtMs обязателен: ЖИВОЙ звонок — это тот, где прозвучало «алло»
+    // (первый heartbeat). Неактивированный резерв с 2026-08-24 вытесняется
+    // коротким окном — см. тесты про never-activated ниже.
+    const { db, state } = makeDb(liveDoc({ activatedAtMs: NOW - 100_000 }));
     const before = JSON.stringify(state.data);
 
     await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
@@ -552,7 +556,51 @@ describe('reserveVoiceSeconds', () => {
   });
 
   it('still rejects while the other session heartbeats within the window (no parallel calls)', async () => {
-    const { db } = makeDb(liveDoc({ lastHeartbeatMs: NOW - 70_000, expiresAtMs: NOW + 300_000 }));
+    const { db } = makeDb(liveDoc({
+      activatedAtMs: NOW - 100_000,
+      lastHeartbeatMs: NOW - 70_000,
+      expiresAtMs: NOW + 300_000,
+    }));
+    await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_active' });
+  });
+
+  // зачем (аудит 2026-08-24, жалоба владельца «связь не установилась»):
+  // резерв пишет lastHeartbeatMs = now ПРИ СОЗДАНИИ, ещё до звонка. Убийство
+  // приложения на пре-экране оставляло заготовку, которая выглядела живой и
+  // держала voice_session_active все 12 минут (в логах три отказа подряд).
+  // Неактивированный резерв (activatedAtMs = 0) обязан вытесняться коротким
+  // окном, даже когда его «heartbeat» формально свежий.
+  it('supersedes a never-activated reserve whose heartbeat is fresh but older than the start grace', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: 'killed-on-prestart',
+      sessionStartedAtMs: NOW - 50_000,
+      activatedAtMs: 0,
+      // Свежее окна мёртвой сессии (75с) — до фикса этого хватало для отказа.
+      lastHeartbeatMs: NOW - 50_000,
+      expiresAtMs: NOW + 300_000,
+    }));
+
+    const result = await reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW });
+
+    expect(result.reservedSec).toBe(320);
+    expect(result.staleRefundedSec).toBe(320); // звонка не было — весь резерв назад
+    expect(state.data).toMatchObject({ activeSessionId: 's2' });
+    expect(VOICE_UNACTIVATED_RESERVE_GRACE_MS).toBe(45_000);
+  });
+
+  // Обратная сторона того же фикса: пока заготовка МОЛОЖЕ стартового окна,
+  // она защищена — иначе два быстрых тапа «Позвонить» отобрали бы резерв
+  // у уже летящего offer/SDP.
+  it('protects a never-activated reserve that is still inside the start grace', async () => {
+    const { db } = makeDb(liveDoc({
+      activeSessionId: 'premint-in-flight',
+      sessionStartedAtMs: NOW - 10_000,
+      activatedAtMs: 0,
+      lastHeartbeatMs: NOW - 10_000,
+      expiresAtMs: NOW + 300_000,
+    }));
+
     await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
       .rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_active' });
   });

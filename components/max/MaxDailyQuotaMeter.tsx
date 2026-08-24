@@ -61,11 +61,20 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
   const totalMinutes = Math.floor(Math.max(0, maxSec) / 60);
   const color = model.tone === 'red' ? t.wrong : model.tone === 'amber' ? t.gold : t.accent;
   const barPulse = useTonePulse(model.tone, reduceMotion);
-  const minutesValue = triLang(lang, {
-    ru: `${model.minutes} мин`, uk: `${model.minutes} хв`, es: `${model.minutes} min`,
-    'pt-BR': `${model.minutes} min`, vi: `${model.minutes} phút`, id: `${model.minutes} mnt`,
-    tr: `${model.minutes} dk`, pl: `${model.minutes} min`,
-  });
+  // зачем (аудит 2026-08-24): последние 59 секунд floor давал «0 мин» — цифра
+  // врала, что минут не осталось, пока разговор ещё шёл. Ниже минуты
+  // показываем секунды: цифра остаётся честной до самого конца.
+  const minutesValue = model.lastMinute
+    ? triLang(lang, {
+      ru: `${model.seconds} сек`, uk: `${model.seconds} сек`, es: `${model.seconds} s`,
+      'pt-BR': `${model.seconds} s`, vi: `${model.seconds} giây`, id: `${model.seconds} dtk`,
+      tr: `${model.seconds} sn`, pl: `${model.seconds} s`,
+    })
+    : triLang(lang, {
+      ru: `${model.minutes} мин`, uk: `${model.minutes} хв`, es: `${model.minutes} min`,
+      'pt-BR': `${model.minutes} min`, vi: `${model.minutes} phút`, id: `${model.minutes} mnt`,
+      tr: `${model.minutes} dk`, pl: `${model.minutes} min`,
+    });
   // Один источник заголовка для обоих вариантов: hero ставит его слева от
   // числа, compact — тише под числом.
   const quotaTitle = triLang(lang, {
@@ -73,16 +82,29 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
     'pt-BR': 'Minutos MAX de hoje', vi: 'Số phút MAX hôm nay', id: 'Menit MAX hari ini',
     tr: 'Bugünkü MAX süresi', pl: 'Dzisiejsze minuty MAX',
   });
-  const label = triLang(lang, {
-    ru: `Осталось ${model.minutes} минут MAX сегодня из ${totalMinutes}`,
-    uk: `Залишилося ${model.minutes} хвилин MAX сьогодні з ${totalMinutes}`,
-    es: `Quedan ${model.minutes} minutos de MAX hoy de ${totalMinutes}`,
-    'pt-BR': `Restam ${model.minutes} minutos de MAX hoje de ${totalMinutes}`,
-    vi: `Hôm nay còn ${model.minutes} phút MAX trên ${totalMinutes}`,
-    id: `Sisa ${model.minutes} menit MAX hari ini dari ${totalMinutes}`,
-    tr: `Bugün ${totalMinutes} dakikadan ${model.minutes} MAX dakikası kaldı`,
-    pl: `Zostało dziś ${model.minutes} z ${totalMinutes} minut MAX`,
-  });
+  // Озвучка честна там же, где и цифра: на последней минуте диктовать
+  // «осталось 0 минут», пока человек говорит, — та же ложь, только вслух.
+  const label = model.lastMinute
+    ? triLang(lang, {
+      ru: `Осталось ${model.seconds} секунд MAX сегодня из ${totalMinutes} минут`,
+      uk: `Залишилося ${model.seconds} секунд MAX сьогодні з ${totalMinutes} хвилин`,
+      es: `Quedan ${model.seconds} segundos de MAX hoy de ${totalMinutes} minutos`,
+      'pt-BR': `Restam ${model.seconds} segundos de MAX hoje de ${totalMinutes} minutos`,
+      vi: `Hôm nay còn ${model.seconds} giây MAX trên ${totalMinutes} phút`,
+      id: `Sisa ${model.seconds} detik MAX hari ini dari ${totalMinutes} menit`,
+      tr: `Bugün ${totalMinutes} dakikadan ${model.seconds} saniye MAX kaldı`,
+      pl: `Zostało dziś ${model.seconds} sekund MAX z ${totalMinutes} minut`,
+    })
+    : triLang(lang, {
+      ru: `Осталось ${model.minutes} минут MAX сегодня из ${totalMinutes}`,
+      uk: `Залишилося ${model.minutes} хвилин MAX сьогодні з ${totalMinutes}`,
+      es: `Quedan ${model.minutes} minutos de MAX hoy de ${totalMinutes}`,
+      'pt-BR': `Restam ${model.minutes} minutos de MAX hoje de ${totalMinutes}`,
+      vi: `Hôm nay còn ${model.minutes} phút MAX trên ${totalMinutes}`,
+      id: `Sisa ${model.minutes} menit MAX hari ini dari ${totalMinutes}`,
+      tr: `Bugün ${totalMinutes} dakikadan ${model.minutes} MAX dakikası kaldı`,
+      pl: `Zostało dziś ${model.minutes} z ${totalMinutes} minut MAX`,
+    });
 
   return (
     <View testID={`max-daily-quota-${variant}`} accessible accessibilityLabel={label}>

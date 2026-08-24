@@ -23,9 +23,22 @@ describe('MAX daily quota projection', () => {
       minutes: 236,
       fraction: 0.9833333333333333,
       tone: 'normal',
+      seconds: 14_160,
+      lastMinute: false,
     });
     expect(dailyQuotaView(1_800, 14_400).tone).toBe('amber');
     expect(dailyQuotaView(60, 14_400).tone).toBe('red');
+  });
+
+  // зачем (аудит 2026-08-24): minutes считается floor'ом, поэтому последние
+  // 59 секунд экран показывал «0 мин», пока разговор ещё шёл — читалось как
+  // сломанный счётчик. Ниже минуты UI обязан показывать секунды.
+  it('flags the last minute so the meter can show seconds instead of a lying zero', () => {
+    // Ровно 60с — ещё честная «1 мин», секунды не нужны.
+    expect(dailyQuotaView(60, 14_400)).toMatchObject({ minutes: 1, lastMinute: false });
+    expect(dailyQuotaView(59, 14_400)).toMatchObject({ minutes: 0, seconds: 59, lastMinute: true });
+    expect(dailyQuotaView(1, 14_400)).toMatchObject({ seconds: 1, lastMinute: true });
+    expect(dailyQuotaView(0, 14_400)).toMatchObject({ seconds: 0, lastMinute: true });
   });
 
   it('accepts snake-case aliases without exceeding the maximum', () => {

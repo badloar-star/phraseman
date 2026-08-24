@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { ActivityIndicator, Animated, Pressable, Text, View } from 'react-native';
 
 import type { TutorBoardPayload } from '../../app/max_tutor_live_board_state';
+import { softShadow } from '../../constants/androidGlow';
 import { triLang, type Lang } from '../../constants/i18n';
 import { LUM } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -66,13 +67,18 @@ export function MaxTutorLiveBoard({ board, onListen, onDismiss, listenState, lan
         transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
       }}
     >
+      {/* зачем (аудит 2026-08-24): была рамка вокруг карточки — прямой запрет
+          владельца. Фон bgCard уже отделяет её от экрана звонка; вместо рамки
+          мягкая тень, чтобы карточка читалась приподнятой над сферой. */}
       <View
         style={{
           borderRadius: 22,
-          borderWidth: 1,
-          borderColor: t.border,
           backgroundColor: t.bgCard,
           padding: 16,
+          // softShadow, а не ручные shadow*: на Android elevation даёт квадрат
+          // вокруг скруглений, если фон непрозрачным не признан
+          // (constants/androidGlow.ts — известный класс бага проекта).
+          ...softShadow({ color: '#000', radius: 14, opacity: 0.22, offsetY: 6, backgroundColor: t.bgCard }),
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>

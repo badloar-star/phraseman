@@ -1233,7 +1233,10 @@ function MaxCallSessionContent() {
                 accessibilityLabel={failureActions.finish}
                 accessibilityHint={triLang(lang, { ru: 'Завершит разговор и откроет доступный разбор', uk: 'Завершить розмову й відкриє доступний розбір', es: 'Finaliza la conversación y abre la revisión disponible', 'pt-BR': 'Encerra a conversa e abre a revisão disponível', vi: 'Kết thúc cuộc trò chuyện và mở phần đánh giá hiện có', id: 'Mengakhiri percakapan dan membuka ulasan yang tersedia', tr: 'Konuşmayı bitirir ve mevcut değerlendirmeyi açar', pl: 'Zakończy rozmowę i otworzy dostępne podsumowanie' })}
                 onPress={finishFailedCall}
-                style={{ minHeight: 54, borderRadius: 18, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}
+                // зачем (аудит 2026-08-24): была рамка вокруг кнопки — прямой
+                // запрет владельца. Вторичность теперь несёт тон подложки:
+                // та же геометрия, тише по весу.
+                style={{ minHeight: 54, borderRadius: 18, backgroundColor: t.bgSurface2, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {failureActions.finish}
@@ -1328,7 +1331,12 @@ function MaxCallSessionContent() {
         >
           <TouchableOpacity
             testID="max-call-mute-button"
-            accessibilityRole="button"
+            // зачем (аудит 2026-08-24): была роль button без состояния — VoiceOver
+            // читал «Выключить микрофон», но не сообщал, включён он сейчас или
+            // нет. Микрофон это переключатель: роль switch + checked озвучивают
+            // текущее положение, а не только будущее действие.
+            accessibilityRole="switch"
+            accessibilityState={{ checked: muted }}
             accessibilityLabel={muted
               ? triLang(lang, { ru: 'Включить микрофон', uk: 'Увімкнути мікрофон', es: 'Activar micrófono', 'pt-BR': 'Ativar microfone', vi: 'Bật micrô', id: 'Aktifkan mikrofon', tr: 'Mikrofonu aç', pl: 'Włącz mikrofon' })
               : triLang(lang, { ru: 'Выключить микрофон', uk: 'Вимкнути мікрофон', es: 'Silenciar micrófono', 'pt-BR': 'Silenciar microfone', vi: 'Tắt micrô', id: 'Bisukan mikrofon', tr: 'Mikrofonu kapat', pl: 'Wycisz mikrofon' })}
@@ -1364,7 +1372,13 @@ function MaxCallSessionContent() {
           </TouchableOpacity>
           <TouchableOpacity
             testID="max-call-captions-button"
+            // Роль button верна — кнопка ОТКРЫВАЕТ шит, а не переключает
+            // субтитры. Но её вид уже зависит от ccEnabled (цвет/подложка), и
+            // без value незрячий не знал бы, показаны субтитры сейчас или нет.
             accessibilityRole="button"
+            accessibilityValue={{ text: ccEnabled
+              ? triLang(lang, { ru: 'субтитры показаны', uk: 'субтитри показані', es: 'subtítulos visibles', 'pt-BR': 'legendas visíveis', vi: 'phụ đề đang hiện', id: 'teks tampil', tr: 'altyazılar açık', pl: 'napisy widoczne' })
+              : triLang(lang, { ru: 'субтитры скрыты', uk: 'субтитри приховані', es: 'subtítulos ocultos', 'pt-BR': 'legendas ocultas', vi: 'phụ đề đang ẩn', id: 'teks disembunyikan', tr: 'altyazılar kapalı', pl: 'napisy ukryte' }) }}
             accessibilityLabel={triLang(lang, {
               ru: 'Открыть текст разговора', uk: 'Відкрити текст розмови', es: 'Abrir transcripción',
               'pt-BR': 'Abrir transcrição', vi: 'Mở bản ghi', id: 'Buka transkrip',

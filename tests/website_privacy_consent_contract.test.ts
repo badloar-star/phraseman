@@ -43,13 +43,17 @@ describe('website privacy consent contract', () => {
   it('declares a purpose string for every sensitive API linked into the iOS build', () => {
     const infoPlist = JSON.parse(read('app.json')).expo.ios.infoPlist;
 
-    // Камера — от react-native-webrtc; микрофон и распознавание речи — от
-    // произношения и MAX-звонка; медиатека — от сохранения результатов.
+    // Камера — от react-native-webrtc/expo-modules-core; микрофон и распознавание
+    // речи — от произношения и MAX-звонка; медиатека — от expo-file-system/
+    // expo-image и сохранения результатов; движение — от sensor-модуля внутри
+    // react-native-reanimated (useAnimatedSensor в приложении не вызывается,
+    // но CMMotionManager всё равно слинкован).
     const required = [
       'NSCameraUsageDescription',
       'NSMicrophoneUsageDescription',
       'NSSpeechRecognitionUsageDescription',
       'NSPhotoLibraryUsageDescription',
+      'NSMotionUsageDescription',
     ];
 
     for (const key of required) {

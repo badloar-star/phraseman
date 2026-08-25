@@ -30,6 +30,18 @@ import { ES_EPISODE_01_SESSION_14_PHRASES } from './es_episode_01_session_14_phr
  * Без newVocabulary source требует ровно 15 фраз (не 1-15) — все 15
  * написаны. distractorAuthorship: 'manual' снижает минимум дистракторов
  * с 3 до 2.
+ *
+ * зачем sessionKindOverride: 'phrases' ОБЯЗАТЕЛЕН (владелец, 2026-08-25,
+ * найдено при аудите после сессии 17): lesson1SessionChoreographyV1 без
+ * явного override молча берёт kind из АНГЛИЙСКОЙ карты
+ * EPISODE_01_SESSION_MAP_V1 по тому же номеру сессии. Английская сессия 14 —
+ * 'words_then_phrases' («Где я и где ты»), и без override это давало
+ * practiceSteps('words_then_phrases') → legacyWordsThenPhrasesSteps() —
+ * ровно 5 УНИКАЛЬНЫХ фраз (sourcePhraseIndex 0-4) на 17 карточек, вместо
+ * всех 15 написанных. 10 из 15 фраз (включая Es igual, Somos de acuerdo,
+ * No somos de acuerdo и все gender/negation-варианты) молча никогда не
+ * показывались ученику. С override сборка использует phraseSteps() и все
+ * 15 фраз.
  */
 export const ES_EPISODE_01_SESSION_14_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -38,6 +50,7 @@ export const ES_EPISODE_01_SESSION_14_SOURCE: SessionSource = Object.freeze({
   requiredSessionOrdinal: 14,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
   generationInputFingerprint: 'owner-word-first-es-e01-s14-v1',
+  sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
   title: ES_EPISODE_01_SESSION_14_WORD_FIRST_TITLE,
   summary: ES_EPISODE_01_SESSION_14_WORD_FIRST_SUMMARY,

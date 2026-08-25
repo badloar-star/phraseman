@@ -698,6 +698,24 @@ export async function resumePendingAccountDeleteLocalExit(): Promise<boolean> {
     if (!authReady) return false;
   }
 
+  // зачем: ИНЦИДЕНТ 2026-08-25 — замок от удаления ДРУГОГО аккаунта (23.08,
+  // фаза local_cleared, пережил в Keychain) при следующем запуске «дожал»
+  // enqueue удаления под СВЕЖЕЙ Google-сессией владельца. Сервер подменил цель
+  // на живой якорь — живой аккаунт ушёл в очередь на стирание и был отключён.
+  // Правило класса: замок удаления имеет право действовать ТОЛЬКО против той
+  // identity, для которой создан. Чужая (несовпадающая) провайдер-сессия не
+  // продолжает чужое удаление, не выходит из аккаунта и не трогает локальные
+  // данные — замок остаётся сторожить вход СВОЕГО удалённого провайдера, а
+  // серверные tombstone'ы авторитетно защищают всё остальное.
+  if (
+    auth.currentUser
+    && auth.currentUser.isAnonymous === false
+    && auth.currentUser.uid !== pendingDelete.providerUid
+  ) {
+    logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'resume' });
+    return true;
+  }
+
   await beginEntitlementSafeAccountTransition();
   await Promise.all([
     waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
@@ -1416,14 +1434,30 @@ async function runSignInWithProvider(
     captureAuthSignInFailure(provider, 'guard', 'account_delete_guard_unavailable');
     return { result: 'error', error: 'account_delete_guard_unavailable' };
   }
+  // зачем: ИНЦИДЕНТ 2026-08-25 — замок удаления имеет право действовать только
+  // против СВОЕЙ identity. Чужая (несовпадающая по uid) провайдер-сессия не
+  // должна продолжать чужое удаление: раньше это выходило из невиновного
+  // аккаунта, стирало его локальные данные и дожимало enqueue, который сервер
+  // подменял на живой якорь. Анонимная сессия с фазой prepared — это
+  // собственное недоделанное удаление этого устройства, его завершаем как раньше.
+  const preCredentialLockOwnsSession =
+    pendingDeleteBeforeCredential != null
+    && (
+      auth.currentUser?.isAnonymous !== false
+      || auth.currentUser?.uid === pendingDeleteBeforeCredential.providerUid
+    );
   if (
     pendingDeleteBeforeCredential
+    && preCredentialLockOwnsSession
     && (
       pendingDeleteBeforeCredential.phase === 'prepared'
       || auth.currentUser?.isAnonymous === false
     )
   ) {
     return handleAccountDeletePendingAuth(provider, pendingDeleteBeforeCredential);
+  }
+  if (pendingDeleteBeforeCredential && !preCredentialLockOwnsSession) {
+    logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'pre_credential', provider });
   }
 
   // A pending guard on an anonymous session may belong to the provider selected
@@ -1570,8 +1604,16 @@ async function runSignInWithProvider(
     captureAuthSignInFailure(provider, 'guard', 'account_delete_guard_unavailable');
     return { result: 'error', error: 'account_delete_guard_unavailable' };
   }
-  if (pendingDelete) {
+  // зачем: ИНЦИДЕНТ 2026-08-25 — деструктивный ход по замку разрешён только
+  // когда вошедший провайдер И ЕСТЬ удаляемая identity (uid совпадает). Чужой
+  // замок (например, от удаления другого аккаунта с этого устройства) не должен
+  // выходить из невиновной сессии и дожимать чужое удаление — сервер всё равно
+  // авторитетно охраняет удалённую identity через tombstone/permanent denial.
+  if (pendingDelete && pendingDelete.providerUid === firebaseProviderUid) {
     return handleAccountDeletePendingAuth(provider, pendingDelete);
+  }
+  if (pendingDelete) {
+    logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'post_credential', provider });
   }
 
   // зачем: владелец 2026-08-22 — ускорение входа. Обновление токена и чтение
@@ -1666,6 +1708,27 @@ async function runSignInWithProvider(
       // failure-класс в репорт: app_check/transport/identity — иначе по «*_failed»
       // не отличить сломанный App Check от сети (инцидент 2026-07-21).
       captureAuthSignInFailure(provider, 'auth_link', `remote_stable_link_failed:${linkedRemote.failure ?? 'unknown'}`);
+      // зачем: сервер авторитетно похоронил найденный remote-аккаунт (удалён
+      // владельцем на другом устройстве — auth_links всё ещё указывает на него,
+      // но users/{remoteStableId} помечен tombstone'ом). Прежде это было тупиком
+      // «auth_link_failed» — юзер навсегда терял вход (TestFlight-инцидент
+      // 2026-08-25, error local_stable_link_failed:identity_retired). Дизайн от
+      // 2026-08-20 (post-deletion-fresh-identity) предписывал полноценный
+      // ensureFreshPostDeletionIdentity(), но он не был реализован (только
+      // классификатор в cloud_sync.ts). Пока полный coordinator не сделан —
+      // тот же безопасный выход, что уже используется для account_delete_pending
+      // в handleAccountDeletePendingAuth: выходим из мёртвого провайдера назад
+      // на анонимную сессию, чтобы юзер снова попал в онбординг, а не завис.
+      if (linkedRemote.failure === 'identity_retired') {
+        try {
+          await signOutCurrentProvider();
+        } catch (e) {
+          if (__DEV__) console.warn('[auth_provider] identity_retired: signOutCurrentProvider failed', e);
+        }
+        await ensureAnonUser().catch(() => null);
+        logAuthEvent('auth_signin_identity_retired_recovered', { provider, subject: 'remote' });
+        return { result: 'error', error: 'identity_retired' };
+      }
       return { result: 'error', error: 'auth_link_failed' };
     }
     outcome = {
@@ -1697,6 +1760,27 @@ async function runSignInWithProvider(
     }
     if (!linkedLocal.ok || !linkedLocal.stableUid) {
       captureAuthSignInFailure(provider, 'auth_link', `local_stable_link_failed:${linkedLocal.failure ?? 'unknown'}`);
+      // зачем: локальный stable_id похоронен серверным tombstone'ом (аккаунт
+      // удалён — свежий Keychain stable_id пережил удаление на этом же
+      // устройстве). Прежде это было тупиком «auth_link_failed» — юзер навсегда
+      // терял вход (TestFlight-инцидент 2026-08-25, error
+      // local_stable_link_failed:identity_retired, UID #q663). Дизайн от
+      // 2026-08-20 (post-deletion-fresh-identity) предписывал полноценный
+      // ensureFreshPostDeletionIdentity(), но он не реализован (только
+      // классификатор в cloud_sync.ts). Пока полный coordinator не сделан —
+      // тот же безопасный выход, что уже используется для account_delete_pending
+      // в handleAccountDeletePendingAuth: выходим из мёртвого провайдера назад
+      // на анонимную сессию, чтобы юзер снова попал в онбординг, а не завис.
+      if (linkedLocal.failure === 'identity_retired') {
+        try {
+          await signOutCurrentProvider();
+        } catch (e) {
+          if (__DEV__) console.warn('[auth_provider] identity_retired: signOutCurrentProvider failed', e);
+        }
+        await ensureAnonUser().catch(() => null);
+        logAuthEvent('auth_signin_identity_retired_recovered', { provider, subject: 'local' });
+        return { result: 'error', error: 'identity_retired' };
+      }
       // Тихий deferred link: провайдер-вход УЖЕ состоялся (Firebase-сессия жива
       // и переживёт рестарт), упала только фоновая серверная привязка по
       // ТРАНЗИЕНТНОЙ причине. Вместо ошибки-тупика журналируем намерение и

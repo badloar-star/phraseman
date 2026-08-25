@@ -431,6 +431,7 @@ function RegistrationPromptModal({
   // Контекстные акценты остаются в подзаголовке (finalSubtitle), проп title по-прежнему перекрывает.
   const defaultTitle = triLang(lang, {
     ru: 'Всё в безопасности',
+    en: 'Everything is safe',
     uk: 'Все в безпеці',
     es: 'Todo está a salvo',
     'pt-BR': 'Tudo está seguro',
@@ -450,6 +451,14 @@ function RegistrationPromptModal({
         : context === 'onboarding'
         ? 'Можно пропустить, но без аккаунта прогресс легко потерять.'
         : 'Быстрый вход. Прогресс синхронизируется между устройствами.',
+    en:
+      context === 'lesson1'
+        ? 'One tap with Google — and your progress is safe.'
+        : context === 'startup_recovery'
+        ? 'Sign in with the same Google or Apple account — we’ll restore your progress from the cloud.'
+        : context === 'onboarding'
+        ? 'You can skip this, but without an account your progress is easy to lose.'
+        : 'Quick sign-in. Progress syncs across devices.',
     uk:
       context === 'lesson1'
         ? 'Один тап через Google — і прогрес у безпеці.'
@@ -516,11 +525,12 @@ function RegistrationPromptModal({
   const cardMaxHeight = Math.max(280, viewportHeight - 64);
   const cardPadding = viewportHeight < 720 ? 20 : 24;
 
-  const labelGoogle = triLang(lang, { ru: 'Войти через Google', uk: 'Війти з Google', es: 'Entrar con Google', 'pt-BR': 'Entrar com Google', vi: 'Đăng nhập bằng Google', id: 'Masuk dengan Google', tr: 'Google ile giriş yap', pl: 'Zaloguj przez Google' });
-  const labelApple = triLang(lang, { ru: 'Войти через Apple', uk: 'Війти з Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' });
-  const labelLater = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
+  const labelGoogle = triLang(lang, { ru: 'Войти через Google', en: 'Sign in with Google', uk: 'Війти з Google', es: 'Entrar con Google', 'pt-BR': 'Entrar com Google', vi: 'Đăng nhập bằng Google', id: 'Masuk dengan Google', tr: 'Google ile giriş yap', pl: 'Zaloguj przez Google' });
+  const labelApple = triLang(lang, { ru: 'Войти через Apple', en: 'Sign in with Apple', uk: 'Війти з Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' });
+  const labelLater = triLang(lang, { ru: 'Позже', en: 'Later', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
   const signInBusyLabel = triLang(lang, {
     ru: 'Входим... подожди пару секунд',
+    en: 'Signing in... give it a couple seconds',
     uk: 'Входимо... зачекай кілька секунд',
     es: 'Iniciando sesión... espera unos segundos',
     'pt-BR': 'Entrando... aguarde alguns segundos',
@@ -532,6 +542,7 @@ function RegistrationPromptModal({
   const signInSlowLabel = triLang(lang, {
     ru: 'Вход занимает больше времени. Можно безопасно закрыть это окно — попытка продолжится.',
     uk: 'Вхід триває довше. Це вікно можна безпечно закрити — спроба продовжиться.',
+    en: 'Sign-in is taking longer than usual. It’s safe to close this window — the attempt will continue.',
     es: 'El acceso tarda más de lo normal. Puedes cerrar esta ventana; el intento continuará.',
     'pt-BR': 'A entrada está demorando. Você pode fechar esta janela; a tentativa continuará.',
     vi: 'Đăng nhập đang lâu hơn bình thường. Bạn có thể đóng cửa sổ này; lần thử vẫn tiếp tục.',
@@ -543,6 +554,7 @@ function RegistrationPromptModal({
     ? triLang(lang, {
         ru: 'Закрыть окно. Вход продолжится в фоне.',
         uk: 'Закрити вікно. Вхід продовжиться у фоні.',
+        en: 'Close window. Sign-in will continue in the background.',
         es: 'Cerrar la ventana. El acceso continuará en segundo plano.',
         'pt-BR': 'Fechar a janela. A entrada continuará em segundo plano.',
         vi: 'Đóng cửa sổ. Quá trình đăng nhập sẽ tiếp tục trong nền.',
@@ -556,6 +568,7 @@ function RegistrationPromptModal({
   const labelShield = triLang(lang, {
     ru: 'Данные на устройстве сохранятся',
     uk: 'Дані на пристрої збережуться',
+    en: 'Data on your device will be kept',
     es: 'Los datos del dispositivo se conservarán',
     'pt-BR': 'Os dados do dispositivo serão mantidos',
     vi: 'Dữ liệu trên thiết bị được giữ lại',
@@ -567,6 +580,7 @@ function RegistrationPromptModal({
   const labelNoStreak = triLang(lang, {
     ru: 'Ваш прогресс будет ждать вас в облаке',
     uk: 'Ваш прогрес чекатиме на вас у хмарі',
+    en: 'Your progress will be waiting for you in the cloud',
     es: 'Tu progreso te esperará en la nube',
     'pt-BR': 'Seu progresso estará esperando por você na nuvem',
     vi: 'Tiến trình của bạn sẽ chờ trên đám mây',
@@ -1041,10 +1055,11 @@ function RegistrationPromptModal({
             );
           } else {
             showInlineError(
-              triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', es: 'Acceso sin terminar', 'pt-BR': 'Entrada não concluída', vi: 'Chưa đăng nhập xong', id: 'Masuk belum selesai', tr: 'Giriş tamamlanmadı', pl: 'Logowanie nieukończone' }),
+              triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', en: 'Sign-in not finished', es: 'Acceso sin terminar', 'pt-BR': 'Entrada não concluída', vi: 'Chưa đăng nhập xong', id: 'Masuk belum selesai', tr: 'Giriş tamamlanmadı', pl: 'Logowanie nieukończone' }),
               triLang(lang, {
                 ru: 'Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.',
                 uk: 'Вікно входу закрилось без вибору акаунта. Натисни кнопку ще раз або спробуй інший спосіб.',
+                en: 'The sign-in window closed without picking an account. Tap the button again or try another method.',
                 es: 'Se cerró el acceso sin elegir cuenta. Toca de nuevo o prueba otro método.',
                 'pt-BR': 'A janela de login foi fechada sem escolher uma conta. Toque de novo ou tente outro método.',
                 vi: 'Cửa sổ đăng nhập đã đóng mà chưa chọn tài khoản. Hãy nhấn lại hoặc thử cách khác.',
@@ -1067,10 +1082,11 @@ function RegistrationPromptModal({
             animateNextLayoutTransition();
             setRecoveryOfferedAfterMismatch(true);
             showInlineError(
-              triLang(lang, { ru: 'Нужен прежний аккаунт', uk: 'Потрібен попередній акаунт', es: 'Necesitas la cuenta anterior', 'pt-BR': 'Use a conta anterior', vi: 'Cần tài khoản trước đây', id: 'Gunakan akun sebelumnya', tr: 'Önceki hesap gerekli', pl: 'Potrzebne jest poprzednie konto' }),
+              triLang(lang, { ru: 'Нужен прежний аккаунт', uk: 'Потрібен попередній акаунт', en: 'You need your previous account', es: 'Necesitas la cuenta anterior', 'pt-BR': 'Use a conta anterior', vi: 'Cần tài khoản trước đây', id: 'Gunakan akun sebelumnya', tr: 'Önceki hesap gerekli', pl: 'Potrzebne jest poprzednie konto' }),
               triLang(lang, {
                 ru: 'Выбранный аккаунт не связан с этим прогрессом. Попробуй тот Google- или Apple-аккаунт, которым ты пользовался раньше. Локальные данные не изменены.',
                 uk: 'Вибраний акаунт не пов’язаний із цим прогресом. Спробуй той Google- або Apple-акаунт, яким користувався раніше. Локальні дані не змінено.',
+                en: 'The chosen account isn’t linked to this progress. Try the Google or Apple account you used before. Local data hasn’t changed.',
                 es: 'La cuenta elegida no está vinculada a este progreso. Prueba la cuenta de Google o Apple que usabas antes. Los datos locales no cambiaron.',
                 'pt-BR': 'A conta escolhida não está vinculada a este progresso. Tente a conta Google ou Apple que você usava antes. Os dados locais não foram alterados.',
                 vi: 'Tài khoản đã chọn không liên kết với tiến độ này. Hãy thử tài khoản Google hoặc Apple bạn đã dùng trước đây. Dữ liệu trên máy không thay đổi.',
@@ -1081,16 +1097,39 @@ function RegistrationPromptModal({
             );
             return;
           }
+          if (result.error === 'identity_retired') {
+            // зачем: аккаунт удалён (свой/на другом устройстве) — сервер отверг
+            // retired identity. signInWithProvider уже сбросил сессию на
+            // анонимную, поэтому повтор заведёт новый профиль, а не повторит
+            // ошибку. Оставляем «Повторить» видимым. TestFlight-инцидент 2026-08-25.
+            showInlineError(
+              triLang(lang, { ru: 'Аккаунт удалён', uk: 'Акаунт видалено', en: 'Account deleted', es: 'Cuenta eliminada', 'pt-BR': 'Conta excluída', vi: 'Tài khoản đã xóa', id: 'Akun dihapus', tr: 'Hesap silindi', pl: 'Konto usunięte' }),
+              triLang(lang, {
+                ru: 'Этот аккаунт был удалён. Попробуй войти ещё раз — откроется новый профиль.',
+                uk: 'Цей акаунт було видалено. Спробуй увійти ще раз — відкриється новий профіль.',
+                en: 'This account was deleted. Try signing in again — a new profile will open.',
+                es: 'Esta cuenta fue eliminada. Intenta iniciar sesión de nuevo: se abrirá un perfil nuevo.',
+                'pt-BR': 'Esta conta foi excluída. Tente entrar de novo — um novo perfil será aberto.',
+                vi: 'Tài khoản này đã bị xóa. Hãy thử đăng nhập lại — hồ sơ mới sẽ mở ra.',
+                id: 'Akun ini telah dihapus. Coba masuk lagi — profil baru akan terbuka.',
+                tr: 'Bu hesap silindi. Tekrar giriş yapmayı dene — yeni bir profil açılacak.',
+                pl: 'To konto zostało usunięte. Spróbuj zalogować się ponownie — otworzy się nowy profil.',
+              }),
+            );
+            return;
+          }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
             // Конфиг сборки, а не транзиент — повтор не поможет.
             setRetryProvider(null);
             showInlineError(
-              triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', es: 'Apple en Android', 'pt-BR': 'Apple no Android', vi: 'Apple trên Android', id: 'Apple di Android', tr: 'Android’da Apple', pl: 'Apple na Androidzie' }),
+              triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', en: 'Apple on Android', es: 'Apple en Android', 'pt-BR': 'Apple no Android', vi: 'Apple trên Android', id: 'Apple di Android', tr: 'Android’da Apple', pl: 'Apple na Androidzie' }),
               triLang(lang, {
                 ru:
                   'Для входа через Apple на Android в сборке должен быть задан Services ID (переменная EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID в EAS / .env). В Apple Developer добавь тот же return URL, что у приложения (часто phraseman://apple-auth).',
                 uk:
                   'Для входу через Apple на Android у збірці має бути заданий Services ID (змінна EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID у EAS / .env). У Apple Developer додай той самий return URL, що й у застосунку (часто phraseman://apple-auth).',
+                en:
+                  'Signing in with Apple on Android requires a Services ID in the build (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID in EAS / .env). In Apple Developer, add the same return URL the app uses (often phraseman://apple-auth).',
                 es:
                   'Para entrar con Apple en Android hace falta el Services ID en la build (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID en EAS / .env). En Apple Developer añade el mismo return URL que usa la app (a menudo phraseman://apple-auth).',
                 'pt-BR':
@@ -1106,6 +1145,7 @@ function RegistrationPromptModal({
           const baseMsg = triLang(lang, {
             ru: 'Не получилось войти. Попробуй позже.',
             uk: 'Не вдалося увійти. Спробуй пізніше.',
+            en: 'Couldn’t sign in. Try again later.',
             es: 'No se ha podido iniciar sesión. Inténtalo más tarde.',
             'pt-BR': 'Não foi possível entrar. Tente mais tarde.',
             vi: 'Không thể đăng nhập. Hãy thử lại sau.',
@@ -1114,7 +1154,7 @@ function RegistrationPromptModal({
             pl: 'Nie udało się zalogować. Spróbuj później.',
           });
           showInlineError(
-            triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
+            triLang(lang, { ru: 'Ошибка', uk: 'Помилка', en: 'Error', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
             baseMsg,
           );
           return;
@@ -1136,10 +1176,11 @@ function RegistrationPromptModal({
         if (__DEV__) console.warn('[RegistrationPromptModal] unexpected error', e);
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
         showInlineError(
-          triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
+          triLang(lang, { ru: 'Ошибка', uk: 'Помилка', en: 'Error', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
           triLang(lang, {
             ru: 'Что-то пошло не так при входе.',
             uk: 'Щось пішло не так під час входу.',
+            en: 'Something went wrong while signing in.',
             es: 'Algo salió mal al iniciar sesión.',
             'pt-BR': 'Algo deu errado ao entrar.',
             vi: 'Có lỗi xảy ra khi đăng nhập.',
@@ -1377,8 +1418,8 @@ function RegistrationPromptModal({
           {context === 'startup_recovery' && recoveryHint?.linked === true && (
             <Animated.Text style={[styles.subtitle, { color: t.accent, fontSize: f.caption }, rise1]}>
               {recoveryHint.maskedEmail
-                ? `${triLang(lang, { ru: 'Твой прогресс привязан к аккаунту', uk: 'Твій прогрес прив’язаний до акаунта', es: 'Tu progreso está vinculado a la cuenta', 'pt-BR': 'Seu progresso está vinculado à conta', vi: 'Tiến độ của bạn được liên kết với tài khoản', id: 'Progresmu tertaut ke akun', tr: 'İlerlemen bu hesaba bağlı', pl: 'Twój postęp jest powiązany z kontem' })} ${recoveryHint.maskedEmail} ${triLang(lang, { ru: '— войди через него', uk: '— увійди через нього', es: '— inicia sesión con ella', 'pt-BR': '— entre com ela', vi: '— hãy đăng nhập bằng tài khoản đó', id: '— masuk dengan akun itu', tr: '— onunla giriş yap', pl: '— zaloguj się przez nie' })}`
-                : triLang(lang, { ru: `Прогресс привязан к аккаунту ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — выбери его при входе`, uk: `Прогрес прив’язаний до акаунта ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — обери його під час входу`, es: `El progreso está vinculado a una cuenta de ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'}: elígela al entrar`, 'pt-BR': `O progresso está vinculado a uma conta ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — escolha-a ao entrar`, vi: `Tiến độ được liên kết với tài khoản ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — hãy chọn đúng tài khoản đó`, id: `Progres tertaut ke akun ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — pilih akun itu saat masuk`, tr: `İlerleme bir ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} hesabına bağlı — girişte onu seç`, pl: `Postęp jest powiązany z kontem ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — wybierz je przy logowaniu` })}
+                ? `${triLang(lang, { ru: 'Твой прогресс привязан к аккаунту', uk: 'Твій прогрес прив’язаний до акаунта', en: 'Your progress is linked to an account', es: 'Tu progreso está vinculado a la cuenta', 'pt-BR': 'Seu progresso está vinculado à conta', vi: 'Tiến độ của bạn được liên kết với tài khoản', id: 'Progresmu tertaut ke akun', tr: 'İlerlemen bu hesaba bağlı', pl: 'Twój postęp jest powiązany z kontem' })} ${recoveryHint.maskedEmail} ${triLang(lang, { ru: '— войди через него', uk: '— увійди через нього', en: '— sign in with it', es: '— inicia sesión con ella', 'pt-BR': '— entre com ela', vi: '— hãy đăng nhập bằng tài khoản đó', id: '— masuk dengan akun itu', tr: '— onunla giriş yap', pl: '— zaloguj się przez nie' })}`
+                : triLang(lang, { ru: `Прогресс привязан к аккаунту ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — выбери его при входе`, uk: `Прогрес прив’язаний до акаунта ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — обери його під час входу`, en: `Progress is linked to a ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} account — choose it when signing in`, es: `El progreso está vinculado a una cuenta de ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'}: elígela al entrar`, 'pt-BR': `O progresso está vinculado a uma conta ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — escolha-a ao entrar`, vi: `Tiến độ được liên kết với tài khoản ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — hãy chọn đúng tài khoản đó`, id: `Progres tertaut ke akun ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — pilih akun itu saat masuk`, tr: `İlerleme bir ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} hesabına bağlı — girişte onu seç`, pl: `Postęp jest powiązany z kontem ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — wybierz je przy logowaniu` })}
             </Animated.Text>
           )}
 
@@ -1431,6 +1472,7 @@ function RegistrationPromptModal({
               {triLang(lang, {
                 ru: 'Ни один провайдер не доступен на этом устройстве.',
                 uk: 'Жоден провайдер не доступний на цьому пристрої.',
+                en: 'No sign-in method is available on this device.',
                 es: 'Ningún método de entrada está disponible en este dispositivo.',
                 'pt-BR': 'Nenhum método de entrada está disponível neste dispositivo.',
                 vi: 'Không có phương thức đăng nhập nào khả dụng trên thiết bị này.',
@@ -1451,11 +1493,11 @@ function RegistrationPromptModal({
             <Pressable
               onPress={() => { void handleSignIn(retryProvider); }}
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Повторить вход', uk: 'Повторити вхід', es: 'Reintentar acceso', 'pt-BR': 'Tentar entrar novamente', vi: 'Thử đăng nhập lại', id: 'Coba masuk lagi', tr: 'Girişi tekrar dene', pl: 'Spróbuj zalogować ponownie' })}
+              accessibilityLabel={triLang(lang, { ru: 'Повторить вход', uk: 'Повторити вхід', en: 'Retry sign-in', es: 'Reintentar acceso', 'pt-BR': 'Tentar entrar novamente', vi: 'Thử đăng nhập lại', id: 'Coba masuk lagi', tr: 'Girişi tekrar dene', pl: 'Spróbuj zalogować ponownie' })}
               style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: t.accent }]}
             >
               <Text style={[styles.laterText, { color: t.correctText, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </Pressable>
           )}
@@ -1954,11 +1996,11 @@ function RegistrationPromptModal({
             )}
             <View style={styles.legalLinks}>
               <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL)} hitSlop={8}>
-                <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách quyền riêng tư', id: 'Kebijakan privasi', tr: 'Gizlilik Politikası', pl: 'Polityka prywatności' })}</Text>
+                <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', en: 'Privacy Policy', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách quyền riêng tư', id: 'Kebijakan privasi', tr: 'Gizlilik Politikası', pl: 'Polityka prywatności' })}</Text>
               </Pressable>
               <Text style={{ color: t.textGhost, fontSize: f.caption, lineHeight: captionLineHeight }}>|</Text>
               <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_TERMS_URL)} hitSlop={8}>
-                <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}</Text>
+                <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', en: 'Terms of Use', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}</Text>
               </Pressable>
             </View>
           </Animated.View>

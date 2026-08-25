@@ -300,11 +300,27 @@ function firstNameOf(displayName: string | null | undefined): string | null {
  * Один разбор на оба экрана входа: людям — понятная фраза, разработчику в DEV —
  * код под ней, чтобы диагноз ставился с одного тапа, а не вслепую.
  */
-function describeAuthError(raw: string): string {
+function describeAuthError(raw: string, lang: Lang): string {
   const code = String(raw || '');
   let human = 'Не получилось войти. Попробуй ещё раз.';
   if (code === 'account_delete_pending' || code.includes('user-disabled')) {
     human = 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.';
+  } else if (code === 'identity_retired') {
+    // зачем: аккаунт был удалён (свой или на другом устройстве) — сервер
+    // отверг retired identity. Клиент уже сбросил сессию на анонимную
+    // (signInWithProvider), поэтому повтор входа заведёт новый профиль, а не
+    // повторит ту же ошибку. TestFlight-инцидент 2026-08-25.
+    human = triLang(lang, {
+      ru: 'Этот аккаунт был удалён. Попробуй войти ещё раз — откроется новый профиль.',
+      uk: 'Цей акаунт було видалено. Спробуй увійти ще раз — відкриється новий профіль.',
+      en: 'This account was deleted. Try signing in again — a new profile will open.',
+      es: 'Esta cuenta fue eliminada. Intenta iniciar sesión de nuevo: se abrirá un perfil nuevo.',
+      'pt-BR': 'Esta conta foi excluída. Tente entrar de novo — um novo perfil será aberto.',
+      vi: 'Tài khoản này đã bị xóa. Hãy thử đăng nhập lại — hồ sơ mới sẽ mở ra.',
+      id: 'Akun ini telah dihapus. Coba masuk lagi — profil baru akan terbuka.',
+      tr: 'Bu hesap silindi. Tekrar giriş yapmayı dene — yeni bir profil açılacak.',
+      pl: 'To konto zostało usunięte. Spróbuj zalogować się ponownie — otworzy się nowy profil.',
+    });
   } else if (code.includes('google_signin_timeout')) {
     human = 'Вход занимает слишком много времени. Вернись в приложение и попробуй ещё раз.';
   } else if (code.includes('apple_auth_module_unavailable')) {
@@ -997,10 +1013,17 @@ function ScreenFrame({
               оставшегося места (niceToMeet/improve) — flexGrow сам по себе
               лишь растягивал обёртку и выкладывал детей от верха. phoneBackdrop
               рисуется отдельным слоем — children здесь используется только
-              когда телефона на экране нет. */}
+              когда телефона на экране нет.
+              зачем 2026-08-25 (баг «телефон наезжает на текст», notifications/
+              trialReminder): с phoneBackdrop эта обёртка ОБЯЗАНА мерить высоту
+              именно текста, а flexGrow:1 растягивал её на всё свободное место
+              скролла — onLayout возвращал высоту контейнера, а не контента, и
+              phoneAvailableHeight считался по завышенному childrenHeight. Без
+              phoneBackdrop растяжка нужна как раньше (центрирование/раскладка
+              footer'а), поэтому убираем flexGrow только когда есть телефон. */}
           <FadeUp
             delay={90}
-            style={[styles.frameChildren, center && styles.frameChildrenCenter]}
+            style={[!phoneBackdrop && styles.frameChildren, center && styles.frameChildrenCenter]}
             onLayout={phoneBackdrop ? (e) => setChildrenHeight(e.nativeEvent.layout.height) : undefined}
           >
             {children}
@@ -2434,7 +2457,7 @@ function CleanOnboarding({
       if (result.result === 'error') {
         // Удаление аккаунта двухфазное (disabled → стирание через 2-3 минуты), вход в
         // это окно даёт auth/user-disabled — describeAuthError говорит об этом прямо.
-        setAuthError(describeAuthError(result.error));
+        setAuthError(describeAuthError(result.error, lang));
         return;
       }
       // зачем: юзер нажал «У меня уже есть аккаунт» — он ЗАЯВИЛ, что возвращается.
@@ -2492,7 +2515,7 @@ function CleanOnboarding({
         // причины различаются так же, как на экране «уже есть аккаунт», а в
         // DEV-сборке под текстом виден сырой код ошибки (native/firebase) —
         // без него диагностировать вход вслепую невозможно.
-        setAuthError(describeAuthError(result.error));
+        setAuthError(describeAuthError(result.error, lang));
         return;
       }
       if (result.result === 'created_new') {
@@ -4664,7 +4687,7 @@ const styles = StyleSheet.create({
   },
   finalErrorSlot: {
     minHeight: 22,
-    color: '#B42318',
+    color: '#0C111B',
     fontSize: 13.5,
     lineHeight: 18,
     fontWeight: '600',
@@ -5099,7 +5122,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   errorText: {
-    color: '#B42318',
+    color: '#0C111B',
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '800',
@@ -5201,7 +5224,7 @@ const styles = StyleSheet.create({
     color: '#12805A',
   },
   codeFeedbackError: {
-    color: '#B42318',
+    color: '#0C111B',
   },
   codeCancel: {
     alignItems: 'center',

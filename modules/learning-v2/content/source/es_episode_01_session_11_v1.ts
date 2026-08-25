@@ -22,6 +22,12 @@ import { ES_EPISODE_01_SESSION_11_PHRASES } from './es_episode_01_session_11_phr
  *
  * distractorAuthorship: 'manual' снижает минимум дистракторов с 3 до 2 —
  * тот же приём, что в сессиях 7/8/10.
+ *
+ * зачем sessionKindOverride: 'phrases' добавлен защитно (владелец,
+ * 2026-08-25, аудит после сессий 14/17): без явного override choreography
+ * молча берёт kind из АНГЛИЙСКОЙ карты по тому же номеру сессии. Сейчас
+ * английская сессия 11 тоже 'phrases' — совпадение, а не гарантия; override
+ * фиксирует правильное поведение независимо от будущих правок любой карты.
  */
 export const ES_EPISODE_01_SESSION_11_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -30,6 +36,7 @@ export const ES_EPISODE_01_SESSION_11_SOURCE: SessionSource = Object.freeze({
   requiredSessionOrdinal: 11,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
   generationInputFingerprint: 'owner-word-first-es-e01-s11-v1',
+  sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
   title: ES_EPISODE_01_SESSION_11_TITLE,
   summary: ES_EPISODE_01_SESSION_11_SUMMARY,

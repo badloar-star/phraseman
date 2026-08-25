@@ -82,5 +82,11 @@ describe('Arena owner-requested runtime surface', () => {
     expect(hook).toContain('arenaOpponentRevealDelayMs');
     expect(hook).toContain("type: 'opponent_revealed'");
     expect(hook).toContain('opponentTimerRef');
+    const restoredBranch = hook.slice(
+      hook.indexOf('if (restored)'),
+      hook.indexOf('return arenaLocalMatchInit'),
+    );
+    expect(restoredBranch).toContain("type: 'resume'");
+    expect(restoredBranch).toContain('arenaMonotonicEpochId()');
   });
 });

@@ -47,7 +47,7 @@ export function ArenaFinalScoreCount({
 
   return (
     <Animated.View
-      entering={FadeIn.duration(reduceMotion ? 120 : 220)}
+      entering={reduceMotion ? undefined : FadeIn.duration(220)}
       style={[styles.root, { backgroundColor: P.elev }]}
       accessible
       accessibilityLiveRegion="polite"
@@ -57,7 +57,7 @@ export function ArenaFinalScoreCount({
         {arenaText(lang, 'matchScoreCounting')}
       </Text>
       <Animated.View
-        entering={reduceMotion ? FadeIn.duration(120) : ZoomIn.springify().damping(16)}
+        entering={reduceMotion ? undefined : ZoomIn.springify().damping(16)}
         style={styles.scoreRow}
       >
         <ArenaStarGlyph lit size={36} />

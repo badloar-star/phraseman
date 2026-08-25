@@ -331,10 +331,12 @@ function ArenaMatchGenerationScreen({
   const finalScoreReadyRef = useRef(false);
   const pendingCoherentResultRef = useRef<ArenaCoherentResult | null>(null);
   useEffect(() => {
-    finalScoreReadyRef.current = false;
-    setFinalScoreReady(false);
-    pendingCoherentResultRef.current = null;
-    if (match?.state.phase !== 'finished') return undefined;
+    if (match?.state.phase !== 'finished') {
+      finalScoreReadyRef.current = false;
+      setFinalScoreReady(false);
+      return undefined;
+    }
+    if (finalScoreReadyRef.current) return undefined;
 
     if (reduceMotion) {
       finalScoreReadyRef.current = true;
@@ -347,7 +349,7 @@ function ArenaMatchGenerationScreen({
       setFinalScoreReady(true);
     }, ARENA_FINAL_SCORE_COUNT_MS);
     return () => clearTimeout(timer);
-  }, [matchId, match?.state.phase, reduceMotion]);
+  }, [match?.state.phase, reduceMotion]);
 
   /* ---- публикация своего хода: одна запись на задание, не больше ---- */
   const publishedRef = useRef<number[]>([]);

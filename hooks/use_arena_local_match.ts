@@ -101,10 +101,23 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
 
   const initial = useMemo(() => {
     if (!plan) return null;
-    if (restored) return restored;
-    return arenaLocalMatchInit(arenaMachinePlan(plan), {
-      monoNowMs: arenaMonotonicNowMs(),
-      wallNowMs: Date.now(),
+    const machinePlan = arenaMachinePlan(plan);
+    const monoNowMs = arenaMonotonicNowMs();
+    const wallNowMs = Date.now();
+    if (restored) {
+      // A persisted monotonic timestamp belongs to the process that wrote it.
+      // Rebase synchronously before either the phase timer or the scripted
+      // opponent timer can observe the restored state.
+      return arenaLocalMatchReduce(machinePlan, restored, {
+        type: 'resume',
+        monoNowMs,
+        wallNowMs,
+        monoEpochId: arenaMonotonicEpochId(),
+      });
+    }
+    return arenaLocalMatchInit(machinePlan, {
+      monoNowMs,
+      wallNowMs,
       monoEpochId: arenaMonotonicEpochId(),
       countdownRemainingMs: countdownRemainingMs ?? plan.countdownMs,
     });

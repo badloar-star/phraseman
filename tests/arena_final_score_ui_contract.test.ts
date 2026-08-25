@@ -14,6 +14,8 @@ describe('Arena final score wait', () => {
     expect(component).toContain('useCountUp');
     expect(component).toContain('reduceMotion');
     expect(component).toContain('ArenaStarGlyph');
+    expect(component).toContain('entering={reduceMotion ? undefined : FadeIn.duration(220)}');
+    expect(component).toContain('entering={reduceMotion ? undefined : ZoomIn.springify().damping(16)}');
     expect(component).not.toMatch(/wallet|balance|starsEarned|xpEarned|reward/i);
   });
 
@@ -34,6 +36,16 @@ describe('Arena final score wait', () => {
       .toBeLessThan(match.indexOf('if (!finalScoreReadyRef.current)'));
     expect(match).toContain('arenaResultHandoffReady');
     expect(match).toContain('openPreviewResult');
+  });
+
+  test('changing Reduced Motion cannot erase an already queued quick result', () => {
+    const match = read('app/arena_match.tsx');
+    const readinessStart = match.indexOf('const [finalScoreReady');
+    const readinessEnd = match.indexOf('/* ---- публикация своего хода', readinessStart);
+    const readiness = match.slice(readinessStart, readinessEnd);
+
+    expect(readiness).toContain('pendingCoherentResultRef');
+    expect(readiness).not.toContain('pendingCoherentResultRef.current = null');
   });
 
   test('quick mode still owns its existing authoritative ResultsSequence', () => {

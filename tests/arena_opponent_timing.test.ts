@@ -104,4 +104,32 @@ describe('Arena opponent presentation timing', () => {
       state.phaseStartedAtMonoMs,
     )).toBe(0);
   });
+
+  test('cold-restored timing is rebased before an exact reveal delay is calculated', () => {
+    let restored = arenaLocalMatchInit(plan, {
+      monoNowMs: 100_000,
+      wallNowMs: 10_000,
+      monoEpochId: 'old-process',
+      countdownRemainingMs: 0,
+    });
+    restored = arenaLocalMatchReduce(plan, restored, {
+      type: 'tick',
+      monoNowMs: 100_000,
+    });
+    restored = arenaLocalMatchReduce(plan, restored, {
+      type: 'opponent_answered',
+      monoNowMs: 100_000,
+      tick: exactTick,
+    });
+    const rebased = arenaLocalMatchReduce(plan, restored, {
+      type: 'resume',
+      monoNowMs: 50,
+      wallNowMs: 10_500,
+      monoEpochId: 'new-process',
+    });
+
+    expect(rebased.phase).toBe('reading');
+    expect(rebased.phaseStartedAtMonoMs).toBe(-450);
+    expect(arenaOpponentRevealDelayMs(rebased, exactTick, 50)).toBe(6_000);
+  });
 });

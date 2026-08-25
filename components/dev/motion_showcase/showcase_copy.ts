@@ -301,13 +301,15 @@ const RU = {
   intro_full_access_ended_title: 'Подарок закончился — выбор',
   intro_full_access_ended_hybrid_title: 'Подарок закончился — выбор · гибрид',
   premium_modal_title: 'Пейвол-диспетчер (premium_modal)',
-  // ─── Празднования v6 «Золотая палата» (владелец 2026-08-24) ───
-  // зачем: владелец потребовал проверять КАЖДЫЙ тир вживую, а не гадать по
-  // макету — все четыре прогона запускают реальную модалку приложения.
-  premium_celebration_title: 'Празднование · Plus (11 сцен)',
+  // ─── Празднование покупки v6 «Золотая палата» — отдельный раздел ───
+  // зачем (владелец 2026-08-25): вынесено из «Пейволы и Premium» в свой шард
+  // (sections/purchase_celebration.tsx) — раньше пять строк терялись среди
+  // пейволов и IntroFullAccess. Заголовки «6 сцен», не «11»: показ укорочен.
+  purchase_celebration_section_title: 'Празднование покупки',
+  premium_celebration_title: 'Празднование · Plus (6 сцен)',
   vip_celebration_title: 'Празднование · Plus зелёный (выдача/опрос)',
   pro_celebration_title: 'Празднование · Pro (разовая покупка)',
-  max_celebration_title: 'Празднование · MAX (11 сцен + звонок)',
+  max_celebration_title: 'Празднование · MAX (6 сцен + звонок)',
   promo_celebration_title: 'Празднование · Промокод (штамп кода)',
   celebration_full_detail: 'реальная модалка — полный прогон, тап пропускает',
   celebration_max_detail: 'реальная модалка — те же сцены плюс пробуждение сферы',
@@ -595,6 +597,33 @@ const RU = {
   mark_accepted: 'принято',
   mark_pending: 'ждёт',
   screen_title: 'Движение · гибриды',
+
+  // ── learning_v2_modes: 7 одобренных режимов упражнений (docs/v2/mockups) ──
+  lv2modes_section_title: 'Learning V2 · 7 одобренных режимов',
+  lv2mode_phrase_builder_title: 'Сборка фразы (эталон)',
+  lv2mode_phrase_builder_prompt: 'Приятно познакомиться',
+  lv2mode_phrase_builder_explanation: 'meets — форма для he/she/it, а не для you. Nice to meet you.',
+  lv2mode_listen_choose_title: 'Выбор на слух',
+  lv2mode_listen_choose_prompt: 'Прослушай фразу',
+  lv2mode_listen_choose_explanation: 'Прозвучало приветствие при знакомстве — Nice to meet you.',
+  lv2mode_sound_contrast_title: 'Пары звуков',
+  lv2mode_sound_contrast_prompt: 'Различи короткий /ɪ/ и длинный /iː/',
+  lv2mode_sound_contrast_explanation: 'ship — короткий /ɪ/, sheep — длинный /iː/. Прозвучал именно sheep.',
+  lv2mode_listen_build_title: 'Диктант',
+  lv2mode_listen_build_prompt: 'Послушай и собери фразу',
+  lv2mode_listen_build_explanation: 'names — множественное число, здесь нужна форма is: My name is Anna.',
+  lv2mode_context_gap_title: 'Контекстный пропуск',
+  lv2mode_context_gap_prompt: 'Ты устал? ___ you tired?',
+  lv2mode_context_gap_explanation: 'you всегда идёт со связкой are, не is и не do.',
+  lv2mode_speed_match_title: 'Пары на скорость',
+  lv2mode_speed_match_prompt: 'Выбери грамматически верный вариант',
+  lv2mode_speed_match_explanation: 'you требует are, а не is или do.',
+  lv2mode_repeat_compare_title: 'Повтор за моделью (голос)',
+  lv2mode_repeat_compare_prompt: 'Скажи вслух: Nice to meet you',
+  lv2mode_repeat_compare_instruction: 'Сначала послушай, потом повтори',
+  lv2mode_repeat_compare_mic_note: 'жми и держи mic-кнопку в реальном плеере, не здесь',
+  lv2mode_demo_check: 'Проверить',
+  lv2mode_demo_reset: 'Ещё раз',
 };
 
 type Key = keyof typeof RU;

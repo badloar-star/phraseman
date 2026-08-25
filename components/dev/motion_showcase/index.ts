@@ -3,6 +3,7 @@
 // каждый шард — отдельный файл, чтобы агенты наполняли их параллельно.
 import type { ShowcaseSection } from './types';
 import { SECTION as s_celebrations } from './sections/celebrations';
+import { SECTION as s_purchase_celebration } from './sections/purchase_celebration';
 import { SECTION as s_levelup_spins } from './sections/levelup_spins';
 import { SECTION as s_league } from './sections/league';
 import { SECTION as s_arena_rewards } from './sections/arena_rewards';
@@ -14,12 +15,13 @@ import { SECTION as s_fullscreen } from './sections/fullscreen';
 import { SECTION as s_toasts } from './sections/toasts';
 import { SECTION as s_banners } from './sections/banners';
 import { SECTION as s_screens_learn } from './sections/screens_learn';
+import { SECTION as s_learning_v2_modes } from './sections/learning_v2_modes';
 import { SECTION as s_screens_arena_social } from './sections/screens_arena_social';
 import { SECTION as s_screens_flashcards } from './sections/screens_flashcards';
 import { SECTION as s_screens_profile } from './sections/screens_profile';
 import { SECTION as s_press_icons_tabbar } from './sections/press_icons_tabbar';
 
-const ALL: readonly ShowcaseSection[] = [s_celebrations, s_levelup_spins, s_league, s_arena_star_ladder, s_arena_rewards, s_paywalls, s_alerts_forms, s_consent_info, s_fullscreen, s_toasts, s_banners, s_screens_learn, s_screens_arena_social, s_screens_flashcards, s_screens_profile, s_press_icons_tabbar];
+const ALL: readonly ShowcaseSection[] = [s_celebrations, s_purchase_celebration, s_levelup_spins, s_league, s_arena_star_ladder, s_arena_rewards, s_paywalls, s_alerts_forms, s_consent_info, s_fullscreen, s_toasts, s_banners, s_screens_learn, s_learning_v2_modes, s_screens_arena_social, s_screens_flashcards, s_screens_profile, s_press_icons_tabbar];
 
 /**
  * Пункт — это гибрид (моя новая анимация), а не оригинал приложения?

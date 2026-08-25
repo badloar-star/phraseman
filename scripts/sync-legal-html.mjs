@@ -3,7 +3,7 @@
  * - app/legal/*.json
  * - terms.html
  * - privacy.html
- * - admin/oauth-privacy.html
+ * - admin/oauth-privacy.html (легаси-путь) + admin/v2/oauth-privacy.html (публикуемый)
  * - knowly-www/legal/terms/index.html
  * - knowly-www/legal/privacy/index.html
  * - knowly-www/legal/data-deletion/index.html
@@ -361,6 +361,10 @@ function main() {
   writeFileEnsured(path.join(ROOT, 'terms.html'), termsRoot);
   writeFileEnsured(path.join(ROOT, 'privacy.html'), privacyRoot);
   writeFileEnsured(path.join(ROOT, 'admin', 'oauth-privacy.html'), privacyRoot);
+  // зачем: hosting-таргет admin публикует ТОЛЬКО admin/v2, поэтому копия в admin/
+  // никуда не деплоилась и https://phraseman-ea0b3.web.app/oauth-privacy.html отдавал
+  // 404 (аудит 2026-08-25). Пишем вторую копию в публикуемую папку.
+  writeFileEnsured(path.join(ROOT, 'admin', 'v2', 'oauth-privacy.html'), privacyRoot);
   writeLegalIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'terms', 'index.html'),
     { title: termsTitle, sections: terms, date: termsDate },

@@ -12,10 +12,11 @@ describe('accordion motion contract', () => {
     expect(hook).not.toMatch(/Animated\.loop|setInterval/);
   });
 
-  test('the weekly review is full content rather than another accordion', () => {
-    const owner = fs.readFileSync(path.join(root, 'app', 'WeeklyReviewCard.tsx'), 'utf8');
-    expect(owner).not.toContain('accessibilityState={{ expanded }}');
-    expect(owner).not.toContain("name={expanded ? 'chevron-up' : 'chevron-down'}");
-    expect(owner).toContain('review.patterns.map');
-  });
+  // зачем (2026-08-25): кейс «недельный разбор — не ещё один аккордеон» читал
+  // app/WeeklyReviewCard.tsx, а этот компонент удалён вместе с диагнозами
+  // тренера (бандл-диета Ф2, −4.33 МБ). Авторитетный сторож удаления
+  // tests/retired_coach_diagnosis_full_removal_contract.test.ts перечисляет
+  // файл как намеренно удалённый — значит проверять в нём нечего: нет
+  // компонента, нет и риска, что он станет аккордеоном.
+  // Проверка выше (сам хук аккордеона) продолжает работать и остаётся здесь.
 });

@@ -15,12 +15,11 @@ describe('Home runtime animation ownership', () => {
     expect(source).toContain('if (!homeStatsReady || !homeRuntimeActive)');
   });
 
-  it('keeps WeeklyReviewCard activity ownership explicit', () => {
-    // Карточка снята с главного экрана, но компонент
-    // сохраняет контракт: активность всегда приходит явным пропом, без фоновых циклов.
-    const weekly = read('app/WeeklyReviewCard.tsx');
-    expect(weekly).toContain('active: boolean');
-    expect(weekly).not.toContain('Animated.timing(sweep');
-    expect(weekly).not.toContain('Animated.loop');
-  });
+  // зачем (2026-08-25): кейс сторожил, что WeeklyReviewCard получает активность
+  // явным пропом и не крутит фоновых циклов. Компонент удалён целиком вместе с
+  // диагнозами тренера (бандл-диета Ф2, −4.33 МБ) — гарантия «нет фоновой
+  // анимации» теперь выполняется самим фактом отсутствия файла, а сторож лишь
+  // падал с ENOENT. Файл как намеренно удалённый перечислен в
+  // tests/retired_coach_diagnosis_full_removal_contract.test.ts.
+  // Проверки главного экрана выше не тронуты — они и есть суть этого контракта.
 });

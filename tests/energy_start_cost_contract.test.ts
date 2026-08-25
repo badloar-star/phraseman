@@ -247,7 +247,11 @@ describe('энергия платится за старт активности',
       ['app/arena_match.tsx', 'arena-match-retry-energy-cost'],
       ['components/DialogVerdictScreen.tsx', 'dialog-verdict-retry-energy-cost'],
       ['components/mistake-practice/MistakePracticeLoopNode.tsx', 'mistake-practice-loop-energy-cost'],
-      ['app/WeeklyReviewCard.tsx', 'weekly-review-energy-cost'],
+      // зачем (2026-08-25): app/WeeklyReviewCard.tsx удалён вместе с диагнозами
+      // тренера (бандл-диета Ф2) — читать его нечем, сторож падал с ENOENT.
+      // Файл значится намеренно удалённым в
+      // tests/retired_coach_diagnosis_full_removal_contract.test.ts.
+      // Остальные экраны со знаком цены энергии проверяются как прежде.
       ['app/max_voice_review.tsx', 'max-voice-review-energy-cost'],
       ['app/personal_plan_exercise_transition.tsx', 'personal-plan-transition-energy-cost'],
       ['app/personal_plan_quiz.tsx', 'personal-plan-quiz-next-energy-cost'],

@@ -41,7 +41,16 @@ if (!CORE_IDS.size) {
 }
 
 const files = fs.readdirSync(SRC_DIR).filter((f) => f.endsWith('.webp'));
-if (!DRY) fs.mkdirSync(OUT_DIR, { recursive: true });
+
+// зачем (аудит 2026-08-25): каталог НЕ очищался, и в нём копились статуэтки
+// удалённых веток — на 25.08 там лежало 199 файлов при 70 актуальных. Скрипт
+// заливки берёт из каталога ВСЕ .webp подряд, то есть 166 мусорных объектов
+// уехали бы в Storage: лишние деньги за хранение и шум при последующем аудите.
+// Чистим каталог перед каждой подготовкой — он всегда слепок актуального набора.
+if (!DRY) {
+  fs.rmSync(OUT_DIR, { recursive: true, force: true });
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+}
 
 let before = 0, after = 0, skipped = 0, done = 0;
 for (const file of files) {

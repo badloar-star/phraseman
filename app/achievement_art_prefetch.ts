@@ -1,3 +1,4 @@
+import { AppState } from 'react-native';
 import { Image } from 'expo-image';
 import { ACTIVE_FOUNDATION_IDS } from './achievement_catalog_v2';
 import { getAchievementImageUrl } from '../constants/achievement_image_urls';
@@ -9,10 +10,11 @@ import { getAchievementImageUrl } from '../constants/achievement_image_urls';
  * Storage. Чтобы пользователь НИКОГДА не увидел щит-заглушку вместо заслуженной
  * награды, арт скачивается ЗАРАНЕЕ и по событиям — не по таймеру:
  *   · вход на экран достижений — там видно всю полку целиком;
- *   · закрытие сессии урока — именно тогда награда может открыться и всплыть
- *     тостом.
- * Плюс разовый фоновый проход после первого кадра — чтобы к первой награде
- * кэш был готов даже у того, кто ещё не заходил в достижения.
+ *   · повышение уровня — в этот момент всплывают тосты наград;
+ *   · возврат приложения из фона — догоняем то, что не скачалось офлайн.
+ * Плюс разовый фоновый проход после первого кадра — он и покрывает награду,
+ * выданную по итогам урока: к моменту первой награды кэш уже готов, даже если
+ * пользователь ни разу не заходил в достижения.
  *
  * Экономия трафика и стоимости Storage:
  *  · каждый URL качается ОДИН раз на устройство (диск-кэш expo-image), дальше
@@ -81,8 +83,8 @@ export function prefetchAchievementArt(ids: readonly string[]): void {
 }
 
 /**
- * Прогреть всю полку. Вызывается на входе на экран достижений и после закрытия
- * сессии урока — там награда и открывается.
+ * Прогреть всю полку. Вызывается на входе на экран достижений и при повышении
+ * уровня — там награда и открывается.
  */
 export function prefetchAllAchievementArt(): void {
   if (__DEV__) return;
@@ -96,6 +98,16 @@ export function prefetchAllAchievementArt(): void {
 export function prefetchAchievementArtInBackground(): void {
   if (__DEV__ || backgroundStarted) return;
   backgroundStarted = true;
+
+  // зачем (аудит 2026-08-25): если прогрев прошёл офлайн, арт остался не
+  // скачанным и сам бы не догрузился — следующая попытка ждала бы захода на
+  // экран достижений или повышения уровня, а награда могла всплыть раньше.
+  // Возврат из фона — момент, когда сеть чаще всего уже есть. Неудачные URL
+  // забываются в drain(), поэтому повтор подхватывает ровно их.
+  AppState.addEventListener('change', (state) => {
+    if (state === 'active') prefetchAllAchievementArt();
+  });
+
   void (async () => {
     await sleep(START_DELAY_MS);
     prefetchAllAchievementArt();

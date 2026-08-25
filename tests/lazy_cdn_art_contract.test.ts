@@ -86,6 +86,26 @@ describe('ленивая CDN-загрузка арта: путь заливки 
     expect(rules).toContain('match /achievement-images/{allPaths=**}');
     expect(rules).toContain('match /aura-images/{allPaths=**}');
   });
+
+  it('каталог подготовки чистится, иначе в Storage уедет мусор', () => {
+    // зачем (аудит 2026-08-25): каталог НЕ очищался и накопил 199 файлов при 70
+    // актуальных. Скрипт заливки берёт из него ВСЕ .webp подряд — 166 мусорных
+    // объектов уехали бы в бакет: лишние деньги и шум при аудите.
+    const prepare = read('scripts/prepare_achievement_images_for_storage.mjs');
+    expect(prepare).toContain('fs.rmSync(OUT_DIR');
+    expect(prepare).toContain('recursive: true, force: true');
+  });
+
+  it('скрипт очистки сирот читает НАСТОЯЩИЙ каталог достижений', () => {
+    // зачем (аудит 2026-08-25): раньше он regex-ом читал app/achievements.ts —
+    // файл рантайм-логики, а не каталог. Совпадений ноль → LIVE пустой →
+    // скрипт всегда падал на guard-е и не работал вообще.
+    const prune = read('scripts/prune_achievement_images_in_storage.mjs');
+    expect(prune).toContain('achievement-art-v2');
+    expect(prune).toContain('manifest.json');
+    expect(prune).toContain('achievementCoreArt.ts');
+    expect(prune).not.toContain("'app', 'achievements.ts'");
+  });
 });
 
 describe('ленивая CDN-загрузка арта: прогрев по событиям, а не по таймеру', () => {
@@ -99,6 +119,31 @@ describe('ленивая CDN-загрузка арта: прогрев по со
   it('достижения греются на входе на экран и при повышении уровня', () => {
     expect(read('app/achievements_screen.tsx')).toContain('prefetchAllAchievementArt()');
     expect(read('app/_layout.tsx')).toContain('prefetchAllAchievementArt()');
+  });
+
+  it('оба каталога греются в фоне после первого кадра', () => {
+    // зачем (аудит 2026-08-25): ауры видны НЕ только в студии — своя на Главной,
+    // чужие в друзьях, Арене, лиге, клубе. Без старта юзер, который просто
+    // листает эти экраны, видел бы ореол вместо кольца.
+    const layout = read('app/_layout.tsx');
+    expect(layout).toContain('prefetchAchievementArtInBackground()');
+    expect(layout).toContain('prefetchAvatarAuraArtInBackground()');
+  });
+
+  it('своя аура на Главной запрашивается вне очереди', () => {
+    // Иначе её слои ждали бы прогрева всего каталога (111 слоёв).
+    expect(read('app/(tabs)/home.tsx')).toContain('prefetchAvatarAuraArtNow(');
+    expect(read('app/avatar_aura_art_prefetch.ts')).toContain('queue.unshift(url)');
+  });
+
+  it('офлайн-провал догоняется при возврате приложения из фона', () => {
+    // зачем (аудит 2026-08-25): без этого неудачный офлайн-прогрев ждал бы
+    // следующего захода на экран, а награда могла всплыть раньше.
+    for (const file of ['app/avatar_aura_art_prefetch.ts', 'app/achievement_art_prefetch.ts']) {
+      const src = read(file);
+      expect(src).toContain("AppState.addEventListener('change'");
+      expect(src).toContain("state === 'active'");
+    }
   });
 
   it('прогрев не качает один и тот же URL дважды за сессию', () => {
@@ -120,8 +165,20 @@ describe('ленивая CDN-загрузка арта: пустоты и спи
     expect(src).toContain('onBaseLoaded');
     expect(src).toContain('onBaseFailed');
     // Ошибка загрузки = остаёмся на ореоле, а не показываем пустоту.
-    expect(src).toContain('setRingPainted(false)');
+    expect(src).toContain('setPaintedAuraId(null)');
     expect(src).not.toMatch(/ActivityIndicator|Spinner/);
+  });
+
+  it('поздний onLoad прошлой ауры не снимает ореол у новой', () => {
+    // зачем (аудит 2026-08-25): известный в проекте класс бага «поздний ответ
+    // затирает свежее значение». Состояние обязано хранить ID ауры, чей слой
+    // отрисован, а не голый boolean — иначе быстрое переключение колец в студии
+    // показывало бы новую ауру «готовой», пока её слой ещё едет.
+    const src = read('components/AvatarAura.tsx');
+    expect(src).toContain('paintedAuraId');
+    expect(src).toContain('paintedAuraId === aura.id');
+    // Голый boolean-флаг вернул бы гонку.
+    expect(src).not.toMatch(/setRingPainted\(true\)/);
   });
 
   it('слои кольца кэшируются на диск, иначе кольцо не переживёт перезапуск', () => {

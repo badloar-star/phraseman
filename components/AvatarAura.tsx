@@ -41,13 +41,22 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
   // геометрии в цвете ауры. Пользователь видит ауру с первого кадра, вёрстка не
   // прыгает, спиннера нет; если слой так и не доехал, ореол остаётся навсегда
   // и выглядит как задуманный вид, а не как поломка.
-  const [ringPainted, setRingPainted] = useState(false);
-  const handleRingLoaded = useCallback(() => setRingPainted(true), []);
-  // Ошибку не отличаем от ожидания: в обоих случаях показываем ореол.
-  const handleRingFailed = useCallback(() => setRingPainted(false), []);
+  // зачем (аудит 2026-08-25): храним ID ауры, чей слой отрисован, а не голый
+  // boolean. Иначе поздний onLoad ПРЕДЫДУЩЕЙ ауры (медленная сеть + быстрое
+  // переключение колец в студии) снимал бы ореол у НОВОЙ, ещё не загруженной —
+  // известный в проекте класс бага «поздний ответ затирает свежее значение».
+  const [paintedAuraId, setPaintedAuraId] = useState<string | null>(null);
+  const auraIdRef = useRef<string | undefined>(aura?.id);
+  auraIdRef.current = aura?.id;
 
-  // Смена ауры — снова ждём её слой, иначе новое кольцо унаследует «готово».
-  useEffect(() => { setRingPainted(false); }, [aura?.id]);
+  const handleRingLoaded = useCallback(() => {
+    // Принимаем только колбэк той ауры, которая показана прямо сейчас.
+    setPaintedAuraId(auraIdRef.current ?? null);
+  }, []);
+  // Ошибку не отличаем от ожидания: в обоих случаях показываем ореол.
+  const handleRingFailed = useCallback(() => setPaintedAuraId(null), []);
+
+  const ringPainted = aura?.id !== undefined && paintedAuraId === aura.id;
 
   // Ореол крутится и когда ауры-картинки нет вовсе, и пока её слой едет.
   const haloVisible = layeredAsset === undefined || !ringPainted;

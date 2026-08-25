@@ -28,10 +28,21 @@ const STORAGE_PREFIX = 'achievement-images';
 const DRY = process.argv.includes('--dry');
 
 // Живые id — единственный источник правды.
-const achievementsSrc = fs.readFileSync(path.join(ROOT, 'app', 'achievements.ts'), 'utf8');
-const LIVE = new Set(
-  [...achievementsSrc.matchAll(/id:\s*'([a-z0-9_]+)'\s*,[^\n]*\bcategory:/g)].map((m) => m[1]),
+//
+// зачем (аудит 2026-08-25): раньше здесь regex-ом читался app/achievements.ts —
+// файл рантайм-логики, а НЕ каталог достижений. Совпадений он давал ноль,
+// скрипт всегда падал на guard-е ниже и не работал вообще. Берём id из того же
+// манифеста, который считает источником правды tests/achievement_art_coverage_
+// contract.test.ts, плюс «ядро»: у него арт в бандле, но объект в Storage тоже
+// может существовать и сиротой не является.
+const manifest = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'content', 'achievement-art-v2', 'manifest.json'), 'utf8'),
 );
+const coreSrc = fs.readFileSync(path.join(ROOT, 'constants', 'achievementCoreArt.ts'), 'utf8');
+const LIVE = new Set([
+  ...manifest.assets.map((row) => row.id),
+  ...[...coreSrc.matchAll(/^\s*'([a-z0-9_]+)',/gm)].map((m) => m[1]),
+]);
 if (LIVE.size < 50) {
   console.error(`Подозрительно мало живых достижений (${LIVE.size}) — прерываю, чтобы не снести лишнее.`);
   process.exit(1);

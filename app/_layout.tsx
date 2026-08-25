@@ -146,7 +146,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
 import { prefetchAchievementArtInBackground, prefetchAllAchievementArt } from './achievement_art_prefetch';
-import { prefetchAllAvatarAuraArt } from './avatar_aura_art_prefetch';
+import { prefetchAllAvatarAuraArt, prefetchAvatarAuraArtInBackground } from './avatar_aura_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
@@ -2197,6 +2197,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // устройство, малыми пачками, строго после первого кадра.
       InteractionManager.runAfterInteractions(() => {
         prefetchAchievementArtInBackground();
+      });
+      // зачем (аудит 2026-08-25): ауры рисуются НЕ только в студии — своя видна
+      // на Главной с первого кадра, чужие в друзьях, Арене, лиге и клубе. Без
+      // прогрева на старте пользователь, который просто листает эти экраны,
+      // видел бы ореол вместо кольца. Тот же режим, что у достижений.
+      InteractionManager.runAfterInteractions(() => {
+        prefetchAvatarAuraArtInBackground();
       });
       InteractionManager.runAfterInteractions(() => {
         void import('./flashcards_swipe').catch(() => {});

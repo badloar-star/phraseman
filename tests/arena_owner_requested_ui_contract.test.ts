@@ -75,4 +75,12 @@ describe('Arena owner-requested runtime surface', () => {
     expect(backdrop).not.toMatch(/duration: (360|520)/);
     expect(backdrop).not.toMatch(/MOTION_VARIANTS[^\n]*'hub'/);
   });
+
+  it('schedules exact opponent presentation instead of showing scripted ticks immediately', () => {
+    const hook = read('hooks/use_arena_local_match.ts');
+
+    expect(hook).toContain('arenaOpponentRevealDelayMs');
+    expect(hook).toContain("type: 'opponent_revealed'");
+    expect(hook).toContain('opponentTimerRef');
+  });
 });

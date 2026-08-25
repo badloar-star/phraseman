@@ -79,7 +79,10 @@ export function arenaResultPreview(
   // его сторожил тест и оно действовало для любого вызывающего.
   if (state.abandoned) return null;
 
-  const opponentStars = arenaOpponentMatchStars(plan, state);
+  // The preview is terminal calculation, not the live HUD. Exact scripted
+  // truth may still be inside its final presentation delay, but it is already
+  // valid for resolving the local outcome.
+  const opponentStars = arenaOpponentMatchStars(plan, state, true);
   const opponentElapsedMs = opponentTieBreakElapsedMs(plan, state);
   // Исход считается тем же движком, что и на сервере: расхождение показанного
   // с начисленным — ровно тот класс бага, ради которого сервер вообще

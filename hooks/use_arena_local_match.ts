@@ -18,6 +18,7 @@ import { arenaMachinePlan, type ArenaMatchPlanWire, type ArenaPlanTaskWire } fro
 import { arenaSaveMatch, type ArenaKeyValueStore } from '../modules/arena/match_store';
 import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
 import { arenaPendingOpponentTicks } from '../modules/arena/live_channel';
+import { arenaOpponentRevealDelayMs } from '../modules/arena/opponent_timing';
 
 /**
  * Единственное место во всей Арене, где есть эффекты: таймеры, часы, хранилище,
@@ -131,6 +132,7 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
   const stateRef = useRef(state);
   stateRef.current = state;
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const opponentTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const savedPhaseRef = useRef<string>('');
   const reportedRef = useRef(false);
   const deliveredTicksRef = useRef<number[]>([]);
@@ -143,6 +145,10 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
   /* ---- новый matchId не наследует защёлки предыдущего матча ---- */
   useEffect(() => {
     if (!plan) return;
+    if (opponentTimerRef.current !== null) {
+      clearTimeout(opponentTimerRef.current);
+      opponentTimerRef.current = null;
+    }
     deliveredTicksRef.current = [];
     savedPhaseRef.current = '';
     reportedRef.current = false;
@@ -206,10 +212,40 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
     }
   }, [opponentTicks, plan, state?.matchId]);
 
+  /* ---- независимый момент показа exact-ответа соперника ---- */
+  useEffect(() => {
+    if (opponentTimerRef.current !== null) {
+      clearTimeout(opponentTimerRef.current);
+      opponentTimerRef.current = null;
+    }
+    if (!plan || !state || state.matchId !== plan.matchId) return undefined;
+    const tick = state.opponentByTask[state.taskIndex];
+    if (!tick?.exact || state.opponentRevealedByTask?.[tick.taskIndex]) return undefined;
+
+    const delayMs = arenaOpponentRevealDelayMs(state, tick, arenaMonotonicNowMs());
+    if (delayMs === null) return undefined;
+    opponentTimerRef.current = setTimeout(() => {
+      opponentTimerRef.current = null;
+      dispatch({
+        type: 'opponent_revealed',
+        monoNowMs: arenaMonotonicNowMs(),
+        taskIndex: tick.taskIndex,
+      });
+    }, delayMs);
+
+    return () => {
+      if (opponentTimerRef.current !== null) {
+        clearTimeout(opponentTimerRef.current);
+        opponentTimerRef.current = null;
+      }
+    };
+  }, [plan, state]);
+
   /* ---- снимок на каждой границе задания, а не на каждом кадре ---- */
   useEffect(() => {
     if (!plan || !ownerScope || !state || state.matchId !== plan.matchId) return;
-    const key = `${state.phase}:${state.taskIndex}`;
+    const revealed = Object.keys(state.opponentRevealedByTask ?? {}).sort().join(',');
+    const key = `${state.phase}:${state.taskIndex}:${revealed}`;
     if (key === savedPhaseRef.current) return;
     savedPhaseRef.current = key;
     void arenaSaveMatch(keyValue, ownerScope, plan, state, Date.now());

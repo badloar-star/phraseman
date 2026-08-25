@@ -166,7 +166,39 @@ describe('точный live-счёт соперника', () => {
   const stateWith = (
     ticks: ArenaLocalMatchState['opponentByTask'],
     outcomes: ArenaLocalMatchState['outcomes'] = [],
-  ): ArenaLocalMatchState => ({ ...init(), opponentByTask: ticks, outcomes });
+  ): ArenaLocalMatchState => ({
+    ...init(),
+    opponentByTask: ticks,
+    opponentRevealedByTask: Object.fromEntries(
+      Object.keys(ticks).map((taskIndex) => [taskIndex, true as const]),
+    ),
+    outcomes,
+  });
+
+  it('does not expose an exact tick or its score before presentation reveal', () => {
+    const exact = {
+      taskIndex: 0,
+      correct: true,
+      raceElapsedMs: 900,
+      exact: true as const,
+    };
+    const hidden: ArenaLocalMatchState = {
+      ...stateWith({ 0: exact }, [viewerOutcome('guess_phrase')]),
+      opponentRevealedByTask: {},
+    };
+
+    expect(arenaOpponentSignal(hidden, hidden.phaseStartedAtMonoMs + 1_000).kind)
+      .toBe('silent');
+    expect(arenaOpponentMatchStars(PLAN, hidden)).toBeNull();
+
+    const shown: ArenaLocalMatchState = {
+      ...hidden,
+      opponentRevealedByTask: { 0: true },
+    };
+    expect(arenaOpponentSignal(shown, shown.phaseStartedAtMonoMs + 1_000).kind)
+      .toBe('answered');
+    expect(arenaOpponentMatchStars(PLAN, shown)).toBe(3);
+  });
 
   it('берёт наибольший валидный переданный итог и не даёт ему убывать', () => {
     expect(arenaOpponentMatchStars(PLAN, stateWith({

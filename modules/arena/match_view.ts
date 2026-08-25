@@ -67,6 +67,23 @@ export type ArenaMatchHud = Readonly<{
   interactive: boolean;
 }>;
 
+/**
+ * Exact scripted ticks are match truth before they are presentation truth.
+ * Live ticks have no `exact` marker: their arrival already proves that the
+ * rival answered, including when restoring an older v2 disk snapshot that
+ * predates the explicit reveal map.
+ */
+function visibleOpponentTick(
+  state: ArenaLocalMatchState,
+  taskIndex: number,
+  includeHiddenExact = false,
+): ArenaOpponentTick | undefined {
+  const tick = state.opponentByTask[taskIndex];
+  if (!tick) return undefined;
+  if (includeHiddenExact || !tick.exact || state.opponentRevealedByTask?.[taskIndex]) return tick;
+  return undefined;
+}
+
 const ALARM_AT_MS = 3_000;
 
 function timerView(phase: ArenaLocalPhase): ArenaTimerView | null {
@@ -109,7 +126,7 @@ export function arenaOpponentSignal(
   monoNowMs: number,
 ): ArenaOpponentSignal {
   if (state.phase === 'finished') return { kind: 'finished' };
-  const tick: ArenaOpponentTick | undefined = state.opponentByTask[state.taskIndex];
+  const tick = visibleOpponentTick(state, state.taskIndex);
   if (!tick) return state.opponentFinished ? { kind: 'finished' } : { kind: 'silent' };
   // Насколько соперник опередил — считается только в фазе ответа: в остальных
   // фазах «опережение» смысла не имеет, а число на экране было бы враньём.
@@ -141,10 +158,13 @@ export function arenaResolvedPairs(state: ArenaLocalMatchState): readonly number
 export function arenaOpponentMatchStars(
   plan: ArenaMatchPlanWire,
   state: ArenaLocalMatchState,
+  includeHiddenExact = false,
 ): number | null {
   const ceiling = arenaMatchStarCeiling(plan.tasks.length);
   let transmitted: number | null = null;
-  for (const tick of Object.values(state.opponentByTask)) {
+  for (const taskIndex of Object.keys(state.opponentByTask).map(Number)) {
+    const tick = visibleOpponentTick(state, taskIndex, includeHiddenExact);
+    if (!tick) continue;
     const value = tick.matchStars;
     if (!Number.isInteger(value) || (value as number) < 0 || (value as number) > ceiling) continue;
     transmitted = transmitted === null ? value as number : Math.max(transmitted, value as number);
@@ -158,7 +178,7 @@ export function arenaOpponentMatchStars(
   for (let taskIndex = 0; taskIndex < plan.tasks.length; taskIndex += 1) {
     const task = plan.tasks[taskIndex];
     const viewer = viewerByTask.get(taskIndex);
-    const rival = state.opponentByTask[taskIndex];
+    const rival = visibleOpponentTick(state, taskIndex, includeHiddenExact);
     if (!task || !viewer || !rival) break;
 
     let firstAttemptPairs = 0;

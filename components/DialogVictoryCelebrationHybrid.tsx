@@ -203,7 +203,9 @@ export function DialogVictoryCelebrationHybrid({
 
   const handleImpact = useCallback(() => {
     void hapticMediumImpact();
-    soundDirector.request('pm.reward.chest_open', { scope: 'dialog-victory-hybrid', dedupeKey: 'dialog-victory-hybrid' });
+    // зачем: раньше здесь заимствовался pm.reward.chest_open за неимением
+    // своего звука — теперь у победы в диалоге есть выделенный dedicated cue.
+    soundDirector.request('pm.dialog.victory', { scope: 'dialog-victory-hybrid', dedupeKey: 'dialog-victory-hybrid' });
   }, []);
 
   useEffect(() => {

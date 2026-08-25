@@ -18,6 +18,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import { soundDirector } from '../modules/audio/sound_director';
 import AchievementShelfCarousel from '../components/achievements/AchievementShelfCarousel';
 import AchievementCategoryDock from '../components/achievements/AchievementCategoryDock';
 import type { AchievementCategoryOption } from '../components/achievements/AchievementCategoryDock';
@@ -968,6 +969,12 @@ export default function AchievementsScreen() {
   // видна вся полка сразу, поэтому прогреваем её арт по входу на экран, а не по
   // таймеру. Уже прогретое не перекачивается: URL помнятся в рамках сессии.
   useEffect(() => { prefetchAllAchievementArt(); }, []);
+  // зачем: витрина достижений была полностью немой — открытие озвучиваем один
+  // раз на mount, отдельным эффектом от прогрева арта, чтобы не зависеть от
+  // его логики кеша.
+  useEffect(() => {
+    soundDirector.request('pm.achievements.open', { scope: 'achievements' });
+  }, []);
 
   useEffect(() => {
     let cancelled = false;

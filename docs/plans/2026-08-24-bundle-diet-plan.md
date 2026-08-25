@@ -279,17 +279,28 @@ diagnosis_training (~1.5 МБ), каталоги, карты URL.
   · `SeasonAuraRing` переведён на expo-image (`memory-disk`): RN-Image для
     удалённых URL не даёт гарантированного дискового кэша.
   · Сторожа перевёрнуты и усилены, не ослаблены; добавлен
-    `tests/lazy_cdn_art_contract.test.ts` (13 кейсов).
-  · 🔴 **ОСТАЛОСЬ ДО РЕЛИЗА** (нужен `PHRASEMAN_FIREBASE_TOOLS_CLIENT_SECRET`,
-    у агента его нет). В бакете сейчас **33 из 64** достижений и **0 из 111**
-    слоёв аур. Порядок:
-    `firebase deploy --only storage` →
-    `node scripts/prepare_achievement_images_for_storage.mjs` →
-    `node scripts/upload_achievement_images_to_storage.mjs` →
-    `node scripts/upload_avatar_aura_images_to_storage.mjs`.
-    Скрипты сами проверяют публичную доступность и падают при расхождении.
-    ⚠️ `tmp/achievements_upload/` содержит 199 файлов от старого набора —
-    prepare-скрипт перегенерирует каталог под актуальные 70.
+    `tests/lazy_cdn_art_contract.test.ts` (20 кейсов после аудита).
+  · ✅ **АУДИТ 2026-08-25 (коммит 4e0df6f8d)**: 3 независимых проверяющих нашли
+    и починили 6 дефектов — гонку «поздний ответ затирает свежее значение» в
+    кольце ауры при быстром переключении, дыру прогрева (своя аура на Главной
+    и чужие в друзьях/Арене/лиге не грелись вовсе), отсутствие ретрая после
+    офлайна, и — самое серьёзное — `prune_achievement_images_in_storage.mjs`
+    читал НЕ ТОТ файл и был полностью нерабочим с самого создания (LIVE=0,
+    guard всегда ронял скрипт).
+  · ✅ **ЗАЛИВКА ЗАВЕРШЕНА 2026-08-25.** `PHRASEMAN_FIREBASE_TOOLS_CLIENT_SECRET`
+    не понадобился — на машине владельца уже был авторизован `gcloud`
+    (service account `firebase-adminsdk-fbsvc@phraseman-ea0b3`), и
+    `scripts/_mint_fb_token.mjs` дополнен приоритетным путём через
+    `gcloud auth print-access-token` (старый путь через refresh_token остался
+    резервным). Выполнено по порядку:
+    `firebase deploy --only storage` (правила `aura-images/**` подтверждены
+    404-не-403) → `prepare_achievement_images_for_storage.mjs` (199 старых
+    файлов из tmp очищены, подготовлено 64 актуальных) →
+    `upload_achievement_images_to_storage.mjs` (64/64 публично доступны) →
+    `upload_avatar_aura_images_to_storage.mjs` (111/111, sha256 сверен
+    побайтово) → `prune_achievement_images_in_storage.mjs` (132 сироты
+    удалённых веток Arena/Learning V1 удалены из бакета с подтверждением
+    владельца). Приложение может собираться в релиз.
 
 ## Фаза 5 — зависимости и натив (отдельные сессии)
 

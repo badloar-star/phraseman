@@ -229,6 +229,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Cecha, która nigdy nie prosi o więcej — ani dla siebie, ani dla tego, co opisuje.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s21-word-libro",
+      targetText: "libro",
+      transcription: "/ˈliβɾo/",
+      playfulMeaningByLocale: copy({
+        ru: "Единственное слово в этом курсе, которое никогда не меняет свой пол — сколько бы признаков ни примеряло.",
+        uk: "Єдине слово в цьому курсі, яке ніколи не змінює свою стать — скільки б ознак не приміряло.",
+        es: "The only word in this course that never changes its gender, no matter how many qualities try it on.",
+        en: "The only word in this course that never changes its gender, no matter how many qualities try it on.",
+        "pt-BR": "A única palavra deste curso que nunca muda de gênero, não importa quantas qualidades ela experimente.",
+        vi: "Từ duy nhất trong khóa học này không bao giờ đổi giống, dù có bao nhiêu đặc điểm thử khoác lên nó.",
+        id: "Satu-satunya kata dalam kursus ini yang tidak pernah berubah gendernya, tak peduli berapa banyak sifat yang mencobanya.",
+        tr: "Bu kursta kaç nitelik denerse denesin, cinsiyetini asla değiştirmeyen tek kelime.",
+        pl: "Jedyne słowo w tym kursie, które nigdy nie zmienia swojego rodzaju, bez względu na to, ile cech go przymierza.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

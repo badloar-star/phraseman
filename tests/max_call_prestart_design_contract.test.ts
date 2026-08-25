@@ -47,8 +47,18 @@ describe('MAX tutor prestart approved Statistics-style design', () => {
   });
 
   test('shows the server daily limit while the first mint response is pending', () => {
+    // зачем (аудит 2026-08-25): 5fa73d3b9 заменил серверный `dailyVoiceSecMax:
+    // 1_200,` на именованную `dailyVoiceSecMax: MAX_VOICE_DAILY_SEC,` — тест не
+    // обновили, регекс на голые цифры перестал матчиться, и проверка ни разу
+    // не запускалась после того рефакторинга. Резолвим имя константы через её
+    // собственное объявление, а не через место использования: это переживёт
+    // будущие переименования полей вокруг неё.
     const clientFallbackSec = numericConstant(source, /const DEFAULT_DAY_SEC = ([\d_]+);/);
-    const serverDefaultSec = numericConstant(serverConfigSource, /dailyVoiceSecMax: ([\d_]+),/);
+    const serverFieldMatch = serverConfigSource.match(/dailyVoiceSecMax: (\w+),/);
+    if (!serverFieldMatch?.[1]) throw new Error('dailyVoiceSecMax field not found in server config');
+    const serverDefaultSec = /^\d[\d_]*$/.test(serverFieldMatch[1])
+      ? Number(serverFieldMatch[1].replace(/_/g, ''))
+      : numericConstant(serverConfigSource, new RegExp(`export const ${serverFieldMatch[1]} = ([\\d_]+);`));
 
     expect(clientFallbackSec).toBe(serverDefaultSec);
   });

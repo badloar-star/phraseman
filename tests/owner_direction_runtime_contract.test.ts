@@ -200,6 +200,11 @@ describe('owner runtime direction contract', () => {
       // транскрипта (250мс, один setState на снапшот) и минутная пилюля (1с) —
       // все три живут только пока экран звонка на месте, чистятся на unmount.
       'app/max_call_session.tsx': 2,
+      // Экран разбора MAX-звонка: таймер до сброса дневного лимита (30с тик,
+      // local Date.now(), не сеть). Стартует ТОЛЬКО когда endedCapped истинно
+      // (звонок оборвался из-за исчерпанного дня на ЭТОМ устройстве), гейтован
+      // useEffect-условием и чистится в cleanup.
+      'app/max_voice_review.tsx': 1,
       // Дедлайн доступа к плану («закат»): секундный тик локального отображения
       // времени, гейтован alive/unmount; не сеть — время держит peekPersonalPlanSunsetEffectiveNow.
       'app/personal_plan.tsx': 1,

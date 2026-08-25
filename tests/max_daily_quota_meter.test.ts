@@ -3,7 +3,24 @@ import { render } from '@testing-library/react-native';
 
 import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter';
 
+// зачем (аудит 2026-08-25): мок не знал про Animated — компонент использует
+// useTonePulse (Animated.Value/sequence/timing) с самого своего появления в
+// 95d0f5fdb, поэтому единственный тест файла падал на КАЖДОМ прогоне ещё до
+// моих правок ('TypeError: Cannot read properties of undefined (reading
+// Value)'). Animated.View нужен тоже — им рисуется полоса прогресса.
 jest.mock('react-native', () => ({
+  Animated: {
+    Value: class { constructor(_v: number) {} setValue() {} },
+    View: 'Animated.View',
+    sequence: (anims: unknown[]) => ({ start: (cb?: () => void) => cb?.() }),
+    timing: () => ({}),
+  },
+  // useReduceMotion (hooks/use_reduce_motion.ts) читает AccessibilityInfo при
+  // монтировании — без мока падает так же, как Animated выше.
+  AccessibilityInfo: {
+    isReduceMotionEnabled: () => Promise.resolve(false),
+    addEventListener: () => ({ remove: () => {} }),
+  },
   View: 'View',
   Text: 'Text',
   StyleSheet: {

@@ -246,6 +246,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Jedyne słowo w tym kursie, które nigdy nie zmienia swojego rodzaju, bez względu na to, ile cech go przymierza.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s26-word-rapidos",
+      targetText: "rápidos",
+      transcription: "/ˈrapiðos/",
+      playfulMeaningByLocale: copy({
+        ru: "Признак, который наконец-то признался, что в компании их несколько, а не один.",
+        uk: "Ознака, яка нарешті зізналася, що в компанії їх кілька, а не один.",
+        es: "The quality that finally admitted there are several of them in the group, not just one.",
+        en: "The quality that finally admitted there are several of them in the group, not just one.",
+        "pt-BR": "A qualidade que finalmente admitiu que são vários no grupo, não só um.",
+        vi: "Đặc điểm cuối cùng cũng thừa nhận rằng trong nhóm có nhiều người, không chỉ một.",
+        id: "Sifat yang akhirnya mengaku ada beberapa dari mereka dalam kelompok, bukan cuma satu.",
+        tr: "Sonunda grupta tek değil, birden fazla kişi olduğunu itiraf eden nitelik.",
+        pl: "Cecha, która w końcu przyznała, że w grupie jest ich kilku, a nie jeden.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

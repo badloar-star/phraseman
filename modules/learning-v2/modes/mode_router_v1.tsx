@@ -96,10 +96,11 @@ export function isLearningV2ModeRoutedV1(
 }
 
 /**
- * Роутер. Рендерит компонент режима под family. Если режим ещё не
- * реализован (этап 2), возвращает null — вызывающий код (player) обязан
- * проверить isLearningV2ModeRoutedV1 ДО рендера и в этом случае показать
- * прежнюю универсальную карточку, а не пустой экран.
+ * Роутер. Рендерит компонент режима под family. Возвращает null для family
+ * без собственного компонента (scripted_repeat_compare — рендерится
+ * player'ом отдельно; intro_check — сюда не попадает вовсе) — вызывающий
+ * код (player) обязан проверить isLearningV2ModeRoutedV1 ДО рендера и в
+ * этом случае показать прежнюю универсальную карточку, а не пустой экран.
  */
 export function LearningV2ModeRouterV1(
   props: LearningV2ModeCommonPropsV1,

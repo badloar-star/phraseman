@@ -115,7 +115,6 @@ export type RemoteBoolKey =
   | 'gate_ai_dialog_premium'
   | 'gate_personal_plan_premium'
   | 'gate_ai_voice_call'
-  | 'gate_diagnosis_training_premium'
   | 'gate_stats_premium'
   | 'gate_flashcards_premium'
   | 'gate_themes_premium'
@@ -337,7 +336,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // единственный гейт будет пейвол». Дефолт TRUE = линия открыта без записи в
   // «Пульте»; выключает только явный false оттуда. Потребитель: app/max_voice_flags.ts.
   gate_ai_voice_call: true,
-  gate_diagnosis_training_premium: true,
   gate_stats_premium: true,
   gate_flashcards_premium: true,
   gate_themes_premium: true,
@@ -920,7 +918,6 @@ export const isLessonsPremiumGated = () => getRemoteBool('gate_lessons_premium')
 export const isSpeakingPremiumGated = () => getRemoteBool('gate_speaking_premium');
 export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premium');
 export const isPersonalPlanPremiumGated = () => getRemoteBool('gate_personal_plan_premium');
-export const isDiagnosisTrainingPremiumGated = () => getRemoteBool('gate_diagnosis_training_premium');
 export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
 export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
 export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');

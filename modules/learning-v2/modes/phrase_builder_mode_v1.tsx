@@ -118,7 +118,7 @@ function PhraseBuilderChipV1({
       { translateY: (1 - enter.value) * (variant === "bank" ? 16 : 10) },
       { translateX: nudge.value },
       { scale: press.value * verdictScale.value },
-    ],
+    ] as const,
   }));
 
   const verdictBg = verdict === "ok" ? undefined : verdict === "bad" ? undefined : bg;

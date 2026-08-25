@@ -182,10 +182,10 @@ function ListenChooseOptionV1({
   const style = useAnimatedStyle(() => ({
     opacity: dimmed ? 0.82 : 1,
     transform: [
-      { translateY: lift.value * -2 + nudge.value * 0 },
+      { translateY: lift.value * -2 },
       { translateX: nudge.value },
       { scale: press.value },
-    ],
+    ] as const,
   }));
 
   return (

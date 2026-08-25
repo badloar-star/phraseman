@@ -457,12 +457,27 @@ async function resolveStableUidForDelete(
     ]);
     const linkedAuthUid = cleanId(userSnap?.data()?.firebaseAuthUid);
     const linkedStableId = cleanId(authLinkSnap?.data()?.stable_id);
-    if (linkedStableId) return linkedStableId;
-    if (linkedAuthUid === authUid) return requested;
-    if (linkedAuthUid && linkedAuthUid !== authUid) {
+    // зачем: ИНЦИДЕНТ 2026-08-25 — уничтожение живого аккаунта владельца.
+    // Раньше `if (linkedStableId) return linkedStableId` МОЛЧА ПОДМЕНЯЛ
+    // запрошенный stable_id на якорь ТЕКУЩЕЙ сессии: протухший клиентский замок
+    // удаления (от удаления ДРУГОГО аккаунта 2026-08-23) прислал старый
+    // stable_id, сервер подменил его на живой якорь только что вошедшего
+    // владельца — и поставил ЖИВОЙ аккаунт в очередь на стирание + disable.
+    // Дизайн 2026-08-20 (post-deletion-fresh-identity, Task 2) прямо требовал:
+    // «must not silently replace the client-requested stable ID with the
+    // current auth_links anchor... causes a safe rejection; never silently
+    // substituted». Теперь удаляется ТОЛЬКО тот аккаунт, который клиент явно
+    // назвал И владение которым доказано; всё остальное — отказ. Отказ летит
+    // ДО disable-hardening в accountDeleteEnqueue, поэтому чужая сессия не
+    // блокируется. Легитимный путь не страдает: приложение передаёт свой
+    // текущий stable_id, совпадающий с якорем (или доказанный через
+    // users.firebaseAuthUid у анонимов).
+    if (linkedStableId === requested) return requested;
+    if (linkedStableId) {
       throw new HttpsError('permission-denied', 'stable_id_mismatch');
     }
-    return resolveKnownStableUid();
+    if (linkedAuthUid === authUid) return requested;
+    throw new HttpsError('permission-denied', 'stable_id_mismatch');
   }
 
   return resolveKnownStableUid();

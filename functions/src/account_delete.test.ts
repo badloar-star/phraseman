@@ -359,25 +359,49 @@ describe('accountDelete stable id resolver', () => {
     await expect(resolveStableUidForDelete(db as any, 'auth456', 'stable123')).resolves.toBe('stable123');
   });
 
-  it('does not fail local account deletion when the requested local stable id has no cloud link yet', async () => {
+  // ИНЦИДЕНТ 2026-08-25: старые ожидания ниже закрепляли МОЛЧАЛИВУЮ ПОДМЕНУ
+  // запрошенного stable_id на якорь текущей сессии. Протухший клиентский замок
+  // удаления прислал старый stable_id, сервер подменил его на живой якорь
+  // владельца и уничтожил бы живой аккаунт (спасла только упавшая попытка
+  // worker'а). Новый контракт (дизайн 2026-08-20, Task 2): удаляется только
+  // явно названный И доказанный аккаунт; недоказанный запрос — отказ, не замена.
+  it('rejects a requested stable id that has no ownership proof (fail closed, no substitution)', async () => {
     const db = makeDbStub({});
 
-    await expect(resolveStableUidForDelete(db as any, 'auth456', 'localStableOnly')).resolves.toBe('auth456');
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'localStableOnly')).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
   });
 
   it('does not authorize an existing unowned legacy user document', async () => {
     const db = makeDbStub({ users: { victimStable: { user_name: 'victim' } } });
 
-    await expect(resolveStableUidForDelete(db as any, 'auth456', 'victimStable')).resolves.toBe('auth456');
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'victimStable')).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
   });
 
-  it('falls back to the known server-side stable id when the local stable id is stale', async () => {
+  it('rejects a stale requested stable id instead of silently substituting the server anchor', async () => {
     const db = makeDbStub({ users: { serverStable: { firebaseAuthUid: 'auth456' } } });
 
-    await expect(resolveStableUidForDelete(db as any, 'auth456', 'staleLocalStable')).resolves.toBe('serverStable');
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'staleLocalStable')).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
   });
 
-  it('prefers the authoritative auth-link anchor over stale direct and firebaseAuthUid user docs', async () => {
+  it('accepts the requested stable id when it matches the auth-link anchor', async () => {
+    const db = makeDbStub({
+      users: { serverStable: { user_name: 'anchored' } },
+      authLinks: { auth456: { stable_id: 'serverStable' } },
+    });
+
+    await expect(resolveStableUidForDelete(db as any, 'auth456', 'serverStable')).resolves.toBe('serverStable');
+  });
+
+  it('rejects any requested stable id that differs from an existing auth-link anchor', async () => {
     const db = makeDbStub({
       users: {
         auth456: { user_name: 'stale direct' },
@@ -387,9 +411,12 @@ describe('accountDelete stable id resolver', () => {
       authLinks: { auth456: { stable_id: 'serverStable' } },
     });
 
-    await expect(resolveStableUidForDelete(db as any, 'auth456', 'missingLocal')).resolves.toBe('serverStable');
-    await expect(resolveStableUidForDelete(db as any, 'auth456', 'staleByAuth')).resolves.toBe('serverStable');
-    await expect(resolveStableUidForDelete(db as any, 'auth456', 'auth456')).resolves.toBe('serverStable');
+    for (const requested of ['missingLocal', 'staleByAuth', 'auth456']) {
+      await expect(resolveStableUidForDelete(db as any, 'auth456', requested)).rejects.toMatchObject({
+        code: 'permission-denied',
+        message: 'stable_id_mismatch',
+      });
+    }
   });
 
   it('rejects a requested stable id that belongs to a different auth uid', async () => {

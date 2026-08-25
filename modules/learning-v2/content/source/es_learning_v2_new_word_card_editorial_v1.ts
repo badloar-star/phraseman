@@ -263,6 +263,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Cecha, która w końcu przyznała, że w grupie jest ich kilku, a nie jeden.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s33-word-bueno",
+      targetText: "bueno",
+      transcription: "/ˈbweno/",
+      playfulMeaningByLocale: copy({
+        ru: "Оценка, которая годится почти для чего угодно — человека, идеи, дня, — и всегда меняет род в ответ.",
+        uk: "Оцінка, яка годиться майже для будь-чого — людини, ідеї, дня, — і завжди змінює рід у відповідь.",
+        es: "The verdict that fits almost anything — a person, an idea, a day — and always changes its gender in reply.",
+        en: "The verdict that fits almost anything — a person, an idea, a day — and always changes its gender in reply.",
+        "pt-BR": "O veredito que serve para quase tudo — uma pessoa, uma ideia, um dia — e sempre muda de gênero em resposta.",
+        vi: "Lời nhận xét vừa vặn với gần như mọi thứ — một người, một ý tưởng, một ngày — và luôn đổi giống để đáp lại.",
+        id: "Penilaian yang cocok untuk hampir apa saja — orang, ide, hari — dan selalu berubah gendernya sebagai balasan.",
+        tr: "Neredeyse her şeye uyan bir hüküm — bir kişi, bir fikir, bir gün — ve her zaman karşılık olarak cinsiyetini değiştiren.",
+        pl: "Werdykt, który pasuje niemal do wszystkiego — osoby, pomysłu, dnia — i zawsze w odpowiedzi zmienia swój rodzaj.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

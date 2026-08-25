@@ -22,6 +22,8 @@ import {
 import Animated, {
   Easing,
   FadeInDown,
+  SlideInRight,
+  SlideOutLeft,
   useReducedMotion,
 } from "react-native-reanimated";
 
@@ -1308,13 +1310,11 @@ export default function LearningV2DirectSessionPlayerV1() {
             // (selectedChoiceId/orderedIds/evaluate остаются в player'е).
             <Animated.View
               key={`practice-${practiceIndex}`}
-              entering={
-                reducedMotion
-                  ? undefined
-                  : FadeInDown.duration(220).easing(
-                      Easing.bezier(0.23, 1, 0.32, 1).factory(),
-                    )
-              }
+              // зачем: переход к следующему заданию по каталогу активностей 04
+              // (уход влево 110мс + приход справа 110мс, только transform/
+              // opacity, суммарно 200-240мс) — не общий FadeInDown.
+              entering={reducedMotion ? undefined : SlideInRight.duration(110)}
+              exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}
             >
               <LearningV2ModeRouterV1
                 family={practice.family}
@@ -1374,13 +1374,10 @@ export default function LearningV2DirectSessionPlayerV1() {
             // этот компонент только заменяет внутреннее содержимое карточки.
             <Animated.View
               key={`practice-${practiceIndex}`}
-              entering={
-                reducedMotion
-                  ? undefined
-                  : FadeInDown.duration(220).easing(
-                      Easing.bezier(0.23, 1, 0.32, 1).factory(),
-                    )
-              }
+              // зачем: тот же переход B5 (каталог 04), что у остальных 6
+              // режимов — не общий FadeInDown.
+              entering={reducedMotion ? undefined : SlideInRight.duration(110)}
+              exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}
             >
               <ScriptedRepeatCompareModeV1
                 family={practice.family}
@@ -1438,19 +1435,14 @@ export default function LearningV2DirectSessionPlayerV1() {
                 </View>
               </View>
 
-              {/* зачем (каталог активностей 04): переход к следующему заданию
-            обязан быть 200-240мс, а не мгновенной подменой. Ключ по индексу
-            перезапускает вход, поэтому новое задание въезжает, а не возникает.
+              {/* зачем (каталог активностей 04): переход к следующему заданию —
+            уход влево 110мс + приход справа 110мс (B5), не мгновенная подмена
+            и не общий FadeInDown. Ключ по индексу перезапускает вход/выход.
             Геометрия зоны не меняется — прыжка контента нет. */}
           <Animated.View
             key={`practice-${practiceIndex}`}
-            entering={
-              reducedMotion
-                ? undefined
-                : FadeInDown.duration(220).easing(
-                    Easing.bezier(0.23, 1, 0.32, 1).factory(),
-                  )
-            }
+            entering={reducedMotion ? undefined : SlideInRight.duration(110)}
+            exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}
           >
             <View style={styles.promptRow}>
               <Text

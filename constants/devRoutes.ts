@@ -12,12 +12,21 @@ export const MOTION_SHOWCASE_ROUTE_NAME = routeName('motion', 'showcase');
 // подписки нельзя проверить руками без настоящей платной подписки. Экран чисто
 // служебный, поэтому живёт в DEV_UTILITY_ROUTE_NAMES и в релиз не попадает.
 export const CANCEL_FLOW_PREVIEW_ROUTE_NAME = routeName('_dev', 'cancel', 'flow', 'preview');
+// зачем (владелец, 25.08): ОТДЕЛЬНЫЙ подраздел DEV Hub — не встроенный список
+// внутри «Движение · все поверхности», а свой собственный пункт со списком
+// 7 одобренных режимов, каждый открывается ПОЛНОЭКРАННЫМ работающим маршрутом.
+export const LEARNING_V2_MODES_SHOWCASE_ROUTE_NAME = routeName('learning', 'v2', 'modes', 'showcase');
+// зачем: полноэкранный runner — вложенный каталог с динамическим [family],
+// поэтому здесь регистрируется только ПАПКА (Stack.Screen по имени каталога
+// работает так же, как по имени файла — тот же паттерн, что LEARNING_V2_ROUTE_PREFIX).
+export const LEARNING_V2_MODES_SHOWCASE_RUN_DIR_NAME = routeName('learning', 'v2', 'modes', 'showcase', 'run');
 
 export const POS_ANALYTICS_AUDIT_ROUTE = `/${POS_ANALYTICS_AUDIT_ROUTE_NAME}`;
 export const FLASHCARDS_MARKET_DEV_ROUTE = `/${FLASHCARDS_MARKET_DEV_ROUTE_NAME}`;
 export const PHONE_STATE_SQLCIPHER_SMOKE_ROUTE = `/${PHONE_STATE_SQLCIPHER_SMOKE_ROUTE_NAME}`;
 export const MOTION_SHOWCASE_ROUTE = `/${MOTION_SHOWCASE_ROUTE_NAME}`;
 export const CANCEL_FLOW_PREVIEW_ROUTE = `/${CANCEL_FLOW_PREVIEW_ROUTE_NAME}`;
+export const LEARNING_V2_MODES_SHOWCASE_ROUTE = `/${LEARNING_V2_MODES_SHOWCASE_ROUTE_NAME}`;
 /**
  * зачем (владелец, 25.08): Learning V2 временно доступен только владельцу в
  * dev/internal сборке, сессии курса ещё дописываются параллельно. Это НЕ
@@ -43,6 +52,8 @@ export const DEV_UTILITY_ROUTE_NAMES = [
   MOTION_SHOWCASE_ROUTE_NAME,
   PHONE_STATE_SQLCIPHER_SMOKE_ROUTE_NAME,
   CANCEL_FLOW_PREVIEW_ROUTE_NAME,
+  LEARNING_V2_MODES_SHOWCASE_ROUTE_NAME,
+  LEARNING_V2_MODES_SHOWCASE_RUN_DIR_NAME,
 ] as const;
 
 export const DEV_UTILITY_ROUTE_PATHS = [

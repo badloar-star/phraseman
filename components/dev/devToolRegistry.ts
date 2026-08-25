@@ -2,6 +2,7 @@ export type DevToolAction =
   | 'run-onboarding'
   | 'open-max-voice'
   | 'open-motion-showcase'
+  | 'open-learning-v2-modes-showcase'
   | 'open-shop'
   | 'open-paywall-a'
   | 'open-paywall-b'
@@ -46,7 +47,8 @@ export type DevToolIcon =
   | 'card-outline'
   | 'cart-outline'
   | 'exit-outline'
-  | 'list-outline';
+  | 'list-outline'
+  | 'school-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -64,7 +66,7 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline';
   testID: string;
   /**
    * Секция свёрнута при открытии хаба.
@@ -117,6 +119,28 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-motion-showcase',
         icon: 'color-wand-outline',
         testID: 'dev-open-motion-showcase',
+      },
+    ],
+  },
+  // зачем (владелец, 25.08): ОТДЕЛЬНЫЙ подраздел от «Движение · все
+  // поверхности» — 7 одобренных режимов Learning V2 (docs/v2/mockups/
+  // index.html), каждый открывается ПОЛНОЭКРАННЫМ пробным мини-уроком.
+  {
+    id: 'learning-v2-modes-showcase',
+    order: 3,
+    title: 'Learning V2 · 7 режимов',
+    icon: 'school-outline',
+    testID: 'dev-hub-section-learning-v2-modes-showcase',
+    tools: [
+      {
+        id: 'learning-v2-modes-showcase',
+        order: 10,
+        title: 'Пробный мини-урок · 7 режимов',
+        detail: 'Каждый режим — полноэкранный работающий экран с той же анимацией смены задания, что в боевом уроке.',
+        actionLabel: 'Открыть',
+        action: 'open-learning-v2-modes-showcase',
+        icon: 'school-outline',
+        testID: 'dev-open-learning-v2-modes-showcase',
       },
     ],
   },

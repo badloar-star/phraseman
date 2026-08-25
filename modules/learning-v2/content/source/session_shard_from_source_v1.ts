@@ -546,11 +546,19 @@ function cardCopy(
     es: phrase.explanation,
   });
   // Разбор ошибок: почему каждый неверный вариант неверен.
+  // зачем без slice(0, 6) (владелец, 2026-08-25): кап на 6 записей был
+  // рассчитан на фразы максимум с 3 словесными позициями (3×2 дистрактора).
+  // Фразы с 4+ позициями (например "No eres de acuerdo" — 4 позиции, 8
+  // дистракторов) теряли последние записи молча — деградация проявлялась
+  // только для 'es' как интерфейс-локали (единственный потребитель этого
+  // legacy-фолбэка у испанского курса, т.к. остальные локали читают полный
+  // details.distractors без кэпа) и роняла сборку с
+  // lesson1_distractor_catalog_missing, когда authoredDistractorFeedback не
+  // находил маркер отсутствующего дистрактора и падал в английский каталог.
   const legacyErrorLines = phrase.words
     .flatMap((word) =>
       word.distractors.map((entry) => `${entry.value} — ${entry.why}`),
     )
-    .slice(0, 6)
     .join(' ');
   return {
     instructionByLocale: expandLocalized(instruction),

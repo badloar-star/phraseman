@@ -267,3 +267,59 @@ describe('перерывы, часы и выход', () => {
     expect(arenaLocalMatchReport(P10, init(P10))).toBeNull();
   });
 });
+
+describe('видимость ответа соперника', () => {
+  const exact = {
+    taskIndex: 0,
+    correct: true,
+    raceElapsedMs: 5_000,
+    exact: true as const,
+  };
+
+  it('stores exact truth without revealing it, then reveals once', () => {
+    let state = init(P5);
+    state = step(P5, state, {
+      type: 'opponent_answered',
+      monoNowMs: MONO0,
+      tick: exact,
+    });
+    expect(state.opponentByTask[0]).toEqual(exact);
+    expect(state.opponentRevealedByTask?.[0]).toBeUndefined();
+
+    state = step(P5, state, {
+      type: 'opponent_revealed',
+      monoNowMs: MONO0 + 5_000,
+      taskIndex: 0,
+    });
+    expect(state.opponentRevealedByTask?.[0]).toBe(true);
+    expect(step(P5, state, {
+      type: 'opponent_revealed',
+      monoNowMs: MONO0 + 5_001,
+      taskIndex: 0,
+    })).toBe(state);
+  });
+
+  it('reveals a live tick immediately', () => {
+    const live = { taskIndex: 0, correct: true, raceElapsedMs: 900 };
+    const state = step(P5, init(P5), {
+      type: 'opponent_answered',
+      monoNowMs: MONO0,
+      tick: live,
+    });
+    expect(state.opponentRevealedByTask?.[0]).toBe(true);
+  });
+
+  it('accepts a late presentation reveal after the player finishes', () => {
+    let state: ArenaLocalMatchState = {
+      ...init(P5),
+      phase: 'finished',
+      opponentByTask: { 0: exact },
+    };
+    state = step(P5, state, {
+      type: 'opponent_revealed',
+      monoNowMs: MONO0 + 5_000,
+      taskIndex: 0,
+    });
+    expect(state.opponentRevealedByTask?.[0]).toBe(true);
+  });
+});

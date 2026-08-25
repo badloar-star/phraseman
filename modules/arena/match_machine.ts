@@ -105,6 +105,11 @@ export type ArenaLocalMatchState = Readonly<{
   tieBreakElapsedMs: number;
 
   opponentByTask: Readonly<Record<number, ArenaOpponentTick>>;
+  /**
+   * Presentation latch kept separate from exact scripted truth. Older v2
+   * snapshots omit it; consumers treat that as an empty map for exact ticks.
+   */
+  opponentRevealedByTask?: Readonly<Record<number, true>>;
   opponentFinished: boolean;
   /** Момент, когда награда за текущее задание становится окончательной. */
   awardResolveAtMonoMs: number | null;
@@ -123,6 +128,7 @@ export type ArenaLocalEvent =
   | { type: 'speed_attempt'; monoNowMs: number; pairIndex: number; selectedIndex: number; correct: boolean }
   | { type: 'award_resolve'; monoNowMs: number }
   | { type: 'opponent_answered'; monoNowMs: number; tick: ArenaOpponentTick }
+  | { type: 'opponent_revealed'; monoNowMs: number; taskIndex: number }
   | { type: 'opponent_finished'; monoNowMs: number }
   | { type: 'resume'; monoNowMs: number; wallNowMs: number; monoEpochId: string }
   | { type: 'task_broken'; monoNowMs: number; taskIndex: number }
@@ -182,6 +188,7 @@ function emptyState(plan: ArenaMatchPlan): Omit<ArenaLocalMatchState,
     firstCount: 0,
     tieBreakElapsedMs: 0,
     opponentByTask: {},
+    opponentRevealedByTask: {},
     opponentFinished: false,
     awardResolveAtMonoMs: null,
     clockSuspect: false,
@@ -384,7 +391,9 @@ export function arenaLocalMatchReduce(
   state: ArenaLocalMatchState,
   event: ArenaLocalEvent,
 ): ArenaLocalMatchState {
-  if (state.phase === 'finished' && event.type !== 'opponent_finished') return state;
+  if (state.phase === 'finished'
+    && event.type !== 'opponent_finished'
+    && event.type !== 'opponent_revealed') return state;
 
   const wallNowMs = 'wallNowMs' in event ? event.wallNowMs : state.lastEventAtWallMs
     + (event.monoNowMs - state.lastEventAtMonoMs);
@@ -473,8 +482,28 @@ export function arenaLocalMatchReduce(
     case 'opponent_answered': {
       const known = base.opponentByTask[event.tick.taskIndex];
       if (known) return base;
-      return { ...base, opponentByTask: { ...base.opponentByTask, [event.tick.taskIndex]: event.tick } };
+      return {
+        ...base,
+        opponentByTask: { ...base.opponentByTask, [event.tick.taskIndex]: event.tick },
+        // A live tick arrives only after the rival actually answered. Exact
+        // scripted truth is ingested early for star math and revealed later by
+        // its independent presentation timer.
+        opponentRevealedByTask: event.tick.exact
+          ? base.opponentRevealedByTask
+          : { ...base.opponentRevealedByTask, [event.tick.taskIndex]: true },
+      };
     }
+
+    case 'opponent_revealed':
+      if (!base.opponentByTask[event.taskIndex]
+        || base.opponentRevealedByTask?.[event.taskIndex]) return state;
+      return {
+        ...base,
+        opponentRevealedByTask: {
+          ...base.opponentRevealedByTask,
+          [event.taskIndex]: true,
+        },
+      };
 
     case 'opponent_finished':
       return { ...base, opponentFinished: true };

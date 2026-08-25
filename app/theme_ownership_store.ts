@@ -16,6 +16,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isSelectableThemeMode } from './theme_access_policy';
+import { getCanonicalUserId } from './user_id_policy';
 // зачем: чистые правила слияния живут отдельно (без AsyncStorage), чтобы их
 // можно было покрыть тестом — импорт этого файла в jest раздувает воркер до OOM.
 import {
@@ -34,15 +35,32 @@ export {
 };
 
 /**
- * Маркер «разовая миграция дедушек уже проведена на ЭТОМ устройстве».
+ * Префикс маркера «разовая миграция дедушек уже проведена». Составной ключ
+ * per-АККАУНТ (см. grandfatherMigrationKey), а не просто per-устройство.
  *
- * зачем НЕ в SYNC_KEYS: маркер устройства, а не аккаунта. Если бы он ездил в
- * облако, то на втором телефоне миграция считалась бы уже сделанной и НЕ
- * закрепила бы тему, которой человек там пользуется — он потерял бы её.
- * Сам результат миграции (список тем) синхронизируется, поэтому повторный
- * прогон на другом устройстве только дополняет список, но ничего не ломает.
+ * зачем per-аккаунт (аудит 2026-08-25): устройство часто общее — «дедушка»
+ * аккаунта A на этом телефоне не должен «сжигать» право миграции для аккаунта
+ * B, который зайдёт сюда позже и имеет своё законное основание на дедушку
+ * (жил на теме на другом устройстве). Плоский маркер устройства это право B
+ * молча гасил бы навсегда.
+ *
+ * зачем НЕ в SYNC_KEYS (как и раньше): если бы маркер ездил в облако, то на
+ * втором телефоне миграция для ТОГО ЖЕ аккаунта считалась бы уже сделанной и
+ * не закрепила бы тему, которой человек пользуется именно там — он потерял бы
+ * её. Ключ привязан к аккаунту, но живёт только локально на каждом устройстве;
+ * сам результат миграции (список тем) синхронизируется, поэтому повторный
+ * прогон на другом устройстве того же аккаунта только дополняет список.
  */
-const GRANDFATHER_MIGRATION_KEY = 'theme_grandfather_migrated_v1';
+const GRANDFATHER_MIGRATION_KEY_PREFIX = 'theme_grandfather_migrated_v2_';
+/** До введения per-account ключа (аудит 2026-08-24) маркер был общим на устройство. */
+const LEGACY_DEVICE_MIGRATION_KEY = 'theme_grandfather_migrated_v1';
+
+async function grandfatherMigrationKey(): Promise<string> {
+  const stableId = await getCanonicalUserId().catch(() => null);
+  // Без stable id (гость до первого входа) миграция откладывается до её появления —
+  // тема ещё не может быть куплена/закреплена без аккаунта, терять нечего.
+  return `${GRANDFATHER_MIGRATION_KEY_PREFIX}${stableId ?? 'anon'}`;
+}
 
 async function readList(key: string): Promise<string[]> {
   try {
@@ -102,11 +120,24 @@ export async function grandfatherActiveThemeIfNeeded(
   // набор, а темы за жемчуг он бы просто не покупал. Миграция обязана быть
   // одноразовой: она нужна лишь чтобы никто не потерял тему В МОМЕНТ смены
   // правил, а не чтобы раздавать темы дальше.
-  const alreadyMigrated = await AsyncStorage.getItem(GRANDFATHER_MIGRATION_KEY);
-  if (alreadyMigrated === '1') return current;
+  //
+  // зачем проверяем И legacy-ключ (аудит 2026-08-25): устройства, обновившиеся
+  // ДО перехода на per-account ключ, уже честно прошли миграцию под старым
+  // плоским флагом — без этой проверки они закрепили бы активную тему ВТОРОЙ
+  // раз при первом запуске после апдейта (тот самый баг, который маркер и
+  // должен предотвращать).
+  const migrationKey = await grandfatherMigrationKey();
+  const [alreadyMigrated, legacyMigrated] = await AsyncStorage.multiGet([
+    migrationKey,
+    LEGACY_DEVICE_MIGRATION_KEY,
+  ]).then((pairs) => pairs.map(([, value]) => value));
+  if (alreadyMigrated === '1' || legacyMigrated === '1') {
+    if (alreadyMigrated !== '1') await AsyncStorage.setItem(migrationKey, '1');
+    return current;
+  }
   // Маркер ставится в любом случае — даже когда закреплять нечего, иначе
   // миграция осталась бы «открытой» и сработала бы позже, уже не по делу.
-  await AsyncStorage.setItem(GRANDFATHER_MIGRATION_KEY, '1');
+  await AsyncStorage.setItem(migrationKey, '1');
   if (!opts.hadAccess) return current;
   if (!activeMode || !isSelectableThemeMode(activeMode)) return current;
   return addGrandfatheredThemeMode(activeMode);

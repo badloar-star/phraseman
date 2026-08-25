@@ -7,7 +7,7 @@ import { goldShadow } from '../constants/goldTheme';
 import { oliveShadow } from '../constants/oliveTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
-import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
+import { ENABLE_DEV_TOOLS } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
 import { useFeatureAccess } from './PremiumContext';
 import {
@@ -253,7 +253,13 @@ const CYCLE: ThemeMode[] = [...SELECTABLE_THEME_MODES];
 // зачем: бесплатные темы-витрины — «Индиго» и «Нефрит» (выбор владельца);
 // «Полночь» ушла в премиум, но у старых бесплатных юзеров не отбирается —
 // см. флаг-«дедушка» MIDNIGHT_GRANDFATHER_KEY.
-const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
+// зачем: DEV_MODE в app/config.ts захардкожен в `true` (комментарий там же:
+// «для проверки Google Play», временная мера) и НЕ гасится в релизной сборке —
+// голый DEV_MODE || здесь открывал бы ВСЕ платные/наградные темы бесплатно в
+// проде. ENABLE_DEV_TOOLS уже учитывает !IS_STORE_RELEASE и является
+// единственным безопасным источником; settings_themes.tsx исправляет тот же
+// класс бага той же формулой — держим оба места в синхроне.
+const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'indigo';
 const MIDNIGHT_GRANDFATHER_KEY = 'app_theme_midnight_grandfather';
 // business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.

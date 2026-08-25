@@ -88,20 +88,31 @@ describe('purchased theme ownership survives sync', () => {
   // весь платный набор, а темы за жемчуг перестал бы покупать вовсе.
   it('grandfathers themes exactly once, not on every launch', () => {
     const storeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8');
-    expect(storeSource).toContain('GRANDFATHER_MIGRATION_KEY');
-    // Ранний выход, когда миграция уже прошла.
-    expect(storeSource).toContain("if (alreadyMigrated === '1') return current;");
+    expect(storeSource).toContain('GRANDFATHER_MIGRATION_KEY_PREFIX');
+    // Ранний выход, когда миграция (текущая ИЛИ legacy) уже прошла.
+    expect(storeSource).toContain("if (alreadyMigrated === '1' || legacyMigrated === '1') {");
     // Маркер ставится ДО проверки прав — иначе миграция осталась бы «открытой».
-    const markerSet = storeSource.indexOf("setItem(GRANDFATHER_MIGRATION_KEY, '1')");
-    const accessCheck = storeSource.indexOf('if (!opts.hadAccess) return current;');
+    const markerSet = storeSource.indexOf('await AsyncStorage.setItem(migrationKey, \'1\');\n  if (!opts.hadAccess)');
     expect(markerSet).toBeGreaterThan(0);
-    expect(markerSet).toBeLessThan(accessCheck);
   });
 
-  it('keeps the migration marker device-local, never synced', () => {
-    // Если бы маркер ездил в облако, на втором телефоне миграция считалась бы
-    // сделанной и НЕ закрепила бы тему, которой человек там пользуется.
+  // зачем per-account (аудит 2026-08-25): плоский маркер устройства «сжигал»
+  // право миграции для ВТОРОГО аккаунта на том же (общем) устройстве, даже
+  // если у него было своё законное основание на дедушку. Ключ теперь составной
+  // (префикс + stable id), но остаётся локальным — не в облаке.
+  it('scopes the migration marker per account while keeping it device-local', () => {
+    const storeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'theme_ownership_store.ts'), 'utf8');
+    expect(storeSource).toContain("import { getCanonicalUserId } from './user_id_policy';");
+    expect(storeSource).toContain('async function grandfatherMigrationKey(): Promise<string> {');
+    expect(storeSource).toContain('GRANDFATHER_MIGRATION_KEY_PREFIX}${stableId ?? \'anon\'}');
+    // Старый плоский ключ проверяется для обратной совместимости, но новых
+    // записей под ним больше не делаем — иначе аккаунт B на общем устройстве
+    // снова считался бы уже мигрировавшим по ключу аккаунта A.
+    expect(storeSource).toContain("const LEGACY_DEVICE_MIGRATION_KEY = 'theme_grandfather_migrated_v1';");
+    // Если бы маркер ездил в облако, на втором телефоне миграция ТОГО ЖЕ
+    // аккаунта считалась бы сделанной и не закрепила бы тему там.
     expect(cloudSyncSource).not.toContain('theme_grandfather_migrated_v1');
+    expect(cloudSyncSource).not.toContain('theme_grandfather_migrated_v2_');
     expect(cloudSyncSource).not.toContain('GRANDFATHER_MIGRATION_KEY');
   });
 

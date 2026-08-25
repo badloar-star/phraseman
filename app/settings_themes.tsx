@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -12,7 +12,6 @@ import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
-import { useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import TapScale from '../components/TapScale';
 import PlusBadge from '../components/PlusBadge';
@@ -239,8 +238,10 @@ export default function SettingsThemes() {
     markThemePurchased,
   } = useTheme();
   const { lang } = useLang();
-  // «Пульт»: замок премиум-тем снимается, когда фича переведена в «Фри».
-  const isPremium = useFeatureAccess('themes');
+  // зачем удалено (аудит 2026-08-25): мёртвая переменная — «Пульт» (remote-config
+  // тумблер 'themes') уже учтён ВНУТРИ ThemeContext как liveThemeAccess и подмешан
+  // в isThemeAvailable/isThemeUnlockedFor. Дублировать здесь — источник расхождения,
+  // не защита.
 
   // зачем: баланс берём из уже известного значения (peek) — первый кадр рисуется
   // без ожидания диска/сети, точное значение догоняет фоном. Так экран не мигает
@@ -249,6 +250,8 @@ export default function SettingsThemes() {
   const [purchaseTarget, setPurchaseTarget] = useState<PickerThemeMode | null>(null);
   const [purchaseMode, setPurchaseMode] = useState<ThemePaywallMode>('confirm');
   const [purchasing, setPurchasing] = useState(false);
+  /** Синхронный замок покупки — см. onConfirmPurchase (гонка двойного тапа). */
+  const purchasingRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -330,7 +333,13 @@ export default function SettingsThemes() {
    */
   const onConfirmPurchase = useCallback(async () => {
     const mode = purchaseTarget;
-    if (!mode || purchasing) return;
+    // зачем ref, а не только состояние (аудит 2026-08-25): setPurchasing
+    // применяется асинхронно, поэтому ДВА быстрых тапа успевали пройти проверку
+    // `purchasing` до её обновления и уходили в две параллельные покупки. Ref
+    // меняется синхронно и закрывает окно гонки. Семантический operationId —
+    // вторая линия: даже проскочивший дубль не спишет жемчуг второй раз.
+    if (!mode || purchasingRef.current) return;
+    purchasingRef.current = true;
     setPurchasing(true);
     try {
       const result = await purchaseThemeWithShards(mode);
@@ -349,9 +358,10 @@ export default function SettingsThemes() {
       // 'failed'/'not_purchasable' — тост уже показан в purchaseThemeWithShards.
       setPurchaseTarget(null);
     } finally {
+      purchasingRef.current = false;
       setPurchasing(false);
     }
-  }, [purchaseTarget, purchasing, markThemePurchased, applyCandidate]);
+  }, [purchaseTarget, markThemePurchased, applyCandidate]);
 
   const ctaLabel = candidateNeedsShards
     ? triLang(lang, {

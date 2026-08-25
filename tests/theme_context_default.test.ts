@@ -85,4 +85,25 @@ describe('ThemeContext default theme', () => {
     expect(source).toContain('markThemePurchased');
     expect(source).toContain('ownedThemeModes');
   });
+
+  // зачем (аудит 2026-08-25, найдено независимым ревью): app/config.ts объявляет
+  // `export const DEV_MODE = true;` БЕЗУСЛОВНО (комментарий там же: временная
+  // мера «для проверки Google Play») — этот флаг НЕ гасится в релизной сборке.
+  // Прежняя строка `const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;`
+  // из-за этого была ВСЕГДА true в проде: все платные темы (200 жемчужин каждая)
+  // и наградное «Золото» открывались бесплатно любому пользователю. Проверка
+  // «строка с DEV_THEME_UNLOCKS существует» эту дыру не поймала бы — тест
+  // обязан проверять, ЧТО именно образует значение, а не факт использования.
+  //
+  // ENABLE_DEV_TOOLS — единственный безопасный источник (сам гасится
+  // !IS_STORE_RELEASE в config.ts), settings_themes.tsx использует его же.
+  it('never derives the theme dev-unlock flag from the always-true DEV_MODE constant', () => {
+    expect(source).toContain('const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;');
+    expect(source).not.toMatch(/DEV_THEME_UNLOCKS\s*=\s*DEV_MODE/);
+    // Мёртвый импорт DEV_MODE — сигнал, что кто-то забыл его убрать при откате правки.
+    expect(source).not.toMatch(/import\s*\{[^}]*\bDEV_MODE\b[^}]*\}\s*from\s*'\.\.\/app\/config'/);
+    // settings_themes.tsx — тот же класс бага, уже исправленный там раньше;
+    // оба места обязаны использовать один и тот же безопасный источник.
+    expect(settingsThemesSource).toContain('const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;');
+  });
 });

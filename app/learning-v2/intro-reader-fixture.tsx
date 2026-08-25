@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { View } from "react-native";
 
 import LearningV2SessionIntro from "../learning_v2_session_intro";
-import { DEV_MODE, ENABLE_DEV_TOOLS } from "../config";
+import { ENABLE_DEV_TOOLS } from "../config";
 import { isSelectableThemeMode } from "../theme_access_policy";
 import type {
   IntroLine,
@@ -136,7 +136,10 @@ export default function LearningV2IntroReaderFixtureRoute() {
     return () => setPreviewThemeMode(null);
   }, [requestedTheme, setPreviewThemeMode]);
 
-  if (!DEV_MODE && !ENABLE_DEV_TOOLS) return <Redirect href="/" />;
+  // зачем (владелец, 25.08): DEV_MODE=true всегда истинно в этом билде, поэтому
+  // `!DEV_MODE && ...` было мёртвым кодом и пропускало фикстуру в стор-сборку
+  // по диплинку. ENABLE_DEV_TOOLS уже гасится IS_STORE_RELEASE — этого хватает.
+  if (!ENABLE_DEV_TOOLS) return <Redirect href="/" />;
   if (complete) return <View testID="learning-v2-intro-fixture-complete" />;
 
   return (

@@ -19,6 +19,18 @@ export const PHONE_STATE_SQLCIPHER_SMOKE_ROUTE = `/${PHONE_STATE_SQLCIPHER_SMOKE
 export const MOTION_SHOWCASE_ROUTE = `/${MOTION_SHOWCASE_ROUTE_NAME}`;
 export const CANCEL_FLOW_PREVIEW_ROUTE = `/${CANCEL_FLOW_PREVIEW_ROUTE_NAME}`;
 /**
+ * зачем (владелец, 25.08): Learning V2 временно доступен только владельцу в
+ * dev/internal сборке, сессии курса ещё дописываются параллельно. Это НЕ
+ * `DEV_UTILITY_ROUTE_NAME` (та группа регистрируется как плоский `Stack.Screen`
+ * по имени файла и в релизе не рендерится вовсе) — `learning-v2/*` живёт как
+ * обычный вложенный expo-router каталог (course, session/[id], lesson/[id]),
+ * поэтому здесь только ПУТЬ-префикс для отдельной проверки диплинка в
+ * `_layout.tsx` (`isDevUtilityRoutePath`-подобный guard). Экраны внутри сами
+ * себя не защищали — только `course.tsx` и `intro-reader-fixture.tsx` получили
+ * прямой `ENABLE_DEV_TOOLS` guard в этом же коммите.
+ */
+export const LEARNING_V2_ROUTE_PREFIX = '/learning-v2';
+/**
  * зачем (владелец, 24.08): магазин — будущий БОЕВОЙ экран, но пока без входа из
  * приложения. Единственная дверь — пункт в DEV-центре. Поэтому маршрут обычный
  * (`/shop`), а НЕ в DEV_UTILITY_ROUTE_NAMES: те прячутся из сборки, а магазин

@@ -22,6 +22,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
+// зачем (владелец, 25.08: «на главной всегда нули при заходе»): статический
+// импорт запускает прогрев рун при загрузке модуля (см. комментарий
+// primeRunesPeekFromBoot в runes_system.ts) — раньше, чем первый кадр Главной
+// прочитает peekRunes(). Тот же приём, что у EnergyProvider/energy_peek_cache
+// чуть выше по файлу: чтение стартует до, а не только внутри bootstrap-гонки.
+import './runes_system';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
@@ -198,7 +204,7 @@ import {
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
 import { scheduleCoalescedForegroundTask } from './app_resume_policy';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/devRoutes';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, LEARNING_V2_ROUTE_PREFIX } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
@@ -410,6 +416,15 @@ function normalizeWarmDeepLink(url: string): string | null {
 function isDevUtilityRoutePath(path: string | null | undefined): boolean {
   if (!ENABLE_DEV_TOOLS || !path) return false;
   return DEV_UTILITY_ROUTE_PATHS.some((prefix) => path.startsWith(prefix));
+}
+
+// зачем (владелец, 25.08): Learning V2 временно только владельцу в dev-сборке —
+// сессии курса ещё дописываются. В отличие от isDevUtilityRoutePath (которая
+// молчит при !ENABLE_DEV_TOOLS и пропускает диплинк дальше), этот guard должен
+// АКТИВНО блокировать путь в стор-сборке, а не просто не признавать его "dev".
+function isBlockedLearningV2RoutePath(path: string | null | undefined): boolean {
+  if (!path || ENABLE_DEV_TOOLS) return false;
+  return path.startsWith(LEARNING_V2_ROUTE_PREFIX);
 }
 
 function isTabsGroupRoutePath(path: string): boolean {
@@ -1525,6 +1540,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       router.replace(target as any);
       const retry = setTimeout(() => router.replace(target as any), 250);
       return () => clearTimeout(retry);
+    }
+
+    if (isBlockedLearningV2RoutePath(target)) {
+      router.replace('/(tabs)/home' as any);
+      return;
     }
 
     if (isTabsGroupRoutePath(target)) {

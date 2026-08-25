@@ -103,6 +103,10 @@ const ES_SESSION_LOADERS: readonly (() => SessionSource)[] = Object.freeze([
     // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
     (require('./es_episode_01_session_19_v1') as Record<string, SessionSource>)
       .ES_EPISODE_01_SESSION_19_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./es_episode_01_session_20_v1') as Record<string, SessionSource>)
+      .ES_EPISODE_01_SESSION_20_SOURCE,
 ]);
 
 

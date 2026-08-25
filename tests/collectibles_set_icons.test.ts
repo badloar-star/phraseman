@@ -1,4 +1,4 @@
-import { COLLECTIBLE_SETS } from '../app/collectibles/catalog';
+import { collectibleSets } from '../app/collectibles/catalog';
 import { ioniconForSetIcon } from '../app/collectibles/set_icons';
 
 // Набор валидных имён Ionicons, которые реально используются в маппинге.
@@ -39,7 +39,7 @@ const KNOWN_IONICONS = new Set([
 describe('ioniconForSetIcon', () => {
   it('every catalog set icon maps to a known Ionicons name (no silent fallback)', () => {
     const fallbackUsed: string[] = [];
-    for (const set of COLLECTIBLE_SETS) {
+    for (const set of collectibleSets()) {
       const name = ioniconForSetIcon(set.icon);
       expect(KNOWN_IONICONS.has(name)).toBe(true);
       // Реальный набор иконок каталога должен иметь явный маппинг — фолбэк здесь
@@ -50,8 +50,8 @@ describe('ioniconForSetIcon', () => {
   });
 
   it('all 30 sets resolve to an icon', () => {
-    expect(COLLECTIBLE_SETS.length).toBe(30);
-    for (const set of COLLECTIBLE_SETS) {
+    expect(collectibleSets().length).toBe(30);
+    for (const set of collectibleSets()) {
       expect(typeof ioniconForSetIcon(set.icon)).toBe('string');
       expect(ioniconForSetIcon(set.icon).length).toBeGreaterThan(0);
     }

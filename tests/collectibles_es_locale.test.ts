@@ -1,7 +1,7 @@
 import {
-  COLLECTIBLE_SETS,
   collectibleCardTextForLang,
   collectibleSetTitleForLang,
+  collectibleSets,
   findCollectibleCard,
   findCollectibleSet,
 } from '../app/collectibles/catalog';
@@ -26,7 +26,7 @@ describe('collectibles Spanish locale sidecar', () => {
   });
 
   it('keeps non-Spanish and untranslated cards on the existing Russian fallback', () => {
-    const untranslatedSet = COLLECTIBLE_SETS.find((set) => set.setId !== 'set01_animals')!;
+    const untranslatedSet = collectibleSets().find((set) => set.setId !== 'set01_animals')!;
     const untranslatedCard = untranslatedSet.cards[0];
 
     expect(collectibleSetTitleForLang(untranslatedSet, 'es')).toBe(untranslatedSet.titleEn);

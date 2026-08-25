@@ -37,7 +37,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
   COLLECTIBLE_RARITY_COLORS,
   COLLECTIBLE_RARITY_LABELS,
-  COLLECTIBLE_SETS,
+  collectibleSets,
   collectibleCardTextForLang,
   collectibleSetTitleForLang,
   collectiblesTotalCount,
@@ -579,7 +579,7 @@ export default function CollectiblesScreen() {
 
   const ownedCount = useMemo(
     () => Object.keys(ownedMap).filter((id) =>
-      COLLECTIBLE_SETS.some((s) => s.secret.id === id || s.cards.some((c) => c.id === id)),
+      collectibleSets().some((s) => s.secret.id === id || s.cards.some((c) => c.id === id)),
     ).length,
     [ownedMap],
   );
@@ -605,7 +605,7 @@ export default function CollectiblesScreen() {
   };
   const visibleSets = useMemo<VisibleSet[]>(() => {
     const out: VisibleSet[] = [];
-    for (const set of COLLECTIBLE_SETS) {
+    for (const set of collectibleSets()) {
       const ownedCards = set.cards.filter((c) => ownedMap[c.id] != null);
       const secretOwned = ownedMap[set.secret.id] != null;
       if (ownedCards.length + (secretOwned ? 1 : 0) > 0) {

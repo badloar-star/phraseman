@@ -16,8 +16,8 @@ import {
 } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
 import {
-  COLLECTIBLE_SETS,
   CollectibleRarity,
+  collectibleSets,
   collectiblesTotalCount,
   findCollectibleCard,
 } from './catalog';
@@ -223,7 +223,7 @@ export async function devUnlockAllCollectibles(): Promise<number> {
     if (!isAccountOperationCurrent(accountToken)) return 0;
     const next: CollectiblesOwnedMap = { ...owned };
     const now = Date.now();
-    for (const set of COLLECTIBLE_SETS) {
+    for (const set of collectibleSets()) {
       for (const card of set.cards) {
         if (!next[card.id]) next[card.id] = now;
       }

@@ -1,8 +1,7 @@
 // Доступ к каталогу «Сокровищницы» поверх сгенерированных данных.
 // Сами данные — app/collectibles/catalog_data.ts (НЕ править руками,
 // регенерация: node tools/collectibles/generate.mjs build-app).
-import {
-  COLLECTIBLE_SETS,
+import type {
   CollectibleCardData,
   CollectibleRarity,
   CollectibleSecretData,
@@ -17,7 +16,37 @@ export type {
   CollectibleSecretData,
   CollectibleSetData,
 };
-export { COLLECTIBLE_SETS };
+/**
+ * СЕЙМ ЛЕНИВОЙ ЗАГРУЗКИ (Фаза 2 «Бандл-диеты», 2026-08-25).
+ *
+ * зачем: `catalog_data.ts` — 0.67 МБ сгенерированных данных, а `catalog.ts`
+ * строил по ним ДВА индекса прямо на загрузке модуля. При этом `storage.ts`
+ * (ради `maybeRollCollectibleDrop`) статически импортируется четырьмя экранами
+ * уроков — значит 0.67 МБ парсились и индексировались на пути КАЖДОГО урока,
+ * хотя дроп карточки случается редко и всегда после ответа сервера.
+ *
+ * Теперь данные подтягиваются синхронным ленивым require() при первом реальном
+ * обращении и кэшируются. Вызывающий код остался синхронным и не изменился —
+ * тот же приём, что в `lesson_help_theory_registry.ts`.
+ */
+let SETS_CACHE: readonly CollectibleSetData[] | null = null;
+
+function loadSets(): readonly CollectibleSetData[] {
+  if (SETS_CACHE) return SETS_CACHE;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: держит 0.67 МБ каталога вне пути экранов уроков, пока карточка реально не понадобилась
+  const mod = require('./catalog_data') as { COLLECTIBLE_SETS: readonly CollectibleSetData[] };
+  SETS_CACHE = mod.COLLECTIBLE_SETS;
+  return SETS_CACHE;
+}
+
+/**
+ * Все сеты каталога. ВНИМАНИЕ: первое обращение материализует 0.67 МБ данных —
+ * зовите только там, где каталог реально показывается или перебирается
+ * (экран «Сокровищница», выдача всей коллекции), а не на пути урока.
+ */
+export function collectibleSets(): readonly CollectibleSetData[] {
+  return loadSets();
+}
 
 export type CollectibleAnyCard =
   | { kind: 'card'; setId: string; card: CollectibleCardData }
@@ -31,29 +60,41 @@ export type CollectibleLocalizedCardText = {
   origin: string;
 };
 
-const cardIndex: Map<string, CollectibleAnyCard> = new Map();
-for (const set of COLLECTIBLE_SETS) {
-  for (const card of set.cards) {
-    cardIndex.set(card.id, { kind: 'card', setId: set.setId, card });
+// зачем: индексы строятся вместе с данными — при первом обращении, а не на
+// загрузке модуля (раньше два прохода по всем картам шли на пути каждого урока).
+let cardIndex: Map<string, CollectibleAnyCard> | null = null;
+let setIndex: Map<string, CollectibleSetData> | null = null;
+
+function loadIndexes(): {
+  cards: Map<string, CollectibleAnyCard>;
+  sets: Map<string, CollectibleSetData>;
+} {
+  if (cardIndex && setIndex) return { cards: cardIndex, sets: setIndex };
+  const cards = new Map<string, CollectibleAnyCard>();
+  const sets = new Map<string, CollectibleSetData>();
+  for (const set of loadSets()) {
+    for (const card of set.cards) {
+      cards.set(card.id, { kind: 'card', setId: set.setId, card });
+    }
+    cards.set(set.secret.id, { kind: 'secret', setId: set.setId, card: set.secret });
+    sets.set(set.setId, set);
   }
-  cardIndex.set(set.secret.id, { kind: 'secret', setId: set.setId, card: set.secret });
+  cardIndex = cards;
+  setIndex = sets;
+  return { cards, sets };
 }
 
-const setIndex: Map<string, CollectibleSetData> = new Map(
-  COLLECTIBLE_SETS.map((s) => [s.setId, s]),
-);
-
 export function findCollectibleCard(cardId: string): CollectibleAnyCard | null {
-  return cardIndex.get(cardId) ?? null;
+  return loadIndexes().cards.get(cardId) ?? null;
 }
 
 export function findCollectibleSet(setId: string): CollectibleSetData | null {
-  return setIndex.get(setId) ?? null;
+  return loadIndexes().sets.get(setId) ?? null;
 }
 
 /** Всего видимых позиций коллекции: карточки + секретки live-сетов. */
 export function collectiblesTotalCount(): number {
-  return COLLECTIBLE_SETS.reduce((sum, s) => sum + s.cards.length + 1, 0);
+  return loadSets().reduce((sum, s) => sum + s.cards.length + 1, 0);
 }
 
 function isSpanish(lang: Lang | string): boolean {

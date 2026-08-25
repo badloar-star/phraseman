@@ -195,6 +195,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Ten sam łącznik co soy, tylko odwrócony twarzą do słuchacza zamiast do lustra.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s12-word-segura",
+      targetText: "segura",
+      transcription: "/seˈɣuɾa/",
+      playfulMeaningByLocale: copy({
+        ru: "Признак, который никогда не спрашивает разрешения быть собой.",
+        uk: "Ознака, яка ніколи не питає дозволу бути собою.",
+        es: "The quality that never asks permission to be itself.",
+        en: "The quality that never asks permission to be itself.",
+        "pt-BR": "A qualidade que nunca pede permissão para ser ela mesma.",
+        vi: "Đặc điểm không bao giờ xin phép để là chính nó.",
+        id: "Sifat yang tidak pernah meminta izin untuk menjadi dirinya sendiri.",
+        tr: "Kendisi olmak için asla izin istemeyen bir nitelik.",
+        pl: "Cecha, która nigdy nie pyta o pozwolenie, by być sobą.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

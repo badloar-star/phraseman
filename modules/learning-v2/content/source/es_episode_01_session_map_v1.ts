@@ -59,7 +59,7 @@ export const ES_EPISODE_01_SESSION_MAP_V1: readonly EpisodeSessionPlanEntry[] =
     { sessionOrdinal: 9, kind: 'phrases', title: 'Ты есть', teaches: ['second_person_singular'], builtOn: [1], recalls: [3] },
     { sessionOrdinal: 10, kind: 'phrases', title: 'Так ли это?', teaches: ['question_marks', 'question_intonation'], builtOn: [9], recalls: [1, 9] },
     { sessionOrdinal: 11, kind: 'phrases', title: 'Ты не', teaches: [], builtOn: [2, 9], recalls: [2, 9] },
-    { sessionOrdinal: 12, kind: 'words_then_phrases', title: 'Спрашиваю женщину', teaches: [], builtOn: [3, 10], recalls: [3, 10] },
+    { sessionOrdinal: 12, kind: 'words_then_phrases', title: 'Спрашиваю женщину', teaches: ['confidence_adjective'], builtOn: [3, 10], recalls: [3, 10] },
     { sessionOrdinal: 13, kind: 'phrases', title: 'Местоимение не нужно', teaches: ['pronoun_drop'], builtOn: [9, 10], recalls: [1, 9] },
     { sessionOrdinal: 14, kind: 'words_then_phrases', title: 'Согласен или нет', teaches: ['agreement_phrase'], builtOn: [5, 10], recalls: [5, 10] },
     { sessionOrdinal: 15, kind: 'voice', title: 'Скажи вслух: спроси меня', teaches: [], builtOn: [10, 12, 14], recalls: [9, 10, 14] },

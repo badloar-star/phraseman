@@ -12,6 +12,8 @@
  *   3) tip / trap — главный практический совет или ловушка для русско/украиноговорящих
  */
 import type { LessonIntroScreen } from './lesson_data_types';
+
+export type ExtraIntroScreensMap = Record<number, LessonIntroScreen[]>;
 import {
   LESSON_9_INTRO_SCREENS,
 } from './lesson_intro_screens_lesson9_v2';

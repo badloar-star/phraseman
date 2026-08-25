@@ -3,7 +3,7 @@
 
 import { LessonData, LessonIntroScreen, LessonPhrase } from './lesson_data_types';
 
-import { EXTRA_INTRO_SCREENS } from './lesson_intro_screens_9_32';
+import type { ExtraIntroScreensMap } from './lesson_intro_screens_9_32';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
 import { frenchStudyActive, spanishStudyActive } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
@@ -26,6 +26,25 @@ type EsIntroModule = Record<string, LessonIntroScreen[] | undefined>;
 const LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 const lazyLessonMetaCache: Record<number, LessonData> = {};
 let esL2IntroModule: EsIntroModule | null = null;
+let extraIntroScreensCache: ExtraIntroScreensMap | null = null;
+
+/**
+ * СЕЙМ ЛЕНИВОЙ ЗАГРУЗКИ (Фаза 2 «Бандл-диеты», 2026-08-25).
+ *
+ * зачем: `lesson_intro_screens_9_32.ts` статически стягивал интро-слайды ВСЕХ
+ * уроков 9-32 в один объект `EXTRA_INTRO_SCREENS` (~1.6 МБ, из них 0.57 МБ —
+ * один только `lesson_intro_screens_en_17_32.ts`) прямо на загрузке модуля.
+ * `lesson_data_all.ts` импортируется КАЖДЫМ экраном урока — то есть весь
+ * массив грузился, даже если юзер открыл урок 1. Тот же приём, что уже
+ * применён к `lesson_data_1_8/9_16/17_24/25_32` через `loadLessonGroupModule`.
+ */
+function loadExtraIntroScreens(): ExtraIntroScreensMap {
+  if (extraIntroScreensCache) return extraIntroScreensCache;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy sync require avoids evaluating intro screens for lessons 9-32 when only lesson 1-8 is needed.
+  const mod = require('./lesson_intro_screens_9_32') as { EXTRA_INTRO_SCREENS: ExtraIntroScreensMap };
+  extraIntroScreensCache = mod.EXTRA_INTRO_SCREENS;
+  return extraIntroScreensCache;
+}
 
 function loadLessonGroupModule(lessonId: number): LessonGroupModule {
   if (lessonId >= 1 && lessonId <= 8) {
@@ -291,7 +310,7 @@ export function getLessonIntroScreens(
     if (frL2?.length) return withSpanishIntroFallback(frL2);
     return [];
   }
-  const extra = EXTRA_INTRO_SCREENS[lessonId];
+  const extra = loadExtraIntroScreens()[lessonId];
   if (extra && extra.length > 0) return withSpanishIntroFallback(extra);
   if (lessonId >= 1 && lessonId <= 8 && spanishStudyActive(studyTarget)) {
     const esL2 = getSpanishL2IntroScreens(lessonId);

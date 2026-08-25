@@ -41,6 +41,7 @@ import {
 } from './notifications';
 import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
+import { soundDirector } from '../modules/audio/sound_director';
 import { DEV_IAP_BYPASS } from './config';
 import {
   DEV_PREVIEW_MONTHLY_PRICE,
@@ -460,6 +461,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const selectPlan = useCallback((plan: PaywallPlan) => {
     if (plan === 'lifetime' && !lifetimeAvailable) return;
     hapticTap();
+    // зачем: выбор тарифа был единственным действием на пейволе без слухового
+    // отклика — вибрация есть, звука нет. Короткий сигнал подтверждает выбор,
+    // не празднуя его: покупка ещё не совершена.
+    soundDirector.request('pm.paywall.plan_select', { scope: 'paywall' });
     setSelected(plan);
     void trackEvent('paywall_plan_select', { context, source, plan, paywall: variant, ...paywallImpressionParams(impression) });
   }, [context, impression, lifetimeAvailable, source, variant]);
@@ -513,6 +518,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
     let activatedPersonalPlan: PersonalPlanState | null = null;
     setPurchasing(true);
+    // зачем: между нажатием «Купить» и ответом стора проходит секунда-две, и
+    // всё это время интерфейс молчал. Звук подтверждает, что запрос ушёл —
+    // не празднование, а «принято, ждём».
+    soundDirector.request('pm.purchase.start', { scope: 'paywall' });
     void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
     try {
       if (
@@ -690,6 +699,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           ...paywallImpressionParams(impression),
         });
         logPaywallFunnel('purchase_failed', { variant, context, plan: selected });
+        // зачем: звучит ТОЛЬКО реальный отказ стора. Отмена пользователем и
+        // «ожидает подтверждения» (Ask to Buy) — ветки выше, они молчат: там
+        // человек сам всё контролирует, звук отказа читался бы как обвинение.
+        soundDirector.request('pm.purchase.failed', { scope: 'paywall' });
         Alert.alert(
           triLang(lang, {
             ru: 'Не удалось оформить',

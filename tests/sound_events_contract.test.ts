@@ -42,6 +42,9 @@ const MISSING_EVENTS: SoundEventId[] = [
   'pm.arena.reward_unlock',
   'pm.arena.rank_up',
   'pm.arena.rank_down',
+  // зачем 2026-08-25: событие празднования Plus заведено параллельной сессией,
+  // файл к нему ещё не сгенерирован — директор молча пропускает такие события.
+  'pm.celebration.voice_score',
 ];
 
 describe('semantic sound event catalog', () => {
@@ -50,8 +53,8 @@ describe('semantic sound event catalog', () => {
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(89);
-    expect(enabled).toHaveLength(60);
+    expect(ids).toHaveLength(133);
+    expect(enabled).toHaveLength(103);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

@@ -212,6 +212,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Cecha, która nigdy nie pyta o pozwolenie, by być sobą.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s18-word-barato",
+      targetText: "barato",
+      transcription: "/baˈɾato/",
+      playfulMeaningByLocale: copy({
+        ru: "Признак, который никогда не просит лишнего — ни за себя, ни за то, что описывает.",
+        uk: "Ознака, яка ніколи не просить зайвого — ні за себе, ні за те, що описує.",
+        es: "The quality that never asks for extra — not for itself, not for what it describes.",
+        en: "The quality that never asks for extra — not for itself, not for what it describes.",
+        "pt-BR": "A qualidade que nunca pede nada a mais — nem por si, nem pelo que descreve.",
+        vi: "Đặc điểm không bao giờ đòi hỏi thêm — cho chính nó lẫn cho thứ nó mô tả.",
+        id: "Sifat yang tidak pernah meminta lebih — baik untuk dirinya sendiri maupun untuk apa yang digambarkannya.",
+        tr: "Ne kendisi ne de tanımladığı şey için asla fazlasını istemeyen bir nitelik.",
+        pl: "Cecha, która nigdy nie prosi o więcej — ani dla siebie, ani dla tego, co opisuje.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

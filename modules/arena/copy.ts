@@ -170,6 +170,8 @@ const C = {
   rewardPearls: ['{amount} жемчужин', '{amount} перлин', '{amount} perlas', '{amount} pérolas', '{amount} ngọc trai', '{amount} mutiara', '{amount} inci', '{amount} pereł'],
   rewardSpin: ['{amount} спин', '{amount} спін', '{amount} giro', '{amount} giro', '{amount} lượt quay', '{amount} putaran', '{amount} çevirme', '{amount} spin'],
   score: ['Счёт', 'Рахунок', 'Puntos', 'Pontos', 'Điểm', 'Skor', 'Skor', 'Wynik'],
+  matchScoreCounting: ['Очки матча', 'Очки матчу', 'Puntos de la partida', 'Pontos da partida', 'Điểm trận đấu', 'Skor laga', 'Maç puanı', 'Wynik meczu'],
+  matchResultChecking: ['Сверяем результат…', 'Звіряємо результат…', 'Comprobando el resultado…', 'Conferindo o resultado…', 'Đang kiểm tra kết quả…', 'Memeriksa hasil…', 'Sonuç kontrol ediliyor…', 'Sprawdzamy wynik…'],
   tier: ['Лига', 'Ліга', 'Liga', 'Liga', 'Giải', 'Liga', 'Lig', 'Liga'],
   tierBronze: ['Бронза', 'Бронза', 'Bronce', 'Bronze', 'Đồng', 'Perunggu', 'Bronz', 'Brąz'],
   tierSilver: ['Серебро', 'Срібло', 'Plata', 'Prata', 'Bạc', 'Perak', 'Gümüş', 'Srebro'],

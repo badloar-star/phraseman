@@ -125,8 +125,11 @@ export function arenaOpponentSignal(
   state: ArenaLocalMatchState,
   monoNowMs: number,
 ): ArenaOpponentSignal {
-  if (state.phase === 'finished') return { kind: 'finished' };
   const tick = visibleOpponentTick(state, state.taskIndex);
+  // Последний точный тик может стать видимым уже во время локального подсчёта
+  // очков. Тогда сначала показываем честное «соперник ответил», а не прячем
+  // событие за общим статусом завершённого матча.
+  if (state.phase === 'finished' && !tick) return { kind: 'finished' };
   if (!tick) return state.opponentFinished ? { kind: 'finished' } : { kind: 'silent' };
   // Насколько соперник опередил — считается только в фазе ответа: в остальных
   // фазах «опережение» смысла не имеет, а число на экране было бы враньём.

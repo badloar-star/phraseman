@@ -25,6 +25,7 @@ import { ArenaTimerRing } from '../components/arena/ArenaTimerRing';
 import { ArenaComboMeter } from '../components/arena/ArenaComboMeter';
 import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
+import { ArenaFinalScoreCount } from '../components/arena/ArenaFinalScoreCount';
 import { V2Cta, V2Segments } from '../components/ui/v2_ui';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
@@ -84,6 +85,7 @@ import {
 } from '../modules/arena/result_handoff';
 import { arenaResultPreview } from '../modules/arena/result_preview';
 import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
+import { ARENA_FINAL_SCORE_COUNT_MS } from '../modules/arena/final_score_count';
 
 /**
  * Matchmaking заранее запечатывает входной план. Экран синхронно забирает
@@ -102,6 +104,12 @@ import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
  * Строки «Сервер проверяет ответ…» здесь больше нет и быть не может.
  */
 type ArenaMatchRouteParams = { matchId?: string; prepared?: string };
+type ArenaCoherentResult = Readonly<{
+  settled?: boolean;
+  match?: ArenaMatch;
+  viewerSeat?: 'a' | 'b';
+  viewerReward?: ArenaMatchReward;
+}>;
 
 export default function ArenaMatchScreen() {
   const params = useLocalSearchParams<ArenaMatchRouteParams>();
@@ -319,6 +327,28 @@ function ArenaMatchGenerationScreen({
     opponentTicks,
   });
 
+  const [finalScoreReady, setFinalScoreReady] = useState(false);
+  const finalScoreReadyRef = useRef(false);
+  const pendingCoherentResultRef = useRef<ArenaCoherentResult | null>(null);
+  useEffect(() => {
+    finalScoreReadyRef.current = false;
+    setFinalScoreReady(false);
+    pendingCoherentResultRef.current = null;
+    if (match?.state.phase !== 'finished') return undefined;
+
+    if (reduceMotion) {
+      finalScoreReadyRef.current = true;
+      setFinalScoreReady(true);
+      return undefined;
+    }
+
+    const timer = setTimeout(() => {
+      finalScoreReadyRef.current = true;
+      setFinalScoreReady(true);
+    }, ARENA_FINAL_SCORE_COUNT_MS);
+    return () => clearTimeout(timer);
+  }, [matchId, match?.state.phase, reduceMotion]);
+
   /* ---- публикация своего хода: одна запись на задание, не больше ---- */
   const publishedRef = useRef<number[]>([]);
   const finishPublishedRef = useRef(false);
@@ -345,12 +375,7 @@ function ArenaMatchGenerationScreen({
   }, [matchId, plan, match]);
 
   const resultOpenedRef = useRef(false);
-  const openCoherentResult = useCallback((response: Readonly<{
-    settled?: boolean;
-    match?: ArenaMatch;
-    viewerSeat?: 'a' | 'b';
-    viewerReward?: ArenaMatchReward;
-  }>) => {
+  const openCoherentResult = useCallback((response: ArenaCoherentResult) => {
     const resultAccount = planAccountRef.current;
     if (!matchId || !plan || !planScope || !resultAccount) return false;
     // Живость экрана здесь НЕ проверяется намеренно: с ранним переходом (D-74)
@@ -376,6 +401,13 @@ function ArenaMatchGenerationScreen({
       viewerSeat: response.viewerSeat,
       ...(response.viewerReward ? { viewerReward: response.viewerReward } : {}),
     });
+    // Локальный счёт уже известен и должен успеть проявиться до перехода.
+    // Авторитетный снимок и награда при этом сохранены выше без задержки.
+    if (!finalScoreReadyRef.current) {
+      pendingCoherentResultRef.current = response;
+      return true;
+    }
+    pendingCoherentResultRef.current = null;
     // зачем (2026-08-23): экран результата мог открыться РАНЬШЕ этого ответа —
     // по локальному итогу, чтобы игрок не ждал сеть. Тогда переходить некуда,
     // но снимок с наградами всё равно обязан лечь: экран его подхватит и
@@ -411,6 +443,7 @@ function ArenaMatchGenerationScreen({
   const openPreviewResult = useCallback(() => {
     const resultAccount = planAccountRef.current;
     if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) return;
+    if (!finalScoreReadyRef.current) return;
     if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return;
     // Быстрый матч намеренно исключён: его кульминация — сцена начисления XP
     // (`ResultsSequence`), и она рисуется только по ответу сервера. Открыть
@@ -434,6 +467,12 @@ function ArenaMatchGenerationScreen({
       },
     } as never);
   }, [match, matchId, plan, planScope, router]);
+
+  useEffect(() => {
+    if (!finalScoreReady) return;
+    const pending = pendingCoherentResultRef.current;
+    if (pending) openCoherentResult(pending);
+  }, [finalScoreReady, openCoherentResult]);
 
   const handleFinishDelivery = useCallback((delivery:
     | ArenaFinishDeliveryResult<ArenaMatchFinishResponse>
@@ -526,9 +565,9 @@ function ArenaMatchGenerationScreen({
    * предпросмотр, когда ответ сервера приедет (`openCoherentResult`).
    */
   useEffect(() => {
-    if (match?.state.phase !== 'finished') return;
+    if (match?.state.phase !== 'finished' || !finalScoreReady) return;
     openPreviewResult();
-  }, [match?.state.phase, openPreviewResult]);
+  }, [finalScoreReady, match?.state.phase, openPreviewResult]);
 
   useEffect(() => {
     if (!active || !finishQueued || !matchId) return undefined;
@@ -625,12 +664,6 @@ function ArenaMatchGenerationScreen({
       playSound('comboBreak');
     }
     lastComboRef.current = state.comboRun;
-    // Соперник ответил — ровно один раз на задание, иначе индикатор трещит.
-    const tick = state.opponentByTask[state.taskIndex];
-    if (tick && rivalToldRef.current !== state.taskIndex) {
-      rivalToldRef.current = state.taskIndex;
-      playSound('opponentAnswered');
-    }
   }, [match, playSound]);
 
   const hud = useMemo(
@@ -638,13 +671,29 @@ function ArenaMatchGenerationScreen({
     [plan, match],
   );
 
+  useEffect(() => {
+    // Звук следует за ВИДИМЫМ ответом соперника, а не за заранее известным
+    // сценарием бота. Поэтому бот иногда отвечает уже после игрока — и это
+    // слышно в тот же момент, когда загорается отметка у аватара.
+    if (!match || hud?.opponent.kind !== 'answered') return;
+    if (rivalToldRef.current === match.state.taskIndex) return;
+    rivalToldRef.current = match.state.taskIndex;
+    playSound('opponentAnswered');
+  }, [hud?.opponent.kind, match, playSound]);
+
+  const onFinalScoreBeat = useCallback(() => {
+    playSound('starLand');
+  }, [playSound]);
+
   const finishedTask = match?.state.phase === 'finished' && plan
     ? plan.tasks[Math.min(match.state.taskIndex, plan.tasks.length - 1)] ?? null
     : null;
   const visibleTask = hud?.task ?? finishedTask;
   const ownScore = hud?.matchStars ?? 0;
   const rivalScore = hud?.opponentMatchStars ?? null;
-  const immersive = visibleTask?.mode ? arenaQuestionLayout(visibleTask.mode).immersive : false;
+  const immersive = match?.state.phase !== 'finished' && visibleTask?.mode
+    ? arenaQuestionLayout(visibleTask.mode).immersive
+    : false;
   const playerIdentities: readonly ArenaPlayer[] = useMemo(() => {
     if (!plan) return [];
     const you: ArenaPlayer = {
@@ -930,7 +979,13 @@ function ArenaMatchGenerationScreen({
         style={styles.matchProgress}
       />
 
-      {visibleTask ? (
+      {match.state.phase === 'finished' ? (
+        <ArenaFinalScoreCount
+          score={match.state.matchStars}
+          reduceMotion={reduceMotion}
+          onBeat={onFinalScoreBeat}
+        />
+      ) : visibleTask ? (
         <Animated.View
           key={visibleTask.taskId}
           entering={immersive ? undefined : reduceMotion ? FadeIn.duration(120) : SlideInRight.duration(v2motion.taskSwapMs)}

@@ -91,6 +91,14 @@ describe('звуки не звучат очередью', () => {
   it('соперник озвучивается один раз на задание', () => {
     const match = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
     expect(match).toContain('rivalToldRef');
+    expect(match).toContain("hud?.opponent.kind === 'answered'");
+    expect(match).toContain("playSound('opponentAnswered')");
+  });
+
+  /** Финальный локальный счёт использует уже загруженный звук Арены. */
+  it('подсчёт очков отбивает существующим звуком приземления звезды', () => {
+    const match = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
+    expect(match).toContain("playSound('starLand')");
   });
 
   /** Закрытый исход появляется ровно один раз, фаза — нет. */

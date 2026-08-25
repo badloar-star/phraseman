@@ -387,12 +387,34 @@ describe('индикатор соперника', () => {
     expect(signal.kind === 'answered' && signal.aheadByMs).toBe(0);
   });
 
-  it('доигранный матч отдаёт «закончил» независимо от тиков', () => {
+  it('доигранный матч без видимого последнего тика отдаёт «закончил»', () => {
     let s = init();
     for (let guard = 0; guard < 200 && s.phase !== 'finished'; guard += 1) {
       s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
     }
     expect(arenaOpponentSignal(s, MONO0).kind).toBe('finished');
+  });
+
+  it('поздно показанный ответ соперника виден поверх финального подсчёта', () => {
+    let s = init();
+    for (let guard = 0; guard < 200 && s.phase !== 'finished'; guard += 1) {
+      s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
+    }
+    const withVisibleFinalTick: ArenaLocalMatchState = {
+      ...s,
+      opponentByTask: {
+        ...s.opponentByTask,
+        [s.taskIndex]: {
+          taskIndex: s.taskIndex,
+          correct: true,
+          raceElapsedMs: 900,
+          exact: true,
+        },
+      },
+      opponentRevealedByTask: { [s.taskIndex]: true },
+    };
+
+    expect(arenaOpponentSignal(withVisibleFinalTick, MONO0).kind).toBe('answered');
   });
 
   it('соперник закончил раньше — видно и без тика по заданию', () => {
@@ -1001,7 +1023,7 @@ describe('пары и конструктор занимают оставшеес
   });
 
   it('компактный блок игроков включается только для immersive-заданий', () => {
-    expect(match).toContain('const immersive = visibleTask?.mode ? arenaQuestionLayout(visibleTask.mode).immersive : false;');
+    expect(match).toContain("const immersive = match?.state.phase !== 'finished' && visibleTask?.mode");
     expect(match).toContain('compact={immersive}');
   });
 });

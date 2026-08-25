@@ -111,6 +111,16 @@ import {
   saveLearningV2NewWordEncounterToCardsV1,
 } from "./learning_v2_new_word_encounter_save_v1";
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
+// зачем: владелец одобрил 7 отдельных режимов упражнений (docs/v2/mockups/
+// index.html) вместо одной универсальной карточки. Роутер подменяет ТОЛЬКО
+// слой представления (MODE_ICONS + промпт + ответы) — evaluate/finish/advance
+// ниже не трогаются (тесты грепают этот файл по литеральным маркерам).
+import {
+  isLearningV2ModeRoutedV1,
+  LearningV2ModeRouterV1,
+} from "../modules/learning-v2/modes/mode_router_v1";
+import type { LearningV2ModePhaseV1 } from "../modules/learning-v2/modes/mode_contract_v1";
+import ScriptedRepeatCompareModeV1 from "../modules/learning-v2/modes/scripted_repeat_compare_mode_v1";
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -1291,25 +1301,144 @@ export default function LearningV2DirectSessionPlayerV1() {
             { paddingBottom: insets.bottom + 148 },
           ]}
         >
-          <View style={styles.modeRow}>
-            <View style={[styles.modeIcon, { backgroundColor: t.bgSurface2 }]}>
-              <Ionicons
-                name={MODE_ICONS[practice.family]}
-                size={22}
-                color={t.accent}
+          {isLearningV2ModeRoutedV1(practice.family) ? (
+            // зачем: family уже имеет одобренный режим (docs/v2/mockups) —
+            // рендерим его вместо старой универсальной карточки. Роутер
+            // получает то же состояние/колбэки, что и старый блок ниже
+            // (selectedChoiceId/orderedIds/evaluate остаются в player'е).
+            <Animated.View
+              key={`practice-${practiceIndex}`}
+              entering={
+                reducedMotion
+                  ? undefined
+                  : FadeInDown.duration(220).easing(
+                      Easing.bezier(0.23, 1, 0.32, 1).factory(),
+                    )
+              }
+            >
+              <LearningV2ModeRouterV1
+                family={practice.family}
+                phase={
+                  (result === "correct"
+                    ? "success"
+                    : wrongCount > 0
+                      ? "needs_work"
+                      : "idle") as LearningV2ModePhaseV1
+                }
+                prompt={practice.prompt}
+                options={practice.responseOptions}
+                selectedChoiceId={selectedChoiceId}
+                orderedResponseIds={orderedIds}
+                wrongNudge={wrongNudge}
+                reducedMotion={reducedMotion}
+                resolved={result === "correct"}
+                explanation={wrongExplanation}
+                onPick={(responseId) => {
+                  localVoice.cancel();
+                  playSelectableAudio(responseId);
+                  setTranscript("");
+                  setSelectedChoiceId(responseId);
+                  evaluate({ kind: "choice_token", value: responseId });
+                }}
+                onAppendToken={(responseId) => {
+                  localVoice.cancel();
+                  playSelectableAudio(responseId);
+                  setTranscript("");
+                  setOrderedIds((current) => [...current, responseId]);
+                }}
+                onUndoToken={() =>
+                  setOrderedIds((current) => current.slice(0, -1))
+                }
+                onPlaySelectableAudio={playSelectableAudio}
+                onPlayFullPhraseAudio={
+                  fullPhraseAudio
+                    ? () => {
+                        localVoice.cancel();
+                        playLocalAudio(fullPhraseAudio.fileUri);
+                      }
+                    : null
+                }
+                onSubmit={() => evaluate(response)}
+                canSubmit={
+                  practice.inputMode === "single_choice"
+                    ? selectedChoiceId !== null
+                    : orderedIds.length > 0
+                }
               />
-            </View>
-            <View style={styles.modeCopy}>
-              <Text style={[styles.modeTitle, { color: t.textPrimary }]}>
-                {copy.modes[practice.family] ?? copy.independent}
-              </Text>
-              <Text style={[styles.modeNote, { color: t.textMuted }]}>
-                {copy.supportFades}
-              </Text>
-            </View>
-          </View>
+            </Animated.View>
+          ) : practice.family === "scripted_repeat_compare" ? (
+            // зачем: голосовой режим не идёт через общий роутер (нужен
+            // voiceStatus/transcript помимо общего контракта) — рендерится
+            // явной веткой здесь же. Hold-to-talk жест и mic-кнопка в
+            // ActionDock (ниже, вне этого блока) ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ —
+            // этот компонент только заменяет внутреннее содержимое карточки.
+            <Animated.View
+              key={`practice-${practiceIndex}`}
+              entering={
+                reducedMotion
+                  ? undefined
+                  : FadeInDown.duration(220).easing(
+                      Easing.bezier(0.23, 1, 0.32, 1).factory(),
+                    )
+              }
+            >
+              <ScriptedRepeatCompareModeV1
+                family={practice.family}
+                phase={
+                  (result === "correct"
+                    ? "success"
+                    : wrongCount > 0
+                      ? "needs_work"
+                      : "idle") as LearningV2ModePhaseV1
+                }
+                prompt={practice.prompt}
+                options={practice.responseOptions}
+                selectedChoiceId={selectedChoiceId}
+                orderedResponseIds={orderedIds}
+                wrongNudge={wrongNudge}
+                reducedMotion={reducedMotion}
+                resolved={result === "correct"}
+                explanation={wrongExplanation}
+                voiceStatus={localVoice.status}
+                transcript={transcript}
+                instruction={practice.scriptedAlternate?.instruction ?? null}
+                onPick={() => {}}
+                onAppendToken={() => {}}
+                onUndoToken={() => {}}
+                onPlaySelectableAudio={playSelectableAudio}
+                onPlayFullPhraseAudio={
+                  fullPhraseAudio
+                    ? () => {
+                        localVoice.cancel();
+                        playLocalAudio(fullPhraseAudio.fileUri);
+                      }
+                    : null
+                }
+                onSubmit={() => evaluate(response)}
+                canSubmit={transcript.trim().length > 0}
+              />
+            </Animated.View>
+          ) : (
+            <>
+              <View style={styles.modeRow}>
+                <View style={[styles.modeIcon, { backgroundColor: t.bgSurface2 }]}>
+                  <Ionicons
+                    name={MODE_ICONS[practice.family]}
+                    size={22}
+                    color={t.accent}
+                  />
+                </View>
+                <View style={styles.modeCopy}>
+                  <Text style={[styles.modeTitle, { color: t.textPrimary }]}>
+                    {copy.modes[practice.family] ?? copy.independent}
+                  </Text>
+                  <Text style={[styles.modeNote, { color: t.textMuted }]}>
+                    {copy.supportFades}
+                  </Text>
+                </View>
+              </View>
 
-          {/* зачем (каталог активностей 04): переход к следующему заданию
+              {/* зачем (каталог активностей 04): переход к следующему заданию
             обязан быть 200-240мс, а не мгновенной подменой. Ключ по индексу
             перезапускает вход, поэтому новое задание въезжает, а не возникает.
             Геометрия зоны не меняется — прыжка контента нет. */}
@@ -1529,6 +1658,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                 {wrongExplanation}
               </Text>
             </Animated.View>
+          )}
+            </>
           )}
 
           <View style={styles.actionRow}>

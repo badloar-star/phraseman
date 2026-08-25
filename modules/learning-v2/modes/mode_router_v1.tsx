@@ -24,6 +24,15 @@ import type { LearningV2ActivityFamilyCode } from "../telemetry";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import PhraseBuilderModeV1 from "./phrase_builder_mode_v1";
 import ListenChooseModeV1 from "./listen_choose_mode_v1";
+import SoundContrastModeV1 from "./sound_contrast_mode_v1";
+import ListenBuildDictationModeV1 from "./listen_build_dictation_mode_v1";
+import ContextGapGrammarModeV1 from "./context_gap_grammar_mode_v1";
+import SpeedMatchModeV1 from "./speed_match_mode_v1";
+// зачем: scripted_repeat_compare НЕ идёт через этот универсальный роутер —
+// ему нужны voiceStatus/transcript/instruction поверх общего контракта
+// (голосовой hold-to-talk жест живёт в player'е и не унифицируется с
+// остальными 6 режимами). Player рендерит его отдельной явной веткой рядом
+// с вызовом LearningV2ModeRouterV1 — см. scripted_repeat_compare_mode_v1.tsx.
 
 /** Русская подпись макета-источника для каждой family — только для
  * дев-инструментов/логов, не для UI ученика (UI-копирайт живёт в
@@ -38,6 +47,11 @@ export const MODE_MOCKUP_LABEL_BY_FAMILY_V1: Readonly<
   context_gap_grammar: "Контекстный пропуск",
   speed_match: "Пары на скорость",
   scripted_repeat_compare: "Повтор за моделью (голос, WIP)",
+  // зачем: intro_check — код телеметрии интро-экранов (LearningV2SessionIntro),
+  // НЕ одна из 7 практик. Он никогда не попадает в этот роутер (интро рендерится
+  // отдельным компонентом до practice-стадии), но LearningV2ActivityFamilyCode
+  // — общий тип на оба употребления, поэтому маппинг обязан быть исчерпывающим.
+  intro_check: "Интро-проверка (не режим практики)",
 });
 
 /** Семьи, у которых уже есть собственный компонент режима. Остальные идут
@@ -45,7 +59,18 @@ export const MODE_MOCKUP_LABEL_BY_FAMILY_V1: Readonly<
  * который рендерит прежнее поведение — недостроенный режим никогда не даёт
  * сломанный экран. */
 export const MODE_ROUTER_IMPLEMENTED_FAMILIES_V1: readonly LearningV2ActivityFamilyCode[] =
-  Object.freeze(["phrase_builder", "listen_choose"]);
+  Object.freeze([
+    "phrase_builder",
+    "listen_choose",
+    "sound_contrast",
+    "listen_build_dictation",
+    "context_gap_grammar",
+    "speed_match",
+    // scripted_repeat_compare: НЕ здесь — рендерится player'ом напрямую
+    // (см. комментарий у импортов выше), isLearningV2ModeRoutedV1 остаётся
+    // false для него, поэтому default branch player'а НЕ используется —
+    // player сам решает между роутером/voice-веткой/default по family.
+  ]);
 
 const MODE_COMPONENT_BY_FAMILY_V1: Partial<
   Record<
@@ -55,6 +80,10 @@ const MODE_COMPONENT_BY_FAMILY_V1: Partial<
 > = {
   phrase_builder: PhraseBuilderModeV1,
   listen_choose: ListenChooseModeV1,
+  sound_contrast: SoundContrastModeV1,
+  listen_build_dictation: ListenBuildDictationModeV1,
+  context_gap_grammar: ContextGapGrammarModeV1,
+  speed_match: SpeedMatchModeV1,
 };
 
 /** true когда family уже имеет собственный одобренный режим (не default

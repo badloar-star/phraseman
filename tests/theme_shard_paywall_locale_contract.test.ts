@@ -25,18 +25,46 @@ const REQUIRED_FIELDS = [
   'buyShards',
 ] as const;
 
+/**
+ * Тело функции копирайта. Проверки идут по нему, а не по всему файлу: ключи
+ * локалей вроде `pl:` встречаются и в других местах (пропсы, типы), и счёт
+ * по целому файлу дал бы ложное «всё переведено».
+ */
+const copyBody = (() => {
+  const start = source.indexOf('export function themePaywallCopy(');
+  expect(start).toBeGreaterThan(0);
+  const end = source.indexOf('\nexport default function', start);
+  return source.slice(start, end > 0 ? end : undefined);
+})();
+
 describe('theme shard paywall copy', () => {
-  it('has a branch for every supported language', () => {
+  // зачем переписано (2026-08-25): копирайт переведён с языковых веток
+  // `if (lang === 'uk')` на triLang-словари — этого потребовал сторож
+  // непереведённого UI (он видит только вызовы переводчиков). Тест обязан
+  // сторожить ФАКТИЧЕСКУЮ структуру, иначе он охраняет то, чего в коде нет.
+  it('routes every string through the shared translator', () => {
+    // Ни одной языковой ветки: сторож локализации такие строки не видит.
     for (const lang of NON_RU_LANGS) {
-      expect(source).toContain(`if (lang === '${lang}')`);
+      expect(copyBody).not.toContain(`if (lang === '${lang}')`);
     }
+    expect(copyBody).toContain('triLang(lang, {');
   });
 
-  it('fills every required field in every branch', () => {
-    // Русский — ветка по умолчанию (без if), поэтому считаем все восемь.
+  it('fills every required field on all eight languages', () => {
+    const langKeys = ['ru', ...NON_RU_LANGS] as const;
     for (const field of REQUIRED_FIELDS) {
-      const occurrences = source.split(`${field}:`).length - 1;
-      expect(occurrences).toBeGreaterThanOrEqual(NON_RU_LANGS.length + 1);
+      // Поле объявлено ровно один раз — как ключ словаря triLang.
+      const declarations = copyBody.split(`${field}: `).length - 1;
+      expect(declarations).toBeGreaterThanOrEqual(1);
+    }
+    // И каждый язык присутствует столько же раз, сколько всего полей —
+    // то есть ни один язык не забыт ни в одном словаре.
+    const dictionaries = copyBody.split('triLang(lang, {').length - 1;
+    expect(dictionaries).toBe(REQUIRED_FIELDS.length + 3); // + buying, ctaSub, shopCtaSub
+    for (const lang of langKeys) {
+      const key = lang === 'pt-BR' ? "'pt-BR':" : `${lang}:`;
+      const occurrences = copyBody.split(key).length - 1;
+      expect(occurrences).toBe(dictionaries);
     }
   });
 

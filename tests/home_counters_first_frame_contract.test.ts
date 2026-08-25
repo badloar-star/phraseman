@@ -70,6 +70,33 @@ describe('home counters: real numbers on the first frame', () => {
     expect(context).not.toContain('let peekEnergyState');
   });
 
+  it('computes the energy ceiling and recovery the same way EnergyContext does', () => {
+    const cache = readProjectFile('app', 'energy_peek_cache.ts');
+
+    // зачем (аудит 2026-08-25): прогрев считал потолок из голого ключа
+    // `user_total_xp`, а readDynMax берёт XP из personal_progress_store — у
+    // когорты phone_state это РАЗНЫЕ числа, и знаменатель шкалы «X/Y» прыгал
+    // после load(). Интервал восстановления так же обязан учитывать ускорители
+    // (сундук лиги, turbo_regen), иначе число подскакивает вверх.
+    expect(cache).toContain("import('./personal_progress_store')");
+    expect(cache).toContain('getPersonalProgressSnapshot().totalXp');
+    expect(cache).not.toContain("getItem('user_total_xp')");
+    expect(cache).toContain('readLeagueChestEnergyOverrideMs');
+    expect(cache).toContain('readBoonEnergyOverrideMs');
+  });
+
+  it('forgets a cached energy charge when the account owner changes', () => {
+    const cache = readProjectFile('app', 'energy_peek_cache.ts');
+
+    // зачем (аудит 2026-08-25): `energy_state` — ключ БЕЗ имени аккаунта. На диске
+    // его чистит cloud_sync, но кэш живёт в памяти JS и о смене не узнаёт — новый
+    // аккаунт увидел бы чужой заряд. Безусловный сброс тоже баг: событие летит и на
+    // обычном старте (beginInitialAccountGeneration), Главная уже обжигалась на этом.
+    expect(cache).toContain('subscribeAccountGeneration((token) =>');
+    expect(cache).toContain('peekOwnerStableId');
+    expect(cache).toContain('resetEnergyPeek()');
+  });
+
   it('never writes a guessed energy value into the peek cache', () => {
     const cache = readProjectFile('app', 'energy_peek_cache.ts');
 

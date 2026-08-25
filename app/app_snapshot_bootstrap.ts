@@ -3,7 +3,7 @@ import {
   CUSTOMIZATION_STORAGE_KEYS,
   USER_AVATAR_AURA_KEY,
 } from '../constants/customization_storage_keys';
-import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
+import { getLevelFromXP } from '../constants/theme';
 import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   limitArray,
@@ -22,7 +22,6 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from './account_
 import { hydratePersonalProgress } from './personal_progress_store';
 import { primeShardsBalanceMemoryFromBoot } from './shards_system';
 import { primeEnergyPeekFromBoot } from './energy_peek_cache';
-import { getMaxEnergy as getConfiguredBaseEnergy } from './remote_flags';
 import {
   migrateLegacyVipSnapshotOnce,
   readVipSnapshotForGeneration,
@@ -288,12 +287,12 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   // читают его синхронно (Главная), рисуют настоящее число сразу, а не ноль до
   // первого собственного похода на диск.
   primeShardsBalanceMemoryFromBoot(readInt(values.get('shards_balance')), accountGeneration);
-  // зачем: уровень уже посчитан из профиля, поэтому потолок энергии известен здесь
-  // без второго чтения XP. Прогрев не блокирует патч снапшота: провайдер энергии
-  // читает peek на своём маунте, а не сейчас.
-  void primeEnergyPeekFromBoot(
-    getMaxEnergyForLevel(profile.level, getConfiguredBaseEnergy()),
-  ).catch(() => {});
+  // зачем: страховка. Обычно прогрев энергии уже отработал — он запускается сам
+  // при импорте своего модуля (EnergyProvider монтируется выше AppContent, и
+  // вызова отсюда не хватило бы к первому кадру). Повторный вызов дешёв: внутри
+  // стоит ранний выход, если кэш уже заполнен, — но он спасает случай, когда
+  // хранилище на старте было недоступно.
+  void primeEnergyPeekFromBoot().catch(() => {});
   patchAppSnapshot((current) => ({
     profile,
     progress: buildProgressSnapshot(values, studyTarget, now, current, bootRunes),

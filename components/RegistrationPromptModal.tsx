@@ -47,7 +47,7 @@ import { fetchAuthRecoveryHint, restoreFromCloudDetailed, warmAuthSignInCallable
 import { getStableId } from '../app/stable_id';
 import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import {
@@ -117,31 +117,57 @@ function slavicDayWord(n: number, one: string, few: string, many: string): strin
 }
 
 /**
- * Акцентная часть строки («148 дней») + остаток фразы про облако.
+ * Акцентная часть строки («148 дней») + остаток фразы про сохранённый путь.
  * Возвращает null при нулевой серии — тогда показываем фолбэк-строку.
+ *
+ * зачем склонение отдельно от текста: у каждого языка своё правило для «дней»
+ * (slavicDayWord для ru/uk/pl, единственное-множественное для es/pt-BR), а сам
+ * текст идёт через triLang — так сторож i18n видит переводчик.
  */
+// зачем (аудит по Библии, 2026-08-26): было «вашего прогресса ждёт в облаке» —
+// обращение на «вы» (Правило 14), запрещённое «прогресс» (словарь: прогресс →
+// путь) и техническое «в облаке» (Часть V п.3). Правлено во всех локалях.
 function streakDaysLine(lang: string, n: number): { accent: string; rest: string } | null {
   if (!Number.isFinite(n) || n <= 0) return null;
-  switch (lang) {
-    case 'ru':
-      return { accent: `${n} ${slavicDayWord(n, 'день', 'дня', 'дней')}`, rest: n === 1 ? ' вашего прогресса ждёт в облаке' : ' вашего прогресса ждут в облаке' };
-    case 'uk':
-      return { accent: `${n} ${slavicDayWord(n, 'день', 'дні', 'днів')}`, rest: n === 1 ? ' вашого прогресу чекає в хмарі' : ' вашого прогресу чекають у хмарі' };
-    case 'es':
-      return { accent: `${n} ${n === 1 ? 'día' : 'días'}`, rest: n === 1 ? ' de tu progreso te espera en la nube' : ' de tu progreso te esperan en la nube' };
-    case 'pt-BR':
-      return { accent: `${n} ${n === 1 ? 'dia' : 'dias'}`, rest: n === 1 ? ' do seu progresso espera por você na nuvem' : ' do seu progresso esperam por você na nuvem' };
-    case 'vi':
-      return { accent: `${n} ngày`, rest: ' tiến trình của bạn đang chờ trên đám mây' };
-    case 'id':
-      return { accent: `${n} hari`, rest: ' progresmu menunggu di cloud' };
-    case 'tr':
-      return { accent: `${n} gün`, rest: ' ilerlemen bulutta seni bekliyor' };
-    case 'pl':
-      return { accent: `${n} ${slavicDayWord(n, 'dzień', 'dni', 'dni')}`, rest: n === 1 ? ' Twoich postępów czeka w chmurze' : ' Twoich postępów czekają w chmurze' };
-    default:
-      return { accent: `${n} ${n === 1 ? 'day' : 'days'}`, rest: n === 1 ? ' of your progress is waiting in the cloud' : ' of your progress are waiting in the cloud' };
-  }
+  const one = n === 1;
+  // Акцент («148 дней») собирается по правилу склонения своего языка.
+  // Слово «день» в нужном числе: у ru/uk/pl падежи, у остальных — число.
+  const dayForms = triLang(lang as Lang, {
+    ru: ['день', 'дня', 'дней'], uk: ['день', 'дні', 'днів'], en: ['day', 'days', 'days'],
+    es: ['día', 'días', 'días'], 'pt-BR': ['dia', 'dias', 'dias'], vi: ['ngày', 'ngày', 'ngày'],
+    id: ['hari', 'hari', 'hari'], tr: ['gün', 'gün', 'gün'], pl: ['dzień', 'dni', 'dni'],
+  }) as readonly [string, string, string];
+  const slavic = lang === 'ru' || lang === 'uk' || lang === 'pl';
+  const dayWord = slavic
+    ? slavicDayWord(n, dayForms[0], dayForms[1], dayForms[2])
+    : (one ? dayForms[0] : dayForms[1]);
+  const accent = `${n} ${dayWord}`;
+  // Остаток фразы — через triLang: так сторож i18n видит переводчик, а не
+  // «забытый русский», и правка текста не выглядит ростом долга.
+  const rest = triLang(lang as Lang, one
+    ? {
+      ru: ' твоего пути уже сохранён',
+      uk: ' твого шляху вже збережено',
+      en: ' of your journey is already saved',
+      es: ' de tu camino ya está guardado',
+      'pt-BR': ' do seu caminho já está salvo',
+      vi: ' hành trình của bạn đã được lưu',
+      id: ' perjalananmu sudah tersimpan',
+      tr: ' yolculuğun kayıtlı duruyor',
+      pl: ' twojej drogi jest już zapisany',
+    }
+    : {
+      ru: ' твоего пути уже сохранены',
+      uk: ' твого шляху вже збережені',
+      en: ' of your journey are already saved',
+      es: ' de tu camino ya están guardados',
+      'pt-BR': ' do seu caminho já estão salvos',
+      vi: ' hành trình của bạn đã được lưu',
+      id: ' perjalananmu sudah tersimpan',
+      tr: ' yolculuğun kayıtlı duruyor',
+      pl: ' twojej drogi jest już zapisanych',
+    });
+  return { accent, rest };
 }
 
 interface Props {
@@ -577,16 +603,19 @@ function RegistrationPromptModal({
     pl: 'Dane na urządzeniu zostaną zachowane',
   });
   // Фолбэк-строка под заголовком, если серии ещё нет.
+  // зачем (аудит по Библии, 2026-08-26): строка нарушала три правила разом —
+  // обращение на «вы» (Правило 14), запрещённое слово «прогресс» (словарь:
+  // прогресс → путь) и техническое «в облаке» (Часть V п.3).
   const labelNoStreak = triLang(lang, {
-    ru: 'Ваш прогресс будет ждать вас в облаке',
-    uk: 'Ваш прогрес чекатиме на вас у хмарі',
-    en: 'Your progress will be waiting for you in the cloud',
-    es: 'Tu progreso te esperará en la nube',
-    'pt-BR': 'Seu progresso estará esperando por você na nuvem',
-    vi: 'Tiến trình của bạn sẽ chờ trên đám mây',
-    id: 'Progresmu akan menunggumu di cloud',
-    tr: 'İlerlemen bulutta seni bekliyor olacak',
-    pl: 'Twoje postępy będą czekać na Ciebie w chmurze',
+    ru: 'Твой путь сохранится и дождётся тебя',
+    uk: 'Твій шлях збережеться і дочекається тебе',
+    en: 'Your journey stays saved and waiting for you',
+    es: 'Tu camino queda guardado y te espera',
+    'pt-BR': 'Seu caminho fica salvo e espera por você',
+    vi: 'Hành trình của bạn được lưu và vẫn chờ bạn',
+    id: 'Perjalananmu tersimpan dan menunggumu',
+    tr: 'Yolculuğun kayıtlı kalır ve seni bekler',
+    pl: 'Twoja droga zostaje zapisana i czeka na ciebie',
   });
   const daysLine = streakDaysLine(lang, streakDays);
   const recoveryCopy = getAuthRecoveryCopy(lang);

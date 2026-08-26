@@ -106,7 +106,6 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
         {
           marginTop,
           backgroundColor: t.bgCard,
-          borderColor: t.border,
         },
       ]}
     >
@@ -134,8 +133,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
                   styles.option,
                   {
                     minHeight: 44,
-                    backgroundColor: selected ? t.bgSurface : 'transparent',
-                    borderColor: selected ? t.accent : t.border,
+                    backgroundColor: selected ? t.accentBg : t.bgSurface,
                     opacity: pressed ? 0.78 : 1,
                   },
                 ]}
@@ -164,10 +162,12 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
 }
 
 const styles = StyleSheet.create({
+  // зачем (запрет владельца, 2026-08-26): контейнеры без обводки — разделяем
+  // тоном. Фон t.bgCard уже отличается от фона экрана настроек.
   card: {
     marginHorizontal: SETTINGS_GROUP_MARGIN,
     borderRadius: 16,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     padding: 16,
   },
   headingRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -176,7 +176,9 @@ const styles = StyleSheet.create({
   body: { marginTop: 10, lineHeight: 21 },
   poll: { marginTop: 14, gap: 8 },
   question: { fontWeight: '700', lineHeight: 21, marginBottom: 2 },
-  option: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 9 },
+  // зачем: выбор варианта показывают радиокнопка и более светлый фон, рамка
+  // была третьим — и запрещённым — способом.
+  option: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 0, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 9 },
   optionText: { flex: 1, lineHeight: 20 },
   percent: { width: 42, textAlign: 'right', fontWeight: '700' },
   locked: { marginTop: 2, lineHeight: 18 },

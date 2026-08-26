@@ -79,11 +79,12 @@ describe('Welcome gift ceremony after onboarding', () => {
 
   it('starts crediting when it decides to show — before and independent of the CTA', () => {
     // Начисление НЕ живёт в модалке и не привязано к её кнопке: хост зовёт
-    // beginWelcomeGiftGrant до setWantShow, размонтирование ничего не теряет.
-    expect(host).toMatch(/void beginWelcomeGiftGrant\(\);\s*\n\s*setWantShow\(true\);/);
-    expect(modal).not.toContain('beginWelcomeGiftGrant');
-    // Прерванная выдача дожимается при следующем запуске.
-    expect(host).toContain('resumeWelcomeGiftIfPending()');
+    // ensureWelcomeGiftGranted до setWantShow, размонтирование ничего не теряет.
+    expect(host).toMatch(/void ensureWelcomeGiftGranted\(\);\s*\n\s*setWantShow\(true\);/);
+    expect(modal).not.toContain('ensureWelcomeGiftGranted');
+    // Ветка «показывать нечего» всё равно гарантирует выдачу текущему аккаунту
+    // (инцидент 2026-08-26: деньги полностью отвязаны от модалки).
+    expect(host).toMatch(/if \(!pending\) \{[\s\S]*?void ensureWelcomeGiftGranted\(\);[\s\S]*?return;/);
   });
 
   it('shows once: the pending flag is cleared when the ceremony closes', () => {

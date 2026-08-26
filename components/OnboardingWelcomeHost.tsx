@@ -48,10 +48,7 @@ import {
   clearOnboardingWelcomePending,
   isOnboardingWelcomePending,
 } from '../app/onboarding_welcome_state';
-import {
-  beginWelcomeGiftGrant,
-  resumeWelcomeGiftIfPending,
-} from '../app/welcome_gift';
+import { ensureWelcomeGiftGranted } from '../app/welcome_gift';
 
 export default function OnboardingWelcomeHost() {
   const [wantShow, setWantShow] = useState(false);
@@ -84,24 +81,27 @@ export default function OnboardingWelcomeHost() {
         .then((pending) => {
           if (!alive || shownThisRunRef.current) return;
           if (!pending) {
-            // Приветствие уже показано (или не положено): дожимаем только
-            // незавершённую выдачу, если она осталась с прошлого запуска.
-            // Гейт снимаем — следующее событие имеет право перечитать диск
-            // (например, ретро-путь ещё допишет флаг позже в этом же запуске).
+            // Приветствие уже показано (или не положено). Выдачу это НЕ
+            // отменяет: после инцидента 2026-08-26 («модал появился, начисление
+            // не сработало») деньги отвязаны от модалки полностью — ensure
+            // сам решает по per-account состоянию, надо ли этому аккаунту
+            // ещё что-то довыдать (крэш/офлайн/смена аккаунта).
+            // Гейт снимаем — следующее событие имеет право перечитать диск.
             checkInFlightOrDoneRef.current = false;
-            void resumeWelcomeGiftIfPending();
+            void ensureWelcomeGiftGranted();
             return;
           }
           if (!getRemoteBool('onboarding_welcome_sheet_enabled')) {
-            // Рубильник из админки: ни модалки, ни подарка; флаг снимаем, чтобы
-            // приветствие не всплыло у старого юзера при будущем включении.
+            // Рубильник из админки: ни модалки, ни подарка (ensure проверяет
+            // тот же флаг сам); флаг показа снимаем, чтобы приветствие не
+            // всплыло у старого юзера при будущем включении.
             checkInFlightOrDoneRef.current = false;
             void clearOnboardingWelcomePending();
             return;
           }
           // Начисление — СРАЗУ, не дожидаясь ни арбитра, ни первого кадра модалки.
           shownThisRunRef.current = true;
-          void beginWelcomeGiftGrant();
+          void ensureWelcomeGiftGranted();
           setWantShow(true);
         })
         .catch(() => {

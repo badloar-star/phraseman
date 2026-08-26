@@ -1,44 +1,71 @@
 /**
- * welcome_gift.ts — стартовый подарок новичку: +100 жемчужин и +300 рун.
+ * welcome_gift.ts — стартовый подарок: +100 жемчужин и +300 рун, СТРОГО один
+ * раз на аккаунт.
  *
  * зачем (владелец, 2026-08-26): «модал сразу приветствует юзера и начисляет ему
  * 100 жемчужин просто так и сразу 300 рун тоже просто так… мгновенное
- * начисление, чтобы юзер не видел нулей с самого первого входа».
+ * начисление, чтобы юзер не видел нулей с самого первого входа», плюс правка
+ * тем же днём: «сделай чтобы все получили — и новый юзер, и все старые кто
+ * после обновы откроет приложение».
  *
- * Архитектура — по действующим рельсам двух валют, без новых писателей:
- *  - ЖЕМЧУЖИНЫ клиентски-авторитетны (economy constitution):
- *    awardOneTimeVariable → commitShardCreditOperation. Начисление МГНОВЕННОЕ
- *    и офлайн-безопасное, идемпотентно по eventKey, журнал сам доезжает в облако.
- *  - РУНЫ авторитетен сервер (единственный клиентский писатель —
- *    level_spin_star_grants, и он только про спины). Начисляет callable
- *    welcomeGiftClaim (functions/src/welcome_gift.ts) через stars_ledger с
- *    opId `welcome_gift:{uid}` — одна выдача на аккаунт навсегда. Ответ
- *    мерджится в локальную проекцию (mergeLevelSpinServerStars), как у сундука
- *    друзей и Арены.
+ * ПЕРЕПИСАНО ПОСЛЕ ИНЦИДЕНТА (владелец, 2026-08-26 вечер: «модал появился, но
+ * начисление не сработало, вижу нули постоянно»). Аудит нашёл три корня:
  *
- * Чек-лист класса «награду показали, но не начислили» (memory 2026-08-26):
- *  - идемпотентность по ключу выдачи, а не по «уже показывали»: eventKey у
- *    жемчужин, requestId+opId у рун;
- *  - маркер 'done' пишется ТОЛЬКО после успеха; провал оставляет 'pending',
- *    и хост повторяет попытку при следующем запуске (resumeWelcomeGiftIfPending);
- *  - начисление НЕ привязано к CTA модалки: стартует в момент решения показать
- *    приветствие, размонтирование модалки ничего не теряет.
+ *  1. ДЕВАЙС-глобальные ключи. Старые welcome_gift_state_v1 /
+ *     welcome_gift_runes_request_v1 и реестр one-time событий кошелька
+ *     (shards_one_time_events) не привязаны к аккаунту. При смене/восстановлении
+ *     аккаунта без полной очистки хранилища (вход Apple/Google — класс
+ *     project_account_generation_stale_cache_class) новый аккаунт наследовал
+ *     чужие маркеры: awardOneTimeVariable отвечал alreadyClaimed=true, подарок
+ *     помечался «выдан», НИЧЕГО не начислив. Теперь состояние выдачи и
+ *     requestId рун скоупятся по stableId, а жемчужины минуют девайс-глобальный
+ *     пре-чек и решаются АККАУНТ-скоупным леджером операций (см. п. про opId).
  *
- * Firebase-экономия: ровно один вызов callable на весь жизненный цикл аккаунта
- * (плюс редкие ретраи при отказе сети), никаких чтений Firestore с клиента.
+ *  2. Гонка готовности аккаунта. Выдача стартовала на монтировании хоста —
+ *     раньше, чем account_generation становится active на холодном старте;
+ *     commitShardCreditOperation молча отвечал stale_account_generation, ретрай
+ *     ждал следующего запуска и снова стрелял слишком рано. Теперь выдача ЖДЁТ
+ *     waitForActiveAccountGeneration (до 15с, не блокируя ничего вокруг).
+ *
+ *  3. Молчаливые отказы. Ни один отказ жемчужин не логировался — часы поиска
+ *     вслепую. Теперь каждый отказ пишет причину в DebugLogger.
+ *
+ * Архитектура выдачи (без новых писателей валют):
+ *  - ЖЕМЧУЖИНЫ клиентски-авторитетны: commitShardCreditOperation напрямую, с
+ *    ТЕМ ЖЕ детерминированным operationId, который строил awardOneTimeVariable
+ *    (`one-time:` + sha256('welcome_gift:welcome_gift_v1')[0..40]) — аккаунты,
+ *    уже получившие подарок старым путём, получают от леджера already-applied,
+ *    а не второй кредит. Леджер скоупится по stableId и мержится между
+ *    устройствами одного аккаунта по operationId (ECONOMY_CONSTITUTION §4-5) —
+ *    «строго 1 раз на аккаунт» держится им, а не девайс-локальным списком.
+ *  - РУНЫ авторитетен сервер: callable welcomeGiftClaim (stars_ledger, opId
+ *    `welcome_gift:{uid}`, claim-док reward_claims/welcome_gift). Ответ
+ *    мерджится в локальную проекцию (mergeLevelSpinServerStars).
+ *
+ * Семантика «все получили»: отсутствие per-account состояния = аккаунту ещё не
+ * выдавали → выдать. Деньги НЕ зависят от модалки/флагов показа — модалка
+ * только празднует. Старый девайс-глобальный state_v1 игнорируется и
+ * подчищается: для того же аккаунта леджер/сервер ответят already-applied
+ * (двойного кредита не будет), для другого — честно выдадут его подарок.
+ *
+ * Firebase-экономия: один callable на аккаунт за всю жизнь (плюс ретраи при
+ * отказе сети), никаких чтений Firestore с клиента.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import {
-  captureAccountGeneration,
   isCurrentAccountGeneration,
+  waitForActiveAccountGeneration,
+  type AccountGenerationToken,
 } from './account_generation';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
-import { awardOneTimeVariable } from './shards_system';
+import { commitShardCreditOperation } from './shards_system';
+import { getRemoteBool } from './remote_flags';
 import { DebugLogger } from './debug-logger';
 
 const REGION = 'us-central1';
@@ -49,55 +76,56 @@ export const WELCOME_GIFT_PEARLS = 100;
 export const WELCOME_GIFT_RUNES = 300;
 
 /**
- * Ключ идемпотентности жемчужин в реестре one-time событий кошелька.
+ * Семя идемпотентности жемчужин.
  *
- * ⚠️ СТРОГО 1 РАЗ НА АККАУНТ (владелец, 2026-08-26, дословно: «зафиксируй
- * жёстко»): значение НИКОГДА не должно зависеть от deviceId, времени или
- * случайного числа — только фиксированная строка. awardOneTimeVariable строит
- * operationId как sha256(`welcome_gift:${этот ключ}`), а
- * client_shard_operation_ledger мержит журналы РАЗНЫХ устройств одного
- * аккаунта по operationId («replaying an identical operation is success with
- * no second economic effect», docs/economy/ECONOMY_CONSTITUTION.md §4-5).
- * Поменять этот ключ на нефиксированный — значит превратить «1 раз на
- * аккаунт» в «1 раз на устройство».
+ * ⚠️ СТРОГО 1 РАЗ НА АККАУНТ (владелец: «зафиксируй жёстко»): значение НИКОГДА
+ * не зависит от deviceId/времени/случайности. Из него детерминированно
+ * строится operationId (`one-time:` + sha256('welcome_gift:welcome_gift_v1')),
+ * ИДЕНТИЧНЫЙ прежнему пути через awardOneTimeVariable — уже выданные аккаунты
+ * получат already-applied от леджера. Ключ выдачи — operationId в
+ * аккаунт-скоупном леджере, а НЕ девайс-глобальный shards_one_time_events
+ * (тот наследуется чужим аккаунтом при restore-входе и давал ложный
+ * alreadyClaimed — корень инцидента 2026-08-26).
  */
 export const WELCOME_GIFT_PEARLS_EVENT_KEY = 'welcome_gift_v1';
 
-/**
- * Состояние выдачи на диске. Ключа нет = подарок этому устройству не положен
- * (старый пользователь) ЛИБО уже полностью выдан (ключ подчищаем) — оба случая
- * для resume равнозначны «делать нечего», лишних чтений у старых юзеров нет.
- */
-const STATE_KEY = 'welcome_gift_state_v1';
-const RUNES_REQUEST_KEY = 'welcome_gift_runes_request_v1';
+/** Девайс-глобальный ключ прежней версии — только для подчистки при миграции. */
+const LEGACY_STATE_KEY = 'welcome_gift_state_v1';
+const LEGACY_RUNES_REQUEST_KEY = 'welcome_gift_runes_request_v1';
+
+/** Состояние выдачи ТЕКУЩЕГО аккаунта. Ключа нет = этому аккаунту не выдавали. */
+function stateKeyFor(stableId: string): string {
+  return `welcome_gift_state_v2:${encodeURIComponent(stableId)}`;
+}
+
+function runesRequestKeyFor(stableId: string): string {
+  return `welcome_gift_runes_request_v2:${encodeURIComponent(stableId)}`;
+}
 
 type PartState = 'pending' | 'done';
 type WelcomeGiftState = Readonly<{ pearls: PartState; runes: PartState }>;
 
-function parseState(raw: string | null): WelcomeGiftState | null {
-  if (!raw) return null;
+const FRESH_STATE: WelcomeGiftState = Object.freeze({ pearls: 'pending', runes: 'pending' });
+
+function parseState(raw: string | null): WelcomeGiftState {
+  // Отсутствие или порча ключа = «не выдано»: повторная попытка безопасна,
+  // идемпотентность живёт уровнем ниже (operationId леджера / серверный opId).
+  if (!raw) return FRESH_STATE;
   try {
     const parsed = JSON.parse(raw) as { pearls?: unknown; runes?: unknown };
     const part = (v: unknown): PartState => (v === 'done' ? 'done' : 'pending');
     return Object.freeze({ pearls: part(parsed?.pearls), runes: part(parsed?.runes) });
   } catch {
-    // Битый ключ читаем как «всё pending»: повторная выдача безопасна,
-    // идемпотентность живёт уровнем ниже (eventKey / opId), не в этом маркере.
-    return Object.freeze({ pearls: 'pending', runes: 'pending' } as const);
+    return FRESH_STATE;
   }
 }
 
-async function readState(): Promise<WelcomeGiftState | null> {
-  return parseState(await AsyncStorage.getItem(STATE_KEY).catch(() => null));
+async function readState(stableId: string): Promise<WelcomeGiftState> {
+  return parseState(await AsyncStorage.getItem(stateKeyFor(stableId)).catch(() => null));
 }
 
-async function writeState(state: WelcomeGiftState): Promise<void> {
-  if (state.pearls === 'done' && state.runes === 'done') {
-    // Выдано полностью — ключ больше не нужен, храним ноль лишних байт.
-    await AsyncStorage.removeItem(STATE_KEY).catch(() => {});
-    return;
-  }
-  await AsyncStorage.setItem(STATE_KEY, JSON.stringify(state)).catch(() => {});
+async function writeState(stableId: string, state: WelcomeGiftState): Promise<void> {
+  await AsyncStorage.setItem(stateKeyFor(stableId), JSON.stringify(state)).catch(() => {});
 }
 
 function makeRequestId(): string {
@@ -106,11 +134,12 @@ function makeRequestId(): string {
   return `wg_${now}_${rand}`;
 }
 
-async function getOrCreateRunesRequestId(): Promise<string> {
-  const existing = await AsyncStorage.getItem(RUNES_REQUEST_KEY).catch(() => null);
+async function getOrCreateRunesRequestId(stableId: string): Promise<string> {
+  const key = runesRequestKeyFor(stableId);
+  const existing = await AsyncStorage.getItem(key).catch(() => null);
   if (existing && /^[A-Za-z0-9_-]{12,96}$/.test(existing)) return existing;
   const id = makeRequestId();
-  await AsyncStorage.setItem(RUNES_REQUEST_KEY, id).catch(() => {});
+  await AsyncStorage.setItem(key, id).catch(() => {});
   return id;
 }
 
@@ -123,32 +152,54 @@ type WelcomeGiftClaimWire = Readonly<{
   starsSeq?: unknown;
 }>;
 
-/** Жемчужины: мгновенный локальный кредит. true = выдано (сейчас или раньше). */
-async function grantPearlsLocal(): Promise<boolean> {
-  const result = await awardOneTimeVariable(
-    WELCOME_GIFT_PEARLS_EVENT_KEY,
-    WELCOME_GIFT_PEARLS,
-    'welcome_gift',
-  );
-  return result.awarded > 0 || result.alreadyClaimed;
+/**
+ * Жемчужины: мгновенный локальный кредит через аккаунт-скоупный леджер.
+ * true = выдано этому аккаунту (сейчас или раньше, на этом или другом девайсе).
+ */
+async function grantPearlsLocal(token: AccountGenerationToken): Promise<boolean> {
+  try {
+    const eventHash = await Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      `welcome_gift:${WELCOME_GIFT_PEARLS_EVENT_KEY}`,
+    );
+    const result = await commitShardCreditOperation({
+      operationId: `one-time:${eventHash.slice(0, 40)}`,
+      amount: WELCOME_GIFT_PEARLS,
+      reason: 'welcome_gift',
+      grant: {
+        kind: 'one_time_reward',
+        subjectId: eventHash.slice(0, 40),
+        payload: { eventKey: WELCOME_GIFT_PEARLS_EVENT_KEY },
+      },
+      accountToken: token,
+    });
+    if (result.status === 'applied' || result.status === 'already-applied') return true;
+    // зачем: молчаливый отказ уже стоил часов поиска — причина обязана быть в логе.
+    DebugLogger.error(
+      'welcome_gift:pearls',
+      new Error(`commit ${result.status}: ${'reason' in result ? String(result.reason) : 'unknown'}`),
+      'warning',
+    );
+    return false;
+  } catch (error) {
+    DebugLogger.error('welcome_gift:pearls', error, 'warning');
+    return false;
+  }
 }
 
-/** Руны: серверный грант + мердж авторитетного баланса. true = выдано. */
-async function claimRunesFromServer(): Promise<boolean> {
+/** Руны: серверный грант + мердж авторитетного баланса. true = выдано аккаунту. */
+async function claimRunesFromServer(token: AccountGenerationToken, stableId: string): Promise<boolean> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return false;
-  const token = captureAccountGeneration();
-  const ownerStableId = token.stableId?.trim();
-  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return false;
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const requestId = await getOrCreateRunesRequestId();
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return false;
+    const requestId = await getOrCreateRunesRequestId(stableId);
+    if (!isCurrentAccountGeneration(token, stableId)) return false;
     const fn = httpsCallable<{ stableId: string; requestId: string }, WelcomeGiftClaimWire>(
       getFunctions(getApp(), REGION),
       'welcomeGiftClaim',
     );
-    const res = await fn({ stableId: ownerStableId, requestId });
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return false;
+    const res = await fn({ stableId, requestId });
+    if (!isCurrentAccountGeneration(token, stableId)) return false;
     const data = res.data;
     const stars = Number(data?.stars);
     const earned = Number(data?.starsEarnedTotal);
@@ -158,7 +209,7 @@ async function claimRunesFromServer(): Promise<boolean> {
       ...(Number.isFinite(earned) ? { starsEarnedTotal: Math.max(0, Math.trunc(earned)) } : {}),
       ...(Number.isSafeInteger(seq) && seq >= 0 ? { starsSeq: seq } : {}),
     });
-    await AsyncStorage.removeItem(RUNES_REQUEST_KEY).catch(() => {});
+    await AsyncStorage.removeItem(runesRequestKeyFor(stableId)).catch(() => {});
     return true;
   } catch (error) {
     const text = String((error as { code?: unknown })?.code ?? '')
@@ -166,7 +217,7 @@ async function claimRunesFromServer(): Promise<boolean> {
     // Сервер уже выдавал этому аккаунту (ответ первого вызова потерялся) —
     // выдача состоялась, повторять нельзя; баланс догонит обычный пулл.
     if (text.toLowerCase().includes('claimed') || text.toLowerCase().includes('already-exists')) {
-      await AsyncStorage.removeItem(RUNES_REQUEST_KEY).catch(() => {});
+      await AsyncStorage.removeItem(runesRequestKeyFor(stableId)).catch(() => {});
       return true;
     }
     DebugLogger.error('welcome_gift:claimRunes', error, 'warning');
@@ -174,21 +225,43 @@ async function claimRunesFromServer(): Promise<boolean> {
   }
 }
 
-// Однопроцессный замок: хост может позвать begin и resume в одном запуске,
-// вторая попытка ждёт первую, а не гонится с ней за AsyncStorage.
+// Однопроцессный замок: несколько триггеров (монтирование хоста, событие
+// PENDING, повторный запуск) не гонятся друг с другом за AsyncStorage.
 let inFlight: Promise<void> | null = null;
 
 async function runPendingParts(): Promise<void> {
-  const state = await readState();
-  if (!state) return;
-  let next = state;
-  if (next.pearls === 'pending' && await grantPearlsLocal()) {
-    next = { ...next, pearls: 'done' };
-    await writeState(next);
+  // Рубильник из админки гасит и модалку, и подарок разом (решение владельца).
+  if (!getRemoteBool('onboarding_welcome_sheet_enabled')) return;
+
+  // зачем: корень №2 инцидента — выдача стартовала до готовности аккаунта и
+  // молча падала в stale_account_generation. Ждём активную генерацию (не
+  // блокируя ничего: вызов fire-and-forget); не дождались — ретрай при
+  // следующем триггере/запуске.
+  const token = await waitForActiveAccountGeneration(15_000);
+  const stableId = token?.stableId?.trim();
+  if (!token || !stableId) {
+    DebugLogger.error('welcome_gift:run', new Error('account_not_active_in_15s'), 'warning');
+    return;
   }
-  if (next.runes === 'pending' && await claimRunesFromServer()) {
+
+  // Миграция: девайс-глобальные ключи прежней версии больше не читаются —
+  // только подчищаются. Чей бы аккаунт их ни записал, правду про ТЕКУЩИЙ
+  // аккаунт знают леджер (жемчужины) и сервер (руны) — им и решать.
+  void AsyncStorage.multiRemove([LEGACY_STATE_KEY, LEGACY_RUNES_REQUEST_KEY]).catch(() => {});
+
+  const state = await readState(stableId);
+  if (state.pearls === 'done' && state.runes === 'done') return;
+  if (!isCurrentAccountGeneration(token, stableId)) return;
+
+  let next = state;
+  if (next.pearls === 'pending' && await grantPearlsLocal(token)) {
+    next = { ...next, pearls: 'done' };
+    await writeState(stableId, next);
+  }
+  if (!isCurrentAccountGeneration(token, stableId)) return;
+  if (next.runes === 'pending' && await claimRunesFromServer(token, stableId)) {
     next = { ...next, runes: 'done' };
-    await writeState(next);
+    await writeState(stableId, next);
   }
 }
 
@@ -201,25 +274,23 @@ function runExclusive(): Promise<void> {
 }
 
 /**
- * Начать выдачу подарка. Зовётся хостом в момент решения показать приветствие —
- * ДО и НЕЗАВИСИМО от CTA модалки. Повторный вызов безопасен.
+ * Гарантировать выдачу подарка текущему аккаунту. Идемпотентна и безопасна при
+ * повторных вызовах; НЕ зависит от модалки/CTA/флагов показа — деньги первичны,
+ * модалка только празднует. Хост зовёт при каждом монтировании и по событию
+ * onboarding_welcome_pending_raised; аккаунту без выданного подарка выдаёт,
+ * остальным стоит одно чтение AsyncStorage.
  */
-export async function beginWelcomeGiftGrant(): Promise<void> {
-  const existing = await readState();
-  if (!existing) {
-    await writeState(Object.freeze({ pearls: 'pending', runes: 'pending' } as const));
-  }
+export async function ensureWelcomeGiftGranted(): Promise<void> {
   await runExclusive();
 }
 
-/**
- * Дожать незавершённую выдачу (крэш/офлайн между частями). Хост зовёт при
- * каждом монтировании; у пользователей без незавершённого подарка это одно
- * чтение AsyncStorage и выход.
- */
+/** @deprecated Совместимость с хостом/тестами: то же, что ensureWelcomeGiftGranted. */
+export async function beginWelcomeGiftGrant(): Promise<void> {
+  await runExclusive();
+}
+
+/** @deprecated Совместимость с хостом/тестами: то же, что ensureWelcomeGiftGranted. */
 export async function resumeWelcomeGiftIfPending(): Promise<void> {
-  const state = await readState();
-  if (!state || (state.pearls === 'done' && state.runes === 'done')) return;
   await runExclusive();
 }
 

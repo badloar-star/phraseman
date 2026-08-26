@@ -328,20 +328,18 @@ async function pruneLocalClaimKeys(retainKey: string): Promise<void> {
     const claimKeys = keys
       .filter((key) => key.startsWith(LOCAL_CLAIM_KEY_PREFIX))
       .sort((a, b) => b.localeCompare(a));
-    // зачем: маркеры «модалку показали» живут параллельно маркерам клейма и
-    // растут вместе с ними — чистим их той же волной, иначе ключи копятся
-    // неделя за неделей и их никто не удаляет.
-    const revealKeys = keys
-      .filter((key) => key.startsWith(LOCAL_REVEAL_SHOWN_KEY_PREFIX))
-      .sort((a, b) => b.localeCompare(a));
-    const staleReveal = revealKeys.slice(LOCAL_CLAIM_MAX_KEYS);
-    if (claimKeys.length <= LOCAL_CLAIM_MAX_KEYS) {
-      if (staleReveal.length > 0) await AsyncStorage.multiRemove(staleReveal);
-      return;
-    }
+    if (claimKeys.length <= LOCAL_CLAIM_MAX_KEYS) return;
     const keep = new Set(claimKeys.slice(0, LOCAL_CLAIM_MAX_KEYS));
     keep.add(retainKey);
-    const remove = [...claimKeys.filter((key) => !keep.has(key)), ...staleReveal];
+    const staleClaims = claimKeys.filter((key) => !keep.has(key));
+    // зачем СТРОГО парой: маркер «модалку показали» удаляем ровно для тех
+    // недель, чей маркер клейма тоже уходит. Если чистить их независимо
+    // (по своему лимиту), возможен перекос «клейм жив, метка показа стёрта» —
+    // и старый сундук показал бы модалку ещё раз. Пара живёт и умирает вместе.
+    const staleReveal = staleClaims.map((key) => (
+      `${LOCAL_REVEAL_SHOWN_KEY_PREFIX}${key.slice(LOCAL_CLAIM_KEY_PREFIX.length)}`
+    ));
+    const remove = [...staleClaims, ...staleReveal];
     if (remove.length > 0) await AsyncStorage.multiRemove(remove);
   } catch {
     // Best-effort local marker cleanup only.

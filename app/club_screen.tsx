@@ -1316,7 +1316,7 @@ export default function ClubScreen() {
         void cacheLeagueGroupBoost(previousBoost);
       }
       if (res.reason === 'active') {
-        showLeagueToast(triLang(lang, { ru: 'Буст уже активен. Новый можно купить после таймера.', uk: 'Буст уже активний. Новий можна придбати після завершення таймера.', en: 'A boost is already active. You can buy a new one once the timer runs out.', es: 'El impulso ya está activo. Podrás comprar otro cuando termine el temporizador.', 'pt-BR': 'O impulso já está ativo. Você poderá comprar outro quando o cronômetro terminar.', vi: 'Tăng cường đã hoạt động. Bạn có thể mua lượt mới sau khi hết giờ.', id: 'Boost sudah aktif. Kamu dapat membeli yang baru setelah pengatur waktu berakhir.', tr: 'Güçlendirme zaten etkin. Süre dolduğunda yenisini alabilirsiniz.', pl: 'Wzmocnienie jest już aktywne. Nowe będzie można kupić po zakończeniu odliczania.' }), 'info');
+        showLeagueToast(triLang(lang, { ru: 'Буст уже активен. Новый откроется после таймера.', uk: 'Буст уже активний. Новий відкриється після таймера.', en: 'A boost is already active. A new one unlocks when the timer ends.', es: 'El impulso ya está activo. Podrás abrir otro cuando termine el temporizador.', 'pt-BR': 'O impulso já está ativo. Você poderá abrir outro quando o cronômetro terminar.', vi: 'Tăng cường đã hoạt động. Lượt mới sẽ mở sau khi hết giờ.', id: 'Boost sudah aktif. Yang baru terbuka setelah pengatur waktu berakhir.', tr: 'Güçlendirme zaten etkin. Süre dolduğunda yenisi açılır.', pl: 'Wzmocnienie jest już aktywne. Nowe otworzy się po zakończeniu odliczania.' }), 'info');
       } else if (res.reason === 'not_enough_shards') {
         showLeagueToast(triLang(lang, { ru: `Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, uk: `Потрібно ${LEAGUE_GROUP_BOOST_COST_SHARDS} перлин`, en: `Need ${LEAGUE_GROUP_BOOST_COST_SHARDS} pearls`, es: `Necesitas ${LEAGUE_GROUP_BOOST_COST_SHARDS} perlas`, 'pt-BR': `Você precisa de ${LEAGUE_GROUP_BOOST_COST_SHARDS} pérolas`, vi: `Bạn cần ${LEAGUE_GROUP_BOOST_COST_SHARDS} ngọc trai`, id: `Kamu membutuhkan ${LEAGUE_GROUP_BOOST_COST_SHARDS} mutiara`, tr: `${LEAGUE_GROUP_BOOST_COST_SHARDS} inci gerekiyor`, pl: `Potrzebujesz ${LEAGUE_GROUP_BOOST_COST_SHARDS} pereł` }), 'error');
       } else if (res.reason === 'no_current_group') {
@@ -1953,16 +1953,19 @@ export default function ClubScreen() {
             </Text>
             <View style={{ flexDirection:'row', alignItems:'center', gap:7 }}>
               <Text style={{ color:t.textMuted, fontSize:f.body, fontWeight:'800' }}>
+                {/* зачем (аудит по Библии, 2026-08-26): «Стоимость/цена» — запрещённые
+                    слова словаря Библии. Буст берут за жемчужины, поэтому говорим
+                    «нужно», а не о трате. Заменено во всех восьми языках. */}
                 {triLang(lang, {
-                  ru: 'Стоимость:',
-                  uk: 'Вартість:',
-                  en: 'Cost:',
-                  es: 'Precio:',
-                  'pt-BR': 'Custo:',
-                  vi: 'Chi phí:',
-                  id: 'Biaya:',
-                  tr: 'Ücret:',
-                  pl: 'Koszt:',
+                  ru: 'Нужно:',
+                  uk: 'Потрібно:',
+                  en: 'You need:',
+                  es: 'Necesitas:',
+                  'pt-BR': 'Você precisa:',
+                  vi: 'Cần:',
+                  id: 'Perlu:',
+                  tr: 'Gerekli:',
+                  pl: 'Potrzebujesz:',
                 })}
               </Text>
               {freeBoostGiftReady ? (

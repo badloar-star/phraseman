@@ -31,13 +31,14 @@
  *     вслепую. Теперь каждый отказ пишет причину в DebugLogger.
  *
  * Архитектура выдачи (без новых писателей валют):
- *  - ЖЕМЧУЖИНЫ клиентски-авторитетны: commitShardCreditOperation напрямую, с
- *    ТЕМ ЖЕ детерминированным operationId, который строил awardOneTimeVariable
- *    (`one-time:` + sha256('welcome_gift:welcome_gift_v1')[0..40]) — аккаунты,
- *    уже получившие подарок старым путём, получают от леджера already-applied,
- *    а не второй кредит. Леджер скоупится по stableId и мержится между
- *    устройствами одного аккаунта по operationId (ECONOMY_CONSTITUTION §4-5) —
- *    «строго 1 раз на аккаунт» держится им, а не девайс-локальным списком.
+ *  - ЖЕМЧУЖИНЫ клиентски-авторитетны: awardOneTimePerAccount (shards_system) —
+ *    ТОТ ЖЕ детерминированный operationId, что строил awardOneTimeVariable
+ *    (`one-time:` + sha256('welcome_gift:welcome_gift_v1')[0..40]), но БЕЗ
+ *    девайс-глобального пре-чека: аккаунты, уже получившие подарок старым
+ *    путём, получают от леджера already-applied, а не второй кредит. Леджер
+ *    скоупится по stableId и мержится между устройствами одного аккаунта по
+ *    operationId (ECONOMY_CONSTITUTION §4-5) — «строго 1 раз на аккаунт»
+ *    держится им, а не девайс-локальным списком.
  *  - РУНЫ авторитетен сервер: callable welcomeGiftClaim (stars_ledger, opId
  *    `welcome_gift:{uid}`, claim-док reward_claims/welcome_gift). Ответ
  *    мерджится в локальную проекцию (mergeLevelSpinServerStars).
@@ -52,7 +53,6 @@
  * отказе сети), никаких чтений Firestore с клиента.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Crypto from 'expo-crypto';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
@@ -64,7 +64,7 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
-import { commitShardCreditOperation } from './shards_system';
+import { awardOneTimePerAccount } from './shards_system';
 import { getRemoteBool } from './remote_flags';
 import { DebugLogger } from './debug-logger';
 
@@ -158,28 +158,20 @@ type WelcomeGiftClaimWire = Readonly<{
  */
 async function grantPearlsLocal(token: AccountGenerationToken): Promise<boolean> {
   try {
-    const eventHash = await Crypto.digestStringAsync(
-      Crypto.CryptoDigestAlgorithm.SHA256,
-      `welcome_gift:${WELCOME_GIFT_PEARLS_EVENT_KEY}`,
+    // awardOneTimePerAccount: тот же детерминированный operationId, что строил
+    // прежний awardOneTimeVariable (аккаунты, выданные старым путём, получат
+    // already-applied вместо второго кредита), но БЕЗ девайс-глобального
+    // пре-чека, который и был корнем инцидента. Маркер в реестр пишется внутри.
+    const result = await awardOneTimePerAccount(
+      WELCOME_GIFT_PEARLS_EVENT_KEY,
+      WELCOME_GIFT_PEARLS,
+      'welcome_gift',
+      token,
     );
-    const result = await commitShardCreditOperation({
-      operationId: `one-time:${eventHash.slice(0, 40)}`,
-      amount: WELCOME_GIFT_PEARLS,
-      reason: 'welcome_gift',
-      grant: {
-        kind: 'one_time_reward',
-        subjectId: eventHash.slice(0, 40),
-        payload: { eventKey: WELCOME_GIFT_PEARLS_EVENT_KEY },
-      },
-      accountToken: token,
-    });
-    if (result.status === 'applied' || result.status === 'already-applied') return true;
-    // зачем: молчаливый отказ уже стоил часов поиска — причина обязана быть в логе.
-    DebugLogger.error(
-      'welcome_gift:pearls',
-      new Error(`commit ${result.status}: ${'reason' in result ? String(result.reason) : 'unknown'}`),
-      'warning',
-    );
+    if (result.awarded > 0 || result.alreadyClaimed) return true;
+    // зачем: молчаливый отказ уже стоил часов поиска — причина обязана быть в
+    // логе. Детальную причину пишет сам awardOneTimePerAccount.
+    DebugLogger.error('welcome_gift:pearls', new Error('grant_refused'), 'warning');
     return false;
   } catch (error) {
     DebugLogger.error('welcome_gift:pearls', error, 'warning');

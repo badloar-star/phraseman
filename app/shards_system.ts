@@ -1770,6 +1770,67 @@ export type AwardOneTimeVariableResult = {
 };
 
 /**
+ * Разовая выплата, где источник истины — АККАУНТ-скоупный леджер, а не
+ * девайс-глобальный реестр shards_one_time_events.
+ *
+ * зачем (инцидент 2026-08-26, владелец: «модал появился, начисление не
+ * сработало, вижу нули»): awardOneTimeVariable сверяется с реестром ДО кредита,
+ * а реестр живёт на устройстве и не привязан к аккаунту. При смене/
+ * восстановлении аккаунта без полной очистки хранилища (класс
+ * project_account_generation_stale_cache_class) новый аккаунт наследовал чужую
+ * запись, получал alreadyClaimed=true и НЕ получал денег — навсегда и молча.
+ *
+ * Здесь пре-чек по реестру убран: идемпотентность держит леджер по
+ * детерминированному operationId (он же мержится между устройствами ОДНОГО
+ * аккаунта — ECONOMY_CONSTITUTION §4-5). Маркер в реестр всё равно пишется —
+ * тем же localWrites, что и раньше, чтобы состояние кошелька осталось
+ * консистентным для остальных читателей реестра.
+ */
+export const awardOneTimePerAccount = async (
+  eventKey: string,
+  amount: number,
+  source: OneTimeVariableSource,
+  accountToken?: AccountGenerationToken,
+): Promise<AwardOneTimeVariableResult> => {
+  const amt = Math.floor(Number(amount));
+  if (!eventKey || !Number.isFinite(amt) || amt <= 0) {
+    return { awarded: 0, balance: null, alreadyClaimed: false };
+  }
+  try {
+    const eventHash = await Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      `${source}:${eventKey}`,
+    );
+    const events = await getOneTimeEvents();
+    events.add(eventKey);
+    const result = await commitShardCreditOperation({
+      operationId: `one-time:${eventHash.slice(0, 40)}`,
+      amount: amt,
+      reason: source,
+      grant: { kind: 'one_time_reward', subjectId: eventHash.slice(0, 40), payload: { eventKey } },
+      localWrites: [[ONE_TIME_KEY, JSON.stringify([...events])]],
+      ...(accountToken ? { accountToken } : {}),
+    });
+    if (result.status !== 'applied' && result.status !== 'already-applied') {
+      DebugLogger.error(
+        'shards_system.ts:awardOneTimePerAccount',
+        new Error(`commit ${result.status}: ${'reason' in result ? String(result.reason) : 'unknown'}`),
+        'warning',
+      );
+      return { awarded: 0, balance: null, alreadyClaimed: false };
+    }
+    return {
+      awarded: result.status === 'applied' ? amt : 0,
+      balance: Math.max(0, result.balanceAfter),
+      alreadyClaimed: result.status === 'already-applied',
+    };
+  } catch (error) {
+    DebugLogger.error('shards_system.ts:awardOneTimePerAccount', error, 'warning');
+    return { awarded: 0, balance: null, alreadyClaimed: false };
+  }
+};
+
+/**
  * Разовая выплата произвольной суммы по ключу события (по образцу awardOneTime,
  * но amount переменный — ролл наград). Атомарно под withStorageLock: баланс и
  * регистрация события пишутся одним multiSet. Без 'shards_earned' — UI клейма

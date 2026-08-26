@@ -2,6 +2,11 @@ import fs from 'fs';
 import path from 'path';
 
 const client = fs.readFileSync(path.join(process.cwd(), 'app', 'welcome_gift.ts'), 'utf8');
+const shards = fs.readFileSync(path.join(process.cwd(), 'app', 'shards_system.ts'), 'utf8');
+const ledger = fs.readFileSync(
+  path.join(process.cwd(), 'app', 'economy', 'client_shard_operation_ledger.ts'),
+  'utf8',
+);
 const server = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'welcome_gift.ts'), 'utf8');
 const ledger = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'stars_ledger.ts'), 'utf8');
 const fnIndex = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'index.ts'), 'utf8');
@@ -23,16 +28,30 @@ describe('Welcome gift economics contract', () => {
   it('pearls bypass the device-global one-time registry and rely on the per-account ledger', () => {
     // Корень инцидента-вечер: awardOneTimeVariable сверялся с девайс-глобальным
     // shards_one_time_events — restored-аккаунт получал ложный alreadyClaimed.
-    // Теперь кредит идёт напрямую в commitShardCreditOperation: идемпотентность
-    // решает аккаунт-скоупный леджер по детерминированному operationId.
-    // Слово живёт в комментариях-объяснениях — запрещён именно ВЫЗОВ/ИМПОРТ.
+    // Теперь путь идёт через awardOneTimePerAccount: тот же детерминированный
+    // operationId, но решает аккаунт-скоупный леджер, а не список на устройстве.
     expect(client).not.toMatch(/awardOneTimeVariable\s*\(/);
-    expect(client).not.toMatch(/import[^;]*awardOneTimeVariable/);
-    expect(client).toContain('commitShardCreditOperation({');
-    expect(client).toMatch(/operationId: `one-time:\$\{eventHash\.slice\(0, 40\)\}`/);
-    // Тот же вывод хэша, что строил awardOneTimeVariable: sha256('welcome_gift:welcome_gift_v1').
-    // Аккаунты, выданные старым путём, получают already-applied, а не второй кредит.
-    expect(client).toMatch(/Crypto\.digestStringAsync\(\s*Crypto\.CryptoDigestAlgorithm\.SHA256,\s*`welcome_gift:\$\{WELCOME_GIFT_PEARLS_EVENT_KEY\}`,?\s*\)/);
+    expect(client).toMatch(/import \{ awardOneTimePerAccount \} from '\.\/shards_system'/);
+    expect(client).toMatch(/awardOneTimePerAccount\(\s*WELCOME_GIFT_PEARLS_EVENT_KEY/);
+
+    const start = shards.indexOf('export const awardOneTimePerAccount');
+    expect(start).toBeGreaterThan(-1);
+    const body = shards.slice(start, shards.indexOf('\n};', start));
+    // Никакого пре-чека по девайс-глобальному реестру — только запись маркера.
+    expect(body).not.toMatch(/events\.has\(/);
+    expect(body).toMatch(/localWrites: \[\[ONE_TIME_KEY, JSON\.stringify\(\[\.\.\.events\]\)\]\]/);
+    // Тот же вывод хэша, что у awardOneTimeVariable: аккаунты, выданные старым
+    // путём, получают already-applied от леджера, а не второй кредит.
+    expect(body).toMatch(/`\$\{source\}:\$\{eventKey\}`/);
+    expect(body).toMatch(/operationId: `one-time:\$\{eventHash\.slice\(0, 40\)\}`/);
+  });
+
+  // зачем (корень, найденный по логам эмулятора 2026-08-26): кредит без
+  // локальных записей доходил до AsyncStorage.multiSet([]) — Android бросает
+  // «Expected array of key-value pairs», iOS проглатывает. Награда, у которой
+  // весь результат это сам кредит баланса, легальна: пустой список не ошибка.
+  it('the ledger never calls multiSet with an empty write list', () => {
+    expect(ledger).toMatch(/if \(exactResultWrites && exactResultWrites\.length > 0\) \{\s*\n\s*await AsyncStorage\.multiSet\(/);
   });
 
   it('grant state and runes requestId are scoped per account, never per device', () => {

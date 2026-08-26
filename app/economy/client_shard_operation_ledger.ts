@@ -434,7 +434,14 @@ async function commitUnlocked(
 
   if (grantReceiptRaw !== fingerprint) {
     const exactResultWrites = semanticDebit ? semanticWrites : input.localWrites;
-    await AsyncStorage.multiSet(exactResultWrites.map(([key, value]) => [key, value]));
+    // зачем (инцидент 2026-08-26, жемчужины подарка не начислялись на Android):
+    // multiSet([]) на Android бросает «Expected array of key-value pairs», а на
+    // iOS проходит молча. Операция БЕЗ локальных записей легальна (награда, у
+    // которой весь результат — сам кредит баланса), поэтому пустой список не
+    // ошибка вызывающего: просто нечего писать.
+    if (exactResultWrites && exactResultWrites.length > 0) {
+      await AsyncStorage.multiSet(exactResultWrites.map(([key, value]) => [key, value]));
+    }
     await AsyncStorage.setItem(grantReceiptKey, fingerprint);
   }
 

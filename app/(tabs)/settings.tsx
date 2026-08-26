@@ -1144,15 +1144,18 @@ export default function SettingsMain() {
     if (clearCacheStateRef.current === 'running') return; // зачем: защита от двойного тапа — чистка диска идёт секунды
     doHaptic();
     Alert.alert(
-      L('Вы уверены?', 'Ви впевнені?', '¿Estás seguro?', 'Tem certeza?', 'Bạn có chắc không?', 'Anda yakin?', 'Emin misiniz?', 'Na pewno?'),
+      // зачем (аудит по Библии, 2026-08-26): «Вы уверены?» — обращение на «вы»
+      // (Правило 14) и вопрос ни о чём. Заголовок называет само действие,
+      // кнопки получили глаголы вместо «Да/Нет» (Правило 1).
+      L('Очистить кеш?', 'Очистити кеш?', '¿Vaciar la caché?', 'Limpar o cache?', 'Xoá bộ nhớ đệm?', 'Bersihkan cache?', 'Önbellek temizlensin mi?', 'Wyczyścić pamięć podręczną?'),
       // зачем: перечисление («рейтинги, сообщения, друзья») пугало — читалось как
       // удаление данных, хотя это лишь локальные копии. Оставлен голый вопрос:
       // слово «кеш» самодостаточно, кому надо — тот понимает.
       undefined,
       [
-        { text: L('Нет', 'Ні', 'No', 'Não', 'Không', 'Tidak', 'Hayır', 'Nie'), style: 'cancel' as const },
+        { text: L('Не сейчас', 'Не зараз', 'Ahora no', 'Agora não', 'Để sau', 'Nanti saja', 'Şimdi değil', 'Nie teraz'), style: 'cancel' as const },
         {
-          text: L('Да', 'Так', 'Sí', 'Sim', 'Có', 'Ya', 'Evet', 'Tak'),
+          text: L('Очистить', 'Очистити', 'Vaciar', 'Limpar', 'Xoá', 'Bersihkan', 'Temizle', 'Wyczyść'),
           style: 'destructive' as const,
           onPress: () => {
             // зачем: раньше между тапом и алертом «Готово» экран молчал секунды, а
@@ -1840,8 +1843,8 @@ export default function SettingsMain() {
           'Jak szybciej ci pomóc',
         )}
         message={L(
-          'Расскажите о проблеме подробно: что происходит, когда началось, на каком экране.\n\nИ напишите свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём ваши данные.',
-          'Розкажіть про проблему докладно: що відбувається, коли почалося, на якому екрані.\n\nІ напишіть свій нік із застосунку — пошта не пов’язана з акаунтом, тому без ніка ми не знайдемо ваші дані.',
+          'Расскажи о проблеме подробно: что происходит, когда началось, на каком экране.\n\nИ напиши свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём твои данные.',
+          'Розкажи про проблему докладно: що відбувається, коли почалося, на якому екрані.\n\nІ напиши свій нік із застосунку — пошта не пов’язана з акаунтом, тому без ніка ми не знайдемо твої дані.',
           'Cuéntanos el problema en detalle: qué pasa, cuándo empezó y en qué pantalla.\n\nY escribe tu apodo de la app: el correo no está vinculado a la cuenta, así que sin él no podremos encontrar tus datos.',
           'Conte o problema em detalhes: o que acontece, quando começou e em qual tela.\n\nE escreva seu apelido do app: o e-mail não está ligado à conta, então sem ele não conseguiremos encontrar seus dados.',
           'Hãy mô tả chi tiết vấn đề: chuyện gì xảy ra, bắt đầu khi nào, ở màn hình nào.\n\nVà hãy ghi biệt danh của bạn trong ứng dụng — email không liên kết với tài khoản, nên nếu thiếu nó chúng tôi sẽ không tìm được dữ liệu của bạn.',

@@ -35,7 +35,8 @@ const HYBRID_DEFAULT_SURFACES = [
   'components/MedalToast.tsx',
   'components/NotificationPermissionModal.tsx',
   'components/OfflineBanner.tsx',
-  'components/OnboardingWelcomeSheet.tsx',
+  // OnboardingWelcomeSheet удалена (2026-08-26): приветствие новичка теперь
+  // WelcomeGiftModal — гибрид-нативная церемония без classic-варианта.
   'components/PromoBanner.tsx',
   'components/RankChangeBanner.tsx',
   'components/ReferralInviteBannerArt.tsx',

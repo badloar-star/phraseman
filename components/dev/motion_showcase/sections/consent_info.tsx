@@ -12,7 +12,7 @@ import AiDialogConsentModal from '../../../AiDialogConsentModal';
 import AiExplainConsentModal from '../../../AiExplainConsentModal';
 import NotificationPermissionModal from '../../../NotificationPermissionModal';
 import MistakeEli5Modal from '../../../MistakeEli5Modal';
-import OnboardingWelcomeSheet from '../../../OnboardingWelcomeSheet';
+import WelcomeGiftModal from '../../../WelcomeGiftModal';
 import DeckPickerSheet from '../../../../app/flashcards/DeckPickerSheet';
 import SectionSheetHeader from '../../../SectionSheetHeader';
 import { useTheme } from '../../../ThemeContext';
@@ -175,31 +175,16 @@ export const SECTION: ShowcaseSection = {
       note: cs('explain_sheet_note'),
     },
     {
-      id: 'onboarding-welcome-sheet',
-      title: cs('onboarding_welcome_sheet_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <OnboardingWelcomeSheet
-          visible={visible}
-          userName={cs('onboarding_welcome_sheet_demo_name')}
-          onClose={onClose}
-        />
-      ),
-    },
-    {
-      id: 'onboarding-welcome-sheet-hybrid',
+      // зачем (владелец, 2026-08-26): вместо шторки «Спасибо за установку» —
+      // церемония стартового подарка. Витрина только рисует модалку: начисление
+      // живёт в OnboardingWelcomeHost/welcome_gift.ts и отсюда НЕ запускается.
+      id: 'welcome-gift-modal',
       approval: 'accepted',
-      title: cs('onboarding_welcome_sheet_hybrid_title'),
+      title: cs('welcome_gift_modal_title'),
       detail: cs('real_component'),
       kind: 'render',
       render: ({ visible, onClose }) => (
-        <OnboardingWelcomeSheet
-          visible={visible}
-          userName={cs('onboarding_welcome_sheet_demo_name')}
-          onClose={onClose}
-          motionVariant="hybrid"
-        />
+        <WelcomeGiftModal visible={visible} onClose={onClose} />
       ),
     },
     // зачем: пункт «шторка выбора канала» УДАЛЁН из витрины (владелец, 2026-08-17).

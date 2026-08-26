@@ -89,7 +89,10 @@ export type StarOpReason =
   // зачем: владелец 2026-08-23 — звёзды Арены, турниров и Learning V2 это одна
   // валюта. Занятие оплачено учёбой, поэтому earn (обязано открывать награды
   // сезона); открытие занятия — spend по лестнице 45/50/55/60/65.
-  | 'learning_v2_session' | 'learning_v2_unlock';
+  | 'learning_v2_session' | 'learning_v2_unlock'
+  // Стартовый подарок новичку (+300, владелец 2026-08-26): grant, не earn —
+  // подарок не оплачен игрой и не должен двигать соревновательный earnedTotal.
+  | 'welcome_gift';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -111,6 +114,7 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   friends_together_chest: 'earn',
   learning_v2_session: 'earn',
   learning_v2_unlock: 'spend',
+  welcome_gift: 'grant',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;

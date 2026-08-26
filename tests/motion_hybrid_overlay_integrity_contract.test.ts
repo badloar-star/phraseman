@@ -82,15 +82,23 @@ describe("motion hybrid overlay integrity", () => {
     expect(source).not.toMatch(/withDelay\(LUM\.resolveMs(?:\s*[+*])/);
   });
 
-  test("onboarding welcome hero collapses to its final frame under Reduce Motion", () => {
-    const source = read("components/OnboardingWelcomeSheet.tsx");
-    expect(source).toContain("useReduceMotion");
-    expect(source).toMatch(
-      /function HybridHero[\s\S]*?const reduceMotion = useReduceMotion\(\)/,
-    );
-    expect(source).toMatch(
-      /if \(reduceMotion\) \{[\s\S]{0,180}?opacity\.value = 1;[\s\S]{0,120}?y\.value = 0;/,
-    );
+  test("welcome gift ceremony collapses to its final frame under Reduce Motion", () => {
+    // 2026-08-26: шторку приветствия заменила церемония WelcomeGiftModal.
+    // Reduce Motion у неё живёт в одном месте — celebration-движке
+    // useRewardImpactHybrid (один финальный кадр), а счётчики и полёт глифов
+    // обязаны уважать тот же флаг.
+    //
+    // 2026-08-26 (тем же днём, аудит «анимация дёргается»): счёт переписан с
+    // useCountUp (JS-поток, setState на каждый кадр — источник рывков) на
+    // useSharedValue/useAnimatedProps (UI-поток, ни одного React re-render за
+    // весь счёт) — тот же паттерн, что RankChangeBanner.tsx.
+    const source = read("components/WelcomeGiftModal.tsx");
+    expect(source).toContain("useRewardImpactHybrid");
+    expect(source).toContain("const reduceMotion = impact.reduceMotion");
+    expect(source).not.toContain("useCountUp");
+    expect(source).toContain("Reanimated.createAnimatedComponent(TextInput)");
+    expect(source).toMatch(/if \(reduceMotion\) \{\s*pearlsProgress\.value = 1;\s*runesProgress\.value = 1;/);
+    expect(source).toMatch(/runesStarted && !reduceMotion && !lowEnd \? <RuneGlyphDrift/);
   });
 
   test.each([

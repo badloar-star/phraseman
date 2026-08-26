@@ -207,9 +207,9 @@ const RU = {
     'ExplainSheet сам стартует сетевой запрос (useExplainRequest → CF explainPhrase) при visible=true — безопасного демо-превью без реального вызова нет',
 
   // ── consent_info: гибридные шиты общего каркаса (HybridSheetShell) ──
-  onboarding_welcome_sheet_title: 'Шторка: приветствие после онбординга',
-  onboarding_welcome_sheet_hybrid_title: 'Шторка: приветствие после онбординга · гибрид',
-  onboarding_welcome_sheet_demo_name: 'Показ',
+  // зачем (владелец, 2026-08-26): шторка «Спасибо за установку» заменена
+  // церемонией WelcomeGiftModal со стартовым подарком (+100 жемчужин, +300 рун).
+  welcome_gift_modal_title: 'Модалка: приветствие новичка с подарком',
   youtube_channel_picker_sheet_title: 'Шторка: выбор канала YouTube',
   youtube_channel_picker_sheet_hybrid_title: 'Шторка: выбор канала YouTube · гибрид',
   youtube_channel_picker_sheet_demo_channel: 'Демо-канал',

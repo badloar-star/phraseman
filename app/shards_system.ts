@@ -1745,7 +1745,9 @@ const getOneTimeEvents = async (): Promise<Set<string>> => {
  * недельного трека звёзд ('{weekKey}:{checkpoint}', ролл 70/25/5 — stars_system)
  * и milestone-сундуки lifetime best-звёзд колод ('fc_milestone_10|25|50', E12).
  */
-export type OneTimeVariableSource = 'fc_checkpoint' | 'fc_milestone';
+// зачем 'welcome_gift' (владелец, 2026-08-26): стартовый подарок новичку
+// +100 жемчужин из приветственной модалки — см. app/welcome_gift.ts.
+export type OneTimeVariableSource = 'fc_checkpoint' | 'fc_milestone' | 'welcome_gift';
 
 /**
  * cards-2.0 (E12): какие из ключей уже зарегистрированы в shards_one_time_events.

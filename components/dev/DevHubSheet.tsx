@@ -33,6 +33,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import LevelUpThresholdModal, { type LevelUpPreviewVariant } from '../LevelUpThresholdModal';
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
+import WelcomeGiftModal from '../WelcomeGiftModal';
 import { useOverlayVisible } from '../OverlayArbiter';
 import { usePremium } from '../PremiumContext';
 import { useTheme } from '../ThemeContext';
@@ -45,6 +46,7 @@ import LeagueResultModal from '../../app/LeagueResultModal';
 import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
 import {
   CANCEL_FLOW_PREVIEW_ROUTE,
+  LEARNING_V2_AUTHORING_PREVIEW_ROUTE,
   LEARNING_V2_MODES_SHOWCASE_ROUTE,
   MOTION_SHOWCASE_ROUTE,
   SHOP_ROUTE,
@@ -77,6 +79,11 @@ type PreviewState =
   | Readonly<{
       type: 'league';
       seed: LeagueDevSeedId;
+      run: number;
+    }>
+  | Readonly<{
+      type: 'welcome-gift';
+      variant?: never;
       run: number;
     }>;
 
@@ -269,6 +276,19 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(true);
   }, [requestClose]);
 
+  // зачем (владелец, 2026-08-26): «добавь кнопку в DEV Hub чтобы проверить
+  // модал». WelcomeGiftModal сама по себе ничего не начисляет (начисление
+  // живёт снаружи, в OnboardingWelcomeHost/welcome_gift.ts) — здесь просто
+  // монтируем компонент, ни разу не вызывая beginWelcomeGiftGrant. Строгая
+  // идемпотентность «1 раз на аккаунт» этим не затрагивается: можно жать
+  // сколько угодно раз подряд, деньги не спишутся.
+  const openWelcomeGiftPreview = useCallback(() => {
+    hapticTap();
+    runRef.current += 1;
+    setPreview({ type: 'welcome-gift', run: runRef.current });
+    requestClose(true);
+  }, [requestClose]);
+
   const openLeaguePreview = useCallback((seed: LeagueDevSeedId) => {
     hapticTap();
     runRef.current += 1;
@@ -358,6 +378,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         // Learning V2, каждый открывается полноэкранным пробным мини-уроком.
         requestClose(false, () => router.push(LEARNING_V2_MODES_SHOWCASE_ROUTE as never));
         return;
+      case 'open-learning-v2-authoring-preview':
+        requestClose(false, () => router.push(LEARNING_V2_AUTHORING_PREVIEW_ROUTE as never));
+        return;
       case 'open-shop':
         // Магазин пока БЕЗ входа из приложения — эта кнопка единственная дверь.
         requestClose(false, () => router.push(SHOP_ROUTE as never));
@@ -425,6 +448,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-spin-reward':
         void openSpinRewardPreview();
         return;
+      case 'preview-welcome-gift':
+        openWelcomeGiftPreview();
+        return;
       case 'preview-league-promoted':
         openLeaguePreview('promoted');
         return;
@@ -451,7 +477,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'revoke-plus':
         void applyPlusOverride('removed');
     }
-  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, requestClose, router, runOnboardingPreview]);
+  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';
@@ -535,7 +561,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
             ) : null}
           </View>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.content}
           >
@@ -692,6 +718,20 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
             closePreview();
             onOpen?.();
           }}
+        />
+      ) : null}
+
+      {preview?.type === 'welcome-gift' ? (
+        // зачем: WelcomeGiftModal рисует свой native Modal сама (как
+        // LeagueResultModal выше) — оборачивать её ещё в один Modal нельзя,
+        // вложенный презент на iOS ломает стек показа. Компонент не звонит
+        // ни на сервер, ни в локальный кошелёк — реальный beginWelcomeGiftGrant
+        // здесь не подключён, поэтому кнопку можно жать сколько угодно раз.
+        <WelcomeGiftModal
+          key={preview.run}
+          visible={!visible && devSurfaceGranted}
+          onClose={() => closePreview()}
+          testID="dev-welcome-gift-preview"
         />
       ) : null}
 

@@ -246,6 +246,13 @@ const {
   adminListMaxVoiceFeedback,
 } = require("./max_voice_feedback");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  submitFeedbackEntry,
+  adminListFeedbackEntries,
+} = require("./feedback_entries");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { adminSummarizeFeedback } = require("./feedback_summary");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require("./league_finalize_cron");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueResidentsTickCron } = require("./league_residents_cron");
@@ -403,6 +410,9 @@ exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.submitMaxVoiceFeedback = submitMaxVoiceFeedback;
 exports.adminListMaxVoiceFeedback = adminListMaxVoiceFeedback;
+exports.submitFeedbackEntry = submitFeedbackEntry;
+exports.adminListFeedbackEntries = adminListFeedbackEntries;
+exports.adminSummarizeFeedback = adminSummarizeFeedback;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 // Жители лиг: раз в 6 часов растёт их опыт/уровень/аватар (владелец 2026-08-04).
 exports.leagueResidentsTickCron = leagueResidentsTickCron;
@@ -1130,6 +1140,8 @@ export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from "./gift_access";
+// Стартовый подарок новичку: +300 рун одной выдачей на аккаунт (welcome-модалка).
+export { welcomeGiftClaim } from "./welcome_gift";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
 export { globalBroadcastListActive } from "./global_broadcast_public";
 export {

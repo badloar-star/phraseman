@@ -69,7 +69,8 @@
     "rule": "Правило 2: gain-framing + Правило 4: короче",
     "why": "Предупреждение нужное, но «чтобы не потерять» давит потерей; та же мысль в gain-виде звучит как забота.",
     "severity": "medium",
-    "legal_ok": false
+    "legal_ok": false,
+    "applied": true
   },
   {
     "id": "fear-006",

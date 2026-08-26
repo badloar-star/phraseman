@@ -252,10 +252,18 @@ describe('owner runtime direction contract', () => {
       // Общий секундный отсчёт турнира: считает от целевого момента, поэтому
       // гвард видимости не ломает точность (при возврате догоняет сразу).
       'components/ui/V2Countdown.tsx': 1,
+      // Фейд громкости фоновой музыки празднования: тик 60мс, но жизнь цикла
+      // ограничена ~260-320мс (FADE_IN_MS/FADE_OUT_MS), он гасит себя по
+      // достижении последнего шага, а clearFade снимает предыдущий таймер
+      // перед новым. Меняет player.volume, не state — ре-рендеров ноль.
+      'modules/audio/celebrationBackgroundPlayer.ts': 2,
     };
     const found: Record<string, number> = {};
 
-    for (const file of listSourceFiles(['app', 'components', 'hooks', 'contexts'])) {
+    // зачем (аудит нагрева 2026-08-26): 'modules' здесь НЕ было — та же слепая
+    // зона, что у сторожа вечных анимаций. Новый таймер в учебных режимах
+    // прошёл бы мимо ревью молча.
+    for (const file of listSourceFiles(['app', 'components', 'hooks', 'contexts', 'modules'])) {
       const lines = read(file).split(/\r?\n/);
       for (const line of lines) {
         if (line.trim().startsWith('//')) continue;

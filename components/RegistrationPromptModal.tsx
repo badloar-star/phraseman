@@ -1183,7 +1183,7 @@ function RegistrationPromptModal({
             pl: 'Nie udało się zalogować. Spróbuj później.',
           });
           showInlineError(
-            triLang(lang, { ru: 'Ошибка', uk: 'Помилка', en: 'Error', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
+            triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'Didn't work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
             baseMsg,
           );
           return;
@@ -1205,7 +1205,7 @@ function RegistrationPromptModal({
         if (__DEV__) console.warn('[RegistrationPromptModal] unexpected error', e);
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
         showInlineError(
-          triLang(lang, { ru: 'Ошибка', uk: 'Помилка', en: 'Error', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
+          triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'Didn't work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
           triLang(lang, {
             ru: 'Что-то пошло не так при входе.',
             uk: 'Щось пішло не так під час входу.',

@@ -73,6 +73,25 @@ function shardsTitle(amount: number, lang: Lang): string {
   return `+${amount} ${slavicPlural(amount, 'жемчужина', 'жемчужины', 'жемчужин')}`;
 }
 
+/**
+ * зачем (владелец, 2026-08-26): награда сундука — спин общей рулетки вместо
+ * фиктивной жемчужины. Русский и украинский требуют склонения («1 спин»,
+ * «2 спина», «5 спинов»), поэтому идём через тот же slavicPlural.
+ */
+function spinTitle(amount: number, lang: Lang): string {
+  return `+${amount} ${triLang(lang, {
+    ru: slavicPlural(amount, 'спин', 'спина', 'спинов'),
+    uk: slavicPlural(amount, 'спін', 'спіни', 'спінів'),
+    en: amount === 1 ? 'spin' : 'spins',
+    es: amount === 1 ? 'giro' : 'giros',
+    'pt-BR': amount === 1 ? 'giro' : 'giros',
+    vi: 'lượt quay',
+    id: 'putaran',
+    tr: 'çevirme',
+    pl: slavicPlural(amount, 'spin', 'spiny', 'spinów'),
+  })}`;
+}
+
 function formatMinutes(ms?: number): number {
   return Math.max(1, Math.round(Math.max(60_000, Number(ms) || 5 * 60 * 1000) / 60_000));
 }
@@ -114,8 +133,8 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
   if (drop.kind === 'energy_fast_recovery') {
     const minutes = formatMinutes(drop.recoveryMs);
     return {
-      title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', es: 'Energía', 'pt-BR': 'Energia', vi: 'Năng lượng', id: 'Energi', tr: 'Enerji', pl: 'Energia' }),
-      subtitle: triLang(lang, { ru: `${minutes} мин быстрее`, uk: `${minutes} хв швидше`, es: `${minutes} min rápido`, 'pt-BR': `${minutes} min mais rápido`, vi: `${minutes} phút nhanh hơn`, id: `${minutes} menit lebih cepat`, tr: `${minutes} dk daha hızlı`, pl: `${minutes} min szybciej` }),
+      title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', en: 'Energy', es: 'Energía', 'pt-BR': 'Energia', vi: 'Năng lượng', id: 'Energi', tr: 'Enerji', pl: 'Energia' }),
+      subtitle: triLang(lang, { ru: `${minutes} мин быстрее`, uk: `${minutes} хв швидше`, en: `${minutes} min faster`, es: `${minutes} min rápido`, 'pt-BR': `${minutes} min mais rápido`, vi: `${minutes} phút nhanh hơn`, id: `${minutes} menit lebih cepat`, tr: `${minutes} dk daha hızlı`, pl: `${minutes} min szybciej` }),
       accent: '#7BE7C8',
       icon: { type: 'fallback', kind: 'gift' },
     };
@@ -123,7 +142,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
 
   if (drop.kind === 'streak_shield') {
     return {
-      title: triLang(lang, { ru: 'Щит серии', uk: 'Щит серії', es: 'Escudo', 'pt-BR': 'Escudo de sequência', vi: 'Khiên chuỗi', id: 'Perisai streak', tr: 'Seri kalkanı', pl: 'Tarcza serii' }),
+      title: triLang(lang, { ru: 'Щит серии', uk: 'Щит серії', en: 'Streak shield', es: 'Escudo', 'pt-BR': 'Escudo de sequência', vi: 'Khiên chuỗi', id: 'Perisai streak', tr: 'Seri kalkanı', pl: 'Tarcza serii' }),
       subtitle: `+${rewardAmount(drop) || 1}`,
       accent: '#A7F3D0',
       icon: { type: 'fallback', kind: 'gift' },
@@ -132,8 +151,8 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
 
   if (drop.kind === 'pack_trial_48h') {
     return {
-      title: triLang(lang, { ru: 'Пак фраз', uk: 'Пак фраз', es: 'Pack', 'pt-BR': 'Pacote de frases', vi: 'Gói cụm từ', id: 'Paket frasa', tr: 'İfade paketi', pl: 'Pakiet fraz' }),
-      subtitle: triLang(lang, { ru: '48 часов', uk: '48 годин', es: '48 horas', 'pt-BR': '48 horas', vi: '48 giờ', id: '48 jam', tr: '48 saat', pl: '48 godzin' }),
+      title: triLang(lang, { ru: 'Пак фраз', uk: 'Пак фраз', en: 'Phrase pack', es: 'Pack', 'pt-BR': 'Pacote de frases', vi: 'Gói cụm từ', id: 'Paket frasa', tr: 'İfade paketi', pl: 'Pakiet fraz' }),
+      subtitle: triLang(lang, { ru: '48 часов', uk: '48 годин', en: '48 hours', es: '48 horas', 'pt-BR': '48 horas', vi: '48 giờ', id: '48 jam', tr: '48 saat', pl: '48 godzin' }),
       accent: '#BFA5FF',
       icon: { type: 'fallback', kind: 'gift' },
     };
@@ -146,6 +165,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
       title: triLang(lang, {
         ru: `Аура «${auraNameForLang(aura, lang)}»`,
         uk: `Аура «${auraNameForLang(aura, lang)}»`,
+        en: `Aura "${auraNameForLang(aura, 'en')}"`,
         es: `Aura «${auraNameForLang(aura, lang)}»`,
         'pt-BR': `Aura «${auraNameForLang(aura, 'pt-BR')}»`,
         vi: `Hào quang «${auraNameForLang(aura, 'vi')}»`,
@@ -153,7 +173,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
         tr: `Aura «${auraNameForLang(aura, 'tr')}»`,
         pl: `Aura «${auraNameForLang(aura, 'pl')}»`,
       }),
-      subtitle: triLang(lang, { ru: 'Для аватара', uk: 'Для аватара', es: 'Para avatar', 'pt-BR': 'Para avatar', vi: 'Cho avatar', id: 'Untuk avatar', tr: 'Avatar için', pl: 'Dla awatara' }),
+      subtitle: triLang(lang, { ru: 'Для аватара', uk: 'Для аватара', en: 'For avatar', es: 'Para avatar', 'pt-BR': 'Para avatar', vi: 'Cho avatar', id: 'Untuk avatar', tr: 'Avatar için', pl: 'Dla awatara' }),
       accent: '#F8D982',
       icon: { type: 'aura', auraId: aura.id, ...preview },
     };
@@ -171,8 +191,8 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
 
   if (drop.kind === 'gold_theme') {
     return {
-      title: triLang(lang, { ru: 'Тема «Золото»', uk: 'Тема «Золото»', es: 'Tema Oro', 'pt-BR': 'Tema «Ouro»', vi: 'Chủ đề «Vàng»', id: 'Tema «Emas»', tr: '«Altın» teması', pl: 'Motyw «Złoto»' }),
-      subtitle: triLang(lang, { ru: 'Золотая карточка', uk: 'Золота картка', es: 'Tarjeta dorada', 'pt-BR': 'Cartão dourado', vi: 'Thẻ vàng', id: 'Kartu emas', tr: 'Altın kart', pl: 'Złota karta' }),
+      title: triLang(lang, { ru: 'Тема «Золото»', uk: 'Тема «Золото»', en: 'Gold theme', es: 'Tema Oro', 'pt-BR': 'Tema «Ouro»', vi: 'Chủ đề «Vàng»', id: 'Tema «Emas»', tr: '«Altın» teması', pl: 'Motyw «Złoto»' }),
+      subtitle: triLang(lang, { ru: 'Золотая карточка', uk: 'Золота картка', en: 'Gold card', es: 'Tarjeta dorada', 'pt-BR': 'Cartão dourado', vi: 'Thẻ vàng', id: 'Kartu emas', tr: 'Altın kart', pl: 'Złota karta' }),
       accent: '#F8D982',
       icon: { type: 'fallback', kind: 'league' },
     };
@@ -184,21 +204,26 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
         title: shardsTitle(rewardAmount(drop), lang),
         // зачем: RU-интерфейс называет валюту «жемчужины» (constants/shard_plurals.ts),
         // украинское «Перлины» протекало в русский сундук лиги.
-        subtitle: triLang(lang, { ru: 'Жемчужины', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perły' }),
+        subtitle: triLang(lang, { ru: 'Жемчужины', uk: 'Перлини', en: 'Pearls', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perły' }),
         accent: '#9FDBFF',
         icon: { type: 'image', source: oskolokImageForPackShards(rewardAmount(drop), themeMode), scale: 'large' },
       };
+    // зачем (владелец, 2026-08-26): здесь стоял `rewardAmount(drop) || 25` —
+    // сервер присылал amount=0, а модалка дорисовывала «+25 жемчужин», которых
+    // никто не получал. Ровно тот баг, о котором сообщил владелец. Награда
+    // заменена на спин, а фиктивный фолбэк убран: показываем то, что выдано.
+    case 'spin_credit':
     case 'gold_theme_duplicate':
       return {
-        title: shardsTitle(rewardAmount(drop) || 25, lang),
-        subtitle: triLang(lang, { ru: 'Повтор темы', uk: 'Повтор теми', es: 'Tema repetido', 'pt-BR': 'Tema repetido', vi: 'Chủ đề lặp lại', id: 'Tema duplikat', tr: 'Tekrar tema', pl: 'Powtórzony motyw' }),
+        title: spinTitle(Math.max(1, rewardAmount(drop) || 1), lang),
+        subtitle: triLang(lang, { ru: 'Крутить рулетку', uk: 'Крутити рулетку', en: 'Spin the wheel', es: 'Girar la ruleta', 'pt-BR': 'Girar a roleta', vi: 'Quay vòng quay', id: 'Putar roda', tr: 'Çarkı çevir', pl: 'Zakręć kołem' }),
         accent: '#F8D982',
-        icon: { type: 'image', source: oskolokImageForPackShards(rewardAmount(drop) || 25, themeMode), scale: 'large' },
+        icon: { type: 'fallback', kind: 'gift' },
       };
     case 'xp_boost':
       return {
         title: `x${Math.max(2, Number(drop.multiplier) || 2)} XP`,
-        subtitle: triLang(lang, { ru: 'Бонус опыта', uk: 'Бонус досвіду', es: 'Bono de XP', 'pt-BR': 'Bônus de XP', vi: 'Thưởng XP', id: 'Bonus XP', tr: 'XP bonusu', pl: 'Bonus XP' }),
+        subtitle: triLang(lang, { ru: 'Бонус опыта', uk: 'Бонус досвіду', en: 'XP bonus', es: 'Bono de XP', 'pt-BR': 'Bônus de XP', vi: 'Thưởng XP', id: 'Bonus XP', tr: 'XP bonusu', pl: 'Bonus XP' }),
         accent: '#F7D774',
         icon: { type: 'fallback', kind: 'gift' },
       };
@@ -206,7 +231,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
 
   // Запасной вариант для будущих видов.
   return {
-    title: triLang(lang, { ru: 'Награда', uk: 'Нагорода', es: 'Recompensa', 'pt-BR': 'Recompensa', vi: 'Phần thưởng', id: 'Hadiah', tr: 'Ödül', pl: 'Nagroda' }),
+    title: triLang(lang, { ru: 'Награда', uk: 'Нагорода', en: 'Reward', es: 'Recompensa', 'pt-BR': 'Recompensa', vi: 'Phần thưởng', id: 'Hadiah', tr: 'Ödül', pl: 'Nagroda' }),
     accent: '#9FDBFF',
     icon: { type: 'fallback', kind: 'gift' },
   };
@@ -345,11 +370,12 @@ function LeagueChestOpenModal({
   }
 
   const dim = modalTheme.overlay;
-  const crownDisplayName = crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
+  const crownDisplayName = crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', en: 'leader', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
   const giftCopy = isCrownWinner
     ? triLang(lang, {
       ru: 'Корона активна: она появится на твоей карточке, в лиге и рейтингах.',
       uk: 'Корона активна: вона зʼявиться на твоїй картці, у лізі й рейтингах.',
+      en: 'Crown active: it’ll show up on your card, in the league, and in rankings.',
       es: 'Corona activa: aparecerá en tu tarjeta, liga y rankings.',
       'pt-BR': 'Coroa ativa: ela aparecerá no seu cartão, liga e rankings.',
       vi: 'Vương miện đang hoạt động: nó sẽ xuất hiện trên thẻ, giải đấu và bảng xếp hạng của bạn.',
@@ -362,6 +388,7 @@ function LeagueChestOpenModal({
       : triLang(lang, {
         ru: 'Бонус собран. Награды выпадают отдельно для каждого игрока и сразу добавляются в профиль.',
         uk: 'Бонус зібрано. Нагороди випадають окремо для кожного гравця й одразу додаються до профілю.',
+        en: 'Bonus collected. Rewards are calculated per player and added to your profile right away.',
         es: 'Bono recogido. Las recompensas se calculan por jugador y se añaden al perfil.',
         'pt-BR': 'Bônus coletado. As recompensas são calculadas por jogador e adicionadas ao perfil.',
         vi: 'Đã nhận thưởng. Phần thưởng được tính riêng cho từng người chơi và thêm vào hồ sơ.',
@@ -431,14 +458,14 @@ function LeagueChestOpenModal({
                   ]}
                 />
 
-                <ScrollView
+                <ScrollView decelerationRate="fast"
                   bounces={false}
                   showsVerticalScrollIndicator={false}
                   style={styles.scroll}
                   contentContainerStyle={styles.scrollContent}
                 >
                 <Text style={[styles.eyebrow, { color: modalTheme.eyebrow }]} numberOfLines={1}>
-                  {triLang(lang, { ru: 'Бонус лиги открыт', uk: 'Бонус ліги відкрито', es: 'Bono de liga abierto', 'pt-BR': 'Bônus da liga aberto', vi: 'Đã mở thưởng giải đấu', id: 'Bonus liga terbuka', tr: 'Lig bonusu açıldı', pl: 'Bonus ligi otwarty' })}
+                  {triLang(lang, { ru: 'Бонус лиги открыт', uk: 'Бонус ліги відкрито', en: 'League bonus opened', es: 'Bono de liga abierto', 'pt-BR': 'Bônus da liga aberto', vi: 'Đã mở thưởng giải đấu', id: 'Bonus liga terbuka', tr: 'Lig bonusu açıldı', pl: 'Bonus ligi otwarty' })}
                 </Text>
 
                 <Animated.View style={{ alignItems: 'center', transform: [{ translateY: crownFloat }] }}>
@@ -456,10 +483,10 @@ function LeagueChestOpenModal({
 
                 <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(26, f.h1 + 2) }]}>
                   {isCrownWinner
-                    ? triLang(lang, { ru: 'Ты взял корону', uk: 'Ти взяв корону', es: 'Tomaste la corona', 'pt-BR': 'Você pegou a coroa', vi: 'Bạn đã nhận vương miện', id: 'Kamu mengambil mahkota', tr: 'Tacını aldın', pl: 'Korona odebrana' })
+                    ? triLang(lang, { ru: 'Ты взял корону', uk: 'Ти взяв корону', en: 'You took the crown', es: 'Tomaste la corona', 'pt-BR': 'Você pegou a coroa', vi: 'Bạn đã nhận vương miện', id: 'Kamu mengambil mahkota', tr: 'Tacını aldın', pl: 'Korona odebrana' })
                     : rewardCards.length > 0
-                      ? triLang(lang, { ru: 'Награды готовы', uk: 'Нагороди готові', es: 'Recompensas listas', 'pt-BR': 'Recompensas prontas', vi: 'Phần thưởng đã sẵn sàng', id: 'Hadiah siap', tr: 'Ödüller hazır', pl: 'Nagrody gotowe' })
-                      : triLang(lang, { ru: 'Награды подгружаются…', uk: 'Нагороди завантажуються…', es: 'Cargando recompensas…', 'pt-BR': 'Carregando recompensas…', vi: 'Đang tải phần thưởng…', id: 'Memuat hadiah…', tr: 'Ödüller yükleniyor…', pl: 'Ładowanie nagród…' })}
+                      ? triLang(lang, { ru: 'Награды готовы', uk: 'Нагороди готові', en: 'Rewards ready', es: 'Recompensas listas', 'pt-BR': 'Recompensas prontas', vi: 'Phần thưởng đã sẵn sàng', id: 'Hadiah siap', tr: 'Ödüller hazır', pl: 'Nagrody gotowe' })
+                      : triLang(lang, { ru: 'Награды подгружаются…', uk: 'Нагороди завантажуються…', en: 'Loading rewards…', es: 'Cargando recompensas…', 'pt-BR': 'Carregando recompensas…', vi: 'Đang tải phần thưởng…', id: 'Memuat hadiah…', tr: 'Ödüller yükleniyor…', pl: 'Ładowanie nagród…' })}
                 </Text>
                 <View style={{ alignItems: 'center', maxWidth: '100%' }}>
                   <LeagueCrownName text={crownDisplayName} fontSize={Math.max(16, f.body)} />
@@ -492,7 +519,7 @@ function LeagueChestOpenModal({
                   </View>
                 ) : (
                   <Text style={[styles.rewardsLoading, { color: t.textSecond, fontSize: Math.max(13, f.caption) }]}>
-                    {triLang(lang, { ru: 'Награды подгружаются…', uk: 'Нагороди завантажуються…', es: 'Cargando recompensas…', 'pt-BR': 'Carregando recompensas…', vi: 'Đang tải phần thưởng…', id: 'Memuat hadiah…', tr: 'Ödüller yükleniyor…', pl: 'Ładowanie nagród…' })}
+                    {triLang(lang, { ru: 'Награды подгружаются…', uk: 'Нагороди завантажуються…', en: 'Loading rewards…', es: 'Cargando recompensas…', 'pt-BR': 'Carregando recompensas…', vi: 'Đang tải phần thưởng…', id: 'Memuat hadiah…', tr: 'Ödüller yükleniyor…', pl: 'Ładowanie nagród…' })}
                   </Text>
                 )}
 
@@ -508,8 +535,8 @@ function LeagueChestOpenModal({
                     <LinearGradient colors={modalTheme.primary} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
                     <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>
                       {rewardCards.length > 0
-                        ? triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })
-                        : triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                        ? triLang(lang, { ru: 'Забрать', uk: 'Забрати', en: 'Claim', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })
+                        : triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -520,7 +547,7 @@ function LeagueChestOpenModal({
                     }}
                     style={styles.laterBtn}
                   >
-                    <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}</Text>
+                    <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}</Text>
                   </TouchableOpacity>
                 </View>
                 </ScrollView>

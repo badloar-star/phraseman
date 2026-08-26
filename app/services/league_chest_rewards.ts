@@ -6,6 +6,8 @@ import { commitConfirmedExternalShardEvent } from '../shards_system';
 import { emitAppEvent } from '../events';
 import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
 import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
+import { grantLocalChestSpin } from '../local_level_spins';
+import { captureAccountGeneration } from '../account_generation';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from '../flashcards/marketplace';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import {
@@ -63,6 +65,14 @@ const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
 const FUNCTIONS_REGION = 'us-central1';
 const LOCAL_CLAIM_KEY_PREFIX = 'league_chest_claimed_';
 const LOCAL_PENDING_CLAIM_KEY_PREFIX = 'league_chest_claim_pending_';
+// зачем (владелец 2026-08-26): модалка сундука лиги показывалась бесконечно —
+// сервер на ПОВТОРНЫЙ claim всегда отдаёт полный пакет наград (alreadyClaimed +
+// rewards, functions/src/league_chest.ts:477), а единственной защитой от
+// повторного показа был useRef в club_screen. Ref живёт только пока смонтирован
+// экран: ушёл на другой таб — ref обнулился — при возврате модалка снова.
+// Флаг обязан переживать перемонтирование и перезапуск приложения, поэтому он
+// лежит в AsyncStorage рядом с маркером самого клейма.
+const LOCAL_REVEAL_SHOWN_KEY_PREFIX = 'league_chest_reveal_shown_';
 const LOCAL_REWARD_EFFECT_KEY_PREFIX = 'league_chest_reward_effect_';
 const LOCAL_CLAIM_MAX_KEYS = 32;
 const LOCAL_CLAIM_PRUNE_INTERVAL_MS = 12 * 60 * 60 * 1000;
@@ -102,6 +112,10 @@ export type LeagueChestRewardRarity = 'common' | 'rare' | 'epic' | 'legendary';
 
 export type LeagueChestRewardKind =
   | 'shards'
+  // зачем (владелец, 2026-08-26): жемчужина в сундуке была фикцией — сервер
+  // клал amount=0, модалка рисовала «+N жемчужин», кошелёк не менялся. Награда
+  // заменена на 1 спин общей рулетки (см. functions/src/league_chest.ts).
+  | 'spin_credit'
   | 'xp_boost'
   | 'energy_fast_recovery'
   | 'streak_shield'
@@ -127,7 +141,7 @@ export type LeagueChestRewardDrop = {
 };
 
 const ACTIVE_LEAGUE_CHEST_REWARD_KINDS: ReadonlySet<string> = new Set<LeagueChestRewardKind>([
-  'shards', 'xp_boost', 'energy_fast_recovery', 'streak_shield', 'pack_trial_48h',
+  'shards', 'spin_credit', 'xp_boost', 'energy_fast_recovery', 'streak_shield', 'pack_trial_48h',
   'avatar_aura', 'custom_avatar', 'gold_theme', 'gold_theme_duplicate',
 ]);
 
@@ -270,6 +284,40 @@ function localPendingClaimKey(uid: string, weekId: string, groupId: string): str
   return `${LOCAL_PENDING_CLAIM_KEY_PREFIX}${claimDocId(uid, weekId, groupId)}`;
 }
 
+function localRevealShownKey(uid: string, weekId: string, groupId: string): string {
+  return `${LOCAL_REVEAL_SHOWN_KEY_PREFIX}${claimDocId(uid, weekId, groupId)}`;
+}
+
+/**
+ * Показывали ли уже модалку открытия сундука за эту неделю и эту комнату.
+ *
+ * зачем: см. комментарий у LOCAL_REVEAL_SHOWN_KEY_PREFIX — сервер отдаёт
+ * награды при каждом повторном claim, поэтому «уже показывали» обязано быть
+ * ПЕРСИСТЕНТНЫМ, а не жить в памяти экрана.
+ */
+export async function hasLeagueChestRevealBeenShown(params: {
+  weekId: string;
+  groupId: string;
+}): Promise<boolean> {
+  const myUid = await ensureAnonUser();
+  if (!myUid || !params.weekId || !params.groupId) return false;
+  return (await AsyncStorage
+    .getItem(localRevealShownKey(myUid, params.weekId, params.groupId))
+    .catch(() => null)) === '1';
+}
+
+/** Пометить, что модалку сундука за эту неделю уже показали. */
+export async function markLeagueChestRevealShown(params: {
+  weekId: string;
+  groupId: string;
+}): Promise<void> {
+  const myUid = await ensureAnonUser();
+  if (!myUid || !params.weekId || !params.groupId) return;
+  await AsyncStorage
+    .setItem(localRevealShownKey(myUid, params.weekId, params.groupId), '1')
+    .catch(() => {});
+}
+
 async function pruneLocalClaimKeys(retainKey: string): Promise<void> {
   const now = Date.now();
   if (localClaimPruneInFlight || now - lastLocalClaimPruneAt < LOCAL_CLAIM_PRUNE_INTERVAL_MS) return;
@@ -280,10 +328,20 @@ async function pruneLocalClaimKeys(retainKey: string): Promise<void> {
     const claimKeys = keys
       .filter((key) => key.startsWith(LOCAL_CLAIM_KEY_PREFIX))
       .sort((a, b) => b.localeCompare(a));
-    if (claimKeys.length <= LOCAL_CLAIM_MAX_KEYS) return;
+    // зачем: маркеры «модалку показали» живут параллельно маркерам клейма и
+    // растут вместе с ними — чистим их той же волной, иначе ключи копятся
+    // неделя за неделей и их никто не удаляет.
+    const revealKeys = keys
+      .filter((key) => key.startsWith(LOCAL_REVEAL_SHOWN_KEY_PREFIX))
+      .sort((a, b) => b.localeCompare(a));
+    const staleReveal = revealKeys.slice(LOCAL_CLAIM_MAX_KEYS);
+    if (claimKeys.length <= LOCAL_CLAIM_MAX_KEYS) {
+      if (staleReveal.length > 0) await AsyncStorage.multiRemove(staleReveal);
+      return;
+    }
     const keep = new Set(claimKeys.slice(0, LOCAL_CLAIM_MAX_KEYS));
     keep.add(retainKey);
-    const remove = claimKeys.filter((key) => !keep.has(key));
+    const remove = [...claimKeys.filter((key) => !keep.has(key)), ...staleReveal];
     if (remove.length > 0) await AsyncStorage.multiRemove(remove);
   } catch {
     // Best-effort local marker cleanup only.
@@ -578,6 +636,24 @@ async function applyLocalRewardPack(
       })]];
       if (shieldEffectKey) writes.push([shieldEffectKey, '1']);
       await AsyncStorage.multiSet(writes);
+    }
+  }
+
+  // зачем (владелец, 2026-08-26): спин — замена фиктивной жемчужины, и он
+  // обязан РЕАЛЬНО падать в кошелёк подарков. Ключ идемпотентности собран из
+  // id клейма и id дропа: сервер отдаёт тот же пакет наград при каждом
+  // повторном обращении к сундуку, поэтому без ключа один сундук выдавал бы
+  // спины бесконечно — тот же корень, что и у бесконечной модалки.
+  const spinDrops = drops.filter((drop) => drop.kind === 'spin_credit');
+  if (spinDrops.length > 0 && claimEffectId) {
+    const token = captureAccountGeneration();
+    for (const drop of spinDrops) {
+      const count = Math.max(1, rewardAmount(drop) || 1);
+      for (let index = 0; index < count; index += 1) {
+        // writeLocalState сам шлёт 'level_spin_balance_changed', поэтому
+        // счётчик спинов на Главной обновляется без отдельного эмита здесь.
+        await grantLocalChestSpin(`${claimEffectId}:${drop.id}:${index}`, token).catch(() => false);
+      }
     }
   }
 

@@ -41,7 +41,7 @@ const LEAGUE_RULES_INTRO_ID = 'league_rules_first_visit';
 import { glassFill } from '../components/GlassSurface';
 import {
   LEAGUES,
-  clubNamePlanned,
+  clubTierShortName,
   GroupMember, LeagueState, LeagueResult,
   checkLeagueOnAppOpen,
   clearPendingResult,
@@ -77,6 +77,8 @@ import {
   fetchActiveLeagueCrowns,
   getLeagueChestGoal,
   hasLeagueChestClaimOrPending,
+  hasLeagueChestRevealBeenShown,
+  markLeagueChestRevealShown,
   resolveMyLeagueGroupMeta,
   unlockLeagueGoldThemeReward,
   type LeagueBonusAdminPreview,
@@ -179,6 +181,7 @@ function leagueTag(lang: Lang, tagRU: string, tagUK: string): string {
     ru: `Бонус к опыту: ${formattedPct}`,
     uk: `Бонус до досвіду: ${formattedPct}`,
     es: `Bono de XP: ${formattedPct}`,
+    en: `XP bonus: ${formattedPct}`,
     'pt-BR': `Bônus de XP: ${formattedPct}`,
     vi: `Thưởng XP: ${formattedPct}`,
     id: `Bonus XP: ${formattedPct}`,
@@ -193,6 +196,7 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
       ru: 'Повышение станет доступно, когда в лиге будет хотя бы 2 участника.',
       uk: 'Підвищення стане доступним, коли в лізі буде хоча б 2 учасники.',
       es: 'El ascenso estará disponible cuando haya al menos 2 participantes en la liga.',
+      en: 'Promotion will become available once the league has at least 2 participants.',
       'pt-BR': "A promoção ficará disponível quando houver pelo menos 2 participantes na liga.",
       vi: "Tính năng thăng hạng sẽ khả dụng khi giải đấu có ít nhất 2 người tham gia.",
       id: "Promosi akan tersedia saat liga memiliki setidaknya 2 peserta.",
@@ -204,6 +208,7 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
     ru: `Чтобы перейти в следующую лигу, к концу недели нужно войти в топ-${promotionCutoff} по опыту, набранному за эту неделю.`,
     uk: `Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ-${promotionCutoff} за досвідом, зібраним за цей тиждень.`,
     es: `Para subir de liga, al final de la semana debes estar entre los ${promotionCutoff} primeros por experiencia ganada esta semana.`,
+    en: `To move up to the next league, you need to finish the week in the top ${promotionCutoff} by XP earned this week.`,
     'pt-BR': `Para subir para a próxima liga, você precisa terminar a semana no top-${promotionCutoff} por XP ganho nesta semana.`,
     vi: `Để lên giải tiếp theo, đến cuối tuần bạn cần nằm trong top-${promotionCutoff} theo XP kiếm được trong tuần này.`,
     id: `Untuk naik ke liga berikutnya, pada akhir minggu kamu harus masuk top-${promotionCutoff} berdasarkan XP yang didapat minggu ini.`,
@@ -218,6 +223,7 @@ function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
     ru: `В этом месяце переход проще: набери ${xp} XP за неделю — и перейдёшь в следующую лигу.`,
     uk: `Цього місяця перехід простіший: набери ${xp} XP за тиждень — і перейдеш у наступну лігу.`,
     es: `Este mes subir es más simple: consigue ${xp} XP esta semana y pasarás a la siguiente liga.`,
+    en: `Moving up is easier this month: earn ${xp} XP this week and you'll move to the next league.`,
     'pt-BR': `Neste mês a subida está mais simples: ganhe ${xp} XP na semana e vá para a próxima liga.`,
     vi: `Tháng này việc thăng hạng dễ hiểu hơn: đạt ${xp} XP trong tuần để lên giải tiếp theo.`,
     id: `Bulan ini naik liga lebih sederhana: kumpulkan ${xp} XP minggu ini untuk masuk liga berikutnya.`,
@@ -236,6 +242,7 @@ function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; 
     ru: { d: 'д', h: 'ч', m: 'мин' },
     uk: { d: 'д', h: 'г', m: 'хв' },
     es: { d: 'd', h: 'h', m: 'min' },
+    en: { d: 'd', h: 'h', m: 'min' },
     'pt-BR': { d: 'd', h: 'h', m: 'min' },
     vi: { d: 'n', h: 'g', m: 'ph' },
     id: { d: 'h', h: 'j', m: 'mnt' },
@@ -381,16 +388,7 @@ function LeagueIcon({
 }
 
 function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string {
-  return triLang(lang, {
-    ru: league.nameRU,
-    uk: league.nameUK,
-    es: league.nameES,
-    'pt-BR': clubNamePlanned(league.id, 'pt-BR'),
-    vi: clubNamePlanned(league.id, 'vi'),
-    id: clubNamePlanned(league.id, 'id'),
-    tr: clubNamePlanned(league.id, 'tr'),
-    pl: clubNamePlanned(league.id, 'pl'),
-  });
+  return clubTierShortName(league, lang);
 }
 
 function leagueMemberKeyExtractor(member: GroupMember, index: number): string {
@@ -798,6 +796,7 @@ export default function ClubScreen() {
         leagueWork
           .then(({ state, result }) => {
             if (isMountedRef.current) applyLeagueOpen(state, result, true);
+            void AsyncStorage.setItem(CLUB_REMOTE_REFRESH_AT_KEY, String(Date.now())).catch(() => {});
           })
           .catch(() => {
             // зачем: провал догоняющей загрузки после таймаута раньше был немым —
@@ -808,8 +807,8 @@ export default function ClubScreen() {
         const { state, result } = await leagueWork;
         if (!isMountedRef.current) return;
         applyLeagueOpen(state, result, true);
+        await AsyncStorage.setItem(CLUB_REMOTE_REFRESH_AT_KEY, String(Date.now())).catch(() => {});
       }
-      await AsyncStorage.setItem(CLUB_REMOTE_REFRESH_AT_KEY, String(Date.now())).catch(() => {});
     } catch (e) {
       if (__DEV__) {
         console.warn('[club_screen] load failed:', e);
@@ -1057,7 +1056,18 @@ export default function ClubScreen() {
         const drops = res.rewards.drops ?? [];
         const rewardCount = drops.length || 1;
         const hasGold = drops.some((drop) => drop.kind === 'gold_theme');
-        const hasGoldDuplicate = drops.some((drop) => drop.kind === 'gold_theme_duplicate');
+        // зачем (владелец, 2026-08-26): дубль Gold больше не превращается в
+        // жемчуг — сервер отдаёт спин. Оставляем распознавание старого вида
+        // ради клеймов, сохранённых до этой правки, но текст говорит про спин.
+        const hasSpin = drops.some((drop) => drop.kind === 'spin_credit' || drop.kind === 'gold_theme_duplicate');
+        // зачем (владелец, 2026-08-26): ручное открытие сундука тоже обязано
+        // пометить его показанным — иначе следующий заход на экран покажет
+        // модалку заново (сервер отдаёт награды при каждом повторном claim).
+        leagueChestReplayModalKeyRef.current = `${leagueGroupMeta.weekId}:${leagueGroupMeta.groupId}`;
+        void markLeagueChestRevealShown({
+          weekId: leagueGroupMeta.weekId,
+          groupId: leagueGroupMeta.groupId,
+        });
         setLeagueChestOpenModal({
           crownName: res.crown?.name,
           isCrownWinner: !!res.crown?.uid && res.crown.uid === myLeagueMemberUid,
@@ -1066,43 +1076,43 @@ export default function ClubScreen() {
         emitAppEvent('action_toast', actionToastTri('success', {
           ru: hasGold
             ? `Бонус лиги открыт: ${rewardCount} подарков, среди них Gold`
-            : hasGoldDuplicate
-              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал жемчугом`
+            : hasSpin
+              ? `Бонус лиги открыт: ${rewardCount} подарков, среди них спин`
               : `Бонус лиги открыт: выпало ${rewardCount} подарков`,
           uk: hasGold
             ? `Бонус ліги відкрито: ${rewardCount} подарунків, серед них Gold`
-            : hasGoldDuplicate
-              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став перлинами`
+            : hasSpin
+              ? `Бонус ліги відкрито: ${rewardCount} подарунків, серед них спін`
               : `Бонус ліги відкрито: випало ${rewardCount} подарунків`,
           es: hasGold
             ? `Bono de liga abierto: ${rewardCount} regalos, incluido Gold`
-            : hasGoldDuplicate
-              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en perlas`
+            : hasSpin
+              ? `Bono de liga abierto: ${rewardCount} regalos, incluido un giro`
               : `Bono de liga abierto: cayeron ${rewardCount} regalos`,
           'pt-BR': hasGold
             ? `Bônus da liga aberto: ${rewardCount} presentes, incluindo Gold`
-            : hasGoldDuplicate
-              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou pérolas`
+            : hasSpin
+              ? `Bônus da liga aberto: ${rewardCount} presentes, incluindo um giro`
               : `Bônus da liga aberto: caíram ${rewardCount} presentes`,
           vi: hasGold
             ? `Đã mở thưởng giải đấu: ${rewardCount} quà, có Gold`
-            : hasGoldDuplicate
-              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, Gold trùng đã đổi thành xu`
+            : hasSpin
+              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, có lượt quay`
               : `Đã mở thưởng giải đấu: nhận ${rewardCount} quà`,
           id: hasGold
             ? `Bonus liga dibuka: ${rewardCount} hadiah, termasuk Gold`
-            : hasGoldDuplicate
-              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi mutiara`
+            : hasSpin
+              ? `Bonus liga dibuka: ${rewardCount} hadiah, termasuk putaran`
               : `Bonus liga dibuka: mendapat ${rewardCount} hadiah`,
           tr: hasGold
             ? `Lig bonusu açıldı: ${rewardCount} hediye, içinde Gold var`
-            : hasGoldDuplicate
-              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold inciye dönüştü`
+            : hasSpin
+              ? `Lig bonusu açıldı: ${rewardCount} hediye, içinde çevirme var`
               : `Lig bonusu açıldı: ${rewardCount} hediye düştü`,
           pl: hasGold
             ? `Bonus ligi otwarty: ${rewardCount} prezentów, w tym Gold`
-            : hasGoldDuplicate
-              ? `Bonus ligi otwarty: ${rewardCount} prezentów, duplikat Gold zmienił się we fragmenty`
+            : hasSpin
+              ? `Bonus ligi otwarty: ${rewardCount} prezentów, w tym spin`
               : `Bonus ligi otwarty: wypadło ${rewardCount} prezentów`,
         }));
       } else if (res.claimed) {
@@ -1162,9 +1172,27 @@ export default function ClubScreen() {
         });
         if (cancelled || !isMountedRef.current) return;
         if (res.rewards) {
+          // зачем (владелец, 2026-08-26): модалка сундука показывалась при
+          // КАЖДОМ заходе на экран — бесконечно. Сервер на повторный claim
+          // всегда отдаёт полный пакет наград (alreadyClaimed + rewards), а
+          // единственной защитой был useRef, который умирает вместе с экраном:
+          // ушёл на другой таб — ref обнулился — модалка снова. Теперь факт
+          // показа лежит в AsyncStorage и переживает перемонтирование
+          // и перезапуск приложения.
           const replayKey = `${leagueGroupMeta.weekId}:${leagueGroupMeta.groupId}`;
-          if (leagueChestReplayModalKeyRef.current !== replayKey) {
+          const alreadyShown = leagueChestReplayModalKeyRef.current === replayKey
+            || await hasLeagueChestRevealBeenShown({
+              weekId: leagueGroupMeta.weekId,
+              groupId: leagueGroupMeta.groupId,
+            });
+          if (cancelled || !isMountedRef.current) return;
+          if (!alreadyShown) {
             leagueChestReplayModalKeyRef.current = replayKey;
+            await markLeagueChestRevealShown({
+              weekId: leagueGroupMeta.weekId,
+              groupId: leagueGroupMeta.groupId,
+            });
+            if (cancelled || !isMountedRef.current) return;
             setLeagueChestOpenModal({
               crownName: res.crown?.name,
               isCrownWinner: !!res.crown?.uid && res.crown.uid === myLeagueMemberUid,
@@ -1253,9 +1281,9 @@ export default function ClubScreen() {
         setGroupBoostLikeTotal(res.boost.likeCount);
         if (res.usedGiftVoucher) {
           setFreeBoostGiftReady(false);
-          showLeagueToast(triLang(lang, { ru: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен на 3 часа — бесплатно, подарок использован 🎁`, uk: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} увімкнено на 3 години — безкоштовно, подарунок використано 🎁`, es: `El impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está activo durante 3 horas: gratis, regalo usado 🎁`, 'pt-BR': `O impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está ativo por 3 horas: grátis, presente usado 🎁`, vi: `Tăng cường ×${LEAGUE_GROUP_BOOST_MULTIPLIER} đã bật trong 3 giờ — miễn phí, quà đã dùng 🎁`, id: `Boost ×${LEAGUE_GROUP_BOOST_MULTIPLIER} aktif selama 3 jam — gratis, hadiah telah digunakan 🎁`, tr: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} güçlendirmesi 3 saat etkin — ücretsiz, hediye kullanıldı 🎁`, pl: `Wzmocnienie ×${LEAGUE_GROUP_BOOST_MULTIPLIER} działa przez 3 godziny — za darmo, prezent wykorzystany 🎁` }), 'success');
+          showLeagueToast(triLang(lang, { ru: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен на 3 часа — бесплатно, подарок использован 🎁`, uk: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} увімкнено на 3 години — безкоштовно, подарунок використано 🎁`, en: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} boost active for 3 hours — free, gift used 🎁`, es: `El impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está activo durante 3 horas: gratis, regalo usado 🎁`, 'pt-BR': `O impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está ativo por 3 horas: grátis, presente usado 🎁`, vi: `Tăng cường ×${LEAGUE_GROUP_BOOST_MULTIPLIER} đã bật trong 3 giờ — miễn phí, quà đã dùng 🎁`, id: `Boost ×${LEAGUE_GROUP_BOOST_MULTIPLIER} aktif selama 3 jam — gratis, hadiah telah digunakan 🎁`, tr: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} güçlendirmesi 3 saat etkin — ücretsiz, hediye kullanıldı 🎁`, pl: `Wzmocnienie ×${LEAGUE_GROUP_BOOST_MULTIPLIER} działa przez 3 godziny — za darmo, prezent wykorzystany 🎁` }), 'success');
         } else {
-          showLeagueToast(triLang(lang, { ru: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, uk: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} увімкнено для всієї ліги на 3 години`, es: `El impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está activo para toda la liga durante 3 horas`, 'pt-BR': `O impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está ativo para toda a liga por 3 horas`, vi: `Tăng cường ×${LEAGUE_GROUP_BOOST_MULTIPLIER} đã bật cho cả giải trong 3 giờ`, id: `Boost ×${LEAGUE_GROUP_BOOST_MULTIPLIER} aktif untuk seluruh liga selama 3 jam`, tr: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} güçlendirmesi tüm lig için 3 saat etkin`, pl: `Wzmocnienie ×${LEAGUE_GROUP_BOOST_MULTIPLIER} działa dla całej ligi przez 3 godziny` }), 'success');
+          showLeagueToast(triLang(lang, { ru: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, uk: `Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} увімкнено для всієї ліги на 3 години`, en: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} boost active for the whole league for 3 hours`, es: `El impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está activo para toda la liga durante 3 horas`, 'pt-BR': `O impulso ×${LEAGUE_GROUP_BOOST_MULTIPLIER} está ativo para toda a liga por 3 horas`, vi: `Tăng cường ×${LEAGUE_GROUP_BOOST_MULTIPLIER} đã bật cho cả giải trong 3 giờ`, id: `Boost ×${LEAGUE_GROUP_BOOST_MULTIPLIER} aktif untuk seluruh liga selama 3 jam`, tr: `×${LEAGUE_GROUP_BOOST_MULTIPLIER} güçlendirmesi tüm lig için 3 saat etkin`, pl: `Wzmocnienie ×${LEAGUE_GROUP_BOOST_MULTIPLIER} działa dla całej ligi przez 3 godziny` }), 'success');
         }
         return;
       }
@@ -1266,13 +1294,13 @@ export default function ClubScreen() {
         void cacheLeagueGroupBoost(previousBoost);
       }
       if (res.reason === 'active') {
-        showLeagueToast(triLang(lang, { ru: 'Буст уже активен. Новый можно купить после таймера.', uk: 'Буст уже активний. Новий можна придбати після завершення таймера.', es: 'El impulso ya está activo. Podrás comprar otro cuando termine el temporizador.', 'pt-BR': 'O impulso já está ativo. Você poderá comprar outro quando o cronômetro terminar.', vi: 'Tăng cường đã hoạt động. Bạn có thể mua lượt mới sau khi hết giờ.', id: 'Boost sudah aktif. Kamu dapat membeli yang baru setelah pengatur waktu berakhir.', tr: 'Güçlendirme zaten etkin. Süre dolduğunda yenisini alabilirsiniz.', pl: 'Wzmocnienie jest już aktywne. Nowe będzie można kupić po zakończeniu odliczania.' }), 'info');
+        showLeagueToast(triLang(lang, { ru: 'Буст уже активен. Новый можно купить после таймера.', uk: 'Буст уже активний. Новий можна придбати після завершення таймера.', en: 'A boost is already active. You can buy a new one once the timer runs out.', es: 'El impulso ya está activo. Podrás comprar otro cuando termine el temporizador.', 'pt-BR': 'O impulso já está ativo. Você poderá comprar outro quando o cronômetro terminar.', vi: 'Tăng cường đã hoạt động. Bạn có thể mua lượt mới sau khi hết giờ.', id: 'Boost sudah aktif. Kamu dapat membeli yang baru setelah pengatur waktu berakhir.', tr: 'Güçlendirme zaten etkin. Süre dolduğunda yenisini alabilirsiniz.', pl: 'Wzmocnienie jest już aktywne. Nowe będzie można kupić po zakończeniu odliczania.' }), 'info');
       } else if (res.reason === 'not_enough_shards') {
-        showLeagueToast(triLang(lang, { ru: `Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, uk: `Потрібно ${LEAGUE_GROUP_BOOST_COST_SHARDS} перлин`, es: `Necesitas ${LEAGUE_GROUP_BOOST_COST_SHARDS} perlas`, 'pt-BR': `Você precisa de ${LEAGUE_GROUP_BOOST_COST_SHARDS} pérolas`, vi: `Bạn cần ${LEAGUE_GROUP_BOOST_COST_SHARDS} ngọc trai`, id: `Kamu membutuhkan ${LEAGUE_GROUP_BOOST_COST_SHARDS} mutiara`, tr: `${LEAGUE_GROUP_BOOST_COST_SHARDS} inci gerekiyor`, pl: `Potrzebujesz ${LEAGUE_GROUP_BOOST_COST_SHARDS} pereł` }), 'error');
+        showLeagueToast(triLang(lang, { ru: `Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, uk: `Потрібно ${LEAGUE_GROUP_BOOST_COST_SHARDS} перлин`, en: `Need ${LEAGUE_GROUP_BOOST_COST_SHARDS} pearls`, es: `Necesitas ${LEAGUE_GROUP_BOOST_COST_SHARDS} perlas`, 'pt-BR': `Você precisa de ${LEAGUE_GROUP_BOOST_COST_SHARDS} pérolas`, vi: `Bạn cần ${LEAGUE_GROUP_BOOST_COST_SHARDS} ngọc trai`, id: `Kamu membutuhkan ${LEAGUE_GROUP_BOOST_COST_SHARDS} mutiara`, tr: `${LEAGUE_GROUP_BOOST_COST_SHARDS} inci gerekiyor`, pl: `Potrzebujesz ${LEAGUE_GROUP_BOOST_COST_SHARDS} pereł` }), 'error');
       } else if (res.reason === 'no_current_group') {
-        showLeagueToast(triLang(lang, { ru: 'Сначала обнови лигу недели и попробуй снова.', uk: 'Спочатку оновіть лігу тижня та спробуйте ще раз.', es: 'Primero actualiza la liga semanal e inténtalo de nuevo.', 'pt-BR': 'Primeiro atualize a liga da semana e tente novamente.', vi: 'Hãy cập nhật giải tuần trước rồi thử lại.', id: 'Perbarui liga mingguan terlebih dahulu, lalu coba lagi.', tr: 'Önce haftalık ligi güncelleyin ve tekrar deneyin.', pl: 'Najpierw odśwież ligę tygodnia, a potem spróbuj ponownie.' }), 'info');
+        showLeagueToast(triLang(lang, { ru: 'Сначала обнови лигу недели и попробуй снова.', uk: 'Спочатку оновіть лігу тижня та спробуйте ще раз.', en: 'Refresh the weekly league first and try again.', es: 'Primero actualiza la liga semanal e inténtalo de nuevo.', 'pt-BR': 'Primeiro atualize a liga da semana e tente novamente.', vi: 'Hãy cập nhật giải tuần trước rồi thử lại.', id: 'Perbarui liga mingguan terlebih dahulu, lalu coba lagi.', tr: 'Önce haftalık ligi güncelleyin ve tekrar deneyin.', pl: 'Najpierw odśwież ligę tygodnia, a potem spróbuj ponownie.' }), 'info');
       } else {
-        showLeagueToast(triLang(lang, { ru: 'Буст включен. Сервер обновит лигу в фоне.', uk: 'Буст увімкнено. Сервер оновить лігу у фоновому режимі.', es: 'El impulso está activo. El servidor actualizará la liga en segundo plano.', 'pt-BR': 'O impulso está ativo. O servidor atualizará a liga em segundo plano.', vi: 'Tăng cường đã bật. Máy chủ sẽ cập nhật giải đấu ở chế độ nền.', id: 'Boost aktif. Server akan memperbarui liga di latar belakang.', tr: 'Güçlendirme etkin. Sunucu ligi arka planda güncelleyecek.', pl: 'Wzmocnienie działa. Serwer zaktualizuje ligę w tle.' }), 'info');
+        showLeagueToast(triLang(lang, { ru: 'Буст включен. Сервер обновит лигу в фоне.', uk: 'Буст увімкнено. Сервер оновить лігу у фоновому режимі.', en: 'Boost activated. The server will update the league in the background.', es: 'El impulso está activo. El servidor actualizará la liga en segundo plano.', 'pt-BR': 'O impulso está ativo. O servidor atualizará a liga em segundo plano.', vi: 'Tăng cường đã bật. Máy chủ sẽ cập nhật giải đấu ở chế độ nền.', id: 'Boost aktif. Server akan memperbarui liga di latar belakang.', tr: 'Güçlendirme etkin. Sunucu ligi arka planda güncelleyecek.', pl: 'Wzmocnienie działa. Serwer zaktualizuje ligę w tle.' }), 'info');
       }
     } finally {
       if (isMountedRef.current) setGroupBoostBuying(false);
@@ -1282,7 +1310,7 @@ export default function ClubScreen() {
   const handleLikeGroupBoostBuyer = useCallback(async () => {
     if (!activeGroupBoost || groupBoostLikedToday || groupBoostLikeBusy) return;
     if (activeGroupBoost.buyerUid === myLeagueMemberUid) {
-      showLeagueToast(triLang(lang, { ru: 'Это твой буст. Лайки оставим другим игрокам.', uk: 'Це ваш буст. Лайки залишимо іншим гравцям.', es: 'Este es tu impulso. Dejemos los me gusta para otros jugadores.', 'pt-BR': 'Este é o seu impulso. Vamos deixar as curtidas para outros jogadores.', vi: 'Đây là tăng cường của bạn. Hãy để lượt thích cho người chơi khác.', id: 'Ini boost milikmu. Biarkan suka untuk pemain lain.', tr: 'Bu sizin güçlendirmeniz. Beğenileri diğer oyunculara bırakalım.', pl: 'To Twoje wzmocnienie. Zostawmy polubienia innym graczom.' }), 'info');
+      showLeagueToast(triLang(lang, { ru: 'Это твой буст. Лайки оставим другим игрокам.', uk: 'Це ваш буст. Лайки залишимо іншим гравцям.', en: 'This is your boost. Let’s leave the likes to other players.', es: 'Este es tu impulso. Dejemos los me gusta para otros jugadores.', 'pt-BR': 'Este é o seu impulso. Vamos deixar as curtidas para outros jogadores.', vi: 'Đây là tăng cường của bạn. Hãy để lượt thích cho người chơi khác.', id: 'Ini boost milikmu. Biarkan suka untuk pemain lain.', tr: 'Bu sizin güçlendirmeniz. Beğenileri diğer oyunculara bırakalım.', pl: 'To Twoje wzmocnienie. Zostawmy polubienia innym graczom.' }), 'info');
       return;
     }
     const previousBoost = activeGroupBoost;
@@ -1305,7 +1333,7 @@ export default function ClubScreen() {
       setGroupBoostLikeTotal(previousTotal);
       setActiveGroupBoost(previousBoost);
       void cacheLeagueGroupBoost(previousBoost);
-      showLeagueToast(triLang(lang, { ru: 'Сегодня лайк уже использован или связь недоступна', uk: 'Сьогодні лайк уже використано або немає з’єднання', es: 'Ya usaste el me gusta de hoy o no hay conexión', 'pt-BR': 'Você já usou a curtida de hoje ou não há conexão', vi: 'Bạn đã dùng lượt thích hôm nay hoặc không có kết nối', id: 'Suka hari ini sudah digunakan atau koneksi tidak tersedia', tr: 'Bugünkü beğeniyi zaten kullandınız ya da bağlantı yok', pl: 'Dzisiejsze polubienie zostało już wykorzystane lub brak połączenia' }), 'info');
+      showLeagueToast(triLang(lang, { ru: 'Сегодня лайк уже использован или связь недоступна', uk: 'Сьогодні лайк уже використано або немає з’єднання', en: 'Today’s like is already used, or there’s no connection', es: 'Ya usaste el me gusta de hoy o no hay conexión', 'pt-BR': 'Você já usou a curtida de hoje ou não há conexão', vi: 'Bạn đã dùng lượt thích hôm nay hoặc không có kết nối', id: 'Suka hari ini sudah digunakan atau koneksi tidak tersedia', tr: 'Bugünkü beğeniyi zaten kullandınız ya da bağlantı yok', pl: 'Dzisiejsze polubienie zostało już wykorzystane lub brak połączenia' }), 'info');
     } finally {
       if (isMountedRef.current) setGroupBoostLikeBusy(false);
     }
@@ -1372,6 +1400,7 @@ export default function ClubScreen() {
       items.push({ key: 'hot', emoji: '🔥', trend: 'up', text: triLang(lang, {
         ru: 'Горячие 2 часа: зона вылета получает ×2 XP',
         uk: 'Спекотні 2 години: зона вильоту отримує ×2 XP',
+        en: 'Hot 2 hours: the drop zone earns ×2 XP',
         es: '2 horas calientes: la zona de descenso gana ×2 XP',
         'pt-BR': '2 horas quentes: a zona de queda ganha ×2 XP',
         vi: '2 giờ nóng: vùng xuống hạng nhận ×2 XP',
@@ -1386,7 +1415,7 @@ export default function ClubScreen() {
         const name = leaguePublicName(ahead.name, ahead.uid ?? ahead.botId ?? ahead.name);
         const gapXp = fmtXp((Number(ahead.points) || 0) - (Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
         items.push({ key: 'ahead', trend: 'up', text: triLang(lang, {
-          ru: `${name} впереди на ${gapXp} XP`, uk: `${name} попереду на ${gapXp} XP`, es: `${name} te lleva ${gapXp} XP`, 'pt-BR': `${name} está ${gapXp} XP à frente`,
+          ru: `${name} впереди на ${gapXp} XP`, uk: `${name} попереду на ${gapXp} XP`, en: `${name} is ${gapXp} XP ahead`, es: `${name} te lleva ${gapXp} XP`, 'pt-BR': `${name} está ${gapXp} XP à frente`,
           vi: `${name} dẫn trước ${gapXp} XP`, id: `${name} di depan ${gapXp} XP`, tr: `${name} ${gapXp} XP önde`, pl: `${name} z przodu o ${gapXp} XP`,
         }) });
       }
@@ -1397,7 +1426,7 @@ export default function ClubScreen() {
         const name = leaguePublicName(behind.name, behind.uid ?? behind.botId ?? behind.name);
         const gapXp = fmtXp((Number(sortedGroup[myLeagueRank - 1]?.points) || 0) - (Number(behind.points) || 0));
         items.push({ key: 'behind', emoji: '👀', trend: 'down', text: triLang(lang, {
-          ru: `${name} дышит в спину — до вас ${gapXp} XP`, uk: `${name} за спиною — до вас ${gapXp} XP`, es: `${name} te pisa los talones: a ${gapXp} XP`, 'pt-BR': `${name} colando: a ${gapXp} XP de você`,
+          ru: `${name} дышит в спину — до вас ${gapXp} XP`, uk: `${name} за спиною — до вас ${gapXp} XP`, en: `${name} is right behind you — ${gapXp} XP away`, es: `${name} te pisa los talones: a ${gapXp} XP`, 'pt-BR': `${name} colando: a ${gapXp} XP de você`,
           vi: `${name} bám sát: cách bạn ${gapXp} XP`, id: `${name} membuntuti: ${gapXp} XP di belakangmu`, tr: `${name} ensende: ${gapXp} XP geride`, pl: `${name} depcze po piętach: ${gapXp} XP za tobą`,
         }) });
       }
@@ -1405,7 +1434,7 @@ export default function ClubScreen() {
     if (activeGroupBoost) {
       const buyer = leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid);
       items.push({ key: 'boost', emoji: '⚡', trend: 'heart', text: triLang(lang, {
-        ru: `${buyer} включил буст ×2 · ♥ ${groupBoostLikeTotal}`, uk: `${buyer} увімкнув буст ×2 · ♥ ${groupBoostLikeTotal}`, es: `${buyer} activó el boost ×2 · ♥ ${groupBoostLikeTotal}`, 'pt-BR': `${buyer} ativou o boost ×2 · ♥ ${groupBoostLikeTotal}`,
+        ru: `${buyer} включил буст ×2 · ♥ ${groupBoostLikeTotal}`, uk: `${buyer} увімкнув буст ×2 · ♥ ${groupBoostLikeTotal}`, en: `${buyer} activated the ×2 boost · ♥ ${groupBoostLikeTotal}`, es: `${buyer} activó el boost ×2 · ♥ ${groupBoostLikeTotal}`, 'pt-BR': `${buyer} ativou o boost ×2 · ♥ ${groupBoostLikeTotal}`,
         vi: `${buyer} đã bật tăng tốc ×2 · ♥ ${groupBoostLikeTotal}`, id: `${buyer} mengaktifkan boost ×2 · ♥ ${groupBoostLikeTotal}`, tr: `${buyer} ×2 desteği açtı · ♥ ${groupBoostLikeTotal}`, pl: `${buyer} włączył boost ×2 · ♥ ${groupBoostLikeTotal}`,
       }) });
     }
@@ -1552,6 +1581,7 @@ export default function ClubScreen() {
           accessibilityLabel={triLang(lang, {
             ru: 'Назад',
             uk: 'Назад',
+            en: 'Back',
             es: 'Volver',
             'pt-BR': "Voltar",
             vi: "Quay lại",
@@ -1585,6 +1615,7 @@ export default function ClubScreen() {
           accessibilityLabel={triLang(lang, {
             ru: 'Сезонный пропуск',
             uk: 'Сезонна перепустка',
+            en: 'Season pass',
             es: 'Pase de temporada',
             'pt-BR': 'Passe de temporada',
             vi: 'Vé mùa giải',
@@ -1612,6 +1643,7 @@ export default function ClubScreen() {
           accessibilityLabel={triLang(lang, {
             ru: 'Как устроена лига',
             uk: 'Як влаштована ліга',
+            en: 'How the league works',
             es: 'Cómo funciona la liga',
             'pt-BR': 'Como a liga funciona',
             vi: 'Giải đấu hoạt động thế nào',
@@ -1654,6 +1686,7 @@ export default function ClubScreen() {
 
       <BouncyWrap>
       <Reanimated.FlatList<GroupMember>
+        decelerationRate="fast"
         ref={contentScrollRef as any}
         data={publicListGroup}
         keyExtractor={leagueMemberKeyExtractor}
@@ -1662,7 +1695,6 @@ export default function ClubScreen() {
         maxToRenderPerBatch={10}
         windowSize={7}
         scrollEnabled
-        decelerationRate="normal"
         bounces
         alwaysBounceVertical
         overScrollMode="always"
@@ -1730,22 +1762,22 @@ export default function ClubScreen() {
             <Ionicons name="cloud-offline-outline" size={28} color={t.textMuted} />
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
               {triLang(lang, {
-                ru: 'Не получилось загрузить лигу', uk: 'Не вдалося завантажити лігу', es: 'No se pudo cargar la liga', 'pt-BR': 'Não foi possível carregar a liga',
+                ru: 'Не получилось загрузить лигу', uk: 'Не вдалося завантажити лігу', en: 'Couldn’t load the league', es: 'No se pudo cargar la liga', 'pt-BR': 'Não foi possível carregar a liga',
                 vi: 'Không tải được giải đấu', id: 'Gagal memuat liga', tr: 'Lig yüklenemedi', pl: 'Nie udało się wczytać ligi',
               })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center' }}>
               {triLang(lang, {
-                ru: 'Проверьте соединение и попробуйте ещё раз', uk: 'Перевірте з’єднання і спробуйте ще раз', es: 'Comprueba tu conexión e inténtalo de nuevo', 'pt-BR': 'Verifique sua conexão e tente novamente',
+                ru: 'Проверьте соединение и попробуйте ещё раз', uk: 'Перевірте з’єднання і спробуйте ще раз', en: 'Check your connection and try again', es: 'Comprueba tu conexión e inténtalo de nuevo', 'pt-BR': 'Verifique sua conexão e tente novamente',
                 vi: 'Kiểm tra kết nối và thử lại', id: 'Periksa koneksi Anda dan coba lagi', tr: 'Bağlantınızı kontrol edip tekrar deneyin', pl: 'Sprawdź połączenie i spróbuj ponownie',
               })}
             </Text>
             <TapScale
-              onPress={() => { hapticTap(); setLeagueLoadFailed(false); void loadData({ forceRemote: true }); }}
+              onPress={() => { hapticTap(); setLeagueLoadFailed(false); void loadData(); }}
               style={{ minHeight: 44, minWidth: 120, borderRadius: 14, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
             >
               <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </TapScale>
           </View>
@@ -1790,7 +1822,7 @@ export default function ClubScreen() {
             {showEmptyParticipants ? (
               <Text style={{ color: t.textGhost, fontSize: f.sub, paddingVertical: 16, textAlign: 'center' }}>
                 {triLang(lang, {
-                  uk: 'Ще немає учасників', ru: 'Пока нет участников', es: 'Aún no hay participantes', 'pt-BR': 'Ainda não há participantes',
+                  uk: 'Ще немає учасників', ru: 'Пока нет участников', en: 'No participants yet', es: 'Aún no hay participantes', 'pt-BR': 'Ainda não há participantes',
                   vi: 'Chưa có người tham gia', id: 'Belum ada peserta', tr: 'Henüz katılımcı yok', pl: 'Nie ma jeszcze uczestników',
                 })}
               </Text>
@@ -1811,6 +1843,7 @@ export default function ClubScreen() {
                   {triLang(lang, {
                     ru: 'Упс, ты здесь один',
                     uk: 'Упс, ти тут сам',
+                    en: 'Oops, you’re here alone',
                     es: 'Vaya, estás solo aquí',
                     'pt-BR': 'Opa, você está sozinho aqui',
                     vi: 'Ối, chỉ có mình bạn ở đây',
@@ -1823,6 +1856,7 @@ export default function ClubScreen() {
                   {triLang(lang, {
                     ru: 'Так быть не должно. Похоже, ты слишком долго держался в лидерах прошлых лиг и обогнал всех, кто мог бы сюда попасть. Что ж, тогда ты крутой.',
                     uk: 'Так бути не повинно. Схоже, ти надто довго тримався в лідерах попередніх ліг і випередив усіх, хто міг би сюди потрапити. Що ж, тоді ти крутий.',
+                    en: 'This shouldn’t happen. Looks like you’ve been leading past leagues for too long and outpaced everyone who could’ve ended up here. Well, that makes you pretty great.',
                     es: 'Esto no debería pasar. Parece que llevas demasiado tiempo liderando tus ligas anteriores y has dejado atrás a todos los que podrían estar aquí. Bueno, entonces eres genial.',
                     'pt-BR': 'Isso não deveria acontecer. Parece que você liderou suas ligas anteriores por tempo demais e deixou para trás todos que poderiam estar aqui. Bom, então você é demais.',
                     vi: 'Điều này lẽ ra không nên xảy ra. Có vẻ bạn đã dẫn đầu các giải trước quá lâu và vượt qua tất cả những ai có thể ở đây. Vậy thì bạn thật tuyệt.',
@@ -1861,6 +1895,7 @@ export default function ClubScreen() {
         title={triLang(lang, {
           ru: 'Включить буст лиги?',
           uk: 'Увімкнути буст ліги?',
+          en: 'Activate league boost?',
           es: '¿Activar impulso de liga?',
           'pt-BR': 'Ativar impulso da liga?',
           vi: 'Bật tăng lực giải đấu?',
@@ -1874,6 +1909,7 @@ export default function ClubScreen() {
               {triLang(lang, {
                 ru: 'Все участники лиги будут получать ×2 XP в течение 3 часов.',
                 uk: 'Усі учасники ліги отримуватимуть ×2 XP протягом 3 годин.',
+                en: 'All league members will earn ×2 XP for 3 hours.',
                 es: 'Todos los participantes de la liga recibirán ×2 XP durante 3 horas.',
                 'pt-BR': 'Todos os participantes da liga receberão ×2 XP por 3 horas.',
                 vi: 'Tất cả thành viên giải đấu sẽ nhận ×2 XP trong 3 giờ.',
@@ -1887,6 +1923,7 @@ export default function ClubScreen() {
                 {triLang(lang, {
                   ru: 'Стоимость:',
                   uk: 'Вартість:',
+                  en: 'Cost:',
                   es: 'Precio:',
                   'pt-BR': 'Custo:',
                   vi: 'Chi phí:',
@@ -1900,6 +1937,7 @@ export default function ClubScreen() {
                   {triLang(lang, {
                     ru: 'Бесплатно — подарок за уровень 🎁',
                     uk: 'Безкоштовно — подарунок за рівень 🎁',
+                    en: 'Free — level gift 🎁',
                     es: 'Gratis, regalo de nivel 🎁',
                     'pt-BR': 'Grátis — presente de nível 🎁',
                     vi: 'Miễn phí — quà cấp độ 🎁',
@@ -1926,6 +1964,7 @@ export default function ClubScreen() {
         cancelLabel={triLang(lang, {
           ru: 'Отмена',
           uk: 'Скасувати',
+          en: 'Cancel',
           es: 'Cancelar',
           'pt-BR': 'Cancelar',
           vi: 'Hủy',
@@ -1937,6 +1976,7 @@ export default function ClubScreen() {
           ? triLang(lang, {
             ru: 'Включаем...',
             uk: 'Вмикаємо...',
+            en: 'Activating...',
             es: 'Activando...',
             'pt-BR': 'Ativando...',
             vi: 'Đang bật...',
@@ -1948,6 +1988,7 @@ export default function ClubScreen() {
             ? triLang(lang, {
               ru: 'Включить бесплатно',
               uk: 'Увімкнути безкоштовно',
+              en: 'Activate for free',
               es: 'Activar gratis',
               'pt-BR': 'Ativar grátis',
               vi: 'Bật miễn phí',
@@ -1958,6 +1999,7 @@ export default function ClubScreen() {
             : triLang(lang, {
               ru: `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
               uk: `Увімкнути за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              en: `Activate for ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
               es: `Activar por ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
               'pt-BR': `Ativar por ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
               vi: `Bật với ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,

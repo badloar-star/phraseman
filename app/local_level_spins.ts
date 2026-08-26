@@ -375,6 +375,39 @@ export async function grantLocalArenaRankedWinSpin(
   });
 }
 
+/**
+ * Спин из сундука (лига, друзья) — та же общая рулетка, что уровень/урок/Арена.
+ *
+ * зачем (владелец, 2026-08-26): в сундуках наградой значилась жемчужина, но
+ * сервер клал дроп с amount=0 (все shard-константы были обнулены планом
+ * 2026-07-20), а модалка всё равно рисовала «+N жемчужин». Игрок видел награду,
+ * которой не существовало. Владелец заменил её на 1 спин.
+ *
+ * Идемпотентность — по `dropKey` = «id клейма + id дропа»: сундук лиги при
+ * КАЖДОМ повторном обращении получает от сервера тот же пакет наград
+ * (alreadyClaimed + rewards), поэтому без ключа один сундук выдавал бы спин
+ * снова и снова при каждом заходе на экран.
+ */
+export async function grantLocalChestSpin(
+  dropKey: string, token: AccountGenerationToken,
+): Promise<boolean> {
+  const owner = token.stableId;
+  const safeKey = String(dropKey ?? '').trim();
+  if (!owner || !safeKey) return false;
+  const id = `local_spin_chest_${safeKey.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 100)}`;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const current = await loadLocalState(owner);
+    if (current.issuedCreditIds.includes(id)) return false;
+    await writeLocalState({
+      ...current,
+      credits: [...current.credits, { id, level: 2 }],
+      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+    });
+    return true;
+  });
+}
+
 export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | null> {
   const owner = ownerFromDevice();
   if (!owner) return null;

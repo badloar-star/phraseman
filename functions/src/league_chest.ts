@@ -8,15 +8,15 @@ const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
 const PACK_TRIAL_MS = 48 * 60 * 60 * 1000;
 const MIN_RACE_PARTICIPANTS = 10;
-// Новая экономика (план 2026-07-20, §7): сундук лиги больше не даёт монет —
-// все shard-дропы обнулены (косметика/титулы сундука сохранены). Структура
-// дропов не удалена: sumShardDrops складывает нули, а guard-ы shardReward > 0
-// ниже просто не срабатывают.
-const BASE_SHARDS_MIN = 0;
-const BASE_SHARDS_MAX = 0;
-const GOLD_DUPLICATE_SHARDS = 0;
-const AURA_DUPLICATE_SHARDS = 0;
-const AVATAR_DUPLICATE_SHARDS = 0;
+// Новая экономика (план 2026-07-20, §7): сундук лиги не даёт монет.
+//
+// зачем (владелец, 2026-08-26): раньше это выражалось нулевыми shard-дропами
+// (BASE_SHARDS_* = 0 и т.д.) — но дроп с amount=0 всё равно доезжал до модалки,
+// и она рисовала «+N жемчужин», которых никто не получал. Класс бага «награду
+// показали, но не начислили». Константы удалены, а сами дропы заменены на
+// 'spin_credit': награда осталась, стала настоящей и начисляемой.
+// sumShardDrops сохранён — он теперь честно возвращает 0 для сундука лиги,
+// но продолжает обслуживать сундук друзей (RewardDrop общий).
 // зачем: владелец 2026-08-23 — база восстановления стала 30 минут вместо 10,
 // и прежние 5 минут означали бы ускорение вшестеро (снятие лимита на неделю).
 // Выбрано «на треть быстрее»: 30 → 20 минут. ОБЯЗАНО совпадать с клиентским
@@ -60,6 +60,13 @@ type RewardKind =
   // просто не кладёт, так что его выдача не меняется ни на единицу.
   | 'xp_grant'
   | 'energy_refill'
+  // зачем (владелец, 2026-08-26): жемчужина в сундуках была фикцией — все
+  // shard-дропы обнулены планом 2026-07-20 (BASE_SHARDS_* = 0), но модалка всё
+  // равно рисовала «+N жемчужин», а amount=0 никому ничего не начислял.
+  // Владелец заменил эту награду на 1 спин общей рулетки — единственный спин
+  // приложения (см. app/local_level_spins.ts), тот же, что за уровень, урок и
+  // победу в Арене. Розыгрыш приза локальный, сервер лишь подтверждает факт.
+  | 'spin_credit'
   | 'energy_fast_recovery'
   | 'streak_shield'
   | 'pack_trial_48h'
@@ -264,8 +271,10 @@ function buildLeagueRewardDrops(params: {
   const { stableUid, weekId, groupId, user, expiresAt, isCrownWinner } = params;
   const seed = `${weekId}:${groupId}:${stableUid}`;
   const drops: RewardDrop[] = [];
-  const baseShards = rollInt(`${seed}:base_shards`, BASE_SHARDS_MIN, BASE_SHARDS_MAX);
-  drops.push({ id: 'league_shards', kind: 'shards', rarity: 'common', amount: baseShards });
+  // зачем (владелец, 2026-08-26): базовой наградой сундука был shard-дроп с
+  // amount=0 — модалка показывала «жемчужину», кошелёк не менялся. Теперь база
+  // сундука — ровно один спин общей рулетки, награда настоящая и начисляемая.
+  drops.push({ id: 'league_spin', kind: 'spin_credit', rarity: 'common', amount: 1 });
 
   const addIf = (id: string, chance: number, drop: RewardDrop) => {
     if (rollChance(`${seed}:${id}`, chance)) drops.push(drop);
@@ -292,11 +301,13 @@ function buildLeagueRewardDrops(params: {
     rarity: 'rare',
     amount: 1,
   });
-  addIf('bonus_shards', 0.15, {
-    id: 'league_bonus_shards',
-    kind: 'shards',
+  // зачем (владелец, 2026-08-26): редкий бонус тоже был жемчужным нулём —
+  // стал вторым спином (см. комментарий у kind 'spin_credit').
+  addIf('bonus_spin', 0.15, {
+    id: 'league_bonus_spin',
+    kind: 'spin_credit',
     rarity: 'rare',
-    amount: rollInt(`${seed}:bonus_shards_amount`, 10, 22),
+    amount: 1,
   });
   addIf('pack_trial_48h', 0.08, {
     id: 'league_pack_trial_48h',
@@ -312,7 +323,7 @@ function buildLeagueRewardDrops(params: {
     if (auraId) {
       drops.push({ id: `league_${auraId}`, kind: 'avatar_aura', rarity: 'epic', auraId });
     } else {
-      drops.push({ id: 'league_aura_duplicate_shards', kind: 'shards', rarity: 'rare', amount: AURA_DUPLICATE_SHARDS });
+      drops.push({ id: 'league_aura_duplicate_spin', kind: 'spin_credit', rarity: 'rare', amount: 1 });
     }
   }
 
@@ -325,14 +336,14 @@ function buildLeagueRewardDrops(params: {
     if (customAvatarId) {
       drops.push({ id: `league_${customAvatarId}`, kind: 'custom_avatar', rarity: 'epic', customAvatarId, gradientId, logoColor });
     } else {
-      drops.push({ id: 'league_avatar_duplicate_shards', kind: 'shards', rarity: 'rare', amount: AVATAR_DUPLICATE_SHARDS });
+      drops.push({ id: 'league_avatar_duplicate_spin', kind: 'spin_credit', rarity: 'rare', amount: 1 });
     }
   }
 
   const hasGold = String(getExistingField(user, GOLD_THEME_UNLOCK_KEY) ?? '') === '1';
   if (rollChance(`${seed}:gold_theme`, isCrownWinner ? 0.08 : 0.05)) {
     if (hasGold) {
-      drops.push({ id: 'league_gold_duplicate', kind: 'gold_theme_duplicate', rarity: 'legendary', amount: GOLD_DUPLICATE_SHARDS });
+      drops.push({ id: 'league_gold_duplicate', kind: 'spin_credit', rarity: 'legendary', amount: 1 });
     } else {
       drops.push({ id: 'league_gold_theme', kind: 'gold_theme', rarity: 'legendary' });
     }

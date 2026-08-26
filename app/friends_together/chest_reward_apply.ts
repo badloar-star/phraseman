@@ -14,6 +14,7 @@
  * отклоняет (`already_claimed`), а здесь дополнительно стоит замок по weekKey,
  * чтобы двойной ответ не начислил опыт дважды.
  */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DeviceEventEmitter } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { registerXP } from '../xp_manager';
@@ -39,14 +40,39 @@ export type ChestRewardApplyResult = Readonly<{
 const NOTHING: ChestRewardApplyResult = Object.freeze({ xpApplied: 0, energyApplied: false });
 
 /**
- * Недели, для которых награда уже применена в ЭТОМ запуске приложения.
+ * Недели, для которых награда уже применена.
  *
- * зачем именно в памяти, а не на диске: сервер — авторитет идемпотентности
- * (claim-doc по неделе), здесь замок нужен лишь от двойного применения в одной
- * сессии (быстрый повторный тап, поздний ответ callable). Переживать
- * перезапуск ему незачем, а лишняя запись на диск в горячем пути не нужна.
+ * зачем на диске, а не только в памяти (владелец, 2026-08-26 — аудит класса
+ * «награду показали, но не начислили»): прежний замок жил в памяти запуска и
+ * ставился ДО начисления. Из этого следовали две дыры, каждая теряла опыт
+ * НАВСЕГДА, потому что повторный клейм сервер отклоняет как already_claimed:
+ *   1) registerXP упал (сеть/ошибка) — замок уже стоял, второй попытки не было;
+ *   2) приложение убили между ответом сервера и registerXP — при следующем
+ *      заходе приходил alreadyClaimed, и клиент СОЗНАТЕЛЬНО пропускал выдачу.
+ * Теперь маркер пишется на диск ТОЛЬКО после успешного начисления, поэтому
+ * прерванная выдача честно повторяется, а успешная не дублируется.
  */
+const APPLIED_WEEK_KEY_PREFIX = 'friends_chest_reward_applied_';
 const appliedWeeks = new Set<string>();
+
+function appliedWeekStorageKey(weekKey: string): string {
+  return `${APPLIED_WEEK_KEY_PREFIX}${weekKey.replace(/[^\w.-]/g, '_').slice(0, 60)}`;
+}
+
+async function hasAppliedWeek(weekKey: string): Promise<boolean> {
+  if (appliedWeeks.has(weekKey)) return true;
+  const stored = await AsyncStorage.getItem(appliedWeekStorageKey(weekKey)).catch(() => null);
+  if (stored === '1') {
+    appliedWeeks.add(weekKey);
+    return true;
+  }
+  return false;
+}
+
+async function markAppliedWeek(weekKey: string): Promise<void> {
+  appliedWeeks.add(weekKey);
+  await AsyncStorage.setItem(appliedWeekStorageKey(weekKey), '1').catch(() => {});
+}
 
 /** Только для тестов: сбросить память применённых недель. */
 export function __resetChestRewardApplyMemory(): void {
@@ -57,7 +83,7 @@ export async function applyChestRewardsLocally(
   input: ChestRewardApplyInput,
 ): Promise<ChestRewardApplyResult> {
   const weekKey = String(input.weekKey || '').trim();
-  if (!weekKey || appliedWeeks.has(weekKey)) return NOTHING;
+  if (!weekKey || await hasAppliedWeek(weekKey)) return NOTHING;
 
   // guard-ok: это НЕ понижение баланса. Math.max(0, …) нормализует объявленную
   // сервером сумму (отрицательное/дробное/NaN → 0), а начисление идёт только
@@ -66,11 +92,15 @@ export async function applyChestRewardsLocally(
   const wantsEnergy = input.energyRefilled === true;
   if (xp === 0 && !wantsEnergy) return NOTHING;
 
-  // Замок ставим ДО await: иначе второй вызов проскочит проверку, пока первый ждёт.
+  // Замок в памяти ставим ДО await — иначе второй вызов проскочит проверку,
+  // пока первый ждёт (двойной тап, поздний ответ callable). На диск маркер
+  // уйдёт только после успеха: см. комментарий у APPLIED_WEEK_KEY_PREFIX.
   appliedWeeks.add(weekKey);
 
   let xpApplied = 0;
   let energyApplied = false;
+  let xpFailed = false;
+  let energyFailed = false;
 
   if (xp > 0) {
     try {
@@ -82,6 +112,7 @@ export async function applyChestRewardsLocally(
     } catch (error) {
       // Награда уже показана в модалке — молча падать нельзя, но и рушить
       // экран из-за опыта тоже: логируем и продолжаем с энергией.
+      xpFailed = true;
       DebugLogger.error('chest_reward_apply:xp', error, 'critical');
     }
   }
@@ -93,8 +124,19 @@ export async function applyChestRewardsLocally(
       // Шкала в шапке перечитывает состояние по этому событию (EnergyContext).
       DeviceEventEmitter.emit('energy_reload');
     } catch (error) {
+      energyFailed = true;
       DebugLogger.error('chest_reward_apply:energy', error, 'critical');
     }
+  }
+
+  // зачем: маркер «выдано» пишем на диск ТОЛЬКО когда выдача действительно
+  // прошла. Упало — снимаем и замок в памяти, чтобы следующая попытка (новый
+  // заход на экран) начислила награду, а не считала её уже выданной. Иначе
+  // опыт терялся навсегда: повторный клейм сервер отклоняет как already_claimed.
+  if (xpFailed || energyFailed) {
+    appliedWeeks.delete(weekKey);
+  } else {
+    await markAppliedWeek(weekKey);
   }
 
   return Object.freeze({ xpApplied, energyApplied });

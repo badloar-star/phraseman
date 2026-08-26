@@ -821,6 +821,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
             {triLang(lang as any, {
               ru: 'Принять',
               uk: 'Прийняти',
+              en: 'Accept',
               es: 'Aceptar',
               'pt-BR': 'Aceitar',
               vi: 'Chấp nhận',
@@ -849,6 +850,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
             {triLang(lang as any, {
               ru: 'Отклонить',
               uk: 'Відхилити',
+              en: 'Decline',
               es: 'Rechazar',
               'pt-BR': 'Recusar',
               vi: 'Từ chối',
@@ -904,6 +906,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
                 {profile.streak} {triLang(lang as any, {
                   ru: 'дней подряд',
                   uk: 'днів поспіль',
+                  en: 'days in a row',
                   es: 'días seguidos',
                   'pt-BR': 'dias seguidos',
                   vi: 'ngày liên tiếp',
@@ -935,6 +938,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
           {triLang(lang as any, {
             ru: 'Добавить в друзья',
             uk: 'Додати в друзі',
+            en: 'Add friend',
             es: 'Agregar amigo',
             'pt-BR': 'Adicionar amigo',
             vi: 'Thêm bạn bè',
@@ -962,6 +966,7 @@ function giftEventLabel(payload: Record<string, string | number>, lang: string):
   const catalogLabelByLang: Record<Lang, keyof (typeof FRIEND_GIFT_CATALOG)[number]> = {
     ru: 'labelRu',
     uk: 'labelUk',
+    en: 'labelRu',
     es: 'labelEs',
     'pt-BR': 'labelPtBr',
     vi: 'labelVi',
@@ -1385,6 +1390,10 @@ export default function FriendsTabScreen() {
     }
   }, [friendsTogetherPolicy.enabled, togetherSnapshot, levelUpModal]);
 
+  const [myProfile, setMyProfile] = useState<{
+    name: string; avatar: string; frame: string; aura?: string; totalXP: number; streak: number | null;
+  } | null>(null);
+
   const handleClaimFriendLevel = useCallback(async () => {
     if (!levelUpModal || levelClaimBusy) return;
     const { friendUid, level } = levelUpModal;
@@ -1489,11 +1498,15 @@ export default function FriendsTabScreen() {
         // объявляет. Применяем локально и не ждём: модалка уже открыта,
         // шкала и счётчик догоняют в том же кадре (optimistic).
         //
-        // alreadyClaimed — повторный ответ сервера с ТОЙ ЖЕ суммой опыта
-        // (потерялся ответ сети, перезапуск приложения). Награду показываем,
-        // но НЕ начисляем второй раз: замок в chest_reward_apply живёт в
-        // памяти и перезапуск не переживает, поэтому решает флаг сервера.
-        if (!result.alreadyClaimed) void applyChestRewardsLocally({
+        // зачем вызываем и при alreadyClaimed (владелец, 2026-08-26): раньше
+        // повторный ответ сервера ПРОПУСКАЛ выдачу, потому что замок применения
+        // жил в памяти запуска. Из-за этого опыт терялся навсегда, если
+        // приложение убили между ответом сервера и начислением: сервер уже
+        // считал сундук выданным, а на устройстве не начислилось ничего.
+        // Теперь замок персистентный и ставится только после успеха
+        // (app/friends_together/chest_reward_apply.ts), поэтому повторный вызов
+        // безопасен: успешную выдачу он не продублирует, а прерванную — доведёт.
+        void applyChestRewardsLocally({
           weekKey: weeklyChestModel.weekKey,
           xpGranted: result.rewards.xpGranted,
           energyRefilled: result.rewards.energyRefilled,
@@ -1596,9 +1609,6 @@ export default function FriendsTabScreen() {
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
   const [friendCodeLoadError, setFriendCodeLoadError] = useState(false);
-  const [myProfile, setMyProfile] = useState<{
-    name: string; avatar: string; frame: string; aura?: string; totalXP: number; streak: number | null;
-  } | null>(null);
 
   // ── Реферал: накопленные дни доступа + модалки активации/окончания ──────────
   const referralAccountToken = captureAccountGeneration();
@@ -2449,6 +2459,7 @@ export default function FriendsTabScreen() {
     triLang(lang, {
       ru: gift.labelRu,
       uk: gift.labelUk,
+      en: gift.labelRu,
       es: gift.labelEs,
       'pt-BR': gift.labelPtBr,
       vi: gift.labelVi,
@@ -2985,7 +2996,6 @@ export default function FriendsTabScreen() {
     showsVerticalScrollIndicator: false,
     keyboardShouldPersistTaps: 'handled' as const,
     contentContainerStyle: { paddingBottom: tabContentBottomPad, paddingHorizontal: PX, paddingTop: insets.top },
-    decelerationRate: 'normal' as const,
     scrollEventThrottle: 16,
     bounces: true,
     alwaysBounceVertical: true,
@@ -3032,7 +3042,7 @@ export default function FriendsTabScreen() {
               style={{ width: 64, height: 44, borderRadius: 14, backgroundColor: t.accent, flexDirection: 'row', gap: 5, justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 8 }}
             >
               <Ionicons name="flask-outline" size={16} color={t.correctText} />
-              <FlowText provenance="authored" style={{ color: t.correctText, fontSize: 11, fontWeight: '900', letterSpacing: 0.5 }}>DEV</FlowText>
+              <FlowText testID="friends-together-dev-badge" provenance="authored" style={{ color: t.correctText, fontSize: 11, fontWeight: '900', letterSpacing: 0.5 }}>DEV</FlowText>
             </TouchableOpacity>
           )}
           <TouchableOpacity
@@ -3226,7 +3236,7 @@ export default function FriendsTabScreen() {
     <ScreenGradient artBackdrop="friends">
       <View testID="screen-friends" style={{ flex: 1 }}>
       <BouncyWrap style={bouncyStyle}>
-        <AnimatedFlashList
+        <AnimatedFlashList decelerationRate="fast"
           {...listScrollProps}
           testID="friends-list"
           data={sortedFriends}
@@ -3364,7 +3374,7 @@ export default function FriendsTabScreen() {
                 source={oskolokImageForPackShards(giftBalance)}
                 style={{ width: 20, height: 20 }}
                 contentFit="contain"
-                accessibilityLabel={triLang(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
+                accessibilityLabel={triLang(lang, { ru: 'Жемчуг', uk: 'Перлини', en: 'Pearls', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
               />
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
             </LinearGradient>
@@ -3445,7 +3455,7 @@ export default function FriendsTabScreen() {
                       source={oskolokImageForPackShards(displayCost)}
                       style={{ width: 22, height: 22 }}
                       contentFit="contain"
-                      accessibilityLabel={triLang(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
+                      accessibilityLabel={triLang(lang, { ru: 'Жемчуг', uk: 'Перлини', en: 'Pearls', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
                     />
                   </View>
                   {selected && <Ionicons name="checkmark-circle" size={20} color={giftAccentColor} />}
@@ -3528,7 +3538,7 @@ export default function FriendsTabScreen() {
                           kind="gift"
                           size={56}
                           color="#4C3412"
-                          accessibilityLabel={triLang(lang, { ru: 'Иконка подарка', uk: 'Іконка подарунка', es: 'Icono de regalo', 'pt-BR': 'Ícone de presente', vi: 'Biểu tượng quà tặng', id: 'Ikon hadiah', tr: 'Hediye simgesi', pl: 'Ikona prezentu' })}
+                          accessibilityLabel={triLang(lang, { ru: 'Иконка подарка', uk: 'Іконка подарунка', en: 'Gift icon', es: 'Icono de regalo', 'pt-BR': 'Ícone de presente', vi: 'Biểu tượng quà tặng', id: 'Ikon hadiah', tr: 'Hediye simgesi', pl: 'Ikona prezentu' })}
                         />
                       ) : (
                         <Ionicons name="gift-outline" size={34} color={'#4C3412'} />

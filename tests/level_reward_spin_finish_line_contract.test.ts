@@ -63,7 +63,7 @@ describe('Finish Line level spin screen contract', () => {
     expect(receiptEffect).toContain('pendingLandingRef.current');
   });
 
-  test('lets the idle reel follow a finger and coast with bounded native inertia', () => {
+  test('lets the idle reel follow a finger and coast endlessly around the ring', () => {
     const code = presentation();
     const manualGesture = code.slice(
       code.indexOf('const manualReelGesture'),
@@ -81,10 +81,31 @@ describe('Finish Line level spin screen contract', () => {
     expect(manualGesture).toContain('const velocity = Math.max(');
     expect(manualGesture).toMatch(/withDecay\(\{\s*velocity,/);
     expect(manualGesture).toContain('deceleration: MANUAL_REEL_DECELERATION');
-    expect(manualGesture).toContain('clamp: [manualReelMinOffset, manualReelMaxOffset]');
+    // зачем (владелец 2026-08-26): барабан обязан крутиться БЕЗ стопора. Любой
+    // clamp возвращает прежний баг — палец упирался в край ленты на первом и
+    // последнем повторе, и барабан переставал быть барабаном.
+    expect(manualGesture).not.toContain('clamp:');
+    expect(manualGesture).not.toContain('manualReelMinOffset');
+    expect(manualGesture).not.toContain('manualReelMaxOffset');
+    expect(code).not.toContain('clampManualReelOffset');
+    expect(manualGesture).toContain('wrapManualReelOffset');
     expect(manualGesture).toContain('nearestManualReelRowOffset');
     expect(manualGesture).toContain('if (reducedMotion)');
     expect(code).toContain('<GestureDetector gesture={manualReelGesture}>');
+  });
+
+  test('normalizes only the manual reel, leaving the real spin landing absolute', () => {
+    const code = presentation();
+    // Кольцо: смещение приводится по модулю длины ОДНОЙ ленты наград.
+    expect(code).toContain('const manualReelCycle = REWARD_STREAM_IDS.length * rowPitch;');
+    expect(code).toContain('function wrapManualReelOffset(');
+    // Нормализация живёт в стиле барабана — иначе инерция withDecay уезжает
+    // за пределы отрисованных карточек и барабан пустеет.
+    expect(code).toContain('manualReelWrap.value === 1');
+    expect(code).toContain('wrapManualReelOffset(reelOffset.value, reelWrapAnchor.value, reelWrapCycle.value)');
+    // Настоящий спин считает посадку в абсолютных координатах landingIndex —
+    // его кадры кольцом сдвигать нельзя, иначе награда встанет не под селектор.
+    expect(code).toContain(': reelOffset.value,');
   });
 
   test('keeps manual reel play presentation-only and reserves claims for the Spin button', () => {

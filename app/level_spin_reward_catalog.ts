@@ -1,4 +1,4 @@
-export const LEVEL_SPIN_REWARD_CATALOG_VERSION = 3 as const;
+export const LEVEL_SPIN_REWARD_CATALOG_VERSION = 4 as const;
 
 export type LevelSpinRewardTier = 'ordinary' | 'rare' | 'ultra' | 'exceptional';
 const ORDINARY_REWARD_IDS = [
@@ -23,6 +23,7 @@ export const LEVEL_SPIN_REWARD_IDS = [
   'plus_days_3',
   'plus_days_7',
   'cosmetic_avatar_aura',
+  'cosmetic_theme',
 ] as const;
 export type LevelSpinRewardId = typeof LEVEL_SPIN_REWARD_IDS[number];
 
@@ -32,17 +33,37 @@ export type LevelSpinRewardCatalogEntry = Readonly<{
   weight: number;
 }>;
 
-const entries = (
+/**
+ * Персональные веса поверх полки.
+ *
+ * зачем (владелец 2026-08-26): энергия — самая нужная награда в спине, её шанс
+ * поднят с ~10.2% до ~15% (полная энергия и +2 по 15 000, +3 — 3 000). Тема
+ * интерфейса добавлена редким призом ровно на ~1%: это первая вещь из спина,
+ * которую иначе можно получить ТОЛЬКО за 200 жемчужин, поэтому шанс намеренно
+ * низкий — иначе продажа тем за жемчуг обесценится.
+ */
+const REWARD_WEIGHT_OVERRIDES: Partial<Record<LevelSpinRewardId, number>> = {
+  energy_full: 15_000,
+  energy_plus2: 15_000,
+  energy_plus3: 3_000,
+};
+
+const entriesWithOverrides = (
   ids: readonly LevelSpinRewardId[], tier: LevelSpinRewardTier, weight: number,
-): LevelSpinRewardCatalogEntry[] => ids.map((id) => Object.freeze({ id, tier, weight }));
+): LevelSpinRewardCatalogEntry[] => ids.map((id) => Object.freeze({
+  id, tier, weight: REWARD_WEIGHT_OVERRIDES[id] ?? weight,
+}));
 
 export const LEVEL_SPIN_REWARD_CATALOG: readonly LevelSpinRewardCatalogEntry[] = Object.freeze([
-  ...entries(ORDINARY_REWARD_IDS, 'ordinary', 10_000),
-  ...entries(RARE_REWARD_IDS, 'rare', 1_000),
-  ...entries(ULTRA_REWARD_IDS, 'ultra', 100),
+  ...entriesWithOverrides(ORDINARY_REWARD_IDS, 'ordinary', 10_000),
+  ...entriesWithOverrides(RARE_REWARD_IDS, 'rare', 1_000),
+  ...entriesWithOverrides(ULTRA_REWARD_IDS, 'ultra', 100),
   Object.freeze({ id: 'plus_days_3', tier: 'exceptional' as const, weight: 10 }),
   Object.freeze({ id: 'plus_days_7', tier: 'exceptional' as const, weight: 1 }),
   Object.freeze({ id: 'cosmetic_avatar_aura', tier: 'rare' as const, weight: 6_170 }),
+  // Тема интерфейса: ~1% — редкий, но реальный приз. Полка 'ultra', а не
+  // 'exceptional': по ценности это уровень крупной валюты, а не Plus-доступа.
+  Object.freeze({ id: 'cosmetic_theme', tier: 'ultra' as const, weight: 2_200 }),
 ]);
 
 export const LEVEL_SPIN_REWARD_TOTAL_WEIGHT = LEVEL_SPIN_REWARD_CATALOG.reduce(

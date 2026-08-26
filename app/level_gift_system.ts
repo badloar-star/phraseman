@@ -72,6 +72,14 @@ import {
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { THEME_DISPLAY_NAMES } from './theme_display_names';
+import { SELECTABLE_THEME_MODES, isThemeShardPurchasable } from './theme_access_policy';
+import {
+  OWNED_THEMES_KEY,
+  loadGrandfatheredThemeModes,
+  loadOwnedThemeModes,
+  mergeThemeModeLists,
+} from './theme_ownership_store';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -250,6 +258,10 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
   cosmetic_avatar_common: {
     title: { 'pt-BR': 'Avatar grátis', vi: 'Avatar miễn phí', id: 'Avatar gratis', tr: 'Ücretsiz avatar', pl: 'Darmowy awatar' },
     desc: { 'pt-BR': 'Um avatar aleatório com fundo aleatório será desbloqueado grátis', vi: 'Một avatar ngẫu nhiên với nền ngẫu nhiên sẽ được mở khóa miễn phí', id: 'Avatar acak dengan latar acak terbuka gratis', tr: 'Rastgele arka planlı bir avatar ücretsiz açılır', pl: 'Losowy awatar z losowym tłem zostanie odblokowany za darmo' },
+  },
+  cosmetic_theme: {
+    title: { 'pt-BR': 'Tema da interface', vi: 'Giao diện ứng dụng', id: 'Tema antarmuka', tr: 'Arayüz teması', pl: 'Motyw interfejsu' },
+    desc: { 'pt-BR': 'Um tema pago aleatório é desbloqueado para sempre. Escolha-o nos ajustes', vi: 'Một giao diện trả phí ngẫu nhiên mở khóa vĩnh viễn. Chọn trong cài đặt', id: 'Tema berbayar acak terbuka selamanya. Pilih di pengaturan', tr: 'Rastgele ücretli bir tema kalıcı olarak açılır. Ayarlardan seç', pl: 'Losowy płatny motyw zostanie odblokowany na zawsze. Wybierz go w ustawieniach' },
   },
   cosmetic_avatar_aura: {
     title: { 'pt-BR': 'Aura de avatar', vi: 'Hào quang avatar', id: 'Aura avatar', tr: 'Avatar aurası', pl: 'Aura awatara' },
@@ -605,6 +617,17 @@ const GIFT_F2P: GiftDef[] = [
     descRU: 'Случайная аура откроется бесплатно и появится вокруг аватара',
     descUK: 'Випадкова аура відкриється безкоштовно й з\'явиться навколо аватара',
     descES: 'Un aura aleatoria se desbloquea gratis alrededor del avatar',
+  },
+  {
+    // зачем (владелец 2026-08-26): тема интерфейса — единственная награда спина,
+    // которую иначе можно взять ТОЛЬКО за 200 жемчужин. Вес в общем пуле
+    // подарков за уровень нулевой смысл не имеет: сюда она попадает лишь через
+    // каталог спина (вес 2 200 ≈ 1%), а не как обычный подарок за уровень.
+    id: 'cosmetic_theme', rarity: 'epic', icon: '🎨', weight: 1, spinTier: 'ultra',
+    titleRU: 'Тема оформления', titleUK: 'Тема оформлення', titleES: 'Tema de la interfaz',
+    descRU: 'Случайная платная тема откроется навсегда. Выбрать её можно в настройках',
+    descUK: 'Випадкова платна тема відкриється назавжди. Обрати її можна в налаштуваннях',
+    descES: 'Un tema de pago aleatorio se desbloquea para siempre. Elígelo en ajustes',
   },
   {
     id: 'club_boost_free', rarity: 'rare', icon: '👥', weight: 6,
@@ -1395,8 +1418,17 @@ export const grantLevelGiftShards = async (
   void accountToken;
 };
 
+/**
+ * Компенсация, когда все покупаемые темы у человека уже есть.
+ *
+ * зачем: ровно цена темы (THEME_PRICE_SHARDS = 200). Приз не должен
+ * превращаться в пустышку — это тот самый класс бага «награду показали,
+ * но не начислили», который уже ловили на сундуках.
+ */
+const THEME_GIFT_FALLBACK_PEARLS = 200;
+
 export type GiftCosmeticUnlock = {
-  kind: 'avatar' | 'aura';
+  kind: 'avatar' | 'aura' | 'theme';
   id: string;
   gradientId?: string;
   logoColor?: CustomAvatarLogoColor;
@@ -1561,6 +1593,53 @@ export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock |
   }
 };
 
+/**
+ * Темы, которые ещё можно выиграть в спине.
+ *
+ * зачем (владелец 2026-08-26): приз обязан быть НАСТОЯЩИМ. Берём только темы
+ * полки 'shards' — те самые, что иначе стоят 200 жемчужин. Бесплатные и
+ * наградное «Золото» в пул не попадают: выдать их значило бы обмануть человека
+ * подарком, который у него и так есть или который зарабатывается лигой.
+ *
+ * Уже купленные и «дедушкины» темы исключаются — повторная выдача была бы
+ * пустышкой (тот же класс бага, что «награду показали, но не начислили»).
+ */
+export async function listThemeGiftCandidates(): Promise<string[]> {
+  const [owned, grandfathered] = await Promise.all([
+    loadOwnedThemeModes().catch(() => [] as string[]),
+    loadGrandfatheredThemeModes().catch(() => [] as string[]),
+  ]);
+  const taken = new Set([...owned, ...grandfathered]);
+  return SELECTABLE_THEME_MODES.filter((mode) => isThemeShardPurchasable(mode) && !taken.has(mode));
+}
+
+function themeGiftUnlockFor(mode: string): GiftCosmeticUnlock | null {
+  const names = THEME_DISPLAY_NAMES[mode];
+  if (!names) return null;
+  return { kind: 'theme', id: mode, labelRu: names.ru, labelUk: names.uk, labelEs: names.es };
+}
+
+/**
+ * Открыть случайную тему как подарок.
+ *
+ * Пишем ТОЛЬКО список купленных тем и НЕ переключаем активную тему: смена
+ * оформления всего приложения без спроса — грубость, человек сам выберет её в
+ * настройках. Ключ уходит в облачную синхронизацию и мержится объединением,
+ * поэтому подарок переживает переустановку.
+ */
+export const unlockRandomThemeGift = async (): Promise<GiftCosmeticUnlock | null> => {
+  try {
+    const candidates = await listThemeGiftCandidates();
+    if (candidates.length === 0) return null;
+    const mode = candidates[Math.floor(Math.random() * candidates.length)]!;
+    const owned = await loadOwnedThemeModes().catch(() => [] as string[]);
+    await AsyncStorage.setItem(OWNED_THEMES_KEY, JSON.stringify(mergeThemeModeLists(owned, [mode])));
+    return themeGiftUnlockFor(mode);
+  } catch {
+    return null;
+  }
+};
+
 export const getBonusHintsToday = async (studyTarget?: RuntimeStudyTarget): Promise<number> => {
   try {
     const today = new Date().toISOString().split('T')[0];
@@ -1607,6 +1686,7 @@ type LevelGiftEffectReceipt = {
   };
   aura?: GiftCosmeticUnlock | null;
   customAvatar?: GiftCosmeticUnlock | null;
+  theme?: GiftCosmeticUnlock | null;
   plus?: {
     days: 3 | 7;
     fromMs: number;
@@ -2084,6 +2164,35 @@ const applyAuraGiftForOccurrence = async (
   return { handled: true, cosmeticUnlocked: result };
 };
 
+const applyThemeGiftForOccurrence = async (
+  id: GiftId,
+  opts?: ApplyGiftOptions,
+): Promise<{ handled: boolean; cosmeticUnlocked: GiftCosmeticUnlock | null }> => {
+  // Ровно та же схема, что у ауры: тема ВЫБИРАЕТСЯ в момент подготовки чека и
+  // фиксируется в нём. Повтор (ретрай после обрыва, второй тап) вернёт ту же
+  // тему, а не разыграет вторую — иначе один спин открывал бы две темы.
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const candidates = await listThemeGiftCandidates();
+    const mode = candidates[Math.floor(Math.random() * candidates.length)];
+    return {
+      giftId: id,
+      status: 'prepared',
+      theme: mode ? themeGiftUnlockFor(mode) : null,
+    };
+  }, 'theme');
+  if (!staged) return { handled: false, cosmeticUnlocked: null };
+  const result = staged.receipt.theme ?? null;
+  if (staged.receipt.status !== 'prepared') {
+    return { handled: true, cosmeticUnlocked: result };
+  }
+  if (result) {
+    const owned = await loadOwnedThemeModes().catch(() => [] as string[]);
+    await AsyncStorage.setItem(OWNED_THEMES_KEY, JSON.stringify(mergeThemeModeLists(owned, [result.id])));
+  }
+  await markLevelGiftEffectApplied(staged, opts);
+  return { handled: true, cosmeticUnlocked: result };
+};
+
 const applyCustomAvatarGiftForOccurrence = async (
   id: GiftId,
   opts?: ApplyGiftOptions,
@@ -2545,6 +2654,23 @@ const applyGiftUnlocked = async (
         if (fallbackAura) return { success: true, cosmeticUnlocked: fallbackAura };
         // Вся косметика уже открыта — честная XP-компенсация вместо прежнего нулевого жемчуга.
         await grantInstantGiftXp(350);
+        return { success: true };
+      }
+      case 'cosmetic_theme': {
+        const occurrenceTheme = await applyThemeGiftForOccurrence(id, opts);
+        if (occurrenceTheme.handled) {
+          if (occurrenceTheme.cosmeticUnlocked) {
+            return { success: true, cosmeticUnlocked: occurrenceTheme.cosmeticUnlocked };
+          }
+          // Все покупаемые темы уже открыты — честная компенсация жемчугом,
+          // а не пустой подарок. 200 жемчужин = ровно цена темы, поэтому
+          // человек не теряет ничего: купит следующую тему, когда выйдет.
+          await grantSpinPearls(THEME_GIFT_FALLBACK_PEARLS);
+          return { success: true };
+        }
+        const cosmeticUnlocked = await unlockRandomThemeGift();
+        if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
+        await grantSpinPearls(THEME_GIFT_FALLBACK_PEARLS);
         return { success: true };
       }
       case 'cosmetic_avatar_aura':

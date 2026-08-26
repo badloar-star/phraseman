@@ -8,14 +8,14 @@ import {
 import type { LevelSpinRewardId } from '../app/level_spin_reward_catalog';
 
 describe('level spin reward asset manifest', () => {
-  test('matches the v3 reward catalogue exactly', () => {
+  test('matches the v4 reward catalogue exactly', () => {
     const exhaustive: Readonly<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>> =
       LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID;
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST.map(({ id }) => id).sort()).toEqual(
       LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort(),
     );
     expect(Object.keys(exhaustive).sort()).toEqual(LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort());
-    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(36);
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(37);
   });
 
   test('preserves each manifest key, embedded id, and production filename as correlated literals', () => {
@@ -26,7 +26,7 @@ describe('level spin reward asset manifest', () => {
     expect(exactFile).toBe('assets/images/level-spin-rewards/xp_250.webp');
   });
 
-  test('uses nine restrained families and contains no baked-label field', () => {
+  test('uses ten restrained families and contains no baked-label field', () => {
     expect(Object.keys(LEVEL_SPIN_REWARD_FAMILY_PALETTES).sort()).toEqual([
       'aura',
       'energy',
@@ -35,6 +35,7 @@ describe('level spin reward asset manifest', () => {
       'plus',
       'protection',
       'stars',
+      'theme',
       'time',
       'xp',
     ]);
@@ -42,8 +43,14 @@ describe('level spin reward asset manifest', () => {
     for (const entry of LEVEL_SPIN_REWARD_ASSET_MANIFEST) {
       expect(entry).not.toHaveProperty('bakedLabel');
       expect(entry.productionFile).toBe(`assets/images/level-spin-rewards/${entry.id}.webp`);
+      // зачем (владелец 2026-08-26): сторож охраняет правило «арт награды НЕ
+      // варьируется по теме интерфейса» — запрещены имена КОНКРЕТНЫХ тем.
+      // Само слово «theme» из запрета снято: с этой даты в спине есть законная
+      // награда `cosmetic_theme` (случайная платная тема), и её файл обязан
+      // называться по награде. Правило при этом не ослабло: ни одна тема по
+      // имени в арт по-прежнему не попадает.
       expect(entry.productionFile).not.toMatch(
-        /dark|ember|gold|indigo|olive|sage|theme|volt/i,
+        /dark|ember|gold|indigo|olive|sage|volt|aurora|midnight/i,
       );
       expect(entry.accent).toBe(LEVEL_SPIN_REWARD_FAMILY_PALETTES[entry.family]);
     }
@@ -57,5 +64,17 @@ describe('level spin reward asset manifest', () => {
     });
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.cosmetic_avatar_aura.subject)
       .toMatch(/aura reliquary.*hexagonal center/i);
+  });
+
+  test('gives the interface theme reward its own palette-tablet brief', () => {
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.cosmetic_theme).toMatchObject({
+      id: 'cosmetic_theme',
+      family: 'theme',
+      productionFile: 'assets/images/level-spin-rewards/cosmetic_theme.webp',
+    });
+    // Бриф намеренно про ПАЛИТРУ вообще, а не про конкретную тему: одна
+    // картинка обслуживает выдачу любой из пяти платных тем.
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.cosmetic_theme.subject)
+      .toMatch(/palette tablets/i);
   });
 });

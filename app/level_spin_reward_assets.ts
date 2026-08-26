@@ -42,6 +42,7 @@ export const LEVEL_SPIN_REWARD_IMAGE_SOURCES = Object.freeze({
   plus_days_3: require('../assets/images/level-spin-rewards/plus_days_3.webp'),
   plus_days_7: require('../assets/images/level-spin-rewards/plus_days_7.webp'),
   cosmetic_avatar_aura: require('../assets/images/level-spin-rewards/cosmetic_avatar_aura.webp'),
+  cosmetic_theme: require('../assets/images/level-spin-rewards/cosmetic_theme.webp'),
 } as const satisfies Readonly<Record<LevelSpinRewardId, ImageSourcePropType>>);
 
 export type LevelSpinRewardImageKey = keyof typeof LEVEL_SPIN_REWARD_IMAGE_SOURCES;

@@ -1,20 +1,30 @@
 /**
  * Widget bridge.
  *
- * Single responsibility: take the current "phrase of the day" + the active
- * theme's chrome and publish a compact, presentation-ready snapshot into
- * platform shared storage so the native home-screen / lock-screen widgets
- * (iOS WidgetKit, Android Glance) render an exact visual match of the in-app
- * Daily Phrase card — without ever touching React Native.
+ * Single responsibility: take the user's personal card decks (saved + created)
+ * plus the active theme's chrome and publish a compact, presentation-ready
+ * snapshot into platform shared storage so the native home-screen / lock-screen
+ * widgets (iOS WidgetKit, Android Glance) render an exact visual match of the
+ * in-app cards — without ever touching React Native.
  *
- * The native side only ever READS this snapshot. RN is the sole writer.
+ * The native side only ever READS this snapshot. RN is the sole writer, and RN
+ * is also the sole entitlement authority (`access: 'plus' | 'free'`).
  *
- * Data flow:
- *   getTodayPhraseForTarget()  ->  buildWidgetPayload()  ->  PhraseWidget.setData()
- *        (daily_phrase_system)        (this file)            (native module)
+ * Data flow (live, schema v3):
+ *   loadFlashcards + readCustomCards
+ *     -> buildPersonalDeckWidgetPayload()  ->  PhraseWidget.setData()
+ *              (this file)                      (native module)
  *
- * Call sites: app start (root layout), study-target / theme change, the
- * DailyPhraseCard, and (later) the expo-notifications background task.
+ * `buildWidgetPayload()` below is the DEAD schema-v2 "phrase of the day"
+ * builder — kept only for its contract test; nothing in the app calls it.
+ *
+ * ⛔ Native cannot import these types, so a renamed/removed field does not break
+ * the build — it silently kills the widget. That already happened once (see
+ * docs/daily-phrase-widget.md → "Schema drift"). Change the payload and you MUST
+ * update both native decoders in the same commit.
+ *
+ * Call sites: app start (root layout), foreground, study-target / theme / lang
+ * change, and the DailyPhraseCard.
  */
 
 import { dailyPhraseCopyForLang } from './daily_phrase_system';
@@ -285,10 +295,13 @@ export async function syncWidgetData(options?: {
     }
     return true;
   } catch (error) {
-    // Widget refresh must never break the host app — but make it observable.
-    if (__DEV__) {
-      console.warn('[widget_bridge] syncWidgetData failed:', error);
-    }
+    // Widget refresh must never break the host app — but it must never be silent
+    // either.
+    // зачем: этот catch однажды уже спрятал полностью мёртвый Android-виджет —
+    // нативный мост отвергал каждый снимок схемы v3, а предупреждение было только
+    // под __DEV__, поэтому в проде отказ не был виден никому. Логируем всегда:
+    // console.warn дешёвый, вызывается редко (старт, foreground, смена темы).
+    console.warn('[widget_bridge] syncWidgetData failed:', error);
     return false;
   }
 }

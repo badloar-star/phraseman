@@ -1,65 +1,87 @@
-# Daily Phrase Widget — build & verify
+# Personal deck widget — build & verify
 
-Native home-screen / lock-screen widget showing the "phrase of the day".
-iOS = WidgetKit (SwiftUI), Android = Glance (Compose). RN writes the snapshot;
-native only reads it.
+Native home-screen / lock-screen widget showing the user's **personal card deck**
+(saved or created phrases). iOS = WidgetKit (SwiftUI), Android = Glance (Compose).
+RN writes the snapshot; native only reads it.
+
+> History: this shipped in 2026-06 as a "phrase of the day" widget (schema v2) and
+> was reworked into the personal deck (schema v3) in `443ba4833`. The v2 builder
+> `buildWidgetPayload()` and the flat `english`/`kicker`/`deepLink` fallback fields
+> in the native decoders are LEFTOVERS of that era — nothing in the app writes them
+> any more. Do not treat them as the live contract.
 
 ## Architecture
 
 ```
-DailyPhraseCard / app start
-   -> syncWidgetData()                (app/widget_bridge.ts)
-   -> PhraseWidget.setData(payload)   (modules/phrase-widget — Expo Module)
+app start / foreground / theme, lang, target change
+   -> syncWidgetData()                     (app/widget_bridge.ts)
+   -> buildPersonalDeckWidgetPayload()     schema v3: { access, decks, theme, lang }
+   -> PhraseWidget.setData(payload)        (modules/phrase-widget — Expo Module)
         iOS:     App Group UserDefaults  group.app.phraseman.widget
         Android: SharedPreferences        app.phraseman.widget
-   -> native widget reads snapshot and renders
-   <- tap: phraseman://phrase/<id>[?play=1]
-        -> +native-intent.tsx -> /home?openPhrase=<id>[&play=1]
-        -> DailyPhraseCard opens details (+ speaks on ?play=1, on-device expo-speech)
+   -> native widget picks ONE card from the deck this instance is configured for
+   <- tap: phraseman://deck/<saved|created>/<cardId>
+        -> app/+native-intent.tsx -> app/flashcards_collection.tsx (widgetCard)
 ```
 
 Shared identifiers (must match across JS + both native sides):
 `modules/phrase-widget/constants.ts`.
+
+## Entitlement gate
+
+The deck is **Plus-only**. RN is the sole authority: it resolves entitlement with
+`getVerifiedPremiumStatus()` and publishes `access: 'plus' | 'free'`. Native never
+decides — it just renders the local "requires Plus" placeholder when `access` is
+not `plus`, so a downgrade cannot leave a stale paid deck on the home screen.
+
+## Per-instance configuration
+
+Each placed widget picks its own deck (`saved` / `created`) and keeps its own
+cursor, so two widgets on the same home screen can show different collections.
+
+| Platform | Configuration | Cursor keys |
+|---|---|---|
+| iOS 17+ | `AppIntentConfiguration` + `PersonalDeckConfiguration` | `personal_deck_cursor_<source>` in the App Group |
+| iOS 16 | no picker — always `saved` | same |
+| Android | `PhraseWidgetConfigureActivity` on placement | `personal_deck_source_<appWidgetId>` / `personal_deck_cursor_<appWidgetId>` |
+
+Previous/next controls: iOS 17+ `Button(intent:)` on systemMedium; Android
+`actionRunCallback` chips.
 
 ## Files
 
 | Area | Path |
 |------|------|
 | RN bridge | `app/widget_bridge.ts` |
+| Wire contract | `modules/phrase-widget/types.ts` (`WidgetPayload`, schema v3) |
 | Module facade | `modules/phrase-widget/index.ts`, `constants.ts`, `expo-module.config.json` |
 | iOS native bridge | `modules/phrase-widget/ios/PhraseWidgetModule.swift` |
 | iOS widget extension | `targets/widget/*` (@bacons/apple-targets) |
 | Android native bridge | `modules/phrase-widget/android/.../PhraseWidgetModule.kt` |
-| Android widget | `.../PhraseGlanceWidget.kt`, `PhraseWidgetReceiver.kt`, `res/**` |
-| iOS widget plugin | `@bacons/apple-targets` (app.json) |
+| Android widget | `.../PhraseGlanceWidget.kt`, `PhraseWidgetReceiver.kt`, `PhraseWidgetConfigureActivity.kt`, `res/**` |
 | iOS App Group | `plugins/withIosDailyPhraseWidgetAppGroup.js` (app.json) — merges the group onto the app target; `ios.entitlements` in app.json also lists it |
 | Android plugin | `plugins/withAndroidDailyPhraseWidget.js` (app.json) — registers the Glance receiver |
-| Deep link | `app/+native-intent.tsx` (`phrase/<id>` branch) |
-| Play button + auto-play | `components/DailyPhraseCard.tsx` |
+| Deep link | `app/+native-intent.tsx` (`deck/<saved|created>/<id>` branch) |
+| Landing screen | `app/flashcards_collection.tsx` (`widgetCard`) |
 
 ## Build steps (run on YOUR isolated Metro port + AVD — do not touch 8081)
 
-1. Install the new dep:
-   ```
-   npm install
-   ```
-2. Prebuild (regenerates native projects incl. the widget target + entitlements):
-   ```
-   npx expo prebuild --clean
-   ```
+1. `npm install`
+2. `npx expo prebuild --clean` — regenerates native projects incl. the widget
+   target + entitlements.
 3. iOS (needs macOS/Xcode): build to a device/simulator, then long-press home
-   screen → add the **Фраза дня** widget. Lock-screen: add the rectangular
+   screen -> add the **Phraseman** widget. Lock-screen: add the rectangular
    accessory widget (iOS 16+).
 4. Android: `npx expo run:android --port <YOUR_PORT>`, then long-press home
-   screen → Widgets → Phraseman.
+   screen -> Widgets -> Phraseman; the configuration screen asks which deck.
 
 ## EAS build / release — App Group provisioning (IMPORTANT)
 
 The widget reads the app's snapshot from the shared **App Group
 `group.app.phraseman.widget`**. If that capability is not actually registered on
 Apple's side for BOTH App IDs (the app **and** the `PhraseWidget` extension), iOS
-silently gives each target a private container → the widget shows its green
-"Break the ice" placeholder forever and never matches the in-app phrase.
+silently gives each target a private container -> the widget shows its placeholder
+forever and never matches the in-app deck.
 
 This is wired to provision automatically:
 - The **app target** entitlement is merged in by
@@ -70,64 +92,65 @@ This is wired to provision automatically:
   the App Group capability on both App IDs.
 
 The one gotcha: EAS may reuse a **provisioning profile created before the
-entitlement existed** (stale → no App Group). So on the FIRST build after adding/
+entitlement existed** (stale -> no App Group). So on the FIRST build after adding/
 changing the widget:
 - Run `eas build --profile <development|testflight-dev|production> --platform ios`
-  and, when prompted about iOS capabilities / credentials, **allow EAS to sync**
-  (it adds App Groups and regenerates the profile).
+  and, when prompted about iOS capabilities / credentials, **allow EAS to sync**.
 - If it did not prompt and the widget still shows the placeholder, force a profile
-  refresh once: `eas credentials` → iOS → Build Credentials → regenerate the
-  provisioning profile, then rebuild. After that, every later build is automatic.
+  refresh once: `eas credentials` -> iOS -> Build Credentials -> regenerate the
+  provisioning profile, then rebuild.
 
 ## Verify
 
-- Open the app once so `syncWidgetData()` writes a snapshot.
-- (Dev) Watch Metro logs: a `[widget_bridge] App Group ... not readable` warning
-  means the App Group is still not shared (provisioning) — see the section above.
-- Add the widget; it should show today's English phrase + meaning (+ transcription on medium).
-- Tap the widget → app opens on home with the phrase details sheet.
-- Tap ▶ → app opens and speaks the phrase (on-device).
-- Next day after 00:05 local, iOS timeline refreshes to the new phrase.
+- Open the app once as a **Plus** user so `syncWidgetData()` writes a snapshot
+  containing real cards.
+- Add the widget, choose a deck; it should show one of your cards + its meaning
+  (+ transcription on taller sizes).
+- Tap the widget -> app opens that exact card in the collection.
+- Tap the previous / next chips -> the widget advances within the same deck.
+- Sign out of Plus and reopen the app -> the widget must fall back to the
+  "requires Plus" placeholder, not keep the old cards.
+- Watch the logs for `[widget_bridge] syncWidgetData failed:` — that warning is
+  intentionally NOT dev-only (see below).
 
-## Design (2026-06-22 redesign)
+## ⛔ Schema drift is the failure mode of this feature — read before editing
 
-Both platforms render the same lit, dimensional surface as the in-app card:
-- **Diagonal 3-stop gradient** (top-leading → bottom-trailing, mid held to 56%),
-  a soft **top-right accent bloom** (`theme.glow`, carried in the payload), and a
-  **1px hairline border** (`theme.border`). On Android the surface is baked into a
-  `Bitmap` (Glance has no gradient brush) — replaces the old flat solid fill.
-- A rounded **identity chip** + an accent **kicker** colored with `theme.titleColor`
-  (was `accent`, which mismatched the card).
-- The **phrase is the hero** and **wraps fully — never truncated to a single
-  ellipsis line**. iOS uses semantic Dynamic-Type fonts + `minimumScaleFactor`;
-  Android uses generous `maxLines` so long phrases wrap instead of clipping.
-- A consistent round **play chip** on medium only (iOS + Android); whole-card tap
-  everywhere else. `tapHint` covers all 8 locales.
-- The **lock-screen accessory** is branded (leading glyph + kicker) and allows the
-  phrase 2 lines.
-- A quiet **stale-day marker** (a "·" / refresh glyph by the kicker) shows when the
-  snapshot's `date` ≠ today — i.e. the app has not run since midnight. Computed in
-  the renderer from the payload `date` (native now reads it).
-- The Android widget-picker **preview** and `widget_colors.xml` are painted in the
-  real default `dark` chrome (was a purple `#7C5CFF` palette that exists in no
-  theme), and the picker description is **localized** (`values-<locale>/strings.xml`).
-- Native decoders **validate `schemaVersion`** (≤2) and fall back to the placeholder
-  on a newer/unknown schema.
+The native side is a **separate build artifact**. It cannot import the TS types,
+so nothing at compile time links `WidgetPayload` to what the decoders read. A
+renamed or removed field does not break the build — it silently produces a dead
+widget.
+
+This has already happened once, and it cost a full release cycle:
+
+> **Incident 2026-08-26 — the entire Android widget was dead.** The v2->v3 rework
+> dropped the flat `english` / `deepLink` fields, but `PhraseWidgetModule.kt` still
+> had `require(english.isNotEmpty())` at the bridge boundary. Every single
+> `setData` threw, so the snapshot was never written and every Android user saw the
+> bare "Phraseman" placeholder. It was invisible because `syncWidgetData` swallows
+> errors and only warned under `__DEV__`. A second latent bug sat right behind it:
+> `JSONObject(payload)` does **not** convert nested `Map`/`List`, so even a passing
+> write would have produced `decks` the reader could not parse.
+
+Rules that came out of it:
+
+1. **Change the payload -> open BOTH native decoders in the same commit**
+   (`PhraseWidgetModule.kt` + `PhraseGlanceWidget.kt`, `PhraseWidgetModule.swift` +
+   `PhrasePayload.swift`). Bump `schemaVersion` and both `MAX_SCHEMA_VERSION`
+   constants together.
+2. **Validate at the bridge only what the current schema actually sends.**
+   A `require()` for a field the app no longer writes is a kill switch.
+3. **Nested structures must be converted explicitly** on Android
+   (`toJsonObject`/`toJsonArray` in `PhraseWidgetModule.kt`).
+4. **Never make the failure dev-only.** The `console.warn` in the `syncWidgetData`
+   catch is deliberately unconditional.
+5. The contract tests (`tests/personal_phrase_widget_native_contract.test.ts`)
+   only grep for strings in files — they did NOT catch this and cannot catch a
+   schema mismatch on their own. Verify on a real device.
 
 ## Notes / known limits
 
 - Audio is on-device `expo-speech`, so widgets cannot play sound directly —
   both platforms open the app and speak. (No mp3 files involved.)
-- Glance/Swift code is compiled for the first time on `expo prebuild` + native
-  build (no macOS/AVD in this session). Expect to resolve any version-specific
-  Glance/WidgetKit API nits then; the redesign targets Glance 1.1.1 + WidgetKit
-  iOS 16/17 APIs verified against the installed libs.
-- iOS picker `configurationDisplayName`/`description` stay Russian (matches the
-  default kicker/placeholder). Full per-locale iOS strings would need a String
-  Catalog on the generated `@bacons/apple-targets` extension — a follow-up.
-- Android has no periodic self-refresh (`updatePeriodMillis=0`, by design to save
-  battery); freshness relies on the app calling `reloadAll` + the stale-day marker.
-  A midnight `WorkManager` refresh is a possible future addition.
-- Phase 3 (spaced-repetition phrase selection via `Flashcard.addedAt`,
-  know/learn buttons) is not yet implemented — the widget currently mirrors the
-  same "phrase of the day" the home card shows.
+- `tests/widget_bridge_payload_contract.test.ts` still tests the dead v2 builder.
+- The whole snapshot is local: no Firestore reads, no network. Entitlement comes
+  from the cached premium status.

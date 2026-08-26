@@ -40,17 +40,28 @@ describe('level Spin v2 reward definitions', () => {
     }
   });
 
-  test('new rolls contain exactly the approved random aura reward and no avatar reward', () => {
+  test('new rolls contain the approved random aura and all-custom-avatar rewards', () => {
     expect(LEVEL_SPIN_REWARD_CATALOG.filter((reward) => reward.id === 'cosmetic_avatar_aura')).toHaveLength(1);
-    expect(LEVEL_SPIN_REWARD_CATALOG.map((reward) => reward.id).join(' ')).not.toMatch(/cosmetic_avatar_common/);
+    expect(LEVEL_SPIN_REWARD_CATALOG.filter((reward) => reward.id === 'cosmetic_avatar_common')).toHaveLength(1);
     expect(ALL_LEVEL_GIFT_DEFS.some((gift) => gift.id === 'cosmetic_avatar_common')).toBe(true);
     expect(ALL_LEVEL_GIFT_DEFS.some((gift) => gift.id === 'cosmetic_avatar_aura')).toBe(true);
+  });
+
+  test('defines the permanent all-attempt restore gift without an expiry', () => {
+    const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === 'attempt_restore_all');
+    expect(gift).toMatchObject({
+      id: 'attempt_restore_all',
+      titleRU: 'Второй шанс',
+      descRU: 'Восстанавливает все 3 попытки во время сессии',
+      spinTier: 'ordinary',
+    });
+    expect(JSON.stringify(gift)).not.toContain('expiresAt');
   });
 
   test('currency cards name pearls and the one unified star currency honestly', () => {
     const byId = new Map(ALL_LEVEL_GIFT_DEFS.map((gift) => [gift.id, gift]));
     expect(byId.get('pearls_500')?.titleRU).toBe('+500 жемчужин');
-    expect(byId.get('stars_1000')?.titleRU).toBe('+1000 звёзд');
+    expect(byId.get('stars_1000')?.titleRU).toBe('+1000 рун');
     expect(byId.get('plus_days_3')?.descRU).toContain('3 дня');
     expect(byId.get('plus_days_7')?.descRU).toContain('7 дней');
     expect(giftShardAmount('pearls_500')).toBe(500);

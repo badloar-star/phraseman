@@ -100,24 +100,22 @@ describe('navigation back underlay', () => {
     expect(source).toContain("animation: 'none'");
   });
 
-  it('keeps per-screen stack animations behind the global transition flags', () => {
+  it('keeps production stack motion instant and dev-only motion behind hard store gates', () => {
     const rootLayoutFile = path.join(__dirname, '..', 'app', '_layout.tsx');
     const source = fs.readFileSync(rootLayoutFile, 'utf8');
     const stackScreenLines = source.split(/\r?\n/).filter((line) => line.includes('<Stack.Screen'));
     const directSlideScreens = stackScreenLines.filter((line) => /animation:\s*'slide_from_(right|bottom)'/.test(line));
 
     expect(source).toContain('const defaultScreenAnimationOptions = ENABLE_SCREEN_TRANSITIONS');
-    expect(source).toContain('const bottomModalAnimationOptions = ENABLE_SCREEN_TRANSITIONS');
+    expect(source).toContain('const bottomModalAnimationOptions = INSTANT_STACK_ANIMATION;');
     expect(source).toContain('...pushScreenAnimationOptions');
     expect(source).toContain('...bottomModalAnimationOptions');
-    // Fade — только через флаг SCREEN_FADE_TRANSITIONS и только когда «полный» slide-режим
-    // выключен (см. config.ts). Гейт по Platform.OS === 'ios' снят осознанно: при 'none'
-    // на Android в зазоре между экранами мелькал голый bgPrimary («тёмный экран» при входе
-    // в урок). Краши Fabric в истории были на CARD-PUSH slide, а не на fade; modal-анимации
-    // (slide_from_bottom) годами едут на обеих платформах у пейволов и шторок разделов.
-    // Суть контракта прежняя: fade НЕ хардкодится, а остаётся за флагом с kill-switch.
+    // Ненулевой push остаётся только явным dev-preview; modal и sibling routes
+    // всегда получают общий zero-duration объект.
     expect(source).toContain('SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS');
     expect(source).toContain("animation: 'fade', animationDuration: 140");
+    expect(source).toContain('const cardsSiblingAnimationOptions = INSTANT_STACK_ANIMATION;');
+    expect(source).toContain('const bottomModalAnimationOptions = INSTANT_STACK_ANIMATION;');
     expect(directSlideScreens).toEqual([]);
   });
 

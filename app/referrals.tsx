@@ -652,7 +652,7 @@ export default function ReferralsScreen() {
             </TapScale>
           ) : undefined}
         />
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={refresh} />}
           contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34, gap: 16 }}

@@ -3,6 +3,7 @@ export const SESSION_ATTEMPT_ROUTES = Object.freeze([
   '/lesson_words',
   '/lesson_irregular_verbs',
   '/mistake_practice_session',
+  '/flashcards_swipe',
   '/flashcards_blitz_session',
   '/flashcards_listening_session',
   '/flashcards_speaking_session',
@@ -43,6 +44,11 @@ export const SESSION_ATTEMPT_ROUTE_ENTRIES: readonly SessionAttemptRouteEntry[] 
     route: '/mistake_practice_session',
     spendsEnergy: true,
     integrationTest: 'tests/mistake_practice_attempts_integration.test.tsx',
+  }),
+  Object.freeze({
+    route: '/flashcards_swipe',
+    spendsEnergy: true,
+    integrationTest: 'tests/fc_swipe_attempts_integration.test.tsx',
   }),
   Object.freeze({
     route: '/flashcards_blitz_session',

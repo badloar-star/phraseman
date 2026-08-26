@@ -159,7 +159,7 @@ export const ModeDemoPlayer = memo(function ModeDemoPlayer({ mode, onClose }: Mo
         ) : <View style={styles.simSpacer} />}
       </View>
 
-      <ScrollView contentContainerStyle={[styles.body, { paddingHorizontal: ds.spacing.lg }]} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="fast" contentContainerStyle={[styles.body, { paddingHorizontal: ds.spacing.lg }]} showsVerticalScrollIndicator={false}>
         <Text style={[styles.instruction, { color: t.textSecond, fontSize: f.body }]}>{round.instruction}</Text>
 
         {phase === 'prompt' ? (

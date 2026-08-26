@@ -39,7 +39,6 @@ import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerX
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
-import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
@@ -50,6 +49,7 @@ import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
+import { prefetchPhraseAudio } from '../hooks/phrase_audio_prefetch';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
@@ -76,7 +76,7 @@ import {
   markLessonAttemptTerminal,
 } from './lesson_analytics_attempt';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
@@ -132,6 +132,12 @@ import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_replay_reward';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const GRAMMAR_HINTS = [
@@ -434,6 +440,7 @@ interface LessonContentProps {
   score: number;
   currentEnergy: number;
   currentMaxEnergy: number;
+  attemptsRemaining: 0 | 1 | 2 | 3;
   progress: string[];
   totalCells: number;
   comboCount: number;
@@ -512,6 +519,7 @@ const LessonContent = React.memo(function LessonContent({
   score,
   currentEnergy,
   currentMaxEnergy,
+  attemptsRemaining,
   progress,
   totalCells,
   comboCount,
@@ -999,6 +1007,7 @@ const LessonContent = React.memo(function LessonContent({
             {triLang(lang, {
               uk: 'Урок',
               ru: 'Урок',
+              en: 'Lesson',
               es: 'Lección',
               'pt-BR': 'Lição',
               vi: 'Bài',
@@ -1008,7 +1017,7 @@ const LessonContent = React.memo(function LessonContent({
             })} {lessonId}
           </Text>
         </LessonPressable>
-        {/* Right side: energy icons + combo badge + stats */}
+        {/* Right side: attempts + combo badge + stats. Energy is paid once on entry. */}
         <View
           style={{
             flex: 1,
@@ -1022,10 +1031,11 @@ const LessonContent = React.memo(function LessonContent({
             columnGap: isSmallScreen ? 4 : 8,
           }}
         >
-          {/* Energy icons at top */}
-          <View style={{ paddingVertical: linkedSliceCompact ? 3 : 8 }}>
-            <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={currentMaxEnergy} shouldShake={shouldShake} />
-          </View>
+          <SessionAttemptsHud
+            remaining={attemptsRemaining}
+            locale={lang}
+            testID="lesson1-session-attempts"
+          />
 
           {comboCount >= 3 && (
             <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />
@@ -1061,7 +1071,7 @@ const LessonContent = React.memo(function LessonContent({
           paddingBottom: linkedSliceCompact ? 4 + bottomInset : (status === 'result' ? 100 + bottomInset : 8 + bottomInset),
           flexGrow: linkedSliceCompact ? 0 : undefined,
         }}
-        decelerationRate="normal"
+        decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!linkedSliceCompact}
         showsVerticalScrollIndicator={false}
@@ -1074,6 +1084,7 @@ const LessonContent = React.memo(function LessonContent({
           {triLang(lang, {
             ru: settings.hardMode ? 'Напечатай фразу:' : 'Собери фразу:',
             uk: settings.hardMode ? 'Надрукуй фразу:' : 'Склади фразу:',
+            en: settings.hardMode ? 'Type the phrase:' : 'Build the phrase:',
             es: settings.hardMode ? 'Escribe la frase:' : 'Forma la frase:',
             'pt-BR': settings.hardMode ? 'Digite a frase:' : 'Monte a frase:',
             vi: settings.hardMode ? 'Hãy gõ câu:' : 'Hãy ghép câu:',
@@ -1526,11 +1537,12 @@ const LessonContent = React.memo(function LessonContent({
               {lessonTheorySupportBlocked ? triLang(lang, {
                 ru: 'Теория',
                 uk: 'Теорія',
+                en: 'Theory',
                 es: 'Teoría',
                 'pt-BR': 'Teoria',
-                vi: 'Đang duyệt',
-                id: 'Ditinjau',
-                tr: 'İncelemede',
+                vi: 'Lý thuyết',
+                id: 'Teori',
+                tr: 'Teori',
                 pl: 'Teoria',
               }) : s.lesson.theory}
             </Text>
@@ -1544,6 +1556,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityLabel={triLang(lang, {
                 ru: 'Сказать фразу вслух',
                 uk: 'Сказати фразу вголос',
+                en: 'Say the phrase out loud',
                 es: 'Decir la frase en voz alta',
                 'pt-BR': 'Dizer a frase em voz alta',
                 vi: 'Nói câu này thành tiếng',
@@ -1567,6 +1580,7 @@ const LessonContent = React.memo(function LessonContent({
                 {triLang(lang, {
                   ru: 'Устно',
                   uk: 'Усно',
+                  en: 'Speak',
                   es: 'Hablar',
                   'pt-BR': 'Falar',
                   vi: 'Nói',
@@ -1588,6 +1602,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityLabel={triLang(lang, {
                 ru: 'Посмотреть пройденные фразы',
                 uk: 'Переглянути пройдені фрази',
+                en: 'View completed phrases',
                 es: 'Ver frases ya completadas',
                 'pt-BR': 'Ver frases já concluídas',
                 vi: 'Xem các câu đã hoàn thành',
@@ -1606,6 +1621,7 @@ const LessonContent = React.memo(function LessonContent({
                 {triLang(lang, {
                   ru: 'Назад',
                   uk: 'Назад',
+                  en: 'Back',
                   es: 'Atrás',
                   'pt-BR': 'Voltar',
                   vi: 'Xem lại',
@@ -1627,6 +1643,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityLabel={triLang(lang, {
                 ru: 'Объяснить фразу простыми словами',
                 uk: 'Пояснити фразу простими словами',
+                en: 'Explain the phrase simply',
                 es: 'Explicar la frase con palabras simples',
                 'pt-BR': 'Explicar a frase em palavras simples',
                 vi: 'Giải thích câu bằng lời đơn giản',
@@ -1645,6 +1662,7 @@ const LessonContent = React.memo(function LessonContent({
                 {triLang(lang, {
                   ru: 'Объяснить',
                   uk: 'Пояснити',
+                  en: 'Explain',
                   es: 'Explicar',
                   'pt-BR': 'Explicar',
                   vi: 'Giải thích',
@@ -1664,6 +1682,7 @@ const LessonContent = React.memo(function LessonContent({
               accessibilityLabel={triLang(lang, {
                 ru: 'Повторить озвучку фразы',
                 uk: 'Повторити озвучку фрази',
+                en: 'Replay the phrase audio',
                 es: 'Repetir audio de la frase',
                 'pt-BR': 'Repetir audio da frase',
                 vi: 'Phát lại âm thanh của câu',
@@ -1682,6 +1701,7 @@ const LessonContent = React.memo(function LessonContent({
                 {triLang(lang, {
                   ru: 'Повтор',
                   uk: 'Повтор',
+                  en: 'Replay',
                   es: 'Repetir',
                   'pt-BR': 'Repetir',
                   vi: 'Phát lại',
@@ -1785,6 +1805,7 @@ const LessonContent = React.memo(function LessonContent({
                   {triLang(lang, {
                     ru: 'Пройденные фразы',
                     uk: 'Пройдені фрази',
+                    en: 'Completed phrases',
                     es: 'Frases completadas',
                     'pt-BR': 'Frases concluídas',
                     vi: 'Câu đã hoàn thành',
@@ -1820,7 +1841,7 @@ const LessonContent = React.memo(function LessonContent({
                   <TapScale
                     onPress={() => { if (reviewCurrent?.en) onPlayReviewAudio(reviewCurrent.en); }}
                     accessibilityLabel={triLang(lang, {
-                      ru: 'Озвучить фразу', uk: 'Озвучити фразу', es: 'Reproducir audio',
+                      ru: 'Озвучить фразу', uk: 'Озвучити фразу', en: 'Play the phrase', es: 'Reproducir audio',
                       'pt-BR': 'Reproduzir audio', vi: 'Phát âm thanh', id: 'Putar audio',
                       tr: 'Sesi çal', pl: 'Odtwórz dźwięk',
                     })}
@@ -1913,6 +1934,18 @@ function LessonScreen() {
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
+  const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `lesson:${studyTarget}:${lessonId}:${attemptSessionId}`,
+    initialQuestionId: `lesson:${lessonId}:loading`,
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+  }, []);
   const frenchRemoteSourceLocale = lang === 'uk' ? 'uk' : 'ru';
   const frenchRemoteLessonRequired = frenchStudyActive(studyTarget);
   const [remoteFrenchLessonRows, setRemoteFrenchLessonRows] = useState<LessonPhrase[] | null>(null);
@@ -1964,7 +1997,8 @@ function LessonScreen() {
   const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
   const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonStorageId, LESSON_DATA.length, effectiveTotal, studyTarget);
   const initialOverridePhraseCell = getInitialOverridePhraseCell(lessonStorageId, effectiveTotal, studyTarget);
-  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, confirmSpendOne, energyReady } = useEnergy();
+  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const lessonEnergyIntent = useEnergySessionIntent('lesson', String(lessonId));
   useEffect(() => {
     let cancelled = false;
     void (async () => {
@@ -2150,6 +2184,15 @@ function LessonScreen() {
 
   // Фраза определяется позицией ячейки с учётом shuffle и возможного replay ошибки
   const phrase = getPhraseForCell(overridePhraseCell ?? cellIndex);
+  const attemptsQuestionId = [
+    'lesson',
+    String(lessonId),
+    String(overridePhraseCell ?? cellIndex),
+    String(phrase?.id ?? phrase?.english ?? phrase?.spanish ?? 'loading'),
+  ].join(':');
+  useEffect(() => {
+    attempts.updateQuestion(attemptsQuestionId);
+  }, [attempts.updateQuestion, attemptsQuestionId]);
 
   const phraseStartKey = (
     cell: number,
@@ -2307,6 +2350,29 @@ function LessonScreen() {
     spokenResultKeyRef.current = key;
     speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
   }, [cellIndex, lessonRuntimeActive, phrase, resultAudioLine, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
+
+  // зачем: раньше клип фразы качался холодно в момент показа результата, с
+  // таймаутом на скачивание — на первых фразах урока (худший случай, кэш пуст)
+  // это часто било во внешний CLIP_START_TIMEOUT_MS раньше, чем файл успевал
+  // докачаться, и фраза звучала роботом expo-speech, хотя клип физически есть
+  // (см. hooks/phrase_audio_prefetch.ts). Прогреваем пачкой все фразы урока в
+  // фоне сразу при заходе — начиная с текущей позиции, чтобы то, что человек
+  // услышит первым, качалось первым. Только для en: клипы озвучены EN-only.
+  useEffect(() => {
+    if (studyTarget !== 'en' || !hasPlayableLessonRows) return;
+    const ordered: string[] = [];
+    for (let i = 0; i < effectiveTotal; i++) {
+      const cell = (cellIndex + i) % effectiveTotal;
+      const p = getPhraseForCell(cell);
+      if (!p) continue;
+      const line = phraseAnswerDisplayLine(p, studyTarget, lang);
+      if (line) ordered.push(line);
+    }
+    const handle = prefetchPhraseAudio(ordered);
+    return () => handle.cancel();
+    // getPhraseForCell зависит от phraseOrderRef (ref) + LESSON_DATA; перечислять ref не нужно.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [studyTarget, hasPlayableLessonRows, effectiveTotal, LESSON_DATA, lang, lessonId]);
 
   const replayResultPhraseAudio = useCallback(() => {
     if (!lessonRuntimeActive || status !== 'result' || !phrase) return;
@@ -2547,13 +2613,14 @@ function LessonScreen() {
     if (entryEnergyGateLessonRef.current === lessonId) return;
     entryEnergyGateLessonRef.current = lessonId;
     let active = true;
-    void confirmSpendOneRef.current().then(result => {
+    void confirmSpendOneRef.current(lessonEnergyIntent).then(result => {
       if (!active) return;
+      if (result === 'spent') void acknowledgeSessionStart(lessonEnergyIntent.operationId);
       if (result === 'insufficient') showEnergyEmptyFeedback();
       if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
     });
     return () => { active = false; };
-  }, [energyReady, lessonId, currentEnergy, bonusEnergy, testerEnergyDisabled, showEnergyEmptyFeedback]);
+  }, [acknowledgeSessionStart, bonusEnergy, currentEnergy, energyReady, lessonEnergyIntent, lessonId, router, showEnergyEmptyFeedback, testerEnergyDisabled]);
 
   const loadData = async () => {
     if (!isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)) {
@@ -2868,6 +2935,14 @@ function LessonScreen() {
     //   В режиме повтора (isReplay) ошибка может перекрыть зелёную ячейку → оценка падает
     if (isCompletingRef.current) return;
     sessionAnswerCount.current += 1;
+    const attemptEffect = attempts.registerVerdict({
+      answerAttemptId: [
+        attemptSessionId,
+        String(overridePhraseCell ?? cellIndex),
+        String(sessionAnswerCount.current),
+      ].join(':'),
+      verdict: isRight ? 'correct' : 'pedagogical_wrong',
+    });
     // [FeedbackKit] Значение серии ДО любых сбросов этого ответа (ветка ошибки
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
     // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
@@ -3129,6 +3204,14 @@ function LessonScreen() {
       Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
     });
 
+    if (attemptEffect === 'attempts_exhausted') {
+      attemptsModalTimerRef.current = setTimeout(
+        () => setShowAttemptsModal(true),
+        SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+      );
+      return;
+    }
+
     const nextCell = (cellIndex + 1) % effectiveTotal;
     void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)).catch(() => {});
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
@@ -3273,7 +3356,42 @@ function LessonScreen() {
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY, attempts.registerVerdict, attemptSessionId]);
+
+  const retryCurrentLessonPhraseAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+      setStatus('playing');
+      setLessonTeachingNote(null);
+      setWasWrong(false);
+      setTypedText('');
+      setContrExpanded(null);
+      answerInFlightRef.current = false;
+      fadeAnim.stopAnimation(() => fadeAnim.setValue(0));
+
+      const phraseWords = getPhraseTokens(phrase, studyTarget);
+      let nextWordIndex = 0;
+      const initialSelection: string[] = [];
+      while (nextWordIndex < phraseWords.length && isZeroArticlePosition(phraseWords, nextWordIndex)) {
+        initialSelection.push(phraseWords[nextWordIndex]);
+        nextWordIndex += 1;
+      }
+      setSelectedWords(initialSelection);
+      setPhraseWordIdx(nextWordIndex);
+      setShuffled(nextWordIndex < phraseWords.length ? safeGetDistracts(phrase, nextWordIndex, studyTarget) : []);
+      if (settings.hardMode) setTimeout(() => textInputRef.current?.focus(), 50);
+    } catch {
+      // The same phrase remains blocked until durable recovery succeeds.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes, fadeAnim, phrase, settings.hardMode, studyTarget]);
+
+  const endAttemptsExhaustedLessonSession = useCallback(() => {
+    attempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    handleLessonHeaderBack();
+  }, [attempts.endAttemptsSession, handleLessonHeaderBack]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
@@ -3653,7 +3771,7 @@ function LessonScreen() {
     const newCount = fiftyFiftyUsedToday + 1;
     setFiftyFiftyUsedToday(newCount);
     const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
-    AsyncStorage.setItem(todayKey, String(newCount));
+    AsyncStorage.setItem(todayKey, String(newCount)).catch(() => {});
   }, [fiftyFiftyUsedToday, bonusHints, phrase]);
 
   const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
@@ -3684,6 +3802,7 @@ function LessonScreen() {
               {triLang(lang, {
                 ru: 'Не удалось загрузить французский урок',
                 uk: 'Не вдалося завантажити французький урок',
+                en: 'Couldn’t load the French lesson',
                 es: 'No se pudo cargar la lección de francés',
                 'pt-BR': 'Não foi possível carregar a aula de francês',
                 vi: 'Không tải được bài học tiếng Pháp',
@@ -3699,7 +3818,7 @@ function LessonScreen() {
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </TapScale>
           </SafeAreaView>
@@ -3718,10 +3837,11 @@ function LessonScreen() {
               {triLang(lang, {
                 ru: 'Французский пакет не загружен',
                 uk: 'Французький пакет не завантажено',
+                en: 'French pack not loaded',
                 es: 'El paquete de francés no está cargado',
                 'pt-BR': 'O pacote de francês não foi carregado',
-                vi: 'Nội dung đang chờ kiểm duyệt',
-                id: 'Materi menunggu peninjauan',
+                vi: 'Gói tiếng Pháp chưa được tải',
+                id: 'Paket bahasa Prancis belum dimuat',
                 tr: 'Fransızca paketi yüklenmedi',
                 pl: 'Pakiet francuski nie został załadowany',
               })}
@@ -3730,11 +3850,12 @@ function LessonScreen() {
               {triLang(lang, {
                 ru: 'Проверь интернет и повтори загрузку. Английские фразы не используются как замена.',
                 uk: 'Перевір інтернет і повтори завантаження. Англійські фрази не використовуються як заміна.',
-                es: 'Este lesson no usará frases inglesas como reemplazo.',
-                'pt-BR': 'Este lesson não usará frases inglesas como substituição.',
-                vi: 'Bài này sẽ không dùng câu tiếng Anh thay thế.',
-                id: 'Pelajaran ini tidak memakai frasa Inggris sebagai pengganti.',
-                tr: 'Bu ders İngilizce ifadeleri yedek olarak kullanmayacak.',
+                en: 'Check your connection and reload. English phrases aren’t used as a substitute.',
+                es: 'Revisa tu conexión y vuelve a cargar. No se usarán frases en inglés como reemplazo.',
+                'pt-BR': 'Verifique sua conexão e recarregue. Frases em inglês não serão usadas como substituto.',
+                vi: 'Kiểm tra kết nối và tải lại. Câu tiếng Anh sẽ không được dùng thay thế.',
+                id: 'Periksa koneksi dan muat ulang. Frasa Inggris tidak dipakai sebagai pengganti.',
+                tr: 'Bağlantını kontrol edip yeniden yükle. İngilizce ifadeler yedek olarak kullanılmaz.',
                 pl: 'Ta lekcja nie użyje angielskich fraz jako zamiennika.',
               })}
             </Text>
@@ -3745,7 +3866,7 @@ function LessonScreen() {
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' })}
+                {triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' })}
               </Text>
             </TapScale>
           </SafeAreaView>
@@ -3798,6 +3919,7 @@ function LessonScreen() {
             score={score}
             currentEnergy={currentEnergy}
             currentMaxEnergy={currentMaxEnergy}
+            attemptsRemaining={attempts.state.remainingAttempts}
             progress={progress}
             totalCells={effectiveTotal}
             comboCount={comboCount}
@@ -3867,6 +3989,16 @@ function LessonScreen() {
       onClose={resetNoEnergyModal}
       onGotIt={dismissEnergyModal}
       paywallContext="no_energy"
+    />
+    <SessionAttemptsRecoveryModal
+      visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+      locale={lang}
+      giftCount={attempts.giftCount}
+      runeBalance={attempts.runeBalance ?? 0}
+      busy={attempts.recoveryBusy}
+      onUseGift={() => { void retryCurrentLessonPhraseAfterRecovery('gift'); }}
+      onSpendRunes={() => { void retryCurrentLessonPhraseAfterRecovery('runes'); }}
+      onEndSession={endAttemptsExhaustedLessonSession}
     />
     </>
   );

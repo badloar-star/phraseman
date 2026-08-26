@@ -22,16 +22,15 @@ describe('tab background pre-mount contract', () => {
     const source = readLayout();
 
     expect(source).toContain('const ENABLE_BACKGROUND_TAB_PREMOUNT = true');
-    // Турниры законсервированы: прогреваются только три выпущенных отложенных
-    // таба — уроки, друзья и настройки. Скрытой физической страницы здесь нет.
-    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const');
+    // Текущие четыре deferred-панели прогреваются по одной, не одним блоком.
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const');
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400');
     expect(source).toContain("onAppEvent('app_first_content_ready', startPremount)");
     expect(source).toContain('setTimeout(startPremount, BACKGROUND_TAB_PREMOUNT_FALLBACK_MS)');
     expect(source).toContain("AppState.currentState !== 'active'");
-    expect(source).toMatch(/mountedTabs\.has\(/);
+    expect(source).toContain('shouldLoadTabScreen(activeIdx, i, mountedTabs)');
     expect(source).not.toContain('InteractionManager');
     expect(source).not.toContain('runAfterInteractions');
   });
@@ -70,7 +69,7 @@ describe('tab background pre-mount contract', () => {
     expect(source).toContain('const isRetainedTab = presentation === "tab";');
     expect(source).toContain('const lessonsTabVisible = isRetainedTab && runtimeOwnerId === "lessons";');
     expect(source).toContain('const lessonsRuntimeActive = useRuntimeActive(');
-    expect(source).toContain('useFocusEffect(\r\n    useCallback(() => {');
+    expect(source).toMatch(/useFocusEffect\(\s*useCallback\(\(\) => \{/);
     expect(source).toContain('void loadScores();');
     expect(source).toContain('const scoresLoadRef = useRef<{');
     expect(source).toContain('if (isRetainedTab) return;');

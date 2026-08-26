@@ -64,8 +64,8 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
     onClose();
   };
 
-  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
-  const laterLabel = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
+  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  const laterLabel = triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
 
   // зачем: тело карточки одинаковое в classic/hybrid — расходятся только
   // внешняя оболочка (нативный Modal vs HybridAlertShell) и физика кнопок
@@ -107,6 +107,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           {triLang(lang, {
             ru: 'Твой Plus активирован',
             uk: 'Твій Plus активовано',
+            en: 'Your Plus is active',
             es: 'Tu Plus está activo',
             'pt-BR': 'Seu Plus está ativo',
             vi: 'Plus của bạn đã kích hoạt',
@@ -121,6 +122,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           {triLang(lang, {
             ru: 'Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
             uk: 'Хочеш поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
+            en: 'Want to share your impressions of Phraseman? An honest review helps other people know what to expect from the app.',
             es: '¿Quieres compartir tu impresión de Phraseman? Una reseña honesta ayuda a otras personas a saber qué esperar de la app.',
             'pt-BR': 'Quer compartilhar sua impressão do Phraseman? Uma avaliação honesta ajuda outras pessoas a saber o que esperar do app.',
             vi: 'Bạn muốn chia sẻ cảm nhận về Phraseman? Một đánh giá chân thật giúp người khác biết nên mong đợi gì từ ứng dụng.',
@@ -142,7 +144,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           >
             <Ionicons name="create-outline" size={19} color={t.correctText} />
             <Text style={[styles.primaryText, { fontSize: f.body, color: t.correctText }]}>
-              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
+              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </DuoPressable>
         ) : (
@@ -155,7 +157,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           >
             <Ionicons name="create-outline" size={19} color={t.correctText} />
             <Text style={[styles.primaryText, { fontSize: f.body, color: t.correctText }]}>
-              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
+              {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </TouchableOpacity>
         )}

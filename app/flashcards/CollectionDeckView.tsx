@@ -63,6 +63,8 @@ type Props = {
   onExitToList: () => void;
   /** E13: «сила слова» по EN карточки (word_strength.strengthFor); null — без точек. */
   strengthForCard?: ((en: string) => WordStrength | null) | null;
+  /** Additive action rendered over the current top card (for example bookmark). */
+  renderTopCardAction?: (card: CardItem) => React.ReactNode;
   /**
    * Резерв под плавающую капсулу таббара раздела (FC_TABBAR_HEIGHT + зазор).
    *
@@ -86,6 +88,7 @@ export default function CollectionDeckView({
   onFlipTracked,
   onExitToList,
   strengthForCard = null,
+  renderTopCardAction,
   extraBottomPad = 0,
 }: Props) {
   const insets = useStableSafeAreaInsets();
@@ -473,6 +476,14 @@ export default function CollectionDeckView({
           testID="fc-deck-card"
           strength={strengthForCard ? strengthForCard(card.en) : null}
         />
+        {renderTopCardAction ? (
+          <View
+            pointerEvents="box-none"
+            style={{ position: 'absolute', inset: 0, zIndex: 5 }}
+          >
+            {renderTopCardAction?.(card)}
+          </View>
+        ) : null}
       </Reanimated.View>
     </View>
   );
@@ -506,7 +517,10 @@ export default function CollectionDeckView({
         <Pressable
           testID="fc-deck-exit"
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, { ru: 'К списку', uk: 'До списку', es: 'A la lista' })}
+          accessibilityLabel={triLang(lang, {
+            ru: 'К списку', uk: 'До списку', es: 'A la lista',
+            'pt-BR': 'Para a lista', vi: 'Về danh sách', id: 'Ke daftar', tr: 'Listeye dön', pl: 'Do listy',
+          })}
           onPress={onExitToList}
           hitSlop={10}
           style={({ pressed }) => ({
@@ -543,7 +557,10 @@ export default function CollectionDeckView({
         <Pressable
           testID="fc-deck-prev"
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, { ru: 'Предыдущая карточка', uk: 'Попередня картка', es: 'Tarjeta anterior' })}
+          accessibilityLabel={triLang(lang, {
+            ru: 'Предыдущая карточка', uk: 'Попередня картка', es: 'Tarjeta anterior',
+            'pt-BR': 'Cartão anterior', vi: 'Thẻ trước', id: 'Kartu sebelumnya', tr: 'Önceki kart', pl: 'Poprzednia karta',
+          })}
           onPress={goPrev}
           disabled={index <= 0}
           hitSlop={8}
@@ -571,7 +588,10 @@ export default function CollectionDeckView({
         <Pressable
           testID="fc-deck-next"
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, { ru: 'Следующая карточка', uk: 'Наступна картка', es: 'Siguiente tarjeta' })}
+          accessibilityLabel={triLang(lang, {
+            ru: 'Следующая карточка', uk: 'Наступна картка', es: 'Siguiente tarjeta',
+            'pt-BR': 'Próximo cartão', vi: 'Thẻ tiếp theo', id: 'Kartu berikutnya', tr: 'Sonraki kart', pl: 'Następna karta',
+          })}
           onPress={goNext}
           disabled={index >= total - 1}
           hitSlop={8}

@@ -172,13 +172,13 @@ export default function LevelSpinRewardModal({
 
   const title = gift
     ? giftDisplayTitleForLang(gift, lang)
-    : triLang(lang, { ru: 'ПОДАРОК ПОЛУЧЕН', uk: 'ПОДАРУНОК ОТРИМАНО', es: 'REGALO RECIBIDO', 'pt-BR': 'PRESENTE RECEBIDO', vi: 'ĐÃ NHẬN QUÀ', id: 'HADIAH DITERIMA', tr: 'HEDİYE ALINDI', pl: 'PREZENT ODEBRANY' });
+    : triLang(lang, { ru: 'ПОДАРОК ПОЛУЧЕН', uk: 'ПОДАРУНОК ОТРИМАНО', en: 'GIFT RECEIVED', es: 'REGALO RECIBIDO', 'pt-BR': 'PRESENTE RECEBIDO', vi: 'ĐÃ NHẬN QUÀ', id: 'HADIAH DITERIMA', tr: 'HEDİYE ALINDI', pl: 'PREZENT ODEBRANY' });
   const description = gift
     ? giftDisplayDescForLang(gift, lang)
-    : triLang(lang, { ru: 'Награда сохранена в подарках', uk: 'Нагороду збережено в подарунках', es: 'La recompensa está guardada en regalos', 'pt-BR': 'A recompensa foi salva nos presentes', vi: 'Phần thưởng đã được lưu trong quà tặng', id: 'Hadiah disimpan di hadiah', tr: 'Ödül hediyelerde saklandı', pl: 'Nagroda jest zapisana w prezentach' });
-  const rarity = gift ? giftSpinTierUiLabel(gift, lang) : triLang(lang, { ru: 'НАГРАДА', uk: 'НАГОРОДА', es: 'RECOMPENSA', 'pt-BR': 'RECOMPENSA', vi: 'PHẦN THƯỞNG', id: 'HADIAH', tr: 'ÖDÜL', pl: 'NAGRODA' });
-  const ctaLabel = triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'TAMAM', pl: 'GOTOWE' });
-  const claimA11yLabel = triLang(lang, { ru: 'Получить подарок', uk: 'Отримати подарунок', es: 'Recibir regalo', 'pt-BR': 'Receber presente', vi: 'Nhận phần thưởng', id: 'Ambil hadiah', tr: 'Hediyeyi al', pl: 'Odbierz prezent' });
+    : triLang(lang, { ru: 'Награда применена к аккаунту', uk: 'Нагороду застосовано до акаунта', en: 'The reward was applied to your account', es: 'La recompensa se aplicó a tu cuenta', 'pt-BR': 'A recompensa foi aplicada à sua conta', vi: 'Phần thưởng đã được áp dụng cho tài khoản', id: 'Hadiah diterapkan ke akunmu', tr: 'Ödül hesabına uygulandı', pl: 'Nagroda została zastosowana na koncie' });
+  const rarity = gift ? giftSpinTierUiLabel(gift, lang) : triLang(lang, { ru: 'НАГРАДА', uk: 'НАГОРОДА', en: 'REWARD', es: 'RECOMPENSA', 'pt-BR': 'RECOMPENSA', vi: 'PHẦN THƯỞNG', id: 'HADIAH', tr: 'ÖDÜL', pl: 'NAGRODA' });
+  const ctaLabel = triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', en: 'DONE', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'TAMAM', pl: 'GOTOWE' });
+  const claimA11yLabel = triLang(lang, { ru: 'Закрыть полученный подарок', uk: 'Закрити отриманий подарунок', en: 'Close received gift', es: 'Cerrar el regalo recibido', 'pt-BR': 'Fechar o presente recebido', vi: 'Đóng phần thưởng đã nhận', id: 'Tutup hadiah yang diterima', tr: 'Alınan hediyeyi kapat', pl: 'Zamknij otrzymany prezent' });
 
   const handleClaim = () => {
     void hapticTap();
@@ -200,7 +200,7 @@ export default function LevelSpinRewardModal({
           <ReanimatedAnimated.View style={[styles.panel, styles.panelHybrid, { backgroundColor: t.bgCard }, hybridPanelStyle]}>
             <View style={styles.topLine} />
             <Text style={[styles.kicker, { color: t.gold }]}>
-              {triLang(lang, { ru: 'ТВОЙ ПОДАРОК', uk: 'ТВІЙ ПОДАРУНОК', es: 'TU REGALO', 'pt-BR': 'SEU PRESENTE', vi: 'PHẦN THƯỞNG CỦA BẠN', id: 'HADIAHMU', tr: 'HEDİYEN', pl: 'TWÓJ PREZENT' })}
+              {triLang(lang, { ru: 'ТВОЙ ПОДАРОК', uk: 'ТВІЙ ПОДАРУНОК', en: 'YOUR GIFT', es: 'TU REGALO', 'pt-BR': 'SEU PRESENTE', vi: 'PHẦN THƯỞNG CỦA BẠN', id: 'HADIAHMU', tr: 'HEDİYEN', pl: 'TWÓJ PREZENT' })}
             </Text>
             <ReanimatedAnimated.View style={[styles.iconStage, hybridIconPulseStyle]}>
               <View pointerEvents="none" style={[styles.iconHaloHybrid, { backgroundColor: `${t.gold}1F` }]} />
@@ -252,7 +252,7 @@ export default function LevelSpinRewardModal({
           <Animated.View pointerEvents="none" style={[styles.glow, { opacity: glowOpacity }]} />
           <View style={styles.topLine} />
           <Text style={[styles.kicker, { color: t.gold }]}>
-            {triLang(lang, { ru: 'ТВОЙ ПОДАРОК', uk: 'ТВІЙ ПОДАРУНОК', es: 'TU REGALO', 'pt-BR': 'SEU PRESENTE', vi: 'PHẦN THƯỞNG CỦA BẠN', id: 'HADIAHMU', tr: 'HEDİYEN', pl: 'TWÓJ PREZENT' })}
+            {triLang(lang, { ru: 'ТВОЙ ПОДАРОК', uk: 'ТВІЙ ПОДАРУНОК', en: 'YOUR GIFT', es: 'TU REGALO', 'pt-BR': 'SEU PRESENTE', vi: 'PHẦN THƯỞNG CỦA BẠN', id: 'HADIAHMU', tr: 'HEDİYEN', pl: 'TWÓJ PREZENT' })}
           </Text>
           <Animated.View style={[styles.iconStage, { transform: [{ translateY: iconY }, { scale: iconScale }] }]}>
             {/* guard-ok: classic-путь, задание требует сохранить без изменений 1:1 */}

@@ -178,6 +178,21 @@ export const CLUB_DESC_ES: Record<number, string> = {
   11: 'La cima del ranking en la app; bonificación máxima de un +110% de XP.',
 };
 
+export const CLUB_NAME_EN: Record<number, string> = {
+  0: 'Copper League',
+  1: 'Bronze League',
+  2: 'Silver League',
+  3: 'Gold League',
+  4: 'Platinum League',
+  5: 'Emerald League',
+  6: 'Sapphire League',
+  7: 'Ruby League',
+  8: 'Diamond League',
+  9: 'Black Diamond League',
+  10: 'Ether League',
+  11: 'Supreme League',
+};
+
 export const CLUB_NAME_PLANNED: Record<number, Record<PlannedInterfaceLang, string>> = {
   0: { 'pt-BR': 'Liga de Cobre', vi: 'Đồng', id: 'Tembaga', tr: 'Bakır', pl: 'Miedź' },
   1: { 'pt-BR': 'Liga de Bronze', vi: 'Đồng', id: 'Perunggu', tr: 'Bronz', pl: 'Brąz' },
@@ -316,6 +331,7 @@ export function clubTierShortName(club: Pick<ClubDef, 'id' | 'nameRU' | 'nameUK'
     ru: club.nameRU,
     uk: club.nameUK,
     es: club.nameES,
+    en: CLUB_NAME_EN[club.id] ?? club.nameES,
     'pt-BR': clubNamePlanned(club.id, 'pt-BR'),
     vi: clubNamePlanned(club.id, 'vi'),
     id: clubNamePlanned(club.id, 'id'),

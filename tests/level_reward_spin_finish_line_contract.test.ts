@@ -50,7 +50,7 @@ describe('Finish Line level spin screen contract', () => {
     expect(new Set(ids).size).toBeGreaterThanOrEqual(15);
     expect(code).toContain('testID="level-spin-selector"');
     expect(code).toContain('LevelSpinRewardArt');
-    expect(code).not.toContain('cosmetic_avatar_common');
+    expect(code).toContain('cosmetic_avatar_common');
     expect(code).not.toContain('choice_3_level');
   });
 
@@ -165,16 +165,23 @@ describe('Finish Line level spin screen contract', () => {
     expect(screen).toContain('onRevealed={handleRevealed}');
   });
 
-  test('keeps exactly one winner modal, then saves the reward to Gifts on claim', () => {
+  test('keeps exactly one winner modal and applies its reward before acknowledgement', () => {
     const screen = source();
     const finishLine = presentation();
     expect(screen).toContain('localLevelSpinReceiptToInventory');
+    expect(screen).toContain('applyLocalLevelSpinRewardExactlyOnce');
+    expect(screen).toContain('beginRewardDelivery(nextReceipt, accountToken)');
     expect(screen).not.toContain("import LevelGiftModal from '../components/LevelGiftModal'");
     expect(screen).not.toContain('markLevelSpinGiftOccurrenceClaimed');
     expect(screen).not.toContain('testID="level-spin-gift-modal-host"');
     expect(readFileSync(join(process.cwd(), 'components', 'LevelSpinRewardModal.tsx'), 'utf8')).toContain("soundDirector.request('pm.spin.reward_lock'");
     expect(screen).not.toContain("soundDirector.request('pm.spin.reel_start'");
-    expect(screen).toContain('await acknowledgeLocalLevelSpin(requestId)');
+    const revealed = screen.slice(screen.indexOf('const handleRevealed'), screen.indexOf('const settleRewardPreview'));
+    expect(revealed).not.toContain('acknowledgeLocalLevelSpin');
+    const settle = screen.slice(screen.indexOf('const settleRewardPreview'), screen.indexOf('const handleRewardPreviewClaim'));
+    expect(settle).toContain('await settleRewardDelivery(requestId)');
+    expect(settle.indexOf('await settleRewardDelivery(requestId)'))
+      .toBeLessThan(settle.indexOf('await acknowledgeLocalLevelSpin(requestId)'));
     // Владелец 2026-08-23: раздел спина НЕ закрывается после получения подарка.
     // Уход с экрана делает ТОЛЬКО стрелка «Назад» в шапке — ни «ГОТОВО»
     // в модалке приза, ни исчерпание спинов экран больше не сворачивают.
@@ -329,5 +336,50 @@ describe('Finish Line level spin screen contract', () => {
     const finish = presentation();
     expect(finish).toContain("import { noAndroidOutline } from '../constants/androidGlow'");
     expect(finish).toMatch(/shadowOffset: \{ width: 0, height: 8 \},\s*\.\.\.noAndroidOutline/);
+  });
+
+  // зачем (2026-08-26, инцидент): «нажимаю ГОТОВО и ничего не происходит» —
+  // reward-delivery могла зависнуть (внутренний лок не освобождался), и
+  // settleRewardDelivery ждала её ответа бесконечно. Кнопка становилась
+  // мёртвой навсегда. Фикс: таймаут на ожидание + закрытие модалки после
+  // нескольких неудачных попыток, БЕЗ подтверждения недоставленной награды.
+  test('never awaits reward delivery forever — a timeout race backs every settle attempt', () => {
+    const code = source();
+    const settleDelivery = code.slice(
+      code.indexOf('const settleRewardDelivery ='),
+      code.indexOf('const run = useCallback'),
+    );
+    expect(settleDelivery).toContain('raceWithTimeout');
+    expect(settleDelivery).toContain('Promise.race([');
+    expect(settleDelivery).toContain('setTimeout(() => resolve({ success: false }), REWARD_DELIVERY_TIMEOUT_MS)');
+    // Таймаут не должен быть бесконечным и не должен быть мгновенным —
+    // должен реально дать доставке шанс, но не держать UI вечно.
+    expect(code).toMatch(/REWARD_DELIVERY_TIMEOUT_MS = [\d_]{4,7};/);
+  });
+
+  test('gives up closing the modal after a bounded number of failed settle attempts instead of hanging forever', () => {
+    const code = source();
+    const settlePreview = code.slice(
+      code.indexOf('const settleRewardPreview = useCallback'),
+      code.indexOf('const handleRewardPreviewClaim'),
+    );
+    expect(settlePreview).toContain('settleAttemptsRef.current += 1');
+    expect(settlePreview).toContain('if (settleAttemptsRef.current < MAX_SETTLE_ATTEMPTS) return;');
+    // После исчерпания попыток модалка обязана закрыться (не остаться висеть).
+    expect(settlePreview).toContain('setRewardPreviewVisible(false);');
+  });
+
+  test('never acknowledges (and thereby never loses) a reward whose delivery did not confirm', () => {
+    const code = source();
+    const settlePreview = code.slice(
+      code.indexOf('const settleRewardPreview = useCallback'),
+      code.indexOf('const handleRewardPreviewClaim'),
+    );
+    // acknowledgeLocalLevelSpin стирает activeReceipt/pending-reveal — это
+    // ЕДИНСТВЕННЫЙ путь восстановления недоставленного приза при следующем
+    // входе. Вызывать её без подтверждённой доставки — значит терять приз
+    // безвозвратно вместо того, чтобы просто закрыть застрявшую модалку.
+    expect(settlePreview).toContain('if (delivered) await acknowledgeLocalLevelSpin(requestId ?? \'\');');
+    expect(settlePreview).not.toMatch(/^\s*await acknowledgeLocalLevelSpin\(requestId/m);
   });
 });

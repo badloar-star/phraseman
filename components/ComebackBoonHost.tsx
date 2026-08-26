@@ -16,10 +16,6 @@ import { getUtcDayKey } from '../app/local_date';
 import { checkComebackEligible, COMEBACK_GRANTED_KEY } from '../app/boons/comeback';
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
-import {
-  ruKnowledgeShardsAfterNumber,
-  ukKnowledgeShardsAfterNumber,
-} from '../constants/shard_plurals';
 import BoonChestModal from './BoonChestModal';
 
 function makeL(lang: Lang) {
@@ -85,18 +81,22 @@ export default function ComebackBoonHost() {
     'С возвращением! Мы скучали', 'З поверненням! Ми сумували', '¡Bienvenido de vuelta! Te echábamos de menos', 'Bem-vindo de volta! Sentimos sua falta',
     'Chào mừng trở lại! Chúng tôi đã nhớ bạn', 'Selamat datang kembali! Kami merindukanmu', 'Tekrar hoş geldin! Seni özledik', 'Witaj z powrotem! Tęskniliśmy',
   );
-  // зачем: награда = 1, и без склонения выходило «1 жемчужин твои».
-  // Сказуемое согласуем по числу; UK-строка раньше брала русское слово «жемчужин».
-  const cbOne = COMEBACK_REWARD.shards % 10 === 1 && COMEBACK_REWARD.shards % 100 !== 11;
+  // зачем (владелец, 2026-08-26): наградой была 1 жемчужина — заменена на спин
+  // общей рулетки. Защита серии осталась: она идёт отдельной выдачей.
+  const cbSpins = Math.max(1, Math.floor(Number(COMEBACK_REWARD.spins) || 1));
+  const cbOne = cbSpins % 10 === 1 && cbSpins % 100 !== 11;
+  const cbFew = cbSpins % 10 >= 2 && cbSpins % 10 <= 4 && (cbSpins % 100 < 12 || cbSpins % 100 > 14);
+  const cbRuSpin = cbOne ? 'спин' : cbFew ? 'спина' : 'спинов';
+  const cbUkSpin = cbOne ? 'спін' : cbFew ? 'спіни' : 'спінів';
   const rewardLine = L(
-    `Серия под защитой и ${COMEBACK_REWARD.shards} ${ruKnowledgeShardsAfterNumber(COMEBACK_REWARD.shards)} ${cbOne ? 'твоя' : 'твои'}`,
-    `Серія під захистом і ${COMEBACK_REWARD.shards} ${ukKnowledgeShardsAfterNumber(COMEBACK_REWARD.shards)} ${cbOne ? 'твоя' : 'твої'}`,
-    `Racha protegida y ${COMEBACK_REWARD.shards} perlas tuyos`,
-    `Sequência protegida e ${COMEBACK_REWARD.shards} perlas seus`,
-    `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} xu là của bạn`,
-    `Streak aman dan ${COMEBACK_REWARD.shards} serpihan jadi milikmu`,
-    `Serin korumada ve ${COMEBACK_REWARD.shards} jeton senin`,
-    `Seria chroniona i ${COMEBACK_REWARD.shards} monet twoje`,
+    `Серия под защитой и ${cbSpins} ${cbRuSpin} ${cbOne ? 'твой' : 'твои'}`,
+    `Серія під захистом і ${cbSpins} ${cbUkSpin} ${cbOne ? 'твій' : 'твої'}`,
+    `Racha protegida y ${cbSpins} ${cbSpins === 1 ? 'giro tuyo' : 'giros tuyos'}`,
+    `Sequência protegida e ${cbSpins} ${cbSpins === 1 ? 'giro seu' : 'giros seus'}`,
+    `Chuỗi được bảo vệ và ${cbSpins} lượt quay là của bạn`,
+    `Streak aman dan ${cbSpins} putaran jadi milikmu`,
+    `Serin korumada ve ${cbSpins} çevirme senin`,
+    `Seria chroniona i ${cbSpins} ${cbSpins === 1 ? 'spin twój' : 'spinów twoje'}`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',
@@ -111,6 +111,7 @@ export default function ComebackBoonHost() {
       rarity="common"
       title={title}
       rewardLine={rewardLine}
+      rewardArt="spin"
       tapHint={tapHint}
       claimCta={claimCta}
       closeLabel={closeLabel}

@@ -27,7 +27,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
@@ -68,6 +68,12 @@ import {
 } from './target_storage_keys';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
@@ -2697,11 +2703,29 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const { theme:t, f, themeMode } = useTheme();
   const { s } = useLang();
   const router = useRouter();
+  const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `lesson-words:${studyTarget ?? 'en'}:${lessonId}:${attemptSessionId}`,
+    initialQuestionId: 'lesson-words:loading',
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const answerAttemptSequenceRef = useRef(0);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+  }, []);
   const ws = s.words;
   const isLightTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
-  const { confirmSpendOne } = useEnergy();
+  const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
+  const wordsEnergyIntent = useEnergySessionIntent(
+    'lesson_words',
+    `${studyTarget ?? 'en'}:${lessonId}`,
+    attemptSessionId,
+  );
   const confirmSpendOneRef = useRef(confirmSpendOne);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
@@ -2720,8 +2744,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     if (trainingEntryChargedRef.current) return;
     trainingEntryChargedRef.current = true;
     let active = true;
-    void confirmSpendOneRef.current().then(result => {
+    void confirmSpendOneRef.current(wordsEnergyIntent).then(result => {
       if (!active) return;
+      if (result === 'spent') void acknowledgeSessionStart(wordsEnergyIntent.operationId);
       if (result === 'insufficient') onNoEnergyRef.current();
       if (result === 'cancelled') onCancelStartRef.current();
     });
@@ -2900,6 +2925,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     () => currentItem ? buildCard(currentItem.word, currentItem.roundIndex, words, lang) : undefined,
     [currentItem, words, lang],
   );
+  useEffect(() => {
+    if (!current) return;
+    attempts.updateQuestion(`${current.word.en}:${current.roundIndex}:${current.roundType}`);
+  }, [attempts.updateQuestion, current]);
 
   useEffect(() => {
     if (allDone || validQueue.length > 0 || learnedCnt >= words.length) return;
@@ -2908,6 +2937,32 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     applyTrainingQueue(rebuilt.queue, 0);
     applyLearnedCount(rebuilt.learnedCnt);
   }, [allDone, validQueue.length, learnedCnt, words, lang]);
+
+  const recordWrongVocabularyAttempt = useCallback((card: Card, picked: string) => {
+    wrongMistakesRef.current.push({
+      phrase: card.word.en,
+      tokenText: card.word.en,
+      expected: card.word.en,
+      rawCategory: card.word.pos,
+    });
+    if (studyTarget === 'en' || studyTarget === 'fr') {
+      void captureCurrentAccountObjectiveAttempt({
+        attemptId: `lesson-words:${studyTarget}:${lessonId}:${qIdx}:${card.word.en}:${card.roundIndex}:${picked}`,
+        studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+        verdict: 'wrong',
+        objective: true,
+        content: {
+          sourceKind: 'lesson_word',
+          sourceId: `${lessonId}:${card.word.en}`,
+          canonicalTarget: card.word.en,
+          sourceMeaning: card.word.ru,
+          lessonId: String(lessonId),
+          distractors: card.options,
+        },
+        facet: { kind: 'meaning', expected: card.word.en },
+      }).catch(() => {});
+    }
+  }, [lessonId, qIdx, studyTarget]);
 
   const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
@@ -2919,6 +2974,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
+    const attemptEffect = attempts.registerVerdict({
+      answerAttemptId: [
+        attemptSessionId,
+        current.word.en,
+        String(current.roundIndex),
+        String(answerAttemptSequenceRef.current++),
+      ].join(':'),
+      verdict: isRight ? 'correct' : 'pedagogical_wrong',
+    });
     const wordEn = current.word.en;
     // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
     // [FeedbackKit] fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
@@ -2935,6 +2999,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       const xpNow = vocabularyStepBaseXP(prevCountNow);
       const wordJustCompletedNow = prevCountNow < REQUIRED;
       if (xpNow > 0 && wordJustCompletedNow) showXpToast(xpNow);
+    }
+
+    if (attemptEffect === 'attempts_exhausted') {
+      recordWrongVocabularyAttempt(current, opt);
+      attemptsModalTimerRef.current = setTimeout(
+        () => setShowAttemptsModal(true),
+        SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+      );
+      return; // Keep the current vocabulary card for recovery.
     }
 
     setTimeout(() => {
@@ -3029,29 +3102,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         }
       } else {
         // Ошибка — логируем в аналитику и перемещаем карточку вперёд
-        const mistakeMeta = {
-          tokenText: current.word.en,
-          expected: current.word.en,
-          rawCategory: current.word.pos,
-        };
-        wrongMistakesRef.current.push({ phrase: current.word.en, ...mistakeMeta });
-        if (studyTarget === 'en' || studyTarget === 'fr') {
-          void captureCurrentAccountObjectiveAttempt({
-            attemptId: `lesson-words:${studyTarget}:${lessonId}:${qIdx}:${current.word.en}:${current.roundIndex}:${opt}`,
-            studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
-            verdict: 'wrong',
-            objective: true,
-            content: {
-              sourceKind: 'lesson_word',
-              sourceId: `${lessonId}:${current.word.en}`,
-              canonicalTarget: current.word.en,
-              sourceMeaning: current.word.ru,
-              lessonId: String(lessonId),
-              distractors: current.options,
-            },
-            facet: { kind: 'meaning', expected: current.word.en },
-          }).catch(() => {});
-        }
+        recordWrongVocabularyAttempt(current, opt);
         const resetCard = buildQueueItem(current.word, current.roundIndex);
         newQueue.splice(liveIndex, 1);
         const rem = newQueue.length;
@@ -3070,6 +3121,24 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       locked.current = false;
     }, isRight ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
   };
+
+  const retryCurrentVocabularyCardAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+      setChosen(null);
+      locked.current = false;
+    } catch {
+      // Keep the same card locked until a durable recovery succeeds.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+
+  const endAttemptsExhaustedVocabularySession = useCallback(() => {
+    attempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    safeRouterBack(router, '/lessons_list');
+  }, [attempts.endAttemptsSession, router]);
 
   const startPractice = () => {
     // Пересобираем очередь со ВСЕМИ словами — прогресс не меняем
@@ -3208,7 +3277,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   return (
     <View testID="lesson-words-training" style={{ flex:1, paddingHorizontal:20, paddingTop:12 }}>
-      <View style={{ width:'100%', marginBottom:14, alignItems:'flex-end' }}>
+      <View style={{ width:'100%', marginBottom:14, flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12 }}>
+        <SessionAttemptsHud
+          remaining={attempts.state.remainingAttempts}
+          locale={lang}
+          testID="lesson-words-session-attempts"
+        />
         <Text style={{ color:sx.muted, fontSize:f.label, fontWeight:'700' }}>
           {trainingStepLabel}
         </Text>
@@ -3316,6 +3390,16 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         />
       )}
       {xpToastOverlay}
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void retryCurrentVocabularyCardAfterRecovery('gift'); }}
+        onSpendRunes={() => { void retryCurrentVocabularyCardAfterRecovery('runes'); }}
+        onEndSession={endAttemptsExhaustedVocabularySession}
+      />
     </View>
   );
 }
@@ -3357,7 +3441,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
 
   return (
     <View style={{ flex:1 }}>
-      <SectionList
+      <SectionList decelerationRate="fast"
         sections={sections}
         keyExtractor={item => item.en}
         removeClippedSubviews={false}
@@ -3409,7 +3493,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
             <View style={{ borderBottomWidth: 0.5, borderBottomColor: t.border }}>
               <ScrollView
                 horizontal
-                decelerationRate="normal"
+                decelerationRate="fast"
                 nestedScrollEnabled
                 keyboardShouldPersistTaps="handled"
                 showsHorizontalScrollIndicator={false}

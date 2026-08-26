@@ -73,6 +73,41 @@ export function subscribeAccountGeneration(
   return { remove: () => generationListeners.delete(listener) };
 }
 
+/**
+ * Дождаться активной генерации аккаунта.
+ *
+ * зачем (владелец 2026-08-26, инцидент «спин всегда 20 жемчужин»): начисление
+ * приза уходило в очередь в момент, когда аккаунт был ещё `transitioning`
+ * (или `uninitialized`) — сразу после входа на экран. accountScopeKey в такой
+ * фазе даёт null, и вся операция МОЛЧА возвращала staleValue, не выполнив
+ * начисления: приз показан, счёт не изменился, ошибки нет. Чек оставался
+ * неподтверждённым, поэтому следующий спин возвращал ТОТ ЖЕ чек — тот же приз
+ * и без списания кредита. Ждать активации честнее, чем терять награду.
+ *
+ * Возвращает активный токен либо null, если за timeoutMs активации не было.
+ */
+export function waitForActiveAccountGeneration(
+  timeoutMs = 10_000,
+): Promise<AccountGenerationToken | null> {
+  if (currentPhase === 'active') return Promise.resolve(captureAccountGeneration());
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (value: AccountGenerationToken | null): void => {
+      if (settled) return;
+      settled = true;
+      subscription.remove();
+      clearTimeout(timer);
+      resolve(value);
+    };
+    const timer = setTimeout(() => finish(null), Math.max(0, timeoutMs));
+    (timer as unknown as { unref?: () => void })?.unref?.();
+    const subscription = subscribeAccountGeneration((token) => {
+      if (token.phase === 'active') finish(token);
+    });
+    if (currentPhase === 'active') finish(captureAccountGeneration());
+  });
+}
+
 export function captureAccountGeneration(): AccountGenerationToken {
   const token = Object.freeze({
     generation: currentGeneration,

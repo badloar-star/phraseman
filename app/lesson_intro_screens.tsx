@@ -586,6 +586,7 @@ export default function LessonIntroScreens({
   const lessonWord = triLang(lang, {
     ru: 'Урок',
     uk: 'Урок',
+    en: 'Lesson',
     es: 'Lección',
     'pt-BR': 'Lição',
     vi: 'Bài',
@@ -614,6 +615,7 @@ export default function LessonIntroScreens({
   const startLabel = triLang(lang, {
     ru: 'Начать тренировку',
     uk: 'Почати тренування',
+    en: 'Start training',
     es: 'Comenzar práctica',
     'pt-BR': 'Começar treino',
     vi: 'Bắt đầu luyện tập',
@@ -624,6 +626,7 @@ export default function LessonIntroScreens({
   const tapHintLabel = triLang(lang, {
     ru: 'Коснитесь, чтобы увидеть дальше',
     uk: 'Торкніться, щоб побачити далі',
+    en: 'Tap to see more',
     es: 'Toca para continuar',
     'pt-BR': 'Toque para continuar',
     vi: 'Chạm để xem tiếp',
@@ -710,6 +713,7 @@ export default function LessonIntroScreens({
             accessibilityLabel={triLang(lang, {
               ru: 'Назад',
               uk: 'Назад',
+              en: 'Back',
               es: 'Volver',
               'pt-BR': 'Voltar',
               vi: 'Quay lại',
@@ -783,7 +787,7 @@ export default function LessonIntroScreens({
         >
           <BouncyScrollView
             ref={scrollRef}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[styles.scrollContent, { paddingTop: scrollTopPadding }]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"

@@ -31,6 +31,7 @@ function defaultText(lang: string): string {
   return triLang(lang as Lang, {
     ru: 'Идут технические работы. Скоро вернемся.',
     uk: 'Тривають технічні роботи. Скоро повернемось.',
+    en: 'We\'re under maintenance. Back soon.',
     es: 'Estamos en mantenimiento. Volvemos pronto.',
     'pt-BR': 'Estamos em manutenção. Voltamos em breve.',
     vi: 'Đang bảo trì. Chúng tôi sẽ sớm trở lại.',
@@ -143,6 +144,7 @@ export default function MaintenanceGate() {
           {triLang(lang as Lang, {
             ru: 'Технические работы',
             uk: 'Технічні роботи',
+            en: 'Maintenance',
             es: 'Mantenimiento',
             'pt-BR': 'Manutenção',
             vi: 'Bảo trì',
@@ -188,7 +190,7 @@ export default function MaintenanceGate() {
         >
           <Ionicons name="construct-outline" size={18} color={'#fed7aa'} />
         </View>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           horizontal={false}
           showsVerticalScrollIndicator={false}
           style={{ flex: 1, maxHeight: 54 }}
@@ -203,6 +205,7 @@ export default function MaintenanceGate() {
           accessibilityLabel={triLang(lang as Lang, {
             ru: 'Закрыть техработы',
             uk: 'Закрити техроботи',
+            en: 'Close maintenance notice',
             es: 'Cerrar mantenimiento',
             'pt-BR': 'Fechar manutenção',
             vi: 'Đóng bảo trì',

@@ -238,12 +238,12 @@ functions/scripts/diag_*
 /.claude/onboarding-preview/
 /.claude/paywall-preview/
 
-# Compiled JS sourcemaps for Cloud Functions (generated from TypeScript).
-/functions/lib/*.js.map
-# зачем: вложенная сборка /functions/lib/functions/** (180 сгенерированных .js/.map)
-# не покрывалась правилом выше и лезла в коммит. Это артефакт `tsc`, воспроизводимый
-# из исходников — в репозитории ему не место (шум в диффах, конфликты между сессиями).
-/functions/lib/functions/
+# Compiled output for Cloud Functions (generated from TypeScript by `tsc`).
+# зачем (2026-08-26): раньше игнорировались лишь *.js.map и вложенный
+# lib/functions/, а остальные 280 скомпилированных файлов отслеживались и шумели в
+# каждом диффе, сталкивая параллельные сессии. Билд воспроизводим из исходников
+# и пересобирается при деплое (predeploy npm run build) — в репозитории ему не место.
+/functions/lib/
 
 # Nested tool node_modules (intro_remotion has its own package install).
 /tools/intro_remotion/node_modules/
@@ -360,5 +360,17 @@ functions/src/generated/support_repo_context.json
 functions-*/.env
 functions-*/.env.*
 
+# зачем: functions-admin/node_modules (~110 МБ, 7500+ файлов) чуть не ушёл в
+# коммит целиком — раздул бы историю репозитория навсегда без выгоды.
+functions-*/node_modules/
+
 # Светофор параллельных сессий: маркеры живут только локально
 .claude/locks/*.lock
+
+# зачем (2026-08-26): рабочий мусор сессий — дампы grep-сканов, временный tsconfig
+# и бэкапы незакоммиченных патчей удалённых ворктри. Всё воспроизводимо/одноразовое,
+# в истории репозитория ему не место.
+/scan_out*.txt
+/full_scan.txt
+/tsconfig.*.tmp.json
+/_worktree_backups_*/

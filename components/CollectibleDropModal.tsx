@@ -89,11 +89,11 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   const card = found.card;
   const cardText = collectibleCardTextForLang(card, lang);
 
-  const newCardKicker = triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' });
-  const claimLabel = triLang(lang, { ru: 'Класс!', uk: 'Клас!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' });
-  const collectionLabel = triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' });
-  const setCompletedLabel = triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' });
-  const secretLabel = secret ? triLang(lang, { ru: `Секретная карточка открыта: ${secret.card.en}`, uk: `Секретну картку відкрито: ${secret.card.en}`, es: `Carta secreta desbloqueada: ${secret.card.en}`, 'pt-BR': `Carta secreta liberada: ${secret.card.en}`, vi: `Mở thẻ bí mật: ${secret.card.en}`, id: `Kartu rahasia terbuka: ${secret.card.en}`, tr: `Gizli kart açıldı: ${secret.card.en}`, pl: `Sekretna karta odblokowana: ${secret.card.en}` }) : '';
+  const newCardKicker = triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', en: 'New card!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' });
+  const claimLabel = triLang(lang, { ru: 'Класс!', uk: 'Клас!', en: 'Awesome!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' });
+  const collectionLabel = triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', en: 'To the collection', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' });
+  const setCompletedLabel = triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', en: 'Set complete! +15 pearls', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' });
+  const secretLabel = secret ? triLang(lang, { ru: `Секретная карточка открыта: ${secret.card.en}`, uk: `Секретну картку відкрито: ${secret.card.en}`, en: `Secret card unlocked: ${secret.card.en}`, es: `Carta secreta desbloqueada: ${secret.card.en}`, 'pt-BR': `Carta secreta liberada: ${secret.card.en}`, vi: `Mở thẻ bí mật: ${secret.card.en}`, id: `Kartu rahasia terbuka: ${secret.card.en}`, tr: `Gizli kart açıldı: ${secret.card.en}`, pl: `Sekretna karta odblokowana: ${secret.card.en}` }) : '';
 
   if (isHybrid) {
     return (
@@ -193,7 +193,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
       <View style={styles.overlay}>
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${rarityColor}80` }]}>
           <Text style={[styles.kicker, { color: t.textSecond, fontSize: f.sub }]}>
-            {triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' })}
+            {triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', en: 'New card!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' })}
           </Text>
 
           <View style={styles.artWrap}>
@@ -235,11 +235,11 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
           {outcome.setCompleted && (
             <View style={styles.setCompletedBox}>
               <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' })}
+                {triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', en: 'Set complete! +15 pearls', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' })}
               </Text>
               {!!secret && (
                 <Text style={[styles.setCompletedSub, { color: t.textSecond, fontSize: f.sub }]}>
-                  {triLang(lang, { ru: `Секретная карточка открыта: ${secret.card.en}`, uk: `Секретну картку відкрито: ${secret.card.en}`, es: `Carta secreta desbloqueada: ${secret.card.en}`, 'pt-BR': `Carta secreta liberada: ${secret.card.en}`, vi: `Mở thẻ bí mật: ${secret.card.en}`, id: `Kartu rahasia terbuka: ${secret.card.en}`, tr: `Gizli kart açıldı: ${secret.card.en}`, pl: `Sekretna karta odblokowana: ${secret.card.en}` })}
+                  {triLang(lang, { ru: `Секретная карточка открыта: ${secret.card.en}`, uk: `Секретну картку відкрито: ${secret.card.en}`, en: `Secret card unlocked: ${secret.card.en}`, es: `Carta secreta desbloqueada: ${secret.card.en}`, 'pt-BR': `Carta secreta liberada: ${secret.card.en}`, vi: `Mở thẻ bí mật: ${secret.card.en}`, id: `Kartu rahasia terbuka: ${secret.card.en}`, tr: `Gizli kart açıldı: ${secret.card.en}`, pl: `Sekretna karta odblokowana: ${secret.card.en}` })}
                 </Text>
               )}
             </View>
@@ -252,7 +252,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
             style={[styles.ctaBtn, { backgroundColor: t.accent }]}
           >
             <Text style={[styles.ctaBtnText, { color: t.correctText ?? '#0B0B0E', fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Класс!', uk: 'Клас!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' })}
+              {triLang(lang, { ru: 'Класс!', uk: 'Клас!', en: 'Awesome!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' })}
             </Text>
           </TouchableOpacity>
 
@@ -265,7 +265,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
             >
               <Ionicons name="albums-outline" size={16} color={t.textSecond} />
               <Text style={[styles.collectionBtnText, { color: t.textSecond, fontSize: f.sub }]}>
-                {triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' })}
+                {triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', en: 'To the collection', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' })}
               </Text>
             </TouchableOpacity>
           )}

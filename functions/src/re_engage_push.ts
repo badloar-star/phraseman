@@ -439,6 +439,13 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
     // ВАЖНО: список ниже обязан совпадать с полями parseReEngageUser — добавляешь поле
     // туда, добавь и сюда, иначе оно молча придёт пустым и кандидат отсеется.
     let query: FirebaseFirestore.Query = db.collection('users')
+      // зачем orderBy('expoPushToken') (аудит 2026-08-26): .select() резал только
+      // трафик, а тарифицируемых чтений оставалось столько же, сколько документов в
+      // базе. Первое условие classifyReEngageUser — валидный expoPushToken, поэтому
+      // пользователи без токена недостижимы в принципе. orderBy по полю возвращает
+      // лишь документы, где поле существует, а при отзыве токена оно физически
+      // удаляется (FieldValue.delete() ниже), а не обнуляется.
+      .orderBy('expoPushToken')
       .orderBy('__name__')
       .limit(PAGE_SIZE)
       .select(

@@ -20,6 +20,7 @@ import ContentWrap from '../components/ContentWrap';
 import GiftExpiryCountdown from '../components/GiftExpiryCountdown';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
+import CenteredDialogShell from '../components/centered_dialog_shell';
 import TodaysBoonStrip from '../components/TodaysBoonStrip';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -284,6 +285,7 @@ export default function LevelGiftsInventoryScreen() {
     });
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
+  const [selectedInfoGift, setSelectedInfoGift] = useState<ActiveLevelGiftInventoryItem | null>(null);
   /**
    * Раздел подарков — ОДИН список, без вкладок.
    *
@@ -539,45 +541,65 @@ export default function LevelGiftsInventoryScreen() {
                       </View>
                       <View style={{ alignItems: 'flex-end', gap: 4 }}>
                         <View style={{ borderRadius: 999, paddingHorizontal: 9, paddingVertical: 5, backgroundColor: giftTone(gift.accent, '1F') }}>
-                          <Text style={{ color: gift.accent, fontSize: 10, fontWeight: '900', textTransform: 'uppercase' }}>
-                            {triLang(lang, {
-                              ru: 'Активно',
-                              uk: 'Активно',
-                              en: 'Active',
-                              es: 'Activo',
-                              'pt-BR': 'Ativo',
-                              vi: 'Đang bật',
-                              id: 'Aktif',
-                              tr: 'Aktif',
-                              pl: 'Aktywne',
-                            })}
+                          <Text
+                            testID={gift.informationKind === 'attempt_restore_all' ? 'session-attempt-restore-count' : undefined}
+                            style={{ color: gift.accent, fontSize: 10, fontWeight: '900', textTransform: 'uppercase' }}
+                          >
+                            {typeof gift.countBadge === 'number'
+                              ? `×${gift.countBadge}`
+                              : triLang(lang, {
+                                  ru: 'Активно',
+                                  uk: 'Активно',
+                                  en: 'Active',
+                                  es: 'Activo',
+                                  'pt-BR': 'Ativo',
+                                  vi: 'Đang bật',
+                                  id: 'Aktif',
+                                  tr: 'Aktif',
+                                  pl: 'Aktywne',
+                                })}
                           </Text>
                         </View>
-                        {typeof gift.expiresAtMs === 'number' && (
+                        {gift.lifetime.kind === 'expires' && (
                           // зачем 2026-08-23 (владелец: «таймер уже показывает
                           // не когда подарок сгорит, а сколько он действует»):
                           // подарок уже активирован — отсчёт означает остаток
                           // действия, а не срок до потери.
                           <GiftExpiryCountdown
-                            expiresAtMs={gift.expiresAtMs}
+                            expiresAtMs={gift.lifetime.expiresAtMs}
                             accent={gift.accent}
                             onExpired={handleGiftExpired}
                             meaning="remaining"
                             testID={`gift-expiry-${gift.key}`}
                           />
                         )}
-                        {!!gift.actionRoute && (
+                        {gift.lifetime.kind === 'permanent' && gift.informationKind === 'attempt_restore_all' ? (
+                          <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800', textAlign: 'right' }}>
+                            {triLang(lang, {
+                              ru: 'Без срока действия', uk: 'Без строку дії', en: 'No expiry',
+                              es: 'Sin caducidad', 'pt-BR': 'Sem validade', vi: 'Không hết hạn',
+                              id: 'Tanpa kedaluwarsa', tr: 'Süresiz', pl: 'Bez terminu',
+                            })}
+                          </Text>
+                        ) : null}
+                        {(!!gift.actionRoute || gift.informationKind === 'attempt_restore_all') && (
                           <Ionicons name="chevron-forward" size={16} color={gift.accent} />
                         )}
                       </View>
                     </LinearGradient>
                   );
-                  return gift.actionRoute ? (
+                  return gift.actionRoute || gift.informationKind === 'attempt_restore_all' ? (
                     <TapScale
                       key={gift.key}
+                      accessibilityRole="button"
+                      accessibilityLabel={gift.title}
                       onPress={() => {
                         hapticTap();
-                        router.push(gift.actionRoute as never);
+                        if (gift.informationKind === 'attempt_restore_all') {
+                          setSelectedInfoGift(gift);
+                        } else if (gift.actionRoute) {
+                          router.push(gift.actionRoute as never);
+                        }
                       }}
                     >
                       {chipInner}
@@ -688,11 +710,14 @@ export default function LevelGiftsInventoryScreen() {
             deliveryMode="claim"
             presentationMode="apply"
             onGiftClaimed={selected.spinOccurrence
-              ? (_gift, accountToken) => markLevelSpinGiftOccurrenceClaimed(
-                selected.spinOccurrence!.requestId,
-                selected.spinOccurrence!.lane,
-                accountToken,
-              )
+              ? async (_gift, accountToken) => {
+                  const claimed = await markLevelSpinGiftOccurrenceClaimed(
+                    selected.spinOccurrence!.requestId,
+                    selected.spinOccurrence!.lane,
+                    accountToken,
+                  );
+                  if (!claimed) throw new Error('local_spin_outer_journal_not_durable');
+                }
               : selected.dualPart
                 ? (_gift, accountToken) => markDualGiftPartClaimed(selected.level, selected.dualPart!, accountToken)
                 : undefined}
@@ -720,6 +745,76 @@ export default function LevelGiftsInventoryScreen() {
             studyTarget={studyTarget}
           />
         )}
+        <CenteredDialogShell
+          visible={selectedInfoGift?.informationKind === 'attempt_restore_all'}
+          onClose={() => setSelectedInfoGift(null)}
+          title={triLang(lang, {
+            ru: 'Второй шанс', uk: 'Другий шанс', en: 'Second chance', es: 'Segunda oportunidad',
+            'pt-BR': 'Segunda chance', vi: 'Cơ hội thứ hai', id: 'Kesempatan kedua',
+            tr: 'İkinci şans', pl: 'Druga szansa',
+          })}
+          closeLabel={triLang(lang, {
+            ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
+            vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+          })}
+          testID="session-attempt-restore-info-modal"
+        >
+          <View style={{ alignItems: 'center', gap: 14 }}>
+            <View style={{ width: 132, height: 132, alignItems: 'center', justifyContent: 'center' }}>
+              <LevelSpinRewardArt
+                rewardId="attempt_restore_all"
+                size={124}
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Подарок Второй шанс', uk: 'Подарунок Другий шанс', en: 'Second chance gift',
+                  es: 'Regalo Segunda oportunidad', 'pt-BR': 'Presente Segunda chance',
+                  vi: 'Quà Cơ hội thứ hai', id: 'Hadiah Kesempatan kedua',
+                  tr: 'İkinci şans hediyesi', pl: 'Prezent Druga szansa',
+                })}
+                fallbackColor="#D96076"
+              />
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 6, fontWeight: '800', textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'Восстанавливает все 3 попытки во время сессии',
+                uk: 'Відновлює всі 3 спроби під час сесії',
+                en: 'Restores all 3 attempts during a session',
+                es: 'Restaura los 3 intentos durante la sesión',
+                'pt-BR': 'Restaura todas as 3 tentativas durante uma sessão',
+                vi: 'Khôi phục cả 3 lượt thử trong một phiên',
+                id: 'Memulihkan semua 3 percobaan selama sesi',
+                tr: 'Oturum sırasında 3 denemenin tümünü yeniler',
+                pl: 'Przywraca wszystkie 3 próby podczas sesji',
+              })}
+            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <View style={{ borderRadius: 999, paddingHorizontal: 12, paddingVertical: 7, backgroundColor: giftTone('#D96076', '24') }}>
+                <Text style={{ color: '#D96076', fontSize: f.sub, fontWeight: '900' }}>
+                  ×{selectedInfoGift?.countBadge ?? 0}
+                </Text>
+              </View>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
+                {triLang(lang, {
+                  ru: 'Без срока действия', uk: 'Без строку дії', en: 'No expiry',
+                  es: 'Sin caducidad', 'pt-BR': 'Sem validade', vi: 'Không hết hạn',
+                  id: 'Tanpa kedaluwarsa', tr: 'Süresiz', pl: 'Bez terminu',
+                })}
+              </Text>
+            </View>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 6, textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'Использовать подарок можно, когда попытки в сессии закончатся.',
+                uk: 'Використати подарунок можна, коли спроби в сесії закінчаться.',
+                en: 'You can use this gift when you run out of attempts in a session.',
+                es: 'Puedes usar este regalo cuando te quedes sin intentos en una sesión.',
+                'pt-BR': 'Você pode usar este presente quando acabar suas tentativas na sessão.',
+                vi: 'Bạn có thể dùng quà này khi hết lượt thử trong một phiên.',
+                id: 'Hadiah ini dapat dipakai saat percobaanmu habis dalam sesi.',
+                tr: 'Bu hediyeyi oturumdaki denemelerin bittiğinde kullanabilirsin.',
+                pl: 'Możesz użyć prezentu, gdy skończą się próby w sesji.',
+              })}
+            </Text>
+          </View>
+        </CenteredDialogShell>
       </SafeAreaView>
     </ScreenGradient>
   );

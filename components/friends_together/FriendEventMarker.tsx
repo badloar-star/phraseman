@@ -47,10 +47,10 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
   }, [opacity, reduceMotion, scale]);
   const animated = useAnimatedStyle(() => ({ opacity: opacity.value, transform: [{ scale: scale.value }] }));
   const accessibilityLabel = event.kind === 'high_five'
-    ? triLang(lang, { ru: 'Открыть пятюню', uk: 'Відкрити п’ять', es: 'Abrir saludo', 'pt-BR': 'Abrir cumprimento', vi: 'Mở lời động viên', id: 'Buka tos', tr: 'Çakı aç', pl: 'Otwórz piątkę' })
+    ? triLang(lang, { ru: 'Открыть пятюню', uk: 'Відкрити п’ять', en: 'Open high five', es: 'Abrir saludo', 'pt-BR': 'Abrir cumprimento', vi: 'Mở lời động viên', id: 'Buka tos', tr: 'Çakı aç', pl: 'Otwórz piątkę' })
     : event.kind === 'study_invite'
-      ? triLang(lang, { ru: 'Открыть приглашение на занятие', uk: 'Відкрити запрошення на заняття', es: 'Abrir invitación a estudiar', 'pt-BR': 'Abrir convite para estudar', vi: 'Mở lời mời học', id: 'Buka ajakan belajar', tr: 'Çalışma davetini aç', pl: 'Otwórz zaproszenie do nauki' })
-      : triLang(lang, { ru: 'Открыть вызов на дуэль', uk: 'Відкрити виклик на дуель', es: 'Abrir desafío de duelo', 'pt-BR': 'Abrir desafio de duelo', vi: 'Mở lời thách đấu', id: 'Buka tantangan duel', tr: 'Düello çağrısını aç', pl: 'Otwórz wyzwanie na pojedynek' });
+      ? triLang(lang, { ru: 'Открыть приглашение на занятие', uk: 'Відкрити запрошення на заняття', en: 'Open study invitation', es: 'Abrir invitación a estudiar', 'pt-BR': 'Abrir convite para estudar', vi: 'Mở lời mời học', id: 'Buka ajakan belajar', tr: 'Çalışma davetini aç', pl: 'Otwórz zaproszenie do nauki' })
+      : triLang(lang, { ru: 'Открыть вызов на дуэль', uk: 'Відкрити виклик на дуель', en: 'Open duel challenge', es: 'Abrir desafío de duelo', 'pt-BR': 'Abrir desafio de duelo', vi: 'Mở lời thách đấu', id: 'Buka tantangan duel', tr: 'Düello çağrısını aç', pl: 'Otwórz wyzwanie na pojedynek' });
   const seconds = remainingDuelSeconds(event, liveNowMs);
   const iconName = event.kind === 'high_five'
     ? 'hand-left-outline'

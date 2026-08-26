@@ -27,6 +27,7 @@ import { GiftBox3D, type RegisterPalette } from '../level_gift_box';
 import { useRewardImpactHybrid, type RewardImpactRarity } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
 import RetiredRasterFallback from '../feedback/RetiredRasterFallback';
+import SpinTicketArt from '../SpinTicketArt';
 import { rewardModalAccentColor, rewardModalPrimaryButtonColors, rewardModalPrimaryButtonText } from '../RewardModalBackdrop';
 
 export interface BoonChestHybridProps {
@@ -35,6 +36,8 @@ export interface BoonChestHybridProps {
   palette: RegisterPalette;
   title: string;
   rewardLine: string;
+  /** Картинка награды: спин рисуется своим узнаваемым значком, не коробкой. */
+  rewardArt?: 'gift' | 'spin';
   tapHint: string;
   claimCta: string;
   closeLabel: string;
@@ -51,6 +54,7 @@ function BoonChestHybrid({
   palette,
   title,
   rewardLine,
+  rewardArt = 'gift',
   tapHint,
   claimCta,
   closeLabel,
@@ -207,7 +211,9 @@ function BoonChestHybrid({
                 <Animated.View style={impact.styles.hero}>
                   {/* guard-ok: декоративная иконка награды — rewardLine ниже уже
                       называет награду словами, дублировать accessibilityLabel незачем. */}
-                  <RetiredRasterFallback kind="gift" size={118} color={palette.accent} />
+                  {rewardArt === 'spin'
+                    ? <SpinTicketArt size={118} accessibilityLabel="" />
+                    : <RetiredRasterFallback kind="gift" size={118} color={palette.accent} />}
                 </Animated.View>
               )}
             </View>

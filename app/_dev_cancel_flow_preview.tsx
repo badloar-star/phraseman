@@ -157,7 +157,7 @@ export default function DevCancelFlowPreview() {
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
       <SafeAreaView style={S.safe}>
-        <ScrollView contentContainerStyle={S.scroll} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="fast" contentContainerStyle={S.scroll} showsVerticalScrollIndicator={false}>
           <PaywallCloseButton onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/settings'); }} chrome={chrome} />
 
           <Text style={[S.title, { color: chrome.textPrimary }]}>Отписка</Text>

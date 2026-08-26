@@ -26,7 +26,7 @@ import {
   createArenaRequestId,
 } from './arena_client';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 
@@ -51,7 +51,12 @@ export default function ArenaTodayScreen() {
   const [verdict, setVerdict] = useState<'correct' | 'wrong' | null>(null);
   // Старт «Задания дня» = 1 ⚡ (владелец 2026-08-23: единая экономика — платим
   // за ПОПЫТКУ, ошибки внутри задания энергию больше не трогают).
-  const { confirmSpendOne: confirmArenaTodayEnergy, refundOne: refundArenaTodayEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmArenaTodayEnergy,
+    refundOne: refundArenaTodayEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
+  const arenaTodayEnergyIntent = useEnergySessionIntent('arena_today', String(params.runId ?? 'today'));
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const ids = useRef(new Map<string, string>());
   const deadlineSyncs = useRef(new Set<string>());
@@ -132,7 +137,7 @@ export default function ArenaTodayScreen() {
     if (submitting || startChargeInFlightRef.current) return;
     startChargeInFlightRef.current = true;
     try {
-      const energyResult = await confirmArenaTodayEnergy();
+      const energyResult = await confirmArenaTodayEnergy(arenaTodayEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
       beginArenaTodayMatch(energyResult === 'spent');
@@ -147,6 +152,7 @@ export default function ArenaTodayScreen() {
     const requestId = startRequestId.current ?? createArenaRequestId('today');
     startRequestId.current = requestId;
     void arenaTodayStart(requestId).then((response) => {
+      if (energyCharged) void acknowledgeSessionStart(arenaTodayEnergyIntent.operationId);
       startRequestId.current = null;
       setMatch(response.match);
       setHardExpiresAtMs(response.hardExpiresAtMs);
@@ -154,7 +160,7 @@ export default function ArenaTodayScreen() {
     }).catch(() => {
       // зачем: задание не стартовало (нет сети / отказ сервера) — входа не
       // случилось, плата возвращается.
-      if (energyCharged) void refundArenaTodayEnergy();
+      if (energyCharged) void refundArenaTodayEnergy(arenaTodayEnergyIntent.operationId, 'entry_failed').catch(() => {});
       setStatus('error');
     }).finally(() => setSubmitting(false));
   };

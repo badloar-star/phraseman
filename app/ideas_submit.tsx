@@ -120,7 +120,7 @@ export default function IdeasSubmitScreen() {
           onClose={() => safeRouterBack(router, '/(tabs)/settings' as never)}
         />
         <BouncyScrollView
-          decelerationRate="normal"
+          decelerationRate="fast"
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ padding: 20, paddingBottom: 32 + Math.max(bottomInset, 16) }}
           showsVerticalScrollIndicator={false}

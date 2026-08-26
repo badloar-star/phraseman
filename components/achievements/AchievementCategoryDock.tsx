@@ -232,7 +232,7 @@ export default function AchievementCategoryDock<T extends string>({
         importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
         style={[styles.menuDock, { bottom: menuBottom }]}
       >
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           style={{ maxHeight: menuMaxHeight }}
           contentContainerStyle={{ gap: ACHIEVEMENT_CATEGORY_DOCK_HYBRID.rowGap }}

@@ -43,7 +43,10 @@ import {
   DailyPhrase,
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
-import { IDIOMS } from '../app/idioms_data';
+// зачем (ускорение сплэша, 2026-08-25): статический импорт IDIOMS исполнял весь
+// каталог (610 КБ JS) на первом кадре Главной. Каталог нужен только квесту в
+// шторке деталей — берём его лениво через аксессор в момент открытия шторки.
+import { getIdiomsSync } from '../app/idioms_lazy';
 import { getHomeSupportingArt } from '../app/home_supporting_art';
 import AddToFlashcard from './AddToFlashcard';
 import { useLang } from './LangContext';
@@ -104,9 +107,15 @@ function DailyPhraseCard({
   const wasDetailsVisibleRef = useRef(false);
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
   const phraseLang: DailyPhraseInterfaceLang = lang;
-  const questOptions = phrase
-    ? buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang)
-    : [];
+  // зачем: варианты квеста нужны только в открытой шторке деталей — не считаем
+  // их (и не грузим каталог идиом) на первом кадре Главной. useMemo заодно
+  // держит варианты стабильными между рендерами открытой шторки.
+  const questOptions = React.useMemo(
+    () => (phrase && detailsVisible
+      ? buildDailyPhraseQuestOptions(phrase, getIdiomsSync(), phraseLang)
+      : []),
+    [phrase, detailsVisible, phraseLang],
+  );
   const selectedQuestCorrect = selectedQuestOptionId
     ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
     : false;
@@ -374,6 +383,7 @@ function DailyPhraseCard({
   const labelLiteral = triLang(lang, {
     uk: 'Дослівно',
     ru: 'Дословно',
+    en: 'Literal translation',
     es: 'Traducción literal',
     'pt-BR': 'Tradução literal',
     vi: 'Dịch sát nghĩa',
@@ -384,6 +394,7 @@ function DailyPhraseCard({
   const labelMeaning = triLang(lang, {
     uk: 'Що означає',
     ru: 'Что значит',
+    en: 'Meaning',
     es: 'Significado',
     'pt-BR': 'Significado',
     vi: 'Nghĩa là gì',
@@ -394,6 +405,7 @@ function DailyPhraseCard({
   const title = triLang(lang, {
     uk: 'Вислів дня',
     ru: 'Фраза дня',
+    en: 'Phrase of the day',
     es: 'Frase del día',
     'pt-BR': 'Frase do dia',
     vi: 'Cụm từ hôm nay',
@@ -769,7 +781,7 @@ function DailyPhraseCard({
                     hitSlop={8}
                     accessibilityRole="button"
                     accessibilityLabel={triLang(lang, {
-                      uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
+                      uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir',
                       'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
                     })}
                     style={({ pressed }) => [
@@ -797,7 +809,7 @@ function DailyPhraseCard({
               </View>
             </View>
 
-            <ScrollView
+            <ScrollView decelerationRate="fast"
               style={styles.sheetScroll}
               contentContainerStyle={styles.sheetScrollContent}
               showsVerticalScrollIndicator={false}
@@ -808,6 +820,7 @@ function DailyPhraseCard({
                     {triLang(lang, {
                       ru: 'Что это значит?',
                       uk: 'Що це означає?',
+                      en: 'What does this mean?',
                       es: '¿Qué significa?',
                       'pt-BR': 'O que isso significa?',
                       vi: 'Nghĩa là gì?',

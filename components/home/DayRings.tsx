@@ -173,7 +173,7 @@ export default function DayRings({ lesson, practice, cards }: DayRingsProps) {
         announceTrackColor={announceTrackColor}
         textColor={t.textSecond}
         caption={triLang(lang, {
-          ru: 'Урок', uk: 'Урок', es: 'Lección', 'pt-BR': 'Lição',
+          ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição',
           vi: 'Bài học', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja',
         })}
       />
@@ -185,7 +185,7 @@ export default function DayRings({ lesson, practice, cards }: DayRingsProps) {
         announceTrackColor={announceTrackColor}
         textColor={t.textSecond}
         caption={triLang(lang, {
-          ru: 'Практика', uk: 'Практика', es: 'Práctica', 'pt-BR': 'Prática',
+          ru: 'Практика', uk: 'Практика', en: 'Practice', es: 'Práctica', 'pt-BR': 'Prática',
           vi: 'Luyện tập', id: 'Latihan', tr: 'Pratik', pl: 'Praktyka',
         })}
       />
@@ -197,7 +197,7 @@ export default function DayRings({ lesson, practice, cards }: DayRingsProps) {
         announceTrackColor={announceTrackColor}
         textColor={t.textSecond}
         caption={triLang(lang, {
-          ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', 'pt-BR': 'Cartões',
+          ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões',
           vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki',
         })}
       />

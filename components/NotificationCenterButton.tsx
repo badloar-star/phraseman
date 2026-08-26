@@ -53,9 +53,10 @@ type NotificationCenterButtonProps = {
 
 function centerCopy(lang: Lang) {
   return {
-    title: triLang(lang, { ru: 'Уведомления', uk: 'Сповіщення', es: 'Notificaciones', 'pt-BR': 'Notificações', vi: 'Thông báo', id: 'Notifikasi', tr: 'Bildirimler', pl: 'Powiadomienia' }),
+    title: triLang(lang, { ru: 'Уведомления', en: 'Notifications', uk: 'Сповіщення', es: 'Notificaciones', 'pt-BR': 'Notificações', vi: 'Thông báo', id: 'Notifikasi', tr: 'Bildirimler', pl: 'Powiadomienia' }),
     empty: triLang(lang, {
       ru: 'Здесь пока тихо',
+      en: "It's quiet here for now",
       uk: 'Тут поки тихо',
       es: 'Aquí todo está tranquilo',
       'pt-BR': 'Tudo tranquilo por aqui',
@@ -64,17 +65,18 @@ function centerCopy(lang: Lang) {
       tr: 'Burası şimdilik sessiz',
       pl: 'Na razie jest tu cicho',
     }),
-    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
+    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
   };
 }
 
 function reportReplyCopy(lang: Lang) {
   return {
-    back: triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
-    reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
+    back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
+    reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', en: 'Reply to your report', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
     claimShards: (n: number) => triLang(lang, {
       ru: `Забрать жемчуг (+${n})`,
       uk: `Забрати перлини (+${n})`,
+      en: `Claim pearls (+${n})`,
       es: `Reclamar perlas (+${n})`,
       'pt-BR': `Resgatar pérolas (+${n})`,
       // зачем: та же награда, что в инбоксе (AppMessagesInbox.claimCoins) — валюта
@@ -84,28 +86,28 @@ function reportReplyCopy(lang: Lang) {
       tr: `İnci al (+${n})`,
       pl: `Odbierz perły (+${n})`,
     }),
-    claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
+    claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', en: 'Reward claimed', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
 }
 
 function notificationLabel(type: UserNotificationType, lang: Lang): string {
   switch (type) {
     case 'friend_request':
-      return triLang(lang, { ru: 'заявка в друзья', uk: 'заявка в друзі', es: 'solicitud de amistad', 'pt-BR': 'pedido de amizade', vi: 'lời mời kết bạn', id: 'permintaan pertemanan', tr: 'arkadaşlık isteği', pl: 'zaproszenie do znajomych' });
+      return triLang(lang, { ru: 'заявка в друзья', uk: 'заявка в друзі', en: 'friend request', es: 'solicitud de amistad', 'pt-BR': 'pedido de amizade', vi: 'lời mời kết bạn', id: 'permintaan pertemanan', tr: 'arkadaşlık isteği', pl: 'zaproszenie do znajomych' });
     case 'friend_accepted':
-      return triLang(lang, { ru: 'принял(а) вашу заявку', uk: 'прийняв(ла) вашу заявку', es: 'aceptó tu solicitud', 'pt-BR': 'aceitou seu pedido', vi: 'đã chấp nhận lời mời', id: 'menerima permintaanmu', tr: 'isteğini kabul etti', pl: 'przyjął(ęła) zaproszenie' });
+      return triLang(lang, { ru: 'принял(а) вашу заявку', uk: 'прийняв(ла) вашу заявку', en: 'accepted your request', es: 'aceptó tu solicitud', 'pt-BR': 'aceitou seu pedido', vi: 'đã chấp nhận lời mời', id: 'menerima permintaanmu', tr: 'isteğini kabul etti', pl: 'przyjął(ęła) zaproszenie' });
     case 'activity_like':
-      return triLang(lang, { ru: 'поставил(а) вам лайк', uk: 'поставив(ла) вам лайк', es: 'te dio un like', 'pt-BR': 'curtiu você', vi: 'đã thích bạn', id: 'menyukaimu', tr: 'seni beğendi', pl: 'dał(a) ci polubienie' });
+      return triLang(lang, { ru: 'поставил(а) вам лайк', uk: 'поставив(ла) вам лайк', en: 'liked you', es: 'te dio un like', 'pt-BR': 'curtiu você', vi: 'đã thích bạn', id: 'menyukaimu', tr: 'seni beğendi', pl: 'dał(a) ci polubienie' });
     case 'friend_gift_received':
-      return triLang(lang, { ru: 'отправил(а) вам подарок', uk: 'надіслав(ла) вам подарунок', es: 'te envió un regalo', 'pt-BR': 'enviou um presente', vi: 'đã gửi quà cho bạn', id: 'mengirimimu hadiah', tr: 'sana hediye gönderdi', pl: 'wysłał(a) ci prezent' });
+      return triLang(lang, { ru: 'отправил(а) вам подарок', uk: 'надіслав(ла) вам подарунок', en: 'sent you a gift', es: 'te envió un regalo', 'pt-BR': 'enviou um presente', vi: 'đã gửi quà cho bạn', id: 'mengirimimu hadiah', tr: 'sana hediye gönderdi', pl: 'wysłał(a) ci prezent' });
     case 'friend_gift_thanks':
-      return triLang(lang, { ru: 'поблагодарил(а) за подарок', uk: 'подякував(ла) за подарунок', es: 'agradeció tu regalo', 'pt-BR': 'agradeceu o presente', vi: 'đã cảm ơn món quà', id: 'berterima kasih atas hadiah', tr: 'hediye için teşekkür etti', pl: 'podziękował(a) za prezent' });
+      return triLang(lang, { ru: 'поблагодарил(а) за подарок', uk: 'подякував(ла) за подарунок', en: 'thanked you for the gift', es: 'agradeció tu regalo', 'pt-BR': 'agradeceu o presente', vi: 'đã cảm ơn món quà', id: 'berterima kasih atas hadiah', tr: 'hediye için teşekkür etti', pl: 'podziękował(a) za prezent' });
     case 'arena_partner_invite':
-      return triLang(lang, { ru: 'приглашает стать Арена-парой', uk: 'запрошує стати Арена-парою', es: 'te invita a formar una Pareja de Arena', 'pt-BR': 'convida você para uma Dupla da Arena', vi: 'mời bạn lập Cặp đôi Arena', id: 'mengundangmu menjadi Partner Arena', tr: 'seni Arena Eşleşmesine davet ediyor', pl: 'zaprasza cię do Pary Areny' });
+      return triLang(lang, { ru: 'приглашает стать Арена-парой', uk: 'запрошує стати Арена-парою', en: 'invites you to become an Arena Pair', es: 'te invita a formar una Pareja de Arena', 'pt-BR': 'convida você para uma Dupla da Arena', vi: 'mời bạn lập Cặp đôi Arena', id: 'mengundangmu menjadi Partner Arena', tr: 'seni Arena Eşleşmesine davet ediyor', pl: 'zaprasza cię do Pary Areny' });
     case 'arena_partner_nudge':
-      return triLang(lang, { ru: 'ждёт вас в Арена-паре', uk: 'чекає на вас в Арена-парі', es: 'te espera en Pareja de Arena', 'pt-BR': 'espera por você na Dupla da Arena', vi: 'đang chờ bạn trong Cặp đôi Arena', id: 'menunggumu di Partner Arena', tr: 'Arena Eşleşmesinde seni bekliyor', pl: 'czeka na ciebie w Parze Areny' });
+      return triLang(lang, { ru: 'ждёт вас в Арена-паре', uk: 'чекає на вас в Арена-парі', en: 'is waiting for you in the Arena Pair', es: 'te espera en Pareja de Arena', 'pt-BR': 'espera por você na Dupla da Arena', vi: 'đang chờ bạn trong Cặp đôi Arena', id: 'menunggumu di Partner Arena', tr: 'Arena Eşleşmesinde seni bekliyor', pl: 'czeka na ciebie w Parze Areny' });
     case 'friend_nudge':
-      return triLang(lang, { ru: 'зовёт позаниматься', uk: 'кличе позайматися', es: 'te invita a estudiar', 'pt-BR': 'chama você para estudar', vi: 'rủ bạn học', id: 'mengajakmu belajar', tr: 'seni çalışmaya çağırıyor', pl: 'zaprasza do nauki' });
+      return triLang(lang, { ru: 'зовёт позаниматься', uk: 'кличе позайматися', en: 'is inviting you to study', es: 'te invita a estudiar', 'pt-BR': 'chama você para estudar', vi: 'rủ bạn học', id: 'mengajakmu belajar', tr: 'seni çalışmaya çağırıyor', pl: 'zaprasza do nauki' });
     case 'arena_friend_invite':
       return 'бросает вызов';
     case 'arena_friend_accepted':
@@ -401,7 +403,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     const title = reward.title || row.text || copy.reportReply;
     const body = reward.body || row.text || '';
     return (
-      <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
+      <ScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={styles.detailContent}>
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
@@ -476,7 +478,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         <TouchableOpacity
           testID={`notification-delete-${row.id}`}
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang as Lang, { ru: 'Удалить уведомление', uk: 'Видалити сповіщення', es: 'Eliminar notificación', 'pt-BR': 'Excluir notificação', vi: 'Xóa thông báo', id: 'Hapus notifikasi', tr: 'Bildirimi sil', pl: 'Usuń powiadomienie' })}
+          accessibilityLabel={triLang(lang as Lang, { ru: 'Удалить уведомление', uk: 'Видалити сповіщення', en: 'Delete notification', es: 'Eliminar notificación', 'pt-BR': 'Excluir notificação', vi: 'Xóa thông báo', id: 'Hapus notifikasi', tr: 'Bildirimi sil', pl: 'Usuń powiadomienie' })}
           activeOpacity={0.72}
           onPress={(event) => {
             event.stopPropagation?.();
@@ -557,7 +559,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
             </TouchableOpacity>
           </View>
           {selected ? renderReportReplyDetail(selected) : (
-          <FlatList
+          <FlatList decelerationRate="fast"
             data={teamDetailOpen ? [] : visibleItems}
             keyExtractor={(row) => row.id}
             renderItem={renderNotificationRow}

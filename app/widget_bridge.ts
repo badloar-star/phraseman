@@ -243,9 +243,11 @@ export function buildPersonalDeckWidgetPayload(input: PersonalDeckWidgetInput) {
 }
 
 /**
- * Resolve today's phrase and publish it to the widget. Best-effort: failures are
- * contained (returns false) so a widget refresh never crashes the host app, but
- * they are surfaced in __DEV__ so they are observable.
+ * Resolve the user's decks and publish them to the widget. Best-effort: failures
+ * are contained (returns false) so a widget refresh never crashes the host app —
+ * but they are always logged, never dev-only. Both ways this can fail silently
+ * (a missing native module, a rejected snapshot) have already shipped as dead
+ * widgets; see docs/daily-phrase-widget.md.
  */
 export async function syncWidgetData(options?: {
   studyTarget?: RuntimeStudyTarget;
@@ -254,7 +256,21 @@ export async function syncWidgetData(options?: {
   now?: number;
 }): Promise<boolean> {
   try {
-    if (!PhraseWidget.isAvailable()) return false;
+    if (!PhraseWidget.isAvailable()) {
+      // зачем: отсутствующий нативный модуль — штатный путь в Expo Go / вебе, но
+      // на настоящем устройстве он означает, что модуль не попал в сборку. Именно
+      // так iOS-виджет и был мёртв: без podspec автолинковка пропускала модуль, а
+      // тихий `return false` делал это неотличимым от Expo Go. Логируем только на
+      // устройстве, чтобы не шуметь там, где отсутствие модуля нормально.
+      if (Platform.OS === 'ios' || Platform.OS === 'android') {
+        console.warn(
+          `[widget_bridge] native module PhraseWidget is missing on ${Platform.OS} — ` +
+            'the widget cannot be updated. Check that the module is autolinked ' +
+            '(iOS needs modules/phrase-widget/ios/*.podspec) and rebuild.',
+        );
+      }
+      return false;
+    }
 
     const lang: DailyPhraseInterfaceLang = options?.lang ?? 'ru';
     const mode: ThemeMode = options?.themeMode ?? 'dark';

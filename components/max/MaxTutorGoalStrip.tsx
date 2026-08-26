@@ -22,21 +22,22 @@ export function MaxTutorGoalStrip({ mode, title, currentTopic, sceneTitle, maste
   const contextTitle = isFreeTalk ? cleanTopic : (cleanSceneTitle || title.trim());
   const safeMastery = Math.max(0, Math.min(3, Math.floor(mastery)));
   const freeTalk = triLang(lang, {
-    ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre',
+    ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation', es: 'Conversación libre',
     'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas',
     tr: 'Serbest konuşma', pl: 'Swobodna rozmowa',
   });
   const goalLabel = triLang(lang, {
-    ru: 'Цель урока', uk: 'Мета уроку', es: 'Objetivo de la lección',
+    ru: 'Цель урока', uk: 'Мета уроку', en: 'Lesson goal', es: 'Objetivo de la lección',
     'pt-BR': 'Objetivo da aula', vi: 'Mục tiêu bài học', id: 'Tujuan pelajaran',
     tr: 'Ders hedefi', pl: 'Cel lekcji',
   });
   const sceneLabel = triLang(lang, {
-    ru: 'Сценка', uk: 'Сценка', es: 'Escena', 'pt-BR': 'Cena', vi: 'Tình huống',
+    ru: 'Сценка', uk: 'Сценка', en: 'Scene', es: 'Escena', 'pt-BR': 'Cena', vi: 'Tình huống',
     id: 'Adegan', tr: 'Sahne', pl: 'Scenka',
   });
   const progressLabel = triLang(lang, {
     ru: `Прогресс цели: ${safeMastery} из 3`, uk: `Прогрес цілі: ${safeMastery} з 3`,
+    en: `Goal progress: ${safeMastery} of 3`,
     es: `Progreso del objetivo: ${safeMastery} de 3`, 'pt-BR': `Progresso do objetivo: ${safeMastery} de 3`,
     vi: `Tiến độ mục tiêu: ${safeMastery} trên 3`, id: `Kemajuan tujuan: ${safeMastery} dari 3`,
     tr: `Hedef ilerlemesi: 3 üzerinden ${safeMastery}`, pl: `Postęp celu: ${safeMastery} z 3`,

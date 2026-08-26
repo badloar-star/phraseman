@@ -419,7 +419,7 @@ export default function LevelUpThresholdModalHybrid({
         <Animated.View pointerEvents="none" style={[styles.ambientTop, { backgroundColor: palette.ambient }, bloomStyle]} />
         <View pointerEvents="none" style={[styles.ambientBottom, { backgroundColor: `${palette.accentSecondary}17` }]} />
 
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           bounces={false}
           showsVerticalScrollIndicator={false}
           scrollEnabled={false}

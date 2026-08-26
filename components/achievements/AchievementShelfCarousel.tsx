@@ -162,7 +162,7 @@ export default function AchievementShelfCarousel({
     {
       name: 'increment' as const,
       label: triLang(lang, {
-        ru: 'Следующая награда', uk: 'Наступна нагорода', es: 'Siguiente recompensa',
+        ru: 'Следующая награда', uk: 'Наступна нагорода', en: 'Next reward', es: 'Siguiente recompensa',
         'pt-BR': 'Próxima recompensa', vi: 'Phần thưởng tiếp theo', id: 'Hadiah berikutnya',
         tr: 'Sonraki ödül', pl: 'Następna nagroda',
       }),
@@ -170,7 +170,7 @@ export default function AchievementShelfCarousel({
     {
       name: 'decrement' as const,
       label: triLang(lang, {
-        ru: 'Предыдущая награда', uk: 'Попередня нагорода', es: 'Recompensa anterior',
+        ru: 'Предыдущая награда', uk: 'Попередня нагорода', en: 'Previous reward', es: 'Recompensa anterior',
         'pt-BR': 'Recompensa anterior', vi: 'Phần thưởng trước', id: 'Hadiah sebelumnya',
         tr: 'Önceki ödül', pl: 'Poprzednia nagroda',
       }),
@@ -178,7 +178,7 @@ export default function AchievementShelfCarousel({
     {
       name: 'activate' as const,
       label: triLang(lang, {
-        ru: 'Открыть награду', uk: 'Відкрити нагороду', es: 'Abrir recompensa',
+        ru: 'Открыть награду', uk: 'Відкрити нагороду', en: 'Open reward', es: 'Abrir recompensa',
         'pt-BR': 'Abrir recompensa', vi: 'Mở phần thưởng', id: 'Buka hadiah',
         tr: 'Ödülü aç', pl: 'Otwórz nagrodę',
       }),
@@ -187,6 +187,7 @@ export default function AchievementShelfCarousel({
   const accessibilityPosition = triLang(lang, {
     ru: `${selectedIndex + 1} из ${items.length}`,
     uk: `${selectedIndex + 1} з ${items.length}`,
+    en: `${selectedIndex + 1} of ${items.length}`,
     es: `${selectedIndex + 1} de ${items.length}`,
     'pt-BR': `${selectedIndex + 1} de ${items.length}`,
     vi: `${selectedIndex + 1} / ${items.length}`,

@@ -27,6 +27,7 @@ import EnergyCostBadge from './EnergyCostBadge';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { soundDirector } from '../modules/audio/sound_director';
 import SkeletonBlock from './SkeletonShimmer';
 import { useTheme } from './ThemeContext';
 
@@ -57,6 +58,9 @@ interface DialogVerdictScreenProps {
    * «Разговор завершён» + число реплик вместо счёта целей, без хайфайва.
    */
   neutralClosing?: { userExchanges: number; recommendedExchanges: number };
+  /** Владелец 2026-08-25: блок оценки диалога (звёзды+текст) — слот, а не
+   * прямая завязка на feedback-модуль, чтобы компонент оставался переиспользуемым. */
+  feedbackSlot?: React.ReactNode;
   onRetry: () => void;
   onExit: () => void;
   onShowChat: () => void;
@@ -80,6 +84,7 @@ export default function DialogVerdictScreen({
   xpAwarded,
   locked,
   neutralClosing,
+  feedbackSlot,
   onRetry,
   onExit,
   onShowChat,
@@ -99,6 +104,12 @@ export default function DialogVerdictScreen({
     hapticFiredRef.current = true;
     if (success) void hapticSuccess();
     else void hapticWarning();
+    // зачем: тот же вердикт, что и хаптик выше, — блестяще пройденный диалог
+    // празднуем pm.dialog.victory, любой другой исход (не только сеть/сбой,
+    // а именно «не сдал, попробуй снова») — поддерживающий pm.dialog.retry,
+    // без унижения. Нейтральное закрытие (ручной выход) звука не получает —
+    // это не игровой момент, тот же критерий, что и у хаптика.
+    soundDirector.request(success ? 'pm.dialog.victory' : 'pm.dialog.retry', { scope: 'dialog-verdict' });
   }, [success, neutral]);
 
   const outcomeIcon: keyof typeof Ionicons.glyphMap = neutral
@@ -120,6 +131,7 @@ export default function DialogVerdictScreen({
     ? triLang(lang, {
         ru: 'Разговор завершён',
         uk: 'Розмову завершено',
+        en: 'Conversation finished',
         es: 'Conversación terminada',
         'pt-BR': 'Conversa encerrada',
         vi: 'Cuộc trò chuyện đã kết thúc',
@@ -133,6 +145,7 @@ export default function DialogVerdictScreen({
     ? triLang(lang, {
         ru: `Твоих реплик: ${neutralClosing.userExchanges}. Ориентир: около ${neutralClosing.recommendedExchanges}, но завершать можно вручную.`,
         uk: `Твоїх реплік: ${neutralClosing.userExchanges}. Орієнтир: близько ${neutralClosing.recommendedExchanges}, але завершити можна вручну.`,
+        en: `Your replies: ${neutralClosing.userExchanges}. Target: about ${neutralClosing.recommendedExchanges}, but you can end it manually.`,
         es: `Tus respuestas: ${neutralClosing.userExchanges}. Guía: unas ${neutralClosing.recommendedExchanges}, pero puedes terminar manualmente.`,
         'pt-BR': `Suas respostas: ${neutralClosing.userExchanges}. Referência: cerca de ${neutralClosing.recommendedExchanges}, mas você pode encerrar manualmente.`,
         vi: `Lượt trả lời của bạn: ${neutralClosing.userExchanges}. Gợi ý: khoảng ${neutralClosing.recommendedExchanges}, nhưng bạn có thể tự kết thúc.`,
@@ -150,6 +163,7 @@ export default function DialogVerdictScreen({
   const showChatLabel = triLang(lang, {
     ru: 'Показать переписку',
     uk: 'Показати переписку',
+    en: 'Show the transcript',
     es: 'Ver la conversación',
     'pt-BR': 'Ver a conversa',
     vi: 'Xem cuộc trò chuyện',
@@ -188,7 +202,7 @@ export default function DialogVerdictScreen({
       />
 
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 26, paddingBottom: 28 }}
         >
@@ -248,6 +262,7 @@ export default function DialogVerdictScreen({
                   accessibilityLabel={triLang(lang, {
                     ru: 'Финальное настроение собеседника',
                     uk: 'Фінальний настрій співрозмовника',
+                    en: "The other person's final mood",
                     es: 'Ánimo final del interlocutor',
                     'pt-BR': 'Humor final do interlocutor',
                     vi: 'Tâm trạng cuối của người kia',
@@ -340,6 +355,7 @@ export default function DialogVerdictScreen({
                   {triLang(lang, {
                     ru: 'Цели сцены',
                     uk: 'Цілі сцени',
+                    en: 'Scene goals',
                     es: 'Objetivos de la escena',
                     'pt-BR': 'Objetivos da cena',
                     vi: 'Mục tiêu của cảnh',
@@ -389,6 +405,7 @@ export default function DialogVerdictScreen({
                   {triLang(lang, {
                     ru: 'На будущее',
                     uk: 'На майбутнє',
+                    en: 'For next time',
                     es: 'Para la próxima',
                     'pt-BR': 'Para a próxima',
                     vi: 'Lần sau',
@@ -427,6 +444,7 @@ export default function DialogVerdictScreen({
                   {triLang(lang, {
                     ru: 'Разбор твоих фраз',
                     uk: 'Розбір твоїх фраз',
+                    en: 'Breakdown of your phrases',
                     es: 'Análisis de tus frases',
                     'pt-BR': 'Análise das suas frases',
                     vi: 'Phân tích câu của bạn',
@@ -460,6 +478,7 @@ export default function DialogVerdictScreen({
                       {triLang(lang, {
                         ru: 'Ошибок не нашлось — отличная работа!',
                         uk: 'Помилок не знайшлося — чудова робота!',
+                        en: 'No mistakes found — great work!',
                         es: '¡Sin errores — buen trabajo!',
                         'pt-BR': 'Sem erros — ótimo trabalho!',
                         vi: 'Không có lỗi — làm tốt lắm!',
@@ -531,6 +550,7 @@ export default function DialogVerdictScreen({
                   {triLang(lang, {
                     ru: 'AI-разбор ошибок — в Plus',
                     uk: 'AI-розбір помилок — у Plus',
+                    en: 'AI mistake breakdown — in Plus',
                     es: 'Análisis de errores con IA — en Plus',
                     'pt-BR': 'Análise de erros com IA — no Plus',
                     vi: 'Phân tích lỗi bằng AI — trong Plus',
@@ -547,6 +567,7 @@ export default function DialogVerdictScreen({
                 triLang(lang, {
                   ru: 'где фраза звучала неестественно',
                   uk: 'де фраза звучала неприродно',
+                  en: 'where a phrase sounded unnatural',
                   es: 'dónde la frase sonó poco natural',
                   'pt-BR': 'onde a frase soou pouco natural',
                   vi: 'chỗ câu nói chưa tự nhiên',
@@ -557,6 +578,7 @@ export default function DialogVerdictScreen({
                 triLang(lang, {
                   ru: 'что исправить в следующей реплике',
                   uk: 'що виправити в наступній репліці',
+                  en: 'what to fix in your next line',
                   es: 'qué corregir en la siguiente respuesta',
                   'pt-BR': 'o que corrigir na próxima fala',
                   vi: 'nên sửa gì ở lượt nói tiếp theo',
@@ -567,6 +589,7 @@ export default function DialogVerdictScreen({
                 triLang(lang, {
                   ru: 'как сказать это естественнее',
                   uk: 'як сказати це природніше',
+                  en: 'how to say it more naturally',
                   es: 'cómo decirlo de forma más natural',
                   'pt-BR': 'como dizer isso de forma mais natural',
                   vi: 'cách nói tự nhiên hơn',
@@ -584,6 +607,8 @@ export default function DialogVerdictScreen({
               ))}
             </Reanimated.View>
           )}
+
+          {feedbackSlot ? <View style={{ marginTop: 12 }}>{feedbackSlot}</View> : null}
 
           <View style={{ flex: 1 }} />
 
@@ -606,6 +631,7 @@ export default function DialogVerdictScreen({
                   {triLang(lang, {
                     ru: 'Открыть Plus',
                     uk: 'Відкрити Plus',
+                    en: 'Unlock Plus',
                     es: 'Abrir Plus',
                     'pt-BR': 'Abrir Plus',
                     vi: 'Mở Plus',
@@ -632,6 +658,7 @@ export default function DialogVerdictScreen({
                   {triLang(lang, {
                     ru: 'Ещё раз',
                     uk: 'Ще раз',
+                    en: 'Again',
                     es: 'Otra vez',
                     'pt-BR': 'De novo',
                     vi: 'Lần nữa',
@@ -660,6 +687,7 @@ export default function DialogVerdictScreen({
                 {triLang(lang, {
                   ru: 'К диалогам',
                   uk: 'До діалогів',
+                  en: 'To dialogues',
                   es: 'A los diálogos',
                   'pt-BR': 'Aos diálogos',
                   vi: 'Về danh sách',

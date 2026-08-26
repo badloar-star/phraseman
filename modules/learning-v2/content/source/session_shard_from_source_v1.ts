@@ -22,6 +22,7 @@ import {
 } from '../intro_semantic_runs_v1';
 import type { V2ActivityFamily } from '../../contracts/activity';
 import type { V2SessionLearningFunction } from '../../contracts/session';
+import type { LearningV2ModeNativePayloadV1 } from '../../contracts/mode_native_payload_v1';
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 import { lesson1SessionChoreographyV1 } from './lesson1_session_choreography_v1';
 import type { SessionKind } from './episode_01_session_map_v1';
@@ -191,6 +192,27 @@ export interface SessionVocabularySourceV1 {
   >;
 }
 
+export interface SessionModeNativePracticeSourceV1 {
+  readonly family: LearningV2ModeNativePayloadV1['family'];
+  readonly purpose:
+    | 'supported_practice'
+    | 'guided_practice'
+    | 'retrieval_practice'
+    | 'near_transfer'
+    | 'independent_check';
+  readonly learningStage:
+    | 'recognize'
+    | 'retrieve_meaning'
+    | 'build_form'
+    | 'apply_in_phrase'
+    | 'speak_with_model';
+  readonly target:
+    | Readonly<{ kind: 'vocabulary'; sourceIndex: number }>
+    | Readonly<{ kind: 'vocabulary_grid'; sourceIndices: readonly number[] }>
+    | Readonly<{ kind: 'phrase'; sourceIndex: number }>;
+  readonly modePayload: LearningV2ModeNativePayloadV1;
+}
+
 function expandLocalizedIntroRuns(
   source: LocalizedIntroRunsSource,
 ): LearningV2IntroRunsByLocaleV1 {
@@ -325,6 +347,9 @@ export interface SessionSource {
   ];
   /** New lexical units authored for this session before phrase application. */
   readonly newVocabulary?: readonly SessionVocabularySourceV1[];
+  /** Explicit owner-approved mode-first order. Generic family assignment is forbidden. */
+  readonly modeNativePractice?: readonly SessionModeNativePracticeSourceV1[];
+  readonly modeNativePlanId?: string;
   /** Required when an ordinary teaching session intentionally adds no lexicon. */
   readonly newVocabularyExceptionReason?: string;
   /**
@@ -367,14 +392,14 @@ const FAMILY_INSTRUCTION: Readonly<Record<string, LocalizedSource>> =
       pl: 'Ułóż zdanie z wyrazów.',
     },
     speed_match: {
-      ru: 'Быстро подберите правильное слово.',
-      uk: 'Швидко доберіть правильне слово.',
-      es: 'Elige rápido la palabra correcta.',
-      'pt-BR': 'Escolha rapidamente a palavra certa.',
-      vi: 'Hãy nhanh chóng chọn từ đúng.',
-      id: 'Pilih kata yang tepat dengan cepat.',
-      tr: 'Doğru sözcüğü hızla seçin.',
-      pl: 'Szybko wybierz właściwe słowo.',
+      ru: 'Сопоставьте выражения с их значениями.',
+      uk: 'Зіставте вирази з їхніми значеннями.',
+      es: 'Relaciona cada expresión con su significado.',
+      'pt-BR': 'Associe cada expressão ao seu significado.',
+      vi: 'Ghép mỗi cách nói với đúng nghĩa của nó.',
+      id: 'Pasangkan setiap ungkapan dengan artinya.',
+      tr: 'Her ifadeyi anlamıyla eşleştirin.',
+      pl: 'Połącz każde wyrażenie z jego znaczeniem.',
     },
     sound_contrast: {
       ru: 'Различите похожие по звучанию слова.',
@@ -649,7 +674,38 @@ export function buildSessionShardFromSource(
     source.sessionKindOverride,
     source.newVocabulary?.length ?? 0,
     source.phrases.length,
+    source.modeNativePlanId,
   );
+  if (source.modeNativePractice) {
+    if (
+      !source.modeNativePlanId ||
+      source.modeNativePractice.length !== choreography.steps.length - 3
+    ) {
+      throw new Error('session_source_mode_native_plan_invalid');
+    }
+    source.modeNativePractice.forEach((authored, index) => {
+      const expected = choreography.steps[index + 3];
+      const expectedIndex = authored.target.kind === 'phrase'
+        ? expected?.sourcePhraseIndex
+        : authored.target.kind === 'vocabulary'
+          ? expected?.sourceVocabularyIndex
+          : expected?.sourceVocabularyIndices?.join(',');
+      const authoredIndex = authored.target.kind === 'phrase' || authored.target.kind === 'vocabulary'
+        ? authored.target.sourceIndex
+        : authored.target.sourceIndices.join(',');
+      if (
+        !expected ||
+        authored.family !== expected.family ||
+        authored.purpose !== expected.purpose ||
+        authored.learningStage !== expected.learningStage ||
+        authored.target.kind !== expected.targetKind ||
+        String(authoredIndex) !== String(expectedIndex) ||
+        authored.modePayload.family !== authored.family
+      ) {
+        throw new Error(`session_source_mode_native_step_mismatch:${index + 4}`);
+      }
+    });
+  }
 
   const introPages = source.introPages.map((page, index) => {
       const ordinal = (index + 1) as 1 | 2 | 3;
@@ -695,6 +751,9 @@ export function buildSessionShardFromSource(
   const cards = choreography.steps.map((step, index) => {
     const slot = index + 1;
     const family = step.family;
+    const authoredModeStep = slot >= 4
+      ? source.modeNativePractice?.[slot - 4]
+      : undefined;
     const contentItemId = `content-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}`;
     const vocabularyStage = step.learningStage === 'recognize' ||
       step.learningStage === 'retrieve_meaning' ||
@@ -704,18 +763,28 @@ export function buildSessionShardFromSource(
     const vocabulary = step.targetKind === 'vocabulary'
       ? source.newVocabulary?.[step.sourceVocabularyIndex ?? -1]
       : undefined;
-    if (step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage))
+    const gridVocabulary = step.targetKind === 'vocabulary_grid'
+      ? step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex])
+      : undefined;
+    if (
+      (step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage)) ||
+      (step.targetKind === 'vocabulary_grid' && !gridVocabulary?.every(Boolean))
+    )
       throw new Error('session_source_choreography_vocabulary_missing');
     const phrase = step.targetKind === 'phrase'
       ? source.phrases[step.sourcePhraseIndex ?? -1]
       : undefined;
     if (step.targetKind === 'phrase' && !phrase)
       throw new Error('session_source_choreography_phrase_missing');
-    const vocabularyContact = vocabulary && vocabularyStage
+    const vocabularyContact = vocabulary && vocabularyStage && step.targetKind === 'vocabulary'
       ? vocabulary.contacts[vocabularyStage]
       : undefined;
-    const targetText = vocabulary?.target ?? phrase!.english;
-    const intentSourceId = vocabulary?.id ?? phrase!.id;
+    const targetText = vocabulary?.target ??
+      (gridVocabulary
+        ? gridVocabulary.map((item) => item!.target).join(' · ')
+        : phrase!.english);
+    const intentSourceId = vocabulary?.id ??
+      (gridVocabulary ? `${source.episodeOrdinal}:session-${sessionOrdinal}:vocabulary-grid` : phrase!.id);
     // зачем locale === 'es' читает 'en' (владелец, 2026-08-23): 'es' —
     // историческая обязательная локаль объяснения английского курса. Когда
     // targetLanguage сам испанский, 'es' объяснением не является вообще —
@@ -728,8 +797,19 @@ export function buildSessionShardFromSource(
     const expandedVocabularyMeaning = vocabulary
       ? expandLocalized(vocabulary.meaning)
       : null;
+    const expandedGridMeaning = gridVocabulary
+      ? Object.fromEntries(
+          LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+            locale,
+            gridVocabulary
+              .map((item) => expandLocalized(item!.meaning)[locale])
+              .join(' · '),
+          ]),
+        ) as LearningV2Localized<string>
+      : null;
     const meaningFor = (locale: LearningV2InterfaceLocale): string => {
       if (expandedVocabularyMeaning) return expandedVocabularyMeaning[locale];
+      if (expandedGridMeaning) return expandedGridMeaning[locale];
       return phrase!.localizedDetails?.[locale]?.meaning ??
         (locale === 'es'
           ? (phrase!.localizedDetails?.en?.meaning ?? `${UNTRANSLATED_MARKER}${phrase!.russian}`)
@@ -766,7 +846,9 @@ export function buildSessionShardFromSource(
       acceptedAnswers: [targetText],
       // зачем: дистракторы из источника становятся отклонёнными ответами с причиной —
       // рантайм объясняет ошибку, а не просто красит красным.
-      rejectedAnswers: vocabularyContact
+      rejectedAnswers: gridVocabulary
+        ? []
+        : vocabularyContact
         ? vocabularyContact.distractors.map((entry) => ({
             value: entry.value,
             // The task selector needs the tested correct form in position 2.
@@ -780,13 +862,37 @@ export function buildSessionShardFromSource(
               reasonCode: entry.reasonCode,
             })),
           ),
-      linguisticFeatures: vocabulary?.features ?? phrase!.features,
+      linguisticFeatures: vocabulary?.features ??
+        (gridVocabulary
+          ? [...new Set(gridVocabulary.flatMap((item) => item!.features))]
+          : phrase!.features),
       pronunciationTargets: [],
       prerequisiteContentItemIds: [],
       objectiveIds: [source.canDoOutcomeId],
       compatibleFamilies: [family],
     };
-    const learnerCopy = vocabularyContact && vocabularyStage && expandedVocabularyMeaning
+    const learnerCopy = gridVocabulary && expandedGridMeaning
+      ? (() => {
+          const instructionByLocale = expandLocalized(
+            VOCABULARY_STAGE_INSTRUCTION.retrieve_meaning,
+          );
+          const localized = (
+            select: (locale: LearningV2InterfaceLocale) => string,
+          ): LearningV2Localized<string> => Object.fromEntries(
+            LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, select(locale)]),
+          ) as LearningV2Localized<string>;
+          return {
+            instructionByLocale,
+            hintByLocale: localized((locale) => expandedGridMeaning[locale]),
+            successMessageByLocale: instructionByLocale,
+            retryMessageByLocale: instructionByLocale,
+            errorExplanationByLocale: instructionByLocale,
+            accessibilityLabelByLocale: localized(
+              (locale) => `${targetText}. ${expandedGridMeaning[locale]}.`,
+            ),
+          };
+        })()
+      : vocabularyContact && vocabularyStage && expandedVocabularyMeaning
       ? (() => {
           const guidance = expandLocalized(vocabularyContact.guidance);
           const feedback = vocabularyContact.distractors.map((entry) => ({
@@ -834,6 +940,7 @@ export function buildSessionShardFromSource(
         slot <= 3 ? intro.pages[slot - 1].question.questionId : null,
       contentItem,
       ...learnerCopy,
+      modePayload: authoredModeStep?.modePayload ?? null,
       audioScript: AUDIO_FAMILIES.has(family)
         ? {
             contentItemId,
@@ -860,6 +967,7 @@ export function buildSessionShardFromSource(
     zone: choreography.zone,
     support: choreography.support,
     generationInputFingerprint,
+    modeNativePlanId: source.modeNativePlanId ?? null,
     interfaceLocales: LEARNING_V2_INTERFACE_LOCALES,
     contentKinds: LEARNING_V2_REQUIRED_CONTENT_KINDS,
     intro: intro as never,

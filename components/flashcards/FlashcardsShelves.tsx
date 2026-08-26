@@ -138,7 +138,7 @@ function FlashcardsShelvesBase({
           {/* guard-ok (perf): полка ограничена 12 тайлами (см. `cinema` выше) —
               горизонтальный ScrollView здесь дешевле FlatList, у которого на
               таком объёме overhead больше самой отрисовки. */}
-          <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 9 }}> {/* guard-ok: полка ограничена 12 тайлами */}
+          <ScrollView horizontal decelerationRate="fast" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 9 }}> {/* guard-ok: полка ограничена 12 тайлами */}
             {cinema.map((p) => (
               <TouchableOpacity
                 key={p.id}

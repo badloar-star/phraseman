@@ -1,5 +1,15 @@
 # Каталог активностей и UI-storyboards Phraseman V2
 
+> **Owner override 2026-08-25:** для required Learning V2 sessions используются
+> ровно шесть активных режимов и их канонические HTML-макеты. Контент пишется сразу под
+> family-native payload, а интерфейс, states, gestures, audio и motion
+> реализуются 1:1. Полный действующий контракт:
+> [`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md).
+> Более широкий исторический каталог ниже остаётся reference для платформы и
+> optional surfaces, но не разрешает подменять или расширять шесть approved
+> required-session modes без нового решения владельца.
+> `sound_contrast` снят с active authoring и остаётся только legacy reference.
+
 **Дата спецификации:** 2026-07-14  
 **Назначение:** зафиксировать переиспользуемую UI-архитектуру 18 пользовательских учебных поверхностей — 17 runtime activity families и отдельного checkpoint assessment contract, — обязательные состояния каждого режима и требования к голосу, движению, аудио, наградам и доступности для пилотного сезона из 32 эпизодов.
 

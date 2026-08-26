@@ -31,6 +31,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { soundDirector } from '../modules/audio/sound_director';
 import { usePaywallChrome, PaywallCloseButton } from '../components/paywall/paywallShared';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim } from './paywall_purchase';
@@ -219,6 +220,17 @@ export default function ManageSubscription() {
   const saveOfferBusyRef = useRef(false);
   const screenAccountRef = useRef(screenAccount);
 
+  // зачем: открытие экрана управления подпиской — mount-once, не завязан на
+  // загрузку данных (loading может ещё крутиться) и не должен дребезжать при
+  // смене аккаунта (accountGeneration-эффект ниже перемонтирует состояние, но
+  // не сам компонент).
+  const openSoundedRef = useRef(false);
+  useEffect(() => {
+    if (openSoundedRef.current) return;
+    openSoundedRef.current = true;
+    soundDirector.request('pm.subscription.manage_open', { scope: 'paywall' });
+  }, []);
+
   useEffect(() => {
     const acceptAccount = (next: AccountGenerationToken) => {
       const previous = screenAccountRef.current;
@@ -335,6 +347,20 @@ export default function ManageSubscription() {
       setInfo(result.customerInfo);
       if (result.status === 'unknown') {
         void trackEvent('change_plan_failed', { from: 'monthly', to: 'yearly', error: 'active_plan_unknown' });
+        // зачем (аудит 2026-08-26): раньше здесь был молчаливый return — человек жал
+        // «Сменить план», спиннер гас, и НИЧЕГО не происходило без объяснения. Экран
+        // не имел вообще ни одного способа сообщить об ошибке, хотя это денежный путь.
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Не удалось подтвердить смену плана. Проверь подписку в магазине.',
+          messageUk: 'Не вдалося підтвердити зміну плану. Перевір передплату в магазині.',
+          messageEs: 'No se pudo confirmar el cambio de plan. Revisa tu suscripción en la tienda.',
+          messagePtBr: 'Não foi possível confirmar a troca de plano. Verifique a assinatura na loja.',
+          messageVi: 'Không xác nhận được việc đổi gói. Hãy kiểm tra gói đăng ký trong cửa hàng.',
+          messageId: 'Perubahan paket tidak dapat dikonfirmasi. Cek langgananmu di toko.',
+          messageTr: 'Plan değişikliği doğrulanamadı. Aboneliğini mağazadan kontrol et.',
+          messagePl: 'Nie udało się potwierdzić zmiany planu. Sprawdź subskrypcję w sklepie.',
+        });
         return;
       }
       invalidatePremiumCache();
@@ -343,6 +369,22 @@ export default function ManageSubscription() {
     } catch (err: unknown) {
       if (!(err as { userCancelled?: boolean })?.userCancelled) {
         void trackEvent('change_plan_failed', { from: 'monthly', to: 'yearly' });
+        // зачем (аудит 2026-08-26): сбой платного действия уходил ТОЛЬКО в аналитику —
+        // ни пользователю, ни в логи. Причина терялась навсегда, разобрать было нечем.
+        void import('./debug-logger')
+          .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:changePlan', err, 'critical'))
+          .catch(() => {});
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Смена плана не прошла. Деньги не списаны — попробуй ещё раз.',
+          messageUk: 'Зміна плану не пройшла. Кошти не списані — спробуй ще раз.',
+          messageEs: 'El cambio de plan no se completó. No se cobró nada: inténtalo de nuevo.',
+          messagePtBr: 'A troca de plano não foi concluída. Nada foi cobrado — tente de novo.',
+          messageVi: 'Đổi gói chưa hoàn tất. Bạn chưa bị trừ tiền — hãy thử lại.',
+          messageId: 'Perubahan paket gagal. Tidak ada biaya yang ditarik — coba lagi.',
+          messageTr: 'Plan değişikliği tamamlanmadı. Ücret alınmadı — tekrar dene.',
+          messagePl: 'Zmiana planu nie powiodła się. Nic nie pobrano — spróbuj ponownie.',
+        });
       }
     } finally {
       if (isManageSubscriptionOperationCurrent(generation)) setChanging(false);
@@ -358,8 +400,27 @@ export default function ManageSubscription() {
 
   /** Уход в системный экран отмены — единственная точка выхода в стор. */
   const openStoreCancel = useCallback(() => {
-    closeCancelSheet();
-    void Linking.openURL(getStoreManageUrl()).catch(() => {});
+    // зачем (аудит 2026-08-26): раньше шторка закрывалась ДО открытия ссылки, а отказ
+    // глушился `.catch(() => {})`. Это единственный путь к отмене подписки: если
+    // магазин не открылся, человек оставался в тупике без единого объяснения.
+    void Linking.openURL(getStoreManageUrl())
+      .then(() => { closeCancelSheet(); })
+      .catch((err: unknown) => {
+        void import('./debug-logger')
+          .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:openStoreCancel', err, 'critical'))
+          .catch(() => {});
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Не удалось открыть магазин. Отмени подписку в настройках телефона.',
+          messageUk: 'Не вдалося відкрити магазин. Скасуй передплату в налаштуваннях телефона.',
+          messageEs: 'No se pudo abrir la tienda. Cancela la suscripción en los ajustes del teléfono.',
+          messagePtBr: 'Não foi possível abrir a loja. Cancele a assinatura nos ajustes do telefone.',
+          messageVi: 'Không mở được cửa hàng. Hãy huỷ gói trong cài đặt điện thoại.',
+          messageId: 'Toko tidak dapat dibuka. Batalkan langganan di pengaturan ponsel.',
+          messageTr: 'Mağaza açılamadı. Aboneliği telefon ayarlarından iptal et.',
+          messagePl: 'Nie udało się otworzyć sklepu. Anuluj subskrypcję w ustawieniach telefonu.',
+        });
+      });
   }, [closeCancelSheet]);
 
   // ── отмена: опрос → удержание → стор ────────────────────────────────────────
@@ -432,7 +493,7 @@ export default function ManageSubscription() {
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
       <SafeAreaView style={S.safe}>
-        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
           <PaywallCloseButton onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }} chrome={chrome} />
 
           <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A` }]}>

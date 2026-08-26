@@ -3,8 +3,12 @@ import { loadActiveLevelGiftInventory } from '../app/level_gift_active_inventory
 import { friendGiftInventoryKey } from '../app/friend_gift_inventory';
 import { beginAccountGeneration, captureAccountGeneration, __resetAccountGenerationForTests } from '../app/account_generation';
 import { flashcardsPackTrialGiftKey } from '../app/target_storage_keys';
+import { readAttemptRestoreGiftCount } from '../app/session_attempts/session_attempt_restore_inventory';
 
 jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../app/session_attempts/session_attempt_restore_inventory', () => ({
+  readAttemptRestoreGiftCount: jest.fn(),
+}));
 
 const mockStorage: Record<string, string> = {};
 
@@ -13,6 +17,7 @@ const nowMs = Date.UTC(2026, 4, 18, 12, 0, 0);
 beforeEach(() => {
   __resetAccountGenerationForTests();
   beginAccountGeneration('inventory-test-user');
+  (readAttemptRestoreGiftCount as jest.Mock).mockResolvedValue(0);
   jest.spyOn(Date, 'now').mockReturnValue(nowMs);
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
@@ -159,6 +164,22 @@ describe('active level gift inventory', () => {
         iconGiftId: 'xp_2x_24h',
         title: 'Подарок от Adi',
         desc: 'x2 XP на 24 часа',
+      }),
+    ]);
+  });
+
+  it('lists a permanent second-chance row only while its count is positive', async () => {
+    (readAttemptRestoreGiftCount as jest.Mock).mockResolvedValue(2);
+
+    await expect(loadActiveLevelGiftInventory('ru', nowMs, 'en')).resolves.toEqual([
+      expect.objectContaining({
+        key: 'attempt_restore_all',
+        iconGiftId: 'attempt_restore_all',
+        title: 'Второй шанс',
+        desc: 'Восстанавливает все 3 попытки во время сессии',
+        countBadge: 2,
+        lifetime: { kind: 'permanent' },
+        informationKind: 'attempt_restore_all',
       }),
     ]);
   });

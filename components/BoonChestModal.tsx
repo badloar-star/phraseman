@@ -23,6 +23,7 @@ import { soundDirector } from '../modules/audio/sound_director';
 import BoonChestHybrid from './celebration/BoonChestHybrid';
 import type { RewardImpactRarity } from './celebration/use_reward_impact_hybrid';
 import RetiredRasterFallback from './feedback/RetiredRasterFallback';
+import SpinTicketArt from './SpinTicketArt';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const STAGE_SIZE = 150;
@@ -40,8 +41,17 @@ export interface BoonChestModalProps {
   rarity: BoonChestRarity;
   /** Заголовок окна (над сундуком). */
   title: string;
-  /** Подпись под наградой в фазе reveal (напр. «5 осколков — теперь твои»). */
+  /** Подпись под наградой в фазе reveal (напр. «1 спин — теперь твой»). */
   rewardLine: string;
+  /**
+   * Что за награда лежит в сундуке — определяет КАРТИНКУ в фазе reveal.
+   *
+   * зачем (владелец, 2026-08-26): сундуки недели/возвращения/идеальной недели
+   * теперь дают спин, но рисовали безликую коробку-подарок — ту же, что у любой
+   * другой награды. У спина есть свой узнаваемый значок (SpinTicketArt), и он
+   * обязан быть везде, где спин показывается.
+   */
+  rewardArt?: 'gift' | 'spin';
   /** Текст «Нажми, чтобы открыть» под закрытым сундуком. */
   tapHint: string;
   /** Подпись кнопки в фазе reveal. */
@@ -70,6 +80,7 @@ export default function BoonChestModal({
   rarity,
   title,
   rewardLine,
+  rewardArt = 'gift',
   tapHint,
   claimCta,
   closeLabel,
@@ -231,6 +242,7 @@ export default function BoonChestModal({
         palette={paletteForRarity(rarity)}
         title={title}
         rewardLine={rewardLine}
+        rewardArt={rewardArt}
         tapHint={tapHint}
         claimCta={claimCta}
         closeLabel={closeLabel}
@@ -343,7 +355,9 @@ export default function BoonChestModal({
               <View style={styles.orbStage}>
                 <GiftOpenBurst key={`${rarity}-burst`} tier={animTierF2p(rarity)} size={STAGE_SIZE} />
                 <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
-                  <RetiredRasterFallback kind="gift" size={108} color={paletteForRarity(rarity).accent} />
+                  {rewardArt === 'spin'
+                    ? <SpinTicketArt size={108} accessibilityLabel="" />
+                    : <RetiredRasterFallback kind="gift" size={108} color={paletteForRarity(rarity).accent} />}
                 </Animated.View>
               </View>
 

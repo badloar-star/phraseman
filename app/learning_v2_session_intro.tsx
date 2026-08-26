@@ -10,7 +10,11 @@ import {
 import Animated, {
   FadeInDown,
   ReduceMotion,
+  useAnimatedStyle,
   useReducedMotion,
+  useSharedValue,
+  withSequence,
+  withTiming,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -45,6 +49,7 @@ import {
   richSubtitle,
   richTitle,
 } from "./lesson_intro_rich";
+import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -53,6 +58,7 @@ const stringsFor = (lang: Lang) => ({
   close: triLang(lang, {
     ru: "Закрыть интро",
     uk: "Закрити вступ",
+    en: "Close intro",
     es: "Cerrar introducción",
     "pt-BR": "Fechar introdução",
     vi: "Đóng phần giới thiệu",
@@ -63,6 +69,7 @@ const stringsFor = (lang: Lang) => ({
   next: triLang(lang, {
     ru: "Дальше",
     uk: "Далі",
+    en: "Next",
     es: "Continuar",
     "pt-BR": "Continuar",
     vi: "Tiếp tục",
@@ -73,6 +80,7 @@ const stringsFor = (lang: Lang) => ({
   startPractice: triLang(lang, {
     ru: "Начать практику",
     uk: "Почати практику",
+    en: "Start practice",
     es: "Empezar práctica",
     "pt-BR": "Começar prática",
     vi: "Bắt đầu luyện tập",
@@ -83,6 +91,7 @@ const stringsFor = (lang: Lang) => ({
   answerFirst: triLang(lang, {
     ru: "Проверь себя",
     uk: "Перевір себе",
+    en: "Test yourself",
     es: "Compruébalo",
     "pt-BR": "Confira",
     vi: "Tự kiểm tra",
@@ -93,6 +102,7 @@ const stringsFor = (lang: Lang) => ({
   correct: triLang(lang, {
     ru: "Верно",
     uk: "Правильно",
+    en: "Correct",
     es: "Correcto",
     "pt-BR": "Correto",
     vi: "Đúng",
@@ -103,6 +113,7 @@ const stringsFor = (lang: Lang) => ({
   correctExample: triLang(lang, {
     ru: "правильный пример",
     uk: "правильний приклад",
+    en: "correct example",
     es: "ejemplo correcto",
     "pt-BR": "exemplo correto",
     vi: "ví dụ đúng",
@@ -113,6 +124,7 @@ const stringsFor = (lang: Lang) => ({
   wrongExample: triLang(lang, {
     ru: "неверный пример",
     uk: "неправильний приклад",
+    en: "incorrect example",
     es: "ejemplo incorrecto",
     "pt-BR": "exemplo incorreto",
     vi: "ví dụ sai",
@@ -124,6 +136,7 @@ const stringsFor = (lang: Lang) => ({
     triLang(lang, {
       ru: `${current} из ${total}`,
       uk: `${current} з ${total}`,
+      en: `${current} of ${total}`,
       es: `${current} de ${total}`,
       "pt-BR": `${current} de ${total}`,
       vi: `${current} trên ${total}`,
@@ -135,6 +148,7 @@ const stringsFor = (lang: Lang) => ({
     triLang(lang, {
       ru: "СМЫСЛ",
       uk: "СЕНС",
+      en: "MEANING",
       es: "IDEA",
       "pt-BR": "IDEIA",
       vi: "Ý NGHĨA",
@@ -145,6 +159,7 @@ const stringsFor = (lang: Lang) => ({
     triLang(lang, {
       ru: "СХЕМА",
       uk: "СХЕМА",
+      en: "PATTERN",
       es: "ESQUEMA",
       "pt-BR": "ESQUEMA",
       vi: "CẤU TRÚC",
@@ -155,6 +170,7 @@ const stringsFor = (lang: Lang) => ({
     triLang(lang, {
       ru: "ЛОВУШКА",
       uk: "ПАСТКА",
+      en: "TRAP",
       es: "TRAMPA",
       "pt-BR": "ARMADILHA",
       vi: "BẪY",
@@ -180,22 +196,22 @@ function rolePresentation(
 ): { color: string; fontWeight: "400" | "700"; strike: boolean; size: number } {
   switch (role) {
     case "target":
-      return { color: targetColor, fontWeight: "700", strike: false, size: 18 };
+      return { color: targetColor, fontWeight: "700", strike: false, size: 16 };
     case "targetWrong":
-      return { color: theme.wrong, fontWeight: "700", strike: true, size: 18 };
+      return { color: theme.wrong, fontWeight: "700", strike: true, size: 16 };
     case "gloss":
-      return { color: theme.textMuted, fontWeight: "400", strike: false, size: 17 };
+      return { color: theme.textMuted, fontWeight: "400", strike: false, size: 15 };
     case "markerCorrect":
-      return { color: theme.correct, fontWeight: "700", strike: false, size: 17 };
+      return { color: theme.correct, fontWeight: "700", strike: false, size: 15 };
     case "markerWarning":
-      return { color: theme.gold, fontWeight: "700", strike: false, size: 17 };
+      return { color: theme.gold, fontWeight: "700", strike: false, size: 15 };
     case "formula":
-      return { color: theme.textSecond, fontWeight: "700", strike: false, size: 17 };
+      return { color: theme.textSecond, fontWeight: "700", strike: false, size: 15 };
     case "emphasis":
-      return { color: theme.textOnCard, fontWeight: "700", strike: false, size: 17 };
+      return { color: theme.textOnCard, fontWeight: "700", strike: false, size: 15 };
     case "plain":
     default:
-      return { color: theme.textOnCard, fontWeight: "400", strike: false, size: 17 };
+      return { color: theme.textOnCard, fontWeight: "400", strike: false, size: 15 };
   }
 }
 
@@ -257,6 +273,31 @@ function IntroReaderParagraph({
   );
 }
 
+function IntroAnswerShake({
+  nudgeToken,
+  reducedMotion,
+  children,
+}: Readonly<{
+  nudgeToken: number;
+  reducedMotion: boolean;
+  children: React.ReactNode;
+}>) {
+  const x = useSharedValue(0);
+  useEffect(() => {
+    if (nudgeToken === 0 || reducedMotion) return;
+    x.value = withSequence(
+      withTiming(-7, { duration: 42 }),
+      withTiming(7, { duration: 54 }),
+      withTiming(-4, { duration: 46 }),
+      withTiming(0, { duration: 42 }),
+    );
+  }, [nudgeToken, reducedMotion, x]);
+  const style = useAnimatedStyle(() => ({
+    transform: [{ translateX: x.value }],
+  }));
+  return <Animated.View style={style}>{children}</Animated.View>;
+}
+
 export default function LearningV2SessionIntro({
   introScreens,
   lessonId,
@@ -266,6 +307,7 @@ export default function LearningV2SessionIntro({
   resolveSecondWrongExplanation,
   onComplete,
   onBack,
+  headerAccessory,
 }: Readonly<{
   introScreens: readonly LessonIntroScreen[];
   lessonId: number;
@@ -283,6 +325,8 @@ export default function LearningV2SessionIntro({
     completions: readonly RequiredSessionTaskCompletionInputV3[],
   ) => void;
   onBack?: () => void;
+  /** Header-owned status content must participate in layout, never float over it. */
+  headerAccessory?: React.ReactNode;
 }>) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -296,6 +340,10 @@ export default function LearningV2SessionIntro({
   >(null);
   const [attempts, setAttempts] = useState(1);
   const [wrongCount, setWrongCount] = useState(0);
+  const [wrongChoiceNudge, setWrongChoiceNudge] = useState({
+    choiceIndex: -1,
+    token: 0,
+  });
   const completionsRef = useRef(
     new Map<string, RequiredSessionTaskCompletionInputV3>(),
   );
@@ -330,6 +378,15 @@ export default function LearningV2SessionIntro({
           },
         ]
     : [];
+  const titleTargetFragments = lines.flatMap((line) =>
+    (line.parts ?? [])
+      .filter((part) => part.semantic === "targetCorrect")
+      .map((part) => part.text),
+  );
+  const titleSegments = splitLearningV2IntroTitleByTargetsV1(
+    title,
+    titleTargetFragments,
+  );
   const isLast = safeIndex === screens.length - 1;
   const compact = height < 720;
   // зачем: алфавитная развилка «латиница = изучаемый язык» верна только там, где
@@ -381,6 +438,10 @@ export default function LearningV2SessionIntro({
     }
     setWrongCount((value) => value + 1);
     setAttempts((value) => value + 1);
+    setWrongChoiceNudge((current) => ({
+      choiceIndex,
+      token: current.token + 1,
+    }));
     void hapticError();
   };
 
@@ -400,6 +461,7 @@ export default function LearningV2SessionIntro({
     setSelectedCorrectIndex(null);
     setAttempts(1);
     setWrongCount(0);
+    setWrongChoiceNudge({ choiceIndex: -1, token: 0 });
     setIndex((value) => Math.min(value + 1, screens.length - 1));
   };
 
@@ -439,6 +501,9 @@ export default function LearningV2SessionIntro({
               {safeIndex + 1} / {screens.length}
             </Text>
           </View>
+          {headerAccessory ? (
+            <View style={styles.headerAccessory}>{headerAccessory}</View>
+          ) : null}
           {/* зачем: вступление показывает объяснение и встроенный проверочный
               вопрос с вариантами — тот же контент, что в lesson_intro_screens,
               где флаг есть, а здесь его забыли. */}
@@ -447,7 +512,7 @@ export default function LearningV2SessionIntro({
             dataId={`learning_v2_intro_${lessonId}_${safeIndex}`}
             dataText={questionPrompt || stageLabel}
             variant="icon-flag"
-            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в объяснении', uk: 'Повідомити про помилку в поясненні', es: 'Informar de un error en la explicación', 'pt-BR': 'Relatar erro na explicação', vi: 'Báo lỗi trong phần giải thích', id: 'Laporkan kesalahan pada penjelasan', tr: 'Açıklamadaki hatayı bildir', pl: 'Zgłoś błąd w wyjaśnieniu' })}
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в объяснении', uk: 'Повідомити про помилку в поясненні', en: 'Report an error in the explanation', es: 'Informar de un error en la explicación', 'pt-BR': 'Relatar erro na explicação', vi: 'Báo lỗi trong phần giải thích', id: 'Laporkan kesalahan pada penjelasan', tr: 'Açıklamadaki hatayı bildir', pl: 'Zgłoś błąd w wyjaśnieniu' })}
             testID="learning-v2-intro-report"
           />
         </View>
@@ -492,7 +557,18 @@ export default function LearningV2SessionIntro({
           >
             <View style={styles.readerColumn}>
               <Text style={[styles.title, { color: t.textPrimary }]}>
-                {title}
+                {titleSegments.map((segment, segmentIndex) => (
+                  <Text
+                    key={`${segmentIndex}-${segment.text}`}
+                    style={
+                      segment.isTarget
+                        ? { color: targetColor, fontWeight: "900" }
+                        : undefined
+                    }
+                  >
+                    {segment.text}
+                  </Text>
+                ))}
               </Text>
               {!!subtitle && (
                 <Text style={[styles.subtitle, { color: t.textMuted }]}>
@@ -526,12 +602,7 @@ export default function LearningV2SessionIntro({
               </View>
 
               {question && (
-                <View
-                  style={[
-                    styles.questionPanel,
-                    { backgroundColor: t.bgCard },
-                  ]}
-                >
+                <View style={styles.questionPanel}>
                   <View style={styles.questionEyebrowRow}>
                     <Text style={[styles.questionEyebrow, { color: targetColor }]}>
                       {copy.answerFirst}
@@ -547,8 +618,16 @@ export default function LearningV2SessionIntro({
                     {questionChoices.map((choice, choiceIndex) => {
                       const correct = selectedCorrectIndex === choiceIndex;
                       return (
-                        <PressableHybrid
+                        <IntroAnswerShake
                           key={`${question.questionId}-${choiceIndex}`}
+                          reducedMotion={reducedMotion}
+                          nudgeToken={
+                            wrongChoiceNudge.choiceIndex === choiceIndex
+                              ? wrongChoiceNudge.token
+                              : 0
+                          }
+                        >
+                        <PressableHybrid
                           testID={`learning-v2-intro-answer-${choiceIndex}`}
                           variant="card"
                           accessibilityLabel={choice}
@@ -580,6 +659,7 @@ export default function LearningV2SessionIntro({
                             />
                           )}
                         </PressableHybrid>
+                        </IntroAnswerShake>
                       );
                     })}
                   </View>
@@ -657,7 +737,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     flexDirection: "row",
     alignItems: "center",
-    gap: 14,
+    gap: 10,
   },
   closeButton: { minWidth: 44, minHeight: 44 },
   // зачем: владелец запретил обводки контейнеров — кнопка, панель вопроса и
@@ -671,17 +751,20 @@ const styles = StyleSheet.create({
   },
   stageMeta: {
     flex: 1,
+    minWidth: 0,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
   stageLabel: {
+    flexShrink: 1,
     fontSize: 12,
     lineHeight: 17,
     fontWeight: "700",
     letterSpacing: 1.4,
   },
   pageCounter: { fontSize: 13, lineHeight: 18, fontWeight: "700" },
+  headerAccessory: { flexShrink: 0 },
   progressRow: {
     height: 4,
     marginHorizontal: 18,
@@ -696,24 +779,22 @@ const styles = StyleSheet.create({
   scrollContentCompact: { paddingTop: 16 },
   readerColumn: { width: "100%", maxWidth: 680, alignSelf: "center" },
   title: {
-    fontSize: 28,
-    lineHeight: 34,
+    fontSize: 23,
+    lineHeight: 32,
     fontWeight: "700",
     letterSpacing: -0.4,
   },
   subtitle: {
-    fontSize: 16,
-    lineHeight: 25,
+    fontSize: 14,
+    lineHeight: 22,
     fontWeight: "400",
     marginTop: 10,
   },
-  knowledgeFlow: { marginTop: 22, gap: 16 },
-  readerParagraph: { fontSize: 17, lineHeight: 28, fontWeight: "400" },
+  knowledgeFlow: { marginTop: 18, gap: 13 },
+  readerParagraph: { fontSize: 15, lineHeight: 22, fontWeight: "400" },
   spacer: { height: 4 },
   questionPanel: {
-    marginTop: 26,
-    borderRadius: 22,
-    padding: 16,
+    marginTop: 18,
   },
   questionEyebrowRow: {
     flexDirection: "row",
@@ -729,12 +810,12 @@ const styles = StyleSheet.create({
   },
   questionNumber: { fontSize: 12, lineHeight: 17, fontWeight: "700" },
   questionPrompt: {
-    fontSize: 17,
-    lineHeight: 25,
+    fontSize: 15,
+    lineHeight: 23,
     fontWeight: "700",
     marginTop: 12,
   },
-  answerList: { marginTop: 14, gap: 10 },
+  answerList: { marginTop: 10, gap: 8 },
   answerChoiceTouch: { minHeight: 52 },
   answerChoice: {
     minHeight: 52,

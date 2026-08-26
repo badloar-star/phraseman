@@ -8,14 +8,14 @@ import {
 import type { LevelSpinRewardId } from '../app/level_spin_reward_catalog';
 
 describe('level spin reward asset manifest', () => {
-  test('matches the v4 reward catalogue exactly', () => {
+  test('matches the v6 reward catalogue exactly', () => {
     const exhaustive: Readonly<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>> =
       LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID;
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST.map(({ id }) => id).sort()).toEqual(
       LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort(),
     );
     expect(Object.keys(exhaustive).sort()).toEqual(LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort());
-    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(37);
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(39);
   });
 
   test('preserves each manifest key, embedded id, and production filename as correlated literals', () => {
@@ -26,9 +26,10 @@ describe('level spin reward asset manifest', () => {
     expect(exactFile).toBe('assets/images/level-spin-rewards/xp_250.webp');
   });
 
-  test('uses ten restrained families and contains no baked-label field', () => {
+  test('uses eleven restrained families and contains no baked-label field', () => {
     expect(Object.keys(LEVEL_SPIN_REWARD_FAMILY_PALETTES).sort()).toEqual([
       'aura',
+      'avatar',
       'energy',
       'hints',
       'pearls',
@@ -76,5 +77,25 @@ describe('level spin reward asset manifest', () => {
     // картинка обслуживает выдачу любой из пяти платных тем.
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.cosmetic_theme.subject)
       .toMatch(/palette tablets/i);
+  });
+
+  test('gives the all-avatar prize a dedicated anonymous-avatar brief', () => {
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.cosmetic_avatar_common).toMatchObject({
+      id: 'cosmetic_avatar_common',
+      family: 'avatar',
+      productionFile: 'assets/images/level-spin-rewards/cosmetic_avatar_common.webp',
+    });
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.cosmetic_avatar_common.subject)
+      .toMatch(/anonymous avatar bust/i);
+  });
+
+  test('gives the attempt restore gift a dedicated protection reliquary brief', () => {
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.attempt_restore_all).toMatchObject({
+      id: 'attempt_restore_all',
+      family: 'protection',
+      productionFile: 'assets/images/level-spin-rewards/attempt_restore_all.webp',
+    });
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.attempt_restore_all.subject)
+      .toMatch(/three.*heart.*reliquary/i);
   });
 });

@@ -21,6 +21,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readPhraseAudioMapFile } from './lib/phrase_audio_map_source.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const JSON_OUT = process.argv.includes('--json');
@@ -68,13 +69,7 @@ function extractTexts(absFile, fields) {
 function loadPhraseMapKeys() {
   const f = path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts');
   if (!fs.existsSync(f)) return new Set();
-  const src = fs.readFileSync(f, 'utf8');
-  const keys = new Set();
-  // keys are JSON-ish "...": "https..."
-  for (const m of src.matchAll(/^\s*"((?:[^"\\]|\\.)*)":\s*"https/gm)) {
-    keys.add(normalizePhraseKey(JSON.parse(`"${m[1]}"`)));
-  }
-  return keys;
+  return new Set(Array.from(readPhraseAudioMapFile(f).keys(), normalizePhraseKey));
 }
 
 const phraseMapKeys = loadPhraseMapKeys();

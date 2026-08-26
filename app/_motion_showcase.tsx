@@ -86,7 +86,7 @@ export default function MotionShowcaseScreen() {
           </Text>
         </View>
       </View>
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         contentContainerStyle={[styles.body, { paddingBottom: insets.bottom + 28 }]}
         showsVerticalScrollIndicator={false}
       >

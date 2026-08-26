@@ -88,7 +88,12 @@ function ModeRow({
 
   const tint = option.accent ? P.accent : P.text;
   return (
-    <Animated.View style={style}>
+    // зачем: EnergyCostBadge вынесен СОСЕДОМ PressableHybrid, а не его ребёнком —
+    // PressableHybrid оборачивает children в Animated.View со скруглением из
+    // contentStyle (styles.row, borderRadius:20), и абсолютно спозиционированный
+    // бейдж (top:-14/-18) обрезался по этой скруглённой границе (класс бага
+    // из EnergyCostBadge/DuoPressable surfaceClip, см. project_energy_badge_clip).
+    <Animated.View style={[style, { position: 'relative' }]}>
       <PressableHybrid
         variant="card"
         accessibilityLabel={option.body ? `${option.title}. ${option.body}` : option.title}
@@ -110,10 +115,10 @@ function ModeRow({
         <View style={[styles.badge, { backgroundColor: P.elev }]}>
           <Text style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
         </View>
-        {option.key !== 'friend' && !option.disabled ? (
-          <EnergyCostBadge compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />
-        ) : null}
       </PressableHybrid>
+      {option.key !== 'friend' && !option.disabled ? (
+        <EnergyCostBadge compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />
+      ) : null}
     </Animated.View>
   );
 }
@@ -193,7 +198,7 @@ function ArenaModeSheetBase({
         >
           <View style={[styles.grabber, { backgroundColor: P.elev2 }]} />
           <Text style={[styles.sheetTitle, { color: P.text }]}>{title}</Text>
-          <ScrollView style={styles.listScroll} contentContainerStyle={styles.list}>
+          <ScrollView decelerationRate="fast" style={styles.listScroll} contentContainerStyle={styles.list}>
             {options.map((option, index) => (
               <ModeRow
                 key={option.key}
@@ -230,8 +235,14 @@ const styles = StyleSheet.create({
   },
   grabber: { alignSelf: 'center', width: 42, height: 4, borderRadius: 2 },
   sheetTitle: { fontSize: 20, fontWeight: '900', letterSpacing: -0.3 },
-  listScroll: { flexShrink: 1 },
-  list: { gap: 10, paddingBottom: 2 },
+  // marginTop отрицательный компенсирует paddingTop списка ниже — иначе
+  // добавленный запас под бейдж раздвинул бы видимый зазор после заголовка.
+  listScroll: { flexShrink: 1, marginTop: -16 },
+  // зачем: ScrollView клипует контент по своим границам (встроенное поведение
+  // RN, не выражено JS-стилем overflow — текстовый сторож energy_start_cost_
+  // contract его не видит). EnergyCostBadge торчит над строкой (top:-14) и
+  // вправо (right:-2) — без запаса верх/право обрезались краем скролла.
+  list: { gap: 10, paddingTop: 16, paddingHorizontal: 4, paddingBottom: 2 },
   row: {
     minHeight: 76,
     borderRadius: 20,

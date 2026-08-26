@@ -477,7 +477,7 @@ export default function FlashcardsPacksScreen() {
         </View>
 
         <View style={styles.scrollRegion}>
-          <Animated.ScrollView
+          <Animated.ScrollView decelerationRate="fast"
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,

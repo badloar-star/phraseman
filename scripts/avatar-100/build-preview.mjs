@@ -25,8 +25,8 @@ function parseArgs(args) {
   }
   if (values.size !== 4) throw new Error('All preview arguments are required');
   const assetIndex = Number(values.get('--index'));
-  if (!Number.isInteger(assetIndex) || assetIndex < 63 || assetIndex > 162) {
-    throw new Error(`Preview index must be 63-162; got ${values.get('--index')}`);
+  if (!Number.isInteger(assetIndex) || assetIndex < 63 || assetIndex > 165) {
+    throw new Error(`Preview index must be 63-165; got ${values.get('--index')}`);
   }
   return {
     inputDir: path.resolve(values.get('--input-dir')),

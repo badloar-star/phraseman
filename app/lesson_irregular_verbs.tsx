@@ -21,7 +21,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -49,6 +49,12 @@ import {
   frenchVocabularyGateCopy,
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 
@@ -203,10 +209,10 @@ function verbTenseCaptions(lang: Lang): {
 } {
   // зачем: единый переводчик проекта вместо if-лестницы (сторож i18n +
   // недостающие 5 языков раньше молча откатывались на русский).
-  const present = triLang(lang, { ru: 'настоящее', uk: 'теперішнє', es: 'presente', 'pt-BR': 'presente', vi: 'hiện tại', id: 'sekarang', tr: 'şimdiki', pl: 'teraźniejszy' });
-  const pastT = triLang(lang, { ru: 'прошлое', uk: 'минуле', es: 'pasado', 'pt-BR': 'passado', vi: 'quá khứ', id: 'lampau', tr: 'geçmiş', pl: 'przeszły' });
-  const participle = triLang(lang, { ru: 'причастие', uk: 'дієприкметник', es: 'participio', 'pt-BR': 'particípio', vi: 'phân từ', id: 'partisip', tr: 'ortaç', pl: 'imiesłów' });
-  const futureWord = triLang(lang, { ru: 'будущее', uk: 'майбутнє', es: 'futuro', 'pt-BR': 'futuro', vi: 'tương lai', id: 'masa depan', tr: 'gelecek', pl: 'przyszły' });
+  const present = triLang(lang, { ru: 'настоящее', uk: 'теперішнє', en: 'present', es: 'presente', 'pt-BR': 'presente', vi: 'hiện tại', id: 'sekarang', tr: 'şimdiki', pl: 'teraźniejszy' });
+  const pastT = triLang(lang, { ru: 'прошлое', uk: 'минуле', en: 'past', es: 'pasado', 'pt-BR': 'passado', vi: 'quá khứ', id: 'lampau', tr: 'geçmiş', pl: 'przeszły' });
+  const participle = triLang(lang, { ru: 'причастие', uk: 'дієприкметник', en: 'participle', es: 'participio', 'pt-BR': 'particípio', vi: 'phân từ', id: 'partisip', tr: 'ortaç', pl: 'imiesłów' });
+  const futureWord = triLang(lang, { ru: 'будущее', uk: 'майбутнє', en: 'future', es: 'futuro', 'pt-BR': 'futuro', vi: 'tương lai', id: 'masa depan', tr: 'gelecek', pl: 'przyszły' });
   return {
     present,
     pastT,
@@ -238,12 +244,30 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode } = useTheme();
   const router = useRouter();
+  const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `irregular-verbs:${studyTarget ?? 'en'}:${lessonId ?? 0}:${attemptSessionId}`,
+    initialQuestionId: 'irregular-verbs:loading',
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const answerAttemptSequenceRef = useRef(0);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+  }, []);
   const pack = stringsForLang(lang);
   const formMeta = formRowMeta(lang, themeMode);
   const isLightTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
-  const { confirmSpendOne } = useEnergy();
+  const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
+  const verbsEnergyIntent = useEnergySessionIntent(
+    'irregular_verbs',
+    `${studyTarget ?? 'en'}:${lessonId ?? 0}`,
+    attemptSessionId,
+  );
   const confirmSpendOneRef = useRef(confirmSpendOne);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
@@ -259,8 +283,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     if (verbsEntryChargedRef.current) return;
     verbsEntryChargedRef.current = true;
     let active = true;
-    void confirmSpendOneRef.current().then(result => {
+    void confirmSpendOneRef.current(verbsEnergyIntent).then(result => {
       if (!active) return;
+      if (result === 'spent') void acknowledgeSessionStart(verbsEnergyIntent.operationId);
       if (result === 'insufficient') onNoEnergyRef.current();
       if (result === 'cancelled') onCancelStartRef.current();
     });
@@ -401,6 +426,15 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     // Принимаем и варианты формы (was|were, gotten|got) как верный ответ.
     const acceptedSet = new Set(acceptedFormsFor(verb, form).map(f => f.toLowerCase()));
     const isCorrect = acceptedSet.has(word.toLowerCase());
+    const attemptEffect = attempts.registerVerdict({
+      answerAttemptId: [
+        attemptSessionId,
+        verb.base,
+        form,
+        String(answerAttemptSequenceRef.current++),
+      ].join(':'),
+      verdict: isCorrect ? 'correct' : 'pedagogical_wrong',
+    });
     const activeOptions = ensureCompleteIrregularVerbOptions(options, verb, allVerbs, form);
 
     // Show feedback on buttons
@@ -443,6 +477,14 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
 
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Единственная
       // трата — 1 ⚡ при входе в тренировку глаголов (эффект старта выше).
+    }
+
+    if (attemptEffect === 'attempts_exhausted') {
+      attemptsModalTimerRef.current = setTimeout(
+        () => setShowAttemptsModal(true),
+        SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+      );
+      return; // Keep the current verb form for recovery.
     }
 
     // Advance after short delay (озвучка — сразу выше, без ожидания таймера)
@@ -508,10 +550,35 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         }
       }
     }, isCorrect ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
-  }, [phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget]);
+  }, [phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget, attempts.registerVerdict, attemptSessionId, lessonId]);
 
   const activeVerb = queue[pos % Math.max(queue.length, 1)];
   const activeForm = FORM_SEQ[step];
+  useEffect(() => {
+    if (!activeVerb) return;
+    attempts.updateQuestion(`${activeVerb.base}:${activeForm}`);
+  }, [activeForm, activeVerb, attempts.updateQuestion]);
+
+  const retryCurrentVerbFormAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+      setBtnStates(['idle', 'idle', 'idle', 'idle']);
+      setFeedbackCorrect(true);
+      setPhase('answering');
+      setLetterBankKey(key => key + 1);
+      locked.current = false;
+    } catch {
+      // Keep this exact form blocked until a durable recovery succeeds.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+
+  const endAttemptsExhaustedVerbSession = useCallback(() => {
+    attempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  }, [attempts.endAttemptsSession, lessonId, router]);
   // Зрелый глагол → собираем форму из букв (воспроизведение), новый → 4 кнопки (узнавание).
   const recallActive = !!activeVerb && isRecallVerb(activeVerb.base);
   const activeAcceptedForms = useMemo(
@@ -544,6 +611,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           {triLang(lang, {
             ru: 'Все глаголы выучены!',
             uk: 'Всі дієслова вивчено!',
+            en: 'All verbs learned!',
             es: '¡Has aprendido todos los verbos!',
             'pt-BR': 'Todos os verbos foram aprendidos!',
             vi: 'Bạn đã học xong tất cả động từ!',
@@ -564,7 +632,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-            {triLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← Volver a la lección', 'pt-BR': '← Voltar à lição', vi: '← Về bài học', id: '← Kembali ke pelajaran', tr: '← Derse dön', pl: '← Do lekcji' })}
+            {triLang(lang, { ru: '← К уроку', uk: '← До уроку', en: '← To lesson', es: '← Volver a la lección', 'pt-BR': '← Voltar à lição', vi: '← Về bài học', id: '← Kembali ke pelajaran', tr: '← Derse dön', pl: '← Do lekcji' })}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -574,7 +642,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         >
           <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
           <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>
-            {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Zacznij od nowa' })}
+            {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', en: 'Start over', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Zacznij od nowa' })}
           </Text>
         </TouchableOpacity>
       </View>
@@ -598,6 +666,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           {triLang(lang, {
             ru: 'Что-то пошло не так. Вернись к уроку или открой вкладку «Словарь» и снова нажми «Начать тренировку».',
             uk: 'Щось пішло не так. Повернись до уроку або відкрий вкладку «Словник» і знову натисни «Почати тренування».',
+            en: 'Something went wrong. Go back to the lesson or open the "Vocabulary" tab and tap "Start practice" again.',
             es: 'Algo salió mal. Vuelve a la lección o abre «Vocabulario» y pulsa «Empieza a practicar» otra vez.',
             'pt-BR': 'Algo deu errado. Volte à lição ou abra a aba “Vocabulário” e toque em “Começar treino” novamente.',
             vi: 'Đã có lỗi xảy ra. Hãy quay lại bài học hoặc mở tab “Từ vựng” và bấm “Bắt đầu luyện tập” lần nữa.',
@@ -644,11 +713,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
 
         {/* Progress counter */}
-        <View style={{ marginBottom: 8 }}>
+        <View style={{ marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <Text style={{ color: sx.muted, fontSize: f.label }}>
             {triLang(lang, {
               ru: `${learnedCnt} / ${verbs.length} выучено`,
               uk: `${learnedCnt} / ${verbs.length} вивчено`,
+              en: `${learnedCnt} / ${verbs.length} learned`,
               es: `${learnedCnt} / ${verbs.length} aprendidos`,
               'pt-BR': `${learnedCnt} / ${verbs.length} aprendidos`,
               vi: `${learnedCnt} / ${verbs.length} đã học`,
@@ -657,6 +727,11 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               pl: `${learnedCnt} / ${verbs.length} opanowano`,
             })}
           </Text>
+          <SessionAttemptsHud
+            remaining={attempts.state.remainingAttempts}
+            locale={lang}
+            testID="irregular-verbs-session-attempts"
+          />
         </View>
 
         {/* Card */}
@@ -676,8 +751,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               />
               <Text style={{ color: sx.ghost, fontSize: f.label, fontWeight: '600' }}>
                 {recallActive
-                  ? triLang(lang, { ru: 'Собери форму из букв', uk: 'Збери форму з літер', es: 'Forma la palabra con letras', 'pt-BR': 'Monte a forma com letras', vi: 'Ghép dạng từ các chữ cái', id: 'Susun bentuk dari huruf', tr: 'Harflerden formu oluştur', pl: 'Ułóż formę z liter' })
-                  : triLang(lang, { ru: 'Сначала попробуй вспомнить', uk: 'Спершу спробуй пригадати', es: 'Primero intenta recordar', 'pt-BR': 'Primeiro tente lembrar', vi: 'Trước tiên hãy thử nhớ lại', id: 'Coba ingat dulu', tr: 'Önce hatırlamaya çalış', pl: 'Najpierw spróbuj przypomnieć' })}
+                  ? triLang(lang, { ru: 'Собери форму из букв', uk: 'Збери форму з літер', en: 'Build the form from letters', es: 'Forma la palabra con letras', 'pt-BR': 'Monte a forma com letras', vi: 'Ghép dạng từ các chữ cái', id: 'Susun bentuk dari huruf', tr: 'Harflerden formu oluştur', pl: 'Ułóż formę z liter' })
+                  : triLang(lang, { ru: 'Сначала попробуй вспомнить', uk: 'Спершу спробуй пригадати', en: 'First try to recall it', es: 'Primero intenta recordar', 'pt-BR': 'Primeiro tente lembrar', vi: 'Trước tiên hãy thử nhớ lại', id: 'Coba ingat dulu', tr: 'Önce hatırlamaya çalış', pl: 'Najpierw spróbuj przypomnieć' })}
               </Text>
             </View>
           )}
@@ -818,6 +893,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             triLang(lang, {
               ru: `Глагол: ${verb.base} / ${verb.past} / ${verb.pp}`,
               uk: `Дієслово: ${verb.base} / ${verb.past} / ${verb.pp}`,
+              en: `Verb: ${verb.base} / ${verb.past} / ${verb.pp}`,
               es: `Verbo: ${verb.base} / ${verb.past} / ${verb.pp}`,
               'pt-BR': `Verbo: ${verb.base} / ${verb.past} / ${verb.pp}`,
               vi: `Động từ: ${verb.base} / ${verb.past} / ${verb.pp}`,
@@ -828,6 +904,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             triLang(lang, {
               ru: `Целевая форма: ${form}`,
               uk: `Цільова форма: ${form}`,
+              en: `Target form: ${form}`,
               es: `Forma objetivo: ${form}`,
               'pt-BR': `Forma alvo: ${form}`,
               vi: `Dạng mục tiêu: ${form}`,
@@ -838,6 +915,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             triLang(lang, {
               ru: `Варианты: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
               uk: `Варіанти: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              en: `Options: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
               es: `Opciones: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
               'pt-BR': `Opções: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
               vi: `Lựa chọn: ${displayOptions.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
@@ -861,6 +939,16 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         celebrateSound="medal"
         autoHideMs={1600}
         onDone={() => setLearnedBurst(null)}
+      />
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void retryCurrentVerbFormAfterRecovery('gift'); }}
+        onSpendRunes={() => { void retryCurrentVerbFormAfterRecovery('runes'); }}
+        onEndSession={endAttemptsExhaustedVerbSession}
       />
     </View>
   );
@@ -894,11 +982,11 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
       <Animated.ScrollView
         horizontal
-        decelerationRate="normal"
+        decelerationRate="fast"
         nestedScrollEnabled
         showsHorizontalScrollIndicator={true}
         scrollEventThrottle={16}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
         contentContainerStyle={{ paddingHorizontal: 16 }}
       >
         <View style={{ minWidth: TABLE_W }}>
@@ -974,6 +1062,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
         dataText={triLang(lang, {
           ru: `Список неправильных глаголов урока ${lessonId ?? ''}`,
           uk: `Список неправильних дієслів уроку ${lessonId ?? ''}`,
+          en: `Irregular verb list for lesson ${lessonId ?? ''}`,
           es: `Lista de verbos irregulares de la lección ${lessonId ?? ''}`,
           'pt-BR': `Lista de verbos irregulares da lição ${lessonId ?? ''}`,
           vi: `Danh sách động từ bất quy tắc của bài ${lessonId ?? ''}`,
@@ -999,7 +1088,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const { theme: t, f } = useTheme();
   const pack = stringsForLang(lang);
   return (
-    <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
+    <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
       <View style={{ position: 'relative' }}>
         <TouchableOpacity
           onPress={onStartLearn}
@@ -1119,6 +1208,7 @@ export default function LessonIrregularVerbs() {
   const title = triLang(lang, {
     ru: 'Неправильные глаголы',
     uk: 'Неправильні дієслова',
+    en: rootPack.lessonMenu.verbs,
     es: rootPack.lessonMenu.verbs,
     'pt-BR': 'Verbos irregulares',
     vi: 'Động từ bất quy tắc',
@@ -1188,6 +1278,7 @@ export default function LessonIrregularVerbs() {
                 ? triLang(lang, {
                     ru: 'Словарь',
                     uk: 'Словник',
+                    en: rootPack.lessonMenu.vocab,
                     es: rootPack.lessonMenu.vocab,
                     'pt-BR': 'Vocabulário',
                     vi: 'Từ vựng',
@@ -1198,6 +1289,7 @@ export default function LessonIrregularVerbs() {
                 : triLang(lang, {
                     ru: 'Учить',
                     uk: 'Учити',
+                    en: rootPack.words.training,
                     es: rootPack.words.training,
                     'pt-BR': 'Aprender',
                     vi: 'Học',

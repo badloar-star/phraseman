@@ -110,13 +110,13 @@ export default function LingmanVideosScreen() {
   const visibleLoading = loading || loadedKey !== currentRenderKey;
 
   const copy = useMemo(() => ({
-    recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', es: 'New videos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
-    empty: triLang(lang, { ru: 'Здесь пока нет опубликованных видео.', uk: 'Тут поки немає опублікованих відео.', es: 'No published videos here yet.', 'pt-BR': 'Ainda não há vídeos publicados.', vi: 'Chưa có video được đăng.', id: 'Belum ada video.', tr: 'Henüz video yok.', pl: 'Nie ma jeszcze filmów.' }),
-    offline: triLang(lang, { ru: 'Показываем сохранённый каталог. Обновим, когда появится связь.', uk: 'Показуємо збережений каталог. Оновимо після відновлення зв’язку.', es: 'Showing the saved catalog. We will refresh when online.', 'pt-BR': 'Mostrando o catálogo salvo.', vi: 'Đang hiển thị danh mục đã lưu.', id: 'Menampilkan katalog tersimpan.', tr: 'Kaydedilmiş katalog gösteriliyor.', pl: 'Wyświetlamy zapisany katalog.' }),
-    stale: triLang(lang, { ru: 'Каталог давно не обновлялся', uk: 'Каталог давно не оновлювався', es: 'Catalog update is delayed', 'pt-BR': 'Atualização do catálogo atrasada', vi: 'Danh mục chưa được cập nhật', id: 'Pembaruan katalog tertunda', tr: 'Katalog güncellemesi gecikti', pl: 'Aktualizacja katalogu jest opóźniona' }),
-    error: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', es: 'Could not load the catalog. Pull to retry.', 'pt-BR': 'Não foi possível carregar.', vi: 'Không thể tải danh mục.', id: 'Katalog tidak dapat dimuat.', tr: 'Katalog yüklenemedi.', pl: 'Nie udało się wczytać katalogu.' }),
-    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Retry', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
-    reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', es: 'Reminder set', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
+    recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', en: 'New videos', es: 'Videos nuevos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
+    empty: triLang(lang, { ru: 'Здесь пока нет опубликованных видео.', uk: 'Тут поки немає опублікованих відео.', en: 'No published videos here yet.', es: 'Todavía no hay videos publicados aquí.', 'pt-BR': 'Ainda não há vídeos publicados.', vi: 'Chưa có video được đăng.', id: 'Belum ada video.', tr: 'Henüz video yok.', pl: 'Nie ma jeszcze filmów.' }),
+    offline: triLang(lang, { ru: 'Показываем сохранённый каталог. Обновим, когда появится связь.', uk: 'Показуємо збережений каталог. Оновимо після відновлення зв’язку.', en: 'Showing the saved catalog. We will refresh when back online.', es: 'Mostramos el catálogo guardado. Lo actualizaremos cuando haya conexión.', 'pt-BR': 'Mostrando o catálogo salvo.', vi: 'Đang hiển thị danh mục đã lưu.', id: 'Menampilkan katalog tersimpan.', tr: 'Kaydedilmiş katalog gösteriliyor.', pl: 'Wyświetlamy zapisany katalog.' }),
+    stale: triLang(lang, { ru: 'Каталог давно не обновлялся', uk: 'Каталог давно не оновлювався', en: 'The catalog update is delayed', es: 'La actualización del catálogo está retrasada', 'pt-BR': 'Atualização do catálogo atrasada', vi: 'Danh mục chưa được cập nhật', id: 'Pembaruan katalog tertunda', tr: 'Katalog güncellemesi gecikti', pl: 'Aktualizacja katalogu jest opóźniona' }),
+    error: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', en: 'Could not load the catalog. Pull down to retry.', es: 'No se pudo cargar el catálogo. Desliza hacia abajo para reintentar.', 'pt-BR': 'Não foi possível carregar.', vi: 'Không thể tải danh mục.', id: 'Katalog tidak dapat dimuat.', tr: 'Katalog yüklenemedi.', pl: 'Nie udało się wczytać katalogu.' }),
+    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
+    reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
   const loadLegacyFallback = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
@@ -321,14 +321,14 @@ export default function LingmanVideosScreen() {
             {Array.from({ length: 3 }).map((_, index) => <SkeletonBlock key={index} width="100%" height={190} borderRadius={20} />)}
           </View>
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
-          <ScrollView testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
+          <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
             <Ionicons name="videocam-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text>
           </ScrollView>
         ) : tab === 'playlists' ? (
-          catalog ? <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
-            : <ScrollView testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
+          catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
         ) : (
-          <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
+          <ScrollView decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
             {hero ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer

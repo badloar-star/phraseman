@@ -6,10 +6,10 @@ import {
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
 import {
-  CUSTOM_AVATAR_BUY_COST,
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATARS,
   CUSTOM_AVATAR_SHOP,
+  getCustomAvatarPurchaseCost,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
   type CustomAvatarDef,
@@ -105,7 +105,10 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
     isCosmeticAssetForSale('avatar', avatar.id, true)
     || avatar.id === input.giftedAvatarId
     || avatar.id === active?.avatarId
-    || !!input.ownedAvatars[avatar.id]);
+    || !!input.ownedAvatars[avatar.id])
+    .sort((left, right) =>
+      getCustomAvatarPurchaseCost(left) - getCustomAvatarPurchaseCost(right)
+      || left.id.localeCompare(right.id, 'en', { numeric: true }));
 
   return [...visibleShopAvatars, ...visibleRemoteAvatars].map((avatar) => {
     const defaultForSale = CUSTOM_AVATAR_SHOP.some((shopAvatar) => shopAvatar.id === avatar.id);
@@ -122,7 +125,7 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
       availability: isOwned
         ? { kind: 'owned' as const }
         : isCosmeticAssetForSale('avatar', avatar.id, defaultForSale)
-          ? { kind: 'shards' as const, cost: CUSTOM_AVATAR_BUY_COST }
+          ? { kind: 'shards' as const, cost: getCustomAvatarPurchaseCost(avatar) }
           : { kind: 'reward' as const },
       previewValue: makeCustomAvatarValue(avatar.id, style.gradientId, style.logoColor),
     };

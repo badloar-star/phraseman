@@ -9,7 +9,7 @@
    Витрина Learning V2 · Сборник: модалы и промежуточные состояния
    Источник системы: 02-phrase-builder.html (токены/телефон/панель 1:1),
    .cta-secondary скопирован из 09-session-finale.html.
-   8 кадров переключаются панелью, в телефоне виден один. Фон кадров -
+   9 кадров переключаются панелью, в телефоне виден один. Фон кадров -
    упрощённая сцена сессии из эталона, приглушённая скримом при модалах.
    Закон G27-G30: без картинок/эмодзи, без обводок (кроме односторонних),
    без подписей-расшифровок мелким шрифтом, типографика - герой.
@@ -144,6 +144,13 @@ svg { display:block; }
 .counter svg { width:14px; height:14px; }
 .counter.stars { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.22)), var(--gold-bg); color:var(--gold); }
 .counter.miss { background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--wrong-bg); color:var(--wrong); opacity:0.4; }
+.attempts-hud {
+  height:32px; flex:0 0 auto; display:flex; align-items:center; gap:3px; padding:0 7px;
+  border-radius:999px; background:var(--wrong-bg);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 12px rgba(0,0,0,0.24);
+}
+.attempt-heart { width:17px; text-align:center; color:var(--wrong); font-size:18px; line-height:1; }
+.attempts-hud.empty .attempt-heart { color:var(--text-ghost); -webkit-text-stroke:1px var(--wrong); }
 
 .prompt { padding:26px 20px 0; }
 .task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
@@ -232,6 +239,28 @@ svg { display:block; }
 .sheet-title { font-size:21px; font-weight:800; color:var(--text-primary); text-align:center; letter-spacing:0.1px; }
 .sheet-body { font-size:14.5px; line-height:1.5; color:var(--text-muted); text-align:center; margin-top:10px; }
 .sheet-actions { margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+
+/* ================= ПОПЫТКИ ЗАКОНЧИЛИСЬ (кадр 9) ================= */
+.attempts-summary { display:flex; justify-content:center; gap:8px; margin:3px 0 18px; }
+.attempts-summary span {
+  width:38px; height:38px; display:grid; place-items:center; border-radius:14px;
+  color:var(--text-ghost); background:var(--wrong-bg); font-size:24px; line-height:1;
+  -webkit-text-stroke:1px var(--wrong);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.attempts-option {
+  width:100%; min-height:58px; border:none; border-radius:20px; padding:10px 14px;
+  display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer;
+  font-family:inherit; font-size:16px; font-weight:800; color:var(--correct-text);
+  background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+}
+.attempts-option.gift { background:linear-gradient(180deg,#FFE18B 0%,#FFC84C 58%,#C88D16 100%); color:var(--text-on-gold); box-shadow:0 5px 0 #7A520B,0 14px 26px var(--card-shadow),inset 0 1px 0 rgba(255,255,255,0.5); }
+.attempts-option:disabled { background:var(--bg-surface2); color:var(--text-ghost); box-shadow:0 5px 0 rgba(0,0,0,0.34); cursor:default; }
+.attempts-option-meta { display:block; margin-top:3px; font-size:12px; font-weight:700; opacity:0.72; }
+.attempts-busy-dot { width:8px; height:8px; border-radius:99px; background:currentColor; animation:attemptBusy calc(800ms * var(--tf)) ease-in-out infinite alternate; }
+@keyframes attemptBusy { to { transform:scale(0.45); opacity:0.4; } }
+.attempts-modal-state[hidden] { display:none; }
 
 /* Иконка-медальон премиум-градиент (микрофон, облако) */
 .medal {
@@ -387,6 +416,7 @@ svg { display:block; }
 }
 :root[data-reduced="1"] .skel::after { animation:none; opacity:0; }
 :root[data-reduced="1"] .cloud-orbit { animation:none; }
+:root[data-reduced="1"] .attempts-busy-dot { animation:none; }
 
 @media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
 </style>
@@ -411,6 +441,7 @@ svg { display:block; }
     <symbol id="i-phone-off" viewBox="0 0 24 24"><path d="M8.3 5.2c.6-.3 1.2-.1 1.6.5l1.2 1.9c.3.5.2 1.1-.2 1.5l-1 .9c.6 1.4 1.6 2.6 3 3.4l1-.9c.4-.4 1-.5 1.5-.2l2 1.2c.6.4.8 1.1.4 1.7l-1 1.6c-.4.6-1.1.9-1.8.8-4.4-.7-8-4.1-8.9-8.4-.1-.7.2-1.4.8-1.8l1.4-.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.5 11a7.5 7.5 0 1 0 2.1-5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/><path d="M4.2 4.6v3.8H8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 8v4.2l2.8 1.7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
     <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9" rx="2.2" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 7.2A2.2 2.2 0 0 1 6.2 5h11.6A2.2 2.2 0 0 1 20 7.2V9a3 3 0 0 0 0 6v1.8a2.2 2.2 0 0 1-2.2 2.2H6.2A2.2 2.2 0 0 1 4 16.8V15a3 3 0 0 0 0-6V7.2z" fill="currentColor"/><path d="M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 2"/></symbol>
   </defs>
 </svg>
 
@@ -426,6 +457,7 @@ svg { display:block; }
         </div>
         <div class="progress-row">
           <div class="bar-track"><div class="bar-fill" style="transform:scaleX(0.5)"></div></div>
+          <div class="attempts-hud" id="attemptsHud" role="img" aria-label="3 попытки из 3"><span class="attempt-heart">♥</span><span class="attempt-heart">♥</span><span class="attempt-heart">♥</span></div>
           <div class="counter miss"><svg><use href="#i-dot"/></svg><b>0</b></div>
           <div class="counter stars"><svg><use href="#i-star"/></svg><b>3</b></div>
         </div>
@@ -572,6 +604,41 @@ svg { display:block; }
       </div>
     </div>
 
+    <!-- ===== КАДР 9: Попытки закончились (4 обязательных состояния) ===== -->
+    <div class="sheet-layer" id="frame9" data-sheet>
+      <div class="sheet">
+        <div class="sheet-grabber"></div>
+        <div class="attempts-summary" role="img" aria-label="0 попыток из 3"><span>♥</span><span>♥</span><span>♥</span></div>
+        <div class="sheet-title">Попытки закончились</div>
+        <div class="sheet-body">Восстанови все 3 попытки и продолжай с этого же задания</div>
+        <div class="attempts-modal-state" data-attempts-modal-state="attempts-empty-no-gift">
+          <div class="sheet-actions">
+            <button class="attempts-option">Восстановить все 3 попытки · 25 рун</button>
+            <button class="cta-secondary" data-close-frame>Завершить сессию</button>
+          </div>
+        </div>
+        <div class="attempts-modal-state" data-attempts-modal-state="attempts-empty-with-gift" hidden>
+          <div class="sheet-actions">
+            <button class="attempts-option gift"><svg width="20" height="20"><use href="#i-ticket"/></svg><span>Использовать «Второй шанс»<span class="attempts-option-meta">В инвентаре: 1</span></span></button>
+            <button class="attempts-option">Восстановить все 3 попытки · 25 рун</button>
+            <button class="cta-tertiary" data-close-frame>Завершить сессию</button>
+          </div>
+        </div>
+        <div class="attempts-modal-state" data-attempts-modal-state="attempts-empty-insufficient-runes" hidden>
+          <div class="sheet-actions">
+            <button class="attempts-option" disabled><span>Восстановить все 3 попытки · 25 рун<span class="attempts-option-meta">На балансе: 12 рун</span></span></button>
+            <button class="cta-secondary" data-close-frame>Завершить сессию</button>
+          </div>
+        </div>
+        <div class="attempts-modal-state" data-attempts-modal-state="attempts-empty-busy" hidden>
+          <div class="sheet-actions">
+            <button class="attempts-option" disabled><span class="attempts-busy-dot"></span>Восстанавливаем попытки…</button>
+            <button class="cta-secondary" disabled>Завершить сессию</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ===== КАДР 7: Тост синхронизации (поверх живой сцены, без скрима) ===== -->
     <div class="toast-layer" id="frame7">
       <div class="toast" id="toastEl">
@@ -599,7 +666,7 @@ svg { display:block; }
   </div>
 
   <div class="pcard">
-    <h2>Кадры (8)</h2>
+    <h2>Кадры (9)</h2>
     <div class="framelist" id="frameList">
       <button class="pbtn framebtn" data-show="1"><b>1 · Выход из сессии</b><small>bottom sheet · «Остаться» первична</small></button>
       <button class="pbtn framebtn" data-show="2"><b>2 · Микрофон: объяснение</b><small>bottom sheet · до системного диалога</small></button>
@@ -609,6 +676,7 @@ svg { display:block; }
       <button class="pbtn framebtn" data-show="6"><b>6 · Звонок прервал запись</b><small>карточка · нейтральное восстановление</small></button>
       <button class="pbtn framebtn" data-show="7"><b>7 · Тост синхронизации</b><small>поверх живой сцены · Optimistic UI</small></button>
       <button class="pbtn framebtn" data-show="8"><b>8 · Восстановление сессии</b><small>bottom sheet · resume</small></button>
+      <button class="pbtn framebtn" data-show="9"><b>9 · Попытки закончились</b><small>bottom sheet · продолжение с того же задания</small></button>
     </div>
     <div class="variantrow" id="variantsFrame4" style="display:none">
       <button class="pbtn on" data-variant="4" data-v="main">Скачать</button>
@@ -618,6 +686,12 @@ svg { display:block; }
       <button class="pbtn on" data-variant="7" data-v="ok">Сохранено</button>
       <button class="pbtn" data-variant="7" data-v="wait">Ждём сеть</button>
     </div>
+    <div class="variantrow" id="variantsFrame9" style="display:none">
+      <button class="pbtn on" data-variant="9" data-v="no-gift">Без подарка</button>
+      <button class="pbtn" data-variant="9" data-v="with-gift">Есть подарок</button>
+      <button class="pbtn" data-variant="9" data-v="insufficient-runes">Не хватает рун</button>
+      <button class="pbtn" data-variant="9" data-v="busy">Восстановление</button>
+    </div>
     <div class="note">Тап по скриму на кадрах 1/2/8 = «Остаться»/безопасный дефолт (первая кнопка). На кадрах-карточках (3/4/6) скрим не закрывает - решение делается явной кнопкой.</div>
   </div>
 
@@ -625,6 +699,7 @@ svg { display:block; }
     <h2>Тайминги и Optimistic UI</h2>
     <div class="spec">
       <div class="row"><span>Bottom sheet: вход/выход</span><span class="val">320 мс spring / 200 мс ease</span></div>
+      <div class="row"><span>Третья ошибка → модал</span><span class="val">после финального состояния сердца</span></div>
       <div class="row"><span>Карточка в теле: вход</span><span class="val">240 мс spring, scale 0.9→1</span></div>
       <div class="row"><span>Скрим: проявление</span><span class="val">240 мс ease, нейтральный тон</span></div>
       <div class="row"><span>Скачивание эпизода</span><span class="val">прогресс-заливка 2000 мс, без спиннера</span></div>
@@ -659,7 +734,7 @@ const tf = () => parseFloat(getComputedStyle(document.documentElement).getProper
 const reduced = () => document.documentElement.dataset.reduced === '1' ||
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const ALL_FRAMES = [1,2,3,4,5,6,7,8];
+const ALL_FRAMES = [1,2,3,4,5,6,7,8,9];
 
 function hideAll() {
   ALL_FRAMES.forEach((n) => {
@@ -679,6 +754,9 @@ function showFrame(n) {
   document.querySelectorAll('[data-show]').forEach((b) => b.classList.toggle('on', Number(b.dataset.show) === n));
   $('variantsFrame4').style.display = n === 4 ? 'flex' : 'none';
   $('variantsFrame7').style.display = n === 7 ? 'flex' : 'none';
+  $('variantsFrame9').style.display = n === 9 ? 'flex' : 'none';
+  $('attemptsHud').classList.toggle('empty', n === 9);
+  $('attemptsHud').setAttribute('aria-label', n === 9 ? '0 попыток из 3' : '3 попытки из 3');
 
   if (n === 5) { $('skelScene').style.display = 'flex'; return; }
 
@@ -761,6 +839,18 @@ function setToastVariant(v) {
   requestAnimationFrame(() => { $('frame7').classList.add('show'); autoHideToast(); });
 }
 
+function setAttemptsVariant(v) {
+  const stateByVariant = {
+    'no-gift':'attempts-empty-no-gift',
+    'with-gift':'attempts-empty-with-gift',
+    'insufficient-runes':'attempts-empty-insufficient-runes',
+    'busy':'attempts-empty-busy'
+  };
+  document.querySelectorAll('[data-attempts-modal-state]').forEach((el) => {
+    el.hidden = el.dataset.attemptsModalState !== stateByVariant[v];
+  });
+}
+
 /* ===== Панель ===== */
 document.querySelectorAll('[data-show]').forEach((b) => {
   b.addEventListener('click', () => showFrame(Number(b.dataset.show)));
@@ -775,6 +865,12 @@ document.querySelectorAll('[data-variant="7"]').forEach((b) => {
   b.addEventListener('click', () => {
     document.querySelectorAll('[data-variant="7"]').forEach((x) => x.classList.toggle('on', x === b));
     setToastVariant(b.dataset.v);
+  });
+});
+document.querySelectorAll('[data-variant="9"]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-variant="9"]').forEach((x) => x.classList.toggle('on', x === b));
+    setAttemptsVariant(b.dataset.v);
   });
 });
 document.querySelectorAll('[data-theme-btn]').forEach((b) => {
@@ -792,7 +888,7 @@ $('rmBtn').addEventListener('click', () => {
   document.documentElement.dataset.reduced = on ? '1' : '';
 });
 
-showFrame(1);
+showFrame(9);
 </script>
 </body>
 </html>

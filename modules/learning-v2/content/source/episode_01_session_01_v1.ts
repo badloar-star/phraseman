@@ -9,7 +9,9 @@ import {
 } from './episode_01_session_01_intro_word_first_v1';
 import { EPISODE_01_SESSION_01_VOCABULARY_V1 } from './episode_01_session_01_vocabulary_v1';
 import { EPISODE_01_SESSION_01_WORD_FIRST_PHRASES } from './episode_01_session_01_phrases_word_first_v1';
+import { EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1 } from './episode_01_session_01_mode_native_v1';
 import type { SessionSource } from './session_shard_from_source_v1';
+import { LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 const previous = APPROVED_FIRST_TEN_SESSION_SOURCES_V2[0]!;
 
@@ -23,5 +25,7 @@ export const EPISODE_01_SESSION_01_SOURCE: SessionSource = Object.freeze({
   learningGoal: EPISODE_01_SESSION_01_WORD_FIRST_GOAL,
   introPages: EPISODE_01_SESSION_01_WORD_FIRST_INTRO,
   newVocabulary: EPISODE_01_SESSION_01_VOCABULARY_V1,
+  modeNativePlanId: LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1,
   phrases: EPISODE_01_SESSION_01_WORD_FIRST_PHRASES,
 });

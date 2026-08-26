@@ -17,6 +17,7 @@ import { actionToastTri, emitAppEvent } from '../app/events';
 import { IS_EXPO_GO } from '../app/config';
 import { revenueCatBillingIssueAtMs } from '../app/premium_revenuecat_state';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000;
 const LAST_SHOWN_KEY = 'billing_issue_toast_last_shown';
@@ -68,6 +69,10 @@ export default function BillingIssueToastHost() {
         [LAST_ISSUE_AT_KEY, String(issueAt)],
       ]).catch(() => {});
 
+      // зачем: звук ровно один раз на показ плашки — эта ветка уже прошла кулдаун/
+      // привязку к инциденту выше (sameIssue-проверка), поэтому дребезга при
+      // каждом resume/foreground нет: та же логика, что решает, показывать ли тост.
+      soundDirector.request('pm.billing.issue', { scope: 'system' });
       // зачем: это предупреждение, а не ошибка — доступ ещё работает (грейс-период),
       // сломаться может позже. Тип 'error' звучал как «уже всё пропало».
       // motionVariant:'hybrid' — тост-вид «Световод»: вход/выход из света на

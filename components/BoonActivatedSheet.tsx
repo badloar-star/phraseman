@@ -70,7 +70,7 @@ function BoonActivatedSheet({ visible, boon, onClose }: BoonActivatedSheetProps)
     >
       {({ requestDismiss }) => (
         <>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={styles.scroll}
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}

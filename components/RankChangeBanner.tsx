@@ -209,6 +209,7 @@ function RankChangeBanner({
   const positions = triLang(lang, {
     ru: absN === 1 ? 'позицию' : 'позиций',
     uk: absN === 1 ? 'позицію' : 'позиції',
+    en: absN === 1 ? 'spot' : 'spots',
     es: absN === 1 ? 'puesto' : 'puestos',
     'pt-BR': absN === 1 ? 'posição' : 'posições',
     vi: 'hạng',
@@ -219,6 +220,7 @@ function RankChangeBanner({
   const upDir = triLang(lang, {
     ru: 'вверх',
     uk: 'вгору',
+    en: 'up',
     es: 'arriba',
     'pt-BR': 'para cima',
     vi: 'lên',
@@ -229,6 +231,7 @@ function RankChangeBanner({
   const downDir = triLang(lang, {
     ru: 'вниз',
     uk: 'вниз',
+    en: 'down',
     es: 'abajo',
     'pt-BR': 'para baixo',
     vi: 'xuống',
@@ -253,6 +256,7 @@ function RankChangeBanner({
       subtitle = triLang(lang, {
         ru: `Обогнал ${passedName.trim()}`,
         uk: `Обігнав ${passedName.trim()}`,
+        en: `Passed ${passedName.trim()}`,
         es: `Has adelantado a ${passedName.trim()}`,
         'pt-BR': `Você passou ${passedName.trim()}`,
         vi: `Bạn đã vượt qua ${passedName.trim()}`,
@@ -264,6 +268,7 @@ function RankChangeBanner({
       subtitle = triLang(lang, {
         ru: 'Ты молодец — стал выше в списке!',
         uk: 'Молодець — став вище у списку!',
+        en: "Nice work — you moved up the list!",
         es: '¡Muy bien: has subido en la lista!',
         'pt-BR': 'Muito bem: você subiu na lista!',
         vi: 'Tốt lắm: bạn đã lên hạng trong danh sách!',
@@ -277,6 +282,7 @@ function RankChangeBanner({
       subtitle = triLang(lang, {
         ru: `Уступил ${lostToName.trim()}. Не сдавайся!`,
         uk: `Поступився ${lostToName.trim()}. Не здавайся!`,
+        en: `${lostToName.trim()} passed you. Don't give up!`,
         es: `${lostToName.trim()} te adelantó. ¡No te rindas!`,
         'pt-BR': `${lostToName.trim()} passou você. Não desista!`,
         vi: `${lostToName.trim()} đã vượt qua bạn. Đừng bỏ cuộc!`,
@@ -288,6 +294,7 @@ function RankChangeBanner({
       subtitle = triLang(lang, {
         ru: 'Ничего страшного — соберись и наверстаешь.',
         uk: 'Нічого страшного — зберись та наздоженеш.',
+        en: "It's fine — pull it together and catch up.",
         es: 'No pasa nada — puedes recuperarlo.',
         'pt-BR': 'Tudo bem — você pode recuperar.',
         vi: 'Không sao — bạn có thể lấy lại.',

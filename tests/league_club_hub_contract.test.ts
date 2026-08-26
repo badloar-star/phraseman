@@ -4,6 +4,13 @@ import path from 'node:path';
 const read = (file: string): string => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
 
 describe('league club hub composition', () => {
+  it('resolves league names through the engine without an undeclared screen global', () => {
+    const screen = read('app/club_screen.tsx');
+
+    expect(screen).toContain('clubTierShortName(league, lang)');
+    expect(screen).not.toContain('CLUB_NAME_EN');
+  });
+
   it('keeps one team mission without an activity preview', () => {
     const mission = read('components/league/LeagueBonusMission.tsx');
     expect(mission).toContain('testID="league-bonus-mission"');
@@ -55,12 +62,11 @@ describe('league club hub composition', () => {
     expect(files).toContain('accentText');
   });
 
-  it('keeps native inertia on the unsnapped compact quick-stats strip', () => {
-    // Горизонтальная лента не использует snap/paging, поэтому fast лишь сокращает
-    // свободный пробег после свайпа и заставляет повторять жест.
+  it('keeps sharp inertia on the unsnapped compact quick-stats strip', () => {
+    // OWNER 2026-08-25: обычные ленты останавливаются резко и предсказуемо.
     const stats = read('components/league/LeagueQuickStats.tsx');
-    expect(stats).toContain('decelerationRate="normal"');
-    expect(stats).not.toContain('decelerationRate="fast"');
+    expect(stats).toContain('decelerationRate="fast"');
+    expect(stats).not.toContain('decelerationRate="normal"');
   });
 
   it('composes the hub from cached league state and virtualizes the member list', () => {

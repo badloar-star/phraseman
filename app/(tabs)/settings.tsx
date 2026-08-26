@@ -34,6 +34,7 @@ import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
+import { emitAppEvent } from '../events';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
@@ -392,18 +393,41 @@ export default function SettingsMain() {
   };
 
   const toggleNotifications = async (val: boolean) => {
+    // зачем (аудит 2026-08-26): Optimistic UI был неполным — переключатель менялся
+    // мгновенно (это правильно), но при отказе НЕ откатывался: человек видел
+    // «включено», а напоминания не приходили. Настройка пишется на диск внутри
+    // scheduleDailyReminder/cancelAllNotifications, поэтому при сбое экран расходился
+    // с реальностью. Второй скрытый случай — пустой lang: молчаливый return оставлял
+    // переключатель включённым, ничего не запланировав.
+    const previous = notifEnabled;
     setNotifEnabled(val);
+    const revert = (error: unknown) => {
+      setNotifEnabled(previous);
+      DebugLogger.error('settings.tsx:toggleNotifications', error, 'warning');
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Не удалось изменить напоминания. Попробуй ещё раз.',
+        messageUk: 'Не вдалося змінити нагадування. Спробуй ще раз.',
+        messageEs: 'No se pudieron cambiar los recordatorios. Inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível alterar os lembretes. Tente de novo.',
+        messageVi: 'Không thay đổi được lời nhắc. Hãy thử lại.',
+        messageId: 'Pengingat tidak dapat diubah. Coba lagi.',
+        messageTr: 'Hatırlatmalar değiştirilemedi. Tekrar dene.',
+        messagePl: 'Nie udało się zmienić przypomnień. Spróbuj ponownie.',
+      });
+    };
     try {
       if (val) {
-        if (!lang) return;
-
+        if (!lang) {
+          revert(new Error('toggle_notifications_missing_lang'));
+          return;
+        }
         await scheduleDailyReminder(notifHour, 0, lang, { studyTarget });
-
       } else {
         await cancelAllNotifications();
       }
     } catch (error) {
-      DebugLogger.error('settings.tsx:toggleNotifications', error, 'warning');
+      revert(error);
     }
   };
 
@@ -1215,12 +1239,12 @@ export default function SettingsMain() {
     <ScreenGradient>
       <BouncyWrap style={bouncyStyle}>
       <Reanimated.ScrollView
+        decelerationRate="fast"
         testID="screen-settings"
         ref={scrollRef}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
         keyboardShouldPersistTaps="handled"
-        decelerationRate="normal"
         scrollEventThrottle={16}
         bounces
         alwaysBounceVertical
@@ -1560,7 +1584,7 @@ export default function SettingsMain() {
                       tapHaptics: val,
                     },
                   } : {});
-                  AsyncStorage.setItem('haptics_tap', String(val));
+                  AsyncStorage.setItem('haptics_tap', String(val)).catch(() => {});
                 }}
               />
             }

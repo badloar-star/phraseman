@@ -23,9 +23,9 @@
 //   • ошибки глотаются молча — это предзагрузка, её отсутствие не поломка:
 //     обычный путь скачает клип по нажатию.
 // ════════════════════════════════════════════════════════════════════════════
-import { getPhraseAudioUrl } from '../app/phrase_audio_url_map.generated';
 import { getNetStatus } from '../app/net_status';
 import { withBackgroundNetworkLease } from '../app/interactive_network_quiet';
+import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
 import { ensurePhraseAudioCached } from './phrase_audio_player';
 
 // Сколько клипов гарантированно тянем первыми. Пять — примерно столько человек
@@ -108,7 +108,7 @@ function planUrls(texts: readonly string[]): PhraseAudioPrefetchPlan {
 
   for (const text of texts) {
     if (typeof text !== 'string' || !text.trim()) continue;
-    const url = getPhraseAudioUrl(text);
+    const url = getPlayablePhraseAudioUrl(text);
     if (!url || seen.has(url)) continue;
     seen.add(url);
     considered += 1;

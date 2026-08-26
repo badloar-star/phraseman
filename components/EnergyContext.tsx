@@ -3,9 +3,14 @@ import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../app/per
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
-import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
+import { readBonusEnergy } from '../app/bonus_energy_store';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
-import { captureAccountGeneration } from '../app/account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 import { readDevLocalPlusOverride } from '../app/dev_plus_controls';
 import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
@@ -29,6 +34,17 @@ import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import { emitAppEvent } from '../app/events';
 import type { EnergyStartResult } from './energy_start_confirmation';
 import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
+import {
+  acknowledgeEnergySessionStart as acknowledgeEnergySessionStartInLedger,
+  commitEnergySessionStart,
+  createEnergySessionIntent,
+  createEnergySessionBootId,
+  readEnergySessionRefundCredit,
+  recoverEnergySessionOperations,
+  refundEnergySessionStart,
+  type EnergySessionIntent,
+  type EnergySessionProjection,
+} from '../app/energy_session_operation_ledger';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -62,24 +78,24 @@ export interface EnergyContextValue {
   formattedTime: string;     // e.g. "29м 12с" or "1ч 5м 3с" — ready to display
   isUnlimited: boolean;      // premium or tester mode
   restoringPremium: boolean; // true while animating premium energy restore
-  spendOne: () => Promise<boolean>;  // returns false if no energy
+  spendOne: (intent: EnergySessionIntent) => Promise<boolean>;  // returns false if no energy
   /** Ask before a paid start and return a distinct cancel/no-energy outcome. */
-  confirmSpendOne: () => Promise<EnergyStartResult>;
+  confirmSpendOne: (intent: EnergySessionIntent) => Promise<EnergyStartResult>;
   /** Spend N units: bonus first, then base. Returns false if total available < n (atomic). */
-  spendAmount: (n: number) => Promise<boolean>;
+  spendAmount: (n: number, intent: EnergySessionIntent) => Promise<boolean>;
   /** Multi-energy equivalent of confirmSpendOne. */
-  confirmSpendAmount: (n: number) => Promise<EnergyStartResult>;
+  confirmSpendAmount: (n: number, intent: EnergySessionIntent) => Promise<EnergyStartResult>;
   /**
    * Вернуть 1 единицу, если оплаченный старт НЕ состоялся (упала сеть, сервер
    * отказал, экран закрылся до входа).
    *
    * зачем: владелец 2026-08-23 — энергия платится за ВХОД. Если входа не
    * случилось, плата обязана вернуться: иначе игрок теряет заряд за чужую
-   * сетевую ошибку. Возвращаем в БАЗУ (не в бонус) — бонусные слоты живут до
-   * полуночи, и «воскрешать» истёкший бонус было бы неверно; потолок базы
-   * ограничивает возврат сам по себе.
+   * сетевую ошибку. Живой бонус возвращается в тот же временный пул, а после
+   * полуночи не превращается в постоянную базовую энергию.
    */
-  refundOne: () => Promise<void>;
+  refundOne: (operationId: string, reason: string) => Promise<void>;
+  acknowledgeSessionStart: (operationId: string) => Promise<boolean>;
   reload: () => Promise<void>;       // force re-read (call after tester toggle)
   refillToMax: (isCurrent?: () => boolean) => Promise<boolean>; // immediate account-safe Premium refill
   /** First AsyncStorage load finished — safe to gate screens on real energy+bonus (not defaults). */
@@ -102,6 +118,7 @@ const EnergyContext = createContext<EnergyContextValue>({
   spendAmount: async () => true,
   confirmSpendAmount: async () => 'spent',
   refundOne: async () => {},
+  acknowledgeSessionStart: async () => true,
   reload: async () => {},
   refillToMax: async () => true,
   energyReady: false,
@@ -109,6 +126,20 @@ const EnergyContext = createContext<EnergyContextValue>({
 
 export function useEnergy(): EnergyContextValue {
   return useContext(EnergyContext);
+}
+
+/** One stable operation/grant identity for the lifetime of a mounted activity. */
+export function useEnergySessionIntent(
+  kind: string,
+  subjectId: string,
+  attemptId?: string,
+): EnergySessionIntent {
+  const key = `${kind}\u0000${subjectId}\u0000${attemptId ?? ''}`;
+  const intentRef = useRef<{ key: string; intent: EnergySessionIntent } | null>(null);
+  if (intentRef.current?.key !== key) {
+    intentRef.current = { key, intent: createEnergySessionIntent(kind, subjectId, attemptId) };
+  }
+  return intentRef.current.intent;
 }
 
 export function useEnergyCountdown(options: { visible?: boolean } = {}): { timeUntilNextMs: number; formattedTime: string } {
@@ -274,6 +305,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const initialPeek = peekEnergy();
   const [energy, setEnergy] = useState(() => initialPeek?.energy ?? MAX_ENERGY);
   const [bonusEnergy, setBonusEnergy] = useState(0);
+  const [refundCredit, setRefundCredit] = useState(0);
   const [bonusExpiresAt, setBonusExpiresAt] = useState(0);
   const [maxEnergy, setMaxEnergy] = useState(() => initialPeek?.maxEnergy ?? MAX_ENERGY);
   const [recoveryIntervalMs, setRecoveryIntervalMs] = useState(getRecoveryIntervalMs(0));
@@ -290,6 +322,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // Refs for use inside callbacks without stale closures
   const energyRef = useRef(initialPeek?.energy ?? MAX_ENERGY);
   const bonusRef = useRef(0);
+  const bonusExpiresAtRef = useRef(0);
+  const refundCreditRef = useRef(0);
   const dynMaxRef = useRef(initialPeek?.maxEnergy ?? MAX_ENERGY);
   const recoveryMsRef = useRef(getRecoveryIntervalMs(0));
   const lastRecoveryRef = useRef(Date.now());
@@ -306,19 +340,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
    * трата просто не проходит, пока статус неизвестен.
    */
   const energyReadyRef = useRef(false);
-  /**
-   * Из какого пула ушла последняя единица spendOne: 'bonus' или 'base'.
-   *
-   * зачем (аудит 2026-08-23, третий проход): spendOne тратит СНАЧАЛА бонус
-   * (он сгорает в полночь), а первый refundOne возвращал всегда в базу. Две
-   * беды разом: сгорающий бонус конвертировался в вечную базу (открыл поиск
-   * матча — отменил — бонус «отмыт»), а при полной базе возвращённая единица
-   * упиралась в потолок и ПРОПАДАЛА. Возврат обязан идти в тот же пул.
-   * Маркер, а не возврат значения из spendOne: сигнатуру Promise<boolean>
-   * читают девять экранов, а refund в наших потоках всегда следует сразу за
-   * своей тратой в том же JS-потоке.
-   */
-  const lastSpendPoolRef = useRef<'bonus' | 'base' | null>(null);
+  const energySessionBootIdRef = useRef(createEnergySessionBootId());
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const syncEnergyPushRef = useRef<(() => Promise<void>) | null>(null);
@@ -327,104 +349,177 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // сам берёт запасной путь — от счётчика энергии вверху экрана.
   const motionTargetRef = useRef<{ x: number; y: number } | null>(null);
 
-  // ── Load and apply recovery ────────────────────────────────────────────────
-  const runLoad = useCallback(async () => {
-    try {
-      // Разовая команда админки (drain/fill) применяется ДО чтения состояния —
-      // иначе она никогда не применяется вовсе: прежний носитель
-      // (energy_system.getEnergyState) не имел живых вызовов, и админка молча
-      // врала, что энергия изменена (аудит 2026-08-23). Идемпотентно по `at`.
-      await applyAdminEnergyCommand();
-      const [unlimited, dynMax, recoveryMs, bonusState] = await Promise.all([readUnlimited(), readDynMax(), readRecoveryIntervalMs(), readBonusEnergy()]);
-      const bonus = bonusState?.amount ?? 0;
-      bonusRef.current = bonus;
-      setBonusEnergy(bonus);
-      setBonusExpiresAt(bonusState?.expiresAt ?? 0);
-      dynMaxRef.current = dynMax;
-      recoveryMsRef.current = recoveryMs;
-      setMaxEnergy(dynMax);
-      setRecoveryIntervalMs(recoveryMs);
+  const applySessionProjection = useCallback((projection: EnergySessionProjection) => {
+    energyRef.current = projection.baseEnergy;
+    bonusRef.current = projection.bonusEnergy;
+    bonusExpiresAtRef.current = projection.bonusEnergy > 0 ? projection.bonusExpiresAt : 0;
+    refundCreditRef.current = projection.refundCredit;
+    lastRecoveryRef.current = projection.lastRecoveryTime;
+    setEnergy(projection.baseEnergy);
+    setBonusEnergy(projection.bonusEnergy);
+    setRefundCredit(projection.refundCredit);
+    setBonusExpiresAt(projection.bonusEnergy > 0 ? projection.bonusExpiresAt : 0);
+    writePeekEnergy(projection.baseEnergy, projection.maxEnergy);
 
-      const wasUnlimited = isUnlimitedRef.current;
-      isUnlimitedRef.current = unlimited;
-      setIsUnlimited(unlimited);
-
-      // Premium removed — clear any pending restore animation timers
-      if (wasUnlimited && !unlimited) {
-        restoreTimersRef.current.forEach(t => clearTimeout(t));
-        restoreTimersRef.current = [];
-        setRestoringPremium(false);
-      }
-
-      if (unlimited) {
-        // Читаем реальное сохранённое значение энергии
-        const storedState = await readAndRecoverState(dynMax, recoveryMs);
-        const storedEnergy = storedState.current;
-        setTimeUntilNextMs(0);
-        setRecoveryEndsAtMs(0);
-
-        // Если переходим в премиум (wasUnlimited=false) и энергия < макс — анимируем
-        if (!wasUnlimited && storedEnergy < dynMax) {
-          energyRef.current = storedEnergy;
-          setEnergy(storedEnergy);
-          isUnlimitedRef.current = true;
-          setIsUnlimited(true);
-
-          restoreTimersRef.current.forEach(t => clearTimeout(t));
-          restoreTimersRef.current = [];
-          setRestoringPremium(true);
-
-          for (let i = storedEnergy + 1; i <= dynMax; i++) {
-            const delay = (i - storedEnergy) * 350;
-            const t = setTimeout(() => {
-              setEnergy(i);
-              energyRef.current = i;
-              if (i === dynMaxRef.current) setRestoringPremium(false);
-            }, delay);
-            restoreTimersRef.current.push(t);
-          }
-        } else {
-          isUnlimitedRef.current = true;
-          setIsUnlimited(true);
-          setEnergy(dynMax);
-          energyRef.current = dynMax;
-        }
-        return;
-      }
-
-      const state = await readAndRecoverState(dynMax, recoveryMs);
-      energyRef.current = state.current;
-      lastRecoveryRef.current = state.lastRecoveryTime;
-      setEnergy(state.current);
-
-      if (state.current < dynMax) {
-        const now = Date.now();
-        const elapsed = now - state.lastRecoveryTime;
-        const remaining = recoveryMs - (elapsed % recoveryMs);
-        const safeRemaining = remaining > 0 ? remaining : 0;
-        setTimeUntilNextMs(safeRemaining);
-        setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
-      } else {
-        setTimeUntilNextMs(0);
-        setRecoveryEndsAtMs(0);
-      }
-    } catch {
-    } finally {
-      energyReadyRef.current = true;
-      setEnergyReady(true);
-      // B2: обновляем peek-кеш последним известным значением после каждого
-      // успешного load — следующий маунт провайдера (навигация назад/вперёд,
-      // Fast Refresh) стартует с этого значения вместо MAX_ENERGY.
-      writePeekEnergy(energyRef.current, dynMaxRef.current);
-      // Синхронизируем energy-full пуш с актуальным состоянием:
-      // полная/безлимит → отмена, неполная → (пере)планирование на точный момент.
-      void syncEnergyPushRef.current?.();
+    if (projection.baseEnergy < projection.maxEnergy) {
+      const now = Date.now();
+      const elapsed = now - projection.lastRecoveryTime;
+      const remaining = recoveryMsRef.current - (elapsed % recoveryMsRef.current);
+      const safeRemaining = remaining > 0 ? remaining : 0;
+      setTimeUntilNextMs(safeRemaining);
+      setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
+    } else {
+      setTimeUntilNextMs(0);
+      setRecoveryEndsAtMs(0);
     }
   }, []);
+
+  const currentSessionProjection = useCallback((): EnergySessionProjection => ({
+    baseEnergy: energyRef.current,
+    bonusEnergy: bonusRef.current,
+    bonusExpiresAt: bonusExpiresAtRef.current,
+    refundCredit: refundCreditRef.current,
+    lastRecoveryTime: lastRecoveryRef.current,
+    maxEnergy: dynMaxRef.current,
+  }), []);
+
+  // ── Load and apply recovery ────────────────────────────────────────────────
+  const runLoad = useCallback(async () => {
+    const accountToken = captureAccountGeneration();
+    try {
+      const [unlimited, dynMax, recoveryMs] = await Promise.all([
+        readUnlimited(),
+        readDynMax(),
+        readRecoveryIntervalMs(),
+      ]);
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      await withAccountTransitionLock(async (accountTransitionLockLease) => {
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        // Admin drain/fill applies before energy_state is read and under the
+        // same account lock as spend/refund, so it cannot land in another user.
+        await applyAdminEnergyCommand();
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        const bonusState = await readBonusEnergy(accountToken);
+        if (!isCurrentAccountGeneration(accountToken)) return;
+        let loadSucceeded = false;
+        try {
+          const state = await readAndRecoverState(dynMax, recoveryMs);
+          const storedRefundCredit = await readEnergySessionRefundCredit(accountToken);
+          await recoverEnergySessionOperations({
+            baseEnergy: state.current,
+            bonusEnergy: bonusState?.amount ?? 0,
+            bonusExpiresAt: bonusState?.expiresAt ?? 0,
+            refundCredit: storedRefundCredit,
+            lastRecoveryTime: state.lastRecoveryTime,
+            maxEnergy: dynMax,
+          }, energySessionBootIdRef.current, {
+            accountToken,
+            accountTransitionLockLease,
+          });
+          if (!isCurrentAccountGeneration(accountToken)) return;
+          // A recovered prepared debit republishes its exact crash-time
+          // projection. Re-run ordinary elapsed-time recovery afterwards so
+          // completed refill intervals during the stopped process are kept.
+          const settledState = await readAndRecoverState(dynMax, recoveryMs);
+          const settledBonus = await readBonusEnergy(accountToken);
+          const settledRefundCredit = await readEnergySessionRefundCredit(accountToken);
+          const recovered: EnergySessionProjection = {
+            baseEnergy: settledState.current,
+            bonusEnergy: settledBonus?.amount ?? 0,
+            bonusExpiresAt: settledBonus?.expiresAt ?? 0,
+            refundCredit: settledRefundCredit,
+            lastRecoveryTime: settledState.lastRecoveryTime,
+            maxEnergy: dynMax,
+          };
+
+          dynMaxRef.current = dynMax;
+          recoveryMsRef.current = recoveryMs;
+          setMaxEnergy(dynMax);
+          setRecoveryIntervalMs(recoveryMs);
+          applySessionProjection(recovered);
+
+          const wasUnlimited = isUnlimitedRef.current;
+          isUnlimitedRef.current = unlimited;
+          setIsUnlimited(unlimited);
+
+          // Premium removed — clear any pending restore animation timers.
+          if (wasUnlimited && !unlimited) {
+            restoreTimersRef.current.forEach(t => clearTimeout(t));
+            restoreTimersRef.current = [];
+            setRestoringPremium(false);
+          }
+
+          if (unlimited) {
+            setTimeUntilNextMs(0);
+            setRecoveryEndsAtMs(0);
+            // Premium changes only the visible current value. The durable
+            // projection remains on disk and is reloaded when Premium ends.
+            if (!wasUnlimited && recovered.baseEnergy < dynMax) {
+              setRestoringPremium(true);
+              for (let i = recovered.baseEnergy + 1; i <= dynMax; i++) {
+                const delay = (i - recovered.baseEnergy) * 350;
+                const timer = setTimeout(() => {
+                  setEnergy(i);
+                  if (i === dynMaxRef.current) setRestoringPremium(false);
+                }, delay);
+                restoreTimersRef.current.push(timer);
+              }
+            } else {
+              setEnergy(dynMax);
+            }
+          }
+          loadSucceeded = true;
+        } catch {
+        } finally {
+          if (isCurrentAccountGeneration(accountToken)) {
+            // Public readiness means the initial load attempt has finished, so
+            // gated screens do not wait forever on a broken storage read.
+            // Mutations still require the private ready ref and fail closed.
+            setEnergyReady(true);
+            if (loadSucceeded) {
+              energyReadyRef.current = true;
+              // B2: обновляем peek-кеш последним известным значением после каждого
+              // успешного load — следующий маунт провайдера (навигация назад/вперёд,
+              // Fast Refresh) стартует с этого значения вместо MAX_ENERGY.
+              writePeekEnergy(energyRef.current, dynMaxRef.current);
+              // Синхронизируем energy-full пуш с актуальным состоянием:
+              // полная/безлимит → отмена, неполная → (пере)планирование на точный момент.
+              void syncEnergyPushRef.current?.();
+            }
+          }
+        }
+      });
+    } catch {
+    }
+  }, [applySessionProjection]);
   const load = useCallback(async () => {
     loadRunnerRef.current ??= createCoalescedAsyncRunner(runLoad);
     await loadRunnerRef.current();
   }, [runLoad]);
+
+  // EnergyProvider lives above account screens and is not guaranteed to remount
+  // on logout/login. Reset volatile account-owned state, then reload only after
+  // the new generation becomes active; runLoad's lock waits for restore/wipe.
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((accountToken) => {
+      restoreTimersRef.current.forEach((timer) => clearTimeout(timer));
+      restoreTimersRef.current = [];
+      setRestoringPremium(false);
+      isUnlimitedRef.current = false;
+      setIsUnlimited(false);
+      bonusRef.current = 0;
+      bonusExpiresAtRef.current = 0;
+      setBonusEnergy(0);
+      setBonusExpiresAt(0);
+      refundCreditRef.current = 0;
+      setRefundCredit(0);
+      energyReadyRef.current = false;
+      setEnergyReady(false);
+      loadRunnerRef.current = null;
+      if (accountToken.phase === 'active') void load();
+    });
+    return () => subscription.remove();
+  }, [load]);
 
   // Load on mount
   useEffect(() => { load(); }, [load]);
@@ -487,196 +582,117 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(timeoutId);
   }, [appActive, energy, maxEnergy, isUnlimited, load, recoveryIntervalMs, timeUntilNextMs]);
 
-  // ── Spend 1 energy ─────────────────────────────────────────────────────────
-  const spendOne = useCallback(async (): Promise<boolean> => {
-    // зачем: пока статус не прочитан, isUnlimitedRef держит placeholder `false`
-    // — и трата прошла бы у премиума, тестера и в «вечер без лимитов». Ждём
-    // первое живое чтение и только потом решаем. Возврат true = «проходи»:
-    // отказывать нельзя, иначе на холодном старте активность не запустится.
-    // load() коалесцирован: параллельные вызовы ждут один и тот же прогон,
-    // лишних чтений хранилища не будет.
-    if (!energyReadyRef.current) {
-      await load();
+  // Бонус обязан исчезнуть ровно по своему expiresAt даже если приложение
+  // остаётся открытым всю ночь. В фоне таймер не держим: foreground-load выше
+  // сразу перечитает account-scoped состояние.
+  useEffect(() => {
+    if (!appActive || bonusExpiresAt <= 0) return;
+    if (bonusExpiresAt <= Date.now()) {
+      void load();
+      return;
     }
-    if (isUnlimitedRef.current) return true;
-    if (bonusRef.current <= 0 && energyRef.current <= 0) return false;
+    const delay = Math.max(1, bonusExpiresAt - Date.now() + 25);
+    const timeoutId = setTimeout(load, delay);
+    return () => clearTimeout(timeoutId);
+  }, [appActive, bonusExpiresAt, load]);
 
-    // зачем: владелец 2026-08-23 — «при начале мы должны видеть анимацию
-    // отнятия 1 единицы». Событие шлём ЗДЕСЬ, в единственной общей точке
-    // траты, а не в девяти экранах по отдельности: так анимация появляется
-    // всюду сама и не может «забыться» в новой активности.
-    // Шлём синхронно, до записи в хранилище — картинка должна отзываться
-    // на нажатие мгновенно, запись догоняет.
-    emitAppEvent('energy_spent_on_start', { amount: 1, target: motionTargetRef.current ?? undefined });
-
-    // Spend from bonus first (it expires tomorrow, use it before base energy)
-    if (bonusRef.current > 0) {
-      lastSpendPoolRef.current = 'bonus';
-      const newBonus = bonusRef.current - 1;
-      bonusRef.current = newBonus;
-      setBonusEnergy(newBonus);
-      try {
-        if (newBonus === 0) {
-          await AsyncStorage.removeItem(BONUS_ENERGY_KEY);
-        } else {
-          const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
-          if (raw) {
-            const b = JSON.parse(raw);
-            await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify({ ...b, amount: newBonus }));
-          }
-        }
-      } catch {}
-      // База могла быть неполной от прошлых трат — синхронизируем пуш.
+  // ── Spend 1 energy ─────────────────────────────────────────────────────────
+  const spendOne = useCallback(async (intent: EnergySessionIntent): Promise<boolean> => {
+    if (!energyReadyRef.current) await load();
+    if (!energyReadyRef.current) throw new Error('energy_state_unavailable');
+    const accountToken = captureAccountGeneration();
+    return withAccountTransitionLock(async (accountTransitionLockLease) => {
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      if (isUnlimitedRef.current) return true;
+      const result = await commitEnergySessionStart(
+        intent,
+        1,
+        currentSessionProjection(),
+        energySessionBootIdRef.current,
+        { accountToken, accountTransitionLockLease },
+      );
+      if (result.status === 'insufficient') return false;
+      if (result.status === 'failed') throw new Error(`energy_session_start_failed:${result.reason}`);
+      applySessionProjection(result.projection);
+      if (result.status === 'applied') {
+        emitAppEvent('energy_spent_on_start', { amount: 1, target: motionTargetRef.current ?? undefined });
+      }
       void syncEnergyPushRef.current?.();
       return true;
-    }
-
-    lastSpendPoolRef.current = 'base';
-    const now = Date.now();
-    // Start fresh recovery timer when spending from full
-    const newLastRecovery = energyRef.current >= dynMaxRef.current ? now : lastRecoveryRef.current;
-    const newEnergy = energyRef.current - 1;
-
-    energyRef.current = newEnergy;
-    lastRecoveryRef.current = newLastRecovery;
-    setEnergy(newEnergy);
-    const recoveryMs = recoveryMsRef.current;
-    const elapsed = now - newLastRecovery;
-    const remaining = recoveryMs - (elapsed % recoveryMs);
-    const safeRemaining = remaining > 0 ? remaining : 0;
-    setTimeUntilNextMs(safeRemaining);
-    setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
-
-    const state: StoredEnergy = { current: newEnergy, lastRecoveryTime: newLastRecovery };
-    await withStorageLock(async () => {
-      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
     });
-    writePeekEnergy(newEnergy, dynMaxRef.current);
-
-    // Энергия упала ниже максимума → (пере)планируем пуш о восстановлении.
-    void syncEnergyPushRef.current?.();
-
-    return true;
-  }, [load]);
+  }, [applySessionProjection, currentSessionProjection, load]);
 
   // ── Refund 1 energy (старт не состоялся) ──────────────────────────────────
-  const refundOne = useCallback(async (): Promise<void> => {
-    if (isUnlimitedRef.current) return;
-
-    const pool = lastSpendPoolRef.current;
-    lastSpendPoolRef.current = null;
-
-    // Единица ушла из бонусного пула — туда и возвращается, ПОКА бонус жив
-    // (не истёк в полночь между тратой и возвратом; тогда честный фолбэк —
-    // база). Так сгорающий бонус не «отмывается» в вечную базу, а возврат при
-    // полной базе не пропадает об потолок.
-    if (pool === 'bonus') {
-      try {
-        const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
-        if (raw) {
-          const b = JSON.parse(raw) as { amount?: number; expiresAt?: number };
-          if (Number(b?.expiresAt) > Date.now()) {
-            const restored = Math.max(0, Math.floor(Number(b?.amount) || 0)) + 1;
-            await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify({ ...b, amount: restored }));
-            bonusRef.current = restored;
-            setBonusEnergy(restored);
-            void syncEnergyPushRef.current?.();
-            return;
-          }
-        } else if (bonusRef.current === 0) {
-          // Трата последней бонусной единицы удалила ключ целиком — восстановить
-          // нечего без expiresAt. Скатываемся в базу ниже: единица не пропадает.
-        }
-      } catch {
-        // Битое хранилище бонуса — не глотаем единицу, возвращаем в базу.
+  const refundOne = useCallback(async (operationId: string, reason: string): Promise<void> => {
+    if (!energyReadyRef.current) await load();
+    if (!energyReadyRef.current) throw new Error('energy_state_unavailable');
+    const accountToken = captureAccountGeneration();
+    await withAccountTransitionLock(async (accountTransitionLockLease) => {
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      let result = await refundEnergySessionStart(
+        operationId, reason, currentSessionProjection(), energySessionBootIdRef.current,
+        { accountToken, accountTransitionLockLease },
+      );
+      // One bounded retry covers a transient AsyncStorage write failure. The
+      // operation id is stable, so a partial first write cannot refund twice.
+      if (result.status === 'failed') {
+        result = await refundEnergySessionStart(
+          operationId, reason, currentSessionProjection(), energySessionBootIdRef.current,
+          { accountToken, accountTransitionLockLease },
+        );
       }
-    }
-
-    // Потолок соблюдаем: возврат не может поднять базу выше максимума.
-    const capped = Math.min(energyRef.current + 1, dynMaxRef.current);
-    if (capped === energyRef.current) return;
-
-    energyRef.current = capped;
-    setEnergy(capped);
-
-    const state: StoredEnergy = { current: capped, lastRecoveryTime: lastRecoveryRef.current };
-    await withStorageLock(async () => {
-      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+      if (result.status === 'failed') throw new Error(`energy_session_refund_failed:${result.reason}`);
+      if (result.status === 'applied' || result.status === 'already-applied') {
+        applySessionProjection(result.projection);
+        void syncEnergyPushRef.current?.();
+      }
     });
-    writePeekEnergy(capped, dynMaxRef.current);
-    // Баланс вырос — пуш о полном восстановлении мог стать неактуальным.
-    void syncEnergyPushRef.current?.();
+  }, [applySessionProjection, currentSessionProjection, load]);
+
+  const acknowledgeSessionStart = useCallback(async (operationId: string): Promise<boolean> => {
+    return acknowledgeEnergySessionStartInLedger(operationId, captureAccountGeneration());
   }, []);
 
   // ── Spend N energy (bonus first, then base) in one pass ───────────────────
-  const spendAmount = useCallback(async (n: number): Promise<boolean> => {
+  const spendAmount = useCallback(async (n: number, intent: EnergySessionIntent): Promise<boolean> => {
     if (n <= 0) return true;
     // Та же защита, что в spendOne: не тратим по placeholder-статусу.
     if (!energyReadyRef.current) {
       await load();
     }
-    if (isUnlimitedRef.current) return true;
-    if (bonusRef.current + energyRef.current < n) return false;
+    if (!energyReadyRef.current) throw new Error('energy_state_unavailable');
+    const accountToken = captureAccountGeneration();
+    return withAccountTransitionLock(async (accountTransitionLockLease) => {
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      if (isUnlimitedRef.current) return true;
+      const result = await commitEnergySessionStart(
+        intent,
+        Math.floor(n),
+        currentSessionProjection(),
+        energySessionBootIdRef.current,
+        { accountToken, accountTransitionLockLease },
+      );
+      if (result.status === 'insufficient') return false;
+      if (result.status === 'failed') throw new Error(`energy_session_start_failed:${result.reason}`);
 
-    const takeB = Math.min(n, bonusRef.current);
-    const nFromBase = n - takeB;
-    const e = energyRef.current;
-    if (e < nFromBase) return false;
-
-    // Та же анимация списания, что и в spendOne (экзамены ходят сюда).
-    emitAppEvent('energy_spent_on_start', { amount: n, target: motionTargetRef.current ?? undefined });
-
-    const newBonus = bonusRef.current - takeB;
-    const newE = e - nFromBase;
-    const now = Date.now();
-    const wasFull = e >= dynMaxRef.current;
-    const newLastRecovery = wasFull && nFromBase > 0 ? now : lastRecoveryRef.current;
-
-    bonusRef.current = newBonus;
-    setBonusEnergy(newBonus);
-    try {
-      if (newBonus === 0) {
-        await AsyncStorage.removeItem(BONUS_ENERGY_KEY);
-      } else {
-        const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
-        if (raw) {
-          const b = JSON.parse(raw) as { amount?: number; expiresAt?: number };
-          await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify({ ...b, amount: newBonus }));
-        }
+      applySessionProjection(result.projection);
+      if (result.status === 'applied') {
+        emitAppEvent('energy_spent_on_start', { amount: n, target: motionTargetRef.current ?? undefined });
       }
-    } catch { /* best-effort */ }
+      void syncEnergyPushRef.current?.();
 
-    if (nFromBase > 0) {
-      lastRecoveryRef.current = newLastRecovery;
-      energyRef.current = newE;
-      setEnergy(newE);
-      const recoveryMs = recoveryMsRef.current;
-      const elapsed = now - newLastRecovery;
-      const remaining = recoveryMs - (elapsed % recoveryMs);
-      const safeRemaining = remaining > 0 ? remaining : 0;
-      setTimeUntilNextMs(safeRemaining);
-      setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
-      const state: StoredEnergy = { current: newE, lastRecoveryTime: newLastRecovery };
-      try {
-        await withStorageLock(async () => {
-          await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
-        });
-      } catch { /* best-effort */ }
-      writePeekEnergy(newE, dynMaxRef.current);
-    }
+      return true;
+    });
+  }, [applySessionProjection, currentSessionProjection, load]);
 
-    // Энергия потрачена → (пере)планируем пуш о полном восстановлении.
-    void syncEnergyPushRef.current?.();
-
-    return true;
-  }, [load]);
-
-  const confirmSpendAmount = useCallback(async (n: number): Promise<EnergyStartResult> => {
-    const cost = Math.max(0, Math.floor(n));
-    if (cost <= 0) return 'unlimited';
-    if (!energyReadyRef.current) await load();
-    if (isUnlimitedRef.current) return 'unlimited';
-    if (bonusRef.current + energyRef.current < cost) return 'insufficient';
+  const confirmSpendAmount = useCallback(async (n: number, intent: EnergySessionIntent): Promise<EnergyStartResult> => {
+    try {
+      const cost = Math.max(0, Math.floor(n));
+      if (cost <= 0) return 'unlimited';
+      if (!energyReadyRef.current) await load();
+      if (!energyReadyRef.current) return 'cancelled';
+      if (isUnlimitedRef.current) return 'unlimited';
+      if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) return 'insufficient';
 
     // зачем: владелец 2026-08-24 — окно «Потратить 1 энергию и начать?» убрано.
     // Лишний тап на каждый старт мешал, а цена и так видна прямо на кнопке
@@ -691,13 +707,18 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     // модалкой, а без модалки они превратились бы в заметную паузу между тапом
     // и стартом. Молния летит фоном поверх уже открывшегося экрана —
     // отклик мгновенный, а списание всё равно видно.
-    const spent = cost === 1 ? await spendOne() : await spendAmount(cost);
-    if (!spent) return 'insufficient';
-    return 'spent';
+      const spent = cost === 1 ? await spendOne(intent) : await spendAmount(cost, intent);
+      if (!spent) return 'insufficient';
+      return 'spent';
+    } catch {
+      // Storage/account-generation failures are not lack of energy. They use
+      // the existing no-entry path and, crucially, never start for free.
+      return 'cancelled';
+    }
   }, [load, spendAmount, spendOne]);
 
   const confirmSpendOne = useCallback(
-    (): Promise<EnergyStartResult> => confirmSpendAmount(1),
+    (intent: EnergySessionIntent): Promise<EnergyStartResult> => confirmSpendAmount(1, intent),
     [confirmSpendAmount],
   );
 
@@ -783,12 +804,12 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
     spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
-    refundOne, reload, refillToMax, energyReady,
+    refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   }), [
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
     spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
-    refundOne, reload, refillToMax, energyReady,
+    refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   ]);
 
   return (

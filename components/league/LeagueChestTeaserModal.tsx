@@ -48,13 +48,14 @@ const RAY_COUNT = 12;
 const RAY_R = 260;
 
 function teaserTitle(lang: Lang): string {
-  return triLang(lang, { ru: 'Что внутри?', uk: 'Що всередині?', es: '¿Qué hay dentro?', 'pt-BR': 'O que tem dentro?', vi: 'Bên trong có gì?', id: 'Apa isinya?', tr: 'İçinde ne var?', pl: 'Co w środku?' });
+  return triLang(lang, { ru: 'Что внутри?', uk: 'Що всередині?', en: "What's inside?", es: '¿Qué hay dentro?', 'pt-BR': 'O que tem dentro?', vi: 'Bên trong có gì?', id: 'Apa isinya?', tr: 'İçinde ne var?', pl: 'Co w środku?' });
 }
 
 function teaserSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Общий сундук недели — награды получают все участники',
     uk: 'Спільна скриня тижня — нагороди отримують усі учасники',
+    en: "The week's shared chest — everyone gets a reward",
     es: 'El cofre común de la semana: premios para todos',
     'pt-BR': 'O baú comum da semana: prêmios para todos',
     vi: 'Rương chung của tuần — ai cũng nhận quà',
@@ -68,6 +69,7 @@ function teaserRemaining(lang: Lang, xp: number): string {
   return triLang(lang, {
     ru: `Осталось ${xp.toLocaleString()} XP до открытия`,
     uk: `Залишилося ${xp.toLocaleString()} XP до відкриття`,
+    en: `${xp.toLocaleString()} XP left to unlock`,
     es: `Faltan ${xp.toLocaleString()} XP para abrirlo`,
     'pt-BR': `Faltam ${xp.toLocaleString()} XP para abrir`,
     vi: `Còn ${xp.toLocaleString()} XP nữa để mở`,
@@ -78,11 +80,11 @@ function teaserRemaining(lang: Lang, xp: number): string {
 }
 
 function claimLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
+  return triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', en: 'Claim bonus', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
 }
 
 function closeLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  return triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 }
 
 function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, canClaim, rarities, onClaim, onClose, motionVariant = 'classic', opensAtMs }: LeagueChestTeaserModalProps) {

@@ -10,6 +10,7 @@ const EXPECTED_ROUTES = [
   '/lesson_words',
   '/lesson_irregular_verbs',
   '/mistake_practice_session',
+  '/flashcards_swipe',
   '/flashcards_blitz_session',
   '/flashcards_listening_session',
   '/flashcards_speaking_session',

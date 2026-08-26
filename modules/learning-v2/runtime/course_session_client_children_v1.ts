@@ -13,6 +13,10 @@ import {
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
 import type { LearningV2CourseSessionInteractionProfileV1 } from "./course_session_release_package_v1";
+import {
+  validateLearningV2ModeNativePayloadV1,
+  type LearningV2ModeNativePayloadV1,
+} from "../contracts/mode_native_payload_v1";
 
 export const LEARNING_V2_COURSE_SESSION_INTRO_CHILD_SCHEMA_V1 =
   "learning-v2-course-session-intro-child.v1" as const;
@@ -105,7 +109,12 @@ export interface LearningV2CourseSessionPracticeInteractionV1 {
     | "context_gap_grammar"
     | "speed_match"
     | "scripted_repeat_compare";
-  readonly inputMode: "ordered_tokens" | "single_choice" | "scripted_speech";
+  readonly inputMode:
+    | "ordered_tokens"
+    | "single_choice"
+    | "scripted_speech"
+    | "pair_grid"
+    | "tap_record_compare";
   readonly prompt: string;
   readonly responseOptions: readonly Readonly<{
     responseId: string;
@@ -114,6 +123,7 @@ export interface LearningV2CourseSessionPracticeInteractionV1 {
   readonly mediaIds: readonly string[];
   readonly audioTargetIds: readonly string[];
   readonly accessibilityLabel: string;
+  readonly modePayload: LearningV2ModeNativePayloadV1 | null;
   readonly scriptedAlternate: Readonly<{
     alternateId: string;
     instruction: string;
@@ -548,6 +558,7 @@ const INTERACTION_KEYS = [
   "mediaIds",
   "audioTargetIds",
   "accessibilityLabel",
+  "modePayload",
   "scriptedAlternate",
 ] as const;
 const OPTION_KEYS = ["responseId", "text"] as const;
@@ -599,7 +610,7 @@ export function parseLearningV2CourseSessionLearnerChildV1(
           "speed_match",
           "scripted_repeat_compare",
         ].includes(String(entry.family)) ||
-        !["ordered_tokens", "single_choice", "scripted_speech"].includes(
+        !["ordered_tokens", "single_choice", "scripted_speech", "pair_grid", "tap_record_compare"].includes(
           String(entry.inputMode),
         ) ||
         !Array.isArray(entry.responseOptions) ||
@@ -650,6 +661,13 @@ export function parseLearningV2CourseSessionLearnerChildV1(
         mediaIds: Object.freeze(entry.mediaIds.map(id)),
         audioTargetIds: Object.freeze(entry.audioTargetIds.map(id)),
         accessibilityLabel: text(entry.accessibilityLabel, 1_000),
+        modePayload:
+          entry.modePayload === null
+            ? null
+            : validateLearningV2ModeNativePayloadV1(
+                entry.modePayload,
+                entry.family as never,
+              ),
         scriptedAlternate,
       }) as LearningV2CourseSessionPracticeInteractionV1;
     }),

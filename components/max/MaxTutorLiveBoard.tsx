@@ -35,27 +35,27 @@ export function MaxTutorLiveBoard({ board, onListen, onDismiss, listenState, lan
   }, [progress, reduceMotion]);
 
   const label = board.kind === 'recast'
-    ? triLang(lang, { ru: 'Попробуй так', uk: 'Спробуй так', es: 'Prueba así', 'pt-BR': 'Tente assim', vi: 'Thử nói thế này', id: 'Coba begini', tr: 'Şöyle dene', pl: 'Spróbuj tak' })
+    ? triLang(lang, { ru: 'Попробуй так', uk: 'Спробуй так', en: 'Try this', es: 'Prueba así', 'pt-BR': 'Tente assim', vi: 'Thử nói thế này', id: 'Coba begini', tr: 'Şöyle dene', pl: 'Spróbuj tak' })
     : board.kind === 'translation'
-      ? triLang(lang, { ru: 'Перевод', uk: 'Переклад', es: 'Traducción', 'pt-BR': 'Tradução', vi: 'Bản dịch', id: 'Terjemahan', tr: 'Çeviri', pl: 'Tłumaczenie' })
-      : triLang(lang, { ru: 'Подсказка', uk: 'Підказка', es: 'Pista', 'pt-BR': 'Dica', vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź' });
+      ? triLang(lang, { ru: 'Перевод', uk: 'Переклад', en: 'Translation', es: 'Traducción', 'pt-BR': 'Tradução', vi: 'Bản dịch', id: 'Terjemahan', tr: 'Çeviri', pl: 'Tłumaczenie' })
+      : triLang(lang, { ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica', vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź' });
   const listenLabel = listenState === 'blocked'
     ? triLang(lang, {
-        ru: 'Сначала дослушай Макса', uk: 'Спочатку дослухай Макса', es: 'Primero escucha a Max', 'pt-BR': 'Primeiro ouça o Max',
+        ru: 'Сначала дослушай Макса', uk: 'Спочатку дослухай Макса', en: 'Listen to Max first', es: 'Primero escucha a Max', 'pt-BR': 'Primeiro ouça o Max',
         vi: 'Hãy nghe Max nói xong', id: 'Dengarkan Max dulu', tr: 'Önce Max’i dinle', pl: 'Najpierw wysłuchaj Maxa',
       })
     : listenState === 'pending'
       ? triLang(lang, {
-          ru: 'Макс произносит фразу', uk: 'Макс вимовляє фразу', es: 'Max dice la frase', 'pt-BR': 'Max está dizendo a frase',
+          ru: 'Макс произносит фразу', uk: 'Макс вимовляє фразу', en: 'Max is saying the phrase', es: 'Max dice la frase', 'pt-BR': 'Max está dizendo a frase',
           vi: 'Max đang đọc cụm từ', id: 'Max sedang mengucapkan frasa', tr: 'Max ifadeyi söylüyor', pl: 'Max wypowiada frazę',
         })
       : triLang(lang, {
-          ru: 'Прослушать фразу', uk: 'Прослухати фразу', es: 'Escuchar la frase', 'pt-BR': 'Ouvir a frase',
+          ru: 'Прослушать фразу', uk: 'Прослухати фразу', en: 'Listen to the phrase', es: 'Escuchar la frase', 'pt-BR': 'Ouvir a frase',
           vi: 'Nghe cụm từ', id: 'Dengarkan frasa', tr: 'İfadeyi dinle', pl: 'Posłuchaj frazy',
         });
   const listenDisabled = listenState !== 'ready';
   const dismissLabel = triLang(lang, {
-    ru: 'Скрыть подсказку', uk: 'Сховати підказку', es: 'Ocultar la pista', 'pt-BR': 'Ocultar a dica',
+    ru: 'Скрыть подсказку', uk: 'Сховати підказку', en: 'Hide hint', es: 'Ocultar la pista', 'pt-BR': 'Ocultar a dica',
     vi: 'Ẩn gợi ý', id: 'Sembunyikan petunjuk', tr: 'İpucunu gizle', pl: 'Ukryj podpowiedź',
   });
 

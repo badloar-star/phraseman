@@ -1,3 +1,4 @@
+<meta charset="UTF-8">
 <title>Каталог движения Learning V2</title>
 <!-- зачем: владелец попросил видеть все анимации Learning V2 живыми макетами до внедрения.
      Формат файла — фрагмент под Artifact-просмотр (без собственных doctype/html/head/body);
@@ -419,6 +420,47 @@
     transition-delay: calc(540ms * var(--k));
   }
 
+  /* B7 — потеря попытки: normal + reduced-motion */
+  .attempt-demo-grid { width:100%; max-width:320px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .attempt-demo {
+    min-height:132px; padding:16px 12px; border-radius:16px; background:var(--surface2);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  }
+  .attempt-demo-label { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; }
+  .attempt-demo-hearts { display:flex; align-items:center; gap:5px; }
+  .attempt-demo-heart { position:relative; width:24px; text-align:center; color:var(--wrong); font-size:25px; line-height:1; }
+  .attempt-demo-heart::before { content:"♡"; position:absolute; inset:0; color:var(--muted); -webkit-text-stroke:0; }
+  .attempt-demo-heart::after { content:""; position:absolute; width:18px; height:18px; left:3px; top:3px; border:2px solid var(--wrong); border-radius:50%; opacity:0; }
+  .attempt-demo-heart.lost { color:transparent; }
+  .attempt-demo-normal.play .attempt-demo-heart:last-child {
+    animation:attemptLoss calc(300ms * var(--k)) cubic-bezier(.2,.8,.25,1) forwards;
+  }
+  .attempt-demo-normal.play .attempt-demo-heart:last-child::after {
+    animation:attemptHalo calc(280ms * var(--k)) ease-out forwards;
+  }
+  @keyframes attemptLoss {
+    0% { transform:translate(0,0) rotate(0) scale(1); color:var(--wrong); opacity:1; }
+    30% { transform:translate(0,-3px) rotate(-12deg) scale(1.22); color:var(--wrong); opacity:1; }
+    50% { transform:translate(-3px,0) rotate(10deg) scale(1.02); color:var(--wrong); opacity:.9; }
+    70% { transform:translate(3px,4px) rotate(-6deg) scale(.82); color:var(--wrong); opacity:.55; }
+    100% { transform:translate(0,8px) rotate(0) scale(.64); color:var(--wrong); opacity:0; }
+  }
+  @keyframes attemptHalo { 0% { opacity:.68; transform:scale(.55); } 100% { opacity:0; transform:scale(1.55); } }
+  .attempt-demo-refill .attempt-demo-heart { opacity:0; }
+  .attempt-demo-refill.play .attempt-demo-heart { animation:attemptRefill calc(420ms * var(--k)) cubic-bezier(.2,.9,.25,1.2) forwards; }
+  .attempt-demo-refill.play .attempt-demo-heart:nth-child(2) { animation-delay:calc(70ms * var(--k)); }
+  .attempt-demo-refill.play .attempt-demo-heart:nth-child(3) { animation-delay:calc(140ms * var(--k)); }
+  .attempt-demo-refill.play .attempt-demo-heart::after { animation:attemptHalo calc(280ms * var(--k)) ease-out forwards; }
+  .attempt-demo-refill.play .attempt-demo-heart:nth-child(2)::after { animation-delay:calc(70ms * var(--k)); }
+  .attempt-demo-refill.play .attempt-demo-heart:nth-child(3)::after { animation-delay:calc(140ms * var(--k)); }
+  @keyframes attemptRefill {
+    0% { opacity:0; transform:translateY(7px) rotate(-12deg) scale(.42); }
+    55% { opacity:1; transform:translateY(-1px) rotate(8deg) scale(1.18); }
+    78% { opacity:1; transform:translateY(0) rotate(-3deg) scale(.94); }
+    100% { opacity:1; transform:translateY(0) rotate(0) scale(1); }
+  }
+  .attempt-demo-caption { color:var(--muted); font-size:11px; font-weight:700; text-align:center; }
+
   footer { margin-top: 64px; color: var(--muted); font-size: 13.5px; max-width: 72ch; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -426,6 +468,10 @@
     .halo::before { animation: none; opacity: .7; transform: scale(1.06); }
   }
   :root[data-reduced="1"] .halo::before { animation: none; opacity: .7; transform: scale(1.06); }
+  :root[data-reduced="1"] .attempt-demo-normal.play .attempt-demo-heart:last-child {
+    animation:none; color:transparent; opacity:1;
+  }
+  :root[data-reduced="1"] .attempt-demo-refill.play .attempt-demo-heart { animation:none; color:var(--wrong); opacity:1; }
 </style>
 
 <div class="wrap">
@@ -631,6 +677,7 @@
           В коде это PressableHybrid вместо голого TouchableOpacity. Подержи узел нажатым.</p>
       </div>
     </article>
+
   </section>
 
   <section class="group" id="player">
@@ -793,6 +840,50 @@
           Сцена редкая, поэтому ей можно чуть больше праздника, но она укладывается в 700&nbsp;мс
           и не задерживает переход к карте. Сейчас в боевом плеере финала нет вообще.</p>
         <button class="replay" data-demo="finale">Проиграть</button>
+      </div>
+    </article>
+
+    <!-- B7 -->
+    <article class="card">
+      <div class="stage">
+        <div class="attempt-demo-grid">
+          <div class="attempt-demo attempt-demo-normal play" id="attemptLoss" data-motion-example="attempt-loss">
+            <div class="attempt-demo-label">Обычное движение</div>
+            <div class="attempt-demo-hearts" aria-label="2 попытки из 3"><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span></div>
+            <div class="attempt-demo-caption">pop 1 → 1.22 → .64<br>tilt + drop + halo</div>
+          </div>
+          <div class="attempt-demo attempt-demo-refill play" id="attemptRefill" data-motion-example="attempt-refill">
+            <div class="attempt-demo-label">Восполнение</div>
+            <div class="attempt-demo-hearts" aria-label="3 попытки из 3"><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span></div>
+            <div class="attempt-demo-caption">stagger 0 / 70 / 140 ms<br>spring + halo</div>
+          </div>
+          <div class="attempt-demo" data-motion-example="attempt-loss-reduced">
+            <div class="attempt-demo-label">Reduced motion</div>
+            <div class="attempt-demo-hearts" aria-label="2 попытки из 3"><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart lost">♥</span></div>
+            <div class="attempt-demo-caption">fill → outline<br>без transform-анимации</div>
+          </div>
+          <div class="attempt-demo" data-motion-example="attempt-refill-reduced">
+            <div class="attempt-demo-label">Reduced refill</div>
+            <div class="attempt-demo-hearts" aria-label="3 попытки из 3"><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span><span class="attempt-demo-heart">♥</span></div>
+            <div class="attempt-demo-caption">сразу 3 из 3<br>то же конечное состояние</div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Потеря попытки</h3>
+        <div class="chips">
+          <span class="chip state-live">общий runtime</span>
+          <span class="chip">300 ms loss · 420 ms refill</span>
+          <span class="chip">transform + opacity + halo</span>
+          <span class="chip">3 → 2 попытки</span>
+        </div>
+        <p>При педагогической ошибке меняется только последнее заполненное сердце: короткий pop,
+          наклон, мягкое падение и расходящееся кольцо завершаются переходом <b>fill → outline</b>.
+          Восстановление возвращает три сердца по очереди пружиной с локальным halo. Никакого
+          дополнительного уведомления нет. После третьей ошибки показывается
+          <b>модал после финального состояния</b>, поэтому он не перекрывает изменение индикатора.</p>
+        <button class="replay" data-demo="attempt-loss">Проиграть</button>
+        <button class="replay" data-demo="attempt-refill">Восполнить</button>
       </div>
     </article>
   </section>
@@ -1005,6 +1096,20 @@
   }
   playFinale();
 
+  /* B7 — потеря попытки */
+  var attemptLoss = document.getElementById("attemptLoss");
+  var attemptRefill = document.getElementById("attemptRefill");
+  function playAttemptLoss() {
+    attemptLoss.classList.remove("play");
+    void attemptLoss.offsetWidth;
+    attemptLoss.classList.add("play");
+  }
+  function playAttemptRefill() {
+    attemptRefill.classList.remove("play");
+    void attemptRefill.offsetWidth;
+    attemptRefill.classList.add("play");
+  }
+
   var demos = {
     reveal: playReveal,
     halo: restartHalo,
@@ -1015,7 +1120,9 @@
     nudge: playNudge,
     fb: toggleFb,
     swap: playSwap,
-    finale: playFinale
+    finale: playFinale,
+    "attempt-loss": playAttemptLoss,
+    "attempt-refill": playAttemptRefill
   };
   document.querySelectorAll(".replay").forEach(function (btn) {
     btn.addEventListener("click", function () {

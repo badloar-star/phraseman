@@ -12,6 +12,7 @@ import {
   preloadLearningV2CourseSessionAudioV1,
   type LearningV2CourseSessionAudioPreloadHandleV1,
 } from "./learning_v2_course_session_audio_preload_v1";
+import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
 import { peekStableId } from "./stable_id";
 import {
   LEARNING_V2_COURSE_LESSON_COUNT_V1,
@@ -199,6 +200,7 @@ type ReadyMaterial = Readonly<{
   result: LearningV2CourseReleasedSessionAppResultV3;
   audio: LearningV2CourseSessionAudioPreloadHandleV1;
   summary: LearningV2CourseSessionReadySummaryV3;
+  learnerSourceLocale: string;
 }>;
 
 const RESPONSE_KEYS = Object.freeze([
@@ -784,30 +786,95 @@ export function bundledLearningV2CourseSessionMaterialV3(
     evaluatorCapsule: LearningV2CourseSessionEvaluatorCapsuleChildV1;
     auxiliary: LearningV2CourseSessionAuxiliaryChildV1;
   };
-  // зачем аудио-ребёнок пуст, а не отсутствует: контракт требует запись на
-  // каждое взаимодействие с аудио-целями. У бандла озвучки пока нет —
-  // audioTargetIds у всех карточек пустые (owner-решение отложить озвучку до
-  // визуального одобрения), поэтому пустой список записей — единственно
-  // верный, а не временный обход.
-  const audioChild = materializeLearningV2CourseSessionAudioChildV1({
-    learner: children.learner,
-    interactions: [],
-  });
+  const bindsSessionOneProductionAudio =
+    locator.targetLanguage === "en" &&
+    locator.lessonOrdinal === 1 &&
+    locator.sessionOrdinal === 1;
+  const audioChild = bindsSessionOneProductionAudio
+    ? buildLearningV2Session1BundledAudioChildV1(children.learner)
+    : materializeLearningV2CourseSessionAudioChildV1({
+        learner: children.learner,
+        interactions: Object.freeze([]),
+      });
+  const bindsSessionOneRewardPublication =
+    locator.targetLanguage === "en" && locator.lessonOrdinal === 1 &&
+    locator.sessionOrdinal === 1;
+  const sourceFingerprint = shard.generationInputFingerprint;
+  const childSetFingerprint = bindsSessionOneRewardPublication
+    ? hashCanonicalBody({
+        schemaVersion: "learning-v2-bundled-child-set.v1",
+        courseSessionId,
+        introFingerprint: children.intro.introFingerprint,
+        learnerFingerprint: children.learner.learnerFingerprint,
+        evaluatorCapsuleSetFingerprint:
+          children.evaluatorCapsule.capsuleSetFingerprint,
+        auxiliaryFingerprint: children.auxiliary.auxiliaryFingerprint,
+        audioFingerprint: audioChild.audioFingerprint,
+      })
+    : BUNDLED_FINGERPRINT;
+  const packageFingerprint = bindsSessionOneRewardPublication
+    ? hashCanonicalBody({
+        schemaVersion: "learning-v2-bundled-session-package.v1",
+        releaseId: BUNDLED_RELEASE_ID,
+        courseSessionId,
+        sourceFingerprint,
+        childSetFingerprint,
+      })
+    : BUNDLED_FINGERPRINT;
+  const activeBaseRootFingerprint = bindsSessionOneRewardPublication
+    ? hashCanonicalBody({
+        schemaVersion: "learning-v2-bundled-base-root.v1",
+        releaseId: BUNDLED_RELEASE_ID,
+        sourceFingerprint,
+      })
+    : BUNDLED_FINGERPRINT;
+  const activeHeadFingerprint = bindsSessionOneRewardPublication
+    ? hashCanonicalBody({
+        schemaVersion: "learning-v2-bundled-head.v1",
+        releaseId: BUNDLED_RELEASE_ID,
+        activeBaseRootFingerprint,
+        packageFingerprint,
+      })
+    : BUNDLED_FINGERPRINT;
+  const activeRootFingerprint = bindsSessionOneRewardPublication
+    ? hashCanonicalBody({
+        schemaVersion: "learning-v2-bundled-active-root.v1",
+        releaseId: BUNDLED_RELEASE_ID,
+        activeBaseRootFingerprint,
+        activeHeadFingerprint,
+      })
+    : BUNDLED_FINGERPRINT;
   return Object.freeze({
     releaseId: BUNDLED_RELEASE_ID,
-    activeRootFingerprint: BUNDLED_FINGERPRINT,
-    activeBaseRootFingerprint: BUNDLED_FINGERPRINT,
-    activeHeadFingerprint: BUNDLED_FINGERPRINT,
-    topologyFingerprint: BUNDLED_FINGERPRINT,
+    activeRootFingerprint,
+    activeBaseRootFingerprint,
+    activeHeadFingerprint,
+    topologyFingerprint: bindsSessionOneRewardPublication ? hashCanonicalBody({
+      schemaVersion: "learning-v2-bundled-topology.v1",
+      lessonId,
+      courseSessionId,
+    }) : BUNDLED_FINGERPRINT,
     lessonId,
     lessonOrdinal: locator.lessonOrdinal,
-    baseLessonIndexFingerprint: BUNDLED_FINGERPRINT,
-    audioLessonIndexFingerprint: BUNDLED_FINGERPRINT,
+    baseLessonIndexFingerprint: bindsSessionOneRewardPublication ? hashCanonicalBody({
+      schemaVersion: "learning-v2-bundled-base-index.v1",
+      lessonId,
+      packageFingerprint,
+    }) : BUNDLED_FINGERPRINT,
+    audioLessonIndexFingerprint: bindsSessionOneRewardPublication ? hashCanonicalBody({
+      schemaVersion: "learning-v2-bundled-audio-index.v1",
+      lessonId,
+      audioFingerprint: audioChild.audioFingerprint,
+    }) : BUNDLED_FINGERPRINT,
     courseSessionId,
     sessionOrdinal: locator.sessionOrdinal,
-    packageFingerprint: BUNDLED_FINGERPRINT,
-    childSetFingerprint: BUNDLED_FINGERPRINT,
-    audioExtensionFingerprint: BUNDLED_FINGERPRINT,
+    packageFingerprint,
+    childSetFingerprint,
+    audioExtensionFingerprint: bindsSessionOneRewardPublication ? hashCanonicalBody({
+      schemaVersion: "learning-v2-bundled-audio-extension.v1",
+      courseSessionId,
+      audioFingerprint: audioChild.audioFingerprint,
+    }) : BUNDLED_FINGERPRINT,
     introChild: children.intro,
     learnerChild: children.learner,
     evaluatorCapsuleChild: children.evaluatorCapsule,
@@ -931,14 +998,9 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail();
     const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
     // зачем: сессия отказывалась открываться, если не скачался хотя бы один
-    // mp3 — экран висел на «Подготавливаем занятие и локальное аудио», а потом
-    // показывал «Сессия недоступна». Озвучка курса ещё не сделана по решению
-    // владельца, поэтому это требование делало проверку урока невозможной:
-    // владелец не мог открыть НИ ОДНО занятие на телефоне.
-    //
-    // В дев-сборке полнота аудио больше не блокирует старт: фраза показывается
-    // текстом, а озвучка догоняет, когда появится. В боевой сборке требование
-    // остаётся как было — там урок без звука выпускать нельзя.
+    // Владелец утвердил production audio: и dev-проверка на телефоне, и release
+    // открывают первое интро только после локальной проверки всех выбранных MP3.
+    // Пустая анимация воспроизведения больше не маскируется текстовым fallback.
     const audioComplete =
       audioSummary.localFileCount === audioSummary.selectedFileCount;
     if (
@@ -948,7 +1010,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
         result.material.learnerChild.learnerFingerprint ||
       audioSummary.audioFingerprint !==
         result.material.audioChild.audioFingerprint ||
-      (!audioComplete && !__DEV__)
+      !audioComplete
     )
       fail();
     const body = {
@@ -978,7 +1040,12 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     });
     const handle = Object.freeze({}) as LearningV2CourseSessionReadyHandleV3;
     readyHandles.add(handle);
-    readyMetadata.set(handle, Object.freeze({ result, audio, summary }));
+    readyMetadata.set(handle, Object.freeze({
+      result,
+      audio,
+      summary,
+      learnerSourceLocale: locator.learnerSourceLocale,
+    }));
     return handle;
   })().finally(() => {
     if (readyInFlight.get(key) === operation) readyInFlight.delete(key);

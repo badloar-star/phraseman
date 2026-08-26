@@ -781,6 +781,7 @@ export function dialogScenarioTitle(scenario: DialogScenario, lang: Lang): strin
   return triLang(lang, {
     ru: scenario.titleRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.title ?? scenario.titleRu,
+    en: scenario.titleRu,
     es: scenario.titleEs ?? esCopy.titleEs,
     'pt-BR': batchCopy['pt-BR'].title,
     vi: batchCopy.vi.title,
@@ -796,6 +797,7 @@ export function dialogScenarioGoal(scenario: DialogScenario, lang: Lang): string
   return triLang(lang, {
     ru: scenario.goalRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.goal ?? scenario.goalRu,
+    en: scenario.goalEn,
     es: scenario.goalEs ?? esCopy.goalEs,
     'pt-BR': batchCopy['pt-BR'].goal,
     vi: batchCopy.vi.goal,
@@ -811,6 +813,7 @@ export function dialogScenarioNextStepHint(scenario: DialogScenario, lang: Lang)
   return triLang(lang, {
     ru: scenario.nextStepHintRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.nextStepHint ?? scenario.nextStepHintRu,
+    en: scenario.nextStepHintRu,
     es: scenario.nextStepHintEs ?? esCopy.nextStepHintEs,
     'pt-BR': batchCopy['pt-BR'].nextStepHint,
     vi: batchCopy.vi.nextStepHint,
@@ -825,6 +828,11 @@ export function dialogScenarioGroupLabel(group: DialogScenarioGroup, lang: Lang)
     everyday: 'Щодня',
     travel: 'Подорожі',
     social: 'Спілкування',
+  };
+  const enLabel: Record<DialogScenarioCategory, string> = {
+    everyday: 'Everyday',
+    travel: 'Travel',
+    social: 'Social',
   };
   const ptBR: Record<DialogScenarioCategory, string> = {
     everyday: 'Todo dia',
@@ -854,6 +862,7 @@ export function dialogScenarioGroupLabel(group: DialogScenarioGroup, lang: Lang)
   return triLang(lang, {
     ru: group.labelRu,
     uk: uk[group.category],
+    en: enLabel[group.category],
     es: DIALOG_SCENARIO_GROUP_COPY_ES[group.category].labelEs,
     'pt-BR': ptBR[group.category],
     vi: vi[group.category],
@@ -868,6 +877,11 @@ export function dialogScenarioGroupShortLabel(group: DialogScenarioGroup, lang: 
     everyday: 'День',
     travel: 'Поїздки',
     social: 'Люди',
+  };
+  const enShortLabel: Record<DialogScenarioCategory, string> = {
+    everyday: 'Daily',
+    travel: 'Trips',
+    social: 'People',
   };
   const ptBR: Record<DialogScenarioCategory, string> = {
     everyday: 'Dia',
@@ -897,6 +911,7 @@ export function dialogScenarioGroupShortLabel(group: DialogScenarioGroup, lang: 
   return triLang(lang, {
     ru: group.shortLabelRu,
     uk: uk[group.category],
+    en: enShortLabel[group.category],
     es: DIALOG_SCENARIO_GROUP_COPY_ES[group.category].shortLabelEs,
     'pt-BR': ptBR[group.category],
     vi: vi[group.category],

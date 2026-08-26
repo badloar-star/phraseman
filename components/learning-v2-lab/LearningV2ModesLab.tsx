@@ -23,7 +23,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
   const { lang } = useLang();
 
   return (
-    <ScrollView
+    <ScrollView decelerationRate="fast"
       showsVerticalScrollIndicator={false}
       contentContainerStyle={[
         s.root,
@@ -34,6 +34,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
       <Text style={[s.title, { color: theme.textPrimary, fontSize: f.h1 }]}>
         {triLang(lang, {
           ru: 'Первый урок готов к проверке', uk: 'Перший урок готовий до перевірки',
+          en: 'The first lesson is ready to test',
           es: 'La primera lección está lista', 'pt-BR': 'A primeira lição está pronta',
           vi: 'Bài học đầu tiên đã sẵn sàng', id: 'Pelajaran pertama siap diuji',
           tr: 'İlk ders test edilmeye hazır', pl: 'Pierwsza lekcja jest gotowa',
@@ -43,6 +44,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
         {triLang(lang, {
           ru: 'Рабочая карта, 12 локальных сессий, подсказки, пропуск и встроенное аудио.',
           uk: 'Робоча карта, 12 локальних сесій, підказки, пропуск і вбудоване аудіо.',
+          en: 'A working map, 12 local sessions, hints, skip, and built-in audio.',
           es: 'Mapa funcional, 12 sesiones locales, pistas, omisión y audio integrado.',
           'pt-BR': 'Mapa funcional, 12 sessões locais, dicas, pular e áudio integrado.',
           vi: 'Bản đồ hoạt động, 12 phiên cục bộ, gợi ý, bỏ qua và âm thanh tích hợp.',
@@ -59,7 +61,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
         <View style={s.cardText}>
           <Text style={[s.cardTitle, { color: theme.textPrimary }]}>
             {triLang(lang, {
-              ru: 'Урок 1 · Знакомство', uk: 'Урок 1 · Знайомство', es: 'Lección 1 · Presentarse',
+              ru: 'Урок 1 · Знакомство', uk: 'Урок 1 · Знайомство', en: 'Lesson 1 · Getting acquainted', es: 'Lección 1 · Presentarse',
               'pt-BR': 'Lição 1 · Apresentações', vi: 'Bài 1 · Làm quen', id: 'Pelajaran 1 · Perkenalan',
               tr: 'Ders 1 · Tanışma', pl: 'Lekcja 1 · Poznawanie się',
             })}
@@ -67,6 +69,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
           <Text style={[s.cardMeta, { color: theme.textMuted }]}>
             {triLang(lang, {
               ru: '12 сессий · работает офлайн', uk: '12 сесій · працює офлайн',
+              en: '12 sessions · works offline',
               es: '12 sesiones · funciona sin conexión', 'pt-BR': '12 sessões · funciona offline',
               vi: '12 phiên · hoạt động ngoại tuyến', id: '12 sesi · bekerja offline',
               tr: '12 oturum · çevrimdışı çalışır', pl: '12 sesji · działa offline',
@@ -79,6 +82,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
         accessibilityRole="button"
         accessibilityLabel={triLang(lang, {
           ru: 'Открыть первый урок Learning V2', uk: 'Відкрити перший урок Learning V2',
+          en: 'Open the first Learning V2 lesson',
           es: 'Abrir la primera lección de Learning V2', 'pt-BR': 'Abrir a primeira lição do Learning V2',
           vi: 'Mở bài học Learning V2 đầu tiên', id: 'Buka pelajaran Learning V2 pertama',
           tr: 'İlk Learning V2 dersini aç', pl: 'Otwórz pierwszą lekcję Learning V2',
@@ -92,7 +96,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
       >
         <Text style={[s.ctaText, { color: theme.correctText }]}>
           {triLang(lang, {
-            ru: 'Открыть Урок 1', uk: 'Відкрити Урок 1', es: 'Abrir la lección 1',
+            ru: 'Открыть Урок 1', uk: 'Відкрити Урок 1', en: 'Open Lesson 1', es: 'Abrir la lección 1',
             'pt-BR': 'Abrir a lição 1', vi: 'Mở Bài 1', id: 'Buka Pelajaran 1',
             tr: 'Ders 1’i aç', pl: 'Otwórz Lekcję 1',
           })}
@@ -106,6 +110,7 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({
           {triLang(lang, {
             ru: 'Результат сохраняется на устройстве и не зависит от сети.',
             uk: 'Результат зберігається на пристрої та не залежить від мережі.',
+            en: 'The result is saved on the device and does not depend on the network.',
             es: 'El resultado se guarda en el dispositivo y no depende de la red.',
             'pt-BR': 'O resultado é salvo no dispositivo e não depende da rede.',
             vi: 'Kết quả được lưu trên thiết bị và không phụ thuộc vào mạng.',

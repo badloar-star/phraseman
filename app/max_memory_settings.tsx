@@ -235,7 +235,7 @@ export default function MaxMemorySettings() {
       <SafeAreaView style={styles.flex}>
         <ContentWrap>
           <SectionSheetHeader title={L('title')} onClose={() => safeRouterBack(router, '/privacy_settings' as never)} />
-          <BouncyScrollView contentContainerStyle={styles.content}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={styles.content}>
             <Text style={{ color: t.textSecond, fontSize: f.bodyLg, lineHeight: 25, fontWeight: '600' }}>{L('privacy')}</Text>
 
             {status === 'loading' && (

@@ -1,13 +1,14 @@
-// зачем: сторож правила «урок 1 = только to be» (владелец, 2026-08-17).
+// зачем: сторож ТОЧНОЙ границы исходного эпизода 1 (владелец, 2026-08-25).
 //
 // Первая версия карты 56 сессий была ошибочной: она раскладывала по уроку 1
 // настоящее простое, длительное, прошедшее, неправильные глаголы, будущее и
 // сравнительную степень — материал уроков 2–12 по спецификации. Урок съедал
 // треть курса, а на 31 оставшийся урок грамматики не оставалось.
 //
-// Владелец: «а как мы разобьём на 56 сессий, а потом ещё 32 урока, если в
-// первых 10 сессиях уже что-то больше, чем to be?.. Значит все 56 сессий должны
-// учить to be».
+// Нельзя понимать «урок 1 = to be» как разрешение забрать всю таблицу и все
+// типы предложений. Канон docs/v2/03 закрепляет только утвердительные модели
+// I am / you are и сокращение I'm. Урок 2 владеет he/she/it, this/that, a/an,
+// вопросом и отрицанием to be; урок 3 — have и притяжательными.
 //
 // Обычные тесты карты этот класс НЕ ловят: они проверяют форму записей (номера,
 // типы, ссылки), а не то, ЧЕМУ сессия учит. Здесь проверяется именно смысл.
@@ -19,11 +20,34 @@ import {
   type EpisodeSessionPlanEntry,
 } from '../modules/learning-v2/content/source/episode_01_session_map_v1';
 
-/**
- * Признаки чужой грамматики. Совпадение по подстроке: имена признаков растут,
- * и точный список пришлось бы догонять руками при каждой новой конструкции.
- */
+/** Признаки грамматики и тем, которыми владеют последующие уроки. */
 const FOREIGN_GRAMMAR_FRAGMENTS: readonly string[] = Object.freeze([
+  'negation',
+  'question',
+  'third_person',
+  'impersonal_it',
+  'plural_pronoun',
+  'plural_noun',
+  'contraction_thirdperson',
+  'contraction_plural',
+  'negative_contraction',
+  'demonstrative',
+  'indefinite_article',
+  'possessive',
+  'profession_noun',
+  'family_noun',
+  'place_noun',
+  'preposition_place',
+  'weather_adjective',
+  'everyday_object_noun',
+  'colour',
+  'size_adjective',
+  'adjective_before_noun',
+  'number_',
+  'age_expression',
+  'descriptive_adjective',
+  'conjunction',
+  'clarification',
   'present_simple',
   'past_',
   'future',
@@ -46,10 +70,7 @@ const FOREIGN_GRAMMAR_FRAGMENTS: readonly string[] = Object.freeze([
 ]);
 
 /**
- * Точные запреты. Отдельно от подстрочных, потому что различие тонкое:
- * `third_person_singular` — это форма `is` глагола to be, она законна;
- * `third_person_s` — окончание -s у смыслового глагола (he works), это урок
- * про настоящее простое. Подстрокой их не разделить.
+ * Точные запреты для конструкций, которые не имеют удобного общего фрагмента.
  */
 const FOREIGN_GRAMMAR_EXACT: readonly string[] = Object.freeze([
   'third_person_s',
@@ -141,8 +162,7 @@ describe('урок 1 — только to be', () => {
     expect(offenders.join('\n')).toBe('');
   });
 
-  test('таблица to be закрывается к четвёртой главе', () => {
-    // Смысловая проверка порядка: лица вводятся по нарастанию, а не вразнобой.
+  test('урок 1 сохраняет только I am / you are и не забирает полную таблицу', () => {
     const introducedAt = (feature: string): number => {
       const entry = EPISODE_01_SESSION_MAP_V1.find((e) =>
         e.teaches.includes(feature),
@@ -152,12 +172,24 @@ describe('урок 1 — только to be', () => {
     };
     const first = introducedAt('first_person_singular');
     const second = introducedAt('second_person');
-    const third = introducedAt('third_person_pronoun');
-    const plural = introducedAt('plural_pronoun');
     expect(first).toBeLessThan(second);
-    expect(second).toBeLessThan(third);
-    expect(third).toBeLessThan(plural);
-    // Вся таблица закрыта до конца четвёртой главы (сессия 32).
-    expect(chapterOf(EPISODE_01_SESSION_MAP_V1[plural - 1])).toBeLessThanOrEqual(4);
+    expect(chapterOf(EPISODE_01_SESSION_MAP_V1[second - 1])).toBeLessThanOrEqual(4);
+
+    const features = new Set(
+      EPISODE_01_SESSION_MAP_V1.flatMap((entry) => entry.teaches),
+    );
+    for (const forbidden of [
+      'third_person_pronoun',
+      'third_person_singular',
+      'impersonal_it',
+      'plural_pronoun',
+      'question_inversion',
+      'negation_not',
+      'demonstrative',
+      'indefinite_article',
+      'possessive_my',
+    ]) {
+      expect(features.has(forbidden)).toBe(false);
+    }
   });
 });

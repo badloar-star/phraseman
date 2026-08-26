@@ -55,7 +55,7 @@ Previous/next controls: iOS 17+ `Button(intent:)` on systemMedium; Android
 | RN bridge | `app/widget_bridge.ts` |
 | Wire contract | `modules/phrase-widget/types.ts` (`WidgetPayload`, schema v3) |
 | Module facade | `modules/phrase-widget/index.ts`, `constants.ts`, `expo-module.config.json` |
-| iOS native bridge | `modules/phrase-widget/ios/PhraseWidgetModule.swift` |
+| iOS native bridge | `modules/phrase-widget/ios/PhraseWidgetModule.swift` + `PhrasemanPhraseWidget.podspec` (without the podspec the module is NOT linked — see "Schema drift") |
 | iOS widget extension | `targets/widget/*` (@bacons/apple-targets) |
 | Android native bridge | `modules/phrase-widget/android/.../PhraseWidgetModule.kt` |
 | Android widget | `.../PhraseGlanceWidget.kt`, `PhraseWidgetReceiver.kt`, `PhraseWidgetConfigureActivity.kt`, `res/**` |
@@ -120,7 +120,25 @@ so nothing at compile time links `WidgetPayload` to what the decoders read. A
 renamed or removed field does not break the build — it silently produces a dead
 widget.
 
-This has already happened once, and it cost a full release cycle:
+**Incident 2026-08-26 (a) — the iOS module was never built at all.**
+`modules/phrase-widget/ios/` had `PhraseWidgetModule.swift` but **no `.podspec`**.
+`expo-modules-autolinking` looks for `*.podspec` in the module's subdirectories and
+`resolveModuleAsync` returns `null` when it finds none — so the module simply did
+not exist on iOS. `requireOptionalNativeModule('PhraseWidget')` returned null,
+`isAvailable()` was `false`, and `syncWidgetData()` bailed on its first line. No
+snapshot was ever written, so the iOS widget only ever showed its gallery
+placeholder. Nothing failed loudly: an absent optional native module is the
+documented "not available here" path, indistinguishable from Expo Go.
+
+The fix is `ios/PhrasemanPhraseWidget.podspec`. Its name is deliberate — the pod
+name becomes the Swift module name, so it must differ from both the Swift class
+(`PhraseWidgetModule`) and the WidgetKit extension target (`PhraseWidget`).
+
+This is why the feature looked half-working: the Android bug below made Android
+show a placeholder, and this one did the same on iOS, for a completely different
+reason.
+
+Then there is the schema drift, which cost a full release cycle:
 
 > **Incident 2026-08-26 — the entire Android widget was dead.** The v2->v3 rework
 > dropped the flat `english` / `deepLink` fields, but `PhraseWidgetModule.kt` still

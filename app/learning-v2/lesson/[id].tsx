@@ -976,6 +976,15 @@ export default function LearningV2LessonMap() {
             sessionOrdinal: String(selectedSession.order),
             runKind:
               selectedSession.state === "completed" ? "repeat" : "initial",
+            ...(__DEV__ &&
+            studyTarget === "en" &&
+            lessonOrdinal === 1 &&
+            selectedSession.order === 1
+              ? {
+                  previewMode: "authoring_v1",
+                  previewOrigin: "course",
+                }
+              : {}),
             ...(skipTheory ? { skipTheory: "1" } : {}),
             ...(auxiliaryScope
               ? {

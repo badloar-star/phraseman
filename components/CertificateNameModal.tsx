@@ -70,6 +70,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           {triLang(lang as Lang, {
             ru: 'Чьё имя указать на награде?',
             uk: 'Чиє ім\'я вказати на нагороді?',
+            en: 'Whose name should go on the reward?',
             es: '¿Qué nombre quieres en el certificado?',
             'pt-BR': 'Qual nome colocar no certificado?',
             vi: 'Tên nào sẽ hiển thị trên chứng nhận?',
@@ -82,6 +83,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           {triLang(lang as Lang, {
             ru: 'Имя появится на награде Phraseman. Можно указать настоящее или ник.',
             uk: 'Ім\'я з\'явиться на нагороді Phraseman. Можна вказати справжнє або нік.',
+            en: 'The name will appear on your Phraseman reward. You can use your real name or a nickname.',
             es: 'El nombre figurará en tu certificado Phraseman. Puedes usar tu nombre real o un apodo.',
             'pt-BR': 'O nome aparecerá no certificado da Phraseman. Pode ser seu nome real ou um apelido.',
             vi: 'Tên sẽ xuất hiện trên chứng nhận Phraseman. Bạn có thể dùng tên thật hoặc biệt danh.',
@@ -99,6 +101,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           placeholder={triLang(lang as Lang, {
             ru: 'Твоё имя или ник',
             uk: 'Твоє ім\'я або нік',
+            en: 'Your name or nickname',
             es: 'Tu nombre o apodo',
             'pt-BR': 'Seu nome ou apelido',
             vi: 'Tên hoặc biệt danh của bạn',
@@ -144,6 +147,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
             {triLang(lang as Lang, {
               ru: 'Сохранить и выдать сертификат',
               uk: 'Зберегти і видати сертифікат',
+              en: 'Save and issue the certificate',
               es: 'Guardar y emitir el certificado',
               'pt-BR': 'Salvar e emitir o certificado',
               vi: 'Lưu và cấp chứng nhận',
@@ -159,6 +163,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
             {triLang(lang as Lang, {
               ru: 'Пропустить (выдать без имени)',
               uk: 'Пропустити (видати без імені)',
+              en: 'Skip (issue without a name)',
               es: 'Omitir (sin nombre en el certificado)',
               'pt-BR': 'Pular (emitir sem nome)',
               vi: 'Bỏ qua (cấp không có tên)',
@@ -181,7 +186,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
         testID="certificate-name-modal-hybrid"
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={{ width: '100%', maxHeight: '100%' }}
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
             showsVerticalScrollIndicator={false}
@@ -203,7 +208,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
             карточка с полем имени центрировалась без прокрутки. С поднятой
             клавиатурой на низком экране кнопка сохранения уходила за границу —
             сертификат нельзя было создать. */}
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={styles.backdropScroll}
           contentContainerStyle={styles.backdrop}
           showsVerticalScrollIndicator={false}

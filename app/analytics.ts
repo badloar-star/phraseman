@@ -109,6 +109,7 @@ export type AnalyticsEvent =
   // зачем (аудит 2026-08-23): экран разбора звонка слал это событие, но в
   // реестре его не было — событие терялось, а отклик на отзывы не измерялся.
   | 'max_voice_feedback_sent'
+  | 'feedback_entry_sent'
   // «Объясни как для 5-летнего» (Фаза 5 — adoption/cohort + health кэш-хитов)
   | 'explain_button_shown'
   | 'explain_sheet_opened'

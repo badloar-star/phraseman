@@ -14,9 +14,10 @@
    со страховочными таймерами), стрик-система с бонусами, CTA с
    3D-кромкой и авто-«Дальше», панель витрины.
    Голосовые законы (04, Unified Voice Activity Shell):
-   распознавание ТОЛЬКО on-device, никаких упоминаний сети/сервера;
-   запись НЕ стартует сама, только явный тап; tap-to-start/tap-to-stop
-   (не hold); TTS и микрофон взаимоисключены: пока играет эталон,
+   распознавание предпочитает on-device и использует системный recognizer
+   телефона как fallback, запись не загружается приложением на сервер;
+   запись НЕ стартует сама: pointer-down на центральном микрофоне начинает,
+   pointer-up завершает; assistive activation даёт доступный toggle; TTS и микрофон взаимоисключены: пока играет эталон,
    мик заблокирован с пояснением; UNCERTAIN — это неуверенность
    СИСТЕМЫ, не ошибка ученика: бесплатный повтор, ошибки/серия не
    трогаются; INVALID (тишина/обрыв) даёт typed fallback, помечен
@@ -137,6 +138,8 @@ svg { display:block; }
 .icon-btn:active { transform:scale(0.94); }
 .hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
 .progress-row { display:flex; align-items:center; gap:12px; margin-top:14px; }
+.attempts-hud { height:32px; flex:0 0 auto; display:flex; align-items:center; gap:3px; padding:0 7px; border-radius:999px; background:var(--wrong-bg); box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
+.attempt-heart { width:17px; text-align:center; color:var(--wrong); font-size:18px; line-height:1; }
 .bar-track {
   flex:1; height:10px; border-radius:999px; background:var(--bg-surface2);
   overflow:hidden; position:relative;
@@ -448,6 +451,7 @@ svg { display:block; }
       </div>
       <div class="progress-row">
         <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+        <div class="attempts-hud" data-session-attempts-hud="true" role="img" aria-label="3 попытки из 3"><span class="attempt-heart" data-attempt-heart="1">♥</span><span class="attempt-heart" data-attempt-heart="2">♥</span><span class="attempt-heart" data-attempt-heart="3">♥</span></div>
         <div class="counter miss" id="missCounter"><svg><use href="#i-dot"/></svg><b id="missVal">0</b></div>
         <div class="counter streakp" id="streakPill" data-tier="1"><svg><use href="#i-spark"/></svg><b id="streakVal">2</b></div>
         <div class="counter stars" id="starCounter"><svg><use href="#i-star"/></svg><b id="starVal">0</b></div>
@@ -494,7 +498,7 @@ svg { display:block; }
       <button class="cta" id="ctaMain"><span class="auto-fill"></span><span class="cta-label" id="ctaMainLabel">Дальше</span></button>
       <div class="mic-wrap">
         <div class="mic-ring" id="micRing"></div>
-        <button class="mic-btn" id="micBtn" title="Начать запись"><svg id="micIcon"><use href="#i-mic"/></svg></button>
+        <button class="mic-btn" id="micBtn" title="Удерживайте, чтобы говорить"><svg id="micIcon"><use href="#i-mic"/></svg></button>
       </div>
     </div>
 
@@ -528,17 +532,17 @@ svg { display:block; }
       <button class="pbtn" id="runCombo">Серия</button>
       <button class="pbtn" id="runReset">Сброс</button>
     </div>
-    <div class="note">Или руками: тап по микрофону запускает запись, повторный тап останавливает. Пока играет эталон, мик заблокирован (пилюля «Слушаем эталон»). Запись не стартует сама ни при заходе на карточку, ни после диалога разрешений: только явный тап пользователя.</div>
+    <div class="note">Зажмите центральный микрофон, говорите и отпустите для завершения. Для VoiceOver/TalkBack действие «Активировать» переключает старт/стоп. Пока играет эталон, мик заблокирован (пилюля «Слушаем эталон»). Запись не стартует сама ни при входе, ни после диалога разрешений.</div>
   </div>
 
   <div class="pcard">
     <h2>Спецификация для RN (Reanimated 4)</h2>
     <div class="spec">
       <div class="row"><span>Chunk highlight эталона</span><span class="val">120 мс/слово · opacity+translateY</span></div>
-      <div class="row"><span>Тап мика: старт записи</span><span class="val">лёгкий haptic, без звука в микрофон</span></div>
+      <div class="row"><span>Press-in мика: старт записи</span><span class="val">лёгкий haptic, без звука в микрофон</span></div>
       <div class="row"><span>Кольцо записи (pulse)</span><span class="val">1400 мс · scale+opacity, cycle</span></div>
       <div class="row"><span>Столбики амплитуды</span><span class="val">6-8 шт · transform scaleY, случайно</span></div>
-      <div class="row"><span>Тап мика: стоп → processing</span><span class="val">400 мс · геометрия на месте</span></div>
+      <div class="row"><span>Press-out мика: стоп → processing</span><span class="val">400 мс · геометрия на месте</span></div>
       <div class="row"><span>Вход word chip (волна)</span><span class="val">80 мс/чип · spring d20 s300</span></div>
       <div class="row"><span>Панель сравнения</span><span class="val">180 мс · opacity+translateY:8</span></div>
       <div class="row"><span>Полёт звезды + трейл</span><span class="val">700 мс · slide · тик-хаптик</span></div>
@@ -554,10 +558,10 @@ svg { display:block; }
   <div class="pcard">
     <h2>Контракт состояний (04 · SB-06 · Unified Voice Shell)</h2>
     <div class="spec">
-      <div class="row"><span>Распознавание</span><span class="val">только on-device (expo-speech-recognition)</span></div>
+      <div class="row"><span>Распознавание</span><span class="val">on-device при наличии; иначе системный recognizer телефона</span></div>
       <div class="row"><span>reference_playing</span><span class="val">мик заблокирован, авто-возврат в ready</span></div>
-      <div class="row"><span>ready → recording</span><span class="val">tap-to-start, не hold</span></div>
-      <div class="row"><span>recording → processing</span><span class="val">tap-to-stop, не hold</span></div>
+      <div class="row"><span>ready → recording</span><span class="val">press-in, удержание</span></div>
+      <div class="row"><span>recording → processing</span><span class="val">press-out; assistive toggle допустим</span></div>
       <div class="row"><span>PASS_CONFIDENT</span><span class="val">волна чипов + звезда + серия</span></div>
       <div class="row"><span>NEEDS_WORK_CONFIDENT</span><span class="val">верные чипы стоят, слот назван</span></div>
       <div class="row"><span>UNCERTAIN</span><span class="val">не WRONG · ошибки/серия не трогает · free retry</span></div>
@@ -743,8 +747,20 @@ function playReference(slow) {
 playBtn.addEventListener('click', () => playReference(false));
 slowPlayBtn.addEventListener('click', () => playReference(true));
 
-/* ===== Mic: tap-to-start / tap-to-stop. Не hold. Не стартует сама. ===== */
-micBtn.addEventListener('click', () => {
+/* ===== Mic: hold-to-talk. Assistive click остаётся доступным toggle. ===== */
+micBtn.addEventListener('pointerdown', (event) => {
+  if (state !== 'ready') return;
+  micBtn.setPointerCapture?.(event.pointerId);
+  startRecording();
+});
+micBtn.addEventListener('pointerup', () => {
+  if (state === 'recording') stopRecording();
+});
+micBtn.addEventListener('pointercancel', () => {
+  if (state === 'recording') stopRecording();
+});
+micBtn.addEventListener('click', (event) => {
+  if (event.detail !== 0) return;
   if (state === 'ready') return startRecording();
   if (state === 'recording') return stopRecording();
 });

@@ -86,3 +86,27 @@ authoring registry. Общий runtime/UI можно переиспользов�
 По последней подтверждённой записи `СТАРТ ES`: `LOCKED` пуст, `CURRENT 1`,
 `FORBIDDEN 2–56`. Перед работой не доверять этой строке на слово — получить
 fresh evidence командой `npm run learning-v2:es-authoring-preflight`.
+
+## Owner decision 2026-08-25 — испанский контур тоже возвращён в DRAFT
+
+- Общий mode-native контракт:
+  `docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md`. Все испанские word/phrase
+  contacts сохраняются, но должны заново материализоваться через семь
+  approved mechanics с exact 1:1 UI/motion parity.
+- Старый lock сессии 1 — исторический receipt. Активный испанский реестр:
+  `DRAFT 1–56`, current 1, forbidden 2–56; причина
+  `owner-unlocked-all-learning-v2-mode-native-rewrite-2026-08-25`.
+- Fresh `npm run learning-v2:es-authoring-preflight`: `PASS`, `LOCKED: none`,
+  `CURRENT: 1`, `CURRENT STATUS: DRAFT`, `FORBIDDEN: 2-56`. Для этого
+  устранён explicit `undefined` в optional `localizedDetails` сессии 22;
+  learner-facing текст не менялся.
+- Общий audit включил все 33 существующих испанских sources в суммарные 1961
+  content findings плюс семь `mockup_parity_not_pass` (итого 1968). Поэтому не
+  продолжать с 34 и не чинить одну сессию 11:
+  после общего runtime seam испанская переработка начинается с ordinal 1.
+
+### Находки и предложения
+
+Испанские target/IPA/дистракторы/локализации остаются независимыми от
+английских. Общими являются только schema, renderer mechanics, exact owner
+макеты и gates.

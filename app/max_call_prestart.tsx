@@ -12,12 +12,13 @@ import MaxLessonMissionPlaque from '../components/max/MaxLessonMissionPlaque';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { glassFill } from '../components/GlassSurface';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { soundDirector } from '../modules/audio/sound_director';
 import { triLang } from '../constants/i18n';
 import { MAX_PRESTART_MISSION_HYBRID } from '../constants/motionHybrid';
 import { safeRouterBack } from './navigation_back';
@@ -133,6 +134,7 @@ function MaxCallPrestartContent() {
   const router = useRouter();
   const {
     confirmSpendOne: confirmMaxLessonEnergy,
+    acknowledgeSessionStart,
     energyReady: maxLessonEnergyReady,
   } = useEnergy();
   const [maxLessonNoEnergy, setMaxLessonNoEnergy] = useState(false);
@@ -145,6 +147,7 @@ function MaxCallPrestartContent() {
       : 'scenario';
   const isTutor = format === 'tutor';
   const scenarioId = String(params.scenarioId ?? 'coffee');
+  const maxLessonEnergyIntent = useEnergySessionIntent('max_tutor', scenarioId);
   const devMode = params.devMode === '1';
   const scenario = useMemo(
     () => (format === 'companion' || format === 'tutor' ? undefined : getScenarioById(scenarioId)),
@@ -169,11 +172,11 @@ function MaxCallPrestartContent() {
   const [prepAttempt, setPrepAttempt] = useState(0);
   const startCtaReveal = useRef(new Animated.Value(0)).current;
   const a11y = useMemo(() => ({
-    backHint: triLang(lang, { ru: 'Закрывает подготовку MAX и возвращает на предыдущий экран', uk: 'Закриває підготовку MAX і повертає на попередній екран', es: 'Cierra la preparación de MAX y vuelve a la pantalla anterior', 'pt-BR': 'Fecha a preparação do MAX e volta à tela anterior', vi: 'Đóng phần chuẩn bị MAX và quay lại màn hình trước', id: 'Menutup persiapan MAX dan kembali ke layar sebelumnya', tr: 'MAX hazırlığını kapatıp önceki ekrana döner', pl: 'Zamyka przygotowanie MAX i wraca do poprzedniego ekranu' }),
-    retryLabel: triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' }),
-    retryHint: triLang(lang, { ru: 'Снова подготовит урок и голосовое соединение', uk: 'Знову підготує урок і голосове з’єднання', es: 'Vuelve a preparar la clase y la conexión de voz', 'pt-BR': 'Prepara novamente a aula e a conexão de voz', vi: 'Chuẩn bị lại bài học và kết nối thoại', id: 'Menyiapkan lagi pelajaran dan koneksi suara', tr: 'Dersi ve ses bağlantısını yeniden hazırlar', pl: 'Ponownie przygotuje lekcję i połączenie głosowe' }),
-    startLabel: triLang(lang, { ru: 'Начать разговор с MAX', uk: 'Почати розмову з MAX', es: 'Empezar conversación con MAX', 'pt-BR': 'Começar conversa com o MAX', vi: 'Bắt đầu trò chuyện với MAX', id: 'Mulai percakapan dengan MAX', tr: 'MAX ile konuşmayı başlat', pl: 'Rozpocznij rozmowę z MAX' }),
-    startHint: triLang(lang, { ru: 'Запускает уже подготовленный урок и начинает отсчёт времени', uk: 'Запускає вже підготовлений урок і починає відлік часу', es: 'Inicia la clase ya preparada y comienza a contar el tiempo', 'pt-BR': 'Inicia a aula já preparada e começa a contar o tempo', vi: 'Bắt đầu bài học đã chuẩn bị và tính thời gian', id: 'Memulai pelajaran yang sudah disiapkan dan penghitungan waktu', tr: 'Hazırlanmış dersi başlatır ve süreyi saymaya başlar', pl: 'Uruchamia przygotowaną lekcję i zaczyna odliczać czas' }),
+    backHint: triLang(lang, { ru: 'Закрывает подготовку MAX и возвращает на предыдущий экран', en: 'Closes MAX preparation and returns to the previous screen', uk: 'Закриває підготовку MAX і повертає на попередній екран', es: 'Cierra la preparación de MAX y vuelve a la pantalla anterior', 'pt-BR': 'Fecha a preparação do MAX e volta à tela anterior', vi: 'Đóng phần chuẩn bị MAX và quay lại màn hình trước', id: 'Menutup persiapan MAX dan kembali ke layar sebelumnya', tr: 'MAX hazırlığını kapatıp önceki ekrana döner', pl: 'Zamyka przygotowanie MAX i wraca do poprzedniego ekranu' }),
+    retryLabel: triLang(lang, { ru: 'Повторить подготовку', en: 'Retry preparation', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' }),
+    retryHint: triLang(lang, { ru: 'Снова подготовит урок и голосовое соединение', en: 'Prepares the lesson and voice connection again', uk: 'Знову підготує урок і голосове з’єднання', es: 'Vuelve a preparar la clase y la conexión de voz', 'pt-BR': 'Prepara novamente a aula e a conexão de voz', vi: 'Chuẩn bị lại bài học và kết nối thoại', id: 'Menyiapkan lagi pelajaran dan koneksi suara', tr: 'Dersi ve ses bağlantısını yeniden hazırlar', pl: 'Ponownie przygotuje lekcję i połączenie głosowe' }),
+    startLabel: triLang(lang, { ru: 'Начать разговор с MAX', en: 'Start the conversation with MAX', uk: 'Почати розмову з MAX', es: 'Empezar conversación con MAX', 'pt-BR': 'Começar conversa com o MAX', vi: 'Bắt đầu trò chuyện với MAX', id: 'Mulai percakapan dengan MAX', tr: 'MAX ile konuşmayı başlat', pl: 'Rozpocznij rozmowę z MAX' }),
+    startHint: triLang(lang, { ru: 'Запускает уже подготовленный урок и начинает отсчёт времени', en: 'Starts the already prepared lesson and begins the timer', uk: 'Запускає вже підготовлений урок і починає відлік часу', es: 'Inicia la clase ya preparada y comienza a contar el tiempo', 'pt-BR': 'Inicia a aula já preparada e começa a contar o tempo', vi: 'Bắt đầu bài học đã chuẩn bị và tính thời gian', id: 'Memulai pelajaran yang sudah disiapkan dan penghitungan waktu', tr: 'Hazırlanmış dersi başlatır ve süreyi saymaya başlar', pl: 'Uruchamia przygotowaną lekcję i zaczyna odliczać czas' }),
   }), [lang]);
 
   useEffect(() => {
@@ -212,8 +215,12 @@ function MaxCallPrestartContent() {
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
         setPreflightReason(null);
         setPrepState('ready');
+        // зачем: линия готова к разговору — сигнал ставим сразу на переходе в
+        // 'ready' (до анонса accessibility), deferAfterVoice в реестре сам
+        // отложит его, если рядом уже звучит речь.
+        soundDirector.request('pm.max.prestart_ready', { scope: 'max-prestart', dedupeKey: key });
         void AccessibilityInfo.announceForAccessibility(triLang(lang, {
-          ru: 'Урок готов к началу', uk: 'Урок готовий до початку', es: 'La clase está lista',
+          ru: 'Урок готов к началу', en: 'The lesson is ready to start', uk: 'Урок готовий до початку', es: 'La clase está lista',
           'pt-BR': 'A aula está pronta', vi: 'Bài học đã sẵn sàng', id: 'Pelajaran siap dimulai',
           tr: 'Ders başlamaya hazır', pl: 'Lekcja jest gotowa',
         }));
@@ -237,8 +244,14 @@ function MaxCallPrestartContent() {
 
   const capSec = preflight?.capSec ?? DEFAULT_CAP_SEC[format];
   const capMin = Math.max(1, Math.round(capSec / 60));
-  const dayRemainingSec = preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
-  const dayMaxSec = preflight?.dayMaxSec ?? DEFAULT_DAY_SEC;
+  // зачем: сервер отдаёт dayRemainingSec/dailyVoiceSecMax от ОБЩЕГО 20-минутного
+  // MAX-пула даже для format==='trial' (см. max_voice_mint.ts estimateQuotaRemaining) —
+  // он не различает разовый 3-минутный пробник free/plus/pro в этих полях.
+  // Карточка «Остаток минут дня» для пробника обязана показывать его настоящий
+  // лимит (capSec), иначе free/plus видит «20 минут» вместо реальных 3.
+  const isTrialFormat = format === 'trial';
+  const dayRemainingSec = isTrialFormat ? capSec : preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
+  const dayMaxSec = isTrialFormat ? capSec : preflight?.dayMaxSec ?? DEFAULT_DAY_SEC;
   const remainingMin = Math.max(0, Math.floor(dayRemainingSec / 60));
   const dayMaxMin = Math.max(remainingMin, Math.round(dayMaxSec / 60));
   const noMinutesLeft = dayRemainingSec < 60;
@@ -269,6 +282,7 @@ function MaxCallPrestartContent() {
       : format === 'companion'
       ? triLang(lang, {
           ru: 'Разговор с собеседником',
+          en: 'Conversation with a companion',
           uk: 'Розмова зі співрозмовником',
           es: 'Charla con tu compañero',
           'pt-BR': 'Conversa com seu parceiro',
@@ -292,12 +306,12 @@ function MaxCallPrestartContent() {
     goalLevel: cefr ?? 'A1',
     goalMastery: 0,
     displayTitle: triLang(lang, {
-      ru: 'Разговор начинается', uk: 'Розмова починається', es: 'La conversación empieza',
+      ru: 'Разговор начинается', en: 'The conversation is starting', uk: 'Розмова починається', es: 'La conversación empieza',
       'pt-BR': 'A conversa começa', vi: 'Cuộc trò chuyện bắt đầu', id: 'Percakapan dimulai',
       tr: 'Konuşma başlıyor', pl: 'Rozmowa się zaczyna',
     }),
     outcome: triLang(lang, {
-      ru: 'Сегодня превратишь знакомые слова в живую речь.', uk: 'Сьогодні перетвориш знайомі слова на живе мовлення.', es: 'Hoy convertirás palabras conocidas en una conversación real.',
+      ru: 'Сегодня превратишь знакомые слова в живую речь.', en: 'Today you will turn familiar words into real speech.', uk: 'Сьогодні перетвориш знайомі слова на живе мовлення.', es: 'Hoy convertirás palabras conocidas en una conversación real.',
       'pt-BR': 'Hoje você vai transformar palavras conhecidas em fala real.', vi: 'Hôm nay bạn sẽ biến những từ quen thuộc thành lời nói thực tế.', id: 'Hari ini kamu akan mengubah kata yang dikenal menjadi percakapan nyata.',
       tr: 'Bugün bildiğin kelimeleri gerçek konuşmaya dönüştüreceksin.', pl: 'Dziś zamienisz znane słowa w prawdziwą rozmowę.',
     }),
@@ -312,6 +326,7 @@ function MaxCallPrestartContent() {
       Alert.alert(
         triLang(lang, {
           ru: 'Звонки недоступны',
+          en: 'Calls are unavailable',
           uk: 'Дзвінки недоступні',
           es: 'Las llamadas no están disponibles',
           'pt-BR': 'As ligações não estão disponíveis',
@@ -322,6 +337,7 @@ function MaxCallPrestartContent() {
         }),
         triLang(lang, {
           ru: 'Обнови приложение до последней версии',
+          en: 'Update the app to the latest version',
           uk: 'Онови застосунок до останньої версії',
           es: 'Actualiza la app a la última versión',
           'pt-BR': 'Atualize o app para a versão mais recente',
@@ -335,7 +351,7 @@ function MaxCallPrestartContent() {
     }
     startInFlightRef.current = true;
     if (isTutor) {
-      const energyResult = await confirmMaxLessonEnergy();
+      const energyResult = await confirmMaxLessonEnergy(maxLessonEnergyIntent);
       if (energyResult === 'cancelled') {
         startInFlightRef.current = false;
         return;
@@ -345,6 +361,7 @@ function MaxCallPrestartContent() {
         setMaxLessonNoEnergy(true);
         return;
       }
+      if (energyResult === 'spent') void acknowledgeSessionStart(maxLessonEnergyIntent.operationId);
     }
     // Заготовку заберёт экран звонка — cleanup этого экрана её не отпустит.
     markPremintHandoff(key);
@@ -381,6 +398,7 @@ function MaxCallPrestartContent() {
   if (isTutor) {
     const heroAccessibilityLabel = triLang(lang, {
       ru: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Уровень ${activeTutorPreview.goalLevel}. Осталось ${remainingMin} минут.`,
+      en: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Level ${activeTutorPreview.goalLevel}. ${remainingMin} minutes left.`,
       uk: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Рівень ${activeTutorPreview.goalLevel}. Залишилося ${remainingMin} хвилин.`,
       es: `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Nivel ${activeTutorPreview.goalLevel}. Quedan ${remainingMin} minutos.`,
       'pt-BR': `${activeTutorPreview.displayTitle}. ${activeTutorPreview.outcome}. Nível ${activeTutorPreview.goalLevel}. Restam ${remainingMin} minutos.`,
@@ -397,7 +415,7 @@ function MaxCallPrestartContent() {
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
-                ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+                ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
                 vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
               })}
               accessibilityHint={a11y.backHint}
@@ -422,7 +440,7 @@ function MaxCallPrestartContent() {
             </Text>
           </View>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             testID="max-call-prestart-scroll"
             contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24 }}
             showsVerticalScrollIndicator
@@ -470,7 +488,7 @@ function MaxCallPrestartContent() {
                       {activeTutorPreview.goalLevel}
                     </Text>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 5 }} maxFontSizeMultiplier={2}>
-                      {triLang(lang, { ru: 'уровень речи', uk: 'рівень мовлення', es: 'nivel oral', 'pt-BR': 'nível de fala', vi: 'trình độ nói', id: 'level bicara', tr: 'konuşma seviyesi', pl: 'poziom mówienia' })}
+                      {triLang(lang, { ru: 'уровень речи', uk: 'рівень мовлення', en: 'speaking level', es: 'nivel oral', 'pt-BR': 'nível de fala', vi: 'trình độ nói', id: 'level bicara', tr: 'konuşma seviyesi', pl: 'poziom mówienia' })}
                     </Text>
                   </View>
                 </View>
@@ -497,7 +515,7 @@ function MaxCallPrestartContent() {
 
             {noMinutesLeft ? (
               <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', textAlign: 'center', marginBottom: 12 }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: 'Минуты на сегодня закончились — возвращайся завтра', uk: 'Хвилини на сьогодні закінчилися — повертайся завтра', es: 'Se acabaron los minutos de hoy: vuelve mañana', 'pt-BR': 'Os minutos de hoje acabaram: volte amanhã', vi: 'Hết phút hôm nay — hãy quay lại vào ngày mai', id: 'Menit hari ini habis — kembali besok', tr: 'Bugünkü dakikalar bitti — yarın tekrar gel', pl: 'Minuty na dziś się skończyły — wróć jutro' })}
+                {triLang(lang, { ru: 'Минуты на сегодня закончились — возвращайся завтра', uk: 'Хвилини на сьогодні закінчилися — повертайся завтра', en: "Today's minutes are used up — come back tomorrow", es: 'Se acabaron los minutos de hoy: vuelve mañana', 'pt-BR': 'Os minutos de hoje acabaram: volte amanhã', vi: 'Hết phút hôm nay — hãy quay lại vào ngày mai', id: 'Menit hari ini habis — kembali besok', tr: 'Bugünkü dakikalar bitti — yarın tekrar gel', pl: 'Minuty na dziś się skończyły — wróć jutro' })}
               </Text>
             ) : null}
 
@@ -511,7 +529,7 @@ function MaxCallPrestartContent() {
                     style={{ minHeight: 56, backgroundColor: t.accent, borderRadius: 18, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                      {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
+                      {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', en: 'Activate MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
                     </Text>
                   </Pressable>
                 ) : prepState === 'failed' && isMaxVoiceFailureRetryable(preflightReason) ? (
@@ -525,7 +543,7 @@ function MaxCallPrestartContent() {
                   style={{ minHeight: 52, backgroundColor: t.bgSurface, borderRadius: 16, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
-                    {triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' })}
+                    {triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', en: 'Retry preparation', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' })}
                   </Text>
                 </TouchableOpacity>
               </>
@@ -576,7 +594,7 @@ function MaxCallPrestartContent() {
                   <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
                     {/* Подготовка остаётся на этом экране; эта CTA появляется
                         только после готового premint и сразу принимает тап. */}
-                    {triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', es: 'Empezar la clase', 'pt-BR': 'Começar a aula', vi: 'Bắt đầu bài học', id: 'Mulai pelajaran', tr: 'Dersi başlat', pl: 'Rozpocznij lekcję' })}
+                    {triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', en: 'Start lesson', es: 'Empezar la clase', 'pt-BR': 'Começar a aula', vi: 'Bắt đầu bài học', id: 'Mulai pelajaran', tr: 'Dersi başlat', pl: 'Rozpocznij lekcję' })}
                   </Text>
                 </TouchableOpacity>
               </Animated.View>
@@ -598,7 +616,7 @@ function MaxCallPrestartContent() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14 }}>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             accessibilityHint={a11y.backHint}
             onPress={() => {
               hapticTap();
@@ -621,6 +639,7 @@ function MaxCallPrestartContent() {
               {triLang(lang, {
                 ru: 'Звонок',
                 uk: 'Дзвінок',
+                en: 'Call',
                 es: 'Llamada',
                 'pt-BR': 'Ligação',
                 vi: 'Cuộc gọi',
@@ -668,6 +687,7 @@ function MaxCallPrestartContent() {
                   ? triLang(lang, {
                       ru: `Урок с учителем голосом · до ${capMin} мин`,
                       uk: `Урок із вчителем голосом · до ${capMin} хв`,
+                      en: `Voice lesson with your teacher · up to ${capMin} min`,
                       es: `Clase de voz con tu profesor · hasta ${capMin} min`,
                       'pt-BR': `Aula de voz com seu professor · até ${capMin} min`,
                       vi: `Buổi học bằng giọng nói với giáo viên · tối đa ${capMin} phút`,
@@ -678,6 +698,7 @@ function MaxCallPrestartContent() {
                   : triLang(lang, {
                   ru: `Живой разговор голосом · до ${capMin} мин`,
                   uk: `Жива розмова голосом · до ${capMin} хв`,
+                  en: `Live voice conversation · up to ${capMin} min`,
                   es: `Conversación de voz en vivo · hasta ${capMin} min`,
                   'pt-BR': `Conversa de voz ao vivo · até ${capMin} min`,
                   vi: `Trò chuyện bằng giọng nói · tối đa ${capMin} phút`,
@@ -706,6 +727,7 @@ function MaxCallPrestartContent() {
               {triLang(lang, {
                 ru: `минут на сегодня из ${dayMaxMin}`,
                 uk: `хвилин на сьогодні з ${dayMaxMin}`,
+                en: `minutes today out of ${dayMaxMin}`,
                 es: `minutos para hoy de ${dayMaxMin}`,
                 'pt-BR': `minutos para hoje de ${dayMaxMin}`,
                 vi: `phút hôm nay trên ${dayMaxMin}`,
@@ -722,6 +744,7 @@ function MaxCallPrestartContent() {
                 {triLang(lang, {
                   ru: 'Минуты на сегодня закончились — возвращайся завтра',
                   uk: 'Хвилини на сьогодні закінчилися — повертайся завтра',
+                  en: "Today's minutes are used up — come back tomorrow",
                   es: 'Se acabaron los minutos de hoy: vuelve mañana',
                   'pt-BR': 'Os minutos de hoje acabaram: volte amanhã',
                   vi: 'Hết phút hôm nay — hãy quay lại vào ngày mai',
@@ -744,11 +767,6 @@ function MaxCallPrestartContent() {
                 <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '700', textAlign: 'center' }}>
                   {maxVoiceFailureMessage(preflightReason, lang)}
                 </Text>
-                {__DEV__ ? (
-                  <Text style={{ color: t.textMuted, fontSize: f.label, textAlign: 'center', marginTop: 4 }}>
-                    {`MAX: ${preflightReason}`}
-                  </Text>
-                ) : null}
               </View>
               {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? (
                 <Pressable
@@ -758,7 +776,7 @@ function MaxCallPrestartContent() {
                   style={{ minHeight: 56, backgroundColor: t.accent, borderRadius: 18, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                    {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
+                    {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', en: 'Activate MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
                   </Text>
                 </Pressable>
               ) : isMaxVoiceFailureRetryable(preflightReason) ? (
@@ -779,7 +797,7 @@ function MaxCallPrestartContent() {
                   }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' })}
+                    {triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', en: 'Retry preparation', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' })}
                   </Text>
                 </TouchableOpacity>
               ) : null}
@@ -824,6 +842,7 @@ function MaxCallPrestartContent() {
               {triLang(lang, {
                 ru: 'Позвонить',
                 uk: 'Подзвонити',
+                en: 'Call',
                 es: 'Llamar',
                 'pt-BR': 'Ligar',
                 vi: 'Gọi',

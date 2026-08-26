@@ -5,6 +5,8 @@ import { lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_k
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
 import { captureAccountGeneration } from './account_generation';
 import { readGiftAccountValue } from './gift_account_storage';
+import { BONUS_ENERGY_KEY } from './bonus_energy_store';
+import { readAttemptRestoreGiftCount } from './session_attempts/session_attempt_restore_inventory';
 import { getPackGiftTrial } from './flashcards/pack_trial_gift';
 import {
   friendGiftExpiresAtMs,
@@ -19,6 +21,10 @@ import {
   type GiftFirstSeenKind,
   type GiftFirstSeenMap,
 } from './gift_expiry';
+
+export type ActiveLevelGiftLifetime =
+  | Readonly<{ kind: 'permanent' }>
+  | Readonly<{ kind: 'expires'; expiresAtMs: number }>;
 
 export interface ActiveLevelGiftInventoryItem {
   key: string;
@@ -37,12 +43,22 @@ export interface ActiveLevelGiftInventoryItem {
    * ваучер набора → витрина карточек, буст лиги → лига). Пассивные бонусы route не имеют.
    */
   actionRoute?: string;
+  /** Explicit lifetime semantics; permanent consumables never enter the 72h path. */
+  lifetime: ActiveLevelGiftLifetime;
+  /** Optional stacked quantity displayed as ×N. */
+  countBadge?: number;
+  /** Tapping opens information only; it is not a proactive apply action. */
+  informationKind?: 'attempt_restore_all';
   /**
    * Мс сгорания подарка: у бонусов со своим сроком — их срок, у остальных —
    * 72ч (см. gift_expiry.ts). UI показывает индивидуальный тикающий таймер.
    */
   expiresAtMs?: number;
 }
+
+type ActiveLevelGiftInventoryDraft = Omit<ActiveLevelGiftInventoryItem, 'lifetime'> & {
+  lifetime?: ActiveLevelGiftLifetime;
+};
 
 interface GiftXpBankStorage {
   remaining?: number;
@@ -66,7 +82,6 @@ interface ChainShieldStorage {
 
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const GIFT_MULTIPLIER_KEY = 'gift_xp_multiplier';
-const BONUS_ENERGY_KEY = 'energy_gift_bonus';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const WAGER_DISCOUNT_USES_KEY = 'wager_discount_uses_v1';
@@ -114,6 +129,7 @@ const formatPackHoursLeft = (expiresAt: number, nowMs: number, lang: Lang): stri
     ru: `${hours} ч доступа`,
     uk: `${hours} год доступу`,
     es: `${hours} h de acceso`,
+    en: `${hours}h access`,
     'pt-BR': `${hours} h de acesso`,
     vi: `${hours} giờ truy cập`,
     id: `${hours} jam akses`,
@@ -172,6 +188,9 @@ export const loadActiveLevelGiftInventory = async (
   const bonusEnergyRead = accountToken.phase === 'active' && accountToken.stableId
     ? readGiftAccountValue(BONUS_ENERGY_KEY, accountToken).catch(() => null)
     : Promise.resolve(null);
+  const attemptRestoreCountRead = accountToken.phase === 'active' && accountToken.stableId
+    ? readAttemptRestoreGiftCount(accountToken).catch(() => 0)
+    : Promise.resolve(0);
   const [
     xpBankRaw,
     giftMultiplierRaw,
@@ -183,6 +202,7 @@ export const loadActiveLevelGiftInventory = async (
     clubGiftBoost,
     friendGifts,
     firstSeenLoaded,
+    attemptRestoreCount,
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
@@ -194,6 +214,7 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
     loadStoredFriendGiftInventory(nowMs).catch(() => []),
     loadGiftFirstSeenMap(),
+    attemptRestoreCountRead,
   ]);
 
   // зачем (2026-08-02, владелец): у банка XP, пари-скидки и буста лиги нет
@@ -231,7 +252,33 @@ export const loadActiveLevelGiftInventory = async (
     return { expiresAtMs, expired };
   };
 
-  const active: ActiveLevelGiftInventoryItem[] = [];
+  const active: ActiveLevelGiftInventoryDraft[] = [];
+  if (attemptRestoreCount > 0) {
+    active.push({
+      key: 'attempt_restore_all',
+      iconGiftId: 'attempt_restore_all',
+      title: triLang(lang, {
+        ru: 'Второй шанс', uk: 'Другий шанс', en: 'Second chance', es: 'Segunda oportunidad',
+        'pt-BR': 'Segunda chance', vi: 'Cơ hội thứ hai', id: 'Kesempatan kedua',
+        tr: 'İkinci şans', pl: 'Druga szansa',
+      }),
+      desc: triLang(lang, {
+        ru: 'Восстанавливает все 3 попытки во время сессии',
+        uk: 'Відновлює всі 3 спроби під час сесії',
+        en: 'Restores all 3 attempts during a session',
+        es: 'Restaura los 3 intentos durante la sesión',
+        'pt-BR': 'Restaura todas as 3 tentativas durante uma sessão',
+        vi: 'Khôi phục cả 3 lượt thử trong một phiên',
+        id: 'Memulihkan semua 3 percobaan selama sesi',
+        tr: 'Oturum sırasında 3 denemenin tümünü yeniler',
+        pl: 'Przywraca wszystkie 3 próby podczas sesji',
+      }),
+      accent: '#D96076',
+      countBadge: attemptRestoreCount,
+      lifetime: { kind: 'permanent' },
+      informationKind: 'attempt_restore_all',
+    });
+  }
   const xpBank = parseJson<GiftXpBankStorage>(xpBankRaw);
   const xpRemaining = parsePositiveInt(xpBank?.remaining);
   const xpBankLifetime = resolveFirstSeenLifetime('xp_bank', xpRemaining > 0, GIFT_XP_BANK_KEY);
@@ -241,6 +288,7 @@ export const loadActiveLevelGiftInventory = async (
       expiresAtMs: xpBankLifetime.expiresAtMs,
       iconGiftId: xpBankRewardIconForTotal(parsePositiveInt(xpBank?.grantedTotal) || xpRemaining),
       title: triLang(lang, { ru: 'Бонус ×2', uk: 'Бонус ×2', es: 'Bono ×2',
+    en: 'Bonus ×2',
     'pt-BR': 'Bônus ×2',
     vi: 'Bonus ×2',
     id: 'Bonus ×2',
@@ -251,6 +299,7 @@ export const loadActiveLevelGiftInventory = async (
         ru: `ещё на ${xpRemaining} XP`,
         uk: `ще на ${xpRemaining} XP`,
         es: `por ${xpRemaining} XP más`,
+    en: `${xpRemaining} XP left`,
     'pt-BR': `por mais ${xpRemaining} XP`,
     vi: `thêm ${xpRemaining} XP`,
     id: `untuk ${xpRemaining} XP lagi`,
@@ -270,6 +319,7 @@ export const loadActiveLevelGiftInventory = async (
       expiresAtMs: Number(giftMultiplier?.expiresAt || 0),
       iconGiftId: focusRewardIconForMultiplier(multiplier),
       title: triLang(lang, { ru: 'Фокус', uk: 'Фокус', es: 'Foco',
+    en: 'Focus',
     'pt-BR': 'Foco',
     vi: 'Tập trung',
     id: 'Fokus',
@@ -288,7 +338,7 @@ export const loadActiveLevelGiftInventory = async (
       key: 'bonus_energy',
       expiresAtMs: Number(bonusEnergy?.expiresAt || 0),
       iconGiftId: energyRewardIconForAmount(bonusEnergyAmount),
-      title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', es: 'Energía',
+      title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', en: 'Energy', es: 'Energía',
     'pt-BR': 'Energia',
     vi: 'Năng lượng',
     id: 'Energi',
@@ -298,6 +348,7 @@ export const loadActiveLevelGiftInventory = async (
       desc: triLang(lang, {
         ru: `+${bonusEnergyAmount} до полуночи`,
         uk: `+${bonusEnergyAmount} до опівночі`,
+        en: `+${bonusEnergyAmount} until midnight`,
         es: `+${bonusEnergyAmount} hasta medianoche`,
     'pt-BR': `+${bonusEnergyAmount} até meia-noite`,
     vi: `+${bonusEnergyAmount} đến nửa đêm`,
@@ -314,7 +365,7 @@ export const loadActiveLevelGiftInventory = async (
       key: 'pack_trial',
       expiresAtMs: Number(packTrial.expiresAt || 0),
       iconGiftId: 'pack_voucher_48h',
-      title: triLang(lang, { ru: 'Ваучер набора', uk: 'Ваучер набору', es: 'Vale de pack',
+      title: triLang(lang, { ru: 'Ваучер набора', uk: 'Ваучер набору', en: 'Pack voucher', es: 'Vale de pack',
     'pt-BR': 'Vale de pacote',
     vi: 'Phiếu gói',
     id: 'Voucher paket',
@@ -333,7 +384,7 @@ export const loadActiveLevelGiftInventory = async (
       key: 'hints',
       expiresAtMs: nextLocalMidnightMs(nowMs),
       iconGiftId: hintsToday >= 3 ? 'hint_3' : 'hint_1',
-      title: triLang(lang, { ru: 'Подсказки', uk: 'Підказки', es: 'Pistas',
+      title: triLang(lang, { ru: 'Подсказки', uk: 'Підказки', en: 'Hints', es: 'Pistas',
     'pt-BR': 'Dicas',
     vi: 'Gợi ý',
     id: 'Petunjuk',
@@ -343,6 +394,7 @@ export const loadActiveLevelGiftInventory = async (
       desc: triLang(lang, {
         ru: `${hintsToday} на сегодня`,
         uk: `${hintsToday} на сьогодні`,
+        en: `${hintsToday} for today`,
         es: `${hintsToday} para hoy`,
     'pt-BR': `${hintsToday} para hoje`,
     vi: `${hintsToday} cho hôm nay`,
@@ -361,7 +413,7 @@ export const loadActiveLevelGiftInventory = async (
     active.push({
       key: 'chain_shield',
       iconGiftId: remainingShieldDays >= 3 ? 'chain_shield_3' : 'chain_shield_1',
-      title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha',
+      title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', en: 'Streak shield', es: 'Protección de racha',
     'pt-BR': 'Proteção de sequência',
     vi: 'Bảo vệ chuỗi',
     id: 'Perlindungan rentetan',
@@ -371,6 +423,7 @@ export const loadActiveLevelGiftInventory = async (
       desc: triLang(lang, {
         ru: `${remainingShieldDays} дн.`,
         uk: `${remainingShieldDays} дн.`,
+        en: `${remainingShieldDays} d`,
         es: `${remainingShieldDays} d`,
     'pt-BR': `${remainingShieldDays} d`,
     vi: `${remainingShieldDays} ngày`,
@@ -390,7 +443,7 @@ export const loadActiveLevelGiftInventory = async (
       key: 'wager_discount',
       expiresAtMs: wagerLifetime.expiresAtMs,
       iconGiftId: 'wager_discount_25',
-      title: triLang(lang, { ru: 'Скидка на пари', uk: 'Знижка на парі', es: 'Descuento apuesta',
+      title: triLang(lang, { ru: 'Скидка на пари', uk: 'Знижка на парі', en: 'Bet discount', es: 'Descuento apuesta',
     'pt-BR': 'Desconto na aposta',
     vi: 'Giảm cược',
     id: 'Diskon taruhan',
@@ -412,6 +465,7 @@ export const loadActiveLevelGiftInventory = async (
       title: triLang(lang, {
         ru: 'Буст лиги',
         uk: 'Буст ліги',
+        en: 'League boost',
         es: 'Impulso de liga',
         'pt-BR': 'Boost da liga',
         vi: 'Tăng lực giải đấu',
@@ -422,6 +476,7 @@ export const loadActiveLevelGiftInventory = async (
       desc: triLang(lang, {
         ru: '1 бесплатная активация',
         uk: '1 безкоштовна активація',
+        en: '1 free activation',
         es: '1 activación gratis',
     'pt-BR': '1 ativação grátis',
     vi: '1 lần kích hoạt miễn phí',
@@ -438,6 +493,7 @@ export const loadActiveLevelGiftInventory = async (
     const fromName = gift.fromName || triLang(lang, {
       ru: 'друга',
       uk: 'друга',
+      en: 'a friend',
       es: 'un amigo',
       'pt-BR': 'um amigo',
       vi: 'bạn bè',
@@ -452,6 +508,7 @@ export const loadActiveLevelGiftInventory = async (
       title: triLang(lang, {
         ru: `Подарок от ${fromName}`,
         uk: `Подарунок від ${fromName}`,
+        en: `Gift from ${fromName}`,
         es: `Regalo de ${fromName}`,
         'pt-BR': `Presente de ${fromName}`,
         vi: `Quà từ ${fromName}`,
@@ -494,12 +551,12 @@ export const loadActiveLevelGiftInventory = async (
       expiresAtMs: leagueBoostExpiresAt,
       iconGiftId: focusRewardIconForMultiplier(multiplier),
       title: triLang(lang, {
-        ru: `Буст лиги ×${multiplier}`, uk: `Буст ліги ×${multiplier}`, es: `Impulso de liga ×${multiplier}`,
+        ru: `Буст лиги ×${multiplier}`, uk: `Буст ліги ×${multiplier}`, en: `League boost ×${multiplier}`, es: `Impulso de liga ×${multiplier}`,
         'pt-BR': `Impulso de liga ×${multiplier}`, vi: `Tăng tốc giải ×${multiplier}`,
         id: `Dorongan liga ×${multiplier}`, tr: `Lig desteği ×${multiplier}`, pl: `Boost ligi ×${multiplier}`,
       }),
       desc: triLang(lang, {
-        ru: 'очки лиги идут вдвойне', uk: 'очки ліги йдуть удвічі', es: 'los puntos de liga se duplican',
+        ru: 'очки лиги идут вдвойне', uk: 'очки ліги йдуть удвічі', en: 'league points are doubled', es: 'los puntos de liga se duplican',
         'pt-BR': 'os pontos da liga dobram', vi: 'điểm giải đấu nhân đôi', id: 'poin liga berlipat ganda',
         tr: 'lig puanları iki katı', pl: 'punkty ligi podwójnie',
       }),
@@ -519,18 +576,20 @@ export const loadActiveLevelGiftInventory = async (
       // Множитель ×3 — та же иконка усиленного опыта, что у бонуса ×2.
       iconGiftId: focusRewardIconForMultiplier(3),
       title: triLang(lang, {
-        ru: 'Золотой урок', uk: 'Золотий урок', es: 'Lección dorada', 'pt-BR': 'Lição dourada',
+        ru: 'Золотой урок', uk: 'Золотий урок', en: 'Golden lesson', es: 'Lección dorada', 'pt-BR': 'Lição dourada',
         vi: 'Bài học vàng', id: 'Pelajaran emas', tr: 'Altın ders', pl: 'Złota lekcja',
       }),
       desc: goldenCharges > 1
         ? triLang(lang, {
             ru: `${goldenCharges} урока с ×3 опыта`, uk: `${goldenCharges} уроки з ×3 досвіду`,
+            en: `${goldenCharges} lessons with ×3 XP`,
             es: `${goldenCharges} lecciones con ×3 XP`, 'pt-BR': `${goldenCharges} lições com ×3 XP`,
             vi: `${goldenCharges} bài học ×3 XP`, id: `${goldenCharges} pelajaran ×3 XP`,
             tr: `${goldenCharges} ders ×3 XP`, pl: `${goldenCharges} lekcje z ×3 XP`,
           })
         : triLang(lang, {
             ru: 'следующий урок даст ×3 опыта', uk: 'наступний урок дасть ×3 досвіду',
+            en: 'the next lesson gives ×3 XP',
             es: 'la próxima lección dará ×3 XP', 'pt-BR': 'a próxima lição dará ×3 XP',
             vi: 'bài học tới nhận ×3 XP', id: 'pelajaran berikutnya ×3 XP',
             tr: 'sonraki ders ×3 XP verir', pl: 'następna lekcja da ×3 XP',
@@ -548,11 +607,12 @@ export const loadActiveLevelGiftInventory = async (
       expiresAtMs: turboExpiresAt,
       iconGiftId: energyRewardIconForAmount(1),
       title: triLang(lang, {
-        ru: 'Второе дыхание', uk: 'Друге дихання', es: 'Segundo aliento', 'pt-BR': 'Segundo fôlego',
+        ru: 'Второе дыхание', uk: 'Друге дихання', en: 'Second wind', es: 'Segundo aliento', 'pt-BR': 'Segundo fôlego',
         vi: 'Hồi phục nhanh', id: 'Napas kedua', tr: 'İkinci nefes', pl: 'Drugi oddech',
       }),
       desc: triLang(lang, {
         ru: 'энергия восстанавливается быстрее', uk: 'енергія відновлюється швидше',
+        en: 'energy recovers faster',
         es: 'la energía se recupera más rápido', 'pt-BR': 'a energia recarrega mais rápido',
         vi: 'năng lượng hồi nhanh hơn', id: 'energi pulih lebih cepat',
         tr: 'enerji daha hızlı doluyor', pl: 'energia regeneruje się szybciej',
@@ -572,5 +632,10 @@ export const loadActiveLevelGiftInventory = async (
   }
   if (firstSeenChanged) await persistGiftFirstSeenMap(firstSeen);
 
-  return active;
+  return active.map((item): ActiveLevelGiftInventoryItem => ({
+    ...item,
+    lifetime: item.lifetime ?? (typeof item.expiresAtMs === 'number'
+      ? { kind: 'expires', expiresAtMs: item.expiresAtMs }
+      : { kind: 'permanent' }),
+  }));
 };

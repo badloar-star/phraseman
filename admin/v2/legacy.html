@@ -14125,12 +14125,20 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   <div id="idea-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
 </div>
 
-<!-- MAX FEEDBACK TAB (Отзывы учеников о звонке с MAX) -->
+<!-- FEEDBACK TAB (Отзывы учеников: MAX-звонок, урок, словарь, диалог, арена) -->
 <div id="tab-max-feedback" class="reports-tab pm-v4-page" data-pm-v4-section="max-feedback">
-  <div class="pm-v4-section-header" data-pm-v4-header="max-feedback"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Отзывы MAX</h2><div class="pm-v4-section-sub">Как прошёл разговор, что понравилось, что улучшить.</div></div></div>
+  <div class="pm-v4-section-header" data-pm-v4-header="max-feedback"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Отзывы</h2><div class="pm-v4-section-sub">Оценки и текстовые отзывы со всех экранов завершения — звонок MAX, урок, словарь, диалог, арена.</div></div></div>
 
   <div class="reports-toolbar">
-    <select id="max-feedback-filter-rating" onchange="filterMaxVoiceFeedback()">
+    <select id="feedback-filter-section" onchange="filterFeedbackFeed()">
+      <option value="max_call">📞 Звонок MAX</option>
+      <option value="lesson">📘 Уроки</option>
+      <option value="vocab">🗂 Словарь</option>
+      <option value="dialogue">💬 Диалоги</option>
+      <option value="arena_blitz">⚡ Арена: блиц</option>
+      <option value="arena_rating">🏆 Арена: рейтинг</option>
+    </select>
+    <select id="feedback-filter-rating" onchange="filterFeedbackFeed()">
       <option value="">Все оценки</option>
       <option value="5">★★★★★</option>
       <option value="4">★★★★☆</option>
@@ -14139,13 +14147,27 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       <option value="1">★☆☆☆☆</option>
       <option value="0">Без оценки</option>
     </select>
-    <button onclick="loadMaxVoiceFeedback(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <select id="feedback-filter-period" onchange="filterFeedbackFeed()">
+      <option value="7">За 7 дней</option>
+      <option value="30">За месяц</option>
+      <option value="90">За 3 месяца</option>
+      <option value="0">За всё время</option>
+    </select>
+    <button onclick="loadFeedbackFeed(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
     <span class="reports-count" id="max-feedback-count"></span>
+  </div>
+
+  <div id="feedback-summary-block" style="background:#141a29;border-radius:10px;padding:12px 14px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div style="font-size:12px;color:#93a4ba">AI-сводка по разделу и периоду (не пересчитывается сама — жмите «Обновить сводку»; кэш на 6 часов)</div>
+      <button id="feedback-summary-btn" onclick="loadFeedbackSummary(true)" style="background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✨ Обновить сводку</button>
+    </div>
+    <div id="feedback-summary-text" style="margin-top:8px;color:#e5e7eb;font-size:13px;line-height:1.55"></div>
   </div>
 
   <div id="max-feedback-list"><div class="reports-empty">⏳ Загрузка...</div></div>
   <div style="margin-top:12px;text-align:center">
-    <button id="max-feedback-more" onclick="loadMoreMaxVoiceFeedback()" style="display:none;background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:8px;padding:9px 18px;font-size:12.5px;font-weight:700;cursor:pointer">Показать ещё</button>
+    <button id="max-feedback-more" onclick="loadMoreFeedbackFeed()" style="display:none;background:#1a2130;border:1px solid #33406a;color:#c4b5fd;border-radius:8px;padding:9px 18px;font-size:12.5px;font-weight:700;cursor:pointer">Показать ещё</button>
   </div>
 </div>
 
@@ -30671,52 +30693,77 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     }
   }
 
-  // ── MAX FEEDBACK — отзывы учеников о звонке с MAX ────────────────────────────
-  // зачем (владелец 2026-08-23): «на экране результатов добавь окно фидбека; в
-  // админке — раздел, где можно читать эти фидбеки». Читаем через callable
-  // adminListMaxVoiceFeedback (не getDocs напрямую): коллекция закрыта в
-  // firestore.rules на чтение только серверной функцией, а не клиентским SDK,
-  // потому что отзыв — свободный текст пользователя и в нём может быть что
-  // угодно, вплоть до персональных данных, которые лучше не тянуть в браузер
-  // без явного серверного фильтра полей.
-  let _maxVoiceFeedbackNextCursor = null;
-  let _maxVoiceFeedbackItems = [];
-  const MAX_FEEDBACK_PAGE = 30;
+  // ── FEEDBACK — отзывы учеников со всех экранов завершения ───────────────────
+  // зачем (владелец 2026-08-23, расширено 2026-08-25): «на экране результатов
+  // добавь окно фидбека; в админке — раздел где можно читать эти фидбеки, ТАКОЙ
+  // ЖЕ блок нужен везде: уроки, словарь, диалог, арена — с фильтром по разделу,
+  // по датам и AI-саммари каждого раздела». Два источника за одним UI:
+  // 'max_call' читает старый adminListMaxVoiceFeedback (звонок MAX, коллекция
+  // max_voice_feedback — уже в проде, переезд не дал бы выгоды), остальные пять
+  // разделов читают новый adminListFeedbackEntries (коллекция feedback_entries,
+  // общая, с полем kind). Обе коллекции закрыты в firestore.rules на чтение
+  // только серверной функцией — отзыв это свободный текст, в нём может быть
+  // что угодно, персональные данные в браузер без серверного фильтра не тянем.
+  let _feedbackNextCursor = null;
+  let _feedbackItems = [];
+  const FEEDBACK_PAGE = 30;
+  const FEEDBACK_MAX_CALL_KIND = 'max_call';
 
-  async function fetchMaxVoiceFeedbackPage(cursor) {
-    const call = httpsCallable(functionsUs, 'adminListMaxVoiceFeedback');
-    const res = await call({ limit: MAX_FEEDBACK_PAGE, cursor: cursor || undefined });
+  function feedbackPeriodSinceMs() {
+    const days = Number(document.getElementById('feedback-filter-period')?.value || '0');
+    return days > 0 ? Date.now() - days * 24 * 60 * 60 * 1000 : 0;
+  }
+
+  async function fetchFeedbackPage(kind, cursor) {
+    if (kind === FEEDBACK_MAX_CALL_KIND) {
+      const call = httpsCallable(functionsUs, 'adminListMaxVoiceFeedback');
+      const res = await call({ limit: FEEDBACK_PAGE, cursor: cursor || undefined });
+      const data = res.data || { items: [], nextCursor: null };
+      // Единая форма карточки: MAX хранит sessionId/cefr/format/callSeconds,
+      // остальные разделы — entityId/entityLabel. Приводим к общему виду здесь,
+      // а не в рендере, чтобы рендер не знал про два источника.
+      return {
+        items: (data.items || []).map((r) => ({ ...r, kind: FEEDBACK_MAX_CALL_KIND, entityId: r.sessionId, entityLabel: null })),
+        nextCursor: data.nextCursor || null,
+      };
+    }
+    const call = httpsCallable(functionsUs, 'adminListFeedbackEntries');
+    const res = await call({ limit: FEEDBACK_PAGE, cursor: cursor || undefined, kind });
     return res.data || { items: [], nextCursor: null };
   }
 
-  window.loadMaxVoiceFeedback = async function(force) {
+  window.loadFeedbackFeed = async function(force) {
     const list = document.getElementById('max-feedback-list');
     if (!list) return;
-    if (force || !_maxVoiceFeedbackItems.length) {
+    if (force || !_feedbackItems.length) {
       list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
-      _maxVoiceFeedbackItems = [];
-      _maxVoiceFeedbackNextCursor = null;
+      _feedbackItems = [];
+      _feedbackNextCursor = null;
     }
+    const kind = document.getElementById('feedback-filter-section')?.value || FEEDBACK_MAX_CALL_KIND;
     try {
-      const page = await fetchMaxVoiceFeedbackPage(null);
-      _maxVoiceFeedbackItems = page.items || [];
-      _maxVoiceFeedbackNextCursor = page.nextCursor || null;
-      await renderMaxVoiceFeedback();
+      const page = await fetchFeedbackPage(kind, null);
+      _feedbackItems = page.items || [];
+      _feedbackNextCursor = page.nextCursor || null;
+      await renderFeedbackFeed();
     } catch (e) {
       const msg = (e && (e.message || e.code)) || String(e);
       list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(msg)}</div>`;
     }
   };
+  // Обратная совместимость: старое имя могло остаться в закладках/памяти.
+  window.loadMaxVoiceFeedback = window.loadFeedbackFeed;
 
-  window.loadMoreMaxVoiceFeedback = async function() {
-    if (!_maxVoiceFeedbackNextCursor) return;
+  window.loadMoreFeedbackFeed = async function() {
+    if (!_feedbackNextCursor) return;
     const btn = document.getElementById('max-feedback-more');
     if (btn) { btn.disabled = true; btn.textContent = 'Загрузка…'; }
+    const kind = document.getElementById('feedback-filter-section')?.value || FEEDBACK_MAX_CALL_KIND;
     try {
-      const page = await fetchMaxVoiceFeedbackPage(_maxVoiceFeedbackNextCursor);
-      _maxVoiceFeedbackItems = _maxVoiceFeedbackItems.concat(page.items || []);
-      _maxVoiceFeedbackNextCursor = page.nextCursor || null;
-      await renderMaxVoiceFeedback();
+      const page = await fetchFeedbackPage(kind, _feedbackNextCursor);
+      _feedbackItems = _feedbackItems.concat(page.items || []);
+      _feedbackNextCursor = page.nextCursor || null;
+      await renderFeedbackFeed();
     } catch (e) {
       if (typeof showToast === 'function') showToast('❌ ' + ((e && e.message) || String(e)), 'err');
     } finally {
@@ -30724,20 +30771,30 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     }
   };
 
-  window.filterMaxVoiceFeedback = function() { void renderMaxVoiceFeedback(); };
+  window.filterFeedbackFeed = function() {
+    // Смена раздела — это смена источника данных, не локальный фильтр: перегружаем.
+    void window.loadFeedbackFeed(true);
+  };
 
-  async function renderMaxVoiceFeedback() {
+  const FEEDBACK_SECTION_LABELS = {
+    max_call: '📞 Звонок MAX', lesson: '📘 Урок', vocab: '🗂 Словарь',
+    dialogue: '💬 Диалог', arena_blitz: '⚡ Арена: блиц', arena_rating: '🏆 Арена: рейтинг',
+  };
+
+  async function renderFeedbackFeed() {
     const list = document.getElementById('max-feedback-list');
     const countEl = document.getElementById('max-feedback-count');
     const moreBtn = document.getElementById('max-feedback-more');
     if (!list) return;
 
-    const ratingFilter = document.getElementById('max-feedback-filter-rating')?.value || '';
-    let items = _maxVoiceFeedbackItems;
+    const ratingFilter = document.getElementById('feedback-filter-rating')?.value || '';
+    const sinceMs = feedbackPeriodSinceMs();
+    let items = _feedbackItems;
     if (ratingFilter !== '') items = items.filter((r) => String(r.rating || 0) === ratingFilter);
+    if (sinceMs > 0) items = items.filter((r) => Number(r.createdAtMs || 0) >= sinceMs);
 
     if (countEl) countEl.textContent = `${items.length} отзывов`;
-    if (moreBtn) moreBtn.style.display = _maxVoiceFeedbackNextCursor ? 'inline-block' : 'none';
+    if (moreBtn) moreBtn.style.display = _feedbackNextCursor ? 'inline-block' : 'none';
 
     if (!items.length) {
       list.innerHTML = '<div class="reports-empty">💬 Отзывов пока нет</div>';
@@ -30756,11 +30813,17 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const message = r.message ? escapeHtml(r.message) : '<span style="color:#6b7280">(только оценка, без текста)</span>';
       const date = r.createdAtMs ? new Date(r.createdAtMs).toLocaleString('ru-RU') : '—';
       const userRef = names[r.uid] ? renderUserRef(r.uid, names, { shortUid: true }) : (r.userName ? escapeHtml(r.userName) : renderUserRef(r.uid, names, { shortUid: true }));
+      // Что именно оценили: entityLabel (человекочитаемое имя урока/диалога) —
+      // приоритет, entityId — запасной вариант, MAX даёт только meta (cefr/формат).
+      const entityLine = r.entityLabel || r.entityId ? escapeHtml(r.entityLabel || r.entityId) : '';
       const meta = [r.cefr, r.format, r.lang, r.callSeconds ? `${Math.round(r.callSeconds / 60)} мин` : ''].filter(Boolean).map(escapeHtml).join(' · ');
       return `
         <div style="background:#12151d;border-radius:10px;padding:12px 14px;margin-bottom:8px">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
-            <div style="font-size:13px;color:#fbbf24;font-weight:700">${stars}</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px;color:#fbbf24;font-weight:700">${stars}</span>
+              ${entityLine ? `<span style="font-size:11px;color:#7c9bd1">· ${entityLine}</span>` : ''}
+            </div>
             <div style="font-size:11px;color:#6b7280">${escapeHtml(date)}</div>
           </div>
           <div style="margin-top:6px;color:#e5e7eb;font-size:13px;line-height:1.5">${message}</div>
@@ -30771,6 +30834,39 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         </div>`;
     }).join('');
   }
+
+  // ── FEEDBACK AI-SUMMARY — сводка по разделу и периоду ────────────────────────
+  // зачем (владелец 2026-08-25): «ии саммрайз каждого раздела отдельно». Считаем
+  // ТОЛЬКО по кнопке (не автоматически — не жечь OpenAI впустую), результат
+  // кэшируется на сервере на 6 часов на ключ (kind, period) — повторный клик в
+  // течение окна возвращает кэш без нового запроса к модели.
+  window.loadFeedbackSummary = async function(force) {
+    const box = document.getElementById('feedback-summary-text');
+    const btn = document.getElementById('feedback-summary-btn');
+    if (!box) return;
+    const kind = document.getElementById('feedback-filter-section')?.value || FEEDBACK_MAX_CALL_KIND;
+    const periodDays = Number(document.getElementById('feedback-filter-period')?.value || '7') || 0;
+    box.textContent = 'Считаю сводку…';
+    if (btn) btn.disabled = true;
+    try {
+      const call = httpsCallable(functionsUs, 'adminSummarizeFeedback');
+      const res = await call({ kind, periodDays: periodDays || 3650, force: !!force });
+      const data = res.data || {};
+      if (!data.summary) {
+        box.innerHTML = '<span style="color:#6b7280">Недостаточно отзывов за этот период для сводки.</span>';
+        return;
+      }
+      const cachedNote = data.cached
+        ? `<div style="margin-top:6px;font-size:11px;color:#6b7280">Из кэша · посчитано ${escapeHtml(new Date(data.computedAtMs || Date.now()).toLocaleString('ru-RU'))}</div>`
+        : `<div style="margin-top:6px;font-size:11px;color:#6b7280">Только что · ${escapeHtml(String(data.sampleSize || 0))} отзывов в выборке</div>`;
+      box.innerHTML = escapeHtml(data.summary).replace(/\n/g, '<br>') + cachedNote;
+    } catch (e) {
+      const msg = (e && (e.message || e.code)) || String(e);
+      box.innerHTML = `<span style="color:#f87171">❌ ${escapeHtml(msg)}</span>`;
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  };
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────
   // Лента: explain_report_entries (каждая отправка). Счётчики: explain_reports

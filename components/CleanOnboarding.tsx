@@ -985,7 +985,7 @@ function ScreenFrame({
       ) : null}
       <ProgressHeader step={step} onBack={onBack} onClose={onClose} closeLabel={closeLabel} headerRight={headerRight} />
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.keyboard}>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           testID={`onboarding-${step}-screen`}
           style={styles.scrollShell}
           contentContainerStyle={[
@@ -1975,7 +1975,7 @@ function MoreOffersSheet({
             <Ionicons name="close" size={18} color="#FFFFFF" />
           </Pressable>
         </View>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={styles.offersScroll}
           contentContainerStyle={styles.offersScrollContent}
           showsVerticalScrollIndicator={false}
@@ -2484,7 +2484,7 @@ function CleanOnboarding({
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
-      setAuthError(describeAuthError(detail));
+      setAuthError(describeAuthError(detail, lang));
     } finally {
       setAuthSlow(false);
       setAuthLoading(null);
@@ -2533,7 +2533,7 @@ function CleanOnboarding({
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
-      setAuthError(describeAuthError(detail));
+      setAuthError(describeAuthError(detail, lang));
     } finally {
       setAuthSlow(false);
       setAuthLoading(null);
@@ -3518,7 +3518,7 @@ function CleanOnboarding({
                 accessibilityLabel="Закрыть ввод кода"
                 accessibilityRole="button"
               />
-              <ScrollView
+              <ScrollView decelerationRate="fast"
                 style={styles.codeCardScroll}
                 contentContainerStyle={styles.codeCard}
                 keyboardShouldPersistTaps="handled"

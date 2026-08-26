@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
+import { safeRouterBack } from './navigation_back';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -20,6 +21,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { onAppEvent } from './events';
 import { peekRunesBalance, subscribeRunesBalance } from './runes_system';
 import { peekLastKnownShardsBalance } from './shards_system';
+import { soundDirector } from '../modules/audio/sound_director';
 import { RUNE_GLYPH_PRIMARY } from '../constants/runes';
 import {
   SHOP_CATEGORIES,
@@ -70,51 +72,54 @@ const SHEET_HIDDEN = 520;
  * способ оставить часть строк русскими у иноязычного игрока.
  */
 const COPY = {
-  screenTitle: { ru: 'Магазин', uk: 'Магазин', es: 'Tienda', 'pt-BR': 'Loja', vi: 'Cửa hàng', id: 'Toko', tr: 'Mağaza', pl: 'Sklep' },
-  back: { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' },
+  screenTitle: { ru: 'Магазин', uk: 'Магазин', es: 'Tienda', en: 'Shop', 'pt-BR': 'Loja', vi: 'Cửa hàng', id: 'Toko', tr: 'Mağaza', pl: 'Sklep' },
+  back: { ru: 'Назад', uk: 'Назад', es: 'Atrás', en: 'Back', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' },
   devOnly: {
     ru: 'Временно: вход только через DEV-центр',
     uk: 'Тимчасово: вхід лише через DEV-центр',
     es: 'Temporal: solo se entra desde el centro DEV',
+    en: 'Temporary: entry only via the DEV center',
     'pt-BR': 'Temporário: entrada apenas pelo centro DEV',
     vi: 'Tạm thời: chỉ vào được từ trung tâm DEV',
     id: 'Sementara: hanya bisa masuk lewat pusat DEV',
     tr: 'Geçici: yalnızca DEV merkezinden girilir',
     pl: 'Tymczasowo: wejście tylko przez centrum DEV',
   },
-  badgeNew: { ru: 'НОВОЕ', uk: 'НОВЕ', es: 'NUEVO', 'pt-BR': 'NOVO', vi: 'MỚI', id: 'BARU', tr: 'YENİ', pl: 'NOWE' },
-  badgeBest: { ru: 'ВЫГОДНО', uk: 'ВИГІДНО', es: 'MEJOR', 'pt-BR': 'MELHOR', vi: 'HỜI', id: 'HEMAT', tr: 'AVANTAJ', pl: 'OKAZJA' },
-  emptyTitle: { ru: 'Здесь пока пусто', uk: 'Тут поки порожньо', es: 'Aquí no hay nada aún', 'pt-BR': 'Ainda não há nada aqui', vi: 'Ở đây chưa có gì', id: 'Di sini masih kosong', tr: 'Burası şimdilik boş', pl: 'Tu jeszcze pusto' },
+  badgeNew: { ru: 'НОВОЕ', uk: 'НОВЕ', es: 'NUEVO', en: 'NEW', 'pt-BR': 'NOVO', vi: 'MỚI', id: 'BARU', tr: 'YENİ', pl: 'NOWE' },
+  badgeBest: { ru: 'ВЫГОДНО', uk: 'ВИГІДНО', es: 'MEJOR', en: 'BEST VALUE', 'pt-BR': 'MELHOR', vi: 'HỜI', id: 'HEMAT', tr: 'AVANTAJ', pl: 'OKAZJA' },
+  emptyTitle: { ru: 'Здесь пока пусто', uk: 'Тут поки порожньо', es: 'Aquí no hay nada aún', en: 'Nothing here yet', 'pt-BR': 'Ainda não há nada aqui', vi: 'Ở đây chưa có gì', id: 'Di sini masih kosong', tr: 'Burası şimdilik boş', pl: 'Tu jeszcze pusto' },
   emptyBody: {
     ru: 'Новые товары открываются по мере прохождения курса',
     uk: 'Нові товари відкриваються в міру проходження курсу',
     es: 'Los artículos nuevos se abren conforme avanzas en el curso',
+    en: 'New items unlock as you progress through the course',
     'pt-BR': 'Novos itens são liberados conforme você avança no curso',
     vi: 'Vật phẩm mới mở dần khi bạn học tiếp khoá học',
     id: 'Barang baru terbuka seiring kamu maju di kursus',
     tr: 'Yeni ürünler kursta ilerledikçe açılır',
     pl: 'Nowe przedmioty odblokowują się w miarę postępów w kursie',
   },
-  closeCategories: { ru: 'Закрыть категории', uk: 'Закрити категорії', es: 'Cerrar categorías', 'pt-BR': 'Fechar categorias', vi: 'Đóng danh mục', id: 'Tutup kategori', tr: 'Kategorileri kapat', pl: 'Zamknij kategorie' },
-  close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' },
-  notNow: { ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' },
-  topUpPearls: { ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', es: 'Recargar perlas', 'pt-BR': 'Recarregar pérolas', vi: 'Nạp ngọc trai', id: 'Isi mutiara', tr: 'İnci yükle', pl: 'Doładuj perły' },
-  notEnoughRunes: { ru: 'Не хватает рун', uk: 'Не вистачає рун', es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune', id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Brakuje run' },
-  notEnoughPearls: { ru: 'Не хватает жемчуга', uk: 'Не вистачає перлин', es: 'Faltan perlas', 'pt-BR': 'Faltam pérolas', vi: 'Không đủ ngọc trai', id: 'Mutiara tidak cukup', tr: 'İnci yetersiz', pl: 'Brakuje pereł' },
-  done: { ru: 'готово', uk: 'готово', es: 'listo', 'pt-BR': 'pronto', vi: 'xong', id: 'siap', tr: 'hazır', pl: 'gotowe' },
-  dropped: { ru: 'Выпало', uk: 'Випало', es: 'Te tocó', 'pt-BR': 'Você tirou', vi: 'Bạn nhận được', id: 'Kamu dapat', tr: 'Çıkan', pl: 'Wypadło' },
+  closeCategories: { ru: 'Закрыть категории', uk: 'Закрити категорії', es: 'Cerrar categorías', en: 'Close categories', 'pt-BR': 'Fechar categorias', vi: 'Đóng danh mục', id: 'Tutup kategori', tr: 'Kategorileri kapat', pl: 'Zamknij kategorie' },
+  close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' },
+  notNow: { ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', en: 'Not now', 'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' },
+  topUpPearls: { ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', es: 'Recargar perlas', en: 'Top up pearls', 'pt-BR': 'Recarregar pérolas', vi: 'Nạp ngọc trai', id: 'Isi mutiara', tr: 'İnci yükle', pl: 'Doładuj perły' },
+  notEnoughRunes: { ru: 'Не хватает рун', uk: 'Не вистачає рун', es: 'Faltan runas', en: 'Not enough runes', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune', id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Brakuje run' },
+  notEnoughPearls: { ru: 'Не хватает жемчуга', uk: 'Не вистачає перлин', es: 'Faltan perlas', en: 'Not enough pearls', 'pt-BR': 'Faltam pérolas', vi: 'Không đủ ngọc trai', id: 'Mutiara tidak cukup', tr: 'İnci yetersiz', pl: 'Brakuje pereł' },
+  done: { ru: 'готово', uk: 'готово', es: 'listo', en: 'done', 'pt-BR': 'pronto', vi: 'xong', id: 'siap', tr: 'hazır', pl: 'gotowe' },
+  dropped: { ru: 'Выпало', uk: 'Випало', es: 'Te tocó', en: 'You got', 'pt-BR': 'Você tirou', vi: 'Bạn nhận được', id: 'Kamu dapat', tr: 'Çıkan', pl: 'Wypadło' },
 } as const;
 
 /** Родительный падеж валюты для строк вида «У тебя 5 рун». */
 const CURRENCY_GENITIVE = {
-  runes: { ru: 'рун', uk: 'рун', es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' },
-  pearls: { ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' },
+  runes: { ru: 'рун', uk: 'рун', es: 'runas', en: 'runes', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' },
+  pearls: { ru: 'жемчужин', uk: 'перлин', es: 'perlas', en: 'pearls', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' },
 } as const;
 
 const BUY_FOR = {
   ru: (n: number) => `Купить за ${n}`,
   uk: (n: number) => `Купити за ${n}`,
   es: (n: number) => `Comprar por ${n}`,
+  en: (n: number) => `Buy for ${n}`,
   'pt-BR': (n: number) => `Comprar por ${n}`,
   vi: (n: number) => `Mua với ${n}`,
   id: (n: number) => `Beli seharga ${n}`,
@@ -126,6 +131,7 @@ const YOU_HAVE = {
   ru: (n: number, c: string) => `У тебя ${n} ${c}`,
   uk: (n: number, c: string) => `У тебе ${n} ${c}`,
   es: (n: number, c: string) => `Tienes ${n} ${c}`,
+  en: (n: number, c: string) => `You have ${n} ${c}`,
   'pt-BR': (n: number, c: string) => `Você tem ${n} ${c}`,
   vi: (n: number, c: string) => `Bạn có ${n} ${c}`,
   id: (n: number, c: string) => `Kamu punya ${n} ${c}`,
@@ -137,6 +143,7 @@ const CATEGORY_LABEL = {
   ru: (t: string) => `Категория: ${t}`,
   uk: (t: string) => `Категорія: ${t}`,
   es: (t: string) => `Categoría: ${t}`,
+  en: (t: string) => `Category: ${t}`,
   'pt-BR': (t: string) => `Categoria: ${t}`,
   vi: (t: string) => `Danh mục: ${t}`,
   id: (t: string) => `Kategori: ${t}`,
@@ -374,7 +381,7 @@ export default function ShopScreen() {
           testID="shop-back"
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, COPY.back)}
-          onPress={() => router.back()}
+          onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
           style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.7 : 1 }]}
         >
           <Ionicons name="chevron-back" size={24} color={t.textMuted} />
@@ -414,7 +421,7 @@ export default function ShopScreen() {
         ))}
       </View>
 
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         testID="shop-scroll"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: menuBottom + 40 }]}

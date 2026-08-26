@@ -1,6 +1,7 @@
 const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'chain_shield_1',
   'chain_shield_3',
+  'attempt_restore_all',
   'choice_3_level',
   'club_boost_free',
   'cosmetic_avatar_aura',

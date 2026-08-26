@@ -1,13 +1,10 @@
 import type { IntroTextPart, IntroTextSemantic } from "./lesson_data_types";
 
 // зачем: аудит 2026-08-23 показал, что Learning V2 красит текст ТОЛЬКО по полю
-// `semantic`, а этого поля нет ни в одном файле контента — 0 из 17 578 частей во
-// всех 22 уроках и 8 языках. Контент размечен старым полем `tone`, которое
-// рендерер игнорировал, поэтому 10 813 частей (61,5% текста интро) доезжали до
-// экрана обычным серым текстом. Самое опасное: ошибочные примеры (`danger`, 613
-// шт.) выглядели как правильные и не зачёркивались — ученик мог выучить неверную
-// форму. Этот модуль — мост: он выводит `semantic` из `tone`, не трогая ни одного
-// файла контента (иначе пришлось бы править 17 578 частей вручную).
+// `semantic`. Legacy `tone` remains a visual hint only: it cannot prove that a
+// linguistic form is wrong. New Learning V2 authoring marks every target run
+// explicitly, so a random danger-coloured native explanation must never become
+// a struck-through English error.
 
 /** Роль куска текста на экране интро. */
 export type IntroPartRole =
@@ -71,9 +68,10 @@ export function introPartRole(
     : false;
 
   switch (part.tone) {
-    // Ошибочный пример: 613 частей, 100% латиница, кириллицы нет вовсе.
+    // Danger is a palette instruction, not linguistic evidence. Only explicit
+    // semantic="targetWrong" may produce a strike-through.
     case "danger":
-      return "targetWrong";
+      return "plain";
 
     // 97% латиница — почти всегда изучаемый язык. Кириллические 3%
     // («фразовый глагол», «частица») — термины, им цвет языка не положен.

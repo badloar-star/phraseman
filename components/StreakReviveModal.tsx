@@ -68,6 +68,7 @@ function formatCountdown(msLeft: number, lang: Lang): string {
   return triLang(lang, {
     ru: `Истекает через ${time}`,
     uk: `Спливає через ${time}`,
+    en: `Expires in ${time}`,
     es: `Expira en ${time}`,
     'pt-BR': `Expira em ${time}`,
     vi: `Hết hạn sau ${time}`,
@@ -117,6 +118,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const streakUnit = triLang(lang, {
     ru: `${slavicPlural(lostStreak, 'день', 'дня', 'дней')} подряд`,
     uk: `${slavicPlural(lostStreak, 'день', 'дні', 'днів')} поспіль`,
+    en: 'days in a row',
     es: 'días seguidos',
     'pt-BR': 'dias seguidos',
     vi: 'ngày liên tiếp',
@@ -128,6 +130,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const title = triLang(lang, {
     ru: 'Рекорд всё ещё твой',
     uk: 'Рекорд усе ще твій',
+    en: 'The record is still yours',
     es: 'Tu récord sigue siendo tuyo',
     'pt-BR': 'Seu recorde ainda é seu',
     vi: 'Kỷ lục vẫn là của bạn',
@@ -138,6 +141,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const description = triLang(lang, {
     ru: 'Верни прерванную серию одним действием — либо спокойно начни заново.',
     uk: 'Поверни перервану серію одним дотиком — або спокійно почни заново.',
+    en: 'Bring back your broken streak with one tap — or calmly start fresh.',
     es: 'Recupera la racha con un toque o empieza de nuevo con tranquilidad.',
     'pt-BR': 'Restaure a sequência com um toque ou recomece com tranquilidade.',
     vi: 'Khôi phục chuỗi chỉ với một lần chạm, hoặc bình tĩnh bắt đầu lại.',
@@ -148,6 +152,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const primaryLabel = triLang(lang, {
     ru: 'Восстановить рекорд',
     uk: 'Відновити рекорд',
+    en: 'Restore record',
     es: 'Recuperar récord',
     'pt-BR': 'Restaurar recorde',
     vi: 'Khôi phục kỷ lục',
@@ -158,6 +163,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const busyLabel = triLang(lang, {
     ru: 'Восстанавливаем…',
     uk: 'Відновлюємо…',
+    en: 'Restoring…',
     es: 'Recuperando…',
     'pt-BR': 'Restaurando…',
     vi: 'Đang khôi phục…',
@@ -168,6 +174,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const secondaryLabel = triLang(lang, {
     ru: 'Начать новую цепочку',
     uk: 'Почати новий ланцюжок',
+    en: 'Start a new streak',
     es: 'Empezar una nueva racha',
     'pt-BR': 'Começar uma nova sequência',
     vi: 'Bắt đầu chuỗi mới',
@@ -178,6 +185,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const costLabel = triLang(lang, {
     ru: 'Стоимость',
     uk: 'Вартість',
+    en: 'Cost',
     es: 'Coste',
     'pt-BR': 'Custo',
     vi: 'Chi phí',
@@ -188,6 +196,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const closeLabel = triLang(lang, {
     ru: 'Закрыть предложение восстановления',
     uk: 'Закрити пропозицію відновлення',
+    en: 'Close the restore offer',
     es: 'Cerrar la oferta de recuperación',
     'pt-BR': 'Fechar a oferta de restauração',
     vi: 'Đóng đề nghị khôi phục',
@@ -317,7 +326,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
               <Text style={[styles.streakLabel, { color: accentDarkText }]}>{streakUnit}</Text>
             </View>
 
-            <ScrollView
+            <ScrollView decelerationRate="fast"
               style={styles.bodyScroll}
               contentContainerStyle={[styles.body, compactHeight && styles.bodyCompact]}
               bounces={false}
@@ -444,7 +453,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
             <Text style={[styles.streakLabel, { color: accentDarkText }]}>{streakUnit}</Text>
           </View>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={styles.bodyScroll}
             contentContainerStyle={[styles.body, compactHeight && styles.bodyCompact]}
             bounces={false}

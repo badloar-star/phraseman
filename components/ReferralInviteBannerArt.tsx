@@ -1,6 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, {
   cancelAnimation,
@@ -28,6 +29,16 @@ const THEME_BANNERS: Record<ThemeMode, number> = {
   volt: require('../assets/images/settings/referral_theme/invite-volt-v2.webp'),
   indigo: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp'),
 };
+
+// зачем (владелец, ускорение сплэша): раньше стартовый прогрев тянул баннеры
+// ВСЕХ 9 тем сразу, хотя на экране настроек всегда виден только один — баннер
+// активной темы. Читаем сохранённую тему напрямую из AsyncStorage (без React-
+// контекста, вызывается до монтирования дерева) и прогреваем только его.
+export async function getActiveReferralInviteBannerImage(): Promise<number> {
+  const stored = await AsyncStorage.getItem('app_theme').catch(() => null);
+  const mode = stored && stored in THEME_BANNERS ? (stored as ThemeMode) : 'indigo';
+  return THEME_BANNERS[mode];
+}
 
 interface ReferralInviteBannerArtProps {
   /**

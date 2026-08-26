@@ -5,7 +5,9 @@ import Reanimated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSequence,
+  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -23,52 +25,151 @@ type Props = {
 };
 
 type HeartSlotProps = {
+  index: number;
   filled: boolean;
   activeColor: string;
   emptyColor: string;
 };
 
-function HeartSlot({ filled, activeColor, emptyColor }: HeartSlotProps) {
+function HeartSlot({ index, filled, activeColor, emptyColor }: HeartSlotProps) {
   const reduceMotion = useReduceMotion();
   const previousFilled = useRef(filled);
   const opacity = useSharedValue(filled ? 1 : 0);
   const scale = useSharedValue(1);
   const x = useSharedValue(0);
+  const y = useSharedValue(0);
+  const rotation = useSharedValue(0);
+  const haloOpacity = useSharedValue(0);
+  const haloScale = useSharedValue(SESSION_ATTEMPTS_MOTION.haloStartScale);
 
   useEffect(() => {
     cancelAnimation(opacity);
     cancelAnimation(scale);
     cancelAnimation(x);
+    cancelAnimation(y);
+    cancelAnimation(rotation);
+    cancelAnimation(haloOpacity);
+    cancelAnimation(haloScale);
+
+    const wasFilled = previousFilled.current;
+    haloOpacity.value = 0;
+    haloScale.value = SESSION_ATTEMPTS_MOTION.haloStartScale;
 
     if (filled) {
-      opacity.value = 1;
-      scale.value = 1;
       x.value = 0;
-    } else if (previousFilled.current && !reduceMotion) {
+      if (!wasFilled && !reduceMotion) {
+        const delayMs = index * SESSION_ATTEMPTS_MOTION.refillStaggerMs;
+        opacity.value = 0;
+        scale.value = SESSION_ATTEMPTS_MOTION.refillStartScale;
+        y.value = SESSION_ATTEMPTS_MOTION.refillLiftPx;
+        rotation.value = -SESSION_ATTEMPTS_MOTION.lossTiltDeg;
+        opacity.value = withDelay(
+          delayMs,
+          withTiming(1, { duration: SESSION_ATTEMPTS_MOTION.refillFadeMs }),
+        );
+        scale.value = withDelay(
+          delayMs,
+          withSpring(1, SESSION_ATTEMPTS_MOTION.refillSpring),
+        );
+        y.value = withDelay(
+          delayMs,
+          withSpring(0, SESSION_ATTEMPTS_MOTION.refillSpring),
+        );
+        rotation.value = withDelay(
+          delayMs,
+          withSequence(
+            withTiming(8, { duration: 90 }),
+            withSpring(0, SESSION_ATTEMPTS_MOTION.refillSpring),
+          ),
+        );
+        haloOpacity.value = withDelay(
+          delayMs,
+          withSequence(
+            withTiming(0.72, { duration: 70 }),
+            withTiming(0, { duration: SESSION_ATTEMPTS_MOTION.haloMs - 70 }),
+          ),
+        );
+        haloScale.value = withDelay(
+          delayMs,
+          withTiming(SESSION_ATTEMPTS_MOTION.haloEndScale, {
+            duration: SESSION_ATTEMPTS_MOTION.haloMs,
+          }),
+        );
+      } else {
+        opacity.value = 1;
+        scale.value = 1;
+        y.value = 0;
+        rotation.value = 0;
+      }
+    } else if (wasFilled && !reduceMotion) {
       x.value = withSequence(
         ...SESSION_ATTEMPTS_MOTION.shakeOffsetsPx.map((offset) =>
           withTiming(offset, { duration: SESSION_ATTEMPTS_MOTION.shakeSegmentMs })),
       );
-      scale.value = withTiming(SESSION_ATTEMPTS_MOTION.consumedScale, {
-        duration: SESSION_ATTEMPTS_MOTION.consumedFadeMs,
+      scale.value = withSequence(
+        withTiming(SESSION_ATTEMPTS_MOTION.lossPopScale, {
+          duration: SESSION_ATTEMPTS_MOTION.lossPopMs,
+        }),
+        withTiming(SESSION_ATTEMPTS_MOTION.consumedScale, {
+          duration: SESSION_ATTEMPTS_MOTION.lossExitMs,
+        }),
+      );
+      y.value = withSequence(
+        withTiming(SESSION_ATTEMPTS_MOTION.lossLiftPx, {
+          duration: SESSION_ATTEMPTS_MOTION.lossPopMs,
+        }),
+        withTiming(SESSION_ATTEMPTS_MOTION.lossDropPx, {
+          duration: SESSION_ATTEMPTS_MOTION.lossExitMs,
+        }),
+      );
+      rotation.value = withSequence(
+        withTiming(-SESSION_ATTEMPTS_MOTION.lossTiltDeg, { duration: 60 }),
+        withTiming(10, { duration: 60 }),
+        withTiming(-6, { duration: 60 }),
+        withTiming(0, { duration: 120 }),
+      );
+      opacity.value = withDelay(
+        SESSION_ATTEMPTS_MOTION.lossPopMs,
+        withTiming(0, { duration: SESSION_ATTEMPTS_MOTION.consumedFadeMs }),
+      );
+      haloOpacity.value = withSequence(
+        withTiming(0.68, { duration: 60 }),
+        withTiming(0, { duration: SESSION_ATTEMPTS_MOTION.haloMs - 60 }),
+      );
+      haloScale.value = withTiming(SESSION_ATTEMPTS_MOTION.haloEndScale, {
+        duration: SESSION_ATTEMPTS_MOTION.haloMs,
       });
-      opacity.value = withTiming(0, { duration: SESSION_ATTEMPTS_MOTION.consumedFadeMs });
     } else {
       opacity.value = 0;
       scale.value = SESSION_ATTEMPTS_MOTION.consumedScale;
       x.value = 0;
+      y.value = 0;
+      rotation.value = 0;
     }
 
     previousFilled.current = filled;
-  }, [filled, opacity, reduceMotion, scale, x]);
+  }, [filled, haloOpacity, haloScale, index, opacity, reduceMotion, rotation, scale, x, y]);
 
   const filledStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
-    transform: [{ translateX: x.value }, { scale: scale.value }],
+    transform: [
+      { translateX: x.value },
+      { translateY: y.value },
+      { rotate: `${rotation.value}deg` },
+      { scale: scale.value },
+    ],
+  }));
+  const haloStyle = useAnimatedStyle(() => ({
+    opacity: haloOpacity.value,
+    transform: [{ scale: haloScale.value }],
   }));
 
   return (
     <View style={styles.slot} accessible={false}>
+      <Reanimated.View
+        pointerEvents="none"
+        style={[styles.halo, { borderColor: activeColor }, haloStyle]}
+      />
       <Ionicons name="heart-outline" size={20} color={emptyColor} accessible={false} />
       <Reanimated.View style={[styles.filledHeart, filledStyle]} pointerEvents="none">
         <Ionicons name="heart" size={20} color={activeColor} accessible={false} />
@@ -94,6 +195,7 @@ function SessionAttemptsHud({ remaining, locale, total = SESSION_ATTEMPTS_MAX, t
       {Array.from({ length: safeTotal }, (_, index) => (
         <HeartSlot
           key={index}
+          index={index}
           filled={index < safeRemaining}
           activeColor={t.wrong}
           emptyColor={t.textGhost}
@@ -122,6 +224,13 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  halo: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 2,
   },
 });
 

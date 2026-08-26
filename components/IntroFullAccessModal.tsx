@@ -183,7 +183,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
         backdropColor="rgba(0,0,0,0.72)"
         testID={isWelcome ? 'intro-full-access-welcome-backdrop' : 'intro-full-access-ended-backdrop'}
       >
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={styles.hybridScroll}
           contentContainerStyle={styles.hybridScrollContent}
           showsVerticalScrollIndicator={false}
@@ -263,7 +263,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
             панель центрировалась во весь рост без прокрутки — на низком экране
             обрезалась вместе с кнопкой активации подарка. */}
         <SafeAreaView style={styles.safeScroll}>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={styles.safeScroll}
           contentContainerStyle={styles.safe}
           showsVerticalScrollIndicator={false}

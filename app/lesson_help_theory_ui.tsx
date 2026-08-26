@@ -201,10 +201,10 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
       <View style={{ borderRadius: 10, borderWidth: 0, borderColor: c.border, overflow: 'hidden' }}>
         <Animated.ScrollView
           horizontal
-          decelerationRate="normal"
+          decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
         >
           <View style={{ minWidth: contentW }}>
             {/* Заголовок */}

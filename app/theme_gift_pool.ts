@@ -13,8 +13,35 @@
 // горячий путь спина. Здесь только политика тем и чтение двух ключей.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { SELECTABLE_THEME_MODES, isThemeShardPurchasable } from './theme_access_policy';
-import { loadGrandfatheredThemeModes, loadOwnedThemeModes } from './theme_ownership_store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SELECTABLE_THEME_MODES, isSelectableThemeMode, isThemeShardPurchasable } from './theme_access_policy';
+import { GRANDFATHERED_THEMES_KEY, OWNED_THEMES_KEY } from './theme_ownership_store';
+import { parseStrictStringList } from './spin_gift_storage_integrity';
+import { loadSpinCustomAvatarGiftCandidates, type SpinCustomAvatarGiftPoolRead } from './spin_avatar_gift_pool';
+
+export type ThemeGiftPoolRead =
+  | Readonly<{ status: 'available'; candidates: readonly string[]; owned: readonly string[] }>
+  | Readonly<{ status: 'unavailable'; reason: 'read_failed' | 'malformed' }>;
+
+export async function loadThemeGiftCandidates(): Promise<ThemeGiftPoolRead> {
+  let rows: readonly (readonly [string, string | null])[];
+  try {
+    rows = await AsyncStorage.multiGet([OWNED_THEMES_KEY, GRANDFATHERED_THEMES_KEY]);
+  } catch {
+    return { status: 'unavailable', reason: 'read_failed' };
+  }
+  const owned = parseStrictStringList(rows[0]?.[1] ?? null, isSelectableThemeMode);
+  const grandfathered = parseStrictStringList(rows[1]?.[1] ?? null, isSelectableThemeMode);
+  if (owned.status === 'malformed' || grandfathered.status === 'malformed') {
+    return { status: 'unavailable', reason: 'malformed' };
+  }
+  const taken = new Set([...owned.value, ...grandfathered.value]);
+  return {
+    status: 'available',
+    candidates: SELECTABLE_THEME_MODES.filter((mode) => isThemeShardPurchasable(mode) && !taken.has(mode)),
+    owned: owned.value,
+  };
+}
 
 /**
  * Темы, которые ещё можно выиграть.
@@ -25,30 +52,42 @@ import { loadGrandfatheredThemeModes, loadOwnedThemeModes } from './theme_owners
  * Купленные и «дедушкины» исключаются — повторная выдача была бы пустышкой.
  */
 export async function listThemeGiftCandidates(): Promise<string[]> {
-  const [owned, grandfathered] = await Promise.all([
-    loadOwnedThemeModes().catch(() => [] as string[]),
-    loadGrandfatheredThemeModes().catch(() => [] as string[]),
-  ]);
-  const taken = new Set([...owned, ...grandfathered]);
-  return SELECTABLE_THEME_MODES.filter((mode) => isThemeShardPurchasable(mode) && !taken.has(mode));
+  const result = await loadThemeGiftCandidates();
+  if (result.status === 'unavailable') throw new Error(`theme_gift_ownership_${result.reason}`);
+  return [...result.candidates];
+}
+
+export function exhaustedSpinRewardIdsForCandidates(
+  themeCandidates: readonly unknown[] | null,
+  avatarPool: SpinCustomAvatarGiftPoolRead,
+): string[] {
+  return [
+    ...(themeCandidates === null || themeCandidates.length === 0 ? ['cosmetic_theme'] : []),
+    ...(avatarPool.status === 'unavailable' || avatarPool.candidates.length === 0
+      ? ['cosmetic_avatar_common']
+      : []),
+  ];
 }
 
 /**
  * Награды спина, которые для этого человека нужно исключить из розыгрыша.
  *
- * Сейчас это только тема. Функция намеренно возвращает МАССИВ: если позже
- * появится вторая исчерпаемая награда, её добавят сюда, а не в третье место.
+ * Тема и полный avatar-пул — исчерпаемые награды. Обе исчезают до розыгрыша,
+ * когда у активного аккаунта больше нет ни одного кандидата.
  *
- * Ошибку чтения трактуем как «тема ещё доступна»: ложно скрыть приз хуже,
- * чем разыграть его и выдать — выдача всё равно проверит список заново.
+ * Ошибка ownership fail-closed для каждой исчерпаемой награды: новый чек не
+ * должен обещать косметику, которую нельзя безопасно записать без потери уже
+ * существующих прав.
  */
 export async function listExhaustedSpinRewardIds(): Promise<string[]> {
-  try {
-    const candidates = await listThemeGiftCandidates();
-    return candidates.length === 0 ? ['cosmetic_theme'] : [];
-  } catch {
-    return [];
-  }
+  const [themes, avatars] = await Promise.all([
+    loadThemeGiftCandidates(),
+    loadSpinCustomAvatarGiftCandidates(),
+  ]);
+  return exhaustedSpinRewardIdsForCandidates(
+    themes.status === 'available' ? themes.candidates : null,
+    avatars,
+  );
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

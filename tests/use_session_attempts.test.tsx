@@ -112,3 +112,42 @@ test('successful gift recovery restores the same question and exposes busy state
     recoveryError: null,
   });
 });
+
+test('two recovery taps in the same frame commit only one durable operation', async () => {
+  const token = captureAccountGeneration();
+  let releaseCommit!: () => void;
+  const commitPending = new Promise<void>((resolve) => { releaseCommit = resolve; });
+  const restoredState = {
+    schemaVersion: 'session-attempts-state.v1' as const,
+    sessionId: 'double-tap-1', questionId: 'same-question', maxAttempts: 3 as const,
+    remainingAttempts: 3 as const, phase: 'active' as const, recoveryOrdinal: 1,
+    processedAnswerAttemptIds: ['a1', 'a2', 'a3'], recoveryReceiptIds: ['receipt-double-tap'],
+  };
+  mockCoordinator.commitSessionAttemptRecovery.mockImplementation(async () => {
+    await commitPending;
+    return {
+      duplicate: false,
+      source: 'gift',
+      attemptsState: restoredState,
+      receiptId: 'receipt-double-tap',
+    };
+  });
+
+  const hook = await renderHook(() => useSessionAttempts({
+    token,
+    sessionId: 'double-tap-1',
+    initialQuestionId: 'same-question',
+    autoHydrate: false,
+  }));
+
+  let first!: Promise<void>;
+  let second!: Promise<void>;
+  await act(() => {
+    first = hook.result.current.recoverWithGift();
+    second = hook.result.current.recoverWithGift();
+  });
+  expect(mockCoordinator.commitSessionAttemptRecovery).toHaveBeenCalledTimes(1);
+
+  releaseCommit();
+  await act(async () => { await Promise.all([first, second]); });
+});

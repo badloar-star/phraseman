@@ -33,7 +33,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import { usePremium } from '../components/PremiumContext';
@@ -318,6 +318,49 @@ function levelTopicPlanned(q: LevelQ, locale: PlannedInterfaceLang): string {
   return planned && planned.trim().length > 0 ? planned : LEVEL_TOPIC_UNAVAILABLE[locale];
 }
 
+// зачем: EN — чистый UI-язык (не PlannedInterfaceLang, см. app/config.ts
+// ENGLISH_UI_LOCALE_ENABLED), поэтому тема экзамена на английском живёт
+// отдельным словарём с теми же ключами topicES, а не в LEVEL_TOPIC_PLANNED.
+const LEVEL_TOPIC_EN: Record<string, string> = {
+  'El verbo to be': 'The verb to be',
+  'Negación con to be': 'Negation with to be',
+  'Present Simple: afirmativo': 'Present Simple: affirmative',
+  'Present Simple: negación': 'Present Simple: negative',
+  'Present Simple: preguntas': 'Present Simple: questions',
+  'Preguntas con wh-': 'Wh- questions',
+  'El verbo to have': 'The verb to have',
+  'Preposiciones de tiempo': 'Prepositions of time',
+  'There is / There are': 'There is / There are',
+  'Verbos modales': 'Modal verbs',
+  'Past Simple: regulares': 'Past Simple: regular verbs',
+  'Past Simple: irregulares': 'Past Simple: irregular verbs',
+  'Future Simple (will)': 'Future Simple (will)',
+  'Grados de comparación': 'Degrees of comparison',
+  'Pronombres y adjetivos posesivos': 'Possessive pronouns and adjectives',
+  'Verbos frasales': 'Phrasal verbs',
+  'Present Continuous': 'Present Continuous',
+  Imperativo: 'Imperative',
+  'Preposiciones de lugar': 'Prepositions of place',
+  'Artículos (a/an/the)': 'Articles (a/an/the)',
+  'Pronombres indefinidos': 'Indefinite pronouns',
+  'Gerundio (-ing)': 'Gerund (-ing)',
+  'Voz pasiva': 'Passive voice',
+  'Present Perfect': 'Present Perfect',
+  'Past Continuous': 'Past Continuous',
+  'Oraciones condicionales (if)': 'Conditional sentences (if)',
+  'Estilo indirecto': 'Reported speech',
+  'Pronombres reflexivos': 'Reflexive pronouns',
+  'Used to': 'Used to',
+  'Oraciones relativas': 'Relative clauses',
+  'Construcciones con objeto e infinitivo': 'Object + infinitive constructions',
+  'Repaso general': 'General review',
+};
+
+function levelTopicEn(q: LevelQ): string {
+  const en = LEVEL_TOPIC_EN[q.topicES];
+  return en && en.trim().length > 0 ? en : 'Level test topic unavailable';
+}
+
 // 3 вопроса per lesson (первые 3 из pool = fill-типы, они лучше всего подходят)
 const QUESTION_POOL: LevelQ[] = [
   // L1
@@ -455,10 +498,10 @@ const LEVEL_RANGES: Record<string, [number, number]> = {
 };
 
 const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string } & Record<PlannedInterfaceLang, string>> = {
-  A1: { ru: 'Зачёт A1', uk: 'Залік A1', es: 'Examen de nivel A1', 'pt-BR': 'Teste de nível A1', vi: 'Bài kiểm tra trình độ A1', id: 'Ujian level A1', tr: 'A1 seviye sınavı', pl: 'Test poziomu A1' },
-  A2: { ru: 'Зачёт A2', uk: 'Залік A2', es: 'Examen de nivel A2', 'pt-BR': 'Teste de nível A2', vi: 'Bài kiểm tra trình độ A2', id: 'Ujian level A2', tr: 'A2 seviye sınavı', pl: 'Test poziomu A2' },
-  B1: { ru: 'Зачёт B1', uk: 'Залік B1', es: 'Examen de nivel B1', 'pt-BR': 'Teste de nível B1', vi: 'Bài kiểm tra trình độ B1', id: 'Ujian level B1', tr: 'B1 seviye sınavı', pl: 'Test poziomu B1' },
-  B2: { ru: 'Зачёт B2', uk: 'Залік B2', es: 'Examen de nivel B2', 'pt-BR': 'Teste de nível B2', vi: 'Bài kiểm tra trình độ B2', id: 'Ujian level B2', tr: 'B2 seviye sınavı', pl: 'Test poziomu B2' },
+  A1: { ru: 'Зачёт A1', uk: 'Залік A1', es: 'Examen de nivel A1', en: 'A1 Exam', 'pt-BR': 'Teste de nível A1', vi: 'Bài kiểm tra trình độ A1', id: 'Ujian level A1', tr: 'A1 seviye sınavı', pl: 'Test poziomu A1' },
+  A2: { ru: 'Зачёт A2', uk: 'Залік A2', es: 'Examen de nivel A2', en: 'A2 Exam', 'pt-BR': 'Teste de nível A2', vi: 'Bài kiểm tra trình độ A2', id: 'Ujian level A2', tr: 'A2 seviye sınavı', pl: 'Test poziomu A2' },
+  B1: { ru: 'Зачёт B1', uk: 'Залік B1', es: 'Examen de nivel B1', en: 'B1 Exam', 'pt-BR': 'Teste de nível B1', vi: 'Bài kiểm tra trình độ B1', id: 'Ujian level B1', tr: 'B1 seviye sınavı', pl: 'Test poziomu B1' },
+  B2: { ru: 'Зачёт B2', uk: 'Залік B2', es: 'Examen de nivel B2', en: 'B2 Exam', 'pt-BR': 'Teste de nível B2', vi: 'Bài kiểm tra trình độ B2', id: 'Ujian level B2', tr: 'B2 seviye sınavı', pl: 'Test poziomu B2' },
 };
 
 const PASS_PCT = 70; // минимум % для сдачи
@@ -566,7 +609,11 @@ export default function LevelExam() {
   const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
   // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
   // Премиум/тестер обходят подтверждение внутри confirmSpendAmount.
-  const { isUnlimited: energyUnlimited, confirmSpendAmount, energy, bonusEnergy } = useEnergy();
+  const { isUnlimited: energyUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy } = useEnergy();
+  const levelExamEnergyIntent = useEnergySessionIntent(
+    'level_exam',
+    lvl,
+  );
   const { hasPremiumAccess } = usePremium();
   const examEnergyUnlimited = energyUnlimited || hasPremiumAccess;
   const [noEnergy, setNoEnergy] = useState(false);
@@ -636,6 +683,7 @@ export default function LevelExam() {
           setAccessBlockKind('premium');
           setBlockedText(triLang(lang, {
             ru: 'Plus откроет уроки уровня и доступ к зачёту. Без Plus доступен A1, уроки открываются последовательно.',
+            en: 'Plus unlocks the level lessons and exam access. Without Plus, only A1 is available, unlocked step by step.',
             uk: 'Plus відкриє уроки рівня і доступ до заліку. Без Plus доступний A1, уроки відкриваються послідовно.',
             es: 'Plus abre las lecciones del nivel y el acceso al examen. Sin Plus, A1 está disponible paso a paso.',
             'pt-BR': "O Plus abre as aulas do nível e o acesso ao teste. Sem Plus, o A1 fica disponível passo a passo.",
@@ -666,6 +714,7 @@ export default function LevelExam() {
         setBlockedText(prevLevel
           ? triLang(lang, {
             ru: `Чтобы открыть уровень ${examLevel}, сначала сдай зачёт ${prevLevel}.`,
+            en: `To unlock level ${examLevel}, first pass the ${prevLevel} exam.`,
             uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
             es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
             'pt-BR': `Para abrir o nível ${examLevel}, primeiro passe no teste ${prevLevel}.`,
@@ -676,6 +725,7 @@ export default function LevelExam() {
           })
           : triLang(lang, {
             ru: 'Этот зачёт пока недоступен.',
+            en: 'This exam is not available yet.',
             uk: 'Цей залік поки недоступний.',
             es: 'Este examen todavía no está disponible.',
             'pt-BR': "Este teste ainda não está disponível.",
@@ -698,6 +748,7 @@ export default function LevelExam() {
         setAccessBlockKind('error');
         setBlockedText(triLang(lang, {
           ru: 'Доступ к зачёту не проверился. Попробуй открыть его ещё раз.',
+          en: 'Could not verify exam access. Try opening it again.',
           uk: 'Не вдалося перевірити доступ до заліку. Спробуйте відкрити його ще раз.',
           es: 'No se pudo comprobar el acceso al examen. Inténtalo de nuevo.',
           'pt-BR': "Não foi possível verificar o acesso ao teste. Tente abri-lo de novo.",
@@ -725,6 +776,7 @@ export default function LevelExam() {
         ru: levelLabel.ru,
         uk: levelLabel.uk,
         es: levelLabel.es,
+        en: levelLabel.en,
         'pt-BR': levelLabel['pt-BR'],
         vi: levelLabel.vi,
         id: levelLabel.id,
@@ -733,6 +785,7 @@ export default function LevelExam() {
       })
     : triLang(lang, {
         ru: `Зачёт ${lvl}`,
+        en: `${lvl} Exam`,
         uk: `Залік ${lvl}`,
         es: `Examen de nivel ${lvl}`,
         'pt-BR': `Teste de nível ${lvl}`,
@@ -763,7 +816,7 @@ export default function LevelExam() {
     try {
       // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
       {
-        const energyResult = await confirmSpendAmount(LEVEL_EXAM_ENERGY);
+        const energyResult = await confirmSpendAmount(LEVEL_EXAM_ENERGY, levelExamEnergyIntent);
         if (energyResult === 'cancelled') return;
         if (energyResult === 'insufficient') {
           void trackFeatureBlocked('level_exam', 'start', 'energy_spend_failed', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
@@ -772,6 +825,7 @@ export default function LevelExam() {
         }
       }
       mistakeCaptureRunRef.current = `level-exam-${Date.now().toString(36)}`;
+      void acknowledgeSessionStart(levelExamEnergyIntent.operationId);
       void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
       setChoices(new Array(questions.length).fill(null));
       setIdx(0);
@@ -780,7 +834,7 @@ export default function LevelExam() {
     } finally {
       setExamStarting(false);
     }
-  }, [examStarting, frenchExamBlocked, examQuestionsLoading, questions.length, lvl, studyTarget, energy, bonusEnergy, confirmSpendAmount]);
+  }, [acknowledgeSessionStart, bonusEnergy, confirmSpendAmount, energy, examQuestionsLoading, examStarting, frenchExamBlocked, levelExamEnergyIntent, lvl, questions.length, studyTarget]);
 
   const { flashKey, flash } = useWordFlash();
   const mistakeCaptureRunRef = React.useRef(`level-exam-${Date.now().toString(36)}`);
@@ -978,6 +1032,7 @@ export default function LevelExam() {
                 {checking
                   ? triLang(lang, {
                     ru: 'Проверяем доступ',
+                    en: 'Checking access',
                     uk: 'Перевіряємо доступ',
                     es: 'Comprobando acceso',
                     'pt-BR': "Verificando acesso",
@@ -992,6 +1047,7 @@ export default function LevelExam() {
                 {checking
                   ? triLang(lang, {
                     ru: 'Секунду, сверяем текущий уровень.',
+                    en: 'One second, checking your current level.',
                     uk: 'Секунду, звіряємо поточний рівень.',
                     es: 'Un segundo, estamos comprobando tu nivel actual.',
                     'pt-BR': "Um segundo, estamos conferindo seu nível atual.",
@@ -1028,6 +1084,7 @@ export default function LevelExam() {
                       ? triLang(lang, {
                         ru: 'Получить Plus',
                         uk: 'Отримати Plus',
+                        en: 'Get Plus',
                         es: 'Obtener Plus',
                         'pt-BR': "Obter Plus",
                         vi: "Mở Plus",
@@ -1038,6 +1095,7 @@ export default function LevelExam() {
                       : triLang(lang, {
                         ru: 'К урокам',
                         uk: 'До уроків',
+                        en: 'To lessons',
                         es: 'Ir a lecciones',
                         'pt-BR': "Ir para as aulas",
                         vi: "Đến bài học",
@@ -1064,6 +1122,7 @@ export default function LevelExam() {
         cap: triLang(lang, {
           ru: 'ВОПРОСОВ',
           uk: 'ЗАПИТАНЬ',
+          en: 'QUESTIONS',
           es: 'PREGUNTAS',
           'pt-BR': "PERGUNTAS",
           vi: "CÂU HỎI",
@@ -1078,6 +1137,7 @@ export default function LevelExam() {
         cap: triLang(lang, {
           ru: 'ДЛЯ СДАЧИ',
           uk: 'ДЛЯ ЗДАЧІ',
+          en: 'TO PASS',
           es: 'PARA APROBAR',
           'pt-BR': "PARA PASSAR",
           vi: "ĐỂ ĐẠT",
@@ -1091,6 +1151,7 @@ export default function LevelExam() {
         value: triLang(lang, {
           ru: 'БЕЗ',
           uk: 'БЕЗ',
+          en: 'NO',
           es: 'SIN',
           'pt-BR': "SEM",
           vi: "KHÔNG",
@@ -1101,6 +1162,7 @@ export default function LevelExam() {
         cap: triLang(lang, {
           ru: 'ШТРАФА',
           uk: 'ШТРАФУ',
+          en: 'PENALTY',
           es: 'PENALIZAR',
           'pt-BR': "PENALIDADE",
           vi: "PHẠT",
@@ -1113,6 +1175,7 @@ export default function LevelExam() {
     const introBody = triLang(lang, {
       ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Чтобы перейти дальше — нужно ${PASS_PCT}% и выше. Не понравился результат? Пройди зачёт снова — без штрафа, лучший результат сохранится.`,
       uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше ${PASS_PCT}%. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
+      en: `${INTRO_Q_COUNT} questions on the key topics of level ${lvl}. You need at least ${PASS_PCT}% to move on. Not happy with the result? Retake the test — no penalty, your best score is kept.`,
       es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos un ${PASS_PCT} %. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
       'pt-BR': `${INTRO_Q_COUNT} perguntas sobre os temas principais do nível ${lvl}. Para avançar, você precisa acertar pelo menos ${PASS_PCT}%. Se quiser melhorar, pode refazer o teste sem penalidade: vamos guardar seu melhor resultado.`,
       vi: `${INTRO_Q_COUNT} câu hỏi về các chủ đề chính của cấp độ ${lvl}. Để đi tiếp, bạn cần đạt ít nhất ${PASS_PCT}%. Nếu muốn cải thiện, bạn có thể làm lại bài kiểm tra không bị phạt; kết quả tốt nhất sẽ được giữ lại.`,
@@ -1127,6 +1190,7 @@ export default function LevelExam() {
         ? triLang(lang, {
           ru: 'С Plus все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
           uk: 'З Plus усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
+          en: 'With Plus, all lessons of the current level are unlocked right away; the next level opens after you pass this test.',
           es: 'Con Plus todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
           'pt-BR': "Com Plus, todas as aulas do nível atual ficam abertas de uma vez; o próximo nível será aberto depois que você passar neste teste.",
           vi: "Với Plus, tất cả bài học của cấp độ hiện tại được mở ngay; cấp độ tiếp theo sẽ mở sau khi bạn vượt qua bài kiểm tra này.",
@@ -1154,7 +1218,7 @@ export default function LevelExam() {
                 <Ionicons name="chevron-back" size={26} color={oliveExamChrome?.ivory ?? '#FFFFFF'} />
               </TapScale>
             </View>
-            <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+            <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
               <View
                 style={{
                   backgroundColor: oliveExamChrome?.raised ?? (isOliveTheme ? OLIVE_RICH.raised : LX.card),
@@ -1256,7 +1320,7 @@ export default function LevelExam() {
                     >
                       <Ionicons name="sparkles" size={20} color={LX.ink} />
                       <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
-                        {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', es: 'Empezar examen', 'pt-BR': "Começar teste", vi: "Bắt đầu bài kiểm tra", id: "Mulai ujian", tr: "Sınava başla", pl: "Rozpocznij test" })}
+                        {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', en: 'Start the test', es: 'Empezar examen', 'pt-BR': "Começar teste", vi: "Bắt đầu bài kiểm tra", id: "Mulai ujian", tr: "Sınava başla", pl: "Rozpocznij test" })}
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
@@ -1271,6 +1335,7 @@ export default function LevelExam() {
                   dataText={triLang(lang, {
                     ru: `Зачёт уровня ${lvl}: вступление`,
                     uk: `Залік рівня ${lvl}: вступ`,
+                    en: `Level ${lvl} test: intro`,
                     es: `Examen de nivel ${lvl}: intro`,
                     'pt-BR': `Teste de nível ${lvl}: introdução`,
                     vi: `Bài kiểm tra trình độ ${lvl}: mở đầu`,
@@ -1305,7 +1370,7 @@ export default function LevelExam() {
             </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
           </View>
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
             {/* Итог */}
             <View style={{ alignItems: 'center', gap: 8, paddingVertical: 12 }}>
               {examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
@@ -1325,6 +1390,7 @@ export default function LevelExam() {
                     ? triLang(lang, {
                       ru: '🥇 Золото!',
                       uk: '🥇 Золото!',
+                      en: '🥇 Gold!',
                       es: '🥇 ¡Oro!',
                       'pt-BR': "🥇 Ouro!",
                       vi: "🥇 Vàng!",
@@ -1336,6 +1402,7 @@ export default function LevelExam() {
                       ? triLang(lang, {
                         ru: '🥈 Новая медаль!',
                         uk: '🥈 Нова медаль!',
+                        en: '🥈 New medal!',
                         es: '🥈 ¡Nueva medalla!',
                         'pt-BR': "🥈 Nova medalha!",
                         vi: "🥈 Huy chương mới!",
@@ -1346,6 +1413,7 @@ export default function LevelExam() {
                       : triLang(lang, {
                         ru: '🥉 Новая медаль!',
                         uk: '🥉 Нова медаль!',
+                        en: '🥉 New medal!',
                         es: '🥉 ¡Nueva medalla!',
                         'pt-BR': "🥉 Nova medalha!",
                         vi: "🥉 Huy chương mới!",
@@ -1360,6 +1428,7 @@ export default function LevelExam() {
                 {triLang(lang, {
                   ru: `${correctCount} из ${total} правильно`,
                   uk: `${correctCount} з ${total} правильно`,
+                  en: `${correctCount} of ${total} correct`,
                   es: `${correctCount} de ${total} acertadas`,
                   'pt-BR': `${correctCount} de ${total} corretas`,
                   vi: `${correctCount} / ${total} câu đúng`,
@@ -1372,6 +1441,7 @@ export default function LevelExam() {
                 {triLang(lang, {
                   ru: `Попытка №${examAttemptNumber}`,
                   uk: `Спроба №${examAttemptNumber}`,
+                  en: `Attempt #${examAttemptNumber}`,
                   es: `Intento n.º ${examAttemptNumber}`,
                   'pt-BR': `Tentativa nº ${examAttemptNumber}`,
                   vi: `Lần thứ ${examAttemptNumber}`,
@@ -1410,6 +1480,7 @@ export default function LevelExam() {
                 ? triLang(lang, {
                   ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по слабым местам.`,
                   uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за слабкими місцями.`,
+                  en: `Below ${PASS_PCT}% the test doesn't count as passed — go back to "Theory", "Vocabulary" and "Verb forms" for your weak spots.`,
                   es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
                   'pt-BR': `Abaixo de ${PASS_PCT}%, o teste não conta como aprovado — volte a "Teoria", "Vocabulário" e "Formas verbais" nos temas em que errou.`,
                   vi: `Dưới ${PASS_PCT}% thì chưa đạt: hãy quay lại "Lý thuyết", "Từ vựng" và "Dạng động từ" ở các chủ đề bị sai.`,
@@ -1421,6 +1492,7 @@ export default function LevelExam() {
                   ? triLang(lang, {
                     ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
                     uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
+                    en: 'Great on the level topics — reinforce your weaker lessons to keep it up.',
                     es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
                     'pt-BR': "Muito bem nos temas do nível: reforce as aulas mais fracas para manter o ritmo.",
                     vi: "Bạn làm rất tốt ở các chủ đề của cấp độ này: hãy củng cố các bài còn yếu để giữ nhịp.",
@@ -1431,6 +1503,7 @@ export default function LevelExam() {
                   : triLang(lang, {
                     ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
                     uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
+                    en: `Test passed (${PASS_PCT}%+) — if you like, aim for ${90}% to earn gold.`,
                     es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
                     'pt-BR': `Teste aprovado (${PASS_PCT}%+); se quiser, mire em ${90}% para ganhar ouro.`,
                     vi: `Đã đạt (${PASS_PCT}%+); nếu muốn, hãy nhắm tới ${90}% để lấy vàng.`,
@@ -1447,6 +1520,7 @@ export default function LevelExam() {
                   {triLang(lang, {
                     ru: 'Что разобрать:',
                     uk: 'Що розібрати:',
+                    en: 'What to review:',
                     es: 'Qué repasar:',
                     'pt-BR': "Erros:",
                     vi: "Lỗi sai:",
@@ -1477,6 +1551,7 @@ export default function LevelExam() {
                       {triLang(lang, {
                         ru: item.q.topic ?? '',
                         uk: item.q.topicUK ?? '',
+                        en: levelTopicEn(item.q),
                         es: item.q.topicES ?? '',
                         'pt-BR': levelTopicPlanned(item.q, 'pt-BR'),
                         vi: levelTopicPlanned(item.q, 'vi'),
@@ -1516,7 +1591,7 @@ export default function LevelExam() {
                 >
                   {isGoldTheme && <GoldBevel radius={14} intensity="quiet" />}
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
-                    {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': "Tentar de novo", vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Spróbuj ponownie" })}
+                    {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': "Tentar de novo", vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Spróbuj ponownie" })}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -1544,6 +1619,7 @@ export default function LevelExam() {
                 {triLang(lang, {
                   ru: 'К урокам',
                   uk: 'До уроків',
+                  en: 'Back to lessons',
                   es: 'Volver a las lecciones',
                   'pt-BR': "Voltar às aulas",
                   vi: "Quay lại bài học",
@@ -1561,6 +1637,7 @@ export default function LevelExam() {
                 dataText={triLang(lang, {
                   ru: `Зачёт ${lvl}: результат ${pct}%`,
                   uk: `Залік ${lvl}: результат ${pct}%`,
+                  en: `${lvl} test: score ${pct}%`,
                   es: `Examen ${lvl}: resultado ${pct}%`,
                   'pt-BR': `Teste ${lvl}: resultado ${pct}%`,
                   vi: `Bài kiểm tra ${lvl}: kết quả ${pct}%`,
@@ -1629,12 +1706,13 @@ export default function LevelExam() {
           </Text>
         </View>
 
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
           {/* Топик */}
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
             {triLang(lang, {
               ru: q.topic,
               uk: q.topicUK,
+              en: levelTopicEn(q),
               es: q.topicES,
               'pt-BR': levelTopicPlanned(q, 'pt-BR'),
               vi: levelTopicPlanned(q, 'vi'),
@@ -1644,6 +1722,7 @@ export default function LevelExam() {
             })} · {triLang(lang, {
               ru: 'Урок',
               uk: 'Урок',
+              en: 'Lesson',
               es: 'Lección',
               'pt-BR': "Aula",
               vi: "Bài học",
@@ -1718,6 +1797,7 @@ export default function LevelExam() {
                   ? triLang(lang, {
                     ru: 'Следующий вопрос →',
                     uk: 'Наступне питання →',
+                    en: 'Next question →',
                     es: 'Siguiente pregunta →',
                     'pt-BR': "Próximo →",
                     vi: "Tiếp theo →",
@@ -1728,6 +1808,7 @@ export default function LevelExam() {
                   : triLang(lang, {
                     ru: 'Завершить',
                     uk: 'Завершити',
+                    en: 'Finish',
                     es: 'Terminar',
                     'pt-BR': "Finalizar",
                     vi: "Hoàn thành",
@@ -1753,6 +1834,7 @@ export default function LevelExam() {
         title={triLang(lang, {
           ru: 'Выйти?',
           uk: 'Вийти?',
+          en: 'Leave?',
           es: '¿Salir del examen?',
           'pt-BR': "Sair do teste?",
           vi: "Thoát bài kiểm tra?",
@@ -1763,6 +1845,7 @@ export default function LevelExam() {
         message={triLang(lang, {
           ru: 'Зачёт начнётся заново',
           uk: 'Залік почнеться заново',
+          en: 'Your progress on this test will be lost.',
           es: 'El examen empezará de nuevo.',
           'pt-BR': "O progresso deste teste será perdido.",
           vi: "Tiến trình bài kiểm tra sẽ bị mất.",
@@ -1773,6 +1856,7 @@ export default function LevelExam() {
         cancelLabel={triLang(lang, {
           ru: 'Отмена',
           uk: 'Скасувати',
+          en: 'Cancel',
           es: 'Cancelar',
           'pt-BR': "Cancelar",
           vi: "Hủy",
@@ -1783,6 +1867,7 @@ export default function LevelExam() {
         confirmLabel={triLang(lang, {
           ru: 'Выйти',
           uk: 'Вийти',
+          en: 'Leave',
           es: 'Salir',
           'pt-BR': "Sair",
           vi: "Thoát",

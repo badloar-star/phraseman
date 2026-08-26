@@ -1,4 +1,6 @@
 import { sanitizeVoiceFeedbackRating, voiceFeedbackDocId } from './max_voice_feedback';
+import fs from 'node:fs';
+import path from 'node:path';
 
 describe('sanitizeVoiceFeedbackRating', () => {
   it('accepts 1-5', () => {
@@ -20,6 +22,16 @@ describe('sanitizeVoiceFeedbackRating', () => {
     expect(sanitizeVoiceFeedbackRating(null)).toBe(0);
     expect(sanitizeVoiceFeedbackRating(undefined)).toBe(0);
     expect(sanitizeVoiceFeedbackRating(NaN)).toBe(0);
+  });
+});
+
+describe('MAX voice feedback callable boundaries', () => {
+  const source = fs.readFileSync(path.join(__dirname, 'max_voice_feedback.ts'), 'utf8');
+
+  it('keeps user submit on global App Check and admin list on the admin-specific flag', () => {
+    expect(source).toContain('enforceAppCheck: ENFORCE_APP_CHECK,');
+    expect(source).toContain('enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,');
+    expect(source).toContain("import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_ADMIN } from './callable_options';");
   });
 });
 

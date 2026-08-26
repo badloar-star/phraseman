@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phraseman — витрина аватаров</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #05080d;
+        --surface: #111722;
+        --surface-2: #171e2a;
+        --line: #283242;
+        --text: #f7f8fb;
+        --muted: #9ca6b6;
+        --lime: #baff2c;
+        --dark-text: #07110a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: var(--bg);
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(
+            circle at 12% -10%,
+            rgba(82, 214, 199, 0.14),
+            transparent 32rem
+          ),
+          radial-gradient(
+            circle at 92% 4%,
+            rgba(186, 255, 44, 0.08),
+            transparent 28rem
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      button {
+        font: inherit;
+      }
+      .page {
+        width: min(1460px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 56px 0 90px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 28px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+      .eyebrow {
+        color: #53d6c7;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      h1 {
+        max-width: 900px;
+        margin: 10px 0 12px;
+        font-size: clamp(34px, 5.2vw, 76px);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+      }
+      .lead {
+        max-width: 850px;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(16px, 2vw, 22px);
+        line-height: 1.55;
+      }
+      .total {
+        min-width: 152px;
+        text-align: right;
+      }
+      .total strong {
+        display: block;
+        color: #53d6c7;
+        font-size: clamp(46px, 6vw, 78px);
+        line-height: 0.9;
+      }
+      .total span {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 800;
+      }
+      .filters {
+        position: sticky;
+        top: 12px;
+        z-index: 20;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        padding: 14px;
+        margin-bottom: 34px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: rgba(9, 13, 20, 0.92);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(18px);
+      }
+      .filter-label {
+        padding: 0 10px;
+        color: var(--muted);
+        font-weight: 900;
+      }
+      .filter {
+        min-height: 48px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 17px;
+        background: transparent;
+        color: #dce2eb;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 800;
+        transition:
+          background-color 0.18s ease,
+          border-color 0.18s ease,
+          color 0.18s ease;
+      }
+      .filter small {
+        margin-left: 7px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .filter:hover {
+        border-color: #465368;
+        background: #151c27;
+      }
+      .filter[aria-pressed="true"] {
+        background: var(--lime);
+        color: var(--dark-text);
+      }
+      .filter[aria-pressed="true"] small {
+        color: #33510a;
+      }
+      .result-count {
+        margin-left: auto;
+        padding: 0 12px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 800;
+      }
+      .tier {
+        --accent: #53d6c7;
+        margin-top: 54px;
+        scroll-margin-top: 110px;
+      }
+      .tier-head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+      .tier-kicker {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+      .tier h2 {
+        margin: 7px 0 6px;
+        font-size: clamp(28px, 3.5vw, 48px);
+        letter-spacing: -0.035em;
+      }
+      .tier-note {
+        max-width: 790px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.5;
+      }
+      .tier-price {
+        text-align: right;
+        color: var(--muted);
+      }
+      .tier-price strong {
+        display: block;
+        color: var(--accent);
+        font-size: 44px;
+        line-height: 0.92;
+      }
+      .tier-price span {
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .tier-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px;
+      }
+      .avatar-card {
+        position: relative;
+        overflow: hidden;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: 34px;
+        background: linear-gradient(
+          145deg,
+          rgba(25, 32, 44, 0.98),
+          rgba(14, 19, 28, 0.98)
+        );
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
+      }
+      .tier[data-price="300"] .avatar-card,
+      .tier[data-price="500"] .avatar-card,
+      .tier[data-price="1000"] .avatar-card {
+        border-color: color-mix(in srgb, var(--accent) 58%, #263142);
+        box-shadow: 0 18px 60px
+          color-mix(in srgb, var(--accent) 12%, transparent);
+      }
+      .tier[data-price="3000"] {
+        margin-top: 76px;
+        padding: 28px;
+        border: 1px solid rgba(246, 213, 137, 0.32);
+        border-radius: 42px;
+        background: #080a0f;
+        box-shadow:
+          0 0 0 5px #030407,
+          0 0 0 6px rgba(246, 213, 137, 0.16),
+          0 34px 100px rgba(0, 0, 0, 0.52);
+      }
+      .tier[data-price="3000"] .tier-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .tier[data-price="3000"] .avatar-card {
+        border-color: rgba(246, 213, 137, 0.72);
+        background: #0c1018;
+        box-shadow:
+          inset 0 0 0 4px #07090e,
+          inset 0 0 0 5px rgba(246, 213, 137, 0.2),
+          0 24px 80px rgba(246, 213, 137, 0.1);
+      }
+      .tier[data-price="3000"] .avatar-card::before,
+      .tier[data-price="3000"] .avatar-card::after {
+        position: absolute;
+        z-index: 1;
+        width: 42px;
+        height: 42px;
+        pointer-events: none;
+        content: "";
+      }
+      .tier[data-price="3000"] .avatar-card::before {
+        top: 11px;
+        left: 11px;
+        border-top: 2px solid var(--accent);
+        border-left: 2px solid var(--accent);
+      }
+      .tier[data-price="3000"] .avatar-card::after {
+        right: 11px;
+        bottom: 11px;
+        border-right: 2px solid var(--accent);
+        border-bottom: 2px solid var(--accent);
+      }
+      .tier[data-price="3000"] .pair {
+        width: min(100%, 1100px);
+        margin-inline: auto;
+      }
+      .card-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .identity {
+        min-width: 0;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .number {
+        flex: 0 0 58px;
+        min-height: 58px;
+        display: grid;
+        place-items: center;
+        border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--accent) 10%, transparent);
+        color: var(--accent);
+        font-size: 23px;
+        font-weight: 950;
+      }
+      .name {
+        min-width: 0;
+      }
+      .name h3 {
+        margin: 0;
+        font-size: 21px;
+        line-height: 1.18;
+      }
+      .name p {
+        overflow: hidden;
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .price-pill {
+        flex: 0 0 auto;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--dark-text);
+        font-size: 14px;
+        font-weight: 950;
+      }
+      .pair {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .variant {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+        border: 1px solid #2c3749;
+        border-radius: 25px;
+      }
+      .variant.dark {
+        background: linear-gradient(145deg, #e9e3d5, #d2caba);
+      }
+      .variant.light {
+        background: linear-gradient(145deg, #172235, #0c1420);
+      }
+      .variant img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 7%;
+        object-fit: contain;
+      }
+      .variant span {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        padding: 7px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 10px;
+        background: rgba(11, 15, 22, 0.78);
+        color: white;
+        font-size: 11px;
+        font-weight: 950;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+      .loading,
+      .error,
+      .empty {
+        padding: 70px 24px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        color: var(--muted);
+        text-align: center;
+      }
+      .error {
+        color: #ff9cae;
+      }
+      @media (max-width: 900px) {
+        .page {
+          width: min(100% - 20px, 700px);
+          padding-top: 34px;
+        }
+        .hero,
+        .tier-head {
+          grid-template-columns: 1fr;
+        }
+        .total,
+        .tier-price {
+          text-align: left;
+        }
+        .total {
+          display: flex;
+          gap: 12px;
+          align-items: baseline;
+        }
+        .tier-grid {
+          grid-template-columns: 1fr;
+        }
+        .result-count {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+      @media (max-width: 540px) {
+        .tier[data-price="3000"] {
+          padding: 10px;
+          border-radius: 30px;
+        }
+        .avatar-card {
+          padding: 16px;
+          border-radius: 26px;
+        }
+        .card-top {
+          align-items: flex-start;
+        }
+        .number {
+          flex-basis: 48px;
+          min-height: 48px;
+          border-radius: 15px;
+          font-size: 18px;
+        }
+        .name h3 {
+          font-size: 17px;
+        }
+        .price-pill {
+          min-height: 38px;
+          padding: 0 11px;
+        }
+        .pair {
+          gap: 8px;
+        }
+        .variant {
+          border-radius: 18px;
+        }
+        .variant span {
+          top: 8px;
+          left: 8px;
+          padding: 5px 7px;
+          font-size: 9px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">Phraseman · Avatar Collection</div>
+          <h1>64 пары аватаров</h1>
+          <p class="lead">
+            Тёмная и светлая версии — самостоятельные генерации. Коллекция
+            отсортирована по цене: каждый следующий уровень заметнее, сложнее и
+            ценнее предыдущего.
+          </p>
+        </div>
+        <div class="total">
+          <strong>64</strong><span>пары · 128 изображений</span>
+        </div>
+      </header>
+
+      <nav class="filters" aria-label="Фильтр по цене">
+        <span class="filter-label">Цена</span>
+        <button
+          class="filter"
+          type="button"
+          data-price="all"
+          aria-pressed="true"
+        >
+          Все <small>64</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="50"
+          aria-pressed="false"
+        >
+          50 <small>10</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="70"
+          aria-pressed="false"
+        >
+          70 <small>10</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="100"
+          aria-pressed="false"
+        >
+          100 <small>10</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="150"
+          aria-pressed="false"
+        >
+          150 <small>10</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="300"
+          aria-pressed="false"
+        >
+          300 <small>10</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="500"
+          aria-pressed="false"
+        >
+          500 <small>10</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="1000"
+          aria-pressed="false"
+        >
+          1000 <small>3</small>
+        </button>
+        <button
+          class="filter"
+          type="button"
+          data-price="3000"
+          aria-pressed="false"
+        >
+          3000 <small>1</small>
+        </button>
+        <span class="result-count" id="resultCount">Показано: 64 пары</span>
+      </nav>
+
+      <div id="catalog" class="loading" aria-live="polite" aria-busy="true">
+        Загружаю коллекцию…
+      </div>
+    </main>
+
+    <script>
+      const ASSET_BASE = "https://phraseman-ea0b3.web.app/avatars";
+      const EXTRA_SHOWCASE_ENTRY = {
+        assetId: 126,
+        name: "imperial-astral-leopard",
+        label: "Императорский астральный барс",
+        price: 3000,
+        tier: "absolute",
+        collection: "showcase-only",
+      };
+      const tierMeta = {
+        50: {
+          name: "Стартовые",
+          note: "Тёплые, понятные и дружелюбные формы с аккуратными деталями.",
+          accent: "#53d6c7",
+        },
+        70: {
+          name: "Яркие",
+          note: "Больше характера, цвета и фактуры — заметнее в профиле.",
+          accent: "#60a5fa",
+        },
+        100: {
+          name: "Премиум",
+          note: "Динамичные силуэты, сложные материалы и контролируемое свечение.",
+          accent: "#a78bfa",
+        },
+        150: {
+          name: "Редкие",
+          note: "Необычные существа, выразительная пластика и коллекционная детализация.",
+          accent: "#f472b6",
+        },
+        300: {
+          name: "Легендарные",
+          note: "Знаковые силуэты, золото и встроенная драгоценная пластика.",
+          accent: "#f59e0b",
+        },
+        500: {
+          name: "Мифические",
+          note: "Платина, многослойное стекло и спектральная глубина.",
+          accent: "#22d3ee",
+        },
+        1000: {
+          name: "Вершинные",
+          note: "Первозданные сверхсущества: цельная анатомия, масса и встроенная энергия без радуги.",
+          accent: "#fde047",
+        },
+        3000: {
+          name: "Абсолют",
+          note: "Единственный Императорский астральный барс — благородный, красивый и заметно дороже каждого предыдущего уровня.",
+          accent: "#f6d589",
+        },
+      };
+      const prices = [50, 70, 100, 150, 300, 500, 1000, 3000];
+      const catalog = document.querySelector("#catalog");
+      const resultCount = document.querySelector("#resultCount");
+      const buttons = [...document.querySelectorAll(".filter")];
+      let entries = [];
+
+      const escapeHtml = (value) =>
+        String(value).replace(
+          /[&<>"']/g,
+          (char) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[char],
+        );
+      const slugify = (value) =>
+        value
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+      const pairWord = (count) => {
+        const mod100 = count % 100;
+        const mod10 = count % 10;
+        if (mod100 >= 11 && mod100 <= 14) return "пар";
+        if (mod10 === 1) return "пара";
+        if (mod10 >= 2 && mod10 <= 4) return "пары";
+        return "пар";
+      };
+
+      function parseShowcase(source) {
+        const pattern =
+          /\{ id: 'custom-gen-(\d+)', name: '([^']+)', labels: \{ ru: '([^']+)' \}, price: (\d+), tier: '([^']+)', collection: '([^']+)'/g;
+        return [...source.matchAll(pattern)]
+          .map((match) => {
+            const avatar = {
+              assetId: Number(match[1]),
+              name: match[2],
+              label: match[3],
+              price: Number(match[4]),
+              tier: match[5],
+              collection: match[6],
+            };
+            return avatar;
+          })
+          .filter((avatar) => avatar.collection === "showcase-v1");
+      }
+
+      function card(avatar) {
+        const displayNumber = avatar.assetId - 22;
+        const subject = escapeHtml(avatar.label);
+        const slug = escapeHtml(slugify(avatar.name));
+        const base = avatar.assetId === 126
+          ? "../admin/v2/avatars/custom-idea-126"
+          : `${ASSET_BASE}/custom-idea-${avatar.assetId}`;
+        return `<article class="avatar-card" aria-labelledby="avatar-${avatar.assetId}-title">
+        <div class="card-top">
+          <div class="identity">
+            <div class="number" aria-hidden="true">${displayNumber}</div>
+            <div class="name"><h3 id="avatar-${avatar.assetId}-title">${subject}</h3><p>${slug}</p></div>
+          </div>
+          <div class="price-pill" aria-label="Цена: ${avatar.price} жемчугов">${avatar.price} Ж</div>
+        </div>
+        <div class="pair">
+          <div class="variant dark"><img src="${base}-black.webp" width="512" height="512" loading="lazy" decoding="async" alt="${subject}, тёмная самостоятельная генерация"><span>Тёмная</span></div>
+          <div class="variant light"><img src="${base}-white.webp" width="512" height="512" loading="lazy" decoding="async" alt="${subject}, светлая самостоятельная генерация"><span>Светлая</span></div>
+        </div>
+      </article>`;
+      }
+
+      function tier(price, group) {
+        const meta = tierMeta[price];
+        return `<section class="tier" data-price="${price}" style="--accent:${meta.accent}" aria-labelledby="tier-${price}">
+        <div class="tier-head">
+          <div><div class="tier-kicker">Уровень ${prices.indexOf(price) + 1} из 8 · ${group.length} ${pairWord(group.length)}</div><h2 id="tier-${price}">${meta.name}</h2><p class="tier-note">${meta.note}</p></div>
+          <div class="tier-price"><strong>${price}</strong><span>жемчугов за аватар</span></div>
+        </div>
+        <div class="tier-grid">${group.map(card).join("")}</div>
+      </section>`;
+      }
+
+      function render(selected = "all") {
+        const visiblePrices = selected === "all" ? prices : [Number(selected)];
+        const visibleEntries = entries.filter((entry) =>
+          visiblePrices.includes(entry.price),
+        );
+        catalog.className = "";
+        catalog.innerHTML = visibleEntries.length
+          ? visiblePrices
+              .map((price) =>
+                tier(
+                  price,
+                  visibleEntries.filter((entry) => entry.price === price),
+                ),
+              )
+              .join("")
+          : '<div class="empty">Для выбранной цены аватаров нет.</div>';
+        catalog.setAttribute("aria-busy", "false");
+        resultCount.textContent = `Показано: ${visibleEntries.length} ${pairWord(visibleEntries.length)}`;
+        buttons.forEach((button) =>
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.price === String(selected)),
+          ),
+        );
+      }
+
+      buttons.forEach((button) =>
+        button.addEventListener("click", () => render(button.dataset.price)),
+      );
+
+      fetch("../constants/custom_avatars.ts")
+        .then((response) => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.text();
+        })
+        .then((source) => {
+          entries = [...parseShowcase(source), EXTRA_SHOWCASE_ENTRY].sort(
+            (left, right) => left.assetId - right.assetId,
+          );
+          if (entries.length !== 64)
+            throw new Error(`Ожидалось 64 пары, получено ${entries.length}`);
+          render("all");
+        })
+        .catch((error) => {
+          catalog.className = "error";
+          catalog.setAttribute("aria-busy", "false");
+          catalog.textContent = `Не удалось загрузить витрину: ${error.message}`;
+        });
+    </script>
+  </body>
+</html>

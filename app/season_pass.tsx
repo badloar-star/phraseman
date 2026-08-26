@@ -16,7 +16,6 @@ import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import RuneGlyph from '../components/RuneGlyph';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -62,6 +61,10 @@ import { commitShardCompositeOperation, getShardsBalance } from './shards_system
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
 import { getSeasonPassThemeBackground } from './season_pass_theme_backgrounds';
 import { seasonRewardGradient, seasonRewardOnGradientColor } from '../constants/seasonPassRewardGradients';
+
+// зачем (владелец, 25.08): тот же ассет-монета, что в шапке Главной/Арены/Лиги
+// (HomeRuneBalance) — одна валюта обязана выглядеть одинаково на каждом экране.
+const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 
 // зачем 2026-08-04 (владелец: «звёздочки должны быть под контейнером», «иконки
 // увеличить»; независимый аудит нашёл, что обе правки вместе не влезали в
@@ -650,12 +653,19 @@ export default function SeasonPassScreen() {
           {reached ? (
             <Ionicons name="checkmark" size={12} color={t.textMuted} />
           ) : (
-            <Text
-              testID={`season-pass-reward-threshold-${level}-${side}`}
-              style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', fontVariant: ['tabular-nums'] }} /* guard-ok: ЦЕНА подарка в рунах (число + глиф), а не подпись-расшифровка названия — владелец запросил её явно */
-            >
-              {starsToUnlock} <RuneGlyph size={11} color={t.textMuted} />
-            </Text>
+            <>
+              <Text
+                testID={`season-pass-reward-threshold-${level}-${side}`}
+                style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', fontVariant: ['tabular-nums'] }} /* guard-ok: ЦЕНА подарка в рунах (число + ассет), а не подпись-расшифровка названия — владелец запросил её явно */
+              >
+                {starsToUnlock}
+              </Text>
+              {/* зачем (владелец, 25.08): «иконку смени на ассет правильный» — тот же
+                  ассет-монета (RUNE_ASSET), что в Арене/Лиге/Главной через
+                  HomeRuneBalance, вместо текстового глифа RuneGlyph. Одна валюта —
+                  один и тот же ассет на каждом экране, где она показана. */}
+              <Image source={RUNE_ASSET} style={{ width: 12, height: 12 }} resizeMode="contain" accessible={false} />
+            </>
           )}
         </View>
       </View>
@@ -774,7 +784,7 @@ export default function SeasonPassScreen() {
         <TapScale
           onPress={() => safeRouterBack(router)}
           accessibilityLabel={triLang(lang, {
-            ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+            ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
             vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
           })}
           accessibilityRole="button"
@@ -789,7 +799,7 @@ export default function SeasonPassScreen() {
           activeOpacity={0.82}
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Подарки', uk: 'Подарунки', es: 'Regalos', 'pt-BR': 'Presentes',
+            ru: 'Подарки', uk: 'Подарунки', en: 'Gifts', es: 'Regalos', 'pt-BR': 'Presentes',
             vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediyeler', pl: 'Prezenty',
           })}
           onPress={() => { hapticTap(); router.push('/level_gifts_inventory' as any); }}
@@ -809,7 +819,7 @@ export default function SeasonPassScreen() {
           занимает строку целиком и читается как титул экрана. */}
       <Text style={{ color: t.textPrimary, fontSize: Math.max(24, f.h1), fontWeight: '900', letterSpacing: -0.3 }}>
         {triLang(lang, {
-          ru: 'Сезон 1', uk: 'Сезон 1', es: 'Temporada 1', 'pt-BR': 'Temporada 1',
+          ru: 'Сезон 1', uk: 'Сезон 1', en: 'Season 1', es: 'Temporada 1', 'pt-BR': 'Temporada 1',
           vi: 'Mùa 1', id: 'Musim 1', tr: 'Sezon 1', pl: 'Sezon 1',
         })}
       </Text>
@@ -824,6 +834,7 @@ export default function SeasonPassScreen() {
           {triLang(lang, {
             ru: `Уровень ${progress.level} из ${SEASON_PASS_LEVELS}`,
             uk: `Рівень ${progress.level} із ${SEASON_PASS_LEVELS}`,
+            en: `Level ${progress.level} of ${SEASON_PASS_LEVELS}`,
             es: `Nivel ${progress.level} de ${SEASON_PASS_LEVELS}`,
             'pt-BR': `Nível ${progress.level} de ${SEASON_PASS_LEVELS}`,
             vi: `Cấp ${progress.level}/${SEASON_PASS_LEVELS}`,
@@ -832,20 +843,22 @@ export default function SeasonPassScreen() {
             pl: `Poziom ${progress.level} z ${SEASON_PASS_LEVELS}`,
           })}
         </Text>
-        {/* зачем (владелец, 24.08): «в сезонном пропуске всё на руны вместо
-            звёздочек». Порог у каждого подарка уже показывал RuneGlyph, а шапка
-            всё ещё говорила эмодзи-звездой — один экран называл валюту двумя
-            разными знаками. Теперь везде один глиф руны.
-            Число оставлено отдельным Text с tabular-nums: глиф внутри той же
+        {/* зачем (владелец, 24.08 + 25.08): «в сезонном пропуске всё на руны
+            вместо звёздочек» — один экран называл валюту двумя разными знаками.
+            25.08: «иконку смени на ассет правильный» — текстовый глиф ᚠ заменён
+            на тот же ассет-монету, что рисуют Арена/Лига/Главная (RUNE_ASSET),
+            чтобы одна валюта выглядела одинаково на каждом экране.
+            Число оставлено отдельным Text с tabular-nums: ассет внутри той же
             строки сбил бы моноширинность цифр и счётчик «прыгал» бы при росте.
-            Глиф декоративен (accessibilityElementsHidden внутри RuneGlyph),
-            поэтому подпись висит на группе — иначе скринридер прочитал бы
-            голое число без единицы измерения. */}
+            Ассет декоративен (accessible={false}), поэтому подпись висит на
+            группе — иначе скринридер прочитал бы голое число без единицы
+            измерения. */}
         <View
           accessible
           accessibilityLabel={triLang(lang, {
             ru: `${progress.totalStars} рун`,
             uk: `${progress.totalStars} рун`,
+            en: `${progress.totalStars} runes`,
             es: `${progress.totalStars} runas`,
             'pt-BR': `${progress.totalStars} runas`,
             vi: `${progress.totalStars} rune`,
@@ -858,7 +871,7 @@ export default function SeasonPassScreen() {
           <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
             {progress.totalStars}
           </Text>
-          <RuneGlyph size={15} color={t.gold} />
+          <Image source={RUNE_ASSET} style={{ width: 15, height: 15 }} resizeMode="contain" accessible={false} />
         </View>
       </View>
       {/* зачем 2026-08-03 (владелец: «смени текст "бесплатно и пропуск" на
@@ -867,7 +880,7 @@ export default function SeasonPassScreen() {
           Названия теперь описывают два тира одной покупки. */}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 6, marginTop: 18, marginBottom: 4 }}>
         <Text /* guard-ok: заголовок КОЛОНКИ дорожки (шапка таблицы над рядами наград), не подпись под названием экрана */ style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
-          {triLang(lang, { ru: 'ПРОПУСК', uk: 'ПЕРЕПУСТКА', es: 'PASE', 'pt-BR': 'PASSE', vi: 'VÉ MÙA', id: 'PASS', tr: 'BİLET', pl: 'PRZEPUSTKA' })}
+          {triLang(lang, { ru: 'ПРОПУСК', uk: 'ПЕРЕПУСТКА', en: 'PASS', es: 'PASE', 'pt-BR': 'PASSE', vi: 'VÉ MÙA', id: 'PASS', tr: 'BİLET', pl: 'PRZEPUSTKA' })}
         </Text>
         {/* зачем 2026-08-04 (владелец: «просто плашка Plus золотая, она
             используется много где в приложении»): золотой ТЕКСТ «ПЛЮС ПРОПУСК»
@@ -904,7 +917,7 @@ export default function SeasonPassScreen() {
         accessible={false}
         style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: t.bgPrimary, opacity: seasonBackgroundScrimOpacity }}
       />
-      <FlatList
+      <FlatList decelerationRate="fast"
         data={SEASON_TRACK as SeasonTrackNode[]}
         keyExtractor={(n) => String(n.level)}
         renderItem={renderItem}
@@ -953,7 +966,7 @@ export default function SeasonPassScreen() {
             pearlIcon={pearlIcon}
             price={SEASON_PASS_PRICE_PEARLS}
             label={triLang(lang, {
-              ru: 'Открыть пропуск', uk: 'Відкрити перепустку', es: 'Abrir pase', 'pt-BR': 'Abrir passe',
+              ru: 'Открыть пропуск', uk: 'Відкрити перепустку', en: 'Unlock pass', es: 'Abrir pase', 'pt-BR': 'Abrir passe',
               vi: 'Mở vé mùa', id: 'Buka pass', tr: 'Bileti aç', pl: 'Otwórz przepustkę',
             })}
           />
@@ -975,7 +988,7 @@ export default function SeasonPassScreen() {
                 платное бесплатному, хотя бесплатной линии больше нет. */}
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '900', textAlign: 'center' }}>
               {triLang(lang, {
-                ru: 'Купить пропуск сезона?', uk: 'Купити перепустку сезону?', es: '¿Comprar el pase de temporada?',
+                ru: 'Купить пропуск сезона?', uk: 'Купити перепустку сезону?', en: 'Buy the season pass?', es: '¿Comprar el pase de temporada?',
                 'pt-BR': 'Comprar o passe da temporada?', vi: 'Mua vé mùa?', id: 'Beli pass musim?',
                 tr: 'Sezon bileti alınsın mı?', pl: 'Kupić przepustkę sezonu?',
               })}
@@ -987,13 +1000,13 @@ export default function SeasonPassScreen() {
               <TouchableOpacity activeOpacity={0.85} accessibilityRole="button" onPress={() => { hapticTap(); setBuyConfirmVisible(false); }}
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}>
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity testID="season-pass-buy-confirm" activeOpacity={0.85} accessibilityRole="button" onPress={onBuyConfirm}
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}>
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Купить', uk: 'Купити', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Beli', tr: 'Satın al', pl: 'Kup' })}
+                  {triLang(lang, { ru: 'Купить', uk: 'Купити', en: 'Buy', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Beli', tr: 'Satın al', pl: 'Kup' })}
                 </Text>
               </TouchableOpacity>
             </View>

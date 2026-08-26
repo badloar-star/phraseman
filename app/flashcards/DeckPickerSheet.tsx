@@ -98,13 +98,13 @@ type Props = {
  */
 const SPEAKING_SHEET_HEADING = (lang: Lang) =>
   triLang(lang, {
-    ru: 'Что говорим?', uk: 'Що говоримо?', es: '¿Qué decimos?',
+    ru: 'Что говорим?', uk: 'Що говоримо?', en: 'What do we say?', es: '¿Qué decimos?',
     'pt-BR': 'O que vamos falar?', vi: 'Nói gì?', id: 'Bicara apa?',
     tr: 'Ne söylüyoruz?', pl: 'Co mówimy?',
   });
 const SPEAKING_SHEET_START = (lang: Lang) =>
   triLang(lang, {
-    ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar',
+    ru: 'Начать говорить', uk: 'Почати говорити', en: 'Start speaking', es: 'Empezar a hablar',
     'pt-BR': 'Começar a falar', vi: 'Bắt đầu nói', id: 'Mulai bicara',
     tr: 'Konuşmaya başla', pl: 'Zacznij mówić',
   });
@@ -355,7 +355,7 @@ export default function DeckPickerSheet({
 
   const sheetHeading = mode === 'listening'
     ? triLang(lang, {
-        ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?',
+        ru: 'Что слушаем?', uk: 'Що слухаємо?', en: 'What are we listening to?', es: '¿Qué escuchamos?',
         'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
         tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
       })
@@ -365,6 +365,7 @@ export default function DeckPickerSheet({
       ? triLang(lang, {
           ru: 'Что в блице?',
           uk: 'Що в бліці?',
+          en: 'What’s in the blitz?',
           es: '¿Qué entra en el blitz?',
           'pt-BR': 'O que entra no blitz?',
           vi: 'Blitz gồm những gì?',
@@ -375,6 +376,7 @@ export default function DeckPickerSheet({
       : triLang(lang, {
           ru: 'Что тренируем?',
           uk: 'Що тренуємо?',
+          en: 'What are we practicing?',
           es: '¿Qué entrenamos?',
           'pt-BR': 'O que vamos treinar?',
           vi: 'Luyện gì?',
@@ -385,7 +387,7 @@ export default function DeckPickerSheet({
 
   const startLabel = mode === 'listening'
     ? triLang(lang, {
-        ru: 'Начать слушание', uk: 'Почати слухання', es: 'Empezar a escuchar',
+        ru: 'Начать слушание', uk: 'Почати слухання', en: 'Start listening', es: 'Empezar a escuchar',
         'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
         tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
       })
@@ -393,18 +395,18 @@ export default function DeckPickerSheet({
       ? SPEAKING_SHEET_START(lang)
     : mode === 'blitz'
       ? triLang(lang, {
-          ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!',
+          ru: 'В блиц!', uk: 'У бліц!', en: 'To the blitz!', es: '¡Al blitz!',
           'pt-BR': 'Ao blitz!', vi: 'Vào blitz!', id: 'Mulai blitz!',
           tr: 'Blitz’e!', pl: 'Do blitza!',
         })
       : triLang(lang, {
-          ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Empezar',
+          ru: 'Начать тренировку', uk: 'Почати тренування', en: 'Start practice', es: 'Empezar',
           'pt-BR': 'Começar o treino', vi: 'Bắt đầu luyện tập',
           id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening',
         });
 
   const closeLabel = triLang(lang, {
-    ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar',
+    ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
     vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
   });
 
@@ -413,6 +415,7 @@ export default function DeckPickerSheet({
     : triLang(lang, {
         ru: 'Отметьте один или несколько наборов',
         uk: 'Позначте один або кілька наборів',
+        en: 'Select one or more packs',
         es: 'Marca uno o varios packs',
         'pt-BR': 'Marque um ou mais pacotes',
         vi: 'Chọn một hoặc nhiều bộ thẻ',
@@ -424,6 +427,7 @@ export default function DeckPickerSheet({
   const cardsInSessionLabel = triLang(lang, {
     ru: 'Карточек в сессии',
     uk: 'Карток у сесії',
+    en: 'Cards per session',
     es: 'Tarjetas por sesión',
     'pt-BR': 'Cartões por sessão',
     vi: 'Số thẻ mỗi phiên',
@@ -457,7 +461,7 @@ export default function DeckPickerSheet({
           {summaryLabel}
         </Text>
 
-        <ScrollView style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
           <View style={{ gap: 8 }}>
             {decks.map((d, i) => (
               <DeckRow
@@ -601,7 +605,7 @@ export default function DeckPickerSheet({
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
               {mode === 'listening'
                 ? triLang(lang, {
-                    ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?',
+                    ru: 'Что слушаем?', uk: 'Що слухаємо?', en: 'What are we listening to?', es: '¿Qué escuchamos?',
                     'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
                     tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
                   })
@@ -611,6 +615,7 @@ export default function DeckPickerSheet({
                   ? triLang(lang, {
                       ru: 'Что в блице?',
                       uk: 'Що в бліці?',
+                      en: 'What’s in the blitz?',
                       es: '¿Qué entra en el blitz?',
                       'pt-BR': 'O que entra no blitz?',
                       vi: 'Blitz gồm những gì?',
@@ -621,6 +626,7 @@ export default function DeckPickerSheet({
                   : triLang(lang, {
                       ru: 'Что тренируем?',
                       uk: 'Що тренуємо?',
+                      en: 'What are we practicing?',
                       es: '¿Qué entrenamos?',
                       'pt-BR': 'O que vamos treinar?',
                       vi: 'Luyện gì?',
@@ -665,6 +671,7 @@ export default function DeckPickerSheet({
               : triLang(lang, {
                   ru: 'Отметьте один или несколько наборов',
                   uk: 'Позначте один або кілька наборів',
+                  en: 'Select one or more packs',
                   es: 'Marca uno o varios packs',
                   'pt-BR': 'Marque um ou mais pacotes',
                   vi: 'Chọn một hoặc nhiều bộ thẻ',
@@ -675,7 +682,7 @@ export default function DeckPickerSheet({
           </Text>
 
           {/* Наборы — чекбоксы (мультивыбор) */}
-          <ScrollView style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
             <View style={{ gap: 8 }}>
               {decks.map((d, i) => (
                 <DeckRow
@@ -709,6 +716,7 @@ export default function DeckPickerSheet({
               {triLang(lang, {
                 ru: 'Карточек в сессии',
                 uk: 'Карток у сесії',
+                en: 'Cards per session',
                 es: 'Tarjetas por sesión',
                 'pt-BR': 'Cartões por sessão',
                 vi: 'Số thẻ mỗi phiên',
@@ -780,7 +788,7 @@ export default function DeckPickerSheet({
             >
               {mode === 'listening'
                 ? triLang(lang, {
-                    ru: 'Начать слушание', uk: 'Почати слухання', es: 'Empezar a escuchar',
+                    ru: 'Начать слушание', uk: 'Почати слухання', en: 'Start listening', es: 'Empezar a escuchar',
                     'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
                     tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
                   })
@@ -788,12 +796,12 @@ export default function DeckPickerSheet({
                   ? SPEAKING_SHEET_START(lang)
                 : mode === 'blitz'
                   ? triLang(lang, {
-                      ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!',
+                      ru: 'В блиц!', uk: 'У бліц!', en: 'To the blitz!', es: '¡Al blitz!',
                       'pt-BR': 'Ao blitz!', vi: 'Vào blitz!', id: 'Mulai blitz!',
                       tr: 'Blitz’e!', pl: 'Do blitza!',
                     })
                   : triLang(lang, {
-                      ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Empezar',
+                      ru: 'Начать тренировку', uk: 'Почати тренування', en: 'Start practice', es: 'Empezar',
                       'pt-BR': 'Começar o treino', vi: 'Bắt đầu luyện tập',
                       id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening',
                     })}

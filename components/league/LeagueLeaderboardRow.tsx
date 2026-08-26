@@ -49,14 +49,14 @@ function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, ren
   // зачем: скринридер обязан назвать ту же валюту, что видит зрячий — раньше
   // читал «12 XP» при иконке руны. runeAmount склоняет слово («1 руна», а не
   // «1 рун») общей таблицей форм, своей здесь не заводим.
-  const label = `${place}. ${displayName}, ${runeAmount(lang, member.points)}${member.isMe ? `, ${triLang(lang, { ru: 'это вы', uk: 'це ви', es: 'eres tú', 'pt-BR': 'é você', vi: 'là bạn', id: 'ini kamu', tr: 'bu sensin', pl: 'to ty' })}` : ''}`;
+  const label = `${place}. ${displayName}, ${runeAmount(lang, member.points)}${member.isMe ? `, ${triLang(lang, { ru: 'это вы', uk: 'це ви', en: 'this is you', es: 'eres tú', 'pt-BR': 'é você', vi: 'là bạn', id: 'ini kamu', tr: 'bu sensin', pl: 'to ty' })}` : ''}`;
 
   return (
     <Reanimated.View entering={reduceMotion || index >= 8 ? undefined : FadeInUp.delay(index * 50).duration(240)}>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={label}
-        accessibilityHint={triLang(lang, { ru: 'Открывает профиль участника', uk: 'Відкриває профіль учасника', es: 'Abre el perfil', 'pt-BR': 'Abre o perfil', vi: 'Mở hồ sơ thành viên', id: 'Membuka profil anggota', tr: 'Üye profilini açar', pl: 'Otwiera profil uczestnika' })}
+        accessibilityHint={triLang(lang, { ru: 'Открывает профиль участника', uk: 'Відкриває профіль учасника', en: 'Opens the member profile', es: 'Abre el perfil', 'pt-BR': 'Abre o perfil', vi: 'Mở hồ sơ thành viên', id: 'Membuka profil anggota', tr: 'Üye profilini açar', pl: 'Otwiera profil uczestnika' })}
         onPress={() => onOpenProfile(member)}
         style={({ pressed }) => [styles.row, { backgroundColor: member.isMe ? palette.elevated : palette.surface, opacity: pressed ? 0.82 : 1 }]}
         testID={`league-leaderboard-row-${member.uid ?? member.botId ?? index}`}
@@ -69,7 +69,7 @@ function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, ren
         <View style={styles.body}>
           <View style={styles.nameRow}>
             <View style={styles.nameWrap}>{renderName(member)}</View>
-            {member.isMe ? <View style={[styles.mePill, { backgroundColor: palette.accent }]}><Text style={[styles.meText, { color: palette.accentText }]}>{triLang(lang, { ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}</Text></View> : null}
+            {member.isMe ? <View style={[styles.mePill, { backgroundColor: palette.accent }]}><Text style={[styles.meText, { color: palette.accentText }]}>{triLang(lang, { ru: 'Вы', uk: 'Ви', en: 'You', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}</Text></View> : null}
             {hasCrown ? <Ionicons name="trophy" size={15} color={palette.warning} /> : null}
           </View>
           <View style={styles.metaRow}>

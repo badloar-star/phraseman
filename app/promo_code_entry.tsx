@@ -23,6 +23,7 @@ import { redeemPromoCode, normalizePromoCodeInput, type PromoRedeemStatus } from
 import { safeRouterBack } from './navigation_back';
 import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
+import { soundDirector } from '../modules/audio/sound_director';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
 import TonalSurface from '../components/TonalSurface';
@@ -228,6 +229,10 @@ export default function PromoCodeEntryScreen() {
       if (!isCurrentAccountGeneration(generation, stableId)) return;
       setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
       if (res.status === 'redeemed') {
+        // зачем: код принят сервером ПРЯМО СЕЙЧАС — звук играет сразу за ответом,
+        // до записи VIP-снапшота и до модалки празднования (та звучит отдельно,
+        // сама по себе, celebration-набором). Это подтверждение «код сработал».
+        soundDirector.request('pm.promo.code_applied', { scope: 'paywall' });
         const marker = await persistRedeemedPromoAccess({
           code: normalizePromoCodeInput(rawCode),
           rewardKind: res.rewardKind,
@@ -243,6 +248,11 @@ export default function PromoCodeEntryScreen() {
         emitAppEvent('vip_activated');
         emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
         setCelebrationVisible(true);
+      } else if (res.status !== 'error') {
+        // зачем: «код не подошёл» (не найден/просрочен/лимит/уже использован/неверный
+        // формат) — мягкий тон, НЕ обвиняющий. Именно поэтому исключаем 'error':
+        // сетевой/неизвестный сбой — это не вина пользователя и не «код не подошёл».
+        soundDirector.request('pm.promo.code_rejected', { scope: 'paywall' });
       }
     } finally {
       setBusy(false);
@@ -282,7 +292,7 @@ export default function PromoCodeEntryScreen() {
           onClose={() => safeRouterBack(router, closeFallback as any)}
         />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34 }}

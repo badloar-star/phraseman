@@ -8,6 +8,7 @@ import React, {
 import {
   View,
   Text,
+  Pressable,
   TouchableOpacity,
   Animated,
   InteractionManager,
@@ -105,6 +106,8 @@ import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
 import ThemedChoiceModal from "../../components/ThemedChoiceModal";
 import LearningV2SessionOutcomeSheet from "../../components/LearningV2SessionOutcomeSheet";
+import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
+import { useLearningV2UnlockedLessonWordsV1 } from "../../hooks/use_learning_v2_unlocked_lesson_words_v1";
 import EnergyBar from "../../components/EnergyBar";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
@@ -1013,6 +1016,7 @@ const LessonCard = React.memo(function LessonCard({
               >
                 {triLang(lang, {
                   ru: `УРОК ${num}`,
+                  en: `LESSON ${num}`,
                   uk: `УРОК ${num}`,
                   es: `LECCIÓN ${num}`,
                   "pt-BR": `LIÇÃO ${num}`,
@@ -1030,6 +1034,7 @@ const LessonCard = React.memo(function LessonCard({
                     themeMode={_themeMode}
                     label={triLang(lang, {
                       ru: "Plus",
+                      en: "Plus",
                       uk: "Plus",
                       es: "Plus",
                       "pt-BR": "Plus",
@@ -1147,6 +1152,7 @@ function learningV2SessionOutcomeTitle(
   if (kind === "understand") {
     return triLang(lang, {
       ru: "Что вы поймёте",
+      en: "What you'll understand",
       uk: "Що ви зрозумієте",
       es: "Qué entenderás",
       "pt-BR": "O que você vai entender",
@@ -1159,6 +1165,7 @@ function learningV2SessionOutcomeTitle(
   if (kind === "learn") {
     return triLang(lang, {
       ru: "Чему научитесь",
+      en: "What you'll learn",
       uk: "Чого ви навчитеся",
       es: "Qué aprenderás",
       "pt-BR": "O que você vai aprender",
@@ -1170,6 +1177,7 @@ function learningV2SessionOutcomeTitle(
   }
   return triLang(lang, {
     ru: "Что сможете делать",
+    en: "What you'll be able to do",
     uk: "Що ви зможете робити",
     es: "Qué podrás hacer",
     "pt-BR": "O que você conseguirá fazer",
@@ -1234,6 +1242,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
         >
           {triLang(lang, {
             ru: "ГЛАВА",
+            en: "CHAPTER",
             uk: "РОЗДІЛ",
             es: "CAPÍTULO",
             "pt-BR": "CAPÍTULO",
@@ -1260,6 +1269,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
     row.role === "final_exam"
       ? triLang(lang, {
           ru: "Итоговый экзамен",
+          en: "Final exam",
           uk: "Підсумковий іспит",
           es: "Examen final",
           "pt-BR": "Prova final",
@@ -1271,6 +1281,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
       : row.role === "chapter_checkpoint"
         ? triLang(lang, {
             ru: "Проверка главы",
+            en: "Chapter checkpoint",
             uk: "Перевірка розділу",
             es: "Repaso del capítulo",
             "pt-BR": "Revisão do capítulo",
@@ -1281,6 +1292,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           })
         : `${triLang(lang, {
             ru: "Сессия",
+            en: "Session",
             uk: "Сесія",
             es: "Sesión",
             "pt-BR": "Sessão",
@@ -1338,6 +1350,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
             accessible
               ? triLang(lang, {
                   ru: "доступна",
+                  en: "available",
                   uk: "доступна",
                   es: "disponible",
                   "pt-BR": "disponível",
@@ -1348,6 +1361,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
                 })
               : triLang(lang, {
                   ru: "закрыта",
+                  en: "locked",
                   uk: "закрита",
                   es: "bloqueada",
                   "pt-BR": "bloqueada",
@@ -1360,6 +1374,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
             completed && !checkpoint && earnedStars !== undefined
               ? `, ${earnedStars} ${triLang(lang, {
                   ru: "из 3 звёзд",
+                  en: "out of 3 stars",
                   uk: "з 3 зірок",
                   es: "de 3 estrellas",
                   "pt-BR": "de 3 estrelas",
@@ -1470,6 +1485,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
               {row.role === "final_exam"
                 ? triLang(lang, {
                     ru: "Весь материал урока",
+                    en: "All the material in the lesson",
                     uk: "Увесь матеріал уроку",
                     es: "Todo el material de la lección",
                     "pt-BR": "Todo o conteúdo da lição",
@@ -1480,6 +1496,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
                   })
                 : `${triLang(lang, {
                     ru: "Глава",
+                    en: "Chapter",
                     uk: "Розділ",
                     es: "Capítulo",
                     "pt-BR": "Capítulo",
@@ -1664,6 +1681,7 @@ function chapterStatusLine(
   if (doneCount <= 0) return countPart;
   const done = triLang(lang, {
     ru: `пройдено ${doneCount}`,
+    en: `${doneCount} done`,
     uk: `пройдено ${doneCount}`,
     es: `${doneCount} completadas`,
     "pt-BR": `${doneCount} concluídas`,
@@ -1932,6 +1950,20 @@ export default function LessonsTab({
   const [expandedLearningV2Lesson, setExpandedLearningV2Lesson] = useState<
     number | null
   >(null);
+  const [learningV2DictionaryOpen, setLearningV2DictionaryOpen] =
+    useState(false);
+  const learningV2DictionaryScope = useMemo(
+    () =>
+      page === "v2" && expandedLearningV2Lesson !== null
+        ? {
+            targetLanguage: studyTarget,
+            lessonOrdinal: expandedLearningV2Lesson,
+          }
+        : null,
+    [expandedLearningV2Lesson, page, studyTarget],
+  );
+  const { words: learningV2DictionaryWords } =
+    useLearningV2UnlockedLessonWordsV1(learningV2DictionaryScope);
   const [selectedLearningV2Session, setSelectedLearningV2Session] = useState<{
     lessonOrdinal: number;
     sessionOrdinal: number;
@@ -2087,6 +2119,7 @@ export default function LessonsTab({
   }, [learningV2Progress.currentSessionId, page, prepareLearningV2Lesson]);
   const toggleLearningV2Lesson = useCallback(
     (lessonOrdinal: number) => {
+      setLearningV2DictionaryOpen(false);
       // Новые строки обязаны быть видимы уже на первом кадре. Поэтому анимируем
       // только сдвиг существующих карточек, без create-opacity для вставки.
       // Пока системная настройка движения не прочитана, ведём себя консервативно.
@@ -2284,6 +2317,7 @@ export default function LessonsTab({
           currentOrdinal !== null
             ? triLang(lang, {
                 ru: `Сначала пройди сессию ${currentOrdinal}`,
+                en: `Finish session ${currentOrdinal} first`,
                 uk: `Спочатку пройди сесію ${currentOrdinal}`,
                 es: `Primero completa la sesión ${currentOrdinal}`,
                 "pt-BR": `Primeiro conclua a sessão ${currentOrdinal}`,
@@ -2294,6 +2328,7 @@ export default function LessonsTab({
               })
             : triLang(lang, {
                 ru: "Пока закрыто",
+                en: "Still locked",
                 uk: "Поки закрито",
                 es: "Aún bloqueada",
                 "pt-BR": "Ainda bloqueada",
@@ -2711,6 +2746,7 @@ export default function LessonsTab({
               lessons[index] ??
               `${triLang(lang, {
                 ru: "Урок",
+                en: "Lesson",
                 uk: "Урок",
                 es: "Lección",
                 "pt-BR": "Lição",
@@ -2845,6 +2881,7 @@ export default function LessonsTab({
     const examDots = getEarnedDots(examMedal, examPass);
     const label = triLang(lang, {
       ru: isB2 ? "Экзамен" : `Экзамен ${lvl}`,
+      en: isB2 ? "Exam" : `${lvl} exam`,
       uk: isB2 ? "Екзамен" : `Залік ${lvl}`,
       es: isB2 ? "Examen" : `Examen de ${lvl}`,
       "pt-BR": isB2 ? "Exame" : `Exame ${lvl}`,
@@ -2857,6 +2894,7 @@ export default function LessonsTab({
       ? result.passed
         ? triLang(lang, {
             ru: `✅ Сдан — ${result.pct}%`,
+            en: `✅ Passed — ${result.pct}%`,
             uk: `✅ Здано — ${result.pct}%`,
             es: `✅ Superado — ${result.pct}%`,
             "pt-BR": `✅ Aprovado — ${result.pct}%`,
@@ -2871,6 +2909,7 @@ export default function LessonsTab({
         : allDone
           ? triLang(lang, {
               ru: "Нажми чтобы начать",
+              en: "Tap to start",
               uk: "Натисни щоб почати",
               es: "Toca para empezar",
               "pt-BR": "Toque para começar",
@@ -2882,6 +2921,7 @@ export default function LessonsTab({
           : examPremiumRequired
             ? triLang(lang, {
                 ru: "Откроется с Plus",
+                en: "Unlocks with Plus",
                 uk: "Відкриється з Plus",
                 es: "Se abre con Plus",
                 "pt-BR": "Abre com Plus",
@@ -2893,6 +2933,7 @@ export default function LessonsTab({
             : isPremium && prevExamLevel
               ? triLang(lang, {
                   ru: `Сначала зачёт ${prevExamLevel}`,
+                  en: `First, the ${prevExamLevel} exam`,
                   uk: `Спочатку залік ${prevExamLevel}`,
                   es: `Primero el examen ${prevExamLevel}`,
                   "pt-BR": `Primeiro o exame ${prevExamLevel}`,
@@ -2903,6 +2944,7 @@ export default function LessonsTab({
                 })
               : triLang(lang, {
                   ru: `Завершите все уроки ${lvl} на 4.5+`,
+                  en: `Complete all ${lvl} lessons with 4.5+`,
                   uk: `Завершіть усі уроки ${lvl} на 4.5+`,
                   es: `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`,
                   "pt-BR": `Conclua todas as lições ${lvl} com 4,5+`,
@@ -3250,6 +3292,7 @@ export default function LessonsTab({
               >
                 {triLang(lang, {
                   ru: "Обучение",
+                  en: "Learn",
                   uk: "Навчання",
                   es: "Aprender",
                   "pt-BR": "Aprender",
@@ -3343,6 +3386,7 @@ export default function LessonsTab({
               <TabUnderlineButton
                 label={triLang(lang, {
                   ru: "Маршрут",
+                  en: "Route",
                   uk: "Маршрут",
                   es: "Ruta",
                   "pt-BR": "Rota",
@@ -3369,6 +3413,7 @@ export default function LessonsTab({
               <TabUnderlineButton
                 label={triLang(lang, {
                   ru: "Диалоги",
+                  en: "Dialogs",
                   uk: "Діалоги",
                   es: "Diálogos",
                   "pt-BR": "Diálogos",
@@ -3386,6 +3431,7 @@ export default function LessonsTab({
                 plusBadge={!dialogAccess}
                 plusBadgeLabel={triLang(lang, {
                   ru: "Plus",
+                  en: "Plus",
                   uk: "Plus",
                   es: "Plus",
                   "pt-BR": "Plus",
@@ -3446,7 +3492,7 @@ export default function LessonsTab({
               onScrollEndDrag={handleLessonsScrollEnd}
               onMomentumScrollEnd={handleLessonsScrollEnd}
               contentContainerStyle={{ paddingBottom: listBottomPad }}
-              decelerationRate="normal"
+              decelerationRate="fast"
               bounces
               alwaysBounceVertical
               overScrollMode="always"
@@ -3493,6 +3539,7 @@ export default function LessonsTab({
                     >
                       {triLang(lang, {
                         ru: "· · ·",
+                        en: "· · ·",
                         uk: "· · ·",
                         es: "· · ·",
                         "pt-BR": "· · ·",
@@ -3513,6 +3560,7 @@ export default function LessonsTab({
                     >
                       {triLang(lang, {
                         ru: "Продолжение скоро",
+                        en: "More coming soon",
                         uk: "Продовження незабаром",
                         es: "Próximamente",
                         "pt-BR": "Continuação em breve",
@@ -3529,6 +3577,7 @@ export default function LessonsTab({
                       dataId="lessons_list"
                       dataText={triLang(lang, {
                         ru: "Список уроков",
+                        en: "Lesson list",
                         uk: "Список уроків",
                         es: "Lista de lecciones",
                         "pt-BR": "Lista de lições",
@@ -3837,6 +3886,7 @@ export default function LessonsTab({
               <ChapterCard
                 title={triLang(lang, {
                     ru: `Глава ${chapterLevel}`,
+                    en: `Chapter ${chapterLevel}`,
                     uk: `Глава ${chapterLevel}`,
                     es: `Capítulo ${chapterLevel}`,
                     'pt-BR': `Capítulo ${chapterLevel}`,
@@ -3864,6 +3914,66 @@ export default function LessonsTab({
               }}
             />
           </BouncyWrap>
+          {page === "v2" && expandedLearningV2Lesson !== null ? (
+            <Pressable
+              testID="learning-v2-map-dictionary-open"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: "Открыть словарь урока",
+                en: "Open lesson dictionary",
+                uk: "Відкрити словник уроку",
+                es: "Abrir el diccionario de la lección",
+                "pt-BR": "Abrir o dicionário da lição",
+                vi: "Mở từ điển bài học",
+                id: "Buka kamus pelajaran",
+                tr: "Ders sözlüğünü aç",
+                pl: "Otwórz słownik lekcji",
+              })}
+              onPress={() => {
+                hapticTap();
+                setLearningV2DictionaryOpen(true);
+              }}
+              hitSlop={8}
+              style={({ pressed }) => ({
+                position: "absolute",
+                right: 18,
+                bottom: listBottomPad + 18,
+                minWidth: 54,
+                height: 54,
+                paddingHorizontal: 14,
+                borderRadius: 19,
+                backgroundColor: t.bgCard,
+                borderWidth: 1,
+                borderColor: `${t.accent}66`,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 7,
+                opacity: pressed ? 0.72 : 1,
+                transform: [{ scale: pressed ? 0.96 : 1 }],
+                shadowColor: t.cardShadow,
+                shadowOpacity: 0.28,
+                shadowRadius: 14,
+                shadowOffset: { width: 0, height: 7 },
+                elevation: 7,
+                zIndex: 40,
+              })}
+            >
+              <Ionicons name="book-outline" size={23} color={t.accent} />
+              {learningV2DictionaryWords.length > 0 ? (
+                <Text
+                  style={{
+                    color: t.textPrimary,
+                    fontSize: 13,
+                    lineHeight: 16,
+                    fontWeight: "900",
+                  }}
+                >
+                  {learningV2DictionaryWords.length}
+                </Text>
+              ) : null}
+            </Pressable>
+          ) : null}
           {learningV2RuneFlight !== null ? (
             <LearningV2RuneFlight
               key={learningV2RuneFlight.key}
@@ -3926,6 +4036,7 @@ export default function LessonsTab({
           selectedLearningV2Session?.state === "completed"
             ? triLang(lang, {
                 ru: "Повторить",
+                en: "Retry",
                 uk: "Повторити",
                 es: "Repetir",
                 "pt-BR": "Repetir",
@@ -3936,6 +4047,7 @@ export default function LessonsTab({
               })
             : triLang(lang, {
                 ru: "Начать",
+                en: "Start",
                 uk: "Почати",
                 es: "Empezar",
                 "pt-BR": "Começar",
@@ -3967,12 +4079,22 @@ export default function LessonsTab({
                   learningV2Catalog?.seasonId ?? "learning-v2",
                 runKind:
                   selected.state === "completed" ? "repeat" : "initial",
+                ...(__DEV__ &&
+                studyTarget === "en" &&
+                selected.lessonOrdinal === 1 &&
+                selected.sessionOrdinal === 1
+                  ? {
+                      previewMode: "authoring_v1",
+                      previewOrigin: "course",
+                    }
+                  : {}),
               },
             } as never);
           });
         }}
         secondaryLabel={triLang(lang, {
           ru: "Не сейчас",
+          en: "Not now",
           uk: "Не зараз",
           es: "Ahora no",
           "pt-BR": "Agora não",
@@ -3983,6 +4105,13 @@ export default function LessonsTab({
         })}
         onClose={() => setSelectedLearningV2Session(null)}
       />
+      {learningV2DictionaryOpen && expandedLearningV2Lesson !== null ? (
+        <LearningV2LessonDictionaryOverlayV1
+          lessonOrdinal={expandedLearningV2Lesson}
+          words={learningV2DictionaryWords}
+          onClose={() => setLearningV2DictionaryOpen(false)}
+        />
+      ) : null}
       <ThemedChoiceModal
         visible={gateModal !== null}
         title={
@@ -3991,6 +4120,7 @@ export default function LessonsTab({
             : gateModal?.kind === "exam"
               ? triLang(lang, {
                   ru: "Недоступно",
+                  en: "Unavailable",
                   uk: "Недоступно",
                   es: "No disponible",
                   "pt-BR": "Indisponível",
@@ -4002,6 +4132,7 @@ export default function LessonsTab({
               : gateModal?.kind === "premium"
                 ? triLang(lang, {
                     ru: "Plus",
+                    en: "Plus",
                     uk: "Plus",
                     es: "Plus",
                     "pt-BR": "Plus",
@@ -4013,6 +4144,7 @@ export default function LessonsTab({
                 : gateModal?.kind === "levelGate"
                   ? triLang(lang, {
                       ru: "Уровень пока закрыт",
+                      en: "Level still locked",
                       uk: "Рівень поки закритий",
                       es: "Nivel bloqueado",
                       "pt-BR": "Nível bloqueado",
@@ -4024,6 +4156,7 @@ export default function LessonsTab({
                   : gateModal?.kind === "lesson"
                     ? triLang(lang, {
                         ru: "Урок заблокирован",
+                        en: "Lesson locked",
                         uk: "Урок заблоковано",
                         es: "Lección bloqueada",
                         "pt-BR": "Lição bloqueada",
@@ -4040,6 +4173,7 @@ export default function LessonsTab({
             : gateModal?.kind === "exam"
               ? triLang(lang, {
                   ru: `Сначала пройдите все уроки ${gateModal.level} с оценкой 4.5+`,
+                  en: `First, complete all ${gateModal.level} lessons with 4.5+`,
                   uk: `Спочатку пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+`,
                   es: `Primero completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5`,
                   "pt-BR": `Primeiro conclua todas as lições ${gateModal.level} com nota 4,5+`,
@@ -4051,6 +4185,7 @@ export default function LessonsTab({
               : gateModal?.kind === "levelGate"
                 ? triLang(lang, {
                     ru: `Чтобы открыть уровень ${gateModal.level}, сначала сдай зачёт ${gateModal.prevLevel}.`,
+                    en: `To unlock level ${gateModal.level}, first pass the ${gateModal.prevLevel} exam.`,
                     uk: `Щоб відкрити рівень ${gateModal.level}, спочатку складіть залік ${gateModal.prevLevel}.`,
                     es: `Para abrir el nivel ${gateModal.level}, primero supera el examen de ${gateModal.prevLevel}.`,
                     "pt-BR": `Para abrir o nível ${gateModal.level}, primeiro passe no exame ${gateModal.prevLevel}.`,
@@ -4062,6 +4197,7 @@ export default function LessonsTab({
                 : gateModal?.kind === "lesson"
                   ? triLang(lang, {
                       ru: `Пройдите урок ${gateModal.prevNum} с оценкой 2.5+`,
+                      en: `Complete lesson ${gateModal.prevNum} with 2.5+`,
                       uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+`,
                       es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5`,
                       "pt-BR": `Conclua a lição ${gateModal.prevNum} com nota 2,5+`,
@@ -4073,6 +4209,7 @@ export default function LessonsTab({
                   : gateModal?.kind === "premium"
                     ? triLang(lang, {
                         ru: "Этот урок входит в Plus.",
+                        en: "This lesson is part of Plus.",
                         uk: "Цей урок входить до Plus.",
                         es: "Esta lección forma parte de Plus.",
                         "pt-BR": "Esta lição faz parte do Plus.",
@@ -4089,6 +4226,7 @@ export default function LessonsTab({
                 {
                   label: triLang(lang, {
                     ru: "Получить Plus",
+                    en: "Get Plus",
                     uk: "Отримати Plus",
                     es: "Obtener Plus",
                     "pt-BR": "Obter Plus",
@@ -4118,6 +4256,7 @@ export default function LessonsTab({
                 {
                   label: triLang(lang, {
                     ru: "Пока нет",
+                    en: "Not yet",
                     uk: "Поки ні",
                     es: "Ahora no",
                     "pt-BR": "Agora não",
@@ -4136,6 +4275,7 @@ export default function LessonsTab({
                 {
                   label: triLang(lang, {
                     ru: "Закрыть",
+                    en: "Close",
                     uk: "Закрити",
                     es: "Cerrar",
                     "pt-BR": "Fechar",

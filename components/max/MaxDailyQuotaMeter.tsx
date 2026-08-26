@@ -66,19 +66,19 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
   // показываем секунды: цифра остаётся честной до самого конца.
   const minutesValue = model.lastMinute
     ? triLang(lang, {
-      ru: `${model.seconds} сек`, uk: `${model.seconds} сек`, es: `${model.seconds} s`,
+      ru: `${model.seconds} сек`, uk: `${model.seconds} сек`, en: `${model.seconds} sec`, es: `${model.seconds} s`,
       'pt-BR': `${model.seconds} s`, vi: `${model.seconds} giây`, id: `${model.seconds} dtk`,
       tr: `${model.seconds} sn`, pl: `${model.seconds} s`,
     })
     : triLang(lang, {
-      ru: `${model.minutes} мин`, uk: `${model.minutes} хв`, es: `${model.minutes} min`,
+      ru: `${model.minutes} мин`, uk: `${model.minutes} хв`, en: `${model.minutes} min`, es: `${model.minutes} min`,
       'pt-BR': `${model.minutes} min`, vi: `${model.minutes} phút`, id: `${model.minutes} mnt`,
       tr: `${model.minutes} dk`, pl: `${model.minutes} min`,
     });
   // Один источник заголовка для обоих вариантов: hero ставит его слева от
   // числа, compact — тише под числом.
   const quotaTitle = triLang(lang, {
-    ru: 'Дневной запас MAX', uk: 'Денний запас MAX', es: 'Minutos MAX de hoy',
+    ru: 'Дневной запас MAX', uk: 'Денний запас MAX', en: "Today's MAX minutes", es: 'Minutos MAX de hoy',
     'pt-BR': 'Minutos MAX de hoje', vi: 'Số phút MAX hôm nay', id: 'Menit MAX hari ini',
     tr: 'Bugünkü MAX süresi', pl: 'Dzisiejsze minuty MAX',
   });
@@ -88,6 +88,7 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
     ? triLang(lang, {
       ru: `Осталось ${model.seconds} секунд MAX сегодня из ${totalMinutes} минут`,
       uk: `Залишилося ${model.seconds} секунд MAX сьогодні з ${totalMinutes} хвилин`,
+      en: `${model.seconds} seconds of MAX left today out of ${totalMinutes} minutes`,
       es: `Quedan ${model.seconds} segundos de MAX hoy de ${totalMinutes} minutos`,
       'pt-BR': `Restam ${model.seconds} segundos de MAX hoje de ${totalMinutes} minutos`,
       vi: `Hôm nay còn ${model.seconds} giây MAX trên ${totalMinutes} phút`,
@@ -98,6 +99,7 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
     : triLang(lang, {
       ru: `Осталось ${model.minutes} минут MAX сегодня из ${totalMinutes}`,
       uk: `Залишилося ${model.minutes} хвилин MAX сьогодні з ${totalMinutes}`,
+      en: `${model.minutes} minutes of MAX left today out of ${totalMinutes}`,
       es: `Quedan ${model.minutes} minutos de MAX hoy de ${totalMinutes}`,
       'pt-BR': `Restam ${model.minutes} minutos de MAX hoje de ${totalMinutes}`,
       vi: `Hôm nay còn ${model.minutes} phút MAX trên ${totalMinutes}`,

@@ -47,6 +47,7 @@ export function aiMistakeWaitLine(lang: Lang, stage: AiWaitStage): string {
     return triLang(lang, {
       ru: 'ещё немного…',
       uk: 'ще трохи…',
+      en: 'just a bit more…',
       es: 'un momento más…',
       'pt-BR': 'mais um instante…',
       vi: 'thêm một chút…',
@@ -59,6 +60,7 @@ export function aiMistakeWaitLine(lang: Lang, stage: AiWaitStage): string {
     return triLang(lang, {
       ru: 'смотрю, где сбилось…',
       uk: 'дивлюся, де збилося…',
+      en: 'checking where it went wrong…',
       es: 'viendo dónde falló…',
       'pt-BR': 'vendo onde errou…',
       vi: 'đang xem sai ở đâu…',
@@ -70,6 +72,7 @@ export function aiMistakeWaitLine(lang: Lang, stage: AiWaitStage): string {
   return triLang(lang, {
     ru: 'разбираю твой ответ…',
     uk: 'розбираю твою відповідь…',
+    en: 'looking over your answer…',
     es: 'analizando tu respuesta…',
     'pt-BR': 'analisando sua resposta…',
     vi: 'đang phân tích câu trả lời…',
@@ -89,6 +92,7 @@ export function aiExplainWaitLine(lang: Lang, stage: AiWaitStage): string {
     return triLang(lang, {
       ru: 'ещё немного…',
       uk: 'ще трохи…',
+      en: 'just a bit more…',
       es: 'un momento más…',
       'pt-BR': 'mais um instante…',
       vi: 'thêm một chút…',
@@ -101,6 +105,7 @@ export function aiExplainWaitLine(lang: Lang, stage: AiWaitStage): string {
     return triLang(lang, {
       ru: 'подбираю слова попроще…',
       uk: 'добираю простіші слова…',
+      en: 'finding simpler words…',
       es: 'buscando palabras más simples…',
       'pt-BR': 'buscando palavras mais simples…',
       vi: 'đang tìm cách nói đơn giản hơn…',
@@ -112,6 +117,7 @@ export function aiExplainWaitLine(lang: Lang, stage: AiWaitStage): string {
   return triLang(lang, {
     ru: 'готовлю объяснение…',
     uk: 'готую пояснення…',
+    en: 'preparing the explanation…',
     es: 'preparando la explicación…',
     'pt-BR': 'preparando a explicação…',
     vi: 'đang chuẩn bị lời giải thích…',

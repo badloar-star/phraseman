@@ -1,5 +1,5 @@
 /**
- * Режим 1/7 — Сборка фразы (ЭТАЛОН, одобрен владельцем).
+ * Активный режим 1/6 — Сборка фразы (ЭТАЛОН, одобрен владельцем).
  * Источник вёрстки/анимаций: docs/v2/mockups/02-phrase-builder.html.
  *
  * зачем: раньше ordered_tokens рендерился как список чипов + текстовая
@@ -28,13 +28,16 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useTheme } from "../../../components/ThemeContext";
-import { hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
+import { V2Chip, V2Cta } from "../../../components/ui/v2_ui";
+import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import { hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
   MODE_SPRING_MICRO_V1,
   MODE_SPRING_UI_V1,
   PHRASE_BUILDER_MOTION_V1 as MOTION,
 } from "./mode_motion_tokens_v1";
+import { learningV2ModeCheckLabelV1 } from "./mode_copy_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
@@ -66,12 +69,9 @@ function PhraseBuilderChipV1({
   onPress,
   variant,
   ghost,
-  bg,
-  edgeColor,
   textColor,
 }: ChipProps) {
   const enter = useSharedValue(reducedMotion ? 1 : 0);
-  const press = useSharedValue(1);
   const nudge = useSharedValue(0);
   const verdictScale = useSharedValue(1);
 
@@ -117,41 +117,22 @@ function PhraseBuilderChipV1({
     transform: [
       { translateY: (1 - enter.value) * (variant === "bank" ? 16 : 10) },
       { translateX: nudge.value },
-      { scale: press.value * verdictScale.value },
+      { scale: verdictScale.value },
     ] as const,
   }));
 
-  const verdictBg = verdict === "ok" ? undefined : verdict === "bad" ? undefined : bg;
-
   return (
     <Animated.View style={style}>
-      <Pressable
-        accessibilityRole="button"
+      <V2Chip
         accessibilityLabel={label}
-        accessibilityState={{ disabled: disabled || ghost }}
         disabled={disabled || ghost}
-        onPressIn={() => {
-          if (reducedMotion) return;
-          void hapticLightImpact();
-          press.value = withTiming(0.96, { duration: MOTION.chipPressMs, easing: EASE });
-        }}
-        onPressOut={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(1, { duration: MOTION.chipPressMs, easing: EASE });
-        }}
         onPress={onPress}
-        style={[
-          styles.chip,
-          {
-            backgroundColor:
-              verdict === "ok" ? "transparent" : verdict === "bad" ? "transparent" : (verdictBg ?? bg),
-            borderBottomWidth: 3,
-            borderBottomColor: edgeColor,
-          },
-        ]}
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
+        singleLine
+        textStyle={[styles.chipText, styles.targetText, { color: textColor }]}
       >
-        <Text style={[styles.chipText, { color: textColor }]}>{label}</Text>
-      </Pressable>
+        {label}
+      </V2Chip>
     </Animated.View>
   );
 }
@@ -159,13 +140,12 @@ function PhraseBuilderChipV1({
 /**
  * Сборка фразы: банк слов снизу, строка ответа сверху. Тап по слову банка
  * добавляет его в конец собираемой последовательности (onAppendToken); тап
- * по последнему добавленному слову в строке ответа убирает его (onUndoToken)
- * — упрощение относительно макета (там можно убрать любое слово из середины),
- * оправданное тем, что responseOptions не несёт позиционного смысла кроме
- * порядка добавления, а player хранит только последовательность id.
+ * по любому слову в строке ответа возвращает именно этот чип в банк
+ * (onRemoveTokenAt), как в owner-макете.
  */
 export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
   const { theme: t } = useTheme();
+  const palette = useTournamentPalette();
   const {
     prompt,
     options,
@@ -175,10 +155,17 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
     resolved,
     explanation,
     onAppendToken,
-    onUndoToken,
+    onRemoveTokenAt,
     onPlayFullPhraseAudio,
     phase,
+    modePayload,
+    onSubmit,
+    canSubmit,
+    interfaceLocale,
   } = props;
+  if (modePayload && modePayload.family !== "phrase_builder") {
+    throw new Error("learning_v2_phrase_builder_payload_mismatch");
+  }
 
   const usedIds = useMemo(() => new Set(orderedResponseIds), [orderedResponseIds]);
   const answerChips = useMemo(
@@ -205,8 +192,13 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={styles.root}>
+      <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
       <View style={styles.heroRow}>
-        <Text style={[styles.hero, { color: t.textPrimary }]}>{prompt}</Text>
+        <Text style={[styles.hero, styles.targetText, { color: t.accent }]}>
+          {modePayload?.family === "phrase_builder"
+            ? modePayload.localizedMeaning[interfaceLocale]
+            : ""}
+        </Text>
         {onPlayFullPhraseAudio && (
           <Pressable
             accessibilityRole="button"
@@ -244,7 +236,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
               nudgeToken={wrongNudge.responseId === chip.responseId ? wrongNudge.token : 0}
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
-              onPress={index === answerChips.length - 1 ? onUndoToken : () => {}}
+              onPress={() => onRemoveTokenAt(index)}
               bg={t.bgCard}
               edgeColor={t.bgSurface2}
               textColor={
@@ -252,7 +244,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
                   ? t.correctText
                   : phase === "needs_work" && chip.responseId === wrongNudge.responseId
                     ? t.wrong
-                    : t.textPrimary
+                    : t.accent
               }
             />
           ))
@@ -276,10 +268,17 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
               onPress={() => onAppendToken(option.responseId)}
               bg={t.bgCard}
               edgeColor={t.bgSurface2}
-              textColor={t.textPrimary}
+              textColor={t.accent}
             />
           ))}
       </View>
+
+      <V2Cta
+        disabled={!canSubmit || resolved || phase === "processing"}
+        onPress={onSubmit}
+      >
+        {learningV2ModeCheckLabelV1(interfaceLocale)}
+      </V2Cta>
 
       {explanation && (
         <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
@@ -296,8 +295,14 @@ export default PhraseBuilderModeV1;
 
 const styles = StyleSheet.create({
   root: { gap: 14 },
+  taskLabel: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: "700",
+    letterSpacing: 0.25,
+  },
   heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
-  hero: { flex: 1, fontSize: 24, lineHeight: 30, fontWeight: "800" },
+  hero: { flex: 1, fontSize: 25, lineHeight: 31, fontWeight: "900" },
   audioBtn: {
     width: 40,
     height: 40,
@@ -318,7 +323,8 @@ const styles = StyleSheet.create({
   placeholder: { fontSize: 15 },
   bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "center" },
   chip: { borderRadius: 16, paddingVertical: 11, paddingHorizontal: 16 },
-  chipText: { fontSize: 16.5, fontWeight: "700" },
+  chipText: { fontSize: 16.5, fontWeight: "900" },
+  targetText: { fontWeight: "900" },
   feedbackLane: { borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
 });

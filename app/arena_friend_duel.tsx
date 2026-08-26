@@ -20,7 +20,7 @@ import {
 } from './arena_client';
 import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnapshot } from './friends_tab_swr_warm';
 import { getCanonicalUserId } from './user_id_policy';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 
@@ -52,9 +52,14 @@ export default function ArenaFriendDuelScreen() {
   const [error, setError] = useState('');
   // Вызов друга = 1 ⚡ у инициатора (владелец 2026-08-23: единая экономика,
   // платим за ПОПЫТКУ — списание в create() ниже, до сетевого вызова).
-  const { confirmSpendOne: confirmDuelEnergy, refundOne: refundDuelEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmDuelEnergy,
+    refundOne: refundDuelEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const requestIdRef = useRef(createArenaRequestId('friend_invite'));
+  const duelEnergyIntent = useEnergySessionIntent('arena_friend_duel', selected?.uid ?? 'friend', requestIdRef.current);
   /**
    * На первом входе picker открыт нативным Modal поверх всего экрана. Он
    * перехватывает и системную кнопку, и тап по видимой стрелке попадает в backdrop.
@@ -150,9 +155,10 @@ export default function ArenaFriendDuelScreen() {
     // дальше эстафету принимает busy.
     chargeInFlightRef.current = true;
     let energyCharged = false;
+    let entryGranted = false;
     let energyResult: Awaited<ReturnType<typeof confirmDuelEnergy>>;
     try {
-      energyResult = await confirmDuelEnergy();
+      energyResult = await confirmDuelEnergy(duelEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
       energyCharged = energyResult === 'spent';
@@ -164,6 +170,10 @@ export default function ArenaFriendDuelScreen() {
     }
     try {
       const result = await arenaV2InviteCreate(selected.uid, requestIdRef.current);
+      // The authoritative invite now exists. Later local-cache/ready polling
+      // failures must not turn an actually granted Arena entry into a refund.
+      entryGranted = true;
+      if (energyCharged) void acknowledgeSessionStart(duelEnergyIntent.operationId);
       const stored: StoredInvite = { inviteId: result.inviteId, requestId: requestIdRef.current, selected, expiresAtMs: result.expiresAtMs };
       setInvite(stored);
       const uid = await getCanonicalUserId().catch(() => null);
@@ -174,7 +184,9 @@ export default function ArenaFriendDuelScreen() {
       // зачем: вызов не создан (нет сети / отказ сервера) — значит входа не
       // случилось, и плата обязана вернуться. Иначе игрок теряет единицу за
       // чужую сетевую ошибку.
-      if (energyCharged) void refundDuelEnergy();
+      if (energyCharged && !entryGranted) {
+        void refundDuelEnergy(duelEnergyIntent.operationId, 'entry_failed').catch(() => {});
+      }
       setError(`${arenaText(lang, 'inviteFailed')}. ${arenaText(lang, 'inviteFailedHint')}`);
     }
     finally { setBusy(false); }
@@ -224,7 +236,7 @@ export default function ArenaFriendDuelScreen() {
       <HybridSheetShell visible={pickerOpen} onClose={closeFriendPicker} closeLabel="Закрыть" testID="arena-friend-picker">
         {({ requestDismiss }) => <View style={styles.picker}>
           <Text style={[styles.pickerTitle, { color: P.text }]}>Кому бросить вызов?</Text>
-          <ScrollView style={styles.pickerScroll} contentContainerStyle={styles.pickerRows} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="fast" style={styles.pickerScroll} contentContainerStyle={styles.pickerRows} showsVerticalScrollIndicator={false}>
           {(friends?.friends ?? []).map((friend) => {
             const profile = friends?.profiles[friend.uid];
             const name = profile?.name ?? friend.displayName ?? 'Друг';

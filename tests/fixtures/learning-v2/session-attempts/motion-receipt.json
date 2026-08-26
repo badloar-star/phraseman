@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-26",
+  "platform": "windows",
+  "renderer": "Codex in-app Chromium",
+  "source": "constants/motionHybrid.ts#SESSION_ATTEMPTS_MOTION",
+  "attemptLoss": {
+    "shakeOffsetsPx": [0, -3, 3, -2, 0],
+    "shakeSegmentMs": 60,
+    "shakeTotalMs": 300,
+    "shakeEasing": "Reanimated withTiming default ease-in-out",
+    "scale": [1, 1.22, 0.64],
+    "lossLiftPx": -3,
+    "lossDropPx": 8,
+    "lossTiltDeg": 12,
+    "lossPopMs": 90,
+    "lossExitMs": 210,
+    "filledHeartFadeMs": 210,
+    "haloMs": 280,
+    "finalState": "filled heart hidden; outline heart remains"
+  },
+  "attemptRefill": {
+    "staggerMs": [0, 70, 140],
+    "startScale": 0.42,
+    "startTranslateYPx": 7,
+    "spring": { "damping": 9, "stiffness": 260, "mass": 0.55 },
+    "haloMs": 280,
+    "finalState": "three filled hearts; stable layout"
+  },
+  "exhaustedModal": {
+    "delayMs": 340,
+    "opensAfterAttemptLossFinalState": true
+  },
+  "reducedMotion": {
+    "shake": false,
+    "transformAnimation": false,
+    "fadeAnimation": false,
+    "lossFinalState": "outline heart shown immediately",
+    "refillFinalState": "three filled hearts shown immediately",
+    "modalDelayMs": 340
+  },
+  "notification": {
+    "lostAttemptToast": false
+  }
+}

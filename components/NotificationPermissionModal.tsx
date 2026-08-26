@@ -43,6 +43,7 @@ function NotificationPermissionModal({
     triLang(lang, {
       ru: 'Включить напоминания?',
       uk: 'Увімкнути нагадування?',
+      en: 'Turn on reminders?',
       es: '¿Activar recordatorios?',
       'pt-BR': 'Ativar lembretes?',
       vi: 'Bật nhắc nhở?',
@@ -55,6 +56,7 @@ function NotificationPermissionModal({
     triLang(lang, {
       ru: 'Мы напомним в нужное время, чтобы ты не терял цепочку и быстрее рос в уровне.',
       uk: 'Ми нагадаємо в потрібний час, щоб ти не втрачав стрік і швидше ріс у рівні.',
+      en: "We'll remind you at the right time so you keep your streak and level up faster.",
       es: 'Te avisaremos en el momento adecuado para que no pierdas la racha y sigas subiendo de nivel.',
       'pt-BR': 'Vamos lembrar você no momento certo para não perder a sequência e subir de nível mais rápido.',
       vi: 'Chúng tôi sẽ nhắc đúng lúc để bạn không mất chuỗi và lên cấp nhanh hơn.',
@@ -67,6 +69,7 @@ function NotificationPermissionModal({
     triLang(lang, {
       ru: ['Без пропусков и срывов серии', 'Короткие полезные напоминания', 'Можно отключить в любой момент'],
       uk: ['Без пропусків і зривів серії', 'Короткі корисні нагадування', 'Можна вимкнути в будь-який момент'],
+      en: ['No missed days or broken streaks', 'Short, useful reminders', 'You can turn it off anytime'],
       es: ['Te ayuda a no saltarte días y a mantener la racha', 'Recordatorios breves y prácticos', 'Puedes desactivarlos cuando quieras'],
       'pt-BR': ['Sem faltas e sem quebrar a sequência', 'Lembretes curtos e práticos', 'Você pode desativar a qualquer momento'],
       vi: ['Không bỏ lỡ ngày, không mất chuỗi', 'Nhắc nhở ngắn gọn và hữu ích', 'Có thể tắt bất cứ lúc nào'],
@@ -78,12 +81,12 @@ function NotificationPermissionModal({
   const resolvedConfirmLabel =
     confirmLabel ??
     triLang(lang, {
-      ru: 'Включить', uk: 'Увімкнути', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
+      ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
     });
   const resolvedCancelLabel =
     cancelLabel ??
     triLang(lang, {
-      ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później',
+      ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później',
     });
 
   if (motionVariant === 'hybrid') {
@@ -106,7 +109,7 @@ function NotificationPermissionModal({
       {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
           карточка центрировалась во весь рост без прокрутки — на низком экране
           обрезалась вместе с кнопками «Разрешить»/«Не сейчас». */}
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)' }}
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
         showsVerticalScrollIndicator={false}
@@ -142,6 +145,7 @@ function NotificationPermissionModal({
                   triLang(lang, {
                     ru: 'Включить',
                     uk: 'Увімкнути',
+                    en: 'Turn on',
                     es: 'Activar',
                     'pt-BR': 'Ativar',
                     vi: 'Bật',
@@ -157,6 +161,7 @@ function NotificationPermissionModal({
                   triLang(lang, {
                     ru: 'Позже',
                     uk: 'Пізніше',
+                    en: 'Later',
                     es: 'Más tarde',
                     'pt-BR': 'Mais tarde',
                     vi: 'Để sau',

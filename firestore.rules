@@ -1979,23 +1979,26 @@ service cloud.firestore {
     // Отзывы о звонке MAX: пишутся только через submitMaxVoiceFeedback (Admin
     // SDK), читаются только админом через adminListMaxVoiceFeedback.
     match /max_voice_feedback/{docId} {
-      allow create, update: if false;
-      allow read, delete: if isAdmin();
+      allow read, write: if false;
     }
 
     // Обобщённые отзывы (урок/словарь/диалог/арена): пишутся только через
     // submitFeedbackEntry (Admin SDK), читаются только админом через
     // adminListFeedbackEntries.
     match /feedback_entries/{docId} {
-      allow create, update: if false;
-      allow read, delete: if isAdmin();
+      allow read, write: if false;
     }
 
     // AI-сводки отзывов по разделу (feedback_summary.ts): пишутся только
     // сервером (adminSummarizeFeedback), читаются только админом.
     match /feedback_summary_cache/{docId} {
-      allow write: if false;
-      allow read: if isAdmin();
+      allow read, write: if false;
+    }
+
+    // Atomic per-user/day feedback quota. Only the submit callable may read or
+    // mutate counters; browser-admin credentials must use audited callables.
+    match /feedback_submission_quotas/{docId} {
+      allow read, write: if false;
     }
 
     match /user_idea_rate_limits/{docId} {
@@ -3015,6 +3018,10 @@ service cloud.firestore {
         && collection != 'admin_gift_certificate_batch_operations'
         && collection != 'gift_certificate_archive'
         && collection != 'admin_user_briefs_rate_limits'
+        && collection != 'feedback_entries'
+        && collection != 'feedback_summary_cache'
+        && collection != 'max_voice_feedback'
+        && collection != 'feedback_submission_quotas'
         && !isServerOwnedSupportRoot(collection)
         && collection != 'agent_observation_receipts'
         && collection != 'agent_manager_agents'

@@ -58,10 +58,9 @@ const REWARD_STREAM_IDS = [
   'energy_full', 'xp_250', 'xp_500', 'pearls_5', 'stars_10',
   'hint_1', 'xp_bank_150',
   'xp_2x_24h', 'energy_plus2', 'chain_shield_1', 'hint_3', 'xp_bank_300',
-  'xp_2x_48h', 'energy_plus3', 'xp_bank_600', 'cosmetic_avatar_aura',
+  'xp_2x_48h', 'energy_plus3', 'xp_bank_600', 'cosmetic_avatar_aura', 'cosmetic_avatar_common',
 ] as const;
 const REWARD_STREAM_REPEATS = 3;
-const REWARD_STREAM_LENGTH = REWARD_STREAM_IDS.length * REWARD_STREAM_REPEATS;
 const SPIN_ROLLBACK_MS = 160;
 const MANUAL_REEL_MAX_VELOCITY = 5_200;
 const MANUAL_REEL_DECELERATION = 0.992;
@@ -98,21 +97,35 @@ function rarityColor(gift: GiftDef, themeMode: ThemeMode, theme: Theme): string 
   return '#7BD9CB';
 }
 
-function clampManualReelOffset(value: number, min: number, max: number): number {
+/**
+ * Кольцевая нормализация смещения барабана.
+ *
+ * зачем (владелец 2026-08-26): раньше лента была отрезком с жёстким clamp —
+ * палец упирался в «стопор» на первом и последнем повторе, и барабан переставал
+ * быть барабаном. Лента `REWARD_STREAM_IDS` периодична по построению, поэтому
+ * достаточно приводить смещение к одному циклу: визуально это тот же кадр, но
+ * края больше не существует — крутить можно бесконечно в обе стороны.
+ *
+ * Приводим к диапазону (anchor - cycle, anchor], то есть держим барабан рядом
+ * с центральным повтором. Так сверху и снизу от селектора всегда остаётся
+ * минимум по одному целому повтору отрисованных карточек — шва не видно.
+ */
+function wrapManualReelOffset(value: number, anchor: number, cycle: number): number {
   'worklet';
-  return Math.max(min, Math.min(max, value));
+  if (!(cycle > 0)) return value;
+  return anchor - (((anchor - value) % cycle) + cycle) % cycle;
 }
 
 function nearestManualReelRowOffset(
   offset: number,
   selectorTop: number,
   rowPitch: number,
-  min: number,
-  max: number,
+  anchor: number,
+  cycle: number,
 ): number {
   'worklet';
   const row = Math.round((selectorTop - offset) / rowPitch);
-  return clampManualReelOffset(selectorTop - row * rowPitch, min, max);
+  return wrapManualReelOffset(selectorTop - row * rowPitch, anchor, cycle);
 }
 
 const HIGH_VALUE_COMMON_GIFT_IDS = new Set([
@@ -180,11 +193,13 @@ export default function LevelSpinFinishLine({
     && phase !== 'revealed'
     && !receipt;
   const manualReelEnabled = manualReelEligible && isFocused && appActive;
-  const manualReelMaxOffset = 0;
-  const manualReelMinOffset = machineHeight === null
-    ? 0
-    : Math.min(0, machineHeight - (REWARD_STREAM_LENGTH * rowPitch - cardGap));
   const selectorTop = selectorCenterY - cardHeight / 2;
+  // Один оборот барабана — ровно одна лента наград. Повторы существуют только
+  // чтобы закрыть экран сверху и снизу; крутится же барабан по этому кольцу.
+  const manualReelCycle = REWARD_STREAM_IDS.length * rowPitch;
+  // Якорь кольца — центральный повтор. Держим смещение около него, чтобы над
+  // и под селектором всегда были отрисованные карточки соседних повторов.
+  const manualReelAnchor = selectorTop - REWARD_STREAM_IDS.length * rowPitch;
 
   const streamIds = useMemo(() => {
     const ids = Array.from({ length: REWARD_STREAM_REPEATS }, () => [...REWARD_STREAM_IDS]).flat();
@@ -194,7 +209,20 @@ export default function LevelSpinFinishLine({
     return ids;
   }, [landingIndex, receipt?.baseGiftId]);
 
-  const reelStyle = useAnimatedStyle(() => ({ transform: [{ translateY: reelOffset.value }] }));
+  // Ручная прокрутка нормализуется на КАЖДОМ кадре: инерция withDecay уезжает
+  // без границ, и только это возвращает её в кольцо отрисованных карточек.
+  // Настоящий спин (manualReelWrap=0) сюда не попадает — у его посадки свои
+  // абсолютные координаты по landingIndex, их сдвигать нельзя.
+  const manualReelWrap = useSharedValue(0);
+  const reelWrapAnchor = useSharedValue(0);
+  const reelWrapCycle = useSharedValue(0);
+  const reelStyle = useAnimatedStyle(() => ({
+    transform: [{
+      translateY: manualReelWrap.value === 1
+        ? wrapManualReelOffset(reelOffset.value, reelWrapAnchor.value, reelWrapCycle.value)
+        : reelOffset.value,
+    }],
+  }));
   const finalStyle = useAnimatedStyle(() => ({ opacity: resultOpacity.value }));
 
   useEffect(() => {
@@ -205,16 +233,22 @@ export default function LevelSpinFinishLine({
   // запас для пальца, а центральная карточка совпадает с каноническим стартом
   // настоящего спина (разницы при первом нажатии не видно).
   useEffect(() => {
+    manualReelWrap.value = manualReelEligible ? 1 : 0;
+    reelWrapAnchor.value = manualReelAnchor;
+    reelWrapCycle.value = manualReelCycle;
+  }, [manualReelAnchor, manualReelCycle, manualReelEligible, manualReelWrap, reelWrapAnchor, reelWrapCycle]);
+
+  useEffect(() => {
     if (!manualReelEnabled || manualReelSeededRef.current) return;
     manualReelSeededRef.current = true;
     cancelAnimation(reelOffset);
     const middleStartIndex = REWARD_STREAM_IDS.length + 4;
-    reelOffset.value = clampManualReelOffset(
+    reelOffset.value = wrapManualReelOffset(
       selectorTop - middleStartIndex * rowPitch,
-      manualReelMinOffset,
-      manualReelMaxOffset,
+      manualReelAnchor,
+      manualReelCycle,
     );
-  }, [manualReelEnabled, manualReelMaxOffset, manualReelMinOffset, reelOffset, rowPitch, selectorTop]);
+  }, [manualReelAnchor, manualReelCycle, manualReelEnabled, reelOffset, rowPitch, selectorTop]);
 
   const manualReelGesture = useMemo(() => Gesture.Pan()
     .enabled(manualReelEnabled)
@@ -232,10 +266,12 @@ export default function LevelSpinFinishLine({
     })
     .onUpdate((event) => {
       'worklet';
-      reelOffset.value = clampManualReelOffset(
+      // Границ нет: палец больше ни во что не упирается. Нормализация по кольцу
+      // возвращает тот же кадр, поэтому «перемотка» через шов не видна.
+      reelOffset.value = wrapManualReelOffset(
         manualDragStartOffset.value + event.translationY,
-        manualReelMinOffset,
-        manualReelMaxOffset,
+        manualReelAnchor,
+        manualReelCycle,
       );
     })
     .onEnd((event) => {
@@ -246,8 +282,8 @@ export default function LevelSpinFinishLine({
           reelOffset.value,
           selectorTop,
           rowPitch,
-          manualReelMinOffset,
-          manualReelMaxOffset,
+          manualReelAnchor,
+          manualReelCycle,
         );
         return;
       }
@@ -255,18 +291,20 @@ export default function LevelSpinFinishLine({
         -MANUAL_REEL_MAX_VELOCITY,
         Math.min(MANUAL_REEL_MAX_VELOCITY, event.velocityY),
       );
+      // withDecay без границ — инерция гаснет сама, а не об стенку. Кольцевую
+      // нормализацию делает reelStyle на каждом кадре, поэтому смещение может
+      // спокойно уехать сколь угодно далеко за время инерции.
       reelOffset.value = withDecay({
         velocity,
         deceleration: MANUAL_REEL_DECELERATION,
-        clamp: [manualReelMinOffset, manualReelMaxOffset],
       }, (finished) => {
         if (!finished) return;
         const target = nearestManualReelRowOffset(
           reelOffset.value,
           selectorTop,
           rowPitch,
-          manualReelMinOffset,
-          manualReelMaxOffset,
+          manualReelAnchor,
+          manualReelCycle,
         );
         reelOffset.value = withTiming(target, {
           duration: MANUAL_REEL_SNAP_MS,
@@ -281,8 +319,8 @@ export default function LevelSpinFinishLine({
         reelOffset.value,
         selectorTop,
         rowPitch,
-        manualReelMinOffset,
-        manualReelMaxOffset,
+        manualReelAnchor,
+        manualReelCycle,
       );
       reelOffset.value = reducedMotion
         ? target
@@ -290,9 +328,9 @@ export default function LevelSpinFinishLine({
     }), [
     manualDragStartOffset,
     manualGestureEnded,
+    manualReelAnchor,
+    manualReelCycle,
     manualReelEnabled,
-    manualReelMaxOffset,
-    manualReelMinOffset,
     reducedMotion,
     reelOffset,
     rowPitch,
@@ -306,17 +344,17 @@ export default function LevelSpinFinishLine({
       reelOffset.value - rows * rowPitch,
       selectorTop,
       rowPitch,
-      manualReelMinOffset,
-      manualReelMaxOffset,
+      manualReelAnchor,
+      manualReelCycle,
     );
     reelOffset.value = reducedMotion
       ? target
       : withTiming(target, { duration: MANUAL_REEL_SNAP_MS, easing: Easing.out(Easing.cubic) });
-  }, [manualReelEnabled, manualReelMaxOffset, manualReelMinOffset, reducedMotion, reelOffset, rowPitch, selectorTop]);
+  }, [manualReelAnchor, manualReelCycle, manualReelEnabled, reducedMotion, reelOffset, rowPitch, selectorTop]);
 
   const resultAccessibilityLabel = resultGift
     ? [
-      triLang(lang, { ru: 'Твоя награда', uk: 'Твоя нагорода', es: 'Tu recompensa', 'pt-BR': 'Sua recompensa', vi: 'Phần thưởng', id: 'Hadiahmu', tr: 'Ödülün', pl: 'Twoja nagroda' }),
+      triLang(lang, { ru: 'Твоя награда', uk: 'Твоя нагорода', en: 'Your reward', es: 'Tu recompensa', 'pt-BR': 'Sua recompensa', vi: 'Phần thưởng', id: 'Hadiahmu', tr: 'Ödülün', pl: 'Twoja nagroda' }),
       giftDisplayTitleForLang(resultGift, lang),
       giftDisplayDescForLang(resultGift, lang),
       premiumGift ? 'PLUS' : '',
@@ -559,20 +597,20 @@ export default function LevelSpinFinishLine({
     || (resultVisible && settledRequestId !== receipt?.requestId);
   const ctaLabel = resultVisible
     ? (balance ?? 0) > 0
-      ? triLang(lang, { ru: 'ЕЩЁ СПИН', uk: 'ЩЕ СПІН', es: 'OTRO GIRO', 'pt-BR': 'GIRAR DE NOVO', vi: 'QUAY TIẾP', id: 'PUTAR LAGI', tr: 'BİR DAHA ÇEVİR', pl: 'LOSUJ PONOWNIE' })
-      : triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'BİTTİ', pl: 'GOTOWE' })
+      ? triLang(lang, { ru: 'ЕЩЁ СПИН', uk: 'ЩЕ СПІН', en: 'SPIN AGAIN', es: 'OTRO GIRO', 'pt-BR': 'GIRAR DE NOVO', vi: 'QUAY TIẾP', id: 'PUTAR LAGI', tr: 'BİR DAHA ÇEVİR', pl: 'LOSUJ PONOWNIE' })
+      : triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', en: 'DONE', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'BİTTİ', pl: 'GOTOWE' })
     : phase === 'error'
-      ? triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' })
+      ? triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', en: 'SPIN', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' })
       : phase === 'spinning' || phase === 'recovering'
-        ? triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' })
+        ? triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', en: 'SPIN', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' })
         : phase === 'empty'
-          ? triLang(lang, { ru: 'СПИНОВ НЕТ', uk: 'СПІНІВ НЕМАЄ', es: 'SIN GIROS', 'pt-BR': 'SEM GIROS', vi: 'HẾT LƯỢT', id: 'PUTARAN HABIS', tr: 'ÇEVİRME YOK', pl: 'BRAK SPINÓW' })
-          : triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' });
+          ? triLang(lang, { ru: 'СПИНОВ НЕТ', uk: 'СПІНІВ НЕМАЄ', en: 'NO SPINS', es: 'SIN GIROS', 'pt-BR': 'SEM GIROS', vi: 'HẾT LƯỢT', id: 'PUTARAN HABIS', tr: 'ÇEVİRME YOK', pl: 'BRAK SPINÓW' })
+          : triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', en: 'SPIN', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' });
 
   const fineCopy = phase === 'error'
     ? ''
     : phase === 'empty'
-      ? triLang(lang, { ru: 'Спины закончились', uk: 'Спіни закінчилися', es: 'No quedan giros', 'pt-BR': 'Sem giros', vi: 'Đã hết lượt', id: 'Putaran habis', tr: 'Çevirme kalmadı', pl: 'Brak spinów' })
+      ? triLang(lang, { ru: 'Спины закончились', uk: 'Спіни закінчилися', en: 'Out of spins', es: 'No quedan giros', 'pt-BR': 'Sem giros', vi: 'Đã hết lượt', id: 'Putaran habis', tr: 'Çevirme kalmadı', pl: 'Brak spinów' })
       // зачем: владелец (2026-08-23) убрал подсказку «крути пальцем…» — жест
       // остаётся, но экран его не подписывает (правило: без мелких пояснений).
       // Для незрячих объяснение живёт в accessibilityHint барабана ниже.
@@ -593,13 +631,14 @@ export default function LevelSpinFinishLine({
           accessible={manualReelEnabled}
           accessibilityRole="adjustable"
           accessibilityLabel={triLang(lang, {
-            ru: 'Барабан наград', uk: 'Барабан нагород', es: 'Carrete de recompensas',
+            ru: 'Барабан наград', uk: 'Барабан нагород', en: 'Reward reel', es: 'Carrete de recompensas',
             'pt-BR': 'Carretel de recompensas', vi: 'Vòng phần thưởng', id: 'Gulungan hadiah',
             tr: 'Ödül makarası', pl: 'Bęben nagród',
           })}
           accessibilityHint={manualReelEnabled ? triLang(lang, {
             ru: 'Проведи пальцем, чтобы покрутить без расхода спина. Настоящий спин запускает только кнопка.',
             uk: 'Проведи пальцем, щоб покрутити без витрати спіну. Справжній спін запускає лише кнопка.',
+            en: 'Swipe to spin it without using up a spin. Only the button starts a real spin.',
             es: 'Desliza para moverlo sin gastar un giro. Solo el botón inicia el giro real.',
             'pt-BR': 'Deslize sem gastar um giro. Só o botão inicia o giro real.',
             vi: 'Vuốt để xem mà không tốn lượt. Chỉ nút mới bắt đầu lượt quay thật.',
@@ -717,7 +756,7 @@ export default function LevelSpinFinishLine({
               fallbackColor={rarityColor(resultGift, themeMode, t)}
             />
             <View style={styles.resultCopy}>
-              <Text style={styles.resultKicker}>{triLang(lang, { ru: 'Твоя награда', uk: 'Твоя нагорода', es: 'Tu recompensa', 'pt-BR': 'Sua recompensa', vi: 'Phần thưởng', id: 'Hadiahmu', tr: 'Ödülün', pl: 'Twoja nagroda' })}</Text>
+              <Text style={styles.resultKicker}>{triLang(lang, { ru: 'Твоя награда', uk: 'Твоя нагорода', en: 'Your reward', es: 'Tu recompensa', 'pt-BR': 'Sua recompensa', vi: 'Phần thưởng', id: 'Hadiahmu', tr: 'Ödülün', pl: 'Twoja nagroda' })}</Text>
               <Text style={styles.resultTitle}>{giftDisplayTitleForLang(resultGift, lang)}</Text>
               <Text style={styles.resultDescription}>{giftDisplayDescForLang(resultGift, lang)}</Text>
               {premiumGift ? <Text style={styles.plusGift}>PLUS · {giftDisplayTitleForLang(premiumGift, lang)}</Text> : null}
@@ -728,12 +767,12 @@ export default function LevelSpinFinishLine({
         <View style={styles.statusOverlay} pointerEvents="none">
           <Text style={[styles.statusText, { color: phase === 'error' ? '#FF6B6B' : t.textMuted, fontSize: f.body }]}>
             {phase === 'spinning' || phase === 'recovering'
-              ? triLang(lang, { ru: 'Выбираем подарок…', uk: 'Обираємо подарунок…', es: 'Eligiendo regalo…', 'pt-BR': 'Escolhendo presente…', vi: 'Đang chọn phần thưởng…', id: 'Memilih hadiah…', tr: 'Hediye seçiliyor…', pl: 'Wybieramy prezent…' })
+              ? triLang(lang, { ru: 'Выбираем подарок…', uk: 'Обираємо подарунок…', en: 'Choosing a gift…', es: 'Eligiendo regalo…', 'pt-BR': 'Escolhendo presente…', vi: 'Đang chọn phần thưởng…', id: 'Memilih hadiah…', tr: 'Hediye seçiliyor…', pl: 'Wybieramy prezent…' })
               : phase === 'empty'
-                ? triLang(lang, { ru: 'Спины закончились', uk: 'Спіни закінчилися', es: 'No quedan giros', 'pt-BR': 'Sem giros', vi: 'Đã hết lượt', id: 'Putaran habis', tr: 'Çevirme kalmadı', pl: 'Brak losowań' })
+                ? triLang(lang, { ru: 'Спины закончились', uk: 'Спіни закінчилися', en: 'Out of spins', es: 'No quedan giros', 'pt-BR': 'Sem giros', vi: 'Đã hết lượt', id: 'Putaran habis', tr: 'Çevirme kalmadı', pl: 'Brak losowań' })
                 : phase === 'error'
-                  ? triLang(lang, { ru: 'Один спин — одна награда', uk: 'Один спін — одна нагорода', es: 'Un giro, una recompensa', 'pt-BR': 'Um giro, uma recompensa', vi: 'Một lượt, một phần thưởng', id: 'Satu putaran, satu hadiah', tr: 'Bir çevirme, bir ödül', pl: 'Jeden spin — jedna nagroda' })
-                  : triLang(lang, { ru: 'Один спин — одна награда', uk: 'Один спін — одна нагорода', es: 'Un giro, una recompensa', 'pt-BR': 'Um giro, uma recompensa', vi: 'Một lượt, một phần thưởng', id: 'Satu putaran, satu hadiah', tr: 'Bir çevirme, bir ödül', pl: 'Jedno losowanie, jedna nagroda' })}
+                  ? triLang(lang, { ru: 'Один спин — одна награда', uk: 'Один спін — одна нагорода', en: 'One spin, one reward', es: 'Un giro, una recompensa', 'pt-BR': 'Um giro, uma recompensa', vi: 'Một lượt, một phần thưởng', id: 'Satu putaran, satu hadiah', tr: 'Bir çevirme, bir ödül', pl: 'Jeden spin — jedna nagroda' })
+                  : triLang(lang, { ru: 'Один спин — одна награда', uk: 'Один спін — одна нагорода', en: 'One spin, one reward', es: 'Un giro, una recompensa', 'pt-BR': 'Um giro, uma recompensa', vi: 'Một lượt, một phần thưởng', id: 'Satu putaran, satu hadiah', tr: 'Bir çevirme, bir ödül', pl: 'Jedno losowanie, jedna nagroda' })}
           </Text>
         </View>
       )}

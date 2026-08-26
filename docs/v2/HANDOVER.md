@@ -1,5 +1,299 @@
 # Phraseman Learning V2 — мастер-хендовер
 
+## Shared session attempts seam 2026-08-26 — owner-approved UI, runtime and golden evidence
+
+- The owner approved the visual direction and renamed the user-facing resource
+  to `попытки`. Hearts remain only the visual metaphor. A separate
+  `Попытка потеряна` toast is explicitly forbidden; the heart transition itself
+  communicates the loss.
+- Both live Learning V2 players now mount the shared three-attempt HUD and
+  recovery modal. Only a final pedagogical wrong consumes an attempt;
+  technical/no-speech outcomes remain neutral. Exhaustion stops local audio,
+  voice and interaction before the modal. Gift/rune recovery preserves the
+  exact current activity, answer order, wrong/evidence state and practice index.
+- The ordinary card training route `/flashcards_swipe` is now included in the
+  same allowlist. Its third final wrong freezes the current card and its
+  feedback/queue, stops audio, and opens the shared recovery modal after the
+  heart animation. Reveal/hint is neutral; no lost-attempt toast was added.
+  A synchronous recovery latch also prevents two taps in one frame from
+  starting two durable gift/rune operations.
+- Owner motion correction 2026-08-26: loss is now a 300 ms local sequence
+  (`pop 1 → 1.22`, tilt, ±3 px nudge, 8 px drop, fade to the persistent outline)
+  with a 280 ms expanding halo. Recovery is a distinct staggered refill at
+  `0 / 70 / 140 ms`: each heart enters from scale `.42` and settles with the
+  shared spring. The exhausted modal waits 340 ms, after loss final state.
+  Reduced motion applies the same loss/refill end states immediately.
+- The active ordinary lesson header no longer renders `LessonEnergyLightning`.
+  The one-time energy debit on lesson entry and its insufficient-energy modal
+  remain unchanged; attempts, not energy, communicate in-session mistakes.
+- All six active owner mode mockups show exactly three hearts and expose
+  `3 попытки из 3` to accessibility. The modal catalog includes no-gift,
+  with-gift, insufficient-runes and busy states. Lime CTAs use dark foreground.
+  The motion catalog includes normal and reduced-motion evidence and now
+  declares UTF-8 for correct standalone rendering.
+- Golden evidence is bound in
+  `tests/fixtures/learning-v2/session-attempts/manifest.json`: six active mode
+  screenshots, both primary modal variants, insufficient/busy states and both
+  motion states. `motion-receipt.json` records canonical timings and the absence
+  of a lost-attempt toast. The manifest rejects stale PNG, HTML or receipt
+  hashes.
+- Focused GREEN evidence:
+  `npx tsx tests/learning_v2_session_attempts_runtime_gate.ts`,
+  `npx tsx tests/learning_v2_session_attempts_mockup_gate.ts`, and
+  `npx tsx tests/learning_v2_session_attempts_motion_gate.ts` all pass.
+  Authoring preflight remains `LOCKED none`, `CURRENT 1 DRAFT`,
+  `FORBIDDEN 2–56`; no content, payload, locale, evidence, authoring registry or
+  fingerprint was changed.
+- The full mode-native authoring gate remains an honest `HOLD` with 1826 known
+  future-session/physical-evidence findings and no fingerprint drift:
+  mockup parity 6, missing payload 1117, repeat/compare 56, missing audio 413,
+  Speed Match grid 199, unapproved family 34, learner projection 1. This does
+  not replace the six physical-device parity receipts described below.
+  Session 2 remains forbidden.
+
+## Session 1 repair 2026-08-26 — production audio and owner issue sweep
+
+- Scope remains English lesson 1 session 1 only. Registry evidence:
+  `LOCKED none`, `CURRENT 1`, `DRAFT`, `FORBIDDEN 2–56`. Spanish and future
+  English sessions were not edited.
+- Production audio is no longer generated during play. The exact six texts
+  (`I`, `am`, `here`, `ready`, `I am here`, `I am ready`) were rendered in four
+  distinct voices as 24 MP3 files under
+  `assets/audio/learning-v2/session1-production-v1/`. The checked manifest and
+  the static `require()` table live beside the files and in
+  `app/learning_v2_session1_production_audio_v1.ts`. Session preparation
+  downloads bundled assets into the existing hash-verified offline cache
+  before the intro can open. No Firebase upload or release was performed.
+- The phone microphone no longer mounts the heavyweight universal
+  `SpeakingPanel` in the direct session player. The footer now uses the
+  lifecycle-owned `useLearningV2LocalHoldToTalkV1`, `press-in → start`,
+  `press-out → stop`, once-only final transcript delivery and the canonical
+  `VoiceEqualizer` from ordinary lessons. The transcript is evaluated locally;
+  no voice recording is uploaded or persisted.
+- Matched Speed Match tiles stay visible, become unavailable for another tap
+  and retain their correct state. The first session still contains four real
+  pairs (eight visible word tiles), because only four words are legally known.
+- The blocking new-word card uses the existing Cards editor gradient palette,
+  varies deterministically by lexical item, exposes one bare bookmark icon,
+  has no violet hard-code and never waits for entrance motion before flip.
+- The visible playback-speed badge/control was removed. Closing a word card
+  issues a fresh practice-audio autoplay request; playback watchdog and retry
+  gates remain active.
+- The first intro no longer asks the learner to distinguish three glyph-like
+  forms of `I`. Across all eight locales it checks the semantic speaker role;
+  wrong intro choices shake, and strike-through is restricted to explicit
+  `targetWrong` runs.
+- Focused GREEN evidence: preflight; session-01 mode-native source gate;
+  runtime-native gate; answer-order gate; task-semantics gate; feedback-id
+  parity; intro semantic/polish gates; new-word overlay/runtime/motion gates;
+  preview audio recovery; production-audio static/runtime gates; rune
+  award/idempotency gates; Speed Match timeout/completion blockers.
+- Honest remaining HOLD: the focused command
+  `npm run learning-v2:mode-native-authoring-gate -- --target=en --session=1`
+  reports exactly six missing physical-device mockup-parity receipts, one per
+  active mode. Do not replace those receipts with a source assertion or mark
+  the contract `PASS`. The owner must run the real DEV course slot on the phone
+  and verify state/motion/audio/microphone behaviour; any physical finding is
+  repaired before the receipt is recorded. Session 2 remains forbidden.
+
+## Owner decision 2026-08-26 — session 1 uses four Speed Match pairs
+
+- The owner explicitly approved the recommended exception: English course
+  session 1 uses exactly four distinct Speed Match pairs, limited to the four
+  words already introduced word-first in that session (`I`, `am`, `here`,
+  `ready`). Starting with session 2, Speed Match must use exactly eight
+  distinct words already learned in the current or earlier sessions.
+- This supersedes the unresolved eight-pair/session-1 conflict described in the
+  older continuation note below. Unknown targets (`you`, `are`, `busy`,
+  `tired`) were removed from the real session-1 pair grid. Repeating the same
+  four pairs or adding unfamiliar filler remains forbidden.
+- RED evidence:
+  `npx tsx tests/learning_v2_session1_owner_ui_decisions_2026_08_25_gate.ts`
+  failed with `8 !== 4` before the source repair.
+- Focused GREEN evidence after the repair: owner UI decisions gate, session-01
+  mode-native gate, runtime-native gate, answer-order gate, word-target shard
+  projection gate and curriculum-boundary gate all exit 0. The prior stale
+  exact-family expectation was also updated to the approved three-distinct-
+  families-per-word choreography and now passes.
+- English session 1 remains `DRAFT`; sessions 2–56 remain forbidden by the
+  authoring registry. The only remaining focused mode-native findings are six
+  physical-device UI/motion parity receipts. `adb devices -l` reported no
+  connected phone, so no receipt was fabricated. No commit, push, deploy,
+  release, TTS generation or Spanish edit occurred.
+- Exact next action: connect the owner's phone to the existing DEV build, play
+  the real session-1 package through all six modes, collect state/motion/audio/
+  hold-to-talk receipts, repair any finding, then rerun focused mode-native
+  authoring and preflight. Do not open session 2 until session 1 legally clears
+  this gate and the registry permits it.
+
+## Session 1 continuation 2026-08-25 — six active modes, stable answer order, open blockers
+
+- Scope is still English lesson 1 session 1 only (`DRAFT`). English sessions
+  2–56 and the Spanish contour were not edited.
+- The owner removed `sound_contrast` from active authoring. The active set is
+  now exactly six families: `phrase_builder`, `listen_choose`,
+  `listen_build_dictation`, `context_gap_grammar`, `speed_match`, and
+  `scripted_repeat_compare`. Legacy sound payload parsing remains read-only.
+- Runtime now deterministically shuffles every visible practice option by
+  interaction id. A source-authored correct-first convention can never leave
+  the correct option first on screen, and retry keeps the same order. Intro
+  choices use the same shuffler; Speed Match columns use independent authored
+  orders. The same focused gate rejects exact duplicate visible options; an
+  `am | an | um | an` collision exposed by the real learner package was fixed
+  at the authoring helper, not hidden in the renderer. Case remains meaningful
+  for the authored orthographic `I` versus `i` trap. The focused owner UI gate
+  evaluates every real session-1
+  single-choice option through the actual evaluator capsule and proves exactly
+  one accepted answer which is not displayed first.
+- Each of the four new words now uses three different mode families across its
+  `recognize → retrieve_meaning → build_form` contacts. A focused runtime gate
+  fails if the same family is reused for two stages of one word. The resulting
+  practice sequence still has no adjacent repeated family.
+- Speed Match is now correctly marked as supplemental `vocabulary_grid`, not a
+  phrase application. The 12 standalone word-first contacts remain intact and
+  vocabulary practice now uses four active mode families. The shard builder was
+  fixed so a grid at `apply_in_phrase` does not incorrectly require a
+  standalone vocabulary stage.
+- Open RED is intentional: the eight-pair board currently contains four words
+  not introduced word-first (`you`, `are`, `busy`, `tired`). A new gate rejects
+  that leakage. The active contracts simultaneously require eight distinct
+  word pairs, only four introduced session-1 words, three standalone contacts
+  per new word, and the fixed 20-interaction rapid budget. Do not hide this by
+  treating distractors as learned vocabulary, duplicating the four words, or
+  silently raising the budget; it needs an explicit owner/product resolution.
+- Focused PASS: preflight (`CURRENT 1 DRAFT`, `FORBIDDEN 2–56`), answer-order
+  gate, runtime-native gate, word-target shard projection, curriculum
+  boundary, source→shard→learner projection, course-slot phone preview,
+  runtime-native gate, interleaved word-card gate, mode sequence, mode-native
+  documentation, and focused ESLint. Global focused mode-native gate remains
+  honest `HOLD` for six missing physical-phone state/motion parity receipts.
+- A focused Jest run for audio/hold-to-talk again reached the 4 GB heap before
+  running tests. The semaphore was released and an orphan TypeScript process
+  consuming about 4.2 GB was stopped. Do not rerun broad Jest/tsc on this
+  machine. Both Metro ports 8081 and 8085 are already active; no additional
+  server was started. Android SDK `adb` is present but currently reports no
+  connected device, so no physical-phone receipt was fabricated.
+
+The older 2026-08-25 notes immediately below describe the state before the
+six-mode owner override and this continuation. Where they mention seven modes,
+Sound Contrast, five phrase applications, or no vocabulary grid, this newer
+entry is authoritative.
+
+## Session 1 audit 2026-08-25 — exact card, honest word-first contacts, mode variety
+
+- Scope remains English lesson 1 session 1 only (`DRAFT`); sessions 2–56 and
+  Spanish were not edited.
+- New-word overlay now renders the real
+  `app/flashcards/FlashcardListItem.tsx`. Compact geometry is shared through
+  `app/flashcards/FlashcardListItemChrome.ts`; the front is target +
+  transcription, the back is exact locale translation, speaker is top-right,
+  and exactly one external bookmark remains.
+- The real source had only eight standalone word tasks: four
+  `retrieve_meaning` contacts were hidden inside one grid. A RED contract in
+  `tests/learning_v2_lesson1_session_01_runtime_native_gate.ts` now requires 12
+  independent word contacts (4 × recognize/retrieve/build), five phrase
+  applications, no vocabulary-grid substitution, all seven families and no
+  adjacent repeated family.
+- Session 1 now interleaves `I / am / here / ready` by stage instead of showing
+  one word three times in succession. Each word uses three distinct families.
+  Ordinary choice/gap/builder tasks contain one correct answer plus at least
+  three manually authored diagnostic traps; Sound Contrast remains binary and
+  Speed Match contains only genuine pairs.
+- A second learner-package audit caught four internally different Listen Choose
+  rows projecting to repeated visible «Я здесь» labels. They are now four
+  distinct audible meanings: «Я здесь / Я готов(а) / Я там / Я дома», with
+  locale-native labels and sound-specific feedback in all eight locales. The
+  Speed Match prompt now describes matching expressions to meanings instead of
+  the mechanical «быстро выберите слово» copy.
+- Listen Choose and Listen & Build no longer deadlock when audio is delayed or
+  unavailable. Published audio remains the production requirement; DEV preview
+  uses the device voice and leaves the task operable.
+- Intro typography and vertical spacing were reduced and answer rows widened.
+- Focused GREEN: runtime-native gate, no-repeated-target+family gate,
+  word-target shard projection, new-word-before-phrase gate, device preview and
+  focused ESLint. The session-specific strict gate has exactly five remaining
+  findings, all unpublished audio refs (two Listen Choose, two Sound Contrast,
+  one Listen & Build). The focused global gate has 24 findings: those five
+  audio findings, 12 corresponding absent mode fields and seven unissued
+  visual/motion parity receipts. Do not weaken either gate, fabricate receipts
+  or synthesize audio files without owner permission.
+
+## Bugfix 2026-08-25 — DEV audio + настоящий hold-to-talk footer
+
+- Владелец обнаружил на телефоне два фактических дефекта: кнопка «Нажми, чтобы
+  послушать» не воспроизводила звук и не давала рабочего состояния; центральный
+  микрофон выглядел нажимаемым, но захват речи не запускался.
+- Корень аудиодефекта: authoring preview передавал `null` вместо published
+  audio, а режим всё равно показывал активную кнопку. Теперь опубликованный клип
+  остаётся production-authority, но DEV preview для точного текста из
+  mode-native payload использует системный TTS телефона через общий `useAudio`.
+  Кнопка имеет реальный press-feedback; без callback она честно disabled.
+- Корень голосового дефекта: `components/PressableScale.tsx` анимировал нажатие,
+  но не пробрасывал внешние `onPressIn/onPressOut`, поэтому hook не получал ни
+  `start`, ни `stop`. Компонент теперь передаёт оба события. Внизу player
+  расположен один центральный микрофон: удержание запускает нативный recognizer,
+  отпускание завершает; assistive activation переключает start/stop для
+  VoiceOver/TalkBack.
+- Learning V2 voice больше не требует установленную offline-модель: если
+  on-device recognition недоступно, используется штатный системный recognizer
+  Android/iOS. Запись эфемерна (`persistRecording: false`) и не загружается.
+- GREEN: `learning_v2_authoring_device_preview_audio_v1`,
+  `learning_v2_authoring_device_preview_v1`, preview route/player contracts,
+  `learning_v2_lesson1_session_01_runtime_native_gate`, documentation gate,
+  focused ESLint (0 errors). Fresh preflight: PASS, `CURRENT 1 DRAFT`, sessions
+  2–56 forbidden.
+- Production mode-native gate остаётся честным `HOLD`: у session 1 отсутствуют
+  10 опубликованных audio refs и 6 parity receipts. DEV system TTS исправляет
+  проверяемость на телефоне, но не подменяет финальные voice assets и owner
+  receipts. Физический телефон в ADB сейчас не обнаружен, поэтому новый
+  on-device receipt ещё не записан.
+
+## Owner contract 2026-08-25 — каждую сессию проверяет владелец на физическом телефоне
+
+- Прямое решение владельца: HTML-макет не является достаточной приёмкой.
+  Каждая английская Learning V2 сессия должна открываться в DEV-сборке на
+  физическом телефоне и полностью проходиться в настоящем мобильном player до
+  owner approval.
+- Реализован отдельный вход DEV Hub `Learning V2 · проверка сессий`. Он
+  показывает только непрерывный `LOCKED`-префикс плюс единственную текущую
+  authoring-сессию. При текущем реестре доступна только session 1 `DRAFT`,
+  2–56 открыть нельзя.
+- Preview строится из фактического English source через реальный
+  `buildSessionShardFromSource` → `buildSessionChildBodiesFromShard` и затем
+  запускается тем же `LearningV2DirectSessionPlayerV1`, evaluator и mode
+  router, что learner runtime. Это не showcase fixture и не отдельная копия
+  текста.
+- Preview намеренно не тратит энергию, не пишет completion spool, progress,
+  stars, mistake capture, saved cards и learner telemetry. Кнопки сохранения
+  дают локальное визуальное состояние для проверки. Локальный микрофон остаётся
+  доступен. Fake audio refs не создаются: только DEV preview воспроизводит
+  точный mode-native текст системным TTS телефона; production gate по-прежнему
+  требует опубликованный аудиофайл.
+- Новые файлы: `modules/learning-v2/preview/authoring_device_preview_v1.ts`,
+  `app/learning_v2_authoring_preview.tsx`,
+  `app/_learning_v2_authoring_preview.tsx`, три focused tests и design/plan
+  `2026-08-25-learning-v2-device-preview*`. Изменены direct player, session
+  energy gate, `constants/devRoutes.ts`, DEV Hub registry/sheet.
+- TDD receipts: все три новых проверки сначала дали RED на отсутствующих
+  module/contract/route, затем GREEN:
+  `learning_v2_authoring_device_preview_v1`,
+  `learning_v2_authoring_device_preview_player_contract`,
+  `learning_v2_authoring_device_preview_route`. Реальная preview envelope
+  создаёт device-run `3 intro + 17 practice`; session-01 runtime-native gate
+  PASS; focused ESLint — 0 errors, только 7 существующих import warnings.
+- Focused Jest (`new_word_encounter` + `dev_hub_contract`) не является PASS:
+  процесс снова достиг 4 ГБ heap/OOM. Слот светофора освобождён; оставшийся
+  hook `tsc` был остановлен после роста до ~3 ГБ, чтобы не уронить компьютер.
+  Тяжёлые проверки повторно не запускать пачкой.
+- Physical-device receipt пока открыт: физический телефон через ADB не
+  обнаружен; Metro не поднимался, чтобы не оставлять фоновую
+  нагрузку. Следующее точное действие — подключить телефон/открыть установленную
+  DEV-сборку, запустить один Metro phone process, пройти DEV Hub → Learning V2
+  → проверка сессий → session 1 и записать state-by-state receipt. Session 1
+  остаётся `DRAFT`, не `AUTO_PASS/LOCKED`.
+- Fresh preflight до работы: PASS, target `en`, `LOCKED none`, `CURRENT 1
+  DRAFT`, `FORBIDDEN 2–56`. Commit/push/deploy/release/TTS не выполнялись.
+
 ## Owner contract 2026-08-24 — юмор карточек новых слов без шаблонов
 
 - Каждая карточка нового слова сохраняет отдельный точный locale-native перевод
@@ -14986,3 +15280,605 @@ teaching-сессии сначала выбирается минимальная
 максимизировать их число. Здесь одно хорошо разобранное слово оставляет место
 для 14 переносов новой грамматики и даёт более сильное обучение, чем список
 из десяти скрытых прилагательных без самостоятельного знакомства.
+
+## Owner decision 2026-08-25 — полный mode-native rewrite, HOLD всего урока
+
+- Владелец уточнил, что проблема не ограничена сессией 11: все слова и фразы
+  Learning V2 должны отрабатываться только через семь утверждённых режимов, а
+  интерфейс и анимации режимов обязаны быть 1:1 с owner HTML-макетами.
+- Полный нормативный контракт записан в
+  `docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md`; машинный manifest —
+  `modules/learning-v2/contracts/mode_native_authoring_contract_v1.ts`.
+- Сохранены word-first, contact counts, phrase budgets, session kinds, восемь
+  локалей, дистракторы и feedback. Запрещена только универсальная карточка с
+  поздно присвоенным `family`.
+- Fresh audit настоящих English + Spanish learner packages: 1961 content
+  findings; `mode_native_payload_missing=1213`,
+  `required_audio_missing=458`, `speed_match_not_pair_grid=206`,
+  `sound_contrast_not_two_way=32`,
+  `repeat_compare_not_tap_record_compare=52`. Ещё семь отдельных
+  `mockup_parity_not_pass` фиксируют отсутствие 1:1 UI/motion receipts;
+  итоговый gate count — 1968.
+- Английский реестр возвращён к `DRAFT 1–56`, current 1, forbidden 2–56;
+  причина разблокировки:
+  `owner-unlocked-all-learning-v2-mode-native-rewrite-2026-08-25`. Все
+  milestones/fingerprints выше остаются историей, но больше не доказывают
+  готовность learner package.
+- Новый gate: `npm run learning-v2:mode-native-authoring-gate`. Его RED —
+  ожидаемый общий `HOLD`, а не разрешение ослабить проверку.
+- Следующий task: сначала versioned modePayload и source→shard→release→runtime
+  contract для всех семи mechanics, затем exact state/motion parity; только
+  после GREEN общего seam последовательно пересобирать сессии с ordinal 1 и
+  выдавать новые fingerprints.
+
+### Находки и предложения
+
+Удачные интро, фразы и локализации можно переиспользовать после review, но ни
+одну сессию нельзя повторно `LOCKED`, пока её реальный learner bundle не
+проходит mode-native и 1:1 mockup gates.
+
+## Runtime-инцидент 2026-08-25 — Android dev splash больше не строит весь урок
+
+- Запрос владельца: починить Desktop launcher Android-эмулятора и Metro.
+  Контент, локали, fingerprints, статусы, mode payload и authoring-решения
+  Learning V2 не менялись.
+- Причина внутри V2 seam: Metro React Refresh проверяет каждый object export
+  чтением `$$typeof`. Совместимый Proxy `AUTHORED_EPISODE_01_SESSIONS`
+  принимал эту служебную проверку за настоящее чтение массива и до первого
+  React-render строил все 56 источников на восьми локалях. На эмуляторе это
+  оставляло native splash чёрным на неопределённое время.
+- Минимальная правка в
+  `modules/learning-v2/content/source/authored_sessions_v1.ts`: чтение
+  `$$typeof` теперь остаётся на пустом Proxy-target; `length`, индекс,
+  iterator и методы массива сохраняют прежнее ленивое совместимое поведение.
+- RED: `npx tsx
+  tests/learning_v2_authored_sessions_react_refresh_lazy_gate.ts` до правки не
+  завершился за 30 секунд и был остановлен. GREEN:
+  `LEARNING V2 REACT REFRESH LAZY GATE: PASS` за 1,4 секунды, затем fresh PASS
+  в финальном focused gate.
+- Реальное устройство через Desktop launcher: Metro собрал 5 097 модулей;
+  текущий PID приложения дважды дошёл до `[BOOT] RootLayout render`; home
+  screen записан в `.codex-tmp/emulator-desktop-script-final.png`; для
+  текущего PID число `ProtocolException/Unable to load script/LoadBundleFromServerRequestError/FATAL
+  EXCEPTION = 0`.
+- Focused Jest не является доказательством PASS: общий Jest bootstrap упёрся в
+  V8 heap 4 GB до запуска теста (`0 tests`, exit 1). Воспроизводимый gate этого
+  инцидента — лёгкая исполняемая команда выше. Ни один guard не ослаблен,
+  широкий suite не объявлен PASS.
+- Состояние репозитория: checkout `C:/appsprojects/phraseman`, ветка
+  `feature/referral-roulette`, HEAD
+  `ad1c9a8902601f132328a9e4e34dba36bf77156f`, upstream
+  `origin/feature/referral-roulette`. Commit, push, deploy, release, новая
+  ветка и worktree не создавались. Сохранены существовавшие до инцидента
+  правки authoring registry, Spanish source, mode-native contract,
+  диагностик `_layout` и этого handover.
+- Точный следующий V2 task не меняется: под общим `HOLD` реализовать общий
+  versioned `modePayload` seam для семи families по цепочке source → shard →
+  release → runtime, затем доказать exact state/motion parity с owner mock и
+  только после этого переписывать ordinal 1. Этот runtime-инцидент не открывает
+  authoring ordinal и не является AUTO PASS.
+
+### Находки и предложения
+
+Совместимые экспорты должны оставаться ленивыми не только при обычном runtime
+доступе, но и при служебных metadata probes dev-инструментов. Для каждого
+нового крупного Proxy-export стоит добавлять probe-only gate до подключения к
+Metro React Refresh.
+
+## English session 1 mode-native implementation checkpoint — 2026-08-25
+
+- Scope remains exactly English session 1. Fresh
+  `npm run learning-v2:lesson1-authoring-preflight` returned `PASS`,
+  `LOCKED: none`, `CURRENT: 1`, `CURRENT STATUS: DRAFT`,
+  `FORBIDDEN: 2-56`. No English session 2–56 or Spanish source was authored.
+- Session 1 now has an explicit 17-contact plan in
+  `modules/learning-v2/content/source/episode_01_session_01_mode_native_v1.ts`:
+  4 word `listen_choose`, one four-pair `speed_match` grid, 4 word
+  `listen_build_dictation`, 2 `phrase_builder`, 2 phrase `listen_choose`,
+  2 `context_gap_grammar`, 2 `scripted_repeat_compare`. Sound Contrast is not
+  assigned because this vocabulary has no honest two-way minimal contrast;
+  `here/hear` are homophones and must not be presented as distinguishable audio.
+- Versioned `modePayload` now survives source → generated shard → learner child
+  → device run through:
+  `modules/learning-v2/contracts/mode_native_payload_v1.ts`,
+  `session_shard_from_source_v1.ts`, `generator_session_shard.ts`,
+  `session_package_from_shard_v1.ts`,
+  `course_session_client_children_v1.ts` and
+  `course_session_device_run_v1.ts`.
+- Session 1 runtime correctness is exercised with the real evaluator capsule:
+  every authored correct response is accepted after materialization. Speed
+  Match uses `pair_grid` and the stable completion response
+  `all_pairs_matched`; Repeat & Compare uses `tap_record_compare`.
+- Runtime UI changes are mode-specific, not one universal renderer. Speed
+  Match renders two real columns and finishes only after all pairs; Phrase
+  Builder and Listen & Build can return any selected chip, not just the last;
+  Context Gap reads authored scene/gap data; Listen & Build does not reveal the
+  hidden target before success; Repeat & Compare uses tap-start/tap-stop and
+  hides the old duplicate hold control. Reduced-motion branches remain in the
+  dedicated mode components.
+- Manual Listen Choose feedback for the semantic-neighbour and missing-`am`
+  traps was rewritten independently for all eight required explanation
+  locales. It no longer reuses the wrong lexical explanation.
+- Focused evidence:
+  - `npx tsx tests/learning_v2_lesson1_session_01_runtime_native_gate.ts` → PASS.
+  - Word-first choreography, word target projection, intro, manual phrase,
+    new-word-before-phrase and no-repeat target+family gates → PASS.
+  - Focused ESLint over touched mode/player files → 0 errors (existing import
+    and hook warnings remain).
+  - `npx tsx tests/learning_v2_lesson1_session_01_mode_native_gate.ts` reaches
+    the actual device evaluator successfully, then intentionally HOLDs with
+    exactly 10 `audio_missing` findings.
+- Audio is the remaining hard authoring blocker. The only existing usable
+  audited asset is `legacy-lesson1_phrase_1` for normal-speed `I am here`; it
+  covers phrase Listen Choose and one Repeat & Compare. Exact audio is missing
+  for `I`, `am`, `here`, `ready`, `I am ready`, plus required slow references.
+  Nulls are deliberate; never replace them with fake IDs, duplicated normal
+  audio, browser speech or unrelated legacy recordings. TTS requires a new,
+  explicit owner permission and the project spend guard.
+- Global mode-native gate remains HOLD and was not weakened. Mockup parity
+  receipts also remain HOLD until a real runnable app build can be captured and
+  compared state-by-state with the owner HTML. The existing Metro listener on
+  port 8081 did not return a page and was not restarted to avoid adding memory
+  pressure. A source-derived review artifact was built at
+  `.codex-tmp/learning-v2-authoring-registry/session-01-mode-native-source-preview.html`;
+  it is a content review surface, not a parity receipt.
+- Full `tsc --noEmit` acquired and released the shared semaphore correctly but
+  V8 exhausted its 4 GB heap. Do not report it as PASS and do not rerun it in
+  parallel; use the focused executable gates until the machine has a safe
+  typecheck window.
+- No commit, push, deploy, release, TTS generation, new branch or worktree was
+  performed. Session 1 remains DRAFT and must not be set LOCKED without explicit
+  owner approval.
+
+### Exact next action
+
+Obtain explicit owner permission for the missing session-1 audio batch (or
+receive owner-supplied audited files), wire normal and slow references, rerun
+the two focused mode-native gates, then run the real app preview and create
+state/motion screenshots for only the six families used by session 1. Stop at
+owner review; do not advance to session 2.
+
+## Owner update 2026-08-25 — session 1 interleaving, Arena UI and canonical voice
+
+- Scope remains English session 1 only; sessions 2–56 and Spanish were not
+  edited.
+- New permanent composition rule is normative in `СТАРТ В2` and the
+  mode-native contract: exactly three intro pages; all seven families in every
+  session; no adjacent practice interactions with the same family.
+- Session 1 keeps 17 practice contacts but now alternates every adjacent family
+  and includes `sound_contrast` for `here /hɪr/` versus `ready /ˈredi/`, with
+  eight independently authored locale feedback texts.
+- New-word flow is no longer an after-intro batch. Runtime pauses on the first
+  interaction carrying the encounter, shows canonical
+  `app/flashcards/PhraseCard.tsx`, then resumes the same interaction.
+- Package materialization now deduplicates by lexical item rather than slicing
+  the first N practice cards. Session 1 therefore presents exactly four cards
+  once each at practice indices 0/2/4/6: `I`, `am`, `here`, `ready`. The focused
+  device-preview test fails if an early word is duplicated or a later word is
+  skipped.
+- The overlay uses real card flip, top-right speaker, bookmark save and a V2
+  Continue control. DEV preview plays exact target text through system TTS; no
+  project API and no TTS asset batch was used.
+- All seven mode renderers now consume shared Arena/V2 primitives and active
+  theme palette. Ordered-token modes own their V2 submit CTA; global
+  `Пропустить`/`Проверить` footer controls were removed.
+- Voice uses canonical `SpeakingPanel` with `presentation="inline"` and the same
+  `VoiceEqualizer`/hold lifecycle as ordinary lessons. Footer before a correct
+  result contains only the centered mic.
+- Focused PASS: `learning_v2_arena_visual_primitives_gate`,
+  `learning_v2_session_mode_sequence_gate`,
+  `learning_v2_interleaved_word_card_gate`, and
+  `learning_v2_interleaved_new_word_flow_v1.test`.
+- Focused ESLint: zero errors. Strict authoring remains honest HOLD: nine
+  session-1 audio contacts still lack published normal/slow files, and seven
+  visual parity receipts require real phone capture. Fake audio IDs and fake
+  parity receipts were not created. Session 1 stays DRAFT.
+- Fresh runtime/device evidence after the canonical voice migration:
+  `learning_v2_lesson1_session_01_runtime_native_gate`,
+  `learning_v2_authoring_device_preview_v1`, route, player and audio tests all
+  PASS. Every one of the 17 practice entries exposes hold-to-talk; the runtime
+  gate requires the canonical `SpeakingPanel`/`VoiceEqualizer` and real
+  `onPressIn`/`onPressOut` lifecycle.
+- The existing Metro process is healthy on port 8081. The DEV build can open
+  `phraseman://learning_v2_authoring_preview`; on the current Android emulator
+  navigation is presently covered by that emulator's unfinished onboarding,
+  not by a Learning V2 crash. Do not start a second Metro process. A physical
+  phone on the same Wi-Fi can use the development client at
+  `http://192.168.68.114:8081`, then open the Learning V2 authoring preview.
+- Final preflight for this checkpoint: PASS; `LOCKED: none`, `CURRENT: 1`,
+  `CURRENT STATUS: DRAFT`, `FORBIDDEN: 2-56`.
+
+## Owner correction 2026-08-25 — compact word card and Listen & Build crash
+
+- The word overlay had forced `PhraseCard` to `minHeight={330}`. Owner rejected
+  that tall variant. It now uses the canonical compact default size.
+- The back face now renders only `meaningByLocale[locale]`; the old playful
+  editorial paragraph is not rendered. While the blocking card is open, the
+  underlying generic `SaveToCardsButton` is hidden, leaving exactly one
+  bookmark save control.
+- Root cause of the dead/crashing Listen & Build screen: its play handler
+  called `hapticLightImpact()` without importing it. The synchronous
+  `ReferenceError` happened before audio playback and before the 1500 ms unlock
+  timer, so play, word chips and Check all appeared non-functional. The missing
+  import is fixed and guarded by the runtime-native gate.
+- Fresh focused evidence: interleaved word-card, session-01 runtime-native,
+  device-preview, preview-player and mode-native documentation gates PASS;
+  focused ESLint reports zero errors. Preflight for `--session 1` PASS; status
+  remains DRAFT and sessions 2–56 remain forbidden.
+
+## Owner decision 2026-08-25 — orchestration of all 1 792 sessions
+
+- The owner approved the course-wide approach **fixed learning scaffold +
+  constrained adaptation**. Topic order, prerequisites, grammar/can-do
+  boundaries and evidence requirements are deterministic. Only review timing,
+  support, difficulty inside the approved boundary and the set of already
+  familiar review items may adapt.
+- The normative specification is
+  `docs/v2/LEARNING_V2_1792_SESSION_PEDAGOGICAL_ORCHESTRATION.ru.md` and is
+  linked from `СТАРТ В2`, `LESSON_DESIGN_RULES.ru.md` and `docs/v2/README.md`.
+- The contract reconciles the owner requirement to use all seven mode-native
+  families in every session with learning science: modes are weighted by
+  learning function and SessionKind, never rotated randomly or through one
+  universal sequence. Every mode contact must serve the current can-do.
+- The 7 × 8 chapter rhythm remains fixed: sessions 1–3 introduce/develop,
+  4–6 retrieve/vary/transfer, 7 is voice on familiar material and 8 is an
+  independent checkpoint. Session 56 is the lesson final.
+- A new word still follows just-in-time card → recognize → retrieve meaning →
+  build form → apply. The four initial contacts are admission to phrase
+  practice, not a mastery claim; future retrieval and delayed probes remain
+  mandatory.
+- Initial interaction weights for rapid, standard, recall, voice and checkpoint
+  profiles are explicitly labelled `PRODUCT_HYPOTHESIS`. They must be calibrated
+  against independent and D+3…D+7 transfer/retention evidence, not completion.
+- Batch work is allowed only for the 32-lesson/224-chapter/1,792-session
+  curriculum metadata graph. Learner-facing intros, phrases, exercises,
+  distractors, feedback and localizations remain one-current-session authoring
+  after preflight.
+- Research anchors recorded in the specification cover CEFR can-do outcomes,
+  retrieval practice, spacing, blocked-to-interleaved progression, skill-
+  specific comprehension/production practice, output, corrective feedback,
+  vocabulary encounters and perception/production phonetic training.
+- Verification for this documentation package: fresh English preflight PASS
+  (`LOCKED: none`, `CURRENT: 1`, `DRAFT`, `FORBIDDEN: 2-56`); all five proposed
+  interaction-profile totals recomputed to 20/16/16/12/16; referenced local
+  contracts exist; `git diff --check` found no whitespace errors. No lesson
+  content, runtime, Spanish files, audio, deploy, commit or push was changed.
+
+## Owner correction 2026-08-25 — canonical lesson-1 boundary and real course slot
+
+- The owner rejected the map that moved material from later lessons into lesson
+  1. The canonical source is again
+  `docs/v2/03-learning-architecture-and-curriculum.md`: lesson 1 owns only
+  affirmative `I am / I'm` and affirmative `you are` phrase models plus the
+  greeting/name/country/language/closing formulas needed for its can-do.
+- Lesson 1 must not teach `he/she/it`, `we/they`, to-be questions or negation,
+  `this/that`, `a/an`, `have` or possessives. The former full-table exception in
+  `LESSON_DESIGN_RULES.ru.md` is explicitly cancelled by the latest owner
+  decision. The global 1,792-session orchestrator cannot expand a lesson's
+  grammar/can-do boundary.
+- TDD evidence: the new executable gate
+  `tests/learning_v2_lesson1_curriculum_boundary_gate.ts` first reported HOLD
+  with 34 findings. After rewriting
+  `modules/learning-v2/content/source/episode_01_session_map_v1.ts`, it reports
+  PASS. The map remains 7 chapters × 8 sessions but gains depth through
+  word-first encounters, retrieval, fading, voice and transfer rather than by
+  borrowing later grammar.
+- English session 1 remains the only learner-facing authoring scope. Its real
+  source contains 17 practice contacts, all seven native mode families, no
+  adjacent repeated family, four just-in-time word encounters and five phrase
+  applications. Stable logical audio references were added to all audio modes;
+  DEV playback resolves them through the existing system-speech authoring
+  fallback without API spend or generated TTS files.
+- The owner can now open session 1 from the actual first session card in both
+  course entry surfaces. In DEV only, lesson 1/session 1 receives
+  `previewMode=authoring_v1&previewOrigin=course`; exiting returns to the course.
+  Production routing is unchanged and Spanish is excluded by the explicit
+  `studyTarget === "en"` condition.
+- TDD evidence for the course seam:
+  `tests/learning_v2_session1_course_slot_device_preview_gate.ts` first reported
+  HOLD with eight findings and now reports PASS. It is part of
+  `learning-v2:lesson1-authoring-preflight` so future work cannot silently move
+  the preview back to a lab-only route.
+- Focused executable PASS evidence: curriculum boundary, course-slot preview,
+  session-1 mode-native, word-first choreography, word-first intro, manual
+  phrase, runtime-native, interleaved word card, Arena visual primitives, mode
+  sequence, device preview audio/player/route, and interleaved new-word flow.
+- Interactive owner review map:
+  `C:/Temp/learning-v2-canonical-32-and-lesson1-56-map.html`. It shows the exact
+  original 32 lesson titles and all 56 corrected lesson-1 metadata entries.
+  Only session 1 is marked playable and displays its exact 17-contact sequence;
+  sessions 2–56 are honestly marked metadata-only with no invented exercise
+  order.
+- Current registry remains `LOCKED: none`, `CURRENT: 1`, `DRAFT`,
+  `FORBIDDEN: 2-56`. Do not author session 2 and do not mark session 1 LOCKED
+  without explicit owner approval. No deploy, commit, push, TTS generation,
+  Spanish edit, new branch or worktree was performed.
+
+## Owner continuation 2026-08-25 — session-1 slow audio is no longer dead
+
+- Fresh global baseline after the canonical-boundary repair reported 1,900
+  findings. Five were genuinely inside English session 1: its audio modes had
+  `referenceAudio` but no `slowReferenceAudio`. The remaining findings were the
+  seven global visual-parity receipts and legacy/frozen sessions 2–56.
+- Session 1 now owns stable logical normal/slow targets for `I`, `am`, `here`,
+  `ready`, `I am here` and `I am ready`. No TTS files or API calls were made;
+  the DEV owner-preview resolves the exact transcript through the system voice
+  on the phone.
+- The direct player previously passed `onPlaySlowPhraseAudio={null}` to both
+  routed mode branches. A focused RED addition to
+  `learning_v2_lesson1_session_01_runtime_native_gate.ts` caught both dead
+  controls. The player now exposes a real DEV slow callback at `0.72×` whenever
+  the mode payload contains a slow transcript; unavailable production audio
+  remains honestly disabled rather than pretending to play.
+- `learning_v2_lesson1_session_01_mode_native_gate.ts` now independently
+  requires non-empty normal and slow logical audio IDs in both source and
+  projected learner payload. It no longer relies on the intentionally red
+  global gate to protect current-session audio completeness.
+- Fresh focused PASS: session-1 mode-native, runtime-native, authoring device
+  preview audio and preview-player contract. Re-running the global baseline
+  reduced findings from 1,900 to 1,895; its first learner-content finding is
+  now session 2, confirming no remaining mode-native field/audio finding for
+  session 1. Global status remains HOLD because visual receipts and frozen
+  future sessions are intentionally unresolved.
+- Metro remains healthy on port 8081 and is reachable on Wi-Fi at
+  `192.168.68.114`. No Android device/emulator was attached over ADB during
+  this checkpoint, so physical taps were not falsely recorded as verified.
+
+## Milestone 2026-08-26 — session 1 owner-correction pass, second audit
+
+This section supersedes stale runtime details immediately above where they
+conflict with the 2026-08-26 owner contracts. English session 1 is still the
+only permitted learner-facing scope. It remains `DRAFT`; sessions 2–56 remain
+forbidden and no owner approval or lock has been inferred.
+
+### Implemented in the bounded session-1 package
+
+- Rune award now follows the canonical `3 / 2 / 1 / 0` ladder: clean first
+  attempt without a hint / second attempt / hint or third-and-later attempt /
+  skip. HUD and flight use the real bundled rune asset
+  `assets/images/level-spin-rewards/stars_10.webp`; decorative flight cannot
+  delay score mutation or the next input.
+- The new-word overlay reuses `FlashcardListItem`, accepts flip immediately,
+  auto-flips after exactly three seconds when untouched, has one compact
+  bookmark at bottom-right, a centered Continue control, and a stable custom
+  flashcard palette. The card wins the first frame; practice mounts and enters
+  only after Continue.
+- Preview speech has a bounded watchdog. A system modal or lost audio focus can
+  no longer leave the player forever in `Звучит`; replay becomes available.
+  The numeric `0.75×` label was removed without removing slow replay.
+- Intro wrong choices shake without blocking input. Strike-through is now
+  driven only by explicit `targetWrong` semantics, never by the generic danger
+  palette. Intro typography is smaller and answer containers are wider.
+- Task prompts distinguish instruction from working target, and word tasks no
+  longer claim to build a phrase. Session-1 distractors are handwritten close
+  phonetic/orthographic traps with locale-native meanings across all eight
+  locales. Speed Match renders direct pair tiles without redundant shells.
+- Session 1 uses the six active mode-native families. `sound_contrast` remains
+  historical and is not authored. Options are deterministically shuffled at
+  runtime and stay stable on retry.
+
+### Files owned by this correction pass
+
+- `app/learning_v2_direct_session_player_v1.tsx`
+- `app/learning_v2_interaction_rune_award_v1.ts`
+- `app/learning_v2_intro_semantic_bridge.ts`
+- `app/learning_v2_preview_speech_watchdog_v1.ts`
+- `app/learning_v2_session_intro.tsx`
+- `components/LearningV2RuneFlight.tsx`
+- `components/learning-v2/LearningV2NewWordEncounterOverlay.tsx`
+- `modules/learning-v2/content/source/episode_01_session_01_mode_native_v1.ts`
+- `modules/learning-v2/content/source/session_package_from_shard_v1.ts`
+- `modules/learning-v2/modes/listen_build_dictation_mode_v1.tsx`
+- `modules/learning-v2/modes/listen_choose_mode_v1.tsx`
+- `modules/learning-v2/modes/phrase_builder_mode_v1.tsx`
+- `modules/learning-v2/modes/speed_match_mode_v1.tsx`
+- `docs/v2/СТАРТ В2.md`
+- `docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md`
+- `docs/superpowers/specs/2026-08-24-learning-v2-premium-new-word-card-design.md`
+- Focused regression gates named `tests/learning_v2_*_2026_08_26_gate.ts`.
+
+### Deterministic evidence
+
+- `npm run learning-v2:lesson1-authoring-preflight -- --session 1` — PASS:
+  curriculum boundary PASS, course-slot preview PASS, `LOCKED: none`,
+  `CURRENT: 1`, `CURRENT STATUS: DRAFT`, `FORBIDDEN: 2-56`.
+- PASS: rune award, new-word overlay, card-before-practice motion, preview audio
+  recovery, intro interaction polish, explicit wrong semantics, task
+  semantics, owner-correction documentation, session-1 mode-native,
+  session-1 runtime-native, deterministic answer order, interleaved word card,
+  curriculum boundary, and course-slot device preview focused gates.
+- Targeted ESLint completed with zero errors. Eight existing
+  `import/no-named-as-default` warnings remain in the direct player; no source
+  behavior was removed to silence them.
+- `npm run learning-v2:mode-native-authoring-gate -- --target=en --session=1`
+  remains an expected HOLD with exactly six `mockup_parity_not_pass` findings:
+  `listen_choose`, `listen_build_dictation`, `phrase_builder`, `speed_match`,
+  `context_gap_grammar`, and `scripted_repeat_compare`. These require physical
+  phone screenshots, state and motion receipts; they were not waived or faked.
+
+### Device/build state and exact next action
+
+After the foreign typechecks released enough memory, one protected DEV Metro
+instance was started on LAN port 8085 without clearing caches or building an
+APK. `http://127.0.0.1:8085` returned HTTP 200 with a 108362-byte response; the
+phone URL is `exp://172.20.10.2:8085`. The SDK `adb.exe` exists at
+`C:/Users/badlo/AppData/Local/Android/Sdk/platform-tools/adb.exe`, but reports no
+attached device, so no physical tap or audio receipt is claimed. No commit,
+push, deploy, TTS generation, Spanish edit, branch, or worktree was created.
+
+The next executable action is: connect the owner's phone to the same Wi-Fi (or
+attach it over USB), open `exp://172.20.10.2:8085` in the installed dev client,
+then open the actual Lesson 1 → Session 1 course card and collect state/motion
+receipts for the six active modes. Repair any physical failure test-first;
+otherwise record six parity PASS receipts and stop for owner review. Do not
+author session 2 and do not change session 1 from `DRAFT` without explicit
+owner approval.
+
+## Milestone 2026-08-26 — behavioral RED repair and economy provenance review
+
+This section supersedes the correction-pass claims above where independent
+review later found untested runtime or economy behavior. English lesson 1,
+session 1 remains the only permitted scope and remains `DRAFT`. Sessions 2–56
+remain forbidden.
+
+### Runtime defects repaired after independent review
+
+- `phrase_builder` and `listen_build_dictation` feedback IDs are remapped to
+  the projected `:trap:N` response IDs, so each selected distractor reaches its
+  handwritten diagnostic feedback instead of a generic fallback.
+- Preview speech uses a generation guard: a stale callback from request A
+  cannot clear request B's watchdog or leave the UI at `Звучит`.
+- The new-word card cancels its three-second auto-flip after any manual flip;
+  its speaker is disabled when production audio is unavailable.
+- Speed Match has an explicit timeout state with real retry and no-timer
+  restart. The no-timer restart is playable and no longer displays a false
+  60-second counter.
+- Context Gap, Repeat & Compare, audio controls, the new-word hint and the rune
+  accessibility label use explicit copy for all nine interface locales. The
+  Listen & Build task label now includes English. Rune noun forms are
+  locale-aware (`1 руна`, `2 руны`, `5 рун`, `1 rune`, `3 runes`, etc.).
+- New behavioral gates cover feedback-ID parity, stale audio callbacks,
+  manual/automatic card flip, unavailable speaker state, Speed Match expiry,
+  locale UI surfaces and synchronous per-interaction award idempotency.
+
+### Durable rune award and critical review result
+
+- The HUD still settles each correct interaction immediately with the
+  canonical `3 / 2 / 1 / 0` ladder. Durable wallet credit is one aggregate
+  session-completion composite containing the immutable evidence for all 17
+  practice interactions; maximum award is 51 runes.
+- Evidence is appended durably before wallet CAS, and progress is marked
+  complete only after the wallet receipt is confirmed. The stable semantic
+  operation key is shared with the historical required-session settlement, so
+  both `new → restart → legacy pending` and `legacy → restart → new` replay
+  without a second credit. The canonical operation ID is identical at the
+  settlement top level and inside the authorized operation.
+- Publication provenance is opaque. A module-private `WeakMap` token is minted
+  only from a genuine `LearningV2CourseSessionReadyHandleV3` resolved by the V3
+  loader. Structural clones cannot mint it. Release, active root, head,
+  package, child-set, exact canonical source fingerprint and all child
+  fingerprints are independently rechecked before the repository is mounted.
+- The verified learner source locale comes only from private ready-handle
+  metadata. Genuine handles pass for `ru`, `uk`, `es`, `pt-BR`, `vi`, `id`,
+  `tr` and `pl`; caller-spoofed locale and synthetic/stale publication evidence
+  are rejected.
+- `learning_session_reward_composite` is explicitly recorded in the Jarvis
+  data-contract guard as a local Owner Repository receipt intentionally unread
+  by Jarvis. No Firestore collection/field/path was added, so Firestore Rules
+  and Jarvis fetchers did not change.
+- Four successive fresh critical reviews returned concrete P1 findings before
+  the final review. The final fresh review returned PASS with no P0/P1 for
+  locale/provenance, restart dedupe, canonical IDs and Jarvis boundaries.
+
+### Fresh deterministic evidence
+
+- `npm run learning-v2:lesson1-authoring-preflight -- --session 1` — PASS:
+  `LOCKED: none`, `CURRENT: 1`, `CURRENT STATUS: DRAFT`, `FORBIDDEN: 2-56`.
+- `npx tsx tests/learning_v2_session1_rune_reward_composite_gate.ts` — PASS.
+- `npx tsx tests/learning_v2_session1_rune_reward_integration_gate.ts` — PASS.
+- `npx tsx tests/learning_v2_mode_runtime_copy_2026_08_26_gate.ts` — PASS.
+- `npx tsx tests/learning_v2_speed_match_timeout_2026_08_26_gate.ts` — PASS.
+- The earlier 18 focused behavioral/content/runtime gates also passed after the
+  runtime repair. Scoped ESLint has zero errors; the direct player retains only
+  its eight pre-existing default-import warnings. Scoped `git diff --check` is
+  clean apart from Windows LF-to-CRLF notices.
+- Heavy whole-project Jest, TypeScript and builds were deliberately not run:
+  the shared machine was under memory pressure and the owner required a
+  low-resource workflow.
+
+### Honest remaining HOLD
+
+- `learning-v2:mode-native-authoring-gate -- --target=en --session=1` still
+  requires six physical mockup-parity receipts: `listen_choose`,
+  `listen_build_dictation`, `phrase_builder`, `speed_match`,
+  `context_gap_grammar`, `scripted_repeat_compare`.
+- No phone is attached over ADB, so taps, microphone, system speech, transitions
+  and reduced-motion parity are not claimed as verified.
+- Authoring preview may use the phone's system speech and performs no wallet
+  writes. A real released audio child still needs genuine audio file refs for
+  every authored `audioTargetId`; those files have not been generated. Fake
+  object paths were not introduced and the audio schema was not weakened. TTS
+  generation remains blocked until the owner explicitly authorizes the guarded
+  audio spend/workflow.
+- A Metro restart attempt on port 8085 was stopped deliberately: the hidden
+  wrapper redirected output into the same log used by the protected watchdog,
+  and Expo spawned many workers while no phone was attached. The exact process
+  tree created by this session was terminated and port 8085 was released to
+  protect the shared machine. Start one clean protected Metro only when the
+  owner is ready to connect the phone; do not redirect its output to
+  `protected-metro-phone.log`, because the watchdog owns that file. No commit,
+  push, deploy, TTS generation, Spanish edit, branch or worktree was performed.
+
+Drift verdict: `HOLD`, only because physical mode parity and real release audio
+remain unverified. Content/runtime/economy authoring stays on session 1; do not
+open session 2 and do not mark session 1 `LOCKED` without owner review.
+
+## Continuation 2026-08-26 — canonical voice, Arena chips, pocket/dictionary and focused content gate
+
+This continuation preserves the same scope: English lesson 1, session 1 only.
+The registry remains `LOCKED: none`, `CURRENT: 1`, `DRAFT`, `FORBIDDEN: 2-56`.
+No session 2 authoring, Spanish edit, commit, push, deploy, TTS generation,
+branch or worktree was performed.
+
+### Runtime/UI corrections completed
+
+- Repeat & Compare now embeds the canonical app `SpeakingPanel` through
+  `SpeakingInlineSlot` with `presentation="inline"`. The lesson footer owns only
+  the press-and-hold gesture; `SpeakingPanel` owns native permission, capture,
+  speech recognition, watchdog/recovery, scoring and the exact shared
+  equalizer. The obsolete `useLearningV2LocalHoldToTalkV1` path and its stale
+  footer references are not used.
+- Speed Match tiles now use the canonical Arena `V2Chip` primitive with
+  `singleLine`, Arena press depth/haptics and durable matched state. Long words
+  cannot wrap inside a squeezed equal-width raw button.
+- Practice navigation stores and restores the answered UI snapshot when the
+  owner returns with Back. Revisited answers cannot award runes again.
+- The footer word pocket and the lesson-map dictionary read the same durable,
+  lesson-scoped unlocked-word registry. The pocket uses the exact
+  `CollectionDeckView`; the map dictionary is a browse-only unlocked-word list
+  with target-language audio and the canonical bookmark control.
+- Intro titles and bodies use authored semantic target-language spans. Target
+  text has its own color/weight; red remains reserved for explicit
+  `targetWrong` content and is not inferred from arbitrary Latin characters.
+- The focused distractor gate now honors `--session=1` and is part of the
+  English preflight. It audits exactly the current session instead of hiding
+  its result behind hundreds of forbidden future-session findings.
+
+### Current deterministic evidence (low-resource run)
+
+- `npm run learning-v2:lesson1-authoring-preflight -- --session 1` — PASS:
+  curriculum boundary PASS, course-slot device preview PASS, 12 authored
+  distractors / 96 locale variants / 0 findings, `CURRENT: 1`, `DRAFT`.
+- PASS: `learning_v2_arena_visual_primitives_gate.ts`,
+  `learning_v2_session1_owner_ui_decisions_2026_08_25_gate.ts`,
+  `learning_v2_session1_owner_reported_issues_2026_08_26_gate.ts`,
+  `learning_v2_session1_task_semantics_2026_08_26_gate.ts`,
+  `learning_v2_interleaved_word_card_gate.ts`, word-pocket owner contract,
+  review restore, audio replay readiness, runtime copy and Speed Match timeout.
+- Focused ESLint over the direct player, Repeat & Compare and Speed Match has
+  zero errors. Twelve warnings remain (default-import and existing hook
+  dependency warnings); no behavior was removed merely to silence them.
+- Scoped `git diff --check` is clean except normal Windows LF-to-CRLF notices.
+- Heavy full Jest, whole-project TypeScript, native build and global asset scan
+  were deliberately not run: the owner required an economical workflow on a
+  machine shared by many LLM sessions.
+
+### Honest remaining HOLD / next action
+
+`npx tsx tests/learning_v2_mode_native_authoring_gate.ts --target=en --session=1`
+has exactly six remaining findings, all `mockup_parity_not_pass` for the six
+active modes. There are no focused session-1 content/payload findings. These
+six statuses must not be changed without real phone screenshots plus state and
+motion receipts, including microphone/audio and reduced-motion behavior.
+
+One protected DEV Metro instance was subsequently started on LAN port 8085
+with `--max-workers 2` and a 4 GB Node heap; no cache clear or native build was
+run. `curl -I http://127.0.0.1:8085` returned HTTP 200 after the first bundle,
+and the development-client URL is
+`exp+phraseman://expo-development-client/?url=http://172.20.10.2:8085`.
+The Android SDK `adb.exe` reports no attached device, so no physical tap,
+microphone or audio receipt is claimed yet. The browser bundle completed; its
+large pre-existing Expo Router warnings were not treated as parity evidence.
+Open the actual Lesson 1 → Session 1 course slot on the phone, collect the six
+receipts, repair any physical defect test-first, and stop for owner review. Do
+not mark session 1 `LOCKED` and do not proceed to session 2.

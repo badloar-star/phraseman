@@ -71,9 +71,11 @@ describe('custom avatar assets', () => {
     const hostedFiles = fs
       .readdirSync(AVATAR_ASSET_DIR)
       .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file));
-    const bundledFiles = fs
-      .readdirSync(MOBILE_AVATAR_ASSET_DIR)
-      .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file));
+    // Git does not preserve empty directories. A fresh checkout therefore has
+    // no mobile avatar folder at all, which is equivalent to an empty bundle.
+    const bundledFiles = fs.existsSync(MOBILE_AVATAR_ASSET_DIR)
+      ? fs.readdirSync(MOBILE_AVATAR_ASSET_DIR).filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file))
+      : [];
     const catalogSource = fs.readFileSync(
       path.join(__dirname, '..', 'constants', 'custom_avatars.ts'),
       'utf8',
@@ -93,6 +95,7 @@ describe('custom avatar assets', () => {
     expect(source).toContain("alignItems: 'center' as const");
     expect(source).toContain("justifyContent: 'center' as const");
     expect(source).toContain('style={centeredImageLayerStyle}');
+    expect(source).toContain("overflow: 'visible'");
   });
 
   it('keeps generated badge artwork centered in its transparent canvas', async () => {
@@ -119,7 +122,7 @@ describe('custom avatar assets', () => {
     expect(failures).toEqual([]);
   }, 30000);
 
-  it('keeps generated badge artwork inside the inset hexagon safe area', async () => {
+  it('keeps lower generated artwork inside the inset hexagon while allowing upper overlap', async () => {
     const files = fs
       .readdirSync(AVATAR_ASSET_DIR)
       .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file))
@@ -134,17 +137,17 @@ describe('custom avatar assets', () => {
         .raw()
         .toBuffer({ resolveWithObject: true });
 
-      let outsidePixels = 0;
+      let lowerOutsidePixels = 0;
       for (let y = 0; y < info.height; y += 1) {
         for (let x = 0; x < info.width; x += 1) {
           const alpha = data[(y * info.width + x) * info.channels + 3] ?? 0;
           if (alpha <= 10) continue;
-          if (!isPointInPolygon(x, y, INSET_SAFE_HEX)) outsidePixels += 1;
+          if (y >= 256 && !isPointInPolygon(x, y, INSET_SAFE_HEX)) lowerOutsidePixels += 1;
         }
       }
 
-      if (outsidePixels > 0) {
-        failures.push(`${file}: outsidePixels=${outsidePixels}`);
+      if (lowerOutsidePixels > 0) {
+        failures.push(`${file}: lowerOutsidePixels=${lowerOutsidePixels}`);
       }
     }
 

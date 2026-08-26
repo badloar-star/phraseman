@@ -16,9 +16,19 @@ describe('avatar customization studio structure', () => {
     const screen = readProjectFile('app', 'avatar_select.tsx');
     expect(screen).toContain('<Reanimated.FlatList');
     expect(screen).toContain('ListHeaderComponent={listHeader}');
+    expect(screen).toContain('data={displayCatalogItems}');
     expect(screen).toContain('numColumns={3}');
+    expect(screen).toContain('columnWrapperStyle={styles.row}');
     expect(screen).not.toContain('<ScrollView');
     expect(screen).not.toContain('<Reanimated.ScrollView');
+    expect(screen).not.toContain('catalogSections');
+    expect(screen).not.toContain('section.items.map');
+  });
+
+  it('wraps the price filters without nesting another scroll view', () => {
+    const screen = readProjectFile('app', 'avatar_select.tsx');
+    expect(screen).toContain('<View style={styles.filterRail} accessibilityRole="tablist">');
+    expect(screen).toMatch(/filterRail:\s*\{[^}]*flexWrap:\s*'wrap'/s);
   });
 
   it('renders catalog auras statically and keeps green CTA text dark', () => {

@@ -41,6 +41,7 @@ import {
   physicalPageToRuntimeOwner,
   type PhysicalPageIndex,
 } from '../tab_page_model';
+import { shouldLoadTabScreen } from '../tab_mount_policy';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -551,20 +552,21 @@ function TabScaffold({
 
   const beginTabPress = useCallback((idx: number) => {
     setPressedTabIdx(idx);
-    hapticTap();
-    if (!ENABLE_TAB_PRESS_LIFT) return;
-    tabPressAnim.stopAnimation();
-    if (reduceMotion) {
-      tabPressAnim.setValue(0);
-      return;
+    if (ENABLE_TAB_PRESS_LIFT) {
+      tabPressAnim.stopAnimation();
+      if (reduceMotion) {
+        tabPressAnim.setValue(0);
+      } else {
+        Animated.spring(tabPressAnim, {
+          toValue: 1,
+          ...(isTabHybrid
+            ? { stiffness: TABBAR_HYBRID.press.stiffness, damping: TABBAR_HYBRID.press.damping, mass: TABBAR_HYBRID.press.mass }
+            : { speed: 34, bounciness: 6 }),
+          useNativeDriver: true,
+        }).start();
+      }
     }
-    Animated.spring(tabPressAnim, {
-      toValue: 1,
-      ...(isTabHybrid
-        ? { stiffness: TABBAR_HYBRID.press.stiffness, damping: TABBAR_HYBRID.press.damping, mass: TABBAR_HYBRID.press.mass }
-        : { speed: 34, bounciness: 6 }),
-      useNativeDriver: true,
-    }).start();
+    hapticTap();
   }, [tabPressAnim, isTabHybrid, reduceMotion]);
 
   const tabPillPressScale = tabPressAnim.interpolate({
@@ -589,7 +591,7 @@ function TabScaffold({
     tabScrollLastToggleAtRef.current = now;
     tabScrollCollapsedRef.current = collapsed;
     tabScrollProgress.stopAnimation();
-    if (immediate) {
+    if (immediate || reduceMotion) {
       tabScrollProgress.setValue(collapsed ? 1 : 0);
       return;
     }
@@ -599,7 +601,7 @@ function TabScaffold({
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }, [tabScrollProgress]);
+  }, [reduceMotion, tabScrollProgress]);
 
   useLayoutEffect(() => {
     if (previousVisualTabIdxRef.current === visualIdx) return;
@@ -870,6 +872,7 @@ function ReleasedTabLayout() {
   const mountedTabsRef = useRef(mountedTabs);
   mountedTabsRef.current = mountedTabs;
   const scheduledMountsRef = useRef<Map<number, CancelableTask>>(new Map());
+  const foregroundMountsRef = useRef<Set<number>>(new Set());
   const router = useRouter();
   const backgroundPremountStartedRef = useRef(false);
   const backgroundPremountTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -890,21 +893,24 @@ function ReleasedTabLayout() {
    * оставляем как есть: ждать там некому. Здесь же ждёт живой человек.
    */
   const mountNow = useCallback((idx: number) => {
-    if (idx < 0 || mountedTabsRef.current.has(idx)) return;
+    if (idx < 0 || mountedTabsRef.current.has(idx) || foregroundMountsRef.current.has(idx)) return;
     const scheduled = scheduledMountsRef.current.get(idx);
     if (scheduled) {
       scheduled.cancel?.();
       scheduledMountsRef.current.delete(idx);
     }
-    // зачем: прогрев — ОПТИМИЗАЦИЯ, а не условие показа. Раньше неудача прогрева
-    // прерывала монтирование: mountedTabs не пополнялся, shouldLoad оставался
-    // false, и таб навсегда застревал на пустом плейсхолдере (ни шапки, ни
-    // списка — только фон и таббар). Прямой тап обязан смонтировать таб всегда;
-    // если модуль реально сломан, пусть падает на рендере и это видно, а не
-    // маскируется пустым экраном.
-    if (idx !== 0) prewarmDeferredTabScreen(idx);
+    foregroundMountsRef.current.add(idx);
     setVisitedTabs((prev) => addVisitedTab(prev, idx));
-    setMountedTabs((prev) => addVisitedTab(prev, idx));
+    // Cold require не выполняется в tap/layout-effect стеке: сначала React
+    // коммитит непрозрачный shell выбранной вкладки, затем следующий кадр
+    // прогревает модуль и атомарно заменяет shell реальным экраном.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (idx !== 0) prewarmDeferredTabScreen(idx);
+        foregroundMountsRef.current.delete(idx);
+        setMountedTabs((prev) => addVisitedTab(prev, idx));
+      });
+    });
   }, []);
 
   const scheduleMount = useCallback((idx: number) => {
@@ -1039,24 +1045,13 @@ function ReleasedTabLayout() {
     rememberVisitedTab(idx);
   }, [rememberVisitedTab]);
 
-  const routerNavigateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   const navigateTo = useCallback((idx: number) => {
     const target = IDX_TO_TAB_ROUTE[idx];
     if (!target) return;
     if (routerShowsTab(pathname, segments, idx)) return;
-    // Откладываем router.navigate на следующий frame после отрисовки UI — иначе
-    // usePathname()-change → useLayoutEffect → React re-render вызывает белый кадр.
-    if (routerNavigateTimerRef.current) clearTimeout(routerNavigateTimerRef.current);
-    routerNavigateTimerRef.current = setTimeout(() => {
-      pendingTabIdxRef.current = idx;
-      router.navigate(target as any);
-    }, 0);
+    pendingTabIdxRef.current = idx;
+    router.navigate(target as any);
   }, [pathname, segments, router]);
-
-  useEffect(() => () => {
-    if (routerNavigateTimerRef.current) clearTimeout(routerNavigateTimerRef.current);
-  }, []);
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((idx: number) => {
@@ -1086,12 +1081,8 @@ function ReleasedTabLayout() {
     if (idx !== activeIdxRef.current) {
       setActiveIdx(idx);
       rememberVisitedTab(idx);
-      // зачем: сначала лёгкий коммит с новым physicalPageIdx (слайдер и UI-поток
-      // синхронны: prop === currentIdx), и только следующим кадром — тяжёлый
-      // маунт экрана. Если склеить их в один рендер, поздний prop приходит
-      // ПОСЛЕ следующего свайпа пользователя и слайдер отматывает его назад.
-      // На уже смонтированном табе mountNow — no-op, задержки нет.
-      requestAnimationFrame(() => mountNow(idx));
+      // mountNow сам гарантирует один нарисованный shell-кадр до cold require.
+      mountNow(idx);
     }
     navigateTo(idx);
   }, [mountNow, navigateTo, rememberVisitedTab]);
@@ -1110,7 +1101,10 @@ function ReleasedTabLayout() {
     );
 
     const show = (i: number) => i === 0 || i === activeIdx || visitedTabs.has(i);
-    const shouldLoad = (i: number) => mountedTabs.has(i);
+    // зачем: переход и фоновый pre-mount обновляют разные состояния. Если
+    // Cold active tab сначала показывает непрозрачный shell; модуль разрешается
+    // рендерить только после отдельного prewarm-кадра.
+    const shouldLoad = (i: number) => shouldLoadTabScreen(activeIdx, i, mountedTabs);
     // Замораживаем табы дальше чем сосед активного: активный + оба соседа живут
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;

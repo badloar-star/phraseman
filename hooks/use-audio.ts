@@ -9,6 +9,7 @@ import {
   whenSpokenAudioReady,
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
+import { phraseAudioClipStartTimeoutMs } from '../modules/audio/phrase_audio_timing';
 import { peekEnVoiceId } from '../app/flashcards/voice_prefs';
 
 export function preloadAudio() {}
@@ -36,7 +37,12 @@ const UK_MARKERS = /[іїєґІЇЄҐ]/;
 const CYRILLIC_RE = /[\u0400-\u04FF]/;
 const LATIN_LETTER_RE = /[a-zA-ZÀ-ÖØ-öø-ÿĀ-ž]/;
 const STOP_SETTLE_MS = Platform.OS === 'android' ? 80 : 20;
-const CLIP_START_TIMEOUT_MS = Platform.OS === 'android' ? 4500 : 3500;
+// зачем: TestFlight 115 держал здесь iOS 3500мс при внутреннем download-timeout
+// 4500мс и таком же 3500мс watchdog запуска плеера. Внешний fallback отменял
+// исправный холодный MP3 раньше доставки/старта и включал системного робота.
+// Значение покрывает обе стадии плюс смену audio session и выводится из общего
+// timing-контракта, поэтому три таймера больше не могут разъехаться.
+const CLIP_START_TIMEOUT_MS = phraseAudioClipStartTimeoutMs(Platform.OS);
 type SpeechOptions = NonNullable<Parameters<typeof Speech.speak>[1]>;
 
 function safeSpeechStop() {

@@ -29,9 +29,22 @@ export type CustomAvatarGradient = {
 
 export type CustomAvatarLogoColor = 'black' | 'white';
 
+export type CustomAvatarPriceTier =
+  | 'starter'
+  | 'expressive'
+  | 'premium'
+  | 'epic'
+  | 'legendary'
+  | 'mythic'
+  | 'apex';
+
 export type CustomAvatarDef = {
   id: string;
   name: string;
+  labels?: Partial<Record<Lang, string>>;
+  price?: number;
+  tier?: CustomAvatarPriceTier;
+  collection?: 'showcase-v1';
   image?: ImageSourcePropType;
   imageBlack?: ImageSourcePropType;
   imageWhite?: ImageSourcePropType;
@@ -148,6 +161,91 @@ const CUSTOM_AVATAR_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
   'custom-gen-62': { ru: 'Щит самоцвета', uk: 'Щит самоцвіту', es: 'Escudo gema', 'pt-BR': 'Escudo gema', vi: 'Khiên đá quý', id: 'Perisai Permata', tr: 'Mücevher Kalkanı', pl: 'Tarcza klejnotu' },
 };
 
+type ShowcaseAvatarLocale = Exclude<Lang, 'ru'>;
+
+// The showcase has authored names in every shipping locale. Keeping the rows in
+// numeric order makes missing translations visible and keeps the 63-item set compact.
+const SHOWCASE_AVATAR_TRANSLATIONS: Record<ShowcaseAvatarLocale, readonly string[]> = {
+  uk: [
+    'Затишний новачок', 'Швидкий запам’ятовувач', 'Спокійний учень', 'Вірний практик', 'Запасливий повторювач', 'Яскравий співрозмовник', 'Тихий дослідник', 'Легкий імпровізатор', 'Спритний адаптер', 'Обережний старт',
+    'Дружній дослідник', 'Вільний мовець', 'Виразний оповідач', 'Послідовний майстер', 'Чуйний слухач', 'Іскра мотивації', 'Самостійний учень', 'М’який навігатор', 'Сміливий практик', 'Надійний партнер',
+    'Точний мисливець за сенсом', 'Швидкий прорив', 'Зібраний стратег', 'Яскравий комунікатор', 'Глибокий слухач', 'Впевнений маршрут', 'Гнучкий перемикач', 'Зірка прогресу', 'Витончений ритм', 'Гострий слух',
+    'Світло в глибині', 'Холодна витримка', 'Незламний прогрес', 'Тонка інтуїція', 'Високий політ', 'Сила спокою', 'Рідкісний почерк', 'Легкість розуміння', 'Нічна ясність', 'Прихована перлина',
+    'Легенда глибини', 'Король упевненості', 'Райська свобода', 'Золотий потік', 'Сніжне осяяння', 'Тиха рішучість', 'Миттєвий фокус', 'Шлях мудрості', 'Лисяча винахідливість', 'Вища рівновага',
+    'Спектральний інтелект', 'Ідеальна точність', 'Горизонт свободи', 'Живе сяйво', 'Аура величі', 'Північна воля', 'Імператорське бачення', 'Досконала адаптація', 'Давнє чуття', 'Міфічна швидкість',
+    'Пісня вершини', 'Абсолютна сила', 'Нескінченний політ',
+  ],
+  es: [
+    'Principiante acogedor', 'Memoria veloz', 'Estudiante sereno', 'Practicante fiel', 'Repasador previsor', 'Conversador brillante', 'Explorador silencioso', 'Improvisador ligero', 'Adaptador ágil', 'Comienzo cauteloso',
+    'Explorador amistoso', 'Hablante libre', 'Narrador expresivo', 'Maestro constante', 'Oyente sensible', 'Chispa de motivación', 'Estudiante independiente', 'Navegante amable', 'Practicante valiente', 'Compañero fiable',
+    'Cazador preciso de sentidos', 'Avance veloz', 'Estratega concentrado', 'Comunicador brillante', 'Oyente profundo', 'Ruta segura', 'Cambio flexible', 'Estrella del progreso', 'Ritmo elegante', 'Oído agudo',
+    'Luz en las profundidades', 'Resistencia polar', 'Progreso inquebrantable', 'Intuición sutil', 'Vuelo elevado', 'Fuerza serena', 'Sello singular', 'Facilidad de comprensión', 'Claridad nocturna', 'Perla oculta',
+    'Leyenda de las profundidades', 'Rey de la confianza', 'Libertad paradisíaca', 'Corriente dorada', 'Revelación nevada', 'Determinación silenciosa', 'Enfoque instantáneo', 'Camino de sabiduría', 'Ingenio del zorro', 'Equilibrio supremo',
+    'Inteligencia espectral', 'Precisión perfecta', 'Horizonte de libertad', 'Resplandor vivo', 'Aura de grandeza', 'Voluntad del norte', 'Visión imperial', 'Adaptación perfecta', 'Instinto ancestral', 'Velocidad mítica',
+    'Canción de la cumbre', 'Fuerza absoluta', 'Vuelo infinito',
+  ],
+  'pt-BR': [
+    'Iniciante acolhedor', 'Memória veloz', 'Estudante sereno', 'Praticante fiel', 'Revisor previdente', 'Conversador brilhante', 'Explorador silencioso', 'Improvisador leve', 'Adaptador ágil', 'Começo cauteloso',
+    'Explorador amigável', 'Falante livre', 'Narrador expressivo', 'Mestre constante', 'Ouvinte sensível', 'Faísca de motivação', 'Estudante independente', 'Navegador gentil', 'Praticante valente', 'Parceiro confiável',
+    'Caçador preciso de sentidos', 'Avanço veloz', 'Estrategista focado', 'Comunicador brilhante', 'Ouvinte profundo', 'Rota confiante', 'Mudança flexível', 'Estrela do progresso', 'Ritmo elegante', 'Ouvido aguçado',
+    'Luz nas profundezas', 'Resistência polar', 'Progresso inabalável', 'Intuição sutil', 'Voo elevado', 'Força serena', 'Marca singular', 'Facilidade de compreensão', 'Clareza noturna', 'Pérola oculta',
+    'Lenda das profundezas', 'Rei da confiança', 'Liberdade paradisíaca', 'Corrente dourada', 'Revelação nevada', 'Determinação silenciosa', 'Foco instantâneo', 'Caminho da sabedoria', 'Engenho da raposa', 'Equilíbrio supremo',
+    'Inteligência espectral', 'Precisão perfeita', 'Horizonte de liberdade', 'Brilho vivo', 'Aura de grandeza', 'Vontade do norte', 'Visão imperial', 'Adaptação perfeita', 'Instinto ancestral', 'Velocidade mítica',
+    'Canção do ápice', 'Força absoluta', 'Voo infinito',
+  ],
+  vi: [
+    'Tân binh ấm áp', 'Trí nhớ nhanh nhạy', 'Học viên điềm tĩnh', 'Người luyện tập trung thành', 'Người ôn tập chu đáo', 'Người trò chuyện rực rỡ', 'Nhà khám phá thầm lặng', 'Người ứng biến nhẹ nhàng', 'Người thích nghi linh hoạt', 'Khởi đầu thận trọng',
+    'Nhà khám phá thân thiện', 'Người nói tự do', 'Người kể chuyện biểu cảm', 'Bậc thầy kiên định', 'Người lắng nghe tinh tế', 'Tia lửa động lực', 'Học viên độc lập', 'Người dẫn đường dịu dàng', 'Người luyện tập dũng cảm', 'Bạn đồng hành đáng tin',
+    'Thợ săn ý nghĩa chính xác', 'Bứt phá thần tốc', 'Nhà chiến lược tập trung', 'Người giao tiếp rực rỡ', 'Người lắng nghe sâu sắc', 'Lộ trình tự tin', 'Chuyển đổi linh hoạt', 'Ngôi sao tiến bộ', 'Nhịp điệu thanh lịch', 'Thính giác sắc bén',
+    'Ánh sáng vực sâu', 'Sức bền vùng cực', 'Tiến bộ bất khuất', 'Trực giác tinh tế', 'Chuyến bay vút cao', 'Sức mạnh điềm tĩnh', 'Dấu ấn hiếm có', 'Thấu hiểu nhẹ nhàng', 'Sự sáng rõ ban đêm', 'Viên ngọc ẩn giấu',
+    'Huyền thoại vực sâu', 'Vua của tự tin', 'Tự do thiên đường', 'Dòng chảy hoàng kim', 'Linh cảm tuyết trắng', 'Quyết tâm thầm lặng', 'Tập trung tức thì', 'Con đường trí tuệ', 'Trí khéo của cáo', 'Cân bằng tối thượng',
+    'Trí tuệ quang phổ', 'Độ chính xác hoàn hảo', 'Chân trời tự do', 'Ánh sáng sống động', 'Hào quang vĩ đại', 'Ý chí phương bắc', 'Tầm nhìn đế vương', 'Thích nghi hoàn hảo', 'Bản năng cổ xưa', 'Tốc độ thần thoại',
+    'Khúc ca đỉnh cao', 'Sức mạnh tuyệt đối', 'Chuyến bay vô tận',
+  ],
+  id: [
+    'Pemula yang nyaman', 'Pengingat cepat', 'Pelajar tenang', 'Praktisi setia', 'Pengulang yang siap', 'Teman bicara cerah', 'Penjelajah sunyi', 'Improvisator ringan', 'Pengadaptasi lincah', 'Awal yang hati-hati',
+    'Penjelajah ramah', 'Pembicara bebas', 'Pencerita ekspresif', 'Master konsisten', 'Pendengar peka', 'Percikan motivasi', 'Pelajar mandiri', 'Navigator lembut', 'Praktisi berani', 'Mitra tepercaya',
+    'Pemburu makna yang tepat', 'Terobosan cepat', 'Strategis terfokus', 'Komunikator cerah', 'Pendengar mendalam', 'Jalur percaya diri', 'Pengalih fleksibel', 'Bintang kemajuan', 'Irama anggun', 'Pendengaran tajam',
+    'Cahaya di kedalaman', 'Ketahanan kutub', 'Kemajuan tak tergoyahkan', 'Intuisi halus', 'Terbang tinggi', 'Kekuatan tenang', 'Jejak langka', 'Pemahaman mudah', 'Kejernihan malam', 'Mutiara tersembunyi',
+    'Legenda kedalaman', 'Raja kepercayaan diri', 'Kebebasan surga', 'Arus emas', 'Ilham salju', 'Tekad sunyi', 'Fokus seketika', 'Jalan kebijaksanaan', 'Kecerdikan rubah', 'Keseimbangan tertinggi',
+    'Kecerdasan spektral', 'Ketepatan sempurna', 'Cakrawala kebebasan', 'Kilau hidup', 'Aura keagungan', 'Tekad utara', 'Visi kekaisaran', 'Adaptasi sempurna', 'Naluri purba', 'Kecepatan mitis',
+    'Nyanyian puncak', 'Kekuatan mutlak', 'Terbang tanpa batas',
+  ],
+  tr: [
+    'Sıcakkanlı acemi', 'Hızlı ezberci', 'Sakin öğrenci', 'Sadık pratikçi', 'Hazırlıklı tekrar ustası', 'Parlak sohbetçi', 'Sessiz kâşif', 'Hafif doğaçlamacı', 'Çevik uyumcu', 'Temkinli başlangıç',
+    'Dost canlısı kâşif', 'Özgür konuşmacı', 'Etkileyici anlatıcı', 'Tutarlı usta', 'Duyarlı dinleyici', 'Motivasyon kıvılcımı', 'Bağımsız öğrenci', 'Nazik rehber', 'Cesur pratikçi', 'Güvenilir ortak',
+    'Anlamın keskin avcısı', 'Hızlı atılım', 'Odaklı stratejist', 'Parlak iletişimci', 'Derin dinleyici', 'Kendinden emin rota', 'Esnek geçiş', 'İlerleme yıldızı', 'Zarif ritim', 'Keskin işitme',
+    'Derinlikteki ışık', 'Kutup dayanıklılığı', 'Sarsılmaz ilerleme', 'İnce sezgi', 'Yüksek uçuş', 'Sakin gücü', 'Nadir imza', 'Kolay kavrayış', 'Gece berraklığı', 'Gizli inci',
+    'Derinlik efsanesi', 'Özgüven kralı', 'Cennet özgürlüğü', 'Altın akış', 'Karlı ilham', 'Sessiz kararlılık', 'Anlık odak', 'Bilgelik yolu', 'Tilki yaratıcılığı', 'Yüce denge',
+    'Spektral zekâ', 'Kusursuz hassasiyet', 'Özgürlük ufku', 'Canlı ışıltı', 'Görkem aurası', 'Kuzey iradesi', 'İmparatorluk vizyonu', 'Kusursuz uyum', 'Kadim sezgi', 'Mitik hız',
+    'Zirvenin şarkısı', 'Mutlak güç', 'Sonsuz uçuş',
+  ],
+  pl: [
+    'Przytulny nowicjusz', 'Szybka pamięć', 'Spokojny uczeń', 'Wierny praktyk', 'Zapobiegliwy powtarzający', 'Barwny rozmówca', 'Cichy odkrywca', 'Lekki improwizator', 'Zwinny adaptator', 'Ostrożny start',
+    'Przyjazny odkrywca', 'Swobodny mówca', 'Wyrazisty narrator', 'Konsekwentny mistrz', 'Wrażliwy słuchacz', 'Iskra motywacji', 'Samodzielny uczeń', 'Łagodny nawigator', 'Odważny praktyk', 'Niezawodny partner',
+    'Precyzyjny łowca znaczeń', 'Szybki przełom', 'Skupiony strateg', 'Barwny komunikator', 'Uważny słuchacz', 'Pewna droga', 'Elastyczna zmiana', 'Gwiazda postępu', 'Elegancki rytm', 'Wyostrzony słuch',
+    'Światło w głębinach', 'Polarna wytrwałość', 'Niezłomny postęp', 'Subtelna intuicja', 'Wysoki lot', 'Siła spokoju', 'Rzadki styl', 'Łatwość rozumienia', 'Nocna jasność', 'Ukryta perła',
+    'Legenda głębin', 'Król pewności siebie', 'Rajska wolność', 'Złoty nurt', 'Śnieżne olśnienie', 'Cicha determinacja', 'Natychmiastowe skupienie', 'Droga mądrości', 'Lisia pomysłowość', 'Najwyższa równowaga',
+    'Spektralna inteligencja', 'Idealna precyzja', 'Horyzont wolności', 'Żywy blask', 'Aura wielkości', 'Północna wola', 'Cesarska wizja', 'Doskonała adaptacja', 'Pradawny instynkt', 'Mityczna prędkość',
+    'Pieśń szczytu', 'Absolutna siła', 'Nieskończony lot',
+  ],
+};
+
+function showcaseAvatarLabels(avatar: CustomAvatarDef): CustomAvatarLocalizedLabel {
+  const numericId = Number(avatar.id.replace('custom-gen-', ''));
+  const offset = numericId - 63;
+  return {
+    ru: avatar.labels?.ru ?? avatar.name,
+    uk: SHOWCASE_AVATAR_TRANSLATIONS.uk[offset] ?? avatar.name,
+    es: SHOWCASE_AVATAR_TRANSLATIONS.es[offset] ?? avatar.name,
+    'pt-BR': SHOWCASE_AVATAR_TRANSLATIONS['pt-BR'][offset] ?? avatar.name,
+    vi: SHOWCASE_AVATAR_TRANSLATIONS.vi[offset] ?? avatar.name,
+    id: SHOWCASE_AVATAR_TRANSLATIONS.id[offset] ?? avatar.name,
+    tr: SHOWCASE_AVATAR_TRANSLATIONS.tr[offset] ?? avatar.name,
+    pl: SHOWCASE_AVATAR_TRANSLATIONS.pl[offset] ?? avatar.name,
+  };
+}
+
 const CUSTOM_AVATAR_GRADIENT_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
   aurora: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
   ember: { ru: 'Скетч', uk: 'Скетч', es: 'Sketch', 'pt-BR': 'Esboço', vi: 'Phác thảo', id: 'Sketsa', tr: 'Eskiz', pl: 'Szkic' },
@@ -174,7 +272,7 @@ export const CUSTOM_AVATAR_GRADIENTS: CustomAvatarGradient[] = [
   { id: 'sakura', name: 'Sketch Coral', colors: ['#FFFDF6', '#DED4C0', '#FF6464'] },
 ];
 
-export const CUSTOM_AVATARS: CustomAvatarDef[] = [
+const CUSTOM_AVATAR_DEFINITIONS: CustomAvatarDef[] = [
   {
     id: 'custom-gen-01',
     name: 'Hooded Oracle',
@@ -547,6 +645,69 @@ export const CUSTOM_AVATARS: CustomAvatarDef[] = [
     imageBlack: remoteCustomAvatarAsset('62', 'black'),
     imageWhite: remoteCustomAvatarAsset('62', 'white'),
   },
+  { id: 'custom-gen-63', name: 'Cozy Hedgehog', labels: { ru: 'Уютный новичок' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('63', 'black'), imageWhite: remoteCustomAvatarAsset('63', 'white') },
+  { id: 'custom-gen-64', name: 'Quick Rabbit', labels: { ru: 'Быстрый запоминатель' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('64', 'black'), imageWhite: remoteCustomAvatarAsset('64', 'white') },
+  { id: 'custom-gen-65', name: 'Calm Seal', labels: { ru: 'Спокойный ученик' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('65', 'black'), imageWhite: remoteCustomAvatarAsset('65', 'white') },
+  { id: 'custom-gen-66', name: 'Loyal Penguin', labels: { ru: 'Верный практик' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('66', 'black'), imageWhite: remoteCustomAvatarAsset('66', 'white') },
+  { id: 'custom-gen-67', name: 'Saving Squirrel', labels: { ru: 'Запасливый повторитель' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('67', 'black'), imageWhite: remoteCustomAvatarAsset('67', 'white') },
+  { id: 'custom-gen-68', name: 'Bright Toucan', labels: { ru: 'Яркий собеседник' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('68', 'black'), imageWhite: remoteCustomAvatarAsset('68', 'white') },
+  { id: 'custom-gen-69', name: 'Quiet Mole', labels: { ru: 'Тихий исследователь' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('69', 'black'), imageWhite: remoteCustomAvatarAsset('69', 'white') },
+  { id: 'custom-gen-70', name: 'Light Butterfly', labels: { ru: 'Лёгкий импровизатор' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('70', 'black'), imageWhite: remoteCustomAvatarAsset('70', 'white') },
+  { id: 'custom-gen-71', name: 'Agile Raccoon', labels: { ru: 'Ловкий адаптер' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('71', 'black'), imageWhite: remoteCustomAvatarAsset('71', 'white') },
+  { id: 'custom-gen-72', name: 'Careful Roe Deer', labels: { ru: 'Осторожный старт' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('72', 'black'), imageWhite: remoteCustomAvatarAsset('72', 'white') },
+  { id: 'custom-gen-73', name: 'Friendly Red Panda', labels: { ru: 'Дружелюбный исследователь' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('73', 'black'), imageWhite: remoteCustomAvatarAsset('73', 'white') },
+  { id: 'custom-gen-74', name: 'Free Dolphin', labels: { ru: 'Свободный говорящий' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('74', 'black'), imageWhite: remoteCustomAvatarAsset('74', 'white') },
+  { id: 'custom-gen-75', name: 'Expressive Peacock', labels: { ru: 'Выразительный рассказчик' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('75', 'black'), imageWhite: remoteCustomAvatarAsset('75', 'white') },
+  { id: 'custom-gen-76', name: 'Steady Pangolin', labels: { ru: 'Последовательный мастер' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('76', 'black'), imageWhite: remoteCustomAvatarAsset('76', 'white') },
+  { id: 'custom-gen-77', name: 'Sensitive Orchid', labels: { ru: 'Чуткий слушатель' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('77', 'black'), imageWhite: remoteCustomAvatarAsset('77', 'white') },
+  { id: 'custom-gen-78', name: 'Motivating Firefly', labels: { ru: 'Искра мотивации' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('78', 'black'), imageWhite: remoteCustomAvatarAsset('78', 'white') },
+  { id: 'custom-gen-79', name: 'Independent Wolf', labels: { ru: 'Самостоятельный ученик' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('79', 'black'), imageWhite: remoteCustomAvatarAsset('79', 'white') },
+  { id: 'custom-gen-80', name: 'Gentle Narwhal', labels: { ru: 'Мягкий навигатор' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('80', 'black'), imageWhite: remoteCustomAvatarAsset('80', 'white') },
+  { id: 'custom-gen-81', name: 'Brave Tiger Cub', labels: { ru: 'Смелый практик' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('81', 'black'), imageWhite: remoteCustomAvatarAsset('81', 'white') },
+  { id: 'custom-gen-82', name: 'Reliable Badger', labels: { ru: 'Надёжный партнёр' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('82', 'black'), imageWhite: remoteCustomAvatarAsset('82', 'white') },
+  { id: 'custom-gen-83', name: 'Precise Snow Leopard', labels: { ru: 'Точный охотник за смыслом' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('83', 'black'), imageWhite: remoteCustomAvatarAsset('83', 'white') },
+  { id: 'custom-gen-84', name: 'Breakthrough Marlin', labels: { ru: 'Быстрый прорыв' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('84', 'black'), imageWhite: remoteCustomAvatarAsset('84', 'white') },
+  { id: 'custom-gen-85', name: 'Focused Cobra', labels: { ru: 'Собранный стратег' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('85', 'black'), imageWhite: remoteCustomAvatarAsset('85', 'white') },
+  { id: 'custom-gen-86', name: 'Vivid Macaw', labels: { ru: 'Яркий коммуникатор' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('86', 'black'), imageWhite: remoteCustomAvatarAsset('86', 'white') },
+  { id: 'custom-gen-87', name: 'Deep Orca', labels: { ru: 'Глубокий слушатель' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('87', 'black'), imageWhite: remoteCustomAvatarAsset('87', 'white') },
+  { id: 'custom-gen-88', name: 'Confident Stag', labels: { ru: 'Уверенный маршрут' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('88', 'black'), imageWhite: remoteCustomAvatarAsset('88', 'white') },
+  { id: 'custom-gen-89', name: 'Flexible Lemur', labels: { ru: 'Гибкий переключатель' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('89', 'black'), imageWhite: remoteCustomAvatarAsset('89', 'white') },
+  { id: 'custom-gen-90', name: 'Progress Starfish', labels: { ru: 'Звезда прогресса' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('90', 'black'), imageWhite: remoteCustomAvatarAsset('90', 'white') },
+  { id: 'custom-gen-91', name: 'Graceful Flamingo', labels: { ru: 'Изящный ритм' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('91', 'black'), imageWhite: remoteCustomAvatarAsset('91', 'white') },
+  { id: 'custom-gen-92', name: 'Sharp Lynx', labels: { ru: 'Острый слух' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('92', 'black'), imageWhite: remoteCustomAvatarAsset('92', 'white') },
+  { id: 'custom-gen-93', name: 'Light In Depth', labels: { ru: 'Свет в глубине' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('93', 'black'), imageWhite: remoteCustomAvatarAsset('93', 'white') },
+  { id: 'custom-gen-94', name: 'Polar Endurance', labels: { ru: 'Холодная выдержка' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('94', 'black'), imageWhite: remoteCustomAvatarAsset('94', 'white') },
+  { id: 'custom-gen-95', name: 'Unyielding Komodo', labels: { ru: 'Несокрушимый прогресс' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('95', 'black'), imageWhite: remoteCustomAvatarAsset('95', 'white') },
+  { id: 'custom-gen-96', name: 'Leafy Intuition', labels: { ru: 'Тонкая интуиция' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('96', 'black'), imageWhite: remoteCustomAvatarAsset('96', 'white') },
+  { id: 'custom-gen-97', name: 'High Flight Eagle', labels: { ru: 'Высокий полёт' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('97', 'black'), imageWhite: remoteCustomAvatarAsset('97', 'white') },
+  { id: 'custom-gen-98', name: 'Calm Strength Moose', labels: { ru: 'Сила спокойствия' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('98', 'black'), imageWhite: remoteCustomAvatarAsset('98', 'white') },
+  { id: 'custom-gen-99', name: 'Rare Okapi', labels: { ru: 'Редкий почерк' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('99', 'black'), imageWhite: remoteCustomAvatarAsset('99', 'white') },
+  { id: 'custom-gen-100', name: 'Understanding Fennec', labels: { ru: 'Лёгкость понимания' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('100', 'black'), imageWhite: remoteCustomAvatarAsset('100', 'white') },
+  { id: 'custom-gen-101', name: 'Night Clarity Moth', labels: { ru: 'Ночная ясность' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('101', 'black'), imageWhite: remoteCustomAvatarAsset('101', 'white') },
+  { id: 'custom-gen-102', name: 'Hidden Pearl Clam', labels: { ru: 'Скрытая жемчужина' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('102', 'black'), imageWhite: remoteCustomAvatarAsset('102', 'white') },
+  { id: 'custom-gen-103', name: 'Legendary Whale Shark', labels: { ru: 'Легенда глубины' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('103', 'black'), imageWhite: remoteCustomAvatarAsset('103', 'white') },
+  { id: 'custom-gen-104', name: 'White Lion Confidence', labels: { ru: 'Король уверенности' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('104', 'black'), imageWhite: remoteCustomAvatarAsset('104', 'white') },
+  { id: 'custom-gen-105', name: 'Paradise Freedom', labels: { ru: 'Райская свобода' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('105', 'black'), imageWhite: remoteCustomAvatarAsset('105', 'white') },
+  { id: 'custom-gen-106', name: 'Golden Manta Flow', labels: { ru: 'Золотой поток' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('106', 'black'), imageWhite: remoteCustomAvatarAsset('106', 'white') },
+  { id: 'custom-gen-107', name: 'Snow Owl Insight', labels: { ru: 'Снежное озарение' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('107', 'black'), imageWhite: remoteCustomAvatarAsset('107', 'white') },
+  { id: 'custom-gen-108', name: 'Panther Resolve', labels: { ru: 'Тихая решимость' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('108', 'black'), imageWhite: remoteCustomAvatarAsset('108', 'white') },
+  { id: 'custom-gen-109', name: 'Kingfisher Focus', labels: { ru: 'Мгновенный фокус' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('109', 'black'), imageWhite: remoteCustomAvatarAsset('109', 'white') },
+  { id: 'custom-gen-110', name: 'Turtle Wisdom', labels: { ru: 'Путь мудрости' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('110', 'black'), imageWhite: remoteCustomAvatarAsset('110', 'white') },
+  { id: 'custom-gen-111', name: 'Fox Ingenuity', labels: { ru: 'Лисья находчивость' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('111', 'black'), imageWhite: remoteCustomAvatarAsset('111', 'white') },
+  { id: 'custom-gen-112', name: 'Crane Balance', labels: { ru: 'Высшее равновесие' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('112', 'black'), imageWhite: remoteCustomAvatarAsset('112', 'white') },
+  { id: 'custom-gen-113', name: 'Spectral Glass Octopus', labels: { ru: 'Спектральный интеллект' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('113', 'black'), imageWhite: remoteCustomAvatarAsset('113', 'white') },
+  { id: 'custom-gen-114', name: 'Orchid Mantis Precision', labels: { ru: 'Идеальная точность' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('114', 'black'), imageWhite: remoteCustomAvatarAsset('114', 'white') },
+  { id: 'custom-gen-115', name: 'Quetzal Horizon', labels: { ru: 'Горизонт свободы' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('115', 'black'), imageWhite: remoteCustomAvatarAsset('115', 'white') },
+  { id: 'custom-gen-116', name: 'Mandarin Fish Radiance', labels: { ru: 'Живое сияние' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('116', 'black'), imageWhite: remoteCustomAvatarAsset('116', 'white') },
+  { id: 'custom-gen-117', name: 'Albino Peacock Aura', labels: { ru: 'Аура величия' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('117', 'black'), imageWhite: remoteCustomAvatarAsset('117', 'white') },
+  { id: 'custom-gen-118', name: 'Arctic Wolf Command', labels: { ru: 'Северная воля' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('118', 'black'), imageWhite: remoteCustomAvatarAsset('118', 'white') },
+  { id: 'custom-gen-119', name: 'Emperor Moth Vision', labels: { ru: 'Императорское видение' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('119', 'black'), imageWhite: remoteCustomAvatarAsset('119', 'white') },
+  { id: 'custom-gen-120', name: 'Blue Dragon Adaptation', labels: { ru: 'Совершенная адаптация' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('120', 'black'), imageWhite: remoteCustomAvatarAsset('120', 'white') },
+  { id: 'custom-gen-121', name: 'Saiga Legacy', labels: { ru: 'Древнее чутьё' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('121', 'black'), imageWhite: remoteCustomAvatarAsset('121', 'white') },
+  { id: 'custom-gen-122', name: 'Sailfish Velocity', labels: { ru: 'Мифическая скорость' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('122', 'black'), imageWhite: remoteCustomAvatarAsset('122', 'white') },
+  { id: 'custom-gen-123', name: 'Apex Humpback Song', labels: { ru: 'Песня вершины' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('123', 'black'), imageWhite: remoteCustomAvatarAsset('123', 'white') },
+  { id: 'custom-gen-124', name: 'Apex Bengal Tiger', labels: { ru: 'Абсолютная сила' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('124', 'black'), imageWhite: remoteCustomAvatarAsset('124', 'white') },
+  { id: 'custom-gen-125', name: 'Apex Albatross Flight', labels: { ru: 'Бесконечный полёт' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('125', 'black'), imageWhite: remoteCustomAvatarAsset('125', 'white') },
   { id: 'custom-01', name: 'Chronicler', imageBlack: remoteCustomAvatarAsset('01', 'black'), imageWhite: remoteCustomAvatarAsset('01', 'white') },
   { id: 'custom-02', name: 'Translator', imageBlack: remoteCustomAvatarAsset('02', 'black'), imageWhite: remoteCustomAvatarAsset('02', 'white') },
   { id: 'custom-03', name: 'Codex', imageBlack: remoteCustomAvatarAsset('03', 'black'), imageWhite: remoteCustomAvatarAsset('03', 'white') },
@@ -584,6 +745,12 @@ export const CUSTOM_AVATARS: CustomAvatarDef[] = [
   { id: 'custom-35', name: 'Star Student', imageBlack: remoteCustomAvatarAsset('35', 'black'), imageWhite: remoteCustomAvatarAsset('35', 'white') },
 ];
 
+export const CUSTOM_AVATARS: CustomAvatarDef[] = CUSTOM_AVATAR_DEFINITIONS.map((avatar) =>
+  avatar.collection === 'showcase-v1'
+    ? { ...avatar, labels: showcaseAvatarLabels(avatar) }
+    : avatar,
+);
+
 export function isCustomAvatarGiftOnly(id: string): boolean {
   return /^custom-gen-(0[1-9]|1[0-9]|20|3[1-9]|40)$/.test(id);
 }
@@ -593,7 +760,17 @@ export function getCustomAvatarGiftWeight(id: string): number {
 }
 
 export function isCustomAvatarShardShop(id: string): boolean {
-  return /^custom-gen-(4[1-9]|5[0-9]|6[0-2])$/.test(id);
+  const match = /^custom-gen-(\d+)$/.exec(id);
+  if (!match) return false;
+  const index = Number(match[1]);
+  return index >= 41 && index <= 125;
+}
+
+export function getCustomAvatarPurchaseCost(avatarOrId: CustomAvatarDef | string): number {
+  const avatar = typeof avatarOrId === 'string'
+    ? CUSTOM_AVATARS.find((candidate) => candidate.id === avatarOrId)
+    : avatarOrId;
+  return avatar?.price ?? CUSTOM_AVATAR_BUY_COST;
 }
 
 export const CUSTOM_AVATAR_GIFT_POOL: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>
@@ -653,7 +830,7 @@ export function customAvatarNameForLang(avatar: CustomAvatarDef | string | undef
   const id = typeof avatar === 'string' ? avatar : avatar?.id;
   const defaultName = typeof avatar === 'string' ? avatar : avatar?.name;
   const label = id ? CUSTOM_AVATAR_LABELS[id] : undefined;
-  const localized = label?.[lang];
+  const localized = (typeof avatar === 'string' ? undefined : avatar?.labels?.[lang]) ?? label?.[lang];
   if (localized) return localized;
   return defaultName || label?.ru || '';
 }

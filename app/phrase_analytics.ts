@@ -60,6 +60,7 @@ export interface LessonMistakeStat {
 export interface AnalyticsLocaleCopy {
   ru: string;
   uk: string;
+  en: string;
   es: string;
   ptBR: string;
   'pt-BR': string;
@@ -230,22 +231,22 @@ function inferCategory(word: string, knownCategory?: string): WordCategory {
 // ── Подписи категорий для интерфейсных языков ───────────────────────────────
 
 const CATEGORY_LABELS: Record<string, AnalyticsLocaleCopy> = {
-  'verb': { ru: 'Глаголы', uk: 'Дієслова', es: 'Verbos', ptBR: 'Verbos', 'pt-BR': 'Verbos', vi: 'Động từ', id: 'Kata kerja', tr: 'Fiiller', pl: 'Czasowniki' },
-  'noun': { ru: 'Существительные', uk: 'Іменники', es: 'Sustantivos', ptBR: 'Substantivos', 'pt-BR': 'Substantivos', vi: 'Danh từ', id: 'Kata benda', tr: 'İsimler', pl: 'Rzeczowniki' },
-  'pronoun': { ru: 'Местоимения', uk: 'Займенники', es: 'Pronombres', ptBR: 'Pronomes', 'pt-BR': 'Pronomes', vi: 'Đại từ', id: 'Kata ganti', tr: 'Zamirler', pl: 'Zaimki' },
-  'adjective': { ru: 'Прилагательные', uk: 'Прикметники', es: 'Adjetivos', ptBR: 'Adjetivos', 'pt-BR': 'Adjetivos', vi: 'Tính từ', id: 'Kata sifat', tr: 'Sıfatlar', pl: 'Przymiotniki' },
-  'adverb': { ru: 'Наречия', uk: 'Прислівники', es: 'Adverbios', ptBR: 'Advérbios', 'pt-BR': 'Advérbios', vi: 'Trạng từ', id: 'Kata keterangan', tr: 'Zarflar', pl: 'Przysłówki' },
-  'preposition': { ru: 'Предлоги', uk: 'Прийменники', es: 'Preposiciones', ptBR: 'Preposições', 'pt-BR': 'Preposições', vi: 'Giới từ', id: 'Preposisi', tr: 'Edatlar', pl: 'Przyimki' },
-  'syntax': { ru: 'Syntax', uk: 'Syntax', es: 'Sintaxis', ptBR: 'Sintaxe', 'pt-BR': 'Sintaxe', vi: 'Cú pháp', id: 'Sintaksis', tr: 'Söz dizimi', pl: 'Składnia' },
-  'article': { ru: 'Артикли', uk: 'Артиклі', es: 'Artículos', ptBR: 'Artigos', 'pt-BR': 'Artigos', vi: 'Mạo từ', id: 'Artikel', tr: 'Artikeller', pl: 'Przedimki' },
-  'existential': { ru: 'There is / There are', uk: 'There is / There are', es: 'There is / There are', ptBR: 'There is / There are', 'pt-BR': 'There is / There are', vi: 'There is / There are', id: 'There is / There are', tr: 'There is / There are', pl: 'There is / There are' },
-  'to-be': { ru: 'Глагол to be', uk: 'Дієслово to be', es: 'Verbo to be', ptBR: 'Verbo to be', 'pt-BR': 'Verbo to be', vi: 'Động từ to be', id: 'Kata kerja to be', tr: 'to be fiili', pl: 'Czasownik to be' },
-  'conjunction': { ru: 'Союзы', uk: 'Сполучники', es: 'Conjunciones', ptBR: 'Conjunções', 'pt-BR': 'Conjunções', vi: 'Liên từ', id: 'Konjungsi', tr: 'Bağlaçlar', pl: 'Spójniki' },
-  'modal': { ru: 'Модальные глаголы', uk: 'Модальні дієслова', es: 'Verbos modales', ptBR: 'Verbos modais', 'pt-BR': 'Verbos modais', vi: 'Động từ khuyết thiếu', id: 'Kata kerja modal', tr: 'Modal fiiller', pl: 'Czasowniki modalne' },
-  'phrasal_particle': { ru: 'Частицы (phrasal)', uk: 'Частки (phrasal)', es: 'Partículas', ptBR: 'Partículas de phrasal verbs', 'pt-BR': 'Partículas de phrasal verbs', vi: 'Tiểu từ trong phrasal verb', id: 'Partikel phrasal verb', tr: 'Phrasal verb parçacıkları', pl: 'Partykuły phrasal verbs' },
-  'modifier': { ru: 'Modifiers', uk: 'Modifiers', es: 'Modificadores', ptBR: 'Modificadores', 'pt-BR': 'Modificadores', vi: 'Từ bổ nghĩa', id: 'Modifier', tr: 'Niteleyiciler', pl: 'Modyfikatory' },
-  'determiner': { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes', ptBR: 'Determinantes', 'pt-BR': 'Determinantes', vi: 'Từ hạn định', id: 'Determiner', tr: 'Belirleyiciler', pl: 'Określniki' },
-  'other': { ru: 'Другое', uk: 'Інше', es: 'Otros', ptBR: 'Outros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
+  'verb': { ru: 'Глаголы', uk: 'Дієслова', en: 'Verbs', es: 'Verbos', ptBR: 'Verbos', 'pt-BR': 'Verbos', vi: 'Động từ', id: 'Kata kerja', tr: 'Fiiller', pl: 'Czasowniki' },
+  'noun': { ru: 'Существительные', uk: 'Іменники', en: 'Nouns', es: 'Sustantivos', ptBR: 'Substantivos', 'pt-BR': 'Substantivos', vi: 'Danh từ', id: 'Kata benda', tr: 'İsimler', pl: 'Rzeczowniki' },
+  'pronoun': { ru: 'Местоимения', uk: 'Займенники', en: 'Pronouns', es: 'Pronombres', ptBR: 'Pronomes', 'pt-BR': 'Pronomes', vi: 'Đại từ', id: 'Kata ganti', tr: 'Zamirler', pl: 'Zaimki' },
+  'adjective': { ru: 'Прилагательные', uk: 'Прикметники', en: 'Adjectives', es: 'Adjetivos', ptBR: 'Adjetivos', 'pt-BR': 'Adjetivos', vi: 'Tính từ', id: 'Kata sifat', tr: 'Sıfatlar', pl: 'Przymiotniki' },
+  'adverb': { ru: 'Наречия', uk: 'Прислівники', en: 'Adverbs', es: 'Adverbios', ptBR: 'Advérbios', 'pt-BR': 'Advérbios', vi: 'Trạng từ', id: 'Kata keterangan', tr: 'Zarflar', pl: 'Przysłówki' },
+  'preposition': { ru: 'Предлоги', uk: 'Прийменники', en: 'Prepositions', es: 'Preposiciones', ptBR: 'Preposições', 'pt-BR': 'Preposições', vi: 'Giới từ', id: 'Preposisi', tr: 'Edatlar', pl: 'Przyimki' },
+  'syntax': { ru: 'Syntax', uk: 'Syntax', en: 'Syntax', es: 'Sintaxis', ptBR: 'Sintaxe', 'pt-BR': 'Sintaxe', vi: 'Cú pháp', id: 'Sintaksis', tr: 'Söz dizimi', pl: 'Składnia' },
+  'article': { ru: 'Артикли', uk: 'Артиклі', en: 'Articles', es: 'Artículos', ptBR: 'Artigos', 'pt-BR': 'Artigos', vi: 'Mạo từ', id: 'Artikel', tr: 'Artikeller', pl: 'Przedimki' },
+  'existential': { ru: 'There is / There are', uk: 'There is / There are', en: 'There is / There are', es: 'There is / There are', ptBR: 'There is / There are', 'pt-BR': 'There is / There are', vi: 'There is / There are', id: 'There is / There are', tr: 'There is / There are', pl: 'There is / There are' },
+  'to-be': { ru: 'Глагол to be', uk: 'Дієслово to be', en: 'The verb to be', es: 'Verbo to be', ptBR: 'Verbo to be', 'pt-BR': 'Verbo to be', vi: 'Động từ to be', id: 'Kata kerja to be', tr: 'to be fiili', pl: 'Czasownik to be' },
+  'conjunction': { ru: 'Союзы', uk: 'Сполучники', en: 'Conjunctions', es: 'Conjunciones', ptBR: 'Conjunções', 'pt-BR': 'Conjunções', vi: 'Liên từ', id: 'Konjungsi', tr: 'Bağlaçlar', pl: 'Spójniki' },
+  'modal': { ru: 'Модальные глаголы', uk: 'Модальні дієслова', en: 'Modal verbs', es: 'Verbos modales', ptBR: 'Verbos modais', 'pt-BR': 'Verbos modais', vi: 'Động từ khuyết thiếu', id: 'Kata kerja modal', tr: 'Modal fiiller', pl: 'Czasowniki modalne' },
+  'phrasal_particle': { ru: 'Частицы (phrasal)', uk: 'Частки (phrasal)', en: 'Phrasal particles', es: 'Partículas', ptBR: 'Partículas de phrasal verbs', 'pt-BR': 'Partículas de phrasal verbs', vi: 'Tiểu từ trong phrasal verb', id: 'Partikel phrasal verb', tr: 'Phrasal verb parçacıkları', pl: 'Partykuły phrasal verbs' },
+  'modifier': { ru: 'Modifiers', uk: 'Modifiers', en: 'Modifiers', es: 'Modificadores', ptBR: 'Modificadores', 'pt-BR': 'Modificadores', vi: 'Từ bổ nghĩa', id: 'Modifier', tr: 'Niteleyiciler', pl: 'Modyfikatory' },
+  'determiner': { ru: 'Determiners', uk: 'Determiners', en: 'Determiners', es: 'Determinantes', ptBR: 'Determinantes', 'pt-BR': 'Determinantes', vi: 'Từ hạn định', id: 'Determiner', tr: 'Belirleyiciler', pl: 'Określniki' },
+  'other': { ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otros', ptBR: 'Outros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 };
 
 function lessonTitleCopy(lessonId: number): AnalyticsLocaleCopy {
@@ -253,6 +254,10 @@ function lessonTitleCopy(lessonId: number): AnalyticsLocaleCopy {
   return {
     ru: LESSON_NAMES_RU[lessonId - 1] ?? `Урок ${lessonId}`,
     uk: LESSON_NAMES_UK[lessonId - 1] ?? `Урок ${lessonId}`,
+    // зачем: LESSON_NAMES_EN ещё не написан (см. project_english_ui_locale_rollout
+    // memory) — lessonNamesForLang('en') безопасно падает в русские названия до
+    // тех пор, пока английский контент уроков не добавлен отдельной задачей.
+    en: lessonNamesForLang('en')[lessonId - 1] ?? `Lesson ${lessonId}`,
     es: LESSON_NAMES_ES[lessonId - 1] ?? `Lesson ${lessonId}`,
     ptBR,
     'pt-BR': ptBR,
@@ -786,6 +791,7 @@ function buildInsights(
       type: 'weak_category',
       ru: `${label.ru} — ${weak.pct}% ошибок${topWord}. Стоит повторить.`,
       uk: `${label.uk} — ${weak.pct}% помилок${topWord}. Варто повторити.`,
+      en: `${label.en} — ${weak.pct}% errors${topWord}. Worth reviewing.`,
       es: `${label.es} — ${weak.pct}% de errores${topWord}. Vale la pena repasar.`,
       ptBR: `${label.ptBR} — ${weak.pct}% de erros${topWord}. Vale a pena revisar.`,
       'pt-BR': `${label.ptBR} — ${weak.pct}% de erros${topWord}. Vale a pena revisar.`,
@@ -805,6 +811,7 @@ function buildInsights(
       type: 'weak_lesson',
       ru: `«${title.ru}» — ${weakLesson.pct}% ошибок. Рекомендуем перепройти.`,
       uk: `«${title.uk}» — ${weakLesson.pct}% помилок. Рекомендуємо повторити.`,
+      en: `"${title.en}" — ${weakLesson.pct}% errors. Worth redoing.`,
       es: `«${title.es}» — ${weakLesson.pct}% de errores. Recomendamos repasar.`,
       ptBR: `«${title.ptBR}» — ${weakLesson.pct}% de erros. Recomendamos revisar.`,
       'pt-BR': `«${title['pt-BR']}» — ${weakLesson.pct}% de erros. Recomendamos revisar.`,
@@ -828,6 +835,7 @@ function buildInsights(
         type: 'strong_category',
         ru: `${label.ru} — ты знаешь хорошо. Ошибки здесь редки.`,
         uk: `${label.uk} — ти знаєш добре. Помилки тут рідкісні.`,
+        en: `${label.en} — you know these well. Mistakes here are rare.`,
         es: `${label.es} — los conoces bien. Los errores aquí son raros.`,
         ptBR: `${label.ptBR} — você conhece bem. Erros aqui são raros.`,
         'pt-BR': `${label.ptBR} — você conhece bem. Erros aqui são raros.`,
@@ -850,6 +858,7 @@ function buildInsights(
           type: 'strong_lesson',
           ru: `«${title.ru}» — ошибок почти нет. Твоя сильная сторона.`,
           uk: `«${title.uk}» — помилок майже немає. Твоя сильна сторона.`,
+          en: `"${title.en}" — almost no mistakes. One of your strong points.`,
           es: `«${title.es}» — casi sin errores. Tu punto fuerte.`,
           ptBR: `«${title.ptBR}» — quase sem erros. Um dos seus pontos fortes.`,
           'pt-BR': `«${title['pt-BR']}» — quase sem erros. Um dos seus pontos fortes.`,
@@ -872,6 +881,7 @@ function buildInsights(
       type: 'top_phrase',
       ru: `Слово «${word}» (${label.ru.toLowerCase()}) — чаще всего вызывает затруднение.`,
       uk: `Слово «${word}» (${label.uk.toLowerCase()}) — найчастіше викликає труднощі.`,
+      en: `The word "${word}" (${label.en.toLowerCase()}) trips you up the most.`,
       es: `La palabra «${word}» (${label.es.toLowerCase()}) — es la más problemática.`,
       ptBR: `A palavra «${word}» (${label.ptBR.toLowerCase()}) é a que mais causa dificuldade.`,
       'pt-BR': `A palavra «${word}» (${label.ptBR.toLowerCase()}) é a que mais causa dificuldade.`,
@@ -919,6 +929,7 @@ function collectingDataInsight(): PersonalInsight {
     type: 'general',
     ru: 'Данные ещё копятся. Продолжай заниматься — скоро покажем, что подтянуть.',
     uk: 'Дані ще накопичуються. Продовжуй займатися — скоро покажемо, що підтягнути.',
+    en: 'We’re still gathering data. Keep practicing — we’ll soon show what to work on.',
     es: 'Aún estamos reuniendo datos. Sigue practicando y pronto te diremos qué reforzar.',
     ptBR: 'Ainda estamos reunindo dados. Continue praticando — em breve mostraremos o que reforçar.',
     'pt-BR': 'Ainda estamos reunindo dados. Continue praticando — em breve mostraremos o que reforçar.',

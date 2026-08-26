@@ -234,7 +234,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
           {/* Admin-шапка превью (не отображается юзеру в проде) */}
           <View style={[styles.adminHeader, { borderBottomColor: t.border }]}>
             {isHybrid ? (
-              <PressableHybrid variant="icon" onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
+              <PressableHybrid variant="icon" onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
                 <Ionicons name="close" size={26} color={t.textPrimary} />
               </PressableHybrid>
             ) : (
@@ -271,7 +271,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
           </View>
 
           {/* Реальный визуал «phase === result» из app/exam.tsx */}
-          <ScrollView contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
+          <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
             <View
               style={{
                 width: 100, height: 100, borderRadius: 50,
@@ -283,7 +283,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
               <Ionicons name="ribbon" size={44} color={t.textSecond} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '700', marginBottom: 8 }}>
-              {triLang(lang, { ru: 'Экзамен завершён!', uk: 'Іспит завершено!', es: '¡Examen terminado!', 'pt-BR': 'Exame concluído!', vi: 'Bài kiểm tra đã hoàn tất!', id: 'Ujian selesai!', tr: 'Sınav tamamlandı!', pl: 'Egzamin ukończony!' })}
+              {triLang(lang, { ru: 'Экзамен завершён!', uk: 'Іспит завершено!', en: 'Exam complete!', es: '¡Examen terminado!', 'pt-BR': 'Exame concluído!', vi: 'Bài kiểm tra đã hoàn tất!', id: 'Ujian selesai!', tr: 'Sınav tamamlandı!', pl: 'Egzamin ukończony!' })}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.h2, marginBottom: 24 }}>
               {cert.score} / {cert.total} — {cert.pct}%
@@ -299,7 +299,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
               }}
             >
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12, textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Результаты по темам', uk: 'Результати по темах', es: 'Resultados por temas', 'pt-BR': 'Resultados por tema', vi: 'Kết quả theo chủ đề', id: 'Hasil per topik', tr: 'Konuya göre sonuçlar', pl: 'Wyniki według tematów' })}
+                {triLang(lang, { ru: 'Результаты по темам', uk: 'Результати по темах', en: 'Results by topic', es: 'Resultados por temas', 'pt-BR': 'Resultados por tema', vi: 'Kết quả theo chủ đề', id: 'Hasil per topik', tr: 'Konuya göre sonuçlar', pl: 'Wyniki według tematów' })}
               </Text>
               {topics.map((q, i) => {
                 const planned = plannedTopicFor(q.topic);
@@ -319,7 +319,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                     />
                     <Text style={{ color: t.textMuted, fontSize: f.label, marginRight: 6, width: 26 }}>{i + 1}.</Text>
                     <Text style={{ color: q.correct ? t.textPrimary : t.textSecond, fontSize: f.sub, flex: 1 }}>
-                      {triLang(lang, { ru: q.topic, uk: q.topicUK, es: q.topicES, 'pt-BR': planned['pt-BR'], vi: planned.vi, id: planned.id, tr: planned.tr, pl: planned.pl })}
+                      {triLang(lang, { ru: q.topic, uk: q.topicUK, en: q.topic, es: q.topicES, 'pt-BR': planned['pt-BR'], vi: planned.vi, id: planned.id, tr: planned.tr, pl: planned.pl })}
                     </Text>
                   </View>
                 );
@@ -338,7 +338,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                   <Ionicons name="ribbon" size={22} color="#FFD700" />
                   <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '800', letterSpacing: 1.2 }}>
-                    {triLang(lang, { ru: 'СЕРТИФИКАТ', uk: 'СЕРТИФІКАТ', es: 'CERTIFICADO', 'pt-BR': 'CERTIFICADO', vi: 'CHỨNG CHỈ', id: 'SERTIFIKAT', tr: 'SERTİFİKA', pl: 'CERTYFIKAT' })}
+                    {triLang(lang, { ru: 'СЕРТИФИКАТ', uk: 'СЕРТИФІКАТ', en: 'CERTIFICATE', es: 'CERTIFICADO', 'pt-BR': 'CERTIFICADO', vi: 'CHỨNG CHỈ', id: 'SERTIFIKAT', tr: 'SERTİFİKA', pl: 'CERTYFIKAT' })}
                   </Text>
                 </View>
                 <View style={{ borderRadius: 12, overflow: 'hidden', borderWidth: 1, borderColor: '#d4a017', marginBottom: 12 }}>
@@ -367,6 +367,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                     {triLang(lang, {
                       ru: 'Поделиться сертификатом',
                       uk: 'Поділитися сертифікатом',
+                      en: 'Share certificate',
                       es: 'Compartir certificado',
                       'pt-BR': 'Compartilhar certificado',
                       vi: 'Chia sẻ chứng chỉ',
@@ -384,6 +385,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                   <Text style={{ color: '#FDE68A', fontSize: f.sub, textDecorationLine: 'underline' }}>
                     {triLang(lang, {
                       ru: 'Изменить имя на сертификате',
+                      en: 'Change the name on the certificate',
                       uk: 'Змінити ім\u02BCя на сертифікаті',
                       es: 'Cambiar el nombre en el diploma',
                       'pt-BR': 'Alterar nome no certificado',
@@ -418,6 +420,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                 <Text style={{ color: '#FDE68A', fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.4 }}>
                   {triLang(lang, {
                     ru: 'Укажи имя — и твой сертификат появится здесь. Без имени награда не показывается.',
+                    en: "Add your name and your certificate will appear here. Without a name, the reward isn't shown.",
                     uk: 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
                     es: 'Indica tu nombre y tu diploma aparecerá aquí. Sin nombre no mostramos la recompensa.',
                     'pt-BR': 'Informe seu nome e o certificado aparecerá aqui. Sem nome, a recompensa não é exibida.',
@@ -436,6 +439,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                   <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '700' }}>
                     {triLang(lang, {
                       ru: 'Указать имя на награде',
+                      en: 'Set the name on the reward',
                       uk: 'Вказати ім\u02BCя на нагороді',
                       es: 'Indicar nombre en el diploma',
                       'pt-BR': 'Informar nome no certificado',
@@ -460,6 +464,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                   {triLang(lang, {
                     ru: 'Попробовать ещё раз',
                     uk: 'Спробувати ще раз',
+                    en: 'Try again',
                     es: 'Intentar de nuevo',
                     'pt-BR': 'Tentar novamente',
                     vi: 'Thử lại',
@@ -482,6 +487,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                   {triLang(lang, {
                     ru: 'Попробовать ещё раз',
                     uk: 'Спробувати ще раз',
+                    en: 'Try again',
                     es: 'Intentar de nuevo',
                     'pt-BR': 'Tentar novamente',
                     vi: 'Thử lại',
@@ -501,7 +507,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
               >
                 <Ionicons name="share-outline" size={18} color={t.textSecond} />
                 <Text style={{ color: t.textSecond, fontSize: f.bodyLg }}>
-                  {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wynik' })}
+                  {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', en: 'Share result', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wynik' })}
                 </Text>
               </PressableHybrid>
             ) : (
@@ -512,7 +518,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
               >
                 <Ionicons name="share-outline" size={18} color={t.textSecond} />
                 <Text style={{ color: t.textSecond, fontSize: f.bodyLg }}>
-                  {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wынik' })}
+                  {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', en: 'Share result', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wynik' })}
                 </Text>
               </TouchableOpacity>
             )}
@@ -524,13 +530,13 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
                 onPress={onClose}
               >
                 <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline', textAlign: 'center' }}>
-                  {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
+                  {triLang(lang, { ru: 'На главную', uk: 'На головну', en: 'Go home', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
                 </Text>
               </PressableHybrid>
             ) : (
               <TouchableOpacity style={{ padding: 14 }} onPress={onClose} activeOpacity={0.7}>
                 <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline' }}>
-                  {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
+                  {triLang(lang, { ru: 'На главную', uk: 'На головну', en: 'Go home', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
                 </Text>
               </TouchableOpacity>
             )}

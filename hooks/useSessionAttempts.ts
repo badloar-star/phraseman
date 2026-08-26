@@ -22,6 +22,8 @@ export type UseSessionAttemptsInput = Readonly<{
   sessionId: string;
   initialQuestionId: string;
   autoHydrate?: boolean;
+  /** Preview/sandbox surfaces may exercise the reducer without learner writes. */
+  persistenceEnabled?: boolean;
 }>;
 
 export function useSessionAttempts(input: UseSessionAttemptsInput) {
@@ -30,11 +32,13 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     questionId: input.initialQuestionId,
   }));
   const stateRef = useRef(state);
+  const sessionIdRef = useRef(input.sessionId);
   const [lossSequence, setLossSequence] = useState(0);
   const [giftCount, setGiftCount] = useState(0);
   const [runeBalance, setRuneBalance] = useState<number | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [recoveryBusy, setRecoveryBusy] = useState(false);
+  const recoveryBusyRef = useRef(false);
   const [recoveryError, setRecoveryError] = useState<string | null>(null);
 
   const adoptState = useCallback((next: SessionAttemptsStateV1): void => {
@@ -43,11 +47,29 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   }, []);
 
   const persist = useCallback((next: SessionAttemptsStateV1): void => {
+    if (input.persistenceEnabled === false) return;
     void persistSessionAttemptsState(input.token, next).catch(() => {
       // The active screen keeps its local reducer state. Remount recovery stays
       // fail-closed and never invents a resource debit.
     });
-  }, [input.token]);
+  }, [input.persistenceEnabled, input.token]);
+
+  useEffect(() => {
+    if (sessionIdRef.current === input.sessionId) return;
+    sessionIdRef.current = input.sessionId;
+    const next = createSessionAttemptsState({
+      sessionId: input.sessionId,
+      questionId: input.initialQuestionId,
+    });
+    adoptState(next);
+    setLossSequence(0);
+    setGiftCount(0);
+    setRuneBalance(null);
+    setHydrated(false);
+    setRecoveryBusy(false);
+    recoveryBusyRef.current = false;
+    setRecoveryError(null);
+  }, [adoptState, input.initialQuestionId, input.sessionId]);
 
   const refreshResources = useCallback(async (): Promise<void> => {
     const [nextGiftCount, stars] = await Promise.all([
@@ -60,6 +82,10 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
 
   const hydrate = useCallback(async (): Promise<void> => {
     setRecoveryError(null);
+    if (input.persistenceEnabled === false) {
+      setHydrated(true);
+      return;
+    }
     try {
       await recoverPreparedSessionAttemptRecoveries(input.token);
       const [stored] = await Promise.all([
@@ -72,7 +98,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     } finally {
       setHydrated(true);
     }
-  }, [adoptState, input.sessionId, input.token, refreshResources]);
+  }, [adoptState, input.persistenceEnabled, input.sessionId, input.token, refreshResources]);
 
   useEffect(() => {
     if (input.autoHydrate === false) {
@@ -111,7 +137,8 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   }, [adoptState, persist]);
 
   const recover = useCallback(async (source: 'gift' | 'runes'): Promise<void> => {
-    if (recoveryBusy) return;
+    if (recoveryBusyRef.current) return;
+    recoveryBusyRef.current = true;
     setRecoveryBusy(true);
     setRecoveryError(null);
     try {
@@ -126,9 +153,10 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
       setRecoveryError(error instanceof Error ? error.message : 'session_attempt_recovery_failed');
       throw error;
     } finally {
+      recoveryBusyRef.current = false;
       setRecoveryBusy(false);
     }
-  }, [adoptState, input.token, recoveryBusy, refreshResources]);
+  }, [adoptState, input.token, refreshResources]);
 
   const recoverWithGift = useCallback(() => recover('gift'), [recover]);
   const recoverWithRunes = useCallback(() => recover('runes'), [recover]);

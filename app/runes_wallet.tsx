@@ -14,7 +14,7 @@
  * источников живут без чисел — честно, без нулей-вранья.
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, ScrollView, Text, View } from 'react-native';
+import { Animated, Image, ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -23,8 +23,12 @@ import { useLang } from '../components/LangContext';
 import { useScreen } from '../hooks/use-screen';
 import ContentWrap from '../components/ContentWrap';
 import TapScale from '../components/TapScale';
-import RuneGlyph from '../components/RuneGlyph';
 import { triLang, type Lang } from '../constants/i18n';
+
+// зачем (владелец, 25.08: «иконку смени на ассет правильный»): тот же
+// ассет-монета, что в Арене/Лиге/Главной через HomeRuneBalance, а не
+// текстовый глиф RuneGlyph — одна валюта, один и тот же образ везде.
+const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 import { RUNE_GLYPHS, runeWord } from '../constants/runes';
 import { safeRouterBack } from './navigation_back';
 import { peekRunesBalance, subscribeRunesBalance, getRunesBalance, type RunesBalance } from './runes_system';
@@ -53,17 +57,17 @@ const EXTRA_SOURCES: readonly SourceRow[] = [
 function sourceName(key: RuneSourceKey, lang: Lang): string {
   switch (key) {
     case 'arena':
-      return triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena' });
+      return triLang(lang, { ru: 'Арена', uk: 'Арена', en: 'Arena', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena' });
     case 'learning':
-      return triLang(lang, { ru: 'Занятия', uk: 'Заняття', es: 'Clases', 'pt-BR': 'Aulas', vi: 'Buổi học', id: 'Sesi belajar', tr: 'Dersler', pl: 'Zajęcia' });
+      return triLang(lang, { ru: 'Занятия', uk: 'Заняття', en: 'Lessons', es: 'Clases', 'pt-BR': 'Aulas', vi: 'Buổi học', id: 'Sesi belajar', tr: 'Dersler', pl: 'Zajęcia' });
     case 'friends':
-      return triLang(lang, { ru: 'Друзья', uk: 'Друзі', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' });
+      return triLang(lang, { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' });
     case 'spin':
-      return triLang(lang, { ru: 'Спин', uk: 'Спін', es: 'Giro', 'pt-BR': 'Giro', vi: 'Vòng quay', id: 'Putaran', tr: 'Çark', pl: 'Spin' });
+      return triLang(lang, { ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro', vi: 'Vòng quay', id: 'Putaran', tr: 'Çark', pl: 'Spin' });
     case 'exchange':
-      return triLang(lang, { ru: 'Обмен', uk: 'Обмін', es: 'Cambio', 'pt-BR': 'Troca', vi: 'Trao đổi', id: 'Penukaran', tr: 'Takas', pl: 'Wymiana' });
+      return triLang(lang, { ru: 'Обмен', uk: 'Обмін', en: 'Exchange', es: 'Cambio', 'pt-BR': 'Troca', vi: 'Trao đổi', id: 'Penukaran', tr: 'Takas', pl: 'Wymiana' });
     case 'other':
-      return triLang(lang, { ru: 'Другое', uk: 'Інше', es: 'Otros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' });
+      return triLang(lang, { ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' });
   }
 }
 
@@ -127,10 +131,11 @@ export default function RunesWalletScreen() {
     ? [...PRIMARY_SOURCES, ...EXTRA_SOURCES.filter((row) => (bySource[row.key] ?? 0) > 0)]
     : PRIMARY_SOURCES;
 
-  const title = triLang(lang, { ru: 'Руны', uk: 'Руни', es: 'Runas', 'pt-BR': 'Runas', vi: 'Rune', id: 'Rune', tr: 'Rünler', pl: 'Runy' });
+  const title = triLang(lang, { ru: 'Руны', uk: 'Руни', en: 'Runes', es: 'Runas', 'pt-BR': 'Runas', vi: 'Rune', id: 'Rune', tr: 'Rünler', pl: 'Runy' });
   const earnedTotalLabel = triLang(lang, {
     ru: `заработано за всё время — ${wallet.earnedTotal}`,
     uk: `зароблено за весь час — ${wallet.earnedTotal}`,
+    en: `earned all-time — ${wallet.earnedTotal}`,
     es: `ganadas en total: ${wallet.earnedTotal}`,
     'pt-BR': `ganhas no total: ${wallet.earnedTotal}`,
     vi: `tổng đã kiếm: ${wallet.earnedTotal}`,
@@ -139,7 +144,7 @@ export default function RunesWalletScreen() {
     pl: `zdobyte łącznie: ${wallet.earnedTotal}`,
   });
   const sourcesLabel = triLang(lang, {
-    ru: 'Откуда руны', uk: 'Звідки руни', es: 'De dónde vienen', 'pt-BR': 'De onde vêm',
+    ru: 'Откуда руны', uk: 'Звідки руни', en: 'Where runes come from', es: 'De dónde vienen', 'pt-BR': 'De onde vêm',
     vi: 'Rune đến từ đâu', id: 'Dari mana rune', tr: 'Rünler nereden', pl: 'Skąd runy',
   });
 
@@ -176,7 +181,7 @@ export default function RunesWalletScreen() {
           </Text>
         </View>
 
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingBottom: insets.bottom + 28 }}
           showsVerticalScrollIndicator={false}
@@ -186,7 +191,7 @@ export default function RunesWalletScreen() {
             accessibilityLabel={`${wallet.balance} ${runeWord(lang, wallet.balance)}`}
             style={{ alignItems: 'center', paddingTop: 18, paddingBottom: 26, paddingHorizontal: 18 }}
           >
-            <RuneGlyph size={40} color={t.gold} />
+            <Image source={RUNE_ASSET} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
             <Animated.Text
               allowFontScaling={false}
               style={{
@@ -266,7 +271,7 @@ export default function RunesWalletScreen() {
                     </Text>
                     {value !== null ? (
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                        <RuneGlyph size={13} color={t.gold} />
+                        <Image source={RUNE_ASSET} style={{ width: 16, height: 16 }} resizeMode="contain" accessible={false} />
                         <Text
                           style={{
                             color: t.gold,
@@ -298,6 +303,7 @@ export default function RunesWalletScreen() {
                 {triLang(lang, {
                   ru: 'Руны приходят за дело',
                   uk: 'Руни приходять за діло',
+                  en: 'Runes are earned by doing',
                   es: 'Las runas se ganan con la práctica',
                   'pt-BR': 'As runas vêm com a prática',
                   vi: 'Rune đến từ việc luyện tập',
@@ -319,6 +325,7 @@ export default function RunesWalletScreen() {
                 {triLang(lang, {
                   ru: 'Занятие, матч на Арене или неделя с другом — и первые руны появятся здесь.',
                   uk: 'Заняття, матч на Арені або тиждень із другом — і перші руни з’являться тут.',
+                  en: 'A lesson, an Arena match, or a week with a friend — and your first runes will show up here.',
                   es: 'Una clase, una partida en la Arena o una semana con un amigo, y tus primeras runas aparecerán aquí.',
                   'pt-BR': 'Uma aula, uma partida na Arena ou uma semana com um amigo, e suas primeiras runas aparecem aqui.',
                   vi: 'Một buổi học, một trận Đấu trường hoặc một tuần cùng bạn bè — những rune đầu tiên sẽ xuất hiện ở đây.',

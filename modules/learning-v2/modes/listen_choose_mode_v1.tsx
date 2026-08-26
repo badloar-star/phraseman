@@ -1,12 +1,13 @@
 /**
- * Режим 2/7 — Выбор на слух. Источник вёрстки/анимаций:
+ * Активный режим 2/6 — Выбор на слух. Источник вёрстки/анимаций:
  * docs/v2/mockups/03-listen-choose.html.
  *
  * зачем: раньше single_choice для listen_choose/sound_contrast рендерился
  * идентично любому другому single_choice — список текстовых строк без
  * play-кнопки с прогресс-кольцом и без обязательного "сначала прослушай".
  * Владелец одобрил отдельный экран: play-кнопка с кольцом по центру, затем
- * варианты строками, "Проверить" заблокирована до первого прослушивания.
+ * варианты строками. Выбор остаётся доступен сразу: сбой или задержка аудио
+ * не должны превращать упражнение в тупик.
  *
  * Данные: контент даёт `prompt` + `responseOptions[]`. Аудио уже приходит
  * через onPlayFullPhraseAudio (полная фраза) — используем его и как "play"
@@ -30,8 +31,11 @@ import Animated, {
 import Svg, { Circle } from "react-native-svg";
 
 import { useTheme } from "../../../components/ThemeContext";
+import { V2Chip } from "../../../components/ui/v2_ui";
+import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+import { learningV2ModeAudioCopyV1 } from "./mode_copy_v1";
 import { LISTEN_CHOOSE_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
@@ -44,6 +48,8 @@ function ListenChoosePlayButtonV1({
   playing,
   hasPlayedOnce,
   reducedMotion,
+  disabled,
+  accessibilityLabel,
   onPress,
   accent,
   correct,
@@ -53,6 +59,8 @@ function ListenChoosePlayButtonV1({
   readonly playing: boolean;
   readonly hasPlayedOnce: boolean;
   readonly reducedMotion: boolean;
+  readonly disabled: boolean;
+  readonly accessibilityLabel: string;
   readonly onPress: () => void;
   readonly accent: string;
   readonly correct: string;
@@ -79,6 +87,7 @@ function ListenChoosePlayButtonV1({
         );
       }
     } else {
+      progress.value = withTiming(0, { duration: reducedMotion ? 1 : 120 });
       pulse.value = withTiming(1, { duration: 160, easing: EASE });
     }
   }, [playing, reducedMotion, progress, pulse]);
@@ -117,13 +126,15 @@ function ListenChoosePlayButtonV1({
       <Animated.View style={btnStyle}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={hasPlayedOnce ? "Прослушать ещё раз" : "Прослушать фразу"}
+          accessibilityLabel={accessibilityLabel}
+          accessibilityState={{ disabled }}
+          disabled={disabled}
           hitSlop={10}
           onPress={() => {
             void hapticLightImpact();
             onPress();
           }}
-          style={[styles.playBtn, { backgroundColor: surface }]}
+          style={[styles.playBtn, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
         >
           <Text style={[styles.playGlyph, { color: accent }]}>
             {playing ? "▶" : "▶"}
@@ -143,8 +154,6 @@ function ListenChooseOptionV1({
   reducedMotion,
   disabled,
   onPress,
-  bg,
-  selectedBg,
   textColor,
 }: {
   readonly label: string;
@@ -161,7 +170,6 @@ function ListenChooseOptionV1({
 }) {
   const lift = useSharedValue(0);
   const nudge = useSharedValue(0);
-  const press = useSharedValue(1);
 
   useEffect(() => {
     lift.value = withTiming(selected ? 1 : 0, {
@@ -184,42 +192,29 @@ function ListenChooseOptionV1({
     transform: [
       { translateY: lift.value * -2 },
       { translateX: nudge.value },
-      { scale: press.value },
     ] as const,
   }));
 
   return (
     <Animated.View style={style}>
-      <Pressable
-        accessibilityRole="button"
+      <V2Chip
+        block
         accessibilityLabel={label}
-        accessibilityState={{ selected, disabled }}
         disabled={disabled}
-        onPressIn={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(0.98, { duration: 80, easing: EASE });
-        }}
-        onPressOut={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(1, { duration: 80, easing: EASE });
-        }}
         onPress={onPress}
-        style={[
-          styles.option,
-          {
-            backgroundColor:
-              verdict === "ok" ? undefined : verdict === "bad" ? undefined : selected ? selectedBg : bg,
-          },
-        ]}
+        selected={selected}
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : dimmed ? "dim" : "idle"}
+        textStyle={[styles.optionText, { color: textColor }]}
       >
-        <Text style={[styles.optionText, { color: textColor }]}>{label}</Text>
-      </Pressable>
+        {label}
+      </V2Chip>
     </Animated.View>
   );
 }
 
 export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
   const { theme: t } = useTheme();
+  const palette = useTournamentPalette();
   const {
     prompt,
     options,
@@ -231,30 +226,31 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
     onPick,
     onPlayFullPhraseAudio,
     phase,
+    modePayload,
+    referenceAudioState,
+    interfaceLocale,
   } = props;
+  if (modePayload && modePayload.family !== "listen_choose") {
+    throw new Error("learning_v2_listen_choose_payload_mismatch");
+  }
 
-  const [playing, setPlaying] = useState(false);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => () => {
-    if (playTimerRef.current) clearTimeout(playTimerRef.current);
-  }, []);
+  const audioCopy = learningV2ModeAudioCopyV1(interfaceLocale);
+  const wasPlayingRef = useRef(false);
+  const playing = referenceAudioState === "playing";
+  const loading = referenceAudioState === "loading";
+  useEffect(() => {
+    if (playing) {
+      wasPlayingRef.current = true;
+      return;
+    }
+    if (wasPlayingRef.current) setHasPlayedOnce(true);
+    wasPlayingRef.current = false;
+  }, [playing]);
 
   const handlePlay = () => {
-    if (!onPlayFullPhraseAudio || playing) return;
-    setPlaying(true);
+    if (!onPlayFullPhraseAudio || playing || loading) return;
     onPlayFullPhraseAudio();
-    if (playTimerRef.current) clearTimeout(playTimerRef.current);
-    // зачем: у полного аудио-плеера нет колбэка "закончилось" в этом
-    // контракте (onPlayFullPhraseAudio — fire-and-forget по дизайну
-    // player'а), поэтому кольцо/пульс гасим по истечении заявленной
-    // длительности макета — тот же приём, что и веб-витрина использует как
-    // fallback при отсутствии событий реального <audio>.
-    playTimerRef.current = setTimeout(() => {
-      setPlaying(false);
-      setHasPlayedOnce(true);
-    }, MOTION.ringFillMs);
   };
 
   const announcedRef = useRef(false);
@@ -272,12 +268,14 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={styles.root}>
-      <Text style={[styles.taskLabel, { color: t.textMuted }]}>Что ты слышишь?</Text>
+      <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
 
       <ListenChoosePlayButtonV1
         playing={playing}
         hasPlayedOnce={hasPlayedOnce}
         reducedMotion={reducedMotion}
+        disabled={!onPlayFullPhraseAudio || loading}
+        accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
         onPress={handlePlay}
         accent={t.accent}
         correct={t.correct}
@@ -285,11 +283,25 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
         track={t.bgSurface2}
       />
       <Text style={[styles.playSub, { color: t.textMuted }]}>
-        {playing ? "Звучит…" : hasPlayedOnce ? "Прослушать ещё раз" : "Нажми, чтобы послушать"}
+        {!onPlayFullPhraseAudio
+          ? audioCopy.unavailable
+          : loading
+            ? audioCopy.loading
+            : playing
+            ? audioCopy.playing
+            : hasPlayedOnce
+              ? audioCopy.replay
+              : audioCopy.play}
       </Text>
 
       <View style={styles.options}>
         {options.map((option) => {
+          const authoredChoice = modePayload?.family === "listen_choose"
+            ? modePayload.localizedMeaningChoices.find(
+                (choice) => choice.responseId === option.responseId,
+              )
+            : null;
+          const targetLanguageText = authoredChoice?.meaningByLocale === null;
           const selected = selectedChoiceId === option.responseId;
           const verdict: "none" | "ok" | "bad" =
             phase === "success" && selected
@@ -306,7 +318,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
               dimmed={hasSelection && !selected}
               nudgeToken={wrongNudge.responseId === option.responseId ? wrongNudge.token : 0}
               reducedMotion={reducedMotion}
-              disabled={resolved || !hasPlayedOnce || phase === "processing"}
+              disabled={resolved || phase === "processing"}
               onPress={() => onPick(option.responseId)}
               bg={t.bgCard}
               selectedBg={t.accentBg}
@@ -315,9 +327,11 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
                   ? t.correctText
                   : verdict === "bad"
                     ? t.wrong
-                    : selected
-                      ? t.textPrimary
-                      : t.textMuted
+                    : targetLanguageText
+                      ? t.accent
+                      : selected
+                        ? t.textPrimary
+                        : t.textMuted
               }
             />
           );
@@ -357,7 +371,8 @@ const styles = StyleSheet.create({
   playSub: { fontSize: 14, fontWeight: "700" },
   options: { width: "100%", gap: 10 },
   option: { borderRadius: 18, paddingVertical: 14, paddingHorizontal: 16 },
-  optionText: { fontSize: 17, fontWeight: "700" },
+  optionText: { fontSize: 17, fontWeight: "900" },
+  targetText: { fontWeight: "900" },
   feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
 });

@@ -145,7 +145,7 @@ export default function ArenaStarWalletScreen() {
 
   return (
     <ArenaScreen title={arenaExpansionText(lang, 'wallet')} subtitle={ARENA_STAR_STORE_ENABLED ? arenaExpansionText(lang, 'store') : undefined} scroll={false}>
-      <FlatList
+      <FlatList decelerationRate="fast"
         data={ARENA_STAR_STORE_ENABLED ? (store?.items ?? []) : []}
         keyExtractor={(item) => item.sku}
         contentContainerStyle={styles.list}

@@ -1,7 +1,6 @@
 import React, { memo, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
-import { useTheme } from './ThemeContext';
 
 type Props = {
   text: string;
@@ -18,23 +17,7 @@ const VIP_STOPS = [
   { offset: '1', color: '#052E16' },
 ];
 
-const VIP_STOPS_SKETCH = [
-  { offset: '0', color: '#065F46' },
-  { offset: '0.26', color: '#047857' },
-  { offset: '0.52', color: '#16A34A' },
-  { offset: '0.76', color: '#15803D' },
-  { offset: '1', color: '#064E3B' },
-];
-
-// Тема business: ника не должно быть зелёным — нейтральный серо-белый градиент.
-const MONO_STOPS = [
-  { offset: '0', color: '#D4D4D4' },
-  { offset: '0.5', color: '#F2F2F2' },
-  { offset: '1', color: '#D4D4D4' },
-];
-
 function VipGreenUserName({ text, fontSize }: Props) {
-  const { themeMode } = useTheme();
   const [measuredW, setMeasuredW] = useState(0);
   const display = text || 'Phraseman';
   const lineHeight = Math.ceil(fontSize * 1.28);
@@ -48,7 +31,7 @@ function VipGreenUserName({ text, fontSize }: Props) {
     return `vipGreen_${hash}`;
   }, [display, fontSize]);
 
-  const gradientStops = themeMode === 'business' ? MONO_STOPS : (false ? VIP_STOPS_SKETCH : VIP_STOPS);
+  const gradientStops = VIP_STOPS;
   const safetyPad = Math.ceil(fontSize * 0.18);
   const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;
   const h = lineHeight;

@@ -1382,7 +1382,7 @@ function RegistrationPromptModal({
             <Ionicons name="close" size={14} color={t.textSecond} />
           </Pressable>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={styles.sheetScroll}
             contentContainerStyle={[styles.sheetContent, { paddingHorizontal: cardPadding, paddingBottom: Math.max(insets.bottom, 14) + 18 }]}
             showsVerticalScrollIndicator={false}

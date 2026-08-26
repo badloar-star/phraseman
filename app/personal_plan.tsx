@@ -197,7 +197,7 @@ function ProgressRing({ pct, chrome, lang }: { pct: number; chrome: PlanChrome; 
       >
         {Math.round(pct)}%
       </Text>
-      <Text style={[styles.ringLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: 'готово', uk: 'готово', es: 'listo', 'pt-BR': 'pronto', vi: 'đã xong', id: 'selesai', tr: 'hazır', pl: 'gotowe' })}</Text>
+      <Text style={[styles.ringLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: 'готово', en: 'done', uk: 'готово', es: 'listo', 'pt-BR': 'pronto', vi: 'đã xong', id: 'selesai', tr: 'hazır', pl: 'gotowe' })}</Text>
     </View>
   );
 }
@@ -211,14 +211,14 @@ function StreakBadge({ streakDays, dayIndex, chrome, lang }: { streakDays: numbe
   if (streakDays <= 0) {
     return (
       <View style={[styles.streakBadge, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
-        <Text style={[styles.streakText, { color: chrome.accent }]}>{triLang(lang, { ru: `День ${dayIndex}`, uk: `День ${dayIndex}`, es: `Día ${dayIndex}`, 'pt-BR': `Dia ${dayIndex}`, vi: `Ngày ${dayIndex}`, id: `Hari ${dayIndex}`, tr: `${dayIndex}. gün`, pl: `Dzień ${dayIndex}` })}</Text>
+        <Text style={[styles.streakText, { color: chrome.accent }]}>{triLang(lang, { ru: `День ${dayIndex}`, en: `Day ${dayIndex}`, uk: `День ${dayIndex}`, es: `Día ${dayIndex}`, 'pt-BR': `Dia ${dayIndex}`, vi: `Ngày ${dayIndex}`, id: `Hari ${dayIndex}`, tr: `${dayIndex}. gün`, pl: `Dzień ${dayIndex}` })}</Text>
       </View>
     );
   }
   return (
     <View style={[styles.streakBadge, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
       <Ionicons name="flame" size={14} color={chrome.accent} />
-      <Text style={[styles.streakText, { color: chrome.accent }]}>{triLang(lang, { ru: `${streakDays} дн`, uk: `${streakDays} дн`, es: `${streakDays} d`, 'pt-BR': `${streakDays} d`, vi: `${streakDays} ngày`, id: `${streakDays} hr`, tr: `${streakDays} gün`, pl: `${streakDays} dni` })}</Text>
+      <Text style={[styles.streakText, { color: chrome.accent }]}>{triLang(lang, { ru: `${streakDays} дн`, en: `${streakDays}d`, uk: `${streakDays} дн`, es: `${streakDays} d`, 'pt-BR': `${streakDays} d`, vi: `${streakDays} ngày`, id: `${streakDays} hr`, tr: `${streakDays} gün`, pl: `${streakDays} dni` })}</Text>
     </View>
   );
 }
@@ -265,6 +265,7 @@ function TaskRow({
         accessibilityLabel={triLang(lang, {
             ru: `${completed ? 'Повторить' : 'Открыть'} задание ${task.title}`,
             uk: `${completed ? 'Повторити' : 'Відкрити'} завдання ${task.title}`,
+            en: `${completed ? 'Repeat' : 'Open'} task ${task.title}`,
             es: `${completed ? 'Repetir' : 'Abrir'} tarea ${task.title}`,
             'pt-BR': `${completed ? 'Repetir' : 'Abrir'} tarefa ${task.title}`,
             vi: `${completed ? 'Làm lại' : 'Mở'} nhiệm vụ ${task.title}`,
@@ -308,7 +309,7 @@ function TaskRow({
             {task.title}
           </Text>
           <Text style={[styles.taskSub, { color: completed ? chrome.accent2 : chrome.muted }]} numberOfLines={3}>
-            {completed ? triLang(lang, { ru: '✓ Выполнено', uk: '✓ Виконано', es: '✓ Completado', 'pt-BR': '✓ Concluído', vi: '✓ Đã hoàn thành', id: '✓ Selesai', tr: '✓ Tamamlandı', pl: '✓ Wykonano' }) : task.subtitle}
+            {completed ? triLang(lang, { ru: '✓ Выполнено', en: '✓ Done', uk: '✓ Виконано', es: '✓ Completado', 'pt-BR': '✓ Concluído', vi: '✓ Đã hoàn thành', id: '✓ Selesai', tr: '✓ Tamamlandı', pl: '✓ Wykonano' }) : task.subtitle}
           </Text>
         </View>
 
@@ -320,7 +321,7 @@ function TaskRow({
             </View>
           ) : (
             <>
-              <Text style={[styles.taskMinutes, { color: chrome.accent }]}>{triLang(lang, { ru: `${task.minutes}мин`, uk: `${task.minutes}хв`, es: `${task.minutes}min`, 'pt-BR': `${task.minutes}min`, vi: `${task.minutes}p`, id: `${task.minutes}mnt`, tr: `${task.minutes}dk`, pl: `${task.minutes}min` })}</Text>
+              <Text style={[styles.taskMinutes, { color: chrome.accent }]}>{triLang(lang, { ru: `${task.minutes}мин`, en: `${task.minutes}min`, uk: `${task.minutes}хв`, es: `${task.minutes}min`, 'pt-BR': `${task.minutes}min`, vi: `${task.minutes}p`, id: `${task.minutes}mnt`, tr: `${task.minutes}dk`, pl: `${task.minutes}min` })}</Text>
               <Ionicons name="chevron-forward" size={18} color={chrome.ghost} />
             </>
           )}
@@ -739,7 +740,7 @@ function PersonalPlanScreen() {
         <BouncyWrap>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
-          decelerationRate="normal"
+          decelerationRate="fast"
           bounces
           alwaysBounceVertical
           overScrollMode="always"
@@ -754,7 +755,7 @@ function PersonalPlanScreen() {
           <TapScale
             onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             style={[styles.back, { backgroundColor: chrome.taskSurface, borderColor: chrome.border }]}
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
@@ -772,6 +773,7 @@ function PersonalPlanScreen() {
               dataText={triLang(lang, {
                   ru: `${plan.name} · День ${day.dayIndex}: ${day.title}`,
                   uk: `${plan.name} · День ${day.dayIndex}: ${day.title}`,
+                  en: `${plan.name} · Day ${day.dayIndex}: ${day.title}`,
                   es: `${plan.name} · Día ${day.dayIndex}: ${day.title}`,
                   'pt-BR': `${plan.name} · Dia ${day.dayIndex}: ${day.title}`,
                   vi: `${plan.name} · Ngày ${day.dayIndex}: ${day.title}`,
@@ -787,7 +789,7 @@ function PersonalPlanScreen() {
             activeOpacity={0.78}
             onPress={() => { hapticTap(); setChangePlanConfirmVisible(true); }}
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Сменить план', uk: 'Змінити план', es: 'Cambiar de plan', 'pt-BR': 'Trocar de plano', vi: 'Đổi kế hoạch', id: 'Ganti rencana', tr: 'Planı değiştir', pl: 'Zmień plan' })}
+            accessibilityLabel={triLang(lang, { ru: 'Сменить план', en: 'Change plan', uk: 'Змінити план', es: 'Cambiar de plan', 'pt-BR': 'Trocar de plano', vi: 'Đổi kế hoạch', id: 'Ganti rencana', tr: 'Planı değiştir', pl: 'Zmień plan' })}
             style={[styles.statsButton, { backgroundColor: chrome.taskSurface, borderColor: chrome.border, marginRight: 8 }]}
           >
             <Ionicons name="swap-horizontal" size={20} color={chrome.accent} />
@@ -796,7 +798,7 @@ function PersonalPlanScreen() {
             activeOpacity={0.78}
             onPress={() => { hapticTap(); router.push('/personal_plan_stats_screen' as any); }}
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Статистика плана', uk: 'Статистика плану', es: 'Estadísticas del plan', 'pt-BR': 'Estatísticas do plano', vi: 'Thống kê kế hoạch', id: 'Statistik rencana', tr: 'Plan istatistikleri', pl: 'Statystyki planu' })}
+            accessibilityLabel={triLang(lang, { ru: 'Статистика плана', en: 'Plan stats', uk: 'Статистика плану', es: 'Estadísticas del plan', 'pt-BR': 'Estatísticas do plano', vi: 'Thống kê kế hoạch', id: 'Statistik rencana', tr: 'Plan istatistikleri', pl: 'Statystyki planu' })}
             style={[styles.statsButton, { backgroundColor: chrome.taskSurface, borderColor: chrome.border }]}
           >
             <Ionicons name="stats-chart" size={20} color={chrome.accent} />
@@ -822,7 +824,7 @@ function PersonalPlanScreen() {
               <View style={styles.heroCopy}>
                 <View style={[styles.timePill, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
-                  <Text style={[styles.timePillText, { color: chrome.accent }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: `${totalMinutes} мин сегодня`, uk: `${totalMinutes} хв сьогодні`, es: `${totalMinutes} min hoy`, 'pt-BR': `${totalMinutes} min hoje`, vi: `${totalMinutes} phút hôm nay`, id: `${totalMinutes} mnt hari ini`, tr: `bugün ${totalMinutes} dk`, pl: `${totalMinutes} min dzisiaj` })}</Text>
+                  <Text style={[styles.timePillText, { color: chrome.accent }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: `${totalMinutes} мин сегодня`, en: `${totalMinutes} min today`, uk: `${totalMinutes} хв сьогодні`, es: `${totalMinutes} min hoy`, 'pt-BR': `${totalMinutes} min hoje`, vi: `${totalMinutes} phút hôm nay`, id: `${totalMinutes} mnt hari ini`, tr: `bugün ${totalMinutes} dk`, pl: `${totalMinutes} min dzisiaj` })}</Text>
                 </View>
                 {/* numberOfLines обязателен: heroCopy стоит в строке рядом с кольцом
                     прогресса; без клампа узкая колонка рвёт заголовок по буквам. */}
@@ -846,21 +848,21 @@ function PersonalPlanScreen() {
                 </Text>
                 <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
                   {optionalCompletedCount > 0
-                      ? triLang(lang, { ru: `осн. +${optionalCompletedCount} доп.`, uk: `осн. +${optionalCompletedCount} дод.`, es: `base +${optionalCompletedCount} extra`, 'pt-BR': `base +${optionalCompletedCount} extra`, vi: `cơ bản +${optionalCompletedCount} thêm`, id: `dasar +${optionalCompletedCount} ekstra`, tr: `temel +${optionalCompletedCount} ek`, pl: `podst. +${optionalCompletedCount} dod.` })
-                      : triLang(lang, { ru: 'задач', uk: 'завдань', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
+                      ? triLang(lang, { ru: `осн. +${optionalCompletedCount} доп.`, en: `main +${optionalCompletedCount} extra`, uk: `осн. +${optionalCompletedCount} дод.`, es: `base +${optionalCompletedCount} extra`, 'pt-BR': `base +${optionalCompletedCount} extra`, vi: `cơ bản +${optionalCompletedCount} thêm`, id: `dasar +${optionalCompletedCount} ekstra`, tr: `temel +${optionalCompletedCount} ek`, pl: `podst. +${optionalCompletedCount} dod.` })
+                      : triLang(lang, { ru: 'задач', en: 'tasks', uk: 'завдань', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
                 </Text>
               </View>
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
               <View style={styles.heroStatItem}>
-                <Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: `День ${day.dayIndex}`, uk: `День ${day.dayIndex}`, es: `Día ${day.dayIndex}`, 'pt-BR': `Dia ${day.dayIndex}`, vi: `Ngày ${day.dayIndex}`, id: `Hari ${day.dayIndex}`, tr: `${day.dayIndex}. gün`, pl: `Dzień ${day.dayIndex}` })}</Text>
-                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: `${plan.horizonWeeks * 7} дней`, uk: `${plan.horizonWeeks * 7} днів`, es: `${plan.horizonWeeks * 7} días`, 'pt-BR': `${plan.horizonWeeks * 7} dias`, vi: `${plan.horizonWeeks * 7} ngày`, id: `${plan.horizonWeeks * 7} hari`, tr: `${plan.horizonWeeks * 7} gün`, pl: `${plan.horizonWeeks * 7} dni` })}</Text>
+                <Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: `День ${day.dayIndex}`, en: `Day ${day.dayIndex}`, uk: `День ${day.dayIndex}`, es: `Día ${day.dayIndex}`, 'pt-BR': `Dia ${day.dayIndex}`, vi: `Ngày ${day.dayIndex}`, id: `Hari ${day.dayIndex}`, tr: `${day.dayIndex}. gün`, pl: `Dzień ${day.dayIndex}` })}</Text>
+                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: `${plan.horizonWeeks * 7} дней`, en: `${plan.horizonWeeks * 7} days`, uk: `${plan.horizonWeeks * 7} днів`, es: `${plan.horizonWeeks * 7} días`, 'pt-BR': `${plan.horizonWeeks * 7} dias`, vi: `${plan.horizonWeeks * 7} ngày`, id: `${plan.horizonWeeks * 7} hari`, tr: `${plan.horizonWeeks * 7} gün`, pl: `${plan.horizonWeeks * 7} dni` })}</Text>
               </View>
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
               <View style={styles.heroStatItem}>
                 <Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
                   {visibleProgressPct}%
                 </Text>
-                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: 'прогресс', uk: 'прогрес', es: 'progreso', 'pt-BR': 'progresso', vi: 'tiến độ', id: 'progres', tr: 'ilerleme', pl: 'postęp' })}</Text>
+                <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: 'прогресс', en: 'progress', uk: 'прогрес', es: 'progreso', 'pt-BR': 'progresso', vi: 'tiến độ', id: 'progres', tr: 'ilerleme', pl: 'postęp' })}</Text>
               </View>
             </View>
 
@@ -902,11 +904,11 @@ function PersonalPlanScreen() {
                 <Text style={[styles.heroButtonText, { color: chrome.buttonText }]}>
                   {visibleTasksDone
                     ? (canAddMoreTasks
-                        ? triLang(lang, { ru: 'Ещё практика', uk: 'Ще практика', es: 'Más práctica', 'pt-BR': 'Mais prática', vi: 'Luyện thêm', id: 'Latihan lagi', tr: 'Daha fazla pratik', pl: 'Więcej praktyki' })
-                        : triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir', 'pt-BR': 'Repetir', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' }))
+                        ? triLang(lang, { ru: 'Ещё практика', en: 'More practice', uk: 'Ще практика', es: 'Más práctica', 'pt-BR': 'Mais prática', vi: 'Luyện thêm', id: 'Latihan lagi', tr: 'Daha fazla pratik', pl: 'Więcej praktyki' })
+                        : triLang(lang, { ru: 'Повторить', en: 'Repeat', uk: 'Повторити', es: 'Repetir', 'pt-BR': 'Repetir', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' }))
                     : nextTask
-                      ? triLang(lang, { ru: 'Начать задание', uk: 'Почати завдання', es: 'Empezar tarea', 'pt-BR': 'Começar tarefa', vi: 'Bắt đầu nhiệm vụ', id: 'Mulai tugas', tr: 'Göreve başla', pl: 'Rozpocznij zadanie' })
-                      : triLang(lang, { ru: 'Начать', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Rozpocznij' })}
+                      ? triLang(lang, { ru: 'Начать задание', en: 'Start task', uk: 'Почати завдання', es: 'Empezar tarea', 'pt-BR': 'Começar tarefa', vi: 'Bắt đầu nhiệm vụ', id: 'Mulai tugas', tr: 'Göreve başla', pl: 'Rozpocznij zadanie' })
+                      : triLang(lang, { ru: 'Начать', en: 'Start', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Rozpocznij' })}
                 </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -920,7 +922,7 @@ function PersonalPlanScreen() {
               activeOpacity={0.82}
               onPress={openRecommendedLesson}
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: `Открыть урок ${lessonRecommendation.recommendedLessonIds[0]}`, uk: `Відкрити урок ${lessonRecommendation.recommendedLessonIds[0]}`, es: `Abrir lección ${lessonRecommendation.recommendedLessonIds[0]}`, 'pt-BR': `Abrir lição ${lessonRecommendation.recommendedLessonIds[0]}`, vi: `Mở bài học ${lessonRecommendation.recommendedLessonIds[0]}`, id: `Buka pelajaran ${lessonRecommendation.recommendedLessonIds[0]}`, tr: `${lessonRecommendation.recommendedLessonIds[0]}. dersi aç`, pl: `Otwórz lekcję ${lessonRecommendation.recommendedLessonIds[0]}` })}
+              accessibilityLabel={triLang(lang, { ru: `Открыть урок ${lessonRecommendation.recommendedLessonIds[0]}`, uk: `Відкрити урок ${lessonRecommendation.recommendedLessonIds[0]}`, en: `Open lesson ${lessonRecommendation.recommendedLessonIds[0]}`, es: `Abrir lección ${lessonRecommendation.recommendedLessonIds[0]}`, 'pt-BR': `Abrir lição ${lessonRecommendation.recommendedLessonIds[0]}`, vi: `Mở bài học ${lessonRecommendation.recommendedLessonIds[0]}`, id: `Buka pelajaran ${lessonRecommendation.recommendedLessonIds[0]}`, tr: `${lessonRecommendation.recommendedLessonIds[0]}. dersi aç`, pl: `Otwórz lekcję ${lessonRecommendation.recommendedLessonIds[0]}` })}
               style={[styles.recommendBanner, { borderColor: chrome.border, backgroundColor: chrome.accentSoft }]}
             >
               <View style={[styles.recommendIconWrap, { backgroundColor: chrome.accent + '18', borderColor: chrome.accent + '33' }]}>
@@ -931,6 +933,7 @@ function PersonalPlanScreen() {
                   {triLang(lang, {
                       ru: `Рекомендуем ${lessonRecommendation.recommendedLessonIds.length === 1 ? 'урок' : 'уроки'} ${formatLessonList(lessonRecommendation.recommendedLessonIds)}`,
                       uk: `Рекомендуємо ${lessonRecommendation.recommendedLessonIds.length === 1 ? 'урок' : 'уроки'} ${formatLessonList(lessonRecommendation.recommendedLessonIds)}`,
+                      en: `We recommend ${lessonRecommendation.recommendedLessonIds.length === 1 ? 'lesson' : 'lessons'} ${formatLessonList(lessonRecommendation.recommendedLessonIds)}`,
                       es: `Te recomendamos la lección ${formatLessonList(lessonRecommendation.recommendedLessonIds)}`,
                       'pt-BR': `Recomendamos a lição ${formatLessonList(lessonRecommendation.recommendedLessonIds)}`,
                       vi: `Chúng tôi gợi ý bài học ${formatLessonList(lessonRecommendation.recommendedLessonIds)}`,
@@ -941,8 +944,8 @@ function PersonalPlanScreen() {
                 </Text>
                 <Text style={[styles.recommendText, { color: chrome.accent }]} numberOfLines={2}>
                   {lessonRecommendation.recommendedLessonIds.length === 1
-                    ? triLang(lang, { ru: 'Переход к уроку из списка →', uk: 'Перехід до уроку зі списку →', es: 'Ir a la lección de la lista →', 'pt-BR': 'Ir para a lição da lista →', vi: 'Chuyển đến bài học trong danh sách →', id: 'Buka pelajaran dari daftar →', tr: 'Listedeki derse git →', pl: 'Przejdź do lekcji z listy →' })
-                    : triLang(lang, { ru: 'Переход к первому уроку из списка →', uk: 'Перехід до першого уроку зі списку →', es: 'Ir a la primera lección de la lista →', 'pt-BR': 'Ir para a primeira lição da lista →', vi: 'Chuyển đến bài học đầu tiên trong danh sách →', id: 'Buka pelajaran pertama dari daftar →', tr: 'Listedeki ilk derse git →', pl: 'Przejdź do pierwszej lekcji z listy →' })}
+                    ? triLang(lang, { ru: 'Переход к уроку из списка →', uk: 'Перехід до уроку зі списку →', en: 'Go to the lesson from the list →', es: 'Ir a la lección de la lista →', 'pt-BR': 'Ir para a lição da lista →', vi: 'Chuyển đến bài học trong danh sách →', id: 'Buka pelajaran dari daftar →', tr: 'Listedeki derse git →', pl: 'Przejdź do lekcji z listy →' })
+                    : triLang(lang, { ru: 'Переход к первому уроку из списка →', uk: 'Перехід до першого уроку зі списку →', en: 'Go to the first lesson from the list →', es: 'Ir a la primera lección de la lista →', 'pt-BR': 'Ir para a primeira lição da lista →', vi: 'Chuyển đến bài học đầu tiên trong danh sách →', id: 'Buka pelajaran pertama dari daftar →', tr: 'Listedeki ilk derse git →', pl: 'Przejdź do pierwszej lekcji z listy →' })}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={20} color={chrome.accent} style={{ alignSelf: 'center' }} />
@@ -956,7 +959,7 @@ function PersonalPlanScreen() {
                 <Ionicons name="checkmark-circle-outline" size={26} color={chrome.accent} />
               </View>
               <View style={styles.doneCopy}>
-                <Text style={[styles.doneTitle, { color: chrome.text }]}>{triLang(lang, { ru: 'День закрыт', uk: 'День закрито', es: 'Día completado', 'pt-BR': 'Dia concluído', vi: 'Ngày đã hoàn thành', id: 'Hari selesai', tr: 'Gün tamamlandı', pl: 'Dzień zamknięty' })}</Text>
+                <Text style={[styles.doneTitle, { color: chrome.text }]}>{triLang(lang, { ru: 'День закрыт', uk: 'День закрито', en: 'Day complete', es: 'Día completado', 'pt-BR': 'Dia concluído', vi: 'Ngày đã hoàn thành', id: 'Hari selesai', tr: 'Gün tamamlandı', pl: 'Dzień zamknięty' })}</Text>
                 <Text style={[styles.doneSub, { color: chrome.muted }]}>
                   {dayComparison
                     ? triLang(lang, {

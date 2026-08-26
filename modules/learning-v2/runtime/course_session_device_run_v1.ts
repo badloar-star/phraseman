@@ -320,9 +320,10 @@ export function createLearningV2CourseSessionDeviceRunV1(
   input.learnerChild.interactions.forEach((entry, index) => {
     const evaluator = input.evaluatorCapsuleChild.entries[index + 3];
     const expectedInputKind =
-      entry.inputMode === "single_choice"
+      entry.inputMode === "single_choice" || entry.inputMode === "pair_grid"
         ? "choice_token"
-        : entry.inputMode === "scripted_speech"
+        : entry.inputMode === "scripted_speech" ||
+            entry.inputMode === "tap_record_compare"
           ? "transcript"
           : "text";
     if (

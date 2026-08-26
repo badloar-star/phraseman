@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
 
@@ -161,10 +162,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const treeIndex = process.argv.indexOf('--tree');
   const fileName = fileIndex >= 0 ? process.argv[fileIndex + 1] : 'probe.ts';
   const treeFiles = (directory) => readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const absolute = new URL(entry.name, `${pathToFileURL(directory).href.replace(/\/$/, '')}/`);
-    if (entry.isDirectory()) return treeFiles(absolute.pathname);
+    const absolute = resolve(directory, entry.name);
+    if (entry.isDirectory()) return treeFiles(absolute);
     return entry.isFile() && /\.(?:ts|js)$/.test(entry.name) && !/\.(?:test|d)\.(?:ts|js)$/.test(entry.name)
-      ? [absolute.pathname]
+      ? [absolute]
       : [];
   });
   const inputs = treeIndex >= 0

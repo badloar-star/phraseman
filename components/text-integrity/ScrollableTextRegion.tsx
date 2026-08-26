@@ -166,7 +166,7 @@ export function ScrollableTextRegion({
       style={[style, { flexShrink: 1, height: viewportHeight, maxHeight: viewportHeight }]}
     >
       {needsFallback ? (
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           testID={`${testID}-fallback-scroll`}
           style={{ flex: 1, maxHeight: viewportHeight }}
           nestedScrollEnabled
@@ -185,7 +185,7 @@ export function ScrollableTextRegion({
       ) : (
         <>
           {headerRegion}
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             testID={`${testID}-scroll`}
             style={[{ flexShrink: 1 }, { maxHeight: availableBodyHeight }]}
             nestedScrollEnabled

@@ -136,6 +136,7 @@ export function getPremiumDialogErrorMessage(
         return triLang(lang, {
           ru: 'Полный доступ активен, но ещё не везде подхватился. Обнови статус доступа и попробуй ещё раз.',
           uk: 'Повний доступ активний, але ще не всюди підхопився. Онови статус доступу і спробуй ще раз.',
+          en: 'Full access is active but has not caught up everywhere yet. Refresh your access status and try again.',
           es: 'Plus está activo en la app, pero el servidor aún no lo ve para el diálogo con IA. Actualiza la suscripción e inténtalo otra vez.',
           'pt-BR': 'Plus está ativo no app, mas o servidor ainda não o vê para o diálogo com IA. Atualize o status da assinatura e tente novamente.',
           vi: 'Plus đã hoạt động trong ứng dụng, nhưng máy chủ chưa nhận ra quyền này cho cuộc đối thoại AI. Hãy cập nhật trạng thái đăng ký rồi thử lại.',
@@ -147,6 +148,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Диалоги входят в Plus. Открой Plus, чтобы начать разговор.',
         uk: 'Діалоги входять у Plus. Відкрий Plus, щоб почати розмову.',
+        en: 'Dialogues are part of Plus. Unlock Plus to start talking.',
         es: 'Los diálogos están incluidos en Plus. Abre Plus para empezar a hablar.',
         'pt-BR': 'Os diálogos estão incluídos no Plus. Abra o Plus para começar a conversar.',
         vi: 'Đối thoại thuộc gói Plus. Mở Plus để bắt đầu trò chuyện.',
@@ -158,6 +160,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Лимит диалогов на сегодня исчерпан. Попробуй завтра.',
         uk: 'Ліміт діалогів на сьогодні вичерпано. Спробуй завтра.',
+        en: "Today's dialogue limit is used up. Try again tomorrow.",
         es: 'Se agotó el límite de diálogos de hoy. Inténtalo mañana.',
         'pt-BR': 'O limite de diálogos de hoje acabou. Tente amanhã.',
         vi: 'Bạn đã hết giới hạn đối thoại hôm nay. Hãy thử lại vào ngày mai.',
@@ -169,6 +172,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Сервис диалогов временно недоступен.\n\nДостигнут общий лимит сервиса. Попробуй позже.',
         uk: 'Сервіс діалогів тимчасово недоступний.\n\nДосягнуто загального ліміту сервісу. Спробуй пізніше.',
+        en: 'The dialogue service is temporarily unavailable.\n\nThe overall service limit was reached. Try again later.',
         es: 'El servicio de diálogos no está disponible temporalmente.\n\nSe alcanzó el límite general del servicio. Inténtalo más tarde.',
         'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nO limite geral do serviço foi atingido. Tente mais tarde.',
         vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nDịch vụ đã đạt giới hạn chung. Hãy thử lại sau.',
@@ -180,6 +184,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
         uk: 'Забагато повідомлень поспіль. Почекай трохи і спробуй ще раз.',
+        en: 'Too many messages in a row. Wait a bit and try again.',
         es: 'Demasiados mensajes seguidos. Espera un poco e inténtalo otra vez.',
         'pt-BR': 'Muitas mensagens seguidas. Espere um pouco e tente novamente.',
         vi: 'Bạn gửi quá nhiều tin nhắn liên tiếp. Hãy đợi một chút rồi thử lại.',
@@ -191,6 +196,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Нужно войти в аккаунт, чтобы продолжить диалог.',
         uk: 'Потрібно увійти в акаунт, щоб продовжити діалог.',
+        en: 'You need to sign in to continue the dialogue.',
         es: 'Necesitas iniciar sesión para continuar el diálogo.',
         'pt-BR': 'Você precisa entrar na conta para continuar o diálogo.',
         vi: 'Bạn cần đăng nhập để tiếp tục cuộc đối thoại.',
@@ -202,6 +208,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'ИИ-диалоги доступны только с 16 лет. Сейчас этот режим закрыт настройками безопасности.',
         uk: 'AI-діалоги доступні лише з 16 років. Зараз цей режим закрито налаштуваннями безпеки.',
+        en: 'AI dialogues are available from age 16 only. This mode is currently locked by safety settings.',
         es: 'Los diálogos con IA están disponibles solo desde los 16 años. Este modo está bloqueado por seguridad.',
         'pt-BR': 'Os diálogos com IA estão disponíveis apenas a partir dos 16 anos. Este modo está bloqueado por segurança.',
         vi: 'Đối thoại AI chỉ dành cho người từ 16 tuổi. Chế độ này đang bị khóa vì an toàn.',
@@ -213,6 +220,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Сервис диалогов временно недоступен.\n\nСообщение не отправлено. Попробуй ещё раз через минуту.',
         uk: 'Сервіс діалогів тимчасово недоступний.\n\nПовідомлення не надіслано. Спробуй ще раз за хвилину.',
+        en: 'The dialogue service is temporarily unavailable.\n\nYour message was not sent. Try again in a minute.',
         es: 'El servicio de diálogos no está disponible temporalmente.\n\nEl mensaje no se envió. Inténtalo de nuevo en un minuto.',
         'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nA mensagem não foi enviada. Tente novamente em um minuto.',
         vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nTin nhắn chưa được gửi. Hãy thử lại sau một phút.',
@@ -224,6 +232,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Не удалось связаться с сервером.\n\nПроверь интернет-соединение и попробуй ещё раз.',
         uk: 'Не вдалося зв’язатися із сервером.\n\nПеревір інтернет-з’єднання та спробуй ще раз.',
+        en: "Couldn't reach the server.\n\nCheck your internet connection and try again.",
         es: 'No se pudo conectar con el servidor.\n\nComprueba tu conexión a internet e inténtalo de nuevo.',
         'pt-BR': 'Não foi possível conectar ao servidor.\n\nVerifique sua conexão com a internet e tente novamente.',
         vi: 'Không thể kết nối với máy chủ.\n\nHãy kiểm tra kết nối mạng rồi thử lại.',
@@ -236,6 +245,7 @@ export function getPremiumDialogErrorMessage(
       return triLang(lang, {
         ru: 'Не удалось отправить сообщение.\n\nПопробуй ещё раз. Если ошибка повторится, вернись позже.',
         uk: 'Не вдалося надіслати повідомлення.\n\nСпробуй ще раз. Якщо помилка повториться, повернися пізніше.',
+        en: "Couldn't send the message.\n\nTry again. If the error keeps happening, come back later.",
         es: 'No se pudo enviar el mensaje.\n\nInténtalo de nuevo. Si el error se repite, vuelve más tarde.',
         'pt-BR': 'Não foi possível enviar a mensagem.\n\nTente novamente. Se o erro continuar, volte mais tarde.',
         vi: 'Không thể gửi tin nhắn.\n\nHãy thử lại. Nếu lỗi lặp lại, hãy quay lại sau.',

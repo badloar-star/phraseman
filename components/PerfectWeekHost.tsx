@@ -19,10 +19,6 @@ import {
   PERFECT_WEEK_CLAIMED_KEY,
   PERFECT_WEEK_REWARD,
 } from '../app/boons/perfect_week';
-import {
-  ruKnowledgeShardsAfterNumber,
-  ukKnowledgeShardsAfterNumber,
-} from '../constants/shard_plurals';
 import BoonChestModal from './BoonChestModal';
 
 function makeL(lang: Lang) {
@@ -111,17 +107,22 @@ export default function PerfectWeekHost() {
     'Идеальная неделя', 'Ідеальний тиждень', 'Semana perfecta', 'Semana perfeita',
     'Tuần hoàn hảo', 'Minggu sempurna', 'Kusursuz hafta', 'Idealny tydzień',
   );
-  // зачем: склоняем слово по числу (было жёсткое «жемчужин» → «1 жемчужин»).
-  // UK-строка раньше использовала русское слово вместо «перлина/перлин».
+  // зачем (владелец, 2026-08-26): наградой были жемчужины — заменены на спины
+  // общей рулетки, как во всех остальных сундуках. Число склоняем.
+  const pwSpins = Math.max(1, Math.floor(Number(PERFECT_WEEK_REWARD.spins) || 1));
+  const pwOne = pwSpins % 10 === 1 && pwSpins % 100 !== 11;
+  const pwFew = pwSpins % 10 >= 2 && pwSpins % 10 <= 4 && (pwSpins % 100 < 12 || pwSpins % 100 > 14);
+  const pwRuSpin = pwOne ? 'спин' : pwFew ? 'спина' : 'спинов';
+  const pwUkSpin = pwOne ? 'спін' : pwFew ? 'спіни' : 'спінів';
   const rewardLine = L(
-    `Награда за неделю — ${PERFECT_WEEK_REWARD.shards} ${ruKnowledgeShardsAfterNumber(PERFECT_WEEK_REWARD.shards)} начислено`,
-    `Нагорода за тиждень — ${PERFECT_WEEK_REWARD.shards} ${ukKnowledgeShardsAfterNumber(PERFECT_WEEK_REWARD.shards)} зараховано`,
-    `Recompensa de la semana: ${PERFECT_WEEK_REWARD.shards} perlas añadidos`,
-    `Recompensa da semana: ${PERFECT_WEEK_REWARD.shards} perlas creditados`,
-    `Phần thưởng tuần — đã cộng ${PERFECT_WEEK_REWARD.shards} mảnh`,
-    `Hadiah mingguan — ${PERFECT_WEEK_REWARD.shards} serpihan ditambahkan`,
-    `Haftalık ödül — ${PERFECT_WEEK_REWARD.shards} parça eklendi`,
-    `Nagroda za tydzień — dodano ${PERFECT_WEEK_REWARD.shards} monet`,
+    `Награда за неделю — ${pwSpins} ${pwRuSpin} начислено`,
+    `Нагорода за тиждень — ${pwSpins} ${pwUkSpin} зараховано`,
+    `Recompensa de la semana: ${pwSpins} ${pwSpins === 1 ? 'giro añadido' : 'giros añadidos'}`,
+    `Recompensa da semana: ${pwSpins} ${pwSpins === 1 ? 'giro creditado' : 'giros creditados'}`,
+    `Phần thưởng tuần — đã cộng ${pwSpins} lượt quay`,
+    `Hadiah mingguan — ${pwSpins} putaran ditambahkan`,
+    `Haftalık ödül — ${pwSpins} çevirme eklendi`,
+    `Nagroda za tydzień — dodano ${pwSpins} ${pwSpins === 1 ? 'spin' : 'spinów'}`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',
@@ -136,6 +137,7 @@ export default function PerfectWeekHost() {
       rarity="epic"
       title={title}
       rewardLine={rewardLine}
+      rewardArt="spin"
       tapHint={tapHint}
       claimCta={claimCta}
       closeLabel={closeLabel}

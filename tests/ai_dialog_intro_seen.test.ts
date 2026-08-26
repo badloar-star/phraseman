@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  __resetAiDialogIntroSeenForTests,
   aiDialogIntroSeenKey,
   hasSeenAiDialogIntro,
   markAiDialogIntroSeen,
@@ -11,7 +12,11 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }));
 
 describe('ai dialog intro seen', () => {
-  beforeEach(() => jest.clearAllMocks());
+  beforeEach(() => {
+    (AsyncStorage.getItem as jest.Mock).mockReset().mockResolvedValue(null);
+    (AsyncStorage.setItem as jest.Mock).mockReset().mockResolvedValue(undefined);
+    __resetAiDialogIntroSeenForTests();
+  });
 
   it('builds the exact English key', () => {
     expect(aiDialogIntroSeenKey('en', 'briefing')).toBe('ai_dialog_intro_seen:v1:en:briefing');
@@ -33,6 +38,8 @@ describe('ai dialog intro seen', () => {
   it('returns false when getItem rejects', async () => {
     (AsyncStorage.getItem as jest.Mock).mockRejectedValue(new Error('storage unavailable'));
     await expect(hasSeenAiDialogIntro('en', 'briefing')).resolves.toBe(false);
+    await expect(hasSeenAiDialogIntro('en', 'briefing')).resolves.toBe(false);
+    expect(AsyncStorage.getItem).toHaveBeenCalledTimes(1);
   });
 
   it('swallows setItem rejection', async () => {

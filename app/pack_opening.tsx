@@ -340,6 +340,7 @@ function FlippableCard({
                 {triLang(lang, {
                   ru: 'Нажми, чтобы открыть',
                   uk: 'Натисни, щоб відкрити',
+                  en: 'Tap to open',
                   es: 'Toca para abrir',
                   'pt-BR': 'Toque para abrir',
                   vi: 'Chạm để mở',
@@ -406,7 +407,7 @@ export default function PackOpeningScreen() {
     let cancelled = false;
     (async () => {
       if (!packId) {
-        setError(triLang(lang, { ru: 'Неизвестный набор', uk: 'Невідомий набір', es: 'Paquete desconocido', 'pt-BR': 'Pack desconhecido', vi: 'Bộ không xác định', id: 'Pack tidak dikenal', tr: 'Bilinmeyen paket', pl: 'Nieznany pakiet' }));
+        setError(triLang(lang, { ru: 'Неизвестный набор', uk: 'Невідомий набір', en: 'Unknown pack', es: 'Paquete desconocido', 'pt-BR': 'Pack desconhecido', vi: 'Bộ không xác định', id: 'Pack tidak dikenal', tr: 'Bilinmeyen paket', pl: 'Nieznany pakiet' }));
         setLoading(false);
         return;
       }
@@ -432,7 +433,7 @@ export default function PackOpeningScreen() {
 
         if (!foundPack) {
           if (!cancelled) {
-            setError(triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' }));
+            setError(triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', en: 'Pack not found', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' }));
             setLoading(false);
           }
           return;
@@ -464,7 +465,7 @@ export default function PackOpeningScreen() {
         setLoading(false);
       } catch {
         if (!cancelled) {
-          setError(triLang(lang, { ru: 'Что-то пошло не так', uk: 'Щось пішло не так', es: 'Algo salió mal', 'pt-BR': 'Algo deu errado', vi: 'Có lỗi xảy ra', id: 'Ada yang salah', tr: 'Bir şeyler ters gitti', pl: 'Coś poszło nie tak' }));
+          setError(triLang(lang, { ru: 'Что-то пошло не так', uk: 'Щось пішло не так', en: 'Something went wrong', es: 'Algo salió mal', 'pt-BR': 'Algo deu errado', vi: 'Có lỗi xảy ra', id: 'Ada yang salah', tr: 'Bir şeyler ters gitti', pl: 'Coś poszło nie tak' }));
           setLoading(false);
         }
       }
@@ -557,7 +558,7 @@ export default function PackOpeningScreen() {
 
           <View style={[styles.progressTrack, { backgroundColor: t.borderLight }]} />
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             contentContainerStyle={{
               paddingHorizontal: H_PADDING,
               paddingTop: 12,
@@ -589,14 +590,14 @@ export default function PackOpeningScreen() {
         <View style={styles.fillCenter}>
           <Stack.Screen options={{ headerShown: false }} />
           <Text style={{ color: t.textMuted, fontSize: f.body, marginBottom: 16 }}>
-            {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
+            {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', en: 'Pack not found', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
           </Text>
           <Pressable
             onPress={() => safeRouterBack(router, '/flashcards' as any)}
             style={[styles.primaryBtn, { backgroundColor: accent }]}
           >
             <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             </Text>
           </Pressable>
         </View>
@@ -624,6 +625,7 @@ export default function PackOpeningScreen() {
             {triLang(lang, {
               ru: `Открыто ${opened} из ${total}`,
               uk: `Відкрито ${opened} з ${total}`,
+              en: `Opened ${opened} of ${total}`,
               es: `${opened} de ${total} abiertas`,
               'pt-BR': `${opened} de ${total} abertos`,
               vi: `Đã mở ${opened} / ${total}`,
@@ -656,6 +658,7 @@ export default function PackOpeningScreen() {
             {triLang(lang, {
               ru: '💡 Нажми на карточку, чтобы открыть',
               uk: '💡 Натисни на картку, щоб відкрити',
+              en: '💡 Tap a card to open it',
               es: '💡 Toca una tarjeta para abrirla',
               'pt-BR': '💡 Toque em um cartão para abrir',
               vi: '💡 Chạm vào thẻ để mở',
@@ -669,7 +672,7 @@ export default function PackOpeningScreen() {
 
       {/* Сітка карточок */}
       <BouncyScrollView
-        decelerationRate="normal"
+        decelerationRate="fast"
         contentContainerStyle={{
           paddingHorizontal: H_PADDING,
           paddingTop: 12,
@@ -717,6 +720,7 @@ export default function PackOpeningScreen() {
                 {triLang(lang, {
                   ru: 'Открыть все',
                   uk: 'Відкрити всі',
+                  en: 'Open all',
                   es: 'Abrir todas',
                   'pt-BR': 'Abrir todos',
                   vi: 'Mở tất cả',
@@ -734,6 +738,7 @@ export default function PackOpeningScreen() {
                 {triLang(lang, {
                   ru: 'Перейти к карточкам',
                   uk: 'Перейти до карток',
+                  en: 'Go to the cards',
                   es: 'Ir a las tarjetas',
                   'pt-BR': 'Ir para os cartões',
                   vi: 'Đi đến thẻ',
@@ -753,6 +758,7 @@ export default function PackOpeningScreen() {
               {triLang(lang, {
                 ru: '🎉 Начать учить',
                 uk: '🎉 Почати вчити',
+                en: '🎉 Start learning',
                 es: '🎉 Empezar a estudiar',
                 'pt-BR': '🎉 Começar a estudar',
                 vi: '🎉 Bắt đầu học',

@@ -186,28 +186,29 @@ export default function CommunityPackSocialBar({
   }, [pack, onAdded, studyTarget]);
 
   const addedLabel = triLang(lang, {
-    ru: 'добавили', uk: 'додали', es: 'lo añadieron',
+    ru: 'добавили', uk: 'додали', en: 'added', es: 'lo añadieron',
     'pt-BR': 'adicionaram', vi: 'đã thêm', id: 'menambahkan', tr: 'ekledi', pl: 'dodało',
   });
   const addLabel = triLang(lang, {
-    ru: 'Добавить себе', uk: 'Додати собі', es: 'Añadir',
+    ru: 'Добавить себе', uk: 'Додати собі', en: 'Add to mine', es: 'Añadir',
     'pt-BR': 'Adicionar', vi: 'Thêm vào của tôi', id: 'Tambahkan', tr: 'Bana ekle', pl: 'Dodaj do siebie',
   });
   const ownedLabel = triLang(lang, {
-    ru: 'В моих наборах', uk: 'У моїх наборах', es: 'En mis packs',
+    ru: 'В моих наборах', uk: 'У моїх наборах', en: 'In my packs', es: 'En mis packs',
     'pt-BR': 'Nos meus pacotes', vi: 'Trong bộ của tôi', id: 'Di paket saya', tr: 'Paketlerimde', pl: 'W moich zestawach',
   });
   const topLabel = triLang(lang, {
-    ru: 'В топе', uk: 'У топі', es: 'En tendencia',
+    ru: 'В топе', uk: 'У топі', en: 'Trending', es: 'En tendencia',
     'pt-BR': 'Em alta', vi: 'Nổi bật', id: 'Tren', tr: 'Popüler', pl: 'Na topie',
   });
   const likeLabel = triLang(lang, {
-    ru: 'Нравится', uk: 'Подобається', es: 'Me gusta',
+    ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta',
     'pt-BR': 'Curtir', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to',
   });
   const likeLockedHint = triLang(lang, {
     ru: 'Лайк — после добавления',
     uk: 'Лайк — після додавання',
+    en: 'Like it after adding',
     es: 'Me gusta tras añadirlo',
     'pt-BR': 'Curtir após adicionar',
     vi: 'Thích sau khi thêm',

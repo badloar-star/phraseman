@@ -4,6 +4,7 @@ import {
   AppState,
   Dimensions,
   Easing,
+  FlatList,
   Modal,
   Pressable,
   ScrollView,
@@ -48,21 +49,25 @@ import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 
 const BLUR_RENDER_GRACE_MS = 450;
+const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
 // The unified notification center refreshes at app entry only when its cache is stale.
 const BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
 
 function inboxText(lang: Lang) {
   return {
-    title: triLang(lang, { ru: 'Сообщения', uk: 'Повідомлення', es: 'Mensajes', 'pt-BR': 'Mensagens', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesajlar', pl: 'Wiadomości' }),
-    emptyTitle: triLang(lang, { ru: 'Сообщений нет', uk: 'Повідомлень немає', es: 'No hay mensajes', 'pt-BR': 'Não há mensagens', vi: 'Chưa có tin nhắn', id: 'Belum ada pesan', tr: 'Mesaj yok', pl: 'Brak wiadomości' }),
-    emptyBody: triLang(lang, { ru: 'Здесь появятся новости от команды.', uk: 'Тут зʼявлятимуться новини від команди.', es: 'Aqui veras las novedades del equipo.', 'pt-BR': 'Aqui você verá as novidades da equipe.', vi: 'Tin tức từ đội ngũ sẽ xuất hiện tại đây.', id: 'Kabar dari tim akan muncul di sini.', tr: 'Ekipten gelen haberler burada görünecek.', pl: 'Tutaj pojawią się nowości od zespołu.' }),
-    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
-    back: triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
-    unread: triLang(lang, { ru: 'Новое', uk: 'Нове', es: 'Nuevo', 'pt-BR': 'Novo', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
-    allRead: triLang(lang, { ru: 'Все прочитаны', uk: 'Усі прочитані', es: 'Todo leído', 'pt-BR': 'Tudo lido', vi: 'Đã đọc hết', id: 'Semua dibaca', tr: 'Hepsi okundu', pl: 'Wszystko przeczytane' }),
+    title: triLang(lang, { ru: 'Сообщения', uk: 'Повідомлення', en: 'Messages', es: 'Mensajes', 'pt-BR': 'Mensagens', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesajlar', pl: 'Wiadomości' }),
+    emptyTitle: triLang(lang, { ru: 'Сообщений нет', uk: 'Повідомлень немає', en: 'No messages', es: 'No hay mensajes', 'pt-BR': 'Não há mensagens', vi: 'Chưa có tin nhắn', id: 'Belum ada pesan', tr: 'Mesaj yok', pl: 'Brak wiadomości' }),
+    emptyBody: triLang(lang, { ru: 'Здесь появятся новости от команды.', uk: 'Тут зʼявлятимуться новини від команди.', en: 'Team updates will show up here.', es: 'Aqui veras las novedades del equipo.', 'pt-BR': 'Aqui você verá as novidades da equipe.', vi: 'Tin tức từ đội ngũ sẽ xuất hiện tại đây.', id: 'Kabar dari tim akan muncul di sini.', tr: 'Ekipten gelen haberler burada görünecek.', pl: 'Tutaj pojawią się nowości od zespołu.' }),
+    close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
+    back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
+    previousPage: triLang(lang, { ru: 'Предыдущая страница', uk: 'Попередня сторінка', en: 'Previous page', es: 'Página anterior', 'pt-BR': 'Página anterior', vi: 'Trang trước', id: 'Halaman sebelumnya', tr: 'Önceki sayfa', pl: 'Poprzednia strona' }),
+    nextPage: triLang(lang, { ru: 'Следующая страница', uk: 'Наступна сторінка', en: 'Next page', es: 'Página siguiente', 'pt-BR': 'Próxima página', vi: 'Trang sau', id: 'Halaman berikutnya', tr: 'Sonraki sayfa', pl: 'Następna strona' }),
+    unread: triLang(lang, { ru: 'Новое', uk: 'Нове', en: 'New', es: 'Nuevo', 'pt-BR': 'Novo', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
+    allRead: triLang(lang, { ru: 'Все прочитаны', uk: 'Усі прочитані', en: 'All read', es: 'Todo leído', 'pt-BR': 'Tudo lido', vi: 'Đã đọc hết', id: 'Semua dibaca', tr: 'Hepsi okundu', pl: 'Wszystko przeczytane' }),
     newCount: (n: number) => triLang(lang, {
       ru: `${n} новых`,
       uk: `${n} нових`,
+      en: `${n} new`,
       es: `${n} nuevos`,
       'pt-BR': `${n} novas`,
       vi: `${n} tin mới`,
@@ -70,34 +75,36 @@ function inboxText(lang: Lang) {
       tr: `${n} yeni`,
       pl: `${n} nowych`,
     }),
-    like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
-    dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
-    poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
-    vipSurvey: triLang(lang, { ru: 'Plus-опрос', uk: 'Plus-опитування', es: 'Plus survey', 'pt-BR': 'Plus survey', vi: 'Plus survey', id: 'Plus survey', tr: 'Plus survey', pl: 'Plus survey' }),
-    vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', es: 'Take survey', 'pt-BR': 'Take survey', vi: 'Take survey', id: 'Take survey', tr: 'Take survey', pl: 'Take survey' }),
+    like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
+    dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', en: 'Dislike', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
+    poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Survey', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
+    vipSurvey: triLang(lang, { ru: 'Plus-опрос', uk: 'Plus-опитування', en: 'Plus survey', es: 'Encuesta Plus', 'pt-BR': 'Pesquisa Plus', vi: 'Khảo sát Plus', id: 'Survei Plus', tr: 'Plus anketi', pl: 'Ankieta Plus' }),
+    vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', en: 'Take survey', es: 'Responder encuesta', 'pt-BR': 'Responder pesquisa', vi: 'Làm khảo sát', id: 'Ikuti survei', tr: 'Ankete katıl', pl: 'Wypełnij ankietę' }),
     vipSurveyHint: triLang(lang, {
       ru: 'Ответьте на несколько вопросов и активируйте месяц Plus.',
       uk: 'Дайте відповідь на кілька запитань і активуйте місяць Plus.',
-      es: 'Answer a few questions and activate one month of Plus.',
-      'pt-BR': 'Answer a few questions and activate one month of Plus.',
-      vi: 'Answer a few questions and activate one month of Plus.',
-      id: 'Answer a few questions and activate one month of Plus.',
-      tr: 'Answer a few questions and activate one month of Plus.',
-      pl: 'Answer a few questions and activate one month of Plus.',
+      en: 'Answer a few questions and activate a month of Plus.',
+      es: 'Responde algunas preguntas y activa un mes de Plus.',
+      'pt-BR': 'Responda algumas perguntas e ative um mês de Plus.',
+      vi: 'Trả lời một vài câu hỏi và kích hoạt một tháng Plus.',
+      id: 'Jawab beberapa pertanyaan dan aktifkan satu bulan Plus.',
+      tr: 'Birkaç soruyu yanıtla ve bir aylık Plus’ı etkinleştir.',
+      pl: 'Odpowiedz na kilka pytań i aktywuj miesiąc Plus.',
     }),
-    dismiss: triLang(lang, { ru: 'Убрать уведомление', uk: 'Прибрати сповіщення', es: 'Dismiss notification', 'pt-BR': 'Dismiss notification', vi: 'Dismiss notification', id: 'Dismiss notification', tr: 'Dismiss notification', pl: 'Dismiss notification' }),
-    team: triLang(lang, { ru: 'От команды', uk: 'Від команди', es: 'Del equipo', 'pt-BR': 'Da equipe', vi: 'Từ đội ngũ', id: 'Dari tim', tr: 'Ekipten', pl: 'Od zespołu' }),
-    pinned: triLang(lang, { ru: 'Закреплено', uk: 'Закріплено', es: 'Fijado', 'pt-BR': 'Fixado', vi: 'Đã ghim', id: 'Disematkan', tr: 'Sabitlendi', pl: 'Przypięte' }),
-    deleted: triLang(lang, { ru: 'Сообщение удалено', uk: 'Повідомлення видалено', es: 'Mensaje eliminado', 'pt-BR': 'Mensagem removida', vi: 'Đã xóa tin nhắn', id: 'Pesan dihapus', tr: 'Mesaj silindi', pl: 'Wiadomość usunięta' }),
-    undo: triLang(lang, { ru: 'Отменить', uk: 'Скасувати', es: 'Deshacer', 'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Urungkan', tr: 'Geri al', pl: 'Cofnij' }),
-    pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
-    pollSelected: triLang(lang, { ru: 'Ваш выбор', uk: 'Ваш вибір', es: 'Tu eleccion', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihan Anda', tr: 'Seçiminiz', pl: 'Twój wybór' }),
-    pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', es: 'Resultados despues de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
-    inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
-    reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
+    dismiss: triLang(lang, { ru: 'Убрать уведомление', uk: 'Прибрати сповіщення', en: 'Dismiss notification', es: 'Descartar notificación', 'pt-BR': 'Descartar notificação', vi: 'Bỏ qua thông báo', id: 'Abaikan notifikasi', tr: 'Bildirimi kapat', pl: 'Odrzuć powiadomienie' }),
+    team: triLang(lang, { ru: 'От команды', uk: 'Від команди', en: 'From the team', es: 'Del equipo', 'pt-BR': 'Da equipe', vi: 'Từ đội ngũ', id: 'Dari tim', tr: 'Ekipten', pl: 'Od zespołu' }),
+    pinned: triLang(lang, { ru: 'Закреплено', uk: 'Закріплено', en: 'Pinned', es: 'Fijado', 'pt-BR': 'Fixado', vi: 'Đã ghim', id: 'Disematkan', tr: 'Sabitlendi', pl: 'Przypięte' }),
+    deleted: triLang(lang, { ru: 'Сообщение удалено', uk: 'Повідомлення видалено', en: 'Message deleted', es: 'Mensaje eliminado', 'pt-BR': 'Mensagem removida', vi: 'Đã xóa tin nhắn', id: 'Pesan dihapus', tr: 'Mesaj silindi', pl: 'Wiadomość usunięta' }),
+    undo: triLang(lang, { ru: 'Отменить', uk: 'Скасувати', en: 'Undo', es: 'Deshacer', 'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Urungkan', tr: 'Geri al', pl: 'Cofnij' }),
+    pollVotes: triLang(lang, { ru: 'голосов', uk: 'голосів', en: 'votes', es: 'votos', 'pt-BR': 'votos', vi: 'lượt bình chọn', id: 'suara', tr: 'oy', pl: 'głosów' }),
+    pollSelected: triLang(lang, { ru: 'Ваш выбор', uk: 'Ваш вибір', en: 'Your choice', es: 'Tu elección', 'pt-BR': 'Sua escolha', vi: 'Lựa chọn của bạn', id: 'Pilihan Anda', tr: 'Seçiminiz', pl: 'Twój wybór' }),
+    pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', en: 'Results after voting', es: 'Resultados después de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
+    inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', en: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
+    reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', en: 'Report reply', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
     claimCoins: (n: number) => triLang(lang, {
       ru: `Забрать жемчуг (+${n})`,
       uk: `Забрати перлини (+${n})`,
+      en: `Claim pearls (+${n})`,
       es: `Reclamar perlas (+${n})`,
       'pt-BR': `Resgatar pérolas (+${n})`,
       // зачем: валюта в приложении — жемчужины, а не монеты. На vi/id/tr/pl тут
@@ -108,7 +115,7 @@ function inboxText(lang: Lang) {
       tr: `İnci al (+${n})`,
       pl: `Odbierz perły (+${n})`,
     }),
-    claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
+    claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', en: 'Reward received', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
 }
 
@@ -164,6 +171,7 @@ function AppMessagesInbox({
   const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
   const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
   const [undoMessage, setUndoMessage] = useState<AppMessageWithState | null>(null);
+  const [embeddedPage, setEmbeddedPage] = useState(0);
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
   const [renderButton, setRenderButton] = useState(runtimeActive);
   const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
@@ -205,6 +213,11 @@ function AppMessagesInbox({
   useEffect(() => {
     if (mode === 'notification-center' && !centerVisible) setSelectedId(null);
   }, [centerVisible, mode]);
+
+  useEffect(() => {
+    const maxPage = Math.max(0, Math.ceil(messages.length / EMBEDDED_MESSAGE_PAGE_SIZE) - 1);
+    setEmbeddedPage((page) => centerVisible ? Math.min(page, maxPage) : 0);
+  }, [centerVisible, messages.length]);
 
   // Загружаем сохранённые ID один раз при монтировании.
   useEffect(() => {
@@ -648,6 +661,10 @@ function AppMessagesInbox({
   const renderEmbeddedSection = () => {
     if (!centerVisible || (messages.length === 0 && !undoMessage)) return null;
     if (selected) return renderUnifiedDetail();
+    const maxEmbeddedPage = Math.max(0, Math.ceil(messages.length / EMBEDDED_MESSAGE_PAGE_SIZE) - 1);
+    const safeEmbeddedPage = Math.min(embeddedPage, maxEmbeddedPage);
+    const pageStart = safeEmbeddedPage * EMBEDDED_MESSAGE_PAGE_SIZE;
+    const embeddedMessages = messages.slice(pageStart, pageStart + EMBEDDED_MESSAGE_PAGE_SIZE);
     return (
       <View testID="notification-center-team-section" style={styles.embeddedSection}>
         <View style={styles.embeddedSectionHeader}>
@@ -655,7 +672,7 @@ function AppMessagesInbox({
           <Text style={[styles.embeddedSectionMeta, { color: chrome.soft }]}>{copy.pinned}</Text>
         </View>
         <View style={styles.embeddedRows}>
-          {messages.map((message) => {
+          {embeddedMessages.map((message) => {
             const text = pickAppMessageText(message, lang);
             const preview = message.kind === 'vip_survey'
               ? copy.vipSurveyHint
@@ -696,6 +713,33 @@ function AppMessagesInbox({
             );
           })}
         </View>
+        {maxEmbeddedPage > 0 ? (
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 10 }}>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={copy.previousPage}
+              disabled={safeEmbeddedPage === 0}
+              activeOpacity={0.75}
+              onPress={() => setEmbeddedPage((page) => Math.max(0, page - 1))}
+              style={[styles.roundIcon, { opacity: safeEmbeddedPage === 0 ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
+            >
+              <Ionicons name="chevron-back" size={20} color={chrome.text} />
+            </TouchableOpacity>
+            <Text style={[styles.embeddedSectionMeta, { color: chrome.soft }]}>
+              {safeEmbeddedPage + 1}/{maxEmbeddedPage + 1}
+            </Text>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={copy.nextPage}
+              disabled={safeEmbeddedPage === maxEmbeddedPage}
+              activeOpacity={0.75}
+              onPress={() => setEmbeddedPage((page) => Math.min(maxEmbeddedPage, page + 1))}
+              style={[styles.roundIcon, { opacity: safeEmbeddedPage === maxEmbeddedPage ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
+            >
+              <Ionicons name="chevron-forward" size={20} color={chrome.text} />
+            </TouchableOpacity>
+          </View>
+        ) : null}
         {undoMessage ? (
           <View style={[styles.undoBar, { backgroundColor: chrome.cardStrong }]}>
             <Text style={[styles.undoText, { color: chrome.muted }]}>{copy.deleted}</Text>
@@ -743,8 +787,13 @@ function AppMessagesInbox({
           <Text style={[styles.emptyBody, { color: chrome.muted }]}>{copy.emptyBody}</Text>
         </View>
       ) : (
-        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.listContent}>
-          {messages.map((message) => {
+        <FlatList
+          decelerationRate="fast"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.listContent}
+          data={messages}
+          keyExtractor={(message) => message.id}
+          renderItem={({ item: message }) => {
             const messageRead = !message.unread;
             const text = pickAppMessageText(message, lang);
             const preview = message.kind === 'vip_survey'
@@ -757,7 +806,6 @@ function AppMessagesInbox({
             const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
             return (
               <TouchableOpacity
-                key={message.id}
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
@@ -766,7 +814,7 @@ function AppMessagesInbox({
                 {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
                 <View style={styles.messageRowTop}>
                   <View style={styles.messageTitleWrap}>
-                    <Text style={[styles.messageTitle, messageRead && styles.messageTitleRead, { color: rowTitleColor }]} numberOfLines={messageRead ? 1 : 2}>
+                    <Text style={[styles.messageTitle, messageRead && styles.messageTitleRead, { color: rowTitleColor }]}>
                       {text.title}
                     </Text>
                   </View>
@@ -798,7 +846,7 @@ function AppMessagesInbox({
                   ) : null}
                   <Text style={[styles.messageDate, { color: rowMutedColor }]}>{formatMessageDate(message.createdAtMs)}</Text>
                 </View>
-                <Text style={[styles.messagePreview, messageRead && styles.messagePreviewRead, { color: rowMutedColor }]} numberOfLines={messageRead ? 1 : 2}>
+                <Text style={[styles.messagePreview, messageRead && styles.messagePreviewRead, { color: rowMutedColor }]}>
                   {preview}
                 </Text>
                 {message.kind === 'vip_survey' ? (
@@ -821,8 +869,8 @@ function AppMessagesInbox({
                 ) : null}
               </TouchableOpacity>
             );
-          })}
-        </ScrollView>
+          }}
+        />
       )}
     </>
   );
@@ -977,7 +1025,7 @@ function AppMessagesInbox({
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TouchableOpacity>
         </View>
-        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>

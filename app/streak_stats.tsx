@@ -197,6 +197,7 @@ function formatActivityBarPoints(points: number, lang: Lang): string {
             ru: '0',
             uk: '0',
             es: '0',
+            en: "0",
             'pt-BR': "0",
             vi: "0",
             id: "0",
@@ -216,6 +217,7 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
             ru: '<1м',
             uk: '<1хв',
             es: '<1m',
+            en: "<1m",
             'pt-BR': "<1min",
             vi: "<1 phút",
             id: "<1 mnt",
@@ -228,6 +230,7 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
             ru: '0',
             uk: '0',
             es: '0',
+            en: "0",
             'pt-BR': "0",
             vi: "0",
             id: "0",
@@ -239,6 +242,7 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
             ru: `${m}м`,
             uk: `${m}хв`,
             es: `${m}m`,
+            en: `${m}m`,
             'pt-BR': `${m}min`,
             vi: `${m} phút`,
             id: `${m} mnt`,
@@ -250,6 +254,7 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
             ru: `${h}ч`,
             uk: `${h}г`,
             es: `${h}h`,
+            en: `${h}h`,
             'pt-BR': `${h}h`,
             vi: `${h} giờ`,
             id: `${h} jam`,
@@ -260,6 +265,7 @@ function formatTimeBarMs(ms: number, lang: Lang): string {
         ru: `${h}ч${m}`,
         uk: `${h}г${m}`,
         es: `${h}h${m}`,
+        en: `${h}h${m}`,
         'pt-BR': `${h}h${m}`,
         vi: `${h} giờ ${m} phút`,
         id: `${h} jam ${m} mnt`,
@@ -276,6 +282,7 @@ function formatStatsBoostTimeLeft(ms: number, lang: Lang): string {
         ru: ['ч', 'м', 'с'],
         uk: ['г', 'хв', 'с'],
         es: ['h', 'm', 's'],
+        en: ['h', 'm', 's'],
         'pt-BR': ['h', 'm', 's'],
         vi: ['g', 'p', 's'],
         id: ['j', 'm', 'd'],
@@ -327,6 +334,7 @@ function humanMinutes(minutes: number, lang: Lang): string {
             ru: '0 мин',
             uk: '0 хв',
             es: '0 min',
+            en: "0 min",
             'pt-BR': "0 min",
             vi: "0 phút",
             id: "0 mnt",
@@ -338,6 +346,7 @@ function humanMinutes(minutes: number, lang: Lang): string {
             ru: `${safe} мин`,
             uk: `${safe} хв`,
             es: `${safe} min`,
+            en: `${safe} min`,
             'pt-BR': `${safe} min`,
             vi: `${safe} phút`,
             id: `${safe} mnt`,
@@ -351,6 +360,7 @@ function humanMinutes(minutes: number, lang: Lang): string {
             ru: `${h} ч`,
             uk: `${h} год`,
             es: `${h} h`,
+            en: `${h}h`,
             'pt-BR': `${h} h`,
             vi: `${h} giờ`,
             id: `${h} jam`,
@@ -361,6 +371,7 @@ function humanMinutes(minutes: number, lang: Lang): string {
         ru: `${h} ч ${String(m).padStart(2, '0')} мин`,
         uk: `${h} год ${m} хв`,
         es: `${h} h ${m} min`,
+        en: `${h}h ${String(m).padStart(2, '0')}min`,
         'pt-BR': `${h} h ${m} min`,
         vi: `${h} giờ ${m} phút`,
         id: `${h} jam ${m} mnt`,
@@ -439,6 +450,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Стабильный ритм',
             uk: 'Стабільний ритм',
             es: 'Ritmo estable',
+            en: "Steady rhythm",
             'pt-BR': "Ritmo estável",
             vi: "Nhịp ổn định",
             id: "Ritme stabil",
@@ -450,6 +462,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
                 ru: 'Занимайся чаще — ритм окрепнет',
                 uk: 'Займайся частіше — ритм зміцніє',
                 es: 'Hace falta más ritmo',
+                en: "Practice more — rhythm will strengthen",
                 'pt-BR': "Precisa de mais ritmo",
                 vi: "Cần đều hơn",
                 id: "Perlu ritme lebih baik",
@@ -460,6 +473,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
                 ru: 'Ритм просел',
                 uk: 'Ритм просів',
                 es: 'El ritmo bajó',
+                en: "Rhythm dropped",
                 'pt-BR': "O ritmo caiu",
                 vi: "Nhịp đã giảm",
                 id: "Ritme menurun",
@@ -470,6 +484,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         ru: 'Показывает, насколько ровно идет практика за последние 7 дней. Лучше всего помогают короткие занятия без больших пауз.',
         uk: 'Показує, наскільки рівно йде практика за останні 7 днів. Найкраще допомагають короткі заняття без великих пауз.',
         es: 'Muestra qué tan estable fue la práctica en los últimos 7 días. Ayudan más las sesiones cortas sin pausas largas.',
+        en: "Shows how steady your practice was over the last 7 days. Short sessions without long gaps help the most.",
         'pt-BR': "Mostra quão estável foi a prática nos últimos 7 dias. Sessões curtas sem pausas longas ajudam mais.",
         vi: "Cho thấy việc luyện tập ổn định thế nào trong 7 ngày qua. Các buổi ngắn không nghỉ quá lâu sẽ hữu ích hơn.",
         id: "Menunjukkan seberapa stabil latihan dalam 7 hari terakhir. Sesi pendek tanpa jeda panjang lebih membantu.",
@@ -485,6 +500,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: ` · слабый: ${weakDay.shortLabel}`,
             uk: ` · слабкий: ${weakDay.shortLabel}`,
             es: ` · flojo: ${weakDay.shortLabel}`,
+            en: ` · weakest: ${weakDay.shortLabel}`,
             'pt-BR': ` · fraco: ${weakDay.shortLabel}`,
             vi: ` · yếu: ${weakDay.shortLabel}`,
             id: ` · lemah: ${weakDay.shortLabel}`,
@@ -496,6 +512,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         ru: `Лучший день: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
         uk: `Найкращий день: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
         es: `Mejor día: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
+        en: `Best day: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
         'pt-BR': `Melhor dia: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
         vi: `Ngày tốt nhất: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
         id: `Hari terbaik: ${bestDay?.shortLabel ?? '-'}${weakPart}`,
@@ -508,6 +525,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'дн.',
             uk: 'дн.',
             es: 'd.',
+            en: "d.",
             'pt-BR': "d.",
             vi: "ngày",
             id: "h",
@@ -519,6 +537,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Начало положено',
             uk: 'Гарний старт',
             es: 'Ya estás en marcha',
+            en: "You're off to a start",
             'pt-BR': "Você já começou",
             vi: "Đã bắt đầu",
             id: "Sudah dimulai",
@@ -529,6 +548,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: `Пока ${active7} ${pluralRu(active7, 'день', 'дня', 'дней')} практики, в среднем по ${humanMinutes(avgMinutesActive, lang)}. Позанимайся ещё — и картина станет полной.`,
             uk: `Поки ${active7} ${pluralRu(active7, 'день', 'дні', 'днів')} практики, у середньому по ${humanMinutes(avgMinutesActive, lang)}. Позаймайся ще — і картина стане повною.`,
             es: `Por ahora ${active7} ${active7 === 1 ? 'día' : 'días'} de práctica, ${humanMinutes(avgMinutesActive, lang)} de media. Sigue practicando y verás el panorama completo.`,
+            en: `So far ${active7} ${active7 === 1 ? 'day' : 'days'} of practice, averaging ${humanMinutes(avgMinutesActive, lang)}. Keep practicing and the picture will fill in.`,
             'pt-BR': `Por enquanto ${active7} ${active7 === 1 ? 'dia' : 'dias'} de prática, ${humanMinutes(avgMinutesActive, lang)} em média. Continue praticando e o quadro ficará completo.`,
             vi: `Hiện có ${active7} ngày luyện tập, trung bình ${humanMinutes(avgMinutesActive, lang)}. Luyện thêm — bức tranh sẽ đầy đủ hơn.`,
             id: `Sejauh ini ${active7} hari latihan, rata-rata ${humanMinutes(avgMinutesActive, lang)}. Terus berlatih — gambarannya akan lengkap.`,
@@ -540,6 +560,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
                 ru: `Первый активный день: ${firstActiveDay.shortLabel}`,
                 uk: `Перший активний день: ${firstActiveDay.shortLabel}`,
                 es: `Primer día activo: ${firstActiveDay.shortLabel}`,
+                en: `First active day: ${firstActiveDay.shortLabel}`,
                 'pt-BR': `Primeiro dia ativo: ${firstActiveDay.shortLabel}`,
                 vi: `Ngày hoạt động đầu tiên: ${firstActiveDay.shortLabel}`,
                 id: `Hari aktif pertama: ${firstActiveDay.shortLabel}`,
@@ -550,6 +571,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
                 ru: 'Неделя только начинается',
                 uk: 'Тиждень тільки починається',
                 es: 'La semana apenas empieza',
+                en: "The week is just getting started",
                 'pt-BR': "A semana está só começando",
                 vi: "Tuần mới chỉ bắt đầu",
                 id: "Minggu baru dimulai",
@@ -561,6 +583,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         ru: 'Сделай 5 минут сегодня',
         uk: 'Зроби 5 хвилин сьогодні',
         es: 'Haz 5 minutos hoy',
+        en: "Do 5 minutes today",
         'pt-BR': "Faça 5 minutos hoje",
         vi: "Học 5 phút hôm nay",
         id: "Lakukan 5 menit hari ini",
@@ -571,6 +594,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         ru: 'Лучший ход сейчас: короткое повторение, чтобы день засчитался и ритм не провалился.',
         uk: 'Найкращий хід зараз: коротке повторення, щоб день зарахувався і ритм не просів.',
         es: 'El mejor paso ahora: una repetición corta para contar el día y sostener el ritmo.',
+        en: "Best move right now: a quick review to make the day count and keep the streak going.",
         'pt-BR': "O melhor passo agora: uma revisão curta para contar o dia e manter o ritmo.",
         vi: "Bước tốt nhất lúc này: ôn ngắn để tính ngày và giữ nhịp.",
         id: "Langkah terbaik sekarang: pengulangan singkat agar hari ini tetap tercatat dan ritme terjaga.",
@@ -581,6 +605,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
         ru: 'Начать 5 минут',
         uk: 'Почати 5 хвилин',
         es: 'Empezar 5 min',
+        en: "Start 5 min",
         'pt-BR': "Começar 5 min",
         vi: "Bắt đầu 5 phút",
         id: "Mulai 5 mnt",
@@ -593,6 +618,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Отличный старт',
             uk: 'Чудовий старт',
             es: 'Buen comienzo',
+            en: "Great start",
             'pt-BR': "Ótimo começo",
             vi: "Khởi đầu tốt",
             id: "Awal yang bagus",
@@ -604,6 +630,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
                 ru: 'Сегодня уже есть практика. Дальше достаточно коротких подходов без давления.',
                 uk: 'Сьогодні вже є практика. Далі достатньо коротких підходів без тиску.',
                 es: 'Hoy ya hubo práctica. Después bastan sesiones cortas sin presión.',
+                en: "There's already practice today. From here, short sessions without pressure are enough.",
                 'pt-BR': "Hoje já houve prática. Depois bastam sessões curtas sem pressão.",
                 vi: "Hôm nay đã có luyện tập. Tiếp theo chỉ cần các buổi ngắn, không áp lực.",
                 id: "Hari ini sudah ada latihan. Berikutnya cukup sesi singkat tanpa tekanan.",
@@ -614,6 +641,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
                 ru: 'Первые данные уже есть. Вернись короткой практикой, когда будет удобно.',
                 uk: 'Перші дані вже є. Повернись короткою практикою, коли буде зручно.',
                 es: 'Ya hay primeros datos. Vuelve con una práctica corta cuando te venga bien.',
+                en: "The first data is already in. Come back for a short practice whenever it suits you.",
                 'pt-BR': "Os primeiros dados já existem. Volte com uma prática curta quando for conveniente.",
                 vi: "Đã có dữ liệu đầu tiên. Quay lại bằng một buổi ngắn khi thuận tiện.",
                 id: "Data awal sudah ada. Kembali dengan latihan singkat saat nyaman.",
@@ -624,6 +652,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Открыть тренажер',
             uk: 'Відкрити тренажер',
             es: 'Abrir práctica',
+            en: "Open practice",
             'pt-BR': "Abrir prática",
             vi: "Mở luyện tập",
             id: "Buka latihan",
@@ -636,6 +665,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Закрепи день тренировкой',
             uk: 'Закріпи день тренуванням',
             es: 'Cierra el día con práctica',
+            en: "Cap off the day with practice",
             'pt-BR': "Feche o dia com prática",
             vi: "Kết thúc ngày bằng luyện tập",
             id: "Tutup hari dengan latihan",
@@ -646,6 +676,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Добавь одну короткую тренировку, чтобы усилить сегодняшний результат.',
             uk: 'Додай одне коротке тренування, щоб посилити сьогоднішній результат.',
             es: 'Suma una práctica corta para reforzar el resultado de hoy.',
+            en: "Add one short practice to reinforce today's result.",
             'pt-BR': "Some uma prática curta para reforçar o resultado de hoje.",
             vi: "Thêm một buổi luyện ngắn để củng cố kết quả hôm nay.",
             id: "Tambahkan latihan singkat untuk memperkuat hasil hari ini.",
@@ -656,6 +687,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Открыть тренажер',
             uk: 'Відкрити тренажер',
             es: 'Abrir práctica',
+            en: "Open practice",
             'pt-BR': "Abrir prática",
             vi: "Mở luyện tập",
             id: "Buka latihan",
@@ -668,6 +700,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Не ломай хороший темп',
             uk: 'Не ламай хороший темп',
             es: 'No rompas el buen ritmo',
+            en: "Don't break a good streak",
             'pt-BR': "Não quebre o bom ritmo",
             vi: "Đừng làm đứt nhịp tốt",
             id: "Jangan putus ritme bagus",
@@ -678,6 +711,7 @@ function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], 
             ru: 'Неделя сильная. Достаточно маленькой сессии, чтобы сохранить стабильность.',
             uk: 'Тиждень сильний. Достатньо маленької сесії, щоб зберегти стабільність.',
             es: 'La semana va bien. Una sesión pequeña basta para mantener la estabilidad.',
+            en: "The week is going well. A small session is enough to keep it stable.",
             'pt-BR': "A semana está indo bem. Uma sessão pequena basta para manter a estabilidade.",
             vi: "Tuần này đang ổn. Một buổi ngắn là đủ để giữ sự ổn định.",
             id: "Minggu ini berjalan baik. Sesi kecil cukup untuk menjaga stabilitas.",
@@ -788,7 +822,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
             marginBottom: 4,
             paddingTop: 4,
         }}>
-      <ScrollView ref={scrollRef ?? undefined} decelerationRate="normal" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
+      <ScrollView ref={scrollRef ?? undefined} decelerationRate="fast" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
         <View>
           <Svg width={chartW} height={LIFETIME_LINE_PLOT_H}>
             {[0, 1, 2, 3, 4].map((g) => {
@@ -911,6 +945,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                     ru: 'По дням: текущая и следующая календарные недели',
                     uk: 'За днями: поточний і наступний календарні тижні',
                     es: 'Por días: semana actual y próxima',
+                    en: "By day: current and next calendar week",
                     'pt-BR': "Por dia: semana atual e próxima",
                     vi: "Theo ngày: tuần này và tuần tới",
                     id: "Per hari: minggu ini dan berikutnya",
@@ -931,11 +966,11 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     };
     type LifetimeRow = { label: string; numValue: number; kind: LifetimeTotalsChartKind };
     const lifetimeRows: LifetimeRow[] = [
-        { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
-        { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
-        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
-        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Жемчуга заработано', uk: 'Перлин зароблено', es: 'Perlas ganadas', 'pt-BR': 'Pérolas ganhas', vi: 'Ngọc trai đã kiếm', id: 'Mutiara diperoleh', tr: 'Kazanılan inciler', pl: 'Zdobyte perły' }) },
-        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Жемчуга потрачено', uk: 'Перлин витрачено', es: 'Perlas gastadas', 'pt-BR': 'Pérolas gastas', vi: 'Ngọc trai đã dùng', id: 'Mutiara dipakai', tr: 'Harcanan inciler', pl: 'Wydane perły' }) },
+        { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', en: 'Words learned', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
+        { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', en: 'Phrases learned', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
+        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Flashcards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
+        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Жемчуга заработано', uk: 'Перлин зароблено', es: 'Perlas ganadas', en: 'Pearls earned', 'pt-BR': 'Pérolas ganhas', vi: 'Ngọc trai đã kiếm', id: 'Mutiara diperoleh', tr: 'Kazanılan inciler', pl: 'Zdobyte perły' }) },
+        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Жемчуга потрачено', uk: 'Перлин витрачено', es: 'Perlas gastadas', en: 'Pearls spent', 'pt-BR': 'Pérolas gastas', vi: 'Ngọc trai đã dùng', id: 'Mutiara dipakai', tr: 'Harcanan inciler', pl: 'Wydane perły' }) },
     ];
     // В dev/teaser-режимах (gateExpandAll / showAllPathCharts) показываем все строки
     // без сворачивания, иначе прячем нулевые под раскрывашку, чтобы у новичка
@@ -962,6 +997,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             ru: 'За всё время',
             uk: 'За весь час',
             es: 'Total histórico',
+            en: "All time",
             'pt-BR': "Total histórico",
             vi: "Tổng từ trước đến nay",
             id: "Total historis",
@@ -979,6 +1015,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                     ru: 'Свернуть нулевые',
                     uk: 'Згорнути нульові',
                     es: 'Ocultar los vacíos',
+                    en: "Hide the zeroes",
                     'pt-BR': "Ocultar os zerados",
                     vi: "Ẩn mục bằng 0",
                     id: "Sembunyikan yang nol",
@@ -994,6 +1031,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                     ru: `Ещё ${zeroRows.length} — пока по нулям`,
                     uk: `Ще ${zeroRows.length} — поки по нулях`,
                     es: `${zeroRows.length} más — aún sin datos`,
+                    en: `${zeroRows.length} more — still at zero`,
                     'pt-BR': `Mais ${zeroRows.length} — ainda sem dados`,
                     vi: `Còn ${zeroRows.length} — chưa có dữ liệu`,
                     id: `${zeroRows.length} lagi — belum ada data`,
@@ -1269,6 +1307,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                             ru: 'Пари выиграно!',
                             uk: 'Парі виграно!',
                             es: '¡Apuesta ganada!',
+                            en: 'Wager won!',
                             'pt-BR': "Aposta vencida!",
                             vi: "Thắng cược!",
                             id: "Taruhan menang!",
@@ -1285,6 +1324,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                             ru: `+${wager.rewardXP} к опыту`,
                             uk: `+${wager.rewardXP} до досвіду`,
                             es: `+${wager.rewardXP} de XP`,
+                            en: `+${wager.rewardXP} XP`,
                             'pt-BR': `+${wager.rewardXP} de XP`,
                             vi: `+${wager.rewardXP} XP`,
                             id: `+${wager.rewardXP} XP`,
@@ -1298,6 +1338,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                             ru: 'Пари проиграно · −',
                             uk: 'Парі програно · −',
                             es: 'Racha perdida · −',
+                            en: 'Streak lost · −',
                             'pt-BR': "Sequência perdida · −",
                             vi: "Mất chuỗi · −",
                             id: "Rangkaian hilang · −",
@@ -1312,6 +1353,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                         ru: 'Принять новое пари?',
                         uk: 'Прийняти нове парі?',
                         es: '¿Empezar otra apuesta?',
+                        en: "Start another wager?",
                         'pt-BR': "Começar outra aposta?",
                         vi: "Bắt đầu cược khác?",
                         id: "Mulai taruhan lain?",
@@ -1331,6 +1373,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                         ru: 'Да',
                         uk: 'Так',
                         es: 'Sí',
+                        en: "Yes",
                         'pt-BR': "Sim",
                         vi: "Có",
                         id: "Ya",
@@ -1359,6 +1402,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Пари активно',
                 uk: 'Парі активне',
                 es: 'Apuesta activa',
+                en: "Wager active",
                 'pt-BR': "Aposta ativa",
                 vi: "Cược đang hoạt động",
                 id: "Taruhan aktif",
@@ -1384,6 +1428,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Прогресс',
                 uk: 'Прогрес',
                 es: 'Progreso',
+                en: "Progress",
                 'pt-BR': "Progresso",
                 vi: "Tiến độ",
                 id: "Progres",
@@ -1417,6 +1462,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'ОПЫТ',
                 uk: 'ДОСВІД',
                 es: 'XP',
+                en: "XP",
                 'pt-BR': "XP",
                 vi: "XP",
                 id: "XP",
@@ -1437,6 +1483,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: wagerInfoOpen ? 'Скрыть правила пари' : 'Открыть правила и награды',
                 uk: wagerInfoOpen ? 'Сховати правила парі' : 'Відкрити правила й нагороди',
                 es: wagerInfoOpen ? 'Ocultar reglas' : 'Ver reglas y premios',
+                en: wagerInfoOpen ? 'Hide wager rules' : 'View rules and rewards',
                 'pt-BR': wagerInfoOpen ? 'Ocultar regras' : 'Ver regras e prêmios',
                 vi: wagerInfoOpen ? 'Ẩn luật' : 'Xem luật và thưởng',
                 id: wagerInfoOpen ? 'Sembunyikan aturan' : 'Lihat aturan dan hadiah',
@@ -1452,6 +1499,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                     ru: 'Заходи и удерживай цепочку каждый день до конца срока. Если серия не сорвется, ставка вернется вместе с призом и опытом.',
                     uk: 'Заходь і тримай ланцюжок щодня до кінця строку. Якщо серія не зірветься, ставка повернеться разом із призом і досвідом.',
                     es: "Entra y conserva la racha cada día hasta el final. Si no se rompe, recuperas la apuesta con premio y XP.",
+                    en: "Show up and keep the streak alive every day until the deadline. If it holds, you get the wager back plus the prize and XP.",
                     'pt-BR': "Entre e mantenha a sequência todos os dias até o fim. Se ela não quebrar, você recupera a aposta com prêmio e XP.",
                     vi: "Vào app và giữ chuỗi mỗi ngày cho đến hết hạn. Nếu không bị đứt, bạn nhận lại tiền cược kèm thưởng và XP.",
                     id: "Masuk dan jaga rangkaian setiap hari sampai akhir. Jika tidak putus, taruhan kembali bersama hadiah dan XP.",
@@ -1502,7 +1550,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 <View style={{ width: 42, height: 5, backgroundColor: statsHairline(themeMode, 'wager'), borderRadius: 3 }}/>
               </View>
 
-              <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: bottomInset + 36 }}>
+              <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: bottomInset + 36 }}>
               {/* Header */}
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', flex: 1 }}>
@@ -1510,6 +1558,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Пари на цепочку',
             uk: 'Парі на ланцюжок',
             es: 'Apuesta por la racha',
+            en: "Streak wager",
             'pt-BR': "Aposta pela sequência",
             vi: "Cược cho chuỗi",
             id: "Taruhan rangkaian",
@@ -1537,6 +1586,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Выбери срок и сделай ставку жемчугом. Удержишь цепочку — заберёшь опыт.',
             uk: 'Обери строк і зроби ставку перлинами. Утримаєш ланцюжок — забереш досвід.',
             es: 'Elige un plazo y aporta perlas. Si mantienes la racha, ganas XP.',
+            en: "Pick a duration and stake pearls. Keep the streak and you earn XP.",
             'pt-BR': "Escolha um prazo e aposte pérolas. Se mantiver a sequência, você ganha XP.",
             vi: "Chọn thời hạn và đặt ngọc trai. Nếu giữ chuỗi, bạn nhận XP.",
             id: "Pilih durasi dan setorkan fragmen. Jika rangkaian terjaga, kamu mendapat fragmen neto dan XP.",
@@ -1556,6 +1606,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Твой вызов',
             uk: 'Твій виклик',
             es: 'Tu reto',
+            en: "Your challenge",
             'pt-BR': "Seu desafio",
             vi: "Thử thách của bạn",
             id: "Tantanganmu",
@@ -1572,6 +1623,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Ставишь',
             uk: 'Ставиш',
             es: 'Aportas',
+            en: "You stake",
             'pt-BR': "Você aposta",
             vi: "Bạn đặt",
             id: "Kamu setor",
@@ -1587,6 +1639,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Получишь',
             uk: 'Отримаєш',
             es: 'Ganas',
+            en: "You get",
             'pt-BR': "Você ganha",
             vi: "Bạn nhận",
             id: "Kamu dapat",
@@ -1603,6 +1656,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Чем длиннее срок, тем выше награда. Выбирай срок, который точно выдержишь.',
             uk: 'Що довший строк, то вища нагорода. Обирай строк, який точно витримаєш.',
             es: 'Cuanto más largo el reto, mayor la recompensa. Elige uno que puedas sostener de verdad.',
+            en: "The longer the challenge, the bigger the reward. Pick one you can actually keep up.",
             'pt-BR': "Quanto mais longo o desafio, maior a recompensa. Escolha um que você consiga manter de verdade.",
             vi: "Thử thách càng dài, thưởng càng lớn. Hãy chọn mức bạn thật sự giữ được.",
             id: "Semakin panjang tantangan, semakin besar hadiahnya. Pilih yang benar-benar bisa kamu jaga.",
@@ -1644,6 +1698,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                             ru: 'Ставка',
                             uk: 'Ставка',
                             es: 'Aporte',
+                            en: "Stake",
                             'pt-BR': "Aposta",
                             vi: "Mức đặt",
                             id: "Setoran",
@@ -1665,6 +1720,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                             ru: `Нужно ещё ${deficit} жемчужин`,
                             uk: `Ще ${deficit} перлин`,
                             es: `Faltan ${deficit} perlas`,
+                            en: `${deficit} more pearls needed`,
                             'pt-BR': `Faltam ${deficit} pérolas`,
                             vi: `Còn thiếu ${deficit} ngọc trai`,
                             id: `Kurang ${deficit} mutiara`,
@@ -1685,6 +1741,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Подтверждаем...',
                 uk: 'Підтверджуємо...',
                 es: 'Confirmando…',
+                en: "Confirming…",
                 'pt-BR': "Confirmando…",
                 vi: "Đang xác nhận…",
                 id: "Mengonfirmasi…",
@@ -1699,6 +1756,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Поставить ',
                 uk: 'Поставити ',
                 es: 'Aportar ',
+                en: "Stake ",
                 'pt-BR': "Apostar ",
                 vi: "Đặt ",
                 id: "Setor ",
@@ -1713,6 +1771,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 // §7: монетный выигрыш пари = 0, награда — только опыт.
                 ru: `Награда: +${sel.rewardXP} опыта`,
                 uk: `Нагорода: +${sel.rewardXP} досвіду`,
+                en: `Reward: +${sel.rewardXP} XP`,
                 es: `Recompensa: +${sel.rewardXP} XP`,
                 'pt-BR': `Recompensa: +${sel.rewardXP} XP`,
                 vi: `Thưởng: +${sel.rewardXP} XP`,
@@ -1728,6 +1787,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Недостаточно жемчуга',
                 uk: 'Недостатньо перлин',
                 es: 'No tienes suficientes perlas',
+                en: "Not enough pearls",
                 'pt-BR': "Você não tem pérolas suficientes",
                 vi: "Bạn không có đủ ngọc trai",
                 id: "Mutiara kamu tidak cukup",
@@ -1746,17 +1806,19 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
       <ThemedConfirmModal visible={wagerNeedShards} title={triLang(lang, {
             ru: 'Недостаточно жемчуга',
             uk: 'Недостатньо перлин',
+            en: "Not enough pearls",
             es: 'No tienes suficientes perlas',
             'pt-BR': "Você não tem pérolas suficientes",
             vi: "Bạn không có đủ ngọc trai",
             id: "Mutiara kamu tidak cukup",
             tr: "Yeterli incin yok",
-            pl: "Nie masz wystarczająco monet",
+            pl: "Nie masz wystarczająco pereł",
         })} messageNode={<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 22 }}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, {
                 ru: 'Нужно:',
                 uk: 'Потрібно:',
+                en: 'Needed:',
                 es: 'Hacen falta:',
                 'pt-BR': "Faltam:",
                 vi: "Cần thêm:",
@@ -1770,18 +1832,21 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               {triLang(lang, {
                 ru: 'жемчужин',
                 uk: 'перлин',
+                en: "pearls",
                 es: 'perlas',
                 'pt-BR': "pérolas",
-                vi: "xu",
-                id: "fragmen",
+                vi: "ngọc trai",
+                id: "mutiara",
                 tr: "inci",
-                pl: "monet",
+                pl: "pereł",
             })}
             </Text>
           </View>} cancelLabel={triLang(lang, {
             ru: 'Отмена',
             uk: 'Скасувати',
+            en: 'Cancel',
             es: 'Cancelar',
+            en: "Cancel",
             'pt-BR': "Cancelar",
             vi: "Hủy",
             id: "Batal",
@@ -1791,6 +1856,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'В магазин',
             uk: 'У магазин',
             es: 'A la tienda',
+            en: "Go to shop",
             'pt-BR': "Ir à loja",
             vi: "Đến cửa hàng",
             id: "Ke toko",
@@ -1812,6 +1878,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             ru: 'Подтвердить пари',
             uk: 'Підтвердити парі',
             es: 'Confirmar la apuesta',
+            en: "Confirm the bet",
             'pt-BR': "Confirmar a aposta",
             vi: "Xác nhận cược",
             id: "Konfirmasi taruhan",
@@ -1825,6 +1892,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Ставка:',
                 uk: 'Ставка:',
                 es: 'Aporte:',
+                en: "Stake:",
                 'pt-BR': "Aposta:",
                 vi: "Mức đặt:",
                 id: "Setoran:",
@@ -1843,6 +1911,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: `Цепочка ${sel.daysRequired} дней без срывов.`,
                 uk: `Ланцюжок ${sel.daysRequired} днів без скидів.`,
                 es: `${sel.daysRequired} días de racha seguidos sin romperla.`,
+                en: `${sel.daysRequired} days in a row without breaking the streak.`,
                 'pt-BR': `${sel.daysRequired} dias seguidos de sequência sem quebrar.`,
                 vi: `${sel.daysRequired} ngày giữ chuỗi liên tiếp không bị đứt.`,
                 id: `${sel.daysRequired} hari rangkaian berturut-turut tanpa putus.`,
@@ -1857,6 +1926,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 ru: 'Жемчужный выигрыш пари отключён — награда только опытом',
                 uk: 'Перлинний виграш парі вимкнено — нагорода лише досвідом',
                 es: 'La ganancia en perlas está desactivada: la recompensa es solo XP',
+                en: 'Pearl winnings are disabled — the reward is XP only',
                 'pt-BR': 'O ganho em pérolas está desativado: a recompensa é só XP',
                 vi: 'Phần thưởng ngọc trai đã tắt — chỉ nhận XP',
                 id: 'Hadiah mutiara dinonaktifkan — hadiah hanya XP',
@@ -1868,6 +1938,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                     {triLang(lang, {
                 ru: `+${sel.rewardXP} к опыту`,
                 uk: `+${sel.rewardXP} до досвіду`,
+                en: `+${sel.rewardXP} XP`,
                 es: `+${sel.rewardXP} de XP`,
                 'pt-BR': `+${sel.rewardXP} de XP`,
                 vi: `+${sel.rewardXP} XP`,
@@ -1886,6 +1957,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 {triLang(lang, {
                 ru: 'Пропустишь день — ставка сгорит: −',
                 uk: 'Пропустиш день — ставка згорить: −',
+                en: 'Miss a day and you lose your stake: −',
                 es: 'Si rompes la racha pierdes ',
                 'pt-BR': "Se quebrar a sequência, você perde ",
                 vi: "Nếu làm đứt chuỗi, bạn mất ",
@@ -1899,6 +1971,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
           </View>} cancelLabel={triLang(lang, {
             ru: 'Отмена',
             uk: 'Скасувати',
+            en: 'Cancel',
             es: 'Cancelar',
             'pt-BR': "Cancelar",
             vi: "Hủy",
@@ -1908,6 +1981,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         })} confirmLabel={triLang(lang, {
             ru: 'Поставить',
             uk: 'Поставити',
+            en: 'Stake',
             es: 'Aportar',
             'pt-BR': "Apostar",
             vi: "Đặt",
@@ -1937,6 +2011,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               {triLang(lang, {
             ru: 'Пари',
             uk: 'Парі',
+            en: 'Wager',
             es: 'Apuesta',
             'pt-BR': "Aposta",
             vi: "Cược",
@@ -1949,12 +2024,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               {triLang(lang, {
             ru: 'Поставь жемчуг — удержи серию и забери опыт',
             uk: 'Постав перлини — утримай серію й забери досвід',
+            en: 'Stake pearls — keep your streak and claim the reward',
             es: 'Aporta perlas: mantén la racha y cobra la recompensa',
             'pt-BR': "Aposte pérolas: mantenha a sequência e receba a recompensa",
             vi: "Đặt ngọc trai: giữ chuỗi và nhận thưởng",
-            id: "Setorkan fragmen: jaga rangkaian dan ambil hadiah",
+            id: "Setorkan mutiara: jaga rangkaian dan ambil hadiah",
             tr: "İnci yatır: seriyi koru ve ödülü al",
-            pl: "Wpłać monety: utrzymaj serię i odbierz nagrodę",
+            pl: "Wpłać perły: utrzymaj serię i odbierz nagrodę",
         })}
             </Text>
           </View>
@@ -2057,6 +2133,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
           <Text style={{ color: t.textMuted, fontSize: f.caption }}>{triLang(lang, {
             ru: 'дней подряд',
             uk: 'днів поспіль',
+            en: 'days in a row',
             es: 'días seguidos',
             'pt-BR': "dias seguidos",
             vi: "ngày liên tiếp",
@@ -2070,6 +2147,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
           <Text style={{ color: t.textMuted, fontSize: f.label }}>{triLang(lang, {
             ru: 'лучший',
             uk: 'найкращий',
+            en: 'best',
             es: 'récord',
             'pt-BR': "recorde",
             vi: "kỷ lục",
@@ -2195,6 +2273,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 {triLang(lang, {
                 ru: 'Поделиться',
                 uk: 'Поділитися',
+                en: 'Share',
                 es: 'Compartir',
                 'pt-BR': "Compartilhar",
                 vi: "Chia sẻ",
@@ -2238,6 +2317,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
             {triLang(lang, {
                 ru: `Твоя цепочка ${totalStreak} дн. обходит ${visibleStreakPercentile}% пользователей`,
                 uk: `Ваш ланцюжок ${totalStreak} дн. обганяє ${visibleStreakPercentile}% користувачів`,
+                en: `Your ${totalStreak}-day streak beats ${visibleStreakPercentile}% of users`,
                 es: `Tu racha de ${totalStreak} días supera al ${visibleStreakPercentile}% de usuarios`,
                 'pt-BR': `Sua sequência de ${totalStreak} dias supera ${visibleStreakPercentile}% dos usuários`,
                 vi: `Chuỗi ${totalStreak} ngày của bạn vượt ${visibleStreakPercentile}% người dùng`,
@@ -2254,6 +2334,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
               {triLang(lang, {
                 ru: `Заморозка активна: ${chainShieldDays} ${pluralRu(chainShieldDays, 'день', 'дня', 'дней')}`,
                 uk: `Заморозка активна: ${chainShieldDays} дн.`,
+                en: `Freeze active: ${chainShieldDays} days`,
                 es: `Congelación activa: ${chainShieldDays} días`,
                 'pt-BR': `Congelamento ativo: ${chainShieldDays} dias`,
                 vi: `Đang đóng băng: ${chainShieldDays} ngày`,
@@ -2272,6 +2353,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 {triLang(lang, {
                 ru: 'Восстановить цепочку',
                 uk: 'Відновити ланцюжок',
+                en: 'Restore streak',
                 es: 'Recuperar la racha',
                 'pt-BR': "Restaurar sequência",
                 vi: "Khôi phục chuỗi",
@@ -2285,6 +2367,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                   {triLang(lang, {
                 ru: `Верни ${reviveOffer.lostStreak} дн. — только сегодня`,
                 uk: `Поверни ${reviveOffer.lostStreak} дн. — лише сьогодні`,
+                en: `Get back ${reviveOffer.lostStreak} days — today only`,
                 es: `${reviveOffer.lostStreak} días disponible hoy`,
                 'pt-BR': `${reviveOffer.lostStreak} dias disponível hoje`,
                 vi: `${reviveOffer.lostStreak} ngày khả dụng hôm nay`,
@@ -2305,6 +2388,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
               {triLang(lang, {
                 ru: 'Цепочка заморожена на сегодня',
                 uk: 'Ланцюжок заморожено на сьогодні',
+                en: 'Streak frozen for today',
                 es: 'Racha congelada por hoy',
                 'pt-BR': "Sequência congelada por hoje",
                 vi: "Chuỗi đã được đóng băng hôm nay",
@@ -2322,6 +2406,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 {triLang(lang, {
                 ru: 'Заморозить цепочку',
                 uk: 'Заморозити ланцюжок',
+                en: 'Freeze streak',
                 es: 'Congelar la racha',
                 'pt-BR': "Congelar a sequência",
                 vi: "Đóng băng chuỗi",
@@ -2338,6 +2423,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                     ? triLang(lang, {
                         ru: 'Бесплатно (Плюс)',
                         uk: 'Безкоштовно (Плюс)',
+                        en: 'Free (Plus)',
                         es: 'Gratis (Plus)',
                         'pt-BR': "Grátis (Plus)",
                         vi: "Miễn phí (Plus)",
@@ -2348,6 +2434,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                     : triLang(lang, {
                         ru: 'Нужен Плюс',
                         uk: 'Потрібен Плюс',
+                        en: 'Plus required',
                         es: 'Se necesita Plus',
                         'pt-BR': "Precisa de Plus",
                         vi: "Cần Plus",
@@ -2389,6 +2476,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             label: triLang(lang, {
                 ru: 'Дни',
                 uk: 'Дні',
+                en: 'Days',
                 es: 'Días',
                 'pt-BR': "Dias",
                 vi: "Ngày",
@@ -2403,6 +2491,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             label: triLang(lang, {
                 ru: 'Время',
                 uk: 'Час',
+                en: 'Time',
                 es: 'Tiempo',
                 'pt-BR': "Tempo",
                 vi: "Thời gian",
@@ -2439,6 +2528,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             {triLang(lang, {
             ru: 'Твоя неделя',
             uk: 'Твій тиждень',
+            en: 'Your week',
             es: 'Tu semana',
             'pt-BR': "Sua semana",
             vi: "Tuần của bạn",
@@ -2509,6 +2599,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
                     ru: `+${w} ${pluralRu(w, 'слово', 'слова', 'слов')}`,
                     uk: `+${w} ${pluralRu(w, 'слово', 'слова', 'слів')}`,
                     es: `+${w} ${w === 1 ? 'palabra' : 'palabras'}`,
+                    en: `+${w} ${w === 1 ? 'word' : 'words'}`,
                     'pt-BR': `+${w} ${w === 1 ? 'palavra' : 'palavras'}`,
                     vi: `+${w} từ`,
                     id: `+${w} kata`,
@@ -2519,6 +2610,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
                     ru: `+${p} ${pluralRu(p, 'фраза', 'фразы', 'фраз')}`,
                     uk: `+${p} ${pluralRu(p, 'фраза', 'фрази', 'фраз')}`,
                     es: `+${p} ${p === 1 ? 'frase' : 'frases'}`,
+                    en: `+${p} ${p === 1 ? 'phrase' : 'phrases'}`,
                     'pt-BR': `+${p} ${p === 1 ? 'frase' : 'frases'}`,
                     vi: `+${p} cụm từ`,
                     id: `+${p} frasa`,
@@ -2526,12 +2618,13 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
                     pl: `+${p} ${p === 1 ? 'fraza' : 'fraz'}`,
                 }) : '';
                 const joined = [wordsPart, phrasesPart].filter(Boolean).join(triLang(lang, {
-                    ru: ' и ', uk: ' і ', es: ' y ', 'pt-BR': ' e ', vi: ' và ', id: ' dan ', tr: ' ve ', pl: ' i ',
+                    ru: ' и ', uk: ' і ', es: ' y ', en: ' and ', 'pt-BR': ' e ', vi: ' và ', id: ' dan ', tr: ' ve ', pl: ' i ',
                 }));
                 return triLang(lang, {
                     ru: `${joined} за неделю`,
                     uk: `${joined} за тиждень`,
                     es: `${joined} esta semana`,
+                    en: `${joined} this week`,
                     'pt-BR': `${joined} esta semana`,
                     vi: `${joined} tuần này`,
                     id: `${joined} minggu ini`,
@@ -2549,6 +2642,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
                 ru: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'больше' : 'меньше'}, чем неделю назад`,
                 uk: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'більше' : 'менше'}, ніж тиждень тому`,
                 es: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'más' : 'menos'} que hace una semana`,
+                en: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'more' : 'less'} than a week ago`,
                 'pt-BR': `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'a mais' : 'a menos'} que há uma semana`,
                 vi: `${weekDeltaMinutes > 0 ? 'Nhiều hơn' : 'Ít hơn'} ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} so với tuần trước`,
                 id: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'lebih banyak' : 'lebih sedikit'} dari minggu lalu`,
@@ -2673,14 +2767,15 @@ function StreakHeroCard({
         ru: pluralRu(totalStreak, 'день подряд', 'дня подряд', 'дней подряд'),
         uk: pluralRu(totalStreak, 'день поспіль', 'дні поспіль', 'днів поспіль'),
         es: 'días seguidos',
+        en: 'days in a row',
         'pt-BR': 'dias seguidos',
         vi: 'ngày liên tiếp',
         id: 'hari berturut-turut',
         tr: 'gün üst üste',
         pl: 'dni z rzędu',
     });
-    const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', es: 'récord', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
-    const fromWord = triLang(lang, { ru: 'от', uk: 'від', es: 'desde', 'pt-BR': 'desde', vi: 'từ', id: 'dari', tr: 'min.', pl: 'od' });
+    const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', en: 'record', es: 'récord', en: 'record', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
+    const fromWord = triLang(lang, { ru: 'от', uk: 'від', es: 'desde', en: 'from', 'pt-BR': 'desde', vi: 'từ', id: 'dari', tr: 'min.', pl: 'od' });
     const weekDays = rhythmDays.slice(-7);
     return (
         <StatsCardArtSurface
@@ -2748,7 +2843,7 @@ function StreakHeroCard({
                         <TouchableOpacity testID="stats-series-freeze-action" activeOpacity={0.82} onPress={onFreezeStreak} style={{ minHeight: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                             <Ionicons name="snow-outline" size={19} color={accent} />
                             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                                {triLang(lang, { ru: 'Защитить серию', uk: 'Захистити серію', es: 'Proteger racha', 'pt-BR': 'Proteger sequência', vi: 'Bảo vệ chuỗi', id: 'Lindungi rangkaian', tr: 'Seriyi koru', pl: 'Chroń serię' })}
+                                {triLang(lang, { ru: 'Защитить серию', uk: 'Захистити серію', en: 'Protect streak', es: 'Proteger racha', 'pt-BR': 'Proteger sequência', vi: 'Bảo vệ chuỗi', id: 'Lindungi rangkaian', tr: 'Seriyi koru', pl: 'Chroń serię' })}
                             </Text>
                             <ShardsInline n={freezeShardCost} size={f.label} textColor={t.textGhost} />
                         </TouchableOpacity>
@@ -2757,7 +2852,7 @@ function StreakHeroCard({
                         <TouchableOpacity testID="stats-series-wager-action" activeOpacity={0.82} onPress={onOpenWager} style={{ minHeight: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                             <Ionicons name="flag-outline" size={19} color={accent} />
                             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                                {triLang(lang, { ru: 'Пари на серию', uk: 'Парі на серію', es: 'Apuesta de racha', 'pt-BR': 'Aposta de sequência', vi: 'Cược chuỗi', id: 'Taruhan rangkaian', tr: 'Seri bahsi', pl: 'Zakład o serię' })}
+                                {triLang(lang, { ru: 'Пари на серию', uk: 'Парі на серію', en: 'Streak wager', es: 'Apuesta de racha', 'pt-BR': 'Aposta de sequência', vi: 'Cược chuỗi', id: 'Taruhan rangkaian', tr: 'Seri bahsi', pl: 'Zakład o serię' })}
                             </Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                                 <Text style={{ color: t.textGhost, fontSize: f.label, fontWeight: '700' }}>{fromWord}</Text>
@@ -2769,7 +2864,7 @@ function StreakHeroCard({
                         <TouchableOpacity testID="stats-series-revive-action" activeOpacity={0.82} onPress={onReviveStreak} style={{ minHeight: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                             <Ionicons name="refresh-outline" size={19} color={accent} />
                             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                                {triLang(lang, { ru: 'Восстановить серию', uk: 'Відновити серію', es: 'Restaurar racha', 'pt-BR': 'Restaurar sequência', vi: 'Khôi phục chuỗi', id: 'Pulihkan rangkaian', tr: 'Seriyi geri yükle', pl: 'Przywróć serię' })}
+                                {triLang(lang, { ru: 'Восстановить серию', uk: 'Відновити серію', en: 'Restore streak', es: 'Restaurar racha', 'pt-BR': 'Restaurar sequência', vi: 'Khôi phục chuỗi', id: 'Pulihkan rangkaian', tr: 'Seriyi geri yükle', pl: 'Przywróć serię' })}
                             </Text>
                             <ShardsInline n={reviveOffer.costShards} size={f.label} textColor={t.textGhost} />
                         </TouchableOpacity>
@@ -2797,10 +2892,11 @@ function XpLevelCard({ t, f, lang, themeMode, isGoldTheme, totalXP, weekXP }: Xp
     const needed = Math.max(1, TOTAL_XP_FOR_LEVEL(level + 1) - TOTAL_XP_FOR_LEVEL(level));
     const inLevel = Math.max(0, safeTotal - TOTAL_XP_FOR_LEVEL(level));
     const remaining = Math.max(0, TOTAL_XP_FOR_LEVEL(level + 1) - safeTotal);
-    const levelTitle = triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` });
+    const levelTitle = triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, en: `Level ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` });
     const remainingText = triLang(lang, {
         ru: `до ${level + 1}-го — ${remaining.toLocaleString('ru-RU')} XP`,
         uk: `до ${level + 1} — ${remaining.toLocaleString('ru-RU')} XP`,
+        en: `${remaining.toLocaleString('ru-RU')} XP to level ${level + 1}`,
         es: `${remaining.toLocaleString('ru-RU')} XP hasta el nivel ${level + 1}`,
         'pt-BR': `${remaining.toLocaleString('ru-RU')} XP até o nível ${level + 1}`,
         vi: `còn ${remaining.toLocaleString('ru-RU')} XP đến cấp ${level + 1}`,
@@ -2844,15 +2940,15 @@ function XpLevelCard({ t, f, lang, themeMode, isGoldTheme, totalXP, weekXP }: Xp
             {expanded ? (
                 <Reanimated.View entering={FadeInDown.duration(220)} testID="stats-xp-progress-details" style={{ gap: 10, paddingTop: 12 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{triLang(lang, { ru: 'Прогресс уровня', uk: 'Прогрес рівня', es: 'Progreso del nivel', 'pt-BR': 'Progresso do nível', vi: 'Tiến độ cấp', id: 'Progres level', tr: 'Seviye ilerlemesi', pl: 'Postęp poziomu' })}</Text>
+                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{triLang(lang, { ru: 'Прогресс уровня', uk: 'Прогрес рівня', en: 'Level progress', es: 'Progreso del nivel', 'pt-BR': 'Progresso do nível', vi: 'Tiến độ cấp', id: 'Progres level', tr: 'Seviye ilerlemesi', pl: 'Postęp poziomu' })}</Text>
                         <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{`${inLevel.toLocaleString('ru-RU')} / ${needed.toLocaleString('ru-RU')} XP`}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{triLang(lang, { ru: 'Опыт за неделю', uk: 'Досвід за тиждень', es: 'XP semanal', 'pt-BR': 'XP da semana', vi: 'XP trong tuần', id: 'XP mingguan', tr: 'Haftalık XP', pl: 'XP w tygodniu' })}</Text>
+                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{triLang(lang, { ru: 'Опыт за неделю', uk: 'Досвід за тиждень', en: 'XP this week', es: 'XP semanal', 'pt-BR': 'XP da semana', vi: 'XP trong tuần', id: 'XP mingguan', tr: 'Haftalık XP', pl: 'XP w tygodniu' })}</Text>
                         <Text style={{ color: accent, fontSize: f.caption, fontWeight: '800' }}>{`+${safeWeek.toLocaleString('ru-RU')} XP`}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{triLang(lang, { ru: 'Всего накоплено', uk: 'Усього накопичено', es: 'Total acumulado', 'pt-BR': 'Total acumulado', vi: 'Tổng đã tích lũy', id: 'Total terkumpul', tr: 'Toplam biriken', pl: 'Łącznie zebrano' })}</Text>
+                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{triLang(lang, { ru: 'Всего накоплено', uk: 'Усього накопичено', en: 'Total earned', es: 'Total acumulado', 'pt-BR': 'Total acumulado', vi: 'Tổng đã tích lũy', id: 'Total terkumpul', tr: 'Toplam biriken', pl: 'Łącznie zebrano' })}</Text>
                         <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>{`${safeTotal.toLocaleString('ru-RU')} XP`}</Text>
                     </View>
                 </Reanimated.View>
@@ -2925,6 +3021,7 @@ function WeekAnalyticsCard({
                 : triLang(lang, {
                     ru: 'Активность за год',
                     uk: 'Активність за рік',
+                    en: 'Yearly activity',
                     es: 'Actividad anual',
                     'pt-BR': 'Atividade anual',
                     vi: 'Hoạt động cả năm',
@@ -2940,6 +3037,7 @@ function WeekAnalyticsCard({
             // и не говорили, БОЛЬШЕ ЧЕГО. Дописываем базу сравнения во все локали.
             ru: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'больше' : 'меньше'}, чем за предыдущие 7 дней`,
             uk: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'більше' : 'менше'}, ніж за попередні 7 днів`,
+            en: `${weekDeltaMinutes > 0 ? 'More' : 'Less'} by ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} than the previous 7 days`,
             es: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'más' : 'menos'} que los 7 días anteriores`,
             'pt-BR': `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'a mais' : 'a menos'} que nos 7 dias anteriores`,
             vi: `${weekDeltaMinutes > 0 ? 'Nhiều hơn' : 'Ít hơn'} ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} so với 7 ngày trước đó`,
@@ -3011,7 +3109,7 @@ function WeekAnalyticsCard({
         {metric !== 'year' ? (<>
           <View testID="stats-primary-summary" style={{ flexDirection: 'row', gap: 8, marginTop: 14 }}>
             {[
-                { icon: 'calendar-outline' as const, value: `${metrics.active7} ${triLang(lang, { ru: pluralRu(metrics.active7, 'день', 'дня', 'дней'), uk: 'днів', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}` },
+                { icon: 'calendar-outline' as const, value: `${metrics.active7} ${triLang(lang, { ru: pluralRu(metrics.active7, 'день', 'дня', 'дней'), uk: 'днів', en: 'days', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}` },
                 { icon: 'time-outline' as const, value: humanMinutes(metrics.minutes7, lang) },
                 { icon: 'flash-outline' as const, value: `${metrics.xp7} XP` },
             ].map((item) => (<View key={item.icon} style={{ flex: 1, minWidth: 0, minHeight: 68, borderRadius: 15, padding: 9, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2, borderWidth: 0, alignItems: 'center', justifyContent: 'center', gap: 6 }}>
@@ -3049,14 +3147,14 @@ function AllMetricsFoldCard({ t, f, lang, themeMode, isGoldTheme, insights, tota
     const currentXp = Math.max(0, insights.weekComparison.currentXp);
     const previousXp = Math.max(0, insights.weekComparison.previousXp);
     const comparisonMax = Math.max(1, currentXp, previousXp);
-    const title = triLang(lang, { ru: 'Все показатели', uk: 'Усі показники', es: 'Todos los datos', 'pt-BR': 'Todos os dados', vi: 'Tất cả chỉ số', id: 'Semua statistik', tr: 'Tüm istatistikler', pl: 'Wszystkie statystyki' });
-    const subtitle = triLang(lang, { ru: 'рекорды и сравнение', uk: 'рекорди та порівняння', es: 'récords y comparación', 'pt-BR': 'recordes e comparação', vi: 'kỷ lục và so sánh', id: 'rekor dan perbandingan', tr: 'rekorlar ve karşılaştırma', pl: 'rekordy i porównanie' });
-    const bestWeekLabel = triLang(lang, { ru: 'Лучшая неделя', uk: 'Кращий тиждень', es: 'Mejor semana', 'pt-BR': 'Melhor semana', vi: 'Tuần tốt nhất', id: 'Minggu terbaik', tr: 'En iyi hafta', pl: 'Najlepszy tydzień' });
-    const seriesTileLabel = triLang(lang, { ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' });
-    const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', es: 'récord', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
-    const comparisonTitle = triLang(lang, { ru: 'Неделя к прошлой', uk: 'Тиждень до минулого', es: 'Semana vs. anterior', 'pt-BR': 'Semana vs. anterior', vi: 'Tuần so với trước', id: 'Minggu vs. sebelumnya', tr: 'Geçen haftaya göre', pl: 'Tydzień vs. poprzedni' });
-    const previousLabel = triLang(lang, { ru: 'прошлая', uk: 'минулий', es: 'anterior', 'pt-BR': 'anterior', vi: 'trước', id: 'sebelumnya', tr: 'önceki', pl: 'poprzedni' });
-    const currentLabel = triLang(lang, { ru: 'текущая', uk: 'поточний', es: 'actual', 'pt-BR': 'atual', vi: 'hiện tại', id: 'saat ini', tr: 'şu an', pl: 'bieżący' });
+    const title = triLang(lang, { ru: 'Все показатели', uk: 'Усі показники', en: 'All stats', es: 'Todos los datos', 'pt-BR': 'Todos os dados', vi: 'Tất cả chỉ số', id: 'Semua statistik', tr: 'Tüm istatistikler', pl: 'Wszystkie statystyki' });
+    const subtitle = triLang(lang, { ru: 'рекорды и сравнение', uk: 'рекорди та порівняння', en: 'records and comparison', es: 'récords y comparación', 'pt-BR': 'recordes e comparação', vi: 'kỷ lục và so sánh', id: 'rekor dan perbandingan', tr: 'rekorlar ve karşılaştırma', pl: 'rekordy i porównanie' });
+    const bestWeekLabel = triLang(lang, { ru: 'Лучшая неделя', uk: 'Кращий тиждень', en: 'Best week', es: 'Mejor semana', 'pt-BR': 'Melhor semana', vi: 'Tuần tốt nhất', id: 'Minggu terbaik', tr: 'En iyi hafta', pl: 'Najlepszy tydzień' });
+    const seriesTileLabel = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' });
+    const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', en: 'record', es: 'récord', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
+    const comparisonTitle = triLang(lang, { ru: 'Неделя к прошлой', uk: 'Тиждень до минулого', en: 'Week vs. last', es: 'Semana vs. anterior', 'pt-BR': 'Semana vs. anterior', vi: 'Tuần so với trước', id: 'Minggu vs. sebelumnya', tr: 'Geçen haftaya göre', pl: 'Tydzień vs. poprzedni' });
+    const previousLabel = triLang(lang, { ru: 'прошлая', uk: 'минулий', en: 'last', es: 'anterior', 'pt-BR': 'anterior', vi: 'trước', id: 'sebelumnya', tr: 'önceki', pl: 'poprzedni' });
+    const currentLabel = triLang(lang, { ru: 'текущая', uk: 'поточний', en: 'current', es: 'actual', 'pt-BR': 'atual', vi: 'hiện tại', id: 'saat ini', tr: 'şu an', pl: 'bieżący' });
     return (
         <StatsCardArtSurface
           testID="stats-all-metrics-fold"
@@ -3143,14 +3241,14 @@ function RecentAchievementsCard({
     return (<TouchableOpacity testID="stats-recent-achievements" activeOpacity={0.84} onPress={onPress} style={{ paddingHorizontal: 2, paddingVertical: 8, backgroundColor: 'transparent' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
-            {triLang(lang, { ru: 'Последние достижения', uk: 'Останні досягнення', es: 'Últimos logros', 'pt-BR': 'Últimas conquistas', vi: 'Thành tích mới nhất', id: 'Pencapaian terbaru', tr: 'Son başarılar', pl: 'Ostatnie osiągnięcia' })}
+            {triLang(lang, { ru: 'Последние достижения', uk: 'Останні досягнення', es: 'Últimos logros', en: 'Recent achievements', 'pt-BR': 'Últimas conquistas', vi: 'Thành tích mới nhất', id: 'Pencapaian terbaru', tr: 'Son başarılar', pl: 'Ostatnie osiągnięcia' })}
           </Text>
           {/* зачем: при нуле счётчик прячем — «Все 0» в первый день демотивирует
               (интент снятого легаси-блока ruAchievementRewardPhrase); высота ряда
               задаётся заголовком, геометрия при появлении числа не прыгает. */}
           {achievementCount > 0 ? (
             <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>
-              {triLang(lang, { ru: `Все ${achievementCount}`, uk: `Усі ${achievementCount}`, es: `Todos ${achievementCount}`, 'pt-BR': `Todas ${achievementCount}`, vi: `Tất cả ${achievementCount}`, id: `Semua ${achievementCount}`, tr: `Tümü ${achievementCount}`, pl: `Wszystkie ${achievementCount}` })}
+              {triLang(lang, { ru: `Все ${achievementCount}`, uk: `Усі ${achievementCount}`, es: `Todos ${achievementCount}`, en: `All ${achievementCount}`, 'pt-BR': `Todas ${achievementCount}`, vi: `Tất cả ${achievementCount}`, id: `Semua ${achievementCount}`, tr: `Tümü ${achievementCount}`, pl: `Wszystkie ${achievementCount}` })}
             </Text>
           ) : null}
         </View>
@@ -3810,19 +3908,19 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             icon: 'trophy-outline',
             color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'),
             percent: xp,
-            label: triLang(lang, { ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP' }),
+            label: triLang(lang, { ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', en: 'Total XP', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP' }),
         });
         if (xp7 !== null) pItems.push({
             icon: 'trending-up-outline',
             color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'),
             percent: xp7,
-            label: triLang(lang, { ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni' }),
+            label: triLang(lang, { ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', en: 'XP in 7 days', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni' }),
         });
         if (time7 !== null) pItems.push({
             icon: 'time-outline',
             color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'),
             percent: time7,
-            label: triLang(lang, { ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni' }),
+            label: triLang(lang, { ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', en: 'Time in 7 days', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni' }),
         });
         if (pItems.length === 0 && (isPremium || statsDevUnlock)) return null;
         if (pItems.length === 0) {
@@ -3840,7 +3938,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             <StatsCardArtSurface testID="stats-comparison-content" name="percentiles" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Среди других', uk: 'Серед інших', es: 'Entre otros', 'pt-BR': 'Entre outros', vi: 'So với người khác', id: 'Di antara yang lain', tr: 'Diğerleri arasında', pl: 'Na tle innych' })}
+                  {triLang(lang, { ru: 'Среди других', uk: 'Серед інших', en: 'Among others', es: 'Entre otros', 'pt-BR': 'Entre outros', vi: 'So với người khác', id: 'Di antara yang lain', tr: 'Diğerleri arasında', pl: 'Na tle innych' })}
                 </Text>
                 {!isPremium && <PlusBadge themeMode={themeMode} size="xs"/>}
               </View>
@@ -3850,7 +3948,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   return (
                     <View style={{ marginBottom: 14, gap: 2 }}>
                       <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode), fontSize: f.numLg, fontWeight: '900' }}>
-                        {`${triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}‑${topN}%`}
+                        {`${triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}‑${topN}%`}
                       </Text>
                       <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600' }}>{bestItem.label}</Text>
                     </View>
@@ -3880,6 +3978,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       {triLang(lang, {
                     ru: 'Заморозить цепочку?',
                     uk: 'Заморозити ланцюжок?',
+                    en: 'Freeze the streak?',
                     es: '¿Congelar la racha?',
                     'pt-BR': "Congelar a sequência?",
                     vi: "Đóng băng chuỗi?",
@@ -3893,6 +3992,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         <Text style={{ color: t.textMuted, fontSize: f.body }}>{triLang(lang, {
                     ru: 'Стоимость:',
                     uk: 'Вартість:',
+                    en: 'Cost:',
                     es: 'Coste:',
                     'pt-BR': "Custo:",
                     vi: "Chi phí:",
@@ -3906,6 +4006,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         <Text style={{ color: t.textMuted, fontSize: f.body }}>{triLang(lang, {
                     ru: 'Баланс:',
                     uk: 'Баланс:',
+                    en: 'Balance:',
                     es: 'Saldo:',
                     'pt-BR': "Saldo:",
                     vi: "Số dư:",
@@ -3922,6 +4023,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                           {triLang(lang, {
                     ru: 'Отмена',
                     uk: 'Скасувати',
+                    en: 'Cancel',
                     es: 'Cancelar',
                     'pt-BR': "Cancelar",
                     vi: "Hủy",
@@ -3936,6 +4038,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                           {triLang(lang, {
                     ru: 'Заморозить',
                     uk: 'Заморозити',
+                    en: 'Freeze',
                     es: 'Congelar',
                     'pt-BR': "Congelar",
                     vi: "Đóng băng",
@@ -3970,6 +4073,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   {triLang(lang, {
                     ru: 'Твои результаты',
                     uk: 'Твої результати',
+                    en: 'Your results',
                     es: 'Tus resultados',
                     'pt-BR': "Seus resultados",
                     vi: "Kết quả của bạn",
@@ -3982,7 +4086,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 <TouchableOpacity
                   testID="stats-header-spins"
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, es: `Giros: ${spinBalance}`, 'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt: ${spinBalance}`, id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}` })}
+                  accessibilityLabel={triLang(lang, { ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, en: `Spins: ${spinBalance}`, es: `Giros: ${spinBalance}`, 'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt: ${spinBalance}`, id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}` })}
                   activeOpacity={0.82}
                   onPress={() => { hapticTap(); router.push('/level_reward_spin' as any); }}
                   style={[{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginLeft: 8, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'streak')]}
@@ -4001,6 +4105,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   accessibilityHint={triLang(lang, {
                     ru: ruGiftPhrase(pendingGiftCount),
                     uk: ukGiftPhrase(pendingGiftCount),
+                    en: pendingGiftCount > 0 ? `${pendingGiftCount} gift${pendingGiftCount === 1 ? '' : 's'}` : 'Gifts',
                     es: pendingGiftCount > 0 ? `${pendingGiftCount} regalo${pendingGiftCount === 1 ? '' : 's'}` : 'Regalos',
                     'pt-BR': pendingGiftCount > 0 ? `${pendingGiftCount} presente${pendingGiftCount === 1 ? '' : 's'}` : 'Presentes',
                     vi: pendingGiftCount > 0 ? `${pendingGiftCount} quà` : 'Quà',
@@ -4041,7 +4146,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 </View>
               ) : null}
               <BouncyWrap>
-              <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+              <Reanimated.ScrollView ref={scrollRef} decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
                 <View style={{ gap: 12 }}>
                 <Reanimated.View entering={FadeInDown.duration(420).delay(0)}>
                   <StatsCardArtSurface
@@ -4166,13 +4271,13 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       <View style={{ width: 42, height: 4, borderRadius: 2, backgroundColor: t.textGhost, alignSelf: 'center', marginBottom: 10 }}/>
                       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
-                          {triLang(lang, { ru: 'Пари на серию', uk: 'Парі на серію', es: 'Apuesta de racha', 'pt-BR': 'Aposta de sequência', vi: 'Cược chuỗi', id: 'Taruhan rangkaian', tr: 'Seri bahsi', pl: 'Zakład o serię' })}
+                          {triLang(lang, { ru: 'Пари на серию', uk: 'Парі на серію', en: 'Streak wager', es: 'Apuesta de racha', 'pt-BR': 'Aposta de sequência', vi: 'Cược chuỗi', id: 'Taruhan rangkaian', tr: 'Seri bahsi', pl: 'Zakład o serię' })}
                         </Text>
                         <TouchableOpacity accessibilityRole="button" onPress={() => setWagerOpen(false)} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
                           <Ionicons name="close" size={24} color={t.textMuted}/>
                         </TouchableOpacity>
                       </View>
-                      <ScrollView showsVerticalScrollIndicator={false}>
+                      <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false}>
                         <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} isGoldTheme={isGoldTheme} themeMode={themeMode} hideCta={totalStreak < 3}/>
                       </ScrollView>
                     </Pressable>
@@ -4195,10 +4300,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       <Ionicons name="flame-outline" size={22} color={isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'streak')}/>
                     </View>
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }}>
-                      {triLang(lang, { ru: 'Серия и защита', uk: 'Серія і захист', es: 'Racha y protección', 'pt-BR': 'Sequência e proteção', vi: 'Chuỗi và bảo vệ', id: 'Rangkaian dan perlindungan', tr: 'Seri ve koruma', pl: 'Seria i ochrona' })}
+                      {triLang(lang, { ru: 'Серия и защита', uk: 'Серія і захист', en: 'Streak and protection', es: 'Racha y protección', 'pt-BR': 'Sequência e proteção', vi: 'Chuỗi và bảo vệ', id: 'Rangkaian dan perlindungan', tr: 'Seri ve koruma', pl: 'Seria i ochrona' })}
                     </Text>
                     <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900' }}>
-                      {totalStreak} {triLang(lang, { ru: pluralRu(totalStreak, 'день', 'дня', 'дней'), uk: 'днів', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}
+                      {totalStreak} {triLang(lang, { ru: pluralRu(totalStreak, 'день', 'дня', 'дней'), uk: 'днів', en: 'days', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}
                     </Text>
                     <Ionicons name={seriesOpen ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted}/>
                   </StatsCardArtSurface>
@@ -4244,6 +4349,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         { key: 'streak', label: triLang(lang, {
                                 ru: 'Цепочка',
                                 uk: 'Ланцюжок',
+                                en: 'Streak',
                                 es: 'Racha',
                                 'pt-BR': "Sequência",
                                 vi: "Chuỗi",
@@ -4254,6 +4360,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         { key: 'club', label: triLang(lang, {
                                 ru: 'Лига',
                                 uk: 'Ліга',
+                                en: 'League',
                                 es: 'Liga',
                                 'pt-BR': "Liga",
                                 vi: "Giải đấu",
@@ -4264,6 +4371,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         { key: 'league_boost', label: triLang(lang, {
                                 ru: 'Буст лиги',
                                 uk: 'Буст ліги',
+                                en: 'League boost',
                                 es: 'Impulso de liga',
                                 'pt-BR': "Impulso de liga",
                                 vi: "Tăng lực giải đấu",
@@ -4274,6 +4382,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         { key: 'league_group_boost', label: triLang(lang, {
                                 ru: 'Общий буст лиги',
                                 uk: 'Спільний буст ліги',
+                                en: 'Shared league boost',
                                 es: 'Impulso común de liga',
                                 'pt-BR': "Impulso comum de liga",
                                 vi: "Tăng lực chung giải đấu",
@@ -4284,6 +4393,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         { key: 'comeback', label: triLang(lang, {
                                 ru: 'Возврат',
                                 uk: 'Повернення',
+                                en: 'Comeback bonus',
                                 es: 'Bonificación de retorno',
                                 'pt-BR': "Bônus de retorno",
                                 vi: "Thưởng quay lại",
@@ -4294,6 +4404,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         { key: 'gift', label: triLang(lang, {
                                 ru: 'Подарок уровня',
                                 uk: 'Подарунок рівня',
+                                en: 'Level gift',
                                 es: 'Regalo de nivel',
                                 'pt-BR': "Presente de nível",
                                 vi: "Quà cấp độ",
@@ -4305,6 +4416,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                 ru: 'Двойной опыт',
                                 uk: 'Подвійний досвід',
                                 es: 'Experiencia doble',
+                                en: 'Double XP',
                                 'pt-BR': 'Experiência dobrada',
                                 vi: 'Kinh nghiệm nhân đôi',
                                 id: 'XP ganda',
@@ -4315,6 +4427,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                 ru: 'Ранняя пташка',
                                 uk: 'Рання пташка',
                                 es: 'Madrugador',
+                                en: 'Early bird',
                                 'pt-BR': 'Madrugador',
                                 vi: 'Dậy sớm',
                                 id: 'Bangun pagi',
@@ -4343,6 +4456,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                         ru: 'Бонус к XP',
                                         uk: 'Бонус до XP',
                                         es: 'Bono de XP',
+                                        en: 'XP bonus',
                                         'pt-BR': "Bônus de XP",
                                         vi: "Thưởng XP",
                                         id: "Bonus XP",
@@ -4368,6 +4482,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                                 ru: `Ещё ${left} ${pluralRu(left, 'день', 'дня', 'дней')} серии — и бонус вырастет до ${projected}`,
                                                 uk: `Ще ${left} ${pluralRu(left, 'день', 'дні', 'днів')} серії — і бонус зросте до ${projected}`,
                                                 es: `${left} ${left === 1 ? 'día' : 'días'} más de racha y el bono sube a ${projected}`,
+                                                en: `${left} more ${left === 1 ? 'day' : 'days'} of streak and the bonus grows to ${projected}`,
                                                 'pt-BR': `Mais ${left} ${left === 1 ? 'dia' : 'dias'} de sequência e o bônus sobe para ${projected}`,
                                                 vi: `Thêm ${left} ngày chuỗi nữa — thưởng tăng lên ${projected}`,
                                                 id: `${left} hari rangkaian lagi — bonus naik ke ${projected}`,
@@ -4379,6 +4494,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                             ru: 'Максимальный бонус за серию — так держать!',
                                             uk: 'Максимальний бонус за серію — так тримати!',
                                             es: 'Bono máximo por racha, ¡sigue así!',
+                                            en: 'Max streak bonus reached — keep it up!',
                                             'pt-BR': 'Bônus máximo de sequência — continue assim!',
                                             vi: 'Thưởng chuỗi tối đa — cứ thế nhé!',
                                             id: 'Bonus rangkaian maksimal — pertahankan!',
@@ -4403,6 +4519,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             ru: 'Активные множители опыта',
                             uk: 'Активні множники досвіду',
                             es: 'Multiplicadores de experiencia activos',
+                            en: 'Active XP multipliers',
                             'pt-BR': "Multiplicadores de experiência ativos",
                             vi: "Hệ số kinh nghiệm đang hoạt động",
                             id: "Pengali pengalaman aktif",
@@ -4418,6 +4535,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                           {triLang(lang, {
                                 ru: 'Нет активных бонусов',
                                 uk: 'Немає активних бонусів',
+                                en: 'No active bonuses',
                                 es: 'No hay bonificaciones activas',
                                 'pt-BR': "Não há bonificações ativas",
                                 vi: "Không có thưởng đang hoạt động",
@@ -4435,6 +4553,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                     ? triLang(lang, {
                                         ru: `×2 ещё на ${giftXpBankRemaining} XP`,
                                         uk: `×2 ще на ${giftXpBankRemaining} XP`,
+                                        en: `×2 for ${giftXpBankRemaining} more XP`,
                                         es: `×2 por ${giftXpBankRemaining} XP más`,
                                         'pt-BR': `×2 por mais ${giftXpBankRemaining} XP`,
                                         vi: `×2 cho thêm ${giftXpBankRemaining} XP`,
@@ -4475,17 +4594,17 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     const visibleDaily7TimePercentile = visiblePercentile(percentiles.daily7timeMs, myTime7ms > 0);
                     if (visibleXpPercentile !== null)
                         pItems.push({ icon: 'trophy-outline', color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'), percent: visibleXpPercentile as number, label: triLang(lang, {
-                                ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP',
+                                ru: 'Суммарный опыт', uk: 'Сумарний досвід', en: 'Total XP', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP',
                             }) });
                     // «Опыт за неделю» (календарная) убран: для пользователя дублировал
                     // «Опыт за 7 дней», а по понедельникам выглядел сломанным нулём.
                     if (visibleDaily7XpPercentile !== null)
                         pItems.push({ icon: 'trending-up-outline', color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'), percent: visibleDaily7XpPercentile as number, label: triLang(lang, {
-                                ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni',
+                                ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', en: 'XP in 7 days', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni',
                             }) });
                     if (visibleDaily7TimePercentile !== null)
                         pItems.push({ icon: 'time-outline', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), percent: visibleDaily7TimePercentile as number, label: triLang(lang, {
-                                ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni',
+                                ru: 'Время за 7 дней', uk: 'Час за 7 днів', en: 'Time in 7 days', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni',
                             }) });
                     if (pItems.length === 0)
                         return null;
@@ -4499,6 +4618,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                           {triLang(lang, {
                             ru: 'Твой результат среди других',
                             uk: 'Твій результат серед інших',
+                            en: 'Your result among others',
                             es: 'Tu resultado entre otros',
                             'pt-BR': 'Seu resultado entre outros',
                             vi: 'Kết quả của bạn so với người khác',
@@ -4552,6 +4672,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         {triLang(lang, {
                     ru: 'Архив',
                     uk: 'Архів',
+                    en: 'Archive',
                     es: 'Archivo',
                     'pt-BR': "Arquivo",
                     vi: "Lưu trữ",
@@ -4578,6 +4699,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                               {triLang(lang, {
                                 ru: 'График появится после пары дней практики',
                                 uk: 'Графік з’явиться після кількох днів практики',
+                                en: 'The chart will appear after a few days of practice',
                                 es: 'El gráfico aparecerá tras un par de días de práctica',
                                 'pt-BR': 'O gráfico aparece após alguns dias de prática',
                                 vi: 'Biểu đồ sẽ hiện sau vài ngày luyện tập',
@@ -4632,6 +4754,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             {triLang(lang, {
                                 ru: 'Опыт',
                                 uk: 'Досвід',
+                                en: 'XP',
                                 es: 'XP',
                                 'pt-BR': "XP",
                                 vi: "XP",
@@ -4661,6 +4784,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             {triLang(lang, {
                                 ru: 'Время',
                                 uk: 'Час',
+                                en: 'Time',
                                 es: 'Tiempo',
                                 'pt-BR': "Tempo",
                                 vi: "Thời gian",
@@ -4671,7 +4795,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                           </Text>
                         </TouchableOpacity>
                       </View>
-                      <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="normal" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
+                      <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="fast" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
                         {dailyChartTab === 'xp'
                                 ? chartDays.map((d, i) => {
                                     const barH = d.points > 0 ? Math.max((d.points / maxAllPts) * CHART_H, 8) : 5;
@@ -4775,6 +4899,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       {triLang(lang, {
                             ru: devLifetimeChartsBusy ? 'Генерация…' : 'Dev: случайные графики «Весь путь» (7 дн.)',
                             uk: devLifetimeChartsBusy ? 'Генерація…' : 'Dev: випадкові графіки «Увесь шлях» (7 дн.)',
+                            en: devLifetimeChartsBusy ? 'Generating…' : 'Dev: random "Lifetime" charts (7 d.)',
                             es: devLifetimeChartsBusy ? 'Generando…' : 'Dev: gráficas aleatorias «Todo el camino» (7 d.)',
                             'pt-BR': devLifetimeChartsBusy ? 'Gerando…' : 'Dev: gráficos aleatórios «Todo o caminho» (7 d.)',
                             vi: devLifetimeChartsBusy ? 'Đang tạo…' : 'Dev: biểu đồ ngẫu nhiên «Toàn bộ hành trình» (7 ngày)',
@@ -4787,6 +4912,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       {triLang(lang, {
                             ru: 'Случайные значения за 7 дней: все строки и графики под ними; цифры слева = сумма за эти 7 дней (дни цепочки/уровень — как в профиле).',
                             uk: 'Випадкові значення за 7 днів: усі рядки й графіки під ними; числа зліва = сума за ці 7 днів.',
+                            en: 'Random 7-day values: all rows and charts below; the left number = the sum for those 7 days.',
                             es: 'Valores aleatorios 7 días: todas las filas y gráficos debajo; la columna izquierda = suma de esos 7 días.',
                             'pt-BR': "Valores aleatórios de 7 dias: todas as linhas e gráficos abaixo; a coluna esquerda = soma desses 7 dias.",
                             vi: "Giá trị ngẫu nhiên 7 ngày: tất cả hàng và biểu đồ bên dưới; cột trái = tổng của 7 ngày đó.",
@@ -4803,6 +4929,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   <ReportErrorButton screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {
                     ru: 'Цепочки и результаты',
                     uk: 'Стріки та результати',
+                    en: 'Streaks and stats',
                     es: 'Rachas y estadísticas',
                     'pt-BR': "Sequências e estatísticas",
                     vi: "Chuỗi và thống kê",
@@ -4825,18 +4952,20 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
               <ThemedConfirmModal visible={freezeNeedShardsModal} title={triLang(lang, {
                     ru: 'Недостаточно жемчуга',
                     uk: 'Недостатньо перлин',
+                    en: "Not enough pearls",
                     es: 'No tienes suficientes perlas',
                     'pt-BR': "Você não tem pérolas suficientes",
                     vi: "Bạn không có đủ ngọc trai",
                     id: "Mutiara kamu tidak cukup",
                     tr: "Yeterli incin yok",
-                    pl: "Nie masz wystarczająco monet",
+                    pl: "Nie masz wystarczająco pereł",
                 })} messageNode={<View style={{ gap: 4, marginBottom: 22 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       <Text style={{ color: t.textMuted, fontSize: f.body }}>
                         {triLang(lang, {
                         ru: 'Стоимость заморозки:',
                         uk: 'Вартість заморозки:',
+                        en: 'Freeze cost:',
                         es: 'Coste de congelar:',
                         'pt-BR': "Custo para congelar:",
                         vi: "Chi phí đóng băng:",
@@ -4852,6 +4981,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                         {triLang(lang, {
                         ru: 'Твой баланс:',
                         uk: 'Твій баланс:',
+                        en: 'Your balance:',
                         es: 'Tu saldo:',
                         'pt-BR': "Seu saldo:",
                         vi: "Số dư của bạn:",
@@ -4865,6 +4995,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   </View>} cancelLabel={triLang(lang, {
                     ru: 'Отмена',
                     uk: 'Скасувати',
+                    en: 'Cancel',
                     es: 'Cancelar',
                     'pt-BR': "Cancelar",
                     vi: "Hủy",
@@ -4874,6 +5005,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 })} confirmLabel={triLang(lang, {
                     ru: 'В магазин',
                     uk: 'У магазин',
+                    en: 'To the store',
                     es: 'A la tienda',
                     'pt-BR': "Ir à loja",
                     vi: "Đến cửa hàng",

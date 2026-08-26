@@ -45,6 +45,7 @@ export type CreditAttemptRestoreGiftFromSpinInput = Readonly<{
   spinRequestId: string;
   lane: 'base' | 'premium';
   createdAtMs?: number;
+  accountTransitionLockLease?: AccountTransitionLockLease;
 }>;
 
 export type PrepareAttemptRestoreGiftConsumeInput = Readonly<{
@@ -386,7 +387,7 @@ export async function creditAttemptRestoreGiftFromSpin(
     ]);
     await AsyncStorage.setItem(attemptRestoreGiftPreparedCreditKey(ownerStableId), '[]');
     return Object.freeze({ duplicate: false, count: nextReplay.count });
-  }));
+  }), input.accountTransitionLockLease);
   void syncPendingAttemptRestoreGiftOperations(input.token).catch(() => {});
   return result;
 }

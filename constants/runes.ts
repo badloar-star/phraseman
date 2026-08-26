@@ -66,6 +66,7 @@ type PluralForms = Readonly<{ one: string; few: string; many: string }>;
 const RUNE_WORDS: Readonly<Record<string, PluralForms>> = Object.freeze({
   ru: { one: 'руна', few: 'руны', many: 'рун' },
   uk: { one: 'руна', few: 'руни', many: 'рун' },
+  en: { one: 'rune', few: 'runes', many: 'runes' },
   pl: { one: 'runa', few: 'runy', many: 'run' },
   es: { one: 'runa', few: 'runas', many: 'runas' },
   'pt-BR': { one: 'runa', few: 'runas', many: 'runas' },

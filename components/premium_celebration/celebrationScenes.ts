@@ -8,6 +8,14 @@
  * docs/design/CELEBRATION_SOUND_PROMPTS.md (карты ударов) и должны попасть в
  * modules/audio/sound_motion.ts, иначе звук разойдётся с картинкой.
  *
+ * зачем 6, не 11 (владелец 2026-08-25): «укоротить» — прогон с одиннадцатью
+ * сценами (~11.9 с) шёл слишком долго. Список сокращён до шести самых сильных
+ * и разных по механике преимуществ (как в раннем макете v4 «Витраж»);
+ * cards/errors/plan/stats/aura убраны — не потому что хуже, а чтобы прогон
+ * стал короче без потери разнообразия механик. Сцены и их визуалы
+ * (CelebrationSceneViews.tsx) НЕ удалены — просто не входят в список показа;
+ * их снова можно включить, вернув в CELEBRATION_SCENES.
+ *
  * Макет-эталон: .motion-mockups/phraseman-celebration-v6.html
  */
 import type { CelebrationIconName } from './celebrationContent';
@@ -53,11 +61,12 @@ export interface CelebrationScene {
 export const SCENE_STEP_MS = 780;
 
 /**
- * Одиннадцать общих сцен (Plus / Pro / промокод) + двенадцатая только для MAX.
- * Порядок значим: он же в документе звуков и в громкостной «волне» (сцены
- * 1, 4 и 8 самые заметные — см. правило усталости уха).
+ * Полный каталог сцен-преимуществ. Не все из них показываются в прогоне —
+ * см. CELEBRATION_SCENES ниже, который выбирает подмножество для показа.
+ * Держим весь каталог живым, чтобы визуалы (CelebrationSceneViews.tsx) не
+ * стали мёртвым кодом и список показа можно было расширить одной правкой.
  */
-export const CELEBRATION_SCENES: readonly CelebrationScene[] = [
+export const ALL_SCENES: readonly CelebrationScene[] = [
   {
     id: 'energy',
     sound: 'energy_break',
@@ -148,10 +157,18 @@ export const CELEBRATION_SCENES: readonly CelebrationScene[] = [
   },
 ];
 
+/** Показанные шесть сцен, в порядке прогона — сокращение из ALL_SCENES. */
+export const CELEBRATION_SCENES: readonly CelebrationScene[] = (['energy', 'lessons', 'dialogs', 'voice', 'coach', 'streak'] as const)
+  .map((id) => {
+    const scene = ALL_SCENES.find((s) => s.id === id);
+    if (!scene) throw new Error(`celebrationScenes: unknown scene id "${id}"`);
+    return scene;
+  });
+
 /**
- * Двенадцатая сцена — ТОЛЬКО для тира MAX. Добавляется в хвост общих
- * одиннадцати, а не заменяет их: владелец потребовал, чтобы MAX показывал
- * полный прогон Plus плюс свою сцену, без счётчика «13 преимуществ».
+ * Седьмая сцена — ТОЛЬКО для тира MAX. Добавляется в хвост показанных шести,
+ * а не заменяет их: владелец потребовал, чтобы MAX показывал полный прогон
+ * Plus плюс свою сцену, без счётчика «13 преимуществ».
  */
 export const MAX_SCENE: CelebrationScene = {
   id: 'max',

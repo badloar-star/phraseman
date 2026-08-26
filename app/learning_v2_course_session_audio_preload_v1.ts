@@ -1,4 +1,6 @@
 import Constants from "expo-constants";
+import { Asset } from "expo-asset";
+import { File } from "expo-file-system";
 import { Platform } from "react-native";
 
 import {
@@ -13,6 +15,7 @@ import {
   type LearningV2ActivityAudioTransportHandleV1,
 } from "./learning_v2_activity_audio_transport_v1";
 import { getStableId } from "./stable_id";
+import { learningV2Session1BundledAudioModuleForObjectPathV1 } from "./learning_v2_session1_production_audio_v1";
 import {
   withBackgroundNetworkLease,
   type BackgroundNetworkLease,
@@ -266,13 +269,23 @@ async function preload(
     if (!isCurrentAccountGeneration(account, account.stableId)) fail();
     const file = orderedFiles[index]!;
     const identity = identityForFile(file, index);
+    const bundledModule =
+      learningV2Session1BundledAudioModuleForObjectPathV1(file.objectPath);
     const cache = await prepareLearningV2VoiceAudioOfflineBytesV1({
       identity,
-      loadBytes: async () =>
-        downloadLearningV2ActivityAudioBytesV1({
+      loadBytes: async () => {
+        if (bundledModule !== null) {
+          const asset = Asset.fromModule(bundledModule);
+          await asset.downloadAsync();
+          const uri = asset.localUri ?? asset.uri;
+          if (!uri) fail();
+          return new File(uri).bytes();
+        }
+        return downloadLearningV2ActivityAudioBytesV1({
           entry: file,
           transport: await transport(),
-        }),
+        });
+      },
     });
     const material = resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
       handle: cache,

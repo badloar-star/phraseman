@@ -259,9 +259,19 @@ export interface ExpiryReminderSummary {
 }
 
 /**
- * Постраничный скан users/ (cursor по __name__, как в premium_expiry_cron.ts):
+ * Постраничный обход users/ С ФИЛЬТРОМ ПО НАЛИЧИЮ PUSH-ТОКЕНА (cursor по __name__):
  * отбирает кандидатов, шлёт push общим sendExpoPushMessages, штампует
  * lastPremiumExpiryReminderAt на успешных (идемпотентность + анти-спам).
+ *
+ * зачем orderBy('expoPushToken') (аудит 2026-08-26, экономия Firebase): раньше здесь
+ * был скан ВСЕЙ коллекции users каждые сутки. Но первым же условием отбора стоит
+ * `isValidExpoPushToken` (classifyExpiryReminder) — пользователь без токена не может
+ * получить push В ПРИНЦИПЕ, и читать его документ бессмысленно. orderBy по полю
+ * возвращает только документы, где поле СУЩЕСТВУЕТ, а при отзыве токена поле
+ * физически удаляется (FieldValue.delete() в admin_push_jobs.ts / re_engage_push.ts),
+ * а не обнуляется — значит выборка совпадает с множеством достижимых пользователей.
+ * Вся дальнейшая фильтрация (валидность токена, тихие часы, окно срока, cooldown)
+ * оставлена без изменений как страховка.
  */
 export async function runPremiumExpiryReminder(
   now: number = Date.now(),
@@ -276,7 +286,10 @@ export async function runPremiumExpiryReminder(
 
   // 1) Scan + отбор.
   for (;;) {
-    let q: FirebaseFirestore.Query = db.collection('users').orderBy('__name__').limit(PAGE_SIZE);
+    let q: FirebaseFirestore.Query = db.collection('users')
+      .orderBy('expoPushToken')
+      .orderBy('__name__')
+      .limit(PAGE_SIZE);
     if (lastDoc) q = q.startAfter(lastDoc);
     const snap = await q.get();
     if (snap.empty) break;

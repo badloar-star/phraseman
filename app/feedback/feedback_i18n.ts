@@ -13,6 +13,7 @@ export function uiSoundsLabel(lang: Lang): string {
   return triLang(lang, {
     ru: 'Звуки эффектов',
     uk: 'Звуки ефектів',
+    en: 'Effect sounds',
     es: 'Sonidos de efectos',
     'pt-BR': 'Sons de efeitos',
     vi: 'Âm thanh hiệu ứng',
@@ -27,6 +28,7 @@ export function uiSoundsSub(lang: Lang): string {
   return triLang(lang, {
     ru: 'Ответы, награды и системные сигналы',
     uk: 'Відповіді, нагороди та системні сигнали',
+    en: 'Answers, rewards, and system signals',
     es: 'Respuestas, recompensas y señales del sistema',
     'pt-BR': 'Respostas, recompensas e sinais do sistema',
     vi: 'Câu trả lời, phần thưởng và tín hiệu hệ thống',
@@ -40,6 +42,7 @@ export function voiceOutLabel(lang: Lang): string {
   return triLang(lang, {
     ru: 'Озвучивание',
     uk: 'Озвучення',
+    en: 'Voice-over',
     es: 'Voz',
     'pt-BR': 'Voz',
     vi: 'Đọc thành tiếng',
@@ -53,6 +56,7 @@ export function voiceOutSub(lang: Lang): string {
   return triLang(lang, {
     ru: 'Произношение слов и фраз',
     uk: 'Вимова слів і фраз',
+    en: 'Pronunciation of words and phrases',
     es: 'Pronunciación de palabras y frases',
     'pt-BR': 'Pronúncia de palavras e frases',
     vi: 'Phát âm từ và cụm từ',
@@ -68,6 +72,7 @@ export function comboLevelLabel(lang: Lang, level: 1 | 2 | 3): string {
     return triLang(lang, {
       ru: 'Искра',
       uk: 'Іскра',
+      en: 'Spark',
       es: 'Chispa',
       'pt-BR': 'Faísca',
       vi: 'Tia lửa',
@@ -80,6 +85,7 @@ export function comboLevelLabel(lang: Lang, level: 1 | 2 | 3): string {
     return triLang(lang, {
       ru: 'Молния',
       uk: 'Блискавка',
+      en: 'Lightning',
       es: 'Rayo',
       'pt-BR': 'Raio',
       vi: 'Tia chớp',
@@ -91,6 +97,7 @@ export function comboLevelLabel(lang: Lang, level: 1 | 2 | 3): string {
   return triLang(lang, {
     ru: 'Гроза',
     uk: 'Гроза',
+    en: 'Storm',
     es: 'Tormenta',
     'pt-BR': 'Tempestade',
     vi: 'Giông bão',
@@ -109,6 +116,7 @@ export function wordsSessionDoneTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Слова закреплены',
     uk: 'Слова закріплені',
+    en: 'Words locked in',
     es: 'Palabras fijadas',
     'pt-BR': 'Palavras fixadas',
     vi: 'Đã ghi nhớ từ',
@@ -123,6 +131,7 @@ export function wordsSessionDoneSubtitle(lang: Lang, learned: number, total: num
   return triLang(lang, {
     ru: `Освоено слов: ${learned} из ${total}`,
     uk: `Опановано слів: ${learned} з ${total}`,
+    en: `Words mastered: ${learned} of ${total}`,
     es: `Palabras dominadas: ${learned} de ${total}`,
     'pt-BR': `Palavras dominadas: ${learned} de ${total}`,
     vi: `Từ đã thành thạo: ${learned}/${total}`,
@@ -137,6 +146,7 @@ export function verbLearnedDoneTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Глагол освоен',
     uk: 'Дієслово опановано',
+    en: 'Verb mastered',
     es: 'Verbo dominado',
     'pt-BR': 'Verbo dominado',
     vi: 'Đã thành thạo động từ',
@@ -156,6 +166,7 @@ export function prepDrillDoneTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Предлоги отработаны',
     uk: 'Прийменники відпрацьовані',
+    en: 'Prepositions practiced',
     es: 'Preposiciones repasadas',
     'pt-BR': 'Preposições praticadas',
     vi: 'Đã luyện xong giới từ',
@@ -170,6 +181,7 @@ export function prepDrillDoneSubtitle(lang: Lang, correct: number, total: number
   return triLang(lang, {
     ru: `Точность: ${correct} из ${total}`,
     uk: `Точність: ${correct} з ${total}`,
+    en: `Accuracy: ${correct} of ${total}`,
     es: `Precisión: ${correct} de ${total}`,
     'pt-BR': `Precisão: ${correct} de ${total}`,
     vi: `Độ chính xác: ${correct}/${total}`,
@@ -184,6 +196,7 @@ export function theoryChapterDoneTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Глава закрыта',
     uk: 'Розділ закрито',
+    en: 'Chapter complete',
     es: 'Capítulo cerrado',
     'pt-BR': 'Capítulo concluído',
     vi: 'Đã xong chương',
@@ -198,6 +211,7 @@ export function theoryChapterDoneSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Правило разобрано — идём практиковать',
     uk: 'Правило розібране — йдемо практикувати',
+    en: "Rule covered — let's practice",
     es: 'Regla entendida — a practicar',
     'pt-BR': 'Regra entendida — vamos praticar',
     vi: 'Đã hiểu quy tắc — cùng luyện tập',

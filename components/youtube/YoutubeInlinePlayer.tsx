@@ -73,17 +73,18 @@ export default function YoutubeInlinePlayer({
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const copy = useMemo(() => ({
-    close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', es: 'Close video', 'pt-BR': 'Close video', vi: 'Close video', id: 'Close video', tr: 'Close video', pl: 'Close video' }),
-    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Retry', 'pt-BR': 'Retry', vi: 'Retry', id: 'Retry', tr: 'Retry', pl: 'Retry' }),
+    close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', en: 'Close video', es: 'Cerrar vídeo', 'pt-BR': 'Fechar vídeo', vi: 'Đóng video', id: 'Tutup video', tr: 'Videoyu kapat', pl: 'Zamknij wideo' }),
+    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
     loadError: triLang(lang, {
       ru: 'Плеер временно не загрузился. Попробуйте ещё раз.',
       uk: 'Плеєр тимчасово не завантажився. Спробуйте ще раз.',
-      es: 'The player did not load. Please try again.',
-      'pt-BR': 'The player did not load. Please try again.',
-      vi: 'The player did not load. Please try again.',
-      id: 'The player did not load. Please try again.',
-      tr: 'The player did not load. Please try again.',
-      pl: 'The player did not load. Please try again.',
+      en: 'The player did not load. Please try again.',
+      es: 'El reproductor no se cargó. Inténtalo de nuevo.',
+      'pt-BR': 'O player não carregou. Tente novamente.',
+      vi: 'Trình phát chưa tải được. Vui lòng thử lại.',
+      id: 'Pemutar gagal dimuat. Coba lagi.',
+      tr: 'Oynatıcı yüklenemedi. Lütfen tekrar deneyin.',
+      pl: 'Odtwarzacz się nie załadował. Spróbuj ponownie.',
     }),
   }), [lang]);
 

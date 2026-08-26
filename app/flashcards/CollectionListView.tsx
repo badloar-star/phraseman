@@ -26,8 +26,10 @@ import { IS_EXPO_GO } from '../config';
 import { triLang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import type { SpeakOpts } from '../../hooks/use-audio';
+import { soundDirector } from '../../modules/audio/sound_director';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import FlashcardListItem from './FlashcardListItem';
+import { FLASHCARD_LIST_ITEM_CARD_STYLE } from './FlashcardListItemChrome';
 import type { WordStrength } from './word_strength';
 import { CardItem, CategoryId, type FlashcardContentLang } from './types';
 
@@ -261,7 +263,7 @@ export default function CollectionListView({
     if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
     Animated.timing(deleteHintAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
       onSetShowDeleteHint(false);
-      AsyncStorage.setItem('flashcard_delete_hint_seen', '1');
+      AsyncStorage.setItem('flashcard_delete_hint_seen', '1').catch(() => {});
     });
   }, [deleteHintAnim, onSetShowDeleteHint]);
 
@@ -305,6 +307,10 @@ export default function CollectionListView({
 
   // ── Delete with animation (персист — через контейнерный onDeleteCardById) ──
   const handleDeleteCard = useCallback((item: CardItem, itemIdx: number) => {
+    // зачем: удаление уже необратимо решено нажатием (диалога подтверждения
+    // здесь нет) — звук играет сразу, оптимистично, до анимации ухода карточки
+    // и до await onDeleteCardById.
+    soundDirector.request('pm.cards.editor_delete', { scope: 'cards' });
     const anim = getDeleteAnim(item.id);
     anim.opacity.setValue(1);
     anim.scale.setValue(1);
@@ -386,7 +392,7 @@ export default function CollectionListView({
         deleteLabel={deleteLabel}
         voiceLabel={voiceLabel}
         cardHeight={cardHeight}
-        cardStyle={st.card}
+        cardStyle={FLASHCARD_LIST_ITEM_CARD_STYLE}
         sourceBadgeStyle={st.sourceBadge}
         sourceBadgeTextStyle={st.sourceBadgeText}
         getCardFlipAnim={getCardFlipAnim}
@@ -497,7 +503,10 @@ export default function CollectionListView({
           >
             <Ionicons name="add-circle-outline" size={20} color={t.correctText} />
             <Text style={{ fontSize: f.body, fontWeight: '700', color: t.correctText }}>
-              {triLang(lang, { ru: 'Добавить карточку', uk: 'Додати картку', es: 'Añadir tarjeta' })}
+              {triLang(lang, {
+                ru: 'Добавить карточку', uk: 'Додати картку', en: 'Add a card', es: 'Añadir tarjeta',
+                'pt-BR': 'Adicionar cartão', vi: 'Thêm thẻ', id: 'Tambah kartu', tr: 'Kart ekle', pl: 'Dodaj kartę',
+              })}
             </Text>
           </TouchableOpacity>
         )}
@@ -513,7 +522,10 @@ export default function CollectionListView({
             style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' }}
           >
             <Text style={{ fontSize: 9, color: '#FF6B00', fontWeight: '800' }}>
-              {triLang(lang, { ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', es: 'DEV: mostrar ayuda' })}
+              {triLang(lang, {
+                ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', en: 'DEV: show hint', es: 'DEV: mostrar ayuda',
+                'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż podpowiedź',
+              })}
             </Text>
           </TouchableOpacity>
         )}
@@ -537,7 +549,13 @@ export default function CollectionListView({
               {triLang(lang, {
                 ru: 'Зажмите карточку чтобы удалить её',
                 uk: 'Затисніть картку, щоб видалити її',
+                en: 'Hold a card to delete it',
                 es: 'Mantén pulsada la tarjeta para eliminarla',
+                'pt-BR': 'Segure o cartão para excluí-lo',
+                vi: 'Giữ thẻ để xóa',
+                id: 'Tahan kartu untuk menghapusnya',
+                tr: 'Silmek için kartı basılı tut',
+                pl: 'Przytrzymaj kartę, aby ją usunąć',
               })}
             </Text>
             <TouchableOpacity onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
@@ -555,7 +573,7 @@ export default function CollectionListView({
             setScrollViewH(e.nativeEvent.layout.height);
           }}
         >
-          <FlatList
+          <FlatList decelerationRate="fast"
             ref={flatListRef as any}
             style={{ flex: 1 }}
             data={cards}
@@ -629,14 +647,26 @@ export default function CollectionListView({
                       {triLang(lang, {
                         ru: `+${hiddenByLimitCount} карточек скрыто`,
                         uk: `+${hiddenByLimitCount} карток приховано`,
+                        en: `+${hiddenByLimitCount} cards hidden`,
                         es: `+${hiddenByLimitCount} tarjetas ocultas`,
+                        'pt-BR': `+${hiddenByLimitCount} cartões ocultos`,
+                        vi: `+${hiddenByLimitCount} thẻ bị ẩn`,
+                        id: `+${hiddenByLimitCount} kartu disembunyikan`,
+                        tr: `+${hiddenByLimitCount} kart gizli`,
+                        pl: `+${hiddenByLimitCount} kart ukrytych`,
                       })}
                     </Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center' }}>
                       {triLang(lang, {
                         ru: 'Бесплатно доступны первые 20 сохранённых карточек',
                         uk: 'Безкоштовно доступні перші 20 збережених карток',
+                        en: 'The first 20 saved cards are free',
                         es: 'Gratis: las primeras 20 tarjetas guardadas',
+                        'pt-BR': 'Grátis: os primeiros 20 cartões salvos',
+                        vi: 'Miễn phí: 20 thẻ đã lưu đầu tiên',
+                        id: 'Gratis: 20 kartu tersimpan pertama',
+                        tr: 'Ücretsiz: kaydedilen ilk 20 kart',
+                        pl: 'Za darmo: pierwsze 20 zapisanych kart',
                       })}
                     </Text>
                     <View style={{ marginTop: 8, backgroundColor: t.accent, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 10 }}>
@@ -644,7 +674,13 @@ export default function CollectionListView({
                         {triLang(lang, {
                           ru: 'Открыть все с Премиум',
                           uk: 'Відкрити всі з Преміум',
+                          en: 'Unlock all with Premium',
                           es: 'Desbloquear con Premium',
+                          'pt-BR': 'Desbloquear tudo com Premium',
+                          vi: 'Mở tất cả với Premium',
+                          id: 'Buka semua dengan Premium',
+                          tr: 'Premium ile tümünü aç',
+                          pl: 'Odblokuj wszystko z Premium',
                         })}
                       </Text>
                     </View>
@@ -657,7 +693,13 @@ export default function CollectionListView({
                     dataText={triLang(lang, {
                       ru: `Карточки · ${activeCat}`,
                       uk: `Картки · ${activeCat}`,
+                      en: `Cards · ${activeCat}`,
                       es: `Tarjetas · ${activeCat}`,
+                      'pt-BR': `Cartões · ${activeCat}`,
+                      vi: `Thẻ · ${activeCat}`,
+                      id: `Kartu · ${activeCat}`,
+                      tr: `Kartlar · ${activeCat}`,
+                      pl: `Karty · ${activeCat}`,
                     })}
                   />
                 </View>
@@ -721,7 +763,10 @@ export function UndoDeleteSnackbar({
       >
         <Ionicons name="trash-outline" size={18} color={t.textMuted} />
         <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '600' }} numberOfLines={1}>
-          {triLang(lang, { ru: 'Карточка удалена', uk: 'Картку видалено', es: 'Tarjeta eliminada' })}
+          {triLang(lang, {
+              ru: 'Карточка удалена', uk: 'Картку видалено', en: 'Card deleted', es: 'Tarjeta eliminada',
+              'pt-BR': 'Cartão excluído', vi: 'Đã xóa thẻ', id: 'Kartu dihapus', tr: 'Kart silindi', pl: 'Karta usunięta',
+            })}
         </Text>
         <TouchableOpacity
           testID="fc-undo-delete"
@@ -739,7 +784,10 @@ export function UndoDeleteSnackbar({
           }}
         >
           <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
-            {triLang(lang, { ru: 'Вернуть', uk: 'Повернути', es: 'Deshacer' })}
+            {triLang(lang, {
+              ru: 'Вернуть', uk: 'Повернути', en: 'Undo', es: 'Deshacer',
+              'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Batalkan', tr: 'Geri al', pl: 'Cofnij',
+            })}
           </Text>
         </TouchableOpacity>
       </View>
@@ -791,7 +839,13 @@ export function CollectionEmptyState({
           {triLang(lang, {
             ru: 'Наборы сообщества',
             uk: 'Набори спільноти',
+            en: 'Community packs',
             es: 'Packs de la comunidad',
+            'pt-BR': 'Pacotes da comunidade',
+            vi: 'Bộ thẻ cộng đồng',
+            id: 'Paket komunitas',
+            tr: 'Topluluk paketleri',
+            pl: 'Zestawy społeczności',
           })}
         </Text>
       </TouchableOpacity>
@@ -805,7 +859,13 @@ export function CollectionEmptyState({
             {triLang(lang, {
               ru: 'Повторить загрузку',
               uk: 'Повторити завантаження',
+              en: 'Retry loading',
               es: 'Reintentar la carga',
+              'pt-BR': 'Tentar carregar de novo',
+              vi: 'Tải lại',
+              id: 'Coba muat ulang',
+              tr: 'Yüklemeyi tekrar dene',
+              pl: 'Spróbuj wczytać ponownie',
             })}
           </Text>
         </TouchableOpacity>
@@ -816,7 +876,6 @@ export function CollectionEmptyState({
 
 // ─── Styles (перенесены из монолита — геометрия карточки-строки) ─────────────
 const st = StyleSheet.create({
-  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:22, alignItems:'center', justifyContent:'center' },
   sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
   sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
   centerState:  { flex:1, alignItems:'center', justifyContent:'center', paddingHorizontal:32 },

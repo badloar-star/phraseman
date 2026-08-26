@@ -71,7 +71,7 @@ export default function SurveyScreen() {
           && account.phase === 'active'
           && account.stableId === canonicalStableId,
         );
-        setScopeIdentity(valid
+        setScopeIdentity(valid && canonicalStableId
           ? { phase: 'verified', key: routeScopeKey, stableId: canonicalStableId, account }
           : { phase: 'rejected', key: routeScopeKey });
       })
@@ -154,7 +154,7 @@ export default function SurveyScreen() {
     return (
       <UnavailableSurvey
         message={triLang(lang, {
-          ru: 'Опрос недоступен.', uk: 'Опитування недоступне.', es: 'Encuesta no disponible.',
+          ru: 'Опрос недоступен.', en: 'Survey unavailable.', uk: 'Опитування недоступне.', es: 'Encuesta no disponible.',
           'pt-BR': 'Pesquisa indisponível.', vi: 'Khảo sát không khả dụng.', id: 'Survei tidak tersedia.',
           tr: 'Anket kullanılamıyor.', pl: 'Ankieta niedostępna.',
         })}
@@ -200,7 +200,7 @@ function UnavailableSurvey({
       <SafeAreaView style={styles.fill}>
         <ContentWrap>
           <View style={styles.centerBox}>
-            <FlowText provenance="authored" style={{ color: textColor, fontSize: fontBody }}>
+            <FlowText testID="survey-fallback-message" provenance="authored" style={{ color: textColor, fontSize: fontBody }}>
               {message}
             </FlowText>
             <Pressable
@@ -209,7 +209,7 @@ function UnavailableSurvey({
               onPress={onClose}
               style={[styles.primaryBtn, { backgroundColor: textColor }]}
             >
-              <FlowText provenance="authored" style={{ color: buttonTextColor, fontWeight: '700', fontSize: fontBody }}>
+              <FlowText testID="survey-fallback-ok" provenance="authored" style={{ color: buttonTextColor, fontWeight: '700', fontSize: fontBody }}>
                 OK
               </FlowText>
             </Pressable>

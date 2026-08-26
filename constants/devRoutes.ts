@@ -16,6 +16,7 @@ export const CANCEL_FLOW_PREVIEW_ROUTE_NAME = routeName('_dev', 'cancel', 'flow'
 // внутри «Движение · все поверхности», а свой собственный пункт со списком
 // 7 одобренных режимов, каждый открывается ПОЛНОЭКРАННЫМ работающим маршрутом.
 export const LEARNING_V2_MODES_SHOWCASE_ROUTE_NAME = routeName('learning', 'v2', 'modes', 'showcase');
+export const LEARNING_V2_AUTHORING_PREVIEW_ROUTE_NAME = routeName('learning', 'v2', 'authoring', 'preview');
 // зачем: полноэкранный runner — вложенный каталог с динамическим [family],
 // поэтому здесь регистрируется только ПАПКА (Stack.Screen по имени каталога
 // работает так же, как по имени файла — тот же паттерн, что LEARNING_V2_ROUTE_PREFIX).
@@ -27,6 +28,7 @@ export const PHONE_STATE_SQLCIPHER_SMOKE_ROUTE = `/${PHONE_STATE_SQLCIPHER_SMOKE
 export const MOTION_SHOWCASE_ROUTE = `/${MOTION_SHOWCASE_ROUTE_NAME}`;
 export const CANCEL_FLOW_PREVIEW_ROUTE = `/${CANCEL_FLOW_PREVIEW_ROUTE_NAME}`;
 export const LEARNING_V2_MODES_SHOWCASE_ROUTE = `/${LEARNING_V2_MODES_SHOWCASE_ROUTE_NAME}`;
+export const LEARNING_V2_AUTHORING_PREVIEW_ROUTE = `/${LEARNING_V2_AUTHORING_PREVIEW_ROUTE_NAME}`;
 /**
  * зачем (владелец, 25.08): Learning V2 временно доступен только владельцу в
  * dev/internal сборке, сессии курса ещё дописываются параллельно. Это НЕ
@@ -53,6 +55,7 @@ export const DEV_UTILITY_ROUTE_NAMES = [
   PHONE_STATE_SQLCIPHER_SMOKE_ROUTE_NAME,
   CANCEL_FLOW_PREVIEW_ROUTE_NAME,
   LEARNING_V2_MODES_SHOWCASE_ROUTE_NAME,
+  LEARNING_V2_AUTHORING_PREVIEW_ROUTE_NAME,
   LEARNING_V2_MODES_SHOWCASE_RUN_DIR_NAME,
 ] as const;
 

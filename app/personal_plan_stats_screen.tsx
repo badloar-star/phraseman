@@ -387,7 +387,7 @@ function PersonalPlanStatsScreen() {
         <BouncyWrap>
         <Reanimated.ScrollView
           showsVerticalScrollIndicator={false}
-          decelerationRate="normal"
+          decelerationRate="fast"
           bounces
           alwaysBounceVertical
           overScrollMode="always"
@@ -451,7 +451,7 @@ function PersonalPlanStatsScreen() {
               <ScrollView
                 ref={dayRailRef}
                 horizontal
-                decelerationRate="normal"
+                decelerationRate="fast"
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.dayRail}
               >
@@ -579,7 +579,7 @@ function DayReviewSheet({
                 </TouchableOpacity>
               </View>
 
-              <ScrollView style={styles.sheetScroll} contentContainerStyle={styles.sheetScrollBody} showsVerticalScrollIndicator={false}>
+              <ScrollView decelerationRate="fast" style={styles.sheetScroll} contentContainerStyle={styles.sheetScrollBody} showsVerticalScrollIndicator={false}>
                 {!!day.phraseGoal && (
                   <Text style={[styles.sheetGoal, { color: chrome.text, borderColor: chrome.border, backgroundColor: chrome.surface }]}>
                     {day.phraseGoal}

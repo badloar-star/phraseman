@@ -1,5 +1,22 @@
 import { AUTHORED_EPISODE_01_SESSIONS } from '../modules/learning-v2/content/source/authored_sessions_v1';
 
+const sessionArg = process.argv.find((arg) => arg.startsWith('--session='));
+const requestedSession = sessionArg
+  ? Number(sessionArg.slice('--session='.length))
+  : null;
+if (
+  requestedSession !== null &&
+  (!Number.isInteger(requestedSession) || requestedSession < 1 || requestedSession > 56)
+) {
+  throw new Error(`lesson1_distractor_gate_session_invalid:${String(requestedSession)}`);
+}
+const authoredSessions =
+  requestedSession === null
+    ? AUTHORED_EPISODE_01_SESSIONS
+    : AUTHORED_EPISODE_01_SESSIONS.filter(
+        (source) => source.requiredSessionOrdinal === requestedSession,
+      );
+
 const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 const TRAP_TYPES = new Set([
   'grammar', 'semantic_neighbor', 'collocation_pragmatics', 'phonetic',
@@ -25,7 +42,7 @@ function finding(path: string, code: string): void {
   if (sample.length < 30) sample.push(`${path}:${code}`);
 }
 
-for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+for (const source of authoredSessions) {
   for (const phrase of source.phrases) {
     phrase.words.forEach((word, wordIndex) => {
       const path = `S${source.requiredSessionOrdinal}/${phrase.id}/w${wordIndex + 1}`;
@@ -80,13 +97,15 @@ for (const source of AUTHORED_EPISODE_01_SESSIONS) {
   }
 }
 
-for (const requiredType of TRAP_TYPES) {
-  if (!trapTypesSeen.has(requiredType)) finding('lesson1', `trap_type_not_covered=${requiredType}`);
+if (requestedSession === null) {
+  for (const requiredType of TRAP_TYPES) {
+    if (!trapTypesSeen.has(requiredType)) finding('lesson1', `trap_type_not_covered=${requiredType}`);
+  }
 }
 
 const report = {
   ok: findingCount === 0,
-  sessions: AUTHORED_EPISODE_01_SESSIONS.length,
+  sessions: authoredSessions.length,
   distractors: total,
   localizedDistractors: localizedTotal,
   trapTypes: [...trapTypesSeen].sort(),

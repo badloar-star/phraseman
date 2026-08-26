@@ -21,6 +21,65 @@ function Say($text)  { Write-Host "  $text" -ForegroundColor Cyan }
 function Ok($text)   { Write-Host "  $text" -ForegroundColor Green }
 function Warn($text) { Write-Host "  $text" -ForegroundColor Yellow }
 
+function Set-ReactNativeDebugServerHost([string]$Serial, [int]$MetroPort) {
+  $pkg = "app.phraseman"
+  $prefsPath = "shared_prefs/app.phraseman_preferences.xml"
+  $hostValue = "127.0.0.1:$MetroPort"
+  $remoteTemp = "/data/local/tmp/phraseman-rn-devprefs-$($Serial -replace '[^A-Za-z0-9_.-]', '_').xml"
+  $localTemp = Join-Path ([IO.Path]::GetTempPath()) "phraseman-rn-devprefs-$([Guid]::NewGuid().ToString('N')).xml"
+
+  try {
+    # React Native reads debug_http_host before Expo Dev Launcher handles the
+    # deep link. Without this persisted value it falls back to 10.0.2.2 and the
+    # large Metro response is corrupted on this Windows host. Stop the app so
+    # SharedPreferences cannot overwrite the file while it is being updated.
+    & $adb -s $Serial shell am force-stop $pkg | Out-Null
+    $xmlText = (@(& $adb -s $Serial exec-out run-as $pkg cat $prefsPath 2>$null | ForEach-Object { "$_" }) -join "`n").Trim()
+    if (-not $xmlText.StartsWith("<?xml")) {
+      $xmlText = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?><map />"
+    }
+
+    $doc = New-Object System.Xml.XmlDocument
+    $doc.PreserveWhitespace = $true
+    $doc.LoadXml($xmlText)
+    $map = $doc.SelectSingleNode('/map')
+    if (-not $map) { throw "Android preferences XML has no map root" }
+
+    $node = $doc.SelectSingleNode("/map/string[@name='debug_http_host']")
+    if (-not $node) {
+      $node = $doc.CreateElement('string')
+      $node.SetAttribute('name', 'debug_http_host')
+      [void]$map.AppendChild($node)
+    }
+    $node.InnerText = $hostValue
+
+    $settings = New-Object System.Xml.XmlWriterSettings
+    $settings.Encoding = New-Object System.Text.UTF8Encoding($false)
+    $settings.Indent = $false
+    $writer = [System.Xml.XmlWriter]::Create($localTemp, $settings)
+    try { $doc.Save($writer) } finally { $writer.Dispose() }
+
+    & $adb -s $Serial push $localTemp $remoteTemp 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "adb push failed" }
+    & $adb -s $Serial shell run-as $pkg mkdir -p shared_prefs | Out-Null
+    & $adb -s $Serial shell run-as $pkg cp $remoteTemp $prefsPath | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "run-as preferences copy failed" }
+
+    $verified = (@(& $adb -s $Serial exec-out run-as $pkg cat $prefsPath 2>$null | ForEach-Object { "$_" }) -join "`n")
+    if ($verified -notmatch ('<string name="debug_http_host">' + [regex]::Escape($hostValue) + '</string>')) {
+      throw "debug_http_host verification failed"
+    }
+    Ok "$Serial — React Native dev-server закреплён на $hostValue."
+    return $true
+  } catch {
+    Warn "$Serial — не удалось закрепить React Native dev-server: $($_.Exception.Message)"
+    return $false
+  } finally {
+    Remove-Item -LiteralPath $localTemp -Force -ErrorAction SilentlyContinue
+    & $adb -s $Serial shell rm -f $remoteTemp 2>$null | Out-Null
+  }
+}
+
 function Get-ConnectedEmulatorSerials {
   $result = @()
   foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
@@ -163,6 +222,7 @@ if ($serials.Count -ge 1) {
 # Эмуляторы живут на разных портах (5554, 5556, …) и друг друга не вытесняют.
 $unique = @($serials | Select-Object -Unique)
 foreach ($emu in $unique) {
+  [void](Set-ReactNativeDebugServerHost $emu $Port)
   & $adb -s $emu reverse "tcp:$Port" "tcp:$Port" | Out-Null
   Ok "$emu — adb reverse tcp:$Port готов."
 }

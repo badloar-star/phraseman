@@ -1,5 +1,11 @@
 # Phraseman V2 Pilot Season — Implementation Plan
 
+> **Owner override 2026-08-25:** части плана про широкий runtime catalog не
+> определяют required-session authoring. Для него действуют семь mode-native
+> mechanics и exact 1:1 owner-mockup contract из
+> `docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md`. Generic task с поздно
+> назначенным `family` запрещён; все существующие session packages — `DRAFT`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 > **Execution mode:** GSD milestone + TDD, по одному вертикальному срезу. Этот документ является umbrella plan; каждая фаза перед реализацией получает отдельный `/gsd:plan-phase` с учётом актуального состояния ветки.

@@ -11,8 +11,8 @@
 // при малых x ≈ x·c (линейно), при больших — насыщается. Жёсткой стенки нет.
 export const APPLE_C = 0.55;
 
-/** Возврат к краю — критически задемпфированный spring (без overshoot, как iOS). */
-export const BOUNCE_SPRING = { dampingRatio: 1, duration: 500 } as const;
+/** Резкий возврат к краю без overshoot; 500 мс ощущались как вязкий хвост. */
+export const BOUNCE_SPRING = { dampingRatio: 1, duration: 180 } as const;
 
 /**
  * Резиновое сопротивление. x — абсолютный оверскролл (>=0), dim — высота вьюпорта.

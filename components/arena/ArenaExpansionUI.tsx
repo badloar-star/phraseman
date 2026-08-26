@@ -31,7 +31,7 @@ export function ArenaSectionTabs({
 }>) {
   const P = useTournamentPalette();
   return (
-    <ScrollView
+    <ScrollView decelerationRate="fast"
       horizontal
       showsHorizontalScrollIndicator={false}
       accessibilityRole="tablist"

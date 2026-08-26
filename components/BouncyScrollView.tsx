@@ -13,6 +13,7 @@ import Animated, {
   useAnimatedScrollHandler,
   withSpring,
   cancelAnimation,
+  ReduceMotion,
   type SharedValue,
 } from 'react-native-reanimated';
 
@@ -56,6 +57,8 @@ import Animated, {
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { edgePull, BOUNCE_SPRING } from './bounceMath';
 
+const ACCESSIBLE_BOUNCE_SPRING = { ...BOUNCE_SPRING, reduceMotion: ReduceMotion.System } as const;
+
 export interface BouncyScrollViewProps extends ScrollViewProps {
   /** Высота вьюпорта для формулы сопротивления. По умолчанию — высота экрана. */
   dimension?: number;
@@ -95,7 +98,7 @@ function updateScrollMetrics(
   const maxScroll = Math.max(contentH - layoutH, 0);
   const insideScrollableBody = maxScroll > 0 && y > 1 && y < maxScroll - 1;
   if (insideScrollableBody && stretch.value !== 0) {
-    stretch.value = withSpring(0, BOUNCE_SPRING);
+    stretch.value = 0;
   }
 }
 
@@ -142,8 +145,8 @@ function applyEdgePull(
     // резинка шла ровно за пальцем (spring здесь только добавил бы лаг).
     stretch.value = target;
   } else if (stretch.value !== 0) {
-    // Палец внутри тела / отпустил край — мягко гасим остаточную оттяжку.
-    stretch.value = withSpring(0, BOUNCE_SPRING);
+    // Палец вернулся в тело: обнуляем один раз, без перезапуска spring на каждом кадре.
+    stretch.value = 0;
   }
 
   return target;
@@ -186,15 +189,12 @@ export function useBouncy({
           // edge pull as a negative offset so chrome follows the same gesture as iOS.
           if (onScrollWorklet && edgeOffset > 0) onScrollWorklet(-edgeOffset);
         })
-        .onEnd(() => {
-          'worklet';
-          edgeAnchor.value = NaN;
-          stretch.value = withSpring(0, BOUNCE_SPRING);
-        })
         .onFinalize(() => {
           'worklet';
           edgeAnchor.value = NaN;
-          stretch.value = withSpring(0, BOUNCE_SPRING);
+          if (stretch.value !== 0) {
+            stretch.value = withSpring(0, ACCESSIBLE_BOUNCE_SPRING);
+          }
         }),
     [contentHeight, dim, edgeAnchor, isAndroid, layoutHeight, nativeGesture, scrollY, stretch],
   );
@@ -278,7 +278,7 @@ export function useBouncyStyle(stretch: SharedValue<number>) {
 }
 
 const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
-  { children, onScroll, onScrollWorklet, dimension, style, ...rest },
+  { children, onScroll, onScrollWorklet, dimension, style, decelerationRate = 'fast', ...rest },
   ref,
 ) {
   const { stretch, onBouncyScroll, onAnimatedScroll, GestureWrap } = useBouncy({ dimension, onScrollWorklet });
@@ -304,6 +304,7 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
         overScrollMode="never"
         style={style}
         {...rest}
+        decelerationRate={decelerationRate}
       >
         {children}
       </Animated.ScrollView>

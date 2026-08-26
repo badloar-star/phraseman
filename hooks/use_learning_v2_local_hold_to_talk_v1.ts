@@ -27,10 +27,19 @@ export function useLearningV2LocalHoldToTalkV1(
     enabled: boolean;
     interactionId: string;
     locale: string;
+    targetText?: string;
     onTranscript: (value: string) => void;
+    onFinalTranscript?: (value: string) => void;
   }>,
 ) {
-  const { enabled, interactionId, locale, onTranscript } = input;
+  const {
+    enabled,
+    interactionId,
+    locale,
+    targetText = "",
+    onTranscript,
+    onFinalTranscript,
+  } = input;
   const speechModule = useMemo(loadSpeechRecognitionModule, []);
   const runtimeActive = useRuntimeActive();
   const runtimeActiveRef = useRef(runtimeActive);
@@ -41,6 +50,7 @@ export function useLearningV2LocalHoldToTalkV1(
   const listenersRef = useRef<Subscription[]>([]);
   const stopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const transcriptRef = useRef("");
+  const finalTranscriptDeliveredRef = useRef(false);
   const [status, setStatus] =
     useState<LearningV2LocalHoldToTalkStatusV1>("idle");
   const statusRef = useRef(status);
@@ -62,12 +72,24 @@ export function useLearningV2LocalHoldToTalkV1(
     }
   });
   const restoreLoudPlaybackMode = recordingAudio.release;
+  const deliverFinalTranscript = useCallback(() => {
+    const value = transcriptRef.current.trim();
+    if (!value || finalTranscriptDeliveredRef.current) return;
+    finalTranscriptDeliveredRef.current = true;
+    onFinalTranscript?.(value);
+  }, [onFinalTranscript]);
   const finishCapture = useCallback(() => {
     clearStopTimer();
     cleanupListeners();
     restoreLoudPlaybackMode();
+    deliverFinalTranscript();
     if (mountedRef.current) setStatus("idle");
-  }, [cleanupListeners, clearStopTimer, restoreLoudPlaybackMode]);
+  }, [
+    cleanupListeners,
+    clearStopTimer,
+    deliverFinalTranscript,
+    restoreLoudPlaybackMode,
+  ]);
 
   const cancel = useCallback(() => {
     generationRef.current += 1;
@@ -91,6 +113,7 @@ export function useLearningV2LocalHoldToTalkV1(
     const generation = generationRef.current;
     holdPressRef.current = true;
     transcriptRef.current = "";
+    finalTranscriptDeliveredRef.current = false;
     onTranscript("");
     if (!speechModule || !isSpeechRecognitionAvailable(speechModule)) {
       setStatus("local_recognition_unavailable");
@@ -117,11 +140,6 @@ export function useLearningV2LocalHoldToTalkV1(
       localRecognition = false;
     }
     if (!mountedRef.current || generation !== generationRef.current) return;
-    if (!localRecognition) {
-      holdPressRef.current = false;
-      setStatus("local_recognition_unavailable");
-      return;
-    }
     cleanupListeners();
     const current = () =>
       mountedRef.current &&
@@ -168,6 +186,7 @@ export function useLearningV2LocalHoldToTalkV1(
       clearStopTimer();
       cleanupListeners();
       restoreLoudPlaybackMode();
+      deliverFinalTranscript();
       setStatus(transcriptRef.current ? "idle" : "error");
     });
     const noMatchSub = speechModule.addListener("nomatch", () => {
@@ -175,6 +194,7 @@ export function useLearningV2LocalHoldToTalkV1(
       clearStopTimer();
       cleanupListeners();
       restoreLoudPlaybackMode();
+      deliverFinalTranscript();
       setStatus(transcriptRef.current ? "idle" : "error");
     });
     listenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub];
@@ -190,15 +210,14 @@ export function useLearningV2LocalHoldToTalkV1(
       speechModule.start({
         ...buildSpeakingStartOptions({
           lang: locale,
-          targetText: "",
+          targetText,
           interimResults: true,
           volumeMeter: false,
-          onDevice: true,
+          onDevice: localRecognition,
           persistRecording: false,
           holdToTalk: true,
-          freeSpeech: true,
+          freeSpeech: targetText.trim().length === 0,
         }),
-        requiresOnDeviceRecognition: true,
       });
     } catch {
       cleanupListeners();
@@ -210,12 +229,14 @@ export function useLearningV2LocalHoldToTalkV1(
     cleanupListeners,
     clearStopTimer,
     finishCapture,
+    deliverFinalTranscript,
     enabled,
     locale,
     onTranscript,
     recordingAudio,
     restoreLoudPlaybackMode,
     speechModule,
+    targetText,
   ]);
 
   const stop = useCallback(() => {

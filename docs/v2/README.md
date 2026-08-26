@@ -21,6 +21,13 @@
 содержат мета-упоминаний занятий и имеют восемь самостоятельно написанных
 locale-native версий.
 
+**Нормативная оркестрация 1 792 сессий:**
+[`LEARNING_V2_1792_SESSION_PEDAGOGICAL_ORCHESTRATION.ru.md`](./LEARNING_V2_1792_SESSION_PEDAGOGICAL_ORCHESTRATION.ru.md).
+Она фиксирует выбранный владельцем подход «жёсткий учебный каркас +
+ограниченная адаптация», связь modes с учебными операциями, ритм 7 × 8,
+support fading, delayed review, production waves и gates против шаблонной
+карусели упражнений.
+
 ## Короткое решение
 
 > **Граница авторства контента:** весь реальный учебный контент `E1`–`E32`
@@ -145,26 +152,21 @@ flowchart LR
 
 ## Библиотека режимов
 
-В пилот входит 18 пользовательских учебных поверхностей: 17 runtime activity families и отдельная checkpoint/assessment surface. UI строится на одном общем `ActivityScaffold` и шести переиспользуемых оболочках. Это сохраняет разнообразие обучения без 18 независимых реализаций и не превращает checkpoint в восемнадцатую runtime family.
+Прямое решение владельца от 2026-08-25: required Learning V2 sessions
+отрабатывают все слова и фразы только через шесть активных режимов: Phrase Builder,
+Listen & Choose, Listen & Build / Dictation, Context Gap /
+Grammar, Speed Match и Scripted Repeat & Compare. Checkpoint использует эти же
+механики как assessment choreography, а не восьмую family.
+Sound Contrast снят с active authoring решением владельца от той же даты и
+сохраняется только как legacy-совместимость для старых черновиков.
 
-1. Visual Discovery — смысл по сцене/картинке.
-2. Listen & Choose — распознавание фразы на слух.
-3. Sound Contrast — минимальные пары и фонемное различение.
-4. Sound/Syllable Lab — звук, слог, ударение, артикуляционная подсказка.
-5. Scripted Repeat & Compare — прослушать, записать, сравнить, повторить.
-6. Phrase Builder — собрать фразу из блоков.
-7. Listen & Build / Dictation — восстановить услышанное.
-8. Context Gap / Grammar — выбрать форму в живой ситуации.
-9. Quick Spoken Response — ответить голосом на короткую реплику.
-10. Shadowing / Prosody — повторить за моделью с ритмом и паузами.
-11. Describe the Scene — описать изображение с опорами.
-12. Microstory / Radio — короткая история с проверкой понимания.
-13. Branching Scene / Adventure — выполнить цель в интерактивной сцене.
-14. Scripted Dialogue / Milestone — разыграть подготовленный разговор.
-15. AI Speaking Club Mission — свободнее решить конкретную коммуникативную задачу.
-16. Mistakes / Personalized Review — вернуться к реальным слабым местам.
-17. Speed Match — необязательная быстрая автоматизация без голоса.
-18. Checkpoint — перенос навыка на новые реплики и ситуации.
+Контент пишется mode-first и несёт family-native payload; UI, состояния,
+gestures, audio и motion каждого режима повторяют owner HTML 1:1. Полный
+нормативный контракт:
+[`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md).
+Исторический каталог из 17 families остаётся reference для optional/platform
+поверхностей и не может попасть в required-session authoring без нового
+решения владельца.
 
 ## Порог готовности пилота
 
@@ -190,6 +192,7 @@ flowchart LR
 | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [GENERATOR_DELIVERY_CONTRACT.md](./GENERATOR_DELIVERY_CONTRACT.md)                                   | Обязательный порядок работы и единственный полный Definition of Done генератора: 5–10 экспертных ролей, правильная админка, языки, аудио, UI, тесты и запрет преждевременной готовности |
 | [QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md](./QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md)       | Единый owner-supplied эталон качества generated curriculum: objective/content/practice/evidence, CEFR, язык, progression, task/audio/memory/assessment и actionable findings            |
+| [MODE_NATIVE_AUTHORING_CONTRACT.ru.md](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md)                       | Семь обязательных режимов, family-native payload, exact 1:1 UI/motion parity, gates и статус полной переработки существующих сессий                                                    |
 | [HANDOVER.md](./HANDOVER.md)                                                                         | Живой статус реализации, точный следующий шаг, ветки, проверки, blockers и обязательный протокол продолжения между сессиями                                                             |
 | [00-research-and-skill-audit.md](./00-research-and-skill-audit.md)                                   | Какие skills проверены, установлены, отклонены и как они повлияли на решения                                                                                                            |
 | [01-current-state-audit.md](./01-current-state-audit.md)                                             | Что уже есть в приложении и где реальные ограничения                                                                                                                                    |

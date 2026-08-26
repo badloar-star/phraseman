@@ -186,7 +186,7 @@ export default function PaywallC() {
         <View style={S.wrap}>
           <ScrollView
             showsVerticalScrollIndicator={false}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[S.scrollContent, isOnboarding && S.scrollOnboardingStickyPad]}
             onLayout={isOnboarding ? sticky.onViewportLayout : undefined}
             onScroll={(e) => {

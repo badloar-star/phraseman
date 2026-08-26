@@ -128,8 +128,8 @@ export default function GlobalFriendGiftHost() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const from = first?.fromName || triLang(lang, { ru: 'друга', uk: 'друга', es: 'un amigo', 'pt-BR': 'um amigo', vi: 'một người bạn', id: 'teman', tr: 'bir arkadaş', pl: 'znajomego' });
-  const title = triLang(lang, { ru: `Подарок от ${from}`, uk: `Подарунок від ${from}`, es: `Regalo de ${from}`, 'pt-BR': `Presente de ${from}`, vi: `Quà từ ${from}`, id: `Hadiah dari ${from}`, tr: `${from} adlı arkadaşından hediye`, pl: `Prezent od ${from}` });
+  const from = first?.fromName || triLang(lang, { ru: 'друга', uk: 'друга', en: 'a friend', es: 'un amigo', 'pt-BR': 'um amigo', vi: 'một người bạn', id: 'teman', tr: 'bir arkadaş', pl: 'znajomego' });
+  const title = triLang(lang, { ru: `Подарок от ${from}`, uk: `Подарунок від ${from}`, en: `Gift from ${from}`, es: `Regalo de ${from}`, 'pt-BR': `Presente de ${from}`, vi: `Quà từ ${from}`, id: `Hadiah dari ${from}`, tr: `${from} adlı arkadaşından hediye`, pl: `Prezent od ${from}` });
   const claim = triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' });
 
   return (

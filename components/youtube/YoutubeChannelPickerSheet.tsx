@@ -44,7 +44,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
     return (
       <HybridSheetShell visible={visible} onClose={onClose} closeLabel={closeLabel} testID="youtube-channel-picker-sheet">
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
           {channels.map((channel) => {
             const checked = preference.mode === 'manual' && preference.channelId === channel.id;
             return (
@@ -72,7 +72,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
       <View style={[styles.sheet, { backgroundColor: t.bgSurface }]}>
         <View style={styles.handle} />
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
           {channels.map((channel) => {
             const checked = preference.mode === 'manual' && preference.channelId === channel.id;
             return (

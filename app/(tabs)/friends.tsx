@@ -1526,6 +1526,23 @@ export default function FriendsTabScreen() {
           messagePl: 'Nie udało się otworzyć skrzyni',
         });
       }
+    } catch (error) {
+      // зачем (аудит 2026-08-26): раньше здесь не было catch вовсе — при обрыве сети
+      // сундук не открывался молча. Отказ сервера сообщался, а исключение — нет.
+      void import('../debug-logger')
+        .then(({ DebugLogger }) => DebugLogger.error('friends.tsx:handleClaimWeeklyChest', error, 'warning'))
+        .catch(() => {});
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Не удалось открыть сундук. Проверь связь и попробуй ещё раз.',
+        messageUk: 'Не вдалося відкрити скриню. Перевір зв’язок і спробуй ще раз.',
+        messageEs: 'No se pudo abrir el cofre. Revisa la conexión e inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível abrir o baú. Verifique a conexão e tente de novo.',
+        messageVi: 'Không mở được rương. Hãy kiểm tra kết nối và thử lại.',
+        messageId: 'Gagal membuka peti. Periksa koneksi dan coba lagi.',
+        messageTr: 'Sandık açılamadı. Bağlantını kontrol et ve tekrar dene.',
+        messagePl: 'Nie udało się otworzyć skrzyni. Sprawdź połączenie i spróbuj ponownie.',
+      });
     } finally {
       setChestClaimBusy(false);
     }

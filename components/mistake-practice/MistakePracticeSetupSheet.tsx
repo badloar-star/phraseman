@@ -34,6 +34,11 @@ export default function MistakePracticeSetupSheet({
     ru: { all: 'Все', closeSheet: 'Закрыть настройку ошибок', title: 'Ошибки', close: 'Закрыть', length: 'Длина сессии', start: 'Начать' },
     uk: { all: 'Усі', closeSheet: 'Закрити налаштування помилок', title: 'Помилки', close: 'Закрити', length: 'Тривалість сесії', start: 'Почати' },
     es: { all: 'Todas', closeSheet: 'Cerrar la configuración de errores', title: 'Errores', close: 'Cerrar', length: 'Duración de la sesión', start: 'Empezar' },
+    'pt-BR': { all: 'Todos', closeSheet: 'Fechar configuração de erros', title: 'Erros', close: 'Fechar', length: 'Duração da sessão', start: 'Começar' },
+    vi: { all: 'Tất cả', closeSheet: 'Đóng cài đặt lỗi sai', title: 'Lỗi sai', close: 'Đóng', length: 'Độ dài buổi học', start: 'Bắt đầu' },
+    id: { all: 'Semua', closeSheet: 'Tutup pengaturan kesalahan', title: 'Kesalahan', close: 'Tutup', length: 'Durasi sesi', start: 'Mulai' },
+    tr: { all: 'Tümü', closeSheet: 'Hata ayarlarını kapat', title: 'Hatalar', close: 'Kapat', length: 'Oturum uzunluğu', start: 'Başla' },
+    pl: { all: 'Wszystkie', closeSheet: 'Zamknij ustawienia błędów', title: 'Błędy', close: 'Zamknij', length: 'Długość sesji', start: 'Zacznij' },
   }), [lang]);
   const [selected, setSelected] = useState<MistakePracticeLength>('5');
   const options = useMemo(() => mistakePracticeLengthOptions(readyCount), [readyCount]);

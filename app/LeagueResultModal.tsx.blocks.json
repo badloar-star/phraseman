@@ -1,0 +1,142 @@
+[
+ {
+  "idx": 0,
+  "has_en": false,
+  "text": "{\n  ru: 'Итоги недели',\n  uk: 'Підсумки тижня',\n  es: 'Resultados de la semana',\n  \"pt-BR\": 'Resultados da semana',\n  vi: 'Kết quả tuần',\n  id: 'Hasil minggu ini',\n  tr: 'Haftanın sonuçları',\n  pl: 'Wyniki tygodnia',\n}"
+ },
+ {
+  "idx": 1,
+  "has_en": false,
+  "text": "{\n  ru: `Повышен до ${newLeague.nameRU}`,\n  uk: `Підвищено до ${newLeague.nameUK}`,\n  es: `Has ascendido a ${newLeague.nameES}`,\n  \"pt-BR\": `Promovido para ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,\n  vi: `Đã thăng lên ${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)}`,\n  id: `Naik ke ${clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang)}`,\n  tr: `${clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang)} ligine yükseldin`,\n  pl: `Awans do ${clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang)}`,\n}"
+ },
+ {
+  "idx": 2,
+  "has_en": false,
+  "text": "{\n  ru: `Понижен до ${newLeague.nameRU}`,\n  uk: `Понижено до ${newLeague.nameUK}`,\n  es: `Has descendido a ${newLeague.nameES}`,\n  \"pt-BR\": `Rebaixado para ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,\n  vi: `Đã xuống ${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)}`,\n  id: `Turun ke ${clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang)}`,\n  tr: `${clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang)} ligine düştün`,\n  pl: `Spadek do ${clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang)}`,\n}"
+ },
+ {
+  "idx": 3,
+  "has_en": false,
+  "text": "{\n  ru: `Остаёшься в лиге ${newLeague.nameRU}`,\n  uk: `Залишаєшся в лізі ${newLeague.nameUK}`,\n  es: `Sigues en ${newLeague.nameES}`,\n  \"pt-BR\": `Você continua na ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,\n  vi: `Bạn ở lại ${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)}`,\n  id: `Kamu tetap di ${clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang)}`,\n  tr: `${clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang)} liginde kalıyorsun`,\n  pl: `Zostajesz w ${clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang)}`,\n}"
+ },
+ {
+  "idx": 4,
+  "has_en": false,
+  "text": "{\n  ru: '🚀 Вперёд!',\n  uk: '🚀 Уперед!',\n  es: '🚀 ¡Adelante!',\n  \"pt-BR\": '🚀 Vamos!',\n  vi: '🚀 Tiến lên!',\n  id: '🚀 Maju!',\n  tr: '🚀 İleri!',\n  pl: '🚀 Naprzód!',\n}"
+ },
+ {
+  "idx": 5,
+  "has_en": false,
+  "text": "{\n  ru: 'Попробую ещё раз',\n  uk: 'Спробую ще раз',\n  es: 'Lo intentaré de nuevo',\n  \"pt-BR\": 'Vou tentar de novo',\n  vi: 'Mình sẽ thử lại',\n  id: 'Coba lagi',\n  tr: 'Tekrar deneyeceğim',\n  pl: 'Spróbuję jeszcze raz',\n}"
+ },
+ {
+  "idx": 6,
+  "has_en": false,
+  "text": "{\n  ru: 'Продолжить',\n  uk: 'Продовжити',\n  es: 'Continuar',\n  \"pt-BR\": 'Continuar',\n  vi: 'Tiếp tục',\n  id: 'Lanjutkan',\n  tr: 'Devam et',\n  pl: 'Kontynuuj',\n}"
+ },
+ {
+  "idx": 7,
+  "has_en": false,
+  "text": "{\n  ru: 'Новая лига — новые вызовы и бонусы!',\n  uk: 'Нова ліга — нові виклики й бонуси!',\n  es: '¡Nueva liga: nuevos retos y bonificaciones!',\n  \"pt-BR\": 'Nova liga: novos desafios e bônus!',\n  vi: 'Giải đấu mới: thử thách và thưởng mới!',\n  id: 'Liga baru: tantangan dan bonus baru!',\n  tr: 'Yeni lig: yeni meydan okumalar ve bonuslar!',\n  pl: 'Nowa liga: nowe wyzwania i bonusy!',\n}"
+ },
+ {
+  "idx": 8,
+  "has_en": false,
+  "text": "{\n  ru: 'Не сдавайся — быстро вернёшься выше.',\n  uk: 'Не здавайся — швидко повернешся вище.',\n  es: 'No te rindas: pronto volverás a subir.',\n  \"pt-BR\": 'Não desista: logo você sobe de novo.',\n  vi: 'Đừng bỏ cuộc: bạn sẽ sớm leo lên lại.',\n  id: 'Jangan menyerah: kamu akan segera naik lagi.',\n  tr: 'Vazgeçme: yakında tekrar yükselirsin.',\n  pl: 'Nie poddawaj się: szybko wrócisz wyżej.',\n}"
+ },
+ {
+  "idx": 9,
+  "has_en": false,
+  "text": "{\n  ru: 'Хороший результат, держи темп!',\n  uk: 'Гарний результат, тримай темп!',\n  es: 'Buen resultado, ¡mantén el ritmo!',\n  \"pt-BR\": 'Bom resultado, mantenha o ritmo!',\n  vi: 'Kết quả tốt, giữ nhịp nhé!',\n  id: 'Hasil bagus, pertahankan ritmenya!',\n  tr: 'İyi sonuç, tempoyu koru!',\n  pl: 'Dobry wynik, trzymaj tempo!',\n}"
+ },
+ {
+  "idx": 10,
+  "has_en": false,
+  "text": "{\n  ru: 'Закрыть',\n  uk: 'Закрити',\n  es: 'Cerrar',\n  \"pt-BR\": 'Fechar',\n  vi: 'Đóng',\n  id: 'Tutup',\n  tr: 'Kapat',\n  pl: 'Zamknij',\n}"
+ },
+ {
+  "idx": 11,
+  "has_en": false,
+  "text": "{\n  ru: 'Закрыть',\n  uk: 'Закрити',\n  es: 'Cerrar',\n  \"pt-BR\": 'Fechar',\n  vi: 'Đóng',\n  id: 'Tutup',\n  tr: 'Kapat',\n  pl: 'Zamknij',\n}"
+ },
+ {
+  "idx": 12,
+  "has_en": false,
+  "text": "{\n  ru: prevLeague.nameRU,\n  uk: prevLeague.nameUK,\n  es: prevLeague.nameES,\n  \"pt-BR\": clubNamePlanned(prevLeague.id, 'pt-BR' as PlannedInterfaceLang),\n  vi: clubNamePlanned(prevLeague.id, 'vi' as PlannedInterfaceLang),\n  id: clubNamePlanned(prevLeague.id, 'id' as PlannedInterfaceLang),\n  tr: clubNamePlanned(prevLeague.id, 'tr' as PlannedInterfaceLang),\n  pl: clubNamePlanned(prevLeague.id, 'pl' as PlannedInterfaceLang),\n}"
+ },
+ {
+  "idx": 13,
+  "has_en": false,
+  "text": "{\n  ru: newLeague.nameRU,\n  uk: newLeague.nameUK,\n  es: newLeague.nameES,\n  \"pt-BR\": clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),\n  vi: clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang),\n  id: clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang),\n  tr: clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang),\n  pl: clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang),\n}"
+ },
+ {
+  "idx": 14,
+  "has_en": false,
+  "text": "{\n  ru: 'Твоё место',\n  uk: 'Твоє місце',\n  es: 'Tu puesto',\n  \"pt-BR\": 'Sua posição',\n  vi: 'Vị trí của bạn',\n  id: 'Posisimu',\n  tr: 'Sıralaman',\n  pl: 'Twoje miejsce',\n}"
+ },
+ {
+  "idx": 15,
+  "has_en": false,
+  "text": "{\n  ru: `Повышение: ${xpLabel} XP`,\n  uk: `Підвищення: ${xpLabel} XP`,\n  es: `Ascenso: ${xpLabel} XP`,\n  \"pt-BR\": `Promoção: ${xpLabel} XP`,\n  vi: `Thăng hạng: ${xpLabel} XP`,\n  id: `Naik: ${xpLabel} XP`,\n  tr: `Yükselme: ${xpLabel} XP`,\n  pl: `Awans: ${xpLabel} XP`,\n}"
+ },
+ {
+  "idx": 16,
+  "has_en": false,
+  "text": "{\n  ru: `Повышение: топ-${zoneSize}`,\n  uk: `Підвищення: топ-${zoneSize}`,\n  es: `Ascenso: top ${zoneSize}`,\n  \"pt-BR\": `Promoção: top ${zoneSize}`,\n  vi: `Thăng hạng: top ${zoneSize}`,\n  id: `Naik: top ${zoneSize}`,\n  tr: `Yükselme: ilk ${zoneSize}`,\n  pl: `Awans: top ${zoneSize}`,\n}"
+ },
+ {
+  "idx": 17,
+  "has_en": false,
+  "text": "{\n  ru: `Зона понижения: ${relegationStartRank}-${displayTotalInGroup}`,\n  uk: `Зона пониження: ${relegationStartRank}-${displayTotalInGroup}`,\n  es: `Descenso: ${relegationStartRank}-${displayTotalInGroup}`,\n  \"pt-BR\": `Rebaixamento: ${relegationStartRank}-${displayTotalInGroup}`,\n  vi: `Xuống hạng: ${relegationStartRank}-${displayTotalInGroup}`,\n  id: `Turun: ${relegationStartRank}-${displayTotalInGroup}`,\n  tr: `Düşme: ${relegationStartRank}-${displayTotalInGroup}`,\n  pl: `Spadek: ${relegationStartRank}-${displayTotalInGroup}`,\n}"
+ },
+ {
+  "idx": 18,
+  "has_en": false,
+  "text": "{\n  ru: `Для повышения: ${xpLabel} XP`,\n  uk: `Для підвищення: ${xpLabel} XP`,\n  es: `Para ascender: ${xpLabel} XP`,\n  \"pt-BR\": `Para subir: ${xpLabel} XP`,\n  vi: `Để thăng hạng: ${xpLabel} XP`,\n  id: `Untuk naik: ${xpLabel} XP`,\n  tr: `Yükselmek için: ${xpLabel} XP`,\n  pl: `Aby awansować: ${xpLabel} XP`,\n}"
+ },
+ {
+  "idx": 19,
+  "has_en": false,
+  "text": "{\n  ru: `Зона повышения: топ-${zoneSize}`,\n  uk: `Зона підвищення: топ-${zoneSize}`,\n  es: `Zona de ascenso: top ${zoneSize}`,\n  \"pt-BR\": `Zona de promoção: top ${zoneSize}`,\n  vi: `Vùng thăng hạng: top ${zoneSize}`,\n  id: `Zona naik: top ${zoneSize}`,\n  tr: `Yükselme bölgesi: ilk ${zoneSize}`,\n  pl: `Strefa awansu: top ${zoneSize}`,\n}"
+ },
+ {
+  "idx": 20,
+  "has_en": false,
+  "text": "{\n  ru: 'Группа недели',\n  uk: 'Група тижня',\n  es: 'Grupo de la semana',\n  \"pt-BR\": 'Grupo da semana',\n  vi: 'Nhóm tuần này',\n  id: 'Grup minggu ini',\n  tr: 'Haftanın grubu',\n  pl: 'Grupa tygodnia',\n}"
+ },
+ {
+  "idx": 21,
+  "has_en": false,
+  "text": "{\n  ru: 'чел.',\n  uk: 'осіб',\n  es: 'pers.',\n  \"pt-BR\": 'pess.',\n  vi: 'người',\n  id: 'org',\n  tr: 'kişi',\n  pl: 'os.',\n}"
+ },
+ {
+  "idx": 22,
+  "has_en": false,
+  "text": "{\n  ru: 'участников',\n  uk: 'учасників',\n  es: 'participantes',\n  \"pt-BR\": 'participantes',\n  vi: 'người tham gia',\n  id: 'peserta',\n  tr: 'katılımcı',\n  pl: 'uczestników',\n}"
+ },
+ {
+  "idx": 23,
+  "has_en": false,
+  "text": "{\n  ru: newLeague.tagRU,\n  uk: newLeague.tagUK,\n  es: newLeague.tagES,\n  \"pt-BR\": clubDescPlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),\n  vi: clubDescPlanned(newLeague.id, 'vi' as PlannedInterfaceLang),\n  id: clubDescPlanned(newLeague.id, 'id' as PlannedInterfaceLang),\n  tr: clubDescPlanned(newLeague.id, 'tr' as PlannedInterfaceLang),\n  pl: clubDescPlanned(newLeague.id, 'pl' as PlannedInterfaceLang),\n}"
+ },
+ {
+  "idx": 24,
+  "has_en": false,
+  "text": "{\n  ru: 'Бонус активирован — новая лига!',\n  uk: 'Бонус активовано — нової ліги!',\n  es: '¡Bonificación activada: nueva liga!',\n  \"pt-BR\": 'Bônus ativado: nova liga!',\n  vi: 'Đã kích hoạt thưởng: giải đấu mới!',\n  id: 'Bonus aktif: liga baru!',\n  tr: 'Bonus aktif: yeni lig!',\n  pl: 'Bonus aktywowany: nowa liga!',\n}"
+ },
+ {
+  "idx": 25,
+  "has_en": false,
+  "text": "{\n  ru: 'Бонус лиги действует',\n  uk: 'Бонус ліги діє',\n  es: 'La bonificación de la liga está activa',\n  \"pt-BR\": 'O bônus da liga está ativo',\n  vi: 'Thưởng giải đấu đang hoạt động',\n  id: 'Bonus liga aktif',\n  tr: 'Lig bonusu aktif',\n  pl: 'Bonus ligi jest aktywny',\n}"
+ },
+ {
+  "idx": 26,
+  "has_en": false,
+  "text": "{\n  ru: ' (ты)',\n  uk: ' (ти)',\n  es: ' (tú)',\n  \"pt-BR\": ' (você)',\n  vi: ' (bạn)',\n  id: ' (kamu)',\n  tr: ' (sen)',\n  pl: ' (ty)',\n}"
+ },
+ {
+  "idx": 27,
+  "has_en": false,
+  "text": "{\n  ru: ' (ты)',\n  uk: ' (ти)',\n  es: ' (tú)',\n  \"pt-BR\": ' (você)',\n  vi: ' (bạn)',\n  id: ' (kamu)',\n  tr: ' (sen)',\n  pl: ' (ty)',\n}"
+ }
+]

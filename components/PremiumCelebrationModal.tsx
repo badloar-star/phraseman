@@ -35,6 +35,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
 import Reanimated, {
   Easing as REasing,
@@ -55,14 +56,15 @@ import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
-import { soundDirector } from '../modules/audio/sound_director';
+import { startCelebrationBackground, stopCelebrationBackground, letCelebrationBackgroundFinish } from '../modules/audio/celebrationBackgroundPlayer';
+import { playCelebrationSceneSound, stopAllCelebrationSceneSounds } from '../modules/audio/celebrationScenePlayer';
 import CelebrationSceneView from './premium_celebration/CelebrationSceneViews';
 import {
   CELEBRATION_PALETTES,
   type CelebrationVariant,
 } from './premium_celebration/celebrationContent';
 import {
-  CELEBRATION_SCENES,
+  ALL_SCENES,
   SCENE_STEP_MS,
   scenesForVariant,
   sceneText,
@@ -86,6 +88,7 @@ const ACT3_CTA_MS = 440;         // CTA в финале
 type Act = 'promo' | 'act1' | 'act2' | 'act3';
 
 function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoCode = null }: PremiumCelebrationModalProps) {
+  const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { f } = useTheme();
@@ -114,6 +117,9 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
     timers.current.forEach(clearTimeout);
     timers.current = [];
   }, []);
+  // зачем: различить штатное закрытие (CTA после досмотра/пропуска — фон
+  // должен доиграть) от резкого ухода с экрана (фон гасится fade-out'ом).
+  const letBgFinishRef = useRef(false);
   const later = useCallback((fn: () => void, ms: number) => {
     timers.current.push(setTimeout(fn, ms));
   }, []);
@@ -149,14 +155,16 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
   }, [flash, seam, heroIn, heroDock, heroBack, strikeX, strikeY, ring1, ring2,
     titleT, beat, finT, ctaT, stampT, sceneT]);
 
-  const soundKey = useCallback((name: string) => `pm.celebration.${name}`, []);
-
-  const playSound = useCallback((name: string, dedupe: string) => {
-    soundDirector.request(soundKey(name) as never, {
-      scope: 'premium-celebration',
-      dedupeKey: `${variant}:${dedupe}`,
-    });
-  }, [soundKey, variant]);
+  // зачем (владелец 2026-08-25): «звуки не должны обрезаться» — soundDirector
+  // держит ОДИН общий канал на всё приложение и обрывает предыдущий звук при
+  // каждом новом (ExpoSfxBackend.play() → this.stop() первой строкой,
+  // см. modules/audio/expo_sfx_backend.ts). Шаг между сценами (780мс) короче
+  // длины самих звуков (900-1200мс) — каждый следующий звук резал предыдущий
+  // на середине. playCelebrationSceneSound даёт каждому звуку свой независимый
+  // плеер, который доигрывает полностью (modules/audio/celebrationScenePlayer.ts).
+  const playSound = useCallback((name: string) => {
+    playCelebrationSceneSound(`pm.celebration.${name}` as never);
+  }, []);
 
   /** Мгновенно показать финальный кадр всей последовательности. */
   const jumpToEnd = useCallback(() => {
@@ -181,21 +189,37 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
       setAct(hasPromo ? 'promo' : 'act1');
       setSceneIndex(0);
       setSkipped(false);
+      if (letBgFinishRef.current) {
+        letBgFinishRef.current = false;
+        letCelebrationBackgroundFinish();
+      } else {
+        stopCelebrationBackground();
+        stopAllCelebrationSceneSounds();
+      }
       return undefined;
     }
 
     hapticSuccess();
+    // зачем (владелец 2026-08-25): тёплая подложка на весь показ, отдельно от
+    // точечных ударов сцен — см. modules/audio/celebrationBackgroundPlayer.ts.
+    startCelebrationBackground();
 
     // Reduce Motion / слабое устройство: один финальный кадр, без прогона.
     if (reduceMotion) {
       jumpToEnd();
-      playSound('finale_chord', 'finale');
-      return () => clearTimers();
+      playSound('finale_chord');
+      return () => {
+        clearTimers();
+        if (!letBgFinishRef.current) {
+          stopCelebrationBackground();
+          stopAllCelebrationSceneSounds();
+        }
+      };
     }
 
     const runAct1 = () => {
       setAct('act1');
-      playSound('open_rift', 'open');
+      playSound('open_rift');
       flash.value = withSequence(
         withTiming(1, { duration: 39, easing: REasing.out(REasing.quad) }),
         withTiming(0, { duration: 261, easing: REasing.in(REasing.quad) }),
@@ -233,7 +257,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
         sceneT.value = 0;
         sceneT.value = withTiming(1, { duration: 220, easing: REasing.bezier(0.23, 1, 0.32, 1) });
         hapticTap();
-        playSound(scenes[i].sound, `scene_${scenes[i].id}`);
+        playSound(scenes[i].sound);
         later(() => step(i + 1), SCENE_STEP_MS);
       };
       step(0);
@@ -241,7 +265,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
     const runAct3 = () => {
       setAct('act3');
-      playSound('finale_chord', 'finale');
+      playSound('finale_chord');
       heroBack.value = withTiming(1, { duration: 620, easing: REasing.bezier(0.77, 0, 0.175, 1) });
       finT.value = withDelay(ACT3_NUMBER_MS, withTiming(1, { duration: 480, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
       ctaT.value = withDelay(ACT3_CTA_MS, withSpring(1, { mass: 0.6, damping: 12, stiffness: 120 }));
@@ -250,7 +274,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
     if (hasPromo) {
       setAct('promo');
-      playSound('promo_stamp', 'promo');
+      playSound('promo_stamp');
       stampT.value = withSequence(
         withTiming(1, { duration: 470, easing: REasing.bezier(0.3, 1.5, 0.4, 1) }),
         withDelay(60, withTiming(2, { duration: 320, easing: REasing.in(REasing.quad) })),
@@ -260,11 +284,39 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
       runAct1();
     }
 
-    return () => { clearTimers(); cancelAll(); };
+    // Фон гасится централизованно в ветке !visible выше (уважает letBgFinishRef);
+    // здесь резкий stop только при unmount/смене variant без прохода через ту ветку.
+    return () => {
+      clearTimers();
+      cancelAll();
+      if (!letBgFinishRef.current) {
+        stopCelebrationBackground();
+        stopAllCelebrationSceneSounds();
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, variant, reduceMotion, hasPromo]);
 
-  const handleClose = useCallback(() => { onClose(); }, [onClose]);
+  const handleClose = useCallback(() => {
+    // зачем: закрытие тапом/CTA — решение пользователя, а не авария; фон
+    // догорает сам вместо резкого fade-out (владелец 2026-08-25).
+    letBgFinishRef.current = true;
+    letCelebrationBackgroundFinish();
+    onClose();
+  }, [onClose]);
+
+  const isMax = variant === 'max';
+
+  // зачем (владелец 2026-08-25): кнопка «Позвонить MAX» раньше только закрывала
+  // окно, хотя текст обещал звонок. /max_call_prestart — тот же экран, на
+  // который ведёт кнопка звонка с главной (см. app/(tabs)/home.tsx), сам
+  // разбирается с mint/лимитами по умолчанию (format не передаём — экран
+  // уходит в дефолтную ветку 'companion').
+  const handleCtaPress = useCallback(() => {
+    hapticSuccess();
+    handleClose();
+    if (isMax) router.push('/max_call_prestart' as never);
+  }, [handleClose, isMax, router]);
 
   /** Тап: первый — досмотреть всё сразу, второй — закрыть. */
   const handleTap = useCallback(() => {
@@ -337,33 +389,36 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
   const scene = scenes[Math.min(sceneIndex, scenes.length - 1)];
   const ctaBottom = 28 + bottomInset;
-  const isMax = variant === 'max';
   const isPro = variant === 'pro';
 
   const titleText = isMax
-    ? triLang(lang, { ru: 'MAX активирован', uk: 'MAX активовано', es: 'MAX activado', 'pt-BR': 'MAX ativado', vi: 'Đã kích hoạt MAX', id: 'MAX aktif', tr: 'MAX etkinleştirildi', pl: 'MAX aktywowany' })
+    ? triLang(lang, { ru: 'MAX активирован', uk: 'MAX активовано', en: 'MAX activated', es: 'MAX activado', 'pt-BR': 'MAX ativado', vi: 'Đã kích hoạt MAX', id: 'MAX aktif', tr: 'MAX etkinleştirildi', pl: 'MAX aktywowany' })
     : isPro
-      ? triLang(lang, { ru: 'Pro активирован', uk: 'Pro активовано', es: 'Pro activado', 'pt-BR': 'Pro ativado', vi: 'Đã kích hoạt Pro', id: 'Pro aktif', tr: 'Pro etkinleştirildi', pl: 'Pro aktywowany' })
+      ? triLang(lang, { ru: 'Pro активирован', uk: 'Pro активовано', en: 'Pro activated', es: 'Pro activado', 'pt-BR': 'Pro ativado', vi: 'Đã kích hoạt Pro', id: 'Pro aktif', tr: 'Pro etkinleştirildi', pl: 'Pro aktywowany' })
       : hasPromo
-        ? triLang(lang, { ru: 'Промокод сработал', uk: 'Промокод спрацював', es: 'Código activado', 'pt-BR': 'Código ativado', vi: 'Mã đã kích hoạt', id: 'Kode aktif', tr: 'Kod etkinleşti', pl: 'Kod zadziałał' })
-        : triLang(lang, { ru: 'Plus активирован', uk: 'Plus активовано', es: 'Plus activado', 'pt-BR': 'Plus ativado', vi: 'Đã kích hoạt Plus', id: 'Plus aktif', tr: 'Plus etkinleştirildi', pl: 'Plus aktywowany' });
+        ? triLang(lang, { ru: 'Промокод сработал', uk: 'Промокод спрацював', en: 'Promo code applied', es: 'Código activado', 'pt-BR': 'Código ativado', vi: 'Mã đã kích hoạt', id: 'Kode aktif', tr: 'Kod etkinleşti', pl: 'Kod zadziałał' })
+        : triLang(lang, { ru: 'Plus активирован', uk: 'Plus активовано', en: 'Plus activated', es: 'Plus activado', 'pt-BR': 'Plus ativado', vi: 'Đã kích hoạt Plus', id: 'Plus aktif', tr: 'Plus etkinleştirildi', pl: 'Plus aktywowany' });
 
   const subtitleText = isMax
-    ? triLang(lang, { ru: 'Всё из Plus — и живой разговор голосом', uk: 'Усе з Plus — і жива розмова голосом', es: 'Todo de Plus y conversación en vivo', 'pt-BR': 'Tudo do Plus e conversa ao vivo', vi: 'Mọi thứ của Plus và trò chuyện trực tiếp', id: 'Semua dari Plus dan percakapan langsung', tr: "Plus'ın hepsi ve canlı sohbet", pl: 'Wszystko z Plus i żywa rozmowa' })
+    ? triLang(lang, { ru: 'Всё из Plus — и живой разговор голосом', uk: 'Усе з Plus — і жива розмова голосом', en: 'Everything in Plus — plus live voice conversation', es: 'Todo de Plus y conversación en vivo', 'pt-BR': 'Tudo do Plus e conversa ao vivo', vi: 'Mọi thứ của Plus và trò chuyện trực tiếp', id: 'Semua dari Plus dan percakapan langsung', tr: "Plus'ın hepsi ve canlı sohbet", pl: 'Wszystko z Plus i żywa rozmowa' })
     : isPro
-      ? triLang(lang, { ru: 'Разовая покупка. Навсегда', uk: 'Разова покупка. Назавжди', es: 'Compra única. Para siempre', 'pt-BR': 'Compra única. Para sempre', vi: 'Mua một lần. Mãi mãi', id: 'Sekali beli. Selamanya', tr: 'Tek seferlik. Sonsuza dek', pl: 'Zakup jednorazowy. Na zawsze' })
-      : triLang(lang, { ru: 'Всё открыто. Прямо сейчас', uk: 'Усе відкрито. Просто зараз', es: 'Todo abierto. Ahora mismo', 'pt-BR': 'Tudo aberto. Agora mesmo', vi: 'Mở tất cả. Ngay bây giờ', id: 'Semua terbuka. Sekarang', tr: 'Her şey açık. Hemen şimdi', pl: 'Wszystko otwarte. Już teraz' });
+      ? triLang(lang, { ru: 'Разовая покупка. Навсегда', uk: 'Разова покупка. Назавжди', en: 'One-time purchase. Forever', es: 'Compra única. Para siempre', 'pt-BR': 'Compra única. Para sempre', vi: 'Mua một lần. Mãi mãi', id: 'Sekali beli. Selamanya', tr: 'Tek seferlik. Sonsuza dek', pl: 'Zakup jednorazowy. Na zawsze' })
+      : triLang(lang, { ru: 'Всё открыто. Прямо сейчас', uk: 'Усе відкрито. Просто зараз', en: 'Everything unlocked. Right now', es: 'Todo abierto. Ahora mismo', 'pt-BR': 'Tudo aberto. Agora mesmo', vi: 'Mở tất cả. Ngay bây giờ', id: 'Semua terbuka. Sekarang', tr: 'Her şey açık. Hemen şimdi', pl: 'Wszystko otwarte. Już teraz' });
 
-  const finaleNumber = isMax ? 'MAX' : String(CELEBRATION_SCENES.length);
+  // зачем (владелец 2026-08-25): показ укорочен до 6 сцен, но финальная цифра
+  // должна называть РЕАЛЬНОЕ число преимуществ Plus, а не количество сцен,
+  // которые физически поместились в анимацию — иначе цифра занижена и не
+  // соответствует тому, что человек реально получил за покупку.
+  const finaleNumber = isMax ? 'MAX' : String(ALL_SCENES.length);
   const finaleLabel = isMax
-    ? triLang(lang, { ru: 'всё открыто', uk: 'усе відкрито', es: 'todo abierto', 'pt-BR': 'tudo aberto', vi: 'đã mở tất cả', id: 'semua terbuka', tr: 'her şey açık', pl: 'wszystko otwarte' })
+    ? triLang(lang, { ru: 'всё открыто', uk: 'усе відкрито', en: 'everything unlocked', es: 'todo abierto', 'pt-BR': 'tudo aberto', vi: 'đã mở tất cả', id: 'semua terbuka', tr: 'her şey açık', pl: 'wszystko otwarte' })
     : isPro
-      ? triLang(lang, { ru: 'преимуществ навсегда', uk: 'переваг назавжди', es: 'ventajas para siempre', 'pt-BR': 'vantagens para sempre', vi: 'đặc quyền vĩnh viễn', id: 'keuntungan selamanya', tr: 'ayrıcalık sonsuza dek', pl: 'korzyści na zawsze' })
-      : triLang(lang, { ru: 'преимуществ разблокировано', uk: 'переваг розблоковано', es: 'ventajas desbloqueadas', 'pt-BR': 'vantagens desbloqueadas', vi: 'đặc quyền đã mở', id: 'keuntungan terbuka', tr: 'ayrıcalık açıldı', pl: 'korzyści odblokowano' });
+      ? triLang(lang, { ru: 'преимуществ навсегда', uk: 'переваг назавжди', en: 'perks forever', es: 'ventajas para siempre', 'pt-BR': 'vantagens para sempre', vi: 'đặc quyền vĩnh viễn', id: 'keuntungan selamanya', tr: 'ayrıcalık sonsuza dek', pl: 'korzyści na zawsze' })
+      : triLang(lang, { ru: 'преимуществ разблокировано', uk: 'переваг розблоковано', en: 'perks unlocked', es: 'ventajas desbloqueadas', 'pt-BR': 'vantagens desbloqueadas', vi: 'đặc quyền đã mở', id: 'keuntungan terbuka', tr: 'ayrıcalık açıldı', pl: 'korzyści odblokowano' });
 
   const ctaText = isMax
-    ? triLang(lang, { ru: 'Позвонить MAX', uk: 'Зателефонувати MAX', es: 'Llamar a MAX', 'pt-BR': 'Ligar para MAX', vi: 'Gọi MAX', id: 'Hubungi MAX', tr: "MAX'i ara", pl: 'Zadzwoń do MAX' })
-    : triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' });
+    ? triLang(lang, { ru: 'Позвонить MAX', uk: 'Зателефонувати MAX', en: 'Call MAX', es: 'Llamar a MAX', 'pt-BR': 'Ligar para MAX', vi: 'Gọi MAX', id: 'Hubungi MAX', tr: "MAX'i ara", pl: 'Zadzwoń do MAX' })
+    : triLang(lang, { ru: 'Поехали', uk: 'Поїхали', en: "Let's go", es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' });
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleTap}>
@@ -402,7 +457,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
         {!skipped && act !== 'act3' ? (
           <View pointerEvents="none" style={[styles.skipHint, { top: insets.top + 14 }]}>
             <Text style={styles.skipHintText}>
-              {triLang(lang, { ru: 'тапни, чтобы пропустить', uk: 'тапни, щоб пропустити', es: 'toca para saltar', 'pt-BR': 'toque para pular', vi: 'chạm để bỏ qua', id: 'ketuk untuk lewati', tr: 'geçmek için dokun', pl: 'dotknij, by pominąć' })}
+              {triLang(lang, { ru: 'тапни, чтобы пропустить', uk: 'тапни, щоб пропустити', en: 'tap to skip', es: 'toca para saltar', 'pt-BR': 'toque para pular', vi: 'chạm để bỏ qua', id: 'ketuk untuk lewati', tr: 'geçmek için dokun', pl: 'dotknij, by pominąć' })}
             </Text>
           </View>
         ) : null}
@@ -459,24 +514,12 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
           </Reanimated.View>
         ) : null}
 
-        {/* акт 2: риски прогресса */}
-        {act === 'act2' ? (
-          <View pointerEvents="none" style={[styles.ticks, { top: insets.top + 42 }]}>
-            {scenes.map((s, i) => (
-              <View
-                key={`tick_${s.id}`}
-                style={[
-                  styles.tick,
-                  { backgroundColor: i <= sceneIndex ? palette.main : 'rgba(255,255,255,0.14)' },
-                ]}
-              />
-            ))}
-          </View>
-        ) : null}
-
         {/* акт 3: финал */}
         {act === 'act3' ? (
-          <Reanimated.View pointerEvents="none" style={[styles.finWrap, finStyle]}>
+          <Reanimated.View
+            pointerEvents="none"
+            style={[styles.finWrap, { bottom: ctaBottom + 58 + 24 }, finStyle]}
+          >
             <Text style={[styles.finNumber, { color: palette.bright }]}>{finaleNumber}</Text>
             <Text style={[styles.finLabel, { color: palette.text }]}>{finaleLabel}</Text>
           </Reanimated.View>
@@ -488,7 +531,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
             testID={`${variant}-celebration-cta`}
             accessibilityRole="button"
             activeOpacity={0.88}
-            onPress={() => { hapticSuccess(); handleClose(); }}
+            onPress={handleCtaPress}
             style={styles.ctaTouch}
           >
             <LinearGradient colors={palette.cta} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ctaGradient}>
@@ -539,8 +582,6 @@ const styles = StyleSheet.create({
   title: { fontWeight: '900', textAlign: 'center', letterSpacing: -0.5, lineHeight: 38 },
   subtitle: { textAlign: 'center', marginTop: 11, fontWeight: '600', opacity: 0.86, lineHeight: 20 },
 
-  ticks: { position: 'absolute', left: 22, right: 22, flexDirection: 'row', gap: 3, height: 2.5 },
-  tick: { flex: 1, borderRadius: 2, height: 2.5 },
 
   sceneWrap: { position: 'absolute', left: 0, right: 0, top: '17%', bottom: 108 },
   sceneViz: { flex: 1 },
@@ -548,7 +589,15 @@ const styles = StyleSheet.create({
   sceneTitle: { fontWeight: '900', textAlign: 'center', letterSpacing: -0.4, lineHeight: 28 },
   sceneSub: { fontWeight: '600', textAlign: 'center', marginTop: 7, opacity: 0.78, lineHeight: 19 },
 
-  finWrap: { position: 'absolute', left: 22, right: 22, top: '44%', alignItems: 'center' },
+  // зачем: top:'44%' без нижнего ограничения давал тексту «N преимуществ
+  // разблокировано» и кнопке общий зазор, зависящий от высоты экрана — на
+  // части устройств подпись прилипала к CTA впритык. bottom (см. инлайн в
+  // JSX, зависит от safe area) держит блок ПРИВЯЗАННЫМ к верху кнопки с
+  // фиксированным зазором, а не плавающим по проценту высоты.
+  finWrap: {
+    position: 'absolute', left: 22, right: 22, top: '30%',
+    alignItems: 'center', justifyContent: 'center',
+  },
   finNumber: { fontSize: 66, fontWeight: '900', lineHeight: 70, letterSpacing: -2 },
   finLabel: { fontSize: 15, fontWeight: '700', marginTop: 11, opacity: 0.8, textAlign: 'center' },
 

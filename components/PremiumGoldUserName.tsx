@@ -29,13 +29,6 @@ const GOLD_STOPS_SKETCH: { offset: string; color: string }[] = [
   { offset: '1', color: '#5A4517' },
 ];
 
-// Тема business: ника не должно быть золотым — нейтральный серо-белый градиент.
-const MONO_STOPS: { offset: string; color: string }[] = [
-  { offset: '0', color: '#D4D4D4' },
-  { offset: '0.5', color: '#F2F2F2' },
-  { offset: '1', color: '#D4D4D4' },
-];
-
 /** Имя на главной для Premium: золотой градиент по буквам (через SVG, без @react-native-masked-view).
  *  Ширина SVG = реально измеренной ширине RN <Text> с теми же параметрами,
  *  чтобы длинные/широкие ники (Gamma7816, заглавные, цифры) не обрезались. */
@@ -57,9 +50,7 @@ function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
   // зачем: пик GOLD_STOPS (#FFF4C8) — блик под тёмный фон, на фарфоре ник
   // «проваливался» в середине. SKETCH-набор — тёмное золото для светлых фонов.
   const isSketch = isLightThemeMode(themeMode);
-  const gradientStops = themeMode === 'business'
-    ? MONO_STOPS
-    : (isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS);
+  const gradientStops = isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS;
   const safetyPad = Math.ceil(fontSize * 0.18);
   const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;
   const h = lineHeight;

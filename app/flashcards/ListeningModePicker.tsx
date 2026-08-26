@@ -351,7 +351,7 @@ export default function ListeningModePicker({
           >
             {modeTitle}
           </Text>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             bounces={false}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}

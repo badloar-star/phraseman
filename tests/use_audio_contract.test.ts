@@ -3,6 +3,7 @@ import * as path from 'path';
 
 const audioSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use-audio.ts'), 'utf8');
 const phraseAudioSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'phrase_audio_player.ts'), 'utf8');
+const phraseAudioPrefetchSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'phrase_audio_prefetch.ts'), 'utf8');
 
 describe('useAudio TTS resiliency', () => {
   it('guards Speech.stop so a native stop failure cannot kill replay audio', () => {
@@ -25,6 +26,16 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('clearClipStartTimer();');
     expect(audioSource).toContain('stopPhraseAudio();');
     expect(audioSource).toContain('speakWithSystemTts();');
+  });
+
+  it('derives the outer clip fallback from the shared download timing contract', () => {
+    expect(audioSource).toContain('phraseAudioClipStartTimeoutMs(Platform.OS)');
+    expect(phraseAudioSource).toContain(
+      'const DOWNLOAD_TIMEOUT_MS = PHRASE_AUDIO_DOWNLOAD_TIMEOUT_MS',
+    );
+    expect(phraseAudioSource).toContain(
+      'const CLIP_PLAY_WATCHDOG_MS = PHRASE_AUDIO_PLAYER_START_WATCHDOG_MS',
+    );
   });
 
   it('invalidates the delayed clip fallback on stop or unmount so TTS cannot start on a hidden screen', () => {
@@ -71,6 +82,11 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('hasPhraseAudio(normalized)');
     expect(audioSource).toMatch(/playPhraseByText\(\s*normalized,/);
     expect(audioSource).toContain('Speech.speak(spokenText, speechOptions)');
+  });
+
+  it('routes playback and prefetch through the same punctuation-tolerant clip lookup', () => {
+    expect(phraseAudioSource).toContain('getPlayablePhraseAudioUrl(text)');
+    expect(phraseAudioPrefetchSource).toContain('getPlayablePhraseAudioUrl(text)');
   });
 
   // Regression: phrase clips died after ~half a lesson because createAudioPlayer

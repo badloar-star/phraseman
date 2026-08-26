@@ -21,7 +21,7 @@ import {
   useArenaQueue,
 } from './arena_client';
 import { arenaEntryPrefetchStart } from './arena_entry_prefetch';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 
 const quickFallbackRequests = new Set<string>();
@@ -68,6 +68,7 @@ export default function ArenaMatchmakingScreen() {
     };
   }
   const requestId = requestIdRef.current.value;
+  const arenaMatchEnergyIntent = useEnergySessionIntent('arena_matchmaking', mode, requestId);
   const queueAttemptStartedAtMsRef = useRef(Date.now());
   const [, setRequestRevision] = useState(0);
   const [stableUid, setStableUid] = useState<string | null>(typeof params.stableUid === 'string' ? params.stableUid : null);
@@ -85,7 +86,11 @@ export default function ArenaMatchmakingScreen() {
   // Старт поиска матча = 1 ⚡ (владелец 2026-08-23: единая экономика — платим за
   // ПОПЫТКУ). Гейт стоит ДО подписки на очередь (energyGate ниже), чтобы при
   // отказе человек вообще не попадал в очередь матчмейкинга на сервере.
-  const { confirmSpendOne: confirmArenaMatchEnergy, refundOne: refundArenaMatchEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmArenaMatchEnergy,
+    refundOne: refundArenaMatchEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
   /** Плата за вход в очередь состоялась — при отмене поиска её возвращаем. */
   const energyChargedRef = useRef(false);
@@ -95,7 +100,7 @@ export default function ArenaMatchmakingScreen() {
   useEffect(() => {
     if (resumesPaidQueue) { setEnergyGate('ok'); return; }
     let cancelled = false;
-    void confirmArenaMatchEnergy().then((result) => {
+    void confirmArenaMatchEnergy(arenaMatchEnergyIntent).then((result) => {
       if (cancelled) return;
       if (result === 'cancelled') {
         router.replace('/arena' as never);
@@ -107,7 +112,7 @@ export default function ArenaMatchmakingScreen() {
     });
     return () => { cancelled = true; };
     // Ровно один расход на requestIdKey (смена requestId = новая попытка поиска).
-  }, [confirmArenaMatchEnergy, requestIdKey, resumesPaidQueue, router]);
+  }, [arenaMatchEnergyIntent, confirmArenaMatchEnergy, requestIdKey, resumesPaidQueue, router]);
 
   useEffect(() => {
     if (energyGate !== 'ok') return;
@@ -134,6 +139,7 @@ export default function ArenaMatchmakingScreen() {
     let cancelled = false;
     const reconcile = () => arenaV2FindMatch(mode, requestId).then((result) => {
       if (cancelled) return;
+      if (energyChargedRef.current) void acknowledgeSessionStart(arenaMatchEnergyIntent.operationId);
       setStableUid(result.stableUid);
       adoptBotSchedule(result.queue);
       if (result.matchId) {
@@ -162,7 +168,7 @@ export default function ArenaMatchmakingScreen() {
       cancelled = true;
       clearInterval(heartbeat);
     };
-  }, [active, adoptBotSchedule, leaseRefreshTick, matchId, mode, playSound, requestId]);
+  }, [acknowledgeSessionStart, active, adoptBotSchedule, arenaMatchEnergyIntent, leaseRefreshTick, matchId, mode, playSound, requestId]);
 
   useEffect(() => {
     if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
@@ -301,14 +307,14 @@ export default function ArenaMatchmakingScreen() {
     // (аудит 2026-08-23: единственная из четырёх точек Арены без возврата).
     if (energyChargedRef.current) {
       energyChargedRef.current = false;
-      void refundArenaMatchEnergy();
+      void refundArenaMatchEnergy(arenaMatchEnergyIntent.operationId, 'cancelled_before_entry').catch(() => {});
     }
     router.replace('/arena' as never);
     // Сеть — вдогонку. Один повтор: сеть на телефоне моргает чаще, чем падает.
     void arenaV2QueueCancel(requestId).catch(() => {
       setTimeout(() => { void arenaV2QueueCancel(requestId).catch(() => {}); }, 1500);
     });
-  }, [matchId, mode, refundArenaMatchEnergy, requestId, router]);
+  }, [arenaMatchEnergyIntent, matchId, mode, refundArenaMatchEnergy, requestId, router]);
 
   const elapsedLabel = useMemo(() => {
     const seconds = Math.max(0, Math.floor((now - queueAttemptStartedAtMsRef.current) / 1_000));

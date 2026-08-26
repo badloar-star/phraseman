@@ -36,6 +36,21 @@ describe('league participant progress refresh', () => {
     }
   });
 
+  it('persists the 6h refresh timestamp only after the remote league work succeeds', () => {
+    const source = read('app/club_screen.tsx')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^[ \t]*\/\/.*$/gm, '');
+    const remotePhase = source.slice(
+      source.indexOf('const leagueWork = checkLeagueOnAppOpen'),
+      source.indexOf('} catch (e)', source.indexOf('const leagueWork = checkLeagueOnAppOpen')),
+    );
+
+    expect(remotePhase.match(/AsyncStorage\.setItem\(CLUB_REMOTE_REFRESH_AT_KEY/g) ?? []).toHaveLength(2);
+    expect(remotePhase).toMatch(/leagueWork\s*\.then\(\(\{ state, result \}\) => \{[\s\S]*?AsyncStorage\.setItem\(CLUB_REMOTE_REFRESH_AT_KEY/);
+    expect(remotePhase).toMatch(/const \{ state, result \} = await leagueWork;[\s\S]*?AsyncStorage\.setItem\(CLUB_REMOTE_REFRESH_AT_KEY/);
+    expect(remotePhase).not.toMatch(/\}\s*await AsyncStorage\.setItem\(CLUB_REMOTE_REFRESH_AT_KEY/);
+  });
+
   it('materializes synthetic participant progress hourly', () => {
     expect(read('functions/src/league_residents_cron.ts')).toContain("schedule: 'every 1 hours'");
     expect(read('functions/src/synthetic_residents.ts')).toContain('export const RESIDENT_TICK_MS = 60 * 60 * 1000;');

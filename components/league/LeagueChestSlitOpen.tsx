@@ -60,23 +60,23 @@ const FAN_OFFSETS = [-14, 0, 14] as const;
 const FAN_ROTATIONS = [-8, 0, 8] as const;
 
 function eyebrowLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Бонус лиги открыт', uk: 'Бонус ліги відкрито', es: 'Bono de liga abierto', 'pt-BR': 'Bônus da liga aberto', vi: 'Đã mở thưởng giải đấu', id: 'Bonus liga terbuka', tr: 'Lig bonusu açıldı', pl: 'Bonus ligi otwarty' });
+  return triLang(lang, { ru: 'Бонус лиги открыт', uk: 'Бонус ліги відкрито', en: 'League bonus unlocked', es: 'Bono de liga abierto', 'pt-BR': 'Bônus da liga aberto', vi: 'Đã mở thưởng giải đấu', id: 'Bonus liga terbuka', tr: 'Lig bonusu açıldı', pl: 'Bonus ligi otwarty' });
 }
 
 function crownTitle(lang: Lang): string {
-  return triLang(lang, { ru: 'Ты взял корону', uk: 'Ти взяв корону', es: 'Tomaste la corona', 'pt-BR': 'Você pegou a coroa', vi: 'Bạn đã nhận vương miện', id: 'Kamu mengambil mahkota', tr: 'Tacını aldın', pl: 'Korona odebrana' });
+  return triLang(lang, { ru: 'Ты взял корону', uk: 'Ти взяв корону', en: 'You took the crown', es: 'Tomaste la corona', 'pt-BR': 'Você pegou a coroa', vi: 'Bạn đã nhận vương miện', id: 'Kamu mengambil mahkota', tr: 'Tacını aldın', pl: 'Korona odebrana' });
 }
 
 function readyTitle(lang: Lang): string {
-  return triLang(lang, { ru: 'Награды готовы', uk: 'Нагороди готові', es: 'Recompensas listas', 'pt-BR': 'Recompensas prontas', vi: 'Phần thưởng đã sẵn sàng', id: 'Hadiah siap', tr: 'Ödüller hazır', pl: 'Nagrody gotowe' });
+  return triLang(lang, { ru: 'Награды готовы', uk: 'Нагороди готові', en: 'Rewards ready', es: 'Recompensas listas', 'pt-BR': 'Recompensas prontas', vi: 'Phần thưởng đã sẵn sàng', id: 'Hadiah siap', tr: 'Ödüller hazır', pl: 'Nagrody gotowe' });
 }
 
 function claimAllLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Забрать всё', uk: 'Забрати все', es: 'Recoger todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Ambil semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' });
+  return triLang(lang, { ru: 'Забрать всё', uk: 'Забрати все', en: 'Claim all', es: 'Recoger todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Ambil semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' });
 }
 
 function closeLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Закрыть окно сундука', uk: 'Закрити вікно скрині', es: 'Cerrar ventana del cofre', 'pt-BR': 'Fechar janela do baú', vi: 'Đóng cửa sổ rương', id: 'Tutup jendela peti', tr: 'Sandık penceresini kapat', pl: 'Zamknij okno skrzyni' });
+  return triLang(lang, { ru: 'Закрыть окно сундука', uk: 'Закрити вікно скрині', en: 'Close the chest window', es: 'Cerrar ventana del cofre', 'pt-BR': 'Fechar janela do baú', vi: 'Đóng cửa sổ rương', id: 'Tutup jendela peti', tr: 'Sandık penceresini kapat', pl: 'Zamknij okno skrzyni' });
 }
 
 function RewardFanCard({
@@ -314,7 +314,7 @@ function LeagueChestSlitOpen({
 
   if (!visible) return null;
 
-  const crownDisplayName = crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
+  const crownDisplayName = crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', en: 'leader', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={onClose}>
@@ -376,7 +376,7 @@ function LeagueChestSlitOpen({
             </Animated.View>
           </View>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.fanRow}

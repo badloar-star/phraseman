@@ -62,7 +62,7 @@ export default function LearningV2ModesShowcaseScreen() {
       {/* guard-ok: фиксированный список из 7 пунктов (никогда не растёт) —
           виртуализация FlatList хуже плоского ScrollView.map на таком размере,
           тот же паттерн уже принят в app/_motion_showcase.tsx. */}
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         contentContainerStyle={[styles.body, { paddingBottom: insets.bottom + 28 }]}
         showsVerticalScrollIndicator={false}
       >

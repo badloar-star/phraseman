@@ -96,6 +96,7 @@ export default function UgcPackEditorCardPreview({
   const frontLabel = triLang(lang, {
     ru: 'Передняя',
     uk: 'Передня',
+    en: 'Front',
     es: 'Delantera',
     'pt-BR': 'Frente',
     vi: 'Mặt trước',
@@ -106,6 +107,7 @@ export default function UgcPackEditorCardPreview({
   const backLabel = triLang(lang, {
     ru: 'Задняя',
     uk: 'Зворотна',
+    en: 'Back',
     es: 'Trasera',
     'pt-BR': 'Verso',
     vi: 'Mặt sau',
@@ -191,7 +193,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollFront ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,
@@ -255,7 +257,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollBack ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,
@@ -312,6 +314,7 @@ export default function UgcPackEditorCardPreview({
               accessibilityLabel={triLang(lang, {
                 uk: 'Опис',
                 ru: 'Описание',
+                en: 'Description',
                 es: 'Descripción',
                 'pt-BR': 'Descrição',
                 vi: 'Mô tả',
@@ -344,6 +347,7 @@ export default function UgcPackEditorCardPreview({
             {triLang(lang, {
               uk: 'ОПИСАННЯ',
               ru: 'ОПИСАНИЕ',
+              en: 'DESCRIPTION',
               es: 'DESCRIPCIÓN',
               'pt-BR': 'DESCRIÇÃO',
               vi: 'MÔ TẢ',
@@ -362,6 +366,7 @@ export default function UgcPackEditorCardPreview({
             {triLang(lang, {
               uk: 'Редагується…',
               ru: 'Редактируется…',
+              en: 'Editing…',
               es: 'En edición…',
               'pt-BR': 'Em edição…',
               vi: 'Đang chỉnh sửa…',
@@ -386,6 +391,7 @@ export default function UgcPackEditorCardPreview({
                 {triLang(lang, {
                   uk: 'Редагувати',
                   ru: 'Редактировать',
+                  en: 'Edit',
                   es: 'Editar',
                   'pt-BR': 'Editar',
                   vi: 'Chỉnh sửa',
@@ -409,6 +415,7 @@ export default function UgcPackEditorCardPreview({
                 {triLang(lang, {
                   uk: 'Видалити',
                   ru: 'Удалить',
+                  en: 'Delete',
                   es: 'Eliminar',
                   'pt-BR': 'Excluir',
                   vi: 'Xóa',

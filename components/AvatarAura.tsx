@@ -19,9 +19,11 @@ type Props = {
   ownerActive?: boolean;
 };
 
-// Owner-approved midpoint between the too-small 1.92x and too-large 2.63x.
+// зачем: владелец сказал «ауры слишком большие» (2026-08-26) — сбавили с 2.28
+// до 2.05. Кольцо перестало упираться в края плитки каталога (при превью 52pt
+// это 107pt в поле ~107pt, без обрезки overflow) и не спорит с аватаром на сцене.
 // Season Pass layers retain their established compact scale.
-const APPROVED_AURA_RING_SCALE = 2.28;
+const APPROVED_AURA_RING_SCALE = 2.05;
 const SEASON_AURA_RING_SCALE = 1.40;
 const SEASON_AURA_LAYOUT_GUTTER = 12;
 

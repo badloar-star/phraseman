@@ -44,6 +44,7 @@ import {
   CUSTOM_AVATAR_GRADIENTS,
   customAvatarGradientNameForLang,
   customAvatarNameForLang,
+  getCustomAvatarPurchaseCost,
   getCustomAvatarById,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
@@ -128,6 +129,11 @@ import {
 import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
 import { avatarDNACopy } from './avatar_dna_copy';
+import {
+  avatarShowcaseCountLabel,
+  avatarShowcasePriceFilterLabel,
+  avatarShowcaseTierTitle,
+} from './avatar_showcase_copy';
 import { isAvatarDNAEnabled } from './remote_flags';
 
 const GRID_GAP = 10;
@@ -142,6 +148,19 @@ const TOP_BAR_CONTENT_HEIGHT = 64;
 /** Диапазон скролла, на котором сцена «передаёт» превью в мини-бар. */
 const COLLAPSE_START = 120;
 const COLLAPSE_END = 210;
+
+type AvatarCatalogFilter = 'all' | 'mine' | number;
+
+const SHOWCASE_TIER_ACCENT: Record<number, string> = {
+  50: '#53D6C7',
+  70: '#60A5FA',
+  90: '#94A3B8',
+  100: '#A78BFA',
+  150: '#F472B6',
+  300: '#F59E0B',
+  500: '#22D3EE',
+  1000: '#FDE047',
+};
 
 
 const HEX_COLOR = /^#([0-9a-f]{6})$/i;
@@ -390,6 +409,7 @@ export default function AvatarSelect() {
   const [previewAvatarValue, setPreviewAvatarValue] = useState(initialCustomization.previewAvatarValue);
   const [previewStoredAuraSelection, setPreviewStoredAuraSelection] = useState(initialCustomization.previewStoredAuraSelection);
   const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
+  const [avatarCatalogFilter, setAvatarCatalogFilter] = useState<AvatarCatalogFilter>('all');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
   const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
@@ -576,6 +596,20 @@ export default function AvatarSelect() {
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
   );
+  const catalogPrices = useMemo(() => [...new Set(avatarItems.flatMap((item) =>
+    item.kind === 'custom-avatar' ? [getCustomAvatarPurchaseCost(item.avatar)] : []))]
+    .sort((left, right) => left - right), [avatarItems]);
+  const displayCatalogItems = useMemo<CatalogCardItem[]>(() => {
+    if (activeTab === 'auras') return auraItems;
+    if (avatarCatalogFilter === 'mine') {
+      return [levelTile, ...avatarItems.filter((item) => item.isOwned)];
+    }
+    if (typeof avatarCatalogFilter === 'number') {
+      return avatarItems.filter((item) => item.kind === 'custom-avatar'
+        && getCustomAvatarPurchaseCost(item.avatar) === avatarCatalogFilter);
+    }
+    return [levelTile, ...avatarItems];
+  }, [activeTab, avatarCatalogFilter, avatarItems, auraItems, levelTile]);
 
   const selectedAvatar = parseCustomAvatarValue(previewAvatarValue);
   const isLevelAvatarPreview = selectedAvatar === null;
@@ -786,12 +820,15 @@ export default function AvatarSelect() {
     scrollToCatalog();
   }, [scrollToCatalog]);
 
-  const renderCatalogItem = useCallback(({ item }: { item: CatalogCardItem }) => {
+  const renderCatalogCard = useCallback((item: CatalogCardItem) => {
     const selected = item.kind === 'level-avatar'
       ? isLevelAvatarPreview
       : item.kind === 'custom-avatar'
         ? item.id === selectedAvatar?.avatarId
         : item.id === previewAuraCatalogId;
+    const tierPrice = item.kind === 'custom-avatar'
+      ? getCustomAvatarPurchaseCost(item.avatar)
+      : undefined;
     return (
       <View style={styles.cell}>
         <CustomizationCatalogCard
@@ -799,11 +836,26 @@ export default function AvatarSelect() {
           selected={selected}
           label={itemLabel(item, lang, copy)}
           statusLabel={availabilityStatus(item, lang, copy, selected)}
+          tierPrice={item.kind === 'custom-avatar' ? tierPrice : undefined}
           onPress={selectCatalogItem}
         />
       </View>
     );
   }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewAuraCatalogId, lang, copy, selectCatalogItem]);
+
+  const renderCatalogItem = useCallback(
+    ({ item }: { item: CatalogCardItem }) => renderCatalogCard(item),
+    [renderCatalogCard],
+  );
+
+  const selectedTierPrice = typeof avatarCatalogFilter === 'number' ? avatarCatalogFilter : undefined;
+  const catalogHeading = activeTab === 'auras'
+    ? copy.auras
+    : selectedTierPrice !== undefined
+      ? avatarShowcaseTierTitle(selectedTierPrice, lang)
+      : avatarCatalogFilter === 'mine'
+        ? copy.mine
+        : copy.catalog;
 
   const listHeader = useMemo(() => (
     <View>
@@ -838,8 +890,55 @@ export default function AvatarSelect() {
       <View style={styles.controls}>
         <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
       </View>
+      {activeTab === 'avatars' ? (
+        <View style={styles.filterRail} accessibilityRole="tablist">
+          {([
+            { value: 'all' as const, label: copy.all },
+            { value: 'mine' as const, label: copy.mine },
+            ...catalogPrices.map((price) => ({ value: price, label: String(price) })),
+          ]).map((option) => {
+            const active = avatarCatalogFilter === option.value;
+            const accent = typeof option.value === 'number'
+              ? (SHOWCASE_TIER_ACCENT[option.value] ?? t.accent)
+              : t.accent;
+            return (
+              <Pressable
+                key={option.value}
+                accessibilityRole="tab"
+                accessibilityState={{ selected: active }}
+                accessibilityLabel={typeof option.value === 'number'
+                  ? avatarShowcasePriceFilterLabel(option.value, lang)
+                  : option.label}
+                onPress={() => setAvatarCatalogFilter(option.value)}
+                style={[styles.filterChip, {
+                  backgroundColor: active ? accent : t.bgSurface,
+                  borderColor: active ? accent : withAlpha(accent, '66'),
+                }]}
+              >
+                {typeof option.value === 'number' ? (
+                  <Image source={pearlIconForTheme(themeMode)} style={styles.filterCoin} contentFit="contain" accessible={false} />
+                ) : null}
+                <Text style={[styles.filterText, { color: active ? t.correctText : t.textSecond }]}>{option.label}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      ) : null}
+      <View style={styles.showcaseHeading}>
+        <View style={[styles.showcaseAccent, {
+          backgroundColor: selectedTierPrice === undefined
+            ? t.accent
+            : (SHOWCASE_TIER_ACCENT[selectedTierPrice] ?? t.accent),
+        }]} />
+        <View style={styles.showcaseHeadingCopy}>
+          <Text style={[styles.showcaseTitle, { color: t.textPrimary }]}>{catalogHeading}</Text>
+          <Text style={[styles.showcaseSubtitle, { color: t.textSecond }]}>
+            {avatarShowcaseCountLabel(displayCatalogItems.length, lang)}
+          </Text>
+        </View>
+      </View>
     </View>
-  ), [insets.top, t, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router, avatarDNAEnabled]);
+  ), [insets.top, t, themeMode, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router, avatarDNAEnabled, avatarCatalogFilter, catalogPrices, catalogHeading, displayCatalogItems.length, selectedTierPrice]);
 
   // зачем: сцена «передаёт» превью в закреплённый бар при скролле — образ всегда на
   // глазах, пока листаешь каталог (главная боль старого экрана). Интерполяции живут на
@@ -869,12 +968,13 @@ export default function AvatarSelect() {
             первого экрана был недоступен). bouncyStyle переехал в style списка. */}
         <BouncyWrap>
           <Reanimated.FlatList
+            decelerationRate="fast"
             ref={listRef}
-            data={catalogItems}
+            data={displayCatalogItems}
             keyExtractor={(item) => item.id}
             renderItem={renderCatalogItem}
-            numColumns={3}
             ListHeaderComponent={listHeader}
+            numColumns={3}
             columnWrapperStyle={styles.row}
             style={[styles.flex, bouncyStyle]}
             contentContainerStyle={{ paddingBottom: bottomInset + ACTION_BAR_HEIGHT + 20 }}
@@ -899,13 +999,11 @@ export default function AvatarSelect() {
             <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
           </Pressable>
           <View style={styles.topCenter} pointerEvents="none">
-            {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- Reanimated.Text коллапс-заголовка: FlowText не оборачивает анимируемый текст, перенос дёргал бы анимацию шапки */}
             <Reanimated.Text style={[styles.title, { color: t.textPrimary }, largeTitleStyle]} numberOfLines={1}>
               {copy.title}
             </Reanimated.Text>
             <Reanimated.View style={[styles.miniPreview, miniPreviewStyle]}>
               <AvatarView avatar={previewAvatarValue} level={confirmed.level} auraId={effectivePreviewAuraId} size={34} animateAura={false} />
-              {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- имя в анимированном мини-превью фикс-высоты: перенос дёргал бы коллапс шапки */}
               <Text style={[styles.miniName, { color: t.textPrimary }]} numberOfLines={1}>{previewAvatarLabel}</Text>
             </Reanimated.View>
           </View>
@@ -990,7 +1088,25 @@ const styles = StyleSheet.create({
   balanceCoin: { width: 17, height: 17 },
   balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
   controls: { paddingHorizontal: GRID_PAD, paddingTop: 12, paddingBottom: 10, alignItems: 'flex-end' },
+  filterRail: {
+    paddingHorizontal: GRID_PAD, paddingBottom: 10, gap: 8,
+    flexDirection: 'row', flexWrap: 'wrap',
+  },
+  filterChip: {
+    minHeight: 44, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14,
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+  },
+  filterCoin: { width: 15, height: 15 },
+  filterText: { fontSize: 13, lineHeight: 17, fontWeight: '900' },
+  showcaseHeading: {
+    minHeight: 52, marginHorizontal: GRID_PAD, marginBottom: 10,
+    flexDirection: 'row', alignItems: 'center', gap: 10,
+  },
+  showcaseAccent: { width: 5, height: 34, borderRadius: 4 },
+  showcaseHeadingCopy: { flex: 1 },
+  showcaseTitle: { fontSize: 17, lineHeight: 22, fontWeight: '900', letterSpacing: -0.15 },
+  showcaseSubtitle: { marginTop: 1, fontSize: 12, lineHeight: 16, fontWeight: '700' },
   row: { paddingHorizontal: GRID_PAD, gap: GRID_GAP, marginBottom: GRID_GAP },
-  cell: { flex: 1, maxWidth: `${100 / 3}%` as any },
+  cell: { flexBasis: '30%', flexGrow: 1, maxWidth: '31.5%' },
   bottomScrim: { position: 'absolute', left: 0, right: 0, bottom: 0 },
 });

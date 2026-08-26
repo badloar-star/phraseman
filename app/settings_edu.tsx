@@ -177,7 +177,7 @@ export default function SettingsEdu() {
             onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
           />
 
-          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             {rows.map(row => {
               const isOn = !!s[row.key];
               return (

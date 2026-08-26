@@ -1,6 +1,6 @@
 "use strict";
-// зачем: урок 1 — это 56 сессий (владелец, 2026-08-16), и ВСЕ 56 учат ОДНОЙ
-// конструкции — глаголу to be (владелец, 2026-08-17).
+// зачем: урок 1 — это 56 сессий (владелец, 2026-08-16), и ВСЕ 56 раскрывают
+// точный can-do исходного эпизода 1: начать знакомство и кратко сказать о себе.
 //
 // ⛔ ГЛАВНОЕ ПРАВИЛО, ИЗ-ЗА КОТОРОГО КАРТА ПЕРЕПИСАНА ЦЕЛИКОМ:
 //
@@ -15,16 +15,17 @@
 // двигаться правильно, как в 32 уроках, то есть первый урок to be (как в
 // оригинале). Значит все 56 сессий должны учить to be».
 //
-// Спецификация (docs/v2/03, эпизод 1) подтверждает: «I am / you are как фразовые
-// модели, сокращение I'm, личные местоимения без полной таблицы to be».
-// Владелец разрешил расширить до ПОЛНОЙ таблицы (he/she/it/we/they) — это та же
-// конструкция, дробить её на два урока искусственно. Дальше границы держатся
-// строго по спецификации: have — урок 3, like/want — урок 4, и так далее.
+// Спецификация (docs/v2/03, эпизод 1): «I am / you are как фразовые модели,
+// сокращение I'm, личные местоимения без полной таблицы to be». Прямое решение
+// владельца 2026-08-25 отменило прежнее локальное расширение до полной таблицы.
+// He/she/it, this/that, a/an, вопросы и отрицание принадлежат эпизоду 2;
+// have и притяжательные — эпизоду 3. Карта не имеет права забирать их обратно.
 //
-// НИКАКОГО другого глагола в уроке 1. Запрещены: have, like, want, do, can, go,
-// see, любое прошедшее и будущее, there is/are. Исключение ровно одно —
-// застывшие формулы вежливости (Thank you, Nice to meet you, See you later):
-// они не разбираются как грамматика и не порождают заданий на форму.
+// НИКАКОЙ другой порождающей грамматики в уроке 1. Канонические фразы
+// I speak…, Nice to meet you, And you?, See you later учатся как цельные
+// функциональные формулы знакомства и не порождают заданий на свои внутренние
+// правила. Глубина создаётся support fading, retrieval и переносом, а не
+// присвоением тем следующих эпизодов.
 //
 // Полные правила построения уроков: docs/v2/LESSON_DESIGN_RULES.ru.md
 // Неподвижный стиль интро и восьми локалей:
@@ -109,76 +110,71 @@ exports.SESSION_KIND_FAMILIES = Object.freeze({
  * слово → фраза из этого слова → голос/припоминание → граница главы.
  */
 exports.EPISODE_01_SESSION_MAP_V1 = Object.freeze([
-    // ── Глава 1. Я: утверждение ───────────────────────────────────────────
-    // Только I am. Ученик впервые говорит о себе и учится отрицанию.
+    // ── Глава 1. Первое «я здесь» ─────────────────────────────────────────
+    // Только утвердительное I am / I'm. Никакого отрицания или вопроса.
     { sessionOrdinal: 1, kind: 'words_then_phrases', title: 'Я здесь', teaches: ['copula_be', 'first_person_singular', 'state_adjective', 'adverb_place'], builtOn: [] },
-    { sessionOrdinal: 2, kind: 'phrases', title: 'Я не', teaches: ['negation_not'], builtOn: [1], recalls: [1] },
-    { sessionOrdinal: 3, kind: 'words_then_phrases', title: 'Как я себя чувствую', teaches: ['feeling_adjective'], builtOn: [1], recalls: [1, 2] },
-    { sessionOrdinal: 4, kind: 'phrases', title: 'Я сокращаю: I am и I’m', teaches: ['contraction_im'], builtOn: [1, 2], recalls: [2, 3] },
-    { sessionOrdinal: 5, kind: 'words_then_phrases', title: 'Вежливые слова', teaches: ['fixed_expression', 'politeness', 'greeting', 'farewell'], builtOn: [], recalls: [1] },
-    { sessionOrdinal: 6, kind: 'words_then_phrases', title: 'Кто я: a и an', teaches: ['indefinite_article', 'profession_noun'], builtOn: [1], recalls: [3, 4] },
-    { sessionOrdinal: 7, kind: 'voice', title: 'Скажи вслух: о себе', teaches: ['spoken_production'], builtOn: [1, 2, 3, 4, 6], recalls: [1, 2, 4, 6] },
-    { sessionOrdinal: 8, kind: 'checkpoint', title: 'Всё про я целиком', teaches: [], builtOn: [1, 2, 3, 4, 5, 6, 7], recalls: [1, 2, 3, 4, 6] },
-    // ── Глава 2. Ты: вопрос ───────────────────────────────────────────────
-    // Второе лицо и инверсия. Спецификация: «I am / you are как фразовые модели».
-    { sessionOrdinal: 9, kind: 'phrases', title: 'Ты есть', teaches: ['second_person'], builtOn: [1], recalls: [3] },
-    { sessionOrdinal: 10, kind: 'phrases', title: 'Ты не', teaches: [], builtOn: [2, 9], recalls: [2, 9] },
-    { sessionOrdinal: 11, kind: 'phrases', title: 'Ты готов? Вопрос', teaches: ['question_inversion'], builtOn: [9], recalls: [3, 9] },
-    { sessionOrdinal: 12, kind: 'phrases', title: 'Я готов? Вопрос о себе', teaches: [], builtOn: [11], recalls: [1, 11] },
-    { sessionOrdinal: 13, kind: 'phrases', title: 'Ты сокращаешь: you’re', teaches: ['contraction_youre'], builtOn: [4, 9], recalls: [4, 10] },
-    { sessionOrdinal: 14, kind: 'words_then_phrases', title: 'Где я и где ты', teaches: ['place_noun', 'preposition_place'], builtOn: [9], recalls: [1, 11] },
-    { sessionOrdinal: 15, kind: 'voice', title: 'Скажи вслух: спроси меня', teaches: [], builtOn: [11, 12, 13, 14], recalls: [9, 11, 12, 13, 14] },
-    { sessionOrdinal: 16, kind: 'checkpoint', title: 'Я и ты целиком', teaches: [], builtOn: [9, 10, 11, 12, 13, 14, 15], recalls: [1, 9, 11, 13, 14] },
-    // ── Глава 3. Он, она, оно ─────────────────────────────────────────────
-    // Третье лицо единственного числа: is. Владелец разрешил полную таблицу.
-    { sessionOrdinal: 17, kind: 'words_then_phrases', title: 'Он и она', teaches: ['third_person_pronoun', 'third_person_singular'], builtOn: [9], recalls: [3] },
-    { sessionOrdinal: 18, kind: 'phrases', title: 'Он не, она не', teaches: [], builtOn: [17], recalls: [2, 10, 17] },
-    { sessionOrdinal: 19, kind: 'phrases', title: 'Она готова? Вопрос о третьем', teaches: [], builtOn: [11, 17], recalls: [11, 17] },
-    { sessionOrdinal: 20, kind: 'words_then_phrases', title: 'Оно: погода и вещи', teaches: ['impersonal_it', 'weather_adjective'], builtOn: [17], recalls: [3] },
-    { sessionOrdinal: 21, kind: 'phrases', title: 'Сокращения: he’s, she’s, it’s', teaches: ['contraction_thirdperson'], builtOn: [13, 17, 20], recalls: [13, 18] },
-    { sessionOrdinal: 22, kind: 'words_then_phrases', title: 'Моя семья', teaches: ['family_noun', 'possessive_my'], builtOn: [17], recalls: [6, 17] },
-    { sessionOrdinal: 23, kind: 'voice', title: 'Скажи вслух: о человеке', teaches: [], builtOn: [17, 20, 21, 22], recalls: [17, 20, 22] },
-    { sessionOrdinal: 24, kind: 'checkpoint', title: 'Он, она, оно целиком', teaches: [], builtOn: [17, 18, 19, 20, 21, 22, 23], recalls: [17, 19, 20, 21, 22] },
-    // ── Глава 4. Мы и они ─────────────────────────────────────────────────
-    // Множественное число: are. Таблица to be закрывается полностью.
-    { sessionOrdinal: 25, kind: 'words_then_phrases', title: 'Мы', teaches: ['plural_pronoun'], builtOn: [17], recalls: [9] },
-    { sessionOrdinal: 26, kind: 'words_then_phrases', title: 'Они', teaches: ['plural_noun'], builtOn: [25], recalls: [22, 25] },
-    { sessionOrdinal: 27, kind: 'phrases', title: 'Мы не, они не', teaches: [], builtOn: [25, 26], recalls: [18, 25, 26] },
-    { sessionOrdinal: 28, kind: 'phrases', title: 'Они готовы? Вопрос ко многим', teaches: [], builtOn: [19, 26], recalls: [19, 26] },
-    { sessionOrdinal: 29, kind: 'phrases', title: 'Сокращения: we’re, they’re', teaches: ['contraction_plural'], builtOn: [21, 25, 26], recalls: [21, 27] },
-    { sessionOrdinal: 30, kind: 'phrases', title: 'Не путать: isn’t и aren’t', teaches: ['negative_contraction'], builtOn: [27, 29], recalls: [18, 27] },
-    { sessionOrdinal: 31, kind: 'recall', title: 'Вся таблица: я, ты, он, мы, они', teaches: [], builtOn: [], recalls: [1, 9, 17, 25, 26] },
-    { sessionOrdinal: 32, kind: 'checkpoint', title: 'Вся таблица to be целиком', teaches: [], builtOn: [25, 26, 27, 28, 29, 30, 31], recalls: [1, 9, 17, 25, 30] },
-    // ── Глава 5. Вопросы со словами ───────────────────────────────────────
-    // What / where / who / how — только с to be, без вспомогательного do.
-    { sessionOrdinal: 33, kind: 'words_then_phrases', title: 'Что это?', teaches: ['question_word', 'demonstrative'], builtOn: [20], recalls: [20, 28] },
-    { sessionOrdinal: 34, kind: 'phrases', title: 'Где?', teaches: [], builtOn: [14, 33], recalls: [14, 33] },
-    { sessionOrdinal: 35, kind: 'phrases', title: 'Кто это?', teaches: [], builtOn: [22, 33], recalls: [22, 33] },
-    { sessionOrdinal: 36, kind: 'phrases', title: 'Как дела? Как он?', teaches: [], builtOn: [33], recalls: [3, 33] },
-    { sessionOrdinal: 37, kind: 'words_then_phrases', title: 'Твой и мой', teaches: ['possessive_your'], builtOn: [22, 33], recalls: [22] },
-    { sessionOrdinal: 38, kind: 'words_then_phrases', title: 'Его и её', teaches: ['possessive_his_her'], builtOn: [37], recalls: [17, 37] },
-    { sessionOrdinal: 39, kind: 'voice', title: 'Скажи вслух: задай четыре вопроса', teaches: [], builtOn: [33, 34, 35, 36], recalls: [33, 34, 35, 36] },
-    { sessionOrdinal: 40, kind: 'checkpoint', title: 'Вопросы целиком', teaches: [], builtOn: [33, 34, 35, 36, 37, 38, 39], recalls: [33, 34, 36, 37, 38] },
-    // ── Глава 6. Мир вокруг ───────────────────────────────────────────────
-    // Лексика вширь на той же конструкции: то же to be, новые слова.
-    { sessionOrdinal: 41, kind: 'words_then_phrases', title: 'Мои вещи', teaches: ['everyday_object_noun'], builtOn: [33, 37], recalls: [33, 37] },
-    { sessionOrdinal: 42, kind: 'words_then_phrases', title: 'Цвета', teaches: ['colour_adjective'], builtOn: [41], recalls: [41] },
-    { sessionOrdinal: 43, kind: 'words_then_phrases', title: 'Большой и маленький', teaches: ['size_adjective', 'adjective_before_noun'], builtOn: [42], recalls: [42] },
-    { sessionOrdinal: 44, kind: 'words_then_phrases', title: 'Числа до двадцати', teaches: ['number_1_20'], builtOn: [], recalls: [26] },
-    { sessionOrdinal: 45, kind: 'words_then_phrases', title: 'Сколько тебе лет', teaches: ['age_expression'], builtOn: [44], recalls: [22, 44] },
-    { sessionOrdinal: 46, kind: 'words_then_phrases', title: 'Какой человек', teaches: ['descriptive_adjective'], builtOn: [43], recalls: [17, 43] },
-    { sessionOrdinal: 47, kind: 'voice', title: 'Скажи вслух: опиши вещь и человека', teaches: [], builtOn: [42, 43, 46], recalls: [41, 43, 46] },
-    { sessionOrdinal: 48, kind: 'checkpoint', title: 'Описание целиком', teaches: [], builtOn: [41, 42, 43, 44, 45, 46, 47], recalls: [41, 43, 44, 45, 46] },
-    // ── Глава 7. Свободный разговор о себе ────────────────────────────────
-    // Ничего нового: сборка всего в связную речь плюс экзамен.
-    { sessionOrdinal: 49, kind: 'phrases', title: 'Это и то', teaches: ['demonstrative_distance'], builtOn: [33, 41], recalls: [33, 41] },
-    { sessionOrdinal: 50, kind: 'phrases', title: 'Чей это', teaches: ['possessive_question', 'possessive_apostrophe'], builtOn: [38, 49], recalls: [38, 41] },
-    { sessionOrdinal: 51, kind: 'phrases', title: 'Моё, твоё, его', teaches: ['possessive_pronoun'], builtOn: [50], recalls: [37, 38, 50] },
-    { sessionOrdinal: 52, kind: 'phrases', title: 'И, но, тоже', teaches: ['conjunction_and_but_too'], builtOn: [25, 46], recalls: [46] },
-    { sessionOrdinal: 53, kind: 'phrases', title: 'Когда не понял', teaches: ['clarification_request', 'register_politeness'], builtOn: [5, 36], recalls: [5, 36] },
-    { sessionOrdinal: 54, kind: 'recall', title: 'Вспоминаем всё', teaches: [], builtOn: [], recalls: [1, 9, 17, 25, 33, 41] },
-    { sessionOrdinal: 55, kind: 'voice', title: 'Скажи вслух: расскажи о себе', teaches: [], builtOn: [49, 51, 52, 53], recalls: [1, 6, 22, 45, 46] },
-    { sessionOrdinal: 56, kind: 'checkpoint', title: 'Экзамен урока', teaches: [], builtOn: [8, 16, 24, 32, 40, 48, 55], recalls: [8, 16, 24, 32, 40, 48] },
+    { sessionOrdinal: 2, kind: 'phrases', title: 'I am целиком', teaches: ['affirmative_self_statement'], builtOn: [1], recalls: [1] },
+    { sessionOrdinal: 3, kind: 'phrases', title: 'I’m — коротко и живо', teaches: ['contraction_im'], builtOn: [1, 2], recalls: [1] },
+    { sessionOrdinal: 4, kind: 'words_then_phrases', title: 'Я готов', teaches: ['readiness_vocabulary'], builtOn: [1], recalls: [1, 2] },
+    { sessionOrdinal: 5, kind: 'words_then_phrases', title: 'Hi и Hello', teaches: ['greeting_formula', 'greeting_choice'], builtOn: [], recalls: [1] },
+    { sessionOrdinal: 6, kind: 'phrases', title: 'Первые две реплики', teaches: ['opening_turn'], builtOn: [3, 5], recalls: [1, 3, 5] },
+    { sessionOrdinal: 7, kind: 'voice', title: 'Скажи о себе вслух', teaches: ['spoken_production'], builtOn: [1, 3, 4, 5, 6], recalls: [1, 3, 4, 5] },
+    { sessionOrdinal: 8, kind: 'checkpoint', title: 'Я начинаю разговор', teaches: [], builtOn: [1, 2, 3, 4, 5, 6, 7], recalls: [1, 3, 4, 5, 6] },
+    // ── Глава 2. Назвать себя ─────────────────────────────────────────────
+    { sessionOrdinal: 9, kind: 'words_then_phrases', title: 'Имя после Hi', teaches: ['personal_name_slot', 'self_introduction_formula'], builtOn: [3, 5], recalls: [5, 6] },
+    { sessionOrdinal: 10, kind: 'phrases', title: 'I’m и имя одним дыханием', teaches: ['name_chunking'], builtOn: [9], recalls: [3, 9] },
+    { sessionOrdinal: 11, kind: 'phrases', title: 'Hello, I’m…', teaches: ['greeting_name_sequence'], builtOn: [5, 9], recalls: [5, 9] },
+    { sessionOrdinal: 12, kind: 'words_then_phrases', title: 'Nice to meet you', teaches: ['meeting_formula'], builtOn: [9], recalls: [5, 9] },
+    { sessionOrdinal: 13, kind: 'phrases', title: 'Имя без текста', teaches: ['name_retrieval'], builtOn: [9, 10], recalls: [3, 9, 10] },
+    { sessionOrdinal: 14, kind: 'recall', title: 'Два начала знакомства', teaches: ['greeting_retrieval'], builtOn: [11, 12], recalls: [5, 9, 11, 12] },
+    { sessionOrdinal: 15, kind: 'voice', title: 'Представься вслух', teaches: ['self_intro_fluency'], builtOn: [9, 10, 11, 12], recalls: [5, 9, 10, 12] },
+    { sessionOrdinal: 16, kind: 'checkpoint', title: 'Я представляюсь', teaches: [], builtOn: [9, 10, 11, 12, 13, 14, 15], recalls: [5, 9, 11, 12, 15] },
+    // ── Глава 3. Назвать страну ───────────────────────────────────────────
+    { sessionOrdinal: 17, kind: 'words_then_phrases', title: 'I’m from…', teaches: ['origin_from_fixed_frame'], builtOn: [3, 9], recalls: [3, 9] },
+    { sessionOrdinal: 18, kind: 'words_then_phrases', title: 'Страны на слух', teaches: ['country_name', 'country_sound'], builtOn: [17], recalls: [9, 17] },
+    { sessionOrdinal: 19, kind: 'phrases', title: 'Моя страна', teaches: ['origin_statement'], builtOn: [17, 18], recalls: [17, 18] },
+    { sessionOrdinal: 20, kind: 'phrases', title: 'Имя, затем страна', teaches: ['identity_origin_sequence'], builtOn: [9, 19], recalls: [9, 11, 17, 19] },
+    { sessionOrdinal: 21, kind: 'words_then_phrases', title: 'Ещё одна страна', teaches: ['country_slot_variation'], builtOn: [18, 19], recalls: [17, 18, 19] },
+    { sessionOrdinal: 22, kind: 'recall', title: 'Откуда я — без подсказки', teaches: ['origin_retrieval'], builtOn: [19, 21], recalls: [9, 17, 19] },
+    { sessionOrdinal: 23, kind: 'voice', title: 'Назови имя и страну', teaches: ['origin_spoken_fluency'], builtOn: [20, 22], recalls: [9, 17, 19, 20] },
+    { sessionOrdinal: 24, kind: 'checkpoint', title: 'Имя и страна', teaches: [], builtOn: [17, 18, 19, 20, 21, 22, 23], recalls: [9, 17, 19, 20, 23] },
+    // ── Глава 4. Назвать язык ─────────────────────────────────────────────
+    { sessionOrdinal: 25, kind: 'words_then_phrases', title: 'Названия языков', teaches: ['language_name'], builtOn: [18], recalls: [18, 21] },
+    { sessionOrdinal: 26, kind: 'words_then_phrases', title: 'I speak… как готовая фраза', teaches: ['language_fixed_formula'], builtOn: [25], recalls: [17, 25] },
+    { sessionOrdinal: 27, kind: 'phrases', title: 'Страна и язык — не одно и то же', teaches: ['country_language_distinction'], builtOn: [18, 25, 26], recalls: [18, 21, 25, 26] },
+    { sessionOrdinal: 28, kind: 'phrases', title: 'Язык после страны', teaches: ['origin_language_sequence'], builtOn: [19, 26], recalls: [17, 19, 25, 26] },
+    { sessionOrdinal: 29, kind: 'phrases', title: 'Три факта о себе', teaches: ['three_fact_sequence'], builtOn: [9, 19, 26], recalls: [9, 19, 20, 26, 28] },
+    { sessionOrdinal: 30, kind: 'recall', title: 'Три факта из памяти', teaches: ['three_fact_retrieval'], builtOn: [29], recalls: [9, 17, 25, 29] },
+    { sessionOrdinal: 31, kind: 'voice', title: 'Имя, страна, язык — вслух', teaches: ['language_spoken_fluency'], builtOn: [29, 30], recalls: [9, 19, 26, 29] },
+    { sessionOrdinal: 32, kind: 'checkpoint', title: 'Имя, страна и язык', teaches: [], builtOn: [25, 26, 27, 28, 29, 30, 31], recalls: [16, 24, 25, 26, 29, 31] },
+    // ── Глава 5. Утвердительное you are ──────────────────────────────────
+    // Только утверждение. Вопрос и отрицание остаются в эпизоде 2.
+    { sessionOrdinal: 33, kind: 'words_then_phrases', title: 'You are — о собеседнике', teaches: ['second_person', 'affirmative_addressee_statement'], builtOn: [1, 2], recalls: [1, 2] },
+    { sessionOrdinal: 34, kind: 'phrases', title: 'I am или you are', teaches: ['speaker_addressee_choice'], builtOn: [2, 33], recalls: [1, 2, 33] },
+    { sessionOrdinal: 35, kind: 'phrases', title: 'You are here', teaches: ['addressee_presence'], builtOn: [1, 33], recalls: [1, 33, 34] },
+    { sessionOrdinal: 36, kind: 'words_then_phrases', title: 'You are ready', teaches: ['addressee_readiness'], builtOn: [4, 33], recalls: [4, 33, 35] },
+    { sessionOrdinal: 37, kind: 'phrases', title: 'I am и you are рядом', teaches: ['person_agreement_contrast'], builtOn: [34, 35, 36], recalls: [1, 4, 33, 34] },
+    { sessionOrdinal: 38, kind: 'recall', title: 'Кто говорит', teaches: ['perspective_retrieval'], builtOn: [37], recalls: [2, 33, 34, 37] },
+    { sessionOrdinal: 39, kind: 'voice', title: 'Скажи это собеседнику', teaches: ['addressee_spoken_production'], builtOn: [35, 36, 38], recalls: [1, 4, 33, 35, 36] },
+    { sessionOrdinal: 40, kind: 'checkpoint', title: 'Я и ты', teaches: [], builtOn: [33, 34, 35, 36, 37, 38, 39], recalls: [1, 4, 33, 34, 37, 39] },
+    // ── Глава 6. Передать очередь и завершить ─────────────────────────────
+    { sessionOrdinal: 41, kind: 'words_then_phrases', title: 'And you?', teaches: ['and_you_fixed_formula'], builtOn: [29, 33], recalls: [29, 33] },
+    { sessionOrdinal: 42, kind: 'phrases', title: 'Передай очередь', teaches: ['turn_taking'], builtOn: [41], recalls: [33, 37, 41] },
+    { sessionOrdinal: 43, kind: 'words_then_phrases', title: 'See you later', teaches: ['farewell_formula'], builtOn: [5, 12], recalls: [5, 12] },
+    { sessionOrdinal: 44, kind: 'phrases', title: 'Начать и закончить', teaches: ['opening_closing_sequence'], builtOn: [11, 43], recalls: [5, 11, 12, 43] },
+    { sessionOrdinal: 45, kind: 'phrases', title: 'Собеседник отвечает', teaches: ['response_selection'], builtOn: [33, 41, 42], recalls: [29, 33, 41, 42] },
+    { sessionOrdinal: 46, kind: 'recall', title: 'Вся цепочка знакомства', teaches: ['conversation_retrieval'], builtOn: [44, 45], recalls: [11, 20, 29, 41, 43] },
+    { sessionOrdinal: 47, kind: 'voice', title: 'Разыграй знакомство', teaches: ['dialogue_production'], builtOn: [44, 45, 46], recalls: [15, 23, 31, 39, 43] },
+    { sessionOrdinal: 48, kind: 'checkpoint', title: 'Разговор целиком', teaches: [], builtOn: [41, 42, 43, 44, 45, 46, 47], recalls: [16, 24, 32, 40, 43, 47] },
+    // ── Глава 7. Перенос без новой грамматики ─────────────────────────────
+    { sessionOrdinal: 49, kind: 'phrases', title: 'Новая встреча', teaches: ['transfer_context_variation'], builtOn: [48], recalls: [11, 20, 29, 44] },
+    { sessionOrdinal: 50, kind: 'recall', title: 'Быстрее без текста', teaches: ['fluency_retrieval'], builtOn: [49], recalls: [9, 17, 25, 33, 41] },
+    { sessionOrdinal: 51, kind: 'phrases', title: 'Услышать и продолжить', teaches: ['aural_turn_response'], builtOn: [45, 49], recalls: [12, 28, 41, 45] },
+    { sessionOrdinal: 52, kind: 'recall', title: 'Собрать по одному намёку', teaches: ['minimal_cue_retrieval'], builtOn: [50, 51], recalls: [3, 9, 17, 25, 43] },
+    { sessionOrdinal: 53, kind: 'phrases', title: 'Три факта в живом порядке', teaches: ['conversation_coherence'], builtOn: [29, 49, 52], recalls: [20, 29, 41, 44] },
+    { sessionOrdinal: 54, kind: 'recall', title: 'Все формулы из памяти', teaches: ['independent_formula_retrieval'], builtOn: [52, 53], recalls: [5, 9, 17, 25, 33, 41, 43] },
+    { sessionOrdinal: 55, kind: 'voice', title: 'Разговор без текста', teaches: ['independent_spoken_transfer'], builtOn: [49, 53, 54], recalls: [15, 23, 31, 39, 47] },
+    { sessionOrdinal: 56, kind: 'checkpoint', title: 'Финальная встреча', teaches: [], builtOn: [8, 16, 24, 32, 40, 48, 55], recalls: [8, 16, 24, 32, 40, 48, 55] },
 ]);
 /** Всё, что объяснено к началу указанной сессии (включая её собственное интро). */
 function featuresTaughtBySession(sessionOrdinal) {

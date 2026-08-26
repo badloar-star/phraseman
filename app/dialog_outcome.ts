@@ -130,6 +130,7 @@ export function outcomeTitle(outcome: DialogOutcome, lang: Lang): string {
       return triLang(lang, {
         ru: 'Получилось!',
         uk: 'Вийшло!',
+        en: 'You did it!',
         es: '¡Lo lograste!',
         'pt-BR': 'Conseguiu!',
         vi: 'Thành công!',
@@ -141,6 +142,7 @@ export function outcomeTitle(outcome: DialogOutcome, lang: Lang): string {
       return triLang(lang, {
         ru: 'Собеседник потерял терпение',
         uk: 'Співрозмовник втратив терпіння',
+        en: 'The character lost patience',
         es: 'Tu interlocutor perdió la paciencia',
         'pt-BR': 'Seu interlocutor perdeu a paciência',
         vi: 'Người kia mất kiên nhẫn',
@@ -152,6 +154,7 @@ export function outcomeTitle(outcome: DialogOutcome, lang: Lang): string {
       return triLang(lang, {
         ru: 'Разговор заглох',
         uk: 'Розмова згасла',
+        en: 'The conversation stalled',
         es: 'La conversación se apagó',
         'pt-BR': 'A conversa esfriou',
         vi: 'Cuộc trò chuyện chững lại',
@@ -164,6 +167,7 @@ export function outcomeTitle(outcome: DialogOutcome, lang: Lang): string {
       return triLang(lang, {
         ru: 'Разговор продолжается',
         uk: 'Розмова триває',
+        en: 'The conversation continues',
         es: 'La conversación continúa',
         'pt-BR': 'A conversa continua',
         vi: 'Cuộc trò chuyện tiếp tục',

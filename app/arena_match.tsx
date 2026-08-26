@@ -1041,7 +1041,7 @@ function ArenaMatchGenerationScreen({
           {taskRenderable ? (
             <ArenaQuestion
               task={arenaPlanTaskToPublic(visibleTask)}
-              locked={match.state.phase === 'finished' || !hud.interactive}
+              locked={!hud.interactive}
               submitLabel={arenaText(lang, 'submit')}
               onSubmit={onSubmit}
               onSpeedAttempt={onSpeedAttempt}

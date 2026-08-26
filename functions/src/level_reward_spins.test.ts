@@ -20,7 +20,7 @@ describe('level reward spins', () => {
       revealState: 'acknowledged',
       deliveries: {
         base: { state: 'unclaimed' },
-        premium: { state: 'delivering', deliveryToken: 'token-1234567890', deliveryLeaseUntilMs: 99 },
+        premium: { state: 'delivering', deliveryToken: 'fixture-delivery-token', deliveryLeaseUntilMs: 99 },
       },
     })).toEqual({
       revealState: 'acknowledged',

@@ -59,20 +59,19 @@ function PressableHybrid({
   }, [opacity, scale]);
 
   const pressIn = useCallback(() => {
-    // Хаптик ДО анимации (паттерн PressableScale) — убирает микрозадержку
-    // первого видимого кадра на холодном старте Taptic Engine.
-    if (!silent && !unavailable && withHaptic) hapticTap();
     if (unavailable) return;
     if (reduceMotion) {
       Animated.timing(opacity, { toValue: 0.82, duration: PRESS.reducedDownMs, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
-      return;
+    } else {
+      Animated.timing(scale, {
+        toValue: pressedScale,
+        duration: PRESS.downMs,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start();
     }
-    Animated.timing(scale, {
-      toValue: pressedScale,
-      duration: PRESS.downMs,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
+    // Visual-first: native haptic cold-start must never delay the first frame.
+    if (!silent && withHaptic) hapticTap();
   }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, withHaptic]);
 
   const pressOut = useCallback(() => {

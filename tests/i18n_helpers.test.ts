@@ -1,6 +1,7 @@
 jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
   SPANISH_UI_LOCALE_ENABLED: true,
+  ENGLISH_UI_LOCALE_ENABLED: false,
 }));
 
 import {
@@ -11,8 +12,15 @@ import {
   legacyRuUk,
   triLang,
 } from '../constants/i18n';
+import fs from 'node:fs';
+import path from 'node:path';
 
 describe('i18n helpers', () => {
+  it('keeps prepared English streak copy staged outside the active Lang contract', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'constants', 'streak_stats_i18n.ts'), 'utf8');
+    expect(source).toContain("type StagedStreakCopy<T> = Record<Lang, T> & { en: T };");
+    expect(source).not.toContain('const STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG: Record<Lang, string>');
+  });
   describe('legacyRuUk', () => {
     it('maps ru, uk, es to themselves', () => {
       expect(legacyRuUk('ru')).toBe('ru');
@@ -41,10 +49,11 @@ describe('i18n helpers', () => {
   });
 
 describe('Heisenberg interface languages — готовы к UI и выбираемы', () => {
-    it('опции по-прежнему перечисляют все 8 кодов (фильтрация — на экране)', () => {
+    it('dev-опции перечисляют 9 кодов, включая English UI', () => {
       expect(INTERFACE_LANGUAGE_OPTIONS.map((option) => option.code)).toEqual([
         'ru',
         'uk',
+        'en',
         'es',
         'pt-BR',
         'vi',
@@ -82,5 +91,6 @@ describe('Heisenberg interface languages — готовы к UI и выбира�
       expect(triLang('tr', copy)).toBe('TR');
       expect(triLang('pl', copy)).toBe('PL');
     });
+
   });
 });

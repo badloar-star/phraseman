@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
@@ -45,7 +46,7 @@ export default function AvatarDNAStudioScreen() {
 
   useEffect(() => {
     if (!enabled || !account.stableId || account.phase !== 'active') {
-      router.back();
+      safeRouterBack(router, '/avatar_select' as never);
       return;
     }
     let cancelled = false;
@@ -56,7 +57,7 @@ export default function AvatarDNAStudioScreen() {
       setInitialDNA(next);
     });
     const remoteSub = onAppEvent('remote_config_changed', () => {
-      if (!isAvatarDNAEnabled(account.stableId)) router.back();
+      if (!isAvatarDNAEnabled(account.stableId)) safeRouterBack(router, '/avatar_select' as never);
     });
     return () => {
       cancelled = true;
@@ -66,7 +67,7 @@ export default function AvatarDNAStudioScreen() {
 
   const close = useCallback(() => {
     if (dirty) setShowDirtyExit(true);
-    else router.back();
+    else safeRouterBack(router, '/avatar_select' as never);
   }, [dirty, router]);
 
   const save = useCallback(async (dna: AvatarDNA) => {
@@ -79,7 +80,7 @@ export default function AvatarDNAStudioScreen() {
       }
       setDirty(false);
       setShowDirtyExit(false);
-      router.back();
+      safeRouterBack(router, '/avatar_select' as never);
     } catch {
       setShowDirtyExit(false);
       emitAppEvent('action_toast', saveFailurePayload());
@@ -106,7 +107,7 @@ export default function AvatarDNAStudioScreen() {
         choices={[
           { label: copy.saveAndClose, onPress: () => { void save(draft); } },
           { label: copy.continueEditing, variant: 'secondary', onPress: () => setShowDirtyExit(false) },
-          { label: copy.discardChanges, variant: 'secondary', onPress: () => router.back() },
+          { label: copy.discardChanges, variant: 'secondary', onPress: () => safeRouterBack(router, '/avatar_select' as never) },
         ]}
       />
       <View testID="avatar-dna-manifest-version" style={{ position: 'absolute', width: 1, height: 1, opacity: 0 }}><Text>{avatarCatalog.manifestVersion}</Text></View>

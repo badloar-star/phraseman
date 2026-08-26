@@ -124,6 +124,7 @@ const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Компас прилёг подремать',
+      en: 'Compass took a nap',
       uk: 'Компас приліг подрімати',
       es: 'Compass se echó una siesta',
       'pt-BR': 'Compass tirou uma soneca',
@@ -134,6 +135,7 @@ const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Уснул под пальмой. Разбор будет позже 🌴',
+      en: 'Dozed off under a palm tree. The breakdown will come later 🌴',
       uk: 'Заснув під пальмою. Розбір буде пізніше 🌴',
       es: 'Se durmió bajo una palmera. El análisis vendrá luego 🌴',
       'pt-BR': 'Dormiu embaixo de uma palmeira. A análise vem depois 🌴',
@@ -146,6 +148,7 @@ const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Словарь захлопнулся',
+      en: 'The dictionary slammed shut',
       uk: 'Словник захлопнувся',
       es: 'El diccionario se cerró de golpe',
       'pt-BR': 'O dicionário fechou de vez',
@@ -156,6 +159,7 @@ const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Ветер перелистнул все страницы и захлопнул словарь на нужном слове. Открываем обратно — загляни позже 📖',
+      en: 'The wind flipped through every page and shut the dictionary right on the word we needed. Opening it back up — check in later 📖',
       uk: 'Вітер перегорнув усі сторінки й захлопнув словник на потрібному слові. Відкриваємо назад — зазирни пізніше 📖',
       es: 'El viento pasó todas las páginas y cerró el diccionario justo en la palabra clave. Lo abrimos de nuevo — vuelve luego 📖',
       'pt-BR': 'O vento virou todas as páginas e fechou o dicionário bem na palavra certa. Vamos reabrir — volte depois 📖',
@@ -168,6 +172,7 @@ const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Очки укатились под диван',
+      en: 'The glasses rolled under the sofa',
       uk: 'Окуляри закотилися під диван',
       es: 'Las gafas rodaron bajo el sofá',
       'pt-BR': 'Os óculos rolaram pra baixo do sofá',
@@ -178,6 +183,7 @@ const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Компас снял очки протереть, а они — шмыг под диван. Без них ни строчки не разберёт. Позже вернёмся 👓',
+      en: 'Compass took off his glasses to clean them, and they scooted under the sofa. Can’t read a line without them. Back later 👓',
       uk: 'Компас зняв окуляри протерти, а вони — шмиг під диван. Без них ні рядка не розбере. Пізніше повернемось 👓',
       es: 'Compass se quitó las gafas para limpiarlas y se escurrieron bajo el sofá. Sin ellas no lee ni una línea. Volvemos luego 👓',
       'pt-BR': 'Compass tirou os óculos pra limpar e eles escaparam pra baixo do sofá. Sem eles não lê uma linha. Voltamos depois 👓',
@@ -193,6 +199,7 @@ const COMPASS_VOICE_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Компас медитирует',
+      en: 'Compass is meditating',
       uk: 'Компас медитує',
       es: 'Compass está meditando',
       'pt-BR': 'Compass está meditando',
@@ -203,6 +210,7 @@ const COMPASS_VOICE_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Обещал вернуться просветлённым. Загляни позже 🧘',
+      en: 'Promised to come back enlightened. Check in later 🧘',
       uk: 'Обіцяв повернутися просвітленим. Зазирни пізніше 🧘',
       es: 'Prometió volver iluminado. Vuelve más tarde 🧘',
       'pt-BR': 'Prometeu voltar iluminado. Volte mais tarde 🧘',
@@ -215,6 +223,7 @@ const COMPASS_VOICE_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Компас ушёл встречать рассвет',
+      en: 'Compass went off to watch the sunrise',
       uk: 'Компас пішов зустрічати світанок',
       es: 'Compass fue a ver el amanecer',
       'pt-BR': 'Compass foi ver o nascer do sol',
@@ -225,6 +234,7 @@ const COMPASS_VOICE_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Сказал, что мысль дня приходит только на восходе. Вернётся с новой — заходи позже 🌄',
+      en: 'Said the thought of the day only shows up at dawn. He’ll be back with a new one — check in later 🌄',
       uk: 'Сказав, що думка дня приходить лише на сході. Повернеться з новою — заходь пізніше 🌄',
       es: 'Dice que el pensamiento del día solo llega al amanecer. Volverá con uno nuevo — pásate luego 🌄',
       'pt-BR': 'Disse que o pensamento do dia só vem ao amanhecer. Volta com um novo — apareça depois 🌄',
@@ -237,6 +247,7 @@ const COMPASS_VOICE_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Микрофон занят сверчком',
+      en: 'A cricket took over the microphone',
       uk: 'Мікрофон зайнятий цвіркуном',
       es: 'Un grillo ocupó el micrófono',
       'pt-BR': 'Um grilo ocupou o microfone',
@@ -247,6 +258,7 @@ const COMPASS_VOICE_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Пока Компас отходил, в микрофон залез сверчок и завёл свою песню. Выселяем — комментарий чуть позже 🦗',
+      en: 'While Compass stepped away, a cricket climbed into the mic and started singing. Evicting it now — the comment’s coming a bit later 🦗',
       uk: 'Поки Компас відходив, у мікрофон заліз цвіркун і завів свою пісню. Виселяємо — коментар трохи пізніше 🦗',
       es: 'Mientras Compass se alejaba, un grillo se metió en el micrófono y empezó su canción. Lo desalojamos — el comentario llega luego 🦗',
       'pt-BR': 'Enquanto Compass se afastava, um grilo entrou no microfone e começou a cantar. Tô tirando ele — o comentário vem já já 🦗',
@@ -262,6 +274,7 @@ const SPEAKING_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Микрофон на техобслуживании',
+      en: 'Microphone under maintenance',
       uk: 'Мікрофон на техобслуговуванні',
       es: 'Micrófono en mantenimiento',
       'pt-BR': 'Microfone em manutenção',

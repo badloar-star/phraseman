@@ -2,7 +2,7 @@ import { Image, type ImageSourcePropType } from 'react-native';
 import { Asset } from 'expo-asset';
 import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets';
 import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
-import { REFERRAL_INVITE_BANNER_IMAGES } from '../components/ReferralInviteBannerArt';
+import { getActiveReferralInviteBannerImage } from '../components/ReferralInviteBannerArt';
 
 // Pre-load critical bundled images so Metro-served assets are already cached in dev.
 // Image.getSize() only works with network URIs, not require() assets.
@@ -80,12 +80,13 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
 
 export const preloadPrimaryTabImages = async () => {
   try {
+    const activeReferralBanner = await getActiveReferralInviteBannerImage();
     await warmImageSources([
       ...CLUB_IMAGES,
       ...MEDAL_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
-      ...REFERRAL_INVITE_BANNER_IMAGES,
+      activeReferralBanner,
     ]);
   } catch {
     // Silently fail - preloading is entirely optional.
@@ -104,12 +105,13 @@ export const preloadDeferredNonPrimaryImages = async () => {
 
 export const preloadImages = async () => {
   try {
+    const activeReferralBanner = await getActiveReferralInviteBannerImage();
     const allImages = [
       ...CLUB_IMAGES,
       ...MEDAL_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
-      ...REFERRAL_INVITE_BANNER_IMAGES,
+      activeReferralBanner,
       ...OSKOLOK_IMAGE_SOURCES,
     ];
     await warmImageSources(allImages);

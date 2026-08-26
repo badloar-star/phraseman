@@ -12,7 +12,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -24,7 +24,10 @@ import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
 import { MISTAKE_EXERCISE_MODE_REGISTRY } from '../modules/mistake-practice/exercise_mode_registry';
-import { classifyMistakeVoiceVerdict } from '../modules/mistake-practice/voice_verdict';
+import {
+  classifyMistakeVoiceVerdict,
+  mistakeVoiceOutcomeToSessionAttemptVerdict,
+} from '../modules/mistake-practice/voice_verdict';
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_client';
 import type { MistakeEvent } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
@@ -52,6 +55,12 @@ import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
 import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 type Feedback = {
   correct: boolean;
@@ -132,6 +141,101 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     explanationListening: 'Primero identifica las palabras clave al escuchar y luego reconstruye la frase completa.',
     explanationDefault: 'Compara tu respuesta con la forma correcta y fíjate en las terminaciones y palabras auxiliares.',
   },
+  'pt-BR': {
+    listen: 'Ouvir', unsupported: 'Este idioma ainda não é suportado na seção de erros.',
+    noLongerDue: 'Esta frase não precisa mais de prática.', minFive: 'É preciso ter pelo menos 5 erros prontos para começar.',
+    prepareFailed: 'Não foi possível preparar o treino. Tente novamente.', noEnergy: 'Energia insuficiente para continuar.',
+    speechUncertain: 'Não foi possível reconhecer a fala com segurança. Tente novamente — a energia não foi gasta.',
+    speechRetry: 'Tente novamente — a energia não foi gasta.', sessionEnded: 'Sessão encerrada', back: 'Voltar',
+    sessionComplete: 'Sessão concluída', done: 'Pronto', close: 'Fechar', hideError: 'Ocultar erro',
+    buildPhrase: 'Monte a frase', answerPlaceholder: 'Escreva a resposta', holdToSpeak: 'Segure para falar',
+    holdAndSpeak: 'Segure e fale', correct: 'Correto', needsFix: 'Precisa corrigir',
+    correctAnswer: 'Resposta correta', why: 'Por que', stopToday: 'Chega de repetições desse erro por hoje — voltaremos a ele mais tarde.',
+    hidden: 'Erro ocultado', undo: 'Desfazer', continue: 'Continuar', check: 'Verificar',
+    hideTitle: 'Ocultar este erro?', cancel: 'Cancelar', hide: 'Ocultar',
+    explanationWordOrder: 'Confira a ordem das palavras: em inglês, a posição de cada palavra muda o sentido.',
+    explanationMissing: 'Verifique a palavra que faltou e leia a frase inteira de novo.',
+    explanationMeaning: 'Relacione o significado com a frase toda, não só com uma palavra conhecida.',
+    explanationPronunciation: 'Diga a frase com calma e clareza, mantendo o acento e as terminações.',
+    explanationListening: 'Primeiro identifique as palavras-chave ao ouvir e depois reconstrua a frase completa.',
+    explanationDefault: 'Compare sua resposta com a forma correta e preste atenção nas terminações e palavras auxiliares.',
+  },
+  vi: {
+    listen: 'Nghe', unsupported: 'Ngôn ngữ này chưa được hỗ trợ trong phần lỗi sai.',
+    noLongerDue: 'Cụm từ này không còn cần luyện tập nữa.', minFive: 'Cần ít nhất 5 lỗi sẵn sàng để bắt đầu.',
+    prepareFailed: 'Không thể chuẩn bị buổi luyện tập. Hãy thử lại.', noEnergy: 'Không đủ năng lượng để tiếp tục.',
+    speechUncertain: 'Không thể nhận diện giọng nói một cách chắc chắn. Hãy thử lại — năng lượng chưa bị trừ.',
+    speechRetry: 'Hãy thử lại — năng lượng chưa bị trừ.', sessionEnded: 'Buổi học đã kết thúc', back: 'Quay lại',
+    sessionComplete: 'Đã hoàn thành buổi học', done: 'Xong', close: 'Đóng', hideError: 'Ẩn lỗi',
+    buildPhrase: 'Ghép câu', answerPlaceholder: 'Viết câu trả lời', holdToSpeak: 'Giữ để nói',
+    holdAndSpeak: 'Giữ và nói', correct: 'Đúng', needsFix: 'Cần sửa lại',
+    correctAnswer: 'Đáp án đúng', why: 'Vì sao', stopToday: 'Hôm nay đã đủ lần lặp lại lỗi này — ta sẽ quay lại sau.',
+    hidden: 'Đã ẩn lỗi', undo: 'Hoàn tác', continue: 'Tiếp tục', check: 'Kiểm tra',
+    hideTitle: 'Ẩn lỗi này?', cancel: 'Hủy', hide: 'Ẩn',
+    explanationWordOrder: 'Kiểm tra trật tự từ: trong câu tiếng Anh, vị trí mỗi từ thay đổi ý nghĩa.',
+    explanationMissing: 'Kiểm tra từ bị thiếu và đọc lại toàn bộ câu.',
+    explanationMeaning: 'Liên kết ý nghĩa với cả câu, không chỉ với một từ quen thuộc.',
+    explanationPronunciation: 'Nói câu một cách bình tĩnh và rõ ràng, giữ đúng trọng âm và đuôi từ.',
+    explanationListening: 'Trước tiên hãy tìm các từ khóa khi nghe, sau đó khôi phục lại toàn bộ câu.',
+    explanationDefault: 'So sánh câu trả lời của bạn với dạng đúng và chú ý đến đuôi từ và từ chức năng.',
+  },
+  id: {
+    listen: 'Dengarkan', unsupported: 'Bahasa ini belum didukung di bagian kesalahan.',
+    noLongerDue: 'Frasa ini tidak lagi perlu dilatih.', minFive: 'Butuh minimal 5 kesalahan siap untuk memulai.',
+    prepareFailed: 'Gagal menyiapkan latihan. Coba lagi.', noEnergy: 'Energi tidak cukup untuk melanjutkan.',
+    speechUncertain: 'Tidak dapat mengenali ucapan dengan yakin. Coba lagi — energi tidak terpakai.',
+    speechRetry: 'Coba lagi — energi tidak terpakai.', sessionEnded: 'Sesi berakhir', back: 'Kembali',
+    sessionComplete: 'Sesi selesai', done: 'Selesai', close: 'Tutup', hideError: 'Sembunyikan kesalahan',
+    buildPhrase: 'Susun kalimat', answerPlaceholder: 'Tulis jawaban', holdToSpeak: 'Tahan untuk berbicara',
+    holdAndSpeak: 'Tahan dan bicara', correct: 'Benar', needsFix: 'Perlu diperbaiki',
+    correctAnswer: 'Jawaban benar', why: 'Mengapa begitu', stopToday: 'Cukup pengulangan kesalahan ini untuk hari ini — kita kembali lagi nanti.',
+    hidden: 'Kesalahan disembunyikan', undo: 'Batalkan', continue: 'Lanjutkan', check: 'Periksa',
+    hideTitle: 'Sembunyikan kesalahan ini?', cancel: 'Batal', hide: 'Sembunyikan',
+    explanationWordOrder: 'Periksa urutan kata: dalam kalimat bahasa Inggris, posisi setiap kata mengubah arti.',
+    explanationMissing: 'Periksa kata yang hilang dan baca ulang seluruh kalimat.',
+    explanationMeaning: 'Hubungkan arti dengan seluruh kalimat, bukan hanya satu kata yang dikenal.',
+    explanationPronunciation: 'Ucapkan kalimat dengan tenang dan jelas, jaga tekanan dan akhiran kata.',
+    explanationListening: 'Cari dulu kata kunci saat mendengarkan, lalu susun ulang kalimat lengkapnya.',
+    explanationDefault: 'Bandingkan jawabanmu dengan bentuk yang benar dan perhatikan akhiran serta kata bantu.',
+  },
+  tr: {
+    listen: 'Dinle', unsupported: 'Bu dil hatalar bölümünde henüz desteklenmiyor.',
+    noLongerDue: 'Bu ifade artık pratiğe gerek duymuyor.', minFive: 'Başlamak için en az 5 hazır hata gerekiyor.',
+    prepareFailed: 'Pratik hazırlanamadı. Tekrar dene.', noEnergy: 'Devam etmek için yeterli enerji yok.',
+    speechUncertain: 'Konuşma güvenilir şekilde tanınamadı. Tekrar dene — enerji harcanmadı.',
+    speechRetry: 'Tekrar dene — enerji harcanmadı.', sessionEnded: 'Oturum sona erdi', back: 'Geri dön',
+    sessionComplete: 'Oturum tamamlandı', done: 'Tamam', close: 'Kapat', hideError: 'Hatayı gizle',
+    buildPhrase: 'Cümleyi oluştur', answerPlaceholder: 'Cevabı yaz', holdToSpeak: 'Konuşmak için basılı tut',
+    holdAndSpeak: 'Basılı tut ve konuş', correct: 'Doğru', needsFix: 'Düzeltilmesi gerekiyor',
+    correctAnswer: 'Doğru cevap', why: 'Neden böyle', stopToday: 'Bu hata için bugünlük bu kadar tekrar yeter — sonra döneriz.',
+    hidden: 'Hata gizlendi', undo: 'Geri al', continue: 'Devam et', check: 'Kontrol et',
+    hideTitle: 'Bu hata gizlensin mi?', cancel: 'Vazgeç', hide: 'Gizle',
+    explanationWordOrder: 'Kelime sırasını kontrol et: İngilizce cümlede her kelimenin konumu anlamı değiştirir.',
+    explanationMissing: 'Eksik kelimeyi kontrol et ve tüm cümleyi tekrar oku.',
+    explanationMeaning: 'Anlamı tüm cümleyle ilişkilendir, sadece bildiğin bir kelimeyle değil.',
+    explanationPronunciation: 'Cümleyi sakin ve net söyle, vurguyu ve ekleri koru.',
+    explanationListening: 'Önce dinlerken anahtar kelimeleri bul, sonra tüm cümleyi yeniden kur.',
+    explanationDefault: 'Cevabını doğru formla karşılaştır ve eklere ve yardımcı kelimelere dikkat et.',
+  },
+  pl: {
+    listen: 'Odsłuchaj', unsupported: 'Ten język nie jest jeszcze obsługiwany w sekcji błędów.',
+    noLongerDue: 'Ta fraza nie wymaga już treningu.', minFive: 'Do startu potrzeba co najmniej 5 gotowych błędów.',
+    prepareFailed: 'Nie udało się przygotować treningu. Spróbuj ponownie.', noEnergy: 'Za mało energii, aby kontynuować.',
+    speechUncertain: 'Nie udało się pewnie rozpoznać mowy. Spróbuj ponownie — energia nie została zużyta.',
+    speechRetry: 'Spróbuj ponownie — energia nie została zużyta.', sessionEnded: 'Sesja zakończona', back: 'Wróć',
+    sessionComplete: 'Sesja zakończona', done: 'Gotowe', close: 'Zamknij', hideError: 'Ukryj błąd',
+    buildPhrase: 'Ułóż zdanie', answerPlaceholder: 'Wpisz odpowiedź', holdToSpeak: 'Przytrzymaj, aby mówić',
+    holdAndSpeak: 'Przytrzymaj i mów', correct: 'Poprawnie', needsFix: 'Trzeba poprawić',
+    correctAnswer: 'Poprawna odpowiedź', why: 'Dlaczego tak', stopToday: 'Na dziś wystarczy powtórek tego błędu — wrócimy do niego później.',
+    hidden: 'Błąd ukryty', undo: 'Cofnij', continue: 'Kontynuuj', check: 'Sprawdź',
+    hideTitle: 'Ukryć ten błąd?', cancel: 'Anuluj', hide: 'Ukryj',
+    explanationWordOrder: 'Sprawdź szyk wyrazów: w angielskim zdaniu pozycja każdego słowa zmienia znaczenie.',
+    explanationMissing: 'Sprawdź brakujące słowo i przeczytaj całe zdanie jeszcze raz.',
+    explanationMeaning: 'Połącz znaczenie z całym zdaniem, a nie tylko ze znanym słowem.',
+    explanationPronunciation: 'Powiedz zdanie spokojnie i wyraźnie, zachowując akcent i końcówki.',
+    explanationListening: 'Najpierw znajdź słowa kluczowe ze słuchu, potem odtwórz całe zdanie.',
+    explanationDefault: 'Porównaj swoją odpowiedź z poprawną formą i zwróć uwagę na końcówki i słowa pomocnicze.',
+  },
 });
 
 const explanationFor = (entry: MistakePracticeSessionEntry, copy: ReturnType<typeof sessionCopy>): string => {
@@ -195,8 +299,11 @@ function MistakePracticeSessionScreen() {
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
   const { studyTarget } = useStudyTarget();
+  const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
   const { hasPremiumAccess } = usePremium();
-  const { confirmSpendOne } = useEnergy();
+  const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
+  const mistakeEnergyIntent = useEnergySessionIntent('mistake_practice', studyTarget, attemptSessionId);
   // зачем: ref — чтобы эффект подготовки сессии не пересоздавался из-за confirmSpendOne
   // и не готовил сессию заново (это лишние чтения журнала ошибок).
   const confirmSpendOneRef = useRef(confirmSpendOne);
@@ -225,6 +332,17 @@ function MistakePracticeSessionScreen() {
   const analyticsSessionRef = useRef<MistakePracticeSession | null>(null);
   const analyticsCompletedRef = useRef(false);
   const submissionLatchRef = useRef(false);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `mistake-practice:${session?.sessionId ?? attemptSessionId}`,
+    initialQuestionId: 'mistake-practice:loading',
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const voiceNeutralSequenceRef = useRef(0);
+  useEffect(() => () => {
+    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+  }, []);
 
   const requestedLength: MistakePracticeLength =
     params.length === '10' || params.length === '15' || params.length === 'all' ? params.length : '5';
@@ -295,12 +413,13 @@ function MistakePracticeSessionScreen() {
       });
       if (!cancelled) {
         if (!prepared.resumed) {
-          const energyResult = await confirmSpendOneRef.current();
+          const energyResult = await confirmSpendOneRef.current(mistakeEnergyIntent);
           if (cancelled) return;
           if (energyResult === 'cancelled' || energyResult === 'insufficient') {
             safeRouterBack(router, '/flashcards' as never);
             return;
           }
+          if (energyResult === 'spent') void acknowledgeSessionStart(mistakeEnergyIntent.operationId);
         }
         trackMistakePracticeEvent('mistake_practice_session_started', {
           study_target: studyTarget,
@@ -329,9 +448,13 @@ function MistakePracticeSessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [copy, entrySource, focusedMistakeId, hasPremiumAccess, params.lessonId, persistSession, requestedLength, router, studyTarget]);
+  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, mistakeEnergyIntent, params.lessonId, persistSession, requestedLength, router, studyTarget]);
 
   const entry = session?.queue[session.cursor] ?? null;
+  useEffect(() => {
+    if (!entry) return;
+    attempts.updateQuestion(`${entry.mistakeId}:${entry.exercise.exerciseId}`);
+  }, [attempts.updateQuestion, entry]);
   const progress = session
     ? Math.min(session.initialCount, new Set(session.queue.slice(0, session.cursor).map((item) => item.mistakeId)).size)
     : 0;
@@ -425,17 +548,30 @@ function MistakePracticeSessionScreen() {
         });
       }
       setPendingSession(result.session);
+      const attemptEffect = attempts.registerVerdict({
+        answerAttemptId: attemptId,
+        verdict: correct ? 'correct' : 'pedagogical_wrong',
+      });
       setFeedback({
         correct,
         answer: entry.exercise.feedbackAnswer,
         explanation: explanationFor(entry, copy),
         stopForToday: result.requeue?.kind === 'stop_for_today',
       });
+      if (attemptEffect === 'attempts_exhausted') {
+        // SpeakingPanel receives holdActive=false before the modal appears, so
+        // no partial capture can continue beneath the recovery surface.
+        setSpeechHeld(false);
+        attemptsModalTimerRef.current = setTimeout(
+          () => setShowAttemptsModal(true),
+          SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+        );
+      }
     } finally {
       submissionLatchRef.current = false;
       setSubmitting(false);
     }
-  }, [accountScope, copy, entry, entrySource, feedback, persistSession, session, studyTarget, submitting]);
+  }, [accountScope, copy, entry, entrySource, feedback, persistSession, session, studyTarget, submitting, attempts.registerVerdict]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!pendingSession) return;
@@ -492,11 +628,40 @@ function MistakePracticeSessionScreen() {
 
   const onSpeechStatus = useCallback((status: SpeakingPanelStatus) => {
     if (status === 'denied' || status === 'unavailable' || status === 'no_speech' || status === 'stalled') {
+      attempts.registerVerdict({
+        answerAttemptId: `${session?.sessionId ?? attemptSessionId}:voice-status:${status}:${voiceNeutralSequenceRef.current++}`,
+        verdict: mistakeVoiceOutcomeToSessionAttemptVerdict(status),
+      });
       setSpeechRecovery(copy.speechUncertain);
     } else {
       setSpeechRecovery(null);
     }
-  }, [copy]);
+  }, [attemptSessionId, attempts.registerVerdict, copy, session?.sessionId]);
+
+  const onSpeechClose = useCallback(() => {
+    setSpeechHeld(false);
+    attempts.registerVerdict({
+      answerAttemptId: `${session?.sessionId ?? attemptSessionId}:voice-close:${voiceNeutralSequenceRef.current++}`,
+      verdict: 'cancelled',
+    });
+  }, [attemptSessionId, attempts.registerVerdict, session?.sessionId]);
+
+  const recoverMistakePracticeAttempts = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+    } catch {
+      // Corrective feedback and the prepared scheduler transition stay intact.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+
+  const endExhaustedMistakePractice = useCallback(() => {
+    attempts.endAttemptsSession();
+    setSpeechHeld(false);
+    setShowAttemptsModal(false);
+    leavePractice();
+  }, [attempts.endAttemptsSession, leavePractice]);
 
   const hideCurrentMistake = useCallback(async () => {
     if (!session || !entry || !accountScope || submissionLatchRef.current) return;
@@ -642,6 +807,11 @@ function MistakePracticeSessionScreen() {
         <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={styles.headerButton}>
           <Ionicons name="close" size={24} color={t.textMuted} />
         </Pressable>
+        <SessionAttemptsHud
+          remaining={attempts.state.remainingAttempts}
+          locale={lang}
+          testID="mistake-practice-session-attempts"
+        />
         <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
           <View style={[styles.progressFill, { backgroundColor: t.accent, width: `${Math.min(100, (progress / session.initialCount) * 100)}%` }]} />
         </View>
@@ -668,7 +838,7 @@ OK: ${entry.exercise.correctAnswer}`}
         />
       </View>
 
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <ScrollView decelerationRate="fast" contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={[styles.prompt, { color: t.textPrimary, fontSize: f.h3 }]}>{entry.exercise.prompt}</Text>
 
         {!feedback && !hiddenUndo && (entry.exercise.renderer === 'choices' || entry.exercise.renderer === 'fill_gap' || entry.exercise.renderer === 'matching') ? (
@@ -747,11 +917,12 @@ OK: ${entry.exercise.correctAnswer}`}
                   entry_source: entrySource,
                   voice_outcome: verdict,
                 });
-                if (verdict === 'PASS') void submitVerdict(true);
-                else if (verdict === 'FAIL') void submitVerdict(false);
+                const attemptsVerdict = mistakeVoiceOutcomeToSessionAttemptVerdict(verdict);
+                if (attemptsVerdict === 'correct') void submitVerdict(true);
+                else if (attemptsVerdict === 'pedagogical_wrong') void submitVerdict(false);
                 else setSpeechRecovery(copy.speechRetry);
               }}
-              onClose={() => setSpeechHeld(false)}
+              onClose={onSpeechClose}
               onStatusChange={onSpeechStatus}
             />
             <Pressable
@@ -825,6 +996,16 @@ OK: ${entry.exercise.correctAnswer}`}
         onCancel={() => setHideConfirmVisible(false)}
         onConfirm={() => void hideCurrentMistake()}
         testIDPrefix="mistake-practice-hide"
+      />
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void recoverMistakePracticeAttempts('gift'); }}
+        onSpendRunes={() => { void recoverMistakePracticeAttempts('runes'); }}
+        onEndSession={endExhaustedMistakePractice}
       />
     </MistakePracticeScreenFrame>
   );

@@ -18,6 +18,10 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 // ── Mock the hook's side-effecting dependency graph so the module imports. ──
+// expo-audio ships ESM. The paywall only reaches its player factory through
+// SoundDirector at runtime, so a local factory stub keeps this pure-helper
+// suite focused on paywall behavior in Jest's CommonJS environment.
+jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ replace: jest.fn(), back: jest.fn() }) }));
 jest.mock('react-native-purchases', () => ({ __esModule: true, default: {} }));
 jest.mock('../app/revenuecat_init', () => ({

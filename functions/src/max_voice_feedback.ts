@@ -16,7 +16,7 @@
 
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_ADMIN } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole } from './admin/roles';
@@ -130,7 +130,7 @@ export const submitMaxVoiceFeedback = onCall(
 export const adminListMaxVoiceFeedback = onCall(
   {
     region: REGION,
-    enforceAppCheck: ENFORCE_APP_CHECK,
+    enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
     timeoutSeconds: 15,
     memory: '256MiB',
     maxInstances: 10,

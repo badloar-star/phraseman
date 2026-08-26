@@ -154,6 +154,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
   const closeLabel = triLang(lang, {
     ru: 'Закрыть',
     uk: 'Закрити',
+    en: 'Close',
     es: 'Cerrar',
     'pt-BR': 'Fechar',
     vi: 'Đóng',
@@ -165,6 +166,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
   const title = triLang(lang, {
     ru: 'Объясни проще',
     uk: 'Поясни простіше',
+    en: 'Explain more simply',
     es: 'Explícalo más fácil',
     'pt-BR': 'Explica mais fácil',
     vi: 'Giải thích dễ hơn',
@@ -176,6 +178,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
   const loadingLine = triLang(lang, {
     ru: 'Объясняю простыми словами…',
     uk: 'Пояснюю простими словами…',
+    en: 'Explaining in simple words…',
     es: 'Explicando con palabras simples…',
     'pt-BR': 'Explicando com palavras simples…',
     vi: 'Đang giải thích đơn giản…',
@@ -240,7 +243,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
             </Pressable>
           </View>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={[styles.bodyScroll, { maxHeight: viewportHeight * 0.5 }]}
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}

@@ -51,38 +51,39 @@ const registryModule = require(modulePath) as {
 assert.equal(registryModule.LESSON1_AUTHORING_REGISTRY_V1.length, 56);
 assert.deepEqual(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1.map((entry) => entry.status),
-  ["LOCKED", "LOCKED", "LOCKED", "LOCKED", "LOCKED", "LOCKED", "LOCKED", "LOCKED", "LOCKED", "LOCKED", ...Array.from({ length: 46 }, () => "DRAFT")],
+  Array.from({ length: 56 }, () => "DRAFT"),
 );
 assert.match(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.unlockDecisionRef ?? "",
-  /owner-unlocked-all-lesson1-word-first-rewrite-2026-08-24/u,
+  /owner-unlocked-all-learning-v2-mode-native-rewrite-2026-08-25/u,
 );
 
 const actualFingerprints = Object.fromEntries(
-  AUTHORED_EPISODE_01_SESSIONS.map((source) => [
-    source.requiredSessionOrdinal,
-    learningV2SessionContentFingerprint(source),
-  ]),
-) as Readonly<Record<number, string>>;
+  Array.from({ length: 56 }, (_, index) => [index + 1, null as string | null]),
+) as Record<number, string | null>;
+for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+  actualFingerprints[source.requiredSessionOrdinal] =
+    learningV2SessionContentFingerprint(source);
+}
 assert.deepEqual(
-  registryModule.lesson1AuthoringPreflightV1(11, actualFingerprints),
+  registryModule.lesson1AuthoringPreflightV1(1, actualFingerprints),
   {
-    lockedThrough: 10,
-    currentSessionOrdinal: 11,
-    forbiddenFrom: 12,
+    lockedThrough: 0,
+    currentSessionOrdinal: 1,
+    forbiddenFrom: 2,
   },
 );
 assert.deepEqual(
   registryModule.lesson1AuthoringPreflightV1(undefined, actualFingerprints),
   {
-    lockedThrough: 10,
-    currentSessionOrdinal: 11,
-    forbiddenFrom: 12,
+    lockedThrough: 0,
+    currentSessionOrdinal: 1,
+    forbiddenFrom: 2,
   },
 );
 assert.throws(
-  () => registryModule.lesson1AuthoringPreflightV1(12, actualFingerprints),
-  /lesson1_authoring_out_of_order:requested=12:current=11:lockedThrough=10/u,
+  () => registryModule.lesson1AuthoringPreflightV1(2, actualFingerprints),
+  /lesson1_authoring_out_of_order:requested=2:current=1:lockedThrough=0/u,
 );
 
 const driftedRegistry = registryModule.LESSON1_AUTHORING_REGISTRY_V1.map(
@@ -101,16 +102,16 @@ assert.throws(
       actualFingerprints,
       driftedRegistry,
     ),
-  /lesson1_locked_fingerprint_drift:session=1/u,
+  /lesson1_authoring_out_of_order|lesson1_forbidden_future_fingerprint_drift/u,
 );
 
 const futureDraftDrift = {
   ...actualFingerprints,
-  12: "deliberate-future-draft-drift-for-red-green-proof",
+  2: "deliberate-future-draft-drift-for-red-green-proof",
 };
 assert.throws(
-  () => registryModule.lesson1AuthoringPreflightV1(11, futureDraftDrift),
-  /lesson1_forbidden_future_fingerprint_drift:range=12-56/u,
+  () => registryModule.lesson1AuthoringPreflightV1(1, futureDraftDrift),
+  /lesson1_forbidden_future_fingerprint_drift:range=2-56/u,
 );
 
 const packageJson = JSON.parse(
@@ -121,8 +122,16 @@ assert.equal(
   "npx tsx scripts/learning_v2_lesson1_authoring_preflight.ts",
 );
 assert.equal(
-  packageJson.scripts?.["learning-v2:lesson1-authoring-gate"],
-  "npx tsx tests/learning_v2_lesson1_session_01_word_first_choreography_gate.ts && npx tsx tests/learning_v2_word_target_shard_projection_gate.ts && npx tsx tests/learning_v2_lesson1_session_01_word_first_intro_gate.ts && npx tsx tests/learning_v2_lesson1_session_01_manual_phrase_gate.ts && npx tsx tests/learning_v2_lesson1_session_02_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_session_03_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_session_04_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_session_05_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_session_06_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_session_07_voice_gate.ts && npx tsx tests/learning_v2_lesson1_session_08_checkpoint_gate.ts && npx tsx tests/learning_v2_lesson1_session_09_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_session_10_word_first_gate.ts && npx tsx tests/learning_v2_lesson1_new_lexicon_per_teaching_session_gate.ts && npx tsx tests/learning_v2_lesson1_new_word_before_phrase_gate.ts && npm run learning-v2:task-distractor-gate && npx tsx tests/learning_v2_episode_01_session_12_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_13_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_14_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_15_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_16_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_17_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_18_editorial_gate.ts && npx tsx tests/learning_v2_lesson1_authoring_registry_gate.ts && npx tsx tests/learning_v2_lesson1_review_scope_gate.ts && npx tsx tests/learning_v2_lesson1_target_language_visual_gate.ts",
+  packageJson.scripts?.["learning-v2:mode-native-authoring-gate"],
+  "npx tsx tests/learning_v2_mode_native_authoring_gate.ts",
+);
+assert.match(
+  packageJson.scripts?.["learning-v2:lesson1-authoring-gate"] ?? "",
+  /^npm run learning-v2:mode-native-authoring-gate && /u,
+);
+assert.match(
+  packageJson.scripts?.["learning-v2:lesson1-authoring-gate"] ?? "",
+  /learning_v2_lesson1_no_repeated_target_family_gate\.ts/u,
 );
 assert.equal(
   packageJson.scripts?.["learning-v2:task-distractor-gate"],

@@ -85,8 +85,8 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
   const reduceMotion = useReducedMotion();
   const scale = useSharedValue(0.85);
   const opacity = useSharedValue(0);
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang as Lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const L = (ru: string, en: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang as Lang, { ru, en, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const rarity = rouletteRarity(data?.prizeIndex ?? 0);
   const impact = useRewardImpactHybrid({
@@ -119,16 +119,16 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
   const prize = ROULETTE_PRIZES[data.prizeIndex] ?? ROULETTE_PRIZES[0];
   const dateLocale = DATE_LOCALE_BY_LANG[lang as Lang] ?? 'ru-RU';
   const vipDate = data.vipUntil > 0 ? new Date(data.vipUntil).toLocaleDateString(dateLocale) : '—';
-  const daysShort = `+${data.prizeDays} ${L('дн.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
+  const daysShort = `+${data.prizeDays} ${L('дн.', 'd.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
   // Pro (lifetime): приз — жемчужины, строка про дату Plus не показывается.
   const isPearls = data.prizeKind === 'pearls' && (data.prizePearls ?? 0) > 0;
   const heroLine = isPearls
     ? `+${roulettePearlsLabel(data.prizePearls ?? 0, lang as Lang)}`
     : `+${roulettePrizeLabel(data.prizeDays, lang as Lang)} Plus`;
-  const winTitleText = L('Поздравляем!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!');
-  const winSubPearlsText = L('Жемчужины уже на балансе', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie');
-  const winSubPlusPrefix = L('Твой Plus теперь до', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do');
-  const doneLabel = L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe');
+  const winTitleText = L('Поздравляем!', 'Congratulations!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!');
+  const winSubPearlsText = L('Жемчужины уже на балансе', 'Pearls are already in your balance', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie');
+  const winSubPlusPrefix = L('Твой Plus теперь до', 'Your Plus now lasts until', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do');
+  const doneLabel = L('Готово', 'Done', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe');
 
   if (isHybrid) {
     return (
@@ -232,7 +232,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             maxFontSizeMultiplier={1.2}
             style={[styles.winTitle, { color: t.textPrimary, fontSize: f.h2 ?? 22, fontFamily: ds.fontFamily }]}
           >
-            {L('Поздравляем!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!')}
+            {L('Поздравляем!', 'Congratulations!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!')}
           </Text>
           <Text
             maxFontSizeMultiplier={1.2}
@@ -245,10 +245,10 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
           >
             {isPearls ? (
-              L('Жемчужины уже на балансе', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie')
+              L('Жемчужины уже на балансе', 'Pearls are already in your balance', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie')
             ) : (
               <>
-                {L('Твой Plus теперь до', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}
+                {L('Твой Plus теперь до', 'Your Plus now lasts until', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}
                 {' '}
                 <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
                 {' · '}
@@ -270,7 +270,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
               maxFontSizeMultiplier={1.2}
               style={[styles.claimBtnText, { color: t.correctText, fontSize: f.bodyLg ?? 16, fontFamily: ds.fontFamily }]}
             >
-              {L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')}
+              {L('Готово', 'Done', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')}
             </Text>
           </Pressable>
         </Animated.View>

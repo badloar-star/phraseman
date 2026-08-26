@@ -13,9 +13,9 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   const { lang } = useLang();
   const { theme: t } = useTheme();
   const labels = {
-    home: triLang(lang, { ru: 'Главная', uk: 'Головна', es: 'Home', 'pt-BR': 'Início', vi: 'Trang chính', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }),
-    playlists: triLang(lang, { ru: 'Плейлисты', uk: 'Плейлисти', es: 'Playlists', 'pt-BR': 'Playlists', vi: 'Danh sách', id: 'Playlist', tr: 'Oynatma listeleri', pl: 'Playlisty' }),
-    all: triLang(lang, { ru: 'Все видео', uk: 'Усі відео', es: 'All videos', 'pt-BR': 'Todos os vídeos', vi: 'Tất cả video', id: 'Semua video', tr: 'Tüm videolar', pl: 'Wszystkie filmy' }),
+    home: triLang(lang, { ru: 'Главная', uk: 'Головна', en: 'Home', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chính', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }),
+    playlists: triLang(lang, { ru: 'Плейлисты', uk: 'Плейлисти', en: 'Playlists', es: 'Listas de reproducción', 'pt-BR': 'Playlists', vi: 'Danh sách', id: 'Playlist', tr: 'Oynatma listeleri', pl: 'Playlisty' }),
+    all: triLang(lang, { ru: 'Все видео', uk: 'Усі відео', en: 'All videos', es: 'Todos los vídeos', 'pt-BR': 'Todos os vídeos', vi: 'Tất cả video', id: 'Semua video', tr: 'Tüm videolar', pl: 'Wszystkie filmy' }),
   };
   return (
     <View style={[styles.wrap, { backgroundColor: t.bgCard }]}>

@@ -448,7 +448,9 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
 
   const outcomeText = isPromo
     ? triLang(lang, {
-        ru: newLeague.nameRU, uk: newLeague.nameUK, es: newLeague.nameES,
+        ru: newLeague.nameRU, uk: newLeague.nameUK,
+        en: newLeague.nameRU,
+        es: newLeague.nameES,
         "pt-BR": clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
         vi: clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang),
         id: clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang),
@@ -457,7 +459,9 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
       })
     : isDemo
       ? triLang(lang, {
-          ru: newLeague.nameRU, uk: newLeague.nameUK, es: newLeague.nameES,
+          ru: newLeague.nameRU, uk: newLeague.nameUK,
+          en: newLeague.nameRU,
+          es: newLeague.nameES,
           "pt-BR": clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
           vi: clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang),
           id: clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang),
@@ -467,6 +471,7 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
       : triLang(lang, {
           ru: `${newLeague.nameRU} держит тебя`,
           uk: `${newLeague.nameUK} тримає тебе`,
+          en: `${newLeague.nameRU} has you`,
           es: `${newLeague.nameES} te sostiene`,
           "pt-BR": `${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)} segura você`,
           vi: `${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)} giữ chân bạn`,
@@ -476,20 +481,21 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
         });
 
   const kickerText = triLang(lang, {
-    ru: 'Итоги недели', uk: 'Підсумки тижня', es: 'Resultados de la semana',
+    ru: 'Итоги недели', uk: 'Підсумки тижня', en: 'Weekly results', es: 'Resultados de la semana',
     "pt-BR": 'Resultados da semana', vi: 'Kết quả tuần', id: 'Hasil minggu ini',
     tr: 'Haftanın sonuçları', pl: 'Wyniki tygodnia',
   });
 
   const thresholdLabel = isDemo
-    ? triLang(lang, { ru: 'Черта вылета', uk: 'Межа вильоту', es: 'Línea de descenso', "pt-BR": 'Linha de descenso', vi: 'Ranh giới xuống hạng', id: 'Batas turun', tr: 'Düşme sınırı', pl: 'Linia spadku' })
+    ? triLang(lang, { ru: 'Черта вылета', uk: 'Межа вильоту', en: 'Demotion line', es: 'Línea de descenso', "pt-BR": 'Linha de descenso', vi: 'Ranh giới xuống hạng', id: 'Batas turun', tr: 'Düşme sınırı', pl: 'Linia spadku' })
     : isStay
-      ? triLang(lang, { ru: `Топ-${zoneSize} · цель недели`, uk: `Топ-${zoneSize} · ціль тижня`, es: `Top ${zoneSize} · meta semanal`, "pt-BR": `Top ${zoneSize} · meta da semana`, vi: `Top ${zoneSize} · mục tiêu tuần`, id: `Top ${zoneSize} · target minggu`, tr: `İlk ${zoneSize} · haftalık hedef`, pl: `Top ${zoneSize} · cel tygodnia` })
-      : triLang(lang, { ru: `Топ-${zoneSize} · повышение`, uk: `Топ-${zoneSize} · підвищення`, es: `Top ${zoneSize} · ascenso`, "pt-BR": `Top ${zoneSize} · promoção`, vi: `Top ${zoneSize} · thăng hạng`, id: `Top ${zoneSize} · naik`, tr: `İlk ${zoneSize} · yükselme`, pl: `Top ${zoneSize} · awans` });
+      ? triLang(lang, { ru: `Топ-${zoneSize} · цель недели`, uk: `Топ-${zoneSize} · ціль тижня`, en: `Top ${zoneSize} · weekly goal`, es: `Top ${zoneSize} · meta semanal`, "pt-BR": `Top ${zoneSize} · meta da semana`, vi: `Top ${zoneSize} · mục tiêu tuần`, id: `Top ${zoneSize} · target minggu`, tr: `İlk ${zoneSize} · haftalık hedef`, pl: `Top ${zoneSize} · cel tygodnia` })
+      : triLang(lang, { ru: `Топ-${zoneSize} · повышение`, uk: `Топ-${zoneSize} · підвищення`, en: `Top ${zoneSize} · promotion`, es: `Top ${zoneSize} · ascenso`, "pt-BR": `Top ${zoneSize} · promoção`, vi: `Top ${zoneSize} · thăng hạng`, id: `Top ${zoneSize} · naik`, tr: `İlk ${zoneSize} · yükselme`, pl: `Top ${zoneSize} · awans` });
 
   const platformLabel = triLang(lang, {
     ru: `${newLeague.nameRU} · старт с чистого листа`,
     uk: `${newLeague.nameUK} · старт з чистого аркуша`,
+    en: `${newLeague.nameRU} · a fresh start`,
     es: `${newLeague.nameES} · empieza de cero`,
     "pt-BR": `${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)} · recomeço`,
     vi: `${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)} · bắt đầu lại`,
@@ -499,13 +505,14 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   });
 
   const progressToTopLabel = triLang(lang, {
-    ru: 'До топ-7', uk: 'До топ-7', es: 'Al top 7', "pt-BR": 'Ao top 7',
+    ru: 'До топ-7', uk: 'До топ-7', en: 'To top 7', es: 'Al top 7', "pt-BR": 'Ao top 7',
     vi: 'Đến top 7', id: 'Ke top 7', tr: 'İlk 7’ye', pl: 'Do top 7',
   });
 
   const savedLabel = triLang(lang, {
     ru: 'Руны и уроки сохранены · ничего не сгорело',
     uk: 'Руни та уроки збережено · нічого не згоріло',
+    en: 'Runes and lessons saved · nothing lost',
     es: 'Runas y lecciones guardadas · nada se perdió',
     "pt-BR": 'Runas e lições salvas · nada foi perdido',
     vi: 'Rune và bài học đã lưu · không mất gì',
@@ -515,18 +522,18 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   });
 
   const zoneBonusLabel = triLang(lang, {
-    ru: '+5 жемчужин', uk: '+5 перлин', es: '+5 perlas', "pt-BR": '+5 pérolas',
+    ru: '+5 жемчужин', uk: '+5 перлин', en: '+5 pearls', es: '+5 perlas', "pt-BR": '+5 pérolas',
     vi: '+5 ngọc trai', id: '+5 mutiara', tr: '+5 inci', pl: '+5 pereł',
   });
 
   const zoneBonusSub = triLang(lang, {
-    ru: 'за топ-7', uk: 'за топ-7', es: 'por top 7', "pt-BR": 'pelo top 7',
+    ru: 'за топ-7', uk: 'за топ-7', en: 'for top 7', es: 'por top 7', "pt-BR": 'pelo top 7',
     vi: 'cho top 7', id: 'untuk top 7', tr: 'ilk 7 için', pl: 'za top 7',
   });
 
-  const meLabel = triLang(lang, { ru: 'М', uk: 'Я', es: 'Y', "pt-BR": 'E', vi: 'T', id: 'S', tr: 'B', pl: 'J' });
+  const meLabel = triLang(lang, { ru: 'М', uk: 'Я', en: 'M', es: 'Y', "pt-BR": 'E', vi: 'T', id: 'S', tr: 'B', pl: 'J' });
   const youSuffix = triLang(lang, {
-    ru: ' (ты)', uk: ' (ти)', es: ' (tú)', "pt-BR": ' (você)',
+    ru: ' (ты)', uk: ' (ти)', en: ' (you)', es: ' (tú)', "pt-BR": ' (você)',
     vi: ' (bạn)', id: ' (kamu)', tr: ' (sen)', pl: ' (ty)',
   });
 
@@ -656,7 +663,7 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
       <View style={styles.bottom}>
         {isPromo && (
           <Reanimated.View style={[styles.rewardsRow, rewardsStyle]}>
-            <RewardChip icon="star" color={t.gold} title="+10% XP" sub={triLang(lang, { ru: 'бонус новой лиги', uk: 'бонус нової ліги', es: 'bono de nueva liga', "pt-BR": 'bônus da nova liga', vi: 'thưởng giải mới', id: 'bonus liga baru', tr: 'yeni lig bonusu', pl: 'bonus nowej ligi' })} t={t} f={f} />
+            <RewardChip icon="star" color={t.gold} title="+10% XP" sub={triLang(lang, { ru: 'бонус новой лиги', uk: 'бонус нової ліги', en: 'new league bonus', es: 'bono de nueva liga', "pt-BR": 'bônus da nova liga', vi: 'thưởng giải mới', id: 'bonus liga baru', tr: 'yeni lig bonusu', pl: 'bonus nowej ligi' })} t={t} f={f} />
             <RewardChip icon="water" color={ink(COLORS.zoneBonus, 3)} title={zoneBonusLabel} sub={zoneBonusSub} t={t} f={f} />
           </Reanimated.View>
         )}

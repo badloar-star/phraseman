@@ -2,6 +2,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
+import FeedbackRatingCard from '../components/FeedbackRatingCard';
+import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
+import { triLang, type Lang } from '../constants/i18n';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
 import { ArenaRewards } from '../components/arena/ArenaRewards';
@@ -11,6 +14,7 @@ import { useTournamentPalette } from '../components/ui/v2_theme';
 import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
 import { captureAccountGeneration } from './account_generation';
 import { grantLocalArenaRankedWinSpin } from './local_level_spins';
+import { creditTournamentStarsToSeason } from './season_pass_model';
 import { arenaText } from '../modules/arena/copy';
 import ArenaReportOpponentButton from '../components/ArenaReportOpponentButton';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
@@ -83,6 +87,40 @@ const styles = StyleSheet.create({
   pendingTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
   pendingHint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
 });
+
+/**
+ * Оценка матча (владелец 2026-08-25): один блок для блица и рейтинга — только
+ * kind разный ('arena_blitz' / 'arena_rating'), в админке это два раздела.
+ * Вопрос общий «Как тебе арена?»: игрок оценивает раунд, а не жанр отдельно.
+ */
+function ArenaFeedbackCard({ kind, matchId, lang }: { kind: 'arena_blitz' | 'arena_rating'; matchId: string; lang: Lang }) {
+  return (
+    <FeedbackRatingCard
+      kind={kind}
+      entityId={matchId}
+      lang={lang}
+      title={triLang(lang, { ru: 'Как тебе арена?', en: 'How was the arena?', uk: 'Як тобі арена?', es: '¿Qué tal la arena?',
+        'pt-BR': 'O que achou da arena?', vi: 'Bạn thấy đấu trường thế nào?',
+        id: 'Bagaimana arenanya?', tr: 'Arena nasıldı?', pl: 'Jak podobała się arena?',
+      })}
+      placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
+        'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
+        id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+      })}
+      sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
+        vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
+      })}
+      thanksLabel={triLang(lang, { ru: 'Спасибо! Отзыв отправлен', en: 'Thanks! Feedback sent', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado',
+        'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi',
+        id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana',
+      })}
+      ratingA11yLabel={triLang(lang, { ru: 'Оценка', en: 'Rating', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação',
+        vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
+      })}
+      testID={`arena-results-feedback-${kind}`}
+    />
+  );
+}
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -328,6 +366,22 @@ export default function ArenaResultsScreen() {
     quickReady: Boolean(quickPresentation),
   });
   const effectiveViewerSeat = quickPresentation?.viewerSeat ?? viewerSeat;
+  // Оценка матча (владелец 2026-08-25): троттлинг раз в неделю НА РАЗДЕЛ —
+  // блиц и рейтинг гейтятся раздельно ('arena_blitz' / 'arena_rating'), гейт
+  // решается один раз, когда режим матча уже известен.
+  const [showArenaFeedback, setShowArenaFeedback] = useState(false);
+  const arenaFeedbackKind = effectiveMode === 'ranked' ? 'arena_rating' : 'arena_blitz';
+  useEffect(() => {
+    if (!matchId || !effectiveMode) return;
+    let cancelled = false;
+    void shouldPromptFeedback(arenaFeedbackKind).then((allowed) => {
+      if (cancelled || !allowed) return;
+      setShowArenaFeedback(true);
+      void markFeedbackPrompted(arenaFeedbackKind);
+    });
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [matchId, effectiveMode]);
   const privateReward = privateRewardState?.matchId === matchId ? privateRewardState.reward : undefined;
   const publicReward = effectiveViewerSeat ? match?.result?.rewards?.[effectiveViewerSeat] : undefined;
   const quickReward = quickPresentation?.reward;
@@ -344,6 +398,26 @@ export default function ArenaResultsScreen() {
     if (!reward.spinAwarded || !reward.spinReceiptId) return;
     void grantLocalArenaRankedWinSpin(reward.spinReceiptId, captureAccountGeneration());
   }, [match?.mode, reward]);
+  /**
+   * зачем (владелец, 25.08 — «в сезоне это руны... считается не хп а руны,
+   * аудит проверки»): связь Арена → сезонный пропуск потерялась при переходе
+   * со старых турниров (там начисление стояло в архивном
+   * tournament_results.tsx) на новую Арену — счётчик сезона застревал на 0,
+   * хотя игрок реально зарабатывал руны матчами. Начисление — ТОЛЬКО ranked
+   * (единственный режим, структурно равный старым турнирам: рейтинг, тиры,
+   * спины за победу; quick — казуальный без наград, friend/series — товарищеский
+   * матч без соревновательных последствий). matchId — тот же идентификатор,
+   * что сервер уже использует как spinReceiptId для идемпотентности спина
+   * выше; creditTournamentStarsToSeason сама защищена от повтора (список
+   * последних 200 зачтённых матчей), поэтому повторный вызов при ретраях
+   * terminal-sync или ре-рендере безопасен.
+   */
+  useEffect(() => {
+    if (!resultAccountActive || !matchId || !reward || match?.mode !== 'ranked') return;
+    const stars = Math.max(0, Math.trunc(Number(reward.starsEarned ?? 0)));
+    if (stars <= 0) return;
+    void creditTournamentStarsToSeason(matchId, stars).catch(() => {});
+  }, [match?.mode, matchId, resultAccountActive, reward]);
   const quickXp = useMemo(() => arenaQuickXpPresentation(quickReward), [quickReward]);
   const quickXpRewards = useMemo(() => quickXp.modifiers.length ? ({
     multipliers: quickXp.modifiers.map((modifier) => ({
@@ -510,6 +584,9 @@ export default function ArenaResultsScreen() {
         title={title}
         subtitle={arenaText(lang, 'result')}
         badge={players.length ? <ArenaPlayers players={players} active={active} animateScore /> : undefined}
+        feedbackSlot={showArenaFeedback ? (
+          <ArenaFeedbackCard kind="arena_blitz" matchId={matchId} lang={lang} />
+        ) : undefined}
         intensity={winner === effectiveViewerSeat ? 'major' : 'milestone'}
         onCtaPrimary={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}
         ctaPrimaryLabel={arenaText(lang, 'reviewTitle')}
@@ -597,6 +674,11 @@ export default function ArenaResultsScreen() {
             </Text>
           ) : null}
         </V2Card>
+      ) : null}
+      {/* Оценка рейтингового матча (владелец 2026-08-25): только ranked — блиц
+          уже оценивается в ветке quick_ready выше, friend/series вне списка. */}
+      {showArenaFeedback && matchId && effectiveMode === 'ranked' ? (
+        <ArenaFeedbackCard kind="arena_rating" matchId={matchId} lang={lang} />
       ) : null}
       {/* Разбор — первой кнопкой и БЕЗ флага расширения: владелец потребовал
           его обязательным, а «Лаборатория» под флагом — это повторы заданий,

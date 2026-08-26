@@ -181,6 +181,7 @@ export default function FlashcardsAudioScreen() {
       title: triLang(lang, {
         ru: 'Автопрослушивание',
         uk: 'Автопрослуховування',
+        en: 'Auto-listen',
         es: 'Escucha automática',
         'pt-BR': 'Escuta automática',
         vi: 'Nghe tự động',
@@ -191,6 +192,7 @@ export default function FlashcardsAudioScreen() {
       sets: triLang(lang, {
         ru: 'Наборы',
         uk: 'Набори',
+        en: 'Packs',
         es: 'Packs',
         'pt-BR': 'Pacotes',
         vi: 'Bộ thẻ',
@@ -201,6 +203,7 @@ export default function FlashcardsAudioScreen() {
       pause: triLang(lang, {
         ru: 'Пауза',
         uk: 'Пауза',
+        en: 'Pause',
         es: 'Pausa',
         'pt-BR': 'Pausa',
         vi: 'Tạm dừng',
@@ -211,6 +214,7 @@ export default function FlashcardsAudioScreen() {
       shuffle: triLang(lang, {
         ru: 'Перемешать',
         uk: 'Перемішати',
+        en: 'Shuffle',
         es: 'Aleatorio',
         'pt-BR': 'Embaralhar',
         vi: 'Xáo trộn',
@@ -221,6 +225,7 @@ export default function FlashcardsAudioScreen() {
       start: triLang(lang, {
         ru: 'Запустить',
         uk: 'Запустити',
+        en: 'Start',
         es: 'Iniciar',
         'pt-BR': 'Iniciar',
         vi: 'Bắt đầu',
@@ -231,6 +236,7 @@ export default function FlashcardsAudioScreen() {
       empty: triLang(lang, {
         ru: 'Нет доступных наборов.',
         uk: 'Немає доступних наборів.',
+        en: 'No packs available.',
         es: 'No hay packs disponibles.',
         'pt-BR': 'Não há pacotes disponíveis.',
         vi: 'Không có bộ thẻ nào.',
@@ -244,6 +250,7 @@ export default function FlashcardsAudioScreen() {
       loadFailed: triLang(lang, {
         ru: 'Не удалось загрузить наборы. Проверьте связь и попробуйте ещё раз.',
         uk: 'Не вдалося завантажити набори. Перевірте зв’язок і спробуйте ще раз.',
+        en: 'Couldn’t load packs. Check your connection and try again.',
         es: 'No se pudieron cargar los packs. Revisa la conexión e inténtalo de nuevo.',
         'pt-BR': 'Não foi possível carregar os pacotes. Verifique a conexão e tente novamente.',
         vi: 'Không tải được bộ thẻ. Kiểm tra kết nối và thử lại.',
@@ -254,6 +261,7 @@ export default function FlashcardsAudioScreen() {
       nothingSelected: triLang(lang, {
         ru: 'Выбери хотя бы один набор.',
         uk: 'Вибери хоча б один набір.',
+        en: 'Pick at least one pack.',
         es: 'Elige al menos un pack.',
         'pt-BR': 'Escolha pelo menos um pacote.',
         vi: 'Chọn ít nhất một bộ thẻ.',
@@ -264,6 +272,7 @@ export default function FlashcardsAudioScreen() {
       noCards: triLang(lang, {
         ru: 'В выбранных наборах нет карточек для озвучки.',
         uk: 'У вибраних наборах немає карток для озвучення.',
+        en: 'No playable cards in the selected packs.',
         es: 'No hay tarjetas reproducibles en los packs elegidos.',
         'pt-BR': 'Não há cartões reproduzíveis nos pacotes escolhidos.',
         vi: 'Không có thẻ phát được trong các bộ đã chọn.',
@@ -274,6 +283,7 @@ export default function FlashcardsAudioScreen() {
       loading: triLang(lang, {
         ru: '...',
         uk: '...',
+        en: '...',
         es: '...',
         'pt-BR': '...',
         vi: '...',
@@ -284,6 +294,7 @@ export default function FlashcardsAudioScreen() {
       reload: triLang(lang, {
         ru: 'Обновить',
         uk: 'Оновити',
+        en: 'Refresh',
         es: 'Actualizar',
         'pt-BR': 'Atualizar',
         vi: 'Cập nhật',
@@ -294,6 +305,7 @@ export default function FlashcardsAudioScreen() {
       front: triLang(lang, {
         ru: 'Лицевая сторона',
         uk: 'Лицьова сторона',
+        en: 'Front side',
         es: 'Frente',
         'pt-BR': 'Frente',
         vi: 'Mặt trước',
@@ -304,6 +316,7 @@ export default function FlashcardsAudioScreen() {
       back: triLang(lang, {
         ru: 'Оборот',
         uk: 'Зворот',
+        en: 'Back side',
         es: 'Reverso',
         'pt-BR': 'Verso',
         vi: 'Mặt sau',
@@ -314,6 +327,7 @@ export default function FlashcardsAudioScreen() {
       done: triLang(lang, {
         ru: 'Готово',
         uk: 'Готово',
+        en: 'Done',
         es: 'Listo',
         'pt-BR': 'Pronto',
         vi: 'Xong',
@@ -324,6 +338,7 @@ export default function FlashcardsAudioScreen() {
       again: triLang(lang, {
         ru: 'Ещё раз',
         uk: 'Ще раз',
+        en: 'Again',
         es: 'Otra vez',
         'pt-BR': 'De novo',
         vi: 'Nghe lại',
@@ -334,6 +349,7 @@ export default function FlashcardsAudioScreen() {
       settings: triLang(lang, {
         ru: 'Настроить',
         uk: 'Налаштувати',
+        en: 'Adjust',
         es: 'Ajustar',
         'pt-BR': 'Ajustar',
         vi: 'Điều chỉnh',
@@ -344,6 +360,7 @@ export default function FlashcardsAudioScreen() {
       selected: triLang(lang, {
         ru: 'выбрано',
         uk: 'вибрано',
+        en: 'selected',
         es: 'seleccionadas',
         'pt-BR': 'selecionados',
         vi: 'đã chọn',
@@ -794,7 +811,7 @@ export default function FlashcardsAudioScreen() {
       {renderHeader(() => safeRouterBack(router, '/flashcards' as any))}
       <BouncyScrollView
         style={styles.scroll}
-        decelerationRate="normal"
+        decelerationRate="fast"
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(bottomInset, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >
@@ -1062,7 +1079,7 @@ export default function FlashcardsAudioScreen() {
                   activeOpacity={0.9}
                   onPress={replayCurrentSide}
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: 'Повторить звук текущей карточки', uk: 'Повторити звук поточної картки', es: 'Repetir el audio de la tarjeta actual', 'pt-BR': 'Repetir o áudio do cartão atual', vi: 'Phát lại âm thanh thẻ hiện tại', id: 'Putar ulang audio kartu saat ini', tr: 'Geçerli kartın sesini tekrar çal', pl: 'Odtwórz ponownie dźwięk bieżącej fiszki' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Повторить звук текущей карточки', uk: 'Повторити звук поточної картки', en: 'Repeat the current card’s audio', es: 'Repetir el audio de la tarjeta actual', 'pt-BR': 'Repetir o áudio do cartão atual', vi: 'Phát lại âm thanh thẻ hiện tại', id: 'Putar ulang audio kartu saat ini', tr: 'Geçerli kartın sesini tekrar çal', pl: 'Odtwórz ponownie dźwięk bieżącej fiszki' })}
                   style={styles.cardLayer}
                 >
                   {renderCardLayer({ card: currentCard, side }, frontRotate, backRotate)}

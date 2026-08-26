@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { V2Chip, V2Cta, type ChipVerdict } from '../ui/v2_ui';
 import { hexToRgba, useTournamentPalette } from '../ui/v2_theme';
 import { adaptArenaTask, encodeArenaSelection } from '../../modules/arena/task_adapter';
+import { shouldShowArenaBuilderPunctuation } from '../../modules/arena/arena_prompt_semantics';
 import type { ArenaPublicTask } from '../../modules/arena/contract';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { useArenaSound } from '../../hooks/use_arena_sound';
@@ -59,14 +60,14 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 
   if (view.type === 'matching') {
     return (
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         style={styles.immersiveScroll}
         contentContainerStyle={styles.immersiveContent}
         showsVerticalScrollIndicator={viewport.compactHeight}
         nestedScrollEnabled
         bounces={false}
       >
-        <ArenaBilingualText style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</ArenaBilingualText>
+        <ArenaBilingualText role="prompt" style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</ArenaBilingualText>
         {instruction ? (
           <>
             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
@@ -95,10 +96,10 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 onPress={() => setLeft(index)}
               >
                 {matchedLeft.has(index)
-                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><Text numberOfLines={2} ellipsizeMode="tail" style={[styles.matchedText, { color: P.text }]}>{item}</Text></View>
+                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><ArenaBilingualText role="target" numberOfLines={2} ellipsizeMode="tail" style={styles.matchedText}>{item}</ArenaBilingualText></View>
                   // Длинное слово на доске пар не должно растягивать строку:
                   // тогда нижние пары уезжают за край и становятся нетыкаемыми.
-                  : <Text numberOfLines={2} ellipsizeMode="tail">{item}</Text>}
+                  : <ArenaBilingualText role="target" numberOfLines={2} ellipsizeMode="tail">{item}</ArenaBilingualText>}
               </V2Chip>
               <V2Chip
                 style={[styles.touchChip, styles.matchCell]}
@@ -120,8 +121,8 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 }}
               >
                 {matchedRight.has(index)
-                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><Text numberOfLines={2} ellipsizeMode="tail" style={[styles.matchedText, { color: P.text }]}>{view.right[index]}</Text></View>
-                  : <Text numberOfLines={2} ellipsizeMode="tail">{view.right[index]}</Text>}
+                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><ArenaBilingualText role="native" numberOfLines={2} ellipsizeMode="tail" style={styles.matchedText}>{view.right[index]}</ArenaBilingualText></View>
+                  : <ArenaBilingualText role="native" numberOfLines={2} ellipsizeMode="tail">{view.right[index]}</ArenaBilingualText>}
               </V2Chip>
             </View>
           ))}
@@ -133,14 +134,14 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
   if (view.type === 'builder') {
     const selected = tokens.length > 0;
     return (
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         style={styles.immersiveScroll}
         contentContainerStyle={styles.immersiveContent}
         showsVerticalScrollIndicator={viewport.compactHeight}
         nestedScrollEnabled
         bounces={false}
       >
-        <ArenaBilingualText style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</ArenaBilingualText>
+        <ArenaBilingualText role="prompt" style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</ArenaBilingualText>
         {instruction ? (
           <>
             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
@@ -151,7 +152,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             </Text>
           </>
         ) : null}
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           // зачем: лоток — зона сброса, её видно обязательно (иначе пустой лоток
           // непонятен), но плотная подложка P.elev делала из неё карточку-контейнер.
           // Даём деликатный тон из цвета текста: углубление читается, контейнера нет.
@@ -168,9 +169,14 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               accessibilityLabel={view.tokens[index]}
               onPress={() => !locked && setTokens((old) => old.filter((_, itemIndex) => itemIndex !== tokenIndex))}
             >
-              {view.tokens[index]}
+              <ArenaBilingualText role="target">{view.tokens[index]}</ArenaBilingualText>
             </V2Chip>
           ))}
+          {shouldShowArenaBuilderPunctuation(tokens.length, view.displayTerminalPunctuation) ? (
+            <ArenaBilingualText accessible={false} role="target" style={styles.builderPunctuation}>
+              {view.displayTerminalPunctuation}
+            </ArenaBilingualText>
+          ) : null}
         </ScrollView>
         <View style={styles.builder}>
           <View style={styles.tokenCloud}>
@@ -182,7 +188,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 accessibilityLabel={token}
                 onPress={() => setTokens((old) => [...old, index])}
               >
-                {token}
+                <ArenaBilingualText role="target">{token}</ArenaBilingualText>
               </V2Chip>
             ))}
           </View>
@@ -203,7 +209,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
     // просил задание без контейнера, тон задаёт фон экрана (контракт
     // arena_owner_requested_ui_contract). Режим matching уже так и устроен.
     <View style={styles.body}>
-      <ArenaBilingualText style={[styles.prompt, promptStyle]}>{view.prompt}</ArenaBilingualText>
+      <ArenaBilingualText role="prompt" style={[styles.prompt, promptStyle]}>{view.prompt}</ArenaBilingualText>
       {(
         /**
          * Варианты прокручиваются, если не помещаются.
@@ -214,7 +220,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
          * задание нельзя было ответить. Потерянное задание из-за вёрстки —
          * худший вид потери.
          */
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={styles.optionsScroll}
           contentContainerStyle={styles.options}
           showsVerticalScrollIndicator={false}
@@ -234,7 +240,12 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               >
                 {/* Один длинный вариант не должен съедать экран целиком:
                     больше трёх строк не показываем. */}
-                <Text numberOfLines={3} ellipsizeMode="tail">{option}</Text>
+                {chipVerdict === 'idle'
+                  ? <ArenaBilingualText role="target" numberOfLines={3} ellipsizeMode="tail">{option}</ArenaBilingualText>
+                  // V2Chip owns contrast ink for ok/bad fills. Keeping plain
+                  // Text here prevents the language accent from reducing the
+                  // verdict's approved foreground contrast.
+                  : <Text numberOfLines={3} ellipsizeMode="tail">{option}</Text>}
               </V2Chip>
             );
           })}
@@ -263,6 +274,7 @@ const styles = StyleSheet.create({
   builder: { gap: 12 },
   answerTrayScroll: { flexShrink: 1, minHeight: 68, borderRadius: 18 },
   answerTray: { minHeight: 68, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },
+  builderPunctuation: { fontSize: 20, fontWeight: '900', alignSelf: 'center' },
   tokenCloud: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center' },
   // Список строк-пар: направление вертикальное, ряд задаёт matchRow.
   matchGrid: { gap: 10 },

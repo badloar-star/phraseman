@@ -102,6 +102,18 @@
       "port": 8845
     },
     {
+      "name": "expo-web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "expo",
+        "start",
+        "--web",
+        "--port",
+        "8850"
+      ],
+      "port": 8850
+    },
+    {
       "name": "voice-audition",
       "runtimeExecutable": "python",
       "runtimeArgs": [

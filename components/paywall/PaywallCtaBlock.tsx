@@ -47,6 +47,7 @@ function TrustBadge({ lang, chrome, hasTrial }: { lang: Lang; chrome: PaywallChr
     ? triLang(lang, {
         ru: 'Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.',
         uk: 'Платити зараз не треба — скасуй за день до кінця, і гроші не спишуться.',
+        en: "No need to pay now — cancel a day before it ends and nothing is charged.",
         es: 'No pagas ahora: cancela un día antes y no se cobra nada.',
         'pt-BR': 'Você não paga agora: cancele um dia antes e nada será cobrado.',
         vi: 'Chưa phải trả tiền — hủy trước một ngày là không bị trừ tiền.',
@@ -57,6 +58,7 @@ function TrustBadge({ lang, chrome, hasTrial }: { lang: Lang; chrome: PaywallChr
     : triLang(lang, {
         ru: 'Без риска: отмена в любой момент в два тапа.',
         uk: 'Без ризику: скасування будь-коли у два тапи.',
+        en: 'No risk: cancel anytime in two taps.',
         es: 'Sin riesgo: cancela cuando quieras en dos toques.',
         'pt-BR': 'Sem risco: cancele quando quiser em dois toques.',
         vi: 'Không rủi ro: hủy bất cứ lúc nào chỉ với hai chạm.',
@@ -126,6 +128,7 @@ export default function PaywallCtaBlock({
                 {triLang(lang, {
                   ru: 'Восстановить',
                   uk: 'Відновити',
+                  en: 'Restore',
                   es: 'Restaurar',
                   'pt-BR': 'Restaurar',
                   vi: 'Khôi phục',
@@ -141,6 +144,7 @@ export default function PaywallCtaBlock({
             {triLang(lang, {
               ru: 'Условия',
               uk: 'Умови',
+              en: 'Terms',
               es: 'Términos',
               'pt-BR': 'Termos',
               vi: 'Điều khoản',
@@ -156,6 +160,7 @@ export default function PaywallCtaBlock({
             {triLang(lang, {
               ru: 'Конфиденциальность',
               uk: 'Конфіденційність',
+              en: 'Privacy',
               es: 'Privacidad',
               'pt-BR': 'Privacidade',
               vi: 'Quyền riêng tư',
@@ -174,6 +179,7 @@ export default function PaywallCtaBlock({
             {triLang(lang, {
               ru: 'Продолжить бесплатно',
               uk: 'Продовжити безкоштовно',
+              en: 'Continue for free',
               es: 'Continuar gratis',
               'pt-BR': 'Continuar grátis',
               vi: 'Tiếp tục miễn phí',

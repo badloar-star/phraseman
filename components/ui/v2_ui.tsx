@@ -174,15 +174,20 @@ type ChipProps = {
   selected?: boolean;
   /** Читалка экрана: без метки вариант ответа звучит как «кнопка». */
   accessibilityLabel?: string;
+  /** Semantic answer-tile contract: the label stays intact while the tile grows. */
+  singleLine?: boolean;
 };
 
 /**
  * Чип V2: диагональный градиент, нижняя 3D-кромка, блик сверху.
  * Нажатие — просадка на кромку (translateY 3px), как в эталоне.
  */
+/* eslint-disable text-integrity/no-unsafe-text-truncation -- V2Chip is the
+ * shared semantic answer-tile primitive. `singleLine` preserves an authored
+ * token as one visual unit and uses font fitting instead of ellipsis. */
 export const V2Chip = memo(function V2Chip({
   children, onPress, verdict = 'idle', block, style, textStyle, disabled,
-  accessibilityLabel, left, right, selected,
+  accessibilityLabel, left, right, selected, singleLine,
 }: ChipProps) {
   const P = useTournamentPalette();
   const depth = useSharedValue(0);
@@ -249,7 +254,15 @@ export const V2Chip = memo(function V2Chip({
             {right}
           </View>
         ) : (
-          <Text style={[block ? styles.optText : styles.chipText, { color: ink }, textStyle]}>
+          <Text
+            // This is the shared semantic primitive for owner-approved answer
+            // tiles: shrink only as a last resort; never split a word inside
+            // its button. Call sites use `singleLine`, not raw truncation.
+            numberOfLines={singleLine ? 1 : undefined}
+            adjustsFontSizeToFit={singleLine}
+            minimumFontScale={singleLine ? 0.68 : undefined}
+            style={[block ? styles.optText : styles.chipText, { color: ink }, textStyle]}
+          >
             {children}
           </Text>
         )}
@@ -257,6 +270,7 @@ export const V2Chip = memo(function V2Chip({
     </View>
   );
 });
+/* eslint-enable text-integrity/no-unsafe-text-truncation */
 
 /** Гнездо в банке слов: место чипа сохранено, банк не «прыгает». */
 export const V2ChipGhost = memo(function V2ChipGhost({ label }: { label: string }) {

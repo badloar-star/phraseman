@@ -39,13 +39,13 @@ function progressStatusLabel(lang: Lang, status: PhraseProgressStatus): string {
   // `unknown` — возврат labels[status] переставал быть string. Тип строк выводится
   // из самих литералов, отдельная аннотация не нужна.
   const labels: Record<PhraseProgressStatus, string> = {
-    start: triLang(lang, { ru: 'Начало', uk: 'Початок', es: 'Inicio', 'pt-BR': 'Começo', vi: 'Khởi đầu', id: 'Awal', tr: 'Başlangıç', pl: 'Początek' }),
-    moving: triLang(lang, { ru: 'В движении', uk: 'У русі', es: 'En marcha', 'pt-BR': 'Em movimento', vi: 'Đang tiến lên', id: 'Terus maju', tr: 'İlerliyorsun', pl: 'W ruchu' }),
-    confident: triLang(lang, { ru: 'Уверенно', uk: 'Впевнено', es: 'Con seguridad', 'pt-BR': 'Com confiança', vi: 'Tự tin', id: 'Percaya diri', tr: 'Kendinden emin', pl: 'Pewnie' }),
-    strong: triLang(lang, { ru: 'Сильно', uk: 'Сильно', es: 'Sólido', 'pt-BR': 'Forte', vi: 'Vững vàng', id: 'Kuat', tr: 'Güçlü', pl: 'Mocno' }),
-    impressive: triLang(lang, { ru: 'Впечатляюще', uk: 'Вражаюче', es: 'Impresionante', 'pt-BR': 'Impressionante', vi: 'Ấn tượng', id: 'Mengesankan', tr: 'Etkileyici', pl: 'Imponująco' }),
-    expert: triLang(lang, { ru: 'Экспертно', uk: 'Експертно', es: 'Experto', 'pt-BR': 'Especialista', vi: 'Chuyên nghiệp', id: 'Ahli', tr: 'Uzman', pl: 'Ekspercko' }),
-    outstanding: triLang(lang, { ru: 'Выдающийся результат', uk: 'Видатний результат', es: 'Resultado excepcional', 'pt-BR': 'Resultado excepcional', vi: 'Kết quả xuất sắc', id: 'Hasil luar biasa', tr: 'Olağanüstü sonuç', pl: 'Wybitny wynik' }),
+    start: triLang(lang, { ru: 'Начало', uk: 'Початок', en: 'Just starting', es: 'Inicio', 'pt-BR': 'Começo', vi: 'Khởi đầu', id: 'Awal', tr: 'Başlangıç', pl: 'Początek' }),
+    moving: triLang(lang, { ru: 'В движении', uk: 'У русі', en: 'On the move', es: 'En marcha', 'pt-BR': 'Em movimento', vi: 'Đang tiến lên', id: 'Terus maju', tr: 'İlerliyorsun', pl: 'W ruchu' }),
+    confident: triLang(lang, { ru: 'Уверенно', uk: 'Впевнено', en: 'Confident', es: 'Con seguridad', 'pt-BR': 'Com confiança', vi: 'Tự tin', id: 'Percaya diri', tr: 'Kendinden emin', pl: 'Pewnie' }),
+    strong: triLang(lang, { ru: 'Сильно', uk: 'Сильно', en: 'Strong', es: 'Sólido', 'pt-BR': 'Forte', vi: 'Vững vàng', id: 'Kuat', tr: 'Güçlü', pl: 'Mocno' }),
+    impressive: triLang(lang, { ru: 'Впечатляюще', uk: 'Вражаюче', en: 'Impressive', es: 'Impresionante', 'pt-BR': 'Impressionante', vi: 'Ấn tượng', id: 'Mengesankan', tr: 'Etkileyici', pl: 'Imponująco' }),
+    expert: triLang(lang, { ru: 'Экспертно', uk: 'Експертно', en: 'Expert', es: 'Experto', 'pt-BR': 'Especialista', vi: 'Chuyên nghiệp', id: 'Ahli', tr: 'Uzman', pl: 'Ekspercko' }),
+    outstanding: triLang(lang, { ru: 'Выдающийся результат', uk: 'Видатний результат', en: 'Outstanding result', es: 'Resultado excepcional', 'pt-BR': 'Resultado excepcional', vi: 'Kết quả xuất sắc', id: 'Hasil luar biasa', tr: 'Olağanüstü sonuç', pl: 'Wybitny wynik' }),
   };
   return labels[status];
 }
@@ -58,6 +58,7 @@ function CefrLine({ t, f, lang, themeMode, isGoldTheme, masteredPhraseCount, onP
   const phraseCountLabel = triLang(lang, {
     ru: `${safeCount} закреплённых ${pluralPhrasesRu(safeCount)}`,
     uk: `${safeCount} закріплених ${pluralPhrasesUk(safeCount)}`,
+    en: `${safeCount} phrases reinforced`,
     es: `${safeCount} frases reforzadas`,
     'pt-BR': `${safeCount} frases consolidadas`,
     vi: `${safeCount} cụm từ đã củng cố`,

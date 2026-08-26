@@ -49,6 +49,7 @@ import {
   FC_TIMING,
 } from '../../constants/flashcards_motion';
 import { useTheme } from '../../components/ThemeContext';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { isLowPowerEffective } from './low_power';
 import { fcHaptic, playSfx } from './SoundService';
 import WordStrengthDots from './WordStrengthDots';
@@ -262,12 +263,16 @@ function PhraseCardImpl({
 
   /**
    * Хаптика на пересечении 90° (§3.3); в кроссфейде порог тот же (середина фейда).
-   * Звука флипа НЕТ (репорт владельца после теста на iPhone: «убрать звук
-   * переворачивания карточки») — остальные SFX (свайп-оценка) не тронуты.
+   * зачем: владелец сгенерировал новый pm_cards_flip_v1 (redaction 3, docs/sound/
+   * SOUND_PROMPTS_FULL.md) — это ревизия прежнего решения «флип без звука»,
+   * задача явно просит подключить pm.cards.flip. Идёт через soundDirector (общий
+   * арбитр громкости/приоритетов), а не через локальный playSfx('flip') — тот
+   * SFX-файл остаётся неиспользуемым по старому решению; хаптика не тронута.
    */
   const onFlipMidpoint = useCallback(() => {
     if (muted) return;
     fcHaptic('flip');
+    soundDirector.request('pm.cards.flip', { scope: 'cards' });
   }, [muted]);
   useAnimatedReaction(
     () => flip.value >= 0.5,

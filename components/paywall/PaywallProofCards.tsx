@@ -52,6 +52,7 @@ function mirrorStats(lang: Lang, mirror: ProgressMirror): { value: number; label
   if (mirror.phrases > 0) stats.push({ value: mirror.phrases, label: triLang(lang, {
     ru: 'фраз',
     uk: 'фраз',
+    en: 'phrases',
     es: 'frases',
     'pt-BR': 'frases',
     vi: 'cụm từ',
@@ -62,6 +63,7 @@ function mirrorStats(lang: Lang, mirror: ProgressMirror): { value: number; label
   if (mirror.words > 0) stats.push({ value: mirror.words, label: triLang(lang, {
     ru: 'слов',
     uk: 'слів',
+    en: 'words',
     es: 'palabras',
     'pt-BR': 'palavras',
     vi: 'từ',
@@ -73,6 +75,7 @@ function mirrorStats(lang: Lang, mirror: ProgressMirror): { value: number; label
   if (mirror.streak > 0) stats.push({ value: mirror.streak, label: triLang(lang, {
     ru: 'дн. серия',
     uk: 'дн. серія',
+    en: 'day streak',
     es: 'días racha',
     'pt-BR': 'dias seguidos',
     vi: 'ngày chuỗi',
@@ -91,6 +94,7 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
     <ProofCard title={triLang(lang, {
       ru: 'Уже твоё',
       uk: 'Вже твоє',
+      en: 'Already yours',
       es: 'Ya es tuyo',
       'pt-BR': 'Já é seu',
       vi: 'Đã là của bạn',
@@ -115,6 +119,7 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
         {triLang(lang, {
           ru: 'Plus убирает лимиты — больше практики каждый день.',
           uk: 'Plus прибирає ліміти — більше практики щодня.',
+          en: 'Plus removes limits — more practice every day.',
           es: 'Plus quita límites: más práctica cada día.',
           'pt-BR': 'Plus remove limites: mais prática todo dia.',
           vi: 'Plus bỏ giới hạn: luyện tập nhiều hơn mỗi ngày.',
@@ -133,6 +138,7 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
     <ProofCard title={triLang(lang, {
       ru: 'Твоё место',
       uk: 'Твоє місце',
+      en: 'Your place',
       es: 'Tu lugar',
       'pt-BR': 'Seu lugar',
       vi: 'Vị trí của bạn',
@@ -170,11 +176,12 @@ const CONTEXT_PRACTICE_GROUP: Partial<Record<PremiumContext, PracticeGroup>> = {
   course_after_lesson3: 'course', free_lessons_complete: 'course', lesson_b1: 'course',
   no_energy: 'course', streak: 'course',
 };
-type PracticeLineDict = { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string };
+type PracticeLineDict = { ru: string; uk: string; en: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string };
 const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
   pace: {
     ru: 'Plus убирает паузы: занимаешься, пока есть силы и настроение.',
     uk: 'Plus прибирає паузи: займаєшся, поки є сили й настрій.',
+    en: 'Plus removes the pauses: you study whenever you have the energy and mood for it.',
     es: 'Plus quita las pausas: estudias mientras tengas ganas y energía.',
     'pt-BR': 'O Plus tira as pausas: você estuda enquanto tiver energia e vontade.',
     vi: 'Plus bỏ các quãng dừng: học khi bạn còn sức và hứng thú.',
@@ -185,6 +192,7 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
   speech: {
     ru: 'Plus держит разговор: говоришь, разбираешь реплики, пробуешь снова — без стопов.',
     uk: 'Plus тримає розмову: говориш, розбираєш репліки, пробуєш знову — без стопів.',
+    en: 'Plus keeps the conversation going: you speak, review lines, and try again — no stops.',
     es: 'Plus mantiene la conversación: hablas, repasas frases y repites sin bloqueos.',
     'pt-BR': 'O Plus mantém a conversa: você fala, analisa as falas e tenta de novo, sem travas.',
     vi: 'Plus giữ cuộc trò chuyện: nói, phân tích câu và thử lại — không bị chặn.',
@@ -195,6 +203,7 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
   memory: {
     ru: 'Plus добивает слабые места: повторяешь ровно то, что проседает.',
     uk: 'Plus добиває слабкі місця: повторюєш саме те, що просідає.',
+    en: 'Plus finishes off your weak spots: you review exactly what needs work.',
     es: 'Plus remata tus puntos débiles: repasas justo lo que flojea.',
     'pt-BR': 'O Plus fecha os pontos fracos: você repete exatamente o que está fraco.',
     vi: 'Plus xử lý điểm yếu: ôn đúng phần đang đuối.',
@@ -205,6 +214,7 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
   insight: {
     ru: 'Plus показывает картину целиком: что растёт, что подтянуть и куда идти.',
     uk: 'Plus показує картину повністю: що росте, що підтягнути й куди йти.',
+    en: 'Plus shows the full picture: what is growing, what to reinforce, and where to go next.',
     es: 'Plus te muestra el cuadro completo: qué crece, qué reforzar y hacia dónde ir.',
     'pt-BR': 'O Plus mostra o quadro inteiro: o que cresce, o que reforçar e para onde ir.',
     vi: 'Plus cho thấy bức tranh toàn cảnh: gì đang tiến, gì cần bù và đi hướng nào.',
@@ -215,6 +225,7 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
   identity: {
     ru: 'Plus делает Phraseman твоим — от оформления до выбора языков.',
     uk: 'Plus робить Phraseman твоїм — від оформлення до вибору мов.',
+    en: 'Plus makes Phraseman yours — from the look to the languages you pick.',
     es: 'Plus hace que Phraseman sea tuyo: del estilo a los idiomas que eliges.',
     'pt-BR': 'O Plus faz o Phraseman ser seu: do visual aos idiomas escolhidos.',
     vi: 'Plus biến Phraseman thành của bạn — từ giao diện đến ngôn ngữ bạn chọn.',
@@ -225,6 +236,7 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
   course: {
     ru: 'Plus открывает курс целиком: учишься в своём темпе, без пауз.',
     uk: 'Plus відкриває курс повністю: вчишся у своєму темпі, без пауз.',
+    en: 'Plus unlocks the whole course: you learn at your own pace, without pauses.',
     es: 'Plus abre el curso entero: aprendes a tu ritmo, sin pausas.',
     'pt-BR': 'O Plus abre o curso inteiro: você aprende no seu ritmo, sem pausas.',
     vi: 'Plus mở toàn bộ khóa học: học theo nhịp của bạn, không gián đoạn.',
@@ -265,6 +277,7 @@ export function PersonalizationProofCard({
     ? `${name ? `${name}, ` : ''}${triLang(lang, {
         ru: phraseValue && streakValue ? `у тебя уже ${phraseValue} фраз и ${streakValue} дн. серии.` : phraseValue ? `у тебя уже ${phraseValue} фраз.` : `у тебя уже ${streakValue} дн. серии.`,
         uk: phraseValue && streakValue ? `у тебе вже ${phraseValue} фраз і ${streakValue} дн. серії.` : phraseValue ? `у тебе вже ${phraseValue} фраз.` : `у тебе вже ${streakValue} дн. серії.`,
+        en: phraseValue && streakValue ? `you already have ${phraseValue} phrases and a ${streakValue}-day streak.` : phraseValue ? `you already have ${phraseValue} phrases.` : `you already have a ${streakValue}-day streak.`,
         es: phraseValue && streakValue ? `ya tienes ${phraseValue} frases y ${streakValue} días de racha.` : phraseValue ? `ya tienes ${phraseValue} frases.` : `ya tienes ${streakValue} días de racha.`,
         'pt-BR': phraseValue && streakValue ? `você já tem ${phraseValue} frases e ${streakValue} dias seguidos.` : phraseValue ? `você já tem ${phraseValue} frases.` : `você já tem ${streakValue} dias seguidos.`,
         vi: phraseValue && streakValue ? `bạn đã có ${phraseValue} cụm từ và chuỗi ${streakValue} ngày.` : phraseValue ? `bạn đã có ${phraseValue} cụm từ.` : `bạn đã có chuỗi ${streakValue} ngày.`,
@@ -276,6 +289,7 @@ export function PersonalizationProofCard({
       ? `${name}, ${triLang(lang, {
           ru: 'Plus даёт больше практики без стопов.',
           uk: 'Plus дає більше практики без стопів.',
+          en: 'Plus gives you more practice with no stops.',
           es: 'Plus te da más práctica sin bloqueos.',
           'pt-BR': 'O Plus dá mais prática sem travas.',
           vi: 'Plus cho bạn luyện tập nhiều hơn, không bị chặn.',
@@ -331,23 +345,23 @@ type ValueCard = { icon: keyof typeof Ionicons.glyphMap; title: LocCell; desc: L
 const VALUE_CARDS: ValueCard[] = [
   {
     icon: 'chatbubble-ellipses-outline',
-    title: { ru: 'Диалоги для живой речи', uk: 'Діалоги для живої мови', es: 'Diálogos para hablar de verdad', 'pt-BR': 'Diálogos para fala real', vi: 'Hội thoại để nói thật', id: 'Dialog untuk bicara nyata', tr: 'Gerçek konuşma diyalogları', pl: 'Dialogi do żywej mowy' },
-    desc: { ru: 'Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.', uk: 'Тренуєш робочі й побутові ситуації: відповідаєш, уточнюєш, просиш повторити й доводиш репліку до нормальної мови.', es: 'Practicas situaciones de trabajo y vida diaria: respondes, aclaras, pides repetir y llevas la frase a una conversación normal.', 'pt-BR': 'Você pratica situações de trabalho e do dia a dia: responde, esclarece, pede para repetir e transforma a fala em conversa natural.', vi: 'Luyện tình huống công việc và đời thường: trả lời, hỏi rõ, xin nhắc lại và đưa câu nói về giao tiếp tự nhiên.', id: 'Latih situasi kerja dan harian: menjawab, memperjelas, minta diulang, dan membuat respons terasa alami.', tr: 'İş ve günlük durumları çalışırsın: cevap verir, netleştirir, tekrar istersin ve cümleyi doğal konuşmaya çevirirsin.', pl: 'Ćwiczysz sytuacje z pracy i życia: odpowiadasz, dopytujesz, prosisz o powtórzenie i doprowadzasz wypowiedź do naturalnej rozmowy.' },
+    title: { ru: 'Диалоги для живой речи', uk: 'Діалоги для живої мови', en: 'Dialogues for real speech', es: 'Diálogos para hablar de verdad', 'pt-BR': 'Diálogos para fala real', vi: 'Hội thoại để nói thật', id: 'Dialog untuk bicara nyata', tr: 'Gerçek konuşma diyalogları', pl: 'Dialogi do żywej mowy' },
+    desc: { ru: 'Тренируешь рабочие и бытовые ситуации: отвечаешь, уточняешь, просишь повторить и доводишь реплику до нормальной речи.', uk: 'Тренуєш робочі й побутові ситуації: відповідаєш, уточнюєш, просиш повторити й доводиш репліку до нормальної мови.', en: 'You practice work and everyday situations: you answer, clarify, ask for a repeat, and turn each line into natural speech.', es: 'Practicas situaciones de trabajo y vida diaria: respondes, aclaras, pides repetir y llevas la frase a una conversación normal.', 'pt-BR': 'Você pratica situações de trabalho e do dia a dia: responde, esclarece, pede para repetir e transforma a fala em conversa natural.', vi: 'Luyện tình huống công việc và đời thường: trả lời, hỏi rõ, xin nhắc lại và đưa câu nói về giao tiếp tự nhiên.', id: 'Latih situasi kerja dan harian: menjawab, memperjelas, minta diulang, dan membuat respons terasa alami.', tr: 'İş ve günlük durumları çalışırsın: cevap verir, netleştirir, tekrar istersin ve cümleyi doğal konuşmaya çevirirsin.', pl: 'Ćwiczysz sytuacje z pracy i życia: odpowiadasz, dopytujesz, prosisz o powtórzenie i doprowadzasz wypowiedź do naturalnej rozmowy.' },
   },
   {
     icon: 'mic-outline',
-    title: { ru: 'Устный ввод', uk: 'Усне введення', es: 'Entrada por voz', 'pt-BR': 'Entrada por voz', vi: 'Nhập bằng giọng nói', id: 'Input suara', tr: 'Sesli giriş', pl: 'Wprowadzanie głosem' },
-    desc: { ru: 'Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.', uk: 'Вимовляєш фразу вголос, а Phraseman оцінює, наскільки точно й правильно її сказано.', es: 'Dices la frase en voz alta y Phraseman evalúa qué tan precisa y correcta fue.', 'pt-BR': 'Você diz a frase em voz alta e o Phraseman avalia se ela foi dita com precisão e correção.', vi: 'Bạn nói câu đó thành tiếng, còn Phraseman đánh giá mức độ chính xác và đúng của câu nói.', id: 'Ucapkan frasa dengan suara, lalu Phraseman menilai seberapa tepat dan benar pengucapannya.', tr: 'Cümleyi sesli söylersin; Phraseman ne kadar doğru ve isabetli söylediğini değerlendirir.', pl: 'Wypowiadasz frazę na głos, a Phraseman ocenia, jak dokładnie i poprawnie została powiedziana.' },
+    title: { ru: 'Устный ввод', uk: 'Усне введення', en: 'Voice input', es: 'Entrada por voz', 'pt-BR': 'Entrada por voz', vi: 'Nhập bằng giọng nói', id: 'Input suara', tr: 'Sesli giriş', pl: 'Wprowadzanie głosem' },
+    desc: { ru: 'Произносишь фразу вслух, а Phraseman оценивает, насколько точно и правильно она сказана.', uk: 'Вимовляєш фразу вголос, а Phraseman оцінює, наскільки точно й правильно її сказано.', en: 'You say the phrase out loud, and Phraseman rates how accurately and correctly it was said.', es: 'Dices la frase en voz alta y Phraseman evalúa qué tan precisa y correcta fue.', 'pt-BR': 'Você diz a frase em voz alta e o Phraseman avalia se ela foi dita com precisão e correção.', vi: 'Bạn nói câu đó thành tiếng, còn Phraseman đánh giá mức độ chính xác và đúng của câu nói.', id: 'Ucapkan frasa dengan suara, lalu Phraseman menilai seberapa tepat dan benar pengucapannya.', tr: 'Cümleyi sesli söylersin; Phraseman ne kadar doğru ve isabetli söylediğini değerlendirir.', pl: 'Wypowiadasz frazę na głos, a Phraseman ocenia, jak dokładnie i poprawnie została powiedziana.' },
   },
   {
     icon: 'navigate-outline',
-    title: { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos débiles', 'pt-BR': 'Pontos fracos', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe miejsca' },
-    desc: { ru: 'Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.', uk: 'Помилкові й складні фрази повертаються в повторення, доки не стануть упевненими.', es: 'Las frases difíciles o con errores vuelven al repaso hasta que salgan con seguridad.', 'pt-BR': 'Frases difíceis ou com erro voltam para revisão até ficarem firmes.', vi: 'Câu khó hoặc câu sai quay lại phần ôn cho đến khi bạn nói chắc hơn.', id: 'Frasa sulit atau salah kembali diulang sampai terasa mantap.', tr: 'Hatalı ve zor ifadeler güvenli hale gelene kadar tekrara döner.', pl: 'Błędne i trudne frazy wracają do powtórki, aż staną się pewne.' },
+    title: { ru: 'Слабые места', uk: 'Слабкі місця', en: 'Weak spots', es: 'Puntos débiles', 'pt-BR': 'Pontos fracos', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe miejsca' },
+    desc: { ru: 'Ошибочные и трудные фразы возвращаются в повтор, пока не станут уверенными.', uk: 'Помилкові й складні фрази повертаються в повторення, доки не стануть упевненими.', en: 'Wrong and tricky phrases keep coming back for review until you say them with confidence.', es: 'Las frases difíciles o con errores vuelven al repaso hasta que salgan con seguridad.', 'pt-BR': 'Frases difíceis ou com erro voltam para revisão até ficarem firmes.', vi: 'Câu khó hoặc câu sai quay lại phần ôn cho đến khi bạn nói chắc hơn.', id: 'Frasa sulit atau salah kembali diulang sampai terasa mantap.', tr: 'Hatalı ve zor ifadeler güvenli hale gelene kadar tekrara döner.', pl: 'Błędne i trudne frazy wracają do powtórki, aż staną się pewne.' },
   },
   {
     icon: 'infinite-outline',
-    title: { ru: 'Без free-стопов', uk: 'Без free-стопів', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
-    desc: { ru: 'Уроки, практика, энергия и карточки открыты без бесплатных дневных стопов и порогов.', uk: 'Уроки, практика, енергія й картки відкриті без безкоштовних денних стопів і порогів.', es: 'Lecciones, práctica, energía y tarjetas se abren sin los topes diarios del modo gratis.', 'pt-BR': 'Lições, prática, energia e cartões abrem sem os bloqueios diários do modo grátis.', vi: 'Bài học, luyện tập, năng lượng và thẻ mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Pelajaran, latihan, energi, dan kartu terbuka tanpa batas harian mode gratis.', tr: 'Dersler, pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Lekcje, praktyka, energia i fiszki są otwarte bez dziennych progów trybu free.' },
+    title: { ru: 'Без free-стопов', uk: 'Без free-стопів', en: 'No free-tier stops', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
+    desc: { ru: 'Уроки, практика, энергия и карточки открыты без бесплатных дневных стопов и порогов.', uk: 'Уроки, практика, енергія й картки відкриті без безкоштовних денних стопів і порогів.', en: 'Lessons, practice, energy, and cards are open with no free-tier daily caps or limits.', es: 'Lecciones, práctica, energía y tarjetas se abren sin los topes diarios del modo gratis.', 'pt-BR': 'Lições, prática, energia e cartões abrem sem os bloqueios diários do modo grátis.', vi: 'Bài học, luyện tập, năng lượng và thẻ mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Pelajaran, latihan, energi, dan kartu terbuka tanpa batas harian mode gratis.', tr: 'Dersler, pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Lekcje, praktyka, energia i fiszki są otwarte bez dziennych progów trybu free.' },
   },
 ];
 
@@ -358,6 +372,7 @@ export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrom
     <ProofCard title={triLang(lang, {
       ru: 'Что даёт Plus',
       uk: 'Що дає Plus',
+      en: 'What Plus gives you',
       es: 'Qué te da Plus',
       'pt-BR': 'O que o Plus oferece',
       vi: 'Plus mang lại gì',
@@ -404,6 +419,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       q: triLang(lang, {
         ru: 'Что будет после триала?',
         uk: 'Що буде після тріалу?',
+        en: 'What happens after the trial?',
         es: '¿Qué pasa tras la prueba?',
         'pt-BR': 'O que acontece depois do teste?',
         vi: 'Sau thời gian dùng thử thì sao?',
@@ -414,6 +430,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       a: triLang(lang, {
         ru: `${trialDays} дн. всё открыто бесплатно. Если уведомления разрешены, напомним перед окончанием. Отменишь — деньги не спишутся. Не отменишь — ${priceLine}.`,
         uk: `${trialDays} дн. усе відкрито безкоштовно. Якщо сповіщення дозволені, нагадаємо перед завершенням. Скасуєш — гроші не спишуться. Не скасуєш — ${priceLine}.`,
+        en: `${trialDays} days with everything open for free. If notifications are allowed, we'll remind you before it ends. Cancel and nothing is charged. Don't cancel and it's ${priceLine}.`,
         es: `${trialDays} días con todo abierto gratis. Si permites notificaciones, te recordaremos antes del final. Si cancelas, no se cobra nada. Si no, ${priceLine}.`,
         'pt-BR': `${trialDays} dias com tudo liberado grátis. Se as notificações estiverem permitidas, lembraremos antes do fim. Se cancelar, nada é cobrado. Se não, ${priceLine}.`,
         vi: `${trialDays} ngày mở tất cả miễn phí. Nếu bạn cho phép thông báo, chúng tôi sẽ nhắc trước khi kết thúc. Hủy thì không bị trừ tiền. Không hủy thì ${priceLine}.`,
@@ -426,6 +443,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       q: triLang(lang, {
         ru: 'Как отменить?',
         uk: 'Як скасувати?',
+        en: 'How do I cancel?',
         es: '¿Cómo cancelo?',
         'pt-BR': 'Como cancelar?',
         vi: 'Hủy bằng cách nào?',
@@ -436,6 +454,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       a: triLang(lang, {
         ru: 'Настройки телефона → Подписки → Phraseman → Отменить. Две минуты, без писем и звонков. Доступ останется до конца оплаченного срока.',
         uk: 'Налаштування телефона → Підписки → Phraseman → Скасувати. Дві хвилини, без листів і дзвінків. Доступ лишиться до кінця оплаченого строку.',
+        en: 'Phone settings → Subscriptions → Phraseman → Cancel. Two minutes, no emails or calls. Access stays until the end of the paid period.',
         es: 'Ajustes del teléfono → Suscripciones → Phraseman → Cancelar. Dos minutos, sin correos ni llamadas. El acceso sigue hasta el final del período pagado.',
         'pt-BR': 'Ajustes do telefone → Assinaturas → Phraseman → Cancelar. Dois minutos, sem e-mails nem ligações. O acesso continua até o fim do período pago.',
         vi: 'Cài đặt điện thoại → Đăng ký → Phraseman → Hủy. Hai phút, không email hay cuộc gọi. Quyền truy cập vẫn còn đến hết kỳ đã thanh toán.',
@@ -448,6 +467,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       q: triLang(lang, {
         ru: 'Что входит в Plus?',
         uk: 'Що входить у Plus?',
+        en: 'What does Plus include?',
         es: '¿Qué incluye Plus?',
         'pt-BR': 'O que inclui o Plus?',
         vi: 'Plus bao gồm những gì?',
@@ -458,6 +478,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       a: triLang(lang, {
         ru: 'Уроки после бесплатного порога и все уровни, энергия без ожидания, безлимитная практика, больше 20 карточек, AI-диалоги и сценарии уровней, устный ввод с оценкой фразы, умный тренер слабых мест, расширенная статистика, заморозка серии, Plus-темы и Plus-аура профиля.',
         uk: 'Уроки після безкоштовного порога й усі рівні, енергія без очікування, безлімітна практика, понад 20 карток, AI-діалоги й сценарії рівнів, усне введення з оцінкою фрази, розумний тренер слабких місць, розширена статистика, заморозка серії, Plus-теми й Plus-аура профілю.',
+        en: 'Lessons past the free threshold and all levels, energy with no waiting, unlimited practice, over 20 cards, AI dialogues and level scenarios, voice input with phrase scoring, smart weak-spot trainer, advanced stats, streak freeze, Plus themes and a Plus profile aura.',
         es: 'Lecciones tras el tramo gratis y todos los niveles, energía sin esperas, práctica ilimitada, más de 20 tarjetas, diálogos IA y escenarios por nivel, voz con evaluación de frase, entrenador de puntos débiles, estadísticas avanzadas, protección de racha, temas Plus y aura Plus de perfil.',
         'pt-BR': 'Lições após a faixa grátis e todos os níveis, energia sem espera, prática ilimitada, mais de 20 cartões, diálogos com IA e cenários por nível, voz com avaliação da frase, treino de pontos fracos, estatísticas avançadas, proteção de sequência, temas Plus e aura Plus no perfil.',
         vi: 'Bài học sau phần miễn phí và mọi cấp độ, năng lượng không phải chờ, luyện tập không giới hạn, hơn 20 thẻ, hội thoại AI và kịch bản theo cấp độ, nói bằng giọng với đánh giá câu, luyện điểm yếu, thống kê nâng cao, bảo vệ chuỗi, chủ đề Plus và hào quang hồ sơ Plus.',
@@ -471,6 +492,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
     <ProofCard title={triLang(lang, {
       ru: 'Частые вопросы',
       uk: 'Часті питання',
+      en: 'Frequently asked questions',
       es: 'Preguntas frecuentes',
       'pt-BR': 'Perguntas frequentes',
       vi: 'Câu hỏi thường gặp',

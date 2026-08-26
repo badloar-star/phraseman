@@ -23,6 +23,10 @@ import {
   inferLesson1WordFirstVocabularyCountV1,
   lesson1SessionChoreographyV1,
 } from './source/lesson1_session_choreography_v1';
+import {
+  validateLearningV2ModeNativePayloadV1,
+  type LearningV2ModeNativePayloadV1,
+} from '../contracts/mode_native_payload_v1';
 
 /**
  * Назначение каждой карточки по её месту в сессии. Кривая нагрузки:
@@ -82,6 +86,7 @@ export type LearningV2GeneratedSessionCardV1 = Readonly<{
   retryMessageByLocale: LearningV2Localized<string>;
   errorExplanationByLocale: LearningV2Localized<string>;
   accessibilityLabelByLocale: LearningV2Localized<string>;
+  modePayload: LearningV2ModeNativePayloadV1 | null;
   audioScript: LearningV2GeneratedSessionAudioScript | null;
 }>;
 
@@ -98,6 +103,7 @@ export type LearningV2GeneratedSessionShardV1 = Readonly<{
   zone: 'understand' | 'use' | 'master';
   support: LearningSupportLevel;
   generationInputFingerprint: string;
+  modeNativePlanId: string | null;
   interfaceLocales: typeof LEARNING_V2_INTERFACE_LOCALES;
   contentKinds: typeof LEARNING_V2_REQUIRED_CONTENT_KINDS;
   intro: LearningV2GeneratedSessionIntro;
@@ -125,6 +131,7 @@ const TOP_KEYS = Object.freeze([
   'zone',
   'support',
   'generationInputFingerprint',
+  'modeNativePlanId',
   'interfaceLocales',
   'contentKinds',
   'intro',
@@ -148,6 +155,7 @@ const CARD_KEYS = Object.freeze([
   'retryMessageByLocale',
   'errorExplanationByLocale',
   'accessibilityLabelByLocale',
+  'modePayload',
   'audioScript',
 ] as const);
 const AUDIO_KEYS = Object.freeze([
@@ -347,6 +355,9 @@ export function validateLearningV2GeneratedSessionShardV1(
     undefined,
     vocabularyCount,
     phraseCount,
+    typeof input.modeNativePlanId === 'string'
+      ? input.modeNativePlanId
+      : undefined,
   );
   if (
     input.schemaVersion !== 'learning-v2-generated-session-shard.v1' ||
@@ -361,6 +372,11 @@ export function validateLearningV2GeneratedSessionShardV1(
     !TOKEN_RE.test(input.canDoOutcomeId) ||
     input.zone !== choreography.zone ||
     input.support !== choreography.support ||
+    !(
+      input.modeNativePlanId === null ||
+      (typeof input.modeNativePlanId === 'string' &&
+        TOKEN_RE.test(input.modeNativePlanId))
+    ) ||
     input.generationInputFingerprint !== expected.generationInputFingerprint
   ) {
     throw new Error('learning_v2_session_shard_identity_invalid');
@@ -475,6 +491,9 @@ export function validateLearningV2GeneratedSessionShardV1(
     ] as const) {
       validateLocalizedCopy(card[field], field);
     }
+    const modePayload = card.modePayload === null
+      ? null
+      : validateLearningV2ModeNativePayloadV1(card.modePayload, family as never);
     validateAudioScript(
       card.audioScript,
       item,
@@ -486,6 +505,7 @@ export function validateLearningV2GeneratedSessionShardV1(
       Object.freeze({
         ...(card as unknown as LearningV2GeneratedSessionCardV1),
         contentItem: item,
+        modePayload,
       }),
     );
   }

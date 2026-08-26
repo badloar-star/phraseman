@@ -40,7 +40,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
 
   const titleSlot = (
     <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-      {text?.title || triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
+      {text?.title || triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', en: 'Message', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
     </Text>
   );
 
@@ -53,7 +53,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
   const ctaSlot = (
     <DuoPressable
       accessibilityRole="button"
-      accessibilityLabel={triLang(lang, { ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
+      accessibilityLabel={triLang(lang, { ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', en: 'Close message', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
       disabled={closing}
       onPress={() => { void close(); }}
       edgeColor={t.bgSurface2}
@@ -61,7 +61,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       wrapStyle={styles.buttonWrap}
       style={[styles.button, { backgroundColor: t.accent }]}
     >
-      <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
+      <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
     </DuoPressable>
   );
 

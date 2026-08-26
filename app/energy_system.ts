@@ -4,8 +4,6 @@ import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
 import { readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
-import { captureAccountGeneration } from './account_generation';
-import { readGiftAccountValue, removeGiftAccountValue } from './gift_account_storage';
 import { withStorageLock } from './storage_mutex';
 import { emitAppEvent } from './events';
 
@@ -20,32 +18,6 @@ const ENERGY_STORAGE_KEY = 'energy_state';
 // только за СТАРТ активности (не за ошибки), поэтому трата редкая и медленное
 // восстановление не наказывает за учёбу.
 export const ENERGY_RECOVERY_INTERVAL_MS = 30 * 60 * 1000;
-
-/**
- * Подарок «Энергия +N до полуночи» (level_gift_system: BONUS_ENERGY_KEY).
- * Пока бонус активен — потолок энергии временно поднят на bonus.amount, а сами
- * слоты сразу заполняются при выдаче (см. applyEnergyBonusN). Читаем ключ напрямую,
- * чтобы не тянуть level_gift_system и не создавать циклический импорт.
- */
-const BONUS_ENERGY_KEY = 'energy_gift_bonus';
-
-/** Активный доп-запас слотов от подарка (0, если бонуса нет или он истёк). Чистит протухший. */
-async function readBonusEnergyExtra(): Promise<number> {
-  try {
-    const accountToken = captureAccountGeneration();
-    const raw = await readGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
-    if (!raw) return 0;
-    const b = JSON.parse(raw) as { amount?: number; expiresAt?: number };
-    const expiresAt = Number(b?.expiresAt) || 0;
-    if (Date.now() >= expiresAt) {
-      await removeGiftAccountValue(BONUS_ENERGY_KEY, accountToken).catch(() => {});
-      return 0;
-    }
-    return Math.max(0, Math.floor(Number(b?.amount) || 0));
-  } catch {
-    return 0;
-  }
-}
 
 /** Remote-tunable max energy (cap). Read at call time so admin changes apply live. */
 function MAX_ENERGY_VALUE(): number {
@@ -64,14 +36,11 @@ async function readLevelAwareBaseMaxEnergy(): Promise<number> {
 }
 
 /**
- * Эффективный потолок энергии = базовый максимум + активные бонусные слоты подарка.
- * Используется везде, где раньше стоял голый MAX_ENERGY_VALUE(), чтобы подарочные
- * слоты реально давали запас и восстанавливались, а после полуночи срезались.
+ * Постоянный потолок базовой энергии. Временный подарок хранится отдельным
+ * расходуемым пулом и не должен расширять восстановление или знаменатель UI.
  */
 export async function getEffectiveMaxEnergyValue(): Promise<number> {
-  const base = await readLevelAwareBaseMaxEnergy();
-  const bonus = await readBonusEnergyExtra();
-  return base + bonus;
+  return readLevelAwareBaseMaxEnergy();
 }
 
 // Время восстановления 1 единицы энергии фиксированное:

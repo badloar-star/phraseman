@@ -1,11 +1,11 @@
-export const LEVEL_SPIN_REWARD_CATALOG_VERSION = 4 as const;
+export const LEVEL_SPIN_REWARD_CATALOG_VERSION = 6 as const;
 
 export type LevelSpinRewardTier = 'ordinary' | 'rare' | 'ultra' | 'exceptional';
 const ORDINARY_REWARD_IDS = [
   'xp_250', 'xp_500', 'xp_1000', 'xp_3000', 'xp_5000',
   'pearls_5', 'pearls_10', 'pearls_20',
   'stars_10', 'stars_20', 'stars_50',
-  'energy_full', 'energy_plus2', 'hint_1', 'hint_3', 'chain_shield_1',
+  'energy_full', 'energy_plus2', 'hint_1', 'hint_3', 'chain_shield_1', 'attempt_restore_all',
   'xp_bank_150', 'xp_bank_300', 'xp_2x_24h',
 ] as const;
 const RARE_REWARD_IDS = [
@@ -24,6 +24,7 @@ export const LEVEL_SPIN_REWARD_IDS = [
   'plus_days_7',
   'cosmetic_avatar_aura',
   'cosmetic_theme',
+  'cosmetic_avatar_common',
 ] as const;
 export type LevelSpinRewardId = typeof LEVEL_SPIN_REWARD_IDS[number];
 
@@ -37,15 +38,18 @@ export type LevelSpinRewardCatalogEntry = Readonly<{
  * Персональные веса поверх полки.
  *
  * зачем (владелец 2026-08-26): энергия — самая нужная награда в спине, её шанс
- * поднят с ~10.2% до ~15% (полная энергия и +2 по 15 000, +3 — 3 000). Тема
- * интерфейса добавлена редким призом ровно на ~1%: это первая вещь из спина,
- * которую иначе можно получить ТОЛЬКО за 200 жемчужин, поэтому шанс намеренно
- * низкий — иначе продажа тем за жемчуг обесценится.
+ * поднят с ~10.2% до ~15%. «Второй шанс» также занимает ~15%. После его
+ * добавления все целевые шансы перенормированы совместно: аура ~2.8%, тема
+ * ~1%, аватар ~1.5%. Так новый расходник не размывает уже утверждённую
+ * косметику. Тема намеренно остаётся редкой, чтобы не обесценить её покупку.
  */
 const REWARD_WEIGHT_OVERRIDES: Partial<Record<LevelSpinRewardId, number>> = {
-  energy_full: 15_000,
-  energy_plus2: 15_000,
-  energy_plus3: 3_000,
+  energy_full: 18_812,
+  energy_plus2: 18_812,
+  energy_plus3: 3_762,
+  // «Второй шанс»: постоянный предмет инвентаря, который полностью
+  // восстанавливает 3 попытки. Вес даёт 15.000036% в актуальном v6-пуле.
+  attempt_restore_all: 41_386,
 };
 
 const entriesWithOverrides = (
@@ -60,10 +64,13 @@ export const LEVEL_SPIN_REWARD_CATALOG: readonly LevelSpinRewardCatalogEntry[] =
   ...entriesWithOverrides(ULTRA_REWARD_IDS, 'ultra', 100),
   Object.freeze({ id: 'plus_days_3', tier: 'exceptional' as const, weight: 10 }),
   Object.freeze({ id: 'plus_days_7', tier: 'exceptional' as const, weight: 1 }),
-  Object.freeze({ id: 'cosmetic_avatar_aura', tier: 'rare' as const, weight: 6_170 }),
+  Object.freeze({ id: 'cosmetic_avatar_aura', tier: 'rare' as const, weight: 7_725 }),
   // Тема интерфейса: ~1% — редкий, но реальный приз. Полка 'ultra', а не
   // 'exceptional': по ценности это уровень крупной валюты, а не Plus-доступа.
-  Object.freeze({ id: 'cosmetic_theme', tier: 'ultra' as const, weight: 2_200 }),
+  Object.freeze({ id: 'cosmetic_theme', tier: 'ultra' as const, weight: 2_759 }),
+  // Все custom-gen-01..125: 1.5%. Конкретный аватар выбирается отдельным
+  // ценовым весом, а после исчерпания всей полки приз исчезает до розыгрыша.
+  Object.freeze({ id: 'cosmetic_avatar_common', tier: 'rare' as const, weight: 4_139 }),
 ]);
 
 export const LEVEL_SPIN_REWARD_TOTAL_WEIGHT = LEVEL_SPIN_REWARD_CATALOG.reduce(

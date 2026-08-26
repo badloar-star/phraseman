@@ -60,6 +60,7 @@ export default function AiMistakeCard({
   const title = triLang(lang, {
     ru: 'Разбор промаха',
     uk: 'Розбір промаху',
+    en: 'Mistake breakdown',
     es: 'Análisis del error',
     'pt-BR': 'Análise do erro',
     vi: 'Phân tích lỗi',
@@ -76,6 +77,7 @@ export default function AiMistakeCard({
     return triLang(lang, {
       ru: 'Разбираю именно твой ответ: где сбилось и как сказать правильно.',
       uk: 'Розбираю саме твою відповідь: де збилося і як сказати правильно.',
+      en: 'I break down your exact answer: what went wrong and how to say it right.',
       es: 'Analizo tu respuesta exacta: qué falló y cómo decirlo bien.',
       'pt-BR': 'Analiso sua resposta exata: onde errou e como dizer certo.',
       vi: 'Phân tích đúng câu trả lời của bạn: sai ở đâu và nói sao cho đúng.',
@@ -174,6 +176,7 @@ export default function AiMistakeCard({
             {triLang(lang, {
               ru: 'Объяснить проще',
               uk: 'Пояснити простіше',
+              en: 'Explain more simply',
               es: 'Explicarlo más fácil',
               'pt-BR': 'Explicar de forma mais simples',
               vi: 'Giải thích đơn giản hơn',
@@ -197,6 +200,7 @@ export default function AiMistakeCard({
             {triLang(lang, {
                 ru: 'Разобрать мой ответ',
                 uk: 'Розібрати мою відповідь',
+                en: 'Break down my answer',
                 es: 'Analizar mi respuesta',
                 'pt-BR': 'Analisar minha resposta',
                 vi: 'Phân tích câu trả lời',

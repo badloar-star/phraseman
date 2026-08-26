@@ -5,7 +5,7 @@
  * зачем: владелец одобрил 7 конкретных макетов (docs/v2/mockups/index.html,
  * раздел "Режимы") с собственной вёрсткой и анимациями вместо одной
  * универсальной карточки, где тип режима влиял только на иконку. Технический
- * аудит (Advisor, Opus) настоял на архитектуре "7 отдельных файлов-компонентов
+ * аудит настоял на архитектуре "отдельный файл-компонент
  * + тонкий роутер" вместо switch внутри одного компонента и вместо более
  * широкой спецификации из docs/v2/04-activity-catalog-and-storyboards.md
  * (17 семейств, владелец одобрил только эти 7).
@@ -24,7 +24,6 @@ import type { LearningV2ActivityFamilyCode } from "../telemetry";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import PhraseBuilderModeV1 from "./phrase_builder_mode_v1";
 import ListenChooseModeV1 from "./listen_choose_mode_v1";
-import SoundContrastModeV1 from "./sound_contrast_mode_v1";
 import ListenBuildDictationModeV1 from "./listen_build_dictation_mode_v1";
 import ContextGapGrammarModeV1 from "./context_gap_grammar_mode_v1";
 import SpeedMatchModeV1 from "./speed_match_mode_v1";
@@ -42,11 +41,11 @@ export const MODE_MOCKUP_LABEL_BY_FAMILY_V1: Readonly<
 > = Object.freeze({
   phrase_builder: "Сборка фразы (эталон)",
   listen_choose: "Выбор на слух",
-  sound_contrast: "Пары звуков",
+  sound_contrast: "Удалённый режим (не назначать)",
   listen_build_dictation: "Диктант",
   context_gap_grammar: "Контекстный пропуск",
   speed_match: "Пары на скорость",
-  scripted_repeat_compare: "Повтор за моделью (голос, WIP)",
+  scripted_repeat_compare: "Повтор за моделью (голос)",
   // зачем: intro_check — код телеметрии интро-экранов (LearningV2SessionIntro),
   // НЕ одна из 7 практик. Он никогда не попадает в этот роутер (интро рендерится
   // отдельным компонентом до practice-стадии), но LearningV2ActivityFamilyCode
@@ -62,7 +61,6 @@ export const MODE_ROUTER_IMPLEMENTED_FAMILIES_V1: readonly LearningV2ActivityFam
   Object.freeze([
     "phrase_builder",
     "listen_choose",
-    "sound_contrast",
     "listen_build_dictation",
     "context_gap_grammar",
     "speed_match",
@@ -80,7 +78,6 @@ const MODE_COMPONENT_BY_FAMILY_V1: Partial<
 > = {
   phrase_builder: PhraseBuilderModeV1,
   listen_choose: ListenChooseModeV1,
-  sound_contrast: SoundContrastModeV1,
   listen_build_dictation: ListenBuildDictationModeV1,
   context_gap_grammar: ContextGapGrammarModeV1,
   speed_match: SpeedMatchModeV1,

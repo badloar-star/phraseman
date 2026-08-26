@@ -113,7 +113,9 @@ describe("episode 1 session map", () => {
     expect(featuresTaughtBySession(1).has("copula_be")).toBe(true);
     expect(featuresTaughtBySession(1).has("past_be")).toBe(false);
     expect(featuresTaughtBySession(56).has("past_be")).toBe(false);
-    expect(featuresTaughtBySession(56).has("question_inversion")).toBe(true);
-    expect(featuresTaughtBySession(56).has("negative_contraction")).toBe(true);
+    expect(featuresTaughtBySession(56).has("question_inversion")).toBe(false);
+    expect(featuresTaughtBySession(56).has("negative_contraction")).toBe(false);
+    expect(featuresTaughtBySession(56).has("third_person_pronoun")).toBe(false);
+    expect(featuresTaughtBySession(56).has("possessive_my")).toBe(false);
   });
 });

@@ -295,7 +295,7 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
           </View>
 
           {/* Тело: скелетон во время генерации, иначе обычное простое объяснение. */}
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={styles.bodyScroll}
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}

@@ -66,6 +66,7 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
       return triLang(uiLang, {
         ru: 'Всё равно непонятно',
         uk: 'Все одно незрозуміло',
+        en: "Still unclear",
         es: 'Sigue sin estar claro',
         'pt-BR': 'Continua confuso',
         vi: 'Vẫn khó hiểu',
@@ -77,6 +78,7 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
       return triLang(uiLang, {
         ru: 'Кажется, есть ошибка',
         uk: 'Здається, є помилка',
+        en: "There seems to be a mistake",
         es: 'Parece que hay un error',
         'pt-BR': 'Parece haver um erro',
         vi: 'Có vẻ có lỗi',
@@ -88,6 +90,7 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
       return triLang(uiLang, {
         ru: 'Не на моём языке',
         uk: 'Не моєю мовою',
+        en: "Not in my language",
         es: 'No está en mi idioma',
         'pt-BR': 'Não está no meu idioma',
         vi: 'Không phải ngôn ngữ của tôi',
@@ -99,6 +102,7 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
       return triLang(uiLang, {
         ru: 'Другое',
         uk: 'Інше',
+        en: "Other",
         es: 'Otra cosa',
         'pt-BR': 'Outra coisa',
         vi: 'Khác',
@@ -170,6 +174,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
         accessibilityLabel={triLang(uiLang, {
           ru: 'Сообщить, что объяснение непонятное',
           uk: 'Повідомити, що пояснення незрозуміле',
+          en: "Report that the explanation is unclear",
           es: 'Informar de que la explicación no es clara',
           'pt-BR': 'Informar que a explicação está confusa',
           vi: 'Báo rằng phần giải thích khó hiểu',
@@ -197,6 +202,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                 {triLang(uiLang, {
                   ru: 'Что именно непонятно?',
                   uk: 'Що саме незрозуміло?',
+                  en: "What exactly is unclear?",
                   es: '¿Qué no quedó claro?',
                   'pt-BR': 'O que ficou confuso?',
                   vi: 'Điều gì khó hiểu?',
@@ -239,6 +245,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                 placeholder={triLang(uiLang, {
                   ru: 'Расскажи своими словами (необязательно)',
                   uk: 'Розкажи своїми словами (необов’язково)',
+                  en: "Tell us in your own words (optional)",
                   es: 'Cuéntalo con tus palabras (opcional)',
                   'pt-BR': 'Conte com suas palavras (opcional)',
                   vi: 'Kể bằng lời của bạn (không bắt buộc)',
@@ -259,6 +266,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                   {triLang(uiLang, {
                     ru: 'Не отправилось. Проверь интернет и попробуй ещё раз.',
                     uk: 'Не надіслалося. Перевір інтернет і спробуй ще раз.',
+                    en: "Couldn't send. Check your connection and try again.",
                     es: 'No se envió. Revisa internet e inténtalo otra vez.',
                     'pt-BR': 'Não foi enviado. Verifique a internet e tente de novo.',
                     vi: 'Chưa gửi được. Kiểm tra mạng rồi thử lại.',
@@ -272,7 +280,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
               <View style={styles.row}>
                 <TouchableOpacity onPress={() => setFormOpen(false)} style={styles.btnCancel}>
                   <Text style={{ color: t.textSecond, fontSize: f.body }}>
-                    {triLang(uiLang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+                    {triLang(uiLang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -284,7 +292,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                     <ActivityIndicator size="small" color={t.textPrimary} />
                   ) : (
                     <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-                      {triLang(uiLang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
+                      {triLang(uiLang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                     </Text>
                   )}
                 </TouchableOpacity>

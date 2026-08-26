@@ -1068,11 +1068,144 @@ const PL: typeof RU = {
   },
 };
 
+const EN: typeof RU = {
+  tabs: {
+    home: 'Home', lessons: 'Lessons', flashcards: 'Flashcards',
+    settings: 'Settings',
+  },
+  home: {
+    greeting: (n: string) => `${n}`,
+    greetingPrefix: (g: string) => g,
+    sub: 'Ready to continue today?',
+    streakLabel: 'Streak',
+    streakDays: 'days in a row',
+    continueBtn: 'Continue',
+    startBtn: 'Start',
+    leagueLabel: 'Weekly club',
+    testBtn: 'Knowledge test',
+    testSub: 'Find your level',
+    examBtn: 'Final exam',
+    attestTile: 'Certification',
+    statsCardTitle: 'Statistics',
+    statsPulseHint: 'Tap here to see more',
+  },
+  lessonMenu: {
+    start: 'Start lesson',
+    continue: 'Continue lesson',
+    vocab: 'Vocabulary',
+    verbs: 'Irregular verb forms',
+    theory: 'Theory',
+    fromScratch: 'Starting from scratch',
+    wordsOfLesson: 'Words in this lesson',
+    verbsOfLesson: 'Irregular forms only',
+    theoryOfLesson: 'Grammar and rules',
+  },
+  lesson: {
+    undo: 'Undo', cheat: 'Cheat sheet', theory: 'Theory',
+    oral: 'Speak', next: 'Next', check: 'Check',
+    typeHere: 'Type your answer...', listenTitle: 'Listening...',
+    noArticle: 'no article',
+    hintAfterWrong: 'Hint after a mistake',
+  },
+  lessonComplete: {
+    title: 'Lesson complete!',
+    subtitle: (n: number) => `Lesson ${n} completed 100%`,
+    bonus: '+500 XP',
+    rest: 'Take a short break — you earned it.',
+    nextLesson: 'Next lesson',
+    repeatLesson: 'Repeat lesson',
+    shareResult: 'Share result',
+    backHome: 'Back home',
+  },
+  leagues: [
+    { name: 'Seeker',    min: 0 },
+    { name: 'Expert',      min: 100 },
+    { name: 'Scholar',      min: 300 },
+    { name: 'Speaker',      min: 700 },
+    { name: 'Sharp Pen', min: 1500 },
+    { name: 'Professor',   min: 3000 },
+  ],
+  settings: {
+    title: 'Settings', profile: 'Profile',
+    name: 'Name / nickname', nameSub: (n: string) => n || 'Not set',
+    lang: 'Interface language', appearance: 'Appearance',
+    theme: 'Theme', themeDark: 'Dark', themeLight: 'Light',
+    learning: 'Learning', learnSet: 'Learning settings',
+    help: 'Help',
+    premium: 'Plus', premiumSub: 'Lessons, limits and practice — by subscription',
+    changeName: 'Change name', cancel: 'Cancel', save: 'Save',
+    nameError: 'Enter a name', namePlaceholder: 'Enter a name...',
+  },
+  edu: {
+    title: 'Learning settings',
+    autoCheck: 'Auto-check', autoCheckSub: 'Check as soon as you type the last word',
+    autoAdvance: 'Auto-advance after answer', autoAdvanceSub: 'Automatically move on after a correct answer',
+    hardMode: 'Keyboard input', hardModeSub: 'Type the whole sentence yourself',
+    speed: 'Speech speed', speedHint: 'Release the slider — you’ll hear an example',
+    speedSlowLabel: 'Slow', speedFastLabel: 'Fast',
+    haptics: 'Vibrate on mistake',
+    hapticsSub: 'Haptic feedback on a wrong answer',
+    hintsAfterAnswer: 'Hints after answering',
+    hintsAfterAnswerSub: 'Show explanation cards after each answer',
+  },
+  words: {
+    title: (n: number) => `${n}. Vocabulary`,
+    training: 'Practice', wordList: 'Word list',
+    listStartTraining: 'Start practice',
+    allLearned: 'All words learned!',
+    learnedOf: (a: number, b: number) => `${a} / ${b} learned`,
+    plusPoints: (n: number) => `+${n} XP`,
+  },
+  verbs: {
+    title: (n: number) => `${n}. Verb forms`,
+    training: 'Practice', list: 'List',
+    base: 'Base', past: 'Past Simple', pp: 'Past Participle', tr: 'Translation',
+    guessPast: 'Past Simple of:', guessPP: 'Past Participle of:',
+    done: 'Practice complete!', repeat: 'Repeat',
+  },
+  diagnostic: {
+    title: 'Level diagnostic',
+    prevResult: 'Your last result',
+    examReadinessTitle: 'Exam readiness',
+    start: 'English level test',
+    startTest: 'Start test',
+    yourLevel: 'Level estimate',
+    currentEnglishLevelTitle: 'Your current English level',
+    currentEnglishLevelHintBeforeTest:
+      'Take the test to find your level.',
+    correct: 'Correct answers',
+    skipped: (n: number) => `Skipped (timer): ${n}`,
+    again: 'Try again',
+    backHome: 'Back home',
+    timeUp: 'Time’s up — question skipped',
+    points: (n: number) => `+${n} XP`,
+    unlockedTitle: 'Starting recommendation',
+    unlockedRec:
+      'The test showed your approximate level. Start with the matching topics in the course, or review the basics if you want to reinforce them.',
+  },
+  onboarding: {
+    chooseLang: 'Choose a language',
+    enterName: 'Enter your name or nickname',
+    placeholder: 'Your name...',
+    next: 'Continue',
+    nameError: 'Enter a name to continue',
+  },
+  premium: {
+    locked: 'Plus unlocks lessons after A1',
+    freeCont: 'Continue for free (Lesson 1)',
+    cta: 'Get Plus',
+    ctaSub: 'Subscribe',
+    legal: 'Cancel anytime in App Store / Google Play settings.',
+    features: ['Lessons after A1','Voice input','Detailed statistics'],
+  },
+};
+
 /** Текст про отмену подписки — только релевантный магазин для текущей платформы (в iOS без упоминания Google Play). */
 (() => {
   if (Platform.OS === 'ios') {
     RU.premium.legal = 'Отмена в любое время в настройках App Store (Подписки).';
     UK.premium.legal = 'Скасування будь-коли в налаштуваннях App Store (Підписки).';
+    EN.premium.legal = 'Cancel anytime in Settings → Apple ID → Subscriptions.';
     ES.premium.legal = 'Puedes cancelar cuando quieras en Ajustes → Apple ID → Suscripciones.';
     PT_BR.premium.legal = 'Cancele quando quiser em Ajustes → Apple ID → Assinaturas.';
     VI.premium.legal = 'Có thể hủy bất cứ lúc nào trong Cài đặt → Apple ID → Đăng ký.';
@@ -1082,6 +1215,7 @@ const PL: typeof RU = {
   } else if (Platform.OS === 'android') {
     RU.premium.legal = 'Отмена в любое время в настройках Google Play (Подписки).';
     UK.premium.legal = 'Скасування будь-коли в налаштуваннях Google Play (Підписки).';
+    EN.premium.legal = 'Cancel anytime in Google Play → Subscriptions.';
     ES.premium.legal = 'Puedes cancelar cuando quieras en Google Play → Suscripciones.';
     PT_BR.premium.legal = 'Cancele quando quiser em Google Play → Assinaturas.';
     VI.premium.legal = 'Có thể hủy bất cứ lúc nào trong Google Play → Gói đăng ký.';
@@ -1091,6 +1225,7 @@ const PL: typeof RU = {
   } else {
     RU.premium.legal = 'Отмена в любое время в разделе подписок магазина приложений.';
     UK.premium.legal = 'Скасування будь-коли в розділі підписок магазину застосунків.';
+    EN.premium.legal = 'Cancel anytime in your app store’s subscriptions section.';
     ES.premium.legal = 'Puedes cancelar cuando quieras en la sección de suscripciones de la tienda de apps.';
     PT_BR.premium.legal = 'Cancele quando quiser na área de assinaturas da loja de apps.';
     VI.premium.legal = 'Có thể hủy bất cứ lúc nào trong phần gói đăng ký của cửa hàng ứng dụng.';
@@ -1100,7 +1235,7 @@ const PL: typeof RU = {
   }
 })();
 
-export { RU, UK, ES, PT_BR, VI, ID, TR, PL };
+export { RU, UK, EN, ES, PT_BR, VI, ID, TR, PL };
 
 export type Strings = typeof RU;
 
@@ -1120,9 +1255,10 @@ const LangContext = createContext<LangCtx>({
   setLang: async () => {},
 });
 
-const STRINGS_BY_LANG: Record<Lang, Strings> = {
+const STRINGS_BY_LANG: Record<Lang, Strings> & { en: Strings } = {
   ru: RU,
   uk: UK,
+  en: EN,
   es: ES,
   'pt-BR': PT_BR,
   vi: VI,

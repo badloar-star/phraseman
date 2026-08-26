@@ -72,7 +72,7 @@ function ArenaHubOverflowSheetBase({
         <Animated.View style={[styles.sheet, sheetStyle, { backgroundColor: P.bg, paddingBottom: Math.max(18, insets.bottom + 10), maxHeight: height * 0.86 }]}>
           <View style={[styles.grabber, { backgroundColor: P.elev2 }]} />
           <Text style={[styles.title, { color: P.text }]}>{arenaText(lang, 'title')}</Text>
-          <ScrollView contentContainerStyle={styles.list}>
+          <ScrollView decelerationRate="fast" contentContainerStyle={styles.list}>
             {choices.map((choice) => {
               const title = choice.key === 'wallet'
                 ? arenaExpansionText(lang, 'wallet')

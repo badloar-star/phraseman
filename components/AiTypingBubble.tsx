@@ -134,7 +134,7 @@ export default function AiTypingBubble({
     <View
       pointerEvents="none"
       accessible
-      accessibilityLabel={triLang(lang, { ru: 'Собеседник печатает ответ', uk: 'Співрозмовник друкує відповідь', es: 'Tu interlocutor está escribiendo una respuesta', 'pt-BR': 'Seu interlocutor está digitando uma resposta', vi: 'Người trò chuyện đang nhập câu trả lời', id: 'Lawan bicara sedang mengetik jawaban', tr: 'Karşınızdaki yanıt yazıyor', pl: 'Rozmówca pisze odpowiedź' })}
+      accessibilityLabel={triLang(lang, { ru: 'Собеседник печатает ответ', en: 'Your conversation partner is typing a reply', uk: 'Співрозмовник друкує відповідь', es: 'Tu interlocutor está escribiendo una respuesta', 'pt-BR': 'Seu interlocutor está digitando uma resposta', vi: 'Người trò chuyện đang nhập câu trả lời', id: 'Lawan bicara sedang mengetik jawaban', tr: 'Karşınızdaki yanıt yazıyor', pl: 'Rozmówca pisze odpowiedź' })}
       accessibilityLiveRegion="polite"
       testID="ai-typing-bubble"
       style={styles.wrap}

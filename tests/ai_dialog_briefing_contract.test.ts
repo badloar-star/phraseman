@@ -72,13 +72,18 @@ describe('AI dialog catalog scenario-feed contract', () => {
   const catalog = () => fs.readFileSync(dialogsTabPath, 'utf8');
   const tile = () => fs.readFileSync(scenarioTilePath, 'utf8');
 
-  it('routes unlocked normal taps by the exact target/scenario intro state', () => {
+  it('opens an opaque resolver route in the tap frame and resolves intro state there', () => {
     const content = catalog();
+    const route = fs.readFileSync(routePath, 'utf8');
 
     expect(content).toContain("import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';");
-    expect(content).toContain('await hasSeenAiDialogIntro(studyTarget, scenario.id)');
-    expect(content).toContain("pathname: seenIntro ? '/ai_dialog_session' : '/ai_dialog_briefing'");
+    expect(content).toContain("pathname: '/ai_dialog_briefing'");
+    expect(content).toContain("forceBriefing: forceBriefing ? '1' : undefined");
+    expect(content).not.toContain('await hasSeenAiDialogIntro(studyTarget, scenario.id)');
     expect(content).toContain('scenarioId: scenario.id');
+    expect(route).toContain('peekAiDialogIntroSeen(studyTarget, scenario.id)');
+    expect(route).toContain('hasSeenAiDialogIntro(studyTarget, scenario.id).then((seen) => {');
+    expect(route).toContain("pathname: '/ai_dialog_session'");
   });
 
   it('keeps the normal destination decision behind the existing successful gates and lets long press force briefing', () => {

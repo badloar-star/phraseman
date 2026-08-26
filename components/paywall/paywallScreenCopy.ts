@@ -10,8 +10,8 @@ export function periodLabelFor(lang: Lang, plan: PaywallPlan): string {
   // lifetime — разовый платёж, без периода.
   if (plan === 'lifetime') return '';
   return plan === 'yearly'
-    ? triLang(lang, { ru: '/год', uk: '/рік', es: '/año', 'pt-BR': '/ano', vi: '/năm', id: '/tahun', tr: '/yıl', pl: '/rok' })
-    : triLang(lang, { ru: '/мес', uk: '/міс', es: '/mes', 'pt-BR': '/mês', vi: '/tháng', id: '/bulan', tr: '/ay', pl: '/mies.' });
+    ? triLang(lang, { ru: '/год', uk: '/рік', en: '/year', es: '/año', 'pt-BR': '/ano', vi: '/năm', id: '/tahun', tr: '/yıl', pl: '/rok' })
+    : triLang(lang, { ru: '/мес', uk: '/міс', en: '/mo', es: '/mes', 'pt-BR': '/mês', vi: '/tháng', id: '/bulan', tr: '/ay', pl: '/mies.' });
 }
 
 export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = false): string {
@@ -19,6 +19,7 @@ export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = f
     return triLang(lang, {
       ru: 'Открыть Pro',
       uk: 'Відкрити Pro',
+      en: 'Unlock Pro',
       es: 'Abrir Pro',
       'pt-BR': 'Abrir Pro',
       vi: 'Mở Pro',
@@ -31,6 +32,7 @@ export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = f
     return triLang(lang, {
       ru: `Попробовать ${trialDays} дн. бесплатно`,
       uk: `Спробувати ${trialDays} дн. безкоштовно`,
+      en: `Try ${trialDays} days free`,
       es: `Probar ${trialDays} días gratis`,
       'pt-BR': `Testar ${trialDays} dias grátis`,
       vi: `Dùng thử ${trialDays} ngày miễn phí`,
@@ -42,6 +44,7 @@ export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = f
   return triLang(lang, {
     ru: 'Открыть полный доступ',
     uk: 'Відкрити повний доступ',
+    en: 'Unlock full access',
     es: 'Desbloquear acceso completo',
     'pt-BR': 'Abrir acesso completo',
     vi: 'Mở toàn quyền truy cập',
@@ -61,6 +64,7 @@ export function ctaSubLineFor(
       return triLang(lang, {
         ru: 'Точная сумма появится перед оформлением.',
         uk: 'Точна сума з’явиться перед покупкою.',
+        en: 'The exact price will show before checkout.',
         es: 'El precio exacto aparecerá antes de comprar.',
         'pt-BR': 'O preço exato aparecerá antes da compra.',
         vi: 'Giá chính xác sẽ hiện trước khi mua.',
@@ -72,6 +76,7 @@ export function ctaSubLineFor(
     return triLang(lang, {
       ru: `${args.price} · Разовая покупка`,
       uk: `${args.price} · Разова покупка`,
+      en: `${args.price} · One-time purchase`,
       es: `${args.price} · compra única`,
       'pt-BR': `${args.price} · compra única`,
       vi: `${args.price} · mua một lần`,
@@ -83,6 +88,7 @@ export function ctaSubLineFor(
   const cancel = triLang(lang, {
     ru: 'отмена в любой момент',
     uk: 'скасування будь-коли',
+    en: 'cancel anytime',
     es: 'cancela cuando quieras',
     'pt-BR': 'cancele quando quiser',
     vi: 'hủy bất cứ lúc nào',
@@ -94,6 +100,7 @@ export function ctaSubLineFor(
     return triLang(lang, {
       ru: 'Точная сумма появится перед оформлением.',
       uk: 'Точна сума з’явиться перед оформленням.',
+      en: 'The exact price will show before checkout.',
       es: 'El precio exacto aparecerá antes de comprar.',
       'pt-BR': 'O preço exato aparecerá antes da compra.',
       vi: 'Giá chính xác sẽ hiện trước khi mua.',
@@ -105,7 +112,7 @@ export function ctaSubLineFor(
   const priceWithPeriod = `${args.price}${args.period}`;
   if (args.hasTrial) {
     const then = triLang(lang, {
-      ru: 'затем', uk: 'потім', es: 'luego', 'pt-BR': 'depois', vi: 'sau đó', id: 'lalu', tr: 'sonra', pl: 'potem',
+      ru: 'затем', uk: 'потім', en: 'then', es: 'luego', 'pt-BR': 'depois', vi: 'sau đó', id: 'lalu', tr: 'sonra', pl: 'potem',
     });
     return `${then} ${priceWithPeriod} · ${cancel}`;
   }
@@ -122,6 +129,7 @@ function stickyPriceWithPeriodFor(lang: Lang, price: string, period: string): st
     return triLang(lang, {
       ru: `${price} в месяц`,
       uk: `${price} на місяць`,
+      en: `${price} per month`,
       es: `${price} al mes`,
       'pt-BR': `${price} por mês`,
       vi: `${price} mỗi tháng`,
@@ -134,6 +142,7 @@ function stickyPriceWithPeriodFor(lang: Lang, price: string, period: string): st
     return triLang(lang, {
       ru: `${price} в год`,
       uk: `${price} на рік`,
+      en: `${price} per year`,
       es: `${price} al año`,
       'pt-BR': `${price} por ano`,
       vi: `${price} mỗi năm`,
@@ -156,6 +165,7 @@ function stickySubLineFor(
   const cancel = triLang(lang, {
     ru: 'отмена в любой момент',
     uk: 'скасування будь-коли',
+    en: 'cancel anytime',
     es: 'cancela cuando quieras',
     'pt-BR': 'cancele quando quiser',
     vi: 'hủy bất cứ lúc nào',
@@ -166,7 +176,7 @@ function stickySubLineFor(
   const priceWithPeriod = stickyPriceWithPeriodFor(lang, args.price, args.period);
   if (args.trialDays) {
     const then = triLang(lang, {
-      ru: 'затем', uk: 'потім', es: 'luego', 'pt-BR': 'depois', vi: 'sau đó', id: 'lalu', tr: 'sonra', pl: 'potem',
+      ru: 'затем', uk: 'потім', en: 'then', es: 'luego', 'pt-BR': 'depois', vi: 'sau đó', id: 'lalu', tr: 'sonra', pl: 'potem',
     });
     return `${then} ${priceWithPeriod} · ${cancel}`;
   }
@@ -178,11 +188,12 @@ export function stickyStringsFor(
   args: { trialDays: number | null; price: string; period: string; isLifetime?: boolean },
 ): { title: string; sub: string; button: string } {
   const title = args.isLifetime
-    ? triLang(lang, { ru: 'Pro', uk: 'Pro', es: 'Pro', 'pt-BR': 'Pro', vi: 'Pro', id: 'Pro', tr: 'Pro', pl: 'Pro' })
+    ? triLang(lang, { ru: 'Pro', uk: 'Pro', en: 'Pro', es: 'Pro', 'pt-BR': 'Pro', vi: 'Pro', id: 'Pro', tr: 'Pro', pl: 'Pro' })
     : args.trialDays
     ? triLang(lang, {
         ru: `${args.trialDays} дн. бесплатно`,
         uk: `${args.trialDays} дн. безкоштовно`,
+        en: `${args.trialDays} days free`,
         es: `${args.trialDays} días gratis`,
         'pt-BR': `${args.trialDays} dias grátis`,
         vi: `${args.trialDays} ngày miễn phí`,
@@ -190,18 +201,18 @@ export function stickyStringsFor(
         tr: `${args.trialDays} gün ücretsiz`,
         pl: `${args.trialDays} dni za darmo`,
       })
-    : triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' });
+    : triLang(lang, { ru: 'Plus', uk: 'Plus', en: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' });
   const sub = args.price ? stickySubLineFor(lang, { price: args.price, period: args.period, trialDays: args.trialDays, isLifetime: args.isLifetime }) : '';
   // Кнопка sticky-бара повторяет смысл главной CTA, а не безликое «Начать»:
   // при триале — «Попробовать бесплатно», иначе — «Открыть доступ» (lifetime — «Открыть Pro»).
   const button = args.isLifetime
-    ? triLang(lang, { ru: 'Открыть Pro', uk: 'Відкрити Pro', es: 'Abrir Pro', 'pt-BR': 'Abrir Pro', vi: 'Mở Pro', id: 'Buka Pro', tr: 'Pro aç', pl: 'Otwórz Pro' })
+    ? triLang(lang, { ru: 'Открыть Pro', uk: 'Відкрити Pro', en: 'Unlock Pro', es: 'Abrir Pro', 'pt-BR': 'Abrir Pro', vi: 'Mở Pro', id: 'Buka Pro', tr: 'Pro aç', pl: 'Otwórz Pro' })
     : args.trialDays
     ? triLang(lang, {
-        ru: 'Попробовать бесплатно', uk: 'Спробувати безкоштовно', es: 'Probar gratis', 'pt-BR': 'Testar grátis', vi: 'Dùng thử miễn phí', id: 'Coba gratis', tr: 'Ücretsiz dene', pl: 'Wypróbuj za darmo',
+        ru: 'Попробовать бесплатно', uk: 'Спробувати безкоштовно', en: 'Try for free', es: 'Probar gratis', 'pt-BR': 'Testar grátis', vi: 'Dùng thử miễn phí', id: 'Coba gratis', tr: 'Ücretsiz dene', pl: 'Wypróbuj za darmo',
       })
     : triLang(lang, {
-        ru: 'Открыть доступ', uk: 'Відкрити доступ', es: 'Desbloquear acceso', 'pt-BR': 'Abrir acesso', vi: 'Mở quyền truy cập', id: 'Buka akses', tr: 'Erişimi aç', pl: 'Odblokuj dostęp',
+        ru: 'Открыть доступ', uk: 'Відкрити доступ', en: 'Unlock access', es: 'Desbloquear acceso', 'pt-BR': 'Abrir acesso', vi: 'Mở quyền truy cập', id: 'Buka akses', tr: 'Erişimi aç', pl: 'Odblokuj dostęp',
       });
   return { title, sub, button };
 }
@@ -210,6 +221,7 @@ export function doubtersDividerLabel(lang: Lang): string {
   return triLang(lang, {
     ru: 'для сомневающихся',
     uk: 'для тих, хто вагається',
+    en: 'for the hesitant',
     es: 'para los que dudan',
     'pt-BR': 'para quem hesita',
     vi: 'cho người còn phân vân',

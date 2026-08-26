@@ -32,6 +32,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
       `${triLang(lang, {
         ru: 'Глава',
         uk: 'Розділ',
+        en: 'Chapter',
         es: 'Capítulo',
         'pt-BR': 'Capítulo',
         vi: 'Chương',
@@ -41,6 +42,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
       })} ${chapter} — ${triLang(lang, {
         ru: 'проверка',
         uk: 'перевірка',
+        en: 'check',
         es: 'repaso',
         'pt-BR': 'revisão',
         vi: 'kiểm tra',
@@ -51,6 +53,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     entryBody: triLang(lang, {
       ru: 'Проверим, что закрепилось. Подсказок не будет — разбор в конце.',
       uk: 'Перевіримо, що закріпилося. Підказок не буде — розбір наприкінці.',
+      en: "Let's check what stuck. No hints — the review comes at the end.",
       es: 'Veamos qué se ha asentado. Sin pistas: el repaso viene al final.',
       'pt-BR': 'Vamos ver o que ficou. Sem dicas: a revisão vem no final.',
       vi: 'Xem những gì đã vững. Không có gợi ý — phần giải thích ở cuối.',
@@ -61,6 +64,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     finalTitle: triLang(lang, {
       ru: 'Итоговый экзамен',
       uk: 'Підсумковий іспит',
+      en: 'Final exam',
       es: 'Examen final',
       'pt-BR': 'Prova final',
       vi: 'Bài thi cuối',
@@ -71,6 +75,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     finalBody: triLang(lang, {
       ru: 'Весь материал урока. Спокойно, времени сколько нужно.',
       uk: 'Увесь матеріал уроку. Спокійно, часу скільки треба.',
+      en: "The whole lesson's material. Take your time, no rush.",
       es: 'Todo el material de la lección. Con calma, sin prisa.',
       'pt-BR': 'Todo o conteúdo da lição. Com calma, sem pressa.',
       vi: 'Toàn bộ bài học. Cứ bình tĩnh, không giới hạn thời gian.',
@@ -81,6 +86,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     start: triLang(lang, {
       ru: 'Начать проверку',
       uk: 'Почати перевірку',
+      en: 'Start the check',
       es: 'Empezar el repaso',
       'pt-BR': 'Começar a revisão',
       vi: 'Bắt đầu kiểm tra',
@@ -91,6 +97,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     noHints: triLang(lang, {
       ru: 'Подсказки выключены',
       uk: 'Підказки вимкнені',
+      en: 'Hints are off',
       es: 'Pistas desactivadas',
       'pt-BR': 'Dicas desativadas',
       vi: 'Đã tắt gợi ý',
@@ -102,6 +109,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
       `${triLang(lang, {
         ru: 'Задание',
         uk: 'Завдання',
+        en: 'Task',
         es: 'Tarea',
         'pt-BR': 'Tarefa',
         vi: 'Câu',
@@ -111,6 +119,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
       })} ${current} ${triLang(lang, {
         ru: 'из',
         uk: 'з',
+        en: 'of',
         es: 'de',
         'pt-BR': 'de',
         vi: 'trên',
@@ -121,6 +130,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     outcomeTitle: triLang(lang, {
       ru: 'Что вы теперь умеете',
       uk: 'Що ви тепер умієте',
+      en: 'What you can do now',
       es: 'Lo que ya sabes hacer',
       'pt-BR': 'O que você já sabe fazer',
       vi: 'Những gì bạn đã làm được',
@@ -131,6 +141,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     confirmed: triLang(lang, {
       ru: 'Закрепилось',
       uk: 'Закріпилося',
+      en: 'Locked in',
       es: 'Asentado',
       'pt-BR': 'Consolidado',
       vi: 'Đã vững',
@@ -141,6 +152,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     review: triLang(lang, {
       ru: 'Стоит повторить',
       uk: 'Варто повторити',
+      en: 'Worth reviewing',
       es: 'Conviene repasar',
       'pt-BR': 'Vale revisar',
       vi: 'Nên ôn lại',
@@ -151,6 +163,7 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
     done: triLang(lang, {
       ru: 'Глава закрыта',
       uk: 'Розділ закрито',
+      en: 'Chapter complete',
       es: 'Capítulo cerrado',
       'pt-BR': 'Capítulo concluído',
       vi: 'Đã xong chương',

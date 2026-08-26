@@ -230,9 +230,18 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const reloadEpoch = premiumReloadEpochRef.current;
     const isReloadCurrent = () => premiumReloadEpochRef.current === reloadEpoch;
     if (premiumIdentityRequiredRef.current) {
+      // зачем (2026-08-25, «карточка виснет на скелетоне»): раньше неудачный
+      // identity sync (сеть/сторовые причуды на TestFlight) обрывал ВЕСЬ
+      // reload через return — accessResolved никогда не становился true, и
+      // любой экран, ждущий резолва подписки, висел на скелетоне навсегда.
+      // getVerifiedRealPremiumStatus/getVerifiedVipStatus ниже читают
+      // локальный кэш/Firestore и в свежем identity sync не нуждаются —
+      // поэтому при неудаче просто продолжаем расчёт как обычно; флаг
+      // остаётся true и sync попробуется снова на следующем reload().
+      if (!isReloadCurrent()) return;
       const identityReady = await syncRevenueCatIdentity(isReloadCurrent).catch(() => false);
-      if (!identityReady || !isReloadCurrent()) return;
-      premiumIdentityRequiredRef.current = false;
+      if (!isReloadCurrent()) return;
+      if (identityReady) premiumIdentityRequiredRef.current = false;
     }
     const devAccountGeneration = captureAccountGeneration();
     const devStableId = devAccountGeneration.phase === 'active'

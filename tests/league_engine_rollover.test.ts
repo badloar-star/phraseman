@@ -74,6 +74,25 @@ const saveState = async (state: LeagueState) => {
 };
 
 describe('league locale coverage', () => {
+  it('serves English league tier names from the league engine', () => {
+    const expectedNames = [
+      'Copper League',
+      'Bronze League',
+      'Silver League',
+      'Gold League',
+      'Platinum League',
+      'Emerald League',
+      'Sapphire League',
+      'Ruby League',
+      'Diamond League',
+      'Black Diamond League',
+      'Ether League',
+      'Supreme League',
+    ];
+
+    expect(CLUBS.map((club) => clubTierShortName(club, 'en'))).toEqual(expectedNames);
+  });
+
   it('serves planned league descriptions without RU/UK/ES fallback', () => {
     const plannedLocales = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 

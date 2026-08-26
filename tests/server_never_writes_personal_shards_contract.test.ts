@@ -1,4 +1,12 @@
-import { readFileSync, readdirSync, statSync } from 'fs';
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'fs';
 import { join, relative } from 'path';
 import { spawnSync } from 'child_process';
 
@@ -12,6 +20,11 @@ function probeAuthorityGuard(source: string): { status: number | null; stderr: s
     '--source-base64', Buffer.from(source).toString('base64'),
     '--file', 'mutation-probe.ts',
   ], { encoding: 'utf8' });
+  return { status: result.status, stderr: result.stderr };
+}
+
+function probeAuthorityGuardTree(directory: string): { status: number | null; stderr: string } {
+  const result = spawnSync(process.execPath, [authorityGuard, '--tree', directory], { encoding: 'utf8' });
   return { status: result.status, stderr: result.stderr };
 }
 
@@ -87,6 +100,27 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
       .toEqual({ status: 0, stderr: '' });
   });
 
+  test('AST authority guard walks native nested paths and reports a real violation', () => {
+    const tempParent = join(root, '.codex-tmp');
+    mkdirSync(tempParent, { recursive: true });
+    const tempRoot = mkdtempSync(join(tempParent, 'personal-shard-authority-'));
+    const nested = join(tempRoot, 'nested');
+    mkdirSync(nested);
+
+    try {
+      writeFileSync(join(nested, 'safe.ts'), 'tx.create(receiptRef, { shards: pack.shards });');
+      expect(probeAuthorityGuardTree(tempRoot)).toEqual({ status: 0, stderr: '' });
+
+      writeFileSync(join(nested, 'violation.ts'), 'tx.update(userRef, { shards: 7 });');
+      const violation = probeAuthorityGuardTree(tempRoot);
+      expect(violation.status).not.toBe(0);
+      expect(violation.stderr).toContain('violation.ts');
+      expect(violation.stderr).toContain('personal-firestore-shards-write');
+    } finally {
+      rmSync(tempRoot, { recursive: true, force: true });
+    }
+  });
+
   test('competition never reads legacy shards for permission or returns a wallet projection', () => {
     for (const rel of competitiveFiles) {
       const source = readFileSync(join(functionsRoot, rel), 'utf8');
@@ -100,7 +134,7 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
   test('every competitive pearl delta is an immutable external fact', () => {
     const arena = readFileSync(join(functionsRoot, 'arena_v2.ts'), 'utf8');
     expect(arena).toContain("source: 'arena_v2_season'");
-    expect(arena).toContain("source: 'arena_v2_spin'");
+    expect(arena).not.toContain("source: 'arena_v2_spin'");
     const tournaments = readFileSync(join(functionsRoot, 'tournaments.ts'), 'utf8');
     for (const source of [
       'tournament_entry', 'tournament_lobby_leave', 'tournament_cancel', 'tournament_prize',

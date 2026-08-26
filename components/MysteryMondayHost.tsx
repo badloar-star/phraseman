@@ -26,13 +26,21 @@ import {
   MYSTERY_MONDAY_CLAIM_KEY,
   type BoonReward,
 } from '../app/boons/boon_rewards';
-import {
-  ruKnowledgeShardsAfterNumber,
-  ukKnowledgeShardsAfterNumber,
-} from '../constants/shard_plurals';
 import BoonChestModal, { type BoonChestRarity } from './BoonChestModal';
 
 const CLAIM_KEY = MYSTERY_MONDAY_CLAIM_KEY;
+
+/**
+ * «Сундук недели этой недели уже показывали» — переживает перезапуск.
+ *
+ * зачем (владелец, 2026-08-26, «он появляется каждый раз, когда я захожу»):
+ * замок показа жил только в памяти (`shownWeekRef`), поэтому любой путь, при
+ * котором награда не была забрана — закрытие крестиком, «Позже», выгрузка
+ * приложения на анимации открытия — возвращал сундук при следующем запуске.
+ * Владелец видел одну и ту же модалку бесконечно. Теперь показ фиксируется на
+ * диске: одна неделя — один показ, независимо от того, чем он закончился.
+ */
+const MYSTERY_MONDAY_SHOWN_KEY = 'boon_mystery_monday_shown_v1';
 
 function makeL(lang: Lang) {
   return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
@@ -68,6 +76,17 @@ export default function MysteryMondayHost() {
   const [wantShow, setWantShow] = useState(false);
   const [reward, setReward] = useState<BoonReward | null>(null);
   const claimedRef = useRef(false);
+  /**
+   * Неделя, за которую сундук УЖЕ показан в этом запуске приложения.
+   *
+   * зачем (владелец, 2026-08-26 — «показался два раза подряд»): `refresh()`
+   * вызывается и при монтировании, и на каждое событие `remote_config_changed`.
+   * Конфиг обычно приходит через секунду-другую после старта, поэтому вторая
+   * проверка заставала сундук ещё не забранным и открывала модалку ПОВТОРНО.
+   * Замок держим по weekId, а не булевым флагом: смена недели обязана снова
+   * разрешить показ.
+   */
+  const shownWeekRef = useRef<string | null>(null);
   const visible = useOverlayVisible('mysteryMondayChest', wantShow);
 
   // Подобрать награду на первый вход в активный день (раз в неделю).
@@ -92,12 +111,20 @@ export default function MysteryMondayHost() {
       if (onboardingDone !== '1') return;
       const week = currentWeekId();
       if (await isClaimed(CLAIM_KEY, week)) return;
+      // Второй показ за один запуск не нужен: см. shownWeekRef.
+      if (shownWeekRef.current === week) return;
+      // Показ за эту неделю уже был (в т.ч. в прошлом запуске) — не повторяем.
+      if (await isClaimed(MYSTERY_MONDAY_SHOWN_KEY, week)) return;
       if (
         alive
         && currentGeneration === generation
         && isPrimaryBoonActive('mystery_monday')
       ) {
+        shownWeekRef.current = week;
         claimedRef.current = false;
+        // Пишем ДО показа: если приложение убьют на анимации, сундук не
+        // вернётся навсегда. Награда при этом не теряется — см. claim().
+        await markClaimed(MYSTERY_MONDAY_SHOWN_KEY, week);
         setReward(pickMysteryReward(rollFromWeek(week)));
         setWantShow(true);
       } else if (alive && currentGeneration === generation) {
@@ -154,25 +181,30 @@ export default function MysteryMondayHost() {
 
   if (!visible || !reward) return null;
 
-  const rarity = rarityForShards(reward.shards);
+  // зачем: редкость приехала отдельным полем (см. BoonReward.rarityShards) —
+  // `shards` теперь честный ноль выплаты и цвет по нему был бы всегда common.
+  const rarity = rarityForShards(reward.rarityShards ?? reward.shards);
 
   const title = L(
     'Сундук недели', 'Скриня тижня', 'Cofre de la semana', 'Baú da semana',
     'Rương của tuần', 'Peti minggu ini', 'Haftanın sandığı', 'Skrzynia tygodnia',
   );
-  // зачем: число склоняем — при тире «1» без склонения выходило «1 жемчужин».
-  // Сказуемое тоже согласуем по числу («1 жемчужина — теперь твоя»).
-  // UK-строка раньше содержала русское «жемчужин»; правильное слово — «перлина/перлин».
-  const one = reward.shards % 10 === 1 && reward.shards % 100 !== 11;
+  // зачем (владелец, 2026-08-26): наградой были жемчужины — заменены на спин
+  // общей рулетки. Число склоняем: «1 спин», «2 спина», «5 спинов».
+  const spins = Math.max(1, Math.floor(Number(reward.spins) || 1));
+  const spinOne = spins % 10 === 1 && spins % 100 !== 11;
+  const spinFew = spins % 10 >= 2 && spins % 10 <= 4 && (spins % 100 < 12 || spins % 100 > 14);
+  const ruSpin = spinOne ? 'спин' : spinFew ? 'спина' : 'спинов';
+  const ukSpin = spinOne ? 'спін' : spinFew ? 'спіни' : 'спінів';
   const rewardLine = L(
-    `${reward.shards} ${ruKnowledgeShardsAfterNumber(reward.shards)} — теперь ${one ? 'твоя' : 'твои'}`,
-    `${reward.shards} ${ukKnowledgeShardsAfterNumber(reward.shards)} — тепер ${one ? 'твоя' : 'твої'}`,
-    `${reward.shards} perlas — ahora son tuyos`,
-    `${reward.shards} perlas — agora são seus`,
-    `${reward.shards} mảnh — giờ là của bạn`,
-    `${reward.shards} serpihan — kini milikmu`,
-    `${reward.shards} parça — artık senin`,
-    `${reward.shards} monet — teraz twoje`,
+    `${spins} ${ruSpin} — ${spinOne ? 'теперь твой' : 'теперь твои'}`,
+    `${spins} ${ukSpin} — ${spinOne ? 'тепер твій' : 'тепер твої'}`,
+    `${spins} ${spins === 1 ? 'giro' : 'giros'} — ${spins === 1 ? 'ahora es tuyo' : 'ahora son tuyos'}`,
+    `${spins} ${spins === 1 ? 'giro' : 'giros'} — ${spins === 1 ? 'agora é seu' : 'agora são seus'}`,
+    `${spins} lượt quay — giờ là của bạn`,
+    `${spins} putaran — kini milikmu`,
+    `${spins} çevirme — artık senin`,
+    `${spins} ${spins === 1 ? 'spin' : 'spinów'} — teraz ${spins === 1 ? 'twój' : 'twoje'}`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',
@@ -187,11 +219,19 @@ export default function MysteryMondayHost() {
       rarity={rarity}
       title={title}
       rewardLine={rewardLine}
+      rewardArt="spin"
       tapHint={tapHint}
       claimCta={claimCta}
       closeLabel={closeLabel}
       onClaim={() => { void claim(); }}
-      onClose={() => setWantShow(false)}
+      onClose={() => {
+        // зачем: показ за неделю теперь один (MYSTERY_MONDAY_SHOWN_KEY), поэтому
+        // закрытие «Позже»/крестиком больше НЕ откладывает награду — второго
+        // показа не будет. Выдаём молча, чтобы спин не пропал: claim()
+        // идемпотентен (claimedRef + ключ спина), задвоения не будет.
+        void claim();
+        setWantShow(false);
+      }}
     />
   );
 }

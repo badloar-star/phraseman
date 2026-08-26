@@ -75,10 +75,10 @@ function LeagueBonusAvailableModal({
 
   if (!visible || !availability) return null;
 
-  const crownName = availability.crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
+  const crownName = availability.crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', en: 'leader', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
   const buttonLabel = availability.isCrownWinner
-    ? triLang(lang, { ru: 'Забрать корону', uk: 'Забрати корону', es: 'Recoger la corona', 'pt-BR': 'Resgatar a coroa', vi: 'Nhận vương miện', id: 'Klaim mahkota', tr: 'Tacını al', pl: 'Odbierz koronę' })
-    : triLang(lang, { ru: 'Забрать бонус лиги', uk: 'Забрати бонус ліги', es: 'Recoger bono de liga', 'pt-BR': 'Resgatar bônus da liga', vi: 'Nhận thưởng giải đấu', id: 'Klaim bonus liga', tr: 'Lig bonusunu al', pl: 'Odbierz bonus ligi' });
+    ? triLang(lang, { ru: 'Забрать корону', uk: 'Забрати корону', en: 'Claim the crown', es: 'Recoger la corona', 'pt-BR': 'Resgatar a coroa', vi: 'Nhận vương miện', id: 'Klaim mahkota', tr: 'Tacını al', pl: 'Odbierz koronę' })
+    : triLang(lang, { ru: 'Забрать бонус лиги', uk: 'Забрати бонус ліги', en: 'Claim league bonus', es: 'Recoger bono de liga', 'pt-BR': 'Resgatar bônus da liga', vi: 'Nhận thưởng giải đấu', id: 'Klaim bonus liga', tr: 'Lig bonusunu al', pl: 'Odbierz bonus ligi' });
 
   if (motionVariant === 'hybrid') {
     return (
@@ -160,18 +160,19 @@ function LeagueBonusAvailableModal({
                   )}
                 </View>
                 <Text style={[styles.eyebrow, { color: modalTheme.eyebrow }]}>
-                  {triLang(lang, { ru: 'Цель лиги выполнена', uk: 'Ціль ліги виконано', es: 'Meta de liga completada', 'pt-BR': 'Meta da liga concluída', vi: 'Đã hoàn thành mục tiêu giải đấu', id: 'Target liga selesai', tr: 'Lig hedefi tamamlandı', pl: 'Cel ligi ukończony' })}
+                  {triLang(lang, { ru: 'Цель лиги выполнена', uk: 'Ціль ліги виконано', en: 'League goal reached', es: 'Meta de liga completada', 'pt-BR': 'Meta da liga concluída', vi: 'Đã hoàn thành mục tiêu giải đấu', id: 'Target liga selesai', tr: 'Lig hedefi tamamlandı', pl: 'Cel ligi ukończony' })}
                 </Text>
                 <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(24, f.h1 + 2) }]}>
                   {availability.isCrownWinner
-                    ? triLang(lang, { ru: 'Корона уже ждёт', uk: 'Корона вже чекає', es: 'La corona te espera', 'pt-BR': 'A coroa já está esperando', vi: 'Vương miện đang chờ bạn', id: 'Mahkota sudah menunggu', tr: 'Taç seni bekliyor', pl: 'Korona już czeka' })
-                    : triLang(lang, { ru: 'Подарки уже ждут', uk: 'Подарунки вже чекають', es: 'Los regalos te esperan', 'pt-BR': 'Os presentes já estão esperando', vi: 'Quà đã sẵn sàng', id: 'Hadiah sudah menunggu', tr: 'Hediyeler seni bekliyor', pl: 'Prezenty już czekają' })}
+                    ? triLang(lang, { ru: 'Корона уже ждёт', uk: 'Корона вже чекає', en: 'The crown is already waiting', es: 'La corona te espera', 'pt-BR': 'A coroa já está esperando', vi: 'Vương miện đang chờ bạn', id: 'Mahkota sudah menunggu', tr: 'Taç seni bekliyor', pl: 'Korona już czeka' })
+                    : triLang(lang, { ru: 'Подарки уже ждут', uk: 'Подарунки вже чекають', en: 'The gifts are already waiting', es: 'Los regalos te esperan', 'pt-BR': 'Os presentes já estão esperando', vi: 'Quà đã sẵn sàng', id: 'Hadiah sudah menunggu', tr: 'Hediyeler seni bekliyor', pl: 'Prezenty już czekają' })}
                 </Text>
                 <Text style={[styles.body, { color: t.textSecond, fontSize: Math.max(14, f.body) }]}>
                   {availability.isCrownWinner
                     ? triLang(lang, {
                       ru: `Ты набрал больше всех. Лига закрыла цель, а корона решила не изображать скромность: она твоя. Осталось забрать.`,
                       uk: `Ти набрав найбільше. Ліга закрила ціль, а корона вирішила не вдавати скромність: вона твоя. Залишилось забрати.`,
+                      en: `You scored more than anyone. The league hit its goal, and the crown isn't playing modest: it's yours. Just claim it.`,
                       es: `Has sumado más que nadie. La liga cumplió la meta y la corona no quiere fingir modestia: es tuya.`,
                       'pt-BR': `Você pontuou mais que todos. A liga cumpriu a meta e a coroa não quer fingir modéstia: ela é sua.`,
                       vi: `Bạn ghi nhiều điểm nhất. Giải đấu đã đạt mục tiêu và vương miện không cần khiêm tốn nữa: nó là của bạn.`,
@@ -180,20 +181,21 @@ function LeagueBonusAvailableModal({
                       pl: `Masz najwięcej punktów. Liga zamknęła cel, a korona nie udaje skromności: jest twoja.`,
                     })
                     : triLang(lang, {
-                      ru: `Лига закрыла цель недели. Бонус уже готов: внутри жемчужины, усилители и редкие награды, которые выпадают отдельно для каждого игрока.`,
-                      uk: `Ліга закрила ціль тижня. Бонус уже готовий: усередині перлини, підсилювачі й рідкісні нагороди, що випадають окремо для кожного гравця.`,
-                      es: `La liga completó la meta semanal. El bono ya está listo: perlas, boosts y recompensas raras para cada jugador.`,
-                      'pt-BR': `A liga completou a meta semanal. O bônus já está pronto: pérolas, boosts e recompensas raras para cada jogador.`,
-                      vi: `Giải đấu đã hoàn thành mục tiêu tuần. Phần thưởng đã sẵn sàng: xu, boost và phần thưởng hiếm cho từng người chơi.`,
-                      id: `Liga menyelesaikan target mingguan. Bonus sudah siap: koin, boost, dan hadiah langka untuk setiap pemain.`,
-                      tr: `Lig haftalık hedefi tamamladı. Bonus hazır: her oyuncu için jetonlar, boostlar ve nadir ödüller var.`,
-                      pl: `Liga ukończyła cel tygodnia. Bonus jest gotowy: monety, boosty i rzadkie nagrody dla każdego gracza.`,
+                      ru: `Лига закрыла цель недели. Бонус уже готов: внутри спины, усилители и редкие награды, которые выпадают отдельно для каждого игрока.`,
+                      uk: `Ліга закрила ціль тижня. Бонус уже готовий: усередині спіни, підсилювачі й рідкісні нагороди, що випадають окремо для кожного гравця.`,
+                      en: 'The league hit its weekly goal. The bonus is ready: spins, boosts, and rare rewards drawn separately for each player.',
+                      es: `La liga completó la meta semanal. El bono ya está listo: giros, boosts y recompensas raras para cada jugador.`,
+                      'pt-BR': `A liga completou a meta semanal. O bônus já está pronto: giros, boosts e recompensas raras para cada jogador.`,
+                      vi: `Giải đấu đã hoàn thành mục tiêu tuần. Phần thưởng đã sẵn sàng: lượt quay, boost và phần thưởng hiếm cho từng người chơi.`,
+                      id: `Liga menyelesaikan target mingguan. Bonus sudah siap: putaran, boost, dan hadiah langka untuk setiap pemain.`,
+                      tr: `Lig haftalık hedefi tamamladı. Bonus hazır: her oyuncu için çevirmeler, boostlar ve nadir ödüller var.`,
+                      pl: `Liga ukończyła cel tygodnia. Bonus jest gotowy: spiny, boosty i rzadkie nagrody dla każdego gracza.`,
                     })}
                 </Text>
                 <View style={[styles.meta, { borderColor: modalTheme.metaBorder, backgroundColor: modalTheme.metaBg }]}>
                   <Ionicons name="podium-outline" size={18} color={modalTheme.eyebrow} />
                   <Text style={[styles.metaText, { color: t.textSecond }]}>
-                    {triLang(lang, { ru: `Корона: ${crownName}`, uk: `Корона: ${crownName}`, es: `Corona: ${crownName}`, 'pt-BR': `Coroa: ${crownName}`, vi: `Vương miện: ${crownName}`, id: `Mahkota: ${crownName}`, tr: `Taç: ${crownName}`, pl: `Korona: ${crownName}` })}
+                    {triLang(lang, { ru: `Корона: ${crownName}`, uk: `Корона: ${crownName}`, en: `Crown: ${crownName}`, es: `Corona: ${crownName}`, 'pt-BR': `Coroa: ${crownName}`, vi: `Vương miện: ${crownName}`, id: `Mahkota: ${crownName}`, tr: `Taç: ${crownName}`, pl: `Korona: ${crownName}` })}
                   </Text>
                 </View>
                 <TouchableOpacity
@@ -215,7 +217,7 @@ function LeagueBonusAvailableModal({
                   }}
                   style={styles.laterBtn}
                 >
-                  <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}</Text>
+                  <Text style={[styles.laterText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}</Text>
                 </TouchableOpacity>
               </View>
             </LinearGradient>

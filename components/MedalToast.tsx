@@ -94,6 +94,21 @@ function pickLabels(
     },
   };
 
+  const EN: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
+    bronze: {
+      up:   { title: 'Bronze medal',   subtitle: 'Good start — keep it up' },
+      down: { title: 'Bronze lost',    subtitle: 'A few correct answers and it comes back' },
+    },
+    silver: {
+      up:   { title: 'Silver medal',   subtitle: 'Great result, you\'re almost at gold' },
+      down: { title: 'Silver lost',    subtitle: 'A bit more accuracy and it comes back' },
+    },
+    gold: {
+      up:   { title: 'Gold medal',     subtitle: 'Perfect round — lesson nailed' },
+      down: { title: 'Gold lost',      subtitle: 'Complete another round with no mistakes' },
+    },
+  };
+
   const UK: Record<Exclude<MedalTier, 'none'>, { up: Labels; down: Labels }> = {
     bronze: {
       up:   { title: 'Бронзова медаль',     subtitle: 'Гарний початок — продовжуй у тому ж дусі' },
@@ -203,6 +218,7 @@ function pickLabels(
   const set = triLang(displayLang, {
     ru: RU,
     uk: UK,
+    en: EN,
     es: ES,
     'pt-BR': PT_BR,
     vi: VI,
@@ -260,6 +276,7 @@ function MedalToast({
   const dismissActionLabel = useMemo(() => triLang(spanishUiActive ? 'es' : lang, {
     ru: 'Закрыть уведомление',
     uk: 'Закрити сповіщення',
+    en: 'Close notification',
     es: 'Cerrar aviso',
     'pt-BR': 'Fechar aviso',
     vi: 'Đóng thông báo',
@@ -429,6 +446,7 @@ function tierBadgeText(
   const set = triLang(displayLang, {
     ru: { up: 'НОВЫЙ РАНГ', down: 'РАНГ ПОНИЖЕН' },
     uk: { up: 'НОВИЙ РАНГ', down: 'РАНГ ЗНИЖЕНО' },
+    en: { up: 'NEW RANK', down: 'RANK DOWN' },
     es: { up: 'NUEVO RANGO', down: 'RANGO BAJADO' },
     'pt-BR': { up: 'NOVO RANK', down: 'RANK REDUZIDO' },
     vi: { up: 'HẠNG MỚI', down: 'GIẢM HẠNG' },

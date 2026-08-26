@@ -1,10 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
+import { useEnergy } from '../components/EnergyContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import LevelSpinRewardModal from '../components/LevelSpinRewardModal';
 import LevelSpinFinishLine, {
   type LevelSpinFinishLinePhase,
@@ -17,6 +20,7 @@ import {
   localLevelSpinReceiptToInventory,
   readLocalLevelSpinBalance,
   recoverLocalLevelSpin,
+  releaseUndeliveredLocalLevelSpin,
   type LocalLevelSpinReceipt,
 } from './local_level_spins';
 import { safeRouterBack } from './navigation_back';
@@ -25,11 +29,15 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
+  waitForActiveAccountGeneration,
 } from './account_generation';
+import { applyLocalLevelSpinRewardExactlyOnce } from './local_level_spin_auto_delivery';
 
 export default function LevelRewardSpinScreen() {
   const router = useRouter();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const mountedRef = useRef(true);
@@ -40,6 +48,12 @@ export default function LevelRewardSpinScreen() {
   const [balance, setBalance] = useState<number | null>(null);
   const [receipt, setReceipt] = useState<LocalLevelSpinReceipt | null>(null);
   const [rewardPreviewVisible, setRewardPreviewVisible] = useState(false);
+  const rewardRuntimeRef = useRef({ energy, maxEnergy, reloadEnergy, studyTarget });
+  rewardRuntimeRef.current = { energy, maxEnergy, reloadEnergy, studyTarget };
+  const rewardDeliveryRef = useRef<{
+    requestId: string;
+    promise: ReturnType<typeof applyLocalLevelSpinRewardExactlyOnce>;
+  } | null>(null);
 
   const rewardInventory = useMemo(() => {
     if (!receipt) return null;
@@ -51,10 +65,76 @@ export default function LevelRewardSpinScreen() {
   }, [receipt]);
   const rewardGift = rewardInventory?.gift;
 
+  const beginRewardDelivery = useCallback((
+    nextReceipt: LocalLevelSpinReceipt,
+    accountToken = captureAccountGeneration(),
+  ) => {
+    const existing = rewardDeliveryRef.current;
+    if (existing?.requestId === nextReceipt.requestId) return existing.promise;
+    const runtime = rewardRuntimeRef.current;
+    const promise = (async () => {
+      const userName = (await AsyncStorage.getItem('user_name').catch(() => null)) ?? '';
+      // зачем (инцидент 2026-08-26): доставка стартует сразу при получении
+      // чека — аккаунт в этот момент мог быть ещё `transitioning`. В такой
+      // фазе очередь XP молча отдавала staleValue, начисление НЕ выполнялось,
+      // а приз считался «не доставленным» навсегда: чек не подтверждался, и
+      // следующий спин возвращал его же (тот же приз, кредит не тратится).
+      // Ждём активной генерации и работаем с ней, а не с протухшим токеном.
+      const activeToken = isCurrentAccountGeneration(accountToken)
+        ? accountToken
+        : await waitForActiveAccountGeneration();
+      if (!activeToken) return { success: false };
+      return applyLocalLevelSpinRewardExactlyOnce(nextReceipt, {
+        accountToken: activeToken,
+        userName,
+        currentEnergy: runtime.energy,
+        maxEnergy: runtime.maxEnergy,
+        setEnergy: () => { void rewardRuntimeRef.current.reloadEnergy().catch(() => {}); },
+        studyTarget: runtime.studyTarget,
+      });
+    })();
+    rewardDeliveryRef.current = { requestId: nextReceipt.requestId, promise };
+    return promise;
+  }, []);
+
+  // зачем: делёвери может зависнуть (внутренний лок так и не освободился) —
+  // без таймаута «ГОТОВО» ждёт бесконечно, модалка не закрывается и не даёт
+  // никакой обратной связи. Таймаут НЕ отменяет саму доставку (промис из
+  // rewardDeliveryRef продолжает жить и допишет журнал, когда наконец
+  // разрешится) — он только перестаёт держать интерфейс в ожидании.
+  const REWARD_DELIVERY_TIMEOUT_MS = 8_000;
+  const settleRewardDelivery = useCallback(async (requestId: string): Promise<boolean> => {
+    if (!receipt || receipt.requestId !== requestId) return false;
+    const raceWithTimeout = (
+      promise: ReturnType<typeof applyLocalLevelSpinRewardExactlyOnce>,
+    ): ReturnType<typeof applyLocalLevelSpinRewardExactlyOnce> => Promise.race([
+      promise,
+      new Promise<{ success: false }>((resolve) => {
+        setTimeout(() => resolve({ success: false }), REWARD_DELIVERY_TIMEOUT_MS);
+      }),
+    ]);
+    let delivery = rewardDeliveryRef.current?.requestId === requestId
+      ? rewardDeliveryRef.current.promise
+      : beginRewardDelivery(receipt);
+    let result = await raceWithTimeout(delivery);
+    if (!result.success && !result.alreadyClaimed) {
+      rewardDeliveryRef.current = null;
+      delivery = beginRewardDelivery(receipt);
+      result = await raceWithTimeout(delivery);
+    }
+    return result.success || result.alreadyClaimed === true;
+  }, [beginRewardDelivery, receipt]);
+
   const run = useCallback(async (recoverOnly: boolean) => {
     if (busyRef.current) return;
-    const accountToken = captureAccountGeneration();
-    if (!isCurrentAccountGeneration(accountToken)) return;
+    // зачем (инцидент 2026-08-26): раньше при неактивной фазе аккаунта экран
+    // просто выходил — не делал даже recovery. Заход сразу после старта
+    // приложения оставлял экран в 'recovering' навсегда. Ждём активации.
+    const captured = captureAccountGeneration();
+    const accountToken = isCurrentAccountGeneration(captured)
+      ? captured
+      : await waitForActiveAccountGeneration();
+    if (!accountToken || !isCurrentAccountGeneration(accountToken)) return;
     busyRef.current = true;
     const runId = ++runIdRef.current;
     setPhase(recoverOnly ? 'recovering' : 'spinning');
@@ -64,6 +144,7 @@ export default function LevelRewardSpinScreen() {
         : await claimLocalLevelSpin();
       if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
       if (nextReceipt) {
+        void beginRewardDelivery(nextReceipt, accountToken);
         setReceipt(nextReceipt);
         setBalance(nextReceipt.balanceAfter);
         setPhase('spinning');
@@ -82,7 +163,7 @@ export default function LevelRewardSpinScreen() {
     } finally {
       if (runIdRef.current === runId) busyRef.current = false;
     }
-  }, []);
+  }, [beginRewardDelivery]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -91,6 +172,7 @@ export default function LevelRewardSpinScreen() {
       runIdRef.current += 1;
       busyRef.current = false;
       resultActionBusyRef.current = false;
+      rewardDeliveryRef.current = null;
       setReceipt(null);
       setRewardPreviewVisible(false);
       setBalance(null);
@@ -108,32 +190,62 @@ export default function LevelRewardSpinScreen() {
     if (!isCurrentAccountGeneration(accountToken) || receipt?.requestId !== requestId) return;
     setPhase('revealed');
     setRewardPreviewVisible(true);
-    void acknowledgeLocalLevelSpin(requestId).catch(() => {});
   }, [receipt?.requestId]);
 
   // зачем: владелец (2026-08-23) — раздел спина НЕ должен закрываться после
   // получения подарка. Раньше «ГОТОВО» уводило в «Подарки» даже при остатке
   // спинов: человек крутил, его выкидывало, он возвращался руками. Теперь
   // модалка гаснет, экран остаётся, барабан сам сбрасывается на receipt=null.
+  //
+  // зачем (2026-08-26): если доставка зависла/не удаётся (напр. внутренний лок
+  // не освободился), «ГОТОВО» раньше молча ничего не делало на КАЖДЫЙ тап —
+  // игрок видел зависшую модалку без единой подсказки. После нескольких
+  // попыток УБИРАЕМ МОДАЛКУ (не блокируем игрока вечно), но НЕ вызываем
+  // acknowledgeLocalLevelSpin — она стирает activeReceipt/pending-reveal,
+  // а без подтверждённой доставки это значило бы потерять сам приз
+  // безвозвратно. Чек остаётся в журнале как pending: recoverLocalLevelSpin
+  // честно подберёт его на следующем входе и покажет барабан снова.
+  const settleAttemptsRef = useRef(0);
+  const MAX_SETTLE_ATTEMPTS = 2;
   const settleRewardPreview = useCallback(async (requestId: string | null) => {
     if (resultActionBusyRef.current) return;
     const accountToken = captureAccountGeneration();
     if (!isCurrentAccountGeneration(accountToken)) return;
     resultActionBusyRef.current = true;
-    // Оптимистично: модалка гаснет мгновенно, журнал догоняет фоном —
-    // награда уже сохранена локально в момент claim, ждать нечего.
-    setRewardPreviewVisible(false);
-    setReceipt(null);
-    setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     try {
-      if (requestId) await acknowledgeLocalLevelSpin(requestId);
+      let delivered = true;
+      if (requestId) {
+        delivered = await settleRewardDelivery(requestId);
+        if (!delivered) {
+          settleAttemptsRef.current += 1;
+          if (settleAttemptsRef.current < MAX_SETTLE_ATTEMPTS) return;
+        }
+      }
+      settleAttemptsRef.current = 0;
+      // зачем: доставка удалась — гасим чек штатно. Провалилась окончательно —
+      // ВОЗВРАЩАЕМ спин в кредит, иначе чек залипает и следующий спин отдаёт
+      // тот же приз без списания (инцидент «всегда 20 жемчужин»).
+      let refunded = false;
+      if (requestId) {
+        if (delivered) await acknowledgeLocalLevelSpin(requestId);
+        else refunded = await releaseUndeliveredLocalLevelSpin(requestId);
+      }
+      setRewardPreviewVisible(false);
+      setReceipt(null);
+      rewardDeliveryRef.current = null;
+      if (refunded) {
+        // Кредит вернулся — перечитываем реальный баланс, а не гадаем.
+        void run(true);
+        return;
+      }
+      setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     } catch {
       // Журнал переживёт: recoverLocalLevelSpin подберёт неподтверждённый чек
       // при следующем входе. Экран из-за этого ломать нельзя.
     } finally {
       resultActionBusyRef.current = false;
     }
-  }, [balance]);
+  }, [balance, run, settleRewardDelivery]);
 
   const handleRewardPreviewClaim = useCallback(() => {
     void settleRewardPreview(receipt?.requestId ?? null);
@@ -150,6 +262,19 @@ export default function LevelRewardSpinScreen() {
     resultActionBusyRef.current = true;
     try {
       if (receipt) {
+        const delivered = await settleRewardDelivery(receipt.requestId);
+        // зачем: провал доставки больше не запирает экран — чек возвращается
+        // в кредит, спин снова доступен и разыграет НОВЫЙ приз.
+        if (!delivered) {
+          const refunded = await releaseUndeliveredLocalLevelSpin(receipt.requestId);
+          if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
+          if (refunded) {
+            setReceipt(null);
+            rewardDeliveryRef.current = null;
+            await run(true);
+          }
+          return;
+        }
         await acknowledgeLocalLevelSpin(receipt.requestId);
         if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
       }
@@ -167,7 +292,7 @@ export default function LevelRewardSpinScreen() {
     } finally {
       resultActionBusyRef.current = false;
     }
-  }, [balance, receipt, run]);
+  }, [balance, receipt, run, settleRewardDelivery]);
 
   return (
     <SafeAreaView
@@ -185,7 +310,7 @@ export default function LevelRewardSpinScreen() {
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+            ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
             vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
           })}
           hitSlop={12}
@@ -200,11 +325,12 @@ export default function LevelRewardSpinScreen() {
           accessibilityLabel={balance === null
             ? triLang(lang, {
               ru: 'Спины: количество загружается', uk: 'Спіни: кількість завантажується',
+              en: 'Spins: loading count',
               es: 'Cargando giros', 'pt-BR': 'Carregando giros', vi: 'Đang tải lượt quay',
               id: 'Memuat putaran', tr: 'Çevirmeler yükleniyor', pl: 'Wczytywanie spinów',
             })
             : triLang(lang, {
-              ru: `Спины: ${balance}`, uk: `Спіни: ${balance}`, es: `Giros: ${balance}`,
+              ru: `Спины: ${balance}`, uk: `Спіни: ${balance}`, en: `Spins: ${balance}`, es: `Giros: ${balance}`,
               'pt-BR': `Giros: ${balance}`, vi: `Lượt quay: ${balance}`, id: `Putaran: ${balance}`,
               tr: `Çevirmeler: ${balance}`, pl: `Spiny: ${balance}`,
             })}
@@ -212,7 +338,7 @@ export default function LevelRewardSpinScreen() {
         >
           <Text style={[styles.balanceLabel, { color: t.gold }]}>
             {triLang(lang, {
-              ru: 'Спины', uk: 'Спіни', es: 'Giros', 'pt-BR': 'Giros',
+              ru: 'Спины', uk: 'Спіни', en: 'Spins', es: 'Giros', 'pt-BR': 'Giros',
               vi: 'Lượt', id: 'Putaran', tr: 'Çevirmeler', pl: 'Spiny',
             })}
           </Text>

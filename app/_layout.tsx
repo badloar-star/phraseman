@@ -1,3 +1,6 @@
+// зачем: временный диагностический маркер — ищем, где виснет холодный старт
+// (чёрный экран без краша). Убрать после локализации причины.
+console.warn('[BOOT] _layout module eval START');
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -80,6 +83,7 @@ import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
+import { raiseWelcomeGiftForExistingUserIfEligible } from './onboarding_welcome_state';
 import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
 import {
   readOnboardingNotificationChoice,
@@ -168,6 +172,7 @@ import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
+import { hydrateDailyPhrasePeekFromStorage } from './daily_phrase_system';
 import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
 import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
@@ -293,6 +298,14 @@ LogBox.ignoreLogs([
 
 installPhoneStateProductionRuntime();
 
+const INSTANT_STACK_ANIMATION = { animation: 'none', animationDuration: 0 } as const;
+const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;
+const defaultScreenAnimationOptions = ENABLE_SCREEN_TRANSITIONS
+  ? ({ animation: 'slide_from_right', animationDuration: 220 } as const)
+  : screenFadeEnabled
+    ? ({ animation: 'fade', animationDuration: 140 } as const)
+    : INSTANT_STACK_ANIMATION;
+
 const DEV_RUNTIME_LOG_DROP_PATTERNS = [
   'This method is deprecated (as well as all React Native Firebase namespaced API)',
   '[expo-image]: Prop "resizeMode" is deprecated',
@@ -355,8 +368,12 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
-/** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно. */
-const APP_FONT_WAIT_MAX_MS = 2500;
+/** Потолок ожидания рантайм-шрифтов: сломанный ассет не должен держать сплэш вечно.
+ * зачем (владелец, 2026-08-25): срезано 2500→1000 — гейт живёт ТОЛЬКО в дев-сборках
+ * (runtimeFontsExpected=false в проде, шрифты вшиты нативно), а при перегруженном
+ * Metro (10+ параллельных сессий на ПК) дев-сплэш ждал шрифты до 2,5 с. Цена:
+ * в деве первую секунду текст может мигнуть системным шрифтом — прод не затронут. */
+const APP_FONT_WAIT_MAX_MS = 1000;
 const LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX = 'league_bonus_available_seen_';
 const LEAGUE_BONUS_AVAILABLE_SEEN_MAX_KEYS = 32;
 const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
@@ -1120,6 +1137,7 @@ function GlobalLevelUpHandler() {
         headline={triLang(lang, {
           ru: 'УРОВЕНЬ ' + currentLevel,
           uk: 'РІВЕНЬ ' + currentLevel,
+          en: 'LEVEL ' + currentLevel,
           es: 'NIVEL ' + currentLevel,
           'pt-BR': 'NÍVEL ' + currentLevel,
           vi: 'CẤP ' + currentLevel,
@@ -1131,6 +1149,7 @@ function GlobalLevelUpHandler() {
         xpLabel={triLang(lang, {
           ru: 'Бонус уровня',
           uk: 'Бонус рівня',
+          en: 'Level bonus',
           es: 'Bono de nivel',
           'pt-BR': 'Bônus de nível',
           vi: 'Thưởng cấp độ',
@@ -1142,6 +1161,7 @@ function GlobalLevelUpHandler() {
         titleLabel={triLang(lang, {
           ru: 'Новый титул',
           uk: 'Новий титул',
+          en: 'New title',
           es: 'Nuevo título',
           'pt-BR': 'Novo título',
           vi: 'Danh hiệu mới',
@@ -1154,6 +1174,7 @@ function GlobalLevelUpHandler() {
         energyLabel={triLang(lang, {
           ru: 'Энергия',
           uk: 'Енергія',
+          en: 'Energy',
           es: 'Energía',
           'pt-BR': 'Energia',
           vi: 'Năng lượng',
@@ -1165,6 +1186,7 @@ function GlobalLevelUpHandler() {
         energyValue={(amount) => triLang(lang, {
           ru: 'Теперь ' + amount + ' энергии в день',
           uk: 'Тепер ' + amount + ' енергії на день',
+          en: 'Now ' + amount + ' energy per day',
           es: 'Ahora tienes ' + amount + ' de energía diaria',
           'pt-BR': 'Agora você tem ' + amount + ' de energia por dia',
           vi: 'Giờ bạn có ' + amount + ' năng lượng mỗi ngày',
@@ -1177,6 +1199,7 @@ function GlobalLevelUpHandler() {
         continueLabel={triLang(lang, {
           ru: 'Готово',
           uk: 'Готово',
+          en: 'Done',
           es: 'Listo',
           'pt-BR': 'Pronto',
           vi: 'Xong',
@@ -1339,6 +1362,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       triLang(lang, {
         ru: 'Аккаунт удалён',
         uk: 'Акаунт видалено',
+        en: 'Account deleted',
         es: 'Cuenta eliminada',
         'pt-BR': 'Conta excluída',
         vi: 'Tài khoản đã bị xóa',
@@ -1349,6 +1373,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       triLang(lang, {
         ru: 'Этот аккаунт был удалён на другом устройстве. Локальные данные на этом телефоне очищены, вход завершён.',
         uk: 'Цей акаунт було видалено на іншому пристрої. Локальні дані на цьому телефоні очищено, сеанс завершено.',
+        en: 'This account was deleted on another device. Local data on this phone has been cleared and the session ended.',
         es: 'Esta cuenta se eliminó en otro dispositivo. Se borraron los datos locales de este teléfono y se cerró la sesión.',
         'pt-BR': 'Esta conta foi excluída em outro dispositivo. Os dados locais deste telefone foram apagados e a sessão foi encerrada.',
         vi: 'Tài khoản này đã bị xóa trên một thiết bị khác. Dữ liệu cục bộ trên điện thoại này đã được xóa và phiên đăng nhập đã kết thúc.',
@@ -1406,6 +1431,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     });
     return () => subscription.remove();
   }, []);
+
+  useEffect(() => {
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const stableId = accountGeneration.stableId;
+    void import('./feedback_outbox')
+      .then(({ purgeExpiredFeedbackOutbox }) => purgeExpiredFeedbackOutbox(stableId))
+      .catch(() => { /* best-effort privacy cleanup retries on the next account generation */ });
+  }, [accountGeneration.phase, accountGeneration.stableId]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (nextState) => setAppIsActive(nextState === 'active'));
@@ -2304,6 +2337,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         __DEV__ &&
         process.env.EXPO_PUBLIC_FORCE_ONBOARDING_QA === '1';
 
+      // зачем (ускорение сплэша, 2026-08-25): чтение onboarding_done/XP-ключей
+      // стартует ПАРАЛЛЕЛЬНО с локальной гидрацией ниже, а не после её race —
+      // минус один последовательный дисковый round-trip перед setReady(true).
+      const startupIdentityKeys = forceOnboardingForQA
+        ? ['user_prev_xp', 'user_total_xp']
+        : ['user_prev_xp', 'user_total_xp', 'onboarding_done'];
+      const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
+        AsyncStorage.multiGet(startupIdentityKeys).catch(() => []);
+
       // Start cloud hydration early, but do not hold the first app frame on network/app-check.
       if (!IS_EXPO_GO && !forceOnboardingForQA) {
         const appCheckWarmup = Promise.race([
@@ -2335,6 +2377,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
         // сразу — в той же параллельной пачке, поэтому запуск не удлиняется.
         primeScreenSnapshotsFromStorage().catch(() => {}),
+        // зачем (ускорение сплэша): сегодняшняя «фраза дня» из peek-кэша — чтобы
+        // первый кадр Главной НЕ поднимал каталог идиом (610 КБ JS) синхронно.
+        hydrateDailyPhrasePeekFromStorage().catch(() => {}),
         hydrateYoutubeChannelPreference().catch(() => {}),
         // зачем: кэш статистики УЖЕ лежал на диске, но поднимался только внутри
         // streak_stats.loadAll() — то есть после первого кадра, поэтому экран стрика
@@ -2379,10 +2424,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       let shouldPrimeLessonsAfterReveal = false;
       try {
-        const startupIdentityKeys = forceOnboardingForQA
-          ? ['user_prev_xp', 'user_total_xp']
-          : ['user_prev_xp', 'user_total_xp', 'onboarding_done'];
-        const startupIdentityPairs = await AsyncStorage.multiGet(startupIdentityKeys);
+        const startupIdentityPairs = await startupIdentityPairsPromise;
         const startupIdentity = new Map(startupIdentityPairs);
         const prevXPRaw = startupIdentity.get('user_prev_xp') ?? null;
         if (!prevXPRaw) {
@@ -2437,6 +2479,21 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       if (safetyTimer) clearTimeout(safetyTimer);
       setReady(true);
+      // зачем (владелец, 2026-08-26): «все старые кто после обновы откроет
+      // приложение тоже» должны получить подарок — CleanOnboarding ставит флаг
+      // только когда САМ монтируется, а у человека, который свой онбординг
+      // прошёл раньше (onboarding_done уже был на диске = !willShowOnboarding),
+      // он в этом запуске не смонтируется никогда. Вызов чисто фоновый: не
+      // await'ится, ничего не возвращает, любая ошибка внутри проглатывается —
+      // первый кадр и вся остальная загрузка НЕ ждут и не зависят от него.
+      // once-guard живёт в самой функции, поэтому повторные холодные старты
+      // обычных пользователей — одно быстрое чтение AsyncStorage, не больше.
+      // Читаем onboardingPathRef, а не willShowOnboarding напрямую: та
+      // объявлена const внутри try-блока выше и здесь уже не в scope, а ref —
+      // тот же самый источник значения (строка "onboardingPathRef.current =
+      // willShowOnboarding" чуть выше), уже используемый остальным файлом вне
+      // этого блока.
+      if (!onboardingPathRef.current) void raiseWelcomeGiftForExistingUserIfEligible();
       setTimeout(flushPending, 280);
       if (shouldPrimeLessonsAfterReveal) {
         InteractionManager.runAfterInteractions(() => {
@@ -2841,38 +2898,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     && !tournamentInterruptionProtected;
   const startupSplashVisible = !fontsReady || !ready
     || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
-  // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
-  // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
-  // чёрный) — на тёмных экранах это читается как вспышка темноты.
-  //
-  // зачем: владелец жаловался, что при входе в урок «мелькает пустой/тёмный экран». На
-  // Android fade был выключен гейтом Platform.OS === 'ios' из-за истории крашей Fabric,
-  // но краши были на CARD-PUSH slide (ENABLE_SCREEN_TRANSITIONS), а не на любых анимациях:
-  // slide_from_bottom годами едет на ОБЕИХ платформах у пейволов
-  // (components/paywall/paywallShared.tsx) и шторок разделов (app/section_sheet_navigation.ts).
-  // fade — самый безобидный класс (кроссфейд, без пересчёта геометрии), поэтому включаем
-  // его и на Android: зазор маскируется, «мелькание» уходит.
-  // Kill-switch прежний: EXPO_PUBLIC_SCREEN_FADE=0.
-  const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;
-  const defaultScreenAnimationOptions = ENABLE_SCREEN_TRANSITIONS
-    ? ({ animation: 'slide_from_right', animationDuration: 220 } as const)
-    : screenFadeEnabled
-      ? ({ animation: 'fade', animationDuration: 140 } as const)
-      : ({ animation: 'none', animationDuration: 0 } as const);
-  // Три пункта нижнего Cards-таба — соседи одного уровня. Боковой push визуально
-  // делал их родителем/ребёнком; короткий crossfade сохраняет неподвижным таббар.
-  const cardsSiblingAnimationOptions = useMemo(
-    () => reduceMotion
-      ? ({ animation: 'none', animationDuration: 0 } as const)
-      : ({ animation: 'fade', animationDuration: 140 } as const),
-    [reduceMotion],
-  );
+  // OWNER 2026-08-25: route shell обязан сменяться без искусственной задержки.
+  // Непрозрачный contentStyle ниже закрывает native-container на первом кадре;
+  // slide/fade остаются только явным dev-preview и hard-off в store config.
+  const cardsSiblingAnimationOptions = INSTANT_STACK_ANIMATION;
   const pushScreenAnimationOptions = defaultScreenAnimationOptions;
-  const bottomModalAnimationOptions = ENABLE_SCREEN_TRANSITIONS
-    ? ({ animation: 'slide_from_bottom' } as const)
-    : screenFadeEnabled
-      ? ({ animation: 'fade', animationDuration: 140 } as const)
-      : ({ animation: 'none', animationDuration: 0 } as const);
+  const bottomModalAnimationOptions = INSTANT_STACK_ANIMATION;
 
   // Перф: дерево из ~80 <Stack.Screen> зависит ТОЛЬКО от темы + onboardingPaywallActive,
   // а НЕ от pathname/params. Без useMemo каждая смена вкладки (usePathname меняется)
@@ -2919,10 +2950,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="lesson_help" />
       <Stack.Screen name="lesson_theory_v2" options={{ presentation: 'card', headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="preposition_drill" />
-      {/* «Шторки разделов» (стандарт владельца, ориентир — Bevel): разделы
-          настроек/инфо-экраны выезжают снизу как модальная страница и так же
-          закрываются. Опции — app/section_sheet_navigation.ts (под флагом
-          SECTION_SHEET_TRANSITIONS из config.ts), шапка внутри экранов —
+      {/* Разделы настроек/инфо сохраняют modal presentation и swipe-dismiss,
+          но появляются без route-анимации. Опции — app/section_sheet_navigation.ts,
+          шапка внутри экранов —
           components/SectionSheetHeader.tsx. */}
       <Stack.Screen name="settings_edu" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="settings_notifications" options={SECTION_SHEET_STACK_OPTIONS} />
@@ -3207,16 +3237,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         <View style={{ backgroundColor: '#121826', borderRadius: 18, borderWidth: 0, borderColor: '#7f1d1d', padding: 20 }}>
           <Text style={{ color: '#f87171', fontSize: 28, textAlign: 'center', marginBottom: 10 }}>🚫</Text>
           <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
-            {triLang(lang, { ru: 'Аккаунт заблокирован', uk: 'Обліковий запис заблоковано', es: 'Cuenta bloqueada', 'pt-BR': 'Conta bloqueada', vi: 'Tài khoản đã bị khóa', id: 'Akun diblokir', tr: 'Hesap engellendi', pl: 'Konto zablokowane' })}
+            {triLang(lang, { ru: 'Аккаунт заблокирован', uk: 'Обліковий запис заблоковано', en: 'Account blocked', es: 'Cuenta bloqueada', 'pt-BR': 'Conta bloqueada', vi: 'Tài khoản đã bị khóa', id: 'Akun diblokir', tr: 'Hesap engellendi', pl: 'Konto zablokowane' })}
           </Text>
           <Text style={{ color: '#9ca3af', fontSize: 14, textAlign: 'center', lineHeight: 20, marginBottom: 16 }}>
-            {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєте блокування помилковим — напишіть у підтримку.', es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
+            {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєте блокування помилковим — напишіть у підтримку.', en: "Access to the app is restricted. If you think this block is a mistake, contact support.", es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
           </Text>
           <TouchableOpacity
             onPress={() => checkBanStatus(true)}
             style={{ backgroundColor: '#1f2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
           >
-            <Text style={{ color: '#fff', fontWeight: '700' }}>{triLang(lang, { ru: 'Проверить снова', uk: 'Перевірити ще раз', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' })}</Text>
+            <Text style={{ color: '#fff', fontWeight: '700' }}>{triLang(lang, { ru: 'Проверить снова', uk: 'Перевірити ще раз', en: 'Check again', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' })}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -3274,6 +3304,7 @@ const styles = StyleSheet.create({
 });
 
 export default function RootLayout() {
+  console.warn('[BOOT] RootLayout render');
   // Fonts are embedded through the expo-font config plugin in native builds.
   // Expo Go still needs runtime assets. Literal __DEV__ lets production Metro
   // remove typography_dev_fonts and avoids embedding the same TTF files twice.

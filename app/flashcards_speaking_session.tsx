@@ -36,7 +36,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '../components/ThemeContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -84,6 +84,12 @@ import {
   type SpeakingTask,
 } from './flashcards/speaking_session_logic';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / listening #9C6ADE / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
@@ -128,6 +134,19 @@ export default function FlashcardsSpeakingSession() {
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
   const params = useLocalSearchParams<{ deck?: string; size?: string }>();
+  const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `flashcard-speaking:${attemptSessionId}`,
+    initialQuestionId: 'flashcard-speaking:loading',
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const neutralVoiceSequenceRef = useRef(0);
+  useEffect(() => () => {
+    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+  }, []);
 
   // Сессия говорения — руки заняты, экран не гасим (как в слушании).
   useKeepAwake();
@@ -147,7 +166,16 @@ export default function FlashcardsSpeakingSession() {
 
   const [loading, setLoading] = useState(true);
   // Старт сессии «Говорить» = 1 ⚡ (владелец 2026-08-23: единая экономика).
-  const { confirmSpendOne: confirmSpeakEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmSpeakEnergy,
+    refundOne: refundSpeakEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
+  const speakingEnergyIntent = useEnergySessionIntent(
+    'flashcards_speaking',
+    deckKey || 'saved',
+    attemptSessionId,
+  );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const speakingEntryChargedRef = useRef(false);
   const [session, setSession] = useState<SpeakingSessionState>(() => initialSpeakingState([]));
@@ -193,20 +221,9 @@ export default function FlashcardsSpeakingSession() {
   // ── Загрузка карточек + настроек ───────────────────────────────────────────
   useEffect(() => {
     let cancelled = false;
+    let chargedOperationId: string | null = null;
+    let entryGranted = false;
     void (async () => {
-      // зачем: списываем ДО тяжёлой загрузки колоды — при отказе не грузим
-      // карточки впустую. Латч на весь маунт экрана (не на deckKey/roundId —
-      // тут нет рестарта раунда, вся сессия — одна попытка).
-      if (!speakingEntryChargedRef.current) {
-        speakingEntryChargedRef.current = true;
-        const energyResult = await confirmSpeakEnergy();
-        if (cancelled) return;
-        if (energyResult === 'cancelled') {
-          safeRouterBack(router, '/flashcards' as never);
-          return;
-        }
-        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
-      }
       const [pool, rawPrefs] = await Promise.all([
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch((): DeckCard[] => []),
         AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(() => null),
@@ -214,6 +231,27 @@ export default function FlashcardsSpeakingSession() {
       if (cancelled) return;
       const prefs = parseSpeakingPrefs(rawPrefs);
       const cards = shuffleArr(pool).slice(0, sessionSize);
+      if (cards.length === 0) {
+        setSession(initialSpeakingState([]));
+        setLoading(false);
+        return;
+      }
+      if (!speakingEntryChargedRef.current) {
+        speakingEntryChargedRef.current = true;
+        const energyResult = await confirmSpeakEnergy(speakingEnergyIntent);
+        if (energyResult === 'spent') chargedOperationId = speakingEnergyIntent.operationId;
+        if (cancelled) {
+          if (chargedOperationId) {
+            void refundSpeakEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+          }
+          return;
+        }
+        if (energyResult === 'cancelled') {
+          safeRouterBack(router, '/flashcards' as never);
+          return;
+        }
+        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
+      }
       finishedRef.current = false;
       clearAdvanceTimer();
       setTask(prefs.task);
@@ -223,13 +261,28 @@ export default function FlashcardsSpeakingSession() {
       setResult(null);
       setSession(initialSpeakingState(cards));
       setLoading(false);
-    })();
+      entryGranted = true;
+      if (chargedOperationId) {
+        void acknowledgeSessionStart(chargedOperationId).catch(() => {});
+      }
+    })().catch(() => {
+      if (chargedOperationId && !entryGranted) {
+        void refundSpeakEnergy(chargedOperationId, 'entry_failed').catch(() => {});
+      }
+      if (!cancelled) {
+        setSession(initialSpeakingState([]));
+        setLoading(false);
+      }
+    });
     return () => {
       cancelled = true;
+      if (chargedOperationId && !entryGranted) {
+        void refundSpeakEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+      }
     };
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckKey, sessionSize, contentLang, clearAdvanceTimer, confirmSpeakEnergy, router]);
+  }, [acknowledgeSessionStart, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, refundSpeakEnergy, router, sessionSize, speakingEnergyIntent]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -262,6 +315,10 @@ export default function FlashcardsSpeakingSession() {
    * подсказка только по запросу.
    */
   const cardId = card?.id ?? null;
+  useEffect(() => {
+    if (!cardId) return;
+    attempts.updateQuestion(`flashcard-speaking:${cardId}:${session.index}`);
+  }, [attempts.updateQuestion, cardId, session.index]);
   useEffect(() => {
     if (loading || !cardId || task !== 'repeat' || phase !== 'idle') return;
     const c = sessionRef.current.queue[sessionRef.current.index];
@@ -306,7 +363,19 @@ export default function FlashcardsSpeakingSession() {
       if (s.phase !== 'live') return;
       setHoldActive(false);
       setStuck(false);
-      setSession((cur) => scoreSpeakingAttempt(cur, attempt));
+      const scoredState = scoreSpeakingAttempt(s, attempt);
+      sessionRef.current = scoredState;
+      setSession(scoredState);
+      const failedCard = currentSpeakingCard(s);
+      const attemptEffect = attempts.registerVerdict({
+        answerAttemptId: [
+          attemptSessionId,
+          failedCard?.id ?? 'unknown',
+          String(s.index),
+          String(scoredState.attemptsOnCard),
+        ].join(':'),
+        verdict: attempt.passed ? 'correct' : 'pedagogical_wrong',
+      });
       // Раскрываем английский — и на зачёте (подтверждение), и на промахе (учимся).
       setFlipped(task === 'recall');
       if (attempt.passed) {
@@ -319,7 +388,6 @@ export default function FlashcardsSpeakingSession() {
           goNext();
         }, SPEAKING_AUTO_ADVANCE_MS);
       } else {
-        const failedCard = currentSpeakingCard(s);
         if (failedCard && (studyTarget === 'en' || studyTarget === 'fr')) {
           void captureCurrentAccountObjectiveAttempt({
             attemptId: `${mistakeCaptureRunRef.current}:${s.index}:${failedCard.id}:${attempt.score}`,
@@ -338,15 +406,28 @@ export default function FlashcardsSpeakingSession() {
         fcHaptic('wrong');
         playSfx('incorrect');
       }
+      if (attemptEffect === 'attempts_exhausted') {
+        clearAdvanceTimer();
+        setHoldActive(false);
+        stopSpeech();
+        attemptsModalTimerRef.current = setTimeout(
+          () => setShowAttemptsModal(true),
+          SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+        );
+      }
     },
-    [task, clearAdvanceTimer, goNext, studyTarget],
+    [attemptSessionId, attempts.registerVerdict, task, clearAdvanceTimer, goNext, stopSpeech, studyTarget],
   );
 
   /** Панель закрылась сама (отказ движка / «нет речи») — ждём удержания снова. */
   const onPanelClose = useCallback(() => {
     setHoldActive(false);
+    attempts.registerVerdict({
+      answerAttemptId: `${attemptSessionId}:cancelled:${neutralVoiceSequenceRef.current++}`,
+      verdict: 'cancelled',
+    });
     setSession((cur) => cancelSpeakingAttempt(cur));
-  }, []);
+  }, [attemptSessionId, attempts.registerVerdict]);
 
   /**
    * Тупиковый статус движка (см. коммент у `stuck`): панель сама не сообщает
@@ -363,9 +444,13 @@ export default function FlashcardsSpeakingSession() {
       if (DEAD_END_STATUSES.has(status)) {
         setHoldActive(false);
         setStuck(true);
+        attempts.registerVerdict({
+          answerAttemptId: `${attemptSessionId}:voice-status:${status}:${neutralVoiceSequenceRef.current++}`,
+          verdict: status === 'no_speech' ? 'no_speech' : 'technical_error',
+        });
       }
     },
-    [DEAD_END_STATUSES],
+    [attemptSessionId, attempts.registerVerdict, DEAD_END_STATUSES],
   );
 
   const onRetry = useCallback(() => {
@@ -374,6 +459,33 @@ export default function FlashcardsSpeakingSession() {
     setFlipped(false);
     setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
   }, [clearAdvanceTimer]);
+
+  const retryCurrentSpeakingCardAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      clearAdvanceTimer();
+      stopSpeech();
+      setShowAttemptsModal(false);
+      setHoldActive(false);
+      setStuck(false);
+      setFlipped(false);
+      attemptKeyRef.current += 1;
+      setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
+    } catch {
+      // The same speaking card remains stopped beneath the recovery modal.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes, clearAdvanceTimer, stopSpeech]);
+
+  const endExhaustedSpeakingSession = useCallback(() => {
+    attempts.endAttemptsSession();
+    clearAdvanceTimer();
+    stopSpeech();
+    setHoldActive(false);
+    setShowAttemptsModal(false);
+    const summary = summarizeSpeaking(sessionRef.current);
+    setResult({ correct: summary.correct, wrong: summary.wrong, learnLeft: summary.learnKeys.length });
+  }, [attempts.endAttemptsSession, clearAdvanceTimer, stopSpeech]);
 
   const onPickTask = useCallback((next: SpeakingTask) => {
     fcHaptic('tap');
@@ -473,15 +585,15 @@ export default function FlashcardsSpeakingSession() {
     if (deckRefs.length > 1) return decksCountLabel(lang, deckRefs.length);
     const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, {
-      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
+      ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
     });
     if (deckRef.kind === 'pack') return triLang(lang, {
-      ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
+      ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
       vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
     });
     return triLang(lang, {
-      ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas', 'pt-BR': 'Salvos',
+      ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
       vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
     });
   }, [deckRefs, lang]);
@@ -490,53 +602,54 @@ export default function FlashcardsSpeakingSession() {
     () => ({
       title: triLang(lang, TITLE),
       recall: triLang(lang, {
-        ru: 'Скажи по-английски', uk: 'Скажи англійською', es: 'Dilo en inglés',
+        ru: 'Скажи по-английски', uk: 'Скажи англійською', en: 'Say it in English', es: 'Dilo en inglés',
         'pt-BR': 'Diga em inglês', vi: 'Nói bằng tiếng Anh', id: 'Ucapkan dalam bahasa Inggris',
         tr: 'İngilizce söyle', pl: 'Powiedz po angielsku',
       }),
       repeat: triLang(lang, {
-        ru: 'Повтори за диктором', uk: 'Повтори за диктором', es: 'Repite al locutor',
+        ru: 'Повтори за диктором', uk: 'Повтори за диктором', en: 'Repeat after the speaker', es: 'Repite al locutor',
         'pt-BR': 'Repita o locutor', vi: 'Nhắc lại theo giọng đọc', id: 'Tirukan pembaca',
         tr: 'Spikeri tekrar et', pl: 'Powtórz za lektorem',
       }),
       holdIdle: triLang(lang, {
-        ru: 'Зажми и говори', uk: 'Затисни й говори', es: 'Mantén y habla',
+        ru: 'Зажми и говори', uk: 'Затисни й говори', en: 'Hold and speak', es: 'Mantén y habla',
         'pt-BR': 'Segure e fale', vi: 'Giữ và nói', id: 'Tahan dan bicara',
         tr: 'Basılı tut ve konuş', pl: 'Przytrzymaj i mów',
       }),
       holdLive: triLang(lang, {
-        ru: 'Слушаю…', uk: 'Слухаю…', es: 'Escuchando…', 'pt-BR': 'Ouvindo…',
+        ru: 'Слушаю…', uk: 'Слухаю…', en: 'Listening…', es: 'Escuchando…', 'pt-BR': 'Ouvindo…',
         vi: 'Đang nghe…', id: 'Mendengarkan…', tr: 'Dinliyorum…', pl: 'Słucham…',
       }),
       holdAgain: triLang(lang, {
-        ru: 'Зажми — скажи ещё раз', uk: 'Затисни — скажи ще раз', es: 'Mantén y repite',
+        ru: 'Зажми — скажи ещё раз', uk: 'Затисни — скажи ще раз', en: 'Hold — say it again', es: 'Mantén y repite',
         'pt-BR': 'Segure e repita', vi: 'Giữ và nói lại', id: 'Tahan dan ulangi',
         tr: 'Basılı tut, tekrar söyle', pl: 'Przytrzymaj i powtórz',
       }),
       next: triLang(lang, {
-        ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Próximo',
+        ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo',
         vi: 'Tiếp', id: 'Lanjut', tr: 'Sonraki', pl: 'Dalej',
       }),
       skip: triLang(lang, {
-        ru: 'Пропустить', uk: 'Пропустити', es: 'Saltar', 'pt-BR': 'Pular',
+        ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Saltar', 'pt-BR': 'Pular',
         vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń',
       }),
       retry: triLang(lang, {
-        ru: 'Ещё раз', uk: 'Ще раз', es: 'Otra vez', 'pt-BR': 'De novo',
+        ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo',
         vi: 'Thử lại', id: 'Lagi', tr: 'Tekrar', pl: 'Jeszcze raz',
       }),
       listen: triLang(lang, {
-        ru: 'Послушать', uk: 'Послухати', es: 'Escuchar', 'pt-BR': 'Ouvir',
+        ru: 'Послушать', uk: 'Послухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir',
         vi: 'Nghe', id: 'Dengar', tr: 'Dinle', pl: 'Posłuchaj',
       }),
       pickDecks: triLang(lang, {
-        ru: 'Выбрать наборы', uk: 'Обрати набори', es: 'Elegir packs',
+        ru: 'Выбрать наборы', uk: 'Обрати набори', en: 'Choose packs', es: 'Elegir packs',
         'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih set kartu',
         tr: 'Setleri seç', pl: 'Wybierz zestawy',
       }),
       empty: triLang(lang, {
         ru: 'Здесь пока нечего говорить — выберите наборы',
         uk: 'Тут поки нема чого говорити — оберіть набори',
+        en: 'Nothing to say here yet — pick some packs',
         es: 'Aún no hay nada que decir: elige los packs',
         'pt-BR': 'Ainda não há o que falar: escolha os pacotes',
         vi: 'Chưa có gì để nói — hãy chọn bộ thẻ',
@@ -545,7 +658,7 @@ export default function FlashcardsSpeakingSession() {
         pl: 'Nie ma jeszcze czego mówić — wybierz zestawy',
       }),
       spokenCount: triLang(lang, {
-        ru: 'Сказано', uk: 'Сказано', es: 'Dichas', 'pt-BR': 'Ditas',
+        ru: 'Сказано', uk: 'Сказано', en: 'Said', es: 'Dichas', 'pt-BR': 'Ditas',
         vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziane',
       }),
     }),
@@ -582,6 +695,11 @@ export default function FlashcardsSpeakingSession() {
         )}
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+        <SessionAttemptsHud
+          remaining={attempts.state.remainingAttempts}
+          locale={lang}
+          testID="fc-speak-session-attempts"
+        />
         {interactive ? (
           <Text style={{ color: t.textMuted, fontSize: f.caption, minWidth: 44, textAlign: 'right' }} testID="fc-speak-progress">
             {progress.position} / {progress.total}
@@ -611,7 +729,7 @@ export default function FlashcardsSpeakingSession() {
             dataText={`EN: ${card.en}
 RU: ${card.translation}`}
             variant="icon-flag"
-            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
             testID="fc-speak-report"
           />
         ) : null}
@@ -904,6 +1022,16 @@ RU: ${card.translation}`}
       </SafeAreaView>
       {deckPickerSheet}
       <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void retryCurrentSpeakingCardAfterRecovery('gift'); }}
+        onSpendRunes={() => { void retryCurrentSpeakingCardAfterRecovery('runes'); }}
+        onEndSession={endExhaustedSpeakingSession}
+      />
     </ScreenGradient>
   );
 }

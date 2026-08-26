@@ -77,6 +77,7 @@ function defaultTitle(lang: string): string {
   return triLang(lang as Lang, {
     ru: 'Это Компас. Без обновления дальше никак',
     uk: 'Це Компас. Без оновлення далі ніяк',
+    en: "It's Compass. No going further without an update",
     es: 'Soy la Brújula. Sin actualizar no seguimos',
     'pt-BR': 'É a Bússola. Sem atualizar não dá',
     vi: 'Mình là La bàn. Chưa cập nhật thì chưa đi tiếp được',
@@ -90,6 +91,7 @@ function defaultBody(lang: string): string {
   return triLang(lang as Lang, {
     ru: 'Я заметно подрос, и старая версия меня уже не тянет. Обнови — и продолжим путь там же, где остановились.',
     uk: 'Я помітно підріс, і стара версія мене вже не тягне. Онови — і продовжимо шлях там само, де спинилися.',
+    en: "I've grown a lot, and the old version can't keep up anymore. Update, and we'll pick up right where we left off.",
     es: 'Crecí bastante y la versión vieja ya no me sostiene. Actualiza y seguimos justo donde lo dejamos.',
     'pt-BR': 'Cresci bastante e a versão antiga já não me aguenta. Atualiza e seguimos de onde paramos.',
     vi: 'Mình lớn lên nhiều, bản cũ không kham nổi nữa. Cập nhật đi, rồi mình đi tiếp ngay chỗ đã dừng.',
@@ -103,6 +105,7 @@ function defaultCta(lang: string): string {
   return triLang(lang as Lang, {
     ru: 'Обновить',
     uk: 'Оновити',
+    en: 'Update',
     es: 'Actualizar',
     'pt-BR': 'Atualizar',
     vi: 'Cập nhật',
@@ -128,6 +131,7 @@ function readLegacyForceState(lang: string, userId: string | null): GateState | 
     title: triLang(lang as Lang, {
       ru: 'Это Компас. Пора меня обновить',
       uk: 'Це Компас. Час мене оновити',
+      en: "It's Compass. Time to update me",
       es: 'Soy la Brújula. Toca actualizarme',
       'pt-BR': 'É a Bússola. Hora de me atualizar',
       vi: 'Mình là La bàn. Đến lúc cập nhật mình rồi',
@@ -255,6 +259,7 @@ export default function ForceUpdateGate() {
             accessibilityLabel={triLang(lang as Lang, {
               ru: 'Закрыть',
               uk: 'Закрити',
+              en: 'Close',
               es: 'Cerrar',
               'pt-BR': 'Fechar',
               vi: 'Đóng',
@@ -337,6 +342,7 @@ export default function ForceUpdateGate() {
               {triLang(lang as Lang, {
                 ru: 'Позже',
                 uk: 'Пізніше',
+                en: 'Later',
                 es: 'Más tarde',
                 'pt-BR': 'Mais tarde',
                 vi: 'Để sau',

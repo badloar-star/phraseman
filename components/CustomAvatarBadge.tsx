@@ -176,7 +176,14 @@ function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, 
   };
 
   return (
-    <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center', position: 'relative' }, style]}>
+    <View style={[{
+      width: size,
+      height: size,
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative',
+      overflow: 'visible',
+    }, style]}>
       <Svg width={size} height={size} viewBox="0 0 100 100" style={{ position: 'absolute', left: 0, top: 0 }}>
         <Defs>
           <LinearGradient id={gid} x1="0.5" y1="0" x2="0.5" y2="1">

@@ -334,7 +334,7 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
             ))}
           </View>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={styles.scroll}
             contentContainerStyle={styles.scrollInner}
             showsVerticalScrollIndicator

@@ -1,6 +1,10 @@
 import { ARENA_DUEL_BLUEPRINT, isValidArenaBlueprint, seededArenaBlueprint } from '../modules/arena/duel_blueprint';
 import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_TASK_MODES, type ArenaMatch, type ArenaPublicTask } from '../modules/arena/contract';
-import { adaptArenaTask, encodeArenaSelection } from '../modules/arena/task_adapter';
+import {
+  adaptArenaTask,
+  encodeArenaSelection,
+  normalizeArenaPrompt,
+} from '../modules/arena/task_adapter';
 import { ARENA_RANKS, arenaRankForRating, isRankedOpponentEligible } from '../modules/arena/ranks';
 import { arenaClockPhase } from '../modules/arena/schedule';
 import { getOrCreateArenaSubmissionId, pruneArenaSubmissionIds } from '../modules/arena/idempotency';
@@ -126,6 +130,43 @@ describe('Arena V2 client contract', () => {
       expect(arenaRankedWaitPresentation(elapsed)).toBe('searching');
     }
     expect(arenaRankedElapsedMs(100_000, 80_000, 10_000, 95_000)).toBe(5_000);
+  });
+
+  test('adds a missing question mark inside the quoted phrase only when every guess option is a question', () => {
+    expect(normalizeArenaPrompt(
+      'guess_phrase',
+      'Вы хотите сказать: «Ты любишь читать». Какую английскую реплику выберете?',
+      ['Do you like reading?', 'Does she like reading?'],
+    )).toBe('Вы хотите сказать: «Ты любишь читать?» Какую английскую реплику выберете?');
+
+    expect(normalizeArenaPrompt(
+      'guess_phrase',
+      'Вы хотите сказать: «Ты любишь читать». Какую английскую реплику выберете?',
+      ['I like reading.', 'She likes reading.'],
+    )).toBe('Вы хотите сказать: «Ты любишь читать». Какую английскую реплику выберете?');
+  });
+
+  test('replaces internal ellipses and removes obsolete punctuation after a question quote idempotently', () => {
+    const legacy = 'Вы хотите сказать: «Ты любишь читать...» . Какую английскую реплику выберете?';
+    const options = ['Do you like reading?', 'Does she like reading?'];
+    const normalized = normalizeArenaPrompt('guess_phrase', legacy, options);
+    expect(normalized).toBe('Вы хотите сказать: «Ты любишь читать?» Какую английскую реплику выберете?');
+    expect(normalizeArenaPrompt('guess_phrase', normalized, options)).toBe(normalized);
+  });
+
+  test('normalizes legacy interrogative prompts without mutating answer payload tokens', () => {
+    const view = adaptArenaTask(task('fill_gap', {
+      phrase: 'Which word completes the sentence.',
+      options: ['go', 'went', 'gone'],
+    }));
+    expect(view).toMatchObject({ prompt: 'Which word completes the sentence?' });
+
+    const builder = adaptArenaTask(task('translate_build', {
+      phrase: 'Ты любишь читать?',
+      wordBank: ['Do', 'you', 'like', 'reading'],
+    }));
+    expect(builder).toMatchObject({ displayTerminalPunctuation: '?' });
+    expect(encodeArenaSelection(builder, [0, 1, 2, 3])).toEqual({ tokens: ['Do', 'you', 'like', 'reading'] });
   });
 
   test('never lets the first-bot client fallback exceed forty-five seconds', () => {

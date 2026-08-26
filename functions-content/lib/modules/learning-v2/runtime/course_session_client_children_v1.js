@@ -11,6 +11,7 @@ exports.materializeLearningV2CourseSessionAuxiliaryChildV1 = materializeLearning
 const generator_course_contract_1 = require("../content/generator_course_contract");
 const intro_semantic_runs_v1_1 = require("../content/intro_semantic_runs_v1");
 const decision_registry_1 = require("../policies/decision_registry");
+const mode_native_payload_v1_1 = require("../contracts/mode_native_payload_v1");
 exports.LEARNING_V2_COURSE_SESSION_INTRO_CHILD_SCHEMA_V1 = "learning-v2-course-session-intro-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1 = "learning-v2-course-session-learner-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_AUXILIARY_CHILD_SCHEMA_V1 = "learning-v2-course-session-auxiliary-child.v1";
@@ -317,6 +318,7 @@ const INTERACTION_KEYS = [
     "mediaIds",
     "audioTargetIds",
     "accessibilityLabel",
+    "modePayload",
     "scriptedAlternate",
 ];
 const OPTION_KEYS = ["responseId", "text"];
@@ -360,7 +362,7 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
                 "speed_match",
                 "scripted_repeat_compare",
             ].includes(String(entry.family)) ||
-            !["ordered_tokens", "single_choice", "scripted_speech"].includes(String(entry.inputMode)) ||
+            !["ordered_tokens", "single_choice", "scripted_speech", "pair_grid", "tap_record_compare"].includes(String(entry.inputMode)) ||
             !Array.isArray(entry.responseOptions) ||
             entry.responseOptions.length > 8 ||
             !Array.isArray(entry.mediaIds) ||
@@ -406,6 +408,9 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
             mediaIds: Object.freeze(entry.mediaIds.map(id)),
             audioTargetIds: Object.freeze(entry.audioTargetIds.map(id)),
             accessibilityLabel: text(entry.accessibilityLabel, 1_000),
+            modePayload: entry.modePayload === null
+                ? null
+                : (0, mode_native_payload_v1_1.validateLearningV2ModeNativePayloadV1)(entry.modePayload, entry.family),
             scriptedAlternate,
         });
     }));

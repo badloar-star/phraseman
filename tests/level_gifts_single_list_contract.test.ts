@@ -116,7 +116,14 @@ describe('таймер показывает срок ДЕЙСТВИЯ, а не �
 
   test('у каждого активного бонуса по-прежнему свой индивидуальный отсчёт', () => {
     expect(SCREEN).toContain('<GiftExpiryCountdown');
-    expect(SCREEN).toContain('expiresAtMs={gift.expiresAtMs}');
+    expect(SCREEN).toContain('expiresAtMs={gift.lifetime.expiresAtMs}');
+  });
+
+  test('постоянный Второй шанс показывает срок словами и никогда не получает countdown', () => {
+    expect(ACTIVE_SOURCE).toContain("lifetime: { kind: 'permanent' }");
+    expect(SCREEN).toContain("gift.lifetime.kind === 'expires'");
+    expect(SCREEN).toContain("ru: 'Без срока действия'");
+    expect(SCREEN).toContain('gift.countBadge');
   });
 
   test('истёкший бонус убирается и перезагружает список', () => {

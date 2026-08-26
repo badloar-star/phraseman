@@ -55,6 +55,7 @@ import {
 } from '../constants/shard_plurals';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import { hapticLightImpact, hapticMediumImpact } from '../hooks/use-haptics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { oskolokImageForPackShards } from './oskolok';
@@ -108,12 +109,13 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
   const shardsEs = BRAND_SHARDS_ES;
   return {
     kicker: triLang(lang, {
-      ru: 'ТЕМА ОФОРМЛЕНИЯ', uk: 'ТЕМА ОФОРМЛЕННЯ', es: 'TEMA VISUAL', 'pt-BR': 'TEMA VISUAL',
+      ru: 'ТЕМА ОФОРМЛЕНИЯ', uk: 'ТЕМА ОФОРМЛЕННЯ', en: 'VISUAL THEME', es: 'TEMA VISUAL', 'pt-BR': 'TEMA VISUAL',
       vi: 'GIAO DIỆN', id: 'TEMA TAMPILAN', tr: 'GÖRÜNÜM TEMASI', pl: 'MOTYW WYGLĄDU',
     }),
     intro: triLang(lang, {
       ru: 'Тема меняет вид всего приложения — и остаётся твоей навсегда.',
       uk: 'Тема змінює вигляд усього застосунку — і залишається твоєю назавжди.',
+      en: 'The theme changes the look of the whole app — and stays yours forever.',
       es: 'El tema cambia toda la app y se queda contigo para siempre.',
       'pt-BR': 'O tema muda o app inteiro — e fica com você para sempre.',
       vi: 'Giao diện đổi toàn bộ ứng dụng — và thuộc về bạn mãi mãi.',
@@ -122,12 +124,13 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
       pl: 'Motyw zmienia całą aplikację — i zostaje z tobą na zawsze.',
     }),
     cancel: triLang(lang, {
-      ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
+      ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não',
       vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
     }),
     forShards: (n: number) => triLang(lang, {
       ru: `Открыть за ${n} ${ruKnowledgeShardsAccusativeAfterNumber(n)}`,
       uk: `Відкрити за ${n} ${ukKnowledgeShardsAccusativeAfterNumber(n)}`,
+      en: `Unlock for ${n} pearls`,
       es: `Desbloquear por ${n} ${shardsEs}`,
       'pt-BR': `Desbloquear por ${n} pérolas`,
       vi: `Mở khoá với ${n} ngọc trai`,
@@ -136,12 +139,13 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
       pl: `Odblokuj za ${n} pereł`,
     }),
     buying: triLang(lang, {
-      ru: 'Открываем…', uk: 'Відкриваємо…', es: 'Desbloqueando…', 'pt-BR': 'Desbloqueando…',
+      ru: 'Открываем…', uk: 'Відкриваємо…', en: 'Unlocking…', es: 'Desbloqueando…', 'pt-BR': 'Desbloqueando…',
       vi: 'Đang mở khoá…', id: 'Membuka…', tr: 'Açılıyor…', pl: 'Odblokowuję…',
     }),
     ctaSub: triLang(lang, {
       ru: 'Разовая покупка — тема останется навсегда',
       uk: 'Разова покупка — тема залишиться назавжди',
+      en: 'One-time purchase — the theme is yours forever',
       es: 'Compra única: el tema se queda para siempre',
       'pt-BR': 'Compra única: o tema fica para sempre',
       vi: 'Mua một lần — giữ mãi mãi',
@@ -150,13 +154,14 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
       pl: 'Jednorazowy zakup — motyw zostaje na zawsze',
     }),
     insufficientTitle: triLang(lang, {
-      ru: 'Не хватает жемчуга', uk: 'Не вистачає перлин', es: `No tienes suficientes ${shardsEs}`,
+      ru: 'Не хватает жемчуга', uk: 'Не вистачає перлин', en: 'Not enough pearls', es: `No tienes suficientes ${shardsEs}`,
       'pt-BR': 'Pérolas insuficientes', vi: 'Không đủ ngọc trai', id: 'Mutiara tidak cukup',
       tr: 'İnci yetersiz', pl: 'Za mało pereł',
     }),
     insufficientIntro: triLang(lang, {
       ru: 'Эта тема стоит больше, чем есть на балансе. Пополни — и она твоя.',
       uk: 'Ця тема коштує більше, ніж є на балансі. Поповни — і вона твоя.',
+      en: "This theme costs more than your balance. Top up and it's yours.",
       es: 'Este tema cuesta más de lo que tienes. Recarga y será tuyo.',
       'pt-BR': 'Este tema custa mais do que você tem. Recarregue e ele é seu.',
       vi: 'Giao diện này đắt hơn số bạn đang có. Nạp thêm là của bạn.',
@@ -167,6 +172,7 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
     shortageRemaining: (n: number) => triLang(lang, {
       ru: `Не хватает ещё ${n} ${ruKnowledgeShardsGenitiveAfterNumber(n)}`,
       uk: `Не вистачає ще ${n} ${ukKnowledgeShardsGenitiveAfterNumber(n)}`,
+      en: `You need ${n} more pearls`,
       es: `Te faltan ${n} ${shardsEs}`,
       'pt-BR': `Faltam ${n} pérolas`,
       vi: `Còn thiếu ${n} ngọc trai`,
@@ -175,28 +181,29 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
       pl: `Brakuje jeszcze ${n} pereł`,
     }),
     balanceBlockTitle: triLang(lang, {
-      ru: 'Жемчуг', uk: 'Перлини', es: shardsEs, 'pt-BR': 'Pérolas',
+      ru: 'Жемчуг', uk: 'Перлини', en: 'Pearls', es: shardsEs, 'pt-BR': 'Pérolas',
       vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perły',
     }),
     needLabel: triLang(lang, {
-      ru: 'Нужно', uk: 'Потрібно', es: 'Necesitas', 'pt-BR': 'Precisa',
+      ru: 'Нужно', uk: 'Потрібно', en: 'Needed', es: 'Necesitas', 'pt-BR': 'Precisa',
       vi: 'Cần', id: 'Butuh', tr: 'Gerekli', pl: 'Potrzeba',
     }),
     youHaveLabel: triLang(lang, {
-      ru: 'У тебя', uk: 'У тебе', es: 'Tienes', 'pt-BR': 'Você tem',
+      ru: 'У тебя', uk: 'У тебе', en: 'You have', es: 'Tienes', 'pt-BR': 'Você tem',
       vi: 'Bạn có', id: 'Kamu punya', tr: 'Sende', pl: 'Masz',
     }),
     costLabel: triLang(lang, {
-      ru: 'Цена темы', uk: 'Ціна теми', es: 'Precio del tema', 'pt-BR': 'Preço do tema',
+      ru: 'Цена темы', uk: 'Ціна теми', en: 'Theme price', es: 'Precio del tema', 'pt-BR': 'Preço do tema',
       vi: 'Giá giao diện', id: 'Harga tema', tr: 'Tema fiyatı', pl: 'Cena motywu',
     }),
     buyShards: triLang(lang, {
-      ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', es: `Conseguir ${shardsEs}`,
+      ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', en: 'Get more pearls', es: `Conseguir ${shardsEs}`,
       'pt-BR': 'Obter pérolas', vi: 'Nạp ngọc trai', id: 'Dapatkan mutiara',
       tr: 'İnci al', pl: 'Zdobądź perły',
     }),
     shopCtaSub: triLang(lang, {
       ru: 'Откроется магазин жемчуга', uk: 'Відкриється магазин перлин',
+      en: 'The pearl store will open',
       es: `Se abrirá la tienda de ${shardsEs}`, 'pt-BR': 'A loja de pérolas será aberta',
       vi: 'Cửa hàng ngọc trai sẽ mở', id: 'Toko mutiara akan terbuka',
       tr: 'İnci mağazası açılacak', pl: 'Otworzy się sklep z perłami',
@@ -225,6 +232,9 @@ export default function ThemeShardPaywallModal({
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const str = useMemo(() => themePaywallCopy(lang), [lang]);
   const shardImg = useMemo(() => oskolokImageForPackShards(priceShards, appThemeMode), [priceShards, appThemeMode]);
+  // The modal can remain mounted while the app changes screen state; its only
+  // unbounded animation must therefore explicitly own foreground runtime.
+  const themePaywallRuntimeActive = useRuntimeActive(visible);
 
   const backdropO = useSharedValue(0);
   const sheetY = useSharedValue(60);
@@ -241,14 +251,6 @@ export default function ThemeShardPaywallModal({
       dragTranslateY.value = 0;
       // Settle без отскока — контракт «гибридного» движения (tests/motion_hybrid_contract).
       sheetY.value = withSpring(0, { damping: 22, stiffness: 220, mass: 0.9 });
-      ctaPulse.value = withRepeat(
-        withSequence(
-          withTiming(1, { duration: 1100, easing: Easing.inOut(Easing.quad) }),
-          withTiming(0, { duration: 1100, easing: Easing.inOut(Easing.quad) }),
-        ),
-        -1,
-        false,
-      );
     } else {
       // зачем: бесконечный луп обязан останавливаться при скрытии — иначе он
       // продолжает крутиться в фоне и жжёт кадры (правило перф-библии).
@@ -263,6 +265,25 @@ export default function ThemeShardPaywallModal({
       cancelAnimation(ctaPulse);
     };
   }, [visible, backdropO, sheetOpacity, sheetY, dragTranslateY, ctaPulse]);
+
+  // Keep the unbounded CTA pulse independent from the opening transition: a
+  // foreground/background change must freeze the loop, not replay the sheet.
+  useEffect(() => {
+    if (!themePaywallRuntimeActive) {
+      cancelAnimation(ctaPulse);
+      ctaPulse.value = 0;
+      return undefined;
+    }
+    ctaPulse.value = withRepeat(
+      withSequence(
+        withTiming(1, { duration: 1100, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0, { duration: 1100, easing: Easing.inOut(Easing.quad) }),
+      ),
+      -1,
+      false,
+    );
+    return () => cancelAnimation(ctaPulse);
+  }, [themePaywallRuntimeActive, ctaPulse]);
 
   const handleClose = useCallback(() => {
     if (purchasing) return;
@@ -364,7 +385,7 @@ export default function ThemeShardPaywallModal({
                       </View>
                     </GestureDetector>
 
-                    <ScrollView
+                    <ScrollView decelerationRate="fast"
                       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 14, paddingBottom: 20 }}
                       showsVerticalScrollIndicator={false}
                       bounces={false}
@@ -396,8 +417,11 @@ export default function ThemeShardPaywallModal({
                               letterSpacing: 1.2,
                               textTransform: 'uppercase',
                             }}
-                            numberOfLines={1}
                           >
+                            {/* зачем без numberOfLines: правило text-integrity — не
+                                усекать текст. Длинные локали («GÖRÜNÜM TEMASI»,
+                                «MOTYW WYGLĄDU») на узком экране переносятся на
+                                вторую строку, а не режутся троеточием. */}
                             {str.kicker}
                           </Text>
                           <Text style={{ color: t.textPrimary, fontSize: f.h2 + 1, fontWeight: '900', marginTop: 2 }}>

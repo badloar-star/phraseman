@@ -55,7 +55,7 @@ function DevBotsSheet({
       </View>
       {/* зачем: инструмент только для __DEV__ (никогда не виден пользователю, как
           'DEV +1' в app/referrals.tsx) — намеренно на английском, без triLang. */}
-      <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: 480 }}>
+      <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} style={{ maxHeight: 480 }}>
         <Text style={[styles.eyebrow, { color: t.textSecond, fontFamily: ds.fontFamily }]}>Bots</Text>
         <Row testID="dev-bots-add-3" label="Add 3 bots (different levels)" icon="person-add-outline" onPress={() => onAddBots(3)} />
         <Row testID="dev-bots-advance-all" label="All bots did today's lesson" icon="checkmark-done-outline" onPress={onAdvanceAll} />

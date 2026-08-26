@@ -73,13 +73,13 @@ function MistakeEli5ModalHybrid({ visible, onClose, lang, state, text }: Props) 
   const { height: viewportHeight } = useWindowDimensions();
 
   const closeLabel = triLang(lang, {
-    ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+    ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
   });
   const title = triLang(lang, {
-    ru: 'Объясни проще', uk: 'Поясни простіше', es: 'Explícalo más fácil', 'pt-BR': 'Explica mais fácil', vi: 'Giải thích dễ hơn', id: 'Jelaskan lebih mudah', tr: 'Daha basit anlat', pl: 'Wytłumacz prościej',
+    ru: 'Объясни проще', uk: 'Поясни простіше', en: 'Explain more simply', es: 'Explícalo más fácil', 'pt-BR': 'Explica mais fácil', vi: 'Giải thích dễ hơn', id: 'Jelaskan lebih mudah', tr: 'Daha basit anlat', pl: 'Wytłumacz prościej',
   });
   const loadingLine = triLang(lang, {
-    ru: 'Объясняю простыми словами…', uk: 'Пояснюю простими словами…', es: 'Explicando con palabras simples…', 'pt-BR': 'Explicando com palavras simples…', vi: 'Đang giải thích đơn giản…', id: 'Menjelaskan dengan kata sederhana…', tr: 'Basit kelimelerle anlatıyorum…', pl: 'Tłumaczę prostymi słowami…',
+    ru: 'Объясняю простыми словами…', uk: 'Пояснюю простими словами…', en: 'Explaining in simple words…', es: 'Explicando con palabras simples…', 'pt-BR': 'Explicando com palavras simples…', vi: 'Đang giải thích đơn giản…', id: 'Menjelaskan dengan kata sederhana…', tr: 'Basit kelimelerle anlatıyorum…', pl: 'Tłumaczę prostymi słowami…',
   });
 
   const handleClose = () => {
@@ -112,7 +112,7 @@ function MistakeEli5ModalHybrid({ visible, onClose, lang, state, text }: Props) 
       </CascadeItem>
 
       <CascadeItem index={1}>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={[styles.bodyScroll, { maxHeight: viewportHeight * 0.5 }]}
           contentContainerStyle={styles.bodyScrollContent}
           showsVerticalScrollIndicator={false}

@@ -194,6 +194,11 @@ export default function LessonTheoryV2Screen() {
     ru: 'am, is, are — каркас английской фразы',
     uk: 'am, is, are — каркас англійської фрази',
     es: 'am, is, are — la base de la frase en inglés',
+    'pt-BR': 'am, is, are — a base da frase em inglês',
+    vi: 'am, is, are — nền tảng của câu tiếng Anh',
+    id: 'am, is, are — kerangka kalimat bahasa Inggris',
+    tr: 'am, is, are — İngilizce cümlenin iskeleti',
+    pl: 'am, is, are — szkielet angielskiego zdania',
   });
   const claimStorageKey = useMemo(
     () => lessonTheoryXpClaimedKey(lessonId, studyTarget),

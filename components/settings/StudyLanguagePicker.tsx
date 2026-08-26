@@ -104,12 +104,14 @@ export default function StudyLanguagePicker({
 }: StudyLanguagePickerProps) {
   const router = useRouter();
   const { hasPremiumAccess } = usePremium();
-  const [startedLanguages, setStartedLanguages] = useState<readonly StudyTargetLang[]>([]);
+  const [startedLanguages, setStartedLanguages] = useState<readonly StudyTargetLang[]>([activeTarget]);
+  const [startedLanguagesResolved, setStartedLanguagesResolved] = useState(false);
   const [busy, setBusy] = useState(false);
 
   const reloadStarted = useCallback(async () => {
     const started = await getStartedStudyLanguages(activeTarget);
     setStartedLanguages(started);
+    setStartedLanguagesResolved(true);
   }, [activeTarget]);
 
   useEffect(() => {
@@ -123,35 +125,44 @@ export default function StudyLanguagePicker({
   const onSelect = useCallback((code: StudyTargetLang) => {
     if (busy || code === activeTarget) return;
     doHaptic();
+    if (!startedLanguagesResolved) {
+      // Open an opaque resolver route in this frame. It performs the storage
+      // decision after navigation, so a cold tap is both immediate and correct.
+      router.push({
+        pathname: '/language_welcome',
+        params: { target: code, resolveStarted: '1' },
+      } as any);
+      return;
+    }
+    const started = startedLanguages;
+    if (started.includes(code)) {
     void (async () => {
-      const started = await getStartedStudyLanguages(activeTarget);
-      if (started.includes(code)) {
-        // Уже начатый язык — свободное переключение, прогресс сохранён за языком.
-        setBusy(true);
-        try {
-          await applyStudyLanguageSelection(code, lang);
-          // зачем (аудит 2026-08-22): переключение раньше было полностью молчаливым —
-          // весь контент приложения менялся без единого подтверждения пользователю.
-          emitAppEvent('action_toast', actionToastTri('success', switchedLanguageToastCopy(code)));
-          await onSwitched();
-          await reloadStarted();
-        } finally {
-          setBusy(false);
-        }
-        return;
+      // Уже начатый язык — свободное переключение, прогресс сохранён за языком.
+      setBusy(true);
+      try {
+        await applyStudyLanguageSelection(code, lang);
+        // зачем (аудит 2026-08-22): переключение раньше было полностью молчаливым —
+        // весь контент приложения менялся без единого подтверждения пользователю.
+        emitAppEvent('action_toast', actionToastTri('success', switchedLanguageToastCopy(code)));
+        await onSwitched();
+        await reloadStarted();
+      } finally {
+        setBusy(false);
       }
-      if (shouldGateExtraLanguage({ target: code, startedLanguages: started, hasPremiumAccess })) {
-        openPremiumPaywall(router, {
-          context: 'language_add',
-          source: 'settings_language_picker',
-          language: code,
-        });
-        return;
-      }
-      // Новый язык разрешён — приветствие и пара вопросов для будущего плана.
-      router.push({ pathname: '/language_welcome', params: { target: code } } as any);
     })();
-  }, [busy, activeTarget, lang, hasPremiumAccess, router, onSwitched, reloadStarted]);
+      return;
+    }
+    if (shouldGateExtraLanguage({ target: code, startedLanguages: started, hasPremiumAccess })) {
+      openPremiumPaywall(router, {
+        context: 'language_add',
+        source: 'settings_language_picker',
+        language: code,
+      });
+      return;
+    }
+    // Новый язык разрешён — приветствие и пара вопросов для будущего плана.
+    router.push({ pathname: '/language_welcome', params: { target: code } } as any);
+  }, [busy, activeTarget, startedLanguages, startedLanguagesResolved, lang, hasPremiumAccess, router, onSwitched, reloadStarted]);
 
   return (
     <ScrollView

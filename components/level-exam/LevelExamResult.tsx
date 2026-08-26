@@ -73,7 +73,7 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={styles.safeArea}>
         <BouncyScrollView
-          decelerationRate="normal"
+          decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[styles.content, { padding: ds.spacing.lg, gap: ds.spacing.lg }]}
         >

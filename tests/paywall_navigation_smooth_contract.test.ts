@@ -40,11 +40,11 @@ describe('paywall navigation and scroll smoothness contract', () => {
     expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return renderPaywallRoute\(paywallRouteRef\.current\)/);
   });
 
-  it('keeps regular paywalls as native bottom modals', () => {
+  it('keeps regular paywalls dismissible but opens them without route delay', () => {
     const source = fs.readFileSync(path.join(root, 'components', 'paywall', 'paywallShared.tsx'), 'utf8');
 
     expect(source).toContain(
-      "return { presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: true } as const;",
+      "return { presentation: 'modal', animation: 'none', animationDuration: 0, gestureEnabled: true } as const;",
     );
   });
 

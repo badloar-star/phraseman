@@ -40,23 +40,23 @@ const SHADOW_KEYS = Array.from({ length: SHADOW_COUNT }, (_, i) => `scan-shadow-
 const BEAM_TRAVEL = 150;
 
 function scanTitle(lang: Lang): string {
-  return triLang(lang, { ru: 'Скан показал три награды', uk: 'Скан показав три нагороди', es: 'El escaneo mostró tres premios', 'pt-BR': 'O scan mostrou três prêmios', vi: 'Máy quét cho thấy ba phần thưởng', id: 'Pemindaian menunjukkan tiga hadiah', tr: 'Tarama üç ödül gösterdi', pl: 'Skan pokazał trzy nagrody' });
+  return triLang(lang, { ru: 'Скан показал три награды', uk: 'Скан показав три нагороди', en: 'The scan found three rewards', es: 'El escaneo mostró tres premios', 'pt-BR': 'O scan mostrou três prêmios', vi: 'Máy quét cho thấy ba phần thưởng', id: 'Pemindaian menunjukkan tiga hadiah', tr: 'Tarama üç ödül gösterdi', pl: 'Skan pokazał trzy nagrody' });
 }
 
 function scanEyebrow(lang: Lang): string {
-  return triLang(lang, { ru: 'Сундук лиги', uk: 'Скриня ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' });
+  return triLang(lang, { ru: 'Сундук лиги', uk: 'Скриня ліги', en: 'League chest', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' });
 }
 
 function opensLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'до вскрытия', uk: 'до розкриття', es: 'para abrirse', 'pt-BR': 'para abrir', vi: 'trước khi mở', id: 'sebelum dibuka', tr: 'açılışa kadar', pl: 'do otwarcia' });
+  return triLang(lang, { ru: 'до вскрытия', uk: 'до розкриття', en: 'to unlock', es: 'para abrirse', 'pt-BR': 'para abrir', vi: 'trước khi mở', id: 'sebelum dibuka', tr: 'açılışa kadar', pl: 'do otwarcia' });
 }
 
 function holdTopLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Удержаться в топ-7', uk: 'Втриматись у топ-7', es: 'Mantente en el top 7', 'pt-BR': 'Fique no top 7', vi: 'Giữ vững top 7', id: 'Bertahan di top 7', tr: 'İlk 7’de kal', pl: 'Utrzymaj się w top 7' });
+  return triLang(lang, { ru: 'Удержаться в топ-7', uk: 'Втриматись у топ-7', en: 'Stay in the top 7', es: 'Mantente en el top 7', 'pt-BR': 'Fique no top 7', vi: 'Giữ vững top 7', id: 'Bertahan di top 7', tr: 'İlk 7’de kal', pl: 'Utrzymaj się w top 7' });
 }
 
 function closeLabel(lang: Lang): string {
-  return triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  return triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 }
 
 /** Форматирует остаток «Nд ЧЧ:ММ» — как в мокапе, без секундной точности (спокойнее в тизере). */

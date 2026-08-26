@@ -741,19 +741,68 @@ export const loadPendingLevelGiftInventory = async (
   return items;
 };
 
+export type LevelSpinGiftOccurrenceClaimState = 'pending' | 'claimed' | 'missing';
+
+const levelSpinGiftOccurrenceClaimState = (
+  parsed: unknown,
+  owner: string,
+  requestId: string,
+  lane: 'base' | 'premium',
+): LevelSpinGiftOccurrenceClaimState => {
+  if (!Array.isArray(parsed)) return 'missing';
+  let matchCount = 0;
+  let matchedClaimed = false;
+  for (const rawEntry of parsed) {
+    if (!rawEntry || typeof rawEntry !== 'object' || Array.isArray(rawEntry)) continue;
+    const entry = rawEntry as { owner?: unknown; requestId?: unknown; occurrences?: unknown };
+    if (entry.owner !== owner || entry.requestId !== requestId || !Array.isArray(entry.occurrences)) continue;
+    for (const rawOccurrence of entry.occurrences) {
+      if (!rawOccurrence || typeof rawOccurrence !== 'object' || Array.isArray(rawOccurrence)) continue;
+      const occurrence = rawOccurrence as { lane?: unknown; claimed?: unknown };
+      if (occurrence.lane !== lane) continue;
+      matchCount += 1;
+      matchedClaimed = occurrence.claimed === true;
+    }
+  }
+  if (matchCount !== 1) return 'missing';
+  return matchedClaimed ? 'claimed' : 'pending';
+};
+
+export const readLevelSpinGiftOccurrenceClaimState = async (
+  requestId: string,
+  lane: 'base' | 'premium',
+  accountToken?: AccountGenerationToken,
+): Promise<LevelSpinGiftOccurrenceClaimState> => {
+  const token = accountToken ?? captureAccountGeneration();
+  return withAccountTransitionLock(async (): Promise<LevelSpinGiftOccurrenceClaimState> => {
+    if (!token.stableId || !requestId || !isCurrentAccountGeneration(token)) return 'missing';
+    const raw = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);
+    if (!isCurrentAccountGeneration(token)) return 'missing';
+    let parsed: unknown;
+    try { parsed = raw ? JSON.parse(raw) : []; } catch { return 'missing'; }
+    return levelSpinGiftOccurrenceClaimState(parsed, token.stableId, requestId, lane);
+  });
+};
+
 export const markLevelSpinGiftOccurrenceClaimed = async (
   requestId: string,
   lane: 'base' | 'premium',
   accountToken?: AccountGenerationToken,
-): Promise<void> => {
+): Promise<boolean> => {
   const token = accountToken ?? captureAccountGeneration();
-  await withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token)) return;
+  return withAccountTransitionLock(async (): Promise<boolean> => {
+    if (!token.stableId || !requestId || !isCurrentAccountGeneration(token)) return false;
     const raw = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);
-    if (!isCurrentAccountGeneration(token)) return;
-    const parsed: unknown = raw ? JSON.parse(raw) : [];
-    if (!Array.isArray(parsed)) return;
+    if (!isCurrentAccountGeneration(token)) return false;
+    let parsed: unknown;
+    try { parsed = raw ? JSON.parse(raw) : []; } catch { return false; }
+    if (!Array.isArray(parsed)) return false;
+    const currentState = levelSpinGiftOccurrenceClaimState(parsed, token.stableId, requestId, lane);
+    if (currentState === 'missing') return false;
+    if (currentState === 'claimed') return true;
+    let matchingLaneFound = false;
     const next = parsed.map((rawEntry) => {
+      if (!rawEntry || typeof rawEntry !== 'object' || Array.isArray(rawEntry)) return rawEntry;
       const entry = rawEntry as { owner?: unknown; requestId?: unknown; occurrences?: unknown };
       if (entry.owner !== token.stableId || entry.requestId !== requestId || !Array.isArray(entry.occurrences)) {
         return rawEntry;
@@ -761,13 +810,24 @@ export const markLevelSpinGiftOccurrenceClaimed = async (
       return {
         ...entry,
         occurrences: entry.occurrences.map((rawOccurrence) => {
-          const occurrence = rawOccurrence as { lane?: unknown };
-          return occurrence.lane === lane ? { ...occurrence, claimed: true } : rawOccurrence;
+          if (!rawOccurrence || typeof rawOccurrence !== 'object' || Array.isArray(rawOccurrence)) {
+            return rawOccurrence;
+          }
+          const occurrence = rawOccurrence as { lane?: unknown; claimed?: unknown };
+          if (occurrence.lane !== lane) return rawOccurrence;
+          matchingLaneFound = true;
+          return occurrence.claimed === true ? rawOccurrence : { ...occurrence, claimed: true };
         }),
       };
     });
-    if (!isCurrentAccountGeneration(token)) return;
+    if (!matchingLaneFound || !isCurrentAccountGeneration(token)) return false;
     await AsyncStorage.setItem(LEVEL_SPIN_GIFT_JOURNAL_KEY, JSON.stringify(next));
+    if (!isCurrentAccountGeneration(token)) return false;
+    const verifiedRaw = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);
+    if (!isCurrentAccountGeneration(token)) return false;
+    let verified: unknown;
+    try { verified = verifiedRaw ? JSON.parse(verifiedRaw) : []; } catch { return false; }
+    return levelSpinGiftOccurrenceClaimState(verified, token.stableId, requestId, lane) === 'claimed';
   });
 };
 

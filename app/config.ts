@@ -144,11 +144,9 @@ export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE;
 /**
  * Анимации переходов между экранами (slide вместо мгновенного появления/fade).
  *
- * ПО УМОЛЧАНИЮ ВКЛЮЧЕНО (владелец, 2026-08-16). Требование: «нажимаешь раздел —
- * карта раскрывается анимированно, а не телепортом». При fade/none экран просто
- * подменялся: не было ощущения, что карточка ВЕДЁТ в свой раздел. slide_from_right
- * даёт направленный переход — новый экран приезжает справа, предыдущий уходит,
- * Back отматывает обратно. Это то самое «раскрытие», которого не хватало.
+ * OWNER UPDATE (2026-08-25): production-навигация обязана реагировать мгновенно.
+ * Переходы разрешены только как явный локальный dev-preview и никогда не могут
+ * быть включены переменной окружения в store-сборке.
  *
  * История риска (сохранена намеренно): режим годами стоял выключенным, потому что
  * card-push slide ронял Android/Fabric на вложенных экранах и Back. С тех пор
@@ -157,12 +155,9 @@ export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE;
  * (section_sheet_navigation.ts) без крашей, и туда же уехал fade на Android.
  * То есть проблема была не в «любой анимации», а в конкретной старой связке.
  *
- * KILL-SWITCH: EXPO_PUBLIC_SCREEN_TRANSITIONS=0 → мгновенно возвращает прежнее
- * поведение (fade 140мс, при EXPO_PUBLIC_SCREEN_FADE=0 — none), пересборка не
- * нужна сверх обычного рестарта Metro. Если на реальном Android всплывут краши
- * на открытии/Back вложенных экранов — это первый рычаг.
+ * DEV OPT-IN: EXPO_PUBLIC_SCREEN_TRANSITIONS=1. Без явной единицы — `none`.
  */
-export const ENABLE_SCREEN_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_TRANSITIONS !== '0';
+export const ENABLE_SCREEN_TRANSITIONS = !IS_STORE_RELEASE && process.env.EXPO_PUBLIC_SCREEN_TRANSITIONS === '1';
 
 /**
  * Мягкий fade (~140мс) между экранами стека ВМЕСТО мгновенного 'none'.
@@ -171,32 +166,15 @@ export const ENABLE_SCREEN_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_TRANSITI
  * до того как JS дорендерил тяжёлый экран — в зазоре виден голый фон
  * контейнера («чёрный кадр»). Fade маскирует этот зазор.
  *
- * Применяется ТОЛЬКО на iOS (гейт по Platform в _layout.tsx): исторические
- * краши Android/Fabric были на native-stack transitions, поэтому Android
- * остаётся на 'none' + константный фон стека (см. contentStyle в _layout),
- * пока fade не проверен вручную на реальном Android-устройстве.
- * Kill-switch: EXPO_PUBLIC_SCREEN_FADE=0. Не влияет на ENABLE_SCREEN_TRANSITIONS
- * (это отдельный «полный» slide-режим, приоритетнее fade).
+ * Только явный local dev-preview: EXPO_PUBLIC_SCREEN_FADE=1. Production hard-off.
  */
-export const SCREEN_FADE_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_FADE !== '0';
+export const SCREEN_FADE_TRANSITIONS = !IS_STORE_RELEASE && process.env.EXPO_PUBLIC_SCREEN_FADE === '1';
 
 /**
- * «Шторки разделов» (стандарт владельца, ориентир — Bevel): разделы настроек и
- * инфо-экраны открываются как модальная страница с выездом снизу и закрываются
- * вниз (iOS — нативный pageSheet со скруглёнными углами и свайпом-вниз).
- *
- * Это анимация MODAL-презентации — тот же класс, что годами в проде у пейволов
- * (components/paywall/paywallShared.tsx: presentation:'modal' +
- * slide_from_bottom на ОБЕИХ платформах), а НЕ card-push slide, ронявший
- * Android/Fabric (см. ENABLE_SCREEN_TRANSITIONS выше). Опции собраны в
- * app/section_sheet_navigation.ts и закреплены контрактом
- * tests/navigation_back_underlay_contract.test.ts.
- *
- * Kill-switch: EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS=0 → выезд отключается
- * (fade на iOS / мгновенно на Android), сама modal-презентация сохраняется —
- * это поведение manage_subscription до редизайна, тоже продовое.
+ * Legacy dev-preview intent для совместимости конфигурации. Production hard-off;
+ * текущий section-sheet policy дополнительно фиксирует `none` независимо от флага.
  */
-export const SECTION_SHEET_TRANSITIONS = process.env.EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS !== '0';
+export const SECTION_SHEET_TRANSITIONS = !IS_STORE_RELEASE && process.env.EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS === '1';
 
 /**
  * Spanish interface/explanation locale.
@@ -210,6 +188,18 @@ export const SECTION_SHEET_TRANSITIONS = process.env.EXPO_PUBLIC_SECTION_SHEET_T
  * списком в constants/i18n.ts.
  */
 export const SPANISH_UI_LOCALE_ENABLED = true;
+
+/**
+ * English interface locale — pure UI language, deliberately NOT part of
+ * SourceLocale/source_locales.ts (see app/source_locales.ts comment: that
+ * list gates CONTENT locales — quizzes, exam packs, idiom/verb data — and
+ * none of those have English source content yet). English as an interface
+ * language only translates UI chrome; lesson/quiz content stays on whatever
+ * source language the learner already has (ru/uk/etc.). This is a reserved
+ * preflight flag only: it cannot enable runtime UI while `Lang` remains
+ * quarantined to the eight verified source locales.
+ */
+export const ENGLISH_UI_LOCALE_ENABLED = false;
 
 /**
  * DEV-only: в настройках RU/UK можно выбрать язык, который учишь.

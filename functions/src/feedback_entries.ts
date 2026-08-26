@@ -21,8 +21,9 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { createHash } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_ADMIN } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole } from './admin/roles';
@@ -30,6 +31,9 @@ import { hasAdminRole } from './admin/roles';
 const REGION = 'us-central1';
 
 export const FEEDBACK_ENTRIES_COLLECTION = 'feedback_entries';
+export const FEEDBACK_SUBMISSION_QUOTAS_COLLECTION = 'feedback_submission_quotas';
+export const FEEDBACK_DAILY_SUBMISSION_LIMIT = 30;
+export const FEEDBACK_AI_SUMMARY_CONSENT_VERSION = 'feedback-ai-summary-v2';
 
 /** Разделы, из которых можно отправить отзыв. Держать в синхроне с админкой (FEEDBACK_KIND_META). */
 export const FEEDBACK_KINDS = [
@@ -74,8 +78,70 @@ export function sanitizeFeedbackRating(value: unknown): number {
  * словаря/диалога/матча арены). Двоеточие и слэш в id Firestore недопустимы.
  */
 export function feedbackEntryDocId(stableUid: string, kind: FeedbackKind, entityId: string): string {
-  const safe = (s: string) => s.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 80);
-  return `${safe(stableUid)}__${kind}__${safe(entityId)}`;
+  const digest = createHash('sha256')
+    .update(JSON.stringify([stableUid, kind, entityId]), 'utf8')
+    .digest('base64url');
+  return `fbe_v2_${digest}`;
+}
+
+export function feedbackQuotaDocId(stableUid: string): string {
+  const digest = createHash('sha256')
+    .update(JSON.stringify([stableUid]), 'utf8')
+    .digest('base64url');
+  return `fbq_v2_${digest}`;
+}
+
+export function feedbackUtcDay(nowMs: number): string {
+  return new Date(nowMs).toISOString().slice(0, 10);
+}
+
+type FeedbackQuotaIdentity = {
+  stableUid: string;
+  authUid: string;
+  utcDay: string;
+};
+
+/**
+ * Atomically creates one immutable feedback receipt and consumes one daily
+ * quota unit. A replay checks the receipt first, so it neither overwrites the
+ * original nor consumes quota again, including after the daily cap is reached.
+ */
+export async function commitFeedbackEntryWithQuota(
+  db: FirebaseFirestore.Firestore,
+  feedbackRef: FirebaseFirestore.DocumentReference,
+  quotaRef: FirebaseFirestore.DocumentReference,
+  document: FirebaseFirestore.DocumentData,
+  identity: FeedbackQuotaIdentity,
+  nowMs: number,
+): Promise<boolean> {
+  return db.runTransaction(async (tx) => {
+    const existing = await tx.get(feedbackRef);
+    if (existing.exists) return true;
+
+    const quotaSnapshot = await tx.get(quotaRef);
+    const quotaData = quotaSnapshot.data() || {};
+    const currentCount = quotaData.utcDay === identity.utcDay
+      ? Math.max(0, Math.floor(Number(quotaData.count) || 0))
+      : 0;
+    if (currentCount >= FEEDBACK_DAILY_SUBMISSION_LIMIT) {
+      throw new HttpsError('resource-exhausted', 'feedback_daily_limit');
+    }
+
+    tx.create(feedbackRef, document);
+    tx.set(quotaRef, {
+      stableUid: identity.stableUid,
+      authUid: identity.authUid,
+      utcDay: identity.utcDay,
+      count: currentCount + 1,
+      updatedAtMs: nowMs,
+      serverUpdatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      ...(!quotaSnapshot.exists ? {
+        createdAtMs: nowMs,
+        serverCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      } : {}),
+    }, { merge: true });
+    return false;
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -102,6 +168,8 @@ export const submitFeedbackEntry = onCall(
     const message = text(payload.message, FEEDBACK_TEXT_MAX);
     const rating = sanitizeFeedbackRating(payload.rating);
     const entityId = text(payload.entityId, 120);
+    const consentGranted = payload.aiSummaryConsent === true
+      && text(payload.aiSummaryConsentVersion, 80) === FEEDBACK_AI_SUMMARY_CONSENT_VERSION;
 
     // Пустой отзыв без оценки писать незачем — это случайный тап.
     if (message.length < 2 && rating === 0) {
@@ -111,30 +179,42 @@ export const submitFeedbackEntry = onCall(
 
     const now = Date.now();
     const ref = db.collection(FEEDBACK_ENTRIES_COLLECTION).doc(feedbackEntryDocId(stableUid, kind, entityId));
+    const utcDay = feedbackUtcDay(now);
+    const quotaRef = db.collection(FEEDBACK_SUBMISSION_QUOTAS_COLLECTION)
+      .doc(feedbackQuotaDocId(stableUid));
+    const document = {
+      uid: stableUid,
+      authUid,
+      kind,
+      entityId,
+      entityLabel: nullableText(payload.entityLabel, 160),
+      message,
+      rating,
+      status: 'new',
+      userName: nullableText(payload.userName, 120),
+      lang: nullableText(payload.lang, 16),
+      platform: text(payload.platform, 40) || 'unknown',
+      appVersion: text(payload.appVersion, 80) || 'unknown',
+      aiSummaryConsent: consentGranted,
+      aiSummaryConsentVersion: consentGranted ? FEEDBACK_AI_SUMMARY_CONSENT_VERSION : null,
+      aiSummaryConsentAt: consentGranted ? admin.firestore.FieldValue.serverTimestamp() : null,
+      createdAt: new Date(now).toISOString(),
+      createdAtMs: now,
+      serverCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
 
-    // set/merge: повторная отправка правит свой же отзыв, не плодит мусор.
-    await ref.set(
-      {
-        uid: stableUid,
-        authUid,
-        kind,
-        entityId,
-        entityLabel: nullableText(payload.entityLabel, 160),
-        message,
-        rating,
-        status: 'new',
-        userName: nullableText(payload.userName, 120),
-        lang: nullableText(payload.lang, 16),
-        platform: text(payload.platform, 40) || 'unknown',
-        appVersion: text(payload.appVersion, 80) || 'unknown',
-        createdAt: new Date(now).toISOString(),
-        createdAtMs: now,
-        serverCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      },
-      { merge: true },
+    // A retry replays the original immutable receipt. It cannot edit message,
+    // consent, timestamps, or moderation status after the first accepted send.
+    const replayed = await commitFeedbackEntryWithQuota(
+      db,
+      ref,
+      quotaRef,
+      document,
+      { stableUid, authUid, utcDay },
+      now,
     );
 
-    return { ok: true, id: ref.id };
+    return { ok: true, id: ref.id, replayed };
   },
 );
 
@@ -144,7 +224,7 @@ export const submitFeedbackEntry = onCall(
 export const adminListFeedbackEntries = onCall(
   {
     region: REGION,
-    enforceAppCheck: ENFORCE_APP_CHECK,
+    enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
     timeoutSeconds: 15,
     memory: '256MiB',
     maxInstances: 10,

@@ -85,10 +85,42 @@ describe('widget schema v3 ↔ native decoders stay aligned', () => {
     expect(Number(iosMax?.[1])).toBeGreaterThanOrEqual(version);
   });
 
+  test('the iOS module is autolinkable at all (podspec exists)', () => {
+    // зачем: expo-modules-autolinking ищет *.podspec в подпапках модуля и, если
+    // не находит, возвращает null — модуль просто НЕ существует на iOS. Именно
+    // так iOS-виджет и не работал: Swift-класс был написан, но не собирался.
+    const iosDir = path.join(root, 'modules/phrase-widget/ios');
+    const podspecs = fs.readdirSync(iosDir).filter((f) => f.endsWith('.podspec'));
+    expect(podspecs.length).toBeGreaterThan(0);
+
+    const podName = path.basename(podspecs[0], '.podspec');
+    // The pod name becomes the Swift module name, so it must collide with
+    // neither the Swift class it contains nor the WidgetKit extension target.
+    expect(podName).not.toBe('PhraseWidgetModule');
+    expect(podName).not.toBe('PhraseWidget');
+
+    const spec = read(`modules/phrase-widget/ios/${podspecs[0]}`);
+    expect(spec).toContain('ExpoModulesCore');
+    expect(spec).toContain('*.swift');
+  });
+
   test('a widget sync failure is never dev-only', () => {
     // The __DEV__-only warning is exactly why a fully dead widget went unnoticed.
     const catchBlock = bridge.slice(bridge.lastIndexOf('} catch (error) {'));
     expect(catchBlock).toContain("console.warn('[widget_bridge] syncWidgetData failed:'");
     expect(catchBlock).not.toMatch(/if \(__DEV__\)[\s\S]*syncWidgetData failed/);
+  });
+
+  test('a missing native module is reported, not silently skipped', () => {
+    // зачем: `return false` без слова — ровно то, что скрывало непроставленный
+    // podspec: на устройстве это выглядело так же, как штатное отсутствие модуля
+    // в Expo Go.
+    const guard = bridge.slice(
+      bridge.indexOf('if (!PhraseWidget.isAvailable())'),
+      bridge.indexOf('const lang:'),
+    );
+    expect(guard).toContain('console.warn');
+    expect(guard).toContain('PhraseWidget');
+    expect(guard).toMatch(/Platform\.OS === 'ios'|Platform\.OS === 'android'/);
   });
 });

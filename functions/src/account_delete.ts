@@ -161,6 +161,15 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'app_activity', field: 'uid', values: 'stable' },
   { collection: 'app_errors', field: 'uid', values: 'stable' },
   { collection: 'error_reports', field: 'uid', values: 'stable' },
+  // Free-form feedback can contain personal data. Both the stable product
+  // identity and the current Firebase Auth identity are queryable so deletion
+  // remains complete across account linking and retries.
+  { collection: 'feedback_entries', field: 'uid', values: 'stable' },
+  { collection: 'feedback_entries', field: 'authUid', values: 'auth' },
+  { collection: 'max_voice_feedback', field: 'uid', values: 'stable' },
+  { collection: 'max_voice_feedback', field: 'authUid', values: 'auth' },
+  { collection: 'feedback_submission_quotas', field: 'stableUid', values: 'stable' },
+  { collection: 'feedback_submission_quotas', field: 'authUid', values: 'auth' },
   // Legacy MAX safety rows used both identities before the content-free 2026-08-21 boundary.
   { collection: 'safety_flags', field: 'uid', values: 'stable' },
   { collection: 'safety_flags', field: 'authUid', values: 'auth' },

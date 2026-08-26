@@ -1,19 +1,12 @@
 /**
- * Режим 5/7 — Контекстный пропуск. Источник вёрстки/анимаций:
+ * Активный режим 4/6 — Контекстный пропуск. Источник вёрстки/анимаций:
  * docs/v2/mockups/06-context-gap.html.
  *
  * зачем: грамматика различима только в контексте — нужен пропуск ВНУТРИ
  * предложения (не отдельный вопрос) и ровно 3 варианта под ним.
  *
- * Данные: макет ожидает предложение, заранее разбитое на pre/slot/post.
- * Сегодняшний контент даёт единый `prompt` без разметки пропуска — мы не
- * можем безопасно угадать, где внутри текста находится пропуск (риск
- * сломать смысл). Поэтому пропуск рендерится ПОСЛЕ prompt как отдельная
- * зона (не inline), а сам prompt остаётся эталонным текстом с пропуском,
- * если он уже размечен маркером "___" в контенте, — иначе слот просто
- * добавляется под предложением. Это осознанный компромисс этапа 1;
- * этап 3 (аудит контента) должен решить, добавлять ли pre/gap/post в схему
- * специально для context_gap_grammar.
+ * Данные: modePayload несёт отдельные localizedScene, gappedTargetPhrase и
+ * gapOptions. Компонент не угадывает место пропуска по общему prompt.
  */
 
 import React, { useEffect, useMemo, useRef } from "react";
@@ -27,9 +20,11 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useTheme } from "../../../components/ThemeContext";
-import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
+import { V2Chip } from "../../../components/ui/v2_ui";
+import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
-import { CONTEXT_GAP_GRAMMAR_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
+import { learningV2ModeContextGapCopyV1 } from "./mode_copy_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const GAP_MARKER = "___";
@@ -53,8 +48,6 @@ function ContextGapVariantV1({
   reducedMotion,
   disabled,
   onPress,
-  bg,
-  selectedBg,
   textColor,
 }: {
   readonly label: string;
@@ -71,7 +64,6 @@ function ContextGapVariantV1({
 }) {
   const lift = useSharedValue(0);
   const nudge = useSharedValue(0);
-  const press = useSharedValue(1);
 
   useEffect(() => {
     lift.value = withTiming(selected ? 1 : 0, {
@@ -94,45 +86,29 @@ function ContextGapVariantV1({
     transform: [
       { translateY: lift.value * -2 },
       { translateX: nudge.value },
-      { scale: press.value },
     ] as const,
   }));
 
   return (
     <Animated.View style={[styles.variantWrap, style]}>
-      <Pressable
-        accessibilityRole="button"
+      <V2Chip
+        singleLine
         accessibilityLabel={label}
-        accessibilityState={{ selected, disabled }}
         disabled={disabled}
-        onPressIn={() => {
-          if (reducedMotion) return;
-          void hapticLightImpact();
-          press.value = withTiming(0.97, { duration: 80, easing: EASE });
-        }}
-        onPressOut={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(1, { duration: 80, easing: EASE });
-        }}
         onPress={onPress}
-        style={[
-          styles.variant,
-          {
-            backgroundColor:
-              verdict === "ok" ? undefined : verdict === "bad" ? undefined : selected ? selectedBg : bg,
-          },
-        ]}
+        selected={selected}
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : dimmed ? "dim" : "idle"}
+        textStyle={[styles.variantText, styles.targetText, { color: textColor }]}
       >
-        <Text style={[styles.variantText, { color: textColor }]} numberOfLines={2}>
-          {label}
-        </Text>
-      </Pressable>
+        {label}
+      </V2Chip>
     </Animated.View>
   );
 }
 
 export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
   const { theme: t } = useTheme();
+  const palette = useTournamentPalette();
   const {
     prompt,
     options,
@@ -144,10 +120,23 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
     onPick,
     onPlayFullPhraseAudio,
     phase,
+    modePayload,
+    interfaceLocale,
   } = props;
+  if (modePayload && modePayload.family !== "context_gap_grammar") {
+    throw new Error("learning_v2_context_gap_payload_mismatch");
+  }
 
-  const { pre, hasGap, post } = useMemo(() => splitPromptAtGap(prompt), [prompt]);
+  const { pre, hasGap, post } = useMemo(
+    () => splitPromptAtGap(
+      modePayload?.family === "context_gap_grammar"
+        ? modePayload.gappedTargetPhrase
+        : prompt,
+    ),
+    [modePayload, prompt],
+  );
   const filled = options.find((option) => option.responseId === selectedChoiceId)?.text ?? null;
+  const copy = learningV2ModeContextGapCopyV1(interfaceLocale);
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -164,11 +153,16 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={styles.root}>
-      <Text style={[styles.taskLabel, { color: t.textMuted }]}>Заполни пропуск</Text>
+      <Text style={[styles.taskLabel, { color: palette.muted }]}>{copy.title}</Text>
+      <Text style={[styles.scene, { color: t.textMuted }]}>
+        {modePayload?.family === "context_gap_grammar"
+          ? modePayload.localizedScene[interfaceLocale]
+          : prompt}
+      </Text>
 
       <View style={styles.heroRow}>
         {hasGap ? (
-          <Text style={[styles.hero, { color: t.textPrimary }]}>
+          <Text style={[styles.hero, styles.targetLanguageText, { color: t.accent }]}>
             {pre}
             <Text
               style={[
@@ -186,7 +180,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
           </Text>
         ) : (
           <>
-            <Text style={[styles.hero, { color: t.textPrimary }]}>{prompt}</Text>
+            <Text style={[styles.hero, styles.targetLanguageText, { color: t.accent }]}>{prompt}</Text>
             <Text
               style={[
                 styles.gapSlot,
@@ -204,7 +198,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
         {onPlayFullPhraseAudio && (
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel="Прослушать фразу"
+            accessibilityLabel={copy.playPhrase}
             hitSlop={8}
             onPress={onPlayFullPhraseAudio}
             style={[styles.audioBtn, { backgroundColor: t.bgSurface2 }]}
@@ -269,10 +263,13 @@ const styles = StyleSheet.create({
     letterSpacing: 1.4,
     textTransform: "uppercase",
   },
+  scene: { fontSize: 15, lineHeight: 21, fontWeight: "600" },
   heroRow: { flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap", gap: 10 },
-  hero: { flex: 1, fontSize: 21, lineHeight: 28, fontWeight: "800", minWidth: 200 },
+  hero: { flex: 1, fontSize: 21, lineHeight: 28, minWidth: 200 },
+  targetLanguageText: { fontWeight: "900" },
+  targetText: { fontWeight: "900" },
   gapSlot: {
-    fontWeight: "800",
+    fontWeight: "900",
     borderRadius: 8,
     overflow: "hidden",
     paddingHorizontal: 4,
@@ -291,8 +288,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  variants: { flexDirection: "row", gap: 10 },
-  variantWrap: { flex: 1 },
+  variants: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 10,
+  },
+  variantWrap: { flexShrink: 0, maxWidth: "100%" },
   variant: {
     borderRadius: 18,
     paddingVertical: 14,
@@ -301,7 +303,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
     justifyContent: "center",
   },
-  variantText: { fontSize: 15.5, fontWeight: "700", textAlign: "center" },
+  variantText: { fontSize: 15.5, fontWeight: "900", textAlign: "center" },
   feedbackLane: { borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
 });

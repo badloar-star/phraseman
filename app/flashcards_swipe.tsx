@@ -22,11 +22,13 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import DuoPressable from '../components/DuoPressable';
-import { PRESS } from '../constants/motionHybrid';
+import { PRESS, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
@@ -87,6 +89,9 @@ import {
   flashcardsOfficialPacksAvailableForTarget,
 } from './flashcards_target_gate';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
@@ -306,6 +311,7 @@ function s(v: unknown): string {
 function cardCountLabel(lang: Lang, count: number): string {
   return `${count} ${triLang(lang, {
     ru: 'карточек',
+    en: 'cards',
     uk: 'карток',
     es: 'tarjetas',
     'pt-BR': "cartões",
@@ -490,6 +496,7 @@ function parseRouteIdList(value: string | string[] | undefined): string[] {
 function officialSourceSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Official pack',
+    en: 'Official pack',
     uk: 'Official pack',
     es: 'Official pack',
     'pt-BR': 'Official pack',
@@ -503,6 +510,7 @@ function officialSourceSubtitle(lang: Lang): string {
 function savedSourceTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Сохранённые карточки',
+    en: 'Saved cards',
     uk: 'Збережені картки',
     es: 'Tarjetas guardadas',
     'pt-BR': 'Cartões salvos',
@@ -516,6 +524,7 @@ function savedSourceTitle(lang: Lang): string {
 function customSourceTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Свои карточки',
+    en: 'My cards',
     uk: 'Свої картки',
     es: 'Tarjetas propias',
     'pt-BR': 'Seus cartões',
@@ -529,6 +538,7 @@ function customSourceTitle(lang: Lang): string {
 function personalListSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Личный список',
+    en: 'Personal list',
     uk: 'Особистий список',
     es: 'Lista personal',
     'pt-BR': 'Lista pessoal',
@@ -542,6 +552,7 @@ function personalListSubtitle(lang: Lang): string {
 function manualCardsSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Созданные вручную',
+    en: 'Created manually',
     uk: 'Створені вручну',
     es: 'Creadas a mano',
     'pt-BR': 'Criadas manualmente',
@@ -684,6 +695,7 @@ async function buildCommunitySources(
       title: packTitleForInterface(pack, lang),
       subtitle: triLang(lang, {
         ru: 'Community pack',
+        en: 'Community pack',
         uk: 'Community pack',
         es: 'Community pack',
         'pt-BR': "Pacote da comunidade",
@@ -909,9 +921,22 @@ function FlashcardsSwipeScreen() {
   const [loadError, setLoadError] = useState('');
   // Старт тренировки карточек = 1 ⚡ (владелец 2026-08-23: единая экономика —
   // платим за ПОПЫТКУ, ошибки внутри свайп-тренировки энергию не трогают).
-  const { confirmSpendOne: confirmSwipeEnergy, refundOne: refundSwipeEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmSwipeEnergy,
+    refundOne: refundSwipeEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [phase, setPhase] = useState<Phase>('select');
+  const [attemptSessionId, setAttemptSessionId] = useState(makeFeedbackAttemptId);
+  const swipeEnergyIntent = useEnergySessionIntent('flashcards_swipe', 'selected_decks', attemptSessionId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `flashcard-swipe:${attemptSessionId}`,
+    initialQuestionId: 'flashcard-swipe:loading',
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
   const [queue, setQueue] = useState<Prompt[]>([]);
   const mistakeCaptureRunRef = useRef(`flashcard-swipe-${Date.now().toString(36)}`);
@@ -949,6 +974,7 @@ function FlashcardsSwipeScreen() {
   const answeredPromptIdRef = useRef<string | null>(null);
   // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
   // Синхронный латч оплаты старта (см. комментарий внутри startSession).
@@ -1034,6 +1060,7 @@ function FlashcardsSwipeScreen() {
     () => ({
       title: triLang(lang, {
         ru: 'Тренировка карточек',
+        en: 'Flashcard training',
         uk: 'Тренування карток',
         es: 'Práctica de tarjetas',
         'pt-BR': "Treino de cartões",
@@ -1044,6 +1071,7 @@ function FlashcardsSwipeScreen() {
       }),
       settingsTitle: triLang(lang, {
         ru: 'Тренировка карточек',
+        en: 'Flashcard training',
         uk: 'Тренування карток',
         es: 'Práctica de tarjetas',
         'pt-BR': "Treino de cartões",
@@ -1054,6 +1082,7 @@ function FlashcardsSwipeScreen() {
       }),
       settings: triLang(lang, {
         ru: 'Настройки',
+        en: 'Settings',
         uk: 'Налаштування',
         es: 'Ajustes',
         'pt-BR': "Configurações",
@@ -1064,6 +1093,7 @@ function FlashcardsSwipeScreen() {
       }),
       start: triLang(lang, {
         ru: 'Начать',
+        en: 'Start',
         uk: 'Почати',
         es: 'Empezar',
         'pt-BR': "Começar",
@@ -1074,6 +1104,7 @@ function FlashcardsSwipeScreen() {
       }),
       reload: triLang(lang, {
         ru: 'Обновить',
+        en: 'Refresh',
         uk: 'Оновити',
         es: 'Actualizar',
         'pt-BR': "Atualizar",
@@ -1084,6 +1115,7 @@ function FlashcardsSwipeScreen() {
       }),
       empty: triLang(lang, {
         ru: 'Наборы откроются здесь — добавь свои фразы или загляни в магазин.',
+        en: 'Packs will show up here — add your own phrases or check the shop.',
         uk: 'Набори з\'являться тут — додай свої фрази або зазирни в магазин.',
         es: 'Aquí aparecerán tus packs — añade tus frases o pásate por la tienda.',
         'pt-BR': "Seus pacotes vão aparecer aqui — adicione frases ou veja a loja.",
@@ -1094,6 +1126,7 @@ function FlashcardsSwipeScreen() {
       }),
       saved: triLang(lang, {
         ru: 'Сохранённые карточки',
+        en: 'Saved cards',
         uk: 'Збережені картки',
         es: 'Tarjetas guardadas',
         'pt-BR': "Cartões salvos",
@@ -1104,6 +1137,7 @@ function FlashcardsSwipeScreen() {
       }),
       custom: triLang(lang, {
         ru: 'Свои карточки',
+        en: 'My cards',
         uk: 'Свої картки',
         es: 'Tarjetas propias',
         'pt-BR': "Cartões próprios",
@@ -1114,6 +1148,7 @@ function FlashcardsSwipeScreen() {
       }),
       official: triLang(lang, {
         ru: 'Official pack',
+        en: 'Official pack',
         uk: 'Official pack',
         es: 'Official pack',
         'pt-BR': "Pacote oficial",
@@ -1124,6 +1159,7 @@ function FlashcardsSwipeScreen() {
       }),
       match: triLang(lang, {
         ru: 'Да',
+        en: 'Yes',
         uk: 'Так',
         es: 'Sí',
         'pt-BR': "Sim",
@@ -1134,6 +1170,7 @@ function FlashcardsSwipeScreen() {
       }),
       mismatch: triLang(lang, {
         ru: 'Нет',
+        en: 'No',
         uk: 'Ні',
         es: 'No',
         'pt-BR': "Não",
@@ -1144,6 +1181,7 @@ function FlashcardsSwipeScreen() {
       }),
       matchAction: triLang(lang, {
         ru: 'Верно',
+        en: 'Match',
         uk: 'Вірно',
         es: 'Coincide',
         'pt-BR': "Certo",
@@ -1154,6 +1192,7 @@ function FlashcardsSwipeScreen() {
       }),
       mismatchAction: triLang(lang, {
         ru: 'Неверно',
+        en: 'No match',
         uk: 'Невірно',
         es: 'Incorrecto',
         'pt-BR': "Errado",
@@ -1164,6 +1203,7 @@ function FlashcardsSwipeScreen() {
       }),
       matchHint: triLang(lang, {
         ru: 'перевод совпадает',
+        en: 'translation matches',
         uk: 'переклад збігається',
         es: 'traducción correcta',
         'pt-BR': "tradução correta",
@@ -1174,6 +1214,7 @@ function FlashcardsSwipeScreen() {
       }),
       mismatchHint: triLang(lang, {
         ru: 'чужой перевод',
+        en: 'wrong translation',
         uk: 'чужий переклад',
         es: 'traducción incorrecta',
         'pt-BR': "tradução incorreta",
@@ -1184,6 +1225,7 @@ function FlashcardsSwipeScreen() {
       }),
       reveal: triLang(lang, {
         ru: 'Показать ответ',
+        en: 'Show answer',
         uk: 'Показати відповідь',
         es: 'Mostrar respuesta',
         'pt-BR': "Mostrar resposta",
@@ -1194,6 +1236,7 @@ function FlashcardsSwipeScreen() {
       }),
       continue: triLang(lang, {
         ru: 'Следующая фраза',
+        en: 'Next phrase',
         uk: 'Наступна фраза',
         es: 'Siguiente frase',
         'pt-BR': "Próxima frase",
@@ -1204,6 +1247,7 @@ function FlashcardsSwipeScreen() {
       }),
       wrongTitle: triLang(lang, {
         ru: 'Разберём ответ',
+        en: 'Let\'s review the answer',
         uk: 'Розберімо відповідь',
         es: 'Revisemos la respuesta',
         'pt-BR': "Vamos revisar a resposta",
@@ -1214,6 +1258,7 @@ function FlashcardsSwipeScreen() {
       }),
       hintTitle: triLang(lang, {
         ru: 'Ответ открыт',
+        en: 'Answer revealed',
         uk: 'Відповідь відкрито',
         es: 'Respuesta mostrada',
         'pt-BR': "Resposta mostrada",
@@ -1224,6 +1269,7 @@ function FlashcardsSwipeScreen() {
       }),
       recoveryNote: triLang(lang, {
         ru: 'Верну эту карточку чуть позже, чтобы закрепить.',
+        en: 'I\'ll bring this card back later to help it stick.',
         uk: 'Поверну цю картку трохи пізніше, щоб закріпити.',
         es: 'La volveré a mostrar pronto para fijarla.',
         'pt-BR': "Vou mostrar de novo em breve para fixar.",
@@ -1234,6 +1280,7 @@ function FlashcardsSwipeScreen() {
       }),
       mastered: triLang(lang, {
         ru: 'Закреплено',
+        en: 'Mastered',
         uk: 'Закріплено',
         es: 'Fijadas',
         'pt-BR': "Fixados",
@@ -1244,6 +1291,7 @@ function FlashcardsSwipeScreen() {
       }),
       inQueue: triLang(lang, {
         ru: 'в очереди',
+        en: 'in queue',
         uk: 'у черзі',
         es: 'en cola',
         'pt-BR': "na fila",
@@ -1254,6 +1302,7 @@ function FlashcardsSwipeScreen() {
       }),
       smartQueue: triLang(lang, {
         ru: 'Умная очередь',
+        en: 'Smart queue',
         uk: 'Розумна черга',
         es: 'Cola inteligente',
         'pt-BR': "Fila inteligente",
@@ -1264,6 +1313,7 @@ function FlashcardsSwipeScreen() {
       }),
       correctChoice: triLang(lang, {
         ru: 'Правильный выбор',
+        en: 'Correct choice',
         uk: 'Правильний вибір',
         es: 'Respuesta correcta',
         'pt-BR': "Resposta correta",
@@ -1274,6 +1324,7 @@ function FlashcardsSwipeScreen() {
       }),
       shownTranslation: triLang(lang, {
         ru: 'Этот перевод подходит?',
+        en: 'Does this translation match?',
         uk: 'Цей переклад підходить?',
         es: '¿Esta traducción coincide?',
         'pt-BR': "Esta tradução combina?",
@@ -1284,6 +1335,7 @@ function FlashcardsSwipeScreen() {
       }),
       phraseLabel: triLang(lang, {
         ru: 'Фраза',
+        en: 'Phrase',
         uk: 'Фраза',
         es: 'Frase',
         'pt-BR': "Frase",
@@ -1296,6 +1348,7 @@ function FlashcardsSwipeScreen() {
       // репорт «Кнопка начать не сработала». Теперь подпись сама объясняет причину.
       startLoading: triLang(lang, {
         ru: 'Загружаем наборы…',
+        en: 'Loading packs…',
         uk: 'Завантажуємо набори…',
         es: 'Cargando packs…',
         'pt-BR': 'Carregando pacotes…',
@@ -1306,6 +1359,7 @@ function FlashcardsSwipeScreen() {
       }),
       startNoSelection: triLang(lang, {
         ru: 'Выберите набор ниже',
+        en: 'Choose a pack below',
         uk: 'Виберіть набір нижче',
         es: 'Elige un pack abajo',
         'pt-BR': 'Escolha um pacote abaixo',
@@ -1316,6 +1370,7 @@ function FlashcardsSwipeScreen() {
       }),
       startStarting: triLang(lang, {
         ru: 'Готовим тренировку…',
+        en: 'Getting the session ready…',
         uk: 'Готуємо тренування…',
         es: 'Preparando la sesión…',
         'pt-BR': 'Preparando o treino…',
@@ -1328,6 +1383,7 @@ function FlashcardsSwipeScreen() {
       // (репорты «Не видна карточка с вопросом»). Просим отметить через «Нашёл ошибку».
       brokenCardPhrase: triLang(lang, {
         ru: 'Текст карточки не загрузился',
+        en: 'Card text failed to load',
         uk: 'Текст картки не завантажився',
         es: 'No se cargó el texto de la tarjeta',
         'pt-BR': 'O texto do cartão não carregou',
@@ -1338,6 +1394,7 @@ function FlashcardsSwipeScreen() {
       }),
       correctTranslation: triLang(lang, {
         ru: 'Правильный перевод',
+        en: 'Correct translation',
         uk: 'Правильний переклад',
         es: 'Traducción correcta',
         'pt-BR': "Tradução correta",
@@ -1348,6 +1405,7 @@ function FlashcardsSwipeScreen() {
       }),
       done: triLang(lang, {
         ru: 'Готово',
+        en: 'Done',
         uk: 'Готово',
         es: 'Listo',
         'pt-BR': "Pronto",
@@ -1358,6 +1416,7 @@ function FlashcardsSwipeScreen() {
       }),
       cleanDone: triLang(lang, {
         ru: 'Идеальный раунд',
+        en: 'Perfect round',
         uk: 'Ідеальний раунд',
         es: 'Ronda perfecta',
         'pt-BR': "Rodada perfeita",
@@ -1368,6 +1427,7 @@ function FlashcardsSwipeScreen() {
       }),
       cleanDoneSub: triLang(lang, {
         ru: 'Без ошибок и подсказок. Эти карточки уйдут на повтор позже.',
+        en: 'No mistakes or hints. These cards will come back for review later.',
         uk: 'Без помилок і підказок. Ці картки підуть на повтор пізніше.',
         es: 'Sin errores ni pistas. Estas tarjetas volverán más tarde.',
         'pt-BR': "Sem erros nem pistas. Estes cartões voltarão mais tarde.",
@@ -1378,6 +1438,7 @@ function FlashcardsSwipeScreen() {
       }),
       learnedDoneSub: triLang(lang, {
         ru: 'Слабые карточки останутся ближе в очереди, пока не закрепятся.',
+        en: 'Weak cards will stay closer in the queue until they stick.',
         uk: 'Слабкі картки залишаться ближче в черзі, доки не закріпляться.',
         es: 'Las tarjetas débiles seguirán cerca hasta fijarse.',
         'pt-BR': "Os cartões fracos continuarão por perto até fixarem.",
@@ -1388,6 +1449,7 @@ function FlashcardsSwipeScreen() {
       }),
       nextRound: triLang(lang, {
         ru: 'Ещё раунд',
+        en: 'Another round',
         uk: 'Ще раунд',
         es: 'Otra ronda',
         'pt-BR': "Outra rodada",
@@ -1398,6 +1460,7 @@ function FlashcardsSwipeScreen() {
       }),
       again: triLang(lang, {
         ru: 'Повторить',
+        en: 'Retry',
         uk: 'Повторити',
         es: 'Repetir',
         'pt-BR': "Repetir",
@@ -1408,6 +1471,7 @@ function FlashcardsSwipeScreen() {
       }),
       toSets: triLang(lang, {
         ru: 'Настроить',
+        en: 'Adjust',
         uk: 'Налаштувати',
         es: 'Ajustar',
         'pt-BR': "Ajustar",
@@ -1418,6 +1482,7 @@ function FlashcardsSwipeScreen() {
       }),
       scoreLabel: triLang(lang, {
         ru: 'Очки',
+        en: 'Points',
         uk: 'Очки',
         es: 'Puntos',
         'pt-BR': "Pontos",
@@ -1428,6 +1493,7 @@ function FlashcardsSwipeScreen() {
       }),
       streakLabel: triLang(lang, {
         ru: 'Серия',
+        en: 'Streak',
         uk: 'Серія',
         es: 'Racha',
         'pt-BR': "Sequência",
@@ -1438,6 +1504,7 @@ function FlashcardsSwipeScreen() {
       }),
       mistakes: triLang(lang, {
         ru: 'Ошибки',
+        en: 'Mistakes',
         uk: 'Помилки',
         es: 'Errores',
         'pt-BR': "Erros",
@@ -1448,6 +1515,7 @@ function FlashcardsSwipeScreen() {
       }),
       hints: triLang(lang, {
         ru: 'Подсказки',
+        en: 'Hints',
         uk: 'Підказки',
         es: 'Pistas',
         'pt-BR': "Pistas",
@@ -1458,6 +1526,7 @@ function FlashcardsSwipeScreen() {
       }),
       bestStreak: triLang(lang, {
         ru: 'Лучшая серия',
+        en: 'Best streak',
         uk: 'Найкраща серія',
         es: 'Mejor racha',
         'pt-BR': "Melhor sequência",
@@ -1468,6 +1537,7 @@ function FlashcardsSwipeScreen() {
       }),
       cardLimit: triLang(lang, {
         ru: 'Карточек в сессии',
+        en: 'Cards in session',
         uk: 'Карток у сесії',
         es: 'Tarjetas en la sesión',
         'pt-BR': "Cartões na sessão",
@@ -1478,6 +1548,7 @@ function FlashcardsSwipeScreen() {
       }),
       allCards: triLang(lang, {
         ru: 'Все',
+        en: 'All',
         uk: 'Усі',
         es: 'Todas',
         'pt-BR': "Todas",
@@ -1488,6 +1559,7 @@ function FlashcardsSwipeScreen() {
       }),
       quickRound: triLang(lang, {
         ru: 'Быстро',
+        en: 'Fast',
         uk: 'Швидко',
         es: 'Rápida',
         'pt-BR': "Rápida",
@@ -1498,6 +1570,7 @@ function FlashcardsSwipeScreen() {
       }),
       normalRound: triLang(lang, {
         ru: 'Нормально',
+        en: 'Normal',
         uk: 'Звично',
         es: 'Normal',
         'pt-BR': "Normal",
@@ -1508,6 +1581,7 @@ function FlashcardsSwipeScreen() {
       }),
       deepRound: triLang(lang, {
         ru: 'Глубоко',
+        en: 'Deep',
         uk: 'Глибоко',
         es: 'Profunda',
         'pt-BR': "Profunda",
@@ -1518,6 +1592,7 @@ function FlashcardsSwipeScreen() {
       }),
       minutes2: triLang(lang, {
         ru: '2 мин',
+        en: '2 min',
         uk: '2 хв',
         es: '2 min',
         'pt-BR': "2 min",
@@ -1528,6 +1603,7 @@ function FlashcardsSwipeScreen() {
       }),
       minutes5: triLang(lang, {
         ru: '5 мин',
+        en: '5 min',
         uk: '5 хв',
         es: '5 min',
         'pt-BR': "5 min",
@@ -1538,6 +1614,7 @@ function FlashcardsSwipeScreen() {
       }),
       minutes10: triLang(lang, {
         ru: '10 мин',
+        en: '10 min',
         uk: '10 хв',
         es: '10 min',
         'pt-BR': "10 min",
@@ -1548,6 +1625,7 @@ function FlashcardsSwipeScreen() {
       }),
       sourcesTitle: triLang(lang, {
         ru: 'Наборы',
+        en: 'Packs',
         uk: 'Набори',
         es: 'Packs',
         'pt-BR': "Pacotes",
@@ -1558,6 +1636,7 @@ function FlashcardsSwipeScreen() {
       }),
       noCardsTitle: triLang(lang, {
         ru: 'Нет карточек для тренировки',
+        en: 'No cards to practice',
         uk: 'Немає карток для тренування',
         es: 'No hay tarjetas para practicar',
         'pt-BR': "Não há cartões para praticar",
@@ -1568,6 +1647,7 @@ function FlashcardsSwipeScreen() {
       }),
       noCardsSub: triLang(lang, {
         ru: 'Сохрани карточки или добавь набор, и тренировка запустится отсюда в один тап.',
+        en: 'Save cards or add a pack, and training will start from here in one tap.',
         uk: 'Збережи картки або додай набір, і тренування запускатиметься звідси в один дотик.',
         es: 'Guarda tarjetas o añade un pack, y la práctica arrancará desde aquí con un toque.',
         'pt-BR': "Salve cartões ou adicione um pacote, e o treino começará daqui com um toque.",
@@ -1578,6 +1658,7 @@ function FlashcardsSwipeScreen() {
       }),
       due: triLang(lang, {
         ru: 'к повтору',
+        en: 'to review',
         uk: 'до повтору',
         es: 'por repasar',
         'pt-BR': "para revisar",
@@ -1588,6 +1669,7 @@ function FlashcardsSwipeScreen() {
       }),
       weak: triLang(lang, {
         ru: 'слабые',
+        en: 'weak',
         uk: 'слабкі',
         es: 'débiles',
         'pt-BR': "fracos",
@@ -1598,6 +1680,7 @@ function FlashcardsSwipeScreen() {
       }),
       fresh: triLang(lang, {
         ru: 'новые',
+        en: 'new',
         uk: 'нові',
         es: 'nuevas',
         'pt-BR': "novos",
@@ -1609,6 +1692,7 @@ function FlashcardsSwipeScreen() {
       // зачем: текст одноразовой подсказки на экране тренировки — жест/аудио/кнопки в одной строке.
       swipeHint: triLang(lang, {
         ru: 'Смахни карточку вправо/влево или используй кнопки. Значок динамика озвучит фразу.',
+        en: 'Swipe the card right or left, or use the buttons. The speaker icon reads the phrase aloud.',
         uk: 'Змахни картку вправо/вліво або використай кнопки. Значок динаміка озвучить фразу.',
         es: 'Desliza la tarjeta a la derecha o izquierda, o usa los botones. El icono del altavoz la pronuncia.',
         'pt-BR': 'Deslize o cartão para a direita/esquerda ou use os botões. O ícone de som lê a frase.',
@@ -1621,6 +1705,7 @@ function FlashcardsSwipeScreen() {
       // ошибке использовался text.reload («Обновить»), что неверно озвучивалось скринридером.
       dismissHint: triLang(lang, {
         ru: 'Закрыть подсказку',
+        en: 'Dismiss hint',
         uk: 'Закрити підказку',
         es: 'Cerrar sugerencia',
         'pt-BR': 'Fechar dica',
@@ -1631,6 +1716,7 @@ function FlashcardsSwipeScreen() {
       }),
       sessionSummary: triLang(lang, {
         ru: 'Слабые вернутся внутри сессии. Лёгкие уйдут на повтор позже.',
+        en: 'Weak cards return within the session. Easy ones go up for review later.',
         uk: 'Слабкі повернуться в сесії. Легкі підуть на повтор пізніше.',
         es: 'Las débiles vuelven en la sesión. Las fáciles se repasan más tarde.',
         'pt-BR': "As fracas voltam na sessão. As fáceis serão revisadas mais tarde.",
@@ -1668,6 +1754,7 @@ function FlashcardsSwipeScreen() {
           title: text.saved,
           subtitle: triLang(lang, {
             ru: 'Личный список',
+            en: 'Personal list',
             uk: 'Особистий список',
             es: 'Lista personal',
             'pt-BR': "Lista pessoal",
@@ -1689,6 +1776,7 @@ function FlashcardsSwipeScreen() {
           title: text.custom,
           subtitle: triLang(lang, {
             ru: 'Созданные вручную',
+            en: 'Created manually',
             uk: 'Створені вручну',
             es: 'Creadas a mano',
             'pt-BR': "Criados manualmente",
@@ -1726,6 +1814,7 @@ function FlashcardsSwipeScreen() {
       setLoadError(
         triLang(lang, {
           ru: 'Наборы не загрузились.',
+          en: 'Packs failed to load.',
           uk: 'Не вдалося завантажити набори.',
           es: 'No se pudieron cargar los packs.',
           'pt-BR': "Não foi possível carregar os pacotes.",
@@ -1889,6 +1978,7 @@ function FlashcardsSwipeScreen() {
     setStats(restored.stats);
     setSessionInfo(info);
     setPendingDraft(null);
+    setAttemptSessionId(makeFeedbackAttemptId());
     setPhase('play');
   }, [pendingDraft, position]);
 
@@ -1913,7 +2003,7 @@ function FlashcardsSwipeScreen() {
     let energyCharged = false;
     let energyResult: Awaited<ReturnType<typeof confirmSwipeEnergy>>;
     try {
-      energyResult = await confirmSwipeEnergy();
+      energyResult = await confirmSwipeEnergy(swipeEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
       energyCharged = energyResult === 'spent';
@@ -1931,10 +2021,11 @@ function FlashcardsSwipeScreen() {
       if (cards.length === 0) {
         // зачем: тренировка не началась (в наборах нет подходящих карточек) —
         // плата за вход возвращается.
-        if (energyCharged) void refundSwipeEnergy();
+        if (energyCharged) void refundSwipeEnergy(swipeEnergyIntent.operationId, 'empty_pool').catch(() => {});
         setLoadError(
           triLang(lang, {
             ru: 'В выбранных наборах нет карточек с переводом.',
+            en: 'The selected packs have no cards with a translation.',
             uk: 'В обраних наборах немає карток із перекладом.',
             es: 'Los packs elegidos no tienen tarjetas con traducción.',
             'pt-BR': "Os pacotes escolhidos não têm cartões com tradução.",
@@ -1969,6 +2060,8 @@ function FlashcardsSwipeScreen() {
       setQueue(buildPromptQueue(sessionCards));
       setStats(initialStats(sessionCards.length));
       setSessionInfo(info);
+      if (energyCharged) void acknowledgeSessionStart(swipeEnergyIntent.operationId);
+      setAttemptSessionId(makeFeedbackAttemptId());
       setPhase('play');
     } finally {
       setStarting(false);
@@ -2083,6 +2176,11 @@ function FlashcardsSwipeScreen() {
 
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
+
+  useEffect(() => {
+    if (phase !== 'play' || !currentPrompt) return;
+    attempts.updateQuestion(currentPrompt.id);
+  }, [attempts.updateQuestion, currentPrompt?.id, phase]);
 
   /**
    * FIX (владелец, 2026-08-13): «когда свайпаешь, она улетает, а затем возвращается».
@@ -2318,6 +2416,10 @@ function FlashcardsSwipeScreen() {
       clearTimeout(settleGuardRef.current);
       settleGuardRef.current = null;
     }
+    if (attemptsModalTimerRef.current) {
+      clearTimeout(attemptsModalTimerRef.current);
+      attemptsModalTimerRef.current = null;
+    }
   }, []);
 
   const applyAnswer = useCallback(
@@ -2327,6 +2429,10 @@ function FlashcardsSwipeScreen() {
       const prev = progressRef.current[key] ?? emptyProgress();
       const cardProgress = { ...prev, attempts: prev.attempts + 1 };
       progressRef.current[key] = cardProgress;
+      const attemptEffect = attempts.registerVerdict({
+        answerAttemptId: `${mistakeCaptureRunRef.current}:${prompt.id}:${cardProgress.attempts}`,
+        verdict: correct ? 'correct' : 'pedagogical_wrong',
+      });
 
       if (!correct) {
         cardProgress.wrong += 1;
@@ -2355,6 +2461,14 @@ function FlashcardsSwipeScreen() {
             },
             facet: { kind: 'meaning', expected: prompt.card.en },
           }).catch(() => {});
+        }
+        if (attemptEffect === 'attempts_exhausted') {
+          audio.stop();
+          if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+          attemptsModalTimerRef.current = setTimeout(
+            () => setShowAttemptsModal(true),
+            SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+          );
         }
         return;
       }
@@ -2395,12 +2509,12 @@ function FlashcardsSwipeScreen() {
         );
       }
     },
-    [makePrompt, queue, showCorrectTranslationReminder, studyTarget, trainingCards, updateCardMemory],
+    [attempts.registerVerdict, audio, makePrompt, queue, showCorrectTranslationReminder, studyTarget, trainingCards, updateCardMemory],
   );
 
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
-      if (!currentPrompt || feedback || settling || settlingRef.current) return;
+      if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
       if (answeredPromptIdRef.current === currentPrompt.id) return;
       answeredPromptIdRef.current = currentPrompt.id;
       clearCorrectTranslationReminder();
@@ -2426,11 +2540,11 @@ function FlashcardsSwipeScreen() {
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
+    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
-    if (!currentPrompt || feedback || settling || settlingRef.current) return;
+    if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
     clearCorrectTranslationReminder();
     void hapticTap();
     // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
@@ -2449,10 +2563,10 @@ function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [clearCorrectTranslationReminder, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
+  }, [attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
 
   const continueAfterFeedback = useCallback(() => {
-    if (!feedback) return;
+    if (attempts.state.phase !== 'active' || !feedback) return;
     void hapticTap();
     const rest = queue.slice(1);
     setQueue(
@@ -2461,9 +2575,10 @@ function FlashcardsSwipeScreen() {
       ),
     );
     setFeedback(null);
-  }, [feedback, makePrompt, queue, trainingCards]);
+  }, [attempts.state.phase, feedback, makePrompt, queue, trainingCards]);
 
   const speakCurrentCard = useCallback(() => {
+    if (attempts.state.phase !== 'active') return;
     const textToSpeak = currentPrompt?.card.en?.trim();
     if (!textToSpeak) return;
     void hapticTap();
@@ -2472,7 +2587,26 @@ function FlashcardsSwipeScreen() {
     // движка по умолчанию). Даём speak() самому взять settings.speechVoiceId и
     // при наличии — качественный клип.
     audio.speak(textToSpeak, undefined, { language: 'en-US' });
-  }, [audio, currentPrompt?.card.en]);
+  }, [attempts.state.phase, audio, currentPrompt?.card.en]);
+
+  const recoverSwipeAttempts = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+    } catch {
+      // The shared modal stays open; the current card, feedback and queue remain untouched.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+
+  const endExhaustedSwipe = useCallback(() => {
+    audio.stop();
+    attempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    draftRestoreAttemptedRef.current = true;
+    void clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
+    safeRouterBack(router, '/flashcards' as any);
+  }, [attempts.endAttemptsSession, audio, router, studyTarget]);
 
   const panResponder = useMemo(
     () =>
@@ -2480,6 +2614,7 @@ function FlashcardsSwipeScreen() {
         onMoveShouldSetPanResponder: (_, gesture) =>
           !isCompactFlashcardsTask &&
           !!currentPrompt &&
+          attempts.state.phase === 'active' &&
           !feedback &&
           !settling &&
           Math.abs(gesture.dx) > 8 &&
@@ -2539,7 +2674,7 @@ function FlashcardsSwipeScreen() {
           }).start();
         },
       }),
-    [answerCurrent, currentPrompt, feedback, isCompactFlashcardsTask, position, settling, width],
+    [answerCurrent, attempts.state.phase, currentPrompt, feedback, isCompactFlashcardsTask, position, settling, width],
   );
 
   const cardWidth = Math.min(width - (isCompactFlashcardsTask ? 32 : 36), 430);
@@ -2651,7 +2786,7 @@ function FlashcardsSwipeScreen() {
   const renderSelect = () => (
     <View style={styles.selectRoot}>
     <Animated.ScrollView
-      decelerationRate="normal"
+      decelerationRate="fast"
       scrollEventThrottle={16}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
       contentContainerStyle={[
@@ -2672,6 +2807,7 @@ function FlashcardsSwipeScreen() {
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           accessibilityLabel={triLang(lang, {
             ru: 'Назад',
+            en: 'Back',
             uk: 'Назад',
             es: 'Atrás',
             'pt-BR': "Voltar",
@@ -2730,6 +2866,7 @@ function FlashcardsSwipeScreen() {
               <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
                 {triLang(lang, {
                   ru: 'Продолжить тренировку',
+                  en: 'Continue training',
                   uk: 'Продовжити тренування',
                   es: 'Continuar entrenamiento',
                   'pt-BR': 'Continuar treino',
@@ -2745,7 +2882,8 @@ function FlashcardsSwipeScreen() {
               activeOpacity={0.75}
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
-                ru: 'Начать заново', uk: 'Почати заново', es: 'Empezar de nuevo',
+                ru: 'Начать заново',
+                en: 'Start over', uk: 'Почати заново', es: 'Empezar de nuevo',
                 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai ulang',
                 tr: 'Baştan başla', pl: 'Zacznij od nowa',
               })}
@@ -2755,6 +2893,7 @@ function FlashcardsSwipeScreen() {
               <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Начать заново',
+                  en: 'Start over',
                   uk: 'Почати заново',
                   es: 'Empezar de nuevo',
                   'pt-BR': 'Começar de novo',
@@ -2860,6 +2999,7 @@ function FlashcardsSwipeScreen() {
           style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface, alignSelf: 'flex-start' }]}
           accessibilityLabel={triLang(lang, {
             ru: 'Выйти из тренировки',
+            en: 'Exit training',
             uk: 'Вийти з тренування',
             es: 'Salir de la práctica',
             'pt-BR': "Sair do treino",
@@ -2946,12 +3086,18 @@ function FlashcardsSwipeScreen() {
       .join('\n');
     return (
       <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(8, bottomInset + 6) : Math.max(14, bottomInset + 10) }]}>
+        <SessionAttemptsHud
+          remaining={attempts.state.remainingAttempts}
+          locale={lang}
+          testID="flashcards-swipe-attempts-hud"
+        />
         <View style={[styles.playHeader, isCompactFlashcardsTask && styles.compactPlayHeader]}>
           <TapScale
             onPress={exitTraining}
             style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface }]}
             accessibilityLabel={triLang(lang, {
               ru: 'Выйти из тренировки',
+              en: 'Exit training',
               uk: 'Вийти з тренування',
               es: 'Salir de la práctica',
               'pt-BR': "Sair do treino",
@@ -3109,7 +3255,7 @@ function FlashcardsSwipeScreen() {
                   dataId={`flashcard_${currentPrompt.card.id ?? 'unknown'}`}
                   dataText={reportDataText}
                   variant="icon-flag"
-                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', en: 'Report a card error', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
                   testID="flashcards-swipe-report"
                 />
               </View>
@@ -3122,6 +3268,7 @@ function FlashcardsSwipeScreen() {
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, {
                   ru: 'Озвучить карточку',
+                  en: 'Play card audio',
                   uk: 'Озвучити картку',
                   es: 'Escuchar tarjeta',
                   'pt-BR': 'Ouvir cartão',
@@ -3175,7 +3322,7 @@ function FlashcardsSwipeScreen() {
             </View>
 
             {feedback ? (
-              <ScrollView
+              <ScrollView decelerationRate="fast"
                 style={[
                   styles.feedbackBox,
                   isCompactFlashcardsTask && styles.compactFeedbackBox,
@@ -3275,6 +3422,9 @@ function FlashcardsSwipeScreen() {
             </View>
           </>
         )}
+        {attempts.state.phase !== 'active' ? (
+          <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
+        ) : null}
       </View>
     );
   };
@@ -3296,6 +3446,7 @@ function FlashcardsSwipeScreen() {
         style={[styles.noCardsBack, styles.iconButton, { backgroundColor: t.bgSurface }]}
         accessibilityLabel={triLang(lang, {
           ru: 'Назад',
+          en: 'Back',
           uk: 'Назад',
           es: 'Atrás',
           'pt-BR': "Voltar",
@@ -3396,6 +3547,16 @@ function FlashcardsSwipeScreen() {
         </ContentWrap>
       </SafeAreaView>
       <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void recoverSwipeAttempts('gift'); }}
+        onSpendRunes={() => { void recoverSwipeAttempts('runes'); }}
+        onEndSession={endExhaustedSwipe}
+      />
     </ScreenGradient>
   );
 }
@@ -3631,6 +3792,10 @@ const styles = StyleSheet.create({
   playWrap: {
     flex: 1,
     paddingTop: 10,
+  },
+  attemptsInputBlocker: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 50,
   },
   compactPlayWrap: {
     paddingTop: 6,

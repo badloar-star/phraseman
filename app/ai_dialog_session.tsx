@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  FlatList,
   TextInput,
   Animated,
   ActivityIndicator,
@@ -17,7 +17,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -66,6 +66,9 @@ import {
 } from './ai_dialog_client';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import DialogVerdictScreen from '../components/DialogVerdictScreen';
+import FeedbackRatingCard from '../components/FeedbackRatingCard';
+import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { sceneThemeFor } from '../constants/dialogSceneThemes';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
@@ -161,6 +164,7 @@ function dialogRetryLabel(lang: Lang): string {
   return triLang(lang, {
     ru: 'Отправить снова',
     uk: 'Надіслати знову',
+    en: 'Send again',
     es: 'Enviar de nuevo',
     'pt-BR': 'Enviar de novo',
     vi: 'Gửi lại',
@@ -173,6 +177,7 @@ function dialogRetryLabel(lang: Lang): string {
 function AiDialogSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess, accessResolved } = usePremium();
   // Доступ к фиче «ИИ-диалоги» с учётом «Пульта»: true → пейвол не показываем
@@ -191,7 +196,8 @@ function AiDialogSession() {
   //
   // Латч живёт на монтирование: родительский маршрут даёт key=scenarioId, то
   // есть на каждый новый диалог компонент пересоздаётся и платится честно.
-  const { confirmSpendOne: confirmDialogEnergy, energyReady: dialogEnergyReady } = useEnergy();
+  const { confirmSpendOne: confirmDialogEnergy, acknowledgeSessionStart, energyReady: dialogEnergyReady } = useEnergy();
+  const dialogEnergyIntent = useEnergySessionIntent('ai_dialog', 'direct', feedbackAttemptId);
   const [dialogNoEnergy, setDialogNoEnergy] = useState(false);
   const dialogEntryChargedRef = useRef(false);
   useEffect(() => {
@@ -199,11 +205,12 @@ function AiDialogSession() {
     // placeholder (isUnlimited=false, energy=MAX) — списали бы у подписчика.
     if (!dialogEnergyReady || dialogEntryChargedRef.current) return;
     dialogEntryChargedRef.current = true;
-    void confirmDialogEnergy().then((result) => {
+    void confirmDialogEnergy(dialogEnergyIntent).then((result) => {
+      if (result === 'spent') void acknowledgeSessionStart(dialogEnergyIntent.operationId);
       if (result === 'insufficient') setDialogNoEnergy(true);
       if (result === 'cancelled') safeRouterBack(router, '/(tabs)/home' as any);
     });
-  }, [confirmDialogEnergy, dialogEnergyReady, router]);
+  }, [acknowledgeSessionStart, confirmDialogEnergy, dialogEnergyIntent, dialogEnergyReady, router]);
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
@@ -216,7 +223,8 @@ function AiDialogSession() {
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
-  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; runId?: string }>();
+  const sessionKey = String(params.runId || feedbackAttemptId);
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
@@ -273,13 +281,26 @@ function AiDialogSession() {
   // зачем: человек видит слова по мере генерации, а не пустой пузырь 3-6 секунд.
   const [streamingText, setStreamingText] = useState('');
   const [ended, setEnded] = useState(false);
+  // Оценка диалога (владелец 2026-08-25): троттлинг раз в неделю на раздел,
+  // гейт решается один раз при завершении диалога.
+  const [showDialogFeedback, setShowDialogFeedback] = useState(false);
+  useEffect(() => {
+    if (!ended) return;
+    let cancelled = false;
+    void shouldPromptFeedback('dialogue').then((allowed) => {
+      if (cancelled || !allowed) return;
+      setShowDialogFeedback(true);
+      void markFeedbackPrompted('dialogue');
+    });
+    return () => { cancelled = true; };
+  }, [ended]);
   // Ошибка ИИ (сеть/таймаут) показывается НЕ как реплика персонажа, а отдельной
   // системной плашкой с кнопкой «Повторить». Храним текст последней отправки,
   // чтобы повтор переслал именно её.
   const [lastErrorMessage, setLastErrorMessage] = useState('');
   const [lastErrorKind, setLastErrorKind] = useState<PremiumDialogErrorKind | null>(null);
   const lastSentTextRef = useRef('');
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<FlatList<UiMessage>>(null);
   const [voiceInputStatus, setVoiceInputStatus] = useState<VoiceInputStatus>('idle');
   const voiceInputStatusRef = useRef<VoiceInputStatus>('idle');
   voiceInputStatusRef.current = voiceInputStatus;
@@ -1101,6 +1122,7 @@ function AiDialogSession() {
       ? triLang(lang, {
           ru: 'Готовлю микрофон… удерживай кнопку',
           uk: 'Готую мікрофон… тримай кнопку',
+          en: 'Getting the mic ready… keep holding the button',
           es: 'Preparando el micrófono… mantén pulsado',
           'pt-BR': 'Preparando o microfone… continue segurando',
           vi: 'Đang chuẩn bị micrô… hãy tiếp tục giữ',
@@ -1112,6 +1134,7 @@ function AiDialogSession() {
         ? triLang(lang, {
             ru: 'Обрабатываю сказанное…',
             uk: 'Обробляю сказане…',
+            en: 'Processing what you said…',
             es: 'Procesando lo dicho…',
             'pt-BR': 'Processando o que você disse…',
             vi: 'Đang xử lý lời nói…',
@@ -1123,6 +1146,7 @@ function AiDialogSession() {
       ? triLang(lang, {
           ru: 'Говори… отпусти, когда закончишь',
           uk: 'Говори… відпусти, коли закінчиш',
+          en: 'Speak… release when you’re done',
           es: 'Habla… suelta al terminar',
           'pt-BR': 'Fale… solte ao terminar',
           vi: 'Nói… thả ra khi xong',
@@ -1134,6 +1158,7 @@ function AiDialogSession() {
         ? triLang(lang, {
             ru: 'Зажми микрофон и продиктуй ответ',
             uk: 'Затисни мікрофон і продиктуй відповідь',
+            en: 'Hold the mic and dictate your answer',
             es: 'Mantén pulsado el micro y dicta tu respuesta',
             'pt-BR': 'Segure o microfone e dite sua resposta',
             vi: 'Giữ micrô và đọc câu trả lời',
@@ -1145,6 +1170,7 @@ function AiDialogSession() {
         ? triLang(lang, {
             ru: 'Нужен доступ к микрофону',
             uk: 'Потрібен доступ до мікрофона',
+            en: 'Microphone access needed',
             es: 'Se necesita acceso al micrófono',
             'pt-BR': 'É preciso liberar o microfone',
             vi: 'Cần quyền truy cập micrô',
@@ -1156,6 +1182,7 @@ function AiDialogSession() {
           ? triLang(lang, {
               ru: 'Не удалось расслышать. Попробуй ещё раз',
               uk: 'Не вдалося розчути. Спробуй ще раз',
+              en: 'Couldn’t make it out. Try again',
               es: 'No se pudo escuchar. Inténtalo de nuevo',
               'pt-BR': 'Não deu para ouvir. Tente de novo',
               vi: 'Chưa nghe rõ. Hãy thử lại',
@@ -1167,6 +1194,7 @@ function AiDialogSession() {
           ? triLang(lang, {
               ru: 'Голосовой ввод недоступен на этом устройстве',
               uk: 'Голосове введення недоступне на цьому пристрої',
+              en: 'Voice input isn’t available on this device',
               es: 'La entrada por voz no está disponible en este dispositivo',
               'pt-BR': 'A entrada por voz não está disponível neste aparelho',
               vi: 'Thiết bị này chưa hỗ trợ nhập bằng giọng nói',
@@ -1231,7 +1259,7 @@ function AiDialogSession() {
             style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}
           >
             <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>
-              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}
+              {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}
             </Text>
           </TouchableOpacity>
         </SafeAreaView>
@@ -1273,6 +1301,7 @@ function AiDialogSession() {
             accessibilityLabel={triLang(lang, {
               ru: 'Назад',
               uk: 'Назад',
+              en: 'Back',
               es: 'Atrás',
               'pt-BR': 'Voltar',
               vi: 'Quay lại',
@@ -1320,6 +1349,7 @@ function AiDialogSession() {
                   accessibilityLabel={triLang(lang, {
                     ru: 'Настроение собеседника',
                     uk: 'Настрій співрозмовника',
+                    en: 'Your partner’s mood',
                     es: 'Ánimo del interlocutor',
                     'pt-BR': 'Humor do interlocutor',
                     vi: 'Tâm trạng người kia',
@@ -1354,6 +1384,7 @@ function AiDialogSession() {
               accessibilityLabel={triLang(lang, {
                 ru: 'Завершить диалог',
                 uk: 'Завершити діалог',
+                en: 'End dialogue',
                 es: 'Terminar diálogo',
                 'pt-BR': 'Encerrar diálogo',
                 vi: 'Kết thúc cuộc đối thoại',
@@ -1374,6 +1405,7 @@ function AiDialogSession() {
                 {triLang(lang, {
                   ru: 'Завершить',
                   uk: 'Завершити',
+                  en: 'End',
                   es: 'Terminar',
                   'pt-BR': 'Encerrar',
                   vi: 'Kết thúc',
@@ -1394,7 +1426,7 @@ function AiDialogSession() {
             dataId={`ai_dialog_${scenario.id ?? 'unknown'}`}
             dataText={dialogScenarioTitle(scenario, lang)}
             variant="icon-flag"
-            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', en: 'Report an error in the dialogue', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
             style={{
               width: 36,
               height: 36,
@@ -1412,8 +1444,14 @@ function AiDialogSession() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
-            {messages.map((m, i) => {
+          <FlatList
+            ref={scrollRef}
+            decelerationRate="fast"
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}
+            data={messages}
+            keyExtractor={(_, index) => String(index)}
+            renderItem={({ item: m, index: i }) => {
               const isUser = m.role === 'user';
               // Анимируем появление ТОЛЬКО для приходящих позже реплик. Самое первое
               // приветствие (i === 0) всегда видно сразу — никакого fade из opacity:0,
@@ -1421,7 +1459,6 @@ function AiDialogSession() {
               const isLast = i === messages.length - 1 && i > 0;
               return (
                 <Animated.View
-                  key={i}
                   style={{
                     opacity: isLast ? enterAnim : 1,
                     transform: [
@@ -1609,6 +1646,7 @@ function AiDialogSession() {
                               accessibilityLabel={triLang(lang, {
                                 ru: 'Не получилось перевести. Перевести снова',
                                 uk: 'Не вдалося перекласти. Перекласти знову',
+                                en: 'Couldn’t translate. Try again',
                                 es: 'No se pudo traducir. Reintentar',
                                 'pt-BR': 'Não foi possível traduzir. Tentar de novo',
                                 vi: 'Không dịch được. Thử lại',
@@ -1629,6 +1667,7 @@ function AiDialogSession() {
                                 {triLang(lang, {
                                   ru: 'Сбой · Перевести снова',
                                   uk: 'Збій · Перекласти знову',
+                                  en: 'Failed · Try again',
                                   es: 'Error · Reintentar',
                                   'pt-BR': 'Falhou · Tentar de novo',
                                   vi: 'Lỗi · Thử lại',
@@ -1644,6 +1683,7 @@ function AiDialogSession() {
                           ? triLang(lang, {
                               ru: 'Скрыть перевод',
                               uk: 'Сховати переклад',
+                              en: 'Hide translation',
                               es: 'Ocultar traducción',
                               'pt-BR': 'Ocultar tradução',
                               vi: 'Ẩn bản dịch',
@@ -1654,6 +1694,7 @@ function AiDialogSession() {
                           : triLang(lang, {
                               ru: 'Показать перевод',
                               uk: 'Показати переклад',
+                              en: 'Show translation',
                               es: 'Mostrar traducción',
                               'pt-BR': 'Mostrar tradução',
                               vi: 'Hiện bản dịch',
@@ -1691,8 +1732,9 @@ function AiDialogSession() {
                   )}
                 </Animated.View>
               );
-            })}
-
+            }}
+            ListFooterComponent={(sending || Boolean(lastErrorMessage)) ? (
+              <>
             {sending && (
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginBottom: 12 }}>
                 <View
@@ -1819,7 +1861,9 @@ function AiDialogSession() {
                 Здесь, в ленте, ЛЮБОЙ конец диалога (терминальный исход ИЛИ
                 нейтральное ручное «Завершить») ничего не рисует — единый
                 стиль финала вместо двух разных. */}
-          </ScrollView>
+              </>
+            ) : null}
+          />
 
           {/* Поле ввода — пилюля + круглая кнопка отправки */}
           {!ended && (
@@ -1851,6 +1895,7 @@ function AiDialogSession() {
                   accessibilityLabel={triLang(lang, {
                     ru: 'Что сделать дальше',
                     uk: 'Що зробити далі',
+                    en: 'What to do next',
                     es: 'Qué hacer ahora',
                     'pt-BR': 'O que fazer agora',
                     vi: 'Nên làm gì tiếp',
@@ -1874,6 +1919,7 @@ function AiDialogSession() {
                     {triLang(lang, {
                       ru: 'Что сделать дальше',
                       uk: 'Що зробити далі',
+                      en: 'What to do next',
                       es: 'Qué hacer ahora',
                       'pt-BR': 'O que fazer agora',
                       vi: 'Nên làm gì tiếp',
@@ -1913,6 +1959,7 @@ function AiDialogSession() {
                 placeholder={triLang(lang, {
                   ru: 'Напиши ответ…',
                   uk: 'Напиши відповідь…',
+                  en: 'Type your answer…',
                   es: 'Escribe tu respuesta…',
                   'pt-BR': 'Escreva uma resposta…',
                   vi: 'Viết câu trả lời…',
@@ -1956,6 +2003,7 @@ function AiDialogSession() {
                   triLang(lang, {
                         ru: 'Зажми и говори',
                         uk: 'Затисни і говори',
+                        en: 'Hold and speak',
                         es: 'Mantén pulsado y habla',
                         'pt-BR': 'Segure e fale',
                         vi: 'Giữ và nói',
@@ -2012,6 +2060,7 @@ function AiDialogSession() {
                 accessibilityLabel={triLang(lang, {
                   ru: 'Отправить',
                   uk: 'Надіслати',
+                  en: 'Send',
                   es: 'Enviar',
                   'pt-BR': 'Enviar',
                   vi: 'Gửi',
@@ -2066,6 +2115,7 @@ function AiDialogSession() {
                         {triLang(lang, {
                           ru: 'Открыть настройки',
                           uk: 'Відкрити налаштування',
+                          en: 'Open settings',
                           es: 'Abrir ajustes',
                           'pt-BR': 'Abrir ajustes',
                           vi: 'Mở cài đặt',
@@ -2085,6 +2135,7 @@ function AiDialogSession() {
                         {triLang(lang, {
                           ru: 'Повторить',
                           uk: 'Повторити',
+                          en: 'Retry',
                           es: 'Reintentar',
                           'pt-BR': 'Tentar de novo',
                           vi: 'Thử lại',
@@ -2133,11 +2184,12 @@ function AiDialogSession() {
             onRetry={() => {
               hapticTap();
               void trackEvent('ai_dialog_retry_scenario', { scenarioId: scenario.id, outcome });
+              const runId = makeFeedbackAttemptId();
               // Перезапуск того же сценария «вместо» текущего экрана — свап, не push.
               markNextNavigationAsReplace();
               router.replace({
                 pathname: '/ai_dialog_session',
-                params: { scenarioId: scenario.id },
+                params: { scenarioId: scenario.id, lessonId: params.lessonId, runId },
               } as never);
             }}
             onExit={onBack}
@@ -2154,6 +2206,33 @@ function AiDialogSession() {
                 params: { context: 'dialog_analysis', source: 'dialog_analysis' },
               } as never);
             }}
+            feedbackSlot={showDialogFeedback ? (
+              <FeedbackRatingCard
+                kind="dialogue"
+                entityId={`${sessionKey}:dialogue:${scenario.id}`}
+                entityLabel={dialogScenarioTitle(scenario, lang)}
+                lang={lang}
+                title={triLang(lang, { ru: 'Как тебе диалог?', en: 'How was the dialogue?', uk: 'Як тобі діалог?', es: '¿Qué tal el diálogo?',
+                  'pt-BR': 'O que achou do diálogo?', vi: 'Bạn thấy đoạn hội thoại thế nào?',
+                  id: 'Bagaimana dialognya?', tr: 'Diyalog nasıldı?', pl: 'Jak podobał się dialog?',
+                })}
+                placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
+                  'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
+                  id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+                })}
+                sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
+                  vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
+                })}
+                thanksLabel={triLang(lang, { ru: 'Спасибо! Отзыв отправлен', en: 'Thanks! Feedback sent', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado',
+                  'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi',
+                  id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana',
+                })}
+                ratingA11yLabel={triLang(lang, { ru: 'Оценка', en: 'Rating', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação',
+                  vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
+                })}
+                testID="dialog-verdict-feedback"
+              />
+            ) : undefined}
           />
         )}
 
@@ -2173,6 +2252,7 @@ function AiDialogSession() {
               accessibilityLabel={triLang(lang, {
                 ru: 'Показать итоги диалога',
                 uk: 'Показати підсумки діалогу',
+                en: 'Show dialogue summary',
                 es: 'Mostrar el resumen del diálogo',
                 'pt-BR': 'Mostrar o resumo do diálogo',
                 vi: 'Hiện kết quả hội thoại',
@@ -2200,6 +2280,7 @@ function AiDialogSession() {
                 {triLang(lang, {
                   ru: 'Итоги',
                   uk: 'Підсумки',
+                  en: 'Summary',
                   es: 'Resumen',
                   'pt-BR': 'Resumo',
                   vi: 'Kết quả',
@@ -2234,8 +2315,8 @@ export default function AiDialogSessionRoute() {
   // Итог: после «Ещё раз» экран мог тут же показать старый вердикт или чужое
   // настроение. key=scenarioId форсирует полный ремаунт — самый безопасный
   // фикс, без риска гонок между десятком независимых стейтов/эффектов.
-  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
-  const sessionKey = `${params.scenarioId ?? ''}:${params.lessonId ?? ''}`;
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; runId?: string }>();
+  const sessionKey = `${params.scenarioId ?? ''}:${params.lessonId ?? ''}:${params.runId ?? ''}`;
   return (
     <AiDialogConsentGate>
       <AiDialogSession key={sessionKey} />

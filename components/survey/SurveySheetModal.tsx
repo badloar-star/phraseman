@@ -29,7 +29,7 @@ import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity/FlowText';
 import SurveyQuestionTransition from './SurveyQuestionTransition';
-import SurveyRewardPanel, { SURVEY_PURPLE_TONE } from './SurveyRewardPanel';
+import SurveyRewardPanel, { SURVEY_PURPLE_TONE, type SurveyRewardPanelPhase } from './SurveyRewardPanel';
 
 const SURVEY_PROGRESS_GAP_PX = 2;
 
@@ -76,24 +76,27 @@ function sheetCopy(lang: Lang): Copy {
 function submissionError(lang: Lang, messageKey: string | null): string {
   if (messageKey === 'account_changed') return triLang(lang, {
     ru: 'Аккаунт изменился. Вернись и открой опрос снова.', uk: 'Акаунт змінився. Повернися й відкрий опитування знову.',
+    en: 'The account changed. Go back and open the survey again.',
     es: 'La cuenta cambió. Vuelve y abre la encuesta de nuevo.', 'pt-BR': 'A conta mudou. Volte e abra a pesquisa novamente.',
     vi: 'Tài khoản đã thay đổi. Hãy quay lại và mở lại khảo sát.', id: 'Akun berubah. Kembali dan buka survei lagi.',
     tr: 'Hesap değişti. Geri dönüp anketi yeniden aç.', pl: 'Konto zostało zmienione. Wróć i otwórz ankietę ponownie.',
   });
   if (messageKey === 'rate_limited') return triLang(lang, {
     ru: 'Слишком много опросов подряд. Попробуй позже.', uk: 'Забагато опитувань поспіль. Спробуй пізніше.',
+    en: 'Too many surveys in a row. Try again later.',
     es: 'Demasiadas encuestas seguidas. Inténtalo más tarde.', 'pt-BR': 'Muitas pesquisas seguidas. Tente mais tarde.',
     vi: 'Quá nhiều khảo sát liên tiếp. Thử lại sau.', id: 'Terlalu banyak survei berturut-turut. Coba nanti.',
     tr: 'Arka arkaya çok fazla anket. Sonra dene.', pl: 'Zbyt wiele ankiet z rzędu. Spróbuj później.',
   });
   if (messageKey === 'unknown_survey') return triLang(lang, {
-    ru: 'Опрос уже недоступен.', uk: 'Опитування вже недоступне.', es: 'La encuesta ya no está disponible.',
+    ru: 'Опрос уже недоступен.', uk: 'Опитування вже недоступне.', en: 'The survey is no longer available.', es: 'La encuesta ya no está disponible.',
     'pt-BR': 'A pesquisa não está mais disponível.', vi: 'Khảo sát không còn khả dụng.', id: 'Survei sudah tidak tersedia.',
     tr: 'Anket artık kullanılamıyor.', pl: 'Ankieta jest już niedostępna.',
   });
   return triLang(lang, {
     ru: messageKey === 'auth' ? 'Не удалось подтвердить аккаунт. Попробуй снова.' : 'Не удалось отправить. Попробуй снова.',
     uk: messageKey === 'auth' ? 'Не вдалося підтвердити акаунт. Спробуй ще раз.' : 'Не вдалося надіслати. Спробуй ще раз.',
+    en: messageKey === 'auth' ? "Couldn't confirm the account. Try again." : "Couldn't send. Try again.",
     es: 'No se pudo enviar. Inténtalo de nuevo.', 'pt-BR': 'Falha ao enviar. Tente de novo.', vi: 'Gửi không thành công. Thử lại.',
     id: 'Gagal mengirim. Coba lagi.', tr: 'Gönderilemedi. Tekrar dene.', pl: 'Nie udało się wysłać. Spróbuj ponownie.',
   });
@@ -101,11 +104,11 @@ function submissionError(lang: Lang, messageKey: string | null): string {
 
 function completionTitle(lang: Lang, confirmedZero: boolean, configured?: string): string {
   if (confirmedZero) return triLang(lang, {
-    ru: 'Опрос уже пройден', uk: 'Опитування вже пройдено', es: 'Encuesta ya completada', 'pt-BR': 'Pesquisa já respondida',
+    ru: 'Опрос уже пройден', uk: 'Опитування вже пройдено', en: 'Survey already completed', es: 'Encuesta ya completada', 'pt-BR': 'Pesquisa já respondida',
     vi: 'Đã hoàn thành khảo sát', id: 'Survei sudah diisi', tr: 'Anket zaten tamamlandı', pl: 'Ankieta już wypełniona',
   });
   return configured?.trim() || triLang(lang, {
-    ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!',
+    ru: 'Спасибо!', uk: 'Дякуємо!', en: 'Thank you!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!',
   });
 }
 
@@ -255,6 +258,7 @@ function SurveySheetContent({
   const showReward = flow.submission.phase === 'reconciled';
   const showError = flow.submission.phase === 'retryable-error';
   const feedback = showReward || showError;
+  const feedbackPhase: SurveyRewardPanelPhase = showError ? 'retryable-error' : 'reconciled';
   const confirmedZero = flow.submission.phase === 'reconciled'
     && flow.submission.confirmedReward === 0;
 
@@ -275,7 +279,7 @@ function SurveySheetContent({
               <Ionicons name="close" size={24} color={t.textPrimary} accessibilityElementsHidden />
             </PressableHybrid>
           </View>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             testID="survey-feedback-scroll"
             style={styles.feedbackScroll}
             contentContainerStyle={styles.feedbackScrollContent}
@@ -292,7 +296,7 @@ function SurveySheetContent({
               {survey.title}
             </FlowText>
             <SurveyRewardPanel
-              phase={flow.submission.phase}
+              phase={feedbackPhase}
               reward={surveyRewardForDisplay(flow.submission)}
               title={completionTitle(lang, confirmedZero, survey.finalTitle)}
               subtitle={survey.finalSubtitle?.trim() || ''}
@@ -306,7 +310,7 @@ function SurveySheetContent({
         </>
       ) : (
         <>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             testID="survey-sheet-scroll"
             style={styles.scroll}
             contentContainerStyle={styles.scrollContent}

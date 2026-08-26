@@ -90,6 +90,7 @@ export default function FlashcardsMarketDevScreen() {
   const title = triLang(lang, {
     ru: 'Маркет карточек (DEV)',
     uk: 'Маркет карток (DEV)',
+    en: 'Card market (DEV)',
     es: 'Mercado de tarjetas (DEV)',
     'pt-BR': 'Mercado de cartões (DEV)',
     vi: 'Chợ thẻ (DEV)',
@@ -100,6 +101,7 @@ export default function FlashcardsMarketDevScreen() {
   const subtitle = triLang(lang, {
     ru: 'Read-only прототип: смотрим UX и каталог, без покупок.',
     uk: 'Read-only прототип: дивимось UX і каталог, без покупок.',
+    en: 'Read-only prototype: checking UX and the catalog, no purchases.',
     es: 'Prototipo de solo lectura: probamos el UX y el catálogo, sin compras.',
     'pt-BR': 'Protótipo somente leitura: avaliamos UX e catálogo, sem compras.',
     vi: 'Nguyên mẫu chỉ đọc: kiểm tra UX và danh mục, không mua hàng.',
@@ -112,8 +114,8 @@ export default function FlashcardsMarketDevScreen() {
     [packs],
   );
 
-  const buyLabel = triLang(lang, { ru: 'Купить (DEV)', uk: 'Купити (DEV)', es: 'Comprar (DEV)', 'pt-BR': 'Comprar (DEV)', vi: 'Mua (DEV)', id: 'Beli (DEV)', tr: 'Satın al (DEV)', pl: 'Kup (DEV)' });
-  const ownedLabel = triLang(lang, { ru: 'Уже куплено', uk: 'Вже придбано', es: 'Ya lo tienes', 'pt-BR': 'Já comprado', vi: 'Đã mua', id: 'Sudah dibeli', tr: 'Zaten alındı', pl: 'Już kupione' });
+  const buyLabel = triLang(lang, { ru: 'Купить (DEV)', uk: 'Купити (DEV)', en: 'Buy (DEV)', es: 'Comprar (DEV)', 'pt-BR': 'Comprar (DEV)', vi: 'Mua (DEV)', id: 'Beli (DEV)', tr: 'Satın al (DEV)', pl: 'Kup (DEV)' });
+  const ownedLabel = triLang(lang, { ru: 'Уже куплено', uk: 'Вже придбано', en: 'Already bought', es: 'Ya lo tienes', 'pt-BR': 'Já comprado', vi: 'Đã mua', id: 'Sudah dibeli', tr: 'Zaten alındı', pl: 'Już kupione' });
 
   const handleDryRunBuy = useCallback(async (pack: FlashcardMarketPack) => {
     if (buyingPackId) return;
@@ -245,19 +247,20 @@ export default function FlashcardsMarketDevScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }}>
+        <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }}>
           <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>
               {triLang(lang, {
                 ru: 'Этап 1: каталог. Этап 2: покупка за жемчужины и ownership.',
                 uk: 'Етап 1: каталог. Етап 2: купівля за перлини та ownership.',
+                en: 'Phase 1: catalog. Phase 2: purchase with pearls and ownership.',
                 es: 'Fase 1: catálogo. Fase 2: pagos con perlas y colección propia.',
                 'pt-BR': 'Fase 1: catálogo. Fase 2: compra com pérolas e ownership.',
-                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng xu và quyền sở hữu.',
-                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan koin dan ownership.',
-                tr: 'Aşama 1: katalog. Aşama 2: jetonlarla satın alma ve sahiplik.',
-                pl: 'Etap 1: katalog. Etap 2: zakup za monety i ownership.',
+                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng ngọc trai và quyền sở hữu.',
+                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan mutiara dan ownership.',
+                tr: 'Aşama 1: katalog. Aşama 2: incilerle satın alma ve sahiplik.',
+                pl: 'Etap 1: katalog. Etap 2: zakup za perły i ownership.',
               })}
             </Text>
           </View>
@@ -266,8 +269,8 @@ export default function FlashcardsMarketDevScreen() {
             {topPacks.map((pack) => (
               <View key={`top_${pack.id}`} style={{ borderWidth: 1, borderColor: t.border, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5, backgroundColor: t.bgCard }}>
                 <Text style={{ color: t.textSecond, fontSize: f.caption }}>
-                  {triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })} · {pack.cardCount}{' '}
-                  {triLang(lang, { ru: 'карточек', uk: 'карток', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' })} · {packTitleForInterface(pack, ifaceLang)}
+                  {triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })} · {pack.cardCount}{' '}
+                  {triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' })} · {packTitleForInterface(pack, ifaceLang)}
                 </Text>
               </View>
             ))}
@@ -276,7 +279,7 @@ export default function FlashcardsMarketDevScreen() {
           {!loading && ownedPackIds.length > 0 && (
             <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 12, gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Мои наборы (DEV)', uk: 'Мої набори (DEV)', es: 'Mis packs (DEV)', 'pt-BR': 'Meus packs (DEV)', vi: 'Bộ của tôi (DEV)', id: 'Pack saya (DEV)', tr: 'Paketlerim (DEV)', pl: 'Moje pakiety (DEV)' })}
+                {triLang(lang, { ru: 'Мои наборы (DEV)', uk: 'Мої набори (DEV)', en: 'My packs (DEV)', es: 'Mis packs (DEV)', 'pt-BR': 'Meus packs (DEV)', vi: 'Bộ của tôi (DEV)', id: 'Pack saya (DEV)', tr: 'Paketlerim (DEV)', pl: 'Moje pakiety (DEV)' })}
               </Text>
               {packs
                 .filter((p) => ownedPackIds.includes(p.id))
@@ -293,6 +296,7 @@ export default function FlashcardsMarketDevScreen() {
                         {triLang(lang, {
                           ru: 'Открыть в карточках (DEV)',
                           uk: 'Відкрити в картках (DEV)',
+                          en: 'Open in cards (DEV)',
                           es: 'Abrir en tarjetas (DEV)',
                           'pt-BR': 'Abrir nos cartões (DEV)',
                           vi: 'Mở trong thẻ (DEV)',
@@ -346,18 +350,18 @@ export default function FlashcardsMarketDevScreen() {
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
                     <Text style={{ color: t.textMuted, fontSize: f.caption }}>{catLabel}</Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                      • {pack.cardCount} {triLang(lang, { ru: 'карточек', uk: 'карток', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' })}
+                      • {pack.cardCount} {triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' })}
                     </Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                      • {triLang(lang, { ru: 'продаж', uk: 'продажів', es: 'ventas', 'pt-BR': 'vendas', vi: 'lượt bán', id: 'penjualan', tr: 'satış', pl: 'sprzedaży' })}: {pack.salesCount}
+                      • {triLang(lang, { ru: 'продаж', uk: 'продажів', en: 'sales', es: 'ventas', 'pt-BR': 'vendas', vi: 'lượt bán', id: 'penjualan', tr: 'satış', pl: 'sprzedaży' })}: {pack.salesCount}
                     </Text>
                   </View>
 
                   <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ color: t.textSecond, fontSize: f.caption }}>
                       {pack.isOfficial
-                        ? triLang(lang, { ru: 'Официальный пак', uk: 'Офіційний пак', es: 'Pack oficial', 'pt-BR': 'Pack oficial', vi: 'Pack chính thức', id: 'Pack resmi', tr: 'Resmi paket', pl: 'Oficjalny pakiet' })
-                        : `${triLang(lang, { ru: 'Автор', uk: 'Автор', es: 'Autor', 'pt-BR': 'Autor', vi: 'Tác giả', id: 'Penulis', tr: 'Yazar', pl: 'Autor' })}: ${pack.authorName}`}
+                        ? triLang(lang, { ru: 'Официальный пак', uk: 'Офіційний пак', en: 'Official pack', es: 'Pack oficial', 'pt-BR': 'Pack oficial', vi: 'Pack chính thức', id: 'Pack resmi', tr: 'Resmi paket', pl: 'Oficjalny pakiet' })
+                        : `${triLang(lang, { ru: 'Автор', uk: 'Автор', en: 'Author', es: 'Autor', 'pt-BR': 'Autor', vi: 'Tác giả', id: 'Penulis', tr: 'Yazar', pl: 'Autor' })}: ${pack.authorName}`}
                     </Text>
                     <TouchableOpacity
                       onPress={() => handleDryRunBuy(pack)}
@@ -374,7 +378,7 @@ export default function FlashcardsMarketDevScreen() {
                     >
                       <Text style={{ color: isOwned ? t.correct : t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
                         {isBuying
-                          ? triLang(lang, { ru: 'Покупаем...', uk: 'Купуємо...', es: 'Comprando…', 'pt-BR': 'Comprando...', vi: 'Đang mua...', id: 'Membeli...', tr: 'Satın alınıyor...', pl: 'Kupowanie...' })
+                          ? triLang(lang, { ru: 'Покупаем...', uk: 'Купуємо...', en: 'Buying...', es: 'Comprando…', 'pt-BR': 'Comprando...', vi: 'Đang mua...', id: 'Membeli...', tr: 'Satın alınıyor...', pl: 'Kupowanie...' })
                           : isOwned
                             ? ownedLabel
                             : buyLabel}

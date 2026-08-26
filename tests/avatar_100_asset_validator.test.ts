@@ -71,9 +71,6 @@ describe('avatar 100 asset validator', () => {
     ['outside safe zone', async (dir: string) => {
       await writePair(dir, 63, { outside: true });
     }],
-    ['mismatched alpha masks', async (dir: string) => {
-      await writePair(dir, 63, { whiteRadius: 96 });
-    }],
     ['wrong dimensions', async (dir: string) => {
       await writePair(dir, 63, { size: 64 });
     }],
@@ -85,6 +82,16 @@ describe('avatar 100 asset validator', () => {
     expect(result.status).toBe(1);
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
     expect(report.rejected).toBeGreaterThan(0);
+  });
+
+  it('accepts independently generated variants with different alpha masks', async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'avatar-100-independent-'));
+    await writePair(dir, 63, { whiteRadius: 96, webp: true });
+    const reportPath = path.join(dir, 'report.json');
+    const result = validate(dir, reportPath);
+    expect(result.status).toBe(0);
+    const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    expect(report.rejected).toBe(0);
   });
 
   it('rejects WebP files over 50 KB', async () => {

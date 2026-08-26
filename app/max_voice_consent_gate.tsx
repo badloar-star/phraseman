@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import MaxVoiceConsentModal from '../components/MaxVoiceConsentModal';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
+import { soundDirector } from '../modules/audio/sound_director';
 import { safeRouterBack } from './navigation_back';
 import {
   hasAiVoiceConsentDecision,
@@ -47,6 +48,9 @@ export default function MaxVoiceConsentGate({ children }: { children: React.Reac
 
   const accept = useCallback(() => {
     setVisible(false);
+    // зачем: согласие дано — звук СРАЗУ, до await записи решения (Optimistic
+    // UI); deferAfterVoice в реестре сам отложит его, если рядом уже звучит речь.
+    soundDirector.request('pm.max.consent_granted', { scope: 'max-consent' });
     void setAiVoiceConsent('granted').then(() => {
       setReady(true);
       void recordAiVoiceConsentToCloud();

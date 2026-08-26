@@ -23,7 +23,7 @@ import TapScale from '../components/TapScale';
 import { triLang } from '../constants/i18n';
 import { runeWord } from '../constants/runes';
 import RuneGlyph from '../components/RuneGlyph';
-import { emitAppEvent, onAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { coinIconForBalance } from './coin_icons';
 import {
@@ -130,9 +130,18 @@ export default function CoinExchangeScreen() {
     const d = Math.abs(n) % 10;
     // зачем: RU-интерфейс называет валюту «жемчужина» — украинское «перлина»
     // здесь протекало в русский экран обмена.
-    if (d === 1 && k !== 11) return triLang(lang, { ru: 'жемчужина', uk: 'перлина', es: 'perla' });
-    if (d >= 2 && d <= 4 && (k < 12 || k > 14)) return triLang(lang, { ru: 'жемчужины', uk: 'перлини', es: 'perlas' });
-    return triLang(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas' });
+    if (d === 1 && k !== 11) return triLang(lang, {
+      ru: 'жемчужина', uk: 'перлина', en: 'pearl', es: 'perla',
+      'pt-BR': 'pérola', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'perła',
+    });
+    if (d >= 2 && d <= 4 && (k < 12 || k > 14)) return triLang(lang, {
+      ru: 'жемчужины', uk: 'перлини', en: 'pearls', es: 'perlas',
+      'pt-BR': 'pérolas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'perły',
+    });
+    return triLang(lang, {
+      ru: 'жемчужин', uk: 'перлин', en: 'pearls', es: 'perlas',
+      'pt-BR': 'pérolas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'pereł',
+    });
   }, [lang]);
 
   const onExchange = useCallback(async () => {
@@ -142,22 +151,30 @@ export default function CoinExchangeScreen() {
       const result = await exchangeCoinsForStarsDurably(coinsAmount);
       // Сервер подтвердил обмен — дотягиваем авторитетный баланс монет из облака.
       await loadShardsFromCloud().catch(() => {});
-      emitAppEvent('action_toast', {
-        type: 'success',
-        messageRu: `Обмен выполнен: +${result.starsGranted} ${runeWord('ru', result.starsGranted)} (курс ${result.rateUsed})`,
-        messageUk: `Обмін виконано: +${result.starsGranted} ${runeWord('uk', result.starsGranted)} (курс ${result.rateUsed})`,
-        messageEs: `Cambio realizado: +${result.starsGranted} ${runeWord('es', result.starsGranted)} (tasa ${result.rateUsed})`,
-      });
+      emitAppEvent('action_toast', actionToastTri('success', {
+        ru: `Обмен выполнен: +${result.starsGranted} ${runeWord('ru', result.starsGranted)} (курс ${result.rateUsed})`,
+        uk: `Обмін виконано: +${result.starsGranted} ${runeWord('uk', result.starsGranted)} (курс ${result.rateUsed})`,
+        es: `Cambio realizado: +${result.starsGranted} ${runeWord('es', result.starsGranted)} (tasa ${result.rateUsed})`,
+        'pt-BR': `Troca concluída: +${result.starsGranted} ${runeWord('pt-BR', result.starsGranted)} (taxa ${result.rateUsed})`,
+        vi: `Đã đổi xong: +${result.starsGranted} ${runeWord('vi', result.starsGranted)} (tỷ giá ${result.rateUsed})`,
+        id: `Tukar berhasil: +${result.starsGranted} ${runeWord('id', result.starsGranted)} (kurs ${result.rateUsed})`,
+        tr: `Takas tamamlandı: +${result.starsGranted} ${runeWord('tr', result.starsGranted)} (kur ${result.rateUsed})`,
+        pl: `Wymiana zakończona: +${result.starsGranted} ${runeWord('pl', result.starsGranted)} (kurs ${result.rateUsed})`,
+      }));
       setCoinsInput('');
       void fetchCoinExchangeQuote().then((fresh) => { if (fresh) setQuote(fresh); });
       void fetchCoinExchangeHistory(30).then((fresh) => { if (fresh && fresh.length > 0) setHistory(fresh); });
     } catch {
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Обмен не удался. Проверь интернет и попробуй ещё раз.',
-        messageUk: 'Обмін не вдався. Перевір інтернет і спробуй ще раз.',
-        messageEs: 'El cambio falló. Revisa tu conexión e inténtalo de nuevo.',
-      });
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Обмен не удался. Проверь интернет и попробуй ещё раз.',
+        uk: 'Обмін не вдався. Перевір інтернет і спробуй ще раз.',
+        es: 'El cambio falló. Revisa tu conexión e inténtalo de nuevo.',
+        'pt-BR': 'A troca falhou. Verifique sua internet e tente novamente.',
+        vi: 'Đổi thất bại. Kiểm tra kết nối mạng và thử lại.',
+        id: 'Tukar gagal. Periksa internet dan coba lagi.',
+        tr: 'Takas başarısız oldu. İnterneti kontrol edip tekrar dene.',
+        pl: 'Wymiana nie powiodła się. Sprawdź internet i spróbuj ponownie.',
+      }));
     } finally {
       setExchanging(false);
     }
@@ -166,7 +183,13 @@ export default function CoinExchangeScreen() {
   const balanceA11y = triLang(lang, {
     ru: `Баланс: ${coinsBalance} ${coinsWord(coinsBalance)}`,
     uk: `Баланс: ${coinsBalance} ${coinsWord(coinsBalance)}`,
+    en: `Balance: ${coinsBalance} ${coinsWord(coinsBalance)}`,
     es: `Saldo: ${coinsBalance} ${coinsWord(coinsBalance)}`,
+    'pt-BR': `Saldo: ${coinsBalance} ${coinsWord(coinsBalance)}`,
+    vi: `Số dư: ${coinsBalance} ${coinsWord(coinsBalance)}`,
+    id: `Saldo: ${coinsBalance} ${coinsWord(coinsBalance)}`,
+    tr: `Bakiye: ${coinsBalance} ${coinsWord(coinsBalance)}`,
+    pl: `Saldo: ${coinsBalance} ${coinsWord(coinsBalance)}`,
   });
 
   const cardStyle = {
@@ -179,20 +202,26 @@ export default function CoinExchangeScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top']}>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: Math.max(24, insets.bottom + 16) }}>
+      <ScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: Math.max(24, insets.bottom + 16) }}>
         <ContentWrap>
           {/* Шапка */}
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, gap: 12 }}>
             <TapScale
               onPress={() => safeRouterBack(router)}
-              accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
+              accessibilityLabel={triLang(lang, {
+                ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
+                'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+              })}
               accessibilityRole="button"
               style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}
             >
               <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
             </TapScale>
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
-              {triLang(lang, { ru: 'Биржа', uk: 'Біржа', es: 'Intercambio' })}
+              {triLang(lang, {
+                ru: 'Биржа', uk: 'Біржа', en: 'Exchange', es: 'Intercambio',
+                'pt-BR': 'Câmbio', vi: 'Đổi xu', id: 'Tukar Koin', tr: 'Takas', pl: 'Kantor',
+              })}
             </Text>
             <View
               style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}
@@ -207,7 +236,10 @@ export default function CoinExchangeScreen() {
           {/* Герой: текущий курс */}
           <View style={[cardStyle, { alignItems: 'center', marginTop: 8 }]}>
             <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-              {triLang(lang, { ru: 'Текущий курс', uk: 'Поточний курс', es: 'Tasa actual' })}
+              {triLang(lang, {
+                ru: 'Текущий курс', uk: 'Поточний курс', en: 'Current rate', es: 'Tasa actual',
+                'pt-BR': 'Taxa atual', vi: 'Tỷ giá hiện tại', id: 'Kurs saat ini', tr: 'Güncel kur', pl: 'Aktualny kurs',
+              })}
             </Text>
             {quote ? (
               <>
@@ -216,6 +248,7 @@ export default function CoinExchangeScreen() {
                   accessibilityLabel={triLang(lang, {
                     ru: `1 жемчужина = ${quote.rate} ${runeWord('ru', quote.rate)}`,
                     uk: `1 перлина = ${quote.rate} ${runeWord('uk', quote.rate)}`,
+                    en: `1 pearl = ${quote.rate} ${runeWord('en', quote.rate)}`,
                     es: `1 moneda = ${quote.rate} ${runeWord('es', quote.rate)}`,
                     'pt-BR': `1 pérola = ${quote.rate} ${runeWord('pt-BR', quote.rate)}`,
                     vi: `1 xu = ${quote.rate} ${runeWord('vi', quote.rate)}`,
@@ -224,7 +257,10 @@ export default function CoinExchangeScreen() {
                     pl: `1 perła = ${quote.rate} ${runeWord('pl', quote.rate)}`,
                   })}
                 >
-                  {triLang(lang, { ru: '1 жемчужина = ', uk: '1 перлина = ', es: '1 perla = ' })}
+                  {triLang(lang, {
+                    ru: '1 жемчужина = ', uk: '1 перлина = ', en: '1 pearl = ', es: '1 perla = ',
+                    'pt-BR': '1 pérola = ', vi: '1 xu = ', id: '1 koin = ', tr: '1 jeton = ', pl: '1 perła = ',
+                  })}
                   <Text style={{ color: t.accent }}>
                     {quote.rate} <RuneGlyph size={22} color={t.accent} />
                   </Text>
@@ -233,6 +269,7 @@ export default function CoinExchangeScreen() {
                   {triLang(lang, {
                     ru: `Коридор курса: ${quote.corridorMin}–${quote.corridorMax} рун за жемчужину`,
                     uk: `Коридор курсу: ${quote.corridorMin}–${quote.corridorMax} рун за перлину`,
+                    en: `Range: ${quote.corridorMin}–${quote.corridorMax} runes per pearl`,
                     es: `Corredor: ${quote.corridorMin}–${quote.corridorMax} runas por perla`,
                     'pt-BR': `Corredor: ${quote.corridorMin}–${quote.corridorMax} runas por pérola`,
                     vi: `Biên độ: ${quote.corridorMin}–${quote.corridorMax} rune mỗi xu`,
@@ -246,7 +283,13 @@ export default function CoinExchangeScreen() {
                     {triLang(lang, {
                       ru: `Следующий пересчёт: ${nextRecalcLabel}`,
                       uk: `Наступний перерахунок: ${nextRecalcLabel}`,
+                      en: `Next recalc: ${nextRecalcLabel}`,
                       es: `Próximo recálculo: ${nextRecalcLabel}`,
+                      'pt-BR': `Próximo recálculo: ${nextRecalcLabel}`,
+                      vi: `Lần tính lại tiếp theo: ${nextRecalcLabel}`,
+                      id: `Perhitungan ulang berikutnya: ${nextRecalcLabel}`,
+                      tr: `Sonraki yeniden hesaplama: ${nextRecalcLabel}`,
+                      pl: `Następne przeliczenie: ${nextRecalcLabel}`,
                     })}
                   </Text>
                 ) : null}
@@ -256,7 +299,13 @@ export default function CoinExchangeScreen() {
                 {triLang(lang, {
                   ru: 'Курс временно недоступен. Проверь интернет — покажем, как только сможем.',
                   uk: 'Курс тимчасово недоступний. Перевір інтернет — покажемо, щойно зможемо.',
-                  es: 'Tasa no disponible. Revisa tu conexión: la mostraremos en cuanto podamos.',
+                  en: 'Rate temporarily unavailable. Check your connection — we’ll show it as soon as we can.',
+                  es: 'Tasa no disponible. Revisa tu conexión e inténtalo de nuevo.',
+                  'pt-BR': 'Taxa temporariamente indisponível. Verifique sua internet — mostraremos assim que possível.',
+                  vi: 'Tỷ giá tạm thời không khả dụng. Kiểm tra kết nối mạng — chúng tôi sẽ hiển thị ngay khi có thể.',
+                  id: 'Kurs sementara tidak tersedia. Periksa internet kamu — akan kami tampilkan begitu bisa.',
+                  tr: 'Kur şu anda kullanılamıyor. İnterneti kontrol et — mümkün olur olmaz gösteririz.',
+                  pl: 'Kurs chwilowo niedostępny. Sprawdź internet — pokażemy, jak tylko będzie można.',
                 })}
               </Text>
             )}
@@ -265,7 +314,10 @@ export default function CoinExchangeScreen() {
           {/* История курса */}
           <View style={[cardStyle, { marginTop: 12 }]}>
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
-              {triLang(lang, { ru: 'История курса · 30 дней', uk: 'Історія курсу · 30 днів', es: 'Historial · 30 días' })}
+              {triLang(lang, {
+                ru: 'История курса · 30 дней', uk: 'Історія курсу · 30 днів', en: 'Rate history · 30 days', es: 'Historial · 30 días',
+                'pt-BR': 'Histórico · 30 dias', vi: 'Lịch sử tỷ giá · 30 ngày', id: 'Riwayat kurs · 30 hari', tr: 'Kur geçmişi · 30 gün', pl: 'Historia kursu · 30 dni',
+              })}
             </Text>
             <View style={{ marginTop: 12, alignItems: 'center' }}>
               {history.length >= 2 ? (
@@ -275,7 +327,13 @@ export default function CoinExchangeScreen() {
                   {triLang(lang, {
                     ru: 'История пока пуста — данные появятся после первых пересчётов курса.',
                     uk: 'Історія поки порожня — дані з\'являться після перших перерахунків курсу.',
+                    en: 'No history yet — data will show up after the first recalculations.',
                     es: 'Historial vacío por ahora: habrá datos tras los primeros recálculos.',
+                    'pt-BR': 'Histórico ainda vazio — os dados aparecerão após os primeiros recálculos.',
+                    vi: 'Lịch sử còn trống — dữ liệu sẽ xuất hiện sau các lần tính lại đầu tiên.',
+                    id: 'Riwayat masih kosong — data akan muncul setelah perhitungan ulang pertama.',
+                    tr: 'Geçmiş henüz boş — ilk yeniden hesaplamalardan sonra veriler görünecek.',
+                    pl: 'Historia jest jeszcze pusta — dane pojawią się po pierwszych przeliczeniach.',
                   })}
                 </Text>
               )}
@@ -287,14 +345,23 @@ export default function CoinExchangeScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="information-circle-outline" size={20} color={t.accent} accessibilityElementsHidden importantForAccessibility="no" />
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Почему курс меняется', uk: 'Чому курс змінюється', es: 'Por qué cambia la tasa' })}
+                {triLang(lang, {
+                  ru: 'Почему курс меняется', uk: 'Чому курс змінюється', en: 'Why the rate changes', es: 'Por qué cambia la tasa',
+                  'pt-BR': 'Por que a taxa muda', vi: 'Vì sao tỷ giá thay đổi', id: 'Kenapa kurs berubah', tr: 'Kur neden değişiyor', pl: 'Dlaczego kurs się zmienia',
+                })}
               </Text>
             </View>
             <Text style={{ color: t.textSecond, fontSize: f.body, marginTop: 8, lineHeight: 20 }}>
               {triLang(lang, {
                 ru: 'Курс растёт, когда многие игроки обменивают жемчужины, и плавно возвращается к базовому, когда спрос падает. Пересчёт — раз в сутки, максимум на 10% за день.',
                 uk: 'Курс зростає, коли багато гравців обмінюють перлини, і плавно повертається до базового, коли попит падає. Перерахунок — раз на добу, максимум на 10% за день.',
+                en: 'The rate rises when many players exchange pearls and eases back to baseline as demand drops. Recalculated once a day, by at most 10% per day.',
                 es: 'La tasa sube cuando muchos jugadores cambian perlas y vuelve suavemente a la base cuando baja la demanda. Se recalcula una vez al día, máximo un 10% por día.',
+                'pt-BR': 'A taxa sobe quando muitos jogadores trocam pérolas e volta suavemente à base quando a demanda cai. Recálculo uma vez por dia, no máximo 10% por dia.',
+                vi: 'Tỷ giá tăng khi nhiều người chơi đổi xu và giảm dần về mức cơ bản khi nhu cầu giảm. Tính lại một lần mỗi ngày, tối đa 10% mỗi ngày.',
+                id: 'Kurs naik saat banyak pemain menukar koin, lalu turun perlahan ke dasar saat permintaan menurun. Dihitung ulang sekali sehari, maksimal 10% per hari.',
+                tr: 'Kur, çok sayıda oyuncu jeton takas ettiğinde yükselir ve talep düştüğünde yumuşakça temel seviyeye döner. Günde bir kez, en fazla %10 yeniden hesaplanır.',
+                pl: 'Kurs rośnie, gdy wielu graczy wymienia perły, i płynnie wraca do bazowego, gdy popyt spada. Przeliczenie raz dziennie, maksymalnie o 10% dziennie.',
               })}
             </Text>
           </View>
@@ -302,7 +369,10 @@ export default function CoinExchangeScreen() {
           {/* Форма обмена */}
           <View style={[cardStyle, { marginTop: 12 }]}>
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
-              {triLang(lang, { ru: 'Обменять жемчужины', uk: 'Обміняти перлини', es: 'Cambiar perlas' })}
+              {triLang(lang, {
+                ru: 'Обменять жемчужины', uk: 'Обміняти перлини', en: 'Exchange pearls', es: 'Cambiar perlas',
+                'pt-BR': 'Trocar pérolas', vi: 'Đổi xu', id: 'Tukar koin', tr: 'Jeton takas et', pl: 'Wymień perły',
+              })}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 12 }}>
               <TextInput
@@ -311,7 +381,10 @@ export default function CoinExchangeScreen() {
                 keyboardType="number-pad"
                 placeholder="0"
                 placeholderTextColor={t.textGhost}
-                accessibilityLabel={triLang(lang, { ru: 'Сколько жемчужин обменять', uk: 'Скільки перлин обміняти', es: 'Cuántas perlas cambiar' })}
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Сколько жемчужин обменять', uk: 'Скільки перлин обміняти', en: 'How many pearls to exchange', es: 'Cuántas perlas cambiar',
+                  'pt-BR': 'Quantas pérolas trocar', vi: 'Bao nhiêu xu để đổi', id: 'Berapa koin yang ditukar', tr: 'Kaç jeton takas edilecek', pl: 'Ile pereł wymienić',
+                })}
                 style={{
                   flex: 1,
                   backgroundColor: t.bgSurface,
@@ -328,11 +401,17 @@ export default function CoinExchangeScreen() {
               <TapScale
                 onPress={() => setCoinsInput(String(coinsBalance))}
                 accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { ru: 'Обменять все жемчужины', uk: 'Обміняти всі перлини', es: 'Cambiar todas las perlas' })}
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Обменять все жемчужины', uk: 'Обміняти всі перлини', en: 'Exchange all pearls', es: 'Cambiar todas las perlas',
+                  'pt-BR': 'Trocar todas as pérolas', vi: 'Đổi tất cả xu', id: 'Tukar semua koin', tr: 'Tüm jetonları takas et', pl: 'Wymień wszystkie perły',
+                })}
                 style={{ paddingHorizontal: 12, paddingVertical: 10, borderRadius: 12, borderWidth: 1, borderColor: t.border }}
               >
                 <Text style={{ color: t.accent, fontWeight: '800', fontSize: f.body }}>
-                  {triLang(lang, { ru: 'Все', uk: 'Усі', es: 'Todas' })}
+                  {triLang(lang, {
+                    ru: 'Все', uk: 'Усі', en: 'All', es: 'Todas',
+                    'pt-BR': 'Todas', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie',
+                  })}
                 </Text>
               </TapScale>
             </View>
@@ -341,7 +420,13 @@ export default function CoinExchangeScreen() {
                 {triLang(lang, {
                   ru: 'Недостаточно жемчужин на балансе',
                   uk: 'Недостатньо перлин на балансі',
+                  en: 'Not enough pearls in your balance',
                   es: 'No hay perlas suficientes en el saldo',
+                  'pt-BR': 'Saldo de pérolas insuficiente',
+                  vi: 'Số xu trên số dư không đủ',
+                  id: 'Saldo koin tidak cukup',
+                  tr: 'Bakiyede yeterli jeton yok',
+                  pl: 'Za mało pereł na saldzie',
                 })}
               </Text>
             ) : null}
@@ -353,6 +438,7 @@ export default function CoinExchangeScreen() {
                 ? triLang(lang, {
                     ru: `Вы получите ≈ ${starsEstimate} ${runeWord('ru', starsEstimate)}`,
                     uk: `Ви отримаєте ≈ ${starsEstimate} ${runeWord('uk', starsEstimate)}`,
+                    en: `You’ll get ≈ ${starsEstimate} ${runeWord('en', starsEstimate)}`,
                     es: `Recibirás ≈ ${starsEstimate} ${runeWord('es', starsEstimate)}`,
                     'pt-BR': `Você receberá ≈ ${starsEstimate} ${runeWord('pt-BR', starsEstimate)}`,
                     vi: `Bạn sẽ nhận ≈ ${starsEstimate} ${runeWord('vi', starsEstimate)}`,
@@ -363,6 +449,7 @@ export default function CoinExchangeScreen() {
                 : triLang(lang, {
                     ru: 'Введите количество жемчужин — покажем оценку в рунах.',
                     uk: 'Введіть кількість перлин — покажемо оцінку в рунах.',
+                    en: 'Enter the number of pearls — we’ll show the estimate in runes.',
                     es: 'Introduce la cantidad de perlas: mostraremos la estimación en runas.',
                     'pt-BR': 'Digite a quantidade de pérolas: mostraremos a estimativa em runas.',
                     vi: 'Nhập số xu — chúng tôi sẽ hiển thị ước tính bằng rune.',
@@ -376,7 +463,10 @@ export default function CoinExchangeScreen() {
               disabled={!canExchange}
               accessibilityRole="button"
               accessibilityState={{ disabled: !canExchange, busy: exchanging }}
-              accessibilityLabel={triLang(lang, { ru: 'Подтвердить обмен', uk: 'Підтвердити обмін', es: 'Confirmar el cambio' })}
+              accessibilityLabel={triLang(lang, {
+                ru: 'Подтвердить обмен', uk: 'Підтвердити обмін', en: 'Confirm exchange', es: 'Confirmar el cambio',
+                'pt-BR': 'Confirmar a troca', vi: 'Xác nhận đổi', id: 'Konfirmasi tukar', tr: 'Takası onayla', pl: 'Potwierdź wymianę',
+              })}
               style={{
                 marginTop: 12,
                 borderRadius: 14,
@@ -390,7 +480,10 @@ export default function CoinExchangeScreen() {
                 <ActivityIndicator color="#07110A" />
               ) : (
                 <Text style={{ color: canExchange ? '#07110A' : t.textMuted, fontSize: f.bodyLg, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Обменять', uk: 'Обміняти', es: 'Cambiar' })}
+                  {triLang(lang, {
+                    ru: 'Обменять', uk: 'Обміняти', en: 'Exchange', es: 'Cambiar',
+                    'pt-BR': 'Trocar', vi: 'Đổi', id: 'Tukar', tr: 'Takas et', pl: 'Wymień',
+                  })}
                 </Text>
               )}
             </TapScale>
@@ -402,7 +495,13 @@ export default function CoinExchangeScreen() {
               {triLang(lang, {
                 ru: 'Жемчужины ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание',
                 uk: 'Перлини пришвидшують доступ до уроків, але не підвищують оцінку і не підтверджують знання',
+                en: 'Pearls speed up access to lessons, but they don’t raise your grade or prove your knowledge',
                 es: 'Las perlas aceleran el acceso a las lecciones, pero no mejoran la nota ni confirman el conocimiento',
+                'pt-BR': 'As pérolas aceleram o acesso às lições, mas não melhoram a nota nem comprovam conhecimento',
+                vi: 'Xu giúp tăng tốc truy cập bài học, nhưng không nâng điểm và không xác nhận kiến thức',
+                id: 'Koin mempercepat akses ke pelajaran, tapi tidak menaikkan nilai atau membuktikan pengetahuan',
+                tr: 'Jetonlar derslere erişimi hızlandırır ama notu yükseltmez ve bilgiyi doğrulamaz',
+                pl: 'Perły przyspieszają dostęp do lekcji, ale nie podnoszą oceny ani nie potwierdzają wiedzy',
               })}
             </Text>
           </View>

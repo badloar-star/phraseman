@@ -161,7 +161,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
           </Pressable>
 
           {showStack ? (
-            <ScrollView style={styles.debugBox} contentContainerStyle={{ paddingVertical: 8 }}>
+            <ScrollView decelerationRate="fast" style={styles.debugBox} contentContainerStyle={{ paddingVertical: 8 }}>
               <Text style={styles.debugTitle}>{tx.debugTitle}</Text>
               <Text style={styles.debugText} selectable>
                 {this.state.error?.name}: {this.state.error?.message}

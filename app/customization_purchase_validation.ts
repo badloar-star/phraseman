@@ -1,8 +1,8 @@
 import { AVATAR_AURA_BUY_COST, NO_AVATAR_AURA_ID } from '../constants/avatar_auras';
 import {
-  CUSTOM_AVATAR_BUY_COST,
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_RESTYLE_COST,
+  getCustomAvatarPurchaseCost,
   parseCustomAvatarValue,
 } from '../constants/custom_avatars';
 import { getBestFrameForLevel } from '../constants/avatars';
@@ -42,7 +42,7 @@ export function validateCustomizationPurchase(
     if (!item || item.kind !== 'custom-avatar') return false;
     if (intent.spendReason === 'custom_avatar') {
       return (item.availability.kind === 'shards' || (intent.phase === 'granted' && item.isOwned))
-        && intent.cost === CUSTOM_AVATAR_BUY_COST;
+        && intent.cost === getCustomAvatarPurchaseCost(item.avatar);
     }
     return intent.spendReason === 'custom_avatar_restyle'
       && item.availability.kind === 'owned'

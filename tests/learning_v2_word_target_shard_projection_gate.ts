@@ -101,7 +101,7 @@ const learner = buildSessionChildBodiesFromShard(
 };
 assert.deepEqual(
   learner.interactions[0]?.responseOptions.map((option) => option.text),
-  ["I", "A", "E"],
+  ["I", "A", "E", "Y"],
   "A vocabulary listening contact must show the manually authored sound traps, not meanings from unrelated cards",
 );
 

@@ -7,11 +7,12 @@
 // intro-фазе из стора; дни и цена — из стора (см. paywall_trial_info.ts).
 // Toggle-триал запрещён Apple с 2026 — таймлайн его легальная замена.
 // ════════════════════════════════════════════════════════════════════════════
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
+import { soundDirector } from '../../modules/audio/sound_director';
 import type { PaywallChrome } from './paywallShared';
 
 interface Props {
@@ -29,6 +30,17 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
   const { tc, textPrimary, textMuted, cardBorder } = chrome;
   const remindDay = Math.max(1, days - 1);
 
+  // зачем: компонент рендерится ТОЛЬКО когда триал реально есть (родитель монтирует
+  // его условно на `p.trialDays`), поэтому mount === «блок пробного периода
+  // подсветился». Ref вместо эффекта на days/priceLabel гарантирует ровно один
+  // звук за монтирование — пересчёт цены/выбор плана не должен дребезжать звуком.
+  const soundedRef = useRef(false);
+  useEffect(() => {
+    if (soundedRef.current) return;
+    soundedRef.current = true;
+    soundDirector.request('pm.paywall.trial_highlight', { scope: 'paywall' });
+  }, []);
+
   const rows: { icon: keyof typeof Ionicons.glyphMap; lit: boolean; title: string; sub: string }[] = [
     {
       icon: 'lock-open',
@@ -36,6 +48,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
       title: triLang(lang, {
         ru: 'Сегодня — полный доступ',
         uk: 'Сьогодні — повний доступ',
+        en: 'Today — full access',
         es: 'Hoy: acceso completo',
         'pt-BR': 'Hoje: acesso completo',
         vi: 'Hôm nay: toàn quyền truy cập',
@@ -46,6 +59,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
       sub: triLang(lang, {
         ru: 'Все уроки и безлимит. Деньги не спишутся.',
         uk: 'Усі уроки й безліміт. Гроші не спишуться.',
+        en: 'All lessons and no limits. Nothing is charged.',
         es: 'Todo abierto y sin límites. No se cobra nada.',
         'pt-BR': 'Tudo liberado e sem limites. Nada será cobrado.',
         vi: 'Mở tất cả và không giới hạn. Không bị trừ tiền.',
@@ -60,6 +74,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
       title: triLang(lang, {
         ru: `День ${remindDay} — напомним`,
         uk: `День ${remindDay} — нагадаємо`,
+        en: `Day ${remindDay} — we'll remind you`,
         es: `Día ${remindDay}: te avisamos`,
         'pt-BR': `Dia ${remindDay}: vamos avisar`,
         vi: `Ngày ${remindDay}: chúng tôi sẽ nhắc bạn`,
@@ -70,6 +85,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
       sub: triLang(lang, {
         ru: 'Пуш за день до конца — забыть невозможно.',
         uk: 'Пуш за день до кінця — забути неможливо.',
+        en: 'A push notification the day before — impossible to forget.',
         es: 'Aviso un día antes: imposible olvidarlo.',
         'pt-BR': 'Aviso um dia antes: impossível esquecer.',
         vi: 'Nhắc trước một ngày: không thể quên.',
@@ -84,6 +100,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
       title: triLang(lang, {
         ru: `День ${days} — спишется, только если не отменишь`,
         uk: `День ${days} — спишеться, лише якщо не скасуєш`,
+        en: `Day ${days} — charged only if you don't cancel`,
         es: `Día ${days}: solo se cobra si no cancelas`,
         'pt-BR': `Dia ${days}: só cobra se você não cancelar`,
         vi: `Ngày ${days}: chỉ tính phí nếu bạn không hủy`,
@@ -94,6 +111,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
       sub: triLang(lang, {
         ru: `Отменишь за день до конца — ${priceLabel}${periodLabel} не спишется. Отмена — в два тапа.`,
         uk: `Скасуєш за день до кінця — ${priceLabel}${periodLabel} не спишеться. Скасування — у два тапи.`,
+        en: `Cancel a day before it ends and ${priceLabel}${periodLabel} won't be charged. Canceling takes two taps.`,
         es: `Cancela un día antes y no se cobra ${priceLabel}${periodLabel}. Cancelar toma dos toques.`,
         'pt-BR': `Cancele um dia antes e ${priceLabel}${periodLabel} não será cobrado. Cancelar leva dois toques.`,
         vi: `Hủy trước một ngày là không bị trừ ${priceLabel}${periodLabel}. Hủy chỉ mất hai lần chạm.`,
@@ -113,6 +131,7 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
           {triLang(lang, {
             ru: `${days} дня бесплатно, потом ${priceLabel}${periodLabel}`,
             uk: `${days} дні безкоштовно, потім ${priceLabel}${periodLabel}`,
+            en: `${days} days free, then ${priceLabel}${periodLabel}`,
             es: `${days} días gratis, luego ${priceLabel}${periodLabel}`,
             'pt-BR': `${days} dias grátis, depois ${priceLabel}${periodLabel}`,
             vi: `${days} ngày miễn phí, sau đó ${priceLabel}${periodLabel}`,

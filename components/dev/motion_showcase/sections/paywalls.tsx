@@ -7,8 +7,6 @@ import type { ShowcaseSection } from '../types';
 import { emitAppEvent } from '../../../../app/events';
 import IntroFullAccessModal from '../../../IntroFullAccessModal';
 import NoEnergyModal from '../../../NoEnergyModal';
-import PremiumCelebrationModal from '../../../PremiumCelebrationModal';
-import VipCelebrationModal from '../../../VipCelebrationModal';
 import StreakReviveModal from '../../../StreakReviveModal';
 import CardPackShardPaywallModal from '../../../../app/flashcards/CardPackShardPaywallModal';
 import type { StreakReviveOffer } from '../../../../app/streak_revive';
@@ -130,59 +128,10 @@ export const SECTION: ShowcaseSection = {
       kind: 'route',
       route: '/premium_modal',
     },
-    // ─── Празднования v6: все четыре тира + промокод ───
-    // зачем: владелец проверяет каждый прогон вживую (2026-08-24). Каждый пункт
-    // монтирует РЕАЛЬНУЮ модалку приложения с боевой хореографией, ничего не
-    // начисляет и не пишет в AsyncStorage — onClose только закрывает превью.
+    // зачем: празднование покупки (Plus/Pro/VIP/MAX/промокод) переехало в
+    // отдельный шард — sections/purchase_celebration.tsx (владелец 2026-08-25:
+    // не мог найти пять строк среди пейволов).
     {
-      id: 'premium_celebration',
-      title: cs('premium_celebration_title'),
-      detail: cs('celebration_full_detail'),
-      approval: 'pending',
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationModal visible={visible} onClose={onClose} variant="premium" />
-      ),
-    },
-    {
-      id: 'vip_celebration',
-      title: cs('vip_celebration_title'),
-      detail: cs('celebration_full_detail'),
-      approval: 'pending',
-      kind: 'render',
-      render: ({ visible, onClose }) => <VipCelebrationModal visible={visible} onClose={onClose} />,
-    },
-    {
-      id: 'pro_celebration',
-      title: cs('pro_celebration_title'),
-      detail: cs('celebration_full_detail'),
-      approval: 'pending',
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationModal visible={visible} onClose={onClose} variant="pro" />
-      ),
-    },
-    {
-      id: 'max_celebration',
-      title: cs('max_celebration_title'),
-      detail: cs('celebration_max_detail'),
-      approval: 'pending',
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationModal visible={visible} onClose={onClose} variant="max" />
-      ),
-    },
-    {
-      id: 'promo_celebration',
-      title: cs('promo_celebration_title'),
-      detail: cs('celebration_promo_detail'),
-      approval: 'pending',
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <VipCelebrationModal visible={visible} onClose={onClose} promoCode="PHRASE30" />
-      ),
-    },
-{
       id: 'no_energy_modal',
       title: cs('no_energy_modal_title'),
       detail: cs('real_modal'),

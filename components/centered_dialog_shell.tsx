@@ -132,7 +132,7 @@ export default function CenteredDialogShell({
             {/* зачем: карточка найденного друга заметно растит контент. Скроллим
                 ВНУТРИ окна, чтобы окно осталось по центру и не подстраивалось
                 под клавиатуру. */}
-            <ScrollView
+            <ScrollView decelerationRate="fast"
               style={styles.scroll}
               contentContainerStyle={styles.scrollContent}
               keyboardShouldPersistTaps="handled"

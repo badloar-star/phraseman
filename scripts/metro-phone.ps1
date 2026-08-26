@@ -35,7 +35,8 @@
 param(
   [int]$Port = 8085,
   [switch]$Clear,
-  [switch]$Tunnel
+  [switch]$Tunnel,
+  [switch]$Restart
 )
 
 $ErrorActionPreference = "Continue"
@@ -105,7 +106,7 @@ $existingUrl = if (Test-Path -LiteralPath $UrlFile) {
   ""
 }
 $existingMetroAlive = Test-MetroAlive $Port
-if ($existingMetroAlive -and -not $Clear -and -not $Tunnel -and $existingUrl -eq $expectedLanUrl) {
+if ($existingMetroAlive -and -not $Clear -and -not $Tunnel -and -not $Restart -and $existingUrl -eq $expectedLanUrl) {
   Say "Metro уже работает: $existingUrl. Сохраняю процесс и соединение iPhone без перезапуска."
   Write-Host ""
   Write-Host "  ==================================================" -ForegroundColor Green

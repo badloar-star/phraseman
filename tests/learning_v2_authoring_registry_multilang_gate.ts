@@ -5,6 +5,8 @@ import {
   lesson1AuthoringPreflightV1,
   V2_AUTHORING_TARGET_LANGUAGES,
 } from "../modules/learning-v2/content/source/lesson1_authoring_registry_v1";
+import { allAuthoredEsEpisode01Sessions } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
+import { learningV2SessionContentFingerprint } from "../modules/learning-v2/content/source/learning_content_quality_gate_v1";
 
 assert.ok(isV2AuthoringTargetLanguage("en"));
 assert.ok(isV2AuthoringTargetLanguage("es"));
@@ -14,6 +16,10 @@ assert.deepEqual([...V2_AUTHORING_TARGET_LANGUAGES], ["en", "es"]);
 const esRegistry = authoringRegistryForTargetLanguage("es");
 assert.equal(esRegistry.length, 56);
 assert.ok(esRegistry.every((entry) => entry.status === "DRAFT"));
+assert.match(
+  esRegistry[0]?.unlockDecisionRef ?? "",
+  /owner-unlocked-all-learning-v2-mode-native-rewrite-2026-08-25/u,
+);
 
 // зачем null, а не {}: canonicalJsonV1 (тот же hashCanonicalBody, что внутри
 // lesson1AuthoringPreflightV1) fail-closed отклоняет undefined как значение.
@@ -21,10 +27,13 @@ assert.ok(esRegistry.every((entry) => entry.status === "DRAFT"));
 // null для ещё не написанных сессий, а не пропускать ключ — иначе преflight
 // испанского курса будет падать на canonical_json_non_json_value для любого
 // диапазона с недостающими ключами, что и произошло здесь при первой попытке.
-const esActualFingerprints: Readonly<Record<number, string | null>> =
-  Object.freeze(
-    Object.fromEntries(Array.from({ length: 56 }, (_, index) => [index + 1, null])),
-  );
+const esActualFingerprints: Record<number, string | null> = Object.fromEntries(
+  Array.from({ length: 56 }, (_, index) => [index + 1, null]),
+);
+for (const source of allAuthoredEsEpisode01Sessions()) {
+  esActualFingerprints[source.requiredSessionOrdinal] =
+    learningV2SessionContentFingerprint(source);
+}
 
 const esPreflight = lesson1AuthoringPreflightV1(
   undefined,

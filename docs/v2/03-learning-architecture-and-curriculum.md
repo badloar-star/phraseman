@@ -1,5 +1,12 @@
 # Phraseman V2: учебная архитектура и пилотный сезон из 32 эпизодов
 
+> **Owner override 2026-08-25:** required-session practice authorится только
+> через семь mode-native mechanics; contact counts и progression этого
+> документа сохраняются. Действующий контракт и exact owner-макеты:
+> [`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md).
+> Более широкий catalog ниже не даёт права автоматически назначать family
+> готовому generic content.
+
 > Авторский стиль интро, фраз и объяснений не выводится из этой карты.
 > Обязательный источник —
 > [`LEARNING_CONTENT_STYLE_BIBLE.ru.md`](./LEARNING_CONTENT_STYLE_BIBLE.ru.md);

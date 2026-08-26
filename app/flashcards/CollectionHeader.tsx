@@ -136,21 +136,22 @@ export default function CollectionHeader({
   }, [currentPack, lang, activeCat, fallbackTitle]);
 
   const filterLabel = triLang(lang, {
-    ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro',
+    ru: 'Фильтр', uk: 'Фільтр', en: 'Filter', es: 'Filtro',
     'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr',
   });
 
   const listenA11yLabel = triLang(lang, {
-    ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
+    ru: 'Слушать', uk: 'Слухати', en: 'Listen', es: 'Escuchar',
     'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Słuchaj',
   });
   const trainA11yLabel = triLang(lang, {
-    ru: 'Тренировать', uk: 'Тренувати', es: 'Entrenar',
+    ru: 'Тренировать', uk: 'Тренувати', en: 'Train', es: 'Entrenar',
     'pt-BR': 'Treinar', vi: 'Luyện tập', id: 'Latih', tr: 'Çalış', pl: 'Trenuj',
   });
   const publishLabel = triLang(lang, {
     ru: 'Сделать публичным',
     uk: 'Зробити публічним',
+    en: 'Make public',
     es: 'Hacer público',
     'pt-BR': 'Tornar público',
     vi: 'Công khai bộ thẻ',
@@ -351,7 +352,7 @@ export default function CollectionHeader({
             value={searchInput}
             onChangeText={onSearchInput}
             placeholder={triLang(lang, {
-              ru: 'Поиск по карточкам', uk: 'Пошук по картках', es: 'Buscar tarjetas',
+              ru: 'Поиск по карточкам', uk: 'Пошук по картках', en: 'Search cards', es: 'Buscar tarjetas',
               'pt-BR': 'Buscar cartões', vi: 'Tìm thẻ', id: 'Cari kartu', tr: 'Kart ara', pl: 'Szukaj kart',
             })}
             placeholderTextColor={t.textMuted}

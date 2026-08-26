@@ -1,5 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { applyGift, GIFT_POOL, type GiftDef } from '../app/level_gift_system';
+import {
+  applyGift,
+  confirmDeferredLocalLevelGiftEffectReceipt,
+  GIFT_POOL,
+  type GiftDef,
+} from '../app/level_gift_system';
 import { callLevelGiftReservationAction } from '../app/community_packs/functionsClient';
 import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 
@@ -102,6 +107,31 @@ test('applies an inventory gift from a local spin without contacting the server'
   expect(callLevelGiftReserve).not.toHaveBeenCalled();
   expect(callLevelSpinDeliveryAction).not.toHaveBeenCalled();
   expect(callLevelGiftReservationAction).not.toHaveBeenCalled();
+});
+
+test('pins a deferred local-spin effect until its outer journal is durable', async () => {
+  const accountToken = captureAccountGeneration();
+  const occurrenceId = 'level-spin:deferredlocal0001:base';
+  const gift: GiftDef = {
+    ...GIFT_POOL.find((item) => item.id === 'energy_full')!,
+    spinRewardReceipt: { requestId: 'deferredlocal0001', lane: 'base', giftId: 'energy_full' },
+  };
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), {
+    accountToken,
+    occurrenceId,
+    studyTarget: 'en',
+    localOnly: true,
+    deferEffectReceiptConfirmation: true,
+  })).resolves.toEqual({ success: true });
+  expect(Object.values(JSON.parse(storage.level_gift_effect_receipts_v1))).toEqual([
+    expect.objectContaining({ giftId: 'energy_full', status: 'applied_unconfirmed' }),
+  ]);
+
+  await expect(confirmDeferredLocalLevelGiftEffectReceipt(accountToken, occurrenceId)).resolves.toBe(true);
+  expect(Object.values(JSON.parse(storage.level_gift_effect_receipts_v1))).toEqual([
+    expect.objectContaining({ giftId: 'energy_full', status: 'applied' }),
+  ]);
 });
 
 test('applies the exact local-spin energy gift for a Plus user', async () => {

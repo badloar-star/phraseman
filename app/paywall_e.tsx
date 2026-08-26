@@ -109,14 +109,14 @@ export default function PaywallE() {
 
   const { tc } = chrome;
   const perMonthLabel = triLang(lang as Lang, {
-    ru: '/ мес', uk: '/ міс', es: '/ mes', 'pt-BR': '/ mês',
+    ru: '/ мес', uk: '/ міс', en: '/ mo', es: '/ mes', 'pt-BR': '/ mês',
     vi: '/ tháng', id: '/ bln', tr: '/ ay', pl: '/ mies.',
   });
   const yearSubParts: string[] = [];
   if (p.yearlyPerMonth || p.yearlyPrice) yearSubParts.push(`${p.yearlyPerMonth || p.yearlyPrice} ${perMonthLabel}`);
   if (p.perDayLabel) {
     yearSubParts.push(triLang(lang as Lang, {
-      ru: `${p.perDayLabel} в день`, uk: `${p.perDayLabel} на день`, es: `${p.perDayLabel} al día`,
+      ru: `${p.perDayLabel} в день`, uk: `${p.perDayLabel} на день`, en: `${p.perDayLabel} per day`, es: `${p.perDayLabel} al día`,
       'pt-BR': `${p.perDayLabel} por dia`, vi: `${p.perDayLabel} mỗi ngày`, id: `${p.perDayLabel} per hari`,
       tr: `Günde ${p.perDayLabel}`, pl: `${p.perDayLabel} dziennie`,
     }));
@@ -130,7 +130,7 @@ export default function PaywallE() {
     {
       plan: 'monthly',
       name: triLang(lang as Lang, {
-        ru: 'Месяц', uk: 'Місяць', es: 'Mes', 'pt-BR': 'Mês',
+        ru: 'Месяц', uk: 'Місяць', en: 'Month', es: 'Mes', 'pt-BR': 'Mês',
         vi: 'Tháng', id: 'Bulan', tr: 'Ay', pl: 'Miesiąc',
       }),
       priceLabel: `${p.monthlyPerMonth || p.monthlyPrice} ${perMonthLabel}`,
@@ -141,7 +141,7 @@ export default function PaywallE() {
       plan: 'lifetime',
       name: 'Phraseman Pro',
       priceLabel: `${p.lifetimePrice || ''} · ${triLang(lang as Lang, {
-        ru: 'разовая покупка', uk: 'разова покупка', es: 'compra única', 'pt-BR': 'compra única',
+        ru: 'разовая покупка', uk: 'разова покупка', en: 'one-time purchase', es: 'compra única', 'pt-BR': 'compra única',
         vi: 'mua một lần', id: 'pembelian sekali', tr: 'tek seferlik satın alma', pl: 'zakup jednorazowy',
       })}`,
     });
@@ -152,6 +152,7 @@ export default function PaywallE() {
       name: 'MAX',
       priceLabel: triLang(lang as Lang, {
         ru: '120 мин · звонки с ИИ-учителем', uk: '120 хв · дзвінки з ШІ-вчителем',
+        en: '120 min · calls with an AI teacher',
         es: '120 min · llamadas con tu profesor de IA', 'pt-BR': '120 min · ligações com o professor de IA',
         vi: '120 phút · gọi với gia sư AI', id: '120 mnt · panggilan dengan guru AI',
         tr: '120 dk · yapay zekâ öğretmeniyle arama', pl: '120 min · rozmowy z nauczycielem AI',
@@ -174,7 +175,7 @@ export default function PaywallE() {
 
           <ScrollView
             showsVerticalScrollIndicator={false}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[S.scroll, isOnboarding && S.scrollOnboardingStickyPad]}
             onLayout={isOnboarding ? sticky.onViewportLayout : undefined}
             onScroll={isOnboarding ? sticky.onScroll : undefined}
@@ -210,7 +211,7 @@ export default function PaywallE() {
                   <Ionicons name="checkmark-circle" size={22} color={tc.heroAccent} />
                   <Text style={[S.offerName, { color: chrome.textPrimary }]}>
                     {triLang(lang as Lang, {
-                      ru: 'Год Premium', uk: 'Рік Premium', es: 'Año Premium', 'pt-BR': 'Ano Premium',
+                      ru: 'Год Premium', uk: 'Рік Premium', en: 'Year of Premium', es: 'Año Premium', 'pt-BR': 'Ano Premium',
                       vi: 'Năm Premium', id: 'Tahun Premium', tr: 'Yıl Premium', pl: 'Rok Premium',
                     })}
                   </Text>
@@ -273,7 +274,7 @@ export default function PaywallE() {
               >
                 <Text style={[S.altToggleText, { color: chrome.textMuted }]}>
                   {triLang(lang as Lang, {
-                    ru: 'Другие варианты', uk: 'Інші варіанти', es: 'Otras opciones', 'pt-BR': 'Outras opções',
+                    ru: 'Другие варианты', uk: 'Інші варіанти', en: 'Other options', es: 'Otras opciones', 'pt-BR': 'Outras opções',
                     vi: 'Lựa chọn khác', id: 'Pilihan lain', tr: 'Diğer seçenekler', pl: 'Inne opcje',
                   })}
                 </Text>

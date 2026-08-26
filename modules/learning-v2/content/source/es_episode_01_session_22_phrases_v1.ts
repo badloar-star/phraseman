@@ -780,10 +780,13 @@ const RAW_PHRASES: readonly Omit<EpisodeSourcePhrase, 'localizedDetails'>[] =
 
 export const ES_EPISODE_01_SESSION_22_PHRASES: readonly EpisodeSourcePhrase[] =
   Object.freeze(
-    RAW_PHRASES.map((phrase) =>
-      Object.freeze({
-        ...phrase,
-        localizedDetails: ES_SESSION_22_LOCALIZED_DETAILS[phrase.id],
-      }),
-    ),
+    RAW_PHRASES.map((phrase) => {
+      const localizedDetails = ES_SESSION_22_LOCALIZED_DETAILS[phrase.id];
+      // зачем не хранить explicit undefined: canonical JSON fail-closed
+      // отклоняет non-JSON values, и один отсутствующий optional detail ломал
+      // preflight всего испанского authoring-реестра до выдачи DRAFT/HOLD.
+      return Object.freeze(
+        localizedDetails ? { ...phrase, localizedDetails } : { ...phrase },
+      );
+    }),
   );

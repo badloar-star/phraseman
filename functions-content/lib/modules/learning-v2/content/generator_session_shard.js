@@ -10,6 +10,7 @@ const generator_course_contract_1 = require("./generator_course_contract");
 const generator_session_contract_1 = require("./generator_session_contract");
 const course_topology_v1_1 = require("./course_topology_v1");
 const lesson1_session_choreography_v1_1 = require("./source/lesson1_session_choreography_v1");
+const mode_native_payload_v1_1 = require("../contracts/mode_native_payload_v1");
 /**
  * Назначение каждой карточки по её месту в сессии. Кривая нагрузки:
  * проверка после интро → практика с опорой → практика с подсказкой →
@@ -51,6 +52,7 @@ const TOP_KEYS = Object.freeze([
     'zone',
     'support',
     'generationInputFingerprint',
+    'modeNativePlanId',
     'interfaceLocales',
     'contentKinds',
     'intro',
@@ -74,6 +76,7 @@ const CARD_KEYS = Object.freeze([
     'retryMessageByLocale',
     'errorExplanationByLocale',
     'accessibilityLabelByLocale',
+    'modePayload',
     'audioScript',
 ]);
 const AUDIO_KEYS = Object.freeze([
@@ -219,7 +222,9 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
         : [];
     const vocabularyCount = (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstVocabularyCountV1)(rawCardTargets);
     const phraseCount = (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstPhraseCountV1)(rawCardTargets, vocabularyCount);
-    const choreography = (0, lesson1_session_choreography_v1_1.lesson1SessionChoreographyV1)(expected.requiredSessionOrdinal, undefined, vocabularyCount, phraseCount);
+    const choreography = (0, lesson1_session_choreography_v1_1.lesson1SessionChoreographyV1)(expected.requiredSessionOrdinal, undefined, vocabularyCount, phraseCount, typeof input.modeNativePlanId === 'string'
+        ? input.modeNativePlanId
+        : undefined);
     if (input.schemaVersion !== 'learning-v2-generated-session-shard.v1' ||
         input.packageId !== expected.packageId ||
         input.targetLanguage !== expected.targetLanguage ||
@@ -232,6 +237,9 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
         !TOKEN_RE.test(input.canDoOutcomeId) ||
         input.zone !== choreography.zone ||
         input.support !== choreography.support ||
+        !(input.modeNativePlanId === null ||
+            (typeof input.modeNativePlanId === 'string' &&
+                TOKEN_RE.test(input.modeNativePlanId))) ||
         input.generationInputFingerprint !== expected.generationInputFingerprint) {
         throw new Error('learning_v2_session_shard_identity_invalid');
     }
@@ -317,11 +325,15 @@ function validateLearningV2GeneratedSessionShardV1(value, expected) {
         ]) {
             validateLocalizedCopy(card[field], field);
         }
+        const modePayload = card.modePayload === null
+            ? null
+            : (0, mode_native_payload_v1_1.validateLearningV2ModeNativePayloadV1)(card.modePayload, family);
         validateAudioScript(card.audioScript, item, family, expected.targetLanguage);
         contentIds.add(item.contentItemId);
         cards.push(Object.freeze({
             ...card,
             contentItem: item,
+            modePayload,
         }));
     }
     return Object.freeze({

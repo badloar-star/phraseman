@@ -32,6 +32,7 @@ export default function PersonalPlanSunsetNotice({
   const title = triLang(lang, {
     ru: 'Раздел «Планы» будет отключён 20 октября 2026 в 00:00 UTC',
     uk: 'Розділ «Плани» буде вимкнено 20 жовтня 2026 о 00:00 UTC',
+    en: 'The "Plans" section will be turned off on October 20, 2026 at 00:00 UTC',
     es: 'La sección «Planes» se cerrará el 20 de octubre de 2026 a las 00:00 UTC',
     'pt-BR': 'A seção «Planos» será encerrada em 20 de outubro de 2026 às 00:00 UTC',
     vi: 'Mục «Kế hoạch» sẽ đóng lúc 00:00 UTC ngày 20 tháng 10 năm 2026',
@@ -42,6 +43,7 @@ export default function PersonalPlanSunsetNotice({
   const remainingLabel = triLang(lang, {
     ru: 'До отключения',
     uk: 'До вимкнення',
+    en: 'Time remaining',
     es: 'Tiempo restante',
     'pt-BR': 'Tempo restante',
     vi: 'Thời gian còn lại',
@@ -52,6 +54,7 @@ export default function PersonalPlanSunsetNotice({
   const units = triLang(lang, {
     ru: 'дни  :  часы  :  минуты  :  секунды',
     uk: 'дні  :  години  :  хвилини  :  секунди',
+    en: 'days  :  hours  :  minutes  :  seconds',
     es: 'días  :  horas  :  minutos  :  segundos',
     'pt-BR': 'dias  :  horas  :  minutos  :  segundos',
     vi: 'ngày  :  giờ  :  phút  :  giây',
@@ -62,6 +65,7 @@ export default function PersonalPlanSunsetNotice({
   const accessibleRemaining = triLang(lang, {
     ru: `${parts.days} дней, ${parts.hours} часов, ${parts.minutes} минут и ${parts.seconds} секунд`,
     uk: `${parts.days} днів, ${parts.hours} годин, ${parts.minutes} хвилин і ${parts.seconds} секунд`,
+    en: `${parts.days} days, ${parts.hours} hours, ${parts.minutes} minutes, and ${parts.seconds} seconds`,
     es: `${parts.days} días, ${parts.hours} horas, ${parts.minutes} minutos y ${parts.seconds} segundos`,
     'pt-BR': `${parts.days} dias, ${parts.hours} horas, ${parts.minutes} minutos e ${parts.seconds} segundos`,
     vi: `${parts.days} ngày, ${parts.hours} giờ, ${parts.minutes} phút và ${parts.seconds} giây`,

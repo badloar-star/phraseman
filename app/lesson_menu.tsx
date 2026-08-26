@@ -359,6 +359,7 @@ function LessonMenu() {
   ru: `Урок ${lessonId}`,
   uk: `Урок ${lessonId}`,
   es: `Lección ${lessonId}`,
+  en: `Lesson ${lessonId}`,
   "pt-BR": `Lição ${lessonId}`,
   vi: `Bài ${lessonId}`,
   id: `Pelajaran ${lessonId}`,
@@ -428,6 +429,7 @@ function LessonMenu() {
     ru: 'Загляни в «Словарь» и «Теорию» — там правила, конструкции и новые слова урока. Вернуться можно в любой момент.',
     uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. А в розділі «Теорія» докладно розібрані правила й конструкції. До цих матеріалів можна повернутися будь-коли.',
     es: 'Antes de la lección puedes abrir «Vocabulario» y practicar palabras nuevas. En «Teoría» encontrarás reglas y estructuras explicadas en detalle. Puedes volver a estos materiales en cualquier momento.',
+    en: 'Before the lesson, you can open "Vocabulary" and practice new words. In "Theory" you\'ll find rules and structures explained in detail. You can come back to these materials any time.',
     'pt-BR': 'Antes da lição, você pode abrir o «Vocabulário» e treinar palavras novas. Em «Teoria», as regras e estruturas estão explicadas em detalhe. Você pode voltar a esses materiais quando quiser.',
     vi: 'Trước bài học, bạn có thể mở «Từ vựng» và luyện các từ mới. Trong «Lý thuyết», các quy tắc và cấu trúc được giải thích chi tiết. Bạn có thể quay lại các phần này bất cứ lúc nào.',
     id: 'Sebelum pelajaran, kamu bisa membuka «Kosakata» dan melatih kata-kata baru. Di «Teori», aturan dan struktur dijelaskan dengan rinci. Materi ini bisa dibuka lagi kapan saja.',
@@ -689,10 +691,8 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
-    void (async () => {
-      await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
-      router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-    })();
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
   }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
 
   const handleStartLesson = useCallback(() => {
@@ -700,12 +700,10 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
-    void (async () => {
-      await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
-      // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
-      // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
-      router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-    })();
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
+    // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
+    router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
   }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
 
   const handleContinueLesson = openLessonFromMenu;
@@ -716,13 +714,11 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
-    void (async () => {
-      await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
-      router.push({
-        pathname: '/lesson1',
-        params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
-      });
-    })();
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    router.push({
+      pathname: '/lesson1',
+      params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
+    });
   }, [frenchLessonSourceGated, isLessonLocked, lessonId, router, studyTarget]);
 
   const handleLockedLessonPress = useCallback(() => {
@@ -755,6 +751,7 @@ function LessonMenu() {
   ru: 'Загрузка пакета',
   uk: 'Завантаження пакета',
   es: 'Material pendiente',
+  en: 'Loading pack',
   "pt-BR": 'Carregando pacote',
   vi: 'Nội dung đang chờ duyệt',
   id: 'Materi sedang ditinjau',
@@ -766,6 +763,7 @@ function LessonMenu() {
   ru: 'Перепройти',
   uk: 'Пройти знову',
   es: 'Repetir',
+  en: 'Replay',
   "pt-BR": 'Repetir',
   vi: 'Học lại',
   id: 'Ulangi',
@@ -778,6 +776,7 @@ function LessonMenu() {
   ru: 'Этот урок пока готовится. Скоро откроется.',
   uk: 'Цей урок ще готується. Скоро відкриється.',
   es: 'Esta lección se está preparando. Pronto estará disponible.',
+  en: 'This lesson is being prepared. It will open soon.',
   "pt-BR": 'Esta lição está sendo preparada. Em breve estará disponível.',
   vi: 'Bài học này đang được chuẩn bị. Sắp ra mắt.',
   id: 'Pelajaran ini sedang disiapkan. Segera tersedia.',
@@ -818,6 +817,7 @@ function LessonMenu() {
             ru: 'Французский словарь урока пока готовится. Английские слова скрыты.',
             uk: 'Французький словник уроку ще готується. Англійські слова приховано.',
             es: 'El vocabulario francés de esta lección se está preparando.',
+            en: 'The French vocabulary for this lesson is being prepared. English words are hidden.',
             'pt-BR': 'O vocabulário francês desta lição está sendo preparado.',
             vi: 'Từ vựng tiếng Pháp của bài này đang được chuẩn bị.',
             id: 'Kosakata bahasa Prancis pelajaran ini sedang disiapkan.',
@@ -832,6 +832,7 @@ function LessonMenu() {
                 ru: `${wordsLearned}/${total} слов`,
                 uk: `${wordsLearned}/${total} слів`,
                 es: `${wordsLearned}/${total} palabras`,
+                en: `${wordsLearned}/${total} words`,
                 'pt-BR': `${wordsLearned}/${total} palavras`,
                 vi: `${wordsLearned}/${total} từ`,
                 id: `${wordsLearned}/${total} kata`,
@@ -843,6 +844,7 @@ function LessonMenu() {
               ru: 'Слова этого урока',
               uk: 'Слова цього уроку',
               es: 'Palabras de esta lección',
+              en: 'Words in this lesson',
               'pt-BR': 'Palavras desta lição',
               vi: 'Từ vựng của bài này',
               id: 'Kosakata pelajaran ini',
@@ -854,6 +856,7 @@ function LessonMenu() {
             ru: 'Слова этого урока',
             uk: 'Слова цього уроку',
             es: 'Palabras de esta lección',
+            en: 'Words in this lesson',
             'pt-BR': 'Palavras desta lição',
             vi: 'Từ vựng của bài này',
             id: 'Kosakata pelajaran ini',
@@ -889,6 +892,7 @@ function LessonMenu() {
             ru: 'Французские глаголы урока пока готовятся. Английский список скрыт.',
             uk: 'Французькі дієслова уроку ще готуються. Англійський список приховано.',
             es: 'Los verbos franceses de esta lección se están preparando.',
+            en: 'The French verbs for this lesson are being prepared. The English list is hidden.',
             'pt-BR': 'Os verbos franceses desta lição estão sendo preparados.',
             vi: 'Động từ tiếng Pháp của bài này đang được chuẩn bị.',
             id: 'Kata kerja bahasa Prancis pelajaran ini sedang disiapkan.',
@@ -903,6 +907,7 @@ function LessonMenu() {
                   ru: `${irregularLearned}/${total} глаголов`,
                   uk: `${irregularLearned}/${total} дієслів`,
                   es: `${irregularLearned}/${total} verbos`,
+                  en: `${irregularLearned}/${total} verbs`,
                   'pt-BR': `${irregularLearned}/${total} verbos`,
                   vi: `${irregularLearned}/${total} động từ`,
                   id: `${irregularLearned}/${total} kata kerja`,
@@ -913,6 +918,7 @@ function LessonMenu() {
                   ru: 'Неправильные глаголы урока',
                   uk: 'Неправильні дієслова уроку',
                   es: 'Formas verbales irregulares de esta lección',
+                  en: 'Irregular verbs in this lesson',
                   'pt-BR': 'Verbos irregulares desta lição',
                   vi: 'Động từ bất quy tắc của bài này',
                   id: 'Kata kerja tak beraturan pelajaran ini',
@@ -924,6 +930,7 @@ function LessonMenu() {
             ru: 'Неправильные глаголы урока',
             uk: 'Неправильні дієслова уроку',
             es: 'Formas verbales irregulares de esta lección',
+            en: 'Irregular verbs in this lesson',
             'pt-BR': 'Verbos irregulares desta lição',
             vi: 'Động từ bất quy tắc của bài này',
             id: 'Kata kerja tak beraturan pelajaran ini',
@@ -958,6 +965,7 @@ function LessonMenu() {
   ru: 'Тренажёр предлогов',
   uk: 'Тренажер прийменників',
   es: 'Práctica de preposiciones',
+  en: 'Preposition practice',
   "pt-BR": 'Treino de preposições',
   vi: 'Luyện giới từ',
   id: 'Latihan preposisi',
@@ -969,6 +977,7 @@ function LessonMenu() {
             ru: `${prepositionAnswered}/${prepositionTotal} вызовов`,
             uk: `${prepositionAnswered}/${prepositionTotal} викликів`,
             es: `${prepositionAnswered}/${prepositionTotal} ejercicios`,
+            en: `${prepositionAnswered}/${prepositionTotal} exercises`,
             'pt-BR': `${prepositionAnswered}/${prepositionTotal} exercícios`,
             vi: `${prepositionAnswered}/${prepositionTotal} bài tập`,
             id: `${prepositionAnswered}/${prepositionTotal} latihan`,
@@ -979,6 +988,7 @@ function LessonMenu() {
             ru: 'Предлоги этого урока',
             uk: 'Прийменники цього уроку',
             es: 'Preposiciones de esta lección',
+            en: 'Prepositions in this lesson',
             'pt-BR': 'Preposições desta lição',
             vi: 'Giới từ của bài này',
             id: 'Preposisi pelajaran ini',
@@ -1019,6 +1029,7 @@ function LessonMenu() {
             ru: 'Теория',
             uk: 'Теорія',
             es: 'Teoría',
+            en: 'Theory',
             "pt-BR": 'Teoria',
             vi: 'Lý thuyết đang được duyệt',
             id: 'Teori sedang ditinjau',
@@ -1031,6 +1042,7 @@ function LessonMenu() {
             ru: 'Теория этого урока пока готовится. Скоро откроется.',
             uk: 'Теорія цього уроку ще готується. Скоро відкриється.',
             es: 'La teoría de esta lección se está preparando. Pronto estará disponible.',
+            en: 'The theory for this lesson is being prepared. It will open soon.',
             "pt-BR": 'A teoria desta lição está sendo preparada. Em breve estará disponível.',
             vi: 'Lý thuyết của bài học này đang được chuẩn bị. Sắp ra mắt.',
             id: 'Teori pelajaran ini sedang disiapkan. Segera tersedia.',
@@ -1041,6 +1053,7 @@ function LessonMenu() {
   ru: 'Правила и пояснения',
   uk: 'Правила та пояснення',
   es: 'Reglas y explicaciones',
+  en: 'Rules and explanations',
   "pt-BR": 'Regras e explicações',
   vi: 'Quy tắc và giải thích',
   id: 'Aturan dan penjelasan',
@@ -1091,6 +1104,7 @@ function LessonMenu() {
   ru: 'Premium',
   uk: 'Premium',
   es: 'Premium',
+  en: 'Premium',
   "pt-BR": 'Premium',
   vi: 'Premium',
   id: 'Premium',
@@ -1102,6 +1116,7 @@ function LessonMenu() {
   ru: 'Уровень ещё не открыт',
   uk: 'Рівень поки закритий',
   es: 'Nivel bloqueado',
+  en: 'Level not unlocked yet',
   "pt-BR": 'Nível bloqueado',
   vi: 'Cấp độ đang bị khóa',
   id: 'Level masih terkunci',
@@ -1111,6 +1126,7 @@ function LessonMenu() {
         : triLang(lang, {
   ru: 'Урок заблокирован',
   uk: 'Урок заблоковано',
+  en: 'Lesson locked',
   es: 'Lección bloqueada',
   "pt-BR": 'Lição bloqueada',
   vi: 'Bài học bị khóa',
@@ -1122,6 +1138,7 @@ function LessonMenu() {
       ? triLang(lang, {
   ru: 'Этот урок доступен в Premium.',
   uk: 'Цей урок входить до Premium.',
+  en: 'This lesson is part of Premium.',
   es: 'Esta lección forma parte de Premium.',
   "pt-BR": 'Esta lição faz parte do Premium.',
   vi: 'Bài học này thuộc Premium.',
@@ -1133,6 +1150,7 @@ function LessonMenu() {
         ? triLang(lang, {
   ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдай зачёт ${prevLevel}.`,
   uk: `Щоб відкрити рівень ${lessonLevel}, спочатку складіть залік ${prevLevel}.`,
+  en: `To unlock level ${lessonLevel}, first pass the ${prevLevel} test.`,
   es: `Para abrir el nivel ${lessonLevel}, primero supera el examen de ${prevLevel}.`,
   "pt-BR": `Para abrir o nível ${lessonLevel}, primeiro passe no teste ${prevLevel}.`,
   vi: `Để mở cấp ${lessonLevel}, trước tiên hãy vượt qua bài kiểm tra ${prevLevel}.`,
@@ -1143,6 +1161,7 @@ function LessonMenu() {
         : triLang(lang, {
   ru: `Пройдите урок ${prevId} с оценкой 2.5 или больше, чтобы открыть этот урок`,
   uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
+  en: `Complete lesson ${prevId} with a score of 2.5 or higher to unlock this lesson`,
   es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
   "pt-BR": `Conclua a lição ${prevId} com nota 2,5 ou maior para desbloquear esta lição`,
   vi: `Hoàn thành bài ${prevId} với điểm 2.5 trở lên để mở bài này`,
@@ -1154,6 +1173,7 @@ function LessonMenu() {
       ? triLang(lang, {
   ru: 'Открыть Premium',
   uk: 'Отримати Premium',
+  en: 'Get Premium',
   es: 'Obtener Premium',
   "pt-BR": 'Obter Premium',
   vi: 'Nhận Premium',
@@ -1165,6 +1185,7 @@ function LessonMenu() {
         ? triLang(lang, {
   ru: `К зачёту ${prevLevel}`,
   uk: `До заліку ${prevLevel}`,
+  en: `To the ${prevLevel} test`,
   es: `Ir al examen ${prevLevel}`,
   "pt-BR": `Ir para o teste ${prevLevel}`,
   vi: `Đến bài kiểm tra ${prevLevel}`,
@@ -1175,6 +1196,7 @@ function LessonMenu() {
         : triLang(lang, {
   ru: `Перейти к уроку ${prevId}`,
   uk: `Перейти до уроку ${prevId}`,
+  en: `Go to lesson ${prevId}`,
   es: `Ir a la lección ${prevId}`,
   "pt-BR": `Ir para a lição ${prevId}`,
   vi: `Đi tới bài ${prevId}`,
@@ -1203,6 +1225,7 @@ function LessonMenu() {
             {triLang(lang, {
   ru: 'УРОК',
   uk: 'УРОК',
+  en: 'LESSON',
   es: 'LECCIÓN',
   "pt-BR": 'LIÇÃO',
   vi: 'BÀI',
@@ -1259,11 +1282,9 @@ function LessonMenu() {
                 markNextNavigationAsReplace();
                 router.replace({ pathname: '/level_exam', params: { level: prevLevel } });
               } else {
-                void (async () => {
-                  await prefetchLessonMenuCache(prevId, studyTarget);
-                  markNextNavigationAsReplace();
-                  router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
-                })();
+                void prefetchLessonMenuCache(prevId, studyTarget).catch(() => {});
+                markNextNavigationAsReplace();
+                router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
               }
             }}
             innerStyle={{paddingHorizontal:28,paddingVertical:14,flexDirection:'row',alignItems:'center',gap:10}}
@@ -1310,6 +1331,7 @@ function LessonMenu() {
           {triLang(lang, {
   ru: 'УРОК',
   uk: 'УРОК',
+  en: 'LESSON',
   es: 'LECCIÓN',
   "pt-BR": 'LIÇÃO',
   vi: 'BÀI',
@@ -1333,7 +1355,7 @@ function LessonMenu() {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}
@@ -1554,6 +1576,7 @@ function LessonMenu() {
                   {triLang(lang, {
   ru: 'Урок заблокирован',
   uk: 'Урок заблоковано',
+  en: 'Lesson locked',
   es: 'Lección bloqueada',
   "pt-BR": 'Lição bloqueada',
   vi: 'Bài học bị khóa',
@@ -1588,6 +1611,7 @@ function LessonMenu() {
                     {triLang(lang, {
   ru: 'Понимаю',
   uk: 'Розумію',
+  en: 'Got it',
   es: 'Entendido',
   "pt-BR": 'Entendi',
   vi: 'Tôi hiểu',
@@ -1607,6 +1631,7 @@ function LessonMenu() {
         title={triLang(lang, {
   ru: 'Скоро',
   uk: 'Скоро',
+  en: 'Coming soon',
   es: 'Próximamente',
   "pt-BR": 'Em breve',
   vi: 'Sắp có',
@@ -1619,6 +1644,7 @@ function LessonMenu() {
             ? triLang(lang, {
   ru: 'Этот урок пока готовится. Мы откроем его, когда материал будет полностью готов.',
   uk: 'Цей урок ще готується. Ми відкриємо його, коли матеріал буде повністю готовий.',
+  en: 'This lesson is still being prepared. We’ll unlock it once the material is fully ready.',
   es: 'Esta lección se está preparando. La abriremos cuando el material esté listo.',
   "pt-BR": 'Esta lição está sendo preparada. Vamos abri-la quando o material estiver pronto.',
   vi: 'Bài học này đang được chuẩn bị. Chúng tôi sẽ mở khi nội dung sẵn sàng.',
@@ -1630,6 +1656,7 @@ function LessonMenu() {
               ? triLang(lang, {
   ru: 'Теория этого урока пока готовится. Мы откроем её, когда материал будет полностью готов.',
   uk: 'Теорія цього уроку ще готується. Ми відкриємо її, коли матеріал буде повністю готовий.',
+  en: 'This lesson’s theory is still being prepared. We’ll unlock it once the material is fully ready.',
   es: 'La teoría de esta lección se está preparando. La abriremos cuando el material esté listo.',
   "pt-BR": 'A teoria desta lição está sendo preparada. Vamos abri-la quando o material estiver pronto.',
   vi: 'Lý thuyết của bài học này đang được chuẩn bị. Chúng tôi sẽ mở khi nội dung sẵn sàng.',
@@ -1641,6 +1668,7 @@ function LessonMenu() {
             ? triLang(lang, {
   ru: 'Словарь для этого урока скоро появится',
   uk: 'Словник для цього уроку ще готується',
+  en: 'This lesson’s vocabulary is still being prepared.',
   es: 'El vocabulario de esta lección aún está en preparación.',
   "pt-BR": 'O vocabulário desta lição ainda está sendo preparado.',
   vi: 'Từ vựng cho bài học này vẫn đang được chuẩn bị.',
@@ -1652,6 +1680,7 @@ function LessonMenu() {
               ? triLang(lang, {
   ru: 'Материал для этого урока ещё готовится',
   uk: 'Матеріал для цього уроку ще готується',
+  en: 'This lesson’s material is still being prepared.',
   es: 'El material de esta lección aún está en preparación.',
   "pt-BR": 'O material desta lição ainda está sendo preparado.',
   vi: 'Tài liệu cho bài học này vẫn đang được chuẩn bị.',
@@ -1663,6 +1692,7 @@ function LessonMenu() {
                 ? triLang(lang, {
   ru: 'Тренажёр предлогов временно недоступен.',
   uk: 'Тренажер прийменників тимчасово недоступний.',
+  en: 'The preposition trainer is temporarily unavailable.',
   es: 'La práctica de preposiciones no está disponible por ahora.',
   "pt-BR": 'O treino de preposições não está disponível no momento.',
   vi: 'Phần luyện giới từ hiện chưa khả dụng.',
@@ -1675,6 +1705,7 @@ function LessonMenu() {
         choices={[{ label: triLang(lang, {
   ru: 'Закрыть',
   uk: 'Закрити',
+  en: 'Close',
   es: 'Cerrar',
   "pt-BR": 'Fechar',
   vi: 'Đóng',

@@ -22,6 +22,10 @@
  */
 
 import type { LearningV2ActivityFamilyCode } from "../telemetry";
+import type {
+  LearningV2InterfaceLocale,
+} from "../content/generator_course_contract";
+import type { LearningV2ModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
 
 /** Единая машина состояний режима. Совпадает по смыслу с "Контракт состояний"
  * из каждого макета (prompt→active, processing, success, needs_work...). */
@@ -32,6 +36,13 @@ export type LearningV2ModePhaseV1 =
   | "success" // верно: волна/заливка/wipe + звезда
   | "needs_work" // неверно: точечная тонировка + подсказка, без тряски экрана
   | "autonext"; // авто-переход к следующему заданию (1400мс, тап = сразу)
+
+export type LearningV2ReferenceAudioStateV1 =
+  | "idle"
+  | "loading"
+  | "playing"
+  | "error"
+  | "unavailable";
 
 /** Один вариант ответа — 1:1 с responseOptions из контента. */
 export interface LearningV2ModeOptionV1 {
@@ -44,6 +55,8 @@ export interface LearningV2ModeOptionV1 {
  * поверх этого контракта — см. комментарий "зачем" вверху файла. */
 export interface LearningV2ModeCommonPropsV1 {
   readonly family: LearningV2ActivityFamilyCode;
+  readonly interfaceLocale: LearningV2InterfaceLocale;
+  readonly modePayload: LearningV2ModeNativePayloadV1 | null;
   readonly phase: LearningV2ModePhaseV1;
   readonly prompt: string;
   readonly options: readonly LearningV2ModeOptionV1[];
@@ -69,9 +82,18 @@ export interface LearningV2ModeCommonPropsV1 {
   readonly onAppendToken: (responseId: string) => void;
   /** Ученик убрал последний добавленный токен (кнопка "Назад"). */
   readonly onUndoToken: () => void;
+  readonly onRemoveTokenAt: (index: number) => void;
   /** Проиграть аудио варианта/фразы через уже готовый player audio pipeline. */
   readonly onPlaySelectableAudio: (selectableId: string) => void;
   readonly onPlayFullPhraseAudio: (() => void) | null;
+  readonly onPlaySlowPhraseAudio: (() => void) | null;
+  /** Real player/TTS lifecycle. Motion may never pretend that audio plays. */
+  readonly referenceAudioState: LearningV2ReferenceAudioStateV1;
+  /** Завершение режима, чей ответ не сводится к одному обычному option. */
+  readonly onModeNativeComplete: (responseId: string) => void;
+  /** Accessibility fallback for Repeat & Compare. The visible phone control is
+   * hold-to-talk in the player's center footer; assistive activation toggles. */
+  readonly onToggleRecording: () => void;
   /** Явное подтверждение (кнопка "Проверить" в ActionDock) — вызывает evaluate
    * в player'е с уже накопленным ответом. Режим НЕ вызывает evaluate напрямую. */
   readonly onSubmit: () => void;

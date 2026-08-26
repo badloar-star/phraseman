@@ -1059,7 +1059,7 @@ function MaxCallSessionContent() {
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 22, gap: 14 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
               {triLang(lang, {
-                ru: 'Сохраняем разбор', uk: 'Зберігаємо розбір', es: 'Guardando tu revisión',
+                ru: 'Сохраняем разбор', uk: 'Зберігаємо розбір', en: 'Saving your review', es: 'Guardando tu revisión',
                 'pt-BR': 'Salvando sua revisão', vi: 'Đang lưu phần đánh giá', id: 'Menyimpan ulasanmu',
                 tr: 'Değerlendirmen kaydediliyor', pl: 'Zapisujemy podsumowanie',
               })}
@@ -1068,6 +1068,7 @@ function MaxCallSessionContent() {
               {triLang(lang, {
                 ru: 'Не удалось надёжно сохранить результат на устройстве. Повтори — разговор не придётся проходить заново.',
                 uk: 'Не вдалося надійно зберегти результат на пристрої. Повтори — розмову не доведеться проходити знову.',
+                en: 'Couldn’t reliably save the result on this device. Try again — you won’t have to redo the conversation.',
                 es: 'No pudimos guardar el resultado de forma segura en el dispositivo. Inténtalo de nuevo; no tendrás que repetir la conversación.',
                 'pt-BR': 'Não foi possível salvar o resultado com segurança no dispositivo. Tente novamente; você não precisará repetir a conversa.',
                 vi: 'Chưa thể lưu kết quả an toàn trên thiết bị. Hãy thử lại; bạn không cần lặp lại cuộc trò chuyện.',
@@ -1079,8 +1080,8 @@ function MaxCallSessionContent() {
             <TouchableOpacity
               testID="max-finalize-local-retry"
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Повторить сохранение', uk: 'Повторити збереження', es: 'Reintentar guardado', 'pt-BR': 'Tentar salvar novamente', vi: 'Thử lưu lại', id: 'Coba simpan lagi', tr: 'Kaydetmeyi tekrar dene', pl: 'Spróbuj zapisać ponownie' })}
-              accessibilityHint={triLang(lang, { ru: 'Снова сохранит результат разговора на этом устройстве', uk: 'Знову збереже результат розмови на цьому пристрої', es: 'Vuelve a guardar el resultado de la conversación en este dispositivo', 'pt-BR': 'Tenta salvar novamente o resultado da conversa neste dispositivo', vi: 'Thử lưu lại kết quả cuộc trò chuyện trên thiết bị này', id: 'Mencoba menyimpan lagi hasil percakapan di perangkat ini', tr: 'Konuşma sonucunu bu cihazda yeniden kaydetmeyi dener', pl: 'Ponownie zapisze wynik rozmowy na tym urządzeniu' })}
+              accessibilityLabel={triLang(lang, { ru: 'Повторить сохранение', uk: 'Повторити збереження', en: 'Retry saving', es: 'Reintentar guardado', 'pt-BR': 'Tentar salvar novamente', vi: 'Thử lưu lại', id: 'Coba simpan lagi', tr: 'Kaydetmeyi tekrar dene', pl: 'Spróbuj zapisać ponownie' })}
+              accessibilityHint={triLang(lang, { ru: 'Снова сохранит результат разговора на этом устройстве', uk: 'Знову збереже результат розмови на цьому пристрої', en: 'Saves the conversation result on this device again', es: 'Vuelve a guardar el resultado de la conversación en este dispositivo', 'pt-BR': 'Tenta salvar novamente o resultado da conversa neste dispositivo', vi: 'Thử lưu lại kết quả cuộc trò chuyện trên thiết bị này', id: 'Mencoba menyimpan lagi hasil percakapan di perangkat ini', tr: 'Konuşma sonucunu bu cihazda yeniden kaydetmeyi dener', pl: 'Ponownie zapisze wynik rozmowy na tym urządzeniu' })}
               onPress={() => {
                 hapticTap();
                 finishedRef.current = false;
@@ -1089,19 +1090,19 @@ function MaxCallSessionContent() {
               style={{ minHeight: 56, borderRadius: 18, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>
-                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               testID="max-finalize-local-home"
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Ir al inicio', 'pt-BR': 'Ir ao início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
-              accessibilityHint={triLang(lang, { ru: 'Закроет этот экран; сохранение можно повторить позже', uk: 'Закриє цей екран; збереження можна повторити пізніше', es: 'Cierra esta pantalla; podrás reintentar el guardado más tarde', 'pt-BR': 'Fecha esta tela; você poderá tentar salvar mais tarde', vi: 'Đóng màn hình này; bạn có thể thử lưu lại sau', id: 'Menutup layar ini; penyimpanan dapat dicoba lagi nanti', tr: 'Bu ekranı kapatır; kaydetmeyi daha sonra yeniden deneyebilirsin', pl: 'Zamknie ten ekran; zapis można ponowić później' })}
+              accessibilityLabel={triLang(lang, { ru: 'На главную', uk: 'На головну', en: 'Home', es: 'Ir al inicio', 'pt-BR': 'Ir ao início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
+              accessibilityHint={triLang(lang, { ru: 'Закроет этот экран; сохранение можно повторить позже', uk: 'Закриє цей екран; збереження можна повторити пізніше', en: 'Closes this screen; you can retry saving later', es: 'Cierra esta pantalla; podrás reintentar el guardado más tarde', 'pt-BR': 'Fecha esta tela; você poderá tentar salvar mais tarde', vi: 'Đóng màn hình này; bạn có thể thử lưu lại sau', id: 'Menutup layar ini; penyimpanan dapat dicoba lagi nanti', tr: 'Bu ekranı kapatır; kaydetmeyi daha sonra yeniden deneyebilirsin', pl: 'Zamknie ten ekran; zapis można ponowić później' })}
               onPress={() => router.replace('/(tabs)/home' as any)}
               style={{ minHeight: 48, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}
             >
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Ir al inicio', 'pt-BR': 'Ir ao início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
+                {triLang(lang, { ru: 'На главную', uk: 'На головну', en: 'Home', es: 'Ir al inicio', 'pt-BR': 'Ir ao início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -1132,11 +1133,11 @@ function MaxCallSessionContent() {
             testID="max-call-back-button"
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
-              ru: 'Вернуться на главную', uk: 'Повернутися на головну', es: 'Volver al inicio',
+              ru: 'Вернуться на главную', uk: 'Повернутися на головну', en: 'Back to home', es: 'Volver al inicio',
               'pt-BR': 'Voltar ao início', vi: 'Về trang chính', id: 'Kembali ke beranda',
               tr: 'Ana sayfaya dön', pl: 'Wróć na stronę główną',
             })}
-            accessibilityHint={triLang(lang, { ru: 'Завершит текущий разговор и вернёт на главную', uk: 'Завершить поточну розмову й поверне на головну', es: 'Finaliza la conversación actual y vuelve al inicio', 'pt-BR': 'Encerra a conversa atual e volta ao início', vi: 'Kết thúc cuộc trò chuyện hiện tại và về trang chính', id: 'Mengakhiri percakapan saat ini dan kembali ke beranda', tr: 'Geçerli konuşmayı bitirip ana sayfaya döner', pl: 'Zakończy bieżącą rozmowę i wróci na stronę główną' })}
+            accessibilityHint={triLang(lang, { ru: 'Завершит текущий разговор и вернёт на главную', uk: 'Завершить поточну розмову й поверне на головну', en: 'Ends the current conversation and returns to home', es: 'Finaliza la conversación actual y vuelve al inicio', 'pt-BR': 'Encerra a conversa atual e volta ao início', vi: 'Kết thúc cuộc trò chuyện hiện tại và về trang chính', id: 'Mengakhiri percakapan saat ini dan kembali ke beranda', tr: 'Geçerli konuşmayı bitirip ana sayfaya döner', pl: 'Zakończy bieżącą rozmowę i wróci na stronę główną' })}
             onPress={leaveCallForHome}
             style={{
               width: 48,
@@ -1219,7 +1220,7 @@ function MaxCallSessionContent() {
                 testID="max-call-retry-connection"
                 accessibilityRole="button"
                 accessibilityLabel={failureActions.retry}
-                accessibilityHint={triLang(lang, { ru: 'Попробует восстановить голосовое соединение', uk: 'Спробує відновити голосове з’єднання', es: 'Intenta recuperar la conexión de voz', 'pt-BR': 'Tenta recuperar a conexão de voz', vi: 'Thử khôi phục kết nối thoại', id: 'Mencoba memulihkan koneksi suara', tr: 'Ses bağlantısını yeniden kurmayı dener', pl: 'Spróbuje przywrócić połączenie głosowe' })}
+                accessibilityHint={triLang(lang, { ru: 'Попробует восстановить голосовое соединение', uk: 'Спробує відновити голосове з’єднання', en: 'Tries to restore the voice connection', es: 'Intenta recuperar la conexión de voz', 'pt-BR': 'Tenta recuperar a conexão de voz', vi: 'Thử khôi phục kết nối thoại', id: 'Mencoba memulihkan koneksi suara', tr: 'Ses bağlantısını yeniden kurmayı dener', pl: 'Spróbuje przywrócić połączenie głosowe' })}
                 onPress={retryFailedConnection}
                 style={{ minHeight: 56, borderRadius: 18, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }}
               >
@@ -1231,7 +1232,7 @@ function MaxCallSessionContent() {
                 testID="max-call-finish-failed"
                 accessibilityRole="button"
                 accessibilityLabel={failureActions.finish}
-                accessibilityHint={triLang(lang, { ru: 'Завершит разговор и откроет доступный разбор', uk: 'Завершить розмову й відкриє доступний розбір', es: 'Finaliza la conversación y abre la revisión disponible', 'pt-BR': 'Encerra a conversa e abre a revisão disponível', vi: 'Kết thúc cuộc trò chuyện và mở phần đánh giá hiện có', id: 'Mengakhiri percakapan dan membuka ulasan yang tersedia', tr: 'Konuşmayı bitirir ve mevcut değerlendirmeyi açar', pl: 'Zakończy rozmowę i otworzy dostępne podsumowanie' })}
+                accessibilityHint={triLang(lang, { ru: 'Завершит разговор и откроет доступный разбор', uk: 'Завершить розмову й відкриє доступний розбір', en: 'Ends the conversation and opens the available review', es: 'Finaliza la conversación y abre la revisión disponible', 'pt-BR': 'Encerra a conversa e abre a revisão disponível', vi: 'Kết thúc cuộc trò chuyện và mở phần đánh giá hiện có', id: 'Mengakhiri percakapan dan membuka ulasan yang tersedia', tr: 'Konuşmayı bitirir ve mevcut değerlendirmeyi açar', pl: 'Zakończy rozmowę i otworzy dostępne podsumowanie' })}
                 onPress={finishFailedCall}
                 // зачем (аудит 2026-08-24): была рамка вокруг кнопки — прямой
                 // запрет владельца. Вторичность теперь несёт тон подложки:
@@ -1295,7 +1296,7 @@ function MaxCallSessionContent() {
 
         {/* Скролл нужен только временной учебной карточке, не живым субтитрам. */}
         {phase !== 'failed' && isTutor && tutorUi.board ? (
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             testID="max-call-dynamic-content"
             style={{ flexGrow: 0, maxHeight: '32%' }}
             contentContainerStyle={{ flexGrow: 0 }}
@@ -1338,9 +1339,9 @@ function MaxCallSessionContent() {
             accessibilityRole="switch"
             accessibilityState={{ checked: muted }}
             accessibilityLabel={muted
-              ? triLang(lang, { ru: 'Включить микрофон', uk: 'Увімкнути мікрофон', es: 'Activar micrófono', 'pt-BR': 'Ativar microfone', vi: 'Bật micrô', id: 'Aktifkan mikrofon', tr: 'Mikrofonu aç', pl: 'Włącz mikrofon' })
-              : triLang(lang, { ru: 'Выключить микрофон', uk: 'Вимкнути мікрофон', es: 'Silenciar micrófono', 'pt-BR': 'Silenciar microfone', vi: 'Tắt micrô', id: 'Bisukan mikrofon', tr: 'Mikrofonu kapat', pl: 'Wycisz mikrofon' })}
-            accessibilityHint={triLang(lang, { ru: 'Переключает передачу звука с микрофона', uk: 'Перемикає передавання звуку з мікрофона', es: 'Activa o desactiva el audio del micrófono', 'pt-BR': 'Ativa ou desativa o áudio do microfone', vi: 'Bật hoặc tắt âm thanh từ micrô', id: 'Mengaktifkan atau menonaktifkan audio mikrofon', tr: 'Mikrofon sesini açar veya kapatır', pl: 'Włącza lub wyłącza dźwięk z mikrofonu' })}
+              ? triLang(lang, { ru: 'Включить микрофон', uk: 'Увімкнути мікрофон', en: 'Turn on mic', es: 'Activar micrófono', 'pt-BR': 'Ativar microfone', vi: 'Bật micrô', id: 'Aktifkan mikrofon', tr: 'Mikrofonu aç', pl: 'Włącz mikrofon' })
+              : triLang(lang, { ru: 'Выключить микрофон', uk: 'Вимкнути мікрофон', en: 'Turn off mic', es: 'Silenciar micrófono', 'pt-BR': 'Silenciar microfone', vi: 'Tắt micrô', id: 'Bisukan mikrofon', tr: 'Mikrofonu kapat', pl: 'Wycisz mikrofon' })}
+            accessibilityHint={triLang(lang, { ru: 'Переключает передачу звука с микрофона', uk: 'Перемикає передавання звуку з мікрофона', en: 'Toggles microphone audio', es: 'Activa o desactiva el audio del micrófono', 'pt-BR': 'Ativa ou desativa o áudio do microfone', vi: 'Bật hoặc tắt âm thanh từ micrô', id: 'Mengaktifkan atau menonaktifkan audio mikrofon', tr: 'Mikrofon sesini açar veya kapatır', pl: 'Włącza lub wyłącza dźwięk z mikrofonu' })}
             onPress={onMutePress}
             style={{
               width: 48,
@@ -1356,8 +1357,8 @@ function MaxCallSessionContent() {
           <TouchableOpacity
             testID="max-call-end-button"
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Завершить разговор', uk: 'Завершити розмову', es: 'Finalizar llamada', 'pt-BR': 'Encerrar chamada', vi: 'Kết thúc cuộc gọi', id: 'Akhiri panggilan', tr: 'Aramayı bitir', pl: 'Zakończ rozmowę' })}
-            accessibilityHint={triLang(lang, { ru: 'Просит MAX завершить разговор и подготовить разбор', uk: 'Просить MAX завершити розмову й підготувати розбір', es: 'Pide a MAX que termine la conversación y prepare la revisión', 'pt-BR': 'Pede ao MAX para encerrar a conversa e preparar a revisão', vi: 'Yêu cầu MAX kết thúc cuộc trò chuyện và chuẩn bị phần đánh giá', id: 'Meminta MAX mengakhiri percakapan dan menyiapkan ulasan', tr: 'MAX’tan konuşmayı bitirip değerlendirmeyi hazırlamasını ister', pl: 'Prosi MAX o zakończenie rozmowy i przygotowanie podsumowania' })}
+            accessibilityLabel={triLang(lang, { ru: 'Завершить разговор', uk: 'Завершити розмову', en: 'End conversation', es: 'Finalizar llamada', 'pt-BR': 'Encerrar chamada', vi: 'Kết thúc cuộc gọi', id: 'Akhiri panggilan', tr: 'Aramayı bitir', pl: 'Zakończ rozmowę' })}
+            accessibilityHint={triLang(lang, { ru: 'Просит MAX завершить разговор и подготовить разбор', uk: 'Просить MAX завершити розмову й підготувати розбір', en: 'Asks MAX to end the conversation and prepare the review', es: 'Pide a MAX que termine la conversación y prepare la revisión', 'pt-BR': 'Pede ao MAX para encerrar a conversa e preparar a revisão', vi: 'Yêu cầu MAX kết thúc cuộc trò chuyện và chuẩn bị phần đánh giá', id: 'Meminta MAX mengakhiri percakapan dan menyiapkan ulasan', tr: 'MAX’tan konuşmayı bitirip değerlendirmeyi hazırlamasını ister', pl: 'Prosi MAX o zakończenie rozmowy i przygotowanie podsumowania' })}
             onPress={onEndPress}
             style={{
               width: 56,
@@ -1377,14 +1378,14 @@ function MaxCallSessionContent() {
             // без value незрячий не знал бы, показаны субтитры сейчас или нет.
             accessibilityRole="button"
             accessibilityValue={{ text: ccEnabled
-              ? triLang(lang, { ru: 'субтитры показаны', uk: 'субтитри показані', es: 'subtítulos visibles', 'pt-BR': 'legendas visíveis', vi: 'phụ đề đang hiện', id: 'teks tampil', tr: 'altyazılar açık', pl: 'napisy widoczne' })
-              : triLang(lang, { ru: 'субтитры скрыты', uk: 'субтитри приховані', es: 'subtítulos ocultos', 'pt-BR': 'legendas ocultas', vi: 'phụ đề đang ẩn', id: 'teks disembunyikan', tr: 'altyazılar kapalı', pl: 'napisy ukryte' }) }}
+              ? triLang(lang, { ru: 'субтитры показаны', uk: 'субтитри показані', en: 'subtitles shown', es: 'subtítulos visibles', 'pt-BR': 'legendas visíveis', vi: 'phụ đề đang hiện', id: 'teks tampil', tr: 'altyazılar açık', pl: 'napisy widoczne' })
+              : triLang(lang, { ru: 'субтитры скрыты', uk: 'субтитри приховані', en: 'subtitles hidden', es: 'subtítulos ocultos', 'pt-BR': 'legendas ocultas', vi: 'phụ đề đang ẩn', id: 'teks disembunyikan', tr: 'altyazılar kapalı', pl: 'napisy ukryte' }) }}
             accessibilityLabel={triLang(lang, {
-              ru: 'Открыть текст разговора', uk: 'Відкрити текст розмови', es: 'Abrir transcripción',
+              ru: 'Открыть текст разговора', uk: 'Відкрити текст розмови', en: 'Open transcript', es: 'Abrir transcripción',
               'pt-BR': 'Abrir transcrição', vi: 'Mở bản ghi', id: 'Buka transkrip',
               tr: 'Konuşma metnini aç', pl: 'Otwórz transkrypcję',
             })}
-            accessibilityHint={triLang(lang, { ru: 'Открывает полный текст и настройку показа субтитров', uk: 'Відкриває повний текст і налаштування показу субтитрів', es: 'Abre el texto completo y la opción de mostrar subtítulos', 'pt-BR': 'Abre o texto completo e a opção de mostrar legendas', vi: 'Mở toàn bộ nội dung và tùy chọn hiển thị phụ đề', id: 'Membuka teks lengkap dan pengaturan tampilan teks', tr: 'Tam metni ve altyazı görünürlüğü ayarını açar', pl: 'Otwiera pełny tekst i ustawienie widoczności napisów' })}
+            accessibilityHint={triLang(lang, { ru: 'Открывает полный текст и настройку показа субтитров', uk: 'Відкриває повний текст і налаштування показу субтитрів', en: 'Opens the full transcript and the subtitle display setting', es: 'Abre el texto completo y la opción de mostrar subtítulos', 'pt-BR': 'Abre o texto completo e a opção de mostrar legendas', vi: 'Mở toàn bộ nội dung và tùy chọn hiển thị phụ đề', id: 'Membuka teks lengkap dan pengaturan tampilan teks', tr: 'Tam metni ve altyazı görünürlüğü ayarını açar', pl: 'Otwiera pełny tekst i ustawienie widoczności napisów' })}
             onPress={() => {
               hapticTap();
               setSheetOpen(true);
@@ -1420,6 +1421,7 @@ function MaxCallSessionContent() {
                   {triLang(lang, {
                     ru: 'Транскрипт',
                     uk: 'Транскрипт',
+                    en: 'Transcript',
                     es: 'Transcripción',
                     'pt-BR': 'Transcrição',
                     vi: 'Bản ghi',
@@ -1432,12 +1434,12 @@ function MaxCallSessionContent() {
                   testID="max-call-caption-visibility-toggle"
                   accessibilityRole="switch"
                   accessibilityLabel={triLang(lang, {
-                    ru: 'Показывать субтитры', uk: 'Показувати субтитри', es: 'Mostrar subtítulos',
+                    ru: 'Показывать субтитры', uk: 'Показувати субтитри', en: 'Show subtitles', es: 'Mostrar subtítulos',
                     'pt-BR': 'Mostrar legendas', vi: 'Hiện phụ đề', id: 'Tampilkan teks',
                     tr: 'Altyazıları göster', pl: 'Pokaż napisy',
                   })}
                   accessibilityState={{ checked: ccEnabled }}
-                  accessibilityHint={triLang(lang, { ru: 'Включает или скрывает живые субтитры', uk: 'Вмикає або приховує живі субтитри', es: 'Muestra u oculta los subtítulos en vivo', 'pt-BR': 'Mostra ou oculta as legendas ao vivo', vi: 'Hiện hoặc ẩn phụ đề trực tiếp', id: 'Menampilkan atau menyembunyikan teks langsung', tr: 'Canlı altyazıları gösterir veya gizler', pl: 'Pokazuje lub ukrywa napisy na żywo' })}
+                  accessibilityHint={triLang(lang, { ru: 'Включает или скрывает живые субтитры', uk: 'Вмикає або приховує живі субтитри', en: 'Shows or hides live subtitles', es: 'Muestra u oculta los subtítulos en vivo', 'pt-BR': 'Mostra ou oculta as legendas ao vivo', vi: 'Hiện hoặc ẩn phụ đề trực tiếp', id: 'Menampilkan atau menyembunyikan teks langsung', tr: 'Canlı altyazıları gösterir veya gizler', pl: 'Pokazuje lub ukrywa napisy na żywo' })}
                   onPress={() => setCcEnabled((value) => !value)}
                   style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}
                 >
@@ -1445,8 +1447,8 @@ function MaxCallSessionContent() {
                 </TouchableOpacity>
                 <TouchableOpacity
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
-                  accessibilityHint={triLang(lang, { ru: 'Закрывает полный текст разговора', uk: 'Закриває повний текст розмови', es: 'Cierra el texto completo de la conversación', 'pt-BR': 'Fecha o texto completo da conversa', vi: 'Đóng toàn bộ nội dung cuộc trò chuyện', id: 'Menutup teks percakapan lengkap', tr: 'Konuşmanın tam metnini kapatır', pl: 'Zamyka pełny tekst rozmowy' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+                  accessibilityHint={triLang(lang, { ru: 'Закрывает полный текст разговора', uk: 'Закриває повний текст розмови', en: 'Closes the full conversation transcript', es: 'Cierra el texto completo de la conversación', 'pt-BR': 'Fecha o texto completo da conversa', vi: 'Đóng toàn bộ nội dung cuộc trò chuyện', id: 'Menutup teks percakapan lengkap', tr: 'Konuşmanın tam metnini kapatır', pl: 'Zamyka pełny tekst rozmowy' })}
                   onPress={() => {
                     hapticTap();
                     setSheetOpen(false);
@@ -1463,7 +1465,7 @@ function MaxCallSessionContent() {
                   <Ionicons name="close" size={18} color={t.textPrimary} />
                 </TouchableOpacity>
               </View>
-              <ScrollView>
+              <ScrollView decelerationRate="fast">
                 {/* зачем (владелец 2026-08-23): «я не вижу своих реплик, надо
                     чтобы они были тоже». Реплики ученика в буфере были, но шли
                     без подписи и почти тем же тоном — со стороны выглядело, будто
@@ -1490,7 +1492,7 @@ function MaxCallSessionContent() {
                     >
                       {turn.role === 'user'
                         ? triLang(lang, {
-                            ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você',
+                            ru: 'Вы', uk: 'Ви', en: 'You', es: 'Tú', 'pt-BR': 'Você',
                             vi: 'Bạn', id: 'Anda', tr: 'Sen', pl: 'Ty',
                           })
                         : personaName}

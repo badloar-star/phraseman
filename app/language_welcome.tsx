@@ -130,11 +130,12 @@ export default function LanguageWelcomeScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
-  const params = useLocalSearchParams<{ target?: string }>();
+  const params = useLocalSearchParams<{ target?: string; resolveStarted?: string }>();
   const rawTarget = Array.isArray(params.target) ? params.target[0] : params.target;
   const parsedTarget: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
   const target: StudyTargetLang | null =
     parsedTarget && (ENABLE_DEV_STUDY_TARGET_LANG || parsedTarget === 'en') ? parsedTarget : null;
+  const resolveStarted = params.resolveStarted === '1';
   const sourceUi: 'ru' | 'uk' = lang === 'uk' ? 'uk' : 'ru';
   const tr = useCallback((ru: string, uk: string) => (sourceUi === 'uk' ? uk : ru), [sourceUi]);
 
@@ -142,6 +143,7 @@ export default function LanguageWelcomeScreen() {
   const [goal, setGoal] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [entryResolved, setEntryResolved] = useState(!resolveStarted);
 
   const goBackSafely = useCallback(() => {
     safeRouterBack(router, '/settings_language' as any);
@@ -169,7 +171,13 @@ export default function LanguageWelcomeScreen() {
       }
       const started = await getStartedStudyLanguages();
       if (cancelled) return;
-      if (started.includes(target)) return; // уже начат — экран просто освежит план
+      if (started.includes(target)) {
+        if (resolveStarted) {
+          await applyStudyLanguageSelection(target, lang);
+          if (!cancelled) goBackSafely();
+        }
+        return; // обычный deep-link уже начатого языка освежает план
+      }
       if (shouldGateExtraLanguage({ target, startedLanguages: started, hasPremiumAccess })) {
         scheduled = scheduleAfterRootNavigationReady(() => {
           if (cancelled) return;
@@ -180,13 +188,15 @@ export default function LanguageWelcomeScreen() {
             language: target,
           }, 'replace');
         });
+        return;
       }
+      setEntryResolved(true);
     })();
     return () => {
       cancelled = true;
       scheduled?.cancel();
     };
-  }, [rootNavReady, target, lang, hasPremiumAccess, router, goBackSafely]);
+  }, [rootNavReady, target, resolveStarted, lang, hasPremiumAccess, router, goBackSafely]);
 
   const languageName = target && isStudyTargetSourceUiLang(lang)
     ? studyTargetLabelForSourceUiLang(target, lang)
@@ -231,7 +241,7 @@ export default function LanguageWelcomeScreen() {
     router.replace('/(tabs)/home' as any);
   }, [router]);
 
-  if (!target) return <View style={styles.safe} />;
+  if (!target || !entryResolved) return <View style={styles.safe} />;
 
   const flagAsset = FLAG_ASSETS[target];
 
@@ -332,7 +342,7 @@ export default function LanguageWelcomeScreen() {
         <View style={styles.backButton} />
       </View>
 
-      <ScrollView decelerationRate="normal" contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="fast" contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {step === 'welcome' ? (
           <View style={styles.welcomeBlock}>
             <View style={styles.flagHalo}>

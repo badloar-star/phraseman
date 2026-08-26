@@ -43,6 +43,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     title: triLang(lang, {
       ru: `Финальная проверка ${level}`,
       uk: `Фінальна перевірка ${level}`,
+      en: `Final check ${level}`,
       es: `Prueba final ${level}`,
       'pt-BR': `Desafio final ${level}`,
       vi: `Bài kiểm tra cuối ${level}`,
@@ -53,6 +54,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     lead: triLang(lang, {
       ru: 'Покажи, как уверенно ты используешь темы этого уровня в живых фразах.',
       uk: 'Покажи, наскільки впевнено ти використовуєш теми цього рівня в живих фразах.',
+      en: 'Show how confidently you use this level\'s topics in real phrases.',
       es: 'Demuestra cómo usas los temas de este nivel en frases reales.',
       'pt-BR': 'Mostre como você usa os temas deste nível em frases reais.',
       vi: 'Hãy thể hiện cách bạn dùng các chủ đề của cấp độ này trong câu thực tế.',
@@ -63,6 +65,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     lessonRange: triLang(lang, {
       ru: `Уроки ${firstLesson}–${lastLesson}`,
       uk: `Уроки ${firstLesson}–${lastLesson}`,
+      en: `Lessons ${firstLesson}–${lastLesson}`,
       es: `Lecciones ${firstLesson}–${lastLesson}`,
       'pt-BR': `Lições ${firstLesson}–${lastLesson}`,
       vi: `Bài ${firstLesson}–${lastLesson}`,
@@ -73,6 +76,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     passGoal: triLang(lang, {
       ru: '21 правильный ответ из 30',
       uk: '21 правильна відповідь із 30',
+      en: '21 correct answers out of 30',
       es: '21 respuestas correctas de 30',
       'pt-BR': '21 respostas corretas de 30',
       vi: '21 câu đúng trong 30',
@@ -83,6 +87,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     duration: triLang(lang, {
       ru: `${durationMinutes} минут`,
       uk: `${durationMinutes} хвилин`,
+      en: `${durationMinutes} minutes`,
       es: `${durationMinutes} minutos`,
       'pt-BR': `${durationMinutes} minutos`,
       vi: `${durationMinutes} phút`,
@@ -93,6 +98,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     formatsLabel: triLang(lang, {
       ru: 'Что будет внутри',
       uk: 'Що буде всередині',
+      en: "What's inside",
       es: 'Qué encontrarás',
       'pt-BR': 'O que você encontrará',
       vi: 'Nội dung bài kiểm tra',
@@ -104,6 +110,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     startCta: triLang(lang, {
       ru: 'Начать проверку',
       uk: 'Почати перевірку',
+      en: 'Start the check',
       es: 'Empezar prueba',
       'pt-BR': 'Começar desafio',
       vi: 'Bắt đầu',
@@ -114,12 +121,14 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     bestResult: bestScore === null
       ? triLang(lang, {
         ru: 'Лучший результат сохранится', uk: 'Найкращий результат збережеться',
+        en: 'Your best result will be saved',
         es: 'Guardaremos tu mejor resultado', 'pt-BR': 'Seu melhor resultado será salvo',
         vi: 'Kết quả tốt nhất sẽ được lưu', id: 'Hasil terbaikmu akan disimpan',
         tr: 'En iyi sonucun kaydedilir', pl: 'Zapiszemy Twój najlepszy wynik',
       })
       : triLang(lang, {
         ru: `Лучший результат: ${bestScore}/30`, uk: `Найкращий результат: ${bestScore}/30`,
+        en: `Best result: ${bestScore}/30`,
         es: `Mejor resultado: ${bestScore}/30`, 'pt-BR': `Melhor resultado: ${bestScore}/30`,
         vi: `Kết quả tốt nhất: ${bestScore}/30`, id: `Hasil terbaik: ${bestScore}/30`,
         tr: `En iyi sonuç: ${bestScore}/30`, pl: `Najlepszy wynik: ${bestScore}/30`,
@@ -127,6 +136,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     firstPassReward: triLang(lang, {
       ru: 'За первое успешное прохождение — 1 спин',
       uk: 'За перше успішне проходження — 1 спін',
+      en: '1 spin for your first successful pass',
       es: 'Por aprobar por primera vez: 1 giro',
       'pt-BR': 'Na primeira aprovação: 1 giro',
       vi: 'Vượt qua lần đầu: 1 lượt quay',
@@ -136,6 +146,7 @@ export function getLevelExamCopy(lang: Lang, args: IntroArgs): LevelExamCopy {
     }),
     energyMissing: triLang(lang, {
       ru: 'Не хватает энергии для начала', uk: 'Недостатньо енергії для початку',
+      en: 'Not enough energy to start',
       es: 'No tienes energía suficiente', 'pt-BR': 'Energia insuficiente para começar',
       vi: 'Không đủ năng lượng để bắt đầu', id: 'Energi tidak cukup untuk memulai',
       tr: 'Başlamak için yeterli enerjin yok', pl: 'Za mało energii, aby rozpocząć',

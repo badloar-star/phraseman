@@ -224,6 +224,7 @@ function ReportErrorButton({
   const a11yLabel = accessibilityLabel || triLang(lang, {
     ru: 'Сообщить о проблеме на этом экране',
     uk: 'Повідомити про проблему на цьому екрані',
+    en: 'Report a problem on this screen',
     es: 'Informar de un problema en esta pantalla',
     'pt-BR': 'Reportar um problema nesta tela',
     vi: 'Báo cáo sự cố trên màn hình này',
@@ -236,6 +237,7 @@ function ReportErrorButton({
     ? triLang(lang, {
         ru: `Минимум ${ERROR_REPORT_COMMENT_MIN_LEN} символов.`,
         uk: `Мінімум ${ERROR_REPORT_COMMENT_MIN_LEN} символів.`,
+        en: `At least ${ERROR_REPORT_COMMENT_MIN_LEN} characters.`,
         es: `Mínimo ${ERROR_REPORT_COMMENT_MIN_LEN} caracteres.`,
         'pt-BR': `Mínimo de ${ERROR_REPORT_COMMENT_MIN_LEN} caracteres.`,
         vi: `Tối thiểu ${ERROR_REPORT_COMMENT_MIN_LEN} ký tự.`,
@@ -265,6 +267,7 @@ function ReportErrorButton({
             {triLang(lang, {
               ru: 'Нашёл ошибку?',
               uk: 'Знайшов помилку?',
+              en: 'Found an error?',
               es: '¿Has visto un error?',
               'pt-BR': 'Achou um erro?',
               vi: 'Thấy lỗi gì không?',
@@ -298,6 +301,7 @@ function ReportErrorButton({
                     {triLang(lang, {
                       ru: 'Не отправилось',
                       uk: 'Не вдалося надіслати',
+                      en: 'Couldn’t send',
                       es: 'No se pudo enviar',
                       'pt-BR': 'Não foi possível enviar',
                       vi: 'Không gửi được',
@@ -310,6 +314,7 @@ function ReportErrorButton({
                     {triLang(lang, {
                       ru: 'Проверь интернет и попробуй еще раз.',
                       uk: 'Перевір інтернет і спробуй ще раз.',
+                      en: 'Check your connection and try again.',
                       es: 'Revisa internet e inténtalo de nuevo.',
                       'pt-BR': 'Verifique a internet e tente de novo.',
                       vi: 'Hãy kiểm tra mạng rồi thử lại.',
@@ -326,7 +331,7 @@ function ReportErrorButton({
                     style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
                   >
                     <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-                      {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                      {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -336,6 +341,7 @@ function ReportErrorButton({
                     {triLang(lang, {
                       ru: 'Подожди минуту',
                       uk: 'Зачекайте хвилину',
+                      en: 'Wait a minute',
                       es: 'Espera un minuto',
                       'pt-BR': 'Espere um minuto',
                       vi: 'Vui lòng chờ một phút',
@@ -348,6 +354,7 @@ function ReportErrorButton({
                     {triLang(lang, {
                       ru: 'Ты уже отправил репорт меньше минуты назад. Попробуй через минуту.',
                       uk: 'Ви вже надіслали репорт менше хвилини тому. Спробуйте за хвилину.',
+                      en: 'You sent a report less than a minute ago. Try again in a moment.',
                       es: 'Enviaste un informe hace menos de un minuto. Espera un momento antes de volver a intentarlo.',
                       'pt-BR': 'Você enviou um relatório há menos de um minuto. Tente novamente daqui a pouco.',
                       vi: 'Bạn vừa gửi báo cáo chưa đầy một phút trước. Hãy thử lại sau một lát.',
@@ -361,32 +368,33 @@ function ReportErrorButton({
                     style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
                   >
                     <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-                      {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+                      {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                     </Text>
                   </TouchableOpacity>
                 </View>
               ) : sent ? (
                 <View style={styles.successBox}>
                   <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
-                    {triLang(lang, { ru: 'Сообщение принято!', uk: 'Повідомлення прийнято!', es: '¡Mensaje recibido!', 'pt-BR': 'Mensagem recebida!', vi: 'Đã nhận báo cáo!', id: 'Laporan diterima!', tr: 'Bildirim alındı!', pl: 'Zgłoszenie przyjęte!' })}
+                    {triLang(lang, { ru: 'Сообщение принято!', uk: 'Повідомлення прийнято!', en: 'Message received!', es: '¡Mensaje recibido!', 'pt-BR': 'Mensagem recebida!', vi: 'Đã nhận báo cáo!', id: 'Laporan diterima!', tr: 'Bildirim alındı!', pl: 'Zgłoszenie przyjęte!' })}
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
                       ru: 'Если ошибка подтвердится — получишь жемчужину.',
                       uk: 'Якщо помилка підтвердиться — отримаєш перлину.',
-                      es: 'Si confirmamos el error, recibirás un fragmento de conocimiento.',
-                      'pt-BR': 'Se confirmarmos o erro, você receberá um fragmento de conhecimento.',
-                      vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một xu kiến thức.',
-                      id: 'Jika kesalahan terkonfirmasi, kamu akan menerima satu koin pengetahuan.',
-                      tr: 'Hata doğrulanırsa bir bilgi jetonu alacaksın.',
-                      pl: 'Jeśli błąd się potwierdzi, otrzymasz odłamek wiedzy.',
+                      en: 'If the error is confirmed, you’ll get a pearl.',
+                      es: 'Si confirmamos el error, recibirás una perla.',
+                      'pt-BR': 'Se confirmarmos o erro, você receberá uma pérola.',
+                      vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một viên ngọc trai.',
+                      id: 'Jika kesalahan terkonfirmasi, kamu akan menerima satu mutiara.',
+                      tr: 'Hata doğrulanırsa bir inci alacaksın.',
+                      pl: 'Jeśli błąd się potwierdzi, otrzymasz perłę.',
                     })}
                   </Text>
                   {sending ? (
                     <View style={styles.optimisticStatus}>
                       <ActivityIndicator size="small" color={t.textSecond} />
                       <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
-                        {triLang(lang, { ru: 'Отправляем в фоне', uk: 'Надсилаємо у фоні', es: 'Enviando en segundo plano', 'pt-BR': 'Enviando em segundo plano', vi: 'Đang gửi trong nền', id: 'Mengirim di latar belakang', tr: 'Arka planda gönderiliyor', pl: 'Wysyłanie w tle' })}
+                        {triLang(lang, { ru: 'Отправляем в фоне', uk: 'Надсилаємо у фоні', en: 'Sending in the background', es: 'Enviando en segundo plano', 'pt-BR': 'Enviando em segundo plano', vi: 'Đang gửi trong nền', id: 'Mengirim di latar belakang', tr: 'Arka planda gönderiliyor', pl: 'Wysyłanie w tle' })}
                       </Text>
                     </View>
                   ) : null}
@@ -395,7 +403,7 @@ function ReportErrorButton({
                     style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
                   >
                     <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-                      {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
+                      {triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -405,6 +413,7 @@ function ReportErrorButton({
                     {triLang(lang, {
                       ru: 'Нашёл ошибку?',
                       uk: 'Знайшов помилку?',
+                      en: 'Found an error?',
                       es: '¿Has visto un error?',
                       'pt-BR': 'Achou um erro?',
                       vi: 'Thấy lỗi gì không?',
@@ -417,6 +426,7 @@ function ReportErrorButton({
                     {triLang(lang, {
                       ru: 'Опиши, что не так — мы починим.',
                       uk: 'Опиши, що не так — ми виправимо.',
+                      en: 'Describe what’s wrong — we’ll fix it.',
                       es: 'Cuéntanos qué pasa y lo arreglamos.',
                       'pt-BR': 'Conta o que está errado e a gente conserta.',
                       vi: 'Kể xem chỗ nào sai — bọn mình sẽ sửa.',
@@ -438,6 +448,7 @@ function ReportErrorButton({
                     placeholder={triLang(lang, {
                       ru: 'Что случилось?',
                       uk: 'Що сталося?',
+                      en: 'What happened?',
                       es: '¿Qué ocurrió?',
                       'pt-BR': 'O que aconteceu?',
                       vi: 'Điều gì đã xảy ra?',
@@ -474,7 +485,7 @@ function ReportErrorButton({
                   <View style={styles.row}>
                     <TouchableOpacity onPress={() => setVisible(false)} style={styles.btnCancel}>
                       <Text style={{ color: t.textSecond, fontSize: f.body }}>
-                        {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+                        {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -486,8 +497,8 @@ function ReportErrorButton({
                         {sending ? <ActivityIndicator size="small" color={t.textPrimary} /> : null}
                         <Text style={{ color: !sending ? t.correctText : t.textPrimary, fontWeight: '700', fontSize: f.body }}>
                           {sending
-                            ? triLang(lang, { ru: 'Отправляю...', uk: 'Надсилаю...', es: 'Enviando...', 'pt-BR': 'Enviando...', vi: 'Đang gửi...', id: 'Mengirim...', tr: 'Gönderiliyor...', pl: 'Wysyłanie...' })
-                            : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
+                            ? triLang(lang, { ru: 'Отправляю...', uk: 'Надсилаю...', en: 'Sending...', es: 'Enviando...', 'pt-BR': 'Enviando...', vi: 'Đang gửi...', id: 'Mengirim...', tr: 'Gönderiliyor...', pl: 'Wysyłanie...' })
+                            : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                         </Text>
                       </View>
                     </TouchableOpacity>

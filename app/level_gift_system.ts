@@ -21,7 +21,7 @@ import {
 import {
   BONUS_ENERGY_KEY,
   getTomorrowMidnightMs,
-  readBonusEnergy,
+  readBonusEnergyForMutation,
   type BonusEnergyState,
 } from './bonus_energy_store';
 import { InteractionManager } from 'react-native';
@@ -31,7 +31,6 @@ import {
   CUSTOM_AVATAR_GIFT_OWNED_KEY,
   CUSTOM_AVATAR_GIFT_REPLAY_KEY,
 } from '../constants/customization_storage_keys';
-import { addEnergy } from './energy_system';
 import {
   setClubGiftFreeBoostCountFromAuthority,
 } from './club_boosts';
@@ -62,6 +61,7 @@ import {
 import { getVerifiedPremiumStatus } from './premium_guard';
 import {
   CUSTOM_AVATAR_GRADIENTS,
+  CUSTOM_AVATARS,
   CUSTOM_AVATAR_GIFT_POOL,
   CUSTOM_AVATAR_OWNED_KEY,
   customAvatarGiftLabelForLang,
@@ -79,10 +79,14 @@ import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from
 import { THEME_DISPLAY_NAMES } from './theme_display_names';
 // зачем: пул кандидатов общий с розыгрышем (local_level_spins) — иначе
 // «какие темы остались» считалось бы в двух местах и разъехалось бы.
-import { listThemeGiftCandidates } from './theme_gift_pool';
+import { loadThemeGiftCandidates } from './theme_gift_pool';
+import {
+  getSpinCustomAvatarGiftWeight,
+  listSpinCustomAvatarGiftCandidates,
+} from './spin_avatar_gift_pool';
+import { parseStrictOwnedIdMap } from './spin_gift_storage_integrity';
 import {
   OWNED_THEMES_KEY,
-  loadOwnedThemeModes,
   mergeThemeModeLists,
 } from './theme_ownership_store';
 import {
@@ -102,6 +106,7 @@ import {
   type LevelSpinRewardCatalogEntry,
   type LevelSpinRewardId,
 } from './level_spin_reward_catalog';
+import { creditAttemptRestoreGiftFromSpin } from './session_attempts/session_attempt_restore_inventory';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -184,6 +189,22 @@ const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCop
       desc: { 'pt-BR': `Acesso Plus temporário por ${days} dias`, vi: `Quyền truy cập Plus tạm thời trong ${days} ngày`, id: `Akses Plus sementara selama ${days} hari`, tr: `${days} gün geçici Plus erişimi`, pl: `Tymczasowy dostęp Plus przez ${days} dni` },
     };
   }),
+  attempt_restore_all: {
+    title: {
+      'pt-BR': 'Segunda chance',
+      vi: 'Cơ hội thứ hai',
+      id: 'Kesempatan kedua',
+      tr: 'İkinci şans',
+      pl: 'Druga szansa',
+    },
+    desc: {
+      'pt-BR': 'Restaura todas as 3 tentativas durante uma sessão',
+      vi: 'Khôi phục cả 3 lượt thử trong một phiên',
+      id: 'Memulihkan semua 3 percobaan selama sesi',
+      tr: 'Oturum sırasında 3 denemenin tümünü yeniler',
+      pl: 'Przywraca wszystkie 3 próby podczas sesji',
+    },
+  },
 };
 
 const PACK_FOREVER_DESC: PlannedGiftCopy = {
@@ -821,6 +842,23 @@ const spinPlusGift = (days: 3 | 7): GiftDef => {
   };
 };
 
+const spinAttemptRestoreGift = (): GiftDef => {
+  const entry = spinRewardEntry('attempt_restore_all');
+  return {
+    id: entry.id,
+    rarity: spinRewardRarity(entry),
+    spinTier: entry.tier,
+    icon: '❤️',
+    weight: entry.weight,
+    titleRU: 'Второй шанс',
+    titleUK: 'Другий шанс',
+    titleES: 'Segunda oportunidad',
+    descRU: 'Восстанавливает все 3 попытки во время сессии',
+    descUK: 'Відновлює всі 3 спроби під час сесії',
+    descES: 'Restaura los 3 intentos durante la sesión',
+  };
+};
+
 /** Definitions used only by local Spin v2. They are not another level-gift roll pool. */
 const SPIN_REWARD_DEFS: GiftDef[] = [
   ...([500, 1_000, 3_000, 5_000, 10_000, 25_000, 50_000] as const).map(spinXpGift),
@@ -828,6 +866,7 @@ const SPIN_REWARD_DEFS: GiftDef[] = [
   ...([10, 20, 50, 100, 250, 500, 1_000] as const).map(spinStarGift),
   spinPlusGift(3),
   spinPlusGift(7),
+  spinAttemptRestoreGift(),
 ];
 
 /**
@@ -1592,11 +1631,10 @@ function themeGiftUnlockFor(mode: string): GiftCosmeticUnlock | null {
  */
 export const unlockRandomThemeGift = async (): Promise<GiftCosmeticUnlock | null> => {
   try {
-    const candidates = await listThemeGiftCandidates();
-    if (candidates.length === 0) return null;
-    const mode = candidates[Math.floor(Math.random() * candidates.length)]!;
-    const owned = await loadOwnedThemeModes().catch(() => [] as string[]);
-    await AsyncStorage.setItem(OWNED_THEMES_KEY, JSON.stringify(mergeThemeModeLists(owned, [mode])));
+    const pool = await loadThemeGiftCandidates();
+    if (pool.status === 'unavailable' || pool.candidates.length === 0) return null;
+    const mode = pool.candidates[Math.floor(Math.random() * pool.candidates.length)]!;
+    await AsyncStorage.setItem(OWNED_THEMES_KEY, JSON.stringify(mergeThemeModeLists(pool.owned, [mode])));
     return themeGiftUnlockFor(mode);
   } catch {
     return null;
@@ -1623,7 +1661,7 @@ const LEVEL_GIFT_EFFECT_RECEIPT_LIMIT = 128;
 
 type LevelGiftEffectReceipt = {
   giftId: GiftId;
-  status: 'prepared' | 'applied_unconfirmed' | 'applied';
+  status: 'prepared' | 'applying' | 'applied_unconfirmed' | 'applied';
   hint?: { key: string; target: number };
   energyBonus?: {
     amount: number;
@@ -1671,17 +1709,23 @@ const levelGiftEffectOccurrenceKey = (
 
 const readLevelGiftEffectReceipts = async (): Promise<Record<string, LevelGiftEffectReceipt>> => {
   const raw = await AsyncStorage.getItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY);
-  if (!raw) return {};
-  const parsed: unknown = JSON.parse(raw);
-  return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
-    ? parsed as Record<string, LevelGiftEffectReceipt>
-    : {};
+  if (raw === null) return {};
+  let parsed: unknown;
+  try { parsed = JSON.parse(raw); } catch { throw new Error('level_gift_effect_receipts_corrupt'); }
+  if (!isPlainRecord(parsed)
+    || Object.entries(parsed).some(([key, receipt]) => !isLevelGiftEffectReceiptForOccurrence(key, receipt))) {
+    throw new Error('level_gift_effect_receipts_corrupt');
+  }
+  return parsed as Record<string, LevelGiftEffectReceipt>;
 };
 
 const saveLevelGiftEffectReceipt = async (
   occurrenceKey: string,
   receipt: LevelGiftEffectReceipt,
 ): Promise<void> => {
+  if (!isLevelGiftEffectReceiptForOccurrence(occurrenceKey, receipt)) {
+    throw new Error('level_gift_effect_receipt_invalid');
+  }
   const current = await readLevelGiftEffectReceipts();
   const otherEntries = Object.entries(current).filter(([key]) => key !== occurrenceKey);
   // A prepared intent is recovery state, so it must never be evicted merely because
@@ -1732,7 +1776,7 @@ const markLevelGiftEffectApplied = async (
   if (opts?.accountToken && !isCurrentAccountGeneration(opts.accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
-  if (staged.receipt.status !== 'prepared') return;
+  if (staged.receipt.status !== 'prepared' && staged.receipt.status !== 'applying') return;
   // Remains pinned until the outer claim journal is durably effect_applied or
   // a terminal server receipt is observed.
   staged.receipt = { ...staged.receipt, status: 'applied_unconfirmed' };
@@ -1751,6 +1795,157 @@ const confirmLevelGiftEffectReceipts = async (
     .filter(([key, receipt]) => key.startsWith(prefix) && receipt.status === 'applied_unconfirmed');
   for (const [key, receipt] of entries) {
     await saveLevelGiftEffectReceipt(key, { ...receipt, status: 'applied' });
+  }
+};
+
+const isPlainRecord = (value: unknown): value is Record<string, unknown> => (
+  !!value && typeof value === 'object' && !Array.isArray(value)
+);
+
+const isFiniteNumber = (value: unknown): value is number => (
+  typeof value === 'number' && Number.isFinite(value)
+);
+
+const hasOnlyKeys = (value: Record<string, unknown>, allowed: readonly string[]): boolean => (
+  Object.keys(value).every((key) => allowed.includes(key))
+);
+
+type LevelGiftEffectPayloadField = Exclude<keyof LevelGiftEffectReceipt, 'giftId' | 'status'>;
+
+const LEVEL_GIFT_RECEIPT_PAYLOAD_GIFT_IDS = Object.freeze({
+  hint: new Set(['hint_1', 'hint_3']),
+  energyBonus: new Set(['energy_plus1', 'energy_plus2', 'energy_plus3']),
+  energyFull: new Set(['energy_full']),
+  multiplier: new Set(['xp_2x_24h', 'xp_2x_48h', 'focus_10m_25', 'focus_15m_50']),
+  chainShield: new Set(['chain_shield_1', 'chain_shield_3']),
+  singleUse: new Set(['wager_discount_25']),
+  aura: new Set([
+    'cosmetic_avatar_aura', 'premium_cosmetic_aura',
+    // Historical avatar-gift receipts could stage the aura fallback.
+    'cosmetic_avatar_common', 'premium_cosmetic_avatar',
+  ]),
+  customAvatar: new Set(['cosmetic_avatar_common', 'premium_cosmetic_avatar']),
+  theme: new Set(['cosmetic_theme']),
+  plus: new Set(['plus_days_3', 'plus_days_7']),
+} satisfies Record<LevelGiftEffectPayloadField, ReadonlySet<string>>);
+
+const isCosmeticUnlock = (value: unknown, kind: GiftCosmeticUnlock['kind']): boolean => {
+  if (value === null) return true;
+  if (!isPlainRecord(value) || value.kind !== kind || typeof value.id !== 'string' || !value.id.trim()) return false;
+  if (!hasOnlyKeys(value, ['kind', 'id', 'gradientId', 'logoColor', 'labelRu', 'labelUk', 'labelEs', 'replayed'])) return false;
+  if (typeof value.labelRu !== 'string' || typeof value.labelUk !== 'string' || typeof value.labelEs !== 'string') return false;
+  if (value.replayed !== undefined && typeof value.replayed !== 'boolean') return false;
+  if (kind === 'aura') {
+    return value.gradientId === undefined
+      && value.logoColor === undefined
+      && value.replayed === undefined
+      && AVATAR_AURAS.some((aura) => aura.id === value.id);
+  }
+  if (kind === 'theme') {
+    return value.gradientId === undefined
+      && value.logoColor === undefined
+      && value.replayed === undefined
+      && Object.prototype.hasOwnProperty.call(THEME_DISPLAY_NAMES, value.id);
+  }
+  return typeof value.gradientId === 'string'
+    && CUSTOM_AVATAR_GRADIENTS.some((gradient) => gradient.id === value.gradientId)
+    && (value.logoColor === 'black' || value.logoColor === 'white')
+    && CUSTOM_AVATARS.some((avatar) => avatar.id === value.id);
+};
+
+const isLevelGiftEffectReceipt = (value: unknown): value is LevelGiftEffectReceipt => {
+  if (!isPlainRecord(value)
+    || typeof value.giftId !== 'string'
+    || !levelGiftDefinitionById(value.giftId)
+    || (value.status !== 'prepared' && value.status !== 'applying'
+      && value.status !== 'applied_unconfirmed' && value.status !== 'applied')) return false;
+  const allowedKeys = new Set([
+    'giftId', 'status', 'hint', 'energyBonus', 'energyFull', 'multiplier', 'chainShield',
+    'singleUse', 'aura', 'customAvatar', 'theme', 'plus',
+  ]);
+  if (Object.keys(value).some((key) => !allowedKeys.has(key))) return false;
+  const payloads = (['hint', 'energyBonus', 'energyFull', 'multiplier', 'chainShield',
+    'singleUse', 'aura', 'customAvatar', 'theme', 'plus'] as const)
+    .filter((key): key is LevelGiftEffectPayloadField => Object.prototype.hasOwnProperty.call(value, key));
+  if (payloads.length !== 1) return false;
+  const payloadField = payloads[0]!;
+  if (!LEVEL_GIFT_RECEIPT_PAYLOAD_GIFT_IDS[payloadField].has(value.giftId)) return false;
+  if (value.hint !== undefined && (!isPlainRecord(value.hint) || !hasOnlyKeys(value.hint, ['key', 'target'])
+    || typeof value.hint.key !== 'string' || !value.hint.key
+    || !Number.isSafeInteger(value.hint.target) || Number(value.hint.target) < 0)) return false;
+  if (value.energyBonus !== undefined && (!isPlainRecord(value.energyBonus)
+    || !hasOnlyKeys(value.energyBonus, ['amount', 'expiresAt', 'energyTarget', 'energyBoostAlreadyActive'])
+    || !Number.isSafeInteger(value.energyBonus.amount) || Number(value.energyBonus.amount) < 1
+    || !isFiniteNumber(value.energyBonus.expiresAt) || Number(value.energyBonus.expiresAt) <= 0
+    || !isFiniteNumber(value.energyBonus.energyTarget) || Number(value.energyBonus.energyTarget) < 0
+    || typeof value.energyBonus.energyBoostAlreadyActive !== 'boolean')) return false;
+  if (value.energyFull !== undefined && (!isPlainRecord(value.energyFull) || !hasOnlyKeys(value.energyFull, ['target'])
+    || !isFiniteNumber(value.energyFull.target) || Number(value.energyFull.target) < 0)) return false;
+  if (value.multiplier !== undefined && (!isPlainRecord(value.multiplier)
+    || !hasOnlyKeys(value.multiplier, ['multiplier', 'expiresAt', 'xpBoostAlreadyActive'])
+    || !isFiniteNumber(value.multiplier.multiplier) || Number(value.multiplier.multiplier) < 1
+    || !isFiniteNumber(value.multiplier.expiresAt) || Number(value.multiplier.expiresAt) <= 0
+    || typeof value.multiplier.xpBoostAlreadyActive !== 'boolean')) return false;
+  if (value.chainShield !== undefined && (!isPlainRecord(value.chainShield) || !hasOnlyKeys(value.chainShield, ['daysLeft', 'grantedAt'])
+    || !Number.isSafeInteger(value.chainShield.daysLeft) || Number(value.chainShield.daysLeft) < 0
+    || typeof value.chainShield.grantedAt !== 'string')) return false;
+  if (value.singleUse !== undefined && (!isPlainRecord(value.singleUse) || !hasOnlyKeys(value.singleUse, ['kind', 'target'])
+    || (value.singleUse.kind !== 'club_boost' && value.singleUse.kind !== 'wager_discount')
+    || !Number.isSafeInteger(value.singleUse.target) || Number(value.singleUse.target) < 1)) return false;
+  if (value.aura !== undefined && !isCosmeticUnlock(value.aura, 'aura')) return false;
+  if (value.customAvatar !== undefined && !isCosmeticUnlock(value.customAvatar, 'avatar')) return false;
+  if (value.theme !== undefined && !isCosmeticUnlock(value.theme, 'theme')) return false;
+  if (value.plus !== undefined && (!isPlainRecord(value.plus) || !hasOnlyKeys(value.plus, ['days', 'fromMs', 'untilMs', 'lifetime'])
+    || (value.plus.days !== 3 && value.plus.days !== 7)
+    || !isFiniteNumber(value.plus.fromMs) || Number(value.plus.fromMs) < 0
+    || !isFiniteNumber(value.plus.untilMs) || Number(value.plus.untilMs) < 0
+    || (value.plus.lifetime !== undefined && typeof value.plus.lifetime !== 'boolean')
+    || (value.giftId === 'plus_days_3' && value.plus.days !== 3)
+    || (value.giftId === 'plus_days_7' && value.plus.days !== 7))) return false;
+  if (value.status === 'applying'
+    && value.aura == null && value.customAvatar == null && value.theme == null) return false;
+  return true;
+};
+
+const levelGiftEffectReceiptSlot = (value: LevelGiftEffectReceipt): string => {
+  // Property presence, not payload truthiness, is authoritative here: a
+  // prepared null cosmetic fallback still belongs to its handler's slot.
+  if (Object.prototype.hasOwnProperty.call(value, 'aura')) return 'aura';
+  if (Object.prototype.hasOwnProperty.call(value, 'theme')) return 'theme';
+  if (Object.prototype.hasOwnProperty.call(value, 'customAvatar')) return 'custom_avatar';
+  return 'primary';
+};
+
+const isLevelGiftEffectReceiptForOccurrence = (
+  occurrenceKey: string,
+  value: unknown,
+): value is LevelGiftEffectReceipt => (
+  !!occurrenceKey.trim()
+  && isLevelGiftEffectReceipt(value)
+  && occurrenceKey.endsWith(
+    `:${safeLevelGiftEventPart(value.giftId, 60)}:${levelGiftEffectReceiptSlot(value)}`,
+  )
+);
+
+/**
+ * Finalizes an inner effect receipt only after the caller has durably closed
+ * its outer local-spin journal lane. Until then `applied_unconfirmed` receipts
+ * stay pinned and cannot be evicted by the bounded terminal-receipt history.
+ */
+export const confirmDeferredLocalLevelGiftEffectReceipt = async (
+  accountToken: AccountGenerationToken,
+  occurrenceId: string,
+): Promise<boolean> => {
+  const normalizedOccurrenceId = occurrenceId.trim();
+  if (!accountToken.stableId || !normalizedOccurrenceId) return false;
+  try {
+    return await withLocalLevelGiftApplyLock(() => withAccountTransitionLock(async () => {
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return false;
+      await confirmLevelGiftEffectReceipts(accountToken, normalizedOccurrenceId);
+      return isCurrentAccountGeneration(accountToken, accountToken.stableId);
+    }));
+  } catch {
+    return false;
   }
 };
 
@@ -1786,7 +1981,7 @@ const applyEnergyBonusForOccurrence = async (
     if (!isCurrentAccountGeneration(accountToken)) {
       throw new Error('level_gift_effect_account_changed');
     }
-    const existing = await readBonusEnergy(accountToken);
+    const existing = await readBonusEnergyForMutation(accountToken);
     const energyRaw = await AsyncStorage.getItem('energy_state');
     if (!isCurrentAccountGeneration(accountToken)) {
       throw new Error('level_gift_effect_account_changed');
@@ -1804,7 +1999,10 @@ const applyEnergyBonusForOccurrence = async (
       energyBonus: {
         amount: (existing?.amount ?? 0) + n,
         expiresAt: getTomorrowMidnightMs(),
-        energyTarget: energyBase + n,
+        // Legacy field name retained for replaying already-prepared receipts.
+        // It now snapshots the unchanged base pool; the granted N lives only
+        // in the account-scoped temporary bonus above.
+        energyTarget: energyBase,
         energyBoostAlreadyActive: existing !== null && (existing.amount ?? 0) > 0,
       },
     };
@@ -1818,28 +2016,18 @@ const applyEnergyBonusForOccurrence = async (
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
-  const existing = await readBonusEnergy(accountToken);
+  const existing = await readBonusEnergyForMutation(accountToken);
   const bonus: BonusEnergyState = {
     amount: Math.max(existing?.amount ?? 0, planned.amount),
     expiresAt: Math.max(existing?.expiresAt ?? 0, planned.expiresAt),
   };
   await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
-  const energyRaw = await AsyncStorage.getItem('energy_state');
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
-  const energyState = energyRaw
-    ? JSON.parse(energyRaw) as { current?: number; lastRecoveryTime?: number }
-    : {};
-  const nextEnergy = Math.max(Math.max(0, Number(energyState.current) || 0), planned.energyTarget);
-  await AsyncStorage.setItem('energy_state', JSON.stringify({
-    current: nextEnergy,
-    lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || Date.now()),
-  }));
-  if (!isCurrentAccountGeneration(accountToken)) {
-    throw new Error('level_gift_effect_account_changed');
-  }
-  await setEnergy(nextEnergy);
+  // All production callbacks reload EnergyContext. Do not materialize the
+  // temporary pool in energy_state as well: that would count the gift twice.
+  await setEnergy(planned.energyTarget);
   await markLevelGiftEffectApplied(staged, opts);
   return { success: true, energyBoostAlreadyActive: planned.energyBoostAlreadyActive };
 };
@@ -2088,13 +2276,58 @@ const applySpinPlusForOccurrence = async (
   return true;
 };
 
+type CosmeticOwnershipRead<T> =
+  | Readonly<{ status: 'available'; value: Record<string, T> }>
+  | Readonly<{ status: 'unavailable'; reason: 'read_failed' | 'malformed' }>;
+
+const readCosmeticOwnership = async <T>(
+  key: string,
+  isAllowedValue: (value: unknown) => value is T,
+): Promise<CosmeticOwnershipRead<T>> => {
+  let raw: string | null;
+  try {
+    raw = await AsyncStorage.getItem(key);
+  } catch {
+    return { status: 'unavailable', reason: 'read_failed' };
+  }
+  const parsed = parseStrictOwnedIdMap(raw, isAllowedValue);
+  return parsed.status === 'malformed'
+    ? { status: 'unavailable', reason: 'malformed' }
+    : { status: 'available', value: parsed.value };
+};
+
+const persistPreparedCosmeticNull = async (
+  staged: { occurrenceKey: string; receipt: LevelGiftEffectReceipt },
+  field: 'aura' | 'theme' | 'customAvatar',
+): Promise<void> => {
+  if (staged.receipt.status !== 'prepared' || staged.receipt[field] === null) return;
+  staged.receipt = { ...staged.receipt, [field]: null };
+  await saveLevelGiftEffectReceipt(staged.occurrenceKey, staged.receipt);
+};
+
+const markLevelGiftCosmeticApplying = async (
+  staged: { occurrenceKey: string; receipt: LevelGiftEffectReceipt },
+  opts?: ApplyGiftOptions,
+): Promise<void> => {
+  if (opts?.accountToken && !isCurrentAccountGeneration(opts.accountToken)) {
+    throw new Error('level_gift_effect_account_changed');
+  }
+  if (staged.receipt.status !== 'prepared') return;
+  staged.receipt = { ...staged.receipt, status: 'applying' };
+  await saveLevelGiftEffectReceipt(staged.occurrenceKey, staged.receipt);
+};
+
 const applyAuraGiftForOccurrence = async (
   id: GiftId,
   opts?: ApplyGiftOptions,
 ): Promise<{ handled: boolean; cosmeticUnlocked: GiftCosmeticUnlock | null }> => {
   const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
-    const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
-    const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
+    const ownership = await readCosmeticOwnership(AVATAR_AURA_OWNED_KEY, (value): value is true => value === true);
+    if (ownership.status === 'unavailable') {
+      if (ownership.reason === 'read_failed') throw new Error('aura_gift_ownership_read_failed');
+      return { giftId: id, status: 'prepared', aura: null };
+    }
+    const owned = ownership.value;
     const candidates = AVATAR_AURAS.filter((aura) => isRandomAvatarAuraGiftCandidate(aura, owned));
     const aura = candidates[Math.floor(Math.random() * candidates.length)];
     return {
@@ -2110,18 +2343,32 @@ const applyAuraGiftForOccurrence = async (
     };
   }, 'aura');
   if (!staged) return { handled: false, cosmeticUnlocked: null };
-  const result = staged.receipt.aura ?? null;
-  if (staged.receipt.status !== 'prepared') {
+  let result = staged.receipt.aura ?? null;
+  if (staged.receipt.status === 'applied' || staged.receipt.status === 'applied_unconfirmed') {
     return { handled: true, cosmeticUnlocked: result };
   }
+  const replayingApplying = staged.receipt.status === 'applying';
   if (result) {
-    const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
-    const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
-    await AsyncStorage.multiSet([
-      [AVATAR_AURA_OWNED_KEY, JSON.stringify({ ...owned, [result.id]: true })],
-      [AVATAR_AURA_GIFT_OWNED_KEY, result.id],
-      [USER_AVATAR_AURA_KEY, result.id],
-    ]);
+    const ownership = await readCosmeticOwnership(AVATAR_AURA_OWNED_KEY, (value): value is true => value === true);
+    if (ownership.status === 'unavailable') {
+      if (ownership.reason === 'read_failed') throw new Error('aura_gift_ownership_read_failed');
+      if (replayingApplying) throw new Error('aura_gift_ownership_corrupt');
+      await persistPreparedCosmeticNull(staged, 'aura');
+      result = null;
+    }
+    const owned = ownership.status === 'available' ? ownership.value : null;
+    if (!replayingApplying && owned && owned[result?.id ?? '']) {
+      await persistPreparedCosmeticNull(staged, 'aura');
+      result = null;
+    }
+    if (owned && result) {
+      await markLevelGiftCosmeticApplying(staged, opts);
+      await AsyncStorage.multiSet([
+        [AVATAR_AURA_OWNED_KEY, JSON.stringify({ ...owned, [result.id]: true })],
+        [AVATAR_AURA_GIFT_OWNED_KEY, result.id],
+        [USER_AVATAR_AURA_KEY, result.id],
+      ]);
+    }
   }
   await markLevelGiftEffectApplied(staged, opts);
   return { handled: true, cosmeticUnlocked: result };
@@ -2135,8 +2382,12 @@ const applyThemeGiftForOccurrence = async (
   // фиксируется в нём. Повтор (ретрай после обрыва, второй тап) вернёт ту же
   // тему, а не разыграет вторую — иначе один спин открывал бы две темы.
   const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
-    const candidates = await listThemeGiftCandidates();
-    const mode = candidates[Math.floor(Math.random() * candidates.length)];
+    const pool = await loadThemeGiftCandidates();
+    if (pool.status === 'unavailable') {
+      if (pool.reason === 'read_failed') throw new Error('theme_gift_ownership_read_failed');
+      return { giftId: id, status: 'prepared', theme: null };
+    }
+    const mode = pool.candidates[Math.floor(Math.random() * pool.candidates.length)];
     return {
       giftId: id,
       status: 'prepared',
@@ -2144,13 +2395,27 @@ const applyThemeGiftForOccurrence = async (
     };
   }, 'theme');
   if (!staged) return { handled: false, cosmeticUnlocked: null };
-  const result = staged.receipt.theme ?? null;
-  if (staged.receipt.status !== 'prepared') {
+  let result = staged.receipt.theme ?? null;
+  if (staged.receipt.status === 'applied' || staged.receipt.status === 'applied_unconfirmed') {
     return { handled: true, cosmeticUnlocked: result };
   }
+  const replayingApplying = staged.receipt.status === 'applying';
   if (result) {
-    const owned = await loadOwnedThemeModes().catch(() => [] as string[]);
-    await AsyncStorage.setItem(OWNED_THEMES_KEY, JSON.stringify(mergeThemeModeLists(owned, [result.id])));
+    const pool = await loadThemeGiftCandidates();
+    if (pool.status === 'unavailable') {
+      if (pool.reason === 'read_failed') throw new Error('theme_gift_ownership_read_failed');
+      if (replayingApplying) throw new Error('theme_gift_ownership_corrupt');
+      await persistPreparedCosmeticNull(staged, 'theme');
+      result = null;
+    }
+    if (!replayingApplying && result && pool.status === 'available' && !pool.candidates.includes(result.id)) {
+      await persistPreparedCosmeticNull(staged, 'theme');
+      result = null;
+    }
+    if (result && pool.status === 'available') {
+      await markLevelGiftCosmeticApplying(staged, opts);
+      await AsyncStorage.setItem(OWNED_THEMES_KEY, JSON.stringify(mergeThemeModeLists(pool.owned, [result.id])));
+    }
   }
   await markLevelGiftEffectApplied(staged, opts);
   return { handled: true, cosmeticUnlocked: result };
@@ -2161,16 +2426,32 @@ const applyCustomAvatarGiftForOccurrence = async (
   opts?: ApplyGiftOptions,
 ): Promise<{ handled: boolean; cosmeticUnlocked: GiftCosmeticUnlock | null }> => {
   const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
-    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
-    const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
-    const candidates = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) => !owned[avatar.id]);
+    const ownership = await readCosmeticOwnership(
+      CUSTOM_AVATAR_OWNED_KEY,
+      (value): value is string => typeof value === 'string' && value.trim().length > 0,
+    );
+    if (ownership.status === 'unavailable') {
+      if (ownership.reason === 'read_failed') throw new Error('custom_avatar_gift_ownership_read_failed');
+      return { giftId: id, status: 'prepared', customAvatar: null };
+    }
+    const owned = ownership.value;
+    // The level-milestone gift keeps its historical 01..40 pool. Only a spin
+    // occurrence uses the owner-approved complete generated shelf 01..125.
+    const spinSpecific = id === 'cosmetic_avatar_common'
+      && /^level-spin:[A-Za-z0-9_-]{8,}:(?:base|premium)$/.test(opts?.occurrenceId ?? '');
+    const candidates = spinSpecific
+      ? listSpinCustomAvatarGiftCandidates(owned)
+      : CUSTOM_AVATAR_GIFT_POOL.filter((avatar) => !owned[avatar.id]);
     if (candidates.length === 0) {
       return { giftId: id, status: 'prepared', customAvatar: null };
     }
-    const totalWeight = candidates.reduce((sum, candidate) => sum + getCustomAvatarGiftWeight(candidate.id), 0);
+    const avatarWeight = spinSpecific
+      ? getSpinCustomAvatarGiftWeight
+      : (candidate: typeof candidates[number]) => getCustomAvatarGiftWeight(candidate.id);
+    const totalWeight = candidates.reduce((sum, candidate) => sum + avatarWeight(candidate), 0);
     let roll = Math.random() * (totalWeight || 1);
     const avatar = candidates.find((candidate) => {
-      roll -= getCustomAvatarGiftWeight(candidate.id);
+      roll -= avatarWeight(candidate);
       return roll <= 0;
     }) ?? candidates[candidates.length - 1]!;
     const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
@@ -2190,20 +2471,37 @@ const applyCustomAvatarGiftForOccurrence = async (
     };
   }, 'custom_avatar');
   if (!staged) return { handled: false, cosmeticUnlocked: null };
-  const result = staged.receipt.customAvatar ?? null;
-  if (staged.receipt.status !== 'prepared') {
+  let result = staged.receipt.customAvatar ?? null;
+  if (staged.receipt.status === 'applied' || staged.receipt.status === 'applied_unconfirmed') {
     return { handled: true, cosmeticUnlocked: result };
   }
+  const replayingApplying = staged.receipt.status === 'applying';
   if (result) {
-    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
-    const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
-    await AsyncStorage.multiSet([
-      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify({
-        ...owned,
-        [result.id]: encodeOwnedStyle(result.gradientId!, result.logoColor!),
-      })],
-      [COSMETIC_GIFT_OWNED_AVATAR_KEY, result.id],
-    ]);
+    const ownership = await readCosmeticOwnership(
+      CUSTOM_AVATAR_OWNED_KEY,
+      (value): value is string => typeof value === 'string' && value.trim().length > 0,
+    );
+    if (ownership.status === 'unavailable') {
+      if (ownership.reason === 'read_failed') throw new Error('custom_avatar_gift_ownership_read_failed');
+      if (replayingApplying) throw new Error('custom_avatar_gift_ownership_corrupt');
+      await persistPreparedCosmeticNull(staged, 'customAvatar');
+      result = null;
+    }
+    const owned = ownership.status === 'available' ? ownership.value : null;
+    if (!replayingApplying && owned && owned[result?.id ?? '']) {
+      await persistPreparedCosmeticNull(staged, 'customAvatar');
+      result = null;
+    }
+    if (owned && result) {
+      await markLevelGiftCosmeticApplying(staged, opts);
+      await AsyncStorage.multiSet([
+        [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify({
+          ...owned,
+          [result.id]: encodeOwnedStyle(result.gradientId!, result.logoColor!),
+        })],
+        [COSMETIC_GIFT_OWNED_AVATAR_KEY, result.id],
+      ]);
+    }
   }
   await markLevelGiftEffectApplied(staged, opts);
   return { handled: true, cosmeticUnlocked: result };
@@ -2300,24 +2598,23 @@ const applyEnergyBonusN = async (
   n: 1 | 2 | 3,
   currentEnergy: number,
   setEnergy: (n: number) => void,
+  opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult> => {
-  const accountToken = captureAccountGeneration();
-  const existing = await readBonusEnergy(accountToken);
-  const energyBoostAlreadyActive = existing !== null && (existing.amount ?? 0) > 0;
-  const accumulatedAmount = (existing?.amount ?? 0) + n;
-  const bonus: BonusEnergyState = { amount: accumulatedAmount, expiresAt: getTomorrowMidnightMs() };
-  await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
-  // Бонус поднял эффективный потолок энергии (см. energy_system.getEffectiveMaxEnergyValue) —
-  // сразу заполняем новые слоты, иначе потолок вырос, а энергия осталась прежней (слоты пустые).
-  let nextEnergy = currentEnergy;
-  try {
-    const state = await addEnergy(n);
-    nextEnergy = state.current;
-  } catch {
-    // addEnergy сам логирует; UI не ломаем — оставляем прежнее значение.
-  }
-  await setEnergy(nextEnergy);
-  return { success: true, energyBoostAlreadyActive };
+  const accountToken = opts?.accountToken ?? captureAccountGeneration();
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
+    const existing = await readBonusEnergyForMutation(accountToken);
+    if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
+    const energyBoostAlreadyActive = existing !== null && (existing.amount ?? 0) > 0;
+    const accumulatedAmount = (existing?.amount ?? 0) + n;
+    const bonus: BonusEnergyState = { amount: accumulatedAmount, expiresAt: getTomorrowMidnightMs() };
+    await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
+    if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
+    // The temporary pool is already born full. Refresh consumers without also
+    // adding N to persistent base energy (which would duplicate the reward).
+    await setEnergy(currentEnergy);
+    return { success: true, energyBoostAlreadyActive };
+  }, opts?.accountTransitionLockLease);
 };
 
 const safeLevelGiftEventPart = (value: unknown, max = 60): string =>
@@ -2375,6 +2672,8 @@ export interface ApplyGiftOptions {
   spinDeliveryToken?: string;
   /** Apply the already-issued local gift without the server reservation protocol. */
   localOnly?: boolean;
+  /** Caller will confirm the inner receipt after its outer local journal is durable. */
+  deferEffectReceiptConfirmation?: boolean;
   /** Internal capability propagated only by withAccountTransitionLock. */
   accountTransitionLockLease?: AccountTransitionLockLease;
   /** Internal capability propagated only by withXpAccountOperationQueue. */
@@ -2546,15 +2845,15 @@ const applyGiftUnlocked = async (
       }
       case 'energy_plus1': {
         const applied = await applyEnergyBonusForOccurrence(id, 1, currentEnergy, setEnergy, opts);
-        return applied ?? await applyEnergyBonusN(1, currentEnergy, setEnergy);
+        return applied ?? await applyEnergyBonusN(1, currentEnergy, setEnergy, opts);
       }
       case 'energy_plus2': {
         const applied = await applyEnergyBonusForOccurrence(id, 2, currentEnergy, setEnergy, opts);
-        return applied ?? await applyEnergyBonusN(2, currentEnergy, setEnergy);
+        return applied ?? await applyEnergyBonusN(2, currentEnergy, setEnergy, opts);
       }
       case 'energy_plus3': {
         const applied = await applyEnergyBonusForOccurrence(id, 3, currentEnergy, setEnergy, opts);
-        return applied ?? await applyEnergyBonusN(3, currentEnergy, setEnergy);
+        return applied ?? await applyEnergyBonusN(3, currentEnergy, setEnergy, opts);
       }
       case 'chain_shield_1':
       case 'chain_shield_3': {
@@ -2565,6 +2864,23 @@ const applyGiftUnlocked = async (
         const ex = raw ? (JSON.parse(raw) as { daysLeft: number }) : null;
         const daysLeft = (ex?.daysLeft ?? 0) + days;
         await AsyncStorage.setItem(CHAIN_SHIELD_KEY, JSON.stringify({ daysLeft, grantedAt: today }));
+        break;
+      }
+      case 'attempt_restore_all': {
+        const localOccurrence = /^level-spin:([A-Za-z0-9_-]{8,}):(base|premium)$/
+          .exec(opts?.occurrenceId ?? '');
+        const authority = gift.spinRewardReceipt
+          ? { requestId: gift.spinRewardReceipt.requestId, lane: gift.spinRewardReceipt.lane }
+          : localOccurrence
+            ? { requestId: localOccurrence[1]!, lane: localOccurrence[2] as 'base' | 'premium' }
+            : null;
+        if (!authority || !opts?.accountToken) return { success: false };
+        await creditAttemptRestoreGiftFromSpin({
+          token: opts.accountToken,
+          spinRequestId: authority.requestId,
+          lane: authority.lane,
+          accountTransitionLockLease: opts.accountTransitionLockLease,
+        });
         break;
       }
       case 'xp_2x_24h':
@@ -2599,6 +2915,8 @@ const applyGiftUnlocked = async (
       }
       case 'cosmetic_avatar_common':
       case 'premium_cosmetic_avatar': {
+        const spinSpecific = id === 'cosmetic_avatar_common'
+          && /^level-spin:[A-Za-z0-9_-]{8,}:(?:base|premium)$/.test(opts?.occurrenceId ?? '');
         const occurrenceAvatar = await applyCustomAvatarGiftForOccurrence(id, opts);
         if (occurrenceAvatar.handled && occurrenceAvatar.cosmeticUnlocked) {
           return { success: true, cosmeticUnlocked: occurrenceAvatar.cosmeticUnlocked };
@@ -2607,6 +2925,13 @@ const applyGiftUnlocked = async (
           ? null
           : await unlockRandomCustomAvatarGift(opts?.accountToken);
         if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
+        // New rolls exclude an exhausted avatar prize before the ticket is
+        // drawn. This is only a stale-receipt fallback (last avatar bought in
+        // between), and must not alter milestone 01..40 aura fallback rules.
+        if (spinSpecific) {
+          await grantInstantGiftXp(350);
+          return { success: true };
+        }
         const occurrenceAura = await applyAuraGiftForOccurrence(id, opts);
         if (occurrenceAura.handled) {
           if (occurrenceAura.cosmeticUnlocked) return { success: true, cosmeticUnlocked: occurrenceAura.cosmeticUnlocked };
@@ -2901,7 +3226,9 @@ export const applyGift = async (
           if (!result.success || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return result.success
             ? { success: false }
             : result;
-          await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+          if (!opts.deferEffectReceiptConfirmation) {
+            await confirmLevelGiftEffectReceipts(accountToken, occurrenceId);
+          }
           return result;
         } catch {
           return { success: false };
@@ -2917,11 +3244,14 @@ export const applyGift = async (
   if (!accountToken) {
     return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
   }
-  return withAccountTransitionLock(async () => {
+  return withAccountTransitionLock(async (lease) => {
     if (!isCurrentAccountGeneration(accountToken)) return { success: false };
     const occurrenceId = opts?.occurrenceId ?? '';
     if (!occurrenceId) {
-      return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+      return applyGiftUnlocked(gift, userName, currentEnergy, maxEnergy, setEnergy, {
+        ...opts,
+        accountTransitionLockLease: lease,
+      });
     }
     const occurrenceMatch = /^level:(\d+):(f2p|premium)$/.exec(occurrenceId);
     if (!occurrenceMatch || !accountToken.stableId) return { success: false };

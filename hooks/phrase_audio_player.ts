@@ -9,13 +9,18 @@
 
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import { Directory, File, Paths } from 'expo-file-system';
-import { getPhraseAudioUrl, normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
+import { normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
   claimSpokenAudio,
   whenSpokenAudioReady,
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
+import {
+  PHRASE_AUDIO_DOWNLOAD_TIMEOUT_MS,
+  PHRASE_AUDIO_PLAYER_START_WATCHDOG_MS,
+} from '../modules/audio/phrase_audio_timing';
+import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
 import { getNetStatus } from '../app/net_status';
 
 const CACHE_DIR_NAME = 'phrase-audio';
@@ -34,7 +39,7 @@ type PlayCallbacks = {
 // запись гнала на треть быстрее. Слайдер остаётся, но управляет только TTS-фолбэком.
 // Сторож: tests/phrase_clip_original_rate_contract.test.ts.
 const CLIP_RATE_LOCKED_TO_ORIGINAL = true;
-const DOWNLOAD_TIMEOUT_MS = 4500;
+const DOWNLOAD_TIMEOUT_MS = PHRASE_AUDIO_DOWNLOAD_TIMEOUT_MS;
 const MIN_VALID_AUDIO_BYTES = 200;
 const CACHE_MAX_BYTES = 96 * 1024 * 1024;
 const CACHE_TARGET_BYTES = 80 * 1024 * 1024;
@@ -48,7 +53,7 @@ const CACHE_SWEEP_INTERVAL_MS = 10 * 60 * 1000;
 // dies with no fallback, and only an app restart frees the slot. Generous enough
 // to cover a cold first-play + short buffering; the caller has its own longer
 // CLIP_START_TIMEOUT backstop.
-const CLIP_PLAY_WATCHDOG_MS = 3500;
+const CLIP_PLAY_WATCHDOG_MS = PHRASE_AUDIO_PLAYER_START_WATCHDOG_MS;
 
 let currentPlayer: AudioPlayer | null = null;
 // Слушатель playbackStatusUpdate текущего плеера. Держим ссылку, чтобы снять его
@@ -358,7 +363,7 @@ export async function playPhraseByText(
   text: string,
   cb?: PlayCallbacks,
 ): Promise<boolean> {
-  const url = getPhraseAudioUrl(text);
+  const url = getPlayablePhraseAudioUrl(text);
   if (!url) return false;
   const voicePolicyToken = voicePlaybackPolicy.captureStart();
   if (voicePolicyToken === null) return false;
@@ -487,5 +492,5 @@ export async function playPhraseByText(
 }
 
 export function hasPhraseAudio(text: string): boolean {
-  return !!getPhraseAudioUrl(text);
+  return !!getPlayablePhraseAudioUrl(text);
 }

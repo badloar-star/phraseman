@@ -1,5 +1,6 @@
 import {
   createWalletAuthorizedOperation,
+  deriveWalletInitialRequiredSessionOperationId,
   detachBoundedWalletJson,
   deriveWalletSemanticSubjectFingerprint,
   isWalletIdentifier,
@@ -299,14 +300,21 @@ const operationForReceipt = (
     receiptId: receipt.rewardId,
     receiptFingerprint: receipt.rewardFingerprint,
   };
+  const operationId = receipt.operationReason === "initial_required_session"
+    ? deriveWalletInitialRequiredSessionOperationId({
+        accountScopeHash: receipt.accountScopeHash,
+        origin: receipt.origin,
+      })
+    : receipt.operationId;
   return createWalletAuthorizedOperation({
     schemaVersion: "learning-v2-wallet-authorized-operation.v1",
     authority: "trusted_server_boundary",
-    operationId: receipt.operationId,
+    operationId,
     semanticSubjectFingerprint: deriveWalletSemanticSubjectFingerprint({
       accountScopeHash: receipt.accountScopeHash,
       operationReason: receipt.operationReason,
       sourceReceiptRef,
+      origin: receipt.origin,
     }),
     accountScopeHash: receipt.accountScopeHash,
     accountGeneration: acceptedAccountGeneration,
@@ -364,17 +372,22 @@ export const createServerWalletRewardReceiptAuthority = (
       // The repository supplies its verified journal head as a restart aid.
       // It is replay authority only for this exact protected operation; an
       // unrelated head must not block the next independently settled reward.
-      if (canonical.authorizedOperation.operationId === receipt.operationId) {
+      const expected = operationForReceipt(
+        receipt,
+        canonical.revisionBefore,
+        canonical.accountGeneration,
+      );
+      if (canonical.authorizedOperation.operationId === expected.operationId) {
         if (canonical.accountGeneration < receipt.accountGeneration)
           return fail("server_wallet_reward_receipt_conflict");
-        const expected = operationForReceipt(
-          receipt,
-          canonical.revisionBefore,
-          canonical.accountGeneration,
-        );
-        if (!same(canonical.authorizedOperation, expected))
+        if (canonical.authorizedOperation.semanticSubjectFingerprint !==
+            expected.semanticSubjectFingerprint ||
+          canonical.authorizedOperation.semanticFingerprint !==
+            expected.semanticFingerprint ||
+          canonical.authorizedOperation.operationFingerprint !==
+            expected.operationFingerprint)
           return fail("server_wallet_reward_receipt_conflict");
-        return expected;
+        return canonical.authorizedOperation;
       }
     }
     if (receipt.accountGeneration > request.scope.generation)

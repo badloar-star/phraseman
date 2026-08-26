@@ -373,6 +373,7 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
               {triLang(lang, {
                 ru: 'Сохрани свой путь',
                 uk: 'Збережи свій шлях',
+                en: 'Save your progress',
                 es: 'Guarda tu progreso',
                 'pt-BR': 'Salve seu progresso',
                 vi: 'Lưu tiến trình của bạn',
@@ -412,6 +413,7 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
                 {triLang(lang, {
                   ru: 'Привязать',
                   uk: 'Прив\'язати',
+                  en: 'Link account',
                   es: 'Vincular',
                   'pt-BR': 'Vincular',
                   vi: 'Liên kết',
@@ -457,6 +459,8 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
               'Привяжи аккаунт — и твои уроки, XP, серия и достижения останутся в безопасности. Даже если телефон внезапно решит уйти в отпуск.',
             uk:
               "Прив\'яжи акаунт — і твої уроки, XP, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
+            en:
+              'Link your account — your lessons, XP, streak, and achievements stay safe. Even if your phone suddenly decides to go on vacation.',
             es:
               'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
             'pt-BR':

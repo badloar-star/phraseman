@@ -1,4 +1,5 @@
-import { CUSTOM_AVATAR_GIFT_ONLY } from '../constants/custom_avatars';
+import { CUSTOM_AVATARS, CUSTOM_AVATAR_GIFT_ONLY } from '../constants/custom_avatars';
+import type { Lang } from '../constants/i18n';
 import {
   buildAuraCatalog,
   buildAvatarCatalog,
@@ -43,6 +44,58 @@ describe('customization catalog', () => {
     }).find((candidate) => candidate.id === 'custom-gen-41');
 
     expect(item?.availability).toEqual({ kind: 'shards', cost: 90 });
+  });
+
+  it.each([
+    ['custom-gen-63', 50],
+    ['custom-gen-73', 70],
+    ['custom-gen-83', 100],
+    ['custom-gen-93', 150],
+    ['custom-gen-103', 300],
+    ['custom-gen-113', 500],
+    ['custom-gen-123', 1000],
+  ] as const)('prices showcase avatar %s at %i pearls', (id, cost) => {
+    const item = buildAvatarCatalog({
+      ownedAvatars: {},
+      giftedAvatarId: null,
+      activeAvatar: '1',
+    }).find((candidate) => candidate.id === id);
+
+    expect(item?.availability).toEqual({ kind: 'shards', cost });
+  });
+
+  it('sorts purchasable avatars by price and keeps all showcase tier sizes', () => {
+    const items = buildAvatarCatalog({
+      ownedAvatars: {},
+      giftedAvatarId: null,
+      activeAvatar: '1',
+    });
+    const costs = items.flatMap((item) => item.availability.kind === 'shards'
+      ? [item.availability.cost]
+      : []);
+
+    expect(costs).toEqual([...costs].sort((left, right) => left - right));
+    expect(costs.filter((cost) => cost === 50)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 70)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 100)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 150)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 300)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 500)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 1000)).toHaveLength(3);
+  });
+
+  it('localizes every showcase avatar name in all supported languages', () => {
+    const languages: Lang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+    const showcase = CUSTOM_AVATARS.filter((avatar) => avatar.collection === 'showcase-v1');
+
+    expect(showcase).toHaveLength(63);
+    showcase.forEach((avatar) => {
+      languages.forEach((lang) => {
+        expect(avatar.labels?.[lang]).toEqual(expect.any(String));
+        expect(avatar.labels?.[lang]?.trim()).not.toBe('');
+        if (lang !== 'ru') expect(avatar.labels?.[lang]).not.toBe(avatar.name);
+      });
+    });
   });
 
   it('lets the server remove an avatar from sale without taking it from an owner', () => {

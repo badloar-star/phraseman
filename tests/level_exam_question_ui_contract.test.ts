@@ -62,7 +62,7 @@ describe('level exam question UI contract', () => {
     expect(frame.indexOf('footerProgress')).toBeGreaterThan(frame.indexOf('onContinue'));
     expect(frame).not.toContain('progressArea');
     expect(frame).toContain('accessibilityState={{ disabled: !canContinue }}');
-    expect(frame).toContain('decelerationRate="normal"');
+    expect(frame).toContain('decelerationRate="fast"');
     expect(frame).toContain('SlideInRight');
     expect(frame).toContain('SlideOutLeft');
     expect(frame).not.toContain('TonalSurface tone="card"');

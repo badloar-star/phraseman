@@ -21,6 +21,7 @@ import React, {
 } from 'react';
 import {
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -112,6 +113,8 @@ export interface ResultsSequenceProps {
   spinReward?: ResultsSequenceSpinReward;
   /** Слот медали/бейджа (обычно картинка/иконка). */
   badge?: React.ReactNode;
+  /** Optional form/content kept in normal scroll flow before the result actions. */
+  feedbackSlot?: React.ReactNode;
   onCtaPrimary: () => void;
   ctaPrimaryLabel: string;
   onCtaSecondary?: () => void;
@@ -219,6 +222,7 @@ export function ResultsSequence({
   rewards,
   spinReward,
   badge,
+  feedbackSlot,
   onCtaPrimary,
   ctaPrimaryLabel,
   onCtaSecondary,
@@ -309,11 +313,12 @@ export function ResultsSequence({
 
   // Прыжок в финальное состояние (тап-скип).
   // Первый тап по экрану — доигрывает анимацию до конца и разблокирует CTA.
-  // Повторный тап (когда всё уже показано) — сразу закрывает секвенцию через
+  // Повторный тап по неинтерактивной области результата (когда всё уже
+  // показано) — сразу закрывает секвенцию через
   // onCtaPrimary. Это ключевой фикс «залипания»: раньше юзер тапал по
   // просвечивающим снизу кнопкам («Следующий урок» и т.п.), попадал в
-  // прозрачный оверлей и ничего не происходило. Теперь любой повторный тап по
-  // экрану гарантированно уводит к рабочим кнопкам.
+  // прозрачный оверлей и ничего не происходило. Форма и CTA живут вне
+  // Pressable-зоны, чтобы ввод и прокрутка никогда не запускали переход.
   const skipToEnd = useCallback(() => {
     if (skippedRef.current) {
       handleCtaPrimary();
@@ -529,7 +534,14 @@ export function ResultsSequence({
   }));
 
   return (
-    <Pressable style={styles.root} onPress={skipToEnd} accessibilityRole="button">
+    <ScrollView decelerationRate="fast"
+      style={styles.scroll}
+      contentContainerStyle={styles.scrollContent}
+      showsVerticalScrollIndicator={false}
+      automaticallyAdjustKeyboardInsets
+      keyboardShouldPersistTaps="handled"
+    >
+    <View style={styles.root}>
       {showConfetti ? (
         <ConfettiBurst
           count={motionPlan.confettiCount}
@@ -538,7 +550,7 @@ export function ResultsSequence({
         />
       ) : null}
 
-      <View style={styles.center}>
+      <Pressable style={styles.center} onPress={skipToEnd} accessibilityRole="button">
         {badge ? (
           <Animated.View style={[styles.badgeSlot, badgeStyle]}>{badge}</Animated.View>
         ) : null}
@@ -612,7 +624,9 @@ export function ResultsSequence({
             ) : null}
           </View>
         ) : null}
-      </View>
+      </Pressable>
+
+      {feedbackSlot ? <View style={styles.feedbackSlot}>{feedbackSlot}</View> : null}
 
       <Animated.View style={[styles.ctaWrap, ctaStyle]}>
         <TouchableOpacity
@@ -654,13 +668,16 @@ export function ResultsSequence({
           </TouchableOpacity>
         ) : null}
       </Animated.View>
-    </Pressable>
+    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 48, paddingHorizontal: 28 },
-  center: { width: '100%', maxWidth: 584, flex: 1, alignItems: 'center', justifyContent: 'center' },
+  scroll: { flex: 1 },
+  scrollContent: { flexGrow: 1 },
+  root: { flexGrow: 1, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 48, paddingHorizontal: 28 },
+  center: { width: '100%', maxWidth: 584, flexGrow: 1, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   badgeSlot: { width: '100%', marginBottom: 20 },
   starsRow: { flexDirection: 'row', gap: 10, marginBottom: 20 },
   star: { fontSize: 44, fontWeight: '900' },
@@ -677,7 +694,8 @@ const styles = StyleSheet.create({
   finaleSlot: { height: 34, alignItems: 'center', justifyContent: 'center' },
   finaleMark: { alignItems: 'center', justifyContent: 'center' },
   finaleText: { fontSize: 26, fontWeight: '900' },
-  ctaWrap: { width: '100%', gap: 10 },
+  feedbackSlot: { width: '100%', maxWidth: 584, flexShrink: 0, marginBottom: 16 },
+  ctaWrap: { width: '100%', flexShrink: 0, gap: 10 },
   ctaPrimary: {
     height: 56,
     borderRadius: 18,

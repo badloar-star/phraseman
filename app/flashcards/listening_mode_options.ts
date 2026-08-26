@@ -28,6 +28,7 @@ export function listeningBackLangLabel(lang: Lang): string {
   return triLang(lang, {
     ru: 'RU',
     uk: 'UA',
+    en: 'EN',
     es: 'ES',
     'pt-BR': 'PT',
     vi: 'VI',
@@ -42,6 +43,7 @@ export function listeningModeTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Режим озвучки',
     uk: 'Режим озвучення',
+    en: 'Voiceover mode',
     es: 'Modo de voz',
     'pt-BR': 'Modo de leitura',
     vi: 'Chế độ đọc',
@@ -61,6 +63,7 @@ export function listeningModeOptions(lang: Lang): ListeningModeOption[] {
       hint: triLang(lang, {
         ru: 'Сначала английский, потом перевод',
         uk: 'Спочатку англійська, потім переклад',
+        en: 'English first, then the translation',
         es: 'Primero inglés, luego la traducción',
         'pt-BR': 'Primeiro o inglês, depois a tradução',
         vi: 'Tiếng Anh trước, rồi đến bản dịch',
@@ -76,6 +79,7 @@ export function listeningModeOptions(lang: Lang): ListeningModeOption[] {
       hint: triLang(lang, {
         ru: 'Сначала перевод — вспоминаете сами',
         uk: 'Спочатку переклад — згадуєте самі',
+        en: 'Translation first — you recall it yourself',
         es: 'Primero la traducción: la recuerdas tú',
         'pt-BR': 'Primeiro a tradução — você lembra sozinho',
         vi: 'Bản dịch trước — bạn tự nhớ lại',
@@ -91,6 +95,7 @@ export function listeningModeOptions(lang: Lang): ListeningModeOption[] {
       hint: triLang(lang, {
         ru: 'Два раза английский, второй — медленнее',
         uk: 'Двічі англійська, другий раз — повільніше',
+        en: 'English twice, the second time slower',
         es: 'Inglés dos veces, la segunda más lento',
         'pt-BR': 'Inglês duas vezes, a segunda mais devagar',
         vi: 'Tiếng Anh hai lần, lần hai chậm hơn',
@@ -105,6 +110,7 @@ export function listeningModeOptions(lang: Lang): ListeningModeOption[] {
       label: triLang(lang, {
         ru: 'Только EN',
         uk: 'Лише EN',
+        en: 'Only EN',
         es: 'Solo EN',
         'pt-BR': 'Só EN',
         vi: 'Chỉ EN',
@@ -115,6 +121,7 @@ export function listeningModeOptions(lang: Lang): ListeningModeOption[] {
       hint: triLang(lang, {
         ru: 'Без перевода — чистое погружение',
         uk: 'Без перекладу — чисте занурення',
+        en: 'No translation — pure immersion',
         es: 'Sin traducción: inmersión pura',
         'pt-BR': 'Sem tradução — imersão pura',
         vi: 'Không bản dịch — đắm chìm hoàn toàn',

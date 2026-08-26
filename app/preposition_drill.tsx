@@ -13,7 +13,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -144,7 +144,8 @@ export default function PrepositionDrillScreen() {
   //   • ошибки внутри сессии энергию НЕ трогают вообще;
   //   • не хватило на входе — модал, и тренажёр не начинается;
   //   • закрытие модала = выход (вход не был оплачен).
-  const { confirmSpendOne, energyReady } = useEnergy();
+  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const drillEnergyIntent = useEnergySessionIntent('preposition_drill', String(lessonId));
   const confirmSpendOneRef = useRef(confirmSpendOne);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
@@ -160,13 +161,14 @@ export default function PrepositionDrillScreen() {
     if (!energyReady || drillEntryChargedRef.current) return;
     drillEntryChargedRef.current = true;
     let active = true;
-    void confirmSpendOneRef.current().then(result => {
+    void confirmSpendOneRef.current(drillEnergyIntent).then(result => {
       if (!active) return;
+      if (result === 'spent') void acknowledgeSessionStart(drillEnergyIntent.operationId);
       if (result === 'insufficient') setNoEnergyModalOpen(true);
       if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
     });
     return () => { active = false; };
-  }, [energyReady]);
+  }, [acknowledgeSessionStart, drillEnergyIntent, energyReady, lessonId, router]);
 
   const onCloseEnergyModal = useCallback(() => {
     setNoEnergyModalOpen(false);
@@ -362,6 +364,7 @@ export default function PrepositionDrillScreen() {
                 {triLang(lang, {
                   uk: 'У цьому уроці немає прийменників',
                   ru: 'В этом уроке нет предлогов',
+                  en: 'This lesson has no prepositions',
                   es: 'En esta lección no hay preposiciones.',
                   'pt-BR': 'Esta lição não tem preposições.',
                   vi: 'Bài học này không có giới từ.',
@@ -381,6 +384,7 @@ export default function PrepositionDrillScreen() {
   const title = triLang(lang, {
     uk: 'Тренажер прийменників',
     ru: 'Тренажер предлогов',
+    en: 'Preposition trainer',
     es: 'Práctica de preposiciones',
     'pt-BR': 'Prática de preposições',
     vi: 'Luyện giới từ',
@@ -391,6 +395,7 @@ export default function PrepositionDrillScreen() {
   const subtitle = triLang(lang, {
     uk: `Урок ${lessonId}: прийменники цього уроку`,
     ru: `Урок ${lessonId}: предлоги этого урока`,
+    en: `Lesson ${lessonId}: prepositions from this lesson`,
     es: `Lección ${lessonId}: preposiciones de esta lección`,
     'pt-BR': `Lição ${lessonId}: preposições desta lição`,
     vi: `Bài ${lessonId}: giới từ của bài này`,
@@ -531,7 +536,7 @@ export default function PrepositionDrillScreen() {
               <BouncyScrollView
                 ref={scrollRef}
                 style={{ flex: 1 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{ paddingBottom: scrollBottomPad }}
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled
@@ -542,6 +547,7 @@ export default function PrepositionDrillScreen() {
                 {triLang(lang, {
                   uk: 'Завдання',
                   ru: 'Вызов',
+                  en: 'Challenge',
                   es: 'Ejercicio',
                   'pt-BR': 'Exercício',
                   vi: 'Bài tập',
@@ -592,6 +598,7 @@ export default function PrepositionDrillScreen() {
                       ? triLang(lang, {
                         uk: 'Правильно',
                         ru: 'Верно',
+                        en: 'Correct',
                         es: 'Correcto',
                         'pt-BR': 'Correto',
                         vi: 'Đúng',
@@ -602,6 +609,7 @@ export default function PrepositionDrillScreen() {
                       : triLang(lang, {
                         uk: 'Майже',
                         ru: 'Почти',
+                        en: 'Not quite',
                         es: 'Incorrecto',
                         'pt-BR': 'Incorreto',
                         vi: 'Sai',
@@ -614,6 +622,7 @@ export default function PrepositionDrillScreen() {
                     {triLang(lang, {
                       uk: item.explainUK,
                       ru: item.explainRU,
+                      en: item.explainES ?? item.explainRU,
                       es: item.explainES ?? item.explainRU,
                       'pt-BR': item.explainPtBr ?? item.explainES ?? item.explainRU,
                       vi: item.explainVi ?? item.explainES ?? item.explainRU,
@@ -630,6 +639,7 @@ export default function PrepositionDrillScreen() {
                       {triLang(lang, {
                         uk: 'Далі',
                         ru: 'Дальше',
+                        en: 'Next',
                         es: 'Siguiente',
                         'pt-BR': 'Próximo',
                         vi: 'Tiếp theo',
@@ -650,6 +660,7 @@ export default function PrepositionDrillScreen() {
                   triLang(lang, {
                     uk: `Урок ${lessonId}, нові прийменники: ${prepositionsLabel}`,
                     ru: `Урок ${lessonId}, новые предлоги: ${prepositionsLabel}`,
+                    en: `Lesson ${lessonId}, new prepositions: ${prepositionsLabel}`,
                     es: `Lección ${lessonId}, nuevas preposiciones: ${prepositionsLabel}`,
                     'pt-BR': `Lição ${lessonId}, novas preposições: ${prepositionsLabel}`,
                     vi: `Bài ${lessonId}, giới từ mới: ${prepositionsLabel}`,
@@ -660,6 +671,7 @@ export default function PrepositionDrillScreen() {
                   triLang(lang, {
                     uk: `Завдання: ${item.sentenceTemplate}`,
                     ru: `Вызов: ${item.sentenceTemplate}`,
+                    en: `Challenge: ${item.sentenceTemplate}`,
                     es: `Ejercicio: ${item.sentenceTemplate}`,
                     'pt-BR': `Exercício: ${item.sentenceTemplate}`,
                     vi: `Bài tập: ${item.sentenceTemplate}`,
@@ -670,6 +682,7 @@ export default function PrepositionDrillScreen() {
                   triLang(lang, {
                     uk: `Варіанти: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                     ru: `Варианты: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
+                    en: `Options: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                     es: `Opciones: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                     'pt-BR': `Opções: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                     vi: `Lựa chọn: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
@@ -692,6 +705,7 @@ export default function PrepositionDrillScreen() {
                 {triLang(lang, {
                   uk: 'Прийменники відпрацьовано!',
                   ru: 'Предлоги отработаны!',
+                  en: 'Prepositions practiced!',
                   es: '¡Preposiciones repasadas!',
                   'pt-BR': 'Preposições praticadas!',
                   vi: 'Đã luyện xong giới từ!',
@@ -704,6 +718,7 @@ export default function PrepositionDrillScreen() {
                 {triLang(lang, {
                   uk: 'Точність: ',
                   ru: 'Точность: ',
+                  en: 'Accuracy: ',
                   es: 'Precisión: ',
                   'pt-BR': 'Precisão: ',
                   vi: 'Độ chính xác: ',
@@ -716,6 +731,7 @@ export default function PrepositionDrillScreen() {
                 {triLang(lang, {
                   uk: `Помилок: ${wrongIds.length}`,
                   ru: `Ошибок: ${wrongIds.length}`,
+                  en: `Mistakes: ${wrongIds.length}`,
                   es: `Errores: ${wrongIds.length}`,
                   'pt-BR': `Erros: ${wrongIds.length}`,
                   vi: `Lỗi: ${wrongIds.length}`,
@@ -733,6 +749,7 @@ export default function PrepositionDrillScreen() {
                   {triLang(lang, {
                     uk: '← До уроку',
                     ru: '← К уроку',
+                    en: '← Back to lesson',
                     es: '← Volver a la lección',
                     'pt-BR': '← Voltar para a lição',
                     vi: '← Về bài học',
@@ -753,6 +770,7 @@ export default function PrepositionDrillScreen() {
                   {triLang(lang, {
                     uk: 'Ще раз',
                     ru: 'Снова',
+                    en: 'Again',
                     es: 'Otra vez',
                     'pt-BR': 'De novo',
                     vi: 'Làm lại',
@@ -772,6 +790,7 @@ export default function PrepositionDrillScreen() {
                     {triLang(lang, {
                       uk: 'Закріпити промахи',
                       ru: 'Закрепить промахи',
+                      en: 'Fix mistakes',
                       es: 'Repasar fallos',
                       'pt-BR': 'Corrigir erros',
                       vi: 'Sửa lỗi',

@@ -48,7 +48,9 @@ import type { Theme } from '../../constants/theme';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../../components/ThemeContext';
-import { usePremium } from '../../components/PremiumContext';
+import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
+import PlusBadge from '../../components/PlusBadge';
+import { shouldGateCreator } from '../creator_access';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
 import { markNextNavigationAsReplace } from '../navigation_back';
@@ -248,6 +250,14 @@ type MenuItemProps = {
   setupTestID?: string;
   /** Подпись кнопки выбора наборов («Выбрать наборы») — озвучка и подсказка. */
   setupLabel?: string;
+  /**
+   * зачем (владелец 2026-08-25): создание карточки/набора уже гейтится подпиской
+   * (creator_access.ts) — тап фри-юзера уводит на пейвол, но ДО тапа в пункте
+   * меню не было никакого сигнала, что дальше стоит платный экран. Та же плашка
+   * Plus, что в уроках (PlusBadge рядом с label), закрывает разрыв ожиданий.
+   */
+  plusLocked?: boolean;
+  themeMode: string;
 };
 
 /**
@@ -268,6 +278,8 @@ function TabMenuItem({
   onSetup,
   setupTestID,
   setupLabel,
+  plusLocked = false,
+  themeMode,
 }: MenuItemProps) {
   const p = useSharedValue(0);
 
@@ -348,11 +360,14 @@ function TabMenuItem({
             <Ionicons name={icon} size={17} color={t.accent} />
           </View>
           <Text
-            style={{ color: t.textPrimary, fontSize: 14, fontWeight: '800', minWidth: 96 }}
+            style={{ color: t.textPrimary, fontSize: 14, fontWeight: '800' }}
             numberOfLines={1}
           >
             {label}
           </Text>
+          {plusLocked ? (
+            <PlusBadge themeMode={themeMode} size="xs" showIcon={false} style={{ marginLeft: 6 }} />
+          ) : null}
         </Pressable>
 
         {onSetup ? (
@@ -392,7 +407,17 @@ function TabMenuItem({
 export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null, hasAnyCards = true }: Props) {
   const router = useRouter();
   const { f, ds, themeMode } = useTheme();
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
+  /**
+   * зачем (владелец 2026-08-25): тот же гейт, что реально держит creator_access.ts
+   * (по фиче 'flashcards', не общий premium) — плашка должна появляться ровно там,
+   * где сработает редирект на пейвол в редакторе/создании набора.
+   * accessResolved: до резолва подписки hasFeatureAccess равен false, и плашка
+   * мигнула бы платящему Plus-юзеру на холодном старте (тот же класс бага, что уже
+   * чинили в flashcards_card_editor.tsx/community_pack_create.tsx через accessResolved).
+   */
+  const flashcardsFeatureAccess = useFeatureAccess('flashcards');
+  const createLocked = accessResolved && shouldGateCreator(flashcardsFeatureAccess);
   const { studyTarget } = useStudyTarget();
   const { tabBarHeight, bottomInset: screenBottomInset } = useScreen();
   const [menu, setMenu] = useState<FcTabMenu>('none');
@@ -657,59 +682,59 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   const labels = useMemo(
     () => ({
       train: triLang(lang, {
-        ru: 'Тренировка', uk: 'Тренування', es: 'Entrenar',
+        ru: 'Тренировка', uk: 'Тренування', en: 'Practice', es: 'Entrenar',
         'pt-BR': 'Treinar', vi: 'Luyện tập', id: 'Latihan', tr: 'Antrenman', pl: 'Trening',
       }),
       listen: triLang(lang, {
-        ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
+        ru: 'Слушать', uk: 'Слухати', en: 'Listen', es: 'Escuchar',
         'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengar', tr: 'Dinle', pl: 'Słuchaj',
       }),
       /** Пара к «Слушать»: карточки отрабатываются речью (владелец, 2026-08-17). */
       speak: triLang(lang, {
-        ru: 'Говорить', uk: 'Говорити', es: 'Hablar',
+        ru: 'Говорить', uk: 'Говорити', en: 'Speak', es: 'Hablar',
         'pt-BR': 'Falar', vi: 'Nói', id: 'Bicara', tr: 'Konuş', pl: 'Mów',
       }),
       blitz: triLang(lang, {
-        ru: 'Блиц', uk: 'Бліц', es: 'Blitz',
+        ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz',
         'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
       }),
       errors: triLang(lang, {
-        ru: 'Ошибки', uk: 'Помилки', es: 'Errores',
+        ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores',
         'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy',
       }),
       packs: triLang(lang, {
-        ru: 'Наборы', uk: 'Набори', es: 'Packs',
+        ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs',
         'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy',
       }),
       createCard: triLang(lang, {
-        ru: 'Создать карточку', uk: 'Створити картку', es: 'Crear tarjeta',
+        ru: 'Создать карточку', uk: 'Створити картку', en: 'Create a card', es: 'Crear tarjeta',
         'pt-BR': 'Criar cartão', vi: 'Tạo thẻ', id: 'Buat kartu', tr: 'Kart oluştur', pl: 'Utwórz fiszkę',
       }),
       createPack: triLang(lang, {
-        ru: 'Создать набор', uk: 'Створити набір', es: 'Crear pack',
+        ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear pack',
         'pt-BR': 'Criar pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
       }),
       /** Вход в сохранённые карточки — первый пункт группы «Наборы». */
       collection: triLang(lang, {
-        ru: 'Коллекция', uk: 'Колекція', es: 'Colección',
+        ru: 'Коллекция', uk: 'Колекція', en: 'Collection', es: 'Colección',
         'pt-BR': 'Coleção', vi: 'Bộ sưu tập', id: 'Koleksi', tr: 'Koleksiyon', pl: 'Kolekcja',
       }),
       myPacks: triLang(lang, {
-        ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
+        ru: 'Мои наборы', uk: 'Мої набори', en: 'My packs', es: 'Mis packs',
         'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
       }),
       communityPacks: triLang(lang, {
-        ru: 'Наборы сообщества', uk: 'Набори спільноти', es: 'Packs de la comunidad',
+        ru: 'Наборы сообщества', uk: 'Набори спільноти', en: 'Community packs', es: 'Packs de la comunidad',
         'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
         tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
       }),
       create: triLang(lang, {
-        ru: 'Создать', uk: 'Створити', es: 'Crear',
+        ru: 'Создать', uk: 'Створити', en: 'Create', es: 'Crear',
         'pt-BR': 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz',
       }),
       /** §6: одна и та же подпись у кнопки выбора наборов во всех трёх режимах. */
       pickDecks: triLang(lang, {
-        ru: 'Выбрать наборы', uk: 'Обрати набори', es: 'Elegir packs',
+        ru: 'Выбрать наборы', uk: 'Обрати набори', en: 'Choose packs', es: 'Elegir packs',
         'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih set kartu',
         tr: 'Setleri seç', pl: 'Wybierz zestawy',
       }),
@@ -864,6 +889,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 onSetup={option === 'errors' ? undefined : () => onTrainOptionSetup(option)}
                 setupTestID={`fc-tabbar-train-option-${option}-setup`}
                 setupLabel={labels.pickDecks}
+                themeMode={themeMode}
               />
             ))}
           </View>
@@ -887,6 +913,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 open={packsOpen}
                 simple={simple}
                 onPress={() => onPacksOption(option)}
+                themeMode={themeMode}
               />
             ))}
           </View>
@@ -911,6 +938,8 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 simple={simple}
                 accent
                 onPress={() => onCreateOption(option)}
+                plusLocked={createLocked}
+                themeMode={themeMode}
               />
             ))}
           </View>

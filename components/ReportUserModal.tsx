@@ -48,6 +48,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     sent: triLang(lang, {
       ru: 'Жалоба отправлена',
       uk: 'Скаргу надіслано',
+      en: 'Report sent',
       es: 'Reporte enviado',
       'pt-BR': 'Denúncia enviada',
       vi: 'Đã gửi báo cáo',
@@ -58,6 +59,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     title: triLang(lang, {
       ru: 'Пожаловаться на ник?',
       uk: 'Поскаржитися на нік?',
+      en: 'Report the nickname?',
       es: '¿Denunciar el apodo?',
       'pt-BR': 'Denunciar o apelido?',
       vi: 'Báo cáo biệt danh?',
@@ -68,6 +70,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     cancel: triLang(lang, {
       ru: 'Отмена',
       uk: 'Скасувати',
+      en: 'Cancel',
       es: 'Cancelar',
       'pt-BR': 'Cancelar',
       vi: 'Hủy',
@@ -78,6 +81,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     send: triLang(lang, {
       ru: 'Отправить',
       uk: 'Надіслати',
+      en: 'Send',
       es: 'Enviar',
       'pt-BR': 'Enviar',
       vi: 'Gửi',
@@ -205,7 +209,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         testID="report-user-modal-hybrid"
       >
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ width: '100%', maxHeight: '100%' }}>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={{ width: '100%' }}
             contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
             showsVerticalScrollIndicator={false}
@@ -229,7 +233,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             клавиатурой на низком экране кнопка «Отправить» уходила за границу и
             жалобу нельзя было отправить. keyboardShouldPersistTaps сохраняет
             закрытие по тапу мимо формы. */}
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.53)' }}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 18, paddingVertical: 18 }}
           showsVerticalScrollIndicator={false}

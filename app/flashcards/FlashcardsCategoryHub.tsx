@@ -733,7 +733,7 @@ export default function FlashcardsCategoryHub({
         {pack.isPendingUpdateReview ? (
           <Text style={{ fontSize: 9, color: hubLabelAccent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
             {triLang(lang, {
-              ru: 'На проверке', uk: 'На перевірці', es: 'En revisión',
+              ru: 'На проверке', uk: 'На перевірці', en: 'In review', es: 'En revisión',
               'pt-BR': 'Em revisão', vi: 'Đang duyệt', id: 'Sedang ditinjau', tr: 'İncelemede', pl: 'W trakcie sprawdzania',
             })}
           </Text>
@@ -827,6 +827,7 @@ export default function FlashcardsCategoryHub({
             {triLang(lang, {
               ru: 'Пожаловаться на набор',
               uk: 'Поскаржитися на набір',
+              en: 'Report the pack',
               es: 'Reportar el pack',
               'pt-BR': 'Denunciar o pacote',
               vi: 'Báo cáo bộ thẻ',
@@ -853,6 +854,7 @@ export default function FlashcardsCategoryHub({
             {triLang(lang, {
               ru: 'Не показывать мне',
               uk: 'Не показувати мені',
+              en: "Don't show me",
               es: 'No mostrarme',
               'pt-BR': 'Não mostrar para mim',
               vi: 'Không hiển thị nữa',
@@ -905,6 +907,7 @@ export default function FlashcardsCategoryHub({
                 {triLang(lang, {
                   ru: 'Продолжить создание набора',
                   uk: 'Продовжити створення набору',
+                  en: 'Continue creating the pack',
                   es: 'Seguir creando el pack',
                   'pt-BR': 'Continuar criando o pacote',
                   vi: 'Tiếp tục tạo bộ thẻ',
@@ -921,6 +924,7 @@ export default function FlashcardsCategoryHub({
                 ? triLang(lang, {
                     ru: 'Здесь появятся наборы после публикации.',
                     uk: 'Тут з\'являться набори після публікації.',
+                    en: 'Packs will appear here once published.',
                     es: 'Aquí verás packs tras publicarlos.',
                     'pt-BR': 'Aqui você verá pacotes após publicá-los.',
                     vi: 'Bộ thẻ sẽ xuất hiện ở đây sau khi đăng.',
@@ -931,6 +935,7 @@ export default function FlashcardsCategoryHub({
                 : triLang(lang, {
                     ru: 'Ничего не найдено.',
                     uk: 'Нічого не знайдено.',
+                    en: 'Nothing found.',
                     es: 'No se encontró nada.',
                     'pt-BR': 'Nada encontrado.',
                     vi: 'Không tìm thấy gì.',
@@ -966,6 +971,7 @@ export default function FlashcardsCategoryHub({
           dataText={triLang(lang, {
             ru: 'Карточки: каталог наборов',
             uk: 'Картки: каталог наборів',
+            en: 'Cards: pack catalog',
             es: 'Tarjetas: catálogo de packs',
             'pt-BR': 'Cartões: catálogo de pacotes',
             vi: 'Thẻ: danh mục bộ thẻ',

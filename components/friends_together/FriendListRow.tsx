@@ -38,7 +38,7 @@ function slavicDayWord(days: number, singular: string, few: string, many: string
 export function formatFriendRelationship(lang: Lang, daysTogether: number | null): string {
   if (daysTogether === null) {
     return triLang(lang, {
-      ru: 'В друзьях', uk: 'У друзях', es: 'En tus amistades', 'pt-BR': 'Na sua lista de amizades',
+      ru: 'В друзьях', uk: 'У друзях', en: 'Friends', es: 'En tus amistades', 'pt-BR': 'Na sua lista de amizades',
       vi: 'Trong danh sách bạn bè', id: 'Dalam daftar teman', tr: 'Arkadaş listende', pl: 'Wśród znajomych',
     });
   }
@@ -46,6 +46,7 @@ export function formatFriendRelationship(lang: Lang, daysTogether: number | null
   return triLang(lang, {
     ru: `${daysTogether} ${slavicDayWord(daysTogether, 'день', 'дня', 'дней')} вместе`,
     uk: `${daysTogether} ${slavicDayWord(daysTogether, 'день', 'дні', 'днів')} разом`,
+    en: `${daysTogether} ${daysTogether === 1 ? 'day' : 'days'} together`,
     es: `${daysTogether} ${daysTogether === 1 ? 'día' : 'días'} de amistad`,
     'pt-BR': `${daysTogether} ${daysTogether === 1 ? 'dia' : 'dias'} de amizade`,
     vi: `${daysTogether} ngày cùng nhau`,
@@ -77,11 +78,11 @@ function FriendListRow({
   const handleOpenDetails = () => onOpenDetails(friendUid);
   const handleOpenEvent = onOpenEvent && event ? () => onOpenEvent(friendUid, event) : undefined;
   const profileLabel = triLang(lang, {
-    ru: `Открыть профиль ${friendName}`, uk: `Відкрити профіль ${friendName}`, es: `Abrir el perfil de ${friendName}`, 'pt-BR': `Abrir o perfil de ${friendName}`,
+    ru: `Открыть профиль ${friendName}`, uk: `Відкрити профіль ${friendName}`, en: `Open ${friendName}'s profile`, es: `Abrir el perfil de ${friendName}`, 'pt-BR': `Abrir o perfil de ${friendName}`,
     vi: `Mở hồ sơ của ${friendName}`, id: `Buka profil ${friendName}`, tr: `${friendName} profilini aç`, pl: `Otwórz profil ${friendName}`,
   });
   const detailsLabel = triLang(lang, {
-    ru: `Открыть детали дружбы с ${friendName}`, uk: `Відкрити деталі дружби з ${friendName}`, es: `Abrir detalles de amistad con ${friendName}`, 'pt-BR': `Abrir detalhes da amizade com ${friendName}`,
+    ru: `Открыть детали дружбы с ${friendName}`, uk: `Відкрити деталі дружби з ${friendName}`, en: `Open friendship details with ${friendName}`, es: `Abrir detalles de amistad con ${friendName}`, 'pt-BR': `Abrir detalhes da amizade com ${friendName}`,
     vi: `Mở chi tiết tình bạn với ${friendName}`, id: `Buka detail pertemanan dengan ${friendName}`, tr: `${friendName} ile arkadaşlık ayrıntılarını aç`, pl: `Otwórz szczegóły znajomości z ${friendName}`,
   });
 

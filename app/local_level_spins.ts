@@ -14,11 +14,12 @@ import {
   LEVEL_SPIN_GIFT_JOURNAL_KEY,
   LEVEL_SPIN_PENDING_REVEAL_KEY,
 } from './level_up_storage_keys';
-import { isLocalSpinCreditId } from './level_spin_credit_ids';
+import { isLocalSpinCreditId, isLocalSpinReceiptCreditId } from './level_spin_credit_ids';
 import {
   localJournalEntryForReceipt,
   mergeLocalSpinJournal,
   parseLocalPendingReveal,
+  isRecoverableLocalLevelSpinReceipt,
   type LocalLevelSpinJournalEntry,
   type LocalLevelSpinReceipt,
 } from './level_spin_local_contract';
@@ -27,6 +28,7 @@ import {
   pickLevelSpinRewardExcluding,
 } from './level_spin_reward_catalog';
 import { listExhaustedSpinRewardIds } from './theme_gift_pool';
+import { stableUniqueStrings } from './spin_gift_storage_integrity';
 export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './level_spin_local_contract';
 
 /**
@@ -77,32 +79,52 @@ function normalizeLevels(raw: unknown): number[] {
 
 function normalizeState(raw: string | null, owner: string): LocalSpinState {
   try {
-    const parsed = raw ? JSON.parse(raw) as Partial<LocalSpinState> : null;
-    if (parsed?.owner !== owner || !Array.isArray(parsed.credits)) {
-      return { owner, credits: [], issuedLevels: [], issuedCreditIds: [], activeReceipt: null, closedRequestIds: [] };
+    const parsed: unknown = raw === null ? null : JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('invalid_root');
+    const candidate = parsed as Partial<LocalSpinState>;
+    if (candidate.owner !== owner || !Array.isArray(candidate.credits)) throw new Error('invalid_owner_or_credits');
+    if (candidate.issuedLevels !== undefined && !Array.isArray(candidate.issuedLevels)) throw new Error('invalid_issued_levels');
+    if (candidate.issuedCreditIds !== undefined && !Array.isArray(candidate.issuedCreditIds)) throw new Error('invalid_issued_ids');
+    if (candidate.closedRequestIds !== undefined && !Array.isArray(candidate.closedRequestIds)) throw new Error('invalid_closed_ids');
+    if (candidate.activeReceipt !== undefined && candidate.activeReceipt !== null
+      && (typeof candidate.activeReceipt !== 'object' || Array.isArray(candidate.activeReceipt))) {
+      throw new Error('invalid_active_receipt');
     }
-    const credits = parsed.credits
-      .map((credit) => ({ id: String(credit?.id ?? ''), level: Number(credit?.level) }))
-      // зачем (2026-08-23): тот же список источников, что и у фильтра
-      // issuedCreditIds ниже. Незнакомый префикс здесь стирал САМ кредит —
-      // игрок терял заработанный спин при первом же перезапуске приложения.
-      .filter((credit) => isLocalSpinCreditId(credit.id) && Number.isInteger(credit.level) && credit.level >= 2 && credit.level <= 60)
-      .filter((credit, index, all) => all.findIndex((candidate) => candidate.id === credit.id) === index)
-      .sort((left, right) => left.level - right.level);
+    const credits = candidate.credits.map((credit) => {
+      if (!credit || typeof credit !== 'object') throw new Error('invalid_credit');
+      const id = (credit as { id?: unknown }).id;
+      const level = (credit as { level?: unknown }).level;
+      if (typeof id !== 'string' || !isLocalSpinCreditId(id)
+        || !Number.isInteger(level) || (level as number) < 2 || (level as number) > 60) {
+        throw new Error('invalid_credit');
+      }
+      return { id, level: level as number };
+    });
+    if (new Set(credits.map(({ id }) => id)).size !== credits.length) throw new Error('duplicate_credit');
+    const issuedLevelsRaw = candidate.issuedLevels ?? credits.map((credit) => credit.level);
+    if (!issuedLevelsRaw.every((level) => Number.isInteger(level) && Number(level) >= 2 && Number(level) <= 60)) {
+      throw new Error('invalid_issued_level');
+    }
+    const issuedCreditIdsRaw = candidate.issuedCreditIds ?? credits.map((credit) => credit.id);
+    if (!issuedCreditIdsRaw.every((id) => typeof id === 'string' && isLocalSpinCreditId(id))) {
+      throw new Error('invalid_issued_id');
+    }
+    const closedRequestIdsRaw = candidate.closedRequestIds ?? [];
+    if (!closedRequestIdsRaw.every((id) => typeof id === 'string' && /^[a-f0-9-]{16,}$/i.test(id))) {
+      throw new Error('invalid_closed_id');
+    }
     return {
       owner,
-      credits,
-      issuedLevels: normalizeLevels(parsed.issuedLevels ?? credits.map((credit) => credit.level)),
-      issuedCreditIds: Array.isArray(parsed.issuedCreditIds)
-        ? parsed.issuedCreditIds.map(String).filter(isLocalSpinCreditId).slice(-160)
-        : credits.map((credit) => credit.id),
-      activeReceipt: parsed.activeReceipt && typeof parsed.activeReceipt === 'object'
-        ? parsed.activeReceipt as LocalLevelSpinReceipt : null,
-      closedRequestIds: Array.isArray(parsed.closedRequestIds)
-        ? parsed.closedRequestIds.map(String).filter((id) => /^[a-f0-9-]{16,}$/i.test(id)).slice(-80) : [],
+      credits: [...credits].sort((left, right) => left.level - right.level),
+      issuedLevels: normalizeLevels(issuedLevelsRaw),
+      issuedCreditIds: stableUniqueStrings(issuedCreditIdsRaw as string[]),
+      activeReceipt: candidate.activeReceipt as LocalLevelSpinReceipt | null | undefined ?? null,
+      closedRequestIds: stableUniqueStrings(closedRequestIdsRaw as string[]).slice(-80),
     };
   } catch {
-    return { owner, credits: [], issuedLevels: [], issuedCreditIds: [], activeReceipt: null, closedRequestIds: [] };
+    // Never turn corrupt authority into an empty writable state. The raw value
+    // remains untouched for recovery/support and every grant/claim fails closed.
+    throw new Error('local_spin_state_corrupt');
   }
 }
 
@@ -117,11 +139,16 @@ async function writeLocalState(state: LocalSpinState): Promise<void> {
 async function migrateCachedBalanceToLocalCredits(owner: string): Promise<LocalSpinState> {
   const raw = await AsyncStorage.getItem(LEVEL_SPIN_BALANCE_CACHE_KEY);
   let cachedBalance = 0;
-  try {
+  if (raw !== null) try {
     const parsed = raw ? JSON.parse(raw) as { owner?: unknown; balance?: unknown } : null;
-    if (parsed?.owner === owner) cachedBalance = Math.max(0, Math.min(59, Math.floor(Number(parsed.balance) || 0)));
+    if (parsed?.owner === owner) {
+      if (!Number.isSafeInteger(parsed.balance) || Number(parsed.balance) < 0 || Number(parsed.balance) > 59) {
+        throw new Error('invalid_balance');
+      }
+      cachedBalance = Number(parsed.balance);
+    }
   } catch {
-    cachedBalance = 0;
+    throw new Error('local_spin_balance_cache_corrupt');
   }
   const state: LocalSpinState = {
     owner,
@@ -140,19 +167,57 @@ async function migrateCachedBalanceToLocalCredits(owner: string): Promise<LocalS
 
 async function loadLocalState(owner: string): Promise<LocalSpinState> {
   const raw = await AsyncStorage.getItem(localLevelSpinStateKey(owner));
-  if (!raw) return migrateCachedBalanceToLocalCredits(owner);
+  if (raw === null) return migrateCachedBalanceToLocalCredits(owner);
   return normalizeState(raw, owner);
 }
 
-async function persistLocalReceipt(receipt: LocalLevelSpinReceipt, owner: string): Promise<void> {
+function isValidLocalSpinJournalEntry(value: unknown): value is LocalLevelSpinJournalEntry {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const entry = value as Partial<LocalLevelSpinJournalEntry>;
+  if (typeof entry.owner !== 'string' || entry.owner.trim().length === 0
+    || typeof entry.requestId !== 'string' || !/^[A-Za-z0-9_-]{16,96}$/.test(entry.requestId)
+    || !Array.isArray(entry.occurrences)
+    || entry.occurrences.length < 1
+    || entry.occurrences.length > 2) return false;
+  const lanes = new Set<string>();
+  const occurrencesValid = entry.occurrences.every((occurrence) => {
+    if (!occurrence || (occurrence.lane !== 'base' && occurrence.lane !== 'premium')
+      || lanes.has(occurrence.lane)
+      || typeof occurrence.giftId !== 'string' || occurrence.giftId.trim().length === 0
+      || typeof occurrence.claimed !== 'boolean') return false;
+    lanes.add(occurrence.lane);
+    return occurrence.occurrenceId === undefined
+      || occurrence.occurrenceId === `level-spin:${entry.requestId}:${occurrence.lane}`;
+  });
+  if (!occurrencesValid) return false;
+  // Historical server receipts share this journal and do not have localOnly.
+  // Preserve them after validating their public shape; local authority itself
+  // must satisfy the stronger immutable receipt projection below.
+  if (entry.localOnly !== true) return entry.localOnly === undefined || entry.localOnly === false;
+  return isLocalSpinReceiptCreditId(entry.creditId)
+    && Number.isInteger(entry.level) && Number(entry.level) >= 2 && Number(entry.level) <= 60
+    && Number.isSafeInteger(entry.receivedAtMs) && Number(entry.receivedAtMs) > 0
+    && Number.isSafeInteger(entry.expiresAtMs)
+    && Number(entry.expiresAtMs) === Number(entry.receivedAtMs) + LOCAL_RESULT_TTL_MS
+    && entry.occurrences.length === 1
+    && entry.occurrences[0]?.lane === 'base'
+    && entry.occurrences[0]?.occurrenceId === `level-spin:${entry.requestId}:base`;
+}
+
+async function readLocalSpinJournal(): Promise<LocalLevelSpinJournalEntry[]> {
   const raw = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);
-  let journal: LocalLevelSpinJournalEntry[] = [];
+  if (raw === null) return [];
   try {
-    const parsed = raw ? JSON.parse(raw) : [];
-    if (Array.isArray(parsed)) journal = parsed as LocalLevelSpinJournalEntry[];
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed) || !parsed.every(isValidLocalSpinJournalEntry)) throw new Error('invalid_journal');
+    return parsed as LocalLevelSpinJournalEntry[];
   } catch {
-    journal = [];
+    throw new Error('local_spin_gift_journal_corrupt');
   }
+}
+
+async function persistLocalReceipt(receipt: LocalLevelSpinReceipt, owner: string): Promise<void> {
+  const journal = await readLocalSpinJournal();
   const nextJournal = mergeLocalSpinJournal(journal, localJournalEntryForReceipt(receipt, owner));
   await AsyncStorage.multiSet([
     [LEVEL_SPIN_GIFT_JOURNAL_KEY, JSON.stringify(nextJournal)],
@@ -170,22 +235,19 @@ async function restoreActiveReceipt(state: LocalSpinState): Promise<LocalLevelSp
     state.owner,
   );
   const activeShapeValid = parsedReceipt !== null
-    && receipt.ok === true
-    && receipt.status === 'awaiting_ack'
-    && (receipt.revealState === undefined || receipt.revealState === 'pending')
-    && receipt.premiumGiftId === null
-    && receipt.deliveries?.base?.state === 'unclaimed'
-    && Number.isSafeInteger(receipt.balanceAfter)
-    && receipt.balanceAfter >= 0
-    && (receipt.kind === 'standard' || receipt.kind === 'milestone')
-    && receipt.kind === (receipt.level % 5 === 0 ? 'milestone' : 'standard')
-    && receipt.expiresAtMs > Date.now();
+    && isRecoverableLocalLevelSpinReceipt(receipt, state.owner);
 
   if (!activeShapeValid) {
+    const journal = await readLocalSpinJournal();
+    const claimedOccurrence = journal.some((entry) => entry.owner === state.owner
+      && entry.requestId === receipt.requestId
+      && entry.occurrences.length === 1
+      && entry.occurrences[0]?.lane === 'base'
+      && entry.occurrences[0]?.claimed === true);
     const rawCreditId = typeof receipt.creditId === 'string' ? receipt.creditId : '';
     const creditId = rawCreditId.replace(/^level_spin_v1_/, 'local_spin_v1_');
     const level = Number(receipt.level);
-    const recoverableCredit = !closed
+    const recoverableCredit = !closed && !claimedOccurrence
       && receipt.stableUid === state.owner
       && isLocalSpinCreditId(creditId)
       && Number.isInteger(level)
@@ -204,9 +266,12 @@ async function restoreActiveReceipt(state: LocalSpinState): Promise<LocalLevelSp
         ? normalizeLevels([...state.issuedLevels, level])
         : state.issuedLevels,
       issuedCreditIds: recoverableCredit
-        ? [...new Set([...state.issuedCreditIds, creditId])].slice(-160)
+        ? stableUniqueStrings([...state.issuedCreditIds, creditId])
         : state.issuedCreditIds,
       activeReceipt: null,
+      closedRequestIds: claimedOccurrence && typeof receipt.requestId === 'string'
+        ? stableUniqueStrings([...state.closedRequestIds, receipt.requestId])
+        : state.closedRequestIds,
     });
     const pendingRaw = await AsyncStorage.getItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
     let pendingMatchesInvalidReceipt = false;
@@ -227,6 +292,30 @@ async function restoreActiveReceipt(state: LocalSpinState): Promise<LocalLevelSp
   }
   await persistLocalReceipt(receipt, state.owner);
   return receipt;
+}
+
+function sameLocalSpinReceiptAuthority(
+  pending: LocalLevelSpinReceipt,
+  active: LocalLevelSpinReceipt,
+): boolean {
+  return pending.ok === active.ok
+    && pending.stableUid === active.stableUid
+    && pending.requestId === active.requestId
+    && pending.creditId === active.creditId
+    && pending.level === active.level
+    && pending.kind === active.kind
+    && pending.baseGiftId === active.baseGiftId
+    && pending.premiumGiftId === active.premiumGiftId
+    && pending.createdAtMs === active.createdAtMs
+    && pending.expiresAtMs === active.expiresAtMs
+    && pending.balanceAfter === active.balanceAfter
+    && pending.status === active.status
+    && pending.revealState === active.revealState
+    && pending.deliveries?.base?.state === active.deliveries?.base?.state
+    && Object.keys(pending.deliveries ?? {}).length === Object.keys(active.deliveries ?? {}).length
+    && pending.catalogVersion === active.catalogVersion
+    && pending.schemaVersion === active.schemaVersion
+    && pending.localOnly === active.localOnly;
 }
 
 export async function readLocalLevelSpinBalance(): Promise<number> {
@@ -263,7 +352,7 @@ export async function grantLocalLevelSpinsForAccount(
       ...current,
       credits: [...current.credits, ...additions.map((level) => ({ id: `local_spin_v1_${String(level).padStart(3, '0')}`, level }))],
       issuedLevels: normalizeLevels([...current.issuedLevels, ...additions]),
-      issuedCreditIds: [...current.issuedCreditIds, ...additions.map((level) => `local_spin_v1_${String(level).padStart(3, '0')}`)].slice(-160),
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...additions.map((level) => `local_spin_v1_${String(level).padStart(3, '0')}`)]),
     };
     await writeLocalState(next);
     return additions;
@@ -281,7 +370,7 @@ export async function grantLocalDevSpin(token: AccountGenerationToken): Promise<
     const next: LocalSpinState = {
       ...current,
       credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
     };
     await writeLocalState(next);
     return true;
@@ -304,7 +393,7 @@ export async function grantLocalLessonCompletionSpin(
     await writeLocalState({
       ...current,
       credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
     });
     return true;
   });
@@ -337,7 +426,7 @@ export async function grantLocalCourseSessionCompletionSpin(
     await writeLocalState({
       ...current,
       credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
     });
     return true;
   });
@@ -373,7 +462,7 @@ export async function grantLocalArenaRankedWinSpin(
     await writeLocalState({
       ...current,
       credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
     });
     return true;
   });
@@ -406,7 +495,7 @@ export async function grantLocalChestSpin(
     await writeLocalState({
       ...current,
       credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: [...current.issuedCreditIds, id].slice(-160),
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
     });
     return true;
   });
@@ -416,9 +505,71 @@ export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | n
   const owner = ownerFromDevice();
   if (!owner) return null;
   const state = await loadLocalState(owner);
-  const pending = parseLocalPendingReveal(await AsyncStorage.getItem(LEVEL_SPIN_PENDING_REVEAL_KEY), owner);
-  if (pending && !state.closedRequestIds.includes(pending.requestId)) return pending;
+  const pendingRaw = await AsyncStorage.getItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+  const pending = parseLocalPendingReveal(pendingRaw, owner);
+  if (pending && state.activeReceipt
+    && !state.closedRequestIds.includes(pending.requestId)
+    && sameLocalSpinReceiptAuthority(pending, state.activeReceipt)) return pending;
+  if (pendingRaw) {
+    try {
+      const envelope = JSON.parse(pendingRaw) as { owner?: unknown };
+      if (envelope?.owner === owner) await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+    } catch {
+      await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+    }
+  }
   return restoreActiveReceipt(state);
+}
+
+/**
+ * Вернуть недоставленный чек обратно в кредит спина.
+ *
+ * зачем (владелец 2026-08-26, инцидент «всегда 20 жемчужин»): если начисление
+ * приза провалилось, чек оставался активным навсегда. claimLocalLevelSpin
+ * сначала зовёт recoverLocalLevelSpin и отдаёт ТОТ ЖЕ чек, не списывая кредит —
+ * поэтому игрок бесконечно видел один и тот же приз, баланс спинов не менялся,
+ * а на счёт ничего не падало. Возврат в кредит разрывает этот круг: спин снова
+ * доступен, и следующая попытка честно разыгрывает НОВЫЙ requestId.
+ *
+ * Кредит возвращается только если приз действительно не был выдан (в журнале
+ * нет claimed-occurrence) — двойной выдачи это не создаёт.
+ */
+export async function releaseUndeliveredLocalLevelSpin(requestId: string): Promise<boolean> {
+  const owner = ownerFromDevice();
+  if (!owner || !requestId) return false;
+  return withAccountTransitionLock(async () => {
+    const state = await loadLocalState(owner);
+    const receipt = state.activeReceipt;
+    if (!receipt || receipt.requestId !== requestId) return false;
+    if (state.closedRequestIds.includes(requestId)) return false;
+    const journal = await readLocalSpinJournal();
+    const alreadyClaimed = journal.some((entry) => entry.owner === owner
+      && entry.requestId === requestId
+      && entry.occurrences.some((occurrence) => occurrence.claimed === true));
+    // Приз уже выдан — кредит возвращать нельзя, это была бы вторая награда.
+    if (alreadyClaimed) return false;
+    const rawCreditId = typeof receipt.creditId === 'string' ? receipt.creditId : '';
+    const creditId = rawCreditId.replace(/^level_spin_v1_/, 'local_spin_v1_');
+    const level = Number(receipt.level);
+    const restorable = receipt.stableUid === owner
+      && isLocalSpinCreditId(creditId)
+      && Number.isInteger(level) && level >= 2 && level <= 60
+      && (!creditId.startsWith('local_spin_v1_')
+        || creditId === `local_spin_v1_${String(level).padStart(3, '0')}`);
+    if (!restorable) return false;
+    const alreadyQueued = state.credits.some((candidate) => candidate.id === creditId);
+    await writeLocalState({
+      ...state,
+      credits: alreadyQueued
+        ? state.credits
+        : [...state.credits, { id: creditId, level }].sort((left, right) => left.level - right.level),
+      issuedCreditIds: stableUniqueStrings([...state.issuedCreditIds, creditId]),
+      activeReceipt: null,
+      closedRequestIds: stableUniqueStrings([...state.closedRequestIds, requestId]).slice(-80),
+    });
+    await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+    return true;
+  });
 }
 
 export async function acknowledgeLocalLevelSpin(requestId: string): Promise<void> {
@@ -444,7 +595,15 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
   if (pending) return pending;
   return withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(token, owner)) throw new Error('local_spin_identity_changed');
-    const current = await loadLocalState(owner);
+    let current = await loadLocalState(owner);
+    // A second claim can pass the optimistic recovery check while the first
+    // claim is waiting for this lock. Re-read the durable intent under the
+    // same lock before consuming another credit.
+    const activeReceipt = await restoreActiveReceipt(current);
+    if (activeReceipt) return activeReceipt;
+    // Invalid/expired active receipts can be repaired back into a credit by
+    // restoreActiveReceipt. Continue from that freshly persisted state.
+    current = await loadLocalState(owner);
     const credit = current.credits[0];
     if (!credit) throw new Error('local_spin_empty');
     const requestId = Crypto.randomUUID();
@@ -473,9 +632,7 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
       schemaVersion: 2,
       localOnly: true,
     };
-    const rawJournal = await AsyncStorage.getItem(LEVEL_SPIN_GIFT_JOURNAL_KEY);
-    let journal: LocalLevelSpinJournalEntry[] = [];
-    try { journal = rawJournal && Array.isArray(JSON.parse(rawJournal)) ? JSON.parse(rawJournal) as LocalLevelSpinJournalEntry[] : []; } catch { /* safe empty journal */ }
+    const journal = await readLocalSpinJournal();
     const next: LocalSpinState = {
       ...current,
       credits: current.credits.filter((candidate) => candidate.id !== credit.id),

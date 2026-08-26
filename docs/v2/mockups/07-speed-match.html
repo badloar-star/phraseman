@@ -123,6 +123,8 @@ svg { display:block; }
 #noTimerToggle.on { background:var(--surface-grad); color:var(--text-ghost); opacity:0.75; }
 .hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
 .progress-row { display:flex; align-items:center; gap:8px; margin-top:14px; }
+.attempts-hud { height:32px; flex:0 0 auto; display:flex; align-items:center; gap:3px; padding:0 7px; border-radius:999px; background:var(--wrong-bg); box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
+.attempt-heart { width:17px; text-align:center; color:var(--wrong); font-size:18px; line-height:1; }
 .bar-track {
   flex:1; height:10px; border-radius:999px; background:var(--bg-surface2);
   overflow:hidden; position:relative;
@@ -395,6 +397,7 @@ svg { display:block; }
       </div>
       <div class="progress-row">
         <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+        <div class="attempts-hud" data-session-attempts-hud="true" role="img" aria-label="3 попытки из 3"><span class="attempt-heart" data-attempt-heart="1">♥</span><span class="attempt-heart" data-attempt-heart="2">♥</span><span class="attempt-heart" data-attempt-heart="3">♥</span></div>
         <div class="counter timerp" id="timerPill"><svg><use href="#i-clock"/></svg><b id="timerVal">60</b></div>
         <div class="counter streakp" id="streakPill" data-tier="1"><svg><use href="#i-spark"/></svg><b id="streakVal">2</b></div>
         <div class="counter miss" id="missCounter"><svg><use href="#i-dot"/></svg><b id="missVal">0</b></div>

@@ -96,7 +96,7 @@ export function ArenaScreen({
         `variant` остаётся в API: его читают экраны боя/разбора.
       */}
       {scroll ? (
-        <ScrollView contentContainerStyle={[styles.scroll, { paddingTop: insets.top, paddingBottom: bottomContentInset ?? (Math.max(24, insets.bottom + 16) + extraBottomInset) }]}>{content}</ScrollView>
+        <ScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingTop: insets.top, paddingBottom: bottomContentInset ?? (Math.max(24, insets.bottom + 16) + extraBottomInset) }]}>{content}</ScrollView>
       ) : <View style={[styles.fixed, { paddingTop: insets.top, paddingBottom: bottomContentInset ?? (Math.max(16, insets.bottom) + extraBottomInset) }]}>{content}</View>}
       <TournamentFxHost ref={fxRef} width={window.width} height={window.height} />
       {overlay}

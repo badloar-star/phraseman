@@ -215,7 +215,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
         /* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
            карточка подтверждения выхода центрировалась без прокрутки — на
            низком экране кнопки «Выйти»/«Отмена» уходили за границу. */
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
           showsVerticalScrollIndicator={false}

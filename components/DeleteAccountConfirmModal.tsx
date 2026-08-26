@@ -306,7 +306,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={{ width: isHybrid ? '100%' : '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: t.bgCard, borderRadius: 16, overflow: 'hidden', borderWidth: 0, borderColor: 'transparent' }}>
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ padding: 24 }}

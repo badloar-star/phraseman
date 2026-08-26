@@ -333,8 +333,19 @@ let materializedAll: readonly SessionSource[] | null = null;
 // приложения к нему не обращается вовсе и потому платит только за свою.
 export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
   new Proxy([] as SessionSource[], {
-    get: (_unused, key) =>
-      Reflect.get(allAuthoredEpisode01Sessions() as SessionSource[], key),
+    get: (target, key, receiver) => {
+      // React Refresh probes every exported object for this marker while the
+      // application module graph is still booting. Treating that metadata
+      // probe like an array read used to build all 56 eight-locale sessions
+      // before the first React render, leaving Android on a black splash.
+      // Real array reads (length/index/iterator/map/etc.) stay lazy and retain
+      // the public compatibility export used by authoring gates.
+      if (key === '$$typeof') return Reflect.get(target, key, receiver);
+      return Reflect.get(
+        allAuthoredEpisode01Sessions() as SessionSource[],
+        key,
+      );
+    },
     has: (_unused, key) =>
       Reflect.has(allAuthoredEpisode01Sessions() as SessionSource[], key),
     ownKeys: () => Reflect.ownKeys(allAuthoredEpisode01Sessions() as SessionSource[]),

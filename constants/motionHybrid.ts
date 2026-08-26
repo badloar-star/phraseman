@@ -112,11 +112,25 @@ export const TOAST = {
 
 /** Три попытки в учебной сессии: короткая дрожь и исчезновение одного сердца. */
 export const SESSION_ATTEMPTS_MOTION = {
-  shakeOffsetsPx: [0, -5, 5, -3, 0] as const,
+  shakeOffsetsPx: [0, -3, 3, -2, 0] as const,
   shakeSegmentMs: 60,
-  consumedScale: 0.72,
-  consumedFadeMs: 180,
-  exhaustedModalDelayMs: 240,
+  lossPopScale: 1.22,
+  lossLiftPx: -3,
+  lossDropPx: 8,
+  lossTiltDeg: 12,
+  lossPopMs: 90,
+  lossExitMs: 210,
+  consumedScale: 0.64,
+  consumedFadeMs: 210,
+  refillStartScale: 0.42,
+  refillLiftPx: 7,
+  refillStaggerMs: 70,
+  refillFadeMs: 160,
+  refillSpring: Object.freeze({ damping: 9, stiffness: 260, mass: 0.55 }),
+  haloStartScale: 0.55,
+  haloEndScale: 1.55,
+  haloMs: 280,
+  exhaustedModalDelayMs: 340,
 } as const;
 
 /** Угловой знак цены старта: один короткий вход и конечный световой импульс. */

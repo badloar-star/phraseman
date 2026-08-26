@@ -588,7 +588,7 @@ git commit -m "feat: coordinate durable attempt recovery"
 
 **Step 1: Write RED catalog and delivery tests**
 
-Add `attempt_restore_all` as `ordinary` with weight `40_046`, bump `LEVEL_SPIN_REWARD_CATALOG_VERSION` from 4 to 5, and preserve the owner-approved aggregate energy probability by changing the energy overrides to `18_203`, `18_203`, and `3_640`. The resulting total is `266_973`; the new gift and all energy rewards each occupy `40_046 / 266_973 = 15.000019%`. Calculate both probabilities from the actual total:
+Add `attempt_restore_all` as `ordinary` with weight `40_796`, bump `LEVEL_SPIN_REWARD_CATALOG_VERSION` from 5 to 6, and preserve the owner-approved aggregate energy probability by changing the current energy overrides to `18_544`, `18_544`, and `3_708`. This recalculation preserves the concurrently approved full-avatar reward and every other v5 weight. The resulting total is `271_974`; the new gift and all energy rewards each occupy `40_796 / 271_974 = 14.99996%`. Calculate both probabilities from the actual total:
 
 ```ts
 const entry = LEVEL_SPIN_REWARD_CATALOG.find(({ id }) => id === 'attempt_restore_all')!;
@@ -622,7 +622,7 @@ Add the ID to `ORDINARY_REWARD_IDS`, manifest, and literal static `require()` fi
   rarity: 'common',
   spinTier: 'ordinary',
   icon: '♥',
-  weight: 40_046,
+  weight: 40_796,
   titleRU: 'Второй шанс',
   titleUK: 'Другий шанс',
   titleES: 'Segunda oportunidad',
@@ -641,7 +641,7 @@ Create a transparent, compressed `attempt_restore_all.webp` matching the existin
 Run:
 
 ```powershell
-node scripts/validate-level-spin-reward-asset.mjs assets/images/level-spin-rewards/attempt_restore_all.webp
+node scripts/validate-level-spin-reward-asset.mjs --id attempt_restore_all --source .codex-tmp/level-spin-rewards/sources/attempt_restore_all.png --qa-dir .codex-tmp/level-spin-rewards/qa/attempt_restore_all
 ```
 
 Expected: PASS for format, alpha, transparent corners, safe bounds, and dimensions.

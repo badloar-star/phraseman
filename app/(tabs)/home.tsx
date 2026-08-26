@@ -890,6 +890,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
     const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
     const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
+    // зачем: раньше считался внутри renderNewHome() и был недоступен тултипу
+    // энергии, который рендерится в внешнем scope — падал с ReferenceError.
+    const homeEnergyTotal = Math.max(0, energyCount + energyBonus);
     const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
     const isSketchLightTheme = themeMode === 'sagePorcelain';
@@ -914,7 +917,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         string
     ];
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
-    const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
     const isPaperHomeTheme = themeMode === 'sagePorcelain';
     const lightPanelBg = t.bgCard;
     const lightPanelBorder = t.border;
@@ -2765,7 +2767,39 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
         // освобождает место, вся шапка помещается в один ряд.
         const homeEnergyIconSize = 30;
-        const homeEnergyCountLabel = `${Math.max(0, energyCount)}/${Math.max(1, energyMax)}`;
+        // Бонус до полуночи увеличивает доступный остаток, но не постоянный максимум.
+        // Поэтому +3 при базе 5/5 показывается как 8/5; знаменатель меняют только
+        // эффекты, которые действительно повышают energyMax.
+        const homeEnergyCountLabel = `${homeEnergyTotal}/${Math.max(1, energyMax)}`;
+        const homeEnergyA11yLabel = triLang(lang, {
+            ru: energyBonus > 0
+                ? `Энергия: ${homeEnergyCountLabel}, включая бонус плюс ${energyBonus}`
+                : `Энергия: ${homeEnergyCountLabel}`,
+            uk: energyBonus > 0
+                ? `Енергія: ${homeEnergyCountLabel}, включно з бонусом плюс ${energyBonus}`
+                : `Енергія: ${homeEnergyCountLabel}`,
+            en: energyBonus > 0
+                ? `Energy: ${homeEnergyCountLabel}, including bonus plus ${energyBonus}`
+                : `Energy: ${homeEnergyCountLabel}`,
+            es: energyBonus > 0
+                ? `Energía: ${homeEnergyCountLabel}, incluido el bono más ${energyBonus}`
+                : `Energía: ${homeEnergyCountLabel}`,
+            'pt-BR': energyBonus > 0
+                ? `Energia: ${homeEnergyCountLabel}, incluindo bônus mais ${energyBonus}`
+                : `Energia: ${homeEnergyCountLabel}`,
+            vi: energyBonus > 0
+                ? `Năng lượng: ${homeEnergyCountLabel}, gồm thưởng thêm ${energyBonus}`
+                : `Năng lượng: ${homeEnergyCountLabel}`,
+            id: energyBonus > 0
+                ? `Energi: ${homeEnergyCountLabel}, termasuk bonus tambah ${energyBonus}`
+                : `Energi: ${homeEnergyCountLabel}`,
+            tr: energyBonus > 0
+                ? `Enerji: ${homeEnergyCountLabel}, artı ${energyBonus} bonus dahil`
+                : `Enerji: ${homeEnergyCountLabel}`,
+            pl: energyBonus > 0
+                ? `Energia: ${homeEnergyCountLabel}, w tym bonus plus ${energyBonus}`
+                : `Energia: ${homeEnergyCountLabel}`,
+        });
         const homeLeagueChestPct = homeLeagueChest
             ? Math.min(100, Math.round((homeLeagueChest.progress / Math.max(1, homeLeagueChest.goal)) * 100))
             : 0;
@@ -3208,16 +3242,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     Хедер: энергия / видео / профиль / колокольчик. */}
                 {showHomeEnergy && (
                   <View ref={energyIconRef} collapsable={false} style={{ flexShrink: 0 }}>
-                    <TouchableOpacity activeOpacity={0.7} accessibilityLabel={`qa-home-energy ${homeEnergyCountLabel}`} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
-                      <EnergyIcon filled={energyCount > 0} themeColor={energyCount > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
+                    <TouchableOpacity activeOpacity={0.7} accessibilityLabel={homeEnergyA11yLabel} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
+                      <EnergyIcon filled={homeEnergyTotal > 0} themeColor={homeEnergyTotal > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
                       <Text style={{ color: t.heroTextPrimary, fontSize: 14, fontWeight: '900' }} numberOfLines={1}>
                         {homeEnergyCountLabel}
                       </Text>
-                      {energyBonus > 0 && (
-                        <Text style={{ color: BONUS_ENERGY_COLOR, fontSize: 13, fontWeight: '900' }} numberOfLines={1}>
-                          {`+${energyBonus}`}
-                        </Text>
-                      )}
                     </TouchableOpacity>
                   </View>
                 )}
@@ -3864,7 +3893,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: energyCount < energyMax ? 10 : 0 }}>
                     <Text style={{ fontSize: 16 }}>⚡</Text>
                     <Text style={{ color: '#FFFFFF', fontSize: 13, fontWeight: '600', flex: 1 }}>
-                      {`${energyCount}/${energyMax} · `}{triLang(lang, {
+                      {`${homeEnergyTotal}/${energyMax} · `}{triLang(lang, {
                 ru: `1 энергия каждые ${energyRecoveryMinutes} мин`,
                 uk: `1 енергія кожні ${energyRecoveryMinutes} хв`,
                 en: `+1 energy point every ${energyRecoveryMinutes} min`,

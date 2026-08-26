@@ -18,7 +18,8 @@ import {
 } from 'react-native';
 import Reanimated from 'react-native-reanimated';
 import {
-  applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
+  applyGift, ApplyGiftResult, confirmDeferredLocalLevelGiftEffectReceipt, GiftDef,
+  giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
   isEnergyBonusGiftId, isPremiumLevelGiftId, rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
@@ -30,6 +31,7 @@ import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { AURORA, DARK, EMBER, MIDNIGHT, VOLT, type Theme } from '../constants/theme';
 import LevelSpinRewardArt from './LevelSpinRewardArt';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
@@ -118,7 +120,17 @@ const isCosmeticGiftId = (id?: string): boolean =>
   id === 'cosmetic_avatar_common' ||
   id === 'premium_cosmetic_avatar' ||
   id === 'cosmetic_avatar_aura' ||
-  id === 'premium_cosmetic_aura';
+  id === 'premium_cosmetic_aura' ||
+  id === 'cosmetic_theme';
+
+/** Палитры тем, которые может открыть подарок (полка 'shards'). */
+const THEME_GIFT_PALETTES: Readonly<Record<string, Theme>> = {
+  midnight: MIDNIGHT,
+  ember: EMBER,
+  aurora: AURORA,
+  volt: VOLT,
+  dark: DARK,
+};
 
 const cosmeticLabelForLang = (result: ApplyGiftResult | null, lang: Lang): string => {
   const unlocked = result?.cosmeticUnlocked;
@@ -175,6 +187,21 @@ function CosmeticGiftPreview({ result, level }: { result: ApplyGiftResult | null
     );
   }
 
+  if (unlocked.kind === 'theme') {
+    // зачем: показываем НАСТОЯЩИЕ токены выпавшей темы, а не выдуманные цвета —
+    // человек должен сразу узнать, что именно ему открылось. Ручные дубли
+    // цветов в этом проекте уже разъезжались с палитрами.
+    const palette = THEME_GIFT_PALETTES[unlocked.id];
+    if (!palette) return null;
+    return (
+      <View style={styles.themeGiftSwatch}>
+        <View style={[styles.themeGiftBand, { backgroundColor: palette.bgPrimary }]} />
+        <View style={[styles.themeGiftBand, { backgroundColor: palette.bgCard }]} />
+        <View style={[styles.themeGiftBand, { backgroundColor: palette.accent }]} />
+      </View>
+    );
+  }
+
   return null;
 }
 
@@ -200,6 +227,9 @@ function LevelGiftModal({
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
+  // applyGift owns the account-transition lock while materializing a reward.
+  // Reload immediately queues behind that lock; awaiting it here would deadlock.
+  const scheduleEnergyReload = () => { void reloadEnergy().catch(() => {}); };
   const storesOnly = deliveryMode === 'inventory';
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReduceMotion();
@@ -369,7 +399,7 @@ function LevelGiftModal({
     // и открытие «подвисает». Итог дожидаем в finalize.
     // Reveal is driven by the chest animation; storage/application finishes in the background.
     const g = gift;
-    const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
+    const setEnergyFn = scheduleEnergyReload;
     const giftOccurrenceId = occurrenceId ?? `level:${level}:${applyAsPremium ? 'premium' : 'f2p'}`;
     const applyP: Promise<ApplyGiftResult> = g.choices?.length || storesOnly
       ? Promise.resolve({ success: true })
@@ -385,6 +415,7 @@ function LevelGiftModal({
                 ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }),
                 studyTarget,
                 accountToken,
+                ...(deviceLocalSpin === true ? { deferEffectReceiptConfirmation: true } : {}),
                 occurrenceId: giftOccurrenceId,
                 ...(deviceLocalSpin === true ? { localOnly: true } : {}),
               },
@@ -392,9 +423,17 @@ function LevelGiftModal({
             if (!isCurrentAccountGeneration(accountToken)) return { success: false };
             if (result.success) {
               await (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken));
+              if (deviceLocalSpin === true
+                && !await confirmDeferredLocalLevelGiftEffectReceipt(accountToken, giftOccurrenceId)) {
+                throw new Error('local_spin_effect_confirmation_failed');
+              }
               await saveClaimedGiftRarity(level, g.rarity, accountToken);
             } else if (result.alreadyClaimed) {
               await (onGiftClaimed ? onGiftClaimed(g, accountToken) : markGiftClaimed(level, accountToken));
+              if (deviceLocalSpin === true
+                && !await confirmDeferredLocalLevelGiftEffectReceipt(accountToken, giftOccurrenceId)) {
+                throw new Error('local_spin_effect_confirmation_failed');
+              }
             } else if (onGiftApplyFailed) {
               await onGiftApplyFailed(g, accountToken);
             }
@@ -536,7 +575,7 @@ function LevelGiftModal({
     }
     void (async () => {
       try {
-        const setEnergyFn = async (_n: number) => { await reloadEnergy(); };
+        const setEnergyFn = scheduleEnergyReload;
         const result = await applyGift(
           chosenWithReservation,
           userName,
@@ -547,6 +586,7 @@ function LevelGiftModal({
             ...(applyAsPremium === undefined ? {} : { isPremium: applyAsPremium }),
             studyTarget,
             accountToken,
+            ...(deviceLocalSpin === true ? { deferEffectReceiptConfirmation: true } : {}),
             occurrenceId: giftOccurrenceId,
             ...(deviceLocalSpin === true ? { localOnly: true } : {}),
           },
@@ -559,9 +599,17 @@ function LevelGiftModal({
         }
         if (result.success) {
           await (onGiftClaimed ? onGiftClaimed(chosenWithReservation, accountToken) : markGiftClaimed(level, accountToken));
+          if (deviceLocalSpin === true
+            && !await confirmDeferredLocalLevelGiftEffectReceipt(accountToken, giftOccurrenceId)) {
+            throw new Error('local_spin_effect_confirmation_failed');
+          }
           await saveClaimedGiftRarity(level, chosenWithReservation.rarity, accountToken);
         } else if (result.alreadyClaimed) {
           await (onGiftClaimed ? onGiftClaimed(chosenWithReservation, accountToken) : markGiftClaimed(level, accountToken));
+          if (deviceLocalSpin === true
+            && !await confirmDeferredLocalLevelGiftEffectReceipt(accountToken, giftOccurrenceId)) {
+            throw new Error('local_spin_effect_confirmation_failed');
+          }
         } else if (onGiftApplyFailed) {
           await onGiftApplyFailed(chosenWithReservation, accountToken);
         }
@@ -625,7 +673,7 @@ function LevelGiftModal({
           снизу вместе с кнопкой, и доскроллить было нечем. ScrollView с
           flexGrow:1 сохраняет центрирование на больших экранах и даёт
           прокрутку на маленьких. */}
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         style={{ flex: 1, backgroundColor: screenDim }}
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
         showsVerticalScrollIndicator={false}
@@ -676,7 +724,7 @@ function LevelGiftModal({
             <TouchableOpacity
               testID="level-gift-close"
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+              accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               activeOpacity={0.76}
               onPress={() => { void handleSkip(); }}
               style={{
@@ -700,13 +748,13 @@ function LevelGiftModal({
 
           {/* Header */}
           <Text style={{ color: modalAccent, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 5 }}>
-            {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
+            {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, en: `Level ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.numMd + 2, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
-            {triLang(lang, { ru: 'Подарок за уровень', uk: 'Твій подарунок', es: 'Tu regalo', 'pt-BR': 'Seu presente', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyen', pl: 'Twój prezent' })}
+            {triLang(lang, { ru: 'Твой подарок', uk: 'Твій подарунок', en: 'Your gift', es: 'Tu regalo', 'pt-BR': 'Seu presente', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyen', pl: 'Twój prezent' })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
-            {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
+            {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', en: 'A reward for your progress', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
           {phase !== 'reveal' && !previewingStoredGift ? (
@@ -729,6 +777,7 @@ function LevelGiftModal({
                     {triLang(lang, {
                         ru: 'Нажми, чтобы открыть',
                         uk: 'Натисни, щоб відкрити',
+                        en: 'Tap to open',
                         es: 'Toca para abrir',
                         'pt-BR': 'Toque para abrir',
                         vi: 'Nhấn để mở',
@@ -754,7 +803,7 @@ function LevelGiftModal({
                   }}
                 >
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -844,7 +893,7 @@ function LevelGiftModal({
                       }}
                     >
                       <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
-                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -918,6 +967,7 @@ function LevelGiftModal({
                   {triLang(lang, {
                     ru: 'Сохранено в разделе «Подарки» в результатах',
                     uk: 'Збережено в розділі «Подарунки» у результатах',
+                    en: 'Saved under Gifts in your stats',
                     es: 'Guardado en Regalos dentro de Estadísticas',
                     'pt-BR': 'Salvo em Presentes nas Estatísticas',
                     vi: 'Đã lưu trong Quà ở Thống kê',
@@ -944,6 +994,7 @@ function LevelGiftModal({
                     {triLang(lang, {
                       ru: `Открыто: ${cosmeticLabel}`,
                       uk: `Відкрито: ${cosmeticLabel}`,
+                      en: `Unlocked: ${cosmeticLabel}`,
                       es: `Desbloqueado: ${cosmeticLabel}`,
                       'pt-BR': `Desbloqueado: ${cosmeticLabel}`,
                       vi: `Đã mở khóa: ${cosmeticLabel}`,
@@ -973,12 +1024,13 @@ function LevelGiftModal({
                       <>
                         <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                           {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
-                          {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
+                          {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', en: 'Boost replaced', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
                         </Text>
                         <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                           {triLang(lang, {
                             ru: `Бусты энергии не суммируются — предыдущий заменён новым (+${n} до завтра)`,
                             uk: `Бусти енергії не сумуються — попередній замінено новим (+${n} до завтра)`,
+                            en: `Energy boosts don’t stack — the previous one is replaced by the new one (+${n} until tomorrow)`,
                             es: `Los bonos de energía no se acumulan: el anterior queda reemplazado por uno nuevo (+${n} hasta mañana)`,
                             'pt-BR': `Bônus de energia não acumulam — o anterior foi substituído por um novo (+${n} até amanhã)`,
                             vi: `Boost năng lượng không cộng dồn — boost trước đã được thay bằng boost mới (+${n} đến ngày mai)`,
@@ -992,12 +1044,13 @@ function LevelGiftModal({
                       <>
                         <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                           {/* зачем: владелец запретил эмодзи в UI — префикс ⚡ убран, текст не менялся. */}
-                          {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
+                          {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', en: 'Valid until midnight', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
                         </Text>
                         <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                           {triLang(lang, {
                             ru: `Эти ${n} ед. энергии исчезнут в начале следующего дня`,
                             uk: `Ці ${n} од. енергії зникнуть на початку наступного дня`,
+                            en: `These extra ${n} energy units expire at the start of the next day`,
                             es: `Estas ${n} unidades extra de energía caducan al empezar el día siguiente`,
                             'pt-BR': `Estas ${n} unidades extras de energia expiram no começo do próximo dia`,
                             vi: `${n} năng lượng thêm này sẽ biến mất vào đầu ngày tiếp theo`,
@@ -1026,12 +1079,13 @@ function LevelGiftModal({
                 }}>
                   <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                     {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
-                    {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', es: 'Bono actualizado', 'pt-BR': 'Bônus atualizado', vi: 'Boost đã cập nhật', id: 'Boost diperbarui', tr: 'Güçlendirme güncellendi', pl: 'Bonus zaktualizowany' })}
+                    {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', en: 'Boost refreshed', es: 'Bono actualizado', 'pt-BR': 'Bônus atualizado', vi: 'Boost đã cập nhật', id: 'Boost diperbarui', tr: 'Güçlendirme güncellendi', pl: 'Bonus zaktualizowany' })}
                   </Text>
                   <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                     {triLang(lang, {
                       ru: 'Бусты 2× XP не суммируются — активный буст заменён новым. Таймер запущен заново.',
                       uk: 'Бусти 2× XP не сумуються — активний буст замінено новим. Таймер запущено заново.',
+                      en: '2× XP boosts don’t stack — the active boost was replaced with a new one and the timer restarted.',
                       es: 'Los bonos de XP ×2 no se acumulan: el activo se sustituyó y el temporizador se reinició.',
                       'pt-BR': 'Bônus de XP ×2 não acumulam: o bônus ativo foi substituído e o timer reiniciou.',
                       vi: 'Boost XP ×2 không cộng dồn: boost đang bật đã được thay mới và thời gian được khởi động lại.',
@@ -1062,7 +1116,7 @@ function LevelGiftModal({
                   }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz awatar' })}
+                    {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', en: 'Open avatar', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz awatar' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1106,12 +1160,12 @@ function LevelGiftModal({
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
                 <Text style={{ color: primaryButtonText, fontSize: f.bodyLg, fontWeight: '900' }}>
                   {presentationMode === 'apply' && phase === 'box'
-                    ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
+                    ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', en: 'Apply', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
                     : presentationMode === 'apply'
-                    ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
+                    ? triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })
                     : storesOnly
-                    ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
-                    : triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
+                    ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
+                    : triLang(lang, { ru: 'Забрать', uk: 'Забрати', en: 'Claim', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
                 </Text>
               </TouchableOpacity>
               </>
@@ -1128,5 +1182,15 @@ function LevelGiftModal({
 export default memo(LevelGiftModal);
 
 const styles = StyleSheet.create({
+  // Полосы палитры выпавшей темы. Без обводки: разделяем тоном, как требует
+  // стиль владельца — контуры вокруг блоков в этом проекте запрещены.
+  themeGiftSwatch: {
+    width: 74,
+    height: 74,
+    borderRadius: 20,
+    overflow: 'hidden',
+    flexDirection: 'column',
+  },
+  themeGiftBand: { flex: 1, width: '100%' },
   hybridRevealContent: { width: '100%', alignItems: 'center' },
 });

@@ -163,12 +163,13 @@ function ReportPackModal({
                 {/* зачем: эмодзи в UI запрещены владельцем — иконка набора приложения */}
                 <Ionicons name="checkmark-circle" size={48} color={t.accent} style={{ marginBottom: 6, alignSelf: 'center' }} />
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-                  {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane' })}
+                  {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', en: 'Report sent', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
                   {triLang(lang, {
                     uk: 'Ваша скарга збережена. Ми розглянемо її найближчим часом. Дякуємо, що допомагаєте зробити каталог безпечнішим.',
                     ru: 'Твоя жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаешь сделать каталог безопаснее.',
+                    en: 'Your report has been saved. We will review it soon. Thanks for helping keep the catalog safe.',
                     es: 'Tu reporte quedó registrado. Lo revisaremos pronto. Gracias por ayudar a mantener el catálogo seguro.',
                     'pt-BR': 'Sua denúncia foi registrada. Vamos analisá-la em breve. Obrigado por ajudar a manter o catálogo mais seguro.',
                     vi: 'Báo cáo của bạn đã được lưu. Chúng tôi sẽ xem xét sớm. Cảm ơn bạn đã giúp danh mục an toàn hơn.',
@@ -212,6 +213,7 @@ function ReportPackModal({
                       {triLang(lang, {
                         uk: 'Не показувати мені цей набір',
                         ru: 'Не показывать мне этот набор',
+                        en: "Don't show me this pack again",
                         es: 'No volver a mostrarme este pack',
                         'pt-BR': 'Não mostrar este pack novamente',
                         vi: 'Không hiển thị bộ này nữa',
@@ -226,6 +228,7 @@ function ReportPackModal({
                   {triLang(lang, {
                     uk: 'Лише на цьому пристрої. Можна скинути, перевстановивши застосунок.',
                     ru: 'Только на этом устройстве. Сброс при удалении приложения.',
+                    en: 'This device only. It resets if you delete the app.',
                     es: 'Solo en este dispositivo. Se restablece si borras la app.',
                     'pt-BR': 'Apenas neste dispositivo. É redefinido se você apagar o app.',
                     vi: 'Chỉ trên thiết bị này. Sẽ đặt lại nếu bạn xóa ứng dụng.',
@@ -245,7 +248,7 @@ function ReportPackModal({
                   }}
                 >
                   <Text style={{ color: t.correctText, fontWeight: '800' }}>
-                    {triLang(lang, { uk: 'Закрити', ru: 'Закрыть', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+                    {triLang(lang, { uk: 'Закрити', ru: 'Закрыть', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -253,12 +256,13 @@ function ReportPackModal({
               <View style={{ alignItems: 'center', paddingVertical: 16 }}>
                 <Ionicons name="hourglass-outline" size={48} color={t.textMuted} style={{ marginBottom: 8 }} />
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-                  {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', es: 'Espera 30 segundos', 'pt-BR': 'Espere 30 segundos', vi: 'Chờ 30 giây', id: 'Tunggu 30 detik', tr: '30 saniye bekle', pl: 'Poczekaj 30 sekund' })}
+                  {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', en: 'Wait 30 seconds', es: 'Espera 30 segundos', 'pt-BR': 'Espere 30 segundos', vi: 'Chờ 30 giây', id: 'Tunggu 30 detik', tr: '30 saniye bekle', pl: 'Poczekaj 30 sekund' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, textAlign: 'center' }}>
                   {triLang(lang, {
                     uk: 'Можна надсилати скарги не частіше за раз на 30 с.',
                     ru: 'Можно отправлять жалобы не чаще раза в 30 с.',
+                    en: 'You can send a report no more than once every 30 s.',
                     es: 'Solo se puede enviar una denuncia cada 30 s.',
                     'pt-BR': 'Você só pode enviar uma denúncia a cada 30 s.',
                     vi: 'Bạn chỉ có thể gửi một báo cáo mỗi 30 giây.',
@@ -285,13 +289,13 @@ function ReportPackModal({
             ) : (
               <>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 6 }}>
-                  {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
+                  {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14 }}>
                   {packTitle}
                 </Text>
 
-                <ScrollView
+                <ScrollView decelerationRate="fast"
                   style={{ maxHeight: 320 }}
                   showsVerticalScrollIndicator={false}
                   keyboardShouldPersistTaps="handled"
@@ -326,6 +330,7 @@ function ReportPackModal({
                     {triLang(lang, {
                       uk: 'Коментар (необов\'язково):',
                       ru: 'Комментарий (необязательно):',
+                      en: 'Comment (optional):',
                       es: 'Comentario (opcional):',
                       'pt-BR': 'Comentário (opcional):',
                       vi: 'Bình luận (không bắt buộc):',
@@ -342,6 +347,7 @@ function ReportPackModal({
                     placeholder={triLang(lang, {
                       uk: 'Опиши проблему...',
                       ru: 'Опиши проблему...',
+                      en: 'Describe the issue...',
                       es: 'Describe el problema…',
                       'pt-BR': 'Descreva o problema...',
                       vi: 'Mô tả vấn đề...',
@@ -381,7 +387,7 @@ function ReportPackModal({
                     }}
                   >
                     <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
-                      {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+                      {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -402,7 +408,7 @@ function ReportPackModal({
                       <View />
                     ) : (
                       <Text style={{ color: !selected ? t.textMuted : t.correctText, fontWeight: '800' }}>
-                        {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' })}
+                        {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', en: 'Send report', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' })}
                       </Text>
                     )}
                   </TouchableOpacity>

@@ -107,7 +107,12 @@ export function createDefaultMaxCallSfx(): MaxCallSfx {
         const { soundDirector } = require('../modules/audio/sound_director') as {
           soundDirector: { request(id: string, opts?: Record<string, unknown>): unknown };
         };
-        soundDirector.request(cue === 'connect' ? 'pm.voice.turn_ready' : 'pm.complete.micro', {
+        // зачем: дедикейтед-события pm.max.call_connect/call_end (2026-08-25) —
+        // раньше здесь заимствовались pm.voice.turn_ready/pm.complete.micro,
+        // теперь у MAX-звонка свой звук. Контракт границ владения аудиосессией
+        // (connect ДО InCallManager.start(), end ПОСЛЕ .stop()) не меняется —
+        // именно он не даёт звуку перебить речь учителя.
+        soundDirector.request(cue === 'connect' ? 'pm.max.call_connect' : 'pm.max.call_end', {
           scope: 'max-call',
         });
       } catch {}

@@ -32,40 +32,6 @@
       }
     },
     {
-      "file": "app/ai_dialog_session.tsx",
-      "ownerName": "AiDialogSession",
-      "ownerPath": "AiDialogSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "ScrollView",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "00b04bfa3e1c3ab3626a7186c07c62b0060aaf26102b8dcdd807635ddb29dec9",
-      "count": 2,
-      "lineHints": [
-        2029,
-        2271
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/CleanOnboarding.tsx",
       "ownerName": "OptionCard",
       "ownerPath": "OptionCard",
@@ -918,38 +884,6 @@
       }
     },
     {
-      "file": "app/ai_dialog_session.tsx",
-      "ownerName": "AiDialogSession",
-      "ownerPath": "AiDialogSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "6",
-      "testID": null,
-      "fingerprint": "1a35b07d763b1c1e3405644b4a2517ff03a9d58d163a2b63661c453ee8d5d27d",
-      "count": 1,
-      "lineHints": [
-        2239
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/lesson1.tsx",
       "ownerName": "LessonContent",
       "ownerPath": "LessonContent",
@@ -1053,67 +987,6 @@
       "count": 1,
       "lineHints": [
         308
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/AppMessagesInbox.tsx",
-      "ownerName": "renderList",
-      "ownerPath": "AppMessagesInbox>renderList",
-      "ancestorPath": [
-        "ScrollView",
-        "TouchableOpacity",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "messageRead?1:2",
-      "testID": null,
-      "fingerprint": "205ab8f4b2b508a22cfc90c6753da2c18efdb9c3d6e0e6a9b148d50ddfd1ed32",
-      "count": 1,
-      "lineHints": [
-        770
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/ai_dialog_session.tsx",
-      "ownerName": "AiDialogSession",
-      "ownerPath": "AiDialogSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "216ef362d45d51c198797bdc72cfc8c761f0069a7954f18475f5d3129c98a7bb",
-      "count": 1,
-      "lineHints": [
-        2779
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5244,34 +5117,6 @@
       }
     },
     {
-      "file": "components/AppMessagesInbox.tsx",
-      "ownerName": "renderList",
-      "ownerPath": "AppMessagesInbox>renderList",
-      "ancestorPath": [
-        "ScrollView",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "messageRead?1:2",
-      "testID": null,
-      "fingerprint": "b2c09eb73220db4b9999a78d47a6716bb38995964eeffa77afd8b2c235b68209",
-      "count": 1,
-      "lineHints": [
-        802
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/personal_plan.tsx",
       "ownerName": "PersonalPlanScreen",
       "ownerPath": "PersonalPlanScreen",
@@ -5956,38 +5801,6 @@
         1466,
         1472,
         1498
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/ai_dialog_session.tsx",
-      "ownerName": "AiDialogSession",
-      "ownerPath": "AiDialogSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "c51130af1219cb94df836b5fdb0b241478b3cc5ee3db3c9dd0e6f4d738cf23c4",
-      "count": 1,
-      "lineHints": [
-        2188
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6704,37 +6517,6 @@
       "count": 1,
       "lineHints": [
         1335
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/ai_dialog_session.tsx",
-      "ownerName": "AiDialogSession",
-      "ownerPath": "AiDialogSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "e33ec814e5d36979b7963aada4b728f642b05e4f7f3123d2c340e6fe869c8762",
-      "count": 1,
-      "lineHints": [
-        1473
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

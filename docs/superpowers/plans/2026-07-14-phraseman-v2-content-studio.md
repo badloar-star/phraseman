@@ -1,5 +1,11 @@
 # Phraseman V2 Content Studio Implementation Plan
 
+> **Owner override 2026-08-25:** Content Studio для required sessions сначала
+> выбирает одну из семи approved mechanics и требует её полный mode-native
+> payload. Preview/runtime повторяют owner HTML 1:1. Более широкий каталог и
+> generic template flow ниже не отменяют
+> `docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build the hybrid Phraseman V2 Content Studio so administrators can create, configure, compose into a season, preview, validate, version, clone, localize, review, publish, activate, and roll back V2 content without being able to upload executable renderer or scorer code.

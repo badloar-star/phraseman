@@ -6,8 +6,10 @@ import { LinearGradient } from "../../../components/SafeLinearGradient";
 import ReportErrorButton from "../../../components/ReportErrorButton";
 import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
-import { useEnergy } from "../../../components/EnergyContext";
+import { useEnergy, useEnergySessionIntent } from "../../../components/EnergyContext";
 import NoEnergyModal from "../../../components/NoEnergyModal";
+import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
+import SessionAttemptsRecoveryModal from "../../../components/session_attempts/SessionAttemptsRecoveryModal";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, {
   useCallback,
@@ -38,10 +40,13 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import {
+  captureAccountGeneration,
   ensureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from "../../../app/account_generation";
+import { useSessionAttempts } from "../../../hooks/useSessionAttempts";
+import { SESSION_ATTEMPTS_MOTION } from "../../../constants/motionHybrid";
 import { grantLocalCourseSessionCompletionSpin } from "../../../app/local_level_spins";
 import {
   ensureLearningV2CompletionBackgroundSchedulerInstalled,
@@ -205,6 +210,18 @@ function LearningV2LegacySessionScreen() {
   const copy = useMemo(() => learningV2SessionCopy(lang), [lang]);
   const { studyTarget } = useStudyTarget();
   const sessionId = first(params.id);
+  const attemptsAccountToken = useMemo(() => captureAccountGeneration(), []);
+  const attemptsSessionId = `learning-v2-route:${sessionId || "unknown"}`;
+  const sessionAttempts = useSessionAttempts({
+    token: attemptsAccountToken,
+    sessionId: attemptsSessionId,
+    initialQuestionId: `${attemptsSessionId}:intro`,
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const attemptAnswerSequenceRef = useRef(0);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
   const isSessionRepeat = first(params.runKind) === "repeat";
   // зачем: владелец — модалка карты получила кнопку «Пропустить теорию».
   // Слоты 1-3 из 12 (встроенные вопросы интро) просто не начисляются —
@@ -329,6 +346,10 @@ function LearningV2LegacySessionScreen() {
     return [taskIdAt(0), taskIdAt(1), taskIdAt(2)] as const;
   }, [releasedSessionMount.runtime, session]);
   const currentTaskId = releasedPackageTask?.taskId ?? card?.cardId ?? null;
+  useEffect(() => {
+    if (!currentTaskId) return;
+    sessionAttempts.updateQuestion(currentTaskId);
+  }, [currentTaskId, sessionAttempts.updateQuestion]);
   const itemById = useMemo(
     () =>
       new Map(payload.contentItems.map((item) => [item.contentItemId, item])),
@@ -457,6 +478,52 @@ function LearningV2LegacySessionScreen() {
       /* released local player */
     }
   }, [invalidateAudioAttempt, localAudioPlayer]);
+
+  const stopLocalAudioPlayback = useCallback(() => {
+    stopAudioAttempt();
+    activityAudioPlayback.stop();
+  }, [activityAudioPlayback, stopAudioAttempt]);
+
+  const stopAttemptMediaBeforeRecovery = useCallback(() => {
+    stopLocalAudioPlayback();
+    if (voiceRecording) {
+      void controlReleasedVoice("stop", "tap");
+    }
+    setVoiceRecording(false);
+  }, [controlReleasedVoice, stopLocalAudioPlayback, voiceRecording]);
+
+  const showExhaustedAttemptsModal = useCallback(() => {
+    stopAttemptMediaBeforeRecovery();
+    if (attemptsModalTimerRef.current !== null) {
+      clearTimeout(attemptsModalTimerRef.current);
+    }
+    attemptsModalTimerRef.current = setTimeout(() => {
+      attemptsModalTimerRef.current = null;
+      setShowAttemptsModal(true);
+    }, SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs);
+  }, [stopAttemptMediaBeforeRecovery]);
+
+  useEffect(
+    () => () => {
+      if (attemptsModalTimerRef.current !== null) {
+        clearTimeout(attemptsModalTimerRef.current);
+        attemptsModalTimerRef.current = null;
+      }
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (!sessionAttempts.hydrated) return;
+    if (sessionAttempts.state.phase !== "awaiting_recovery") return;
+    if (attemptsModalTimerRef.current !== null) return;
+    stopAttemptMediaBeforeRecovery();
+    setShowAttemptsModal(true);
+  }, [
+    sessionAttempts.hydrated,
+    sessionAttempts.state.phase,
+    stopAttemptMediaBeforeRecovery,
+  ]);
 
   useEffect(() => {
     progress.value = withTiming((cardIndex + 1) / 12, {
@@ -878,7 +945,11 @@ function LearningV2LegacySessionScreen() {
   };
 
   const choose = (answer: string) => {
-    if (result === "correct") return;
+    if (
+      result === "correct" ||
+      sessionAttempts.state.phase !== "active"
+    )
+      return;
     void hapticTap();
     const releasedEvaluatorValue =
       releasedEvaluatorTask?.evaluatorInputKind === "choice_token"
@@ -897,6 +968,12 @@ function LearningV2LegacySessionScreen() {
             },
           })
         : null;
+    const answerAttemptId = [
+      "learning-v2-route",
+      sessionRunIdRef.current,
+      currentTaskId ?? cardIndex,
+      attemptAnswerSequenceRef.current++,
+    ].join(":");
     // Feedback is final for the active interaction on this device. Answers are
     // never sent to a server for a second correct/wrong decision.
     //
@@ -909,6 +986,10 @@ function LearningV2LegacySessionScreen() {
     // на говорильной дорожке это било бы по каждому отказу микрофона.
     const captureFailed = releasedVerdict?.resultCode === "technical_invalid";
     if (captureFailed) {
+      sessionAttempts.registerVerdict({
+        answerAttemptId,
+        verdict: "technical_error",
+      });
       setWrongExplanation(copy.captureFailed);
       setResult("idle");
       void hapticError();
@@ -918,6 +999,10 @@ function LearningV2LegacySessionScreen() {
       ? releasedVerdict.resultCode === "provisional_correct"
       : normalize(answer) === normalize(correctAnswer);
     if (answerCorrect) {
+      sessionAttempts.registerVerdict({
+        answerAttemptId,
+        verdict: "correct",
+      });
       setCorrectResponseDisplay(answer);
       setWrongExplanation(null);
       setResult("correct");
@@ -956,6 +1041,13 @@ function LearningV2LegacySessionScreen() {
       setAttempts((value) => value + 1);
       playWrongAnswerMotion();
       void hapticError();
+      const attemptEffect = sessionAttempts.registerVerdict({
+        answerAttemptId,
+        verdict: "pedagogical_wrong",
+      });
+      if (attemptEffect === "attempts_exhausted") {
+        showExhaustedAttemptsModal();
+      }
     }
   };
   const chooseTile = (tile: {
@@ -1172,6 +1264,47 @@ function LearningV2LegacySessionScreen() {
     setAttempts(1);
   };
 
+  const recoverCurrentLearningV2Attempt = async (
+    source: "gift" | "runes",
+  ) => {
+    try {
+      if (source === "gift") await sessionAttempts.recoverWithGift();
+      else await sessionAttempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+      setResult("idle");
+    } catch {
+      // Keep the same card blocked. The shared modal exposes the resource
+      // error and no task/evidence state is rewound.
+    }
+  };
+
+  const endExhaustedLearningV2Session = () => {
+    sessionAttempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    stopAttemptMediaBeforeRecovery();
+    router.replace("/learning-v2/course");
+  };
+
+  const attemptsRecoveryModal = (
+    <SessionAttemptsRecoveryModal
+      visible={
+        showAttemptsModal &&
+        sessionAttempts.state.phase === "awaiting_recovery"
+      }
+      locale={lang}
+      giftCount={sessionAttempts.giftCount}
+      runeBalance={sessionAttempts.runeBalance ?? 0}
+      busy={sessionAttempts.recoveryBusy}
+      onUseGift={() => {
+        void recoverCurrentLearningV2Attempt("gift");
+      }}
+      onSpendRunes={() => {
+        void recoverCurrentLearningV2Attempt("runes");
+      }}
+      onEndSession={endExhaustedLearningV2Session}
+    />
+  );
+
   if (
     !session ||
     ordinal < 1 ||
@@ -1192,49 +1325,110 @@ function LearningV2LegacySessionScreen() {
   };
   if (!introComplete && session && ordinal > 0) {
     return (
-      <LearningV2SessionIntro
-        introScreens={[...payload.introScreens]}
-        lessonId={payload.lessonId}
-        sessionOrdinal={ordinal}
-        taskIds={introTaskIds as [string, string, string]}
-        onBack={() => router.replace("/learning-v2/course")}
-        onComplete={(introCompletions) => {
-          for (const completion of introCompletions) {
-            taskCompletionsRef.current.set(completion.taskId, completion);
-            awardedCardIdsRef.current.add(completion.taskId);
+      <View style={styles.screen}>
+        <View
+          style={styles.screen}
+          pointerEvents={
+            sessionAttempts.state.phase === "awaiting_recovery"
+              ? "none"
+              : "auto"
           }
-          const introStars = introCompletions.reduce(
-            (total, completion) =>
-              total + projectRequiredTaskStars(completion).stars,
-            0,
-          );
-          sessionStarsRef.current += introStars;
-          setDisplayedStars((value) => value + introStars);
-          // The learner surface is immutable for the entire run. Only a
-          // released runtime whose first three task IDs are the same IDs just
-          // completed inside the intro may win. A release hydrated mid-intro
-          // cannot switch the learner onto a different package.
-          const candidateRuntime = releasedSessionMount.runtime;
-          const candidateIntroTaskIds = candidateRuntime
-            ? [1, 2, 3].map(
-                (slot) =>
-                  getLearningV2ActivityReleasedSessionTaskV1(
-                    candidateRuntime,
-                    slot,
-                  ).taskId,
-              )
-            : [];
-          const introMatchesCandidate =
-            candidateIntroTaskIds.length === introCompletions.length &&
-            introCompletions.every(
-              (completion, index) =>
-                completion.taskId === candidateIntroTaskIds[index],
-            );
-          setReleasedRuntime(introMatchesCandidate ? candidateRuntime : null);
-          setCardIndex(3);
-          setIntroComplete(true);
-        }}
-      />
+        >
+          <LearningV2SessionIntro
+            introScreens={[...payload.introScreens]}
+            lessonId={payload.lessonId}
+            sessionOrdinal={ordinal}
+            taskIds={introTaskIds as [string, string, string]}
+            evaluateChoice={({ interactionId, choiceIndex }) => {
+              sessionAttempts.updateQuestion(interactionId);
+              const introScreen = payload.introScreens.find(
+                (entry) =>
+                  entry.learningV2EmbeddedQuestion?.questionId === interactionId,
+              );
+              const question = introScreen?.learningV2EmbeddedQuestion;
+              const verdict = !question
+                ? "technical_invalid"
+                : choiceIndex === question.correctChoiceIndex
+                  ? "correct"
+                  : "wrong";
+              const answerAttemptId = [
+                "learning-v2-route-intro",
+                sessionRunIdRef.current,
+                interactionId,
+                attemptAnswerSequenceRef.current++,
+              ].join(":");
+              if (verdict === "correct") {
+                sessionAttempts.registerVerdict({
+                  answerAttemptId,
+                  verdict: "correct",
+                });
+              } else if (verdict === "technical_invalid") {
+                sessionAttempts.registerVerdict({
+                  answerAttemptId,
+                  verdict: "technical_error",
+                });
+              } else {
+                const attemptEffect = sessionAttempts.registerVerdict({
+                  answerAttemptId,
+                  verdict: "pedagogical_wrong",
+                });
+                if (attemptEffect === "attempts_exhausted") {
+                  showExhaustedAttemptsModal();
+                }
+              }
+              return verdict;
+            }}
+            onBack={() => router.replace("/learning-v2/course")}
+            onComplete={(introCompletions) => {
+              for (const completion of introCompletions) {
+                taskCompletionsRef.current.set(completion.taskId, completion);
+                awardedCardIdsRef.current.add(completion.taskId);
+              }
+              const introStars = introCompletions.reduce(
+                (total, completion) =>
+                  total + projectRequiredTaskStars(completion).stars,
+                0,
+              );
+              sessionStarsRef.current += introStars;
+              setDisplayedStars((value) => value + introStars);
+              // The learner surface is immutable for the entire run. Only a
+              // released runtime whose first three task IDs are the same IDs just
+              // completed inside the intro may win. A release hydrated mid-intro
+              // cannot switch the learner onto a different package.
+              const candidateRuntime = releasedSessionMount.runtime;
+              const candidateIntroTaskIds = candidateRuntime
+                ? [1, 2, 3].map(
+                    (slot) =>
+                      getLearningV2ActivityReleasedSessionTaskV1(
+                        candidateRuntime,
+                        slot,
+                      ).taskId,
+                  )
+                : [];
+              const introMatchesCandidate =
+                candidateIntroTaskIds.length === introCompletions.length &&
+                introCompletions.every(
+                  (completion, index) =>
+                    completion.taskId === candidateIntroTaskIds[index],
+                );
+              setReleasedRuntime(introMatchesCandidate ? candidateRuntime : null);
+              setCardIndex(3);
+              setIntroComplete(true);
+            }}
+          />
+        </View>
+        <View
+          pointerEvents="none"
+          style={[styles.introAttemptsOverlay, { top: insets.top + 8 }]}
+        >
+          <SessionAttemptsHud
+            remaining={sessionAttempts.state.remainingAttempts}
+            locale={lang}
+            testID="learning-v2-route-intro-attempts"
+          />
+        </View>
+        {attemptsRecoveryModal}
+      </View>
     );
   }
 
@@ -1274,6 +1468,13 @@ function LearningV2LegacySessionScreen() {
             /36
           </Text>
         </Animated.View>
+      </View>
+      <View style={styles.attemptsBelowHeader}>
+        <SessionAttemptsHud
+          remaining={sessionAttempts.state.remainingAttempts}
+          locale={lang}
+          testID="learning-v2-route-attempts"
+        />
       </View>
       <ScrollView
         contentContainerStyle={[
@@ -1877,25 +2078,41 @@ function LearningV2LegacySessionScreen() {
           </Animated.View>
         </View>
       )}
+      {sessionAttempts.state.phase === "awaiting_recovery" ? (
+        <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
+      ) : null}
+      {attemptsRecoveryModal}
     </LinearGradient>
   );
 }
 
 function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const params = useLocalSearchParams<{
+    id?: string | string[];
+    previewMode?: string | string[];
+  }>();
+  const isAuthoringPreview = __DEV__ && first(params.previewMode) === "authoring_v1";
   const {
     confirmSpendOne: confirmLearningV2Energy,
+    acknowledgeSessionStart,
     energyReady,
   } = useEnergy();
+  const learningV2EnergyIntent = useEnergySessionIntent(
+    "learning_v2_session",
+    first(params.id) ?? "unknown",
+  );
   const attemptedRef = useRef(false);
   const [gate, setGate] = useState<"checking" | "ok" | "denied">("checking");
 
   useEffect(() => {
+    if (isAuthoringPreview) return;
     if (!energyReady || attemptedRef.current) return;
     attemptedRef.current = true;
     let cancelled = false;
-    void confirmLearningV2Energy().then((result) => {
+    void confirmLearningV2Energy(learningV2EnergyIntent).then((result) => {
       if (cancelled) return;
+      if (result === "spent") void acknowledgeSessionStart(learningV2EnergyIntent.operationId);
       if (result === "cancelled") {
         safeRouterBack(router, "/(tabs)/lessons" as never);
         return;
@@ -1903,8 +2120,9 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
       setGate(result === "insufficient" ? "denied" : "ok");
     });
     return () => { cancelled = true; };
-  }, [confirmLearningV2Energy, energyReady, router]);
+  }, [acknowledgeSessionStart, confirmLearningV2Energy, energyReady, isAuthoringPreview, learningV2EnergyIntent, router]);
 
+  if (isAuthoringPreview) return <>{children}</>;
   if (gate === "ok") return <>{children}</>;
   return (
     <View style={styles.screen}>
@@ -1920,6 +2138,7 @@ export default function LearningV2SessionScreen() {
   const params = useLocalSearchParams<{
     id?: string | string[];
     runtimeMode?: string | string[];
+    previewMode?: string | string[];
   }>();
   const content = first(params.runtimeMode) === "direct_v1"
     ? <LearningV2DirectSessionPlayerV1 />
@@ -1933,6 +2152,21 @@ export default function LearningV2SessionScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#10151D" },
+  introAttemptsOverlay: {
+    position: "absolute",
+    right: 16,
+    zIndex: 20,
+  },
+  attemptsBelowHeader: {
+    minHeight: 44,
+    paddingHorizontal: 16,
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  attemptsInputBlocker: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 40,
+  },
   error: { color: "#F7F9FB", margin: 40, fontSize: 18 },
   top: {
     paddingHorizontal: 16,

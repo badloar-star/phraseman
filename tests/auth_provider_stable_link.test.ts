@@ -191,14 +191,19 @@ describe('auth provider stable-id linking', () => {
 
     for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
       const invalidate = branch.indexOf('await beginEntitlementSafeAccountTransition();');
-      const wipe = branch.indexOf('await wipeLocalAccountData();');
+      const lock = branch.indexOf('await withAccountTransitionLock(async (transitionLease) => {');
+      const wipe = branch.indexOf('await wipeLocalAccountData(transitionLease);', lock);
       const setStable = branch.indexOf('await setStableId(canonicalStableId);');
       const activate = branch.indexOf('beginAccountGeneration(canonicalStableId);');
+      const lockEnd = branch.indexOf('});', activate);
 
       expect(invalidate).toBeGreaterThan(0);
-      expect(invalidate).toBeLessThan(wipe);
+      expect(invalidate).toBeLessThan(lock);
+      expect(lock).toBeLessThan(wipe);
       expect(wipe).toBeLessThan(setStable);
       expect(setStable).toBeLessThan(activate);
+      expect(activate).toBeLessThan(lockEnd);
+      expect(branch).not.toContain('await wipeLocalAccountData();');
       expect(branch.match(/await beginEntitlementSafeAccountTransition\(\);/g)).toHaveLength(1);
     }
   });
@@ -283,10 +288,15 @@ describe('auth provider stable-id linking', () => {
   });
 
   test('remote stable-id swap uses the full cloud sync account wipe before restore', () => {
-    expect(mergeSwapSource).toContain('await wipeLocalAccountData();');
-    expect(mergeSwapSource.indexOf('await wipeLocalAccountData();')).toBeLessThan(
-      mergeSwapSource.indexOf('await setStableId(canonicalStableId)'),
-    );
+    const lock = mergeSwapSource.indexOf('await withAccountTransitionLock(async (transitionLease) => {');
+    const wipe = mergeSwapSource.indexOf('await wipeLocalAccountData(transitionLease);', lock);
+    const setStable = mergeSwapSource.indexOf('await setStableId(canonicalStableId)', wipe);
+    const lockEnd = mergeSwapSource.indexOf('});', setStable);
+    expect(lock).toBeGreaterThan(0);
+    expect(lock).toBeLessThan(wipe);
+    expect(wipe).toBeLessThan(setStable);
+    expect(setStable).toBeLessThan(lockEnd);
+    expect(mergeSwapSource).not.toContain('await wipeLocalAccountData();');
     expect(mergeSwapSource).not.toContain('AsyncStorage.multiRemove(progressKeys)');
     expect(mergeSwapSource).not.toContain('const introKeys');
     expect(source).not.toContain('`lesson${i + 1}_intro_shown`');

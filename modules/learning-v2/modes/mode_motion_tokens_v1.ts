@@ -198,9 +198,8 @@ export const SPEED_MATCH_MOTION_V1 = Object.freeze({
 });
 
 /**
- * Режим 7/7 — Повтор за моделью (голос, WIP). Источник:
- * docs/v2/mockups/14-repeat-compare.html. Помечено WIP в самом макете —
- * контракт состояний может измениться до релиза.
+ * Режим 7/7 — Повтор за моделью. Источник:
+ * docs/v2/mockups/14-repeat-compare.html.
  */
 export const SCRIPTED_REPEAT_COMPARE_MOTION_V1 = Object.freeze({
   chunkHighlightStepMs: 120,

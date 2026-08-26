@@ -57,15 +57,15 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
   const presentation = getPremierePresentation(video.state, video.scheduledStartTime, nowMs);
 
   const copy = useMemo(() => ({
-    liveNow: triLang(lang, { ru: 'Премьера сейчас', uk: 'Прем’єра зараз', es: 'Premiere live now', 'pt-BR': 'Estreia ao vivo', vi: 'Công chiếu trực tiếp', id: 'Tayang perdana sekarang', tr: 'Prömiyer şimdi canlı', pl: 'Premiera na żywo' }),
-    upcoming: triLang(lang, { ru: 'Скоро премьера', uk: 'Незабаром прем’єра', es: 'Premiere coming soon', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Premiera wkrótce' }),
-    join: triLang(lang, { ru: 'Присоединиться', uk: 'Приєднатися', es: 'Join now', 'pt-BR': 'Participar', vi: 'Tham gia', id: 'Gabung sekarang', tr: 'Katıl', pl: 'Dołącz' }),
-    remind: triLang(lang, { ru: 'Напомнить', uk: 'Нагадати', es: 'Remind me', 'pt-BR': 'Lembrar-me', vi: 'Nhắc tôi', id: 'Ingatkan saya', tr: 'Hatırlat', pl: 'Przypomnij' }),
-    checking: triLang(lang, { ru: 'Проверяем начало…', uk: 'Перевіряємо початок…', es: 'Checking the start…', 'pt-BR': 'Verificando o início…', vi: 'Đang kiểm tra…', id: 'Memeriksa waktu mulai…', tr: 'Başlangıç kontrol ediliyor…', pl: 'Sprawdzamy start…' }),
-    days: triLang(lang, { ru: 'д', uk: 'д', es: 'd', 'pt-BR': 'd', vi: 'ng', id: 'h', tr: 'g', pl: 'd' }),
-    hours: triLang(lang, { ru: 'ч', uk: 'г', es: 'h', 'pt-BR': 'h', vi: 'g', id: 'j', tr: 'sa', pl: 'g' }),
-    minutes: triLang(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'ph', id: 'm', tr: 'dk', pl: 'min' }),
-    seconds: triLang(lang, { ru: 'сек', uk: 'с', es: 's', 'pt-BR': 's', vi: 'gi', id: 'd', tr: 'sn', pl: 's' }),
+    liveNow: triLang(lang, { ru: 'Премьера сейчас', uk: 'Прем’єра зараз', en: 'Premiere live now', es: 'Premiere live now', 'pt-BR': 'Estreia ao vivo', vi: 'Công chiếu trực tiếp', id: 'Tayang perdana sekarang', tr: 'Prömiyer şimdi canlı', pl: 'Premiera na żywo' }),
+    upcoming: triLang(lang, { ru: 'Скоро премьера', uk: 'Незабаром прем’єра', en: 'Premiere coming soon', es: 'Premiere coming soon', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Premiera wkrótce' }),
+    join: triLang(lang, { ru: 'Присоединиться', uk: 'Приєднатися', en: 'Join now', es: 'Join now', 'pt-BR': 'Participar', vi: 'Tham gia', id: 'Gabung sekarang', tr: 'Katıl', pl: 'Dołącz' }),
+    remind: triLang(lang, { ru: 'Напомнить', uk: 'Нагадати', en: 'Remind me', es: 'Remind me', 'pt-BR': 'Lembrar-me', vi: 'Nhắc tôi', id: 'Ingatkan saya', tr: 'Hatırlat', pl: 'Przypomnij' }),
+    checking: triLang(lang, { ru: 'Проверяем начало…', uk: 'Перевіряємо початок…', en: 'Checking the start…', es: 'Checking the start…', 'pt-BR': 'Verificando o início…', vi: 'Đang kiểm tra…', id: 'Memeriksa waktu mulai…', tr: 'Başlangıç kontrol ediliyor…', pl: 'Sprawdzamy start…' }),
+    days: triLang(lang, { ru: 'д', uk: 'д', en: 'd', es: 'd', 'pt-BR': 'd', vi: 'ng', id: 'h', tr: 'g', pl: 'd' }),
+    hours: triLang(lang, { ru: 'ч', uk: 'г', en: 'h', es: 'h', 'pt-BR': 'h', vi: 'g', id: 'j', tr: 'sa', pl: 'g' }),
+    minutes: triLang(lang, { ru: 'мин', uk: 'хв', en: 'min', es: 'min', 'pt-BR': 'min', vi: 'ph', id: 'm', tr: 'dk', pl: 'min' }),
+    seconds: triLang(lang, { ru: 'сек', uk: 'с', en: 's', es: 's', 'pt-BR': 's', vi: 'gi', id: 'd', tr: 'sn', pl: 's' }),
   }), [lang]);
 
   useEffect(() => {

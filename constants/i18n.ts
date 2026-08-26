@@ -1,4 +1,7 @@
 // All interface text. `es` is a UI/source language for learning English.
+// `en` has prepared UI copy but is deliberately quarantined outside `Lang`.
+// ENGLISH_UI_LOCALE_ENABLED is reserved for preflight only: it cannot activate
+// runtime selection until all UI contracts have verified English values.
 import { SPANISH_UI_LOCALE_ENABLED } from '../app/config';
 import {
   ACTIVE_INTERFACE_SOURCE_LOCALES,
@@ -9,7 +12,7 @@ import {
 
 export type Lang = RegisteredInterfaceSourceLocale;
 export type PlannedInterfaceLang = Exclude<HeisenbergSourceLocale, 'es'>;
-export type InterfaceLanguageOptionCode = Lang | PlannedInterfaceLang;
+export type InterfaceLanguageOptionCode = Lang | PlannedInterfaceLang | 'en';
 export type PlannedTriLangCopy = Partial<Record<PlannedInterfaceLang, string>>;
 
 export const INTERFACE_LANGS = ACTIVE_INTERFACE_SOURCE_LOCALES satisfies readonly Lang[];
@@ -18,6 +21,7 @@ export const PLANNED_INTERFACE_LANGS = PLANNED_INTERFACE_SOURCE_LOCALES satisfie
 export const INTERFACE_LANGUAGE_OPTIONS = [
   { code: 'ru', native: 'Русский' },
   { code: 'uk', native: 'Українська' },
+  { code: 'en', native: 'English' },
   { code: 'es', native: 'Español' },
   { code: 'pt-BR', native: 'Português (Brasil)' },
   { code: 'vi', native: 'Tiếng Việt' },
@@ -49,6 +53,9 @@ export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode
 
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
   if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
+  // English is a staged dev-only option. It cannot enter the core Lang state
+  // until every Record<Lang, ...> contract has a complete English value.
+  if (lang === 'en') return false;
   return INTERFACE_LANG_READY_FOR_PROD.includes(lang);
 }
 
@@ -60,6 +67,7 @@ function normalizeInterfaceLangCandidate(value: string): InterfaceLanguageOption
   const base = lower.split('-')[0];
   if (base === 'ru') return 'ru';
   if (base === 'uk') return 'uk';
+  if (base === 'en') return 'en';
   if (base === 'es') return 'es';
   if (base === 'vi') return 'vi';
   if (base === 'id') return 'id';
@@ -94,8 +102,9 @@ export type InterfaceLanguageOption = (typeof INTERFACE_LANGUAGE_OPTIONS)[number
 /**
  * Опции языка интерфейса для экрана настроек.
  *
- * В store- и dev-сборках показываются все готовые языки интерфейса. Язык
- * исключается только если его нет в релизном списке готовности.
+ * Store shows only currently enabled runtime languages. Development also shows
+ * staged options (including quarantined English) for preflight, although they
+ * still cannot be selected while `isInterfaceLangEnabled` returns false.
  */
 export function getVisibleInterfaceLanguageOptions(
   storeRelease: boolean,

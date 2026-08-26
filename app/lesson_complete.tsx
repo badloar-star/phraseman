@@ -22,7 +22,6 @@ import { usePremium } from '../components/PremiumContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
-import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
@@ -73,6 +72,8 @@ import { finalizeLessonXpMultipliers } from './xp_manager';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
+import FeedbackRatingCard from '../components/FeedbackRatingCard';
+import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
@@ -184,6 +185,7 @@ type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dis
 
 const LESSON_SOFT_UPSELL_COPY = {
   ru: { title: 'Первый урок — готово', body: 'Plus откроет все уроки и позволит заниматься без бесплатных остановок.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Продолжить без просмотра Plus', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о Plus' },
+  en: { title: 'First lesson done', body: 'Plus unlocks every lesson and removes the free-mode stops.', ctaLabel: 'See Plus', dismissLabel: 'Not now', dismissAccessibilityLabel: 'Close suggestion', dismissAccessibilityHint: 'Continue without viewing Plus', ctaAccessibilityLabel: 'See Plus', ctaAccessibilityHint: 'Open information about Plus' },
   uk: { title: 'Перший урок — готово', body: 'Plus відкриє всі уроки й дозволить займатися без безкоштовних зупинок.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Продовжити без перегляду Plus', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про Plus' },
   es: { title: 'Primera lección completada', body: 'Plus abre todas las lecciones y elimina las pausas del modo gratis.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Continuar sin ver Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre Plus' },
   'pt-BR': { title: 'Primeira lição concluída', body: 'O Plus libera todas as lições e remove as pausas do modo grátis.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Continuar sem ver o Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre o Plus' },
@@ -195,6 +197,7 @@ const LESSON_SOFT_UPSELL_COPY = {
 
 const FREE_LIMIT_SOFT_UPSELL_COPY = {
   ru: { title: '3 бесплатных урока пройдено', body: 'Ты дошёл до границы бесплатного курса. Plus откроет следующие уроки и весь курс.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
+  en: { title: '3 free lessons completed', body: "You've reached the edge of the free course. Plus unlocks the next lessons and the whole course.", ctaLabel: 'See Plus', dismissLabel: 'Not now', dismissAccessibilityLabel: 'Close suggestion', dismissAccessibilityHint: 'Stay on the results screen', ctaAccessibilityLabel: 'See Plus', ctaAccessibilityHint: 'Open information about access to the next lessons' },
   uk: { title: '3 безкоштовні уроки пройдено', body: 'Ти дістався межі безкоштовного курсу. Plus відкриє наступні уроки й увесь курс.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
   es: { title: '3 lecciones gratis completadas', body: 'Has llegado al límite del curso gratuito. Plus abre las siguientes lecciones y el curso completo.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
   'pt-BR': { title: '3 lições grátis concluídas', body: 'Você chegou ao limite do curso gratuito. O Plus libera as próximas lições e o curso completo.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
@@ -323,11 +326,12 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
             <>
               <Text style={{ fontSize: 40, marginBottom: 12 }}>🙏</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!' })}
+                {triLang(lang, { ru: 'Спасибо!', en: 'Thank you!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!' })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8 }}>
                 {triLang(lang, {
                   ru: 'Это значит для нас очень много.',
+                  en: 'That means a lot to us.',
                   uk: 'Це для нас дуже багато значить.',
                   es: 'Para nosotros es muy importante.',
                   'pt-BR': 'Isso significa muito para nós.',
@@ -380,9 +384,9 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   };
 
   const medalLabel = (tier: MedalTier) => {
-    if (tier === 'bronze') return triLang(lang, { ru: '🥉 Бронзовая медаль!', uk: '🥉 Бронзова медаль!', es: '¡🥉 Medalla de bronce!', 'pt-BR': '🥉 Medalha de bronze!', vi: '🥉 Huy chương đồng!', id: '🥉 Medali perunggu!', tr: '🥉 Bronz madalya!', pl: '🥉 Brązowy medal!' });
-    if (tier === 'silver') return triLang(lang, { ru: '🥈 Серебряная медаль!', uk: '🥈 Срібна медаль!', es: '¡🥈 Medalla de plata!', 'pt-BR': '🥈 Medalha de prata!', vi: '🥈 Huy chương bạc!', id: '🥈 Medali perak!', tr: '🥈 Gümüş madalya!', pl: '🥈 Srebrny medal!' });
-    return triLang(lang, { ru: '🥇 Золотая медаль!', uk: '🥇 Золота медаль!', es: '¡🥇 Medalla de oro!', 'pt-BR': '🥇 Medalha de ouro!', vi: '🥇 Huy chương vàng!', id: '🥇 Medali emas!', tr: '🥇 Altın madalya!', pl: '🥇 Złoty medal!' });
+    if (tier === 'bronze') return triLang(lang, { ru: '🥉 Бронзовая медаль!', en: '🥉 Bronze medal!', uk: '🥉 Бронзова медаль!', es: '¡🥉 Medalla de bronce!', 'pt-BR': '🥉 Medalha de bronze!', vi: '🥉 Huy chương đồng!', id: '🥉 Medali perunggu!', tr: '🥉 Bronz madalya!', pl: '🥉 Brązowy medal!' });
+    if (tier === 'silver') return triLang(lang, { ru: '🥈 Серебряная медаль!', en: '🥈 Silver medal!', uk: '🥈 Срібна медаль!', es: '¡🥈 Medalla de plata!', 'pt-BR': '🥈 Medalha de prata!', vi: '🥈 Huy chương bạc!', id: '🥈 Medali perak!', tr: '🥈 Gümüş madalya!', pl: '🥈 Srebrny medal!' });
+    return triLang(lang, { ru: '🥇 Золотая медаль!', en: '🥇 Gold medal!', uk: '🥇 Золота медаль!', es: '¡🥇 Medalla de oro!', 'pt-BR': '🥇 Medalha de ouro!', vi: '🥇 Huy chương vàng!', id: '🥇 Medali emas!', tr: '🥇 Altın madalya!', pl: '🥇 Złoty medal!' });
   };
 
   const shareMessage = () => {
@@ -400,6 +404,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
     modalTitle = medalLabel(notif.medalTier);
     modalSub = triLang(lang, {
       ru: 'Отличная работа! Продолжай учиться!',
+      en: 'Great work! Keep learning!',
       uk: 'Чудова робота! Продовжуй навчання!',
       es: '¡Buen trabajo! Sigue con el inglés.',
       'pt-BR': 'Bom trabalho! Continue estudando inglês.',
@@ -411,6 +416,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   } else if (notif.kind === 'lesson_unlock') {
     modalTitle = triLang(lang, {
       ru: '🔓 Урок разблокирован!',
+      en: '🔓 Lesson unlocked!',
       uk: '🔓 Урок розблоковано!',
       es: '🔓 ¡Lección desbloqueada!',
       'pt-BR': '🔓 Lição desbloqueada!',
@@ -423,6 +429,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
       notif.unlockedLessonId
         ? triLang(lang, {
             ru: `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_RU[notif.unlockedLessonId - 1]}» теперь доступен!`,
+            en: `Lesson ${notif.unlockedLessonId} ("${lessonNamesForLang('en')[notif.unlockedLessonId - 1] ?? ''}") is now available!`,
             uk: `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_UK[notif.unlockedLessonId - 1]}» тепер доступний!`,
             es: `¡La Lección ${notif.unlockedLessonId} («${lessonNamesForLang('es')[notif.unlockedLessonId - 1] ?? ''}») ya está disponible!`,
             'pt-BR': `A Lição ${notif.unlockedLessonId} agora está disponível!`,
@@ -435,6 +442,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   } else if (notif.kind === 'level_exam_unlock') {
     modalTitle = triLang(lang, {
       ru: `📋 Зачёт ${notif.cefrLevel} доступен!`,
+      en: `📋 ${notif.cefrLevel} exam available!`,
       uk: `📋 Залік ${notif.cefrLevel} доступний!`,
       es: `📋 ¡Examen ${notif.cefrLevel} disponible!`,
       'pt-BR': `📋 Avaliação ${notif.cefrLevel} disponível!`,
@@ -445,6 +453,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
     });
     modalSub = triLang(lang, {
       ru: `Все уроки уровня ${notif.cefrLevel} пройдены на 4.5+! Теперь можешь сдать зачёт.`,
+      en: `All ${notif.cefrLevel}-level lessons scored 4.5+! You can now take the exam.`,
       uk: `Всі уроки рівня ${notif.cefrLevel} пройдено на 4.5+! Тепер можеш скласти залік.`,
       es: `¡Todas las lecciones del nivel ${notif.cefrLevel} con nota 4,5 o más! Ya puedes hacer el examen de nivel.`,
       'pt-BR': `Todas as lições do nível ${notif.cefrLevel} foram concluídas com 4,5+! Agora você pode fazer a avaliação.`,
@@ -456,6 +465,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   } else {
     modalTitle = triLang(lang, {
       ru: '🎓 Экзамен Лингмана открыт!',
+      en: '🎓 Lingman exam unlocked!',
       uk: '🎓 Іспит Лінгмана відкрито!',
       es: '🎓 ¡Examen de Lingman desbloqueado!',
       'pt-BR': '🎓 Exame Lingman desbloqueado!',
@@ -466,6 +476,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
     });
     modalSub = triLang(lang, {
       ru: 'Все занятия = 5.0 и все зачёты сданы! Финальный экзамен открыт.',
+      en: 'All lessons at 5.0 and every exam passed! The final exam is now open.',
       uk: 'Всі заняття = 5.0 та всі заліки здано! Фінальний іспит відкрито.',
       es: '¡Todas las lecciones a 5,0 y todos los exámenes de nivel superados! Examen final abierto.',
       'pt-BR': 'Todas as lições = 5,0 e todas as avaliações concluídas! O exame final está aberto.',
@@ -545,7 +556,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
         >
           <Ionicons name="share-outline" size={18} color={t.textSecond} />
           <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
-            {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
+            {triLang(lang, { ru: 'Поделиться', en: 'Share', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
           </Text>
         </TouchableOpacity>
 
@@ -564,7 +575,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
           }}
         >
           <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
-            {triLang(lang, { ru: 'Отлично!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' })}
+            {triLang(lang, { ru: 'Отлично!', en: 'Great!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' })}
           </Text>
         </TouchableOpacity>
       </Animated.View>
@@ -576,7 +587,6 @@ export default function LessonComplete() {
   const lessonCompleteRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -626,18 +636,18 @@ export default function LessonComplete() {
   }, [lessonId, studyTarget]);
   const nextLessonUnlockHint = completionRequiresPremium
     ? triLang(lang, {
-        ru: 'Следующий урок доступен в Plus', uk: 'Наступний урок доступний у Plus', es: 'La siguiente lección está disponible en Plus',
+        ru: 'Следующий урок доступен в Plus', en: 'The next lesson is available in Plus', uk: 'Наступний урок доступний у Plus', es: 'La siguiente lección está disponible en Plus',
         'pt-BR': 'A próxima lição está disponível no Plus', vi: 'Bài học tiếp theo có trong Plus', id: 'Pelajaran berikutnya tersedia di Plus',
         tr: 'Sonraki ders Plus’ta kullanılabilir', pl: 'Następna lekcja jest dostępna w Plus',
       })
     : lessonId < 32
     ? triLang(lang, {
-        ru: 'Следующий урок уже разблокирован', uk: 'Наступний урок уже розблоковано', es: 'La siguiente lección ya está desbloqueada',
+        ru: 'Следующий урок уже разблокирован', en: 'The next lesson is already unlocked', uk: 'Наступний урок уже розблоковано', es: 'La siguiente lección ya está desbloqueada',
         'pt-BR': 'A próxima lição já está desbloqueada', vi: 'Bài học tiếp theo đã được mở khóa', id: 'Pelajaran berikutnya sudah terbuka',
         tr: 'Sonraki dersin kilidi açıldı', pl: 'Następna lekcja jest już odblokowana',
       })
     : triLang(lang, {
-        ru: 'Ты завершил весь курс', uk: 'Ти завершив увесь курс', es: 'Has terminado todo el curso',
+        ru: 'Ты завершил весь курс', en: "You've finished the whole course", uk: 'Ти завершив увесь курс', es: 'Has terminado todo el curso',
         'pt-BR': 'Você concluiu todo o curso', vi: 'Bạn đã hoàn thành toàn bộ khóa học', id: 'Kamu sudah menyelesaikan seluruh kursus',
         tr: 'Tüm kursu tamamladın', pl: 'Ukończyłeś cały kurs',
       });
@@ -761,6 +771,19 @@ export default function LessonComplete() {
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
   const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
+
+  // Оценка урока (владелец 2026-08-25): троттлинг раз в неделю на раздел,
+  // гейт решается один раз при монтировании — не зависит от очереди модалок.
+  const [showLessonFeedback, setShowLessonFeedback] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    void shouldPromptFeedback('lesson').then((allowed) => {
+      if (cancelled || !allowed) return;
+      setShowLessonFeedback(true);
+      void markFeedbackPrompted('lesson');
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   // ReviewModal показывается только когда очередь нотификаций опустела — без конфликта.
   // pendingReview хранит намерение «показать ревью», а useEffect ждёт тишины.
@@ -1209,7 +1232,7 @@ export default function LessonComplete() {
             } as any);
             return;
           }
-          await prefetchLessonMenuCache(next, studyTarget);
+          void prefetchLessonMenuCache(next, studyTarget).catch(() => {});
           markNextNavigationAsReplace();
           router.replace({ pathname: '/lessons_list', params: { id: next } });
         } finally {
@@ -1326,9 +1349,36 @@ export default function LessonComplete() {
               badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
                 <Image source={MEDAL_IMAGES_COMPLETE[medalTier]} style={{ width: 110, height: 110 }} contentFit="contain" />
               ) : undefined}
+              feedbackSlot={showLessonFeedback ? (
+                <FeedbackRatingCard
+                  kind="lesson"
+                  entityId={`${studyTarget}:${lessonId}:${completionAttemptId}`}
+                  entityLabel={`Урок ${lessonId}`}
+                  lang={lang}
+                  title={triLang(lang, { ru: 'Как тебе урок?', en: 'How was the lesson?', uk: 'Як тобі урок?', es: '¿Qué tal la lección?',
+                    'pt-BR': 'O que achou da lição?', vi: 'Bạn thấy bài học thế nào?',
+                    id: 'Bagaimana pelajarannya?', tr: 'Ders nasıldı?', pl: 'Jak podobała się lekcja?',
+                  })}
+                  placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
+                    'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
+                    id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+                  })}
+                  sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
+                    vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
+                  })}
+                  thanksLabel={triLang(lang, { ru: 'Спасибо! Отзыв отправлен', en: 'Thanks! Feedback sent', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado',
+                    'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi',
+                    id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana',
+                  })}
+                  ratingA11yLabel={triLang(lang, { ru: 'Оценка', en: 'Rating', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação',
+                    vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
+                  })}
+                  testID="lesson-complete-feedback"
+                />
+              ) : undefined}
               ctaPrimaryLabel={completionRequiresPremium
-                ? triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
-                : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
+                ? triLang(lang, { ru: 'Открыть Plus', en: 'Open Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
+                : triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
               onCtaPrimary={() => {
                 if (pendingReview.current) {
                   pendingReview.current = false;
@@ -1356,7 +1406,7 @@ export default function LessonComplete() {
         <SafeAreaView testID="lesson-complete-loading" style={{ flex: 1 }}>
           <TapScale
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             onPress={goBackFromComplete}
             style={{
               position: 'absolute',
@@ -1377,6 +1427,7 @@ export default function LessonComplete() {
             <Text style={{ color: t.textSecond, fontSize: 16, textAlign: 'center' }}>
               {triLang(lang, {
                 ru: 'Сохраняю результат…',
+                en: 'Saving result…',
                 uk: 'Зберігаю результат…',
                 es: 'Guardando el resultado…',
                 'pt-BR': 'Salvando o resultado…',
@@ -1399,7 +1450,7 @@ export default function LessonComplete() {
       {!sequenceShowing && (
       <TapScale
         accessibilityRole="button"
-        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
         onPress={goBackFromComplete}
         style={{
           position: 'absolute',
@@ -1421,7 +1472,7 @@ export default function LessonComplete() {
       </TapScale>
       )}
       <ContentWrap>
-      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -1445,9 +1496,9 @@ export default function LessonComplete() {
               color: t.gold, fontSize: f.bodyLg, fontWeight: '700',
               marginTop: 6, opacity: fadeAnim,
             }}>
-              {medalTier === 'bronze' && triLang(lang, { ru: '🥉 Новая медаль!', uk: '🥉 Нова медаль!', es: '¡🥉 Medalla nueva!', 'pt-BR': '🥉 Nova medalha!', vi: '🥉 Huy chương mới!', id: '🥉 Medali baru!', tr: '🥉 Yeni madalya!', pl: '🥉 Nowy medal!' })}
-              {medalTier === 'silver' && triLang(lang, { ru: '🥈 Новая медаль!', uk: '🥈 Нова медаль!', es: '¡🥈 Medalla nueva!', 'pt-BR': '🥈 Nova medalha!', vi: '🥈 Huy chương mới!', id: '🥈 Medali baru!', tr: '🥈 Yeni madalya!', pl: '🥈 Nowy medal!' })}
-              {medalTier === 'gold'   && triLang(lang, { ru: '🥇 Золото!', uk: '🥇 Золото!', es: '¡🥇 Oro!', 'pt-BR': '🥇 Ouro!', vi: '🥇 Vàng!', id: '🥇 Emas!', tr: '🥇 Altın!', pl: '🥇 Złoto!' })}
+              {medalTier === 'bronze' && triLang(lang, { ru: '🥉 Новая медаль!', en: '🥉 New medal!', uk: '🥉 Нова медаль!', es: '¡🥉 Medalla nueva!', 'pt-BR': '🥉 Nova medalha!', vi: '🥉 Huy chương mới!', id: '🥉 Medali baru!', tr: '🥉 Yeni madalya!', pl: '🥉 Nowy medal!' })}
+              {medalTier === 'silver' && triLang(lang, { ru: '🥈 Новая медаль!', en: '🥈 New medal!', uk: '🥈 Нова медаль!', es: '¡🥈 Medalla nueva!', 'pt-BR': '🥈 Nova medalha!', vi: '🥈 Huy chương mới!', id: '🥈 Medali baru!', tr: '🥈 Yeni madalya!', pl: '🥈 Nowy medal!' })}
+              {medalTier === 'gold'   && triLang(lang, { ru: '🥇 Золото!', en: '🥇 Gold!', uk: '🥇 Золото!', es: '¡🥇 Oro!', 'pt-BR': '🥇 Ouro!', vi: '🥇 Vàng!', id: '🥇 Emas!', tr: '🥇 Altın!', pl: '🥇 Złoto!' })}
             </Animated.Text>
           )}
         </Animated.View>
@@ -1562,10 +1613,10 @@ export default function LessonComplete() {
                 }}
               >
                 <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
-                  {triLang(lang, { ru: '🔓 Следующий урок закрыт', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
+                  {triLang(lang, { ru: '🔓 Следующий урок закрыт', en: '🔓 Next lesson is locked', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
                 </Text>
                 <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
-                  {triLang(lang, { ru: 'Открыть Plus — продолжить →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
+                  {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Open Plus — continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -1578,7 +1629,7 @@ export default function LessonComplete() {
                 }}
               >
                 <Text style={{ color: t.textGhost, fontSize: f.caption, textDecorationLine: 'underline' }}>
-                  {triLang(lang, { ru: 'Остаться на бесплатном', uk: 'Залишитись на безкоштовному', es: 'Quedarme con la versión gratuita', 'pt-BR': 'Ficar no gratuito', vi: 'Tiếp tục miễn phí', id: 'Tetap di gratis', tr: 'Ücretsiz kalmak istiyorum', pl: 'Zostań w darmowej wersji' })}
+                  {triLang(lang, { ru: 'Остаться на бесплатном', en: 'Stay on free', uk: 'Залишитись на безкоштовному', es: 'Quedarme con la versión gratuita', 'pt-BR': 'Ficar no gratuito', vi: 'Tiếp tục miễn phí', id: 'Tetap di gratis', tr: 'Ücretsiz kalmak istiyorum', pl: 'Zostań w darmowej wersji' })}
                 </Text>
               </TouchableOpacity>
             </Animated.View>
@@ -1680,7 +1731,7 @@ export default function LessonComplete() {
                 contentFit="contain"
               />
             ) : undefined}
-            ctaPrimaryLabel={triLang(lang, { ru: 'Продолжить путь', uk: 'Продовжити шлях', es: 'Continuar el camino', 'pt-BR': 'Continuar o caminho', vi: 'Tiếp tục hành trình', id: 'Lanjutkan perjalanan', tr: 'Yola devam et', pl: 'Kontynuuj drogę' })}
+            ctaPrimaryLabel={triLang(lang, { ru: 'Продолжить путь', en: 'Continue the journey', uk: 'Продовжити шлях', es: 'Continuar el camino', 'pt-BR': 'Continuar o caminho', vi: 'Tiếp tục hành trình', id: 'Lanjutkan perjalanan', tr: 'Yola devam et', pl: 'Kontynuuj drogę' })}
             onCtaPrimary={() => setSeqDone(true)}
           />
         </View>

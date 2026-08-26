@@ -449,24 +449,24 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
           <Text style={{ color: t.textPrimary, fontSize: 19, fontWeight: '900', textAlign: 'center' }}>
             {phase === 'noGap'
               ? triLang(lang, {
-                  ru: 'Серия цела!', uk: 'Серія ціла!', es: '¡La racha está intacta!', 'pt-BR': 'A sequência está intacta!',
+                  ru: 'Серия цела!', uk: 'Серія ціла!', en: 'Streak intact!', es: '¡La racha está intacta!', 'pt-BR': 'A sequência está intacta!',
                   vi: 'Chuỗi vẫn nguyên!', id: 'Runtunan utuh!', tr: 'Seri sağlam!', pl: 'Seria nienaruszona!',
                 })
               : phase === 'serverError'
                 ? triLang(lang, {
-                    ru: 'Не получилось', uk: 'Не вдалося', es: 'No funcionó', 'pt-BR': 'Não deu certo',
+                    ru: 'Не получилось', uk: 'Не вдалося', en: "Didn't work", es: 'No funcionó', 'pt-BR': 'Não deu certo',
                     vi: 'Không thành công', id: 'Gagal', tr: 'Olmadı', pl: 'Nie udało się',
                   })
                 : sentToName
                   ? triLang(lang, {
-                      ru: `Щит улетел: ${sentToName}`, uk: `Щит полетів: ${sentToName}`, es: `Escudo enviado a ${sentToName}`,
+                      ru: `Щит улетел: ${sentToName}`, uk: `Щит полетів: ${sentToName}`, en: `Shield sent to ${sentToName}`, es: `Escudo enviado a ${sentToName}`,
                       'pt-BR': `Escudo enviado a ${sentToName}`, vi: `Đã gửi khiên cho ${sentToName}`, id: `Perisai terkirim ke ${sentToName}`,
                       tr: `Kalkan gönderildi: ${sentToName}`, pl: `Tarcza wysłana do ${sentToName}`,
                     })
                   // Заголовок тоже меняется — иначе смена состояния незаметна.
                   : phase === 'done'
                     ? triLang(lang, {
-                        ru: 'Готово!', uk: 'Готово!', es: '¡Listo!', 'pt-BR': 'Pronto!',
+                        ru: 'Готово!', uk: 'Готово!', en: 'Done!', es: '¡Listo!', 'pt-BR': 'Pronto!',
                         vi: 'Xong!', id: 'Selesai!', tr: 'Hazır!', pl: 'Gotowe!',
                       })
                     // зачем 2026-08-04 (владелец: «аура ... стадия ее надо
@@ -485,6 +485,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
               ? triLang(lang, {
                   ru: 'Чинить нечего — вчера ты занимался. Машина времени осталась в «Подарках» на чёрный день.',
                   uk: 'Лагодити нічого — вчора ти займався. Машина часу лишилась у «Подарунках».',
+                  en: 'Nothing to fix — you practiced yesterday. The time machine stays in "Gifts" for a rainy day.',
                   es: 'Nada que reparar: ayer practicaste. La máquina queda en «Regalos».',
                   'pt-BR': 'Nada a consertar: ontem você praticou. A máquina fica em «Presentes».',
                   vi: 'Không có gì để sửa — hôm qua bạn đã học. Máy vẫn ở «Quà tặng».',
@@ -496,6 +497,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                 ? triLang(lang, {
                     ru: 'Сервер не ответил. Подарок остался в «Подарках» — попробуй ещё раз.',
                     uk: 'Сервер не відповів. Подарунок лишився в «Подарунках» — спробуй ще раз.',
+                    en: 'The server did not respond. The gift stays in "Gifts" — try again.',
                     es: 'El servidor no respondió. El regalo sigue en «Regalos», inténtalo de nuevo.',
                     'pt-BR': 'O servidor não respondeu. O presente segue em «Presentes», tente de novo.',
                     vi: 'Máy chủ không phản hồi. Quà vẫn ở «Quà tặng» — thử lại nhé.',
@@ -545,6 +547,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                   {triLang(lang, {
                     ru: 'Пока нет друзей — добавь их во вкладке «Друзья», щит подождёт в «Подарках».',
                     uk: 'Поки немає друзів — додай їх у вкладці «Друзі», щит почекає в «Подарунках».',
+                    en: 'No friends yet — add them in the "Friends" tab, the shield will wait in "Gifts".',
                     es: 'Aún sin amigos: añádelos en «Amigos», el escudo espera en «Regalos».',
                     'pt-BR': 'Ainda sem amigos: adicione na aba «Amigos», o escudo espera em «Presentes».',
                     vi: 'Chưa có bạn — thêm ở tab «Bạn bè», khiên chờ trong «Quà tặng».',
@@ -554,7 +557,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                   })}
                 </Text>
               ) : (
-                <FlatList
+                <FlatList decelerationRate="fast"
                   data={friends}
                   keyExtractor={(f) => f.uid}
                   style={{ maxHeight: 240 }}
@@ -591,7 +594,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -602,7 +605,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
               >
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })}
+                  {triLang(lang, { ru: 'Применить', uk: 'Застосувати', en: 'Apply', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -629,13 +632,13 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
               <TouchableOpacity activeOpacity={0.85} onPress={onLater} accessibilityRole="button"
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}>
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.85} onPress={() => onApply()} accessibilityRole="button"
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}>
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' })}
+                  {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' })}
                 </Text>
               </TouchableOpacity>
             </View>

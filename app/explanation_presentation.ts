@@ -41,6 +41,7 @@ export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTo
     return triLang(lang, {
       ru: 'Ответ',
       uk: 'Відповідь',
+      en: 'Answer',
       es: 'Respuesta',
       'pt-BR': 'Resposta',
       vi: 'Câu trả lời',
@@ -53,6 +54,7 @@ export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTo
     return triLang(lang, {
       ru: 'Твой выбор',
       uk: 'Твій вибір',
+      en: 'Your choice',
       es: 'Tu elección',
       'pt-BR': 'Sua escolha',
       vi: 'Bạn đã chọn',
@@ -65,6 +67,7 @@ export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTo
     return triLang(lang, {
       ru: 'Запомни',
       uk: "Запам'ятай",
+      en: 'Remember',
       es: 'Recuerda',
       'pt-BR': 'Lembre',
       vi: 'Ghi nhớ',
@@ -77,6 +80,7 @@ export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTo
     return triLang(lang, {
       ru: 'Правильно',
       uk: 'Правильно',
+      en: 'Correct',
       es: 'Correcto',
       'pt-BR': 'Correto',
       vi: 'Đúng',
@@ -88,6 +92,7 @@ export function semanticExplanationTitle(lang: Lang, tone: SemanticExplanationTo
   return triLang(lang, {
     ru: 'Почему',
     uk: 'Чому',
+    en: 'Why',
     es: 'Por qué',
     'pt-BR': 'Por quê',
     vi: 'Vì sao',
@@ -102,6 +107,7 @@ export function semanticMemoryLine(lang: Lang, degraded?: boolean): string {
     return triLang(lang, {
       ru: 'Это временный ответ. Если нужно, попробуй запросить разбор ещё раз.',
       uk: 'Це тимчасова відповідь. Якщо треба, спробуй запросити пояснення ще раз.',
+      en: 'This is a temporary answer. If you need to, try requesting the breakdown again.',
       es: 'Es una respuesta temporal. Si hace falta, intenta pedir la explicación otra vez.',
       'pt-BR': 'É uma resposta temporária. Se precisar, tente pedir a explicação de novo.',
       vi: 'Đây là câu trả lời tạm thời. Nếu cần, hãy thử yêu cầu giải thích lại.',
@@ -113,6 +119,7 @@ export function semanticMemoryLine(lang: Lang, degraded?: boolean): string {
   return triLang(lang, {
     ru: 'Смотри на роль слова в предложении, а не только на похожий перевод.',
     uk: 'Дивись на роль слова в реченні, а не лише на схожий переклад.',
+    en: "Look at the word's role in the sentence, not just a similar-looking translation.",
     es: 'Mira la función de la palabra en la frase, no solo una traducción parecida.',
     'pt-BR': 'Observe a função da palavra na frase, não só uma tradução parecida.',
     vi: 'Hãy nhìn vai trò của từ trong câu, không chỉ bản dịch giống nhau.',

@@ -171,7 +171,13 @@ function AccordionSection({ section, open, onToggle, renderBlock }: SectionProps
       ? triLang(lang, {
           ru: `${section.exampleCount} примеров`,
           uk: `${section.exampleCount} прикладів`,
+          en: `${section.exampleCount} examples`,
           es: `${section.exampleCount} ejemplos`,
+          'pt-BR': `${section.exampleCount} exemplos`,
+          vi: `${section.exampleCount} ví dụ`,
+          id: `${section.exampleCount} contoh`,
+          tr: `${section.exampleCount} örnek`,
+          pl: `${section.exampleCount} przykładów`,
         })
       : '';
 
@@ -621,54 +627,108 @@ export default function TheoryLessonView({
     [t, accent, renderDrill],
   );
 
-  const kickerText = kicker ?? triLang(lang, { ru: 'Грамматика', uk: 'Граматика', es: 'Gramática' });
+  const kickerText = kicker ?? triLang(lang, {
+    ru: 'Грамматика', uk: 'Граматика', en: 'Grammar', es: 'Gramática',
+    'pt-BR': 'Gramática', vi: 'Ngữ pháp', id: 'Tata bahasa', tr: 'Dilbilgisi', pl: 'Gramatyka',
+  });
   const claimLabel = triLang(lang, {
     ru: `Забрать +${xpAmount} XP`,
     uk: `Забрати +${xpAmount} XP`,
+    en: `Claim +${xpAmount} XP`,
     es: `Recibir +${xpAmount} XP`,
+    'pt-BR': `Receber +${xpAmount} XP`,
+    vi: `Nhận +${xpAmount} XP`,
+    id: `Ambil +${xpAmount} XP`,
+    tr: `+${xpAmount} XP al`,
+    pl: `Odbierz +${xpAmount} XP`,
   });
   const claimedLabel = triLang(lang, {
     ru: `+${xpAmount} XP получено · Готово`,
     uk: `+${xpAmount} XP отримано · Готово`,
+    en: `+${xpAmount} XP earned · Done`,
     es: `+${xpAmount} XP recibido · Listo`,
+    'pt-BR': `+${xpAmount} XP recebido · Pronto`,
+    vi: `+${xpAmount} XP đã nhận · Xong`,
+    id: `+${xpAmount} XP diterima · Selesai`,
+    tr: `+${xpAmount} XP alındı · Tamam`,
+    pl: `+${xpAmount} XP odebrane · Gotowe`,
   });
   const lockedClaimLabel = triLang(lang, {
     ru: `Открой все разделы · ${seenCount}/${sections.length}`,
     uk: `Відкрий усі розділи · ${seenCount}/${sections.length}`,
+    en: `Open all sections · ${seenCount}/${sections.length}`,
     es: `Abre todas las secciones · ${seenCount}/${sections.length}`,
+    'pt-BR': `Abra todas as seções · ${seenCount}/${sections.length}`,
+    vi: `Mở tất cả các phần · ${seenCount}/${sections.length}`,
+    id: `Buka semua bagian · ${seenCount}/${sections.length}`,
+    tr: `Tüm bölümleri aç · ${seenCount}/${sections.length}`,
+    pl: `Otwórz wszystkie sekcje · ${seenCount}/${sections.length}`,
   });
 
   const metricLabels = {
-    sections: triLang(lang, { ru: 'разделов', uk: 'розділів', es: 'secciones' }),
-    examples: triLang(lang, { ru: 'примеров', uk: 'прикладів', es: 'ejemplos' }),
-    drills: triLang(lang, { ru: 'тренировок', uk: 'тренувань', es: 'prácticas' }),
+    sections: triLang(lang, {
+      ru: 'разделов', uk: 'розділів', en: 'sections', es: 'secciones',
+      'pt-BR': 'seções', vi: 'phần', id: 'bagian', tr: 'bölüm', pl: 'sekcji',
+    }),
+    examples: triLang(lang, {
+      ru: 'примеров', uk: 'прикладів', en: 'examples', es: 'ejemplos',
+      'pt-BR': 'exemplos', vi: 'ví dụ', id: 'contoh', tr: 'örnek', pl: 'przykładów',
+    }),
+    drills: triLang(lang, {
+      ru: 'тренировок', uk: 'тренувань', en: 'drills', es: 'prácticas',
+      'pt-BR': 'práticas', vi: 'bài luyện', id: 'latihan', tr: 'alıştırma', pl: 'treningów',
+    }),
   };
 
   const progressLabel = triLang(lang, {
     ru: `Просмотрено ${seenCount} из ${sections.length}`,
     uk: `Переглянуто ${seenCount} з ${sections.length}`,
+    en: `Viewed ${seenCount} of ${sections.length}`,
     es: `Visto ${seenCount} de ${sections.length}`,
+    'pt-BR': `Visto ${seenCount} de ${sections.length}`,
+    vi: `Đã xem ${seenCount} trên ${sections.length}`,
+    id: `Dilihat ${seenCount} dari ${sections.length}`,
+    tr: `${seenCount}/${sections.length} görüntülendi`,
+    pl: `Obejrzano ${seenCount} z ${sections.length}`,
   });
 
   const lockedClaimCtaLabel = allSectionsSeen && !allDrillsDone
     ? triLang(lang, {
         ru: `Выполни задания · ${completedDrillCount}/${drillIds.length}`,
         uk: `Виконай завдання · ${completedDrillCount}/${drillIds.length}`,
+        en: `Complete the drills · ${completedDrillCount}/${drillIds.length}`,
         es: `Completa las prácticas · ${completedDrillCount}/${drillIds.length}`,
+        'pt-BR': `Complete as práticas · ${completedDrillCount}/${drillIds.length}`,
+        vi: `Hoàn thành bài luyện · ${completedDrillCount}/${drillIds.length}`,
+        id: `Selesaikan latihan · ${completedDrillCount}/${drillIds.length}`,
+        tr: `Alıştırmaları tamamla · ${completedDrillCount}/${drillIds.length}`,
+        pl: `Ukończ ćwiczenia · ${completedDrillCount}/${drillIds.length}`,
       })
     : lockedClaimLabel;
   const theoryProgressLabel = drillIds.length > 0
     ? triLang(lang, {
         ru: `Разделы ${seenCount}/${sections.length} · задания ${completedDrillCount}/${drillIds.length}`,
         uk: `Розділи ${seenCount}/${sections.length} · завдання ${completedDrillCount}/${drillIds.length}`,
+        en: `Sections ${seenCount}/${sections.length} · drills ${completedDrillCount}/${drillIds.length}`,
         es: `Secciones ${seenCount}/${sections.length} · prácticas ${completedDrillCount}/${drillIds.length}`,
+        'pt-BR': `Seções ${seenCount}/${sections.length} · práticas ${completedDrillCount}/${drillIds.length}`,
+        vi: `Phần ${seenCount}/${sections.length} · bài luyện ${completedDrillCount}/${drillIds.length}`,
+        id: `Bagian ${seenCount}/${sections.length} · latihan ${completedDrillCount}/${drillIds.length}`,
+        tr: `Bölümler ${seenCount}/${sections.length} · alıştırmalar ${completedDrillCount}/${drillIds.length}`,
+        pl: `Sekcje ${seenCount}/${sections.length} · ćwiczenia ${completedDrillCount}/${drillIds.length}`,
       })
     : progressLabel;
 
   const levelTag = triLang(lang, {
     ru: `Урок ${lessonId} · A1`,
     uk: `Урок ${lessonId} · A1`,
+    en: `Lesson ${lessonId} · A1`,
     es: `Lección ${lessonId} · A1`,
+    'pt-BR': `Lição ${lessonId} · A1`,
+    vi: `Bài ${lessonId} · A1`,
+    id: `Pelajaran ${lessonId} · A1`,
+    tr: `Ders ${lessonId} · A1`,
+    pl: `Lekcja ${lessonId} · A1`,
   });
 
   return (
@@ -679,7 +739,10 @@ export default function TheoryLessonView({
           <TapScale
             onPress={onBack}
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
+              'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+            })}
             style={styles.iconBtn}
           >
             <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
@@ -697,7 +760,7 @@ export default function TheoryLessonView({
           </View>
         </View>
 
-        <BouncyScrollView
+        <BouncyScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             styles.scrollContent,

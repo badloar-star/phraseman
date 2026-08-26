@@ -5,10 +5,11 @@ const root = path.join(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8');
 
 describe('Cards sibling navigation contract', () => {
-  test('the three sibling roots crossfade while pack collection remains a child transition', () => {
+  test('the three sibling roots switch immediately while pack collection remains a child route', () => {
     const layout = read('app', '_layout.tsx');
 
-    expect(layout).toContain("animation: 'fade', animationDuration: 140");
+    expect(layout).toContain("const INSTANT_STACK_ANIMATION = { animation: 'none', animationDuration: 0 } as const;");
+    expect(layout).toContain('const cardsSiblingAnimationOptions = INSTANT_STACK_ANIMATION;');
     expect(layout).toMatch(/name="flashcards" options=\{cardsSiblingAnimationOptions\}/);
     expect(layout).toMatch(/name="flashcards_packs" options=\{cardsSiblingAnimationOptions\}/);
     expect(layout).toMatch(/name="flashcards_my_packs" options=\{cardsSiblingAnimationOptions\}/);

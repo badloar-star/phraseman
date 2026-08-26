@@ -50,7 +50,7 @@ describe('local level Spin runtime', () => {
     expect(queue).not.toContain('await grantLocalLevelSpins(crossed);');
   });
 
-  test('emits current catalog receipts while retaining v1..v3 recovery compatibility', () => {
+  test('emits current catalog receipts while retaining v1..v5 recovery compatibility', () => {
     const runtime = readFileSync(path, 'utf8');
     const contract = readFileSync(join(process.cwd(), 'app', 'level_spin_local_contract.ts'), 'utf8');
     // зачем константа вместо литерала (2026-08-26): версия каталога менялась
@@ -58,11 +58,27 @@ describe('local level Spin runtime', () => {
     // с каталогом — квитанции ушли бы с чужой версией. Теперь источник один.
     expect(runtime).toContain('catalogVersion: LEVEL_SPIN_REWARD_CATALOG_VERSION');
     expect(runtime).toContain('schemaVersion: 2');
-    expect(contract).toContain('catalogVersion: 1 | 2 | 3 | 4;');
+    expect(contract).toContain('catalogVersion: 1 | 2 | 3 | 4 | 5 | 6;');
     expect(contract).toContain('(receipt.catalogVersion === 1 && receipt.schemaVersion === 1)');
     expect(contract).toContain('(receipt.catalogVersion === 2 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 3 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 4 && receipt.schemaVersion === 2)');
+    expect(contract).toContain('(receipt.catalogVersion === 5 && receipt.schemaVersion === 2)');
+    expect(contract).toContain('(receipt.catalogVersion === 6 && receipt.schemaVersion === 2)');
+    expect(contract).toContain('isLocalSpinGiftAllowedForCatalogVersion');
+  });
+
+  test('rechecks the active receipt inside the claim lock before consuming another credit', () => {
+    const source = readFileSync(path, 'utf8');
+    const claim = source.slice(
+      source.indexOf('export async function claimLocalLevelSpin'),
+      source.indexOf('\n}', source.indexOf('export async function claimLocalLevelSpin')) + 2,
+    );
+    expect(claim).toContain('const activeReceipt = await restoreActiveReceipt(current);');
+    expect(claim).toContain('if (activeReceipt) return activeReceipt;');
+    expect(claim).toContain('current = await loadLocalState(owner);');
+    expect(claim.indexOf('if (activeReceipt) return activeReceipt;'))
+      .toBeLessThan(claim.indexOf('const credit = current.credits[0];'));
   });
 
   test('drops an exhausted reward from the roll instead of paying a consolation', () => {

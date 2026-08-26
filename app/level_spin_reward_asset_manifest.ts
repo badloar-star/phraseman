@@ -10,6 +10,7 @@ export type LevelSpinRewardArtFamily =
   | 'time'
   | 'plus'
   | 'aura'
+  | 'avatar'
   | 'theme';
 
 export const LEVEL_SPIN_REWARD_FAMILY_PALETTES = Object.freeze({
@@ -22,6 +23,7 @@ export const LEVEL_SPIN_REWARD_FAMILY_PALETTES = Object.freeze({
   time: '#3C6868',
   plus: '#847968',
   aura: '#67558A',
+  avatar: '#526A7A',
   // зачем: тема оформления — про палитру интерфейса, поэтому акцент берёт
   // приглушённый сине-стальной тон, не пересекающийся с остальными семьями.
   theme: '#4E6A86',
@@ -92,6 +94,8 @@ export const LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID = Object.freeze({
   plus_days_7: reward('plus_days_7', 'plus', 'substantial access key with an opal-like neutral core'),
   cosmetic_avatar_aura: reward('cosmetic_avatar_aura', 'aura', 'contained luminous aura reliquary with a clean hexagonal center'),
   cosmetic_theme: reward('cosmetic_theme', 'theme', 'stacked palette tablets fanned inside a calm architectural mount'),
+  cosmetic_avatar_common: reward('cosmetic_avatar_common', 'avatar', 'faceted anonymous avatar bust for a random avatar unlock'),
+  attempt_restore_all: reward('attempt_restore_all', 'protection', 'three-heart recovery reliquary with three contained heart cores'),
 } as const satisfies Readonly<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>>);
 
 export const LEVEL_SPIN_REWARD_ASSET_MANIFEST = Object.freeze(

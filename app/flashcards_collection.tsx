@@ -38,7 +38,6 @@ import { SYSTEM_CARDS } from './flashcards/system-cards';
 import { CardItem, CategoryId } from './flashcards/types';
 import { writeFlashcardsProgress } from './flashcards/storage';
 // E8: быстрый старт — размер сессии из последнего пресета (fc_mode_prefs_v1)
-import { FC_DEFAULT_SESSION_SIZE, getLastPreset } from './flashcards/mode_prefs';
 import { fcHaptic } from './flashcards/SoundService';
 import { buildFilterGroups, buildFilterOptions, FilterGroup } from './flashcards/selectors';
 import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
@@ -47,6 +46,7 @@ import CollectionListView, {
   CollectionEmptyState,
   UndoDeleteSnackbar,
 } from './flashcards/CollectionListView';
+import { resolveFlashcardListItemHeight } from './flashcards/FlashcardListItemChrome';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
 import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
 // §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
@@ -170,10 +170,13 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const { contentMaxW } = useScreen();
   const { height: screenH } = useWindowDimensions();
   const { CARD_H, PEEK } = useMemo(() => {
-    const reserved = 200 + insets.top + insets.bottom;
-    const hAvail = Math.max(220, screenH - reserved);
     /** Компактніша висота картки: раніше max 280px / ~52% екрана було зайвим. × uiScale — узгоджено з темою. */
-    const cardH = Math.min(224, Math.max(140, Math.round(hAvail * 0.45 * uiScale)));
+    const cardH = resolveFlashcardListItemHeight(
+      screenH,
+      insets.top,
+      insets.bottom,
+      uiScale,
+    );
     const peek = Math.max(30, Math.round(cardH * 0.19));
     return { CARD_H: cardH, PEEK: peek };
   }, [screenH, insets.top, insets.bottom, uiScale]);
@@ -521,7 +524,10 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   // ── Стабилизированные пропсы view ──────────────────────────────────────────
   const sourceLabels = s.source as Record<string, string>;
   const voiceLabel = useMemo(
-    () => triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar' }),
+    () => triLang(lang, {
+      ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar',
+      'pt-BR': 'Ouvir', vi: 'Phát âm', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
+    }),
     [lang],
   );
   const onSpeakCb = useCallback(
@@ -552,7 +558,10 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     [router],
   );
   const editLabel = useMemo(
-    () => triLang(lang, { ru: 'Редактировать', uk: 'Редагувати', es: 'Editar' }),
+    () => triLang(lang, {
+      ru: 'Редактировать', uk: 'Редагувати', es: 'Editar',
+      'pt-BR': 'Editar', vi: 'Chỉnh sửa', id: 'Edit', tr: 'Düzenle', pl: 'Edytuj',
+    }),
     [lang],
   );
   /** Кастомная карточка юзера (не купленный пак): редактируемая. */
@@ -603,15 +612,10 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const startDeckSession = useCallback((mode: 'blitz' | 'listening') => {
     if (!trainDeckId || !packTrainingAccessReady) return;
     fcHaptic('tap');
-    void (async () => {
-      // Размер сессии — из последнего пресета (fc_mode_prefs_v1), дефолт 15 (§3.5)
-      const preset = await getLastPreset(mode).catch(() => null);
-      const size = preset?.size ?? FC_DEFAULT_SESSION_SIZE;
-      router.push({
-        pathname: mode === 'blitz' ? '/flashcards_blitz_session' : '/flashcards_listening_session',
-        params: { deck: trainDeckId, size: String(size) },
-      } as any);
-    })();
+    router.push({
+      pathname: mode === 'blitz' ? '/flashcards_blitz_session' : '/flashcards_listening_session',
+      params: { deck: trainDeckId, ...(mode === 'listening' ? { size: 'preset' } : {}) },
+    } as any);
   }, [packTrainingAccessReady, trainDeckId, router]);
   const startDeckTraining = useCallback(() => startDeckSession('blitz'), [startDeckSession]);
   const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);

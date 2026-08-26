@@ -121,7 +121,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 <Ionicons name="checkmark-circle" size={16} color={t.gold} />
                 <Text style={{ color: t.gold, fontSize: 13, fontWeight: '700' }}>
                   {triLang(lang, {
-                    ru: 'Уже забрано', uk: 'Вже забрано', es: 'Ya reclamado', 'pt-BR': 'Já resgatado',
+                    ru: 'Уже забрано', uk: 'Вже забрано', en: 'Already claimed', es: 'Ya reclamado', 'pt-BR': 'Já resgatado',
                     vi: 'Đã nhận', id: 'Sudah diambil', tr: 'Zaten alındı', pl: 'Już odebrane',
                   })}
                 </Text>
@@ -139,7 +139,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                     несёт идентичный guard-ok на этой же фразе. */}
                 <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
                   {triLang(lang, {
-                    ru: `Нужно накопить ${starsToUnlock} рун`, uk: `Потрібно назбирати ${starsToUnlock} рун`, es: `Necesitas ${starsToUnlock} runas`,
+                    ru: `Нужно накопить ${starsToUnlock} рун`, uk: `Потрібно назбирати ${starsToUnlock} рун`, en: `Need to collect ${starsToUnlock} runes`, es: `Necesitas ${starsToUnlock} runas`,
                     'pt-BR': `Precisa juntar ${starsToUnlock} runas`, vi: `Cần tích ${starsToUnlock} rune`, id: `Perlu kumpulkan ${starsToUnlock} rune`,
                     tr: `${starsToUnlock} rün toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} run`,
                   })}
@@ -165,7 +165,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                   }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                   </Text>
                 </PressableHybrid>
                 <DuoPressable
@@ -177,7 +177,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                   style={{ minHeight: ds.buttonHeight, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}
                 >
                   <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
+                    {triLang(lang, { ru: 'Забрать', uk: 'Забрати', en: 'Claim', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
                   </Text>
                 </DuoPressable>
               </View>
@@ -192,7 +192,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
               >
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
                   {triLang(lang, {
-                    ru: 'Нужен пропуск', uk: 'Потрібна перепустка', es: 'Necesitas el pase', 'pt-BR': 'Precisa do passe',
+                    ru: 'Нужен пропуск', uk: 'Потрібна перепустка', en: 'Pass needed', es: 'Necesitas el pase', 'pt-BR': 'Precisa do passe',
                     vi: 'Cần vé mùa', id: 'Butuh pass', tr: 'Bilet gerekli', pl: 'Potrzebna przepustka',
                   })}
                 </Text>
@@ -207,7 +207,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 style={{ minHeight: ds.buttonHeight, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                  {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
                 </Text>
               </DuoPressable>
             )}
@@ -220,7 +220,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onDismiss}>
       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)' }}>
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={{ width: '100%' }}
           contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 24 }}
         >
@@ -252,7 +252,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
               <Ionicons name="checkmark-circle" size={16} color={t.gold} />
               <Text style={{ color: t.gold, fontSize: 13, fontWeight: '800' }}>
                 {triLang(lang, {
-                  ru: 'Уже забрано', uk: 'Вже забрано', es: 'Ya reclamado', 'pt-BR': 'Já resgatado',
+                  ru: 'Уже забрано', uk: 'Вже забрано', en: 'Already claimed', es: 'Ya reclamado', 'pt-BR': 'Já resgatado',
                   vi: 'Đã nhận', id: 'Sudah diambil', tr: 'Zaten alındı', pl: 'Już odebrane',
                 })}
               </Text>
@@ -273,7 +273,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                   8 языках, смысл фразы («нужно накопить N рун») не изменился. */}
               <Text /* guard-ok: самостоятельный статус-индикатор доступности («сколько ещё нужно»), не подпись-расшифровка под заголовком модалки — тот же паттерн, что и блок «Уже забрано» чуть выше */ style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: `Нужно накопить ${starsToUnlock} рун`, uk: `Потрібно назбирати ${starsToUnlock} рун`, es: `Necesitas ${starsToUnlock} runas`,
+                  ru: `Нужно накопить ${starsToUnlock} рун`, uk: `Потрібно назбирати ${starsToUnlock} рун`, en: `Need to collect ${starsToUnlock} runes`, es: `Necesitas ${starsToUnlock} runas`,
                   'pt-BR': `Precisa juntar ${starsToUnlock} runas`, vi: `Cần tích ${starsToUnlock} rune`, id: `Perlu kumpulkan ${starsToUnlock} rune`,
                   tr: `${starsToUnlock} rün toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} run`,
                 })}
@@ -291,7 +291,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -302,7 +302,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
               >
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
+                  {triLang(lang, { ru: 'Забрать', uk: 'Забрати', en: 'Claim', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -316,7 +316,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
             >
               <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: 'Нужен пропуск', uk: 'Потрібна перепустка', es: 'Necesitas el pase', 'pt-BR': 'Precisa do passe',
+                  ru: 'Нужен пропуск', uk: 'Потрібна перепустка', en: 'Pass needed', es: 'Necesitas el pase', 'pt-BR': 'Precisa do passe',
                   vi: 'Cần vé mùa', id: 'Butuh pass', tr: 'Bilet gerekli', pl: 'Potrzebna przepustka',
                 })}
               </Text>
@@ -330,7 +330,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
               style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
             >
               <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
               </Text>
             </TouchableOpacity>
           )}

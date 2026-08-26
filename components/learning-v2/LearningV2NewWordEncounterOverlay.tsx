@@ -1,6 +1,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useMemo } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Animated as RNAnimated,
+  Pressable,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import Animated, {
   FadeIn,
   FadeInDown,
@@ -8,15 +15,36 @@ import Animated, {
   useReducedMotion,
 } from "react-native-reanimated";
 
+import FlashcardListItem from "../../app/flashcards/FlashcardListItem";
+import {
+  UGC_CARD_THEME_IDS,
+  ugcCardChrome,
+} from "../../app/community_packs/ugcCardThemePresets";
+import {
+  FLASHCARD_LIST_ITEM_CARD_STYLE,
+  resolveFlashcardListItemHeight,
+} from "../../app/flashcards/FlashcardListItemChrome";
+import type {
+  CardItem,
+  FlashcardContentLang,
+} from "../../app/flashcards/types";
 import { learningV2NewWordEncounterCopy } from "../../app/learning_v2_new_word_encounter_copy";
 import type {
   LearningV2NewWordAudioStateV1,
   LearningV2NewWordSaveStateV1,
 } from "../../app/learning_v2_new_word_encounter_copy";
-import { useTheme } from "../ThemeContext";
-import { LinearGradient } from "../SafeLinearGradient";
+import {
+  createLearningV2NewWordAutoFlipControllerV1,
+  learningV2NewWordAudioEnabledV1,
+} from "../../app/learning_v2_new_word_card_runtime_v1";
 import type { LearningV2InterfaceLocale } from "../../modules/learning-v2/content/generator_course_contract";
+import { learningV2NewWordFlipHintV1 } from "../../modules/learning-v2/modes/mode_copy_v1";
 import type { LearningV2CourseSessionNewWordEncounterV1 } from "../../modules/learning-v2/runtime/course_session_client_children_v1";
+import { useTheme } from "../ThemeContext";
+import { V2Cta } from "../ui/v2_ui";
+
+export const NEW_WORD_AUTO_FLIP_MS = 3_000;
+const NEW_WORD_FLIP_MS = 180;
 
 export interface LearningV2NewWordEncounterOverlayProps {
   encounter: LearningV2CourseSessionNewWordEncounterV1;
@@ -25,7 +53,9 @@ export interface LearningV2NewWordEncounterOverlayProps {
   total: number;
   saveState: LearningV2NewWordSaveStateV1;
   audioState: LearningV2NewWordAudioStateV1;
-  onContinue: () => void;
+  /** Persist the unlock before any decorative motion starts. */
+  onContinue: () => void | Promise<void>;
+  onFlightComplete: () => void;
   onToggleSave: () => void;
   onPlayAudio: () => void;
 }
@@ -38,12 +68,17 @@ export default function LearningV2NewWordEncounterOverlay({
   saveState,
   audioState,
   onContinue,
+  onFlightComplete,
   onToggleSave,
   onPlayAudio,
 }: LearningV2NewWordEncounterOverlayProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, f, uiScale, isDark } = useTheme();
+  const { height: screenHeight } = useWindowDimensions();
   const reduceMotion = useReducedMotion();
   const word = encounter.save.targetText;
+  // Legacy wire name; this is the manually authored, dictionary-precise
+  // definition shown below the card, never on the translation side.
+  const editorialDefinition = encounter.playfulMeaningByLocale[locale];
   const copy = useMemo(
     () =>
       learningV2NewWordEncounterCopy({
@@ -63,12 +98,127 @@ export default function LearningV2NewWordEncounterOverlay({
       : FadeInUp.springify().damping(22).stiffness(150);
   const saved = saveState === "saved";
   const saveDisabled = saveState === "saving";
-  const audioDisabled =
-    audioState === "unavailable" || audioState === "autoplay_pending";
+  // New-word cards belong to the user's permanent Cards collection, so their
+  // material is stable across lesson themes. Only the surrounding lesson keeps
+  // the active palette.
+  const cardTheme = useMemo(() => {
+    // Exact palettes from the Cards editor, rotated deterministically so a
+    // new encounter feels new without changing colour on a rerender.
+    const available = UGC_CARD_THEME_IDS.filter(
+      (themeId) => themeId !== "violet_nebula",
+    );
+    const themeId = available[(Math.max(1, position) - 1) % available.length];
+    const chrome = ugcCardChrome(themeId, {
+      isLight: !isDark,
+      bgCard: t.bgCard,
+      bgSurface: t.bgSurface,
+    });
+    return {
+      ...t,
+      border: chrome.borderAccent,
+      accent: chrome.accent,
+      cardGradient: chrome.frontGradient,
+    };
+  }, [isDark, position, t]);
+  const cardLocale: FlashcardContentLang = locale === "en" ? "ru" : locale;
+  // Reverse side is deliberately the exact short translation. The playful
+  // editorial line belongs to teaching copy, never to the flashcard back.
+  const exactMeaningByLocale = encounter.save.meaningByLocale;
+  const exactTranslation = exactMeaningByLocale[locale];
+  const cardItem = useMemo<CardItem>(
+    () => ({
+      id: `learning-v2-new-word-${encounter.lexicalItemId}`,
+      en: word,
+      ru: exactTranslation,
+      uk: exactTranslation,
+      es: exactTranslation,
+      sourceLocales: { [cardLocale]: exactTranslation },
+      transcription: encounter.transcription,
+      categoryId: "saved",
+      isSystem: true,
+    }),
+    [cardLocale, encounter.lexicalItemId, encounter.transcription, exactTranslation, word],
+  );
+  const cardHeight = resolveFlashcardListItemHeight(
+    screenHeight,
+    0,
+    0,
+    uiScale,
+  );
+  const flipAnim = useRef(new RNAnimated.Value(0)).current;
+  const overlayAnim = useRef(new RNAnimated.Value(0)).current;
+  const deleteOpacity = useRef(new RNAnimated.Value(1)).current;
+  const deleteScale = useRef(new RNAnimated.Value(1)).current;
+  const pocketFlight = useRef(new RNAnimated.Value(0)).current;
+  const [continuing, setContinuing] = useState(false);
+  const flippedRef = useRef(false);
+  const autoFlipControllerRef = useRef<ReturnType<
+    typeof createLearningV2NewWordAutoFlipControllerV1
+  > | null>(null);
+  const animateFlipTo = useCallback(
+    (next: boolean) => {
+      flippedRef.current = next;
+      flipAnim.stopAnimation();
+      RNAnimated.timing(flipAnim, {
+        toValue: next ? 1 : 0,
+        duration: reduceMotion ? 0 : NEW_WORD_FLIP_MS,
+        useNativeDriver: true,
+      }).start();
+    },
+    [flipAnim, reduceMotion],
+  );
+  const onFlipFromCardsComponent = useCallback(() => {
+    autoFlipControllerRef.current?.manualFlip();
+    animateFlipTo(!flippedRef.current);
+  }, [animateFlipTo]);
+  useEffect(() => {
+    const controller = createLearningV2NewWordAutoFlipControllerV1({
+      delayMs: NEW_WORD_AUTO_FLIP_MS,
+      schedule: (callback, delayMs) => setTimeout(callback, delayMs),
+      cancel: (timer) => clearTimeout(timer as ReturnType<typeof setTimeout>),
+      onAutoFlip: () => {
+        if (!flippedRef.current) animateFlipTo(true);
+      },
+    });
+    autoFlipControllerRef.current = controller;
+    controller.arm();
+    return () => {
+      controller.dispose();
+      if (autoFlipControllerRef.current === controller) {
+        autoFlipControllerRef.current = null;
+      }
+    };
+  }, [animateFlipTo]);
+  const onSpeakFromCardsComponent = useCallback(() => {
+    onPlayAudio();
+  }, [onPlayAudio]);
+  const continueToPocket = useCallback(async () => {
+    if (continuing) return;
+    setContinuing(true);
+    try {
+      await onContinue();
+    } catch {
+      setContinuing(false);
+      return;
+    }
+    if (reduceMotion) {
+      onFlightComplete();
+      return;
+    }
+    RNAnimated.timing(pocketFlight, {
+      toValue: 1,
+      duration: 230,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) onFlightComplete();
+      else setContinuing(false);
+    });
+  }, [continuing, onContinue, onFlightComplete, pocketFlight, reduceMotion]);
 
   return (
     <View
       testID="learning-v2-new-word-overlay"
+      pointerEvents="auto"
       style={styles.overlay}
       accessibilityViewIsModal
       importantForAccessibility="yes"
@@ -77,152 +227,125 @@ export default function LearningV2NewWordEncounterOverlay({
         pointerEvents="none"
         style={[styles.backdrop, { backgroundColor: t.shadowDark }]}
       />
-      <Animated.View
-        entering={entering}
-        style={[
-          styles.card,
-          {
-            backgroundColor: t.bgCard,
-            borderColor: t.borderLight,
-            shadowColor: t.shadowDark,
-          },
-        ]}
-      >
-        {!reduceMotion ? (
-          <LinearGradient
-            testID="learning-v2-new-word-holo-sweep"
-            pointerEvents="none"
-            accessibilityElementsHidden
-            importantForAccessibility="no-hide-descendants"
-            colors={[t.bgSurface2, t.accentBg, t.bgSurface2]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.holo}
-          />
-        ) : null}
-
-        <ScrollView
-          bounces={false}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.content}
-        >
-          <View style={styles.header}>
-            <View
-              style={[styles.labelPill, { backgroundColor: t.accentBg }]}
-              accessibilityRole="text"
-            >
-              <Text style={[styles.label, { color: t.accent }]}>
-                {copy.label}
-              </Text>
-            </View>
-            <Text style={[styles.counter, { color: t.textMuted }]}>
-              {copy.counter}
-            </Text>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={copy.saveLabel}
-              accessibilityHint={copy.saveLabel}
-              accessibilityState={{ disabled: saveDisabled, selected: saved }}
-              disabled={saveDisabled}
-              hitSlop={8}
-              onPress={onToggleSave}
-              style={({ pressed }) => [
-                styles.iconButton,
-                {
-                  backgroundColor: t.bgSurface2,
-                  borderColor: saved ? t.accent : t.border,
-                  opacity: pressed ? 0.72 : saveDisabled ? 0.55 : 1,
-                },
-              ]}
-            >
-              <Ionicons
-                name={saved ? "bookmark" : "bookmark-outline"}
-                size={23}
-                color={saved ? t.accent : t.textMuted}
-              />
-            </Pressable>
-          </View>
-
-          <View style={styles.wordRow}>
-            <Text
-              testID="learning-v2-new-word-target"
-              accessibilityRole="header"
-              accessibilityLanguage={encounter.save.targetLanguage}
-              style={[styles.target, { color: t.accent }]}
-            >
-              {word}
-            </Text>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={copy.audioLabel}
-              accessibilityHint={copy.audioLabel}
-              accessibilityState={{ disabled: audioDisabled }}
-              disabled={audioDisabled}
-              hitSlop={8}
-              onPress={onPlayAudio}
-              style={({ pressed }) => [
-                styles.iconButton,
-                {
-                  backgroundColor: t.bgSurface2,
-                  borderColor: t.border,
-                  opacity: pressed ? 0.72 : audioDisabled ? 0.52 : 1,
-                },
-              ]}
-            >
-              <Ionicons
-                name={
-                  audioState === "playing"
-                    ? "volume-high"
-                    : "volume-medium-outline"
-                }
-                size={24}
-                color={t.accent}
-              />
-            </Pressable>
-          </View>
-
-          <Text style={[styles.transcription, { color: t.textMuted }]}>
-            {encounter.transcription}
+      <Animated.View pointerEvents="auto" entering={entering} style={styles.sheet}>
+        <View style={styles.header}>
+          <Text style={[styles.label, { color: t.textPrimary }]}>
+            {copy.label}
           </Text>
-          <View
-            style={[
-              styles.meaningBlock,
-              { backgroundColor: t.bgSurface2, borderColor: t.border },
-            ]}
-          >
-            <Text style={[styles.meaning, { color: t.textPrimary }]}>
-              {encounter.save.meaningByLocale[locale]}
-            </Text>
-            <Text style={[styles.playful, { color: t.textSecond }]}>
-              {encounter.playfulMeaningByLocale[locale]}
-            </Text>
-          </View>
+          <Text style={[styles.counter, { color: t.textMuted }]}>
+            {copy.counter}
+          </Text>
+        </View>
 
-          {copy.saveStatus ? (
-            <Text
-              accessibilityLiveRegion="polite"
-              style={[styles.status, { color: t.textMuted }]}
-            >
-              {copy.saveStatus}
-            </Text>
-          ) : null}
-
+        <RNAnimated.View
+          testID="learning-v2-new-word-compact-card"
+          style={[
+            styles.cardWrap,
+            {
+              opacity: pocketFlight.interpolate({
+                inputRange: [0, 0.7, 1],
+                outputRange: [1, 0.92, 0],
+              }),
+              transform: [
+                {
+                  translateY: pocketFlight.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, Math.max(220, screenHeight * 0.46)],
+                  }),
+                },
+                {
+                  scale: pocketFlight.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 0.18],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          <FlashcardListItem
+          item={cardItem}
+          itemIdx={0}
+          lang={cardLocale}
+          activeCat="saved"
+          deletingId={null}
+          longPressedId={null}
+          t={cardTheme}
+          f={f as unknown as Record<string, number>}
+          sourceLabels={{}}
+          deleteLabel=""
+          voiceLabel={copy.audioLabel}
+          voiceDisabled={!learningV2NewWordAudioEnabledV1(audioState)}
+          cardHeight={cardHeight}
+          cardStyle={FLASHCARD_LIST_ITEM_CARD_STYLE}
+          sourceBadgeStyle={{}}
+          sourceBadgeTextStyle={{}}
+          getCardFlipAnim={() => flipAnim}
+          getOverlayAnim={() => overlayAnim}
+          getDeleteAnim={() => ({ opacity: deleteOpacity, scale: deleteScale })}
+          onFlipCard={onFlipFromCardsComponent}
+          onOpenDelete={() => undefined}
+          onCloseDelete={() => undefined}
+          onDeleteCard={() => undefined}
+          onSpeak={onSpeakFromCardsComponent}
+          strength={null}
+        />
           <Pressable
+            testID="learning-v2-new-word-save"
             accessibilityRole="button"
-            onPress={onContinue}
+            accessibilityLabel={copy.saveLabel}
+            accessibilityState={{ disabled: saveDisabled, selected: saved }}
+            disabled={saveDisabled}
+            hitSlop={8}
+            onPress={onToggleSave}
             style={({ pressed }) => [
-              styles.continueButton,
+              styles.cardBookmark,
               {
-                backgroundColor: t.accent,
-                opacity: pressed ? 0.82 : 1,
+                opacity: saveDisabled ? 0.45 : pressed ? 0.68 : 1,
+                transform: [{ scale: pressed ? 0.94 : 1 }],
               },
             ]}
           >
-            <Text style={[styles.continueText, { color: t.correctText }]}>
-              {copy.continue}
-            </Text>
+            <Ionicons
+              name={saved ? "bookmark" : "bookmark-outline"}
+              size={20}
+              color={saved ? cardTheme.accent : cardTheme.textPrimary}
+            />
           </Pressable>
-        </ScrollView>
+        </RNAnimated.View>
+
+        <Text
+          testID="learning-v2-new-word-definition"
+          style={[styles.editorialDefinition, { color: t.textSecond }]}
+        >
+          {editorialDefinition}
+        </Text>
+
+        <Text style={[styles.flipHint, { color: t.textPrimary }]}>
+          {learningV2NewWordFlipHintV1(locale)}
+        </Text>
+
+        <View style={styles.continueRow}>
+          <V2Cta
+            accessibilityLabel={copy.continue}
+            disabled={continuing}
+            onPress={() => {
+              void continueToPocket();
+            }}
+            style={styles.continue}
+          >
+            {copy.continue}
+          </V2Cta>
+        </View>
+
+        {copy.saveStatus ? (
+          <Text
+            accessibilityLiveRegion="polite"
+            style={[styles.status, { color: t.textPrimary }]}
+          >
+            {copy.saveStatus}
+          </Text>
+        ) : null}
       </Animated.View>
     </View>
   );
@@ -239,114 +362,72 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    opacity: 0.78,
+    opacity: 0.82,
   },
-  card: {
+  sheet: {
     width: "100%",
     maxWidth: 560,
-    maxHeight: "92%",
-    overflow: "hidden",
-    borderWidth: 1,
-    borderRadius: 28,
-    shadowOpacity: 0.42,
-    shadowRadius: 30,
-    shadowOffset: { width: 0, height: 18 },
-    elevation: 18,
-  },
-  holo: {
-    ...StyleSheet.absoluteFillObject,
-    opacity: 0.18,
-  },
-  content: {
-    padding: 22,
-    gap: 16,
+    maxHeight: "94%",
+    gap: 14,
   },
   header: {
-    minHeight: 48,
+    minHeight: 32,
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
-  },
-  labelPill: {
-    minHeight: 32,
-    justifyContent: "center",
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    justifyContent: "space-between",
+    paddingHorizontal: 4,
   },
   label: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: "800",
-    letterSpacing: 0.5,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "900",
+    letterSpacing: 0.6,
     textTransform: "uppercase",
   },
   counter: {
-    flex: 1,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "700",
+  },
+  flipHint: {
     fontSize: 14,
     lineHeight: 20,
     fontWeight: "600",
-    textAlign: "right",
+    textAlign: "center",
   },
-  iconButton: {
-    minWidth: 48,
-    minHeight: 48,
-    borderRadius: 16,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  wordRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 14,
-  },
-  target: {
-    flex: 1,
-    fontSize: 48,
-    lineHeight: 58,
-    fontWeight: "900",
-    letterSpacing: -1.2,
-  },
-  transcription: {
-    marginTop: -12,
-    fontSize: 20,
-    lineHeight: 28,
-    fontWeight: "500",
-  },
-  meaningBlock: {
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal: 18,
-    paddingVertical: 16,
-    gap: 10,
-  },
-  meaning: {
-    fontSize: 21,
-    lineHeight: 30,
-    fontWeight: "500",
-  },
-  playful: {
-    fontSize: 17,
-    lineHeight: 25,
-    fontWeight: "400",
-  },
-  status: {
+  editorialDefinition: {
+    paddingHorizontal: 8,
     fontSize: 14,
     lineHeight: 20,
-    fontWeight: "500",
+    fontWeight: "600",
+    textAlign: "center",
   },
-  continueButton: {
-    minHeight: 56,
-    borderRadius: 18,
+  cardWrap: {
+    position: "relative",
+  },
+  cardBookmark: {
+    position: "absolute",
+    right: 12,
+    bottom: 12,
+    zIndex: 5,
+    width: 44,
+    height: 44,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 14,
   },
-  continueText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: "900",
+  continueRow: {
+    width: "100%",
+    alignItems: "center",
+  },
+  continue: {
+    width: "72%",
+    maxWidth: 360,
+  },
+  status: {
+    minHeight: 20,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "600",
+    textAlign: "center",
   },
 });

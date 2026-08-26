@@ -13,6 +13,7 @@ import {
   PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
   PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
   readPendingLevelGiftCountCache,
+  readLevelSpinGiftOccurrenceClaimState,
   restoreDualGiftPartAfterFailedClaim,
   saveRemainingGiftAfterPartialDualClaim,
   saveUnclaimedDualGift,
@@ -121,8 +122,74 @@ describe('level gift inventory', () => {
     expect(items.find((item) => item.kind === 'single' && item.gift.id === 'xp_100'))
       .toMatchObject({ spinOccurrence: { requestId: '1234567890abcdef', lane: 'base' } });
 
-    await markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token);
+    await expect(markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token))
+      .resolves.toBe(true);
     expect(pendingGiftIds(await loadPendingLevelGiftInventory('en'))).toEqual(['xp_250']);
+  });
+
+  it('reports failure when the requested spin journal lane is absent', async () => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      occurrences: [{ lane: 'premium', giftId: 'xp_100', claimed: false }],
+    }]);
+
+    await expect(markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token))
+      .resolves.toBe(false);
+    expect(JSON.parse(mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY])[0].occurrences[0].claimed).toBe(false);
+  });
+
+  it('distinguishes pending, claimed, and missing durable spin lanes', async () => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      occurrences: [{ lane: 'base', giftId: 'xp_100', claimed: false }],
+    }]);
+
+    await expect(readLevelSpinGiftOccurrenceClaimState('1234567890abcdef', 'base', token))
+      .resolves.toBe('pending');
+    await expect(readLevelSpinGiftOccurrenceClaimState('1234567890abcdef', 'premium', token))
+      .resolves.toBe('missing');
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      occurrences: [{ lane: 'base', giftId: 'xp_100', claimed: true }],
+    }]);
+    await expect(readLevelSpinGiftOccurrenceClaimState('1234567890abcdef', 'base', token))
+      .resolves.toBe('claimed');
+  });
+
+  it('reports failure when a claimed spin lane cannot be read back durably', async () => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      occurrences: [{ lane: 'base', giftId: 'xp_100', claimed: false }],
+    }]);
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce(() => Promise.resolve());
+
+    await expect(markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token))
+      .resolves.toBe(false);
+    expect(JSON.parse(mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY])[0].occurrences[0].claimed).toBe(false);
+  });
+
+  it('accepts an already-claimed matching spin lane only after reading it back', async () => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: '1234567890abcdef',
+      occurrences: [{ lane: 'base', giftId: 'xp_100', claimed: true }],
+    }]);
+
+    await expect(markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token))
+      .resolves.toBe(true);
+    expect(AsyncStorage.getItem).toHaveBeenCalledWith(LEVEL_SPIN_GIFT_JOURNAL_KEY);
   });
 
   it('quarantines an unknown legacy reward without deleting its recovery data', async () => {

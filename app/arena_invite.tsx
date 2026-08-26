@@ -12,7 +12,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useLang } from '../components/LangContext';
 import { arenaText } from '../modules/arena/copy';
 import { arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 
@@ -28,7 +28,12 @@ export default function ArenaInviteScreen() {
   const [busy, setBusy] = useState(false);
   // Принятие вызова друга = 1 ⚡ у принимающего (владелец 2026-08-23: единая
   // экономика, платим за ПОПЫТКУ — списание в accept() ниже).
-  const { confirmSpendOne: confirmInviteEnergy, refundOne: refundInviteEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmInviteEnergy,
+    refundOne: refundInviteEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
+  const inviteEnergyIntent = useEnergySessionIntent('arena_invite_accept', inviteId, inviteId);
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [error, setError] = useState('');
   const [now, setNow] = useState(Date.now());
@@ -105,9 +110,10 @@ export default function ArenaInviteScreen() {
     // Латч закрывает щель между проверкой и setBusy(true); дальше защищает busy.
     chargeInFlightRef.current = true;
     let energyCharged = false;
+    let entryGranted = false;
     let energyResult: Awaited<ReturnType<typeof confirmInviteEnergy>>;
     try {
-      energyResult = await confirmInviteEnergy();
+      energyResult = await confirmInviteEnergy(inviteEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
       energyCharged = energyResult === 'spent';
@@ -117,13 +123,20 @@ export default function ArenaInviteScreen() {
     }
     try {
       const accepted = await arenaV2InviteAccept(inviteId);
+      // Acceptance is the exact authoritative grant paired with the debit.
+      // A later rendezvous poll failure is not an entry failure and must not
+      // mint a compensating unit of energy.
+      entryGranted = true;
+      if (energyCharged) void acknowledgeSessionStart(inviteEnergyIntent.operationId);
       if (handleStatus(accepted)) return;
       const ready = await arenaV2InviteReady(inviteId);
       handleStatus(ready);
     } catch {
       // зачем: вызов не принят (нет сети / отказ сервера) — входа не случилось,
       // плата возвращается. Иначе теряется единица за чужую сетевую ошибку.
-      if (energyCharged) void refundInviteEnergy();
+      if (energyCharged && !entryGranted) {
+        void refundInviteEnergy(inviteEnergyIntent.operationId, 'entry_failed').catch(() => {});
+      }
       setError(`${arenaText(lang, 'joinFailed')}. ${arenaText(lang, 'joinFailedHint')}`);
     }
     finally { setBusy(false); }

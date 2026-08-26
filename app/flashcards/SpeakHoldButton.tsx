@@ -81,12 +81,12 @@ export default function SpeakHoldButton({
   }));
 
   const onPressIn = useCallback(() => {
+    press.value = reduceMotion ? withTiming(1, { duration: 50 }) : withSpring(1, PRESS_SPRING);
     void hapticTap();
     if (!isPremium) {
       router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as never);
       return;
     }
-    press.value = reduceMotion ? withTiming(1, { duration: 50 }) : withSpring(1, PRESS_SPRING);
     onHoldStart();
   }, [isPremium, router, press, reduceMotion, onHoldStart]);
 

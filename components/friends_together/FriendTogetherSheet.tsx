@@ -134,7 +134,7 @@ function FriendTogetherSheet({
               <Ionicons name="close" size={20} color={t.textMuted} />
             </PressableHybrid>
           </View>
-          <ScrollView style={styles.scroll} nestedScrollEnabled showsVerticalScrollIndicator={false} contentContainerStyle={styles.body}>
+          <ScrollView decelerationRate="fast" style={styles.scroll} nestedScrollEnabled showsVerticalScrollIndicator={false} contentContainerStyle={styles.body}>
             {together && (
               <View testID="friend-together-sheet-together-hero" style={styles.hero}>
                 <View style={styles.pairRow}>

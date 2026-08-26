@@ -47,6 +47,26 @@ function propertyNameText(name: ts.PropertyName | ts.JsxAttributeName, _sourceFi
 
 type StaticRate = 'normal' | 'fast' | 'unsupported';
 
+const SHARP_SCROLL_ELEMENTS = new Set([
+  'ScrollView',
+  'FlatList',
+  'SectionList',
+  'FlashList',
+  'Animated.ScrollView',
+  'Animated.FlatList',
+  'Reanimated.ScrollView',
+  'Reanimated.FlatList',
+  'AnimatedFlashList',
+  'BouncyScrollView',
+]);
+
+function isLearningV2MotionSurface(file: string): boolean {
+  const normalized = file.replace(/\\/g, '/').toLowerCase();
+  return normalized.includes('/learning-v2/')
+    || normalized.includes('learning_v2_')
+    || normalized.includes('/modules/learning-v2/');
+}
+
 function staticRateFromExpression(expression: ts.Expression): StaticRate {
   const value = unwrapExpression(expression);
   if (ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value)) {
@@ -278,27 +298,35 @@ function collectUnsafeDecelerationRates(source: string, file: string): string[] 
   );
   const constInitializers = collectConstInitializers(sourceFile);
   const offenders: string[] = [];
+  const isBouncyImplementation = file.replace(/\\/g, '/') === 'components/BouncyScrollView.tsx';
 
-  const addOffender = (node: ts.Node, rate: StaticRate) => {
-    const reason = rate === 'fast' ? 'fast without snap/paging' : 'dynamic or numeric rate';
+  const addOffender = (node: ts.Node, rate: StaticRate, explicitReason?: string) => {
+    const reason = explicitReason
+      ?? (rate === 'normal' ? 'normal is not sharp' : 'dynamic or numeric rate');
     offenders.push(`${file}:${lineNumberAt(sourceFile, node.getStart(sourceFile))} (${reason})`);
   };
 
   const visit = (node: ts.Node): void => {
-    if (ts.isJsxAttribute(node) && propertyNameText(node.name, sourceFile) === 'decelerationRate') {
+    if (
+      (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node))
+      && SHARP_SCROLL_ELEMENTS.has(node.tagName.getText(sourceFile))
+      && !node.attributes.properties.some(
+        (attribute) => ts.isJsxAttribute(attribute)
+          && propertyNameText(attribute.name, sourceFile) === 'decelerationRate',
+      )
+    ) {
+      addOffender(node, 'unsupported', 'missing explicit fast rate');
+    } else if (ts.isJsxAttribute(node) && propertyNameText(node.name, sourceFile) === 'decelerationRate') {
       const rate = staticRateFromJsxAttribute(node);
-      if (
-        rate !== 'normal'
-        && !(rate === 'fast' && jsxHasIntentionalStop(node, sourceFile, constInitializers))
-      ) {
+      const isBouncyDefaultForward = isBouncyImplementation
+        && node.initializer?.getText(sourceFile) === '{decelerationRate}'
+        && source.includes("decelerationRate = 'fast'");
+      if (rate !== 'fast' && !isBouncyDefaultForward) {
         addOffender(node, rate);
       }
     } else if (ts.isPropertyAssignment(node) && propertyNameText(node.name, sourceFile) === 'decelerationRate') {
       const rate = staticRateFromExpression(node.initializer);
-      if (
-        rate !== 'normal'
-        && !(rate === 'fast' && objectHasIntentionalStop(node, sourceFile, constInitializers))
-      ) {
+      if (rate !== 'fast') {
         addOffender(node, rate);
       }
     } else if (
@@ -323,33 +351,35 @@ function collectUnsafeDecelerationRates(source: string, file: string): string[] 
 
 describe('scroll inertia analyzer', () => {
   it.each([
-    ['normal vertical scroll', '<ScrollView decelerationRate="normal" />', 0],
-    ['ordinary vertical fast scroll', '<ScrollView decelerationRate="fast" />', 1],
-    ['ordinary horizontal fast scroll', '<ScrollView horizontal decelerationRate="fast" />', 1],
+    ['missing rate', '<ScrollView />', 1],
+    ['unrelated view', '<View />', 0],
+    ['normal vertical scroll', '<ScrollView decelerationRate="normal" />', 1],
+    ['ordinary vertical fast scroll', '<ScrollView decelerationRate="fast" />', 0],
+    ['ordinary horizontal fast scroll', '<ScrollView horizontal decelerationRate="fast" />', 0],
     ['paged fast scroll', '<ScrollView horizontal pagingEnabled decelerationRate="fast" />', 0],
     ['explicitly enabled paged fast scroll', '<ScrollView pagingEnabled={true} decelerationRate="fast" />', 0],
-    ['disabled paging', '<ScrollView pagingEnabled={false} decelerationRate="fast" />', 1],
-    ['unresolved snapping', '<ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate="fast" />', 1],
-    ['disabled snapping', '<ScrollView snapToInterval={undefined} decelerationRate="fast" />', 1],
-    ['expression fast literal', "<ScrollView decelerationRate={'fast'} />", 1],
+    ['disabled paging', '<ScrollView pagingEnabled={false} decelerationRate="fast" />', 0],
+    ['unresolved snapping', '<ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate="fast" />', 0],
+    ['disabled snapping', '<ScrollView snapToInterval={undefined} decelerationRate="fast" />', 0],
+    ['expression fast literal', "<ScrollView decelerationRate={'fast'} />", 0],
     ['numeric rate', '<ScrollView decelerationRate={0.9} />', 1],
     ['aliased rate', '<ScrollView decelerationRate={RATE} />', 1],
-    ['fast props object without snap', "const props = { decelerationRate: 'fast' as const };", 1],
+    ['fast props object without snap', "const props = { decelerationRate: 'fast' as const };", 0],
     ['fast snapping props object', "const props = { snapToInterval: 20, decelerationRate: 'fast' as const };", 0],
     ['shorthand props alias', "const decelerationRate = 'fast'; const props = { decelerationRate };", 1],
-    ['computed props key', "const props = { ['decelerationRate']: 'fast' };", 1],
+    ['computed props key', "const props = { ['decelerationRate']: 'fast' };", 0],
     ['getter props value', "const props = { get decelerationRate() { return 'fast'; } };", 1],
-    ['void snapping', '<ScrollView snapToInterval={void 0} decelerationRate="fast" />', 1],
-    ['empty snap offsets', '<ScrollView snapToOffsets={[]} decelerationRate="fast" />', 1],
-    ['NaN snapping', '<ScrollView snapToInterval={NaN} decelerationRate="fast" />', 1],
-    ['zero const snapping', "const ITEM_HEIGHT = 0; <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />", 1],
+    ['void snapping', '<ScrollView snapToInterval={void 0} decelerationRate="fast" />', 0],
+    ['empty snap offsets', '<ScrollView snapToOffsets={[]} decelerationRate="fast" />', 0],
+    ['NaN snapping', '<ScrollView snapToInterval={NaN} decelerationRate="fast" />', 0],
+    ['zero const snapping', "const ITEM_HEIGHT = 0; <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />", 0],
     ['positive const snapping', "const ITEM_HEIGHT = 44; <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />", 0],
     ['derived const snapping', "const WIDTH = 90; const GAP = 10; <ScrollView snapToInterval={WIDTH + GAP} decelerationRate=\"fast\" />", 0],
-    ['parameter shadows positive const', "const ITEM_HEIGHT = 44; function View({ ITEM_HEIGHT }: { ITEM_HEIGHT?: number }) { return <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />; }", 1],
-    ['let shadows positive const', "const ITEM_HEIGHT = 44; function View() { let ITEM_HEIGHT = 0; return <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />; }", 1],
-    ['nested const is out of scope', "function Other() { const ITEM_HEIGHT = 44; return ITEM_HEIGHT; } <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />", 1],
-    ['named function expression shadows positive const', "const ITEM_HEIGHT = 44; const View = function ITEM_HEIGHT() { return <ScrollView snapToInterval={ITEM_HEIGHT as unknown as number} decelerationRate=\"fast\" />; };", 1],
-    ['named class expression shadows positive const', "const ITEM_HEIGHT = 44; const View = class ITEM_HEIGHT { render() { return <ScrollView snapToInterval={ITEM_HEIGHT as unknown as number} decelerationRate=\"fast\" />; } };", 1],
+    ['parameter shadows positive const', "const ITEM_HEIGHT = 44; function View({ ITEM_HEIGHT }: { ITEM_HEIGHT?: number }) { return <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />; }", 0],
+    ['let shadows positive const', "const ITEM_HEIGHT = 44; function View() { let ITEM_HEIGHT = 0; return <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />; }", 0],
+    ['nested const is out of scope', "function Other() { const ITEM_HEIGHT = 44; return ITEM_HEIGHT; } <ScrollView snapToInterval={ITEM_HEIGHT} decelerationRate=\"fast\" />", 0],
+    ['named function expression shadows positive const', "const ITEM_HEIGHT = 44; const View = function ITEM_HEIGHT() { return <ScrollView snapToInterval={ITEM_HEIGHT as unknown as number} decelerationRate=\"fast\" />; };", 0],
+    ['named class expression shadows positive const', "const ITEM_HEIGHT = 44; const View = class ITEM_HEIGHT { render() { return <ScrollView snapToInterval={ITEM_HEIGHT as unknown as number} decelerationRate=\"fast\" />; } };", 0],
     ['non-empty snap offsets', '<ScrollView snapToOffsets={[0, 20]} decelerationRate="fast" />', 0],
     ['comment text', '// <ScrollView decelerationRate="fast" />', 0],
   ])('%s', (_name, source, expectedCount) => {
@@ -358,11 +388,13 @@ describe('scroll inertia analyzer', () => {
 });
 
 describe('scroll inertia contract', () => {
-  it('keeps fast deceleration only for explicitly enabled snapping or paging controls', () => {
-    const offenders = SOURCE_ROOTS.flatMap(listSourceFiles).flatMap((file) => {
-      const relativeFile = path.relative(PROJECT_ROOT, file);
-      return collectUnsafeDecelerationRates(fs.readFileSync(file, 'utf8'), relativeFile);
-    });
+  it('requires explicit sharp deceleration on every ordinary app scroll surface', () => {
+    const offenders = SOURCE_ROOTS.flatMap(listSourceFiles)
+      .filter((file) => !isLearningV2MotionSurface(file))
+      .flatMap((file) => {
+        const relativeFile = path.relative(PROJECT_ROOT, file);
+        return collectUnsafeDecelerationRates(fs.readFileSync(file, 'utf8'), relativeFile);
+      });
 
     expect(offenders).toEqual([]);
   });

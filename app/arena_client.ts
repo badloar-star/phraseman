@@ -26,7 +26,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureStableAuthLink } from './cloud_sync';
 import { getVersionForServerGate } from './app_version';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
@@ -111,7 +111,18 @@ async function prepareArenaCall<T>(
   name: string,
   payload: Record<string, unknown> = {},
 ): Promise<() => Promise<T>> {
-  await ensureAnonUser().catch(() => null);
+  // ⛔ НЕ УБИРАТЬ И НЕ ОТКАТЫВАТЬ: Арена обязана быть доступна СРАЗУ после
+  // установки, без привязки аккаунта (владелец, 2026-08-25). arenaV2Home и
+  // остальные callable'ы Арены зовутся с requireKnownIdentity:true —
+  // серверу нужен уже существующий users/{stableId}, а один ensureAnonUser()
+  // создаёт только ЛОКАЛЬНЫЙ id и анонимный вход, без записи на сервере.
+  // На свежей установке это гонка: сервер честно отвечает stable_id_required,
+  // а хаб рисует «Арена не включена», хотя рубильник ни при чём. Здесь
+  // используем тот же bootstrap, что уже стоит перед лидербордом/друзьями/
+  // квестами (ensureStableAuthLink = ensureAnonUser + серверная привязка),
+  // чтобы users/{stableId} гарантированно существовал до первого arenaV2Home.
+  // Не заменять обратно на голый ensureAnonUser().
+  await ensureStableAuthLink().catch(() => false);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
@@ -126,9 +137,26 @@ async function prepareArenaCall<T>(
   return () => callable({ ...payload, clientVersion }).then((result) => result.data as T);
 }
 
+function isArenaStableIdRace(error: unknown): boolean {
+  const code = String((error as { code?: unknown })?.code ?? '');
+  const message = String((error as { message?: unknown })?.message ?? '');
+  return code.includes('failed-precondition')
+    && (message.includes('stable_id_required') || message.includes('stable_identity_missing'));
+}
+
 async function callArena<T>(name: string, payload: Record<string, unknown> = {}): Promise<T> {
   const dispatch = await prepareArenaCall<T>(name, payload);
-  return dispatch();
+  try {
+    return await dispatch();
+  } catch (error) {
+    // ⛔ НЕ УБИРАТЬ: закрывает гонку, когда bootstrap (ensureStableAuthLink
+    // выше) не успел/не смог создать users/{stableId} до звонка — например,
+    // из-за обрыва сети. Один повтор, не бесконечный ретрай.
+    if (!isArenaStableIdRace(error)) throw error;
+    await ensureStableAuthLink().catch(() => false);
+    const retryDispatch = await prepareArenaCall<T>(name, payload);
+    return retryDispatch();
+  }
 }
 
 export function createArenaRequestId(prefix = 'arena'): string {

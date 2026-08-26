@@ -15,7 +15,8 @@ import {
   ensureFrenchRemoteDailyPhrases,
   getCachedFrenchRemoteDailyPhraseForDay,
 } from './french_daily_phrase_remote_runtime';
-import { IDIOMS, Idiom, type IdiomSourceLocaleMap } from './idioms_data';
+import type { Idiom, IdiomSourceLocaleMap } from './idioms_data';
+import { getIdiomsSync } from './idioms_lazy';
 import type { SourceLocale } from './source_locales';
 import {
   dailyPhraseKey,
@@ -92,8 +93,9 @@ const getDayIndex = (): number => {
 };
 
 const idiomForDay = (): Idiom => {
-  const idx = getDayIndex() % IDIOMS.length;
-  return IDIOMS[idx];
+  const all = getIdiomsSync();
+  const idx = getDayIndex() % all.length;
+  return all[idx];
 };
 
 function todayKey(): string {
@@ -343,8 +345,49 @@ async function readCachedRemotePhrase(date: string): Promise<DailyPhrase | null>
   }
 }
 
+// ── Peek-кэш «фразы дня» ─────────────────────────────────────────────────────
+// зачем (ускорение сплэша, 2026-08-25): первый кадр Главной раньше синхронно
+// поднимал ВЕСЬ каталог идиом (610 КБ JS) ради одной фразы. Теперь сегодняшняя
+// (и заранее завтрашняя) фраза лежит в AsyncStorage, гидрируется в bootstrap-
+// пачке _layout.tsx до первого кадра, и sync-путь отдаёт её из памяти БЕЗ
+// загрузки каталога. Каталог грузится лениво и только вне критического пути:
+// пропущен день (нет пред-вычисленной фразы), квест деталей, уведомления.
+const DAILY_PHRASE_PEEK_KEY = 'daily_phrase_peek_v1';
+let peekPhraseToday: DailyPhrase | null = null;
+
+export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem(DAILY_PHRASE_PEEK_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw) as Record<string, DailyPhrase | undefined>;
+    const todays = parsed?.[todayKey()];
+    if (todays?.english?.trim()) peekPhraseToday = todays;
+  } catch {
+    // best-effort: без peek sync-путь честно поднимет каталог, как раньше
+  }
+}
+
+function rememberPeekPhrases(today: DailyPhrase): void {
+  peekPhraseToday = today;
+  const map: Record<string, DailyPhrase> = { [today.date]: today };
+  try {
+    // Завтрашняя локальная фраза детерминирована (dayIndex+1 по кругу каталога):
+    // считаем её здесь, в фоне, чтобы ЗАВТРАШНИЙ холодный старт тоже не грузил
+    // каталог. Если завтра админ назначит remote-фразу — async-путь заменит её
+    // после первого кадра (та же механика, что была у sync→remote всегда).
+    const all = getIdiomsSync();
+    const tomorrowIdiom = all[(getDayIndex() + 1) % all.length];
+    const tomorrowDate = new Date(Date.now() + 86400000).toISOString().split('T')[0]!;
+    if (tomorrowIdiom) map[tomorrowDate] = phraseFromIdiom(tomorrowIdiom, tomorrowDate);
+  } catch {
+    // каталог недоступен — сохраним хотя бы сегодняшнюю
+  }
+  void AsyncStorage.setItem(DAILY_PHRASE_PEEK_KEY, JSON.stringify(map)).catch(() => {});
+}
+
 /** Sync phrase for first paint; matches idiomForDay() / cloud logic without I/O. */
 export function getTodayPhraseSync(): DailyPhrase {
+  if (peekPhraseToday && peekPhraseToday.date === todayKey()) return peekPhraseToday;
   const idiom = idiomForDay();
   return phraseFromIdiom(idiom);
 }
@@ -368,20 +411,29 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
     if (remote) {
       await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(remote));
       await AsyncStorage.setItem(LAST_PHRASE_DATE_KEY, today);
+      rememberPeekPhrases(remote);
       return remote;
     }
     const cachedRemote = await readCachedRemotePhrase(today);
-    if (cachedRemote) return cachedRemote;
+    if (cachedRemote) {
+      rememberPeekPhrases(cachedRemote);
+      return cachedRemote;
+    }
 
     const savedDate = await AsyncStorage.getItem(LAST_PHRASE_DATE_KEY);
     if (savedDate === today) {
       const phraseStr = await AsyncStorage.getItem(DAILY_PHRASE_KEY);
-      if (phraseStr) return JSON.parse(phraseStr);
+      if (phraseStr) {
+        const saved = JSON.parse(phraseStr) as DailyPhrase;
+        rememberPeekPhrases(saved);
+        return saved;
+      }
     }
     const idiom = idiomForDay();
     const phrase = phraseFromIdiom(idiom, today);
     await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(phrase));
     await AsyncStorage.setItem(LAST_PHRASE_DATE_KEY, today);
+    rememberPeekPhrases(phrase);
     return phrase;
   } catch {
     return getDefaultPhrase();
@@ -400,7 +452,7 @@ export const getTodayPhraseForTarget = async (
 };
 
 const getDefaultPhrase = (): DailyPhrase => {
-  const idiom = IDIOMS[0];
+  const idiom = getIdiomsSync()[0];
   return phraseFromIdiom(idiom);
 };
 

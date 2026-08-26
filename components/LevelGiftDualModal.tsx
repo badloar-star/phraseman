@@ -27,7 +27,7 @@ import { emitAppEvent } from '../app/events';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
 import { useTheme, type Fonts } from './ThemeContext';
-import type { Theme, ThemeMode } from '../constants/theme';
+import { AURORA, DARK, EMBER, MIDNIGHT, VOLT, type Theme, type ThemeMode } from '../constants/theme';
 import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './GiftOpenEffects';
 import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
@@ -75,8 +75,8 @@ export {
 
 /** Подписи сундуков/карточек — не «F2P»/англ. жаргон, а нормальные RU/UK/ES. */
 const DUAL_UI = {
-  firstChest:  { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de nível', vi: 'Quà cấp độ', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' },
-  secondChest: { ru: 'Бонус',             uk: 'Бонус',             es: 'Bono',              'pt-BR': 'Bônus',            vi: 'Thưởng',         id: 'Bonus',         tr: 'Bonus',           pl: 'Bonus' },
+  firstChest:  { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', en: 'Level gift',   'pt-BR': 'Presente de nível', vi: 'Quà cấp độ', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' },
+  secondChest: { ru: 'Бонус',             uk: 'Бонус',             es: 'Bono',              en: 'Bonus',        'pt-BR': 'Bônus',            vi: 'Thưởng',         id: 'Bonus',         tr: 'Bonus',           pl: 'Bonus' },
 } as const;
 
 const emitDualGiftApplyOutcome = (appliedCount: 0 | 1 | 2): void => {
@@ -125,6 +125,7 @@ const firstChestLabel = (lang: Lang) => triLang(lang, {
   ru: DUAL_UI.firstChest.ru,
   uk: DUAL_UI.firstChest.uk,
   es: DUAL_UI.firstChest.es,
+  en: DUAL_UI.firstChest.en,
   'pt-BR': DUAL_UI.firstChest['pt-BR'],
   vi: DUAL_UI.firstChest.vi,
   id: DUAL_UI.firstChest.id,
@@ -136,6 +137,7 @@ const secondChestLabel = (lang: Lang) => triLang(lang, {
   ru: DUAL_UI.secondChest.ru,
   uk: DUAL_UI.secondChest.uk,
   es: DUAL_UI.secondChest.es,
+  en: DUAL_UI.secondChest.en,
   'pt-BR': DUAL_UI.secondChest['pt-BR'],
   vi: DUAL_UI.secondChest.vi,
   id: DUAL_UI.secondChest.id,
@@ -173,7 +175,17 @@ const isCosmeticGiftId = (id?: string): boolean =>
   id === 'cosmetic_avatar_common' ||
   id === 'premium_cosmetic_avatar' ||
   id === 'cosmetic_avatar_aura' ||
-  id === 'premium_cosmetic_aura';
+  id === 'premium_cosmetic_aura' ||
+  id === 'cosmetic_theme';
+
+/** Палитры тем, которые может открыть подарок (полка 'shards'). */
+const THEME_GIFT_PALETTES: Readonly<Record<string, Theme>> = {
+  midnight: MIDNIGHT,
+  ember: EMBER,
+  aurora: AURORA,
+  volt: VOLT,
+  dark: DARK,
+};
 
 const cosmeticLabelForLang = (result: ApplyGiftResult | null | undefined, lang: Lang): string => {
   const unlocked = result?.cosmeticUnlocked;
@@ -203,6 +215,20 @@ function CosmeticGiftPreview({ result, level }: { result: ApplyGiftResult | null
       <AvatarAura auraId={unlocked.id} size={52}>
         <AvatarView avatar={String(getBestAvatarForLevel(level))} level={level} size={52} />
       </AvatarAura>
+    );
+  }
+
+  if (unlocked.kind === 'theme') {
+    // Настоящие токены выпавшей темы — человек сразу узнаёт, что открылось.
+    // Без обводки: блоки разделяются тоном, контуры в этом проекте запрещены.
+    const palette = THEME_GIFT_PALETTES[unlocked.id];
+    if (!palette) return null;
+    return (
+      <View style={{ width: 58, height: 58, borderRadius: 16, overflow: 'hidden' }}>
+        <View style={{ flex: 1, backgroundColor: palette.bgPrimary }} />
+        <View style={{ flex: 1, backgroundColor: palette.bgCard }} />
+        <View style={{ flex: 1, backgroundColor: palette.accent }} />
+      </View>
     );
   }
 
@@ -462,7 +488,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const pRockI = pRock.interpolate({ inputRange: [-6, 6], outputRange: ['-6deg', '6deg'] });
 
   const setEnergyFn = useCallback(
-    async (_n: number) => { await reloadEnergy(); },
+    (_n: number) => { void reloadEnergy().catch(() => {}); },
     [reloadEnergy],
   );
 
@@ -840,7 +866,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           <TouchableOpacity
             testID="level-gift-dual-close"
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+            accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             activeOpacity={0.76}
             onPress={requestCloseModal}
             style={{
@@ -865,6 +891,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
             {triLang(lang, {
               ru: `Плюс: уровень ${level}`,
               uk: `Плюс: рівень ${level}`,
+              en: `Plus: level ${level}`,
               es: `Plus: nivel ${level}`,
               'pt-BR': `Plus: nível ${level}`,
               vi: `Plus: cấp ${level}`,
@@ -874,10 +901,10 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
             })}
           </Text>
           <Text style={{ color: modalTitleColor, fontSize: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? f.h2 + 1 : f.bodyLg, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
-            {triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', es: 'Dos regalos', 'pt-BR': 'Dois presentes', vi: 'Hai phần quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })}
+            {triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', es: 'Dos regalos', en: 'Two gifts', 'pt-BR': 'Dois presentes', vi: 'Hai phần quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 12 }}>
-            {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
+            {triLang(lang, { ru: 'Награда за твой путь', uk: 'Нагорода за твій шлях', es: 'Recompensa por progreso', en: 'A reward for your progress', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
           {phase === 'pair' && (
@@ -995,6 +1022,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                         {triLang(lang, {
                           ru: 'Что именно ты получил',
                           uk: 'Що саме ти отримав',
+                          en: 'What exactly you got',
                           es: 'Lo que has recibido',
                           'pt-BR': 'O que você recebeu',
                           vi: 'Chính xác bạn đã nhận được gì',
@@ -1003,7 +1031,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                           pl: 'Co dokładnie otrzymujesz',
                         })}
                       </Text>
-                      <ScrollView
+                      <ScrollView decelerationRate="fast"
                         style={{ maxHeight: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 310 : 290 }}
                         contentContainerStyle={{ paddingBottom: 2 }}
                         showsVerticalScrollIndicator={false}
@@ -1073,12 +1101,12 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       ) : null}
                       <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonText : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
                         {claimNowBusy
-                          ? triLang(lang, { ru: 'Применяем...', uk: 'Застосовуємо...', es: 'Aplicando...', 'pt-BR': 'Aplicando...', vi: 'Đang áp dụng...', id: 'Menerapkan...', tr: 'Uygulanıyor...', pl: 'Stosowanie...' })
+                          ? triLang(lang, { ru: 'Применяем...', uk: 'Застосовуємо...', es: 'Aplicando...', en: 'Applying...', 'pt-BR': 'Aplicando...', vi: 'Đang áp dụng...', id: 'Menerapkan...', tr: 'Uygulanıyor...', pl: 'Stosowanie...' })
                           : presentationMode === 'apply'
-                          ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
+                          ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', en: 'Apply', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
                           : storesOnly
-                          ? triLang(lang, { ru: 'Использовать сейчас', uk: 'Використати зараз', es: 'Usar ahora', 'pt-BR': 'Usar agora', vi: 'Dùng ngay', id: 'Gunakan sekarang', tr: 'Şimdi kullan', pl: 'Użyj teraz' })
-                          : triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
+                          ? triLang(lang, { ru: 'Использовать сейчас', uk: 'Використати зараз', es: 'Usar ahora', en: 'Use now', 'pt-BR': 'Usar agora', vi: 'Dùng ngay', id: 'Gunakan sekarang', tr: 'Şimdi kullan', pl: 'Użyj teraz' })
+                          : triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', en: 'Claim all', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
@@ -1094,7 +1122,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       style={{ marginTop: 4, alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, minHeight: 40, justifyContent: 'center', opacity: claimNowBusy ? 0.6 : 1 }}
                     >
                       <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
-                        {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz avatar' })}
+                        {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', en: 'Open avatar', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz avatar' })}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -1107,7 +1135,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       style={{ marginTop: hasCosmeticGift ? 0 : 4, alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, minHeight: 40, justifyContent: 'center', opacity: claimNowBusy ? 0.6 : 1 }}
                     >
                       <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', fontWeight: '600' }}>
-                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
+                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -1129,7 +1157,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                   }}
                 >
                   <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1263,6 +1291,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
             {triLang(lang, {
               ru: `Открыто: ${cosmeticLabel}`,
               uk: `Відкрито: ${cosmeticLabel}`,
+              en: `Unlocked: ${cosmeticLabel}`,
               es: `Desbloqueado: ${cosmeticLabel}`,
               'pt-BR': `Desbloqueado: ${cosmeticLabel}`,
               vi: `Đã mở khóa: ${cosmeticLabel}`,
@@ -1276,7 +1305,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
       {(g.id === 'xp_2x_24h' || g.id === 'xp_2x_48h') && meta.xpBoostAlreadyActive && (
         <View style={{ marginTop: 8, padding: 8, backgroundColor: '#FEF3C7', borderRadius: 8, borderWidth: 0, borderColor: '#D97706' }}>
           <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
-            {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', es: 'Bono de XP ×2 actualizado', 'pt-BR': 'Bônus de XP ×2 atualizado', vi: 'Boost XP ×2 đã cập nhật', id: 'Boost XP ×2 diperbarui', tr: 'XP ×2 boost güncellendi', pl: 'Boost XP ×2 zaktualizowany' })}
+            {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', en: '2× boost refreshed', es: 'Bono de XP ×2 actualizado', 'pt-BR': 'Bônus de XP ×2 atualizado', vi: 'Boost XP ×2 đã cập nhật', id: 'Boost XP ×2 diperbarui', tr: 'XP ×2 boost güncellendi', pl: 'Boost XP ×2 zaktualizowany' })}
           </Text>
         </View>
       )}
@@ -1308,6 +1337,7 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
               {triLang(lang, {
                 ru: `Буст заменён (+${n})`,
                 uk: `Буст замінено (+${n})`,
+                en: `Boost replaced (+${n})`,
                 es: `Bono reemplazado (+${n})`,
                 'pt-BR': `Bônus substituído (+${n})`,
                 vi: `Boost đã được thay (+${n})`,
@@ -1319,7 +1349,7 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
           )
         : (
             <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
-              {triLang(lang, { ru: 'До полуночи', uk: 'Діє до півночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Até meia-noite', vi: 'Đến nửa đêm', id: 'Sampai tengah malam', tr: 'Gece yarısına kadar', pl: 'Do północy' })}
+              {triLang(lang, { ru: 'До полуночи', uk: 'Діє до півночі', en: 'Until midnight', es: 'Vigente hasta medianoche', 'pt-BR': 'Até meia-noite', vi: 'Đến nửa đêm', id: 'Sampai tengah malam', tr: 'Gece yarısına kadar', pl: 'Do północy' })}
             </Text>
           )}
     </View>

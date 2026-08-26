@@ -49,6 +49,7 @@ const buildSummaryToast = (items: Achievement[]): AchievementSummaryToast => ({
   icon: '🏆',
   category: 'special',
   nameRu: '', nameUk: '', descRu: '', descUk: '',
+  foundationGroup: 'legend', conditionRu: '', conditionUk: '',
   // XP уже начислен каждым достижением в отдельности (achievements.ts) —
   // у сводки собственной награды нет, иначе она бы удвоила выплату.
   xp: 0,

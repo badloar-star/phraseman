@@ -32,6 +32,7 @@ import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evalua
 // хеш, но чистый JS, уже используется остальными файлами этого модуля.
 import { sha256Utf8 } from '../../policies/decision_registry';
 import {
+  LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1,
   inferLesson1WordFirstPhraseCountV1,
   inferLesson1WordFirstVocabularyCountV1,
   lesson1SessionChoreographyV1,
@@ -76,6 +77,7 @@ import {
 import { esEpisode01Session01FeedbackByTarget } from './es_episode_01_session_01_task_feedback_v1';
 import { learningV2NewWordCardEditorialV1 } from './learning_v2_new_word_card_editorial_v1';
 import { esLearningV2NewWordCardEditorialV1 } from './es_learning_v2_new_word_card_editorial_v1';
+import { learningV2ModeNativeAudioTargetIdsV1 } from '../../contracts/mode_native_payload_v1';
 
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
@@ -147,11 +149,16 @@ function purposeFor(purpose: string): string {
   return mapped;
 }
 
-function inputModeFor(family: string): 'ordered_tokens' | 'single_choice' | 'scripted_speech' {
+function inputModeFor(
+  family: string,
+  modeNative: boolean,
+): 'ordered_tokens' | 'single_choice' | 'scripted_speech' | 'pair_grid' | 'tap_record_compare' {
   // зачем: незнакомое семейство не должно молча стать выбором из вариантов —
   // человек получил бы не то задание. Падаем, чтобы это увидели при сборке.
   const mode = FAMILY_INPUT_MODE[family as SupportedFamily];
   if (!mode) throw new Error(`session_package_unsupported_family:${family}`);
+  if (modeNative && family === 'speed_match') return 'pair_grid';
+  if (modeNative && family === 'scripted_repeat_compare') return 'tap_record_compare';
   return mode;
 }
 
@@ -161,6 +168,140 @@ type LearnerTaskProjection = Readonly<{
   responseOptions: readonly LearnerResponseOption[];
   feedbackByResponseId: Readonly<Record<string, string>>;
 }>;
+
+function modeNativeFeedbackByResponseId(
+  card: LearningV2GeneratedSessionCardV1,
+  locale: LearningV2InterfaceLocale,
+): Readonly<Record<string, string>> {
+  const payload = card.modePayload;
+  if (!payload || payload.family === 'speed_match' || payload.family === 'scripted_repeat_compare') {
+    return Object.freeze({});
+  }
+  const entries = payload.family === 'phrase_builder' || payload.family === 'listen_build_dictation'
+    ? payload.slotFeedback
+    : payload.choiceFeedback;
+  const wrongEntries = entries.filter((entry) => !entry.correct);
+  if (
+    payload.family === 'phrase_builder' ||
+    payload.family === 'listen_build_dictation'
+  ) {
+    // Builder tiles are projected into learner-safe per-card IDs. Keep the
+    // authored feedback aligned by the same stable distractor order instead
+    // of leaking source-only response IDs that the runtime can never select.
+    return Object.freeze(Object.fromEntries(
+      wrongEntries.map((entry, index) => [
+        `${card.cardId}:trap:${index + 1}`,
+        entry.feedbackByLocale[locale],
+      ]),
+    ));
+  }
+  return Object.freeze(Object.fromEntries(
+    wrongEntries.map((entry) => [entry.responseId, entry.feedbackByLocale[locale]]),
+  ));
+}
+
+function modeNativeLearnerTaskProjection(
+  card: LearningV2GeneratedSessionCardV1,
+  locale: LearningV2InterfaceLocale,
+): LearnerTaskProjection | null {
+  const payload = card.modePayload;
+  if (!payload) return null;
+  const instruction = card.instructionByLocale[locale];
+  const feedbackByResponseId = modeNativeFeedbackByResponseId(card, locale);
+  if (payload.family === 'phrase_builder') {
+    return {
+      // Instruction and the material being manipulated are separate semantic
+      // layers in the mode renderer. Concatenating them made both look like one
+      // oversized sentence and hid where the task ended.
+      prompt: instruction,
+      responseOptions: [
+        ...payload.orderedTokens.map((text, index) => ({
+          responseId: `${card.cardId}:token:${index + 1}`,
+          text,
+        })),
+        ...payload.authoredDistractorTokens.slice(0, Math.max(0, 8 - payload.orderedTokens.length)).map(
+          (text, index) => ({ responseId: `${card.cardId}:trap:${index + 1}`, text }),
+        ),
+      ],
+      feedbackByResponseId,
+    };
+  }
+  if (payload.family === 'listen_choose') {
+    return {
+      prompt: instruction,
+      responseOptions: payload.localizedMeaningChoices.map((choice) => ({
+        responseId: choice.responseId,
+        text: choice.meaningByLocale?.[locale] ?? choice.targetText,
+      })),
+      feedbackByResponseId,
+    };
+  }
+  if (payload.family === 'listen_build_dictation') {
+    return {
+      prompt: instruction,
+      responseOptions: [
+        ...payload.orderedTokens.map((text, index) => ({
+          responseId: `${card.cardId}:token:${index + 1}`,
+          text,
+        })),
+        ...payload.authoredDistractorTokens.slice(0, Math.max(0, 8 - payload.orderedTokens.length)).map(
+          (text, index) => ({ responseId: `${card.cardId}:trap:${index + 1}`, text }),
+        ),
+      ],
+      feedbackByResponseId,
+    };
+  }
+  if (payload.family === 'context_gap_grammar') {
+    return {
+      prompt: `${instruction} ${payload.localizedScene[locale]} — ${payload.gappedTargetPhrase}`,
+      responseOptions: payload.gapOptions,
+      feedbackByResponseId,
+    };
+  }
+  if (payload.family === 'speed_match') {
+    return { prompt: instruction, responseOptions: [], feedbackByResponseId };
+  }
+  if (payload.family === 'scripted_repeat_compare') {
+    return { prompt: `${instruction} ${payload.targetPhrase}`, responseOptions: [], feedbackByResponseId };
+  }
+  if (payload.family === 'sound_contrast') {
+    if (payload.choiceFeedback.length !== 2) {
+      throw new Error(`session_package_sound_contrast_feedback_invalid:${card.cardId}`);
+    }
+    return {
+      prompt: instruction,
+      responseOptions: [
+        { responseId: payload.choiceFeedback[0]!.responseId, text: payload.contrastA },
+        { responseId: payload.choiceFeedback[1]!.responseId, text: payload.contrastB },
+      ],
+      feedbackByResponseId,
+    };
+  }
+  return null;
+}
+
+function modeNativeAcceptedResponses(
+  card: LearningV2GeneratedSessionCardV1,
+): readonly string[] | null {
+  const payload = card.modePayload;
+  if (!payload) return null;
+  if (
+    payload.family === 'listen_choose' ||
+    payload.family === 'context_gap_grammar' ||
+    payload.family === 'sound_contrast'
+  ) {
+    const feedback = payload.choiceFeedback.find((entry) => entry.correct);
+    if (!feedback) {
+      throw new Error(`session_package_mode_native_correct_response_missing:${card.cardId}`);
+    }
+    return [feedback.responseId];
+  }
+  if (payload.family === 'speed_match') return ['all_pairs_matched'];
+  if (payload.family === 'phrase_builder') return [payload.targetPhrase];
+  if (payload.family === 'listen_build_dictation') return [payload.hiddenTargetPhrase];
+  if (payload.family === 'scripted_repeat_compare') return [payload.targetPhrase];
+  return null;
+}
 
 function targetTokens(card: LearningV2GeneratedSessionCardV1): readonly string[] {
   return card.contentItem.target.text
@@ -188,16 +329,6 @@ function learnerMeaning(
       (meaning) => meaning.locale === interfaceLocale,
     )?.value ?? card.contentItem.learnerMeanings[0]?.value ?? card.contentItem.target.text
   );
-}
-
-function distinctText(values: readonly string[]): readonly string[] {
-  const seen = new Set<string>();
-  return values.filter((value) => {
-    const key = value.normalize('NFKC').trim().toLocaleLowerCase();
-    if (!key || seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
 }
 
 function singleChoiceOptions(
@@ -472,6 +603,8 @@ function learnerTaskProjection(
   interfaceLocale: string,
 ): LearnerTaskProjection {
   const locale = interfaceLocale as LearningV2InterfaceLocale;
+  const modeNativeProjection = modeNativeLearnerTaskProjection(card, locale);
+  if (modeNativeProjection) return modeNativeProjection;
   const instruction =
     (card.instructionByLocale as Record<string, string>)[interfaceLocale] ?? '';
   const meaning = learnerMeaning(card, interfaceLocale);
@@ -743,16 +876,20 @@ export function buildSessionChildBodiesFromShard(
     ? shard.cards
     : practiceCards;
   const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
-  const vocabularyCount = inferLesson1WordFirstVocabularyCountV1(cardTargets);
-  const phraseCount = inferLesson1WordFirstPhraseCountV1(
-    cardTargets,
-    vocabularyCount,
-  );
+  const isSession01ModeNative =
+    shard.modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1;
+  const vocabularyCount = isSession01ModeNative
+    ? 4
+    : inferLesson1WordFirstVocabularyCountV1(cardTargets);
+  const phraseCount = isSession01ModeNative
+    ? 2
+    : inferLesson1WordFirstPhraseCountV1(cardTargets, vocabularyCount);
   const choreography = lesson1SessionChoreographyV1(
     shard.requiredSessionOrdinal,
     undefined,
     vocabularyCount,
     phraseCount,
+    shard.modeNativePlanId ?? undefined,
   );
   const learner = materializeLearningV2CourseSessionLearnerChildV1({
     courseSessionId,
@@ -765,11 +902,14 @@ export function buildSessionChildBodiesFromShard(
         ordinal: index + 4,
         purpose: purposeFor(card.purpose),
         family: card.family,
-        inputMode: inputModeFor(card.family),
+        inputMode: inputModeFor(card.family, card.modePayload !== null),
         prompt: task.prompt,
         responseOptions: task.responseOptions,
         mediaIds: [],
-        audioTargetIds: [],
+        audioTargetIds: card.modePayload
+          ? learningV2ModeNativeAudioTargetIdsV1(card.modePayload)
+          : [],
+        modePayload: card.modePayload,
         accessibilityLabel:
           (card.accessibilityLabelByLocale as Record<string, string>)[locale] ?? '',
         // зачем: запасной текстовый путь для голосового задания. Оба флага
@@ -837,10 +977,11 @@ export function buildSessionChildBodiesFromShard(
       // фразы токен-регэксп не проходит, поэтому для choice_token-семейств
       // берём нормализованный токен, для остальных — сами варианты ответа.
       const inputKind = v2LocalEvaluatorInputKindForFamilyV1(card.family as never);
-      const acceptedResponses =
-        inputKind === 'choice_token'
+      const authoredModeResponses = modeNativeAcceptedResponses(card);
+      const acceptedResponses = authoredModeResponses ??
+        (inputKind === 'choice_token'
           ? card.contentItem.acceptedAnswers.map((answer) => toChoiceToken(answer))
-          : card.contentItem.acceptedAnswers;
+          : card.contentItem.acceptedAnswers);
       return {
         interactionId: card.cardId,
         activityId: card.activityId,
@@ -890,11 +1031,28 @@ export function buildSessionChildBodiesFromShard(
       localizedResponseFeedback(card, choiceCards),
     ]),
   );
-  const newWordOrderByCardId = new Map(
-    practiceCards
-      .slice(0, vocabularyCount)
-      .map((card, index) => [card.cardId, index + 1] as const),
-  );
+  // One lexical item may deliberately receive several different contacts
+  // (for example listen → build) before the next word is introduced. The
+  // blocking word card belongs only to the first contact with that lexical
+  // item; slicing the first `vocabularyCount` cards duplicated early words
+  // and silently skipped later ones.
+  const newWordOrderByCardId = new Map<string, number>();
+  const introducedLexicalItemIds = new Set<string>();
+  for (const card of practiceCards) {
+    if (introducedLexicalItemIds.size >= vocabularyCount) break;
+    const lexicalItemId = card.contentItem.intentId.replace(
+      /:contact-\d+$/u,
+      '',
+    );
+    if (lexicalItemId === card.contentItem.intentId) {
+      throw new Error(
+        `learning_v2_new_word_card_lexical_id_invalid:${card.contentItem.intentId}`,
+      );
+    }
+    if (introducedLexicalItemIds.has(lexicalItemId)) continue;
+    introducedLexicalItemIds.add(lexicalItemId);
+    newWordOrderByCardId.set(card.cardId, introducedLexicalItemIds.size);
+  }
   // зачем interactionId переопределён для интро-карточек (инцидент
   // 2026-08-17): card.cardId (card-episode-01-s01-01) и
   // page.question.questionId (...:intro-q-1) — РАЗНЫЕ строки для одного и

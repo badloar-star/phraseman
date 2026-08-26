@@ -73,17 +73,17 @@ const FEATURE_ICONS = ['mic', 'create', 'compass'] as const;
 function featureCopy(lang: Lang) {
   return [
     triLang(lang, {
-      ru: 'Настоящий голосовой диалог', uk: 'Справжній голосовий діалог', es: 'Diálogo de voz real',
+      ru: 'Настоящий голосовой диалог', en: 'Real voice conversation', uk: 'Справжній голосовий діалог', es: 'Diálogo de voz real',
       'pt-BR': 'Diálogo de voz real', vi: 'Hội thoại giọng nói thực sự', id: 'Dialog suara nyata',
       tr: 'Gerçek sesli diyalog', pl: 'Prawdziwy dialog głosowy',
     }),
     triLang(lang, {
-      ru: 'Разбор ошибок после звонка', uk: 'Розбір помилок після дзвінка', es: 'Análisis de errores tras la llamada',
+      ru: 'Разбор ошибок после звонка', en: 'Error breakdown after the call', uk: 'Розбір помилок після дзвінка', es: 'Análisis de errores tras la llamada',
       'pt-BR': 'Análise de erros após a ligação', vi: 'Phân tích lỗi sau cuộc gọi', id: 'Ulasan kesalahan setelah panggilan',
       tr: 'Aramadan sonra hata analizi', pl: 'Analiza błędów po rozmowie',
     }),
     triLang(lang, {
-      ru: 'Помнит твой прогресс', uk: 'Пам’ятає твій прогрес', es: 'Recuerda tu progreso',
+      ru: 'Помнит твой прогресс', en: 'Remembers your progress', uk: 'Пам’ятає твій прогрес', es: 'Recuerda tu progreso',
       'pt-BR': 'Lembra do seu progresso', vi: 'Ghi nhớ tiến trình của bạn', id: 'Mengingat progresmu',
       tr: 'İlerlemeni hatırlar', pl: 'Pamięta twoje postępy',
     }),
@@ -103,21 +103,21 @@ function minutesRows(lang: Lang) {
       // Одна объединённая строка не создаёт ложного обещания второго пробника
       // после апгрейда Free -> Плюс/Про.
       label: triLang(lang, {
-        ru: 'Бесплатно / Плюс / Про', uk: 'Безкоштовно / Плюс / Про', es: 'Gratis / Plus / Pro',
+        ru: 'Бесплатно / Плюс / Про', en: 'Free / Plus / Pro', uk: 'Безкоштовно / Плюс / Про', es: 'Gratis / Plus / Pro',
         'pt-BR': 'Grátis / Plus / Pro', vi: 'Miễn phí / Plus / Pro', id: 'Gratis / Plus / Pro',
         tr: 'Ücretsiz / Plus / Pro', pl: 'Bezpłatnie / Plus / Pro',
       }),
       value: triLang(lang, {
-        ru: '3 мин · один раз на аккаунт', uk: '3 хв · один раз на акаунт', es: '3 min · una vez por cuenta',
+        ru: '3 мин · один раз на аккаунт', en: '3 min · once per account', uk: '3 хв · один раз на акаунт', es: '3 min · una vez por cuenta',
         'pt-BR': '3 min · uma vez por conta', vi: '3 phút · một lần cho mỗi tài khoản', id: '3 mnt · sekali per akun',
         tr: '3 dk · hesap başına bir kez', pl: '3 min · raz na konto',
       }),
       amount: triLang(lang, {
-        ru: '3 мин', uk: '3 хв', es: '3 min', 'pt-BR': '3 min',
+        ru: '3 мин', en: '3 min', uk: '3 хв', es: '3 min', 'pt-BR': '3 min',
         vi: '3 phút', id: '3 mnt', tr: '3 dk', pl: '3 min',
       }),
       note: triLang(lang, {
-        ru: 'один раз на аккаунт', uk: 'один раз на акаунт', es: 'una vez por cuenta',
+        ru: 'один раз на аккаунт', en: 'once per account', uk: 'один раз на акаунт', es: 'una vez por cuenta',
         'pt-BR': 'uma vez por conta', vi: 'một lần cho mỗi tài khoản', id: 'sekali per akun',
         tr: 'hesap başına bir kez', pl: 'raz na konto',
       }),
@@ -126,17 +126,17 @@ function minutesRows(lang: Lang) {
     {
       label: 'MAX',
       value: triLang(lang, {
-        ru: '120 мин / мес · 20 мин в день', uk: '120 хв / міс · 20 хв на день',
+        ru: '120 мин / мес · 20 мин в день', en: '120 min / mo · 20 min a day', uk: '120 хв / міс · 20 хв на день',
         es: '120 min/mes · 20 min al día', 'pt-BR': '120 min/mês · 20 min por dia',
         vi: '120 phút/tháng · 20 phút mỗi ngày', id: '120 mnt/bln · 20 menit per hari',
         tr: '120 dk/ay · günde 20 dk', pl: '120 min/mies. · 20 min dziennie',
       }),
       amount: triLang(lang, {
-        ru: '120 мин', uk: '120 хв', es: '120 min', 'pt-BR': '120 min',
+        ru: '120 мин', en: '120 min', uk: '120 хв', es: '120 min', 'pt-BR': '120 min',
         vi: '120 phút', id: '120 mnt', tr: '120 dk', pl: '120 min',
       }),
       note: triLang(lang, {
-        ru: 'в месяц · 20 мин в день', uk: 'на місяць · 20 хв на день',
+        ru: 'в месяц · 20 мин в день', en: 'per month · 20 min a day', uk: 'на місяць · 20 хв на день',
         es: 'al mes · 20 min al día', 'pt-BR': 'por mês · 20 min por dia',
         vi: 'mỗi tháng · 20 phút mỗi ngày', id: 'per bulan · 20 menit per hari',
         tr: 'ayda · günde 20 dk', pl: 'miesięcznie · 20 min dziennie',
@@ -183,7 +183,7 @@ export default function MaxPaywall() {
       if (!isCurrent()) return;
       setMaxPackage(pkg);
       if (!pkg) setOfferError(triLang(lang, {
-        ru: 'Не удалось загрузить предложение магазина.', uk: 'Не вдалося завантажити пропозицію магазину.',
+        ru: 'Не удалось загрузить предложение магазина.', en: 'Couldn\'t load the store offer.', uk: 'Не вдалося завантажити пропозицію магазину.',
         es: 'No se pudo cargar la oferta de la tienda.', 'pt-BR': 'Não foi possível carregar a oferta da loja.',
         vi: 'Không thể tải ưu đãi từ cửa hàng.', id: 'Penawaran toko tidak dapat dimuat.',
         tr: 'Mağaza teklifi yüklenemedi.', pl: 'Nie udało się wczytać oferty sklepu.',
@@ -191,7 +191,7 @@ export default function MaxPaywall() {
       else setOfferError('');
     } catch {
       if (isCurrent()) setOfferError(triLang(lang, {
-        ru: 'Не удалось загрузить предложение магазина.', uk: 'Не вдалося завантажити пропозицію магазину.',
+        ru: 'Не удалось загрузить предложение магазина.', en: 'Couldn\'t load the store offer.', uk: 'Не вдалося завантажити пропозицію магазину.',
         es: 'No se pudo cargar la oferta de la tienda.', 'pt-BR': 'Não foi possível carregar a oferta da loja.',
         vi: 'Không thể tải ưu đãi từ cửa hàng.', id: 'Penawaran toko tidak dapat dimuat.',
         tr: 'Mağaza teklifi yüklenemedi.', pl: 'Nie udało się wczytać oferty sklepu.',
@@ -222,7 +222,7 @@ export default function MaxPaywall() {
     setStoreConfirmed(true);
     setBusy('activation');
     setError(triLang(lang, {
-      ru: 'Магазин принял покупку. Проверяем активацию MAX…', uk: 'Магазин прийняв покупку. Перевіряємо активацію MAX…',
+      ru: 'Магазин принял покупку. Проверяем активацию MAX…', en: 'The store accepted the purchase. Checking MAX activation…', uk: 'Магазин прийняв покупку. Перевіряємо активацію MAX…',
       es: 'La tienda recibió la compra. Comprobando MAX…', 'pt-BR': 'A loja recebeu a compra. Verificando o MAX…',
       vi: 'Cửa hàng đã nhận giao dịch. Đang kiểm tra MAX…', id: 'Toko menerima pembelian. Memeriksa MAX…',
       tr: 'Mağaza satın almayı aldı. MAX kontrol ediliyor…', pl: 'Sklep przyjął zakup. Sprawdzamy MAX…',
@@ -233,7 +233,7 @@ export default function MaxPaywall() {
       return true;
     }
     setError(triLang(lang, {
-      ru: 'Покупка ещё обрабатывается. Нажми «Проверить активацию» позже.',
+      ru: 'Покупка ещё обрабатывается. Нажми «Проверить активацию» позже.', en: 'The purchase is still processing. Tap "Check activation" later.',
       uk: 'Покупка ще обробляється. Натисни «Перевірити активацію» пізніше.',
       es: 'La compra aún se está procesando. Comprueba la activación más tarde.',
       'pt-BR': 'A compra ainda está sendo processada. Verifique a ativação mais tarde.',
@@ -288,13 +288,13 @@ export default function MaxPaywall() {
       const result = outcome.purchaseResult;
       setError(result.status === 'pending'
         ? triLang(lang, {
-          ru: 'Платёж ожидает подтверждения. MAX включится автоматически.', uk: 'Платіж очікує підтвердження. MAX увімкнеться автоматично.',
+          ru: 'Платёж ожидает подтверждения. MAX включится автоматически.', en: 'Payment is pending confirmation. MAX will turn on automatically.', uk: 'Платіж очікує підтвердження. MAX увімкнеться автоматично.',
           es: 'El pago está pendiente. MAX se activará automáticamente.', 'pt-BR': 'O pagamento está pendente. O MAX será ativado automaticamente.',
           vi: 'Thanh toán đang chờ xác nhận. MAX sẽ tự động được bật.', id: 'Pembayaran sedang diproses. MAX akan aktif otomatis.',
           tr: 'Ödeme onay bekliyor. MAX otomatik açılacak.', pl: 'Płatność czeka na potwierdzenie. MAX włączy się automatycznie.',
         })
         : triLang(lang, {
-          ru: 'Покупка MAX сейчас недоступна. Попробуй позже.', uk: 'Покупка MAX зараз недоступна. Спробуй пізніше.',
+          ru: 'Покупка MAX сейчас недоступна. Попробуй позже.', en: 'MAX purchase isn\'t available right now. Try again later.', uk: 'Покупка MAX зараз недоступна. Спробуй пізніше.',
           es: 'La compra de MAX no está disponible ahora. Inténtalo más tarde.', 'pt-BR': 'A compra do MAX não está disponível agora. Tente mais tarde.',
           vi: 'Hiện chưa thể mua MAX. Hãy thử lại sau.', id: 'Pembelian MAX saat ini tidak tersedia. Coba lagi nanti.',
           tr: 'MAX satın alma şu anda kullanılamıyor. Daha sonra tekrar dene.', pl: 'Zakup MAX jest teraz niedostępny. Spróbuj później.',
@@ -302,7 +302,7 @@ export default function MaxPaywall() {
     } catch (purchaseError) {
       if (!(purchaseError as { userCancelled?: boolean })?.userCancelled) {
         setError(triLang(lang, {
-          ru: 'Не удалось подтвердить статус покупки. Проверь активацию или восстанови покупку.',
+          ru: 'Не удалось подтвердить статус покупки. Проверь активацию или восстанови покупку.', en: 'Couldn\'t confirm the purchase status. Check activation or restore the purchase.',
           uk: 'Не вдалося підтвердити статус покупки. Перевір активацію або віднови покупку.',
           es: 'No se pudo confirmar el estado de la compra. Comprueba la activación o restaura la compra.',
           'pt-BR': 'Não foi possível confirmar o status da compra. Verifique a ativação ou restaure a compra.',
@@ -334,14 +334,14 @@ export default function MaxPaywall() {
         return;
       }
       setError(triLang(lang, {
-        ru: 'Активная подписка MAX не найдена.', uk: 'Активну підписку MAX не знайдено.',
+        ru: 'Активная подписка MAX не найдена.', en: 'No active MAX subscription found.', uk: 'Активну підписку MAX не знайдено.',
         es: 'No se encontró una suscripción MAX activa.', 'pt-BR': 'Nenhuma assinatura MAX ativa foi encontrada.',
         vi: 'Không tìm thấy gói MAX đang hoạt động.', id: 'Langganan MAX aktif tidak ditemukan.',
         tr: 'Etkin MAX aboneliği bulunamadı.', pl: 'Nie znaleziono aktywnej subskrypcji MAX.',
       }));
     } catch {
       setError(triLang(lang, {
-        ru: 'Не удалось восстановить покупку.', uk: 'Не вдалося відновити покупку.',
+        ru: 'Не удалось восстановить покупку.', en: 'Couldn\'t restore the purchase.', uk: 'Не вдалося відновити покупку.',
         es: 'No se pudo restaurar la compra.', 'pt-BR': 'Não foi possível restaurar a compra.',
         vi: 'Không thể khôi phục giao dịch.', id: 'Pembelian tidak dapat dipulihkan.',
         tr: 'Satın alma geri yüklenemedi.', pl: 'Nie udało się przywrócić zakupu.',
@@ -396,7 +396,7 @@ export default function MaxPaywall() {
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
-              ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+              ru: 'Закрыть', en: 'Close', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
             })}
             onPress={() => safeRouterBack(router)}
             hitSlop={10}
@@ -424,7 +424,7 @@ export default function MaxPaywall() {
             влезает — честно прокручивается вместо наложения. Правило владельца
             «цена и кнопка всегда на виду» не нарушено: футер остаётся отдельным
             закреплённым сиблингом ниже и никогда не уезжает за сгиб. */}
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={{ flex: 1 }}
           contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, justifyContent: 'center', gap }}
           showsVerticalScrollIndicator={false}
@@ -438,7 +438,7 @@ export default function MaxPaywall() {
                 maxFontSizeMultiplier={2}
               >
                 {triLang(lang, {
-                  ru: 'Разговаривай с ИИ-учителем MAX', uk: 'Розмовляй з ШІ-вчителем MAX', es: 'Habla con MAX, tu profesor de IA',
+                  ru: 'Разговаривай с ИИ-учителем MAX', en: 'Talk with MAX, your AI teacher', uk: 'Розмовляй з ШІ-вчителем MAX', es: 'Habla con MAX, tu profesor de IA',
                   'pt-BR': 'Fale com o MAX, seu professor de IA', vi: 'Trò chuyện với gia sư AI MAX', id: 'Ngobrol dengan guru AI MAX',
                   tr: 'Yapay zekâ öğretmenin MAX ile konuş', pl: 'Rozmawiaj z nauczycielem AI MAX',
                 })}
@@ -449,7 +449,7 @@ export default function MaxPaywall() {
               {shortScreen ? null : (
                 <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginTop: 8, lineHeight: f.sub * 1.4 }} maxFontSizeMultiplier={2}>
                   {triLang(lang, {
-                    ru: 'Искусственный интеллект понимает твою речь голосом, ловит ошибки и объясняет их сразу',
+                    ru: 'Искусственный интеллект понимает твою речь голосом, ловит ошибки и объясняет их сразу', en: 'Artificial intelligence understands your speech, catches mistakes, and explains them right away',
                     uk: 'Штучний інтелект розуміє твоє мовлення голосом, ловить помилки і одразу пояснює їх',
                     es: 'La inteligencia artificial entiende lo que dices, detecta errores y los explica al instante',
                     'pt-BR': 'A inteligência artificial entende sua fala, identifica erros e os explica na hora',
@@ -492,7 +492,7 @@ export default function MaxPaywall() {
                 тише плиток: это подпись к паре, а не отдельный раздел. */}
             <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800', marginBottom: 6 }} maxFontSizeMultiplier={2}>
               {triLang(lang, {
-                ru: 'Лимиты голосовых звонков', uk: 'Ліміти голосових дзвінків', es: 'Límites de llamadas de voz',
+                ru: 'Лимиты голосовых звонков', en: 'Voice call limits', uk: 'Ліміти голосових дзвінків', es: 'Límites de llamadas de voz',
                 'pt-BR': 'Limites de chamadas de voz', vi: 'Giới hạn cuộc gọi thoại', id: 'Batas panggilan suara',
                 tr: 'Sesli arama limitleri', pl: 'Limity rozmów głosowych',
               })}
@@ -542,14 +542,14 @@ export default function MaxPaywall() {
           <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: 6, marginBottom: shortScreen ? 6 : 10 }}>
             <Text style={{ color: t.textPrimary, fontSize: price ? f.numLg : f.body, fontWeight: '900', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.4}>
               {price || triLang(lang, {
-                ru: 'Цена временно недоступна', uk: 'Ціна тимчасово недоступна', es: 'Precio no disponible temporalmente',
+                ru: 'Цена временно недоступна', en: 'Price temporarily unavailable', uk: 'Ціна тимчасово недоступна', es: 'Precio no disponible temporalmente',
                 'pt-BR': 'Preço temporariamente indisponível', vi: 'Giá tạm thời không khả dụng', id: 'Harga sementara tidak tersedia',
                 tr: 'Fiyat geçici olarak kullanılamıyor', pl: 'Cena jest chwilowo niedostępna',
               })}
             </Text>
             {price ? (
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: '/ мес', uk: '/ міс', es: '/ mes', 'pt-BR': '/ mês', vi: '/ tháng', id: '/ bln', tr: '/ ay', pl: '/ mies.' })}
+                {triLang(lang, { ru: '/ мес', en: '/ mo', uk: '/ міс', es: '/ mes', 'pt-BR': '/ mês', vi: '/ tháng', id: '/ bln', tr: '/ ay', pl: '/ mies.' })}
               </Text>
             ) : null}
           </View>
@@ -565,8 +565,8 @@ export default function MaxPaywall() {
               {primarySpinner ? <ActivityIndicator color={t.correctText} /> : (
                 <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
                   {storeConfirmed
-                    ? triLang(lang, { ru: 'Проверить активацию', uk: 'Перевірити активацію', es: 'Comprobar activación', 'pt-BR': 'Verificar ativação', vi: 'Kiểm tra kích hoạt', id: 'Periksa aktivasi', tr: 'Etkinleştirmeyi kontrol et', pl: 'Sprawdź aktywację' })
-                    : triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
+                    ? triLang(lang, { ru: 'Проверить активацию', en: 'Check activation', uk: 'Перевірити активацію', es: 'Comprobar activación', 'pt-BR': 'Verificar ativação', vi: 'Kiểm tra kích hoạt', id: 'Periksa aktivasi', tr: 'Etkinleştirmeyi kontrol et', pl: 'Sprawdź aktywację' })
+                    : triLang(lang, { ru: 'Подключить MAX', en: 'Activate MAX', uk: 'Підключити MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
                 </Text>
               )}
             </Pressable>
@@ -588,7 +588,7 @@ export default function MaxPaywall() {
             >
               <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
                 {triLang(lang, {
-                  ru: 'Повторить загрузку цены', uk: 'Повторити завантаження ціни', es: 'Volver a cargar el precio',
+                  ru: 'Повторить загрузку цены', en: 'Retry loading the price', uk: 'Повторити завантаження ціни', es: 'Volver a cargar el precio',
                   'pt-BR': 'Recarregar o preço', vi: 'Tải lại giá', id: 'Muat ulang harga',
                   tr: 'Fiyatı yeniden yükle', pl: 'Wczytaj cenę ponownie',
                 })}
@@ -598,12 +598,12 @@ export default function MaxPaywall() {
 
           <Text style={{ color: t.textMuted, fontSize: f.label, textAlign: 'center', marginTop: 8, lineHeight: f.label * 1.35 }} maxFontSizeMultiplier={2}>
             {price ? triLang(lang, {
-              ru: `${price} / мес · без пробного периода · отмена в любой момент`, uk: `${price} / міс · без пробного періоду · скасування будь-коли`,
+              ru: `${price} / мес · без пробного периода · отмена в любой момент`, en: `${price} / mo · no trial · cancel anytime`, uk: `${price} / міс · без пробного періоду · скасування будь-коли`,
               es: `${price} / mes · sin prueba · cancela cuando quieras`, 'pt-BR': `${price} / mês · sem teste · cancele quando quiser`,
               vi: `${price} / tháng · không dùng thử · hủy bất cứ lúc nào`, id: `${price} / bln · tanpa uji coba · batalkan kapan saja`,
               tr: `${price} / ay · deneme yok · istediğin an iptal et`, pl: `${price} / mies. · bez okresu próbnego · anuluj w każdej chwili`,
             }) : triLang(lang, {
-              ru: 'Цена будет показана магазином до подтверждения покупки.', uk: 'Магазин покаже ціну до підтвердження покупки.',
+              ru: 'Цена будет показана магазином до подтверждения покупки.', en: 'The store will show the price before you confirm the purchase.', uk: 'Магазин покаже ціну до підтвердження покупки.',
               es: 'La tienda mostrará el precio antes de confirmar la compra.', 'pt-BR': 'A loja mostrará o preço antes da confirmação da compra.',
               vi: 'Cửa hàng sẽ hiển thị giá trước khi xác nhận giao dịch.', id: 'Toko akan menampilkan harga sebelum pembelian dikonfirmasi.',
               tr: 'Satın alma onaylanmadan önce mağaza fiyatı gösterecek.', pl: 'Sklep pokaże cenę przed potwierdzeniem zakupu.',
@@ -619,17 +619,17 @@ export default function MaxPaywall() {
               style={{ minHeight: 44, justifyContent: 'center' }}
             >
               <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.label }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: 'Восстановить', uk: 'Відновити', es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục', id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć' })}
+                {triLang(lang, { ru: 'Восстановить', en: 'Restore', uk: 'Відновити', es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục', id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć' })}
               </Text>
             </Pressable>
             <Pressable onPress={() => Linking.openURL('https://phraseman.app/terms').catch(() => {})} style={{ minHeight: 44, justifyContent: 'center' }}>
               <Text style={{ color: t.textMuted, fontSize: f.label }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: 'Условия', uk: 'Умови', es: 'Términos', 'pt-BR': 'Termos', vi: 'Điều khoản', id: 'Ketentuan', tr: 'Koşullar', pl: 'Warunki' })}
+                {triLang(lang, { ru: 'Условия', en: 'Terms', uk: 'Умови', es: 'Términos', 'pt-BR': 'Termos', vi: 'Điều khoản', id: 'Ketentuan', tr: 'Koşullar', pl: 'Warunki' })}
               </Text>
             </Pressable>
             <Pressable onPress={() => Linking.openURL('https://phraseman.app/privacy').catch(() => {})} style={{ minHeight: 44, justifyContent: 'center' }}>
               <Text style={{ color: t.textMuted, fontSize: f.label }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: 'Конфиденциальность', uk: 'Конфіденційність', es: 'Privacidad', 'pt-BR': 'Privacidade', vi: 'Quyền riêng tư', id: 'Privasi', tr: 'Gizlilik', pl: 'Prywatność' })}
+                {triLang(lang, { ru: 'Конфиденциальность', en: 'Privacy', uk: 'Конфіденційність', es: 'Privacidad', 'pt-BR': 'Privacidade', vi: 'Quyền riêng tư', id: 'Privasi', tr: 'Gizlilik', pl: 'Prywatność' })}
               </Text>
             </Pressable>
           </View>

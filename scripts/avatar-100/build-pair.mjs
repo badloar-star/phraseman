@@ -12,15 +12,15 @@ function parseArgs(args) {
     const value = args[index + 1];
     if (!['--input', '--index', '--out-dir'].includes(key) || !value) {
       throw new Error(
-        'Usage: node scripts/avatar-100/build-pair.mjs --input <png> --index <63-162> --out-dir <directory>',
+        'Usage: node scripts/avatar-100/build-pair.mjs --input <png> --index <63-165> --out-dir <directory>',
       );
     }
     values.set(key, value);
   }
   if (values.size !== 3) throw new Error('Input, index, and output directory are required');
   const assetIndex = Number(values.get('--index'));
-  if (!Number.isInteger(assetIndex) || assetIndex < 63 || assetIndex > 162) {
-    throw new Error(`Avatar index must be an integer from 63 through 162; got ${values.get('--index')}`);
+  if (!Number.isInteger(assetIndex) || assetIndex < 63 || assetIndex > 165) {
+    throw new Error(`Avatar index must be an integer from 63 through 165; got ${values.get('--index')}`);
   }
   return {
     inputPath: path.resolve(values.get('--input')),

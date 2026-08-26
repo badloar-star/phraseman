@@ -103,6 +103,7 @@ type Props = {
   sourceLabels: Record<string, string>;
   deleteLabel: string;
   voiceLabel: string;
+  voiceDisabled?: boolean;
   cardHeight: number;
   cardStyle: any;
   sourceBadgeStyle: any;
@@ -158,6 +159,7 @@ function FlashcardListItemImpl({
   sourceLabels,
   deleteLabel,
   voiceLabel,
+  voiceDisabled = false,
   cardHeight,
   cardStyle,
   sourceBadgeStyle,
@@ -925,7 +927,7 @@ function FlashcardListItemImpl({
                   </Text>
                 </View>
               )}
-              <ScrollView
+              <ScrollView decelerationRate="fast"
                 style={{ maxHeight: frontTextMaxH, width: '100%' }}
                 contentContainerStyle={{
                   paddingHorizontal: 2,
@@ -1009,8 +1011,10 @@ function FlashcardListItemImpl({
                 >
                   <TouchableOpacity
                     onPress={speakFront}
+                    disabled={voiceDisabled}
                     accessibilityRole="button"
                     accessibilityLabel={voiceLabel}
+                    accessibilityState={{ disabled: voiceDisabled }}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                     style={{
                       width: 30,
@@ -1021,6 +1025,7 @@ function FlashcardListItemImpl({
                       backgroundColor: `${t.bgSurface}F0`,
                       borderWidth: 1,
                       borderColor: t.border,
+                      opacity: voiceDisabled ? 0.42 : 1,
                     }}
                   >
                     <Ionicons name="volume-medium" size={15} color={t.accent} />
@@ -1037,8 +1042,10 @@ function FlashcardListItemImpl({
                 >
                   <TouchableOpacity
                     onPress={speakBack}
+                    disabled={voiceDisabled}
                     accessibilityRole="button"
                     accessibilityLabel={voiceLabel}
+                    accessibilityState={{ disabled: voiceDisabled }}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                     style={{
                       width: 30,
@@ -1049,6 +1056,7 @@ function FlashcardListItemImpl({
                       backgroundColor: `${t.bgSurface}F0`,
                       borderWidth: 1,
                       borderColor: t.border,
+                      opacity: voiceDisabled ? 0.42 : 1,
                     }}
                   >
                     <Ionicons name="volume-medium" size={15} color={t.accent} />
@@ -1059,8 +1067,10 @@ function FlashcardListItemImpl({
               <Animated.View style={{ opacity: cFrontOp }}>
                 <TouchableOpacity
                   onPress={speakFront}
+                  disabled={voiceDisabled}
                   accessibilityRole="button"
                   accessibilityLabel={voiceLabel}
+                  accessibilityState={{ disabled: voiceDisabled }}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                   style={{
                     width: 30,
@@ -1071,6 +1081,7 @@ function FlashcardListItemImpl({
                     backgroundColor: `${t.bgSurface}F0`,
                     borderWidth: 1,
                     borderColor: t.border,
+                    opacity: voiceDisabled ? 0.42 : 1,
                   }}
                 >
                   <Ionicons name="volume-medium" size={15} color={t.accent} />

@@ -109,6 +109,21 @@ describe('accountDelete query plan', () => {
     expect(keys.has('safety_flags.authUid.==.auth-456')).toBe(true);
   });
 
+  it('deletes feedback text, voice feedback, and daily quota records by both identities', () => {
+    const plan = accountDeleteQueryPlan('stable-123', 'auth-456');
+    const keys = new Set(plan.map((x) => `${x.collection}.${x.field}.${x.op}.${x.value}`));
+
+    for (const collection of [
+      'feedback_entries',
+      'max_voice_feedback',
+      'feedback_submission_quotas',
+    ]) {
+      expect(keys.has(`${collection}.uid.==.stable-123`)
+        || keys.has(`${collection}.stableUid.==.stable-123`)).toBe(true);
+      expect(keys.has(`${collection}.authUid.==.auth-456`)).toBe(true);
+    }
+  });
+
   it('covers auth-uid arena and chat documents', () => {
     const plan = accountDeleteQueryPlan('stable-123', 'auth-456');
     const keys = new Set(plan.map((x) => `${x.collection}.${x.field}.${x.op}.${x.value}`));

@@ -36,7 +36,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
 import { setAudioModeAsync } from 'expo-audio';
 import { useTheme } from '../components/ThemeContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -69,6 +69,12 @@ import {
   type ListeningSide,
 } from './flashcards/listening_machine';
 import { resolveVoiceForLang, ttsLangFromLocale, type FcTtsLang, type ResolvedVoice } from './flashcards/tts_voices';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { captureAccountGeneration } from './account_generation';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 /** Акцент режима «Слушание» (words #4A9EFF / phrases #40C080 / arena #E05050). */
 const ACCENT = '#9C6ADE';
@@ -136,6 +142,19 @@ export default function FlashcardsListeningSession() {
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
   const params = useLocalSearchParams<{ deck?: string; size?: string }>();
+  const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `flashcard-listening:${attemptSessionId}`,
+    initialQuestionId: 'flashcard-listening:loading',
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
+  const technicalOutcomeSequenceRef = useRef(0);
+  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
+  }, []);
 
   // Не гасить экран на время сессии (§3.8: foreground only, expo-keep-awake)
   useKeepAwake();
@@ -147,16 +166,41 @@ export default function FlashcardsListeningSession() {
   }, [params.deck]);
   /** Ключ списка наборов — стабильная зависимость эффекта загрузки (массив пересоздаётся). */
   const deckKey = useMemo(() => deckRefs.map(deckRefKey).join(','), [deckRefs]);
-  const sessionSize = useMemo(() => {
+  const requestedSessionSize = useMemo(() => {
     const raw = Array.isArray(params.size) ? params.size[0] : params.size;
+    if (raw === 'preset') return null;
     const n = raw ? parseInt(raw, 10) : NaN;
     return isValidSessionSize(n) ? n : FC_DEFAULT_SESSION_SIZE;
   }, [params.size]);
+  const [presetSessionSize, setPresetSessionSize] = useState<number | null>(null);
+  useEffect(() => {
+    if (requestedSessionSize !== null) return;
+    let cancelled = false;
+    void getLastPreset('listening').then((preset) => {
+      if (!cancelled) setPresetSessionSize(preset?.size ?? FC_DEFAULT_SESSION_SIZE);
+    }).catch(() => {
+      if (!cancelled) setPresetSessionSize(FC_DEFAULT_SESSION_SIZE);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [requestedSessionSize]);
+  const sessionSize = requestedSessionSize ?? presetSessionSize ?? FC_DEFAULT_SESSION_SIZE;
+  const sessionSizeReady = requestedSessionSize !== null || presetSessionSize !== null;
   const contentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
 
   const [loading, setLoading] = useState(true);
   // Старт сессии «Слушать» = 1 ⚡ (владелец 2026-08-23: единая экономика).
-  const { confirmSpendOne: confirmListenEnergy } = useEnergy();
+  const {
+    confirmSpendOne: confirmListenEnergy,
+    refundOne: refundListenEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
+  const listeningEnergyIntent = useEnergySessionIntent(
+    'flashcards_listening',
+    deckKey || 'saved',
+    attemptSessionId,
+  );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const listeningEntryChargedRef = useRef(false);
   const [cards, setCards] = useState<ListeningCard[]>([]);
@@ -232,6 +276,10 @@ export default function FlashcardsListeningSession() {
         case 'no_voice':
           setNoVoiceSide(e.side);
           setSpeaking(false);
+          attempts.registerVerdict({
+            answerAttemptId: `${attemptSessionId}:no-voice:${e.side}:${technicalOutcomeSequenceRef.current++}`,
+            verdict: 'technical_error',
+          });
           break;
         case 'speak': {
           clearWatchdog();
@@ -254,6 +302,10 @@ export default function FlashcardsListeningSession() {
             // следующим utterance (ложный «done» ломал бы порядок).
             onError: () => {
               clearWatchdog();
+              attempts.registerVerdict({
+                answerAttemptId: `${attemptSessionId}:tts-error:${token}:${technicalOutcomeSequenceRef.current++}`,
+                verdict: 'technical_error',
+              });
               machineRef.current?.send({ type: 'SPEAK_DONE', token });
             },
           });
@@ -284,7 +336,7 @@ export default function FlashcardsListeningSession() {
           break;
       }
     },
-    [speak, stopSpeech, clearWatchdog, clearGapTimer, handleFinish],
+    [attemptSessionId, attempts.registerVerdict, speak, stopSpeech, clearWatchdog, clearGapTimer, handleFinish],
   );
   const executeEffectRef = useRef(executeEffect);
   executeEffectRef.current = executeEffect;
@@ -299,21 +351,12 @@ export default function FlashcardsListeningSession() {
 
   // ── Загрузка карточек + голосов, создание машины, автостарт ───────────────
   useEffect(() => {
+    if (!sessionSizeReady) return;
     let cancelled = false;
     let createdMachine: ListeningMachine | null = null;
+    let chargedOperationId: string | null = null;
+    let entryGranted = false;
     void (async () => {
-      // зачем: списываем ДО загрузки карточек/голосов — при отказе не тратим
-      // TTS-разрешение и сеть впустую. Латч на весь маунт экрана.
-      if (!listeningEntryChargedRef.current) {
-        listeningEntryChargedRef.current = true;
-        const energyResult = await confirmListenEnergy();
-        if (cancelled) return;
-        if (energyResult === 'cancelled') {
-          safeRouterBack(router, '/flashcards' as any);
-          return;
-        }
-        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
-      }
       const [pool, rawPrefs] = await Promise.all([
         // cards-2.1 (§6): несколько наборов одной объединённой подборкой (дедуп по id + шаффл)
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch(
@@ -348,6 +391,30 @@ export default function FlashcardsListeningSession() {
       });
       if (cancelled) return;
 
+      // Empty/unavailable content is not a started session and must never cost
+      // energy. Resolve the playable grant first, then atomically debit it.
+      if (listenCards.length === 0) {
+        setCards([]);
+        setLoading(false);
+        return;
+      }
+      if (!listeningEntryChargedRef.current) {
+        listeningEntryChargedRef.current = true;
+        const energyResult = await confirmListenEnergy(listeningEnergyIntent);
+        if (energyResult === 'spent') chargedOperationId = listeningEnergyIntent.operationId;
+        if (cancelled) {
+          if (chargedOperationId) {
+            void refundListenEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+          }
+          return;
+        }
+        if (energyResult === 'cancelled') {
+          safeRouterBack(router, '/flashcards' as any);
+          return;
+        }
+        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
+      }
+
       prefsRef.current = prefs;
       // Смена набора на том же экране (router.replace из шита выбора) —
       // прогресс сессии начинается заново, иначе индекс/счётчик тянутся из
@@ -364,8 +431,6 @@ export default function FlashcardsListeningSession() {
       setPauseSec(prefs.pauseSec);
       setLoop(prefs.loop);
       setLoading(false);
-      if (listenCards.length === 0) return;
-
       const machine = new ListeningMachine(
         listenCards,
         { order: prefs.order, pauseMs: prefs.pauseSec * 1000, loop: prefs.loop },
@@ -373,20 +438,35 @@ export default function FlashcardsListeningSession() {
       );
       machineRef.current = machine;
       createdMachine = machine;
+      entryGranted = true;
+      if (chargedOperationId) {
+        void acknowledgeSessionStart(chargedOperationId).catch(() => {});
+      }
       // Небольшая задержка: экран успевает смонтироваться до первого speak
       startTimerRef.current = setTimeout(() => {
         startTimerRef.current = null;
         machine.start();
       }, 450);
-    })();
+    })().catch(() => {
+      if (chargedOperationId && !entryGranted) {
+        void refundListenEnergy(chargedOperationId, 'entry_failed').catch(() => {});
+      }
+      if (!cancelled) {
+        setCards([]);
+        setLoading(false);
+      }
+    });
     return () => {
       cancelled = true;
+      if (chargedOperationId && !entryGranted) {
+        void refundListenEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+      }
       // Ре-ран эффекта (смена deck/size) не должен оставлять играющую машину
       createdMachine?.send({ type: 'STOP' });
     };
     // Пересоздание машины при смене deck/size — валидный сценарий только при новом пуше роута
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deckKey, sessionSize, contentLang, confirmListenEnergy, router]);
+  }, [acknowledgeSessionStart, contentLang, confirmListenEnergy, deckKey, listeningEnergyIntent, refundListenEnergy, router, sessionSize, sessionSizeReady]);
 
   // ── Выход: STOP глушит всё ───────────────────────────────────────────────
   useEffect(() => {
@@ -475,6 +555,7 @@ export default function FlashcardsListeningSession() {
       triLang(lang, {
         ru: 'Выбрать наборы',
         uk: 'Обрати набори',
+        en: 'Choose packs',
         es: 'Elegir packs',
         'pt-BR': 'Escolher pacotes',
         vi: 'Chọn bộ thẻ',
@@ -569,18 +650,54 @@ export default function FlashcardsListeningSession() {
     if (deckRefs.length > 1) return decksCountLabel(lang, deckRefs.length);
     const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, {
-      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
+      ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
     });
     if (deckRef.kind === 'pack') return triLang(lang, {
-      ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
+      ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
       vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
     });
     return triLang(lang, {
-      ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas', 'pt-BR': 'Salvos',
+      ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
       vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
     });
   }, [deckRefs, lang]);
+  const activeListeningCardId = cards[Math.min(cardIndex, Math.max(cards.length - 1, 0))]?.id ?? null;
+  useEffect(() => {
+    if (!activeListeningCardId) return;
+    attempts.updateQuestion(`flashcard-listening:${activeListeningCardId}:${cardIndex}`);
+  }, [activeListeningCardId, attempts.updateQuestion, cardIndex]);
+
+  useEffect(() => {
+    if (attempts.state.phase !== 'awaiting_recovery' || showAttemptsModal) return;
+    machineRef.current?.send({ type: 'PAUSE' });
+    setPhase('paused');
+    setSpeaking(false);
+    stopSpeech();
+    attemptsModalTimerRef.current = setTimeout(
+      () => setShowAttemptsModal(true),
+      SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+    );
+  }, [attempts.state.phase, showAttemptsModal, stopSpeech]);
+
+  const recoverListeningAttempts = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+      machineRef.current?.send({ type: 'RESUME' });
+      setPhase('playing');
+    } catch {
+      // The exact machine/card position remains paused beneath the modal.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+
+  const endExhaustedListeningSession = useCallback(() => {
+    attempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    machineRef.current?.send({ type: 'STOP' });
+    handleFinish(listenedRef.current);
+  }, [attempts.endAttemptsSession, handleFinish]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
   /**
@@ -601,7 +718,7 @@ export default function FlashcardsListeningSession() {
               <View style={{ alignItems: 'center', gap: 4 }}>
                 <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
                   {triLang(lang, {
-                    ru: 'Слушание', uk: 'Слухання', es: 'Escucha', 'pt-BR': 'Escuta',
+                    ru: 'Слушание', uk: 'Слухання', en: 'Listening', es: 'Escucha', 'pt-BR': 'Escuta',
                     vi: 'Nghe', id: 'Menyimak', tr: 'Dinleme', pl: 'Słuchanie',
                   })}
                 </Text>
@@ -661,7 +778,7 @@ export default function FlashcardsListeningSession() {
               </TouchableOpacity>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
                 {triLang(lang, {
-                  ru: 'Слушание', uk: 'Слухання', es: 'Escucha', 'pt-BR': 'Escuta',
+                  ru: 'Слушание', uk: 'Слухання', en: 'Listening', es: 'Escucha', 'pt-BR': 'Escuta',
                   vi: 'Nghe', id: 'Menyimak', tr: 'Dinleme', pl: 'Słuchanie',
                 })}
               </Text>
@@ -673,6 +790,7 @@ export default function FlashcardsListeningSession() {
                 {triLang(lang, {
                   ru: 'Здесь пока нечего слушать — выберите наборы',
                   uk: 'Тут поки нема чого слухати — оберіть набори',
+                  en: 'Nothing to listen to here yet — pick some packs',
                   es: 'Aún no hay nada que escuchar: elige los packs',
                   'pt-BR': 'Ainda não há o que ouvir: escolha os pacotes',
                   vi: 'Chưa có gì để nghe — hãy chọn bộ thẻ',
@@ -718,6 +836,7 @@ export default function FlashcardsListeningSession() {
           {triLang(lang, {
             ru: 'нет голоса — читаем текстом',
             uk: 'немає голосу — читаємо текстом',
+            en: 'no voice — showing text instead',
             es: 'sin voz: solo texto',
             'pt-BR': 'sem voz — apenas texto',
             vi: 'không có giọng — chỉ văn bản',
@@ -741,7 +860,7 @@ export default function FlashcardsListeningSession() {
             <View style={{ alignItems: 'center' }}>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
                 {triLang(lang, {
-                  ru: 'Слушание', uk: 'Слухання', es: 'Escucha', 'pt-BR': 'Escuta',
+                  ru: 'Слушание', uk: 'Слухання', en: 'Listening', es: 'Escucha', 'pt-BR': 'Escuta',
                   vi: 'Nghe', id: 'Menyimak', tr: 'Dinleme', pl: 'Słuchanie',
                 })}
               </Text>
@@ -750,6 +869,11 @@ export default function FlashcardsListeningSession() {
               </Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <SessionAttemptsHud
+                remaining={attempts.state.remainingAttempts}
+                locale={lang}
+                testID="fc-listen-session-attempts"
+              />
               <Text style={{ color: t.textMuted, fontSize: f.caption, minWidth: 44, textAlign: 'right' }} testID="fc-listen-progress">
                 {Math.min(cardIndex + 1, cards.length)} / {cards.length}
               </Text>
@@ -794,7 +918,7 @@ export default function FlashcardsListeningSession() {
                 dataText={`EN: ${card.front}
 RU: ${card.back}`}
                 variant="icon-flag"
-                accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
                 testID="fc-listen-report"
               />
             </View>
@@ -864,7 +988,7 @@ RU: ${card.back}`}
               <Ionicons name="headset-outline" size={13} color={t.textMuted} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }} testID="fc-listen-count">
                 {triLang(lang, {
-                  ru: 'Прослушано', uk: 'Прослухано', es: 'Escuchadas', 'pt-BR': 'Ouvidas',
+                  ru: 'Прослушано', uk: 'Прослухано', en: 'Listened', es: 'Escuchadas', 'pt-BR': 'Ouvidas',
                   vi: 'Đã nghe', id: 'Didengarkan', tr: 'Dinlenen', pl: 'Odsłuchane',
                 })}: {listened}
               </Text>
@@ -899,13 +1023,14 @@ RU: ${card.back}`}
               <View style={{ alignItems: 'center', minWidth: 74 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
                   {pauseSec}{triLang(lang, {
-                    ru: 'с', uk: 'с', es: 's', 'pt-BR': 's', vi: 'g', id: 'd', tr: 'sn', pl: 's',
+                    ru: 'с', uk: 'с', en: 's', es: 's', 'pt-BR': 's', vi: 'g', id: 'd', tr: 'sn', pl: 's',
                   })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
                   {triLang(lang, {
                     ru: 'пауза',
                     uk: 'пауза',
+                    en: 'pause',
                     es: 'pausa',
                     'pt-BR': 'pausa',
                     vi: 'tạm dừng',
@@ -942,6 +1067,7 @@ RU: ${card.back}`}
                 {triLang(lang, {
                   ru: 'Повтор',
                   uk: 'Повтор',
+                  en: 'Repeat',
                   es: 'Repetir',
                   'pt-BR': 'Repetir',
                   vi: 'Lặp lại',
@@ -992,6 +1118,16 @@ RU: ${card.back}`}
       </SafeAreaView>
       {deckPickerSheet}
       <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void recoverListeningAttempts('gift'); }}
+        onSpendRunes={() => { void recoverListeningAttempts('runes'); }}
+        onEndSession={endExhaustedListeningSession}
+      />
     </ScreenGradient>
   );
 }

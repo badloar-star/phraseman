@@ -48,11 +48,22 @@ describe('Arena owner-requested runtime surface', () => {
 
   it('renders questions without a containing card and uses bilingual semantic color', () => {
     const question = read('components/arena/ArenaQuestion.tsx');
+    const bilingual = read('components/arena/ArenaBilingualText.tsx');
 
     expect(question).toContain('ArenaBilingualText');
     expect(question).not.toContain('<V2Card style={styles.card}>');
     expect(question).not.toContain('backgroundColor: P.elev');
     expect(question).toContain('options: { gap: 8 }');
+    expect(question).toContain('displayTerminalPunctuation');
+    expect(question).toContain('shouldShowArenaBuilderPunctuation');
+    expect(question).toContain('role="target"');
+    expect(question).toContain('role="native"');
+    expect(bilingual).toContain('role="prompt"');
+    expect(bilingual).toContain('introTargetTextColor');
+    expect(bilingual).not.toContain('P.gold');
+    expect(bilingual).toContain('fontFamily:');
+    expect(bilingual).toContain('fontStyle:');
+    expect(bilingual).toContain('introTargetTextColor');
   });
 
   it('reserves a real VS lane and hides the unexplained Arena completion check', () => {

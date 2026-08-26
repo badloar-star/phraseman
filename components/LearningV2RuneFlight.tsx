@@ -1,15 +1,15 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Animated, {
   Easing,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 
-import { pickRuneGlyphs } from '../constants/runes';
+const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 
 /**
  * Полёт рун с пройденного узла карты в чип баланса.
@@ -20,10 +20,9 @@ import { pickRuneGlyphs } from '../constants/runes';
  * cubic-bezier(.33,.52,.25,.99). Анимации КОНЕЧНЫЕ (без withRepeat), поэтому
  * реестр вечных циклов не затрагивается; reduce motion отсекается родителем.
  *
- * зачем (владелец, 22.08, макет 26-checkpoint-and-runes): в полёте идут РАЗНЫЕ
- * рунические символы, а не один повторённый — «древние знаки тянутся каждый
- * раз новые». Глиф — обычный текст старшего футарка: он есть в системных
- * шрифтах, ассеты не нужны и вес приложения не растёт.
+ * Owner correction 26.08: the wallet currency is represented by the same
+ * shipped rune asset as Home/Wallet, never by a font glyph. Count is the
+ * actual 1..3 interaction award, not a decorative fixed particle count.
  *
  * Координаты from/to приходят в оконной системе (measureInWindow); оверлей
  * измеряет собственное окно и переводит их в свою систему сам.
@@ -31,8 +30,6 @@ import { pickRuneGlyphs } from '../constants/runes';
 
 const FLIGHT_MS = 620;
 const STAGGER_MS = 90;
-/** Сколько рун летит: макет требует 5–8 разных символов, берём середину. */
-const RUNE_COUNT = 6;
 const ARC_LIFT = 46;
 const RUNE_SIZE = 18;
 const FLIGHT_EASE = Easing.bezier(0.33, 0.52, 0.25, 0.99);
@@ -44,19 +41,17 @@ export interface LearningV2RuneFlightPoint {
 
 interface RuneProps {
   index: number;
-  glyph: string;
+  isLast: boolean;
   dx: number;
   dy: number;
-  color: string;
   onLastDone: () => void;
 }
 
 const FlightRune = memo(function FlightRune({
   index,
-  glyph,
+  isLast,
   dx,
   dy,
-  color,
   onLastDone,
 }: RuneProps) {
   const progress = useSharedValue(0);
@@ -65,10 +60,10 @@ const FlightRune = memo(function FlightRune({
     progress.value = withDelay(
       index * STAGGER_MS,
       withTiming(1, { duration: FLIGHT_MS, easing: FLIGHT_EASE }, (finished) => {
-        if (finished && index === RUNE_COUNT - 1) runOnJS(onLastDone)();
+        if (finished && isLast) scheduleOnRN(onLastDone);
       }),
     );
-  }, [index, onLastDone, progress]);
+  }, [index, isLast, onLastDone, progress]);
 
   const style = useAnimatedStyle(() => {
     const p = progress.value;
@@ -85,12 +80,11 @@ const FlightRune = memo(function FlightRune({
 
   return (
     <Animated.View pointerEvents="none" style={[styles.rune, style]}>
-      <Text
-        allowFontScaling={false}
-        style={[styles.glyph, { color }]}
-      >
-        {glyph}
-      </Text>
+      <Animated.Image
+        source={RUNE_ASSET}
+        resizeMode="contain"
+        style={styles.asset}
+      />
     </Animated.View>
   );
 });
@@ -98,21 +92,19 @@ const FlightRune = memo(function FlightRune({
 interface Props {
   from: LearningV2RuneFlightPoint;
   to: LearningV2RuneFlightPoint;
-  color: string;
+  count: 1 | 2 | 3;
   onDone: () => void;
 }
 
 export const LearningV2RuneFlight = memo(function LearningV2RuneFlight({
   from,
   to,
-  color,
+  count,
   onDone,
 }: Props) {
   const rootRef = useRef<View>(null);
   const [origin, setOrigin] = useState<LearningV2RuneFlightPoint | null>(null);
-  // Выборка фиксируется на весь полёт: пересчёт в рендере менял бы символы
-  // прямо в воздухе.
-  const glyphs = useMemo(() => pickRuneGlyphs(RUNE_COUNT), []);
+  const particles = Array.from({ length: count }, (_, index) => index);
 
   return (
     <View
@@ -125,7 +117,7 @@ export const LearningV2RuneFlight = memo(function LearningV2RuneFlight({
       }}
     >
       {origin !== null
-        ? glyphs.map((glyph, index) => (
+        ? particles.map((index) => (
             <View
               key={index} // guard-ok: фиксированный список рун, вставок нет
               pointerEvents="none"
@@ -137,10 +129,9 @@ export const LearningV2RuneFlight = memo(function LearningV2RuneFlight({
             >
               <FlightRune
                 index={index}
-                glyph={glyph}
+                isLast={index === particles.length - 1}
                 dx={to.x - from.x}
                 dy={to.y - from.y}
-                color={color}
                 onLastDone={onDone}
               />
             </View>
@@ -152,7 +143,7 @@ export const LearningV2RuneFlight = memo(function LearningV2RuneFlight({
 
 const styles = StyleSheet.create({
   rune: { width: RUNE_SIZE, height: RUNE_SIZE, alignItems: 'center', justifyContent: 'center' },
-  glyph: { fontSize: RUNE_SIZE, lineHeight: RUNE_SIZE + 2, fontWeight: '700' },
+  asset: { width: RUNE_SIZE, height: RUNE_SIZE },
 });
 
 export default LearningV2RuneFlight;

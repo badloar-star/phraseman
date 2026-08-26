@@ -19,6 +19,8 @@ export type PressableScaleVariant = 'icon' | 'flat' | 'card' | 'primary';
 interface Props extends PassthroughPressableProps {
   onPress?: () => void;
   onLongPress?: () => void;
+  onPressIn?: PressableProps['onPressIn'];
+  onPressOut?: PressableProps['onPressOut'];
   style?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
   children: React.ReactNode;
@@ -42,6 +44,8 @@ const VARIANT_SCALE: Record<PressableScaleVariant, number> = {
 function PressableScale({
   onPress,
   onLongPress,
+  onPressIn,
+  onPressOut,
   style,
   contentStyle,
   children,
@@ -64,7 +68,7 @@ function PressableScale({
     opacity.stopAnimation();
   }, [opacity, scale]);
 
-  const pressIn = useCallback(() => {
+  const pressIn = useCallback<NonNullable<PressableProps['onPressIn']>>((event) => {
     // зачем: владелец жаловался на «микрозадержку при нажатии на любую кнопку».
     // Причина — hapticTap() стоял ПЕРВЫМ: это async-функция, но до первого await
     // она идёт синхронно по JS-потоку и дёргает нативный модуль через мост, а на
@@ -86,21 +90,23 @@ function PressableScale({
         tension: MOTION_SPRING_LEGACY.press.tension,
       }).start();
     }
+    onPressIn?.(event);
     if (!silent && !unavailable && withHaptic) hapticTap();
-  }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, withHaptic]);
+  }, [onPressIn, opacity, pressedScale, reduceMotion, scale, silent, unavailable, withHaptic]);
 
-  const pressOut = useCallback(() => {
+  const pressOut = useCallback<NonNullable<PressableProps['onPressOut']>>((event) => {
     if (reduceMotion) {
       Animated.timing(opacity, { toValue: 1, duration: 90, useNativeDriver: true }).start();
-      return;
+    } else {
+      Animated.spring(scale, {
+        toValue: 1,
+        useNativeDriver: true,
+        friction: MOTION_SPRING_LEGACY.press.friction,
+        tension: MOTION_SPRING_LEGACY.press.tension,
+      }).start();
     }
-    Animated.spring(scale, {
-      toValue: 1,
-      useNativeDriver: true,
-      friction: MOTION_SPRING_LEGACY.press.friction,
-      tension: MOTION_SPRING_LEGACY.press.tension,
-    }).start();
-  }, [opacity, reduceMotion, scale]);
+    onPressOut?.(event);
+  }, [onPressOut, opacity, reduceMotion, scale]);
 
   return (
     <Pressable

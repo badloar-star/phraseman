@@ -73,7 +73,7 @@ export default function LingmanPlaylistScreen() {
           <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{playlist?.title ?? 'YouTube'}</Text>
         </View>
         {loading && !playlist ? <View style={styles.loading}><SkeletonBlock width="100%" height={210} borderRadius={22} /><SkeletonBlock width="70%" height={24} borderRadius={10} /></View> : playlist ? (
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
+          <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
             <View style={[styles.cover, { backgroundColor: t.bgCard }]}>
               {playlist.thumbnailUrl ? <Image source={{ uri: playlist.thumbnailUrl }} style={styles.coverImage} contentFit="cover" /> : <View style={[styles.coverImage, styles.coverFallback]}><Ionicons name="albums-outline" size={42} color={t.accent} /></View>}
             </View>

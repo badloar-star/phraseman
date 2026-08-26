@@ -92,6 +92,9 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/shards_shop',
   '/coin_exchange',
   '/avatar_select',
+  '/avatar_dna_studio',
+  '/shop',
+  '/runes_wallet',
   '/collectibles_screen',
   '/achievements_screen',
   '/level_gifts_inventory',
@@ -227,6 +230,7 @@ function fixedChildSection(pathname: string): NavigationSection | null {
     pathname === '/max_call_prestart'
     || pathname === '/max_call_session'
     || pathname === '/max_voice_review'
+    || pathname === '/max_memory_settings'
   ) return 'home';
 
   if (
@@ -238,6 +242,7 @@ function fixedChildSection(pathname: string): NavigationSection | null {
     || pathname === '/diagnostic_test'
     || pathname === '/exam'
     || pathname === '/level_exam'
+    || pathname.startsWith('/personal_plan')
   ) return 'lessons';
 
   if (

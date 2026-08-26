@@ -45,6 +45,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
     return triLang(lang, {
       ru: payload.titleRu,
       uk: payload.titleUk,
+      en: payload.titleRu,
       es: payload.titleEs,
       'pt-BR': payload.titlePtBr,
       vi: payload.titleVi,
@@ -59,6 +60,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
     return triLang(lang, {
       ru: payload.messageRu,
       uk: payload.messageUk,
+      en: payload.messageRu,
       es: payload.messageEs,
       'pt-BR': payload.messagePtBr,
       vi: payload.messageVi,
@@ -119,6 +121,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
           accessibilityLabel={triLang(lang, {
             uk: 'Закрити повідомлення',
             ru: 'Закрыть сообщение',
+            en: 'Close message',
             es: 'Cerrar mensaje',
             'pt-BR': 'Fechar mensagem',
             vi: 'Đóng thông báo',
@@ -150,6 +153,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                 {triLang(lang, {
                   ru: reward.labelRu,
                   uk: reward.labelUk,
+                  en: reward.labelRu,
                   es: reward.labelEs,
                   'pt-BR': reward.labelPtBr,
                   vi: reward.labelVi,
@@ -167,6 +171,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                 {triLang(lang, {
                   ru: 'Откроется страница приложения в магазине.',
                   uk: 'Відкриється сторінка застосунку в магазині.',
+                  en: "The app's store page will open.",
                   es: 'Se abrirá la página de la app en la tienda.',
                   'pt-BR': 'A página do app na loja será aberta.',
                   vi: 'Trang ứng dụng trong cửa hàng sẽ được mở.',
@@ -197,6 +202,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                 ? triLang(lang, {
                   ru: payload.reviewCtaRu,
                   uk: payload.reviewCtaUk,
+                  en: payload.reviewCtaRu,
                   es: payload.reviewCtaEs,
                   'pt-BR': payload.reviewCtaPtBr,
                   vi: payload.reviewCtaVi,
@@ -207,6 +213,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                 : triLang(lang, {
                   ru: 'Закрыть',
                   uk: 'Закрити',
+                  en: 'Got it',
                   es: 'Entendido',
                   'pt-BR': 'Entendi',
                   vi: 'Đã hiểu',
@@ -226,6 +233,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                 {triLang(lang, {
                   ru: 'Позже',
                   uk: 'Пізніше',
+                  en: 'Later',
                   es: 'Más tarde',
                   'pt-BR': 'Mais tarde',
                   vi: 'Để sau',

@@ -1245,6 +1245,31 @@ ${indent}}`,
     );
   });
 
+  test("feedback content, AI cache, and submission quotas are callable/Admin-SDK only", () => {
+    for (const pathPattern of [
+      "feedback_entries/{docId}",
+      "feedback_summary_cache/{docId}",
+      "max_voice_feedback/{docId}",
+      "feedback_submission_quotas/{docId}",
+    ]) {
+      const blocks = exactRootMatchBlocks(pathPattern);
+      expect(blocks).toHaveLength(1);
+      expect(activeAllowLines(blocks[0])).toEqual([
+        "allow read, write: if false;",
+      ]);
+    }
+
+    const catchAll = exactRootMatchBlocks("{collection}/{document=**}")[0];
+    for (const collection of [
+      "feedback_entries",
+      "feedback_summary_cache",
+      "max_voice_feedback",
+      "feedback_submission_quotas",
+    ]) {
+      expect(catchAll).toContain(`&& collection != '${collection}'`);
+    }
+  });
+
   test("identity deletion and recovery roots are excluded from the browser-admin catch-all", () => {
     const catchAllBlocks = exactRootMatchBlocks("{collection}/{document=**}");
     expect(catchAllBlocks).toHaveLength(1);

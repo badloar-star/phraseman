@@ -138,6 +138,7 @@ function showPurchasePendingAlert(lang: Lang): void {
     triLang(lang, {
       ru: 'Покупка ждёт подтверждения',
       uk: 'Покупка чекає підтвердження',
+      en: 'Purchase pending approval',
       es: 'Compra pendiente de aprobación',
       'pt-BR': 'Compra aguardando aprovação',
       vi: 'Giao dịch đang chờ xác nhận',
@@ -148,6 +149,7 @@ function showPurchasePendingAlert(lang: Lang): void {
     triLang(lang, {
       ru: 'Оплата ожидает подтверждения — например, родителя или банка. Как только её подтвердят, доступ включится сам. Покупать повторно не нужно.',
       uk: 'Оплата очікує підтвердження — наприклад, батьків або банку. Щойно її підтвердять, доступ увімкнеться сам. Купувати повторно не потрібно.',
+      en: "Payment is waiting for approval — from a parent or your bank, for example. Access turns on by itself once it's approved. No need to buy again.",
       es: 'El pago espera aprobación, por ejemplo de tus padres o del banco. En cuanto lo aprueben, el acceso se activará solo. No necesitas comprar de nuevo.',
       'pt-BR': 'O pagamento aguarda aprovação — por exemplo, dos pais ou do banco. Assim que for aprovado, o acesso será ativado sozinho. Não é preciso comprar de novo.',
       vi: 'Thanh toán đang chờ xác nhận — ví dụ từ phụ huynh hoặc ngân hàng. Ngay khi được xác nhận, quyền truy cập sẽ tự bật. Không cần mua lại.',
@@ -163,6 +165,7 @@ function showDevPurchasePreviewAlert(lang: Lang): void {
     triLang(lang, {
       ru: 'Предпросмотр покупки',
       uk: 'Попередній перегляд покупки',
+      en: 'Purchase preview',
       es: 'Vista previa de compra',
       'pt-BR': 'Prévia da compra',
       vi: 'Xem trước giao dịch mua',
@@ -173,6 +176,7 @@ function showDevPurchasePreviewAlert(lang: Lang): void {
     triLang(lang, {
       ru: 'Покупка не запускалась: в обычной dev-сборке магазин отключён. Проверь реальную покупку в сборке с подключённым магазином или включи доступ через явный QA-инструмент.',
       uk: 'Покупка не запускалася: у звичайній dev-збірці магазин вимкнений. Перевір реальну покупку у збірці з підключеним магазином або ввімкни доступ через окремий QA-інструмент.',
+      en: "Purchase wasn't started: the store is disabled in a regular dev build. Test a real purchase in a build connected to the store, or enable access through an explicit QA tool.",
       es: 'La compra no se inició: la tienda está desactivada en la compilación de desarrollo normal. Prueba una compra real en una compilación conectada a la tienda o activa el acceso con una herramienta de QA explícita.',
       'pt-BR': 'A compra não foi iniciada: a loja fica desativada na compilação de desenvolvimento comum. Teste uma compra real em uma compilação conectada à loja ou ative o acesso com uma ferramenta explícita de QA.',
       vi: 'Giao dịch mua chưa được bắt đầu: cửa hàng bị tắt trong bản dev thông thường. Hãy thử giao dịch thật trong bản có kết nối cửa hàng hoặc bật quyền truy cập bằng công cụ QA riêng.',
@@ -629,6 +633,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
               triLang(lang, {
                 ru: 'Триал заканчивается завтра',
                 uk: 'Тріал закінчується завтра',
+                en: 'Your trial ends tomorrow',
                 es: 'Tu prueba termina mañana',
                 'pt-BR': 'Seu teste termina amanhã',
                 vi: 'Dùng thử kết thúc vào ngày mai',
@@ -639,6 +644,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
               triLang(lang, {
                 ru: `Дальше — ${price}. Останешься? Отменить можно в два тапа.`,
                 uk: `Далі — ${price}. Залишишся? Скасувати можна у два тапи.`,
+                en: `Next: ${price}. Staying? Canceling takes two taps.`,
                 es: `Luego: ${price}. ¿Te quedas? Cancelar toma dos toques.`,
                 'pt-BR': `Depois: ${price}. Vai continuar? Cancelar leva dois toques.`,
                 vi: `Sau đó: ${price}. Bạn tiếp tục chứ? Hủy chỉ mất hai lần chạm.`,
@@ -707,6 +713,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           triLang(lang, {
             ru: 'Не удалось оформить',
             uk: 'Не вдалося оформити',
+            en: "Couldn't complete",
             es: 'No se pudo completar',
             'pt-BR': 'Não foi possível concluir',
             vi: 'Không hoàn tất được',
@@ -717,6 +724,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           triLang(lang, {
             ru: 'Попробуй ещё раз или восстанови покупки.',
             uk: 'Спробуй ще раз або віднови покупки.',
+            en: 'Try again or restore your purchases.',
             es: 'Inténtalo de nuevo o restaura tus compras.',
             'pt-BR': 'Tente de novo ou restaure suas compras.',
             vi: 'Hãy thử lại hoặc khôi phục giao dịch mua.',
@@ -817,6 +825,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // греем его контент фоном, как при обычной покупке (передаём состояние
         // целиком по той же причине, что и в ветке покупки выше).
         if (activatedPersonalPlan) prefetchWholePlanContentInBackground(activatedPersonalPlan);
+        // зачем: восстановление подтверждено локально (entitlement уже проверен выше,
+        // customerInfo пришёл) — звук играет СРАЗУ, до тоста и навигации, а не после
+        // них: пользователь не должен ждать финального экрана, чтобы услышать «доступ
+        // вернулся». Не путать с pm.purchase.failed/start — это отдельный, тёплый сигнал.
+        soundDirector.request('pm.purchase.restored', { scope: 'paywall' });
         // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
@@ -968,6 +981,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           title: triLang(lang, {
             ru: `Точно уходишь? ${days} дня доступа — бесплатно`,
             uk: `Точно йдеш? ${days} дні доступу — безкоштовно`,
+            en: `Sure you're leaving? ${days} days of free access`,
             es: `¿Seguro que te vas? ${days} días de acceso gratis`,
             'pt-BR': `Tem certeza? ${days} dias de acesso grátis`,
             vi: `Bạn chắc muốn rời đi? ${days} ngày dùng thử miễn phí`,
@@ -978,6 +992,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           message: triLang(lang, {
             ru: 'Платить сейчас не нужно — просто отмени подписку за день до конца пробного периода, и не спишется ничего.',
             uk: 'Платити зараз не треба — просто скасуй підписку за день до кінця пробного періоду, і нічого не спишеться.',
+            en: "No need to pay now — just cancel the subscription a day before the trial ends, and nothing will be charged.",
             es: 'No pagas ahora: solo cancela la suscripción un día antes de que acabe la prueba y no se cobrará nada.',
             'pt-BR': 'Você não paga agora: basta cancelar a assinatura um dia antes do fim do teste e nada será cobrado.',
             vi: 'Chưa phải trả tiền — chỉ cần hủy đăng ký trước khi hết hạn dùng thử một ngày là không bị tính phí.',
@@ -988,6 +1003,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           confirmLabel: triLang(lang, {
             ru: `Попробовать ${days} дня бесплатно`,
             uk: `Спробувати ${days} дні безкоштовно`,
+            en: `Try ${days} days free`,
             es: `Probar ${days} días gratis`,
             'pt-BR': `Testar ${days} dias grátis`,
             vi: `Dùng thử ${days} ngày miễn phí`,
@@ -996,7 +1012,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             pl: `Wypróbuj ${days} dni za darmo`,
           }),
           cancelLabel: triLang(lang, {
-            ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
+            ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não',
             vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
           }),
           onConfirm: () => {

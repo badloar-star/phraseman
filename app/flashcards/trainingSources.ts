@@ -68,6 +68,7 @@ export function cardCountLabel(lang: Lang, count: number): string {
   return `${count} ${triLang(lang, {
     ru: 'карточек',
     uk: 'карток',
+    en: 'cards',
     es: 'tarjetas',
     'pt-BR': 'cartões',
     vi: 'thẻ',
@@ -199,6 +200,7 @@ export function officialSourceSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Official pack',
     uk: 'Official pack',
+    en: 'Official pack',
     es: 'Official pack',
     'pt-BR': 'Official pack',
     vi: 'Official pack',
@@ -212,6 +214,7 @@ export function savedSourceTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Сохранённые карточки',
     uk: 'Збережені картки',
+    en: 'Saved cards',
     es: 'Tarjetas guardadas',
     'pt-BR': 'Cartões salvos',
     vi: 'Thẻ đã lưu',
@@ -225,6 +228,7 @@ export function customSourceTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Свои карточки',
     uk: 'Свої картки',
+    en: 'My cards',
     es: 'Tarjetas propias',
     'pt-BR': 'Seus cartões',
     vi: 'Thẻ của bạn',
@@ -238,6 +242,7 @@ export function personalListSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Личный список',
     uk: 'Особистий список',
+    en: 'Personal list',
     es: 'Lista personal',
     'pt-BR': 'Lista pessoal',
     vi: 'Danh sách cá nhân',
@@ -251,6 +256,7 @@ export function manualCardsSubtitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Созданные вручную',
     uk: 'Створені вручну',
+    en: 'Created manually',
     es: 'Creadas a mano',
     'pt-BR': 'Criadas manualmente',
     vi: 'Tạo thủ công',
@@ -395,6 +401,7 @@ export async function buildCommunitySources(
       subtitle: triLang(lang, {
         ru: 'Community pack',
         uk: 'Community pack',
+        en: 'Community pack',
         es: 'Community pack',
         'pt-BR': 'Pacote da comunidade',
         vi: 'Gói cộng đồng',

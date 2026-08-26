@@ -1,6 +1,7 @@
 import {
   WALLET_SUBUNITS_PER_STAR,
   createWalletAuthorizedOperation,
+  deriveWalletInitialRequiredSessionOperationId,
   detachBoundedWalletJson,
   deriveWalletSemanticSubjectFingerprint,
   isWalletIdentifier,
@@ -182,9 +183,19 @@ export const materializeRequiredSessionCreditSettlementCandidate = (
   }
   if (settledCandidate.runKindClaim !== "initial") return invalid();
   const walletRevisionBefore = Number(value.walletRevisionBefore);
+  const origin = {
+    kind: "course" as const,
+    courseId: settledCandidate.courseId,
+    studyTarget: settledCandidate.studyTarget,
+    requiredSessionOrdinal: settledCandidate.requiredSessionOrdinal,
+  };
+  const operationId = deriveWalletInitialRequiredSessionOperationId({
+    accountScopeHash: settledCandidate.accountScopeHash,
+    origin,
+  });
   const body = settlementBody({
     settlementId: value.settlementId,
-    operationId: value.operationId,
+    operationId,
     walletRevisionBefore,
     settledCandidate,
   });
@@ -202,11 +213,12 @@ export const materializeRequiredSessionCreditSettlementCandidate = (
     authorizedOperation = createWalletAuthorizedOperation({
       schemaVersion: "learning-v2-wallet-authorized-operation.v1",
       authority: "trusted_server_boundary",
-      operationId: value.operationId,
+      operationId,
       semanticSubjectFingerprint: deriveWalletSemanticSubjectFingerprint({
         accountScopeHash: settledCandidate.accountScopeHash,
         operationReason: "initial_required_session",
         sourceReceiptRef,
+        origin,
       }),
       accountScopeHash: settledCandidate.accountScopeHash,
       accountGeneration: settledCandidate.accountGeneration,
@@ -217,19 +229,14 @@ export const materializeRequiredSessionCreditSettlementCandidate = (
       earningCategory: "lesson",
       operationReason: "initial_required_session",
       sourceReceiptRef,
-      origin: {
-        kind: "course",
-        courseId: settledCandidate.courseId,
-        studyTarget: settledCandidate.studyTarget,
-        requiredSessionOrdinal: settledCandidate.requiredSessionOrdinal,
-      },
+      origin,
     });
   }
   const withoutFingerprint = {
     schemaVersion: "learning-v2-required-session-credit-settlement.v1" as const,
     recordKind: "required_session_credit_settlement" as const,
     settlementId: value.settlementId,
-    operationId: value.operationId,
+    operationId,
     settledCandidate,
     walletRevisionBefore,
     settlementFingerprint,

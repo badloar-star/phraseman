@@ -213,6 +213,10 @@ const CAT_LABEL_UK: Record<string, string> = {
   streak: 'Ланцюжок', lessons: 'Уроки', xp: 'Досвід',
   combo: 'Серії', special: 'Особливі', medal: 'Медалі',
 };
+const CAT_LABEL_EN: Record<string, string> = {
+  streak: 'Streak', lessons: 'Lessons', xp: 'XP',
+  combo: 'Combos', special: 'Special', medal: 'Medals',
+};
 const CAT_LABEL_ES: Record<string, string> = {
   streak: 'Racha', lessons: 'Lecciones', xp: 'Experiencia',
   combo: 'Series', special: 'Especiales', medal: 'Medallas',
@@ -244,7 +248,7 @@ type ShelfCategory = 'all' | Achievement['category'];
 function achievementShelfCategoryLabel(category: ShelfCategory, lang: Lang): string {
   if (category === 'all') {
     return triLang(lang, {
-      ru: 'Все', uk: 'Усі', es: 'Todas', 'pt-BR': 'Todas',
+      ru: 'Все', uk: 'Усі', en: 'All', es: 'Todas', 'pt-BR': 'Todas',
       vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie',
     });
   }
@@ -252,6 +256,7 @@ function achievementShelfCategoryLabel(category: ShelfCategory, lang: Lang): str
   return triLang(lang, {
     ru: CAT_LABEL_RU[category],
     uk: CAT_LABEL_UK[category],
+    en: CAT_LABEL_EN[category],
     es: CAT_LABEL_ES[category],
     'pt-BR': CAT_LABEL_PTBR[category],
     vi: CAT_LABEL_VI[category],
@@ -635,9 +640,9 @@ function AchievementModal({
     const dateLocale = ACHIEVEMENT_DATE_LOCALES[lang];
     return d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
   };
-  const obtainedLabel = triLang(lang, { ru: 'Получено', uk: 'Отримано', es: 'Obtenido', 'pt-BR': 'Obtido', vi: 'Đã nhận', id: 'Diperoleh', tr: 'Alındı', pl: 'Zdobyto' });
-  const shareLabel = triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
-  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  const obtainedLabel = triLang(lang, { ru: 'Получено', uk: 'Отримано', en: 'Received', es: 'Obtenido', 'pt-BR': 'Obtido', vi: 'Đã nhận', id: 'Diperoleh', tr: 'Alındı', pl: 'Zdobyto' });
+  const shareLabel = triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', en: 'Share', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
+  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 
   return (
     <HybridAlertShell
@@ -677,7 +682,7 @@ function AchievementModal({
 
         <ScrollView
           keyboardShouldPersistTaps="handled"
-          decelerationRate="normal"
+          decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ padding: modalPad, alignItems: 'stretch', gap: 16 }}
         >
@@ -730,7 +735,7 @@ function AchievementModal({
             )}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.08) }}>
               {unlocked || showLockedDetails ? name : triLang(lang, {
-                ru: 'Секретное достижение', uk: 'Секретне досягнення', es: 'Logro secreto',
+                ru: 'Секретное достижение', uk: 'Секретне досягнення', en: 'Secret achievement', es: 'Logro secreto',
                 'pt-BR': 'Conquista secreta', vi: 'Thành tựu bí mật', id: 'Pencapaian rahasia',
                 tr: 'Gizli başarı', pl: 'Tajne osiągnięcie',
               })}
@@ -741,6 +746,7 @@ function AchievementModal({
             >
               {unlocked || showLockedDetails ? desc : triLang(lang, {
                 ru: 'Разблокируй, чтобы узнать', uk: 'Розблокуй, щоб дізнатись',
+                en: 'Unlock to find out',
                 es: 'Desbloquéalo para descubrirlo', 'pt-BR': 'Desbloqueie para descobrir',
                 vi: 'Mở khóa để xem', id: 'Buka untuk mengetahui', tr: 'Öğrenmek için aç',
                 pl: 'Odblokuj, aby zobaczyć',
@@ -759,7 +765,7 @@ function AchievementModal({
             >
               <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
                 {triLang(lang, {
-                  ru: 'Как получить', uk: 'Як отримати', es: 'Cómo conseguirlo',
+                  ru: 'Как получить', uk: 'Як отримати', en: 'How to get it', es: 'Cómo conseguirlo',
                   'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
                   tr: 'Nasıl kazanılır', pl: 'Jak zdobyć',
                 })}
@@ -778,7 +784,7 @@ function AchievementModal({
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
                 {prog[0]} / {prog[1]}
                 {prog[1] - prog[0] > 0 && progPct > 0 && (
-                  `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
+                  `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', en: 'more', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
                 )}
               </Text>
             </View>
@@ -1148,7 +1154,7 @@ export default function AchievementsScreen() {
           >
             <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
               {triLang(lang, {
-                ru: 'Как получить', uk: 'Як отримати', es: 'Cómo conseguirlo',
+                ru: 'Как получить', uk: 'Як отримати', en: 'How to get it', es: 'Cómo conseguirlo',
                 'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
                 tr: 'Nasıl kazanılır', pl: 'Jak zdobyć',
               })}
@@ -1175,7 +1181,7 @@ export default function AchievementsScreen() {
       const color = achievementCategoryColor(cat, themeMode);
       const catIcon = CAT_ICON[cat];
       const catIconImage = CAT_ICON_IMAGE[cat];
-      const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
+      const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], en: CAT_LABEL_EN[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
       const allCatAchs = visibleAchievementDefinitions.filter(a => a.category === cat);
       const catAchs = allCatAchs.filter(a =>
         showAllAchievements || !!stateMap.get(a.id)?.unlockedAt,
@@ -1220,7 +1226,7 @@ export default function AchievementsScreen() {
           <TapScale
             testID="achievements-back"
             accessibilityLabel={triLang(lang, {
-              ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
               vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
             })}
             onPress={() => safeRouterBack(router)}
@@ -1233,7 +1239,7 @@ export default function AchievementsScreen() {
               numberOfLines={1}
               style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', lineHeight: Math.round(f.h2 * 1.15) }}
             >
-              {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', es: 'Logros', 'pt-BR': 'Conquistas', vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia' })}
+              {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', en: 'Achievements', es: 'Logros', 'pt-BR': 'Conquistas', vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia' })}
             </Text>
             <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: f.sub }}>
               {visibleCountLabel}
@@ -1245,6 +1251,7 @@ export default function AchievementsScreen() {
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
                 ru: 'Показать весь каталог для проверки', uk: 'Показати весь каталог для перевірки',
+                en: 'Show the full catalog for review',
                 es: 'Mostrar todo el catálogo para revisión', 'pt-BR': 'Mostrar todo o catálogo para revisão',
                 vi: 'Hiện toàn bộ danh mục để kiểm tra', id: 'Tampilkan seluruh katalog untuk pemeriksaan',
                 tr: 'İnceleme için tüm kataloğu göster', pl: 'Pokaż cały katalog do kontroli',
@@ -1277,7 +1284,7 @@ export default function AchievementsScreen() {
           </View>
         </View>
 
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 128, gap: 16 }}
         >
@@ -1303,7 +1310,7 @@ export default function AchievementsScreen() {
             <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
               <Ionicons name="trophy-outline" size={42} color={t.textGhost} />
               <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Пока нет полученных наград', uk: 'Поки немає отриманих нагород', es: 'Aún no tienes recompensas', 'pt-BR': 'Ainda não há recompensas recebidas', vi: 'Chưa có phần thưởng nào', id: 'Belum ada hadiah yang diterima', tr: 'Henüz alınan ödül yok', pl: 'Nie masz jeszcze zdobytych nagród' })}
+                {triLang(lang, { ru: 'Пока нет полученных наград', uk: 'Поки немає отриманих нагород', en: 'No rewards received yet', es: 'Aún no tienes recompensas', 'pt-BR': 'Ainda não há recompensas recebidas', vi: 'Chưa có phần thưởng nào', id: 'Belum ada hadiah yang diterima', tr: 'Henüz alınan ödül yok', pl: 'Nie masz jeszcze zdobytych nagród' })}
               </Text>
             </View>
           )}
@@ -1313,7 +1320,7 @@ export default function AchievementsScreen() {
               screen="achievements"
               dataId="achievements_shelf"
               dataText={triLang(lang, {
-                ru: 'Достижения', uk: 'Досягнення', es: 'Logros', 'pt-BR': 'Conquistas',
+                ru: 'Достижения', uk: 'Досягнення', en: 'Achievements', es: 'Logros', 'pt-BR': 'Conquistas',
                 vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia',
               })}
             />
@@ -1329,12 +1336,14 @@ export default function AchievementsScreen() {
           onSelect={setShelfCategory}
           openLabel={triLang(lang, {
             ru: 'Выбрать категорию достижений', uk: 'Обрати категорію досягнень',
+            en: 'Choose achievement category',
             es: 'Elegir categoría de logros', 'pt-BR': 'Escolher categoria de conquistas',
             vi: 'Chọn hạng mục thành tựu', id: 'Pilih kategori pencapaian',
             tr: 'Başarı kategorisini seç', pl: 'Wybierz kategorię osiągnięć',
           })}
           closeLabel={triLang(lang, {
             ru: 'Закрыть выбор категорий', uk: 'Закрити вибір категорій',
+            en: 'Close category picker',
             es: 'Cerrar categorías', 'pt-BR': 'Fechar categorias',
             vi: 'Đóng danh mục', id: 'Tutup kategori',
             tr: 'Kategorileri kapat', pl: 'Zamknij kategorie',

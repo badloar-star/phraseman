@@ -1,5 +1,5 @@
 /**
- * Режим 4/7 — Диктант. Источник вёрстки/анимаций:
+ * Активный режим 3/6 — Диктант. Источник вёрстки/анимаций:
  * docs/v2/mockups/05-listen-build.html.
  *
  * зачем: диктант отличается от phrase_builder ровно одним — вместо
@@ -11,7 +11,7 @@
  *
  * Переиспользует ChipV1 паттерн из phrase_builder (тот же контракт токенов),
  * не импортирует компонент оттуда напрямую — независимая копия по правилу
- * "7 отдельных файлов", чтобы правка одного режима не билась о другой.
+ * "отдельный файл на режим", чтобы правка одного режима не билась о другой.
  */
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -29,6 +29,8 @@ import Animated, {
 import Svg, { Circle } from "react-native-svg";
 
 import { useTheme } from "../../../components/ThemeContext";
+import { V2Chip, V2Cta } from "../../../components/ui/v2_ui";
+import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
@@ -36,8 +38,27 @@ import {
   MODE_SPRING_MICRO_V1,
   MODE_SPRING_UI_V1,
 } from "./mode_motion_tokens_v1";
+import { learningV2ModeAudioCopyV1, learningV2ModeCheckLabelV1 } from "./mode_copy_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
+
+function listenBuildTaskLabel(
+  locale: LearningV2ModeCommonPropsV1["interfaceLocale"],
+  phrase: boolean,
+): string {
+  const copy = {
+    ru: phrase ? "Послушай и собери фразу" : "Послушай и собери слово",
+    uk: phrase ? "Послухай і склади фразу" : "Послухай і склади слово",
+    es: phrase ? "Escucha y forma la frase" : "Escucha y forma la palabra",
+    "pt-BR": phrase ? "Ouça e monte a frase" : "Ouça e monte a palavra",
+    vi: phrase ? "Nghe và ghép câu" : "Nghe và ghép từ",
+    id: phrase ? "Dengarkan dan susun frasa" : "Dengarkan dan susun kata",
+    tr: phrase ? "Dinle ve ifadeyi kur" : "Dinle ve sözcüğü kur",
+    pl: phrase ? "Posłuchaj i ułóż zwrot" : "Posłuchaj i ułóż słowo",
+    en: phrase ? "Listen and build the phrase" : "Listen and build the word",
+  } as const;
+  return copy[locale];
+}
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const RING_RADIUS = 47;
 const RING_LEN = 2 * Math.PI * RING_RADIUS;
@@ -45,6 +66,8 @@ const RING_LEN = 2 * Math.PI * RING_RADIUS;
 function DictationRingButtonV1({
   playing,
   reducedMotion,
+  disabled,
+  accessibilityLabel,
   onPress,
   accent,
   track,
@@ -52,6 +75,8 @@ function DictationRingButtonV1({
 }: {
   readonly playing: boolean;
   readonly reducedMotion: boolean;
+  readonly disabled: boolean;
+  readonly accessibilityLabel: string;
   readonly onPress: () => void;
   readonly accent: string;
   readonly track: string;
@@ -59,10 +84,13 @@ function DictationRingButtonV1({
 }) {
   const progress = useSharedValue(0);
   useEffect(() => {
-    if (!playing) return;
+    if (!playing) {
+      progress.value = withTiming(0, { duration: reducedMotion ? 1 : 120 });
+      return;
+    }
     progress.value = 0;
     progress.value = withTiming(1, { duration: MOTION.ringFillMs, easing: Easing.linear });
-  }, [playing, progress]);
+  }, [playing, progress, reducedMotion]);
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_LEN * (1 - progress.value),
   }));
@@ -85,13 +113,15 @@ function DictationRingButtonV1({
       </Svg>
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel="Прослушать фразу"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ disabled }}
+        disabled={disabled}
         hitSlop={10}
         onPress={() => {
           void hapticLightImpact();
           onPress();
         }}
-        style={[styles.ringBtn, { backgroundColor: surface }]}
+        style={[styles.ringBtn, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
       >
         <Text style={{ color: accent, fontSize: 26 }}>▶</Text>
       </Pressable>
@@ -121,11 +151,9 @@ function DictationChipV1({
   disabled,
   onPress,
   variant,
-  bg,
   textColor,
 }: ChipProps) {
   const enter = useSharedValue(reducedMotion ? 1 : 0);
-  const press = useSharedValue(1);
   const nudge = useSharedValue(0);
   const verdictScale = useSharedValue(1);
 
@@ -164,37 +192,28 @@ function DictationChipV1({
     transform: [
       { translateY: (1 - enter.value) * (variant === "bank" ? 16 : 10) },
       { translateX: nudge.value },
-      { scale: press.value * verdictScale.value },
+      { scale: verdictScale.value },
     ] as const,
   }));
 
   return (
     <Animated.View style={style}>
-      <Pressable
-        accessibilityRole="button"
+      <V2Chip
         accessibilityLabel={label}
-        accessibilityState={{ disabled }}
         disabled={disabled}
-        onPressIn={() => {
-          if (reducedMotion) return;
-          void hapticLightImpact();
-          press.value = withTiming(0.96, { duration: MOTION.chipPressMs, easing: EASE });
-        }}
-        onPressOut={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(1, { duration: MOTION.chipPressMs, easing: EASE });
-        }}
         onPress={onPress}
-        style={[styles.chip, { backgroundColor: bg }]}
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
+        textStyle={[styles.chipText, { color: textColor }]}
       >
-        <Text style={[styles.chipText, { color: textColor }]}>{label}</Text>
-      </Pressable>
+        {label}
+      </V2Chip>
     </Animated.View>
   );
 }
 
 export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
   const { theme: t } = useTheme();
+  const palette = useTournamentPalette();
   const {
     prompt,
     options,
@@ -204,27 +223,36 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
     resolved,
     explanation,
     onAppendToken,
-    onUndoToken,
+    onRemoveTokenAt,
     onPlayFullPhraseAudio,
     phase,
+    modePayload,
+    onSubmit,
+    canSubmit,
+    interfaceLocale,
+    referenceAudioState,
   } = props;
+  if (modePayload && modePayload.family !== "listen_build_dictation") {
+    throw new Error("learning_v2_listen_build_payload_mismatch");
+  }
+  const audioCopy = learningV2ModeAudioCopyV1(interfaceLocale);
 
-  const [playing, setPlaying] = useState(false);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => () => {
-    if (playTimerRef.current) clearTimeout(playTimerRef.current);
-  }, []);
+  const wasPlayingRef = useRef(false);
+  const playing = referenceAudioState === "playing";
+  const loading = referenceAudioState === "loading";
+  useEffect(() => {
+    if (playing) {
+      wasPlayingRef.current = true;
+      return;
+    }
+    if (wasPlayingRef.current) setHasPlayedOnce(true);
+    wasPlayingRef.current = false;
+  }, [playing]);
 
   const handlePlay = () => {
-    if (!onPlayFullPhraseAudio || playing) return;
-    setPlaying(true);
+    if (!onPlayFullPhraseAudio || playing || loading) return;
     onPlayFullPhraseAudio();
-    if (playTimerRef.current) clearTimeout(playTimerRef.current);
-    playTimerRef.current = setTimeout(() => {
-      setPlaying(false);
-      setHasPlayedOnce(true);
-    }, MOTION.ringFillMs);
   };
 
   const usedIds = useMemo(() => new Set(orderedResponseIds), [orderedResponseIds]);
@@ -249,22 +277,43 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={styles.root}>
-      <Text style={[styles.taskLabel, { color: t.textMuted }]}>Послушай и собери фразу</Text>
+      <Text style={[styles.taskLabel, { color: palette.muted }]}>
+        {listenBuildTaskLabel(
+          interfaceLocale,
+          (modePayload?.family === "listen_build_dictation"
+            ? modePayload.hiddenTargetPhrase.trim().split(/\s+/u).length
+            : 2) > 1,
+        )}
+      </Text>
       <DictationRingButtonV1
         playing={playing}
         reducedMotion={reducedMotion}
+        disabled={!onPlayFullPhraseAudio || loading}
+        accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
         onPress={handlePlay}
         accent={t.accent}
         track={t.bgSurface2}
         surface={t.bgSurface2}
       />
       <Text style={[styles.playSub, { color: t.textMuted }]}>
-        {playing ? "Звучит…" : hasPlayedOnce ? "Прослушать ещё раз" : "Нажми, чтобы послушать"}
+        {!onPlayFullPhraseAudio
+          ? audioCopy.unavailable
+          : loading
+            ? audioCopy.loading
+            : playing
+            ? audioCopy.playing
+            : hasPlayedOnce
+              ? audioCopy.replay
+              : audioCopy.play}
       </Text>
 
       {/* Перевод/EN раскрывается только после успеха — до этого честный диктант. */}
       {phase === "success" && (
-        <Text style={[styles.revealText, { color: t.textMuted }]}>{prompt}</Text>
+        <Text style={[styles.revealText, styles.targetLanguageText, { color: t.accent }]}>
+          {modePayload?.family === "listen_build_dictation"
+            ? modePayload.hiddenTargetPhrase
+            : prompt}
+        </Text>
       )}
 
       <View style={[styles.answerRow, { borderBottomColor: t.bgSurface2 }]}>
@@ -284,14 +333,14 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
             nudgeToken={wrongNudge.responseId === chip.responseId ? wrongNudge.token : 0}
             reducedMotion={reducedMotion}
             disabled={resolved || phase === "processing"}
-            onPress={index === answerChips.length - 1 ? onUndoToken : () => {}}
+            onPress={() => onRemoveTokenAt(index)}
             bg={t.bgCard}
             textColor={
               phase === "success"
                 ? t.correctText
                 : phase === "needs_work" && chip.responseId === wrongNudge.responseId
                   ? t.wrong
-                  : t.textPrimary
+              : t.accent
             }
           />
         ))}
@@ -309,13 +358,20 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
               verdict="none"
               nudgeToken={0}
               reducedMotion={reducedMotion}
-              disabled={resolved || phase === "processing" || !hasPlayedOnce}
+              disabled={resolved || phase === "processing"}
               onPress={() => onAppendToken(option.responseId)}
               bg={t.bgCard}
-              textColor={t.textPrimary}
+              textColor={t.accent}
             />
           ))}
       </View>
+
+      <V2Cta
+        disabled={!canSubmit || resolved || phase === "processing"}
+        onPress={onSubmit}
+      >
+        {learningV2ModeCheckLabelV1(interfaceLocale)}
+      </V2Cta>
 
       {explanation && (
         <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
@@ -340,7 +396,8 @@ const styles = StyleSheet.create({
   ringWrap: { width: 104, height: 104, alignItems: "center", justifyContent: "center" },
   ringBtn: { width: 84, height: 84, borderRadius: 42, alignItems: "center", justifyContent: "center" },
   playSub: { fontSize: 14, fontWeight: "700" },
-  revealText: { fontSize: 15, fontWeight: "600", textAlign: "center" },
+  revealText: { fontSize: 16, fontWeight: "900", textAlign: "center" },
+  targetLanguageText: { fontWeight: "900" },
   answerRow: {
     minHeight: 64,
     width: "100%",
@@ -352,7 +409,8 @@ const styles = StyleSheet.create({
   },
   bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "center" },
   chip: { borderRadius: 16, paddingVertical: 11, paddingHorizontal: 16 },
-  chipText: { fontSize: 16.5, fontWeight: "700" },
+  chipText: { fontSize: 16.5, fontWeight: "900" },
+  targetText: { fontWeight: "900" },
   feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
 });

@@ -66,6 +66,7 @@ export default function PaywallPlanCards({
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
+    en: '/ mo',
     es: '/ mes',
     'pt-BR': '/ mês',
     vi: '/ tháng',
@@ -83,6 +84,7 @@ export default function PaywallPlanCards({
     yearSubParts.push(triLang(lang, {
       ru: `Сначала ${trialDays} дн. бесплатно`,
       uk: `Спершу ${trialDays} дн. безкоштовно`,
+      en: `First ${trialDays} days free`,
       es: `Primero ${trialDays} días gratis`,
       'pt-BR': `Primeiro ${trialDays} dias grátis`,
       vi: `${trialDays} ngày đầu miễn phí`,
@@ -98,6 +100,7 @@ export default function PaywallPlanCards({
     yearSubParts.push(triLang(lang, {
       ru: `${perDayLabel} в день`,
       uk: `${perDayLabel} на день`,
+      en: `${perDayLabel} per day`,
       es: `${perDayLabel} al día`,
       'pt-BR': `${perDayLabel} por dia`,
       vi: `${perDayLabel} mỗi ngày`,
@@ -239,13 +242,14 @@ export default function PaywallPlanCards({
   };
 
   const decoyName = triLang(lang, {
-    ru: '6 месяцев', uk: '6 місяців', es: '6 meses', 'pt-BR': '6 meses',
+    ru: '6 месяцев', uk: '6 місяців', en: '6 months', es: '6 meses', 'pt-BR': '6 meses',
     vi: '6 tháng', id: '6 bulan', tr: '6 ay', pl: '6 miesięcy',
   });
 
   const additionalOfferTitle = triLang(lang, {
     ru: 'Дополнительное предложение',
     uk: 'Додаткова пропозиція',
+    en: 'Additional offer',
     es: 'Oferta adicional',
     'pt-BR': 'Oferta adicional',
     vi: 'Ưu đãi khác',
@@ -257,19 +261,20 @@ export default function PaywallPlanCards({
   // и Pro, и MAX (если оба доступны), только Pro, или только MAX.
   const additionalOfferSubtitle = lifetimeAvailable && onOpenMaxPaywall
     ? triLang(lang, {
-        ru: 'Phraseman Pro и MAX', uk: 'Phraseman Pro та MAX', es: 'Phraseman Pro y MAX',
+        ru: 'Phraseman Pro и MAX', uk: 'Phraseman Pro та MAX', en: 'Phraseman Pro and MAX', es: 'Phraseman Pro y MAX',
         'pt-BR': 'Phraseman Pro e MAX', vi: 'Phraseman Pro và MAX', id: 'Phraseman Pro dan MAX',
         tr: 'Phraseman Pro ve MAX', pl: 'Phraseman Pro i MAX',
       })
     : onOpenMaxPaywall
       ? triLang(lang, {
           ru: 'Тариф MAX · 120 минут в месяц с ИИ-учителем', uk: 'Тариф MAX · 120 хвилин на місяць із ШІ-вчителем',
+          en: 'MAX plan · 120 minutes a month with an AI teacher',
           es: 'Plan MAX · 120 minutos al mes con tu profesor de IA', 'pt-BR': 'Plano MAX · 120 minutos por mês com o professor de IA',
           vi: 'Gói MAX · 120 phút mỗi tháng với gia sư AI', id: 'Paket MAX · 120 menit per bulan dengan guru AI',
           tr: 'MAX planı · yapay zekâ öğretmeninle ayda 120 dakika', pl: 'Plan MAX · 120 minut miesięcznie z nauczycielem AI',
         })
       : triLang(lang, {
-          ru: 'Phraseman Pro · разовая покупка', uk: 'Phraseman Pro · разова покупка', es: 'Phraseman Pro · compra única',
+          ru: 'Phraseman Pro · разовая покупка', uk: 'Phraseman Pro · разова покупка', en: 'Phraseman Pro · one-time purchase', es: 'Phraseman Pro · compra única',
           'pt-BR': 'Phraseman Pro · compra única', vi: 'Phraseman Pro · mua một lần', id: 'Phraseman Pro · pembelian sekali',
           tr: 'Phraseman Pro · tek seferlik satın alma', pl: 'Phraseman Pro · zakup jednorazowy',
         });
@@ -292,6 +297,7 @@ export default function PaywallPlanCards({
         triLang(lang, {
           ru: 'Год',
           uk: 'Рік',
+          en: 'Year',
           es: 'Año',
           'pt-BR': 'Ano',
           vi: 'Năm',
@@ -311,6 +317,7 @@ export default function PaywallPlanCards({
         triLang(lang, {
           ru: 'Месяц',
           uk: 'Місяць',
+          en: 'Month',
           es: 'Mes',
           'pt-BR': 'Mês',
           vi: 'Tháng',
@@ -355,6 +362,7 @@ export default function PaywallPlanCards({
         triLang(lang, {
           ru: 'Разовая покупка',
           uk: 'Разова покупка',
+          en: 'One-time purchase',
           es: 'Compra única',
           'pt-BR': 'Compra única',
           vi: 'Mua một lần',
@@ -362,19 +370,19 @@ export default function PaywallPlanCards({
           tr: 'Tek seferlik satın alma',
           pl: 'Zakup jednorazowy',
         }),
-        triLang(lang, { ru: 'разовый', uk: 'разовий', es: 'único', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' }),
+        triLang(lang, { ru: 'разовый', uk: 'разовий', en: 'one-time', es: 'único', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' }),
         true, // hidePerMonth — lifetime это не /мес
       )}
       {onOpenMaxPaywall && additionalOfferExpanded && renderCard(
         'monthly', // зачем: MAX не план usePaywallPurchase — plan-параметр здесь не участвует в selected (onNavigate ставит sel=false всегда)
         'MAX',
         triLang(lang, {
-          ru: '120 минут в месяц', uk: '120 хвилин на місяць', es: '120 minutos al mes',
+          ru: '120 минут в месяц', uk: '120 хвилин на місяць', en: '120 minutes a month', es: '120 minutos al mes',
           'pt-BR': '120 minutos por mês', vi: '120 phút mỗi tháng', id: '120 menit per bulan',
           tr: 'ayda 120 dakika', pl: '120 minut miesięcznie',
         }),
         triLang(lang, {
-          ru: 'Разговор с ИИ-учителем', uk: 'Розмова з ШІ-вчителем', es: 'Conversación con tu profesor de IA',
+          ru: 'Разговор с ИИ-учителем', uk: 'Розмова з ШІ-вчителем', en: 'Conversation with an AI teacher', es: 'Conversación con tu profesor de IA',
           'pt-BR': 'Conversa com o professor de IA', vi: 'Trò chuyện với gia sư AI', id: 'Ngobrol dengan guru AI',
           tr: 'Yapay zekâ öğretmeninle konuşma', pl: 'Rozmowa z nauczycielem AI',
         }),

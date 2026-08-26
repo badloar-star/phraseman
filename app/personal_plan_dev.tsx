@@ -114,7 +114,7 @@ export default function PersonalPlanDevScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           <View style={styles.planTabs}>
             {PERSONAL_PLAN_CATALOG.map((plan) => {
               const active = plan.id === selectedPlan.id;

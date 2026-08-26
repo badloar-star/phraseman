@@ -27,6 +27,7 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
       title={triLang(lang, {
         ru: 'Включить AI-диалоги?',
         uk: 'Увімкнути AI-діалоги?',
+        en: 'Turn on AI dialogues?',
         es: '¿Activar los diálogos con IA?',
         'pt-BR': 'Ativar os diálogos com IA?',
         vi: 'Bật hội thoại AI?',
@@ -37,6 +38,7 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
       body={triLang(lang, {
         ru: 'Твои сообщения отправляются в OpenAI, чтобы собеседник отвечал.\n\nМожно выключить в настройках в любой момент.',
         uk: 'Твої повідомлення надсилаються в OpenAI, щоб співрозмовник відповідав.\n\nМожна вимкнути в налаштуваннях будь-коли.',
+        en: 'Your messages are sent to OpenAI so the character can reply.\n\nYou can turn this off in settings at any time.',
         es: 'Tus mensajes se envían a OpenAI para que el interlocutor responda.\n\nPuedes desactivarlo en ajustes cuando quieras.',
         'pt-BR': 'Suas mensagens são enviadas à OpenAI para que o interlocutor responda.\n\nVocê pode desativar isso nas configurações quando quiser.',
         vi: 'Tin nhắn của bạn được gửi tới OpenAI để bạn trò chuyện có thể trả lời.\n\nCó thể tắt trong cài đặt bất cứ lúc nào.',
@@ -45,10 +47,10 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
         pl: 'Twoje wiadomości trafiają do OpenAI, aby rozmówca mógł odpowiedzieć.\n\nMożesz to wyłączyć w ustawieniach w dowolnym momencie.',
       })}
       acceptLabel={triLang(lang, {
-        ru: 'Включить', uk: 'Увімкнути', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
+        ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
       })}
       declineLabel={triLang(lang, {
-        ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Không phải bây giờ', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
+        ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Không phải bây giờ', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
       })}
     />
   );

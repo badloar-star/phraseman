@@ -22,7 +22,7 @@ import { soundDirector } from '../modules/audio/sound_director';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -71,6 +71,7 @@ function examMenuImage(themeMode: ThemeMode) {
 const DIAGNOSTIC_BUILD_HEADER = {
   ru: '🧩 Собери фразу из слов',
   uk: '🧩 Збери фразу зі слів',
+  en: '🧩 Build the phrase from words',
   es: '🧩 Arma la frase con las palabras',
   'pt-BR': '🧩 Monte a frase com as palavras',
   vi: '🧩 Sắp xếp từ thành câu',
@@ -81,16 +82,17 @@ const DIAGNOSTIC_BUILD_HEADER = {
 
 /** Подписи без эмодзи — для VoiceOver / TalkBack. */
 const DIAGNOSTIC_SKILL_A11Y = {
-  build: { ru: 'Задание: собрать фразу из слов', uk: 'Завдання: зібрати фразу зі слів', es: 'Tarea: formar la frase con las palabras', 'pt-BR': 'Tarefa: montar a frase com as palavras', vi: 'Nhiệm vụ: sắp xếp từ thành câu', id: 'Tugas: susun frasa dari kata-kata', tr: 'Görev: kelimelerden ifadeyi kur', pl: 'Zadanie: ułóż frazę ze słów' },
-  choice4: { ru: 'Задание: выбрать верный вариант', uk: 'Завдання: обрати правильний варіант', es: 'Tarea: elegir la opción correcta', 'pt-BR': 'Tarefa: escolher a opção correta', vi: 'Nhiệm vụ: chọn đáp án đúng', id: 'Tugas: pilih jawaban yang benar', tr: 'Görev: doğru seçeneği seç', pl: 'Zadanie: wybierz poprawną odpowiedź' },
-  match: { ru: 'Задание: сопоставить слово и значение', uk: 'Завдання: зіставити слово й значення', es: 'Tarea: relacionar palabra y significado', 'pt-BR': 'Tarefa: relacionar palavra e significado', vi: 'Nhiệm vụ: nối từ với nghĩa', id: 'Tugas: cocokkan kata dan arti', tr: 'Görev: kelimeyle anlamı eşleştir', pl: 'Zadanie: połącz słowo ze znaczeniem' },
-  type: { ru: 'Задание: ввести пропущенное слово', uk: 'Завдання: ввести пропущене слово', es: 'Tarea: escribir la palabra que falta', 'pt-BR': 'Tarefa: digitar a palavra que falta', vi: 'Nhiệm vụ: nhập từ còn thiếu', id: 'Tugas: ketik kata yang hilang', tr: 'Görev: eksik kelimeyi yaz', pl: 'Zadanie: wpisz brakujące słowo' },
+  build: { ru: 'Задание: собрать фразу из слов', uk: 'Завдання: зібрати фразу зі слів', en: 'Task: build the phrase from words', es: 'Tarea: formar la frase con las palabras', 'pt-BR': 'Tarefa: montar a frase com as palavras', vi: 'Nhiệm vụ: sắp xếp từ thành câu', id: 'Tugas: susun frasa dari kata-kata', tr: 'Görev: kelimelerden ifadeyi kur', pl: 'Zadanie: ułóż frazę ze słów' },
+  choice4: { ru: 'Задание: выбрать верный вариант', uk: 'Завдання: обрати правильний варіант', en: 'Task: choose the correct option', es: 'Tarea: elegir la opción correcta', 'pt-BR': 'Tarefa: escolher a opção correta', vi: 'Nhiệm vụ: chọn đáp án đúng', id: 'Tugas: pilih jawaban yang benar', tr: 'Görev: doğru seçeneği seç', pl: 'Zadanie: wybierz poprawną odpowiedź' },
+  match: { ru: 'Задание: сопоставить слово и значение', uk: 'Завдання: зіставити слово й значення', en: 'Task: match the word with its meaning', es: 'Tarea: relacionar palabra y significado', 'pt-BR': 'Tarefa: relacionar palavra e significado', vi: 'Nhiệm vụ: nối từ với nghĩa', id: 'Tugas: cocokkan kata dan arti', tr: 'Görev: kelimeyle anlamı eşleştir', pl: 'Zadanie: połącz słowo ze znaczeniem' },
+  type: { ru: 'Задание: ввести пропущенное слово', uk: 'Завдання: ввести пропущене слово', en: 'Task: type the missing word', es: 'Tarea: escribir la palabra que falta', 'pt-BR': 'Tarefa: digitar a palavra que falta', vi: 'Nhiệm vụ: nhập từ còn thiếu', id: 'Tugas: ketik kata yang hilang', tr: 'Görev: eksik kelimeyi yaz', pl: 'Zadanie: wpisz brakujące słowo' },
 } as const;
 
 function diagnosticBuildHeader(lang: Lang): string {
   return triLang(lang, {
     ru: DIAGNOSTIC_BUILD_HEADER.ru,
     uk: DIAGNOSTIC_BUILD_HEADER.uk,
+    en: DIAGNOSTIC_BUILD_HEADER.en,
     es: DIAGNOSTIC_BUILD_HEADER.es,
     'pt-BR': '🧩 Monte a frase com as palavras',
     vi: '🧩 Sắp xếp từ thành câu',
@@ -135,6 +137,7 @@ function diagnosticSkillA11y(lang: Lang, kind: keyof typeof DIAGNOSTIC_SKILL_A11
   return triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,
+    en: copy.en,
     es: copy.es,
     'pt-BR': planned['pt-BR'],
     vi: planned.vi,
@@ -149,6 +152,7 @@ function diagnosticUiCopy(lang: Lang) {
     loadError: triLang(lang, {
       ru: 'Вопросы не загрузились. Проверь сеть и попробуй снова.',
       uk: 'Не вдалося завантажити питання. Спробуй пізніше.',
+      en: 'Couldn’t load the questions. Try again later.',
       es: 'No se pudieron cargar las preguntas. Inténtalo más tarde.',
       'pt-BR': 'Não foi possível carregar as perguntas. Tente novamente mais tarde.',
       vi: 'Không thể tải câu hỏi. Hãy thử lại sau.',
@@ -159,6 +163,7 @@ function diagnosticUiCopy(lang: Lang) {
     back: triLang(lang, {
       ru: 'Вернуться',
       uk: 'Повернутися',
+      en: 'Go back',
       es: 'Volver',
       'pt-BR': 'Voltar',
       vi: 'Quay lại',
@@ -169,6 +174,7 @@ function diagnosticUiCopy(lang: Lang) {
     cancel: triLang(lang, {
       ru: 'Отменить',
       uk: 'Відмінити',
+      en: 'Cancel',
       es: 'Cancelar',
       'pt-BR': 'Cancelar',
       vi: 'Hủy',
@@ -179,6 +185,7 @@ function diagnosticUiCopy(lang: Lang) {
     continue: triLang(lang, {
       ru: 'Продолжить',
       uk: 'Далі',
+      en: 'Next',
       es: 'Siguiente',
       'pt-BR': 'Continuar',
       vi: 'Tiếp tục',
@@ -189,6 +196,7 @@ function diagnosticUiCopy(lang: Lang) {
     buildPlaceholder: triLang(lang, {
       ru: 'Тапни слово снизу...',
       uk: 'Торкнись слова нижче...',
+      en: 'Tap a word below...',
       es: 'Toca una palabra abajo...',
       'pt-BR': 'Toque em uma palavra abaixo...',
       vi: 'Chạm vào một từ bên dưới...',
@@ -199,6 +207,7 @@ function diagnosticUiCopy(lang: Lang) {
     check: triLang(lang, {
       ru: 'Проверить',
       uk: 'Перевірити',
+      en: 'Check',
       es: 'Comprobar',
       'pt-BR': 'Verificar',
       vi: 'Kiểm tra',
@@ -209,6 +218,7 @@ function diagnosticUiCopy(lang: Lang) {
     typeHere: triLang(lang, {
       ru: 'Введи ответ...',
       uk: 'Введи відповідь...',
+      en: 'Type your answer...',
       es: 'Escribe aquí...',
       'pt-BR': 'Digite aqui...',
       vi: 'Nhập câu trả lời...',
@@ -219,6 +229,7 @@ function diagnosticUiCopy(lang: Lang) {
     correctAnswerPrefix: triLang(lang, {
       ru: 'Правильный ответ',
       uk: 'Правильна відповідь',
+      en: 'Correct answer',
       es: 'Respuesta correcta',
       'pt-BR': 'Resposta correta',
       vi: 'Đáp án đúng',
@@ -229,6 +240,7 @@ function diagnosticUiCopy(lang: Lang) {
     options: triLang(lang, {
       ru: 'Варианты',
       uk: 'Варіанти',
+      en: 'Options',
       es: 'Opciones',
       'pt-BR': 'Opções',
       vi: 'Lựa chọn',
@@ -239,6 +251,7 @@ function diagnosticUiCopy(lang: Lang) {
     skip: triLang(lang, {
       ru: 'Пропустить',
       uk: 'Пропустити',
+      en: 'Skip',
       es: 'Omitir',
       'pt-BR': 'Pular',
       vi: 'Bỏ qua',
@@ -249,6 +262,7 @@ function diagnosticUiCopy(lang: Lang) {
     secondSuffix: triLang(lang, {
       ru: 'с',
       uk: 'с',
+      en: 's',
       es: 's',
       'pt-BR': 's',
       vi: ' giây',
@@ -466,6 +480,7 @@ function diagnosticQuestionHint(lang: Lang, q: Question): string {
   return triLang(lang, {
     ru: q.hintRU,
     uk: q.hintUK,
+    en: q.hintES,
     es: q.hintES,
     'pt-BR': q.hintPTBR ?? q.hintES,
     vi: q.hintVI ?? q.hintES,
@@ -774,54 +789,60 @@ const ACTIVE_DIAGNOSTIC_POOL = STRICT_DIAGNOSTIC_POOL;
 
 // Result thresholds (based on 20 questions)
 const LEVEL_RESULTS = [
-  {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi: 'Mức khởi đầu (tham khảo)', id: 'Level awal (orientatif)', tr: 'Başlangıç seviyesi (tahmini)', pl: 'Poziom początkowy (orientacyjnie)',
+  {min:0,  level:'A1', ru:'Начальный ориентир',    uk:'Початковий орієнтир',    en:'Beginner (indicative)', es:'Nivel inicial (orientativo)', 'pt-BR':'Nível inicial (orientativo)', vi: 'Mức khởi đầu (tham khảo)', id: 'Level awal (orientatif)', tr: 'Başlangıç seviyesi (tahmini)', pl: 'Poziom początkowy (orientacyjnie)',
     msgRU:'База ещё формируется — это нормально. Двигайся по урокам: словарь, грамматика и теория дадут опору.',
     msgUK:'База ще формується — це нормально. Рухайся за уроками: словник, граматика й теорія дадуть опору.',
+    msgEN:'Your foundation is still forming — that’s normal. Keep going through the lessons: vocabulary, grammar and theory will give you support.',
     msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.',
     msgPTBR:'A base ainda está se formando — isso é normal. Siga pelas aulas: vocabulário, gramática e teoria vão dar apoio.',
     msgVI:'Nền tảng vẫn đang hình thành — điều này bình thường. Hãy học theo các bài: từ vựng, ngữ pháp và lý thuyết sẽ tạo điểm tựa.',
     msgID:'Dasarnya masih terbentuk — itu wajar. Ikuti pelajaran: kosakata, tata bahasa, dan teori akan memberi pijakan.',
     msgTR:'Temel hâlâ oluşuyor — bu normal. Dersleri takip et: kelime, dil bilgisi ve teori sana dayanak sağlar.',
     msgPL:'Podstawy dopiero się układają — to normalne. Idź przez lekcje: słownictwo, gramatyka i teoria dadzą oparcie.'},
-  {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi: 'Mức cơ bản (tham khảo)', id: 'Level dasar (orientatif)', tr: 'Temel seviye (tahmini)', pl: 'Poziom podstawowy (orientacyjnie)',
+  {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   en:'Elementary (indicative)', es:'Nivel básico (orientativo)', 'pt-BR':'Nível básico (orientativo)', vi: 'Mức cơ bản (tham khảo)', id: 'Level dasar (orientatif)', tr: 'Temel seviye (tahmini)', pl: 'Poziom podstawowy (orientacyjnie)',
     msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.',
     msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
+    msgEN:'You recognize the patterns — deepen your vocabulary and grammar in the lesson exercises; speed comes with practice.',
     msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.',
     msgPTBR:'Você já reconhece padrões: reforce vocabulário e gramática nas aulas; a velocidade vem com a prática.',
     msgVI:'Bạn đã nhận ra các mẫu câu: hãy củng cố từ vựng và ngữ pháp trong bài học; tốc độ sẽ tăng nhờ luyện tập.',
     msgID:'Kamu sudah mengenali pola: perkuat kosakata dan tata bahasa di pelajaran; kecepatan akan datang lewat kebiasaan.',
     msgTR:'Kalıpları tanıyorsun: derslerde kelime ve dil bilgisini güçlendir; hız düzenli pratikle gelir.',
     msgPL:'Rozpoznajesz już schematy: wzmacniaj słownictwo i gramatykę w lekcjach; tempo przyjdzie z praktyką.'},
-  {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi: 'Trung cấp (tham khảo)', id: 'Menengah (orientatif)', tr: 'Orta seviye (tahmini)', pl: 'Średnio zaawansowany (orientacyjnie)',
+  {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       en:'Intermediate (indicative)', es:'Intermedio (orientativo)', 'pt-BR':'Intermediário (orientativo)', vi: 'Trung cấp (tham khảo)', id: 'Menengah (orientatif)', tr: 'Orta seviye (tahmini)', pl: 'Średnio zaawansowany (orientacyjnie)',
     msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».',
     msgUK:'Впевненіше тримаєш матеріал курсу. Познач прогалини в темах і повертайся до «Теорії» та «Словника».',
+    msgEN:'You’re handling the course material more confidently. Note the gaps in topics and go back to “Theory” and “Vocabulary”.',
     msgES:'Manejas mejor el contenido del curso. Marca lagunas y repasa «Teoría» y «Vocabulario» donde haga falta.',
     msgPTBR:'Você domina melhor o conteúdo do curso. Marque lacunas e revise “Teoria” e “Vocabulário” quando precisar.',
     msgVI:'Bạn nắm nội dung khóa học chắc hơn. Hãy ghi lại lỗ hổng và quay lại phần “Lý thuyết” và “Từ vựng” khi cần.',
     msgID:'Kamu makin mantap dengan materi kursus. Tandai celah dan ulangi “Teori” serta “Kosakata” saat perlu.',
     msgTR:'Kurs içeriğini daha sağlam tutuyorsun. Eksik konuları işaretle ve gerektiğinde “Teori” ile “Kelime” bölümlerine dön.',
     msgPL:'Coraz pewniej trzymasz materiał kursu. Zaznacz luki i wracaj do sekcji „Teoria” oraz „Słownictwo”.'},
-  {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi: 'Trung cấp cao (tham khảo)', id: 'Menengah atas (orientatif)', tr: 'Üst orta seviye (tahmini)', pl: 'Wyższy średni (orientacyjnie)',
+  {min:12, level:'B2', ru:'Выше среднего', uk:'Вище середнього', en:'Upper-intermediate (indicative)', es:'Intermedio alto (orientativo)', 'pt-BR':'Intermediário alto (orientativo)', vi: 'Trung cấp cao (tham khảo)', id: 'Menengah atas (orientatif)', tr: 'Üst orta seviye (tahmini)', pl: 'Wyższy średni (orientacyjnie)',
     msgRU:'Сильный результат в формате теста — не про «талант», а про накопленную практику. Закрепляй слабые темы.',
     msgUK:'Сильний результат у форматі тесту — це про практику, не про «здібності». Закріплюй слабкі теми.',
+    msgEN:'A strong result in this test format is about accumulated practice, not “talent”. Reinforce your weaker topics.',
     msgES:'Muy buen resultado en este formato: refleja práctica acumulada, no «capacidad». Refuerza temas flojos.',
     msgPTBR:'Resultado forte neste formato: é prática acumulada, não “talento”. Reforce os temas mais fracos.',
     msgVI:'Kết quả tốt trong dạng bài này: đó là nhờ luyện tập tích lũy, không phải “năng khiếu”. Hãy củng cố các chủ đề yếu.',
     msgID:'Hasil yang kuat untuk format tes ini: ini soal latihan yang terkumpul, bukan “bakat”. Perkuat topik yang masih lemah.',
     msgTR:'Bu test formatında güçlü sonuç: bu “yetenek” değil, birikmiş pratik. Zayıf konuları pekiştir.',
     msgPL:'Mocny wynik w tym formacie: to efekt zebranej praktyki, nie „talentu”. Utrwal słabsze tematy.'},
-  {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi: 'Nâng cao (tham khảo)', id: 'Mahir (orientatif)', tr: 'İleri seviye (tahmini)', pl: 'Zaawansowany (orientacyjnie)',
+  {min:16, level:'C1', ru:'Продвинутый ориентир',   uk:'Просунутий орієнтир',     en:'Advanced (indicative)', es:'Avanzado (orientativo)', 'pt-BR':'Avançado (orientativo)', vi: 'Nâng cao (tham khảo)', id: 'Mahir (orientatif)', tr: 'İleri seviye (tahmini)', pl: 'Zaawansowany (orientacyjnie)',
     msgRU:'Высокий балл по заданиям приложения — продолжай полировать детали через уроки и повторение.',
     msgUK:'Високий бал за завдання застосунку — продовжуй шліфувати деталі через уроки й повторення.',
+    msgEN:'A high score on the app’s test format — keep polishing the details through lessons and review.',
     msgES:'Puntuación alta en el formato de la app: sigue puliendo matices con lecciones y repaso.',
     msgPTBR:'Pontuação alta no formato do app: continue lapidando detalhes com aulas e revisão.',
     msgVI:'Điểm cao trong định dạng của ứng dụng: hãy tiếp tục mài giũa chi tiết qua bài học và ôn tập.',
     msgID:'Skor tinggi dalam format aplikasi: terus poles detail lewat pelajaran dan pengulangan.',
     msgTR:'Uygulama formatında yüksek puan: dersler ve tekrarlarla ayrıntıları parlatmaya devam et.',
     msgPL:'Wysoki wynik w formacie aplikacji: dalej dopracowuj szczegóły przez lekcje i powtórki.'},
-  {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi: 'Tối đa trong bài kiểm tra này', id: 'Maksimum di tes ini', tr: 'Bu testte maksimum', pl: 'Maksimum w tym teście',
+  {min:20, level:'C2', ru:'Максимум в тесте', uk:'Максимум у тесті', en:'Top score in this test', es:'Tope en este test', 'pt-BR':'Máximo neste teste', vi: 'Tối đa trong bài kiểm tra này', id: 'Maksimum di tes ini', tr: 'Bu testte maksimum', pl: 'Maksimum w tym teście',
     msgRU:'Все задания верны — отличный ориентир. Закрепи результат регулярными повторениями уроков.',
     msgUK:'Усі завдання вірні — чудовий орієнтир. Закріпи результат регулярним повторенням уроків.',
+    msgEN:'You got everything right in this format — keep it up with regular lesson review.',
     msgES:'Pleno en este formato: mantén el nivel con repaso habitual en las lecciones.',
     msgPTBR:'Você acertou tudo neste formato: mantenha o nível com revisão regular nas aulas.',
     msgVI:'Bạn làm đúng toàn bộ trong định dạng này: hãy giữ phong độ bằng cách ôn bài đều đặn.',
@@ -852,6 +873,7 @@ function diagnosticResultTitle(lang: Lang, result: (typeof LEVEL_RESULTS)[number
   return triLang(lang, {
     ru: result.ru,
     uk: result.uk,
+    en: result.en,
     es: result.es,
     'pt-BR': result['pt-BR'],
     vi: result.vi,
@@ -865,6 +887,7 @@ function diagnosticResultMessage(lang: Lang, result: (typeof LEVEL_RESULTS)[numb
   return triLang(lang, {
     ru: result.msgRU,
     uk: result.msgUK,
+    en: result.msgEN,
     es: result.msgES,
     'pt-BR': result.msgPTBR,
     vi: result.msgVI,
@@ -878,6 +901,7 @@ function diagnosticDateLocale(lang: Lang): string {
   return triLang(lang, {
     ru: 'ru-RU',
     uk: 'uk-UA',
+    en: 'en-US',
     es: 'es-ES',
     'pt-BR': 'pt-BR',
     vi: 'vi-VN',
@@ -964,7 +988,7 @@ export default function DiagnosticTest() {
   const isFrenchDiagnostic = storageStudyTarget(studyTarget) === 'fr';
   const diagnosticSourceLocale = lang === 'uk' ? 'uk' : 'ru';
   const diagnosticUi = useMemo(() => diagnosticUiCopy(lang), [lang]);
-  const { isUnlimited, confirmSpendOne } = useEnergy();
+  const { isUnlimited, confirmSpendOne, acknowledgeSessionStart } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
   // зачем (аудит 2026-08-22): выход посреди диагностики был мгновенным без
   // предупреждения — попытка терялась молча. Подтверждение по образцу
@@ -1016,6 +1040,12 @@ export default function DiagnosticTest() {
   const answersRef  = useRef<boolean[]>([]);
   const userNameRef = useRef<string>('');
   const diagnosticAttemptIdRef = useRef<string>(makeDiagnosticAttemptId());
+  const [diagnosticEnergyRevision, setDiagnosticEnergyRevision] = useState(0);
+  const diagnosticEnergyIntent = useEnergySessionIntent(
+    'diagnostic_test',
+    studyTarget,
+    `${diagnosticAttemptIdRef.current}:${diagnosticEnergyRevision}`,
+  );
   // зачем: до 2026-08-24 второй тап по «Начать» отбивала модалка подтверждения
   // траты (пока окно висело, повторный запрос возвращал отказ). Окно убрано по
   // требованию владельца, а своей защиты у диагностики не было вовсе —
@@ -1090,7 +1120,7 @@ export default function DiagnosticTest() {
     if (diagnosticChargeInFlightRef.current) return;
     diagnosticChargeInFlightRef.current = true;
     try {
-      const energyResult = await confirmSpendOne();
+      const energyResult = await confirmSpendOne(diagnosticEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') {
         void trackFeatureBlocked('diagnostic', 'start', 'no_energy', { total: questions.length }, 'diagnostic_test');
@@ -1101,6 +1131,8 @@ export default function DiagnosticTest() {
       diagnosticChargeInFlightRef.current = false;
     }
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
+    void acknowledgeSessionStart(diagnosticEnergyIntent.operationId);
+    setDiagnosticEnergyRevision((revision) => revision + 1);
     setPhase('quiz');
     // зачем: собранный «вдох» на старте первого вопроса теста — часто первое
     // впечатление новичка от приложения, сейчас звука не было вообще.
@@ -1123,7 +1155,7 @@ export default function DiagnosticTest() {
     if (diagnosticChargeInFlightRef.current) return;
     diagnosticChargeInFlightRef.current = true;
     try {
-      const energyResult = await confirmSpendOne();
+      const energyResult = await confirmSpendOne(diagnosticEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') {
         void trackFeatureBlocked('diagnostic', 'restart', 'no_energy', { total: questions.length }, 'diagnostic_test');
@@ -1139,6 +1171,8 @@ export default function DiagnosticTest() {
     setTypedAnswer('');
     setTypeSubmitted(false);
     diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
+    void acknowledgeSessionStart(diagnosticEnergyIntent.operationId);
+    setDiagnosticEnergyRevision((revision) => revision + 1);
     setPhase('quiz');
     // зачем: собранный «вдох» на старте первого вопроса теста — часто первое
     // впечатление новичка от приложения, сейчас звука не было вообще.
@@ -1535,7 +1569,7 @@ export default function DiagnosticTest() {
           {s.diagnostic.start}
         </Text>
       </View>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24 }}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24 }}>
         {prevResult && (
           <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 16, marginBottom: 20, width: '100%' }}>
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
@@ -1548,7 +1582,7 @@ export default function DiagnosticTest() {
               {s.diagnostic.correct}: {prevResult.score} / {questions.length}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 4 }}>
-              {triLang(lang, { ru: 'Дата', uk: 'Дата', es: 'Fecha', 'pt-BR': 'Data', vi: 'Ngày', id: 'Tanggal', tr: 'Tarih', pl: 'Data' })}: {prevResult.date}
+              {triLang(lang, { ru: 'Дата', uk: 'Дата', en: 'Date', es: 'Fecha', 'pt-BR': 'Data', vi: 'Ngày', id: 'Tanggal', tr: 'Tarih', pl: 'Data' })}: {prevResult.date}
             </Text>
           </View>
         )}
@@ -1617,7 +1651,7 @@ export default function DiagnosticTest() {
               <SkeletonBlock width={90} height={f.label} borderRadius={4} style={{ marginTop: 6 }} />
             ) : (
               <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
-                {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
+                {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', en: 'lessons', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
               </Text>
             )}
             <View style={{ width: '100%', height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, marginTop: 8, overflow: 'hidden' }}>
@@ -1654,6 +1688,7 @@ export default function DiagnosticTest() {
             {triLang(lang, {
               ru: '1 ⚡ за старт диагностики',
               uk: '1 ⚡ за початок діагностики',
+              en: '1 ⚡ to start the level test',
               es: '1 ⚡ al empezar el test de nivel',
               'pt-BR': '1 ⚡ para iniciar o teste de nível',
               vi: '1 ⚡ để bắt đầu bài kiểm tra trình độ',
@@ -1701,7 +1736,7 @@ export default function DiagnosticTest() {
     <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
         <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
           <Ionicons name="school-outline" size={44} color={t.textSecond} />
         </View>
@@ -1798,7 +1833,7 @@ export default function DiagnosticTest() {
 
         <BouncyScrollView
           style={{ flex: 1 }}
-          decelerationRate="normal"
+          decelerationRate="fast"
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 20,
@@ -1825,7 +1860,7 @@ export default function DiagnosticTest() {
               accessibilityRole="text"
               accessibilityLabel={diagnosticSkillA11y(lang, 'choice4')}
             >
-              {triLang(lang, { ru: '🔤 Выбери верный вариант', uk: '🔤 Обери правильний варіант', es: '🔤 Elige la opción correcta', 'pt-BR': '🔤 Escolha a opção correta', vi: '🔤 Chọn đáp án đúng', id: '🔤 Pilih jawaban yang benar', tr: '🔤 Doğru seçeneği seç', pl: '🔤 Wybierz poprawną odpowiedź' })}
+              {triLang(lang, { ru: '🔤 Выбери верный вариант', uk: '🔤 Обери правильний варіант', en: '🔤 Choose the correct option', es: '🔤 Elige la opción correcta', 'pt-BR': '🔤 Escolha a opção correta', vi: '🔤 Chọn đáp án đúng', id: '🔤 Pilih jawaban yang benar', tr: '🔤 Doğru seçeneği seç', pl: '🔤 Wybierz poprawną odpowiedź' })}
             </Text>
           )}
           {q.type === 'match' && (
@@ -1834,7 +1869,7 @@ export default function DiagnosticTest() {
               accessibilityRole="text"
               accessibilityLabel={diagnosticSkillA11y(lang, 'match')}
             >
-              {triLang(lang, { ru: '🔗 Сопоставь слово и значение', uk: '🔗 Зістав слово й значення', es: '🔗 Relaciona palabra y significado', 'pt-BR': '🔗 Relacione palavra e significado', vi: '🔗 Nối từ với nghĩa', id: '🔗 Cocokkan kata dan arti', tr: '🔗 Kelimeyle anlamı eşleştir', pl: '🔗 Połącz słowo ze znaczeniem' })}
+              {triLang(lang, { ru: '🔗 Сопоставь слово и значение', uk: '🔗 Зістав слово й значення', en: '🔗 Match the word and meaning', es: '🔗 Relaciona palabra y significado', 'pt-BR': '🔗 Relacione palavra e significado', vi: '🔗 Nối từ với nghĩa', id: '🔗 Cocokkan kata dan arti', tr: '🔗 Kelimeyle anlamı eşleştir', pl: '🔗 Połącz słowo ze znaczeniem' })}
             </Text>
           )}
           {q.type === 'type' && (
@@ -1843,7 +1878,7 @@ export default function DiagnosticTest() {
               accessibilityRole="text"
               accessibilityLabel={diagnosticSkillA11y(lang, 'type')}
             >
-              {triLang(lang, { ru: '⌨️ Введи пропущенное слово', uk: '⌨️ Введи пропущене слово', es: '⌨️ Escribe la palabra que falta', 'pt-BR': '⌨️ Digite a palavra que falta', vi: '⌨️ Nhập từ còn thiếu', id: '⌨️ Ketik kata yang hilang', tr: '⌨️ Eksik kelimeyi yaz', pl: '⌨️ Wpisz brakujące słowo' })}
+              {triLang(lang, { ru: '⌨️ Введи пропущенное слово', uk: '⌨️ Введи пропущене слово', en: '⌨️ Type the missing word', es: '⌨️ Escribe la palabra que falta', 'pt-BR': '⌨️ Digite a palavra que falta', vi: '⌨️ Nhập từ còn thiếu', id: '⌨️ Ketik kata yang hilang', tr: '⌨️ Eksik kelimeyi yaz', pl: '⌨️ Wpisz brakujące słowo' })}
             </Text>
           )}
 
@@ -2063,15 +2098,15 @@ export default function DiagnosticTest() {
     <ThemedConfirmModal
       visible={exitDiagnosticConfirm}
       title={triLang(lang, {
-        ru: 'Выйти?', uk: 'Вийти?', es: '¿Salir del test?', 'pt-BR': 'Sair do teste?',
+        ru: 'Выйти?', uk: 'Вийти?', en: 'Leave?', es: '¿Salir del test?', 'pt-BR': 'Sair do teste?',
         vi: 'Thoát bài kiểm tra?', id: 'Keluar dari tes?', tr: "Testten çıkılsın mı?", pl: 'Wyjść z testu?',
       })}
       message={triLang(lang, {
-        ru: 'Результат теста не сохранится', uk: 'Результат тесту не збережеться', es: 'El resultado del test no se guardará.', 'pt-BR': 'O resultado deste teste não será salvo.',
+        ru: 'Результат теста не сохранится', uk: 'Результат тесту не збережеться', en: 'This test’s result won’t be saved.', es: 'El resultado del test no se guardará.', 'pt-BR': 'O resultado deste teste não será salvo.',
         vi: 'Kết quả bài kiểm tra này sẽ không được lưu.', id: 'Hasil tes ini tidak akan disimpan.', tr: 'Bu testin sonucu kaydedilmeyecek.', pl: 'Wynik tego testu nie zostanie zapisany.',
       })}
-      cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
-      confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}
+      cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+      confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', en: 'Leave', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}
       onCancel={() => setExitDiagnosticConfirm(false)}
       onConfirm={() => {
         setExitDiagnosticConfirm(false);

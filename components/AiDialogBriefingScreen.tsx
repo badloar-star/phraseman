@@ -38,19 +38,19 @@ type AiDialogBriefingScreenProps = {
 
 const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
   goalLabel: triLang(lang, {
-    ru: 'Цель диалога', uk: 'Мета діалогу', es: 'Objetivo del diálogo', 'pt-BR': 'Objetivo do diálogo',
+    ru: 'Цель диалога', uk: 'Мета діалогу', en: 'Dialogue goal', es: 'Objetivo del diálogo', 'pt-BR': 'Objetivo do diálogo',
     vi: 'Mục tiêu hội thoại', id: 'Tujuan dialog', tr: 'Diyalog hedefi', pl: 'Cel dialogu',
   }),
   firstPromptLabel: triLang(lang, {
-    ru: 'Начните с этого', uk: 'Почніть із цього', es: 'Empieza con esto', 'pt-BR': 'Comece por aqui',
+    ru: 'Начните с этого', uk: 'Почніть із цього', en: 'Start with this', es: 'Empieza con esto', 'pt-BR': 'Comece por aqui',
     vi: 'Bắt đầu từ đây', id: 'Mulai dari sini', tr: 'Buradan başlayın', pl: 'Zacznij od tego',
   }),
   start: triLang(lang, {
-    ru: 'Начать диалог', uk: 'Почати діалог', es: 'Iniciar diálogo', 'pt-BR': 'Iniciar diálogo',
+    ru: 'Начать диалог', uk: 'Почати діалог', en: 'Start the dialogue', es: 'Iniciar diálogo', 'pt-BR': 'Iniciar diálogo',
     vi: 'Bắt đầu hội thoại', id: 'Mulai dialog', tr: 'Diyaloğu başlat', pl: 'Rozpocznij dialog',
   }),
   back: triLang(lang, {
-    ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć',
+    ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć',
   }),
 });
 
@@ -94,7 +94,7 @@ export default function AiDialogBriefingScreen({
           </PressableScale>
         </View>
 
-        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: ds.spacing.xl, paddingBottom: ds.spacing.xxl }}>
+        <ScrollView decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, paddingHorizontal: ds.spacing.xl, paddingBottom: ds.spacing.xxl }}>
           <Reanimated.View entering={entering} style={{ flex: 1, justifyContent: 'center', gap: ds.spacing.xl }}>
             <View style={{ alignItems: 'center', gap: ds.spacing.md }}>
               {/* Медальон-глиф сцены со свечением её света. */}

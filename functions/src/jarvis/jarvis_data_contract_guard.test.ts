@@ -217,6 +217,21 @@ const INTENTIONALLY_UNREAD_SERVER_PROGRESS_FIELDS = [
   },
 ] as const;
 
+// Owner Repository is an account-scoped local immutable journal, not a new
+// Firestore collection and not a Jarvis business metric. Keep new receipt
+// variants explicit here so a wallet schema change cannot silently look like
+// an omitted Jarvis/Rules migration.
+const INTENTIONALLY_UNREAD_LOCAL_ECONOMY_RECEIPTS = [
+  {
+    receiptType: 'learning_session_reward_composite',
+    contract: 'modules/learning-v2/contracts/wallet.ts',
+    writer:
+      'modules/learning-v2/progress/learning_session_rune_reward_composite_v1.ts',
+    authority:
+      'client-authoritative immutable Owner Repository operation; no Firestore collection or Jarvis projection',
+  },
+] as const;
+
 const MONEY_WRITER_CONTRACTS = [
   {
     writer: 'app/economy/client_shard_operation_sync.ts',
@@ -410,6 +425,23 @@ describe('Jarvis data contract — silence must never replace a broken source', 
       expect(rules).toContain(`'${field}'`);
       expect(jarvisReaders).not.toContain(field);
       expect(authority.length).toBeGreaterThan(30);
+    },
+  );
+  test.each(INTENTIONALLY_UNREAD_LOCAL_ECONOMY_RECEIPTS)(
+    'local economy receipt $receiptType stays contract-backed and outside Firestore/Jarvis',
+    ({ receiptType, contract, writer, authority }) => {
+      const contractSource = fs.readFileSync(path.join(root, contract), 'utf8');
+      const writerSource = fs.readFileSync(path.join(root, writer), 'utf8');
+      const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+      const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+        .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+        .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+        .join('\n');
+      expect(contractSource).toContain(`| "${receiptType}"`);
+      expect(writerSource).toContain(`receiptType: "${receiptType}"`);
+      expect(rules).not.toContain(receiptType);
+      expect(jarvisReaders).not.toContain(receiptType);
+      expect(authority).toContain('no Firestore collection');
     },
   );
   test('personal sync collections are explicitly intentionally unread by Jarvis', () => {

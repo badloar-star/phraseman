@@ -51,7 +51,7 @@ import {
 import { isSpeakingEnabled } from './remote_flags';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { hapticError, hapticSuccess, hapticTap, hapticWarning } from '../hooks/use-haptics';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { actionToastTri, emitAppEvent } from './events';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -300,22 +300,22 @@ function PlanListenChooseAudioButton({
   // Строки были захардкожены, хотя весь остальной экран уже локализован через triLang.
   const label = disabled
     ? triLang(lang, {
-        ru: 'Аудио готовится', uk: 'Аудіо готується', es: 'Preparando el audio',
+        ru: 'Аудио готовится', uk: 'Аудіо готується', en: 'Preparing audio', es: 'Preparando el audio',
         'pt-BR': 'Preparando o áudio', vi: 'Đang chuẩn bị âm thanh',
         id: 'Menyiapkan audio', tr: 'Ses hazırlanıyor', pl: 'Przygotowuję audio',
       })
     : isBuffering
       ? triLang(lang, {
-          ru: 'Загрузка', uk: 'Завантаження', es: 'Cargando',
+          ru: 'Загрузка', uk: 'Завантаження', en: 'Loading', es: 'Cargando',
           'pt-BR': 'Carregando', vi: 'Đang tải', id: 'Memuat', tr: 'Yükleniyor', pl: 'Ładowanie',
         })
       : isPlaying
         ? triLang(lang, {
-            ru: 'Слушаю', uk: 'Слухаю', es: 'Escuchando',
+            ru: 'Слушаю', uk: 'Слухаю', en: 'Listening', es: 'Escuchando',
             'pt-BR': 'Ouvindo', vi: 'Đang nghe', id: 'Mendengarkan', tr: 'Dinleniyor', pl: 'Słucham',
           })
         : triLang(lang, {
-            ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
+            ru: 'Слушать', uk: 'Слухати', en: 'Listen', es: 'Escuchar',
             'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Słuchaj',
           });
 
@@ -324,12 +324,12 @@ function PlanListenChooseAudioButton({
       accessibilityRole="button"
       accessibilityLabel={disabled
         ? triLang(lang, {
-            ru: 'Аудио готовится', uk: 'Аудіо готується', es: 'Preparando el audio',
+            ru: 'Аудио готовится', uk: 'Аудіо готується', en: 'Preparing audio', es: 'Preparando el audio',
             'pt-BR': 'Preparando o áudio', vi: 'Đang chuẩn bị âm thanh',
             id: 'Menyiapkan audio', tr: 'Ses hazırlanıyor', pl: 'Przygotowuję audio',
           })
         : triLang(lang, {
-            ru: 'Слушать фразу', uk: 'Слухати фразу', es: 'Escuchar la frase',
+            ru: 'Слушать фразу', uk: 'Слухати фразу', en: 'Listen to the phrase', es: 'Escuchar la frase',
             'pt-BR': 'Ouvir a frase', vi: 'Nghe cụm từ', id: 'Dengarkan frasa',
             tr: 'İfadeyi dinle', pl: 'Posłuchaj frazy',
           })}
@@ -1855,13 +1855,18 @@ function PlanChoiceTile({
 
 function PersonalPlanExerciseScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { playCorrect } = useCorrectSound();
   // зачем: с 2026-08-23 энергия платится за ВХОД в задание, а ошибки внутри её
   // не трогают — единое правило владельца, как в уроках и тренировках.
   // Премиум/тестер обходят подтверждение внутри confirmSpendOne.
-  const { confirmSpendOne, energyReady } = useEnergy();
+  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const planEnergyIntent = useEnergySessionIntent(
+    'personal_plan_exercise',
+    firstParam(params.planTaskId) || firstParam(params.lessonId) || 'task',
+  );
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleExerciseScroll = useCallback((e: any) => {
@@ -1899,15 +1904,15 @@ function PersonalPlanExerciseScreen() {
     if (!energyReady || planEntryChargedRef.current) return;
     planEntryChargedRef.current = true;
     let active = true;
-    void confirmSpendOne().then(result => {
+    void confirmSpendOne(planEnergyIntent).then(result => {
       if (!active) return;
+      if (result === 'spent') void acknowledgeSessionStart(planEnergyIntent.operationId);
       if (result === 'insufficient' && !energyGateDismissedRef.current) setNoEnergyModalOpen(true);
       if (result === 'cancelled') safeRouterBack(router, '/personal_plan');
     });
     return () => { active = false; };
-  }, [energyReady]);
+  }, [acknowledgeSessionStart, energyReady, planEnergyIntent, router]);
 
-  const params = useLocalSearchParams();
   const { theme: t, themeMode, f } = useTheme();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
@@ -2228,7 +2233,7 @@ function PersonalPlanExerciseScreen() {
   });
   // Заголовок ВЕРНОГО ответа — всегда «Верно!». Старый авто-заголовок «Почему этот
   // вариант» (explanation.title) убран — генерёжка «Почему так» больше не нужна.
-  const resultModalTitle = useMemo(() => triLang(lang, { ru: 'Верно!', uk: 'Правильно!', es: '¡Correcto!', 'pt-BR': 'Certo!', vi: 'Chính xác!', id: 'Benar!', tr: 'Doğru!', pl: 'Dobrze!' }), [lang]);
+  const resultModalTitle = useMemo(() => triLang(lang, { ru: 'Верно!', uk: 'Правильно!', en: 'Correct!', es: '¡Correcto!', 'pt-BR': 'Certo!', vi: 'Chính xác!', id: 'Benar!', tr: 'Doğru!', pl: 'Dobrze!' }), [lang]);
   // Для НЕВЕРНОГО ответа объяснение должно относиться к ВЫБРАННОМУ варианту,
   // а не к правильному (иначе «выбрал I'm fine — объясняет I'm good»). Пока ИИ-
   // объяснение конкретного дистрактора не подгрузилось (Stage C), показываем
@@ -2240,6 +2245,7 @@ function PersonalPlanExerciseScreen() {
       return triLang(lang, {
         ru: `«${picked}» не подходит здесь. По смыслу нужен вариант «${right}».`,
         uk: `«${picked}» тут не підходить. За змістом потрібен варіант «${right}».`,
+        en: `"${picked}" doesn’t fit here. By meaning, the right option is "${right}".`,
         es: `«${picked}» no encaja aquí. Por significado, la opción correcta es «${right}».`,
         'pt-BR': `«${picked}» não encaixa aqui. Pelo sentido, a opção certa é «${right}».`,
         vi: `«${picked}» không hợp ở đây. Theo nghĩa, đáp án đúng là «${right}».`,
@@ -2251,6 +2257,7 @@ function PersonalPlanExerciseScreen() {
     return triLang(lang, {
       ru: 'Попробуй ещё раз спокойно: промах уйдёт в повторение.',
       uk: 'Спробуй ще раз спокійно: промах піде в повторення.',
+      en: 'Try again calmly — this slip will come back in review.',
       es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
       'pt-BR': 'Tente de novo com calma: o erro voltará na revisão.',
       vi: 'Hãy thử lại bình tĩnh: lỗi này sẽ quay lại trong phần ôn tập.',
@@ -2263,7 +2270,7 @@ function PersonalPlanExerciseScreen() {
   // Старый авто-текст «Почему так» (explanation.correct: «важно выбрать не
   // красивость...») убран. На неверном — ИИ-разбор, не этот текст.
   const staticBody = useMemo(() => lastResult === 'correct'
-    ? triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.', 'pt-BR': 'Soa natural assim.', vi: 'Nghe tự nhiên như vậy.', id: 'Terdengar alami begitu.', tr: 'Böyle doğal geliyor.', pl: 'Tak brzmi naturalnie.' })
+    ? triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', en: 'That’s how it sounds natural.', es: 'Así suena natural.', 'pt-BR': 'Soa natural assim.', vi: 'Nghe tự nhiên như vậy.', id: 'Terdengar alami begitu.', tr: 'Böyle doğal geliyor.', pl: 'Tak brzmi naturalnie.' })
     : wrongSelectedBody, [lastResult, lang, wrongSelectedBody]);
 
   // Разбор/объяснение для не-option режимов (вспомни фразу / собери на слух / собери
@@ -2277,7 +2284,7 @@ function PersonalPlanExerciseScreen() {
           title={resultModalTitle}
           body={staticBody}
           hideBody
-          actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
+          actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
           onAction={() => void next()}
           accent={accent}
           actionText={actionText}
@@ -2310,7 +2317,7 @@ function PersonalPlanExerciseScreen() {
           style={[styles.retryAfterMistake, { borderColor: accent }]}
         >
           <Text style={{ color: accent, fontWeight: '700' }}>
-            {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
+            {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
           </Text>
         </TouchableOpacity>
       </View>
@@ -2688,7 +2695,7 @@ function PersonalPlanExerciseScreen() {
           trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
         />
 
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"
@@ -2709,6 +2716,7 @@ function PersonalPlanExerciseScreen() {
                 <Text style={[styles.prompt, { color: t.textMuted }]}>{triLang(lang, {
                   ru: 'Вспомни фразу без подсказок.',
                   uk: 'Пригадай фразу без підказок.',
+                  en: 'Recall the phrase without hints.',
                   es: 'Recuerda la frase sin pistas.',
                   'pt-BR': 'Lembre-se da frase sem dicas.',
                   vi: 'Nhớ lại cụm từ mà không cần gợi ý.',
@@ -2749,6 +2757,7 @@ function PersonalPlanExerciseScreen() {
                 <Text style={[styles.prompt, { color: t.textMuted }]}>{triLang(lang, {
                   ru: 'Сначала слушай, потом собирай фразу по порядку.',
                   uk: 'Спершу слухай, потім збирай фразу по порядку.',
+                  en: 'Listen first, then build the phrase in order.',
                   es: 'Primero escucha, luego ordena la frase.',
                   'pt-BR': 'Primeiro escute, depois monte a frase na ordem.',
                   vi: 'Nghe trước, sau đó sắp xếp cụm từ theo thứ tự.',
@@ -2892,6 +2901,7 @@ function PersonalPlanExerciseScreen() {
                     ? triLang(lang, {
                         ru: 'Сначала послушай фразу, потом выбери смысл.',
                         uk: 'Спершу послухай фразу, потім обери зміст.',
+                        en: 'Listen to the phrase first, then choose the meaning.',
                         es: 'Primero escucha la frase, luego elige el significado.',
                         'pt-BR': 'Primeiro escute a frase, depois escolha o significado.',
                         vi: 'Nghe cụm từ trước, sau đó chọn nghĩa.',
@@ -2903,6 +2913,7 @@ function PersonalPlanExerciseScreen() {
                     ? `${triLang(lang, {
                         ru: 'Смысл',
                         uk: 'Зміст',
+                        en: 'Meaning',
                         es: 'Significado',
                         'pt-BR': 'Significado',
                         vi: 'Nghĩa',
@@ -2914,11 +2925,12 @@ function PersonalPlanExerciseScreen() {
                 </Text>
                 <Text style={[styles.english, isChoiceMode ? styles.choiceInstruction : null, { color: t.textPrimary }]}>
                   {isListeningMode
-                    ? triLang(lang, { ru: 'На слух', uk: 'На слух', es: 'De oído', 'pt-BR': 'De ouvido', vi: 'Theo âm thanh', id: 'Dengan mendengar', tr: 'Kulaktan', pl: 'Ze słuchu' })
+                    ? triLang(lang, { ru: 'На слух', uk: 'На слух', en: 'By ear', es: 'De oído', 'pt-BR': 'De ouvido', vi: 'Theo âm thanh', id: 'Dengan mendengar', tr: 'Kulaktan', pl: 'Ze słuchu' })
                     : isChoiceMode
                     ? triLang(lang, {
                         ru: 'Нажми лучший вариант ниже',
                         uk: 'Натисни найкращий варіант нижче',
+                        en: 'Tap the best option below',
                         es: 'Toca la mejor opción abajo',
                         'pt-BR': 'Toque na melhor opção abaixo',
                         vi: 'Chạm vào lựa chọn tốt nhất bên dưới',
@@ -2931,6 +2943,7 @@ function PersonalPlanExerciseScreen() {
                     : triLang(lang, {
                         ru: 'Выбери подходящую фразу',
                         uk: 'Обери відповідну фразу',
+                        en: 'Choose the matching phrase',
                         es: 'Elige la frase adecuada',
                         'pt-BR': 'Escolha a frase adequada',
                         vi: 'Chọn cụm từ phù hợp',
@@ -2971,7 +2984,7 @@ function PersonalPlanExerciseScreen() {
                     title={resultModalTitle}
                     body={staticBody}
                     hideBody
-                    actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
+                    actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
                     onAction={() => void next()}
                     accent={accent}
                     actionText={actionText}
@@ -3069,9 +3082,9 @@ function PersonalPlanExerciseScreen() {
         <PlanExerciseFeedbackModal
           visible={done}
           tone="success"
-          title={triLang(lang, { ru: 'День пройден', uk: 'День пройдено', es: 'Día completado', 'pt-BR': 'Dia concluído', vi: 'Hoàn thành ngày', id: 'Hari selesai', tr: 'Gün tamamlandı', pl: 'Dzień ukończony' })}
-          body={triLang(lang, { ru: 'Все вызовы на сегодня выполнены. Возвращайся завтра за новой порцией.', uk: 'Усі виклики на сьогодні виконано. Повертайся завтра по нову порцію.', es: 'Has completado todas las tareas de hoy. Vuelve mañana por más.', 'pt-BR': 'Você concluiu todas as tarefas de hoje. Volte amanhã para mais.', vi: 'Bạn đã hoàn thành mọi nhiệm vụ hôm nay. Quay lại vào ngày mai nhé.', id: 'Semua tugas hari ini selesai. Kembali besok untuk lanjut.', tr: 'Bugünkü tüm görevleri tamamladın. Yarın yenileri için geri dön.', pl: 'Ukończono wszystkie dzisiejsze zadania. Wróć jutro po więcej.' })}
-          actionLabel={triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Về kế hoạch', id: 'Ke rencana', tr: 'Plana dön', pl: 'Do planu' })}
+          title={triLang(lang, { ru: 'День пройден', uk: 'День пройдено', en: 'Day complete', es: 'Día completado', 'pt-BR': 'Dia concluído', vi: 'Hoàn thành ngày', id: 'Hari selesai', tr: 'Gün tamamlandı', pl: 'Dzień ukończony' })}
+          body={triLang(lang, { ru: 'Все вызовы на сегодня выполнены. Возвращайся завтра за новой порцией.', uk: 'Усі виклики на сьогодні виконано. Повертайся завтра по нову порцію.', en: 'All of today’s challenges are done. Come back tomorrow for more.', es: 'Has completado todas las tareas de hoy. Vuelve mañana por más.', 'pt-BR': 'Você concluiu todas as tarefas de hoje. Volte amanhã para mais.', vi: 'Bạn đã hoàn thành mọi nhiệm vụ hôm nay. Quay lại vào ngày mai nhé.', id: 'Semua tugas hari ini selesai. Kembali besok untuk lanjut.', tr: 'Bugünkü tüm görevleri tamamladın. Yarın yenileri için geri dön.', pl: 'Ukończono wszystkie dzisiejsze zadania. Wróć jutro po więcej.' })}
+          actionLabel={triLang(lang, { ru: 'К плану', uk: 'До плану', en: 'To the plan', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Về kế hoạch', id: 'Ke rencana', tr: 'Plana dön', pl: 'Do planu' })}
           onAction={() => safeRouterBack(router, '/personal_plan')}
           accent={accent}
           actionText={actionText}

@@ -156,25 +156,46 @@ export default function FlashcardsVoicePickerScreen() {
   }, [router, stop]);
 
   const rateLabels: Record<(typeof RATE_PRESETS)[number]['key'], string> = {
-    slow: triLang(lang, { ru: 'Медленно', uk: 'Повільно', es: 'Lento' }),
-    norm: triLang(lang, { ru: 'Норма', uk: 'Норма', es: 'Normal' }),
-    fast: triLang(lang, { ru: 'Быстро', uk: 'Швидко', es: 'Rápido' }),
+    slow: triLang(lang, {
+      ru: 'Медленно', uk: 'Повільно', en: 'Slow', es: 'Lento',
+      'pt-BR': 'Devagar', vi: 'Chậm', id: 'Pelan', tr: 'Yavaş', pl: 'Wolno',
+    }),
+    norm: triLang(lang, {
+      ru: 'Норма', uk: 'Норма', en: 'Normal', es: 'Normal',
+      'pt-BR': 'Normal', vi: 'Bình thường', id: 'Normal', tr: 'Normal', pl: 'Normalnie',
+    }),
+    fast: triLang(lang, {
+      ru: 'Быстро', uk: 'Швидко', en: 'Fast', es: 'Rápido',
+      'pt-BR': 'Rápido', vi: 'Nhanh', id: 'Cepat', tr: 'Hızlı', pl: 'Szybko',
+    }),
   };
 
-  const enhancedBadgeLabel = triLang(lang, { ru: 'Улучшенный', uk: 'Покращений', es: 'Mejorada' });
+  const enhancedBadgeLabel = triLang(lang, {
+    ru: 'Улучшенный', uk: 'Покращений', en: 'Enhanced', es: 'Mejorada',
+    'pt-BR': 'Aprimorada', vi: 'Nâng cao', id: 'Ditingkatkan', tr: 'Gelişmiş', pl: 'Ulepszony',
+  });
 
   const voiceRow = (v: FcVoiceLike | null) => {
     const id = v?.identifier ?? null;
     const active = selectedId === id;
     const title = v
       ? voiceTitle(v)
-      : triLang(lang, { ru: 'Системный (авто)', uk: 'Системний (авто)', es: 'Sistema (auto)' });
+      : triLang(lang, {
+          ru: 'Системный (авто)', uk: 'Системний (авто)', en: 'System (auto)', es: 'Sistema (auto)',
+          'pt-BR': 'Sistema (auto)', vi: 'Hệ thống (tự động)', id: 'Sistem (otomatis)', tr: 'Sistem (otomatik)', pl: 'Systemowy (auto)',
+        });
     const sub = v
       ? v.language
       : triLang(lang, {
           ru: 'Голос подберёт устройство',
           uk: 'Голос підбере пристрій',
+          en: 'The device picks the voice',
           es: 'El dispositivo elige la voz',
+          'pt-BR': 'O dispositivo escolherá a voz',
+          vi: 'Thiết bị sẽ tự chọn giọng đọc',
+          id: 'Perangkat akan memilih suara',
+          tr: 'Sesi cihaz seçecek',
+          pl: 'Urządzenie dobierze głos',
         });
     return (
       <TouchableOpacity
@@ -279,7 +300,10 @@ export default function FlashcardsVoicePickerScreen() {
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} testID="fc-voice-picker-title">
-              {triLang(lang, { ru: 'Голос озвучки · EN', uk: 'Голос озвучення · EN', es: 'Voz de lectura · EN' })}
+              {triLang(lang, {
+                ru: 'Голос озвучки · EN', uk: 'Голос озвучення · EN', en: 'Voiceover voice · EN', es: 'Voz de lectura · EN',
+                'pt-BR': 'Voz de leitura · EN', vi: 'Giọng đọc · EN', id: 'Suara narasi · EN', tr: 'Seslendirme sesi · EN', pl: 'Głos odczytu · EN',
+              })}
             </Text>
             <View style={{ width: 28 }} />
           </View>
@@ -304,7 +328,7 @@ export default function FlashcardsVoicePickerScreen() {
               ))}
             </View>
           ) : (
-            <ScrollView
+            <ScrollView decelerationRate="fast"
               contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 28, gap: 10 }}
               showsVerticalScrollIndicator={false}
             >
@@ -319,7 +343,10 @@ export default function FlashcardsVoicePickerScreen() {
                   marginTop: 4,
                 }}
               >
-                {triLang(lang, { ru: 'Скорость речи', uk: 'Швидкість мовлення', es: 'Velocidad' })}
+                {triLang(lang, {
+                  ru: 'Скорость речи', uk: 'Швидкість мовлення', en: 'Speech speed', es: 'Velocidad',
+                  'pt-BR': 'Velocidade da fala', vi: 'Tốc độ nói', id: 'Kecepatan bicara', tr: 'Konuşma hızı', pl: 'Szybkość mowy',
+                })}
               </Text>
               <View style={{ flexDirection: 'row', gap: 8 }}>
                 {RATE_PRESETS.map((p) => {
@@ -370,7 +397,10 @@ export default function FlashcardsVoicePickerScreen() {
                   marginTop: 12,
                 }}
               >
-                {triLang(lang, { ru: 'Голос', uk: 'Голос', es: 'Voz' })}
+                {triLang(lang, {
+                  ru: 'Голос', uk: 'Голос', en: 'Voice', es: 'Voz',
+                  'pt-BR': 'Voz', vi: 'Giọng đọc', id: 'Suara', tr: 'Ses', pl: 'Głos',
+                })}
               </Text>
               {voiceRow(null)}
               {enhancedVoices.map((v) => voiceRow(v))}
@@ -395,7 +425,13 @@ export default function FlashcardsVoicePickerScreen() {
                     {triLang(lang, {
                       ru: 'Список голосов недоступен на этом устройстве — используется системный голос.',
                       uk: 'Список голосів недоступний на цьому пристрої — використовується системний голос.',
+                      en: 'The voice list is unavailable on this device — the system voice is used.',
                       es: 'La lista de voces no está disponible en este dispositivo; se usa la voz del sistema.',
+                      'pt-BR': 'A lista de vozes não está disponível neste dispositivo — usa-se a voz do sistema.',
+                      vi: 'Danh sách giọng đọc không khả dụng trên thiết bị này — dùng giọng hệ thống.',
+                      id: 'Daftar suara tidak tersedia di perangkat ini — menggunakan suara sistem.',
+                      tr: 'Bu cihazda ses listesi kullanılamıyor — sistem sesi kullanılıyor.',
+                      pl: 'Lista głosów jest niedostępna na tym urządzeniu — używany jest głos systemowy.',
                     })}
                   </Text>
                 </View>
@@ -421,7 +457,10 @@ export default function FlashcardsVoicePickerScreen() {
               >
                 <Ionicons name="play" size={18} color={t.correctText} />
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Прослушать пример', uk: 'Прослухати приклад', es: 'Escuchar ejemplo' })}
+                  {triLang(lang, {
+                    ru: 'Прослушать пример', uk: 'Прослухати приклад', en: 'Listen to example', es: 'Escuchar ejemplo',
+                    'pt-BR': 'Ouvir exemplo', vi: 'Nghe ví dụ', id: 'Dengarkan contoh', tr: 'Örneği dinle', pl: 'Odsłuchaj przykład',
+                  })}
                 </Text>
               </TouchableOpacity>
               <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center' }}>
@@ -448,18 +487,36 @@ export default function FlashcardsVoicePickerScreen() {
                     ? triLang(lang, {
                         ru: 'Улучшенные голоса можно докачать: Настройки → Универсальный доступ → Устный контент → Голоса → English.',
                         uk: 'Покращені голоси можна довантажити: Параметри → Доступність → Промовлення → Голоси → English.',
+                        en: 'You can download enhanced voices: Settings → Accessibility → Spoken Content → Voices → English.',
                         es: 'Puedes descargar voces mejoradas: Ajustes → Accesibilidad → Contenido leído → Voces → Inglés.',
+                        'pt-BR': 'Você pode baixar vozes aprimoradas: Ajustes → Acessibilidade → Conteúdo Falado → Vozes → English.',
+                        vi: 'Bạn có thể tải thêm giọng nâng cao: Cài đặt → Trợ năng → Nội dung đọc → Giọng nói → English.',
+                        id: 'Kamu bisa mengunduh suara yang lebih baik: Pengaturan → Aksesibilitas → Konten Terucap → Suara → English.',
+                        tr: 'Gelişmiş sesleri indirebilirsin: Ayarlar → Erişilebilirlik → Sesli İçerik → Sesler → English.',
+                        pl: 'Możesz pobrać ulepszone głosy: Ustawienia → Dostępność → Czytana zawartość → Głosy → English.',
                       })
                     : effectiveOs === 'android'
                       ? triLang(lang, {
                           ru: 'Голоса можно докачать в настройках телефона: Настройки → Система → Язык и ввод → Синтез речи → Google TTS → английские голоса.',
                           uk: 'Голоси можна довантажити в налаштуваннях телефона: Налаштування → Система → Мова і введення → Синтез мовлення → Google TTS → англійські голоси.',
+                          en: 'You can download voices in your phone settings: Settings → System → Languages & input → Text-to-speech → Google TTS → English voices.',
                           es: 'Puedes descargar voces en los ajustes del teléfono: Ajustes → Sistema → Idioma → Síntesis de voz → Google TTS → voces en inglés.',
+                          'pt-BR': 'Você pode baixar vozes nas configurações do telefone: Configurações → Sistema → Idioma → Síntese de voz → Google TTS → vozes em inglês.',
+                          vi: 'Bạn có thể tải giọng nói trong cài đặt điện thoại: Cài đặt → Hệ thống → Ngôn ngữ và nhập liệu → Tổng hợp giọng nói → Google TTS → giọng tiếng Anh.',
+                          id: 'Kamu bisa mengunduh suara di pengaturan ponsel: Pengaturan → Sistem → Bahasa & Input → Sintesis Suara → Google TTS → suara bahasa Inggris.',
+                          tr: 'Sesleri telefon ayarlarından indirebilirsin: Ayarlar → Sistem → Dil ve Giriş → Konuşma Sentezi → Google TTS → İngilizce sesler.',
+                          pl: 'Głosy możesz pobrać w ustawieniach telefonu: Ustawienia → System → Język i wpisywanie → Synteza mowy → Google TTS → głosy angielskie.',
                         })
                       : triLang(lang, {
                           ru: 'Голоса зависят от браузера и системы — дополнительные можно установить в настройках устройства.',
                           uk: 'Голоси залежать від браузера і системи — додаткові можна встановити в налаштуваннях пристрою.',
+                          en: 'Voices depend on the browser and system — you can install more in your device settings.',
                           es: 'Las voces dependen del navegador y del sistema; puedes instalar más en los ajustes del dispositivo.',
+                          'pt-BR': 'As vozes dependem do navegador e do sistema — você pode instalar mais nas configurações do dispositivo.',
+                          vi: 'Giọng nói phụ thuộc vào trình duyệt và hệ thống — bạn có thể cài thêm trong cài đặt thiết bị.',
+                          id: 'Suara tergantung pada browser dan sistem — kamu bisa memasang lebih banyak di pengaturan perangkat.',
+                          tr: 'Sesler tarayıcıya ve sisteme bağlıdır — cihaz ayarlarından ek sesler yükleyebilirsin.',
+                          pl: 'Głosy zależą od przeglądarki i systemu — dodatkowe możesz zainstalować w ustawieniach urządzenia.',
                         })}
                 </Text>
               </View>

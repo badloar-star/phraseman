@@ -351,6 +351,7 @@ export function DialogVictoryCelebrationHybrid({
   const title = triLang(lang, {
     ru: 'Диалог пройден!',
     uk: 'Діалог пройдено!',
+    en: 'Dialogue complete!',
     es: '¡Diálogo superado!',
     'pt-BR': 'Diálogo concluído!',
     vi: 'Hoàn thành hội thoại!',
@@ -363,6 +364,7 @@ export function DialogVictoryCelebrationHybrid({
       ? triLang(lang, {
           ru: 'Все цели выполнены — блестяще',
           uk: 'Усі цілі виконано — блискуче',
+          en: 'All goals reached — brilliant',
           es: 'Todas las metas cumplidas — brillante',
           'pt-BR': 'Todas as metas cumpridas — brilhante',
           vi: 'Đạt mọi mục tiêu — xuất sắc',
@@ -373,6 +375,7 @@ export function DialogVictoryCelebrationHybrid({
       : triLang(lang, {
           ru: 'Отличный разговор — так держать',
           uk: 'Чудова розмова — так тримати',
+          en: 'Great conversation — keep it up',
           es: 'Gran conversación — sigue así',
           'pt-BR': 'Ótima conversa — continue assim',
           vi: 'Cuộc trò chuyện tuyệt vời — cứ thế nhé',
@@ -452,7 +455,7 @@ export function DialogVictoryCelebrationHybrid({
             icon="chatbubble-ellipses"
             value={String(replies)}
             label={triLang(lang, {
-              ru: 'Реплик', uk: 'Реплік', es: 'Frases', 'pt-BR': 'Falas',
+              ru: 'Реплик', uk: 'Реплік', en: 'Lines', es: 'Frases', 'pt-BR': 'Falas',
               vi: 'Lượt nói', id: 'Ucapan', tr: 'Replik', pl: 'Kwestie',
             })}
           />
@@ -462,7 +465,7 @@ export function DialogVictoryCelebrationHybrid({
             icon="flag"
             value={goalsTotal > 0 ? `${goalsMet}/${goalsTotal}` : '—'}
             label={triLang(lang, {
-              ru: 'Цели', uk: 'Цілі', es: 'Metas', 'pt-BR': 'Metas',
+              ru: 'Цели', uk: 'Цілі', en: 'Goals', es: 'Metas', 'pt-BR': 'Metas',
               vi: 'Mục tiêu', id: 'Tujuan', tr: 'Hedefler', pl: 'Cele',
             })}
           />
@@ -471,11 +474,11 @@ export function DialogVictoryCelebrationHybrid({
             reduceMotion={reduceMotion}
             icon={moodIcon}
             value={triLang(lang, {
-              ru: 'Доволен', uk: 'Задоволений', es: 'Contento', 'pt-BR': 'Contente',
+              ru: 'Доволен', uk: 'Задоволений', en: 'Pleased', es: 'Contento', 'pt-BR': 'Contente',
               vi: 'Hài lòng', id: 'Senang', tr: 'Memnun', pl: 'Zadowolony',
             })}
             label={triLang(lang, {
-              ru: 'Настроение', uk: 'Настрій', es: 'Ánimo', 'pt-BR': 'Humor',
+              ru: 'Настроение', uk: 'Настрій', en: 'Mood', es: 'Ánimo', 'pt-BR': 'Humor',
               vi: 'Tâm trạng', id: 'Suasana', tr: 'Ruh hali', pl: 'Nastrój',
             })}
           />
@@ -493,7 +496,7 @@ export function DialogVictoryCelebrationHybrid({
             <LinearGradient colors={PALETTE.cta} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.cta}>
               <Text style={styles.ctaText}>
                 {triLang(lang, {
-                  ru: 'К диалогам', uk: 'До діалогів', es: 'A los diálogos', 'pt-BR': 'Aos diálogos',
+                  ru: 'К диалогам', uk: 'До діалогів', en: 'To dialogues', es: 'A los diálogos', 'pt-BR': 'Aos diálogos',
                   vi: 'Về hội thoại', id: 'Ke dialog', tr: 'Diyaloglara', pl: 'Do dialogów',
                 })}
               </Text>

@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 
 const SIZE = 512;
@@ -35,6 +36,7 @@ export async function checkFile(filePath) {
   const name = path.basename(filePath);
   const errors = [];
   const bytes = fs.statSync(filePath).size;
+  const sha256 = createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
   if (/\.webp$/i.test(name) && bytes > 50_000) {
     errors.push(`WebP exceeds 50 KB hard limit: ${bytes} bytes`);
   }
@@ -49,7 +51,7 @@ export async function checkFile(filePath) {
     decoded = await sharp(filePath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   } catch (error) {
     errors.push(`Image decode failed: ${error instanceof Error ? error.message : String(error)}`);
-    return { name, filePath, bytes, errors, alpha: null, width: null, height: null };
+    return { name, filePath, bytes, sha256, errors, alpha: null, width: null, height: null };
   }
 
   const { data, info } = decoded;
@@ -96,6 +98,7 @@ export async function checkFile(filePath) {
     name,
     filePath,
     bytes,
+    sha256,
     width: info.width,
     height: info.height,
     visible,
@@ -134,8 +137,8 @@ export async function checkDirectory(targetPath) {
     const errors = [];
     if (!group.black || !group.white) {
       errors.push(`Missing ${group.black ? 'white' : 'black'} partner for ${key}`);
-    } else if (!group.black.alpha || !group.white.alpha || !group.black.alpha.equals(group.white.alpha)) {
-      errors.push(`Alpha masks differ for ${key}`);
+    } else if (group.black.sha256 === group.white.sha256) {
+      errors.push(`Dark/light files must be independent for ${key}`);
     }
     if (errors.length > 0) pairResults.push({ name: `pair:${key}`, errors });
   }

@@ -126,7 +126,7 @@ export async function purchaseCardPackWithShards(
       DebugLogger.error(
         'cardPackShardPurchase.ts:purchaseCardPackWithShards',
         new Error(`card_pack_spend_failed:${purchase.reason}:${pack.id}`),
-        'error',
+        'critical',
       );
       emitAppEvent('action_toast', {
         type: 'error',

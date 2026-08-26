@@ -30,6 +30,12 @@ import {
   parseMistakeCorrectionWalletComposite,
   type MistakeCorrectionWalletCompositeV1,
 } from '../modules/learning-v2/progress/mistake_correction_wallet_composite';
+import {
+  createLearningV2SessionRuneRewardCompositeAuthorityV1,
+  parseLearningV2SessionRuneRewardCompositeV1,
+  type LearningV2SessionRuneRewardCompositeV1,
+  type LearningV2SessionRuneRewardPublicationTokenV1,
+} from '../modules/learning-v2/progress/learning_session_rune_reward_composite_v1';
 
 export interface LearningV2AccountBindingV1 {
   readonly schemaVersion: 'learning-v2-account-binding.v2';
@@ -60,6 +66,8 @@ export interface LearningV2OwnerRepositoryRuntimeDependencies {
     readonly unlockFingerprint: string;
   }) => Promise<unknown>;
   readonly accountToken?: AccountGenerationToken;
+  readonly sessionRuneRewardPublicationToken?:
+    LearningV2SessionRuneRewardPublicationTokenV1;
 }
 
 const HASH = /^[a-f0-9]{64}$/;
@@ -272,10 +280,18 @@ export async function mountLearningV2OwnerRepository(
           resolveRewardReceipt,
         });
         const mistakeAuthority = createMistakeCorrectionCompositeAuthority();
+        const sessionRuneRewardAuthority =
+          createLearningV2SessionRuneRewardCompositeAuthorityV1(
+            dependencies.sessionRuneRewardPublicationToken,
+          );
         return (input) => (
           isRecord(input.candidate)
           && input.candidate.schemaVersion === 'mistake-correction-wallet-composite.v1'
             ? mistakeAuthority(input)
+            : isRecord(input.candidate)
+              && input.candidate.schemaVersion ===
+                'learning-v2-session-rune-reward-composite.v1'
+              ? sessionRuneRewardAuthority(input)
             : serverAuthority(input)
         );
       })(),
@@ -338,6 +354,52 @@ export async function commitMistakeCorrectionWalletComposite(
     throw new Error('mistake_correction_wallet_composite_owner_mismatch');
   }
   const result = await runtime.repository.commitWalletCreditV3(runtime.scope, parsed);
+  publishLearningV2WalletBalanceState(result.snapshot.walletState, runtime.accountToken);
+  return result;
+}
+
+export async function commitLearningV2SessionRuneRewardCompositeV1(
+  input: Readonly<{
+    candidate: LearningV2SessionRuneRewardCompositeV1;
+    publicationToken: LearningV2SessionRuneRewardPublicationTokenV1;
+  }>,
+  dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},
+): Promise<OwnerRepositoryWalletCreditCommitResult> {
+  const candidate = parseLearningV2SessionRuneRewardCompositeV1(input.candidate);
+  const accountToken = dependencies.accountToken ?? captureAccountGeneration();
+  if (accountToken.phase !== 'active' || !accountToken.stableId ||
+    !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+    throw new Error('learning_v2_account_inactive');
+  }
+  const localBinding = Object.freeze({
+    schemaVersion: 'learning-v2-account-binding.v2' as const,
+    stableUid: accountToken.stableId,
+    accountGeneration: accountToken.generation,
+    economicAccountScopeHash: deriveLearningV2EconomicAccountScopeHash(
+      accountToken.stableId,
+    ),
+    progressAccountScopeHash: deriveProgressAccountScopeHash(
+      accountToken.stableId,
+      accountToken.generation,
+    ),
+  });
+  const runtime = await mountLearningV2OwnerRepository({
+    ...dependencies,
+    accountToken,
+    sessionRuneRewardPublicationToken: input.publicationToken,
+    resolveAccountBinding: dependencies.resolveAccountBinding ??
+      (async () => localBinding),
+  });
+  if (candidate.accountScopeHash !== runtime.scope.accountScopeHash) {
+    throw new Error('learning_v2_session_rune_reward_composite_owner_mismatch');
+  }
+  const result = await runtime.repository.commitWalletCreditV3(
+    runtime.scope,
+    candidate,
+  );
+  if (result.status === 'alias_repair_required') {
+    throw new Error('learning_v2_session_rune_reward_commit_unconfirmed');
+  }
   publishLearningV2WalletBalanceState(result.snapshot.walletState, runtime.accountToken);
   return result;
 }

@@ -5,6 +5,13 @@
 **Владелец требований:** владелец продукта
 **Правило объявления результата:** до выполнения всех гейтов ниже запрещено сообщать, что генератор, курс или Learning V2 «готовы на 100%».
 
+**Обязательный mode-native source:**
+[`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md).
+Генератор не имеет права создавать generic task и поздно присваивать ему
+approved `family`: каждый word/phrase contact сразу получает versioned
+family-native payload, а preview/runtime доказывают exact 1:1 соответствие
+каноническому owner-макету. Схемное ограничение или WIP-renderer дают `HOLD`.
+
 **Обязательный content-quality source:**
 [`QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md`](./QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md).
 Он не меняет продуктовую topology `32 урока × 56 сессий`, а определяет
@@ -92,6 +99,10 @@ scorecard и evidence coverage по этому reference. Высокий сре�
   правильного ответа на третьей странице практика начинается со slot 4;
 - все 56 учебных сессий урока, взаимодействия, варианты, подсказки,
   объяснения, диалоги и проверки;
+- все word/phrase contacts, заранее спроектированные под одну из семи
+  approved mechanics; обязательные contact counts сохраняются, но generic
+  `single_choice`/`ordered_tokens`/`scripted_speech` с поздней заменой family
+  запрещены;
 - интерфейсные тексты и весь пользовательский контент сразу для `ru`, `uk`, `es`, `pt-BR`, `vi`, `id`, `tr`, `pl`.
   **Все восемь языков обязательны при генерации — заглушки запрещены.** Решение
   владельца, 2026-08-16: «все языки должны быть, это строго при генерации,

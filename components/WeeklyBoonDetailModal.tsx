@@ -121,7 +121,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
           </CascadeItem>
 
           <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
-            <ScrollView
+            <ScrollView decelerationRate="fast"
               style={styles.bodyScroll}
               contentContainerStyle={{ paddingBottom: 4 }}
               showsVerticalScrollIndicator={false}
@@ -203,7 +203,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
             {copy.title}
           </Text>
 
-          <ScrollView
+          <ScrollView decelerationRate="fast"
             style={styles.bodyScroll}
             contentContainerStyle={{ paddingBottom: 4 }}
             showsVerticalScrollIndicator={false}

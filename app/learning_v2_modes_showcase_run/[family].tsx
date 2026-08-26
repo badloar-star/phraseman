@@ -35,6 +35,20 @@ import {
   type LearningV2ModeShowcaseFixtureV1,
 } from '../../modules/learning-v2/modes/dev_showcase_fixtures_v1';
 import type { LearningV2ActivityFamilyCode } from '../../modules/learning-v2/telemetry';
+import type { LearningV2ModeNativePayloadV1 } from '../../modules/learning-v2/contracts/mode_native_payload_v1';
+
+const SHOWCASE_SPEED_PAYLOAD = Object.freeze({
+  family: 'speed_match',
+  pairGrid: Object.freeze([
+    { pairId: 'ready', target: 'ready', meaningByLocale: Object.freeze({ ru: 'готов', uk: 'готовий', es: 'listo', en: 'ready', 'pt-BR': 'pronto', vi: 'sẵn sàng', id: 'siap', tr: 'hazır', pl: 'gotowy' }) },
+    { pairId: 'here', target: 'here', meaningByLocale: Object.freeze({ ru: 'здесь', uk: 'тут', es: 'aquí', en: 'here', 'pt-BR': 'aqui', vi: 'ở đây', id: 'di sini', tr: 'burada', pl: 'tutaj' }) },
+  ]),
+  leftColumn: Object.freeze(['ready', 'here']),
+  rightColumn: Object.freeze(['here', 'ready']),
+  pairingKey: 'pair_id',
+  timerPolicy: Object.freeze({ enabledByDefault: true, learnerCanDisable: true, pausesOnInterruption: true }),
+  finishStats: Object.freeze(['speed', 'accuracy', 'personal_best']),
+}) as LearningV2ModeNativePayloadV1;
 
 type ShowcaseLessonItem =
   | LearningV2ModeShowcaseFixtureV1
@@ -66,6 +80,8 @@ function TextModeStage({
     <View style={styles.stage}>
       <LearningV2ModeRouterV1
         family={item.family}
+        interfaceLocale="ru"
+        modePayload={item.family === 'speed_match' ? SHOWCASE_SPEED_PAYLOAD : null}
         phase={host.phase}
         prompt={item.prompt}
         options={item.options}
@@ -75,11 +91,16 @@ function TextModeStage({
         reducedMotion={false}
         resolved={host.resolved}
         explanation={host.phase === 'needs_work' ? item.explanation : null}
+        referenceAudioState="idle"
         onPick={host.onPick}
         onAppendToken={host.onAppendToken}
         onUndoToken={host.onUndoToken}
+        onRemoveTokenAt={host.onUndoToken}
         onPlaySelectableAudio={() => {}}
         onPlayFullPhraseAudio={null}
+        onPlaySlowPhraseAudio={null}
+        onModeNativeComplete={() => onAdvance()}
+        onToggleRecording={() => {}}
         onSubmit={host.evaluateDemo}
         canSubmit={host.canSubmit}
       />
@@ -115,6 +136,8 @@ function VoiceModeStage({ onAdvance }: { readonly onAdvance: () => void }) {
     <View style={styles.stage}>
       <ScriptedRepeatCompareModeV1
         family={item.family}
+        interfaceLocale="ru"
+        modePayload={null}
         phase="idle"
         prompt={item.prompt}
         options={[]}
@@ -124,11 +147,16 @@ function VoiceModeStage({ onAdvance }: { readonly onAdvance: () => void }) {
         reducedMotion={false}
         resolved={false}
         explanation={null}
+        referenceAudioState="idle"
         onPick={() => {}}
         onAppendToken={() => {}}
         onUndoToken={() => {}}
+        onRemoveTokenAt={() => {}}
         onPlaySelectableAudio={() => {}}
         onPlayFullPhraseAudio={null}
+        onPlaySlowPhraseAudio={null}
+        onModeNativeComplete={() => {}}
+        onToggleRecording={() => {}}
         onSubmit={() => {}}
         canSubmit={false}
         voiceStatus="idle"

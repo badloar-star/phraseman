@@ -58,6 +58,19 @@ describe('critical admin write boundaries', () => {
     }
   });
 
+  it('isolates feedback admin reads and AI summaries from the global App Check flag', () => {
+    for (const file of ['feedback_entries.ts', 'feedback_summary.ts']) {
+      const source = read(file);
+      expect(source).toContain('ENFORCE_APP_CHECK_ADMIN');
+    }
+    const entries = read('feedback_entries.ts');
+    const submitStart = entries.indexOf('export const submitFeedbackEntry = onCall(');
+    const listStart = entries.indexOf('export const adminListFeedbackEntries = onCall(');
+    expect(entries.slice(submitStart, listStart)).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
+    expect(entries.slice(listStart)).toContain('enforceAppCheck: ENFORCE_APP_CHECK_ADMIN');
+    expect(read('feedback_summary.ts')).toContain('enforceAppCheck: ENFORCE_APP_CHECK_ADMIN');
+  });
+
   // зачем: раньше здесь были два теста про поэтапный раскат — «админка не
   // наследует глобальный флаг» и «включается отдельной переменной». Механики
   // раската больше НЕТ: владелец 2026-08-17 запломбировал App Check целиком

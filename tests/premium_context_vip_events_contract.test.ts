@@ -130,7 +130,14 @@ describe('PremiumContext VIP event contract', () => {
     expect(listenerBody).toContain('premiumAccountTransitionActiveRef.current');
   });
 
-  it('discards stale reload completion and resolves access only after RevenueCat confirms the new identity', () => {
+  it('discards stale reload completion, and a failed RevenueCat identity sync no longer blocks access resolution', () => {
+    // зачем (2026-08-25, «карточка виснет на скелетоне»): раньше неудачный
+    // identity sync (сеть/сторовые причуды на TestFlight) обрывал ВЕСЬ reload
+    // через `return`, и accessResolved никогда не становился true — любой
+    // гейтнутый экран (редактор карточки, создание набора) висел на скелетоне
+    // навсегда. Локальный/облачный расчёт подписки (getVerifiedRealPremiumStatus
+    // и т.п.) в свежей identity не нуждается, поэтому теперь при неудаче sync
+    // расчёт просто продолжается (fail-open), а флаг остаётся true для ретрая.
     const reloadStart = source.indexOf('const runReload = useCallback');
     const reloadBody = source.slice(reloadStart, source.indexOf('const reload = useCallback', reloadStart));
     const publicReloadBody = source.slice(
@@ -141,7 +148,10 @@ describe('PremiumContext VIP event contract', () => {
     expect(reloadBody).toContain('const reloadEpoch = premiumReloadEpochRef.current');
     expect(reloadBody).toContain('isReloadCurrent');
     expect(reloadBody).toContain('syncRevenueCatIdentity(isReloadCurrent)');
-    expect(reloadBody).toContain('if (!identityReady || !isReloadCurrent()) return;');
+    // Неудачный/незавершённый identity sync НЕ обрывает reload целиком —
+    // только пропускает сброс premiumIdentityRequiredRef (ретрай на будущее).
+    expect(reloadBody).not.toContain('if (!identityReady || !isReloadCurrent()) return;');
+    expect(reloadBody).toContain('if (identityReady) premiumIdentityRequiredRef.current = false;');
     expect(reloadBody).toContain('resolvedReloadEpochRef.current = reloadEpoch');
     expect(publicReloadBody).toContain('resolvedReloadEpochRef.current === requestedEpoch');
     expect(publicReloadBody).toContain('setAccessResolved(true)');

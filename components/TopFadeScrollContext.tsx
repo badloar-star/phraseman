@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useRef } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useRef } from 'react';
 import { Animated } from 'react-native';
 
 /**
@@ -42,22 +42,38 @@ export function TopFadeScrollProvider({ children }: { children: React.ReactNode 
   const scrollY = useRef(new Animated.Value(0)).current;
   const tabBarScrollY = useRef(new Animated.Value(0)).current;
   const tabBarManualLiftRef = useRef(false);
+  const maskShownRef = useRef(false);
+  const lastTabBarYRef = useRef(0);
+  const reportOffset = useCallback((y: number, includeTabBar: boolean) => {
+    const clampedY = Math.max(0, y);
+    const maskShown = clampedY > 6;
+    if (maskShownRef.current !== maskShown) {
+      maskShownRef.current = maskShown;
+      scrollY.setValue(maskShown ? 7 : 0);
+    }
+    if (
+      includeTabBar
+      && (clampedY <= 6 || Math.abs(clampedY - lastTabBarYRef.current) >= 8)
+    ) {
+      lastTabBarYRef.current = clampedY;
+      tabBarScrollY.setValue(clampedY);
+    }
+  }, [scrollY, tabBarScrollY]);
   const value = useMemo<TopFadeScrollCtx>(
     () => ({
       scrollY,
       onScroll: (e) => {
         const y = e?.nativeEvent?.contentOffset?.y;
         if (typeof y === 'number') {
-          scrollY.setValue(y);
-          tabBarScrollY.setValue(y);
+          reportOffset(y, true);
         }
       },
       onScrollMaskOnly: (e) => {
         const y = e?.nativeEvent?.contentOffset?.y;
-        if (typeof y === 'number') scrollY.setValue(y);
+        if (typeof y === 'number') reportOffset(y, false);
       },
       reportTabBarOffset: (y) => {
-        if (typeof y === 'number') tabBarScrollY.setValue(y);
+        if (typeof y === 'number') reportOffset(y, true);
       },
       setTabBarManualLift: (manual) => {
         tabBarManualLiftRef.current = manual;
@@ -65,7 +81,7 @@ export function TopFadeScrollProvider({ children }: { children: React.ReactNode 
       isTabBarManualLift: () => tabBarManualLiftRef.current,
       tabBarScrollY,
     }),
-    [scrollY, tabBarScrollY],
+    [reportOffset, scrollY, tabBarScrollY],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

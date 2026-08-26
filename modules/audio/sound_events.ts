@@ -122,18 +122,15 @@ export const SOUND_EVENTS = Object.freeze({
   // зачем: у каждой сцены СВОЙ звук — иначе одиннадцать разных механик звучат
   // одинаково и превращаются в шум. Тайминги атак (карты ударов) описаны в
   // docs/design/CELEBRATION_SOUND_PROMPTS.md и продублированы в sound_motion.ts.
-  // 14 из 15 звуков сгенерированы и подключены (2026-08-25). Единственное
-  // исключение — voice_score, помечено локально ниже: source=null, директор
-  // молча пропускает такой запрос, сцена играет без звука до появления файла.
-  // Громкости идут волнами (сцены 1, 4 и 8 заметнее) — правило усталости уха.
+  // Все 16 звуков сгенерированы и подключены (2026-08-25, включая фоновую
+  // подложку background_bed). Громкости идут волнами (сцены 1, 4 и 8
+  // заметнее) — правило усталости уха.
   'pm.celebration.open_rift': event(require('../../assets/audio/sfx/v1/celebration/cel_open_rift_v1.m4a'), 0.62, 96, 6000, 1450, 'reward'),
   'pm.celebration.energy_break': event(require('../../assets/audio/sfx/v1/celebration/cel_energy_break_v1.m4a'), 0.50, 90, 2000, 1210, 'reward'),
   'pm.celebration.locks_off': event(require('../../assets/audio/sfx/v1/celebration/cel_locks_off_v1.m4a'), 0.44, 90, 2000, 780, 'reward'),
   'pm.celebration.cards_stack': event(require('../../assets/audio/sfx/v1/celebration/cel_cards_stack_v1.m4a'), 0.44, 90, 2000, 1100, 'reward'),
   'pm.celebration.dialog_spark': event(require('../../assets/audio/sfx/v1/celebration/cel_dialog_spark_v1.m4a'), 0.50, 90, 2000, 900, 'reward'),
-  // зачем: звук ещё не сгенерирован (14 из 15 готовы, 2026-08-25) — source=null,
-  // директор молча пропускает запрос, сцена играет без звука до появления файла.
-  'pm.celebration.voice_score': event(null, 0.46, 90, 2000, 1170, 'reward'),
+  'pm.celebration.voice_score': event(require('../../assets/audio/sfx/v1/celebration/cel_voice_score_v1.m4a'), 0.46, 90, 2000, 1170, 'reward'),
   'pm.celebration.coach_heal': event(require('../../assets/audio/sfx/v1/celebration/cel_coach_heal_v1.m4a'), 0.42, 90, 2000, 1180, 'reward'),
   'pm.celebration.error_fix': event(require('../../assets/audio/sfx/v1/celebration/cel_error_fix_v1.m4a'), 0.44, 90, 2000, 1180, 'reward'),
   'pm.celebration.plan_route': event(require('../../assets/audio/sfx/v1/celebration/cel_plan_route_v1.m4a'), 0.50, 90, 2000, 1060, 'reward'),
@@ -143,6 +140,17 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.celebration.max_awaken': event(require('../../assets/audio/sfx/v1/celebration/cel_max_awaken_v1.m4a'), 0.60, 92, 4000, 2200, 'reward'),
   'pm.celebration.finale_chord': event(require('../../assets/audio/sfx/v1/celebration/cel_finale_chord_v1.m4a'), 0.64, 96, 6000, 1600, 'reward'),
   'pm.celebration.promo_stamp': event(require('../../assets/audio/sfx/v1/celebration/cel_promo_stamp_v1.m4a'), 0.56, 94, 4000, 850, 'reward'),
+  // зачем (владелец 2026-08-25): «на фон надо мелодию какую-то» — точечные
+  // удары сцен звучат разрозненно без общей тёплой подложки под всем
+  // прогоном. Один файл на ~12 с (длиннее самого долгого прогона — MAX 11.3с)
+  // со встроенным fade-in/fade-out, ОДИН на все тиры (не дублировать под
+  // Plus/Pro/MAX — своя мелодия на тир была бы избыточна, а MAX уже имеет
+  // отдельный акцент в cel_max_awaken). Громкость 0.13 — сильно тише точечных
+  // ударов (0.42-0.64), не спорит с ними. Не проигрывается системой событий
+  // sound_director (та рассчитана на короткие дискретные сигналы с cooldown) —
+  // запускается/останавливается напрямую в PremiumCelebrationModal через
+  // expo-audio, см. celebrationBackgroundPlayer.ts.
+  'pm.celebration.background_bed': event(require('../../assets/audio/sfx/v1/celebration/cel_background_bed_v1.m4a'), 0.13, 10, 0, 12000, 'reward'),
   // зачем: лёгкое предвкушение на входе в экран распаковки, ДО первого флипа —
   // не путать с финальным pack_complete (тот громче и играет один раз в конце).
   // Однократность на mount экрана держит вызывающий код; cooldown — защита от

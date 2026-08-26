@@ -5,8 +5,9 @@
  * Показывает «верно / ошибок / точность» и XP (общая механика приложения).
  * CTA: «Добить: Ещё учу (N)» (второй раунд по ошибочным) + «Готово».
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -20,7 +21,9 @@ import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
 import XpGainBadge from '../../components/XpGainBadge';
 import EnergyCostBadge from '../../components/EnergyCostBadge';
+import FeedbackRatingCard from '../../components/FeedbackRatingCard';
 import { triLang } from '../../constants/i18n';
+import { shouldPromptFeedback, markFeedbackPrompted } from '../feedback_prompt_throttle';
 import { fcHaptic, playSfx } from './SoundService';
 
 // ── Экран результата ──────────────────────────────────────────────────────────
@@ -47,6 +50,16 @@ export type SessionResultScreenProps = {
   retryShowsEnergyCost?: boolean;
   /** E12 (блиц): пилюля счёта очков под заголовком («Счёт: 1250»). */
   scoreText?: string;
+  /**
+   * Владелец 2026-08-25: блок оценки звёздами + текст, тот же что на экране
+   * MAX. Опционален и без него ничего не меняется — только сессии, которые
+   * явно передали entityId, получают карточку (троттлинг раз в неделю на
+   * раздел живёт внутри, через shouldPromptFeedback).
+   */
+  feedback?: {
+    entityId: string;
+    entityLabel?: string | null;
+  };
   testID?: string;
 };
 
@@ -62,6 +75,7 @@ function SessionResultScreenImpl({
   retryLabel,
   retryShowsEnergyCost = false,
   scoreText,
+  feedback,
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
   const { theme: t, f } = useTheme();
@@ -80,14 +94,39 @@ function SessionResultScreenImpl({
     fcHaptic('finish');
   }, []);
 
+  // Троттлинг: не чаще раза в неделю на раздел (владелец 2026-08-25) — гейт
+  // решается один раз при монтировании экрана результата, не на каждый рендер.
+  const [showFeedback, setShowFeedback] = useState(false);
+  useEffect(() => {
+    if (!feedback) return;
+    let cancelled = false;
+    void shouldPromptFeedback('vocab').then((allowed) => {
+      if (cancelled || !allowed) return;
+      setShowFeedback(true);
+      void markFeedbackPrompted('vocab');
+    });
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [feedback?.entityId]);
+
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
+          <ScrollView decelerationRate="fast"
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            automaticallyAdjustKeyboardInsets
+            keyboardShouldPersistTaps="handled"
+          >
           <View style={styles.container} testID={testID}>
             <View style={styles.centerBlock}>
               <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Сессия завершена', uk: 'Сесію завершено', es: 'Sesión terminada' })}
+                {triLang(lang, {
+                  ru: 'Сессия завершена', uk: 'Сесію завершено', en: 'Session complete', es: 'Sesión terminada',
+                  'pt-BR': 'Sessão concluída', vi: 'Đã hoàn thành buổi học', id: 'Sesi selesai', tr: 'Oturum tamamlandı', pl: 'Sesja zakończona',
+                })}
               </Text>
 
               {/* E12 (блиц): итоговый счёт очков */}
@@ -108,7 +147,10 @@ function SessionResultScreenImpl({
                   <View style={styles.stat}>
                     <Text style={{ color: accent, fontSize: f.numLg, fontWeight: '900' }}>{correct}</Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                      {triLang(lang, { ru: 'карточек прослушано', uk: 'карток прослухано', es: 'tarjetas escuchadas' })}
+                      {triLang(lang, {
+                        ru: 'карточек прослушано', uk: 'карток прослухано', en: 'cards listened to', es: 'tarjetas escuchadas',
+                        'pt-BR': 'cartões ouvidos', vi: 'thẻ đã nghe', id: 'kartu didengarkan', tr: 'dinlenen kart', pl: 'kart odsłuchanych',
+                      })}
                     </Text>
                   </View>
                 ) : (
@@ -116,21 +158,30 @@ function SessionResultScreenImpl({
                     <View style={styles.stat}>
                       <Text style={{ color: t.correct, fontSize: f.numLg, fontWeight: '900' }}>{correct}</Text>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                        {triLang(lang, { ru: 'верно', uk: 'вірно', es: 'correcto' })}
+                        {triLang(lang, {
+                          ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto',
+                          'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie',
+                        })}
                       </Text>
                     </View>
                     <View style={[styles.statDivider, { backgroundColor: t.border }]} />
                     <View style={styles.stat}>
                       <Text style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '900' }}>{wrong}</Text>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                        {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores' })}
+                        {triLang(lang, {
+                          ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores',
+                          'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów',
+                        })}
                       </Text>
                     </View>
                     <View style={[styles.statDivider, { backgroundColor: t.border }]} />
                     <View style={styles.stat}>
                       <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}>{accuracyPct}%</Text>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                        {triLang(lang, { ru: 'точность', uk: 'точність', es: 'precisión' })}
+                        {triLang(lang, {
+                          ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión',
+                          'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność',
+                        })}
                       </Text>
                     </View>
                   </>
@@ -141,6 +192,38 @@ function SessionResultScreenImpl({
               {xpGained > 0 ? (
                 <View style={{ marginTop: 18, alignItems: 'center' }}>
                   <XpGainBadge amount={xpGained} visible />
+                </View>
+              ) : null}
+
+              {/* Оценка сессии (владелец 2026-08-25): статичный блок под
+                  остальным содержимым экрана, ничего не блокирует. */}
+              {feedback && showFeedback ? (
+                <View style={{ marginTop: 18, width: '100%' }}>
+                  <FeedbackRatingCard
+                    kind="vocab"
+                    entityId={feedback.entityId}
+                    entityLabel={feedback.entityLabel}
+                    lang={lang}
+                    title={triLang(lang, { ru: 'Как тебе словарь?', en: 'How was the vocabulary?', uk: 'Як тобі словник?', es: '¿Qué tal el vocabulario?',
+                      'pt-BR': 'O que achou do vocabulário?', vi: 'Bạn thấy phần từ vựng thế nào?',
+                      id: 'Bagaimana kosakatanya?', tr: 'Kelime bilgisi nasıldı?', pl: 'Jak podobało się słownictwo?',
+                    })}
+                    placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
+                      'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
+                      id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+                    })}
+                    sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
+                      vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
+                    })}
+                    thanksLabel={triLang(lang, { ru: 'Спасибо! Отзыв отправлен', en: 'Thanks! Feedback sent', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado',
+                      'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi',
+                      id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana',
+                    })}
+                    ratingA11yLabel={triLang(lang, { ru: 'Оценка', en: 'Rating', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação',
+                      vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
+                    })}
+                    testID={`${testID}-feedback`}
+                  />
                 </View>
               ) : null}
             </View>
@@ -163,7 +246,13 @@ function SessionResultScreenImpl({
                         triLang(lang, {
                           ru: `Добить: Ещё учу (${learnLeft})`,
                           uk: `Добити: Ще вчу (${learnLeft})`,
+                          en: `Finish: Still learning (${learnLeft})`,
                           es: `Rematar: Aprendiendo (${learnLeft})`,
+                          'pt-BR': `Terminar: Ainda aprendendo (${learnLeft})`,
+                          vi: `Hoàn thành: Đang học (${learnLeft})`,
+                          id: `Selesaikan: Masih belajar (${learnLeft})`,
+                          tr: `Bitir: Hâlâ öğreniyorum (${learnLeft})`,
+                          pl: `Dokończ: Jeszcze się uczę (${learnLeft})`,
                         })}
                     </Text>
                   </TouchableOpacity>
@@ -179,11 +268,15 @@ function SessionResultScreenImpl({
                 style={[styles.doneBtn, { backgroundColor: accent }]}
               >
                 <Text style={{ color: ctaTextColor, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+                  {triLang(lang, {
+                    ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo',
+                    'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe',
+                  })}
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
+          </ScrollView>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -191,8 +284,10 @@ function SessionResultScreenImpl({
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 24, paddingBottom: 24 },
-  centerBlock: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  scroll: { flex: 1 },
+  scrollContent: { flexGrow: 1 },
+  container: { flexGrow: 1, paddingHorizontal: 24, paddingBottom: 24 },
+  centerBlock: { flexGrow: 1, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   title: { fontWeight: '800', textAlign: 'center', marginBottom: 18 },
   scorePill: {
     borderRadius: 999,

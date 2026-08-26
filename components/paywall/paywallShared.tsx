@@ -74,8 +74,7 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
 /**
  * Опции навигации экрана пейвола, зависящие от источника.
  *
- *  - Из приложения (winback/intro/level_up/…): модал «выезжает снизу» — привычный
- *    in-app upsell-жест.
+ *  - Из приложения (winback/intro/level_up/…): dismissible modal без route-delay.
  *  - С ОНБОРДИНГА: открывается как обычный экран — МГНОВЕННО (animation:'none'),
  *    БЕЗ выезда снизу и без мелькания «Главной». Раньше слайд-модал на ~300 мс
  *    показывал «Главную» за прозрачным диспетчером (риск Apple 5.6 + некрасиво).
@@ -94,9 +93,9 @@ export function paywallScreenStackOptions(isOnboarding: boolean) {
     // (пользователь обходит paywall_purchase без выбора), оставляем gesture off.
     return { presentation: 'card', animation: 'none', animationDuration: 0, gestureEnabled: false } as const;
   }
-  // Outside onboarding the paywall is a real bottom modal: it opens from the
-  // bottom, closes down, and can be dismissed with the native modal gesture.
-  return { presentation: 'modal', animation: 'slide_from_bottom', gestureEnabled: true } as const;
+  // Outside onboarding it remains a dismissible modal, but route appearance is
+  // immediate; the paywall's own content motion is independent from navigation.
+  return { presentation: 'modal', animation: 'none', animationDuration: 0, gestureEnabled: true } as const;
 }
 
 /**
@@ -299,6 +298,7 @@ export function PaywallSocialRow({ lang, chrome }: { lang: Lang; chrome: Paywall
     ? ' · ' + triLang(lang, {
         ru: `${count.toLocaleString('ru-RU')} оценок`,
         uk: `${count.toLocaleString('uk-UA')} оцінок`,
+        en: `${count.toLocaleString('en-US')} ratings`,
         es: `${count.toLocaleString('es-ES')} reseñas`,
         'pt-BR': `${count.toLocaleString('pt-BR')} avaliações`,
         vi: `${count.toLocaleString('vi-VN')} đánh giá`,
@@ -349,6 +349,7 @@ export function PaywallPriceRetry({ lang, chrome, onRetry }: {
         {triLang(lang, {
           ru: 'Не удалось загрузить цены из магазина. Проверь интернет и попробуй ещё раз.',
           uk: 'Не вдалося завантажити ціни з магазину. Перевір інтернет і спробуй ще раз.',
+          en: 'Could not load prices from the store. Check your internet and try again.',
           es: 'No se pudieron cargar los precios. Revisa tu conexión e inténtalo de nuevo.',
           'pt-BR': 'Não foi possível carregar os preços da loja. Verifique sua internet e tente novamente.',
           vi: 'Không tải được giá từ cửa hàng. Hãy kiểm tra internet rồi thử lại.',
@@ -367,6 +368,7 @@ export function PaywallPriceRetry({ lang, chrome, onRetry }: {
           {triLang(lang, {
             ru: 'Повторить',
             uk: 'Повторити',
+            en: 'Retry',
             es: 'Reintentar',
             'pt-BR': 'Tentar de novo',
             vi: 'Thử lại',
@@ -507,7 +509,7 @@ export function PaywallTestimonials({
     <View style={[S.testimonialCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
       <Text style={[S.testimonialTitle, { color: tc.heroAccent }]}>
         {triLang(lang, {
-          ru: 'ЧТО ГОВОРЯТ УЧЕНИКИ', uk: 'ЩО КАЖУТЬ УЧНІ', es: 'LO QUE DICEN LOS ALUMNOS',
+          ru: 'ЧТО ГОВОРЯТ УЧЕНИКИ', uk: 'ЩО КАЖУТЬ УЧНІ', en: 'WHAT STUDENTS SAY', es: 'LO QUE DICEN LOS ALUMNOS',
           'pt-BR': 'O QUE DIZEM OS ALUNOS', vi: 'HỌC VIÊN NÓI GÌ', id: 'KATA PARA MURID',
           tr: 'ÖĞRENCİLER NE DİYOR', pl: 'CO MÓWIĄ UCZNIOWIE',
         })}

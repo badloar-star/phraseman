@@ -109,6 +109,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Голосовая линия сейчас выключена на сервере. Попробуй позже.',
       uk: 'Голосова лінія зараз вимкнена на сервері. Спробуй пізніше.',
+      en: 'The voice line is currently disabled on the server. Try again later.',
       es: 'La línea de voz está desactivada en el servidor. Inténtalo más tarde.',
       'pt-BR': 'A linha de voz está desativada no servidor. Tente mais tarde.',
       vi: 'Đường dây thoại đang bị tắt trên máy chủ. Hãy thử lại sau.',
@@ -121,6 +122,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Минуты MAX на сегодня закончились. Лимит восстановится автоматически.',
       uk: 'Хвилини MAX на сьогодні закінчилися. Ліміт відновиться автоматично.',
+      en: "Today's MAX minutes are used up. The limit resets automatically.",
       es: 'Se acabaron los minutos MAX de hoy. El límite se renovará automáticamente.',
       'pt-BR': 'Os minutos MAX de hoje acabaram. O limite será renovado automaticamente.',
       vi: 'Số phút MAX hôm nay đã hết. Giới hạn sẽ tự động được đặt lại.',
@@ -133,6 +135,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Месячный запас минут MAX закончился. Он восстановится в следующем месяце.',
       uk: 'Місячний запас хвилин MAX закінчився. Він відновиться наступного місяця.',
+      en: 'Your monthly MAX minutes are used up. They reset next month.',
       es: 'Se acabaron los minutos MAX del mes. Se renovarán el próximo mes.',
       'pt-BR': 'Os minutos MAX do mês acabaram. Eles serão renovados no próximo mês.',
       vi: 'Số phút MAX trong tháng đã hết. Hạn mức sẽ được làm mới vào tháng tới.',
@@ -145,6 +148,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Доступных минут MAX недостаточно. Лимит восстановится автоматически.',
       uk: 'Доступних хвилин MAX недостатньо. Ліміт відновиться автоматично.',
+      en: 'Not enough MAX minutes available. The limit resets automatically.',
       es: 'No quedan suficientes minutos MAX. El límite se renovará automáticamente.',
       'pt-BR': 'Não há minutos MAX suficientes. O limite será renovado automaticamente.',
       vi: 'Không còn đủ phút MAX. Giới hạn sẽ tự động được đặt lại.',
@@ -157,6 +161,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Для этого звонка нужен доступ MAX или доступный пробный звонок.',
       uk: 'Для цього дзвінка потрібен доступ MAX або доступний пробний дзвінок.',
+      en: 'This call needs MAX access or an available trial call.',
       es: 'Esta llamada requiere acceso MAX o una llamada de prueba disponible.',
       'pt-BR': 'Esta ligação requer acesso MAX ou uma chamada de teste disponível.',
       vi: 'Cuộc gọi này cần quyền MAX hoặc một cuộc gọi dùng thử còn hiệu lực.',
@@ -173,6 +178,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Не удалось запустить микрофон. Проверь разрешение микрофона в настройках устройства.',
       uk: 'Не вдалося запустити мікрофон. Перевір дозвіл мікрофона в налаштуваннях пристрою.',
+      en: "Couldn't start the microphone. Check the microphone permission in your device settings.",
       es: 'No se pudo iniciar el micrófono. Revisa su permiso en los ajustes del dispositivo.',
       'pt-BR': 'Não foi possível iniciar o microfone. Verifique a permissão nas configurações do dispositivo.',
       vi: 'Không thể bật micrô. Hãy kiểm tra quyền micrô trong phần cài đặt thiết bị.',
@@ -185,6 +191,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'В этой сборке нет нативного WebRTC. Установи новую DEV-сборку.',
       uk: 'У цій збірці немає нативного WebRTC. Встанови нову DEV-збірку.',
+      en: 'This build has no native WebRTC. Install a new DEV build.',
       es: 'Esta compilación no incluye WebRTC nativo. Instala una nueva compilación DEV.',
       'pt-BR': 'Esta build não inclui WebRTC nativo. Instale uma nova build DEV.',
       vi: 'Bản dựng này không có WebRTC gốc. Hãy cài bản DEV mới.',
@@ -201,6 +208,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Линия временно достигла дневного лимита. Пробный звонок остался у тебя — повтори позже.',
       uk: 'Лінія тимчасово досягла денного ліміту. Пробний дзвінок лишився в тебе — повтори пізніше.',
+      en: 'The line has temporarily hit its daily limit. Your trial call is still available — try again later.',
       es: 'La línea alcanzó temporalmente su límite diario. Tu llamada de prueba sigue disponible: inténtalo más tarde.',
       'pt-BR': 'A linha atingiu temporariamente o limite diário. Sua chamada de teste continua disponível: tente mais tarde.',
       vi: 'Đường dây tạm thời đã đạt giới hạn hằng ngày. Cuộc gọi dùng thử của bạn vẫn còn — hãy thử lại sau.',
@@ -213,6 +221,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
     return triLang(lang, {
       ru: 'Линия временно достигла дневного лимита. Повтори звонок позже.',
       uk: 'Лінія тимчасово досягла денного ліміту. Повтори дзвінок пізніше.',
+      en: 'The line has temporarily hit its daily limit. Try calling again later.',
       es: 'La línea alcanzó temporalmente su límite diario. Inténtalo más tarde.',
       'pt-BR': 'A linha atingiu temporariamente o limite diário. Tente mais tarde.',
       vi: 'Đường dây tạm thời đã đạt giới hạn hằng ngày. Hãy thử lại sau.',
@@ -224,6 +233,7 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
   return triLang(lang, {
     ru: 'Связь не установилась. Проверь интернет и повтори звонок — минуты не списаны.',
     uk: 'Зв’язок не встановився. Перевір інтернет і повтори дзвінок — хвилини не списані.',
+    en: "The connection failed. Check your internet and call again — no minutes were charged.",
     es: 'No se estableció la conexión. Revisa Internet y vuelve a llamar; no se descontaron minutos.',
     'pt-BR': 'A conexão não foi estabelecida. Verifique a internet e ligue novamente; nenhum minuto foi descontado.',
     vi: 'Không thể kết nối. Hãy kiểm tra Internet và gọi lại; số phút chưa bị trừ.',

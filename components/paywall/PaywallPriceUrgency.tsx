@@ -78,7 +78,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
           <Ionicons name="lock-closed" size={13} color={tc.urgencyCurrentPriceText} style={{ marginRight: 7 }} />
           <Text style={[S.compactText, { color: textMuted }]} numberOfLines={1}>
             {triLang(lang, {
-              ru: 'Старая цена сохранена ещё ~2 недели', uk: 'Стара ціна збережена ще ~2 тижні', es: 'Precio anterior guardado ~2 semanas',
+              ru: 'Старая цена сохранена ещё ~2 недели', uk: 'Стара ціна збережена ще ~2 тижні', en: 'Old price kept for ~2 more weeks', es: 'Precio anterior guardado ~2 semanas',
               'pt-BR': 'Preço antigo guardado ~2 semanas', vi: 'Giá cũ giữ thêm ~2 tuần', id: 'Harga lama disimpan ~2 minggu',
               tr: 'Eski fiyat ~2 hafta saklı', pl: 'Stara cena zachowana ~2 tygodnie',
             })}
@@ -95,6 +95,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
             {triLang(lang, {
               ru: 'Цена скоро будет поднята',
               uk: 'Ціну скоро буде підвищено',
+              en: 'The price is going up soon',
               es: 'El precio subirá pronto',
               'pt-BR': 'O preço vai subir em breve',
               vi: 'Giá sẽ tăng sớm',
@@ -110,6 +111,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
             {triLang(lang, {
               ru: 'Цена вырастет',
               uk: 'Ціна зросте',
+              en: 'Price rises',
               es: 'El precio subirá el',
               'pt-BR': 'O preço subirá em',
               vi: 'Giá sẽ tăng vào',
@@ -123,12 +125,12 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
 
         <View style={[S.compactPriceLine, { borderTopColor: `${tc.urgencyTimerText}26` }]}>
           <Text style={[S.compactPriceNow, { color: tc.urgencyCurrentPriceText }]} numberOfLines={1}>
-            {triLang(lang, { ru: 'Сейчас', uk: 'Зараз', es: 'Ahora', 'pt-BR': 'Agora', vi: 'Hiện tại', id: 'Sekarang', tr: 'Şimdi', pl: 'Teraz' })}
+            {triLang(lang, { ru: 'Сейчас', uk: 'Зараз', en: 'Now', es: 'Ahora', 'pt-BR': 'Agora', vi: 'Hiện tại', id: 'Sekarang', tr: 'Şimdi', pl: 'Teraz' })}
             {': '}
             {currentPrice}<Text style={[S.compactPricePeriod, { color: textMuted }]}>{period}</Text>
           </Text>
           <Text style={[S.compactPriceFuture, { color: textMuted }]} numberOfLines={1}>
-            {triLang(lang, { ru: 'Скоро', uk: 'Скоро', es: 'Pronto', 'pt-BR': 'Em breve', vi: 'Sắp tới', id: 'Segera', tr: 'Yakında', pl: 'Wkrótce' })}
+            {triLang(lang, { ru: 'Скоро', uk: 'Скоро', en: 'Soon', es: 'Pronto', 'pt-BR': 'Em breve', vi: 'Sắp tới', id: 'Segera', tr: 'Yakında', pl: 'Wkrótce' })}
             {': '}
             {futurePrice}<Text style={S.compactPricePeriod}>{period}</Text>
           </Text>
@@ -139,6 +141,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
             ? triLang(lang, {
                 ru: 'Сейчас последняя возможность взять Phraseman Pro по старой цене. Это разовая покупка без подписки.',
                 uk: 'Зараз остання можливість взяти Phraseman Pro за старою ціною. Це разова покупка без підписки.',
+                en: 'This is the last chance to get Phraseman Pro at the old price. It is a one-time purchase, not a subscription.',
                 es: 'Ahora es la última oportunidad de tomar Phraseman Pro al precio anterior. Es una compra única sin suscripción.',
                 'pt-BR': 'Agora é a última chance de pegar o Phraseman Pro pelo preço antigo. É uma compra única sem assinatura.',
                 vi: 'Đây là cơ hội cuối để mua Phraseman Pro với giá cũ. Đây là mua một lần, không đăng ký.',
@@ -149,6 +152,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
             : triLang(lang, {
                 ru: 'Сейчас последняя возможность купить подписку по старой цене. Она будет закреплена за вами, пока вы сами её не отмените.',
                 uk: 'Зараз остання можливість купити підписку за старою ціною. Вона буде закріплена за вами, доки ви самі її не скасуєте.',
+                en: 'This is the last chance to get the subscription at the old price. It stays locked in for you until you cancel it yourself.',
                 es: 'Ahora es la última oportunidad de comprar la suscripción al precio anterior. Quedará fijado para ti hasta que tú la canceles.',
                 'pt-BR': 'Agora é a última chance de assinar pelo preço antigo. Ele fica fixo para você até você cancelar.',
                 vi: 'Đây là cơ hội cuối để mua gói đăng ký với giá cũ. Giá này sẽ được giữ cho bạn đến khi bạn tự hủy.',
@@ -168,13 +172,13 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <Ionicons name="lock-closed" size={15} color={tc.urgencyCurrentPriceText} style={{ marginRight: 8 }} />
         <Text style={[S.graceText, { color: textMuted }]}>
           {triLang(lang, {
-            ru: 'Мы пока сохранили для тебя старую цену — ', uk: 'Ми поки зберегли для тебе стару ціну — ', es: 'Por ahora te guardamos el precio anterior — ',
+            ru: 'Мы пока сохранили для тебя старую цену — ', uk: 'Ми поки зберегли для тебе стару ціну — ', en: "We've kept your old price for now — ", es: 'Por ahora te guardamos el precio anterior — ',
             'pt-BR': 'Por enquanto guardamos seu preço antigo — ', vi: 'Chúng tôi tạm giữ giá cũ cho bạn — ',
             id: 'Kami simpan dulu harga lamamu — ', tr: 'Eski fiyatını şimdilik senin için tuttuk — ', pl: 'Na razie zachowaliśmy dla ciebie starą cenę — ',
           })}
           <Text style={{ color: textPrimary, fontWeight: '800' }}>
             {triLang(lang, {
-              ru: 'успеть можно ещё ~2 недели.', uk: 'встигнути можна ще ~2 тижні.', es: 'aún tienes ~2 semanas.',
+              ru: 'успеть можно ещё ~2 недели.', uk: 'встигнути можна ще ~2 тижні.', en: 'you still have ~2 weeks to grab it.', es: 'aún tienes ~2 semanas.',
               'pt-BR': 'ainda dá em ~2 semanas.', vi: 'còn ~2 tuần nữa.', id: 'masih ada ~2 minggu.', tr: '~2 hafta daha geçerli.', pl: 'masz jeszcze ~2 tygodnie.',
             })}
           </Text>
@@ -193,6 +197,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <Text style={[S.headline, { color: tc.urgencyLabelText }]} numberOfLines={2}>
           {triLang(lang, {
             ru: 'Это предложение скоро меняется — успей закрепить', uk: 'Ця пропозиція скоро зміниться — встигни закріпити',
+            en: "This offer is changing soon — lock it in now",
             es: 'Pronto subimos este precio — asegúralo', 'pt-BR': 'Em breve aumentamos este preço — garanta já',
             vi: 'Sắp tăng giá này — kịp giữ ngay', id: 'Harga ini segera naik — kunci sekarang',
             tr: 'Bu fiyatı yakında artıracağız — hemen sabitle', pl: 'Wkrótce podnosimy tę cenę — zdąż ją zablokować',
@@ -203,7 +208,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
       <View style={S.timerRow}>
         <Text style={[S.timerLabel, { color: textMuted }]}>
           {triLang(lang, {
-            ru: 'Цена вырастет', uk: 'Ціна зросте', es: 'El precio subirá el',
+            ru: 'Цена вырастет', uk: 'Ціна зросте', en: 'Price rises', es: 'El precio subirá el',
             'pt-BR': 'O preço subirá em', vi: 'Giá sẽ tăng vào', id: 'Harga naik pada', tr: 'Fiyat artıyor:', pl: 'Cena wzrośnie',
           })}
         </Text>
@@ -215,7 +220,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
       <View style={[S.priceRow, { borderTopColor: cardBorder }]}>
         <View style={S.priceColNow}>
           <Text style={[S.priceCapNow, { color: tc.urgencyCurrentPriceText }]}>
-            {triLang(lang, { ru: 'СЕЙЧАС', uk: 'ЗАРАЗ', es: 'AHORA', 'pt-BR': 'AGORA', vi: 'BÂY GIỜ', id: 'SEKARANG', tr: 'ŞİMDİ', pl: 'TERAZ' })}
+            {triLang(lang, { ru: 'СЕЙЧАС', uk: 'ЗАРАЗ', en: 'NOW', es: 'AHORA', 'pt-BR': 'AGORA', vi: 'BÂY GIỜ', id: 'SEKARANG', tr: 'ŞİMDİ', pl: 'TERAZ' })}
           </Text>
           <Text style={[S.priceNow, { color: tc.urgencyCurrentPriceText }]} numberOfLines={1}>
             {currentPrice}<Text style={[S.pricePer, { color: textMuted }]}>{period}</Text>
@@ -223,7 +228,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         </View>
         <View style={S.priceColFuture}>
           <Text style={[S.priceCapFuture, { color: textMuted }]}>
-            {triLang(lang, { ru: 'скоро', uk: 'скоро', es: 'pronto', 'pt-BR': 'em breve', vi: 'sắp tới', id: 'segera', tr: 'yakında', pl: 'wkrótce' })}
+            {triLang(lang, { ru: 'скоро', uk: 'скоро', en: 'soon', es: 'pronto', 'pt-BR': 'em breve', vi: 'sắp tới', id: 'segera', tr: 'yakında', pl: 'wkrótce' })}
           </Text>
           <Text style={[S.priceFuture, { color: textMuted }]} numberOfLines={1}>
             {futurePrice}<Text style={S.pricePer}>{period}</Text>
@@ -233,18 +238,20 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
 
       <Text style={[S.lockNote, { color: textMuted }]}>
         <Text style={{ color: textPrimary, fontWeight: '700' }}>
-          {triLang(lang, { ru: 'Купишь сейчас', uk: 'Купиш зараз', es: 'Si compras ahora', 'pt-BR': 'Se comprar agora', vi: 'Mua ngay', id: 'Beli sekarang', tr: 'Şimdi alırsan', pl: 'Kupisz teraz' })}
+          {triLang(lang, { ru: 'Купишь сейчас', uk: 'Купиш зараз', en: 'Buy now', es: 'Si compras ahora', 'pt-BR': 'Se comprar agora', vi: 'Mua ngay', id: 'Beli sekarang', tr: 'Şimdi alırsan', pl: 'Kupisz teraz' })}
         </Text>
         {/* lifetime — разовая покупка: «отменять» нечего, поэтому без «пока не отменишь». */}
         {isLifetime
           ? triLang(lang, {
               ru: ' — это Phraseman Pro: разовая покупка без подписки.', uk: ' — це Phraseman Pro: разова покупка без підписки.',
+              en: ' — this is Phraseman Pro: a one-time purchase, not a subscription.',
               es: ' — es Phraseman Pro: compra única sin suscripción.', 'pt-BR': ' — é o Phraseman Pro: compra única sem assinatura.',
               vi: ' — đây là Phraseman Pro: mua một lần, không đăng ký.', id: ' — ini Phraseman Pro: pembelian sekali tanpa langganan.',
               tr: ' — bu Phraseman Pro: aboneliksiz tek seferlik satın alma.', pl: ' — to Phraseman Pro: zakup jednorazowy bez subskrypcji.',
             })
           : triLang(lang, {
               ru: ' — цена закрепится за тобой, пока сам не отменишь.', uk: ' — ціна закріпиться за тобою, поки сам не скасуєш.',
+              en: ' — the price stays locked in for you until you cancel it yourself.',
               es: ' — el precio queda fijo para ti hasta que tú lo canceles.', 'pt-BR': ' — o preço fica travado pra você até você cancelar.',
               vi: ' — giá được giữ cho bạn đến khi bạn tự hủy.', id: ' — harga terkunci untukmu sampai kamu sendiri membatalkan.',
               tr: ' — fiyat, sen iptal edene kadar sana sabitlenir.', pl: ' — cena zostaje przypisana tobie, dopóki sam jej nie anulujesz.',

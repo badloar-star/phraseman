@@ -39,7 +39,7 @@ import { markPremiumCourseLevelReached, unlockLesson } from '../../app/lesson_lo
 import { addShards, awardOneTime } from '../../app/shards_system';
 import { registerXP } from '../../app/xp_manager';
 import { safeRouterBack } from '../../app/navigation_back';
-import { useEnergy } from '../EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../EnergyContext';
 import { usePremium } from '../PremiumContext';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import NoEnergyModal from '../NoEnergyModal';
@@ -96,13 +96,13 @@ function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
 
 function taskPrompt(task: LevelExamTask, lang: Lang): string {
   if (task.format === 'find_oddity') return triLang(lang, {
-    ru: 'Какая фраза составлена неправильно?', uk: 'Яку фразу складено неправильно?', es: '¿Qué frase está mal construida?',
+    ru: 'Какая фраза составлена неправильно?', uk: 'Яку фразу складено неправильно?', en: 'Which phrase is built incorrectly?', es: '¿Qué frase está mal construida?',
     'pt-BR': 'Qual frase está construída incorretamente?', vi: 'Câu nào được tạo không đúng?', id: 'Kalimat mana yang disusun salah?',
     tr: 'Hangi cümle yanlış kurulmuş?', pl: 'Które zdanie jest zbudowane niepoprawnie?',
   });
   if (task.format !== 'speed_match') return task.prompt;
   return triLang(lang, {
-      ru: 'Соедини выражения с переводом', uk: 'З’єднай вирази з перекладом', es: 'Une cada expresión con su traducción',
+      ru: 'Соедини выражения с переводом', uk: 'З’єднай вирази з перекладом', en: 'Match the expressions to their translation', es: 'Une cada expresión con su traducción',
       'pt-BR': 'Ligue cada expressão à tradução', vi: 'Ghép cụm từ với bản dịch', id: 'Cocokkan frasa dengan terjemahan',
       tr: 'İfadeleri çevirileriyle eşleştir', pl: 'Połącz wyrażenia z tłumaczeniem',
   });
@@ -111,7 +111,7 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
 export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
-  const { isUnlimited, confirmSpendAmount, energy, bonusEnergy, energyReady } = useEnergy();
+  const { isUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy, energyReady } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const unlimitedEnergy = isUnlimited || hasPremiumAccess;
   const examRuntimeActive = useRuntimeActive();
@@ -120,6 +120,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const [identityUnavailable, setIdentityUnavailable] = useState(false);
   const [blueprint, setBlueprint] = useState<LevelExamBlueprint | null>(null);
   const [attempt, setAttempt] = useState<LevelExamAttemptSnapshot | null>(null);
+  const levelExamEnergyIntent = useEnergySessionIntent(
+    'level_exam_v2',
+    level,
+    attempt?.attemptId,
+  );
   const [remainingMs, setRemainingMs] = useState(0);
   const [result, setResult] = useState<LevelExamScoreResult | null>(null);
   const [rewardState, setRewardState] = useState<LevelExamRewardState>('none');
@@ -399,7 +404,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     beginQuizInFlightRef.current = true;
     try {
       {
-        const energyResult = await confirmSpendAmount(ENERGY_COST);
+        const energyResult = await confirmSpendAmount(ENERGY_COST, levelExamEnergyIntent);
         if (energyResult === 'cancelled') {
           setPhase('intro');
           return;
@@ -419,13 +424,14 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       setAttempt(started);
       setRemainingMs(started.deadlineAtMs - started.startedAtMs);
       setPhase('quiz');
+      void acknowledgeSessionStart(levelExamEnergyIntent.operationId);
       await persistActiveLevelExamAttempt(started).catch((error) => {
         void trackFeatureError('level_exam', 'attempt_persist', error, { level }, 'level_exam_v2');
       });
     } finally {
       beginQuizInFlightRef.current = false;
     }
-  }, [bonusEnergy, confirmSpendAmount, energy, level]);
+  }, [acknowledgeSessionStart, bonusEnergy, confirmSpendAmount, energy, level, levelExamEnergyIntent]);
 
   const pauseAndExit = useCallback(() => {
     const current = attemptRef.current;
@@ -448,14 +454,14 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
               <Ionicons name="lock-closed-outline" size={34} color={t.accent} />
               <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '900', textAlign: 'center' }}>
                 {contentUnavailable
-                    ? triLang(lang, { ru: 'Экзамен для этого языка пока готовится. Энергия не списана.', uk: 'Іспит для цієї мови ще готується. Енергію не списано.', es: 'El examen para este idioma aún se está preparando. No se descontó energía.', 'pt-BR': 'O exame para este idioma ainda está sendo preparado. Nenhuma energia foi descontada.', vi: 'Bài thi cho ngôn ngữ này đang được chuẩn bị. Năng lượng chưa bị trừ.', id: 'Ujian untuk bahasa ini masih disiapkan. Energi tidak dikurangi.', tr: 'Bu dil için sınav hâlâ hazırlanıyor. Enerji düşülmedi.', pl: 'Egzamin dla tego języka jest jeszcze przygotowywany. Energia nie została pobrana.' })
+                    ? triLang(lang, { ru: 'Экзамен для этого языка пока готовится. Энергия не списана.', uk: 'Іспит для цієї мови ще готується. Енергію не списано.', en: "The exam for this language is still being prepared. No energy was charged.", es: 'El examen para este idioma aún se está preparando. No se descontó energía.', 'pt-BR': 'O exame para este idioma ainda está sendo preparado. Nenhuma energia foi descontada.', vi: 'Bài thi cho ngôn ngữ này đang được chuẩn bị. Năng lượng chưa bị trừ.', id: 'Ujian untuk bahasa ini masih disiapkan. Energi tidak dikurangi.', tr: 'Bu dil için sınav hâlâ hazırlanıyor. Enerji düşülmedi.', pl: 'Egzamin dla tego języka jest jeszcze przygotowywany. Energia nie została pobrana.' })
                     : identityUnavailable
-                    ? triLang(lang, { ru: 'Не удалось подготовить сохранение попытки. Вернись и открой экзамен снова.', uk: 'Не вдалося підготувати збереження спроби. Повернися й відкрий іспит знову.', es: 'No se pudo preparar el guardado. Vuelve a abrir el examen.', 'pt-BR': 'Não foi possível preparar o salvamento. Abra o exame novamente.', vi: 'Không thể chuẩn bị lưu bài thi. Hãy mở lại bài thi.', id: 'Penyimpanan ujian belum siap. Buka kembali ujian.', tr: 'Sınav kaydı hazırlanamadı. Sınavı yeniden aç.', pl: 'Nie udało się przygotować zapisu. Otwórz egzamin ponownie.' })
+                    ? triLang(lang, { ru: 'Не удалось подготовить сохранение попытки. Вернись и открой экзамен снова.', uk: 'Не вдалося підготувати збереження спроби. Повернися й відкрий іспит знову.', en: "Couldn't prepare a save for this attempt. Go back and open the exam again.", es: 'No se pudo preparar el guardado. Vuelve a abrir el examen.', 'pt-BR': 'Não foi possível preparar o salvamento. Abra o exame novamente.', vi: 'Không thể chuẩn bị lưu bài thi. Hãy mở lại bài thi.', id: 'Penyimpanan ujian belum siap. Buka kembali ujian.', tr: 'Sınav kaydı hazırlanamadı. Sınavı yeniden aç.', pl: 'Nie udało się przygotować zapisu. Otwórz egzamin ponownie.' })
                     : blockedText}
               </Text>
               <TapScale onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel="Back" style={[styles.stateButton, { backgroundColor: t.accent, minHeight: ds.buttonHeight }]}>
                   <Text style={{ color: t.correctText, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })}
+                    {triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })}
                   </Text>
               </TapScale>
             </TonalSurface>
@@ -512,9 +518,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   if (!task) return null;
   const range = scoreRange(blueprint, attempt.currentTaskIndex);
   const continueLabel = attempt.currentTaskIndex + 1 === blueprint.tasks.length
-    ? triLang(lang, { ru: 'Завершить', uk: 'Завершити', es: 'Finalizar', 'pt-BR': 'Finalizar', vi: 'Hoàn thành', id: 'Selesaikan', tr: 'Bitir', pl: 'Zakończ' })
-    : triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' });
-  const exitLabel = triLang(lang, { ru: 'Выйти из экзамена', uk: 'Вийти з іспиту', es: 'Salir del examen', 'pt-BR': 'Sair do exame', vi: 'Thoát bài thi', id: 'Keluar dari ujian', tr: 'Sınavdan çık', pl: 'Wyjdź z egzaminu' });
+    ? triLang(lang, { ru: 'Завершить', uk: 'Завершити', en: 'Finish', es: 'Finalizar', 'pt-BR': 'Finalizar', vi: 'Hoàn thành', id: 'Selesaikan', tr: 'Bitir', pl: 'Zakończ' })
+    : triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' });
+  const exitLabel = triLang(lang, { ru: 'Выйти из экзамена', uk: 'Вийти з іспиту', en: 'Exit the exam', es: 'Salir del examen', 'pt-BR': 'Sair do exame', vi: 'Thoát bài thi', id: 'Keluar dari ujian', tr: 'Sınavdan çık', pl: 'Wyjdź z egzaminu' });
   let content: React.ReactNode;
   let canContinue = false;
 
@@ -564,12 +570,13 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         title={exitLabel}
         message={triLang(lang, {
           ru: 'Ответы сохранятся, экзамен будет приостановлен.', uk: 'Відповіді збережуться, іспит буде призупинено.',
+          en: 'Your answers will be saved and the exam will be paused.',
           es: 'Tus respuestas se guardarán y el examen quedará pausado.', 'pt-BR': 'Suas respostas serão salvas e o exame será pausado.',
           vi: 'Câu trả lời sẽ được lưu và bài thi sẽ tạm dừng.', id: 'Jawaban tersimpan dan ujian akan dijeda.',
           tr: 'Cevapların kaydedilir ve sınav duraklatılır.', pl: 'Odpowiedzi zostaną zapisane, a egzamin wstrzymany.',
         })}
-        cancelLabel={triLang(lang, { ru: 'Остаться', uk: 'Залишитися', es: 'Quedarme', 'pt-BR': 'Ficar', vi: 'Ở lại', id: 'Tetap', tr: 'Kal', pl: 'Zostań' })}
-        confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}
+        cancelLabel={triLang(lang, { ru: 'Остаться', uk: 'Залишитися', en: 'Stay', es: 'Quedarme', 'pt-BR': 'Ficar', vi: 'Ở lại', id: 'Tetap', tr: 'Kal', pl: 'Zostań' })}
+        confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', en: 'Exit', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}
         onCancel={() => setExitConfirm(false)}
         onConfirm={pauseAndExit}
         confirmVariant="accent"

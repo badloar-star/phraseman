@@ -53,6 +53,7 @@ export interface WalletSourceReceiptRef {
   readonly receiptType:
     | "required_session_credit_settlement"
     | "repeat_reward_settlement"
+    | "learning_session_reward_composite"
     | "mistake_correction_composite"
     | "plan_reward_settlement"
     | "dictionary_reward_settlement"
@@ -181,7 +182,7 @@ const parseOrigin = (input: unknown): WalletOperationOrigin => {
 };
 const parseSourceReceiptRef = (input: unknown): WalletSourceReceiptRef => {
   if (!isRecord(input) || !exactKeys(input, ["receiptType", "receiptId", "receiptFingerprint"]) ||
-    !["required_session_credit_settlement", "repeat_reward_settlement", "mistake_correction_composite", "plan_reward_settlement", "dictionary_reward_settlement", "irregular_verbs_reward_settlement", "tournament_reward", "coin_exchange_trade", "legacy_wallet_snapshot"].includes(String(input.receiptType)) ||
+    !["required_session_credit_settlement", "repeat_reward_settlement", "learning_session_reward_composite", "mistake_correction_composite", "plan_reward_settlement", "dictionary_reward_settlement", "irregular_verbs_reward_settlement", "tournament_reward", "coin_exchange_trade", "legacy_wallet_snapshot"].includes(String(input.receiptType)) ||
     !validId(input.receiptId) || !validHash(input.receiptFingerprint)) throw new Error("wallet_operation_invalid");
   return input as unknown as WalletSourceReceiptRef;
 };
@@ -189,11 +190,24 @@ const parseSourceReceiptRef = (input: unknown): WalletSourceReceiptRef => {
 const validateCombination = (value: Record<string, unknown>, origin: WalletOperationOrigin): void => {
   if (value.authority === "client_authoritative_composite") {
     const source = value.sourceReceiptRef as WalletSourceReceiptRef;
-    if (value.kind !== "earning_credit" || value.earningCategory !== "repeat" ||
-      value.operationReason !== "mistake_correction" ||
-      Number(value.amountSubunits) !== WALLET_SUBUNITS_PER_STAR ||
-      source.receiptType !== "mistake_correction_composite" ||
-      origin.kind !== "mistake_correction") throw new Error("wallet_operation_invalid");
+    const mistakeCorrection = value.kind === "earning_credit" &&
+      value.earningCategory === "repeat" &&
+      value.operationReason === "mistake_correction" &&
+      Number(value.amountSubunits) === WALLET_SUBUNITS_PER_STAR &&
+      source.receiptType === "mistake_correction_composite" &&
+      origin.kind === "mistake_correction";
+    const learningSessionReward = value.kind === "earning_credit" &&
+      value.earningCategory === "lesson" &&
+      value.operationReason === "initial_required_session" &&
+      Number(value.amountSubunits) >= WALLET_SUBUNITS_PER_STAR &&
+      Number(value.amountSubunits) <= 51 * WALLET_SUBUNITS_PER_STAR &&
+      Number(value.amountSubunits) % WALLET_SUBUNITS_PER_STAR === 0 &&
+      source.receiptType === "learning_session_reward_composite" &&
+      origin.kind === "course" && origin.studyTarget === "en" &&
+      origin.requiredSessionOrdinal === 1;
+    if (!mistakeCorrection && !learningSessionReward) {
+      throw new Error("wallet_operation_invalid");
+    }
     return;
   }
   if (value.operationReason === "mistake_correction" || origin.kind === "mistake_correction") {
@@ -233,7 +247,7 @@ const validateCombination = (value: Record<string, unknown>, origin: WalletOpera
   if (source.receiptType !== sourceTypeByReason[String(value.operationReason)]) throw new Error("wallet_operation_invalid");
 };
 
-const semanticBody = (value: {
+const legacySemanticBody = (value: {
   readonly semanticSubjectFingerprint: string;
   readonly accountScopeHash: string;
   readonly currency: "access_star";
@@ -245,7 +259,17 @@ const semanticBody = (value: {
   readonly origin: WalletOperationOrigin;
 }) => value;
 
-export const deriveWalletSemanticSubjectFingerprint = (input: {
+const initialRequiredSessionSemanticBody = (value: {
+  readonly semanticSubjectFingerprint: string;
+  readonly accountScopeHash: string;
+  readonly currency: "access_star";
+  readonly kind: WalletOperationKind;
+  readonly earningCategory: WalletEarningCategory | null;
+  readonly operationReason: WalletOperationReason;
+  readonly origin: WalletOperationOrigin;
+}) => value;
+
+const deriveLegacyWalletSemanticSubjectFingerprint = (input: {
   readonly accountScopeHash: string;
   readonly operationReason: WalletOperationReason;
   readonly sourceReceiptRef: WalletSourceReceiptRef;
@@ -257,6 +281,55 @@ export const deriveWalletSemanticSubjectFingerprint = (input: {
   sourceReceiptType: input.sourceReceiptRef.receiptType,
   sourceReceiptId: input.sourceReceiptRef.receiptId,
 });
+
+export const deriveWalletSemanticSubjectFingerprint = (input: {
+  readonly accountScopeHash: string;
+  readonly operationReason: WalletOperationReason;
+  readonly sourceReceiptRef: WalletSourceReceiptRef;
+  readonly origin?: WalletOperationOrigin;
+}): string => {
+  if (input.operationReason !== "initial_required_session") {
+    return deriveLegacyWalletSemanticSubjectFingerprint(input);
+  }
+  const origin = input.origin;
+  // Compatibility for callers and already-persisted v1 operations. New
+  // initial-session materializers must pass the course origin and therefore
+  // receive the cross-transport v2 subject below.
+  if (!origin) return deriveLegacyWalletSemanticSubjectFingerprint(input);
+  if (origin.kind !== "course" || origin.requiredSessionOrdinal === null) {
+    throw new Error("wallet_operation_invalid");
+  }
+  // One immutable initial reward belongs to one account/course/session.
+  // Receipt ids and reward algorithms are transport/version details. Keeping
+  // them out of this key lets a pre-existing server bridge and the newer
+  // client composite alias the same fact instead of crediting it twice.
+  return hashCanonicalBody({
+    schemaVersion: "learning-v2-wallet-initial-session-subject.v2",
+    accountScopeHash: input.accountScopeHash,
+    currency: "access_star",
+    operationReason: input.operationReason,
+    courseId: origin.courseId,
+    studyTarget: origin.studyTarget,
+    requiredSessionOrdinal: origin.requiredSessionOrdinal,
+  });
+};
+
+export const deriveWalletInitialRequiredSessionOperationId = (input: {
+  readonly accountScopeHash: string;
+  readonly origin: WalletOperationOrigin;
+}): string => {
+  const semanticSubjectFingerprint = deriveWalletSemanticSubjectFingerprint({
+    accountScopeHash: input.accountScopeHash,
+    operationReason: "initial_required_session",
+    sourceReceiptRef: {
+      receiptType: "required_session_credit_settlement",
+      receiptId: "initial-session-operation-key",
+      receiptFingerprint: "0".repeat(64),
+    },
+    origin: input.origin,
+  });
+  return `wallet-initial-session-v2:${semanticSubjectFingerprint}`;
+};
 
 export const createWalletAuthorizedOperation = (input: unknown): WalletAuthorizedOperationV1 => {
   const value = detached(input, "wallet_operation_invalid");
@@ -279,8 +352,19 @@ export const createWalletAuthorizedOperation = (input: unknown): WalletAuthorize
     accountScopeHash: value.accountScopeHash,
     operationReason: value.operationReason as WalletOperationReason,
     sourceReceiptRef,
+    origin,
   });
-  if (value.semanticSubjectFingerprint !== derivedSubject) throw new Error("wallet_operation_invalid");
+  const legacyInitialSubject = value.operationReason === "initial_required_session"
+    ? deriveLegacyWalletSemanticSubjectFingerprint({
+        accountScopeHash: value.accountScopeHash,
+        operationReason: "initial_required_session",
+        sourceReceiptRef,
+      })
+    : null;
+  const isLegacyInitialOperation = legacyInitialSubject !== null &&
+    value.semanticSubjectFingerprint === legacyInitialSubject;
+  if (value.semanticSubjectFingerprint !== derivedSubject &&
+    !isLegacyInitialOperation) throw new Error("wallet_operation_invalid");
   const base = {
     schemaVersion: "learning-v2-wallet-authorized-operation.v1" as const,
     authority: value.authority as WalletAuthorizedOperationV1["authority"],
@@ -297,21 +381,44 @@ export const createWalletAuthorizedOperation = (input: unknown): WalletAuthorize
     sourceReceiptRef,
     origin,
   };
-  const semantics = semanticBody({
-    semanticSubjectFingerprint: base.semanticSubjectFingerprint,
-    accountScopeHash: base.accountScopeHash,
-    currency: base.currency,
-    kind: base.kind,
-    amountSubunits: base.amountSubunits,
-    earningCategory: base.earningCategory,
-    operationReason: base.operationReason,
-    sourceReceiptRef: base.sourceReceiptRef,
-    origin: base.origin,
-  });
+  const semantics = base.operationReason === "initial_required_session" &&
+    !isLegacyInitialOperation
+    ? initialRequiredSessionSemanticBody({
+        semanticSubjectFingerprint: base.semanticSubjectFingerprint,
+        accountScopeHash: base.accountScopeHash,
+        currency: base.currency,
+        kind: base.kind,
+        earningCategory: base.earningCategory,
+        operationReason: base.operationReason,
+        origin: base.origin,
+      })
+    : legacySemanticBody({
+        semanticSubjectFingerprint: base.semanticSubjectFingerprint,
+        accountScopeHash: base.accountScopeHash,
+        currency: base.currency,
+        kind: base.kind,
+        amountSubunits: base.amountSubunits,
+        earningCategory: base.earningCategory,
+        operationReason: base.operationReason,
+        sourceReceiptRef: base.sourceReceiptRef,
+        origin: base.origin,
+      });
   const result = deepFreeze({
     ...base,
     semanticFingerprint: hashCanonicalBody(semantics),
-    operationFingerprint: hashCanonicalBody(base),
+    operationFingerprint: base.operationReason === "initial_required_session" &&
+      !isLegacyInitialOperation
+      ? hashCanonicalBody({
+          schemaVersion: "learning-v2-wallet-initial-session-operation.v2",
+          operationId: base.operationId,
+          semanticSubjectFingerprint: base.semanticSubjectFingerprint,
+          semanticFingerprint: hashCanonicalBody(semantics),
+          accountScopeHash: base.accountScopeHash,
+          currency: base.currency,
+          operationReason: base.operationReason,
+          origin: base.origin,
+        })
+      : hashCanonicalBody(base),
   });
   if (materialized && (value.semanticFingerprint !== result.semanticFingerprint || value.operationFingerprint !== result.operationFingerprint)) {
     throw new Error("wallet_operation_invalid");

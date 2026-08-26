@@ -27,6 +27,7 @@ function AiExplainConsentModal({ visible, lang, onAccept, onDecline, motionVaria
       title={triLang(lang, {
         ru: 'Включить ИИ-разбор ошибок?',
         uk: 'Увімкнути ІІ-розбір помилок?',
+        en: 'Turn on AI mistake analysis?',
         es: '¿Activar el análisis de errores con IA?',
         'pt-BR': 'Ativar a análise de erros com IA?',
         vi: 'Bật phân tích lỗi bằng AI?',
@@ -37,6 +38,7 @@ function AiExplainConsentModal({ visible, lang, onAccept, onDecline, motionVaria
       body={triLang(lang, {
         ru: 'ИИ объяснит ошибку своими словами. Для этого ответ отправляется в OpenAI.\n\nМожно выключить в настройках в любой момент.',
         uk: 'ІІ пояснить помилку своїми словами. Для цього відповідь надсилається в OpenAI.\n\nМожна вимкнути в налаштуваннях будь-коли.',
+        en: 'AI will explain the mistake in its own words. To do this, your answer is sent to OpenAI.\n\nYou can turn this off in settings at any time.',
         es: 'La IA explicará el error con sus palabras. Para eso, tu respuesta se envía a OpenAI.\n\nPuedes desactivarlo en ajustes cuando quieras.',
         'pt-BR': 'A IA vai explicar o erro com suas próprias palavras. Para isso, sua resposta é enviada à OpenAI.\n\nVocê pode desativar isso nas configurações quando quiser.',
         vi: 'AI sẽ giải thích lỗi bằng lời riêng. Để làm vậy, câu trả lời của bạn được gửi tới OpenAI.\n\nCó thể tắt trong cài đặt bất cứ lúc nào.',
@@ -45,10 +47,10 @@ function AiExplainConsentModal({ visible, lang, onAccept, onDecline, motionVaria
         pl: 'AI wyjaśni błąd własnymi słowami. W tym celu Twoja odpowiedź trafia do OpenAI.\n\nMożesz to wyłączyć w ustawieniach w dowolnym momencie.',
       })}
       acceptLabel={triLang(lang, {
-        ru: 'Включить', uk: 'Увімкнути', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
+        ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
       })}
       declineLabel={triLang(lang, {
-        ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Không phải bây giờ', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
+        ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Không phải bây giờ', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
       })}
     />
   );

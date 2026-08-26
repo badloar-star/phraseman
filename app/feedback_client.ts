@@ -13,6 +13,7 @@ import { withCallableTimeout } from './callable_timeout';
 const FUNCTIONS_REGION = 'us-central1';
 
 export const FEEDBACK_TEXT_MAX = 2000;
+export const FEEDBACK_AI_SUMMARY_CONSENT_VERSION = 'feedback-ai-summary-v2';
 
 /** Держать в синхроне с FEEDBACK_KINDS на сервере (functions/src/feedback_entries.ts). */
 export type FeedbackKind = 'lesson' | 'vocab' | 'dialogue' | 'arena_blitz' | 'arena_rating';
@@ -28,6 +29,10 @@ export interface FeedbackEntryInput {
   rating: number;
   lang: string;
   userName?: string | null;
+  /** Explicit, optional permission to include the redacted message in AI summaries. */
+  aiSummaryConsent: boolean;
+  /** Version accepted when the user checked the box; missing/old values fail closed. */
+  aiSummaryConsentVersion?: string | null;
 }
 
 type SubmitResult = { ok: boolean; id?: string };
@@ -72,6 +77,8 @@ export async function submitFeedbackEntry(input: FeedbackEntryInput): Promise<Su
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   await warmAppCheck();
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
+  const aiSummaryConsentGranted = input.aiSummaryConsent === true
+    && input.aiSummaryConsentVersion === FEEDBACK_AI_SUMMARY_CONSENT_VERSION;
   const fn = getSubmitCallable();
   const res = await withCallableTimeout(
     fn({
@@ -83,6 +90,10 @@ export async function submitFeedbackEntry(input: FeedbackEntryInput): Promise<Su
         rating: input.rating,
         lang: input.lang,
         userName: input.userName ?? null,
+        aiSummaryConsent: aiSummaryConsentGranted,
+        aiSummaryConsentVersion: aiSummaryConsentGranted
+          ? input.aiSummaryConsentVersion
+          : null,
         platform: Platform.OS,
         appVersion,
       },

@@ -65,11 +65,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // useRuntimeActive нельзя было потерять снова незаметно.
   'app/(tabs)/friends.tsx': runtime('Gift pulse and search skeleton loops require focused foreground runtime.', ['if (active && runtimeActive)']),
   'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab after onboarding.', ['useRuntimeActive(isHomeOwner && homeOnboardingDone)', '!homeRuntimeActive']),
-  // зачем 2026-07-27 (владелец: «приложение стало греть телефон»): пульс LiveDot
-  // крутился без гварда видимости. Хаб турниров с 27.07 — push-экран (релиз без
-  // турниров), поэтому фокус экрана здесь честный; требуем явную передачу этого
-  // фокуса, чтобы возврат к голому useRuntimeActive() ронял тест.
-  'app/(tabs)/tournaments.tsx': runtime('Live dot pulse is active only while the Tournaments screen is focused.', ['useRuntimeActive(screenFocused)', 'cancelAnimation(pulse)']),
   // зачем 2026-08-13: летящие частицы (шарды и искры) из модалки удалены по
   // решению владельца — остался только цикл хало, плюс два ОГРАНИЧЕННЫХ цикла
   // (подсветка моей строки и блик кнопки) с iterations: 3. Токены не ослаблены:
@@ -83,6 +78,10 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     requiredTokens: ['if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED)', 'return () => anim.stop()'],
   },
   'app/flashcards/CardPackShardPaywallModal.tsx': owned('Paywall motion follows the visible prop and is stopped by effect cleanup.', ['if (visible) {', 'cancelAnimation(ctaPulse)']),
+  'app/ThemeShardPaywallModal.tsx': runtime(
+    'Theme purchase CTA pulse runs only while its visible modal owns focused foreground runtime and resets when that ownership ends.',
+    ['useRuntimeActive(visible)', 'if (!themePaywallRuntimeActive)', 'cancelAnimation(ctaPulse)'],
+  ),
   // зачем 2026-08-22: подсказка-шеврон переписана (E2) — вечный цикл заменён на
   // ОГРАНИЧЕННЫЙ Animated.loop с iterations: 2, только первая карточка списка и
   // одноразовый флаг fc_hint_flags_v1. Гард AppState стал не нужен: цикл не
@@ -147,6 +146,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LingmanVideosButton.tsx': owned('Unread pulse follows the explicit retained-tab runtime owner.', ['ownerActive?: boolean', '!ownerActive', 'stop()']),
   'components/SeasonAuraRing.tsx': guarded('Season aura layers run only on the focused foreground screen and respect Reduced Motion.'),
   'components/SeasonGiftModal.tsx': owned('Finale nickname shimmer is mounted only while the gift modal is visible and stops on cleanup.', ["visible && reward.kind === 'season_finale'", 'return () => loop.stop()']),
+  'components/SeasonPassBuyButton.tsx': runtime('Season-pass CTA loops run only on a focused foreground runtime and stop when it is inactive.', ['const animationsActive = useRuntimeActive()', 'if (!animationsActive || busy)', 'return () => anim.stop()']),
   // зачем 2026-08-02: интеграционные мержи (targeted graft + preserve-worktree)
   // привезли анимационные файлы мимо реестра, и ратчет честно упал. Гарды в самих
   // файлах уже настоящие (useRuntimeActive + cancel/stop) — здесь фиксируем их
@@ -203,7 +203,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // сигнал видимости таба; reduce motion держит статичный кадр.
   'components/LearningV2MapNode.tsx': owned('Map node halo breathes only while the Lessons tab owns the runtime (active prop from useRuntimeActive) with reduced motion off; otherwise the value is cancelled and pinned static.', ['if (!active || reduceMotion)', 'cancelAnimation(halo)']),
   'components/PlayerProfileModal.tsx': owned('Profile shimmer exists only while a player is present.', ['if (!player)', 'return () => loop.stop()']),
-  'components/PremiumCelebrationModal.tsx': owned('Celebration motion is visible-only and cancels Reanimated values while hidden.', ['if (!visible)', 'cancelAnimation(ringSpin)']),
   'components/PremiumGoldButton.tsx': runtime('Gold CTA shine requires focused foreground runtime plus explicit owner visibility.', ['active: boolean', 'active && premiumButtonRuntimeActive', '!buttonAnimationActive', 'anim.stop()']),
   'components/ProfileCardMotionFx.tsx': guarded('Profile card loops use screen focus and AppState.'),
   'components/ReleaseNotesModal.tsx': owned('Release notes loops run only while visible and stop on cleanup.', ['if (!visible)', 'glowLoop.stop()']),
@@ -230,14 +229,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/paywall/PaywallMotion.tsx': guarded('Paywall motion loops use screen focus and AppState.'),
   'components/reward_v2/RewardCardV2.tsx': runtime('Reward halo requires focused foreground runtime without replaying its entrance.', ['!rewardRuntimeActive', 'entrancePlayedRef.current', 'haloLoop.stop()']),
   'components/stats/AiBlockNote.tsx': guarded('AI note motion uses screen focus and AppState.'),
-  // зачем 2026-07-27: кнопка озвучки турнира (аудио-режимы) пришла с бесконечным
-  // пульсом и не была внесена в реестр — рэтчет валился. Гард в файле уже есть:
-  // пульс живёт только пока звук реально играет И экран в фокусе, а уход с
-  // экрана глушит и анимацию, и сам плеер.
-  // 2026-08-02: мерж переписал кнопку — фокус теперь свёрнут в сам isPlaying
-  // (status?.playing && isFocused), а reduce-motion дополнительно глушит пульс.
-  // Токены перепломбированы на новый гард, без ослабления.
-  'components/tournament/TournamentAudioButton.tsx': runtime('Audio pulse runs only while the clip plays on a focused foreground screen with reduced motion off.', ['status?.playing === true && isFocused', 'if (!isPlaying || reducedMotion)', 'pulse.value = 1']),
   'components/ui/V2Backdrop.tsx': guarded('Tournament backdrop breathing runs only on a focused foreground screen and respects reduced motion.'),
   // Старый TodayAmbientCompass не возвращается: новый Compass использует
   // отдельную поверхность с явным владельцем активности выше.

@@ -1,5 +1,11 @@
 # Phraseman V2: runtime, схемы контента, админ-генератор и релизы
 
+> **Owner override 2026-08-25:** learner release обязан нести versioned
+> family-native payload семи approved modes и доказательство exact 1:1 parity
+> с owner HTML. Generic projection по `family + inputMode + responseOptions`
+> недостаточна. Полный нормативный контракт:
+> [`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md).
+
 **Статус:** нормативная техническая спецификация пилота из 32 эпизодов  
 **Область:** activity engine, episode graph, evidence/result contracts, delivery/cache, immutable release, admin generation, adapters и масштабирование языков
 

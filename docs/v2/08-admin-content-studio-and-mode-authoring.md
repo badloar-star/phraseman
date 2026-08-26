@@ -1,5 +1,11 @@
 # Phraseman V2: Content Studio, шаблоны режимов и сборка эпизодов
 
+> **Owner override 2026-08-25:** Content Studio сначала выбирает одну из семи
+> approved mechanics и требует её полный mode-native payload; он не раздаёт
+> family готовым generic tasks. Preview использует настоящий learner bundle и
+> повторяет owner HTML, states и motion 1:1. См.
+> [`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md).
+
 **Статус:** нормативная спецификация, решение одобрено  
 **Область:** создание режимов, упражнений, графов эпизодов, локализаций, preview и релизов через Admin v2  
 **Связанные документы:** `04-activity-catalog-and-storyboards.md`, `05-stars-progress-and-mastery.md`, `06-runtime-content-admin-and-release.md`, `07-migration-analytics-testing.md`  

@@ -26,11 +26,11 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   const { lang } = useLang();
   const { theme: t, isDark, themeMode } = useTheme();
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
-  const watch = triLang(lang, { ru: 'Смотреть', uk: 'Дивитися', es: 'Watch', 'pt-BR': 'Assistir', vi: 'Xem', id: 'Tonton', tr: 'İzle', pl: 'Oglądaj' });
+  const watch = triLang(lang, { ru: 'Смотреть', uk: 'Дивитися', en: 'Watch', es: 'Ver', 'pt-BR': 'Assistir', vi: 'Xem', id: 'Tonton', tr: 'İzle', pl: 'Oglądaj' });
   const stateLabel = video.state === 'live'
-    ? triLang(lang, { ru: 'Сейчас в эфире', uk: 'Зараз наживо', es: 'Live now', 'pt-BR': 'Ao vivo', vi: 'Đang trực tiếp', id: 'Sedang live', tr: 'Şimdi canlı', pl: 'Na żywo' })
+    ? triLang(lang, { ru: 'Сейчас в эфире', uk: 'Зараз наживо', en: 'Live now', es: 'En directo ahora', 'pt-BR': 'Ao vivo', vi: 'Đang trực tiếp', id: 'Sedang live', tr: 'Şimdi canlı', pl: 'Na żywo' })
     : video.state === 'upcoming'
-      ? triLang(lang, { ru: 'Ожидается премьера', uk: 'Очікується прем’єра', es: 'Premiere upcoming', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Premiera wkrótce' })
+      ? triLang(lang, { ru: 'Ожидается премьера', uk: 'Очікується прем’єра', en: 'Premiere upcoming', es: 'Próximo estreno', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Premiera wkrótce' })
       : '';
   const views = formatViews(video.viewCount);
   const content = (

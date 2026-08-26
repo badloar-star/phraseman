@@ -276,10 +276,24 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
 }
 
 // memory 1GiB + timeout 540s: полный постраничный скан users/ (как
-// syncFriendActivityMirrorCron). Каждые 12 часов — просрочка снимается с лагом
-// максимум ~12ч+grace; для премиум-доступа это мягче к пользователю и дешевле по full-scan reads.
+// syncFriendActivityMirrorCron).
+//
+// зачем 'every 24 hours' (аудит 2026-08-26, экономия Firebase): раньше было
+// 'every 12 hours' — два полных скана ВСЕЙ коллекции users в сутки, 60 в месяц,
+// стоимость растёт линейно с базой. Снижение вдвое безопасно, потому что этот
+// крон НЕ сторожит доступ:
+//   1. Срок проверяет сервер при каждом обращении — isStorePremiumActive()
+//      в premium_status.ts возвращает false сразу по истечении (там это помечено
+//      как «КРИТИЧНО (утечка дохода)»). Платное закрывается без крона.
+//   2. Поля premium_expiry_cron_at / premium_expiry_cron_reason не читает никто —
+//      ни другие функции, ни админка. Крон лишь косметически чистит premium_plan,
+//      чтобы код, смотрящий только на это поле, не считал юзера платящим.
+// Итог: лаг косметической уборки вырос до ~24ч+grace, доступ не затронут.
+// Радикальное удешевление (единое числовое поле срока + where-запрос вместо
+// скана) сознательно отложено отдельной задачей: поля срока разнотипны
+// (строка/число/Timestamp) и лежат в четырёх местах — цена ошибки высока.
 export const premiumExpiryCron = functions.scheduler.onSchedule(
-  { schedule: 'every 12 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 },
+  { schedule: 'every 24 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 },
   async () => {
     await sweepExpiredPremium();
   },

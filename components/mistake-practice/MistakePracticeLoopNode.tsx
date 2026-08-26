@@ -19,6 +19,11 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
     ru: { title: 'Ошибки', optional: 'Необязательная петля', plus: ', нужен Plus' },
     uk: { title: 'Помилки', optional: 'Необов’язкова петля', plus: ', потрібен Plus' },
     es: { title: 'Errores', optional: 'Bucle opcional', plus: ', requiere Plus' },
+    'pt-BR': { title: 'Erros', optional: 'Loop opcional', plus: ', requer Plus' },
+    vi: { title: 'Lỗi sai', optional: 'Vòng lặp tùy chọn', plus: ', cần Plus' },
+    id: { title: 'Kesalahan', optional: 'Loop opsional', plus: ', perlu Plus' },
+    tr: { title: 'Hatalar', optional: 'İsteğe bağlı döngü', plus: ', Plus gerekir' },
+    pl: { title: 'Błędy', optional: 'Opcjonalna pętla', plus: ', wymaga Plus' },
   }), [lang]);
   return (
     <View style={styles.branch}>

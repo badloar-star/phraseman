@@ -258,6 +258,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
               ? triLang(lang, {
                   ru: 'Сет собран',
                   uk: 'Сет зібрано',
+                  en: 'Set complete',
                   es: 'Set completo',
                   'pt-BR': 'Set completo',
                   vi: 'Đã hoàn thành bộ',
@@ -336,6 +337,7 @@ function CardDetailModal({
     ? triLang(lang, {
         ru: 'Секретная',
         uk: 'Секретна',
+        en: 'Secret',
         es: 'Secreta',
         'pt-BR': 'Secreta',
         vi: 'Bí mật',
@@ -401,7 +403,7 @@ function CardDetailModal({
             </TapScale>
           </View>
 
-          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
             <CollectibleArtFrame
               cardId={card.id}
               svg={card.svg}
@@ -448,6 +450,7 @@ function CardDetailModal({
             {section(triLang(lang, {
               ru: 'Дословно',
               uk: 'Дослівно',
+              en: 'Literally',
               es: 'Literalmente',
               'pt-BR': 'Ao pé da letra',
               vi: 'Nghĩa đen',
@@ -458,6 +461,7 @@ function CardDetailModal({
             {section(triLang(lang, {
               ru: 'Что значит',
               uk: 'Що означає',
+              en: 'What it means',
               es: 'Qué significa',
               'pt-BR': 'O que significa',
               vi: 'Ý nghĩa',
@@ -471,6 +475,7 @@ function CardDetailModal({
                   {triLang(lang, {
                     ru: 'Пример',
                     uk: 'Приклад',
+                    en: 'Example',
                     es: 'Ejemplo',
                     'pt-BR': 'Exemplo',
                     vi: 'Ví dụ',
@@ -504,6 +509,7 @@ function CardDetailModal({
             {section(triLang(lang, {
               ru: 'История',
               uk: 'Історія',
+              en: 'Backstory',
               es: 'Origen',
               'pt-BR': 'Origem',
               vi: 'Nguồn gốc',
@@ -650,6 +656,7 @@ export default function CollectiblesScreen() {
               {triLang(lang, {
                 ru: 'Коллекция',
                 uk: 'Колекція',
+                en: 'Collection',
                 es: 'Colección',
                 'pt-BR': 'Coleção',
                 vi: 'Bộ sưu tập',
@@ -710,6 +717,7 @@ export default function CollectiblesScreen() {
               title={triLang(lang, {
                 ru: 'Здесь появятся ваши карточки',
                 uk: 'Тут зʼявляться ваші картки',
+                en: 'Your cards will appear here',
                 es: 'Aquí aparecerán tus cartas',
                 'pt-BR': 'Suas cartas aparecerão aqui',
                 vi: 'Thẻ của bạn sẽ xuất hiện ở đây',
@@ -720,6 +728,7 @@ export default function CollectiblesScreen() {
               subtitle={triLang(lang, {
                 ru: 'Проходите уроки и собирайте коллекцию',
                 uk: 'Проходьте уроки та збирайте колекцію',
+                en: 'Complete lessons and grow your collection',
                 es: 'Completa lecciones y amplía tu colección',
                 'pt-BR': 'Complete lições e amplie sua coleção',
                 vi: 'Hoàn thành bài học và mở rộng bộ sưu tập',
@@ -732,7 +741,7 @@ export default function CollectiblesScreen() {
             // Сетов мало (≤30) → виртуализация не нужна. Обычный ScrollView
             // корректно работает с LayoutAnimation (FlatList оставлял «дыру»
             // под раскрытым сетом, пока пересчитывал позиции виртуализации).
-            (<ScrollView
+            (<ScrollView decelerationRate="fast"
               contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
               showsVerticalScrollIndicator={false}
             >

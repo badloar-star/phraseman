@@ -25,6 +25,7 @@ import Svg from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
+import { createEnergySessionIntent, type EnergySessionIntent } from './energy_session_operation_ledger';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
@@ -411,7 +412,7 @@ export default function ExamScreen() {
     tr: string,
     pl: string,
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  const { isUnlimited, confirmSpendAmount, energy, bonusEnergy } = useEnergy();
+  const { isUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
   // Блокировка двойного тапа по «Начать тест»: спендим энергию ровно один раз, см. H12.
   const [examStarting, setExamStarting] = useState(false);
@@ -502,6 +503,7 @@ export default function ExamScreen() {
   const countdownRemainingMsRef = useRef(3 * 650);
   const countdownDeadlineRef = useRef(0);
   const examAttemptIdRef = useRef<string>(makeExamAttemptId());
+  const pendingExamEnergyIntentRef = useRef<EnergySessionIntent | null>(null);
   const examStartCommitInFlightRef = useRef(false);
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
@@ -702,13 +704,19 @@ export default function ExamScreen() {
     setExamStarting(true);
     try {
       examAttemptIdRef.current = makeExamAttemptId();
-      const energyResult = await confirmSpendAmount(LINGMAN_EXAM_ENERGY);
-      if (energyResult === 'cancelled') return;
+      const energyIntent = pendingExamEnergyIntentRef.current
+        ?? createEnergySessionIntent('exam', studyTarget, examAttemptIdRef.current);
+      pendingExamEnergyIntentRef.current = energyIntent;
+      const energyResult = await confirmSpendAmount(LINGMAN_EXAM_ENERGY, energyIntent);
+      if (energyResult === 'cancelled') { pendingExamEnergyIntentRef.current = null; return; }
       if (energyResult === 'insufficient') {
+        pendingExamEnergyIntentRef.current = null;
         void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
         setNoEnergy(true);
         return;
       }
+      if (energyResult === 'spent') void acknowledgeSessionStart(energyIntent.operationId);
+      pendingExamEnergyIntentRef.current = null;
       setIdx(0);
       setChoices(Array(questions.length).fill(null));
       setFlagged(Array(questions.length).fill(false));
@@ -763,27 +771,30 @@ export default function ExamScreen() {
       const raw = await AsyncStorage.getItem('user_name');
       storedName = (raw || '').trim();
     } catch {}
-    if (storedName) {
-      registerXP(xp, 'exam_complete', storedName, lang, undefined, {
-        eventId: [
-          'exam',
-          'final',
-          safeExamEventPart(studyTarget),
-          safeExamEventPart(examAttemptIdRef.current),
-          'complete',
-        ].join(':'),
-        payload: {
-          level: 'final',
-          studyTarget,
-          pct: p,
-          percent: p,
-          passed: p >= LINGMAN_CERT_MIN_PCT,
-          score: s,
-          total: questions.length,
-          answered: choices.filter(c => c !== null).length,
-        },
-      }).catch(() => {});
-    }
+    // зачем (аудит 2026-08-26): раньше стояло `if (storedName)` — и пользователь
+    // без сохранённого ника не получал за финальный экзамен НИЧЕГО (до 10000 XP).
+    // При первой сдаче ник и пуст: его спрашивают ниже, уже для сертификата.
+    // registerXP сам подставляет сгенерированное имя при пустой строке
+    // (xp_manager.ts:493), а level_exam.tsx зовёт его безусловно — здесь так же.
+    registerXP(xp, 'exam_complete', storedName, lang, undefined, {
+      eventId: [
+        'exam',
+        'final',
+        safeExamEventPart(studyTarget),
+        safeExamEventPart(examAttemptIdRef.current),
+        'complete',
+      ].join(':'),
+      payload: {
+        level: 'final',
+        studyTarget,
+        pct: p,
+        percent: p,
+        passed: p >= LINGMAN_CERT_MIN_PCT,
+        score: s,
+        total: questions.length,
+        answered: choices.filter(c => c !== null).length,
+      },
+    }).catch(() => {});
     if (p >= LINGMAN_CERT_MIN_PCT) {
       // ВАЖНО: при первой сдаче сертификат создаётся БЕЗ имени и сразу
       // открывается модалка ввода имени. Имя из user_name / Google displayName
@@ -953,7 +964,7 @@ export default function ExamScreen() {
             {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
           </Text>
         </View>
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:20}}>
           {certificate && (
             <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:0,borderColor:'#d4a017',marginBottom:16}}>
               <Ionicons name="information-circle" size={18} color={'#FFD700'}/>
@@ -1135,7 +1146,7 @@ export default function ExamScreen() {
           </View>
         </View>
 
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{paddingBottom:120}}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{paddingBottom:120}}>
           {questions.map((qItem, i) => {
             const isAnswered = choices[i] !== null;
             const isFlaggedItem = flagged[i];
@@ -1262,7 +1273,7 @@ export default function ExamScreen() {
               />
             </View>
           )}
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:24,alignItems:'center'}}>
             <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
               <Ionicons name="ribbon" size={44} color={t.textSecond}/>
             </View>
@@ -1473,7 +1484,7 @@ export default function ExamScreen() {
               {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2', 'Meu diploma B2', 'Phần thưởng B2 của tôi', 'Diploma B2 saya', 'B2 diplomam', 'Mój dyplom B2')}
             </Text>
           </View>
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{padding:20,alignItems:'center'}}>
             <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:8}}>
               <Ionicons name="ribbon" size={22} color={'#FFD700'}/>
               <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
@@ -1671,7 +1682,7 @@ export default function ExamScreen() {
         />
 
         <BouncyScrollView
-          decelerationRate="normal"
+          decelerationRate="fast"
           contentContainerStyle={{paddingHorizontal:20,paddingTop:16,paddingBottom:160}}
           keyboardShouldPersistTaps="handled"
         >

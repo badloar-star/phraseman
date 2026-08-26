@@ -40,11 +40,37 @@ export type Lesson1LearningStageV1 =
 export type Lesson1ChoreographyStepV1 = Readonly<{
   family: V2ActivityFamily;
   purpose: Lesson1CardPurposeV1;
-  targetKind: 'phrase' | 'vocabulary';
+  targetKind: 'phrase' | 'vocabulary' | 'vocabulary_grid';
   sourcePhraseIndex?: number;
   sourceVocabularyIndex?: number;
+  sourceVocabularyIndices?: readonly number[];
   learningStage: Lesson1LearningStageV1;
 }>;
+
+export const LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 =
+  'en-e01-s01-mode-native-v1' as const;
+
+function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'recognize' },
+    { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'build_form' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'build_form' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2, 3], learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
+  ];
+}
 
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
@@ -74,8 +100,10 @@ export function inferLesson1WordFirstVocabularyCountV1(
     if (
       first.length === count &&
       first.every((target) => target.trim().length > 0 && !/\s/u.test(target.trim())) &&
-      practiceTargets.slice(count, count * 2).every((target, index) => target === first[index]) &&
-      practiceTargets.slice(count * 2, count * 3).every((target, index) => target === first[index])
+      new Set(practiceTargets.slice(count, count * 2)).size === count &&
+      practiceTargets.slice(count, count * 2).every((target) => first.includes(target)) &&
+      new Set(practiceTargets.slice(count * 2, count * 3)).size === count &&
+      practiceTargets.slice(count * 2, count * 3).every((target) => first.includes(target))
     ) return count;
   }
   return 0;
@@ -409,6 +437,7 @@ export function lesson1SessionChoreographyV1(
   kindOverride?: SessionKind,
   vocabularyCount = 0,
   phraseCount = 15,
+  modeNativePlanId?: string,
 ): Lesson1SessionChoreographyV1 {
   const kind = kindOverride ?? EPISODE_01_SESSION_MAP_V1[sessionOrdinal - 1]?.kind;
   if (!kind) throw new Error('lesson1_session_choreography_ordinal_invalid');
@@ -419,7 +448,9 @@ export function lesson1SessionChoreographyV1(
     interactionProfile: profileFor(kind, vocabularyCount),
     ...support,
     steps: Object.freeze(
-      vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
+      modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...session01ModeNativeStepsV1()]
+        : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],
     ),

@@ -41,6 +41,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readPhraseAudioMapFile } from './lib/phrase_audio_map_source.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const JSON_OUT = process.argv.includes('--json');
@@ -86,13 +87,10 @@ function restorePunct(clean, translation) {
 // ── load the phrase-audio map: normalized text -> url, plus reverse url->text ─
 function loadPhraseMap() {
   const f = path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts');
-  const keyToUrl = new Map();
-  if (!fs.existsSync(f)) return keyToUrl;
-  const src = fs.readFileSync(f, 'utf8');
-  for (const m of src.matchAll(/^\s*"((?:[^"\\]|\\.)*)":\s*"(https[^"]+)"/gm)) {
-    keyToUrl.set(norm(JSON.parse(`"${m[1]}"`)), m[2]);
-  }
-  return keyToUrl;
+  if (!fs.existsSync(f)) return new Map();
+  return new Map(
+    Array.from(readPhraseAudioMapFile(f), ([key, url]) => [norm(key), url]),
+  );
 }
 
 // ── load id -> {url, text} so we know what text each mp3 was VOICED for ───────
@@ -224,6 +222,13 @@ const PHRASE_FILES = [
 
 const keyToUrl = loadPhraseMap();
 const { urlToVoiced, lessonVoiced } = loadVoicedText();
+const spokenUrlByCore = new Map();
+for (const [text, url] of keyToUrl) {
+  const core = coreWords(text);
+  if (!spokenUrlByCore.has(core)) spokenUrlByCore.set(core, url);
+  else if (spokenUrlByCore.get(core) !== url) spokenUrlByCore.set(core, null);
+}
+const runtimeAudioUrl = (text) => keyToUrl.get(text) || spokenUrlByCore.get(coreWords(text)) || undefined;
 
 const findings = { SHOWN_NO_AUDIO: [], AUDIO_SAYS_OLD: [], ALT_NO_AUDIO: [], FIELD_DRIFT: [], ORPHAN: [] };
 const referencedKeys = new Set();  // normalized (punct-preserving) map lookup keys
@@ -260,12 +265,12 @@ for (const p of phrases) {
   }
 
   // SHOWN_NO_AUDIO vs AUDIO_SAYS_OLD: judge against what the user hears.
-  const shownUrl = keyToUrl.get(shownKey);
+  const shownUrl = runtimeAudioUrl(shownKey);
   if (!shownUrl) {
     // The displayed line has no mp3. But maybe an mp3 IS mapped for the english
     // form (old wording) — that's the classic "shows new, speaks old" case.
-    const englishUrl = keyToUrl.get(englishKey);
-    const anyAltUrl = altKeys.map((k) => keyToUrl.get(k)).find(Boolean);
+    const englishUrl = runtimeAudioUrl(englishKey);
+    const anyAltUrl = altKeys.map(runtimeAudioUrl).find(Boolean);
     const idVoiced = lessonVoiced.find((candidate) => candidate.id === p.id);
     const staleIdUrl = idVoiced && coreWords(idVoiced.text) !== coreWords(shown)
       ? idVoiced.url
@@ -297,7 +302,7 @@ for (const p of phrases) {
 
   // ALT_NO_AUDIO: accepted alternative forms with no audio (informational).
   for (let i = 0; i < altKeys.length; i++) {
-    if (!keyToUrl.get(altKeys[i])) {
+    if (!runtimeAudioUrl(altKeys[i])) {
       findings.ALT_NO_AUDIO.push({ id: p.id, sourceFile: p.sourceFile, alt: p.alternatives[i] });
     }
   }

@@ -4,6 +4,11 @@
 
 import type { Lang } from './i18n';
 
+// English copy is deliberately prepared but not admitted to `Lang` yet: the
+// runtime locale contract remains the eight source locales until every surface
+// has been translated and independently checked.
+type StagedStreakCopy<T> = Record<Lang, T> & { en: T };
+
 /** Сокращения дня недели по d.getDay() (0 = вс). */
 export const STREAK_CAL_WDAYS_RU = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'] as const;
 export const STREAK_CAL_WDAYS_UK = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'] as const;
@@ -13,6 +18,7 @@ export const STREAK_CAL_WDAYS_VI = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'] as
 export const STREAK_CAL_WDAYS_ID = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'] as const;
 export const STREAK_CAL_WDAYS_TR = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'] as const;
 export const STREAK_CAL_WDAYS_PL = ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb'] as const;
+export const STREAK_CAL_WDAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const;
 
 /** Ряд «Пн…Вс» для карточки недели на экране. */
 export const STREAK_WEEK_ROW_RU = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] as const;
@@ -23,6 +29,7 @@ export const STREAK_WEEK_ROW_VI = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'] as 
 export const STREAK_WEEK_ROW_ID = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'] as const;
 export const STREAK_WEEK_ROW_TR = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'] as const;
 export const STREAK_WEEK_ROW_PL = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'] as const;
+export const STREAK_WEEK_ROW_EN = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
 
 export const STREAK_WAGER_TIER_DAYS_RU = ['7 дней', '14 дней', '21 день', '30 дней', '50 дней', '100 дней'] as const;
 export const STREAK_WAGER_TIER_DAYS_UK = ['7 днів', '14 днів', '21 день', '30 днів', '50 днів', '100 днів'] as const;
@@ -32,8 +39,9 @@ export const STREAK_WAGER_TIER_DAYS_VI = ['7 ngày', '14 ngày', '21 ngày', '30
 export const STREAK_WAGER_TIER_DAYS_ID = ['7 hari', '14 hari', '21 hari', '30 hari', '50 hari', '100 hari'] as const;
 export const STREAK_WAGER_TIER_DAYS_TR = ['7 gün', '14 gün', '21 gün', '30 gün', '50 gün', '100 gün'] as const;
 export const STREAK_WAGER_TIER_DAYS_PL = ['7 dni', '14 dni', '21 dni', '30 dni', '50 dni', '100 dni'] as const;
+export const STREAK_WAGER_TIER_DAYS_EN = ['7 days', '14 days', '21 days', '30 days', '50 days', '100 days'] as const;
 
-const STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG: Record<Lang, string> = {
+const STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Сумма минут за 7 дней.',
   uk: 'Сума хвилин за 7 днів.',
   es: 'Minutos totales de 7 días.',
@@ -42,9 +50,10 @@ const STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG: Record<Lang, string> = {
   id: 'Total menit selama 7 hari.',
   tr: '7 günün toplam dakikası.',
   pl: 'Łączne minuty z 7 dni.',
+  en: 'Total minutes for 7 days.',
 };
 
-const STREAK_WEEKLY_TIME_HOURS_HINT_BY_LANG: Record<Lang, string> = {
+const STREAK_WEEKLY_TIME_HOURS_HINT_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Сумма часов за 7 дней.',
   uk: 'Сума годин за 7 днів.',
   es: 'Horas totales de 7 días.',
@@ -53,9 +62,10 @@ const STREAK_WEEKLY_TIME_HOURS_HINT_BY_LANG: Record<Lang, string> = {
   id: 'Total jam selama 7 hari.',
   tr: '7 günün toplam saati.',
   pl: 'Łączne godziny z 7 dni.',
+  en: 'Total hours for 7 days.',
 };
 
-const STREAK_WEEKLY_TIME_HOURS_MINUTES_HINT_BY_LANG: Record<Lang, string> = {
+const STREAK_WEEKLY_TIME_HOURS_MINUTES_HINT_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Суммарное время за 7 дней.',
   uk: 'Сумарний час за 7 днів.',
   es: 'Tiempo total de 7 días.',
@@ -64,9 +74,10 @@ const STREAK_WEEKLY_TIME_HOURS_MINUTES_HINT_BY_LANG: Record<Lang, string> = {
   id: 'Total waktu selama 7 hari.',
   tr: '7 günün toplam süresi.',
   pl: 'Łączny czas z 7 dni.',
+  en: 'Total time for 7 days.',
 };
 
-const STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG: Record<Lang, string> = {
+const STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Опыт',
   uk: 'Досвід',
   es: 'XP',
@@ -75,9 +86,10 @@ const STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG: Record<Lang, string> = {
   id: 'XP',
   tr: 'XP',
   pl: 'XP',
+  en: 'XP',
 };
 
-const STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG: Record<Lang, string> = {
+const STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Сумма опыта за последние 7 дней.',
   uk: 'Сума досвіду за останні 7 днів.',
   es: 'XP total de los últimos 7 días.',
@@ -86,11 +98,12 @@ const STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG: Record<Lang, string> = {
   id: 'Total XP 7 hari terakhir.',
   tr: 'Son 7 günün toplam XP’si.',
   pl: 'Łączne XP z ostatnich 7 dni.',
+  en: 'Total XP for the last 7 days.',
 };
 
 export type StreakWagerTierIndex = 0 | 1 | 2 | 3 | 4 | 5;
 
-const STREAK_CAL_WDAYS_BY_LANG: Record<Lang, readonly string[]> = {
+const STREAK_CAL_WDAYS_BY_LANG: StagedStreakCopy<readonly string[]> = {
   ru: STREAK_CAL_WDAYS_RU,
   uk: STREAK_CAL_WDAYS_UK,
   es: STREAK_CAL_WDAYS_ES,
@@ -99,9 +112,10 @@ const STREAK_CAL_WDAYS_BY_LANG: Record<Lang, readonly string[]> = {
   id: STREAK_CAL_WDAYS_ID,
   tr: STREAK_CAL_WDAYS_TR,
   pl: STREAK_CAL_WDAYS_PL,
+  en: STREAK_CAL_WDAYS_EN,
 };
 
-const STREAK_WEEK_ROW_BY_LANG: Record<Lang, readonly string[]> = {
+const STREAK_WEEK_ROW_BY_LANG: StagedStreakCopy<readonly string[]> = {
   ru: STREAK_WEEK_ROW_RU,
   uk: STREAK_WEEK_ROW_UK,
   es: STREAK_WEEK_ROW_ES,
@@ -110,9 +124,10 @@ const STREAK_WEEK_ROW_BY_LANG: Record<Lang, readonly string[]> = {
   id: STREAK_WEEK_ROW_ID,
   tr: STREAK_WEEK_ROW_TR,
   pl: STREAK_WEEK_ROW_PL,
+  en: STREAK_WEEK_ROW_EN,
 };
 
-const STREAK_WAGER_TIER_DAYS_BY_LANG: Record<Lang, readonly string[]> = {
+const STREAK_WAGER_TIER_DAYS_BY_LANG: StagedStreakCopy<readonly string[]> = {
   ru: STREAK_WAGER_TIER_DAYS_RU,
   uk: STREAK_WAGER_TIER_DAYS_UK,
   es: STREAK_WAGER_TIER_DAYS_ES,
@@ -121,6 +136,7 @@ const STREAK_WAGER_TIER_DAYS_BY_LANG: Record<Lang, readonly string[]> = {
   id: STREAK_WAGER_TIER_DAYS_ID,
   tr: STREAK_WAGER_TIER_DAYS_TR,
   pl: STREAK_WAGER_TIER_DAYS_PL,
+  en: STREAK_WAGER_TIER_DAYS_EN,
 };
 
 export function streakCalendarShortWeekdays(
@@ -165,7 +181,7 @@ export function streakWeeklyExperienceHint(lang: Lang): string {
   return STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG[lang];
 }
 
-const STREAK_CHART_SCRUB_HINT_BY_LANG: Record<Lang, string> = {
+const STREAK_CHART_SCRUB_HINT_BY_LANG: StagedStreakCopy<string> = {
   ru: 'зажми график — покажу значения',
   uk: 'затисни графік — покажу значення',
   es: 'mantén el gráfico y verás los valores',
@@ -174,6 +190,7 @@ const STREAK_CHART_SCRUB_HINT_BY_LANG: Record<Lang, string> = {
   id: 'tahan grafik untuk melihat nilai',
   tr: 'değerleri görmek için grafiği basılı tut',
   pl: 'przytrzymaj wykres, aby zobaczyć wartości',
+  en: 'hold the chart to see values',
 };
 
 /** Одноразовая подсказка под графиком недели: гаснет после первого скраба. */
@@ -181,7 +198,7 @@ export function streakChartScrubHint(lang: Lang): string {
   return STREAK_CHART_SCRUB_HINT_BY_LANG[lang];
 }
 
-const STREAK_PROTECTION_ACTIVE_BY_LANG: Record<Lang, string> = {
+const STREAK_PROTECTION_ACTIVE_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Серия под защитой сегодня',
   uk: 'Серія під захистом сьогодні',
   es: 'Racha protegida hoy',
@@ -190,9 +207,10 @@ const STREAK_PROTECTION_ACTIVE_BY_LANG: Record<Lang, string> = {
   id: 'Rangkaian terlindungi hari ini',
   tr: 'Seri bugün korumada',
   pl: 'Seria dziś pod ochroną',
+  en: 'Streak protected today',
 };
 
-const STREAK_PROTECTION_AT_RISK_BY_LANG: Record<Lang, string> = {
+const STREAK_PROTECTION_AT_RISK_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Серия под угрозой — можно защитить',
   uk: 'Серія під загрозою — можна захистити',
   es: 'Racha en riesgo: puedes protegerla',
@@ -201,9 +219,10 @@ const STREAK_PROTECTION_AT_RISK_BY_LANG: Record<Lang, string> = {
   id: 'Rangkaian berisiko — bisa dilindungi',
   tr: 'Seri risk altında — koruyabilirsin',
   pl: 'Seria zagrożona — możesz ją chronić',
+  en: 'Streak at risk — protect it',
 };
 
-const STREAK_PROTECTION_SAFE_BY_LANG: Record<Lang, string> = {
+const STREAK_PROTECTION_SAFE_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Серия в безопасности',
   uk: 'Серія в безпеці',
   es: 'Racha a salvo',
@@ -212,6 +231,7 @@ const STREAK_PROTECTION_SAFE_BY_LANG: Record<Lang, string> = {
   id: 'Rangkaian aman',
   tr: 'Seri güvende',
   pl: 'Seria jest bezpieczna',
+  en: 'Streak is safe',
 };
 
 /**

@@ -5,17 +5,7 @@ describe('safe modal navigation', () => {
     jest.dontMock('react-native');
   });
 
-  it('waits for the full native-modal dismissal gap on iOS before navigating', () => {
-    jest.useFakeTimers();
-    const runAfterInteractions = jest.fn((work: () => void) => {
-      work();
-      return { cancel: jest.fn() };
-    });
-    jest.doMock('react-native', () => ({
-      InteractionManager: { runAfterInteractions },
-      Platform: { OS: 'ios' },
-    }));
-
+  it('prepares the destination synchronously after asking the modal to close', () => {
     const { navigateAfterModalClose } = jest.requireActual<typeof import('../app/safe_modal_navigation')>(
       '../app/safe_modal_navigation',
     );
@@ -25,34 +15,14 @@ describe('safe modal navigation', () => {
     navigateAfterModalClose(close, navigate);
 
     expect(close).toHaveBeenCalledTimes(1);
-    expect(runAfterInteractions).toHaveBeenCalledTimes(1);
-    jest.advanceTimersByTime(359);
-    expect(navigate).not.toHaveBeenCalled();
-    jest.advanceTimersByTime(1);
     expect(navigate).toHaveBeenCalledTimes(1);
+    expect(close.mock.invocationCallOrder[0]).toBeLessThan(navigate.mock.invocationCallOrder[0]);
   });
 
-  it('keeps the same dismissal safety gap on Android native modals', () => {
-    jest.useFakeTimers();
-    const runAfterInteractions = jest.fn((work: () => void) => {
-      work();
-      return { cancel: jest.fn() };
-    });
-    jest.doMock('react-native', () => ({
-      InteractionManager: { runAfterInteractions },
-      Platform: { OS: 'android' },
-    }));
-
-    const { navigateAfterModalClose } = jest.requireActual<typeof import('../app/safe_modal_navigation')>(
+  it('keeps the native lifecycle gap separate for HybridSheetShell observers', () => {
+    const { NATIVE_MODAL_DISMISS_GAP_MS } = jest.requireActual<typeof import('../app/safe_modal_navigation')>(
       '../app/safe_modal_navigation',
     );
-    const navigate = jest.fn();
-
-    navigateAfterModalClose(jest.fn(), navigate);
-
-    jest.advanceTimersByTime(359);
-    expect(navigate).not.toHaveBeenCalled();
-    jest.advanceTimersByTime(1);
-    expect(navigate).toHaveBeenCalledTimes(1);
+    expect(NATIVE_MODAL_DISMISS_GAP_MS).toBe(360);
   });
 });

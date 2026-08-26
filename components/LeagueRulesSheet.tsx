@@ -91,6 +91,7 @@ const SECTIONS: readonly RuleSection[] = [
     title: (lang) => triLang(lang, {
       ru: 'Что такое лига',
       uk: 'Що таке ліга',
+      en: 'What is a league',
       es: 'Qué es la liga',
       'pt-BR': 'O que é a liga',
       vi: 'Giải đấu là gì',
@@ -101,6 +102,7 @@ const SECTIONS: readonly RuleSection[] = [
     body: (lang) => triLang(lang, {
       ru: 'Это соревнование на неделю. Каждый понедельник вас собирают в комнату примерно на 30 человек, и все начинают с нуля. За каждое занятие в приложении вы получаете руны — они и есть ваш счёт в таблице. Чем больше занимаетесь, тем выше поднимаетесь.',
       uk: 'Це змагання на тиждень. Щопонеділка вас збирають у кімнату приблизно на 30 осіб, і всі починають з нуля. За кожне заняття в застосунку ви отримуєте руни — вони і є ваш рахунок у таблиці. Що більше займаєтесь, то вище піднімаєтесь.',
+      en: "It's a weekly competition. Every Monday you're placed in a room of about 30 people, and everyone starts from zero. Every practice session in the app earns you runes — they're your score on the table. The more you practice, the higher you climb.",
       es: 'Es una competición semanal. Cada lunes te agrupan en una sala de unas 30 personas y todos empiezan desde cero. Por cada práctica en la app ganas runas: ellas son tu puntuación en la tabla. Cuanto más practicas, más subes.',
       'pt-BR': 'É uma competição de uma semana. Toda segunda você entra numa sala de cerca de 30 pessoas e todos começam do zero. A cada prática no app você ganha runas: elas são a sua pontuação na tabela. Quanto mais você pratica, mais sobe.',
       vi: 'Đây là cuộc thi kéo dài một tuần. Mỗi thứ Hai bạn được xếp vào phòng khoảng 30 người và tất cả đều bắt đầu từ 0. Mỗi buổi học trong ứng dụng mang lại cho bạn rune — đó chính là điểm của bạn trong bảng. Học càng nhiều, bạn càng lên cao.',
@@ -115,6 +117,7 @@ const SECTIONS: readonly RuleSection[] = [
     title: (lang) => triLang(lang, {
       ru: 'Как перейти в лигу выше',
       uk: 'Як перейти в лігу вище',
+      en: 'How to move up a league',
       es: 'Cómo subir de liga',
       'pt-BR': 'Como subir de liga',
       vi: 'Cách lên hạng',
@@ -125,6 +128,7 @@ const SECTIONS: readonly RuleSection[] = [
     body: (lang) => triLang(lang, {
       ru: 'В ночь на понедельник неделя закрывается и таблица замирает. Несколько человек с самым большим счётом переходят в следующую лигу, а несколько с самым маленьким опускаются в предыдущую. Всего лиг двенадцать: от Медной до Высшей. Остальные остаются на месте и начинают новую неделю здесь же.',
       uk: 'У ніч на понеділок тиждень закривається і таблиця завмирає. Кілька людей із найбільшим рахунком переходять у наступну лігу, а кілька з найменшим опускаються в попередню. Усього ліг дванадцять: від Мідної до Вищої. Решта лишаються на місці й починають новий тиждень тут же.',
+      en: 'The week closes on Monday night and the table freezes. A few people with the highest score move up to the next league, and a few with the lowest drop to the previous one. There are twelve leagues in total, from Copper to Supreme. Everyone else stays put and starts the new week right here.',
       es: 'La noche del domingo al lunes la semana se cierra y la tabla queda fija. Las personas con mayor puntuación pasan a la liga siguiente y las de menor puntuación bajan a la anterior. En total hay doce ligas, desde Cobre hasta la Suprema. El resto se queda y empieza aquí la semana nueva.',
       'pt-BR': 'Na virada para segunda a semana fecha e a tabela congela. As pessoas com maior pontuação passam para a liga seguinte e as de menor pontuação descem para a anterior. Ao todo são doze ligas, do Cobre até a Suprema. Os demais ficam e começam a nova semana aqui mesmo.',
       vi: 'Rạng sáng thứ Hai, tuần khép lại và bảng xếp hạng dừng. Vài người có điểm cao nhất lên hạng tiếp theo, còn vài người điểm thấp nhất xuống hạng trước đó. Có tất cả mười hai hạng, từ Đồng đến Cao nhất. Những người còn lại ở nguyên và bắt đầu tuần mới tại đây.',
@@ -139,6 +143,7 @@ const SECTIONS: readonly RuleSection[] = [
     title: (lang) => triLang(lang, {
       ru: 'Почему нельзя пропускать неделю',
       uk: 'Чому не можна пропускати тиждень',
+      en: "Why you shouldn't skip a week",
       es: 'Por qué no conviene saltarse la semana',
       'pt-BR': 'Por que não vale pular a semana',
       vi: 'Vì sao không nên bỏ cả tuần',
@@ -149,6 +154,7 @@ const SECTIONS: readonly RuleSection[] = [
     body: (lang) => triLang(lang, {
       ru: 'Если за всю неделю вы не заработали ни одной руны, вы опускаетесь в лигу ниже — даже если в комнате почти никто не занимался. Достаточно одного занятия за неделю, чтобы этого не случилось.',
       uk: 'Якщо за весь тиждень ви не заробили жодної руни, ви опускаєтесь у лігу нижче — навіть якщо в кімнаті майже ніхто не займався. Досить одного заняття за тиждень, щоб цього не сталося.',
+      en: "If you don't earn a single rune the whole week, you drop to the league below — even if almost no one in the room practiced. Just one practice session a week is enough to avoid it.",
       es: 'Si en toda la semana no ganas ni una runa, bajas a la liga anterior, aunque casi nadie en la sala haya practicado. Basta con una sola práctica en la semana para evitarlo.',
       'pt-BR': 'Se durante a semana inteira você não ganhar nenhuma runa, desce para a liga anterior, mesmo que quase ninguém na sala tenha praticado. Basta uma única prática na semana para evitar isso.',
       vi: 'Nếu suốt cả tuần bạn không kiếm được rune nào, bạn sẽ xuống hạng — kể cả khi hầu như không ai trong phòng học cả. Chỉ cần một buổi học trong tuần là đủ để tránh điều đó.',
@@ -163,6 +169,7 @@ const SECTIONS: readonly RuleSection[] = [
     title: (lang) => triLang(lang, {
       ru: 'Двойные руны в конце недели',
       uk: 'Подвійні руни наприкінці тижня',
+      en: 'Double runes at week end',
       es: 'Runas dobles al final de la semana',
       'pt-BR': 'Runas em dobro no fim da semana',
       vi: 'Rune nhân đôi cuối tuần',
@@ -173,6 +180,7 @@ const SECTIONS: readonly RuleSection[] = [
     body: (lang) => triLang(lang, {
       ru: 'В последние два часа недели тем, кто рискует опуститься в лигу ниже, руны начисляются вдвойне. Это шанс подтянуться в воскресенье вечером и остаться в своей лиге.',
       uk: 'В останні дві години тижня тим, хто ризикує опуститися в лігу нижче, руни нараховуються вдвічі. Це шанс підтягнутися в неділю ввечері й лишитися у своїй лізі.',
+      en: 'In the last two hours of the week, anyone at risk of dropping a league earns double runes. It’s a chance to catch up on Sunday evening and stay in your league.',
       es: 'En las dos últimas horas de la semana, quienes corren riesgo de bajar de liga reciben runas dobles. Es la oportunidad de recuperar posiciones el domingo por la noche y quedarse en tu liga.',
       'pt-BR': 'Nas duas últimas horas da semana, quem corre risco de cair de liga recebe runas em dobro. É a chance de recuperar posições no domingo à noite e permanecer na sua liga.',
       vi: 'Trong hai giờ cuối của tuần, những người có nguy cơ xuống hạng được nhận rune gấp đôi. Đây là cơ hội bứt lên vào tối Chủ nhật và trụ lại hạng của mình.',
@@ -187,6 +195,7 @@ const SECTIONS: readonly RuleSection[] = [
     title: (lang) => triLang(lang, {
       ru: 'Общая цель комнаты',
       uk: 'Спільна мета кімнати',
+      en: "The room's shared goal",
       es: 'La meta común de la sala',
       'pt-BR': 'A meta comum da sala',
       vi: 'Mục tiêu chung của phòng',
@@ -197,6 +206,7 @@ const SECTIONS: readonly RuleSection[] = [
     body: (lang) => triLang(lang, {
       ru: 'Кроме личного счёта у комнаты есть общая цель на неделю. Руны всех участников складываются вместе, и когда цель достигнута, награду получает каждый — даже те, кто внизу таблицы.',
       uk: 'Крім особистого рахунку, у кімнати є спільна мета на тиждень. Руни всіх учасників складаються разом, і коли мету досягнуто, нагороду отримує кожен — навіть ті, хто внизу таблиці.',
+      en: "Besides your personal score, the room has a shared weekly goal. Everyone's runes are added together, and once the goal is reached, everyone gets the reward — even those at the bottom of the table.",
       es: 'Además de tu marcador personal, la sala tiene una meta común para la semana. Las runas de todos se suman y, cuando se alcanza la meta, todos reciben la recompensa, incluso quienes están abajo en la tabla.',
       'pt-BR': 'Além da sua pontuação pessoal, a sala tem uma meta comum da semana. As runas de todos se somam e, quando a meta é atingida, todo mundo ganha a recompensa, até quem está no fim da tabela.',
       vi: 'Ngoài điểm cá nhân, cả phòng còn có một mục tiêu chung trong tuần. Rune của mọi người được cộng lại, và khi đạt mục tiêu thì ai cũng nhận thưởng — kể cả những người ở cuối bảng.',
@@ -211,6 +221,7 @@ const SECTIONS: readonly RuleSection[] = [
     title: (lang) => triLang(lang, {
       ru: 'Что даёт высокая лига',
       uk: 'Що дає висока ліга',
+      en: 'What a high league gives you',
       es: 'Qué aporta una liga alta',
       'pt-BR': 'O que uma liga alta traz',
       vi: 'Hạng cao mang lại gì',
@@ -221,6 +232,7 @@ const SECTIONS: readonly RuleSection[] = [
     body: (lang) => triLang(lang, {
       ru: 'Каждая следующая лига навсегда ускоряет ваш опыт: в самой первой прибавка небольшая, в самой высокой — больше чем вдвое. Это значит, что уровень в приложении растёт быстрее просто потому, что вы поднялись выше.',
       uk: 'Кожна наступна ліга назавжди прискорює ваш досвід: у найпершій надбавка невелика, у найвищій — більш ніж удвічі. Це означає, що рівень у застосунку росте швидше просто тому, що ви піднялися вище.',
+      en: 'Every league up permanently speeds up your XP: the boost is small in the first league and more than double in the highest. That means your level in the app grows faster simply because you climbed higher.',
       es: 'Cada liga siguiente acelera tu experiencia para siempre: en la primera el aumento es pequeño y en la más alta es más del doble. Es decir, tu nivel en la app sube más rápido solo por haber ascendido.',
       'pt-BR': 'Cada liga seguinte acelera sua experiência para sempre: na primeira o acréscimo é pequeno e na mais alta passa do dobro. Ou seja, seu nível no app sobe mais rápido só porque você subiu de liga.',
       vi: 'Mỗi hạng cao hơn sẽ tăng tốc kinh nghiệm của bạn vĩnh viễn: ở hạng đầu tiên mức cộng thêm nhỏ, ở hạng cao nhất thì hơn gấp đôi. Nghĩa là cấp độ trong ứng dụng tăng nhanh hơn chỉ vì bạn đã lên hạng.',
@@ -309,13 +321,14 @@ export default function LeagueRulesSheet({ visible, onClose, lang }: Props) {
   }));
 
   const closeLabel = triLang(lang, {
-    ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar',
+    ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
     vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
   });
 
   const title = triLang(lang, {
     ru: 'Как устроена лига',
     uk: 'Як влаштована ліга',
+    en: 'How the league works',
     es: 'Cómo funciona la liga',
     'pt-BR': 'Como a liga funciona',
     vi: 'Giải đấu hoạt động thế nào',
@@ -325,7 +338,7 @@ export default function LeagueRulesSheet({ visible, onClose, lang }: Props) {
   });
 
   const ctaLabel = triLang(lang, {
-    ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi',
+    ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi',
     vi: 'Đã hiểu', id: 'Paham', tr: 'Anladım', pl: 'Jasne',
   });
 
@@ -367,7 +380,7 @@ export default function LeagueRulesSheet({ visible, onClose, lang }: Props) {
                 (тяга вниз = закрыть) не связан со списком через
                 simultaneousWithExternalGesture, и отдача сверху дала бы
                 перехват — лист закрывался бы вместо прокрутки. */}
-            <ScrollView
+            <ScrollView decelerationRate="fast"
               style={styles.scroll}
               contentContainerStyle={styles.scrollContent}
               showsVerticalScrollIndicator

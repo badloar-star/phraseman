@@ -6,10 +6,10 @@ import sharp from 'sharp';
 
 const ROOT = path.resolve(__dirname, '..');
 
-function normalize(input: string, output: string) {
-  execFileSync(process.execPath, [
-    'scripts/avatar-100/normalize-master.mjs', '--input', input, '--output', output,
-  ], { cwd: ROOT });
+function normalize(input: string, output: string, backgroundMode?: 'saturated-matte' | 'legacy-neutral') {
+  const args = ['scripts/avatar-100/normalize-master.mjs', '--input', input, '--output', output];
+  if (backgroundMode) args.push('--background-mode', backgroundMode);
+  execFileSync(process.execPath, args, { cwd: ROOT });
 }
 
 describe('avatar 100 master normalization', () => {
@@ -30,14 +30,14 @@ describe('avatar 100 master normalization', () => {
     }
     await sharp(pixels, { raw: { width: 96, height: 96, channels: 3 } }).png().toFile(input);
 
-    normalize(input, output);
+    normalize(input, output, 'legacy-neutral');
     const { data, info } = await sharp(output).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
     expect([info.width, info.height, info.channels]).toEqual([512, 512, 4]);
     expect(data[3]).toBe(0);
     expect(data[((256 * 512 + 256) * 4) + 3]).toBeGreaterThan(240);
   });
 
-  it('removes a border-connected magenta chroma background', async () => {
+  it('removes a border-connected magenta matte while preserving enclosed matching detail', async () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'avatar-master-chroma-'));
     const input = path.join(root, 'input.png');
     const output = path.join(root, 'output.png');
@@ -46,7 +46,22 @@ describe('avatar 100 master normalization', () => {
     normalize(input, output);
     const { data } = await sharp(output).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
     expect(data[3]).toBe(0);
-    expect(data[((256 * 512 + 256) * 4) + 3]).toBe(0);
+    expect(data[((256 * 512 + 256) * 4) + 3]).toBeGreaterThan(240);
     expect(data[((256 * 512 + 240) * 4) + 3]).toBeGreaterThan(240);
+  });
+
+  it('preserves pale anatomy while removing a saturated matte', async () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'avatar-master-pale-chroma-'));
+    const input = path.join(root, 'input.png');
+    const output = path.join(root, 'output.png');
+    const svg = `<svg width="96" height="96"><rect width="96" height="96" fill="#ec00d2"/><path d="M28 14h40v68H28z" fill="#f7f4ee"/><path d="M28 40h40v8H28z" fill="#fcfaf7"/></svg>`;
+    await sharp(Buffer.from(svg)).png().toFile(input);
+
+    normalize(input, output, 'saturated-matte');
+
+    const { data, info } = await sharp(output).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    expect([info.width, info.height, info.channels]).toEqual([512, 512, 4]);
+    expect(data[3]).toBe(0);
+    expect(data[((256 * 512 + 256) * 4) + 3]).toBeGreaterThan(240);
   });
 });

@@ -37,6 +37,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards } from '../hooks/use-flashcards';
+import { soundDirector } from '../modules/audio/sound_director';
 import { getTranscription } from './transcription';
 import { STR } from './flashcards/constants';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
@@ -386,6 +387,9 @@ export default function FlashcardsCardEditorScreen() {
       await upsertCustomCard(newCard);
       playSfx('correct');
       fcHaptic('correct');
+      // зачем: карточка своей коллекции сохранена (create/edit) — отдельное
+      // событие pm.cards.editor_save поверх нейтрального 'correct' из cards-2.0.
+      soundDirector.request('pm.cards.editor_save', { scope: 'cards' });
       emitAppEvent(
         'action_toast',
         actionToastTri('success', {
@@ -486,7 +490,7 @@ export default function FlashcardsCardEditorScreen() {
                 </View>
               </View>
             ) : (
-              <ScrollView
+              <ScrollView decelerationRate="fast"
                 style={{ flex: 1 }}
                 contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 24, paddingBottom: 32, gap: 20 }}
                 keyboardShouldPersistTaps="handled"
@@ -572,7 +576,13 @@ export default function FlashcardsCardEditorScreen() {
                         {triLang(lang, {
                           ru: `Карточка «${duplicateOfEn}» уже есть в коллекции.`,
                           uk: `Картка «${duplicateOfEn}» вже є в колекції.`,
+                          en: `The card "${duplicateOfEn}" is already in the collection.`,
                           es: `La tarjeta «${duplicateOfEn}» ya existe en la colección.`,
+                          'pt-BR': `O cartão «${duplicateOfEn}» já está na coleção.`,
+                          vi: `Thẻ «${duplicateOfEn}» đã có trong bộ sưu tập.`,
+                          id: `Kartu «${duplicateOfEn}» sudah ada di koleksi.`,
+                          tr: `«${duplicateOfEn}» kartı zaten koleksiyonda.`,
+                          pl: `Karta «${duplicateOfEn}» już jest w kolekcji.`,
                         })}
                       </Text>
                     </View>
@@ -624,7 +634,10 @@ export default function FlashcardsCardEditorScreen() {
                     >
                       <Ionicons name="bulb-outline" size={14} color={t.accent} />
                       <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '700' }} numberOfLines={1}>
-                        {triLang(lang, { ru: 'Подсказка', uk: 'Підказка', es: 'Sugerencia' })}: {assistSuggestion}
+                        {triLang(lang, {
+                          ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Sugerencia',
+                          'pt-BR': 'Sugestão', vi: 'Gợi ý', id: 'Saran', tr: 'İpucu', pl: 'Podpowiedź',
+                        })}: {assistSuggestion}
                       </Text>
                     </TouchableOpacity>
                   ) : null}
@@ -684,7 +697,13 @@ export default function FlashcardsCardEditorScreen() {
                       {triLang(lang, {
                         ru: 'Добавить заметку',
                         uk: 'Додати нотатку',
+                        en: 'Add a note',
                         es: 'Añadir una nota',
+                        'pt-BR': 'Adicionar uma nota',
+                        vi: 'Thêm ghi chú',
+                        id: 'Tambah catatan',
+                        tr: 'Not ekle',
+                        pl: 'Dodaj notatkę',
                       })}
                     </Text>
                   </TouchableOpacity>
@@ -725,7 +744,13 @@ export default function FlashcardsCardEditorScreen() {
                   {triLang(lang, {
                     ru: 'Карточка появится во вкладке «Свои» и будет доступна в тренировках.',
                     uk: 'Картка з’явиться у вкладці «Свої» і буде доступна в тренуваннях.',
+                    en: 'The card will appear in the "My cards" tab and be available in training.',
                     es: 'La tarjeta aparecerá en «Mis tarjetas» y estará disponible en los entrenamientos.',
+                    'pt-BR': 'O cartão aparecerá em «Meus cartões» e ficará disponível nos treinos.',
+                    vi: 'Thẻ sẽ xuất hiện trong tab «Của tôi» và có thể dùng để luyện tập.',
+                    id: 'Kartu akan muncul di tab «Milikku» dan tersedia untuk latihan.',
+                    tr: '«Benimkiler» sekmesinde görünecek ve alıştırmalarda kullanılabilecek.',
+                    pl: 'Karta pojawi się w zakładce «Moje» i będzie dostępna w treningach.',
                   })}
                 </Text>
               </ScrollView>

@@ -435,6 +435,7 @@ export default function LessonHelp() {
   const unavailableTheoryTitle = triLang(lang, {
     uk: `Урок ${lessonId}`,
     ru: `Урок ${lessonId}`,
+    en: `Lesson ${lessonId}`,
     es: `Lección ${lessonId}`,
     'pt-BR': `Lição ${lessonId}`,
     vi: `Bài ${lessonId}`,
@@ -445,6 +446,7 @@ export default function LessonHelp() {
   const unavailableTheoryText = triLang(lang, {
     uk: `Теорія для уроку ${lessonId} незабаром з'явиться. Продовжуй практикуватись!`,
     ru: `Теория для урока ${lessonId} скоро появится. Пока практикуйся — это важнее!`,
+    en: `Theory for lesson ${lessonId} is coming soon. Keep practicing — it matters more!`,
     es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
     'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
     vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,
@@ -474,6 +476,7 @@ export default function LessonHelp() {
               {triLang(lang, {
                 uk: `Урок ${lessonId} — Теорія`,
                 ru: `Урок ${lessonId} — Теория`,
+                en: `Lesson ${lessonId} — Theory`,
                 es: `Lección ${lessonId} — Teoría`,
                 'pt-BR': `Lição ${lessonId} — Teoria`,
                 vi: `Bài ${lessonId} — Lý thuyết`,
@@ -493,6 +496,7 @@ export default function LessonHelp() {
               {triLang(lang, {
                 uk: 'Коротко: правило + приклади + 25 XP',
                 ru: 'Правило, примеры и +25 XP в конце',
+                en: 'Rule, examples, and +25 XP at the end',
                 es: 'Resumen: regla + ejemplos + 25 XP',
                 'pt-BR': 'Resumo: regra + exemplos + 25 XP',
                 vi: 'Tóm tắt: quy tắc + ví dụ + 25 XP',
@@ -506,7 +510,7 @@ export default function LessonHelp() {
 
         {/* Content */}
         <ScrollView
-          decelerationRate="normal"
+          decelerationRate="fast"
           contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
           showsVerticalScrollIndicator={true}
         >
@@ -584,6 +588,7 @@ export default function LessonHelp() {
                   ? triLang(lang, {
                       uk: `XP отримано (+${earnedXP})`,
                       ru: `Готово — +${earnedXP} XP`,
+                      en: `Done — +${earnedXP} XP`,
                       es: `Has obtenido +${earnedXP} XP`,
                       'pt-BR': `Você ganhou +${earnedXP} XP`,
                       vi: `Đã nhận +${earnedXP} XP`,
@@ -594,6 +599,7 @@ export default function LessonHelp() {
                   : triLang(lang, {
                       uk: `Отримати ${previewXP} XP`,
                       ru: `Забрать ${previewXP} XP`,
+                      en: `Claim ${previewXP} XP`,
                       es: `Reclamar ${previewXP} XP`,
                       'pt-BR': `Resgatar ${previewXP} XP`,
                       vi: `Nhận ${previewXP} XP`,

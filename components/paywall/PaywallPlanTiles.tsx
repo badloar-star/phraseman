@@ -63,6 +63,7 @@ export default function PaywallPlanTiles({
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
+    en: '/ mo',
     es: '/ mes',
     'pt-BR': '/ mês',
     vi: '/ tháng',
@@ -77,6 +78,7 @@ export default function PaywallPlanTiles({
     yearSubParts.push(triLang(lang, {
       ru: `${perDayLabel} в день`,
       uk: `${perDayLabel} на день`,
+      en: `${perDayLabel} per day`,
       es: `${perDayLabel} al día`,
       'pt-BR': `${perDayLabel} por dia`,
       vi: `${perDayLabel} mỗi ngày`,
@@ -90,12 +92,12 @@ export default function PaywallPlanTiles({
     {
       plan: 'monthly',
       name: triLang(lang, {
-        ru: 'Месяц', uk: 'Місяць', es: 'Mes', 'pt-BR': 'Mês',
+        ru: 'Месяц', uk: 'Місяць', en: 'Month', es: 'Mes', 'pt-BR': 'Mês',
         vi: 'Tháng', id: 'Bulan', tr: 'Ay', pl: 'Miesiąc',
       }),
       price: monthlyPrice,
       sub: monthlyPrice ? triLang(lang, {
-        ru: 'каждый месяц', uk: 'щомісяця', es: 'cada mes', 'pt-BR': 'todo mês',
+        ru: 'каждый месяц', uk: 'щомісяця', en: 'every month', es: 'cada mes', 'pt-BR': 'todo mês',
         vi: 'mỗi tháng', id: 'tiap bulan', tr: 'her ay', pl: 'co miesiąc',
       }) : null,
       badge: null,
@@ -103,7 +105,7 @@ export default function PaywallPlanTiles({
     {
       plan: 'yearly',
       name: triLang(lang, {
-        ru: 'Год', uk: 'Рік', es: 'Año', 'pt-BR': 'Ano',
+        ru: 'Год', uk: 'Рік', en: 'Year', es: 'Año', 'pt-BR': 'Ano',
         vi: 'Năm', id: 'Tahun', tr: 'Yıl', pl: 'Rok',
       }),
       // Крупно — списываемая сумма за год (billed amount).
@@ -121,7 +123,7 @@ export default function PaywallPlanTiles({
       name: 'Pro',
       price: lifetimePrice || '',
       sub: triLang(lang, {
-        ru: 'разовая покупка', uk: 'разова покупка', es: 'compra única', 'pt-BR': 'compra única',
+        ru: 'разовая покупка', uk: 'разова покупка', en: 'one-time purchase', es: 'compra única', 'pt-BR': 'compra única',
         vi: 'mua một lần', id: 'pembelian sekali', tr: 'tek seferlik satın alma', pl: 'zakup jednorazowy',
       }),
       badge: null,
@@ -132,12 +134,12 @@ export default function PaywallPlanTiles({
       plan: 'monthly', // не участвует в выборе — плитка навигационная (onNavigate)
       name: 'MAX',
       price: triLang(lang, {
-        ru: '120 минут в месяц', uk: '120 хвилин на місяць', es: '120 minutos al mes',
+        ru: '120 минут в месяц', uk: '120 хвилин на місяць', en: '120 minutes a month', es: '120 minutos al mes',
         'pt-BR': '120 minutos por mês', vi: '120 phút mỗi tháng', id: '120 menit per bulan',
         tr: 'ayda 120 dakika', pl: '120 minut miesięcznie',
       }),
       sub: triLang(lang, {
-        ru: 'звонки с ИИ', uk: 'дзвінки з ШІ', es: 'llamadas con IA', 'pt-BR': 'ligações com IA',
+        ru: 'звонки с ИИ', uk: 'дзвінки з ШІ', en: 'AI calls', es: 'llamadas con IA', 'pt-BR': 'ligações com IA',
         vi: 'gọi với AI', id: 'panggilan AI', tr: 'yapay zekâ ile arama', pl: 'rozmowy z AI',
       }),
       badge: null,
@@ -214,7 +216,7 @@ export default function PaywallPlanTiles({
   // порог не может рассинхронизироваться при будущей правке одного из них.
   if (scrollable) {
     return (
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={S.rowScroll}

@@ -3,6 +3,7 @@ import { InteractionManager, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { soundDirector } from '../modules/audio/sound_director';
 import {
   openPremiumPaywall,
   resolveCurrentPaywallRoute,
@@ -93,6 +94,11 @@ export default function PremiumModalDispatcher() {
   if (!isManageContext) {
     if (paywallRouteRef.current === null) {
       paywallRouteRef.current = resolveCurrentPaywallRoute();
+      // зачем: этот дispatcher — единственная точка, где реально «раскрывается»
+      // модалка премиума (выбор конкретного пейвол-варианта решается синхронно
+      // здесь же). Звук на самой первой отрисовке варианта, не на каждый rerender —
+      // paywallRouteRef.current присваивается ровно один раз за жизнь монтирования.
+      soundDirector.request('pm.premium.modal_open', { scope: 'paywall' });
     }
     return renderPaywallRoute(paywallRouteRef.current);
   }

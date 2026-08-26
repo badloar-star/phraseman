@@ -1,9 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 = void 0;
 exports.inferLesson1WordFirstVocabularyCountV1 = inferLesson1WordFirstVocabularyCountV1;
 exports.inferLesson1WordFirstPhraseCountV1 = inferLesson1WordFirstPhraseCountV1;
 exports.lesson1SessionChoreographyV1 = lesson1SessionChoreographyV1;
 const episode_01_session_map_v1_1 = require("./episode_01_session_map_v1");
+exports.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 = 'en-e01-s01-mode-native-v1';
+function session01ModeNativeStepsV1() {
+    return [
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+        { family: 'listen_build_dictation', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
+        { family: 'listen_build_dictation', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'recognize' },
+        { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+        { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'retrieve_meaning' },
+        { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'retrieve_meaning' },
+        { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'retrieve_meaning' },
+        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'build_form' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'build_form' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'build_form' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2, 3], learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+        { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+        { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
+    ];
+}
 /**
  * Published shards do not carry authoring-only `targetKind`. A word-first
  * shard is nevertheless self-describing: its 1–5 standalone targets appear
@@ -20,8 +43,10 @@ function inferLesson1WordFirstVocabularyCountV1(targetTexts) {
         const first = practiceTargets.slice(0, count);
         if (first.length === count &&
             first.every((target) => target.trim().length > 0 && !/\s/u.test(target.trim())) &&
-            practiceTargets.slice(count, count * 2).every((target, index) => target === first[index]) &&
-            practiceTargets.slice(count * 2, count * 3).every((target, index) => target === first[index]))
+            new Set(practiceTargets.slice(count, count * 2)).size === count &&
+            practiceTargets.slice(count, count * 2).every((target) => first.includes(target)) &&
+            new Set(practiceTargets.slice(count * 2, count * 3)).size === count &&
+            practiceTargets.slice(count * 2, count * 3).every((target) => first.includes(target)))
             return count;
     }
     return 0;
@@ -307,7 +332,7 @@ function supportFor(ordinal, kind) {
  * функцию без второго аргумента и получает kind из английской карты,
  * байт в байт как раньше.
  */
-function lesson1SessionChoreographyV1(sessionOrdinal, kindOverride, vocabularyCount = 0, phraseCount = 15) {
+function lesson1SessionChoreographyV1(sessionOrdinal, kindOverride, vocabularyCount = 0, phraseCount = 15, modeNativePlanId) {
     const kind = kindOverride ?? episode_01_session_map_v1_1.EPISODE_01_SESSION_MAP_V1[sessionOrdinal - 1]?.kind;
     if (!kind)
         throw new Error('lesson1_session_choreography_ordinal_invalid');
@@ -317,9 +342,11 @@ function lesson1SessionChoreographyV1(sessionOrdinal, kindOverride, vocabularyCo
         kind,
         interactionProfile: profileFor(kind, vocabularyCount),
         ...support,
-        steps: Object.freeze(vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
-            ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
-            : [...introSteps(), ...practiceSteps(kind)]),
+        steps: Object.freeze(modeNativePlanId === exports.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+            ? [...introSteps(phraseCount), ...session01ModeNativeStepsV1()]
+            : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
+                ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
+                : [...introSteps(), ...practiceSteps(kind)]),
     });
 }
 //# sourceMappingURL=lesson1_session_choreography_v1.js.map

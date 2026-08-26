@@ -115,7 +115,7 @@ export default function PhoneStateSqlcipherSmokeScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safeArea} testID="phone-state-smoke-screen">
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           contentContainerStyle={[styles.content, { padding: ds.spacing.xl }]}
           keyboardShouldPersistTaps="handled"
         >

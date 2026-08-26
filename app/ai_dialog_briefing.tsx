@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,7 +11,11 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import PressableScale from '../components/feedback/PressableScale';
 import { triLang } from '../constants/i18n';
-import { markAiDialogIntroSeen } from './ai_dialog_intro_seen';
+import {
+  hasSeenAiDialogIntro,
+  markAiDialogIntroSeen,
+  peekAiDialogIntroSeen,
+} from './ai_dialog_intro_seen';
 import { getScenarioById } from './ai_dialog_scenarios';
 import {
   aiDialogContentAvailableForTarget,
@@ -71,11 +75,61 @@ function RecoveryScreen({ icon, title, body, action, onBack }: RecoveryScreenPro
 
 export default function AiDialogBriefingRoute() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ scenarioId?: string | string[] }>();
+  const params = useLocalSearchParams<{
+    scenarioId?: string | string[];
+    forceBriefing?: string | string[];
+  }>();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const goBack = () => safeRouterBack(router, '/(tabs)/lessons' as never);
+
+  const rawScenarioId = params.scenarioId;
+  const scenarioId = (Array.isArray(rawScenarioId) ? rawScenarioId[0] : rawScenarioId)?.trim() ?? '';
+  const scenario = getScenarioById(scenarioId);
+  const rawForceBriefing = params.forceBriefing;
+  const forceBriefing = (Array.isArray(rawForceBriefing) ? rawForceBriefing[0] : rawForceBriefing) === '1';
+  const [introResolved, setIntroResolved] = useState(
+    () => forceBriefing || !scenario || peekAiDialogIntroSeen(studyTarget, scenario.id) === false,
+  );
+
+  useEffect(() => {
+    if (!aiDialogGateOpen || !scenario || forceBriefing) {
+      setIntroResolved(true);
+      return;
+    }
+
+    let cancelled = false;
+    const openSession = () => {
+      if (cancelled) return;
+      markNextNavigationAsReplace();
+      router.replace({
+        pathname: '/ai_dialog_session',
+        params: { scenarioId: scenario.id },
+      } as never);
+    };
+    const cached = peekAiDialogIntroSeen(studyTarget, scenario.id);
+    if (cached === true) {
+      openSession();
+      return () => {
+        cancelled = true;
+      };
+    }
+    if (cached === false) {
+      setIntroResolved(true);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    void hasSeenAiDialogIntro(studyTarget, scenario.id).then((seen) => {
+      if (seen) openSession();
+      else if (!cancelled) setIntroResolved(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [aiDialogGateOpen, forceBriefing, router, scenario, studyTarget]);
 
   if (!aiDialogGateOpen) {
     const gateCopy = frenchAiDialogGateCopy(lang);
@@ -90,10 +144,6 @@ export default function AiDialogBriefingRoute() {
     );
   }
 
-  const rawScenarioId = params.scenarioId;
-  const scenarioId = (Array.isArray(rawScenarioId) ? rawScenarioId[0] : rawScenarioId)?.trim() ?? '';
-  const scenario = getScenarioById(scenarioId);
-
   if (!scenario) {
     return (
       <RecoveryScreen
@@ -101,16 +151,39 @@ export default function AiDialogBriefingRoute() {
         title={triLang(lang, {
           ru: 'Диалог не найден',
           uk: 'Діалог не знайдено',
+          en: 'Dialogue not found',
           es: 'No se encontró el diálogo',
+          'pt-BR': 'Diálogo não encontrado',
+          vi: 'Không tìm thấy hội thoại',
+          id: 'Dialog tidak ditemukan',
+          tr: 'Diyalog bulunamadı',
+          pl: 'Nie znaleziono dialogu',
         })}
         body={triLang(lang, {
           ru: 'Ссылка на этот диалог недоступна. Вернитесь к урокам и выберите ситуацию снова.',
           uk: 'Посилання на цей діалог недоступне. Поверніться до уроків і виберіть ситуацію знову.',
+          en: 'This dialogue’s link is unavailable. Go back to lessons and pick a situation again.',
           es: 'El enlace a este diálogo no está disponible. Vuelve a las lecciones y elige otra situación.',
+          'pt-BR': 'O link para este diálogo está indisponível. Volte às lições e escolha a situação novamente.',
+          vi: 'Liên kết đến hội thoại này không khả dụng. Hãy quay lại bài học và chọn tình huống khác.',
+          id: 'Tautan ke dialog ini tidak tersedia. Kembali ke pelajaran dan pilih situasi lagi.',
+          tr: 'Bu diyaloğun bağlantısı kullanılamıyor. Derslere dönüp durumu tekrar seç.',
+          pl: 'Link do tego dialogu jest niedostępny. Wróć do lekcji i wybierz sytuację ponownie.',
         })}
-        action={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+        action={triLang(lang, {
+          ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver',
+          'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+        })}
         onBack={goBack}
       />
+    );
+  }
+
+  if (!introResolved) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1 }} />
+      </ScreenGradient>
     );
   }
 

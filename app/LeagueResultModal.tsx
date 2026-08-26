@@ -353,6 +353,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
   // ─── Тексты ─────────────────────────────────────────────────────────────
   const titleText = triLang(lang, {
   ru: 'Итоги недели',
+  en: 'Weekly results',
   uk: 'Підсумки тижня',
   es: 'Resultados de la semana',
   "pt-BR": 'Resultados da semana',
@@ -365,6 +366,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
   const outcomeText = isPromo
     ? triLang(lang, {
   ru: `Повышен до ${newLeague.nameRU}`,
+  en: `Promoted to ${newLeague.nameES}`,
   uk: `Підвищено до ${newLeague.nameUK}`,
   es: `Has ascendido a ${newLeague.nameES}`,
   "pt-BR": `Promovido para ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,
@@ -376,6 +378,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
     : isDemo
       ? triLang(lang, {
   ru: `Понижен до ${newLeague.nameRU}`,
+  en: `Demoted to ${newLeague.nameES}`,
   uk: `Понижено до ${newLeague.nameUK}`,
   es: `Has descendido a ${newLeague.nameES}`,
   "pt-BR": `Rebaixado para ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,
@@ -386,6 +389,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })
       : triLang(lang, {
   ru: `Остаёшься в лиге ${newLeague.nameRU}`,
+  en: `You stay in ${newLeague.nameES}`,
   uk: `Залишаєшся в лізі ${newLeague.nameUK}`,
   es: `Sigues en ${newLeague.nameES}`,
   "pt-BR": `Você continua na ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,
@@ -400,6 +404,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
   const btnText = isPromo
     ? triLang(lang, {
   ru: '🚀 Вперёд!',
+  en: '🚀 Let’s go!',
   uk: '🚀 Уперед!',
   es: '🚀 ¡Adelante!',
   "pt-BR": '🚀 Vamos!',
@@ -411,6 +416,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
     : isDemo
       ? triLang(lang, {
   ru: 'Попробую ещё раз',
+  en: 'I’ll try again',
   uk: 'Спробую ще раз',
   es: 'Lo intentaré de nuevo',
   "pt-BR": 'Vou tentar de novo',
@@ -421,6 +427,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })
       : triLang(lang, {
   ru: 'Продолжить',
+  en: 'Continue',
   uk: 'Продовжити',
   es: 'Continuar',
   "pt-BR": 'Continuar',
@@ -433,6 +440,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
   const motivation = isPromo
     ? triLang(lang, {
   ru: 'Новая лига — новые вызовы и бонусы!',
+  en: 'New league: new challenges and bonuses!',
   uk: 'Нова ліга — нові виклики й бонуси!',
   es: '¡Nueva liga: nuevos retos y bonificaciones!',
   "pt-BR": 'Nova liga: novos desafios e bônus!',
@@ -444,6 +452,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
     : isDemo
       ? triLang(lang, {
   ru: 'Не сдавайся — быстро вернёшься выше.',
+  en: 'Don’t give up — you’ll climb back up soon.',
   uk: 'Не здавайся — швидко повернешся вище.',
   es: 'No te rindas: pronto volverás a subir.',
   "pt-BR": 'Não desista: logo você sobe de novo.',
@@ -454,6 +463,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })
       : triLang(lang, {
   ru: 'Хороший результат, держи темп!',
+  en: 'Good result, keep the pace!',
   uk: 'Гарний результат, тримай темп!',
   es: 'Buen resultado, ¡mantén el ritmo!',
   "pt-BR": 'Bom resultado, mantenha o ritmo!',
@@ -628,6 +638,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                     onPress={handleClose}
                     accessibilityLabel={triLang(lang, {
   ru: 'Закрыть',
+  en: 'Close',
   uk: 'Закрити',
   es: 'Cerrar',
   "pt-BR": 'Fechar',
@@ -778,6 +789,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                     onPress={handleClose}
                     accessibilityLabel={triLang(lang, {
   ru: 'Закрыть',
+  en: 'Close',
   uk: 'Закрити',
   es: 'Cerrar',
   "pt-BR": 'Fechar',
@@ -873,6 +885,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                       <Text style={{ color: t.textMuted, fontSize: f.caption }}>
                         {triLang(lang, {
   ru: prevLeague.nameRU,
+  en: prevLeague.nameES,
   uk: prevLeague.nameUK,
   es: prevLeague.nameES,
   "pt-BR": clubNamePlanned(prevLeague.id, 'pt-BR' as PlannedInterfaceLang),
@@ -891,6 +904,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                       <Text style={{ color: palette.primary, fontSize: f.caption, fontWeight: '700' }}>
                         {triLang(lang, {
   ru: newLeague.nameRU,
+  en: newLeague.nameES,
   uk: newLeague.nameUK,
   es: newLeague.nameES,
   "pt-BR": clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
@@ -907,7 +921,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                 {/* ── RANK + RESULT ZONE ─────────────────────────── */}
                 <ScrollView
                   style={{ flex: 1 }}
-                  decelerationRate="normal"
+                  decelerationRate="fast"
                   contentContainerStyle={{ paddingBottom: 4 }}
                   showsVerticalScrollIndicator={false}
                   nestedScrollEnabled
@@ -931,6 +945,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                   }}>
                     {triLang(lang, {
   ru: 'Твоё место',
+  en: 'Your rank',
   uk: 'Твоє місце',
   es: 'Tu puesto',
   "pt-BR": 'Sua posição',
@@ -991,6 +1006,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                             return xpPromotionMode
                               ? triLang(lang, {
   ru: `Повышение: ${xpLabel} XP`,
+  en: `Promotion: ${xpLabel} XP`,
   uk: `Підвищення: ${xpLabel} XP`,
   es: `Ascenso: ${xpLabel} XP`,
   "pt-BR": `Promoção: ${xpLabel} XP`,
@@ -1001,6 +1017,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })
                               : triLang(lang, {
   ru: `Повышение: топ-${zoneSize}`,
+  en: `Promotion: top ${zoneSize}`,
   uk: `Підвищення: топ-${zoneSize}`,
   es: `Ascenso: top ${zoneSize}`,
   "pt-BR": `Promoção: top ${zoneSize}`,
@@ -1013,6 +1030,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                           if (isDemo) {
                             return triLang(lang, {
   ru: `Зона понижения: ${relegationStartRank}-${displayTotalInGroup}`,
+  en: `Relegation zone: ${relegationStartRank}-${displayTotalInGroup}`,
   uk: `Зона пониження: ${relegationStartRank}-${displayTotalInGroup}`,
   es: `Descenso: ${relegationStartRank}-${displayTotalInGroup}`,
   "pt-BR": `Rebaixamento: ${relegationStartRank}-${displayTotalInGroup}`,
@@ -1027,6 +1045,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                           return xpPromotionMode
                             ? triLang(lang, {
   ru: `Для повышения: ${xpLabel} XP`,
+  en: `To be promoted: ${xpLabel} XP`,
   uk: `Для підвищення: ${xpLabel} XP`,
   es: `Para ascender: ${xpLabel} XP`,
   "pt-BR": `Para subir: ${xpLabel} XP`,
@@ -1037,6 +1056,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })
                             : triLang(lang, {
   ru: `Зона повышения: топ-${zoneSize}`,
+  en: `Promotion zone: top ${zoneSize}`,
   uk: `Зона підвищення: топ-${zoneSize}`,
   es: `Zona de ascenso: top ${zoneSize}`,
   "pt-BR": `Zona de promoção: top ${zoneSize}`,
@@ -1086,6 +1106,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                     }}>
                       {triLang(lang, {
   ru: 'Группа недели',
+  en: 'Weekly group',
   uk: 'Група тижня',
   es: 'Grupo de la semana',
   "pt-BR": 'Grupo da semana',
@@ -1098,6 +1119,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                     <Text style={{ color: t.textGhost, fontSize: f.caption, fontWeight: '600' }}>
                       {displayTotalInGroup} {triLang(lang, {
   ru: 'чел.',
+  en: 'people',
   uk: 'осіб',
   es: 'pers.',
   "pt-BR": 'pess.',
@@ -1132,6 +1154,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                       }}>
                         {`+${hiddenMembers} `}{triLang(lang, {
   ru: 'участников',
+  en: 'participants',
   uk: 'учасників',
   es: 'participantes',
   "pt-BR": 'participantes',
@@ -1178,6 +1201,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                         <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
                           {triLang(lang, {
   ru: newLeague.tagRU,
+  en: newLeague.tagES,
   uk: newLeague.tagUK,
   es: newLeague.tagES,
   "pt-BR": clubDescPlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
@@ -1191,6 +1215,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                           {isPromo
                             ? triLang(lang, {
   ru: 'Бонус активирован — новая лига!',
+  en: 'Bonus activated — new league!',
   uk: 'Бонус активовано — нової ліги!',
   es: '¡Bonificación activada: nueva liga!',
   "pt-BR": 'Bônus ativado: nova liga!',
@@ -1201,6 +1226,7 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })
                             : triLang(lang, {
   ru: 'Бонус лиги действует',
+  en: 'League bonus is active',
   uk: 'Бонус ліги діє',
   es: 'La bonificación de la liga está activa',
   "pt-BR": 'O bônus da liga está ativo',
@@ -1435,6 +1461,7 @@ const PodiumColumn = memo(function PodiumColumn({
       >
         {name}{member?.isMe ? triLang(lang, {
   ru: ' (ты)',
+  en: ' (you)',
   uk: ' (ти)',
   es: ' (tú)',
   "pt-BR": ' (você)',
@@ -1591,6 +1618,7 @@ const GroupRow = memo(function GroupRow({
       >
         {member.name}{member.isMe ? triLang(lang, {
   ru: ' (ты)',
+  en: ' (you)',
   uk: ' (ти)',
   es: ' (tú)',
   "pt-BR": ' (você)',

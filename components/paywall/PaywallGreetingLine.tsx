@@ -55,35 +55,36 @@ export default function PaywallGreetingLine({ lang, chrome, profile, mirror }: P
     const phrasesStr =
       mirror.phrases > 0
         ? `${compactPaywallNumber(mirror.phrases)} ${triLang(lang, {
-            ru: 'фраз', uk: 'фраз', es: 'frases', 'pt-BR': 'frases',
+            ru: 'фраз', uk: 'фраз', en: 'phrases', es: 'frases', 'pt-BR': 'frases',
             vi: 'cụm từ', id: 'frasa', tr: 'ifade', pl: 'fraz',
           })}`
         : '';
     const streakStr =
       mirror.streak > 0
         ? `${mirror.streak} ${triLang(lang, {
-            ru: 'дн. серия', uk: 'дн. серія', es: 'días de racha', 'pt-BR': 'dias seguidos',
+            ru: 'дн. серия', uk: 'дн. серія', en: 'day streak', es: 'días de racha', 'pt-BR': 'dias seguidos',
             vi: 'ngày liên tiếp', id: 'hari beruntun', tr: 'günlük seri', pl: 'dni serii',
           })}`
         : '';
     const earned = [phrasesStr, streakStr].filter(Boolean).join(
       triLang(lang, {
-        ru: ' и ', uk: ' і ', es: ' y ', 'pt-BR': ' e ',
+        ru: ' и ', uk: ' і ', en: ' and ', es: ' y ', 'pt-BR': ' e ',
         vi: ' và ', id: ' dan ', tr: ' ve ', pl: ' i ',
       }),
     );
     const lead = name
       ? `${name}, ${triLang(lang, {
-          ru: 'у тебя уже', uk: 'у тебе вже', es: 'ya tienes', 'pt-BR': 'você já tem',
+          ru: 'у тебя уже', uk: 'у тебе вже', en: 'you already have', es: 'ya tienes', 'pt-BR': 'você já tem',
           vi: 'bạn đã có', id: 'kamu sudah punya', tr: 'şimdiden', pl: 'masz już',
         })}`
       : triLang(lang, {
-          ru: 'У тебя уже', uk: 'У тебе вже', es: 'Ya tienes', 'pt-BR': 'Você já tem',
+          ru: 'У тебя уже', uk: 'У тебе вже', en: 'You already have', es: 'Ya tienes', 'pt-BR': 'Você já tem',
           vi: 'Bạn đã có', id: 'Kamu sudah punya', tr: 'Şimdiden', pl: 'Masz już',
         });
     const tail = triLang(lang, {
       ru: '— Plus убирает лимиты, чтобы практиковаться без пауз.',
       uk: '— Plus прибирає ліміти, щоб практикуватися без пауз.',
+      en: '— Plus removes limits so you can practice without pauses.',
       es: '— Plus quita límites para practicar sin pausas.',
       'pt-BR': '— o Plus remove limites para praticar sem pausas.',
       vi: '— Plus gỡ giới hạn để bạn luyện tập không gián đoạn.',

@@ -65,7 +65,7 @@ export default function LevelExamQuestionFrame({
         </View>
 
         <BouncyScrollView
-          decelerationRate="normal"
+          decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[styles.content, { padding: ds.spacing.lg, gap: ds.spacing.lg }]}
         >

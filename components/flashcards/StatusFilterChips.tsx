@@ -96,7 +96,7 @@ function StatusFilterChipsBase({
   };
 
   return (
-    <ScrollView
+    <ScrollView decelerationRate="fast"
       horizontal
       showsHorizontalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"

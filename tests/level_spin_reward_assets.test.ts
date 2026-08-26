@@ -34,7 +34,7 @@ describe('Level Spin reward asset map', () => {
 
   test('ships one universal asset per reward with no theme suffixes', () => {
     const productionDir = path.join(process.cwd(), 'assets', 'images', 'level-spin-rewards');
-    expect(fs.readdirSync(productionDir).filter((name) => name.endsWith('.webp'))).toHaveLength(37);
+    expect(fs.readdirSync(productionDir).filter((name) => name.endsWith('.webp'))).toHaveLength(39);
     for (const reward of LEVEL_SPIN_REWARD_ASSET_MANIFEST) {
       const file = path.join(process.cwd(), reward.productionFile);
       expect(fs.existsSync(file)).toBe(true);
@@ -85,5 +85,17 @@ describe('Level Spin reward asset map', () => {
     expect(LEVEL_SPIN_REWARD_IMAGE_ALIASES).not.toHaveProperty('cosmetic_avatar_aura');
     expect(levelSpinRewardImageSource('cosmetic_avatar_aura'))
       .toBe(LEVEL_SPIN_REWARD_IMAGE_SOURCES.cosmetic_avatar_aura);
+  });
+
+  test('resolves the all-avatar prize to its dedicated literal art', () => {
+    expect(LEVEL_SPIN_REWARD_IMAGE_ALIASES).not.toHaveProperty('cosmetic_avatar_common');
+    expect(levelSpinRewardImageSource('cosmetic_avatar_common'))
+      .toBe(LEVEL_SPIN_REWARD_IMAGE_SOURCES.cosmetic_avatar_common);
+  });
+
+  test('resolves the attempt restore gift to its dedicated literal art', () => {
+    expect(LEVEL_SPIN_REWARD_IMAGE_ALIASES).not.toHaveProperty('attempt_restore_all');
+    expect(levelSpinRewardImageSource('attempt_restore_all'))
+      .toBe(LEVEL_SPIN_REWARD_IMAGE_SOURCES.attempt_restore_all);
   });
 });

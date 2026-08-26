@@ -27,6 +27,7 @@ export function participantsLabel(lang: Lang, count: number): string {
   return triLang(lang, {
     ru: `${n} участников`,
     uk: `${n} учасників`,
+    en: `${n} participants`,
     es: `${n} participantes`,
     'pt-BR': `${n} participantes`,
     vi: `${n} người tham gia`,
@@ -38,21 +39,22 @@ export function participantsLabel(lang: Lang, count: number): string {
 
 export function zoneLabel(zone: LeagueHeroZone, lang: Lang): string {
   if (zone === 'promotion') {
-    return triLang(lang, { ru: '▲ Зона повышения', uk: '▲ Зона підвищення', es: '▲ Zona de ascenso', 'pt-BR': '▲ Zona de promoção', vi: '▲ Vùng thăng hạng', id: '▲ Zona promosi', tr: '▲ Yükselme bölgesi', pl: '▲ Strefa awansu' });
+    return triLang(lang, { ru: '▲ Зона повышения', uk: '▲ Зона підвищення', en: '▲ Promotion zone', es: '▲ Zona de ascenso', 'pt-BR': '▲ Zona de promoção', vi: '▲ Vùng thăng hạng', id: '▲ Zona promosi', tr: '▲ Yükselme bölgesi', pl: '▲ Strefa awansu' });
   }
   if (zone === 'relegation') {
-    return triLang(lang, { ru: '▼ Зона вылета', uk: '▼ Зона вильоту', es: '▼ Zona de descenso', 'pt-BR': '▼ Zona de queda', vi: '▼ Vùng xuống hạng', id: '▼ Zona degradasi', tr: '▼ Düşme bölgesi', pl: '▼ Strefa spadku' });
+    return triLang(lang, { ru: '▼ Зона вылета', uk: '▼ Зона вильоту', en: '▼ Demotion zone', es: '▼ Zona de descenso', 'pt-BR': '▼ Zona de queda', vi: '▼ Vùng xuống hạng', id: '▼ Zona degradasi', tr: '▼ Düşme bölgesi', pl: '▼ Strefa spadku' });
   }
-  return triLang(lang, { ru: 'Безопасная зона', uk: 'Безпечна зона', es: 'Zona segura', 'pt-BR': 'Zona segura', vi: 'Vùng an toàn', id: 'Zona aman', tr: 'Güvenli bölge', pl: 'Bezpieczna strefa' });
+  return triLang(lang, { ru: 'Безопасная зона', uk: 'Безпечна зона', en: 'Safe zone', es: 'Zona segura', 'pt-BR': 'Zona segura', vi: 'Vùng an toàn', id: 'Zona aman', tr: 'Güvenli bölge', pl: 'Bezpieczna strefa' });
 }
 
 export function gapLabel(gap: LeagueHeroGap, lang: Lang): string {
   if (gap.kind === 'leader') {
-    return triLang(lang, { ru: 'Вы лидируете', uk: 'Ви лідируєте', es: 'Lideras la semana', 'pt-BR': 'Você lidera', vi: 'Bạn đang dẫn đầu', id: 'Kamu memimpin', tr: 'Lidersin', pl: 'Prowadzisz' });
+    return triLang(lang, { ru: 'Вы лидируете', uk: 'Ви лідируєте', en: "You're leading", es: 'Lideras la semana', 'pt-BR': 'Você lidera', vi: 'Bạn đang dẫn đầu', id: 'Kamu memimpin', tr: 'Lidersin', pl: 'Prowadzisz' });
   }
   return triLang(lang, {
     ru: `До ${gap.targetRank}-го места`,
     uk: `До ${gap.targetRank}-го місця`,
+    en: `To rank ${gap.targetRank}`,
     es: `Hasta el puesto ${gap.targetRank}`,
     'pt-BR': `Até o ${gap.targetRank}º lugar`,
     vi: `Tới hạng ${gap.targetRank}`,
@@ -67,6 +69,7 @@ export function gapValue(gap: LeagueHeroGap, lang: Lang): string {
     return triLang(lang, {
       ru: `отрыв ${gap.xpAhead.toLocaleString()} XP`,
       uk: `відрив ${gap.xpAhead.toLocaleString()} XP`,
+      en: `${gap.xpAhead.toLocaleString()} XP ahead`,
       es: `ventaja ${gap.xpAhead.toLocaleString()} XP`,
       'pt-BR': `vantagem ${gap.xpAhead.toLocaleString()} XP`,
       vi: `cách ${gap.xpAhead.toLocaleString()} XP`,

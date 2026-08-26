@@ -22,10 +22,10 @@
  * `docs/RUNES_RENAME_REGISTRY_2026-08-23.md`.
  */
 
-import { getAppSnapshot, subscribeAppSnapshot } from './app_snapshot_store';
+import { getAppSnapshot, patchAppSnapshot, subscribeAppSnapshot } from './app_snapshot_store';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { emitAppEvent } from './events';
-import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import { readUnifiedLevelSpinStars, peekStoredLevelSpinStarsForBoot } from './level_spin_star_grants';
 
 export type RunesBalance = Readonly<{
   /** Сколько рун можно потратить прямо сейчас. */
@@ -118,3 +118,70 @@ export function subscribeRunesBalance(
     }
   });
 }
+
+let runesBootPrimed = false;
+
+function applyBootRunesPatch(bootRunes: Readonly<{ balance: number; earnedTotal: number }>): void {
+  patchAppSnapshot((current) => {
+    if (!current.progress) return {};
+    // Диск не побеждает безусловно: пока шло чтение, спин мог начислить руны
+    // и опубликовать их раньше нас — берём большее, как и buildProgressSnapshot.
+    const balance = Math.max(bootRunes.balance, normalize(current.progress.stars));
+    const earnedTotal = Math.max(bootRunes.earnedTotal, normalize(current.progress.starsEarnedTotal));
+    if (balance === current.progress.stars && earnedTotal === current.progress.starsEarnedTotal) return {};
+    return { progress: { ...current.progress, stars: balance, starsEarnedTotal: earnedTotal } };
+  });
+}
+
+/**
+ * Прогреть баланс рун из хранилища на старте, НЕ дожидаясь общей пачки
+ * `primeAppSnapshotFromStorage` в _layout.tsx.
+ *
+ * зачем (владелец, 25.08: «на главной всегда показывает нули при заходе»):
+ * прежний прогрев (`peekStoredLevelSpinStarsForBoot` внутри
+ * `buildProgressSnapshot`) висел ВНУТРИ `Promise.race([startupLocalHydration,
+ * timeout(350ms)])` в _layout.tsx — общая пачка из 15+ параллельных чтений
+ * диска. На холодном старте, где диск медленнее 350мс (обычное дело на
+ * Android), гонка обрывалась раньше, чем руны успевали прочитаться, и первый
+ * кадр Главной уходил в peekRunes() -> 0. Та же ловушка, что чинили у энергии
+ * (energy_peek_cache.ts) — здесь применяем то же лекарство: чтение стартует
+ * САМО при импорте модуля, параллельно с общей пачкой, но без её таймаута.
+ * Отдельного ленивого импорта грантов здесь не нужно — этот файл и так
+ * статически тянет `level_spin_star_grants.ts` целиком ради
+ * `readUnifiedLevelSpinStars` (см. импорт наверху), вес уже в бандле.
+ */
+export async function primeRunesPeekFromBoot(): Promise<void> {
+  if (runesBootPrimed) return;
+  const token = captureAccountGeneration();
+  const stableId = token.stableId?.trim();
+  if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
+  try {
+    const bootRunes = await peekStoredLevelSpinStarsForBoot(token);
+    if (runesBootPrimed || !bootRunes || !isCurrentAccountGeneration(token, stableId)) return;
+    runesBootPrimed = true;
+    if (getAppSnapshot().progress) {
+      applyBootRunesPatch(bootRunes);
+      return;
+    }
+    // зачем: этот прогрев стартует РАНЬШЕ основного bootstrap специально (это и
+    // есть цель фикса) — секции progress в снапшоте может ещё не быть вовсе.
+    // Создавать её здесь нулями для streak/shards было бы новым багом того же
+    // класса (чужой экран увидел бы 0 на миг). Вместо этого ждём ОДНО следующее
+    // изменение снапшота (его принесёт primeAppSnapshotFromStorage секундой
+    // позже) и накладываем руны сверху сразу же — раньше первого кадра, который
+    // читает peekRunes() уже после этого патча.
+    const unsubscribe = subscribeAppSnapshot(() => {
+      if (!getAppSnapshot().progress) return;
+      unsubscribe();
+      applyBootRunesPatch(bootRunes);
+    });
+  } catch {
+    // Хранилище недоступно или проекция битая — обычный поток bootstrap починит это следом.
+  }
+}
+
+// зачем: прогрев запускается САМ при первом импорте модуля (см. комментарий
+// primeRunesPeekFromBoot), а не только из bootstrap-гонки. Импорт нужен рано —
+// см. app/_layout.tsx рядом с EnergyProvider. Обещание намеренно не ожидается:
+// чтение диска не должно задерживать сам импорт.
+void primeRunesPeekFromBoot();

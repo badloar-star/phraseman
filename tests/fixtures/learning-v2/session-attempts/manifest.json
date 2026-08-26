@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-26",
+  "renderer": "Codex in-app Chromium",
+  "browserViewport": { "width": 1040, "height": 900 },
+  "ownerPhoneViewport": { "width": 390, "height": 800 },
+  "captures": [
+    {
+      "png": "02-phrase-builder.png",
+      "pngSha256": "3d86f246edb39f377d90c27de69ff64d5d8ba7799f27756c760fa0db376977bd",
+      "html": "docs/v2/mockups/02-phrase-builder.html",
+      "htmlSha256": "2cbbf8b4417083614d009bc4ba98213de7c71ed473918f305edd47874f2d7ea1",
+      "theme": "dark",
+      "state": "three-attempts"
+    },
+    {
+      "png": "03-listen-choose.png",
+      "pngSha256": "93088be701d46b0d2ebf6050c45fd2a55555d622bf5491c4b5a9293e98f15516",
+      "html": "docs/v2/mockups/03-listen-choose.html",
+      "htmlSha256": "0a56b80fbf02afcf28887ce38b005aa66f1f95054274853e4057724bb0c66ae7",
+      "theme": "dark",
+      "state": "three-attempts"
+    },
+    {
+      "png": "05-listen-build.png",
+      "pngSha256": "f61f47bdac3021f7f1d514fb65c639e156e2ae7bd7a3110db7bc0a9545d948f7",
+      "html": "docs/v2/mockups/05-listen-build.html",
+      "htmlSha256": "29f6c4a3ba7f84fdb60667f71e6153815d9d76e1856a15e54fceab49beeadce1",
+      "theme": "dark",
+      "state": "three-attempts"
+    },
+    {
+      "png": "06-context-gap.png",
+      "pngSha256": "54359c3858ee7cba8cbb64e9a6ddff2f8edffaa6afcb0cd3aa111924f5fb961d",
+      "html": "docs/v2/mockups/06-context-gap.html",
+      "htmlSha256": "e75b5c5c8472e88e680a1be50c0be87f999beb0bb3e6176e569438faf9d92daf",
+      "theme": "dark",
+      "state": "three-attempts"
+    },
+    {
+      "png": "07-speed-match.png",
+      "pngSha256": "8d71f841e776f0ee235bd37a7c51aa6284dd47373e9b31227be0c4d3fb44ed40",
+      "html": "docs/v2/mockups/07-speed-match.html",
+      "htmlSha256": "93c82d1b825313e1a9088208bccb5c85cf2ab12bbabb6327efe1ce4f5ad6a07f",
+      "theme": "dark",
+      "state": "three-attempts"
+    },
+    {
+      "png": "14-repeat-compare.png",
+      "pngSha256": "a84eef3bb985b3c02f0ce3f85466f52f78782625b562a38af65169606d8a804a",
+      "html": "docs/v2/mockups/14-repeat-compare.html",
+      "htmlSha256": "aeecb0352dfe29901e99d81efc08400000bd3b39a2f560604d00598320609dec",
+      "theme": "dark",
+      "state": "three-attempts"
+    },
+    {
+      "png": "modal-without-gift.png",
+      "pngSha256": "e6f23238cb6ab2e43c78d3cd52b70e2d83d387dd3d44ff16f2739637ab9f7217",
+      "html": "docs/v2/mockups/23-modals-states.html",
+      "htmlSha256": "7975b0870b5ae7683994e902b2291bb87a95a88c5a4bb2b3fee7ca247dbae19c",
+      "theme": "dark",
+      "state": "attempts-empty-no-gift"
+    },
+    {
+      "png": "modal-with-gift.png",
+      "pngSha256": "854dd32187a9965f508dbf7e0fe70adc20f13e3d9f0c07cc4f8e4c618c0ed6be",
+      "html": "docs/v2/mockups/23-modals-states.html",
+      "htmlSha256": "7975b0870b5ae7683994e902b2291bb87a95a88c5a4bb2b3fee7ca247dbae19c",
+      "theme": "dark",
+      "state": "attempts-empty-with-gift"
+    },
+    {
+      "png": "modal-insufficient-runes-page.png",
+      "pngSha256": "c901fd104069a605edab1badf80b739c768747d9ac97e66e272337c7eaff7355",
+      "html": "docs/v2/mockups/23-modals-states.html",
+      "htmlSha256": "7975b0870b5ae7683994e902b2291bb87a95a88c5a4bb2b3fee7ca247dbae19c",
+      "theme": "dark",
+      "state": "attempts-empty-insufficient-runes"
+    },
+    {
+      "png": "modal-busy-page.png",
+      "pngSha256": "75e8f82c52026d28357bcff66e78fb3ec1727a331915a304691f7c8e788155b9",
+      "html": "docs/v2/mockups/23-modals-states.html",
+      "htmlSha256": "7975b0870b5ae7683994e902b2291bb87a95a88c5a4bb2b3fee7ca247dbae19c",
+      "theme": "dark",
+      "state": "attempts-empty-busy"
+    },
+    {
+      "png": "attempt-loss-motion-page.png",
+      "pngSha256": "5474917433fb712ca7139d2175a1ec972dd15009b6a0cc5d4e793eb0f97ad845",
+      "html": "docs/v2/mockups/25-learning-v2-motion-catalog.html",
+      "htmlSha256": "3becab6b007757cd395710378de0432039d1b5a11a86eb41c48a0eb594d909fe",
+      "theme": "indigo",
+      "state": "attempt-loss"
+    },
+    {
+      "png": "attempt-loss-reduced-motion-page.png",
+      "pngSha256": "7d7b9fdf38da70003df140c2fde5b027b64e279672c8493ba5c0373ebd621f3b",
+      "html": "docs/v2/mockups/25-learning-v2-motion-catalog.html",
+      "htmlSha256": "3becab6b007757cd395710378de0432039d1b5a11a86eb41c48a0eb594d909fe",
+      "theme": "indigo",
+      "state": "attempt-loss-reduced"
+    }
+  ],
+  "motionReceipt": {
+    "file": "motion-receipt.json",
+    "sha256": "e50a412bd09f52367516e6625ca830f76438b1e26c893a31c1720dd0dcd4fa2e"
+  }
+}

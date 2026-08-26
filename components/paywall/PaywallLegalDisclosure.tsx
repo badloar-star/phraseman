@@ -41,12 +41,13 @@ export default function PaywallLegalDisclosure({
   const manage = ios
     ? triLang(lang, {
         ru: 'Настройки → Apple ID → Подписки', uk: 'Налаштування → Apple ID → Підписки',
+        en: 'Settings → Apple ID → Subscriptions',
         es: 'Ajustes → Apple ID → Suscripciones', 'pt-BR': 'Ajustes → Apple ID → Assinaturas',
         vi: 'Cài đặt → Apple ID → Đăng ký', id: 'Pengaturan → Apple ID → Langganan',
         tr: 'Ayarlar → Apple ID → Abonelikler', pl: 'Ustawienia → Apple ID → Subskrypcje',
       })
     : triLang(lang, {
-        ru: 'Google Play → Подписки', uk: 'Google Play → Підписки', es: 'Google Play → Suscripciones',
+        ru: 'Google Play → Подписки', uk: 'Google Play → Підписки', en: 'Google Play → Subscriptions', es: 'Google Play → Suscripciones',
         'pt-BR': 'Google Play → Assinaturas', vi: 'Google Play → Đăng ký', id: 'Google Play → Langganan',
         tr: 'Google Play → Abonelikler', pl: 'Google Play → Subskrypcje',
       });
@@ -56,6 +57,7 @@ export default function PaywallLegalDisclosure({
     const txt = triLang(lang, {
       ru: `Phraseman Pro: разовая покупка ${priceLabel} через ${store}, без подписки и автопродления.`,
       uk: `Phraseman Pro: разова покупка ${priceLabel} через ${store}, без підписки й автопродовження.`,
+      en: `Phraseman Pro: a one-time purchase of ${priceLabel} via ${store}, no subscription or auto-renewal.`,
       es: `Phraseman Pro: compra única de ${priceLabel} en ${store}, sin suscripción ni renovación automática.`,
       'pt-BR': `Phraseman Pro: compra única de ${priceLabel} na ${store}, sem assinatura nem renovação automática.`,
       vi: `Phraseman Pro: mua một lần ${priceLabel} qua ${store}, không đăng ký, không tự gia hạn.`,
@@ -73,6 +75,7 @@ export default function PaywallLegalDisclosure({
   const base = triLang(lang, {
     ru: `Это подписка с автопродлением: ${priceLabel}${periodLabel}, списывается с твоего ${account} через ${store}. Подписка продлевается автоматически, пока ты не отменишь её минимум за 24 часа до конца текущего периода. Управлять и отменить: ${manage}.`,
     uk: `Це підписка з автопродовженням: ${priceLabel}${periodLabel}, списується з твого ${account} через ${store}. Підписка продовжується автоматично, поки ти не скасуєш її щонайменше за 24 години до кінця поточного періоду. Керувати й скасувати: ${manage}.`,
+    en: `This is an auto-renewing subscription: ${priceLabel}${periodLabel}, charged to your ${account} via ${store}. It renews automatically unless you cancel it at least 24 hours before the current period ends. Manage and cancel: ${manage}.`,
     es: `Es una suscripción con renovación automática: ${priceLabel}${periodLabel}, se cobra a tu ${account} mediante ${store}. Se renueva automáticamente salvo que la canceles al menos 24 horas antes del fin del periodo actual. Gestionar y cancelar: ${manage}.`,
     'pt-BR': `É uma assinatura com renovação automática: ${priceLabel}${periodLabel}, cobrada no seu ${account} via ${store}. Renova automaticamente, a menos que você cancele pelo menos 24 horas antes do fim do período atual. Gerenciar e cancelar: ${manage}.`,
     vi: `Đây là gói tự động gia hạn: ${priceLabel}${periodLabel}, tính vào ${account} của bạn qua ${store}. Gói tự gia hạn trừ khi bạn hủy ít nhất 24 giờ trước khi kết thúc kỳ hiện tại. Quản lý và hủy: ${manage}.`,
@@ -85,6 +88,7 @@ export default function PaywallLegalDisclosure({
     ? ' ' + triLang(lang, {
         ru: `Если доступны ${trialDays ?? 3} дня бесплатно: оплата спишется только после окончания пробного периода, если не отменить заранее.`,
         uk: `Якщо доступні ${trialDays ?? 3} дні безкоштовно: оплата спишеться лише після завершення пробного періоду, якщо не скасувати заздалегідь.`,
+        en: `If ${trialDays ?? 3} days free are available: payment is charged only after the trial ends, unless you cancel beforehand.`,
         es: `Si hay ${trialDays ?? 3} días gratis: el cobro se realiza solo al finalizar la prueba, salvo que canceles antes.`,
         'pt-BR': `Se houver ${trialDays ?? 3} dias grátis: a cobrança ocorre só ao fim do teste, a menos que você cancele antes.`,
         vi: `Nếu có ${trialDays ?? 3} ngày miễn phí: chỉ bị tính phí sau khi hết dùng thử, trừ khi bạn hủy trước.`,

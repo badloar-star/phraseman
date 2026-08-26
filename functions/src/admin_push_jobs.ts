@@ -310,12 +310,21 @@ async function readTargetUsers(
     return selectAdminPushUsers(job, [user], nowMs);
   }
 
+  // зачем orderBy('expoPushToken') (аудит 2026-08-26, экономия Firebase): раньше здесь
+  // шёл скан ВСЕЙ коллекции users каждые 6 часов. Все режимы отбора первым условием
+  // требуют hasDeliverableToken — без токена рассылку доставить нельзя, читать такие
+  // документы бессмысленно. orderBy по полю возвращает только документы, где поле
+  // существует; при отзыве токена оно удаляется (FieldValue.delete() ниже), а не
+  // обнуляется, поэтому выборка равна множеству достижимых пользователей.
   const out: AdminPushUser[] = [];
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    let query: FirebaseFirestore.Query = db.collection('users').orderBy('__name__').limit(USER_SCAN_PAGE_SIZE);
+    let query: FirebaseFirestore.Query = db.collection('users')
+      .orderBy('expoPushToken')
+      .orderBy('__name__')
+      .limit(USER_SCAN_PAGE_SIZE);
     if (lastDoc) query = query.startAfter(lastDoc);
     const snap = await query.get();
     if (snap.empty) break;

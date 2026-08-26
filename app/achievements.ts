@@ -1788,7 +1788,16 @@ export const checkAchievements = async (
       }
     }
     return justUnlocked;
-  } catch { return []; }
+  } catch (error) {
+    // зачем (аудит 2026-08-26): раньше здесь стояло глухое `catch { return [] }`.
+    // Любая опечатка внутри 116 строк выдачи гасила достижения и XP У ВСЕХ молча —
+    // снаружи это неотличимо от «нечего разблокировать». Теперь отказ виден.
+    // Импорт ленивый: файл на горячем пути, а debug-logger тянет app_health.
+    void import('./debug-logger')
+      .then(({ DebugLogger }) => DebugLogger.error('achievements.ts:checkAchievements', error, 'critical'))
+      .catch(() => {});
+    return [];
+  }
   };
   return isCurrentAccountGeneration(operationToken) ? execute() : [];
   }, []);

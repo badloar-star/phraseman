@@ -36,9 +36,9 @@ function LeagueBonusMissionComponent({ model, lang, palette, renderContributorAv
   const { themeMode } = useTheme();
   const weeklyGoalAsset = useMemo(() => getLeagueWeeklyGoalAsset(themeMode), [themeMode]);
   const [weeklyGoalAssetLoaded, setWeeklyGoalAssetLoaded] = useState(false);
-  const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
-  const boostLeagueLabel = triLang(lang, { ru: 'Ускорить лигу', uk: 'Прискорити лігу', es: 'Impulsar la liga', 'pt-BR': 'Impulsionar a liga', vi: 'Tăng tốc giải đấu', id: 'Percepat liga', tr: 'Ligi hızlandır', pl: 'Przyspiesz ligę' });
-  const chestAccessibilityLabel = triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' });
+  const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', en: 'Claim bonus', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
+  const boostLeagueLabel = triLang(lang, { ru: 'Ускорить лигу', uk: 'Прискорити лігу', en: 'Boost the league', es: 'Impulsar la liga', 'pt-BR': 'Impulsionar a liga', vi: 'Tăng tốc giải đấu', id: 'Percepat liga', tr: 'Ligi hızlandır', pl: 'Przyspiesz ligę' });
+  const chestAccessibilityLabel = triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', en: 'League Bonus Chest', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' });
 
   useEffect(() => setWeeklyGoalAssetLoaded(false), [weeklyGoalAsset]);
 
@@ -46,11 +46,11 @@ function LeagueBonusMissionComponent({ model, lang, palette, renderContributorAv
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(120).duration(240)} style={[styles.shell, { backgroundColor: model.canClaim ? palette.accent : palette.surface }]} testID="league-bonus-mission">
       <View style={styles.headingRow}>
         <View style={styles.headingText}>
-          <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
+          <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', en: 'WEEKLY SHARED GOAL', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
         </View>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, { ru: 'Показать, что в сундуке', uk: 'Показати, що у скрині', es: 'Mostrar el contenido del cofre', 'pt-BR': 'Mostrar o que há no baú', vi: 'Xem bên trong rương', id: 'Lihat isi peti', tr: 'Sandığın içini göster', pl: 'Pokaż zawartość skrzyni' })}
+          accessibilityLabel={triLang(lang, { ru: 'Показать, что в сундуке', uk: 'Показати, що у скрині', en: "Show what's in the chest", es: 'Mostrar el contenido del cofre', 'pt-BR': 'Mostrar o que há no baú', vi: 'Xem bên trong rương', id: 'Lihat isi peti', tr: 'Sandığın içini göster', pl: 'Pokaż zawartość skrzyni' })}
           onPress={onChestPress}
           testID="league-chest-press"
           style={({ pressed }) => [{ opacity: pressed ? 0.85 : 1 }]}
@@ -94,8 +94,8 @@ function LeagueBonusMissionComponent({ model, lang, palette, renderContributorAv
 
       <View style={styles.teamRow}>
         <View style={styles.avatars}>{model.topContributors.map((member, index) => <View key={member.uid ?? member.botId ?? `${member.name}-${index}`} accessibilityLabel={`${leaguePublicName(member.name, member.uid ?? member.botId ?? member.name)}, ${member.points} XP`} style={[styles.avatarSlot, { marginLeft: index === 0 ? 0 : -8, borderColor: model.canClaim ? palette.accent : palette.surface }]}>{renderContributorAvatar(member, 34)}</View>)}</View>
-        <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Открыть рейтинг участников', uk: 'Відкрити рейтинг учасників', es: 'Abrir clasificación', 'pt-BR': 'Abrir ranking', vi: 'Mở bảng xếp hạng', id: 'Buka peringkat', tr: 'Sıralamayı aç', pl: 'Otwórz ranking' })} onPress={onOpenRank} style={styles.contribution}>
-          <Text style={[styles.contributionLabel, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'Ваш вклад', uk: 'Ваш внесок', es: 'Tu aporte', 'pt-BR': 'Sua contribuição', vi: 'Đóng góp của bạn', id: 'Kontribusimu', tr: 'Katkın', pl: 'Twój wkład' })}</Text>
+        <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Открыть рейтинг участников', uk: 'Відкрити рейтинг учасників', en: 'Open member ranking', es: 'Abrir clasificación', 'pt-BR': 'Abrir ranking', vi: 'Mở bảng xếp hạng', id: 'Buka peringkat', tr: 'Sıralamayı aç', pl: 'Otwórz ranking' })} onPress={onOpenRank} style={styles.contribution}>
+          <Text style={[styles.contributionLabel, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'Ваш вклад', uk: 'Ваш внесок', en: 'Your contribution', es: 'Tu aporte', 'pt-BR': 'Sua contribuição', vi: 'Đóng góp của bạn', id: 'Kontribusimu', tr: 'Katkın', pl: 'Twój wkład' })}</Text>
           <Text style={[styles.contributionValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.myContribution.toLocaleString()} XP</Text>
         </Pressable>
       </View>
@@ -115,7 +115,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, renderContributorAv
           </Pressable>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Поблагодарить за буст', uk: 'Подякувати за буст', es: 'Agradecer el boost', 'pt-BR': 'Agradecer o boost', vi: 'Cảm ơn lượt tăng tốc', id: 'Berterima kasih atas boost', tr: 'Boost için teşekkür et', pl: 'Podziękuj za boost' })}
+            accessibilityLabel={triLang(lang, { ru: 'Поблагодарить за буст', uk: 'Подякувати за буст', en: 'Thank for the boost', es: 'Agradecer el boost', 'pt-BR': 'Agradecer o boost', vi: 'Cảm ơn lượt tăng tốc', id: 'Berterima kasih atas boost', tr: 'Boost için teşekkür et', pl: 'Podziękuj za boost' })}
             disabled={boostLiked || boostLikeBusy}
             onPress={onLikeBoost}
             style={styles.boostLike}

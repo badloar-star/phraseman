@@ -31,6 +31,7 @@ import {
 } from '../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
+import { themeDisplayName } from './theme_display_names';
 import {
   isThemePlusOnly,
   isThemeRewardOnly,
@@ -51,16 +52,7 @@ import { oskolokImageForPackShards } from './oskolok';
 
 type ThemeOption = {
   mode: PickerThemeMode;
-  labelRU: string;
-  labelUK: string;
-  labelES: string;
-  labelPtBr: string;
-  labelVi: string;
-  labelId: string;
-  labelTr: string;
-  labelPl: string;
 };
-
 // ENABLE_DEV_TOOLS уже гасится `!IS_STORE_RELEASE` — в стор-сборке премиум/наградные
 // темы остаются закрытыми. Голый DEV_MODE здесь был багом (открывал темы бесплатно в проде).
 const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
@@ -68,32 +60,24 @@ const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
 const THEME_OPTIONS: ThemeOption[] = [
   // зачем: «Индиго» и «Нефрит» — фри-витрина (выбор владельца); «Полночь» в премиуме,
   // но у «дедушек» (жили на ней бесплатно) остаётся открытой.
-  { mode: 'indigo', labelRU: 'Индиго', labelUK: 'Індиго', labelES: 'Índigo', labelPtBr: 'Índigo', labelVi: 'Chàm', labelId: 'Indigo', labelTr: 'İndigo', labelPl: 'Indygo' },
-  { mode: 'sagePorcelain', labelRU: 'Нефрит', labelUK: 'Нефрит', labelES: 'Jade', labelPtBr: 'Jade', labelVi: 'Ngọc bích', labelId: 'Giok', labelTr: 'Yeşim', labelPl: 'Jadeit' },
-  { mode: 'olive', labelRU: 'Олива', labelUK: 'Олива', labelES: 'Oliva', labelPtBr: 'Oliva', labelVi: 'Ô liu', labelId: 'Zaitun', labelTr: 'Zeytin', labelPl: 'Oliwka' },
-  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ' },
-  { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn' },
-  { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza' },
-  { mode: 'volt', labelRU: 'Лайм', labelUK: 'Лайм', labelES: 'Lima', labelPtBr: 'Lima', labelVi: 'Chanh', labelId: 'Lime', labelTr: 'Limon', labelPl: 'Limetka' },
-  { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las' },
-  { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto' },
+  { mode: 'indigo' },
+  { mode: 'sagePorcelain' },
+  { mode: 'olive' },
+  { mode: 'midnight' },
+  { mode: 'ember' },
+  { mode: 'aurora' },
+  { mode: 'volt' },
+  { mode: 'dark' },
+  { mode: 'gold' },
 ];
 
 // зачем: имя темы нужно и плитке, и модалке покупки — один помощник вместо
 // двух копий словаря (копии уже разъезжались в других местах приложения).
 function themeLabel(mode: string, lang: Lang): string {
-  const option = THEME_OPTIONS.find((item) => item.mode === mode);
-  if (!option) return '';
-  return triLang(lang, {
-    ru: option.labelRU,
-    uk: option.labelUK,
-    es: option.labelES,
-    'pt-BR': option.labelPtBr,
-    vi: option.labelVi,
-    id: option.labelId,
-    tr: option.labelTr,
-    pl: option.labelPl,
-  });
+  // зачем: единый словарь имён тем живёт в theme_display_names.ts — карточке
+  // подарка из спина он нужен так же, как этому экрану. Копия здесь уже была
+  // источником расхождений.
+  return themeDisplayName(mode, lang);
 }
 
 // Единственный источник цветов плашек — реальные палитры тем.
@@ -367,6 +351,7 @@ export default function SettingsThemes() {
     ? triLang(lang, {
       ru: `Открыть за ${candidatePrice}`,
       uk: `Відкрити за ${candidatePrice}`,
+      en: `Unlock for ${candidatePrice}`,
       es: `Desbloquear por ${candidatePrice}`,
       'pt-BR': `Desbloquear por ${candidatePrice}`,
       vi: `Mở khoá với ${candidatePrice}`,
@@ -375,10 +360,10 @@ export default function SettingsThemes() {
       pl: `Odblokuj za ${candidatePrice}`,
     })
     : candidateLocked
-    ? triLang(lang, { ru: 'Открыть с Plus', uk: 'Відкрити з Plus', es: 'Desbloquear con Plus', 'pt-BR': 'Desbloquear com Plus', vi: 'Mở khoá với Plus', id: 'Buka dengan Plus', tr: 'Plus ile aç', pl: 'Odblokuj z Plus' })
+    ? triLang(lang, { ru: 'Открыть с Plus', uk: 'Відкрити з Plus', en: 'Unlock with Plus', es: 'Desbloquear con Plus', 'pt-BR': 'Desbloquear com Plus', vi: 'Mở khoá với Plus', id: 'Buka dengan Plus', tr: 'Plus ile aç', pl: 'Odblokuj z Plus' })
     : candidateApplied
-      ? triLang(lang, { ru: 'Тема применена', uk: 'Тему застосовано', es: 'Tema aplicado', 'pt-BR': 'Tema aplicado', vi: 'Đã áp dụng chủ đề', id: 'Tema diterapkan', tr: 'Tema uygulandı', pl: 'Motyw zastosowany' })
-      : triLang(lang, { ru: 'Применить тему', uk: 'Застосувати тему', es: 'Aplicar tema', 'pt-BR': 'Aplicar tema', vi: 'Áp dụng chủ đề', id: 'Terapkan tema', tr: 'Temayı uygula', pl: 'Zastosuj motyw' });
+      ? triLang(lang, { ru: 'Тема применена', uk: 'Тему застосовано', en: 'Theme applied', es: 'Tema aplicado', 'pt-BR': 'Tema aplicado', vi: 'Đã áp dụng chủ đề', id: 'Tema diterapkan', tr: 'Tema uygulandı', pl: 'Motyw zastosowany' })
+      : triLang(lang, { ru: 'Применить тему', uk: 'Застосувати тему', en: 'Apply theme', es: 'Aplicar tema', 'pt-BR': 'Aplicar tema', vi: 'Áp dụng chủ đề', id: 'Terapkan tema', tr: 'Temayı uygula', pl: 'Zastosuj motyw' });
 
   return (
     <ScreenGradient>
@@ -390,6 +375,7 @@ export default function SettingsThemes() {
             title={triLang(lang, {
               ru: 'Темы',
               uk: 'Теми',
+              en: 'Themes',
               es: 'Temas',
               'pt-BR': 'Temas',
               vi: 'Chủ đề',
@@ -403,7 +389,7 @@ export default function SettingsThemes() {
           {/* зачем: владелец попросил КРУПНЫЕ квадраты — боковой паддинг экрана
               уменьшен (GRID_SCREEN_PAD), чтобы отдать эту ширину самим плиткам,
               а не воздуху по краям (3 в ряд остаются, но каждая заметно больше). */}
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
             <View style={styles.grid}>
               {THEME_OPTIONS.filter(item => !isThemeRewardOnly(item.mode) || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map(item => {
                 const locked = !isThemeAvailable(item.mode) && !DEV_THEME_UNLOCKS;

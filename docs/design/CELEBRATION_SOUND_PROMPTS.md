@@ -59,8 +59,11 @@
 | — | `cel_finale_chord` | Акт 3: число и CTA | 1.6 с | 0.64 |
 | — | `cel_promo_stamp` | Промокод: код впечатывается | 0.85 с | 0.56 |
 | — | `cel_max_awaken` | MAX: сфера просыпается и говорит | 2.2 с | 0.60 |
+| — | `cel_background_bed` | Фон: играет под всем прогоном (все тиры) | 12.0 с | 0.13 |
 
-Пятнадцать файлов. `cel_promo_stamp` играет **до** `cel_open_rift` в сценарии
+Шестнадцать файлов. `cel_background_bed` играет фоном под ВСЕМ прогоном
+одновременно с остальными — это не часть таймлайна ударов, а отдельный слой.
+`cel_promo_stamp` играет **до** `cel_open_rift` в сценарии
 промокода. `cel_max_awaken` — только в прогоне MAX, двенадцатой сценой.
 
 ---
@@ -410,6 +413,38 @@
 **Важно:** не переиспользовать `cel_open_rift` с изменённой высотой. Раскол —
 это язык Plus. Если MAX зазвучит расколом, два тира сольются в один, а MAX
 продаётся именно ощущением живого собеседника.
+
+---
+
+## 6. Фоновая подложка (все тиры)
+
+Владелец 2026-08-25: «на фон надо мелодию какую-то». Точечные удары одиннадцати
+сцен звучат разрозненно без общей тёплой волны под всем прогоном. Это НЕ
+замена точечным звукам — они остаются, подложка играет строго под ними,
+намного тише (0.13 против 0.42-0.64 у ударов).
+
+**Один файл на все тиры** — Plus, Pro, VIP, MAX, промокод. Отдельная мелодия
+под MAX была бы избыточна: у него уже есть свой акцент в `cel_max_awaken`.
+
+### `cel_background_bed.m4a` — 12.0 с, громкость 0.13
+
+Момент: играет от открытия модалки до её закрытия — длиннее самого долгого
+прогона (MAX, ~11.3 с), с запасом. Встроенный fade-in на первые ~300 мс и
+fade-out на последнюю секунду — так подложка никогда не обрывается щелчком,
+даже если человек пропускает показ тапом раньше конца.
+
+**A.** Seamless ambient pad bed for a premium celebration screen in a language-learning app, 12 seconds, mono, extremely quiet and unobtrusive. A single sustained warm chord with very slow internal movement, no melody, no rhythm, no percussive attacks anywhere in the file. Gentle fade in over the first 300 milliseconds, holds steady, gentle fade out over the final second. Designed to sit far in the background under sharper foreground UI sounds without ever competing with them. Expensive, calm, almost subliminal.
+
+**B.** Warm arcade ambience bed underlying a reward celebration sequence, 12 seconds, mono, soft and continuous. A slowly evolving pad with light harmonic shimmer, no beats, no accents, nothing that could be mistaken for a foreground cue. Smooth fade in at the start, smooth fade out at the end. Sits quietly behind punchier scene sounds.
+
+**C.** Cinematic sustained atmosphere for the full length of a purchase celebration, 12 seconds, mono, wide and hushed. A single held tone with gentle harmonic drift and the faintest sense of air movement, absolutely no transients or rhythmic elements. Fades in gently, fades out gently, exists only to give the sequence a sense of continuous space underneath the louder scene-specific sounds.
+
+**Требование к сведению:** проверить бок о бок с `cel_open_rift` на громкости
+0.62 и с любым из сценных звуков на 0.42-0.52 — подложка должна быть отчётливо
+слышна как атмосфера, но НИКОГДА не читаться как отдельное событие. Если ухо
+замечает подложку саму по себе, а не общую «теплоту» сцены — она слишком
+громкая или слишком фактурная, нужно переделывать, а не просто убавлять
+громкость в коде (первопричина — тембр, не уровень).
 
 ---
 

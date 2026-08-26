@@ -31,20 +31,20 @@ function ArenaHomeCard() {
   const { lang } = useLang();
   const { f } = useTheme();
   const title = triLang(lang, {
-    ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena',
+    ru: 'Арена', uk: 'Арена', en: 'Arena', es: 'Arena', 'pt-BR': 'Arena',
     vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena',
   });
   const body = triLang(lang, {
-    ru: 'Дуэль на знание языка', uk: 'Дуель на знання мови', es: 'Un duelo de idiomas',
+    ru: 'Дуэль на знание языка', uk: 'Дуель на знання мови', en: 'A language knowledge duel', es: 'Un duelo de idiomas',
     'pt-BR': 'Um duelo de idiomas', vi: 'Đấu kiến thức ngôn ngữ',
     id: 'Duel kemampuan bahasa', tr: 'Dil bilgisi düellosu', pl: 'Pojedynek językowy',
   });
   const questions = triLang(lang, {
-    ru: '10 вопросов', uk: '10 запитань', es: '10 preguntas', 'pt-BR': '10 perguntas',
+    ru: '10 вопросов', uk: '10 запитань', en: '10 questions', es: '10 preguntas', 'pt-BR': '10 perguntas',
     vi: '10 câu hỏi', id: '10 soal', tr: '10 soru', pl: '10 pytań',
   });
   const duration = triLang(lang, {
-    ru: '2–3 минуты', uk: '2–3 хвилини', es: '2–3 minutos', 'pt-BR': '2–3 minutos',
+    ru: '2–3 минуты', uk: '2–3 хвилини', en: '2–3 minutes', es: '2–3 minutos', 'pt-BR': '2–3 minutos',
     vi: '2–3 phút', id: '2–3 menit', tr: '2–3 dakika', pl: '2–3 minuty',
   });
 
@@ -57,7 +57,7 @@ function ArenaHomeCard() {
       accessibilityRole="button"
       accessibilityLabel={`${title}. ${body}. ${questions}. ${duration}`}
       accessibilityHint={triLang(lang, {
-        ru: 'Открыть режимы Арены', uk: 'Відкрити режими Арени', es: 'Abrir los modos de Arena',
+        ru: 'Открыть режимы Арены', uk: 'Відкрити режими Арени', en: 'Open Arena modes', es: 'Abrir los modos de Arena',
         'pt-BR': 'Abrir os modos da Arena', vi: 'Mở các chế độ Đấu trường',
         id: 'Buka mode Arena', tr: 'Arena modlarını aç', pl: 'Otwórz tryby Areny',
       })}

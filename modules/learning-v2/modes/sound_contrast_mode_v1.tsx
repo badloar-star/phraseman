@@ -24,6 +24,8 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useTheme } from "../../../components/ThemeContext";
+import { V2Chip } from "../../../components/ui/v2_ui";
+import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { SOUND_CONTRAST_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
@@ -32,6 +34,7 @@ const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
 function SoundContrastCardV1({
   label,
+  ipa,
   selected,
   verdict,
   dimmed,
@@ -41,11 +44,11 @@ function SoundContrastCardV1({
   onPress,
   onListen,
   bg,
-  selectedBg,
   textColor,
   accent,
 }: {
   readonly label: string;
+  readonly ipa: string;
   readonly selected: boolean;
   readonly verdict: "none" | "ok" | "bad";
   readonly dimmed: boolean;
@@ -61,7 +64,6 @@ function SoundContrastCardV1({
 }) {
   const lift = useSharedValue(0);
   const nudge = useSharedValue(0);
-  const press = useSharedValue(1);
 
   useEffect(() => {
     lift.value = withTiming(selected ? 1 : 0, {
@@ -84,55 +86,47 @@ function SoundContrastCardV1({
     transform: [
       { translateY: lift.value * -2 },
       { translateX: nudge.value },
-      { scale: press.value },
     ] as const,
   }));
 
   return (
     <Animated.View style={[styles.cardWrap, style]}>
-      <Pressable
-        accessibilityRole="button"
+      <V2Chip
+        block
         accessibilityLabel={label}
-        accessibilityState={{ selected, disabled }}
         disabled={disabled}
-        onPressIn={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(0.97, { duration: 80, easing: EASE });
-        }}
-        onPressOut={() => {
-          if (reducedMotion) return;
-          press.value = withTiming(1, { duration: 80, easing: EASE });
-        }}
         onPress={onPress}
-        style={[
-          styles.card,
-          {
-            backgroundColor:
-              verdict === "ok" ? undefined : verdict === "bad" ? undefined : selected ? selectedBg : bg,
-          },
-        ]}
+        selected={selected}
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : dimmed ? "dim" : "idle"}
+        style={styles.card}
+        right={
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={`Слушать ${label}`}
+            hitSlop={8}
+            onPress={(event) => {
+              event.stopPropagation();
+              void hapticLightImpact();
+              onListen();
+            }}
+            style={[styles.listenBtn, { backgroundColor: bg }]}
+          >
+            <Text style={{ color: accent, fontSize: 13 }}>♪</Text>
+          </Pressable>
+        }
       >
-        <Text style={[styles.cardWord, { color: textColor }]}>{label}</Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={`Слушать ${label}`}
-          hitSlop={8}
-          onPress={(e) => {
-            e.stopPropagation();
-            void hapticLightImpact();
-            onListen();
-          }}
-          style={[styles.listenBtn, { backgroundColor: bg }]}
-        >
-          <Text style={{ color: accent, fontSize: 13 }}>♪</Text>
-        </Pressable>
-      </Pressable>
+        <View>
+          <Text style={[styles.cardWord, { color: textColor }]}>{label}</Text>
+          <Text style={[styles.cardIpa, { color: accent }]}>{ipa}</Text>
+        </View>
+      </V2Chip>
     </Animated.View>
   );
 }
 
 export function SoundContrastModeV1(props: LearningV2ModeCommonPropsV1) {
   const { theme: t } = useTheme();
+  const palette = useTournamentPalette();
   const {
     prompt,
     options,
@@ -144,7 +138,11 @@ export function SoundContrastModeV1(props: LearningV2ModeCommonPropsV1) {
     onPick,
     onPlaySelectableAudio,
     phase,
+    modePayload,
   } = props;
+  if (!modePayload || modePayload.family !== "sound_contrast") {
+    throw new Error("learning_v2_sound_contrast_payload_missing");
+  }
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -161,11 +159,11 @@ export function SoundContrastModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={styles.root}>
-      <Text style={[styles.taskLabel, { color: t.textMuted }]}>Различи звуки</Text>
-      <Text style={[styles.hero, { color: t.textPrimary }]}>{prompt}</Text>
+      <Text style={[styles.taskLabel, { color: palette.muted }]}>Различи звуки</Text>
+      <Text style={[styles.hero, { color: palette.text }]}>{prompt}</Text>
 
       <View style={styles.pairRow}>
-        {options.map((option) => {
+        {options.map((option, index) => {
           const selected = selectedChoiceId === option.responseId;
           const verdict: "none" | "ok" | "bad" =
             phase === "success" && selected
@@ -177,6 +175,7 @@ export function SoundContrastModeV1(props: LearningV2ModeCommonPropsV1) {
             <SoundContrastCardV1
               key={option.responseId}
               label={option.text}
+              ipa={index === 0 ? modePayload.ipaA : modePayload.ipaB}
               selected={selected}
               verdict={verdict}
               dimmed={hasSelection && !selected}
@@ -234,6 +233,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   cardWord: { fontSize: 27, fontWeight: "800" },
+  cardIpa: { marginTop: 5, fontSize: 15, fontWeight: "700", textAlign: "center" },
   listenBtn: {
     width: 34,
     height: 34,

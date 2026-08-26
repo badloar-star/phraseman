@@ -341,6 +341,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const name = triLang(lang, {
     uk: displayedToast.nameUk,
     ru: displayedToast.nameRu,
+    en: displayedToast.nameRu,
     es: displayedToast.nameEs ?? ACHIEVEMENT_ES[displayedToast.id]?.nameEs ?? displayedToast.nameRu,
     'pt-BR': 'Conquista desbloqueada',
     vi: 'Thành tích đã mở khóa',
@@ -351,6 +352,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const desc = triLang(lang, {
     uk: displayedToast.descUk,
     ru: displayedToast.descRu,
+    en: displayedToast.descRu,
     es: displayedToast.descEs ?? ACHIEVEMENT_ES[displayedToast.id]?.descEs ?? displayedToast.descRu,
     'pt-BR': 'Você desbloqueou uma conquista no app.',
     vi: 'Bạn đã mở khóa một thành tích trong ứng dụng.',
@@ -361,6 +363,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const label = triLang(lang, {
     uk: 'Досягнення розблоковано!',
     ru: 'Достижение разблокировано!',
+    en: 'Achievement unlocked!',
     es: '¡Logro desbloqueado!',
     'pt-BR': 'Conquista desbloqueada!',
     vi: 'Đã mở khóa thành tích!',
@@ -381,6 +384,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const summaryName = summary ? triLang(lang, {
     uk: `Відкрито ${n} ${slavicPlural('досягнення', 'досягнення', 'досягнень')}`,
     ru: `Открыто ${n} ${slavicPlural('достижение', 'достижения', 'достижений')}`,
+    en: `${n} achievements unlocked`,
     es: `${n} logros desbloqueados`,
     'pt-BR': `${n} conquistas desbloqueadas`,
     vi: `Đã mở khóa ${n} thành tích`,
@@ -391,6 +395,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const summaryLabel = triLang(lang, {
     uk: 'Нові досягнення',
     ru: 'Новые достижения',
+    en: 'New achievements',
     es: 'Nuevos logros',
     'pt-BR': 'Novas conquistas',
     vi: 'Thành tích mới',
@@ -401,6 +406,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const summaryDesc = triLang(lang, {
     uk: 'Торкніться, щоб переглянути',
     ru: 'Нажмите, чтобы посмотреть',
+    en: 'Tap to view',
     es: 'Toca para verlos',
     'pt-BR': 'Toque para ver',
     vi: 'Chạm để xem',
@@ -411,6 +417,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const shareLabel = triLang(lang, {
     uk: 'Поділитися',
     ru: 'Поделиться',
+    en: 'Share',
     es: 'Compartir',
     'pt-BR': 'Compartilhar',
     vi: 'Chia sẻ',
@@ -421,6 +428,7 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
   const closeLabel = triLang(lang, {
     uk: 'Закрити',
     ru: 'Закрыть',
+    en: 'Close',
     es: 'Cerrar',
     'pt-BR': 'Fechar',
     vi: 'Đóng',
@@ -543,7 +551,6 @@ function AchievementToast({ motionVariant = 'hybrid' }: { motionVariant?: 'class
                   size={88}
                   achievementId={displayedToast.id}
                   isDark={isDark}
-                  gold={t.gold}
                 />
 
                 <Text style={[s.modalName, { color, fontSize: f.h2 }]}>

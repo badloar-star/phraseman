@@ -20,6 +20,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -44,6 +45,7 @@ import {
   saveCommunityPackCreateDraft,
 } from './community_packs/communityPackDraftStorage';
 import UgcPackEditorCardPreview from './community_packs/UgcPackEditorCardPreview';
+import { soundDirector } from '../modules/audio/sound_director';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useAccordionChevronStyle } from '../hooks/useAccordionFaqStyle';
 import { configureAccordionLayout } from '../constants/layoutAnimation';
@@ -836,6 +838,9 @@ export default function CommunityPackCreateScreen() {
           if (!isEditMode) await clearCommunityPackCreateDraft(studyTarget, lang);
           publishToCommunityInBackground(payload, authorStableId);
         }
+        // зачем: pm.cards.pack_created — только для НОВОГО набора (создал и
+        // опубликовал), не для правки уже существующего своего набора.
+        if (!isEditMode) soundDirector.request('pm.cards.pack_created', { scope: 'cards' });
         emitAppEvent('action_toast', actionToastTri('success', {
           ru: 'Набор сохранён.',
           uk: 'Набір збережено.',
@@ -934,6 +939,52 @@ export default function CommunityPackCreateScreen() {
     );
   }
 
+  // зачем (аудит пейволла «Мастерская», 2026-08-25): раньше здесь всегда
+  // рендерилась полная рабочая форма создания набора, даже для гейтнутого
+  // юзера — блокировалось только финальное сохранение (onSubmit проверяет
+  // creatorGated), а сама форма была видна и заполняема до срабатывания
+  // редиректа на premium_modal. Данные не терялись (onSubmit — вторая линия
+  // защиты), но это мельтешение формы перед пейволом хуже, чем в
+  // flashcards_card_editor.tsx, где форма вообще не рендерится. Тот же
+  // паттерн здесь: скелетон вместо полей, пока не разрешится подписка/пойдёт
+  // редирект — геометрия шапки и первого кадра сохраняется (layout stability).
+  if (creatorGated) {
+    return (
+      <ScreenGradient artBackdrop="flashcards">
+        <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
+          <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
+            <TapScale
+              onPress={() => {
+                Keyboard.dismiss();
+                safeRouterBack(router, '/flashcards' as any);
+              }}
+              hitSlop={12}
+              style={{ width: 40 }}
+            >
+              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+            </TapScale>
+            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
+              {L('Новый набор', 'Новий набір', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
+            </Text>
+            <View style={{ width: 40 }} />
+          </View>
+          <ContentWrap>
+            <View style={[styles.formHorizontalInset, { gap: 20, marginTop: 24 }]}>
+              <View style={{ gap: 8 }}>
+                <SkeletonBlock width="30%" height={f.body} borderRadius={6} />
+                <SkeletonBlock width="100%" height={f.body + 2 + 32} borderRadius={16} />
+              </View>
+              <View style={{ gap: 8 }}>
+                <SkeletonBlock width="30%" height={f.body} borderRadius={6} />
+                <SkeletonBlock width="100%" height={88} borderRadius={16} />
+              </View>
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
   return (
     <ScreenGradient artBackdrop="flashcards">
       <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
@@ -964,7 +1015,7 @@ export default function CommunityPackCreateScreen() {
             ref={scrollViewRef}
             style={{ flex: 1 }}
             nestedScrollEnabled
-            decelerationRate="normal"
+            decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
             onScroll={(e) => {
@@ -1280,7 +1331,7 @@ export default function CommunityPackCreateScreen() {
                   horizontal
                   nestedScrollEnabled
                   directionalLockEnabled
-                  decelerationRate="normal"
+                  decelerationRate="fast"
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.cardBackThumbRow}
                   keyboardShouldPersistTaps="handled"

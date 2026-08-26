@@ -319,7 +319,17 @@ let materializedAll = null;
 // пока к нему не обратились, ни одна из 56 сессий не строится. Экран
 // приложения к нему не обращается вовсе и потому платит только за свою.
 exports.AUTHORED_EPISODE_01_SESSIONS = new Proxy([], {
-    get: (_unused, key) => Reflect.get(allAuthoredEpisode01Sessions(), key),
+    get: (target, key, receiver) => {
+        // React Refresh probes every exported object for this marker while the
+        // application module graph is still booting. Treating that metadata
+        // probe like an array read used to build all 56 eight-locale sessions
+        // before the first React render, leaving Android on a black splash.
+        // Real array reads (length/index/iterator/map/etc.) stay lazy and retain
+        // the public compatibility export used by authoring gates.
+        if (key === '$$typeof')
+            return Reflect.get(target, key, receiver);
+        return Reflect.get(allAuthoredEpisode01Sessions(), key);
+    },
     has: (_unused, key) => Reflect.has(allAuthoredEpisode01Sessions(), key),
     ownKeys: () => Reflect.ownKeys(allAuthoredEpisode01Sessions()),
     getOwnPropertyDescriptor: (_unused, key) => Reflect.getOwnPropertyDescriptor(allAuthoredEpisode01Sessions(), key),

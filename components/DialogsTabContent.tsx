@@ -182,6 +182,15 @@ export default function DialogsTabContent({
   }, [active, refreshAccountLevel, refreshCompleted]);
 
   useEffect(() => {
+    if (!active) return;
+    const scenarios = [
+      ...DIALOG_SCENARIO_GROUPS.flatMap((group) => getScenariosByCategory(group.category)),
+      ...getChallengeDialogScenarios(),
+    ];
+    void Promise.all(scenarios.map((scenario) => hasSeenAiDialogIntro(studyTarget, scenario.id)));
+  }, [active, studyTarget]);
+
+  useEffect(() => {
     if (!trackImpression || impressionFiredRef.current) return;
     impressionFiredRef.current = true;
     void trackAiDialogEvent('ai_dialog_card_shown');
@@ -192,16 +201,15 @@ export default function DialogsTabContent({
   const accent = t.accent;
 
   const openScenarioDestination = useCallback(
-    async (scenario: DialogScenario, forceBriefing = false) => {
-      const seenIntro = forceBriefing
-        ? false
-        : await hasSeenAiDialogIntro(studyTarget, scenario.id);
+    (scenario: DialogScenario, forceBriefing = false) => {
+      // The briefing route is also the opaque cold-start resolver. Navigation
+      // happens in this tap frame; AsyncStorage never sits in front of it.
       router.push({
-        pathname: seenIntro ? '/ai_dialog_session' : '/ai_dialog_briefing',
-        params: { scenarioId: scenario.id },
+        pathname: '/ai_dialog_briefing',
+        params: { scenarioId: scenario.id, forceBriefing: forceBriefing ? '1' : undefined },
       } as never);
     },
-    [router, studyTarget],
+    [router],
   );
 
   const openCourseScenario = useCallback(
@@ -267,6 +275,7 @@ export default function DialogsTabContent({
           triLang(lang, {
             ru: 'Пока закрыто',
             uk: 'Поки закрито',
+            en: 'Still locked',
             es: 'Bloqueado por ahora',
             'pt-BR': 'Bloqueado por enquanto',
             vi: 'Tạm thời bị khóa',
@@ -277,6 +286,7 @@ export default function DialogsTabContent({
           triLang(lang, {
             ru: `Открывается на уровне ${requiredLevel}. Проходи уроки и вызовы — откроется автоматически.`,
             uk: `Відкривається на рівні ${requiredLevel}. Проходь уроки та виклики — відкриється автоматично.`,
+            en: `Unlocks at level ${requiredLevel}. Complete lessons and challenges — it’ll open automatically.`,
             es: `Se desbloquea en el nivel ${requiredLevel}. Completa lecciones y desafíos para llegar.`,
             'pt-BR': `Desbloqueia no nível ${requiredLevel}. Complete lições e desafios — vai abrir automaticamente.`,
             vi: `Mở ở cấp ${requiredLevel}. Hãy hoàn thành bài học và thử thách — nó sẽ tự mở.`,
@@ -284,7 +294,7 @@ export default function DialogsTabContent({
             tr: `${requiredLevel}. seviyede açılır. Dersleri ve meydan okumaları tamamla — otomatik açılır.`,
             pl: `Otwiera się na poziomie ${requiredLevel}. Przechodź lekcje i wyzwania — odblokuje się automatycznie.`,
           }),
-          [{ text: triLang(lang, { ru: 'Ок', uk: 'Ок', es: 'Ok', 'pt-BR': 'Ok', vi: 'Ok', id: 'Ok', tr: 'Tamam', pl: 'Ok' }) }],
+          [{ text: triLang(lang, { ru: 'Ок', uk: 'Ок', en: 'Ok', es: 'Ok', 'pt-BR': 'Ok', vi: 'Ok', id: 'Ok', tr: 'Tamam', pl: 'Ok' }) }],
         );
         return;
       }
@@ -312,12 +322,13 @@ export default function DialogsTabContent({
             scene,
             lockedText: !dialogAccess
               ? triLang(lang, {
-                  ru: 'Входит в Plus', uk: 'Входить у Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+                  ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
                   vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
                 })
               : triLang(lang, {
                   ru: `Откроется на уровне ${scenario.cefr}`,
                   uk: `Відкриється на рівні ${scenario.cefr}`,
+                  en: `Unlocks at level ${scenario.cefr}`,
                   es: `Se abre en el nivel ${scenario.cefr}`,
                   'pt-BR': `Abre no nível ${scenario.cefr}`,
                   vi: `Mở ở cấp ${scenario.cefr}`,
@@ -349,6 +360,7 @@ export default function DialogsTabContent({
           levelChip: triLang(lang, {
             ru: `ур. ${requiredLevel}`,
             uk: `рів. ${requiredLevel}`,
+            en: `lvl. ${requiredLevel}`,
             es: `niv. ${requiredLevel}`,
             'pt-BR': `nív. ${requiredLevel}`,
             vi: `cấp ${requiredLevel}`,
@@ -358,12 +370,13 @@ export default function DialogsTabContent({
           }),
           lockedText: !dialogAccess
             ? triLang(lang, {
-                ru: 'Входит в Plus', uk: 'Входить у Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+                ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
                 vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
               })
             : triLang(lang, {
                 ru: `Откроется на уровне аккаунта ${requiredLevel}`,
                 uk: `Відкриється на рівні акаунта ${requiredLevel}`,
+                en: `Unlocks at account level ${requiredLevel}`,
                 es: `Se abre en el nivel de cuenta ${requiredLevel}`,
                 'pt-BR': `Abre no nível de conta ${requiredLevel}`,
                 vi: `Mở ở cấp tài khoản ${requiredLevel}`,
@@ -411,6 +424,7 @@ export default function DialogsTabContent({
   const briefingLongPressHint = triLang(lang, {
     ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
     uk: 'Натисніть і утримуйте, щоб відкрити вступ до сценарію.',
+    en: 'Press and hold to open the scenario intro.',
     es: 'Mantén pulsado para abrir la introducción del escenario.',
     'pt-BR': 'Mantenha pressionado para abrir a introdução do cenário.',
     vi: 'Nhấn giữ để mở phần giới thiệu kịch bản.',
@@ -428,17 +442,18 @@ export default function DialogsTabContent({
       ? lockedText
       : status === 'done'
         ? triLang(lang, {
-            ru: 'Пройдено', uk: 'Пройдено', es: 'Hecho', 'pt-BR': 'Concluído',
+            ru: 'Пройдено', uk: 'Пройдено', en: 'Done', es: 'Hecho', 'pt-BR': 'Concluído',
             vi: 'Đã xong', id: 'Selesai', tr: 'Tamamlandı', pl: 'Ukończono',
           })
         : triLang(lang, {
-            ru: 'Новое', uk: 'Нове', es: 'Nuevo', 'pt-BR': 'Novo',
+            ru: 'Новое', uk: 'Нове', en: 'New', es: 'Nuevo', 'pt-BR': 'Novo',
             vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe',
           });
     const accessibilityHint = locked
       ? triLang(lang, {
           ru: 'Нажмите, чтобы узнать, как открыть сценарий.',
           uk: 'Натисніть, щоб дізнатися, як відкрити сценарій.',
+          en: 'Tap to find out how to unlock the scenario.',
           es: 'Pulsa para saber cómo desbloquear el escenario.',
           'pt-BR': 'Toque para saber como desbloquear o cenário.',
           vi: 'Nhấn để xem cách mở khóa kịch bản.',
@@ -487,6 +502,7 @@ export default function DialogsTabContent({
         ? triLang(lang, {
           ru: 'Пройдено · ещё раз',
           uk: 'Пройдено · ще раз',
+          en: 'Done · again',
           es: 'Hecho · otra vez',
           'pt-BR': 'Concluído · de novo',
           vi: 'Đã xong · làm lại',
@@ -497,6 +513,7 @@ export default function DialogsTabContent({
         : triLang(lang, {
           ru: 'На очереди',
           uk: 'На черзі',
+          en: 'Up next',
           es: 'Siguiente',
           'pt-BR': 'Próximo',
           vi: 'Tiếp theo',
@@ -511,6 +528,7 @@ export default function DialogsTabContent({
           accessibilityLabel={triLang(lang, {
             ru: `Продолжить: ${dialogScenarioTitle(scenario, lang)}`,
             uk: `Продовжити: ${dialogScenarioTitle(scenario, lang)}`,
+            en: `Continue: ${dialogScenarioTitle(scenario, lang)}`,
             es: `Continuar: ${dialogScenarioTitle(scenario, lang)}`,
             'pt-BR': `Continuar: ${dialogScenarioTitle(scenario, lang)}`,
             vi: `Tiếp tục: ${dialogScenarioTitle(scenario, lang)}`,
@@ -616,6 +634,7 @@ export default function DialogsTabContent({
                   {triLang(lang, {
                     ru: 'Начать',
                     uk: 'Почати',
+                    en: 'Start',
                     es: 'Empezar',
                     'pt-BR': 'Começar',
                     vi: 'Bắt đầu',
@@ -727,7 +746,7 @@ export default function DialogsTabContent({
   };
 
   return (
-    <Animated.ScrollView
+    <Animated.ScrollView decelerationRate="fast"
       showsVerticalScrollIndicator={false}
       scrollEventThrottle={16}
       onScroll={onScroll}
@@ -785,7 +804,7 @@ export default function DialogsTabContent({
       {challengeVMs.length > 0 &&
         renderWorldCard(
           'challenge',
-          triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
+          triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', en: 'Situations', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
           CHALLENGE_SCENE_THEME,
           challengeVMs,
           challengeVMs.filter((vm) => vm.status === 'done').length,
@@ -797,6 +816,7 @@ export default function DialogsTabContent({
           accessibilityLabel={triLang(lang, {
             ru: 'Открыть все уровни диалогов с Plus',
             uk: 'Відкрити всі рівні діалогів з Plus',
+            en: 'Unlock all dialogue levels with Plus',
             es: 'Abrir todos los niveles de diálogos con Plus',
             'pt-BR': 'Abrir todos os níveis de diálogos com Plus',
             vi: 'Mở mọi cấp độ đối thoại với Plus',
@@ -847,6 +867,7 @@ export default function DialogsTabContent({
               {triLang(lang, {
                 ru: 'Все диалоги входят в Plus',
                 uk: 'Усі діалоги входять у Plus',
+                en: 'All dialogues are included in Plus',
                 es: 'Todos los diálogos están en Plus',
                 'pt-BR': 'Todos os diálogos estão no Plus',
                 vi: 'Tất cả đối thoại đều có trong Plus',
@@ -862,6 +883,7 @@ export default function DialogsTabContent({
               {triLang(lang, {
                 ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',
                 uk: 'Відкрий сценарії за уроками й життєві ситуації для розмовної практики.',
+                en: 'Unlock lesson-based scenarios and real-life situations for speaking practice.',
                 es: 'Abre escenarios de lecciones y situaciones reales para practicar conversación.',
                 'pt-BR': 'Abra cenários de lições e situações reais para praticar conversação.',
                 vi: 'Mở các kịch bản bài học và tình huống thực tế để luyện hội thoại.',

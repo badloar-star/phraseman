@@ -18,11 +18,10 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  FlatList,
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -100,7 +99,7 @@ function AiCompanionSession() {
   ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<FlatList<UiMessage>>(null);
   const memoryRef = useRef<DialogMemory | null>(null);
 
   const userTurns = messages.filter((m) => m.role === 'user').length;
@@ -244,6 +243,7 @@ function AiCompanionSession() {
             {triLang(lang, {
               ru: 'Свободный разговор',
               uk: 'Вільна розмова',
+              en: 'Free conversation',
               es: 'Conversación libre',
               'pt-BR': 'Conversa livre',
               vi: 'Trò chuyện tự do',
@@ -260,6 +260,7 @@ function AiCompanionSession() {
               dataText={triLang(lang, {
                 ru: 'Свободный разговор с ИИ-компаньоном',
                 uk: 'Вільна розмова з ШІ-компаньйоном',
+                en: 'Free conversation with the AI companion',
                 es: 'Conversación libre con el compañero de IA',
                 'pt-BR': 'Conversa livre com o companheiro de IA',
                 vi: 'Trò chuyện tự do với người bạn AI',
@@ -268,7 +269,7 @@ function AiCompanionSession() {
                 pl: 'Swobodna rozmowa z towarzyszem AI',
               })}
               variant="icon-flag"
-              accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
+              accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', en: 'Report an error in the dialogue', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
               style={{
                 width: 38,
                 height: 38,
@@ -287,12 +288,17 @@ function AiCompanionSession() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
-            {messages.map((m, i) => {
+          <FlatList
+            ref={scrollRef}
+            decelerationRate="fast"
+            style={{ flex: 1 }}
+            contentContainerStyle={{ padding: 16 }}
+            data={messages}
+            keyExtractor={(_, index) => String(index)}
+            renderItem={({ item: m }) => {
               const isUser = m.role === 'user';
               return (
                 <View
-                  key={i}
                   style={{
                     backgroundColor: isUser ? t.bgSurface : glassFill(t.bgCard, 0.46),
                     borderRadius: 16,
@@ -350,17 +356,16 @@ function AiCompanionSession() {
                   )}
                 </View>
               );
-            })}
-
-            {sending && (
+            }}
+            ListFooterComponent={sending ? (
               <AiTypingBubble
                 bubbleColor={t.bgCard}
                 borderColor={t.border}
                 dotColor={t.accent}
                 glowColor={t.accent + '18'}
               />
-            )}
-          </ScrollView>
+            ) : null}
+          />
 
           {/* Подсказка направления: не готовый ответ, а помощь сформулировать свою реплику. */}
           {lastIsAssistant && !sending && (
@@ -391,6 +396,7 @@ function AiCompanionSession() {
                     {triLang(lang, {
                       ru: 'Что можно спросить',
                       uk: 'Що можна запитати',
+                      en: 'What you can ask',
                       es: 'Qué puedes preguntar',
                       'pt-BR': 'O que você pode perguntar',
                       vi: 'Bạn có thể hỏi gì',
@@ -410,6 +416,7 @@ function AiCompanionSession() {
                     {triLang(lang, {
                       ru: 'Спроси про фразу, прогресс или свой следующий шаг. Можно ответить Компасу по-английски одной короткой фразой.',
                       uk: 'Запитай про фразу, прогрес або свій наступний крок. Можна відповісти Компасу англійською однією короткою фразою.',
+                      en: 'Ask about a phrase, your progress, or your next step. You can also reply to Compass in English with one short phrase.',
                       es: 'Pregunta por una frase, tu progreso o el siguiente paso. También puedes responder a Compass en inglés con una frase corta.',
                       'pt-BR': 'Pergunte sobre uma frase, seu progresso ou o próximo passo. Você também pode responder ao Compass em inglês com uma frase curta.',
                       vi: 'Hãy hỏi về một cụm từ, tiến độ của bạn hoặc bước tiếp theo. Bạn cũng có thể trả lời Compass bằng tiếng Anh bằng một câu ngắn.',
@@ -440,6 +447,7 @@ function AiCompanionSession() {
               placeholder={triLang(lang, {
                 ru: 'Спроси о фразе или своём пути',
                 uk: 'Запитай про фразу або свій шлях',
+                en: 'Ask about a phrase or your journey',
                 es: 'Pregunta por una frase o tu progreso',
                 'pt-BR': 'Pergunte sobre uma frase ou seu progresso',
                 vi: 'Hỏi về một cụm từ hoặc tiến độ',

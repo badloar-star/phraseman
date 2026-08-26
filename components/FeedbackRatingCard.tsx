@@ -8,8 +8,8 @@
 // паттерн, что и у звонка MAX. Показ троттлится раздельно по разделу
 // (feedback_prompt_throttle, не чаще раза в неделю) — гейт решает вызывающий
 // экран (см. shouldPromptFeedback), сам компонент рендерится безусловно.
-import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Pressable, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { glassFill } from './GlassSurface';
@@ -17,8 +17,13 @@ import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from '../app/analytics';
 import { getStableId } from '../app/stable_id';
-import { submitFeedbackEntry, type FeedbackKind } from '../app/feedback_client';
-import { dequeueFeedbackEntry, enqueueFeedbackEntry } from '../app/feedback_outbox';
+import {
+  FEEDBACK_AI_SUMMARY_CONSENT_VERSION,
+  submitFeedbackEntry,
+  type FeedbackKind,
+} from '../app/feedback_client';
+import { enqueueFeedbackEntry, flushFeedbackOutbox } from '../app/feedback_outbox';
+import { triLang, type Lang } from '../constants/i18n';
 
 export interface FeedbackRatingCardProps {
   kind: FeedbackKind;
@@ -26,7 +31,7 @@ export interface FeedbackRatingCardProps {
   entityId: string;
   /** Человекочитаемое имя (напр. «Урок 5: Прошедшее время») — видно в админке. */
   entityLabel?: string | null;
-  lang: string;
+  lang: Lang;
   userName?: string | null;
   title: string;
   placeholder: string;
@@ -52,13 +57,45 @@ export default function FeedbackRatingCard({
   const { theme: t, f } = useTheme();
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
+  const [aiSummaryConsent, setAiSummaryConsent] = useState(false);
   const [state, setState] = useState<'idle' | 'sent'>('idle');
+
+  const aiConsentLabel = triLang(lang, {
+    ru: 'Разрешить отправку текста во внешний сервис OpenAI для анализа тем (необязательно). Не указывайте личные данные; email и телефон будут скрыты.',
+    uk: 'Дозволити надсилання тексту до зовнішнього сервісу OpenAI для аналізу тем (необов’язково). Не вказуйте особисті дані; email і телефон буде приховано.',
+    es: 'Permitir enviar el texto al servicio externo OpenAI para analizar temas (opcional). No incluyas datos personales; se ocultarán el email y el teléfono.',
+    'pt-BR': 'Permitir enviar o texto ao serviço externo OpenAI para analisar temas (opcional). Não inclua dados pessoais; e-mail e telefone serão ocultados.',
+    vi: 'Cho phép gửi văn bản đến dịch vụ bên ngoài OpenAI để phân tích chủ đề (không bắt buộc). Không nhập dữ liệu cá nhân; email và số điện thoại sẽ được ẩn.',
+    id: 'Izinkan teks dikirim ke layanan eksternal OpenAI untuk analisis tema (opsional). Jangan masukkan data pribadi; email dan nomor telepon akan disembunyikan.',
+    tr: 'Metni tema analizi için harici OpenAI hizmetine göndermeye izin ver (isteğe bağlı). Kişisel veri girmeyin; e-posta ve telefon gizlenir.',
+    pl: 'Zezwól na wysłanie tekstu do zewnętrznej usługi OpenAI w celu analizy tematów (opcjonalnie). Nie wpisuj danych osobowych; e-mail i telefon zostaną ukryte.',
+  });
+
+  const flushPendingFeedback = async (): Promise<void> => {
+    try {
+      const accountKey = await getStableId();
+      await flushFeedbackOutbox(accountKey, submitFeedbackEntry);
+    } catch {
+      // Offline queue remains intact for the next completion-screen mount.
+    }
+  };
+
+  useEffect(() => {
+    void flushPendingFeedback();
+    // This is a lifecycle retry, not a background timer.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const sendFeedback = async (): Promise<void> => {
     const message = text.trim();
     if (state === 'sent' || (message === '' && rating === 0)) return;
     hapticTap();
-    const input = { kind, entityId, entityLabel: entityLabel ?? null, message, rating, lang, userName: userName ?? null };
+    const input = {
+      kind, entityId, entityLabel: entityLabel ?? null, message, rating,
+      aiSummaryConsent,
+      aiSummaryConsentVersion: aiSummaryConsent ? FEEDBACK_AI_SUMMARY_CONSENT_VERSION : null,
+      lang, userName: userName ?? null,
+    };
 
     // Мгновенно: интерфейс не ждёт ни диск, ни сеть.
     setState('sent');
@@ -67,9 +104,15 @@ export default function FeedbackRatingCard({
 
     try {
       const accountKey = await getStableId();
-      await enqueueFeedbackEntry(accountKey, input);
-      await submitFeedbackEntry(input);
-      await dequeueFeedbackEntry(accountKey, kind, entityId);
+      const persisted = await enqueueFeedbackEntry(accountKey, input);
+      if (!persisted) {
+        // Disk/SQLite can fail independently of the network. The in-memory
+        // payload still gets one best-effort delivery attempt instead of being
+        // silently dropped before flush can see it.
+        await submitFeedbackEntry(input);
+        return;
+      }
+      await flushFeedbackOutbox(accountKey, submitFeedbackEntry);
     } catch {
       // Осталось в очереди: досылка произойдёт на следующем экране завершения.
     }
@@ -84,8 +127,8 @@ export default function FeedbackRatingCard({
       </Text>
       {state === 'sent' ? (
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 12 }}>
-          <Ionicons name="checkmark-circle" size={20} color={t.correctText} />
-          <Text accessibilityLiveRegion="polite" style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
+          <Ionicons name="checkmark-circle" size={20} color={t.correct} />
+          <Text accessibilityLiveRegion="polite" style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
             {thanksLabel}
           </Text>
         </View>
@@ -97,7 +140,7 @@ export default function FeedbackRatingCard({
                 key={`star-${star}`}
                 testID={`${testID}-star-${star}`}
                 accessibilityRole="radio"
-                accessibilityState={{ selected: rating >= star }}
+                accessibilityState={{ selected: rating === star }}
                 accessibilityLabel={`${ratingA11yLabel} ${star}`}
                 onPress={() => { hapticTap(); setRating(star); }}
                 style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
@@ -131,6 +174,30 @@ export default function FeedbackRatingCard({
               textAlignVertical: 'top',
             }}
           />
+          <Pressable
+            testID={`${testID}-ai-summary-consent`}
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: aiSummaryConsent }}
+            accessibilityLabel={aiConsentLabel}
+            onPress={() => { hapticTap(); setAiSummaryConsent((value) => !value); }}
+            style={{
+              minHeight: 44,
+              marginTop: 8,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 10,
+              paddingVertical: 6,
+            }}
+          >
+            <Ionicons
+              name={aiSummaryConsent ? 'checkbox' : 'square-outline'}
+              size={24}
+              color={aiSummaryConsent ? t.accent : t.textGhost}
+            />
+            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), fontWeight: '400' }} maxFontSizeMultiplier={2}>
+              {aiConsentLabel}
+            </Text>
+          </Pressable>
           <TouchableOpacity
             testID={`${testID}-send`}
             accessibilityRole="button"

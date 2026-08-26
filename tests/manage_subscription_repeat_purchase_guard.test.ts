@@ -25,10 +25,8 @@ describe('manage subscription repeat purchase guard', () => {
     expect(purchaseCall).toBeGreaterThan(alreadyActiveGuard);
   });
 
-  it('keeps native scroll inertia instead of the short fast deceleration', () => {
-    // React Native 0.81: normal = 0.998 iOS / 0.985 Android; fast = 0.99 / 0.9.
-    // The lower fast values stop a fling much sooner, especially on Android.
-    expect(screenSource).toContain('decelerationRate="normal"');
-    expect(screenSource).not.toContain('decelerationRate="fast"');
+  it('keeps the short sharp deceleration required by the owner contract', () => {
+    expect(screenSource).toContain('decelerationRate="fast"');
+    expect(screenSource).not.toContain('decelerationRate="normal"');
   });
 });

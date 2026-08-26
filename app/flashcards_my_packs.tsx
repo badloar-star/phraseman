@@ -43,6 +43,7 @@ import { triLang } from '../constants/i18n';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
+import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMeta } from './community_packs/communityFirestore';
 import { loadLocalAuthorPacks, mergeLocalAuthorPacks } from './community_packs/localAuthorPacks';
@@ -249,6 +250,9 @@ export default function FlashcardsMyPacksScreen() {
   const openPack = useCallback(
     async (pack: FlashcardMarketPack) => {
       if (openingPackRef.current) return;
+      // зачем: тап уже необратимо решён — звук открытия набора играет сразу,
+      // не дожидаясь стейджинга карточек/сети (Optimistic UI).
+      soundDirector.request('pm.cards.pack_open', { scope: 'cards' });
       const requestToken = ++openingRequestGenerationRef.current;
       openingPackRef.current = pack.id;
       setOpeningPackId(pack.id);
@@ -288,12 +292,13 @@ export default function FlashcardsMyPacksScreen() {
   const copy = useMemo(
     () => ({
       title: triLang(lang, {
-        ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
+        ru: 'Мои наборы', uk: 'Мої набори', en: 'My packs', es: 'Mis packs',
         'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
       }),
       added: triLang(lang, {
         ru: 'Добавленные из сообщества',
         uk: 'Додані зі спільноти',
+        en: 'Added from the community',
         es: 'Añadidos de la comunidad',
         'pt-BR': 'Adicionados da comunidade',
         vi: 'Đã thêm từ cộng đồng',
@@ -304,6 +309,7 @@ export default function FlashcardsMyPacksScreen() {
       created: triLang(lang, {
         ru: 'Созданные мной',
         uk: 'Створені мною',
+        en: 'Created by me',
         es: 'Creados por mí',
         'pt-BR': 'Criados por mim',
         vi: 'Do tôi tạo',
@@ -314,6 +320,7 @@ export default function FlashcardsMyPacksScreen() {
       empty: triLang(lang, {
         ru: 'Здесь появятся наборы, которые вы добавили себе или создали',
         uk: 'Тут з’являться набори, які ви додали собі або створили',
+        en: 'Packs you add or create will appear here',
         es: 'Aquí aparecerán los packs que añadas o crees',
         'pt-BR': 'Aqui aparecerão os pacotes que você adicionar ou criar',
         vi: 'Các bộ thẻ bạn thêm hoặc tạo sẽ xuất hiện ở đây',
@@ -322,12 +329,12 @@ export default function FlashcardsMyPacksScreen() {
         pl: 'Tu pojawią się zestawy, które dodasz lub utworzysz',
       }),
       browse: triLang(lang, {
-        ru: 'Открыть наборы сообщества', uk: 'Відкрити набори спільноти', es: 'Ver packs de la comunidad',
+        ru: 'Открыть наборы сообщества', uk: 'Відкрити набори спільноти', en: 'Open community packs', es: 'Ver packs de la comunidad',
         'pt-BR': 'Ver pacotes da comunidade', vi: 'Xem bộ thẻ cộng đồng', id: 'Lihat paket komunitas',
         tr: 'Topluluk paketlerini aç', pl: 'Zobacz zestawy społeczności',
       }),
       back: triLang(lang, {
-        ru: 'Назад', uk: 'Назад', es: 'Atrás',
+        ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
         'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
       }),
     }),
@@ -495,6 +502,7 @@ export default function FlashcardsMyPacksScreen() {
 
         {/* §5.2: скролл кормит капсулу таббара прямо на UI-потоке. */}
         <Reanimated.ScrollView
+          decelerationRate="fast"
           style={styles.scroll}
           contentContainerStyle={[
             styles.scrollContent,

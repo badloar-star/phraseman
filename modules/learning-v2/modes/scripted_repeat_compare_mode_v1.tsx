@@ -1,20 +1,13 @@
 /**
- * Режим 7/7 — Повтор за моделью (голос, WIP). Источник вёрстки/анимаций:
- * docs/v2/mockups/14-repeat-compare.html (сам макет помечен WIP).
+ * Активный режим 6/6 — Повтор за моделью. Источник вёрстки/анимаций:
+ * docs/v2/mockups/14-repeat-compare.html.
  *
  * зачем: голосовые повторы нуждаются в capture-зоне (готов/запись/обработка)
  * и волне word-chip'ов вместо текстовой карточки ordered_tokens/single_choice.
  *
- * ОСТОРОЖНО (прямое требование владельца): этот компонент НЕ трогает
- * app/learning_v2_direct_session_player_v1.tsx рядом с существующей
- * mic-веткой (кнопка старта/стопа в ActionDock, ~строки 1620-1690, и хук
- * useLearningV2LocalHoldToTalkV1). Реальный voice-flow приложения — HOLD-TO-
- * TALK (onPressIn начинает запись, onPressOut останавливает), а НЕ tap-to-
- * start/tap-to-stop, как в макете 14. Вместо переделки жеста под макет —
- * этот компонент только заменяет ВНУТРЕННЕЕ содержимое карточки (текст-
- * инструкция + транскрипт), сохраняя существующий hold-to-talk жест и саму
- * mic-кнопку в ActionDock БЕЗ ИЗМЕНЕНИЙ. Оба места читают один и тот же
- * localVoice.status, поэтому визуально они остаются согласованы.
+ * Реальный voice-flow — hold-to-talk в центральном футере плеера. Capture-зона
+ * только показывает готовность, запись и распознанный результат; второй
+ * конкурирующей mic-кнопки внутри карточки нет.
  *
  * Данные: голосовой вердикт (PASS_CONFIDENT/NEEDS_WORK_CONFIDENT/UNCERTAIN/
  * INVALID из макета) сегодня не приходит отдельным полем — evaluate()
@@ -25,7 +18,7 @@
  */
 
 import React, { useEffect, useRef } from "react";
-import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -37,9 +30,12 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useTheme } from "../../../components/ThemeContext";
+import { V2Card } from "../../../components/ui/v2_ui";
+import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+import { learningV2ModeRepeatCompareCopyV1 } from "./mode_copy_v1";
 import { SCRIPTED_REPEAT_COMPARE_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
@@ -50,6 +46,9 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
   readonly voiceStatus: LearningV2LocalHoldToTalkStatusV1;
   readonly transcript: string;
   readonly instruction: string | null;
+  /** Canonical app SpeakingPanel. The mode owns the lesson framing while the
+   * shared panel owns permission, capture, equalizer, recognition and retry. */
+  readonly capturePanel?: React.ReactNode;
 }
 
 function WaveformBarsV1({ active, reducedMotion }: { readonly active: boolean; readonly reducedMotion: boolean }) {
@@ -104,8 +103,10 @@ function WaveformBarV1({
 
 export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModePropsV1) {
   const { theme: t } = useTheme();
+  const palette = useTournamentPalette();
   const {
     prompt,
+    interfaceLocale,
     reducedMotion,
     resolved,
     explanation,
@@ -113,11 +114,37 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     voiceStatus,
     transcript,
     instruction,
+    modePayload,
     phase,
+    referenceAudioState,
+    capturePanel,
   } = props;
+
+  if (modePayload && modePayload.family !== "scripted_repeat_compare") {
+    throw new Error("learning_v2_repeat_compare_payload_mismatch");
+  }
 
   const recording = voiceStatus === "listening";
   const requesting = voiceStatus === "requesting" || voiceStatus === "finishing";
+  const referencePlaying = referenceAudioState === "playing";
+  const referenceLoading = referenceAudioState === "loading";
+  const copy = learningV2ModeRepeatCompareCopyV1(interfaceLocale);
+  const audioPulse = useSharedValue(1);
+  useEffect(() => {
+    audioPulse.value = referencePlaying && !reducedMotion
+      ? withRepeat(
+          withSequence(
+            withTiming(1.08, { duration: 540, easing: EASE }),
+            withTiming(1, { duration: 540, easing: EASE }),
+          ),
+          -1,
+          true,
+        )
+      : withTiming(1, { duration: reducedMotion ? 1 : 140 });
+  }, [audioPulse, reducedMotion, referencePlaying]);
+  const audioPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: audioPulse.value }],
+  }));
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -132,20 +159,39 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
   useEffect(() => {
     if (!recording) return;
-    AccessibilityInfo.announceForAccessibility?.("Идёт запись");
-  }, [recording]);
+    AccessibilityInfo.announceForAccessibility?.(copy.recording);
+  }, [copy.recording, recording]);
 
   return (
     <View style={styles.root}>
+      <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
       <View style={styles.heroRow}>
-        <Text style={[styles.hero, { color: t.textPrimary }]}>{prompt}</Text>
+        <Text style={[styles.targetPhrase, { color: t.accent }]}>
+          {modePayload?.family === "scripted_repeat_compare"
+            ? modePayload.targetPhrase
+            : ""}
+        </Text>
         {onPlayFullPhraseAudio && !recording && (
-          <Animated.View
-            accessibilityLabel="Прослушать эталон"
-            style={[styles.audioBtn, { backgroundColor: t.bgSurface2 }]}
-            onTouchEnd={onPlayFullPhraseAudio}
-          >
-            <Text style={{ color: t.accent, fontSize: 14 }}>♪</Text>
+          <Animated.View style={audioPulseStyle}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={copy.listenReference}
+              accessibilityState={{ disabled: referenceLoading, busy: referenceLoading }}
+              disabled={referenceLoading}
+              hitSlop={10}
+              onPress={onPlayFullPhraseAudio}
+              style={[
+                styles.audioBtn,
+                {
+                  backgroundColor: t.bgSurface2,
+                  opacity: referenceLoading ? 0.55 : 1,
+                },
+              ]}
+            >
+              <Text style={{ color: t.accent, fontSize: 18, fontWeight: "900" }}>
+                {referencePlaying ? "Ⅱ" : "▶"}
+              </Text>
+            </Pressable>
           </Animated.View>
         )}
       </View>
@@ -156,25 +202,27 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
       {/* Capture-зона: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible). Ровно один из трёх режимов виден. */}
-      <View style={[styles.capture, { backgroundColor: t.bgCard }]}>
-        {requesting ? (
-          <Text style={[styles.captureLine, { color: t.textMuted }]}>Готовим микрофон…</Text>
-        ) : recording ? (
-          <View style={styles.recordingBlock}>
-            <View style={styles.recStatusRow}>
-              <View style={[styles.recDot, { backgroundColor: t.wrong }]} />
-              <Text style={[styles.captureLine, { color: t.textPrimary }]}>Идёт запись</Text>
+      {capturePanel ?? (
+        <V2Card style={styles.capture} pad={16}>
+          {requesting ? (
+            <Text style={[styles.captureLine, { color: t.textMuted }]}>{copy.preparingMicrophone}</Text>
+          ) : recording ? (
+            <View style={styles.recordingBlock}>
+              <View style={styles.recStatusRow}>
+                <View style={[styles.recDot, { backgroundColor: t.wrong }]} />
+                <Text style={[styles.captureLine, { color: t.textPrimary }]}>{copy.recording}</Text>
+              </View>
+              <WaveformBarsV1 active={recording} reducedMotion={reducedMotion} />
             </View>
-            <WaveformBarsV1 active={recording} reducedMotion={reducedMotion} />
-          </View>
-        ) : transcript ? (
-          <Text style={[styles.captureLine, { color: t.textPrimary }]}>{transcript}</Text>
-        ) : (
-          <Text style={[styles.captureLine, { color: t.textMuted }]}>
-            Когда будешь готов — зажми кнопку микрофона и скажи фразу
-          </Text>
-        )}
-      </View>
+          ) : transcript ? (
+            <Text style={[styles.captureLine, { color: t.textPrimary }]}>{transcript}</Text>
+          ) : (
+            <Text style={[styles.captureLine, { color: t.textMuted }]}>
+              {copy.holdMicrophone}
+            </Text>
+          )}
+        </V2Card>
+      )}
 
       {explanation && (
         <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
@@ -183,7 +231,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
       )}
       {resolved && (
         <View style={[styles.feedbackLane, { backgroundColor: t.correctBg }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>Отлично сказано!</Text>
+          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{copy.success}</Text>
         </View>
       )}
     </View>
@@ -194,8 +242,14 @@ export default ScriptedRepeatCompareModeV1;
 
 const styles = StyleSheet.create({
   root: { gap: 14 },
+  taskLabel: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: "700",
+    letterSpacing: 0.2,
+  },
   heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
-  hero: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: "800" },
+  targetPhrase: { flex: 1, fontSize: 26, lineHeight: 32, fontWeight: "900" },
   audioBtn: {
     width: 34,
     height: 34,

@@ -436,6 +436,7 @@ function NoEnergyModal({
   const recoveryTimeText = formattedTime || triLang(lang, {
     ru: 'несколько минут',
     uk: 'кілька хвилин',
+    en: 'a few minutes',
     es: 'unos minutos',
     'pt-BR': 'alguns minutos',
     vi: 'vài phút',
@@ -446,6 +447,7 @@ function NoEnergyModal({
   const defaultSubtitle = triLang(lang, {
     ru: `+1 ⚡ вернётся через ${recoveryTimeText}. Хочешь учить без остановок — это Plus.`,
     uk: `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Plus.`,
+    en: `+1 ⚡ comes back in ${recoveryTimeText}. Want to study without stopping? That's Plus.`,
     es: `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Plus.`,
     'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. Quer energia ilimitada? Experimente Plus.`,
     vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Muốn năng lượng không giới hạn? Hãy thử Plus.`,
@@ -464,6 +466,7 @@ function NoEnergyModal({
     ? triLang(lang, {
         ru: 'Недостаточно энергии',
         uk: 'Недостатньо енергії',
+        en: 'Not enough energy',
         es: 'No tienes suficiente energía',
         'pt-BR': 'Energia insuficiente',
         vi: 'Không đủ năng lượng',
@@ -474,6 +477,7 @@ function NoEnergyModal({
     : triLang(lang, {
         ru: 'Энергия закончилась',
         uk: 'Енергія закінчилась',
+        en: 'Out of energy',
         es: 'Se acabó la energía',
         'pt-BR': 'A energia acabou',
         vi: 'Hết năng lượng',
@@ -484,6 +488,7 @@ function NoEnergyModal({
   const laterLabel = triLang(lang, {
     ru: 'Позже',
     uk: 'Пізніше',
+    en: 'Later',
     es: 'Más tarde',
     'pt-BR': 'Mais tarde',
     vi: 'Để sau',
@@ -494,6 +499,7 @@ function NoEnergyModal({
   const goldCtaLabel = triLang(lang, {
     ru: 'Получить Плюс',
     uk: 'Отримати Plus',
+    en: 'Get Plus',
     es: 'Obtener Plus',
     'pt-BR': 'Obter Plus',
     vi: 'Nhận Plus',
@@ -682,6 +688,7 @@ function NoEnergyModal({
               ? triLang(lang, {
                   ru: 'Недостаточно энергии',
                   uk: 'Недостатньо енергії',
+                  en: 'Not enough energy',
                   es: 'No tienes suficiente energía',
                   'pt-BR': 'Energia insuficiente',
                   vi: 'Không đủ năng lượng',
@@ -692,6 +699,7 @@ function NoEnergyModal({
               : triLang(lang, {
                   ru: 'Энергия закончилась',
                   uk: 'Енергія закінчилась',
+                  en: 'Out of energy',
                   es: 'Se acabó la energía',
                   'pt-BR': 'A energia acabou',
                   vi: 'Hết năng lượng',
@@ -739,6 +747,7 @@ function NoEnergyModal({
                   ? triLang(lang, {
                       ru: `Восстановить за ${shardCost} ${ruKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
                       uk: `Відновити за ${shardCost} ${ukKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
+                      en: `Refill for ${shardCost} pearls`,
                       es: `Recargar por ${shardCost} perlas`,
                       'pt-BR': `Recarregar por ${shardCost} pérolas`,
                       vi: `Hồi phục với ${shardCost} ngọc`,
@@ -749,6 +758,7 @@ function NoEnergyModal({
                   : triLang(lang, {
                       ru: `Не хватает ${shardCost - shardBalance} ${ruKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
                       uk: `Не вистачає ${shardCost - shardBalance} ${ukKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
+                      en: `You need ${shardCost - shardBalance} more pearls`,
                       es: `Faltan ${shardCost - shardBalance} perlas`,
                       'pt-BR': `Faltam ${shardCost - shardBalance} pérolas`,
                       vi: `Thiếu ${shardCost - shardBalance} ngọc`,
@@ -776,6 +786,7 @@ function NoEnergyModal({
               {triLang(lang, {
                 ru: 'Позже',
                 uk: 'Пізніше',
+                en: 'Later',
                 es: 'Más tarde',
                 'pt-BR': 'Mais tarde',
                 vi: 'Để sau',

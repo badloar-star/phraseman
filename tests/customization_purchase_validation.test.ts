@@ -76,6 +76,19 @@ describe('customization purchase validation', () => {
     }), noPlus)).toBe(false);
   });
 
+  it('accepts the exact showcase avatar price and rejects the legacy flat price', () => {
+    const showcaseIntent = intent({
+      target: 'avatar',
+      itemId: 'custom-gen-63',
+      cost: 50,
+      spendReason: 'custom_avatar',
+      ownedValue: 'aurora:black',
+    });
+
+    expect(validateCustomizationPurchase(showcaseIntent, noPlus)).toBe(true);
+    expect(validateCustomizationPurchase({ ...showcaseIntent, cost: 90 }, noPlus)).toBe(false);
+  });
+
   it('does not apply a locked Plus half after access expires', () => {
     const staleApply = intent({
       target: 'avatar',

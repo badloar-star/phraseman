@@ -6,10 +6,12 @@ import {
   isRandomAvatarAuraGiftCandidate,
   readBonusEnergy,
   type GiftDef,
+  type GiftCosmeticUnlock,
 } from '../app/level_gift_system';
 import { callLevelGiftReservationAction } from '../app/community_packs/functionsClient';
 import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 import { AVATAR_AURAS, getAvatarAuraById } from '../constants/avatar_auras';
+import { CUSTOM_AVATARS, CUSTOM_AVATAR_GRADIENTS } from '../constants/custom_avatars';
 import {
   localLevelSpinReceiptToInventory,
   parseLocalPendingReveal,
@@ -20,10 +22,18 @@ import {
   LOCAL_LEVEL_SPIN_STATE_KEY,
   recoverLocalLevelSpin,
 } from '../app/local_level_spins';
-import { LEVEL_SPIN_PENDING_REVEAL_KEY } from '../app/level_up_storage_keys';
+import { LEVEL_SPIN_GIFT_JOURNAL_KEY, LEVEL_SPIN_PENDING_REVEAL_KEY } from '../app/level_up_storage_keys';
+import { readAttemptRestoreGiftCount } from '../app/session_attempts/session_attempt_restore_inventory';
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('expo-crypto', () => ({ randomUUID: jest.fn(() => '11111111-1111-4111-8111-111111111111') }));
+jest.mock('expo-crypto', () => ({
+  CryptoDigestAlgorithm: { SHA256: 'SHA256' },
+  digestStringAsync: jest.fn(async () => 'a'.repeat(64)),
+  randomUUID: jest.fn(() => '11111111-1111-4111-8111-111111111111'),
+}));
+jest.mock('../app/phone_state_economy_bridge', () => ({
+  commitPhoneStateNonMonetaryEconomyGrant: jest.fn().mockResolvedValue(false),
+}));
 jest.mock('../app/community_packs/functionsClient', () => ({
   callLevelGiftReservationAction: jest.fn(),
   callLevelSpinDeliveryAction: jest.fn(),
@@ -117,6 +127,7 @@ beforeEach(() => {
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => { storage[key] = value; });
   (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => { delete storage[key]; });
   (AsyncStorage.multiGet as jest.Mock).mockImplementation(async (keys: string[]) => keys.map((key) => [key, storage[key] ?? null]));
+  (AsyncStorage.getAllKeys as jest.Mock).mockImplementation(async () => Object.keys(storage));
   (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
     pairs.forEach(([key, value]) => { storage[key] = value; });
   });
@@ -227,6 +238,42 @@ test.each([
   expect(JSON.parse(storage[LEVEL_SPIN_PENDING_REVEAL_KEY])).toEqual({ owner: 'account-a', receipt });
 });
 
+test('ignores a valid-looking pending reveal unless every immutable field matches active authority', async () => {
+  const stateKey = `${LOCAL_LEVEL_SPIN_STATE_KEY}:account-a`;
+  const authoritative = localReceipt('local_spin_session_en-s1', 'request_authority_0001');
+  const forgedPending = {
+    ...authoritative,
+    requestId: 'request_pending_forged_0001',
+    baseGiftId: 'xp_1000',
+  };
+  storage[stateKey] = JSON.stringify(activeSpinState(authoritative));
+  storage[LEVEL_SPIN_PENDING_REVEAL_KEY] = JSON.stringify({ owner: 'account-a', receipt: forgedPending });
+
+  await expect(recoverLocalLevelSpin()).resolves.toEqual(authoritative);
+  expect(JSON.parse(storage[LEVEL_SPIN_PENDING_REVEAL_KEY])).toEqual({
+    owner: 'account-a', receipt: authoritative,
+  });
+});
+
+test('does not restore a consumed credit when an expired active receipt is already outer-claimed', async () => {
+  const stateKey = `${LOCAL_LEVEL_SPIN_STATE_KEY}:account-a`;
+  const receipt = {
+    ...localReceipt('level_spin_v1_003', 'request_expired_claimed_0001'),
+    level: 3,
+    createdAtMs: 1_700_000_000_000,
+    expiresAtMs: 1_700_259_200_000,
+  } as LocalLevelSpinReceipt;
+  storage[stateKey] = JSON.stringify(activeSpinState(receipt));
+  storage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+    owner: 'account-a', requestId: receipt.requestId, creditId: receipt.creditId, level: receipt.level,
+    receivedAtMs: receipt.createdAtMs, expiresAtMs: receipt.expiresAtMs, localOnly: true,
+    occurrences: [{ occurrenceId: `level-spin:${receipt.requestId}:base`, lane: 'base', giftId: receipt.baseGiftId, claimed: true }],
+  }]);
+
+  await expect(recoverLocalLevelSpin()).resolves.toBeNull();
+  expect(JSON.parse(storage[stateKey])).toMatchObject({ activeReceipt: null, credits: [] });
+});
+
 test.each([
   ['local_spin_session_en-s1', 'request_foreign_session_01'],
   ['local_spin_arena_ranked_match-42', 'request_foreign_arena_001'],
@@ -333,6 +380,50 @@ test('random cosmetic selection is replayed for the same occurrence instead of u
   expect(Object.keys(JSON.parse(storage.custom_avatar_owned_v1))).toHaveLength(2);
 });
 
+test('spin avatar gift can select the full custom-gen pool and a retry does not unlock a second avatar', async () => {
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === 'cosmetic_avatar_common')!;
+  const opts = {
+    accountToken: captureAccountGeneration(),
+    occurrenceId: 'level-spin:avatar-request-0001:base',
+    localOnly: true as const,
+  };
+  const random = jest.spyOn(Math, 'random').mockReturnValue(0.999999);
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
+    success: true,
+    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-125' },
+  });
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
+    success: true,
+    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-125' },
+  });
+  expect(Object.keys(JSON.parse(storage.custom_avatar_owned_v1))).toEqual(['custom-gen-125']);
+  expect(random).toHaveBeenCalledTimes(3);
+});
+
+test('spin second-chance gift stays permanently in inventory and a retry cannot credit it twice', async () => {
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === 'attempt_restore_all')!;
+  const accountToken = captureAccountGeneration();
+  const firstOccurrence = {
+    accountToken,
+    occurrenceId: 'level-spin:attempt-restore-request-0001:base',
+    localOnly: true as const,
+  };
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), firstOccurrence))
+    .resolves.toEqual({ success: true });
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), firstOccurrence))
+    .resolves.toEqual({ success: true });
+  await expect(readAttemptRestoreGiftCount(accountToken)).resolves.toBe(1);
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), {
+    ...firstOccurrence,
+    occurrenceId: 'level-spin:attempt-restore-request-0002:base',
+  })).resolves.toEqual({ success: true });
+  await expect(readAttemptRestoreGiftCount(accountToken)).resolves.toBe(2);
+  expect(Object.values(storage).join('\n')).not.toContain('expiresAtMs');
+});
+
 test('random aura eligibility excludes access, reward, retired, level-gated and already-owned auras', () => {
   const ordinary = getAvatarAuraById('aura-still-halo')!;
   expect(isRandomAvatarAuraGiftCandidate(ordinary, {})).toBe(true);
@@ -376,6 +467,164 @@ test('aura selection is durably fixed before ownership and replay grants only th
   expect(random).toHaveBeenCalledTimes(1);
 });
 
+test.each([
+  ['cosmetic_avatar_aura', 'avatar_aura_owned_v1', 'aura'],
+  ['cosmetic_avatar_common', 'custom_avatar_owned_v1', 'customAvatar'],
+  ['cosmetic_theme', 'owned_theme_modes_v1', 'theme'],
+] as const)('%s replays the exact cosmetic after ownership persisted but receipt finalization failed', async (
+  giftId, ownershipKey, receiptField,
+) => {
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === giftId)!;
+  const opts = {
+    accountToken: captureAccountGeneration(),
+    occurrenceId: `level-spin:post-ownership-${giftId}-0001:base`,
+    localOnly: true as const,
+  };
+  jest.spyOn(Math, 'random').mockReturnValue(0);
+  let rejectFinalReceiptOnce = true;
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    if (key === 'level_gift_effect_receipts_v1'
+      && value.includes('"status":"applied_unconfirmed"')
+      && rejectFinalReceiptOnce) {
+      rejectFinalReceiptOnce = false;
+      throw new Error('crash after cosmetic ownership');
+    }
+    storage[key] = value;
+  });
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toEqual({ success: false });
+  const prepared = JSON.parse(storage.level_gift_effect_receipts_v1) as Record<string, Record<string, unknown>>;
+  const selected = Object.values(prepared)[0]![receiptField] as GiftCosmeticUnlock;
+  expect(selected?.id).toBeTruthy();
+  expect(storage[ownershipKey]).toContain(selected.id);
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
+    success: true,
+    cosmeticUnlocked: { kind: selected.kind, id: selected.id },
+  });
+  expect(storage[ownershipKey]).toContain(selected.id);
+  expect(xpManager.registerXP).not.toHaveBeenCalled();
+});
+
+test.each(['{bad', '[]', '{"entry":{"giftId":"xp_250","status":"bogus"}}'])
+('malformed effect receipt authority fails closed without overwrite: %s', async (raw) => {
+  storage.level_gift_effect_receipts_v1 = raw;
+  const before = storage.level_gift_effect_receipts_v1;
+  await expect(applyGift(
+    ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === 'cosmetic_avatar_common')!,
+    'TestUser', 3, 5, jest.fn(), {
+      accountToken: captureAccountGeneration(),
+      occurrenceId: 'level-spin:malformed-effect-receipt-0001:base',
+      localOnly: true,
+    },
+  )).resolves.toEqual({ success: false });
+  expect(storage.level_gift_effect_receipts_v1).toBe(before);
+  expect(storage.custom_avatar_owned_v1).toBeUndefined();
+});
+
+test.each([
+  ['unknown avatar', 'cosmetic_avatar_common', 'customAvatar', {
+    kind: 'avatar', id: 'not-a-real-avatar', gradientId: CUSTOM_AVATAR_GRADIENTS[0]!.id,
+    logoColor: 'black', labelRu: 'x', labelUk: 'x', labelEs: 'x',
+  }],
+  ['unknown aura', 'cosmetic_avatar_aura', 'aura', {
+    kind: 'aura', id: 'not-a-real-aura', labelRu: 'x', labelUk: 'x', labelEs: 'x',
+  }],
+  ['unknown theme', 'cosmetic_theme', 'theme', {
+    kind: 'theme', id: 'not-a-real-theme', labelRu: 'x', labelUk: 'x', labelEs: 'x',
+  }],
+  ['unknown gradient', 'cosmetic_avatar_common', 'customAvatar', {
+    kind: 'avatar', id: CUSTOM_AVATARS[0]!.id, gradientId: 'not-a-real-gradient',
+    logoColor: 'black', labelRu: 'x', labelUk: 'x', labelEs: 'x',
+  }],
+  ['gift/payload mismatch', 'cosmetic_theme', 'aura', {
+    kind: 'aura', id: AVATAR_AURAS[0]!.id, labelRu: 'x', labelUk: 'x', labelEs: 'x',
+  }],
+] as const)('rejects adversarial effect receipt semantic: %s', async (_label, giftId, field, payload) => {
+  const occurrenceId = `level-spin:semantic-${giftId}-0001:base`;
+  const slot = field === 'aura' ? 'aura' : field === 'theme' ? 'theme'
+    : field === 'customAvatar' ? 'custom_avatar' : 'primary';
+  const occurrenceKey = `account-a:${occurrenceId}:${giftId}:${slot}`;
+  const raw = JSON.stringify({
+    [occurrenceKey]: { giftId, status: 'prepared', [field]: payload },
+  });
+  storage.level_gift_effect_receipts_v1 = raw;
+
+  await expect(applyGift(
+    ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === giftId)!,
+    'TestUser', 3, 5, jest.fn(), {
+      accountToken: captureAccountGeneration(), occurrenceId, localOnly: true,
+    },
+  )).resolves.toEqual({ success: false });
+  expect(storage.level_gift_effect_receipts_v1).toBe(raw);
+  expect(storage.custom_avatar_owned_v1).toBeUndefined();
+  expect(storage.avatar_aura_owned_v1).toBeUndefined();
+  expect(storage.owned_theme_modes_v1).toBeUndefined();
+});
+
+const validEffectSlotFixtures = [
+  ['cosmetic_avatar_aura', 'aura', {
+    aura: { kind: 'aura', id: AVATAR_AURAS[0]!.id, labelRu: 'x', labelUk: 'x', labelEs: 'x' },
+  }],
+  ['cosmetic_theme', 'theme', {
+    theme: { kind: 'theme', id: 'midnight', labelRu: 'x', labelUk: 'x', labelEs: 'x' },
+  }],
+  ['cosmetic_avatar_common', 'custom_avatar', {
+    customAvatar: {
+      kind: 'avatar', id: CUSTOM_AVATARS[0]!.id, gradientId: CUSTOM_AVATAR_GRADIENTS[0]!.id,
+      logoColor: 'black', labelRu: 'x', labelUk: 'x', labelEs: 'x',
+    },
+  }],
+  ['energy_plus1', 'primary', {
+    energyBonus: { amount: 1, expiresAt: 1_900_000_000_000, energyTarget: 3, energyBoostAlreadyActive: false },
+  }],
+] as const;
+
+test.each(validEffectSlotFixtures)('accepts valid historical %s receipt in %s slot', async (
+  giftId, slot, payload,
+) => {
+  const occurrenceId = `level-spin:valid-slot-${giftId}-0001:base`;
+  storage.level_gift_effect_receipts_v1 = JSON.stringify({
+    [`account-a:${occurrenceId}:${giftId}:${slot}`]: { giftId, status: 'applied', ...payload },
+  });
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === giftId)!;
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), {
+    accountToken: captureAccountGeneration(), occurrenceId, localOnly: true,
+  })).resolves.toMatchObject({ success: true });
+});
+
+test.each(validEffectSlotFixtures)('rejects valid %s payload from a wrong receipt slot', async (
+  giftId, slot, payload,
+) => {
+  const occurrenceId = `level-spin:wrong-slot-${giftId}-0001:base`;
+  const wrongSlot = slot === 'primary' ? 'aura' : 'primary';
+  const raw = JSON.stringify({
+    [`account-a:${occurrenceId}:${giftId}:${wrongSlot}`]: { giftId, status: 'applied', ...payload },
+  });
+  storage.level_gift_effect_receipts_v1 = raw;
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === giftId)!;
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), {
+    accountToken: captureAccountGeneration(), occurrenceId, localOnly: true,
+  })).resolves.toEqual({ success: false });
+  expect(storage.level_gift_effect_receipts_v1).toBe(raw);
+});
+
+test('fallback energy grants serialize an expired snapshot and preserve both concurrent amounts', async () => {
+  const token = captureAccountGeneration();
+  const scopedBonusKey = Object.keys(storage).find((key) => key.includes('energy_gift_bonus'))
+    ?? `energy_gift_bonus::uid:${token.stableId}`;
+  storage[scopedBonusKey] = JSON.stringify({ amount: 2, expiresAt: Date.now() - 1 });
+  const plus1 = GIFT_POOL.find((item) => item.id === 'energy_plus1')!;
+  const plus2 = GIFT_POOL.find((item) => item.id === 'energy_plus2')!;
+
+  await Promise.all([
+    applyGift(plus1, 'TestUser', 3, 5, jest.fn(), { isPremium: false }),
+    applyGift(plus2, 'TestUser', 3, 5, jest.fn(), { isPremium: false }),
+  ]);
+
+  await expect(readBonusEnergy(token)).resolves.toMatchObject({ amount: 3 });
+});
+
 test('all-owned ordinary aura pool keeps the deterministic 350 XP fallback', async () => {
   storage.avatar_aura_owned_v1 = JSON.stringify(Object.fromEntries(
     AVATAR_AURAS.filter((aura) => isRandomAvatarAuraGiftCandidate(aura, {})).map((aura) => [aura.id, true]),
@@ -394,6 +643,46 @@ test('all-owned ordinary aura pool keeps the deterministic 350 XP fallback', asy
     undefined,
     expect.any(Object),
   );
+});
+
+test.each([
+  ['cosmetic_avatar_aura', 'avatar_aura_owned_v1', 'aura'],
+  ['cosmetic_avatar_common', 'custom_avatar_owned_v1', 'customAvatar'],
+  ['cosmetic_theme', 'owned_theme_modes_v1', 'theme'],
+] as const)('stale %s receipt turns malformed ownership into a durable null fallback without overwriting it', async (
+  giftId, ownershipKey, receiptField,
+) => {
+  storage[ownershipKey] = '{bad';
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === giftId)!;
+  const opts = {
+    accountToken: captureAccountGeneration(),
+    occurrenceId: `level-spin:malformed-${giftId}-0001:base`,
+    localOnly: true as const,
+  };
+
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toEqual({ success: true });
+  expect(storage[ownershipKey]).toBe('{bad');
+  const receipts = JSON.parse(storage.level_gift_effect_receipts_v1) as Record<string, Record<string, unknown>>;
+  expect(Object.values(receipts)[0]?.[receiptField]).toBeNull();
+  expect(xpManager.registerXP).toHaveBeenCalledWith(
+    350, 'achievement_reward', 'TestUser', 'ru', undefined, expect.any(Object),
+  );
+});
+
+test('transient cosmetic ownership read failure leaves the occurrence pending for retry', async () => {
+  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === 'cosmetic_avatar_aura')!;
+  const normalGet = AsyncStorage.getItem as jest.Mock;
+  normalGet.mockImplementation(async (key: string) => {
+    if (key === 'avatar_aura_owned_v1') throw new Error('temporary storage failure');
+    return storage[key] ?? null;
+  });
+  await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), {
+    accountToken: captureAccountGeneration(),
+    occurrenceId: 'level-spin:aura-read-failed-0001:base',
+    localOnly: true,
+  })).resolves.toEqual({ success: false });
+  expect(storage.level_gift_effect_receipts_v1).toBeUndefined();
+  expect(xpManager.registerXP).not.toHaveBeenCalled();
 });
 
 test('energy bonus is persistent by stable UID without leaking across A to B to A', async () => {
@@ -484,7 +773,7 @@ test('energy_full does not refill again after an outer-journal crash when energy
   expect(setEnergy).toHaveBeenCalledTimes(1);
 });
 
-test('energy_plus derives its prepared target from persisted energy_state instead of stale UI energy', async () => {
+test('energy_plus fills only the temporary pool without inflating persisted base energy', async () => {
   storage.energy_state = JSON.stringify({ current: 4, lastRecoveryTime: 321 });
   (callLevelGiftReservationAction as jest.Mock)
     .mockResolvedValueOnce({ status: 'acquired' })
@@ -501,8 +790,9 @@ test('energy_plus derives its prepared target from persisted energy_state instea
   await expect(applyGift(gift, 'TestUser', 1, 5, setEnergy, {
     accountToken: captureAccountGeneration(), occurrenceId: 'level:12:f2p', studyTarget: 'en',
   })).resolves.toEqual(expect.objectContaining({ success: true }));
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 6, lastRecoveryTime: 321 });
-  expect(setEnergy).toHaveBeenCalledWith(6);
+  expect(JSON.parse(storage.energy_state)).toEqual({ current: 4, lastRecoveryTime: 321 });
+  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ amount: 2 });
+  expect(setEnergy).toHaveBeenCalledWith(4);
 });
 
 test('wager one-use gifts preserve distinct occurrences without duplicating a retry', async () => {

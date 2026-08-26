@@ -19,7 +19,9 @@ describe('MAX voice consent contract', () => {
     for (const locale of ['ru:', 'uk:', 'es:', "'pt-BR':", 'vi:', 'id:', 'tr:', 'pl:']) {
       expect(source).toContain(locale);
     }
-    expect(source).toContain('Аудио и полный текст разговора не сохраняются');
+    expect(source).toContain('Это диалог с искусственным интеллектом, который обрабатывает ваш голос.');
+    expect(source).not.toContain('сохраняются');
+    expect(source).not.toContain('не сохраняются');
   });
 
   test('hydrates before the first MAX entry', () => {

@@ -135,7 +135,7 @@ function PersonalPlanCompleteScreen() {
           кнопками не влезала и обрезалась, а доскроллить было нечем. Скролл с
           flexGrow:1 сохраняет центрирование на больших экранах, bounces
           оставляет то же ощущение резинки. */}
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         style={styles.safeScroll}
         contentContainerStyle={[styles.safeContent, { paddingTop: insets.top }]}
         showsVerticalScrollIndicator={false}

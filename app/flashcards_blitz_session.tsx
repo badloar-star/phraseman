@@ -28,8 +28,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useEnergy } from '../components/EnergyContext';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, {
@@ -58,7 +60,6 @@ import {
   BLITZ_ADVANCE_OK_MS,
   BLITZ_ADVANCE_WRONG_MS,
   BLITZ_DURATION_SEC,
-  BLITZ_LIVES,
   applyBlitzAnswer,
   canStartBlitz,
   buildBlitzQuestion,
@@ -75,6 +76,10 @@ import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
 import { safeRouterBack } from './navigation_back';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { captureAccountGeneration } from './account_generation';
+import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
 const ACCENT = '#FF8A3D';
@@ -108,6 +113,7 @@ export default function FlashcardsBlitzSession() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{ deck?: string }>();
 
@@ -133,8 +139,24 @@ export default function FlashcardsBlitzSession() {
   // Старт/рестарт блиц-раунда = 1 ⚡ за попытку (владелец 2026-08-23: единая
   // экономика). Гейт стоит ДО эффекта старта раунда ниже — раунд не запускается,
   // пока энергия не подтверждена.
-  const { isUnlimited: blitzEnergyUnlimited, confirmSpendOne: confirmBlitzEnergy } = useEnergy();
+  const {
+    isUnlimited: blitzEnergyUnlimited,
+    confirmSpendOne: confirmBlitzEnergy,
+    acknowledgeSessionStart,
+  } = useEnergy();
+  const blitzEnergyIntent = useEnergySessionIntent(
+    'flashcards_blitz',
+    deckParamStr ?? 'saved',
+    `${feedbackAttemptId}:${roundId}`,
+  );
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
+  const accountToken = useMemo(() => captureAccountGeneration(), []);
+  const attempts = useSessionAttempts({
+    token: accountToken,
+    sessionId: `flashcard-blitz:${feedbackAttemptId}:${roundId}`,
+    initialQuestionId: `flashcard-blitz:${roundId}:loading`,
+  });
+  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
 
   const queueRef = useRef<DeckCard[]>([]);
   const qIdxRef = useRef(0);
@@ -145,6 +167,8 @@ export default function FlashcardsBlitzSession() {
   const finishingRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timersRef = useRef<Array<ReturnType<typeof setTimeout>>>([]);
+  const pausedRemainingMsRef = useRef(BLITZ_DURATION_SEC * 1000);
+  const answerSequenceRef = useRef(0);
   /**
    * Лучший результат до текущего раунда. Читаем один раз на входе, чтобы финал
    * знал ответ мгновенно и подпись результата не «моргала» задним числом.
@@ -160,12 +184,11 @@ export default function FlashcardsBlitzSession() {
   const simpleMotionRef = useRef(simpleMotion);
   simpleMotionRef.current = simpleMotion;
 
-  // Reanimated: таймер-полоса (scaleX, origin слева), бейдж комбо, очки, сердечки
+  // Reanimated: таймер-полоса (scaleX, origin слева), бейдж комбо и очки.
   const progress = useSharedValue(1);
   const comboScale = useSharedValue(0);
   const scoreScale = useSharedValue(1);
   const gainAnim = useSharedValue(0);
-  const heartsShake = useSharedValue(0);
 
   const timerBarStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: progress.value }] }));
   const comboStyle = useAnimatedStyle(() => ({ transform: [{ scale: comboScale.value }] }));
@@ -174,7 +197,6 @@ export default function FlashcardsBlitzSession() {
     opacity: 1 - gainAnim.value,
     transform: [{ translateY: -14 * gainAnim.value }],
   }));
-  const heartsStyle = useAnimatedStyle(() => ({ transform: [{ translateX: heartsShake.value }] }));
 
   const clearRoundTimers = useCallback(() => {
     if (intervalRef.current) {
@@ -257,6 +279,32 @@ export default function FlashcardsBlitzSession() {
       .catch(() => {});
   }, [clearRoundTimers, progress]);
 
+  const pauseBlitzCountdown = useCallback(() => {
+    pausedRemainingMsRef.current = Math.max(0, endAtRef.current - Date.now());
+    clearRoundTimers();
+    cancelAnimation(progress);
+    setTimeLeft(Math.max(0, Math.ceil(pausedRemainingMsRef.current / 1000)));
+  }, [clearRoundTimers, progress]);
+
+  const resumeBlitzCountdown = useCallback(() => {
+    const remainingMs = Math.max(0, pausedRemainingMsRef.current);
+    if (remainingMs <= 0) {
+      finish();
+      return;
+    }
+    clearRoundTimers();
+    endAtRef.current = Date.now() + remainingMs;
+    setTimeLeft(Math.ceil(remainingMs / 1000));
+    progress.value = Math.min(1, remainingMs / (BLITZ_DURATION_SEC * 1000));
+    progress.value = withTiming(0, { duration: remainingMs, easing: Easing.linear });
+    intervalRef.current = setInterval(() => {
+      const remainder = endAtRef.current - Date.now();
+      const seconds = Math.max(0, Math.ceil(remainder / 1000));
+      setTimeLeft((current) => (current === seconds ? current : seconds));
+      if (remainder <= 0) finish();
+    }, 200);
+  }, [clearRoundTimers, finish, progress]);
+
   // Ровно одно списание на каждый roundId (первый заход и каждый рестарт «Ещё
   // разок»). Пока не решено — стартовый эффект ниже ждёт (см. energyGate).
   //
@@ -282,16 +330,17 @@ export default function FlashcardsBlitzSession() {
     blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
     let cancelled = false;
-    void confirmBlitzEnergy().then((result) => {
+    void confirmBlitzEnergy(blitzEnergyIntent).then((result) => {
       if (cancelled) return;
       if (result === 'cancelled') {
         safeRouterBack(router, '/flashcards' as never);
         return;
       }
+      if (result === 'spent') void acknowledgeSessionStart(blitzEnergyIntent.operationId);
       setEnergyGate(result === 'insufficient' ? 'denied' : 'ok');
     });
     return () => { cancelled = true; };
-  }, [loading, pool.length, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, router]);
+  }, [acknowledgeSessionStart, blitzEnergyIntent, loading, pool.length, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, router]);
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {
@@ -300,6 +349,9 @@ export default function FlashcardsBlitzSession() {
     eventsRef.current = [];
     queueRef.current = shuffleArr(pool);
     qIdxRef.current = 0;
+    answerSequenceRef.current = 0;
+    pausedRemainingMsRef.current = BLITZ_DURATION_SEC * 1000;
+    setShowAttemptsModal(false);
     const init = initialBlitzState();
     blitzRef.current = init;
     setBlitz(init);
@@ -363,6 +415,11 @@ export default function FlashcardsBlitzSession() {
     shownAtRef.current = Date.now();
   }, [pool]);
 
+  useEffect(() => {
+    if (!question) return;
+    attempts.updateQuestion(`flashcard-blitz:${roundId}:${qIdxRef.current}:${question.card.id}`);
+  }, [attempts.updateQuestion, question, roundId]);
+
   // ── Ответ (реюз механики арены: подсветка + лок + автопереход) ────────────
   const pick = useCallback(
     (optIdx: number) => {
@@ -383,7 +440,19 @@ export default function FlashcardsBlitzSession() {
         ms: Date.now() - shownAtRef.current,
       });
 
-      const { state, gained, comboHit, outOfLives } = applyBlitzAnswer(blitzRef.current, isOk);
+      const answerAttemptId = [
+        'flashcard-blitz',
+        roundId,
+        qIdxRef.current,
+        question.card.id,
+        answerSequenceRef.current++,
+      ].join(':');
+      const attemptEffect = attempts.registerVerdict({
+        answerAttemptId,
+        verdict: isOk ? 'correct' : 'pedagogical_wrong',
+      });
+
+      const { state, gained, comboHit } = applyBlitzAnswer(blitzRef.current, isOk);
       blitzRef.current = state;
       setBlitz(state);
 
@@ -438,25 +507,55 @@ export default function FlashcardsBlitzSession() {
         playSfx('incorrect');
         fcHaptic('wrong');
         comboScale.value = withTiming(0, { duration: 150 });
-        // −жизнь: тряска ряда сердечек 3×80мс (паттерн сундуков §4)
-        heartsShake.value = withSequence(
-          withTiming(-5, { duration: 40 }),
-          withTiming(5, { duration: 80 }),
-          withTiming(-5, { duration: 80 }),
-          withTiming(0, { duration: 60 }),
-        );
       }
 
-      if (outOfLives) {
-        timersRef.current.push(setTimeout(finish, 600));
+      if (attemptEffect === 'attempts_exhausted') {
+        pauseBlitzCountdown();
+        timersRef.current.push(setTimeout(
+          () => setShowAttemptsModal(true),
+          SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
+        ));
         return;
       }
       timersRef.current.push(
         setTimeout(nextQuestion, isOk ? BLITZ_ADVANCE_OK_MS : BLITZ_ADVANCE_WRONG_MS),
       );
     },
-    [locked, question, finish, nextQuestion, comboScale, scoreScale, gainAnim, heartsShake, pool, roundId, studyTarget],
+    [
+      attempts.registerVerdict,
+      comboScale,
+      gainAnim,
+      locked,
+      nextQuestion,
+      pauseBlitzCountdown,
+      pool,
+      question,
+      roundId,
+      scoreScale,
+      studyTarget,
+    ],
   );
+
+  const recoverBlitzAttempts = useCallback(async (source: 'gift' | 'runes') => {
+    try {
+      if (source === 'gift') await attempts.recoverWithGift();
+      else await attempts.recoverWithRunes();
+      setShowAttemptsModal(false);
+      setBtnStates(IDLE_BTNS);
+      setLocked(false);
+      shownAtRef.current = Date.now();
+      resumeBlitzCountdown();
+    } catch {
+      // Shared modal keeps the current question paused and exposes the error
+      // through its disabled/resource state. No progress or timer is lost.
+    }
+  }, [attempts.recoverWithGift, attempts.recoverWithRunes, resumeBlitzCountdown]);
+
+  const endExhaustedBlitz = useCallback(() => {
+    attempts.endAttemptsSession();
+    setShowAttemptsModal(false);
+    finish();
+  }, [attempts.endAttemptsSession, finish]);
 
   const leave = useCallback(() => {
     fcHaptic('tap');
@@ -580,6 +679,7 @@ export default function FlashcardsBlitzSession() {
       triLang(lang, {
         ru: 'Выбрать наборы',
         uk: 'Обрати набори',
+        en: 'Choose packs',
         es: 'Elegir packs',
         'pt-BR': 'Escolher pacotes',
         vi: 'Chọn bộ thẻ',
@@ -592,7 +692,7 @@ export default function FlashcardsBlitzSession() {
 
   const deckTitle = useMemo(() => {
     if (deckRefs.length === 0) return triLang(lang, {
-      ru: 'Все карточки', uk: 'Усі картки', es: 'Todas las tarjetas',
+      ru: 'Все карточки', uk: 'Усі картки', en: 'All cards', es: 'Todas las tarjetas',
       'pt-BR': 'Todos os cartões', vi: 'Tất cả thẻ', id: 'Semua kartu',
       tr: 'Tüm kartlar', pl: 'Wszystkie fiszki',
     });
@@ -602,15 +702,15 @@ export default function FlashcardsBlitzSession() {
     }
     const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, {
-      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
+      ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
     });
     if (deckRef.kind === 'pack') return triLang(lang, {
-      ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
+      ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
       vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
     });
     return triLang(lang, {
-      ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas', 'pt-BR': 'Salvos',
+      ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
       vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
     });
   }, [deckRefs, lang]);
@@ -635,18 +735,14 @@ export default function FlashcardsBlitzSession() {
               <View style={{ alignItems: 'center', gap: 4 }}>
                 <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
                   {triLang(lang, {
-                    ru: 'Блиц', uk: 'Бліц', es: 'Blitz', 'pt-BR': 'Blitz',
+                    ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
                     vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
                   })}
                 </Text>
                 <SkeletonBlock width={120} height={f.caption} />
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <View style={styles.livesRow}>
-                  {Array.from({ length: BLITZ_LIVES }, (_, i) => (
-                    <Ionicons key={i} name="heart" size={18} color={BAD} />
-                  ))}
-                </View>
+                <SessionAttemptsHud remaining={3} locale={lang} testID="fc-blitz-attempts-loading" />
                 <View style={{ padding: 4 }}>
                   <Ionicons name="albums-outline" size={20} color={t.textMuted} />
                 </View>
@@ -687,9 +783,10 @@ export default function FlashcardsBlitzSession() {
         xpGained={0}
         learnLeft={0}
         onRetryWrong={restart}
+        feedback={{ entityId: `${feedbackAttemptId}:blitz:${roundId}:${deckParamStr || 'all'}`, entityLabel: 'Блиц' }}
         retryShowsEnergyCost
         retryLabel={triLang(lang, {
-          ru: 'Ещё разок!', uk: 'Ще разок!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',
+          ru: 'Ещё разок!', uk: 'Ще разок!', en: 'One more!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',
           vi: 'Chơi lại!', id: 'Sekali lagi!', tr: 'Bir daha!', pl: 'Jeszcze raz!',
         })}
         scoreText={
@@ -702,6 +799,7 @@ export default function FlashcardsBlitzSession() {
             ? triLang(lang, {
                 ru: `Новый рекорд! ${result.score}`,
                 uk: `Новий рекорд! ${result.score}`,
+                en: `New record! ${result.score}`,
                 es: `¡Nuevo récord! ${result.score}`,
                 'pt-BR': `Novo recorde! ${result.score}`,
                 vi: `Kỷ lục mới! ${result.score}`,
@@ -712,6 +810,7 @@ export default function FlashcardsBlitzSession() {
             : triLang(lang, {
                 ru: `Счёт: ${result.score} · рекорд: ${result.best}`,
                 uk: `Рахунок: ${result.score} · рекорд: ${result.best}`,
+                en: `Score: ${result.score} · record: ${result.best}`,
                 es: `Puntos: ${result.score} · récord: ${result.best}`,
                 'pt-BR': `Pontos: ${result.score} · recorde: ${result.best}`,
                 vi: `Điểm: ${result.score} · kỷ lục: ${result.best}`,
@@ -747,6 +846,7 @@ export default function FlashcardsBlitzSession() {
                 {triLang(lang, {
                   ru: 'Блиц',
                   uk: 'Бліц',
+                  en: 'Blitz',
                   es: 'Blitz',
                   'pt-BR': 'Blitz',
                   vi: 'Blitz',
@@ -763,6 +863,7 @@ export default function FlashcardsBlitzSession() {
                 {triLang(lang, {
                   ru: 'Здесь пока нечего играть — выберите наборы',
                   uk: 'Тут поки нема у що грати — оберіть набори',
+                  en: 'Nothing to play here yet — pick some packs',
                   es: 'Aún no hay nada que jugar: elige los packs',
                   'pt-BR': 'Ainda não há o que jogar: escolha os pacotes',
                   vi: 'Chưa có gì để chơi — hãy chọn bộ thẻ',
@@ -810,7 +911,7 @@ export default function FlashcardsBlitzSession() {
             <View style={{ alignItems: 'center' }}>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
                 {triLang(lang, {
-                  ru: 'Блиц', uk: 'Бліц', es: 'Blitz', 'pt-BR': 'Blitz',
+                  ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
                   vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
                 })}
               </Text>
@@ -819,16 +920,11 @@ export default function FlashcardsBlitzSession() {
               </Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              <Reanimated.View style={[styles.livesRow, heartsStyle]} testID="fc-blitz-lives">
-                {Array.from({ length: BLITZ_LIVES }, (_, i) => (
-                  <Ionicons
-                    key={i}
-                    name={i < blitz.lives ? 'heart' : 'heart-outline'}
-                    size={18}
-                    color={i < blitz.lives ? BAD : t.textGhost}
-                  />
-                ))}
-              </Reanimated.View>
+              <SessionAttemptsHud
+                remaining={attempts.state.remainingAttempts}
+                locale={lang}
+                testID="fc-blitz-attempts"
+              />
               {/* §6: выбор и отметка наборов — мультивыбор, как в тренировке и слушании */}
               <TouchableOpacity
                 testID="fc-blitz-pick-decks"
@@ -853,7 +949,7 @@ export default function FlashcardsBlitzSession() {
                   dataText={`EN: ${question.card.en}
 RU: ${question.card.translation}`}
                   variant="icon-flag"
-                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', en: 'Report an error in the card', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
                   testID="fc-blitz-report"
                 />
               ) : null}
@@ -916,7 +1012,10 @@ RU: ${question.card.translation}`}
           <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
             <View style={[styles.questionBox, { backgroundColor: t.bgCard }]}>
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginBottom: 6 }}>
-                {triLang(lang, { ru: 'Выбери перевод', uk: 'Обери переклад', es: 'Elige la traducción' })}
+                {triLang(lang, {
+                  ru: 'Выбери перевод', uk: 'Обери переклад', en: 'Choose the translation', es: 'Elige la traducción',
+                  'pt-BR': 'Escolha a tradução', vi: 'Chọn bản dịch', id: 'Pilih terjemahan', tr: 'Çeviriyi seç', pl: 'Wybierz tłumaczenie',
+                })}
               </Text>
               <Text
                 testID="fc-blitz-question"
@@ -959,6 +1058,16 @@ RU: ${question.card.translation}`}
         {deckPickerSheet}
       </SafeAreaView>
       <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} />
+      <SessionAttemptsRecoveryModal
+        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
+        locale={lang}
+        giftCount={attempts.giftCount}
+        runeBalance={attempts.runeBalance ?? 0}
+        busy={attempts.recoveryBusy}
+        onUseGift={() => { void recoverBlitzAttempts('gift'); }}
+        onSpendRunes={() => { void recoverBlitzAttempts('runes'); }}
+        onEndSession={endExhaustedBlitz}
+      />
     </ScreenGradient>
   );
 }
@@ -972,7 +1081,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   headerTitle: { fontWeight: '700' },
-  livesRow: { flexDirection: 'row', alignItems: 'center', gap: 3, minWidth: 66, justifyContent: 'flex-end' },
   timerTrack: {
     height: 6,
     borderRadius: 3,

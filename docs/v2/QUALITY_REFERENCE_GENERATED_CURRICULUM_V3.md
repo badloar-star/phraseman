@@ -7,6 +7,10 @@
 > прочитать [`LEARNING_CONTENT_STYLE_BIBLE.ru.md`](./LEARNING_CONTENT_STYLE_BIBLE.ru.md).
 > Quality Reference оценивает педагогический результат, а Style Bible задаёт
 > неизменный голос, locale-native авторство и известные классы регрессий.
+> Также обязателен
+> [`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`](./MODE_NATIVE_AUTHORING_CONTRACT.ru.md):
+> качество задания оценивается только внутри реальной approved mechanic и её
+> exact owner-макета, а не по строке `family`.
 
 ## 1. Роль этого документа
 
@@ -332,6 +336,17 @@ lesson objective component × session
 # 8. ACTIVITY QUALITY
 
 Activity mechanics определяются продуктовой системой; Quality Reference оценивает качество конкретного наполнения.
+
+## TASK-Q0 — Mode-native integrity и mockup parity
+
+Каждое задание должно иметь versioned family-native payload выбранного из семи
+approved режимов и материализоваться в learner bundle без generic-подмены.
+Интерфейс, состояния, gestures, audio, feedback и motion должны совпадать с
+каноническим owner HTML 1:1. BLOCKER независимо от среднего score:
+отсутствующий payload/audio, single-choice вместо pair grid, три произвольных
+варианта вместо A/B sound contrast, hold-to-talk/binary substitute вместо
+repeat-and-compare, WIP renderer или красивый demo, собранный не из настоящего
+source.
 
 ## TASK-Q1 — Construct alignment
 

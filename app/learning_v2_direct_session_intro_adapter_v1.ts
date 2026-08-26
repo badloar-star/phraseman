@@ -10,6 +10,7 @@ import {
   getLearningV2CourseSessionIntroPageV1,
 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
+import { stableShuffleLearningV2OptionsV1 } from "../modules/learning-v2/runtime/stable_option_shuffle_v1";
 
 const locales = [
   "ru",
@@ -57,10 +58,23 @@ export function adaptLearningV2DirectSessionIntroV1(
       run,
       pageOrdinal as 1 | 2 | 3,
     );
+    const choiceOrder = stableShuffleLearningV2OptionsV1(
+      page.question.interactionId,
+      Object.freeze([
+        { responseId: "source-choice-0", sourceIndex: 0 as const },
+        { responseId: "source-choice-1", sourceIndex: 1 as const },
+        { responseId: "source-choice-2", sourceIndex: 2 as const },
+      ]),
+    );
     const choicesByLocale = Object.fromEntries(
       locales.map((locale) => [
         locale,
-        Object.freeze([...page.question.choicesByLocale[locale]]),
+        Object.freeze(
+          choiceOrder.map(
+            ({ sourceIndex }) =>
+              page.question.choicesByLocale[locale][sourceIndex]!,
+          ),
+        ),
       ]),
     ) as LearningV2EmbeddedIntroQuestion["choicesByLocale"];
     const promptByLocale = Object.freeze({
@@ -78,7 +92,13 @@ export function adaptLearningV2DirectSessionIntroV1(
       questionId: page.question.interactionId,
       promptByLocale,
       choicesByLocale: Object.freeze(choicesByLocale),
-      correctChoiceIndex: 0 as const,
+      // Session 1's reviewed source marks the accepted intro option as source
+      // index 0. The evaluator still owns correctness; this index only keeps
+      // the legacy fallback and accessibility state aligned with the visible
+      // deterministic permutation.
+      correctChoiceIndex: choiceOrder.findIndex(
+        ({ sourceIndex }) => sourceIndex === 0,
+      ) as 0 | 1 | 2,
       explanationByLocale: Object.freeze({ ...explanation }),
     });
     const localizedLines = Object.fromEntries(

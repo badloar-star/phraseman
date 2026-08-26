@@ -59,7 +59,7 @@ export default function PaywallPlanTiles({
 }: Props) {
   const { themeMode } = useTheme();
   const isOlive = themeMode === 'olive';
-  const { tc, textPrimary, textMuted, cardBg, cardBorder } = chrome;
+  const { tc, textPrimary, textMuted, cardBg } = chrome;
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
@@ -169,12 +169,13 @@ export default function PaywallPlanTiles({
             style={[
               S.tile,
               scrollable && S.tileFixedWidth,
+              // зачем: в оливковой теме выбранная плитка намеренно БЕЗ увеличения
+              // и без рамки — матовый вид (см. olive_paywall_reward_contract).
+              // Выбор там показывают фон cardBgStrong, галочка и тень.
               sel && !isOlive && S.tileSelected,
               {
-                borderColor: isOlive ? 'transparent' : sel ? tc.selectedCardBorder : cardBorder,
                 backgroundColor: sel ? chrome.cardBgStrong : cardBg,
                 shadowColor: sel ? tc.selectedCardShadow : 'transparent',
-                borderWidth: isOlive ? 0 : undefined,
                 ...(isOlive ? oliveShadow(sel ? 2 : 1) : null),
               },
             ]}
@@ -237,11 +238,15 @@ const S = StyleSheet.create({
   // с плитками фиксированной ширины вместо сжатия ниже читаемого предела.
   rowScroll: { flexDirection: 'row', gap: 8, marginTop: 16, alignItems: 'stretch', paddingRight: 4 },
   tileFixedWidth: { flex: 0, width: 112 },
+  // зачем (аудит по Библии + запрет владельца, 2026-08-26): обводка контейнера
+  // запрещена — разделяем тоном. Выбор тарифа и без рамки читается тремя
+  // способами: галочка checkmark-circle, увеличение scale 1.04 и более
+  // насыщенный фон cardBgStrong против cardBg.
   tile: {
     flex: 1,
     minHeight: 148,
     borderRadius: 16,
-    borderWidth: 1.5,
+    borderWidth: 0,
     paddingHorizontal: 8,
     paddingVertical: 12,
     alignItems: 'center',
@@ -257,7 +262,6 @@ const S = StyleSheet.create({
   // Выбранная плитка доминирует статично (без анимаций): чуть крупнее и выше.
   tileSelected: {
     transform: [{ scale: 1.04 }],
-    borderWidth: 2,
   },
   saveBadge: {
     position: 'absolute', top: -9, alignSelf: 'center',

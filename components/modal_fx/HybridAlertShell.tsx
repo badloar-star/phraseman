@@ -36,6 +36,8 @@ type Props = {
   testID?: string;
   /** Затемнение фона — совпадает с классическим путём модалки-хозяина. */
   backdropColor?: string;
+  /** Блокирующие решения закрываются только явной кнопкой внутри панели. */
+  dismissible?: boolean;
 };
 
 /**
@@ -52,6 +54,7 @@ function HybridAlertShell({
   shadowColor = 'rgba(0,0,0,0.5)',
   testID,
   backdropColor = 'rgba(0,0,0,0.60)',
+  dismissible = true,
 }: Props) {
   const reduceMotion = useReduceMotion();
   const backdropOpacity = useSharedValue(0);
@@ -131,16 +134,18 @@ function HybridAlertShell({
     opacity: panelOpacity.value,
     transform: [{ scale: panelScale.value }],
   }));
+  const ignoreDismiss = useCallback(() => {}, []);
+  const dismissHandler = dismissible ? runExit : ignoreDismiss;
 
   return (
-    <Modal visible={visible} transparent animationType="none" onRequestClose={runExit}>
+    <Modal visible={visible} transparent animationType="none" onRequestClose={dismissHandler}>
       {/* guard-ok: скрим-фон закрывает модалку по тапу вовне, у него нет своего
           смысла для VoiceOver/TalkBack — озвучиваемые элементы (заголовок,
           кнопки) идут внутри children панели. */}
       <Pressable
         testID={testID}
         style={StyleSheet.absoluteFillObject}
-        onPress={runExit}
+        onPress={dismissible ? runExit : undefined}
         accessible={false}
       >
         <Reanimated.View style={[styles.backdrop, { backgroundColor: backdropColor }, backdropStyle]} />

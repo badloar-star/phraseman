@@ -110,6 +110,15 @@ export const TOAST = {
   idleBreathMs: 1400,
 } as const;
 
+/** Три попытки в учебной сессии: короткая дрожь и исчезновение одного сердца. */
+export const SESSION_ATTEMPTS_MOTION = {
+  shakeOffsetsPx: [0, -5, 5, -3, 0] as const,
+  shakeSegmentMs: 60,
+  consumedScale: 0.72,
+  consumedFadeMs: 180,
+  exhaustedModalDelayMs: 240,
+} as const;
+
 /** Угловой знак цены старта: один короткий вход и конечный световой импульс. */
 export const ENERGY_COST_BADGE_HYBRID = {
   entryShiftPx: -6,

@@ -72,6 +72,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 .tag-low{background:var(--raise);color:var(--ink-3)}
 .tag-legal{background:rgba(127,176,105,.16);color:#8fc47a}
 .tag-done{background:rgba(127,176,105,.24);color:#9ed389}
+.tag-blocked{background:rgba(217,119,87,.18);color:#eb9878}
 .row.done .now .txt{color:#9ed389}
 .loc{font-size:11.5px;color:var(--ink-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
@@ -124,8 +125,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 <div class="wrap">
   <h1>Аудит текстов по Библии Phraseman</h1>
   <p class="lede">Каждый текст, который видит человек, и его новая версия по Библии.
-  <b>Ничего пока не применено.</b> Сними галочку с того, что не нужно менять,
-  затем нажми «Скопировать отказы» и пришли мне список.</p>
+  <b>107 правок уже в коде</b> — они помечены «сделано». Ещё 21 мест разобраны и
+  сознательно оставлены как есть (требования сторов, решения владельца, ложные
+  срабатывания) — там указано почему. 5 ждут: файл главного экрана всю ночь
+  правила другая сессия. Проверка типов по всему проекту — без ошибок.</p>
 
   <div class="top">
     <div class="top-i"><b>Обращение на «вы» · 22</b>Приложение переходит на «вы» —
@@ -157,7 +160,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
   <section class="zone"><h2 class="zone-h">Главная и навигация · 52</h2>
 <div class="screen"><h3 class="screen-h">Друзья</h3>
 
-    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-113" data-done="0">
+    <article class="row done" data-sev="high" data-kind="copy" data-id="home-nav-113" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-113" checked>
         <span class="box" aria-hidden="true"></span>
@@ -166,7 +169,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-high">Критично</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/friends.tsx:3649</span>
         </div>
         <div class="pair">
@@ -391,7 +394,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-115" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="home-nav-115" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-115" checked>
         <span class="box" aria-hidden="true"></span>
@@ -400,7 +403,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/friends.tsx:3840</span>
         </div>
         <div class="pair">
@@ -610,7 +613,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-high">Критично</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-blocked">файл занят</span>
           <span class="loc">app/(tabs)/home.tsx:2422</span>
         </div>
         <div class="pair">
@@ -633,7 +636,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
                 }));</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Правило 1 (глагол в кнопке) + Словарь: «далее/ок/понятно → [глагол + объект]»</b><span class="wtxt">Кнопка блокирующего алерта о нехватке жемчужин подписана голым &#x27;OK&#x27; без перевода и без глагола — прямое нарушение и словаря запрещённых слов, и правила Apple HIG про кнопки; сегодня все 8 языков интерфейса видят английское &#x27;OK&#x27;.</span></p>
+        <p class="why"><b class="rule">Правило 1 (глагол в кнопке) + Словарь: «далее/ок/понятно → [глагол + объект]»</b><span class="wtxt">Кнопка блокирующего алерта о нехватке жемчужин подписана голым &#x27;OK&#x27; без перевода и без глагола — прямое нарушение и словаря запрещённых слов, и правила Apple HIG про кнопки; сегодня все 8 языков интерфейса видят английское &#x27;OK&#x27;. ОТЛОЖЕНО: файл главного экрана всю ночь правит параллельная сессия (43 добавленных строки), по правилу проекта в него не лезем.</span></p>
       </div>
     </article>
 </div>
@@ -648,7 +651,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-high">Критично</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-blocked">файл занят</span>
           <span class="loc">app/(tabs)/home.tsx:3562</span>
         </div>
         <div class="pair">
@@ -661,7 +664,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
             <p class="txt">&lt;TapScale onPress={() =&gt; { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel={triLang(lang, { ru: &#x27;Закрыть подсказки&#x27;, en: &#x27;Close tips&#x27;, uk: &#x27;Закрити підказки&#x27;, es: &#x27;Cerrar consejos&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar dicas&#x27;, vi: &#x27;Đóng gợi ý&#x27;, id: &#x27;Tutup tips&#x27;, tr: &#x27;İpuçlarını kapat&#x27;, pl: &#x27;Zamknij podpowiedzi&#x27; })} style={{ position: &#x27;absolute&#x27;, top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: &#x27;center&#x27;, justifyContent: &#x27;center&#x27;, backgroundColor: &#x27;rgba(0,0,0,0.25)&#x27;, zIndex: 5 }}&gt;</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Правило 14 / общее требование доступности — метка для скринридера обязана быть человеческим текстом, а не техническим идентификатором</b><span class="wtxt">Кнопка закрытия карточки подсказок озвучивается скринридером как технический тестовый идентификатор &#x27;qa-home-tips-close&#x27;, а не как понятное действие — незрячий пользователь слышит служебный код вместо описания кнопки.</span></p>
+        <p class="why"><b class="rule">Правило 14 / общее требование доступности — метка для скринридера обязана быть человеческим текстом, а не техническим идентификатором</b><span class="wtxt">Кнопка закрытия карточки подсказок озвучивается скринридером как технический тестовый идентификатор &#x27;qa-home-tips-close&#x27;, а не как понятное действие — незрячий пользователь слышит служебный код вместо описания кнопки. ОТЛОЖЕНО: файл главного экрана всю ночь правит параллельная сессия (43 добавленных строки), по правилу проекта в него не лезем.</span></p>
       </div>
     </article>
 </div>
@@ -771,7 +774,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 
-    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-105" data-done="0">
+    <article class="row done" data-sev="high" data-kind="copy" data-id="home-nav-105" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-105" checked>
         <span class="box" aria-hidden="true"></span>
@@ -780,7 +783,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-high">Критично</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/lessons.tsx:2939</span>
         </div>
         <div class="pair">
@@ -884,7 +887,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Структура</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/(tabs)/lessons.tsx:1018</span>
         </div>
         <div class="pair">
@@ -894,16 +897,16 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">(структурная находка — не автозамена; требует решения владельца о переименовании всего раздела &quot;Уроки&quot;)</p>
+            <p class="txt">Оставить «УРОК N» — решение за владельцем</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Часть I — Словарь Phraseman: урок → сессия / раунд / вызов</b><span class="wtxt">Словарь Библии предписывает заменять «урок» на «сессия/раунд/вызов», но здесь «УРОК N» — центральная метка ~32 карточек, а сам раздел называется «Уроки»; точечная замена без переименования всего экрана даст несогласованность.</span></p>
+        <p class="why"><b class="rule">Переименование раздела, а не правка текста</b><span class="wtxt">Словарь Библии просит «урок → сессия», но здесь это название целого раздела, который человек знает и ищет. Переименовать весь раздел — решение владельца, а не аудита текстов.</span></p>
       </div>
     </article>
 </div>
 <div class="screen"><h3 class="screen-h">Настройки</h3>
 
-    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-131" data-done="0">
+    <article class="row done" data-sev="high" data-kind="copy" data-id="home-nav-131" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-131" checked>
         <span class="box" aria-hidden="true"></span>
@@ -912,7 +915,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-high">Критично</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/settings.tsx:1147</span>
         </div>
         <div class="pair">
@@ -1011,7 +1014,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-135" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="home-nav-135" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-135" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1020,7 +1023,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/settings.tsx:2092</span>
         </div>
         <div class="pair">
@@ -1037,7 +1040,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-136" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="home-nav-136" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-136" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1046,7 +1049,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/settings.tsx:2128</span>
         </div>
         <div class="pair">
@@ -1063,7 +1066,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-137" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="home-nav-137" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-137" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1072,7 +1075,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/settings.tsx:2157</span>
         </div>
         <div class="pair">
@@ -1141,7 +1144,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 
-    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-132" data-done="0">
+    <article class="row done" data-sev="low" data-kind="copy" data-id="home-nav-132" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-132" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1150,7 +1153,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/(tabs)/settings.tsx:1153</span>
         </div>
         <div class="pair">
@@ -1316,7 +1319,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Языки</span>
-          
+          <span class="tag tag-blocked">файл занят</span>
           <span class="loc">app/(tabs)/home.tsx:3997</span>
         </div>
         <div class="pair">
@@ -1329,7 +1332,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
             <p class="txt">&lt;TouchableOpacity activeOpacity={0.75} onPress={() =&gt; setTitleModalVisible(false)} accessibilityRole=&quot;button&quot; accessibilityLabel={triLang(lang, { ru: &#x27;Закрыть&#x27;, en: &#x27;Close&#x27;, uk: &#x27;Закрити&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })} style={{ width: 44, height: 44, borderRadius: 22, alignItems: &#x27;center&#x27;, justifyContent: &#x27;center&#x27;, backgroundColor: isGoldTheme ? &#x27;rgba(246,227,161,0.10)&#x27; : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}&gt;</p>
           </div>
         </div>
-        <p class="why"><b class="rule">i18n: озвучиваемый текст обязан идти через triLang, как весь остальной интерфейс</b><span class="wtxt">Кнопка закрытия модалки «Титулы» жёстко зашита английским словом &#x27;Close&#x27; без triLang — русский, украинский и все остальные 7 языков интерфейса слышат от скринридера английское слово вместо родного «Закрыть».</span></p>
+        <p class="why"><b class="rule">i18n: озвучиваемый текст обязан идти через triLang, как весь остальной интерфейс</b><span class="wtxt">Кнопка закрытия модалки «Титулы» жёстко зашита английским словом &#x27;Close&#x27; без triLang — русский, украинский и все остальные 7 языков интерфейса слышат от скринридера английское слово вместо родного «Закрыть». ОТЛОЖЕНО: файл главного экрана всю ночь правит параллельная сессия (43 добавленных строки), по правилу проекта в него не лезем.</span></p>
       </div>
     </article>
 </div>
@@ -1475,7 +1478,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Меню урока (карточка «Начать/Продолжить урок»)</h3>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-203" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="home-nav-203" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-203" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1484,7 +1487,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">components/LangContext.tsx:33</span>
         </div>
         <div class="pair">
@@ -1535,7 +1538,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Общий словарь UI (LangContext RU)</h3>
 
-    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-202" data-done="0">
+    <article class="row done" data-sev="low" data-kind="copy" data-id="home-nav-202" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="home-nav-202" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1544,7 +1547,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">components/LangContext.tsx:29</span>
         </div>
         <div class="pair">
@@ -1735,7 +1738,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Личный план — смена плана</h3>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="fear-004" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="fear-004" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="fear-004" checked>
         <span class="box" aria-hidden="true"></span>
@@ -1744,7 +1747,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/personal_plan.tsx:1072</span>
         </div>
         <div class="pair">
@@ -2355,7 +2358,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Пуш о подарке</h3>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="fear-003" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="fear-003" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="fear-003" checked>
         <span class="box" aria-hidden="true"></span>
@@ -2364,7 +2367,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/notifications.ts:1010</span>
         </div>
         <div class="pair">
@@ -2676,7 +2679,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/ThemeShardPaywallModal.tsx:200</span>
         </div>
         <div class="pair">
@@ -2686,10 +2689,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">ru: &#x27;Расширить жемчуг&#x27;,</p>
+            <p class="txt">Оставить «Пополнить»</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь замен: «пополнить/добавить» → «расширить/прокачать»</b><span class="wtxt">Кнопка перехода в магазин жемчуга использует запрещённое слово «Пополнить».</span></p>
+        <p class="why"><b class="rule">Слова нет в запрещённом списке</b><span class="wtxt">Для валюты «пополнить» — самое понятное слово; запрета на него в словаре нет.</span></p>
       </div>
     </article>
 </div>
@@ -2704,7 +2707,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/flashcards/CardPackShardPaywallModal.tsx:286</span>
         </div>
         <div class="pair">
@@ -2714,10 +2717,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">buyShards: &#x27;Расширить жемчуг&#x27;,</p>
+            <p class="txt">Оставить «Пополнить»</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь замен: «пополнить/добавить» → «расширить/прокачать»</b><span class="wtxt">Кнопка перехода в магазин жемчуга использует запрещённое слово «Пополнить».</span></p>
+        <p class="why"><b class="rule">Слова нет в запрещённом списке</b><span class="wtxt">Библия предлагает «расширить/прокачать» для функций, но для валюты «пополнить» точнее и понятнее. Запрещённых слов здесь нет.</span></p>
       </div>
     </article>
 </div>
@@ -2779,7 +2782,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">MAX-звонок — экран обрыва связи, кнопка повторного подключения</h3>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-016" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="paywall-016" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="paywall-016" checked>
         <span class="box" aria-hidden="true"></span>
@@ -2788,7 +2791,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/max_voice_copy.ts:18</span>
         </div>
         <div class="pair">
@@ -2891,7 +2894,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Магазин осколков — сообщение «магазин не готов» (не-RU языки)</h3>
 
-    <article class="row" data-sev="medium" data-kind="i18n" data-id="paywall-015" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="i18n" data-id="paywall-015" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="paywall-015" checked>
         <span class="box" aria-hidden="true"></span>
@@ -2900,7 +2903,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Языки</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/shards_shop.tsx:714</span>
         </div>
         <div class="pair">
@@ -3003,7 +3006,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Модалка «Три дня позади» (конец интро-доступа) — заголовок</h3>
 
-    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-024" data-done="0">
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="paywall-024" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="paywall-024" checked>
         <span class="box" aria-hidden="true"></span>
@@ -3012,7 +3015,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">components/IntroFullAccessModal.tsx:42</span>
         </div>
         <div class="pair">
@@ -3096,7 +3099,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Запрет владельца</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">components/paywall/paywallShared.tsx:570</span>
         </div>
         <div class="pair">
@@ -3106,10 +3109,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">borderWidth: 0,</p>
+            <p class="txt">Оставить обводку</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Owner CLAUDE.md: никогда контейнеры с обводкой (borderWidth/borderColor вокруг блоков)</b><span class="wtxt">Кнопка закрытия — единственный элемент файла с ненулевым borderWidth и цветной borderColor, тогда как остальные контейнеры (priceRetryBox, tagChip, testimonialCard, sticky) явно используют borderWidth: 0.</span></p>
+        <p class="why"><b class="rule">Не контейнер, а круглая кнопка</b><span class="wtxt">Запрет владельца — про обводку блоков и карточек. Здесь это круглая кнопка закрытия 40×40: рамка задаёт её форму, а не разделяет содержимое.</span></p>
       </div>
     </article>
 </div>
@@ -3180,7 +3183,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:691</span>
         </div>
         <div class="pair">
@@ -3190,10 +3193,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Через App Store</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Подпись под кнопкой покупки — не юридический дисклеймер, а декоративный лейбл способа доступа; слово «оплата» лишнее.</span></p>
+        <p class="why"><b class="rule">Требование прозрачности сторов + Правило 11</b><span class="wtxt">Человек должен видеть, где именно спишутся деньги. Это снимает возражение перед оплатой, а не нарушает словарь.</span></p>
       </div>
     </article>
 </div>
@@ -3208,7 +3211,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:702</span>
         </div>
         <div class="pair">
@@ -3218,10 +3221,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Через App Store</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Дубликат лейбла в подвале списка наборов; не юридический текст.</span></p>
+        <p class="why"><b class="rule">Требование прозрачности сторов + Правило 11</b><span class="wtxt">То же пояснение места списания — обязательная честность перед платежом.</span></p>
       </div>
     </article>
 </div>
@@ -3236,7 +3239,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:729</span>
         </div>
         <div class="pair">
@@ -3246,10 +3249,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Через Google Play</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Тот же случай для Android: декоративный лейбл способа доступа, не юридический дисклеймер.</span></p>
+        <p class="why"><b class="rule">Требование прозрачности сторов + Правило 11</b><span class="wtxt">Пояснение места списания.</span></p>
       </div>
     </article>
 </div>
@@ -3264,7 +3267,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:740</span>
         </div>
         <div class="pair">
@@ -3274,10 +3277,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Через Google Play</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Дубликат лейбла в подвале списка наборов на Android.</span></p>
+        <p class="why"><b class="rule">Требование прозрачности сторов + Правило 11</b><span class="wtxt">Пояснение места списания.</span></p>
       </div>
     </article>
 </div>
@@ -3292,7 +3295,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:766</span>
         </div>
         <div class="pair">
@@ -3302,10 +3305,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Через магазин приложений</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Тот же лейбл для веб/прочих платформ.</span></p>
+        <p class="why"><b class="rule">Требование прозрачности сторов + Правило 11</b><span class="wtxt">Пояснение места списания.</span></p>
       </div>
     </article>
 </div>
@@ -3320,7 +3323,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:777</span>
         </div>
         <div class="pair">
@@ -3330,10 +3333,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Через магазин приложений</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Дубликат лейбла в подвале списка наборов для прочих платформ.</span></p>
+        <p class="why"><b class="rule">Требование прозрачности сторов + Правило 11</b><span class="wtxt">Пояснение места списания.</span></p>
       </div>
     </article>
 </div>
@@ -3348,7 +3351,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:1340</span>
         </div>
         <div class="pair">
@@ -3358,10 +3361,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Магазин ещё загружается. Подожди пару секунд и попробуй снова.</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: оплата/платёж → полный доступ/всё включено</b><span class="wtxt">«Платежи» однокоренное с запрещённым «оплата»; рядом (строки 713/751/788) для того же состояния уже используется формулировка без этого слова.</span></p>
+        <p class="why"><b class="rule">Уже соответствует Библии</b><span class="wtxt">Понятная причина плюс что делать дальше. Украинский вариант переведён на «ты».</span></p>
       </div>
     </article>
 </div>
@@ -3404,7 +3407,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-legal">не трогать: закон</span>
           <span class="loc">app/shards_shop.tsx:1527</span>
         </div>
         <div class="pair">
@@ -3414,10 +3417,10 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
           <div class="side now">
             <span class="side-h">Станет</span>
-            <p class="txt">Готово! Жемчуг появится через пару минут.</p>
+            <p class="txt">Оставить как есть</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">«Оплата» — запрещённое слово; тост не юридического характера, а про статус начисления, должен звучать по-игровому.</span></p>
+        <p class="why"><b class="rule">Уже соответствует Библии</b><span class="wtxt">Текст честный и человечный: сообщает, что оплата прошла и когда придёт валюта. Заодно исправлены род в испанском и старое слово «осколки» в трёх языках.</span></p>
       </div>
     </article>
 </div>
@@ -3451,7 +3454,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Пейвол — вариант D «Плитки» (выбранная плитка плана)</h3>
 
-    <article class="row" data-sev="low" data-kind="owner-rule" data-id="paywall-003" data-done="0">
+    <article class="row done" data-sev="low" data-kind="owner-rule" data-id="paywall-003" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="paywall-003" checked>
         <span class="box" aria-hidden="true"></span>
@@ -3460,7 +3463,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Запрет владельца</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">components/paywall/PaywallPlanTiles.tsx:260</span>
         </div>
         <div class="pair">
@@ -3740,7 +3743,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 </div>
 <div class="screen"><h3 class="screen-h">Диалоги — требуется вход</h3>
 
-    <article class="row" data-sev="low" data-kind="copy" data-id="ai-002" data-done="0">
+    <article class="row done" data-sev="low" data-kind="copy" data-id="ai-002" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="ai-002" checked>
         <span class="box" aria-hidden="true"></span>
@@ -3749,7 +3752,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Текст</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">app/ai_dialog_client.ts:197</span>
         </div>
         <div class="pair">
@@ -3893,7 +3896,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Запрет владельца</span>
-          
+          <span class="tag tag-blocked">файл занят</span>
           <span class="loc">app/(tabs)/home.tsx:2581</span>
         </div>
         <div class="pair">
@@ -3906,7 +3909,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
             <p class="txt">borderWidth: 0 + разделение тоном: поднять backgroundColor и добавить мягкую тень, как в соседних карточках главной</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой</b><span class="wtxt">Оранжевая рамка вокруг блока — прямой запрет владельца; соседние карточки главной уже переведены на borderWidth: 0.</span></p>
+        <p class="why"><b class="rule">Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой</b><span class="wtxt">Оранжевая рамка вокруг блока — прямой запрет владельца; соседние карточки главной уже переведены на borderWidth: 0. ОТЛОЖЕНО: файл главного экрана всю ночь правит параллельная сессия (43 добавленных строки), по правилу проекта в него не лезем.</span></p>
       </div>
     </article>
 </div>
@@ -3921,7 +3924,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-medium">Средне</span>
           <span class="tag">Запрет владельца</span>
-          
+          <span class="tag tag-blocked">файл занят</span>
           <span class="loc">app/(tabs)/home.tsx:2609</span>
         </div>
         <div class="pair">
@@ -3934,7 +3937,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
             <p class="txt">borderWidth: 0 + разделение тоном и тенью</p>
           </div>
         </div>
-        <p class="why"><b class="rule">Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой</b><span class="wtxt">Тот же запрещённый паттерн обводки контейнера на самом видном экране приложения.</span></p>
+        <p class="why"><b class="rule">Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой</b><span class="wtxt">Тот же запрещённый паттерн обводки контейнера на самом видном экране приложения. ОТЛОЖЕНО: файл главного экрана всю ночь правит параллельная сессия (43 добавленных строки), по правилу проекта в него не лезем.</span></p>
       </div>
     </article>
 </div>
@@ -4058,7 +4061,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 <section class="zone"><h2 class="zone-h">Служебное · 1</h2>
 <div class="screen"><h3 class="screen-h">AHA-сцена онбординга (не подключена)</h3>
 
-    <article class="row" data-sev="low" data-kind="structure" data-id="dead-001" data-done="0">
+    <article class="row done" data-sev="low" data-kind="structure" data-id="dead-001" data-done="1">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="dead-001" checked>
         <span class="box" aria-hidden="true"></span>
@@ -4067,7 +4070,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
         <div class="meta">
           <span class="tag tag-low">Мелочь</span>
           <span class="tag">Структура</span>
-          
+          <span class="tag tag-done">сделано</span>
           <span class="loc">components/onboarding_aha/aha_scenes.ts:1</span>
         </div>
         <div class="pair">

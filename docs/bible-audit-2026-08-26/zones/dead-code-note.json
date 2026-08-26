@@ -11,6 +11,7 @@
     "rule": "—",
     "why": "Проверено грепом: единственный внешний импорт из onboarding_aha — TypewriterText, поэтому тексты сцены пользователь не видит.",
     "severity": "low",
-    "legal_ok": false
+    "legal_ok": false,
+    "applied": true
   }
 ]

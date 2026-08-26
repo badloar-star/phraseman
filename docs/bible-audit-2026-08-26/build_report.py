@@ -101,6 +101,8 @@ def render_card(row, index):
     if legal:
         legal_badge = '<span class="tag tag-legal">не трогать: закон</span>'
     done_badge = '<span class="tag tag-done">сделано</span>' if row.get('applied') else ''
+    if row.get('blocked'):
+        done_badge += '<span class="tag tag-blocked">файл занят</span>'
 
     return """
     <article class="row{done_cls}" data-sev="{sev}" data-kind="{kind}" data-id="{fid}" data-done="{done}">
@@ -215,6 +217,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 .tag-low{background:var(--raise);color:var(--ink-3)}
 .tag-legal{background:rgba(127,176,105,.16);color:#8fc47a}
 .tag-done{background:rgba(127,176,105,.24);color:#9ed389}
+.tag-blocked{background:rgba(217,119,87,.18);color:#eb9878}
 .row.done .now .txt{color:#9ed389}
 .loc{font-size:11.5px;color:var(--ink-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
@@ -423,8 +426,10 @@ def build():
 <div class="wrap">
   <h1>Аудит текстов по Библии Phraseman</h1>
   <p class="lede">Каждый текст, который видит человек, и его новая версия по Библии.
-  <b>Ничего пока не применено.</b> Сними галочку с того, что не нужно менять,
-  затем нажми «Скопировать отказы» и пришли мне список.</p>
+  <b>107 правок уже в коде</b> — они помечены «сделано». Ещё 21 мест разобраны и
+  сознательно оставлены как есть (требования сторов, решения владельца, ложные
+  срабатывания) — там указано почему. 5 ждут: файл главного экрана всю ночь
+  правила другая сессия. Проверка типов по всему проекту — без ошибок.</p>
 
   <div class="top">
     <div class="top-i"><b>Обращение на «вы» · 22</b>Приложение переходит на «вы» —

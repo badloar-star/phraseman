@@ -5,6 +5,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from '../account_generation';
 import { commitPhoneStateNonMonetaryEconomyGrant } from '../phone_state_economy_bridge';
 import { withStorageLock } from '../storage_mutex';
@@ -31,6 +32,13 @@ type AttemptRestoreGiftProjectionV1 = Readonly<{
 }>;
 
 export type PreparedAttemptRestoreGiftConsume = AttemptRestoreGiftConsumeV1;
+
+export type PreparedAttemptRestoreGiftConsumeCommit = Readonly<{
+  duplicate: boolean;
+  operation: AttemptRestoreGiftConsumeV1;
+  countAfter: number;
+  durableWrites: readonly (readonly [string, string])[];
+}>;
 
 export type CreditAttemptRestoreGiftFromSpinInput = Readonly<{
   token: AccountGenerationToken;
@@ -385,6 +393,7 @@ export async function creditAttemptRestoreGiftFromSpin(
 
 export async function prepareAttemptRestoreGiftConsume(
   input: PrepareAttemptRestoreGiftConsumeInput,
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<PreparedAttemptRestoreGiftConsume> {
   const ownerStableId = ownerFromToken(input.token);
   const operationId = attemptRestoreGiftConsumeOperationId(input.sessionId, input.recoveryOrdinal);
@@ -439,7 +448,96 @@ export async function prepareAttemptRestoreGiftConsume(
     if (prepared.length >= MAX_ATTEMPT_RESTORE_OPERATIONS) throw new Error('attempt_restore_prepared_consume_full');
     await AsyncStorage.setItem(attemptRestoreGiftPreparedConsumeKey(ownerStableId), JSON.stringify([...prepared, operation]));
     return operation;
-  }));
+  }), accountTransitionLockLease);
+}
+
+/**
+ * Builds the exact gift-consume projection writes without committing them.
+ * The recovery coordinator owns the single durable multiSet that also stores
+ * the attempts receipt and restored state.
+ */
+export async function prepareAttemptRestoreGiftConsumeCommit(
+  input: PrepareAttemptRestoreGiftConsumeInput,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+): Promise<PreparedAttemptRestoreGiftConsumeCommit> {
+  const ownerStableId = ownerFromToken(input.token);
+  return withAccountTransitionLock(async (lease) => {
+    const operation = await prepareAttemptRestoreGiftConsume(input, lease);
+    return withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
+        throw new Error('attempt_restore_identity_changed');
+      }
+      const projection = await recoverLocked(ownerStableId);
+      const existing = projection.operations.find((candidate) => (
+        candidate.operationId === operation.operationId
+      ));
+      if (existing) {
+        if (existing.schemaVersion !== 'client-attempt-restore-gift-consume.v1'
+          || existing.requestFingerprint !== operation.requestFingerprint) {
+          throw new Error('attempt_restore_operation_id_conflict');
+        }
+        return Object.freeze({
+          duplicate: true,
+          operation,
+          countAfter: replayAttemptRestoreGiftOperations(projection.operations).count,
+          durableWrites: Object.freeze([]),
+        });
+      }
+      const replayed = replayAttemptRestoreGiftOperations([...projection.operations, operation]);
+      const nextProjection: AttemptRestoreGiftProjectionV1 = Object.freeze({
+        ...projection,
+        operations: replayed.operations,
+      });
+      const outbox = parseOperationList(
+        await AsyncStorage.getItem(attemptRestoreGiftOutboxKey(ownerStableId)),
+        ownerStableId,
+        'attempt_restore_outbox_corrupt',
+      );
+      const nextOutbox = replayAttemptRestoreGiftOperations([...outbox, operation]).operations;
+      return Object.freeze({
+        duplicate: false,
+        operation,
+        countAfter: replayed.count,
+        durableWrites: Object.freeze([
+          Object.freeze([
+            attemptRestoreGiftOperationStorageKey(ownerStableId, operation.operationId),
+            JSON.stringify(operation),
+          ] as const),
+          Object.freeze([
+            attemptRestoreGiftProjectionKey(ownerStableId),
+            JSON.stringify(nextProjection),
+          ] as const),
+          Object.freeze([
+            attemptRestoreGiftOutboxKey(ownerStableId),
+            JSON.stringify(nextOutbox),
+          ] as const),
+        ]),
+      });
+    });
+  }, accountTransitionLockLease);
+}
+
+export async function clearAttemptRestoreGiftConsumePreparation(
+  token: AccountGenerationToken,
+  operationId: string,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+): Promise<void> {
+  const ownerStableId = ownerFromToken(token);
+  await withAccountTransitionLock(async () => withStorageLock(async () => {
+    if (!isCurrentAccountGeneration(token, ownerStableId)) {
+      throw new Error('attempt_restore_identity_changed');
+    }
+    const prepared = parseOperationList(
+      await AsyncStorage.getItem(attemptRestoreGiftPreparedConsumeKey(ownerStableId)),
+      ownerStableId,
+      'attempt_restore_prepared_consume_corrupt',
+      'client-attempt-restore-gift-consume.v1',
+    );
+    await AsyncStorage.setItem(
+      attemptRestoreGiftPreparedConsumeKey(ownerStableId),
+      JSON.stringify(prepared.filter((candidate) => candidate.operationId !== operationId)),
+    );
+  }), accountTransitionLockLease);
 }
 
 export async function syncPendingAttemptRestoreGiftOperations(

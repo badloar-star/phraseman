@@ -635,7 +635,7 @@ export async function prepareSessionAttemptRuneRecovery(input: Readonly<{
   questionId: string;
   recoveryOrdinal: number;
   createdAtMs?: number;
-}>): Promise<PreparedSessionAttemptRuneRecovery> {
+}>, accountTransitionLockLease?: AccountTransitionLockLease): Promise<PreparedSessionAttemptRuneRecovery> {
   const ownerStableId = input.token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(input.token, ownerStableId)) {
     throw new Error('level_spin_star_identity_changed');
@@ -721,7 +721,7 @@ export async function prepareSessionAttemptRuneRecovery(input: Readonly<{
         ]),
       });
     });
-  });
+  }, accountTransitionLockLease);
 }
 
 export async function enqueueLevelSpinStarGrant(

@@ -679,6 +679,10 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'attempt_restore_gift_prepared_credit_v1:',
   'attempt_restore_gift_prepared_consume_v1:',
   'attempt_restore_gift_operation_v1:',
+  'session_attempts_state_v1:',
+  'session_attempt_recovery_prepared_v1:',
+  'session_attempt_recovery_receipt_v1:',
+  'session_attempt_recovery_sync_outbox_v1:',
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;

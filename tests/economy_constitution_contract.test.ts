@@ -177,6 +177,10 @@ describe('Economy Constitution — client authority is a permanent source contra
       'attempt_restore_gift_prepared_credit_v1:',
       'attempt_restore_gift_prepared_consume_v1:',
       'attempt_restore_gift_operation_v1:',
+      'session_attempts_state_v1:',
+      'session_attempt_recovery_prepared_v1:',
+      'session_attempt_recovery_receipt_v1:',
+      'session_attempt_recovery_sync_outbox_v1:',
     ]) expect(cloudSync).toContain(`'${prefix}'`);
   });
 

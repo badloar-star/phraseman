@@ -186,57 +186,62 @@ function normLang(lang: string): CopyLang {
 /**
  * Четыре варианта текста на язык — чтобы ежедневный пуш не приедался.
  * Юмор мягкий, без давления и без обещаний победы, которых движок не выполнит.
+ * зачем (аудит по Библии, 2026-08-26): тексты дразнили проигрышем — «пять минут
+ * позора», «последнему стул у выхода», «соперники придумали, как объяснить
+ * проигрыш». Часть V п.6 Библии запрещает унижать, Правило 2 требует говорить
+ * о выгоде, а не о потере. Переписано во всех восьми языках разом, иначе тон
+ * расходится между локалями.
  * Слово «комната» намеренно НЕ используется (владелец: это внутренняя кухня,
  * юзер про комнаты знать не должен) — говорим только «турнир» и «соперники».
  */
 const STARTING_COPY: Record<CopyLang, readonly Copy[]> = {
   ru: [
-    { title: '🏁 Турнир начинается', body: 'Пять минут славы или пять минут позора. Выбирай сам.' },
-    { title: '🥇 Турнир стартует', body: 'Первое место пока свободно. Просто говорю.' },
-    { title: '🔥 Турнир открыт', body: 'Места разбирают. Последнему достаётся стул у выхода.' },
-    { title: '🎪 Турнир собирается', body: 'Твои соперники уже придумали, как объяснить проигрыш.' },
+    { title: '🏁 Турнир начинается', body: 'Пять минут — и ты в игре. Заходи.' },
+    { title: '🥇 Турнир стартует', body: 'Первое место пока свободно.' },
+    { title: '🔥 Турнир открыт', body: 'Места разбирают. Занимай своё.' },
+    { title: '🎪 Турнир собирается', body: 'Соперники уже собираются. Присоединяйся.' },
   ],
   uk: [
-    { title: '🏁 Турнір починається', body: "П'ять хвилин слави або п'ять хвилин ганьби. Обирай сам." },
-    { title: '🥇 Турнір стартує', body: 'Перше місце поки вільне. Просто кажу.' },
-    { title: '🔥 Турнір відкрито', body: 'Місця розбирають. Останньому дістається стілець біля виходу.' },
-    { title: '🎪 Турнір збирається', body: 'Твої суперники вже вигадали, як пояснити поразку.' },
+    { title: '🏁 Турнір починається', body: "П'ять хвилин — і ти у грі. Заходь." },
+    { title: '🥇 Турнір стартує', body: 'Перше місце поки вільне.' },
+    { title: '🔥 Турнір відкрито', body: 'Місця розбирають. Займай своє.' },
+    { title: '🎪 Турнір збирається', body: 'Суперники вже збираються. Приєднуйся.' },
   ],
   es: [
-    { title: '🏁 El torneo empieza', body: 'Cinco minutos de gloria o cinco de vergüenza. Tú eliges.' },
-    { title: '🥇 Arranca el torneo', body: 'El primer puesto sigue libre. Solo lo menciono.' },
-    { title: '🔥 Torneo abierto', body: 'Los puestos vuelan. Al último le toca la silla de la salida.' },
-    { title: '🎪 El torneo se llena', body: 'Tus rivales ya pensaron cómo explicar la derrota.' },
+    { title: '🏁 El torneo empieza', body: 'Cinco minutos y estás dentro. Entra.' },
+    { title: '🥇 Arranca el torneo', body: 'El primer puesto sigue libre.' },
+    { title: '🔥 Torneo abierto', body: 'Los puestos vuelan. Toma el tuyo.' },
+    { title: '🎪 El torneo se llena', body: 'Tus rivales ya se reúnen. Únete.' },
   ],
   'pt-BR': [
-    { title: '🏁 O torneio vai começar', body: 'Cinco minutos de glória ou cinco de vergonha. Você escolhe.' },
-    { title: '🥇 O torneio começa', body: 'O primeiro lugar ainda está livre. Só comentando.' },
-    { title: '🔥 Torneio aberto', body: 'As vagas somem rápido. O último fica com a cadeira da saída.' },
-    { title: '🎪 O torneio está enchendo', body: 'Seus rivais já pensaram em como explicar a derrota.' },
+    { title: '🏁 O torneio vai começar', body: 'Cinco minutos e você está dentro. Entra.' },
+    { title: '🥇 O torneio começa', body: 'O primeiro lugar ainda está livre.' },
+    { title: '🔥 Torneio aberto', body: 'As vagas somem rápido. Pegue a sua.' },
+    { title: '🎪 O torneio está enchendo', body: 'Seus rivais já estão chegando. Bora.' },
   ],
   vi: [
-    { title: '🏁 Giải đấu sắp bắt đầu', body: 'Năm phút vinh quang hay năm phút ngượng ngùng. Bạn chọn đi.' },
-    { title: '🥇 Giải đấu khởi tranh', body: 'Vị trí số một vẫn còn trống. Chỉ nói vậy thôi.' },
-    { title: '🔥 Giải đấu đã mở', body: 'Chỗ hết nhanh lắm. Người cuối ngồi ghế gần cửa ra.' },
-    { title: '🎪 Giải đấu đang gom người', body: 'Đối thủ của bạn đã nghĩ sẵn lý do thua rồi.' },
+    { title: '🏁 Giải đấu sắp bắt đầu', body: 'Năm phút thôi là bạn vào cuộc. Vào nhé.' },
+    { title: '🥇 Giải đấu khởi tranh', body: 'Vị trí số một vẫn còn trống.' },
+    { title: '🔥 Giải đấu đã mở', body: 'Chỗ hết nhanh lắm. Giữ chỗ của bạn.' },
+    { title: '🎪 Giải đấu đang gom người', body: 'Đối thủ đang tụ họp. Tham gia nào.' },
   ],
   id: [
-    { title: '🏁 Turnamen segera dimulai', body: 'Lima menit jaya atau lima menit malu. Kamu yang pilih.' },
-    { title: '🥇 Turnamen dimulai', body: 'Peringkat satu masih kosong. Cuma memberi tahu.' },
-    { title: '🔥 Turnamen dibuka', body: 'Tempat cepat habis. Yang terakhir kebagian kursi dekat pintu.' },
-    { title: '🎪 Turnamen mulai terisi', body: 'Lawanmu sudah menyiapkan alasan kalah.' },
+    { title: '🏁 Turnamen segera dimulai', body: 'Lima menit saja dan kamu ikut. Masuk yuk.' },
+    { title: '🥇 Turnamen dimulai', body: 'Peringkat satu masih kosong.' },
+    { title: '🔥 Turnamen dibuka', body: 'Tempat cepat habis. Ambil tempatmu.' },
+    { title: '🎪 Turnamen mulai terisi', body: 'Lawan sudah berkumpul. Gabung sekarang.' },
   ],
   tr: [
-    { title: '🏁 Turnuva başlıyor', body: 'Beş dakika şöhret ya da beş dakika utanç. Sen seç.' },
-    { title: '🥇 Turnuva start alıyor', body: 'Birincilik hâlâ boş. Söylemiş olayım.' },
-    { title: '🔥 Turnuva açıldı', body: 'Yerler kapılıyor. Sonuncuya çıkış yanındaki sandalye kalıyor.' },
-    { title: '🎪 Turnuva doluyor', body: 'Rakiplerin yenilgiyi nasıl açıklayacaklarını bile düşündü.' },
+    { title: '🏁 Turnuva başlıyor', body: 'Beş dakika ve oyundasın. Katıl.' },
+    { title: '🥇 Turnuva start alıyor', body: 'Birincilik hâlâ boş.' },
+    { title: '🔥 Turnuva açıldı', body: 'Yerler kapılıyor. Yerini al.' },
+    { title: '🎪 Turnuva doluyor', body: 'Rakipler toplanıyor. Sen de katıl.' },
   ],
   pl: [
-    { title: '🏁 Turniej się zaczyna', body: 'Pięć minut chwały albo pięć minut wstydu. Wybór należy do ciebie.' },
-    { title: '🥇 Turniej rusza', body: 'Pierwsze miejsce wciąż wolne. Tak tylko mówię.' },
-    { title: '🔥 Turniej otwarty', body: 'Miejsca znikają. Ostatni dostaje krzesło przy wyjściu.' },
-    { title: '🎪 Turniej się zapełnia', body: 'Twoi rywale już wymyślili, jak wytłumaczyć porażkę.' },
+    { title: '🏁 Turniej się zaczyna', body: 'Pięć minut i jesteś w grze. Wchodź.' },
+    { title: '🥇 Turniej rusza', body: 'Pierwsze miejsce wciąż wolne.' },
+    { title: '🔥 Turniej otwarty', body: 'Miejsca znikają. Zajmij swoje.' },
+    { title: '🎪 Turniej się zapełnia', body: 'Rywale już się zbierają. Dołącz.' },
   ],
 };
 

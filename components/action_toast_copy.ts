@@ -7,7 +7,9 @@
 const RU = {
   success: 'Готово',
   error: 'Что-то пошло не так',
-  info: 'Инфо',
+  // зачем (аудит по Библии, 2026-08-26): «Инфо» — служебная аббревиатура,
+  // живой человек так не обращается (Стиль 5 «Человек»).
+  info: 'Подсказка',
   warning: 'Внимание',
   reward: 'Награда',
 };
@@ -15,7 +17,7 @@ const RU = {
 const UK: typeof RU = {
   success: 'Готово',
   error: 'Щось пішло не так',
-  info: 'Інфо',
+  info: 'Підказка',
   warning: 'Увага',
   reward: 'Нагорода',
 };
@@ -23,7 +25,7 @@ const UK: typeof RU = {
 const ES: typeof RU = {
   success: 'Listo',
   error: 'Algo salió mal',
-  info: 'Info',
+  info: 'Nota',
   warning: 'Atención',
   reward: 'Premio',
 };
@@ -31,7 +33,7 @@ const ES: typeof RU = {
 const PT_BR: typeof RU = {
   success: 'Pronto',
   error: 'Algo deu errado',
-  info: 'Info',
+  info: 'Aviso',
   warning: 'Atenção',
   reward: 'Prêmio',
 };
@@ -39,7 +41,7 @@ const PT_BR: typeof RU = {
 const VI: typeof RU = {
   success: 'Xong',
   error: 'Có lỗi xảy ra',
-  info: 'Tin',
+  info: 'Gợi ý',
   warning: 'Chú ý',
   reward: 'Phần thưởng',
 };
@@ -47,7 +49,7 @@ const VI: typeof RU = {
 const ID: typeof RU = {
   success: 'Selesai',
   error: 'Ada yang salah',
-  info: 'Info',
+  info: 'Catatan',
   warning: 'Perhatian',
   reward: 'Hadiah',
 };
@@ -55,15 +57,18 @@ const ID: typeof RU = {
 const TR: typeof RU = {
   success: 'Tamam',
   error: 'Bir şeyler ters gitti',
-  info: 'Bilgi',
+  info: 'İpucu',
   warning: 'Dikkat',
   reward: 'Ödül',
 };
 
 const PL: typeof RU = {
   success: 'Gotowe',
-  error: 'Błąd',
-  info: 'Info',
+  // зачем (аудит по Библии, 2026-08-26): было 'Błąd' = «Ошибка». Все семь
+  // остальных языков говорят по-человечески («что-то пошло не так»), и только
+  // польский остался сухим термином — Часть V п.6 Библии запрещает слово «ошибка».
+  error: 'Coś poszło nie tak',
+  info: 'Wskazówka',
   warning: 'Uwaga',
   reward: 'Nagroda',
 };

@@ -10,7 +10,10 @@ const C = {
   closeModePicker: ['Закрыть выбор режима', 'Закрити вибір режиму', 'Close mode picker', 'Cerrar selección de modo', 'Fechar seleção de modo', 'Đóng chọn chế độ', 'Tutup pilihan mode', 'Mod seçimini kapat', 'Zamknij wybór trybu'],
   matches: ['Матчи', 'Матчі', 'Matches', 'Partidas', 'Partidas', 'Trận', 'Laga', 'Maçlar', 'Mecze'],
   wins: ['Победы', 'Перемоги', 'Wins', 'Victorias', 'Vitórias', 'Thắng', 'Menang', 'Galibiyet', 'Wygrane'],
-  losses: ['Поражения', 'Поразки', 'Losses', 'Derrotas', 'Derrotas', 'Thua', 'Kalah', 'Mağlubiyet', 'Porażki'],
+  // зачем (аудит по Библии, 2026-08-26): экран результата уже говорит мягко
+  // «В этот раз не вышло», а счётчик рядом бил словом «Поражения» — тон внутри
+  // одного экрана расходился (Часть V п.6: не унижаем за ошибку).
+  losses: ['Не вышло', 'Не вийшло', 'Losses', 'Sin suerte', 'Sem sorte', 'Chưa thắng', 'Belum menang', 'Kaçan', 'Nieudane'],
   winRate: ['Процент побед', 'Відсоток перемог', 'Win rate', 'Porcentaje de victorias', 'Taxa de vitórias', 'Tỷ lệ thắng', 'Rasio menang', 'Kazanma oranı', 'Procent wygranych'],
   rankNext: ['До следующего ранга', 'До наступного рангу', 'To the next rank', 'Hasta el siguiente rango', 'Até o próximo rank', 'Đến hạng tiếp theo', 'Ke rank berikutnya', 'Sonraki rütbeye', 'Do następnej rangi'],
   subtitle: ['Дуэль на скорость', 'Дуель на швидкість', 'Speed duel', 'Duelo de velocidad', 'Duelo de velocidade', 'Đấu tốc độ', 'Duel kecepatan', 'Hız düellosu', 'Pojedynek na czas'],
@@ -28,7 +31,10 @@ const C = {
   accept: ['Принять дуэль', 'Прийняти дуель', 'Accept duel', 'Aceptar duelo', 'Aceitar duelo', 'Chấp nhận', 'Terima duel', 'Düelloyu kabul et', 'Przyjmij pojedynek'],
   decline: ['Отказаться', 'Відмовитися', 'Decline', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć'],
   opponent: ['Соперник', 'Суперник', 'Opponent', 'Rival', 'Adversário', 'Đối thủ', 'Lawan', 'Rakip', 'Rywal'],
-  serverCheck: ['Сервер проверяет ответ…', 'Сервер перевіряє відповідь…', 'Server is checking the answer…', 'El servidor comprueba…', 'O servidor está verificando…', 'Máy chủ đang kiểm tra…', 'Server memeriksa…', 'Sunucu kontrol ediyor…', 'Serwer sprawdza…'],
+  // зачем (аудит по Библии, 2026-08-26): было «Сервер проверяет ответ…» —
+  // Часть V п.3 запрещает технические детали в UI. Человеку важно, что ответ
+  // проверяется, а не кем именно. Заменено во всех девяти позициях.
+  serverCheck: ['Проверяем ответ…', 'Перевіряємо відповідь…', 'Checking the answer…', 'Comprobando la respuesta…', 'Verificando a resposta…', 'Đang kiểm tra câu trả lời…', 'Memeriksa jawaban…', 'Cevap kontrol ediliyor…', 'Sprawdzamy odpowiedź…'],
   result: ['Результат', 'Результат', 'Result', 'Resultado', 'Resultado', 'Kết quả', 'Hasil', 'Sonuç', 'Wynik'],
   victory: ['Победа', 'Перемога', 'Victory', 'Victoria', 'Vitória', 'Chiến thắng', 'Menang', 'Zafer', 'Zwycięstwo'],
   defeat: ['В этот раз не вышло', 'Цього разу не вийшло', 'Not this time', 'Esta vez no pudo ser', 'Desta vez não deu', 'Lần này chưa được', 'Belum berhasil kali ini', 'Bu kez olmadı', 'Tym razem się nie udało'],
@@ -42,7 +48,10 @@ const C = {
   inviteReady: ['Приглашение готово', 'Запрошення готове', 'Invite ready', 'Invitación lista', 'Convite pronto', 'Lời mời đã sẵn sàng', 'Undangan siap', 'Davet hazır', 'Zaproszenie gotowe'],
   join: ['Войти в дуэль', 'Увійти в дуель', 'Join duel', 'Entrar al duelo', 'Entrar no duelo', 'Tham gia đấu', 'Masuk duel', 'Düelloya katıl', 'Dołącz do pojedynku'],
   resultTierUp: ['Новый тир', 'Новий тир', 'New tier', 'Nuevo nivel', 'Novo tier', 'Hạng mới', 'Tier baru', 'Yeni seviye', 'Nowy tier'],
-  resultTierDown: ['Тир потерян', 'Тир втрачено', 'Tier lost', 'Nivel perdido', 'Tier perdido', 'Mất hạng', 'Tier hilang', 'Seviye kaybedildi', 'Tier utracony'],
+  // зачем (аудит по Библии, 2026-08-26): «потерян» фиксирует потерю, хотя
+  // соседние строки этого же экрана уже поддерживают («Сохранено {n} рун»,
+  // «Шанс на реванш»). Правило 2 требует gain-framing.
+  resultTierDown: ['Тир ниже', 'Тир нижче', 'Tier down', 'Nivel más bajo', 'Tier abaixo', 'Hạng thấp hơn', 'Tier turun', 'Seviye düştü', 'Niższy tier'],
   // зачем: копирайт трёх гибридных сцен смены ранга (components/arena/ArenaRankHybrid.tsx)
   // — tier_up «Штамп ранга», rank_step «Шаг ранга», tier_down «Тихая ступень».
   // Терминология экрана — РАНГ, не «лига» (владелец, D-40).

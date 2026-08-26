@@ -107,15 +107,15 @@ export class MaxVoiceStageError extends Error {
 export function maxVoiceFailureMessage(reason: string | null, lang: Lang): string {
   if (reason === 'voice_disabled' || reason === 'ai_globally_disabled') {
     return triLang(lang, {
-      ru: 'Голосовая линия сейчас выключена на сервере. Попробуй позже.',
-      uk: 'Голосова лінія зараз вимкнена на сервері. Спробуй пізніше.',
-      en: 'The voice line is currently disabled on the server. Try again later.',
-      es: 'La línea de voz está desactivada en el servidor. Inténtalo más tarde.',
-      'pt-BR': 'A linha de voz está desativada no servidor. Tente mais tarde.',
-      vi: 'Đường dây thoại đang bị tắt trên máy chủ. Hãy thử lại sau.',
-      id: 'Jalur suara sedang dinonaktifkan di server. Coba lagi nanti.',
-      tr: 'Ses hattı sunucuda kapalı. Daha sonra tekrar dene.',
-      pl: 'Linia głosowa jest wyłączona na serwerze. Spróbuj później.',
+      ru: 'Голос сейчас недоступен. Попробуй чуть позже.',
+      uk: 'Голос зараз недоступний. Спробуй трохи пізніше.',
+      en: 'Voice is unavailable right now. Try again a little later.',
+      es: 'La voz no está disponible ahora. Inténtalo un poco más tarde.',
+      'pt-BR': 'A voz está indisponível agora. Tente um pouco mais tarde.',
+      vi: 'Giọng nói hiện chưa dùng được. Hãy thử lại sau một chút.',
+      id: 'Suara sedang tidak tersedia. Coba lagi sebentar lagi.',
+      tr: 'Ses şu anda kullanılamıyor. Biraz sonra tekrar dene.',
+      pl: 'Głos jest teraz niedostępny. Spróbuj trochę później.',
     });
   }
   if (reason === 'voice_daily_quota_exhausted') {

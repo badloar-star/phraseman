@@ -263,6 +263,14 @@ function MaxCallPrestartContent() {
   const isTrialFormat = format === 'trial';
   // Отказ voice_max_required = пробник сожжён: пул этого тарифа всё равно 3 мин.
   const maxRequired = preflightReason === 'voice_max_required';
+  // ИЗВЕСТНОЕ ОГРАНИЧЕНИЕ (аудит 2026-08-26): сервер выдаёт полный MAX-пул не
+  // только по подписке, но и АДМИНУ (max_voice_mint.ts: `if (isMaxTier ||
+  // isAdmin)`), а здесь локально виден лишь тариф. Поэтому у админа до ответа
+  // минта экран покажет пробные 3 мин вместо 20 — цифра сама исправляется, как
+  // только придёт trialVariant (setMintAccess ниже). Тянуть сюда claim админа
+  // ради доли секунды сознательно НЕ стали: это второй источник истины о
+  // доступе, который неизбежно разойдётся с серверным. Ошибаться в сторону
+  // меньшего числа безопаснее: обещать 20 минут и отобрать хуже, чем наоборот.
   const localPlanIsMax = getAppSnapshot().profile?.premiumPlan === 'max_monthly';
   const trialAccess = isTrialFormat || mintAccess === 'trial' || maxRequired
     || (mintAccess === null && !localPlanIsMax);

@@ -3,7 +3,7 @@ import path from 'path';
 
 const client = fs.readFileSync(path.join(process.cwd(), 'app', 'welcome_gift.ts'), 'utf8');
 const shards = fs.readFileSync(path.join(process.cwd(), 'app', 'shards_system.ts'), 'utf8');
-const ledger = fs.readFileSync(
+const clientLedger = fs.readFileSync(
   path.join(process.cwd(), 'app', 'economy', 'client_shard_operation_ledger.ts'),
   'utf8',
 );
@@ -30,7 +30,12 @@ describe('Welcome gift economics contract', () => {
     // shards_one_time_events — restored-аккаунт получал ложный alreadyClaimed.
     // Теперь путь идёт через awardOneTimePerAccount: тот же детерминированный
     // operationId, но решает аккаунт-скоупный леджер, а не список на устройстве.
-    expect(client).not.toMatch(/awardOneTimeVariable\s*\(/);
+    // Сверяем КОД без комментариев: слово живёт в объяснениях выше по файлу,
+    // запрещён именно вызов.
+    const clientCode = client
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/^[ 	]*\/\/.*$/gm, '');
+    expect(clientCode).not.toMatch(/awardOneTimeVariable\s*\(/);
     expect(client).toMatch(/import \{ awardOneTimePerAccount \} from '\.\/shards_system'/);
     expect(client).toMatch(/awardOneTimePerAccount\(\s*WELCOME_GIFT_PEARLS_EVENT_KEY/);
 
@@ -51,7 +56,7 @@ describe('Welcome gift economics contract', () => {
   // «Expected array of key-value pairs», iOS проглатывает. Награда, у которой
   // весь результат это сам кредит баланса, легальна: пустой список не ошибка.
   it('the ledger never calls multiSet with an empty write list', () => {
-    expect(ledger).toMatch(/if \(exactResultWrites && exactResultWrites\.length > 0\) \{\s*\n\s*await AsyncStorage\.multiSet\(/);
+    expect(clientLedger).toMatch(/if \(exactResultWrites && exactResultWrites\.length > 0\) \{\s*\n\s*await AsyncStorage\.multiSet\(/);
   });
 
   it('grant state and runes requestId are scoped per account, never per device', () => {

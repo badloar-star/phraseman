@@ -742,14 +742,30 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     [lang],
   );
 
-  const trainMeta: Record<FcTrainOption, { icon: keyof typeof Ionicons.glyphMap; label: string }> = {
+  /**
+   * зачем (владелец, 2026-08-26: «раздел ошибки в карточках уже под пейволом,
+   * но нет плашки — там написано Plus, а должна быть именно золотая плашка,
+   * которую мы используем в других местах»): пункт приклеивал слово «Plus»
+   * текстом прямо в подпись — оно читалось как часть названия режима и терялось
+   * на фоне счётчика. Платный статус теперь несёт та же PlusBadge, что стоит
+   * рядом у «Создать карточку»/«Создать набор» (ниже, plusLocked) и в уроках:
+   * один сигнал платного во всём приложении, а не два разных.
+   */
+  const trainMeta: Record<FcTrainOption, {
+    icon: keyof typeof Ionicons.glyphMap;
+    label: string;
+    plusLocked?: boolean;
+  }> = {
     train: { icon: 'barbell-outline', label: labels.train },
     listen: { icon: 'headset-outline', label: labels.listen },
     speak: { icon: 'mic-outline', label: labels.speak },
     blitz: { icon: 'flash-outline', label: labels.blitz },
     errors: {
       icon: 'alert-circle-outline',
-      label: `${labels.errors} · ${mistakeReadyCount}${hasPremiumAccess ? '' : ' · Plus'}`,
+      label: `${labels.errors} · ${mistakeReadyCount}`,
+      // Плашка только когда доступ УЖЕ разрешён и его нет: пока подписка не
+      // проверена (accessResolved=false), плашка не мигает на платящем.
+      plusLocked: accessResolved && !hasPremiumAccess,
     },
   };
   const createMeta: Record<FcCreateOption, { icon: keyof typeof Ionicons.glyphMap; label: string; testID: string }> = {
@@ -889,6 +905,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 onSetup={option === 'errors' ? undefined : () => onTrainOptionSetup(option)}
                 setupTestID={`fc-tabbar-train-option-${option}-setup`}
                 setupLabel={labels.pickDecks}
+                plusLocked={trainMeta[option].plusLocked === true}
                 themeMode={themeMode}
               />
             ))}

@@ -28,6 +28,21 @@ export function dailyQuotaFromLimits(
   };
 }
 
+/**
+ * зачем (владелец 2026-08-26): у пробного звонка (free/plus/pro) «топливо» —
+ * кап самой сессии (3 мин + хвост), а не общий 20-минутный пул MAX из
+ * dayRemainingSec: сервер кладёт туда пул тарифа MAX даже при trial-доступе,
+ * и пилюля в звонке обещала 20 минут человеку с трёхминутным пробником.
+ */
+export function trialQuotaFromLimits(
+  limits: Record<string, unknown> | undefined,
+): MaxDailyQuotaStart | null {
+  if (!limits) return null;
+  const cap = finite(limits, 'sessionCapSec', 'session_cap_sec');
+  if (cap === null || cap <= 0) return null;
+  return { startRemainingSec: cap, maxSec: cap };
+}
+
 export function dailyQuotaRemainingAt(
   startRemainingSec: number,
   startedAtMs: number,

@@ -51,6 +51,7 @@ import {
 } from './max_tutor_preview';
 import MaxVoiceConsentGate from './max_voice_consent_gate';
 import { maxVoiceStudyTarget } from './max_target_gate';
+import { getAppSnapshot } from './app_snapshot_store';
 import { onAppEvent } from './events';
 
 /**
@@ -168,6 +169,12 @@ function MaxCallPrestartContent() {
 
   const [preflight, setPreflight] = useState<PreflightView | null>(null);
   const [preflightReason, setPreflightReason] = useState<string | null>(null);
+  // зачем (владелец 2026-08-26): free/plus/pro видят пробник 3 минуты, а не общий
+  // 20-минутный пул MAX — сервер в limits отдаёт dayRemainingSec от 20-минутного
+  // пула даже когда доступ trial (estimateQuotaRemaining его не различает).
+  // Доступ определяем по trialVariant успешного минта; до ответа — по локальному
+  // тарифу из снапшота (не max_monthly ⇒ показываем пробный пул, не 20 минут).
+  const [mintAccess, setMintAccess] = useState<'max' | 'trial' | null>(null);
   const [prepState, setPrepState] = useState<PreparationState>('preparing');
   const [prepAttempt, setPrepAttempt] = useState(0);
   const startCtaReveal = useRef(new Animated.Value(0)).current;
@@ -201,6 +208,7 @@ function MaxCallPrestartContent() {
     let active = true;
     setPrepState('preparing');
     setPreflightReason(null);
+    setMintAccess(null);
     // Заготовка минта стартует сразу при входе (см. шапку файла): её же limits
     // питают карточку остатка минут — второй сетевой круг (preflight) не нужен.
     const entry = beginPremint(
@@ -213,6 +221,9 @@ function MaxCallPrestartContent() {
       (mint) => {
         if (!active) return;
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
+        // Сервер сам решил, пробник это или полный MAX: trialVariant ≠ null —
+        // единственный честный признак trial-доступа в ответе минта.
+        setMintAccess(mint.trialVariant ? 'trial' : 'max');
         setPreflightReason(null);
         setPrepState('ready');
         // зачем: линия готова к разговору — сигнал ставим сразу на переходе в
@@ -245,16 +256,28 @@ function MaxCallPrestartContent() {
   const capSec = preflight?.capSec ?? DEFAULT_CAP_SEC[format];
   const capMin = Math.max(1, Math.round(capSec / 60));
   // зачем: сервер отдаёт dayRemainingSec/dailyVoiceSecMax от ОБЩЕГО 20-минутного
-  // MAX-пула даже для format==='trial' (см. max_voice_mint.ts estimateQuotaRemaining) —
+  // MAX-пула даже для trial-доступа (см. max_voice_mint.ts estimateQuotaRemaining) —
   // он не различает разовый 3-минутный пробник free/plus/pro в этих полях.
   // Карточка «Остаток минут дня» для пробника обязана показывать его настоящий
-  // лимит (capSec), иначе free/plus видит «20 минут» вместо реальных 3.
+  // лимит, иначе free/plus видит «20 минут» вместо реальных 3 (владелец 2026-08-26).
   const isTrialFormat = format === 'trial';
-  const dayRemainingSec = isTrialFormat ? capSec : preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
-  const dayMaxSec = isTrialFormat ? capSec : preflight?.dayMaxSec ?? DEFAULT_DAY_SEC;
+  // Отказ voice_max_required = пробник сожжён: пул этого тарифа всё равно 3 мин.
+  const maxRequired = preflightReason === 'voice_max_required';
+  const localPlanIsMax = getAppSnapshot().profile?.premiumPlan === 'max_monthly';
+  const trialAccess = isTrialFormat || mintAccess === 'trial' || maxRequired
+    || (mintAccess === null && !localPlanIsMax);
+  // Кап trial-минта (limits.sessionCapSec) — и есть пробный пул; до ответа
+  // сервера и после отказа берём дефолт спеки, а не кап формата tutor (10 мин).
+  const trialPoolSec = isTrialFormat || mintAccess === 'trial' ? capSec : DEFAULT_CAP_SEC.trial;
+  const dayRemainingSec = trialAccess
+    ? (maxRequired ? 0 : trialPoolSec)
+    : preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
+  const dayMaxSec = trialAccess ? trialPoolSec : preflight?.dayMaxSec ?? DEFAULT_DAY_SEC;
   const remainingMin = Math.max(0, Math.floor(dayRemainingSec / 60));
   const dayMaxMin = Math.max(remainingMin, Math.round(dayMaxSec / 60));
-  const noMinutesLeft = dayRemainingSec < 60;
+  // «Возвращайся завтра» — только про исчерпанный ДНЕВНОЙ пул; сожжённый
+  // пробник — не «завтра вернётся», там говорит кнопка «Подключить MAX».
+  const noMinutesLeft = dayRemainingSec < 60 && !maxRequired;
   // Premint дозревает на экране цели. CTA открывается только после готовности,
   // чтобы первый тап вёл сразу в разговор, а не переносил ожидание в звонок.
   const startReady = prepState === 'ready' && !noMinutesLeft && (!isTutor || maxLessonEnergyReady);
@@ -505,7 +528,11 @@ function MaxCallPrestartContent() {
               </View>
             </StatsCardArtSurface>
 
-            {prepState === 'failed' ? (
+            {/* зачем (владелец 2026-08-26, «убрать дурацкий красный текст»):
+                когда причина — пейвол (voice_max_required), красное объяснение
+                не показываем: кнопка «Подключить MAX» говорит сама. Красный
+                остаётся только настоящим сбоям (сеть/сервер). */}
+            {maxRequired ? null : prepState === 'failed' ? (
               <View accessibilityLiveRegion="polite" style={{ paddingHorizontal: 4, marginTop: 10, marginBottom: 10 }}>
                 <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }} maxFontSizeMultiplier={2}>
                   {maxVoiceFailureMessage(preflightReason ?? 'preflight_failed', lang)}
@@ -760,14 +787,18 @@ function MaxCallPrestartContent() {
 
           {preflightReason ? (
             <>
-              <View
-                testID="max-call-preflight-error"
-                style={{ backgroundColor: t.wrongBg, borderRadius: 14, padding: 12, marginBottom: 10 }}
-              >
-                <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '700', textAlign: 'center' }}>
-                  {maxVoiceFailureMessage(preflightReason, lang)}
-                </Text>
-              </View>
+              {/* зачем (владелец 2026-08-26): при пейволе красную плашку не
+                  показываем — кнопка «Подключить MAX» говорит сама. */}
+              {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? null : (
+                <View
+                  testID="max-call-preflight-error"
+                  style={{ backgroundColor: t.wrongBg, borderRadius: 14, padding: 12, marginBottom: 10 }}
+                >
+                  <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '700', textAlign: 'center' }}>
+                    {maxVoiceFailureMessage(preflightReason, lang)}
+                  </Text>
+                </View>
+              )}
               {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? (
                 <Pressable
                   testID="max-subscribe-button"

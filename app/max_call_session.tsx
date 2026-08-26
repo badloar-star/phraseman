@@ -75,7 +75,7 @@ import {
 import { createTranscriptBuffer, TRANSCRIPT_FLUSH_MS, type TranscriptTurn } from './max_call_transcript';
 import { computeCallDeadlines } from './max_call_quota_view';
 import { MaxCallHalo, type MaxCallHaloRef } from './max_call_halo';
-import { dailyQuotaFromLimits, type MaxDailyQuotaStart } from './max_call_daily_quota';
+import { dailyQuotaFromLimits, trialQuotaFromLimits, type MaxDailyQuotaStart } from './max_call_daily_quota';
 import {
   LIVE_CAPTION_INITIAL,
   reduceLiveCaption,
@@ -678,7 +678,11 @@ function MaxCallSessionContent() {
     setStartedAtMs(startedAt);
     const mint = clientRef.current?.mintResult();
     if (!mint) return;
-    const quota = dailyQuotaFromLimits(mint.limits);
+    // зачем (владелец 2026-08-26): у trial-доступа топливо = кап пробника
+    // (3 мин), а не 20-минутный пул MAX из dayRemainingSec того же ответа.
+    const quota = mint.trialVariant
+      ? trialQuotaFromLimits(mint.limits) ?? dailyQuotaFromLimits(mint.limits)
+      : dailyQuotaFromLimits(mint.limits);
     setDailyQuota(quota);
     // Таймер подсказок: пороги из limits минта (hintDelaySec per-CEFR,
     // hintMaxPerSession), вторая подсказка через +10с (спека §1).

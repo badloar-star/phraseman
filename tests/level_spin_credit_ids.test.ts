@@ -10,6 +10,11 @@ describe('shared local Spin credit ID contract', () => {
     'local_spin_lesson_en-3',
     'local_spin_session_en-s1',
     'local_spin_arena_ranked_match-42',
+    // зачем (владелец, 2026-08-26): сундук лиги выдаёт спин вместо фиктивной
+    // жемчужины. Ключ длиннее прочих — в нём id клейма, id дропа и индекс,
+    // поэтому проверяем и реальную длину, а не только префикс.
+    'local_spin_chest_2026-W35_grp1_uid1_league_spin_0',
+    `local_spin_chest_${'a'.repeat(100)}`,
   ];
 
   it.each(storedCredits)('accepts stored credit source %s', (creditId) => {

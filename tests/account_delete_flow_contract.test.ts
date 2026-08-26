@@ -197,7 +197,11 @@ describe('account deletion rebuilt flow contract', () => {
   });
 
   it('reports verified local exit while durable deletion continues asynchronously', () => {
-    expect(modalSource).toContain('Безопасный локальный выход не завершён');
+    // зачем (аудит по Библии, 2026-08-26): формулировка переписана — «безопасный
+    // локальный выход» и «режим защиты» были техножаргоном (Часть V п.3).
+    // Суть контракта та же: честно сообщаем, что выход НЕ завершён, и не врём
+    // про сброшенный профиль.
+    expect(modalSource).toContain('Выход не завершился');
     expect(modalSource).not.toContain('Профиль сброшен');
     expect(modalSource).not.toContain('res.cloudDeleted');
   });

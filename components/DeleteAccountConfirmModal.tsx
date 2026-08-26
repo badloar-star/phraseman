@@ -89,6 +89,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,
+    en: copy.ru,
     es: copy.es,
     'pt-BR': copy['pt-BR'],
     vi: copy.vi,
@@ -198,19 +199,19 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       if (!res.ok) {
         showInfoAlert(
           L({
-            ru: 'Ошибка',
-            uk: 'Помилка',
-            es: 'Error',
-            'pt-BR': 'Erro',
-            vi: 'Lỗi',
-            id: 'Kesalahan',
-            tr: 'Hata',
-            pl: 'Błąd',
+            ru: 'Не получилось',
+            uk: 'Не вийшло',
+            es: 'No salió',
+            'pt-BR': 'Não deu certo',
+            vi: 'Chưa được',
+            id: 'Belum berhasil',
+            tr: 'Olmadı',
+            pl: 'Nie udało się',
           }),
           res.reason === 'pending_guard_persist_failed'
             ? L({
-            ru: 'Не удалось безопасно подготовить удаление. Аккаунт и данные не изменены. Освободи место на устройстве или перезапусти телефон и попробуй снова.',
-            uk: 'Не вдалося безпечно підготувати видалення. Акаунт і дані не змінено. Звільніть місце на пристрої або перезапустіть телефон і спробуйте знову.',
+            ru: 'Не удалось подготовить удаление. Аккаунт и данные не изменены. Освободи место на телефоне и попробуй снова.',
+            uk: 'Не вдалося підготувати видалення. Акаунт і дані не змінено. Звільни місце на пристрої або перезапусти телефон і спробуй знову.',
             es: 'No pudimos preparar la eliminación de forma segura. La cuenta y los datos no cambiaron. Libera espacio o reinicia el teléfono e inténtalo de nuevo.',
             'pt-BR': 'Não foi possível preparar a exclusão com segurança. A conta e os dados não foram alterados. Libere espaço ou reinicie o telefone e tente novamente.',
             vi: 'Không thể chuẩn bị xóa một cách an toàn. Tài khoản và dữ liệu chưa thay đổi. Hãy giải phóng dung lượng hoặc khởi động lại điện thoại rồi thử lại.',
@@ -219,8 +220,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
             pl: 'Nie udało się bezpiecznie przygotować usunięcia. Konto i dane nie zostały zmienione. Zwolnij miejsce lub uruchom telefon ponownie i spróbuj jeszcze raz.',
           })
             : L({
-            ru: 'Безопасный локальный выход не завершён. Аккаунт остаётся в режиме защиты; перезапусти приложение и повтори попытку.',
-            uk: 'Безпечний локальний вихід не завершено. Акаунт залишається в захищеному режимі; перезапустіть застосунок і повторіть спробу.',
+            ru: 'Выход не завершился. Аккаунт под защитой — перезапусти приложение и попробуй снова.',
+            uk: 'Вихід не завершився. Акаунт під захистом — перезапусти застосунок і спробуй знову.',
             es: 'La salida local segura no terminó. La cuenta permanece protegida; reinicia la aplicación e inténtalo de nuevo.',
             'pt-BR': 'A saída local segura não foi concluída. A conta permanece protegida; reinicie o aplicativo e tente novamente.',
             vi: 'Quá trình thoát an toàn trên thiết bị chưa hoàn tất. Tài khoản vẫn được bảo vệ; hãy khởi động lại ứng dụng và thử lại.',
@@ -263,24 +264,24 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     } catch {
       showInfoAlert(
         L({
-          ru: 'Ошибка',
-          uk: 'Помилка',
-          es: 'Error',
-          'pt-BR': 'Erro',
-          vi: 'Lỗi',
-          id: 'Kesalahan',
-          tr: 'Hata',
-          pl: 'Błąd',
+          ru: 'Не получилось',
+          uk: 'Не вийшло',
+          es: 'No salió',
+          'pt-BR': 'Não deu certo',
+          vi: 'Chưa được',
+          id: 'Belum berhasil',
+          tr: 'Olmadı',
+          pl: 'Nie udało się',
         }),
         L({
-          ru: 'Удаление прервалось до подтверждения сервера. Проверь интернет и попробуй ещё раз.',
-          uk: 'Видалення перервалося до підтвердження сервера. Перевірте інтернет і спробуйте ще раз.',
-          es: 'La eliminación se interrumpió antes de la confirmación del servidor. Revisa Internet e inténtalo de nuevo.',
-          'pt-BR': 'A exclusão foi interrompida antes da confirmação do servidor. Verifique a Internet e tente novamente.',
-          vi: 'Quá trình xóa bị gián đoạn trước khi máy chủ xác nhận. Hãy kiểm tra Internet và thử lại.',
-          id: 'Penghapusan terhenti sebelum konfirmasi server. Periksa internet dan coba lagi.',
-          tr: 'Silme işlemi sunucu onayından önce kesildi. İnterneti kontrol edip tekrar dene.',
-          pl: 'Usuwanie przerwało się przed potwierdzeniem serwera. Sprawdź internet i spróbuj ponownie.',
+          ru: 'Удаление не завершилось. Проверь интернет и попробуй ещё раз.',
+          uk: 'Видалення не завершилося. Перевір інтернет і спробуй ще раз.',
+          es: 'La eliminación no se completó. Revisa Internet e inténtalo de nuevo.',
+          'pt-BR': 'A exclusão não foi concluída. Verifique a Internet e tente novamente.',
+          vi: 'Quá trình xóa chưa hoàn tất. Hãy kiểm tra Internet và thử lại.',
+          id: 'Penghapusan belum selesai. Periksa internet dan coba lagi.',
+          tr: 'Silme işlemi tamamlanmadı. İnterneti kontrol edip tekrar dene.',
+          pl: 'Usuwanie nie zostało ukończone. Sprawdź internet i spróbuj ponownie.',
         }),
       );
       deleteInFlightRef.current = false;
@@ -425,14 +426,14 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12, lineHeight: 19 }}>
             {L({
-              ru: 'После подтверждения приложение начнёт серверную очистку и сразу выведет тебя из старого аккаунта.',
-              uk: 'Після підтвердження застосунок почне серверне очищення і одразу виведе вас зі старого акаунта.',
-              es: 'Después de confirmar, la app iniciará la limpieza del servidor y saldrá de la cuenta anterior de inmediato.',
-              'pt-BR': 'Depois de confirmar, o app iniciará a limpeza no servidor e sairá da conta antiga imediatamente.',
-              vi: 'Sau khi xác nhận, ứng dụng sẽ bắt đầu dọn dữ liệu máy chủ và thoát tài khoản cũ ngay.',
-              id: 'Setelah dikonfirmasi, aplikasi akan memulai pembersihan server dan langsung keluar dari akun lama.',
-              tr: 'Onayladıktan sonra uygulama sunucu temizliğini başlatır ve eski hesaptan hemen çıkar.',
-              pl: 'Po potwierdzeniu aplikacja rozpocznie czyszczenie serwera i od razu wyloguje stare konto.',
+              ru: 'После подтверждения данные начнут удаляться, и мы сразу выйдем из старого аккаунта.',
+              uk: 'Після підтвердження дані почнуть видалятися, і ми одразу вийдемо зі старого акаунта.',
+              es: 'Al confirmar, tus datos empezarán a borrarse y saldremos de la cuenta anterior enseguida.',
+              'pt-BR': 'Ao confirmar, seus dados começarão a ser apagados e sairemos da conta antiga na hora.',
+              vi: 'Sau khi xác nhận, dữ liệu bắt đầu được xóa và bạn sẽ thoát tài khoản cũ ngay.',
+              id: 'Setelah dikonfirmasi, datamu mulai dihapus dan kami langsung keluar dari akun lama.',
+              tr: 'Onayladıktan sonra verilerin silinmeye başlar ve eski hesaptan hemen çıkarız.',
+              pl: 'Po potwierdzeniu twoje dane zaczną się usuwać i od razu wylogujemy stare konto.',
             })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.caption, marginBottom: 8 }}>

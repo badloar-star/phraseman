@@ -709,16 +709,20 @@ export default function ShardsShopScreen() {
           tr: 'App Store üzerinden ödeme',
           pl: 'Płatność w App Store',
         }),
+        // зачем (аудит по Библии, 2026-08-26): русский текст починили в прошлом
+        // аудите, а семь остальных языков остались с инструкцией для
+        // разработчика («перевір Offering «shards» у RevenueCat»). Часть V п.3
+        // запрещает техдетали в интерфейсе — человеку они бесполезны.
         notReady: triLang(lang, {
           ru: 'Магазин временно недоступен. Попробуй позже.',
-          uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в App Store Connect.',
-          en: 'The store isn’t ready yet: check the "shards" Offering in RevenueCat and active products in App Store Connect.',
-          es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en App Store Connect.',
-          'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no App Store Connect.',
-          vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong App Store Connect.',
-          id: 'Toko belum siap: periksa Offering «koin» di RevenueCat dan produk aktif di App Store Connect.',
-          tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve App Store Connect aktif ürünlerini kontrol et.',
-          pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w App Store Connect.',
+          uk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
+          en: 'The store is temporarily unavailable. Try again later.',
+          es: 'La tienda no está disponible ahora. Inténtalo más tarde.',
+          'pt-BR': 'A loja está indisponível agora. Tente mais tarde.',
+          vi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
+          id: 'Toko sementara tidak tersedia. Coba lagi nanti.',
+          tr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
+          pl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
         }),
       };
     }
@@ -749,14 +753,14 @@ export default function ShardsShopScreen() {
         }),
         notReady: triLang(lang, {
           ru: 'Магазин временно недоступен. Попробуй позже.',
-          uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в Google Play.',
-          es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.',
-          en: 'The store is not ready yet: check the "shards" Offering in RevenueCat and the active products in Google Play.',
-          'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no Google Play.',
-          vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong Google Play.',
-          id: 'Toko belum siap: periksa Offering «koin» di RevenueCat dan produk aktif di Google Play.',
-          tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve Google Play aktif ürünlerini kontrol et.',
-          pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w Google Play.',
+          uk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
+          es: 'La tienda no está disponible ahora. Inténtalo más tarde.',
+          en: 'The store is temporarily unavailable. Try again later.',
+          'pt-BR': 'A loja está indisponível agora. Tente mais tarde.',
+          vi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
+          id: 'Toko sementara tidak tersedia. Coba lagi nanti.',
+          tr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
+          pl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
         }),
       };
     }
@@ -786,14 +790,14 @@ export default function ShardsShopScreen() {
       }),
       notReady: triLang(lang, {
         ru: 'Магазин временно недоступен. Попробуй позже.',
-        uk: 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в магазині застосунків.',
-        en: 'The store isn’t ready yet: check the "shards" Offering in RevenueCat and active products in the app store.',
-        es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en la tienda de apps.',
-        'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos na loja de apps.',
-        vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong cửa hàng ứng dụng.',
-        id: 'Toko belum siap: periksa Offering «koin» di RevenueCat dan produk aktif di toko aplikasi.',
-        tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve uygulama mağazası aktif ürünlerini kontrol et.',
-        pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w sklepie z aplikacjami.',
+        uk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
+        en: 'The store is temporarily unavailable. Try again later.',
+        es: 'La tienda no está disponible ahora. Inténtalo más tarde.',
+        'pt-BR': 'A loja está indisponível agora. Tente mais tarde.',
+        vi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
+        id: 'Toko sementara tidak tersedia. Coba lagi nanti.',
+        tr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
+        pl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
       }),
     };
   }, [effectiveOs, lang]);
@@ -1353,14 +1357,13 @@ export default function ShardsShopScreen() {
           emitAppEvent('action_toast', {
             type: 'error',
             messageRu: 'Магазин временно недоступен. Попробуй позже.',
-            messageUk: 'Магазин недоступний. Перевірте Offering «shards» у RevenueCat.',
-            messageEs:
-              'Tienda no disponible. Revisa la oferta «shards» en RevenueCat.',
-            messagePtBr: 'Loja indisponível. Verifique o Offering «shards» no RevenueCat.',
-            messageVi: 'Cửa hàng không khả dụng. Hãy kiểm tra Offering «shards» trong RevenueCat.',
-            messageId: 'Toko tidak tersedia. Periksa Offering «shards» di RevenueCat.',
-            messageTr: 'Mağaza kullanılamıyor. RevenueCat içindeki «shards» Offering kontrol et.',
-            messagePl: 'Sklep niedostępny. Sprawdź Offering «shards» w RevenueCat.',
+            messageUk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
+            messageEs: 'La tienda no está disponible ahora. Inténtalo más tarde.',
+            messagePtBr: 'A loja está indisponível agora. Tente mais tarde.',
+            messageVi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
+            messageId: 'Toko sementara tidak tersedia. Coba lagi nanti.',
+            messageTr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
+            messagePl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
           });
           return;
         }

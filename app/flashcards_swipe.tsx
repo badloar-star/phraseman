@@ -1190,16 +1190,19 @@ function FlashcardsSwipeScreen() {
         tr: "Doğru",
         pl: "Prawda",
       }),
+      // зачем (аудит по Библии, 2026-08-26): было «Неверно» — приговор в момент,
+      // когда человек только пробует вспомнить фразу (Часть V п.6: не унижаем).
+      // Английская версия уже была мягкой — «No match», остальные подтянуты к ней.
       mismatchAction: triLang(lang, {
-        ru: 'Неверно',
+        ru: 'Не то',
         en: 'No match',
-        uk: 'Невірно',
-        es: 'Incorrecto',
-        'pt-BR': "Errado",
-        vi: "Sai",
-        id: "Salah",
-        tr: "Yanlış",
-        pl: "Fałsz",
+        uk: 'Не те',
+        es: 'No coincide',
+        'pt-BR': "Não bate",
+        vi: "Chưa khớp",
+        id: "Belum cocok",
+        tr: "Uymadı",
+        pl: "Nie pasuje",
       }),
       matchHint: triLang(lang, {
         ru: 'перевод совпадает',
@@ -1502,16 +1505,19 @@ function FlashcardsSwipeScreen() {
         tr: "Seri",
         pl: "Seria",
       }),
+      // зачем (аудит по Библии, 2026-08-26): «Ошибки» на экране итога подводили
+      // черту виной. Словарь Библии: ошибка → попытка/почти; смотрим вперёд —
+      // что стоит доработать, а не что человек провалил.
       mistakes: triLang(lang, {
-        ru: 'Ошибки',
-        en: 'Mistakes',
-        uk: 'Помилки',
-        es: 'Errores',
-        'pt-BR': "Erros",
-        vi: "Lỗi",
-        id: "Kesalahan",
-        tr: "Hatalar",
-        pl: "Błędy",
+        ru: 'Что разобрать',
+        en: 'To review',
+        uk: 'Що розібрати',
+        es: 'Para repasar',
+        'pt-BR': "Para revisar",
+        vi: "Cần ôn",
+        id: "Perlu diulang",
+        tr: "Tekrar edilecek",
+        pl: "Do powtórki",
       }),
       hints: triLang(lang, {
         ru: 'Подсказки',
@@ -2021,7 +2027,11 @@ function FlashcardsSwipeScreen() {
       if (cards.length === 0) {
         // зачем: тренировка не началась (в наборах нет подходящих карточек) —
         // плата за вход возвращается.
-        if (energyCharged) void refundSwipeEnergy(swipeEnergyIntent.operationId, 'empty_pool').catch(() => {});
+        if (energyCharged) {
+          await refundSwipeEnergy(swipeEnergyIntent.operationId, 'empty_pool')
+            .then(() => setAttemptSessionId(makeFeedbackAttemptId()))
+            .catch(() => {});
+        }
         setLoadError(
           triLang(lang, {
             ru: 'В выбранных наборах нет карточек с переводом.',
@@ -2063,6 +2073,25 @@ function FlashcardsSwipeScreen() {
       if (energyCharged) void acknowledgeSessionStart(swipeEnergyIntent.operationId);
       setAttemptSessionId(makeFeedbackAttemptId());
       setPhase('play');
+    } catch {
+      if (energyCharged) {
+        await refundSwipeEnergy(swipeEnergyIntent.operationId, 'entry_failed')
+          .then(() => setAttemptSessionId(makeFeedbackAttemptId()))
+          .catch(() => {});
+      }
+      setLoadError(
+        triLang(lang, {
+          ru: 'Не удалось подготовить тренировку. Энергия возвращена.',
+          en: 'Could not prepare the training session. Energy was returned.',
+          uk: 'Не вдалося підготувати тренування. Енергію повернуто.',
+          es: 'No se pudo preparar la sesión. Se devolvió la energía.',
+          'pt-BR': 'Não foi possível preparar a sessão. A energia foi devolvida.',
+          vi: 'Không thể chuẩn bị buổi luyện tập. Năng lượng đã được hoàn lại.',
+          id: 'Sesi latihan tidak dapat disiapkan. Energi dikembalikan.',
+          tr: 'Antrenman hazırlanamadı. Enerji iade edildi.',
+          pl: 'Nie udało się przygotować treningu. Energia została zwrócona.',
+        }),
+      );
     } finally {
       setStarting(false);
     }

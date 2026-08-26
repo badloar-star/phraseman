@@ -1,4 +1,3 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
@@ -7,6 +6,7 @@ import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import { soundDirector } from '../modules/audio/sound_director';
 import { rewardModalAccentColor, rewardModalPanelBorder } from './RewardModalBackdrop';
+import SpinTicketArt from './SpinTicketArt';
 
 const APPEARANCE_DELAY_MS = 280;
 const ENTER_MS = 320;
@@ -111,8 +111,13 @@ export const SpinRewardPlaque = memo(function SpinRewardPlaque({
         },
       ]}
     >
+      {/* зачем (владелец, 2026-08-26): у спина появился свой узнаваемый значок —
+          один и тот же во всех местах, где спин упоминается. Раньше здесь стояла
+          системная иконка «обновление» (Ionicons sync), которая ничего не
+          говорила о награде. Пока файл ассета не сгенерирован, компонент сам
+          откатывается на прежний запасной значок. */}
       <View style={[plaqueStyles.iconStage, { backgroundColor: accent }]}>
-        <Ionicons name="sync" size={28} color="#101713" />
+        <SpinTicketArt size={34} accessibilityLabel="" />
       </View>
       <Text style={[plaqueStyles.label, { color: theme.textPrimary }]}>{label}</Text>
     </Animated.View>

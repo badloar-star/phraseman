@@ -23,6 +23,7 @@ import type { ThemeMode } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { oskolokImageForPackShards } from '../app/oskolok';
+import { spinTicketImageSource } from '../app/spin_ticket_asset';
 import AvatarAura from './AvatarAura';
 import CustomAvatarBadge from './CustomAvatarBadge';
 import LeagueCrownName from './LeagueCrownName';
@@ -218,7 +219,12 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
         title: spinTitle(Math.max(1, rewardAmount(drop) || 1), lang),
         subtitle: triLang(lang, { ru: 'Крутить рулетку', uk: 'Крутити рулетку', en: 'Spin the wheel', es: 'Girar la ruleta', 'pt-BR': 'Girar a roleta', vi: 'Quay vòng quay', id: 'Putar roda', tr: 'Çarkı çevir', pl: 'Zakręć kołem' }),
         accent: '#F8D982',
-        icon: { type: 'fallback', kind: 'gift' },
+        // зачем (владелец, 2026-08-26): у спина появился свой узнаваемый значок,
+        // один и тот же во всех местах. Пока файл не сгенерирован, источник
+        // резолвится в null и карточка честно откатывается на прежний подарок.
+        icon: spinTicketImageSource()
+          ? { type: 'image', source: spinTicketImageSource()!, scale: 'large' }
+          : { type: 'fallback', kind: 'gift' },
       };
     case 'xp_boost':
       return {

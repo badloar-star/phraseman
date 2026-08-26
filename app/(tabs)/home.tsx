@@ -104,6 +104,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { peekLevelSpinBalance } from '../level_reward_spins_client';
 import { readLocalLevelSpinBalance } from '../local_level_spins';
+import SpinTicketArt from '../../components/SpinTicketArt';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -466,6 +467,7 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
         subtitle: item.minLevel === item.maxLevel
             ? triLang(lang, {
                 ru: `Уровень ${item.minLevel}`,
+                en: `Level ${item.minLevel}`,
                 uk: `Рівень ${item.minLevel}`,
                 es: `Nivel ${item.minLevel}`,
                 'pt-BR': `Nivel ${item.minLevel}`,
@@ -476,6 +478,7 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
             })
             : triLang(lang, {
                 ru: `Уровни ${item.minLevel}-${item.maxLevel}`,
+                en: `Levels ${item.minLevel}-${item.maxLevel}`,
                 uk: `Рівні ${item.minLevel}-${item.maxLevel}`,
                 es: `Niveles ${item.minLevel}-${item.maxLevel}`,
                 'pt-BR': `Niveis ${item.minLevel}-${item.maxLevel}`,
@@ -542,6 +545,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeViewportHeightRef = useRef(0);
     const homeScrollYRef = useRef(0);
     const [dailyPhraseCardVisible, setDailyPhraseCardVisible] = useState(false);
+    const dailyPhraseCardVisibleRef = useRef(false);
     const [surveyOffer, setSurveyOffer] = useState<{
         challenge: SurveyOfferSnapshot;
         stableId: string;
@@ -567,10 +571,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (аудит скорости 2026-08-22): раньше пересчитывался на КАЖДОМ кадре
     // скролла (scrollEventThrottle=16 ≈ 60/с) — сам расчёт дешёвый, но лишняя
     // работа на JS-потоке во время активного скролла. Троттлим по времени: при
-    // непрерывном скролле пересчёт идёт не чаще раза в ~100мс, а последний кадр
-    // после остановки досчитывается таймером — итоговое состояние всегда точное.
-    const dailyPhraseVisibilityThrottleRef = useRef(0);
-    const dailyPhraseVisibilitySettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    // Дешёвую геометрию считаем прямо из refs, а в React заходим только при
+    // реальном пересечении порога видимости — без таймеров, Date.now и пустых
+    // state-dispatch во время жеста.
     const refreshDailyPhraseVisibility = useCallback(() => {
         const next = isDailyPhraseCardHalfVisible({
             cardTop: dailyPhraseLayoutRef.current.top,
@@ -578,31 +581,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             scrollY: homeScrollYRef.current,
             viewportHeight: homeViewportHeightRef.current,
         });
-        setDailyPhraseCardVisible((current) => current === next ? current : next);
+        if (dailyPhraseCardVisibleRef.current === next) return;
+        dailyPhraseCardVisibleRef.current = next;
+        setDailyPhraseCardVisible(next);
     }, []);
     const handleHomeScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         topFadeScroll?.onScroll?.(event);
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
-        if (dailyPhraseVisibilitySettleTimerRef.current) {
-            clearTimeout(dailyPhraseVisibilitySettleTimerRef.current);
-        }
-        const now = Date.now();
-        if (now - dailyPhraseVisibilityThrottleRef.current >= 100) {
-            dailyPhraseVisibilityThrottleRef.current = now;
-            refreshDailyPhraseVisibility();
-        } else {
-            dailyPhraseVisibilitySettleTimerRef.current = setTimeout(() => {
-                dailyPhraseVisibilitySettleTimerRef.current = null;
-                dailyPhraseVisibilityThrottleRef.current = Date.now();
-                refreshDailyPhraseVisibility();
-            }, 100);
-        }
+        refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
-    useEffect(() => () => {
-        if (dailyPhraseVisibilitySettleTimerRef.current) {
-            clearTimeout(dailyPhraseVisibilitySettleTimerRef.current);
-        }
-    }, []);
+    const handleHomeScrollSettled = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        homeScrollYRef.current = event.nativeEvent.contentOffset.y;
+        refreshDailyPhraseVisibility();
+    }, [refreshDailyPhraseVisibility]);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const isHomeOwner = runtimeOwnerId === 'home';
@@ -746,6 +737,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeStreakDaysLabel = displayStreak === 1
         ? triLang(lang, {
             ru: 'день',
+            en: 'day',
             uk: 'день',
             es: 'día',
             'pt-BR': 'dia',
@@ -764,6 +756,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         ? 'дня'
                         : 'дней';
             })(),
+            en: 'days',
             uk: s.home.streakDays,
             es: s.home.streakDays,
             'pt-BR': s.home.streakDays,
@@ -829,6 +822,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
     const [, setGreeting] = useState(() => triLang(lang, {
         ru: 'Привет,',
+        en: 'Hi,',
         uk: 'Привіт,',
         es: 'Hola,',
         'pt-BR': "Olá,",
@@ -859,6 +853,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [showRepairCard, setShowRepairCard] = useState(false);
     const [repairProgress, setRepairProgress] = useState(0);
     const [freezeActive, setFreezeActive] = useState(() => hh?.freezeActive ?? false);
+    // зачем (аудит 2026-08-26): у заморозки не было защиты от повторного тапа.
+    // Списание идемпотентно по ключу дня, поэтому деньги не терялись, но второй
+    // тап запускал лишний круг запросов. Ref, а не state — главная не должна
+    // перерисовываться из-за служебного флага.
+    const freezeBusyRef = useRef(false);
     const [streakAtRisk, setStreakAtRisk] = useState(false);
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
     const [reviveModalVisible, setReviveModalVisible] = useState(false);
@@ -2361,6 +2360,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
     const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
+        // зачем (аудит 2026-08-26): раньше не было ни защиты от двойного тапа, ни
+        // try/catch — при исключении (обрыв сети) экран молчал, а повторный тап
+        // запускал второй круг запросов.
+        if (freezeBusyRef.current) return;
+        freezeBusyRef.current = true;
+        try {
         hapticTap();
         const today = getLocalDayKey();
         const freeAvailable = hasPremiumAccess && !premiumFreezeUsed;
@@ -2377,6 +2382,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             if (purchase !== 'ok') {
                 await enqueueThemedBlockingInfoAlert(triLang(lang, {
                     ru: 'Недостаточно жемчужин',
+                    en: 'Not enough pearls',
                     uk: 'Недостатньо перлин',
                     es: `No tienes suficientes ${BRAND_SHARDS_ES}`,
                     'pt-BR': "Você não tem pérolas suficientes",
@@ -2388,6 +2394,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // словом («жемчужин»), как в магазине, а не эмодзи-алмазом 💎.
                 }), triLang(lang, {
                     ru: `Заморозка стоит ${FREEZE_COST_SHARDS} жемчужин. У тебя ${shardsBalance}.`,
+                    en: `Freezing costs ${FREEZE_COST_SHARDS} pearls. You have ${shardsBalance}.`,
                     uk: `Заморозка коштує ${FREEZE_COST_SHARDS} перлин. У тебе ${shardsBalance}.`,
                     es: `Congelar la racha cuesta ${FREEZE_COST_SHARDS} perlas · Tienes ${shardsBalance}`,
                     'pt-BR': `Congelar a sequência custa ${FREEZE_COST_SHARDS} pérolas · Você tem ${shardsBalance}`,
@@ -2408,6 +2415,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
         void checkAchievements({ type: 'streak_freeze_used' });
+        } catch (error) {
+            void import('../debug-logger')
+                .then(({ DebugLogger }) => DebugLogger.error('home.tsx:handleFreezeStreak', error, 'warning'))
+                .catch(() => {});
+            emitAppEvent('action_toast', {
+                type: 'error',
+                messageRu: 'Не удалось заморозить серию. Проверь связь и попробуй ещё раз.',
+                messageUk: 'Не вдалося заморозити серію. Перевір зв’язок і спробуй ще раз.',
+                messageEs: 'No se pudo congelar la racha. Revisa la conexión e inténtalo de nuevo.',
+                messagePtBr: 'Não foi possível congelar a sequência. Verifique a conexão e tente de novo.',
+                messageVi: 'Không đóng băng được chuỗi. Hãy kiểm tra kết nối và thử lại.',
+                messageId: 'Gagal membekukan rangkaian. Periksa koneksi dan coba lagi.',
+                messageTr: 'Seri dondurulamadı. Bağlantını kontrol et ve tekrar dene.',
+                messagePl: 'Nie udało się zamrozić serii. Sprawdź połączenie i spróbuj ponownie.',
+            });
+        } finally {
+            freezeBusyRef.current = false;
+        }
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
@@ -2464,7 +2489,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     ) => {
         if (marker === 'freeze') {
             const iceSize = Math.round(size * 1.34);
-            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Заморозка серии', uk: 'Заморозка серії', es: 'Congelación de racha', 'pt-BR': 'Congelamento da sequência', vi: 'Đóng băng chuỗi', id: 'Pembekuan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' })} />;
+            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Заморозка серии', en: 'Streak freeze', uk: 'Заморозка серії', es: 'Congelación de racha', 'pt-BR': 'Congelamento da sequência', vi: 'Đóng băng chuỗi', id: 'Pembekuan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' })} />;
         }
         if (marker === 'revive' || marker === 'repair') {
             return <Ionicons name="checkmark" size={checkSize} color={checkColor}/>;
@@ -2482,6 +2507,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const loginBonusCloseLabel = triLang(lang, {
         ru: 'Закрыть бонус за вход',
         uk: 'Закрити бонус за вхід',
+        en: 'Close login bonus',
         es: 'Cerrar bono por entrar',
         'pt-BR': 'Fechar bônus por entrar',
         vi: 'Đóng thưởng đăng nhập',
@@ -2502,6 +2528,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '800', letterSpacing: 0 }} numberOfLines={1}>{triLang(lang, {
                 ru: 'Бонус за вход!',
                 uk: 'Бонус за вхід!',
+                en: 'Login bonus!',
                 es: '¡Bono por entrar!',
                 'pt-BR': "Bônus por entrar!",
                 vi: "Thưởng đăng nhập!",
@@ -2511,6 +2538,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               })}{loginBonus.cycle === 7 ? triLang(lang, {
                 ru: ' День 7',
                 uk: ' День 7',
+                en: ' · Day 7',
                 es: ' · Día 7',
                 'pt-BR': " · Dia 7",
                 vi: " · Ngày 7",
@@ -2521,6 +2549,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2, fontWeight: '700' }} numberOfLines={1}>+{loginBonus.xp} XP · {triLang(lang, {
                 ru: `день ${loginBonus.cycle}`,
                 uk: `день ${loginBonus.cycle}`,
+                en: `Day ${loginBonus.cycle}`,
                 es: `Día ${loginBonus.cycle}`,
                 'pt-BR': `Dia ${loginBonus.cycle}`,
                 vi: `Ngày ${loginBonus.cycle}`,
@@ -2538,6 +2567,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, {
                 ru: 'С возвращением!',
                 uk: 'З поверненням!',
+                en: 'Welcome back!',
                 es: '¡Qué bien verte de nuevo!',
                 'pt-BR': "Que bom ver você de novo!",
                 vi: "Rất vui được gặp lại bạn!",
@@ -2548,6 +2578,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>{triLang(lang, {
                 ru: 'Весь день — +100% XP за каждый правильный ответ',
                 uk: 'Весь день — +100% XP за кожну правильну відповідь',
+                en: 'All day — +100% XP for every correct answer',
                 es: 'Todo el día: +100 % de XP por cada acierto',
                 'pt-BR': "O dia todo: +100% de XP por cada acerto",
                 vi: "Cả ngày: +100% XP cho mỗi câu đúng",
@@ -2565,6 +2596,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, {
                 ru: 'Почини цепочку!',
                 uk: 'Полагодь стрік!',
+                en: 'Fix your streak!',
                 es: '¡Recupera tu racha!',
                 'pt-BR': "Recupere sua sequência!",
                 vi: "Khôi phục chuỗi của bạn!",
@@ -2575,6 +2607,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>{triLang(lang, {
                 ru: `Пройди 1 урок сегодня, чтобы сохранить цепочку · ${repairProgress}/1`,
                 uk: `Пройди 1 урок сьогодні, щоб зберегти стрік · ${repairProgress}/1`,
+                en: `Complete 1 lesson today to keep your streak · ${repairProgress}/1`,
                 es: `Hoy completa 1 lección para no romper tu racha · ${repairProgress}/1`,
                 'pt-BR': `Hoje complete 1 lição para não quebrar sua sequência · ${repairProgress}/1`,
                 vi: `Hôm nay hoàn thành 1 bài học để không đứt chuỗi · ${repairProgress}/1`,
@@ -2635,7 +2668,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 testID: 'home-quick-lesson',
                 img: menuImages.lesson,
                 label: triLang(lang, {
-                    ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições',
+                    ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições',
                     vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
                 }),
                 onPress: () => { go('/lessons_list'); },
@@ -2646,7 +2679,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 testID: 'home-quick-max',
                 img: menuImages.dialogs,
                 label: triLang(lang, {
-                    ru: 'МАКС', uk: 'МАКС', es: 'MAX', 'pt-BR': 'MAX',
+                    ru: 'МАКС', uk: 'МАКС', en: 'MAX', es: 'MAX', 'pt-BR': 'MAX',
                     vi: 'MAX', id: 'MAX', tr: 'MAX', pl: 'MAX',
                 }),
                 onPress: () => {
@@ -2725,7 +2758,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickCurrencyIconSize = 22;
         // Метка одна на кнопку и на чип: чип свою группу доступности отдаёт.
         const homeRunesA11yLabel = `${triLang(lang, {
-            ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
+            ru: 'Баланс', uk: 'Баланс', en: 'Balance', es: 'Saldo', 'pt-BR': 'Saldo',
             vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
         })}: ${runeAmount(lang, runesBalance)}`;
         const homeHeaderCompact = CONTENT_W < 370;
@@ -2742,7 +2775,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // доступности отдаёт (standaloneA11y={false}), звучит только кнопка.
         // Слово склоняется общим runeAmount — наивный шаблон читал «1 рун».
         const homeLeagueRunesA11yLabel = `${triLang(lang, {
-            ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
+            ru: 'Баланс', uk: 'Баланс', en: 'Balance', es: 'Saldo', 'pt-BR': 'Saldo',
             vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
         })}: ${runeAmount(lang, runesBalance)}`;
         const homeLeagueChestFill = homeLeagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
@@ -2772,6 +2805,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 accessibilityLabel={triLang(lang, {
                     ru: 'Моя карточка профиля',
                     uk: 'Моя картка профілю',
+                    en: 'My profile card',
                     es: 'Mi tarjeta de perfil',
                     'pt-BR': 'Meu cartão de perfil',
                     vi: 'Thẻ hồ sơ của tôi',
@@ -2830,6 +2864,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const experimentalStatusLevelLabel = triLang(lang, {
             ru: 'Уровень',
             uk: 'Рівень',
+            en: 'Level',
             es: 'Nivel',
             'pt-BR': "Nível",
             vi: "Cấp",
@@ -2869,6 +2904,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   accessibilityLabel={triLang(lang, {
                     ru: 'Изменить внешний вид',
                     uk: 'Змінити зовнішній вигляд',
+                    en: 'Change appearance',
                     es: 'Cambiar apariencia',
                     'pt-BR': 'Alterar aparência',
                     vi: 'Đổi diện mạo',
@@ -2943,6 +2979,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                           accessibilityLabel={triLang(lang, {
                             ru: 'Защитить серию',
                             uk: 'Захистити серію',
+                            en: 'Protect streak',
                             es: 'Proteger la racha',
                             'pt-BR': 'Proteger a sequência',
                             vi: 'Bảo vệ chuỗi',
@@ -3042,6 +3079,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     accessibilityLiveRegion="polite"
                     accessibilityLabel={triLang(lang, {
                       ru: `Спины: ${homeSpinBalance}`, uk: `Спіни: ${homeSpinBalance}`,
+                      en: `Spins: ${homeSpinBalance}`,
                       es: `Giros: ${homeSpinBalance}`, 'pt-BR': `Giros: ${homeSpinBalance}`,
                       vi: `Lượt quay: ${homeSpinBalance}`, id: `Putaran: ${homeSpinBalance}`,
                       tr: `Çevirmeler: ${homeSpinBalance}`, pl: `Spiny: ${homeSpinBalance}`,
@@ -3064,7 +3102,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         minWidth: 104,
                         minHeight: 44,
                         borderRadius: 16,
-                        paddingLeft: 15,
+                        // зачем: слева теперь значок спина, а не пустое поле —
+                        // отступ уменьшен, чтобы плашка не разъехалась.
+                        paddingLeft: 9,
                         paddingRight: 7,
                         flexDirection: 'row',
                         alignItems: 'center',
@@ -3074,9 +3114,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         borderBottomColor: '#A96F06',
                       }}
                     >
+                      {/* зачем (владелец, 2026-08-26): у спина появился свой узнаваемый
+                          значок — один и тот же во всех местах, где спин упоминается
+                          (эта кнопка, награда сундука лиги, «Подарки», итог Арены).
+                          Метка доступности уже на кнопке, поэтому значок декоративный. */}
+                      <SpinTicketArt size={24} accessibilityLabel="" />
                       <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: 15, fontWeight: '900', letterSpacing: 0.15 }}>
                         {triLang(lang, {
-                          ru: 'Спин', uk: 'Спін', es: 'Giro', 'pt-BR': 'Giro',
+                          ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro',
                           vi: 'Quay', id: 'Putar', tr: 'Çevir', pl: 'Spin',
                         })}
                       </Text>
@@ -3109,7 +3154,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={handleHomeScroll} onLayout={(event: LayoutChangeEvent) => {
+        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScroll={handleHomeScroll} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();
         }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
@@ -3221,7 +3266,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <View style={{ marginHorizontal: 8, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <FlowText testID="home-quickstart-title" provenance="authored" style={{ flexShrink: 1, color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }}>
                 {triLang(lang, {
-                  ru: 'Быстрый старт', uk: 'Швидкий старт', es: 'Inicio rápido', 'pt-BR': 'Início rápido',
+                  ru: 'Быстрый старт', uk: 'Швидкий старт', en: 'Quick start', es: 'Inicio rápido', 'pt-BR': 'Início rápido',
                   vi: 'Bắt đầu nhanh', id: 'Mulai cepat', tr: 'Hızlı başlangıç', pl: 'Szybki start',
                 })}
               </FlowText>
@@ -3236,7 +3281,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   // зачем (аудит 2026-08-24): слово склоняется хелпером, иначе
                   // скринридер читал «1 жемчужин» вместо «1 жемчужина». Тот же
                   // класс бага уже чинили у рун через runeAmount.
-                  accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} ${ruKnowledgeShardsAfterNumber(shardsBalance)}`, uk: `Баланс: ${shardsBalance} ${ukKnowledgeShardsAfterNumber(shardsBalance)}`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })}
+                  accessibilityLabel={triLang(lang, { ru: `Баланс: ${shardsBalance} ${ruKnowledgeShardsAfterNumber(shardsBalance)}`, uk: `Баланс: ${shardsBalance} ${ukKnowledgeShardsAfterNumber(shardsBalance)}`, en: `Balance: ${shardsBalance} pearls`, es: `Saldo: ${shardsBalance} perlas`, 'pt-BR': `Saldo: ${shardsBalance} pérolas`, vi: `Số dư: ${shardsBalance} ngọc trai`, id: `Saldo: ${shardsBalance} mutiara`, tr: `Bakiye: ${shardsBalance} inci`, pl: `Saldo: ${shardsBalance} pereł` })}
                   onPress={() => {
                     hapticTap();
                     nav.push('/shards_shop');
@@ -3442,7 +3487,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               accessible={true}
               accessibilityRole="button"
               accessibilityLabel={homeFeatureTipA11y}
-              accessibilityHint={triLang(lang, { ru: 'Коснись, чтобы перейти дальше. Смахни вправо или влево, чтобы листать подсказки.', uk: 'Торкнися, щоб перейти далі. Проведи вправо або вліво, щоб гортати підказки.', es: 'Toca para avanzar. Desliza a la derecha o a la izquierda para cambiar de consejo.', 'pt-BR': 'Toque para avançar. Deslize para a direita ou esquerda para trocar a dica.', vi: 'Chạm để tiếp tục. Vuốt sang phải hoặc trái để đổi mẹo.', id: 'Ketuk untuk lanjut. Geser kanan atau kiri untuk mengganti tips.', tr: 'İlerlemek için dokun. İpuçları arasında sağa veya sola kaydır.', pl: 'Dotknij, aby przejść dalej. Przesuń w prawo lub w lewo, aby zmieniać wskazówki.' })}
+              accessibilityHint={triLang(lang, { ru: 'Коснись, чтобы перейти дальше. Смахни вправо или влево, чтобы листать подсказки.', uk: 'Торкнися, щоб перейти далі. Проведи вправо або вліво, щоб гортати підказки.', en: 'Tap to move on. Swipe right or left to browse tips.', es: 'Toca para avanzar. Desliza a la derecha o a la izquierda para cambiar de consejo.', 'pt-BR': 'Toque para avançar. Deslize para a direita ou esquerda para trocar a dica.', vi: 'Chạm để tiếp tục. Vuốt sang phải hoặc trái để đổi mẹo.', id: 'Ketuk untuk lanjut. Geser kanan atau kiri untuk mengganti tips.', tr: 'İlerlemek için dokun. İpuçları arasında sağa veya sola kaydır.', pl: 'Dotknij, aby przejść dalej. Przesuń w prawo lub w lewo, aby zmieniać wskazówki.' })}
               activeOpacity={0.86}
               onPress={handleHomeFeatureTipPress}
               onTouchStart={handleHomeFeatureTipTouchStart}
@@ -3501,7 +3546,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             transform: [{ scale: homeFeatureTipHintScale }],
                           }}
                         >
-                          {triLang(lang, { ru: 'нажми на подсказку', uk: 'торкнися підказки', es: 'toca la pista', 'pt-BR': 'toque na dica', vi: 'chạm vào gợi ý', id: 'ketuk petunjuk', tr: 'ipucuna dokun', pl: 'dotknij podpowiedzi' })}
+                          {triLang(lang, { ru: 'нажми на подсказку', uk: 'торкнися підказки', en: 'tap the hint', es: 'toca la pista', 'pt-BR': 'toque na dica', vi: 'chạm vào gợi ý', id: 'ketuk petunjuk', tr: 'ipucuna dokun', pl: 'dotknij podpowiedzi' })}
                         </Animated.Text>
                       ) : null}
                       {currentHomeFeatureTip.icon ? (
@@ -3540,6 +3585,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               {triLang(lang, {
                     ru: 'Сегодня',
                     uk: 'Сьогодні',
+                    en: 'Today',
                     es: 'Hoy',
                     'pt-BR': "Hoje",
                     vi: "Hôm nay",
@@ -3563,17 +3609,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 accessibilityRole="button"
                 // зачем (аудит 2026-08-24): метка была одним названием — незрячий
                 // не слышал ни прогресс, ни баланс, хотя оба нарисованы в карточке.
-                accessibilityLabel={`${triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}, ${homeLeagueChest.leagueName}, ${homeLeagueChestPct}%. ${homeLeagueRunesA11yLabel}`}
+                accessibilityLabel={`${triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', en: 'League goal', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}, ${homeLeagueChest.leagueName}, ${homeLeagueChestPct}%. ${homeLeagueRunesA11yLabel}`}
               >
                 <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayLeagueCardMinHeight, borderRadius: 24, borderWidth: 0, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, overflow: 'hidden' }}>
                   <Image pointerEvents="none" source={menuImages.league} style={{ position: 'absolute', right: -8, top: -22, width: homeLeagueWatermarkSize, height: homeLeagueWatermarkSize, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                     <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Image source={menuImages.league} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' })}/>
+                      <Image source={menuImages.league} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Лига', uk: 'Ліга', en: 'League', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' })}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
-                        {triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
+                        {triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', en: 'League goal', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
                       </FlowText>
                       <Text style={{ color: leagueBonusPalette.textMuted, fontSize: f.label, fontWeight: '800', lineHeight: f.label + 4, marginTop: 2 }}>
                         {homeLeagueChest.leagueName}
@@ -3698,6 +3744,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const titleModalHeading = triLang(lang, {
         ru: 'Титулы',
         uk: 'Титули',
+        en: 'Titles',
         es: 'Titulos',
         'pt-BR': "Titulos",
         vi: "Danh hieu",
@@ -3708,6 +3755,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const titleModalEarnedLabel = triLang(lang, {
         ru: 'Заработанные',
         uk: 'Зароблені',
+        en: 'Earned',
         es: 'Ganados',
         'pt-BR': "Conquistados",
         vi: "Da nhan",
@@ -3718,6 +3766,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const titleModalSubtitle = triLang(lang, {
             ru: `${earnedTitles.length} из ${allTitles.length} уже открыто`,
             uk: `${earnedTitles.length} з ${allTitles.length} вже відкрито`,
+            en: `${earnedTitles.length} of ${allTitles.length} unlocked`,
             es: `${earnedTitles.length} de ${allTitles.length} desbloqueados`,
             'pt-BR': `${earnedTitles.length} de ${allTitles.length} desbloqueados`,
             vi: `${earnedTitles.length}/${allTitles.length} da mo`,
@@ -3741,6 +3790,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               {triLang(lang, {
                 ru: 'Не удалось загрузить данные. Проверь соединение.',
                 uk: 'Не вдалося завантажити дані. Перевір з’єднання.',
+                en: 'Couldn’t load data. Check your connection.',
                 es: 'No se pudieron cargar los datos. Revisa tu conexión.',
                 'pt-BR': 'Não foi possível carregar os dados. Verifique sua conexão.',
                 vi: 'Không tải được dữ liệu. Kiểm tra kết nối của bạn.',
@@ -3751,13 +3801,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             </Text>
             <TouchableOpacity
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Обновить', uk: 'Оновити', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
+              accessibilityLabel={triLang(lang, { ru: 'Обновить', uk: 'Оновити', en: 'Refresh', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
               activeOpacity={0.82}
               onPress={() => { setLoadFailedNoData(false); void loadData(); }}
               style={{ paddingVertical: 6, paddingHorizontal: 12, borderRadius: 10, backgroundColor: t.accent + '22' }}
             >
               <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Обновить', uk: 'Оновити', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
+                {triLang(lang, { ru: 'Обновить', uk: 'Оновити', en: 'Refresh', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -3801,6 +3851,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     {triLang(lang, {
                 ru: 'Энергия безлимитная',
                 uk: 'Енергія безлімітна',
+                en: 'Unlimited energy',
                 es: 'Energía ilimitada',
                 'pt-BR': "Energia ilimitada",
                 vi: "Năng lượng không giới hạn",
@@ -3816,6 +3867,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       {`${energyCount}/${energyMax} · `}{triLang(lang, {
                 ru: `1 энергия каждые ${energyRecoveryMinutes} мин`,
                 uk: `1 енергія кожні ${energyRecoveryMinutes} хв`,
+                en: `+1 energy point every ${energyRecoveryMinutes} min`,
                 es: `+1 punto de energía cada ${energyRecoveryMinutes} min`,
                 'pt-BR': `+1 ponto de energia a cada ${energyRecoveryMinutes} min`,
                 vi: `+1 điểm năng lượng mỗi ${energyRecoveryMinutes} phút`,
@@ -3830,6 +3882,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         {triLang(lang, {
                     ru: 'Через',
                     uk: 'Через',
+                    en: 'In',
                     es: 'En',
                     'pt-BR': "Em",
                     vi: "Trong",
@@ -3846,6 +3899,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       {triLang(lang, {
                     ru: `Следующий слот энергии на уровне ${getNextEnergyUnlockLevel(level)}`,
                     uk: `Наступний слот енергії на рівні ${getNextEnergyUnlockLevel(level)}`,
+                    en: `Once you hit level ${getNextEnergyUnlockLevel(level)}, your max energy will go up`,
                     es: `Al alcanzar el nivel ${getNextEnergyUnlockLevel(level)}, tu energía máxima subirá`,
                     'pt-BR': `Ao alcançar o nível ${getNextEnergyUnlockLevel(level)}, sua energia máxima vai aumentar`,
                     vi: `Khi đạt cấp ${getNextEnergyUnlockLevel(level)}, năng lượng tối đa của bạn sẽ tăng`,
@@ -3908,7 +3962,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 </Text>
               </View>
 
-              <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
+              <ScrollView decelerationRate="fast" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
                     return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
@@ -3928,6 +3982,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                               {triLang(lang, {
                                     ru: 'Сейчас',
                                     uk: 'Зараз',
+                                    en: 'Now',
                                     es: 'Actual',
                                     'pt-BR': "Atual",
                                     vi: "Hien tai",

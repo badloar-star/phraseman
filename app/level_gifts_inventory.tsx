@@ -28,6 +28,7 @@ import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import LevelSpinRewardArt from '../components/LevelSpinRewardArt';
+import SpinTicketArt from '../components/SpinTicketArt';
 import { isLightThemeMode } from '../constants/theme';
 import {
   giftDisplayTitleForLang,
@@ -92,7 +93,7 @@ const giftTone = (accent: string, alpha: string): string =>
   /^#[0-9a-f]{6}$/i.test(accent) ? `${accent}${alpha}` : accent;
 
 const giftBonusLabel = (lang: Parameters<typeof giftTitleForLang>[1]): string =>
-  triLang(lang, { ru: 'Бонус', uk: 'Бонус', es: 'Bono', 'pt-BR': 'Bônus', vi: 'Thưởng', id: 'Bonus', tr: 'Bonus', pl: 'Bonus' });
+  triLang(lang, { ru: 'Бонус', uk: 'Бонус', en: 'Bonus', es: 'Bono', 'pt-BR': 'Bônus', vi: 'Thưởng', id: 'Bonus', tr: 'Bonus', pl: 'Bonus' });
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const dualPartLabel = (
@@ -100,7 +101,7 @@ const dualPartLabel = (
   lang: Parameters<typeof giftTitleForLang>[1],
 ): string => (
   part === 'f2p'
-    ? triLang(lang, { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de n\u00edvel', vi: 'Qu\u00e0 c\u1ea5p \u0111\u1ed9', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })
+    ? triLang(lang, { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', en: 'Level gift', es: 'Regalo por nivel', 'pt-BR': 'Presente de n\u00edvel', vi: 'Qu\u00e0 c\u1ea5p \u0111\u1ed9', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })
     : giftBonusLabel(lang)
 );
 
@@ -157,11 +158,12 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
     ? `${item.kind}-${item.level}-${item.dualPart}`
     : `${item.kind}-${item.level}`;
   const title = item.kind === 'dual'
-    ? triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', es: 'Dos regalos', 'pt-BR': 'Dois presentes', vi: 'Hai món quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })
+    ? triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', en: 'Two gifts', es: 'Dos regalos', 'pt-BR': 'Dois presentes', vi: 'Hai món quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })
     : giftDisplayTitleForLang(item.gift, lang);
   const a11yLabel = `${title}. ${triLang(lang, {
     ru: `Уровень ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
     uk: `Рівень ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    en: `Level ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
     es: `Nivel ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
     'pt-BR': `Nível ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
     vi: `Cấp ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
@@ -270,12 +272,13 @@ export default function LevelGiftsInventoryScreen() {
   const spinBalanceA11yLabel = spinBalance === null
     ? triLang(lang, {
       ru: 'Спины: количество загружается', uk: 'Спіни: кількість завантажується',
+      en: 'Spins: loading count',
       es: 'Giros: cantidad cargando', 'pt-BR': 'Giros: quantidade carregando',
       vi: 'Lượt quay: đang tải số lượng', id: 'Putaran: jumlah sedang dimuat',
       tr: 'Çevirmeler: sayı yükleniyor', pl: 'Spiny: wczytywanie liczby',
     })
     : triLang(lang, {
-      ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, es: `Giros: ${spinBalance}`,
+      ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, en: `Spins: ${spinBalance}`, es: `Giros: ${spinBalance}`,
       'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt quay: ${spinBalance}`,
       id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}`,
     });
@@ -392,6 +395,7 @@ export default function LevelGiftsInventoryScreen() {
               {triLang(lang, {
                 ru: 'Подарки',
                 uk: 'Подарунки',
+                en: 'Gifts',
                 es: 'Regalos',
                 'pt-BR': 'Presentes',
                 vi: 'Quà',
@@ -419,9 +423,13 @@ export default function LevelGiftsInventoryScreen() {
                   end={{ x: 1, y: 1 }}
                   style={styles.spinHeaderGradient}
                 >
+                  {/* зачем (владелец, 2026-08-26): единый значок спина — тот же,
+                      что на Главной, в награде сундука лиги и в итоге Арены.
+                      Метка доступности уже на кнопке, значок декоративный. */}
+                  <SpinTicketArt size={24} accessibilityLabel="" />
                   <Text style={styles.spinHeaderLabel}>
                     {triLang(lang, {
-                      ru: 'Спин', uk: 'Спін', es: 'Giro', 'pt-BR': 'Giro',
+                      ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro',
                       vi: 'Quay', id: 'Putar', tr: 'Çevir', pl: 'Spin',
                     })}
                   </Text>
@@ -433,32 +441,32 @@ export default function LevelGiftsInventoryScreen() {
             </Animated.View>
           </View>
 
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <View testID="level-gifts-bonus-of-day" style={{ gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
-                {triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}
+                {triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', en: 'Daily bonus', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}
               </Text>
               <TodaysBoonStrip marginTop={0} />
             </View>
             <View testID="level-gifts-active-multipliers" style={{ gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
-                {triLang(lang, { ru: 'Активные множители', uk: 'Активні множники', es: 'Multiplicadores activos', 'pt-BR': 'Multiplicadores ativos', vi: 'Hệ số đang hoạt động', id: 'Pengali aktif', tr: 'Aktif çarpanlar', pl: 'Aktywne mnożniki' })}
+                {triLang(lang, { ru: 'Активные множители', uk: 'Активні множники', en: 'Active multipliers', es: 'Multiplicadores activos', 'pt-BR': 'Multiplicadores ativos', vi: 'Hệ số đang hoạt động', id: 'Pengali aktif', tr: 'Aktif çarpanlar', pl: 'Aktywne mnożniki' })}
               </Text>
               <LinearGradient colors={[giftTone(t.accent, '24'), t.bgCard, t.bgSurface]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 18, padding: 14, gap: 8 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'Опыт за занятия', uk: 'Досвід за заняття', es: 'XP por práctica', 'pt-BR': 'XP por prática', vi: 'XP mỗi buổi học', id: 'XP per latihan', tr: 'Çalışma XP’si', pl: 'XP za naukę' })}
+                    {triLang(lang, { ru: 'Опыт за занятия', uk: 'Досвід за заняття', en: 'XP for practice', es: 'XP por práctica', 'pt-BR': 'XP por prática', vi: 'XP mỗi buổi học', id: 'XP per latihan', tr: 'Çalışma XP’si', pl: 'XP za naukę' })}
                   </Text>
                   <Text style={{ color: t.accent, fontSize: f.h2, fontWeight: '900' }}>×{(multiplierBreakdown?.total ?? 1).toFixed(2)}</Text>
                 </View>
                 {[
-                  { key: 'streak', label: triLang(lang, { ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' }), value: multiplierBreakdown?.streakM ?? 1 },
-                  { key: 'club', label: triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' }), value: multiplierBreakdown?.clubM ?? 1 },
-                  { key: 'gift', label: triLang(lang, { ru: 'Подарок', uk: 'Подарунок', es: 'Regalo', 'pt-BR': 'Presente', vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent' }), value: multiplierBreakdown?.giftM ?? 1 },
-                  { key: 'league', label: triLang(lang, { ru: 'Буст лиги', uk: 'Буст ліги', es: 'Impulso de liga', 'pt-BR': 'Impulso de liga', vi: 'Tăng lực giải đấu', id: 'Dorongan liga', tr: 'Lig güçlendirmesi', pl: 'Wzmocnienie ligi' }), value: multiplierBreakdown?.leagueBoostM ?? 1 },
-                  { key: 'group', label: triLang(lang, { ru: 'Общий буст', uk: 'Спільний буст', es: 'Impulso común', 'pt-BR': 'Impulso comum', vi: 'Tăng lực chung', id: 'Dorongan bersama', tr: 'Ortak güçlendirme', pl: 'Wspólne wzmocnienie' }), value: multiplierBreakdown?.leagueGroupBoostM ?? 1 },
-                  { key: 'comeback', label: triLang(lang, { ru: 'Возврат', uk: 'Повернення', es: 'Retorno', 'pt-BR': 'Retorno', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dönüş', pl: 'Powrót' }), value: multiplierBreakdown?.comebackM ?? 1 },
-                  { key: 'chest', label: triLang(lang, { ru: 'Сундук лиги', uk: 'Скриня ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' }), value: multiplierBreakdown?.leagueChestM ?? 1 },
+                  { key: 'streak', label: triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' }), value: multiplierBreakdown?.streakM ?? 1 },
+                  { key: 'club', label: triLang(lang, { ru: 'Лига', uk: 'Ліга', en: 'League', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' }), value: multiplierBreakdown?.clubM ?? 1 },
+                  { key: 'gift', label: triLang(lang, { ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente', vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent' }), value: multiplierBreakdown?.giftM ?? 1 },
+                  { key: 'league', label: triLang(lang, { ru: 'Буст лиги', uk: 'Буст ліги', en: 'League boost', es: 'Impulso de liga', 'pt-BR': 'Impulso de liga', vi: 'Tăng lực giải đấu', id: 'Dorongan liga', tr: 'Lig güçlendirmesi', pl: 'Wzmocnienie ligi' }), value: multiplierBreakdown?.leagueBoostM ?? 1 },
+                  { key: 'group', label: triLang(lang, { ru: 'Общий буст', uk: 'Спільний буст', en: 'Shared boost', es: 'Impulso común', 'pt-BR': 'Impulso comum', vi: 'Tăng lực chung', id: 'Dorongan bersama', tr: 'Ortak güçlendirme', pl: 'Wspólne wzmocnienie' }), value: multiplierBreakdown?.leagueGroupBoostM ?? 1 },
+                  { key: 'comeback', label: triLang(lang, { ru: 'Возврат', uk: 'Повернення', en: 'Comeback', es: 'Retorno', 'pt-BR': 'Retorno', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dönüş', pl: 'Powrót' }), value: multiplierBreakdown?.comebackM ?? 1 },
+                  { key: 'chest', label: triLang(lang, { ru: 'Сундук лиги', uk: 'Скриня ліги', en: 'League chest', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' }), value: multiplierBreakdown?.leagueChestM ?? 1 },
                 ].filter((item) => item.value > 1).map((item) => (
                   <View key={item.key} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{item.label}</Text>
@@ -467,13 +475,13 @@ export default function LevelGiftsInventoryScreen() {
                 ))}
                 {(multiplierBreakdown?.boonXpContribution ?? 0) > 0 ? (
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}</Text>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', en: 'Daily bonus', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}</Text>
                     <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '900' }}>+{Math.round((multiplierBreakdown?.boonXpContribution ?? 0) * 100)}%</Text>
                   </View>
                 ) : null}
                 {(multiplierBreakdown?.total ?? 1) <= 1 ? (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4 }}>
-                    {triLang(lang, { ru: 'Сейчас дополнительных множителей нет', uk: 'Зараз додаткових множників немає', es: 'Ahora no hay multiplicadores extra', 'pt-BR': 'Não há multiplicadores extras agora', vi: 'Hiện chưa có hệ số thêm', id: 'Belum ada pengali tambahan', tr: 'Şu anda ek çarpan yok', pl: 'Brak dodatkowych mnożników' })}
+                    {triLang(lang, { ru: 'Сейчас дополнительных множителей нет', uk: 'Зараз додаткових множників немає', en: 'No extra multipliers right now', es: 'Ahora no hay multiplicadores extra', 'pt-BR': 'Não há multiplicadores extras agora', vi: 'Hiện chưa có hệ số thêm', id: 'Belum ada pengali tambahan', tr: 'Şu anda ek çarpan yok', pl: 'Brak dodatkowych mnożników' })}
                   </Text>
                 ) : null}
               </LinearGradient>
@@ -482,7 +490,7 @@ export default function LevelGiftsInventoryScreen() {
               {/* Заголовок единого списка. Вкладок нет: активные бонусы и
                   неоткрытые подарки живут вместе, активные — первыми. */}
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
-                {triLang(lang, { ru: 'Твои подарки', uk: 'Твої подарунки', es: 'Tus regalos', 'pt-BR': 'Seus presentes', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyelerin', pl: 'Twoje prezenty' })}
+                {triLang(lang, { ru: 'Твои подарки', uk: 'Твої подарунки', en: 'Your gifts', es: 'Tus regalos', 'pt-BR': 'Seus presentes', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyelerin', pl: 'Twoje prezenty' })}
               </Text>
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
@@ -535,6 +543,7 @@ export default function LevelGiftsInventoryScreen() {
                             {triLang(lang, {
                               ru: 'Активно',
                               uk: 'Активно',
+                              en: 'Active',
                               es: 'Activo',
                               'pt-BR': 'Ativo',
                               vi: 'Đang bật',
@@ -596,6 +605,7 @@ export default function LevelGiftsInventoryScreen() {
                   {triLang(lang, {
                     ru: 'Подарков пока нет',
                     uk: 'Подарунків поки немає',
+                    en: 'No gifts yet',
                     es: 'Aún no hay regalos',
                     'pt-BR': 'Ainda não há presentes',
                     vi: 'Chưa có quà',
@@ -612,6 +622,7 @@ export default function LevelGiftsInventoryScreen() {
                   {triLang(lang, {
                     ru: 'Подарки за уровни появятся здесь. Применишь — подарок останется в списке и покажет, сколько ещё действует.',
                     uk: 'Подарунки за рівні з’являться тут. Застосуєш — подарунок лишиться у списку й покаже, скільки ще діє.',
+                    en: 'Level gifts will appear here. Once applied, a gift stays in the list showing how long it’s still active.',
                     es: 'Los regalos por nivel aparecerán aquí. Al aplicarlos, seguirán en la lista mostrando cuánto duran.',
                     'pt-BR': 'Os presentes de nível aparecerão aqui. Ao aplicar, eles ficam na lista mostrando quanto tempo duram.',
                     vi: 'Quà cấp độ sẽ hiện ở đây. Khi dùng, quà vẫn nằm trong danh sách và hiện thời gian còn hiệu lực.',
@@ -630,6 +641,7 @@ export default function LevelGiftsInventoryScreen() {
                 {triLang(lang, {
                   ru: 'Неоткрытых подарков нет — новые за уровни появятся здесь.',
                   uk: 'Невідкритих подарунків немає — нові за рівні з’являться тут.',
+                  en: 'No unopened gifts — new level gifts will appear here.',
                   es: 'No hay regalos sin abrir: los nuevos por nivel aparecerán aquí.',
                   'pt-BR': 'Não há presentes fechados: os novos de nível aparecerão aqui.',
                   vi: 'Không có quà chưa mở — quà cấp độ mới sẽ hiện ở đây.',
@@ -719,7 +731,8 @@ const styles = StyleSheet.create({
     minWidth: 104,
     minHeight: 44,
     borderRadius: 16,
-    paddingLeft: 15,
+    // зачем: слева теперь значок спина, а не пустое поле (см. Главную).
+    paddingLeft: 9,
     paddingRight: 7,
     flexDirection: 'row',
     alignItems: 'center',

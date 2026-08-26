@@ -15,12 +15,25 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(friendDuel.match(/requestIdRef\.current = createArenaRequestId\('friend_invite'\);/g)).toHaveLength(2);
   });
 
-  test('the visible back affordance leaves an empty friend duel instead of only hiding its native picker', () => {
-    expect(friendDuel).toContain("useRef<'stay' | 'leave'>(typeof params.friendStableUid === 'string' ? 'stay' : 'leave')");
-    expect(friendDuel).toContain("if (pickerCloseIntentRef.current === 'leave') router.replace('/arena' as never);");
+  /**
+   * Владелец 2026-08-26: «экран вообще поломан — зайти невозможно, выйти
+   * невозможно и ничего начать». Причина: picker открывался нативным Modal
+   * СРАЗУ при входе, и стрелка «назад» вместе со всей карточкой оставались под
+   * ним — тапы туда физически не доходили. Прошлая попытка чинить это через
+   * pickerCloseIntentRef ('leave' на первое закрытие) лечила симптом «выход»,
+   * но экран всё равно открывался заблокированным.
+   *
+   * Сторож теперь требует обратного: шторка НЕ открыта на входе, её закрытие
+   * никогда не навигирует, и пустой список друзей объяснён словами.
+   */
+  test('the friend picker never traps the screen on entry and an empty friend list is explained', () => {
+    expect(friendDuel).toContain('const [pickerOpen, setPickerOpen] = useState(false);');
+    expect(friendDuel).not.toContain('pickerCloseIntentRef');
+    expect(friendDuel).toContain('const closeFriendPicker = useCallback(() => setPickerOpen(false), []);');
     expect(friendDuel).toContain('onBack={leaveFriendDuel}');
     expect(friendDuel).toContain('onClose={closeFriendPicker}');
-    expect(friendDuel).toContain("pickerCloseIntentRef.current = 'stay'; setSelected(");
+    expect(friendDuel).toContain("arenaText(lang, 'noFriends')");
+    expect(friendDuel).toContain("arenaText(lang, 'selectFriend')");
   });
 
   test('keeps the approved invite copy exact and observes pending cancellation or expiry live', () => {

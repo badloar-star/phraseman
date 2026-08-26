@@ -42,10 +42,10 @@ export default function ArenaFriendDuelScreen() {
   const [friends, setFriends] = useState<FriendsTabWarmSnapshot | null>(() => peekFriendsTabSwrWarm());
   const [selected, setSelected] = useState<SelectedFriend | null>(() => typeof params.friendStableUid === 'string' ? {
     uid: params.friendStableUid,
-    name: typeof params.friendName === 'string' ? params.friendName : 'Друг',
+    name: typeof params.friendName === 'string' ? params.friendName : arenaText(lang, 'friendFallbackName'),
     avatar: typeof params.friendAvatar === 'string' ? params.friendAvatar : undefined,
   } : null);
-  const [pickerOpen, setPickerOpen] = useState(() => typeof params.friendStableUid !== 'string');
+  const [pickerOpen, setPickerOpen] = useState(false);
   const [invite, setInvite] = useState<StoredInvite | null>(null);
   const [now, setNow] = useState(Date.now());
   const [busy, setBusy] = useState(false);
@@ -59,19 +59,20 @@ export default function ArenaFriendDuelScreen() {
   } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const requestIdRef = useRef(createArenaRequestId('friend_invite'));
-  const duelEnergyIntent = useEnergySessionIntent('arena_friend_duel', selected?.uid ?? 'friend', requestIdRef.current);
-  /**
-   * На первом входе picker открыт нативным Modal поверх всего экрана. Он
-   * перехватывает и системную кнопку, и тап по видимой стрелке попадает в backdrop.
-   * Первое закрытие поэтому выходит в Арену; picker, открытый повторно для
-   * смены уже выбранного друга, только закрывается.
-   */
-  const pickerCloseIntentRef = useRef<'stay' | 'leave'>(typeof params.friendStableUid === 'string' ? 'stay' : 'leave');
+  const [duelEnergyRevision, setDuelEnergyRevision] = useState(0);
+  const duelEnergyIntent = useEnergySessionIntent(
+    'arena_friend_duel',
+    selected?.uid ?? 'friend',
+    `${requestIdRef.current}:${duelEnergyRevision}`,
+  );
+  // зачем (владелец 2026-08-26, «экран вообще поломан»): раньше picker
+  // открывался нативным Modal СРАЗУ при входе без выбранного друга. Пока он
+  // висел, стрелка «назад» и вся карточка оставались ПОД ним и тапы туда не
+  // доходили — экран выглядел мёртвым, и выйти было нельзя. Теперь вход всегда
+  // показывает обычный экран, а шторка открывается только по тапу «Выбрать
+  // друга», поэтому закрытие шторки больше никогда не уводит с экрана.
   const leaveFriendDuel = useCallback(() => router.replace('/arena' as never), [router]);
-  const closeFriendPicker = useCallback(() => {
-    setPickerOpen(false);
-    if (pickerCloseIntentRef.current === 'leave') router.replace('/arena' as never);
-  }, [router]);
+  const closeFriendPicker = useCallback(() => setPickerOpen(false), []);
 
   useEffect(() => {
     if (!active) return;
@@ -114,7 +115,7 @@ export default function ArenaFriendDuelScreen() {
       void clearStored();
       requestIdRef.current = createArenaRequestId('friend_invite');
       setInvite(null);
-      setError(status.status === 'declined' ? 'Сегодня без драмы' : status.status === 'expired' ? 'Время вызова вышло' : 'Вызов отменён');
+      setError(arenaText(lang, status.status === 'declined' ? 'challengeDeclined' : status.status === 'expired' ? 'challengeExpired' : 'challengeCancelled'));
       return true;
     }
     return false;
@@ -185,7 +186,9 @@ export default function ArenaFriendDuelScreen() {
       // случилось, и плата обязана вернуться. Иначе игрок теряет единицу за
       // чужую сетевую ошибку.
       if (energyCharged && !entryGranted) {
-        void refundDuelEnergy(duelEnergyIntent.operationId, 'entry_failed').catch(() => {});
+        await refundDuelEnergy(duelEnergyIntent.operationId, 'entry_failed')
+          .then(() => setDuelEnergyRevision((current) => current + 1))
+          .catch(() => {});
       }
       setError(`${arenaText(lang, 'inviteFailed')}. ${arenaText(lang, 'inviteFailedHint')}`);
     }
@@ -200,9 +203,9 @@ export default function ArenaFriendDuelScreen() {
       await clearStored();
       requestIdRef.current = createArenaRequestId('friend_invite');
       setInvite(null);
-      setError('Вызов отменён');
+      setError(arenaText(lang, 'challengeCancelled'));
     }
-    catch { setError('Не удалось отменить. Повторить?'); }
+    catch { setError(arenaText(lang, 'cancelFailed')); }
     finally { setBusy(false); }
   };
 
@@ -226,23 +229,34 @@ export default function ArenaFriendDuelScreen() {
   }, [params.devBot]);
 
   return (
-    <ArenaScreen title="Дуэль с другом" variant="tickets" onBack={leaveFriendDuel}>
+    <ArenaScreen title={arenaText(lang, 'friendDuelTitle')} variant="tickets" onBack={leaveFriendDuel}>
       <V2Card style={styles.card}>
+        {!selected && !invite ? (
+          // зачем: пустой экран с одной кнопкой не объяснял, что вообще
+          // происходит. Одна строка вместо немой пустоты.
+          <Text style={[styles.lead, { color: P.muted }]}>{arenaText(lang, 'selectFriend')}</Text>
+        ) : null}
         {selected ? <View style={styles.selected}><AvatarView avatar={selected.avatar} auraId={selected.aura} size={64} animateAura={false} ownerActive={active} /><Text style={[styles.name, { color: P.text }]}>{selected.name}</Text></View> : null}
-        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>Отменить вызов</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => { pickerCloseIntentRef.current = 'stay'; setPickerOpen(true); }}>{selected ? 'Выбрать другого' : 'Выбрать друга'}</V2Cta>{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>Бросить вызов</V2Cta><EnergyCostBadge testID="arena-duel-energy-cost" /></View> : null}</>}
+        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>{arenaText(lang, 'cancelChallenge')}</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => setPickerOpen(true)}>{arenaText(lang, selected ? 'pickAnotherFriend' : 'pickFriend')}</V2Cta>{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>{arenaText(lang, 'throwChallenge')}</V2Cta><EnergyCostBadge testID="arena-duel-energy-cost" /></View> : null}</>}
         {error ? <Text accessibilityLiveRegion="polite" style={[styles.error, { color: P.muted }]}>{error}</Text> : null}
       </V2Card>
 
-      <HybridSheetShell visible={pickerOpen} onClose={closeFriendPicker} closeLabel="Закрыть" testID="arena-friend-picker">
+      <HybridSheetShell visible={pickerOpen} onClose={closeFriendPicker} closeLabel={arenaText(lang, 'closeLabel')} testID="arena-friend-picker">
         {({ requestDismiss }) => <View style={styles.picker}>
-          <Text style={[styles.pickerTitle, { color: P.text }]}>Кому бросить вызов?</Text>
+          <Text style={[styles.pickerTitle, { color: P.text }]}>{arenaText(lang, 'whoToChallenge')}</Text>
           <ScrollView decelerationRate="fast" style={styles.pickerScroll} contentContainerStyle={styles.pickerRows} showsVerticalScrollIndicator={false}>
           {(friends?.friends ?? []).map((friend) => {
             const profile = friends?.profiles[friend.uid];
-            const name = profile?.name ?? friend.displayName ?? 'Друг';
-            return <Pressable key={friend.uid} accessibilityRole="button" accessibilityLabel={name} onPress={() => { pickerCloseIntentRef.current = 'stay'; setSelected({ uid: friend.uid, name, avatar: profile?.avatar, aura: profile?.aura }); requestDismiss(); }} style={[styles.row, { backgroundColor: P.elev }]}><AvatarView avatar={profile?.avatar} auraId={profile?.aura} size={44} animateAura={false} ownerActive={active} /><Text style={[styles.rowName, { color: P.text }]}>{name}</Text></Pressable>;
+            const name = profile?.name ?? friend.displayName ?? arenaText(lang, 'friendFallbackName');
+            return <Pressable key={friend.uid} accessibilityRole="button" accessibilityLabel={name} onPress={() => { setSelected({ uid: friend.uid, name, avatar: profile?.avatar, aura: profile?.aura }); requestDismiss(); }} style={[styles.row, { backgroundColor: P.elev }]}><AvatarView avatar={profile?.avatar} auraId={profile?.aura} size={44} animateAura={false} ownerActive={active} /><Text style={[styles.rowName, { color: P.text }]}>{name}</Text></Pressable>;
           })}
-          {__DEV__ ? <Pressable testID="arena-friend-dev-bot" accessibilityRole="button" accessibilityLabel="DEV-бот" onPress={() => { pickerCloseIntentRef.current = 'stay'; requestDismiss(); void startDevBot(); }} style={[styles.row, { backgroundColor: P.elev }]}><View style={[styles.botAvatar, { backgroundColor: P.accent }]}><Text style={{ color: P.okInk, fontWeight: '900' }}>BOT</Text></View><Text style={[styles.rowName, { color: P.text }]}>DEV-бот</Text></Pressable> : null}
+          {(friends?.friends ?? []).length === 0 && !__DEV__ ? (
+            // зачем: без этого шторка открывалась ПУСТОЙ — ни строки текста,
+            // и человек не понимал, сломалось приложение или у него правда нет
+            // друзей. Ключ noFriends в copy.ts уже был, просто не использовался.
+            <Text style={[styles.pickerEmpty, { color: P.muted }]}>{arenaText(lang, 'noFriends')}</Text>
+          ) : null}
+          {__DEV__ ? <Pressable testID="arena-friend-dev-bot" accessibilityRole="button" accessibilityLabel="DEV-бот" onPress={() => { requestDismiss(); void startDevBot(); }} style={[styles.row, { backgroundColor: P.elev }]}><View style={[styles.botAvatar, { backgroundColor: P.accent }]}><Text style={{ color: P.okInk, fontWeight: '900' }}>BOT</Text></View><Text style={[styles.rowName, { color: P.text }]}>DEV-бот</Text></Pressable> : null}
           </ScrollView>
         </View>}
       </HybridSheetShell>
@@ -262,6 +276,8 @@ const styles = StyleSheet.create({
   picker: { gap: 10, paddingBottom: 4 },
   pickerScroll: { maxHeight: 480 },
   pickerRows: { gap: 10, paddingBottom: 4 },
+  lead: { fontSize: 15, fontWeight: '600', textAlign: 'center', paddingBottom: 14 },
+  pickerEmpty: { fontSize: 15, fontWeight: '600', textAlign: 'center', paddingVertical: 28 },
   pickerTitle: { fontSize: 22, fontWeight: '900', textAlign: 'center', marginBottom: 6 },
   row: { minHeight: 60, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   rowName: { flex: 1, fontSize: 16, fontWeight: '800' },

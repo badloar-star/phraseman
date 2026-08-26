@@ -54,6 +54,41 @@ service cloud.firestore {
     // Telegram review state, and the automation switch are callable/Admin-SDK only. Keeping this list in
     // one helper also keeps the legacy browser-admin catch-all below the Rules
     // expression-complexity ceiling.
+    // зачем (2026-08-26): четыре коллекции отзывов закрыты от браузерной админки —
+    // читать/писать их можно только через аудируемые callable. Вынесены в helper, а не
+    // дописаны в цепочку `collection != ...` ниже: цепочка переросла лимит
+    // «Expression is too complex to evaluate safely» и правила перестали компилироваться.
+    // зачем (2026-08-26): цепочка `collection != ...` в legacy-catch-all ниже переросла
+    // лимит Firestore «Expression is too complex to evaluate safely» — правила перестали
+    // компилироваться, и деплой встал. Три однородных семейства свёрнуты в helper'ы.
+    // Списки взяты 1:1 из цепочки, поведение не меняется.
+    //
+    // ВНИМАНИЕ: arena_v2_* сюда НЕ входят намеренно — это ЖИВАЯ Арена, её в цепочке
+    // исключений не было. Regex ниже требует, чтобы после 'arena_' шёл не 'v2_'.
+    function isRetiredArenaRoot(collection) {
+      return collection.matches('arena_(profiles|sessions|rooms|rooms_live|invites|session_results|questions|question_history|question_pool_publications|ghost_challenges|pulse_events)')
+        || collection.matches('arena_hill_(thrones|attempts|player_wins|throne_rewards)')
+        || collection.matches('arena_season(s|_leaderboard|_claims|_hall)')
+        || collection.matches('arena_club_(events|contributions)')
+        || collection.matches('arena_room_(runs|members)');
+    }
+
+    function isServerOwnedAgentRoot(collection) {
+      return collection.matches('agent_(cases|recommendations|approvals|tasks|audit_events|office_control|telegram_tokens|observation_receipts)')
+        || collection.matches('agent_manager_(agents|tasks|task_events|approvals|execution_jobs|inbox_links|telegram_tokens|telegram_publication_receipts|support_draft_operations)')
+        || collection.matches('agent_manager_local_runner_(pairings|capabilities|leases)');
+    }
+
+    function isServerOwnedAuthRoot(collection) {
+      return collection == 'auth_links'
+        || collection.matches('auth_recovery_(codes|rate_limits|events|challenges|delivery_intents|idempotency|clean_rate_limits)');
+    }
+
+    function isServerOwnedFeedbackRoot(collection) {
+      return collection.matches('(feedback_entries|feedback_summary_cache|feedback_submission_quotas)')
+        || collection == 'max_voice_feedback';
+    }
+
     function isServerOwnedSupportRoot(collection) {
       return collection.matches('support_auto_reply_(reservations|counters)')
         || collection.matches('support_telegram_(reviews|edit_sessions|reply_jobs)')
@@ -2982,7 +3017,6 @@ service cloud.firestore {
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
         && collection != 'users'
-        && collection != 'auth_links'
         && collection != 'account_deletion_tombstones'
         && collection != 'account_deletion_auth_markers'
         && collection != 'account_deletion_permanent_denials'
@@ -2992,20 +3026,6 @@ service cloud.firestore {
         && collection != 'revenuecat_premium_lineages'
         && collection != 'revenuecat_premium_denials'
         && collection != 'revenuecat_shard_refunds'
-        && collection != 'auth_recovery_codes'
-        && collection != 'auth_recovery_rate_limits'
-        && collection != 'auth_recovery_events'
-        && collection != 'auth_recovery_challenges'
-        && collection != 'auth_recovery_delivery_intents'
-        && collection != 'auth_recovery_idempotency'
-        && collection != 'auth_recovery_clean_rate_limits'
-        && collection != 'agent_cases'
-        && collection != 'agent_recommendations'
-        && collection != 'agent_approvals'
-        && collection != 'agent_tasks'
-        && collection != 'agent_audit_events'
-        && collection != 'agent_office_control'
-        && collection != 'agent_telegram_tokens'
         && collection != 'jarvis_approval_tokens'
         && collection != 'admin_log'
         && collection != 'safety_flags'
@@ -3018,24 +3038,11 @@ service cloud.firestore {
         && collection != 'admin_gift_certificate_batch_operations'
         && collection != 'gift_certificate_archive'
         && collection != 'admin_user_briefs_rate_limits'
-        && collection != 'feedback_entries'
-        && collection != 'feedback_summary_cache'
-        && collection != 'max_voice_feedback'
-        && collection != 'feedback_submission_quotas'
+        && !isServerOwnedFeedbackRoot(collection)
+        && !isRetiredArenaRoot(collection)
+        && !isServerOwnedAgentRoot(collection)
+        && !isServerOwnedAuthRoot(collection)
         && !isServerOwnedSupportRoot(collection)
-        && collection != 'agent_observation_receipts'
-        && collection != 'agent_manager_agents'
-        && collection != 'agent_manager_tasks'
-        && collection != 'agent_manager_task_events'
-        && collection != 'agent_manager_approvals'
-        && collection != 'agent_manager_execution_jobs'
-        && collection != 'agent_manager_inbox_links'
-        && collection != 'agent_manager_telegram_tokens'
-        && collection != 'agent_manager_telegram_publication_receipts'
-        && collection != 'agent_manager_local_runner_pairings'
-        && collection != 'agent_manager_local_runner_capabilities'
-        && collection != 'agent_manager_local_runner_leases'
-        && collection != 'agent_manager_support_draft_operations'
         && collection != 'business_tier_history'
         && collection != 'business_tier_peak'
         && collection != 'business_tier_backfill_state'
@@ -3056,31 +3063,8 @@ service cloud.firestore {
         // Retired Quiz/Arena collections remain sealed even for browser admins.
         // Firestore overlapping matches are OR-combined, so every retired root
         // must also be excluded from this legacy compatibility catch-all.
-        && collection != 'arena_profiles'
-        && collection != 'arena_sessions'
         && collection != 'session_players'
-        && collection != 'arena_rooms'
-        && collection != 'arena_invites'
-        && collection != 'arena_session_results'
         && collection != 'matchmaking_queue'
-        && collection != 'arena_questions'
-        && collection != 'arena_question_history'
-        && collection != 'arena_question_pool_publications'
-        && collection != 'arena_ghost_challenges'
-        && collection != 'arena_hill_thrones'
-        && collection != 'arena_hill_attempts'
-        && collection != 'arena_hill_player_wins'
-        && collection != 'arena_hill_throne_rewards'
-        && collection != 'arena_season_leaderboard'
-        && collection != 'arena_seasons'
-        && collection != 'arena_season_claims'
-        && collection != 'arena_season_hall'
-        && collection != 'arena_club_events'
-        && collection != 'arena_club_contributions'
-        && collection != 'arena_rooms_live'
-        && collection != 'arena_room_runs'
-        && collection != 'arena_room_members'
-        && collection != 'arena_pulse_events'
         // Mistake explanation content and billing remain callable/Admin-SDK only.
         // Overlapping Firestore matches are OR-combined, so the legacy browser-admin
         // catch-all must explicitly exclude both roots.

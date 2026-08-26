@@ -1536,12 +1536,14 @@ export default function ShardsShopScreen() {
             type: 'info',
             messageRu: 'Оплата принята. Жемчуг появится через пару минут.',
             messageUk: 'Оплату прийнято. Перлини з\'являться за пару хвилин.',
-            messageEs: 'Pago recibido. Los perlas aparecerán en un par de minutos.',
-            messagePtBr: 'Pagamento recebido. Os perlas aparecerão em alguns minutos.',
-            messageVi: 'Đã nhận thanh toán. Mảnh sẽ xuất hiện sau vài phút.',
-            messageId: 'Pembayaran diterima. Shard akan muncul dalam beberapa menit.',
+            // зачем (аудит 2026-08-26): было «Los perlas» — ошибка рода (perla
+            // женского рода), а vi/id/pl называли валюту старым словом «осколки».
+            messageEs: 'Pago recibido. Las perlas aparecerán en un par de minutos.',
+            messagePtBr: 'Pagamento recebido. As pérolas aparecerão em alguns minutos.',
+            messageVi: 'Đã nhận thanh toán. Ngọc trai sẽ xuất hiện sau vài phút.',
+            messageId: 'Pembayaran diterima. Mutiara akan muncul dalam beberapa menit.',
             messageTr: 'Ödeme alındı. Parçalar birkaç dakika içinde görünecek.',
-            messagePl: 'Płatność przyjęta. Odłamki pojawią się za kilka minut.',
+            messagePl: 'Płatność przyjęta. Perły pojawią się za kilka minut.',
           });
         }
       } catch (e: any) {

@@ -50,15 +50,27 @@ describe('local level Spin runtime', () => {
     expect(queue).not.toContain('await grantLocalLevelSpins(crossed);');
   });
 
-  test('emits catalog v3 receipts while retaining v1 and v2 recovery compatibility', () => {
+  test('emits current catalog receipts while retaining v1..v3 recovery compatibility', () => {
     const runtime = readFileSync(path, 'utf8');
     const contract = readFileSync(join(process.cwd(), 'app', 'level_spin_local_contract.ts'), 'utf8');
-    expect(runtime).toContain('catalogVersion: 3');
+    // зачем константа вместо литерала (2026-08-26): версия каталога менялась
+    // уже дважды, и литерал `catalogVersion: 3` в рантайме однажды разошёлся
+    // с каталогом — квитанции ушли бы с чужой версией. Теперь источник один.
+    expect(runtime).toContain('catalogVersion: LEVEL_SPIN_REWARD_CATALOG_VERSION');
     expect(runtime).toContain('schemaVersion: 2');
-    expect(contract).toContain('catalogVersion: 1 | 2 | 3;');
+    expect(contract).toContain('catalogVersion: 1 | 2 | 3 | 4;');
     expect(contract).toContain('(receipt.catalogVersion === 1 && receipt.schemaVersion === 1)');
     expect(contract).toContain('(receipt.catalogVersion === 2 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 3 && receipt.schemaVersion === 2)');
+    expect(contract).toContain('(receipt.catalogVersion === 4 && receipt.schemaVersion === 2)');
+  });
+
+  test('drops an exhausted reward from the roll instead of paying a consolation', () => {
+    const runtime = readFileSync(path, 'utf8');
+    // Награда, которую человеку уже нечего дать, выбывает ИЗ РОЗЫГРЫША.
+    // Утешительная выплата здесь была бы слишком щедрой (решение владельца).
+    expect(runtime).toContain('listExhaustedSpinRewardIds()');
+    expect(runtime).toContain('pickLevelSpinRewardExcluding(requestId, excludedRewardIds)');
   });
 
   /**

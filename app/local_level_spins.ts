@@ -22,7 +22,11 @@ import {
   type LocalLevelSpinJournalEntry,
   type LocalLevelSpinReceipt,
 } from './level_spin_local_contract';
-import { pickLevelSpinReward } from './level_spin_reward_catalog';
+import {
+  LEVEL_SPIN_REWARD_CATALOG_VERSION,
+  pickLevelSpinRewardExcluding,
+} from './level_spin_reward_catalog';
+import { listExhaustedSpinRewardIds } from './theme_gift_pool';
 export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './level_spin_local_contract';
 
 /**
@@ -445,6 +449,10 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
     if (!credit) throw new Error('local_spin_empty');
     const requestId = Crypto.randomUUID();
     const nowMs = Date.now();
+    // зачем (владелец 2026-08-26): исчерпаемые награды не должны выпадать
+    // впустую. Если все платные темы уже открыты, «тема оформления» выбывает
+    // из розыгрыша, а её вес честно достаётся остальным наградам.
+    const excludedRewardIds = await listExhaustedSpinRewardIds();
     const receipt: LocalLevelSpinReceipt = {
       ok: true,
       stableUid: owner,
@@ -453,7 +461,7 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
         ? credit.id : `level_spin_v1_${String(credit.level).padStart(3, '0')}`,
       level: credit.level,
       kind: credit.level % 5 === 0 ? 'milestone' : 'standard',
-      baseGiftId: pickLevelSpinReward(requestId).id,
+      baseGiftId: pickLevelSpinRewardExcluding(requestId, excludedRewardIds).id,
       premiumGiftId: null,
       createdAtMs: nowMs,
       expiresAtMs: nowMs + LOCAL_RESULT_TTL_MS,
@@ -461,7 +469,7 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
       status: 'awaiting_ack',
       revealState: 'pending',
       deliveries: { base: { state: 'unclaimed' } },
-      catalogVersion: 3,
+      catalogVersion: LEVEL_SPIN_REWARD_CATALOG_VERSION,
       schemaVersion: 2,
       localOnly: true,
     };

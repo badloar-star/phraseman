@@ -17,7 +17,7 @@ export type LocalLevelSpinReceipt = {
   status: 'awaiting_ack' | 'acknowledged';
   revealState?: 'pending' | 'acknowledged';
   deliveries: { base: { state: 'unclaimed' } };
-  catalogVersion: 1 | 2 | 3;
+  catalogVersion: 1 | 2 | 3 | 4;
   schemaVersion: 1 | 2;
   localOnly: true;
 };
@@ -83,8 +83,11 @@ export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt)
     || receipt.expiresAtMs !== receipt.createdAtMs + 259_200_000
     || !((receipt.catalogVersion === 1 && receipt.schemaVersion === 1)
       || (receipt.catalogVersion === 2 && receipt.schemaVersion === 2)
-      || (receipt.catalogVersion === 3 && receipt.schemaVersion === 2))
-    || ((receipt.catalogVersion === 2 || receipt.catalogVersion === 3)
+      || (receipt.catalogVersion === 3 && receipt.schemaVersion === 2)
+      // v4 (2026-08-26): добавлена награда «тема оформления», подняты веса
+      // энергии. Схема квитанции не менялась — только состав каталога.
+      || (receipt.catalogVersion === 4 && receipt.schemaVersion === 2))
+    || ((receipt.catalogVersion === 2 || receipt.catalogVersion === 3 || receipt.catalogVersion === 4)
       && !LEVEL_SPIN_REWARD_CATALOG.some((entry) => entry.id === receipt.baseGiftId))) {
     throw new Error('local_spin_receipt_invalid');
   }

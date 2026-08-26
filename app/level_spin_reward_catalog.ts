@@ -103,3 +103,35 @@ function hashSeed(seed: string): number {
 export function pickLevelSpinReward(seed: string): LevelSpinRewardCatalogEntry {
   return pickLevelSpinRewardByTicket(hashSeed(seed) % LEVEL_SPIN_REWARD_TOTAL_WEIGHT);
 }
+
+/**
+ * Розыгрыш без наград, которые этому человеку уже нечего дать.
+ *
+ * зачем (владелец 2026-08-26): когда все платные темы уже открыты, тема НЕ
+ * должна выпадать вовсе — ни утешительным жемчугом, ни пустышкой. Награда
+ * просто перестаёт существовать для этого игрока, а её вес честно переходит
+ * остальным (сумма весов пересчитывается, а не «дырявится»).
+ *
+ * Детерминированность сохраняется: тот же requestId при том же наборе
+ * исключений даёт ту же награду. Разный результат возможен только если между
+ * попытками изменился сам набор исключений — то есть человек открыл последнюю
+ * тему, и приза больше нет; это и есть желаемое поведение, а не гонка.
+ */
+export function pickLevelSpinRewardExcluding(
+  seed: string,
+  excludedIds: readonly string[],
+): LevelSpinRewardCatalogEntry {
+  if (excludedIds.length === 0) return pickLevelSpinReward(seed);
+  const excluded = new Set(excludedIds);
+  const pool = LEVEL_SPIN_REWARD_CATALOG.filter((entry) => !excluded.has(entry.id));
+  // Пустой пул невозможен по построению (исключается лишь косметика), но если
+  // вызывающий исключит всё — честнее отдать полный каталог, чем упасть.
+  if (pool.length === 0) return pickLevelSpinReward(seed);
+  const total = pool.reduce((sum, entry) => sum + entry.weight, 0);
+  let cursor = hashSeed(seed) % total;
+  for (const entry of pool) {
+    if (cursor < entry.weight) return entry;
+    cursor -= entry.weight;
+  }
+  throw new Error('level_spin_reward_catalog_invalid');
+}

@@ -16,10 +16,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import {
-  readGiftAccountValue,
-  removeGiftAccountValue,
   writeGiftAccountValue,
 } from './gift_account_storage';
+import {
+  BONUS_ENERGY_KEY,
+  getTomorrowMidnightMs,
+  readBonusEnergy,
+  type BonusEnergyState,
+} from './bonus_energy_store';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { RUNE_GLYPH_PRIMARY, runeWord } from '../constants/runes';
@@ -73,10 +77,11 @@ import {
 } from '../constants/avatar_auras';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { THEME_DISPLAY_NAMES } from './theme_display_names';
-import { SELECTABLE_THEME_MODES, isThemeShardPurchasable } from './theme_access_policy';
+// зачем: пул кандидатов общий с розыгрышем (local_level_spins) — иначе
+// «какие темы остались» считалось бы в двух местах и разъехалось бы.
+import { listThemeGiftCandidates } from './theme_gift_pool';
 import {
   OWNED_THEMES_KEY,
-  loadGrandfatheredThemeModes,
   loadOwnedThemeModes,
   mergeThemeModeLists,
 } from './theme_ownership_store';
@@ -1158,33 +1163,9 @@ export async function rollLevelGiftForUser(
 const GIFT_MULT_KEY = 'gift_xp_multiplier';
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
-export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
+export { BONUS_ENERGY_KEY, readBonusEnergy } from './bonus_energy_store';
 export const COSMETIC_GIFT_OWNED_AVATAR_KEY = CUSTOM_AVATAR_GIFT_OWNED_KEY;
 const GIFT_XP_BANK_CAP = 1500;
-
-export interface BonusEnergyState { amount: number; expiresAt: number }
-
-function getTomorrowMidnightMs(): number {
-  const d = new Date();
-  d.setDate(d.getDate() + 1);
-  d.setHours(0, 0, 0, 0);
-  return d.getTime();
-}
-
-export const readBonusEnergy = async (
-  accountToken: AccountGenerationToken = captureAccountGeneration(),
-): Promise<BonusEnergyState | null> => {
-  try {
-    const raw = await readGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
-    if (!raw) return null;
-    const b = JSON.parse(raw) as BonusEnergyState;
-    if (Date.now() >= b.expiresAt) {
-      await removeGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
-      return null;
-    }
-    return b;
-  } catch { return null; }
-};
 
 export interface GiftMultiplierState { multiplier: number; expiresAt: number }
 export interface GiftXpBankState { remaining: number; grantedTotal: number; updatedAt: number }
@@ -1419,13 +1400,15 @@ export const grantLevelGiftShards = async (
 };
 
 /**
- * Компенсация, когда все покупаемые темы у человека уже есть.
+ * Компенсация по старой квитанции, когда темы кончились.
  *
- * зачем: ровно цена темы (THEME_PRICE_SHARDS = 200). Приз не должен
- * превращаться в пустышку — это тот самый класс бага «награду показали,
- * но не начислили», который уже ловили на сундуках.
+ * зачем (владелец 2026-08-26): выплата в цену темы (200 жемчужин) была
+ * отвергнута как слишком щедрая — вместо неё тема просто ПЕРЕСТАЁТ выпадать
+ * (см. listExhaustedSpinRewardIds). Эта ветка остаётся лишь для квитанции,
+ * выданной до открытия последней темы, и даёт столько же, сколько ауры в той
+ * же ситуации, — чтобы подарок не оказался пустым.
  */
-const THEME_GIFT_FALLBACK_PEARLS = 200;
+const THEME_GIFT_FALLBACK_XP = 350;
 
 export type GiftCosmeticUnlock = {
   kind: 'avatar' | 'aura' | 'theme';
@@ -1592,26 +1575,6 @@ export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock |
     return null;
   }
 };
-
-/**
- * Темы, которые ещё можно выиграть в спине.
- *
- * зачем (владелец 2026-08-26): приз обязан быть НАСТОЯЩИМ. Берём только темы
- * полки 'shards' — те самые, что иначе стоят 200 жемчужин. Бесплатные и
- * наградное «Золото» в пул не попадают: выдать их значило бы обмануть человека
- * подарком, который у него и так есть или который зарабатывается лигой.
- *
- * Уже купленные и «дедушкины» темы исключаются — повторная выдача была бы
- * пустышкой (тот же класс бага, что «награду показали, но не начислили»).
- */
-export async function listThemeGiftCandidates(): Promise<string[]> {
-  const [owned, grandfathered] = await Promise.all([
-    loadOwnedThemeModes().catch(() => [] as string[]),
-    loadGrandfatheredThemeModes().catch(() => [] as string[]),
-  ]);
-  const taken = new Set([...owned, ...grandfathered]);
-  return SELECTABLE_THEME_MODES.filter((mode) => isThemeShardPurchasable(mode) && !taken.has(mode));
-}
 
 function themeGiftUnlockFor(mode: string): GiftCosmeticUnlock | null {
   const names = THEME_DISPLAY_NAMES[mode];
@@ -2662,15 +2625,18 @@ const applyGiftUnlocked = async (
           if (occurrenceTheme.cosmeticUnlocked) {
             return { success: true, cosmeticUnlocked: occurrenceTheme.cosmeticUnlocked };
           }
-          // Все покупаемые темы уже открыты — честная компенсация жемчугом,
-          // а не пустой подарок. 200 жемчужин = ровно цена темы, поэтому
-          // человек не теряет ничего: купит следующую тему, когда выйдет.
-          await grantSpinPearls(THEME_GIFT_FALLBACK_PEARLS);
+          // Сюда попадает только квитанция, выданная ДО того, как человек
+          // открыл последнюю тему: розыгрыш такую награду больше не выбирает
+          // (см. listExhaustedSpinRewardIds). Компенсация намеренно скромная —
+          // владелец отверг выплату в цену темы как слишком щедрую. Но не
+          // ноль: подарок обязан хоть что-то дать, иначе это класс бага
+          // «награду показали, но не начислили».
+          await grantInstantGiftXp(THEME_GIFT_FALLBACK_XP);
           return { success: true };
         }
         const cosmeticUnlocked = await unlockRandomThemeGift();
         if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
-        await grantSpinPearls(THEME_GIFT_FALLBACK_PEARLS);
+        await grantInstantGiftXp(THEME_GIFT_FALLBACK_XP);
         return { success: true };
       }
       case 'cosmetic_avatar_aura':

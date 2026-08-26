@@ -1342,7 +1342,7 @@ export default function ShardsShopScreen() {
           emitAppEvent('action_toast', {
             type: 'error',
             messageRu: 'Платежи временно недоступны. Подожди несколько секунд и попробуй снова.',
-            messageUk: 'Платежі тимчасово недоступні. Зачекайте кілька секунд і спробуйте знову.',
+            messageUk: 'Платежі тимчасово недоступні. Зачекай кілька секунд і спробуй знову.',
             messageEs: 'Pagos no disponibles. Espera unos segundos e inténtalo de nuevo.',
             messagePtBr: 'Pagamentos temporariamente indisponíveis. Aguarde alguns segundos e tente novamente.',
             messageVi: 'Thanh toán tạm thời không khả dụng. Hãy chờ vài giây rồi thử lại.',
@@ -1437,14 +1437,18 @@ export default function ShardsShopScreen() {
           if (!isOperationCurrent()) return;
           emitAppEvent('action_toast', {
             type: 'error',
-            messageRu: 'Оплата прошла, автоматическое восстановление не сохранено; не повторяйте покупку, обновим баланс автоматически.',
-            messageUk: 'Оплата пройшла, автоматичне відновлення не збережено; не повторюйте покупку, баланс оновимо автоматично.',
-            messageEs: 'El pago se completó, pero no se guardó la recuperación automática. No repitas la compra; actualizaremos el saldo automáticamente.',
-            messagePtBr: 'O pagamento foi concluído, mas a recuperação automática não foi salva. Não repita a compra; atualizaremos o saldo automaticamente.',
-            messageVi: 'Thanh toán đã hoàn tất nhưng chưa lưu được khôi phục tự động. Đừng mua lại; số dư sẽ tự cập nhật.',
-            messageId: 'Pembayaran berhasil, tetapi pemulihan otomatis tidak tersimpan. Jangan ulangi pembelian; saldo akan diperbarui otomatis.',
-            messageTr: 'Ödeme tamamlandı ancak otomatik kurtarma kaydedilemedi. Satın almayı tekrarlamayın; bakiye otomatik güncellenecek.',
-            messagePl: 'Płatność zakończona, ale automatyczne odzyskiwanie nie zostało zapisane. Nie kupuj ponownie; saldo zaktualizujemy automatycznie.',
+            // зачем (аудит по Библии, 2026-08-26): деньги уже списаны — текст обязан
+            // быть предельно ясным. Было «вы» (Правило 14) и техножаргон про
+            // «автоматическое восстановление» (Часть V п.3). Смысл сохранён
+            // полностью: не платить второй раз, баланс придёт сам.
+            messageRu: 'Деньги списаны. Не оплачивай второй раз — жемчуг придёт сам.',
+            messageUk: 'Гроші списано. Не оплачуй удруге — перлини надійдуть самі.',
+            messageEs: 'El pago se completó. No pagues otra vez: el saldo llegará solo.',
+            messagePtBr: 'O pagamento foi concluído. Não pague de novo: o saldo chega sozinho.',
+            messageVi: 'Đã thanh toán xong. Đừng trả lần nữa — số dư sẽ tự về.',
+            messageId: 'Pembayaran berhasil. Jangan bayar lagi — saldo akan masuk sendiri.',
+            messageTr: 'Ödeme tamamlandı. Tekrar ödeme yapma — bakiye kendi gelecek.',
+            messagePl: 'Płatność przeszła. Nie płać drugi raz — saldo dojdzie samo.',
           });
           const recoveredBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
           if (!isOperationCurrent()) return;
@@ -1487,14 +1491,17 @@ export default function ShardsShopScreen() {
         }).catch(() => {});
         emitAppEvent('action_toast', {
           type: 'info',
-          messageRu: 'Оплата подтверждена.',
-          messageUk: 'Оплату підтверджено.',
-          messageEs: 'Compra confirmada.',
-          messagePtBr: 'Compra confirmada.',
-          messageVi: 'Đã xác nhận giao dịch mua.',
-          messageId: 'Pembelian dikonfirmasi.',
-          messageTr: 'Satın alma onaylandı.',
-          messagePl: 'Zakup potwierdzony.',
+          // зачем (аудит по Библии, 2026-08-26): сухая констатация «оплата
+          // подтверждена» ничего не говорит о выгоде. Стиль ИГРА: называем то,
+          // что человек получил.
+          messageRu: 'Готово — жемчуг уже твой.',
+          messageUk: 'Готово — перлини вже твої.',
+          messageEs: '¡Listo! Las perlas ya son tuyas.',
+          messagePtBr: 'Pronto! As pérolas já são suas.',
+          messageVi: 'Xong! Ngọc trai đã là của bạn.',
+          messageId: 'Selesai! Mutiara sudah jadi milikmu.',
+          messageTr: 'Tamam! İnciler artık senin.',
+          messagePl: 'Gotowe! Perły są już twoje.',
         });
         const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
         if (!isOperationCurrent()) return;

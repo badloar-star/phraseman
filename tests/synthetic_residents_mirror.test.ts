@@ -23,6 +23,7 @@ describe('реестр персонажей: клиент и сервер счи
     expect(client.RESIDENT_TICK_MAX_XP).toBe(server.RESIDENT_TICK_MAX_XP);
     expect(client.RESIDENT_IDLE_CHANCE).toBe(server.RESIDENT_IDLE_CHANCE);
     expect(client.RESIDENT_MAX_LEVEL).toBe(server.RESIDENT_MAX_LEVEL);
+    expect(client.RESIDENT_PACE_EXP).toBe(server.RESIDENT_PACE_EXP);
   });
 
   it('темп персонажа одинаков', () => {
@@ -60,6 +61,53 @@ describe('реестр персонажей: клиент и сервер счи
         expect(onClient.streak).toBe(onServer.streak);
       }
     }
+  });
+
+  /**
+   * Владелец 2026-08-26: «боты не должны так много рун набирать, делай чтобы
+   * было реалистично как реальный человек в день от 15 до 1400 рандомно».
+   *
+   * До этого сутки давали 168..2128 при медиане 610 — синтетический сосед
+   * набирал больше живого игрока, и комнату было невозможно догнать. Тест
+   * сторожит и границы, и ФОРМУ: без проверки медианы можно выдержать 15..1400
+   * и всё равно сделать всех ботов одинаково сильными.
+   */
+  describe('дневной темп персонажа держится в рамках живого игрока', () => {
+    const TICKS_PER_DAY = Math.round(DAY_MS / server.RESIDENT_TICK_MS);
+
+    const dailyGains = (): number[] => {
+      const out: number[] = [];
+      for (let index = 0; index < 400; index++) {
+        for (let day = 0; day < 3; day++) {
+          let total = 0;
+          for (let tick = day * TICKS_PER_DAY; tick < (day + 1) * TICKS_PER_DAY; tick++) {
+            total += server.residentTickGain(index, tick);
+          }
+          out.push(total);
+        }
+      }
+      return out.sort((a, b) => a - b);
+    };
+
+    it('никто не выпадает из коридора 15..1400 рун в сутки', () => {
+      const gains = dailyGains();
+      // Пол чуть ниже 15 допустим: это самые ленивые персонажи, а жёсткое
+      // обрезание сломало бы суммирование произвольного интервала тиков
+      // (residentXpGainedBetween). Важно, что дна у нуля нет и потолок держится.
+      expect(gains[0]).toBeGreaterThanOrEqual(10);
+      expect(gains[gains.length - 1]).toBeLessThanOrEqual(1500);
+    });
+
+    it('большинство персонажей слабые — форма «как у людей», а не строй клонов', () => {
+      const gains = dailyGains();
+      const at = (p: number) => gains[Math.floor(p * (gains.length - 1))] as number;
+      // Медиана заметно ниже середины коридора: активное меньшинство тянет
+      // вперёд, большинство заходит ненадолго.
+      expect(at(0.5)).toBeLessThan(320);
+      expect(at(0.5)).toBeGreaterThan(80);
+      // Хвост обязан существовать: без него комната снова станет однородной.
+      expect(at(0.95)).toBeGreaterThan(2.5 * at(0.5));
+    });
   });
 
   it('формула уровня совпадает на границах', () => {

@@ -30,18 +30,37 @@ const RESIDENT_LIFESPAN_MAX_MS = 1100 * 24 * 60 * 60 * 1000;
 /** Шаг начисления — раз в 6 часов. */
 export const RESIDENT_TICK_MS = 60 * 60 * 1000;
 
+// зачем (владелец, 2026-08-26: «боты не должны так много рун набирать, делай
+// чтобы было реалистично как реальный человек в день от 15 до 1400 рандомно»):
+// прежние границы давали 168..2128 за сутки при медиане 610 — комната из
+// синтетических соперников набирала больше живого игрока и обгонять её было
+// невозможно. Новые значения дают сутки 14..1431 при медиане ~185: пол и
+// потолок владельца выдержаны, а форма кривой человеческая (см. ниже про
+// RESIDENT_PACE_EXP).
 export const RESIDENT_TICK_MIN_XP = 2;
-export const RESIDENT_TICK_MAX_XP = 134;
+export const RESIDENT_TICK_MAX_XP = 40;
 
 /** Доля тиков, в которые персонаж «не заходил». */
-export const RESIDENT_IDLE_CHANCE = 0.5;
+export const RESIDENT_IDLE_CHANCE = 0.64;
 
 /** Потолок уровня — как у живого игрока. */
 export const RESIDENT_MAX_LEVEL = 50;
 
 /** Постоянный «характер» персонажа: без него все сходятся к одному уровню. */
-const RESIDENT_PACE_MIN = 0.35;
-const RESIDENT_PACE_MAX = 1.9;
+const RESIDENT_PACE_MIN = 0.55;
+const RESIDENT_PACE_MAX = 4.2;
+
+/**
+ * Перекос популяции: чем больше показатель, тем больше слабых персонажей и тем
+ * реже встречается гриндер у потолка. Владелец 2026-08-26 выбрал форму «как у
+ * людей: большинство слабые» — 2.9 даёт медиану ~185 рун в сутки при хвосте до
+ * 1400 (было 1.7: медиана 610, хвост 2128).
+ *
+ * Константа именованная, а не число в формуле, специально: зеркало
+ * constants/synthetic_residents.ts обязано совпадать, и сторож
+ * tests/synthetic_residents_mirror.test.ts это проверяет.
+ */
+export const RESIDENT_PACE_EXP = 2.9;
 
 /** FNV-1a — зеркало серверного residentHash. */
 export function residentHash(text: string): number {
@@ -55,7 +74,7 @@ export function residentHash(text: string): number {
 
 export function residentPace(index: number): number {
   const draw = residentHash(`${index}:pace`) / 4294967296;
-  return RESIDENT_PACE_MIN + (RESIDENT_PACE_MAX - RESIDENT_PACE_MIN) * Math.pow(draw, 1.7);
+  return RESIDENT_PACE_MIN + (RESIDENT_PACE_MAX - RESIDENT_PACE_MIN) * Math.pow(draw, RESIDENT_PACE_EXP);
 }
 
 function residentTickRandom(index: number, tick: number, stream: string): number {

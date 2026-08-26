@@ -990,7 +990,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             pl: `Na pewno wychodzisz? ${days} dni dostępu za darmo`,
           }),
           message: triLang(lang, {
-            ru: 'Платить сейчас не нужно — просто отмени подписку за день до конца пробного периода, и не спишется ничего.',
+            ru: 'Платить сейчас не нужно. Отмени за день до конца пробного — и ничего не спишется.',
             uk: 'Платити зараз не треба — просто скасуй підписку за день до кінця пробного періоду, і нічого не спишеться.',
             en: "No need to pay now — just cancel the subscription a day before the trial ends, and nothing will be charged.",
             es: 'No pagas ahora: solo cancela la suscripción un día antes de que acabe la prueba y no se cobrará nada.',

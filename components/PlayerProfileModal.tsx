@@ -1114,7 +1114,7 @@ function PlayerProfileModalBody({
         });
         onFriendRequestToast(
           triLang(lang as Lang, {
-            ru: 'Друг удалён',
+            ru: 'Друг убран из списка',
             uk: 'Друга видалено',
             es: 'Amigo eliminado',
             en: 'Friend removed',
@@ -1137,15 +1137,15 @@ function PlayerProfileModalBody({
         }
         onFriendRequestToast(
           triLang(lang as Lang, {
-            ru: 'Ошибка удаления. Попробуй ещё раз',
-            uk: 'Помилка видалення. Спробуйте ще раз',
-            es: 'Error al eliminar. Inténtalo de nuevo',
-            en: 'Delete failed. Try again',
-            'pt-BR': "Erro ao remover. Tente de novo",
-            vi: "Xóa bị lỗi. Hãy thử lại",
-            id: "Gagal menghapus. Coba lagi",
-            tr: "Silme hatası. Tekrar dene",
-            pl: "Błąd usuwania. Spróbuj ponownie",
+            ru: 'Не получилось убрать. Попробуй ещё раз',
+            uk: 'Не вийшло прибрати. Спробуй ще раз',
+            es: 'No se pudo quitar. Inténtalo de nuevo',
+            en: 'Could not remove. Try again',
+            'pt-BR': "Não deu para remover. Tente de novo",
+            vi: "Chưa gỡ được. Hãy thử lại",
+            id: "Belum bisa dihapus. Coba lagi",
+            tr: "Kaldırılamadı. Tekrar dene",
+            pl: "Nie udało się usunąć. Spróbuj ponownie",
           }),
           'error',
         );

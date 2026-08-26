@@ -898,7 +898,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   lesson_b1: [
     { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante', 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
-    { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
+    { ru: 'Никаких барьеров — осваивай язык в своё удовольствие', uk: 'Жодних бар\'єрів — опановуй мову із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
     { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes', 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
   ],
   flashcard_limit: [
@@ -1328,10 +1328,10 @@ export function getContextBenefitPlanned(ctx: PremiumContext, index: number): Pr
 }
 
 
-/** Per-screen хелпер локализации: LP(ru, uk, es, planned) с языком экрана. */
+/** Per-screen хелпер локализации: LP(ru, uk, en, es, planned) с языком экрана. */
 export function makeLP(lang: Lang) {
-  return (ru: string, uk: string, es: string, planned: PremiumPlannedCopy): string =>
-    triLang(lang, { ru, uk, es, 'pt-BR': planned['pt-BR'], vi: planned.vi, id: planned.id, tr: planned.tr, pl: planned.pl });
+  return (ru: string, uk: string, en: string, es: string, planned: PremiumPlannedCopy): string =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': planned['pt-BR'], vi: planned.vi, id: planned.id, tr: planned.tr, pl: planned.pl });
 }
 
 /* expo-router route shim. */

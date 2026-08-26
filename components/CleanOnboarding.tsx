@@ -945,8 +945,13 @@ function ScreenFrame({
   const [textBlockHeight, setTextBlockHeight] = useState<number | null>(null);
   const [childrenHeight, setChildrenHeight] = useState<number | null>(null);
   const [footerHeight, setFooterHeight] = useState<number | null>(null);
-  const phoneAvailableHeight = useMemo(() => {
-    if (!phoneBackdrop) return undefined;
+  // зачем (владелец, 2026-08-26 — скриншот): считаем не только СКОЛЬКО места
+  // осталось, но и ГДЕ оно начинается. Прошлые фиксы (23-25.08) только ужимали
+  // корпус, а слой при этом оставался прижат к bottom:0 — ужатый телефон просто
+  // уезжал ещё ниже, и между текстом и корпусом зияла дыра в ~140pt. Отдаём
+  // слою верхнюю границу полосы, и корпус встаёт в её середину.
+  const phoneBand = useMemo(() => {
+    if (!phoneBackdrop) return null;
     const header = 52 + insets.top;
     // Текст живёт в двух местах: проп title/subtitle И children (trialReminder
     // кладёт свой абзац именно туда) — считаем оба, иначе половина текста
@@ -954,8 +959,10 @@ function ScreenFrame({
     const text = (textBlockHeight ?? (title ? 96 : 48)) + (childrenHeight ?? 0);
     const foot = footerHeight ?? (footer ? 132 : 0);
     // 12pt воздуха между текстом и корпусом — иначе они целуются впритык.
-    return Math.max(240, windowHeight - header - text - foot - 12);
+    const top = header + text + 12;
+    return { top, height: Math.max(240, windowHeight - top - foot) };
   }, [phoneBackdrop, insets.top, textBlockHeight, childrenHeight, footerHeight, title, footer, windowHeight]);
+  const phoneAvailableHeight = phoneBand?.height;
 
   const phoneLayer = phoneBackdrop
     ? React.isValidElement(phoneBackdrop)
@@ -971,16 +978,25 @@ function ScreenFrame({
     <SafeAreaView style={styles.safe} edges={['top']}>
       <StatusBar barStyle="dark-content" />
       {phoneLayer ? (
-        <View pointerEvents="none" style={styles.phoneBackdropLayer}>
-          {phoneLayer}
+        <View
+          pointerEvents="none"
+          style={[styles.phoneBackdropLayer, phoneBand ? { top: phoneBand.top } : null]}
+        >
           {/* зачем (владелец, 2026-08-17): корпус телефона НЕ режется — целиком
-              на месте. Иллюзию «тонет в фоне» даёт только этот градиент поверх
-              нижней трети корпуса, как на референсе Bevel. */}
-          <LinearGradient
-            colors={['rgba(245,246,250,0)', 'rgba(245,246,250,0.85)', '#F5F6FA']}
-            locations={[0, 0.55, 1]}
-            style={styles.phoneFadeMask}
-          />
+              на месте. Иллюзию «тонет в фоне» даёт только градиент поверх
+              нижней трети корпуса, как на референсе Bevel.
+              зачем 2026-08-26: маска висела на нижнем крае СЛОЯ. После того как
+              корпус встал по центру полосы, нижний край слоя — уже пустой фон,
+              и градиент растворял воздух вместо телефона. Оборачиваем телефон
+              и маску вместе, чтобы маска всегда сидела на самом корпусе. */}
+          <View style={styles.phoneFadeAnchor}>
+            {phoneLayer}
+            <LinearGradient
+              colors={['rgba(245,246,250,0)', 'rgba(245,246,250,0.85)', '#F5F6FA']}
+              locations={[0, 0.55, 1]}
+              style={styles.phoneFadeMask}
+            />
+          </View>
         </View>
       ) : null}
       <ProgressHeader step={step} onBack={onBack} onClose={onClose} closeLabel={closeLabel} headerRight={headerRight} />
@@ -3748,9 +3764,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    // top задаётся динамически (ScreenFrame.phoneBand.top) — слой занимает
+    // ровно полосу под текстом. Значение здесь — только запасной старт до
+    // первого onLayout, чтобы первый кадр не начинался от самого верха.
     top: 0,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    // зачем (владелец, 2026-08-26): 'flex-end' прижимал корпус к нижнему краю
+    // экрана. Когда телефон ужимали под текст (фиксы 23-25.08), он уезжал вниз
+    // и между заголовком и корпусом появлялась пустота. Центр полосы держит
+    // корпус в середине свободного места на любой высоте экрана.
+    justifyContent: 'center',
   },
   keyboard: {
     flex: 1,
@@ -4344,10 +4367,17 @@ const styles = StyleSheet.create({
   // зачем: телефон уходит за bottom:0 всего экрана (SafeAreaView.overflow:hidden
   // режет низ корпуса). Маска поверх места среза растворяет обрезанный край
   // в фон экрана вместо жёсткой прямой линии — см. ScreenFrame.phoneBackdrop.
+  // Обёртка «корпус + маска»: сама по ширине контента (телефон центрируется
+  // родителем), поэтому маска гарантированно накрывает именно корпус.
+  phoneFadeAnchor: {
+    alignItems: 'center',
+  },
   phoneFadeMask: {
     position: 'absolute',
-    left: 0,
-    right: 0,
+    // Растягиваем шире корпуса, чтобы фон вокруг телефона гас тем же тоном,
+    // а не обрывался вертикальной кромкой по краю корпуса.
+    left: -400,
+    right: -400,
     bottom: 0,
     // Треть высоты корпуса — на всю ширину экрана (телефон уже центрирован
     // уже своей шириной; маска шире, чтобы фон вокруг корпуса тоже был ровным).

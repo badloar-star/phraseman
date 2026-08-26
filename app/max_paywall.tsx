@@ -222,10 +222,12 @@ export default function MaxPaywall() {
     setStoreConfirmed(true);
     setBusy('activation');
     setError(triLang(lang, {
-      ru: 'Магазин принял покупку. Проверяем активацию MAX…', en: 'The store accepted the purchase. Checking MAX activation…', uk: 'Магазин прийняв покупку. Перевіряємо активацію MAX…',
-      es: 'La tienda recibió la compra. Comprobando MAX…', 'pt-BR': 'A loja recebeu a compra. Verificando o MAX…',
-      vi: 'Cửa hàng đã nhận giao dịch. Đang kiểm tra MAX…', id: 'Toko menerima pembelian. Memeriksa MAX…',
-      tr: 'Mağaza satın almayı aldı. MAX kontrol ediliyor…', pl: 'Sklep przyjął zakup. Sprawdzamy MAX…',
+      // зачем (аудит по Библии, 2026-08-26): «покупка» — запрещённое слово
+      // словаря (→ оплата), а «проверяем активацию» звучало как техпроцесс.
+      ru: 'Оплата принята. Открываем MAX…', en: 'Payment accepted. Opening MAX…', uk: 'Оплату прийнято. Відкриваємо MAX…',
+      es: 'Pago recibido. Abriendo MAX…', 'pt-BR': 'Pagamento recebido. Abrindo o MAX…',
+      vi: 'Đã nhận thanh toán. Đang mở MAX…', id: 'Pembayaran diterima. Membuka MAX…',
+      tr: 'Ödeme alındı. MAX açılıyor…', pl: 'Płatność przyjęta. Otwieramy MAX…',
     }));
     const active = await confirmMaxSubscriptionActivation();
     if (active) {
@@ -294,10 +296,10 @@ export default function MaxPaywall() {
           tr: 'Ödeme onay bekliyor. MAX otomatik açılacak.', pl: 'Płatność czeka na potwierdzenie. MAX włączy się automatycznie.',
         })
         : triLang(lang, {
-          ru: 'Покупка MAX сейчас недоступна. Попробуй позже.', en: 'MAX purchase isn\'t available right now. Try again later.', uk: 'Покупка MAX зараз недоступна. Спробуй пізніше.',
-          es: 'La compra de MAX no está disponible ahora. Inténtalo más tarde.', 'pt-BR': 'A compra do MAX não está disponível agora. Tente mais tarde.',
-          vi: 'Hiện chưa thể mua MAX. Hãy thử lại sau.', id: 'Pembelian MAX saat ini tidak tersedia. Coba lagi nanti.',
-          tr: 'MAX satın alma şu anda kullanılamıyor. Daha sonra tekrar dene.', pl: 'Zakup MAX jest teraz niedostępny. Spróbuj później.',
+          ru: 'MAX сейчас не открыть. Попробуй позже.', en: 'MAX purchase isn\'t available right now. Try again later.', uk: 'MAX зараз не відкрити. Спробуй пізніше.',
+          es: 'MAX no se puede abrir ahora. Inténtalo más tarde.', 'pt-BR': 'Não dá para abrir o MAX agora. Tente mais tarde.',
+          vi: 'Hiện chưa mở được MAX. Hãy thử lại sau.', id: 'MAX belum bisa dibuka sekarang. Coba lagi nanti.',
+          tr: 'MAX şu anda açılamıyor. Daha sonra tekrar dene.', pl: 'MAX nie da się teraz otworzyć. Spróbuj później.',
         }));
     } catch (purchaseError) {
       if (!(purchaseError as { userCancelled?: boolean })?.userCancelled) {

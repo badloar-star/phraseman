@@ -193,8 +193,10 @@ export function themePaywallCopy(lang: Lang): ThemePaywallCopy {
       vi: 'Bạn có', id: 'Kamu punya', tr: 'Sende', pl: 'Masz',
     }),
     costLabel: triLang(lang, {
-      ru: 'Цена темы', uk: 'Ціна теми', en: 'Theme price', es: 'Precio del tema', 'pt-BR': 'Preço do tema',
-      vi: 'Giá giao diện', id: 'Harga tema', tr: 'Tema fiyatı', pl: 'Cena motywu',
+      // зачем (аудит по Библии, 2026-08-26): «цена» — запрещённое слово словаря
+      // (говорим о том, что нужно, а не о трате). Тему берут за жемчуг.
+      ru: 'Нужно жемчуга', uk: 'Потрібно перлин', en: 'You need', es: 'Necesitas', 'pt-BR': 'Você precisa',
+      vi: 'Bạn cần', id: 'Kamu perlu', tr: 'Gerekli', pl: 'Potrzebujesz',
     }),
     buyShards: triLang(lang, {
       ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', en: 'Get more pearls', es: `Conseguir ${shardsEs}`,

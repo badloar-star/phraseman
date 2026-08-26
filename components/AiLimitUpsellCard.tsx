@@ -115,8 +115,9 @@ export default function AiLimitUpsellCard({
   }, [opacity, reduceMotion, scale, translateX, translateY]);
 
   const ctaLabel = triLang(lang, {
-    ru: 'Получить фулл доступ',
+    ru: 'Открыть полный доступ',
     uk: 'Отримати повний доступ',
+    en: 'Get full access',
     es: 'Obtener acceso completo',
     'pt-BR': 'Obter acesso completo',
     vi: 'Mở toàn quyền truy cập',

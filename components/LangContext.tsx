@@ -26,12 +26,15 @@ const RU = {
     testSub: 'Узнай уровень',
     examBtn: 'Финальный экзамен',
     attestTile: 'Аттестация',
-    statsCardTitle: 'Статистика',
+    // зачем (аудит по Библии, 2026-08-26): словарь запрещает «статистику»
+    // (→ твои результаты), и сам экран уже называется «Твои результаты» —
+    // подпись карточки для незрячих обязана совпадать с заголовком экрана.
+    statsCardTitle: 'Твои результаты',
     statsPulseHint: 'Нажми сюда, чтобы увидеть больше',
   },
   lessonMenu: {
-    start: 'Начать урок',
-    continue: 'Продолжить урок',
+    start: 'Начать сессию',
+    continue: 'Продолжить сессию',
     vocab: 'Словарь',
     verbs: 'Неправильные формы глаголов',
     theory: 'Теория',
@@ -161,12 +164,12 @@ const UK: typeof RU = {
     testSub: 'Дізнайся рівень',
     examBtn: 'Фінальний іспит',
     attestTile: 'Атестація',
-    statsCardTitle: 'Статистика',
+    statsCardTitle: 'Твої результати',
     statsPulseHint: 'Натисни сюди, щоб побачити більше',
   },
   lessonMenu: {
-    start: 'Почати урок',
-    continue: 'Продовжити урок',
+    start: 'Почати сесію',
+    continue: 'Продовжити сесію',
     vocab: 'Словник',
     verbs: 'Неправильні форми дієслів',
     theory: 'Теорія',
@@ -297,8 +300,8 @@ const ES: typeof RU = {
     statsPulseHint: 'Toca aquí para ver más',
   },
   lessonMenu: {
-    start: 'Empezar la lección',
-    continue: 'Continuar la lección',
+    start: 'Empezar la sesión',
+    continue: 'Continuar la sesión',
     vocab: 'Vocabulario',
     verbs: 'Formas verbales irregulares',
     theory: 'Teoría',

@@ -41,9 +41,11 @@ function moderationTitle(result: string, lang: string): string {
   }
 }
 
+// зачем (аудит по Библии, 2026-08-26): «Понятно» — реакция, а не действие
+// (Правило 1: глагол в кнопке). Алерт модерации просто закрывается.
 function okButtonLabel(lang: string): string {
-  if (lang.startsWith('es')) return 'Entendido';
-  return lang.startsWith('uk') ? 'Зрозуміло' : 'Понятно';
+  if (lang.startsWith('es')) return 'Cerrar';
+  return lang.startsWith('uk') ? 'Закрити' : 'Закрыть';
 }
 
 function moderationBody(ev: Record<string, unknown>, lang: string): string {

@@ -1273,7 +1273,7 @@ export default function LearningV2LessonMap() {
                 ? "Начать"
                 : selectedSession?.state === "completed"
                   ? "Повторить"
-                  : "Понятно"}
+                  : "Закрыть"}
             </Text>
           </Pressable>
           {/* Цена входа видна до нажатия. На «Понятно» (сессия заблокирована)

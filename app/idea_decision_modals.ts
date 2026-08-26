@@ -25,9 +25,11 @@ async function readAppLang(): Promise<string> {
   }
 }
 
+// зачем (аудит по Библии, 2026-08-26): «Понятно» — реакция, а не действие
+// (Правило 1: глагол в кнопке). Модалка решения по идее закрывается.
 function okButtonLabel(lang: string): string {
-  if (lang.startsWith('es')) return 'Listo';
-  return lang.startsWith('uk') ? 'Зрозуміло' : 'Понятно';
+  if (lang.startsWith('es')) return 'Cerrar';
+  return lang.startsWith('uk') ? 'Закрити' : 'Закрыть';
 }
 
 function pickByLang(ru: string, uk: string, es: string, lang: string): string {

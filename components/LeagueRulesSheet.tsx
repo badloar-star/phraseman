@@ -337,9 +337,11 @@ export default function LeagueRulesSheet({ visible, onClose, lang }: Props) {
     pl: 'Jak działa liga',
   });
 
+  // зачем (аудит по Библии, 2026-08-26): «Понятно» — реакция, а не действие
+  // (Правило 1: в кнопке глагол). Лист с правилами лиги закрывается — так и говорим.
   const ctaLabel = triLang(lang, {
-    ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi',
-    vi: 'Đã hiểu', id: 'Paham', tr: 'Anladım', pl: 'Jasne',
+    ru: 'Закрыть правила', uk: 'Закрити правила', en: 'Close rules', es: 'Cerrar reglas', 'pt-BR': 'Fechar regras',
+    vi: 'Đóng luật chơi', id: 'Tutup aturan', tr: 'Kuralları kapat', pl: 'Zamknij zasady',
   });
 
   return (

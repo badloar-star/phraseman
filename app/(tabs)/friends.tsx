@@ -3646,7 +3646,10 @@ export default function FriendsTabScreen() {
                   style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.champagne : '#D7A83B' }}
                 >
                   <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
-                    {L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
+                    {/* зачем (аудит по Библии, 2026-08-26): «Понятно» — реакция,
+                        а не действие (Правило 1: глагол в кнопке). Модалка про
+                        полученный подарок, поэтому кнопка называет действие. */}
+                    {L('Забрать подарок', 'Забрати подарунок', 'Recoger regalo', 'Pegar presente', 'Nhận quà', 'Ambil hadiah', 'Hediyeyi al', 'Odbierz prezent')}
                   </Text>
                 </TouchableOpacity>
               </View>

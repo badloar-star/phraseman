@@ -1850,10 +1850,10 @@ export default function SettingsMain() {
           'Opisz problem szczegółowo: co się dzieje, kiedy się zaczęło, na którym ekranie.\n\nI napisz swój nick z aplikacji — poczta nie jest powiązana z kontem, więc bez nicka nie znajdziemy twoich danych.',
         )}
         confirmLabel={L(
-          'Понятно, писать',
-          'Зрозуміло, писати',
-          'Entendido, escribir',
-          'Entendi, escrever',
+          'Написать письмо',
+          'Написати листа',
+          'Escribir correo',
+          'Escrever e-mail',
           'Đã hiểu, viết thư',
           'Paham, tulis',
           'Anladım, yaz',
@@ -2089,7 +2089,7 @@ export default function SettingsMain() {
                       ),
                       [
                         {
-                          text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+                          text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
                           style: 'cancel',
                         },
                         {
@@ -2125,7 +2125,7 @@ export default function SettingsMain() {
                       ),
                       [
                         {
-                          text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+                          text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
                           style: 'cancel',
                         },
                         {
@@ -2154,7 +2154,7 @@ export default function SettingsMain() {
                       ),
                       [
                         {
-                          text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+                          text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
                           style: 'cancel',
                         },
                         {

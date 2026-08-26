@@ -36,13 +36,14 @@ export default function IdeasSubmitScreen() {
   const L = useCallback((
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBR: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl }), [lang]);
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl }), [lang]);
 
   const [title, setTitle] = useState('');
   const [idea, setIdea] = useState('');
@@ -67,7 +68,7 @@ export default function IdeasSubmitScreen() {
         lang,
       });
       await enqueueThemedBlockingInfoAlert(
-        L('Идея отправлена', 'Ідею надіслано', 'Idea enviada', 'Ideia enviada', 'Ý tưởng đã gửi', 'Ide terkirim', 'Fikir gönderildi', 'Pomysł wysłany'),
+        L('Идея отправлена', 'Ідею надіслано', 'Idea sent', 'Idea enviada', 'Ideia enviada', 'Ý tưởng đã gửi', 'Ide terkirim', 'Fikir gönderildi', 'Pomysł wysłany'),
         L(
           'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе Plus на год.',
           'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Plus на рік.',
@@ -78,7 +79,7 @@ export default function IdeasSubmitScreen() {
           'Teşekkürler! Fikrini okuyacağız. Üzerinde çalışmaya alırsak sana bir yıllık Plus açacağız.',
           'Dzięki! Przeczytamy twój pomysł. Jeśli weźmiemy go do pracy, odblokujemy ci Plus na rok.',
         ),
-        L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+        L('Вернуться в настройки', 'Повернутися в налаштування', 'Back to settings', 'Volver a ajustes', 'Voltar aos ajustes', 'Về cài đặt', 'Kembali ke pengaturan', 'Ayarlara dön', 'Wróć do ustawień'),
       );
       safeRouterBack(router, '/(tabs)/settings' as never);
     } catch (error: unknown) {
@@ -87,12 +88,12 @@ export default function IdeasSubmitScreen() {
       const isLimited = code.includes('resource-exhausted') || message.includes('rate_limited');
       await enqueueThemedBlockingInfoAlert(
         isLimited
-          ? L('Уже приняли идею сегодня', 'Вже прийняли ідею сьогодні', 'Ya recibimos una idea hoy', 'Já recebemos uma ideia hoje', 'Hôm nay chúng tôi đã nhận một ý tưởng', 'Kami sudah menerima ide hari ini', 'Bugün zaten bir fikir aldık', 'Dziś przyjęliśmy już pomysł')
-          : L('Что-то пошло не так', 'Щось пішло не так', 'Algo salió mal', 'Algo deu errado', 'Đã xảy ra lỗi', 'Ada yang bermasalah', 'Bir şeyler ters gitti', 'Coś poszło nie tak'),
+          ? L('Уже приняли идею сегодня', 'Вже прийняли ідею сьогодні', 'We already received an idea today', 'Ya recibimos una idea hoy', 'Já recebemos uma ideia hoje', 'Hôm nay chúng tôi đã nhận một ý tưởng', 'Kami sudah menerima ide hari ini', 'Bugün zaten bir fikir aldık', 'Dziś przyjęliśmy już pomysł')
+          : L('Что-то пошло не так', 'Щось пішло не так', 'Something went wrong', 'Algo salió mal', 'Algo deu errado', 'Đã xảy ra lỗi', 'Ada yang bermasalah', 'Bir şeyler ters gitti', 'Coś poszło nie tak'),
         isLimited
           ? L('Можно отправить одну идею в день. Возвращайся завтра со следующей.', 'Можна надіслати одну ідею на день. Повертайся завтра з наступною.', 'Puedes enviar una idea al día. Vuelve mañana con la siguiente.', 'Você pode enviar uma ideia por dia. Volte amanhã com a próxima.', 'Bạn có thể gửi một ý tưởng mỗi ngày. Hãy quay lại vào ngày mai.', 'Kamu bisa mengirim satu ide per hari. Kembali besok.', 'Günde bir fikir gönderebilirsin. Sonraki fikir için yarın gel.', 'Możesz wysłać jeden pomysł dziennie. Wróć jutro z kolejnym.')
           : L('Не получилось отправить идею. Проверь связь и попробуй снова.', 'Не вдалося надіслати ідею. Перевір зв’язок і спробуй знову.', 'No se pudo enviar la idea. Revisa la conexión e inténtalo de nuevo.', 'Não conseguimos enviar a ideia. Verifique a conexão e tente de novo.', 'Không gửi được ý tưởng. Hãy kiểm tra kết nối và thử lại.', 'Ide belum bisa dikirim. Periksa koneksi dan coba lagi.', 'Fikir gönderilemedi. Bağlantını kontrol edip tekrar dene.', 'Nie udało się wysłać pomysłu. Sprawdź połączenie i spróbuj ponownie.'),
-        L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+        L('Вернуться в настройки', 'Повернутися в налаштування', 'Back to settings', 'Volver a ajustes', 'Voltar aos ajustes', 'Về cài đặt', 'Kembali ke pengaturan', 'Ayarlara dön', 'Wróć do ustawień'),
       );
     } finally {
       setBusy(false);
@@ -116,7 +117,7 @@ export default function IdeasSubmitScreen() {
     <ScreenGradient artBackdrop="settings">
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
         <SectionSheetHeader
-          title={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
+          title={L('Идеи', 'Ідеї', 'Ideas', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
           onClose={() => safeRouterBack(router, '/(tabs)/settings' as never)}
         />
         <BouncyScrollView
@@ -141,7 +142,7 @@ export default function IdeasSubmitScreen() {
               <Ionicons name="bulb-outline" size={27} color={t.correct} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-              {L('Поделись идеей', 'Поділися ідеєю', 'Comparte tu idea', 'Compartilhe sua ideia', 'Chia sẻ ý tưởng', 'Bagikan idemu', 'Fikrini paylaş', 'Podziel się pomysłem')}
+              {L('Поделись идеей', 'Поділися ідеєю', 'Share your idea', 'Comparte tu idea', 'Compartilhe sua ideia', 'Chia sẻ ý tưởng', 'Bagikan idemu', 'Fikrini paylaş', 'Podziel się pomysłem')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.4, textAlign: 'center', marginTop: 8 }}>
               {L(
@@ -158,23 +159,23 @@ export default function IdeasSubmitScreen() {
           </View>
 
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }}>
-            {L('Коротко', 'Коротко', 'En breve', 'Em poucas palavras', 'Tóm tắt', 'Singkatnya', 'Kısaca', 'Krótko')}
+            {L('Коротко', 'Коротко', 'Briefly', 'En breve', 'Em poucas palavras', 'Tóm tắt', 'Singkatnya', 'Kısaca', 'Krótko')}
           </Text>
           <TextInput
-            accessibilityLabel={L('Короткое название идеи', 'Коротка назва ідеї', 'Título breve de la idea', 'Título curto da ideia', 'Tên ngắn của ý tưởng', 'Judul singkat ide', 'Fikrin kısa başlığı', 'Krótki tytuł pomysłu')}
+            accessibilityLabel={L('Короткое название идеи', 'Коротка назва ідеї', 'Short idea title', 'Título breve de la idea', 'Título curto da ideia', 'Tên ngắn của ý tưởng', 'Judul singkat ide', 'Fikrin kısa başlığı', 'Krótki tytuł pomysłu')}
             value={title}
             onChangeText={setTitle}
-            placeholder={L('Например: добавить поиск фраз', 'Наприклад: додати пошук фраз', 'Por ejemplo: añadir búsqueda de frases', 'Por exemplo: adicionar busca de frases', 'Ví dụ: thêm tìm kiếm cụm từ', 'Contoh: tambahkan pencarian frasa', 'Örneğin: ifade araması ekleyin', 'Na przykład: dodać wyszukiwanie zwrotów')}
+            placeholder={L('Например: добавить поиск фраз', 'Наприклад: додати пошук фраз', 'E.g.: add phrase search', 'Por ejemplo: añadir búsqueda de frases', 'Por exemplo: adicionar busca de frases', 'Ví dụ: thêm tìm kiếm cụm từ', 'Contoh: tambahkan pencarian frasa', 'Örneğin: ifade araması ekleyin', 'Na przykład: dodać wyszukiwanie zwrotów')}
             placeholderTextColor={t.textGhost}
             maxLength={120}
             style={[inputStyle, { minHeight: 52, maxHeight: 52, textAlignVertical: 'center' }]}
           />
 
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 20, marginBottom: 8 }}>
-            {L('Твоя идея', 'Твоя ідея', 'Tu idea', 'Sua ideia', 'Ý tưởng của bạn', 'Idemu', 'Fikrin', 'Twój pomysł')}
+            {L('Твоя идея', 'Твоя ідея', 'Your idea', 'Tu idea', 'Sua ideia', 'Ý tưởng của bạn', 'Idemu', 'Fikrin', 'Twój pomysł')}
           </Text>
           <TextInput
-            accessibilityLabel={L('Опиши свою идею', 'Опиши свою ідею', 'Describe tu idea', 'Descreva sua ideia', 'Mô tả ý tưởng của bạn', 'Jelaskan idemu', 'Fikrini anlat', 'Opisz swój pomysł')}
+            accessibilityLabel={L('Опиши свою идею', 'Опиши свою ідею', 'Describe your idea', 'Describe tu idea', 'Descreva sua ideia', 'Mô tả ý tưởng của bạn', 'Jelaskan idemu', 'Fikrini anlat', 'Opisz swój pomysł')}
             value={idea}
             onChangeText={setIdea}
             placeholder={L('Что можно сделать лучше? Опиши как получится — мы разберёмся.', 'Що можна зробити краще? Опиши як виходить — ми розберемося.', '¿Qué podemos mejorar? Cuéntanoslo como te salga.', 'O que podemos melhorar? Conte do seu jeito.', 'Chúng tôi có thể cải thiện điều gì? Hãy viết theo cách của bạn.', 'Apa yang bisa kami buat lebih baik? Ceritakan dengan caramu.', 'Neyi daha iyi yapabiliriz? Aklındaki gibi anlat.', 'Co możemy ulepszyć? Opisz to po swojemu.')}
@@ -184,12 +185,12 @@ export default function IdeasSubmitScreen() {
             style={inputStyle}
           />
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 8 }}>
-            {L('Одна идея в день. Мы прочитаем каждую.', 'Одна ідея на день. Ми прочитаємо кожну.', 'Una idea al día. Leemos cada una.', 'Uma ideia por dia. Lemos cada uma.', 'Một ý tưởng mỗi ngày. Chúng tôi đọc từng ý tưởng.', 'Satu ide per hari. Kami membaca semuanya.', 'Günde bir fikir. Her birini okuyoruz.', 'Jeden pomysł dziennie. Czytamy każdy.')}
+            {L('Одна идея в день. Мы прочитаем каждую.', 'Одна ідея на день. Ми прочитаємо кожну.', 'One idea a day. We read every one.', 'Una idea al día. Leemos cada una.', 'Uma ideia por dia. Lemos cada uma.', 'Một ý tưởng mỗi ngày. Chúng tôi đọc từng ý tưởng.', 'Satu ide per hari. Kami membaca semuanya.', 'Günde bir fikir. Her birini okuyoruz.', 'Jeden pomysł dziennie. Czytamy każdy.')}
           </Text>
 
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={L('Отправить идею', 'Надіслати ідею', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
+            accessibilityLabel={L('Отправить идею', 'Надіслати ідею', 'Send idea', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
             onPress={onSend}
             disabled={!canSend}
             activeOpacity={0.85}
@@ -205,7 +206,7 @@ export default function IdeasSubmitScreen() {
           >
             {busy ? <ActivityIndicator color={submitTextColor} /> : (
               <Text style={{ color: submitTextColor, fontSize: f.body, fontWeight: '800' }}>
-                {L('Отправить идею', 'Надіслати ідею', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
+                {L('Отправить идею', 'Надіслати ідею', 'Send idea', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
               </Text>
             )}
           </TouchableOpacity>

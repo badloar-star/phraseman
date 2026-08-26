@@ -1138,13 +1138,13 @@ function AddFriendModal({
               }}
             >
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
-                {L('Введите имя друга', 'Введіть імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
+                {L('Введи имя друга', 'Введи імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TextInput
                   ref={searchInputRef}
                   testID="friends-code-input"
-                  accessibilityLabel={L('Введите имя друга', 'Введіть імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
+                  accessibilityLabel={L('Введи имя друга', 'Введи імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
                   style={{
                     // зачем: без обводки (правило владельца) — поле отделяем тоном
                     // поверхности, а не рамкой.
@@ -2328,7 +2328,7 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { queryLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
-      setSearchError(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+      setSearchError(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
     }
@@ -2375,7 +2375,7 @@ export default function FriendsTabScreen() {
         showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
       } else if (result === 'already_friends') {
         setFoundUser(null);
-        showFeedback(L('Вы уже друзья', 'Ви вже друзі', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi'));
+        showFeedback(L('Уже друзья', 'Уже друзі', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi'));
       } else if (result === 'already_sent') {
         setFoundUser(null);
         showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada', 'Solicitação já enviada', 'Lời mời đã được gửi', 'Permintaan sudah dikirim', 'İstek zaten gönderildi', 'Zaproszenie już wysłane'));
@@ -2385,7 +2385,7 @@ export default function FriendsTabScreen() {
       } else {
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);
-        showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
       }
     } catch (e) {
       void import('../app_health')
@@ -2406,7 +2406,7 @@ export default function FriendsTabScreen() {
       });
       setFoundUser(targetUser);
       setCodeInput(previousCodeInput);
-      showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+      showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
@@ -2435,7 +2435,7 @@ export default function FriendsTabScreen() {
         if (!hadFriend) {
           setFriends(prev => prev.filter(friend => friend.uid !== request.fromUid));
         }
-        showFeedback(L('Ошибка при принятии. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar', 'Erro ao aceitar', 'Lỗi khi chấp nhận', 'Gagal menerima', 'Kabul ederken hata', 'Błąd przy akceptacji'));
+        showFeedback(L('Не получилось принять. Попробуй ещё раз', 'Не вдалося прийняти. Спробуй ще раз', 'No se pudo aceptar', 'Não deu para aceitar', 'Chưa chấp nhận được', 'Belum bisa diterima', 'Kabul edilemedi', 'Nie udało się zaakceptować'));
       });
   }, [L, friends, showFeedback]);
 
@@ -2447,7 +2447,7 @@ export default function FriendsTabScreen() {
       })
       .catch(() => {
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
-        showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
       });
   }, [L, showFeedback]);
 
@@ -3837,10 +3837,10 @@ export default function FriendsTabScreen() {
 
       <ThemedConfirmModal
         visible={deleteTarget !== null}
-        title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?', 'Remover amigo?', 'Xóa bạn bè?', 'Hapus teman?', 'Arkadaşı sil?', 'Usunąć znajomego?')}
+        title={L('Убрать друга?', 'Прибрати друга?', '¿Quitar amigo?', 'Remover amigo?', 'Gỡ bạn bè?', 'Hapus teman?', 'Arkadaşı kaldır?', 'Usunąć znajomego?')}
         message={deleteTarget?.name ?? ''}
         cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
-        confirmLabel={L('Удалить', 'Видалити', 'Eliminar', 'Remover', 'Xóa', 'Hapus', 'Sil', 'Usuń')}
+        confirmLabel={L('Убрать', 'Прибрати', 'Quitar', 'Remover', 'Gỡ', 'Hapus', 'Kaldır', 'Usuń')}
         confirmVariant="default"
         testIDPrefix="friends-delete-confirm"
         onCancel={() => setDeleteTarget(null)}
@@ -3851,10 +3851,10 @@ export default function FriendsTabScreen() {
             const previousFriend = friends.find(friend => friend.uid === target.uid) ?? null;
             setFriends(prev => prev.filter(friend => friend.uid !== target.uid));
             setSelectedPlayer(current => (current?.uid === target.uid || current?.friendUid === target.uid ? null : current));
-            showFeedback(L('Удаляем друга...', 'Видаляємо друга...', 'Eliminando amigo...', 'Removendo amigo...', 'Đang xóa bạn bè...', 'Menghapus teman...', 'Arkadaş siliniyor...', 'Usuwanie znajomego...'));
+            showFeedback(L('Убираем друга…', 'Прибираємо друга…', 'Quitando amigo…', 'Removendo amigo…', 'Đang gỡ bạn bè…', 'Menghapus teman…', 'Arkadaş kaldırılıyor…', 'Usuwanie znajomego…'));
             emitAppEvent('action_toast', {
               type: 'info',
-              messageRu: `Удаляем друга: ${target.name}`,
+              messageRu: `Убираем друга: ${target.name}`,
               messageUk: `Видаляємо друга: ${target.name}`,
               messageEs: `Eliminando amigo: ${target.name}`,
               messagePtBr: `Removendo amigo: ${target.name}`,
@@ -3865,10 +3865,10 @@ export default function FriendsTabScreen() {
             });
             deleteFriend(target.uid)
               .then(() => {
-                showFeedback(L('Друг удалён', 'Друга видалено', 'Amigo eliminado', 'Amigo removido', 'Đã xóa bạn bè', 'Teman dihapus', 'Arkadaş silindi', 'Znajomy usunięty'));
+                showFeedback(L('Друг убран', 'Друга прибрано', 'Amigo quitado', 'Amigo removido', 'Đã gỡ bạn bè', 'Teman dihapus', 'Arkadaş kaldırıldı', 'Znajomy usunięty'));
                 emitAppEvent('action_toast', {
                   type: 'success',
-                  messageRu: `Друг удалён: ${target.name}`,
+                  messageRu: `Друг убран: ${target.name}`,
                   messageUk: `Друга видалено: ${target.name}`,
                   messageEs: `Amigo eliminado: ${target.name}`,
                   messagePtBr: `Amigo removido: ${target.name}`,
@@ -3882,10 +3882,10 @@ export default function FriendsTabScreen() {
                 if (previousFriend) {
                   setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);
                 }
-                showFeedback(L('Ошибка удаления. Попробуй ещё раз', 'Помилка видалення. Спробуйте ще раз', 'Error al eliminar. Inténtalo de nuevo', 'Erro ao remover. Tente novamente', 'Không xóa được. Hãy thử lại', 'Gagal menghapus. Coba lagi', 'Silme hatası. Tekrar dene', 'Błąd usuwania. Spróbuj ponownie'));
+                showFeedback(L('Не получилось убрать друга. Попробуй ещё раз', 'Не вдалося прибрати друга. Спробуй ще раз', 'No se pudo quitar. Inténtalo de nuevo', 'Não deu para remover. Tente novamente', 'Chưa gỡ được. Hãy thử lại', 'Belum bisa dihapus. Coba lagi', 'Kaldırılamadı. Tekrar dene', 'Nie udało się usunąć. Spróbuj ponownie'));
                 emitAppEvent('action_toast', {
                   type: 'error',
-                  messageRu: 'Ошибка удаления. Попробуй ещё раз',
+                  messageRu: 'Не получилось убрать друга. Попробуй ещё раз',
                   messageUk: 'Помилка видалення. Спробуйте ще раз',
                   messageEs: 'Error al eliminar. Inténtalo de nuevo',
                   messagePtBr: 'Erro ao remover. Tente novamente',

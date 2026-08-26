@@ -329,20 +329,52 @@ type AuthoritativeLeagueFields = {
   isLifetime?: boolean;
 };
 
+/**
+ * Руны, заработанные ИГРОЙ за указанную ISO-неделю.
+ *
+ * зачем (владелец, 2026-08-26: «весь раздел лига переходит на руны, никакого
+ * ХП, только руны»): очки лиги — это `stars.weekEarned` из единого журнала рун
+ * (stars_ledger.ts), а не недельный опыт. Класс `grant` (подарок за вход, спин,
+ * обмен) в weekEarned не попадает намеренно: иначе бонус 300 рун за вход разом
+ * закинул бы новичка в зону повышения, не сыграв ни одного занятия.
+ *
+ * Ноль дополнительных чтений: карта `stars` лежит в том же документе
+ * users/{uid}, который эта функция уже получила.
+ */
+function getLeagueWeekRunes(
+  userData: FirebaseFirestore.DocumentData | undefined,
+  weekId: string,
+): number {
+  const stars = userData?.stars && typeof userData.stars === 'object'
+    ? userData.stars as Record<string, unknown>
+    : undefined;
+  if (!stars) return 0;
+  // Тот же приоритет, что у клиентской проекции starsWeekEarned: текущая
+  // неделя, иначе прошлая, иначе ноль. Устаревший счётчик выглядит как
+  // настоящее число — читать его без проверки недели нельзя.
+  if (sanitizeString(stars.weekKey, 16) === weekId) {
+    return Math.max(0, Math.min(1_000_000_000, readInt(stars.weekEarned, 0)));
+  }
+  if (sanitizeString(stars.prevWeekKey, 16) === weekId) {
+    return Math.max(0, Math.min(1_000_000_000, readInt(stars.prevWeekEarned, 0)));
+  }
+  return 0;
+}
+
 function getAuthoritativeLeagueWeekPoints(
   userData: FirebaseFirestore.DocumentData | undefined,
   leaderboard: FirebaseFirestore.DocumentData | undefined,
   weekId: string,
-  nowMs = Date.now(),
+  _nowMs = Date.now(),
 ): number {
-  const progress = userData?.progress && typeof userData.progress === 'object'
-    ? userData.progress as Record<string, unknown>
-    : {};
-  const progressPoints = getLeagueWeekPoints(progress, nowMs);
+  // зачем (владелец, 2026-08-26): раньше здесь стоял getLeagueWeekPoints —
+  // недельный ОПЫТ. Сервер затирал им присланное клиентом число, поэтому
+  // одной правки клиента не хватило бы: лига продолжила бы жить на XP.
+  const runes = getLeagueWeekRunes(userData, weekId);
   const leaderboardPoints = leaderboard?.weekKey === weekId
     ? Math.max(0, Math.min(1_000_000_000, readInt(leaderboard.weekPoints, 0)))
     : 0;
-  return Math.max(progressPoints, leaderboardPoints);
+  return Math.max(runes, leaderboardPoints);
 }
 
 async function resolveAuthoritativeLeagueFields(

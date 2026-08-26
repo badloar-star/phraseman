@@ -4,6 +4,8 @@ import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Polygon, Stop } from 'react-native-svg';
 import { triLang, type Lang } from '../../constants/i18n';
+// Валюта лиги — руны (владелец, 2026-08-26), склонение общим помощником.
+import { runeWord } from '../../constants/runes';
 import type { GroupMember } from '../../app/league_engine';
 import { leaguePublicName } from '../../app/league_public_name';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -184,7 +186,7 @@ function LeagueCompetitionSceneComponent({ lang, palette, leagueName, participan
   const beamLOpacity = beamPhase.interpolate({ inputRange: [0, 1], outputRange: [0.5, 0.95] });
   const beamROpacity = beamPhase.interpolate({ inputRange: [0, 1], outputRange: [0.95, 0.5] });
 
-  const meLabel = triLang(lang, { ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' });
+  const meLabel = triLang(lang, { ru: 'Вы', uk: 'Ви', en: 'You', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' });
 
   return (
     <Reanimated.View
@@ -239,7 +241,7 @@ function LeagueCompetitionSceneComponent({ lang, palette, leagueName, participan
             >
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel={`${place}. ${displayName}, ${member.points} XP${member.isMe ? `, ${meLabel}` : ''}`}
+                accessibilityLabel={`${place}. ${displayName}, ${member.points} ${runeWord(lang, member.points)}${member.isMe ? `, ${meLabel}` : ''}`}
                 onPress={() => onOpenProfile(member)}
                 style={({ pressed }) => [styles.personPress, { opacity: pressed ? 0.82 : 1 }]}
               >
@@ -258,7 +260,7 @@ function LeagueCompetitionSceneComponent({ lang, palette, leagueName, participan
                 >
                   {displayName}
                 </FlowText>
-                <Text style={[styles.personPoints, { color: palette.muted }]}>{Math.max(0, Math.floor(Number(member.points) || 0)).toLocaleString()} XP</Text>
+                <Text style={[styles.personPoints, { color: palette.muted }]}>{Math.max(0, Math.floor(Number(member.points) || 0)).toLocaleString()} {runeWord(lang, Math.floor(Number(member.points) || 0))}</Text>
                 {member.isMe ? (
                   <View style={[styles.mePill, { backgroundColor: palette.accent }]}>
                     <Text style={[styles.mePillText, { color: palette.accentText }]}>{meLabel}</Text>

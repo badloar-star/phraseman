@@ -127,8 +127,8 @@ export const RESIDENT_TICK_MS = 60 * 60 * 1000;
 // владельца выдержаны без искусственного обрезания: диапазон получается сам,
 // из тиков, поэтому residentXpGainedBetween по-прежнему честно суммирует
 // произвольный интервал и не требует клампа по суткам.
-export const RESIDENT_TICK_MIN_XP = 2;
-export const RESIDENT_TICK_MAX_XP = 40;
+export const RESIDENT_TICK_MIN_RUNES = 2;
+export const RESIDENT_TICK_MAX_RUNES = 40;
 
 /**
  * Доля тиков, в которые персонаж не занимался вовсе. Владелец: «рандомно с
@@ -217,7 +217,7 @@ function residentTickRandom(index: number, tick: number, stream: string): number
 export function residentTickGain(index: number, tick: number): number {
   if (residentTickRandom(index, tick, 'idle') < RESIDENT_IDLE_CHANCE) return 0;
   const draw = residentTickRandom(index, tick, 'gain');
-  const base = RESIDENT_TICK_MIN_XP + (RESIDENT_TICK_MAX_XP - RESIDENT_TICK_MIN_XP) * draw;
+  const base = RESIDENT_TICK_MIN_RUNES + (RESIDENT_TICK_MAX_RUNES - RESIDENT_TICK_MIN_RUNES) * draw;
   return Math.max(1, Math.round(base * residentPace(index)));
 }
 

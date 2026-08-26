@@ -5,6 +5,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeekLeaderboard, getLastWeekFinalPoints } from './hall_of_fame_utils';
+import { getLastWeekLeagueRunes } from './league_week_runes';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
 import {
@@ -307,6 +308,7 @@ export function clubDescForLang(club: Pick<ClubDef, 'id' | 'descRU' | 'descUK'>,
   return triLang(lang, {
     ru: club.descRU,
     uk: club.descUK,
+    en: club.descRU,
     es: CLUB_DESC_ES[club.id] ?? club.descRU,
     'pt-BR': clubDescPlanned(club.id, 'pt-BR'),
     vi: clubDescPlanned(club.id, 'vi'),
@@ -1268,8 +1270,16 @@ export const checkLeagueOnAppOpen = async (
       // Локальный резервный расчёт: кэш группы может отставать (юзер добрал очки в конце
       // недели, а снапшот не обновился) — берём максимум из кэша и финала,
       // сохранённого resetWeekPointsIfStale перед обнулением счётчика.
-      const lastFinal = await getLastWeekFinalPoints(state.weekId);
-      const effectiveMyPoints = Math.max(storedMyPoints, lastFinal ?? 0);
+      // зачем (владелец, 2026-08-26: «весь раздел лига переходит на руны»):
+      // резервный расчёт обязан считать ту же валюту, что и таблица. Рунный
+      // финал недели — свой (league_week_runes), опытный week_points_last_final
+      // остаётся Залу славы и друзьям. Берём максимум: если рунного снимка нет
+      // (первая неделя после обновления), опытный хотя бы не занизит исход.
+      const [lastFinal, lastRunesFinal] = await Promise.all([
+        getLastWeekFinalPoints(state.weekId),
+        getLastWeekLeagueRunes(state.weekId),
+      ]);
+      const effectiveMyPoints = Math.max(storedMyPoints, lastRunesFinal ?? lastFinal ?? 0);
       result = calculateResult({ ...state, group: rolloverGroup }, effectiveMyPoints);
     }
     }

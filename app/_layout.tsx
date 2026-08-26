@@ -31,6 +31,12 @@ import { EnergyProvider } from '../components/EnergyContext';
 // прочитает peekRunes(). Тот же приём, что у EnergyProvider/energy_peek_cache
 // чуть выше по файлу: чтение стартует до, а не только внутри bootstrap-гонки.
 import './runes_system';
+// зачем (владелец, 2026-08-26: «весь раздел лига переходит на руны»): очки лиги
+// — это руны за неделю, а серверный снимок обновляется раз в 6 часов. Подписка
+// копит начисления поверх снимка, чтобы своя строка в таблице двигалась сразу
+// после занятия. Ставится рядом с кошельком и до первого кадра: событие
+// runes_balance_updated летит уже на старте, пропустить его нельзя.
+import { startLeagueWeekRunesTracking } from './league_week_runes';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
@@ -2199,6 +2205,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           }
         }
         await ensureStableAuthLink().catch(() => false);
+        startLeagueWeekRunesTracking();
         registerInLeagueGroupSilently().catch(() => {});
         Promise.all([
           getVerifiedRealPremiumStatus().catch(() => false),

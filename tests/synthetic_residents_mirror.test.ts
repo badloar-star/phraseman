@@ -19,8 +19,8 @@ describe('реестр персонажей: клиент и сервер счи
   it('константы совпадают', () => {
     expect(client.RESIDENT_EPOCH_MS).toBe(server.RESIDENT_EPOCH_MS);
     expect(client.RESIDENT_TICK_MS).toBe(server.RESIDENT_TICK_MS);
-    expect(client.RESIDENT_TICK_MIN_XP).toBe(server.RESIDENT_TICK_MIN_XP);
-    expect(client.RESIDENT_TICK_MAX_XP).toBe(server.RESIDENT_TICK_MAX_XP);
+    expect(client.RESIDENT_TICK_MIN_RUNES).toBe(server.RESIDENT_TICK_MIN_RUNES);
+    expect(client.RESIDENT_TICK_MAX_RUNES).toBe(server.RESIDENT_TICK_MAX_RUNES);
     expect(client.RESIDENT_IDLE_CHANCE).toBe(server.RESIDENT_IDLE_CHANCE);
     expect(client.RESIDENT_MAX_LEVEL).toBe(server.RESIDENT_MAX_LEVEL);
     expect(client.RESIDENT_PACE_EXP).toBe(server.RESIDENT_PACE_EXP);

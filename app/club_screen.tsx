@@ -60,7 +60,12 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getTitleString } from '../constants/titles';
 
-import { getMyWeekPoints } from './hall_of_fame_utils';
+// зачем (владелец, 2026-08-26: «в разделе лига очки это руны»): экран лиги
+// показывает руны за ISO-неделю, а не опыт. Общий счётчик опыта остался у
+// Зала славы и друзей — см. league_week_runes.ts.
+import { getMyLeagueWeekRunes } from './league_week_runes';
+// Склонение «руна/руны/рун» — общий помощник валюты, тот же, что в кошельке.
+import { runeWord, runesLabel } from '../constants/runes';
 import { getCanonicalUserId } from './user_id_policy';
 import { getXPProgress, getLevelFromXP, isLightThemeMode, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
@@ -209,31 +214,38 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
       pl: "Awans będzie dostępny, gdy w lidze będą co najmniej 2 uczestnicy.",
     });
   }
+  // зачем (владелец, 2026-08-26: «весь раздел лига переходит на руны, никакого
+  // ХП»): место в лиге считается по рунам за неделю (league_week_runes.ts),
+  // поэтому и правило повышения обязано называть ту же валюту.
+  const runes = runesLabel(lang);
   return triLang(lang, {
-    ru: `Чтобы перейти в следующую лигу, к концу недели нужно войти в топ-${promotionCutoff} по опыту, набранному за эту неделю.`,
-    uk: `Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ-${promotionCutoff} за досвідом, зібраним за цей тиждень.`,
-    es: `Para subir de liga, al final de la semana debes estar entre los ${promotionCutoff} primeros por experiencia ganada esta semana.`,
-    en: `To move up to the next league, you need to finish the week in the top ${promotionCutoff} by XP earned this week.`,
-    'pt-BR': `Para subir para a próxima liga, você precisa terminar a semana no top-${promotionCutoff} por XP ganho nesta semana.`,
-    vi: `Để lên giải tiếp theo, đến cuối tuần bạn cần nằm trong top-${promotionCutoff} theo XP kiếm được trong tuần này.`,
-    id: `Untuk naik ke liga berikutnya, pada akhir minggu kamu harus masuk top-${promotionCutoff} berdasarkan XP yang didapat minggu ini.`,
-    tr: `Bir sonraki lige geçmek için hafta sonunda bu hafta kazandığın XP ile ilk ${promotionCutoff} içinde olman gerekir.`,
-    pl: `Aby przejść do następnej ligi, na koniec tygodnia musisz być w top-${promotionCutoff} według XP zdobytego w tym tygodniu.`,
+    ru: `Чтобы перейти в следующую лигу, к концу недели нужно войти в топ-${promotionCutoff} по ${runes}, набранным за эту неделю.`,
+    uk: `Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ-${promotionCutoff} за ${runes}, зібраними за цей тиждень.`,
+    es: `Para subir de liga, al final de la semana debes estar entre los ${promotionCutoff} primeros por ${runes} ganadas esta semana.`,
+    en: `To move up to the next league, you need to finish the week in the top ${promotionCutoff} by ${runes} earned this week.`,
+    'pt-BR': `Para subir para a próxima liga, você precisa terminar a semana no top-${promotionCutoff} por ${runes} ganhas nesta semana.`,
+    vi: `Để lên giải tiếp theo, đến cuối tuần bạn cần nằm trong top-${promotionCutoff} theo ${runes} kiếm được trong tuần này.`,
+    id: `Untuk naik ke liga berikutnya, pada akhir minggu kamu harus masuk top-${promotionCutoff} berdasarkan ${runes} yang didapat minggu ini.`,
+    tr: `Bir sonraki lige geçmek için hafta sonunda bu hafta kazandığın ${runes} ile ilk ${promotionCutoff} içinde olman gerekir.`,
+    pl: `Aby przejść do następnej ligi, na koniec tygodnia musisz być w top-${promotionCutoff} według ${runes} zdobytych w tym tygodniu.`,
   });
 }
 
 function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
-  const xp = Math.max(1, Math.floor(Number(threshold) || 1000)).toLocaleString();
+  const value = Math.max(1, Math.floor(Number(threshold) || 1000));
+  const xp = value.toLocaleString();
+  // Порог повышения теперь в рунах — склоняем по самому числу.
+  const word = runeWord(lang, value);
   return triLang(lang, {
-    ru: `В этом месяце переход проще: набери ${xp} XP за неделю — и перейдёшь в следующую лигу.`,
-    uk: `Цього місяця перехід простіший: набери ${xp} XP за тиждень — і перейдеш у наступну лігу.`,
-    es: `Este mes subir es más simple: consigue ${xp} XP esta semana y pasarás a la siguiente liga.`,
-    en: `Moving up is easier this month: earn ${xp} XP this week and you'll move to the next league.`,
-    'pt-BR': `Neste mês a subida está mais simples: ganhe ${xp} XP na semana e vá para a próxima liga.`,
-    vi: `Tháng này việc thăng hạng dễ hiểu hơn: đạt ${xp} XP trong tuần để lên giải tiếp theo.`,
-    id: `Bulan ini naik liga lebih sederhana: kumpulkan ${xp} XP minggu ini untuk masuk liga berikutnya.`,
-    tr: `Bu ay yükselme daha basit: haftada ${xp} XP kazan, sonraki lige geç.`,
-    pl: `W tym miesiącu awans jest prostszy: zdobądź ${xp} XP w tygodniu i przejdź do następnej ligi.`,
+    ru: `В этом месяце переход проще: набери ${xp} ${word} за неделю — и перейдёшь в следующую лигу.`,
+    uk: `Цього місяця перехід простіший: набери ${xp} ${word} за тиждень — і перейдеш у наступну лігу.`,
+    es: `Este mes subir es más simple: consigue ${xp} ${word} esta semana y pasarás a la siguiente liga.`,
+    en: `Moving up is easier this month: earn ${xp} ${word} this week and you'll move to the next league.`,
+    'pt-BR': `Neste mês a subida está mais simples: ganhe ${xp} ${word} na semana e vá para a próxima liga.`,
+    vi: `Tháng này việc thăng hạng dễ hiểu hơn: đạt ${xp} ${word} trong tuần để lên giải tiếp theo.`,
+    id: `Bulan ini naik liga lebih sederhana: kumpulkan ${xp} ${word} minggu ini untuk masuk liga berikutnya.`,
+    tr: `Bu ay yükselme daha basit: haftada ${xp} ${word} kazan, sonraki lige geç.`,
+    pl: `W tym miesiącu awans jest prostszy: zdobądź ${xp} ${word} w tygodniu i przejdź do następnej ligi.`,
   });
 }
 
@@ -727,7 +739,7 @@ export default function ClubScreen() {
         getCanonicalUserId(),
         loadLeagueState(),
         loadPendingResult(),
-        getMyWeekPoints().catch(() => 0),
+        getMyLeagueWeekRunes().catch(() => 0),
         AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY),
       ]);
       if (!isMountedRef.current) return;
@@ -1407,26 +1419,35 @@ export default function ClubScreen() {
     const items: LeagueRaceFeedItem[] = [];
     const fmtXp = (v: number) => Math.max(0, Math.floor(Number(v) || 0)).toLocaleString();
     if (weekCountdown.hot) {
+      // Валюта лиги — руны (владелец, 2026-08-26), поэтому и удвоение в
+      // горячие часы называется рунами.
+      const hotRunes = runesLabel(lang);
       items.push({ key: 'hot', emoji: '🔥', trend: 'up', text: triLang(lang, {
-        ru: 'Горячие 2 часа: зона вылета получает ×2 XP',
-        uk: 'Спекотні 2 години: зона вильоту отримує ×2 XP',
-        en: 'Hot 2 hours: the drop zone earns ×2 XP',
-        es: '2 horas calientes: la zona de descenso gana ×2 XP',
-        'pt-BR': '2 horas quentes: a zona de queda ganha ×2 XP',
-        vi: '2 giờ nóng: vùng xuống hạng nhận ×2 XP',
-        id: '2 jam panas: zona degradasi dapat ×2 XP',
-        tr: 'Sıcak 2 saat: düşme bölgesi ×2 XP kazanır',
-        pl: 'Gorące 2 godziny: strefa spadku zgarnia ×2 XP',
+        ru: `Горячие 2 часа: зона вылета получает ×2 ${hotRunes}`,
+        uk: `Спекотні 2 години: зона вильоту отримує ×2 ${hotRunes}`,
+        en: `Hot 2 hours: the drop zone earns ×2 ${hotRunes}`,
+        es: `2 horas calientes: la zona de descenso gana ×2 ${hotRunes}`,
+        'pt-BR': `2 horas quentes: a zona de queda ganha ×2 ${hotRunes}`,
+        vi: `2 giờ nóng: vùng xuống hạng nhận ×2 ${hotRunes}`,
+        id: `2 jam panas: zona degradasi dapat ×2 ${hotRunes}`,
+        tr: `Sıcak 2 saat: düşme bölgesi ×2 ${hotRunes} kazanır`,
+        pl: `Gorące 2 godziny: strefa spadku zgarnia ×2 ${hotRunes}`,
       }) });
     }
     if (myLeagueRank > 1) {
       const ahead = sortedGroup[myLeagueRank - 2];
       if (ahead) {
         const name = leaguePublicName(ahead.name, ahead.uid ?? ahead.botId ?? ahead.name);
-        const gapXp = fmtXp((Number(ahead.points) || 0) - (Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
+        // зачем (владелец, 2026-08-26: «убирай гонку ХП, там не ХП а руны»):
+        // разрыв в таблице лиги измеряется рунами. Число держим отдельно от
+        // отформатированной строки — склонение «руна/руны/рун» считается по
+        // самому числу, а показываем разделённое пробелами.
+        const gapValue = Math.max(0, Math.floor((Number(ahead.points) || 0) - (Number(sortedGroup[myLeagueRank - 1]?.points) || 0)));
+        const gapXp = fmtXp(gapValue);
+        const gapWord = runeWord(lang, gapValue);
         items.push({ key: 'ahead', trend: 'up', text: triLang(lang, {
-          ru: `${name} впереди на ${gapXp} XP`, uk: `${name} попереду на ${gapXp} XP`, en: `${name} is ${gapXp} XP ahead`, es: `${name} te lleva ${gapXp} XP`, 'pt-BR': `${name} está ${gapXp} XP à frente`,
-          vi: `${name} dẫn trước ${gapXp} XP`, id: `${name} di depan ${gapXp} XP`, tr: `${name} ${gapXp} XP önde`, pl: `${name} z przodu o ${gapXp} XP`,
+          ru: `${name} впереди на ${gapXp} ${gapWord}`, uk: `${name} попереду на ${gapXp} ${gapWord}`, en: `${name} is ${gapXp} ${gapWord} ahead`, es: `${name} te lleva ${gapXp} ${gapWord}`, 'pt-BR': `${name} está ${gapXp} ${gapWord} à frente`,
+          vi: `${name} dẫn trước ${gapXp} ${gapWord}`, id: `${name} di depan ${gapXp} ${gapWord}`, tr: `${name} ${gapXp} ${gapWord} önde`, pl: `${name} z przodu o ${gapXp} ${gapWord}`,
         }) });
       }
     }
@@ -1434,10 +1455,12 @@ export default function ClubScreen() {
       const behind = sortedGroup[myLeagueRank];
       if (behind) {
         const name = leaguePublicName(behind.name, behind.uid ?? behind.botId ?? behind.name);
-        const gapXp = fmtXp((Number(sortedGroup[myLeagueRank - 1]?.points) || 0) - (Number(behind.points) || 0));
+        const gapValue = Math.max(0, Math.floor((Number(sortedGroup[myLeagueRank - 1]?.points) || 0) - (Number(behind.points) || 0)));
+        const gapXp = fmtXp(gapValue);
+        const gapWord = runeWord(lang, gapValue);
         items.push({ key: 'behind', emoji: '👀', trend: 'down', text: triLang(lang, {
-          ru: `${name} дышит в спину — до вас ${gapXp} XP`, uk: `${name} за спиною — до вас ${gapXp} XP`, en: `${name} is right behind you — ${gapXp} XP away`, es: `${name} te pisa los talones: a ${gapXp} XP`, 'pt-BR': `${name} colando: a ${gapXp} XP de você`,
-          vi: `${name} bám sát: cách bạn ${gapXp} XP`, id: `${name} membuntuti: ${gapXp} XP di belakangmu`, tr: `${name} ensende: ${gapXp} XP geride`, pl: `${name} depcze po piętach: ${gapXp} XP za tobą`,
+          ru: `${name} дышит в спину — до вас ${gapXp} ${gapWord}`, uk: `${name} за спиною — до вас ${gapXp} ${gapWord}`, en: `${name} is right behind you — ${gapXp} ${gapWord} away`, es: `${name} te pisa los talones: a ${gapXp} ${gapWord}`, 'pt-BR': `${name} colando: a ${gapXp} ${gapWord} de você`,
+          vi: `${name} bám sát: cách bạn ${gapXp} ${gapWord}`, id: `${name} membuntuti: ${gapXp} ${gapWord} di belakangmu`, tr: `${name} ensende: ${gapXp} ${gapWord} geride`, pl: `${name} depcze po piętach: ${gapXp} ${gapWord} za tobą`,
         }) });
       }
     }

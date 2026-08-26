@@ -46,6 +46,8 @@ import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../../constant
 import { getLevelFromXP } from '../../constants/theme';
 import { readableOn, isLightSurface } from '../../constants/color_contrast';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i18n';
+// Валюта лиги — руны (владелец, 2026-08-26).
+import { runeWord } from '../../constants/runes';
 import { hapticSuccess, hapticWarning, hapticSoftImpact, hapticLightImpact } from '../../hooks/use-haptics';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { LUM, CHK, SUITE } from '../../constants/motionHybrid';
@@ -614,7 +616,7 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
 
         {/* Строки соперников — полные (аватар + имя + очки), не инициалы */}
         {pathRows.map((row) => (
-          <PathMemberRow key={row.key} row={row} onLight={onLight} themeMode={themeMode} t={t} f={f} />
+          <PathMemberRow key={row.key} row={row} onLight={onLight} themeMode={themeMode} t={t} f={f} lang={lang} />
         ))}
 
         {/* Световой хвост медальона (только повышение) */}
@@ -731,7 +733,7 @@ const PodiumSeat = memo(function PodiumSeat({ member, place, onLight, themeMode,
       </Text>
       {/* guard-ok: очки — второе ЗНАЧЕНИЕ под именем (как в classic PodiumColumn), не расшифровка имени */}
       <Text style={[styles.podiumPoints, { color: t.textMuted }]}>
-        {member?.points ?? 0} XP
+        {member?.points ?? 0} {runeWord(lang, Math.floor(Number(member?.points ?? 0)))}
       </Text>
     </View>
   );
@@ -741,12 +743,14 @@ const PodiumSeat = memo(function PodiumSeat({ member, place, onLight, themeMode,
 //  PathMemberRow — строка соперника на стеклянной колонне пути: реальный
 //  аватар вместо буквы-инициала, полное имя и очки — как в classic GroupRow.
 // ════════════════════════════════════════════════════════════════════════════
-const PathMemberRow = memo(function PathMemberRow({ row, onLight, themeMode, t, f }: {
+const PathMemberRow = memo(function PathMemberRow({ row, onLight, themeMode, t, f, lang }: {
   row: PathRow;
   onLight: boolean;
   themeMode: string;
   t: any;
   f: any;
+  // Очки строки — руны за неделю; язык нужен для склонения (владелец 2026-08-26).
+  lang: Lang;
 }) {
   const { member, t: rowPosT } = row;
   const xp = member.totalXp ?? 0;
@@ -769,7 +773,7 @@ const PathMemberRow = memo(function PathMemberRow({ row, onLight, themeMode, t, 
         {member.name}
       </Text>
       <Text style={{ color: t.textMuted, fontSize: f.caption, fontVariant: ['tabular-nums'] }}>
-        {member.points} XP
+        {member.points} {runeWord(lang, Math.floor(Number(member.points) || 0))}
       </Text>
     </View>
   );

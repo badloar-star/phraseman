@@ -37,8 +37,8 @@ export const RESIDENT_TICK_MS = 60 * 60 * 1000;
 // невозможно. Новые значения дают сутки 14..1431 при медиане ~185: пол и
 // потолок владельца выдержаны, а форма кривой человеческая (см. ниже про
 // RESIDENT_PACE_EXP).
-export const RESIDENT_TICK_MIN_XP = 2;
-export const RESIDENT_TICK_MAX_XP = 40;
+export const RESIDENT_TICK_MIN_RUNES = 2;
+export const RESIDENT_TICK_MAX_RUNES = 40;
 
 /** Доля тиков, в которые персонаж «не заходил». */
 export const RESIDENT_IDLE_CHANCE = 0.64;
@@ -90,7 +90,7 @@ function residentTickRandom(index: number, tick: number, stream: string): number
 export function residentTickGain(index: number, tick: number): number {
   if (residentTickRandom(index, tick, 'idle') < RESIDENT_IDLE_CHANCE) return 0;
   const draw = residentTickRandom(index, tick, 'gain');
-  const base = RESIDENT_TICK_MIN_XP + (RESIDENT_TICK_MAX_XP - RESIDENT_TICK_MIN_XP) * draw;
+  const base = RESIDENT_TICK_MIN_RUNES + (RESIDENT_TICK_MAX_RUNES - RESIDENT_TICK_MIN_RUNES) * draw;
   return Math.max(1, Math.round(base * residentPace(index)));
 }
 

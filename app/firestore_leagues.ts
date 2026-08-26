@@ -19,7 +19,11 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { GroupMember, getWeekId } from './league_engine';
-import { getMyWeekPoints } from './hall_of_fame_utils';
+// зачем (владелец, 2026-08-26: «весь раздел лига переходит на руны, никакого
+// ХП, только руны»): очки лиги больше не берутся из общего недельного счётчика
+// опыта — у лиги свой источник, руны за ISO-неделю (см. league_week_runes.ts).
+// getMyWeekPoints остаётся у Зала славы, друзей и лидербордов: они про опыт.
+import { getMyLeagueWeekRunes } from './league_week_runes';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, isLifetimePlanLocal } from './premium_guard';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { emitAppEvent } from './events';
@@ -797,7 +801,7 @@ export async function syncMyLeagueMemberProfileNow(): Promise<void> {
   const accountToken = captureAccountGeneration();
   if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
   try {
-    const weekPoints = await getMyWeekPoints();
+    const weekPoints = await getMyLeagueWeekRunes();
     if (!isCurrentAccountGeneration(accountToken)) return;
     const [[, nameRaw], [, leagueRaw]] = await AsyncStorage.multiGet(['user_name', LEAGUE_STATE_V3_KEY]);
     const name = (nameRaw ?? '').trim();
@@ -844,7 +848,7 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
     // before startup registration can place the user into the new week's room.
     if (leagueState?.weekId && leagueState.weekId !== weekId) return;
 
-    const weekPoints = await getMyWeekPoints();
+    const weekPoints = await getMyLeagueWeekRunes();
     const cachedRegistration = await readLeagueStartupRegistrationCache();
     if (shouldSkipLeagueStartupRegistration(cachedRegistration, weekId, leagueId, weekPoints)) return;
 

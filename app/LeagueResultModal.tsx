@@ -31,6 +31,8 @@ import { memberNameStatusStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
+// Валюта лиги — руны (владелец, 2026-08-26).
+import { runeWord } from '../constants/runes';
 import { buttonForegroundForBackground, isLightSurface, readableOn } from '../constants/color_contrast';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
@@ -1001,19 +1003,22 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
                         {(() => {
                           const xpLabel = xpPromotionThreshold.toLocaleString();
+                          // Порог повышения — руны за неделю (владелец,
+                          // 2026-08-26: «весь раздел лига переходит на руны»).
+                          const xpWord = runeWord(lang, xpPromotionThreshold);
                           if (isPromo) {
                             // В XP-режиме повышение объясняем набранными очками, а не местом.
                             return xpPromotionMode
                               ? triLang(lang, {
-  ru: `Повышение: ${xpLabel} XP`,
-  en: `Promotion: ${xpLabel} XP`,
-  uk: `Підвищення: ${xpLabel} XP`,
-  es: `Ascenso: ${xpLabel} XP`,
-  "pt-BR": `Promoção: ${xpLabel} XP`,
-  vi: `Thăng hạng: ${xpLabel} XP`,
-  id: `Naik: ${xpLabel} XP`,
-  tr: `Yükselme: ${xpLabel} XP`,
-  pl: `Awans: ${xpLabel} XP`,
+  ru: `Повышение: ${xpLabel} ${xpWord}`,
+  en: `Promotion: ${xpLabel} ${xpWord}`,
+  uk: `Підвищення: ${xpLabel} ${xpWord}`,
+  es: `Ascenso: ${xpLabel} ${xpWord}`,
+  "pt-BR": `Promoção: ${xpLabel} ${xpWord}`,
+  vi: `Thăng hạng: ${xpLabel} ${xpWord}`,
+  id: `Naik: ${xpLabel} ${xpWord}`,
+  tr: `Yükselme: ${xpLabel} ${xpWord}`,
+  pl: `Awans: ${xpLabel} ${xpWord}`,
 })
                               : triLang(lang, {
   ru: `Повышение: топ-${zoneSize}`,
@@ -1044,15 +1049,15 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                           // XP-режим → нужно набрать N XP; rank-режим → войти в топ-N.
                           return xpPromotionMode
                             ? triLang(lang, {
-  ru: `Для повышения: ${xpLabel} XP`,
-  en: `To be promoted: ${xpLabel} XP`,
-  uk: `Для підвищення: ${xpLabel} XP`,
-  es: `Para ascender: ${xpLabel} XP`,
-  "pt-BR": `Para subir: ${xpLabel} XP`,
-  vi: `Để thăng hạng: ${xpLabel} XP`,
-  id: `Untuk naik: ${xpLabel} XP`,
-  tr: `Yükselmek için: ${xpLabel} XP`,
-  pl: `Aby awansować: ${xpLabel} XP`,
+  ru: `Для повышения: ${xpLabel} ${xpWord}`,
+  en: `To be promoted: ${xpLabel} ${xpWord}`,
+  uk: `Для підвищення: ${xpLabel} ${xpWord}`,
+  es: `Para ascender: ${xpLabel} ${xpWord}`,
+  "pt-BR": `Para subir: ${xpLabel} ${xpWord}`,
+  vi: `Để thăng hạng: ${xpLabel} ${xpWord}`,
+  id: `Untuk naik: ${xpLabel} ${xpWord}`,
+  tr: `Yükselmek için: ${xpLabel} ${xpWord}`,
+  pl: `Aby awansować: ${xpLabel} ${xpWord}`,
 })
                             : triLang(lang, {
   ru: `Зона повышения: топ-${zoneSize}`,

@@ -66,16 +66,19 @@ function teaserSubtitle(lang: Lang): string {
 }
 
 function teaserRemaining(lang: Lang, xp: number): string {
+  // Цель общего сундука — те же очки лиги, то есть руны за неделю
+  // (владелец, 2026-08-26: «никакого ХП, только руны»).
+  const word = runeWord(lang, xp);
   return triLang(lang, {
-    ru: `Осталось ${xp.toLocaleString()} XP до открытия`,
-    uk: `Залишилося ${xp.toLocaleString()} XP до відкриття`,
-    en: `${xp.toLocaleString()} XP left to unlock`,
-    es: `Faltan ${xp.toLocaleString()} XP para abrirlo`,
-    'pt-BR': `Faltam ${xp.toLocaleString()} XP para abrir`,
-    vi: `Còn ${xp.toLocaleString()} XP nữa để mở`,
-    id: `Kurang ${xp.toLocaleString()} XP untuk membuka`,
-    tr: `Açmak için ${xp.toLocaleString()} XP kaldı`,
-    pl: `Zostało ${xp.toLocaleString()} XP do otwarcia`,
+    ru: `Осталось ${xp.toLocaleString()} ${word} до открытия`,
+    uk: `Залишилося ${xp.toLocaleString()} ${word} до відкриття`,
+    en: `${xp.toLocaleString()} ${word} left to unlock`,
+    es: `Faltan ${xp.toLocaleString()} ${word} para abrirlo`,
+    'pt-BR': `Faltam ${xp.toLocaleString()} ${word} para abrir`,
+    vi: `Còn ${xp.toLocaleString()} ${word} nữa để mở`,
+    id: `Kurang ${xp.toLocaleString()} ${word} untuk membuka`,
+    tr: `Açmak için ${xp.toLocaleString()} ${word} kaldı`,
+    pl: `Zostało ${xp.toLocaleString()} ${word} do otwarcia`,
   });
 }
 

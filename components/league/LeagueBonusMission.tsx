@@ -5,6 +5,10 @@ import { Image, type ImageSource } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
+// зачем (владелец, 2026-08-26: «в разделе лига очки это руны, но ваш вклад
+// пишет ХП»): цель недели и личный вклад измеряются рунами за неделю
+// (app/league_week_runes.ts), склонение — общий помощник валюты.
+import { runeWord } from '../../constants/runes';
 import type { GroupMember } from '../../app/league_engine';
 import type { LeagueBonusMissionModel } from '../../app/league_club_hub_model';
 import { leaguePublicName } from '../../app/league_public_name';
@@ -88,15 +92,15 @@ function LeagueBonusMissionComponent({ model, lang, palette, renderContributorAv
       </View>
 
       <View style={styles.progressMeta}>
-        <Text style={[styles.progressValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.progress.toLocaleString()} / {model.goal.toLocaleString()} XP</Text>
+        <Text style={[styles.progressValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.progress.toLocaleString()} / {model.goal.toLocaleString()} {runeWord(lang, model.goal)}</Text>
         <Text style={[styles.percent, { color: model.canClaim ? palette.accentText : palette.muted }]}>{model.percent}%</Text>
       </View>
 
       <View style={styles.teamRow}>
-        <View style={styles.avatars}>{model.topContributors.map((member, index) => <View key={member.uid ?? member.botId ?? `${member.name}-${index}`} accessibilityLabel={`${leaguePublicName(member.name, member.uid ?? member.botId ?? member.name)}, ${member.points} XP`} style={[styles.avatarSlot, { marginLeft: index === 0 ? 0 : -8, borderColor: model.canClaim ? palette.accent : palette.surface }]}>{renderContributorAvatar(member, 34)}</View>)}</View>
+        <View style={styles.avatars}>{model.topContributors.map((member, index) => <View key={member.uid ?? member.botId ?? `${member.name}-${index}`} accessibilityLabel={`${leaguePublicName(member.name, member.uid ?? member.botId ?? member.name)}, ${member.points} ${runeWord(lang, member.points)}`} style={[styles.avatarSlot, { marginLeft: index === 0 ? 0 : -8, borderColor: model.canClaim ? palette.accent : palette.surface }]}>{renderContributorAvatar(member, 34)}</View>)}</View>
         <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Открыть рейтинг участников', uk: 'Відкрити рейтинг учасників', en: 'Open member ranking', es: 'Abrir clasificación', 'pt-BR': 'Abrir ranking', vi: 'Mở bảng xếp hạng', id: 'Buka peringkat', tr: 'Sıralamayı aç', pl: 'Otwórz ranking' })} onPress={onOpenRank} style={styles.contribution}>
           <Text style={[styles.contributionLabel, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'Ваш вклад', uk: 'Ваш внесок', en: 'Your contribution', es: 'Tu aporte', 'pt-BR': 'Sua contribuição', vi: 'Đóng góp của bạn', id: 'Kontribusimu', tr: 'Katkın', pl: 'Twój wkład' })}</Text>
-          <Text style={[styles.contributionValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.myContribution.toLocaleString()} XP</Text>
+          <Text style={[styles.contributionValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.myContribution.toLocaleString()} {runeWord(lang, model.myContribution)}</Text>
         </Pressable>
       </View>
 

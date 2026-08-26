@@ -125,7 +125,21 @@ export default function RunesWalletScreen() {
   const goBack = useCallback(() => safeRouterBack(router), [router]);
 
   const bySource = serverStats?.bySource ?? null;
-  const hasEarnedAnything = wallet.earnedTotal > 0 || wallet.balance > 0;
+
+  // зачем (владелец, 2026-08-26: «получил бонус 300 за вход, а тут заработано
+  // за всё время 0»): сервер делит приток на earnedTotal (оплачено игрой) и
+  // grantedTotal (подарки, спин, обмен). Показывать один earnedTotal значило
+  // прятать подарок: 300 рун на балансе и ноль в строке под ним. Показываем
+  // сумму — «получено за всё время».
+  //
+  // max с локальным earnedTotal — защита от прыжка вниз: серверный снимок
+  // живёт с TTL 6 часов, а локальная проекция знает про только что выигранный
+  // спин. Поздний ответ сервера никогда не занижает то, что уже видно.
+  const receivedTotal = Math.max(
+    wallet.earnedTotal,
+    (serverStats?.earnedTotal ?? 0) + (serverStats?.grantedTotal ?? 0),
+  );
+  const hasEarnedAnything = receivedTotal > 0 || wallet.balance > 0;
 
   const rows: readonly SourceRow[] = bySource
     ? [...PRIMARY_SOURCES, ...EXTRA_SOURCES.filter((row) => (bySource[row.key] ?? 0) > 0)]
@@ -133,15 +147,15 @@ export default function RunesWalletScreen() {
 
   const title = triLang(lang, { ru: 'Руны', uk: 'Руни', en: 'Runes', es: 'Runas', 'pt-BR': 'Runas', vi: 'Rune', id: 'Rune', tr: 'Rünler', pl: 'Runy' });
   const earnedTotalLabel = triLang(lang, {
-    ru: `заработано за всё время — ${wallet.earnedTotal}`,
-    uk: `зароблено за весь час — ${wallet.earnedTotal}`,
-    en: `earned all-time — ${wallet.earnedTotal}`,
-    es: `ganadas en total: ${wallet.earnedTotal}`,
-    'pt-BR': `ganhas no total: ${wallet.earnedTotal}`,
-    vi: `tổng đã kiếm: ${wallet.earnedTotal}`,
-    id: `total diperoleh: ${wallet.earnedTotal}`,
-    tr: `toplam kazanılan: ${wallet.earnedTotal}`,
-    pl: `zdobyte łącznie: ${wallet.earnedTotal}`,
+    ru: `получено за всё время — ${receivedTotal}`,
+    uk: `отримано за весь час — ${receivedTotal}`,
+    en: `received all-time — ${receivedTotal}`,
+    es: `recibidas en total: ${receivedTotal}`,
+    'pt-BR': `recebidas no total: ${receivedTotal}`,
+    vi: `tổng đã nhận: ${receivedTotal}`,
+    id: `total diterima: ${receivedTotal}`,
+    tr: `toplam alınan: ${receivedTotal}`,
+    pl: `otrzymane łącznie: ${receivedTotal}`,
   });
   const sourcesLabel = triLang(lang, {
     ru: 'Откуда руны', uk: 'Звідки руни', en: 'Where runes come from', es: 'De dónde vienen', 'pt-BR': 'De onde vêm',

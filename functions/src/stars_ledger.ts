@@ -56,6 +56,14 @@ export type StarsState = {
   /** D-09: один общий турнирный сезон. */
   seasonId: string;
   seasonEarned: number;
+  /**
+   * Разрез положительного притока по источникам (earn + grant). Растёт только
+   * вверх, траты его не трогают — это «сколько всего пришло откуда», а не
+   * остаток. Сумма значений равна earnedTotal + grantedTotal для операций,
+   * записанных после 2026-08-26; у старых аккаунтов карта догоняет постепенно,
+   * поэтому клиент никогда не считает по ней главное число.
+   */
+  bySource: Readonly<Partial<Record<RuneSourceKey, number>>>;
   /** Монотонный счётчик операций игрока — якорь цепочки аудита. */
   seq: number;
   lastOpId: string;
@@ -74,6 +82,7 @@ export const EMPTY_STARS_STATE: StarsState = Object.freeze({
   prevWeekEarned: 0,
   seasonId: '',
   seasonEarned: 0,
+  bySource: Object.freeze({}),
   seq: 0,
   lastOpId: '',
   updatedAtMs: 0,
@@ -115,6 +124,43 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   learning_v2_session: 'earn',
   learning_v2_unlock: 'spend',
   welcome_gift: 'grant',
+});
+
+/**
+ * Источник притока для разреза «откуда руны» в разделе «Руны» (клиент:
+ * app/runes_wallet.tsx).
+ *
+ * зачем (владелец, 2026-08-26: «получил бонус 300 за вход, а в разделе Руны
+ * написано заработано за всё время 0»): строки источников на экране всегда
+ * рисовались без чисел, потому что разреза не существовало. Считаем его здесь,
+ * в единственном писателе баланса — ноль дополнительных чтений и записей:
+ * карта живёт в том же объекте `stars` того же документа users/{uid}.
+ *
+ * Таблица серверная, клиент её не задаёт — ровно как STAR_OP_CLASS.
+ */
+export type RuneSourceKey = 'arena' | 'learning' | 'friends' | 'spin' | 'exchange' | 'other';
+
+export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Object.freeze({
+  arena_match: 'arena',
+  arena_mastery: 'arena',
+  arena_today: 'arena',
+  arena_today_mastery: 'arena',
+  arena_partner: 'arena',
+  arena_tier: 'arena',
+  friends_together_level: 'friends',
+  friends_together_chest: 'friends',
+  learning_v2_session: 'learning',
+  level_spin_grant: 'spin',
+  coin_exchange: 'exchange',
+  // Стартовый подарок и ручные выдачи админки — «другое»: у них нет своей
+  // строки на экране, но приток обязан быть виден в сумме (иначе снова 0).
+  welcome_gift: 'other',
+  admin_grant: 'other',
+  // Траты в разрез притока не попадают вовсе — значение здесь недостижимо,
+  // но тип обязан быть полным, иначе новая причина проедет незамеченной.
+  spend_shop: 'other',
+  admin_revoke: 'other',
+  learning_v2_unlock: 'other',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;
@@ -262,6 +308,26 @@ function str(value: unknown, fallback = ''): string {
   return typeof value === 'string' ? value : fallback;
 }
 
+const RUNE_SOURCE_KEYS: readonly RuneSourceKey[] = Object.freeze([
+  'arena', 'learning', 'friends', 'spin', 'exchange', 'other',
+] as const);
+
+/**
+ * Карта источников из документа. Неизвестные ключи отбрасываются молча — это
+ * не порча данных, а старая или будущая схема; главные счётчики от неё не
+ * зависят, поэтому ронять транзакцию тут нечем.
+ */
+function normalizeBySource(raw: unknown): Readonly<Partial<Record<RuneSourceKey, number>>> {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return Object.freeze({});
+  const data = raw as Record<string, unknown>;
+  const out: Partial<Record<RuneSourceKey, number>> = {};
+  for (const key of RUNE_SOURCE_KEYS) {
+    const value = Math.max(0, int(data[key]));
+    if (value > 0) out[key] = value;
+  }
+  return Object.freeze(out);
+}
+
 export function normalizeStars(raw: unknown): StarsState {
   const data = (raw ?? {}) as Record<string, unknown>;
   return {
@@ -276,6 +342,7 @@ export function normalizeStars(raw: unknown): StarsState {
     prevWeekEarned: Math.max(0, int(data.prevWeekEarned)),
     seasonId: str(data.seasonId),
     seasonEarned: Math.max(0, int(data.seasonEarned)),
+    bySource: normalizeBySource(data.bySource),
     seq: Math.max(0, int(data.seq)),
     lastOpId: str(data.lastOpId),
     updatedAtMs: Math.max(0, int(data.updatedAtMs)),
@@ -449,6 +516,17 @@ export async function prepareStarOperations(
       after.grantedTotal += op.delta;
     } else {
       after.spentTotal += -op.delta;
+    }
+
+    // Разрез притока: только приход, только положительная дельта. Траты сюда
+    // не пишутся намеренно — экран отвечает на вопрос «откуда руны пришли»,
+    // а не «сколько осталось от каждого источника».
+    if (cls !== 'spend' && op.delta > 0) {
+      const sourceKey = STAR_OP_SOURCE[op.reason];
+      after.bySource = Object.freeze({
+        ...after.bySource,
+        [sourceKey]: Math.max(0, int(after.bySource[sourceKey])) + op.delta,
+      });
     }
 
     after.seq += 1;

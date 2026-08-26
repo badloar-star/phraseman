@@ -1,6 +1,7 @@
 import {
   EMPTY_STARS_STATE,
   STAR_OP_CLASS,
+  STAR_OP_SOURCE,
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
@@ -246,6 +247,63 @@ describe('единый журнал звёзд', () => {
     expect(world.writes.sets[0].data.stars).toBeDefined();
     expect(world.writes.sets[0].data.progress).toBeDefined();
     expect(world.writes.creates[0].data.xpDelta).toBe(110);
+  });
+
+  /**
+   * Разрез «откуда руны». Владелец 2026-08-26: «получил бонус 300 за вход, а в
+   * разделе Руны написано заработано за всё время 0». Экран показывает сумму
+   * earnedTotal + grantedTotal, а строки источников — эту карту. Ошибка здесь
+   * снова спрячет подарок от игрока, поэтому она застолблена.
+   */
+  describe('разрез притока по источникам', () => {
+    it('копит приток по источнику, а траты в разрез не пишет', async () => {
+      const { world } = await run(undefined, [
+        op(),
+        op({ opId: 'welcome_gift:u1', delta: 300, reason: 'welcome_gift', sourceKind: 'welcome_gift', sourceId: 'u1' }),
+        op({ opId: 'spend_shop:s1', delta: -20, reason: 'spend_shop', sourceKind: 'spend_shop', sourceId: 's1' }),
+      ]);
+      const stars = world.writes.sets[0].data.stars as StarsState;
+      expect(stars.bySource.arena).toBe(24);
+      expect(stars.bySource.other).toBe(300);
+      // Трата ушла в spentTotal, но разрез притока не тронула — иначе цифра
+      // источника «уменьшалась бы» и перестала отвечать на «откуда пришло».
+      expect(stars.spentTotal).toBe(20);
+      expect(stars.bySource.spin).toBeUndefined();
+      // Главное число экрана: заработано игрой + подарено.
+      expect(stars.earnedTotal + stars.grantedTotal).toBe(324);
+    });
+
+    it('накапливает поверх карты уже существующего аккаунта', async () => {
+      const { world } = await run(
+        settled(24, { bySource: { arena: 24 } }),
+        [op({ opId: 'level_spin_grant:g1', delta: 50, reason: 'level_spin_grant', sourceKind: 'level_spin', sourceId: 'g1' })],
+      );
+      const stars = world.writes.sets[0].data.stars as StarsState;
+      expect(stars.bySource.arena).toBe(24);
+      expect(stars.bySource.spin).toBe(50);
+    });
+
+    it('переживает документ без карты и мусор в ней', () => {
+      expect(normalizeStars({ balance: 5 }).bySource).toEqual({});
+      expect(normalizeStars({ bySource: { arena: 7, unknown_key: 3, spin: -1 } }).bySource)
+        .toEqual({ arena: 7 });
+      expect(normalizeStars({ bySource: 'broken' }).bySource).toEqual({});
+    });
+
+    it('держит таблицу источников закрытой', () => {
+      expect(STAR_OP_SOURCE.arena_match).toBe('arena');
+      expect(STAR_OP_SOURCE.learning_v2_session).toBe('learning');
+      expect(STAR_OP_SOURCE.friends_together_chest).toBe('friends');
+      expect(STAR_OP_SOURCE.level_spin_grant).toBe('spin');
+      expect(STAR_OP_SOURCE.coin_exchange).toBe('exchange');
+      // Стартовый подарок обязан попадать в приток — это и был баг владельца.
+      expect(STAR_OP_SOURCE.welcome_gift).toBe('other');
+      // Каждая причина имеет источник: новая причина без строки здесь уронит
+      // сборку, а не проедет молча с нулём на экране.
+      for (const reason of Object.keys(STAR_OP_CLASS)) {
+        expect((STAR_OP_SOURCE as Record<string, string>)[reason]).toBeTruthy();
+      }
+    });
   });
 
   it('держит таблицу классов операций закрытой', () => {

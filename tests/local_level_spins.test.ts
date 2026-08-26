@@ -104,9 +104,20 @@ describe('local level Spin runtime', () => {
     const source = readFileSync(path, 'utf8');
     // Оба фильтра загрузки обязаны идти от ОДНОГО общего валидатора. Реальное
     // поведение каждого префикса проверяет level_spin_credit_ids.test.ts.
-    expect(source).toContain("import { isLocalSpinCreditId } from './level_spin_credit_ids';");
-    expect(source).toContain('isLocalSpinCreditId(credit.id)');
-    expect(source).toContain('.filter(isLocalSpinCreditId)');
+    //
+    // зачем (2026-08-26): раньше здесь сверялась ТОЧНАЯ строка импорта, и тест
+    // падал, когда рядом добавили isLocalSpinReceiptCreditId из того же модуля.
+    // Сторожим намерение — источник валидатора, — а не форматирование строки.
+    expect(source).toMatch(
+      /import \{[^}]*\bisLocalSpinCreditId\b[^}]*\} from '\.\/level_spin_credit_ids';/,
+    );
+    // Оба фильтра — и сам кредит, и ключ идемпотентности (issuedCreditIds) —
+    // обязаны прогонять значение через общий валидатор. Форма записи (прямой
+    // вызов, .filter, guard с typeof) значения не имеет, важен факт проверки.
+    const creditsValidated = /credits[\s\S]{0,400}?isLocalSpinCreditId\(/.test(source);
+    const issuedValidated = /issuedCreditIds[\s\S]{0,400}?isLocalSpinCreditId\(/.test(source);
+    expect(creditsValidated).toBe(true);
+    expect(issuedValidated).toBe(true);
     expect(source).not.toContain('LOCAL_SPIN_CREDIT_ID_RE');
   });
 });

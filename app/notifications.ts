@@ -1007,14 +1007,16 @@ const runGiftExpiringSync = async (earliestExpiresAtMs: number | null): Promise<
 
     const lang = normalizeNotificationLang(await AsyncStorage.getItem('app_lang').catch(() => null));
     const title = pickNotif(lang, notificationCopy({
-      ru: '🎁 Подарок сгорит через 6 часов',
-      uk: '🎁 Подарунок згорить через 6 годин',
-      es: '🎁 Tu regalo caduca en 6 horas',
-      'pt-BR': '🎁 Seu presente expira em 6 horas',
-      vi: '🎁 Quà của bạn sẽ hết hạn sau 6 giờ',
-      id: '🎁 Hadiahmu hangus dalam 6 jam',
-      tr: '🎁 Hediyen 6 saat sonra yanacak',
-      pl: '🎁 Twój prezent wygaśnie za 6 godzin',
+      // зачем (аудит по Библии, 2026-08-26): срок настоящий, но подача через
+      // сгорание — это давление потерей. Правило 2: та же правда в gain-виде.
+      ru: '🎁 Подарок ждёт тебя ещё 6 часов',
+      uk: '🎁 Подарунок чекає на тебе ще 6 годин',
+      es: '🎁 Tu regalo te espera 6 horas más',
+      'pt-BR': '🎁 Seu presente espera mais 6 horas',
+      vi: '🎁 Quà vẫn chờ bạn thêm 6 giờ nữa',
+      id: '🎁 Hadiahmu menunggu 6 jam lagi',
+      tr: '🎁 Hediyen seni 6 saat daha bekliyor',
+      pl: '🎁 Prezent czeka na ciebie jeszcze 6 godzin',
     }));
     const body = pickNotif(lang, notificationCopy({
       ru: 'Он уже твой — забери в разделе подарков, пока не исчез.',

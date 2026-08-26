@@ -1069,7 +1069,11 @@ function PersonalPlanScreen() {
               </View>
               <Text style={[styles.changePlanTitle, { color: chrome.text }]}>{triLang(lang, { ru: 'Сменить план?', uk: 'Змінити план?', es: '¿Cambiar de plan?', 'pt-BR': 'Trocar de plano?', vi: 'Đổi kế hoạch?', id: 'Ganti rencana?', tr: 'Plan değiştirilsin mi?', pl: 'Zmienić plan?' })}</Text>
               <Text style={[styles.changePlanBody, { color: chrome.muted }]}>
-                {triLang(lang, { ru: 'Весь прогресс текущего плана будет потерян — новый план придётся начинать сначала, с первого дня.', uk: 'Весь прогрес поточного плану буде втрачено — новий план доведеться починати спочатку, з першого дня.', es: 'Se perderá todo el progreso del plan actual: el nuevo plan tendrá que empezar desde el día uno.', 'pt-BR': 'Todo o progresso do plano atual será perdido: o novo plano terá que começar do dia um.', vi: 'Toàn bộ tiến độ của kế hoạch hiện tại sẽ mất — kế hoạch mới phải bắt đầu lại từ ngày đầu tiên.', id: 'Seluruh progres rencana saat ini akan hilang — rencana baru harus dimulai dari hari pertama.', tr: 'Mevcut planın tüm ilerlemesi kaybolacak — yeni plana ilk günden başlamak gerekecek.', pl: 'Cały postęp bieżącego planu zostanie utracony — nowy plan trzeba będzie zacząć od pierwszego dnia.' })}
+                {/* зачем (аудит по Библии, 2026-08-26): предупреждение нужное и честное, но
+                    «весь прогресс будет потерян» пугало длинной фразой. Правило 4
+                    (до 10 слов) и словарь (прогресс → путь): смысл сохранён,
+                    подача спокойная. */}
+                {triLang(lang, { ru: 'Новый план начнётся с первого дня. Пройденное в старом не переносится.', uk: 'Новий план почнеться з першого дня. Пройдене у старому не переноситься.', es: 'El nuevo plan empieza desde el día uno. Lo hecho en el anterior no se traslada.', 'pt-BR': 'O novo plano começa do dia um. O que foi feito no anterior não é transferido.', vi: 'Kế hoạch mới bắt đầu từ ngày đầu. Phần đã học ở kế hoạch cũ không chuyển sang.', id: 'Rencana baru mulai dari hari pertama. Yang sudah dilalui tidak ikut pindah.', tr: 'Yeni plan ilk günden başlar. Eski planda yapılanlar aktarılmaz.', pl: 'Nowy plan zacznie się od pierwszego dnia. Przerobione w starym nie przechodzi.' })}
               </Text>
               <TouchableOpacity
                 activeOpacity={0.85}

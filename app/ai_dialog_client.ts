@@ -194,15 +194,17 @@ export function getPremiumDialogErrorMessage(
       });
     case 'auth_required':
       return triLang(lang, {
-        ru: 'Нужно войти в аккаунт, чтобы продолжить диалог.',
-        uk: 'Потрібно увійти в акаунт, щоб продовжити діалог.',
-        en: 'You need to sign in to continue the dialogue.',
-        es: 'Necesitas iniciar sesión para continuar el diálogo.',
-        'pt-BR': 'Você precisa entrar na conta para continuar o diálogo.',
-        vi: 'Bạn cần đăng nhập để tiếp tục cuộc đối thoại.',
-        id: 'Kamu perlu masuk ke akun untuk melanjutkan dialog.',
-        tr: 'Diyaloğa devam etmek için hesaba giriş yapman gerekiyor.',
-        pl: 'Musisz zalogować się na konto, aby kontynuować dialog.',
+        // зачем (аудит по Библии, 2026-08-26): безличная констатация вместо
+        // приглашения. Стиль 1 (Тренер): зовём действием, говорим на «ты».
+        ru: 'Войди в аккаунт — и продолжим разговор.',
+        uk: 'Увійди в акаунт — і продовжимо розмову.',
+        en: 'Sign in and we will pick up the conversation.',
+        es: 'Inicia sesión y seguimos la conversación.',
+        'pt-BR': 'Entre na conta e continuamos a conversa.',
+        vi: 'Đăng nhập nhé, rồi mình nói tiếp.',
+        id: 'Masuk ke akun, lalu kita lanjut mengobrol.',
+        tr: 'Hesabına giriş yap, sohbete devam edelim.',
+        pl: 'Zaloguj się, a wrócimy do rozmowy.',
       });
     case 'age_restricted':
       return triLang(lang, {

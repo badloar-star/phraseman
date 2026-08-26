@@ -2936,7 +2936,14 @@ export default function LessonsTab({
             tr: `✅ Geçildi — ${result.pct}%`,
             pl: `✅ Zdane — ${result.pct}%`,
           })
-        : `✗ ${result.pct}%`
+        // зачем (аудит по Библии, 2026-08-26): голый крестик с процентом бил
+        // по несдавшему (Часть V п.6). Рядом стоит «✅ Сдано» — держим тот же
+        // тон: называем результат без приговора и зовём вернуться.
+        : triLang(lang, {
+            ru: `Почти — ${result.pct}%`, uk: `Майже — ${result.pct}%`, en: `Almost — ${result.pct}%`,
+            es: `Casi — ${result.pct}%`, 'pt-BR': `Quase — ${result.pct}%`, vi: `Suýt rồi — ${result.pct}%`,
+            id: `Hampir — ${result.pct}%`, tr: `Az kaldı — ${result.pct}%`, pl: `Prawie — ${result.pct}%`,
+          })
       : !examSourceAvailable
         ? frenchExamGateCopy("level", lang).title
         : allDone

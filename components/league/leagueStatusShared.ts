@@ -49,7 +49,7 @@ export function zoneLabel(zone: LeagueHeroZone, lang: Lang): string {
 
 export function gapLabel(gap: LeagueHeroGap, lang: Lang): string {
   if (gap.kind === 'leader') {
-    return triLang(lang, { ru: 'Вы лидируете', uk: 'Ви лідируєте', en: "You're leading", es: 'Lideras la semana', 'pt-BR': 'Você lidera', vi: 'Bạn đang dẫn đầu', id: 'Kamu memimpin', tr: 'Lidersin', pl: 'Prowadzisz' });
+    return triLang(lang, { ru: 'Ты лидируешь', uk: 'Ти лідируєш', en: "You're leading", es: 'Lideras la semana', 'pt-BR': 'Você lidera', vi: 'Bạn đang dẫn đầu', id: 'Kamu memimpin', tr: 'Lidersin', pl: 'Prowadzisz' });
   }
   return triLang(lang, {
     ru: `До ${gap.targetRank}-го места`,

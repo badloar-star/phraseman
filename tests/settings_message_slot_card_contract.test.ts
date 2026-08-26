@@ -9,7 +9,10 @@ describe('settings message slot card', () => {
     expect(card).toContain('minHeight: 44');
     expect(card).toContain('settings-message-slot-');
     expect(card).toContain('lockedVoteLabel(lang)');
-    expect(card).toContain('Ваш выбор сохранён и не изменяется');
+    // зачем (аудит по Библии, 2026-08-26): текст переписан с «вы» на «ты»
+    // (Правило 14) и укорочен. Проверка остаётся якорем на живую подпись —
+    // рядом стоит защита от битой кириллицы, ради которой строка и нужна.
+    expect(card).toContain('Твой выбор сохранён');
     expect(card).not.toContain('Ð’Ð°Ñˆ');
     expect(settings).toContain('flushSettingsPollVotes(settingsMessageOwner)');
     expect(settings.indexOf('settings-message-slot-top')).toBeGreaterThan(settings.indexOf('settings-plus-row'));

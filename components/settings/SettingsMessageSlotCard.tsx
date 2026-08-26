@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import {
   pickAppMessagePollOptionText,
   pickAppMessagePollQuestion,
@@ -24,19 +24,26 @@ type Props = {
   marginTop?: number;
 };
 
-const LOCKED_VOTE_LABEL: Record<Lang, string> = {
-  ru: 'Ваш выбор сохранён и не изменяется',
-  uk: 'Ваш вибір збережено, його не можна змінити',
-  es: 'Tu elección se guardó y no se puede cambiar',
-  'pt-BR': 'Sua escolha foi salva e não pode ser alterada',
-  vi: 'Lựa chọn của bạn đã được lưu và không thể thay đổi',
-  id: 'Pilihan Anda telah disimpan dan tidak dapat diubah',
-  tr: 'Seçiminiz kaydedildi ve değiştirilemez',
-  pl: 'Twój wybór został zapisany i nie można go zmienić',
-};
-
+// зачем (аудит по Библии, 2026-08-26): было «Ваш выбор сохранён и не
+// изменяется» — обращение на «вы» (Правило 14) плюс хвост «и не изменяется»,
+// который читается как отказ. Библия просит короткое подтверждение на «ты».
+//
+// зачем triLang вместо Record<Lang, string>: переводы тут были и раньше, но
+// плоскую карту сторож i18n (scripts/scan_untranslated_ui.mjs) не распознаёт
+// как словарь и считал обе строки забытым русским текстом. Обёртка убирает
+// ложный долг и приводит файл к общей для проекта форме.
 function lockedVoteLabel(lang: Lang): string {
-  return LOCKED_VOTE_LABEL[lang] ?? LOCKED_VOTE_LABEL.ru;
+  return triLang(lang, {
+    ru: 'Твой выбор сохранён',
+    uk: 'Твій вибір збережено',
+    en: 'Your choice is saved',
+    es: 'Tu elección quedó guardada',
+    'pt-BR': 'Sua escolha ficou salva',
+    vi: 'Lựa chọn của bạn đã được lưu',
+    id: 'Pilihanmu sudah tersimpan',
+    tr: 'Seçimin kaydedildi',
+    pl: 'Twój wybór został zapisany',
+  });
 }
 
 function percent(count: number, total: number): string {

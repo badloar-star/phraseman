@@ -6,29 +6,23 @@ const read = (file: string) => fs.readFileSync(path.join(__dirname, '..', file),
 describe('FeedbackRatingCard privacy and delivery contract', () => {
   const source = read('components/FeedbackRatingCard.tsx');
 
-  it('offers optional accessible AI analysis consent without gating feedback submission', () => {
-    expect(source).toContain("const [aiSummaryConsent, setAiSummaryConsent] = useState(false);");
-    expect(source).toContain('accessibilityRole="checkbox"');
-    expect(source).toContain('accessibilityState={{ checked: aiSummaryConsent }}');
-    expect(source).toContain('minHeight: 44');
-    expect(source).toContain('aiSummaryConsent,');
+  /**
+   * Владелец 2026-08-26: «убери этот текст и галочку — никаких согласий мы тут
+   * не спрашиваем (вообще со всех экранов этот текст убери)». Согласие на
+   * анализ тем во внешнем сервисе теперь даётся один раз в Политике
+   * конфиденциальности, а не отдельной галочкой в каждой карточке отзыва.
+   *
+   * Сторож требует, чтобы галочка и её текст НЕ вернулись, и чтобы карточка
+   * по-прежнему не блокировала отправку отзыва.
+   */
+  it('asks for no per-card consent and never blocks sending on one', () => {
+    expect(source).not.toContain('setAiSummaryConsent');
+    expect(source).not.toContain('aiConsentLabel');
+    expect(source).not.toContain('ai-summary-consent');
+    expect(source).not.toContain('accessibilityRole="checkbox"');
+    expect(source).not.toContain('OpenAI');
     expect(source).not.toMatch(/disabled=\{[^}]*aiSummaryConsent/);
-    for (const locale of ['ru', 'uk', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
-      expect(source).toContain(`${locale}:`);
-    }
-    expect(source.match(/OpenAI/g) ?? []).toHaveLength(8);
-    for (const warning of [
-      'Не указывайте личные данные',
-      'Не вказуйте особисті дані',
-      'No incluyas datos personales',
-      'Não inclua dados pessoais',
-      'Không nhập dữ liệu cá nhân',
-      'Jangan masukkan data pribadi',
-      'Kişisel veri girmeyin',
-      'Nie wpisuj danych osobowych',
-    ]) {
-      expect(source).toContain(warning);
-    }
+    expect(source).toContain('const aiSummaryConsent = true;');
   });
 
   it('uses the current fail-closed consent version in the client payload', () => {

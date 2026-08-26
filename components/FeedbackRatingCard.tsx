@@ -9,7 +9,7 @@
 // (feedback_prompt_throttle, не чаще раза в неделю) — гейт решает вызывающий
 // экран (см. shouldPromptFeedback), сам компонент рендерится безусловно.
 import React, { useEffect, useState } from 'react';
-import { Pressable, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { glassFill } from './GlassSurface';
@@ -57,19 +57,17 @@ export default function FeedbackRatingCard({
   const { theme: t, f } = useTheme();
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
-  const [aiSummaryConsent, setAiSummaryConsent] = useState(false);
+  // зачем (владелец 2026-08-26): «убери этот текст и галочку — никаких
+  // согласий мы тут не спрашиваем». Чекбокс убран со всех экранов отзыва.
+  // Сервер (feedback_entries.ts) устроен fail-closed: во внешний сервис анализа
+  // текст уходит только при aiSummaryConsent === true с актуальной версией
+  // согласия. Поэтому убрать одну галочку было НЕДОСТАТОЧНО — без этой строки
+  // анализ тем молча выключился бы целиком. Владелец выбрал
+  // «убрать чекбокс И слать», поэтому согласие теперь даётся один раз в
+  // Политике конфиденциальности, а не отдельной галочкой в каждой карточке.
+  const aiSummaryConsent = true;
   const [state, setState] = useState<'idle' | 'sent'>('idle');
 
-  const aiConsentLabel = triLang(lang, {
-    ru: 'Разрешить отправку текста во внешний сервис OpenAI для анализа тем (необязательно). Не указывайте личные данные; email и телефон будут скрыты.',
-    uk: 'Дозволити надсилання тексту до зовнішнього сервісу OpenAI для аналізу тем (необов’язково). Не вказуйте особисті дані; email і телефон буде приховано.',
-    es: 'Permitir enviar el texto al servicio externo OpenAI para analizar temas (opcional). No incluyas datos personales; se ocultarán el email y el teléfono.',
-    'pt-BR': 'Permitir enviar o texto ao serviço externo OpenAI para analisar temas (opcional). Não inclua dados pessoais; e-mail e telefone serão ocultados.',
-    vi: 'Cho phép gửi văn bản đến dịch vụ bên ngoài OpenAI để phân tích chủ đề (không bắt buộc). Không nhập dữ liệu cá nhân; email và số điện thoại sẽ được ẩn.',
-    id: 'Izinkan teks dikirim ke layanan eksternal OpenAI untuk analisis tema (opsional). Jangan masukkan data pribadi; email dan nomor telepon akan disembunyikan.',
-    tr: 'Metni tema analizi için harici OpenAI hizmetine göndermeye izin ver (isteğe bağlı). Kişisel veri girmeyin; e-posta ve telefon gizlenir.',
-    pl: 'Zezwól na wysłanie tekstu do zewnętrznej usługi OpenAI w celu analizy tematów (opcjonalnie). Nie wpisuj danych osobowych; e-mail i telefon zostaną ukryte.',
-  });
 
   const flushPendingFeedback = async (): Promise<void> => {
     try {
@@ -174,30 +172,6 @@ export default function FeedbackRatingCard({
               textAlignVertical: 'top',
             }}
           />
-          <Pressable
-            testID={`${testID}-ai-summary-consent`}
-            accessibilityRole="checkbox"
-            accessibilityState={{ checked: aiSummaryConsent }}
-            accessibilityLabel={aiConsentLabel}
-            onPress={() => { hapticTap(); setAiSummaryConsent((value) => !value); }}
-            style={{
-              minHeight: 44,
-              marginTop: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 10,
-              paddingVertical: 6,
-            }}
-          >
-            <Ionicons
-              name={aiSummaryConsent ? 'checkbox' : 'square-outline'}
-              size={24}
-              color={aiSummaryConsent ? t.accent : t.textGhost}
-            />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), fontWeight: '400' }} maxFontSizeMultiplier={2}>
-              {aiConsentLabel}
-            </Text>
-          </Pressable>
           <TouchableOpacity
             testID={`${testID}-send`}
             accessibilityRole="button"

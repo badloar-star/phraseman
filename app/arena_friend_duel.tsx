@@ -205,7 +205,7 @@ export default function ArenaFriendDuelScreen() {
       setInvite(null);
       setError(arenaText(lang, 'challengeCancelled'));
     }
-    catch { setError(arenaText(lang, 'cancelFailed')); }
+    catch { setError(arenaText(lang, 'challengeCancelFailed')); }
     finally { setBusy(false); }
   };
 

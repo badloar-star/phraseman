@@ -375,14 +375,14 @@ export default function SeasonPassScreen() {
       void seasonBuyPassOnServer().catch(() => null);
     } else {
       emitAppEvent('action_toast', actionToastTri(purchase.status === 'insufficient' ? 'warning' : 'error', {
-        ru: purchase.status === 'insufficient' ? 'Жемчужин недостаточно' : 'Покупка не прошла — попробуй ещё раз',
-        uk: purchase.status === 'insufficient' ? 'Перлин недостатньо' : 'Покупка не пройшла — спробуй ще раз',
-        es: purchase.status === 'insufficient' ? 'Perlas insuficientes' : 'La compra falló, inténtalo de nuevo',
-        'pt-BR': purchase.status === 'insufficient' ? 'Pérolas insuficientes' : 'A compra falhou, tente novamente',
-        vi: purchase.status === 'insufficient' ? 'Không đủ ngọc' : 'Mua thất bại — thử lại',
-        id: purchase.status === 'insufficient' ? 'Mutiara kurang' : 'Pembelian gagal — coba lagi',
-        tr: purchase.status === 'insufficient' ? 'İnci yetersiz' : 'Satın alma başarısız — tekrar dene',
-        pl: purchase.status === 'insufficient' ? 'Za mało pereł' : 'Zakup nie powiódł się — spróbuj ponownie',
+        ru: purchase.status === 'insufficient' ? 'Жемчужин недостаточно' : 'Не получилось — попробуй ещё раз',
+        uk: purchase.status === 'insufficient' ? 'Перлин недостатньо' : 'Не вийшло — спробуй ще раз',
+        es: purchase.status === 'insufficient' ? 'Perlas insuficientes' : 'No salió, inténtalo de nuevo',
+        'pt-BR': purchase.status === 'insufficient' ? 'Pérolas insuficientes' : 'Não deu certo, tente novamente',
+        vi: purchase.status === 'insufficient' ? 'Không đủ ngọc' : 'Chưa được — thử lại nhé',
+        id: purchase.status === 'insufficient' ? 'Mutiara kurang' : 'Belum berhasil — coba lagi',
+        tr: purchase.status === 'insufficient' ? 'İnci yetersiz' : 'Olmadı — tekrar dene',
+        pl: purchase.status === 'insufficient' ? 'Za mało pereł' : 'Nie udało się — spróbuj ponownie',
       }));
     }
     setBuying(false);
@@ -972,7 +972,10 @@ export default function SeasonPassScreen() {
           />
         </View>
       )}
-      {/* Подтверждение покупки: цена + что даёт, кнопки «Позже»/«Купить». */}
+      {/* Подтверждение: цена + что даёт, кнопки «Позже»/«Открыть пропуск».
+          зачем (аудит по Библии, 2026-08-26): «Купить» запрещено словарём Библии
+          (купить → открыть). Пропуск берут за жемчужины, поэтому «открыть» точнее
+          описывает действие. Заменено во всех восьми языках. */}
       <Modal visible={buyConfirmVisible} transparent animationType="fade" onRequestClose={() => setBuyConfirmVisible(false)}>
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
           <View style={{ width: '100%', maxWidth: 360, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
@@ -988,9 +991,9 @@ export default function SeasonPassScreen() {
                 платное бесплатному, хотя бесплатной линии больше нет. */}
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '900', textAlign: 'center' }}>
               {triLang(lang, {
-                ru: 'Купить пропуск сезона?', uk: 'Купити перепустку сезону?', en: 'Buy the season pass?', es: '¿Comprar el pase de temporada?',
-                'pt-BR': 'Comprar o passe da temporada?', vi: 'Mua vé mùa?', id: 'Beli pass musim?',
-                tr: 'Sezon bileti alınsın mı?', pl: 'Kupić przepustkę sezonu?',
+                ru: 'Открыть пропуск сезона?', uk: 'Відкрити перепустку сезону?', en: 'Unlock the season pass?', es: '¿Abrir el pase de temporada?',
+                'pt-BR': 'Abrir o passe da temporada?', vi: 'Mở vé mùa?', id: 'Buka pass musim?',
+                tr: 'Sezon bileti açılsın mı?', pl: 'Otworzyć przepustkę sezonu?',
               })}
             </Text>
             {/* зачем 2026-08-04 (владелец: «убери текст объясняющий вообще, оставь
@@ -1006,7 +1009,7 @@ export default function SeasonPassScreen() {
               <TouchableOpacity testID="season-pass-buy-confirm" activeOpacity={0.85} accessibilityRole="button" onPress={onBuyConfirm}
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}>
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Купить', uk: 'Купити', en: 'Buy', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Beli', tr: 'Satın al', pl: 'Kup' })}
+                  {triLang(lang, { ru: 'Открыть пропуск', uk: 'Відкрити', en: 'Unlock', es: 'Abrir', 'pt-BR': 'Abrir', vi: 'Mở', id: 'Buka', tr: 'Aç', pl: 'Otwórz' })}
                 </Text>
               </TouchableOpacity>
             </View>

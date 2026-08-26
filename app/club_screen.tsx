@@ -149,8 +149,13 @@ const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
 
 function buildLeagueChestPreviewRewards(isCrownWinner: boolean): LeagueChestRewardDrop[] {
+  // зачем (владелец, 2026-08-26): превью ОБЯЗАНО совпадать с боевой выдачей
+  // (functions/src/league_chest.ts → buildLeagueRewardDrops), иначе владелец
+  // проверяет глазами одну награду, а игрок получает другую. Жемчужины здесь
+  // были фикцией — боевой сундук их не выдаёт с плана 2026-07-20, а теперь и
+  // формально отдаёт спин вместо нулевого shard-дропа.
   const base: LeagueChestRewardDrop[] = [
-    { id: 'preview_league_shards', kind: 'shards', rarity: 'common', amount: 24 },
+    { id: 'preview_league_spin', kind: 'spin_credit', rarity: 'common', amount: 1 },
     { id: 'preview_league_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
     { id: 'preview_league_xp', kind: 'xp_boost', rarity: 'rare', multiplier: 2, uses: 3 },
     { id: 'preview_league_aura_prism', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-prism' },
@@ -160,7 +165,7 @@ function buildLeagueChestPreviewRewards(isCrownWinner: boolean): LeagueChestRewa
   return isCrownWinner
     ? [
       ...base,
-      { id: 'preview_league_bonus_shards', kind: 'shards', rarity: 'rare', amount: 18 },
+      { id: 'preview_league_bonus_spin', kind: 'spin_credit', rarity: 'rare', amount: 1 },
     ]
     : base;
 }
@@ -1187,16 +1192,21 @@ export default function ClubScreen() {
             });
           if (cancelled || !isMountedRef.current) return;
           if (!alreadyShown) {
+            // зачем именно такой порядок: сначала ПОКАЗАТЬ, потом пометить.
+            // Если пометить раньше и экран размонтируется между двумя строками
+            // (уход на другой таб в этот же момент), сундук останется помечен
+            // показанным, а модалку игрок так и не увидит — награда была бы
+            // начислена молча. Ставим метку только после того, как модалка
+            // реально открыта; лишний повторный показ здесь безопаснее потери.
             leagueChestReplayModalKeyRef.current = replayKey;
-            await markLeagueChestRevealShown({
-              weekId: leagueGroupMeta.weekId,
-              groupId: leagueGroupMeta.groupId,
-            });
-            if (cancelled || !isMountedRef.current) return;
             setLeagueChestOpenModal({
               crownName: res.crown?.name,
               isCrownWinner: !!res.crown?.uid && res.crown.uid === myLeagueMemberUid,
               rewards: res.rewards.drops ?? [],
+            });
+            void markLeagueChestRevealShown({
+              weekId: leagueGroupMeta.weekId,
+              groupId: leagueGroupMeta.groupId,
             });
           }
         } else if (!res.claimed) {

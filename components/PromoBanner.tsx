@@ -46,16 +46,20 @@ interface PromoState {
   untilMs: number | null;
 }
 
+// зачем (аудит по Библии, 2026-08-26): это текст ПО УМОЛЧАНИЮ — показывается
+// и тогда, когда реального дедлайна нет. «Успей!» — фальшивая срочность,
+// запрещённая Частью V п.5; Правило 12 ставит доверие выше конверсии.
 function defaultText(lang: string): string {
   return triLang(lang as Lang, {
-    ru: 'Специальное предложение — успей!',
-    uk: 'Спеціальна пропозиція — встигни!',
-    es: 'Oferta especial, aprovecha',
-    'pt-BR': 'Oferta especial, aproveite',
-    vi: 'Ưu đãi đặc biệt — nhanh tay',
-    id: 'Penawaran spesial — buruan',
-    tr: 'Özel teklif — kaçırma',
-    pl: 'Oferta specjalna — zdąż',
+    ru: 'Специальное предложение — загляни',
+    uk: 'Спеціальна пропозиція — зазирни',
+    en: 'Special offer — take a look',
+    es: 'Oferta especial, échale un vistazo',
+    'pt-BR': 'Oferta especial, dá uma olhada',
+    vi: 'Ưu đãi đặc biệt — xem thử nhé',
+    id: 'Penawaran spesial — lihat dulu',
+    tr: 'Özel teklif — bir bak',
+    pl: 'Oferta specjalna — zajrzyj',
   });
 }
 
@@ -273,6 +277,7 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
           accessibilityLabel={triLang(lang as Lang, {
             ru: 'Закрыть предложение',
             uk: 'Закрити пропозицію',
+            en: 'Close offer',
             es: 'Cerrar oferta',
             'pt-BR': 'Fechar oferta',
             vi: 'Đóng ưu đãi',

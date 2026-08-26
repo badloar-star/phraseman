@@ -1955,15 +1955,15 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               <Text style={{ fontSize: f.body }}>❌</Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, flex: 1 }}>
                 {triLang(lang, {
-                ru: 'Пропустишь день — ставка сгорит: −',
-                uk: 'Пропустиш день — ставка згорить: −',
-                en: 'Miss a day and you lose your stake: −',
-                es: 'Si rompes la racha pierdes ',
-                'pt-BR': "Se quebrar a sequência, você perde ",
-                vi: "Nếu làm đứt chuỗi, bạn mất ",
-                id: "Jika rangkaian putus, kamu kehilangan ",
-                tr: "Seriyi bozarsan kaybedersin ",
-                pl: "Jeśli przerwiesz serię, stracisz ",
+                ru: 'Держи серию — ставка вернётся. Пропуск дня стоит: −',
+                uk: 'Тримай серію — ставка повернеться. Пропуск дня коштує: −',
+                en: 'Keep the streak and your stake comes back. A missed day costs: −',
+                es: 'Mantén la racha y recuperas tu apuesta. Fallar un día cuesta ',
+                'pt-BR': "Mantenha a sequência e recupera sua aposta. Perder um dia custa ",
+                vi: "Giữ chuỗi thì bạn nhận lại cược. Bỏ lỡ một ngày tốn ",
+                id: "Jaga rangkaian dan taruhanmu kembali. Bolos sehari memakan ",
+                tr: "Seriyi sürdürürsen bahsin geri gelir. Bir günü kaçırmak şuna mal olur: ",
+                pl: "Utrzymaj serię, a stawka wróci. Opuszczony dzień kosztuje ",
             })}
               </Text>
               <ShardsInline n={effectiveBetShards} size={f.body} textColor="#FF3B30"/>

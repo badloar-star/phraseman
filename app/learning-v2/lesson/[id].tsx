@@ -223,18 +223,18 @@ function buildLessonRoadItems(
 
 function sessionOutcomeText(sessionOrdinal: number): string {
   if (sessionOrdinal <= 4) {
-    return "Вы поймёте, как am, is и are превращают отдельные слова в законченную фразу.";
+    return "Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.";
   }
   if (sessionOrdinal <= 8) {
-    return "Вы научитесь самостоятельно собирать простые фразы с глаголом to be.";
+    return "Ты научишься собирать простые фразы с глаголом to be.";
   }
-  return "Вы сможете без подсказки применять am, is и are в коротком разговоре.";
+  return "Ты сможешь без подсказки применять am, is и are в разговоре.";
 }
 
 function sessionOutcomeTitle(sessionOrdinal: number): string {
-  if (sessionOrdinal <= 4) return "Что вы поймёте";
-  if (sessionOrdinal <= 8) return "Чему научитесь";
-  return "Что сможете делать";
+  if (sessionOrdinal <= 4) return "Что ты поймёшь";
+  if (sessionOrdinal <= 8) return "Чему научишься";
+  return "Что сможешь делать";
 }
 
 function Node({

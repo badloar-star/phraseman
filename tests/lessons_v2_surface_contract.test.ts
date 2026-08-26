@@ -77,13 +77,15 @@ describe("lessons V2 — одна карта раскрывается прямо
     expect(mapSource).toContain("buildLessonRoadItems");
     expect(mapSource).toContain("LEARNING_V2_LESSON_SESSION_COUNT_V1");
     expect(mapSource).toContain("КАРТА УРОКА");
-    expect(mapSource).toContain("Вы научитесь");
+    expect(mapSource).toContain("Ты научишься");
     expect(mapSource).toContain("useTheme()");
     expect(mapSource).not.toContain("Путь к свободной речи");
-    expect(lessonsSource).toContain("Вы поймёте");
-    expect(lessonsSource).toContain("Что вы поймёте");
-    expect(lessonsSource).toContain("Чему научитесь");
-    expect(lessonsSource).toContain("Что сможете делать");
+    // зачем (аудит по Библии, 2026-08-26): «вы» → «ты» (Правило 14).
+    // Проверяется наличие всех трёх обещаний, а не форма обращения.
+    expect(lessonsSource).toContain("Ты поймёшь");
+    expect(lessonsSource).toContain("Что ты поймёшь");
+    expect(lessonsSource).toContain("Чему научишься");
+    expect(lessonsSource).toContain("Что сможешь делать");
     expect(lessonsSource).not.toContain("Обычно 14–18 шагов");
     expect(lessonsSource).toContain("setSelectedLearningV2Session(null)");
     expect(lessonsSource).toContain("requestAnimationFrame(() =>");

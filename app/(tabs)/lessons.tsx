@@ -1129,12 +1129,12 @@ const LEARNING_V2_SESSION_STATE_ICON: Readonly<
 
 function neutralLearningV2SessionOutcome(sessionOrdinal: number): string {
   if (sessionOrdinal <= 4) {
-    return "Вы поймёте, как am, is и are превращают отдельные слова в законченную фразу.";
+    return "Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.";
   }
   if (sessionOrdinal <= 8) {
-    return "Вы научитесь самостоятельно собирать простые фразы с глаголом to be.";
+    return "Ты научишься собирать простые фразы с глаголом to be.";
   }
-  return "Вы сможете без подсказки применять am, is и are в коротком разговоре.";
+  return "Ты сможешь без подсказки применять am, is и are в разговоре.";
 }
 
 function neutralLearningV2SessionOutcomeKind(
@@ -1151,7 +1151,7 @@ function learningV2SessionOutcomeTitle(
 ): string {
   if (kind === "understand") {
     return triLang(lang, {
-      ru: "Что вы поймёте",
+      ru: "Что ты поймёшь",
       en: "What you'll understand",
       uk: "Що ви зрозумієте",
       es: "Qué entenderás",
@@ -1164,7 +1164,7 @@ function learningV2SessionOutcomeTitle(
   }
   if (kind === "learn") {
     return triLang(lang, {
-      ru: "Чему научитесь",
+      ru: "Чему научишься",
       en: "What you'll learn",
       uk: "Чого ви навчитеся",
       es: "Qué aprenderás",
@@ -1176,7 +1176,7 @@ function learningV2SessionOutcomeTitle(
     });
   }
   return triLang(lang, {
-    ru: "Что сможете делать",
+    ru: "Что сможешь делать",
     en: "What you'll be able to do",
     uk: "Що ви зможете робити",
     es: "Qué podrás hacer",
@@ -1200,6 +1200,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   fonts,
   reduceMotion,
   runtimeActive,
+  devUnlockAll,
   earnedStars,
   onSessionPress,
   onSessionCompleted,
@@ -1211,6 +1212,8 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   reduceMotion: boolean;
   /** useRuntimeActive(ownerVisible) таба «Уроки» — гейт дыхания текущего узла. */
   runtimeActive: boolean;
+  /** DEV-only presentation override; не изменяет learner progress или registry. */
+  devUnlockAll: boolean;
   /** Звёзды 0–3 за пройденную сессию (витрина, без авторитета). */
   earnedStars?: 0 | 1 | 2 | 3;
   onSessionPress: (
@@ -1262,7 +1265,8 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
 
   const current = row.state === "current";
   const completed = row.state === "completed";
-  const accessible = current || completed;
+  const devUnlocked = devUnlockAll && !current && !completed;
+  const accessible = devUnlockAll || current || completed;
   const checkpoint =
     row.role === "chapter_checkpoint" || row.role === "final_exam";
   const label =
@@ -1317,7 +1321,9 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
     ? theme.accent
     : completed
       ? theme.correct
-      : theme.bgSurface2;
+      : devUnlocked
+        ? theme.bgCard
+        : theme.bgSurface2;
   const revealIndex = row.sessionOrdinal + row.chapterOrdinal - 1;
 
   return (
@@ -1391,14 +1397,20 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           onCompletedTransition={onSessionCompleted}
           style={{
             transform: [{ translateX: wave }],
-            opacity: row.state === "locked" ? 0.78 : 1,
+            opacity: row.state === "locked" && !devUnlocked ? 0.78 : 1,
           }}
         >
           {checkpoint ? (
             <Ionicons
               name="trophy"
               size={26}
-              color={accessible ? theme.correctText : theme.gold}
+              color={
+                current || completed
+                  ? theme.correctText
+                  : devUnlocked
+                    ? theme.accent
+                    : theme.gold
+              }
             />
           ) : completed ? (
             <Ionicons
@@ -1406,7 +1418,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
               size={22}
               color={theme.correctText}
             />
-          ) : row.state === "locked" ? (
+          ) : row.state === "locked" && !devUnlocked ? (
             <Ionicons
               name={LEARNING_V2_SESSION_STATE_ICON.locked}
               size={18}
@@ -1415,7 +1427,11 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           ) : (
             <Text
               style={{
-                color: current ? theme.correctText : theme.textPrimary,
+                color: current
+                  ? theme.correctText
+                  : devUnlocked
+                    ? theme.accent
+                    : theme.textPrimary,
                 fontSize: current ? 22 : 16,
                 fontWeight: "700",
               }}
@@ -1947,6 +1963,10 @@ export default function LessonsTab({
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
   const [page, setPage] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  const [learningV2DevUnlockAllRequested, setLearningV2DevUnlockAllRequested] =
+    useState(false);
+  const learningV2DevUnlockAllActive =
+    __DEV__ && ENABLE_DEV_TOOLS && learningV2DevUnlockAllRequested;
   const [expandedLearningV2Lesson, setExpandedLearningV2Lesson] = useState<
     number | null
   >(null);
@@ -1963,7 +1983,9 @@ export default function LessonsTab({
     [expandedLearningV2Lesson, page, studyTarget],
   );
   const { words: learningV2DictionaryWords } =
-    useLearningV2UnlockedLessonWordsV1(learningV2DictionaryScope);
+    useLearningV2UnlockedLessonWordsV1(learningV2DictionaryScope, {
+      includeAuthoringPreview: __DEV__,
+    });
   const [selectedLearningV2Session, setSelectedLearningV2Session] = useState<{
     lessonOrdinal: number;
     sessionOrdinal: number;
@@ -2302,7 +2324,11 @@ export default function LessonsTab({
       sessionOrdinal: number,
       state: LearningV2AccordionSessionStateV1,
     ) => {
-      if (state !== "current" && state !== "completed") {
+      if (
+        !learningV2DevUnlockAllActive &&
+        state !== "current" &&
+        state !== "completed"
+      ) {
         const currentRow = learningV2Accordion.rows.find(
           (mapRow) =>
             mapRow.kind === "session" &&
@@ -2340,15 +2366,21 @@ export default function LessonsTab({
         );
         return;
       }
-      void preloadCurrentLearningV2CourseReleasedSessionV2({
-        environment: learningV2Catalog?.environment ?? "production",
-        targetLanguage: studyTarget,
-        studyTarget,
-        learnerSourceLocale: lang,
-        seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
-        lessonOrdinal: selectedLesson,
-        sessionOrdinal,
-      }).catch(() => undefined);
+      const usesDevDraftPreview =
+        learningV2DevUnlockAllActive &&
+        studyTarget === "en" &&
+        selectedLesson === 1;
+      if (!usesDevDraftPreview) {
+        void preloadCurrentLearningV2CourseReleasedSessionV2({
+          environment: learningV2Catalog?.environment ?? "production",
+          targetLanguage: studyTarget,
+          studyTarget,
+          learnerSourceLocale: lang,
+          seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+          lessonOrdinal: selectedLesson,
+          sessionOrdinal,
+        }).catch(() => undefined);
+      }
       setSelectedLearningV2Session({
         lessonOrdinal: selectedLesson,
         sessionOrdinal,
@@ -2359,6 +2391,7 @@ export default function LessonsTab({
       lang,
       learningV2Accordion.rows,
       learningV2Catalog,
+      learningV2DevUnlockAllActive,
       showLearningV2DenialHint,
       studyTarget,
     ],
@@ -2943,7 +2976,7 @@ export default function LessonsTab({
                   pl: `Najpierw egzamin ${prevExamLevel}`,
                 })
               : triLang(lang, {
-                  ru: `Завершите все уроки ${lvl} на 4.5+`,
+                  ru: `Заверши все уроки ${lvl} на 4.5+`,
                   en: `Complete all ${lvl} lessons with 4.5+`,
                   uk: `Завершіть усі уроки ${lvl} на 4.5+`,
                   es: `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`,
@@ -3461,6 +3494,80 @@ export default function LessonsTab({
               />
             ) : null}
           </View>
+          {__DEV__ && ENABLE_DEV_TOOLS && page === "v2" ? (
+            <View
+              style={{
+                paddingHorizontal: 18,
+                paddingTop: 8,
+                paddingBottom: 10,
+                alignItems: "flex-end",
+              }}
+            >
+              <Pressable
+                testID="learning-v2-dev-unlock-all-sessions"
+                accessibilityRole="switch"
+                accessibilityState={{ checked: learningV2DevUnlockAllActive }}
+                accessibilityLabel={triLang(lang, {
+                  ru: "Разблокировать все сессии для тестирования",
+                  en: "Unlock all sessions for testing",
+                  uk: "Розблокувати всі сесії для тестування",
+                  es: "Desbloquear todas las sesiones para pruebas",
+                  "pt-BR": "Desbloquear todas as sessões para testes",
+                  vi: "Mở tất cả buổi học để kiểm thử",
+                  id: "Buka semua sesi untuk pengujian",
+                  tr: "Test için tüm oturumları aç",
+                  pl: "Odblokuj wszystkie sesje do testów",
+                })}
+                onPress={() => {
+                  hapticTap();
+                  setLearningV2DevUnlockAllRequested((current) => !current);
+                }}
+                style={({ pressed }) => ({
+                  minHeight: 44,
+                  paddingHorizontal: 14,
+                  borderRadius: 14,
+                  borderWidth: 1,
+                  borderColor: learningV2DevUnlockAllActive
+                    ? t.correct
+                    : t.border,
+                  backgroundColor: learningV2DevUnlockAllActive
+                    ? t.correct
+                    : t.bgCard,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 8,
+                  opacity: pressed ? 0.78 : 1,
+                })}
+              >
+                <Ionicons
+                  name={
+                    learningV2DevUnlockAllActive
+                      ? "lock-open"
+                      : "lock-closed-outline"
+                  }
+                  size={18}
+                  color={
+                    learningV2DevUnlockAllActive
+                      ? t.correctText
+                      : t.textPrimary
+                  }
+                />
+                <Text
+                  style={{
+                    color: learningV2DevUnlockAllActive
+                      ? t.correctText
+                      : t.textPrimary,
+                    fontSize: 13,
+                    fontWeight: "800",
+                  }}
+                >
+                  {learningV2DevUnlockAllActive
+                    ? "DEV: вернуть замки"
+                    : "DEV: открыть все"}
+                </Text>
+              </Pressable>
+            </View>
+          ) : null}
         </View>
 
         {/* Страница «Диалоги» */}
@@ -3604,6 +3711,7 @@ export default function LessonsTab({
                       fonts={f}
                       reduceMotion={learningV2ReduceMotionPreference !== false}
                       runtimeActive={lessonsRuntimeActive}
+                      devUnlockAll={learningV2DevUnlockAllActive}
                       earnedStars={
                         item.kind === "v2_session"
                           ? learningV2StarResults[
@@ -4080,9 +4188,18 @@ export default function LessonsTab({
                 runKind:
                   selected.state === "completed" ? "repeat" : "initial",
                 ...(__DEV__ &&
+                ENABLE_DEV_TOOLS &&
+                learningV2DevUnlockAllActive &&
                 studyTarget === "en" &&
-                selected.lessonOrdinal === 1 &&
-                selected.sessionOrdinal === 1
+                selected.lessonOrdinal === 1
+                  ? {
+                      previewMode: "dev_unlocked_drafts_v1",
+                      previewOrigin: "course",
+                    }
+                  : __DEV__ &&
+                      studyTarget === "en" &&
+                      selected.lessonOrdinal === 1 &&
+                      selected.sessionOrdinal === 1
                   ? {
                       previewMode: "authoring_v1",
                       previewOrigin: "course",
@@ -4172,7 +4289,7 @@ export default function LessonsTab({
             ? frenchExamGateCopy("level", lang).body
             : gateModal?.kind === "exam"
               ? triLang(lang, {
-                  ru: `Сначала пройдите все уроки ${gateModal.level} с оценкой 4.5+`,
+                  ru: `Сначала пройди все уроки ${gateModal.level} с оценкой 4.5+`,
                   en: `First, complete all ${gateModal.level} lessons with 4.5+`,
                   uk: `Спочатку пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+`,
                   es: `Primero completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5`,
@@ -4196,7 +4313,7 @@ export default function LessonsTab({
                   })
                 : gateModal?.kind === "lesson"
                   ? triLang(lang, {
-                      ru: `Пройдите урок ${gateModal.prevNum} с оценкой 2.5+`,
+                      ru: `Пройди урок ${gateModal.prevNum} с оценкой 2.5+`,
                       en: `Complete lesson ${gateModal.prevNum} with 2.5+`,
                       uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+`,
                       es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5`,

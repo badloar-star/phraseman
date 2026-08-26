@@ -33,8 +33,11 @@ describe("Learning V2 Lesson 1 map screen contract", () => {
     expect(source).toContain("buildLessonRoadItems");
     expect(source).toContain("height: 74");
     expect(source).toContain("КАРТА УРОКА");
-    expect(source).toContain("Вы поймёте");
-    expect(source).toContain("Вы научитесь");
+    // зачем (аудит по Библии, 2026-08-26): обращение переведено на «ты»
+    // (Правило 14). Контракт сторожит НАЛИЧИЕ обещания на карте урока, а не
+    // форму обращения — якоря обновлены под новый текст.
+    expect(source).toContain("Ты поймёшь");
+    expect(source).toContain("Ты научишься");
     expect(source).not.toContain("Обычно 14–18 шагов · примерно 5–8 минут");
     expect(source).not.toContain("12 заданий · до 36 звёзд");
     expect(source).toContain("useTheme()");

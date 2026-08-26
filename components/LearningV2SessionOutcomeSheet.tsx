@@ -1,5 +1,5 @@
 /**
- * LearningV2SessionOutcomeSheet — нижняя шторка «Что вы поймёте / Чему научитесь /
+ * LearningV2SessionOutcomeSheet — нижняя шторка «Что ты поймёшь / Чему научишься /
  * Что сможете делать» для карты курса Learning V2.
  *
  * зачем: владелец 2026-08-23 — раньше это был центральный ThemedChoiceModal

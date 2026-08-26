@@ -3990,15 +3990,15 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     <View style={{ alignItems: 'center', marginBottom: 20, gap: 4 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                         <Text style={{ color: t.textMuted, fontSize: f.body }}>{triLang(lang, {
-                    ru: 'Стоимость:',
-                    uk: 'Вартість:',
-                    en: 'Cost:',
-                    es: 'Coste:',
-                    'pt-BR': "Custo:",
-                    vi: "Chi phí:",
-                    id: "Biaya:",
-                    tr: "Maliyet:",
-                    pl: "Koszt:",
+                    ru: 'Нужно:',
+                    uk: 'Потрібно:',
+                    en: 'You need:',
+                    es: 'Necesitas:',
+                    'pt-BR': "Você precisa:",
+                    vi: "Cần:",
+                    id: "Perlu:",
+                    tr: "Gerekli:",
+                    pl: "Potrzebujesz:",
                 })}</Text>
                         <ShardsInline n={FREEZE_COST_SHARDS} size={f.body} textColor={t.textMuted}/>
                       </View>
@@ -4963,15 +4963,15 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       <Text style={{ color: t.textMuted, fontSize: f.body }}>
                         {triLang(lang, {
-                        ru: 'Стоимость заморозки:',
-                        uk: 'Вартість заморозки:',
-                        en: 'Freeze cost:',
-                        es: 'Coste de congelar:',
-                        'pt-BR': "Custo para congelar:",
-                        vi: "Chi phí đóng băng:",
-                        id: "Biaya pembekuan:",
-                        tr: "Dondurma maliyeti:",
-                        pl: "Koszt zamrożenia:",
+                        ru: 'Заморозка стоит:',
+                        uk: 'Заморозка коштує:',
+                        en: 'Freezing takes:',
+                        es: 'Congelar cuesta:',
+                        'pt-BR': "Congelar custa:",
+                        vi: "Đóng băng cần:",
+                        id: "Pembekuan perlu:",
+                        tr: "Dondurmak için:",
+                        pl: "Zamrożenie wymaga:",
                     })}
                       </Text>
                       <ShardsInline n={FREEZE_COST_SHARDS} size={f.body} textColor={t.textMuted}/>

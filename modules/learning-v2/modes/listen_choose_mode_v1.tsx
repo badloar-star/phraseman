@@ -20,6 +20,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedProps,
   useAnimatedStyle,
@@ -34,6 +35,7 @@ import { useTheme } from "../../../components/ThemeContext";
 import { V2Chip } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
+import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeAudioCopyV1 } from "./mode_copy_v1";
 import { LISTEN_CHOOSE_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
@@ -69,7 +71,17 @@ function ListenChoosePlayButtonV1({
 }) {
   const progress = useSharedValue(0);
   const pulse = useSharedValue(1);
+  // зачем (аудит нагрева 2026-08-26): пульс play-кнопки — withRepeat(-1), и он
+  // был привязан ТОЛЬКО к playing. Аудио этого проекта не глушится по AppState,
+  // поэтому при сворачивании приложения playing оставался true и цикл грел
+  // UI-поток в кармане. Performance Bible требует фокус+AppState для вечных
+  // анимаций — берём общий useRuntimeActive (фокус && активное приложение).
+  const runtimeActive = useRuntimeActive();
 
+  // Кольцо прогресса ведёт ТОЛЬКО playing: это конечная анимация длиной
+  // ringFillMs, она отражает ход звука. Гардить её по фокусу нельзя — вернувшись
+  // из фона, пользователь увидел бы перезапуск кольца с нуля под звук,
+  // играющий с середины.
   useEffect(() => {
     if (playing) {
       progress.value = 0;
@@ -77,20 +89,30 @@ function ListenChoosePlayButtonV1({
         duration: MOTION.ringFillMs,
         easing: Easing.linear,
       });
-      if (!reducedMotion) {
-        pulse.value = withRepeat(
-          withSequence(
-            withTiming(1.03, { duration: MOTION.playPulseMs / 2, easing: EASE }),
-            withTiming(1, { duration: MOTION.playPulseMs / 2, easing: EASE }),
-          ),
-          -1,
-        );
-      }
     } else {
       progress.value = withTiming(0, { duration: reducedMotion ? 1 : 120 });
-      pulse.value = withTiming(1, { duration: 160, easing: EASE });
     }
-  }, [playing, reducedMotion, progress, pulse]);
+  }, [playing, reducedMotion, progress]);
+
+  // Пульс — единственная ВЕЧНАЯ анимация здесь, только она подчиняется
+  // runtimeActive и гаснет при уходе с экрана либо сворачивании приложения.
+  useEffect(() => {
+    if (playing && runtimeActive && !reducedMotion) {
+      pulse.value = withRepeat(
+        withSequence(
+          withTiming(1.03, { duration: MOTION.playPulseMs / 2, easing: EASE }),
+          withTiming(1, { duration: MOTION.playPulseMs / 2, easing: EASE }),
+        ),
+        -1,
+      );
+    } else {
+      cancelAnimation(pulse);
+      pulse.value = withTiming(1, { duration: reducedMotion ? 1 : 160, easing: EASE });
+    }
+    return () => {
+      cancelAnimation(pulse);
+    };
+  }, [playing, runtimeActive, reducedMotion, pulse]);
 
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_LEN * (1 - progress.value),

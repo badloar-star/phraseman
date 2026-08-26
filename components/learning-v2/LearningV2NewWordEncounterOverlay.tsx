@@ -3,17 +3,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   Animated as RNAnimated,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   useWindowDimensions,
   View,
 } from "react-native";
-import Animated, {
-  FadeIn,
-  FadeInDown,
-  FadeInUp,
-  useReducedMotion,
-} from "react-native-reanimated";
+import { useReducedMotion } from "react-native-reanimated";
 
 import FlashcardListItem from "../../app/flashcards/FlashcardListItem";
 import {
@@ -29,6 +25,7 @@ import type {
   FlashcardContentLang,
 } from "../../app/flashcards/types";
 import { learningV2NewWordEncounterCopy } from "../../app/learning_v2_new_word_encounter_copy";
+import { useAppRuntimeActive } from "../../app/runtime_app_state_store";
 import type {
   LearningV2NewWordAudioStateV1,
   LearningV2NewWordSaveStateV1,
@@ -46,6 +43,24 @@ import { V2Cta } from "../ui/v2_ui";
 export const NEW_WORD_AUTO_FLIP_MS = 3_000;
 const NEW_WORD_FLIP_MS = 180;
 
+export type LearningV2WindowPointV1 = Readonly<{ x: number; y: number }>;
+
+function measureViewCenterInWindow(view: View | null): Promise<LearningV2WindowPointV1 | null> {
+  return new Promise((resolve) => {
+    if (!view) {
+      resolve(null);
+      return;
+    }
+    view.measureInWindow((x, y, width, height) => {
+      if (![x, y, width, height].every(Number.isFinite)) {
+        resolve(null);
+        return;
+      }
+      resolve({ x: x + width / 2, y: y + height / 2 });
+    });
+  });
+}
+
 export interface LearningV2NewWordEncounterOverlayProps {
   encounter: LearningV2CourseSessionNewWordEncounterV1;
   locale: LearningV2InterfaceLocale;
@@ -58,6 +73,7 @@ export interface LearningV2NewWordEncounterOverlayProps {
   onFlightComplete: () => void;
   onToggleSave: () => void;
   onPlayAudio: () => void;
+  measurePocketTarget: () => Promise<LearningV2WindowPointV1 | null>;
 }
 
 export default function LearningV2NewWordEncounterOverlay({
@@ -71,10 +87,12 @@ export default function LearningV2NewWordEncounterOverlay({
   onFlightComplete,
   onToggleSave,
   onPlayAudio,
+  measurePocketTarget,
 }: LearningV2NewWordEncounterOverlayProps) {
   const { theme: t, f, uiScale, isDark } = useTheme();
   const { height: screenHeight } = useWindowDimensions();
   const reduceMotion = useReducedMotion();
+  const appActive = useAppRuntimeActive();
   const word = encounter.save.targetText;
   // Legacy wire name; this is the manually authored, dictionary-precise
   // definition shown below the card, never on the translation side.
@@ -91,11 +109,6 @@ export default function LearningV2NewWordEncounterOverlay({
       }),
     [audioState, locale, position, saveState, total, word],
   );
-  const entering = reduceMotion
-    ? FadeIn.duration(160)
-    : encounter.motionVariant === "lesson_hero_b"
-      ? FadeInDown.springify().damping(22).stiffness(150)
-      : FadeInUp.springify().damping(22).stiffness(150);
   const saved = saveState === "saved";
   const saveDisabled = saveState === "saving";
   // New-word cards belong to the user's permanent Cards collection, so their
@@ -150,11 +163,24 @@ export default function LearningV2NewWordEncounterOverlay({
   const deleteOpacity = useRef(new RNAnimated.Value(1)).current;
   const deleteScale = useRef(new RNAnimated.Value(1)).current;
   const pocketFlight = useRef(new RNAnimated.Value(0)).current;
+  const pocketFlightX = useRef(new RNAnimated.Value(0)).current;
+  const pocketFlightY = useRef(new RNAnimated.Value(0)).current;
+  const entranceProgress = useRef(new RNAnimated.Value(0)).current;
+  const hintPulse = useRef(new RNAnimated.Value(1)).current;
   const [continuing, setContinuing] = useState(false);
+  const continuingRef = useRef(false);
+  const cardFlightOriginRef = useRef<View>(null);
   const flippedRef = useRef(false);
   const autoFlipControllerRef = useRef<ReturnType<
     typeof createLearningV2NewWordAutoFlipControllerV1
   > | null>(null);
+  useEffect(() => {
+    continuingRef.current = false;
+    setContinuing(false);
+    pocketFlight.setValue(0);
+    pocketFlightX.setValue(0);
+    pocketFlightY.setValue(0);
+  }, [encounter.lexicalItemId, pocketFlight, pocketFlightX, pocketFlightY]);
   const animateFlipTo = useCallback(
     (next: boolean) => {
       flippedRef.current = next;
@@ -189,15 +215,56 @@ export default function LearningV2NewWordEncounterOverlay({
       }
     };
   }, [animateFlipTo]);
+  useEffect(() => {
+    entranceProgress.setValue(reduceMotion ? 1 : 0);
+    if (reduceMotion) return;
+    const entrance = RNAnimated.timing(entranceProgress, {
+      toValue: 1,
+      duration: 180,
+      useNativeDriver: true,
+    });
+    entrance.start();
+    return () => entrance.stop();
+  }, [entranceProgress, reduceMotion]);
+  // зачем (аудит нагрева 2026-08-26): пульс подсказки — RNAnimated.loop без
+  // конца. Оверлей размонтируется при закрытии, но при сворачивании приложения
+  // остаётся смонтированным, и цикл грел UI-поток в кармане. Performance Bible
+  // требует AppState-гард для вечных анимаций; фокус экрана здесь избыточен —
+  // оверлей живёт только поверх активного экрана урока.
+  useEffect(() => {
+    hintPulse.setValue(1);
+    if (reduceMotion || !appActive) return;
+    const pulse = RNAnimated.loop(
+      RNAnimated.sequence([
+        RNAnimated.timing(hintPulse, {
+          toValue: 0,
+          duration: 900,
+          useNativeDriver: true,
+        }),
+        RNAnimated.timing(hintPulse, {
+          toValue: 1,
+          duration: 900,
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    pulse.start();
+    return () => {
+      pulse.stop();
+      hintPulse.setValue(1);
+    };
+  }, [hintPulse, reduceMotion, appActive]);
   const onSpeakFromCardsComponent = useCallback(() => {
     onPlayAudio();
   }, [onPlayAudio]);
   const continueToPocket = useCallback(async () => {
-    if (continuing) return;
+    if (continuingRef.current) return;
+    continuingRef.current = true;
     setContinuing(true);
     try {
       await onContinue();
     } catch {
+      continuingRef.current = false;
       setContinuing(false);
       return;
     }
@@ -205,15 +272,48 @@ export default function LearningV2NewWordEncounterOverlay({
       onFlightComplete();
       return;
     }
-    RNAnimated.timing(pocketFlight, {
-      toValue: 1,
-      duration: 230,
-      useNativeDriver: true,
-    }).start(({ finished }) => {
+    const [origin, target] = await Promise.all([
+      measureViewCenterInWindow(cardFlightOriginRef.current),
+      measurePocketTarget(),
+    ]);
+    if (!origin || !target) {
+      onFlightComplete();
+      return;
+    }
+    pocketFlightX.setValue(0);
+    pocketFlightY.setValue(0);
+    RNAnimated.parallel([
+      RNAnimated.timing(pocketFlight, {
+        toValue: 1,
+        duration: 230,
+        useNativeDriver: true,
+      }),
+      RNAnimated.timing(pocketFlightX, {
+        toValue: target.x - origin.x,
+        duration: 230,
+        useNativeDriver: true,
+      }),
+      RNAnimated.timing(pocketFlightY, {
+        toValue: target.y - origin.y,
+        duration: 230,
+        useNativeDriver: true,
+      }),
+    ]).start(({ finished }) => {
       if (finished) onFlightComplete();
-      else setContinuing(false);
+      else {
+        continuingRef.current = false;
+        setContinuing(false);
+      }
     });
-  }, [continuing, onContinue, onFlightComplete, pocketFlight, reduceMotion]);
+  }, [
+    measurePocketTarget,
+    onContinue,
+    onFlightComplete,
+    pocketFlight,
+    pocketFlightX,
+    pocketFlightY,
+    reduceMotion,
+  ]);
 
   return (
     <View
@@ -227,7 +327,21 @@ export default function LearningV2NewWordEncounterOverlay({
         pointerEvents="none"
         style={[styles.backdrop, { backgroundColor: t.shadowDark }]}
       />
-      <Animated.View pointerEvents="auto" entering={entering} style={styles.sheet}>
+      <RNAnimated.View
+        pointerEvents="auto"
+        style={[
+          styles.sheet,
+          {
+            opacity: entranceProgress,
+            transform: [{
+              translateY: entranceProgress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [reduceMotion ? 0 : 12, 0],
+              }),
+            }],
+          },
+        ]}
+      >
         <View style={styles.header}>
           <Text style={[styles.label, { color: t.textPrimary }]}>
             {copy.label}
@@ -237,22 +351,25 @@ export default function LearningV2NewWordEncounterOverlay({
           </Text>
         </View>
 
+        <ScrollView
+          style={styles.cardScroll}
+          contentContainerStyle={styles.cardScrollContent}
+          showsVerticalScrollIndicator={false}
+          removeClippedSubviews={false}
+        >
+        <View ref={cardFlightOriginRef} collapsable={false}>
         <RNAnimated.View
           testID="learning-v2-new-word-compact-card"
           style={[
             styles.cardWrap,
             {
               opacity: pocketFlight.interpolate({
-                inputRange: [0, 0.7, 1],
-                outputRange: [1, 0.92, 0],
+                inputRange: [0, 0.9, 1],
+                outputRange: [1, 1, 0],
               }),
               transform: [
-                {
-                  translateY: pocketFlight.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, Math.max(220, screenHeight * 0.46)],
-                  }),
-                },
+                { translateX: pocketFlightX },
+                { translateY: pocketFlightY },
                 {
                   scale: pocketFlight.interpolate({
                     inputRange: [0, 1],
@@ -284,6 +401,7 @@ export default function LearningV2NewWordEncounterOverlay({
           getOverlayAnim={() => overlayAnim}
           getDeleteAnim={() => ({ opacity: deleteOpacity, scale: deleteScale })}
           onFlipCard={onFlipFromCardsComponent}
+          flipOnPressIn
           onOpenDelete={() => undefined}
           onCloseDelete={() => undefined}
           onDeleteCard={() => undefined}
@@ -313,17 +431,30 @@ export default function LearningV2NewWordEncounterOverlay({
             />
           </Pressable>
         </RNAnimated.View>
+        </View>
 
         <Text
           testID="learning-v2-new-word-definition"
-          style={[styles.editorialDefinition, { color: t.textSecond }]}
+          style={[styles.editorialDefinition, { color: t.textPrimary }]}
         >
           {editorialDefinition}
         </Text>
 
-        <Text style={[styles.flipHint, { color: t.textPrimary }]}>
+        <RNAnimated.Text
+          style={[
+            styles.flipHint,
+            { color: t.textPrimary },
+            {
+              opacity: hintPulse.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0.58, 1],
+              }),
+            },
+          ]}
+        >
           {learningV2NewWordFlipHintV1(locale)}
-        </Text>
+        </RNAnimated.Text>
+        </ScrollView>
 
         <View style={styles.continueRow}>
           <V2Cta
@@ -346,7 +477,7 @@ export default function LearningV2NewWordEncounterOverlay({
             {copy.saveStatus}
           </Text>
         ) : null}
-      </Animated.View>
+      </RNAnimated.View>
     </View>
   );
 }
@@ -368,7 +499,17 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 560,
     maxHeight: "94%",
+    gap: 10,
+    overflow: "visible",
+  },
+  cardScroll: {
+    flexShrink: 1,
+    overflow: "visible",
+  },
+  cardScrollContent: {
     gap: 14,
+    paddingBottom: 2,
+    overflow: "visible",
   },
   header: {
     minHeight: 32,

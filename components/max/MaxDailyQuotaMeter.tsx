@@ -4,6 +4,7 @@ import { Animated, Text, View } from 'react-native';
 import { dailyQuotaRemainingAt, dailyQuotaView, type MaxDailyQuotaTone } from '../../app/max_call_daily_quota';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useAppRuntimeActive } from '../../app/runtime_app_state_store';
 import { useTheme } from '../ThemeContext';
 
 type Props = {
@@ -45,6 +46,13 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
   const reduceMotion = useReduceMotion();
   const [remainingSec, setRemainingSec] = useState(startRemainingSec);
 
+  // зачем (аудит нагрева 2026-08-26): счётчик минут звонка тикал ежесекундно и
+  // не смотрел на AppState, а экран звонка при сворачивании НЕ размонтируется
+  // (12с grace). Цифра при этом не врёт: tick() считает остаток от абсолютного
+  // runningSinceMs и вызывается ПЕРВЫМ делом при возврате — пропущенные секунды
+  // догоняются одним пересчётом, а не накапливаются.
+  const appActive = useAppRuntimeActive();
+
   useEffect(() => {
     const tick = () => setRemainingSec(
       runningSinceMs === null
@@ -52,10 +60,10 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
         : dailyQuotaRemainingAt(startRemainingSec, runningSinceMs, Date.now()),
     );
     tick();
-    if (runningSinceMs === null) return undefined;
+    if (runningSinceMs === null || !appActive) return undefined;
     const id = setInterval(tick, 1_000);
     return () => clearInterval(id);
-  }, [runningSinceMs, startRemainingSec]);
+  }, [runningSinceMs, startRemainingSec, appActive]);
 
   const model = dailyQuotaView(remainingSec, maxSec);
   const totalMinutes = Math.floor(Math.max(0, maxSec) / 60);

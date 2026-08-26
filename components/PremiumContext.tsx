@@ -504,8 +504,29 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    // зачем (аудит нагрева 2026-08-26): при недоступном Firestore этот бэкофф
+    // повторял попытки и в СВЁРНУТОМ приложении — сеть в фоне без пользы.
+    // В фоне не планируем новую попытку, а взводим одноразовый слушатель: доступ
+    // (Plus/VIP) не может «залипнуть» выключенным — возврат на передний план
+    // немедленно перезапускает start(), причём быстрее обычного бэкоффа.
+    let backgroundResumeSub: { remove: () => void } | null = null;
+    const clearBackgroundResume = () => {
+      backgroundResumeSub?.remove();
+      backgroundResumeSub = null;
+    };
+
     const scheduleRetry = () => {
       if (!isListenerCurrent() || retryTimer) return;
+      if (AppState.currentState !== 'active') {
+        if (backgroundResumeSub) return;
+        backgroundResumeSub = AppState.addEventListener('change', (state) => {
+          if (state !== 'active') return;
+          clearBackgroundResume();
+          if (!isListenerCurrent()) return;
+          void start();
+        });
+        return;
+      }
       const delay = PREMIUM_LISTENER_RETRY_BACKOFF_MS[
         Math.min(retryAttempt, PREMIUM_LISTENER_RETRY_BACKOFF_MS.length - 1)
       ]!;
@@ -663,6 +684,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     return () => {
       cancelled = true;
       clearRetry();
+      clearBackgroundResume();
       if (unsubscribe) unsubscribe();
       unsubscribe = null;
     };

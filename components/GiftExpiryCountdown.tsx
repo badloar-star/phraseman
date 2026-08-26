@@ -30,6 +30,7 @@ import Reanimated, {
   withSpring,
 } from 'react-native-reanimated';
 import { GIFT_EXPIRY_WARN_MS, giftCountdownLabel } from '../app/gift_expiry';
+import { useAppRuntimeActive } from '../app/runtime_app_state_store';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -110,7 +111,15 @@ export default function GiftExpiryCountdown({
     wasWarnRef.current = fresh <= GIFT_EXPIRY_WARN_MS;
   }, [expiresAtMs]);
 
+  // зачем (аудит нагрева 2026-08-26): useFocusEffect ловит только уход НА ДРУГОЙ
+  // ЭКРАН, но не сворачивание приложения — таймер подарка тикал в кармане.
+  // Момент истечения и порог «последние 6 часов» остаются честными: tick()
+  // считает от абсолютного expiresAtMs и вызывается ПЕРВЫМ делом при возврате,
+  // поэтому пропущенное за время в фоне отработает одним пересчётом.
+  const appActive = useAppRuntimeActive();
+
   useFocusEffect(useCallback(() => {
+    if (!appActive) return undefined;
     const tick = () => {
       const left = Math.max(0, expiresAtMs - Date.now());
       setMsLeft(left);
@@ -140,7 +149,7 @@ export default function GiftExpiryCountdown({
       cancelAnimation(pulse);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expiresAtMs, compact, reduceMotion, meaning]));
+  }, [expiresAtMs, compact, reduceMotion, meaning, appActive]));
 
   const warn = meaning === 'expiry' && msLeft <= GIFT_EXPIRY_WARN_MS;
   // зачем: владелец не смог прочитать таймер — цвет наследовался от акцента
@@ -161,6 +170,7 @@ export default function GiftExpiryCountdown({
     ? triLang(lang, {
       ru: `Действует ещё ${hoursLeft} ч ${minutesLeft} мин`,
       uk: `Діє ще ${hoursLeft} год ${minutesLeft} хв`,
+      en: `Active for ${hoursLeft}h ${minutesLeft}m more`,
       es: `Activo ${hoursLeft} h ${minutesLeft} min más`,
       'pt-BR': `Ativo por mais ${hoursLeft} h ${minutesLeft} min`,
       vi: `Còn hiệu lực ${hoursLeft} giờ ${minutesLeft} phút`,
@@ -171,6 +181,7 @@ export default function GiftExpiryCountdown({
     : triLang(lang, {
       ru: `Подарок сгорит через ${hoursLeft} ч ${minutesLeft} мин`,
       uk: `Подарунок згорить через ${hoursLeft} год ${minutesLeft} хв`,
+      en: `The gift expires in ${hoursLeft}h ${minutesLeft}m`,
       es: `El regalo caduca en ${hoursLeft} h ${minutesLeft} min`,
       'pt-BR': `O presente expira em ${hoursLeft} h ${minutesLeft} min`,
       vi: `Quà sẽ hết hạn sau ${hoursLeft} giờ ${minutesLeft} phút`,

@@ -321,6 +321,12 @@ function MaxCallSessionContent() {
   // уезжало влево на каждом куске — «не успеть прочитать ничего».
   const [fullAssistantText, setFullAssistantText] = useState('');
   const haloRef = useRef<MaxCallHaloRef>(null);
+  // зачем (аудит нагрева 2026-08-26): флаш субтитров тикает 250мс и делает
+  // setState. Свернули приложение — новых дельт нет (звонок мьютится и через
+  // 12с завершается), но тик продолжал будить JS-поток до размонтирования
+  // экрана. Гасим его флагом, а не гардом в эффекте: эффект владеет ВСЕМ
+  // звонком, и его перезапуск оборвал бы соединение.
+  const transcriptFlushActiveRef = useRef(true);
   const callOrbRef = useRef<MaxCallOrbRef>(null);
   // Таймер подсказок создаётся в onCallActivated из limits минта (per-CEFR
   // порог, кэп на сессию); до active — null, подсказки невозможны.
@@ -556,7 +562,9 @@ function MaxCallSessionContent() {
     });
 
     // Один setState раз в 250мс: дельты копятся в буфере, наружу — снапшот.
+    transcriptFlushActiveRef.current = true;
     const flushId = setInterval(() => {
+      if (!transcriptFlushActiveRef.current) return;
       const snapshot = bufferRef.current.flushIfDue();
       if (snapshot) setTurns(snapshot);
     }, TRANSCRIPT_FLUSH_MS);
@@ -767,9 +775,14 @@ function MaxCallSessionContent() {
           clearTimeout(graceTimerRef.current);
           graceTimerRef.current = null;
         }
+        // Вернулись — сразу отдаём накопленный снапшот, чтобы субтитры не отставали.
+        transcriptFlushActiveRef.current = true;
+        const pending = bufferRef.current.flushIfDue();
+        if (pending) setTurns(pending);
         clientRef.current?.setMuted(mutedRef.current);
         return;
       }
+      transcriptFlushActiveRef.current = false;
       dispatchTutorUi({ type: 'background' });
       clientRef.current?.setMuted(true);
       if (graceTimerRef.current === null) {

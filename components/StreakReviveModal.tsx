@@ -15,6 +15,7 @@ import { useRouter } from 'expo-router';
 // зачем: сырой useSafeAreaInsets в свежесмонтированном модале даёт 0 до прихода
 // нативных метрик — контент прыгал; стабильная обёртка знает инсеты синхронно.
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { useAppRuntimeActive } from '../app/runtime_app_state_store';
 import { useLang } from './LangContext';
 import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
@@ -98,9 +99,16 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
 
   useEffect(() => { if (!visible) setBusy(false); }, [visible]);
 
+  // зачем (аудит нагрева 2026-08-26): секундный тик жил под одним visible, а
+  // Modal не размонтируется при сворачивании — таймер будил JS-поток в кармане.
+  // Гейтуем по AppState. Дедлайн при этом остаётся честным: tick() считает от
+  // абсолютного expiresAt и вызывается ПЕРВЫМ делом при возврате, поэтому
+  // истёкшее за время в фоне окно закроется сразу, а не досчитает вхолостую.
+  const appActive = useAppRuntimeActive();
+
   // Countdown timer — auto-closes when offer expires
   useEffect(() => {
-    if (!visible || !offer?.expiresAt) return;
+    if (!visible || !appActive || !offer?.expiresAt) return;
     const tick = () => {
       const remaining = offer.expiresAt - Date.now();
       setMsLeft(remaining);
@@ -109,7 +117,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [visible, offer?.expiresAt, onClose]);
+  }, [visible, appActive, offer?.expiresAt, onClose]);
 
   const cost = offer?.costShards ?? 0;
   const lostStreak = offer?.lostStreak ?? 0;

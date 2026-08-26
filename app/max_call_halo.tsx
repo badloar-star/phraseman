@@ -13,6 +13,7 @@ import Animated, {
 import { orbAudioResponse, smoothRemoteAudioLevel } from './max_call_audio_level';
 import { MAX_CALL_HYBRID } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 /**
  * Ореол экрана MAX-звонка (спека, раздел 6).
@@ -87,9 +88,15 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
   const breath = useSharedValue(1);
   const micPulse = useSharedValue(1);
 
-  // Дыхание: бесконечный цикл только когда фаза этого просит и motion разрешён.
+  // зачем (аудит нагрева 2026-08-26): экран звонка НЕ размонтируется при
+  // сворачивании — AppState-обработчик max_call_session даёт 12 секунд grace,
+  // — поэтому вечное «дыхание» продолжало греть UI-поток в кармане, а звонок
+  // сворачивают часто. Performance Bible требует фокус+AppState для withRepeat(-1).
+  const runtimeActive = useRuntimeActive();
+
+  // Дыхание: бесконечный цикл только когда фаза этого просит, экран активен и motion разрешён.
   useEffect(() => {
-    if (breathing && !reduceMotion) {
+    if (breathing && runtimeActive && !reduceMotion) {
       breath.value = withRepeat(
         withSequence(
           withTiming(MAX_CALL_HYBRID.breathScale, {
@@ -108,7 +115,7 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
     return () => {
       cancelAnimation(breath);
     };
-  }, [breathing, reduceMotion, breath]);
+  }, [breathing, runtimeActive, reduceMotion, breath]);
 
   useImperativeHandle(
     ref,

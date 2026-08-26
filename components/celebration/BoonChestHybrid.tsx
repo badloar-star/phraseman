@@ -19,6 +19,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useAppRuntimeActive } from '../../app/runtime_app_state_store';
 import { SUITE } from '../../constants/motionHybrid';
 import { useTheme } from '../ThemeContext';
 import DuoPressable from '../DuoPressable';
@@ -89,8 +90,14 @@ function BoonChestHybrid({
   // видимость самого движка запускаем сразу (карточка входит из света),
   // а фазу удара держим на отдельном булевом входе impactArmed.
   const [impactArmed, setImpactArmed] = useState(false);
+  // зачем (аудит нагрева 2026-08-26): покачивание сундука — withRepeat(-1) под
+  // одним лишь visible. Modal не размонтируется при сворачивании приложения,
+  // поэтому свёрнутый с открытым сундуком телефон продолжал греться. Фокус
+  // экрана для Modal неприменим (он всегда сверху), нужен именно AppState —
+  // берём общий стор, одна подписка на всё приложение.
+  const appActive = useAppRuntimeActive();
   useEffect(() => {
-    if (!visible || phase !== 'box' || impactArmed || reduceMotion) {
+    if (!visible || !appActive || phase !== 'box' || impactArmed || reduceMotion) {
       cancelAnimation(idleFloat);
       idleFloat.value = 0;
       return;
@@ -104,7 +111,7 @@ function BoonChestHybrid({
     );
     return () => cancelAnimation(idleFloat);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, phase, impactArmed, reduceMotion]);
+  }, [visible, appActive, phase, impactArmed, reduceMotion]);
   const idleFloatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: idleFloat.value }] }));
 
   // зачем: карточка входит из света сразу (visible), удар героя — только по тапу (armed).

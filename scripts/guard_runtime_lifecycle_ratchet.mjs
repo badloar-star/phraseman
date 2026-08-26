@@ -66,7 +66,10 @@ const readSource = (relative) => fs.readFileSync(path.join(root, relative), 'utf
 const problems = [];
 
 // Проверка 1 (тест «keeps every repeating-motion file explicitly owned»): покрытие.
-const discovered = ['app', 'components', 'hooks']
+// зачем (аудит нагрева 2026-08-26): 'modules' здесь НЕ было — как и в самом
+// тесте. Учебные режимы (modules/learning-v2/modes/*) крутили вечные анимации
+// вне поля зрения любого сторожа. Список корней обязан совпадать с тестом.
+const discovered = ['app', 'components', 'hooks', 'modules']
   .flatMap(walk)
   .filter((file) => hasRepeatingMotion(readSource(file)))
   .sort();

@@ -36,7 +36,11 @@ function walk(relativeDir: string): string[] {
 }
 
 function discoverRepeatingMotionFiles(): string[] {
-  return ['app', 'components', 'hooks']
+  // зачем (аудит нагрева 2026-08-26): 'modules' здесь НЕ было, и три вечные
+  // анимации учебных режимов (modules/learning-v2/modes/*) не видел ни один
+  // сторож — при том что упражнения занимают основное время в приложении.
+  // Слепая зона закрыта; тот же пробел был у аллоулиста setInterval.
+  return ['app', 'components', 'hooks', 'modules']
     .flatMap(walk)
     .filter((file) => {
       const source = read(file);
@@ -188,6 +192,15 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     'Orb layers breathe only while the owner grants visibility on focused foreground runtime with reduced motion off; inactive phases are pinned to the static frame and every shared value is cancelled.',
     ['useRuntimeActive(ownerVisible)', 'if (!runtimeActive || reduceMotion)', 'cancelAnimation(shellPhase)'],
   ),
+  // зачем (аудит нагрева 2026-08-26): пульс подсказки жил под одним reduceMotion.
+  // Оверлей размонтируется при закрытии, но при СВОРАЧИВАНИИ приложения остаётся
+  // смонтированным — цикл грел UI-поток в кармане. Фокус экрана здесь избыточен
+  // (оверлей поверх активного урока), решает именно AppState.
+  'components/learning-v2/LearningV2NewWordEncounterOverlay.tsx': {
+    owner: 'unmounting_modal',
+    reason: 'Hint pulse runs only while the app is foregrounded (shared AppState store); the overlay itself unmounts on close, so a screen-focus hook would be redundant.',
+    requiredTokens: ['const appActive = useAppRuntimeActive()', 'if (reduceMotion || !appActive) return'],
+  },
   'components/league/LeagueCompetitionScene.tsx': guarded('League beams, emblem float and confetti loops use screen focus and AppState.'),
   'components/league/LeagueMyPositionBar.tsx': guarded('My-position rank glow loop uses screen focus and AppState.'),
   'components/league/LeagueChestTeaserModal.tsx': owned('Chest teaser rays and bob run only while the modal is visible and stop on cleanup.', ['if (!visible) return null', 'if (!visible) return']),
@@ -229,6 +242,23 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/paywall/PaywallMotion.tsx': guarded('Paywall motion loops use screen focus and AppState.'),
   'components/reward_v2/RewardCardV2.tsx': runtime('Reward halo requires focused foreground runtime without replaying its entrance.', ['!rewardRuntimeActive', 'entrancePlayedRef.current', 'haloLoop.stop()']),
   'components/stats/AiBlockNote.tsx': guarded('AI note motion uses screen focus and AppState.'),
+  // зачем (аудит нагрева 2026-08-26): учебные режимы жили в слепой зоне сторожа
+  // (корня 'modules' не было в списке). Пульс play-кнопки был привязан только к
+  // playing, а аудио проекта не глушится по AppState — свёрнутое приложение
+  // продолжало греться. Кольцо прогресса намеренно НЕ гардим: это конечная
+  // анимация хода звука, иначе она перезапускалась бы с нуля при возврате из фона.
+  'modules/learning-v2/modes/listen_choose_mode_v1.tsx': runtime(
+    'Play-button pulse is the only infinite loop here and sleeps off-screen/background; the finite progress ring intentionally follows playback instead.',
+    ['if (playing && runtimeActive && !reducedMotion)', 'cancelAnimation(pulse)'],
+  ),
+  // Те же грабли: полоски записи и пульс эталона. Гард держим ОДИН на родителя —
+  // шесть полосок получают active пропом, поэтому одна подписка заменяет шесть.
+  // Сами recording/referencePlaying остаются честными: под гард уходят анимации,
+  // а не смысл экрана (иконка Ⅱ/▶ и подпись «идёт запись»).
+  'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': runtime(
+    'Waveform bars and reference pulse sleep off-screen/background through a single parent-level runtime gate; playback flags stay truthful.',
+    ['active={recording && runtimeActive}', 'referencePlaying && runtimeActive && !reducedMotion'],
+  ),
   'components/ui/V2Backdrop.tsx': guarded('Tournament backdrop breathing runs only on a focused foreground screen and respects reduced motion.'),
   // Старый TodayAmbientCompass не возвращается: новый Compass использует
   // отдельную поверхность с явным владельцем активности выше.

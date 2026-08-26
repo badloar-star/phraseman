@@ -31,6 +31,20 @@ const validAttemptRestoreConsumeFingerprint = createHash('sha256').update(JSON.s
   attemptsGranted: 3,
 })).digest('hex');
 
+const validSessionAttemptRuneFingerprint = createHash('sha256').update(JSON.stringify({
+  schemaVersion: 1,
+  ownerStableId: 'account-a',
+  accountGeneration: 3,
+  sessionId: 'lesson-session-1',
+  questionId: 'question-1',
+  recoveryOrdinal: 1,
+  runeDelta: -25,
+  attemptsGranted: 3,
+  balanceBefore: 100,
+  balanceAfter: 75,
+  reason: 'restore_all_session_attempts',
+})).digest('hex');
+
 const operation = {
   operationId: 'purchase-123',
   ownerStableId: 'account-a',
@@ -272,6 +286,45 @@ describe('PhoneState economy bridge', () => {
       payload: expect.objectContaining({
         delta: 0,
         grant: expect.objectContaining({ kind: 'attempt_restore_inventory_consume' }),
+      }),
+    }), { idempotencyKey: `economy:${operationId}` });
+  });
+
+  test('session attempt rune recovery validates the debit and grant inside one zero-delta exact result', async () => {
+    const commit = jest.fn(async () => ({ duplicate: false }));
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const operationId = 'session_attempt_recovery:lesson-session-1:1';
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId,
+      kind: 'session_attempt_recovery_rune_debit',
+      entitlementId: operationId,
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-session-attempt-recovery-rune-operation.v1',
+        operationId,
+        ownerStableId: 'account-a',
+        accountGeneration: 3,
+        sessionId: 'lesson-session-1',
+        questionId: 'question-1',
+        recoveryOrdinal: 1,
+        runeDelta: -25,
+        attemptsGranted: 3,
+        balanceBefore: 100,
+        balanceAfter: 75,
+        reason: 'restore_all_session_attempts',
+        createdAtMs: 102,
+        requestFingerprint: validSessionAttemptRuneFingerprint,
+      },
+    })).resolves.toBe(true);
+    expect(commit).toHaveBeenCalledWith(expect.objectContaining({
+      payload: expect.objectContaining({
+        delta: 0,
+        grant: expect.objectContaining({ kind: 'session_attempt_recovery_rune_debit' }),
       }),
     }), { idempotencyKey: `economy:${operationId}` });
   });

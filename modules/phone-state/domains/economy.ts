@@ -19,6 +19,7 @@ const ZERO_DELTA_GRANT_KINDS = new Set([
   'star_credit_ack',
   'attempt_restore_inventory_credit',
   'attempt_restore_inventory_consume',
+  'session_attempt_recovery_rune_debit',
 ]);
 const STAR_CREDIT_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -96,6 +97,23 @@ export type AttemptRestoreGiftConsumeV1 = Readonly<{
 
 export type AttemptRestoreGiftOperationV1 = AttemptRestoreGiftCreditV1 | AttemptRestoreGiftConsumeV1;
 
+export type SessionAttemptRuneRecoveryExactResultV1 = Readonly<{
+  schemaVersion: 'client-session-attempt-recovery-rune-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  accountGeneration: number;
+  sessionId: string;
+  questionId: string;
+  recoveryOrdinal: number;
+  runeDelta: -25;
+  attemptsGranted: 3;
+  balanceBefore: number;
+  balanceAfter: number;
+  reason: 'restore_all_session_attempts';
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
 export type AttemptRestoreGiftInventoryState = Readonly<{
   credits: readonly AttemptRestoreGiftCreditV1[];
   consumes: readonly AttemptRestoreGiftConsumeV1[];
@@ -129,6 +147,10 @@ export function attemptRestoreGiftCreditOperationId(
 
 export function attemptRestoreGiftConsumeOperationId(sessionId: string, recoveryOrdinal: number): string {
   return `attempt_restore_consume:${sessionId}:${recoveryOrdinal}`;
+}
+
+export function sessionAttemptRuneRecoveryOperationId(sessionId: string, recoveryOrdinal: number): string {
+  return `session_attempt_recovery:${sessionId}:${recoveryOrdinal}`;
 }
 
 export function parseAttemptRestoreGiftCreditExactResult(input: unknown): AttemptRestoreGiftCreditV1 | null {
@@ -175,6 +197,38 @@ export function parseAttemptRestoreGiftConsumeExactResult(input: unknown): Attem
   return value as AttemptRestoreGiftConsumeV1;
 }
 
+export function parseSessionAttemptRuneRecoveryExactResult(
+  input: unknown,
+): SessionAttemptRuneRecoveryExactResultV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<SessionAttemptRuneRecoveryExactResultV1>;
+  const sessionId = String(value.sessionId ?? '');
+  const questionId = String(value.questionId ?? '');
+  const recoveryOrdinal = Number(value.recoveryOrdinal);
+  const balanceBefore = Number(value.balanceBefore);
+  const balanceAfter = Number(value.balanceAfter);
+  if (!exactKeys(value, [
+    'schemaVersion', 'operationId', 'ownerStableId', 'accountGeneration', 'sessionId',
+    'questionId', 'recoveryOrdinal', 'runeDelta', 'attemptsGranted', 'balanceBefore',
+    'balanceAfter', 'reason', 'createdAtMs', 'requestFingerprint',
+  ])
+    || value.schemaVersion !== 'client-session-attempt-recovery-rune-operation.v1'
+    || !validOwnerStableId(value.ownerStableId)
+    || !Number.isSafeInteger(value.accountGeneration) || Number(value.accountGeneration) < 1
+    || !ATTEMPT_RESTORE_ENTITY_ID.test(sessionId)
+    || !ATTEMPT_RESTORE_ENTITY_ID.test(questionId)
+    || !Number.isSafeInteger(recoveryOrdinal) || recoveryOrdinal < 1 || recoveryOrdinal > 1_000
+    || value.operationId !== sessionAttemptRuneRecoveryOperationId(sessionId, recoveryOrdinal)
+    || value.runeDelta !== -25
+    || value.attemptsGranted !== 3
+    || !Number.isSafeInteger(balanceBefore) || balanceBefore < 25
+    || !Number.isSafeInteger(balanceAfter) || balanceAfter !== balanceBefore - 25
+    || value.reason !== 'restore_all_session_attempts'
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as SessionAttemptRuneRecoveryExactResultV1;
+}
+
 export async function hasValidAttemptRestoreGiftCreditFingerprint(input: unknown): Promise<boolean> {
   const exact = parseAttemptRestoreGiftCreditExactResult(input);
   if (!exact) return false;
@@ -205,6 +259,28 @@ export async function hasValidAttemptRestoreGiftConsumeFingerprint(input: unknow
       recoveryOrdinal: exact.recoveryOrdinal,
       quantity: exact.quantity,
       attemptsGranted: exact.attemptsGranted,
+    }),
+  );
+  return expected === exact.requestFingerprint;
+}
+
+export async function hasValidSessionAttemptRuneRecoveryFingerprint(input: unknown): Promise<boolean> {
+  const exact = parseSessionAttemptRuneRecoveryExactResult(input);
+  if (!exact) return false;
+  const expected = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      ownerStableId: exact.ownerStableId,
+      accountGeneration: exact.accountGeneration,
+      sessionId: exact.sessionId,
+      questionId: exact.questionId,
+      recoveryOrdinal: exact.recoveryOrdinal,
+      runeDelta: exact.runeDelta,
+      attemptsGranted: exact.attemptsGranted,
+      balanceBefore: exact.balanceBefore,
+      balanceAfter: exact.balanceAfter,
+      reason: exact.reason,
     }),
   );
   return expected === exact.requestFingerprint;
@@ -374,6 +450,9 @@ function validate(operation: OrdinaryEconomyOperation): void {
   const attemptRestoreConsume = operation.grant?.kind === 'attempt_restore_inventory_consume'
     ? parseAttemptRestoreGiftConsumeExactResult(operation.grant.exactResult)
     : null;
+  const sessionAttemptRuneRecovery = operation.grant?.kind === 'session_attempt_recovery_rune_debit'
+    ? parseSessionAttemptRuneRecoveryExactResult(operation.grant.exactResult)
+    : null;
   if (
     !operation.operationId.trim()
     || !Number.isSafeInteger(operation.delta)
@@ -400,6 +479,11 @@ function validate(operation: OrdinaryEconomyOperation): void {
         || operation.delta !== 0
         || operation.operationId !== attemptRestoreConsume.operationId
         || operation.grant.entitlementId !== attemptRestoreConsume.operationId))
+    || (operation.grant?.kind === 'session_attempt_recovery_rune_debit'
+      && (!sessionAttemptRuneRecovery
+        || operation.delta !== 0
+        || operation.operationId !== sessionAttemptRuneRecovery.operationId
+        || operation.grant.entitlementId !== sessionAttemptRuneRecovery.operationId))
   ) throw new Error('phone_state_economy_composite_invalid');
 }
 

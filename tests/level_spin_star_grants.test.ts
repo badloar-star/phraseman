@@ -164,6 +164,7 @@ test('valid legacy floor projection migrates without losing its visible values',
   await expect(recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false }))
     .resolves.toEqual({ balance: 12, earnedTotal: 3 });
   expect(JSON.parse(storage[levelSpinStarProjectionKey('account-a')])).toMatchObject({
+    schemaVersion: 'client-level-spin-star-projection.v3',
     serverBalance: 12, serverEarnedTotal: 3, serverSeq: 0,
   });
 });

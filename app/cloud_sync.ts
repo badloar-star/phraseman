@@ -673,6 +673,12 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'level_spin_star_projection_v1:',
   'level_spin_star_prepared_v1:',
   'level_spin_star_operation_v1:',
+  // Permanent attempt-restore gift journal and crash-safe reservations.
+  'attempt_restore_gift_projection_v1:',
+  'attempt_restore_gift_outbox_v1:',
+  'attempt_restore_gift_prepared_credit_v1:',
+  'attempt_restore_gift_prepared_consume_v1:',
+  'attempt_restore_gift_operation_v1:',
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;

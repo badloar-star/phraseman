@@ -15,9 +15,13 @@ import {
 import { withStorageLock } from './storage_mutex';
 import {
   levelSpinStarCreditAckOperationId,
+  hasValidSessionAttemptRuneRecoveryFingerprint,
+  parseSessionAttemptRuneRecoveryExactResult,
+  sessionAttemptRuneRecoveryOperationId,
   parseLevelSpinStarCreditAckExactResult,
   parseLevelSpinStarCreditExactResult,
   type LevelSpinStarCreditExactResult,
+  type SessionAttemptRuneRecoveryExactResultV1,
 } from '../modules/phone-state/domains/economy';
 
 const STAR_AMOUNTS = Object.freeze({
@@ -28,11 +32,12 @@ const STAR_AMOUNTS = Object.freeze({
 type LevelSpinStarGiftId = keyof typeof STAR_AMOUNTS;
 type LevelSpinStarLane = 'base' | 'premium';
 type LevelSpinStarOperation = LevelSpinStarCreditExactResult;
+type LocalRuneOperation = LevelSpinStarOperation | SessionAttemptRuneRecoveryExactResultV1;
 
 type LevelSpinStarProjection = Readonly<{
-  schemaVersion: 'client-level-spin-star-projection.v2';
+  schemaVersion: 'client-level-spin-star-projection.v3';
   ownerStableId: string;
-  operations: readonly LevelSpinStarOperation[];
+  operations: readonly LocalRuneOperation[];
   acknowledged: Readonly<Record<string, string>>;
   serverBalance: number;
   serverEarnedTotal: number;
@@ -75,6 +80,10 @@ function operationStorageKey(ownerStableId: string, operationId: string): string
   return `level_spin_star_operation_v1:${encodeURIComponent(ownerStableId)}:${encodeURIComponent(operationId)}`;
 }
 
+export function sessionAttemptRuneOperationStorageKey(ownerStableId: string, operationId: string): string {
+  return operationStorageKey(ownerStableId, operationId);
+}
+
 async function fingerprintFor(input: Readonly<{
   ownerStableId: string; requestId: string; lane: LevelSpinStarLane; deliveryToken?: string;
   giftId: LevelSpinStarGiftId; amount: number;
@@ -91,9 +100,41 @@ async function fingerprintFor(input: Readonly<{
   }));
 }
 
-function parseOperation(value: unknown, ownerStableId: string): LevelSpinStarOperation | null {
+async function fingerprintForSessionAttemptRecovery(input: Readonly<{
+  ownerStableId: string;
+  accountGeneration: number;
+  sessionId: string;
+  questionId: string;
+  recoveryOrdinal: number;
+  balanceBefore: number;
+  balanceAfter: number;
+}>): Promise<string> {
+  return Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, JSON.stringify({
+    schemaVersion: 1,
+    ownerStableId: input.ownerStableId,
+    accountGeneration: input.accountGeneration,
+    sessionId: input.sessionId,
+    questionId: input.questionId,
+    recoveryOrdinal: input.recoveryOrdinal,
+    runeDelta: -25,
+    attemptsGranted: 3,
+    balanceBefore: input.balanceBefore,
+    balanceAfter: input.balanceAfter,
+    reason: 'restore_all_session_attempts',
+  }));
+}
+
+function parseStarOperation(value: unknown, ownerStableId: string): LevelSpinStarOperation | null {
   const entry = parseLevelSpinStarCreditExactResult(value);
   return entry?.ownerStableId === ownerStableId ? entry : null;
+}
+
+function parseLocalRuneOperation(value: unknown, ownerStableId: string): LocalRuneOperation | null {
+  return parseStarOperation(value, ownerStableId)
+    ?? (() => {
+      const entry = parseSessionAttemptRuneRecoveryExactResult(value);
+      return entry?.ownerStableId === ownerStableId ? entry : null;
+    })();
 }
 
 async function hasValidFingerprint(operation: LevelSpinStarOperation): Promise<boolean> {
@@ -108,6 +149,12 @@ async function hasValidFingerprint(operation: LevelSpinStarOperation): Promise<b
   return expected === operation.requestFingerprint;
 }
 
+async function hasValidLocalRuneFingerprint(operation: LocalRuneOperation): Promise<boolean> {
+  return operation.schemaVersion === 'client-level-spin-star-operation.v1'
+    ? hasValidFingerprint(operation)
+    : hasValidSessionAttemptRuneRecoveryFingerprint(operation);
+}
+
 function parseOutbox(raw: string | null, ownerStableId: string): LevelSpinStarOperation[] {
   if (raw === null) return [];
   try {
@@ -116,7 +163,7 @@ function parseOutbox(raw: string | null, ownerStableId: string): LevelSpinStarOp
       throw new Error('level_spin_star_outbox_corrupt');
     }
     return parsed.map((value) => {
-      const operation = parseOperation(value, ownerStableId);
+      const operation = parseStarOperation(value, ownerStableId);
       if (!operation) throw new Error('level_spin_star_outbox_corrupt');
       return operation;
     });
@@ -132,7 +179,7 @@ async function readOutbox(ownerStableId: string): Promise<LevelSpinStarOperation
 
 function emptyProjection(ownerStableId: string): LevelSpinStarProjection {
   return Object.freeze({
-    schemaVersion: 'client-level-spin-star-projection.v2',
+    schemaVersion: 'client-level-spin-star-projection.v3',
     ownerStableId,
     operations: Object.freeze([]),
     acknowledged: Object.freeze({}),
@@ -145,8 +192,14 @@ function emptyProjection(ownerStableId: string): LevelSpinStarProjection {
 function parseProjection(raw: string | null, ownerStableId: string): LevelSpinStarProjection {
   if (raw === null) return emptyProjection(ownerStableId);
   try {
-    const value = JSON.parse(raw) as Partial<LevelSpinStarProjection>;
-    if (value?.schemaVersion !== 'client-level-spin-star-projection.v2'
+    const value = JSON.parse(raw) as Omit<Partial<LevelSpinStarProjection>, 'schemaVersion'> & {
+      schemaVersion?: unknown;
+      serverBalanceFloor?: unknown;
+      serverEarnedFloor?: unknown;
+    };
+    const supportedSchema = value?.schemaVersion === 'client-level-spin-star-projection.v2'
+      || value?.schemaVersion === 'client-level-spin-star-projection.v3';
+    if (!supportedSchema
       || value.ownerStableId !== ownerStableId
       || !Array.isArray(value.operations)
       || value.operations.length > MAX_PENDING_STAR_OPERATIONS
@@ -158,10 +211,14 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       || !Number.isSafeInteger(value.serverSeq ?? 0) || Number(value.serverSeq ?? 0) < 0) {
       throw new Error('level_spin_star_projection_corrupt');
     }
-    const operations = value.operations.map((candidate) => parseOperation(candidate, ownerStableId));
+    const operations = value.operations.map((candidate) => (
+      value.schemaVersion === 'client-level-spin-star-projection.v2'
+        ? parseStarOperation(candidate, ownerStableId)
+        : parseLocalRuneOperation(candidate, ownerStableId)
+    ));
     if (operations.some((candidate) => !candidate)) throw new Error('level_spin_star_projection_corrupt');
-    const unique = new Map<string, LevelSpinStarOperation>();
-    for (const operation of operations as LevelSpinStarOperation[]) {
+    const unique = new Map<string, LocalRuneOperation>();
+    for (const operation of operations as LocalRuneOperation[]) {
       const prior = unique.get(operation.operationId);
       if (prior && prior.requestFingerprint !== operation.requestFingerprint) {
         throw new Error('level_spin_star_request_conflict');
@@ -174,18 +231,20 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
         throw new Error('level_spin_star_projection_corrupt');
       }
       const operation = unique.get(operationId);
-      if (!operation || operation.requestFingerprint !== fingerprint) {
+      if (!operation
+        || operation.schemaVersion !== 'client-level-spin-star-operation.v1'
+        || operation.requestFingerprint !== fingerprint) {
         throw new Error('level_spin_star_projection_corrupt');
       }
       acknowledged[operationId] = fingerprint;
     }
     return Object.freeze({
-      schemaVersion: 'client-level-spin-star-projection.v2',
+      schemaVersion: 'client-level-spin-star-projection.v3',
       ownerStableId,
       operations: Object.freeze([...unique.values()].sort((left, right) => left.operationId.localeCompare(right.operationId))),
       acknowledged: Object.freeze(acknowledged),
-      serverBalance: Number(value.serverBalance ?? (value as { serverBalanceFloor?: unknown }).serverBalanceFloor),
-      serverEarnedTotal: Number(value.serverEarnedTotal ?? (value as { serverEarnedFloor?: unknown }).serverEarnedFloor),
+      serverBalance: Number(value.serverBalance ?? value.serverBalanceFloor),
+      serverEarnedTotal: Number(value.serverEarnedTotal ?? value.serverEarnedFloor),
       serverSeq: Number(value.serverSeq ?? 0),
     });
   } catch (error) {
@@ -205,7 +264,7 @@ function parsePrepared(raw: string | null, ownerStableId: string): LevelSpinStar
       throw new Error('level_spin_star_prepared_corrupt');
     }
     return parsed.map((candidate) => {
-      const operation = parseOperation(candidate, ownerStableId);
+      const operation = parseStarOperation(candidate, ownerStableId);
       if (!operation) throw new Error('level_spin_star_prepared_corrupt');
       return operation;
     });
@@ -217,16 +276,20 @@ function parsePrepared(raw: string | null, ownerStableId: string): LevelSpinStar
 
 function unacknowledgedTotal(projection: LevelSpinStarProjection): number {
   return projection.operations.reduce((total, operation) => (
-    projection.acknowledged[operation.operationId] === operation.requestFingerprint
-      ? total
-      : total + operation.amount
+    operation.schemaVersion === 'client-session-attempt-recovery-rune-operation.v1'
+      ? total + operation.runeDelta
+      : projection.acknowledged[operation.operationId] === operation.requestFingerprint
+        ? total
+        : total + operation.amount
   ), 0);
 }
 
 function visibleProjection(projection: LevelSpinStarProjection): Readonly<{ balance: number; earnedTotal: number }> {
   const overlay = unacknowledgedTotal(projection);
+  const balance = projection.serverBalance + overlay;
+  if (!Number.isSafeInteger(balance) || balance < 0) throw new Error('level_spin_star_balance_invalid');
   return Object.freeze({
-    balance: projection.serverBalance + overlay,
+    balance,
     // level_spin_grant is a ledger grant, not competitive earned progress.
     earnedTotal: projection.serverEarnedTotal,
   });
@@ -234,7 +297,7 @@ function visibleProjection(projection: LevelSpinStarProjection): Readonly<{ bala
 
 function withOperations(
   projection: LevelSpinStarProjection,
-  operations: readonly LevelSpinStarOperation[],
+  operations: readonly LocalRuneOperation[],
 ): LevelSpinStarProjection {
   const merged = new Map(projection.operations.map((operation) => [operation.operationId, operation]));
   for (const operation of operations) {
@@ -250,18 +313,51 @@ function withOperations(
   });
 }
 
+function inferredServerBalanceFromRecoveryOperations(projection: LevelSpinStarProjection): number | null {
+  const ordered = [...projection.operations].sort((left, right) => (
+    left.createdAtMs - right.createdAtMs || left.operationId.localeCompare(right.operationId)
+  ));
+  let localOverlayBefore = 0;
+  let inferred: number | null = null;
+  for (const operation of ordered) {
+    if (operation.schemaVersion === 'client-level-spin-star-operation.v1') {
+      if (projection.acknowledged[operation.operationId] !== operation.requestFingerprint) {
+        localOverlayBefore += operation.amount;
+      }
+      continue;
+    }
+    const candidate = operation.balanceBefore - localOverlayBefore;
+    if (!Number.isSafeInteger(candidate) || candidate < 0) {
+      throw new Error('level_spin_star_projection_corrupt');
+    }
+    if (inferred !== null && inferred !== candidate) {
+      throw new Error('level_spin_star_projection_corrupt');
+    }
+    inferred = candidate;
+    localOverlayBefore += operation.runeDelta;
+  }
+  return inferred;
+}
+
 function observeCurrentSnapshot(projection: LevelSpinStarProjection): LevelSpinStarProjection {
   const progress = getAppSnapshot().progress;
   if (!progress) return projection;
   const visibleBalance = Math.max(0, Math.trunc(progress.stars ?? 0));
   const visibleEarned = Math.max(0, Math.trunc(progress.starsEarnedTotal ?? 0));
+  const inferredServerBalance = inferredServerBalanceFromRecoveryOperations(projection);
+  if (projection.serverSeq === 0
+    && inferredServerBalance !== null
+    && projection.serverBalance !== 0
+    && projection.serverBalance !== inferredServerBalance) {
+    throw new Error('level_spin_star_projection_corrupt');
+  }
   return Object.freeze({
     ...projection,
     serverBalance: projection.serverSeq === 0
-      ? Math.max(
-        projection.serverBalance,
-        Math.max(0, visibleBalance - unacknowledgedTotal(projection)),
-      )
+      ? inferredServerBalance ?? Math.max(
+          projection.serverBalance,
+          Math.max(0, visibleBalance - unacknowledgedTotal(projection)),
+        )
       : projection.serverBalance,
     serverEarnedTotal: Math.max(projection.serverEarnedTotal, visibleEarned),
   });
@@ -290,20 +386,20 @@ function publishProjection(token: AccountGenerationToken, projection: LevelSpinS
   } : {});
 }
 
-async function storedOperationsForOwner(ownerStableId: string): Promise<readonly LevelSpinStarOperation[]> {
+async function storedOperationsForOwner(ownerStableId: string): Promise<readonly LocalRuneOperation[]> {
   const allKeys = await AsyncStorage.getAllKeys();
   if (allKeys.length > 16_384) throw new Error('level_spin_star_storage_scan_too_large');
   const prefix = `level_spin_star_operation_v1:${encodeURIComponent(ownerStableId)}:`;
   const keys = allKeys.filter((key) => key.startsWith(prefix)).sort();
   if (keys.length > MAX_PENDING_STAR_OPERATIONS) throw new Error('level_spin_star_history_too_large');
   const rows = await AsyncStorage.multiGet(keys);
-  const result: LevelSpinStarOperation[] = [];
+  const result: LocalRuneOperation[] = [];
   for (const [, raw] of rows) {
     if (raw === null) continue;
     let parsed: unknown;
     try { parsed = JSON.parse(raw) as unknown; } catch { throw new Error('level_spin_star_operation_corrupt'); }
-    const operation = parseOperation(parsed, ownerStableId);
-    if (!operation || !await hasValidFingerprint(operation)) throw new Error('level_spin_star_operation_corrupt');
+    const operation = parseLocalRuneOperation(parsed, ownerStableId);
+    if (!operation || !await hasValidLocalRuneFingerprint(operation)) throw new Error('level_spin_star_operation_corrupt');
     result.push(operation);
   }
   return Object.freeze(result);
@@ -381,6 +477,7 @@ async function recoverProjection(
       projection.acknowledged[operation.operationId] !== operation.requestFingerprint
     )).map((operation) => [operation.operationId, operation]));
     for (const operation of projection.operations) {
+      if (operation.schemaVersion !== 'client-level-spin-star-operation.v1') continue;
       if (projection.acknowledged[operation.operationId] === operation.requestFingerprint) continue;
       const prior = pending.get(operation.operationId);
       if (prior && prior.requestFingerprint !== operation.requestFingerprint) {
@@ -390,7 +487,8 @@ async function recoverProjection(
     }
     if (pending.size > MAX_PENDING_STAR_OPERATIONS) throw new Error('level_spin_star_outbox_full');
     const compactedOperations = projection.operations.filter((operation) => (
-      projection.acknowledged[operation.operationId] === operation.requestFingerprint
+      operation.schemaVersion === 'client-level-spin-star-operation.v1'
+      && projection.acknowledged[operation.operationId] === operation.requestFingerprint
     ));
     if (compactedOperations.length > 0) {
       if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
@@ -518,6 +616,114 @@ export async function peekStoredLevelSpinStarsForBoot(
   }
 }
 
+export type PreparedSessionAttemptRuneRecovery = Readonly<{
+  duplicate: boolean;
+  operation: SessionAttemptRuneRecoveryExactResultV1;
+  balanceBefore: number;
+  balanceAfter: number;
+  durableWrites: readonly (readonly [string, string])[];
+}>;
+
+/**
+ * Builds the closed rune-debit + attempts-grant receipt and its exact local
+ * projection writes. This function never writes them: the attempts recovery
+ * coordinator owns the one multiSet that also persists the attempts receipt.
+ */
+export async function prepareSessionAttemptRuneRecovery(input: Readonly<{
+  token: AccountGenerationToken;
+  sessionId: string;
+  questionId: string;
+  recoveryOrdinal: number;
+  createdAtMs?: number;
+}>): Promise<PreparedSessionAttemptRuneRecovery> {
+  const ownerStableId = input.token.stableId?.trim();
+  if (!ownerStableId || !isCurrentAccountGeneration(input.token, ownerStableId)) {
+    throw new Error('level_spin_star_identity_changed');
+  }
+  const operationId = sessionAttemptRuneRecoveryOperationId(input.sessionId, input.recoveryOrdinal);
+  return withAccountTransitionLock(async (lease) => {
+    await recoverProjection(input.token, lease);
+    return withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
+        throw new Error('level_spin_star_identity_changed');
+      }
+      const operationKey = operationStorageKey(ownerStableId, operationId);
+      const [projectionRaw, existingRaw] = await Promise.all([
+        AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId)),
+        AsyncStorage.getItem(operationKey),
+      ]);
+      const projection = parseProjection(projectionRaw, ownerStableId);
+      if (existingRaw !== null) {
+        let parsed: unknown;
+        try { parsed = JSON.parse(existingRaw); } catch { throw new Error('level_spin_star_operation_corrupt'); }
+        const existing = parseSessionAttemptRuneRecoveryExactResult(parsed);
+        if (!existing || existing.ownerStableId !== ownerStableId
+          || !await hasValidSessionAttemptRuneRecoveryFingerprint(existing)) {
+          throw new Error('level_spin_star_operation_corrupt');
+        }
+        if (existing.operationId !== operationId
+          || existing.sessionId !== input.sessionId
+          || existing.questionId !== input.questionId
+          || existing.recoveryOrdinal !== input.recoveryOrdinal) {
+          throw new Error('level_spin_star_request_conflict');
+        }
+        return Object.freeze({
+          duplicate: true,
+          operation: existing,
+          balanceBefore: existing.balanceBefore,
+          balanceAfter: existing.balanceAfter,
+          durableWrites: Object.freeze([]),
+        });
+      }
+
+      const balanceBefore = visibleProjection(projection).balance;
+      if (balanceBefore < 25) throw new Error('session_attempt_runes_insufficient');
+      const balanceAfter = balanceBefore - 25;
+      const operation: SessionAttemptRuneRecoveryExactResultV1 = Object.freeze({
+        schemaVersion: 'client-session-attempt-recovery-rune-operation.v1',
+        operationId,
+        ownerStableId,
+        accountGeneration: input.token.generation,
+        sessionId: input.sessionId,
+        questionId: input.questionId,
+        recoveryOrdinal: input.recoveryOrdinal,
+        runeDelta: -25,
+        attemptsGranted: 3,
+        balanceBefore,
+        balanceAfter,
+        reason: 'restore_all_session_attempts',
+        createdAtMs: input.createdAtMs ?? Date.now(),
+        requestFingerprint: await fingerprintForSessionAttemptRecovery({
+          ownerStableId,
+          accountGeneration: input.token.generation,
+          sessionId: input.sessionId,
+          questionId: input.questionId,
+          recoveryOrdinal: input.recoveryOrdinal,
+          balanceBefore,
+          balanceAfter,
+        }),
+      });
+      if (!parseSessionAttemptRuneRecoveryExactResult(operation)) {
+        throw new Error('session_attempt_rune_operation_invalid');
+      }
+      const nextProjection = withOperations(projection, [operation]);
+      if (visibleProjection(nextProjection).balance !== balanceAfter) {
+        throw new Error('session_attempt_rune_projection_invalid');
+      }
+      return Object.freeze({
+        duplicate: false,
+        operation,
+        balanceBefore,
+        balanceAfter,
+        durableWrites: Object.freeze([
+          Object.freeze([operationKey, JSON.stringify(operation)] as const),
+          Object.freeze([levelSpinStarProjectionKey(ownerStableId), JSON.stringify(nextProjection)] as const),
+        ]),
+      });
+    });
+  });
+}
+
 export async function enqueueLevelSpinStarGrant(
   input: Readonly<{
     token: AccountGenerationToken;
@@ -585,7 +791,7 @@ export async function enqueueLevelSpinStarGrant(
     try { existingValue = existingRaw ? JSON.parse(existingRaw) as unknown : null; } catch {
       throw new Error('level_spin_star_operation_corrupt');
     }
-    const existing = existingRaw ? parseOperation(existingValue, ownerStableId) : null;
+    const existing = existingRaw ? parseStarOperation(existingValue, ownerStableId) : null;
     if (existingRaw && !existing) throw new Error('level_spin_star_operation_corrupt');
     if (existing) {
       if (existing.requestFingerprint !== requestFingerprint) throw new Error('level_spin_star_request_conflict');

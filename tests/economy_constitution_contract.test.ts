@@ -172,6 +172,11 @@ describe('Economy Constitution — client authority is a permanent source contra
       'level_spin_star_projection_v1:',
       'level_spin_star_prepared_v1:',
       'level_spin_star_operation_v1:',
+      'attempt_restore_gift_projection_v1:',
+      'attempt_restore_gift_outbox_v1:',
+      'attempt_restore_gift_prepared_credit_v1:',
+      'attempt_restore_gift_prepared_consume_v1:',
+      'attempt_restore_gift_operation_v1:',
     ]) expect(cloudSync).toContain(`'${prefix}'`);
   });
 
@@ -184,6 +189,9 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(client).toContain('? balance : current.serverBalance');
     expect(client).not.toMatch(/Math\.max\(current\.serverBalance/);
     expect(client).toContain('ack.requestFingerprint !== operation.requestFingerprint');
+    expect(client).toContain("schemaVersion: 'client-level-spin-star-projection.v3'");
+    expect(client).toContain("schemaVersion: 'client-session-attempt-recovery-rune-operation.v1'");
+    expect(client).not.toMatch(/export\s+(?:async\s+)?function\s+spendRunes/);
     expect(client).not.toMatch(/stars:\s*ack\.starsBalance/);
     expect(friends).toContain('mergeLevelSpinServerStars(token');
     expect(bootstrap).toContain('recoverAndHydrateLevelSpinStarGrants(token)');

@@ -1355,13 +1355,13 @@ export default function LessonComplete() {
                   entityId={`${studyTarget}:${lessonId}:${completionAttemptId}`}
                   entityLabel={`Урок ${lessonId}`}
                   lang={lang}
-                  title={triLang(lang, { ru: 'Как тебе урок?', en: 'How was the lesson?', uk: 'Як тобі урок?', es: '¿Qué tal la lección?',
-                    'pt-BR': 'O que achou da lição?', vi: 'Bạn thấy bài học thế nào?',
-                    id: 'Bagaimana pelajarannya?', tr: 'Ders nasıldı?', pl: 'Jak podobała się lekcja?',
+                  title={triLang(lang, { ru: 'Всё было понятно?', en: 'Did everything make sense?', uk: 'Усе було зрозуміло?', es: '¿Se entendió todo?',
+                    'pt-BR': 'Deu para entender tudo?', vi: 'Mọi thứ có dễ hiểu không?',
+                    id: 'Semuanya jelas?', tr: 'Her şey anlaşıldı mı?', pl: 'Wszystko było jasne?',
                   })}
-                  placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
-                    'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
-                    id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+                  placeholder={triLang(lang, { ru: 'Где застрял? Что объяснить иначе?', en: 'Where did you get stuck? What to explain better?', uk: 'Де застряг? Що пояснити інакше?', es: '¿Dónde te atascaste? ¿Qué explicar mejor?',
+                    'pt-BR': 'Onde travou? O que explicar melhor?', vi: 'Bạn mắc ở đâu? Cần giải thích lại điều gì?',
+                    id: 'Di mana kamu tersendat? Apa yang perlu dijelaskan ulang?', tr: 'Nerede takıldın? Ne daha iyi anlatılmalı?', pl: 'Gdzie utknąłeś? Co wyjaśnić inaczej?',
                   })}
                   sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
                     vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',

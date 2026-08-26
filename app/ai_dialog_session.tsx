@@ -2212,13 +2212,13 @@ function AiDialogSession() {
                 entityId={`${sessionKey}:dialogue:${scenario.id}`}
                 entityLabel={dialogScenarioTitle(scenario, lang)}
                 lang={lang}
-                title={triLang(lang, { ru: 'Как тебе диалог?', en: 'How was the dialogue?', uk: 'Як тобі діалог?', es: '¿Qué tal el diálogo?',
-                  'pt-BR': 'O que achou do diálogo?', vi: 'Bạn thấy đoạn hội thoại thế nào?',
-                  id: 'Bagaimana dialognya?', tr: 'Diyalog nasıldı?', pl: 'Jak podobał się dialog?',
+                title={triLang(lang, { ru: 'Похоже на живой разговор?', en: 'Did that feel like a real conversation?', uk: 'Схоже на живу розмову?', es: '¿Pareció una conversación real?',
+                  'pt-BR': 'Pareceu uma conversa de verdade?', vi: 'Có giống một cuộc trò chuyện thật không?',
+                  id: 'Terasa seperti percakapan nyata?', tr: 'Gerçek bir sohbet gibi miydi?', pl: 'Czy to brzmiało jak żywa rozmowa?',
                 })}
-                placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
-                  'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
-                  id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+                placeholder={triLang(lang, { ru: 'Где собеседник звучал странно?', en: 'Where did your partner sound off?', uk: 'Де співрозмовник звучав дивно?', es: '¿Dónde sonó raro tu interlocutor?',
+                  'pt-BR': 'Onde o interlocutor soou estranho?', vi: 'Người trò chuyện nghe kỳ ở chỗ nào?',
+                  id: 'Di mana lawan bicara terdengar aneh?', tr: 'Karşındaki nerede tuhaf konuştu?', pl: 'Gdzie rozmówca brzmiał dziwnie?',
                 })}
                 sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
                   vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',

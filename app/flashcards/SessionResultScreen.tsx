@@ -204,13 +204,13 @@ function SessionResultScreenImpl({
                     entityId={feedback.entityId}
                     entityLabel={feedback.entityLabel}
                     lang={lang}
-                    title={triLang(lang, { ru: 'Как тебе словарь?', en: 'How was the vocabulary?', uk: 'Як тобі словник?', es: '¿Qué tal el vocabulario?',
-                      'pt-BR': 'O que achou do vocabulário?', vi: 'Bạn thấy phần từ vựng thế nào?',
-                      id: 'Bagaimana kosakatanya?', tr: 'Kelime bilgisi nasıldı?', pl: 'Jak podobało się słownictwo?',
+                    title={triLang(lang, { ru: 'Слова того стоили?', en: 'Were these words worth it?', uk: 'Слова були варті того?', es: '¿Valieron la pena estas palabras?',
+                      'pt-BR': 'As palavras valeram a pena?', vi: 'Những từ này có đáng học không?',
+                      id: 'Kata-katanya sepadan?', tr: 'Bu kelimeler değdi mi?', pl: 'Czy te słowa były warte?',
                     })}
-                    placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
-                      'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
-                      id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+                    placeholder={triLang(lang, { ru: 'Каких слов не хватило? Какие лишние?', en: 'Which words were missing? Which were pointless?', uk: 'Яких слів забракло? Які зайві?', es: '¿Qué palabras faltaron? ¿Cuáles sobraban?',
+                      'pt-BR': 'Que palavras faltaram? Quais sobraram?', vi: 'Thiếu những từ nào? Từ nào thừa?',
+                      id: 'Kata apa yang kurang? Mana yang tak perlu?', tr: 'Hangi kelimeler eksikti? Hangileri gereksiz?', pl: 'Jakich słów zabrakło? Które zbędne?',
                     })}
                     sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
                       vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',

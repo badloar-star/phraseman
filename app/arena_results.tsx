@@ -99,13 +99,13 @@ function ArenaFeedbackCard({ kind, matchId, lang }: { kind: 'arena_blitz' | 'are
       kind={kind}
       entityId={matchId}
       lang={lang}
-      title={triLang(lang, { ru: 'Как тебе арена?', en: 'How was the arena?', uk: 'Як тобі арена?', es: '¿Qué tal la arena?',
-        'pt-BR': 'O que achou da arena?', vi: 'Bạn thấy đấu trường thế nào?',
-        id: 'Bagaimana arenanya?', tr: 'Arena nasıldı?', pl: 'Jak podobała się arena?',
+      title={triLang(lang, { ru: 'Бой был честным?', en: 'Was that a fair fight?', uk: 'Бій був чесним?', es: '¿Fue un combate justo?',
+        'pt-BR': 'A luta foi justa?', vi: 'Trận đấu có công bằng không?',
+        id: 'Apakah duelnya adil?', tr: 'Dövüş adil miydi?', pl: 'Czy walka była uczciwa?',
       })}
-      placeholder={triLang(lang, { ru: 'Что понравилось, что улучшить?', en: 'What did you like, what should improve?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?',
-        'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?',
-        id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?',
+      placeholder={triLang(lang, { ru: 'Соперник по силам? Времени хватало?', en: 'Was your rival a match? Enough time?', uk: 'Суперник по силах? Часу вистачало?', es: '¿El rival estaba a tu altura? ¿Hubo tiempo?',
+        'pt-BR': 'O rival era páreo? Deu tempo?', vi: 'Đối thủ có ngang sức? Thời gian có đủ?',
+        id: 'Lawannya sepadan? Waktunya cukup?', tr: 'Rakip dengin miydi? Süre yetti mi?', pl: 'Rywal był równy? Czasu starczyło?',
       })}
       sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
         vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',

@@ -100,9 +100,10 @@ def render_card(row, index):
     legal_badge = ''
     if legal:
         legal_badge = '<span class="tag tag-legal">не трогать: закон</span>'
+    done_badge = '<span class="tag tag-done">сделано</span>' if row.get('applied') else ''
 
     return """
-    <article class="row" data-sev="{sev}" data-kind="{kind}" data-id="{fid}">
+    <article class="row{done_cls}" data-sev="{sev}" data-kind="{kind}" data-id="{fid}" data-done="{done}">
       <label class="pick">
         <input type="checkbox" class="cb" data-id="{fid}" checked>
         <span class="box" aria-hidden="true"></span>
@@ -111,7 +112,7 @@ def render_card(row, index):
         <div class="meta">
           <span class="tag tag-{sev}">{sev_ru}</span>
           <span class="tag">{kind_ru}</span>
-          {legal_badge}
+          {legal_badge}{done_badge}
           <span class="loc">{loc}</span>
         </div>
         <div class="pair">
@@ -130,9 +131,12 @@ def render_card(row, index):
         sev=esc(sev),
         kind=esc(kind),
         fid=esc(fid),
+        done_cls=(" done" if row.get("applied") else ""),
+        done=("1" if row.get("applied") else "0"),
         sev_ru=esc(SEVERITY_RU.get(sev, sev)),
         kind_ru=esc(KIND_RU.get(kind, kind)),
         legal_badge=legal_badge,
+        done_badge=done_badge,
         loc=loc,
         current=esc(row.get('current')) or '<i>—</i>',
         proposed=esc(row.get('proposed')) or '<i>—</i>',
@@ -210,6 +214,8 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 .tag-medium{background:rgba(201,168,76,.18);color:var(--gold)}
 .tag-low{background:var(--raise);color:var(--ink-3)}
 .tag-legal{background:rgba(127,176,105,.16);color:#8fc47a}
+.tag-done{background:rgba(127,176,105,.24);color:#9ed389}
+.row.done .now .txt{color:#9ed389}
 .loc{font-size:11.5px;color:var(--ink-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
 

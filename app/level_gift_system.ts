@@ -16,6 +16,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import {
+  requireGiftAccountStorageKey,
   writeGiftAccountValue,
 } from './gift_account_storage';
 import {
@@ -84,7 +85,7 @@ import {
   getSpinCustomAvatarGiftWeight,
   listSpinCustomAvatarGiftCandidates,
 } from './spin_avatar_gift_pool';
-import { parseStrictOwnedIdMap } from './spin_gift_storage_integrity';
+import { parseBonusEnergyStorageValue, parseStrictOwnedIdMap } from './spin_gift_storage_integrity';
 import {
   OWNED_THEMES_KEY,
   mergeThemeModeLists,
@@ -295,7 +296,7 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
   },
   club_boost_free: {
     title: { 'pt-BR': 'Boost de liga grátis', vi: 'Tăng lực giải đấu miễn phí', id: 'Boost liga gratis', tr: 'Ücretsiz lig boostu', pl: 'Darmowy boost ligi' },
-    desc: { 'pt-BR': 'A próxima ativação do boost da liga não custa pérolas', vi: 'Lần kích hoạt tăng lực giải đấu tiếp theo không tốn xu', id: 'Aktivasi boost liga berikutnya tidak membutuhkan koin', tr: 'Bir sonraki lig boostu etkinleştirmesi jeton harcamaz', pl: 'Następna aktywacja boostu ligi nie kosztuje monet' },
+    desc: { 'pt-BR': 'A próxima ativação do boost da liga não custa pérolas', vi: 'Lần kích hoạt tăng lực giải đấu tiếp theo không tốn ngọc trai', id: 'Aktivasi boost liga berikutnya tidak membutuhkan mutiara', tr: 'Bir sonraki lig boostu etkinleştirmesi inci harcamaz', pl: 'Następna aktywacja boostu ligi nie kosztuje pereł' },
   },
   xp_2x_48h: {
     title: { 'pt-BR': '+100% XP por 48 horas', vi: '+100% XP trong 48 giờ', id: '+100% XP selama 48 jam', tr: '48 saat +%100 XP', pl: '+100% XP przez 48 godz.' },
@@ -384,6 +385,7 @@ export function giftTitleForLang(g: GiftDef, lang: Lang): string {
   return triLang(lang, {
     ru: g.titleRU,
     uk: g.titleUK,
+    en: g.titleRU,
     es: g.titleES ?? g.titleRU,
     'pt-BR': planned?.['pt-BR'] ?? g.titleES ?? g.titleRU,
     vi: planned?.vi ?? g.titleES ?? g.titleRU,
@@ -398,6 +400,7 @@ export function giftDescForLang(g: GiftDef, lang: Lang): string {
   return triLang(lang, {
     ru: g.descRU,
     uk: g.descUK,
+    en: g.descRU,
     es: g.descES ?? g.descRU,
     'pt-BR': planned?.['pt-BR'] ?? g.descES ?? g.descRU,
     vi: planned?.vi ?? g.descES ?? g.descRU,
@@ -451,6 +454,7 @@ export function giftLocaleStrings(lang: Lang, g: GiftDef): { title: string; desc
 const GIFT_RARITY_UI_LABEL: Record<GiftRarity, {
   ru: string;
   uk: string;
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;
@@ -461,6 +465,7 @@ const GIFT_RARITY_UI_LABEL: Record<GiftRarity, {
   common: {
     ru: 'Обычный',
     uk: 'Звичайний',
+    en: 'Common',
     es: 'Común',
     'pt-BR': 'Comum',
     vi: 'Thường',
@@ -471,6 +476,7 @@ const GIFT_RARITY_UI_LABEL: Record<GiftRarity, {
   rare: {
     ru: 'Редкий',
     uk: 'Рідкісний',
+    en: 'Rare',
     es: 'Raro',
     'pt-BR': 'Raro',
     vi: 'Hiếm',
@@ -481,6 +487,7 @@ const GIFT_RARITY_UI_LABEL: Record<GiftRarity, {
   epic: {
     ru: '✨ Эпический',
     uk: '✨ Епічний',
+    en: '✨ Epic',
     es: '✨ Épico',
     'pt-BR': '✨ Épico',
     vi: '✨ Sử thi',
@@ -496,6 +503,7 @@ export function giftRarityUiLabel(rarity: GiftRarity | string | undefined | null
   return triLang(lang, {
     ru: label.ru,
     uk: label.uk,
+    en: label.en,
     es: label.es,
     'pt-BR': label['pt-BR'],
     vi: label.vi,
@@ -1665,12 +1673,16 @@ type LevelGiftEffectReceipt = {
   hint?: { key: string; target: number };
   energyBonus?: {
     amount: number;
+    /** Temporary denominator increase. Optional only for legacy prepared receipts. */
+    capacity?: number;
     expiresAt: number;
     energyTarget: number;
     energyBoostAlreadyActive: boolean;
   };
   energyFull?: {
     target: number;
+    bonusCapacity?: number;
+    bonusExpiresAt?: number;
   };
   multiplier?: {
     multiplier: number;
@@ -1874,13 +1886,22 @@ const isLevelGiftEffectReceipt = (value: unknown): value is LevelGiftEffectRecei
     || typeof value.hint.key !== 'string' || !value.hint.key
     || !Number.isSafeInteger(value.hint.target) || Number(value.hint.target) < 0)) return false;
   if (value.energyBonus !== undefined && (!isPlainRecord(value.energyBonus)
-    || !hasOnlyKeys(value.energyBonus, ['amount', 'expiresAt', 'energyTarget', 'energyBoostAlreadyActive'])
+    || !hasOnlyKeys(value.energyBonus, ['amount', 'capacity', 'expiresAt', 'energyTarget', 'energyBoostAlreadyActive'])
     || !Number.isSafeInteger(value.energyBonus.amount) || Number(value.energyBonus.amount) < 1
+    || (value.energyBonus.capacity !== undefined
+      && (!Number.isSafeInteger(value.energyBonus.capacity)
+        || Number(value.energyBonus.capacity) < Number(value.energyBonus.amount)))
     || !isFiniteNumber(value.energyBonus.expiresAt) || Number(value.energyBonus.expiresAt) <= 0
     || !isFiniteNumber(value.energyBonus.energyTarget) || Number(value.energyBonus.energyTarget) < 0
     || typeof value.energyBonus.energyBoostAlreadyActive !== 'boolean')) return false;
-  if (value.energyFull !== undefined && (!isPlainRecord(value.energyFull) || !hasOnlyKeys(value.energyFull, ['target'])
-    || !isFiniteNumber(value.energyFull.target) || Number(value.energyFull.target) < 0)) return false;
+  if (value.energyFull !== undefined && (!isPlainRecord(value.energyFull)
+    || !hasOnlyKeys(value.energyFull, ['target', 'bonusCapacity', 'bonusExpiresAt'])
+    || !isFiniteNumber(value.energyFull.target) || Number(value.energyFull.target) < 0
+    || (value.energyFull.bonusCapacity !== undefined
+      && (!Number.isSafeInteger(value.energyFull.bonusCapacity) || Number(value.energyFull.bonusCapacity) < 0))
+    || (value.energyFull.bonusExpiresAt !== undefined
+      && (!isFiniteNumber(value.energyFull.bonusExpiresAt) || Number(value.energyFull.bonusExpiresAt) <= 0))
+    || ((value.energyFull.bonusCapacity === undefined) !== (value.energyFull.bonusExpiresAt === undefined)))) return false;
   if (value.multiplier !== undefined && (!isPlainRecord(value.multiplier)
     || !hasOnlyKeys(value.multiplier, ['multiplier', 'expiresAt', 'xpBoostAlreadyActive'])
     || !isFiniteNumber(value.multiplier.multiplier) || Number(value.multiplier.multiplier) < 1
@@ -1998,12 +2019,13 @@ const applyEnergyBonusForOccurrence = async (
       status: 'prepared',
       energyBonus: {
         amount: (existing?.amount ?? 0) + n,
+        capacity: (existing?.capacity ?? 0) + n,
         expiresAt: getTomorrowMidnightMs(),
         // Legacy field name retained for replaying already-prepared receipts.
         // It now snapshots the unchanged base pool; the granted N lives only
         // in the account-scoped temporary bonus above.
         energyTarget: energyBase,
-        energyBoostAlreadyActive: existing !== null && (existing.amount ?? 0) > 0,
+        energyBoostAlreadyActive: existing !== null && (existing.capacity ?? 0) > 0,
       },
     };
   });
@@ -2017,8 +2039,10 @@ const applyEnergyBonusForOccurrence = async (
     throw new Error('level_gift_effect_account_changed');
   }
   const existing = await readBonusEnergyForMutation(accountToken);
+  const plannedCapacity = planned.capacity ?? planned.amount;
   const bonus: BonusEnergyState = {
     amount: Math.max(existing?.amount ?? 0, planned.amount),
+    capacity: Math.max(existing?.capacity ?? 0, plannedCapacity),
     expiresAt: Math.max(existing?.expiresAt ?? 0, planned.expiresAt),
   };
   await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
@@ -2032,6 +2056,81 @@ const applyEnergyBonusForOccurrence = async (
   return { success: true, energyBoostAlreadyActive: planned.energyBoostAlreadyActive };
 };
 
+const persistEnergyFullProjection = async (
+  planned: NonNullable<LevelGiftEffectReceipt['energyFull']>,
+  accountToken: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+  staged?: { occurrenceKey: string; receipt: LevelGiftEffectReceipt },
+): Promise<void> => {
+  await withAccountTransitionLock(async () => {
+    // Complete any legacy account-key materialization before entering the
+    // non-reentrant storage lock used by every energy writer.
+    await readBonusEnergyForMutation(accountToken);
+    const bonusStorageKey = requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken);
+    await withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+        throw new Error('level_gift_effect_account_changed');
+      }
+      const now = Date.now();
+      const [energyRaw, bonusRaw] = await Promise.all([
+        AsyncStorage.getItem('energy_state'),
+        AsyncStorage.getItem(bonusStorageKey),
+      ]);
+      let energyState: { lastRecoveryTime?: number } = {};
+      if (energyRaw) {
+        try {
+          const parsed = JSON.parse(energyRaw) as unknown;
+          if (isPlainRecord(parsed)) energyState = parsed;
+        } catch {
+          // Same self-healing boundary as EnergyContext: a torn legacy base
+          // snapshot must not permanently block a durable full-energy gift.
+        }
+      }
+      const inspectedBonus = parseBonusEnergyStorageValue(bonusRaw, now);
+      if (inspectedBonus.status === 'malformed') throw new Error('bonus_energy_storage_corrupt');
+      const activeBonus = inspectedBonus.status === 'valid' ? inspectedBonus.value : null;
+      const plannedCapacity = planned.bonusCapacity ?? activeBonus?.capacity ?? 0;
+      const plannedExpiresAt = planned.bonusExpiresAt ?? activeBonus?.expiresAt ?? 0;
+      const canFillPlannedBonus = activeBonus !== null
+        && plannedExpiresAt > now
+        && activeBonus.expiresAt === plannedExpiresAt;
+      const filledBonus = canFillPlannedBonus
+        ? {
+          ...activeBonus,
+          amount: Math.max(activeBonus.amount, Math.min(activeBonus.capacity, plannedCapacity)),
+        }
+        : activeBonus;
+      const writes: [string, string][] = [[
+        'energy_state',
+        JSON.stringify({
+          current: planned.target,
+          lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || now),
+        }),
+      ]];
+      if (filledBonus) writes.push([bonusStorageKey, JSON.stringify(filledBonus)]);
+      let appliedReceipt: LevelGiftEffectReceipt | null = null;
+      if (staged) {
+        const receipts = await readLevelGiftEffectReceipts();
+        const durable = receipts[staged.occurrenceKey];
+        if (!durable || durable.giftId !== staged.receipt.giftId
+          || (durable.status !== 'prepared' && durable.status !== 'applying')) {
+          throw new Error('level_gift_energy_full_receipt_conflict');
+        }
+        appliedReceipt = { ...durable, status: 'applied_unconfirmed' };
+        writes.push([LEVEL_GIFT_EFFECT_RECEIPTS_KEY, JSON.stringify({
+          ...receipts,
+          [staged.occurrenceKey]: appliedReceipt,
+        })]);
+      }
+      await AsyncStorage.multiSet(writes);
+      if (staged && appliedReceipt) staged.receipt = appliedReceipt;
+      if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+        throw new Error('level_gift_effect_account_changed');
+      }
+    });
+  }, accountTransitionLockLease);
+};
+
 const applyEnergyFullForOccurrence = async (
   id: 'energy_full',
   maxEnergy: number,
@@ -2039,11 +2138,20 @@ const applyEnergyFullForOccurrence = async (
   opts?: ApplyGiftOptions,
 ): Promise<boolean> => {
   const accountToken = opts?.accountToken ?? captureAccountGeneration();
-  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => ({
-    giftId: id,
-    status: 'prepared',
-    energyFull: { target: Math.max(0, maxEnergy) },
-  }));
+  const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
+    const activeBonus = await readBonusEnergyForMutation(accountToken);
+    return {
+      giftId: id,
+      status: 'prepared',
+      energyFull: {
+        target: Math.max(0, maxEnergy),
+        ...(activeBonus ? {
+          bonusCapacity: activeBonus.capacity,
+          bonusExpiresAt: activeBonus.expiresAt,
+        } : {}),
+      },
+    };
+  });
   if (!staged) return false;
   const planned = staged.receipt.energyFull;
   if (!planned) throw new Error('level_gift_energy_full_receipt_invalid');
@@ -2051,23 +2159,12 @@ const applyEnergyFullForOccurrence = async (
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
-  // зачем (аудит 2026-08-24): read-modify-write energy_state шёл БЕЗ замка, тогда
-  // как EnergyContext все свои записи держит под withStorageLock. Подарок «полная
-  // энергия», пришедший одновременно с тратой, читал старое состояние и перетирал
-  // свежее. Теперь чтение и запись — под тем же замком, что у остальных писателей.
-  await withStorageLock(async () => {
-    const energyRaw = await AsyncStorage.getItem('energy_state');
-    if (!isCurrentAccountGeneration(accountToken)) {
-      throw new Error('level_gift_effect_account_changed');
-    }
-    const energyState = energyRaw
-      ? JSON.parse(energyRaw) as { lastRecoveryTime?: number }
-      : {};
-    await AsyncStorage.setItem('energy_state', JSON.stringify({
-      current: planned.target,
-      lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || Date.now()),
-    }));
-  });
+  await persistEnergyFullProjection(
+    planned,
+    accountToken,
+    opts?.accountTransitionLockLease,
+    staged,
+  );
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
@@ -2605,9 +2702,14 @@ const applyEnergyBonusN = async (
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
     const existing = await readBonusEnergyForMutation(accountToken);
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
-    const energyBoostAlreadyActive = existing !== null && (existing.amount ?? 0) > 0;
+    const energyBoostAlreadyActive = existing !== null && (existing.capacity ?? 0) > 0;
     const accumulatedAmount = (existing?.amount ?? 0) + n;
-    const bonus: BonusEnergyState = { amount: accumulatedAmount, expiresAt: getTomorrowMidnightMs() };
+    const accumulatedCapacity = (existing?.capacity ?? 0) + n;
+    const bonus: BonusEnergyState = {
+      amount: accumulatedAmount,
+      capacity: accumulatedCapacity,
+      expiresAt: getTomorrowMidnightMs(),
+    };
     await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
     // The temporary pool is already born full. Refresh consumers without also
@@ -2779,19 +2881,11 @@ const applyGiftUnlocked = async (
         if (!isCurrentAccountGeneration(accountToken)) {
           throw new Error('level_gift_effect_account_changed');
         }
-        // зачем (аудит 2026-08-24): тот же класс гонки, что в applyEnergyFullForOccurrence —
-        // read-modify-write energy_state мимо withStorageLock перетирал свежую трату.
-        await withStorageLock(async () => {
-          const esRaw = await AsyncStorage.getItem('energy_state');
-          if (!isCurrentAccountGeneration(accountToken)) {
-            throw new Error('level_gift_effect_account_changed');
-          }
-          const es = esRaw
-            ? (JSON.parse(esRaw) as { current?: number; lastRecoveryTime?: number })
-            : {};
-          const lastRecoveryTime = Math.max(0, Number(es.lastRecoveryTime) || Date.now());
-          await AsyncStorage.setItem('energy_state', JSON.stringify({ current: maxEnergy, lastRecoveryTime }));
-        });
+        await persistEnergyFullProjection(
+          { target: maxEnergy },
+          accountToken,
+          opts?.accountTransitionLockLease,
+        );
         if (!isCurrentAccountGeneration(accountToken)) {
           throw new Error('level_gift_effect_account_changed');
         }
@@ -3328,7 +3422,10 @@ export const applyGift = async (
         // Other level gifts retain their existing local application behavior.
         result = serverOwnedPerk
           ? { success: true }
-          : await applyGiftUnlocked(effectiveGift, userName, currentEnergy, maxEnergy, setEnergy, opts);
+          : await applyGiftUnlocked(effectiveGift, userName, currentEnergy, maxEnergy, setEnergy, {
+            ...opts,
+            accountTransitionLockLease: lease,
+          });
         if (!result.success) {
           await callLevelGiftReservationAction({ ...actionBase, action: 'release_claim' }).catch(() => null);
           return result;

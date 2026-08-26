@@ -2114,7 +2114,7 @@ export default function SettingsMain() {
                         'Cần kiểm tra xu',
                         'Shard perlu diperiksa',
                         'Parçaların kontrol edilmesi gerekiyor',
-                        'Odłamki wymagają sprawdzenia',
+                        'Perły wymagają sprawdzenia',
                       ),
                       L(
                         'Смена аккаунта отменена: локальная очередь жемчуга повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',

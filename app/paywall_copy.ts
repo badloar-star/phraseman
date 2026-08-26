@@ -462,9 +462,9 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     title: { 'pt-BR': 'Repita lições sem limites', vi: 'Ôn lại bài học không giới hạn', id: 'Ulang pelajaran tanpa batas', tr: 'Dersleri sınırsız tekrar et', pl: 'Powtarzaj lekcje bez ograniczeń' },
     subtitle: {
       'pt-BR': 'Com Plus, qualquer lição concluída fica aberta para repetir sem gastar pérolas, mesmo quando o preço subiria a cada repetição.',
-      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn xu, kể cả khi giá tăng sau mỗi lần học lại.',
-      id: 'Dengan Plus, semua pelajaran selesai bisa diulang tanpa memakai fragmen, bahkan saat harga naik di tiap pengulangan.',
-      tr: 'Plus ile tamamlanan her dersi jeton harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
+      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn ngọc trai, kể cả khi giá tăng sau mỗi lần học lại.',
+      id: 'Dengan Plus, semua pelajaran selesai bisa diulang tanpa memakai mutiara, bahkan saat harga naik di tiap pengulangan.',
+      tr: 'Plus ile tamamlanan her dersi inci harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
       pl: 'Z Plus każda ukończona lekcja jest otwarta do powtórki bez monet, nawet gdy w trybie free cena rosłaby po każdym przejściu.',
     },
   },
@@ -1109,7 +1109,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
   ],
   mastery: [
     { 'pt-BR': 'Repetições ilimitadas de qualquer lição', vi: 'Ôn lại bất kỳ bài nào không giới hạn', id: 'Pengulangan pelajaran apa pun tanpa batas', tr: 'Her ders için sınırsız tekrar', pl: 'Powtórki dowolnej lekcji bez limitu' },
-    { 'pt-BR': 'Você não gasta pérolas ao repetir lições', vi: 'Không tốn xu khi học lại bài', id: 'Tidak memakai fragmen saat mengulang pelajaran', tr: 'Ders tekrarında jeton harcamazsın', pl: 'Nie wydajesz monet na powtórki lekcji' },
+    { 'pt-BR': 'Você não gasta pérolas ao repetir lições', vi: 'Không tốn ngọc trai khi học lại bài', id: 'Tidak memakai mutiara saat mengulang pelajaran', tr: 'Ders tekrarında inci harcamazsın', pl: 'Nie wydajesz pereł na powtórki lekcji' },
     { 'pt-BR': 'Treine até o resultado ideal sem pressão', vi: 'Luyện đến kết quả tốt nhất không áp lực', id: 'Latih sampai hasil ideal tanpa tekanan', tr: 'Baskı olmadan ideal sonuca kadar çalış', pl: 'Trenuj do idealnego wyniku bez presji' },
   ],
   stats: [

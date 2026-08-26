@@ -183,7 +183,7 @@ export const STR = {
   },
   pl: {
     title: 'Karty',
-    hubTitle: 'Odłamki',
+    hubTitle: 'Perły',
     empty: 'Brak kart', nothingFound: 'Nic nie znaleziono',
     emptySub: '',
     done: 'Wszystkie karty obejrzane!',

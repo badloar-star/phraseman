@@ -2,11 +2,17 @@ import { canonicalJsonWithLimit } from '../modules/phone-state/canonical';
 import type { PhoneStateScope } from '../modules/phone-state/account_secret';
 import type { PendingPersonalOperation } from '../modules/phone-state/contracts';
 import {
+  hasValidAttemptRestoreGiftConsumeFingerprint,
+  hasValidAttemptRestoreGiftCreditFingerprint,
   hasValidLevelSpinStarCreditRequestFingerprint,
   levelSpinStarCreditAckOperationId,
+  parseAttemptRestoreGiftConsumeExactResult,
+  parseAttemptRestoreGiftCreditExactResult,
   parseLevelSpinStarCreditAckExactResult,
   parseLevelSpinStarCreditExactResult,
   starCreditStateFromEconomyProjection,
+  type AttemptRestoreGiftConsumeV1,
+  type AttemptRestoreGiftCreditV1,
   type EconomyReducerState,
   type LevelSpinStarCreditAckExactResult,
   type LevelSpinStarCreditExactResult,
@@ -108,6 +114,20 @@ type NonMonetaryEconomyGrantInput = Readonly<{
   expectedOwnerStableId: string;
   expectedAccountGeneration: number;
   exactResult: LevelSpinStarCreditAckExactResult | unknown;
+}> | Readonly<{
+  operationId: string;
+  kind: 'attempt_restore_inventory_credit';
+  entitlementId: string;
+  expectedOwnerStableId: string;
+  expectedAccountGeneration: number;
+  exactResult: AttemptRestoreGiftCreditV1 | unknown;
+}> | Readonly<{
+  operationId: string;
+  kind: 'attempt_restore_inventory_consume';
+  entitlementId: string;
+  expectedOwnerStableId: string;
+  expectedAccountGeneration: number;
+  exactResult: AttemptRestoreGiftConsumeV1 | unknown;
 }>;
 
 export async function commitPhoneStateNonMonetaryEconomyGrant(
@@ -137,6 +157,32 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
       || active.scope.stableUid !== input.expectedOwnerStableId
       || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
   }
+  if (input.kind === 'attempt_restore_inventory_credit') {
+    const exact = parseAttemptRestoreGiftCreditExactResult(input.exactResult);
+    if (!exact
+      || input.operationId !== exact.operationId
+      || input.entitlementId !== exact.operationId
+      || input.expectedOwnerStableId !== exact.ownerStableId
+      || active.scope.stableUid !== input.expectedOwnerStableId
+      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
+    if (!await hasValidAttemptRestoreGiftCreditFingerprint(exact)
+      || runtime !== active
+      || active.scope.stableUid !== input.expectedOwnerStableId
+      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
+  }
+  if (input.kind === 'attempt_restore_inventory_consume') {
+    const exact = parseAttemptRestoreGiftConsumeExactResult(input.exactResult);
+    if (!exact
+      || input.operationId !== exact.operationId
+      || input.entitlementId !== exact.operationId
+      || input.expectedOwnerStableId !== exact.ownerStableId
+      || active.scope.stableUid !== input.expectedOwnerStableId
+      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
+    if (!await hasValidAttemptRestoreGiftConsumeFingerprint(exact)
+      || runtime !== active
+      || active.scope.stableUid !== input.expectedOwnerStableId
+      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
+  }
   const composite: OrdinaryEconomyOperation = Object.freeze({
     operationId: input.operationId,
     delta: 0,
@@ -162,7 +208,10 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
     });
     await active.store.commit(pending, { idempotencyKey: `economy:${input.operationId}` });
     if (runtime !== active) return false;
-    if ((input.kind === 'star_credit' || input.kind === 'star_credit_ack')
+    if ((input.kind === 'star_credit'
+      || input.kind === 'star_credit_ack'
+      || input.kind === 'attempt_restore_inventory_credit'
+      || input.kind === 'attempt_restore_inventory_consume')
       && (active.scope.stableUid !== input.expectedOwnerStableId
         || active.runtimeGeneration !== input.expectedAccountGeneration)) return false;
     active.triggerSync();

@@ -13,7 +13,13 @@ export type EconomyProjection = Readonly<{
   receipts: Readonly<Record<string, OrdinaryEconomyOperation>>;
 }>;
 
-const ZERO_DELTA_GRANT_KINDS = new Set(['premium_freeze', 'star_credit', 'star_credit_ack']);
+const ZERO_DELTA_GRANT_KINDS = new Set([
+  'premium_freeze',
+  'star_credit',
+  'star_credit_ack',
+  'attempt_restore_inventory_credit',
+  'attempt_restore_inventory_consume',
+]);
 const STAR_CREDIT_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
   stars_250: 250, stars_500: 500, stars_1000: 1_000,
@@ -21,6 +27,8 @@ const STAR_CREDIT_AMOUNTS = Object.freeze({
 const STAR_REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
 const STAR_DELIVERY_TOKEN = /^[A-Za-z0-9_-]{16,96}$/;
 const STAR_FINGERPRINT = /^[a-f0-9]{64}$/;
+const ATTEMPT_RESTORE_SPIN_REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
+const ATTEMPT_RESTORE_ENTITY_ID = /^[A-Za-z0-9_.:-]{1,160}$/;
 
 export type LevelSpinStarCreditExactResult = Readonly<{
   schemaVersion: 'client-level-spin-star-operation.v1';
@@ -61,6 +69,39 @@ export type LevelSpinStarCreditState = Readonly<{
   acknowledgements: readonly LevelSpinStarCreditAckExactResult[];
 }>;
 
+export type AttemptRestoreGiftCreditV1 = Readonly<{
+  schemaVersion: 'client-attempt-restore-gift-credit.v1';
+  operationId: string;
+  ownerStableId: string;
+  spinRequestId: string;
+  lane: 'base' | 'premium';
+  giftId: 'attempt_restore_all';
+  quantity: 1;
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
+export type AttemptRestoreGiftConsumeV1 = Readonly<{
+  schemaVersion: 'client-attempt-restore-gift-consume.v1';
+  operationId: string;
+  ownerStableId: string;
+  sessionId: string;
+  questionId: string;
+  recoveryOrdinal: number;
+  quantity: 1;
+  attemptsGranted: 3;
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
+export type AttemptRestoreGiftOperationV1 = AttemptRestoreGiftCreditV1 | AttemptRestoreGiftConsumeV1;
+
+export type AttemptRestoreGiftInventoryState = Readonly<{
+  credits: readonly AttemptRestoreGiftCreditV1[];
+  consumes: readonly AttemptRestoreGiftConsumeV1[];
+  count: number;
+}>;
+
 export function levelSpinStarCreditAckOperationId(operationId: string): string | null {
   const match = /^level_spin:([A-Za-z0-9_-]{16,80})\.(base|premium)$/.exec(operationId);
   return match ? `level_spin_ack:${match[1]}.${match[2]}` : null;
@@ -70,6 +111,129 @@ function exactKeys(value: object, allowed: readonly string[]): boolean {
   const keys = Object.keys(value).sort();
   return keys.length === allowed.length
     && keys.every((key, index) => key === [...allowed].sort()[index]);
+}
+
+function validOwnerStableId(value: unknown): value is string {
+  return typeof value === 'string'
+    && !!value.trim()
+    && !value.includes('/')
+    && value.length <= 160;
+}
+
+export function attemptRestoreGiftCreditOperationId(
+  spinRequestId: string,
+  lane: 'base' | 'premium',
+): string {
+  return `attempt_restore_credit:${spinRequestId}.${lane}`;
+}
+
+export function attemptRestoreGiftConsumeOperationId(sessionId: string, recoveryOrdinal: number): string {
+  return `attempt_restore_consume:${sessionId}:${recoveryOrdinal}`;
+}
+
+export function parseAttemptRestoreGiftCreditExactResult(input: unknown): AttemptRestoreGiftCreditV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<AttemptRestoreGiftCreditV1>;
+  const lane = value.lane === 'base' || value.lane === 'premium' ? value.lane : null;
+  const spinRequestId = String(value.spinRequestId ?? '');
+  if (!exactKeys(value, [
+    'schemaVersion', 'operationId', 'ownerStableId', 'spinRequestId', 'lane',
+    'giftId', 'quantity', 'createdAtMs', 'requestFingerprint',
+  ])
+    || value.schemaVersion !== 'client-attempt-restore-gift-credit.v1'
+    || !ATTEMPT_RESTORE_SPIN_REQUEST_ID.test(spinRequestId)
+    || !lane
+    || value.operationId !== attemptRestoreGiftCreditOperationId(spinRequestId, lane)
+    || !validOwnerStableId(value.ownerStableId)
+    || value.giftId !== 'attempt_restore_all'
+    || value.quantity !== 1
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as AttemptRestoreGiftCreditV1;
+}
+
+export function parseAttemptRestoreGiftConsumeExactResult(input: unknown): AttemptRestoreGiftConsumeV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<AttemptRestoreGiftConsumeV1>;
+  const sessionId = String(value.sessionId ?? '');
+  const questionId = String(value.questionId ?? '');
+  const recoveryOrdinal = Number(value.recoveryOrdinal);
+  if (!exactKeys(value, [
+    'schemaVersion', 'operationId', 'ownerStableId', 'sessionId', 'questionId',
+    'recoveryOrdinal', 'quantity', 'attemptsGranted', 'createdAtMs', 'requestFingerprint',
+  ])
+    || value.schemaVersion !== 'client-attempt-restore-gift-consume.v1'
+    || !ATTEMPT_RESTORE_ENTITY_ID.test(sessionId)
+    || !ATTEMPT_RESTORE_ENTITY_ID.test(questionId)
+    || !Number.isSafeInteger(recoveryOrdinal) || recoveryOrdinal < 1 || recoveryOrdinal > 1_000
+    || value.operationId !== attemptRestoreGiftConsumeOperationId(sessionId, recoveryOrdinal)
+    || !validOwnerStableId(value.ownerStableId)
+    || value.quantity !== 1
+    || value.attemptsGranted !== 3
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as AttemptRestoreGiftConsumeV1;
+}
+
+export async function hasValidAttemptRestoreGiftCreditFingerprint(input: unknown): Promise<boolean> {
+  const exact = parseAttemptRestoreGiftCreditExactResult(input);
+  if (!exact) return false;
+  const expected = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      ownerStableId: exact.ownerStableId,
+      spinRequestId: exact.spinRequestId,
+      lane: exact.lane,
+      giftId: exact.giftId,
+      quantity: exact.quantity,
+    }),
+  );
+  return expected === exact.requestFingerprint;
+}
+
+export async function hasValidAttemptRestoreGiftConsumeFingerprint(input: unknown): Promise<boolean> {
+  const exact = parseAttemptRestoreGiftConsumeExactResult(input);
+  if (!exact) return false;
+  const expected = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      ownerStableId: exact.ownerStableId,
+      sessionId: exact.sessionId,
+      questionId: exact.questionId,
+      recoveryOrdinal: exact.recoveryOrdinal,
+      quantity: exact.quantity,
+      attemptsGranted: exact.attemptsGranted,
+    }),
+  );
+  return expected === exact.requestFingerprint;
+}
+
+export function attemptRestoreGiftInventoryFromEconomyProjection(
+  projection: EconomyProjection | EconomyReducerState,
+  ownerStableId: string,
+): AttemptRestoreGiftInventoryState {
+  const credits: AttemptRestoreGiftCreditV1[] = [];
+  const consumes: AttemptRestoreGiftConsumeV1[] = [];
+  for (const receipt of Object.values(projection.receipts)) {
+    if (receipt.delta !== 0 || receipt.grant.entitlementId !== receipt.operationId) continue;
+    if (receipt.grant.kind === 'attempt_restore_inventory_credit') {
+      const exact = parseAttemptRestoreGiftCreditExactResult(receipt.grant.exactResult);
+      if (exact && exact.operationId === receipt.operationId && exact.ownerStableId === ownerStableId) credits.push(exact);
+    }
+    if (receipt.grant.kind === 'attempt_restore_inventory_consume') {
+      const exact = parseAttemptRestoreGiftConsumeExactResult(receipt.grant.exactResult);
+      if (exact && exact.operationId === receipt.operationId && exact.ownerStableId === ownerStableId) consumes.push(exact);
+    }
+  }
+  const count = credits.length - consumes.length;
+  if (count < 0) throw new Error('phone_state_attempt_restore_inventory_negative');
+  return Object.freeze({
+    credits: Object.freeze(credits.sort((left, right) => left.operationId.localeCompare(right.operationId))),
+    consumes: Object.freeze(consumes.sort((left, right) => left.operationId.localeCompare(right.operationId))),
+    count,
+  });
 }
 
 export function parseLevelSpinStarCreditExactResult(input: unknown): LevelSpinStarCreditExactResult | null {
@@ -204,6 +368,12 @@ function validate(operation: OrdinaryEconomyOperation): void {
   const starCreditAck = operation.grant?.kind === 'star_credit_ack'
     ? parseLevelSpinStarCreditAckExactResult(operation.grant.exactResult)
     : null;
+  const attemptRestoreCredit = operation.grant?.kind === 'attempt_restore_inventory_credit'
+    ? parseAttemptRestoreGiftCreditExactResult(operation.grant.exactResult)
+    : null;
+  const attemptRestoreConsume = operation.grant?.kind === 'attempt_restore_inventory_consume'
+    ? parseAttemptRestoreGiftConsumeExactResult(operation.grant.exactResult)
+    : null;
   if (
     !operation.operationId.trim()
     || !Number.isSafeInteger(operation.delta)
@@ -220,6 +390,16 @@ function validate(operation: OrdinaryEconomyOperation): void {
         || operation.delta !== 0
         || operation.operationId !== levelSpinStarCreditAckOperationId(starCreditAck.operationId)
         || operation.grant.entitlementId !== starCreditAck.operationId))
+    || (operation.grant?.kind === 'attempt_restore_inventory_credit'
+      && (!attemptRestoreCredit
+        || operation.delta !== 0
+        || operation.operationId !== attemptRestoreCredit.operationId
+        || operation.grant.entitlementId !== attemptRestoreCredit.operationId))
+    || (operation.grant?.kind === 'attempt_restore_inventory_consume'
+      && (!attemptRestoreConsume
+        || operation.delta !== 0
+        || operation.operationId !== attemptRestoreConsume.operationId
+        || operation.grant.entitlementId !== attemptRestoreConsume.operationId))
   ) throw new Error('phone_state_economy_composite_invalid');
 }
 

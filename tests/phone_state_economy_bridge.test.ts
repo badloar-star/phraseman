@@ -12,6 +12,25 @@ const validStarFingerprint = createHash('sha256').update(JSON.stringify({
   reason: 'level_spin_star_reward',
 })).digest('hex');
 
+const validAttemptRestoreCreditFingerprint = createHash('sha256').update(JSON.stringify({
+  schemaVersion: 1,
+  ownerStableId: 'account-a',
+  spinRequestId: 'spinrequest000001',
+  lane: 'base',
+  giftId: 'attempt_restore_all',
+  quantity: 1,
+})).digest('hex');
+
+const validAttemptRestoreConsumeFingerprint = createHash('sha256').update(JSON.stringify({
+  schemaVersion: 1,
+  ownerStableId: 'account-a',
+  sessionId: 'lesson-session-1',
+  questionId: 'question-1',
+  recoveryOrdinal: 1,
+  quantity: 1,
+  attemptsGranted: 3,
+})).digest('hex');
+
 const operation = {
   operationId: 'purchase-123',
   ownerStableId: 'account-a',
@@ -156,6 +175,105 @@ describe('PhoneState economy bridge', () => {
       exactResult: null,
     })).resolves.toBe(false);
     expect(commit).not.toHaveBeenCalled();
+  });
+
+  test('attempt restore credit commits only its closed exact zero-delta result', async () => {
+    const commit = jest.fn(async () => ({ duplicate: false }));
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const operationId = 'attempt_restore_credit:spinrequest000001.base';
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId,
+      kind: 'attempt_restore_inventory_credit',
+      entitlementId: operationId,
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-attempt-restore-gift-credit.v1',
+        operationId,
+        ownerStableId: 'account-a',
+        spinRequestId: 'spinrequest000001',
+        lane: 'base',
+        giftId: 'attempt_restore_all',
+        quantity: 1,
+        createdAtMs: 100,
+        requestFingerprint: validAttemptRestoreCreditFingerprint,
+      },
+    })).resolves.toBe(true);
+    expect(commit).toHaveBeenCalledWith(expect.objectContaining({
+      domain: 'economy', kind: 'composite', entityId: operationId,
+      payload: expect.objectContaining({
+        delta: 0,
+        grant: expect.objectContaining({ kind: 'attempt_restore_inventory_credit' }),
+      }),
+    }), { idempotencyKey: `economy:${operationId}` });
+  });
+
+  test('attempt restore credit rejects a mismatched immutable fingerprint', async () => {
+    const commit = jest.fn();
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const operationId = 'attempt_restore_credit:spinrequest000001.base';
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId,
+      kind: 'attempt_restore_inventory_credit',
+      entitlementId: operationId,
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-attempt-restore-gift-credit.v1',
+        operationId,
+        ownerStableId: 'account-a',
+        spinRequestId: 'spinrequest000001',
+        lane: 'base',
+        giftId: 'attempt_restore_all',
+        quantity: 1,
+        createdAtMs: 100,
+        requestFingerprint: 'b'.repeat(64),
+      },
+    })).resolves.toBe(false);
+    expect(commit).not.toHaveBeenCalled();
+  });
+
+  test('attempt restore consume is a closed zero-delta grant of exactly three attempts', async () => {
+    const commit = jest.fn(async () => ({ duplicate: false }));
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const operationId = 'attempt_restore_consume:lesson-session-1:1';
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId,
+      kind: 'attempt_restore_inventory_consume',
+      entitlementId: operationId,
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-attempt-restore-gift-consume.v1',
+        operationId,
+        ownerStableId: 'account-a',
+        sessionId: 'lesson-session-1',
+        questionId: 'question-1',
+        recoveryOrdinal: 1,
+        quantity: 1,
+        attemptsGranted: 3,
+        createdAtMs: 101,
+        requestFingerprint: validAttemptRestoreConsumeFingerprint,
+      },
+    })).resolves.toBe(true);
+    expect(commit).toHaveBeenCalledWith(expect.objectContaining({
+      payload: expect.objectContaining({
+        delta: 0,
+        grant: expect.objectContaining({ kind: 'attempt_restore_inventory_consume' }),
+      }),
+    }), { idempotencyKey: `economy:${operationId}` });
   });
 
   test('star credit rejects a well-shaped receipt whose immutable fingerprint is false', async () => {

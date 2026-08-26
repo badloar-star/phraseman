@@ -119,3 +119,36 @@ describe('клиент лиги не берёт недельный опыт', ()
     expect(source).toContain('getLastWeekLeagueRunes');
   });
 });
+
+describe('горячие 2 часа реально удваивают руны', () => {
+  const source = readFileSync(join(__dirname, '..', 'app', 'league_week_runes.ts'), 'utf8');
+
+  it('множитель применяется, а не только обещается на экране', () => {
+    // Механика лежала написанной, но НИКТО её не вызывал: экран обещал ×2,
+    // которого не происходило. Сторож ловит повторное отключение.
+    expect(source).toContain('resolveLeagueHotHoursMultiplier');
+    expect(source).toContain('getLeagueHotHoursMultiplierSync()');
+  });
+
+  it('надбавка хранится отдельно от догона', () => {
+    // Лежи она в delta, первый же свежий серверный снимок стёр бы удвоение:
+    // сервер про горячие часы не знает и отдаёт одинарные руны.
+    expect(source).toContain('hotBonus');
+    expect(source).toContain('function usableHotBonus');
+  });
+
+  it('сброс догона не стирает надбавку', () => {
+    const start = source.indexOf('async function resetCatchup(');
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, source.indexOf('\n}', start));
+    expect(body).toContain('hotBonus');
+    expect(body).not.toMatch(/hotBonus:\s*0/);
+  });
+
+  it('множитель берётся лениво — без цикла импортов', () => {
+    // league_hot_hours тянет league_engine, а тот — этот модуль. Статический
+    // импорт замкнул бы цикл и отдал бы undefined на старте.
+    expect(source).not.toMatch(/^import .*league_hot_hours/m);
+    expect(source).toContain("require('./league_hot_hours')");
+  });
+});

@@ -115,6 +115,7 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'hybrid' }
   const kicker = triLang(lang, {
     ru: 'Бонус дня активирован',
     uk: 'Бонус дня активовано',
+    en: 'Daily bonus activated',
     es: 'Bono del día activado',
     'pt-BR': 'Bônus do dia ativado',
     vi: 'Đã kích hoạt ưu đãi hôm nay',
@@ -122,15 +123,18 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'hybrid' }
     tr: 'Günün bonusu etkin',
     pl: 'Bonus dnia aktywny',
   });
+  // зачем (аудит по Библии, 2026-08-26): «Отлично» — восклицание-реакция,
+  // а не действие (Правило 1: в кнопке глагол).
   const ctaLabel = triLang(lang, {
-    ru: 'Отлично',
-    uk: 'Чудово',
-    es: 'Genial',
-    'pt-BR': 'Ótimo',
-    vi: 'Tuyệt',
-    id: 'Mantap',
-    tr: 'Harika',
-    pl: 'Świetnie',
+    ru: 'Продолжить',
+    uk: 'Продовжити',
+    en: 'Continue',
+    es: 'Continuar',
+    'pt-BR': 'Continuar',
+    vi: 'Tiếp tục',
+    id: 'Lanjutkan',
+    tr: 'Devam et',
+    pl: 'Kontynuuj',
   });
 
   if (motionVariant === 'hybrid') {

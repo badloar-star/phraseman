@@ -42,7 +42,10 @@ const RU = {
   },
   lesson: {
     undo: 'Отменить', cheat: 'Шпаргалка', theory: 'Теория',
-    oral: 'Устно', next: 'Далее', check: 'Проверить',
+    // зачем (аудит по Библии, 2026-08-26): «Далее» — прямой пример запрещённой
+    // кнопки из Правила 1 (нужен глагол действия). Подпись под иконкой узкая,
+    // поэтому короткий глагол «Продолжить», а не «Следующая фраза».
+    oral: 'Устно', next: 'Продолжить', check: 'Проверить',
     typeHere: 'Введи ответ...', listenTitle: 'Слушаю...',
     noArticle: 'без артикля',
     hintAfterWrong: 'Подсказка после ошибки',
@@ -174,7 +177,7 @@ const UK: typeof RU = {
   },
   lesson: {
     undo: 'Скасувати', cheat: 'Шпаргалка', theory: 'Теорія',
-    oral: 'Усно', next: 'Далі', check: 'Перевірити',
+    oral: 'Усно', next: 'Продовжити', check: 'Перевірити',
     typeHere: 'Введіть відповідь...', listenTitle: 'Слухаю...',
     noArticle: 'без артикля',
     hintAfterWrong: 'Підказка після помилки',
@@ -306,7 +309,7 @@ const ES: typeof RU = {
   },
   lesson: {
     undo: 'Deshacer', cheat: 'Guía rápida', theory: 'Teoría',
-    oral: 'En voz alta', next: 'Siguiente', check: 'Comprobar',
+    oral: 'En voz alta', next: 'Continuar', check: 'Comprobar',
     typeHere: 'Escribe tu respuesta...', listenTitle: 'Escuchando...',
     noArticle: 'sin artículo',
     hintAfterWrong: 'Pista tras un error',

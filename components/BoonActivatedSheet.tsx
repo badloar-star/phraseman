@@ -38,19 +38,23 @@ function BoonActivatedSheet({ visible, boon, onClose }: BoonActivatedSheetProps)
     scope: `boon-activated-sheet:${boon}`,
   });
 
+  // зачем (аудит по Библии, 2026-08-26): «Отлично» — восклицание-реакция,
+  // а не действие (Правило 1: в кнопке глагол).
   const ctaLabel = triLang(lang, {
-    ru: 'Отлично',
-    uk: 'Чудово',
-    es: 'Genial',
-    'pt-BR': 'Ótimo',
-    vi: 'Tuyệt',
-    id: 'Mantap',
-    tr: 'Harika',
-    pl: 'Świetnie',
+    ru: 'Продолжить',
+    uk: 'Продовжити',
+    en: 'Continue',
+    es: 'Continuar',
+    'pt-BR': 'Continuar',
+    vi: 'Tiếp tục',
+    id: 'Lanjutkan',
+    tr: 'Devam et',
+    pl: 'Kontynuuj',
   });
   const closeLabel = triLang(lang, {
     ru: 'Закрыть бонус дня',
     uk: 'Закрити бонус дня',
+    en: 'Close daily bonus',
     es: 'Cerrar el bonus del día',
     'pt-BR': 'Fechar o bônus do dia',
     vi: 'Đóng phần thưởng hôm nay',

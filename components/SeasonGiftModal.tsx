@@ -621,8 +621,8 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
             >
               <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
                 {triLang(lang, reward.kind === 'season_finale'
-                  ? { ru: 'Великолепно', uk: 'Чудово', es: 'Magnífico', 'pt-BR': 'Magnífico', vi: 'Tuyệt vời', id: 'Luar biasa', tr: 'Muhteşem', pl: 'Wspaniale' }
-                  : { ru: 'Отлично', uk: 'Чудово', es: 'Genial', 'pt-BR': 'Ótimo', vi: 'Tuyệt', id: 'Bagus', tr: 'Harika', pl: 'Świetnie' })}
+                  ? { ru: 'Забрать награду', uk: 'Забрати нагороду', es: 'Recoger premio', 'pt-BR': 'Pegar prêmio', vi: 'Nhận thưởng', id: 'Ambil hadiah', tr: 'Ödülü al', pl: 'Odbierz nagrodę' }
+                  : { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
               </Text>
             </TouchableOpacity>
           )}

@@ -542,7 +542,7 @@ function LeagueChestOpenModal({
                     <Text style={[styles.primaryText, { color: modalTheme.primaryText }]}>
                       {rewardCards.length > 0
                         ? triLang(lang, { ru: 'Забрать', uk: 'Забрати', en: 'Claim', es: 'Recoger', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })
-                        : triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                        : triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity

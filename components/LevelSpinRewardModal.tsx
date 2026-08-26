@@ -177,7 +177,9 @@ export default function LevelSpinRewardModal({
     ? giftDisplayDescForLang(gift, lang)
     : triLang(lang, { ru: 'Награда применена к аккаунту', uk: 'Нагороду застосовано до акаунта', en: 'The reward was applied to your account', es: 'La recompensa se aplicó a tu cuenta', 'pt-BR': 'A recompensa foi aplicada à sua conta', vi: 'Phần thưởng đã được áp dụng cho tài khoản', id: 'Hadiah diterapkan ke akunmu', tr: 'Ödül hesabına uygulandı', pl: 'Nagroda została zastosowana na koncie' });
   const rarity = gift ? giftSpinTierUiLabel(gift, lang) : triLang(lang, { ru: 'НАГРАДА', uk: 'НАГОРОДА', en: 'REWARD', es: 'RECOMPENSA', 'pt-BR': 'RECOMPENSA', vi: 'PHẦN THƯỞNG', id: 'HADIAH', tr: 'ÖDÜL', pl: 'NAGRODA' });
-  const ctaLabel = triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', en: 'DONE', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'TAMAM', pl: 'GOTOWE' });
+  // зачем (аудит по Библии, 2026-08-26): «ГОТОВО» — состояние, а не действие
+  // (Правило 1). Модалка закрывает полученный подарок — так и называем.
+  const ctaLabel = triLang(lang, { ru: 'ЗАБРАТЬ', uk: 'ЗАБРАТИ', en: 'CLAIM', es: 'RECOGER', 'pt-BR': 'RESGATAR', vi: 'NHẬN', id: 'AMBIL', tr: 'AL', pl: 'ODBIERZ' });
   const claimA11yLabel = triLang(lang, { ru: 'Закрыть полученный подарок', uk: 'Закрити отриманий подарунок', en: 'Close received gift', es: 'Cerrar el regalo recibido', 'pt-BR': 'Fechar o presente recebido', vi: 'Đóng phần thưởng đã nhận', id: 'Tutup hadiah yang diterima', tr: 'Alınan hediyeyi kapat', pl: 'Zamknij otrzymany prezent' });
 
   const handleClaim = () => {

@@ -81,14 +81,17 @@ export default function BillingIssueToastHost() {
       // инциденту) не менялись.
       emitAppEvent('action_toast', {
         ...actionToastTri('warning', {
-          ru: '💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus',
-          uk: '💳 Проблема з оплатою підписки — онови спосіб оплати, щоб не втратити Plus',
-          es: '💳 Problema con el pago de tu suscripción — actualiza el método para no perder Plus',
-          'pt-BR': '💳 Problema no pagamento da assinatura — atualize a forma de pagamento para não perder o Plus',
-          vi: '💳 Sự cố thanh toán gói đăng ký — cập nhật phương thức để không mất Plus',
-          id: '💳 Masalah pembayaran langganan — perbarui metode agar tidak kehilangan Plus',
-          tr: '💳 Abonelik ödemesinde sorun var — Plus’u kaybetmemek için ödeme yöntemini güncelle',
-          pl: '💳 Problem z płatnością subskrypcji — zaktualizuj metodę, by nie stracić Plus',
+          // зачем (аудит по Библии, 2026-08-26): «чтобы не потерять» — давление
+          // потерей. Правило 2 требует gain-framing: та же правда, но о том,
+          // что человек сохраняет.
+          ru: '💳 Оплата не прошла — обнови карту, и Plus останется с тобой',
+          uk: '💳 Оплата не пройшла — онови картку, і Plus залишиться з тобою',
+          es: '💳 El pago no se completó — actualiza la tarjeta y Plus sigue contigo',
+          'pt-BR': '💳 O pagamento não passou — atualize o cartão e o Plus continua com você',
+          vi: '💳 Thanh toán chưa thành công — cập nhật thẻ để giữ Plus',
+          id: '💳 Pembayaran gagal — perbarui kartu dan Plus tetap milikmu',
+          tr: '💳 Ödeme geçmedi — kartı güncelle, Plus seninle kalsın',
+          pl: '💳 Płatność nie przeszła — zaktualizuj kartę i Plus zostaje z tobą',
         }),
         motionVariant: 'hybrid',
       });

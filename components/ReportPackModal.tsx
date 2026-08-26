@@ -280,10 +280,14 @@ function ReportPackModal({
                     paddingVertical: 10,
                     marginTop: 16,
                     borderWidth: 0,
-                    borderColor: t.border,
                   }}
                 >
-                  <Text style={{ color: t.textPrimary, fontWeight: '700' }}>OK</Text>
+                  {/* зачем (аудит по Библии, 2026-08-26): непереведённое «OK» —
+                      и не глагол (Правило 1), и русский интерфейс показывал
+                      латиницу. Жалоба отправлена, окно закрывается. */}
+                  <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+                  </Text>
                 </TouchableOpacity>
               </View>
             ) : (

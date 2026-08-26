@@ -207,7 +207,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 style={{ minHeight: ds.buttonHeight, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                  {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                 </Text>
               </DuoPressable>
             )}
@@ -330,7 +330,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
               style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
             >
               <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </TouchableOpacity>
           )}

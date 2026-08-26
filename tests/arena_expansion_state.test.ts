@@ -205,23 +205,36 @@ describe('подпись кнопки больше нигде не выдаёт�
 /**
  * Отказ покупки — не отказ загрузки.
  *
- * Магазин писал `state = 'error'` и на покупку, и на надевание, и на спин, а
- * это же поле рисует состояние всего экрана. Сорвавшаяся покупка выглядела как
- * не загрузившийся магазин, и игрок не мог понять главного: списались его
- * звёзды или нет.
+ * Магазин писал `state = 'error'` и на покупку, и на надевание (и на спин —
+ * пока спин был на этом экране), а это же поле рисует состояние ВСЕГО экрана.
+ * Сорвавшаяся покупка выглядела как не загрузившийся магазин, и игрок не мог
+ * понять главного: списались его звёзды или нет.
  */
 describe('магазин отвечает за свои действия отдельно', () => {
   const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_star_wallet.tsx'), 'utf8');
 
-  it('покупка, надевание и спин не выдают себя за отказ загрузки', () => {
+  it('покупка и надевание не выдают себя за отказ загрузки', () => {
     expect(source).toContain('actionError');
     expect(source).not.toContain("void arenaStarEquip(item.sku, item.slot, requestId).then(() => load()).catch(() => setState('error'))");
     expect(source).not.toContain(".catch(() => setState('error')).finally(() => setBusySku(null))");
   });
 
+  /**
+   * зачем: спин требовали и с этого экрана, пока у Арены была СВОЯ рулетка.
+   * Владелец (2026-08-23) запретил параллельные спины: в приложении существует
+   * ОДИН спин — общий каталог подарков (`local_level_spins.ts`), а сервер Арены
+   * только подтверждает право на него. `arenaV2SpinStatus`/`arenaV2SpinClaim`
+   * удалены, и удаление заперто отдельным тестом
+   * (`functions/src/arena_v2_backend_contract.test.ts` — «keeps the separate
+   * Arena spin roulette deleted»). Кнопки спина на экране кошелька больше нет,
+   * поэтому требовать здесь `spinFailed`/`spinFailedHint` — значит требовать
+   * объяснение к действию, которого не существует. Строки в
+   * `modules/arena/expansion_copy.ts` намеренно оставлены: они дословно описаны
+   * в журнале владельца («спин — Кредит на месте и не потрачен») и понадобятся,
+   * если спин когда-нибудь вернут. Покупка и надевание остаются под замком.
+   */
   it('каждое действие объясняет, что цело', () => {
-    for (const key of ['purchaseFailed', 'purchaseFailedHint', 'equipFailed', 'equipFailedHint',
-      'spinFailed', 'spinFailedHint'] as const) {
+    for (const key of ['purchaseFailed', 'purchaseFailedHint', 'equipFailed', 'equipFailedHint'] as const) {
       expect(source).toContain(`'${key}'`);
       for (const lang of LANGS) {
         expect(arenaExpansionText(lang, key).length).toBeGreaterThan(0);

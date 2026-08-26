@@ -1,0 +1,30 @@
+[
+  {
+    "id": "i18n-001",
+    "zone": "i18n",
+    "screen": "Пейволл MAX (и другие платные экраны)",
+    "file": "app/max_paywall.tsx",
+    "line": 0,
+    "kind": "i18n",
+    "current": "triLang({ ru, uk, es, ... }) без ключей pl / vi / id / tr",
+    "proposed": "Добавить ключи pl, vi, id, tr во все triLang платных экранов",
+    "rule": "Правило 12: доверие дороже быстрой конверсии",
+    "why": "triLang при отсутствии ключа молча отдаёт испанский, поэтому поляк, вьетнамец, индонезиец и турок видят на экране оплаты чужой язык.",
+    "severity": "high",
+    "legal_ok": false
+  },
+  {
+    "id": "i18n-002",
+    "zone": "i18n",
+    "screen": "Сквозная архитектура локализации",
+    "file": "constants/i18n.ts",
+    "line": 814,
+    "kind": "i18n",
+    "current": "export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown } ...>",
+    "proposed": "Сделать ключи pl/vi/id/tr обязательными в типе T для UI-текстов, либо явный фолбэк на ru вместо es",
+    "rule": "Правило 12 + Часть V п.3 (никаких неожиданностей в UI)",
+    "why": "Тип требует только ru/uk/es, поэтому пропуск четырёх языков не ловится компилятором и уходит в прод незаметно.",
+    "severity": "high",
+    "legal_ok": false
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "owner-001",
+    "zone": "owner-rules",
+    "screen": "Главная — баннер возвращения",
+    "file": "app/(tabs)/home.tsx",
+    "line": 2581,
+    "kind": "owner-rule",
+    "current": "borderWidth: 1, borderColor: '#FF9500' + '88'",
+    "proposed": "borderWidth: 0 + разделение тоном: поднять backgroundColor и добавить мягкую тень, как в соседних карточках главной",
+    "rule": "Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой",
+    "why": "Оранжевая рамка вокруг блока — прямой запрет владельца; соседние карточки главной уже переведены на borderWidth: 0.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "owner-002",
+    "zone": "owner-rules",
+    "screen": "Главная — карточка восстановления цепочки",
+    "file": "app/(tabs)/home.tsx",
+    "line": 2609,
+    "kind": "owner-rule",
+    "current": "borderWidth: 1, borderColor: '#FF9500' + '99'",
+    "proposed": "borderWidth: 0 + разделение тоном и тенью",
+    "rule": "Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой",
+    "why": "Тот же запрещённый паттерн обводки контейнера на самом видном экране приложения.",
+    "severity": "medium",
+    "legal_ok": false
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "push-001",
+    "zone": "notifications",
+    "screen": "Пуш «Турнир начинается» (вариант 1)",
+    "file": "functions/src/tournament_start_push.ts",
+    "line": 194,
+    "kind": "copy",
+    "current": "Пять минут славы или пять минут позора. Выбирай сам.",
+    "proposed": "Пять минут — и ты в игре. Заходи.",
+    "rule": "Часть V п.6: не унижаем + Правило 2: gain-framing",
+    "why": "«Позор» пугает поражением ещё до старта: это loss-framing плюс прямое унижение, запрещённое Библией.",
+    "severity": "high",
+    "legal_ok": false
+  },
+  {
+    "id": "push-002",
+    "zone": "notifications",
+    "screen": "Пуш «Турнир открыт» (вариант 3)",
+    "file": "functions/src/tournament_start_push.ts",
+    "line": 196,
+    "kind": "copy",
+    "current": "Места разбирают. Последнему достаётся стул у выхода.",
+    "proposed": "Места разбирают. Занимай своё.",
+    "rule": "Часть V п.6: не унижаем + Часть V п.1: не запугиваем",
+    "why": "Насмешка над последним местом бьёт по тому, кто и так сомневается, и добавляет искусственную срочность.",
+    "severity": "high",
+    "legal_ok": false
+  },
+  {
+    "id": "push-003",
+    "zone": "notifications",
+    "screen": "Пуш «Турнир собирается» (вариант 4)",
+    "file": "functions/src/tournament_start_push.ts",
+    "line": 197,
+    "kind": "copy",
+    "current": "Твои соперники уже придумали, как объяснить проигрыш.",
+    "proposed": "Соперники уже собираются. Присоединяйся.",
+    "rule": "Правило 2: gain-framing",
+    "why": "Текст заранее ставит проигрыш в центр сообщения вместо выгоды от участия.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "push-004",
+    "zone": "notifications",
+    "screen": "Пуш «Турнир стартует» (вариант 2)",
+    "file": "functions/src/tournament_start_push.ts",
+    "line": 195,
+    "kind": "copy",
+    "current": "Первое место пока свободно. Просто говорю.",
+    "proposed": "Первое место пока свободно.",
+    "rule": "Часть V п.4: не используем слова-паразиты («просто»)",
+    "why": "«Просто говорю» — слово-паразит из запрещённого списка, фраза сильнее без него.",
+    "severity": "low",
+    "legal_ok": false
+  }
+]

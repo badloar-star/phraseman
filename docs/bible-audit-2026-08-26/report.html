@@ -1,0 +1,4208 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Аудит текстов Phraseman</title>
+<style>
+:root{
+  --bg:#12100c; --surface:#1a1712; --surface-2:#221d16; --raise:#2a241b;
+  --ink:#f4efe4; --ink-2:#c3b8a3; --ink-3:#8d8272;
+  --gold:#c9a84c; --gold-soft:#8a7433;
+  --was:#d97757; --now:#7fb069;
+  --r:14px;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 20px 120px}
+h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
+.lede{color:var(--ink-2);margin:0 0 26px;max-width:70ch}
+.lede b{color:var(--gold)}
+
+.top{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:9px;margin:0 0 24px}
+.top-i{background:var(--surface);border-radius:var(--r);padding:13px 15px;
+  font-size:13px;line-height:1.55;color:var(--ink-2)}
+.top-i b{display:block;color:var(--gold);font-size:13.5px;margin-bottom:3px}
+
+.bar{position:sticky;top:0;z-index:20;background:rgba(18,16,12,.94);
+  backdrop-filter:blur(12px);padding:12px 0 13px;margin-bottom:20px;
+  border-bottom:1px solid rgba(201,168,76,.16)}
+.bar-in{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.f{background:var(--surface-2);color:var(--ink-2);border:0;border-radius:999px;
+  padding:7px 15px;font-size:13px;font-weight:600;cursor:pointer;
+  transition:transform 120ms var(--ease),background 120ms var(--ease),color 120ms var(--ease)}
+.f:hover{background:var(--raise);color:var(--ink)}
+.f:active{transform:scale(.97)}
+.f[aria-pressed="true"]{background:var(--gold);color:#1a1508}
+#q{flex:1;min-width:190px;background:var(--surface-2);border:0;border-radius:999px;
+  padding:8px 16px;color:var(--ink);font-size:13px;font-family:inherit}
+#q::placeholder{color:var(--ink-3)}
+#q:focus{outline:2px solid var(--gold-soft);outline-offset:1px}
+.count{margin-left:auto;color:var(--ink-2);font-size:13px;font-variant-numeric:tabular-nums}
+.count b{color:var(--gold)}
+
+.zone{margin:34px 0 0}
+.zone-h{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 4px}
+.screen{margin:20px 0 0}
+.screen-h{font-size:16px;font-weight:650;margin:0 0 9px;color:var(--ink)}
+
+.row{display:flex;gap:13px;background:var(--surface);border-radius:var(--r);
+  padding:14px 16px;margin-bottom:9px}
+.row.off{opacity:.4}
+.pick{flex:0 0 auto;padding-top:2px;cursor:pointer}
+.cb{position:absolute;opacity:0;width:0;height:0}
+.box{display:block;width:19px;height:19px;border-radius:6px;background:var(--raise);
+  position:relative;transition:background 120ms var(--ease)}
+.box::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid #1a1508;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(.6);
+  opacity:0;transition:opacity 110ms var(--ease),transform 110ms var(--ease)}
+.cb:checked + .box{background:var(--gold)}
+.cb:checked + .box::after{opacity:1;transform:rotate(45deg) scale(1)}
+.cb:focus-visible + .box{outline:2px solid var(--gold);outline-offset:2px}
+.pick:active .box{transform:scale(.94)}
+
+.body{flex:1;min-width:0}
+.meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:9px}
+.tag{font-size:11px;font-weight:700;padding:2.5px 8px;border-radius:999px;
+  background:var(--raise);color:var(--ink-2);letter-spacing:.01em}
+.tag-high{background:rgba(217,119,87,.2);color:#eb9878}
+.tag-medium{background:rgba(201,168,76,.18);color:var(--gold)}
+.tag-low{background:var(--raise);color:var(--ink-3)}
+.tag-legal{background:rgba(127,176,105,.16);color:#8fc47a}
+.loc{font-size:11.5px;color:var(--ink-3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.side{background:var(--surface-2);border-radius:10px;padding:10px 12px;min-width:0}
+.side-h{display:block;font-size:10.5px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:4px}
+.was .side-h{color:var(--was)}
+.now .side-h{color:var(--now)}
+.txt{margin:0;white-space:pre-wrap;word-break:break-word;font-size:14.5px;line-height:1.5}
+.was .txt{color:var(--ink-2)}
+.now .txt{color:var(--ink);font-weight:500}
+.why{margin:9px 0 0;font-size:13px;color:var(--ink-3);line-height:1.5}
+.rule{display:block;color:var(--gold);font-weight:650;margin-bottom:2px}
+.wtxt{display:block}
+
+.empty{color:var(--ink-3);padding:50px 0;text-align:center}
+
+.notes{margin:46px 0 0;padding-top:26px;border-top:1px solid rgba(201,168,76,.16)}
+.note{background:var(--surface);border-radius:var(--r);padding:15px 17px;margin:10px 0 0}
+.note h3{margin:0 0 6px;font-size:15px;font-weight:650;color:var(--ink)}
+.note p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-2);max-width:80ch}
+.note b{color:var(--gold);font-weight:650}
+.note code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+  background:var(--surface-2);padding:1px 5px;border-radius:5px;color:var(--ink-2)}
+
+.foot{position:fixed;left:0;right:0;bottom:0;z-index:30;
+  background:rgba(18,16,12,.96);backdrop-filter:blur(12px);
+  padding:11px 20px;display:flex;gap:12px;align-items:center;justify-content:center;
+  border-top:1px solid rgba(201,168,76,.16)}
+.foot span{font-size:13px;color:var(--ink-2)}
+.foot b{color:var(--gold);font-variant-numeric:tabular-nums}
+.btn{background:var(--gold);color:#1a1508;border:0;border-radius:999px;
+  padding:9px 20px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:transform 120ms var(--ease),filter 120ms var(--ease)}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--surface-2);color:var(--ink-2)}
+
+@media (max-width:760px){
+  .pair{grid-template-columns:1fr}
+  .loc{max-width:100%;margin-left:0;width:100%}
+  .wrap{padding:22px 14px 120px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important}
+}
+</style></head><body>
+<div class="wrap">
+  <h1>Аудит текстов по Библии Phraseman</h1>
+  <p class="lede">Каждый текст, который видит человек, и его новая версия по Библии.
+  <b>Ничего пока не применено.</b> Сними галочку с того, что не нужно менять,
+  затем нажми «Скопировать отказы» и пришли мне список.</p>
+
+  <div class="top">
+    <div class="top-i"><b>Обращение на «вы» · 22</b>Приложение переходит на «вы» —
+      в том числе в момент лидерства в клубе и при прощании с аккаунтом.</div>
+    <div class="top-i"><b>Кнопки без действия · 24</b>«Понятно», «ОК», «Далее», «Позже»
+      вместо глагола с объектом. Самое частое нарушение, разбросано по модалкам.</div>
+    <div class="top-i"><b>Запрещённые слова вернулись</b>«Купить», «Стоимость»,
+      «Покупка» снова в коде — прошлая чистка была в июне, с тех пор почти
+      три тысячи правок.</div>
+    <div class="top-i"><b>Запугивание и срочность</b>Пуши турнира дразнят позором
+      и стулом у выхода, промо-баннер торопит без реального срока, ставка
+      «сгорит» вместо «останется твоей».</div>
+  </div>
+
+  <div class="bar"><div class="bar-in">
+    <button class="f" data-g="sev" data-v="all" aria-pressed="true">Все</button>
+    <button class="f" data-g="sev" data-v="high">Критично · 33</button>
+    <button class="f" data-g="sev" data-v="medium">Средне · 71</button>
+    <button class="f" data-g="sev" data-v="low">Мелочь · 37</button>
+    <input id="q" type="search" placeholder="Поиск по тексту, экрану, файлу">
+    <span class="count">Видно <b id="shown">0</b> · принято <b id="kept">0</b></span>
+  </div>
+  <div class="bar-in" style="margin-top:9px"><button class="f" data-g="kind" data-v="all" aria-pressed="true">Всё</button>
+<button class="f" data-g="kind" data-v="copy">Текст · 125</button>
+<button class="f" data-g="kind" data-v="i18n">Языки · 7</button>
+<button class="f" data-g="kind" data-v="owner-rule">Запрет владельца · 7</button>
+<button class="f" data-g="kind" data-v="structure">Структура · 2</button></div></div>
+
+  <section class="zone"><h2 class="zone-h">Главная и навигация · 52</h2>
+<div class="screen"><h3 class="screen-h">Друзья</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-113">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-113" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3649</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Понятно</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Забрать в подарки</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «далее / ок / понятно → [глагол + объект]»; Правило 1: глагол в кнопке</b><span class="wtxt">«Понятно» — кнопка без глагола действия, прямое нарушение правила Apple HIG и словаря запрещённых слов Библии.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-110">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-110" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:1141</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Введите имя друга</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Введи имя друга</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть III, Правило 14: &quot;ты&quot;/&quot;твой&quot; везде, не &quot;вы&quot;</b><span class="wtxt">Формальное обращение «Введите» (форма «вы») противоречит правилу «только ты везде»; используется как заголовок поля.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-111">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-111" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:1147</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Введите имя друга</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Введи имя друга</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть III, Правило 14: &quot;ты&quot;/&quot;твой&quot; везде, не &quot;вы&quot;</b><span class="wtxt">Тот же формальный текст повторно используется как accessibilityLabel поля поиска — тоже требует замены на «ты»-форму.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-122">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-122" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:2331</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Что-то пошло не так. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6; Часть II Стиль 5 (Человек) — образец «Что-то пошло не так»</b><span class="wtxt">Слово «Ошибка» напрямую запрещено; Библия даёт готовый человечный шаблон для этого случая.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-123">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-123" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:2388</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Что-то пошло не так. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6</b><span class="wtxt">Повтор того же запрещённого слова «Ошибка» в фидбеке после отправки заявки в друзья.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-124">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-124" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:2409</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Что-то пошло не так. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6</b><span class="wtxt">Ещё один повтор запрещённого слова «Ошибка» в catch-ветке отправки заявки.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-125">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-125" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:2438</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка при принятии. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не получилось принять. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6</b><span class="wtxt">«Ошибка» использовано в тосте отказа принятия заявки в друзья — запрещённое слово.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-126">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-126" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:2450</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Что-то пошло не так. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6</b><span class="wtxt">«Ошибка» использовано в тосте отказа отклонения заявки — запрещённое слово, повтор одной и той же проблемы в файле.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-114">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-114" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3837</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Удалить друга?</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Убрать друга?</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «удалить → убрать»</b><span class="wtxt">Слово «удалить» прямо в списке запрещённых замен Библии; заголовок модалки подтверждения должен использовать «убрать».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-115">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-115" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3840</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Удалить</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Убрать</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «удалить → убрать»; Часть IV, таблица кнопок (Удалить → Убрать)</b><span class="wtxt">Кнопка подтверждения удаления друга использует запрещённое слово вместо «Убрать», указанного эталоном в таблице кнопок Библии.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-120">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-120" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3882</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка удаления. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не получилось убрать друга. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6: «Не унижаем за ошибку — никаких «неправильно», «ошибка», «провал»»; Стиль 5 Человек</b><span class="wtxt">Слово «Ошибка» прямо запрещено правилами; сообщение к тому же сохраняет корень «удал-».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-121">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-121" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3885</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка удаления. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не получилось убрать друга. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, Запрещённые паттерны п.6; Часть I словарь замен</b><span class="wtxt">Дублирующая строка в action_toast повторяет запрещённые слова «Ошибка» и «удал-».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-112">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-112" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:2378</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы уже друзья</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Уже друзья</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть III, Правило 14: &quot;ты&quot; и &quot;твой&quot; — личное владение, не смешивать с &quot;вы&quot;</b><span class="wtxt">Заглавное «Вы» читается как формальное обращение к пользователю и нарушает правило «только ты везде»; легко убрать местоимение вовсе.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-116">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-116" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3851</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Удаляем друга...</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Убираем друга…</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «удалить → убрать»</b><span class="wtxt">Промежуточный тост процесса удаления использует запрещённый корень «удал-» вместо «убира-».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-117">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-117" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3854</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Удаляем друга: ${target.name}</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Убираем друга: ${target.name}</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «удалить → убрать»</b><span class="wtxt">Тот же текст в системном тосте (action_toast) использует запрещённый корень «удал-».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-118">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-118" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3865</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Друг удалён</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Друг убран</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «удалить → убрать»</b><span class="wtxt">Финальный тост успеха использует запрещённый корень «удал-» вместо «убра-».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-119">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-119" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3868</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Друг удалён: ${target.name}</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Друг убран: ${target.name}</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: «удалить → убрать»</b><span class="wtxt">Дублирующий текст в action_toast повторяет ту же запрещённую формулировку.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Главный экран — окно «Недостаточно жемчужин» (заморозка серии)</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/home.tsx:2422</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">}), &#x27;OK&#x27;);</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">}), triLang(lang, {
+                    ru: &#x27;Закрыть&#x27;,
+                    en: &#x27;Close&#x27;,
+                    uk: &#x27;Закрити&#x27;,
+                    es: &#x27;Cerrar&#x27;,
+                    &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;,
+                    vi: &#x27;Đóng&#x27;,
+                    id: &#x27;Tutup&#x27;,
+                    tr: &#x27;Kapat&#x27;,
+                    pl: &#x27;Zamknij&#x27;,
+                }));</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1 (глагол в кнопке) + Словарь: «далее/ок/понятно → [глагол + объект]»</b><span class="wtxt">Кнопка блокирующего алерта о нехватке жемчужин подписана голым &#x27;OK&#x27; без перевода и без глагола — прямое нарушение и словаря запрещённых слов, и правила Apple HIG про кнопки; сегодня все 8 языков интерфейса видят английское &#x27;OK&#x27;.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Главный экран — карточка домашних подсказок (кнопка закрытия)</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/home.tsx:3562</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">&lt;TapScale onPress={() =&gt; { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel=&quot;qa-home-tips-close&quot; style={{ position: &#x27;absolute&#x27;, top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: &#x27;center&#x27;, justifyContent: &#x27;center&#x27;, backgroundColor: &#x27;rgba(0,0,0,0.25)&#x27;, zIndex: 5 }}&gt;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">&lt;TapScale onPress={() =&gt; { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel={triLang(lang, { ru: &#x27;Закрыть подсказки&#x27;, en: &#x27;Close tips&#x27;, uk: &#x27;Закрити підказки&#x27;, es: &#x27;Cerrar consejos&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar dicas&#x27;, vi: &#x27;Đóng gợi ý&#x27;, id: &#x27;Tutup tips&#x27;, tr: &#x27;İpuçlarını kapat&#x27;, pl: &#x27;Zamknij podpowiedzi&#x27; })} style={{ position: &#x27;absolute&#x27;, top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: &#x27;center&#x27;, justifyContent: &#x27;center&#x27;, backgroundColor: &#x27;rgba(0,0,0,0.25)&#x27;, zIndex: 5 }}&gt;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14 / общее требование доступности — метка для скринридера обязана быть человеческим текстом, а не техническим идентификатором</b><span class="wtxt">Кнопка закрытия карточки подсказок озвучивается скринридером как технический тестовый идентификатор &#x27;qa-home-tips-close&#x27;, а не как понятное действие — незрячий пользователь слышит служебный код вместо описания кнопки.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Уроки</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-101">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-101" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:1132</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы поймёте, как am, is и are превращают отдельные слова в законченную фразу.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Обращение на &quot;вы&quot; нарушает базовый принцип Phraseman — везде только &quot;ты&quot;; это дефолтный текст цели сессии в модалке результата.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-102">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-102" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:1135</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы научитесь самостоятельно собирать простые фразы с глаголом to be.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Ты научишься самостоятельно собирать простые фразы с глаголом to be.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Обращение на &quot;вы&quot; нарушает базовый принцип Phraseman — везде только &quot;ты&quot;; это дефолтный текст цели сессии в модалке результата.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-103">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-103" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:1137</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы сможете без подсказки применять am, is и are в коротком разговоре.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Ты сможешь без подсказки применять am, is и are в коротком разговоре.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Обращение на &quot;вы&quot; нарушает базовый принцип Phraseman — везде только &quot;ты&quot;; это дефолтный текст цели сессии в модалке результата.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-104">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-104" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:1154</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Что вы поймёте</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Что ты поймёшь</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Заголовок блока в модалке результата сессии обращается на &quot;вы&quot;, хотя весь остальной интерфейс — на &quot;ты&quot;.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-105">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-105" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:2939</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">✗ ${result.pct}%</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">triLang(lang, { ru: `Почти — ${result.pct}%`, en: `Almost — ${result.pct}%`, uk: `Майже — ${result.pct}%`, es: `Casi — ${result.pct}%`, &quot;pt-BR&quot;: `Quase — ${result.pct}%`, vi: `Gần rồi — ${result.pct}%`, id: `Hampir — ${result.pct}%`, tr: `Neredeyse — ${result.pct}%`, pl: `Prawie — ${result.pct}%` })</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V, п.6: не унижаем за ошибку; Стиль 5 — Человек</b><span class="wtxt">Непройденный зачёт показывается голым крестиком с процентом без единого слова поддержки и без перевода — единственная строка в блоке экзамена, не обёрнутая в triLang, читается как наказание, а не поддержка попытки.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-106">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-106" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:2979</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: `Завершите все уроки ${lvl} на 4.5+`</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: `Заверши все уроки ${lvl} на 4.5+`</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Глагол &quot;Завершите&quot; — форма обращения на &quot;вы&quot;; подпись под карточкой зачёта должна звучать на &quot;ты&quot;.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-107">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-107" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:4292</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: `Сначала пройдите все уроки ${gateModal.level} с оценкой 4.5+`</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: `Сначала пройди все уроки ${gateModal.level} с оценкой 4.5+`</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Глагол &quot;пройдите&quot; — форма &quot;вы&quot; в тексте модалки-гейта зачёта, тогда как соседний текст (&quot;Сначала пройди сессию&quot;) использует &quot;ты&quot;.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-108">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-108" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:4316</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: `Пройдите урок ${gateModal.prevNum} с оценкой 2.5+`</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: `Пройди урок ${gateModal.prevNum} с оценкой 2.5+`</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &quot;Ты&quot; и &quot;твой&quot; — личное владение</b><span class="wtxt">Глагол &quot;Пройдите&quot; — форма &quot;вы&quot; в тексте модалки-гейта урока, нарушает единый тон &quot;ты&quot; по экрану.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="structure" data-id="home-nav-109">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-109" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Структура</span>
+          
+          <span class="loc">app/(tabs)/lessons.tsx:1018</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: `УРОК ${num}`</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">(структурная находка — не автозамена; требует решения владельца о переименовании всего раздела &quot;Уроки&quot;)</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I — Словарь Phraseman: урок → сессия / раунд / вызов</b><span class="wtxt">Словарь Библии предписывает заменять «урок» на «сессия/раунд/вызов», но здесь «УРОК N» — центральная метка ~32 карточек, а сам раздел называется «Уроки»; точечная замена без переименования всего экрана даст несогласованность.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Настройки</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-131">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-131" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:1147</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы уверены?</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Точно очистить кеш?</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &#x27;ты&#x27; вместо &#x27;вы&#x27; везде</b><span class="wtxt">Заголовок подтверждающего алерта обращается на «вы» вместо обязательного «ты».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-134">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-134" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:1843</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Расскажите о проблеме подробно: что происходит, когда началось, на каком экране.
+
+И напишите свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём ваши данные.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Расскажи о проблеме подробно: что происходит, когда началось, на каком экране.
+
+И напиши свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём твои данные.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &#x27;ты&#x27; вместо &#x27;вы&#x27; везде</b><span class="wtxt">Текст модалки поддержки целиком на «вы» (Расскажите/напишите/ваши данные) — единственное место в файле со сплошным обращением на «вы».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-127">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-127" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/settings/SettingsMessageSlotCard.tsx:29</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ваш выбор сохранён и не изменяется</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твой выбор сохранён и не меняется</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &#x27;ты&#x27;/&#x27;твой&#x27; вместо &#x27;вы&#x27;/&#x27;ваш&#x27; везде</b><span class="wtxt">Текст обращается на «вы», хотя Библия требует личное «ты» во всех экранах приложения.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-128">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-128" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/settings/SettingsMessageSlotCard.tsx:30</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ваш вибір збережено, його не можна змінити</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твій вибір збережено, його не можна змінити</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: &#x27;ты&#x27;/&#x27;твой&#x27; вместо &#x27;вы&#x27;/&#x27;ваш&#x27; везде</b><span class="wtxt">Украинская версия тоже на «вы»-форме («Ваш»), нарушает правило личного обращения.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-135">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-135" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:2092</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Понятно</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Хорошо, жду</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: &#x27;далее / ок / понятно&#x27; → &#x27;[глагол + объект]&#x27;; Часть V п.2</b><span class="wtxt">«Понятно» — прямо запрещённое слово в словаре замен Библии, нужен конкретный глагол.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-136">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-136" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:2128</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Понятно</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Хорошо, жду</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: &#x27;далее / ок / понятно&#x27; → &#x27;[глагол + объект]&#x27;; Часть V п.2</b><span class="wtxt">«Понятно» — прямо запрещённое слово в словаре замен Библии, нужен конкретный глагол.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-137">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-137" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:2157</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Понятно</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Хорошо, жду сеть</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть I словарь замен: &#x27;далее / ок / понятно&#x27; → &#x27;[глагол + объект]&#x27;; Часть V п.2</b><span class="wtxt">«Понятно» — прямо запрещённое слово в словаре замен Библии, нужен конкретный глагол.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="owner-rule" data-id="home-nav-129">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-129" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">components/settings/SettingsMessageSlotCard.tsx:163</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">card: { marginHorizontal: SETTINGS_GROUP_MARGIN, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, padding: 16 }</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">card: { marginHorizontal: SETTINGS_GROUP_MARGIN, borderRadius: 16, padding: 16, backgroundColor: t.bgSurface (или другой тональный фон вместо обводки) }</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">owner-rule: запрет контейнеров с обводкой (borderWidth/borderColor)</b><span class="wtxt">Карточка опроса/сообщения настроек рисует рамку (borderWidth + borderColor: t.border) вокруг блока — владелец прямо запрещает обводки контейнеров, разделение должно быть тоном/фоном/тенью.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="medium" data-kind="owner-rule" data-id="home-nav-130">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-130" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">components/settings/SettingsMessageSlotCard.tsx:172</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">option: { flexDirection: &#x27;row&#x27;, alignItems: &#x27;center&#x27;, gap: 10, borderWidth: 1, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 9 }</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">option: { flexDirection: &#x27;row&#x27;, alignItems: &#x27;center&#x27;, gap: 10, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 9 } — выбранное/невыбранное состояние через backgroundColor вместо borderColor</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">owner-rule: запрет контейнеров с обводкой (borderWidth/borderColor)</b><span class="wtxt">Опции опроса рисуются с рамкой (borderWidth: 1, borderColor: selected ? t.accent : t.border) — состояние выбора должно передаваться тоном/фоном, а не обводкой.</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-132">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-132" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:1153</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Нет</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не сейчас</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке (Apple HIG)</b><span class="wtxt">Кнопка алерта без глагола-действия — Библия требует конкретный глагол или объектную фразу вместо голого «Нет».</span></p>
+      </div>
+    </article>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-133">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-133" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:1155</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Да</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Очистить</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке (Apple HIG)</b><span class="wtxt">Кнопка деструктивного действия («Да») без глагола — неясно, что именно подтверждается, вопреки правилу глагола в кнопке.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Твои результаты — ставка на серию</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="fear-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fear-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/streak_stats.tsx:1958</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Пропустишь день — ставка сгорит: −</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Держи серию — ставка останется твоей: </p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 2: gain-framing; Часть V п.1: не запугиваем</b><span class="wtxt">Чистый loss-framing со знаком минус и крестиком: Библия требует говорить о том, что человек сохраняет, а не теряет.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Урок (экран прохождения, кнопка «Далее»)</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-201">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-201" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LangContext.tsx:45</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">next: &#x27;Далее&#x27;, check: &#x27;Проверить&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">next: &#x27;Продолжить&#x27;, check: &#x27;Проверить&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке (Apple HIG) — прямой запрещённый пример из таблицы Части IV («Далее» → «Продолжить»)</b><span class="wtxt">Кнопка перехода к следующему вопросу на экране lesson1.tsx (app/lesson1.tsx:1734) буквально показывает «Далее» — это explicit-запрещённый пример из Библии.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Экран урока — кнопка перехода к следующей фразе</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="home-nav-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LangContext.tsx:45</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">oral: &#x27;Устно&#x27;, next: &#x27;Далее&#x27;, check: &#x27;Проверить&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">oral: &#x27;Устно&#x27;, next: &#x27;Продолжить&#x27;, check: &#x27;Проверить&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1 / Часть IV таблица кнопок: «Далее»→«Продолжить»</b><span class="wtxt">«Далее» прямо в списке запрещённых слов Библии (Часть I и таблица кнопок Части IV требуют «Продолжить»).</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Друзья — модалка получения подарка</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/friends.tsx:3649</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">{L(&#x27;Понятно&#x27;, &#x27;Зрозуміло&#x27;, &#x27;Entendido&#x27;, &#x27;Entendi&#x27;, &#x27;Đã hiểu&#x27;, &#x27;Mengerti&#x27;, &#x27;Tamam&#x27;, &#x27;Rozumiem&#x27;)}</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">{L(&#x27;Забрать подарок&#x27;, &#x27;Забрати подарунок&#x27;, &#x27;Recibir regalo&#x27;, &#x27;Receber presente&#x27;, &#x27;Nhận quà&#x27;, &#x27;Terima hadiah&#x27;, &#x27;Hediyeyi al&#x27;, &#x27;Odbierz prezent&#x27;)}</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке — «Понятно» не действие</b><span class="wtxt">Кнопка закрытия модалки полученного подарка от друга названа «Понятно» вместо конкретного действия получения подарка.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Главный экран — модалка «Титулы» (кнопка закрытия)</h3>
+
+    <article class="row" data-sev="medium" data-kind="i18n" data-id="home-nav-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">app/(tabs)/home.tsx:3997</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">&lt;TouchableOpacity activeOpacity={0.75} onPress={() =&gt; setTitleModalVisible(false)} accessibilityRole=&quot;button&quot; accessibilityLabel=&quot;Close&quot; style={{ width: 44, height: 44, borderRadius: 22, alignItems: &#x27;center&#x27;, justifyContent: &#x27;center&#x27;, backgroundColor: isGoldTheme ? &#x27;rgba(246,227,161,0.10)&#x27; : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}&gt;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">&lt;TouchableOpacity activeOpacity={0.75} onPress={() =&gt; setTitleModalVisible(false)} accessibilityRole=&quot;button&quot; accessibilityLabel={triLang(lang, { ru: &#x27;Закрыть&#x27;, en: &#x27;Close&#x27;, uk: &#x27;Закрити&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })} style={{ width: 44, height: 44, borderRadius: 22, alignItems: &#x27;center&#x27;, justifyContent: &#x27;center&#x27;, backgroundColor: isGoldTheme ? &#x27;rgba(246,227,161,0.10)&#x27; : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}&gt;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">i18n: озвучиваемый текст обязан идти через triLang, как весь остальной интерфейс</b><span class="wtxt">Кнопка закрытия модалки «Титулы» жёстко зашита английским словом &#x27;Close&#x27; без triLang — русский, украинский и все остальные 7 языков интерфейса слышат от скринридера английское слово вместо родного «Закрыть».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Настройки — алерт смены аккаунта (списание жемчуга)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:2092</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">text: L(&#x27;Понятно&#x27;, &#x27;Зрозуміло&#x27;, &#x27;Entendido&#x27;, &#x27;Entendi&#x27;, &#x27;Đã hiểu&#x27;, &#x27;Mengerti&#x27;, &#x27;Anladım&#x27;, &#x27;Rozumiem&#x27;),</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">text: L(&#x27;Остаться здесь&#x27;, &#x27;Залишитися тут&#x27;, &#x27;Quedarme aquí&#x27;, &#x27;Ficar aqui&#x27;, &#x27;Ở lại đây&#x27;, &#x27;Tetap di sini&#x27;, &#x27;Burada kal&#x27;, &#x27;Zostań tutaj&#x27;),</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке — «Понятно» не действие</b><span class="wtxt">Кнопка отмены смены аккаунта названа «Понятно» без глагола действия, Библия требует конкретный глагол.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Настройки — алерт повреждённой очереди жемчуга при смене аккаунта</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:2128</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">text: L(&#x27;Понятно&#x27;, &#x27;Зрозуміло&#x27;, &#x27;Entendido&#x27;, &#x27;Entendi&#x27;, &#x27;Đã hiểu&#x27;, &#x27;Mengerti&#x27;, &#x27;Anladım&#x27;, &#x27;Rozumiem&#x27;),</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">text: L(&#x27;Остаться здесь&#x27;, &#x27;Залишитися тут&#x27;, &#x27;Quedarme aquí&#x27;, &#x27;Ficar aqui&#x27;, &#x27;Ở lại đây&#x27;, &#x27;Tetap di sini&#x27;, &#x27;Burada kal&#x27;, &#x27;Zostań tutaj&#x27;),</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке — «Понятно» не действие</b><span class="wtxt">Та же кнопка-отмена без глагола повторяется во втором алерте смены аккаунта.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Настройки — алерт не удалось сохранить прогресс при смене аккаунта</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/(tabs)/settings.tsx:2157</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">text: L(&#x27;Понятно&#x27;, &#x27;Зрозуміло&#x27;, &#x27;Entendido&#x27;, &#x27;Entendi&#x27;, &#x27;Đã hiểu&#x27;, &#x27;Mengerti&#x27;, &#x27;Anladım&#x27;, &#x27;Rozumiem&#x27;),</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">text: L(&#x27;Остаться здесь&#x27;, &#x27;Залишитися тут&#x27;, &#x27;Quedarme aquí&#x27;, &#x27;Ficar aqui&#x27;, &#x27;Ở lại đây&#x27;, &#x27;Tetap di sini&#x27;, &#x27;Burada kal&#x27;, &#x27;Zostań tutaj&#x27;),</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке — «Понятно» не действие</b><span class="wtxt">Третий экземпляр той же кнопки без глагола в цепочке алертов смены аккаунта.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Твои результаты — стоимость (второе место)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-006">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/streak_stats.tsx:3993</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Стоимость:</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Нужно жемчужин:</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: цена / стоимость — запрещено</b><span class="wtxt">То же запрещённое слово во втором месте того же экрана — правки нужны синхронно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Твои результаты — стоимость заморозки серии</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/streak_stats.tsx:4966</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Стоимость заморозки:</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Заморозка стоит:</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: цена / стоимость — запрещено</b><span class="wtxt">Существительное «стоимость» в роли ярлыка запрещено словарём Библии.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Меню урока (карточка «Начать/Продолжить урок»)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="home-nav-203">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-203" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LangContext.tsx:33</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">start: &#x27;Начать урок&#x27;,
+    continue: &#x27;Продолжить урок&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">start: &#x27;Начать сессию&#x27;,
+    continue: &#x27;Продолжить сессию&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: урок → сессия / раунд / вызов</b><span class="wtxt">Кнопки на карточке меню урока (app/lesson_menu.tsx:773) буквально называют раздел «уроком» — прямое запрещённое слово из словаря, хотя весь остальной экран (58 вхождений «урок» на файл) использует то же слово систематически, так что это изолированная точечная правка двух ключей, а не полная переработка терминологии экрана.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пари на серию (модалка подтверждения ставки)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-204">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-204" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/streak_stats.tsx:1878</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">title: triLang(lang, {
+            ru: &#x27;Подтвердить пари&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">title: triLang(lang, {
+            ru: &#x27;Поставить жемчуг&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: подтвердить → готово / сохранить</b><span class="wtxt">Заголовок модалки подтверждения ставки в пари на серию использует запрещённое слово «подтвердить» из словаря замен, хотя формально это заголовок, а не кнопка (кнопка ниже уже верно называется «Поставить»).</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Общий словарь UI (LangContext RU)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="home-nav-202">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="home-nav-202" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LangContext.tsx:29</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">statsCardTitle: &#x27;Статистика&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">statsCardTitle: &#x27;Твои результаты&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: статистика → твои результаты / что ты уже знаешь</b><span class="wtxt">Строка используется как accessibilityLabel карточки статистики на Главной (app/(tabs)/home.tsx:3285), которая по тапу открывает экран, чей собственный заголовок уже переписан по Библии на «Твои результаты» (app/streak_stats.tsx) — рассинхрон формулировок.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Локализация · 2</h2>
+<div class="screen"><h3 class="screen-h">Пейволл MAX (и другие платные экраны)</h3>
+
+    <article class="row" data-sev="high" data-kind="i18n" data-id="i18n-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="i18n-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">app/max_paywall.tsx</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">triLang({ ru, uk, es, ... }) без ключей pl / vi / id / tr</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Добавить ключи pl, vi, id, tr во все triLang платных экранов</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 12: доверие дороже быстрой конверсии</b><span class="wtxt">triLang при отсутствии ключа молча отдаёт испанский, поэтому поляк, вьетнамец, индонезиец и турок видят на экране оплаты чужой язык.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Сквозная архитектура локализации</h3>
+
+    <article class="row" data-sev="high" data-kind="i18n" data-id="i18n-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="i18n-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">constants/i18n.ts:814</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">export function triLang&lt;const T extends { ru: unknown; uk: unknown; es: unknown } ...&gt;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Сделать ключи pl/vi/id/tr обязательными в типе T для UI-текстов, либо явный фолбэк на ru вместо es</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 12 + Часть V п.3 (никаких неожиданностей в UI)</b><span class="wtxt">Тип требует только ru/uk/es, поэтому пропуск четырёх языков не ловится компилятором и уходит в прод незаметно.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Лиги и клуб · 4</h2>
+<div class="screen"><h3 class="screen-h">Клуб — правила лиги, «что даёт высокая лига»</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="fill-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fill-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LeagueRulesSheet.tsx:233</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Каждая следующая лига навсегда ускоряет ваш опыт: в самой первой прибавка небольшая, в самой высокой — больше чем вдвое. Это значит, что уровень в приложении растёт быстрее просто потому, что вы поднялись выше.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Каждая лига выше — быстрее твой опыт. В первой прибавка небольшая, в высшей — больше чем вдвое.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: только «ты» + Часть V п.4: без «просто» + Правило 4: до 10 слов</b><span class="wtxt">Одно предложение нарушает три правила разом: обращение на «вы» дважды, слово-паразит «просто» и длина вчетверо больше допустимой.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Клуб — статус лидера в таблице</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="you-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="you-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/league/leagueStatusShared.ts:52</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы лидируете</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Ты лидируешь</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: только «ты»</b><span class="wtxt">Самый радостный момент недели подан на «вы» — холодно и не по голосу Библии.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Клуб — стоимость буста</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/club_screen.tsx:1947</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Стоимость:</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Нужно жемчужин:</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: цена / стоимость — запрещено</b><span class="wtxt">«Стоимость» — запрещённое слово словаря; формулировка через нужное количество не звучит как трата.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Клуб — вклад в общую миссию</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="you-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="you-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/league/LeagueBonusMission.tsx:102</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ваш вклад</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твой вклад</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: только «ты»</b><span class="wtxt">Обращение на «вы» рядом с «твоей» серией на соседнем экране разрывает единый голос.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Уроки и практика · 5</h2>
+<div class="screen"><h3 class="screen-h">Карточки — кнопка «не совпало» в свайпе</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="learn-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="learn-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/flashcards_swipe.tsx:1194</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Неверно</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не то</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.6: не унижаем за ошибку («неправильно», «ошибка» запрещены)</b><span class="wtxt">«Неверно» выносит приговор в момент, когда человек только пробует вспомнить фразу; английская версия того же места уже сделана мягко — «No match».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Карточки — итог сессии, счётчик промахов</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="learn-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="learn-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/flashcards_swipe.tsx:1506</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибки</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Что разобрать</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: ошибка → попытка / почти; Часть V п.6</b><span class="wtxt">На экране итога слово «Ошибки» подводит черту виной, тогда как Библия предлагает смотреть вперёд — что доработать.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Личный план — смена плана</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="fear-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fear-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/personal_plan.tsx:1072</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Весь прогресс текущего плана будет потерян — новый план придётся начинать сначала, с первого дня.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Новый план начнётся с первого дня. Пройденное в старом плане не переносится.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: прогресс → путь; Правило 4: до 10 слов; Часть V п.1: не запугиваем</b><span class="wtxt">Длинное предложение с «потерян» пугает на ровном месте — то же самое можно сказать спокойно и короче, не теряя честности предупреждения.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Карточки — кнопка жалобы на карточку</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="learn-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="learn-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">app/flashcards_swipe.tsx:3281</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Сообщить об ошибке в карточке</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Сообщить об ошибке в карточке</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Исключение: речь о дефекте контента, а не о промахе ученика</b><span class="wtxt">Здесь «ошибка» относится к самой карточке (опечатка, кривой перевод), и человеку нужно именно это привычное слово — не трогать.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Экзамен уровня — название типа задания «найди ошибку»</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="learn-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="learn-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">app/level_exam_result_copy.ts:96</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибки</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Ошибки</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Исключение: это название упражнения, а не оценка ученика</b><span class="wtxt">Задание find_oddity буквально просит найти ошибку в предложении; замена слова разрушит смысл упражнения — не трогать.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Модалки и тосты · 17</h2>
+<div class="screen"><h3 class="screen-h">Промо-баннер — текст по умолчанию</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="fear-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fear-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/PromoBanner.tsx:51</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Специальное предложение — успей!</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Специальное предложение — загляни</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.5: не делаем фальшивую срочность + Правило 12: доверие дороже конверсии</b><span class="wtxt">Это текст по умолчанию, он показывается и без реального дедлайна — «успей!» подгоняет человека там, где спешить не нужно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Окно «Сохрани прогресс» — приглашение зарегистрироваться</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="you-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="you-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/RegistrationPromptModal.tsx:581</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ваш прогресс будет ждать вас в облаке</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твой путь сохранится и дождётся тебя</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: только «ты» + словарь: прогресс → путь + Часть V п.3: без техножаргона</b><span class="wtxt">Одна строка нарушает сразу три правила: обращение на «вы», запрещённое слово «прогресс» и техническое «в облаке», которое человеку ничего не объясняет.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Входящие сообщения — отметка выбранного варианта</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="you-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="you-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/AppMessagesInbox.tsx:100</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ваш выбор</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твой выбор</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: только «ты»</b><span class="wtxt">Ещё одно «вы» в интерфейсе, который везде обращается на «ты».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Бонус дня активирован (BoonActivatedModal)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/BoonActivatedModal.tsx:129</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;Отлично&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Продолжить&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке / Словарь: далее/ок/понятно → [глагол + объект]</b><span class="wtxt">Кнопка закрытия праздничного модала бонуса — это восклицание-реакция, а не действие; в кнопке должен быть глагол.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Бонус дня активирован — просмотровая шторка (BoonActivatedSheet)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/BoonActivatedSheet.tsx:44</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;Отлично&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Продолжить&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">Тот же CTA &#x27;Отлично&#x27; повторяется на боевой поверхности (единственный показ бонуса дня); слово-реакция вместо глагола действия.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Бонус лиги открыт — «Награды подгружаются» (LeagueChestOpenModal, нет наград)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LeagueChestOpenModal.tsx:545</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">triLang(lang, { ru: &#x27;Понятно&#x27;, uk: &#x27;Зрозуміло&#x27;, en: &#x27;Got it&#x27;, es: &#x27;Entendido&#x27;, &#x27;pt-BR&#x27;: &#x27;Entendi&#x27;, vi: &#x27;Đã hiểu&#x27;, id: &#x27;Mengerti&#x27;, tr: &#x27;Anladım&#x27;, pl: &#x27;Rozumiem&#x27; })</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">triLang(lang, { ru: &#x27;Закрыть&#x27;, uk: &#x27;Закрити&#x27;, en: &#x27;Close&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке / Словарь: далее/ок/понятно → [глагол + объект]</b><span class="wtxt">Кнопка на ветке &#x27;нет наград ещё&#x27; — реакция-согласие, а не действие; нужен глагол закрытия.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Как устроена лига (LeagueRulesSheet)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LeagueRulesSheet.tsx:341</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">const ctaLabel = triLang(lang, { ru: &#x27;Понятно&#x27;, uk: &#x27;Зрозуміло&#x27;, en: &#x27;Got it&#x27;, es: &#x27;Entendido&#x27;, &#x27;pt-BR&#x27;: &#x27;Entendi&#x27;, vi: &#x27;Đã hiểu&#x27;, id: &#x27;Paham&#x27;, tr: &#x27;Anladım&#x27;, pl: &#x27;Jasne&#x27;, });</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">const ctaLabel = triLang(lang, { ru: &#x27;Закрыть&#x27;, uk: &#x27;Закрити&#x27;, en: &#x27;Close&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27;, });</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">Единственная кнопка объяснялки — «Понятно» без глагола, закрывает шторку.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Сообщение от администрации (PersonalAdminMessageModal)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-006">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/PersonalAdminMessageModal.tsx:64</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">&lt;Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}&gt;{triLang(lang, { ru: &#x27;Понятно&#x27;, uk: &#x27;Зрозуміло&#x27;, en: &#x27;Got it&#x27;, es: &#x27;Entendido&#x27;, &#x27;pt-BR&#x27;: &#x27;Entendi&#x27;, vi: &#x27;Đã hiểu&#x27;, id: &#x27;Mengerti&#x27;, tr: &#x27;Anladım&#x27;, pl: &#x27;Rozumiem&#x27; })}&lt;/Text&gt;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">&lt;Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}&gt;{triLang(lang, { ru: &#x27;Закрыть&#x27;, uk: &#x27;Закрити&#x27;, en: &#x27;Close&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })}&lt;/Text&gt;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">Единственная кнопка персонального сообщения от админа — реакция «Понятно», не действие.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Жалоба на набор карточек — лимит частоты (ReportPackModal, throttled)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-010">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-010" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/ReportPackModal.tsx:286</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">&lt;Text style={{ color: t.textPrimary, fontWeight: &#x27;700&#x27; }}&gt;OK&lt;/Text&gt;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">&lt;Text style={{ color: t.textPrimary, fontWeight: &#x27;700&#x27; }}&gt;{triLang(lang, { uk: &#x27;Закрити&#x27;, ru: &#x27;Закрыть&#x27;, en: &#x27;Close&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })}&lt;/Text&gt;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке / Часть V п.2-3: никаких технических/латинских служебных слов в UI</b><span class="wtxt">Хардкод &#x27;OK&#x27; без перевода и без глагола — единственная кнопка на экране кулдауна жалобы, к тому же не локализована (нет triLang) хотя весь остальной модал переведён на 8 языков.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Подарок сезонного пропуска — финал (SeasonGiftModal, applied-фаза)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-009">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-009" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/SeasonGiftModal.tsx:616</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;Отлично&#x27;, uk: &#x27;Чудово&#x27;, es: &#x27;Genial&#x27;, &#x27;pt-BR&#x27;: &#x27;Ótimo&#x27;, vi: &#x27;Tuyệt&#x27;, id: &#x27;Bagus&#x27;, tr: &#x27;Harika&#x27;, pl: &#x27;Świetnie&#x27;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Продолжить&#x27;, uk: &#x27;Продовжити&#x27;, es: &#x27;Continuar&#x27;, &#x27;pt-BR&#x27;: &#x27;Continuar&#x27;, vi: &#x27;Tiếp tục&#x27;, id: &#x27;Lanjutkan&#x27;, tr: &#x27;Devam et&#x27;, pl: &#x27;Kontynuuj&#x27;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">CTA после применения подарка сезонного пропуска — реакция-восклицание &#x27;Отлично&#x27;/&#x27;Великолепно&#x27; вместо глагола действия закрытия/продолжения.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Экран получения награды сезонного пропуска (SeasonRewardInfoModal, статус claimed/upcoming)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-007">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-007" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/SeasonRewardInfoModal.tsx:210</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">{triLang(lang, { ru: &#x27;Понятно&#x27;, uk: &#x27;Зрозуміло&#x27;, en: &#x27;Got it&#x27;, es: &#x27;Entendido&#x27;, &#x27;pt-BR&#x27;: &#x27;Entendi&#x27;, vi: &#x27;Đã hiểu&#x27;, id: &#x27;Mengerti&#x27;, tr: &#x27;Anladım&#x27;, pl: &#x27;Rozumiem&#x27; })}</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">{triLang(lang, { ru: &#x27;Закрыть&#x27;, uk: &#x27;Закрити&#x27;, en: &#x27;Close&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })}</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">Гибридная ветка того же экрана (line 210) и классическая ветка (line 333) обе используют «Понятно» вместо глагола действия.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Экран получения награды сезонного пропуска — classic-ветка (SeasonRewardInfoModal)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="modals-008">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-008" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/SeasonRewardInfoModal.tsx:333</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">{triLang(lang, { ru: &#x27;Понятно&#x27;, uk: &#x27;Зрозуміло&#x27;, en: &#x27;Got it&#x27;, es: &#x27;Entendido&#x27;, &#x27;pt-BR&#x27;: &#x27;Entendi&#x27;, vi: &#x27;Đã hiểu&#x27;, id: &#x27;Mengerti&#x27;, tr: &#x27;Anladım&#x27;, pl: &#x27;Rozumiem&#x27; })}</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">{triLang(lang, { ru: &#x27;Закрыть&#x27;, uk: &#x27;Закрити&#x27;, en: &#x27;Close&#x27;, es: &#x27;Cerrar&#x27;, &#x27;pt-BR&#x27;: &#x27;Fechar&#x27;, vi: &#x27;Đóng&#x27;, id: &#x27;Tutup&#x27;, tr: &#x27;Kapat&#x27;, pl: &#x27;Zamknij&#x27; })}</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">Дублирует нарушение modals-007 в classic-варианте того же экрана — для консистентности нужно править оба места одновременно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Тост ошибки — польский язык</h3>
+
+    <article class="row" data-sev="medium" data-kind="i18n" data-id="toast-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="toast-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">components/action_toast_copy.ts:64</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">error: &#x27;Błąd&#x27;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">error: &#x27;Coś poszło nie tak&#x27;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Стиль 5 (Человек) + Часть V п.6: не говорим «ошибка»</b><span class="wtxt">Все семь остальных языков дают человеческое «что-то пошло не так», и только польский оставили сухим «Ошибка» — тон разошёлся именно там.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Уведомление о проблеме с оплатой (BillingIssueToastHost)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="modals-011">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-011" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/BillingIssueToastHost.tsx:84</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.4 / owner-rule: эмодзи в UI запрещены владельцем (см. комментарии в LevelGiftModal.tsx: «владелец запретил эмодзи в UI»)</b><span class="wtxt">Тост про биллинг сохраняет эмодзи 💳-префикс во всех 8 языках, хотя соседние компоненты (LevelGiftModal) явно документируют, что владелец запретил эмодзи и убрал их из аналогичных мест.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Подарок за уровень — награда с барабана (LevelSpinRewardModal)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="modals-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/LevelSpinRewardModal.tsx:180</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">const ctaLabel = triLang(lang, { ru: &#x27;ГОТОВО&#x27;, uk: &#x27;ГОТОВО&#x27;, en: &#x27;DONE&#x27;, es: &#x27;LISTO&#x27;, &#x27;pt-BR&#x27;: &#x27;PRONTO&#x27;, vi: &#x27;XONG&#x27;, id: &#x27;SELESAI&#x27;, tr: &#x27;TAMAM&#x27;, pl: &#x27;GOTOWE&#x27; });</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">const ctaLabel = triLang(lang, { ru: &#x27;ЗАБРАТЬ&#x27;, uk: &#x27;ЗАБРАТИ&#x27;, en: &#x27;CLAIM&#x27;, es: &#x27;RECLAMAR&#x27;, &#x27;pt-BR&#x27;: &#x27;RECEBER&#x27;, vi: &#x27;NHẬN&#x27;, id: &#x27;KLAIM&#x27;, tr: &#x27;AL&#x27;, pl: &#x27;ODBIERZ&#x27; });</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке (таблица кнопок: &#x27;Готово&#x27; допустимо только для завершения формы, здесь закрывает получение приза)</b><span class="wtxt">Кнопка закрывает получение приза из спина — по таблице библии («Забрать» — приём награды), а не общее «Готово» после ввода данных.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Тост информации — заголовок</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="toast-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="toast-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/action_toast_copy.ts:10</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">info: &#x27;Инфо&#x27;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">info: &#x27;Подсказка&#x27;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Стиль 5 (Человек): приложение говорит как живой человек</b><span class="wtxt">«Инфо» — сухая аббревиатура из служебного интерфейса; живой человек так не обращается.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Друг принёс ключ — реферальная награда (ReferralFriendRewardHybrid)</h3>
+
+    <article class="row" data-sev="low" data-kind="i18n" data-id="modals-012">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="modals-012" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">components/celebration/ReferralFriendRewardHybrid.tsx</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">interface ReferralFriendRewardHybridProps { visible: boolean; title: string; subtitle: string; ctaLabel: string; onClose: () =&gt; void; }</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">n/a — проверить вызывающий компонент, что title/subtitle/ctaLabel формируются triLang() на все 8 языков интерфейса, а не только ru/en</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Бриф: i18n-находки — переводы должны покрывать все 8 языков интерфейса</b><span class="wtxt">Компонент принимает текст готовыми строками без собственных переводов — сам файл не подтверждает 8-язычность; found no local тексты для аудита, но это единственный celebration-компонент без вшитых triLang словарей, стоит проверить источник пропсов на пропуски vi/id/tr/pl.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Уведомления · 6</h2>
+<div class="screen"><h3 class="screen-h">Пуш «Турнир начинается» (вариант 1)</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="push-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="push-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">functions/src/tournament_start_push.ts:194</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Пять минут славы или пять минут позора. Выбирай сам.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Пять минут — и ты в игре. Заходи.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.6: не унижаем + Правило 2: gain-framing</b><span class="wtxt">«Позор» пугает поражением ещё до старта: это loss-framing плюс прямое унижение, запрещённое Библией.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пуш «Турнир открыт» (вариант 3)</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="push-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="push-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">functions/src/tournament_start_push.ts:196</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Места разбирают. Последнему достаётся стул у выхода.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Места разбирают. Занимай своё.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.6: не унижаем + Часть V п.1: не запугиваем</b><span class="wtxt">Насмешка над последним местом бьёт по тому, кто и так сомневается, и добавляет искусственную срочность.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пуш о подарке</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="fear-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fear-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/notifications.ts:1010</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">🎁 Подарок сгорит через 6 часов</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">🎁 Подарок ждёт тебя ещё 6 часов</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 2: gain-framing</b><span class="wtxt">Срок реальный (подарки живут 72 часа), но подан через сгорание; та же правда в gain-формулировке не пугает.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пуш «Турнир собирается» (вариант 4)</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="push-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="push-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">functions/src/tournament_start_push.ts:197</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Твои соперники уже придумали, как объяснить проигрыш.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Соперники уже собираются. Присоединяйся.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 2: gain-framing</b><span class="wtxt">Текст заранее ставит проигрыш в центр сообщения вместо выгоды от участия.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пуш об окончании Plus</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="fear-006">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fear-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">app/notifications.ts:920</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Твой Плюс истекает через 2 часа</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твой Плюс истекает через 2 часа</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Исключение: честное предупреждение о реальном сроке подписки</b><span class="wtxt">Срок настоящий и денежный — человек обязан знать заранее, поэтому формулировку оставляем как есть.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пуш «Турнир стартует» (вариант 2)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="push-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="push-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">functions/src/tournament_start_push.ts:195</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Первое место пока свободно. Просто говорю.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Первое место пока свободно.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.4: не используем слова-паразиты («просто»)</b><span class="wtxt">«Просто говорю» — слово-паразит из запрещённого списка, фраза сильнее без него.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Первый вход · 1</h2>
+<div class="screen"><h3 class="screen-h">Плашка после удаления аккаунта</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="you-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="you-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/CleanOnboarding.tsx:3727</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Вы удалили все свои данные</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Ты удалил все свои данные</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14 / Часть V п.8: только «ты», никогда «вы»</b><span class="wtxt">Единственное «вы» во всём файле онбординга — сбивает тон ровно в момент прощания с человеком.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Деньги и доступ · 35</h2>
+<div class="screen"><h3 class="screen-h">Студия аватара — покупка ауры/образа за жемчуг, кнопка</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="paywall-020">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-020" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/avatar_select.tsx:171</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">buy: &#x27;Купить&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">buy: &#x27;Открыть&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: «купить» → «открыть/разблокировать/получить доступ»</b><span class="wtxt">Кнопка покупки ауры за игровую валюту использует прямо запрещённое слово «Купить».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Студия аватара — покупка и применение образа за жемчуг, кнопка</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="paywall-021">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-021" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/avatar_select.tsx:171</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">buyApply: &#x27;Купить и применить&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">buyApply: &#x27;Открыть и применить&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: «купить» → «открыть/разблокировать/получить доступ»</b><span class="wtxt">Кнопка комбинированного действия использует запрещённое слово «Купить».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Студия аватара — заголовок диалога подтверждения покупки образа</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="paywall-022">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-022" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/avatar_select.tsx:174</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">purchaseTitle: &#x27;Подтвердить покупку&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">purchaseTitle: &#x27;Открыть образ?&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: «купить/подтвердить» → «открыть»/«готово»</b><span class="wtxt">Заголовок диалога подтверждения использует два запрещённых слова разом — «Подтвердить» и «покупку» — вместо глагольной формулировки с «открыть».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Сезонный пропуск — подтверждение</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="money-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/season_pass.tsx:991</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Купить пропуск сезона?</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Открыть пропуск сезона?</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: купить → открыть / разблокировать / получить доступ</b><span class="wtxt">«Купить» — первое запрещённое слово словаря Библии, оно включает боль оплаты вместо выгоды.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Сезонный пропуск — кнопка</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="money-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/season_pass.tsx:1009</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Купить</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Открыть пропуск</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: купить → открыть + Правило 1: глагол и объект в кнопке</b><span class="wtxt">«Купить» запрещено словарём, и кнопка без объекта не говорит, что именно откроется.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Покупка темы оформления за жемчуг — лейбл суммы</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-018">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-018" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/ThemeShardPaywallModal.tsx:196</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;Цена темы&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Нужно жемчуга&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: «цена/стоимость» не говорим; Правило 3 — декаплинг цены</b><span class="wtxt">Лейбл над суммой покупки темы использует запрещённое слово «Цена».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Покупка темы оформления за жемчуг — экран «Не хватает жемчуга», кнопка в магазин</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-019">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-019" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/ThemeShardPaywallModal.tsx:200</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;Пополнить жемчуг&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Расширить жемчуг&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: «пополнить/добавить» → «расширить/прокачать»</b><span class="wtxt">Кнопка перехода в магазин жемчуга использует запрещённое слово «Пополнить».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Набор карточек за жемчуг — экран «Недостаточно жемчуга», кнопка в магазин</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-017">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-017" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/flashcards/CardPackShardPaywallModal.tsx:286</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">buyShards: &#x27;Пополнить жемчуг&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">buyShards: &#x27;Расширить жемчуг&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь замен: «пополнить/добавить» → «расширить/прокачать»</b><span class="wtxt">Кнопка перехода в магазин жемчуга использует запрещённое слово «Пополнить».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейволл MAX — приём оплаты</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-007">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-007" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/max_paywall.tsx:225</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Магазин принял покупку. Проверяем активацию MAX…</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Оплата принята. Открываем MAX…</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: покупка → оплата + Правило 4: короче и понятнее</b><span class="wtxt">«Покупка» запрещена словарём, а «проверяем активацию» звучит как техпроцесс, а не как радость от открытия доступа.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейволл MAX — недоступно</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-008">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-008" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/max_paywall.tsx:297</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Покупка MAX сейчас недоступна. Попробуй позже.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">MAX сейчас не открыть. Попробуй позже.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: покупка → открыть; «нет доступа» → «ещё не открыто»</b><span class="wtxt">Запрещённое слово плюс формулировка «недоступна» звучит окончательно, а не временно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">MAX-звонок — экран обрыва связи, кнопка повторного подключения</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-016">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-016" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/max_voice_copy.ts:18</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Повторить подключение</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Попробовать снова</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть IV, таблица кнопок: «Ошибка/повтор → Попробовать снова» (не «Повторить»)</b><span class="wtxt">Кнопка повтора соединения использует запрещённое слово «Повторить» вместо утверждённого «Попробовать снова».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейволл — обещание после оплаты</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="fill-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fill-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/paywall_copy.ts:901</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Никаких барьеров — просто учись дальше в своё удовольствие</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Никаких барьеров — осваивай язык в своё удовольствие</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.4: без «просто» + словарь: учить → осваивать</b><span class="wtxt">Два нарушения словаря в одной строке: паразит «просто» и запрещённое «учись».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Paywall — mastery benefit (повтор урока без списания жемчужин, планируемые локали)</h3>
+
+    <article class="row" data-sev="medium" data-kind="i18n" data-id="paywall-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">app/paywall_copy.ts:1112</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">{ &#x27;pt-BR&#x27;: &#x27;Você não gasta pérolas ao repetir lições&#x27;, vi: &#x27;Không tốn xu khi học lại bài&#x27;, id: &#x27;Tidak memakai fragmen saat mengulang pelajaran&#x27;, tr: &#x27;Ders tekrarında jeton harcamazsın&#x27;, pl: &#x27;Nie wydajesz monet na powtórki lekcji&#x27; },</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">{ &#x27;pt-BR&#x27;: &#x27;Você não gasta pérolas ao repetir lições&#x27;, vi: &#x27;Không tốn ngọc trai khi học lại bài&#x27;, id: &#x27;Tidak memakai mutiara saat mengulang pelajaran&#x27;, tr: &#x27;Ders tekrarında inci harcamazsın&#x27;, pl: &#x27;Nie wydajesz pereł na powtórki lekcji&#x27; },</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Терминологическая согласованность игровой валюты во всех языках</b><span class="wtxt">В том же контексте живая копия везде называет валюту «жемчужины/pérolas/perlas», а плановая копия для vi/id/tr/pl подставляет четыре разных несовпадающих слова (монета/фрагмент/жетон/монета).</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Сезонный пропуск — отказ оплаты</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/season_pass.tsx:378</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Покупка не прошла — попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Оплата не прошла — давай ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: покупка → оплата</b><span class="wtxt">«Покупка» — запрещённое слово; «оплата» нейтральнее и не давит на боль траты.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — сообщение «магазин не готов» (не-RU языки)</h3>
+
+    <article class="row" data-sev="medium" data-kind="i18n" data-id="paywall-015">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-015" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Языки</span>
+          
+          <span class="loc">app/shards_shop.tsx:714</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в App Store Connect.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Магазин тимчасово недоступний. Спробуй пізніше.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.3: не пишем технические коды/термины в UI</b><span class="wtxt">RU-версия этой строки уже почищена от жаргона (RevenueCat/Offering/App Store Connect), но версии uk/en/es/pt-BR/vi/id/tr/pl (строки 714-722, 752-759, 789-796) по-прежнему показывают технический текст.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — тост «нужно восстановление вручную»</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-007">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-007" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:1437</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата прошла, автоматическое восстановление не сохранено; не повторяйте покупку, обновим баланс автоматически.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Деньги списаны. Не покупай снова — жемчуг досчитаем сам.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 4: когнитивная лёгкость (предложения до 10 слов) + Словарь: оплата/покупка</b><span class="wtxt">Предложение из 17+ слов с двумя частями через точку с запятой нарушает лимит длины и использует запрещённые слова «оплата»/«покупку».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Карточка апсейла лимита ИИ-разборов — кнопка CTA</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-023">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-023" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/AiLimitUpsellCard.tsx:118</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ru: &#x27;Получить фулл доступ&#x27;,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ru: &#x27;Открыть полный доступ&#x27;,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 4: когнитивная лёгкость (простой текст без жаргона); словарь: «купить» → «открыть/получить доступ»</b><span class="wtxt">«Фулл» — разговорный англицизм-жаргонизм, не входящий в словарь Библии и расходящийся с утверждённой формулировкой «Открыть полный доступ», используемой на всех остальных пейволах.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Тост о проблеме с оплатой</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="fear-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fear-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/BillingIssueToastHost.tsx:84</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">💳 Оплата не прошла — обнови карту, чтобы Plus остался с тобой</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 2: gain-framing + Правило 4: короче</b><span class="wtxt">Предупреждение нужное, но «чтобы не потерять» давит потерей; та же мысль в gain-виде звучит как забота.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Модалка «Три дня позади» (конец интро-доступа) — заголовок</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="paywall-024">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-024" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/IntroFullAccessModal.tsx:42</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Продолжай — бесплатно или с Plus</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Продолжай — с базовым или с Plus</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: бесплатно → попробуй/начни сейчас</b><span class="wtxt">Заголовок экрана после окончания интро-доступа использует запрещённое слово «бесплатно», хотя соседняя кнопка ниже (endedSecondary) уже исправлена на «Остаться на базовом».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейволлы — ярлык тарифа «навсегда»</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="money-009">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-009" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/paywall/PaywallPlanCards.tsx:363</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Разовая покупка</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Один раз — и навсегда</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: покупка запрещена; Правило 7: продаём трансформацию</b><span class="wtxt">«Разовая покупка» описывает транзакцию, а не то, что получает человек; повторяется в пяти файлах пейволла и требует единой замены.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейвол — вариант D «Плитки» (выбор плана: Месяц/Год/Pro/MAX)</h3>
+
+    <article class="row" data-sev="medium" data-kind="owner-rule" data-id="paywall-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">components/paywall/PaywallPlanTiles.tsx:244</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">borderWidth: 1.5,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">borderWidth: 0,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Owner CLAUDE.md: никогда контейнеры с обводкой (borderWidth/borderColor вокруг блоков)</b><span class="wtxt">Плитка тарифа рисует обводку через borderWidth:1.5 вместе с borderColor, тогда как сестринский компонент PaywallPlanCards в той же папке документирует контракт «безрамочные карточки» с borderWidth: 0.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейвол — кнопка закрытия (крестик в углу)</h3>
+
+    <article class="row" data-sev="medium" data-kind="owner-rule" data-id="paywall-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">components/paywall/paywallShared.tsx:570</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">borderWidth: 1,</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">borderWidth: 0,</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Owner CLAUDE.md: никогда контейнеры с обводкой (borderWidth/borderColor вокруг блоков)</b><span class="wtxt">Кнопка закрытия — единственный элемент файла с ненулевым borderWidth и цветной borderColor, тогда как остальные контейнеры (priceRetryBox, tagChip, testimonialCard, sticky) явно используют borderWidth: 0.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Восстановление покупок (все пейволлы)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="money-010">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="money-010" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">app/paywall_purchase.ts:837</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Покупки восстановлены</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Покупки восстановлены</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Требование App Store / Google Play — термин обязателен</b><span class="wtxt">Формулировка «восстановить покупки» закреплена правилами сторов: пользователь ищет именно это слово, менять нельзя.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейволл — снятие возражения про пробный период</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="fill-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="fill-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/paywall_purchase.ts:993</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Платить сейчас не нужно — просто отмени подписку за день до конца пробного периода, и не спишется ничего.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Платить сейчас не нужно. Отмени за день до конца пробного — и ничего не спишется.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.4: без «просто» + Правило 11: возражение закрываем спокойно</b><span class="wtxt">Мысль правильная и нужная рядом с кнопкой, но «просто» — запрещённое слово, а фраза читается тяжелее, чем должна.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — подпись способа оплаты (карточки, App Store)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-009">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-009" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:691</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата — в App Store</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Через App Store</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Подпись под кнопкой покупки — не юридический дисклеймер, а декоративный лейбл способа доступа; слово «оплата» лишнее.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — подпись способа оплаты в подвале (App Store)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-010">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-010" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:702</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата в App Store</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Через App Store</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Дубликат лейбла в подвале списка наборов; не юридический текст.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — подпись способа оплаты (карточки, Google Play)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-011">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-011" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:729</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата — в Google Play</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Через Google Play</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Тот же случай для Android: декоративный лейбл способа доступа, не юридический дисклеймер.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — подпись способа оплаты в подвале (Google Play)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-012">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-012" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:740</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата в Google Play</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Через Google Play</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Дубликат лейбла в подвале списка наборов на Android.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — подпись способа оплаты (карточки, прочие платформы)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-013">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-013" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:766</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата — в магазине приложений</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Через магазин приложений</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Тот же лейбл для веб/прочих платформ.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — подпись способа оплаты в подвале (прочие платформы)</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-014">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-014" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:777</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата в магазине приложений</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Через магазин приложений</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Дубликат лейбла в подвале списка наборов для прочих платформ.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — платежи временно недоступны</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-008">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-008" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:1340</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Платежи временно недоступны. Подожди несколько секунд и попробуй снова.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Магазин ещё загружается. Подожди пару секунд и попробуй снова.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: оплата/платёж → полный доступ/всё включено</b><span class="wtxt">«Платежи» однокоренное с запрещённым «оплата»; рядом (строки 713/751/788) для того же состояния уже используется формулировка без этого слова.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — тост после начисления жемчуга</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:1487</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата подтверждена.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Готово — жемчуг уже в пути.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">Слово «оплата» из запрещённого словаря использовано в обычном (не legal) тосте вместо ценностной формулировки.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Магазин осколков — тост «жемчуг придёт позже»</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-006">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/shards_shop.tsx:1527</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Оплата принята. Жемчуг появится через пару минут.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Готово! Жемчуг появится через пару минут.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: подписка/оплата → полный доступ/всё включено</b><span class="wtxt">«Оплата» — запрещённое слово; тост не юридического характера, а про статус начисления, должен звучать по-игровому.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Модалка «Три дня позади» (конец интро-доступа) — тело текста</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="paywall-025">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-025" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/IntroFullAccessModal.tsx:43</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Всё, что ты выучил — остаётся с тобой. Бесплатный режим доступен всегда. Plus нужен, если хочешь вернуть все планы, темы, аналитику и учёбу без ограничений.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Всё, что ты выучил — остаётся с тобой. Базовый режим доступен всегда. Plus нужен, если хочешь вернуть все планы, темы, аналитику и учёбу без ограничений.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: бесплатно → попробуй/начни сейчас</b><span class="wtxt">Текст под заголовком повторяет запрещённое слово «бесплатный», хотя рядом стоящий CTA «Открыть полный доступ» уже следует словарю.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Пейвол — вариант D «Плитки» (выбранная плитка плана)</h3>
+
+    <article class="row" data-sev="low" data-kind="owner-rule" data-id="paywall-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="paywall-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">components/paywall/PaywallPlanTiles.tsx:260</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">tileSelected: {
+    transform: [{ scale: 1.04 }],
+    borderWidth: 2,
+  },</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">tileSelected: {
+    transform: [{ scale: 1.04 }],
+  },</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Owner CLAUDE.md: никогда контейнеры с обводкой (borderWidth/borderColor вокруг блоков)</b><span class="wtxt">Усиление обводки до borderWidth:2 на выбранной плитке — тот же запрещённый паттерн; выбранность нужно показывать тоном/фоном/тенью, а не рамкой.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Настройки и аккаунт · 8</h2>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — заголовок отказа</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="acc-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:202</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не получилось</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.6 + Стиль 5 (Человек): «ошибка» запрещена</b><span class="wtxt">Голое слово «Ошибка» пугает в самый тревожный момент — когда человек удаляет аккаунт и не понимает, что пошло не так.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — второй заголовок отказа</h3>
+
+    <article class="row" data-sev="high" data-kind="copy" data-id="acc-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-high">Критично</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:267</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не получилось</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.6 + Стиль 5 (Человек)</b><span class="wtxt">Тот же запрещённый заголовок во втором месте того же окна — правки нужны синхронно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — не удалось подготовить</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="acc-005">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:223</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Безопасный локальный выход не завершён. Аккаунт остаётся в режиме защиты; перезапусти приложение и повтори попытку.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Выход не завершился. Аккаунт под защитой — перезапусти приложение и попробуй снова.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.3: без технических деталей + Правило 4: короче</b><span class="wtxt">«Безопасный локальный выход» и «режим защиты» — внутренние термины; человеку нужно понятное действие.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — обрыв связи</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="acc-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:277</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Удаление прервалось до подтверждения сервера. Проверь интернет и попробуй ещё раз.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Удаление не завершилось. Проверь интернет и попробуй ещё раз.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.3: без технических деталей + Правило 4: до 10 слов</b><span class="wtxt">«До подтверждения сервера» — внутренняя механика, которая не помогает человеку решить, что делать дальше.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — что произойдёт дальше</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="acc-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:429</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">После подтверждения приложение начнёт серверную очистку и сразу выведет тебя из старого аккаунта.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">После подтверждения данные начнут удаляться, и мы сразу выйдем из аккаунта.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.3: без технических деталей</b><span class="wtxt">«Серверная очистка» — язык разработчика; человеку важно, что удаляются его данные и что произойдёт вход-выход.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Настройки — карточка сообщения с опросом</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="you-006">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="you-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/settings/SettingsMessageSlotCard.tsx:28</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ваш выбор сохранён и не изменяется</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Твой выбор сохранён</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14: только «ты» + Правило 4: короче</b><span class="wtxt">«Вы» плюс лишний хвост «и не изменяется», который звучит как отказ, а не как подтверждение.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — слово подтверждения</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="acc-007">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-007" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:101</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">УДАЛИТЬ</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">УДАЛИТЬ</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Исключение: необратимое действие требует прямого слова</b><span class="wtxt">Словарь просит смягчать «удалить» до «убрать», но здесь человек вручную печатает слово перед необратимым удалением — мягкость снизила бы осознанность.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Удаление аккаунта — предупреждение о подписке</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="acc-006">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="acc-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">components/DeleteAccountConfirmModal.tsx:417</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">⚠️ Удаление аккаунта не отменяет подписку автоматически. Подписку нужно отменить в App Store или Google Play.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">⚠️ Удаление аккаунта не отменяет подписку автоматически. Подписку нужно отменить в App Store или Google Play.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Требование сторов: предупреждение об оплате обязательно</b><span class="wtxt">Это денежное предупреждение по правилам App Store и Google Play — формулировку менять нельзя.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Диалоги и MAX · 2</h2>
+<div class="screen"><h3 class="screen-h">MAX-звонок — голосовая линия выключена</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="ai-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="ai-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/max_voice_error.ts:110</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Голосовая линия сейчас выключена на сервере. Попробуй позже.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Голос сейчас недоступен. Попробуй чуть позже.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.3: не пишем технические детали в UI</b><span class="wtxt">«На сервере» — внутренняя деталь, которая ничего не даёт человеку и звучит как чужая поломка; править нужно во всех восьми языках сразу.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Диалоги — требуется вход</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="ai-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="ai-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">app/ai_dialog_client.ts:197</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Нужно войти в аккаунт, чтобы продолжить диалог.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Войди в аккаунт — и продолжим разговор.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Стиль 1 (Тренер) + Правило 1: глагол действия</b><span class="wtxt">Безличная констатация вместо тёплого приглашения продолжить; голос Библии говорит «ты» и зовёт действием.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Арена · 4</h2>
+<div class="screen"><h3 class="screen-h">Арена — статистика игрока</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="arena-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="arena-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">modules/arena/copy.ts:14</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Поражения</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не вышло</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.6: не унижаем за ошибку</b><span class="wtxt">Экран результата уже говорит мягко «В этот раз не вышло», а счётчик рядом бьёт словом «Поражения» — тон внутри одного экрана разошёлся.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Арена — проверка ответа в дуэли</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="arena-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="arena-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">modules/arena/copy.ts:35</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Сервер проверяет ответ…</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Проверяем ответ…</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Часть V п.3: не пишем технические детали в UI</b><span class="wtxt">«Сервер» — внутренняя деталь: человеку важно, что ответ проверяется, а не кем именно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Арена — результат матча, понижение тира</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="arena-003">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="arena-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">modules/arena/copy.ts:45</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Тир потерян</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Тир ниже</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 2: gain-framing, говорим не о потере</b><span class="wtxt">«Потерян» фиксирует потерю, хотя соседние строки этого же экрана уже сделаны в поддерживающем тоне («Сохранено {n} рун», «Шанс на реванш»).</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Арена — кнопка отложить дуэль</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="arena-004">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="arena-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-legal">не трогать: закон</span>
+          <span class="loc">modules/arena/copy.ts:31</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Позже</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Позже</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке (допустимое исключение)</b><span class="wtxt">Вторичная кнопка-отказ рядом с сильным CTA «Принять дуэль»; Библия допускает такие короткие отказы, менять не нужно.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Запреты владельца · 2</h2>
+<div class="screen"><h3 class="screen-h">Главная — баннер возвращения</h3>
+
+    <article class="row" data-sev="medium" data-kind="owner-rule" data-id="owner-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="owner-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">app/(tabs)/home.tsx:2581</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">borderWidth: 1, borderColor: &#x27;#FF9500&#x27; + &#x27;88&#x27;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">borderWidth: 0 + разделение тоном: поднять backgroundColor и добавить мягкую тень, как в соседних карточках главной</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой</b><span class="wtxt">Оранжевая рамка вокруг блока — прямой запрет владельца; соседние карточки главной уже переведены на borderWidth: 0.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Главная — карточка восстановления цепочки</h3>
+
+    <article class="row" data-sev="medium" data-kind="owner-rule" data-id="owner-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="owner-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Запрет владельца</span>
+          
+          <span class="loc">app/(tabs)/home.tsx:2609</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">borderWidth: 1, borderColor: &#x27;#FF9500&#x27; + &#x27;99&#x27;</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">borderWidth: 0 + разделение тоном и тенью</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Запрет владельца (CLAUDE.md): НИКОГДА контейнеры с обводкой</b><span class="wtxt">Тот же запрещённый паттерн обводки контейнера на самом видном экране приложения.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Друзья и профиль · 2</h2>
+<div class="screen"><h3 class="screen-h">Профиль игрока — не удалось убрать друга</h3>
+
+    <article class="row" data-sev="medium" data-kind="copy" data-id="soc-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="soc-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/PlayerProfileModal.tsx:1140</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ошибка удаления. Попробуй ещё раз</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не получилось убрать. Попробуй ещё раз</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: ошибка → запрещено; удалить → убрать</b><span class="wtxt">Одна короткая строка нарушает два пункта словаря сразу: «ошибка» и «удаление».</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Профиль игрока — друг убран</h3>
+
+    <article class="row" data-sev="low" data-kind="copy" data-id="soc-002">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="soc-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          
+          <span class="loc">components/PlayerProfileModal.tsx:1117</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Друг удалён</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Друг убран из списка</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь: удалить → убрать (мягче)</b><span class="wtxt">«Удалён» звучит жёстко и окончательно применительно к человеку; словарь Библии просит смягчать.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Служебное · 1</h2>
+<div class="screen"><h3 class="screen-h">AHA-сцена онбординга (не подключена)</h3>
+
+    <article class="row" data-sev="low" data-kind="structure" data-id="dead-001">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="dead-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Структура</span>
+          
+          <span class="loc">components/onboarding_aha/aha_scenes.ts:1</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Модуль AhaScene / aha_scenes.ts не импортируется нигде в app/</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Не тратить правки на тексты этого модуля: из папки onboarding_aha реально используется только TypewriterText (импорт в CleanOnboarding.tsx). Решить с владельцем — подключать сцену или удалить.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">—</b><span class="wtxt">Проверено грепом: единственный внешний импорт из onboarding_aha — TypewriterText, поэтому тексты сцены пользователь не видит.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+
+  
+  <section class="notes">
+    <h2 class="zone-h">Кроме текстов · что ещё нашлось</h2>
+    <div class="note">
+      <h3>Четыре языка молча получают испанский</h3>
+      <p>Помощник <code>triLang</code> требует только русский, украинский и испанский.
+      Если для польского, вьетнамского, индонезийского или турецкого ключ забыли —
+      человек видит <b>испанский текст</b>, и ошибка не всплывает ни в сборке, ни в тестах.
+      На платных экранах это заметили в <code>max_paywall</code>, <code>ThemeShardPaywallModal</code>,
+      <code>PaywallPlanTiles</code>, <code>PaywallPlanCards</code>, <code>coin_exchange</code>.
+      Лечится либо обязательными ключами в типе, либо запасным вариантом на русский вместо испанского.</p>
+    </div>
+    <div class="note">
+      <h3>Правку текста нужно вносить сразу в восемь языков</h3>
+      <p>Почти каждая строка живёт одним вызовом с восемью переводами внутри.
+      Если поправить только русский, тон разойдётся между языками — так уже случилось
+      с тостом ошибки, где семь языков говорят по-человечески, а польский остался сухим «Ошибка».</p>
+    </div>
+    <div class="note">
+      <h3>Часть найденных текстов человек не видит</h3>
+      <p>Сцена знакомства <code>onboarding_aha</code> в приложение не подключена — из этой папки
+      живёт только эффект печатающегося текста. Большие куски старого словаря в
+      <code>LangContext</code> тоже никем не вызываются. Правки там ничего не изменят на экране,
+      поэтому такие места вынесены отдельно и помечены как мелочь.</p>
+    </div>
+    <div class="note">
+      <h3>Запрет обводок соблюдён почти везде</h3>
+      <p>Запрет на <code>adjustsFontSizeToFit</code> выполнен полностью: все четырнадцать
+      упоминаний — это комментарии о том, что сжатие убрали. По обводкам осталось
+      несколько живых мест, они в списке выше с пометкой «Запрет владельца».</p>
+    </div>
+  </section>
+</div>
+<div class="foot">
+  <button class="btn ghost" id="all-off">Снять видимые</button>
+  <button class="btn ghost" id="all-on">Принять видимые</button>
+  <button class="btn" id="copy">Скопировать отказы</button>
+</div>
+<script>
+const rows = Array.from(document.querySelectorAll('.row'));
+const q = document.getElementById('q');
+const KEY = 'phraseman-bible-audit-v1';
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { state = {}; }
+
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+document.querySelectorAll('.cb').forEach(cb => {
+  const id = cb.dataset.id;
+  if (id in state) cb.checked = state[id];
+  cb.closest('.row').classList.toggle('off', !cb.checked);
+  cb.addEventListener('change', () => {
+    state[id] = cb.checked;
+    cb.closest('.row').classList.toggle('off', !cb.checked);
+    save(); tally();
+  });
+});
+
+const filters = { sev:'all', kind:'all' };
+document.querySelectorAll('.f[data-g]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const g = btn.dataset.g;
+    filters[g] = btn.dataset.v;
+    document.querySelectorAll('.f[data-g="'+g+'"]').forEach(b =>
+      b.setAttribute('aria-pressed', String(b === btn)));
+    apply();
+  });
+});
+
+function apply(){
+  const term = (q.value || '').trim().toLowerCase();
+  rows.forEach(r => {
+    const okSev = filters.sev === 'all' || r.dataset.sev === filters.sev;
+    const okKind = filters.kind === 'all' || r.dataset.kind === filters.kind;
+    const okTerm = !term || r.textContent.toLowerCase().includes(term);
+    r.style.display = (okSev && okKind && okTerm) ? '' : 'none';
+  });
+  document.querySelectorAll('.screen').forEach(s => {
+    const any = Array.from(s.querySelectorAll('.row')).some(r => r.style.display !== 'none');
+    s.style.display = any ? '' : 'none';
+  });
+  document.querySelectorAll('.zone').forEach(z => {
+    const any = Array.from(z.querySelectorAll('.row')).some(r => r.style.display !== 'none');
+    z.style.display = any ? '' : 'none';
+  });
+  tally();
+}
+q.addEventListener('input', apply);
+
+function tally(){
+  const vis = rows.filter(r => r.style.display !== 'none');
+  const on = vis.filter(r => r.querySelector('.cb').checked).length;
+  document.getElementById('shown').textContent = vis.length;
+  document.getElementById('kept').textContent = on;
+}
+
+document.getElementById('all-on').addEventListener('click', () => bulk(true));
+document.getElementById('all-off').addEventListener('click', () => bulk(false));
+function bulk(on){
+  rows.filter(r => r.style.display !== 'none').forEach(r => {
+    const cb = r.querySelector('.cb');
+    cb.checked = on; state[cb.dataset.id] = on;
+    r.classList.toggle('off', !on);
+  });
+  save(); tally();
+}
+
+document.getElementById('copy').addEventListener('click', async () => {
+  const off = rows.filter(r => !r.querySelector('.cb').checked)
+                  .map(r => r.dataset.id);
+  const txt = off.length
+    ? 'Не применять: ' + off.join(', ')
+    : 'Применить все правки.';
+  try { await navigator.clipboard.writeText(txt); } catch(e){}
+  const b = document.getElementById('copy');
+  const was = b.textContent; b.textContent = 'Скопировано';
+  setTimeout(() => { b.textContent = was; }, 1400);
+});
+
+tally();
+</script></body></html>

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "dead-001",
+    "zone": "служебное",
+    "screen": "AHA-сцена онбординга (не подключена)",
+    "file": "components/onboarding_aha/aha_scenes.ts",
+    "line": 1,
+    "kind": "structure",
+    "current": "Модуль AhaScene / aha_scenes.ts не импортируется нигде в app/",
+    "proposed": "Не тратить правки на тексты этого модуля: из папки onboarding_aha реально используется только TypewriterText (импорт в CleanOnboarding.tsx). Решить с владельцем — подключать сцену или удалить.",
+    "rule": "—",
+    "why": "Проверено грепом: единственный внешний импорт из onboarding_aha — TypewriterText, поэтому тексты сцены пользователь не видит.",
+    "severity": "low",
+    "legal_ok": false
+  }
+]

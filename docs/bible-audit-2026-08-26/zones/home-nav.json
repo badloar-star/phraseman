@@ -1,0 +1,72 @@
+[
+  {
+    "id": "home-nav-001",
+    "zone": "home-nav",
+    "screen": "Настройки — алерт смены аккаунта (списание жемчуга)",
+    "file": "app/(tabs)/settings.tsx",
+    "line": 2092,
+    "kind": "copy",
+    "current": "text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),",
+    "proposed": "text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),",
+    "rule": "Правило 1: глагол в кнопке — «Понятно» не действие",
+    "why": "Кнопка отмены смены аккаунта названа «Понятно» без глагола действия, Библия требует конкретный глагол.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "home-nav-002",
+    "zone": "home-nav",
+    "screen": "Настройки — алерт повреждённой очереди жемчуга при смене аккаунта",
+    "file": "app/(tabs)/settings.tsx",
+    "line": 2128,
+    "kind": "copy",
+    "current": "text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),",
+    "proposed": "text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),",
+    "rule": "Правило 1: глагол в кнопке — «Понятно» не действие",
+    "why": "Та же кнопка-отмена без глагола повторяется во втором алерте смены аккаунта.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "home-nav-003",
+    "zone": "home-nav",
+    "screen": "Настройки — алерт не удалось сохранить прогресс при смене аккаунта",
+    "file": "app/(tabs)/settings.tsx",
+    "line": 2157,
+    "kind": "copy",
+    "current": "text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),",
+    "proposed": "text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),",
+    "rule": "Правило 1: глагол в кнопке — «Понятно» не действие",
+    "why": "Третий экземпляр той же кнопки без глагола в цепочке алертов смены аккаунта.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "home-nav-004",
+    "zone": "home-nav",
+    "screen": "Друзья — модалка получения подарка",
+    "file": "app/(tabs)/friends.tsx",
+    "line": 3649,
+    "kind": "copy",
+    "current": "{L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}",
+    "proposed": "{L('Забрать подарок', 'Забрати подарунок', 'Recibir regalo', 'Receber presente', 'Nhận quà', 'Terima hadiah', 'Hediyeyi al', 'Odbierz prezent')}",
+    "rule": "Правило 1: глагол в кнопке — «Понятно» не действие",
+    "why": "Кнопка закрытия модалки полученного подарка от друга названа «Понятно» вместо конкретного действия получения подарка.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "home-nav-005",
+    "zone": "home-nav",
+    "screen": "Экран урока — кнопка перехода к следующей фразе",
+    "file": "components/LangContext.tsx",
+    "line": 45,
+    "kind": "copy",
+    "current": "oral: 'Устно', next: 'Далее', check: 'Проверить',",
+    "proposed": "oral: 'Устно', next: 'Продолжить', check: 'Проверить',",
+    "rule": "Правило 1 / Часть IV таблица кнопок: «Далее»→«Продолжить»",
+    "why": "«Далее» прямо в списке запрещённых слов Библии (Часть I и таблица кнопок Части IV требуют «Продолжить»).",
+    "severity": "high",
+    "legal_ok": false
+  }
+]

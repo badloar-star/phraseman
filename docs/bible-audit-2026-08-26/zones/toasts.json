@@ -1,0 +1,30 @@
+[
+  {
+    "id": "toast-001",
+    "zone": "modals-toasts",
+    "screen": "Тост ошибки — польский язык",
+    "file": "components/action_toast_copy.ts",
+    "line": 64,
+    "kind": "i18n",
+    "current": "error: 'Błąd'",
+    "proposed": "error: 'Coś poszło nie tak'",
+    "rule": "Стиль 5 (Человек) + Часть V п.6: не говорим «ошибка»",
+    "why": "Все семь остальных языков дают человеческое «что-то пошло не так», и только польский оставили сухим «Ошибка» — тон разошёлся именно там.",
+    "severity": "medium",
+    "legal_ok": false
+  },
+  {
+    "id": "toast-002",
+    "zone": "modals-toasts",
+    "screen": "Тост информации — заголовок",
+    "file": "components/action_toast_copy.ts",
+    "line": 10,
+    "kind": "copy",
+    "current": "info: 'Инфо'",
+    "proposed": "info: 'Подсказка'",
+    "rule": "Стиль 5 (Человек): приложение говорит как живой человек",
+    "why": "«Инфо» — сухая аббревиатура из служебного интерфейса; живой человек так не обращается.",
+    "severity": "low",
+    "legal_ok": false
+  }
+]

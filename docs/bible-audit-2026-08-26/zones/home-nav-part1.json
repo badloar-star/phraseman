@@ -1,0 +1,44 @@
+[
+  {
+    "id": "home-nav-001",
+    "zone": "home-nav",
+    "screen": "Главный экран — окно «Недостаточно жемчужин» (заморозка серии)",
+    "file": "app/(tabs)/home.tsx",
+    "line": 2422,
+    "kind": "copy",
+    "current": "}), 'OK');",
+    "proposed": "}), triLang(lang, {\n                    ru: 'Закрыть',\n                    en: 'Close',\n                    uk: 'Закрити',\n                    es: 'Cerrar',\n                    'pt-BR': 'Fechar',\n                    vi: 'Đóng',\n                    id: 'Tutup',\n                    tr: 'Kapat',\n                    pl: 'Zamknij',\n                }));",
+    "rule": "Правило 1 (глагол в кнопке) + Словарь: «далее/ок/понятно → [глагол + объект]»",
+    "why": "Кнопка блокирующего алерта о нехватке жемчужин подписана голым 'OK' без перевода и без глагола — прямое нарушение и словаря запрещённых слов, и правила Apple HIG про кнопки; сегодня все 8 языков интерфейса видят английское 'OK'.",
+    "severity": "high",
+    "legal_ok": false
+  },
+  {
+    "id": "home-nav-002",
+    "zone": "home-nav",
+    "screen": "Главный экран — карточка домашних подсказок (кнопка закрытия)",
+    "file": "app/(tabs)/home.tsx",
+    "line": 3562,
+    "kind": "copy",
+    "current": "<TapScale onPress={() => { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel=\"qa-home-tips-close\" style={{ position: 'absolute', top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)', zIndex: 5 }}>",
+    "proposed": "<TapScale onPress={() => { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel={triLang(lang, { ru: 'Закрыть подсказки', en: 'Close tips', uk: 'Закрити підказки', es: 'Cerrar consejos', 'pt-BR': 'Fechar dicas', vi: 'Đóng gợi ý', id: 'Tutup tips', tr: 'İpuçlarını kapat', pl: 'Zamknij podpowiedzi' })} style={{ position: 'absolute', top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)', zIndex: 5 }}>",
+    "rule": "Правило 14 / общее требование доступности — метка для скринридера обязана быть человеческим текстом, а не техническим идентификатором",
+    "why": "Кнопка закрытия карточки подсказок озвучивается скринридером как технический тестовый идентификатор 'qa-home-tips-close', а не как понятное действие — незрячий пользователь слышит служебный код вместо описания кнопки.",
+    "severity": "high",
+    "legal_ok": false
+  },
+  {
+    "id": "home-nav-003",
+    "zone": "home-nav",
+    "screen": "Главный экран — модалка «Титулы» (кнопка закрытия)",
+    "file": "app/(tabs)/home.tsx",
+    "line": 3997,
+    "kind": "i18n",
+    "current": "<TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole=\"button\" accessibilityLabel=\"Close\" style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>",
+    "proposed": "<TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole=\"button\" accessibilityLabel={triLang(lang, { ru: 'Закрыть', en: 'Close', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>",
+    "rule": "i18n: озвучиваемый текст обязан идти через triLang, как весь остальной интерфейс",
+    "why": "Кнопка закрытия модалки «Титулы» жёстко зашита английским словом 'Close' без triLang — русский, украинский и все остальные 7 языков интерфейса слышат от скринридера английское слово вместо родного «Закрыть».",
+    "severity": "medium",
+    "legal_ok": false
+  }
+]

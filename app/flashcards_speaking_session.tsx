@@ -136,7 +136,8 @@ export default function FlashcardsSpeakingSession() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
-  const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[] }>();
+  const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
+  const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
   // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
@@ -221,7 +222,10 @@ export default function FlashcardsSpeakingSession() {
    * помогает — устройство физически не распознаёт речь).
    */
   const [stuck, setStuck] = useState(false);
-  const [result, setResult] = useState<ResultState | null>(null);
+  // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
+  const [result, setResult] = useState<ResultState | null>(() => (devJumpToFinale ? {
+    correct: 15, wrong: 5, learnLeft: 0,
+  } : null));
   // зачем (владелец, 2026-08-27): «Добить» (onRetryWrong) — второй раунд ТОЙ ЖЕ
   // попытки по оставшимся ошибочным карточкам, не новое прохождение — ordinal
   // фиксирован, копилка продолжает жить через оба раунда без сброса.

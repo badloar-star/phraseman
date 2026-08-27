@@ -232,7 +232,7 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints, devJumpToFinale }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
@@ -247,6 +247,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   practiceRunCompletionOrdinal: number;
   devFakeStartRunes?: number;
   devFakeStartPoints?: number;
+  devJumpToFinale?: boolean;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -308,7 +309,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const [learnedCnt, setLearnedCnt] = useState(0);
   // зачем (владелец, 2026-08-27): dev-режим «Проверка рун» подменяет и очки.
   const [totalPts, setTotalPts] = useState(devFakeStartPoints ?? 0);
-  const [allDone, setAllDone] = useState(verbs.length === 0);
+  // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
+  const [allDone, setAllDone] = useState(devJumpToFinale || verbs.length === 0);
   // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
   // экрана празднования» — здесь это переход allDone false→true.
   useEffect(() => {
@@ -1202,7 +1204,8 @@ export default function LessonIrregularVerbs() {
   const { studyTarget } = useStudyTarget();
   const rootPack = stringsForLang(lang);
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
-  const { id, devRunesSeed: devRunesSeedParam } = useLocalSearchParams<{ id: string; devRunesSeed?: string | string[] }>();
+  const { id, devRunesSeed: devRunesSeedParam, devJumpToFinale: devJumpToFinaleParam } = useLocalSearchParams<{ id: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
+  const devJumpToFinale = (Array.isArray(devJumpToFinaleParam) ? devJumpToFinaleParam[0] : devJumpToFinaleParam) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» — настоящий экран со
   // случайным стартовым счётчиком. Диск и сеть в этом режиме не трогаются.
   const devRunesFake = useMemo(
@@ -1314,6 +1317,7 @@ export default function LessonIrregularVerbs() {
                   practiceRunCompletionOrdinal={learnTabKey + 1}
                   devFakeStartRunes={devRunesFake?.runes}
                   devFakeStartPoints={devRunesFake?.secondary}
+                  devJumpToFinale={devJumpToFinale}
                   onReset={() => {
                     setPracticeAll(true);
                     setLearnTabKey(k => k + 1);

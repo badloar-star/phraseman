@@ -118,7 +118,8 @@ export default function FlashcardsBlitzSession() {
   const { lang } = useLang();
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
-  const params = useLocalSearchParams<{ deck?: string; devRunesSeed?: string | string[] }>();
+  const params = useLocalSearchParams<{ deck?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
+  const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
   // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
@@ -141,7 +142,12 @@ export default function FlashcardsBlitzSession() {
   const [blitz, setBlitz] = useState<BlitzState>(() => initialBlitzState());
   const [timeLeft, setTimeLeft] = useState(BLITZ_DURATION_SEC);
   const [lastGain, setLastGain] = useState(0);
-  const [result, setResult] = useState<ResultState | null>(null);
+  // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения —
+  // фейковый summary, реальная игровая механика не запускается вообще.
+  const [result, setResult] = useState<ResultState | null>(() => (devJumpToFinale ? {
+    summary: { correct: 18, wrong: 2, total: 20, accuracy: 0.9, learnKeys: [] },
+    score: 1250, best: 1250, isRecord: true,
+  } : null));
   // зачем (владелец, 2026-08-27): sessionKey привязан к roundId — новый раунд
   // (рестарт «Ещё разок») получает новую копилку по цене повтора, ровно как
   // строка ниже уже делает для sessionId попыток.

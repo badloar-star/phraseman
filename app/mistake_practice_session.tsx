@@ -318,6 +318,7 @@ function MistakePracticeSessionScreen() {
     returnTo?: string;
     maxReviewSessionId?: string;
     devRunesSeed?: string | string[];
+    devJumpToFinale?: string | string[];
   }>();
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
@@ -326,6 +327,7 @@ function MistakePracticeSessionScreen() {
     () => readDevPracticeRunesFakeState(params.devRunesSeed),
     [params.devRunesSeed],
   );
+  const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
@@ -347,7 +349,8 @@ function MistakePracticeSessionScreen() {
   const [input, setInput] = useState('');
   const [builderTokenIndexes, setBuilderTokenIndexes] = useState<number[]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const [complete, setComplete] = useState(false);
+  // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
+  const [complete, setComplete] = useState(devJumpToFinale);
   // зачем (владелец, 2026-08-27): sessionId уникален на каждую сессию отработки
   // ошибок (новый набор актуальных ошибок каждый раз) — «повторное прохождение»
   // здесь концептуально не применимо, поэтому completionOrdinal фиксирован.

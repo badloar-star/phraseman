@@ -482,46 +482,52 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       // НАСТОЯЩИЙ экран с реальным первым доступным контентом, но с новым
       // devRunesSeed на каждый тап — числа на экране меняются при повторном
       // открытии, не залипая на одно и то же значение.
+      // зачем (владелец, 2026-08-27, после жёсткой правки): «мне надо только
+      // экраны ЗАВЕРШЕНИЯ увидеть» — открывать игру с начала и проходить её,
+      // чтобы дойти до финиша, не годится. Урок ведёт СРАЗУ на lesson_complete
+      // (у него отдельный роут финиша); для остальных шести devRunesSeed
+      // заставляет сам экран сразу отрендерить своё финишное состояние —
+      // см. devJumpToFinale в каждом экране.
       case 'open-dev-runes-lesson':
         requestClose(false, () => router.push({
-          pathname: '/lesson1',
+          pathname: '/lesson_complete',
           params: { id: '1', devRunesSeed: makeDevRunesSeed() },
         } as never));
         return;
       case 'open-dev-runes-vocabulary':
         requestClose(false, () => router.push({
           pathname: '/lesson_words',
-          params: { id: '1', devRunesSeed: makeDevRunesSeed() },
+          params: { id: '1', devRunesSeed: makeDevRunesSeed(), devJumpToFinale: '1' },
         } as never));
         return;
       case 'open-dev-runes-irregular-verbs':
         requestClose(false, () => router.push({
           pathname: '/lesson_irregular_verbs',
-          params: { id: '1', devRunesSeed: makeDevRunesSeed() },
+          params: { id: '1', devRunesSeed: makeDevRunesSeed(), devJumpToFinale: '1' },
         } as never));
         return;
       case 'open-dev-runes-blitz':
         requestClose(false, () => router.push({
           pathname: '/flashcards_blitz_session',
-          params: { devRunesSeed: makeDevRunesSeed() },
+          params: { devRunesSeed: makeDevRunesSeed(), devJumpToFinale: '1' },
         } as never));
         return;
       case 'open-dev-runes-flashcards-training':
         requestClose(false, () => router.push({
           pathname: '/flashcards_swipe',
-          params: { devRunesSeed: makeDevRunesSeed() },
+          params: { devRunesSeed: makeDevRunesSeed(), devJumpToFinale: '1' },
         } as never));
         return;
       case 'open-dev-runes-mistake-practice':
         requestClose(false, () => router.push({
           pathname: '/mistake_practice_session',
-          params: { devRunesSeed: makeDevRunesSeed() },
+          params: { devRunesSeed: makeDevRunesSeed(), devJumpToFinale: '1' },
         } as never));
         return;
       case 'open-dev-runes-speaking':
         requestClose(false, () => router.push({
           pathname: '/flashcards_speaking_session',
-          params: { devRunesSeed: makeDevRunesSeed() },
+          params: { devRunesSeed: makeDevRunesSeed(), devJumpToFinale: '1' },
         } as never));
         return;
     }

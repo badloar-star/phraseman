@@ -2700,7 +2700,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, devFakeStartRunes, devFakeStartPoints }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; devFakeStartRunes?: number; devFakeStartPoints?: number }) {
+function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, devFakeStartRunes, devFakeStartPoints, devJumpToFinale }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; devFakeStartRunes?: number; devFakeStartPoints?: number; devJumpToFinale?: boolean }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2795,7 +2795,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [hapticsOn,  setHapticsOn]  = useState(true);
   const [voiceOut,   setVoiceOut]   = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
-  const [allDone,    setAllDone]    = useState(false);
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает СРАЗУ
+  // экран завершения, не заставляя проходить тренировку заново.
+  const [allDone,    setAllDone]    = useState(devJumpToFinale ?? false);
   // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
   // экрана празднования» — здесь это переход allDone false→true. useEffect,
   // а не вызов в местах, где ставится setAllDone(true): таких мест два, и
@@ -3650,7 +3652,11 @@ export default function LessonWords() {
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
-  const { id, tab: tabParam, qaFocusWords, devRunesSeed: devRunesSeedParam } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[]; devRunesSeed?: string | string[] }>();
+  const { id, tab: tabParam, qaFocusWords, devRunesSeed: devRunesSeedParam, devJumpToFinale: devJumpToFinaleParam } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[]; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
+  // зачем (владелец, 2026-08-27): «мне надо только экраны завершения увидеть»
+  // — DEV-хаб должен показать финиш СРАЗУ, не проходя тренировку. Флаг летит
+  // как проп в Training и там инициализирует allDone = true.
+  const devJumpToFinale = (Array.isArray(devJumpToFinaleParam) ? devJumpToFinaleParam[0] : devJumpToFinaleParam) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» — настоящий экран со
   // случайным стартовым счётчиком. Диск и сеть в этом режиме не трогаются.
   const devRunesFake = useMemo(
@@ -3841,6 +3847,7 @@ export default function LessonWords() {
             onAndroidBackIntercept={setAndroidBackIntercept}
             devFakeStartRunes={devRunesFake?.runes}
             devFakeStartPoints={devRunesFake?.secondary}
+            devJumpToFinale={devJumpToFinale}
           />
         )}
       </View>

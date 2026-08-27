@@ -22,6 +22,13 @@ export type ResultsSequenceAudioPlan = {
   xpStartAtMs: number;
   xpTickAtMs: readonly [number];
   xpCompleteAtMs: number;
+  // зачем (владелец, 2026-08-27): руны — параллельный трек той же формы, что
+  // XP («звук счёта, потом счёт растёт»), НО начинается только ПОСЛЕ полного
+  // завершения звука XP — SoundArbiter в проекте однослотовый, два трека не
+  // могут звучать внахлёст (см. COMPLETION_SOUND_GAP_MS ниже).
+  runesStartAtMs?: number;
+  runesTickAtMs?: readonly [number];
+  runesCompleteAtMs?: number;
   spinRewardAtMs?: number;
   activeGiftUnlockAtMs?: number;
   multiplierUpgradeAtMs?: number;
@@ -36,6 +43,8 @@ export function getResultsSequenceAudioPlan(rewards: {
   spinReward?: boolean;
   multiplier?: boolean;
   multiplierCount?: number;
+  /** Руны заработаны в сессии — вставляет свой трек после XP (владелец, 2026-08-27). */
+  runes?: boolean;
 }): ResultsSequenceAudioPlan {
   // Every sound begins only after the previous completion sound has finished,
   // plus a short silence. This protects the single-slot SoundArbiter from
@@ -54,7 +63,22 @@ export function getResultsSequenceAudioPlan(rewards: {
     xpCompleteAtMs,
     'pm.complete.xp_counter_complete',
   ) + COMPLETION_SOUND_GAP_MS;
-  const spinRewardAtMs = rewards.spinReward ? afterXpCompleteAtMs : undefined;
+
+  // Руны: тот же звуковой набор, что XP («старт → тик → комплит»), включается
+  // ТОЛЬКО после того, как звук XP отзвучал целиком — однослотовый арбитр не
+  // умеет играть два счётчика одновременно.
+  const runesStartAtMs = rewards.runes ? afterXpCompleteAtMs : undefined;
+  const runesTickAtMs: readonly [number] | undefined = runesStartAtMs === undefined
+    ? undefined
+    : [completionSoundEndsAt(runesStartAtMs, 'pm.complete.xp_counter_start') + COMPLETION_SOUND_GAP_MS];
+  const runesCompleteAtMs = runesTickAtMs === undefined
+    ? undefined
+    : completionSoundEndsAt(runesTickAtMs[0], 'pm.complete.xp_counter_tick') + COMPLETION_SOUND_GAP_MS;
+  const afterRunesCompleteAtMs = runesCompleteAtMs === undefined
+    ? afterXpCompleteAtMs
+    : completionSoundEndsAt(runesCompleteAtMs, 'pm.complete.xp_counter_complete') + COMPLETION_SOUND_GAP_MS;
+
+  const spinRewardAtMs = rewards.spinReward ? afterRunesCompleteAtMs : undefined;
   const afterSpinRewardAtMs = spinRewardAtMs === undefined
     ? afterXpCompleteAtMs
     : spinRewardAtMs + 2700 + COMPLETION_SOUND_GAP_MS;
@@ -86,9 +110,10 @@ export function getResultsSequenceAudioPlan(rewards: {
         )
       : 0,
   );
-  const finaleAtMs = (finalRewardEndsAtMs || completionSoundEndsAt(
-    xpCompleteAtMs,
-    'pm.complete.xp_counter_complete',
+  const finaleAtMs = (finalRewardEndsAtMs || (
+    runesCompleteAtMs === undefined
+      ? completionSoundEndsAt(xpCompleteAtMs, 'pm.complete.xp_counter_complete')
+      : completionSoundEndsAt(runesCompleteAtMs, 'pm.complete.xp_counter_complete')
   )) + COMPLETION_SOUND_GAP_MS;
 
   return {
@@ -97,6 +122,9 @@ export function getResultsSequenceAudioPlan(rewards: {
     xpStartAtMs,
     xpTickAtMs,
     xpCompleteAtMs,
+    runesStartAtMs,
+    runesTickAtMs,
+    runesCompleteAtMs,
     spinRewardAtMs,
     activeGiftUnlockAtMs,
     multiplierUpgradeAtMs,
@@ -107,6 +135,9 @@ export function getResultsSequenceAudioPlan(rewards: {
       xpStartAtMs,
       ...xpTickAtMs,
       xpCompleteAtMs,
+      ...(runesStartAtMs !== undefined ? [runesStartAtMs] : []),
+      ...(runesTickAtMs ?? []),
+      ...(runesCompleteAtMs !== undefined ? [runesCompleteAtMs] : []),
       ...(spinRewardAtMs ? [spinRewardAtMs] : []),
       ...(activeGiftUnlockAtMs ? [activeGiftUnlockAtMs] : []),
       ...multiplierUpgradeAtMsList,

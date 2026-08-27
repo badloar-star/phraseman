@@ -853,6 +853,7 @@ function FlashcardsSwipeScreen() {
     /** Размер сессии из шита (10/15/20). Без параметра тренируем весь выбранный пул. */
     size?: string | string[];
     devRunesSeed?: string | string[];
+    devJumpToFinale?: string | string[];
   }>();
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
@@ -861,6 +862,9 @@ function FlashcardsSwipeScreen() {
     () => readDevPracticeRunesFakeState(params.devRunesSeed),
     [params.devRunesSeed],
   );
+  // «Мне надо только экраны завершения увидеть» — прыгаем сразу на финиш,
+  // минуя реальную тренировку целиком.
+  const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
@@ -2257,7 +2261,7 @@ function FlashcardsSwipeScreen() {
     riseAnim.stopAnimation();
     riseAnim.setValue(0);
   }, [cardEpoch, currentPrompt?.id, flyOpacity, position, riseAnim]);
-  const done = phase === 'play' && !currentPrompt && stats.total > 0;
+  const done = devJumpToFinale || (phase === 'play' && !currentPrompt && stats.total > 0);
 
   // «Руны засчитываются, когда игрок дошёл до экрана празднования»
   // (владелец, 2026-08-27) — здесь это переход done false→true.

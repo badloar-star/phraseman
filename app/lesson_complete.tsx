@@ -1374,6 +1374,7 @@ export default function LessonComplete() {
             <ResultsSequence
               stars={RESULTS_STARS_BY_TIER[medalTier]}
               xp={lessonResults.xp}
+              runes={practiceRunes.runes}
               rewards={lessonResults.rewards}
               title={c.title}
               subtitle={nextLessonUnlockHint}
@@ -1777,6 +1778,7 @@ export default function LessonComplete() {
           <ResultsSequence
             stars={RESULTS_STARS_BY_TIER[medalTier]}
             xp={lessonResults.xp}
+            runes={practiceRunes.runes}
             rewards={lessonResults.rewards}
             title={c.title}
             subtitle={c.subtitle(lessonId)}

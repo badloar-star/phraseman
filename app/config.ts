@@ -195,9 +195,15 @@ export const SPANISH_UI_LOCALE_ENABLED = true;
  * list gates CONTENT locales — quizzes, exam packs, idiom/verb data — and
  * none of those have English source content yet). English as an interface
  * language only translates UI chrome; lesson/quiz content stays on whatever
- * source language the learner already has (ru/uk/etc.). This is a reserved
- * preflight flag only: it cannot enable runtime UI while `Lang` remains
- * quarantined to the eight verified source locales.
+ * source language the learner already has (ru/uk/etc.).
+ *
+ * зачем: ОТКАЧЕНО ОБРАТНО 2026-08-27 — включение уронило прод (Студия
+ * аватаров крашилась: `STUDIO_COPY[lang]` и другие Record<Lang,...>-словари
+ * без `en`-ключа давали undefined). `triLang()` был безопасен (фолбэк), но
+ * ~16+ мест читают словари напрямую по индексу без фолбэка — их ещё не
+ * починили. НЕ включать снова, пока все прямые Record<Lang,...>-словари не
+ * получат ключ `en` и это не будет реально проверено (не только tsc — он
+ * падал по памяти на полном прогоне и давал ложное "0 ошибок").
  */
 export const ENGLISH_UI_LOCALE_ENABLED = false;
 

@@ -25,6 +25,7 @@ import {
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  waitForActiveAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
   type AccountTransitionLockLease,
@@ -313,6 +314,49 @@ export const primeShardsBalanceMemoryFromBoot = (
   // Уже читали в этой сессии — свежая запись авторитетнее стартового снимка.
   if (shardsBalanceMemory) return;
   setShardsBalanceMemory(balance, accountToken);
+};
+
+/**
+ * Самостоятельный прогрев баланса жемчужин из хранилища на старте.
+ *
+ * зачем (владелец, 27.08: «счётчик жемчужин не всегда держит снапшот, иногда
+ * нули»): единственным прогревом до сих пор был вызов
+ * `primeShardsBalanceMemoryFromBoot` ИЗНУТРИ `primeAppSnapshotFromStorage`, а та
+ * висит в `Promise.race([startupLocalHydration, timeout(350ms)])` в _layout.tsx —
+ * пачке из 15+ параллельных чтений диска. Если холодный I/O медленнее 350мс
+ * (обычное дело на Android), гонка обрывается раньше, и первый кадр Главной
+ * читает `peekLastKnownShardsBalance() -> null` -> рисует 0. Ровно та же ловушка,
+ * что чинили у энергии (`energy_peek_cache.ts`) и рун (`runes_system.ts`), — то же
+ * лекарство: чтение стартует САМО при импорте модуля, параллельно общей пачке,
+ * но вне её таймаута.
+ *
+ * Лишнего похода на диск это почти не стоит: один `getItem` того же ключа, что уже
+ * входит в общий `multiGet` загрузчика, и только на холодном старте — при повторном
+ * вызове память уже заполнена и функция выходит сразу.
+ */
+let shardsBootPrimed = false;
+export const primeShardsBalanceFromBootStorage = async (): Promise<void> => {
+  if (shardsBootPrimed || shardsBalanceMemory) return;
+  // Ключ `shards_balance` не зависит от владельца, но ЗАПИСАТЬ его в память можно
+  // только под активным аккаунтом (setShardsBalanceMemory сам отвергнет чужую или
+  // ещё не установленную генерацию). На первом тике импорта аккаунт всегда
+  // `uninitialized` — поэтому ждём активации, иначе прогрев молча не сделает ничего.
+  const token = await waitForActiveAccountGeneration();
+  if (!token || shardsBootPrimed || shardsBalanceMemory) return;
+  const stableId = token.stableId?.trim();
+  if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
+  try {
+    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    if (raw === null) return; // Пусто на диске — пусть решает обычный getShardsBalance.
+    const parsed = parseShardBalance(raw);
+    if (parsed === null) return; // Битое значение чинит getShardsBalance, ноль не рисуем.
+    if (shardsBootPrimed || shardsBalanceMemory) return;
+    shardsBootPrimed = true;
+    setShardsBalanceMemory(parsed, token);
+  } catch {
+    // Хранилище недоступно — оставляем память пустой: экран отработает как раньше,
+    // а не покажет выдуманное число.
+  }
 };
 
 /** Последний известный баланс (после чтения/записи в этой сессии). null — ещё не читали с диска. */
@@ -2663,6 +2707,12 @@ export const loadShardsFromCloud = async (isCallerCurrent: () => boolean = () =>
     if (__DEV__) console.warn('[shards_system]', e);
   }
 };
+
+// зачем: прогрев запускается САМ при первом импорте модуля (см. комментарий
+// primeShardsBalanceFromBootStorage), а не только из bootstrap-гонки 350мс —
+// _layout.tsx уже импортирует этот модуль статически, лишнего веса нет. Обещание
+// намеренно не ожидается: ожидание аккаунта не должно задерживать сам импорт.
+void primeShardsBalanceFromBootStorage();
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

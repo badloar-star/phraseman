@@ -23,7 +23,11 @@
  */
 
 import { getAppSnapshot, patchAppSnapshot, subscribeAppSnapshot } from './app_snapshot_store';
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  waitForActiveAccountGeneration,
+} from './account_generation';
 import { emitAppEvent } from './events';
 import { readUnifiedLevelSpinStars, peekStoredLevelSpinStarsForBoot } from './level_spin_star_grants';
 
@@ -152,9 +156,23 @@ function applyBootRunesPatch(bootRunes: Readonly<{ balance: number; earnedTotal:
  */
 export async function primeRunesPeekFromBoot(): Promise<void> {
   if (runesBootPrimed) return;
-  const token = captureAccountGeneration();
-  const stableId = token.stableId?.trim();
-  if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
+  // зачем (владелец, 27.08: «счётчик рун не всегда держит снапшот, иногда нули»):
+  // прогрев стартует при ИМПОРТЕ модуля, то есть на самом первом тике JS — когда
+  // аккаунт ещё `uninitialized` и stableId равен null (его ставит cloud_sync через
+  // beginInitialAccountGeneration позже). Прежний код в этот момент молча выходил
+  // и больше НИКОГДА не повторялся — то есть фикс 25.08 на холодном старте не
+  // работал вовсе, и руны опять зависели от гонки 350мс, от которой уходили.
+  // Ждём активации вместо выхода: ключ проекции всё равно зависит от владельца
+  // (level_spin_star_projection_v1:<uid>), прочитать его раньше физически нельзя.
+  let token = captureAccountGeneration();
+  let stableId = token.stableId?.trim();
+  if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
+    const activeToken = await waitForActiveAccountGeneration();
+    if (runesBootPrimed || !activeToken) return;
+    token = activeToken;
+    stableId = activeToken.stableId?.trim();
+    if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
+  }
   try {
     const bootRunes = await peekStoredLevelSpinStarsForBoot(token);
     if (runesBootPrimed || !bootRunes || !isCurrentAccountGeneration(token, stableId)) return;

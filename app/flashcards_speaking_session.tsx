@@ -135,6 +135,7 @@ export default function FlashcardsSpeakingSession() {
   const { speak, stop: stopSpeech } = useAudio();
   const params = useLocalSearchParams<{ deck?: string; size?: string }>();
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const [speakingEnergyRevision, setSpeakingEnergyRevision] = useState(0);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
@@ -174,10 +175,23 @@ export default function FlashcardsSpeakingSession() {
   const speakingEnergyIntent = useEnergySessionIntent(
     'flashcards_speaking',
     deckKey || 'saved',
-    attemptSessionId,
+    `${attemptSessionId}:${speakingEnergyRevision}`,
   );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const speakingEntryChargedRef = useRef(false);
+  const speakingRefundInFlightRef = useRef<Promise<void> | null>(null);
+  const refundSpeakingEntry = useCallback((operationId: string, reason: string): Promise<void> => {
+    if (speakingRefundInFlightRef.current) return speakingRefundInFlightRef.current;
+    const pending = refundSpeakEnergy(operationId, reason).then(() => {
+      speakingEntryChargedRef.current = false;
+      setSpeakingEnergyRevision((current) => current + 1);
+    }).catch(() => {});
+    speakingRefundInFlightRef.current = pending;
+    void pending.finally(() => {
+      if (speakingRefundInFlightRef.current === pending) speakingRefundInFlightRef.current = null;
+    });
+    return pending;
+  }, [refundSpeakEnergy]);
   const [session, setSession] = useState<SpeakingSessionState>(() => initialSpeakingState([]));
   const sessionRef = useRef(session);
   const mistakeCaptureRunRef = useRef(`flashcard-speaking-${Date.now().toString(36)}`);
@@ -224,6 +238,11 @@ export default function FlashcardsSpeakingSession() {
     let chargedOperationId: string | null = null;
     let entryGranted = false;
     void (async () => {
+      if (speakingRefundInFlightRef.current) {
+        await speakingRefundInFlightRef.current;
+        return;
+      }
+      if (cancelled) return;
       const [pool, rawPrefs] = await Promise.all([
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch((): DeckCard[] => []),
         AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(() => null),
@@ -242,7 +261,7 @@ export default function FlashcardsSpeakingSession() {
         if (energyResult === 'spent') chargedOperationId = speakingEnergyIntent.operationId;
         if (cancelled) {
           if (chargedOperationId) {
-            void refundSpeakEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+            void refundSpeakingEntry(chargedOperationId, 'entry_cancelled');
           }
           return;
         }
@@ -265,9 +284,9 @@ export default function FlashcardsSpeakingSession() {
       if (chargedOperationId) {
         void acknowledgeSessionStart(chargedOperationId).catch(() => {});
       }
-    })().catch(() => {
+    })().catch(async () => {
       if (chargedOperationId && !entryGranted) {
-        void refundSpeakEnergy(chargedOperationId, 'entry_failed').catch(() => {});
+        await refundSpeakingEntry(chargedOperationId, 'entry_failed');
       }
       if (!cancelled) {
         setSession(initialSpeakingState([]));
@@ -277,12 +296,12 @@ export default function FlashcardsSpeakingSession() {
     return () => {
       cancelled = true;
       if (chargedOperationId && !entryGranted) {
-        void refundSpeakEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+        void refundSpeakingEntry(chargedOperationId, 'entry_cancelled');
       }
     };
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [acknowledgeSessionStart, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, refundSpeakEnergy, router, sessionSize, speakingEnergyIntent]);
+  }, [acknowledgeSessionStart, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -626,7 +645,7 @@ export default function FlashcardsSpeakingSession() {
         tr: 'Basılı tut, tekrar söyle', pl: 'Przytrzymaj i powtórz',
       }),
       next: triLang(lang, {
-        ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo',
+        ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo',
         vi: 'Tiếp', id: 'Lanjut', tr: 'Sonraki', pl: 'Dalej',
       }),
       skip: triLang(lang, {

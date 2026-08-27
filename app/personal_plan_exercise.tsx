@@ -2284,7 +2284,7 @@ function PersonalPlanExerciseScreen() {
           title={resultModalTitle}
           body={staticBody}
           hideBody
-          actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
+          actionLabel={triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
           onAction={() => void next()}
           accent={accent}
           actionText={actionText}
@@ -2984,7 +2984,7 @@ function PersonalPlanExerciseScreen() {
                     title={resultModalTitle}
                     body={staticBody}
                     hideBody
-                    actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
+                    actionLabel={triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
                     onAction={() => void next()}
                     accent={accent}
                     actionText={actionText}

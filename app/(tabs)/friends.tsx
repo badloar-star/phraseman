@@ -1044,11 +1044,14 @@ function FriendQuestCompletedModal({
               {L('Миссия выполнена', 'Місію виконано', 'Quest complete', 'Misión completada', 'Missão concluída', 'Hoàn thành nhiệm vụ', 'Quest selesai', 'Görev tamamlandı', 'Misja wykonana')}
             </Text>
             <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
-              {L('Награда начислена вам обоим: 10 шардов и 1000 XP.', 'Нагороду нараховано вам обом: 10 шардів і 1000 XP.', 'Reward granted to both of you: 10 shards and 1000 XP.', 'Recompensa entregada a ambos: 10 shards y 1000 XP.', 'Recompensa enviada para ambos: 10 shards e 1000 XP.', 'Cả hai đã nhận thưởng: 10 shards và 1000 XP.', 'Hadiah untuk kalian berdua: 10 shard dan 1000 XP.', 'Ödül ikinize de verildi: 10 shard ve 1000 XP.', 'Nagroda dla was obojga: 10 shardów i 1000 XP.')}
+              {/* зачем (самоаудит, 2026-08-27): было «начислена вам обоим» — обращение
+                  на «вы» (Правило 14), и валюта называлась старым словом «шарды»
+                  вместо жемчуга. */}
+              {L('Награда у обоих: 10 жемчужин и 1000 XP.', 'Нагорода в обох: 10 перлин і 1000 XP.', 'Reward for both: 10 pearls and 1000 XP.', 'Recompensa para ambos: 10 perlas y 1000 XP.', 'Recompensa para os dois: 10 pérolas e 1000 XP.', 'Cả hai đều nhận: 10 ngọc trai và 1000 XP.', 'Hadiah untuk berdua: 10 mutiara dan 1000 XP.', 'İkinize de ödül: 10 inci ve 1000 XP.', 'Nagroda dla obojga: 10 pereł i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: themeMode === 'olive' ? modalChrome.button : '#34C759' }}>
               <Text style={{ color: '#071E0C', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
-                {L('Отлично', 'Чудово', 'Nice', 'Genial', 'Boa', 'Tuyệt', 'Mantap', 'Harika', 'Super')}
+                {L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
               </Text>
             </TouchableOpacity>
           </LinearGradient>
@@ -1127,8 +1130,8 @@ function AddFriendModal({
       visible={visible}
       onClose={onClose}
       testID="friends-add-sheet"
-      title={L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
-      closeLabel={L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+      title={L('Добавить друга', 'Додати друга', 'Add a friend', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+      closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
       <View style={{ gap: 14, paddingBottom: 4 }}>
             <View
@@ -1139,13 +1142,13 @@ function AddFriendModal({
               }}
             >
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
-                {L('Введи имя друга', 'Введи імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
+                {L('Введи имя друга', 'Введи імʼя друга', 'Enter your friend\'s name', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TextInput
                   ref={searchInputRef}
                   testID="friends-code-input"
-                  accessibilityLabel={L('Введи имя друга', 'Введи імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
+                  accessibilityLabel={L('Введи имя друга', 'Введи імʼя друга', 'Enter your friend\'s name', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
                   style={{
                     // зачем: без обводки (правило владельца) — поле отделяем тоном
                     // поверхности, а не рамкой.
@@ -1171,7 +1174,7 @@ function AddFriendModal({
                   onPress={onSearch}
                   disabled={!searchReady || isSearching}
                   accessibilityRole="button"
-                  accessibilityLabel={L('Найти друга по имени', 'Знайти друга за імʼям', 'Buscar amigo por nombre', 'Encontrar amigo por nome', 'Tìm bạn theo tên', 'Cari teman dengan nama', 'Adıyla arkadaş bul', 'Znajdź znajomego po imieniu')}
+                  accessibilityLabel={L('Найти друга по имени', 'Знайти друга за імʼям', 'Search for a friend by name', 'Buscar amigo por nombre', 'Encontrar amigo por nome', 'Tìm bạn theo tên', 'Cari teman dengan nama', 'Adıyla arkadaş bul', 'Znajdź znajomego po imieniu')}
                   style={{
                     minWidth: 58,
                     minHeight: 58,
@@ -2263,7 +2266,7 @@ export default function FriendsTabScreen() {
           result: 'blocked',
           tags: { reason: 'not_found', queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
         });
-        setSearchError(L('Пользователь с таким кодом или ником не найден', 'Користувача з таким кодом або ніком не знайдено', 'No se encontró usuario con ese código o nick', 'Nenhum usuário encontrado com esse código ou nick', 'Không tìm thấy người dùng với mã hoặc tên này', 'Pengguna dengan kode atau nama ini tidak ditemukan', 'Bu kod veya adla kullanıcı bulunamadı', 'Nie znaleziono użytkownika z tym kodem lub nickiem'));
+        setSearchError(L('Пользователь с таким кодом или ником не найден', 'Користувача з таким кодом або ніком не знайдено', 'No user found with that code or nickname', 'No se encontró usuario con ese código o nick', 'Nenhum usuário encontrado com esse código ou nick', 'Không tìm thấy người dùng với mã hoặc tên này', 'Pengguna dengan kode atau nama ini tidak ditemukan', 'Bu kod veya adla kullanıcı bulunamadı', 'Nie znaleziono użytkownika z tym kodem lub nickiem'));
         return;
       }
       const myUid = await ensureAnonUser();
@@ -2297,6 +2300,7 @@ export default function FriendsTabScreen() {
         setSearchError(L(
           'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
           'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
+          'Profile found, but not synced yet. Open the profile on the other device and try again.',
           'Perfil encontrado, pero aún no está sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
           'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
           'Hồ sơ đã được tìm thấy, nhưng chưa đồng bộ. Hãy mở hồ sơ trên thiết bị thứ hai rồi thử lại.',

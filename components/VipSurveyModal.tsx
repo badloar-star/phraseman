@@ -174,7 +174,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
   const copy = useMemo(() => ({
     close: triLang(lang, { ru: 'Закрыть опрос', uk: 'Закрити опитування', en: 'Close survey', es: 'Cerrar encuesta', 'pt-BR': 'Fechar pesquisa', vi: 'Đóng khảo sát', id: 'Tutup survei', tr: 'Anketi kapat', pl: 'Zamknij ankietę' }),
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
-    next: triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' }),
+    next: triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' }),
     optional: triLang(lang, { ru: 'Необязательно', uk: 'Необовʼязково', en: 'Optional', es: 'Opcional', 'pt-BR': 'Opcional', vi: 'Không bắt buộc', id: 'Opsional', tr: 'İsteğe bağlı', pl: 'Opcjonalnie' }),
     commentPlaceholder: triLang(lang, { ru: 'Можно добавить комментарий', uk: 'Можна додати коментар', en: 'You can add a comment', es: 'Puedes añadir un comentario', 'pt-BR': 'Você pode adicionar um comentário', vi: 'Bạn có thể thêm nhận xét', id: 'Kamu bisa menambahkan komentar', tr: 'Bir yorum ekleyebilirsin', pl: 'Możesz dodać komentarz' }),
     textPlaceholder: triLang(lang, { ru: 'Напиши ответ', uk: 'Напишіть відповідь', en: 'Write an answer', es: 'Escribe tu respuesta', 'pt-BR': 'Escreva sua resposta', vi: 'Viết câu trả lời của bạn', id: 'Tulis jawabanmu', tr: 'Cevabını yaz', pl: 'Napisz odpowiedź' }),

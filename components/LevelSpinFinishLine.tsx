@@ -598,7 +598,10 @@ export default function LevelSpinFinishLine({
   const ctaLabel = resultVisible
     ? (balance ?? 0) > 0
       ? triLang(lang, { ru: 'ЕЩЁ СПИН', uk: 'ЩЕ СПІН', en: 'SPIN AGAIN', es: 'OTRO GIRO', 'pt-BR': 'GIRAR DE NOVO', vi: 'QUAY TIẾP', id: 'PUTAR LAGI', tr: 'BİR DAHA ÇEVİR', pl: 'LOSUJ PONOWNIE' })
-      : triLang(lang, { ru: 'ГОТОВО', uk: 'ГОТОВО', en: 'DONE', es: 'LISTO', 'pt-BR': 'PRONTO', vi: 'XONG', id: 'SELESAI', tr: 'BİTTİ', pl: 'GOTOWE' })
+      // зачем (самоаудит, 2026-08-27): в соседней модалке спина «ГОТОВО» уже
+      // заменено на действие (Правило 1), а здесь пропустил. Спинов не осталось —
+      // кнопка закрывает окно, так и называем.
+      : triLang(lang, { ru: 'ЗАКРЫТЬ', uk: 'ЗАКРИТИ', en: 'CLOSE', es: 'CERRAR', 'pt-BR': 'FECHAR', vi: 'ĐÓNG', id: 'TUTUP', tr: 'KAPAT', pl: 'ZAMKNIJ' })
     : phase === 'error'
       ? triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', en: 'SPIN', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' })
       : phase === 'spinning' || phase === 'recovering'

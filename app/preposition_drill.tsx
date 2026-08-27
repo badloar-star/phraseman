@@ -637,8 +637,8 @@ export default function PrepositionDrillScreen() {
                   >
                     <Text style={{ color: '#fff', fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, {
-                        uk: 'Далі',
-                        ru: 'Дальше',
+                        uk: 'Продовжити',
+                        ru: 'Продолжить',
                         en: 'Next',
                         es: 'Siguiente',
                         'pt-BR': 'Próximo',

@@ -519,7 +519,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const range = scoreRange(blueprint, attempt.currentTaskIndex);
   const continueLabel = attempt.currentTaskIndex + 1 === blueprint.tasks.length
     ? triLang(lang, { ru: 'Завершить', uk: 'Завершити', en: 'Finish', es: 'Finalizar', 'pt-BR': 'Finalizar', vi: 'Hoàn thành', id: 'Selesaikan', tr: 'Bitir', pl: 'Zakończ' })
-    : triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' });
+    : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Next', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' });
   const exitLabel = triLang(lang, { ru: 'Выйти из экзамена', uk: 'Вийти з іспиту', en: 'Exit the exam', es: 'Salir del examen', 'pt-BR': 'Sair do exame', vi: 'Thoát bài thi', id: 'Keluar dari ujian', tr: 'Sınavdan çık', pl: 'Wyjdź z egzaminu' });
   let content: React.ReactNode;
   let canContinue = false;

@@ -294,7 +294,9 @@ export default function DialogsTabContent({
             tr: `${requiredLevel}. seviyede açılır. Dersleri ve meydan okumaları tamamla — otomatik açılır.`,
             pl: `Otwiera się na poziomie ${requiredLevel}. Przechodź lekcje i wyzwania — odblokuje się automatycznie.`,
           }),
-          [{ text: triLang(lang, { ru: 'Ок', uk: 'Ок', en: 'Ok', es: 'Ok', 'pt-BR': 'Ok', vi: 'Ok', id: 'Ok', tr: 'Tamam', pl: 'Ok' }) }],
+          // зачем (самоаудит, 2026-08-27): «Ок» — не глагол (Правило 1). Алерт
+          // объясняет, что режим откроется на нужном уровне, и закрывается.
+          [{ text: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }) }],
         );
         return;
       }

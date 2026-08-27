@@ -182,7 +182,7 @@ const RU_STUDIO = {
   title: 'Студия', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
   apply: 'Применить образ', applied: 'Образ применён', purchased: 'Добавлено в коллекцию', buy: 'Открыть', buyApply: 'Открыть и надеть', plus: 'Открыть Plus',
   reward: 'Особая награда', owned: 'В коллекции', selected: 'Выбрано', noAura: 'Без ауры', levelAvatar: 'Аватар уровня', resetLevelAvatar: 'Вернуть аватар уровня',
-  levelAvatarEnabled: 'Аватар уровня включён', editAvatar: 'Настроить аватар', applyStyle: 'Выбрать оформление', dark: 'Тёмное', light: 'Светлое',
+  levelAvatarEnabled: 'Аватар уровня включён', editAvatar: 'Настроить аватар', applyStyle: 'Применить', dark: 'Тёмное', light: 'Светлое',
   cancel: 'Отмена', confirm: 'Открыть', purchaseTitle: 'Открыть образ?', purchaseError: 'Не получилось открыть. Попробуй ещё раз.',
   // зачем: арена-ауры стали уровневыми, «наградной» остался только «Нимб» бета-тестеров —
   // подпись и подсказка больше не отсылают к Арене.
@@ -201,7 +201,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Studio', preview: 'Look preview', avatars: 'Avatars', auras: 'Auras', all: 'All', mine: 'Mine', catalog: 'Catalog',
     apply: 'Apply look', applied: 'Look applied', purchased: 'Added to collection', buy: 'Unlock', buyApply: 'Unlock and wear', plus: 'Unlock Plus',
     reward: 'Special reward', owned: 'In collection', selected: 'Selected', noAura: 'No aura', levelAvatar: 'Level avatar', resetLevelAvatar: 'Restore level avatar',
-    levelAvatarEnabled: 'Level avatar restored', editAvatar: 'Customize avatar', applyStyle: 'Choose style', dark: 'Dark', light: 'Light',
+    levelAvatarEnabled: 'Level avatar restored', editAvatar: 'Customize avatar', applyStyle: 'Apply', dark: 'Dark', light: 'Light',
     cancel: 'Cancel', confirm: 'Unlock', purchaseTitle: 'Unlock this look?', purchaseError: "Couldn't unlock. Try again.",
     applyError: "Couldn't apply the look. Try again.", rewardHint: 'This reward is given for special contributions',
   },
@@ -209,7 +209,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Студія', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
     apply: 'Застосувати образ', applied: 'Образ застосовано', purchased: 'Додано до колекції', buy: 'Відкрити', buyApply: 'Відкрити й надіти', plus: 'Відкрити Plus',
     reward: 'Особлива нагорода', owned: 'У колекції', selected: 'Вибрано', noAura: 'Без аури', levelAvatar: 'Аватар рівня', resetLevelAvatar: 'Повернути аватар рівня',
-    levelAvatarEnabled: 'Аватар рівня ввімкнено', editAvatar: 'Налаштувати аватар', applyStyle: 'Обрати оформлення', dark: 'Темне', light: 'Світле',
+    levelAvatarEnabled: 'Аватар рівня ввімкнено', editAvatar: 'Налаштувати аватар', applyStyle: 'Застосувати', dark: 'Темне', light: 'Світле',
     cancel: 'Скасувати', confirm: 'Відкрити', purchaseTitle: 'Відкрити образ?', purchaseError: 'Не вийшло відкрити. Спробуй ще раз.',
     applyError: 'Образ не застосовано. Спробуй ще раз.', rewardHint: 'Ця нагорода вручається за особливі заслуги',
   },
@@ -217,7 +217,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Estudio', preview: 'Vista previa', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Míos', catalog: 'Catálogo',
     apply: 'Aplicar estilo', applied: 'Estilo aplicado', purchased: 'Añadido a la colección', buy: 'Abrir', buyApply: 'Abrir y aplicar', plus: 'Abrir Plus',
     reward: 'Recompensa especial', owned: 'En la colección', selected: 'Seleccionado', noAura: 'Sin aura', levelAvatar: 'Avatar de nivel', resetLevelAvatar: 'Volver al avatar de nivel',
-    levelAvatarEnabled: 'Avatar de nivel restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Elegir estilo', dark: 'Oscuro', light: 'Claro',
+    levelAvatarEnabled: 'Avatar de nivel restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Aplicar', dark: 'Oscuro', light: 'Claro',
     cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: '¿Abrir el look?', purchaseError: 'No se pudo abrir. Inténtalo de nuevo.',
     applyError: 'No se pudo aplicar el estilo. Inténtalo de nuevo.', rewardHint: 'Esta recompensa se otorga por méritos especiales',
   },
@@ -225,7 +225,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Estúdio', preview: 'Prévia do visual', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Meus', catalog: 'Catálogo',
     apply: 'Aplicar visual', applied: 'Visual aplicado', purchased: 'Adicionado à coleção', buy: 'Abrir', buyApply: 'Abrir e aplicar', plus: 'Abrir Plus',
     reward: 'Recompensa especial', owned: 'Na coleção', selected: 'Selecionado', noAura: 'Sem aura', levelAvatar: 'Avatar de nível', resetLevelAvatar: 'Restaurar avatar de nível',
-    levelAvatarEnabled: 'Avatar de nível restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Escolher estilo', dark: 'Escuro', light: 'Claro',
+    levelAvatarEnabled: 'Avatar de nível restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Aplicar', dark: 'Escuro', light: 'Claro',
     cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Abrir o visual?', purchaseError: 'Não deu para abrir. Tente novamente.',
     applyError: 'Não foi possível aplicar o visual. Tente novamente.', rewardHint: 'Esta recompensa é concedida por méritos especiais',
   },
@@ -233,7 +233,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Studio', preview: 'Xem trước diện mạo', avatars: 'Avatar', auras: 'Hào quang', all: 'Tất cả', mine: 'Của tôi', catalog: 'Danh mục',
     apply: 'Áp dụng diện mạo', applied: 'Đã áp dụng diện mạo', purchased: 'Đã thêm vào bộ sưu tập', buy: 'Mở', buyApply: 'Mở và dùng', plus: 'Mở Plus',
     reward: 'Phần thưởng đặc biệt', owned: 'Trong bộ sưu tập', selected: 'Đã chọn', noAura: 'Không hào quang', levelAvatar: 'Avatar theo cấp', resetLevelAvatar: 'Khôi phục avatar theo cấp',
-    levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Chọn phong cách', dark: 'Tối', light: 'Sáng',
+    levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Áp dụng', dark: 'Tối', light: 'Sáng',
     cancel: 'Hủy', confirm: 'Xác nhận', purchaseTitle: 'Mở tạo hình?', purchaseError: 'Chưa mở được. Hãy thử lại.',
     applyError: 'Không thể áp dụng diện mạo. Hãy thử lại.', rewardHint: 'Phần thưởng này được trao vì đóng góp đặc biệt',
   },
@@ -241,7 +241,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Studio', preview: 'Pratinjau tampilan', avatars: 'Avatar', auras: 'Aura', all: 'Semua', mine: 'Milik saya', catalog: 'Katalog',
     apply: 'Terapkan tampilan', applied: 'Tampilan diterapkan', purchased: 'Ditambahkan ke koleksi', buy: 'Buka', buyApply: 'Buka dan pakai', plus: 'Buka Plus',
     reward: 'Hadiah spesial', owned: 'Dalam koleksi', selected: 'Dipilih', noAura: 'Tanpa aura', levelAvatar: 'Avatar level', resetLevelAvatar: 'Kembalikan avatar level',
-    levelAvatarEnabled: 'Avatar level dipulihkan', editAvatar: 'Sesuaikan avatar', applyStyle: 'Pilih gaya', dark: 'Gelap', light: 'Terang',
+    levelAvatarEnabled: 'Avatar level dipulihkan', editAvatar: 'Sesuaikan avatar', applyStyle: 'Terapkan', dark: 'Gelap', light: 'Terang',
     cancel: 'Batal', confirm: 'Konfirmasi', purchaseTitle: 'Buka tampilan?', purchaseError: 'Belum bisa dibuka. Coba lagi.',
     applyError: 'Tampilan tidak dapat diterapkan. Coba lagi.', rewardHint: 'Hadiah ini diberikan atas jasa istimewa',
   },
@@ -249,7 +249,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Stüdyo', preview: 'Görünüm önizlemesi', avatars: 'Avatarlar', auras: 'Auralar', all: 'Tümü', mine: 'Benimkiler', catalog: 'Katalog',
     apply: 'Görünümü uygula', applied: 'Görünüm uygulandı', purchased: 'Koleksiyona eklendi', buy: 'Aç', buyApply: 'Aç ve uygula', plus: "Plus'ı aç",
     reward: 'Özel ödül', owned: 'Koleksiyonda', selected: 'Seçildi', noAura: 'Aurasız', levelAvatar: 'Seviye avatarı', resetLevelAvatar: 'Seviye avatarına dön',
-    levelAvatarEnabled: 'Seviye avatarı geri yüklendi', editAvatar: 'Avatarı özelleştir', applyStyle: 'Stili seç', dark: 'Koyu', light: 'Açık',
+    levelAvatarEnabled: 'Seviye avatarı geri yüklendi', editAvatar: 'Avatarı özelleştir', applyStyle: 'Uygula', dark: 'Koyu', light: 'Açık',
     cancel: 'İptal', confirm: 'Onayla', purchaseTitle: 'Görünüm açılsın mı?', purchaseError: 'Açılamadı. Tekrar dene.',
     applyError: 'Görünüm uygulanamadı. Tekrar dene.', rewardHint: 'Bu ödül özel katkılar için verilir',
   },
@@ -257,7 +257,7 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
     title: 'Studio', preview: 'Podgląd wyglądu', avatars: 'Awatary', auras: 'Aury', all: 'Wszystkie', mine: 'Moje', catalog: 'Katalog',
     apply: 'Zastosuj wygląd', applied: 'Wygląd zastosowany', purchased: 'Dodano do kolekcji', buy: 'Otwórz', buyApply: 'Otwórz i załóż', plus: 'Otwórz Plus',
     reward: 'Nagroda specjalna', owned: 'W kolekcji', selected: 'Wybrano', noAura: 'Bez aury', levelAvatar: 'Awatar poziomu', resetLevelAvatar: 'Przywróć awatar poziomu',
-    levelAvatarEnabled: 'Przywrócono awatar poziomu', editAvatar: 'Dostosuj awatar', applyStyle: 'Wybierz styl', dark: 'Ciemne', light: 'Jasne',
+    levelAvatarEnabled: 'Przywrócono awatar poziomu', editAvatar: 'Dostosuj awatar', applyStyle: 'Zastosuj', dark: 'Ciemne', light: 'Jasne',
     cancel: 'Anuluj', confirm: 'Potwierdź', purchaseTitle: 'Otworzyć wygląd?', purchaseError: 'Nie udało się otworzyć. Spróbuj ponownie.',
     applyError: 'Nie udało się zastosować wyglądu. Spróbuj ponownie.', rewardHint: 'Ta nagroda jest przyznawana za szczególne zasługi',
   },
@@ -448,6 +448,11 @@ export default function AvatarSelect() {
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
   const [editorArtVersion, setEditorArtVersion] = useState<CustomAvatarArtVersion | undefined>(undefined);
+  // зачем: «Применить» в шторке обязана реально сохранять образ, а не только ставить
+  // превью. Само применение нельзя звать тут же — resolvedAction ещё посчитан по
+  // старому превью, и платная перекраска проскочила бы мимо списания жемчуга.
+  // Поэтому ставим флаг и применяем в эффекте, когда действие уже пересчитано.
+  const [pendingApplyAfterEditor, setPendingApplyAfterEditor] = useState(false);
   const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
   const [avatarDNAEnabled, setAvatarDNAEnabled] = useState(false);
   const [devAllUnlocked, setDevAllUnlocked] = useState(false);
@@ -697,7 +702,25 @@ export default function AvatarSelect() {
   const levelWord = localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' });
   const stageAuraLabel = `${previewAuraLabel} · ${levelWord} ${confirmed.level}`;
 
+  const openEditor = useCallback(() => {
+    const parsed = parseCustomAvatarValue(previewRef.current.avatar);
+    if (!parsed) return;
+    const def = getCustomAvatarById(parsed.avatarId);
+    if (!def) return;
+    setEditorGradientId(parsed.gradientId);
+    setEditorLogoColor(parsed.logoColor);
+    setEditorArtVersion(parsed.artVersion);
+    setEditorAvatar(def);
+  }, []);
+
+  // зачем: владелец попросил не применять образ сразу с экрана — нижняя кнопка
+  // должна вести в шторку настроек, а «Применить» жить уже внутри неё. Подменяем
+  // только чистое применение купленного образа с редактором; покупка, Plus,
+  // уровневые и наградные объяснения работают как раньше.
+  const bottomOpensEditor = resolvedAction.kind === 'apply' && selectedAvatar !== null;
+
   const actionLabel = useMemo(() => {
+    if (bottomOpensEditor) return copy.editAvatar;
     switch (resolvedAction.kind) {
       case 'unchanged': return copy.applied;
       case 'apply': return copy.apply;
@@ -717,7 +740,7 @@ export default function AvatarSelect() {
       case 'explain-level': return `${localized(lang, { ru: 'Откроется на уровне', uk: 'Відкриється на рівні', es: 'Se desbloquea en el nivel', 'pt-BR': 'Desbloqueia no nível', vi: 'Mở khóa ở cấp', id: 'Terbuka di level', tr: 'Açılacağı seviye', pl: 'Odblokuje się na poziomie' })} ${resolvedAction.level}`;
       case 'explain-reward': return copy.reward;
     }
-  }, [resolvedAction, copy, lang]);
+  }, [resolvedAction, copy, lang, bottomOpensEditor]);
   const actionCost = resolvedAction.kind === 'buy-and-apply' || resolvedAction.kind === 'buy-only'
     ? resolvedAction.cost
     : null;
@@ -789,8 +812,11 @@ export default function AvatarSelect() {
     }
   }, [copy.applyError, devGrantBusy, lang, publishCustomizationSnapshot, showToast]);
 
-  const handleAction = useCallback(async () => {
-    if (busy) return;
+  // зачем: ядро действия вынесено отдельно, чтобы его звали ДВА входа — нижняя
+  // кнопка и «Применить» из шторки. Общий путь сохраняет платную перекраску:
+  // если стиль сменили, resolvedAction станет buy-and-apply и откроется
+  // подтверждение покупки, а не тихое бесплатное применение.
+  const runResolvedAction = useCallback(async () => {
     if (resolvedAction.kind === 'unchanged') return;
     if (resolvedAction.kind === 'open-plus') {
       router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
@@ -831,7 +857,26 @@ export default function AvatarSelect() {
     } finally {
       setBusy(false);
     }
-  }, [busy, resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction, previewAvatarValue, previewStoredAuraSelection, confirmed.level, applyInput, serviceDeps]);
+  }, [resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction, previewAvatarValue, previewStoredAuraSelection, confirmed.level, applyInput, serviceDeps]);
+
+  const handleAction = useCallback(async () => {
+    if (busy) return;
+    if (resolvedAction.kind === 'unchanged') return;
+    if (bottomOpensEditor) {
+      openEditor();
+      return;
+    }
+    await runResolvedAction();
+  }, [busy, resolvedAction, bottomOpensEditor, openEditor, runResolvedAction]);
+
+  // зачем: применение после шторки ждёт кадра, в котором resolvedAction уже
+  // пересчитан по новому превью — иначе платная перекраска ушла бы бесплатно.
+  useEffect(() => {
+    if (!pendingApplyAfterEditor) return;
+    setPendingApplyAfterEditor(false);
+    if (busy) return;
+    void runResolvedAction();
+  }, [pendingApplyAfterEditor, busy, runResolvedAction]);
 
   const handleConfirmPurchase = useCallback(async () => {
     const pendingPurchase = purchaseState.pending;
@@ -859,17 +904,6 @@ export default function AvatarSelect() {
       setBusy(false);
     }
   }, [purchaseState, busy, purchaseDeps, showToast, copy, router]);
-
-  const openEditor = useCallback(() => {
-    const parsed = parseCustomAvatarValue(previewRef.current.avatar);
-    if (!parsed) return;
-    const def = getCustomAvatarById(parsed.avatarId);
-    if (!def) return;
-    setEditorGradientId(parsed.gradientId);
-    setEditorLogoColor(parsed.logoColor);
-    setEditorArtVersion(parsed.artVersion);
-    setEditorAvatar(def);
-  }, []);
 
   const selectCatalogItem = useCallback((id: string) => {
     const item = catalogItems.find((candidate) => candidate.id === id);
@@ -1153,6 +1187,7 @@ export default function AvatarSelect() {
               editorArtVersion,
             ));
             setEditorAvatar(null);
+            setPendingApplyAfterEditor(true);
           }}
           onClose={() => setEditorAvatar(null)}
         />

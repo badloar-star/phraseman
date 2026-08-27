@@ -485,9 +485,9 @@
     if (remotePrices) return remotePrices;
     var p = cfg().webPrices || {};
     return {
-      monthly: p.monthly || { amount: 9.99, label: '$9.99' },
-      yearly: p.yearly || { amount: 49.99, label: '$49.99', perMonth: '$4.17' },
-      lifetime: p.lifetime || { amount: 99.99, label: '$99.99' },
+      monthly: p.monthly || { amount: 3.99, label: '€3.99' },
+      yearly: p.yearly || { amount: 27.99, label: '€27.99', perMonth: '€2.33' },
+      lifetime: p.lifetime || { amount: 99.99, label: '€99.99' },
     };
   }
 

@@ -605,6 +605,27 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 .gift-option .opt-title { font-weight: 700; font-size: 0.9688rem; }
 .gift-option .opt-sub { font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px; }
 .gift-option .opt-price { font-weight: 800; font-size: 1rem; white-space: nowrap; }
+/* Цена ещё не пришла с сервера. зачем: владелец 2026-08-27 — на странице
+   мелькала выдуманная сумма из разметки ($9.99), потом её сменяла настоящая
+   (€3.99). Врать ценой нельзя даже долю секунды, поэтому до ответа сервера
+   показываем не сумму, а спокойный плейсхолдер. Он занимает ровно место
+   будущей цены (ch по самой широкой из реальных сумм) — первый кадр равен
+   финальному, карточка не прыгает. */
+.gift-option .opt-price[data-price-pending] {
+  color: transparent;
+  min-width: 7ch;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--border) 50%, var(--surface-2) 100%);
+  background-size: 220% 100%;
+  animation: optPriceWait 1.4s ease-in-out infinite;
+}
+@keyframes optPriceWait {
+  0% { background-position: 130% 0; }
+  100% { background-position: -30% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gift-option .opt-price[data-price-pending] { animation: none; background: var(--surface-2); }
+}
 .gift-option .tag { position: absolute; top: -10px; right: 16px; background: var(--text); color: var(--bg); font-size: 10.5px; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-full); white-space: nowrap; }
 
 .gift-form label { display: block; font-size: 0.8125rem; font-weight: 700; margin-bottom: 6px; color: var(--text-muted); }

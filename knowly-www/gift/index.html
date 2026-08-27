@@ -200,7 +200,7 @@
             <div class="opt-title" data-i18n="gf.month.title">Месяц Phraseman Plus</div>
             <div class="opt-sub" data-i18n="gf.month.sub">Все уроки и темы на 31 день</div>
           </div>
-          <div class="opt-price" data-price="monthly">$9.99</div>
+          <div class="opt-price" data-price="monthly" data-price-pending aria-busy="true"></div>
         </div>
         <div class="gift-option selected" data-plan="yearly" role="radio" aria-checked="true" tabindex="0">
           <span class="tag" data-i18n="gf.best">Выгоднее всего</span>
@@ -208,20 +208,22 @@
             <div class="opt-title" data-i18n="gf.year.title">Год Phraseman Plus</div>
             <div class="opt-sub" data-i18n="gf.year.sub">Все уроки и темы на 366 дней</div>
           </div>
-          <div class="opt-price" data-price="yearly">$49.99</div>
+          <div class="opt-price" data-price="yearly" data-price-pending aria-busy="true"></div>
         </div>
         <div class="gift-option" data-plan="lifetime" role="radio" aria-checked="false" tabindex="0">
           <div class="opt-info">
             <div class="opt-title" data-i18n="gf.pro.title">Phraseman Pro</div>
             <div class="opt-sub" data-i18n="gf.pro.sub">Полный доступ навсегда, один платёж</div>
           </div>
-          <div class="opt-price" data-price="lifetime">$99.99</div>
+          <div class="opt-price" data-price="lifetime" data-price-pending aria-busy="true"></div>
         </div>
       </div>
       <script>
         /* Цены из кэша — ДО первой отрисовки, чтобы не было прыжка суммы.
            зачем: источник правды — сервер (та же ручка, по которой списываются
-           деньги); в разметке лежит фолбэк из site-config. */
+           деньги). Пока настоящей цены нет, в разметке стоит плейсхолдер, а НЕ
+           выдуманная сумма: владелец 2026-08-27 — «показывает неправильные цены,
+           потом обновляется». Лучше секунду ждать, чем секунду видеть враньё. */
         (function () {
           var PRICE_CACHE_KEY = 'pm_web_prices_cache_v1';
           function money(cents, currency) {
@@ -235,9 +237,13 @@
             if (!data || !data.ok || !data.priceCents) return;
             ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
               var cents = Number(data.priceCents[plan]);
-              if (cents > 0) document.querySelector('[data-price="' + plan + '"]').textContent = money(cents, data.currency);
+              var el = document.querySelector('[data-price="' + plan + '"]');
+              if (!el || !(cents > 0)) return;
+              el.textContent = money(cents, data.currency);
+              el.removeAttribute('data-price-pending');
+              el.removeAttribute('aria-busy');
             });
-          } catch (_) { /* остаётся цена из разметки */ }
+          } catch (_) { /* остаётся плейсхолдер, цену дорисует ответ сервера */ }
         })();
       </script>
 
@@ -432,9 +438,23 @@ window.I18N = {
         return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: currency.toUpperCase(), maximumFractionDigits: 2 }).format(cents / 100);
       } catch (e) { return (cents / 100).toFixed(2) + ' ' + currency.toUpperCase(); }
     }
+    /* Цена показана — значит, она настоящая. Плейсхолдер снимаем только здесь. */
+    function setPrice(plan, label) {
+      var el = document.querySelector('[data-price="' + plan + '"]');
+      if (!el || !label) return;
+      el.textContent = label;
+      el.removeAttribute('data-price-pending');
+      el.removeAttribute('aria-busy');
+    }
+    /* Фолбэк из site-config — последняя надежда, когда сервер недоступен И кэша
+       нет. зачем: он может разойтись с боевой ценой (в админке валюта и суммы
+       меняются), поэтому НИКОГДА не перетирает уже показанную цену — иначе
+       верная сумма из кэша сменялась бы устаревшей из конфига. */
     function applyFallbackPrices(prices) {
       ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
-        if (prices[plan] && prices[plan].label) document.querySelector('[data-price="' + plan + '"]').textContent = prices[plan].label;
+        var el = document.querySelector('[data-price="' + plan + '"]');
+        if (!el || !el.hasAttribute('data-price-pending')) return;
+        if (prices[plan] && prices[plan].label) setPrice(plan, prices[plan].label);
       });
     }
     function boot() {
@@ -444,18 +464,19 @@ window.I18N = {
       fetch(c.pricesEndpoint)
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          var appliedRemotePrices = false;
           if (data && data.ok && data.priceCents) {
             state.currency = String(data.currency || 'usd').toUpperCase();
             ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
               var cents = Number(data.priceCents[plan]);
-              if (cents > 0) document.querySelector('[data-price="' + plan + '"]').textContent = money(cents, state.currency);
+              if (cents > 0) setPrice(plan, money(cents, state.currency));
             });
-            appliedRemotePrices = true;
-            /* кладём в кэш — следующий заход рисует цены до первой отрисовки */
-            try { localStorage.setItem('pm_web_prices_cache_v1', JSON.stringify({ data: data, at: Date.now() })); } catch (_) { /* приватный режим */ }
+            /* кладём в кэш — следующий заход рисует цены до первой отрисовки.
+               зачем ts, а не at: этот же ключ читают home.js и start.js, и там
+               TTL считается по `ts`. Разные имена поля делали общий кэш
+               наполовину мёртвым. */
+            try { localStorage.setItem('pm_web_prices_cache_v1', JSON.stringify({ ts: Date.now(), data: data })); } catch (_) { /* приватный режим */ }
           }
-          if (!appliedRemotePrices) applyFallbackPrices(wp);
+          applyFallbackPrices(wp);
           loadPaypal();
         })
         .catch(function () { applyFallbackPrices(wp); loadPaypal(); });

@@ -33,6 +33,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -117,7 +118,14 @@ export default function FlashcardsBlitzSession() {
   const { lang } = useLang();
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
-  const params = useLocalSearchParams<{ deck?: string }>();
+  const params = useLocalSearchParams<{ deck?: string; devRunesSeed?: string | string[] }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
+  // экран, но счётчик стартует со случайного числа вместо реальной копилки.
+  // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(params.devRunesSeed),
+    [params.devRunesSeed],
+  );
 
   const deckParamStr = Array.isArray(params.deck) ? params.deck[0] : params.deck;
   const deckRefs = useMemo<DeckRef[]>(() => parseDeckParams(deckParamStr), [deckParamStr]);
@@ -141,6 +149,7 @@ export default function FlashcardsBlitzSession() {
     activity: 'flashcards_blitz',
     sessionKey: `${feedbackAttemptId}_${roundId}`,
     completionOrdinal: 1,
+    devFakeStartRunes: devRunesFake?.runes,
   });
   // «Руны засчитываются, когда игрок дошёл до экрана празднования» — здесь
   // это появление result (раунд завершён по таймеру/жизням).

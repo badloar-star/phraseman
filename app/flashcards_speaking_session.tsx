@@ -87,6 +87,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -135,7 +136,14 @@ export default function FlashcardsSpeakingSession() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
-  const params = useLocalSearchParams<{ deck?: string; size?: string }>();
+  const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[] }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
+  // экран, но счётчик стартует со случайного числа вместо реальной копилки.
+  // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(params.devRunesSeed),
+    [params.devRunesSeed],
+  );
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const [speakingEnergyRevision, setSpeakingEnergyRevision] = useState(0);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
@@ -221,6 +229,7 @@ export default function FlashcardsSpeakingSession() {
     activity: 'speaking_practice',
     sessionKey: attemptSessionId,
     completionOrdinal: 1,
+    devFakeStartRunes: devRunesFake?.runes,
   });
   useEffect(() => {
     if (result) void practiceRunes.settle();

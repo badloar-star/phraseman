@@ -53,6 +53,7 @@ import {
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -231,7 +232,7 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
@@ -244,6 +245,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   studyTarget?: RuntimeStudyTarget;
   /** Порядковый номер прохождения — растёт с каждым «Начать заново» у вызывающего. */
   practiceRunCompletionOrdinal: number;
+  devFakeStartRunes?: number;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -334,6 +336,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     activity: 'irregular_verbs',
     sessionKey: irregularStorageKey,
     completionOrdinal: practiceRunCompletionOrdinal,
+    // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба — настоящий
+    // экран со случайным стартовым счётчиком. Параметр читает родитель.
+    devFakeStartRunes,
   });
   // Уже знакомые глаголы тренируем воспроизведением; новые — узнаванием.
   const isRecallVerb = useCallback((base: string): boolean => {
@@ -1195,7 +1200,13 @@ export default function LessonIrregularVerbs() {
   const { studyTarget } = useStudyTarget();
   const rootPack = stringsForLang(lang);
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, devRunesSeed: devRunesSeedParam } = useLocalSearchParams<{ id: string; devRunesSeed?: string | string[] }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» — настоящий экран со
+  // случайным стартовым счётчиком. Диск и сеть в этом режиме не трогаются.
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(devRunesSeedParam),
+    [devRunesSeedParam],
+  );
   const lessonId = parseInt(id || '1', 10);
   useEffect(() => {
     let cancelled = false;
@@ -1299,6 +1310,7 @@ export default function LessonIrregularVerbs() {
                   studyTarget={studyTarget}
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
                   practiceRunCompletionOrdinal={learnTabKey + 1}
+                  devFakeStartRunes={devRunesFake?.runes}
                   onReset={() => {
                     setPracticeAll(true);
                     setLearnTabKey(k => k + 1);

@@ -31,6 +31,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -851,7 +852,15 @@ function FlashcardsSwipeScreen() {
     deck?: string | string[];
     /** Размер сессии из шита (10/15/20). Без параметра тренируем весь выбранный пул. */
     size?: string | string[];
+    devRunesSeed?: string | string[];
   }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
+  // экран, но счётчик стартует со случайного числа вместо реальной копилки.
+  // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(params.devRunesSeed),
+    [params.devRunesSeed],
+  );
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
@@ -1061,6 +1070,7 @@ function FlashcardsSwipeScreen() {
     activity: 'flashcards_training',
     sessionKey: runeSessionKey,
     completionOrdinal: 1,
+    devFakeStartRunes: devRunesFake?.runes,
   });
 
   const text = useMemo(

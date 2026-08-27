@@ -14,13 +14,14 @@ import { SECTION as s_consent_info } from './sections/consent_info';
 import { SECTION as s_fullscreen } from './sections/fullscreen';
 import { SECTION as s_toasts } from './sections/toasts';
 import { SECTION as s_banners } from './sections/banners';
+import { SECTION as s_runes_check } from './sections/runes_check';
 import { SECTION as s_screens_learn } from './sections/screens_learn';
 import { SECTION as s_screens_arena_social } from './sections/screens_arena_social';
 import { SECTION as s_screens_flashcards } from './sections/screens_flashcards';
 import { SECTION as s_screens_profile } from './sections/screens_profile';
 import { SECTION as s_press_icons_tabbar } from './sections/press_icons_tabbar';
 
-const ALL: readonly ShowcaseSection[] = [s_celebrations, s_purchase_celebration, s_levelup_spins, s_league, s_arena_star_ladder, s_arena_rewards, s_paywalls, s_alerts_forms, s_consent_info, s_fullscreen, s_toasts, s_banners, s_screens_learn, s_screens_arena_social, s_screens_flashcards, s_screens_profile, s_press_icons_tabbar];
+const ALL: readonly ShowcaseSection[] = [s_runes_check, s_celebrations, s_purchase_celebration, s_levelup_spins, s_league, s_arena_star_ladder, s_arena_rewards, s_paywalls, s_alerts_forms, s_consent_info, s_fullscreen, s_toasts, s_banners, s_screens_learn, s_screens_arena_social, s_screens_flashcards, s_screens_profile, s_press_icons_tabbar];
 
 /**
  * Пункт — это гибрид (моя новая анимация), а не оригинал приложения?
@@ -28,8 +29,17 @@ const ALL: readonly ShowcaseSection[] = [s_celebrations, s_purchase_celebration,
  * оставить ТОЛЬКО гибриды с пометкой «принято / ждёт» — иначе в списке из
  * ~170 строк невозможно понять, что именно смотреть глазами.
  */
-const isExecutableHybridItem = (item: ShowcaseSection['items'][number]): boolean =>
-  item.kind !== 'note' && /hybrid|гибрид/i.test(item.id);
+const isExecutableHybridItem = (item: ShowcaseSection['items'][number]): boolean => {
+  if (item.kind === 'note') return false;
+  // зачем (владелец, 2026-08-27: «должен быть КАЖДЫЙ экран, а не 1
+  // общий»): фильтр «только гибриды» от 17.08 ставился против ОРИГИНАЛОВ
+  // анимаций, но был написан слишком широко — требование слова `hybrid` в id
+  // вырезало ЦЕЛИКОМ все четыре секции «Экраны» (у них id вида `lesson1`,
+  // `exam`), и витрина показывала только анимации. Маршрут на реальный экран —
+  // всегда проверяемая строка, его резать нельзя никогда.
+  if (item.kind === 'route') return true;
+  return /hybrid|гибрид/i.test(item.id);
+};
 
 export function getShowcaseSections(): readonly ShowcaseSection[] {
   return [...ALL]

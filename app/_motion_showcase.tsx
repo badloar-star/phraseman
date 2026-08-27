@@ -16,6 +16,7 @@ import { MOTION_SHOWCASE_ROUTE } from '../constants/devRoutes';
 import TapScale from '../components/TapScale';
 import { hapticTap } from '../hooks/use-haptics';
 import { getShowcaseSections } from '../components/dev/motion_showcase';
+import { makeDevRunesSeed } from './dev_practice_runes_seed';
 import type { ShowcaseItem } from '../components/dev/motion_showcase/types';
 import { cs } from '../components/dev/motion_showcase/showcase_copy';
 
@@ -52,6 +53,16 @@ export default function MotionShowcaseScreen() {
     if (item.kind === 'route' && item.route) {
       // журнал должен знать текущую точку, иначе «назад» из экрана уводит мимо
       rememberNavigationPath(MOTION_SHOWCASE_ROUTE);
+      if (item.devRunesSeed) {
+        // зачем (владелец, 2026-08-27): seed генерируется НА КАЖДЫЙ ТАП, а не
+        // один раз на список — иначе повторный вход показывал бы те же числа и
+        // проверять счётчик было бы нечем.
+        router.push({
+          pathname: item.route,
+          params: { devRunesSeed: makeDevRunesSeed() },
+        } as never);
+        return;
+      }
       router.push(item.route as never);
       return;
     }

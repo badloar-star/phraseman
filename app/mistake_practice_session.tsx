@@ -59,6 +59,7 @@ import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insigh
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -316,7 +317,15 @@ function MistakePracticeSessionScreen() {
     focusMistakeId?: string;
     returnTo?: string;
     maxReviewSessionId?: string;
+    devRunesSeed?: string | string[];
   }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
+  // экран, но счётчик стартует со случайного числа вместо реальной копилки.
+  // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(params.devRunesSeed),
+    [params.devRunesSeed],
+  );
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
@@ -348,6 +357,7 @@ function MistakePracticeSessionScreen() {
     sessionKey: session?.sessionId ?? '',
     completionOrdinal: 1,
     enabled: session !== null,
+    devFakeStartRunes: devRunesFake?.runes,
   });
   useEffect(() => {
     if (complete) void practiceRunes.settle();

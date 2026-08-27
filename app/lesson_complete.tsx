@@ -21,6 +21,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -607,7 +608,15 @@ export default function LessonComplete() {
     repeatAttemptId?: string | string[];
     passed?: string | string[];
     runeCompletionOrdinal?: string | string[];
+    devRunesSeed?: string | string[];
   }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
+  // экран, но счётчик стартует со случайного числа вместо реальной копилки.
+  // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(params.devRunesSeed),
+    [params.devRunesSeed],
+  );
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
   const completionAttemptId = useMemo(
@@ -625,6 +634,7 @@ export default function LessonComplete() {
     activity: 'lesson',
     sessionKey: `lesson${lessonId}_runes_${studyTarget}`,
     completionOrdinal: runeCompletionOrdinal,
+    devFakeStartRunes: devRunesFake?.runes,
   });
   const practiceRunesSettleOnceRef = useRef(false);
   useEffect(() => {

@@ -72,6 +72,7 @@ import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_run
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -2699,7 +2700,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
+function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, devFakeStartRunes, devFakeStartPoints }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; devFakeStartRunes?: number; devFakeStartPoints?: number }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2783,6 +2784,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     activity: 'vocabulary',
     sessionKey: storageKey,
     completionOrdinal: practiceRunPass,
+    // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба открывает
+    // НАСТОЯЩИЙ словарь, но счётчик стартует со случайного числа. Значение
+    // приходит пропом: параметры маршрута читает родитель LessonWords.
+    devFakeStartRunes,
   });
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
@@ -3643,7 +3648,13 @@ export default function LessonWords() {
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
-  const { id, tab: tabParam, qaFocusWords } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[] }>();
+  const { id, tab: tabParam, qaFocusWords, devRunesSeed: devRunesSeedParam } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[]; devRunesSeed?: string | string[] }>();
+  // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» — настоящий экран со
+  // случайным стартовым счётчиком. Диск и сеть в этом режиме не трогаются.
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(devRunesSeedParam),
+    [devRunesSeedParam],
+  );
   const lessonId = parseInt(id || '1', 10);
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
   useEffect(() => {
@@ -3826,6 +3837,7 @@ export default function LessonWords() {
             onCancelStart={() => setUserTab('list')}
             studyTarget={studyTarget}
             onAndroidBackIntercept={setAndroidBackIntercept}
+            devFakeStartRunes={devRunesFake?.runes}
           />
         )}
       </View>

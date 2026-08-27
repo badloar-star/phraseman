@@ -14,6 +14,18 @@ const RU = {
   real_modal: 'реальная модалка',
   real_event: 'реальное событие',
 
+  // ── runes_check (владелец, 2026-08-27: раздел «Проверка рун») ──
+  runes_check_section_title: 'Проверка рун',
+  runes_check_detail: 'настоящий экран · случайные цифры',
+  runes_check_lesson: 'Урок — начисление рун',
+  runes_check_lesson_complete: 'Экран завершения урока — зачёт рун',
+  runes_check_words: 'Словарь — начисление рун',
+  runes_check_irregular_verbs: 'Неправильные глаголы — начисление рун',
+  runes_check_mistake_practice: 'Отработка ошибок — начисление рун',
+  runes_check_blitz: 'Блиц карточек — начисление рун',
+  runes_check_speaking: 'Голосовая отработка — начисление рун',
+  runes_check_swipe: 'Тренировка карточек — начисление рун',
+
   // ── alerts_forms ──
   alerts_forms_section_title: 'Алерты и формы',
   confirm_neutral_title: 'Подтверждение — нейтральное',

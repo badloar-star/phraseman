@@ -7,9 +7,11 @@
 const RU = {
   success: 'Готово',
   error: 'Что-то пошло не так',
-  // зачем (аудит по Библии, 2026-08-26): «Инфо» — служебная аббревиатура,
-  // живой человек так не обращается (Стиль 5 «Человек»).
-  info: 'Подсказка',
+  // зачем (аудит по Библии, 2026-08-26): «Инфо» — служебная аббревиатура.
+  // Заголовок стоит НАД сообщением и сопровождает любые нейтральные тосты
+  // («Друг убран из списка», «Буст включён»), поэтому «Подсказка» врала бы:
+  // это не совет, а факт. «Готово» тоже не подходит — тон занят success.
+  info: 'Сообщение',
   warning: 'Внимание',
   reward: 'Награда',
 };
@@ -17,7 +19,7 @@ const RU = {
 const UK: typeof RU = {
   success: 'Готово',
   error: 'Щось пішло не так',
-  info: 'Підказка',
+  info: 'Повідомлення',
   warning: 'Увага',
   reward: 'Нагорода',
 };
@@ -25,7 +27,7 @@ const UK: typeof RU = {
 const ES: typeof RU = {
   success: 'Listo',
   error: 'Algo salió mal',
-  info: 'Nota',
+  info: 'Aviso',
   warning: 'Atención',
   reward: 'Premio',
 };
@@ -41,7 +43,7 @@ const PT_BR: typeof RU = {
 const VI: typeof RU = {
   success: 'Xong',
   error: 'Có lỗi xảy ra',
-  info: 'Gợi ý',
+  info: 'Lưu ý',
   warning: 'Chú ý',
   reward: 'Phần thưởng',
 };
@@ -57,7 +59,7 @@ const ID: typeof RU = {
 const TR: typeof RU = {
   success: 'Tamam',
   error: 'Bir şeyler ters gitti',
-  info: 'İpucu',
+  info: 'Not',
   warning: 'Dikkat',
   reward: 'Ödül',
 };
@@ -68,7 +70,7 @@ const PL: typeof RU = {
   // остальных языков говорят по-человечески («что-то пошло не так»), и только
   // польский остался сухим термином — Часть V п.6 Библии запрещает слово «ошибка».
   error: 'Coś poszło nie tak',
-  info: 'Wskazówka',
+  info: 'Uwaga',
   warning: 'Uwaga',
   reward: 'Nagroda',
 };

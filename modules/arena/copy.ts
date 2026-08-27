@@ -13,7 +13,7 @@ const C = {
   // зачем (аудит по Библии, 2026-08-26): экран результата уже говорит мягко
   // «В этот раз не вышло», а счётчик рядом бил словом «Поражения» — тон внутри
   // одного экрана расходился (Часть V п.6: не унижаем за ошибку).
-  losses: ['Не вышло', 'Не вийшло', 'Losses', 'Sin suerte', 'Sem sorte', 'Chưa thắng', 'Belum menang', 'Kaçan', 'Nieudane'],
+  losses: ['Промахи', 'Промахи', 'Losses', 'Fallos', 'Erros', 'Chưa thắng', 'Belum menang', 'Kaçan', 'Nieudane'],
   winRate: ['Процент побед', 'Відсоток перемог', 'Win rate', 'Porcentaje de victorias', 'Taxa de vitórias', 'Tỷ lệ thắng', 'Rasio menang', 'Kazanma oranı', 'Procent wygranych'],
   rankNext: ['До следующего ранга', 'До наступного рангу', 'To the next rank', 'Hasta el siguiente rango', 'Até o próximo rank', 'Đến hạng tiếp theo', 'Ke rank berikutnya', 'Sonraki rütbeye', 'Do następnej rangi'],
   subtitle: ['Дуэль на скорость', 'Дуель на швидкість', 'Speed duel', 'Duelo de velocidad', 'Duelo de velocidade', 'Đấu tốc độ', 'Duel kecepatan', 'Hız düellosu', 'Pojedynek na czas'],

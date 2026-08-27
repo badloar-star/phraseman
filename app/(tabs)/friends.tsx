@@ -1005,14 +1005,14 @@ function FriendQuestStartedModal({
               <FriendsThemeIcon themeMode={themeMode} size={82} accessibilityLabel="Friend quest" />
             </View>
             <Text accessibilityRole="header" style={{ color: themeMode === 'olive' ? modalChrome.text : '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
-              {L('Совместная миссия началась', 'Спільна місія почалася', 'Friend quest started', 'Missão conjunta iniciada', 'Nhiệm vụ bạn bè bắt đầu', 'Quest teman dimulai', 'Arkadaş görevi başladı', 'Misja ze znajomym rozpoczęta')}
+              {L('Совместная миссия началась', 'Спільна місія почалася', 'Friend quest started', 'Misión con amigo iniciada', 'Missão conjunta iniciada', 'Nhiệm vụ bạn bè bắt đầu', 'Quest teman dimulai', 'Arkadaş görevi başladı', 'Misja ze znajomym rozpoczęta')}
             </Text>
             <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
-              {L('Наберите оба по 3000 XP за 24 часа и получите по 10 шардов и 1000 XP.', 'Наберіть обидва по 3000 XP за 24 години й отримайте по 10 шардів і 1000 XP.', 'Both of you need 3000 XP in 24 hours to earn 10 shards and 1000 XP each.', 'Ambos precisam de 3000 XP em 24 horas para ganhar 10 shards e 1000 XP.', 'Cả hai cần 3000 XP trong 24 giờ để nhận 10 shards và 1000 XP.', 'Kumpulkan masing-masing 3000 XP dalam 24 jam untuk mendapat 10 shard dan 1000 XP.', '24 saatte ikiniz de 3000 XP toplayın, 10 shard ve 1000 XP kazanın.', 'Zdobądźcie po 3000 XP w 24 godziny, aby dostać po 10 shardów i 1000 XP.')}
+              {L('Наберите оба по 3000 XP за 24 часа и получите по 10 шардов и 1000 XP.', 'Наберіть обидва по 3000 XP за 24 години й отримайте по 10 шардів і 1000 XP.', 'Both of you need 3000 XP in 24 hours to earn 10 shards and 1000 XP each.', 'Ambos necesitáis 3000 XP en 24 horas para ganar 10 shards y 1000 XP cada uno.', 'Ambos precisam de 3000 XP em 24 horas para ganhar 10 shards e 1000 XP.', 'Cả hai cần 3000 XP trong 24 giờ để nhận 10 shards và 1000 XP.', 'Kumpulkan masing-masing 3000 XP dalam 24 jam untuk mendapat 10 shard dan 1000 XP.', '24 saatte ikiniz de 3000 XP toplayın, 10 shard ve 1000 XP kazanın.', 'Zdobądźcie po 3000 XP w 24 godziny, aby dostać po 10 shardów i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: modalChrome.button }}>
               <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
-                {L('Вперёд', 'Уперед', 'Let’s go', 'Vamos', 'Bắt đầu', 'Mulai', 'Başla', 'Start')}
+                {L('Вперёд', 'Уперед', 'Let’s go', 'Vamos', 'Vamos', 'Bắt đầu', 'Mulai', 'Başla', 'Start')}
               </Text>
             </TouchableOpacity>
           </LinearGradient>
@@ -1041,14 +1041,14 @@ function FriendQuestCompletedModal({
               <Ionicons name="sparkles-outline" size={38} color={'#B9F6C9'} />
             </View>
                 <Text accessibilityRole="header" style={{ color: themeMode === 'olive' ? modalChrome.text : '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
-              {L('Миссия выполнена', 'Місію виконано', 'Quest complete', 'Missão concluída', 'Hoàn thành nhiệm vụ', 'Quest selesai', 'Görev tamamlandı', 'Misja wykonana')}
+              {L('Миссия выполнена', 'Місію виконано', 'Quest complete', 'Misión completada', 'Missão concluída', 'Hoàn thành nhiệm vụ', 'Quest selesai', 'Görev tamamlandı', 'Misja wykonana')}
             </Text>
             <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
-              {L('Награда начислена вам обоим: 10 шардов и 1000 XP.', 'Нагороду нараховано вам обом: 10 шардів і 1000 XP.', 'Reward granted to both of you: 10 shards and 1000 XP.', 'Recompensa enviada para ambos: 10 shards e 1000 XP.', 'Cả hai đã nhận thưởng: 10 shards và 1000 XP.', 'Hadiah untuk kalian berdua: 10 shard dan 1000 XP.', 'Ödül ikinize de verildi: 10 shard ve 1000 XP.', 'Nagroda dla was obojga: 10 shardów i 1000 XP.')}
+              {L('Награда начислена вам обоим: 10 шардов и 1000 XP.', 'Нагороду нараховано вам обом: 10 шардів і 1000 XP.', 'Reward granted to both of you: 10 shards and 1000 XP.', 'Recompensa entregada a ambos: 10 shards y 1000 XP.', 'Recompensa enviada para ambos: 10 shards e 1000 XP.', 'Cả hai đã nhận thưởng: 10 shards và 1000 XP.', 'Hadiah untuk kalian berdua: 10 shard dan 1000 XP.', 'Ödül ikinize de verildi: 10 shard ve 1000 XP.', 'Nagroda dla was obojga: 10 shardów i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: themeMode === 'olive' ? modalChrome.button : '#34C759' }}>
               <Text style={{ color: '#071E0C', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
-                {L('Отлично', 'Чудово', 'Nice', 'Boa', 'Tuyệt', 'Mantap', 'Harika', 'Super')}
+                {L('Отлично', 'Чудово', 'Nice', 'Genial', 'Boa', 'Tuyệt', 'Mantap', 'Harika', 'Super')}
               </Text>
             </TouchableOpacity>
           </LinearGradient>
@@ -1098,13 +1098,14 @@ function AddFriendModal({
   const L = (
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const searchReady = isFriendSearchReady(codeInput);
   const codeMode = isFriendCodeQuery(codeInput);
   // Юзер открыл шит «добавить друга» именно чтобы ввести имя — открываем
@@ -1615,13 +1616,14 @@ export default function FriendsTabScreen() {
   const L = useCallback((
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl }), [lang]);
+  ) => triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl }), [lang]);
 
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
@@ -3648,8 +3650,10 @@ export default function FriendsTabScreen() {
                   <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {/* зачем (аудит по Библии, 2026-08-26): «Понятно» — реакция,
                         а не действие (Правило 1: глагол в кнопке). Модалка про
-                        полученный подарок, поэтому кнопка называет действие. */}
-                    {L('Забрать подарок', 'Забрати подарунок', 'Recoger regalo', 'Pegar presente', 'Nhận quà', 'Ambil hadiah', 'Hediyeyi al', 'Odbierz prezent')}
+                        полученный подарок, поэтому кнопка называет действие. Коротко:
+                        две кнопки в ряду при numberOfLines={1} — длинная
+                        подпись обрезалась бы на узких экранах. */}
+                    {L('Забрать', 'Забрати', 'Claim', 'Receber', 'Nhận', 'Klaim', 'Al', 'Odbierz')}
                   </Text>
                 </TouchableOpacity>
               </View>

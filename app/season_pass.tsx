@@ -1009,7 +1009,7 @@ export default function SeasonPassScreen() {
               <TouchableOpacity testID="season-pass-buy-confirm" activeOpacity={0.85} accessibilityRole="button" onPress={onBuyConfirm}
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}>
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Открыть пропуск', uk: 'Відкрити', en: 'Unlock', es: 'Abrir', 'pt-BR': 'Abrir', vi: 'Mở', id: 'Buka', tr: 'Aç', pl: 'Otwórz' })}
+                  {triLang(lang, { ru: 'Открыть', uk: 'Відкрити', en: 'Unlock', es: 'Abrir', 'pt-BR': 'Abrir', vi: 'Mở', id: 'Buka', tr: 'Aç', pl: 'Otwórz' })}
                 </Text>
               </TouchableOpacity>
             </View>

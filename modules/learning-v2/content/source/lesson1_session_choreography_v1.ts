@@ -174,6 +174,15 @@ export const LESSON1_ES_SESSION_13_MODE_NATIVE_PLAN_ID_V1 =
 // же класс, что сессии 10/11/13.
 export const LESSON1_ES_SESSION_14_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s14-mode-native-v1' as const;
+// зачем отдельный planId для испанской voice-сессии 15 (владелец,
+// 2026-08-27, MODE_NATIVE_AUTHORING_CONTRACT.ru.md + Rules §4.1, Глава 2
+// "Ты: вопрос"): та же ситуация, что и voice-сессия 7 — легаси generic
+// voiceSteps() ниже использует 'sound_contrast', снятую с активного
+// authoring 2026-08-25. esSession15ModeNativeStepsV1 — явный override,
+// который гарантирует, что broken generic voiceSteps() никогда не
+// достигается для этой сессии.
+export const LESSON1_ES_SESSION_15_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s15-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -605,6 +614,28 @@ function esSession14ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем именно эта раскладка (владелец, 2026-08-27, СТАРТ ES + MODE_NATIVE_AUTHORING_CONTRACT
+// + Rules §4.1, Глава 2 "Ты: вопрос"): испанская voice-сессия 15 зеркалит
+// esSession07ModeNativeStepsV1 по составу families и весу в сторону
+// scripted_repeat_compare — 12 шагов на индексах 3-14 из 15 доступных фраз
+// (0-2 уже отработаны в introSteps()), НИ ОДИН слот не sound_contrast.
+function esSession15ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'speak_with_model' },
+    { family: 'listen_build_dictation', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'speak_with_model' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'speak_with_model' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'speak_with_model' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1012,6 +1043,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession13ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_14_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession14ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_15_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession15ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

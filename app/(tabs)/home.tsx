@@ -60,6 +60,8 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
+import AvatarNudge from '../../components/AvatarNudge';
+import { claimAvatarNudgeSession } from '../avatar_nudge_state';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import { checkAchievements, loadAchievementStates } from '../achievements';
 import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
@@ -231,6 +233,12 @@ const GREETINGS_UK = [
     'Готовий до нових завдань?', 'Світ заграє барвами', 'На крок ближче до мрії', 'Вільніше з кожним словом',
     'Прогрес надихає', 'Слова зближують людей',
 ];
+const GREETINGS_EN = [
+    'Your English gets stronger today', 'One step closer to fluency', 'Learn a phrase, open a door',
+    'Small habits build big progress', 'More confidence with every word', 'Today is a day to move forward',
+    'Small drills, big leaps', 'Your progress is alive', 'Speak with more ease',
+    'The next insight is here', 'Your brain loves consistency', 'Clearer than yesterday',
+];
 const GREETINGS_PT_BR = [
     'Seu inglês ganha força hoje', 'Um passo mais perto da fluência', 'Aprenda uma frase, abra uma porta',
     'Sua rotina também ensina', 'Mais confiança a cada palavra', 'Hoje é dia de avançar',
@@ -264,6 +272,7 @@ const GREETINGS_PL = [
 const HOME_GREETING_POOLS: Record<Lang, readonly string[]> = {
     ru: GREETINGS_RU,
     uk: GREETINGS_UK,
+    en: GREETINGS_EN,
     es: GREETINGS_ES,
     'pt-BR': GREETINGS_PT_BR,
     vi: GREETINGS_VI,
@@ -274,6 +283,7 @@ const HOME_GREETING_POOLS: Record<Lang, readonly string[]> = {
 const HOME_WEEK_DAYS: Record<Lang, readonly string[]> = {
     ru: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
     uk: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
+    en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     es: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
     'pt-BR': ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
     vi: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
@@ -618,10 +628,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [maxDayRemainingSec, setMaxDayRemainingSec] = useState<number | null>(null);
     useEffect(() => {
         if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;
+        // зачем (владелец 2026-08-26): limits.dayRemainingSec — общий 20-минутный
+        // пул MAX даже при trial-доступе; free/plus видели «20м» вместо реальных
+        // 3 минут пробника. При access==='trial' бейдж показывает кап пробника.
+        const badgeSeconds = (preview: { limits?: Record<string, unknown>; access?: 'max' | 'trial' }): number | null => {
+            if (!preview.limits) return null;
+            const view = parsePreflight({ limits: preview.limits }, preview.access === 'trial' ? 'trial' : 'tutor');
+            return preview.access === 'trial' ? view.capSec ?? 180 : view.dayRemainingSec;
+        };
         const cached = peekMaxTutorPreview(maxPreviewKey, Date.now(), true);
-        if (cached?.limits) setMaxDayRemainingSec(parsePreflight({ limits: cached.limits }, 'tutor').dayRemainingSec);
+        if (cached?.limits) setMaxDayRemainingSec(badgeSeconds(cached));
         void prefetchMaxTutorPreview(maxTutorCallParams).then((preview) => {
-            if (preview?.limits) setMaxDayRemainingSec(parsePreflight({ limits: preview.limits }, 'tutor').dayRemainingSec);
+            if (preview?.limits) setMaxDayRemainingSec(badgeSeconds(preview));
         }).catch(() => {
             // Read-only warmup is opportunistic; prestart keeps a local fallback.
         });
@@ -835,6 +853,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
+    // зачем: владелец (2026-08-27) — новичок не догадывается, что аватарка
+    // кликабельна. Пока он ни разу не открыл раздел внешнего вида, она раз в
+    // 20 сек качает головой и носит точку «новое». Состояние локальное
+    // (AsyncStorage), Firestore не трогаем; сессия засчитывается один раз за
+    // вход на Главную — бюджет 5 сессий, дальше намёк молчит сам.
+    const [avatarNudgeActive, setAvatarNudgeActive] = useState(false);
+    // зачем: дев-кнопка «проиграть покачивание» (владелец, 2026-08-27) — смотреть
+    // анимацию по требованию, не выжидая 20 секунд и не сбрасывая бюджет сессий.
+    // Счётчик, а не boolean: каждое нажатие даёт новое значение, поэтому повтор
+    // срабатывает подряд сколько угодно раз. В стор-сборку не попадает.
+    const [avatarNudgeDevToken, setAvatarNudgeDevToken] = useState(0);
     const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip, isPro);
     // зачем (аудит 2026-08-25): слои колец живут в Storage, а СВОЯ аура видна на
     // Главной с первого кадра. Просим её вне очереди, иначе она ждала бы
@@ -889,10 +918,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
     const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
-    const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
+    const { energy: energyCount, bonusEnergy: energyBonus, bonusEnergyCapacity: energyBonusCapacity = 0, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
     // зачем: раньше считался внутри renderNewHome() и был недоступен тултипу
     // энергии, который рендерится в внешнем scope — падал с ReferenceError.
     const homeEnergyTotal = Math.max(0, energyCount + energyBonus);
+    const homeEnergyMax = Math.max(1, energyMax + energyBonusCapacity);
     const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
     const isSketchLightTheme = themeMode === 'sagePorcelain';
@@ -1190,6 +1220,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         return () => { task?.cancel?.(); };
     }, [homeRuntimeActive]);
+    // зачем: спрашиваем состояние намёка один раз за монтирование Главной, а не
+    // на каждый фокус — иначе перескок между вкладками сжигал бы бюджет из 5
+    // сессий за одну минуту. Ответ приходит с диска и никогда не гасит уже
+    // включённый намёк (setAvatarNudgeActive только в true), поэтому вернуться
+    // к молчанию внутри сессии он не может.
+    useEffect(() => {
+        let cancelled = false;
+        void claimAvatarNudgeSession().then((state) => {
+            if (!cancelled && state.active) setAvatarNudgeActive(true);
+        });
+        return () => { cancelled = true; };
+    }, []);
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
@@ -2313,9 +2355,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         if (!owner) return 0;
         return Math.max(0, Math.floor(peekLevelSpinBalance(owner) ?? 0));
     });
+    // Несколько быстрых начислений эмитят несколько событий подряд. AsyncStorage
+    // может завершить более старое чтение позже нового; без поколения устаревшая
+    // «1» перезаписывала уже прочитанный точный баланс «2+».
+    const homeSpinRefreshGenerationRef = useRef(0);
     const homeSpinPulse = useRef(new Animated.Value(1)).current;
     const homeSpinReduceMotion = useReduceMotion();
     const refreshHomeSpinBalance = useCallback(() => {
+        const refreshGeneration = ++homeSpinRefreshGenerationRef.current;
         const token = captureAccountGeneration();
         const owner = token.stableId;
         if (!owner) { setHomeSpinBalance(0); return; }
@@ -2324,6 +2371,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // Гонка смены аккаунта: поздний ответ чужого владельца не должен
                 // подставить его число (класс бага «чужие пиксели после смены аккаунта»).
                 if (!isCurrentAccountGeneration(token, owner)) return;
+                if (refreshGeneration !== homeSpinRefreshGenerationRef.current) return;
                 const next = Math.max(0, Math.floor(balance ?? 0));
                 // Кнопка стоит в потоке: её появление/уход сдвигает карточку.
                 // Плавный переход вместо телепорта (правило layout stability).
@@ -2767,37 +2815,36 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
         // освобождает место, вся шапка помещается в один ряд.
         const homeEnergyIconSize = 30;
-        // Бонус до полуночи увеличивает доступный остаток, но не постоянный максимум.
-        // Поэтому +3 при базе 5/5 показывается как 8/5; знаменатель меняют только
-        // эффекты, которые действительно повышают energyMax.
-        const homeEnergyCountLabel = `${homeEnergyTotal}/${Math.max(1, energyMax)}`;
+        // Подарок до полуночи создаёт временные слоты: 2/5 +3 становится 5/8,
+        // а после траты одной временной единицы остаётся 4/8 до истечения срока.
+        const homeEnergyCountLabel = `${homeEnergyTotal}/${homeEnergyMax}`;
         const homeEnergyA11yLabel = triLang(lang, {
-            ru: energyBonus > 0
-                ? `Энергия: ${homeEnergyCountLabel}, включая бонус плюс ${energyBonus}`
+            ru: energyBonusCapacity > 0
+                ? `Энергия: ${homeEnergyCountLabel}, временный максимум плюс ${energyBonusCapacity} до полуночи`
                 : `Энергия: ${homeEnergyCountLabel}`,
-            uk: energyBonus > 0
-                ? `Енергія: ${homeEnergyCountLabel}, включно з бонусом плюс ${energyBonus}`
+            uk: energyBonusCapacity > 0
+                ? `Енергія: ${homeEnergyCountLabel}, тимчасовий максимум плюс ${energyBonusCapacity} до опівночі`
                 : `Енергія: ${homeEnergyCountLabel}`,
-            en: energyBonus > 0
-                ? `Energy: ${homeEnergyCountLabel}, including bonus plus ${energyBonus}`
+            en: energyBonusCapacity > 0
+                ? `Energy: ${homeEnergyCountLabel}, temporary maximum plus ${energyBonusCapacity} until midnight`
                 : `Energy: ${homeEnergyCountLabel}`,
-            es: energyBonus > 0
-                ? `Energía: ${homeEnergyCountLabel}, incluido el bono más ${energyBonus}`
+            es: energyBonusCapacity > 0
+                ? `Energía: ${homeEnergyCountLabel}, máximo temporal más ${energyBonusCapacity} hasta medianoche`
                 : `Energía: ${homeEnergyCountLabel}`,
-            'pt-BR': energyBonus > 0
-                ? `Energia: ${homeEnergyCountLabel}, incluindo bônus mais ${energyBonus}`
+            'pt-BR': energyBonusCapacity > 0
+                ? `Energia: ${homeEnergyCountLabel}, máximo temporário mais ${energyBonusCapacity} até meia-noite`
                 : `Energia: ${homeEnergyCountLabel}`,
-            vi: energyBonus > 0
-                ? `Năng lượng: ${homeEnergyCountLabel}, gồm thưởng thêm ${energyBonus}`
+            vi: energyBonusCapacity > 0
+                ? `Năng lượng: ${homeEnergyCountLabel}, giới hạn tạm thời tăng ${energyBonusCapacity} đến nửa đêm`
                 : `Năng lượng: ${homeEnergyCountLabel}`,
-            id: energyBonus > 0
-                ? `Energi: ${homeEnergyCountLabel}, termasuk bonus tambah ${energyBonus}`
+            id: energyBonusCapacity > 0
+                ? `Energi: ${homeEnergyCountLabel}, batas sementara bertambah ${energyBonusCapacity} hingga tengah malam`
                 : `Energi: ${homeEnergyCountLabel}`,
-            tr: energyBonus > 0
-                ? `Enerji: ${homeEnergyCountLabel}, artı ${energyBonus} bonus dahil`
+            tr: energyBonusCapacity > 0
+                ? `Enerji: ${homeEnergyCountLabel}, geçici sınır gece yarısına kadar artı ${energyBonusCapacity}`
                 : `Enerji: ${homeEnergyCountLabel}`,
-            pl: energyBonus > 0
-                ? `Energia: ${homeEnergyCountLabel}, w tym bonus plus ${energyBonus}`
+            pl: energyBonusCapacity > 0
+                ? `Energia: ${homeEnergyCountLabel}, tymczasowy limit plus ${energyBonusCapacity} do północy`
                 : `Energia: ${homeEnergyCountLabel}`,
         });
         const homeLeagueChestPct = homeLeagueChest
@@ -2932,6 +2979,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
+                    // зачем (Optimistic UI): намёк гаснет в тот же кадр, что и
+                    // нажатие — ждать записи на диск незачем. Сам факт «заходил»
+                    // помечает экран /avatar_select: в раздел попадают ещё и из
+                    // модалок подарков за уровень, и оттуда намёк обязан стихнуть
+                    // так же. Не доехал переход — точка вернётся при следующем
+                    // входе на Главную, потери данных здесь нет.
+                    setAvatarNudgeActive(false);
                     nav.push('/avatar_select');
                   }}
                   accessibilityRole="button"
@@ -2954,13 +3008,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     justifyContent: 'center',
                   }}
                 >
-                  <AvatarView
-                    avatar={userAvatar}
-                    level={level}
+                  <AvatarNudge
+                    enabled={avatarNudgeActive}
+                    runtimeActive={homeRuntimeActive}
                     size={homeHeroAvatarSize}
-                    auraId={effectiveUserAvatarAura}
-                    ownerActive={homeRuntimeActive}
-                  />
+                    dotColor={homeThemePanelAccent}
+                    devPlayToken={ENABLE_DEV_TOOLS ? avatarNudgeDevToken : undefined}
+                  >
+                    <AvatarView
+                      avatar={userAvatar}
+                      level={level}
+                      size={homeHeroAvatarSize}
+                      auraId={effectiveUserAvatarAura}
+                      ownerActive={homeRuntimeActive}
+                    />
+                  </AvatarNudge>
                 </TouchableOpacity>
 
                 <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, gap: eliteStatsCompact ? 10 : 12 }}>
@@ -3094,15 +3156,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   реально заработан.
                   зачем (владелец 2026-08-23): один и тот же элемент во всём
                   приложении выглядит одинаково — своя круглая иконка тут была
-                  лишней сущностью. Сидит в самом низу правого угла карточки:
-                  правый верх занят серией. Кнопка стоит В ПОТОКЕ под рядом дней
+                  лишней сущностью. Сидит по центру внизу карточки. Кнопка стоит
+                  В ПОТОКЕ под рядом дней
                   недели, а не абсолютом поверх: пилюля 44px перекрывала бы
                   подпись «Вс» в правом углу. */}
               {homeSpinBalance > 0 ? (
                 <Animated.View
                   testID="home-spin-fab"
                   style={{
-                    alignSelf: 'flex-end',
+                    alignSelf: 'center',
                     marginTop: eliteStatsCompact ? 12 : 14,
                     transform: [{ scale: homeSpinPulse }],
                   }}
@@ -3228,6 +3290,25 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     style={{ width: 40, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Ionicons name="flask-outline" size={21} color={t.heroTextPrimary} />
+                  </TouchableOpacity>
+                )}
+                {/* зачем: дев-кнопка «проиграть намёк» (владелец, 2026-08-27) —
+                    посмотреть покачивание аватарки сразу, не выжидая период и не
+                    сбрасывая бюджет сессий. Стоит рядом с Dev Hub под тем же
+                    ENABLE_DEV_TOOLS, который жёстко выключен в стор-сборке. */}
+                {ENABLE_DEV_TOOLS && (
+                  <TouchableOpacity
+                    testID="home-dev-avatar-nudge-button"
+                    accessibilityRole="button"
+                    accessibilityLabel="Проиграть намёк на аватарке"
+                    activeOpacity={0.72}
+                    onPress={() => {
+                      hapticTap();
+                      setAvatarNudgeDevToken((token) => token + 1);
+                    }}
+                    style={{ width: 40, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Ionicons name="hand-left-outline" size={21} color={t.heroTextPrimary} />
                   </TouchableOpacity>
                 )}
                 </View>
@@ -3893,7 +3974,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: energyCount < energyMax ? 10 : 0 }}>
                     <Text style={{ fontSize: 16 }}>⚡</Text>
                     <Text style={{ color: '#FFFFFF', fontSize: 13, fontWeight: '600', flex: 1 }}>
-                      {`${homeEnergyTotal}/${energyMax} · `}{triLang(lang, {
+                      {`${homeEnergyTotal}/${homeEnergyMax} · `}{triLang(lang, {
                 ru: `1 энергия каждые ${energyRecoveryMinutes} мин`,
                 uk: `1 енергія кожні ${energyRecoveryMinutes} хв`,
                 en: `+1 energy point every ${energyRecoveryMinutes} min`,

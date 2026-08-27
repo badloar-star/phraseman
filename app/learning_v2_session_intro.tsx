@@ -393,11 +393,14 @@ export default function LearningV2SessionIntro({
   // родной язык кириллический. Для es/pt-BR/vi/id/tr/pl родной сам на латинице.
   const nativeScriptIsCyrillic = lang === "ru" || lang === "uk";
   const question = screen?.learningV2EmbeddedQuestion;
-  const questionPrompt = question?.promptByLocale[lang] ?? "";
-  const questionChoices = question?.choicesByLocale[lang] ?? [];
+  // зачем: встроенный вопрос — контент курса, английского source нет — сужаем
+  // на RU, как остальные контентные фолбэки без en в проекте.
+  const questionContentLang = lang === "en" ? "ru" : lang;
+  const questionPrompt = question?.promptByLocale[questionContentLang] ?? "";
+  const questionChoices = question?.choicesByLocale[questionContentLang] ?? [];
   const questionExplanation = question
     ? (resolveSecondWrongExplanation?.(question.questionId) ??
-      question.explanationByLocale[lang] ??
+      question.explanationByLocale[questionContentLang] ??
       "")
     : "";
   const answered = selectedCorrectIndex !== null;

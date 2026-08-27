@@ -85,11 +85,11 @@ function scoreRange(blueprint: LevelExamBlueprint, taskIndex: number): { start: 
 
 function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
   const labels = {
-    guess_phrase: { ru: 'Живая ситуация', uk: 'Жива ситуація', es: 'Situación real', 'pt-BR': 'Situação real', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durum', pl: 'Prawdziwa sytuacja' },
-    fill_gap: { ru: 'Пропущенное слово', uk: 'Пропущене слово', es: 'Palabra faltante', 'pt-BR': 'Palavra faltante', vi: 'Từ còn thiếu', id: 'Kata yang hilang', tr: 'Eksik kelime', pl: 'Brakujące słowo' },
-    find_oddity: { ru: 'Так не говорят', uk: 'Так не кажуть', es: 'Así no se dice', 'pt-BR': 'Não se diz assim', vi: 'Không nói như vậy', id: 'Tidak diucapkan seperti itu', tr: 'Böyle söylenmez', pl: 'Tak się nie mówi' },
-    translate_build: { ru: 'Собери фразу', uk: 'Збери фразу', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' },
-    speed_match: { ru: 'Быстрые пары', uk: 'Швидкі пари', es: 'Pares rápidos', 'pt-BR': 'Pares rápidos', vi: 'Ghép cặp nhanh', id: 'Pasangan cepat', tr: 'Hızlı eşleştirme', pl: 'Szybkie pary' },
+    guess_phrase: { ru: 'Живая ситуация', uk: 'Жива ситуація', en: 'Real situation', es: 'Situación real', 'pt-BR': 'Situação real', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durum', pl: 'Prawdziwa sytuacja' },
+    fill_gap: { ru: 'Пропущенное слово', uk: 'Пропущене слово', en: 'Missing word', es: 'Palabra faltante', 'pt-BR': 'Palavra faltante', vi: 'Từ còn thiếu', id: 'Kata yang hilang', tr: 'Eksik kelime', pl: 'Brakujące słowo' },
+    find_oddity: { ru: 'Так не говорят', uk: 'Так не кажуть', en: 'That\'s not how you say it', es: 'Así no se dice', 'pt-BR': 'Não se diz assim', vi: 'Không nói như vậy', id: 'Tidak diucapkan seperti itu', tr: 'Böyle söylenmez', pl: 'Tak się nie mówi' },
+    translate_build: { ru: 'Собери фразу', uk: 'Збери фразу', en: 'Build the phrase', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' },
+    speed_match: { ru: 'Быстрые пары', uk: 'Швидкі пари', en: 'Quick pairs', es: 'Pares rápidos', 'pt-BR': 'Pares rápidos', vi: 'Ghép cặp nhanh', id: 'Pasangan cepat', tr: 'Hızlı eşleştirme', pl: 'Szybkie pary' },
   } as const;
   return triLang(lang, labels[task.format]);
 }
@@ -109,6 +109,10 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
 }
 
 export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
+  // зачем: sourceLocale читает контент фраз экзамена — английского source нет
+  // (см. app/source_locales.ts), сужаем на RU, как остальные контентные
+  // фолбэки без en в проекте.
+  const examSourceLocale = lang === 'en' ? 'ru' : lang;
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
   const { isUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy, energyReady } = useEnergy();
@@ -266,7 +270,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         ownerStableUid: owner,
         level,
         studyTarget: 'en',
-        sourceLocale: lang,
+        sourceLocale: examSourceLocale,
         blueprintVersion: 3,
         nowMs: Date.now(),
       });
@@ -278,7 +282,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       if (decision.kind === 'resume') {
         await persistActiveLevelExamAttempt(decision.attempt).catch(() => {});
       }
-      const restoredBlueprint = buildLevelExamBlueprint({ level, studyTarget: 'en', sourceLocale: lang, seed: decision.attempt.seed });
+      const restoredBlueprint = buildLevelExamBlueprint({ level, studyTarget: 'en', sourceLocale: examSourceLocale, seed: decision.attempt.seed });
       blueprintRef.current = restoredBlueprint;
       attemptRef.current = decision.attempt;
       setBlueprint(restoredBlueprint);
@@ -322,7 +326,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         nextBlueprint = buildLevelExamBlueprint({
           level,
           studyTarget: 'en',
-          sourceLocale: lang,
+          sourceLocale: examSourceLocale,
           seed: `${ownerStableUid}:${level}:${startToken}`,
         });
       } catch (error) {
@@ -344,7 +348,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         startToken,
         level,
         studyTarget: 'en',
-        sourceLocale: lang,
+        sourceLocale: examSourceLocale,
         blueprintVersion: 3,
         seed: nextBlueprint.seed,
         orderedTaskIds: nextBlueprint.tasks.map((task) => task.id),

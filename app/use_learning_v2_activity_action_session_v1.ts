@@ -58,7 +58,10 @@ function cardForLocale(
   if (input.interfaceLocale === "ru") ru = input.meaning;
   else if (input.interfaceLocale === "uk") uk = input.meaning;
   else if (input.interfaceLocale === "es") es = input.meaning;
-  else sourceLocales[input.interfaceLocale] = input.meaning;
+  // зачем: en — чисто UI-язык, у sourceLocales (контент карточки) нет en-поля —
+  // meaning для en уже хранится через targetText/en выше, здесь его дублировать
+  // некуда и незачем (см. app/source_locales.ts).
+  else if (input.interfaceLocale !== "en") sourceLocales[input.interfaceLocale] = input.meaning;
   return Object.freeze({
     id: `learning_v2_${input.savablePhraseRef}`,
     addedAt: Date.now(),

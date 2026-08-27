@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import type { PlannedInterfaceLang } from '../../constants/i18n';
+import type { Lang, PlannedInterfaceLang } from '../../constants/i18n';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import type { StudyTarget } from '../study_target';
 import { CardItem } from './types';
@@ -731,12 +731,18 @@ function communityPackAuthoredTitle(pack: FlashcardMarketPack): string {
   );
 }
 
-/** Заголовок пака в шапке / плитках: planned-локалі не читають RU/UK/ES. */
-export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
-  const titleField = PACK_TITLE_FIELD_BY_LANG[lang];
+/**
+ * Заголовок пака в шапке / плитках: planned-локалі не читають RU/UK/ES.
+ * зачем: en — чисто UI-язык, у названий паков нет английского source
+ * (см. app/source_locales.ts) — сужаем на RU, как остальные контентные
+ * фолбэки в проекте, вместо того чтобы патчить каждый call site отдельно.
+ */
+export function packTitleForInterface(pack: FlashcardMarketPack, lang: Lang | PlannedInterfaceLang): string {
+  const contentLang = lang === 'en' ? 'ru' : lang;
+  const titleField = PACK_TITLE_FIELD_BY_LANG[contentLang];
   const requestedTitle = trimmedMarketString(pack[titleField]);
   if (requestedTitle) return requestedTitle;
-  const plannedTitle = plannedCopyForPack(pack, lang)?.title.trim();
+  const plannedTitle = plannedCopyForPack(pack, contentLang)?.title.trim();
   if (plannedTitle) return plannedTitle;
   // зачем: правило «своя локаль → код» верно для официальных паков (у них есть
   // codeName-бренд), но для UGC код бессмысленен — показываем язык автора.
@@ -747,8 +753,9 @@ export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'u
 }
 
 /** Короткая подпись под плиткой хаба: локализованная, но компактная. */
-export function packHubLabelForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
-  const localizedHubLabel = trimmedMarketString(OFFICIAL_PACK_HUB_LABELS[pack.id]?.[lang]);
+export function packHubLabelForInterface(pack: FlashcardMarketPack, lang: Lang | PlannedInterfaceLang): string {
+  const contentLang = lang === 'en' ? 'ru' : lang;
+  const localizedHubLabel = trimmedMarketString(OFFICIAL_PACK_HUB_LABELS[pack.id]?.[contentLang]);
   if (localizedHubLabel) return localizedHubLabel;
   if (pack.isCommunityUgc) {
     const localizedTitle = packTitleForInterface(pack, lang).trim();
@@ -772,11 +779,12 @@ function communityPackAuthoredDescription(pack: FlashcardMarketPack): string {
 }
 
 /** Опис набору для модалки / деталей; planned-локалі не читають RU/UK/ES. */
-export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
-  const descriptionField = PACK_DESCRIPTION_FIELD_BY_LANG[lang];
+export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: Lang | PlannedInterfaceLang): string {
+  const contentLang = lang === 'en' ? 'ru' : lang;
+  const descriptionField = PACK_DESCRIPTION_FIELD_BY_LANG[contentLang];
   const requestedDescription = trimmedMarketString(pack[descriptionField]);
   if (requestedDescription) return requestedDescription;
-  const plannedDescription = plannedCopyForPack(pack, lang)?.description.trim();
+  const plannedDescription = plannedCopyForPack(pack, contentLang)?.description.trim();
   if (plannedDescription) return plannedDescription;
   // зачем: у UGC заполнена только локаль автора — без этого фолбэка описание
   // набора «Антоніми дієслів» (uk) в русском интерфейсе было бы пустым.

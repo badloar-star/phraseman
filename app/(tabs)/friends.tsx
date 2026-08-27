@@ -956,6 +956,7 @@ function giftEventLabel(payload: Record<string, string | number>, lang: string):
   const payloadKeyByLang: Record<Lang, keyof typeof payload> = {
     ru: 'giftLabelRu',
     uk: 'giftLabelUk',
+    en: 'giftLabelRu',
     es: 'giftLabelEs',
     'pt-BR': 'giftLabelPtBr',
     vi: 'giftLabelVi',

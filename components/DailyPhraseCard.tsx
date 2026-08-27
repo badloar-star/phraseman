@@ -106,7 +106,9 @@ function DailyPhraseCard({
   const homePulseAttemptedDayRef = useRef<string | null>(null);
   const wasDetailsVisibleRef = useRef(false);
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
-  const phraseLang: DailyPhraseInterfaceLang = lang;
+  // зачем: у «фразы дня» нет английского контента (DailyPhraseInterfaceLang =
+  // SourceLocale, en не входит) — сужаем на RU, как виджет в app/_layout.tsx.
+  const phraseLang: DailyPhraseInterfaceLang = lang === 'en' ? 'ru' : lang;
   // зачем: варианты квеста нужны только в открытой шторке деталей — не считаем
   // их (и не грузим каталог идиом) на первом кадре Главной. useMemo заодно
   // держит варианты стабильными между рендерами открытой шторки.
@@ -170,8 +172,8 @@ function DailyPhraseCard({
   // Best-effort and a native no-op off-device, so it never affects rendering.
   useEffect(() => {
     if (!dailyPhraseGateOpen) return;
-    void syncWidgetData({ studyTarget, lang, themeMode });
-  }, [dailyPhraseGateOpen, studyTarget, lang, themeMode, phrase?.id]);
+    void syncWidgetData({ studyTarget, lang: phraseLang, themeMode });
+  }, [dailyPhraseGateOpen, studyTarget, phraseLang, themeMode, phrase?.id]);
 
   useEffect(() => {
     setQuestAnswered(false);

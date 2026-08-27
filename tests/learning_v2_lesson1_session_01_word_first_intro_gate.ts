@@ -12,6 +12,7 @@ const LOCALES: readonly LearningV2InterfaceLocale[] = [
   'ru',
   'uk',
   'es',
+  'en',
   'pt-BR',
   'vi',
   'id',

@@ -879,7 +879,10 @@ function MaxCallSessionContent() {
           format,
           ...(format === 'companion' ? {} : { scenarioId }),
           cefr: normalizedCefr,
-          interfaceLang: lang,
+          // зачем: MaxVoiceInterfaceLang — контракт с сервером финализации MAX,
+          // английского там пока нет — сужаем на RU, как остальные контентные
+          // фолбэки без en в проекте.
+          interfaceLang: lang === 'en' ? 'ru' : lang,
           studyTarget: callStudyTarget,
           endReason: endReasonRef.current,
           ...(tutor?.goalProgress?.goalId || tutor?.goal?.id

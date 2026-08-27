@@ -993,13 +993,18 @@ function GlobalLevelUpHandler() {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
   }, []);
 
+  // зачем: у виджета «фраза дня» нет английского контента (DailyPhraseInterfaceLang
+  // = SourceLocale, en не входит) — сужаем на RU, как остальные контентные
+  // фолбэки без en-source в проекте.
+  const widgetLang = lang === 'en' ? 'ru' : lang;
+
   // Refresh the home/lock-screen "phrase of the day" widget on app start and
   // whenever the theme, interface language, or study target changes — so the
   // widget stays fresh and on-theme even if the user never opens the home tab.
   // Best-effort; a native no-op off-device.
   useEffect(() => {
-    void syncWidgetData({ studyTarget, lang, themeMode });
-  }, [studyTarget, lang, themeMode]);
+    void syncWidgetData({ studyTarget, lang: widgetLang, themeMode });
+  }, [studyTarget, widgetLang, themeMode]);
 
   // Re-publish the widget snapshot every time the app comes to the foreground.
   // The effect above only fires when theme/lang/target change, so without this a
@@ -1013,7 +1018,7 @@ function GlobalLevelUpHandler() {
       if (state === 'active') {
         scheduledWidgetRefresh?.cancel();
         scheduledWidgetRefresh = scheduleCoalescedForegroundTask('root_widget_snapshot_refresh', async () => {
-          await syncWidgetData({ studyTarget, lang, themeMode });
+          await syncWidgetData({ studyTarget, lang: widgetLang, themeMode });
         });
       }
     });

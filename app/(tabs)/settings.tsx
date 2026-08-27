@@ -721,17 +721,17 @@ export default function SettingsMain() {
   }, [settingsRuntimeActive, focusTick, loadStudyTarget]);
   const currentThemeLabel = (() => {
     const names: Record<string, Record<Lang, string>> = {
-      dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
-      gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
-      business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Doanh nghiệp', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
-      businessLight: { ru: 'Бизнес светлый', uk: 'Бізнес світлий', es: 'Negocios claro', 'pt-BR': 'Negócios claro', vi: 'Doanh nghiệp sáng', id: 'Bisnis terang', tr: 'İş açık', pl: 'Biznes jasny' },
-      midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
-      ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
-      aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
-      volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
-      indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
-      sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
-      olive: { ru: 'Олива', uk: 'Олива', es: 'Oliva', 'pt-BR': 'Oliva', vi: 'Ô liu', id: 'Zaitun', tr: 'Zeytin', pl: 'Oliwka' },
+      dark: { ru: 'Форест', uk: 'Форест', en: 'Forest', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
+      gold: { ru: 'Золото', uk: 'Золото', en: 'Gold', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
+      business: { ru: 'Бизнес', uk: 'Бізнес', en: 'Business', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Doanh nghiệp', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
+      businessLight: { ru: 'Бизнес светлый', uk: 'Бізнес світлий', en: 'Business light', es: 'Negocios claro', 'pt-BR': 'Negócios claro', vi: 'Doanh nghiệp sáng', id: 'Bisnis terang', tr: 'İş açık', pl: 'Biznes jasny' },
+      midnight: { ru: 'Полночь', uk: 'Північ', en: 'Midnight', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
+      ember: { ru: 'Янтарь', uk: 'Бурштин', en: 'Amber', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
+      aurora: { ru: 'Сияние', uk: 'Сяйво', en: 'Aurora', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
+      volt: { ru: 'Лайм', uk: 'Лайм', en: 'Lime', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
+      indigo: { ru: 'Индиго', uk: 'Індиго', en: 'Indigo', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
+      sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', en: 'Jade', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
+      olive: { ru: 'Олива', uk: 'Олива', en: 'Olive', es: 'Oliva', 'pt-BR': 'Oliva', vi: 'Ô liu', id: 'Zaitun', tr: 'Zeytin', pl: 'Oliwka' },
     };
     const entry = names[themeMode] ?? names.indigo;
     return entry[lang];

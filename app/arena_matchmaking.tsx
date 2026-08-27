@@ -27,6 +27,13 @@ import NoEnergyModal from '../components/NoEnergyModal';
 const quickFallbackRequests = new Set<string>();
 
 /**
+ * Ноль секундомера до старта поиска. Формат и ширина совпадают с рабочим
+ * `elapsedLabel` (tabular-nums + одинаковое число знаков), поэтому переход
+ * «оплата прошла → поиск пошёл» не двигает геометрию карточки ни на пиксель.
+ */
+const ZERO_ELAPSED_LABEL = '0:00';
+
+/**
  * React в dev/Strict Mode может смонтировать экран поиска дважды. Если
  * генерировать id внутри компонента, первый вызов успевает создать очередь с
  * одним id, а второй получает arena_queue_request_active уже с другим id.
@@ -316,10 +323,15 @@ export default function ArenaMatchmakingScreen() {
     });
   }, [arenaMatchEnergyIntent, matchId, mode, refundArenaMatchEnergy, requestId, router]);
 
+  const searching = energyGate === 'ok';
   const elapsedLabel = useMemo(() => {
+    // зачем: до оплаты поиск ещё не начался, поэтому секундомер честно стоит на
+    // нуле, а не показывает время, набежавшее с монтирования экрана. Формат тот
+    // же, ширина та же (tabular-nums) — переход «оплата прошла» не двигает вёрстку.
+    if (!searching) return ZERO_ELAPSED_LABEL;
     const seconds = Math.max(0, Math.floor((now - queueAttemptStartedAtMsRef.current) / 1_000));
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-  }, [now]);
+  }, [now, searching]);
 
   if (energyGate === 'denied') {
     return (
@@ -332,17 +344,19 @@ export default function ArenaMatchmakingScreen() {
     );
   }
 
-  if (energyGate === 'checking') {
-    // Пустой экран до решения по энергии — иначе поисковый пульс мигает на
-    // кадр и тут же гаснет, если энергии не хватило. ArenaScreen требует
-    // children, поэтому отдаём пустой View, а не самозакрывающийся тег.
-    return (
-      <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false}>
-        <View />
-      </ArenaScreen>
-    );
-  }
-
+  /**
+   * зачем: пока шло списание 1 ⚡ за вход, экран отдавал пустой <View /> —
+   * ни пульса, ни таймера, ни работающего «назад». Списание умеет ретраиться
+   * без верхней границы (commitSessionEnergy), поэтому моргнувшая сеть
+   * превращала это в «анимация пропала и перестало искать»: подписка на
+   * очередь тоже ждёт energyGate === 'ok'. Владелец 2026-08-27.
+   *
+   * Поверхность теперь ОДНА на оба состояния: та же карточка, тот же пульс,
+   * тот же таймер. Меняется только то, что во время оплаты секундомер ещё не
+   * идёт (он честно на нуле — поиск не начался), а выход доступен всегда.
+   * Прежний страх «пульс мигнёт на кадр при нехватке энергии» снят иначе:
+   * ветка 'denied' возвращается ВЫШЕ и рисует свой экран, сюда не доходя.
+   */
   return (
     <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false} onBack={cancel} backDisabled={Boolean(matchId)}>
       <View style={styles.center}>

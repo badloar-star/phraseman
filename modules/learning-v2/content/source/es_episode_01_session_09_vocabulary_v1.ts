@@ -36,14 +36,14 @@ export const ES_EPISODE_01_SESSION_09_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Eres звучит с двумя слогами и ударением на первом — E-res, /e-res/. Es звучит короче — всего один слог, без /re/ в середине. Soy звучит совсем иначе — с дифтонгом /oi/, вместо ровного /e/ в начале eres.',
-          uk: 'Eres звучить двома складами з наголосом на першому — E-res, /e-res/. Es звучить коротше — лише один склад, без /re/ усередині. Soy звучить зовсім інакше — з дифтонгом /oi/, замість рівного /e/ на початку eres.',
-          es: 'Eres has two syllables with stress on the first — E-res, /e-res/. Es sounds shorter — just one syllable, with no /re/ in the middle. Soy sounds completely different — with the diphthong /oi/, instead of the level /e/ at the start of eres.',
-          'pt-BR': 'Eres has two syllables with stress on the first — E-res, /e-res/. Es sounds shorter — just one syllable, with no /re/ in the middle. Soy sounds completely different — with the diphthong /oi/, instead of the level /e/ at the start of eres.',
-          vi: 'Eres has two syllables with stress on the first — E-res, /e-res/. Es sounds shorter — just one syllable, with no /re/ in the middle. Soy sounds completely different — with the diphthong /oi/, instead of the level /e/ at the start of eres.',
-          id: 'Eres has two syllables with stress on the first — E-res, /e-res/. Es sounds shorter — just one syllable, with no /re/ in the middle. Soy sounds completely different — with the diphthong /oi/, instead of the level /e/ at the start of eres.',
-          tr: 'Eres has two syllables with stress on the first — E-res, /e-res/. Es sounds shorter — just one syllable, with no /re/ in the middle. Soy sounds completely different — with the diphthong /oi/, instead of the level /e/ at the start of eres.',
-          pl: 'Eres has two syllables with stress on the first — E-res, /e-res/. Es sounds shorter — just one syllable, with no /re/ in the middle. Soy sounds completely different — with the diphthong /oi/, instead of the level /e/ at the start of eres.',
+          ru: 'Eres звучит двумя слогами, E-res. Es короче — один слог. Soy звучит совсем иначе — с дифтонгом /oi/.',
+          uk: 'Eres звучить двома складами, E-res. Es коротше — один склад. Soy звучить зовсім інакше — з дифтонгом /oi/.',
+          es: 'Eres has two syllables, E-res. Es is shorter — one syllable. Soy sounds completely different — diphthong /oi/.',
+          'pt-BR': 'Eres tem duas sílabas, E-res. Es é mais curto — uma sílaba. Soy soa totalmente diferente — ditongo /oi/.',
+          vi: 'Eres có hai âm tiết, E-res. Es ngắn hơn — một âm tiết. Soy nghe hoàn toàn khác — nguyên âm đôi /oi/.',
+          id: 'Eres punya dua suku kata, E-res. Es lebih pendek — satu suku kata. Soy terdengar sangat berbeda — diftong /oi/.',
+          tr: 'Eres iki heceli, E-res. Es daha kısa — tek hece. Soy tamamen farklı duyulur — ikili ünlü /oi/.',
+          pl: 'Eres ma dwie sylaby, E-res. Es jest krótsze — jedna sylaba. Soy brzmi zupełnie inaczej — dyftong /oi/.',
         }),
         [
           {
@@ -80,14 +80,14 @@ export const ES_EPISODE_01_SESSION_09_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Eres связывает собеседника — «ты» — с признаком или оценкой. Es — та же связка, но про предмет или третье лицо, не про собеседника напрямую. Soy — связка для самого говорящего, «я».',
-          uk: 'Eres зв’язує співрозмовника — «ти» — з ознакою чи оцінкою. Es — та сама зв’язка, але про предмет чи третю особу, не про співрозмовника напряму. Soy — зв’язка для самого мовця, «я».',
-          es: 'Eres links the listener — "you" — to a quality or verdict. Es is the same linking word, but about a thing or a third person, not directly about the listener. Soy is the linking word for the speaker themselves, "I".',
-          'pt-BR': 'Eres links the listener — "you" — to a quality or verdict. Es is the same linking word, but about a thing or a third person, not directly about the listener. Soy is the linking word for the speaker themselves, "I".',
-          vi: 'Eres links the listener — "you" — to a quality or verdict. Es is the same linking word, but about a thing or a third person, not directly about the listener. Soy is the linking word for the speaker themselves, "I".',
-          id: 'Eres links the listener — "you" — to a quality or verdict. Es is the same linking word, but about a thing or a third person, not directly about the listener. Soy is the linking word for the speaker themselves, "I".',
-          tr: 'Eres links the listener — "you" — to a quality or verdict. Es is the same linking word, but about a thing or a third person, not directly about the listener. Soy is the linking word for the speaker themselves, "I".',
-          pl: 'Eres links the listener — "you" — to a quality or verdict. Es is the same linking word, but about a thing or a third person, not directly about the listener. Soy is the linking word for the speaker themselves, "I".',
+          ru: 'Eres связывает собеседника — «ты» — с признаком. Es — та же связка, но про предмет или третье лицо. Soy — про самого говорящего.',
+          uk: 'Eres зв’язує співрозмовника — «ти» — з ознакою. Es — та сама зв’язка, але про предмет чи третю особу. Soy — про самого мовця.',
+          es: 'Eres links the listener — "you" — to a quality. Es is the same word, but about a thing or third person. Soy is about the speaker.',
+          'pt-BR': 'Eres liga o interlocutor — "você" — a uma qualidade. Es é a mesma ligação, mas sobre uma coisa ou terceira pessoa. Soy é sobre quem fala.',
+          vi: 'Eres nối người nghe — "bạn" — với một đặc điểm. Es cùng từ nối đó, nhưng về vật hay ngôi thứ ba. Soy nói về người nói.',
+          id: 'Eres menghubungkan pendengar — "kamu" — dengan suatu sifat. Es kata sama, tapi tentang benda atau orang ketiga. Soy tentang penutur.',
+          tr: 'Eres dinleyiciyi — "sen" — bir nitelikle bağlar. Es aynı bağlaçtır ama bir şey ya da üçüncü kişi hakkındadır. Soy konuşan hakkındadır.',
+          pl: 'Eres łączy słuchacza — „ty” — z cechą. Es to ten sam łącznik, ale o rzeczy lub trzeciej osobie. Soy dotyczy samego mówiącego.',
         }),
         [
           {

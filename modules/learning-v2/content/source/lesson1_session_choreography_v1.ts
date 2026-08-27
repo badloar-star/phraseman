@@ -125,6 +125,18 @@ export const LESSON1_ES_SESSION_07_MODE_NATIVE_PLAN_ID_V1 =
 // ниже заменяет его на 'apply_in_phrase'.
 export const LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s08-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 9 (владелец, 2026-08-27,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md, Глава 2 "Ты: вопрос"): первая сессия
+// главы 2, вводит ровно одно новое слово (eres, sourceVocabularyIndex 0 —
+// единственная запись в ES_EPISODE_01_SESSION_09_VOCABULARY_V1) и применяет
+// его в ЧЕТЫРЁХ фразах (Eres bonito/Eres bonita/Eres rápido/Eres rápida),
+// поэтому раскладка шагов esSession09ModeNativeStepsV1 ниже ближе всего к
+// esSession05ModeNativeStepsV1 (тоже 3 фразы применения на одно новое слово,
+// здесь их четыре); собственный planId нужен, потому что choreography
+// сверяет шаги пофайлово (session_source_mode_native_step_mismatch), а не по
+// языку или по форме.
+export const LESSON1_ES_SESSION_09_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s09-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -409,6 +421,40 @@ function esSession08ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
     { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
     { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'apply_in_phrase' },
     { family: 'speed_match', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
+  ];
+}
+
+// зачем именно эта раскладка (владелец, 2026-08-27, СТАРТ ES + MODE_NATIVE_AUTHORING_CONTRACT,
+// Глава 2 "Ты: вопрос"): испанская сессия 9 вводит одно новое слово (eres,
+// sourceVocabularyIndex 0 — единственная запись в ES_EPISODE_01_SESSION_09_VOCABULARY_V1)
+// и применяет его в ЧЕТЫРЁХ фразах (Eres bonito/Eres bonita/Eres rápido/
+// Eres rápida — карта фиксирует builtOn: [1], recalls: [3]). Форма шагов: 3
+// обязательных word-first контакта (recognize/retrieve_meaning/build_form) +
+// 3 дополнительные интеракции другой family на тот же target (разрешено
+// правилом "target+family не повторяется"), затем speed_match на review-
+// словарь (eres + recall es/soy/bonito из сессий 1/3), и десять application-
+// шагов на четыре фразы плюс два independent scripted_repeat_compare — по
+// одному на мужскую (Eres bonito) и женскую пару через rápido (Eres rápido),
+// зеркально совпадает с es_episode_01_session_09_mode_native_v1.ts.
+function esSession09ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0], learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'speak_with_model' },
   ];
 }
 
@@ -807,6 +853,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession07ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession08ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_09_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession09ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

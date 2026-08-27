@@ -20,7 +20,6 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
-import { getAuthUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 
 /** Поле в users/{stableId}, куда пишется токен. Совпадает с тем, что читает cron. */
@@ -118,16 +117,19 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
     if (!token) return false;
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    const authUid = getAuthUserId();
 
     // Пропускаем запись, если этот же токен уже был записан (тот же юзер, lang, tz).
     const cacheKey = `${stableId}:${token}:${lang}:${timezone}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_TOKEN_LOCAL_KEY);
     if (lastWritten === cacheKey) return true;
 
+    // зачем: firebaseAuthUid — server-owned (firestore.rules
+    // serverOwnedUserIdentityFields), его пишет authEnsureStableLink. Подмешивать
+    // его сюда нельзя: при расхождении со серверным значением правило
+    // hasNoServerIdentityWrites отклоняет ВЕСЬ set — и пуш-токен не регистрируется
+    // вообще. Тот же класс бага, что ронял cloud_sync (permission-denied 26.08).
     await db.collection('users').doc(stableId).set(
       {
-        ...(authUid ? { firebaseAuthUid: authUid } : {}),
         [PUSH_TOKEN_FIELD]: token,
         pushTokenPlatform: Platform.OS,
         pushTokenLang: lang,

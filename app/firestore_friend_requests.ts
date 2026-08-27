@@ -582,8 +582,10 @@ export async function deleteFriend(friendUid: string): Promise<void> {
 }
 
 /**
- * Записывает firebaseAuthUid в users/{stableId}, чтобы правило canonicalUserMatchesAuth
- * разрешило читать входящие заявки (auth.uid часто ≠ stableId).
+ * Просит сервер (authEnsureStableLink, Admin SDK) проставить firebaseAuthUid в
+ * users/{stableId}, чтобы правило canonicalUserMatchesAuth разрешило читать
+ * входящие заявки (auth.uid часто ≠ stableId). Клиент это поле НЕ пишет сам —
+ * оно server-owned, и клиентская запись отклоняется hasNoServerIdentityWrites.
  * Вызывать перед подпиской на friend_requests и при фокусе вкладки «Друзья».
  */
 // true means Firestore security can accept the live listeners. On false the

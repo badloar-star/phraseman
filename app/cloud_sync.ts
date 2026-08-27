@@ -2857,13 +2857,17 @@ async function doSyncToCloud(): Promise<void> {
       if (needActivityStamp || needHeartbeat) lastActivityStampAt = now;
       return;
     }
-    // Дружба / friend_requests rules: ключ в пути users/{stableId}/… но senderUid должен доказать
-    // связь с текущей Firebase-сессией — см. firestore.rules canonicalUserMatchesAuth + firebaseAuthUid.
-    const firebaseAuthUidRow = getAuthUserId();
+    // зачем: firebaseAuthUid — server-owned поле (firestore.rules
+    // serverOwnedUserIdentityFields). Клиент его НЕ пишет: правило
+    // hasNoServerIdentityWrites считает diff со старым значением, и как только
+    // серверное значение расходится с локальным (сервер ещё не проставил поле
+    // после смены auth), весь set отклоняется целиком — вместе с progress/XP.
+    // Именно это давало permission-denied сериями (26 отказов за вечер 26.08).
+    // Авторитетный писатель — authEnsureStableLink (functions/src/auth_identity.ts:737),
+    // он сам отслеживает userAuthUidChanged и обновляет поле при каждом расхождении.
     if (!isSyncGenerationCurrent()) return;
     await docRef.set(
       {
-        ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
         ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
         ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
         ...(hasProgressPatch ? { progress: progressPatch } : {}),
@@ -2896,7 +2900,22 @@ async function doSyncToCloud(): Promise<void> {
     // + backend reconcile в functions/src/sync_leaderboard.ts.
     // Здесь сознательно НЕ пишем leaderboard, чтобы исключить dual-writer гонки.
   } catch (e) {
-    if (__DEV__) console.warn('[cloud_sync] doSyncToCloud failed', e);
+    // зачем: раньше здесь была одна строка без контекста, и разбор permission-denied
+    // (26 отказов за вечер 26.08) пришлось вести по firestore.rules вместо лога.
+    // Печатаем uid и состав записи — какое из правил users/{userId} отклонило set,
+    // видно сразу, без реконструкции payload по коду.
+    if (__DEV__) {
+      const code = (e as { code?: string } | null)?.code ?? '';
+      if (String(code).includes('permission-denied')) {
+        console.warn(
+          '[cloud_sync] doSyncToCloud rejected by rules',
+          { uid, authUid: getAuthUserId(), authMatchesStableId: getAuthUserId() === uid },
+          e,
+        );
+      } else {
+        console.warn('[cloud_sync] doSyncToCloud failed', e);
+      }
+    }
   }
 }
 
@@ -3748,7 +3767,9 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     const shouldSendCreatedAt = !createdAtSynced;
-    const firebaseAuthUidRow = getAuthUserId();
+    // зачем: firebaseAuthUid — server-owned (см. комментарий в doSyncToCloud).
+    // Здесь снятие критичнее: force-sync переносит прогресс при смене устройства,
+    // а отклонённый set терял бы всю миграцию, а не один heartbeat.
     if (!isForceGenerationCurrent()) {
       pendingSync = false;
       return false;
@@ -3756,7 +3777,6 @@ export async function forceSyncToCloud(): Promise<boolean> {
     await withTimeout(
       docRef.set(
         {
-          ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
           progress: data,
           ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
           ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),

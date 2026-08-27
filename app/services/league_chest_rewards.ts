@@ -36,13 +36,17 @@ export const LEAGUE_CHEST_SHARDS_REWARD = 30;
  * сервер кладёт это значение в награду, клиент им же валидирует.
  */
 export const LEAGUE_CHEST_ENERGY_MS = 20 * 60 * 1000;
-// зачем (владелец 2026-08-04): порог поднят с 200 000 до 400 000, потому что
-// опыт жителей теперь идёт в общую цель (~159 000 за неделю с 28 жителями) и
-// прежняя цель закрывалась бы сама. Значение обязано совпадать с серверным
-// LEAGUE_CHEST_BASE_GOAL в functions/src/league_chest.ts, иначе клиент покажет
-// «готово», а сервер откажет в выдаче.
-export const LEAGUE_CHEST_BASE_GOAL = 400_000;
-export const LEAGUE_CHEST_GOAL_STEP = 20_000;
+// зачем (владелец 2026-08-27: «400 тысяч рун недостижимо даже для ботов»):
+// прежние 400 000 калибровались под ОПЫТ. После перевода лиги на руны замер по
+// формуле жителей дал комнате из 28 человек ~55 000 РУН за неделю — цель была
+// недостижима примерно в семь раз. База 100 000 и шаг 10 000: боты закрывают
+// около половины, остальное добирают живые игроки.
+//
+// Значение обязано совпадать с серверным LEAGUE_CHEST_BASE_GOAL в
+// functions/src/league_chest.ts, иначе клиент покажет «готово», а сервер
+// откажет в выдаче.
+export const LEAGUE_CHEST_BASE_GOAL = 100_000;
+export const LEAGUE_CHEST_GOAL_STEP = 10_000;
 export const LEAGUE_GOLD_THEME_UNLOCK_KEY = 'league_gold_theme_unlocked_v1';
 export const LEAGUE_GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
 export const LEAGUE_BONUS_ADMIN_PREVIEW_KEY = 'league_bonus_admin_force_ready_v1';

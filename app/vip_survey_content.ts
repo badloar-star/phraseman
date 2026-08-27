@@ -33,6 +33,9 @@ function loc(t: Loc8): Record<Lang, string> {
   return {
     ru: t.ru,
     uk: t.uk,
+    // зачем: en — чисто UI-язык, у опроса нет отдельного английского текста —
+    // RU-фолбэк, как остальные content-локали без en-source в проекте.
+    en: t.ru,
     es: t.es,
     'pt-BR': t.ptBR,
     vi: t.vi,

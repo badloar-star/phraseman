@@ -1846,7 +1846,6 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             uk: 'Скасувати',
             en: 'Cancel',
             es: 'Cancelar',
-            en: "Cancel",
             'pt-BR': "Cancelar",
             vi: "Hủy",
             id: "Batal",
@@ -2774,7 +2773,7 @@ function StreakHeroCard({
         tr: 'gün üst üste',
         pl: 'dni z rzędu',
     });
-    const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', en: 'record', es: 'récord', en: 'record', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
+    const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', en: 'record', es: 'récord', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
     const fromWord = triLang(lang, { ru: 'от', uk: 'від', es: 'desde', en: 'from', 'pt-BR': 'desde', vi: 'từ', id: 'dari', tr: 'min.', pl: 'od' });
     const weekDays = rhythmDays.slice(-7);
     return (

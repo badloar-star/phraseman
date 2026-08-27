@@ -16,6 +16,7 @@ export type SurveyOfferSnapshot = {
 const COMPLETED_COPY: Record<Lang, { title: string; description: string }> = {
   ru: { title: 'Опрос завершён', description: 'Ответы сохранены. Спасибо, что помог улучшить приложение.' },
   uk: { title: 'Опитування завершено', description: 'Відповіді збережено. Дякуємо, що допомагаєш покращити застосунок.' },
+  en: { title: 'Survey completed', description: 'Your answers are saved. Thanks for helping improve the app.' },
   es: { title: 'Encuesta completada', description: 'Respuestas guardadas. Gracias por ayudar a mejorar la aplicación.' },
   'pt-BR': { title: 'Pesquisa concluída', description: 'Respostas salvas. Obrigado por ajudar a melhorar o aplicativo.' },
   vi: { title: 'Đã hoàn thành khảo sát', description: 'Câu trả lời đã được lưu. Cảm ơn bạn đã giúp cải thiện ứng dụng.' },
@@ -40,6 +41,7 @@ export function buildServerConfirmedLegacyCompletion(lang: Lang): SurveyOfferSna
 const ACTIVE_DESCRIPTION: Record<Lang, string> = {
   ru: 'Ответь на вопросы и помоги улучшить приложение.',
   uk: 'Відповідай на запитання та допоможи покращити застосунок.',
+  en: 'Answer the questions and help improve the app.',
   es: 'Responde las preguntas y ayuda a mejorar la aplicación.',
   'pt-BR': 'Responda às perguntas e ajude a melhorar o aplicativo.',
   vi: 'Trả lời câu hỏi và giúp cải thiện ứng dụng.',

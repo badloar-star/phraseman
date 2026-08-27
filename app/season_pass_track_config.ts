@@ -223,6 +223,7 @@ export function getSeasonAuraStageAsset(stage: number, themeMode: ThemeMode): Se
 export const SEASON_AURA_STAGE_NAMES: Record<Lang, readonly [string, string, string, string]> = {
   ru: ['Тление', 'Разгорание', 'Полыхание', 'Вихрь'],
   uk: ['Тління', 'Розгоряння', 'Полум\'я', 'Вихор'],
+  en: ['Smolder', 'Flame', 'Blaze', 'Vortex'],
   es: ['Rescoldo', 'Llama', 'Incandescencia', 'Vórtice'],
   'pt-BR': ['Brasa', 'Chama', 'Incandescência', 'Vórtice'],
   vi: ['Âm ỉ', 'Bùng cháy', 'Rực sáng', 'Xoáy lốc'],

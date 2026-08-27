@@ -18,34 +18,58 @@ describe('premium motivation gates contract', () => {
     expect(source).toContain('ended && gameEnabled && isTerminalOutcome(outcome) && hasPremiumAccess');
   });
 
+  // зачем (2026-08-27): тест сторожил гейты в `app/flashcards.tsx` — хабе,
+  // который переработка «Cards 2.0» превратила в 18-строчную обёртку над
+  // коллекцией. Сами замки не потерялись, а переехали на входы в платные
+  // режимы (свайп и аудио) и там даже усилились: теперь ловится и прямой
+  // заход по диплинку, не только нажатие кнопки. Тест был красным ДО правки
+  // пейволла создания — сторожил снесённый адрес, а не реальную защиту.
   it('keeps flashcard training and autoplay behind the flashcards Plus gate', () => {
-    const hub = read('app', 'flashcards.tsx');
-    const categoryHub = read('app', 'flashcards', 'FlashcardsCategoryHub.tsx');
-    const collection = read('app', 'flashcards_collection.tsx');
     const swipe = read('app', 'flashcards_swipe.tsx');
     const audio = read('app', 'flashcards_audio.tsx');
 
-    expect(hub).toContain("useFeatureAccess('flashcards')");
-    expect(hub).toContain("openFlashcardsPlusPaywall('flashcards_training')");
-    expect(hub).toContain("openFlashcardsPlusPaywall('flashcards_audio')");
-    expect(hub).toContain("'flashcard_training'");
-    expect(hub).toContain("'flashcard_autoplay'");
-    expect(hub).toContain('hasFlashcardsPlus={flashcardsAccess}');
-
-    expect(categoryHub).toContain('hasFlashcardsPlus?: boolean');
-    expect(categoryHub).toContain('function PlusCornerBadge');
-    expect(categoryHub).toContain('{!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}');
-
-    expect(collection).toContain("params: { context: 'flashcard_training', source: 'flashcards_collection_training' }");
-    expect(collection).toContain("params: { context: 'flashcard_autoplay', source: 'flashcards_collection_audio' }");
-    expect(collection).toContain('{!isPremium && (');
-
+    // Тренировка: замок и на кнопке старта, и на прямом заходе на экран.
     expect(swipe).toContain("useFeatureAccess('flashcards')");
     expect(swipe).toContain("openFlashcardsPlusPaywall('flashcards_training_start')");
+    expect(swipe).toContain("openFlashcardsPlusPaywall('flashcards_training_direct')");
     expect(swipe).toContain("context: 'flashcard_training'");
+
+    // Автовоспроизведение — тот же контракт на своём экране.
     expect(audio).toContain("useFeatureAccess('flashcards')");
     expect(audio).toContain("openFlashcardsPlusPaywall('flashcards_audio_start')");
     expect(audio).toContain("context: 'flashcard_autoplay'");
+  });
+
+  // зачем (2026-08-27, владелец «показывается неправильный пейволл»): создание
+  // своей карточки и своего набора обязано открывать СВОЙ пейвол. Раньше гейт
+  // переиспользовал чужие контексты — человек, нажавший «создать», читал
+  // «20 из 20 — база собрана» про лимит, которого не исчерпывал.
+  it('creator paywall uses its own honest contexts, not borrowed ones', () => {
+    const gate = read('app', 'creator_access.ts');
+
+    expect(gate).toContain("'flashcard_create'");
+    expect(gate).toContain("'pack_create'");
+    // Ровно тот возврат, который сломался в прошлый раз.
+    expect(gate).not.toContain("? 'flashcard_training' : 'flashcard_limit'");
+
+    // Контексты обязаны быть заведены во всех словарях, иначе экран падает в generic.
+    const premiumContext = read('app', 'premium_context.ts');
+    const copy = read('app', 'paywall_copy.ts');
+    const icons = read('components', 'paywall', 'PaywallContextIcons.tsx');
+
+    for (const ctx of ['flashcard_create', 'pack_create']) {
+      expect(premiumContext).toContain(`| '${ctx}'`);
+      expect(premiumContext).toContain(`  '${ctx}',`);
+      expect(copy).toContain(`  ${ctx}: { accent:`);
+      expect(copy).toContain(`PAYWALL_COPY.${ctx} = {`);
+      expect(copy).toContain(`PAYWALL_PLANNED_COPY.${ctx} = {`);
+      expect(copy).toContain(`CONTEXT_BENEFITS.${ctx} = [`);
+      expect(copy).toContain(`CONTEXT_BENEFITS_PLANNED.${ctx} = [`);
+      expect(icons).toContain(`  ${ctx}: [`);
+    }
+
+    // Персонализация «сохранено N карточек» осталась только у настоящего лимита.
+    expect(copy).toContain("if (ctx !== 'flashcard_limit' || savedCards <= 0) return planned;");
   });
 
   it('does not promise offline lessons in paywall proof copy', () => {

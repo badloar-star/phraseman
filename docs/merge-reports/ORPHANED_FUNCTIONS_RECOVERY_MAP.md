@@ -105,7 +105,7 @@ cd functions && npm run gate:functions-coverage
 | `help_board.ts` | helpBoardAddComment, helpBoardAdminModerate, helpBoardCompassRetryCron, helpBoardCreateTopic, helpBoardDeleteCompassAnswer, helpBoardDeleteMyTopic, helpBoardGenerateCompassForTopic, helpBoardReport, helpBoardVote |
 | `index.ts` (вынести в модуль) | adminWebsiteInboxList, adminWebsiteInboxMarkRead, supportReplyDispatchSweeperCron |
 | `language_release_content.ts` | getPublishedCourseSurfaceBundle, getPublishedCourseSurfaceEntry |
-| `language_release.ts` | getPublishedCourseRelease |
+| `language_release.ts` | ~~getPublishedCourseRelease~~ — **УДАЛЕНА С ПРОДА 2026-08-27** по решению владельца: клиент потерян при графте, замена — `learningV2CourseActiveCatalogGetV1`. Исходник оставлен с надгробием, из allowlist гейта убрана. |
 | `language_content.ts` | getPublishedLessonArtifact |
 | `language_catalog.ts` | getActiveLanguageCatalog |
 | `compass_chat_cron.ts` | compassChatDailyCron, compassChatRunNow |

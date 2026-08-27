@@ -181,7 +181,6 @@ const ACCEPTED_UNMERGED = new Set([
   "agentManagerRecommendCriticalDigest",
   "agentOfficeTelegramPublishRecommendation",
   "getActiveLanguageCatalog",
-  "getPublishedCourseRelease",
   "getPublishedCourseSurfaceBundle",
   "getPublishedCourseSurfaceEntry",
   "getPublishedLessonArtifact",

@@ -135,6 +135,24 @@ export const adminRollbackCourseRelease = onCall(
   },
 );
 
+/*
+ * ⚠️ МЁРТВАЯ ФУНКЦИЯ — УДАЛЕНА С ПРОДА 2026-08-27 ПО РЕШЕНИЮ ВЛАДЕЛЬЦА.
+ *
+ * зачем код оставлен: восстановление — это одна строка экспорта в index.ts, если когда-нибудь
+ * понадобится. Удалять исходник не надо — но и экспортировать его без спроса тоже.
+ *
+ * ИСТОРИЯ (чтобы не выяснять заново):
+ *   • Коммит 65d695540 (2026-07-10) добавил функцию ВМЕСТЕ с клиентом
+ *     app/language_runtime/course_release_client.ts. При графте веток клиент потерялся
+ *     целиком (его нет ни в master, ни в мейнлайне), а строку экспорта в index.ts
+ *     затёр adminRollbackCourseRelease. Функция осталась висеть на проде без вызывающих.
+ *   • ЗАМЕНА УЖЕ РАБОТАЕТ: рантайм Learning V2 берёт опубликованный релиз через
+ *     learningV2CourseActiveCatalogGetV1 (codebase "content",
+ *     content_factory/v2_course_active_catalog_callable_v1.ts).
+ *   • Соседей по тому же потерянному мержу (getPublishedLessonArtifact,
+ *     getActiveLanguageCatalog) с прода снесли раньше — эта оставалась одна и ломала
+ *     полный `firebase deploy --only functions`: CLI требовал подтвердить удаление и вставал.
+ */
 export const getPublishedCourseRelease = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {

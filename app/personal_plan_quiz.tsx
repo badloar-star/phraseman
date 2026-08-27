@@ -14,7 +14,7 @@ import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './pers
 import { planExerciseBlockForTask } from './personal_plan_engine_contracts';
 import { appendPlanQuizAnswerAttempt } from './personal_plan_quiz_mistake_adapter';
 import { useLang } from '../components/LangContext';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 const first = (value: string | string[] | undefined) => Array.isArray(value) ? value[0] ?? '' : value ?? '';
 function PersonalPlanQuizScreen() {

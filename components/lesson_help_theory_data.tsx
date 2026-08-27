@@ -7,12 +7,12 @@
 // открытии экрана и остаётся за изолированным registry-сеймом.
 //
 // Презентационные примитивы (Section/Body/Table/Tip/Warn/Example/ColoredPhrase)
-// импортируются из лёгкого модуля app/lesson_help_theory_ui.tsx, который экран
+// импортируются из лёгкого модуля components/lesson_help_theory_ui.tsx, который экран
 // тянет напрямую. Здесь — только контент-специфичные компоненты и сам литерал.
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { useTheme } from '../components/ThemeContext';
+import { useTheme } from './ThemeContext';
 import { type Theme } from '../constants/theme';
 import {
   Body,

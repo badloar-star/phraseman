@@ -16,7 +16,7 @@ import { getPlanById, type PersonalPlanId } from './personal_plan_catalog';
 import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './personal_plan_navigation';
 import { triLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] : (value ?? '');

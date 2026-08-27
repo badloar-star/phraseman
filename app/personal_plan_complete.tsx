@@ -27,7 +27,7 @@ import { recommendNextPlanAfter, getPlanDefaultMinutes } from './personal_plan_r
 import { markNextNavigationAsReplace } from './navigation_back';
 import { glassFill } from '../components/GlassSurface';
 import { OLIVE_RICH } from '../constants/oliveTheme';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 
 type CompleteView = {
   summary: PersonalPlanCompletionSummary;

@@ -45,7 +45,7 @@ function looksLikeTargetLanguage(text: string): boolean {
  * Выводит роль куска из старой разметки `tone`.
  *
  * Соответствие «тон → цвет» взято из эталонного рендерера `toneStyle`
- * (app/lesson_intro_rich.tsx), который в старом пути уроков красит правильно.
+ * (components/lesson_intro_rich.tsx), который в старом пути уроков красит правильно.
  *
  * `nativeScriptIsCyrillic` — родной язык интерфейса записан кириллицей (ru/uk).
  * Только в этом случае включается алфавитная развилка.

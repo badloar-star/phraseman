@@ -52,7 +52,7 @@ import {
 } from './mistake_practice_session_store';
 import { getStableId } from './stable_id';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
-import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
@@ -121,6 +121,25 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     explanationPronunciation: 'Скажи фразу спокійно й чітко, зберігаючи наголос і закінчення.',
     explanationListening: 'Спочатку знайди опорні слова на слух, потім віднови повну фразу.',
     explanationDefault: 'Порівняй свій варіант із правильною формою та зверни увагу на закінчення і службові слова.',
+  },
+  en: {
+    listen: 'Listen', unsupported: 'This language is not yet supported in the mistakes section.',
+    noLongerDue: 'This phrase no longer needs practice.', minFive: 'You need at least 5 ready mistakes to start.',
+    prepareFailed: 'Could not prepare the practice. Try again.', noEnergy: 'Not enough energy to continue.',
+    speechUncertain: 'Could not reliably recognize your speech. Try again — no energy was spent.',
+    speechRetry: 'Try again — no energy was spent.', sessionEnded: 'Session ended', back: 'Back',
+    sessionComplete: 'Session complete', done: 'Done', close: 'Close', hideError: 'Hide mistake',
+    buildPhrase: 'Build the phrase', answerPlaceholder: 'Write your answer', holdToSpeak: 'Hold to speak',
+    holdAndSpeak: 'Hold and speak', correct: 'Correct', needsFix: 'Needs fixing',
+    correctAnswer: 'Correct answer', why: 'Why', stopToday: 'That\'s enough repeats of this mistake for today — we\'ll come back to it later.',
+    hidden: 'Mistake hidden', undo: 'Undo', continue: 'Continue', check: 'Check',
+    hideTitle: 'Hide this mistake?', cancel: 'Cancel', hide: 'Hide',
+    explanationWordOrder: 'Check the word order: in an English sentence, each word\'s position changes the meaning.',
+    explanationMissing: 'Check the missing word and read the whole phrase again.',
+    explanationMeaning: 'Connect the meaning to the whole phrase, not just one familiar word.',
+    explanationPronunciation: 'Say the phrase calmly and clearly, keeping the stress and endings.',
+    explanationListening: 'First catch the key words by ear, then reconstruct the full phrase.',
+    explanationDefault: 'Compare your answer with the correct form and pay attention to endings and function words.',
   },
   es: {
     listen: 'Escuchar', unsupported: 'Este idioma aún no está disponible en la sección de errores.',
@@ -833,7 +852,7 @@ function MistakePracticeSessionScreen() {
           dataText={`${entry.exercise.prompt}
 OK: ${entry.exercise.correctAnswer}`}
           variant="icon-flag"
-          accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку у завданні', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
+          accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку у завданні', en: 'Report an error in the exercise', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
           testID="mistake-practice-report"
         />
       </View>

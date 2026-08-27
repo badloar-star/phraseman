@@ -28,7 +28,7 @@ jest.mock("../constants/i18n", () => ({
 jest.mock("../components/StudyTargetContext", () => ({
   useStudyTarget: () => ({ studyTarget: "en" }),
 }));
-jest.mock("../app/lesson_intro_rich", () => ({
+jest.mock("../components/lesson_intro_rich", () => ({
   plainIntroText: (screen: LessonIntroScreen) => screen.textRU ?? "",
   richIntroLines: (screen: LessonIntroScreen) => screen.linesRU ?? [],
   richSubtitle: (screen: LessonIntroScreen) => screen.subtitleRU ?? "",

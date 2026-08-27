@@ -37,13 +37,13 @@ import {
   type TheoryContent,
   Tip,
   Warn,
-} from './lesson_help_theory_ui';
+} from '../components/lesson_help_theory_ui';
 import { getTheoryContent } from './lesson_help_theory_registry';
 
 // ─── Экран теории урока ───────────────────────────────────────────────────────
 //
-// PERF (D4): презентационные компоненты вынесены в app/lesson_help_theory_ui.tsx,
-// а тяжёлый литерал контента THEORY (~19k строк) — в app/lesson_help_theory_data.tsx
+// PERF (D4): презентационные компоненты вынесены в components/lesson_help_theory_ui.tsx,
+// а тяжёлый литерал контента THEORY (~19k строк) — в components/lesson_help_theory_data.tsx
 // за ленивым require()-сеймом app/lesson_help_theory_registry.ts. Правила заполнения
 // THEORY и сами компоненты см. в этих модулях. Здесь остаётся только экран.
 

@@ -2,15 +2,15 @@ import React, { type ComponentType, useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 
-import ScreenGradient from '../components/ScreenGradient';
-import SkeletonBlock from '../components/SkeletonShimmer';
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import ScreenGradient from './ScreenGradient';
+import SkeletonBlock from './SkeletonShimmer';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
-import { useFeatureAccess, usePremium } from '../components/PremiumContext';
-import { shouldGateFeature } from './feature_gates';
-import { markNextNavigationAsReplace } from './navigation_back';
-import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
-import { readAnyPersonalPlanState } from './personal_plan_state';
+import { useFeatureAccess, usePremium } from './PremiumContext';
+import { shouldGateFeature } from '../app/feature_gates';
+import { markNextNavigationAsReplace } from '../app/navigation_back';
+import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from '../app/premium_guard';
+import { readAnyPersonalPlanState } from '../app/personal_plan_state';
 import {
   PERSONAL_PLAN_SUNSET_AT_MS,
   PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE,
@@ -18,8 +18,8 @@ import {
   isPersonalPlanDevBypassActive,
   resolvePersonalPlanPremiumProbe,
   resolvePersonalPlanSunsetAccess,
-} from './personal_plan_sunset';
-import { readPersonalPlanSunsetEffectiveNow } from './personal_plan_sunset_clock';
+} from '../app/personal_plan_sunset';
+import { readPersonalPlanSunsetEffectiveNow } from '../app/personal_plan_sunset_clock';
 
 export type PersonalPlanSunsetGuardMode = 'premium-required' | 'grandfathered-only';
 

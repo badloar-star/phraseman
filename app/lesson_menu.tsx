@@ -26,7 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';

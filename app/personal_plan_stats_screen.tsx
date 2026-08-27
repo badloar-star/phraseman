@@ -35,7 +35,7 @@ import { readPlanWeakSpotView, type PlanWeakSpotView } from './personal_plan_wea
 import { readPlanXpLedger, type PlanXpLedgerEntry } from './personal_plan_xp_ledger';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { OLIVE_RICH, OLIVE_GRADIENTS } from '../constants/oliveTheme';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 
 const DAY_CARD_WIDTH = 88;
 const DAY_CARD_GAP = 10;

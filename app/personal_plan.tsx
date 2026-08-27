@@ -61,7 +61,7 @@ import { resolvePersonalPlanFlashcardsReviewCount } from './personal_plan_flashc
 import { getMistakePracticeReadyCount } from './mistake_practice_insights';
 import { ENABLE_DEV_TOOLS } from './config';
 import { PERSONAL_PLAN_SUNSET_AT_MS, PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE } from './personal_plan_sunset';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import {
   peekPersonalPlanSunsetEffectiveNow,
   readPersonalPlanSunsetEffectiveNow,

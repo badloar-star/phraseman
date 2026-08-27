@@ -99,7 +99,7 @@ describe('lesson intro screens (es locale fields)', () => {
 
   it('keeps rich intro color semantics separate from background fills', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
-    const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');
+    const richSource = fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8');
 
     expect(source).toContain('<RichIntroLineView');
     expect(richSource).toContain('const semanticLineBg');
@@ -111,7 +111,7 @@ describe('lesson intro screens (es locale fields)', () => {
 
   it('keeps the absolute intro header below the top safe area', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
-    const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');
+    const richSource = fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8');
 
     expect(source).toContain('const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;');
     expect(source).toContain('edges={[\'bottom\']}');
@@ -152,7 +152,7 @@ describe('lesson intro screens (es locale fields)', () => {
 
   it('does not route planned intro UI locales through RU/UK/ES runtime fallbacks', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
-    const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');
+    const richSource = fs.readFileSync(path.join(ROOT, 'components', 'lesson_intro_rich.tsx'), 'utf8');
     const legacyRuntimeFallback = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimeFallback);

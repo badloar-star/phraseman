@@ -48,7 +48,7 @@ import {
   richIntroLines,
   richSubtitle,
   richTitle,
-} from "./lesson_intro_rich";
+} from "../components/lesson_intro_rich";
 import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
 
 const lineText = (line: IntroLine): string =>
@@ -504,17 +504,6 @@ export default function LearningV2SessionIntro({
           {headerAccessory ? (
             <View style={styles.headerAccessory}>{headerAccessory}</View>
           ) : null}
-          {/* зачем: вступление показывает объяснение и встроенный проверочный
-              вопрос с вариантами — тот же контент, что в lesson_intro_screens,
-              где флаг есть, а здесь его забыли. */}
-          <ReportErrorButton
-            screen="learning_v2_intro"
-            dataId={`learning_v2_intro_${lessonId}_${safeIndex}`}
-            dataText={questionPrompt || stageLabel}
-            variant="icon-flag"
-            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в объяснении', uk: 'Повідомити про помилку в поясненні', en: 'Report an error in the explanation', es: 'Informar de un error en la explicación', 'pt-BR': 'Relatar erro na explicação', vi: 'Báo lỗi trong phần giải thích', id: 'Laporkan kesalahan pada penjelasan', tr: 'Açıklamadaki hatayı bildir', pl: 'Zgłoś błąd w wyjaśnieniu' })}
-            testID="learning-v2-intro-report"
-          />
         </View>
 
         <View
@@ -685,6 +674,17 @@ export default function LearningV2SessionIntro({
           </ScrollView>
         </Animated.View>
 
+        <View style={[styles.reportDock, { bottom: insets.bottom + 78 }]}>
+          <ReportErrorButton
+            screen="learning_v2_intro"
+            dataId={`learning_v2_intro_${lessonId}_${safeIndex}`}
+            dataText={questionPrompt || stageLabel}
+            variant="icon-flag"
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в объяснении', uk: 'Повідомити про помилку в поясненні', en: 'Report an error in the explanation', es: 'Informar de un error en la explicación', 'pt-BR': 'Relatar erro na explicação', vi: 'Báo lỗi trong phần giải thích', id: 'Laporkan kesalahan pada penjelasan', tr: 'Açıklamadaki hatayı bildir', pl: 'Zgłoś błąd w wyjaśnieniu' })}
+            testID="learning-v2-intro-report"
+          />
+        </View>
+
         <View
           style={[
             styles.bottomBar,
@@ -852,6 +852,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 12,
     borderTopWidth: 1,
+  },
+  reportDock: {
+    position: "absolute",
+    right: 16,
+    zIndex: 20,
   },
   ctaWrap: { width: "100%", maxWidth: 680, alignSelf: "center" },
   cta: {

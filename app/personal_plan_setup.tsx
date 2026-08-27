@@ -34,7 +34,7 @@ import {
   isPersonalPlanDevBypassActive,
   PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE,
 } from './personal_plan_sunset';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { readPersonalPlanSunsetEffectiveNow } from './personal_plan_sunset_clock';
 
 type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';

@@ -56,7 +56,7 @@ import {
   legacyExampleMeta,
   lessonLevelLabel,
   levelColor,
-} from './lesson_intro_rich';
+} from '../components/lesson_intro_rich';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface LessonIntroScreensProps {

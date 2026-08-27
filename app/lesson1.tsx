@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,

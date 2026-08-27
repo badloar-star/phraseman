@@ -62,7 +62,7 @@ describe('reported content regressions', () => {
 
   it('uses a comparative Russian translation for lesson 14 phrase 45 better plan', () => {
     const phrase = LESSON_DATA[14].phrases.find((row) => row.id === 'lesson14_phrase_45');
-    const lessonHelpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+    const lessonHelpSource = fs.readFileSync(path.join(process.cwd(), 'components', 'lesson_help_theory_data.tsx'), 'utf8');
     const introSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_intro_screens_lesson14_v2.ts'), 'utf8');
 
     expect(phrase?.russian).toBe('Нам нужен план получше');
@@ -174,7 +174,7 @@ describe('reported content regressions', () => {
   });
 
   it('explains why someone can appear in a question in lesson 21 theory', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+    const source = fs.readFileSync(path.join(process.cwd(), 'components', 'lesson_help_theory_data.tsx'), 'utf8');
 
     expect(source).toContain('Anyone/anybody чаще звучит как нейтральный вопрос');
     expect(source).toContain('Someone и somebody — это не разные грамматические правила');
@@ -192,7 +192,7 @@ describe('reported content regressions', () => {
   });
 
   it('uses meaningful direct speech in lesson 27 reported speech theory', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+    const source = fs.readFileSync(path.join(process.cwd(), 'components', 'lesson_help_theory_data.tsx'), 'utf8');
 
     expect(source).toContain("['I will call you', 'He said that he would call me']");
     expect(source).not.toContain("['I will call me', 'He said that he would call me']");
@@ -222,7 +222,7 @@ describe('reported content regressions', () => {
   it('teaches and accepts optional "to" after help for lesson 30 phrase 41', () => {
     const phrase = LESSON_DATA[30].phrases.find((row) => row.id === 'lesson30_phrase_41');
     const introSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_intro_screens_en_17_32.ts'), 'utf8');
-    const helpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+    const helpSource = fs.readFileSync(path.join(process.cwd(), 'components', 'lesson_help_theory_data.tsx'), 'utf8');
     const theorySource = fs.readFileSync(path.join(process.cwd(), 'app', 'theory_content_lesson30.ts'), 'utf8');
 
     expect(phrase).toBeTruthy();
@@ -285,7 +285,7 @@ describe('reported content regressions', () => {
 
   it('uses genitive plural for lesson 16 phrase 27 problems prompt', () => {
     const phrase = LESSON_DATA[16].phrases.find((row) => row.id === 'lesson16_phrase_27');
-    const helpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help_theory_data.tsx'), 'utf8');
+    const helpSource = fs.readFileSync(path.join(process.cwd(), 'components', 'lesson_help_theory_data.tsx'), 'utf8');
 
     expect(phrase?.english).toBe('I do not look for problems');
     expect(phrase?.russian).toBe('Я не ищу проблем');

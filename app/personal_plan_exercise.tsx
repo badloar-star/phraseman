@@ -32,7 +32,7 @@ import AiMistakeCard from '../components/AiMistakeCard';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
 import {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
+import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from '../app/lesson_data_types';
 import type { Lang } from '../constants/i18n';
-import type { StudyTargetLang } from './study_target_lang_dev';
-import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
+import type { StudyTargetLang } from '../app/study_target_lang_dev';
+import { spanishLessonUiStringsActive, spanishStudyActive } from '../app/spanish_content_gate';
 
 export type PlannedIntroLang = Extract<Lang, 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>;
 

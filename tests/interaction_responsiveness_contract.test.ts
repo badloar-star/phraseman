@@ -139,7 +139,7 @@ describe('instant interaction response contract', () => {
 
   test('high-frequency scroll chrome avoids JS-driven decorative animation work', () => {
     const tabs = read('app', '(tabs)', '_layout.tsx');
-    const theory = read('app', 'lesson_help_theory_ui.tsx');
+    const theory = read('components', 'lesson_help_theory_ui.tsx');
     const verbs = read('app', 'lesson_irregular_verbs.tsx');
 
     expect(tabs).toContain('if (immediate || reduceMotion)');

@@ -5,7 +5,7 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { markNextNavigationAsReplace } from './navigation_back';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 
 function PersonalPlanThankYouScreen() {
   const router = useRouter();

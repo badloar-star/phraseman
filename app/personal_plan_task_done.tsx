@@ -12,7 +12,7 @@ import { hasBundledCompatibilityPlanContentDay } from './plan_content_readiness'
 import ReportErrorButton from '../components/ReportErrorButton';
 import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 
 function firstParam(v: string | string[] | undefined): string {
   return Array.isArray(v) ? v[0] ?? '' : v ?? '';

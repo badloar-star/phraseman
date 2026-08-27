@@ -1,7 +1,7 @@
 // ─── Общие презентационные компоненты теории урока ────────────────────────────
 //
 // Лёгкий слой UI для экрана теории (app/lesson_help.tsx). Вынесен из экрана,
-// чтобы тяжёлый литерал контента THEORY (app/lesson_help_theory_data.tsx) мог
+// чтобы тяжёлый литерал контента THEORY (components/lesson_help_theory_data.tsx) мог
 // импортировать эти компоненты, оставаясь при этом за ленивым require()-сеймом
 // (см. app/lesson_help_theory_registry.ts и Performance Bible в AGENTS.md).
 //
@@ -10,7 +10,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo, useRef, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
-import { useTheme } from '../components/ThemeContext';
+import { useTheme } from './ThemeContext';
 import { screenTextOnGradient, type Theme, type ThemeMode } from '../constants/theme';
 
 // Разделитель текста по акцентным словам (group capture → совпадения остаются в split).
@@ -294,7 +294,7 @@ export function ColoredPhrase({
 
 // Форма теории урока: заголовки на разных языках + функции-рендеры контента.
 // Тип общий для экрана (app/lesson_help.tsx) и модуля данных
-// (app/lesson_help_theory_data.tsx).
+// (components/lesson_help_theory_data.tsx).
 export type TheoryContent = {
   titleRU: string;
   titleUK: string;

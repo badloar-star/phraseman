@@ -37,7 +37,7 @@ describe('Personal Plan sunset wiring contract', () => {
   });
 
   test('waits for fresh premium resolution when a premium gate is active', () => {
-    const guard = read('app/personal_plan_sunset_guard.tsx');
+    const guard = read('components/personal_plan_sunset_guard.tsx');
     const lessons = read('app/(tabs)/lessons.tsx');
     expect(guard).toContain('usePremium');
     expect(guard).toContain('accessResolved');
@@ -52,7 +52,7 @@ describe('Personal Plan sunset wiring contract', () => {
   test('uses the persisted monotonic clock at tab, route, setup, screen and activation boundaries', () => {
     for (const file of [
       'app/(tabs)/lessons.tsx',
-      'app/personal_plan_sunset_guard.tsx',
+      'components/personal_plan_sunset_guard.tsx',
       'app/personal_plan_setup.tsx',
       'app/personal_plan.tsx',
       'app/personal_plan_state.ts',
@@ -70,7 +70,7 @@ describe('Personal Plan sunset wiring contract', () => {
   });
 
   test('guards only plan-marked uses of shared lesson, practice and flashcard routes', () => {
-    const guard = read('app/personal_plan_sunset_guard.tsx');
+    const guard = read('components/personal_plan_sunset_guard.tsx');
     expect(guard).toMatch(/if \(!isPersonalPlanRoute\) return <Screen \{\.\.\.props\} \/>/);
     const sharedRoutes: [string, string][] = [
       ['app/lesson_menu.tsx', 'planTask'],

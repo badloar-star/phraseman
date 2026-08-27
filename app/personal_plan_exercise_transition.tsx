@@ -10,7 +10,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticSuccess } from '../hooks/use-haptics';
-import { withPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 
 function firstParam(v: string | string[] | undefined): string {

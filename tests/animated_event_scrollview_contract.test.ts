@@ -8,7 +8,7 @@ const ROOT = path.join(__dirname, '..');
 const TSX_FILES = [
   'app/flashcards_swipe.tsx',
   'app/lesson_help.tsx',
-  'app/lesson_help_theory_ui.tsx',
+  'components/lesson_help_theory_ui.tsx',
   'app/lesson_irregular_verbs.tsx',
   'app/(tabs)/friends.tsx',
   'app/(tabs)/lessons.tsx',

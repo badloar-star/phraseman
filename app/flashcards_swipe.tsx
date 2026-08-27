@@ -80,7 +80,7 @@ import {
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { withOptionalPersonalPlanSunsetGuard } from './personal_plan_sunset_guard';
+import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';

@@ -44,7 +44,7 @@ describe("reported user data integrity", () => {
       "utf8",
     );
     const theory = fs.readFileSync(
-      path.join(__dirname, "..", "app", "lesson_help_theory_data.tsx"),
+      path.join(__dirname, "..", "components", "lesson_help_theory_data.tsx"),
       "utf8",
     );
     const traps = fs.readFileSync(

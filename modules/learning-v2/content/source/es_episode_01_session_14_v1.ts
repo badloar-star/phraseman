@@ -6,6 +6,8 @@ import {
   ES_EPISODE_01_SESSION_14_WORD_FIRST_TITLE,
 } from './es_episode_01_session_14_intro_v1';
 import { ES_EPISODE_01_SESSION_14_PHRASES } from './es_episode_01_session_14_phrases_v1';
+import { ES_EPISODE_01_SESSION_14_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_14_mode_native_v1';
+import { LESSON1_ES_SESSION_14_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 14 «Согласен или
@@ -42,6 +44,13 @@ import { ES_EPISODE_01_SESSION_14_PHRASES } from './es_episode_01_session_14_phr
  * No somos de acuerdo и все gender/negation-варианты) молча никогда не
  * показывались ученику. С override сборка использует phraseSteps() и все
  * 15 фраз.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-27,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): каждый обязательный контакт должен
+ * быть реальным действием внутри одной из шести утверждённых механик.
+ * es_episode_01_session_14_mode_native_v1.ts авторит все 12 practice-шагов
+ * (после 3 интро), lesson1SessionChoreographyV1 сверяет их против
+ * esSession14ModeNativeStepsV1() через LESSON1_ES_SESSION_14_MODE_NATIVE_PLAN_ID_V1.
  */
 export const ES_EPISODE_01_SESSION_14_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -52,6 +61,8 @@ export const ES_EPISODE_01_SESSION_14_SOURCE: SessionSource = Object.freeze({
   generationInputFingerprint: 'owner-word-first-es-e01-s14-v1',
   sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_14_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_14_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_14_WORD_FIRST_TITLE,
   summary: ES_EPISODE_01_SESSION_14_WORD_FIRST_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_14_WORD_FIRST_GOAL,

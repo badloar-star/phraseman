@@ -261,7 +261,7 @@ const RAW_PHRASES: readonly Omit<EpisodeSourcePhrase, 'localizedDetails'>[] =
           { value: 'tan', reasonCode: 'wrong_word:de', why: 'Tan означает «настолько», не входит в формулу согласия. Нужно de.', trapType: 'semantic_neighbor' },
         ]},
         { correct: 'acuerdo', category: 'agreement-phrase-part', distractors: [
-          { value: 'iguales', reasonCode: 'wrong_word:acuerdo', why: 'Iguales означает «одинаковые», а не согласие. Нужно acuerdo.', trapType: 'semantic_neighbor' },
+          { value: 'igual', reasonCode: 'wrong_word:acuerdo', why: 'Igual означает безразличие, а не согласие. Нужно acuerdo — оно не меняется по числу, даже с somos.', trapType: 'semantic_neighbor' },
           { value: 'verdad', reasonCode: 'wrong_word:acuerdo', why: 'Verdad подтверждает факт, а не выражает согласие. Нужно acuerdo.', trapType: 'semantic_neighbor' },
         ]},
       ],
@@ -287,7 +287,7 @@ const RAW_PHRASES: readonly Omit<EpisodeSourcePhrase, 'localizedDetails'>[] =
           { value: 'tan', reasonCode: 'wrong_word:de', why: 'Tan означает «настолько», не входит в формулу согласия. Нужно de.', trapType: 'semantic_neighbor' },
         ]},
         { correct: 'acuerdo', category: 'agreement-phrase-part', distractors: [
-          { value: 'iguales', reasonCode: 'wrong_word:acuerdo', why: 'Iguales означает «одинаковые», а не (не)согласие. Нужно acuerdo.', trapType: 'semantic_neighbor' },
+          { value: 'igual', reasonCode: 'wrong_word:acuerdo', why: 'Igual означает безразличие, а не (не)согласие. Нужно acuerdo — оно не меняется по числу, даже с somos.', trapType: 'semantic_neighbor' },
           { value: 'verdad', reasonCode: 'wrong_word:acuerdo', why: 'Verdad подтверждает факт, а не выражает (не)согласие. Нужно acuerdo.', trapType: 'semantic_neighbor' },
         ]},
       ],

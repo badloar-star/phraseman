@@ -22,6 +22,7 @@
 // решение владельца 2026-08-04).
 // ═══════════════════════════════════════════════════════════════════════════
 
+import { botCosmeticsForCorpus } from './bot_cosmetics';
 import {
   RESIDENT_SLOT_COUNT,
   residentHash,
@@ -123,6 +124,17 @@ export function buildResidentMember(
 ): MemberRecord {
   const index = residentIndexForSlot(groupId, slot);
   const profile = residentProfileAt(index, nowMs);
+  // зачем (владелец 2026-08-27): жителю жёстко ставили aura:null и уровневый
+  // номер аватара, поэтому весь синтетический слой в таблице выглядел рядом
+  // одинаковых новичков — живого игрока с купленной косметикой было видно
+  // сразу, а значит и всех остальных как ботов. Косметика редкая (~12%/~12%),
+  // общая с ареной и детерминированная по ПЕРСОНАЖУ реестра, а не по слоту:
+  // один и тот же ник носит одно и то же в любой комнате, и refreshResidents
+  // не переодевает его на каждом тике.
+  //
+  // Квота, а не свободный бросок: корпус жителей замкнут (RESIDENT_SLOT_COUNT),
+  // и на нём свободный бросок дал 5 аур из 100 вместо двенадцати.
+  const cosmetics = botCosmeticsForCorpus(index, RESIDENT_SLOT_COUNT);
   return {
     uid: residentUid(groupId, slot),
     name: profile.name,
@@ -130,14 +142,17 @@ export function buildResidentMember(
     // приростом. Житель, показавший весь свой опыт, мгновенно выдал бы себя.
     points: residentWeeklyPoints(index, weekStartMs, nowMs),
     totalXp: profile.totalXp,
-    avatar: profile.avatar,
+    avatar: cosmetics.avatar ?? profile.avatar,
     frame: null,
-    aura: null,
+    aura: cosmetics.aura ?? null,
     profileCardLevel: 0,
     profileCardTheme: 'classic',
     profileCardMotion: 'none',
     profileCardPublicFocus: 'balanced',
-    isPremium: false,
+    // Премиум включается ТОЛЬКО под Plus-ауру: без него клиент её гасит
+    // (getEffectiveAvatarAuraId). На награды не влияет — житель не получает
+    // итогов недели и не может забрать корону сундука.
+    isPremium: cosmetics.isPremium === true,
     isVip: false,
     isLifetime: false,
     streak: profile.streak,

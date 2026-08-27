@@ -106,6 +106,7 @@ import {
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush } from './friend_gifts';
 import { arenaBotAvatar, arenaBotDisplayName } from './arena_bot_identity';
+import { botCosmetics } from './bot_cosmetics';
 import { arenaConfigProblems } from './arena_config_contract';
 import {
   commitStarOperations,
@@ -2132,6 +2133,11 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
           // Без аватара бот выдавал себя с первого кадра: у живого игрока
           // картинка есть, у бота была заглушка.
           avatar: arenaBotAvatar(botSeed, who.user.avatar),
+          // зачем (владелец 2026-08-27): часть живых соперников носит купленный
+          // аватар и ауру, а бот был всегда «голым» — по этому его и узнавали.
+          // Косметика редкая (~12%/~12%) и детерминирована по seed матча,
+          // поэтому при переподключении соперник не переодевается.
+          ...botCosmetics(botSeed),
         },
         { rank: profile.rank, rating: profile.rating },
       ),
@@ -2178,6 +2184,7 @@ export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async
       right: playerSnapshot(botUid, {
         displayName: arenaBotDisplayName(botSeed, typeof who.user.lang === 'string' ? who.user.lang : undefined),
         avatar: arenaBotAvatar(botSeed, who.user.avatar),
+        ...botCosmetics(botSeed),
       }, { rank: profile.rank, rating: profile.rating }),
       leftAuthUid: who.authUid,
       privateEnvelope,

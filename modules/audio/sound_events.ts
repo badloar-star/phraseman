@@ -28,32 +28,6 @@ export type SoundEventDefinition = Readonly<{
   deferAfterVoice: boolean;
 }>;
 
-/**
- * Семейства, которые ЗВУЧАТ ВПЛОТНУЮ К ОЗВУЧКЕ и потому обязаны её дожидаться,
- * а не гаснуть.
- *
- * зачем 2026-08-27 (владелец: «звук срабатывает через раз, то ли конфликтует с
- * озвучкой»): вердикт ответа и завершение урока — самые частые звуки в
- * приложении, и оба живут ровно там же, где играет озвучка фразы. Без флага
- * `deferAfterVoice` арбитр отвечает на них `drop/reason:'voice'` — молча
- * ВЫБРАСЫВАЕТ, — пока идёт озвучка и ещё POST_VOICE_GAP_MS(250мс) после неё.
- * Ответил во время/сразу после проговаривания — тишина; ответил на 251мс позже
- * — звук есть. Совпадение по времени и выглядело как «работает через раз».
- *
- * Это НЕ ослабление приоритетной модели: отложенный звук по-прежнему проходит
- * весь обычный отбор (cooldown, rate-limit, приоритет) в момент флаша, живёт
- * не дольше DEFERRED_TTL_MS(2с) и не может перебить саму озвучку. Меняется
- * только исход столкновения с голосом: «потерять» → «дождаться паузы».
- *
- * Умолчание задано по СЕМЕЙСТВУ, а не проставлено в каждое определение: иначе
- * следующий добавленный учебный звук снова родится немым, и баг вернулся бы
- * тихо — ровно так, как он и жил до сих пор.
- */
-const DEFER_AFTER_VOICE_FAMILIES: ReadonlySet<SoundFamily> = new Set<SoundFamily>([
-  'learning',
-  'completion',
-]);
-
 const event = (
   source: number | null,
   volume: number,
@@ -70,7 +44,7 @@ const event = (
   durationMs,
   family,
   platform: options.platform ?? 'all',
-  deferAfterVoice: options.deferAfterVoice ?? DEFER_AFTER_VOICE_FAMILIES.has(family),
+  deferAfterVoice: options.deferAfterVoice ?? false,
 });
 
 export const SOUND_EVENTS = Object.freeze({

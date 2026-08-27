@@ -4,6 +4,9 @@ import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Polygon, Stop } from 'react-native-svg';
 import { triLang, type Lang } from '../../constants/i18n';
+// Цель сундука измеряется рунами (владелец 2026-08-26) — склонение общим
+// помощником валюты, тем же, что в кошельке и таблице лиги.
+import { runeWord } from '../../constants/runes';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticTap } from '../../hooks/use-haptics';
 import DuoPressable from '../DuoPressable';

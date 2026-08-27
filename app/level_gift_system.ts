@@ -514,10 +514,10 @@ export function giftRarityUiLabel(rarity: GiftRarity | string | undefined | null
 }
 
 const SPIN_TIER_UI_LABEL: Record<LevelSpinRewardCatalogEntry['tier'], Record<Lang, string>> = {
-  ordinary: { ru: 'Обычный', uk: 'Звичайний', es: 'Común', 'pt-BR': 'Comum', vi: 'Thường', id: 'Biasa', tr: 'Sıradan', pl: 'Zwykły' },
-  rare: { ru: 'Редкий', uk: 'Рідкісний', es: 'Raro', 'pt-BR': 'Raro', vi: 'Hiếm', id: 'Langka', tr: 'Nadir', pl: 'Rzadki' },
-  ultra: { ru: 'Ультраредкий', uk: 'Ультрарідкісний', es: 'Ultrarraro', 'pt-BR': 'Ultrarraro', vi: 'Siêu hiếm', id: 'Ultra langka', tr: 'Ultra nadir', pl: 'Ultrarzadki' },
-  exceptional: { ru: 'Исключительный', uk: 'Винятковий', es: 'Excepcional', 'pt-BR': 'Excepcional', vi: 'Đặc biệt', id: 'Istimewa', tr: 'Olağanüstü', pl: 'Wyjątkowy' },
+  ordinary: { ru: 'Обычный', uk: 'Звичайний', en: 'Common', es: 'Común', 'pt-BR': 'Comum', vi: 'Thường', id: 'Biasa', tr: 'Sıradan', pl: 'Zwykły' },
+  rare: { ru: 'Редкий', uk: 'Рідкісний', en: 'Rare', es: 'Raro', 'pt-BR': 'Raro', vi: 'Hiếm', id: 'Langka', tr: 'Nadir', pl: 'Rzadki' },
+  ultra: { ru: 'Ультраредкий', uk: 'Ультрарідкісний', en: 'Ultra rare', es: 'Ultrarraro', 'pt-BR': 'Ultrarraro', vi: 'Siêu hiếm', id: 'Ultra langka', tr: 'Ultra nadir', pl: 'Ultrarzadki' },
+  exceptional: { ru: 'Исключительный', uk: 'Винятковий', en: 'Exceptional', es: 'Excepcional', 'pt-BR': 'Excepcional', vi: 'Đặc biệt', id: 'Istimewa', tr: 'Olağanüstü', pl: 'Wyjątkowy' },
 };
 
 export function giftSpinTier(gift: GiftDef): LevelSpinRewardCatalogEntry['tier'] {

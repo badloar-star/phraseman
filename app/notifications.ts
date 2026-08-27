@@ -4,6 +4,7 @@
 // Используем lazy import с try/catch — приложение не падает без нативного модуля
 
 import type { Lang } from '../constants/i18n';
+import type { SourceLocale } from './source_locales';
 
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -338,11 +339,16 @@ const MESSAGES_PL = [
   { title: '🧠 Powtórz wczorajsze', body: 'To dobry moment na utrwalenie' },
 ];
 
-type NotificationCopy<R> = Record<Lang, R>;
+// зачем: пуши — контент, не UI-хром, английского source для них нет (см.
+// app/source_locales.ts). NotificationCopy держится на SourceLocale (8 языков),
+// а не на Lang (9, с UI-only en) — normalizeNotificationLang уже сводил en
+// в RU-фолбэк до расширения Lang, теперь это явно закреплено в типе, а не
+// только в рантайм-проверке NOTIFICATION_LANGS.includes.
+type NotificationCopy<R> = Record<SourceLocale, R>;
 const notificationCopy = <R,>(copy: NotificationCopy<R>): NotificationCopy<R> => copy;
-const NOTIFICATION_LANGS: readonly Lang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
-const normalizeNotificationLang = (value: Lang | string | null | undefined): Lang => {
-  const key = String(value) as Lang;
+const NOTIFICATION_LANGS: readonly SourceLocale[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+const normalizeNotificationLang = (value: Lang | string | null | undefined): SourceLocale => {
+  const key = String(value) as SourceLocale;
   return NOTIFICATION_LANGS.includes(key) ? key : 'ru';
 };
 

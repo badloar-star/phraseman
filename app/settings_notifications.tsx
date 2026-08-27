@@ -249,35 +249,36 @@ export default function SettingsNotifications() {
 
   const L = (copy: Record<Lang, string>) => triLang(lang as Lang, copy);
 
-  const screenTitle = L({ ru:'Уведомления', uk:'Сповіщення', es:'Notificaciones', 'pt-BR':'Notificações', vi:'Thông báo', id:'Notifikasi', tr:'Bildirimler', pl:'Powiadomienia' });
-  const masterLabel = L({ ru:'Разрешить уведомления', uk:'Дозволити сповіщення', es:'Permitir notificaciones', 'pt-BR':'Permitir notificações', vi:'Cho phép thông báo', id:'Izinkan notifikasi', tr:'Bildirimlere izin ver', pl:'Zezwól na powiadomienia' });
-  const sectionStudy = L({ ru:'Занятия', uk:'Заняття', es:'Estudio', 'pt-BR':'Estudos', vi:'Học tập', id:'Belajar', tr:'Çalışma', pl:'Nauka' });
-  const dailyLabel = L({ ru:'Ежедневное напоминание', uk:'Щоденне нагадування', es:'Recordatorio diario', 'pt-BR':'Lembrete diário', vi:'Nhắc nhở hằng ngày', id:'Pengingat harian', tr:'Günlük hatırlatıcı', pl:'Codzienne przypomnienie' });
-  const timeLabel = L({ ru:'Время', uk:'Час', es:'Hora', 'pt-BR':'Horário', vi:'Thời gian', id:'Waktu', tr:'Saat', pl:'Godzina' });
-  const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Streak terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
-  const phraseLabel = L({ ru:'Фраза дня', uk:'Фраза дня', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
-  const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
+  const screenTitle = L({ ru:'Уведомления', uk:'Сповіщення', en:'Notifications', es:'Notificaciones', 'pt-BR':'Notificações', vi:'Thông báo', id:'Notifikasi', tr:'Bildirimler', pl:'Powiadomienia' });
+  const masterLabel = L({ ru:'Разрешить уведомления', uk:'Дозволити сповіщення', en:'Allow notifications', es:'Permitir notificaciones', 'pt-BR':'Permitir notificações', vi:'Cho phép thông báo', id:'Izinkan notifikasi', tr:'Bildirimlere izin ver', pl:'Zezwól na powiadomienia' });
+  const sectionStudy = L({ ru:'Занятия', uk:'Заняття', en:'Study', es:'Estudio', 'pt-BR':'Estudos', vi:'Học tập', id:'Belajar', tr:'Çalışma', pl:'Nauka' });
+  const dailyLabel = L({ ru:'Ежедневное напоминание', uk:'Щоденне нагадування', en:'Daily reminder', es:'Recordatorio diario', 'pt-BR':'Lembrete diário', vi:'Nhắc nhở hằng ngày', id:'Pengingat harian', tr:'Günlük hatırlatıcı', pl:'Codzienne przypomnienie' });
+  const timeLabel = L({ ru:'Время', uk:'Час', en:'Time', es:'Hora', 'pt-BR':'Horário', vi:'Thời gian', id:'Waktu', tr:'Saat', pl:'Godzina' });
+  const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Streak terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
+  const phraseLabel = L({ ru:'Фраза дня', uk:'Фраза дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
+  const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', en:'Energy restored', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
   // зачем (2026-08-23, владелец, P2-1): учитель MAX обещает тему на завтра —
   // напоминание об этом отдельным тумблером, чтобы отказ от него не отключал
   // заодно «Серию». Название самодостаточно, подписи под ним нет (правило
   // владельца: не поясняем настройку мелким текстом).
-  const maxLessonsLabel = L({ ru:'Уроки с MAX', uk:'Уроки з MAX', es:'Clases con MAX', 'pt-BR':'Aulas com o MAX', vi:'Buổi học với MAX', id:'Pelajaran dengan MAX', tr:'MAX ile dersler', pl:'Lekcje z MAX' });
-  const sectionRecaps = L({ ru:'Итоги', uk:'Підсумки', es:'Resúmenes', 'pt-BR':'Resumos', vi:'Tổng kết', id:'Ringkasan', tr:'Özetler', pl:'Podsumowania' });
-  const weeklyLabel = L({ ru:'Итоги недели', uk:'Підсумки тижня', es:'Resumen semanal', 'pt-BR':'Resumo da semana', vi:'Tổng kết tuần', id:'Ringkasan mingguan', tr:'Haftalık özet', pl:'Podsumowanie tygodnia' });
-  const monthlyLabel = L({ ru:'Итоги месяца', uk:'Підсумки місяця', es:'Resumen mensual', 'pt-BR':'Resumo do mês', vi:'Tổng kết tháng', id:'Ringkasan bulanan', tr:'Aylık özet', pl:'Podsumowanie miesiąca' });
-  const sectionMore = L({ ru:'Ещё', uk:'Ще', es:'Más', 'pt-BR':'Mais', vi:'Khác', id:'Lainnya', tr:'Diğer', pl:'Więcej' });
-  const leagueLabel = L({ ru:'События лиги', uk:'Події ліги', es:'Eventos de la liga', 'pt-BR':'Eventos da liga', vi:'Sự kiện giải đấu', id:'Acara liga', tr:'Lig olayları', pl:'Wydarzenia ligi' });
+  const maxLessonsLabel = L({ ru:'Уроки с MAX', uk:'Уроки з MAX', en:'Lessons with MAX', es:'Clases con MAX', 'pt-BR':'Aulas com o MAX', vi:'Buổi học với MAX', id:'Pelajaran dengan MAX', tr:'MAX ile dersler', pl:'Lekcje z MAX' });
+  const sectionRecaps = L({ ru:'Итоги', uk:'Підсумки', en:'Recaps', es:'Resúmenes', 'pt-BR':'Resumos', vi:'Tổng kết', id:'Ringkasan', tr:'Özetler', pl:'Podsumowania' });
+  const weeklyLabel = L({ ru:'Итоги недели', uk:'Підсумки тижня', en:'Weekly recap', es:'Resumen semanal', 'pt-BR':'Resumo da semana', vi:'Tổng kết tuần', id:'Ringkasan mingguan', tr:'Haftalık özet', pl:'Podsumowanie tygodnia' });
+  const monthlyLabel = L({ ru:'Итоги месяца', uk:'Підсумки місяця', en:'Monthly recap', es:'Resumen mensual', 'pt-BR':'Resumo do mês', vi:'Tổng kết tháng', id:'Ringkasan bulanan', tr:'Aylık özet', pl:'Podsumowanie miesiąca' });
+  const sectionMore = L({ ru:'Ещё', uk:'Ще', en:'More', es:'Más', 'pt-BR':'Mais', vi:'Khác', id:'Lainnya', tr:'Diğer', pl:'Więcej' });
+  const leagueLabel = L({ ru:'События лиги', uk:'Події ліги', en:'League events', es:'Eventos de la liga', 'pt-BR':'Eventos da liga', vi:'Sự kiện giải đấu', id:'Acara liga', tr:'Lig olayları', pl:'Wydarzenia ligi' });
   // зачем (2026-08-02, владелец): пуш «подарок сгорит» — отдельный тумблер,
   // не «Предложения»: это предупреждение о потере своего добра, не маркетинг.
-  const giftsLabel = L({ ru:'Подарок сгорает', uk:'Подарунок згорає', es:'Regalo por caducar', 'pt-BR':'Presente expirando', vi:'Quà sắp hết hạn', id:'Hadiah akan hangus', tr:'Hediye yanmak üzere', pl:'Prezent wygasa' });
+  const giftsLabel = L({ ru:'Подарок сгорает', uk:'Подарунок згорає', en:'Gift expiring', es:'Regalo por caducar', 'pt-BR':'Presente expirando', vi:'Quà sắp hết hạn', id:'Hadiah akan hangus', tr:'Hediye yanmak üzere', pl:'Prezent wygasa' });
   // «Вместе»: пуш «Позвал(а)» от друга — отдельная категория (владелец, 2026-08-16).
-  const friendsLabel = L({ ru:'Друзья', uk:'Друзі', es:'Amigos', 'pt-BR':'Amigos', vi:'Bạn bè', id:'Teman', tr:'Arkadaşlar', pl:'Znajomi' });
-  const offersLabel = L({ ru:'Скидки и предложения', uk:'Знижки та пропозиції', es:'Descuentos y ofertas', 'pt-BR':'Descontos e ofertas', vi:'Giảm giá và ưu đãi', id:'Diskon dan penawaran', tr:'İndirimler ve teklifler', pl:'Zniżki i oferty' });
-  const savedLabel = L({ ru:'Сохранено', uk:'Збережено', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });
-  const cancelLabel = L({ ru:'Отмена', uk:'Скасувати', es:'Cancelar', 'pt-BR':'Cancelar', vi:'Hủy', id:'Batal', tr:'İptal', pl:'Anuluj' });
+  const friendsLabel = L({ ru:'Друзья', uk:'Друзі', en:'Friends', es:'Amigos', 'pt-BR':'Amigos', vi:'Bạn bè', id:'Teman', tr:'Arkadaşlar', pl:'Znajomi' });
+  const offersLabel = L({ ru:'Скидки и предложения', uk:'Знижки та пропозиції', en:'Discounts and offers', es:'Descuentos y ofertas', 'pt-BR':'Descontos e ofertas', vi:'Giảm giá và ưu đãi', id:'Diskon dan penawaran', tr:'İndirimler ve teklifler', pl:'Zniżki i oferty' });
+  const savedLabel = L({ ru:'Сохранено', uk:'Збережено', en:'Saved', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });
+  const cancelLabel = L({ ru:'Отмена', uk:'Скасувати', en:'Cancel', es:'Cancelar', 'pt-BR':'Cancelar', vi:'Hủy', id:'Batal', tr:'İptal', pl:'Anuluj' });
   const permissionLabel = L({
     ru:'Уведомления выключены в настройках телефона. Нажмите, чтобы включить.',
     uk:'Сповіщення вимкнені в налаштуваннях телефона. Натисніть, щоб увімкнути.',
+    en:'Notifications are turned off in phone settings. Tap to enable them.',
     es:'Las notificaciones están desactivadas en el teléfono. Toca para activarlas.',
     'pt-BR':'As notificações estão desativadas no telefone. Toque para ativar.',
     vi:'Thông báo đang tắt trong cài đặt điện thoại. Nhấn để bật.',

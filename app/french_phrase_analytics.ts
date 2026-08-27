@@ -30,7 +30,7 @@ function emptyFrenchAnalytics(): PhraseAnalyticsResult {
 function makeInsight(
   type: PersonalInsight['type'],
   accent: PersonalInsight['accent'],
-  copy: Pick<PersonalInsight, 'ru' | 'uk' | 'es' | 'ptBR' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>,
+  copy: Pick<PersonalInsight, 'ru' | 'uk' | 'en' | 'es' | 'ptBR' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>,
 ): PersonalInsight {
   return {
     type,
@@ -151,6 +151,7 @@ export async function computeFrenchPhraseAnalytics(
           {
             ru: `Во французском чаще всего проседает категория ${topCategory.category}: ${topCategory.mistakeCount} ошибок за 30 дней.`,
             uk: `У французькій найчастіше просідає категорія ${topCategory.category}: ${topCategory.mistakeCount} помилок за 30 днів.`,
+            en: `In French, the weakest category is ${topCategory.category}: ${topCategory.mistakeCount} mistakes in 30 days.`,
             es: `En francés, la categoría que más falla es ${topCategory.category}: ${topCategory.mistakeCount} errores en 30 días.`,
             ptBR: `Em francês, a categoria que mais pesa é ${topCategory.category}: ${topCategory.mistakeCount} erros em 30 dias.`,
             'pt-BR': `Em francês, a categoria que mais pesa é ${topCategory.category}: ${topCategory.mistakeCount} erros em 30 dias.`,
@@ -168,6 +169,7 @@ export async function computeFrenchPhraseAnalytics(
           {
             ru: `Самый слабый французский урок сейчас: ${topLesson.lessonNameRU}.`,
             uk: `Найслабший французький урок зараз: ${topLesson.lessonNameUK}.`,
+            en: `The weakest French lesson right now is ${topLessonTitle?.es ?? topLesson.lessonNameES}.`,
             es: `La lección de francés más débil ahora es ${topLessonTitle?.es ?? topLesson.lessonNameES}.`,
             ptBR: `A lição de francês mais fraca agora é ${topLessonTitle?.ptBR ?? topLesson.lessonNameES}.`,
             'pt-BR': `A lição de francês mais fraca agora é ${topLessonTitle?.['pt-BR'] ?? topLesson.lessonNameES}.`,
@@ -185,6 +187,7 @@ export async function computeFrenchPhraseAnalytics(
           {
             ru: `Фраза для повторения: ${topPhrase.phrase}.`,
             uk: `Фраза для повторення: ${topPhrase.phrase}.`,
+            en: `Phrase to review: ${topPhrase.phrase}.`,
             es: `Frase para repasar: ${topPhrase.phrase}.`,
             ptBR: `Frase para revisar: ${topPhrase.phrase}.`,
             'pt-BR': `Frase para revisar: ${topPhrase.phrase}.`,

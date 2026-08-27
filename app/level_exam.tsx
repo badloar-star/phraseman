@@ -497,7 +497,7 @@ const LEVEL_RANGES: Record<string, [number, number]> = {
   A1: [1, 8], A2: [9, 18], B1: [19, 28], B2: [29, 32],
 };
 
-const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string } & Record<PlannedInterfaceLang, string>> = {
+const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string; en: string } & Record<PlannedInterfaceLang, string>> = {
   A1: { ru: 'Зачёт A1', uk: 'Залік A1', es: 'Examen de nivel A1', en: 'A1 Exam', 'pt-BR': 'Teste de nível A1', vi: 'Bài kiểm tra trình độ A1', id: 'Ujian level A1', tr: 'A1 seviye sınavı', pl: 'Test poziomu A1' },
   A2: { ru: 'Зачёт A2', uk: 'Залік A2', es: 'Examen de nivel A2', en: 'A2 Exam', 'pt-BR': 'Teste de nível A2', vi: 'Bài kiểm tra trình độ A2', id: 'Ujian level A2', tr: 'A2 seviye sınavı', pl: 'Test poziomu A2' },
   B1: { ru: 'Зачёт B1', uk: 'Залік B1', es: 'Examen de nivel B1', en: 'B1 Exam', 'pt-BR': 'Teste de nível B1', vi: 'Bài kiểm tra trình độ B1', id: 'Ujian level B1', tr: 'B1 seviye sınavı', pl: 'Test poziomu B1' },
@@ -610,9 +610,14 @@ export default function LevelExam() {
   // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
   // Премиум/тестер обходят подтверждение внутри confirmSpendAmount.
   const { isUnlimited: energyUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy } = useEnergy();
+  const examEnergyMountIdRef = React.useRef(
+    `level-exam-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
+  );
+  const [examEnergyAttemptRevision, setExamEnergyAttemptRevision] = useState(0);
   const levelExamEnergyIntent = useEnergySessionIntent(
     'level_exam',
     lvl,
+    `${examEnergyMountIdRef.current}:${examEnergyAttemptRevision}`,
   );
   const { hasPremiumAccess } = usePremium();
   const examEnergyUnlimited = energyUnlimited || hasPremiumAccess;
@@ -815,6 +820,7 @@ export default function LevelExam() {
     setExamStarting(true);
     try {
       // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
+      let energyCharged = false;
       {
         const energyResult = await confirmSpendAmount(LEVEL_EXAM_ENERGY, levelExamEnergyIntent);
         if (energyResult === 'cancelled') return;
@@ -823,6 +829,7 @@ export default function LevelExam() {
           setNoEnergy(true);
           return;
         }
+        energyCharged = energyResult === 'spent';
       }
       mistakeCaptureRunRef.current = `level-exam-${Date.now().toString(36)}`;
       void acknowledgeSessionStart(levelExamEnergyIntent.operationId);
@@ -831,6 +838,11 @@ export default function LevelExam() {
       setIdx(0);
       setShowAnswer(false);
       setPhase('quiz');
+      if (energyCharged) void acknowledgeSessionStart(levelExamEnergyIntent.operationId);
+      // The next press from the result screen is a new paid attempt. Rotate
+      // only after this one is durably granted; double taps still share the
+      // current in-flight identity.
+      setExamEnergyAttemptRevision((current) => current + 1);
     } finally {
       setExamStarting(false);
     }

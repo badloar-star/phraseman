@@ -133,6 +133,8 @@ import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_replay_reward';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -441,6 +443,8 @@ interface LessonContentProps {
   currentEnergy: number;
   currentMaxEnergy: number;
   attemptsRemaining: 0 | 1 | 2 | 3;
+  /** Руны, накопленные в этой сессии урока (владелец, 2026-08-27). */
+  practiceRunesEarned: number;
   progress: string[];
   totalCells: number;
   comboCount: number;
@@ -520,6 +524,7 @@ const LessonContent = React.memo(function LessonContent({
   currentEnergy,
   currentMaxEnergy,
   attemptsRemaining,
+  practiceRunesEarned,
   progress,
   totalCells,
   comboCount,
@@ -1035,6 +1040,14 @@ const LessonContent = React.memo(function LessonContent({
             remaining={attemptsRemaining}
             locale={lang}
             testID="lesson1-session-attempts"
+          />
+
+          <PracticeRuneCounter
+            runes={practiceRunesEarned}
+            lang={lang}
+            backgroundColor={t.bgCard}
+            color={t.textPrimary}
+            testID="lesson1-practice-runes"
           />
 
           {comboCount >= 3 && (
@@ -1981,6 +1994,10 @@ function LessonScreen() {
   const ERROR_REPLAY_SINCE_KEY   = lessonSessionKey(lessonStorageId, 'errorReplaySince', studyTarget);
   const ERROR_REPLAY_OVERRIDE_KEY = lessonSessionKey(lessonStorageId, 'errorReplayOverride', studyTarget);
   const SERVER_ATTEMPT_KEY = lessonSessionKey(lessonStorageId, 'serverAttemptId', studyTarget);
+  // зачем: ключ сессии рун строится тем же паттерном, что и остальные
+  // *_KEY выше, но lessonSessionKey типизирован узким union полей — не трогаем
+  // его сигнатуру ради одного нового поля 'runes'.
+  const RUNE_SESSION_KEY = `lesson${lessonStorageId}_runes_${studyTarget}`;
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
@@ -2066,6 +2083,14 @@ function LessonScreen() {
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
   const [passCount, setPassCount]   = useState(0);
+  // зачем: completionOrdinal = passCount + 1 — сколько раз ЭТА сессия урока
+  // уже была пройдена (0 при первом заходе), +1 переводит в 1-based номер
+  // текущего прохождения для серверной расписки.
+  const practiceRunes = usePracticeRunes({
+    activity: 'lesson',
+    sessionKey: RUNE_SESSION_KEY,
+    completionOrdinal: passCount + 1,
+  });
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
@@ -2894,6 +2919,11 @@ function LessonScreen() {
     const answerAlts = phraseAnswerAlternatives(phrase, st);
     const isRight = isCorrectAnswer(answer, expected, answerAlts)
       || (settings.hardMode && isCorrectLessonHardModeTypedAnswer(phrase, st, answer));
+    // зачем (владелец, 2026-08-27): руна засчитывается за правильный ответ на
+    // ЭТУ ячейку. Идентификатор — тот же overridePhraseCell ?? cellIndex, что
+    // используют attemptSessionId и AttemptId ниже: одна ячейка = один платёж,
+    // независимо от того, сколько раз к ней вернулись через replay ошибок.
+    if (isRight) practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex));
     const teachingMistakeToken = isRight
       ? undefined
       : resolvePhraseMistakeToken(expected, answer)?.tokenIndex;
@@ -3314,6 +3344,11 @@ function LessonScreen() {
               completedAttemptId,
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
+              // зачем (владелец, 2026-08-27): руны засчитываются на экране
+              // празднования, не здесь. lesson_complete восстанавливает ту же
+              // копилку по (lessonId, studyTarget, completionOrdinal) и сам
+              // зовёт settle() при монтировании.
+              runeCompletionOrdinal: String(passCount + 1),
               ...coachRouteParams,
             },
           });
@@ -3920,6 +3955,7 @@ function LessonScreen() {
             currentEnergy={currentEnergy}
             currentMaxEnergy={currentMaxEnergy}
             attemptsRemaining={attempts.state.remainingAttempts}
+            practiceRunesEarned={practiceRunes.runes}
             progress={progress}
             totalCells={effectiveTotal}
             comboCount={comboCount}

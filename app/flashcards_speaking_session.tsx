@@ -85,6 +85,8 @@ import {
 } from './flashcards/speaking_session_logic';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -212,6 +214,18 @@ export default function FlashcardsSpeakingSession() {
    */
   const [stuck, setStuck] = useState(false);
   const [result, setResult] = useState<ResultState | null>(null);
+  // зачем (владелец, 2026-08-27): «Добить» (onRetryWrong) — второй раунд ТОЙ ЖЕ
+  // попытки по оставшимся ошибочным карточкам, не новое прохождение — ordinal
+  // фиксирован, копилка продолжает жить через оба раунда без сброса.
+  const practiceRunes = usePracticeRunes({
+    activity: 'speaking_practice',
+    sessionKey: attemptSessionId,
+    completionOrdinal: 1,
+  });
+  useEffect(() => {
+    if (result) void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [result]);
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
@@ -395,6 +409,9 @@ export default function FlashcardsSpeakingSession() {
         ].join(':'),
         verdict: attempt.passed ? 'correct' : 'pedagogical_wrong',
       });
+      // зачем (владелец, 2026-08-27): руна за карточку — засчитывается один
+      // раз за сессию, сколько бы попыток на неё ни ушло до зачёта.
+      if (attempt.passed && failedCard) practiceRunes.onCorrectAnswer(failedCard.id);
       // Раскрываем английский — и на зачёте (подтверждение), и на промахе (учимся).
       setFlipped(task === 'recall');
       if (attempt.passed) {
@@ -688,6 +705,21 @@ export default function FlashcardsSpeakingSession() {
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
   const header = (interactive: boolean) => (
+    <>
+      {/* Руны за сессию (владелец, 2026-08-27): шапка ниже — самая плотная из
+          семи экранов (попытки + прогресс + выбор наборов), поэтому руны
+          вынесены отдельной строкой сверху, а не втиснуты в тот же ряд. */}
+      {interactive ? (
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 6 }}>
+          <PracticeRuneCounter
+            runes={practiceRunes.runes}
+            lang={lang}
+            backgroundColor={t.bgCard}
+            color={t.textPrimary}
+            testID="fc-speak-practice-runes"
+          />
+        </View>
+      ) : null}
     <View style={styles.headerRow}>
       {interactive ? (
         <TouchableOpacity
@@ -754,6 +786,7 @@ RU: ${card.translation}`}
         ) : null}
       </View>
     </View>
+    </>
   );
 
   /**
@@ -791,6 +824,7 @@ RU: ${card.translation}`}
         correct={result.correct}
         wrong={result.wrong}
         xpGained={0}
+        runesGained={practiceRunes.runes}
         learnLeft={result.learnLeft}
         onRetryWrong={result.learnLeft > 0 ? onRetryWrong : undefined}
         onDone={leave}

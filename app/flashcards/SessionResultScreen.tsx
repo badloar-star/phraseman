@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -35,6 +36,12 @@ export type SessionResultScreenProps = {
   wrong: number;
   /** Начисленный XP (итог сессии). */
   xpGained: number;
+  /**
+   * Руны, заработанные в сессии (владелец, 2026-08-27). Опционален и не
+   * влияет на существующие вызовы без него — только Блиц и Голосовая, у
+   * которых есть копилка практики, передают это поле.
+   */
+  runesGained?: number;
   /** Сколько карточек «Ещё учу» — для CTA второго раунда. */
   learnLeft: number;
   /** Рестарт с ошибочными карточками; без него CTA «Добить» скрыт. */
@@ -67,6 +74,7 @@ function SessionResultScreenImpl({
   correct,
   wrong,
   xpGained,
+  runesGained = 0,
   learnLeft,
   onRetryWrong,
   onDone,
@@ -192,6 +200,28 @@ function SessionResultScreenImpl({
               {xpGained > 0 ? (
                 <View style={{ marginTop: 18, alignItems: 'center' }}>
                   <XpGainBadge amount={xpGained} visible />
+                </View>
+              ) : null}
+
+              {/* Руны (владелец, 2026-08-27): Блиц и Голосовая раньше не
+                  начисляли ничего на этом экране — место пустовало. */}
+              {runesGained > 0 ? (
+                <View style={{
+                  marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 8,
+                  backgroundColor: t.bgCard, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 10,
+                }}>
+                  {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
+                  <Image
+                    source={require('../../assets/images/level-spin-rewards/stars_10.webp')}
+                    style={{ width: 20, height: 20 }}
+                    contentFit="contain"
+                    accessible={false}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no"
+                  />
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                    +{runesGained}
+                  </Text>
                 </View>
               ) : null}
 

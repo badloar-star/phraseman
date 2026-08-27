@@ -140,6 +140,10 @@ describe('practice rune settlement receipt', () => {
     const id = practiceRuneSettlementOperationId({
       activity: 'vocabulary', sessionKey: 'урок/1 набор', completionOrdinal: 1,
     });
-    expect(id).toMatch(/^practice_rune:[a-z_]+:[A-Za-z0-9_-]+:\d+$/);
+    // зачем (аудит 2026-08-27): журнал рун принимает РОВНО ОДНО двоеточие
+    // (OP_ID_RE в stars_ledger.ts) — прежний формат с тремя двоеточиями
+    // отвергался бы сервером на каждом вызове.
+    expect(id).toMatch(/^practice_rune:[a-z_]+_[A-Za-z0-9_-]+_\d+$/);
+    expect(id.split(':')).toHaveLength(2);
   });
 });

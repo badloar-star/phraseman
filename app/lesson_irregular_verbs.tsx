@@ -3,6 +3,7 @@ import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Image } from 'expo-image';
 import {
   Animated,
   Easing,
@@ -50,6 +51,8 @@ import {
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -228,7 +231,7 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
@@ -239,6 +242,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   onNoEnergy: () => void;
   onCancelStart: () => void;
   studyTarget?: RuntimeStudyTarget;
+  /** Порядковый номер прохождения — растёт с каждым «Начать заново» у вызывающего. */
+  practiceRunCompletionOrdinal: number;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -300,6 +305,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const [learnedCnt, setLearnedCnt] = useState(0);
   const [totalPts, setTotalPts] = useState(0);
   const [allDone, setAllDone] = useState(verbs.length === 0);
+  // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
+  // экрана празднования» — здесь это переход allDone false→true.
+  useEffect(() => {
+    if (allDone) void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allDone]);
   const [userName, setUserName] = useState('');
   const [voiceOut, setVoiceOut] = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
@@ -314,6 +325,16 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const hadErrorThisVerb = useRef(false);
   // Счётчик ошибок на глагол для тренера (порог: 2 ошибки → активация)
   const irregularStorageKey = useMemo(() => irregularVerbsGlobalKey(studyTarget), [studyTarget]);
+  // зачем (владелец, 2026-08-27): «Начать заново» меняет learnTabKey, из-за
+  // чего React ПЕРЕМОНТИРУЕТ этот компонент целиком (см. key={learnTabKey} у
+  // вызывающего) — обычной гидратации хука при монтировании достаточно,
+  // startNewCompletion() не нужен, в отличие от словаря, где финиш встроен в
+  // тот же неперемонтируемый компонент.
+  const practiceRunes = usePracticeRunes({
+    activity: 'irregular_verbs',
+    sessionKey: irregularStorageKey,
+    completionOrdinal: practiceRunCompletionOrdinal,
+  });
   // Уже знакомые глаголы тренируем воспроизведением; новые — узнаванием.
   const isRecallVerb = useCallback((base: string): boolean => {
     return (initCounts[base] ?? 0) >= 2;
@@ -497,6 +518,10 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       } else {
         // Verb complete (все 3 формы отвечены)
         const noErrors = !hadErrorThisVerb.current && isCorrect;
+        // зачем (владелец, 2026-08-27): руна — за глагол целиком, засчитанный
+        // без единой ошибки по всем трём формам. Ошибка на любой форме — руны
+        // не будет за этот проход глагола, ровно как и медаль/XP ниже.
+        if (noErrors) practiceRunes.onCorrectAnswer(verb.base);
         if (noErrors) {
           // Correct — mark as learned
           // [FeedbackKit] Мини-победа «Глагол освоен» — на СУЩЕСТВУЮЩЕЕ событие
@@ -627,6 +652,20 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>{pack.words.plusPoints(totalPts)}</Text>
           </View>
         )}
+        {practiceRunes.runes > 0 && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
+            {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
+            <Image
+              source={require('../assets/images/level-spin-rewards/stars_10.webp')}
+              style={{ width: 18, height: 18 }}
+              contentFit="contain"
+              accessible={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no"
+            />
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+{practiceRunes.runes}</Text>
+          </View>
+        )}
         <TouchableOpacity
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
           onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
@@ -727,11 +766,20 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               pl: `${learnedCnt} / ${verbs.length} opanowano`,
             })}
           </Text>
-          <SessionAttemptsHud
-            remaining={attempts.state.remainingAttempts}
-            locale={lang}
-            testID="irregular-verbs-session-attempts"
-          />
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <PracticeRuneCounter
+              runes={practiceRunes.runes}
+              lang={lang}
+              backgroundColor={t.bgCard}
+              color={t.textPrimary}
+              testID="irregular-verbs-practice-runes"
+            />
+            <SessionAttemptsHud
+              remaining={attempts.state.remainingAttempts}
+              locale={lang}
+              testID="irregular-verbs-session-attempts"
+            />
+          </View>
         </View>
 
         {/* Card */}
@@ -1250,6 +1298,7 @@ export default function LessonIrregularVerbs() {
                   lessonId={lessonId}
                   studyTarget={studyTarget}
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
+                  practiceRunCompletionOrdinal={learnTabKey + 1}
                   onReset={() => {
                     setPracticeAll(true);
                     setLearnTabKey(k => k + 1);

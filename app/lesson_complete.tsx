@@ -20,6 +20,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -605,6 +606,7 @@ export default function LessonComplete() {
     completedAttemptId?: string | string[];
     repeatAttemptId?: string | string[];
     passed?: string | string[];
+    runeCompletionOrdinal?: string | string[];
   }>();
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
@@ -612,6 +614,25 @@ export default function LessonComplete() {
     () => normalizeLessonServerAttemptId(params.completedAttemptId) ?? makeLessonServerAttemptId(),
     [lessonId, params.completedAttemptId, studyTarget],
   );
+  // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
+  // экрана празднования». Копилка та же, что копилась на lesson1.tsx — она
+  // восстанавливается по идентичному sessionKey с диска, здесь только зовём
+  // settle() при монтировании. ordinal фиксирован в параметре навигации, а не
+  // пересчитывается здесь заново (passCount на lesson1 в этот момент уже мог
+  // измениться под новый заход).
+  const runeCompletionOrdinal = Number(firstRouteParam(params.runeCompletionOrdinal)) || 1;
+  const practiceRunes = usePracticeRunes({
+    activity: 'lesson',
+    sessionKey: `lesson${lessonId}_runes_${studyTarget}`,
+    completionOrdinal: runeCompletionOrdinal,
+  });
+  const practiceRunesSettleOnceRef = useRef(false);
+  useEffect(() => {
+    if (practiceRunes.hydrating || practiceRunesSettleOnceRef.current) return;
+    practiceRunesSettleOnceRef.current = true;
+    void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [practiceRunes.hydrating]);
   const c = s.lessonComplete;
   const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);
   const [completionAccessReady, setCompletionAccessReady] = useState(() => lessonId >= 32);
@@ -1522,6 +1543,31 @@ export default function LessonComplete() {
             <Ionicons name="star" size={20} color={t.correct} />
             <Text style={{ color: t.correct, fontSize: 18, fontWeight: '700' }}>{c.bonus}</Text>
           </View>
+
+          {/* Руны за урок (владелец, 2026-08-27): показываются только если
+              накопилось хоть что-то — урок мог быть пройден без рун (старый
+              контент, ошибка сети на предыдущем шаге). */}
+          {practiceRunes.runes > 0 && (
+            <View style={{
+              flexDirection: 'row', alignItems: 'center', gap: 8,
+              backgroundColor: t.bgCard, borderRadius: 14,
+              paddingHorizontal: 18, paddingVertical: 12,
+              marginBottom: 20, overflow: 'hidden',
+            }}>
+              {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
+              <Image
+                source={require('../assets/images/level-spin-rewards/stars_10.webp')}
+                style={{ width: 22, height: 22 }}
+                contentFit="contain"
+                accessible={false}
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
+              <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700' }}>
+                +{practiceRunes.runes}
+              </Text>
+            </View>
+          )}
 
           {/* Совет отдохнуть */}
           <View style={{

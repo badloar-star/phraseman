@@ -31,6 +31,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -132,6 +134,20 @@ export default function FlashcardsBlitzSession() {
   const [timeLeft, setTimeLeft] = useState(BLITZ_DURATION_SEC);
   const [lastGain, setLastGain] = useState(0);
   const [result, setResult] = useState<ResultState | null>(null);
+  // зачем (владелец, 2026-08-27): sessionKey привязан к roundId — новый раунд
+  // (рестарт «Ещё разок») получает новую копилку по цене повтора, ровно как
+  // строка ниже уже делает для sessionId попыток.
+  const practiceRunes = usePracticeRunes({
+    activity: 'flashcards_blitz',
+    sessionKey: `${feedbackAttemptId}_${roundId}`,
+    completionOrdinal: 1,
+  });
+  // «Руны засчитываются, когда игрок дошёл до экрана празднования» — здесь
+  // это появление result (раунд завершён по таймеру/жизням).
+  useEffect(() => {
+    if (result) void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [result]);
   /** §6: выбор наборов прямо из блица — тот же шит, что у тренировки и слушания. */
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
@@ -439,6 +455,10 @@ export default function FlashcardsBlitzSession() {
         correct: isOk,
         ms: Date.now() - shownAtRef.current,
       });
+      // зачем (владелец, 2026-08-27): руна за карточку, засчитывается один раз
+      // за раунд — если та же карточка выпадет снова в этом же раунде,
+      // копилка отклонит повтор сама (already-credited).
+      if (isOk) practiceRunes.onCorrectAnswer(question.card.id);
 
       const answerAttemptId = [
         'flashcard-blitz',
@@ -781,6 +801,7 @@ export default function FlashcardsBlitzSession() {
         correct={result.summary.correct}
         wrong={result.summary.wrong}
         xpGained={0}
+        runesGained={practiceRunes.runes}
         learnLeft={0}
         onRetryWrong={restart}
         feedback={{ entityId: `${feedbackAttemptId}:blitz:${roundId}:${deckParamStr || 'all'}`, entityLabel: 'Блиц' }}
@@ -903,6 +924,18 @@ export default function FlashcardsBlitzSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
+          {/* Руны за раунд (владелец, 2026-08-27): отдельная строка над
+              основной шапкой — та и так плотная (попытки + выбор наборов),
+              добавление сюда же сжало бы существующие элементы. */}
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 6 }}>
+            <PracticeRuneCounter
+              runes={practiceRunes.runes}
+              lang={lang}
+              backgroundColor={t.bgCard}
+              color={t.textPrimary}
+              testID="fc-blitz-practice-runes"
+            />
+          </View>
           {/* Header: назад · «Блиц · набор» · жизни-сердечки */}
           <View style={styles.headerRow}>
             <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-blitz-back">

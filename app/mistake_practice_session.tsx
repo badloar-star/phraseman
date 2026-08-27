@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAudioPlayer } from 'expo-audio';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Image } from 'expo-image';
 import {
   ActivityIndicator,
   Pressable,
@@ -56,6 +57,8 @@ import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan
 import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -336,6 +339,20 @@ function MistakePracticeSessionScreen() {
   const [builderTokenIndexes, setBuilderTokenIndexes] = useState<number[]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [complete, setComplete] = useState(false);
+  // зачем (владелец, 2026-08-27): sessionId уникален на каждую сессию отработки
+  // ошибок (новый набор актуальных ошибок каждый раз) — «повторное прохождение»
+  // здесь концептуально не применимо, поэтому completionOrdinal фиксирован.
+  // enabled=false, пока session ещё не гидрирован (sessionId недоступен).
+  const practiceRunes = usePracticeRunes({
+    activity: 'mistake_practice',
+    sessionKey: session?.sessionId ?? '',
+    completionOrdinal: 1,
+    enabled: session !== null,
+  });
+  useEffect(() => {
+    if (complete) void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [complete]);
   const [submitting, setSubmitting] = useState(false);
   const [speechHeld, setSpeechHeld] = useState(false);
   const [speechRecovery, setSpeechRecovery] = useState<string | null>(null);
@@ -490,6 +507,11 @@ function MistakePracticeSessionScreen() {
       const attemptId = `${session.sessionId}:position:${session.cursor}`;
       const result = advanceMistakePracticeSession(session, { attemptId, correct });
       if (result.kind === 'duplicate') return;
+      // зачем (владелец, 2026-08-27): руна — за ошибку (mistakeId), засчитана
+      // один раз за сессию. Ошибся снова на повторном показе той же ошибки —
+      // руны не будет; переответил правильно — засчитается (копилка платит
+      // только за факт, а не за порядок попыток).
+      if (correct) practiceRunes.onCorrectAnswer(entry.mistakeId);
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. За отработку
       // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
       if (!correct) {
@@ -811,6 +833,22 @@ function MistakePracticeSessionScreen() {
           <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>+{earnedXp} XP</Text>
           <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>★ {earnedStars}</Text>
         </View>
+        {practiceRunes.runes > 0 && (
+          <View style={[styles.rewardRow, { marginTop: 4 }]}>
+            {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
+            <Image
+              source={require('../assets/images/level-spin-rewards/stars_10.webp')}
+              style={{ width: 18, height: 18 }}
+              contentFit="contain"
+              accessible={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no"
+            />
+            <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>
+              +{practiceRunes.runes}
+            </Text>
+          </View>
+        )}
         <Pressable style={[styles.primaryButton, { backgroundColor: t.accent }]} onPress={leavePractice}>
           <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.done}</Text>
         </Pressable>
@@ -822,6 +860,18 @@ function MistakePracticeSessionScreen() {
 
   return (
     <MistakePracticeScreenFrame>
+      {/* Руны за отработку (владелец, 2026-08-27): шапка ниже фиксированной
+          высоты и уже плотная (крестик/попытки/прогресс/скрыть/репорт) —
+          добавление сюда же сжало бы остальные элементы. */}
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingHorizontal: 14, paddingTop: 4 }}>
+        <PracticeRuneCounter
+          runes={practiceRunes.runes}
+          lang={lang}
+          backgroundColor={t.bgCard}
+          color={t.textPrimary}
+          testID="mistake-practice-runes"
+        />
+      </View>
       <View style={styles.header}>
         <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={styles.headerButton}>
           <Ionicons name="close" size={24} color={t.textMuted} />

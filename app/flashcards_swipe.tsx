@@ -5,6 +5,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Image } from 'expo-image';
 import {
   Animated,
   BackHandler,
@@ -28,6 +29,8 @@ import { useFeatureAccess } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -147,12 +150,6 @@ type SessionStats = {
 type FeedbackState = {
   kind: 'wrong' | 'hint';
   prompt: Prompt;
-};
-
-type CorrectTranslationReminder = {
-  id: string;
-  english: string;
-  translation: string;
 };
 
 type CardMemory = {
@@ -941,7 +938,6 @@ function FlashcardsSwipeScreen() {
   const [queue, setQueue] = useState<Prompt[]>([]);
   const mistakeCaptureRunRef = useRef(`flashcard-swipe-${Date.now().toString(36)}`);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
-  const [correctTranslationReminder, setCorrectTranslationReminder] = useState<CorrectTranslationReminder | null>(null);
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
@@ -959,8 +955,6 @@ function FlashcardsSwipeScreen() {
   const [showSwipeHint, setShowSwipeHint] = useState(false);
   const swipeHintAnim = useRef(new Animated.Value(0)).current;
   const swipeHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const correctTranslationReminderAnim = useRef(new Animated.Value(0)).current;
-  const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const swipeHintCheckedRef = useRef(false);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
@@ -1055,6 +1049,19 @@ function FlashcardsSwipeScreen() {
     }),
     [cardContentLang, requestedFilter, requestedSourceId, selectedSourceIdsForDraft],
   );
+  // зачем (владелец, 2026-08-27): sessionKey строится из тех же полей, что и
+  // scope черновика — те же наборы карточек, тот же язык контента, но живёт в
+  // ОТДЕЛЬНОМ ключе AsyncStorage (usePracticeRunes сам всё персистит), не в
+  // FlashcardsSwipeSessionDraft — не трогаем чужую схему диска.
+  const runeSessionKey = useMemo(
+    () => `${sessionDraftScope.sourceIds.join('_')}_${sessionDraftScope.contentLang}_${studyTarget}`,
+    [sessionDraftScope, studyTarget],
+  );
+  const practiceRunes = usePracticeRunes({
+    activity: 'flashcards_training',
+    sessionKey: runeSessionKey,
+    completionOrdinal: 1,
+  });
 
   const text = useMemo(
     () => ({
@@ -2158,14 +2165,15 @@ function FlashcardsSwipeScreen() {
     return () => sub.remove();
   }, [exitTraining]);
 
+  // зачем (жалоба владельца): «Настроить» раньше открывал встроенный экран
+  // выбора наборов (phase='select') — тот самый устаревший полноэкранный
+  // подбор, который владелец считает мёртвым грузом. Теперь ведёт назад —
+  // туда, откуда пришли запускать тренировку (тот же путь, что у exitTraining).
   const openSettings = useCallback(() => {
     void hapticTap();
     draftRestoreAttemptedRef.current = true;
-    quickStartDoneRef.current = true;
-    setFeedback(null);
-    position.setValue({ x: 0, y: 0 });
-    setPhase('select');
-  }, [position]);
+    safeRouterBack(router, '/flashcards' as any);
+  }, [router]);
 
   const updateCardMemory = useCallback(
     (prompt: Prompt, result: 'correct' | 'wrong' | 'hint', mastered = false) => {
@@ -2241,6 +2249,13 @@ function FlashcardsSwipeScreen() {
   }, [cardEpoch, currentPrompt?.id, flyOpacity, position, riseAnim]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
+  // «Руны засчитываются, когда игрок дошёл до экрана празднования»
+  // (владелец, 2026-08-27) — здесь это переход done false→true.
+  useEffect(() => {
+    if (done) void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [done]);
+
   useEffect(() => {
     if (phase !== 'play' || trainingCards.length === 0) return;
     if (done || queue.length === 0) {
@@ -2292,63 +2307,6 @@ function FlashcardsSwipeScreen() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSwipeHint]);
-
-  const clearCorrectTranslationReminder = useCallback(() => {
-    if (correctTranslationReminderTimer.current) {
-      clearTimeout(correctTranslationReminderTimer.current);
-      correctTranslationReminderTimer.current = null;
-    }
-    correctTranslationReminderAnim.stopAnimation();
-    correctTranslationReminderAnim.setValue(0);
-    setCorrectTranslationReminder(null);
-  }, [correctTranslationReminderAnim]);
-
-  const showCorrectTranslationReminder = useCallback((prompt: Prompt) => {
-    if (correctTranslationReminderTimer.current) {
-      clearTimeout(correctTranslationReminderTimer.current);
-    }
-    const reminder: CorrectTranslationReminder = {
-      id: `${prompt.id}:${Date.now()}`,
-      english: s(prompt.card.en),
-      translation: prompt.trueTranslation,
-    };
-    setCorrectTranslationReminder(reminder);
-    correctTranslationReminderAnim.stopAnimation();
-    correctTranslationReminderAnim.setValue(0);
-    Animated.timing(correctTranslationReminderAnim, {
-      toValue: 1,
-      duration: 180,
-      useNativeDriver: true,
-    }).start();
-    // зачем: когда пользователь правильно нажал «Неверно», сама карточка уже
-    // улетает дальше, но верный перевод раньше вообще не показывался. Короткий
-    // неблокирующий toast даёт напоминание и не добавляет кнопку/паузу в сессию.
-    correctTranslationReminderTimer.current = setTimeout(() => {
-      correctTranslationReminderTimer.current = null;
-      Animated.timing(correctTranslationReminderAnim, {
-        toValue: 0,
-        duration: 180,
-        useNativeDriver: true,
-      }).start(({ finished }) => {
-        if (!finished) return;
-        setCorrectTranslationReminder((current) => current?.id === reminder.id ? null : current);
-      });
-    }, 3200);
-  }, [correctTranslationReminderAnim]);
-
-  useEffect(() => () => {
-    if (correctTranslationReminderTimer.current) {
-      clearTimeout(correctTranslationReminderTimer.current);
-      correctTranslationReminderTimer.current = null;
-    }
-    correctTranslationReminderAnim.stopAnimation();
-  }, [correctTranslationReminderAnim]);
-
-  useEffect(() => {
-    if (phase !== 'play' && correctTranslationReminder) {
-      clearCorrectTranslationReminder();
-    }
-  }, [clearCorrectTranslationReminder, correctTranslationReminder, phase]);
 
   // FIX (владелец, 2026-08-13): «я свайпаю, а карточки прыгают назад».
   // Раньше здесь была выдержка MIN_SWIPE_DWELL_MS = 220мс с момента показа
@@ -2507,6 +2465,10 @@ function FlashcardsSwipeScreen() {
       const needsRecovery = cardProgress.wrong > 0 || cardProgress.hints > 0;
       if (needsRecovery) cardProgress.recoveryCorrect += 1;
       const mastered = !needsRecovery || cardProgress.recoveryCorrect >= 2;
+      // зачем (владелец, 2026-08-27): руна — за карточку, окончательно
+      // усвоенную (mastered), не за каждый промежуточный правильный ответ на
+      // пути восстановления после ошибки/подсказки.
+      if (mastered) practiceRunes.onCorrectAnswer(key);
       const maxCardScore = needsRecovery ? 6 : 10;
       const rawAward = needsRecovery ? 3 : 10;
       const scoreAward = Math.max(0, Math.min(rawAward, maxCardScore - cardProgress.scoreAwarded));
@@ -2525,9 +2487,6 @@ function FlashcardsSwipeScreen() {
           score: cur.score + scoreAward,
         };
       });
-      if (!saysMatch) {
-        showCorrectTranslationReminder(prompt);
-      }
       if (mastered) {
         setQueue(rest);
       } else {
@@ -2538,7 +2497,7 @@ function FlashcardsSwipeScreen() {
         );
       }
     },
-    [attempts.registerVerdict, audio, makePrompt, queue, showCorrectTranslationReminder, studyTarget, trainingCards, updateCardMemory],
+    [attempts.registerVerdict, audio, makePrompt, practiceRunes, queue, studyTarget, trainingCards, updateCardMemory],
   );
 
   const answerCurrent = useCallback(
@@ -2546,7 +2505,6 @@ function FlashcardsSwipeScreen() {
       if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
       if (answeredPromptIdRef.current === currentPrompt.id) return;
       answeredPromptIdRef.current = currentPrompt.id;
-      clearCorrectTranslationReminder();
       if (showSwipeHint) dismissSwipeHint();
       // FIX (владелец, 2026-08-13), вторая половина «улетает и возвращается»:
       // ошибочный ответ раньше тоже уводил карточку за край экрана, но разбор
@@ -2569,12 +2527,11 @@ function FlashcardsSwipeScreen() {
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
+    [applyAnswer, attempts.state.phase, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
     if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
-    clearCorrectTranslationReminder();
     void hapticTap();
     // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
     // сброс серии), поэтому у него свой звук, а не общий «тап». Ставим после
@@ -2592,7 +2549,7 @@ function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
+  }, [attempts.state.phase, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
 
   const continueAfterFeedback = useCallback(() => {
     if (attempts.state.phase !== 'active' || !feedback) return;
@@ -3054,6 +3011,22 @@ function FlashcardsSwipeScreen() {
               {text.scoreLabel}: {stats.score}
             </Text>
           </View>
+          {practiceRunes.runes > 0 && (
+            <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: t.bgCard }]}>
+              {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
+              <Image
+                source={require('../assets/images/level-spin-rewards/stars_10.webp')}
+                style={{ width: 16, height: 16 }}
+                contentFit="contain"
+                accessible={false}
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
+              <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
+                +{practiceRunes.runes}
+              </Text>
+            </View>
+          )}
           <View style={[styles.doneGrid, isCompactFlashcardsTask && styles.compactDoneGrid]}>
             {[
               [text.mastered, stats.mastered],
@@ -3115,11 +3088,20 @@ function FlashcardsSwipeScreen() {
       .join('\n');
     return (
       <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(8, bottomInset + 6) : Math.max(14, bottomInset + 10) }]}>
-        <SessionAttemptsHud
-          remaining={attempts.state.remainingAttempts}
-          locale={lang}
-          testID="flashcards-swipe-attempts-hud"
-        />
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <SessionAttemptsHud
+            remaining={attempts.state.remainingAttempts}
+            locale={lang}
+            testID="flashcards-swipe-attempts-hud"
+          />
+          <PracticeRuneCounter
+            runes={practiceRunes.runes}
+            lang={lang}
+            backgroundColor={t.bgCard}
+            color={t.textPrimary}
+            testID="flashcards-swipe-practice-runes"
+          />
+        </View>
         <View style={[styles.playHeader, isCompactFlashcardsTask && styles.compactPlayHeader]}>
           <TapScale
             onPress={exitTraining}
@@ -3534,44 +3516,6 @@ function FlashcardsSwipeScreen() {
         <ContentWrap>
           <View style={styles.screen}>
             {renderScreen()}
-            {correctTranslationReminder ? (
-              <Animated.View
-                pointerEvents="none"
-                testID="flashcards-correct-translation-reminder"
-                accessibilityRole="alert"
-                accessibilityLiveRegion="polite"
-                accessibilityLabel={`${text.correctTranslation}: ${correctTranslationReminder.english} — ${correctTranslationReminder.translation}`}
-                style={[
-                  styles.correctTranslationReminderToast,
-                  {
-                    top: isCompactFlashcardsTask ? 54 : 70,
-                    backgroundColor: t.correctBg,
-                    shadowColor: t.correct,
-                    opacity: correctTranslationReminderAnim,
-                    transform: [{
-                      translateY: correctTranslationReminderAnim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [-8, 0],
-                      }),
-                    }],
-                  },
-                ]}
-              >
-                <Ionicons name="checkmark-circle" size={20} color={t.correct} />
-                <View style={styles.correctTranslationReminderCopy}>
-                  <Text style={[styles.correctTranslationReminderLabel, { color: t.correct, fontSize: f.caption }]}>
-                    {text.correctTranslation}
-                  </Text>
-                  <FlowText
-                    testID="flashcards-correct-translation-reminder-copy"
-                    provenance="authored"
-                    style={[styles.correctTranslationReminderText, { color: t.textPrimary, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.3) }]}
-                  >
-                    {correctTranslationReminder.english} — {correctTranslationReminder.translation}
-                  </FlowText>
-                </View>
-              </Animated.View>
-            ) : null}
           </View>
         </ContentWrap>
       </SafeAreaView>
@@ -3877,35 +3821,6 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     borderRadius: 999,
-  },
-  correctTranslationReminderToast: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    zIndex: 60,
-    elevation: 60,
-    minHeight: 58,
-    borderRadius: 16,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    shadowOpacity: 0.18,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 5 },
-    ...noAndroidOutline,
-  },
-  correctTranslationReminderCopy: {
-    flex: 1,
-    minWidth: 0,
-  },
-  correctTranslationReminderLabel: {
-    fontWeight: '900',
-  },
-  correctTranslationReminderText: {
-    marginTop: 2,
-    fontWeight: '800',
   },
   // зачем: одноразовая подсказка-баннер над карточкой — без обводки (запрещена),
   // разделяется тоном подложки (glassFill) + мягкой тенью, как остальные карточки проекта.

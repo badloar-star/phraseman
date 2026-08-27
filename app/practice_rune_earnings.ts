@@ -238,6 +238,31 @@ export function parsePracticeRuneEarnings(
   });
 }
 
+const SETTLED_ONCE_PREFIX = 'practice_rune_settled_once_v1';
+
+/**
+ * Ключ отметки «эта сессия уже когда-то приносила руны».
+ *
+ * зачем отдельно от прогресса урока/словаря (владелец, 2026-08-27): у каждого
+ * из семи экранов свой формат хранения пройденности (массив оценок урока,
+ * счётчики повторений слова...), и опираться на них для решения «первое
+ * прохождение или нет» означало бы семь разных детекторов. Здесь один простой
+ * булев флаг: сессия уже была зачтена хоть раз — значит теперь цена ответа 1,
+ * а не 3. Он НЕ совпадает с «урок выучен»: если человек прошёл урок ДО того,
+ * как в приложении появились руны, для рун это всё ещё первый раз.
+ */
+export function practiceRuneSettledOnceStorageKey(input: Readonly<{
+  ownerStableId: string;
+  activity: PracticeRuneActivity;
+  sessionKey: string;
+}>): string {
+  const owner = input.ownerStableId.trim();
+  if (!owner) throw new Error('practice_rune_owner_invalid');
+  const sessionKey = normalizeSessionKey(input.sessionKey);
+  if (!sessionKey) throw new Error('practice_rune_session_key_invalid');
+  return `${SETTLED_ONCE_PREFIX}:${encodeURIComponent(owner)}:${input.activity}:${encodeURIComponent(sessionKey)}`;
+}
+
 /**
  * Идентификатор серверной операции: одна сессия — одна расписка. Повторный
  * зачёт той же сессии сервер отбросит как дубль, а не начислит второй раз.

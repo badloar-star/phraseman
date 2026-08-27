@@ -5,6 +5,7 @@ import { useWordFlash } from '../hooks/use-word-flash';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Image } from 'expo-image';
 import {
   Animated,
   BackHandler,
@@ -69,6 +70,8 @@ import {
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
+import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -2772,11 +2775,28 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   // повторного показа при ре-рендерах, пока allDone держится true).
   const [victoryShown, setVictoryShown] = useState(false);
   const victoryFiredRef = useRef(false);
+  // зачем (владелец, 2026-08-27): растёт при каждом «Повторить» —
+  // completionOrdinal нужен серверу для идемпотентности расписки, второй
+  // проход без выхода с экрана не должен конфликтовать по operationId с первым.
+  const [practiceRunPass, setPracticeRunPass] = useState(1);
+  const practiceRunes = usePracticeRunes({
+    activity: 'vocabulary',
+    sessionKey: storageKey,
+    completionOrdinal: practiceRunPass,
+  });
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
   const [voiceOut,   setVoiceOut]   = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
   const [allDone,    setAllDone]    = useState(false);
+  // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
+  // экрана празднования» — здесь это переход allDone false→true. useEffect,
+  // а не вызов в местах, где ставится setAllDone(true): таких мест два, и
+  // подписка на сам переход надёжнее дублирования вызова в обоих.
+  useEffect(() => {
+    if (allDone) void practiceRunes.settle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allDone]);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
@@ -3041,6 +3061,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         newQueue.splice(liveIndex, 1);
 
         const wordJustCompleted = prevCount < REQUIRED && newCount >= REQUIRED;
+        // зачем (владелец, 2026-08-27): руна засчитывается ЗА СЛОВО, не за
+        // каждую карточку — слово может встретиться в сессии несколько раз до
+        // REQUIRED повторений, а элемент копилки платит ровно один раз.
+        if (wordJustCompleted) practiceRunes.onCorrectAnswer(wordEn);
         const xpThisStep = vocabularyStepBaseXP(prevCount);
         if (xpThisStep > 0) {
           setTotalPts(p => p + xpThisStep);
@@ -3152,6 +3176,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     // [FeedbackKit] Новый прогон — разрешаем показать финальную мини-победу снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
+    // Новый проход рун: новая копилка по цене повтора + новый ordinal для
+    // серверной расписки следующего зачёта.
+    practiceRunes.startNewCompletion();
+    setPracticeRunPass((n) => n + 1);
   };
 
   const trainingStepLabel = `${learnedCnt} / ${words.length}`;
@@ -3180,6 +3208,20 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           <View style={{ flexDirection:'row',alignItems:'center',gap:6,backgroundColor:t.correctBg,borderRadius:10,paddingHorizontal:14,paddingVertical:8 }}>
             <Ionicons name="star" size={16} color={t.correct}/>
             <Text style={{ color:t.correct, fontSize:f.bodyLg, fontWeight:'700' }}>{ws.plusPoints(totalPts)}</Text>
+          </View>
+        )}
+        {practiceRunes.runes > 0 && (
+          <View style={{ flexDirection:'row',alignItems:'center',gap:6,backgroundColor:t.bgCard,borderRadius:10,paddingHorizontal:14,paddingVertical:8 }}>
+            {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
+            <Image
+              source={require('../assets/images/level-spin-rewards/stars_10.webp')}
+              style={{ width:18, height:18 }}
+              contentFit="contain"
+              accessible={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no"
+            />
+            <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700' }}>+{practiceRunes.runes}</Text>
           </View>
         )}
         <TouchableOpacity
@@ -3283,9 +3325,18 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           locale={lang}
           testID="lesson-words-session-attempts"
         />
-        <Text style={{ color:sx.muted, fontSize:f.label, fontWeight:'700' }}>
-          {trainingStepLabel}
-        </Text>
+        <View style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
+          <Text style={{ color:sx.muted, fontSize:f.label, fontWeight:'700' }}>
+            {trainingStepLabel}
+          </Text>
+          <PracticeRuneCounter
+            runes={practiceRunes.runes}
+            lang={lang}
+            backgroundColor={t.bgCard}
+            color={t.textPrimary}
+            testID="lesson-words-practice-runes"
+          />
+        </View>
       </View>
       {/* Вопрос */}
       <View style={{ flex:1, justifyContent:'center', alignItems:'center', gap:10 }}>

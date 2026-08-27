@@ -1152,6 +1152,9 @@ export {
 } from "./level_reward_spins";
 export { levelRewardSpinEnrollV1 } from "./level_spin_enrollment";
 export { levelSpinStarGrant } from "./level_spin_star_grant";
+// зачем (владелец, 2026-08-27): руны за семь учебных активностей — урок,
+// словарь, неправильные глаголы, блиц, тренировка, отработка ошибок, голос.
+export { practiceRuneGrant } from "./practice_rune_grant";
 
 // ── Season Pass: клеймы, расходники, щит другу, покупка платной дорожки ──
 export {

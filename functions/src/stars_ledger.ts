@@ -99,6 +99,15 @@ export type StarOpReason =
   // валюта. Занятие оплачено учёбой, поэтому earn (обязано открывать награды
   // сезона); открытие занятия — spend по лестнице 45/50/55/60/65.
   | 'learning_v2_session' | 'learning_v2_unlock'
+  // зачем (владелец, 2026-08-27): руны должны зарабатываться не только в Арене и
+  // курсе V2, но и в семи учебных активностях — урок, словарь, неправильные
+  // глаголы, блиц, тренировка карточек, отработка ошибок, голосовая отработка.
+  // Одна причина на все семь: разрез «откуда руны» показывает их одной строкой
+  // «учёба» вместе с курсом, а конкретная активность лежит в sourceKind, не
+  // раздувая объединение типов на каждый новый экран. Класс — earn: занятие
+  // оплачено трудом ровно так же, как сессия курса, поэтому обязано двигать
+  // очки лиги (решение владельца 2026-08-27).
+  | 'practice_session'
   // Стартовый подарок новичку (+300, владелец 2026-08-26): grant, не earn —
   // подарок не оплачен игрой и не должен двигать соревновательный earnedTotal.
   | 'welcome_gift';
@@ -123,6 +132,8 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   friends_together_chest: 'earn',
   learning_v2_session: 'earn',
   learning_v2_unlock: 'spend',
+  // Учебные активности вне курса V2 — заработок наравне с сессией курса.
+  practice_session: 'earn',
   welcome_gift: 'grant',
 });
 
@@ -150,6 +161,10 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   friends_together_level: 'friends',
   friends_together_chest: 'friends',
   learning_v2_session: 'learning',
+  // Семь учебных активностей делят строку «учёба» с курсом: для игрока это один
+  // и тот же смысл «заработал занимаясь», а какая именно активность — видно в
+  // sourceKind расписки.
+  practice_session: 'learning',
   level_spin_grant: 'spin',
   coin_exchange: 'exchange',
   // Стартовый подарок и ручные выдачи админки — «другое»: у них нет своей

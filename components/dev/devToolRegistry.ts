@@ -27,7 +27,18 @@ export type DevToolAction =
   | 'revoke-plus'
   // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
   | 'open-cancel-flow'
-  | 'open-manage-subscription';
+  | 'open-manage-subscription'
+  // зачем (владелец, 2026-08-27): «Проверка рун» — отдельный НОВЫЙ раздел (не
+  // внутри «Движение · все поверхности»). Каждая кнопка открывает НАСТОЯЩИЙ
+  // экран из соответствующего раздела приложения со случайным стартовым
+  // числом рун/XP/счёта — быстрая визуальная проверка без прохождения сессии.
+  | 'open-dev-runes-lesson'
+  | 'open-dev-runes-vocabulary'
+  | 'open-dev-runes-irregular-verbs'
+  | 'open-dev-runes-blitz'
+  | 'open-dev-runes-flashcards-training'
+  | 'open-dev-runes-mistake-practice'
+  | 'open-dev-runes-speaking';
 
 export type DevToolIcon =
   | 'call-outline'
@@ -51,7 +62,8 @@ export type DevToolIcon =
   | 'exit-outline'
   | 'list-outline'
   | 'school-outline'
-  | 'gift-outline';
+  | 'gift-outline'
+  | 'diamond-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -69,7 +81,7 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline' | 'diamond-outline';
   testID: string;
   /**
    * Секция свёрнута при открытии хаба.
@@ -489,6 +501,91 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-manage-subscription',
         icon: 'exit-outline',
         testID: 'dev-open-manage-subscription',
+      },
+    ],
+  },
+  // зачем (владелец, 2026-08-27): ОТДЕЛЬНЫЙ новый раздел — не внутри
+  // «Движение · все поверхности». Каждая кнопка открывает НАСТОЯЩИЙ экран
+  // (тот же самый, что видят игроки) из своего раздела приложения, но со
+  // случайным стартовым числом рун/XP/счёта вместо реального прогресса —
+  // диск и сеть не трогаются, проверка чисто визуальная.
+  {
+    id: 'practice-runes-preview',
+    order: 40,
+    title: 'Проверка рун',
+    icon: 'diamond-outline',
+    testID: 'dev-hub-section-practice-runes',
+    collapsed: true,
+    tools: [
+      {
+        id: 'runes-lesson',
+        order: 10,
+        title: 'Урок',
+        detail: 'Настоящий Урок 1 со случайным счётом рун и XP на экране завершения.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-lesson',
+        icon: 'school-outline',
+        testID: 'dev-open-runes-lesson',
+      },
+      {
+        id: 'runes-vocabulary',
+        order: 20,
+        title: 'Словарь',
+        detail: 'Настоящий раздел словаря первого урока со случайным счётом рун и очков.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-vocabulary',
+        icon: 'school-outline',
+        testID: 'dev-open-runes-vocabulary',
+      },
+      {
+        id: 'runes-irregular-verbs',
+        order: 30,
+        title: 'Неправильные глаголы',
+        detail: 'Настоящий раздел глаголов со случайным счётом рун и очков.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-irregular-verbs',
+        icon: 'school-outline',
+        testID: 'dev-open-runes-irregular-verbs',
+      },
+      {
+        id: 'runes-blitz',
+        order: 40,
+        title: 'Блиц',
+        detail: 'Настоящий Блиц со случайным счётом рун, очков и точности на финише.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-blitz',
+        icon: 'flash-outline',
+        testID: 'dev-open-runes-blitz',
+      },
+      {
+        id: 'runes-flashcards-training',
+        order: 50,
+        title: 'Тренировка карточек',
+        detail: 'Настоящая тренировка (свайп) со случайным счётом рун и статистикой на финише.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-flashcards-training',
+        icon: 'sparkles-outline',
+        testID: 'dev-open-runes-flashcards-training',
+      },
+      {
+        id: 'runes-mistake-practice',
+        order: 60,
+        title: 'Отработка ошибок',
+        detail: 'Настоящая отработка ошибок со случайным счётом рун, XP и оценки.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-mistake-practice',
+        icon: 'bug-outline',
+        testID: 'dev-open-runes-mistake-practice',
+      },
+      {
+        id: 'runes-speaking',
+        order: 70,
+        title: 'Голосовая отработка',
+        detail: 'Настоящая голосовая отработка со случайным счётом рун и точности на финише.',
+        actionLabel: 'Открыть',
+        action: 'open-dev-runes-speaking',
+        icon: 'call-outline',
+        testID: 'dev-open-runes-speaking',
       },
     ],
   },

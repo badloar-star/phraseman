@@ -9,6 +9,7 @@ import {
   practiceRuneEarningsStorageKey,
   practiceRuneSettledOnceStorageKey,
   settlePracticeRuneEarnings,
+  PRACTICE_RUNE_FULL_AWARD,
   type PracticeRuneActivity,
   type PracticeRuneEarnings,
 } from '../app/practice_rune_earnings';
@@ -49,6 +50,14 @@ export type UsePracticeRunesInput = Readonly<{
   completionOrdinal: number;
   /** false отключает хук целиком (превью/сандбокс без записи прогресса). */
   enabled?: boolean;
+  /**
+   * DEV HUB ONLY (владелец, 2026-08-27): «Проверка рун» открывает настоящий
+   * экран, но со случайным стартовым числом рун вместо реальной копилки с
+   * диска — чтобы визуально проверить счётчик/анимацию без прохождения
+   * сессии целиком. Диск и сеть НЕ трогаются вообще: onCorrectAnswer и
+   * settle() в этом режиме работают только в памяти (см. ниже).
+   */
+  devFakeStartRunes?: number;
 }>;
 
 export type UsePracticeRunesResult = Readonly<{
@@ -77,12 +86,20 @@ export type UsePracticeRunesResult = Readonly<{
 
 export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunesResult {
   const enabled = input.enabled ?? true;
-  const [runes, setRunes] = useState(0);
-  const [hydrating, setHydrating] = useState(enabled);
+  const devFakeStartRunes = input.devFakeStartRunes;
+  const [runes, setRunes] = useState(devFakeStartRunes ?? 0);
+  const [hydrating, setHydrating] = useState(enabled && devFakeStartRunes === undefined);
   const earningsRef = useRef<PracticeRuneEarnings | null>(null);
   const ownerRef = useRef<string | null>(null);
+  // DEV HUB ONLY: элементы, уже «оплаченные» в этой in-memory сессии — без
+  // этого повторный тап по той же карточке в dev-режиме продолжал бы плюсовать
+  // до бесконечности, что выглядело бы как явный баг при проверке экрана.
+  const devCreditedRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    // DEV HUB ONLY (владелец, 2026-08-27): «Проверка рун» — диск и сеть не
+    // трогаются вообще, счётчик уже выставлен случайным числом в useState выше.
+    if (devFakeStartRunes !== undefined) { setHydrating(false); return; }
     if (!enabled) { setHydrating(false); return; }
     let cancelled = false;
     void (async () => {
@@ -128,6 +145,14 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
   }, []);
 
   const onCorrectAnswer = useCallback((itemId: string): number => {
+    if (devFakeStartRunes !== undefined) {
+      // DEV HUB ONLY: копится поверх случайного старта, в памяти, без диска.
+      if (devCreditedRef.current.has(itemId)) return 0;
+      devCreditedRef.current.add(itemId);
+      const awarded = PRACTICE_RUNE_FULL_AWARD;
+      setRunes((value) => value + awarded);
+      return awarded;
+    }
     const current = earningsRef.current;
     if (!current) return 0;
     const result = awardPracticeRune(current, itemId);
@@ -136,9 +161,13 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     setRunes(result.earnings.pendingRunes);
     persist(result.earnings);
     return result.awarded;
-  }, [persist]);
+  }, [devFakeStartRunes, persist]);
 
   const settle = useCallback(async (): Promise<void> => {
+    // DEV HUB ONLY: зачёт — не более чем визуальный жест здесь, диск и сеть
+    // не участвуют. Оставляем накопленное число как есть, а не обнуляем: это
+    // и есть то, что владелец пришёл посмотреть.
+    if (devFakeStartRunes !== undefined) return;
     const current = earningsRef.current;
     const ownerStableId = ownerRef.current;
     if (!current || !ownerStableId || current.pendingRunes <= 0) return;

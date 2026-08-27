@@ -84,6 +84,8 @@ describe('DEV center bottom sheet', () => {
     expect(ordered.map((section: { id: string }) => section.id)).toEqual([
       'onboarding-tools',
       'motion-showcase',
+      'learning-v2-modes-showcase',
+      'learning-v2-authoring-preview',
       'full-modes',
       'paywalls',
       'shop',
@@ -93,28 +95,47 @@ describe('DEV center bottom sheet', () => {
       // Витрина сценариев отписки (владелец, 24.08): шаг удержания при отмене
       // подписки нельзя проверить без настоящей платной подписки.
       'cancel-flow',
+      // «Проверка рун» (владелец, 2026-08-27): семь настоящих экранов рун со
+      // случайным стартовым числом — отдельный раздел, НЕ внутри motion-showcase.
+      'practice-runes-preview',
     ]);
     expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
     expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual(['motion-showcase']);
-    expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
+    expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual(['learning-v2-modes-showcase']);
+    expect(ordered[3].tools.map((tool: { id: string }) => tool.id)).toEqual(['learning-v2-authoring-preview']);
+    expect(ordered[4].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
     // Пейволов девять, и они СВЁРНУТЫ: развёрнутым списком они оттесняли
     // остальные инструменты вниз (решение владельца 24.08).
-    expect(ordered[3].collapsed).toBe(true);
-    expect(ordered[3].tools).toHaveLength(9);
+    expect(ordered[5].collapsed).toBe(true);
+    expect(ordered[5].tools).toHaveLength(9);
     // Магазин: единственный вход в приложении — этот пункт. Если появится
     // второй вход, правило владельца нарушено — тест обязан упасть.
-    expect(ordered[4].tools.map((tool: { id: string }) => tool.id)).toEqual(['shop-screen']);
-    expect(ordered[5].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[6].tools.map((tool: { id: string }) => tool.id)).toEqual(['shop-screen']);
+    expect(ordered[7].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',
       'lesson-results',
       'spin-reward',
+      'welcome-gift',
     ]);
-    expect(ordered[6].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[8].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'league-promoted',
       'league-demoted',
       'league-stay',
       'league-rank-mismatch',
+    ]);
+    // «Проверка рун» — семь кнопок, по одной на каждый настоящий экран,
+    // и секция СВЁРНУТА (тот же приём, что и у пейволов — не оттеснять
+    // остальные инструменты вниз).
+    expect(ordered[11].collapsed).toBe(true);
+    expect(ordered[11].tools.map((tool: { id: string }) => tool.id)).toEqual([
+      'runes-lesson',
+      'runes-vocabulary',
+      'runes-irregular-verbs',
+      'runes-blitz',
+      'runes-flashcards-training',
+      'runes-mistake-practice',
+      'runes-speaking',
     ]);
   });
 

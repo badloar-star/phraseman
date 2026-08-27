@@ -2987,7 +2987,16 @@ function FlashcardsSwipeScreen() {
   );
 
   const renderDone = () => {
-    const cleanSession = stats.wrong === 0 && stats.hints === 0;
+    // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» подменяет и эти
+    // числа — сама механика счёта/mastered остаётся честной и нетронутой.
+    const displayStats = devRunesFake ? {
+      score: devRunesFake.secondary,
+      mastered: devRunesFake.tertiary + 4,
+      wrong: devRunesFake.tertiary,
+      hints: Math.floor(devRunesFake.tertiary / 2),
+      bestStreak: devRunesFake.tertiary + 2,
+    } : stats;
+    const cleanSession = displayStats.wrong === 0 && displayStats.hints === 0;
     return (
       <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(10, bottomInset + 8) : Math.max(20, bottomInset + 20) }]}>
         <TapScale
@@ -3018,7 +3027,7 @@ function FlashcardsSwipeScreen() {
           <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: `${t.accent}20` }]}>
             <Ionicons name="flash-outline" size={16} color={t.accent} />
             <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {text.scoreLabel}: {stats.score}
+              {text.scoreLabel}: {displayStats.score}
             </Text>
           </View>
           {practiceRunes.runes > 0 && (
@@ -3039,10 +3048,10 @@ function FlashcardsSwipeScreen() {
           )}
           <View style={[styles.doneGrid, isCompactFlashcardsTask && styles.compactDoneGrid]}>
             {[
-              [text.mastered, stats.mastered],
-              [text.mistakes, stats.wrong],
-              [text.hints, stats.hints],
-              [text.bestStreak, stats.bestStreak],
+              [text.mastered, displayStats.mastered],
+              [text.mistakes, displayStats.wrong],
+              [text.hints, displayStats.hints],
+              [text.bestStreak, displayStats.bestStreak],
             ].map(([label, value]) => (
               <View key={String(label)} style={[styles.doneStat, isCompactFlashcardsTask && styles.compactDoneStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
                 <Text style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}>{value}</Text>

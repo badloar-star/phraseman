@@ -807,8 +807,8 @@ export default function FlashcardsBlitzSession() {
   if (result) {
     return (
       <SessionResultScreen
-        correct={result.summary.correct}
-        wrong={result.summary.wrong}
+        correct={devRunesFake ? devRunesFake.tertiary + 4 : result.summary.correct}
+        wrong={devRunesFake ? devRunesFake.tertiary : result.summary.wrong}
         xpGained={0}
         runesGained={practiceRunes.runes}
         learnLeft={0}
@@ -824,30 +824,38 @@ export default function FlashcardsBlitzSession() {
            * Смысл счёта — личный рекорд (FIX владельца, 2026-08-13):
            * побил прошлый лучший → «Новый рекорд! N», иначе → «Счёт: N ·
            * рекорд: M». Ни наград, ни валюты, ни звёзд.
+           *
+           * зачем devRunesFake (владелец, 2026-08-27): «Проверка рун» из
+           * DEV-хаба подменяет и счёт — сама игровая механика (commitBlitzScore
+           * и т.д.) остаётся честной и нетронутой, подмена только в тексте.
            */
-          result.isRecord
-            ? triLang(lang, {
-                ru: `Новый рекорд! ${result.score}`,
-                uk: `Новий рекорд! ${result.score}`,
-                en: `New record! ${result.score}`,
-                es: `¡Nuevo récord! ${result.score}`,
-                'pt-BR': `Novo recorde! ${result.score}`,
-                vi: `Kỷ lục mới! ${result.score}`,
-                id: `Rekor baru! ${result.score}`,
-                tr: `Yeni rekor! ${result.score}`,
-                pl: `Nowy rekord! ${result.score}`,
-              })
-            : triLang(lang, {
-                ru: `Счёт: ${result.score} · рекорд: ${result.best}`,
-                uk: `Рахунок: ${result.score} · рекорд: ${result.best}`,
-                en: `Score: ${result.score} · record: ${result.best}`,
-                es: `Puntos: ${result.score} · récord: ${result.best}`,
-                'pt-BR': `Pontos: ${result.score} · recorde: ${result.best}`,
-                vi: `Điểm: ${result.score} · kỷ lục: ${result.best}`,
-                id: `Skor: ${result.score} · rekor: ${result.best}`,
-                tr: `Puan: ${result.score} · rekor: ${result.best}`,
-                pl: `Wynik: ${result.score} · rekord: ${result.best}`,
-              })
+          (() => {
+            const displayScore = devRunesFake ? devRunesFake.secondary : result.score;
+            const displayBest = devRunesFake ? devRunesFake.tertiary * 100 : result.best;
+            return result.isRecord
+              ? triLang(lang, {
+                  ru: `Новый рекорд! ${displayScore}`,
+                  uk: `Новий рекорд! ${displayScore}`,
+                  en: `New record! ${displayScore}`,
+                  es: `¡Nuevo récord! ${displayScore}`,
+                  'pt-BR': `Novo recorde! ${displayScore}`,
+                  vi: `Kỷ lục mới! ${displayScore}`,
+                  id: `Rekor baru! ${displayScore}`,
+                  tr: `Yeni rekor! ${displayScore}`,
+                  pl: `Nowy rekord! ${displayScore}`,
+                })
+              : triLang(lang, {
+                  ru: `Счёт: ${displayScore} · рекорд: ${displayBest}`,
+                  uk: `Рахунок: ${displayScore} · рекорд: ${displayBest}`,
+                  en: `Score: ${displayScore} · record: ${displayBest}`,
+                  es: `Puntos: ${displayScore} · récord: ${displayBest}`,
+                  'pt-BR': `Pontos: ${displayScore} · recorde: ${displayBest}`,
+                  vi: `Điểm: ${displayScore} · kỷ lục: ${displayBest}`,
+                  id: `Skor: ${displayScore} · rekor: ${displayBest}`,
+                  tr: `Puan: ${displayScore} · rekor: ${displayBest}`,
+                  pl: `Wynik: ${displayScore} · rekord: ${displayBest}`,
+                });
+          })()
         }
         onDone={leave}
         accentColor={ACCENT}

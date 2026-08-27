@@ -135,6 +135,7 @@ import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_repla
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { captureAccountGeneration } from './account_generation';
@@ -1933,13 +1934,22 @@ function LessonScreen() {
     replayIntro: replayIntroParam,
     replayIntroAt: replayIntroAtParam,
     serverAttemptId: serverAttemptIdParam,
+    devRunesSeed: devRunesSeedParam,
   } = useLocalSearchParams<{
     id?: string | string[];
     from?: string | string[];
     replayIntro?: string | string[];
     replayIntroAt?: string | string[];
     serverAttemptId?: string | string[];
+    devRunesSeed?: string | string[];
   }>();
+  // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба — настоящий Урок
+  // 1, но счётчик рун и XP стартуют со случайного числа вместо реального
+  // прогресса. Диск и сеть не трогаются в этом режиме.
+  const devRunesFake = useMemo(
+    () => readDevPracticeRunesFakeState(devRunesSeedParam),
+    [devRunesSeedParam],
+  );
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
   const from = Array.isArray(fromParam) ? fromParam[0] : fromParam;
   const routeServerAttemptId = normalizeLessonServerAttemptId(serverAttemptIdParam);
@@ -2090,6 +2100,7 @@ function LessonScreen() {
     activity: 'lesson',
     sessionKey: RUNE_SESSION_KEY,
     completionOrdinal: passCount + 1,
+    devFakeStartRunes: devRunesFake?.runes,
   });
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
@@ -3338,8 +3349,10 @@ function LessonScreen() {
             params: {
               id: String(lessonId),
               unlocked: didUnlock ? '1' : '0',
-              earnedXp: String(lessonEarnedXpRef.current),
-              earnedBaseXp: String(lessonEarnedBaseXpRef.current),
+              // зачем (владелец, 2026-08-27): в dev-режиме «Проверка рун»
+              // подменяем и XP тоже — «всё, что на экране», не только руны.
+              earnedXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedXpRef.current),
+              earnedBaseXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
               completedAttemptId,
               repeatAttemptId: nextAttemptId,
@@ -3349,6 +3362,7 @@ function LessonScreen() {
               // копилку по (lessonId, studyTarget, completionOrdinal) и сам
               // зовёт settle() при монтировании.
               runeCompletionOrdinal: String(passCount + 1),
+              ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
               ...coachRouteParams,
             },
           });
@@ -3368,12 +3382,14 @@ function LessonScreen() {
             params: {
               id: String(lessonId),
               unlocked: '0',
-              earnedXp: String(lessonEarnedXpRef.current),
-              earnedBaseXp: String(lessonEarnedBaseXpRef.current),
+              earnedXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedXpRef.current),
+              earnedBaseXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
               completedAttemptId,
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
+              runeCompletionOrdinal: String(passCount + 1),
+              ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
             },
           });
         }

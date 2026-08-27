@@ -24,6 +24,7 @@ import {
   type DevLocalPlusOverride,
 } from '../../app/dev_plus_controls';
 import { emitAppEvent } from '../../app/events';
+import { makeDevRunesSeed } from '../../app/dev_practice_runes_seed';
 import { grantLocalDevSpin } from '../../app/local_level_spins';
 import { isMaxVoiceNativeAvailable } from '../../app/max_webrtc_module';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -476,6 +477,53 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         return;
       case 'revoke-plus':
         void applyPlusOverride('removed');
+        return;
+      // зачем (владелец, 2026-08-27): «Проверка рун» — каждая кнопка открывает
+      // НАСТОЯЩИЙ экран с реальным первым доступным контентом, но с новым
+      // devRunesSeed на каждый тап — числа на экране меняются при повторном
+      // открытии, не залипая на одно и то же значение.
+      case 'open-dev-runes-lesson':
+        requestClose(false, () => router.push({
+          pathname: '/lesson1',
+          params: { id: '1', devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
+      case 'open-dev-runes-vocabulary':
+        requestClose(false, () => router.push({
+          pathname: '/lesson_words',
+          params: { id: '1', devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
+      case 'open-dev-runes-irregular-verbs':
+        requestClose(false, () => router.push({
+          pathname: '/lesson_irregular_verbs',
+          params: { id: '1', devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
+      case 'open-dev-runes-blitz':
+        requestClose(false, () => router.push({
+          pathname: '/flashcards_blitz_session',
+          params: { devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
+      case 'open-dev-runes-flashcards-training':
+        requestClose(false, () => router.push({
+          pathname: '/flashcards_swipe',
+          params: { devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
+      case 'open-dev-runes-mistake-practice':
+        requestClose(false, () => router.push({
+          pathname: '/mistake_practice_session',
+          params: { devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
+      case 'open-dev-runes-speaking':
+        requestClose(false, () => router.push({
+          pathname: '/flashcards_speaking_session',
+          params: { devRunesSeed: makeDevRunesSeed() },
+        } as never));
+        return;
     }
   }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
 

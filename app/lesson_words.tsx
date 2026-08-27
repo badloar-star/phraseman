@@ -2768,7 +2768,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [queue, setQueue] = useState<TrainingQueueItem[]>(() => initialTrainingState.queue);
   const [qIdx,       setQIdx]       = useState(0);
   const [chosen,     setChosen]     = useState<string|null>(null);
-  const [totalPts,   setTotalPts]   = useState(0);
+  // зачем (владелец, 2026-08-27): в dev-режиме «Проверка рун» очки тоже
+  // стартуют со случайного числа — «всё, что на экране», не только руны.
+  const [totalPts,   setTotalPts]   = useState(devFakeStartPoints ?? 0);
   const [learnedCnt, setLearnedCnt] = useState(initialTrainingState.learnedCnt);
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
@@ -3838,6 +3840,7 @@ export default function LessonWords() {
             studyTarget={studyTarget}
             onAndroidBackIntercept={setAndroidBackIntercept}
             devFakeStartRunes={devRunesFake?.runes}
+            devFakeStartPoints={devRunesFake?.secondary}
           />
         )}
       </View>

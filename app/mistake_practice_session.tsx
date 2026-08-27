@@ -840,8 +840,14 @@ function MistakePracticeSessionScreen() {
         </View>
         <Text style={[styles.completeTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{copy.sessionComplete}</Text>
         <View style={styles.rewardRow}>
-          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>+{earnedXp} XP</Text>
-          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>★ {earnedStars}</Text>
+          {/* зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» подменяет и
+              XP, и звёзды-оценку — реальное начисление ниже не трогается. */}
+          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>
+            +{devRunesFake ? devRunesFake.secondary : earnedXp} XP
+          </Text>
+          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>
+            ★ {devRunesFake ? devRunesFake.tertiary : earnedStars}
+          </Text>
         </View>
         {practiceRunes.runes > 0 && (
           <View style={[styles.rewardRow, { marginTop: 4 }]}>

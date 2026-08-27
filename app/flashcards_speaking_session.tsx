@@ -830,8 +830,8 @@ RU: ${card.translation}`}
   if (result) {
     return (
       <SessionResultScreen
-        correct={result.correct}
-        wrong={result.wrong}
+        correct={devRunesFake ? devRunesFake.tertiary + 4 : result.correct}
+        wrong={devRunesFake ? devRunesFake.tertiary : result.wrong}
         xpGained={0}
         runesGained={practiceRunes.runes}
         learnLeft={result.learnLeft}

@@ -232,7 +232,7 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes }: {
+function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints }: {
   verbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
@@ -246,6 +246,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   /** Порядковый номер прохождения — растёт с каждым «Начать заново» у вызывающего. */
   practiceRunCompletionOrdinal: number;
   devFakeStartRunes?: number;
+  devFakeStartPoints?: number;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -305,7 +306,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const [step, setStep] = useState(0);
   const [counts, setCounts] = useState<Record<string, number>>({ ...initCounts });
   const [learnedCnt, setLearnedCnt] = useState(0);
-  const [totalPts, setTotalPts] = useState(0);
+  // зачем (владелец, 2026-08-27): dev-режим «Проверка рун» подменяет и очки.
+  const [totalPts, setTotalPts] = useState(devFakeStartPoints ?? 0);
   const [allDone, setAllDone] = useState(verbs.length === 0);
   // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
   // экрана празднования» — здесь это переход allDone false→true.
@@ -1311,6 +1313,7 @@ export default function LessonIrregularVerbs() {
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
                   practiceRunCompletionOrdinal={learnTabKey + 1}
                   devFakeStartRunes={devRunesFake?.runes}
+                  devFakeStartPoints={devRunesFake?.secondary}
                   onReset={() => {
                     setPracticeAll(true);
                     setLearnTabKey(k => k + 1);

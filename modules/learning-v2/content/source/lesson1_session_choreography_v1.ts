@@ -105,6 +105,16 @@ export const LESSON1_ES_SESSION_05_MODE_NATIVE_PLAN_ID_V1 =
 // (session_source_mode_native_step_mismatch), а не по языку или по форме.
 export const LESSON1_ES_SESSION_06_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s06-mode-native-v1' as const;
+// зачем отдельный planId для испанской voice-сессии 7 (владелец, 2026-08-27,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md + Rules §4.1): в отличие от сессий
+// 2-6 (words_then_phrases, ровно одно новое слово) voice-сессия НЕ вводит
+// новых слов вообще — её 17 практических слотов заменены на 12: 15 фраз
+// минус 3, уже использованные в интро-carousel (introSteps() читает
+// sourcePhraseIndex 0/1/2). Легаси generic voiceSteps() ниже использовал
+// 'sound_contrast' — семью, снятую с активного authoring 2026-08-25;
+// esSession07ModeNativeStepsV1 заменяет оба таких слота на 'listen_choose'.
+export const LESSON1_ES_SESSION_07_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s07-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -338,6 +348,31 @@ function esSession06ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
     { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
     { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
     { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'speak_with_model' },
+  ];
+}
+
+// зачем именно эта раскладка (владелец, 2026-08-27, СТАРТ ES + MODE_NATIVE_AUTHORING_CONTRACT
+// + Rules §4.1): испанская voice-сессия 7 не вводит новых слов — все 12
+// шагов работают с фразами (targetKind: 'phrase'), индексы 3-14 из 15
+// доступных (0-2 уже отработаны в introSteps()). Каждый шаг зеркально
+// совпадает по family/purpose/learningStage/sourcePhraseIndex с
+// es_episode_01_session_07_mode_native_v1.ts — сверка идёт позиционно
+// (session_source_mode_native_step_mismatch при любом расхождении).
+// Оба легаси-слота 'sound_contrast' заменены на 'listen_choose'.
+function esSession07ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'speak_with_model' },
+    { family: 'listen_build_dictation', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'speak_with_model' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'speak_with_model' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'speak_with_model' },
   ];
 }
 
@@ -732,6 +767,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession05ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_06_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession06ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_07_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession07ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

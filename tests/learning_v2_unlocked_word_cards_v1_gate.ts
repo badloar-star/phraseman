@@ -5,6 +5,7 @@ import { projectLearningV2UnlockedWordsToCardsV1 } from "../app/learning_v2_unlo
 const localized = (prefix: string) => ({
   ru: `${prefix}-ru`,
   uk: `${prefix}-uk`,
+  en: `${prefix}-en`,
   es: `${prefix}-es`,
   "pt-BR": `${prefix}-pt`,
   vi: `${prefix}-vi`,

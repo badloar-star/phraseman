@@ -2334,7 +2334,7 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { queryLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
-      setSearchError(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+      setSearchError(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
     }
@@ -2348,7 +2348,7 @@ export default function FriendsTabScreen() {
     setIsAdding(true);
     setFoundUser(null);
     setCodeInput('');
-    showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
+    showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', 'Request sent!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
     try {
       await trackActivity('friends:add_request_start', {
         feature: 'friends',
@@ -2378,20 +2378,20 @@ export default function FriendsTabScreen() {
       if (result === 'sent') {
         setFoundUser(null);
         setCodeInput('');
-        showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
+        showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', 'Request sent!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
       } else if (result === 'already_friends') {
         setFoundUser(null);
-        showFeedback(L('Уже друзья', 'Уже друзі', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi'));
+        showFeedback(L('Уже друзья', 'Уже друзі', 'Already friends', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi'));
       } else if (result === 'already_sent') {
         setFoundUser(null);
-        showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada', 'Solicitação já enviada', 'Lời mời đã được gửi', 'Permintaan sudah dikirim', 'İstek zaten gönderildi', 'Zaproszenie już wysłane'));
+        showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Request already sent', 'Solicitud ya enviada', 'Solicitação já enviada', 'Lời mời đã được gửi', 'Permintaan sudah dikirim', 'İstek zaten gönderildi', 'Zaproszenie już wysłane'));
       } else if (result === 'self') {
         setFoundUser(null);
         showFeedback(randomSelfFriendCodeMessage(L));
       } else {
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);
-        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
       }
     } catch (e) {
       void import('../app_health')
@@ -2412,7 +2412,7 @@ export default function FriendsTabScreen() {
       });
       setFoundUser(targetUser);
       setCodeInput(previousCodeInput);
-      showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+      showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
@@ -2441,7 +2441,7 @@ export default function FriendsTabScreen() {
         if (!hadFriend) {
           setFriends(prev => prev.filter(friend => friend.uid !== request.fromUid));
         }
-        showFeedback(L('Не получилось принять. Попробуй ещё раз', 'Не вдалося прийняти. Спробуй ще раз', 'No se pudo aceptar', 'Não deu para aceitar', 'Chưa chấp nhận được', 'Belum bisa diterima', 'Kabul edilemedi', 'Nie udało się zaakceptować'));
+        showFeedback(L('Не получилось принять. Попробуй ещё раз', 'Не вдалося прийняти. Спробуй ще раз', 'Could not accept. Try again', 'No se pudo aceptar', 'Não deu para aceitar', 'Chưa chấp nhận được', 'Belum bisa diterima', 'Kabul edilemedi', 'Nie udało się zaakceptować'));
       });
   }, [L, friends, showFeedback]);
 
@@ -2453,7 +2453,7 @@ export default function FriendsTabScreen() {
       })
       .catch(() => {
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
-        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+        showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
       });
   }, [L, showFeedback]);
 
@@ -2500,7 +2500,7 @@ export default function FriendsTabScreen() {
     if (!gift) return;
     const giftCost = giftCostForTarget(gift, explicitTarget.uid);
     if (!isFriendGiftsCloudEnabled()) {
-      showFeedback(L('Подарки временно недоступны. Попробуй позже.', 'Подарунки тимчасово недоступні. Спробуй пізніше.', 'Los regalos no están disponibles ahora. Inténtalo más tarde.', 'Os presentes estão temporariamente indisponíveis. Tente mais tarde.', 'Quà tặng tạm thời chưa khả dụng. Hãy thử lại sau.', 'Hadiah sementara tidak tersedia. Coba lagi nanti.', 'Hediyeler geçici olarak kullanılamıyor. Daha sonra dene.', 'Prezenty są chwilowo niedostępne. Spróbuj później.'));
+      showFeedback(L('Подарки временно недоступны. Попробуй позже.', 'Подарунки тимчасово недоступні. Спробуй пізніше.', 'Gifts are temporarily unavailable. Try again later.', 'Los regalos no están disponibles ahora. Inténtalo más tarde.', 'Os presentes estão temporariamente indisponíveis. Tente mais tarde.', 'Quà tặng tạm thời chưa khả dụng. Hãy thử lại sau.', 'Hadiah sementara tidak tersedia. Coba lagi nanti.', 'Hediyeler geçici olarak kullanılamıyor. Daha sonra dene.', 'Prezenty są chwilowo niedostępne. Spróbuj później.'));
       emitAppEvent('action_toast', {
         type: 'info',
         messageRu: 'Подарки временно недоступны. Попробуй позже.',
@@ -2515,7 +2515,7 @@ export default function FriendsTabScreen() {
       return;
     }
     if (balanceOverride < giftCost) {
-      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
+      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'Not enough pearls', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
       emitAppEvent('action_toast', {
         type: 'info',
         messageRu: 'Не хватает жемчуга',
@@ -2551,7 +2551,7 @@ export default function FriendsTabScreen() {
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
       setGiftSendFailedId(null);
       setGiftTarget(null);
-      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Gift sent', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
       emitAppEvent('action_toast', {
         type: 'success',
         messageRu: `Подарок отправлен. ${sentGiftName} уже у ${target.name}.`,
@@ -2593,7 +2593,7 @@ export default function FriendsTabScreen() {
     } catch (e) {
       if (!isCurrentAccountGeneration(giftAccountToken)) return;
       setGiftSendFailedId(giftId);
-      const feedback = L('Не удалось поставить подарок в очередь. Попробуй ещё раз.', 'Не вдалося поставити подарунок у чергу. Спробуй ще раз.', 'Could not queue the gift. Try again.', 'Não foi possível colocar o presente na fila. Tente novamente.', 'Không thể xếp quà vào hàng đợi. Hãy thử lại.', 'Hadiah tidak dapat dimasukkan ke antrean. Coba lagi.', 'Hediye sıraya alınamadı. Tekrar dene.', 'Nie udało się dodać prezentu do kolejki. Spróbuj ponownie.');
+      const feedback = L('Не удалось поставить подарок в очередь. Попробуй ещё раз.', 'Не вдалося поставити подарунок у чергу. Спробуй ще раз.', 'Could not queue the gift. Try again.', 'No se pudo poner el regalo en cola. Inténtalo de nuevo.', 'Não foi possível colocar o presente na fila. Tente novamente.', 'Không thể xếp quà vào hàng đợi. Hãy thử lại.', 'Hadiah tidak dapat dimasukkan ke antrean. Coba lagi.', 'Hediye sıraya alınamadı. Tekrar dene.', 'Nie udało się dodać prezentu do kolejki. Spróbuj ponownie.');
       showFeedback(feedback);
       emitAppEvent('action_toast', {
         type: 'error',
@@ -2629,7 +2629,7 @@ export default function FriendsTabScreen() {
     if (knownBalance !== null && warmBalance < giftCost) {
       const missing = giftCost - warmBalance;
       setGiftTarget(null);
-      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
+      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'Not enough pearls', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
       emitAppEvent('action_toast', {
         type: 'info',
         messageRu: `Нужно ещё жемчуга: ${missing}`,
@@ -2659,7 +2659,7 @@ export default function FriendsTabScreen() {
     const cached = profiles[gift.fromUid];
     return cached ?? {
       uid: gift.fromUid,
-      name: gift.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy'),
+      name: gift.fromName || L('друг', 'друг', 'friend', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy'),
       totalXp: 0,
       weeklyXp: 0,
       streak: 0,
@@ -2683,10 +2683,10 @@ export default function FriendsTabScreen() {
         senderDisplayName: myProfile?.name ?? '',
       });
       setIncomingGiftModal(null);
-      showFeedback(L('Спасибо отправлено', 'Подяку надіслано', 'Thanks sent', 'Agradecimento enviado', 'Đã gửi lời cảm ơn', 'Ucapan terima kasih terkirim', 'Teşekkür gönderildi', 'Podziękowanie wysłane'));
+      showFeedback(L('Спасибо отправлено', 'Подяку надіслано', 'Thanks sent', 'Gracias enviadas', 'Agradecimento enviado', 'Đã gửi lời cảm ơn', 'Ucapan terima kasih terkirim', 'Teşekkür gönderildi', 'Podziękowanie wysłane'));
     } catch {
       setIncomingGiftModal(previousModal);
-      showFeedback(L('Не удалось отправить спасибо', 'Не вдалося надіслати подяку', 'Could not send thanks', 'Não foi possível agradecer', 'Không gửi được lời cảm ơn', 'Gagal mengirim terima kasih', 'Teşekkür gönderilemedi', 'Nie udało się podziękować'));
+      showFeedback(L('Не удалось отправить спасибо', 'Не вдалося надіслати подяку', 'Could not send thanks', 'No se pudo enviar el agradecimiento', 'Não foi possível agradecer', 'Không gửi được lời cảm ơn', 'Gagal mengirim terima kasih', 'Teşekkür gönderilemedi', 'Nie udało się podziękować'));
     } finally {
       setGiftBusyId(null);
     }
@@ -2723,10 +2723,10 @@ export default function FriendsTabScreen() {
         setActiveFriendQuest(null);
       } else {
         void refreshFriendQuest(undefined, { force: true });
-        showFeedback(L('Квест ещё не выполнен', 'Квест ще не виконано', 'Quest is not finished yet', 'A missão ainda não terminou', 'Nhiệm vụ chưa xong', 'Quest belum selesai', 'Görev henüz bitmedi', 'Misja nie jest jeszcze gotowa'));
+        showFeedback(L('Квест ещё не выполнен', 'Квест ще не виконано', 'Quest is not finished yet', 'La misión aún no está completa', 'A missão ainda não terminou', 'Nhiệm vụ chưa xong', 'Quest belum selesai', 'Görev henüz bitmedi', 'Misja nie jest jeszcze gotowa'));
       }
     } catch {
-      showFeedback(L('Не удалось забрать награду', 'Не вдалося забрати нагороду', 'Could not claim reward', 'Não foi possível receber a recompensa', 'Không nhận được thưởng', 'Gagal mengambil hadiah', 'Ödül alınamadı', 'Nie udało się odebrać nagrody'));
+      showFeedback(L('Не удалось забрать награду', 'Не вдалося забрати нагороду', 'Could not claim reward', 'No se pudo recibir la recompensa', 'Não foi possível receber a recompensa', 'Không nhận được thưởng', 'Gagal mengambil hadiah', 'Ödül alınamadı', 'Nie udało się odebrać nagrody'));
     } finally {
       setFriendQuestBusy(false);
     }
@@ -2960,7 +2960,7 @@ export default function FriendsTabScreen() {
     if (!activeFriendQuest) return '';
     return activeFriendQuest.participantUids.find(uid => uid !== friendQuestPeerUid) ?? activeFriendQuest.participantUids[0] ?? '';
   }, [activeFriendQuest, friendQuestPeerUid]);
-  const friendQuestPeerName = profiles[friendQuestPeerUid]?.name || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
+  const friendQuestPeerName = profiles[friendQuestPeerUid]?.name || L('друг', 'друг', 'friend', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
   const friendQuestMyProgress = activeFriendQuest ? Math.min(activeFriendQuest.targetXp, activeFriendQuest.progressByUid[friendQuestMyUid] ?? 0) : 0;
   const friendQuestPeerProgress = activeFriendQuest ? Math.min(activeFriendQuest.targetXp, activeFriendQuest.progressByUid[friendQuestPeerUid] ?? 0) : 0;
   const friendQuestMyRemaining = activeFriendQuest ? Math.max(0, activeFriendQuest.remainingXpByUid[friendQuestMyUid] ?? activeFriendQuest.targetXp) : 0;
@@ -3032,7 +3032,7 @@ export default function FriendsTabScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 8, marginHorizontal: -PX, paddingHorizontal: PX }}>
           <TapScale
             accessibilityRole="button"
-            accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chủ', 'Beranda', 'Ana sayfa', 'Strona główna')}
+            accessibilityLabel={L('На главную', 'На головну', 'Home', 'Inicio', 'Início', 'Trang chủ', 'Beranda', 'Ana sayfa', 'Strona główna')}
             style={{
               width: 36, height: 36, borderRadius: 18,
               backgroundColor: chrome.button, borderWidth: 0, borderColor: 'transparent',
@@ -3050,7 +3050,7 @@ export default function FriendsTabScreen() {
             accessibilityRole="header"
             style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}
           >
-            {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
+            {L('Друзья', 'Друзі', 'Friends', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
           </FlowText>
           {/* DEV-only: панель ботов «Вместе» — сквозная ручная проверка сценариев (owner, 2026-08-17). */}
           {ENABLE_DEV_TOOLS && (
@@ -3074,7 +3074,7 @@ export default function FriendsTabScreen() {
             onPress={() => { if (modalWedgeGuardRef.current) return; setAddModalOpen(true); setFoundUser(null); setSearchError(null); setCodeInput(''); }}
             activeOpacity={0.8}
             accessibilityRole="button"
-            accessibilityLabel={L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+            accessibilityLabel={L('Добавить друга', 'Додати друга', 'Add friend', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
             hitSlop={8}
             style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: t.accent, justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}
           >
@@ -3116,10 +3116,10 @@ export default function FriendsTabScreen() {
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
-                      {L('Совместный квест', 'Спільний квест', 'Friend Quest', 'Missão em dupla', 'Nhiệm vụ bạn bè', 'Quest teman', 'Arkadaş görevi', 'Misja znajomych')}
+                      {L('Совместный квест', 'Спільний квест', 'Friend Quest', 'Misión con amigo', 'Missão em dupla', 'Nhiệm vụ bạn bè', 'Quest teman', 'Arkadaş görevi', 'Misja znajomych')}
                     </Text>
                     <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }}>
-                      {L(`По 3000 XP за 24 часа · ${friendQuestHoursLeft}ч`, `По 3000 XP за 24 год · ${friendQuestHoursLeft}год`, `3000 XP each · ${friendQuestHoursLeft}h`, `3000 XP cada · ${friendQuestHoursLeft}h`, `Mỗi người 3000 XP · ${friendQuestHoursLeft}h`, `Masing-masing 3000 XP · ${friendQuestHoursLeft}j`, `Kişi başı 3000 XP · ${friendQuestHoursLeft}sa`, `Po 3000 XP · ${friendQuestHoursLeft}h`)}
+                      {L(`По 3000 XP за 24 часа · ${friendQuestHoursLeft}ч`, `По 3000 XP за 24 год · ${friendQuestHoursLeft}год`, `3000 XP each · ${friendQuestHoursLeft}h`, `3000 XP cada uno · ${friendQuestHoursLeft}h`, `3000 XP cada · ${friendQuestHoursLeft}h`, `Mỗi người 3000 XP · ${friendQuestHoursLeft}h`, `Masing-masing 3000 XP · ${friendQuestHoursLeft}j`, `Kişi başı 3000 XP · ${friendQuestHoursLeft}sa`, `Po 3000 XP · ${friendQuestHoursLeft}h`)}
                     </Text>
                   </View>
                   {friendQuestReady && (
@@ -3131,13 +3131,13 @@ export default function FriendsTabScreen() {
                       style={{ minHeight: 44, borderRadius: 14, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
                     >
                       <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
-                        {L('Забрать', 'Забрати', 'Claim', 'Receber', 'Nhận', 'Klaim', 'Al', 'Odbierz')}
+                        {L('Забрать', 'Забрати', 'Claim', 'Reclamar', 'Receber', 'Nhận', 'Klaim', 'Al', 'Odbierz')}
                       </Text>
                     </TouchableOpacity>
                   )}
                 </View>
                 {[
-                  { id: 'friend-quest-my-progress', name: L('Ты', 'Ти', 'You', 'Você', 'Bạn', 'Kamu', 'Sen', 'Ty'), progress: friendQuestMyProgress, remaining: friendQuestMyRemaining },
+                  { id: 'friend-quest-my-progress', name: L('Ты', 'Ти', 'You', 'Tú', 'Você', 'Bạn', 'Kamu', 'Sen', 'Ty'), progress: friendQuestMyProgress, remaining: friendQuestMyRemaining },
                   { id: 'friend-quest-friend-progress', name: friendQuestPeerName, progress: friendQuestPeerProgress, remaining: friendQuestPeerRemaining },
                 ].map(row => {
                   const pct = activeFriendQuest.targetXp > 0 ? Math.min(100, Math.round((row.progress / activeFriendQuest.targetXp) * 100)) : 0;
@@ -3146,7 +3146,7 @@ export default function FriendsTabScreen() {
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }} numberOfLines={1}>{row.name}</Text>
                         <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
-                          {row.remaining > 0 ? L(`ещё ${row.remaining} XP`, `ще ${row.remaining} XP`, `${row.remaining} XP left`, `faltam ${row.remaining} XP`, `còn ${row.remaining} XP`, `sisa ${row.remaining} XP`, `${row.remaining} XP kaldı`, `zostało ${row.remaining} XP`) : L('готово', 'готово', 'ready', 'pronto', 'xong', 'siap', 'hazır', 'gotowe')}
+                          {row.remaining > 0 ? L(`ещё ${row.remaining} XP`, `ще ${row.remaining} XP`, `${row.remaining} XP left`, `faltan ${row.remaining} XP`, `faltam ${row.remaining} XP`, `còn ${row.remaining} XP`, `sisa ${row.remaining} XP`, `${row.remaining} XP kaldı`, `zostało ${row.remaining} XP`) : L('готово', 'готово', 'ready', 'listo', 'pronto', 'xong', 'siap', 'hazır', 'gotowe')}
                         </Text>
                       </View>
                       <View style={{ height: 9, borderRadius: 5, backgroundColor: chrome.surface, overflow: 'hidden' }}>
@@ -3156,7 +3156,7 @@ export default function FriendsTabScreen() {
                   );
                 })}
                 <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '700' }}>
-                  {L('+10 жемчуга и +1000 XP каждому', '+10 перлин і +1000 XP кожному', '+10 pearls and +1000 XP each', '+10 pérolas e +1000 XP para cada', '+10 ngọc trai và +1000 XP mỗi ngườи', '+10 mutiara dan +1000 XP masing-masing', 'Herkese +10 inci ve +1000 XP', '+10 pereł i +1000 XP dla każdego')}
+                  {L('+10 жемчуга и +1000 XP каждому', '+10 перлин і +1000 XP кожному', '+10 pearls and +1000 XP each', '+10 perlas y +1000 XP para cada uno', '+10 pérolas e +1000 XP para cada', '+10 ngọc trai và +1000 XP mỗi ngườи', '+10 mutiara dan +1000 XP masing-masing', 'Herkese +10 inci ve +1000 XP', '+10 pereł i +1000 XP dla każdego')}
                 </Text>
               </View>
             )}
@@ -3164,7 +3164,7 @@ export default function FriendsTabScreen() {
               <>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                   <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-                    {L('Активные заявки', 'Активні заявки', 'Solicitudes activas', 'Solicitações ativas', 'Lời mời đang chờ', 'Permintaan aktif', 'Aktif istekler', 'Aktywne zaproszenia')}
+                    {L('Активные заявки', 'Активні заявки', 'Active requests', 'Solicitudes activas', 'Solicitações ativas', 'Lời mời đang chờ', 'Permintaan aktif', 'Aktif istekler', 'Aktywne zaproszenia')}
                   </Text>
                   <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
                     <Text style={{ color: t.correctText, fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
@@ -3184,12 +3184,12 @@ export default function FriendsTabScreen() {
             )}
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
-                {L('Список друзей', 'Список друзів', 'Lista de amigos', 'Lista de amigos', 'Danh sách bạn bè', 'Daftar teman', 'Arkadaş listesi', 'Lista znajomych')}
+                {L('Список друзей', 'Список друзів', 'Friends list', 'Lista de amigos', 'Lista de amigos', 'Danh sách bạn bè', 'Daftar teman', 'Arkadaş listesi', 'Lista znajomych')}
                 {sortedFriends.length > 0 ? ` · ${sortedFriends.length}` : ''}
               </Text>
               {sortedFriends.length > 0 && (
                 <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                  {L('по XP', 'за XP', 'por XP', 'por XP', 'theo XP', 'berdasarkan XP', "XP'ye göre", 'wg XP')}
+                  {L('по XP', 'за XP', 'by XP', 'por XP', 'por XP', 'theo XP', 'berdasarkan XP', "XP'ye göre", 'wg XP')}
                 </Text>
               )}
             </View>
@@ -3200,13 +3200,14 @@ export default function FriendsTabScreen() {
               <View testID="friends-list-empty" style={{ alignItems: 'center', paddingTop: 28, paddingBottom: 8, paddingHorizontal: 12, gap: 10 }}>
                 <FriendsThemeIcon themeMode={themeMode} size={86} accessibilityLabel="Friends" />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
-                  {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
+                  {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Learning together is more fun', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
                   <>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                       {L(
                         'Добавьте друзей по коду или нику — соревнуйтесь в лигах и дарите подарки.',
                         'Додайте друзів за кодом або ніком — змагайтеся в лігах і даруйте подарунки.',
+                        'Add friends by code or nickname — compete in leagues and send gifts.',
                         'Agrega amigos por código o apodo: compitan en ligas y envíen regalos.',
                         'Adicione amigos por código ou apelido — compita em ligas e troque presentes.',
                         'Thêm bạn bằng mã hoặc biệt danh — thi đua trong giải và tặng quà.',
@@ -3220,7 +3221,7 @@ export default function FriendsTabScreen() {
                         testID="friends-empty-add"
                         onPress={() => { hapticTap(); setAddModalOpen(true); }}
                         accessibilityRole="button"
-                        accessibilityLabel={L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+                        accessibilityLabel={L('Добавить друга', 'Додати друга', 'Add friend', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
                         hitSlop={8}
                         edgeColor={t.accent}
                         wrapStyle={{ flex: 1 }}
@@ -3228,7 +3229,7 @@ export default function FriendsTabScreen() {
                       >
                         <Ionicons name="person-add" size={20} color={t.correctText} />
                         <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
-                          {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+                          {L('Добавить друга', 'Додати друга', 'Add friend', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
                         </Text>
                       </DuoPressable>
                     </View>
@@ -3249,7 +3250,7 @@ export default function FriendsTabScreen() {
           <ReportErrorButton
             screen="friends_tab"
             dataId="friends_tab_main"
-            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
+            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Friends tab', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
           />
         </View>
     </>
@@ -3358,13 +3359,13 @@ export default function FriendsTabScreen() {
               })() : null}
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
-                  {`${L('Подарок для', 'Подарунок для', 'Regalo para', 'Presente para', 'Quà cho', 'Hadiah untuk', 'Hediye', 'Prezent dla')} ${giftTarget?.name ?? ''}`}
+                  {`${L('Подарок для', 'Подарунок для', 'Gift for', 'Regalo para', 'Presente para', 'Quà cho', 'Hadiah untuk', 'Hediye', 'Prezent dla')} ${giftTarget?.name ?? ''}`}
                 </Text>
               </View>
               <TouchableOpacity
                 testID="friend-gift-close"
                 accessibilityRole="button"
-                accessibilityLabel={L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+                accessibilityLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
                 onPress={() => setGiftTarget(null)}
                 style={{
                   width: 44,
@@ -3491,8 +3492,8 @@ export default function FriendsTabScreen() {
               const selectedCost = giftCostForTarget(selectedGift, giftTarget.uid);
               const retry = giftSendFailedId === selectedGift.id;
               const ctaLabel = retry
-                ? L('Повторить', 'Повторити', 'Reintentar', 'Tentar novamente', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie')
-                : `${L('Отправить', 'Надіслати', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')} ${giftLabel(selectedGift)} · ${selectedCost}`;
+                ? L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar novamente', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie')
+                : `${L('Отправить', 'Надіслати', 'Send', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')} ${giftLabel(selectedGift)} · ${selectedCost}`;
               return (
                 <DuoPressable
                   testID="friend-gift-send-cta"
@@ -3541,7 +3542,7 @@ export default function FriendsTabScreen() {
             <View style={{ padding: 22, gap: 14 }}>
             {incomingGiftModal ? (() => {
               const first = incomingGiftModal.gifts[0];
-              const from = first?.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
+              const from = first?.fromName || L('друг', 'друг', 'friend', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
               const gift = first ? giftEventLabel(first as unknown as Record<string, string | number>, lang) : '';
               const multi = incomingGiftModal.gifts.length > 1;
               const iconGiftId = first?.giftId === 'xp_boost_2x_24h' ? 'xp_2x_24h' : first?.giftId;
@@ -3569,23 +3570,23 @@ export default function FriendsTabScreen() {
                     </LinearGradient>
                   </View>
                   <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : '#7A5518', fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
-                    {L('Подарок от друга', 'Подарунок від друга', 'Friend gift', 'Presente de amigo', 'Quà từ bạn bè', 'Hadiah teman', 'Arkadaş hediyesi', 'Prezent od znajomego')}
+                    {L('Подарок от друга', 'Подарунок від друга', 'Friend gift', 'Regalo de un amigo', 'Presente de amigo', 'Quà từ bạn bè', 'Hadiah teman', 'Arkadaş hediyesi', 'Prezent od znajomego')}
                   </Text>
                   <Text accessibilityRole="header" style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
                     {multi
-                      ? L('Новые подарки', 'Нові подарунки', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
-                      : L('Подарок получен', 'Подарунок отримано', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
+                      ? L('Новые подарки', 'Нові подарунки', 'New gifts', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
+                      : L('Подарок получен', 'Подарунок отримано', 'Gift received', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
                   </Text>
                   <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: isOliveTheme ? OLIVE_RICH.surface : 'rgba(255,255,255,0.54)', borderWidth: 0, borderColor: 'transparent' }}>
                     <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {multi
-                        ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
-                        : L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)}
+                        ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `You have ${incomingGiftModal.gifts.length} new gifts from friends`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
+                        : L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} sent a gift: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)}
                     </Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
                       <Ionicons name="albums-outline" size={15} color={isOliveTheme ? OLIVE_RICH.champagneLight : '#8A641D'} />
                       <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#8A641D', fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
-                        {L('Сохранено в разделе «Подарки»', 'Збережено в розділі «Подарунки»', 'Saved in Gifts', 'Salvo em Presentes', 'Đã lưu trong Quà', 'Disimpan di Hadiah', 'Hediyeler bölümüne kaydedildi', 'Zapisano w Prezentach')}
+                        {L('Сохранено в разделе «Подарки»', 'Збережено в розділі «Подарунки»', 'Saved in Gifts', 'Guardado en Regalos', 'Salvo em Presentes', 'Đã lưu trong Quà', 'Disimpan di Hadiah', 'Hediyeler bölümüne kaydedildi', 'Zapisano w Prezentach')}
                       </Text>
                     </View>
                   </View>
@@ -3602,7 +3603,7 @@ export default function FriendsTabScreen() {
                     style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.surface : 'rgba(255,255,255,0.62)', borderWidth: 0, borderColor: 'transparent' }}
                   >
                     <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#3D2B10', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
-                      {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
+                      {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
                     </Text>
                   </TouchableOpacity>
                   <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -3614,7 +3615,7 @@ export default function FriendsTabScreen() {
                       style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.raised : '#272015', borderWidth: 0, borderColor: 'transparent' }}
                     >
                       <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
-                        {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
+                        {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -3625,7 +3626,7 @@ export default function FriendsTabScreen() {
                       style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.champagne : '#D7A83B' }}
                     >
                       <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
-                        {L('Отправить буст', 'Надіслати буст', 'Send boost', 'Enviar boost', 'Gửi boost', 'Kirim boost', 'Boost gönder', 'Wyślij boost')}
+                        {L('Отправить буст', 'Надіслати буст', 'Send boost', 'Enviar boost', 'Enviar boost', 'Gửi boost', 'Kirim boost', 'Boost gönder', 'Wyślij boost')}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -3642,7 +3643,7 @@ export default function FriendsTabScreen() {
                   style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.raised : '#272015', borderWidth: 0, borderColor: 'transparent' }}
                 >
                   <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
-                    {L('В подарки', 'До подарунків', 'Gifts', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}
+                    {L('В подарки', 'До подарунків', 'Gifts', 'Regalos', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -3657,7 +3658,7 @@ export default function FriendsTabScreen() {
                         полученный подарок, поэтому кнопка называет действие. Коротко:
                         две кнопки в ряду при numberOfLines={1} — длинная
                         подпись обрезалась бы на узких экранах. */}
-                    {L('Забрать', 'Забрати', 'Claim', 'Receber', 'Nhận', 'Klaim', 'Al', 'Odbierz')}
+                    {L('Забрать', 'Забрати', 'Claim', 'Reclamar', 'Receber', 'Nhận', 'Klaim', 'Al', 'Odbierz')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -3845,10 +3846,10 @@ export default function FriendsTabScreen() {
 
       <ThemedConfirmModal
         visible={deleteTarget !== null}
-        title={L('Убрать друга?', 'Прибрати друга?', '¿Quitar amigo?', 'Remover amigo?', 'Gỡ bạn bè?', 'Hapus teman?', 'Arkadaşı kaldır?', 'Usunąć znajomego?')}
+        title={L('Убрать друга?', 'Прибрати друга?', 'Remove friend?', '¿Quitar amigo?', 'Remover amigo?', 'Gỡ bạn bè?', 'Hapus teman?', 'Arkadaşı kaldır?', 'Usunąć znajomego?')}
         message={deleteTarget?.name ?? ''}
-        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
-        confirmLabel={L('Убрать', 'Прибрати', 'Quitar', 'Remover', 'Gỡ', 'Hapus', 'Kaldır', 'Usuń')}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
+        confirmLabel={L('Убрать', 'Прибрати', 'Remove', 'Quitar', 'Remover', 'Gỡ', 'Hapus', 'Kaldır', 'Usuń')}
         confirmVariant="default"
         testIDPrefix="friends-delete-confirm"
         onCancel={() => setDeleteTarget(null)}
@@ -3859,7 +3860,7 @@ export default function FriendsTabScreen() {
             const previousFriend = friends.find(friend => friend.uid === target.uid) ?? null;
             setFriends(prev => prev.filter(friend => friend.uid !== target.uid));
             setSelectedPlayer(current => (current?.uid === target.uid || current?.friendUid === target.uid ? null : current));
-            showFeedback(L('Убираем друга…', 'Прибираємо друга…', 'Quitando amigo…', 'Removendo amigo…', 'Đang gỡ bạn bè…', 'Menghapus teman…', 'Arkadaş kaldırılıyor…', 'Usuwanie znajomego…'));
+            showFeedback(L('Убираем друга…', 'Прибираємо друга…', 'Removing friend…', 'Quitando amigo…', 'Removendo amigo…', 'Đang gỡ bạn bè…', 'Menghapus teman…', 'Arkadaş kaldırılıyor…', 'Usuwanie znajomego…'));
             emitAppEvent('action_toast', {
               type: 'info',
               messageRu: `Убираем друга: ${target.name}`,
@@ -3873,7 +3874,7 @@ export default function FriendsTabScreen() {
             });
             deleteFriend(target.uid)
               .then(() => {
-                showFeedback(L('Друг убран', 'Друга прибрано', 'Amigo quitado', 'Amigo removido', 'Đã gỡ bạn bè', 'Teman dihapus', 'Arkadaş kaldırıldı', 'Znajomy usunięty'));
+                showFeedback(L('Друг убран', 'Друга прибрано', 'Friend removed', 'Amigo quitado', 'Amigo removido', 'Đã gỡ bạn bè', 'Teman dihapus', 'Arkadaş kaldırıldı', 'Znajomy usunięty'));
                 emitAppEvent('action_toast', {
                   type: 'success',
                   messageRu: `Друг убран: ${target.name}`,
@@ -3890,7 +3891,7 @@ export default function FriendsTabScreen() {
                 if (previousFriend) {
                   setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);
                 }
-                showFeedback(L('Не получилось убрать друга. Попробуй ещё раз', 'Не вдалося прибрати друга. Спробуй ще раз', 'No se pudo quitar. Inténtalo de nuevo', 'Não deu para remover. Tente novamente', 'Chưa gỡ được. Hãy thử lại', 'Belum bisa dihapus. Coba lagi', 'Kaldırılamadı. Tekrar dene', 'Nie udało się usunąć. Spróbuj ponownie'));
+                showFeedback(L('Не получилось убрать друга. Попробуй ещё раз', 'Не вдалося прибрати друга. Спробуй ще раз', 'Could not remove. Try again', 'No se pudo quitar. Inténtalo de nuevo', 'Não deu para remover. Tente novamente', 'Chưa gỡ được. Hãy thử lại', 'Belum bisa dihapus. Coba lagi', 'Kaldırılamadı. Tekrar dene', 'Nie udało się usunąć. Spróbuj ponownie'));
                 emitAppEvent('action_toast', {
                   type: 'error',
                   messageRu: 'Не получилось убрать друга. Попробуй ещё раз',

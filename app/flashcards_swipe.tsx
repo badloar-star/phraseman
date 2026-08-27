@@ -30,7 +30,10 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import AnimatedCountUpText from '../components/AnimatedCountUpText';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
@@ -1076,6 +1079,7 @@ function FlashcardsSwipeScreen() {
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
   });
+  const runeFlight = usePracticeRuneFlight();
 
   const text = useMemo(
     () => ({
@@ -2482,7 +2486,10 @@ function FlashcardsSwipeScreen() {
       // зачем (владелец, 2026-08-27): руна — за карточку, окончательно
       // усвоенную (mastered), не за каждый промежуточный правильный ответ на
       // пути восстановления после ошибки/подсказки.
-      if (mastered) practiceRunes.onCorrectAnswer(key);
+      if (mastered) {
+        const awarded = practiceRunes.onCorrectAnswer(key);
+        if (awarded > 0) runeFlight.fly(awarded);
+      }
       const maxCardScore = needsRecovery ? 6 : 10;
       const rawAward = needsRecovery ? 3 : 10;
       const scoreAward = Math.max(0, Math.min(rawAward, maxCardScore - cardProgress.scoreAwarded));
@@ -3028,11 +3035,16 @@ function FlashcardsSwipeScreen() {
           <Text style={[styles.doneSubtitle, isCompactFlashcardsTask && styles.compactDoneSubtitle, { color: t.textMuted, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={isCompactFlashcardsTask ? 2 : undefined}>
             {cleanSession ? text.cleanDoneSub : text.learnedDoneSub}
           </Text>
-          <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: `${t.accent}20` }]}>
+          <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: `${t.accent}20`, flexDirection: 'row', alignItems: 'center' }]}>
             <Ionicons name="flash-outline" size={16} color={t.accent} />
             <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {text.scoreLabel}: {displayStats.score}
+              {text.scoreLabel}:{' '}
             </Text>
+            <AnimatedCountUpText
+              value={displayStats.score}
+              style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption, minWidth: 20 }]}
+              accessibilityLabel={`${text.scoreLabel}: ${displayStats.score}`}
+            />
           </View>
           {practiceRunes.runes > 0 && (
             <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: t.bgCard }]}>
@@ -3045,9 +3057,12 @@ function FlashcardsSwipeScreen() {
                 accessibilityElementsHidden
                 importantForAccessibility="no"
               />
-              <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
-                +{practiceRunes.runes}
-              </Text>
+              <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>+</Text>
+              <AnimatedCountUpText
+                value={practiceRunes.runes}
+                style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption, minWidth: 20 }]}
+                accessibilityLabel={`+${practiceRunes.runes}`}
+              />
             </View>
           )}
           <View style={[styles.doneGrid, isCompactFlashcardsTask && styles.compactDoneGrid]}>
@@ -3058,7 +3073,11 @@ function FlashcardsSwipeScreen() {
               [text.bestStreak, displayStats.bestStreak],
             ].map(([label, value]) => (
               <View key={String(label)} style={[styles.doneStat, isCompactFlashcardsTask && styles.compactDoneStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
-                <Text style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}>{value}</Text>
+                <AnimatedCountUpText
+                  value={Number(value)}
+                  style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}
+                  accessibilityLabel={String(value)}
+                />
                 <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</Text>
               </View>
             ))}
@@ -3117,13 +3136,15 @@ function FlashcardsSwipeScreen() {
             locale={lang}
             testID="flashcards-swipe-attempts-hud"
           />
-          <PracticeRuneCounter
-            runes={practiceRunes.runes}
-            lang={lang}
-            backgroundColor={t.bgCard}
-            color={t.textPrimary}
-            testID="flashcards-swipe-practice-runes"
-          />
+          <View ref={runeFlight.counterRef} collapsable={false}>
+            <PracticeRuneCounter
+              runes={practiceRunes.runes}
+              lang={lang}
+              backgroundColor={t.bgCard}
+              color={t.textPrimary}
+              testID="flashcards-swipe-practice-runes"
+            />
+          </View>
         </View>
         <View style={[styles.playHeader, isCompactFlashcardsTask && styles.compactPlayHeader]}>
           <TapScale
@@ -3203,7 +3224,8 @@ function FlashcardsSwipeScreen() {
           </Animated.View>
         ) : null}
 
-        <View style={[styles.cardStage, isCompactFlashcardsTask && styles.compactCardStage]}>
+        {/* Источник полёта рун (владелец, 2026-08-27) */}
+        <View ref={runeFlight.originRef} collapsable={false} style={[styles.cardStage, isCompactFlashcardsTask && styles.compactCardStage]}>
           {queue[1] ? (
             <Animated.View
               style={[
@@ -3459,6 +3481,15 @@ function FlashcardsSwipeScreen() {
         {attempts.state.phase !== 'active' ? (
           <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
         ) : null}
+        {runeFlight.flight && (
+          <LearningV2RuneFlight
+            key={runeFlight.flight.key}
+            from={runeFlight.flight.from}
+            to={runeFlight.flight.to}
+            count={runeFlight.flight.count}
+            onDone={runeFlight.clearFlight}
+          />
+        )}
       </View>
     );
   };

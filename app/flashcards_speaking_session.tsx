@@ -86,7 +86,9 @@ import {
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -235,6 +237,7 @@ export default function FlashcardsSpeakingSession() {
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
   });
+  const runeFlight = usePracticeRuneFlight();
   useEffect(() => {
     if (result) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -424,7 +427,10 @@ export default function FlashcardsSpeakingSession() {
       });
       // зачем (владелец, 2026-08-27): руна за карточку — засчитывается один
       // раз за сессию, сколько бы попыток на неё ни ушло до зачёта.
-      if (attempt.passed && failedCard) practiceRunes.onCorrectAnswer(failedCard.id);
+      if (attempt.passed && failedCard) {
+        const awarded = practiceRunes.onCorrectAnswer(failedCard.id);
+        if (awarded > 0) runeFlight.fly(awarded);
+      }
       // Раскрываем английский — и на зачёте (подтверждение), и на промахе (учимся).
       setFlipped(task === 'recall');
       if (attempt.passed) {
@@ -724,13 +730,15 @@ export default function FlashcardsSpeakingSession() {
           вынесены отдельной строкой сверху, а не втиснуты в тот же ряд. */}
       {interactive ? (
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 6 }}>
-          <PracticeRuneCounter
-            runes={practiceRunes.runes}
-            lang={lang}
-            backgroundColor={t.bgCard}
-            color={t.textPrimary}
-            testID="fc-speak-practice-runes"
-          />
+          <View ref={runeFlight.counterRef} collapsable={false}>
+            <PracticeRuneCounter
+              runes={practiceRunes.runes}
+              lang={lang}
+              backgroundColor={t.bgCard}
+              color={t.textPrimary}
+              testID="fc-speak-practice-runes"
+            />
+          </View>
         </View>
       ) : null}
     <View style={styles.headerRow}>
@@ -915,7 +923,8 @@ RU: ${card.translation}`}
           {/* Карточка: тап — подсмотреть/вернуть. Динамик — только в транспорте
               снизу (владелец, 2026-08-17): кнопка на самой карточке дублировала
               «Послушать» из транспортного ряда, убрана. */}
-          <View style={styles.cardArea}>
+          {/* Источник полёта рун (владелец, 2026-08-27) */}
+          <View ref={runeFlight.originRef} collapsable={false} style={styles.cardArea}>
             <PhraseCard
               mode="view"
               en={front}
@@ -1098,6 +1107,15 @@ RU: ${card.translation}`}
         onSpendRunes={() => { void retryCurrentSpeakingCardAfterRecovery('runes'); }}
         onEndSession={endExhaustedSpeakingSession}
       />
+      {runeFlight.flight && (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      )}
     </ScreenGradient>
   );
 }

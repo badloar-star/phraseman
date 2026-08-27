@@ -21,6 +21,7 @@ import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
 import XpGainBadge from '../../components/XpGainBadge';
+import AnimatedCountUpText from '../../components/AnimatedCountUpText';
 import EnergyCostBadge from '../../components/EnergyCostBadge';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
 import { triLang } from '../../constants/i18n';
@@ -164,7 +165,11 @@ function SessionResultScreenImpl({
                 ) : (
                   <>
                     <View style={styles.stat}>
-                      <Text style={{ color: t.correct, fontSize: f.numLg, fontWeight: '900' }}>{correct}</Text>
+                      <AnimatedCountUpText
+                        value={correct}
+                        style={{ color: t.correct, fontSize: f.numLg, fontWeight: '900' }}
+                        accessibilityLabel={String(correct)}
+                      />
                       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                         {triLang(lang, {
                           ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto',
@@ -174,7 +179,11 @@ function SessionResultScreenImpl({
                     </View>
                     <View style={[styles.statDivider, { backgroundColor: t.border }]} />
                     <View style={styles.stat}>
-                      <Text style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '900' }}>{wrong}</Text>
+                      <AnimatedCountUpText
+                        value={wrong}
+                        style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '900' }}
+                        accessibilityLabel={String(wrong)}
+                      />
                       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                         {triLang(lang, {
                           ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores',
@@ -184,7 +193,14 @@ function SessionResultScreenImpl({
                     </View>
                     <View style={[styles.statDivider, { backgroundColor: t.border }]} />
                     <View style={styles.stat}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}>{accuracyPct}%</Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                        <AnimatedCountUpText
+                          value={accuracyPct}
+                          style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
+                          accessibilityLabel={`${accuracyPct}%`}
+                        />
+                        <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}>%</Text>
+                      </View>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                         {triLang(lang, {
                           ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión',
@@ -219,9 +235,12 @@ function SessionResultScreenImpl({
                     accessibilityElementsHidden
                     importantForAccessibility="no"
                   />
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                    +{runesGained}
-                  </Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+</Text>
+                  <AnimatedCountUpText
+                    value={runesGained}
+                    style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+                    accessibilityLabel={`+${runesGained}`}
+                  />
                 </View>
               ) : null}
 

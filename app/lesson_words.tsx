@@ -71,7 +71,10 @@ import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from '.
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import AnimatedCountUpText from '../components/AnimatedCountUpText';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -2791,6 +2794,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     // приходит пропом: параметры маршрута читает родитель LessonWords.
     devFakeStartRunes,
   });
+  // зачем (владелец, 2026-08-27): «анимация полёта точно такая же, как в
+  // Learning V2» — тот же хук-обёртка вокруг механики measureInWindow +
+  // LearningV2RuneFlight, что и на уроке.
+  const runeFlight = usePracticeRuneFlight();
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
   const [voiceOut,   setVoiceOut]   = useState(true);
@@ -3073,7 +3080,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         // зачем (владелец, 2026-08-27): руна засчитывается ЗА СЛОВО, не за
         // каждую карточку — слово может встретиться в сессии несколько раз до
         // REQUIRED повторений, а элемент копилки платит ровно один раз.
-        if (wordJustCompleted) practiceRunes.onCorrectAnswer(wordEn);
+        if (wordJustCompleted) {
+          const awarded = practiceRunes.onCorrectAnswer(wordEn);
+          if (awarded > 0) runeFlight.fly(awarded);
+        }
         const xpThisStep = vocabularyStepBaseXP(prevCount);
         if (xpThisStep > 0) {
           setTotalPts(p => p + xpThisStep);
@@ -3216,7 +3226,19 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         {totalPts > 0 && (
           <View style={{ flexDirection:'row',alignItems:'center',gap:6,backgroundColor:t.correctBg,borderRadius:10,paddingHorizontal:14,paddingVertical:8 }}>
             <Ionicons name="star" size={16} color={t.correct}/>
-            <Text style={{ color:t.correct, fontSize:f.bodyLg, fontWeight:'700' }}>{ws.plusPoints(totalPts)}</Text>
+            {/* зачем (владелец, 2026-08-27): count-up вместо статичного числа.
+                ws.plusPoints(n) возвращает готовую строку «+150 XP» для
+                разных языков ('+n XP' | '+n опыта' | '+n досвіду') — своей
+                таблицы форм здесь не заводим, поэтому число вырезается по
+                заведомо уникальному маркеру, а не парсится regex'ом. */}
+            <Text style={{ color:t.correct, fontSize:f.bodyLg, fontWeight:'700' }}>
+              {ws.plusPoints(9999999).replace('9999999', '')}
+            </Text>
+            <AnimatedCountUpText
+              value={totalPts}
+              style={{ color:t.correct, fontSize:f.bodyLg, fontWeight:'700', minWidth: 24 }}
+              accessibilityLabel={ws.plusPoints(totalPts)}
+            />
           </View>
         )}
         {practiceRunes.runes > 0 && (
@@ -3230,7 +3252,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               accessibilityElementsHidden
               importantForAccessibility="no"
             />
-            <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700' }}>+{practiceRunes.runes}</Text>
+            <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700' }}>+</Text>
+            <AnimatedCountUpText
+              value={practiceRunes.runes}
+              style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700', minWidth: 24 }}
+              accessibilityLabel={`+${practiceRunes.runes}`}
+            />
           </View>
         )}
         <TouchableOpacity
@@ -3338,17 +3365,20 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           <Text style={{ color:sx.muted, fontSize:f.label, fontWeight:'700' }}>
             {trainingStepLabel}
           </Text>
-          <PracticeRuneCounter
-            runes={practiceRunes.runes}
-            lang={lang}
-            backgroundColor={t.bgCard}
-            color={t.textPrimary}
-            testID="lesson-words-practice-runes"
-          />
+          <View ref={runeFlight.counterRef} collapsable={false}>
+            <PracticeRuneCounter
+              runes={practiceRunes.runes}
+              lang={lang}
+              backgroundColor={t.bgCard}
+              color={t.textPrimary}
+              testID="lesson-words-practice-runes"
+            />
+          </View>
         </View>
       </View>
-      {/* Вопрос */}
-      <View style={{ flex:1, justifyContent:'center', alignItems:'center', gap:10 }}>
+      {/* Вопрос — источник полёта рун (владелец, 2026-08-27: «анимация
+          полёта точно такая же, как в Learning V2»). */}
+      <View ref={runeFlight.originRef} collapsable={false} style={{ flex:1, justifyContent:'center', alignItems:'center', gap:10 }}>
         {current.roundType === 'context' ? (
           <View style={{ alignItems:'center', gap:10, paddingHorizontal:4 }}>
             <Text style={{ color:sx.muted, fontSize:f.sub, letterSpacing:0.5 }}>
@@ -3460,6 +3490,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         onSpendRunes={() => { void retryCurrentVocabularyCardAfterRecovery('runes'); }}
         onEndSession={endAttemptsExhaustedVocabularySession}
       />
+      {runeFlight.flight && (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      )}
     </View>
   );
 }

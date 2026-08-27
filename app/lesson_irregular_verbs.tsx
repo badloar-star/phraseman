@@ -52,7 +52,10 @@ import {
 } from './vocabulary_target_gate';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import AnimatedCountUpText from '../components/AnimatedCountUpText';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -344,6 +347,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     // экран со случайным стартовым счётчиком. Параметр читает родитель.
     devFakeStartRunes,
   });
+  const runeFlight = usePracticeRuneFlight();
   // Уже знакомые глаголы тренируем воспроизведением; новые — узнаванием.
   const isRecallVerb = useCallback((base: string): boolean => {
     return (initCounts[base] ?? 0) >= 2;
@@ -530,7 +534,10 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         // зачем (владелец, 2026-08-27): руна — за глагол целиком, засчитанный
         // без единой ошибки по всем трём формам. Ошибка на любой форме — руны
         // не будет за этот проход глагола, ровно как и медаль/XP ниже.
-        if (noErrors) practiceRunes.onCorrectAnswer(verb.base);
+        if (noErrors) {
+          const awarded = practiceRunes.onCorrectAnswer(verb.base);
+          if (awarded > 0) runeFlight.fly(awarded);
+        }
         if (noErrors) {
           // Correct — mark as learned
           // [FeedbackKit] Мини-победа «Глагол освоен» — на СУЩЕСТВУЮЩЕЕ событие
@@ -656,9 +663,19 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         </Text>
         <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>{learnedCnt} / {verbs.length}</Text>
         {totalPts > 0 && (
-          <View style={{ flexDirection: 'row', gap: 6, backgroundColor: t.correctBg, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: t.correctBg, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
             <Ionicons name="star" size={16} color={t.correct} />
-            <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>{pack.words.plusPoints(totalPts)}</Text>
+            {/* зачем (владелец, 2026-08-27): count-up вместо статичного числа —
+                pack.words.plusPoints(n) возвращает целую строку с числом внутри,
+                поэтому число вырезается по заведомо уникальному маркеру. */}
+            <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>
+              {pack.words.plusPoints(9999999).replace('9999999', '')}
+            </Text>
+            <AnimatedCountUpText
+              value={totalPts}
+              style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+              accessibilityLabel={pack.words.plusPoints(totalPts)}
+            />
           </View>
         )}
         {practiceRunes.runes > 0 && (
@@ -672,7 +689,12 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               accessibilityElementsHidden
               importantForAccessibility="no"
             />
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+{practiceRunes.runes}</Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+</Text>
+            <AnimatedCountUpText
+              value={practiceRunes.runes}
+              style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+              accessibilityLabel={`+${practiceRunes.runes}`}
+            />
           </View>
         )}
         <TouchableOpacity
@@ -757,8 +779,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         </Animated.View>
       )}
 
-      {/* ── Top card area ── */}
-      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
+      {/* ── Top card area ── источник полёта рун (владелец, 2026-08-27) */}
+      <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
 
         {/* Progress counter */}
         <View style={{ marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
@@ -776,13 +798,15 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             })}
           </Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <PracticeRuneCounter
-              runes={practiceRunes.runes}
-              lang={lang}
-              backgroundColor={t.bgCard}
-              color={t.textPrimary}
-              testID="irregular-verbs-practice-runes"
-            />
+            <View ref={runeFlight.counterRef} collapsable={false}>
+              <PracticeRuneCounter
+                runes={practiceRunes.runes}
+                lang={lang}
+                backgroundColor={t.bgCard}
+                color={t.textPrimary}
+                testID="irregular-verbs-practice-runes"
+              />
+            </View>
             <SessionAttemptsHud
               remaining={attempts.state.remainingAttempts}
               locale={lang}
@@ -1007,6 +1031,15 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         onSpendRunes={() => { void retryCurrentVerbFormAfterRecovery('runes'); }}
         onEndSession={endAttemptsExhaustedVerbSession}
       />
+      {runeFlight.flight && (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      )}
     </View>
   );
 }

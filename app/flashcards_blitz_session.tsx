@@ -32,7 +32,9 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -157,6 +159,7 @@ export default function FlashcardsBlitzSession() {
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
   });
+  const runeFlight = usePracticeRuneFlight();
   // «Руны засчитываются, когда игрок дошёл до экрана празднования» — здесь
   // это появление result (раунд завершён по таймеру/жизням).
   useEffect(() => {
@@ -473,7 +476,10 @@ export default function FlashcardsBlitzSession() {
       // зачем (владелец, 2026-08-27): руна за карточку, засчитывается один раз
       // за раунд — если та же карточка выпадет снова в этом же раунде,
       // копилка отклонит повтор сама (already-credited).
-      if (isOk) practiceRunes.onCorrectAnswer(question.card.id);
+      if (isOk) {
+        const awarded = practiceRunes.onCorrectAnswer(question.card.id);
+        if (awarded > 0) runeFlight.fly(awarded);
+      }
 
       const answerAttemptId = [
         'flashcard-blitz',
@@ -951,13 +957,15 @@ export default function FlashcardsBlitzSession() {
               основной шапкой — та и так плотная (попытки + выбор наборов),
               добавление сюда же сжало бы существующие элементы. */}
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 6 }}>
-            <PracticeRuneCounter
-              runes={practiceRunes.runes}
-              lang={lang}
-              backgroundColor={t.bgCard}
-              color={t.textPrimary}
-              testID="fc-blitz-practice-runes"
-            />
+            <View ref={runeFlight.counterRef} collapsable={false}>
+              <PracticeRuneCounter
+                runes={practiceRunes.runes}
+                lang={lang}
+                backgroundColor={t.bgCard}
+                color={t.textPrimary}
+                testID="fc-blitz-practice-runes"
+              />
+            </View>
           </View>
           {/* Header: назад · «Блиц · набор» · жизни-сердечки */}
           <View style={styles.headerRow}>
@@ -1023,8 +1031,8 @@ RU: ${question.card.translation}`}
             />
           </View>
 
-          {/* Счёт · время · комбо */}
-          <View style={styles.scoreRow}>
+          {/* Счёт · время · комбо — источник полёта рун (владелец, 2026-08-27) */}
+          <View ref={runeFlight.originRef} collapsable={false} style={styles.scoreRow}>
             <View style={{ minWidth: 90 }}>
               <Reanimated.View style={scoreStyle}>
                 <Text
@@ -1124,6 +1132,15 @@ RU: ${question.card.translation}`}
         onSpendRunes={() => { void recoverBlitzAttempts('runes'); }}
         onEndSession={endExhaustedBlitz}
       />
+      {runeFlight.flight && (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      )}
     </ScreenGradient>
   );
 }

@@ -27,6 +27,34 @@ function readSource(relativePath: string): string {
   return fs.readFileSync(path.join(functionsSrc, relativePath), 'utf8');
 }
 
+// зачем: обход дерева для надгробий мёртвых коллекций — нужно доказать, что
+// писателя нет НИГДЕ, а не только в бывшем файле. node_modules и .codex-tmp
+// (устаревшие снимки чужих worktree) исключены: там лежат копии удалённого
+// кода, они дали бы ложное срабатывание и лишнюю память.
+const SOURCE_SCAN_SKIP = new Set(['node_modules', '.codex-tmp', '.git', '.claude', 'dist', 'lib', 'build', 'coverage']);
+
+function sourceFilesUnder(directories: readonly string[]): readonly string[] {
+  const found: string[] = [];
+  const walk = (dir: string): void => {
+    let entries: fs.Dirent[];
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        if (SOURCE_SCAN_SKIP.has(entry.name)) continue;
+        walk(path.join(dir, entry.name));
+      } else if (/\.(ts|tsx)$/.test(entry.name)) {
+        found.push(path.join(dir, entry.name));
+      }
+    }
+  };
+  for (const dir of directories) walk(dir);
+  return found;
+}
+
 interface FieldContract {
   /** Департамент, который сломается молча. */
   readonly department: string;
@@ -232,21 +260,36 @@ const INTENTIONALLY_UNREAD_LOCAL_ECONOMY_RECEIPTS = [
   },
 ] as const;
 
-const MONEY_WRITER_CONTRACTS = [
+// зачем: чекпойнт 96c32bb97 (прошёл с --no-verify) вырезал единственного
+// писателя в client_economy_opening / client_economy_operations из
+// app/economy/client_shard_operation_sync.ts. Экономия переехала в
+// PhoneState-сегменты (app/economy/client_shard_operation_ledger.ts:568 →
+// commitPhoneStateEconomyOperation), а personal_sync_segments по плану
+// docs/superpowers/plans/2026-08-20-phone-authoritative-journal-02-segment-sync.md
+// намеренно НЕ читается Джарвисом («do not invent business metrics from opaque
+// personal payloads») и по firestore.rules доступен только владельцу аккаунта.
+// Поэтому строки этих полей убраны из MONEY_WRITER_CONTRACTS не как ослабление,
+// а как смена предмета проверки: ниже сторож требует, чтобы коллекции ОСТАВАЛИСЬ
+// мёртвыми. Если писателя когда-нибудь вернут — тест упадёт и заставит осознанно
+// решить вопрос приватности, а не воскресить источник молча.
+const DEAD_MONEY_COLLECTIONS = [
   {
-    writer: 'app/economy/client_shard_operation_sync.ts',
-    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    collection: 'client_economy_opening',
     field: 'openingBalance',
-    writerPattern: /\.collection\('client_economy_opening'\)[\s\S]{0,500}openingRef\.set\(\{[\s\S]{0,300}\bopeningBalance\b/,
-    readerPattern: /\bopeningBalance:\s*number\(data\.openingBalance\)/,
+    removedIn: '96c32bb97',
+    formerWriter: 'app/economy/client_shard_operation_sync.ts',
+    successor: 'personal_sync_segments',
   },
   {
-    writer: 'app/economy/client_shard_operation_sync.ts',
-    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    collection: 'client_economy_operations',
     field: 'createdAtMs',
-    writerPattern: /\.collection\('client_economy_operations'\)[\s\S]{0,300}\.set\(clientShardOperationForCloud\(operation\)/,
-    readerPattern: /\.where\('createdAtMs',\s*'<='\s*,\s*input\.nowMs\)/,
+    removedIn: '96c32bb97',
+    formerWriter: 'app/economy/client_shard_operation_sync.ts',
+    successor: 'personal_sync_segments',
   },
+] as const;
+
+const MONEY_WRITER_CONTRACTS = [
   {
     writer: 'functions/src/revenuecat_shards.ts',
     reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
@@ -473,6 +516,47 @@ describe('Jarvis data contract — silence must never replace a broken source', 
         : `JARVIS MONEY READER DRIFT: ${reader} no longer bounds/reads ${field}`;
       expect(writerVerdict).toBe('ok');
       expect(readerVerdict).toBe('ok');
+    },
+  );
+
+  test.each(DEAD_MONEY_COLLECTIONS)(
+    'dead money collection $collection has no writer anywhere and stays out of the money contract table',
+    ({ collection, field, formerWriter, successor }) => {
+      // Писателя нет ни в клиенте, ни в функциях: сканируем реальные исходники,
+      // а не только бывший файл — иначе воскрешение в соседнем модуле пройдёт мимо.
+      const call = String.raw`\.collection\('${collection}'\)[\s\S]{0,400}\.`;
+      const writeMarker = new RegExp(String.raw`${call}set\(|${call}add\(`);
+      const offenders = sourceFilesUnder([
+        path.join(root, 'app'),
+        path.join(root, 'modules'),
+        functionsSrc,
+      ]).filter((file) => {
+        if (file === path.join(functionsSrc, 'jarvis', 'jarvis_data_contract_guard.test.ts')) return false;
+        return writeMarker.test(fs.readFileSync(file, 'utf8'));
+      }).map((file) => path.relative(root, file).split(path.sep).join('/'));
+
+      const writerVerdict = offenders.length === 0
+        ? 'ok'
+        : `DEAD MONEY COLLECTION RESURRECTED: ${collection} снова пишется в ${offenders.join(', ')} — верните её в MONEY_WRITER_CONTRACTS и решите вопрос приватности осознанно`;
+      expect(writerVerdict).toBe('ok');
+
+      // Бывший писатель обязан остаться немым адаптером, иначе надгробие врёт.
+      const formerSource = fs.readFileSync(path.join(root, formerWriter), 'utf8');
+      const formerVerdict = formerSource.includes(collection)
+        ? `DEAD MONEY WRITER RETURNED: ${formerWriter} снова упоминает ${collection}`
+        : 'ok';
+      expect(formerVerdict).toBe('ok');
+
+      // Мёртвый источник не должен числиться живым контрактом денег.
+      expect(MONEY_WRITER_CONTRACTS).not.toContainEqual(
+        expect.objectContaining({ field, writer: formerWriter }),
+      );
+
+      // Преемник остаётся намеренно нечитаемым: метрики из личного журнала не изобретаем.
+      expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+        collection: successor,
+        authority: 'intentionally_unread_personal_payload',
+      }));
     },
   );
 

@@ -33,6 +33,7 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { safeRouterBack } from './navigation_back';
+import { markAvatarSectionVisited } from './avatar_nudge_state';
 import { triLang, type Lang } from '../constants/i18n';
 import {
   NO_AVATAR_AURA_ID,
@@ -44,11 +45,13 @@ import {
   CUSTOM_AVATAR_GRADIENTS,
   customAvatarGradientNameForLang,
   customAvatarNameForLang,
+  encodeCustomAvatarOwnedStyle,
   getCustomAvatarPurchaseCost,
   getCustomAvatarById,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
   type CustomAvatarDef,
+  type CustomAvatarArtVersion,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
 import {
@@ -135,6 +138,10 @@ import {
   avatarShowcaseTierTitle,
 } from './avatar_showcase_copy';
 import { isAvatarDNAEnabled } from './remote_flags';
+import {
+  grantAllCustomizationForDev,
+  hasAllCustomizationDevGrant,
+} from './customization_dev_grant';
 
 const GRID_GAP = 10;
 const GRID_PAD = 16;
@@ -190,6 +197,14 @@ const RU: StudioCopy = RU_STUDIO;
 
 const STUDIO_COPY: Record<Lang, StudioCopy> = {
   ru: RU,
+  en: {
+    title: 'Studio', preview: 'Look preview', avatars: 'Avatars', auras: 'Auras', all: 'All', mine: 'Mine', catalog: 'Catalog',
+    apply: 'Apply look', applied: 'Look applied', purchased: 'Added to collection', buy: 'Unlock', buyApply: 'Unlock and wear', plus: 'Unlock Plus',
+    reward: 'Special reward', owned: 'In collection', selected: 'Selected', noAura: 'No aura', levelAvatar: 'Level avatar', resetLevelAvatar: 'Restore level avatar',
+    levelAvatarEnabled: 'Level avatar restored', editAvatar: 'Customize avatar', applyStyle: 'Choose style', dark: 'Dark', light: 'Light',
+    cancel: 'Cancel', confirm: 'Unlock', purchaseTitle: 'Unlock this look?', purchaseError: "Couldn't unlock. Try again.",
+    applyError: "Couldn't apply the look. Try again.", rewardHint: 'This reward is given for special contributions',
+  },
   uk: {
     title: 'Студія', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
     apply: 'Застосувати образ', applied: 'Образ застосовано', purchased: 'Додано до колекції', buy: 'Відкрити', buyApply: 'Відкрити й надіти', plus: 'Відкрити Plus',
@@ -252,8 +267,17 @@ function studioCopy(lang: Lang): StudioCopy {
   return STUDIO_COPY[lang];
 }
 
-function localized(lang: Lang, copy: Record<Lang, string>): string {
-  return copy[lang];
+// зачем: локальный аналог triLang() с тем же безопасным фолбэком — раньше
+// требовал Record<Lang, string> строго на всех 9 языках, и краш Студии
+// 2026-08-27 (STUDIO_COPY[lang] === undefined на en) показал, что все
+// вызовы этой функции в файле не задавали en. Вместо правки 10+ call sites
+// делаем саму функцию терпимой, как triLang.
+function localized(lang: Lang, copy: { ru: string; uk: string; es: string } & Partial<Record<Exclude<Lang, 'ru' | 'uk' | 'es'>, string>>): string {
+  if (lang !== 'ru' && lang in copy) return copy[lang as keyof typeof copy] as string ?? copy.es;
+  // зачем (предложение phraseman-d0): для en без своего ключа латиница (ES)
+  // читается как «не мой язык», кириллица (RU) — как поломка экрана.
+  if (lang === 'en') return copy.es ?? copy.ru;
+  return copy.ru;
 }
 
 function slavicPlural(count: number, one: string, few: string, many: string): string {
@@ -374,7 +398,7 @@ async function readFreshCustomizationSnapshot(): Promise<CustomizationSnapshot> 
 
 function encodeOwnedStyle(avatarValue: string): string {
   const parsed = parseCustomAvatarValue(avatarValue);
-  return parsed ? `${parsed.gradientId}:${parsed.logoColor}` : `${CUSTOM_AVATAR_GRADIENTS[0].id}:black`;
+  return parsed ? encodeCustomAvatarOwnedStyle(parsed) : `${CUSTOM_AVATAR_GRADIENTS[0].id}:black`;
 }
 
 function availabilityStatus(
@@ -423,8 +447,11 @@ export default function AvatarSelect() {
   const [avatarCatalogFilter, setAvatarCatalogFilter] = useState<AvatarCatalogFilter>('all');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
+  const [editorArtVersion, setEditorArtVersion] = useState<CustomAvatarArtVersion | undefined>(undefined);
   const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
   const [avatarDNAEnabled, setAvatarDNAEnabled] = useState(false);
+  const [devAllUnlocked, setDevAllUnlocked] = useState(false);
+  const [devGrantBusy, setDevGrantBusy] = useState(false);
 
   useEffect(() => {
     const subscription = onAppEvent('cosmetic_asset_catalog_changed', () => {
@@ -491,6 +518,17 @@ export default function AvatarSelect() {
   // а не по таймеру: к моменту примерки слои уже на диске. Повторно ничего не
   // качается — прогретые URL помнятся в рамках сессии.
   useEffect(() => { prefetchAllAvatarAuraArt(); }, []);
+
+  // зачем: раздел открыт — намёк-покачивание аватарки на Главной больше не
+  // нужен никогда (владелец, 2026-08-27). Отметка стоит здесь, а не в
+  // обработчике нажатия на Главной: сюда же ведут модалки подарков за уровень,
+  // и после такого захода намёк тоже обязан замолчать.
+  useEffect(() => { void markAvatarSectionVisited(); }, []);
+
+  useEffect(() => {
+    if (!__DEV__) return;
+    void hasAllCustomizationDevGrant().then(setDevAllUnlocked).catch(() => {});
+  }, []);
 
   useFocusEffect(useCallback(() => {
     if (Date.now() - lastValidationRef.current < REVALIDATE_TTL_MS) return undefined;
@@ -575,7 +613,9 @@ export default function AvatarSelect() {
       .catch(() => {});
   }, [purchaseDeps]);
 
-  const effectivePreviewAuraId = resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip, isPro);
+  const effectivePreviewAuraId = __DEV__ && devAllUnlocked
+    ? normalizeAvatarAuraId(previewStoredAuraSelection)
+    : resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip, isPro);
   // зачем: «Аватар уровня» — первая плитка каталога вместо скрытого меню-трёх-точек:
   // возврат к уровню выбирается так же, как любой другой аватар («Вернуть аватар уровня»
   // больше не прячется за многоточием).
@@ -591,8 +631,9 @@ export default function AvatarSelect() {
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
     activeAvatar: confirmed.activeAvatar,
+    devUnlockAll: __DEV__ && devAllUnlocked,
     catalogRevision: cosmeticCatalogRevision,
-  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, cosmeticCatalogRevision]);
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, devAllUnlocked, cosmeticCatalogRevision]);
   const auraItems = useMemo(() => buildAuraCatalog({
     activeAvatar: previewAvatarValue,
     activeAuraId: confirmed.storedAuraSelection,
@@ -601,8 +642,9 @@ export default function AvatarSelect() {
     isPremium,
     isVip,
     isPro,
+    devUnlockAll: __DEV__ && devAllUnlocked,
     catalogRevision: cosmeticCatalogRevision,
-  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro, cosmeticCatalogRevision]);
+  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro, devAllUnlocked, cosmeticCatalogRevision]);
   const catalogItems = useMemo<CatalogCardItem[]>(
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
@@ -644,6 +686,7 @@ export default function AvatarSelect() {
     avatarAvailability,
     auraAvailability,
     ownedAvatarStyles: confirmed.ownedAvatars,
+    devUnlockAll: __DEV__ && devAllUnlocked,
   });
 
   const previewAvatarLabel = selectedAvatarItem?.kind === 'custom-avatar' ? customAvatarNameForLang(selectedAvatarItem.avatar, lang) : copy.levelAvatar;
@@ -720,6 +763,31 @@ export default function AvatarSelect() {
   const showToast = useCallback((kind: 'success' | 'error' | 'info', text: string) => {
     emitAppEvent('action_toast', actionToastTri(kind, { ru: text, uk: text, es: text, 'pt-BR': text, vi: text, id: text, tr: text, pl: text }));
   }, []);
+
+  const handleDevUnlockAll = useCallback(async () => {
+    if (!__DEV__ || devGrantBusy) return;
+    setDevGrantBusy(true);
+    try {
+      await grantAllCustomizationForDev();
+      const fresh = await readFreshCustomizationSnapshot();
+      publishCustomizationSnapshot(fresh);
+      setDevAllUnlocked(true);
+      showToast('success', localized(lang, {
+        ru: 'Все Avatar100 и ауры открыты для тестирования',
+        uk: 'Усі Avatar100 та аури відкриті для тестування',
+        es: 'Avatar100 y todas las auras están disponibles para pruebas',
+        'pt-BR': 'Avatar100 e todas as auras foram liberados para testes',
+        vi: 'Đã mở Avatar100 và mọi hào quang để thử nghiệm',
+        id: 'Avatar100 dan semua aura terbuka untuk pengujian',
+        tr: 'Avatar100 ve tüm auralar test için açıldı',
+        pl: 'Avatar100 i wszystkie aury odblokowano do testów',
+      }));
+    } catch {
+      showToast('error', copy.applyError);
+    } finally {
+      setDevGrantBusy(false);
+    }
+  }, [copy.applyError, devGrantBusy, lang, publishCustomizationSnapshot, showToast]);
 
   const handleAction = useCallback(async () => {
     if (busy) return;
@@ -799,6 +867,7 @@ export default function AvatarSelect() {
     if (!def) return;
     setEditorGradientId(parsed.gradientId);
     setEditorLogoColor(parsed.logoColor);
+    setEditorArtVersion(parsed.artVersion);
     setEditorAvatar(def);
   }, []);
 
@@ -901,6 +970,28 @@ export default function AvatarSelect() {
       <View style={styles.controls}>
         <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
       </View>
+      {__DEV__ ? (
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={localized(lang, {
+            ru: 'Открыть все Avatar100 и ауры для тестирования',
+            uk: 'Відкрити всі Avatar100 та аури для тестування',
+            es: 'Desbloquear Avatar100 y todas las auras para pruebas',
+            'pt-BR': 'Liberar Avatar100 e todas as auras para testes',
+            vi: 'Mở Avatar100 và mọi hào quang để thử nghiệm',
+            id: 'Buka Avatar100 dan semua aura untuk pengujian',
+            tr: 'Avatar100 ve tüm auraları test için aç',
+            pl: 'Odblokuj Avatar100 i wszystkie aury do testów',
+          })}
+          accessibilityState={{ disabled: devGrantBusy }}
+          disabled={devGrantBusy}
+          onPress={handleDevUnlockAll}
+          style={[styles.devUnlockButton, { backgroundColor: t.correct, opacity: devGrantBusy ? 0.65 : 1 }]}
+        >
+          <Ionicons name="lock-open-outline" size={20} color={t.correctText} />
+          <Text style={[styles.devUnlockText, { color: t.correctText }]}>DEV · Avatar100 + Auras</Text>
+        </Pressable>
+      ) : null}
       {activeTab === 'avatars' ? (
         <View style={styles.filterRail} accessibilityRole="tablist">
           {([
@@ -949,7 +1040,7 @@ export default function AvatarSelect() {
         </View>
       </View>
     </View>
-  ), [insets.top, t, themeMode, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router, avatarDNAEnabled, avatarCatalogFilter, catalogPrices, catalogHeading, displayCatalogItems.length, selectedTierPrice]);
+  ), [insets.top, t, themeMode, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router, avatarDNAEnabled, avatarCatalogFilter, catalogPrices, catalogHeading, displayCatalogItems.length, selectedTierPrice, devGrantBusy, handleDevUnlockAll]);
 
   // зачем: сцена «передаёт» превью в закреплённый бар при скролле — образ всегда на
   // глазах, пока листаешь каталог (главная боль старого экрана). Интерполяции живут на
@@ -1055,7 +1146,12 @@ export default function AvatarSelect() {
           onGradientChange={setEditorGradientId}
           onLogoColorChange={setEditorLogoColor}
           onConfirm={() => {
-            if (editorAvatar) setPreviewAvatarValue(makeCustomAvatarValue(editorAvatar.id, editorGradientId, editorLogoColor));
+            if (editorAvatar) setPreviewAvatarValue(makeCustomAvatarValue(
+              editorAvatar.id,
+              editorGradientId,
+              editorLogoColor,
+              editorArtVersion,
+            ));
             setEditorAvatar(null);
           }}
           onClose={() => setEditorAvatar(null)}
@@ -1099,6 +1195,11 @@ const styles = StyleSheet.create({
   balanceCoin: { width: 17, height: 17 },
   balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
   controls: { paddingHorizontal: GRID_PAD, paddingTop: 12, paddingBottom: 10, alignItems: 'flex-end' },
+  devUnlockButton: {
+    minHeight: 48, marginHorizontal: GRID_PAD, marginBottom: 12, borderRadius: 16,
+    paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+  },
+  devUnlockText: { fontSize: 14, lineHeight: 19, fontWeight: '900', letterSpacing: 0.2 },
   filterRail: {
     paddingHorizontal: GRID_PAD, paddingBottom: 10, gap: 8,
     flexDirection: 'row', flexWrap: 'wrap',

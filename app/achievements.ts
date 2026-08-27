@@ -783,6 +783,10 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
 const ACHIEVEMENT_NAME_PICKERS: Record<Lang, AchievementLocalePicker> = {
   ru: (achievement) => achievement.nameRu,
   uk: (achievement) => achievement.nameUk,
+  // зачем: English — чисто UI-язык, контентного nameEn нет и не планируется
+  // (см. app/source_locales.ts) — фолбэк на RU, как остальные picker'ы на
+  // недостающие переводы.
+  en: (achievement) => achievement.nameRu,
   es: (achievement) => achievement.nameEs ?? ACHIEVEMENT_ES[achievement.id]?.nameEs,
   'pt-BR': (achievement) => plannedAchievementCopy(achievement, 'pt-BR', 'name'),
   vi: (achievement) => plannedAchievementCopy(achievement, 'vi', 'name'),
@@ -794,6 +798,7 @@ const ACHIEVEMENT_NAME_PICKERS: Record<Lang, AchievementLocalePicker> = {
 const ACHIEVEMENT_DESC_PICKERS: Record<Lang, AchievementLocalePicker> = {
   ru: (achievement) => achievement.descRu,
   uk: (achievement) => achievement.descUk,
+  en: (achievement) => achievement.descRu,
   es: (achievement) => achievement.descEs ?? ACHIEVEMENT_ES[achievement.id]?.descEs,
   'pt-BR': (achievement) => plannedAchievementCopy(achievement, 'pt-BR', 'description'),
   vi: (achievement) => plannedAchievementCopy(achievement, 'vi', 'description'),

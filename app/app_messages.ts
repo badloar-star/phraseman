@@ -932,9 +932,12 @@ export function pickAppMessageText(
   // Переводы заполняет админка авто-переводом (OpenAI) при отправке — для каждого языка
   // приходит настоящий текст, поэтому здесь намеренно НЕТ фолбэка на RU: «planned»-сообщения
   // на чужом языке не должны молча показываться по-русски (см. тест app_messages.test.ts).
+  // Исключение — en: поля titleEn/messageEn в AppMessage не заведены (это чисто
+  // UI-язык, контента для него нет), поэтому явный фолбэк на RU здесь оправдан.
   const byLang: Record<AppMessageLang, { title: string; body: string }> = {
     ru: { title: message.titleRu, body: message.messageRu },
     uk: { title: message.titleUk || message.titleRu, body: message.messageUk || message.messageRu },
+    en: { title: message.titleRu, body: message.messageRu },
     es: { title: message.titleEs || message.titleRu, body: message.messageEs || message.messageRu },
     'pt-BR': { title: message.titlePtBr, body: message.messagePtBr },
     vi: { title: message.titleVi, body: message.messageVi },
@@ -949,6 +952,7 @@ export function pickAppMessagePollQuestion(poll: AppMessagePoll, lang: AppMessag
   const byLang: Record<AppMessageLang, string> = {
     ru: poll.questionRu,
     uk: poll.questionUk || poll.questionRu,
+    en: poll.questionRu,
     es: poll.questionEs || poll.questionRu,
     'pt-BR': poll.questionPtBr,
     vi: poll.questionVi,
@@ -963,6 +967,7 @@ export function pickAppMessagePollOptionText(option: AppMessagePollOption, lang:
   const byLang: Record<AppMessageLang, string> = {
     ru: option.textRu,
     uk: option.textUk || option.textRu,
+    en: option.textRu,
     es: option.textEs || option.textRu,
     'pt-BR': option.textPtBr,
     vi: option.textVi,

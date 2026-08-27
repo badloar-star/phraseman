@@ -39,6 +39,7 @@ export interface AiOfflineScreen {
 type MultiLangText = {
   ru: string;
   uk: string;
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;

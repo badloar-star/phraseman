@@ -268,6 +268,7 @@ function achievementShelfCategoryLabel(category: ShelfCategory, lang: Lang): str
 const ACHIEVEMENT_DATE_LOCALES: Record<Lang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
+  en: 'en-US',
   es: 'es-ES',
   'pt-BR': 'pt-BR',
   vi: 'vi-VN',
@@ -324,6 +325,7 @@ function achievementCountLabel(count: number, lang: Lang): string {
   const labels: Record<Lang, string> = {
     ru: pluralRu(),
     uk: pluralUk(),
+    en: `${n} reward${n === 1 ? '' : 's'}`,
     es: `${n} recompensa${n === 1 ? '' : 's'}`,
     'pt-BR': `${n} recompensa${n === 1 ? '' : 's'}`,
     vi: `${n} phần thưởng`,
@@ -339,6 +341,7 @@ function achievementCountPairLabel(unlocked: number, total: number, lang: Lang):
   const labels: Record<Lang, string> = {
     ru: `${unlocked}/${total} наград`,
     uk: `${unlocked}/${total} нагород`,
+    en: `${unlocked}/${total} rewards`,
     es: `${unlocked}/${total} recompensas`,
     'pt-BR': `${unlocked}/${total} recompensas`,
     vi: `${unlocked}/${total} phần thưởng`,

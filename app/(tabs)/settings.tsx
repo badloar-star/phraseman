@@ -324,16 +324,17 @@ export default function SettingsMain() {
   const L = (
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const showInfoAlert = React.useCallback(
     (title: string, message: string) => {
-      void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'), message, 'OK');
+      void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'), message, 'OK');
     },
     [lang],
   );
@@ -355,7 +356,7 @@ export default function SettingsMain() {
   const alertOverName = React.useCallback(
     (message: string) => {
       Alert.alert(
-        L('Сообщение', 'Повідомлення', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
+        L('Сообщение', 'Повідомлення', 'Message', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
         message,
       );
     },
@@ -922,10 +923,10 @@ export default function SettingsMain() {
   const saveName = async () => {
     if (nameSavingRef.current) return;
     const trimmed = newName.trim();
-    if (!trimmed) { alertOverName(L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
-    if (trimmed.length < 2) { alertOverName(L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
-    if (trimmed.length > 20) { alertOverName(L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
-    if (containsBadWord(trimmed)) { alertOverName(L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
+    if (!trimmed) { alertOverName(L('Введи имя', "Введіть ім\'я", 'Enter a name', 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
+    if (trimmed.length < 2) { alertOverName(L('Минимум 2 символа', 'Мінімум 2 символи', 'Minimum 2 characters', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
+    if (trimmed.length > 20) { alertOverName(L('Максимум 20 символов', 'Максимум 20 символів', 'Maximum 20 characters', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
+    if (containsBadWord(trimmed)) { alertOverName(L('Недопустимое имя', "Недопустиме ім\'я", 'Invalid name', 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
 
     const oldName = userName.trim();
     if (trimmed === oldName) {
@@ -1001,7 +1002,7 @@ export default function SettingsMain() {
 
       if (reservation.status === 'taken') {
         rollbackToOldName();
-        setNameChangeNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+        setNameChangeNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
         return;
       }
       if (reservation.status === 'cooldown') {
@@ -1009,6 +1010,7 @@ export default function SettingsMain() {
         setNameChangeNotice(L(
           'Ник можно менять не чаще одного раза в 14 дней.',
           'Нік можна змінювати не частіше одного разу на 14 днів.',
+          'You can change your nickname no more than once every 14 days.',
           'Puedes cambiar el nombre solo una vez cada 14 días.',
           'Você só pode mudar o nome uma vez a cada 14 dias.',
           'Bạn chỉ có thể đổi tên 14 ngày một lần.',
@@ -1023,6 +1025,7 @@ export default function SettingsMain() {
         setNameChangeNotice(L(
           'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
           'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
+          'Could not verify the name. Check your connection and try again.',
           'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
           'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
           'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
@@ -1048,29 +1051,29 @@ export default function SettingsMain() {
   const tierName = premiumPlan === 'max_monthly' ? 'MAX' : isPro ? 'Pro' : 'Plus';
 
   const vipExpiryText = vipUntilMs > 0
-    ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
-    : L(`${tierName} без срока окончания`, `${tierName} без дати завершення`, `${tierName} has no end date`, `${tierName} sem data de término`, `${tierName} không có ngày kết thúc`, `${tierName} tanpa tanggal akhir`, `${tierName} bitiş tarihi yok`, `${tierName} bez daty zakończenia`);
+    ? `${L('Действует до', 'Діє до', 'Active until', 'Activo hasta', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
+    : L(`${tierName} без срока окончания`, `${tierName} без дати завершення`, `${tierName} has no end date`, `${tierName} sin fecha de finalización`, `${tierName} sem data de término`, `${tierName} không có ngày kết thúc`, `${tierName} tanpa tanggal akhir`, `${tierName} bitiş tarihi yok`, `${tierName} bez daty zakończenia`);
 
   const vipAccessTitle = (() => {
     switch (vipPlan) {
       case 'promo':
       case 'promo_lifetime':
-        return L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny');
+        return L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny');
       case 'referral':
-        return L('Подарок за приглашения', 'Подарунок за запрошення', 'Referral gift', 'Presente por convite', 'Quà mời bạn bè', 'Hadiah undangan', 'Davet hediyesi', 'Prezent za zaproszenia');
+        return L('Подарок за приглашения', 'Подарунок за запрошення', 'Referral gift', 'Regalo por invitaciones', 'Presente por convite', 'Quà mời bạn bè', 'Hadiah undangan', 'Davet hediyesi', 'Prezent za zaproszenia');
       case 'survey_vip':
-        return L('Plus за опрос', 'Plus за опитування', 'Plus for survey', 'Plus por pesquisa', 'Plus từ khảo sát', 'Plus dari survei', 'Anket Plus', 'Plus za ankietę');
+        return L('Plus за опрос', 'Plus за опитування', 'Plus for survey', 'Plus por encuesta', 'Plus por pesquisa', 'Plus từ khảo sát', 'Plus dari survei', 'Anket Plus', 'Plus za ankietę');
       case 'idea_reward':
-        return L('Plus за идею', 'Plus за ідею', 'Plus for an idea', 'Plus por ideia', 'Plus cho ý tưởng', 'Plus untuk ide', 'Fikir Plus', 'Plus za pomysł');
+        return L('Plus за идею', 'Plus за ідею', 'Plus for an idea', 'Plus por idea', 'Plus por ideia', 'Plus cho ý tưởng', 'Plus untuk ide', 'Fikir Plus', 'Plus za pomysł');
       case 'telegram_tester':
-        return L('Тестерский Plus', 'Тестерський Plus', 'Tester Plus', 'Plus de testador', 'Plus thử nghiệm', 'Plus tester', 'Test Plus', 'Tester Plus');
+        return L('Тестерский Plus', 'Тестерський Plus', 'Tester Plus', 'Plus de tester', 'Plus de testador', 'Plus thử nghiệm', 'Plus tester', 'Test Plus', 'Tester Plus');
       // зачем: бессрочная выдача из админки — это Pro (владелец, 2026-08-03),
       // а срочная остаётся Plus. Отдельного плана у админки нет: и месяц, и
       // «бессрочно» пишут admin_vip, поэтому тир берём из общего tierName.
       case 'admin_vip':
-        return L(`Выданный ${tierName}`, `Виданий ${tierName}`, `Granted ${tierName}`, `${tierName} concedido`, `${tierName} được cấp`, `${tierName} diberikan`, `Verilen ${tierName}`, `Przyznany ${tierName}`);
+        return L(`Выданный ${tierName}`, `Виданий ${tierName}`, `Granted ${tierName}`, `${tierName} concedido`, `${tierName} concedido`, `${tierName} được cấp`, `${tierName} diberikan`, `Verilen ${tierName}`, `Przyznany ${tierName}`);
       default:
-        return L(`Дополнительный ${tierName}-доступ`, `Додатковий ${tierName}-доступ`, `Extra ${tierName} access`, `Acesso ${tierName} extra`, `Quyền ${tierName} bổ sung`, `Akses ${tierName} tambahan`, `Ek ${tierName} erişimi`, `Dodatkowy dostęp ${tierName}`);
+        return L(`Дополнительный ${tierName}-доступ`, `Додатковий ${tierName}-доступ`, `Extra ${tierName} access`, `Acceso ${tierName} adicional`, `Acesso ${tierName} extra`, `Quyền ${tierName} bổ sung`, `Akses ${tierName} tambahan`, `Ek ${tierName} erişimi`, `Dodatkowy dostęp ${tierName}`);
     }
   })();
 
@@ -1090,8 +1093,8 @@ export default function SettingsMain() {
     plusAccessDetails.push({
       key: 'intro',
       icon: 'sparkles-outline',
-      title: L('Полный доступ на 3 дня', 'Повний доступ на 3 дні', 'Full access for 3 days', 'Acesso completo por 3 dias', 'Truy cập đầy đủ 3 ngày', 'Akses penuh 3 hari', '3 gün tam erişim', 'Pełny dostęp na 3 dni'),
-      subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(introFullAccessEndsAt)}`,
+      title: L('Полный доступ на 3 дня', 'Повний доступ на 3 дні', 'Full access for 3 days', 'Acceso completo por 3 días', 'Acesso completo por 3 dias', 'Truy cập đầy đủ 3 ngày', 'Akses penuh 3 hari', '3 gün tam erişim', 'Pełny dostęp na 3 dni'),
+      subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Activo hasta', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(introFullAccessEndsAt)}`,
     });
   }
 
@@ -1103,15 +1106,15 @@ export default function SettingsMain() {
   // зачем: подпись-расшифровка под названием убрана (запрет владельца + чистота
   // референса) — ряд Plus однострочный; при активном Plus справа короткий план.
   const plusRowLabel = hasPremiumAccess
-    ? `${tierName} ${L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
+    ? `${tierName} ${L('активирован', 'активовано', 'active', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
     : 'Phraseman Plus';
   const plusRowValue = hasPremiumAccess && isPremium
     ? (premiumPlan === 'max_monthly'
       ? 'MAX'
       : premiumPlan === 'yearly'
-      ? L('Год', 'Рік', 'Anual', 'Anual', 'Năm', 'Tahunan', 'Yıllık', 'Rok')
+      ? L('Год', 'Рік', 'Year', 'Anual', 'Anual', 'Năm', 'Tahunan', 'Yıllık', 'Rok')
       : premiumPlan === 'monthly'
-        ? L('Месяц', 'Місяць', 'Mensual', 'Mensal', 'Tháng', 'Bulanan', 'Aylık', 'Miesiąc')
+        ? L('Месяц', 'Місяць', 'Month', 'Mensual', 'Mensal', 'Tháng', 'Bulanan', 'Aylık', 'Miesiąc')
         : undefined)
     : undefined;
   const plusRowPress = () => {
@@ -1147,15 +1150,15 @@ export default function SettingsMain() {
       // зачем (аудит по Библии, 2026-08-26): «Вы уверены?» — обращение на «вы»
       // (Правило 14) и вопрос ни о чём. Заголовок называет само действие,
       // кнопки получили глаголы вместо «Да/Нет» (Правило 1).
-      L('Очистить кеш?', 'Очистити кеш?', '¿Vaciar la caché?', 'Limpar o cache?', 'Xoá bộ nhớ đệm?', 'Bersihkan cache?', 'Önbellek temizlensin mi?', 'Wyczyścić pamięć podręczną?'),
+      L('Очистить кеш?', 'Очистити кеш?', 'Clear cache?', '¿Vaciar la caché?', 'Limpar o cache?', 'Xoá bộ nhớ đệm?', 'Bersihkan cache?', 'Önbellek temizlensin mi?', 'Wyczyścić pamięć podręczną?'),
       // зачем: перечисление («рейтинги, сообщения, друзья») пугало — читалось как
       // удаление данных, хотя это лишь локальные копии. Оставлен голый вопрос:
       // слово «кеш» самодостаточно, кому надо — тот понимает.
       undefined,
       [
-        { text: L('Не сейчас', 'Не зараз', 'Ahora no', 'Agora não', 'Để sau', 'Nanti saja', 'Şimdi değil', 'Nie teraz'), style: 'cancel' as const },
+        { text: L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Để sau', 'Nanti saja', 'Şimdi değil', 'Nie teraz'), style: 'cancel' as const },
         {
-          text: L('Очистить', 'Очистити', 'Vaciar', 'Limpar', 'Xoá', 'Bersihkan', 'Temizle', 'Wyczyść'),
+          text: L('Очистить', 'Очистити', 'Clear', 'Vaciar', 'Limpar', 'Xoá', 'Bersihkan', 'Temizle', 'Wyczyść'),
           style: 'destructive' as const,
           onPress: () => {
             // зачем: раньше между тапом и алертом «Готово» экран молчал секунды, а
@@ -1259,7 +1262,7 @@ export default function SettingsMain() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: SETTINGS_GROUP_MARGIN, paddingTop: 12, paddingBottom: 8 }}>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chính', 'Beranda', 'Ana sayfa', 'Strona główna')}
+            accessibilityLabel={L('На главную', 'На головну', 'Home', 'Inicio', 'Início', 'Trang chính', 'Beranda', 'Ana sayfa', 'Strona główna')}
             onPressIn={() => doHaptic()}
             onPress={() => goHome()}
             style={{
@@ -1275,7 +1278,7 @@ export default function SettingsMain() {
             <Ionicons name="chevron-back" size={20} color={chipTextOff} />
           </TouchableOpacity>
           <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex: 1 }}>
-            {L('Настройки', 'Налаштування', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
+            {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>
         </View>
 
@@ -1311,7 +1314,7 @@ export default function SettingsMain() {
             testID="settings-promo-code-row"
             icon="ticket-outline"
             color="purple"
-            label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+            label={L('Ввести промокод', 'Ввести промокод', 'Enter code', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
             onPress={() => {
               doHaptic();
               router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any);
@@ -1333,8 +1336,8 @@ export default function SettingsMain() {
                 testID="settings-code-entry-submit"
                 accessibilityRole="button"
                 accessibilityLabel={codeEntryMode === 'promo'
-                  ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
-                  : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
+                  ? L('Ввести промокод', 'Ввести промокод', 'Enter code', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
+                  : L('Ввести реферальный код', 'Ввести реферальний код', 'Enter referral code', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
                 activeOpacity={0.6}
                 onPress={() => {
                   doHaptic();
@@ -1351,8 +1354,8 @@ export default function SettingsMain() {
                 <SettingsIconTile icon={codeEntryMode === 'promo' ? 'ticket-outline' : 'gift'} color={codeEntryMode === 'promo' ? 'purple' : 'pink'} />
                 <Text style={{ flex: 1, marginLeft: 12, marginRight: 8, color: screenPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                   {codeEntryMode === 'promo'
-                    ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
-                    : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
+                    ? L('Ввести промокод', 'Ввести промокод', 'Enter code', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
+                    : L('Ввести реферальный код', 'Ввести реферальний код', 'Enter referral code', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
                 </Text>
                 <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
               </TouchableOpacity>
@@ -1368,8 +1371,8 @@ export default function SettingsMain() {
                       accessibilityRole="button"
                       accessibilityState={{ selected: codeEntryMode === mode }}
                       accessibilityLabel={mode === 'promo'
-                        ? L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')
-                        : L('Реферальный код', 'Реферальний код', 'Código de invitación', 'Código de indicação', 'Mã giới thiệu', 'Kode referal', 'Davet kodu', 'Kod polecenia')}
+                        ? L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')
+                        : L('Реферальный код', 'Реферальний код', 'Referral code', 'Código de invitación', 'Código de indicação', 'Mã giới thiệu', 'Kode referal', 'Davet kodu', 'Kod polecenia')}
                       onPress={() => { doHaptic(); setCodeEntryMode(mode); }}
                       activeOpacity={0.8}
                       style={{
@@ -1386,8 +1389,8 @@ export default function SettingsMain() {
                         color: codeEntryMode === mode ? chipTextOn : t.textSecond,
                       }}>
                         {mode === 'promo'
-                          ? L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')
-                          : L('Реферальный код', 'Реферальний код', 'Código de invitación', 'Código de indicação', 'Mã giới thiệu', 'Kode referal', 'Davet kodu', 'Kod polecenia')}
+                          ? L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')
+                          : L('Реферальный код', 'Реферальний код', 'Referral code', 'Código de invitación', 'Código de indicação', 'Mã giới thiệu', 'Kode referal', 'Davet kodu', 'Kod polecenia')}
                       </Text>
                     </TouchableOpacity>
                   ))}
@@ -1400,7 +1403,7 @@ export default function SettingsMain() {
           <TouchableOpacity
             testID="settings-invite-banner"
             accessibilityRole="button"
-            accessibilityLabel={L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
+            accessibilityLabel={L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invite a friend — win Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
             activeOpacity={0.88}
             onPress={() => {
               doHaptic();
@@ -1418,12 +1421,12 @@ export default function SettingsMain() {
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12, gap: 10 }}>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                  {L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
+                  {L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invite a friend — win Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2, lineHeight: 17 }}>
                   {settingsReferralSurface.softEnabled
-                    ? L('Когда друг оформит Plus или Pro, ты получишь шанс выиграть Plus от 1 до 365 дней', 'Коли друг оформить Plus або Pro, ти отримаєш шанс виграти Plus від 1 до 365 днів', 'Cuando tu amigo compre Plus o Pro, tendrás la oportunidad de ganar Plus de 1 a 365 días', 'Quando seu amigo assinar Plus ou Pro, você terá a chance de ganhar Plus de 1 a 365 dias', 'Khi bạn bè mua Plus hoặc Pro, bạn có cơ hội thắng Plus từ 1 đến 365 ngày', 'Saat temanmu membeli Plus atau Pro, kamu berkesempatan memenangkan Plus 1–365 hari', 'Arkadaşın Plus veya Pro satın aldığında 1–365 gün Plus kazanma şansın olur', 'Gdy znajomy kupi Plus lub Pro, dostaniesz szansę wygrać Plus od 1 do 365 dni')
-                    : L('У тебя остались шансы выиграть Plus — забери их до срока', 'У тебе залишилися шанси виграти Plus — забери їх до строку', 'Te quedan oportunidades de ganar Plus: úsalas antes del plazo', 'Você ainda tem chances de ganhar Plus — use-as antes do prazo', 'Bạn vẫn còn cơ hội thắng Plus — hãy dùng trước hạn', 'Kamu masih punya kesempatan memenangkan Plus — pakai sebelum batas waktu', 'Plus kazanma şansların duruyor — süresi dolmadan kullan', 'Masz jeszcze szanse wygrać Plus — wykorzystaj je przed terminem')}
+                    ? L('Когда друг оформит Plus или Pro, ты получишь шанс выиграть Plus от 1 до 365 дней', 'Коли друг оформить Plus або Pro, ти отримаєш шанс виграти Plus від 1 до 365 днів', 'When a friend gets Plus or Pro, you get a chance to win Plus for 1 to 365 days', 'Cuando tu amigo compre Plus o Pro, tendrás la oportunidad de ganar Plus de 1 a 365 días', 'Quando seu amigo assinar Plus ou Pro, você terá a chance de ganhar Plus de 1 a 365 dias', 'Khi bạn bè mua Plus hoặc Pro, bạn có cơ hội thắng Plus từ 1 đến 365 ngày', 'Saat temanmu membeli Plus atau Pro, kamu berkesempatan memenangkan Plus 1–365 hari', 'Arkadaşın Plus veya Pro satın aldığında 1–365 gün Plus kazanma şansın olur', 'Gdy znajomy kupi Plus lub Pro, dostaniesz szansę wygrać Plus od 1 do 365 dni')
+                    : L('У тебя остались шансы выиграть Plus — забери их до срока', 'У тебе залишилися шанси виграти Plus — забери їх до строку', 'You still have chances to win Plus — use them before they expire', 'Te quedan oportunidades de ganar Plus: úsalas antes del plazo', 'Você ainda tem chances de ganhar Plus — use-as antes do prazo', 'Bạn vẫn còn cơ hội thắng Plus — hãy dùng trước hạn', 'Kamu masih punya kesempatan memenangkan Plus — pakai sebelum batas waktu', 'Plus kazanma şansların duruyor — süresi dolmadan kullan', 'Masz jeszcze szanse wygrać Plus — wykorzystaj je przed terminem')}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
@@ -1442,7 +1445,7 @@ export default function SettingsMain() {
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
             {/* зачем: заголовок в одном стиле с SettingsSectionTitle — обычный регистр, без капса. */}
             <Text style={{ color: screenMuted, fontSize: f.body, fontWeight: '600', marginBottom: 10 }}>
-              {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
+              {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Language you are learning', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
             </Text>
             <StudyLanguagePicker
               lang={studyTargetSourceLang}
@@ -1471,20 +1474,23 @@ export default function SettingsMain() {
                   ? 'French and Spanish are DEV-only. The public version keeps English active.'
                   : 'The public version currently keeps English active.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
-                  : 'The public version currently keeps English active.',
+                  ? 'French y Spanish solo están disponibles en modo DEV. La versión pública tiene el inglés activo.'
+                  : 'Actualmente la versión pública tiene el inglés activo.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
-                  : 'The public version currently keeps English active.',
+                  ? 'French e Spanish só estão disponíveis no modo DEV. A versão pública mantém o inglês ativo.'
+                  : 'Atualmente a versão pública mantém o inglês ativo.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
-                  : 'The public version currently keeps English active.',
+                  ? 'French và Spanish chỉ có ở chế độ DEV. Phiên bản công khai đang mở tiếng Anh.'
+                  : 'Phiên bản công khai hiện đang mở tiếng Anh.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
-                  : 'The public version currently keeps English active.',
+                  ? 'French dan Spanish hanya tersedia di mode DEV. Versi publik tetap membuka bahasa Inggris.'
+                  : 'Versi publik saat ini membuka bahasa Inggris.',
                 ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
-                  : 'The public version currently keeps English active.',
+                  ? 'French ve Spanish yalnızca DEV modunda kullanılabilir. Genel sürümde İngilizce açık.'
+                  : 'Genel sürümde şu anda İngilizce açık.',
+                ENABLE_DEV_STUDY_TARGET_LANG
+                  ? 'French i Spanish są dostępne tylko w trybie DEV. W wersji publicznej dostępny jest angielski.'
+                  : 'W wersji publicznej obecnie dostępny jest angielski.',
               )}
             </Text>
           </View>
@@ -1494,12 +1500,12 @@ export default function SettingsMain() {
             «Внешний вид и отклик» (темы/шрифт/хаптик) перенесена сразу под
             Plus/реферал/промо-группу (Plus остаётся видимым наверху экрана),
             выше «Профиля» и остальных разделов. */}
-        <SettingsSectionTitle title={L('Внешний вид и отклик', 'Вигляд і відгук', 'Apariencia y respuesta', 'Aparência e resposta', 'Giao diện và phản hồi', 'Tampilan dan respons', 'Görünüm ve geri bildirim', 'Wygląd i reakcje')} />
+        <SettingsSectionTitle title={L('Внешний вид и отклик', 'Вигляд і відгук', 'Appearance and feedback', 'Apariencia y respuesta', 'Aparência e resposta', 'Giao diện và phản hồi', 'Tampilan dan respons', 'Görünüm ve geri bildirim', 'Wygląd i reakcje')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="color-palette"
             color="purple"
-            label={L('Темы', 'Теми', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
+            label={L('Темы', 'Теми', 'Themes', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
             value={currentThemeLabel}
             onPress={() => router.push('/settings_themes' as any)}
           />
@@ -1511,7 +1517,7 @@ export default function SettingsMain() {
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, minHeight: 30 }}>
               <SettingsIconTile icon="text" color="pink" />
               <Text style={{ flex: 1, marginLeft: 12, color: screenPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}
+                {L('Размер шрифта', 'Розмір шрифту', 'Font size', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}
               </Text>
             </View>
             <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -1523,6 +1529,7 @@ export default function SettingsMain() {
                   accessibilityLabel={L(
                     sz === 'small' ? 'Малый шрифт' : sz === 'medium' ? 'Средний шрифт' : 'Большой шрифт',
                     sz === 'small' ? 'Малий шрифт' : sz === 'medium' ? 'Середній шрифт' : 'Великий шрифт',
+                    sz === 'small' ? 'Small font' : sz === 'medium' ? 'Medium font' : 'Large font',
                     sz === 'small' ? 'Letra pequeña' : sz === 'medium' ? 'Letra mediana' : 'Letra grande',
                     sz === 'small' ? 'Fonte pequena' : sz === 'medium' ? 'Fonte média' : 'Fonte grande',
                     sz === 'small' ? 'Chữ nhỏ' : sz === 'medium' ? 'Chữ vừa' : 'Chữ lớn',
@@ -1554,6 +1561,7 @@ export default function SettingsMain() {
                     {L(
                       sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                       sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
+                      sz === 'small' ? 'Small' : sz === 'medium' ? 'Medium' : 'Large',
                       sz === 'small' ? 'Pequeño' : sz === 'medium' ? 'Mediano' : 'Grande',
                       sz === 'small' ? 'Pequeno' : sz === 'medium' ? 'Médio' : 'Grande',
                       sz === 'small' ? 'Nhỏ' : sz === 'medium' ? 'Vừa' : 'Lớn',
@@ -1571,7 +1579,7 @@ export default function SettingsMain() {
           <SettingsRow
             icon="phone-portrait"
             color="orange"
-            label={L('Тактильный отклик', 'Тактильний відгук', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna')}
+            label={L('Тактильный отклик', 'Тактильний відгук', 'Haptic feedback', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna')}
             hideChevron
             right={
               <CustomSwitch
@@ -1595,7 +1603,7 @@ export default function SettingsMain() {
 
         </SettingsGroup>
 
-        <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
+        <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Profile', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
 
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           {/* зачем: значения (ник/провайдер/язык) переехали направо detail-текстом —
@@ -1604,11 +1612,11 @@ export default function SettingsMain() {
           <SettingsRow
             icon="key"
             color="green"
-            label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+            label={L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             value={authReady
               ? (linkedAuth
                 ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google')
-                : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono'))
+                : L('Не привязан', "Не прив\'язано", 'Not linked', 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono'))
               : ' '}
             onPress={() => {
               // зачем: раздел аккаунта — отдельная «шторка» (стандарт владельца,
@@ -1621,7 +1629,7 @@ export default function SettingsMain() {
             testID="settings-language-row"
             icon="language"
             color="teal"
-            label={L('Язык интерфейса', 'Мова інтерфейсу', 'Idioma de la interfaz', 'Idioma da interface', 'Ngôn ngữ giao diện', 'Bahasa antarmuka', 'Arayüz dili', 'Język interfejsu')}
+            label={L('Язык интерфейса', 'Мова інтерфейсу', 'Interface language', 'Idioma de la interfaz', 'Idioma da interface', 'Ngôn ngữ giao diện', 'Bahasa antarmuka', 'Arayüz dili', 'Język interfejsu')}
             value={LANG_NATIVE[lang]}
             onPress={() => router.push('/settings_language' as any)}
           />
@@ -1631,7 +1639,7 @@ export default function SettingsMain() {
             откат виден здесь некритичной инлайн-плашкой, а не блокирующим Alert. */}
         {/* sound-settings-start */}
         {SHOW_SOUND_SETTINGS && (<>
-        <SettingsSectionTitle title={L('Звук', 'Звук', 'Sonido', 'Som', 'Âm thanh', 'Suara', 'Ses', 'Dźwięk')} />
+        <SettingsSectionTitle title={L('Звук', 'Звук', 'Sound', 'Sonido', 'Som', 'Âm thanh', 'Suara', 'Ses', 'Dźwięk')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="volume-high"
@@ -1667,12 +1675,12 @@ export default function SettingsMain() {
         </>)}
         {/* sound-settings-end */}
 
-        <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
+        <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Learning', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="school"
             color="indigo"
-            label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
+            label={L('Настройки обучения', 'Налаштування навчання', 'Learning settings', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
             onPress={() => router.push('/settings_edu')}
           />
           <SettingsRow
@@ -1680,7 +1688,7 @@ export default function SettingsMain() {
             color="red"
             // зачем: экран расширился с расписания напоминаний до полноценного раздела
             // уведомлений (мастер + категории) — название пункта меню теперь ему соответствует.
-            label={L('Уведомления', 'Сповіщення', 'Notificaciones', 'Notificações', 'Thông báo', 'Notifikasi', 'Bildirimler', 'Powiadomienia')}
+            label={L('Уведомления', 'Сповіщення', 'Notifications', 'Notificaciones', 'Notificações', 'Thông báo', 'Notifikasi', 'Bildirimler', 'Powiadomienia')}
             onPress={() => router.push('/settings_notifications')}
           />
           {homeTipsReplayAvailable ? (
@@ -1688,7 +1696,7 @@ export default function SettingsMain() {
               testID="settings-show-home-tips"
               icon="bulb"
               color="teal"
-              label={L('Показать подсказки снова', 'Показати підказки знову', 'Mostrar consejos de nuevo', 'Mostrar dicas de novo', 'Hiện lại mẹo', 'Tampilkan tips lagi', 'İpuçlarını yeniden göster', 'Pokaż wskazówki ponownie')}
+              label={L('Показать подсказки снова', 'Показати підказки знову', 'Show tips again', 'Mostrar consejos de nuevo', 'Mostrar dicas de novo', 'Hiện lại mẹo', 'Tampilkan tips lagi', 'İpuçlarını yeniden göster', 'Pokaż wskazówki ponownie')}
               onPress={resetHomeFeatureTips}
             />
           ) : null}
@@ -1697,14 +1705,14 @@ export default function SettingsMain() {
         {/* «Сообщество» и «Ещё» слиты в одну секцию — раньше каждая держала по
             одному ряду и плодила лишние заголовки. Приглашения/реферальный код
             переехали в верхнюю группу и инвайт-баннер (референс Bevel). */}
-        <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
+        <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Community and support', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           {ideasOn ? (
             <SettingsRow
               testID="settings-ideas-row"
               icon="bulb"
               color="yellow"
-              label={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
+              label={L('Идеи', 'Ідеї', 'Ideas', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
               onPress={() => router.push('/ideas_submit' as any)}
             />
           ) : null}
@@ -1713,7 +1721,7 @@ export default function SettingsMain() {
           <SettingsRow
             icon="mail"
             color="blue"
-            label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
+            label={L('Написать в поддержку', 'Написати в підтримку', 'Contact support', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
             onPress={() => {
               doHaptic();
               setSupportHintVisible(true);
@@ -1728,8 +1736,8 @@ export default function SettingsMain() {
             icon="star"
             color="blue"
             label={Platform.OS === 'ios'
-              ? L('Оценить в App Store', 'Оцінити в App Store', 'Valorar en el App Store', 'Avaliar na App Store', 'Đánh giá trên App Store', 'Beri nilai di App Store', "App Store'da değerlendir", 'Oceń w App Store')
-              : L('Оценить в Google Play', 'Оцінити в Google Play', 'Valorar en Google Play', 'Avaliar no Google Play', 'Đánh giá trên Google Play', 'Beri nilai di Google Play', "Google Play'de değerlendir", 'Oceń w Google Play')}
+              ? L('Оценить в App Store', 'Оцінити в App Store', 'Rate on the App Store', 'Valorar en el App Store', 'Avaliar na App Store', 'Đánh giá trên App Store', 'Beri nilai di App Store', "App Store'da değerlendir", 'Oceń w App Store')
+              : L('Оценить в Google Play', 'Оцінити в Google Play', 'Rate on Google Play', 'Valorar en Google Play', 'Avaliar no Google Play', 'Đánh giá trên Google Play', 'Beri nilai di Google Play', "Google Play'de değerlendir", 'Oceń w Google Play')}
             onPress={() => {
               doHaptic();
               void openStoreReviewPage();
@@ -1744,13 +1752,13 @@ export default function SettingsMain() {
         {/* Один ряд → отдельный экран privacy_settings, где ВСЁ вместе: галочка
             согласия на аналитику, Политика конфиденциальности, Условия
             использования и удаление аккаунта. */}
-        <SettingsSectionTitle title={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')} />
+        <SettingsSectionTitle title={L('Приватность и данные', 'Приватність і дані', 'Privacy and data', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             testID="settings-privacy-row"
             icon="lock-closed"
             color="teal"
-            label={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')}
+            label={L('Приватность и данные', 'Приватність і дані', 'Privacy and data', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')}
             onPress={() => router.push('/privacy_settings' as never)}
           />
           {/* зачем: название было «Очистить кеш картинок», хотя чистятся ещё снапшоты
@@ -1761,13 +1769,13 @@ export default function SettingsMain() {
             testID="settings-clear-cache-row"
             icon="trash-bin"
             color="gray"
-            label={L('Очистить кеш', 'Очистити кеш', 'Borrar caché', 'Limpar cache', 'Xóa bộ nhớ đệm', 'Hapus cache', 'Önbelleği temizle', 'Wyczyść pamięć podręczną')}
+            label={L('Очистить кеш', 'Очистити кеш', 'Clear cache', 'Borrar caché', 'Limpar cache', 'Xóa bộ nhớ đệm', 'Hapus cache', 'Önbelleği temizle', 'Wyczyść pamięć podręczną')}
             value={clearCacheState === 'running'
-              ? L('Чистим…', 'Чистимо…', 'Borrando…', 'Limpando…', 'Đang xóa…', 'Menghapus…', 'Temizleniyor…', 'Czyszczenie…')
+              ? L('Чистим…', 'Чистимо…', 'Clearing…', 'Borrando…', 'Limpando…', 'Đang xóa…', 'Menghapus…', 'Temizleniyor…', 'Czyszczenie…')
               : clearCacheState === 'done'
-                ? L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')
+                ? L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')
                 : clearCacheState === 'failed'
-                  ? L('Не удалось', 'Не вдалося', 'No se pudo', 'Não deu certo', 'Không thành công', 'Gagal', 'Başarısız', 'Nie udało się')
+                  ? L('Не удалось', 'Не вдалося', 'Failed', 'No se pudo', 'Não deu certo', 'Không thành công', 'Gagal', 'Başarısız', 'Nie udało się')
                   : undefined}
             onPress={confirmClearCache}
           />
@@ -1835,6 +1843,7 @@ export default function SettingsMain() {
         title={L(
           'Как нам быстрее вам помочь',
           'Як нам швидше вам допомогти',
+          'How to help you fastest',
           'Cómo ayudarte más rápido',
           'Como te ajudar mais rápido',
           'Cách chúng tôi giúp bạn nhanh hơn',
@@ -1845,6 +1854,7 @@ export default function SettingsMain() {
         message={L(
           'Расскажи о проблеме подробно: что происходит, когда началось, на каком экране.\n\nИ напиши свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём твои данные.',
           'Розкажи про проблему докладно: що відбувається, коли почалося, на якому екрані.\n\nІ напиши свій нік із застосунку — пошта не пов’язана з акаунтом, тому без ніка ми не знайдемо твої дані.',
+          'Describe the problem in detail: what is happening, when it started, on which screen.\n\nAnd write your in-app nickname — the email is not linked to the account, so without it we can\'t find your data.',
           'Cuéntanos el problema en detalle: qué pasa, cuándo empezó y en qué pantalla.\n\nY escribe tu apodo de la app: el correo no está vinculado a la cuenta, así que sin él no podremos encontrar tus datos.',
           'Conte o problema em detalhes: o que acontece, quando começou e em qual tela.\n\nE escreva seu apelido do app: o e-mail não está ligado à conta, então sem ele não conseguiremos encontrar seus dados.',
           'Hãy mô tả chi tiết vấn đề: chuyện gì xảy ra, bắt đầu khi nào, ở màn hình nào.\n\nVà hãy ghi biệt danh của bạn trong ứng dụng — email không liên kết với tài khoản, nên nếu thiếu nó chúng tôi sẽ không tìm được dữ liệu của bạn.',
@@ -1855,6 +1865,7 @@ export default function SettingsMain() {
         confirmLabel={L(
           'Написать письмо',
           'Написати листа',
+          'Write an email',
           'Escribir correo',
           'Escrever e-mail',
           'Đã hiểu, viết thư',
@@ -1862,7 +1873,7 @@ export default function SettingsMain() {
           'Anladım, yaz',
           'Jasne, piszę',
         )}
-        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
         onCancel={() => setSupportHintVisible(false)}
         onConfirm={() => {
           setSupportHintVisible(false);
@@ -1870,6 +1881,7 @@ export default function SettingsMain() {
           const nickLine = L(
             'Мой ник в приложении: ',
             'Мій нік у застосунку: ',
+            'My in-app nickname: ',
             'Mi apodo en la app: ',
             'Meu apelido no app: ',
             'Biệt danh của tôi trong ứng dụng: ',
@@ -1904,10 +1916,10 @@ export default function SettingsMain() {
             ]}
           >
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
-              {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+              {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22 }}>
-              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')}
+              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Not linked', 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')}
             </Text>
             {!!linkedAuth?.email && (
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
@@ -1922,7 +1934,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+                  {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                 </Text>
               </TouchableOpacity>
 
@@ -1937,7 +1949,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                  {L('Сменить аккаунт', 'Змінити акаунт', 'Cambiar de cuenta', 'Trocar de conta', 'Đổi tài khoản', 'Ganti akun', 'Hesap değiştir', 'Zmień konto')}
+                  {L('Сменить аккаунт', 'Змінити акаунт', 'Switch account', 'Cambiar de cuenta', 'Trocar de conta', 'Đổi tài khoản', 'Ganti akun', 'Hesap değiştir', 'Zmień konto')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -1954,7 +1966,7 @@ export default function SettingsMain() {
               style={{ marginTop: 14, paddingTop: 14, borderTopWidth: 0.5, borderTopColor: t.border }}
             >
               <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '800', textAlign: 'right' }}>
-                {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
+                {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Delete account and data', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -1984,12 +1996,13 @@ export default function SettingsMain() {
             ]}
           >
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
-              {L('Сменить аккаунт?', 'Змінити акаунт?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
+              {L('Сменить аккаунт?', 'Змінити акаунт?', 'Switch account?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
                 "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
+                'Your current progress will stay linked to the account you are logged in with now. To come back to it — log in with that account again.',
                 'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
                 'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',
                 'Tiến độ hiện tại sẽ gắn với tài khoản bạn đang đăng nhập. Muốn quay lại, hãy đăng nhập lại bằng tài khoản đó.',
@@ -2002,6 +2015,7 @@ export default function SettingsMain() {
               {L(
                 'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим смену аккаунта, чтобы ничего не потерялось.',
                 'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо зміну акаунту, щоб нічого не загубилося.',
+                'Before logging out we will safely save your progress. If the connection does not respond, we will cancel the account switch so nothing is lost.',
                 'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si la conexión no responde, cancelaremos el cambio de cuenta para que no pierdas nada.',
                 'Antes de sair, salvaremos seu progresso com segurança. Se a conexão não responder, cancelaremos a troca de conta para que nada se perca.',
                 'Trước khi đăng xuất, chúng tôi sẽ lưu tiến độ của bạn an toàn. Nếu kết nối không phản hồi, việc đổi tài khoản sẽ bị hủy để không mất gì.',
@@ -2018,7 +2032,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+                  {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                 </Text>
               </TouchableOpacity>
 
@@ -2055,6 +2069,7 @@ export default function SettingsMain() {
                         L(
                           'Защитная проверка не разрешила удалить локальные данные. Всё осталось на месте — попробуй снова позже.',
                           'Захисна перевірка не дозволила видалити локальні дані. Усе залишилося на місці — спробуй ще раз пізніше.',
+                          'The safety check did not allow deleting local data. Everything stayed in place — try again later.',
                           'La comprobación de seguridad no permitió borrar los datos locales. Todo sigue en su lugar; inténtalo más tarde.',
                           'A verificação de segurança não permitiu apagar os dados locais. Tudo continua no lugar; tente novamente mais tarde.',
                           'Kiểm tra an toàn không cho phép xóa dữ liệu cục bộ. Mọi thứ vẫn nguyên; hãy thử lại sau.',
@@ -2073,6 +2088,7 @@ export default function SettingsMain() {
                       L(
                         'Покупка ещё синхронизируется',
                         'Покупка ще синхронізується',
+                        'The purchase is still syncing',
                         'La compra aún se está sincronizando',
                         'A compra ainda está sincronizando',
                         'Giao dịch mua vẫn đang đồng bộ',
@@ -2083,6 +2099,7 @@ export default function SettingsMain() {
                       L(
                         'Смена аккаунта отменена: незавершённое списание жемчуга нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
                         'Зміну акаунту скасовано: незавершене списання перлин не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+                        'Account switch cancelled: an unfinished pearl charge cannot be carried over or skipped. Connect to the internet and try again.',
                         'El cambio de cuenta se canceló: un gasto de perlas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
                         'A troca de conta foi cancelada: um gasto de pérolas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
                         'Đã hủy đổi tài khoản: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
@@ -2092,11 +2109,11 @@ export default function SettingsMain() {
                       ),
                       [
                         {
-                          text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
+                          text: L('Остаться здесь', 'Залишитися тут', 'Stay here', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
                           style: 'cancel',
                         },
                         {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
@@ -2109,6 +2126,7 @@ export default function SettingsMain() {
                       L(
                         'Нужна проверка жемчуга',
                         'Потрібна перевірка перлин',
+                        'Pearls need to be checked',
                         'Se deben revisar las perlas',
                         'É preciso verificar as pérolas',
                         'Cần kiểm tra xu',
@@ -2119,6 +2137,7 @@ export default function SettingsMain() {
                       L(
                         'Смена аккаунта отменена: локальная очередь жемчуга повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
                         'Зміну акаунту скасовано: локальна черга перлин пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
+                        'Account switch cancelled: the local pearl queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
                         'El cambio de cuenta se canceló: la cola local de perlas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
                         'A troca de conta foi cancelada: a fila local de pérolas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
                         'Đã hủy đổi tài khoản: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',
@@ -2128,11 +2147,11 @@ export default function SettingsMain() {
                       ),
                       [
                         {
-                          text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
+                          text: L('Остаться здесь', 'Залишитися тут', 'Stay here', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
                           style: 'cancel',
                         },
                         {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
@@ -2144,10 +2163,11 @@ export default function SettingsMain() {
                     // Прогресс не доехал до облака — switch отменён, данные целы.
                     // Даём выбор: повторить при сети или явно сменить без сохранения.
                     Alert.alert(
-                      L('Прогресс не сохранён', 'Прогрес не збережено', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
+                      L('Прогресс не сохранён', 'Прогрес не збережено', 'Progress not saved', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
                       L(
                         'Не удалось надёжно сохранить прогресс — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',
                         'Не вдалося надійно зберегти прогрес — схоже, немає з’єднання. Зміну акаунту скасовано, все залишилося на місці. Перевір інтернет і спробуй ще раз.',
+                        'Could not safely save your progress — it looks like there is no connection. The account switch was cancelled, everything stayed in place. Check your internet and try again.',
                         'No pudimos guardar tu progreso de forma segura: parece que no hay conexión. El cambio de cuenta se canceló y todo sigue en su lugar. Revisa tu internet e inténtalo de nuevo.',
                         'Não foi possível salvar seu progresso com segurança — parece que não há conexão. A troca de conta foi cancelada e tudo continua no lugar. Verifique a internet e tente novamente.',
                         'Không thể lưu tiến độ an toàn — có vẻ mất kết nối. Việc đổi tài khoản đã bị hủy, mọi thứ vẫn nguyên. Kiểm tra internet và thử lại.',
@@ -2157,11 +2177,11 @@ export default function SettingsMain() {
                       ),
                       [
                         {
-                          text: L('Остаться здесь', 'Залишитися тут', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
+                          text: L('Остаться здесь', 'Залишитися тут', 'Stay here', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
                           style: 'cancel',
                         },
                         {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
@@ -2171,8 +2191,8 @@ export default function SettingsMain() {
                   }
                   if (!res.ok) {
                     showInfoAlert(
-                      L('Выход не прошёл. Попробуй снова.', 'Не вдалося вийти', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
-                      L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Error desconocido. Inténtalo de nuevo.', 'Erro desconhecido. Tente novamente.', 'Lỗi không xác định. Hãy thử lại.', 'Error tidak dikenal. Coba lagi.', 'Bilinmeyen hata. Tekrar dene.', 'Nieznany błąd. Spróbuj ponownie.'),
+                      L('Выход не прошёл. Попробуй снова.', 'Не вдалося вийти', 'Sign out failed. Try again.', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
+                      L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Unknown error. Try again.', 'Error desconocido. Inténtalo de nuevo.', 'Erro desconhecido. Tente novamente.', 'Lỗi không xác định. Hãy thử lại.', 'Error tidak dikenal. Coba lagi.', 'Bilinmeyen hata. Tekrar dene.', 'Nieznany błąd. Spróbuj ponownie.'),
                     );
                     return;
                   }
@@ -2180,10 +2200,11 @@ export default function SettingsMain() {
                   setAuthPromptVisible(true);
                   if (!res.synced) {
                     showInfoAlert(
-                      L('Можно выбрать аккаунт', 'Можна вибрати акаунт', 'Puedes elegir cuenta', 'Você pode escolher a conta', 'Bạn có thể chọn tài khoản', 'Kamu bisa memilih akun', 'Hesap seçebilirsin', 'Możesz wybrać konto'),
+                      L('Можно выбрать аккаунт', 'Можна вибрати акаунт', 'You can choose an account', 'Puedes elegir cuenta', 'Você pode escolher a conta', 'Bạn có thể chọn tài khoản', 'Kamu bisa memilih akun', 'Hesap seçebilirsin', 'Możesz wybrać konto'),
                       L(
                         'Сервер не ответил перед выходом, поэтому мы сохранили аварийную копию на устройстве. Теперь войди в нужный Google-аккаунт.',
                         'Сервер не відповів перед виходом, тому ми зберегли аварійну копію на пристрої. Тепер увійди в потрібний Google-акаунт.',
+                        'The server did not respond before signing out, so we saved an emergency backup on the device. Now sign in to the right Google account.',
                         'El servidor no respondió antes de salir, así que guardamos una copia de emergencia en el dispositivo. Ahora entra con la cuenta de Google correcta.',
                         'O servidor não respondeu antes de sair, então salvamos uma cópia de emergência no dispositivo. Agora entre na conta Google correta.',
                         'Máy chủ không phản hồi trước khi đăng xuất, nên chúng tôi đã lưu bản sao khẩn cấp trên thiết bị. Bây giờ hãy đăng nhập vào tài khoản Google đúng.',
@@ -2197,7 +2218,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                  {L('Продолжить', 'Продовжити', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj')}
+                  {L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -2225,10 +2246,10 @@ export default function SettingsMain() {
           >
             <Ionicons name="shield-checkmark" size={28} color={t.correct} />
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
-              {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+              {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
-              {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
+              {L('Не закрывай приложение', 'Не закривай застосунок', 'Do not close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
             </Text>
           </View>
         </View>
@@ -2261,10 +2282,10 @@ export default function SettingsMain() {
               ]}
             >
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
-              {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
+              {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
-              accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
+              accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
               style={{
                 backgroundColor: t.bgPrimary,
                 color: t.textPrimary,
@@ -2277,7 +2298,7 @@ export default function SettingsMain() {
               }}
               value={newName}
               onChangeText={setNewName}
-              placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
+              placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Enter a name...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
               placeholderTextColor={t.textGhost}
               editable={!nameSaving}
               autoFocus maxLength={20}
@@ -2304,7 +2325,7 @@ export default function SettingsMain() {
                 ]}
                 onPress={() => { if (nameSaving) return; doHaptic(); closeNameModal(); }}
               >
-                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
+                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.8}
@@ -2339,8 +2360,8 @@ export default function SettingsMain() {
                     numberOfLines={1}
                   >
                     {nameSaving
-                      ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
-                      : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+                      ? L('Сохраняем', 'Зберігаємо', 'Saving', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
+                      : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
                   </Text>
                 </View>
               </TouchableOpacity>

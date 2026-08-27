@@ -22,6 +22,9 @@ export type GrammarHintTrilingual = {
 const GRAMMAR_HINT_TEXT_FIELD_BY_LANG = {
   ru: 'textRu',
   uk: 'textUk',
+  // зачем: en — чисто UI-язык, грамматических подсказок на нём нет
+  // (см. app/source_locales.ts) — читаем RU-поле, как остальные фолбэки.
+  en: 'textRu',
   es: 'textEs',
   'pt-BR': 'textPtBr',
   vi: 'textVi',
@@ -73,6 +76,7 @@ const ENERGY_MESSAGES_PL = [
 const ENERGY_MESSAGES_BY_LANG = {
   ru: ENERGY_MESSAGES_RU,
   uk: ENERGY_MESSAGES_UK,
+  en: ENERGY_MESSAGES_RU,
   es: ENERGY_MESSAGES_ES,
   'pt-BR': ENERGY_MESSAGES_PT_BR,
   vi: ENERGY_MESSAGES_VI,

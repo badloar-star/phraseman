@@ -146,6 +146,7 @@ function legacyUiLang(lang: Lang): 'ru' | 'uk' | 'es' {
   const legacyByLang: Record<Lang, 'ru' | 'uk' | 'es'> = {
     ru: 'ru',
     uk: 'uk',
+    en: 'ru',
     es: 'es',
     'pt-BR': 'ru',
     vi: 'ru',

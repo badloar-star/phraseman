@@ -45,6 +45,10 @@ export function buildLessonShareMessage(
     `Lección ${lessonId} completada en Phraseman. ★ ${lessonScore}: un resultado del que estar orgulloso. 😎✨`,
     `Otro escalón superado. Lección ${lessonId} cerrada en Phraseman con ★ ${lessonScore}. ¡Seguimos! 🚀`,
   ];
+  const variantsEn = [
+    `Lesson ${lessonId} done in Phraseman with ★ ${lessonScore}. My English got a little stronger today. 🚀`,
+    `Another milestone crushed: Lesson ${lessonId} in Phraseman, ★ ${lessonScore}. Onward! 🔥`,
+  ];
   const variantsPtBr = [
     `Lição ${lessonId} concluída no Phraseman com ★ ${lessonScore}. Meu inglês ficou mais forte hoje. 🚀`,
     `Mais uma etapa vencida: Lição ${lessonId} no Phraseman, ★ ${lessonScore}. Seguimos evoluindo! 🔥`,
@@ -68,6 +72,7 @@ export function buildLessonShareMessage(
   const pools: Record<LangCode, readonly string[]> = {
     ru: variantsRu,
     uk: variantsUk,
+    en: variantsEn,
     es: variantsEs,
     'pt-BR': variantsPtBr,
     vi: variantsVi,

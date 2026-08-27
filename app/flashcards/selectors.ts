@@ -111,6 +111,7 @@ export function buildFilterOptions(
 const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'daily_phrase', string>> = {
   ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня' },
   uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня' },
+  en: { word: 'Words', verb: 'Verbs', dialog: 'Dialogs', daily_phrase: 'Phrase of the day' },
   es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día' },
   'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia' },
   vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', daily_phrase: 'Cụm từ hôm nay' },
@@ -122,6 +123,7 @@ const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'da
 const FILTER_LESSON_LABELS: Record<Lang, string> = {
   ru: 'Урок',
   uk: 'Урок',
+  en: 'Lesson',
   es: 'Lección',
   'pt-BR': 'Aula',
   vi: 'Bài',
@@ -133,6 +135,7 @@ const FILTER_LESSON_LABELS: Record<Lang, string> = {
 const FILTER_LESSONS_GROUP_LABELS: Record<Lang, string> = {
   ru: 'Уроки',
   uk: 'Уроки',
+  en: 'Lessons',
   es: 'Lecciones',
   'pt-BR': 'Aulas',
   vi: 'Bài học',
@@ -144,6 +147,7 @@ const FILTER_LESSONS_GROUP_LABELS: Record<Lang, string> = {
 const FILTER_OTHER_GROUP_LABELS: Record<Lang, string> = {
   ru: 'Прочее',
   uk: 'Інше',
+  en: 'Other',
   es: 'Otros',
   'pt-BR': 'Outros',
   vi: 'Khác',
@@ -155,6 +159,7 @@ const FILTER_OTHER_GROUP_LABELS: Record<Lang, string> = {
 const FILTER_ALL_LABELS: Record<Lang, string> = {
   ru: 'Все',
   uk: 'Всі',
+  en: 'All',
   es: 'Todas',
   'pt-BR': 'Todas',
   vi: 'Tất cả',

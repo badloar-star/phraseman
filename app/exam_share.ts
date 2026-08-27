@@ -46,6 +46,11 @@ export function buildExamShareMessage(
     `Examen de Phraseman: ${score}/${total}. 🎓 ¡El esfuerzo mereció la pena! Un brindis (o un té). ☕️🥂`,
     `¡Barrera superada! 🎓 ${pct}% de aciertos en Phraseman: el nivel no para de subir. 🎯`,
   ];
+  const variantsEn = [
+    `I did it! Passed the Phraseman exam with ${score}/${total}. My English just leveled up! 🎓🔥`,
+    `${pct}% on the exam! Phraseman confirms it: my English is no myth, it's real. 🎓🎯`,
+    `Phraseman exam done: ${score}/${total}. The effort paid off! ☕️🥂`,
+  ];
   const variantsPtBr = [
     `Consegui! Passei no exame do Phraseman com ${score}/${total}. Agora meu inglês entrou em modo perigo! 🎓🔥`,
     `${pct}% no exame! O Phraseman confirma: meu inglês não é mito, é realidade. 🎓🎯`,
@@ -74,6 +79,7 @@ export function buildExamShareMessage(
   const pools: Record<ShareExamLang, readonly string[]> = {
     ru: variantsRu,
     uk: variantsUk,
+    en: variantsEn,
     es: variantsEs,
     'pt-BR': variantsPtBr,
     vi: variantsVi,
@@ -131,6 +137,17 @@ export function buildCertificateShareMessage(
     cleanName
       ? `${cleanName}: mi inglés está a nivel B2 según Phraseman. 🎯 Resultado: ${pct}%.`
       : `Mi inglés está a nivel B2 según Phraseman. 🎯 Resultado: ${pct}%.`,
+  ];
+  const variantsEn = [
+    cleanName
+      ? `${cleanName} reached B2 level in Phraseman! 🎯 ${pct}% on the final test.`
+      : `B2 level in Phraseman unlocked! 🎯 ${pct}% on the final test.`,
+    cleanName
+      ? `${cleanName} completed the Phraseman final test with ${pct}%. 🏆 B2 secured!`
+      : `Phraseman final test done: ${pct}%. 🏆 B2 secured!`,
+    cleanName
+      ? `${cleanName}: my English is at B2 level according to Phraseman. 🎯 Score: ${pct}%.`
+      : `My English is at B2 level according to Phraseman. 🎯 Score: ${pct}%.`,
   ];
   const variantsPtBr = [
     cleanName
@@ -190,6 +207,7 @@ export function buildCertificateShareMessage(
   const pools: Record<ShareExamLang, readonly string[]> = {
     ru: variantsRu,
     uk: variantsUk,
+    en: variantsEn,
     es: variantsEs,
     'pt-BR': variantsPtBr,
     vi: variantsVi,

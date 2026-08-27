@@ -42,6 +42,10 @@ export type HomeTheoAdvisorContext = {
   totalXPMulti: number;
 };
 
+// зачем: 25 call sites уже собраны без английского аргумента (это
+// генерик-фолбэк, не основной UI-текст) — вместо правки всех 25 мест
+// добавляем en внутри хелпера с фолбэком на RU, как остальные фолбэк-паттерны
+// в проекте (см. legacyRuUk/bundleLang в constants/i18n.ts).
 const fallbackCopy = (
   ru: string,
   uk: string,
@@ -54,6 +58,7 @@ const fallbackCopy = (
 ): Record<Lang, string> => ({
   ru,
   uk,
+  en: ru,
   es,
   "pt-BR": pt,
   vi,

@@ -115,15 +115,19 @@ export default function CollectionHeader({
   const searchFieldHeight = useMemo(() => Math.max(44, Math.round(f.sub * 2.6)), [f.sub]);
 
   const headerTitle = useMemo(() => {
-    if (currentPack) return packTitleForInterface(currentPack, lang);
+    // зачем: packTitleForInterface читает КОНТЕНТНЫЙ заголовок пака (нет
+    // en-source), поэтому en сужаем до ru — как в flashcards_collection.tsx
+    // fullCategoryLabelForLang (тот же класс бага, что уронил Студию аватаров).
+    if (currentPack) return packTitleForInterface(currentPack, lang === 'en' ? 'ru' : lang);
     const cat = CATEGORIES.find((c) => c.id === activeCat);
-    // Плановые локали: полное имя категории на всех 8 языках интерфейса.
+    // Плановые локали: полное имя категории на всех 8 языках интерфейса + en (RU-фолбэк).
     const fullByLang: Record<Lang, string> | undefined =
       cat == null
         ? undefined
         : {
             ru: cat.fullLabelRU,
             uk: cat.fullLabelUK,
+            en: cat.fullLabelRU,
             es: cat.fullLabelES,
             'pt-BR': cat.fullLabelPtBr,
             vi: cat.fullLabelVi,

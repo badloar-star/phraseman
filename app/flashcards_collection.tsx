@@ -110,6 +110,7 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
   const labels: Record<Lang, string> = {
     ru: cat.fullLabelRU,
     uk: cat.fullLabelUK,
+    en: cat.fullLabelRU,
     es: cat.fullLabelES,
     'pt-BR': cat.fullLabelPtBr,
     vi: cat.fullLabelVi,
@@ -136,13 +137,16 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
   const isLightTheme = isLightThemeMode(themeMode);
   const { lang } = useLang();
-  /** Компоненты раздела карточек локализованы на ru/uk/es — сужаем интерфейсный язык. */
-
   const { studyTarget } = useStudyTarget();
   // зачем (Apple 1.2, UGC): пожаловаться на чужой набор можно было только
   // в каталоге долгим тапом по плитке. На самой странице набора — там, где
   // человек и читает чужие карточки, — жалобы не было вовсе.
   const [packReportOpen, setPackReportOpen] = useState(false);
+  // зачем: strLang — интерфейсный язык (UI-текст STR/фильтры), НЕ путать
+  // с cardContentLang ниже — тот сужен до контентных 8 локалей (карточки
+  // без английского source). Раньше оба указывали на один и тот же lang,
+  // что было безопасно только пока Lang = 8 языков; после расширения на en
+  // разделены явно (краш Студии аватаров 2026-08-27 — тот же класс бага).
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
@@ -525,7 +529,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const sourceLabels = s.source as Record<string, string>;
   const voiceLabel = useMemo(
     () => triLang(lang, {
-      ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar',
+      ru: 'Озвучить', uk: 'Озвучити', en: 'Listen', es: 'Escuchar',
       'pt-BR': 'Ouvir', vi: 'Phát âm', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
     }),
     [lang],
@@ -559,7 +563,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   );
   const editLabel = useMemo(
     () => triLang(lang, {
-      ru: 'Редактировать', uk: 'Редагувати', es: 'Editar',
+      ru: 'Редактировать', uk: 'Редагувати', en: 'Edit', es: 'Editar',
       'pt-BR': 'Editar', vi: 'Chỉnh sửa', id: 'Edit', tr: 'Düzenle', pl: 'Edytuj',
     }),
     [lang],
@@ -806,7 +810,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           <View style={[st.socialRow, { maxWidth: contentMaxW }]}>
             <CommunityPackSocialBar
               pack={currentMarketPack}
-              lang={strLang}
+              lang={lang}
               t={t}
               owned={packOwnedByMe}
               variant="screen"
@@ -823,7 +827,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             >
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', es: 'Denunciar el pack',
+                  ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', en: 'Report this pack', es: 'Denunciar el pack',
                   'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan set',
                   tr: 'Seti bildir', pl: 'Zgłoś zestaw',
                 })}
@@ -839,7 +843,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
                 в зависимости от поиска — два разных текста в одном месте читались
                 как смена состояний. «Ничего не найдено» удалено полностью. */}
             <CollectionEmptyState
-              lang={strLang}
+              lang={cardContentLang}
               t={t}
               f={f}
               emptyTitle={s.empty}
@@ -854,7 +858,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           <CollectionDeckView
             cards={listCards}
             initialIndex={indexRef.current}
-            lang={strLang}
+            lang={cardContentLang}
             cardContentLang={cardContentLang}
             t={t}
             f={f}
@@ -872,7 +876,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             hiddenByLimitCount={hiddenByLimitCount}
             activeCat={activeCat}
             packDeeplink={packDeeplink}
-            lang={strLang}
+            lang={cardContentLang}
             cardContentLang={cardContentLang}
             t={t}
             f={f}
@@ -910,7 +914,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             Math.max(insets.bottom, 8) + 14
             + (sectionRoot ? FC_TABBAR_HEIGHT : 0)
           }
-          lang={strLang}
+          lang={cardContentLang}
           t={t}
           f={f}
           onUndo={undoDelete}
@@ -919,7 +923,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 
       <FlashcardsFilterDropdown
         visible={filterOpen}
-        lang={strLang}
+        lang={lang}
         activeFilter={activeFilter}
         filterGroups={filterGroups}
         t={t}
@@ -952,7 +956,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
         <ReportPackModal
           visible
           packId={currentMarketPack.id}
-          packTitle={packTitleForInterface(currentMarketPack, lang)}
+          packTitle={packTitleForInterface(currentMarketPack, cardContentLang)}
           authorStableId={currentMarketPack.authorStableId ?? null}
           lang={lang}
           studyTarget={studyTarget}

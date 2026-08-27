@@ -286,6 +286,7 @@ const SPEAKING_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Звукач убежал за кофе. Вернёмся в эфир позже 🎤',
+      en: 'The sound guy ran off for coffee. Back on air later 🎤',
       uk: 'Звукач побіг по каву. Повернемось в ефір пізніше 🎤',
       es: 'El técnico fue por café. Volvemos al aire luego 🎤',
       'pt-BR': 'O técnico foi buscar café. Voltamos ao ar depois 🎤',
@@ -298,6 +299,7 @@ const SPEAKING_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'В студии отключили пульт',
+      en: 'The studio mixing desk went dark',
       uk: 'У студії вимкнули пульт',
       es: 'La consola de la cabina se apagó',
       'pt-BR': 'A mesa de som do estúdio desligou',
@@ -308,6 +310,7 @@ const SPEAKING_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Уборщица задела кнопку шваброй — весь пульт перезагружается. Скоро снова в эфир 🎚️',
+      en: 'The cleaning lady bumped a button with her mop — the whole desk is rebooting. Back on air soon 🎚️',
       uk: 'Прибиральниця зачепила кнопку шваброю — весь пульт перезавантажується. Скоро знову в ефірі 🎚️',
       es: 'La señora de la limpieza rozó un botón con la fregona y toda la consola se reinicia. Volvemos al aire pronto 🎚️',
       'pt-BR': 'A faxineira encostou o esfregão num botão e a mesa toda reiniciou. Já já voltamos ao ar 🎚️',
@@ -320,6 +323,7 @@ const SPEAKING_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Наушники запутались в узел',
+      en: 'The headphones tied themselves in a knot',
       uk: 'Навушники заплуталися у вузол',
       es: 'Los auriculares se hicieron un nudo',
       'pt-BR': 'Os fones viraram um nó',
@@ -330,6 +334,7 @@ const SPEAKING_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Пока их распутывают, эфира не будет. Загляни чуть позже — уже почти 🎧',
+      en: 'No broadcast while we untangle them. Check back soon — almost there 🎧',
       uk: 'Поки їх розплутують, ефіру не буде. Зазирни трохи пізніше — уже майже 🎧',
       es: 'Hasta que los desenreden no hay emisión. Vuelve en un ratito — ya casi 🎧',
       'pt-BR': 'Enquanto desembaraçam, não tem transmissão. Volte daqui a pouco — já quase 🎧',
@@ -357,6 +362,7 @@ const EVERYDAY_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Закрыто на карантин',
+      en: 'Closed for quarantine',
       uk: 'Закрито на карантин',
       es: 'Cerrado por cuarentena',
       'pt-BR': 'Fechado por quarentena',
@@ -367,6 +373,7 @@ const EVERYDAY_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Шеф-повар уронил в суп весь словарь неправильных глаголов. Кухня отмывается. Загляни позже 🍲',
+      en: 'The chef dropped the entire irregular verbs dictionary into the soup. Cleaning up the kitchen. Check back later 🍲',
       uk: 'Шеф-кухар упустив у суп увесь словник неправильних дієслів. Кухня відмивається. Зазирни пізніше 🍲',
       es: 'El chef dejó caer el diccionario entero de verbos irregulares en la sopa. Limpiando la cocina. Vuelve luego 🍲',
       'pt-BR': 'O chef deixou cair o dicionário inteiro de verbos irregulares na sopa. Limpando a cozinha. Volte depois 🍲',
@@ -379,6 +386,7 @@ const EVERYDAY_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Переучёт',
+      en: 'Stocktaking',
       uk: 'Переоблік',
       es: 'Inventario',
       'pt-BR': 'Balanço',
@@ -389,6 +397,7 @@ const EVERYDAY_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Продавец пересчитывает банки и сбился на трёхсотой. Начал сначала. Зайди позже, когда досчитает 🥫',
+      en: 'The clerk is recounting the cans and lost track at three hundred. Starting over. Come back once he\'s done 🥫',
       uk: 'Продавець перераховує банки й збився на трьохсотій. Почав спочатку. Зайди пізніше, коли дорахує 🥫',
       es: 'El vendedor cuenta las latas y se perdió en la número trescientos. Empezó de nuevo. Vuelve cuando termine 🥫',
       'pt-BR': 'O vendedor conta as latas e se perdeu na de número trezentos. Começou de novo. Volte quando terminar 🥫',
@@ -401,6 +410,7 @@ const EVERYDAY_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Свет погас во всём квартале',
+      en: 'The lights went out on the whole block',
       uk: 'Світло згасло в усьому кварталі',
       es: 'Se fue la luz en toda la manzana',
       'pt-BR': 'A luz caiu no quarteirão inteiro',
@@ -411,6 +421,7 @@ const EVERYDAY_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Кассир пробивает чек на ощупь и путает сдачу. Ждём электрика — загляни позже 🕯️',
+      en: 'The cashier is ringing things up by feel and mixing up the change. Waiting on an electrician — check back later 🕯️',
       uk: 'Касир пробиває чек навпомацки й плутає решту. Чекаємо електрика — зазирни пізніше 🕯️',
       es: 'El cajero cobra a tientas y confunde el cambio. Esperamos al electricista — vuelve luego 🕯️',
       'pt-BR': 'O caixa passa a compra no escuro e erra o troco. Esperando o eletricista — volte depois 🕯️',
@@ -426,6 +437,7 @@ const TRAVEL_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Рейс задержан',
+      en: 'Flight delayed',
       uk: 'Рейс затримано',
       es: 'Vuelo retrasado',
       'pt-BR': 'Voo atrasado',
@@ -436,6 +448,7 @@ const TRAVEL_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'В терминале нашли таракана размером с чемодан. Всё закрыли на карантин. Возвращайся позже 🪳✈️',
+      en: 'They found a cockroach the size of a suitcase in the terminal. Everything\'s under quarantine now. Come back later 🪳✈️',
       uk: 'У терміналі знайшли таргана завбільшки з валізу. Усе закрили на карантин. Повертайся пізніше 🪳✈️',
       es: 'Encontraron una cucaracha del tamaño de una maleta en la terminal. Todo en cuarentena. Vuelve luego 🪳✈️',
       'pt-BR': 'Acharam uma barata do tamanho de uma mala no terminal. Tudo em quarentena. Volte depois 🪳✈️',
@@ -448,6 +461,7 @@ const TRAVEL_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Багаж уехал без хозяина',
+      en: 'The luggage left without its owner',
       uk: 'Багаж поїхав без господаря',
       es: 'El equipaje se fue sin su dueño',
       'pt-BR': 'A bagagem foi embora sem o dono',
@@ -458,6 +472,7 @@ const TRAVEL_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Лента с чемоданами разогналась и укатила в соседний город. Ловим — вернись чуть позже 🧳',
+      en: 'The baggage belt sped up and rolled off to the next town. We\'re chasing it — check back in a bit 🧳',
       uk: 'Стрічка з валізами розігналася й покотила в сусіднє місто. Ловимо — повернись трохи пізніше 🧳',
       es: 'La cinta de maletas se aceleró y se fue a la ciudad vecina. La perseguimos — vuelve en un rato 🧳',
       'pt-BR': 'A esteira de malas acelerou e foi parar na cidade vizinha. Estamos atrás dela — volte daqui a pouco 🧳',
@@ -470,6 +485,7 @@ const TRAVEL_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Табло сошло с ума',
+      en: 'The departure board lost its mind',
       uk: 'Табло здуріло',
       es: 'El panel se volvió loco',
       'pt-BR': 'O painel enlouqueceu',
@@ -480,6 +496,7 @@ const TRAVEL_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Показывает рейс на Луну в 25:61. Техники стучат по нему кулаком. Загляни позже 🛫',
+      en: 'It\'s showing a flight to the Moon at 25:61. Technicians are banging on it. Check back later 🛫',
       uk: 'Показує рейс на Місяць о 25:61. Техніки гупають по ньому кулаком. Зазирни пізніше 🛫',
       es: 'Muestra un vuelo a la Luna a las 25:61. Los técnicos le dan puñetazos. Vuelve luego 🛫',
       'pt-BR': 'Mostra um voo pra Lua às 25:61. Os técnicos batem nele com o punho. Volte depois 🛫',
@@ -495,6 +512,7 @@ const SOCIAL_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Все разошлись',
+      en: 'Everyone left',
       uk: 'Усі розійшлися',
       es: 'Todos se fueron',
       'pt-BR': 'Todos foram embora',
@@ -505,7 +523,8 @@ const SOCIAL_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Вечеринка переехала на крышу, а лестницу унесли. Собеседник машет тебе оттуда. Загляни позже 🎈',
-      uk: 'Вечірка переїхала на дах, а драбину забрали. Співрозмовник махає тобі звідти. Зазирни пізніше 🎈',
+      en: 'The party moved to the roof and they took the ladder away. Your chat partner is waving from up there. Check back later 🎈',
+      uk: 'Вечірка переїхала на дах, а драбину забрали. Співрозмовник машет тобі звідти. Зазирни пізніше 🎈',
       es: 'La fiesta se mudó al tejado y se llevaron la escalera. Tu interlocutor te saluda desde arriba. Vuelve luego 🎈',
       'pt-BR': 'A festa subiu pro telhado e levaram a escada. Seu interlocutor acena lá de cima. Volte depois 🎈',
       vi: 'Bữa tiệc chuyển lên mái nhà và cầu thang bị mang đi. Người đối thoại vẫy tay từ trên đó. Quay lại sau 🎈',
@@ -517,6 +536,7 @@ const SOCIAL_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Диджей поставил не ту пластинку',
+      en: 'The DJ put on the wrong record',
       uk: 'Діджей поставив не ту платівку',
       es: 'El DJ puso el disco equivocado',
       'pt-BR': 'O DJ colocou o disco errado',
@@ -527,6 +547,7 @@ const SOCIAL_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Вместо музыки — урок испанского на скорости 2х. Все замерли. Меняем пластинку — вернись позже 💿',
+      en: 'Instead of music, a Spanish lesson at 2x speed. Everyone froze. Swapping the record — check back later 💿',
       uk: 'Замість музики — урок іспанської на швидкості 2х. Усі завмерли. Міняємо платівку — повернись пізніше 💿',
       es: 'En vez de música suena una clase de español a velocidad 2x. Todos se quedaron helados. Cambiamos el disco — vuelve luego 💿',
       'pt-BR': 'Em vez de música, uma aula de espanhol em velocidade 2x. Todo mundo congelou. Trocando o disco — volte depois 💿',
@@ -539,6 +560,7 @@ const SOCIAL_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Именинник задул свечи вместе со светом',
+      en: 'The birthday kid blew out the lights along with the candles',
       uk: 'Іменинник задув свічки разом зі світлом',
       es: 'El del cumpleaños sopló las velas y la luz',
       'pt-BR': 'O aniversariante soprou as velas e a luz junto',
@@ -549,6 +571,7 @@ const SOCIAL_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Стало темно, гости ищут торт на ощупь. Включаем свет — загляни чуть позже 🎂',
+      en: 'It went dark and the guests are feeling around for the cake. Turning the lights back on — check back in a bit 🎂',
       uk: 'Стало темно, гості шукають торт навпомацки. Вмикаємо світло — зазирни трохи пізніше 🎂',
       es: 'Se hizo de noche y los invitados buscan la tarta a tientas. Encendemos la luz — vuelve en un rato 🎂',
       'pt-BR': 'Ficou tudo escuro e os convidados procuram o bolo às cegas. Acendendo a luz — volte daqui a pouco 🎂',
@@ -564,6 +587,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Робот перезагружается',
+      en: 'Robot rebooting',
       uk: 'Робот перезавантажується',
       es: 'El robot se reinicia',
       'pt-BR': 'O robô está reiniciando',
@@ -574,6 +598,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Официант-робот завис на фразе «Would you like fries with that» и ушёл в цикл. Перезагрузка… 🤖',
+      en: 'The robot waiter got stuck on "Would you like fries with that" and looped forever. Rebooting… 🤖',
       uk: 'Офіціант-робот завис на фразі «Would you like fries with that» і пішов у цикл. Перезавантаження… 🤖',
       es: 'El camarero robot se colgó en «Would you like fries with that» y entró en bucle. Reiniciando… 🤖',
       'pt-BR': 'O garçom robô travou em «Would you like fries with that» e entrou em loop. Reiniciando… 🤖',
@@ -586,6 +611,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Робот раздаёт всем солонки',
+      en: 'The robot is handing out salt shakers to everyone',
       uk: 'Робот роздає всім сільнички',
       es: 'El robot reparte saleros a todos',
       'pt-BR': 'O robô distribui saleiros pra todo mundo',
@@ -596,6 +622,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Заклинило на команде «принести соль» — уже принёс сорок. Разгружаем. Загляни позже 🧂',
+      en: 'It got stuck on "bring salt" — it\'s already brought forty. Unloading it now. Check back later 🧂',
       uk: 'Заклинило на команді «принести сіль» — уже приніс сорок. Розвантажуємо. Зазирни пізніше 🧂',
       es: 'Se atascó en la orden «traer sal» y ya trajo cuarenta. Descargando. Vuelve luego 🧂',
       'pt-BR': 'Travou no comando «trazer sal» e já trouxe quarenta. Descarregando. Volte depois 🧂',
@@ -608,6 +635,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Робот танцует вместо обслуживания',
+      en: 'The robot is dancing instead of serving',
       uk: 'Робот танцює замість обслуговування',
       es: 'El robot baila en vez de atender',
       'pt-BR': 'O robô dança em vez de atender',
@@ -618,6 +646,7 @@ const BROKEN_ROBOT_WAITER_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Перепутал алгоритм заказа с алгоритмом танца и теперь диско у столика. Выключаем музыку — вернись позже 🕺',
+      en: 'It mixed up the order algorithm with the dance algorithm, so now there\'s a disco at the table. Turning the music off — check back later 🕺',
       uk: 'Переплутав алгоритм замовлення з алгоритмом танцю й тепер диско біля столика. Вимикаємо музику — повернись пізніше 🕺',
       es: 'Confundió el algoritmo del pedido con el del baile y ahora hay disco junto a la mesa. Apagamos la música — vuelve luego 🕺',
       'pt-BR': 'Confundiu o algoritmo do pedido com o da dança e agora é disco na mesa. Desligando a música — volte depois 🕺',
@@ -656,6 +685,7 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Учитель устал',
+      en: 'The teacher got tired',
       uk: 'Вчитель втомився',
       es: 'El profesor se cansó',
       'pt-BR': 'O professor se cansou',
@@ -666,6 +696,7 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Ты сегодня разобрал столько ошибок, что учитель уснул прямо на стуле. Отдохнёт до завтра — а с Plus у тебя личный учитель без выходных 🛌',
+      en: 'You went through so many mistakes today the teacher fell asleep right in the chair. He\'ll rest until tomorrow — with Plus you get a personal tutor who never takes a day off 🛌',
       uk: 'Ти сьогодні розібрав стільки помилок, що вчитель заснув прямо на стільці. Відпочине до завтра — а з Plus у тебе особистий вчитель без вихідних 🛌',
       es: 'Hoy analizaste tantos errores que el profesor se durmió en la silla. Descansará hasta mañana — con Plus tienes un profesor personal sin días libres 🛌',
       'pt-BR': 'Você analisou tantos erros hoje que o professor pegou no sono na cadeira. Vai descansar até amanhã — com Plus você tem um professor particular sem folga 🛌',
@@ -678,6 +709,7 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Словарь захлопнулся',
+      en: 'The dictionary slammed shut',
       uk: 'Словник захлопнувся',
       es: 'El diccionario se cerró de golpe',
       'pt-BR': 'O dicionário se fechou de vez',
@@ -688,6 +720,7 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Ты пролистал словарь так быстро, что он захлопнулся сам. Откроется завтра — а с Plus он всегда под рукой 📖',
+      en: 'You flipped through the dictionary so fast it slammed itself shut. It\'ll reopen tomorrow — with Plus it\'s always within reach 📖',
       uk: 'Ти пролистав словник так швидко, що він захлопнувся сам. Відкриється завтра — а з Plus він завжди під рукою 📖',
       es: 'Hojeaste el diccionario tan rápido que se cerró solo. Se abrirá mañana — con Plus siempre lo tienes a mano 📖',
       'pt-BR': 'Você folheou o dicionário tão rápido que ele se fechou sozinho. Abre amanhã — com Plus ele está sempre à mão 📖',
@@ -700,6 +733,7 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Мел закончился',
+      en: 'Out of chalk',
       uk: 'Крейда закінчилась',
       es: 'Se acabó la tiza',
       'pt-BR': 'O giz acabou',
@@ -710,6 +744,7 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Сегодняшний урок стёр всю доску подчистую — мела больше нет. Новый привезут завтра, а с Plus доска бесконечная ✏️',
+      en: 'Today\'s lesson wore the whole piece of chalk down to nothing. More arrives tomorrow — with Plus the board never runs out ✏️',
       uk: 'Сьогоднішній урок витер усю дошку дочиста — крейди більше немає. Нову привезуть завтра, а з Plus дошка нескінченна ✏️',
       es: 'La lección de hoy gastó toda la tiza en la pizarra. Mañana traen más — con Plus la pizarra es infinita ✏️',
       'pt-BR': 'A aula de hoje usou todo o giz na lousa. Chega mais amanhã — com Plus a lousa é infinita ✏️',
@@ -725,6 +760,7 @@ const GLOBAL_BUDGET_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Свет мигнул на весь квартал',
+      en: 'The lights flickered across the whole block',
       uk: 'Світло блимнуло на весь квартал',
       es: 'La luz parpadeó en toda la manzana',
       'pt-BR': 'A luz piscou no quarteirão inteiro',
@@ -735,6 +771,7 @@ const GLOBAL_BUDGET_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Разборы попросили все разом — пробки повышибало. Электрик уже лезет на столб ⚡',
+      en: 'Everyone asked for a breakdown at once and blew every fuse. The electrician is already up the pole ⚡',
       uk: 'Розбори попросили всі разом — пробки повибивало. Електрик уже лізе на стовп ⚡',
       es: 'Todos pidieron análisis a la vez y saltaron los fusibles. El electricista ya sube al poste ⚡',
       'pt-BR': 'Todo mundo pediu análise ao mesmo tempo e os fusíveis pularam. O eletricista já tá subindo no poste ⚡',
@@ -747,6 +784,7 @@ const GLOBAL_BUDGET_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'В кофейне кончилось молоко',
+      en: 'The café ran out of milk',
       uk: 'У кав’ярні скінчилося молоко',
       es: 'Se acabó la leche en la cafetería',
       'pt-BR': 'Acabou o leite na cafeteria',
@@ -757,6 +795,7 @@ const GLOBAL_BUDGET_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Народу набежало столько, что бариста развёл руками. Побежал за упаковкой — заходи позже 🥛',
+      en: 'So many people showed up at once the barista threw up their hands. Ran out for more — check back later 🥛',
       uk: 'Народу набігло стільки, що бариста розвів руками. Побіг по упаковку — заходь пізніше 🥛',
       es: 'Vino tanta gente que el barista se quedó sin nada. Salió corriendo por más — pásate luego 🥛',
       'pt-BR': 'Veio tanta gente que o barista abriu os braços. Saiu correndo atrás de mais — apareça depois 🥛',
@@ -769,6 +808,7 @@ const GLOBAL_BUDGET_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Мост развели в час пик',
+      en: 'The bridge went up during rush hour',
       uk: 'Міст розвели в годину пік',
       es: 'Levantaron el puente en hora punta',
       'pt-BR': 'Levantaram a ponte na hora do rush',
@@ -779,6 +819,7 @@ const GLOBAL_BUDGET_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Все ринулись за разбором и застряли по разным берегам. Ждём, пока мост сведут обратно 🌉',
+      en: 'Everyone rushed for their breakdown and got stuck on opposite banks. Waiting for the bridge to come back down 🌉',
       uk: 'Усі кинулися за розбором і застрягли на різних берегах. Чекаємо, поки міст зведуть назад 🌉',
       es: 'Todos corrieron por su análisis y quedaron atrapados en orillas distintas. Esperamos a que bajen el puente 🌉',
       'pt-BR': 'Todo mundo correu atrás da análise e ficou preso em margens diferentes. Esperando abaixarem a ponte 🌉',
@@ -794,6 +835,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Голубь потерял письмо',
+      en: 'The pigeon lost the letter',
       uk: 'Голуб загубив листа',
       es: 'La paloma perdió la carta',
       'pt-BR': 'O pombo perdeu a carta',
@@ -804,6 +846,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Ответ отправили голубиной почтой, а он свернул не туда и клюёт крошки на площади. Жми ещё раз 🕊️',
+      en: 'We sent the answer by carrier pigeon, but it took a wrong turn and is pecking crumbs in the square. Tap again 🕊️',
       uk: 'Відповідь надіслали голубиною поштою, а він звернув не туди й клює крихти на площі. Тисни ще раз 🕊️',
       es: 'Mandamos la respuesta por paloma mensajera, pero se desvió y anda picoteando migas en la plaza. Dale otra vez 🕊️',
       'pt-BR': 'Mandamos a resposta por pombo-correio, mas ele virou errado e tá bicando migalhas na praça. Toque de novo 🕊️',
@@ -816,6 +859,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Посылку унесло не на тот этаж',
+      en: 'The package ended up on the wrong floor',
       uk: 'Посилку віднесло не на той поверх',
       es: 'El paquete se fue al piso equivocado',
       'pt-BR': 'A encomenda foi pro andar errado',
@@ -826,6 +870,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Курьер постучал в соседнюю дверь и застрял там за чаем. Вызови ещё раз 📦',
+      en: 'The courier knocked on the neighbor\'s door and got stuck there over tea. Request it again 📦',
       uk: 'Кур’єр постукав у сусідні двері й застряг там за чаєм. Виклич ще раз 📦',
       es: 'El repartidor tocó la puerta de al lado y se quedó ahí tomando té. Vuelve a llamarlo 📦',
       'pt-BR': 'O entregador bateu na porta do lado e ficou por lá tomando chá. Chame de novo 📦',
@@ -838,6 +883,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Ответ смыло в трубу',
+      en: 'The answer got sucked into the pipe',
       uk: 'Відповідь змило в трубу',
       es: 'La respuesta se fue por el tubo',
       'pt-BR': 'A resposta foi sugada pelo cano',
@@ -848,6 +894,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Написали на бумажке, положили в пневмопочту, а трубу засосало не туда. Отправь запрос ещё раз 💨',
+      en: 'We wrote it on paper, dropped it in the pneumatic tube, and it got sucked the wrong way. Send the request again 💨',
       uk: 'Написали на папірці, поклали в пневмопошту, а трубу засмоктало не туди. Надішли запит ще раз 💨',
       es: 'La escribimos en un papel, la metimos en el tubo neumático y lo aspiró hacia otro lado. Envía la petición otra vez 💨',
       'pt-BR': 'Escrevemos num papel, colocamos no tubo pneumático e ele sugou pro lado errado. Envie o pedido de novo 💨',
@@ -860,6 +907,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
   {
     title: {
       ru: 'Эхо вернулось без ответа',
+      en: 'The echo came back with no answer',
       uk: 'Луна повернулася без відповіді',
       es: 'El eco volvió sin respuesta',
       'pt-BR': 'O eco voltou sem resposta',
@@ -870,6 +918,7 @@ const AI_ERROR_VARIANTS: readonly MultiLangPair[] = [
     },
     message: {
       ru: 'Прокричали вопрос в горы, а обратно прилетело только «…ответ… ответ…». Попробуй ещё разок 🏔️',
+      en: 'We shouted the question into the mountains, and all that came back was "…answer… answer…". Give it another try 🏔️',
       uk: 'Прокричали питання в гори, а назад прилетіло тільки «…відповідь… відповідь…». Спробуй ще разок 🏔️',
       es: 'Gritamos la pregunta a las montañas y solo volvió «…respuesta… respuesta…». Inténtalo otra vez 🏔️',
       'pt-BR': 'Gritamos a pergunta pras montanhas e só voltou «…resposta… resposta…». Tente mais uma vez 🏔️',

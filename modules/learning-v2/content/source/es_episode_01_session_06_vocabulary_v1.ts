@@ -11,6 +11,12 @@ import type {
 // курса, где тильда над ú меняет само звучание слова, а не просто отмечает
 // естественное ударение. Recalls fácil (1) и rápido (5) — оба слова с
 // ударением на á первого слога, тот же ритмический рисунок, что у único.
+//
+// зачем guidance короче, чем в первой (отклонённой) версии этого файла
+// (владелец, 2026-08-27, тот же класс правки, что и в сессиях 4/5,
+// learning_content_quality_gate_v1.ts MAX_GUIDANCE_CHARS=200): исходная
+// формулировка была написана на 400+ знаков на локаль. Переписано под
+// потолок 200 без потери фонетических/семантических/орфографических ловушек.
 const L = (value: LocalizedSource): LocalizedSource => value;
 
 const contact = (
@@ -27,24 +33,24 @@ export const ES_EPISODE_01_SESSION_06_VOCABULARY_V1:
       ru: 'единственный, уникальный — мужской род признака',
       uk: 'єдиний, унікальний — чоловічий рід ознаки',
       es: 'unique, only one — masculine form of the quality',
-      'pt-BR': 'unique, only one — masculine form of the quality',
-      vi: 'unique, only one — masculine form of the quality',
-      id: 'unique, only one — masculine form of the quality',
-      tr: 'unique, only one — masculine form of the quality',
-      pl: 'unique, only one — masculine form of the quality',
+      'pt-BR': 'único — forma masculina da qualidade',
+      vi: 'duy nhất, độc nhất — dạng giống đực của đặc điểm',
+      id: 'unik, satu-satunya — bentuk maskulin dari sifat',
+      tr: 'eşsiz, tek — niteliğin eril biçimi',
+      pl: 'jedyny, unikalny — męska forma cechy',
     }),
     features: ['quality_adjective', 'gender_agreement_full', 'written_accent'],
     contacts: {
       recognize: contact(
         L({
-          ru: 'Único ударен на первом слоге — Ú-ni-co, с сильным ú. Без тильды над u слово звучало бы иначе — ударение упало бы на другой слог, как в обычных испанских словах без знака. Única заканчивается другим гласным — /a/, а не /o/. Unido звучит совсем иначе — с ударением на другом слоге и другим согласным в середине.',
-          uk: 'Único наголошений на першому складі — Ú-ni-co, з сильним ú. Без тильди над u слово звучало б інакше — наголос упав би на інший склад, як у звичайних іспанських словах без знака. Única закінчується іншим голосним — /a/, а не /o/. Unido звучить зовсім інакше — з наголосом на іншому складі й іншим приголосним усередині.',
-          es: 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Without the tilde over u, the word would sound different — the stress would fall on a different syllable, as in ordinary Spanish words with no mark. Única ends in a different vowel — /a/, not /o/. Unido sounds completely different — stressed on a different syllable, with a different consonant in the middle.',
-          'pt-BR': 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Without the tilde over u, the word would sound different — the stress would fall on a different syllable, as in ordinary Spanish words with no mark. Única ends in a different vowel — /a/, not /o/. Unido sounds completely different — stressed on a different syllable, with a different consonant in the middle.',
-          vi: 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Without the tilde over u, the word would sound different — the stress would fall on a different syllable, as in ordinary Spanish words with no mark. Única ends in a different vowel — /a/, not /o/. Unido sounds completely different — stressed on a different syllable, with a different consonant in the middle.',
-          id: 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Without the tilde over u, the word would sound different — the stress would fall on a different syllable, as in ordinary Spanish words with no mark. Única ends in a different vowel — /a/, not /o/. Unido sounds completely different — stressed on a different syllable, with a different consonant in the middle.',
-          tr: 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Without the tilde over u, the word would sound different — the stress would fall on a different syllable, as in ordinary Spanish words with no mark. Única ends in a different vowel — /a/, not /o/. Unido sounds completely different — stressed on a different syllable, with a different consonant in the middle.',
-          pl: 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Without the tilde over u, the word would sound different — the stress would fall on a different syllable, as in ordinary Spanish words with no mark. Única ends in a different vowel — /a/, not /o/. Unido sounds completely different — stressed on a different syllable, with a different consonant in the middle.',
+          ru: 'Único ударен на первом слоге — Ú-ni-co, с сильным ú. Única заканчивается на /a/. Unido звучит совсем иначе — другой согласный.',
+          uk: 'Único наголошений на першому складі — Ú-ni-co, з сильним ú. Única закінчується на /a/. Unido звучить зовсім інакше — інший приголосний.',
+          es: 'Único is stressed on the first syllable — Ú-ni-co, with a strong ú. Única ends in /a/. Unido sounds completely different — a different consonant.',
+          'pt-BR': 'Único é acentuado na primeira sílaba — Ú-ni-co, com um ú forte. Única termina em /a/. Unido soa completamente diferente — outra consoante.',
+          vi: 'Único có trọng âm ở âm tiết đầu — Ú-ni-co, với ú mạnh. Única kết thúc bằng /a/. Unido nghe hoàn toàn khác — phụ âm khác.',
+          id: 'Único bertekanan di suku kata pertama — Ú-ni-co, dengan ú yang kuat. Única berakhir dengan /a/. Unido terdengar sama sekali berbeda — konsonan berbeda.',
+          tr: 'Único ilk hecede vurguludur — Ú-ni-co, güçlü bir ú ile. Única /a/ ile biter. Unido tamamen farklı seslenir — farklı bir ünsüz.',
+          pl: 'Único ma akcent na pierwszej sylabie — Ú-ni-co, z mocnym ú. Única kończy się na /a/. Unido brzmi zupełnie inaczej — inna spółgłoska.',
         }),
         [
           {
@@ -81,14 +87,14 @@ export const ES_EPISODE_01_SESSION_06_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Único означает «единственный, уникальный» — признак того, что больше ничего подобного нет. Fácil значит совсем другое — «лёгкий», признак сложности. Rápido тоже другое — «быстрый», признак темпа, а не единственности.',
-          uk: 'Único означає «єдиний, унікальний» — ознака того, що більше нічого подібного немає. Fácil означає зовсім інше — «легкий», ознака складності. Rápido теж інше — «швидкий», ознака темпу, а не єдиності.',
-          es: 'Único means "unique, only one" — a quality of nothing else being like it. Fácil means something completely different — "easy", a quality of difficulty. Rápido is also different — "fast", a quality of pace, not uniqueness.',
-          'pt-BR': 'Único means "unique, only one" — a quality of nothing else being like it. Fácil means something completely different — "easy", a quality of difficulty. Rápido is also different — "fast", a quality of pace, not uniqueness.',
-          vi: 'Único means "unique, only one" — a quality of nothing else being like it. Fácil means something completely different — "easy", a quality of difficulty. Rápido is also different — "fast", a quality of pace, not uniqueness.',
-          id: 'Único means "unique, only one" — a quality of nothing else being like it. Fácil means something completely different — "easy", a quality of difficulty. Rápido is also different — "fast", a quality of pace, not uniqueness.',
-          tr: 'Único means "unique, only one" — a quality of nothing else being like it. Fácil means something completely different — "easy", a quality of difficulty. Rápido is also different — "fast", a quality of pace, not uniqueness.',
-          pl: 'Único means "unique, only one" — a quality of nothing else being like it. Fácil means something completely different — "easy", a quality of difficulty. Rápido is also different — "fast", a quality of pace, not uniqueness.',
+          ru: 'Único означает «единственный». Fácil значит «лёгкий», признак сложности. Rápido — «быстрый», признак темпа, не единственности.',
+          uk: 'Único означає «єдиний». Fácil означає «легкий», ознака складності. Rápido — «швидкий», ознака темпу, не єдиності.',
+          es: 'Único means "unique". Fácil means "easy", a quality of difficulty. Rápido means "fast", a quality of pace, not uniqueness.',
+          'pt-BR': 'Único significa "único". Fácil significa "fácil", uma qualidade de dificuldade. Rápido significa "rápido", uma qualidade de ritmo, não de singularidade.',
+          vi: 'Único nghĩa là "duy nhất". Fácil nghĩa là "dễ", đặc điểm về độ khó. Rápido nghĩa là "nhanh", đặc điểm về tốc độ, không phải duy nhất.',
+          id: 'Único berarti "unik". Fácil berarti "mudah", sifat kesulitan. Rápido berarti "cepat", sifat kecepatan, bukan keunikan.',
+          tr: 'Único "eşsiz" demektir. Fácil "kolay" demektir, zorluk niteliği. Rápido "hızlı" demektir, tempo niteliği, eşsizlik değil.',
+          pl: 'Único znaczy „jedyny”. Fácil znaczy „łatwy”, cecha trudności. Rápido znaczy „szybki”, cecha tempa, nie wyjątkowości.',
         }),
         [
           {
@@ -125,14 +131,14 @@ export const ES_EPISODE_01_SESSION_06_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Único пишется с тильдой над первым u: ú-n-i-c-o — без неё слово читалось бы с ударением на другом слоге. Смена концовки -o на -a даёт única, форму женского рода, а тильда над ú остаётся на месте в обеих формах. Unido пишет другую букву в середине — d вместо c — и вообще не связано по значению.',
-          uk: 'Único пишеться з тильдою над першим u: ú-n-i-c-o — без неї слово читалося б з наголосом на іншому складі. Зміна закінчення -o на -a дає única, форму жіночого роду, а тильда над ú лишається на місці в обох формах. Unido пише іншу літеру всередині — d замість c — і взагалі не пов’язане за значенням.',
-          es: 'Único is written with a tilde over the first u: ú-n-i-c-o — without it, the word would be read with the stress on a different syllable. Changing the ending -o to -a gives única, the feminine form, and the tilde over ú stays in place in both forms. Unido has a different letter in the middle — d instead of c — and is unrelated in meaning.',
-          'pt-BR': 'Único is written with a tilde over the first u: ú-n-i-c-o — without it, the word would be read with the stress on a different syllable. Changing the ending -o to -a gives única, the feminine form, and the tilde over ú stays in place in both forms. Unido has a different letter in the middle — d instead of c — and is unrelated in meaning.',
-          vi: 'Único is written with a tilde over the first u: ú-n-i-c-o — without it, the word would be read with the stress on a different syllable. Changing the ending -o to -a gives única, the feminine form, and the tilde over ú stays in place in both forms. Unido has a different letter in the middle — d instead of c — and is unrelated in meaning.',
-          id: 'Único is written with a tilde over the first u: ú-n-i-c-o — without it, the word would be read with the stress on a different syllable. Changing the ending -o to -a gives única, the feminine form, and the tilde over ú stays in place in both forms. Unido has a different letter in the middle — d instead of c — and is unrelated in meaning.',
-          tr: 'Único is written with a tilde over the first u: ú-n-i-c-o — without it, the word would be read with the stress on a different syllable. Changing the ending -o to -a gives única, the feminine form, and the tilde over ú stays in place in both forms. Unido has a different letter in the middle — d instead of c — and is unrelated in meaning.',
-          pl: 'Único is written with a tilde over the first u: ú-n-i-c-o — without it, the word would be read with the stress on a different syllable. Changing the ending -o to -a gives única, the feminine form, and the tilde over ú stays in place in both forms. Unido has a different letter in the middle — d instead of c — and is unrelated in meaning.',
+          ru: 'Único пишется с тильдой на первом u: ú-n-i-c-o. Смена -o на -a даёт única, тильда остаётся. Unido пишет d вместо c — другое слово.',
+          uk: 'Único пишеться з тильдою на першому u: ú-n-i-c-o. Заміна -o на -a дає única, тильда лишається. Unido пише d замість c — інше слово.',
+          es: 'Único is written with a tilde on the first u: ú-n-i-c-o. Changing -o to -a gives única, the tilde stays. Unido writes d instead of c — a different word.',
+          'pt-BR': 'Único se escreve com til no primeiro u: ú-n-i-c-o. Trocar -o por -a dá única, o til permanece. Unido escreve d em vez de c — outra palavra.',
+          vi: 'Único viết với dấu ngã trên chữ u đầu tiên: ú-n-i-c-o. Đổi -o thành -a cho ra única, dấu ngã vẫn còn. Unido viết d thay vì c — từ khác.',
+          id: 'Único ditulis dengan tilde di huruf u pertama: ú-n-i-c-o. Mengubah -o menjadi -a menghasilkan única, tilde tetap ada. Unido menulis d bukan c — kata lain.',
+          tr: 'Único ilk u üzerinde tilde ile yazılır: ú-n-i-c-o. -o\'yu -a yapmak única\'yı verir, tilde kalır. Unido c yerine d yazar — başka kelime.',
+          pl: 'Único pisze się z tyldą na pierwszym u: ú-n-i-c-o. Zmiana -o na -a daje única, tylda zostaje. Unido pisze d zamiast c — inne słowo.',
         }),
         [
           {

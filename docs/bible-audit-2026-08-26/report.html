@@ -125,10 +125,11 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
 <div class="wrap">
   <h1>Аудит текстов по Библии Phraseman</h1>
   <p class="lede">Каждый текст, который видит человек, и его новая версия по Библии.
-  <b>107 правок уже в коде</b> — они помечены «сделано». Ещё 21 мест разобраны и
-  сознательно оставлены как есть (требования сторов, решения владельца, ложные
-  срабатывания) — там указано почему. 5 ждут: файл главного экрана всю ночь
-  правила другая сессия. Проверка типов по всему проекту — без ошибок.</p>
+  <b>114 правок в коде</b> — помечены «сделано», включая 7 находок самопроверки:
+  перечитал свою же ночную работу и нашёл обрезающуюся кнопку, вводящий в
+  заблуждение заголовок тоста и семь пропущенных «Дальше». Ещё 21 мест
+  разобраны и оставлены как есть — там указано почему. 5 ждут: файл главного
+  экрана правит другая сессия. Ошибок типов по всему проекту: ноль.</p>
 
   <div class="top">
     <div class="top-i"><b>Обращение на «вы» · 22</b>Приложение переходит на «вы» —
@@ -146,16 +147,17 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
   <div class="bar"><div class="bar-in">
     <button class="f" data-g="sev" data-v="all" aria-pressed="true">Все</button>
     <button class="f" data-g="sev" data-v="high">Критично · 31</button>
-    <button class="f" data-g="sev" data-v="medium">Средне · 71</button>
-    <button class="f" data-g="sev" data-v="low">Мелочь · 39</button>
+    <button class="f" data-g="sev" data-v="medium">Средне · 76</button>
+    <button class="f" data-g="sev" data-v="low">Мелочь · 41</button>
     <input id="q" type="search" placeholder="Поиск по тексту, экрану, файлу">
     <span class="count">Видно <b id="shown">0</b> · принято <b id="kept">0</b></span>
   </div>
   <div class="bar-in" style="margin-top:9px"><button class="f" data-g="kind" data-v="all" aria-pressed="true">Всё</button>
-<button class="f" data-g="kind" data-v="copy">Текст · 125</button>
+<button class="f" data-g="kind" data-v="copy">Текст · 131</button>
 <button class="f" data-g="kind" data-v="i18n">Языки · 7</button>
 <button class="f" data-g="kind" data-v="owner-rule">Запрет владельца · 7</button>
-<button class="f" data-g="kind" data-v="structure">Структура · 2</button></div></div>
+<button class="f" data-g="kind" data-v="structure">Структура · 2</button>
+<button class="f" data-g="kind" data-v="visual">Визуал · 1</button></div></div>
 
   <section class="zone"><h2 class="zone-h">Главная и навигация · 52</h2>
 <div class="screen"><h3 class="screen-h">Друзья</h3>
@@ -1679,7 +1681,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
     </article>
 </div>
 </section>
-<section class="zone"><h2 class="zone-h">Уроки и практика · 5</h2>
+<section class="zone"><h2 class="zone-h">Уроки и практика · 6</h2>
 <div class="screen"><h3 class="screen-h">Карточки — кнопка «не совпало» в свайпе</h3>
 
     <article class="row done" data-sev="high" data-kind="copy" data-id="learn-001" data-done="1">
@@ -1764,6 +1766,34 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 </div>
+<div class="screen"><h3 class="screen-h">Кнопка перехода в семи местах: карточки, план, тренажёр, экзамен, опросы</h3>
+
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="self-005" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-005" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">app/personal_plan_exercise.tsx:2287</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Дальше</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Продолжить</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: Библия приводит «Далее» прямым примером запрета</b><span class="wtxt">Ночью я поправил «Далее» только в общем словаре и пропустил семь живых кнопок в сессиях и опросах.</span></p>
+      </div>
+    </article>
+</div>
 <div class="screen"><h3 class="screen-h">Карточки — кнопка жалобы на карточку</h3>
 
     <article class="row" data-sev="low" data-kind="copy" data-id="learn-004" data-done="0">
@@ -1821,7 +1851,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
     </article>
 </div>
 </section>
-<section class="zone"><h2 class="zone-h">Модалки и тосты · 17</h2>
+<section class="zone"><h2 class="zone-h">Модалки и тосты · 18</h2>
 <div class="screen"><h3 class="screen-h">Промо-баннер — текст по умолчанию</h3>
 
     <article class="row done" data-sev="high" data-kind="copy" data-id="fear-001" data-done="1">
@@ -2155,6 +2185,34 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
         </div>
         <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">Дублирует нарушение modals-007 в classic-варианте того же экрана — для консистентности нужно править оба места одновременно.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Тост «Сообщение» — общий заголовок нейтральных тостов</h3>
+
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="self-001" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-001" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">components/action_toast_copy.ts:14</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">info: &#x27;Подсказка&#x27; (мой ночной вариант)</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">info: &#x27;Сообщение&#x27;</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Стиль 5 (Человек) + Часть V п.4: без слов-паразитов</b><span class="wtxt">Заголовок стоит НАД сообщением и сопровождает любые нейтральные тосты («Друг убран из списка»), поэтому «Подсказка» врала бы: это факт, а не совет. Промежуточный вариант «Кстати» тоже отверг — слово-паразит.</span></p>
       </div>
     </article>
 </div>
@@ -3712,7 +3770,7 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
     </article>
 </div>
 </section>
-<section class="zone"><h2 class="zone-h">Диалоги и MAX · 2</h2>
+<section class="zone"><h2 class="zone-h">Диалоги и MAX · 3</h2>
 <div class="screen"><h3 class="screen-h">MAX-звонок — голосовая линия выключена</h3>
 
     <article class="row done" data-sev="medium" data-kind="copy" data-id="ai-001" data-done="1">
@@ -3769,8 +3827,36 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
       </div>
     </article>
 </div>
+<div class="screen"><h3 class="screen-h">Диалоги — алерт блокировки по уровню</h3>
+
+    <article class="row done" data-sev="low" data-kind="copy" data-id="self-007" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-007" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">components/DialogsTabContent.tsx:297</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Ок</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Закрыть</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">«Ок» — не действие; алерт объясняет условие и закрывается.</span></p>
+      </div>
+    </article>
+</div>
 </section>
-<section class="zone"><h2 class="zone-h">Арена · 4</h2>
+<section class="zone"><h2 class="zone-h">Арена · 5</h2>
 <div class="screen"><h3 class="screen-h">Арена — статистика игрока</h3>
 
     <article class="row done" data-sev="medium" data-kind="copy" data-id="arena-002" data-done="1">
@@ -3852,6 +3938,34 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
           </div>
         </div>
         <p class="why"><b class="rule">Правило 2: gain-framing, говорим не о потере</b><span class="wtxt">«Потерян» фиксирует потерю, хотя соседние строки этого же экрана уже сделаны в поддерживающем тоне («Сохранено {n} рун», «Шанс на реванш»).</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Арена — счётчик статистики</h3>
+
+    <article class="row done" data-sev="low" data-kind="copy" data-id="self-002" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-002" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-low">Мелочь</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">modules/arena/copy.ts:16</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Не вышло (мой ночной вариант)</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Промахи</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Словарь Библии: ошибка → промах</b><span class="wtxt">Подпись стоит рядом с «Победы» — одно слово против двух смотрелось неровно. «Промахи» и парно, и взято прямо из словаря Библии.</span></p>
       </div>
     </article>
 </div>
@@ -3942,7 +4056,93 @@ h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
     </article>
 </div>
 </section>
-<section class="zone"><h2 class="zone-h">Друзья и профиль · 2</h2>
+<section class="zone"><h2 class="zone-h">Награды и сундуки · 1</h2>
+<div class="screen"><h3 class="screen-h">Спин уровня — финишная модалка</h3>
+
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="self-004" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-004" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">components/LevelSpinFinishLine.tsx:601</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">ГОТОВО</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">ЗАКРЫТЬ</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 1: глагол в кнопке</b><span class="wtxt">В соседней модалке спина это исправлено ночью, а здесь пропустил — состояние вместо действия.</span></p>
+      </div>
+    </article>
+</div>
+</section>
+<section class="zone"><h2 class="zone-h">Друзья и профиль · 4</h2>
+<div class="screen"><h3 class="screen-h">Друзья — награда за приглашённого друга</h3>
+
+    <article class="row done" data-sev="medium" data-kind="copy" data-id="self-006" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-006" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Текст</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">app/(tabs)/friends.tsx:1047</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Награда начислена вам обоим: 10 шардов и 1000 XP.</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Награда у обоих: 10 жемчужин и 1000 XP.</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Правило 14 + единое название валюты</b><span class="wtxt">Обращение на «вы» плюс старое слово «шарды» вместо жемчуга — во всех девяти языках.</span></p>
+      </div>
+    </article>
+</div>
+<div class="screen"><h3 class="screen-h">Друзья — модалка входящего подарка</h3>
+
+    <article class="row done" data-sev="medium" data-kind="visual" data-id="self-003" data-done="1">
+      <label class="pick">
+        <input type="checkbox" class="cb" data-id="self-003" checked>
+        <span class="box" aria-hidden="true"></span>
+      </label>
+      <div class="body">
+        <div class="meta">
+          <span class="tag tag-medium">Средне</span>
+          <span class="tag">Визуал</span>
+          <span class="tag tag-done">сделано</span>
+          <span class="loc">app/(tabs)/friends.tsx:3654</span>
+        </div>
+        <div class="pair">
+          <div class="side was">
+            <span class="side-h">Сейчас</span>
+            <p class="txt">Забрать подарок (мой ночной вариант)</p>
+          </div>
+          <div class="side now">
+            <span class="side-h">Станет</span>
+            <p class="txt">Забрать</p>
+          </div>
+        </div>
+        <p class="why"><b class="rule">Библия Правило 4 + вёрстка</b><span class="wtxt">Две кнопки в ряду при numberOfLines={1}: длинная подпись обрезалась бы на узких экранах. Переводы согласованы с такой же кнопкой на том же экране.</span></p>
+      </div>
+    </article>
+</div>
 <div class="screen"><h3 class="screen-h">Профиль игрока — не удалось убрать друга</h3>
 
     <article class="row done" data-sev="medium" data-kind="copy" data-id="soc-001" data-done="1">

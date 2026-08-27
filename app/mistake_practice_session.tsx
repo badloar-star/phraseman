@@ -58,7 +58,10 @@ import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
+import AnimatedCountUpText from '../components/AnimatedCountUpText';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -362,6 +365,7 @@ function MistakePracticeSessionScreen() {
     enabled: session !== null,
     devFakeStartRunes: devRunesFake?.runes,
   });
+  const runeFlight = usePracticeRuneFlight();
   useEffect(() => {
     if (complete) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -524,7 +528,10 @@ function MistakePracticeSessionScreen() {
       // один раз за сессию. Ошибся снова на повторном показе той же ошибки —
       // руны не будет; переответил правильно — засчитается (копилка платит
       // только за факт, а не за порядок попыток).
-      if (correct) practiceRunes.onCorrectAnswer(entry.mistakeId);
+      if (correct) {
+        const awarded = practiceRunes.onCorrectAnswer(entry.mistakeId);
+        if (awarded > 0) runeFlight.fly(awarded);
+      }
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. За отработку
       // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
       if (!correct) {
@@ -842,18 +849,25 @@ function MistakePracticeSessionScreen() {
           <Ionicons name="checkmark" size={42} color={t.correct} />
         </View>
         <Text style={[styles.completeTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{copy.sessionComplete}</Text>
-        <View style={styles.rewardRow}>
+        <View style={[styles.rewardRow, { alignItems: 'center' }]}>
           {/* зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» подменяет и
-              XP, и звёзды-оценку — реальное начисление ниже не трогается. */}
-          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>
-            +{devRunesFake ? devRunesFake.secondary : earnedXp} XP
-          </Text>
-          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>
-            ★ {devRunesFake ? devRunesFake.tertiary : earnedStars}
-          </Text>
+              XP, и звёзды-оценку — реальное начисление ниже не трогается.
+              Count-up вместо статичного числа — «XP тоже анимирован». */}
+          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>+</Text>
+          <AnimatedCountUpText
+            value={devRunesFake ? devRunesFake.secondary : earnedXp}
+            style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body, minWidth: 20 }]}
+            accessibilityLabel={`+${devRunesFake ? devRunesFake.secondary : earnedXp} XP`}
+          />
+          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>XP  ★</Text>
+          <AnimatedCountUpText
+            value={devRunesFake ? devRunesFake.tertiary : earnedStars}
+            style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body, minWidth: 20 }]}
+            accessibilityLabel={String(devRunesFake ? devRunesFake.tertiary : earnedStars)}
+          />
         </View>
         {practiceRunes.runes > 0 && (
-          <View style={[styles.rewardRow, { marginTop: 4 }]}>
+          <View style={[styles.rewardRow, { marginTop: 4, alignItems: 'center' }]}>
             {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
             <Image
               source={require('../assets/images/level-spin-rewards/stars_10.webp')}
@@ -863,9 +877,12 @@ function MistakePracticeSessionScreen() {
               accessibilityElementsHidden
               importantForAccessibility="no"
             />
-            <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>
-              +{practiceRunes.runes}
-            </Text>
+            <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>+</Text>
+            <AnimatedCountUpText
+              value={practiceRunes.runes}
+              style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body, minWidth: 20 }]}
+              accessibilityLabel={`+${practiceRunes.runes}`}
+            />
           </View>
         )}
         <Pressable style={[styles.primaryButton, { backgroundColor: t.accent }]} onPress={leavePractice}>
@@ -883,13 +900,15 @@ function MistakePracticeSessionScreen() {
           высоты и уже плотная (крестик/попытки/прогресс/скрыть/репорт) —
           добавление сюда же сжало бы остальные элементы. */}
       <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingHorizontal: 14, paddingTop: 4 }}>
-        <PracticeRuneCounter
-          runes={practiceRunes.runes}
-          lang={lang}
-          backgroundColor={t.bgCard}
-          color={t.textPrimary}
-          testID="mistake-practice-runes"
-        />
+        <View ref={runeFlight.counterRef} collapsable={false}>
+          <PracticeRuneCounter
+            runes={practiceRunes.runes}
+            lang={lang}
+            backgroundColor={t.bgCard}
+            color={t.textPrimary}
+            testID="mistake-practice-runes"
+          />
+        </View>
       </View>
       <View style={styles.header}>
         <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={styles.headerButton}>
@@ -926,6 +945,8 @@ OK: ${entry.exercise.correctAnswer}`}
         />
       </View>
 
+      {/* Источник полёта рун (владелец, 2026-08-27) */}
+      <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1 }}>
       <ScrollView decelerationRate="fast" contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={[styles.prompt, { color: t.textPrimary, fontSize: f.h3 }]}>{entry.exercise.prompt}</Text>
 
@@ -1052,6 +1073,7 @@ OK: ${entry.exercise.correctAnswer}`}
           </View>
         ) : null}
       </ScrollView>
+      </View>
 
       {hiddenUndo ? (
         <View style={styles.undoRow}>
@@ -1095,6 +1117,15 @@ OK: ${entry.exercise.correctAnswer}`}
         onSpendRunes={() => { void recoverMistakePracticeAttempts('runes'); }}
         onEndSession={endExhaustedMistakePractice}
       />
+      {runeFlight.flight && (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      )}
     </MistakePracticeScreenFrame>
   );
 }

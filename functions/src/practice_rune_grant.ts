@@ -57,6 +57,58 @@ const FINGERPRINT = /^[a-f0-9]{64}$/;
  */
 export const PRACTICE_RUNE_MAX_PER_SESSION = 300;
 
+/**
+ * Потолок начисления за сутки по всем учебным активностям вместе.
+ *
+ * зачем (аудит 2026-08-27): потолка на сессию НЕ ХВАТАЕТ. `completionOrdinal`
+ * выбирает клиент, а не сервер, поэтому подделанный клиент шлёт ordinal 1, 2,
+ * 3… — каждый раз получается НОВЫЙ operationId, и идемпотентность по расписке
+ * его не останавливает. Без суточного потолка это неограниченная эмиссия
+ * валюты, которую тратят в магазине.
+ *
+ * Почему ordinal вообще нужен клиентский: повторные прохождения законны
+ * (владелец разрешил перепроходить и снова зарабатывать), а серверного
+ * идентификатора прохождения у этих семи экранов нет — в отличие от курса V2,
+ * где opId привязан к выданному сервером courseSessionId.
+ *
+ * 900 рун в сутки — заведомо выше честного дневного максимума (самая щедрая
+ * сессия, 60 глаголов, даёт 180), но превращает возможную накрутку из
+ * бесконечной в ограниченную и заметную в аудите.
+ */
+export const PRACTICE_RUNE_MAX_PER_DAY = 900;
+
+/** Календарные сутки по UTC — ключ окна суточного потолка. */
+export function practiceRuneDayKey(nowMs: number): string {
+  return new Date(nowMs).toISOString().slice(0, 10);
+}
+
+type PracticeRuneDailyState = Readonly<{ dayKey: string; earned: number }>;
+
+/**
+ * Разбор счётчика суток из документа игрока. Поле лежит рядом с `stars`, в том
+ * же документе, который транзакция и так читает — дополнительных чтений ноль.
+ * Клиент записать его не может: `practice_runes_daily` закрыт правилом
+ * Firestore ровно как `stars`.
+ */
+export function readPracticeRuneDaily(
+  raw: unknown,
+  dayKeyNow: string,
+): PracticeRuneDailyState {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+    return Object.freeze({ dayKey: dayKeyNow, earned: 0 });
+  }
+  const value = raw as Record<string, unknown>;
+  // Другой день — окно открывается заново, накопленное вчера не мешает.
+  if (value.dayKey !== dayKeyNow) {
+    return Object.freeze({ dayKey: dayKeyNow, earned: 0 });
+  }
+  const earned = value.earned;
+  if (!Number.isSafeInteger(earned) || (earned as number) < 0) {
+    return Object.freeze({ dayKey: dayKeyNow, earned: 0 });
+  }
+  return Object.freeze({ dayKey: dayKeyNow, earned: earned as number });
+}
+
 export type PracticeRuneComposite = Readonly<{
   schemaVersion: 'client-practice-rune-operation.v1';
   operationId: string;
@@ -231,6 +283,17 @@ export const practiceRuneGrant = onCall(
           starsSeq: current.seq,
         });
       }
+      // Суточный потолок. Читается из того же документа, что уже загружен —
+      // ни одного дополнительного чтения Firestore.
+      const dayKeyNow = practiceRuneDayKey(now);
+      const daily = readPracticeRuneDaily(
+        userSnap.data()?.practice_runes_daily,
+        dayKeyNow,
+      );
+      if (daily.earned + composite.amount > PRACTICE_RUNE_MAX_PER_DAY) {
+        throw new HttpsError('resource-exhausted', 'practice_rune_daily_cap_reached');
+      }
+
       const prepared = await prepareStarOperations(
         tx,
         db,
@@ -249,6 +312,13 @@ export const practiceRuneGrant = onCall(
       if (result.outcomes[0]?.status !== 'applied') {
         throw new HttpsError('failed-precondition', 'practice_rune_materialization_failed');
       }
+      // Счётчик суток двигаем В ТОЙ ЖЕ транзакции, что и баланс: иначе руны
+      // начислились бы, а потолок остался бы нетронутым при сбое между записями.
+      // guard-ok: tx.set внутри транзакции синхронно ставит запись в очередь —
+      // await к нему неприменим, атомарность обеспечивает сама транзакция.
+      tx.set(userRef, {
+        practice_runes_daily: { dayKey: dayKeyNow, earned: daily.earned + composite.amount },
+      }, { merge: true });
       return Object.freeze({
         materialized: true as const,
         operationId: composite.operationId,

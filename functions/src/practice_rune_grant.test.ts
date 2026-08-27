@@ -4,7 +4,10 @@ import {
   parsePracticeRuneComposite,
   practiceRuneLedgerOperation,
   practiceRuneOperationId,
+  practiceRuneDayKey,
   practiceRuneReplayMatches,
+  readPracticeRuneDaily,
+  PRACTICE_RUNE_MAX_PER_DAY,
   PRACTICE_RUNE_MAX_PER_SESSION,
   type PracticeRuneComposite,
 } from './practice_rune_grant';
@@ -150,6 +153,36 @@ describe('practice rune ledger mapping', () => {
     })).not.toBe(practiceRuneOperationId({
       activity: 'vocabulary', sessionKey: 'lesson-1', completionOrdinal: 2,
     }));
+  });
+});
+
+describe('practice rune daily cap', () => {
+  test('счётчик суток стартует с нуля на новом дне', () => {
+    const state = readPracticeRuneDaily({ dayKey: '2026-08-26', earned: 880 }, '2026-08-27');
+    expect(state).toEqual({ dayKey: '2026-08-27', earned: 0 });
+  });
+
+  test('счётчик того же дня продолжается', () => {
+    const state = readPracticeRuneDaily({ dayKey: '2026-08-27', earned: 120 }, '2026-08-27');
+    expect(state.earned).toBe(120);
+  });
+
+  test('битый и подделанный счётчик читается как ноль, а не как отрицательный', () => {
+    for (const raw of [null, 'x', [], { dayKey: '2026-08-27', earned: -50 },
+      { dayKey: '2026-08-27', earned: 1.5 }, {}]) {
+      expect(readPracticeRuneDaily(raw, '2026-08-27').earned).toBe(0);
+    }
+  });
+
+  test('ключ дня — календарные сутки UTC', () => {
+    expect(practiceRuneDayKey(Date.UTC(2026, 7, 27, 23, 59))).toBe('2026-08-27');
+    expect(practiceRuneDayKey(Date.UTC(2026, 7, 28, 0, 1))).toBe('2026-08-28');
+  });
+
+  test('суточный потолок выше самой щедрой честной сессии', () => {
+    // 60 глаголов × 3 руны = 180 — самая щедрая сессия в приложении.
+    expect(PRACTICE_RUNE_MAX_PER_DAY).toBeGreaterThan(180 * 4);
+    expect(PRACTICE_RUNE_MAX_PER_DAY).toBeGreaterThan(PRACTICE_RUNE_MAX_PER_SESSION);
   });
 });
 

@@ -49,6 +49,7 @@ export function pickPercentileLine(
     return tri(lang, {
       ru: `Твоя серия ${stats.streak} дн. — лучше, чем у ${p}% учеников.`,
       uk: `Твоя серія ${stats.streak} дн. — краще, ніж у ${p}% учнів.`,
+      en: `Your ${stats.streak}-day streak beats ${p}% of learners.`,
       es: `Tu racha de ${stats.streak} días supera al ${p}% de los alumnos.`,
       'pt-BR': `Sua sequência de ${stats.streak} dias supera ${p}% dos alunos.`,
       vi: `Chuỗi ${stats.streak} ngày của bạn vượt ${p}% học viên.`,
@@ -66,6 +67,7 @@ export function pickPercentileLine(
     return tri(lang, {
       ru: `Твой темп за неделю — в топ-${top}% учеников.`,
       uk: `Твій темп за тиждень — у топ-${top}% учнів.`,
+      en: `Your pace this week puts you in the top ${top}% of learners.`,
       es: `Tu ritmo semanal está en el top-${top}% de los alumnos.`,
       'pt-BR': `Seu ritmo da semana está no top-${top}% dos alunos.`,
       vi: `Nhịp học tuần này của bạn nằm trong top-${top}% học viên.`,

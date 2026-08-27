@@ -36,6 +36,11 @@ const BODY_UK = [
   'Хочеш заробляти більше? Вчи англійську! Phraseman — найкайфовіший спосіб це зробити. Перевірено! 📈✨',
 ] as const;
 
+const BODY_EN = [
+  'Stop scrolling memes and come learn English with Phraseman! With me you\'ll at least get the original jokes. 🔥',
+  'Found Phraseman — it\'s like a gym for your brain, minus the sweat. Join in, let\'s be nerds together (in English)! 🧠🚀',
+] as const;
+
 const BODY_ES = [
   'Deja los memes un rato y ven a estudiar inglés con Phraseman. Conmigo, al menos entenderás por qué se ríen en el original. 🔥',
   'Probé Phraseman: entrenamiento para el cerebro, sin drama. ¡Únete y practiquemos en inglés! 🧠🚀',
@@ -77,6 +82,7 @@ export type InviteShareLang = Lang;
 const BODY_BY_LANG: Record<InviteShareLang, readonly string[]> = {
   ru: BODY_RU,
   uk: BODY_UK,
+  en: BODY_EN,
   es: BODY_ES,
   'pt-BR': BODY_PT_BR,
   vi: BODY_VI,
@@ -113,6 +119,7 @@ function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, re
   const condition = label(lang, {
     ru: 'Установи приложение, введи мой код и оформи Plus или Pro — я получу ключ. Награда — Plus от 1 дня до 365 дней.',
     uk: 'Встанови застосунок, введи мій код і оформи Plus або Pro — я отримаю ключ. Нагорода — Plus від 1 до 365 днів.',
+    en: 'Install the app, enter my code, and get Plus or Pro — I\'ll get a key. Reward: Plus from 1 to 365 days.',
     es: 'Instala la app, introduce mi código y compra Plus o Pro: recibiré una llave. Recompensa: Plus de 1 a 365 días.',
     'pt-BR': 'Instale o app, insira meu código e assine Plus ou Pro: receberei uma chave. Recompensa: Plus de 1 a 365 dias.',
     vi: 'Cài ứng dụng, nhập mã của mình và mua Plus hoặc Pro — mình nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
@@ -123,6 +130,7 @@ function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, re
   const codeLabel = label(lang, {
     ru: 'Мой код: ',
     uk: 'Мій код: ',
+    en: 'My code: ',
     es: 'Mi código: ',
     'pt-BR': 'Meu código: ',
     vi: 'Mã của mình: ',
@@ -133,6 +141,7 @@ function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, re
   const open = label(lang, {
     ru: 'Открой приглашение: ',
     uk: 'Відкрий запрошення: ',
+    en: 'Open the invite: ',
     es: 'Abre la invitación: ',
     'pt-BR': 'Abra o convite: ',
     vi: 'Mở lời mời: ',

@@ -77,13 +77,14 @@ function makeL(lang: Lang) {
   return (
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 /**
@@ -224,7 +225,7 @@ export default function ReferralsScreen() {
         const wasReady = prevStatus === 'qualified' || prevStatus === 'skipped_referrer_cap';
         if (nowReady && !wasReady && prevStatus !== undefined) {
           setRewardCelebration({
-            name: inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy')),
+            name: inviteDisplayName(invite, L('Друг', 'Друг', 'Friend', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy')),
           });
           break;
         }
@@ -407,19 +408,19 @@ export default function ReferralsScreen() {
         if (outcome.reason === 'no_spins') {
           devGrantedCreditsFloorRef.current = 0;
           setSpinCredits(0);
-          setMessage(L('Ключи закончились — пригласи друга', 'Ключі закінчилися — запроси друга', 'No quedan llaves: invita a un amigo', 'As chaves acabaram — convide um amigo', 'Đã hết chìa khóa — hãy mời bạn', 'Kunci habis — undang teman', 'Anahtar kalmadı — bir arkadaşını davet et', 'Skończyły się klucze — zaproś znajomego'));
+          setMessage(L('Ключи закончились — пригласи друга', 'Ключі закінчилися — запроси друга', 'No keys left — invite a friend', 'No quedan llaves: invita a un amigo', 'As chaves acabaram — convide um amigo', 'Đã hết chìa khóa — hãy mời bạn', 'Kunci habis — undang teman', 'Anahtar kalmadı — bir arkadaşını davet et', 'Skończyły się klucze — zaproś znajomego'));
           return;
         }
         // Ключ НЕ потрачен — возвращаем оптимистично списанный счётчик.
         devGrantedCreditsFloorRef.current = floorBeforeSpin;
         setSpinCredits(creditsBeforeSpin);
         if (outcome.reason === 'link_required') {
-          setMessage(L('Нужно связать аккаунт — загляни в профиль', 'Потрібно прив’язати акаунт — зазирни в профіль', 'Vincula tu cuenta desde el perfil', 'Vincule sua conta no perfil', 'Hãy liên kết tài khoản trong hồ sơ', 'Tautkan akunmu di profil', 'Hesabını profilden bağla', 'Połącz konto w profilu'));
+          setMessage(L('Нужно связать аккаунт — загляни в профиль', 'Потрібно прив’язати акаунт — зазирни в профіль', 'Link your account — check your profile', 'Vincula tu cuenta desde el perfil', 'Vincule sua conta no perfil', 'Hãy liên kết tài khoản trong hồ sơ', 'Tautkan akunmu di profil', 'Hesabını profilden bağla', 'Połącz konto w profilu'));
         } else if (outcome.reason === 'disabled') {
-          setMessage(L('Награды временно недоступны', 'Нагороди тимчасово недоступні', 'Las recompensas no están disponibles temporalmente', 'As recompensas estão temporariamente indisponíveis', 'Phần thưởng tạm thời không khả dụng', 'Hadiah sementara tidak tersedia', 'Ödüller geçici olarak kullanılamıyor', 'Nagrody są chwilowo niedostępne'));
+          setMessage(L('Награды временно недоступны', 'Нагороди тимчасово недоступні', 'Rewards are temporarily unavailable', 'Las recompensas no están disponibles temporalmente', 'As recompensas estão temporariamente indisponíveis', 'Phần thưởng tạm thời không khả dụng', 'Hadiah sementara tidak tersedia', 'Ödüller geçici olarak kullanılamıyor', 'Nagrody są chwilowo niedostępne'));
         } else {
           // retry уже выполнен внутри клиента с тем же spinRequestId — не дублируем.
-          setMessage(L('Сеть подвела — попробуй ещё раз', 'Помилка мережі — спробуй ще раз', 'Falló la red: inténtalo de nuevo', 'Falha na rede — tente novamente', 'Lỗi mạng — hãy thử lại', 'Jaringan bermasalah — coba lagi', 'Ağ hatası — tekrar dene', 'Błąd sieci — spróbuj ponownie'));
+          setMessage(L('Сеть подвела — попробуй ещё раз', 'Помилка мережі — спробуй ще раз', 'Network failed — try again', 'Falló la red: inténtalo de nuevo', 'Falha na rede — tente novamente', 'Lỗi mạng — hãy thử lại', 'Jaringan bermasalah — coba lagi', 'Ağ hatası — tekrar dene', 'Błąd sieci — spróbuj ponownie'));
         }
         return;
       }
@@ -535,6 +536,7 @@ export default function ReferralsScreen() {
         setMessage(L(
           'Код ещё готовится — проверь сеть и попробуй через пару секунд.',
           'Код ще готується — перевір мережу і спробуй за кілька секунд.',
+          'Your code is still being prepared — check your connection and try again in a few seconds.',
           'Tu código aún se está preparando: revisa la conexión e inténtalo en unos segundos.',
           'Seu código ainda está sendo preparado — verifique a conexão e tente em alguns segundos.',
           'Mã của bạn đang được chuẩn bị — kiểm tra mạng và thử lại sau vài giây.',
@@ -578,11 +580,11 @@ export default function ReferralsScreen() {
     const skipped = invite.status === 'skipped_referrer_cap';
     const spinReady = qualified || skipped;
     const statusText = rewarded
-      ? L('Ключ начислен', 'Ключ нараховано', 'Llave añadida', 'Chave adicionada', 'Đã cộng chìa khóa', 'Kunci ditambahkan', 'Anahtar eklendi', 'Klucz dodany')
+      ? L('Ключ начислен', 'Ключ нараховано', 'Key credited', 'Llave añadida', 'Chave adicionada', 'Đã cộng chìa khóa', 'Kunci ditambahkan', 'Anahtar eklendi', 'Klucz dodany')
       : spinReady
-        ? L('Ключ готов', 'Ключ готовий', 'Llave lista', 'Chave pronta', 'Chìa khóa đã sẵn sàng', 'Kunci siap', 'Anahtar hazır', 'Klucz jest gotowy')
-        : L('Ждём покупку Plus', 'Чекаємо на покупку Plus', 'Esperando la compra de Plus', 'Aguardando a compra do Plus', 'Đang chờ mua Plus', 'Menunggu pembelian Plus', 'Plus satın alımı bekleniyor', 'Czekamy na zakup Plus');
-    const displayName = inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy'));
+        ? L('Ключ готов', 'Ключ готовий', 'Key ready', 'Llave lista', 'Chave pronta', 'Chìa khóa đã sẵn sàng', 'Kunci siap', 'Anahtar hazır', 'Klucz jest gotowy')
+        : L('Ждём покупку Plus', 'Чекаємо на покупку Plus', 'Waiting for a Plus purchase', 'Esperando la compra de Plus', 'Aguardando a compra do Plus', 'Đang chờ mua Plus', 'Menunggu pembelian Plus', 'Plus satın alımı bekleniyor', 'Czekamy na zakup Plus');
+    const displayName = inviteDisplayName(invite, L('Друг', 'Друг', 'Friend', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy'));
 
     // зачем: владелец (2026-07-25) — список друзей раньше просто «выпрыгивал»
     // статично без входной анимации; заводим лёгкий FadeInDown как у остальных
@@ -620,8 +622,8 @@ export default function ReferralsScreen() {
   // зачем: слова «рулетка/прокрут/крутить» запрещены владельцем во всём UI —
   // механика называется «Награда за друга», действие — «Забрать награду».
   const spinCtaLabel = spinning
-    ? L('Открываем…', 'Відкриваємо…', 'Abriendo…', 'Abrindo…', 'Đang mở…', 'Membuka…', 'Açılıyor…', 'Otwieramy…')
-    : L('Получить приз', 'Отримати приз', 'Recibir premio', 'Receber prêmio', 'Nhận quà', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę');
+    ? L('Открываем…', 'Відкриваємо…', 'Opening…', 'Abriendo…', 'Abrindo…', 'Đang mở…', 'Membuka…', 'Açılıyor…', 'Otwieramy…')
+    : L('Получить приз', 'Отримати приз', 'Get the prize', 'Recibir premio', 'Receber prêmio', 'Nhận quà', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę');
 
   return (
     <ScreenGradient artBackdrop="friends">
@@ -631,13 +633,13 @@ export default function ReferralsScreen() {
         <SectionSheetHeader
           title={drainVisible
             ? sunsetCopy.drainTitle
-            : L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
+            : L('Награда за друга', 'Нагорода за друга', 'Reward for a friend', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
           onClose={() => safeRouterBack(router, closeFallback as any)}
           accessory={referralUiVisible ? (
             <TapScale
               testID="referrals-roulette-about"
               accessibilityRole="button"
-              accessibilityLabel={L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
+              accessibilityLabel={L('Как это работает', 'Як це працює', 'How it works', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
               onPress={() => setHowSheetOpen(true)}
               style={{
                 width: 32,
@@ -668,7 +670,7 @@ export default function ReferralsScreen() {
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 7, borderRadius: 12, backgroundColor: spinCredits > 0 ? t.accentBg : glassFill(t.bgSurface, 0.46) }}>
                   <Ionicons name="key-outline" size={15} color={spinCredits > 0 ? t.accent : t.textSecond} />
                   <Text style={{ color: spinCredits > 0 ? t.accent : t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                    {L(`Ключей: ${spinCredits}`, `Ключів: ${spinCredits}`, `Llaves: ${spinCredits}`, `Chaves: ${spinCredits}`, `Chìa khóa: ${spinCredits}`, `Kunci: ${spinCredits}`, `Anahtar: ${spinCredits}`, `Klucze: ${spinCredits}`)}
+                    {L(`Ключей: ${spinCredits}`, `Ключів: ${spinCredits}`, `Keys: ${spinCredits}`, `Llaves: ${spinCredits}`, `Chaves: ${spinCredits}`, `Chìa khóa: ${spinCredits}`, `Kunci: ${spinCredits}`, `Anahtar: ${spinCredits}`, `Klucze: ${spinCredits}`)}
                   </Text>
                 </View>
                 {marketingVisible && __DEV__ && (
@@ -693,6 +695,7 @@ export default function ReferralsScreen() {
                 {drainVisible ? sunsetCopy.drainBody : L(
                   'Пригласи друга — когда он введёт твой код и оформит Plus или Pro, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
                   'Запроси друга — коли він введе твій код і оформить Plus або Pro, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
+                  'Invite a friend — when they enter your code and get Plus or Pro, you\'ll get a key. Reward: Plus from 1 to 365 days.',
                   'Invita a un amigo: cuando use tu código y compre Plus o Pro, recibirás una llave. Recompensa: Plus de 1 a 365 días.',
                   'Convide um amigo: quando ele usar seu código e assinar o Plus ou Pro, você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
                   'Mời một người bạn: khi họ nhập mã của bạn và mua Plus hoặc Pro, bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
@@ -709,6 +712,7 @@ export default function ReferralsScreen() {
                   {L(
                     'У тебя Pro — каждый приз приходит жемчужинами.',
                     'У тебе Pro — кожен приз приходить перлинами.',
+                    'You have Pro — every prize comes as pearls.',
                     'Tienes Pro: cada premio llega en perlas.',
                     'Você tem Pro: cada prêmio vem em pérolas.',
                     'Bạn có Pro — mỗi phần thưởng là ngọc trai.',
@@ -760,7 +764,7 @@ export default function ReferralsScreen() {
                     ? <ActivityIndicator color={spinCredits > 0 ? t.accent : t.correctText} />
                     : <Ionicons name="share-social" size={19} color={spinCredits > 0 ? t.accent : t.correctText} />}
                   <Text style={{ color: spinCredits > 0 ? t.textPrimary : t.correctText, fontSize: f.body ?? 16, fontWeight: '700' }}>
-                    {L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
+                    {L('Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -793,7 +797,7 @@ export default function ReferralsScreen() {
                 >
                   <Ionicons name="ticket-outline" size={18} color={t.accent} />
                   <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
-                    {L('Ввести код друга', 'Ввести код друга', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
+                    {L('Ввести код друга', 'Ввести код друга', 'Enter a friend\'s code', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -824,7 +828,7 @@ export default function ReferralsScreen() {
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <Ionicons name="gift-outline" size={18} color={t.accent} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700', flex: 1 }}>
-                  {L('Твой код', 'Твій код', 'Tu código', 'Seu código', 'Mã của bạn', 'Kodemu', 'Kodun', 'Twój kod')}
+                  {L('Твой код', 'Твій код', 'Your code', 'Tu código', 'Seu código', 'Mã của bạn', 'Kodemu', 'Kodun', 'Twój kod')}
                 </Text>
               </View>
               <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -832,7 +836,7 @@ export default function ReferralsScreen() {
                   activeOpacity={0.8}
                   onPress={copyReferralCode}
                   accessibilityRole="button"
-                  accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
+                  accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copy the code', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
                   style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 12, paddingVertical: 14, paddingHorizontal: 16, alignItems: 'center' }}
                 >
                   <Text testID="referrals-my-code-value" style={{ color: t.accent, fontSize: f.h2 ?? 22, fontWeight: '700', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>
@@ -843,7 +847,7 @@ export default function ReferralsScreen() {
                   activeOpacity={0.84}
                   onPress={copyReferralCode}
                   accessibilityRole="button"
-                  accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
+                  accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copy the code', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
                   style={{ width: 56, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: codeCopied ? t.accentBg : t.bgSurface }}
                 >
                   <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={20} color={codeCopied ? t.accent : t.textSecond} />
@@ -860,7 +864,7 @@ export default function ReferralsScreen() {
 
           {referralUiVisible && (
             <Text style={{ color: t.textMuted, fontSize: f.label ?? 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', marginBottom: -6 }}>
-              {L('Приглашённые друзья', 'Запрошені друзі', 'Amigos invitados', 'Amigos convidados', 'Bạn bè đã mời', 'Teman yang diundang', 'Davet edilen arkadaşlar', 'Zaproszeni znajomi')}
+              {L('Приглашённые друзья', 'Запрошені друзі', 'Invited friends', 'Amigos invitados', 'Amigos convidados', 'Bạn bè đã mời', 'Teman yang diundang', 'Davet edilen arkadaşlar', 'Zaproszeni znajomi')}
             </Text>
           )}
 
@@ -877,7 +881,7 @@ export default function ReferralsScreen() {
           ) : (
             <View style={{ borderRadius: 18, padding: 14, backgroundColor: glassFill(t.bgSurface, 0.46) }}>
               <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400' }}>
-                {L('Здесь появятся друзья по твоему коду.', 'Тут з’являться друзі за твоїм кодом.', 'Aquí aparecerán los amigos que usen tu código.', 'Aqui aparecerão os amigos que usarem seu código.', 'Bạn bè dùng mã của bạn sẽ xuất hiện ở đây.', 'Teman yang memakai kodemu akan muncul di sini.', 'Kodunu kullanan arkadaşlar burada görünecek.', 'Tutaj pojawią się znajomi, którzy użyją twojego kodu.')}
+                {L('Здесь появятся друзья по твоему коду.', 'Тут з’являться друзі за твоїм кодом.', 'Friends who use your code will show up here.', 'Aquí aparecerán los amigos que usen tu código.', 'Aqui aparecerão os amigos que usarem seu código.', 'Bạn bè dùng mã của bạn sẽ xuất hiện ở đây.', 'Teman yang memakai kodemu akan muncul di sini.', 'Kodunu kullanan arkadaşlar burada görünecek.', 'Tutaj pojawią się znajomi, którzy użyją twojego kodu.')}
               </Text>
             </View>
           ))}
@@ -893,11 +897,12 @@ export default function ReferralsScreen() {
         <ReferralFriendRewardModal
           data={rewardCelebration}
           onClose={() => setRewardCelebration(null)}
-          title={L('Ключ получен!', 'Ключ отримано!', '¡Llave conseguida!', 'Chave recebida!', 'Đã nhận chìa khóa!', 'Kunci diperoleh!', 'Anahtar alındı!', 'Klucz zdobyty!')}
+          title={L('Ключ получен!', 'Ключ отримано!', 'Key received!', '¡Llave conseguida!', 'Chave recebida!', 'Đã nhận chìa khóa!', 'Kunci diperoleh!', 'Anahtar alındı!', 'Klucz zdobyty!')}
           subtitle={rewardCelebration
             ? L(
               `${rewardCelebration.name} оформил Plus или Pro — забирай ключ и крути награду.`,
               `${rewardCelebration.name} оформив Plus або Pro — забирай ключ і крути нагороду.`,
+              `${rewardCelebration.name} got Plus or Pro — grab your key and spin for a reward.`,
               `${rewardCelebration.name} activó Plus o Pro: recoge tu llave y gira la recompensa.`,
               `${rewardCelebration.name} ativou o Plus ou Pro — pegue sua chave e gire a recompensa.`,
               `${rewardCelebration.name} đã mua Plus hoặc Pro — hãy nhận chìa khóa và quay thưởng.`,
@@ -906,7 +911,7 @@ export default function ReferralsScreen() {
               `${rewardCelebration.name} kupił Plus lub Pro — odbierz klucz i zakręć nagrodą.`,
             )
             : ''}
-          ctaLabel={L('Забрать награду', 'Забрати нагороду', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}
+          ctaLabel={L('Забрать награду', 'Забрати нагороду', 'Claim the reward', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}
         />
       </SafeAreaView>
     </ScreenGradient>

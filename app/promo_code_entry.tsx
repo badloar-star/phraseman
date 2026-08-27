@@ -35,8 +35,8 @@ type Feedback = { kind: 'ok' | 'error'; text: string };
 
 function makeL(lang: Lang) {
   return (
-    ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+    ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string,
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 function feedbackForStatus(
@@ -53,6 +53,7 @@ function feedbackForStatus(
           text: L(
             'Готово! Plus-подписка активирована навсегда. Приятного обучения!',
             'Готово! Plus-підписку активовано назавжди. Гарного навчання!',
+            'Done! Your Plus subscription is active forever. Happy learning!',
             '¡Listo! La suscripción Plus está activada para siempre. ¡A aprender!',
             'Pronto! A assinatura Plus foi ativada para sempre. Bons estudos!',
             'Xong! Gói Plus đã được kích hoạt vĩnh viễn. Chúc học vui!',
@@ -68,6 +69,7 @@ function feedbackForStatus(
         text: L(
           `Готово! Plus-подписка активирована на ${d} дн. Приятного обучения!`,
           `Готово! Plus-підписку активовано на ${d} дн. Гарного навчання!`,
+          `Done! Your Plus subscription is active for ${d} days. Happy learning!`,
           `¡Listo! La suscripción Plus se activó por ${d} días. ¡A aprender!`,
           `Pronto! A assinatura Plus foi ativada por ${d} dias. Bons estudos!`,
           `Xong! Gói Plus đã được kích hoạt trong ${d} ngày. Chúc học vui!`,
@@ -79,18 +81,19 @@ function feedbackForStatus(
     }
     case 'already_redeemed':
       return { kind: 'error', text: L(
-        'Ты уже активировал этот код.', 'Ти вже активував цей код.', 'Ya usaste este código.',
+        'Ты уже активировал этот код.', 'Ти вже активував цей код.', 'You already used this code.', 'Ya usaste este código.',
         'Você já usou este código.', 'Bạn đã dùng mã này rồi.', 'Kamu sudah memakai kode ini.',
         'Bu kodu zaten kullandın.', 'Ten kod już został użyty.',
       ) };
     case 'expired':
       return { kind: 'error', text: L(
-        'Срок действия кода истёк.', 'Термін дії коду минув.', 'El código ha caducado.',
+        'Срок действия кода истёк.', 'Термін дії коду минув.', 'The code has expired.', 'El código ha caducado.',
         'O código expirou.', 'Mã đã hết hạn.', 'Kode sudah kedaluwarsa.', 'Kodun süresi doldu.', 'Kod wygasł.',
       ) };
     case 'limit_reached':
       return { kind: 'error', text: L(
         'Лимит активаций этого кода исчерпан.', 'Ліміт активацій цього коду вичерпано.',
+        'This code has reached its activation limit.',
         'Se agotaron los usos de este código.', 'Os usos deste código acabaram.',
         'Mã này đã hết lượt sử dụng.', 'Kuota kode ini sudah habis.',
         'Bu kodun kullanım limiti doldu.', 'Limit użyć tego kodu został wyczerpany.',
@@ -99,6 +102,7 @@ function feedbackForStatus(
       return { kind: 'error', text: L(
         'Промокоды сейчас временно выключены.',
         'Промокоди зараз тимчасово вимкнені.',
+        'Promo codes are temporarily disabled right now.',
         'Los códigos promocionales están desactivados temporalmente.',
         'Os códigos promocionais estão temporariamente desativados.',
         'Mã khuyến mãi hiện đang tạm tắt.',
@@ -111,6 +115,7 @@ function feedbackForStatus(
     case 'bad_reward':
       return { kind: 'error', text: L(
         'Такой код не найден или больше не действует.', 'Такий код не знайдено або він не діє.',
+        'This code wasn\'t found or is no longer valid.',
         'Ese código no existe o ya no es válido.', 'Esse código não existe ou não é mais válido.',
         'Không tìm thấy mã hoặc mã không còn hiệu lực.', 'Kode tidak ditemukan atau tidak berlaku lagi.',
         'Kod bulunamadı ya da artık geçerli değil.', 'Nie znaleziono kodu lub już nie działa.',
@@ -118,6 +123,7 @@ function feedbackForStatus(
     case 'bad_code':
       return { kind: 'error', text: L(
         'Проверь код: похоже, он введён неверно.', 'Перевір код: схоже, він введений неправильно.',
+        'Check the code: it looks incorrect.',
         'Revisa el código: parece incorrecto.', 'Confira o código: parece incorreto.',
         'Hãy kiểm tra mã: có vẻ chưa đúng.', 'Periksa kodenya: sepertinya salah.',
         'Kodu kontrol et: yanlış görünüyor.', 'Sprawdź kod: wygląda na błędny.',
@@ -127,6 +133,7 @@ function feedbackForStatus(
       return { kind: 'error', text: L(
         'Не получилось активировать код. Проверь интернет и попробуй ещё раз.',
         'Не вдалося активувати код. Перевір інтернет і спробуй ще раз.',
+        'Could not activate the code. Check your internet and try again.',
         'No se pudo activar el código. Revisa internet e inténtalo de nuevo.',
         'Não foi possível ativar o código. Confira a internet e tente de novo.',
         'Không kích hoạt được mã. Kiểm tra mạng rồi thử lại.',
@@ -288,7 +295,7 @@ export default function PromoCodeEntryScreen() {
         {/* зачем: стандарт «шторки раздела» — модал с выездом снизу; шапка
             фиксированная над скроллом, закрытие крестиком вниз, не «назад». */}
         <SectionSheetHeader
-          title={L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')}
+          title={L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')}
           onClose={() => safeRouterBack(router, closeFallback as any)}
         />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -305,7 +312,7 @@ export default function PromoCodeEntryScreen() {
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? 20, lineHeight: 26, fontWeight: '900' }}>
-                {L('Есть промокод?', 'Є промокод?', '¿Tienes un código?', 'Tem um código?', 'Có mã khuyến mãi?', 'Punya kode promo?', 'Promo kodun var mı?', 'Masz kod promocyjny?')}
+                {L('Есть промокод?', 'Є промокод?', 'Have a promo code?', '¿Tienes un código?', 'Tem um código?', 'Có mã khuyến mãi?', 'Punya kode promo?', 'Promo kodun var mı?', 'Masz kod promocyjny?')}
                   </Text>
                 </View>
               </View>
@@ -313,6 +320,7 @@ export default function PromoCodeEntryScreen() {
                 {L(
                   'Введи промокод, чтобы получить Plus-подписку.',
                   'Введи промокод, щоб отримати Plus-підписку.',
+                  'Enter a code to get the Plus subscription.',
                   'Introduce un código para obtener la suscripción Plus.',
                   'Digite um código para receber a assinatura Plus.',
                   'Nhập mã để nhận gói Plus.',
@@ -329,7 +337,7 @@ export default function PromoCodeEntryScreen() {
                 autoCorrect={false}
                 returnKeyType="done"
                 onSubmitEditing={() => { if (canSubmit) void submit(); }}
-                placeholder={L('Введите промокод', 'Введіть промокод', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+                placeholder={L('Введите промокод', 'Введіть промокод', 'Enter the promo code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
                 placeholderTextColor={t.textMuted}
                 style={{
                   minHeight: 56, borderRadius: 16, paddingHorizontal: 16,
@@ -360,8 +368,8 @@ export default function PromoCodeEntryScreen() {
                 )}
                 <Text style={{ color: inputValid ? t.correctText : t.textSecond, fontSize: f.body ?? 16, fontWeight: '900' }}>
                   {busy
-                    ? L('Активируем…', 'Активуємо…', 'Activando…', 'Ativando…', 'Đang kích hoạt…', 'Mengaktifkan…', 'Etkinleştiriliyor…', 'Aktywujemy…')
-                    : L('Активировать', 'Активувати', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}
+                    ? L('Активируем…', 'Активуємо…', 'Activating…', 'Activando…', 'Ativando…', 'Đang kích hoạt…', 'Mengaktifkan…', 'Etkinleştiriliyor…', 'Aktywujemy…')
+                    : L('Активировать', 'Активувати', 'Activate', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}
                 </Text>
               </TouchableOpacity>
               {feedback && (

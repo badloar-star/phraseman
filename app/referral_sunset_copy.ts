@@ -23,6 +23,13 @@ export const referralSunsetCopy: Record<Lang, SunsetCopy> = {
     spinExpiry: 'Найближчий ключ діє до',
     emergencyUnavailable: 'Нагороди тимчасово недоступні.',
   },
+  en: {
+    drainTitle: 'Finish your pending invites',
+    drainBody: 'New invites are closed. Invites already in progress and keys already earned stay valid until the date shown.',
+    pendingDeadline: 'Plus or Pro must be purchased by',
+    spinExpiry: 'The nearest key expires on',
+    emergencyUnavailable: 'Rewards are temporarily unavailable.',
+  },
   es: {
     drainTitle: 'Completa tus invitaciones pendientes',
     drainBody: 'Las invitaciones nuevas están cerradas. Las invitaciones y llaves ya obtenidas siguen disponibles hasta la fecha indicada.',
@@ -70,6 +77,7 @@ export const referralSunsetCopy: Record<Lang, SunsetCopy> = {
 const DATE_LOCALE: Record<Lang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
+  en: 'en-US',
   es: 'es-ES',
   'pt-BR': 'pt-BR',
   vi: 'vi-VN',

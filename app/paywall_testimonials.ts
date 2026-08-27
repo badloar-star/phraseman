@@ -58,6 +58,11 @@ export const TESTIMONIALS: Record<Lang, Testimonial[]> = {
     { text: '15 хвилин зранку — і словник росте сам.', author: `Марія ${D}`, verified: false },
     { text: 'Серія тримає мене в тонусі щодня.', author: `Дмитро ${D}`, verified: false, goalTag: 'streak' },
   ],
+  // зачем: как и es/pt-BR/vi/id/tr/pl ниже, для en нет ни одного verified-отзыва —
+  // pickTestimonials() уже безопасно возвращает [] в проде (includeUnverified=false
+  // отфильтровывает черновики), так что пустой массив здесь = существующее
+  // поведение остальных 6 языков, а не регрессия.
+  en: [],
   es: [
     { text: 'En un mes entendí mi primera serie sin subtítulos.', author: `Ana ${D}`, verified: false, goalTag: 'course_after_lesson3' },
     { text: 'Por fin hablé en reuniones con extranjeros.', author: `Igor ${D}`, verified: false },

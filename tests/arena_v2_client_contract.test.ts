@@ -1,5 +1,5 @@
 import { ARENA_DUEL_BLUEPRINT, isValidArenaBlueprint, seededArenaBlueprint } from '../modules/arena/duel_blueprint';
-import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_TASK_MODES, type ArenaMatch, type ArenaPublicTask } from '../modules/arena/contract';
+import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_TASK_MODES, type ArenaMatch, type ArenaPublicTask } from '../modules/arena/contract';
 import {
   adaptArenaTask,
   encodeArenaSelection,
@@ -169,8 +169,15 @@ describe('Arena V2 client contract', () => {
     expect(encodeArenaSelection(builder, [0, 1, 2, 3])).toEqual({ tokens: ['Do', 'you', 'like', 'reading'] });
   });
 
-  test('never lets the first-bot client fallback exceed forty-five seconds', () => {
-    expect(ARENA_QUICK_FALLBACK_MAX_MS).toBe(45_000);
+  test('never lets the first-bot client fallback exceed twenty seconds', () => {
+    expect(ARENA_QUICK_FALLBACK_MAX_MS).toBe(20_000);
+  });
+
+  // Владелец 2026-08-27: если соперник так и не нашёлся, поиск заканчивается
+  // сам и потраченная энергия возвращается — бесконечного пульса быть не должно.
+  test('gives up the quick search shortly after the twenty-second promise', () => {
+    expect(ARENA_QUICK_SEARCH_GIVE_UP_MS).toBeGreaterThan(ARENA_QUICK_FALLBACK_MAX_MS);
+    expect(ARENA_QUICK_SEARCH_GIVE_UP_MS).toBeLessThanOrEqual(30_000);
   });
 
   test('has ranked wait copy in all eight interface locales', () => {

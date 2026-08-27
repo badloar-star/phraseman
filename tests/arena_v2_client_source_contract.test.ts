@@ -135,6 +135,20 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking.match(/setInterval\(/g)).toHaveLength(1);
   });
 
+  /**
+   * Владелец 2026-08-27: любой исход БЕЗ матча возвращает потраченную энергию —
+   * и кнопка «Отмена», и случай «соперник так и не нашёлся». Раньше второго
+   * исхода не существовало вовсе: поиск был бесконечным, а 1 ⚡ уже списана.
+   */
+  test('refunds the entry energy on every searchless exit', () => {
+    expect(matchmaking).toContain('leaveSearchWithRefund');
+    expect(matchmaking).toContain("leaveSearchWithRefund('cancelled_before_entry')");
+    expect(matchmaking).toContain("leaveSearchWithRefund('opponent_not_found')");
+    expect(matchmaking).toContain('ARENA_QUICK_SEARCH_GIVE_UP_MS');
+    // Возврат ровно один: замок снимается только при возобновлении поиска.
+    expect(matchmaking.match(/refundArenaMatchEnergy\(/g)).toHaveLength(1);
+  });
+
   test('never transports answer fingerprints to Arena screens', () => {
     expect(client).not.toContain('answerFingerprints');
     for (const file of ['app/arena_matchmaking.tsx', 'app/arena_match.tsx', 'app/arena_results.tsx', 'components/arena/ArenaHubSurface.tsx']) {

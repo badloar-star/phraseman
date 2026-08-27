@@ -302,17 +302,22 @@ describe('Arena V2 pure product contract', () => {
     expect(new Set(quick.map((entry) => entry.mode)).size).toBe(5);
   });
 
-  // Владелец 2026-08-21: первый бот приходит в случайном окне 3–45 секунд.
-  // Следующий бот после сорванного назначения имеет отдельное клиентское
-  // окно 50–70 секунд и этой серверной формулой не управляется.
-  it('assigns the first bot inside three to forty-five seconds, biased to the start', () => {
+  // Владелец 2026-08-27: соперник обязан находиться ВСЕГДА в первые 20 секунд,
+  // момент внутри окна случайный. Прежнее окно 3–45 секунд давало ожидание
+  // почти минуту. Следующий бот после сорванного назначения имеет отдельное
+  // клиентское окно и этой серверной формулой не управляется.
+  it('assigns the first bot inside three to twenty seconds, biased to the start', () => {
     expect(ARENA_V2_QUICK_BOT_MIN_MS).toBe(3_000);
-    expect(ARENA_V2_QUICK_BOT_MAX_MS).toBe(45_000);
+    expect(ARENA_V2_QUICK_BOT_MAX_MS).toBe(20_000);
     expect(arenaQuickBotDelayMs(0)).toBe(3_000);
-    expect(arenaQuickBotDelayMs(1)).toBe(45_000);
+    expect(arenaQuickBotDelayMs(1)).toBe(20_000);
+    // Потолок обещания: даже самый неудачный жребий укладывается в 20 секунд.
+    for (const unit of [0, 0.25, 0.5, 0.75, 0.99, 1]) {
+      expect(arenaQuickBotDelayMs(unit)).toBeLessThanOrEqual(20_000);
+    }
     const median = arenaQuickBotDelayMs(0.5);
-    expect(median).toBeGreaterThan(15_000);
-    expect(median).toBeLessThan(20_000);
+    expect(median).toBeGreaterThan(6_000);
+    expect(median).toBeLessThan(12_000);
     expect(arenaQuickBotDelayMs(Number.NaN)).toBe(median);
   });
 

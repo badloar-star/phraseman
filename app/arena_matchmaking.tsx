@@ -8,7 +8,7 @@ import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
 import { arenaEntryFailure } from '../modules/arena/duel_plan';
-import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
+import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { arenaReplacementBotDelayMs } from '../modules/arena/matchmaking_state';
@@ -77,7 +77,12 @@ export default function ArenaMatchmakingScreen() {
   const requestId = requestIdRef.current.value;
   const arenaMatchEnergyIntent = useEnergySessionIntent('arena_matchmaking', mode, requestId);
   const queueAttemptStartedAtMsRef = useRef(Date.now());
-  const [, setRequestRevision] = useState(0);
+  /**
+   * Номер попытки поиска. Читается страховкой «соперник не нашёлся»: после
+   * возобновления поиска (сорванное назначение) отсчёт 20 секунд обязан
+   * начаться заново, а requestIdKey при этом не меняется.
+   */
+  const [requestRevision, setRequestRevision] = useState(0);
   const [stableUid, setStableUid] = useState<string | null>(typeof params.stableUid === 'string' ? params.stableUid : null);
   const [matchId, setMatchId] = useState<string | null>(null);
   const [entryRetryTick, setEntryRetryTick] = useState(0);
@@ -101,6 +106,8 @@ export default function ArenaMatchmakingScreen() {
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
   /** Плата за вход в очередь состоялась — при отмене поиска её возвращаем. */
   const energyChargedRef = useRef(false);
+  /** Выход из поиска уже начат: защита от двойного тапа и двойного возврата. */
+  const cancellingRef = useRef(false);
   const queue = useArenaQueue(stableUid, active && !matchId && energyGate === 'ok');
   const playSound = useArenaSound();
 
@@ -208,13 +215,14 @@ export default function ArenaMatchmakingScreen() {
       // зачем: пометка снималась только в catch. Если вызов зависал (сеть
       // моргнула при возврате из фона) и экран перемонтировался, проверка
       // выше блокировала повтор НАВСЕГДА — бот не приходил вовсе, а человек
-      // смотрел на вечный поиск. Страховка снимает пометку, если ответа нет
-      // дольше десяти секунд: повторный вызов сервер отобьёт как дубликат,
-      // а вот молчание не лечится ничем.
+      // смотрел на вечный поиск. Страховка снимает пометку, если ответа нет:
+      // повторный вызов сервер отобьёт как дубликат, а вот молчание не
+      // лечится ничем. Владелец 2026-08-27: окно было 10 с + 2 с на повтор —
+      // одна молчащая попытка съедала больше половины обещанных 20 секунд.
       const unstick = setTimeout(() => {
         quickFallbackRequests.delete(requestId);
-        if (!cancelled) setBotRetryAtMs(Date.now() + 2_000);
-      }, 10_000);
+        if (!cancelled) setBotRetryAtMs(Date.now() + 1_000);
+      }, 4_000);
       void arenaV2QuickBotFallback(requestId).then((result) => {
         clearTimeout(unstick);
         if (!cancelled) setMatchId(result.matchId);
@@ -225,8 +233,11 @@ export default function ArenaMatchmakingScreen() {
         clearTimeout(unstick);
         quickFallbackRequests.delete(requestId);
         if (cancelled) return;
+        // зачем: пауза 5 с на отказ выбрасывала поиск далеко за 20 секунд.
+        // Отказы здесь почти всегда временные (часы забежали, сеть моргнула),
+        // и повтор стоит один вызов — держим его коротким.
         setBotRetryAtMs(Date.now()
-          + (String(reason).includes('arena_quick_bot_too_early') ? 2_000 : 5_000));
+          + (String(reason).includes('arena_quick_bot_too_early') ? 1_500 : 2_000));
       });
     }, Math.max(0, fireAtMs - Date.now()));
     return () => { cancelled = true; clearTimeout(timer); };
@@ -245,6 +256,9 @@ export default function ArenaMatchmakingScreen() {
 
   const resumeSearchAfterAssignedMatch = useCallback(() => {
     quickFallbackRequests.delete(requestId);
+    // зачем: без сброса замок отмены остался бы взведённым, и ни кнопка
+    // «Отмена», ни страховка возврата больше не сработали бы за эту сессию.
+    cancellingRef.current = false;
     const restartedAtMs = Date.now();
     requestIdRef.current = { key: requestIdKey, value: createArenaRequestId('queue') };
     queueAttemptStartedAtMsRef.current = restartedAtMs;
@@ -288,9 +302,9 @@ export default function ArenaMatchmakingScreen() {
     return () => subscription.remove();
   }, [active, matchId]);
 
-  const cancellingRef = useRef(false);
   /**
-   * Отмена поиска. Уходим с экрана МГНОВЕННО, сеть догоняет фоном.
+   * Выход из поиска без матча — общий путь для кнопки «Отмена» и для исхода
+   * «соперник не нашёлся». Уходим с экрана МГНОВЕННО, сеть догоняет фоном.
    *
    * зачем: router.replace стоял внутри .then() — экран висел до ответа
    * сервера, и ни «Назад», ни «Отмена» не срабатывали сразу. Владелец
@@ -304,7 +318,7 @@ export default function ArenaMatchmakingScreen() {
    * arenaV2Home и покажет её честно. Держать человека на экране ради этого —
    * плата не с той стороны.
    */
-  const cancel = useCallback(() => {
+  const leaveSearchWithRefund = useCallback((reason: string) => {
     if (matchId || cancellingRef.current) return; // защита от двойного тапа и отмены назначенного матча
     cancellingRef.current = true;
     quickFallbackRequests.delete(requestId);
@@ -312,9 +326,11 @@ export default function ArenaMatchmakingScreen() {
     // зачем: человек ушёл из очереди, не сыграв — матча не было, значит и
     // платы быть не должно. Без возврата отмена поиска стоила 1 ⚡ впустую
     // (аудит 2026-08-23: единственная из четырёх точек Арены без возврата).
+    // Владелец 2026-08-27 распространил это правило на ЛЮБОЙ исход без матча:
+    // и на кнопку «Отмена», и на случай «соперник так и не нашёлся».
     if (energyChargedRef.current) {
       energyChargedRef.current = false;
-      void refundArenaMatchEnergy(arenaMatchEnergyIntent.operationId, 'cancelled_before_entry').catch(() => {});
+      void refundArenaMatchEnergy(arenaMatchEnergyIntent.operationId, reason).catch(() => {});
     }
     router.replace('/arena' as never);
     // Сеть — вдогонку. Один повтор: сеть на телефоне моргает чаще, чем падает.
@@ -322,6 +338,31 @@ export default function ArenaMatchmakingScreen() {
       setTimeout(() => { void arenaV2QueueCancel(requestId).catch(() => {}); }, 1500);
     });
   }, [arenaMatchEnergyIntent, matchId, mode, refundArenaMatchEnergy, requestId, router]);
+
+  const cancel = useCallback(() => {
+    leaveSearchWithRefund('cancelled_before_entry');
+  }, [leaveSearchWithRefund]);
+
+  /**
+   * Страховка исхода «соперник не нашёлся».
+   *
+   * зачем (владелец 2026-08-27): поиск был устроен как бесконечный, и когда
+   * назначение бота срывалось, человек смотрел на пульс минутами («по-моему
+   * поиск сломан») — при этом 1 ⚡ уже была списана. Обещание теперь жёсткое:
+   * соперник приходит в первые 20 секунд, а если не пришёл даже с запасом на
+   * сеть — поиск честно заканчивается и энергия возвращается, а не сгорает.
+   *
+   * Запас поверх обещанных 20 с оставлен на один короткий повтор запроса
+   * бота; таймер живёт только на видимом экране (active), фонового счёта нет.
+   */
+  useEffect(() => {
+    if (!active || matchId || energyGate !== 'ok' || mode !== 'quick') return undefined;
+    const giveUpAtMs = queueAttemptStartedAtMsRef.current + ARENA_QUICK_SEARCH_GIVE_UP_MS;
+    const timer = setTimeout(() => {
+      leaveSearchWithRefund('opponent_not_found');
+    }, Math.max(0, giveUpAtMs - Date.now()));
+    return () => clearTimeout(timer);
+  }, [active, energyGate, leaveSearchWithRefund, matchId, mode, requestIdKey, requestRevision]);
 
   const searching = energyGate === 'ok';
   const elapsedLabel = useMemo(() => {

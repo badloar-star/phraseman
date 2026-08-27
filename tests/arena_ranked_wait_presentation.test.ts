@@ -31,11 +31,15 @@ describe('arena ranked wait presentation', () => {
     expect(arenaRankedElapsedMs(70_000, 60_000, 10_000, 65_000)).toBe(5_000);
   });
 
-  it('schedules a replacement bot roughly one minute after a cancelled assignment', () => {
-    expect(ARENA_REPLACEMENT_BOT_MIN_MS).toBe(50_000);
-    expect(ARENA_REPLACEMENT_BOT_MAX_MS).toBe(70_000);
+  // Владелец 2026-08-27: обещание «соперник в первые 20 секунд» действует и
+  // после сорванного назначения — прежнее окно 50–70 секунд превращало
+  // быстрый матч в две минуты поиска.
+  it('schedules a replacement bot inside the twenty-second promise', () => {
+    expect(ARENA_REPLACEMENT_BOT_MIN_MS).toBe(3_000);
+    expect(ARENA_REPLACEMENT_BOT_MAX_MS).toBe(12_000);
     expect(arenaReplacementBotDelayMs(-1)).toBe(ARENA_REPLACEMENT_BOT_MIN_MS);
-    expect(arenaReplacementBotDelayMs(0.5)).toBe(60_000);
+    expect(arenaReplacementBotDelayMs(0.5)).toBe(7_500);
     expect(arenaReplacementBotDelayMs(2)).toBe(ARENA_REPLACEMENT_BOT_MAX_MS);
+    expect(ARENA_REPLACEMENT_BOT_MAX_MS).toBeLessThanOrEqual(20_000);
   });
 });

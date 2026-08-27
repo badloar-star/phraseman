@@ -160,8 +160,20 @@ export function arenaMatchTaskCount(match?: Pick<ArenaMatch, 'taskCount' | 'mode
   if (Number.isFinite(declared) && declared > 0) return Math.trunc(declared);
   return match?.mode === 'quick' ? ARENA_QUICK_QUESTION_COUNT : ARENA_QUESTION_COUNT;
 }
-/** Страховка первого бота: серверное окно botDueAtMs не превышает 45 секунд. */
-export const ARENA_QUICK_FALLBACK_MAX_MS = 45_000;
+/**
+ * Страховка первого бота: серверное окно botDueAtMs не превышает 20 секунд.
+ * зачем (владелец 2026-08-27): соперник обязан находиться в первые 20 секунд
+ * всегда. Потолок держится и на клиенте, чтобы старый билет с прежним
+ * 45-секундным botDueAtMs не растягивал поиск на выкаченной сборке.
+ */
+export const ARENA_QUICK_FALLBACK_MAX_MS = 20_000;
+/**
+ * Предел ожидания в быстром матче. Владелец 2026-08-27: соперник обязан
+ * находиться в первые 20 секунд; если не нашёлся даже с запасом на один
+ * короткий повтор — поиск заканчивается и потраченная энергия возвращается,
+ * а не сгорает в бесконечном пульсе.
+ */
+export const ARENA_QUICK_SEARCH_GIVE_UP_MS = 26_000;
 export const ARENA_RANKED_HEARTBEAT_MS = 15_000;
 
 export function isArenaTaskMode(value: unknown): value is ArenaTaskMode {

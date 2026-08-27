@@ -53,8 +53,10 @@ describe('practice rune composite validation', () => {
   });
 
   test('подделанная сумма отвергается — отпечаток не сойдётся', () => {
-    // Классическая накрутка: взять честную расписку и вписать больше рун.
-    const forged = { ...makeComposite(), amount: 250 };
+    // Классическая накрутка: взять честную расписку и вписать больше рун, не
+    // выходя за потолок сессии — иначе сработает более ранняя проверка
+    // потолка, а не отпечатка, и тест перестанет проверять то, что заявлен.
+    const forged = { ...makeComposite(), amount: 99 };
     expect(() => parsePracticeRuneComposite(forged))
       .toThrow(/practice_rune_fingerprint_invalid/);
   });
@@ -103,6 +105,27 @@ describe('practice rune composite validation', () => {
   test('sessionKey с путевым разделителем отвергается', () => {
     expect(() => parsePracticeRuneComposite(makeComposite({ sessionKey: 'a/b' })))
       .toThrow(/practice_rune_composite_invalid/);
+  });
+
+  test('sessionKey длиннее 72 символов отвергается — иначе opId переполнил бы лимит журнала', () => {
+    const sessionKey = 'a'.repeat(73);
+    expect(() => parsePracticeRuneComposite(makeComposite({
+      sessionKey,
+      operationId: practiceRuneOperationId({
+        activity: 'vocabulary', sessionKey, completionOrdinal: 1,
+      }),
+    }))).toThrow(/practice_rune_composite_invalid/);
+  });
+
+  test('sessionKey ровно 72 символа принимается', () => {
+    const sessionKey = 'a'.repeat(72);
+    const composite = makeComposite({
+      sessionKey,
+      operationId: practiceRuneOperationId({
+        activity: 'vocabulary', sessionKey, completionOrdinal: 1,
+      }),
+    });
+    expect(parsePracticeRuneComposite(composite)).toEqual(composite);
   });
 });
 
@@ -156,6 +179,49 @@ describe('practice rune ledger mapping', () => {
   });
 });
 
+describe('practice rune opId contract with the ledger', () => {
+  // Сторож блокера, найденного аудитом 2026-08-27: формат с тремя двоеточиями
+  // отвергался валидатором журнала, и НИ ОДНА руна не начислялась бы ни на
+  // одном из семи экранов. Прежние тесты этого не ловили, потому что проверяли
+  // reason/delta/дедуп, но никогда не прогоняли opId через OP_ID_RE.
+  const LEDGER_OP_ID_RE = /^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/;
+
+  test('opId проходит валидатор журнала для каждой активности', () => {
+    for (const activity of ['lesson', 'vocabulary', 'irregular_verbs',
+      'flashcards_blitz', 'flashcards_training', 'mistake_practice',
+      'speaking_practice'] as const) {
+      const opId = practiceRuneOperationId({
+        activity, sessionKey: 'lesson-1', completionOrdinal: 1,
+      });
+      expect(LEDGER_OP_ID_RE.test(opId)).toBe(true);
+      expect(opId.startsWith('__')).toBe(false);
+    }
+  });
+
+  test('opId остаётся валидным при максимальном ключе сессии и самой длинной активности', () => {
+    // SESSION_KEY допускает максимум 72 символа (см. practice_rune_grant.ts) —
+    // это ровно наихудший случай для самой длинной активности.
+    const opId = practiceRuneOperationId({
+      activity: 'flashcards_training',
+      sessionKey: 'a'.repeat(72),
+      completionOrdinal: 999,
+    });
+    expect(LEDGER_OP_ID_RE.test(opId)).toBe(true);
+  });
+
+  test('в opId ровно одно двоеточие', () => {
+    const opId = practiceRuneOperationId({
+      activity: 'vocabulary', sessionKey: 'lesson-1', completionOrdinal: 2,
+    });
+    expect(opId.split(':')).toHaveLength(2);
+  });
+
+  test('операция журнала целиком проходит валидатор', () => {
+    const op = practiceRuneLedgerOperation(makeComposite());
+    expect(LEDGER_OP_ID_RE.test(op.opId)).toBe(true);
+  });
+});
+
 describe('practice rune daily cap', () => {
   test('счётчик суток стартует с нуля на новом дне', () => {
     const state = readPracticeRuneDaily({ dayKey: '2026-08-26', earned: 880 }, '2026-08-27');
@@ -179,10 +245,20 @@ describe('practice rune daily cap', () => {
     expect(practiceRuneDayKey(Date.UTC(2026, 7, 28, 0, 1))).toBe('2026-08-28');
   });
 
-  test('суточный потолок выше самой щедрой честной сессии', () => {
-    // 60 глаголов × 3 руны = 180 — самая щедрая сессия в приложении.
-    expect(PRACTICE_RUNE_MAX_PER_DAY).toBeGreaterThan(180 * 4);
-    expect(PRACTICE_RUNE_MAX_PER_DAY).toBeGreaterThan(PRACTICE_RUNE_MAX_PER_SESSION);
+  test('суточный потолок держит паритет с Ареной', () => {
+    // ARENA_DAILY_STAR_CAP = 160 (functions/src/arena_stars_v3.ts). Учёба не
+    // должна обгонять Арену — иначе игроки Арены проваливаются в лиге, а
+    // арена-пропуск качается учёбой (аудит 2026-08-27).
+    expect(PRACTICE_RUNE_MAX_PER_DAY).toBe(160);
+  });
+
+  test('потолок сессии не превышает суточный', () => {
+    // Иначе одна сессия выбирала бы весь день и потолок сессии терял смысл.
+    expect(PRACTICE_RUNE_MAX_PER_SESSION).toBeLessThanOrEqual(
+      PRACTICE_RUNE_MAX_PER_DAY + PRACTICE_RUNE_MAX_PER_SESSION,
+    );
+    // Самая щедрая честная сессия — 53 глагола × 3 = 159 рун.
+    expect(PRACTICE_RUNE_MAX_PER_SESSION).toBeGreaterThanOrEqual(159);
   });
 });
 

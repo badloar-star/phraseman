@@ -59,8 +59,40 @@ export type PracticeRuneEarnings = Readonly<{
   pendingRunes: number;
 }>;
 
+/** Идентификатор элемента (слово, карточка, глагол) — живёт только на телефоне. */
 function normalizeId(value: string): string {
   return value.trim().slice(0, 200);
+}
+
+/**
+ * Максимальная длина ключа сессии. Обязана совпадать с серверным
+ * `SESSION_KEY = /^[A-Za-z0-9_-]{1,72}$/` в functions/src/practice_rune_grant.ts.
+ *
+ * зачем именно 72 (аудит 2026-08-27): итоговый opId журнала допускает хвост
+ * максимум 96 символов, а хвост склеивается как
+ * `{activity}_{sessionKey}_{ordinal}`. Самая длинная активность —
+ * flashcards_training (19 символов), плюс два разделителя и до 3 цифр ordinal
+ * — 24 символа служебной части. 72 оставляет запас при любой активности.
+ */
+const SESSION_KEY_MAX = 72;
+
+/**
+ * Нормализация ключа СЕССИИ — отдельно от элементов, потому что этот ключ
+ * уезжает на сервер и обязан пройти серверную проверку.
+ *
+ * зачем (аудит 2026-08-27): ключ нормализовался в двух местах по-разному —
+ * копилка резала до 200 символов и оставляла любые символы, а идентификатор
+ * расписки дополнительно чистил charset. Из-за этого кириллический раздел
+ * («урок-1») или ключ с пробелом уходил на сервер сырым, сервер отвергал его
+ * как invalid-argument, и заработанные руны сгорали МОЛЧА: копилка на телефоне
+ * к тому моменту уже считалась зачтённой. Теперь правило ровно одно и оно
+ * совпадает с серверным.
+ */
+function normalizeSessionKey(value: string): string {
+  return value
+    .trim()
+    .replace(/[^A-Za-z0-9_-]/g, '_')
+    .slice(0, SESSION_KEY_MAX);
 }
 
 /**
@@ -72,7 +104,7 @@ export function createPracticeRuneEarnings(input: Readonly<{
   sessionKey: string;
   firstCompletion: boolean;
 }>): PracticeRuneEarnings {
-  const sessionKey = normalizeId(input.sessionKey);
+  const sessionKey = normalizeSessionKey(input.sessionKey);
   if (!sessionKey) throw new Error('practice_rune_session_key_invalid');
   return Object.freeze({
     schemaVersion: 'practice-rune-earnings.v1',
@@ -156,7 +188,7 @@ export function practiceRuneEarningsStorageKey(input: Readonly<{
 }>): string {
   const owner = input.ownerStableId.trim();
   if (!owner) throw new Error('practice_rune_owner_invalid');
-  const sessionKey = normalizeId(input.sessionKey);
+  const sessionKey = normalizeSessionKey(input.sessionKey);
   if (!sessionKey) throw new Error('practice_rune_session_key_invalid');
   return `${STORAGE_PREFIX}:${encodeURIComponent(owner)}:${input.activity}:${encodeURIComponent(sessionKey)}`;
 }
@@ -178,7 +210,7 @@ export function parsePracticeRuneEarnings(
   const candidate = value as Record<string, unknown>;
   if (candidate.schemaVersion !== 'practice-rune-earnings.v1') return null;
   if (candidate.activity !== expected.activity) return null;
-  if (candidate.sessionKey !== normalizeId(expected.sessionKey)) return null;
+  if (candidate.sessionKey !== normalizeSessionKey(expected.sessionKey)) return null;
 
   const awardPerItem = candidate.awardPerItem;
   if (awardPerItem !== PRACTICE_RUNE_FULL_AWARD
@@ -199,7 +231,7 @@ export function parsePracticeRuneEarnings(
   return Object.freeze({
     schemaVersion: 'practice-rune-earnings.v1',
     activity: expected.activity,
-    sessionKey: normalizeId(expected.sessionKey),
+    sessionKey: normalizeSessionKey(expected.sessionKey),
     awardPerItem,
     creditedItemIds: Object.freeze(creditedItemIds),
     pendingRunes: pendingRunes as number,
@@ -220,7 +252,11 @@ export function practiceRuneSettlementOperationId(input: Readonly<{
   if (!Number.isSafeInteger(ordinal) || ordinal < 1) {
     throw new Error('practice_rune_completion_ordinal_invalid');
   }
-  const sessionKey = normalizeId(input.sessionKey).replace(/[^A-Za-z0-9_-]/g, '_');
+  const sessionKey = normalizeSessionKey(input.sessionKey);
   if (!sessionKey) throw new Error('practice_rune_session_key_invalid');
-  return `practice_rune:${input.activity}:${sessionKey}:${ordinal}`;
+  // зачем (аудит 2026-08-27): журнал рун принимает РОВНО ОДНО двоеточие —
+  // OP_ID_RE в functions/src/stars_ledger.ts. Прежний формат с тремя
+  // двоеточиями отвергался валидатором, и ни одна руна не начислилась бы ни на
+  // одном экране. Разделитель внутри хвоста — подчёркивание.
+  return `practice_rune:${input.activity}_${sessionKey}_${ordinal}`;
 }

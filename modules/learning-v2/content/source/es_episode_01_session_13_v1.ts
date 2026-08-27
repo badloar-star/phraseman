@@ -6,10 +6,12 @@ import {
   ES_EPISODE_01_SESSION_13_TITLE,
 } from './es_episode_01_session_13_intro_v1';
 import { ES_EPISODE_01_SESSION_13_PHRASES } from './es_episode_01_session_13_phrases_v1';
+import { ES_EPISODE_01_SESSION_13_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_13_mode_native_v1';
+import { LESSON1_ES_SESSION_13_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
- * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 13 «Местоимение не
- * нужно» — собранный источник.
+ * Испанский курс, эпизод 1 «Ser: какой и кто» / Глава 2 «Ты: вопрос»,
+ * сессия 13 «Местоимение не нужно» — собранный источник.
  *
  * Карта сессии: es_episode_01_session_map_v1.ts, sessionOrdinal 13,
  * kind: 'phrases', teaches: ['pronoun_drop'], builtOn: [9, 10],
@@ -30,6 +32,13 @@ import { ES_EPISODE_01_SESSION_13_PHRASES } from './es_episode_01_session_13_phr
  * молча берёт kind из АНГЛИЙСКОЙ карты по тому же номеру сессии. Сейчас
  * английская сессия 13 тоже 'phrases' — совпадение, а не гарантия; override
  * фиксирует правильное поведение независимо от будущих правок любой карты.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-27,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): каждый обязательный контакт должен
+ * быть реальным действием внутри одной из шести утверждённых механик.
+ * es_episode_01_session_13_mode_native_v1.ts авторит все 12 practice-шагов
+ * (после 3 интро), lesson1SessionChoreographyV1 сверяет их против
+ * esSession13ModeNativeStepsV1() через LESSON1_ES_SESSION_13_MODE_NATIVE_PLAN_ID_V1.
  */
 export const ES_EPISODE_01_SESSION_13_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -40,6 +49,8 @@ export const ES_EPISODE_01_SESSION_13_SOURCE: SessionSource = Object.freeze({
   generationInputFingerprint: 'owner-word-first-es-e01-s13-v1',
   sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_13_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_13_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_13_TITLE,
   summary: ES_EPISODE_01_SESSION_13_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_13_GOAL,

@@ -4,12 +4,13 @@
 import type { ShardSource } from './shards_system';
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
-type ShardEarnLabel = { ru: string; uk: string; es: string } & Record<PlannedInterfaceLang, string>;
+type ShardEarnLabel = { ru: string; uk: string; en: string; es: string } & Record<PlannedInterfaceLang, string>;
 
 const LABELS: Record<string, ShardEarnLabel> = {
   lesson_first: {
     ru: 'Первый урок покорён — держи блестящий бонус',
     uk: 'Перший урок підкорено — тримай блискучий бонус',
+    en: 'First lesson conquered — here\'s a shiny bonus',
     es: 'Primera lección completada: brillo extra para ti',
     'pt-BR': "Primeira lição concluída: brilho extra para você",
     vi: "Bài học đầu tiên hoàn tất: tặng bạn chút lấp lánh",
@@ -20,6 +21,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   lesson_perfect: {
     ru: 'Идеально: ни одной ошибки, заслуженная награда',
     uk: 'Ідеально: жодної помилки — заслужена нагорода',
+    en: 'Perfect: not a single mistake, a well-earned reward',
     es: 'Perfecto: sin fallos; recompensa merecida',
     'pt-BR': "Perfeito: sem erros, recompensa merecida",
     vi: "Hoàn hảo: không lỗi nào, phần thưởng xứng đáng",
@@ -30,6 +32,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   lesson_quiz_passed: {
     ru: 'Зачёт сдан — знания закреплены, жемчужины твои',
     uk: 'Залік здано — знання закріплені, перлини твої',
+    en: 'Quiz passed — knowledge locked in, pearls are yours',
     es: 'Examen de nivel superado: conocimiento asegurado',
     'pt-BR': "Teste de nível superado: conhecimento consolidado",
     vi: "Bài kiểm tra cấp độ đã qua: kiến thức đã vững",
@@ -40,6 +43,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   lesson_completed: {
     ru: 'Раздел закрыт полностью — приз за упорство',
     uk: 'Розділ закрито повністю — приз за наполегливість',
+    en: 'Section fully cleared — a prize for persistence',
     es: 'Sección cerrada al completo: premio por constancia',
     'pt-BR': "Seção concluída por inteiro: prêmio pela persistência",
     vi: "Hoàn tất toàn bộ phần: phần thưởng cho sự bền bỉ",
@@ -50,6 +54,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   streak_7: {
     ru: '7 дней подряд — редкая регулярность, редкий бонус',
     uk: '7 днів поспіль — рідкісна регулярність, рідкісний бонус',
+    en: '7 days in a row — rare consistency, rare bonus',
     es: '7 días seguidos: constancia que merece brillo extra',
     'pt-BR': "7 dias seguidos: constância que merece brilho extra",
     vi: "7 ngày liên tiếp: đều đặn hiếm có, bonus xứng đáng",
@@ -60,6 +65,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   streak_30: {
     ru: '30 дней цепочки подряд — настоящая дисциплина заслужила сияние',
     uk: '30 днів стріку — справжня дисципліна заслуговує сяйва',
+    en: '30-day streak — real discipline earns a real glow',
     es: '30 días de racha: disciplina que brilla',
     'pt-BR': "30 dias de sequência: disciplina que brilha",
     vi: "Chuỗi 30 ngày: kỷ luật thật sự đang tỏa sáng",
@@ -70,6 +76,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   topic_completed: {
     ru: 'Вся тема пройдена — большой рывок, большой приз',
     uk: 'Уся тема пройдена — великий ривок, великий приз',
+    en: 'Whole topic done — big leap, big prize',
     es: 'Tema completado: gran salto, gran recompensa',
     'pt-BR': "Tema concluído: grande salto, grande recompensa",
     vi: "Hoàn tất chủ đề: bước tiến lớn, phần thưởng lớn",
@@ -80,6 +87,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   exam_excellent: {
     ru: 'Экзамен на отлично — золотой стандарт знаний',
     uk: 'Іспит на відмінно — золотий стандарт знань',
+    en: 'Exam aced — the gold standard of knowledge',
     es: 'Examen excelente: estándar de oro',
     'pt-BR': "Exame excelente: padrão ouro",
     vi: "Bài thi xuất sắc: chuẩn vàng",
@@ -90,6 +98,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   diagnostic_test: {
     ru: 'Диагностика пройдена — отправная точка с бонусом',
     uk: 'Діагностика пройдена — відправна точка з бонусом',
+    en: 'Diagnostic done — a starting point with a bonus',
     es: 'Test de diagnóstico: punto de partida con regalo',
     'pt-BR': "Teste diagnóstico concluído: ponto de partida com presente",
     vi: "Hoàn tất chẩn đoán: điểm khởi đầu kèm quà",
@@ -100,6 +109,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   lessons_5_perfect: {
     ru: 'Пять идеальных уроков подряд — клуб перфекционистов',
     uk: 'П\'ять ідеальних уроків поспіль — клуб перфекціоністів',
+    en: 'Five flawless lessons in a row — welcome to the perfectionist club',
     es: '5 lecciones perfectas seguidas: club de precisión',
     'pt-BR': "5 lições perfeitas seguidas: clube da precisão",
     vi: "5 bài học hoàn hảo liên tiếp: câu lạc bộ chuẩn xác",
@@ -110,6 +120,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   level_gift: {
     ru: 'Новый уровень — небольшой подарок за рост',
     uk: 'Новий рівень — невеликий подарунок за зростання',
+    en: 'New level — a small gift for growing',
     es: 'Nuevo nivel: un regalo por tu progreso',
     'pt-BR': "Novo nível: um presente pelo seu progresso",
     vi: "Cấp mới: món quà nhỏ cho bước tiến",
@@ -120,6 +131,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   level_premium_gift: {
     ru: 'Плюс‑подарок за уровень — только для тех, кто идёт вперёд',
     uk: 'Плюс-подарунок за рівень — лише для тих, хто рухається вперед',
+    en: 'Plus gift for leveling up — only for those still moving forward',
     es: 'Regalo Plus por subir: para quien no se detiene',
     'pt-BR': "Presente Plus por subir: para quem segue em frente",
     vi: "Quà Plus khi lên cấp: dành cho người luôn tiến bước",
@@ -130,6 +142,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   release_wave_bonus: {
     ru: 'Бонус обновления — спасибо, что обновился',
     uk: 'Бонус оновлення — дякуємо, що оновився',
+    en: 'Update bonus — thanks for updating',
     es: 'Bonificación por actualizar: gracias por estar al día',
     'pt-BR': "Bônus de atualização: obrigado por estar em dia",
     vi: "Bonus cập nhật: cảm ơn bạn đã lên phiên bản mới",
@@ -140,6 +153,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   remote_shard_reward: {
     ru: 'Команда начислила жемчужины — твоя помощь не забыта',
     uk: 'Команда нарахувала перлини — твоя допомога не забута',
+    en: 'The team credited pearls — your help wasn\'t forgotten',
     es: 'Perlas del equipo: tu ayuda cuenta',
     'pt-BR': "Pérolas da equipe: sua ajuda conta",
     vi: "Xu từ đội ngũ: sự hỗ trợ của bạn rất đáng giá",
@@ -150,6 +164,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   streak_wager_win: {
     ru: 'Турнир на цепочку выигран — ставка окупилась с лихвой',
     uk: 'Стрік-турнір виграно — ставка окупилася з лихвою',
+    en: 'Streak wager won — the bet paid off big time',
     es: 'Torneo de racha ganado: la apuesta rindió de sobra',
     'pt-BR': "Torneio de sequência vencido: a aposta rendeu muito",
     vi: "Thắng giải chuỗi ngày: lượt cược sinh lời lớn",
@@ -160,6 +175,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   club_boost_refund: {
     ru: 'Возврат жемчужин за буст лиги',
     uk: 'Повернення перлин за буст ліги',
+    en: 'Pearl refund for a league boost',
     es: 'Devolución de perlas (boost de liga)',
     'pt-BR': "Reembolso de pérolas pelo boost da liga",
     vi: "Hoàn xu cho boost giải đấu",
@@ -170,6 +186,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   achievement_shard: {
     ru: 'Достижение разблокировано — приз на полку почёта',
     uk: 'Досягнення розблоковано — приз на полицю пошани',
+    en: 'Achievement unlocked — a prize for the trophy shelf',
     es: 'Logro desbloqueado: premio para la vitrina',
     'pt-BR': "Conquista desbloqueada: prêmio para a vitrine",
     vi: "Đã mở thành tích: phần thưởng lên kệ danh dự",
@@ -180,6 +197,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   preposition_drill_perfect: {
     ru: 'Тренажёр предлогов без единой ошибки',
     uk: 'Тренажер прийменників без жодної помилки',
+    en: 'Preposition drill, not a single mistake',
     es: 'Preposiciones a la perfección',
     'pt-BR': "Treino de preposições sem nenhum erro",
     vi: "Luyện giới từ không một lỗi",
@@ -190,6 +208,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   pos_mastery_level: {
     ru: 'Уровень части речи повышен — персональная отработка принесла награду',
     uk: 'Рівень частини мови підвищено — персональне тренування принесло нагороду',
+    en: 'Part-of-speech level up — focused practice paid off',
     es: 'Nivel gramatical subido: recompensa por práctica personalizada',
     'pt-BR': "Nível gramatical subiu: treino personalizado trouxe recompensa",
     vi: "Cấp từ loại tăng: luyện tập cá nhân đã mang về phần thưởng",
@@ -200,6 +219,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   pos_pool_perfect: {
     ru: 'Диагноз закреплён идеально — слабое место стало заметно крепче',
     uk: 'Діагноз закріплено ідеально — слабке місце стало помітно міцнішим',
+    en: 'Diagnosis nailed perfectly — that weak spot just got noticeably stronger',
     es: 'Diagnóstico perfecto: el punto débil ya está más fuerte',
     'pt-BR': "Diagnóstico perfeito: o ponto fraco ficou bem mais forte",
     vi: "Chẩn đoán hoàn hảo: điểm yếu đã mạnh hơn rõ rệt",
@@ -210,6 +230,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   fc_checkpoint: {
     ru: 'Сундук недельного трека карточек открыт — руны превратились в осколки',
     uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
+    en: 'Weekly flashcard chest opened — runes turned into pearls',
     es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
 
     'pt-BR': 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
@@ -221,6 +242,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
   generic_raw: {
     ru: 'Начисление жемчужин',
     uk: 'Нарахування перлин',
+    en: 'Pearls credited',
     es: 'Perlas acreditados',
     'pt-BR': "Pérolas de conhecimento creditados",
     vi: "Đã cộng xu tri thức",

@@ -68,6 +68,7 @@ function rouletteRarity(prizeIndex: number): RewardImpactRarity {
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
+  en: 'en-US',
   es: 'es-ES',
   'pt-BR': 'pt-BR',
   vi: 'vi-VN',

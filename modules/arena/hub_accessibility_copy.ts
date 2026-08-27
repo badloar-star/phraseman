@@ -3,6 +3,7 @@ import type { Lang } from '../../constants/i18n';
 const SPIN_BUSY_HINT: Readonly<Record<Lang, string>> = {
   ru: 'Крутим спин…',
   uk: 'Крутимо спін…',
+  en: 'Spinning…',
   es: 'Girando…',
   'pt-BR': 'Girando…',
   vi: 'Đang quay…',

@@ -159,6 +159,10 @@ const ENERGY_GATE_MESSAGES_BY_LANG = {
     ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Plus — без обмежень.`,
     ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Plus прибирає ліміт.`,
   ],
+  en: [
+    ({ required, have }) => `The exam needs ${required} ⚡ at once. You have: ${have}. With Plus, no limits.`,
+    ({ required, have }) => `To start now you need ${required} ⚡. You have: ${have}. Plus removes this limit.`,
+  ],
   es: [
     ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Plus, sin límites.`,
     ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Plus elimina este límite.`,

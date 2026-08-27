@@ -157,13 +157,13 @@ function BonusXPCard({
         {isOliveTheme ? <Ionicons name="sparkles" size={26} color={OLIVE_RICH.champagne} style={styles.emoji} /> : <Text style={styles.emoji}>{getTierEmoji()}</Text>}
 
         <View style={styles.textContainer}>
-          <Text style={[styles.label, { color: t.textPrimary }]}>{L({ ru: 'Бонус XP!', uk: 'Бонус XP!', es: '¡Bonificación de XP!', 'pt-BR': 'Bônus de XP!', vi: 'Thưởng XP!', id: 'Bonus XP!', tr: 'XP Bonusu!', pl: 'Bonus XP!' })}</Text>
+          <Text style={[styles.label, { color: t.textPrimary }]}>{L({ ru: 'Бонус XP!', uk: 'Бонус XP!', en: 'XP Bonus!', es: '¡Bonificación de XP!', 'pt-BR': 'Bônus de XP!', vi: 'Thưởng XP!', id: 'Bonus XP!', tr: 'XP Bonusu!', pl: 'Bonus XP!' })}</Text>
           <Text style={[styles.bonus, { color: getTierColor() }]}>
             +{bonusXP}
           </Text>
         </View>
 
-        <Text style={[styles.tap, { color: t.textMuted }]}>{L({ ru: 'Нажми', uk: 'Торкнись', es: 'Toca', 'pt-BR': 'Toque', vi: 'Chạm', id: 'Ketuk', tr: 'Dokun', pl: 'Dotknij' })}</Text>
+        <Text style={[styles.tap, { color: t.textMuted }]}>{L({ ru: 'Нажми', uk: 'Торкнись', en: 'Tap', es: 'Toca', 'pt-BR': 'Toque', vi: 'Chạm', id: 'Ketuk', tr: 'Dokun', pl: 'Dotknij' })}</Text>
       </TouchableOpacity>
     </Animated.View>
   );

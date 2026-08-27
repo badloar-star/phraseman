@@ -43,11 +43,11 @@ export interface FriendTogetherSheetProps {
 }
 
 const FRIENDSHIP_LEVELS: readonly Record<Lang, string>[] = [
-  { ru: 'Знакомые', uk: 'Знайомі', es: 'Conocidos', 'pt-BR': 'Conhecidos', vi: 'Người quen', id: 'Kenalan', tr: 'Tanışıklar', pl: 'Znajomi' },
-  { ru: 'Приятели', uk: 'Товариші', es: 'Compañeros', 'pt-BR': 'Companheiros', vi: 'Bạn đồng hành', id: 'Rekan', tr: 'Yoldaşlar', pl: 'Kumple' },
-  { ru: 'Друзья', uk: 'Друзі', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Przyjaciele' },
-  { ru: 'Близкие', uk: 'Близькі', es: 'Cercanos', 'pt-BR': 'Próximos', vi: 'Thân thiết', id: 'Teman dekat', tr: 'Yakınlar', pl: 'Bliscy' },
-  { ru: 'Лучшие', uk: 'Найкращі', es: 'Mejores amigos', 'pt-BR': 'Melhores amigos', vi: 'Bạn thân', id: 'Sahabat', tr: 'En iyi arkadaşlar', pl: 'Najlepsi przyjaciele' },
+  { ru: 'Знакомые', uk: 'Знайомі', en: 'Acquaintances', es: 'Conocidos', 'pt-BR': 'Conhecidos', vi: 'Người quen', id: 'Kenalan', tr: 'Tanışıklar', pl: 'Znajomi' },
+  { ru: 'Приятели', uk: 'Товариші', en: 'Pals', es: 'Compañeros', 'pt-BR': 'Companheiros', vi: 'Bạn đồng hành', id: 'Rekan', tr: 'Yoldaşlar', pl: 'Kumple' },
+  { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Przyjaciele' },
+  { ru: 'Близкие', uk: 'Близькі', en: 'Close friends', es: 'Cercanos', 'pt-BR': 'Próximos', vi: 'Thân thiết', id: 'Teman dekat', tr: 'Yakınlar', pl: 'Bliscy' },
+  { ru: 'Лучшие', uk: 'Найкращі', en: 'Best friends', es: 'Mejores amigos', 'pt-BR': 'Melhores amigos', vi: 'Bạn thân', id: 'Sahabat', tr: 'En iyi arkadaşlar', pl: 'Najlepsi przyjaciele' },
 ];
 
 function slavicDayForm(days: number, one: string, few: string, many: string): string {
@@ -67,6 +67,7 @@ export function formatTogetherDays(lang: Lang, days: number): string {
   return triLang(lang, {
     ru: `${days} ${slavicDayForm(days, 'день', 'дня', 'дней')} вместе`,
     uk: `${days} ${slavicDayForm(days, 'день', 'дні', 'днів')} разом`,
+    en: `${days} ${days === 1 ? 'day' : 'days'} together`,
     es: `${days} ${days === 1 ? 'día' : 'días'} juntos`,
     'pt-BR': `${days} ${days === 1 ? 'dia' : 'dias'} juntos`,
     vi: `${days} ngày cùng nhau`,
@@ -96,31 +97,31 @@ function FriendTogetherSheet({
 }: FriendTogetherSheetProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const isGold = together?.level !== undefined && together.level >= 4;
   const nudgeDisabled = Boolean(together?.nudged || together?.learnedToday);
   const progress = together?.progressPercent === null || together?.progressPercent === undefined
     ? null
     : Math.max(0, Math.min(100, together.progressPercent));
-  const closeLabel = L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
-  const progressLabel = L('Прогресс до следующего уровня', 'Прогрес до наступного рівня', 'Progreso al siguiente nivel', 'Progresso até o próximo nível', 'Tiến độ đến cấp tiếp theo', 'Progres ke level berikutnya', 'Sonraki seviyeye ilerleme', 'Postęp do następnego poziomu');
+  const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
+  const progressLabel = L('Прогресс до следующего уровня', 'Прогрес до наступного рівня', 'Progress to the next level', 'Progreso al siguiente nivel', 'Progresso até o próximo nível', 'Tiến độ đến cấp tiếp theo', 'Progres ke level berikutnya', 'Sonraki seviyeye ilerleme', 'Postęp do następnego poziomu');
   const nudgeLabel = together?.nudged
-    ? L('Уже приглашены сегодня', 'Вже запрошені сьогодні', 'Ya invitado hoy', 'Já convidado hoje', 'Đã mời hôm nay', 'Sudah diundang hari ini', 'Bugün zaten davet edildi', 'Już zaproszono dziś')
+    ? L('Уже приглашены сегодня', 'Вже запрошені сьогодні', 'Already invited today', 'Ya invitado hoy', 'Já convidado hoje', 'Đã mời hôm nay', 'Sudah diundang hari ini', 'Bugün zaten davet edildi', 'Już zaproszono dziś')
     : together?.learnedToday
-      ? L('Вы уже занимались сегодня', 'Ви вже займалися сьогодні', 'Ya estudiaste hoy', 'Você já estudou hoje', 'Bạn đã học hôm nay', 'Kamu sudah belajar hari ini', 'Bugün zaten çalıştın', 'Dziś już się uczyłeś')
-      : L('Позвать учиться', 'Покликати вчитися', 'Invitar a estudiar', 'Convidar para estudar', 'Mời cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zaproś do nauki');
-  const giftLabel = L('Отправить подарок', 'Надіслати подарунок', 'Enviar regalo', 'Enviar presente', 'Gửi quà tặng', 'Kirim hadiah', 'Hediye gönder', 'Wyślij prezent');
+      ? L('Вы уже занимались сегодня', 'Ви вже займалися сьогодні', 'You already studied today', 'Ya estudiaste hoy', 'Você já estudou hoje', 'Bạn đã học hôm nay', 'Kamu sudah belajar hari ini', 'Bugün zaten çalıştın', 'Dziś już się uczyłeś')
+      : L('Позвать учиться', 'Покликати вчитися', 'Invite to study', 'Invitar a estudiar', 'Convidar para estudar', 'Mời cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zaproś do nauki');
+  const giftLabel = L('Отправить подарок', 'Надіслати подарунок', 'Send a gift', 'Enviar regalo', 'Enviar presente', 'Gửi quà tặng', 'Kirim hadiah', 'Hediye gönder', 'Wyślij prezent');
   const highFiveLabel = highFived
-    ? L('Дай пять отправлено', 'П’ять відправлено', 'Choca esos cinco enviado', 'Toca aqui enviado', 'Đập tay đã gửi', 'Tos sudah dikirim', 'Çak gönderildi', 'Piątka wysłana')
-    : L('Дать пять', 'Дати п’ять', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę');
-  const deleteLabel = L('Удалить из друзей', 'Видалити з друзів', 'Eliminar de amigos', 'Remover dos amigos', 'Xóa khỏi bạn bè', 'Hapus dari teman', 'Arkadaşlardan kaldır', 'Usuń ze znajomych');
-  const incomingLabel = L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас займатися сьогодні.', 'Tu amistad te invita a estudiar hoy.', 'Seu amigo convida você para estudar hoje.', 'Bạn của bạn mời bạn học hôm nay.', 'Temanmu mengajakmu belajar hari ini.', 'Arkadaşın seni bugün çalışmaya çağırıyor.', 'Twój znajomy zaprasza Cię dziś do nauki.');
+    ? L('Дай пять отправлено', 'П’ять відправлено', 'High five sent', 'Choca esos cinco enviado', 'Toca aqui enviado', 'Đập tay đã gửi', 'Tos sudah dikirim', 'Çak gönderildi', 'Piątka wysłana')
+    : L('Дать пять', 'Дати п’ять', 'High five', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę');
+  const deleteLabel = L('Удалить из друзей', 'Видалити з друзів', 'Remove from friends', 'Eliminar de amigos', 'Remover dos amigos', 'Xóa khỏi bạn bè', 'Hapus dari teman', 'Arkadaşlardan kaldır', 'Usuń ze znajomych');
+  const incomingLabel = L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас займатися сьогодні.', 'Your friend is inviting you to study today.', 'Tu amistad te invita a estudiar hoy.', 'Seu amigo convida você para estudar hoje.', 'Bạn của bạn mời bạn học hôm nay.', 'Temanmu mengajakmu belajar hari ini.', 'Arkadaşın seni bugün çalışmaya çağırıyor.', 'Twój znajomy zaprasza Cię dziś do nauki.');
 
   // зачем: владелец 2026-08-23 — «XP за неделю / место в рейтинге» лишние и некрасивые.
   // Осталась только серия дней, одной крупной строкой без контейнера и без подписи
   // мелким шрифтом (оба приёма запрещены правилами владельца).
-  const streakLabel = L('Серия дней', 'Серія днів', 'Racha de días', 'Sequência de dias', 'Chuỗi ngày', 'Rangkaian hari', 'Gün serisi', 'Seria dni');
+  const streakLabel = L('Серия дней', 'Серія днів', 'Day streak', 'Racha de días', 'Sequência de dias', 'Chuỗi ngày', 'Rangkaian hari', 'Gün serisi', 'Seria dni');
 
   return (
     <HybridSheetShell visible={visible} onClose={onClose} onDismissed={onDismissed} closeLabel={closeLabel} backdropAccessible={false} testID="friend-together-sheet" glowColor={isGold ? t.gold : t.accent}>

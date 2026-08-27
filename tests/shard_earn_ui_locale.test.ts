@@ -5,6 +5,7 @@ describe('shard reward modal localization', () => {
   const expected: Record<Lang, string> = {
     ru: 'Начисление жемчужин',
     uk: 'Нарахування перлин',
+    en: 'Pearls credited',
     es: 'Perlas acreditados',
     'pt-BR': 'Pérolas de conhecimento creditados',
     vi: 'Đã cộng xu tri thức',

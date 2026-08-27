@@ -30,7 +30,7 @@ import {
   utf8ByteLengthV1,
 } from "../modules/learning-v2/policies/decision_registry";
 
-const locales = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
+const locales = ["ru", "uk", "en", "es", "pt-BR", "vi", "id", "tr", "pl"] as const;
 const localized = (value: string) =>
   Object.freeze(
     Object.fromEntries(locales.map((locale) => [locale, `${value} ${locale}`])),

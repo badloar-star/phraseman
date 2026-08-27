@@ -31,9 +31,9 @@ const iconForContext: Record<ReviewContext, keyof typeof Ionicons.glyphMap> = {
 
 function labelForContext(context: ReviewContext, lang: Lang): string {
   const labels: Record<ReviewContext, Record<Lang, string>> = {
-    perfect_lesson: { ru: 'КСТАТИ, ПРО УРОК', uk: 'ДО РЕЧІ, ПРО УРОК', es: 'SOBRE LA LECCIÓN', 'pt-BR': 'SOBRE A LIÇÃO', vi: 'VỀ BÀI HỌC', id: 'TENTANG PELAJARAN', tr: 'DERS HAKKINDA', pl: 'O LEKCJI' },
-    level_exam_pass: { ru: 'МАЛЕНЬКИЙ ВОПРОС', uk: 'МАЛЕНЬКЕ ЗАПИТАННЯ', es: 'UNA PEQUEÑA PREGUNTA', 'pt-BR': 'UMA PEQUENA PERGUNTA', vi: 'MỘT CÂU HỎI NHỎ', id: 'PERTANYAAN SINGKAT', tr: 'KÜÇÜK BİR SORU', pl: 'MAŁE PYTANIE' },
-    streak_milestone: { ru: 'СЕРИЯ', uk: 'СЕРІЯ', es: 'RACHA', 'pt-BR': 'SEQUÊNCIA', vi: 'CHUỖI', id: 'RENTETAN', tr: 'SERİ', pl: 'SERIA' },
+    perfect_lesson: { ru: 'КСТАТИ, ПРО УРОК', uk: 'ДО РЕЧІ, ПРО УРОК', en: 'ABOUT THE LESSON', es: 'SOBRE LA LECCIÓN', 'pt-BR': 'SOBRE A LIÇÃO', vi: 'VỀ BÀI HỌC', id: 'TENTANG PELAJARAN', tr: 'DERS HAKKINDA', pl: 'O LEKCJI' },
+    level_exam_pass: { ru: 'МАЛЕНЬКИЙ ВОПРОС', uk: 'МАЛЕНЬКЕ ЗАПИТАННЯ', en: 'A QUICK QUESTION', es: 'UNA PEQUEÑA PREGUNTA', 'pt-BR': 'UMA PEQUENA PERGUNTA', vi: 'MỘT CÂU HỎI NHỎ', id: 'PERTANYAAN SINGKAT', tr: 'KÜÇÜK BİR SORU', pl: 'MAŁE PYTANIE' },
+    streak_milestone: { ru: 'СЕРИЯ', uk: 'СЕРІЯ', en: 'STREAK', es: 'RACHA', 'pt-BR': 'SEQUÊNCIA', vi: 'CHUỖI', id: 'RENTETAN', tr: 'SERİ', pl: 'SERIA' },
   };
   return triLang(lang, labels[context]);
 }
@@ -99,13 +99,13 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
       </CascadeItem>
       {context === 'streak_milestone' && streakDays ? (
         <View style={{ marginTop: 14, minHeight: 42, paddingHorizontal: 14, borderRadius: 14, backgroundColor: `${accent}33`, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: accent, fontSize: f.bodyLg, fontWeight: '800' }}>{triLang(lang, { ru: `${streakDays} дней подряд`, uk: `${streakDays} днів поспіль`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} dni z rzędu` })}</Text>
+          <Text style={{ color: accent, fontSize: f.bodyLg, fontWeight: '800' }}>{triLang(lang, { ru: `${streakDays} дней подряд`, uk: `${streakDays} днів поспіль`, en: `${streakDays} days in a row`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} dni z rzędu` })}</Text>
         </View>
       ) : null}
       <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.45, textAlign: 'center', marginTop: 9, maxWidth: 330 }}>
         {variant.subtitle}
       </Text>
-      <View style={{ flexDirection: 'row', gap: 8, marginTop: 19 }} accessibilityLabel={triLang(lang, { ru: 'Оценка в App Store', uk: 'Оцінка в App Store', es: 'Valoración en App Store', 'pt-BR': 'Avaliação na App Store', vi: 'Đánh giá trên App Store', id: 'Penilaian di App Store', tr: 'App Store değerlendirmesi', pl: 'Ocena w App Store' })}>
+      <View style={{ flexDirection: 'row', gap: 8, marginTop: 19 }} accessibilityLabel={triLang(lang, { ru: 'Оценка в App Store', uk: 'Оцінка в App Store', en: 'App Store rating', es: 'Valoración en App Store', 'pt-BR': 'Avaliação na App Store', vi: 'Đánh giá trên App Store', id: 'Penilaian di App Store', tr: 'App Store değerlendirmesi', pl: 'Ocena w App Store' })}>
         {isHybrid
           ? [1, 2, 3, 4, 5].map((value, i) => (
               <CascadeItem key={value} delay={LUM.ladder[Math.min(i + 2, LUM.ladder.length - 1)]} reduceMotion={reduceMotion}>

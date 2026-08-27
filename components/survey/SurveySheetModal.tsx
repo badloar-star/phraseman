@@ -54,15 +54,16 @@ type Copy = {
 function sheetCopy(lang: Lang): Copy {
   const pick = (copy: Record<Lang, string>) => triLang(lang, copy);
   return {
-    back: pick({ ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
-    close: pick({ ru: 'Закрыть опрос', uk: 'Закрити опитування', es: 'Cerrar encuesta', 'pt-BR': 'Fechar pesquisa', vi: 'Đóng khảo sát', id: 'Tutup survei', tr: 'Anketi kapat', pl: 'Zamknij ankietę' }),
-    next: pick({ ru: 'Продолжить', uk: 'Продовжити', es: 'Siguiente', 'pt-BR': 'Próximo', vi: 'Tiếp', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' }),
-    submit: pick({ ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' }),
-    sending: pick({ ru: 'Отправляю…', uk: 'Надсилаю…', es: 'Enviando…', 'pt-BR': 'Enviando…', vi: 'Đang gửi…', id: 'Mengirim…', tr: 'Gönderiliyor…', pl: 'Wysyłanie…' }),
-    placeholder: pick({ ru: 'Напиши ответ…', uk: 'Напиши відповідь…', es: 'Escribe tu respuesta…', 'pt-BR': 'Escreva sua resposta…', vi: 'Nhập câu trả lời…', id: 'Tulis jawaban…', tr: 'Cevabını yaz…', pl: 'Wpisz odpowiedź…' }),
+    back: pick({ ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+    close: pick({ ru: 'Закрыть опрос', uk: 'Закрити опитування', en: 'Close survey', es: 'Cerrar encuesta', 'pt-BR': 'Fechar pesquisa', vi: 'Đóng khảo sát', id: 'Tutup survei', tr: 'Anketi kapat', pl: 'Zamknij ankietę' }),
+    next: pick({ ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Siguiente', 'pt-BR': 'Próximo', vi: 'Tiếp', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' }),
+    submit: pick({ ru: 'Отправить', uk: 'Надіслати', en: 'Submit', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' }),
+    sending: pick({ ru: 'Отправляю…', uk: 'Надсилаю…', en: 'Sending…', es: 'Enviando…', 'pt-BR': 'Enviando…', vi: 'Đang gửi…', id: 'Mengirim…', tr: 'Gönderiliyor…', pl: 'Wysyłanie…' }),
+    placeholder: pick({ ru: 'Напиши ответ…', uk: 'Напиши відповідь…', en: 'Write your answer…', es: 'Escribe tu respuesta…', 'pt-BR': 'Escreva sua resposta…', vi: 'Nhập câu trả lời…', id: 'Tulis jawaban…', tr: 'Cevabını yaz…', pl: 'Wpisz odpowiedź…' }),
     progress: (current, total) => pick({
       ru: `Вопрос ${current} из ${total}`,
       uk: `Питання ${current} з ${total}`,
+      en: `Question ${current} of ${total}`,
       es: `Pregunta ${current} de ${total}`,
       'pt-BR': `Pergunta ${current} de ${total}`,
       vi: `Câu ${current} trên ${total}`,

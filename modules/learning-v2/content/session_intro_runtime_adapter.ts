@@ -32,6 +32,7 @@ const KIND_TO_LINE = Object.freeze({
 const SCREEN_TWO_TITLE: LearningV2Localized<string> = Object.freeze({
   ru: 'Разберём по шагам',
   uk: 'Розберемо по кроках',
+  en: 'Step by step',
   es: 'Paso a paso',
   'pt-BR': 'Passo a passo',
   vi: 'Từng bước một',
@@ -42,6 +43,7 @@ const SCREEN_TWO_TITLE: LearningV2Localized<string> = Object.freeze({
 const SCREEN_TWO_SUBTITLE: LearningV2Localized<string> = Object.freeze({
   ru: 'Одна мысль — один пример.',
   uk: 'Одна думка — один приклад.',
+  en: 'One idea, one example.',
   es: 'Una idea, un ejemplo.',
   'pt-BR': 'Uma ideia, um exemplo.',
   vi: 'Một ý, một ví dụ.',
@@ -52,6 +54,7 @@ const SCREEN_TWO_SUBTITLE: LearningV2Localized<string> = Object.freeze({
 const SCREEN_THREE_TITLE: LearningV2Localized<string> = Object.freeze({
   ru: 'Теперь закрепим',
   uk: 'Тепер закріпимо',
+  en: 'Now let\'s practice',
   es: 'Ahora practica',
   'pt-BR': 'Agora pratique',
   vi: 'Bây giờ hãy luyện tập',
@@ -62,6 +65,7 @@ const SCREEN_THREE_TITLE: LearningV2Localized<string> = Object.freeze({
 const SCREEN_THREE_SUBTITLE: LearningV2Localized<string> = Object.freeze({
   ru: 'Ответь на вопрос внизу и переходи к практике.',
   uk: 'Дай відповідь унизу й переходь до практики.',
+  en: 'Answer the question below, then move on to practice.',
   es: 'Responde abajo y continúa con la práctica.',
   'pt-BR': 'Responda abaixo e siga para a prática.',
   vi: 'Trả lời bên dưới rồi chuyển sang luyện tập.',

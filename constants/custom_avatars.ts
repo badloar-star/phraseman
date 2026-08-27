@@ -1,5 +1,7 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { Lang } from './i18n';
+import { CUSTOM_AVATAR_ASSET_BASE_URL } from './custom_avatar_asset_host';
+import { AVATAR100_CATALOG, AVATAR100_CATALOG_IDS } from './avatar100_assets';
 export { CUSTOM_AVATAR_OWNED_KEY } from './customization_storage_keys';
 
 // зачем: жемчуг больше не фармится (SHARD_REWARDS обнулён в app/shards_system.ts) —
@@ -14,8 +16,10 @@ export const CUSTOM_AVATAR_RESTYLE_COST = 25;
 // Custom-avatar artwork is hosted with the admin static target instead of being
 // embedded in every mobile binary. React Native downloads only the image that
 // is actually rendered and keeps the platform image cache for later frames.
-export const CUSTOM_AVATAR_ASSET_BASE_URL =
-  'https://phraseman-ea0b3.web.app/avatars';
+// зачем: сама константа переехала в custom_avatar_asset_host.ts, чтобы каталог
+// Avatar100 брал адрес хоста без кольцевого импорта. Реэкспорт сохранён —
+// на это имя завязаны внешние модули и сторож custom_avatar_asset_alignment.
+export { CUSTOM_AVATAR_ASSET_BASE_URL } from './custom_avatar_asset_host';
 
 function remoteCustomAvatarAsset(index: string, ink: CustomAvatarLogoColor): ImageSourcePropType {
   return { uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/custom-idea-${index}-${ink}.webp` };
@@ -28,6 +32,10 @@ export type CustomAvatarGradient = {
 };
 
 export type CustomAvatarLogoColor = 'black' | 'white';
+
+export const LEGACY_SHOWCASE_ART_VERSION = 'showcase-v1' as const;
+export const AVATAR100_ART_VERSION = 'avatar100-v1' as const;
+export type CustomAvatarArtVersion = typeof LEGACY_SHOWCASE_ART_VERSION | typeof AVATAR100_ART_VERSION;
 
 export type CustomAvatarPriceTier =
   | 'starter'
@@ -44,7 +52,7 @@ export type CustomAvatarDef = {
   labels?: Partial<Record<Lang, string>>;
   price?: number;
   tier?: CustomAvatarPriceTier;
-  collection?: 'showcase-v1';
+  collection?: 'showcase-v1' | 'avatar100-v1';
   image?: ImageSourcePropType;
   imageBlack?: ImageSourcePropType;
   imageWhite?: ImageSourcePropType;
@@ -281,17 +289,34 @@ const CUSTOM_AVATAR_GRADIENT_LABELS: Record<string, CustomAvatarLocalizedLabel> 
   sakura: { ru: 'Скетч-корал', uk: 'Скетч-корал', es: 'Sketch coral', 'pt-BR': 'Esboço coral', vi: 'Phác thảo san hô', id: 'Sketsa Koral', tr: 'Mercan Eskiz', pl: 'Koralowy szkic' },
 };
 
+// зачем: прежние подложки были почти чёрными до середины (яркость 20–35), а цвет
+// показывался лишь узкой полосой у нижней кромки — портрет тонул в темноте, и
+// владелец назвал такие фоны грязными. Замер по 106 портретам дал две группы:
+// тёмные существа ~47 яркости, светлые ~175. Новая палитра держит среднюю
+// яркость подложки в коридоре 95–137, ровно МЕЖДУ ними, поэтому на одном и том
+// же фоне читаются оба варианта. Цвет ведёт с самого верхнего стопа, а не
+// появляется под конец.
+// зачем: прежние подложки были серо-бежевые и почти чёрные до середины — цвет
+// показывался узкой полосой у нижней кромки, портрет тонул, владелец назвал их
+// унылыми. Новая палитра — фантастические сцены (сияние, туманность, магма,
+// бездна), каждая с явным сдвигом ОТТЕНКА сверху вниз, а не просто осветлением.
+//
+// Жёсткое ограничение читаемости: замер по 106 портретам дал две группы —
+// тёмные существа ~47 яркости, светлые ~175. Средняя яркость каждой подложки
+// удерживается в коридоре 90–210, ровно МЕЖДУ ними, поэтому на одном фоне видны
+// оба варианта. Верхний стоп не темнее 20: цвет ведёт с самого верха.
+// Сторож: tests/avatar100_renderer_geometry.test.ts.
 export const CUSTOM_AVATAR_GRADIENTS: CustomAvatarGradient[] = [
-  { id: 'aurora', name: 'Graphite', colors: ['#111827', '#1F2937', '#9CA3AF'] },
-  { id: 'ember', name: 'Sketch', colors: ['#F3ECDC', '#DED4C0', '#343842'] },
-  { id: 'cosmic', name: 'Forest', colors: ['#07100A', '#253630', '#47C870'] },
-  { id: 'forest', name: 'Neon', colors: ['#0D0D0D', '#343434', '#C8FF00'] },
-  { id: 'citrine', name: 'Coral', colors: ['#1C1113', '#3A2A2E', '#FF6464'] },
-  { id: 'royal', name: 'Gold', colors: ['#050504', '#18140D', '#D7AD56'] },
-  { id: 'ruby', name: 'Coral Gold', colors: ['#2D2024', '#FF6464', '#FFD060'] },
-  { id: 'magma', name: 'Forest Gold', colors: ['#07100A', '#47C870', '#FFC800'] },
-  { id: 'noirgold', name: 'Noir Gold', colors: ['#050504', '#18140D', '#F1CC72'] },
-  { id: 'sakura', name: 'Sketch Coral', colors: ['#FFFDF6', '#DED4C0', '#FF6464'] },
+  { id: 'aurora', name: 'Aurora', colors: ['#0B3B6F', '#1E7A8C', '#7CF5C4'] },
+  { id: 'ember', name: 'Nebula', colors: ['#3A1C71', '#8E2DE2', '#F0A9FF'] },
+  { id: 'cosmic', name: 'Magma', colors: ['#4A0E20', '#C42B5F', '#FFB347'] },
+  { id: 'forest', name: 'Abyss', colors: ['#052A4E', '#0E7C8C', '#7BF3D0'] },
+  { id: 'citrine', name: 'Dune', colors: ['#6D1B4B', '#E0575B', '#FFC857'] },
+  { id: 'royal', name: 'Verdant', colors: ['#07301F', '#1B8A5A', '#9BE86B'] },
+  { id: 'ruby', name: 'Cobalt', colors: ['#101C4E', '#2E5BFF', '#8FD8FF'] },
+  { id: 'magma', name: 'Amethyst', colors: ['#2A1060', '#7B2CBF', '#FFA8E4'] },
+  { id: 'noirgold', name: 'Molten Gold', colors: ['#3B1F04', '#C8791A', '#FFE066'] },
+  { id: 'sakura', name: 'Rose Nebula', colors: ['#4A0E38', '#D6336C', '#FFAFCF'] },
 ];
 
 const CUSTOM_AVATAR_DEFINITIONS: CustomAvatarDef[] = [
@@ -730,6 +755,7 @@ const CUSTOM_AVATAR_DEFINITIONS: CustomAvatarDef[] = [
   { id: 'custom-gen-123', name: 'Apex Humpback Song', labels: { ru: 'Песня вершины' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('123', 'black'), imageWhite: remoteCustomAvatarAsset('123', 'white') },
   { id: 'custom-gen-124', name: 'Apex Bengal Tiger', labels: { ru: 'Абсолютная сила' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('124', 'black'), imageWhite: remoteCustomAvatarAsset('124', 'white') },
   { id: 'custom-gen-125', name: 'Apex Albatross Flight', labels: { ru: 'Бесконечный полёт' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('125', 'black'), imageWhite: remoteCustomAvatarAsset('125', 'white') },
+  { id: 'custom-gen-126', name: 'Imperial Ruby Night Chimera', labels: { ru: 'Императорская химера' }, price: 3000, tier: 'apex', collection: 'avatar100-v1', imageBlack: AVATAR100_CATALOG['custom-gen-126'].black, imageWhite: AVATAR100_CATALOG['custom-gen-126'].white },
   { id: 'custom-01', name: 'Chronicler', imageBlack: remoteCustomAvatarAsset('01', 'black'), imageWhite: remoteCustomAvatarAsset('01', 'white') },
   { id: 'custom-02', name: 'Translator', imageBlack: remoteCustomAvatarAsset('02', 'black'), imageWhite: remoteCustomAvatarAsset('02', 'white') },
   { id: 'custom-03', name: 'Codex', imageBlack: remoteCustomAvatarAsset('03', 'black'), imageWhite: remoteCustomAvatarAsset('03', 'white') },
@@ -767,11 +793,38 @@ const CUSTOM_AVATAR_DEFINITIONS: CustomAvatarDef[] = [
   { id: 'custom-35', name: 'Star Student', imageBlack: remoteCustomAvatarAsset('35', 'black'), imageWhite: remoteCustomAvatarAsset('35', 'white') },
 ];
 
-export const CUSTOM_AVATARS: CustomAvatarDef[] = CUSTOM_AVATAR_DEFINITIONS.map((avatar) =>
-  avatar.collection === 'showcase-v1'
+const AVATAR100_ID_SET = new Set(AVATAR100_CATALOG_IDS);
+
+function avatar100Labels(name: string, labelRu: string): Partial<Record<Lang, string>> {
+  return {
+    ru: labelRu,
+    uk: name,
+    es: name,
+    'pt-BR': name,
+    vi: name,
+    id: name,
+    tr: name,
+    pl: name,
+  };
+}
+
+export const CUSTOM_AVATARS: CustomAvatarDef[] = CUSTOM_AVATAR_DEFINITIONS.map((avatar) => {
+  const active = AVATAR100_CATALOG[avatar.id];
+  if (active) {
+    return {
+      ...avatar,
+      name: active.name,
+      labels: avatar100Labels(active.name, active.labelRu),
+      price: active.price,
+      collection: 'avatar100-v1',
+      imageBlack: active.black,
+      imageWhite: active.white,
+    };
+  }
+  return avatar.collection === 'showcase-v1'
     ? { ...avatar, labels: showcaseAvatarLabels(avatar) }
-    : avatar,
-);
+    : avatar;
+});
 
 export function isCustomAvatarGiftOnly(id: string): boolean {
   return /^custom-gen-(0[1-9]|1[0-9]|20|3[1-9]|40)$/.test(id);
@@ -782,10 +835,15 @@ export function getCustomAvatarGiftWeight(id: string): number {
 }
 
 export function isCustomAvatarShardShop(id: string): boolean {
+  return AVATAR100_ID_SET.has(id);
+}
+
+/** Prior public-sale rows remain parseable/wearable for owners, never sellable again. */
+export function isRetiredCustomAvatarSale(id: string): boolean {
   const match = /^custom-gen-(\d+)$/.exec(id);
   if (!match) return false;
-  const index = Number(match[1]);
-  return index >= 41 && index <= 125;
+  const numericId = Number(match[1]);
+  return (numericId >= 41 && numericId <= 72) || numericId === 90;
 }
 
 export function getCustomAvatarPurchaseCost(avatarOrId: CustomAvatarDef | string): number {
@@ -796,7 +854,7 @@ export function getCustomAvatarPurchaseCost(avatarOrId: CustomAvatarDef | string
 }
 
 export const CUSTOM_AVATAR_GIFT_POOL: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>
-  avatar.id.startsWith('custom-gen-') && !isCustomAvatarShardShop(avatar.id),
+  /^custom-gen-(?:0[1-9]|[1-3]\d|40)$/.test(avatar.id),
 );
 
 export const CUSTOM_AVATAR_GIFT_ONLY: CustomAvatarDef[] = CUSTOM_AVATAR_GIFT_POOL.filter((avatar) =>
@@ -811,20 +869,44 @@ export type CustomAvatarValue = {
   avatarId: string;
   gradientId: string;
   logoColor: CustomAvatarLogoColor;
+  artVersion?: CustomAvatarArtVersion;
 };
+
+function isLegacyAvatar100Overlap(id: string): boolean {
+  const match = /^custom-gen-(\d+)$/.exec(id);
+  if (!match) return false;
+  const numericId = Number(match[1]);
+  return numericId >= 73 && numericId <= 125;
+}
+
+function normalizeCustomAvatarArtVersion(value?: string | null): CustomAvatarArtVersion | undefined {
+  if (value === AVATAR100_ART_VERSION) return AVATAR100_ART_VERSION;
+  if (value === LEGACY_SHOWCASE_ART_VERSION) return LEGACY_SHOWCASE_ART_VERSION;
+  return undefined;
+}
+
+export function inferStoredCustomAvatarArtVersion(
+  avatarId: string,
+  explicitVersion?: string | null,
+): CustomAvatarArtVersion | undefined {
+  return normalizeCustomAvatarArtVersion(explicitVersion)
+    ?? (isLegacyAvatar100Overlap(avatarId) ? LEGACY_SHOWCASE_ART_VERSION : undefined);
+}
 
 export function makeCustomAvatarValue(
   avatarId: string,
   gradientId: string,
   logoColor: CustomAvatarLogoColor = 'black',
+  artVersion?: CustomAvatarArtVersion,
 ): string {
-  return `custom:${avatarId}:${gradientId}:${logoColor}`;
+  const base = `custom:${avatarId}:${gradientId}:${logoColor}`;
+  return artVersion ? `${base}:${artVersion}` : base;
 }
 
 export function parseCustomAvatarValue(value?: string | null): CustomAvatarValue | null {
   if (!value) return null;
   const parts = String(value).split(':');
-  if ((parts.length !== 3 && parts.length !== 4) || parts[0] !== 'custom') return null;
+  if ((parts.length !== 3 && parts.length !== 4 && parts.length !== 5) || parts[0] !== 'custom') return null;
   const avatarId = parts[1];
   const gradientId = parts[2];
   const logoColor = parts[3] === 'white' ? 'white' : 'black';
@@ -833,6 +915,7 @@ export function parseCustomAvatarValue(value?: string | null): CustomAvatarValue
     avatarId,
     gradientId: getCustomAvatarGradientById(gradientId)?.id ?? CUSTOM_AVATAR_GRADIENTS[0].id,
     logoColor,
+    artVersion: inferStoredCustomAvatarArtVersion(avatarId, parts[4]),
   };
 }
 
@@ -842,6 +925,52 @@ export function isCustomAvatarValue(value?: string | null): boolean {
 
 export function getCustomAvatarById(id: string): CustomAvatarDef | undefined {
   return CUSTOM_AVATARS.find((avatar) => avatar.id === id);
+}
+
+export function getCustomAvatarArtSource(
+  avatarId: string,
+  logoColor: CustomAvatarLogoColor,
+  artVersion?: CustomAvatarArtVersion,
+): ImageSourcePropType | undefined {
+  // зачем: старый арт 73–125 УЖЕ лежит на хостинге по обычному пути и никуда не
+  // делся — новый Avatar100 положен в отдельную папку avatar100-v1 и его не
+  // затирает. Поэтому прежний покупатель получает ровно свою историческую
+  // картинку без единого лишнего файла на хостинге (владелец, 2026-08-27).
+  if (artVersion === LEGACY_SHOWCASE_ART_VERSION && isLegacyAvatar100Overlap(avatarId)) {
+    const numericId = avatarId.slice('custom-gen-'.length);
+    return {
+      uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/custom-idea-${numericId}-${logoColor}.webp`,
+    };
+  }
+  const avatar = getCustomAvatarById(avatarId);
+  return logoColor === 'white' ? avatar?.imageWhite : avatar?.imageBlack;
+}
+
+export type CustomAvatarOwnedStyle = Readonly<{
+  gradientId: string;
+  logoColor: CustomAvatarLogoColor;
+  artVersion?: CustomAvatarArtVersion;
+}>;
+
+export function parseCustomAvatarOwnedStyle(
+  avatarId: string,
+  value?: string | null,
+): CustomAvatarOwnedStyle | null {
+  const raw = String(value ?? '').trim();
+  if (!raw) return null;
+  const [versionPrefix, styleValue] = raw.includes('|') ? raw.split('|', 2) : [undefined, raw];
+  const [gradientId, logoColor] = styleValue.split(':');
+  if (!gradientId) return null;
+  return {
+    gradientId: getCustomAvatarGradientById(gradientId)?.id ?? CUSTOM_AVATAR_GRADIENTS[0].id,
+    logoColor: logoColor === 'white' ? 'white' : 'black',
+    artVersion: inferStoredCustomAvatarArtVersion(avatarId, versionPrefix),
+  };
+}
+
+export function encodeCustomAvatarOwnedStyle(value: CustomAvatarValue): string {
+  const style = `${value.gradientId}:${value.logoColor}`;
+  return value.artVersion ? `${value.artVersion}|${style}` : style;
 }
 
 export function getCustomAvatarGradientById(id: string): CustomAvatarGradient | undefined {

@@ -71,15 +71,37 @@ describe('SoundDirector', () => {
     expect(director.request('pm.system.warning')).toEqual({ kind: 'drop', reason: 'disabled' });
   });
 
-  test('voice and recording activity stop active SFX', () => {
+  /**
+   * зачем 2026-08-27 (владелец: «звук срабатывает через раз»; уточнение: «они
+   * МОГУТ звучать одновременно — звук „правильно“ и через пару миллисекунд
+   * фраза»): раньше этот тест требовал, чтобы старт озвучки ОБРЫВАЛ играющий
+   * эффект, и тем самым сторожил сам баг. В уроке playCorrect() и
+   * speakCurrentPhrase() идут вплотную, поэтому обрыв срабатывал ровно тогда,
+   * когда озвучка успевала стартовать первой — «через раз» на слух.
+   *
+   * Запись микрофона глушить обязана (эффект попал бы в микрофон) — это ниже
+   * проверяется отдельно и осталось прежним.
+   */
+  test('speech lets an already playing SFX finish, recording still cuts it', () => {
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
     director.request('pm.learn.correct');
+
     director.setVoiceActive(true);
-    expect(backend.stopCount).toBe(1);
+    expect(backend.stopCount).toBe(0);
+
     director.setVoiceActive(false);
     director.setRecordingActive(true);
-    expect(backend.stopCount).toBe(2);
+    expect(backend.stopCount).toBe(1);
+  });
+
+  test('speech still blocks NEW effects from starting on top of it', () => {
+    const backend = new FakeBackend();
+    const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
+
+    director.setVoiceActive(true);
+    expect(director.request('pm.learn.correct')).toEqual({ kind: 'drop', reason: 'voice' });
+    expect(backend.plays).toHaveLength(0);
   });
 
   test('cancels only an active completion sound and frees the arbiter slot', () => {

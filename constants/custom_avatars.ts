@@ -59,6 +59,12 @@ type CustomAvatarLocalizedLabel = {
   id: string;
   tr: string;
   pl: string;
+  // зачем: Lang расширили до en (English UI locale), но эти ~99 литералов
+  // не переводили на английский — en остаётся опциональным, и оба геттера
+  // (customAvatarNameForLang/customAvatarGradientNameForLang) уже падают
+  // назад на defaultName/ru, если ключа нет. Без этого TS7053 индексация
+  // label?.[lang] не собиралась бы для en.
+  en?: string;
 };
 
 const CUSTOM_AVATAR_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
@@ -175,6 +181,18 @@ const SHOWCASE_AVATAR_TRANSLATIONS: Record<ShowcaseAvatarLocale, readonly string
     'Спектральний інтелект', 'Ідеальна точність', 'Горизонт свободи', 'Живе сяйво', 'Аура величі', 'Північна воля', 'Імператорське бачення', 'Досконала адаптація', 'Давнє чуття', 'Міфічна швидкість',
     'Пісня вершини', 'Абсолютна сила', 'Нескінченний політ',
   ],
+  // зачем: en добавлен в Lang (English UI locale) — витрина требует запись на
+  // каждый Lang кроме ru. Порядок и интенсивность нарастания скопированы с uk/es
+  // построчно (авторские английские эпитеты, не дословный перевод).
+  en: [
+    'Cozy Beginner', 'Quick Memorizer', 'Calm Student', 'Faithful Practicer', 'Prepared Reviewer', 'Bright Conversationalist', 'Quiet Explorer', 'Light Improviser', 'Nimble Adapter', 'Careful Starter',
+    'Friendly Explorer', 'Free Speaker', 'Expressive Storyteller', 'Consistent Master', 'Attentive Listener', 'Spark of Motivation', 'Independent Learner', 'Gentle Navigator', 'Bold Practicer', 'Reliable Partner',
+    'Precise Meaning Hunter', 'Swift Breakthrough', 'Focused Strategist', 'Bright Communicator', 'Deep Listener', 'Confident Route', 'Flexible Switcher', 'Star of Progress', 'Elegant Rhythm', 'Sharp Ear',
+    'Light in the Deep', 'Cold Endurance', 'Unbreakable Progress', 'Subtle Intuition', 'High Flight', 'Power of Calm', 'Rare Signature', 'Effortless Understanding', 'Night Clarity', 'Hidden Pearl',
+    'Legend of Depth', 'King of Confidence', 'Heavenly Freedom', 'Golden Stream', 'Snowbound Insight', 'Silent Resolve', 'Instant Focus', 'Path of Wisdom', 'Fox’s Cunning', 'Supreme Balance',
+    'Spectral Intellect', 'Flawless Precision', 'Horizon of Freedom', 'Living Radiance', 'Aura of Greatness', 'Northern Will', 'Imperial Vision', 'Perfect Adaptation', 'Ancient Instinct', 'Mythic Speed',
+    'Song of the Summit', 'Absolute Power', 'Infinite Flight',
+  ],
   es: [
     'Principiante acogedor', 'Memoria veloz', 'Estudiante sereno', 'Practicante fiel', 'Repasador previsor', 'Conversador brillante', 'Explorador silencioso', 'Improvisador ligero', 'Adaptador ágil', 'Comienzo cauteloso',
     'Explorador amistoso', 'Hablante libre', 'Narrador expresivo', 'Maestro constante', 'Oyente sensible', 'Chispa de motivación', 'Estudiante independiente', 'Navegante amable', 'Practicante valiente', 'Compañero fiable',
@@ -237,6 +255,10 @@ function showcaseAvatarLabels(avatar: CustomAvatarDef): CustomAvatarLocalizedLab
   return {
     ru: avatar.labels?.ru ?? avatar.name,
     uk: SHOWCASE_AVATAR_TRANSLATIONS.uk[offset] ?? avatar.name,
+    // зачем: SHOWCASE_AVATAR_TRANSLATIONS.en уже содержит 63 английских
+    // эпитета — без этой строки они были бы мёртвым кодом, и showcase-аватары
+    // молча падали бы на RU для английского интерфейса.
+    en: SHOWCASE_AVATAR_TRANSLATIONS.en[offset] ?? avatar.name,
     es: SHOWCASE_AVATAR_TRANSLATIONS.es[offset] ?? avatar.name,
     'pt-BR': SHOWCASE_AVATAR_TRANSLATIONS['pt-BR'][offset] ?? avatar.name,
     vi: SHOWCASE_AVATAR_TRANSLATIONS.vi[offset] ?? avatar.name,

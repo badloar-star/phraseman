@@ -24932,6 +24932,27 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     return String(value && value.studyTarget || '').trim() === 'fr' ? 'fr' : 'en';
   }
 
+  /**
+   * Название набора из ЛЮБОЙ заполненной локали.
+   *
+   * зачем: карточка заявки показывала голый id (`1bNRDKbf9JfJJjqjKbsl`), потому
+   * что читался только `titleRu`. Автор писал по-украински — название лежало в
+   * `titleUk`, и модератор одобрял вслепую. Пустая строка не отсеивается
+   * оператором `??`, поэтому берём первое НЕпустое значение.
+   */
+  function cpAnyTitle(src) {
+    if (!src) return '';
+    const fields = [
+      src.title, src.titleRu, src.titleUk, src.titleEs, src.titlePtBr,
+      src.titleVi, src.titleId, src.titleTr, src.titlePl,
+    ];
+    for (const value of fields) {
+      const text = String(value == null ? '' : value).trim();
+      if (text) return text;
+    }
+    return '';
+  }
+
   function cpStudyTargetBadge(value) {
     const st = cpStudyTargetId(value);
     const bg = st === 'fr' ? '#1e1b4b' : '#0f172a';
@@ -24974,7 +24995,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     }
     const theme = cpAdminResolveCardTheme(p.cardThemeKey);
     const title =
-      String(p.title || p.titleRu || p.titleUk || idForMeta || 'Набор').trim() || idForMeta;
+      cpAnyTitle(p) || String(idForMeta || 'Набор').trim() || idForMeta;
     const studyTarget = cpStudyTargetId(p);
     const ov = document.getElementById('cp-pack-preview-overlay');
     const grid = document.getElementById('cp-pack-preview-grid');
@@ -25115,7 +25136,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         cardThemeKey: row.cardThemeKey,
         titleRu: row.titleRu,
         titleUk: row.titleUk,
-        title: row.titleRu || row.titleUk,
+        title: cpAnyTitle(row),
         priceShards: row.priceShards,
       },
       row.id,
@@ -25146,7 +25167,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
           cardThemeKey: row.cardThemeKey,
           titleRu: row.titleRu,
           titleUk: row.titleUk,
-          title: row.titleRu || row.titleUk,
+          title: cpAnyTitle(row),
           priceShards: row.priceShards,
         },
         row.id,
@@ -25207,7 +25228,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     const p = row.payload || {};
     const n = (p.cards && p.cards.length) || 0;
     const pr = COMMUNITY_PACK_FIXED_PRICE_SHARDS;
-    const title = (p.titleRu || '').slice(0, 80) || row.id;
+    const title = cpAnyTitle(p).slice(0, 80) || row.id;
     const ts = row.submittedAt ? new Date(row.submittedAt).toLocaleString('ru-RU') : '—';
     const editBadge = row.editTargetPackId
       ? `<span style="display:inline-block;margin-right:8px;padding:2px 8px;border-radius:8px;background:#422006;color:#fbbf24;font-size:11px;font-weight:700">Редактирование → ${escapeHtml(row.editTargetPackId)}</span>`
@@ -25370,7 +25391,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
   function renderCpActivePackRow(row) {
     const st = String(row.listingStatus || '');
-    const title = (row.titleRu || row.titleUk || '').slice(0, 90) || row.id;
+    const title = cpAnyTitle(row).slice(0, 90) || row.id;
     const packIdAttr = String(row.id || '').replace(/"/g, '');
     const sid = escapeHtml(row.authorStableId || '—');
     const sales = row.salesCount != null ? row.salesCount : '0';

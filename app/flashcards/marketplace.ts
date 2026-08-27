@@ -709,6 +709,28 @@ function spanishPackDescriptionReserve(pack: FlashcardMarketPack): string {
     : 'Paquete de tarjetas en inglés.';
 }
 
+/**
+ * Название набора сообщества на языке автора — для интерфейсов, где своей
+ * локали нет.
+ *
+ * зачем: у UGC-набора заполнена ровно ОДНА локаль — та, на которой писал автор.
+ * Раньше фолбэком был код из id, и набор «Антоніми дієслів» (uk) в русском
+ * интерфейсе назывался бы `1bnrdkbf9jfjjqjkbsl`. Живое название автора всегда
+ * понятнее кода, поэтому берём первое непустое поле.
+ */
+function communityPackAuthoredTitle(pack: FlashcardMarketPack): string {
+  return (
+    trimmedMarketString(pack.titleRu) ||
+    trimmedMarketString(pack.titleUk) ||
+    trimmedMarketString(pack.titleEs) ||
+    trimmedMarketString(pack.titlePtBr) ||
+    trimmedMarketString(pack.titleVi) ||
+    trimmedMarketString(pack.titleId) ||
+    trimmedMarketString(pack.titleTr) ||
+    trimmedMarketString(pack.titlePl)
+  );
+}
+
 /** Заголовок пака в шапке / плитках: planned-локалі не читають RU/UK/ES. */
 export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
   const titleField = PACK_TITLE_FIELD_BY_LANG[lang];
@@ -716,10 +738,10 @@ export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'u
   if (requestedTitle) return requestedTitle;
   const plannedTitle = plannedCopyForPack(pack, lang)?.title.trim();
   if (plannedTitle) return plannedTitle;
-  const isSpanish = titleField === 'titleEs';
-  if (!isSpanish) return packHubCodeName(pack);
+  // зачем: правило «своя локаль → код» верно для официальных паков (у них есть
+  // codeName-бренд), но для UGC код бессмысленен — показываем язык автора.
   if (pack.isCommunityUgc) {
-    return trimmedMarketString(pack.titleRu) || trimmedMarketString(pack.titleUk) || packHubCodeName(pack);
+    return communityPackAuthoredTitle(pack) || packHubCodeName(pack);
   }
   return packHubCodeName(pack);
 }
@@ -735,6 +757,20 @@ export function packHubLabelForInterface(pack: FlashcardMarketPack, lang: 'ru' |
   return packHubCodeName(pack);
 }
 
+/** Описание набора сообщества на языке автора — см. communityPackAuthoredTitle. */
+function communityPackAuthoredDescription(pack: FlashcardMarketPack): string {
+  return (
+    trimmedMarketString(pack.descriptionRu) ||
+    trimmedMarketString(pack.descriptionUk) ||
+    trimmedMarketString(pack.descriptionEs) ||
+    trimmedMarketString(pack.descriptionPtBr) ||
+    trimmedMarketString(pack.descriptionVi) ||
+    trimmedMarketString(pack.descriptionId) ||
+    trimmedMarketString(pack.descriptionTr) ||
+    trimmedMarketString(pack.descriptionPl)
+  );
+}
+
 /** Опис набору для модалки / деталей; planned-локалі не читають RU/UK/ES. */
 export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string {
   const descriptionField = PACK_DESCRIPTION_FIELD_BY_LANG[lang];
@@ -742,11 +778,13 @@ export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru
   if (requestedDescription) return requestedDescription;
   const plannedDescription = plannedCopyForPack(pack, lang)?.description.trim();
   if (plannedDescription) return plannedDescription;
+  // зачем: у UGC заполнена только локаль автора — без этого фолбэка описание
+  // набора «Антоніми дієслів» (uk) в русском интерфейсе было бы пустым.
+  if (pack.isCommunityUgc) {
+    return communityPackAuthoredDescription(pack);
+  }
   const isSpanish = descriptionField === 'descriptionEs';
   if (!isSpanish) return '';
-  if (pack.isCommunityUgc) {
-    return trimmedMarketString(pack.descriptionUk) || trimmedMarketString(pack.descriptionRu) || trimmedMarketString(pack.descriptionEs);
-  }
   return spanishPackDescriptionReserve(pack);
 }
 

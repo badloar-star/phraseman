@@ -78,6 +78,14 @@ export const LESSON1_ES_SESSION_02_MODE_NATIVE_PLAN_ID_V1 =
 // (session_source_mode_native_step_mismatch), а не по языку или по форме.
 export const LESSON1_ES_SESSION_03_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s03-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 4 (владелец, 2026-08-27,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md): та же форма, что сессии 2/3, — ровно
+// одно новое слово (verdadero, sourceVocabularyIndex 0), поэтому раскладка
+// шагов esSession04ModeNativeStepsV1 ниже зеркальна esSession03ModeNativeStepsV1;
+// собственный planId нужен, потому что choreography сверяет шаги пофайлово
+// (session_source_mode_native_step_mismatch), а не по языку или по форме.
+export const LESSON1_ES_SESSION_04_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s04-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -179,6 +187,43 @@ function esSession02ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
 // внутри ЭТОЙ сессии), и пять application-шагов на две фразы плюс два
 // independent scripted_repeat_compare — по одному на каждую фразу.
 function esSession03ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0], learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'speak_with_model' },
+  ];
+}
+
+// зачем именно эта раскладка (владелец, 2026-08-27, СТАРТ ES + MODE_NATIVE_AUTHORING_CONTRACT):
+// испанская сессия 4 вводит одно новое слово (verdadero, sourceVocabularyIndex 0 —
+// единственная запись в ES_EPISODE_01_SESSION_04_VOCABULARY_V1) и применяет
+// его (вместе с производной формой verdadera, которую даёт тот же build_form-
+// контакт) в двух фразах (Es verdadero / Es verdadera), обе построены ТОЛЬКО
+// из уже изученных слов (es — сессия 1). Форма шагов зеркальна
+// esSession03ModeNativeStepsV1 (тоже ровно одно новое слово): 3 обязательных
+// word-first контакта (recognize/retrieve_meaning/build_form) + по одной
+// дополнительной интеракции на recognize и retrieve_meaning другой family на
+// тот же target (разрешено правилом "target+family не повторяется"), затем
+// speed_match на комбинированный словарь сессий 1+3+4 (карта фиксирует
+// builtOn/recalls: [1, 3] для этой сессии — собирается внутри mode-native
+// файла; choreography видит только sourceVocabularyIndices: [0] — позицию
+// verdadero внутри ЭТОЙ сессии), и пять application-шагов на две фразы плюс
+// два independent scripted_repeat_compare — по одному на каждую фразу.
+function esSession04ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
     { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
     { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
@@ -585,6 +630,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession02ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_03_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession03ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_04_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession04ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

@@ -12,6 +12,12 @@ import type {
 // естественно соединяет обе предыдущие темы: recalls verdad (1) и
 // gender_agreement_full (3) — верное прилагательное меняется -o/-a, как
 // bonito/bonita, но новый признак («истинный»), не повтор старого.
+//
+// зачем guidance короче, чем в первой (отклонённой) версии этого файла
+// (владелец, 2026-08-27, learning_content_quality_gate_v1.ts MAX_GUIDANCE_CHARS=200):
+// исходная формулировка была написана на 500+ знаков на локаль — это уже
+// интро-объяснение, а не подсказка внутри задания (Библия текстов, правило 2:
+// подсказка читается на бегу, между ответами). Переписано под потолок 200.
 const L = (value: LocalizedSource): LocalizedSource => value;
 
 const contact = (
@@ -28,24 +34,24 @@ export const ES_EPISODE_01_SESSION_04_VOCABULARY_V1:
       ru: 'истинный, настоящий — мужской род признака',
       uk: 'істинний, справжній — чоловічий рід ознаки',
       es: 'true, genuine — masculine form of the quality',
-      'pt-BR': 'true, genuine — masculine form of the quality',
-      vi: 'true, genuine — masculine form of the quality',
-      id: 'true, genuine — masculine form of the quality',
-      tr: 'true, genuine — masculine form of the quality',
-      pl: 'true, genuine — masculine form of the quality',
+      'pt-BR': 'verdadeiro — forma masculina da qualidade',
+      vi: 'đúng thật — dạng giống đực của đặc điểm',
+      id: 'benar, asli — bentuk maskulin dari sifat',
+      tr: 'gerçek, hakiki — niteliğin eril biçimi',
+      pl: 'prawdziwy — męska forma cechy',
     }),
     features: ['quality_adjective', 'gender_agreement_full', 'truth_adjective'],
     contacts: {
       recognize: contact(
         L({
-          ru: 'Verdadero ударен на предпоследнем слоге — ver-da-DE-ro, четыре чёткие гласные. Verdad звучит короче — всего два слога, ver-DAD, с конечным /d/, а не /ro/. Verdadera заканчивается на /a/, а не на /o/.',
-          uk: 'Verdadero наголошений на передостанньому складі — ver-da-DE-ro, чотири чіткі голосні. Verdad звучить коротше — лише два склади, ver-DAD, з кінцевим /d/, а не /ro/. Verdadera закінчується на /a/, а не на /o/.',
-          es: 'Verdadero is stressed on the second-to-last syllable — ver-da-DE-ro, four clear vowels. Verdad sounds shorter — just two syllables, ver-DAD, ending in /d/, not /ro/. Verdadera ends in /a/, not /o/.',
-          'pt-BR': 'Verdadero is stressed on the second-to-last syllable — ver-da-DE-ro, four clear vowels. Verdad sounds shorter — just two syllables, ver-DAD, ending in /d/, not /ro/. Verdadera ends in /a/, not /o/.',
-          vi: 'Verdadero is stressed on the second-to-last syllable — ver-da-DE-ro, four clear vowels. Verdad sounds shorter — just two syllables, ver-DAD, ending in /d/, not /ro/. Verdadera ends in /a/, not /o/.',
-          id: 'Verdadero is stressed on the second-to-last syllable — ver-da-DE-ro, four clear vowels. Verdad sounds shorter — just two syllables, ver-DAD, ending in /d/, not /ro/. Verdadera ends in /a/, not /o/.',
-          tr: 'Verdadero is stressed on the second-to-last syllable — ver-da-DE-ro, four clear vowels. Verdad sounds shorter — just two syllables, ver-DAD, ending in /d/, not /ro/. Verdadera ends in /a/, not /o/.',
-          pl: 'Verdadero is stressed on the second-to-last syllable — ver-da-DE-ro, four clear vowels. Verdad sounds shorter — just two syllables, ver-DAD, ending in /d/, not /ro/. Verdadera ends in /a/, not /o/.',
+          ru: 'Verdadero звучит длиннее: ver-da-DE-ro, четыре слога. Verdad короче — всего два, ver-DAD.',
+          uk: 'Verdadero звучить довше: ver-da-DE-ro, чотири склади. Verdad коротше — лише два, ver-DAD.',
+          es: 'Verdadero sounds longer: ver-da-DE-ro, four syllables. Verdad is shorter — just two, ver-DAD.',
+          'pt-BR': 'Verdadero soa mais longo: ver-da-DE-ro, quatro sílabas. Verdad é mais curto — só duas, ver-DAD.',
+          vi: 'Verdadero nghe dài hơn: ver-da-DE-ro, bốn âm tiết. Verdad ngắn hơn — chỉ hai, ver-DAD.',
+          id: 'Verdadero terdengar lebih panjang: ver-da-DE-ro, empat suku kata. Verdad lebih pendek — hanya dua, ver-DAD.',
+          tr: 'Verdadero daha uzun sesli: ver-da-DE-ro, dört hece. Verdad daha kısa — sadece iki, ver-DAD.',
+          pl: 'Verdadero brzmi dłużej: ver-da-DE-ro, cztery sylaby. Verdad jest krótsze — tylko dwie, ver-DAD.',
         }),
         [
           {
@@ -82,14 +88,14 @@ export const ES_EPISODE_01_SESSION_04_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Verdadero означает «истинный, настоящий» — признак предмета или человека мужского рода. Verdad — совсем другое: существительное «правда», предмет, а не признак. Mentira значит прямо противоположное — «ложь».',
-          uk: 'Verdadero означає «істинний, справжній» — ознака предмета чи людини чоловічого роду. Verdad — зовсім інше: іменник «правда», предмет, а не ознака. Mentira означає пряму протилежність — «брехня».',
-          es: 'Verdadero means "true, genuine" — a quality of a masculine noun or person. Verdad is something completely different: the noun "truth", a thing, not a quality. Mentira means the direct opposite — "lie".',
-          'pt-BR': 'Verdadero means "true, genuine" — a quality of a masculine noun or person. Verdad is something completely different: the noun "truth", a thing, not a quality. Mentira means the direct opposite — "lie".',
-          vi: 'Verdadero means "true, genuine" — a quality of a masculine noun or person. Verdad is something completely different: the noun "truth", a thing, not a quality. Mentira means the direct opposite — "lie".',
-          id: 'Verdadero means "true, genuine" — a quality of a masculine noun or person. Verdad is something completely different: the noun "truth", a thing, not a quality. Mentira means the direct opposite — "lie".',
-          tr: 'Verdadero means "true, genuine" — a quality of a masculine noun or person. Verdad is something completely different: the noun "truth", a thing, not a quality. Mentira means the direct opposite — "lie".',
-          pl: 'Verdadero means "true, genuine" — a quality of a masculine noun or person. Verdad is something completely different: the noun "truth", a thing, not a quality. Mentira means the direct opposite — "lie".',
+          ru: 'Verdadero — признак «истинный». Verdad — предмет «правда», не признак. Mentira значит обратное.',
+          uk: 'Verdadero — ознака «істинний». Verdad — предмет «правда», не ознака. Mentira означає протилежне.',
+          es: 'Verdadero is the quality "true". Verdad is the thing "truth", not a quality. Mentira means the opposite.',
+          'pt-BR': 'Verdadero é a qualidade "verdadeiro". Verdad é a coisa "verdade", não uma qualidade. Mentira é o oposto.',
+          vi: 'Verdadero là đặc điểm "đúng". Verdad là sự vật "sự thật", không phải đặc điểm. Mentira nghĩa ngược lại.',
+          id: 'Verdadero adalah sifat "benar". Verdad adalah benda "kebenaran", bukan sifat. Mentira berarti kebalikannya.',
+          tr: 'Verdadero, "doğru" niteliğidir. Verdad, "doğruluk" şeyidir, nitelik değil. Mentira tam tersi demektir.',
+          pl: 'Verdadero to cecha „prawdziwy”. Verdad to rzecz „prawda”, nie cecha. Mentira znaczy przeciwieństwo.',
         }),
         [
           {
@@ -126,14 +132,14 @@ export const ES_EPISODE_01_SESSION_04_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Verdadero пишется с концовкой -o: про предмет или человека мужского рода. Смена одной буквы — -o на -a — даёт verdadera, форму женского рода. Verdad пишется короче, без -ero на конце: это отдельное слово, существительное, а не форма прилагательного.',
-          uk: 'Verdadero пишеться з закінченням -o: про предмет чи людину чоловічого роду. Зміна однієї літери — -o на -a — дає verdadera, форму жіночого роду. Verdad пишеться коротше, без -ero наприкінці: це окреме слово, іменник, а не форма прикметника.',
-          es: 'Verdadero is written with the ending -o: for a masculine noun or person. Changing one letter — -o to -a — gives verdadera, the feminine form. Verdad is written shorter, with no -ero at the end: it is a separate word, a noun, not a form of the adjective.',
-          'pt-BR': 'Verdadero is written with the ending -o: for a masculine noun or person. Changing one letter — -o to -a — gives verdadera, the feminine form. Verdad is written shorter, with no -ero at the end: it is a separate word, a noun, not a form of the adjective.',
-          vi: 'Verdadero is written with the ending -o: for a masculine noun or person. Changing one letter — -o to -a — gives verdadera, the feminine form. Verdad is written shorter, with no -ero at the end: it is a separate word, a noun, not a form of the adjective.',
-          id: 'Verdadero is written with the ending -o: for a masculine noun or person. Changing one letter — -o to -a — gives verdadera, the feminine form. Verdad is written shorter, with no -ero at the end: it is a separate word, a noun, not a form of the adjective.',
-          tr: 'Verdadero is written with the ending -o: for a masculine noun or person. Changing one letter — -o to -a — gives verdadera, the feminine form. Verdad is written shorter, with no -ero at the end: it is a separate word, a noun, not a form of the adjective.',
-          pl: 'Verdadero is written with the ending -o: for a masculine noun or person. Changing one letter — -o to -a — gives verdadera, the feminine form. Verdad is written shorter, with no -ero at the end: it is a separate word, a noun, not a form of the adjective.',
+          ru: 'Verdadero пишется с -o: мужской род. Смена -o на -a даёт verdadera. Verdad короче — другое слово.',
+          uk: 'Verdadero пишеться з -o: чоловічий рід. Заміна -o на -a дає verdadera. Verdad коротше — інше слово.',
+          es: 'Verdadero is written with -o: masculine. Changing -o to -a gives verdadera. Verdad is shorter — a different word.',
+          'pt-BR': 'Verdadero se escreve com -o: masculino. Trocar -o por -a dá verdadera. Verdad é mais curto — outra palavra.',
+          vi: 'Verdadero viết với -o: giống đực. Đổi -o thành -a cho ra verdadera. Verdad ngắn hơn — từ khác.',
+          id: 'Verdadero ditulis dengan -o: maskulin. Mengubah -o menjadi -a menghasilkan verdadera. Verdad lebih pendek — kata lain.',
+          tr: 'Verdadero -o ile yazılır: eril. -o\'yu -a yapmak verdadera\'yı verir. Verdad daha kısa — başka bir kelime.',
+          pl: 'Verdadero pisze się z -o: rodzaj męski. Zmiana -o na -a daje verdadera. Verdad jest krótsze — inne słowo.',
         }),
         [
           {

@@ -194,6 +194,97 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     skipped: "Пропущено",
     language: "uk",
   }),
+  en: {
+    modes: {
+      listen_choose: "Listen and choose",
+      sound_contrast: "Tell the sounds apart",
+      speed_match: "Speed match",
+      phrase_builder: "Build the phrase",
+      listen_build_dictation: "Dictation builder",
+      context_gap_grammar: "Precise grammar",
+      scripted_repeat_compare: "Repeat and compare",
+    },
+    preparing: "Preparing the lesson and local audio…",
+    unavailable: "Session unavailable",
+    captureFailed: "We couldn't record your answer. Try again — this attempt wasn't used up",
+    retry: "Try again",
+    close: "Close session",
+    introCheck: (n) => `Intro check · question ${n} of 3`,
+    independent: "On your own",
+    supportFades: "Support fades away gradually",
+    showPhrase: "Show the phrase as text",
+    listenOffline: "Play the local recording of the phrase",
+    audioUnavailableHint: "Audio isn't available, the phrase is shown as text below",
+    audioOfflineHint: "Plays a built-in recording with no internet connection",
+    localAudioUnavailable:
+      "Local recording unavailable. The phrase is shown as text.",
+    localAudioFailed:
+      "Couldn't play the local recording. The phrase is shown as text.",
+    listenPrompt: "Listen to the phrase and choose its meaning",
+    chooseExactPhrase: "Choose the exact phrase",
+    repeatPrivacy:
+      "Practice repeat · your voice isn't recorded or graded",
+    builtPhrase: "Built phrase",
+    tapWords: "Tap the words in order",
+    repeatWithoutGrade: "Continue without grading your voice",
+    repeatedAloud: "I repeated it aloud",
+    taskActions: "Task actions",
+    reportTask: "Send a report about this task",
+    savePhrase: "Save phrase to flashcards",
+    saveAdded: "Phrase saved to flashcards",
+    saveFirstEver:
+      "You saved your first flashcard. Practice it anytime in the «Flashcards» section",
+    saveDuplicate: "This phrase is already in your flashcards",
+    saveFailed: "Couldn't save the phrase",
+    voiceSpeaking: "Speak now — release the button to stop",
+    voicePermission: "Allow microphone access in settings",
+    voiceUnavailable: "Voice answers aren't available right now",
+    voiceStopped: "Voice answer finished",
+    voiceFailed: "Couldn't start the voice answer",
+    stopVoice: "Stop voice answer",
+    startVoice: "Hold to answer with your voice",
+    secondError: "Almost. Look more closely and try again.",
+    showHint: "Show hint",
+    hint: "Hint",
+    hintFallback: "Try again without revealing the answer",
+    skipTask: "Skip this task",
+    skipHint: "This task will get zero stars and the session will continue",
+    skip: "Skip",
+    attempt: "attempt",
+    check: "Check",
+    finish: "Finish session",
+    next: "Next",
+    map: "To map",
+    scorePossible: "out of 36 possible",
+    perfect: "Perfect",
+    recovered: "Recovered",
+    supported: "With support",
+    skipped: "Skipped",
+    repeatReward:
+      "The repeat reward will be confirmed separately and added to your total balance automatically.",
+    stored:
+      "The result is saved on your device and will sync automatically.",
+    perfectBody: "Perfect session — you collected every star.",
+    improveBody: (n) => `You can still improve your result by ${n} ${enStar(n)}.`,
+    cardProgress: (n) => `${n} of 12`,
+    starsProgress: (n) => `Collected ${n} of 36 stars in this session`,
+    answer: (l, t) => `Answer ${l}: ${t}`,
+    attemptLabel: (n) => `attempt ${n}`,
+    starWord: enStar,
+    collected: (n) => `Collected ${n} ${enStar(n)}`,
+    filled: (n) => `Filled ${n} of 36 stars`,
+    breakdown: (a, b, c, d) =>
+      `Perfect ${a}. Recovered ${b}. With support ${c}. Skipped ${d}.`,
+    backToMap: (n) => `Back to map with a result of ${n} ${enStar(n)}`,
+    rewardLabel: (award) =>
+      `${({ 1: "Counted", 2: "Great", 3: "Perfect" } as const)[award]}. Plus ${award} ${enStar(award)}. ${{ 1: "With support", 2: "After correction", 3: "On the first try" }[award]}`,
+    tier: enTier,
+    quality: {
+      1: { title: "Counted", detail: "With support" },
+      2: { title: "Great", detail: "After correction" },
+      3: { title: "Perfect", detail: "On the first try" },
+    },
+  },
   es: makeCopy({
     unavailable: "Sesión no disponible",
     close: "Cerrar sesión",
@@ -314,6 +405,30 @@ function ruTier(value: number): string {
           : "ПУТЬ НАЧАТ";
 }
 
+// зачем: en — обычный singular/"count !== 1" plural, никакой отдельной формы для 2-4 как в ru
+function enStar(value: number): string {
+  return value === 1 ? "star" : "stars";
+}
+
+function enTier(value: number): string {
+  return value === 36
+    ? "MAXIMUM STARS"
+    : value >= 30
+      ? "SHINING RESULT"
+      : value >= 24
+        ? "STRONG SESSION"
+        : value >= 12
+          ? "GOOD FOUNDATION"
+          : "JOURNEY STARTED";
+}
+
+// зачем: makeCopy обслуживает только эти 7 локалей — ru и en заполняются
+// вручную отдельными полными объектами (см. copies.ru / copies.en), поэтому
+// внутренняя машинерия t/rows/phrase типизирована по этому подмножеству,
+// а не по Exclude<Lang, "ru"> (который после добавления en включал бы 'en'
+// и требовал 8-й позиционный аргумент в каждом вызове phrase(...)).
+type MakeCopyLocale = Exclude<Lang, "ru" | "en">;
+
 function makeCopy(
   base: Readonly<{
     unavailable: string;
@@ -330,7 +445,7 @@ function makeCopy(
     recovered: string;
     supported: string;
     skipped: string;
-    language: Lang;
+    language: MakeCopyLocale;
   }>,
 ): SessionCopy {
   const locale = base.language;
@@ -349,7 +464,7 @@ function makeCopy(
               : locale === "tr"
                 ? "yıldız"
                 : "gwiazdek";
-  const t = <T extends Record<Exclude<Lang, "ru">, string>>(rows: T) =>
+  const t = <T extends Record<MakeCopyLocale, string>>(rows: T) =>
     rows[locale as keyof T] as string;
   const rows = {
     uk: [
@@ -416,7 +531,7 @@ function makeCopy(
       "Powtórz i porównaj",
     ],
   } as const;
-  const labels = rows[locale as Exclude<Lang, "ru">];
+  const labels = rows[locale as MakeCopyLocale];
   const phrase = (
     uk: string,
     es: string,

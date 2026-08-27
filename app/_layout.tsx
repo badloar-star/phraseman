@@ -3003,12 +3003,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
-      {ENABLE_DEV_TOOLS ? (
-        <>
-          <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
-          <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
-        </>
-      ) : null}
+      {/* зачем: без Fragment — expo-router разворачивает только ПРЯМЫХ детей
+          <Stack.Screen>, а <>…</> считает посторонним ребёнком и печатает
+          «Layout children must be of type Screen» на каждый старт (дважды за
+          загрузку). Два отдельных условия дают тот же результат без обёртки. */}
+      {ENABLE_DEV_TOOLS ? <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} /> : null}
+      {ENABLE_DEV_TOOLS ? <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} /> : null}
       {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
           Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
       <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />

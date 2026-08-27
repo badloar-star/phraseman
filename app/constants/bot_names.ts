@@ -70,6 +70,10 @@ export const BOT_NAMES_LATIN: readonly string[] = [
   'patch_v3762', 'dash_kai', 'zk_sudo18', 'px_volt790', 'zip_neon', 'sync', 'rx_rx870', 'sol_jade196', 'zed_heap306', 'heap24',
   'beta523', 'lint67', 'mint', 'hex_grid408', 'melon_oz406', 'flip', 'px_nx800', 'zk_opal88', 'mono_oz804', 'bruh_zk562',
   'melon_pro', 'rust_ok', 'mutex', 'void', 'alfa_jax817', 'fox_jax44', 'fox_rx777', 'stub_gg98', 'lint688', 'lime122',
+  // зачем: пул объявлен как 300 имён, но лежало 299 — assertBotPool ругался
+  // «expected 300 unique, got 299» на каждый dev-старт. Дубликатов не было,
+  // просто не хватало одного; добавлено в стиле остального пула.
+  'jade_px503',
 ];
 
 function assertBotPool(tag: string, pool: readonly string[], expectedLen: number, latinOnly?: boolean): void {

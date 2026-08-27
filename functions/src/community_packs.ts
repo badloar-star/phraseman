@@ -286,6 +286,21 @@ function moderatorMessageOrNull(s: string): string | null {
   return t ? t.slice(0, 3500) : null;
 }
 
+/**
+ * Первое непустое значение из списка.
+ *
+ * зачем: заменяет цепочки `a ?? b ?? c` для локализованных полей. `??`
+ * останавливается на пустой строке (она не null/undefined), из-за чего
+ * заявка с заполненной не-русской локалью выглядела как «без названия».
+ */
+function firstNonEmpty(...values: unknown[]): string {
+  for (const value of values) {
+    const text = String(value ?? '').trim();
+    if (text) return text;
+  }
+  return '';
+}
+
 function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   const studyTarget = normalizeCommunityPackStudyTarget(raw.studyTarget);
   if (studyTarget !== 'en') {
@@ -300,8 +315,19 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
     raw.sourceLang === 'pl'
     ? raw.sourceLang
     : 'ru';
-  const titleSingle = String(raw.title ?? raw.titleRu ?? raw.titleUk ?? raw.titleEs ?? raw.titlePtBr ?? raw.titleVi ?? raw.titleId ?? raw.titleTr ?? raw.titlePl ?? '').trim();
-  let descSingle = String(raw.description ?? raw.descriptionRu ?? raw.descriptionUk ?? raw.descriptionEs ?? raw.descriptionPtBr ?? raw.descriptionVi ?? raw.descriptionId ?? raw.descriptionTr ?? raw.descriptionPl ?? '').trim();
+  // зачем: одобрение заявки падало с «title required», когда автор писал
+  // не по-русски. `??` пропускает только null/undefined, а клиент кладёт в
+  // пустые локали ИМЕННО пустую строку — цепочка обрывалась на titleRu === ''
+  // и затирала настоящее название (titleUk) пустым значением.
+  // Берём первое НЕпустое: заявка «Антоніми дієслів» (uk) висела с 18.08.2026.
+  const titleSingle = firstNonEmpty(
+    raw.title, raw.titleRu, raw.titleUk, raw.titleEs,
+    raw.titlePtBr, raw.titleVi, raw.titleId, raw.titleTr, raw.titlePl,
+  );
+  let descSingle = firstNonEmpty(
+    raw.description, raw.descriptionRu, raw.descriptionUk, raw.descriptionEs,
+    raw.descriptionPtBr, raw.descriptionVi, raw.descriptionId, raw.descriptionTr, raw.descriptionPl,
+  );
   if (!descSingle) {
     descSingle = titleSingle;
   }

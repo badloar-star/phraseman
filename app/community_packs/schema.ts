@@ -113,10 +113,31 @@ export function communityPackStudyTargetSubmissionBlocked(studyTarget?: RuntimeS
   return !flashcardsCommunityPacksAvailableForTarget(studyTarget);
 }
 
+/**
+ * Первое непустое значение из списка локализованных полей.
+ *
+ * зачем: `a ?? b ?? c` останавливается на пустой строке — она не null.
+ * Автор, пишущий не по-русски, получал пустое название на сервере
+ * (заявка отклонялась с «title required»), хотя своя локаль была заполнена.
+ */
+function firstNonEmptyText(...values: unknown[]): string {
+  for (const value of values) {
+    const text = String(value ?? '').trim();
+    if (text) return text;
+  }
+  return '';
+}
+
 export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload): string | null {
   if (communityPackStudyTargetSubmissionBlocked(p.studyTarget)) return 'study_target_gate';
-  const title = String(p.title ?? p.titleRu ?? p.titleUk ?? p.titleEs ?? p.titlePtBr ?? p.titleVi ?? p.titleId ?? p.titleTr ?? p.titlePl ?? '').trim();
-  const description = String(p.description ?? p.descriptionRu ?? p.descriptionUk ?? p.descriptionEs ?? p.descriptionPtBr ?? p.descriptionVi ?? p.descriptionId ?? p.descriptionTr ?? p.descriptionPl ?? '').trim();
+  const title = firstNonEmptyText(
+    p.title, p.titleRu, p.titleUk, p.titleEs,
+    p.titlePtBr, p.titleVi, p.titleId, p.titleTr, p.titlePl,
+  );
+  const description = firstNonEmptyText(
+    p.description, p.descriptionRu, p.descriptionUk, p.descriptionEs,
+    p.descriptionPtBr, p.descriptionVi, p.descriptionId, p.descriptionTr, p.descriptionPl,
+  );
   if (!title || !description) return 'title_or_desc';
   const n = p.cards?.length ?? 0;
   if (n < COMMUNITY_PACK_CARD_COUNT_MIN || n > COMMUNITY_PACK_CARD_COUNT_MAX) return 'card_count';
@@ -138,8 +159,14 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
 /** Плоский payload для Cloud Function (titleRu = titleUk = title). */
 export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayload): Record<string, unknown> {
   const studyTarget = normalizeCommunityPackStudyTarget(p.studyTarget);
-  const title = String(p.title ?? p.titleRu ?? p.titleUk ?? p.titleEs ?? '').trim();
-  const description = String(p.description ?? p.descriptionRu ?? p.descriptionUk ?? p.descriptionEs ?? '').trim();
+  const title = firstNonEmptyText(
+    p.title, p.titleRu, p.titleUk, p.titleEs,
+    p.titlePtBr, p.titleVi, p.titleId, p.titleTr, p.titlePl,
+  );
+  const description = firstNonEmptyText(
+    p.description, p.descriptionRu, p.descriptionUk, p.descriptionEs,
+    p.descriptionPtBr, p.descriptionVi, p.descriptionId, p.descriptionTr, p.descriptionPl,
+  );
   const sourceLang = p.sourceLang ?? 'ru';
   const titleRu = sourceLang === 'ru' ? title : String(p.titleRu ?? '').trim();
   const titleUk = sourceLang === 'uk' ? title : String(p.titleUk ?? '').trim();

@@ -1634,6 +1634,38 @@ describe('community pack callable ownership', () => {
   });
 });
 
+describe('non-russian submission titles', () => {
+  /**
+   * зачем: реальная заявка «Антоніми дієслів» (uk) висела в pending с 18.08.2026 —
+   * админка отвечала «Ошибка: title required». Клиент кладёт в незаполненные
+   * локали ПУСТУЮ строку, а `??` её пропускает не как отсутствие значения:
+   * цепочка обрывалась на titleRu === '' и затирала настоящее название.
+   */
+  test('approves a pack whose title lives only in a non-russian locale', async () => {
+    const payload: Record<string, unknown> = submissionPayload();
+    delete payload.title;
+    delete payload.description;
+    payload.sourceLang = 'uk';
+    payload.titleRu = '';
+    payload.titleEs = '';
+    payload.titleUk = 'Антоніми дієслів';
+    payload.descriptionRu = '';
+    payload.descriptionUk = 'Borrow, bring, take, accept';
+    mockDocs.set('community_pack_submissions/sub-uk', { status: 'pending', authorStableId: 'author', payload });
+
+    const mod = require('./community_packs');
+    await expect(
+      mod.communityModerateSubmission({ auth: { token: { admin: true } }, data: { submissionId: 'sub-uk', action: 'approve' } }),
+    ).resolves.toBeDefined();
+
+    expect(mockDocs.get('community_packs/sub-uk')).toMatchObject({
+      listingStatus: 'published',
+      titleUk: 'Антоніми дієслів',
+      descriptionUk: 'Borrow, bring, take, accept',
+    });
+  });
+});
+
 describe('community pack semantic registry synchronization', () => {
   test('publishes and removes locale-partitioned memberships in the same moderation flow', async () => {
     const payload: { cards: Array<Record<string, unknown>> } & Record<string, unknown> = submissionPayload();

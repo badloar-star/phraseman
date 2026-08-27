@@ -61,9 +61,35 @@ export const BOT_AVATAR_GRADIENT_IDS = [
   'royal', 'ruby', 'magma', 'noirgold', 'sakura',
 ] as const;
 
-/** Витрина кастом-аватаров: custom-gen-01 … custom-gen-126. */
-export const BOT_CUSTOM_AVATAR_MIN = 1;
+/**
+ * Аватары, которые бот вправе носить, — ТОЛЬКО те, что сейчас продаются
+ * (владелец, 2026-08-27: «должны быть только аватары которые в продаже, а не
+ * вообще весь рандом — те которые не подключены»).
+ *
+ * Правда о продаже живёт на клиенте: `CUSTOM_AVATAR_SHOP` в
+ * constants/custom_avatars.ts = `AVATAR100_CATALOG` (constants/avatar100_assets.ts).
+ * Это ряд 73…126 без 90 — ровно 53 позиции.
+ *
+ * Чего здесь НЕТ и почему:
+ * • 01–40 — подарочный пул (`CUSTOM_AVATAR_GIFT_POOL`), за жемчуг не продаётся;
+ * • 41–72 и 90 — сняты с продажи навсегда (`isRetiredCustomAvatarSale`).
+ *   Прежние владельцы их носят, но купить нельзя — бот в таком аватаре
+ *   рекламировал бы то, чего в магазине нет.
+ *
+ * Сервер не может импортировать клиентские константы (они тянут React Native),
+ * поэтому диапазон задан здесь и закрыт сторожем в bot_cosmetics.test.ts:
+ * тест читает сам каталог и падает, если списки разошлись.
+ */
+export const BOT_CUSTOM_AVATAR_MIN = 73;
 export const BOT_CUSTOM_AVATAR_MAX = 126;
+/** Снят с продажи внутри диапазона — пропускается при выборе. */
+export const BOT_CUSTOM_AVATAR_EXCLUDED: readonly number[] = [90];
+
+/** Номера продающихся аватаров: диапазон минус исключения. */
+export const BOT_SELLABLE_AVATAR_NUMBERS: readonly number[] = Array.from(
+  { length: BOT_CUSTOM_AVATAR_MAX - BOT_CUSTOM_AVATAR_MIN + 1 },
+  (_, offset) => BOT_CUSTOM_AVATAR_MIN + offset,
+).filter((number) => !BOT_CUSTOM_AVATAR_EXCLUDED.includes(number));
 
 /** Доля ботов с купленным аватаром витрины вместо уровневого номера. */
 export const BOT_SHOWCASE_AVATAR_CHANCE = 0.12;
@@ -96,12 +122,12 @@ function pick<T>(pool: readonly T[], value: number): T {
 
 /** Строка кастом-аватара в формате клиента: custom:<id>:<градиент>:<цвет>. */
 export function botShowcaseAvatarValue(seed: string): string {
-  const span = BOT_CUSTOM_AVATAR_MAX - BOT_CUSTOM_AVATAR_MIN + 1;
-  const index = BOT_CUSTOM_AVATAR_MIN + Math.floor(unit(seed, 'shop-avatar') * span);
-  const clamped = Math.min(BOT_CUSTOM_AVATAR_MAX, index);
+  // Выбор ИЗ СПИСКА продающихся, а не из диапазона: внутри 73…126 есть дыра
+  // (90 снят с продажи), и бросок по диапазону иногда попадал бы прямо в неё.
+  const number = pick(BOT_SELLABLE_AVATAR_NUMBERS, unit(seed, 'shop-avatar'));
   // Двузначные id дополняются нулём, трёхзначные остаются как есть —
   // ровно так они записаны в constants/custom_avatars.ts.
-  const id = `custom-gen-${String(clamped).padStart(2, '0')}`;
+  const id = `custom-gen-${String(number).padStart(2, '0')}`;
   const gradient = pick(BOT_AVATAR_GRADIENT_IDS, unit(seed, 'shop-gradient'));
   const logoColor = unit(seed, 'shop-logo') < 0.5 ? 'black' : 'white';
   return `custom:${id}:${gradient}:${logoColor}`;

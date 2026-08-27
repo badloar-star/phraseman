@@ -14,6 +14,7 @@ import {
   botCosmeticsForCorpus,
   BOT_CUSTOM_AVATAR_MAX,
   BOT_CUSTOM_AVATAR_MIN,
+  BOT_SELLABLE_AVATAR_NUMBERS,
   BOT_PLUS_AURA_SHARE,
   BOT_SHOWCASE_AURA_IDS,
   BOT_SHOWCASE_AVATAR_CHANCE,
@@ -69,17 +70,28 @@ describe('bot_cosmetics', () => {
     }
   });
 
-  it('аватар — валидная строка витрины в пределах каталога', () => {
+  it('аватар — валидная строка витрины из числа продающихся', () => {
+    const sellable = new Set(BOT_SELLABLE_AVATAR_NUMBERS);
     for (const seed of seeds.slice(0, 3000)) {
       const value = botShowcaseAvatarValue(seed);
       const parts = value.split(':');
       expect(parts).toHaveLength(4);
       expect(parts[0]).toBe('custom');
       const num = Number(parts[1].replace('custom-gen-', ''));
-      expect(num).toBeGreaterThanOrEqual(BOT_CUSTOM_AVATAR_MIN);
-      expect(num).toBeLessThanOrEqual(BOT_CUSTOM_AVATAR_MAX);
+      // Ловит главный класс бага: бот в аватаре, которого нет в продаже.
+      expect(sellable.has(num)).toBe(true);
       expect(['black', 'white']).toContain(parts[3]);
     }
+  });
+
+  it('за много бросков покрывается почти весь ассортимент магазина', () => {
+    // Иначе «продающиеся» могло бы означать три штуки из пятидесяти трёх.
+    const seen = new Set<number>();
+    for (let i = 0; i < 20000; i += 1) {
+      const value = botShowcaseAvatarValue(`spread-${i}`);
+      seen.add(Number(value.split(':')[1].replace('custom-gen-', '')));
+    }
+    expect(seen.size).toBe(BOT_SELLABLE_AVATAR_NUMBERS.length);
   });
 
   it('косметика детерминирована по seed — соперник не переодевается', () => {
@@ -102,15 +114,30 @@ describe('bot_cosmetics', () => {
     expect(catalog).toContain("PLUS_AVATAR_AURA_ID = 'aura-plus'");
   });
 
-  it('витрина аватаров не шире каталога клиента', () => {
+  it('пул аватаров совпадает с магазином клиента ОДИН В ОДИН', () => {
+    // зачем: правда о продаже живёт в AVATAR100_CATALOG на клиенте, а пул —
+    // на сервере. Разъедутся — бот наденет снятый с продажи аватар (ровно то,
+    // что владелец запретил 2026-08-27) либо перестанет носить новинки.
+    // Импортировать каталог нельзя: он тянет React Native, поэтому читаем файл.
     const catalog = readFileSync(
-      join(__dirname, '..', '..', 'constants', 'custom_avatars.ts'),
+      join(__dirname, '..', '..', 'constants', 'avatar100_assets.ts'),
       'utf8',
     );
-    const ids = new Set(catalog.match(/custom-gen-\d{2,3}/g) ?? []);
-    for (let i = BOT_CUSTOM_AVATAR_MIN; i <= BOT_CUSTOM_AVATAR_MAX; i += 1) {
-      expect(ids.has(`custom-gen-${String(i).padStart(2, '0')}`)).toBe(true);
-    }
+    const shopIds = (catalog.match(/'custom-gen-(\d+)':\s*\{\s*name:/g) ?? [])
+      .map((row) => Number(row.replace(/\D+/g, '')))
+      .sort((a, b) => a - b);
+    expect(shopIds.length).toBeGreaterThan(0);
+    expect([...BOT_SELLABLE_AVATAR_NUMBERS].sort((a, b) => a - b)).toEqual(shopIds);
+    // Границы констант тоже держим в согласии с каталогом.
+    expect(BOT_CUSTOM_AVATAR_MIN).toBe(shopIds[0]);
+    expect(BOT_CUSTOM_AVATAR_MAX).toBe(shopIds[shopIds.length - 1]);
+  });
+
+  it('подарочные и снятые с продажи аватары боту недоступны', () => {
+    const sellable = new Set(BOT_SELLABLE_AVATAR_NUMBERS);
+    // 01–40 — подарочный пул, 41–72 и 90 — сняты с продажи навсегда.
+    for (let i = 1; i <= 72; i += 1) expect(sellable.has(i)).toBe(false);
+    expect(sellable.has(90)).toBe(false);
   });
 });
 

@@ -234,6 +234,14 @@ export function practiceRuneLedgerOperation(
     opId: composite.operationId,
     delta: composite.amount,
     reason: 'practice_session' as const,
+    // Примечание (аудит 2026-08-27): docs/arena/STAGE1_SPEC.md:155 фиксирует
+    // соглашение «sourceKind == префикс opId». Здесь оно НЕ соблюдено:
+    // sourceKind = practice_{activity} (напр. practice_vocabulary), а префикс
+    // opId = practice_rune (см. practiceRuneOperationId). Расхождение ничего
+    // не ломает — оба поля валидны и однозначны сами по себе, — но делает
+    // opId невыводимым из одного sourceKind при будущей ручной реконсиляции.
+    // Если понадобится строгое соответствие, здесь и в practiceRuneOperationId
+    // нужно унифицировать префикс одновременно.
     sourceKind: `practice_${composite.activity}`,
     sourceId: `${composite.sessionKey}.${composite.completionOrdinal}`,
     ruleVersion: 1,

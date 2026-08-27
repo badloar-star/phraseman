@@ -40,13 +40,13 @@ export const ES_EPISODE_01_SESSION_03_VOCABULARY_V1:
       recognize: contact(
         L({
           ru: 'Bonito звучит с ударением на втором слоге — bo-NI-to, три чёткие гласные o-i-o. В bonita последний гласный звучит иначе — /a/, а не /o/. Fácil и вовсе не подходит: другое слово, другой рисунок звука.',
-          uk: 'Bonito звучить з наголосом на другому складі — bo-NI-to, три чіткі голосні o-i-o. В bonita останній голосний звучить інакше — /a/, а не /o/. Fácil і зовсім не підходить: інше слово, інший малюнок звуку.',
-          es: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil does not fit at all: a different word with a different sound shape.',
-          'pt-BR': 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil does not fit at all: a different word with a different sound shape.',
-          vi: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil does not fit at all: a different word with a different sound shape.',
-          id: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil does not fit at all: a different word with a different sound shape.',
-          tr: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil does not fit at all: a different word with a different sound shape.',
-          pl: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil does not fit at all: a different word with a different sound shape.',
+          uk: 'Bonito звучить з наголосом на другому складі — bo-NI-to, три чіткі голосні o-i-o. В bonita останній голосний звучить інакше — /a/, а не /o/. Fácil — зовсім інше слово.',
+          es: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil is a different word entirely.',
+          'pt-BR': 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil is a different word entirely.',
+          vi: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil is a different word entirely.',
+          id: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil is a different word entirely.',
+          tr: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil is a different word entirely.',
+          pl: 'Bonito is stressed on the second syllable — bo-NI-to, three clear vowels o-i-o. Bonita has a different final vowel — /a/, not /o/. Fácil is a different word entirely.',
         }),
         [
           {

@@ -115,6 +115,16 @@ export const LESSON1_ES_SESSION_06_MODE_NATIVE_PLAN_ID_V1 =
 // esSession07ModeNativeStepsV1 заменяет оба таких слота на 'listen_choose'.
 export const LESSON1_ES_SESSION_07_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s07-mode-native-v1' as const;
+// зачем отдельный planId для испанской checkpoint-сессии 8 (владелец,
+// 2026-08-27, MODE_NATIVE_AUTHORING_CONTRACT.ru.md + Rules §4.1): как и
+// voice-сессия 7, checkpoint не вводит новых слов — 12 практических слотов
+// (после 3 интро) на индексах 3-14 из тех же 15 фраз. Легаси
+// checkpointSteps() уже использовал только утверждённые families, но его
+// learningStage: 'independent_assessment' не входит в допустимый набор
+// SessionModeNativePracticeSourceV1.learningStage — esSession08ModeNativeStepsV1
+// ниже заменяет его на 'apply_in_phrase'.
+export const LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s08-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -373,6 +383,32 @@ function esSession07ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
     { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'speak_with_model' },
     { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'speak_with_model' },
     { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'speak_with_model' },
+  ];
+}
+
+// зачем именно эта раскладка (владелец, 2026-08-27, СТАРТ ES + MODE_NATIVE_AUTHORING_CONTRACT
+// + Rules §4.1): испанская checkpoint-сессия 8 не вводит новых слов — все 12
+// шагов работают с фразами (targetKind: 'phrase'), индексы 3-14 из 15
+// доступных (0-2 уже отработаны в introSteps()). Families и их порядок
+// зеркальны легаси checkpointSteps() (speed_match/listen_build_dictation/
+// context_gap_grammar/phrase_builder), но learningStage заменён с
+// недопустимого 'independent_assessment' на 'apply_in_phrase'. Каждый шаг
+// зеркально совпадает по family/purpose/learningStage/sourcePhraseIndex с
+// es_episode_01_session_08_mode_native_v1.ts — сверка идёт позиционно.
+function esSession08ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'speed_match', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'apply_in_phrase' },
+    { family: 'speed_match', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
   ];
 }
 
@@ -769,6 +805,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession06ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_07_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession07ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession08ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

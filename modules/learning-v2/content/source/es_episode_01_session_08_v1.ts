@@ -6,6 +6,8 @@ import {
   ES_EPISODE_01_SESSION_08_CHECKPOINT_TITLE,
 } from './es_episode_01_session_08_intro_v1';
 import { ES_EPISODE_01_SESSION_08_CHECKPOINT_PHRASES } from './es_episode_01_session_08_phrases_v1';
+import { ES_EPISODE_01_SESSION_08_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_08_mode_native_v1';
+import { LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 8 «Всё про я
@@ -16,11 +18,19 @@ import { ES_EPISODE_01_SESSION_08_CHECKPOINT_PHRASES } from './es_episode_01_ses
  *
  * Checkpoint, как и voice, НЕ вводит новых слов — переиспользует ровно тот
  * же набор из 15 уже утверждённых фраз, что и voice-сессия 7 (см.
- * es_episode_01_session_08_phrases_v1.ts). Choreography (checkpointSteps в
- * lesson1_session_choreography_v1.ts) применяет другой набор family
- * (speed_match, listen_build_dictation, context_gap_grammar, phrase_builder)
- * и support:'none'/promptNovelty:'novel' — задание требует применить
- * материал без подсказки, вразнобой, а не повторить его вслух с моделью.
+ * es_episode_01_session_08_phrases_v1.ts). Choreography применяет другой
+ * набор family (speed_match, listen_build_dictation, context_gap_grammar,
+ * phrase_builder) и support:'none'/promptNovelty:'novel' — задание требует
+ * применить материал без подсказки, вразнобой, а не повторить его вслух с
+ * моделью.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-27,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md + Rules §4.1): каждый обязательный
+ * контакт должен быть реальным действием внутри одной из шести утверждённых
+ * механик. es_episode_01_session_08_mode_native_v1.ts авторит все 12
+ * practice-шагов (после 3 интро-вопросов), lesson1SessionChoreographyV1
+ * сверяет их против esSession08ModeNativeStepsV1() через
+ * LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1.
  */
 export const ES_EPISODE_01_SESSION_08_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -31,6 +41,8 @@ export const ES_EPISODE_01_SESSION_08_SOURCE: SessionSource = Object.freeze({
   generationInputFingerprint: 'owner-checkpoint-es-e01-s08-v1',
   sessionKindOverride: 'checkpoint',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_08_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_08_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_08_CHECKPOINT_TITLE,
   summary: ES_EPISODE_01_SESSION_08_CHECKPOINT_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_08_CHECKPOINT_GOAL,

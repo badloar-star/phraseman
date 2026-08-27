@@ -36,6 +36,8 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   flashcard_limit: { accent: '#8BD3FF', accent2: '#FDE68A', shardAmount: 80 },
   flashcard_training: { accent: '#8BD3FF', accent2: '#A78BFA', shardAmount: 180 },
   flashcard_autoplay: { accent: '#FDE68A', accent2: '#60A5FA', shardAmount: 180 },
+  flashcard_create: { accent: '#8BD3FF', accent2: '#86EFAC', shardAmount: 180 },
+  pack_create: { accent: '#A78BFA', accent2: '#8BD3FF', shardAmount: 180 },
   streak: { accent: '#FFB020', accent2: '#FF5C5C', shardAmount: 180 },
   theme: { accent: '#F0ABFC', accent2: '#67E8F9', shardAmount: 180 },
   club: { accent: '#FACC15', accent2: '#22C55E', shardAmount: 420 },
@@ -1320,6 +1322,89 @@ CONTEXT_BENEFITS_PLANNED.referral_ended = [
   { 'pt-BR': 'Tudo o que você usava, aberto de novo', vi: 'Mọi thứ bạn từng dùng lại mở', id: 'Semua yang kamu pakai terbuka lagi', tr: 'Kullandığın her şey yeniden açık', pl: 'Wszystko, z czego korzystałeś, znów otwarte' },
   { 'pt-BR': 'Progresso e sequência seguem sem pausas', vi: 'Tiến độ và chuỗi ngày tiếp tục không gián đoạn', id: 'Progres dan runtutan lanjut tanpa jeda', tr: 'İlerleme ve seri arasız devam eder', pl: 'Postęp i seria trwają bez przerw' },
   { 'pt-BR': 'Diálogos e treinos sem travas', vi: 'Hội thoại và luyện tập không bị chặn', id: 'Dialog dan latihan tanpa hambatan', tr: 'Diyaloglar ve antrenmanlar duraksız', pl: 'Dialogi i treningi bez blokad' },
+];
+
+// ── Мастерская: создание своей карточки и своего набора (2026-08-27) ────────
+// зачем: гейт создания подставлял чужие контексты — 'flashcard_limit'
+// («20 из 20 — база собрана») на создание карточки и 'flashcard_training'
+// («Тренировка карточек — в Plus») на создание набора. Человек, который просто
+// нажал «создать», читал упрёк про исчерпанный лимит или рекламу режима, к
+// которому он не обращался. Теперь у каждого действия свой честный текст.
+
+PAYWALL_COPY.flashcard_create = {
+  titleRu: 'Своя карточка — в Plus',
+  titleUk: 'Своя картка — у Plus',
+  titleEs: 'Tus propias tarjetas en Plus',
+  subtitleRu: 'Plus открывает мастерскую: добавляй свои фразы с переводом и учи именно то, что нужно тебе.',
+  subtitleUk: 'Plus відкриває майстерню: додавай свої фрази з перекладом і вивчай саме те, що потрібно тобі.',
+  subtitleEs: 'Plus abre el taller: añade tus propias frases con traducción y estudia justo lo que necesitas.',
+};
+
+PAYWALL_PLANNED_COPY.flashcard_create = {
+  title: {
+    'pt-BR': 'Seus próprios cartões no Plus',
+    vi: 'Thẻ tự tạo trong Plus',
+    id: 'Kartu buatanmu di Plus',
+    tr: 'Kendi kartların Plus’ta',
+    pl: 'Własne fiszki w Plus',
+  },
+  subtitle: {
+    'pt-BR': 'O Plus abre a oficina: adicione suas frases com tradução e estude exatamente o que você precisa.',
+    vi: 'Plus mở xưởng thẻ: thêm cụm từ của bạn kèm bản dịch và học đúng thứ bạn cần.',
+    id: 'Plus membuka bengkel kartu: tambahkan frasamu dengan terjemahan dan pelajari persis yang kamu butuhkan.',
+    tr: 'Plus atölyeyi açar: kendi ifadelerini çevirisiyle ekle ve tam ihtiyacın olanı çalış.',
+    pl: 'Plus otwiera warsztat: dodawaj własne frazy z tłumaczeniem i ucz się dokładnie tego, czego potrzebujesz.',
+  },
+};
+
+CONTEXT_BENEFITS.flashcard_create = [
+  { ru: 'Свои фразы с переводом и озвучкой', uk: 'Свої фрази з перекладом і озвучкою', es: 'Tus frases con traducción y audio', 'pt-BR': 'Suas frases com tradução e áudio', vi: 'Cụm từ của bạn kèm bản dịch và audio', id: 'Frasamu dengan terjemahan dan audio', tr: 'Kendi ifadelerin çeviri ve sesle', pl: 'Własne frazy z tłumaczeniem i audio' },
+  { ru: 'Учишь то, что нужно именно тебе', uk: 'Вчиш те, що потрібно саме тобі', es: 'Aprendes justo lo que te hace falta', 'pt-BR': 'Você estuda exatamente o que precisa', vi: 'Học đúng thứ bạn cần', id: 'Belajar persis yang kamu butuhkan', tr: 'Tam sana gerekeni öğrenirsin', pl: 'Uczysz się dokładnie tego, czego potrzebujesz' },
+  { ru: 'Созданное остаётся у тебя навсегда', uk: 'Створене залишається в тебе назавжди', es: 'Lo que creas se queda contigo para siempre', 'pt-BR': 'O que você cria fica com você para sempre', vi: 'Thứ bạn tạo ở lại với bạn mãi mãi', id: 'Yang kamu buat tetap milikmu selamanya', tr: 'Oluşturduğun her şey sonsuza dek sende kalır', pl: 'To, co stworzysz, zostaje z tobą na zawsze' },
+];
+
+CONTEXT_BENEFITS_PLANNED.flashcard_create = [
+  { 'pt-BR': 'Suas frases com tradução e áudio', vi: 'Cụm từ của bạn kèm bản dịch và audio', id: 'Frasamu dengan terjemahan dan audio', tr: 'Kendi ifadelerin çeviri ve sesle', pl: 'Własne frazy z tłumaczeniem i audio' },
+  { 'pt-BR': 'Você estuda exatamente o que precisa', vi: 'Học đúng thứ bạn cần', id: 'Belajar persis yang kamu butuhkan', tr: 'Tam sana gerekeni öğrenirsin', pl: 'Uczysz się dokładnie tego, czego potrzebujesz' },
+  { 'pt-BR': 'O que você cria fica com você para sempre', vi: 'Thứ bạn tạo ở lại với bạn mãi mãi', id: 'Yang kamu buat tetap milikmu selamanya', tr: 'Oluşturduğun her şey sonsuza dek sende kalır', pl: 'To, co stworzysz, zostaje z tobą na zawsze' },
+];
+
+PAYWALL_COPY.pack_create = {
+  titleRu: 'Свой набор — в Plus',
+  titleUk: 'Свій набір — у Plus',
+  titleEs: 'Tus propios mazos en Plus',
+  subtitleRu: 'Plus открывает мастерскую наборов: собери свою колоду под поездку, работу или сериал — и учи её целиком.',
+  subtitleUk: 'Plus відкриває майстерню наборів: збери свою колоду під поїздку, роботу чи серіал — і вчи її цілком.',
+  subtitleEs: 'Plus abre el taller de mazos: arma tu colección para un viaje, el trabajo o una serie y estúdiala entera.',
+};
+
+PAYWALL_PLANNED_COPY.pack_create = {
+  title: {
+    'pt-BR': 'Seus próprios baralhos no Plus',
+    vi: 'Bộ thẻ của riêng bạn trong Plus',
+    id: 'Set buatanmu di Plus',
+    tr: 'Kendi setlerin Plus’ta',
+    pl: 'Własne zestawy w Plus',
+  },
+  subtitle: {
+    'pt-BR': 'O Plus abre a oficina de baralhos: monte sua coleção para uma viagem, o trabalho ou uma série e estude inteira.',
+    vi: 'Plus mở xưởng bộ thẻ: tạo bộ riêng cho chuyến đi, công việc hay bộ phim — và học trọn bộ.',
+    id: 'Plus membuka bengkel set: susun koleksimu untuk perjalanan, pekerjaan, atau serial, lalu pelajari seluruhnya.',
+    tr: 'Plus set atölyesini açar: gezi, iş ya da bir dizi için kendi desteni kur ve baştan sona çalış.',
+    pl: 'Plus otwiera warsztat zestawów: złóż własną talię na wyjazd, pracę lub serial i ucz się jej w całości.',
+  },
+};
+
+CONTEXT_BENEFITS.pack_create = [
+  { ru: 'Своя колода под поездку, работу или сериал', uk: 'Своя колода під поїздку, роботу чи серіал', es: 'Tu mazo para un viaje, el trabajo o una serie', 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Set sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi kart desten', pl: 'Własna talia na wyjazd, pracę lub serial' },
+  { ru: 'Фразы собраны в одном месте, а не вразброс', uk: 'Фрази зібрані в одному місці, а не врозсип', es: 'Las frases juntas en un sitio, no dispersas', 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
+  { ru: 'Набор можно учить целиком и делиться им', uk: 'Набір можна вчити цілком і ділитися ним', es: 'Estudia el mazo entero y compártelo', 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari set utuh dan bagikan', tr: 'Seti baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
+];
+
+CONTEXT_BENEFITS_PLANNED.pack_create = [
+  { 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Set sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi kart desten', pl: 'Własna talia na wyjazd, pracę lub serial' },
+  { 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
+  { 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari set utuh dan bagikan', tr: 'Seti baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
 ];
 
 export function getContextBenefitPlanned(ctx: PremiumContext, index: number): PremiumPlannedCopy {

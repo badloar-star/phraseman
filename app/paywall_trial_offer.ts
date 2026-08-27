@@ -34,9 +34,15 @@ export function shouldShowExitTrialOffer(params: {
 }): boolean {
   // План #7: расширено на больше high-value контекстов — exit-offer «0–30 сек» даёт
   // самый высокий ROI среди re-engagement-механик (Superwall: 17% revenue от abandon).
+  // зачем (2026-08-27): создание своей карточки/набора раньше попадало сюда
+  // случайно — гейт мастерской подставлял чужой контекст 'flashcard_limit'.
+  // Контексты стали honest ('flashcard_create'/'pack_create'), и exit-offer на
+  // них сохранён НАМЕРЕННО: человек, который сел собирать свою колоду, —
+  // сильное намерение, ровно тот профиль, где пробный период окупается.
   const EXIT_TRIAL_CONTEXTS = new Set([
     'course_after_lesson3', 'no_energy',
     'intro_ended', 'streak', 'flashcard_limit',
+    'flashcard_create', 'pack_create',
   ]);
   return (
     EXIT_TRIAL_CONTEXTS.has(params.context) &&

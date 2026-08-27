@@ -197,6 +197,8 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   flashcard_limit: 'albums',
   flashcard_training: 'school',
   flashcard_autoplay: 'play-circle',
+  flashcard_create: 'create',
+  pack_create: 'duplicate',
   streak: 'flame',
   theme: 'color-palette',
   club: 'people',
@@ -280,7 +282,7 @@ export function PaywallHeroExplain({ ctx, chrome, lang, subtitle }: {
           <View key={b.ru} style={S.heroExplainBenRow}>
             <Ionicons name="checkmark" size={15} color={chrome.tc.heroAccent} style={S.heroExplainBenIcon} />
             <Text style={[S.heroExplainBenText, { color: chrome.textMuted }]}>
-              {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
+              {LP(b.ru, b.uk, b.ru, b.es, getContextBenefitPlanned(ctx, i))}
             </Text>
           </View>
         ))}

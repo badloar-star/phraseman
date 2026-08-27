@@ -15,6 +15,18 @@ export type PremiumContext =
   | 'flashcard_limit'
   | 'flashcard_training'
   | 'flashcard_autoplay'
+  /**
+   * зачем: создание СВОЕЙ карточки в редакторе. Раньше сюда подставлялся
+   * 'flashcard_limit' («20 из 20 — база собрана»), и человек, который ничего
+   * не исчерпывал, видел упрёк про несуществующий лимит.
+   */
+  | 'flashcard_create'
+  /**
+   * зачем: создание СВОЕГО набора. Раньше подставлялся 'flashcard_training'
+   * («Тренировка карточек — в Plus») — текст про игровой режим, а не про то,
+   * что человек в этот момент делает.
+   */
+  | 'pack_create'
   | 'streak'
   | 'theme'
   | 'club'
@@ -67,6 +79,8 @@ export const PREMIUM_CONTEXT_VALUES = [
   'flashcard_limit',
   'flashcard_training',
   'flashcard_autoplay',
+  'flashcard_create',
+  'pack_create',
   'streak',
   'theme',
   'club',

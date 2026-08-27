@@ -170,6 +170,7 @@ const CONTEXT_PRACTICE_GROUP: Partial<Record<PremiumContext, PracticeGroup>> = {
   dialog_limit: 'speech', dialog_locked_level: 'speech', dialog_analysis: 'speech',
   ai_voice_input: 'speech', speaking: 'speech',
   flashcard_limit: 'memory', flashcard_training: 'memory', flashcard_autoplay: 'memory',
+  flashcard_create: 'memory', pack_create: 'memory',
   mistake_practice: 'memory', ai_explain: 'memory', mastery: 'memory',
   stats: 'insight', heatmap: 'insight', patterns: 'insight', percentiles: 'insight', weekly_review: 'insight',
   theme: 'identity', avatar_aura: 'identity', club: 'identity', language_add: 'identity',

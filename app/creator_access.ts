@@ -39,12 +39,18 @@ export function shouldGateCreator(hasPremiumAccess: boolean): boolean {
 }
 
 /**
- * Контекст пейвола под каждое действие. Значения существуют в PremiumContext,
- * поэтому копирайт и иконка уже есть и новый контекст заводить не нужно
- * (это сэкономило правку пяти словарей, застрахованных контрактным тестом).
+ * Контекст пейвола под каждое действие.
+ *
+ * зачем (владелец 2026-08-27, «показывается неправильный пейволл»): раньше сюда
+ * переиспользовались чужие контексты ради экономии на словарях — карточка шла
+ * как 'flashcard_limit' («20 из 20 — база собрана»), набор как
+ * 'flashcard_training' («Тренировка карточек — в Plus»). Человек, который
+ * просто нажал «создать», читал упрёк про исчерпанный лимит, которого он не
+ * исчерпывал, либо рекламу режима, к которому не обращался. Теперь у каждого
+ * действия свой контекст со своим честным текстом.
  */
 export function creatorPaywallContext(action: CreatorAction): string {
-  return action === 'pack' ? 'flashcard_training' : 'flashcard_limit';
+  return action === 'pack' ? 'pack_create' : 'flashcard_create';
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -321,6 +321,18 @@ export const LESSON1_ES_SESSION_28_MODE_NATIVE_PLAN_ID_V1 =
 // es_episode_01_session_29_mode_native_v1.ts).
 export const LESSON1_ES_SESSION_29_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s29-mode-native-v1' as const;
+// зачем отдельный planId для испанской recall-сессии 30 (владелец,
+// 2026-08-28, MODE_NATIVE_AUTHORING_CONTRACT.ru.md, закрывает основной
+// корпус Главы 4 "Мы и они" перед voice-сессией 31 и checkpoint-сессией
+// 32): сессия 30 не вводит новых слов — 15 свежих фраз пробегают все пять
+// форм связки ser подряд (soy/eres/es/somos/son), утвердительные +
+// отрицательные + диалоговые/вопросительные. esSession30ModeNativeStepsV1
+// НЕ зеркалит легаси generic phraseSteps() — пять диалоговых/вопросительных
+// фраз (индексы 10-14) дают >8 уникальных дистракторов и не используются в
+// phrase_builder/listen_build_dictation (см. подробный комментарий в
+// es_episode_01_session_30_mode_native_v1.ts).
+export const LESSON1_ES_SESSION_30_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s30-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -1146,6 +1158,33 @@ function esSession29ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем именно эта раскладка 12 шагов на индексах 3-14 (владелец,
+// 2026-08-28, зеркало es_episode_01_session_17/19/20/25/27/29_mode_native_v1.ts
+// по общей форме kind: 'recall'): индексы 10-14 (диалоговые/вопросительные
+// фразы, >8 уникальных дистракторов) идут только через context_gap_grammar/
+// listen_choose/speed_match; индексы 3-9 (утвердительные/отрицательные
+// формы, ≤8 уникальных дистракторов) используют phrase_builder/
+// listen_build_dictation. context_gap_grammar проверяет ПЕРВОЕ слово
+// (связку) — выбор нужной формы ser среди всех пяти, ядро темы recall.
+// Каждый шаг зеркально совпадает по family/purpose/learningStage/
+// sourcePhraseIndex с es_episode_01_session_30_mode_native_v1.ts.
+function esSession30ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'phrase_builder', purpose: 'supported_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'supported_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1583,6 +1622,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession28ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_29_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession29ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_30_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession30ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

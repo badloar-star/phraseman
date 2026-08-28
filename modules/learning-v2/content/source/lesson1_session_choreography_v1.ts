@@ -208,6 +208,13 @@ export const LESSON1_ES_SESSION_17_MODE_NATIVE_PLAN_ID_V1 =
 // сессии 4/6/9/12.
 export const LESSON1_ES_SESSION_18_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s18-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 19 (владелец, 2026-08-28,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md): сессия 19 не вводит новых слов —
+// тот же класс, что сессии 10/11/13/17 (kind: 'phrases').
+// esSession19ModeNativeStepsV1 зеркалит состав легаси generic
+// phraseSteps() 1:1.
+export const LESSON1_ES_SESSION_19_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s19-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -736,6 +743,28 @@ function esSession18ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем этот набор 12 шагов (владелец, 2026-08-28, зеркало легаси generic
+// phraseSteps(), как и в сессиях 10/11/13/17): те же 12 families/purposes/
+// индексов (3-14). Каждый шаг зеркально совпадает по family/purpose/
+// learningStage/sourcePhraseIndex с es_episode_01_session_19_mode_native_v1.ts
+// — сверка идёт позиционно.
+function esSession19ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'supported_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'apply_in_phrase' },
+    { family: 'speed_match', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1151,6 +1180,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession17ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_18_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession18ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_19_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession19ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

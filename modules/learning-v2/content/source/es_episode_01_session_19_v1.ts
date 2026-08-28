@@ -6,6 +6,8 @@ import {
   ES_EPISODE_01_SESSION_19_TITLE,
 } from './es_episode_01_session_19_intro_v1';
 import { ES_EPISODE_01_SESSION_19_PHRASES } from './es_episode_01_session_19_phrases_v1';
+import { ES_EPISODE_01_SESSION_19_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_19_mode_native_v1';
+import { LESSON1_ES_SESSION_19_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 19 «Это не так» —
@@ -35,6 +37,14 @@ import { ES_EPISODE_01_SESSION_19_PHRASES } from './es_episode_01_session_19_phr
  * выбор/количество практических карточек. Установлено защитно с первого
  * черновика, независимо от того, совпадает ли сейчас английская сессия 19
  * с испанской по kind.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-28,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): каждый обязательный контакт
+ * должен быть реальным действием внутри одной из шести утверждённых
+ * механик. es_episode_01_session_19_mode_native_v1.ts авторит все 12
+ * practice-шагов (после 3 интро), lesson1SessionChoreographyV1 сверяет их
+ * против esSession19ModeNativeStepsV1() через
+ * LESSON1_ES_SESSION_19_MODE_NATIVE_PLAN_ID_V1.
  */
 export const ES_EPISODE_01_SESSION_19_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -42,9 +52,11 @@ export const ES_EPISODE_01_SESSION_19_SOURCE: SessionSource = Object.freeze({
   episodeOrdinal: 1,
   requiredSessionOrdinal: 19,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
-  generationInputFingerprint: 'owner-word-first-es-e01-s19-v1',
+  generationInputFingerprint: 'owner-word-first-es-e01-s19-v2',
   sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_19_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_19_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_19_TITLE,
   summary: ES_EPISODE_01_SESSION_19_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_19_GOAL,

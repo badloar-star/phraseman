@@ -1585,10 +1585,21 @@ async function handleTransferEvent(event: RevenueCatEvent, eventType: string, re
           premium_rc_event_type: 'TRANSFER_OUT',
           premium_rc_updated_at: String(now),
         };
-        tx.update(donor.ref, {
-          progress: donorPatch,
-          updatedAt: now,
-        });
+        // зачем: ТОЛЬКО точечные пути `progress.<ключ>`. Раньше здесь стояло
+        // `tx.update(ref, …)` с патчем, положенным в поле `progress` одним
+        // объектом — а update с вложенным объектом ЗАМЕНЯЕТ его целиком,
+        // а не мержит (сторож в тестах ловит ту строку буквально). 27.08.2026 это
+        // стёрло платящему (uid 7b46c701…) весь прогресс: XP, уровень, стрик,
+        // выученные слова — в документе осталось ровно 5 полей патча. Получатель
+        // строкой выше писался со спредом и не пострадал; здесь спред забыли.
+        // Точечные пути (а не спред) выбраны намеренно: они не перечитывают и не
+        // переписывают соседние поля, поэтому параллельная транзакция не может
+        // воскресить устаревшие значения.
+        const donorUpdate: Record<string, unknown> = { updatedAt: now };
+        for (const [key, value] of Object.entries(donorPatch)) {
+          donorUpdate[`progress.${key}`] = value;
+        }
+        tx.update(donor.ref, donorUpdate);
         writeAccessProjectionFromPatch(tx, donor.ref, donorProgress, donorPatch, now);
       }
 

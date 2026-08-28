@@ -54,9 +54,31 @@ function transferDbStub(initial: Record<string, Record<string, unknown>>) {
         : previous.progress;
       store[collection][id] = { ...previous, ...data, ...(progress ? { progress } : {}) };
     },
+    // зачем: заглушка обязана вести себя как НАСТОЯЩИЙ Firestore update, иначе
+    // она маскирует баги записи. Реальный update: (а) вложенный объект
+    // (`{ progress: {...} }`) ЗАМЕНЯЕТ поле целиком, не мержит; (б) путь через
+    // точку (`'progress.plan'`) правит один ключ, не трогая соседние.
+    // Прежний плоский спред не отличал одно от другого — из-за этого
+    // уничтожение progress донора при TRANSFER_OUT (инцидент 27.08.2026) не
+    // воспроизводилось бы в тестах даже при наличии такого теста.
     update: async (data: any) => {
       if (store[collection]?.[id] === undefined) throw new Error('not-found');
-      store[collection][id] = { ...store[collection][id], ...data };
+      const next = { ...store[collection][id] };
+      for (const [rawKey, value] of Object.entries(data)) {
+        if (!rawKey.includes('.')) {
+          next[rawKey] = value; // вложенный объект заменяет поле целиком
+          continue;
+        }
+        const segments = rawKey.split('.');
+        const leaf = segments.pop() as string;
+        let cursor: Record<string, any> = next;
+        for (const segment of segments) {
+          cursor[segment] = { ...(cursor[segment] ?? {}) };
+          cursor = cursor[segment];
+        }
+        cursor[leaf] = value;
+      }
+      store[collection][id] = next;
     },
   });
   const queryRef = (collection: string, field: string, op: string, value: unknown, max = Infinity): any => ({
@@ -79,6 +101,17 @@ function transferDbStub(initial: Record<string, Record<string, unknown>>) {
       get: (ref: any) => ref.get(),
       set: (ref: any, data: any) => ref.set(data),
       update: (ref: any, data: any) => ref.update(data),
+      // зачем: appendExternalEconomyEvent пишет журнал экономики через
+      // transaction.create (создать, упасть при дубле — так гасятся повторные
+      // вебхуки). Без него заглушка роняла путь возвратов на TypeError, и тест
+      // «refunds a merged loser purchase» падал по технической причине, маскируя
+      // реальное поведение.
+      create: (ref: any, data: any) => {
+        const existing = store[ref.collectionName]?.[ref.id];
+        if (existing !== undefined) throw new Error('already-exists');
+        store[ref.collectionName] ??= {};
+        store[ref.collectionName][ref.id] = data;
+      },
       delete: (ref: any) => { delete store[ref.collectionName][ref.id]; },
     }),
   };
@@ -421,10 +454,25 @@ describe('RevenueCat TRANSFER Phase 2 safety (RED)', () => {
       } as any, 'phraseman_shards_30', response);
 
       expect(response.statusCode).toBe(200);
-      expect(store.users.winner.shards).toBe(65);
+      // зачем: баланс `users.shards` сервер намеренно НЕ трогает —
+      // shards_apply_delta выведен из строя («personal_balance_is_client_owned»),
+      // списание живёт в неизменяемом журнале external_economy_events, который
+      // клиент применяет к своему кошельку. Тест раньше ждал 65 (прямое списание
+      // со 100) и падал ещё ДО правок этого файла — он сторожил снятую механику.
+      // Проверяем то, за что сервер реально отвечает: журнальную запись возврата.
+      expect(store.users.winner.shards).toBe(100);
+      const refundJournal = Object.values(store['users/winner/external_economy_events'] ?? {});
+      expect(refundJournal).toHaveLength(1);
+      expect(refundJournal[0]).toMatchObject({
+        delta: -35,
+        reason: 'shards_store_refund',
+        ownerStableId: 'winner',
+      });
       expect(store.revenuecat_shard_transactions.original.uid).toBe('winner');
       expect(store.revenuecat_shard_refunds['refund-merged']).toMatchObject({
-        uid: 'winner', sourceUid: 'loser', actuallyDeducted: 35,
+        // requestedDebit, а не actuallyDeducted: сервер фиксирует ЗАПРОШЕННОЕ
+        // списание в квитанции, само списание применяет клиент по журналу.
+        uid: 'winner', sourceUid: 'loser', requestedDebit: 35,
       });
     } finally {
       (admin.firestore as jest.Mock).mockRestore();
@@ -442,5 +490,80 @@ describe('RevenueCat TRANSFER Phase 2 safety (RED)', () => {
   it('aggregates donor and target lineages so stronger target access is preserved', () => {
     expect(transferSource).toContain('aggregatePremiumLineages(recipientLineages');
     expect(transferSource).not.toContain('progress: { ...premiumBlock');
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // Сторож инцидента 27.08.2026: TRANSFER_OUT стирал донору ВЕСЬ прогресс.
+  // `tx.update(ref, { progress: donorPatch })` заменяет `progress` целиком —
+  // у платящего (uid 7b46c701…) от сотен полей осталось ровно 5 из патча:
+  // XP, уровень, стрик и выученные слова исчезли. Снимать премиум у донора
+  // правильно (покупка уехала), стирать его прогресс — нет.
+  // ═══════════════════════════════════════════════════════════════════════
+  it('снимает премиум у донора, НЕ трогая остальной прогресс (инцидент 27.08.2026)', async () => {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const { db, store } = transferDbStub({
+      users: {
+        donor: {
+          progress: {
+            // премиум — должен быть снят
+            premium_plan: 'monthly',
+            premium_expiry: '0',
+            premium_rc_expiry_ms: String(Date.now() + 30 * 24 * 60 * 60 * 1000),
+            premium_rc_active_lineage: 'lineage-abc',
+            had_premium_ever: '1',
+            // всё остальное — обязано пережить перенос
+            user_name: 'Eddie',
+            user_level: '12',
+            user_total_xp: '48210',
+            streak_days: '37',
+            unlocked_lessons: '18',
+            friend_code: 'U3XSFN',
+          },
+        },
+        'target-a': { progress: {} },
+      },
+    });
+    const realFieldValue = admin.firestore.FieldValue;
+    const firestoreMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    firestoreMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    try {
+      const response = responseStub();
+      await __revenueCatWebhookTestHooks.handleTransferEvent({
+        id: 'transfer-donor-progress-guard',
+        type: 'TRANSFER',
+        event_timestamp_ms: Date.now(),
+        transferred_from: ['donor'],
+        transferred_to: ['target-a'],
+      } as any, 'TRANSFER', response);
+
+      const donorProgress = store.users.donor.progress as Record<string, unknown>;
+
+      // 1. Премиум у донора снят — покупка уехала к получателю.
+      expect(donorProgress.premium_plan).toBe('');
+      expect(donorProgress.premium_rc_event_type).toBe('TRANSFER_OUT');
+      expect(donorProgress.premium_rc_active_lineage).toBe('');
+
+      // 2. ГЛАВНОЕ: учебный прогресс на месте. Именно это и стёр инцидент.
+      expect(donorProgress.user_name).toBe('Eddie');
+      expect(donorProgress.user_level).toBe('12');
+      expect(donorProgress.user_total_xp).toBe('48210');
+      expect(donorProgress.streak_days).toBe('37');
+      expect(donorProgress.unlocked_lessons).toBe('18');
+      expect(donorProgress.friend_code).toBe('U3XSFN');
+
+      // 3. Документ не схлопнулся до полей патча (в инциденте было ровно 5).
+      expect(Object.keys(donorProgress).length).toBeGreaterThan(6);
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  // Статический сторож: ловит возврат записи «одним объектом» даже если
+  // поведенческий тест выше кто-то ослабит или удалит.
+  it('никогда не пишет прогресс донора одним объектом', () => {
+    expect(transferSource).not.toContain('progress: donorPatch');
+    expect(transferSource).toContain('donorUpdate[`progress.${key}`]');
   });
 });

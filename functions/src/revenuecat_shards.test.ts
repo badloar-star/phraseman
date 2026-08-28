@@ -536,11 +536,31 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
         const mergedProgress = data.progress ? { ...(prev.progress ?? {}), ...data.progress } : prev.progress;
         store[coll][id] = { ...prev, ...data, ...(mergedProgress ? { progress: mergedProgress } : {}) };
       },
+      // зачем: заглушка обязана повторять НАСТОЯЩИЙ Firestore update:
+      // (а) вложенный объект (`{ progress: {...} }`) ЗАМЕНЯЕТ поле целиком;
+      // (б) путь через точку (`'progress.plan'`) правит один ключ.
+      // Прежняя версия наоборот МЕРЖИЛА progress — из-за этого уничтожение
+      // прогресса донора при TRANSFER_OUT (инцидент 27.08.2026) было
+      // принципиально невидимо для тестов: тест ниже «проверял» деактивацию
+      // донора и был зелёным, пока в проде у платящего стирался весь прогресс.
       update: async (data: any) => {
         if (store[coll]?.[id] === undefined) throw new Error('not-found');
-        const prev = store[coll][id];
-        const mergedProgress = data.progress ? { ...(prev.progress ?? {}), ...data.progress } : prev.progress;
-        store[coll][id] = { ...prev, ...data, ...(mergedProgress ? { progress: mergedProgress } : {}) };
+        const next = { ...store[coll][id] };
+        for (const [rawKey, value] of Object.entries(data)) {
+          if (!rawKey.includes('.')) {
+            next[rawKey] = value; // вложенный объект заменяет поле целиком
+            continue;
+          }
+          const segments = rawKey.split('.');
+          const leaf = segments.pop() as string;
+          let cursor: Record<string, any> = next;
+          for (const segment of segments) {
+            cursor[segment] = { ...(cursor[segment] ?? {}) };
+            cursor = cursor[segment];
+          }
+          cursor[leaf] = value;
+        }
+        store[coll][id] = next;
       },
     });
     const queryApi = (coll: string, field: string, op: string, value: unknown, max = Infinity): any => ({
@@ -584,7 +604,18 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
     const admin = require('firebase-admin');
     if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
     const { db, store } = makeRcDbStub({
-      '$RCAnonymousID:aaa': { progress: { premium_plan: 'yearly', premium_expiry: '0', premium_rc_expiry_ms: String(Date.now() + 1e9) } },
+      // У донора намеренно есть и учебный прогресс: премиум обязан уехать,
+      // а XP/уровень/стрик — остаться (инцидент 27.08.2026, см. заглушку update).
+      '$RCAnonymousID:aaa': {
+        progress: {
+          premium_plan: 'yearly',
+          premium_expiry: '0',
+          premium_rc_expiry_ms: String(Date.now() + 1e9),
+          user_total_xp: '48210',
+          user_level: '12',
+          streak_days: '37',
+        },
+      },
       'stable-real': { progress: { user_total_xp: '4000' } },
     });
     const realFieldValue = admin.firestore.FieldValue;
@@ -604,6 +635,10 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
       expect(res.body).toMatchObject({ ok: true, kind: 'transfer', moved: true, recipientId: 'stable-real' });
       expect(store.users['stable-real'].progress.premium_plan).toBe('yearly');
       expect(store.users['$RCAnonymousID:aaa'].progress.premium_plan).toBe(''); // donor deactivated
+      // Премиум сняли — но учебный прогресс донора обязан уцелеть.
+      expect(store.users['$RCAnonymousID:aaa'].progress.user_total_xp).toBe('48210');
+      expect(store.users['$RCAnonymousID:aaa'].progress.user_level).toBe('12');
+      expect(store.users['$RCAnonymousID:aaa'].progress.streak_days).toBe('37');
     } finally {
       (admin.firestore as jest.Mock).mockRestore();
     }

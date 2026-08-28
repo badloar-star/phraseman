@@ -6,6 +6,8 @@ import {
   ES_EPISODE_01_SESSION_27_TITLE,
 } from './es_episode_01_session_27_intro_v1';
 import { ES_EPISODE_01_SESSION_27_PHRASES } from './es_episode_01_session_27_phrases_v1';
+import { ES_EPISODE_01_SESSION_27_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_27_mode_native_v1';
+import { LESSON1_ES_SESSION_27_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 27 «Они» —
@@ -52,6 +54,17 @@ import { ES_EPISODE_01_SESSION_27_PHRASES } from './es_episode_01_session_27_phr
  * номеру сессии. Испанская карта ES_EPISODE_01_SESSION_MAP_V1 держит 27
  * как 'phrases' — override зафиксирован здесь явно с первого черновика,
  * независимо от того, что стоит в английской карте по тому же номеру.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-28,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): каждый обязательный контакт
+ * должен быть реальным действием внутри одной из шести утверждённых
+ * механик. es_episode_01_session_27_mode_native_v1.ts авторит все 12
+ * practice-шагов (после 3 интро), lesson1SessionChoreographyV1 сверяет их
+ * против esSession27ModeNativeStepsV1() через
+ * LESSON1_ES_SESSION_27_MODE_NATIVE_PLAN_ID_V1. Интро (concept/formula/
+ * trap) переписано в том же проходе — легаси-тела трёх страниц были
+ * 521-681 знак и 4-6 предложений (выше потолка 320/4); смысл сохранён,
+ * форма ужата на один экран.
  */
 export const ES_EPISODE_01_SESSION_27_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -59,9 +72,11 @@ export const ES_EPISODE_01_SESSION_27_SOURCE: SessionSource = Object.freeze({
   episodeOrdinal: 1,
   requiredSessionOrdinal: 27,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
-  generationInputFingerprint: 'owner-word-first-es-e01-s27-v1',
+  generationInputFingerprint: 'owner-word-first-es-e01-s27-v2',
   sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_27_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_27_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_27_TITLE,
   summary: ES_EPISODE_01_SESSION_27_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_27_GOAL,

@@ -91,6 +91,11 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
   const [hydrating, setHydrating] = useState(enabled && devFakeStartRunes === undefined);
   const earningsRef = useRef<PracticeRuneEarnings | null>(null);
   const ownerRef = useRef<string | null>(null);
+  // Сколько зачётов этой сессии сервер уже подтвердил (гидратируется из
+  // маркера settledOnce). Нужен settle() ниже: экраны со встроенным финишем
+  // держат completionOrdinal=1 на каждый маунт, и без этого счётчика повторный
+  // проход строил бы ТОТ ЖЕ operationId — сервер отверг бы его как дубль.
+  const settledCountRef = useRef(0);
   // DEV HUB ONLY: элементы, уже «оплаченные» в этой in-memory сессии — без
   // этого повторный тап по той же карточке в dev-режиме продолжал бы плюсовать
   // до бесконечности, что выглядело бы как явный баг при проверке экрана.
@@ -112,7 +117,15 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
         ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
       }));
       if (cancelled) return;
-      const firstCompletion = settledOnceRaw !== '1';
+      // Маркер хранит ЧИСЛО успешных зачётов этой сессии (легаси-значение '1'
+      // читается как 1). Оно двигает и цену (повтор = 1 руна), и серверный
+      // номер прохода в settle() ниже.
+      const settledCountParsed = Number.parseInt(settledOnceRaw ?? '', 10);
+      const settledCount = Number.isSafeInteger(settledCountParsed) && settledCountParsed > 0
+        ? settledCountParsed
+        : (settledOnceRaw ? 1 : 0);
+      settledCountRef.current = settledCount;
+      const firstCompletion = settledCount === 0;
 
       const storageKey = practiceRuneEarningsStorageKey({
         ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
@@ -122,9 +135,23 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       const stored = parsePracticeRuneEarnings(storedRaw, {
         activity: input.activity, sessionKey: input.sessionKey,
       });
-      const earnings = stored ?? createPracticeRuneEarnings({
-        activity: input.activity, sessionKey: input.sessionKey, firstCompletion,
-      });
+      // зачем (владелец, 2026-08-28, «анимация полёта в уроках не появилась»):
+      // зачтённая копилка прошлого прохода (pendingRunes 0 при непустом списке
+      // оплаченных) раньше восстанавливалась КАК ЕСТЬ — каждый элемент значился
+      // «уже оплаченным», onCorrectAnswer возвращал 0, и ни полёт, ни счётчик
+      // не оживали больше никогда. startNewCompletion() чинил это только на
+      // экранах со встроенным финишем; урок финиширует на отдельном роуте, и
+      // его новый маунт попадал ровно в эту ловушку. Завершённый проход при
+      // гидратации = начать НОВЫЙ проход по цене повтора (правило владельца:
+      // «повторно можно проходить и снова зарабатывать руны»).
+      const storedIsFinishedPass = stored !== null
+        && stored.pendingRunes === 0
+        && stored.creditedItemIds.length > 0;
+      const earnings = stored !== null && !storedIsFinishedPass
+        ? stored
+        : createPracticeRuneEarnings({
+            activity: input.activity, sessionKey: input.sessionKey, firstCompletion,
+          });
       earningsRef.current = earnings;
       setRunes(earnings.pendingRunes);
       setHydrating(false);
@@ -172,17 +199,24 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const ownerStableId = ownerRef.current;
     if (!current || !ownerStableId || current.pendingRunes <= 0) return;
 
+    // зачем (аудит 2026-08-28): экраны со встроенным финишем передают
+    // completionOrdinal=1 на каждый маунт — берём максимум с числом уже
+    // подтверждённых зачётов, чтобы повторный проход получил СВЕЖИЙ
+    // operationId, а не дубль первого (сервер дубль молча отверг бы).
+    const effectiveOrdinal = Math.max(input.completionOrdinal, settledCountRef.current + 1);
     await markPracticeRuneSettlementPending({
-      ownerStableId, earnings: current, completionOrdinal: input.completionOrdinal,
+      ownerStableId, earnings: current, completionOrdinal: effectiveOrdinal,
     });
-    const result = await settlePracticeRuneEarningsToServer(current, input.completionOrdinal);
+    const result = await settlePracticeRuneEarningsToServer(current, effectiveOrdinal);
     if (result.settled) {
+      settledCountRef.current = effectiveOrdinal;
       await clearPracticeRuneSettlementPending({
         ownerStableId, activity: current.activity, sessionKey: current.sessionKey,
       });
+      // Маркер хранит число подтверждённых зачётов (легаси '1' совместимо).
       await AsyncStorage.setItem(practiceRuneSettledOnceStorageKey({
         ownerStableId, activity: current.activity, sessionKey: current.sessionKey,
-      }), '1');
+      }), String(effectiveOrdinal));
     }
     // Обнуляем локальный счётчик независимо от исхода сети: руны уже
     // отражены в снапшоте оптимистично (settlePracticeRuneEarningsToServer),

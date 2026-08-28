@@ -12,6 +12,7 @@ import SeasonAuraRing from './SeasonAuraRing';
 type Props = {
   auraId?: string | null;
   size: number;
+  visualSize?: number;
   children: React.ReactNode;
   style?: ViewStyle;
   /** Disable the loop for small avatars mounted in scrollable lists. */
@@ -27,7 +28,7 @@ const APPROVED_AURA_RING_SCALE = 2.05;
 const SEASON_AURA_RING_SCALE = 1.40;
 const SEASON_AURA_LAYOUT_GUTTER = 12;
 
-function AvatarAura({ auraId, size, children, style, animate = true, ownerActive }: Props) {
+function AvatarAura({ auraId, size, visualSize, children, style, animate = true, ownerActive }: Props) {
   const aura = getAvatarAuraById(auraId);
   const { themeMode } = useTheme();
   const approvedAsset = getApprovedAvatarAuraAsset(aura?.id);
@@ -59,6 +60,7 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
   const handleRingFailed = useCallback(() => setPaintedAuraId(null), []);
 
   const ringPainted = aura?.id !== undefined && paintedAuraId === aura.id;
+  const requestedVisualSize = visualSize === undefined ? undefined : Math.round(visualSize);
 
   // Ореол крутится и когда ауры-картинки нет вовсе, и пока её слой едет.
   const haloVisible = layeredAsset === undefined || !ringPainted;
@@ -120,7 +122,7 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
   if (layeredAsset) {
     const outer = size + SEASON_AURA_LAYOUT_GUTTER;
     const ringScale = approvedAsset ? APPROVED_AURA_RING_SCALE : SEASON_AURA_RING_SCALE;
-    const ringSize = Math.round(size * ringScale);
+    const ringSize = requestedVisualSize ?? Math.round(size * ringScale);
     return (
       <View
         style={[
@@ -143,9 +145,11 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
             pointerEvents="none"
             style={{
               position: 'absolute',
-              width: outer,
-              height: outer,
-              borderRadius: outer / 2,
+              width: ringSize,
+              height: ringSize,
+              left: (outer - ringSize) / 2,
+              top: (outer - ringSize) / 2,
+              borderRadius: ringSize / 2,
               opacity: placeholderOpacity,
               overflow: 'hidden',
               transform: [{ scale: placeholderScale }],
@@ -185,7 +189,10 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
     );
   }
 
-  const outer = size + 8;
+  const outer = requestedVisualSize === undefined
+    ? size + 8
+    : Math.max(size, requestedVisualSize - 18);
+  const softOuterSize = requestedVisualSize ?? outer + 18;
   const haloScale = auraPhase.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [0.98, 1.04, 0.98],
@@ -232,9 +239,9 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
         pointerEvents="none"
         style={{
           position: 'absolute',
-          width: outer + 18,
-          height: outer + 18,
-          borderRadius: (outer + 18) / 2,
+          width: softOuterSize,
+          height: softOuterSize,
+          borderRadius: softOuterSize / 2,
           backgroundColor: aura.color,
           opacity: softOuterOpacity,
           shadowColor: aura.color,

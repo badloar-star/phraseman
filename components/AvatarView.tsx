@@ -22,6 +22,8 @@ interface Props {
   size?: number;
   style?: any;
   auraId?: string | null;
+  /** Optional outer aura diameter for compact catalog previews. */
+  auraVisualSize?: number;
   /**
    * false → аура статична (без бесконечной анимации). Передавай в прокручиваемых
    * списках (лента/лиги/арена), где одновременно видно много аватарок, иначе каждая
@@ -71,7 +73,7 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, animateAura = true, ownerActive }: Props) {
+function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, auraVisualSize, animateAura = true, ownerActive }: Props) {
   const resolvedLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : 1);
   const customAvatar = parseCustomAvatarValue(avatar);
   const avatarIndex = avatar && /^\d+$/.test(avatar) ? parseInt(avatar) : resolvedLevel;
@@ -106,7 +108,7 @@ function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, sty
   }
 
   return (
-    <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura} ownerActive={ownerActive}>
+    <AvatarAura auraId={auraId} size={size} visualSize={auraVisualSize} style={style} animate={animateAura} ownerActive={ownerActive}>
       {content}
     </AvatarAura>
   );

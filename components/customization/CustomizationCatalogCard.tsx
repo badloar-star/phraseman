@@ -27,10 +27,12 @@ export type CatalogCardItem = CustomizationCatalogItem | LevelAvatarTileItem;
 
 // зачем: владелец 2026-08-26 — «иконки внутри плиток слишком мелкие, надо до самих
 // рамок». Внутреннее поле плитки на телефоне ~107pt (3 колонки, GRID_PAD 16 + GAP 10).
-// Аура: 52 x APPROVED_AURA_RING_SCALE 2.05 = кольцо ~107pt — ровно до рамок, без
-// обрезки overflow. Аватар без ауры рисуется без кольца, поэтому берёт 88pt:
+// Аватар внутри ауры остаётся 52pt, а все кольца получают единый диаметр 91pt:
+// round(52 x 2.05 x 0.85) — на 15% меньше прежнего максимума. Плитка и её
+// зона нажатия не уменьшаются. Аватар без ауры берёт 88pt:
 // крупно, но остаётся воздух под чип цены снизу и галочку выбора сверху.
 const AURA_CATALOG_PREVIEW_SIZE = 52;
+const AURA_CATALOG_VISUAL_SIZE = 91;
 const AVATAR_CATALOG_PREVIEW_SIZE = 88;
 
 interface Props {
@@ -147,6 +149,7 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
                   avatar={item.previewAvatar}
                   auraId={item.kind === 'aura' ? item.auraId : null}
                   size={item.kind === 'aura' ? AURA_CATALOG_PREVIEW_SIZE : AVATAR_CATALOG_PREVIEW_SIZE}
+                  auraVisualSize={item.kind === 'aura' ? AURA_CATALOG_VISUAL_SIZE : undefined}
                   animateAura={false}
                 />}
         {!selected ? <AvailabilityChip item={item} pearlIcon={pearlIconForTheme(themeMode)} tierPrice={tierPrice} /> : null}

@@ -333,6 +333,15 @@ export const LESSON1_ES_SESSION_29_MODE_NATIVE_PLAN_ID_V1 =
 // es_episode_01_session_30_mode_native_v1.ts).
 export const LESSON1_ES_SESSION_30_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s30-mode-native-v1' as const;
+// зачем отдельный planId для испанской voice-сессии 31 (владелец,
+// 2026-08-28, MODE_NATIVE_AUTHORING_CONTRACT.ru.md + Rules §4.1, завершает
+// Главу 4 "Мы и они" перед checkpoint-сессией 32): та же ситуация, что и
+// voice-сессии 7/15/23 — легаси generic voiceSteps() ниже использует
+// 'sound_contrast', снятую с активного authoring 2026-08-25.
+// esSession31ModeNativeStepsV1 — явный override, который гарантирует, что
+// broken generic voiceSteps() никогда не достигается для этой сессии.
+export const LESSON1_ES_SESSION_31_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s31-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -1185,6 +1194,30 @@ function esSession30ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем именно эта раскладка (владелец, 2026-08-28, зеркало
+// es_episode_01_session_23_mode_native_v1.ts по составу и весу семей):
+// испанская voice-сессия 31 переиспользует 15 somos-фраз из сессий 25/26/27
+// (targetKind: 'phrase'), только через listen_choose/listen_build_dictation/
+// scripted_repeat_compare — НИКОГДА sound_contrast. Каждый шаг зеркально
+// совпадает по family/purpose/learningStage/sourcePhraseIndex с
+// es_episode_01_session_31_mode_native_v1.ts — сверка идёт позиционно.
+function esSession31ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'speak_with_model' },
+    { family: 'listen_build_dictation', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'speak_with_model' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'speak_with_model' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'speak_with_model' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1624,6 +1657,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession29ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_30_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession30ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_31_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession31ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

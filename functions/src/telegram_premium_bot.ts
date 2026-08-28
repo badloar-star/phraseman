@@ -711,6 +711,11 @@ async function recordTelegramPurchaseWithCode(
         note: `telegram_stars telegram_premium_orders/${chargeId}`,
         createdAtMs: Date.now(),
         createdBy: 'telegram_premium_bot',
+        // зачем: раздел «Промокоды» листает adminListPromoCodes через
+        // orderBy('updatedAtMs') — документы без этого поля не попадают в
+        // выдачу вообще. Коды за Telegram Stars были невидимы владельцу.
+        updatedAtMs: Date.now(),
+        updatedBy: 'telegram_premium_bot',
       });
     }
     const order = {

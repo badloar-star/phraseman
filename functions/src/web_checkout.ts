@@ -2507,6 +2507,11 @@ async function markOrderPaid(
         note: `web_checkout ${ORDERS_COLLECTION}/${orderId}`,
         createdAtMs: Date.now(),
         createdBy: 'web_checkout',
+        // зачем: раздел «Промокоды» листает adminListPromoCodes через
+        // orderBy('updatedAtMs') — в Firestore это фильтр, документы без поля
+        // выпадают из выдачи насовсем. Купленные коды были невидимы владельцу.
+        updatedAtMs: Date.now(),
+        updatedBy: 'web_checkout',
       });
     }
 

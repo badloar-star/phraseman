@@ -6,10 +6,12 @@ import {
   ES_EPISODE_01_SESSION_16_CHECKPOINT_TITLE,
 } from './es_episode_01_session_16_intro_v1';
 import { ES_EPISODE_01_SESSION_16_CHECKPOINT_PHRASES } from './es_episode_01_session_16_phrases_v1';
+import { ES_EPISODE_01_SESSION_16_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_16_mode_native_v1';
+import { LESSON1_ES_SESSION_16_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
- * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 16 «Я и ты
- * целиком» — собранный источник.
+ * Испанский курс, эпизод 1 «Ser: какой и кто» / Глава 2 «Ты: вопрос»
+ * финал, сессия 16 «Я и ты целиком» — собранный источник.
  *
  * Карта сессии: es_episode_01_session_map_v1.ts, sessionOrdinal 16,
  * kind: 'checkpoint', teaches: [], builtOn: [9..15], recalls: [1,9,10,13,14].
@@ -22,6 +24,13 @@ import { ES_EPISODE_01_SESSION_16_CHECKPOINT_PHRASES } from './es_episode_01_ses
  * phrase_builder) и support:'none'/promptNovelty:'novel' — задание требует
  * применить материал без подсказки, вразнобой, а не повторить его вслух с
  * моделью.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-27,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md + Rules §4.1): каждый обязательный
+ * контакт должен быть реальным действием внутри одной из шести утверждённых
+ * механик. es_episode_01_session_16_mode_native_v1.ts авторит все 12
+ * practice-шагов (после 3 интро), lesson1SessionChoreographyV1 сверяет их
+ * против esSession16ModeNativeStepsV1() через LESSON1_ES_SESSION_16_MODE_NATIVE_PLAN_ID_V1.
  */
 export const ES_EPISODE_01_SESSION_16_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -32,6 +41,8 @@ export const ES_EPISODE_01_SESSION_16_SOURCE: SessionSource = Object.freeze({
   generationInputFingerprint: 'owner-checkpoint-es-e01-s16-v1',
   sessionKindOverride: 'checkpoint',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_16_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_16_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_16_CHECKPOINT_TITLE,
   summary: ES_EPISODE_01_SESSION_16_CHECKPOINT_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_16_CHECKPOINT_GOAL,

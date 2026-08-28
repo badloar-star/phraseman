@@ -769,8 +769,40 @@ export async function submitProgressEvent(
     payload: request.payload,
   });
   if (localProjection) {
+    // зачем (расследование 2026-08-28, uid 62615956-...): PhoneState считает
+    // streak/weekly_xp/week_points ТОЛЬКО локально в SQLite и раньше здесь
+    // return-ился без сети — сервер (users/{uid}.progress, server-owned после
+    // progressServerAuthoritative=true) переставал видеть события ВООБЩЕ.
+    // XP/уровень/серия застывали в облаке на дату ухода в cutover, хотя
+    // человек занимался каждый день — локальный экран показывал верные числа,
+    // а cloud_sync не имеет права писать server-owned ключи напрямую (см.
+    // SERVER_OWNED_PROGRESS_KEYS в cloud_sync.ts). Фикс: тот же ивент теперь
+    // всегда идёт и на сервер тоже — фоново, не блокируя мгновенный локальный
+    // ответ ниже (Optimistic UI не страдает).
     const activeDate = localProjection.activityDates[localProjection.activityDates.length - 1]
       ?? localDateKey();
+    void (async () => {
+      try {
+        const event: QueuedProgressEvent = {
+          eventId,
+          type: request.type,
+          clientLocalDate: localDateKey(),
+          clientCreatedAt: Date.now(),
+          appVersion: appVersion(),
+          platform: Platform.OS,
+          levelSpinProtocol: 'v1',
+          stableId,
+          payload: request.payload,
+        };
+        await enqueue(event);
+        await ensureProgressSnapshotMigratedWithBaseline(stableId, options?.migrationSnapshot);
+        await flushPendingProgressEventsForOwner(stableId);
+      } catch {
+        // Best-effort: локальный PhoneState-прогресс уже сохранён и виден
+        // пользователю; следующий flush (следующее событие/фоновый цикл)
+        // повторит попытку по той же идемпотентной очереди.
+      }
+    })();
     return {
       ok: true,
       stableUid: stableId,

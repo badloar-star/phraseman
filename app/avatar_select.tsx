@@ -432,7 +432,15 @@ export default function AvatarSelect() {
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
-  const { isPremium, isVip, isPro } = usePremium();
+  // зачем (аудит 2026-08-28, тот же класс бага что в flashcards_collection.tsx
+  // и _layout.tsx): isPremium/isVip ниже управляют доступом к Plus-аурам
+  // (auraAvailability: hasPlusAuraAccess = isPremium || isVip) — узкие
+  // подтверждённые статусы, БЕЗ intro-доступа и admin-override. Человек с
+  // admin_premium_override=true (как Виталий) не видел бы Plus-ауры открытыми.
+  // hasPremiumAccess покрывает оба случая; isPro остаётся отдельным полем —
+  // Pro-only контент не входит в hasPremiumAccess по замыслу (Pro — отдельный,
+  // более высокий тир, см. effectivePro в PremiumContext.tsx).
+  const { hasPremiumAccess: isPremium, isVip, isPro } = usePremium();
   const copy = useMemo(() => studioCopy(lang), [lang]);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll, scrollY } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);

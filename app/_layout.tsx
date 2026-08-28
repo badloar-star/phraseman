@@ -1346,7 +1346,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const { setLang, lang } = useLang();
   const remoteDeletionNoticeShownRef = useRef(false);
   const { studyTarget } = useStudyTarget();
-  const { isPremium, isVip } = usePremium();
+  // зачем (аудит 2026-08-28, тот же класс бага что в flashcards_collection.tsx):
+  // hasPremiumAccess — полный законный доступ (покупка ИЛИ VIP ИЛИ intro ИЛИ
+  // admin-override), isPremium/isVip — только узкие подтверждённые статусы.
+  // hasVerifiedRealPremiumOrVip() ниже раньше проверял isPremium||isVip и
+  // мог вытолкнуть winback/intro-ended пейволл человеку с admin-override
+  // доступом (как у Виталия: premium_plan='annual', admin_premium_override=true,
+  // но не realPremium/vip флаг).
+  const { hasPremiumAccess } = usePremium();
   const { showAchievement } = useAchievement();
   const { theme: tTheme, themeMode, statusBarLight } = useTheme();
   const router = useRouter();
@@ -2615,13 +2622,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, [setLang]);
 
   const hasVerifiedRealPremiumOrVip = useCallback(async () => {
-    if (isPremium || isVip) return true;
+    if (hasPremiumAccess) return true;
     const [realPremium, vip] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
     ]);
     return realPremium || vip;
-  }, [isPremium, isVip]);
+  }, [hasPremiumAccess]);
 
   const closeIntroFullAccessModal = useCallback(async (action: 'primary' | 'secondary') => {
     const variant = introFullAccessModal;

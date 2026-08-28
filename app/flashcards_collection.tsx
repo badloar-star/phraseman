@@ -322,7 +322,14 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     leaveCollection();
   }, [exitDeckToList, filterOpen, leaveCollection, searchActive, searchInput, viewMode]);
 
-  const { isPremium } = usePremium();
+  // зачем (расследование 2026-08-28, жалоба Виталия/«Марс»: «есть Premium, а
+  // лимит сохранённых всё равно показывает 20 из 20»): isPremium — узкое поле
+  // (подтверждённая покупка через RevenueCat), а VIP/admin-override доступ
+  // (his premium_plan='annual', vip_active=true, admin_premium_override=true)
+  // в него НЕ попадает — только в hasPremiumAccess. Весь остальной проект
+  // (FlashcardsTabBar и другие 13 экранов) уже гейтит по hasPremiumAccess;
+  // этот файл был единственным исключением.
+  const { hasPremiumAccess: isPremium } = usePremium();
   // Карта «силы слова» строится из проекции нового журнала ошибок.
   const [strengthMap, setStrengthMap] = useState<WordStrengthMap | null>(null);
   useFocusEffect(

@@ -13,12 +13,13 @@ describe('release and update modals planned locale runtime', () => {
     expect(src).not.toContain("const tx = lang === 'es' ? TEXTS.es : TEXTS[lang === 'uk' ? 'uk' : 'ru'];");
   });
 
-  it('uses planned locale chips and version label in release notes', () => {
-    const src = source('components/ReleaseNotesModal.tsx');
-    for (const pattern of plannedLocalePatterns) expect(src).toMatch(pattern);
-    expect(src).toContain('const chips = useMemo(() => pickReleaseNotesCopy(lang, TEXT.chips), [lang]);');
-    expect(src).toContain('const versionLabel = useMemo(() => pickReleaseNotesCopy(lang');
-    expect(src).not.toContain("lang === 'es' ? TEXT.chips.es : lang === 'uk' ? TEXT.chips.uk : TEXT.chips.ru");
-    expect(src).not.toContain("lang === 'es' ? 'Nueva versión' : lang === 'uk' ? 'Нова версія' : 'Новая версия'");
+  it('uses the full locale dictionary and localized pill in release notes', () => {
+    const modal = source('components/ReleaseNotesModal.tsx');
+    const copy = source('components/release_notes_copy.ts');
+    for (const pattern of plannedLocalePatterns) expect(copy).toMatch(pattern);
+    expect(modal).toContain('const tx = useMemo(() => pickReleaseNotesTexts(lang), [lang]);');
+    expect(modal).toContain('{tx.pill}');
+    expect(modal).not.toContain('TEXT.chips');
+    expect(modal).not.toContain('versionLabel');
   });
 });

@@ -7,29 +7,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAppReleaseBuildId } from './app_build_id';
 import { IS_EXPO_GO } from './config';
 
-/** false — окно «что нового» не показываем (текст устарел / не нужен). */
+/** Включатель текущей одноразовой кампании «что нового». */
 export const RELEASE_NOTES_MODAL_ENABLED = true;
 
 /**
- * зачем: тексты окна описывают релиз 1.6.0 (переименование валюты и раздела,
- * снятие платы). На билдах до 104 этих изменений ещё нет — окно рассказало бы
- * о том, чего пользователь у себя не увидит.
+ * Тексты описывают возможности build 118. На более раннем билде окно нельзя
+ * показывать: часть обещанного ещё отсутствует у пользователя.
  */
-export const RELEASE_NOTES_MIN_BUILD_ID = 104;
+export const RELEASE_NOTES_MIN_BUILD_ID = 118;
 
 /**
- * Установки с первого запуска не раньше этого момента (UTC) считаются «новыми» — окно не показываем.
- * Окно «что нового» видят ТОЛЬКО те, у кого приложение стояло ДО 26 июля 2026 (день выкладки
- * билда 104); установки 26 июля 2026 и позже — это новые юзеры, они застали уже переименованные
- * «жемчужины» и «Турнир», и рассказ про переезд их только запутает.
+ * Установки с первого запуска в день выхода build 118 или позже уже начинают
+ * с новыми правилами. Им ретроспективное объяснение только помешает.
  */
-export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 6, 26, 0, 0, 0, 0);
+export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 7, 28, 0, 0, 0, 0);
 
 /**
  * зачем: ключ привязан к конкретному релизу. Старый ключ означал бы, что все, кто
  * закрыл прошлогоднее окно «что нового», это окно уже не увидят.
  */
-const DISMISS_KEY = 'release_notes_dismissed_2026_07_26_v160';
+const DISMISS_KEY = 'release_notes_dismissed_2026_08_28_v1612';
 
 export async function shouldOfferReleaseNotesModal(): Promise<boolean> {
   if (!RELEASE_NOTES_MODAL_ENABLED) return false;

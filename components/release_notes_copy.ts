@@ -1,15 +1,10 @@
 // ════════════════════════════════════════════════════════════════════════════
-// release_notes_copy.ts — тексты окна «что нового» для релиза 1.6.0 (build 104+).
+// release_notes_copy.ts — разговорное окно «что нового» для build 118+.
 //
-// зачем: владелец попросил отдельное окно для СТАРЫХ пользователей — тех, кто
-// помнит приложение до билда 103. За релиз переименовалась валюта («осколки» →
-// «жемчужины»), исчез экран «Друзья», а тренажёр
-// и вход в турнир стали бесплатными. Без объяснения старый пользователь решит,
-// что у него отобрали валюту и разделы. Тон — тёплая самоирония: шутим над
-// собой, никогда над пользователем.
-//
-// зачем отдельный файл: в компоненте 8 локалей × 6 блоков превращают JSX в
-// нечитаемую простыню. Здесь — только данные, там — только вёрстка.
+// Старому пользователю нужно не техническое перечисление релиза, а короткое
+// человеческое объяснение новых правил и вернувшихся разделов. Поэтому каждый
+// пункт — самостоятельная разговорная глава: ясный факт, затем живая реплика.
+// Тексты отделены от JSX, чтобы восемь локалей не раздували компонент.
 // ════════════════════════════════════════════════════════════════════════════
 
 import type Ionicons from '@expo/vector-icons/Ionicons';
@@ -20,22 +15,14 @@ export type ReleaseNotesLocale =
 
 type LocaleMap<T> = Record<ReleaseNotesLocale, T>;
 
-/** Один пункт списка изменений: заголовок-факт + строка-объяснение с юмором. */
 export type ReleaseNoteItem = {
-  /** Ionicons glyph. Иконка несёт смысл пункта, а не украшает. */
   readonly icon: keyof typeof Ionicons.glyphMap;
-  /** Факт. Читается сам по себе, без шутки. */
   readonly title: string;
-  /** Объяснение «почему так». Здесь живёт юмор — но факт уже сказан выше. */
   readonly body: string;
-  /**
-   * true — пункт про деньги/потери (валюта, платность). Такие подсвечиваем:
-   * именно из-за них старый пользователь пугается, что у него что-то отняли.
-   */
-  readonly reassuring?: boolean;
+  readonly tone?: 'gold' | 'blue';
 };
 
-type ReleaseNotesTexts = {
+export type ReleaseNotesTexts = {
   readonly pill: string;
   readonly title: string;
   readonly subtitle: string;
@@ -45,276 +32,148 @@ type ReleaseNotesTexts = {
   readonly close: string;
 };
 
-// ── ru ──────────────────────────────────────────────────────────────────────
 const RU: ReleaseNotesTexts = {
-  pill: 'Что изменилось',
-  title: 'Мы тут немного передвинули мебель',
-  subtitle: 'Пока вас не было, кое-что переехало и переименовалось. Рассказываем, куда и зачем.',
+  pill: 'Что нового',
+  title: 'Мы тут снова всё поменяли',
+  subtitle: 'Спокойно: сейчас расскажем, что куда переехало и зачем.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Осколки стали жемчужинами',
-      body: 'Просто новое имя: было 1000 осколков — стало 1000 жемчужин. Один к одному, без обменников и мелкого шрифта.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Вход в турнир — бесплатный',
-      body: 'Раньше он стоил жемчужины. Мы посчитали и решили, что брать плату за желание посоревноваться — так себе идея.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'Отдельный экран «Друзья» уехал',
-      body: 'Всё живое из него — соревнования и приглашения — теперь в Турнире и приглашениях. Отдельная вкладка просто пылилась.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Лига и турниры открываются сразу',
-      body: 'Раньше подиум мог думать секунд десять. Мы починили — теперь экраны открываются с данными, а не с пустотой.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Сначала — про энергию', body: 'Она больше не улетает за промахи. Теперь энергия списывается при запуске сессии. Вышел раньше — новый запуск снова попросит энергию. Всё честно и заранее.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'У тебя три попытки', body: 'Когда они закончатся, сессия тоже завершится. Хочешь продолжить — восстанови попытки за руны.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'А руны откуда?', body: 'Никаких тайных шахт. Проходи сессии и тренажёры — и скоро заметишь, как легко они копятся.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Мы освежили твой образ', body: 'Новые аватары и ауры уже в оформлении профиля. Загляни — вдруг там ждёт именно твоя.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'Арена снова в игре', body: 'Её просили вернуть — и мы вернули. Теперь она снова готова выяснять, кто лучше владеет фразами.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '«Маршрут» собирает чемоданы', body: 'Им пользовались редко, а весил он много. Ещё немного поработает, потом попрощаемся — и приложение станет легче.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'И да — теперь есть МАКС', body: 'ИИ-тьютор уже ждёт на главной. Выбери тему и попробуй поговорить без учебника перед глазами.' },
   ],
-  footer: 'Ещё мы поправили десятки мелочей, которые вы, надеемся, никогда не замечали.',
-  cta: 'Понятно, идём дальше',
-  close: 'Закрыть',
+  footer: 'Вот теперь всё. Можно идти смотреть, что мы натворили.',
+  cta: 'Пойти посмотреть',
+  close: 'Закрыть обновление',
 };
 
-// ── uk ──────────────────────────────────────────────────────────────────────
 const UK: ReleaseNotesTexts = {
-  pill: 'Що змінилося',
-  title: 'Ми трохи переставили меблі',
-  subtitle: 'Поки вас не було, дещо переїхало та перейменувалося. Розповідаємо, куди і навіщо.',
+  pill: 'Що нового',
+  title: 'Ми тут знову все змінили',
+  subtitle: 'Спокійно: зараз розповімо, що куди переїхало й навіщо.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Уламки стали перлинами',
-      body: 'Просто нове ім’я: було 1000 уламків — стало 1000 перлин. Один до одного, без обмінників і дрібного шрифту.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Вхід у турнір — безкоштовний',
-      body: 'Раніше він коштував перлини. Ми порахували й вирішили, що брати плату за бажання позмагатися — так собі ідея.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'Окремий екран «Друзі» поїхав',
-      body: 'Усе живе з нього — змагання та запрошення — тепер у Турнірі та запрошеннях. Окрема вкладка просто припадала пилом.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Ліга й турніри відкриваються одразу',
-      body: 'Раніше подіум міг думати секунд десять. Ми полагодили — тепер екрани відкриваються з даними, а не з порожнечею.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Спочатку — про енергію', body: 'Вона більше не зникає через промахи. Тепер енергія списується під час запуску сесії. Вийшов раніше — новий запуск знову попросить енергію. Усе чесно й заздалегідь.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'У тебе три спроби', body: 'Коли вони закінчаться, сесія теж завершиться. Хочеш продовжити — віднови спроби за руни.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'А звідки брати руни?', body: 'Жодних таємних шахт. Проходь сесії та тренажери — і незабаром помітиш, як легко вони накопичуються.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Ми освіжили твій образ', body: 'Нові аватари й аури вже в оформленні профілю. Зазирни — раптом там чекає саме твоя.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'Арена знову в грі', body: 'Її просили повернути — і ми повернули. Тепер вона знову готова з’ясувати, хто краще володіє фразами.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '«Маршрут» пакує валізи', body: 'Ним користувалися рідко, а важив він чимало. Ще трохи попрацює, потім попрощаємося — і застосунок стане легшим.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'І так — тепер є МАКС', body: 'ШІ-тьютор уже чекає на головній. Обери тему й спробуй поговорити без підручника перед очима.' },
   ],
-  footer: 'Ще ми виправили десятки дрібниць, яких ви, сподіваємось, ніколи не помічали.',
-  cta: 'Зрозуміло, йдемо далі',
-  close: 'Закрити',
+  footer: 'Ось тепер усе. Можна йти дивитися, що ми наробили.',
+  cta: 'Піти подивитися',
+  close: 'Закрити оновлення',
 };
 
-// ── es ──────────────────────────────────────────────────────────────────────
 const ES: ReleaseNotesTexts = {
-  pill: 'Qué ha cambiado',
-  title: 'Hemos movido un poco los muebles',
-  subtitle: 'Mientras no estabas, algunas cosas cambiaron de sitio y de nombre. Te contamos cuáles y por qué.',
+  pill: 'Qué hay de nuevo',
+  title: 'Hemos vuelto a cambiarlo todo',
+  subtitle: 'Tranquilo: te contamos qué se ha movido y por qué.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Los fragmentos ahora son perlas',
-      body: 'Solo es un nombre nuevo: tenías 1000 fragmentos y ahora tienes 1000 perlas. Uno a uno, sin cambios ni letra pequeña.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Entrar al torneo es gratis',
-      body: 'Antes costaba perlas. Echamos cuentas y decidimos que cobrar por querer competir no era una gran idea.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'La pantalla «Amigos» se ha ido',
-      body: 'Lo que de verdad usabas — competir e invitar — está ahora en Torneo y en las invitaciones. Esa pestaña solo cogía polvo.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'La liga y los torneos abren al instante',
-      body: 'Antes el podio podía pensárselo diez segundos. Ya está arreglado: las pantallas abren con datos, no en blanco.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Primero, la energía', body: 'Ya no se gasta cuando fallas. Ahora se descuenta al iniciar una sesión. Si sales antes, el siguiente inicio volverá a pedir energía. Sin sorpresas.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'Tienes tres intentos', body: 'Cuando se acaben, la sesión también terminará. Si quieres seguir, recupera los intentos con runas.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: '¿Y las runas de dónde salen?', body: 'Nada de minas secretas. Completa sesiones y entrenamientos y pronto verás lo fácil que es reunirlas.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Hemos renovado tu estilo', body: 'Ya hay nuevos avatares y auras en la personalización del perfil. Asómate: quizá la tuya te esté esperando.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'La Arena vuelve al juego', body: 'Nos pedisteis que volviera y la hemos traído de vuelta. Ya está lista para descubrir quién domina mejor las frases.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '«Ruta» hace las maletas', body: 'Se usaba poco y pesaba mucho. Seguirá un tiempo, después nos despediremos y la aplicación quedará más ligera.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'Y sí: ahora está MAX', body: 'El tutor de IA ya te espera en Inicio. Elige un tema y prueba a conversar sin un libro delante.' },
   ],
-  footer: 'También corregimos decenas de detalles que, esperamos, nunca llegaste a notar.',
-  cta: 'Entendido, seguimos',
-  close: 'Cerrar',
+  footer: 'Ahora sí, eso es todo. Ve a ver lo que hemos preparado.',
+  cta: 'Ir a verlo',
+  close: 'Cerrar la actualización',
 };
 
-// ── pt-BR ───────────────────────────────────────────────────────────────────
 const PT_BR: ReleaseNotesTexts = {
-  pill: 'O que mudou',
-  title: 'Mudamos os móveis de lugar',
-  subtitle: 'Enquanto você não estava, algumas coisas mudaram de lugar e de nome. Contamos quais e por quê.',
+  pill: 'O que há de novo',
+  title: 'A gente mudou tudo de novo',
+  subtitle: 'Calma: vamos contar o que mudou de lugar e por quê.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Fragmentos agora são pérolas',
-      body: 'É só um nome novo: você tinha 1000 fragmentos e agora tem 1000 pérolas. Um por um, sem troca e sem letra miúda.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Entrar no torneio é grátis',
-      body: 'Antes custava pérolas. Fizemos as contas e concluímos que cobrar pela vontade de competir não era boa ideia.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'A tela «Amigos» foi embora',
-      body: 'O que você realmente usava — competir e convidar — está agora no Torneio e nos convites. Aquela aba só juntava poeira.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Liga e torneios abrem na hora',
-      body: 'Antes o pódio pensava uns dez segundos. Já foi corrigido: as telas abrem com dados, não vazias.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Primeiro, a energia', body: 'Ela não some mais quando você erra. Agora a energia é descontada ao iniciar a sessão. Saiu antes? O próximo início vai pedir energia de novo. Sem surpresas.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'Você tem três tentativas', body: 'Quando elas acabarem, a sessão também termina. Quer continuar? Recupere as tentativas com runas.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'E de onde vêm as runas?', body: 'Nada de minas secretas. Complete sessões e treinos e logo você vai ver como é fácil juntar runas.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Renovamos o seu visual', body: 'Novos avatares e auras já estão na personalização do perfil. Dá uma olhada: talvez a sua esteja esperando.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'A Arena voltou ao jogo', body: 'Vocês pediram e nós trouxemos de volta. Ela já está pronta para descobrir quem manda melhor nas frases.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: 'A «Rota» está de malas prontas', body: 'Pouca gente usava e ela pesava bastante. Vai funcionar por mais um tempo; depois nos despedimos e o app fica mais leve.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'E sim: agora tem MAX', body: 'O tutor de IA já espera por você na tela inicial. Escolha um tema e tente conversar sem um livro na frente.' },
   ],
-  footer: 'Também ajustamos dezenas de detalhes que, esperamos, você nunca chegou a notar.',
-  cta: 'Entendi, vamos lá',
-  close: 'Fechar',
+  footer: 'Agora sim, é tudo. Pode ir ver o que a gente aprontou.',
+  cta: 'Ir conferir',
+  close: 'Fechar a atualização',
 };
 
-// ── vi ──────────────────────────────────────────────────────────────────────
 const VI: ReleaseNotesTexts = {
-  pill: 'Có gì thay đổi',
-  title: 'Chúng tôi đã kê lại đồ đạc một chút',
-  subtitle: 'Trong lúc bạn vắng mặt, vài thứ đã đổi chỗ và đổi tên. Đây là những gì đã thay đổi và vì sao.',
+  pill: 'Có gì mới',
+  title: 'Tụi mình lại thay đổi mọi thứ',
+  subtitle: 'Bình tĩnh nhé: giờ tụi mình kể xem thứ gì đã chuyển đi đâu và vì sao.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Mảnh ghép nay là ngọc trai',
-      body: 'Chỉ là tên gọi mới: bạn có 1000 mảnh ghép thì nay có 1000 ngọc trai. Đổi một đổi một, không quy đổi, không chữ nhỏ.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Vào giải đấu miễn phí',
-      body: 'Trước đây tốn ngọc trai. Tính đi tính lại, thu phí cho việc muốn thi đấu nghe không ổn lắm.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'Màn hình «Bạn bè» đã rời đi',
-      body: 'Những gì bạn thật sự dùng — thi đấu và mời bạn — nay nằm trong Giải đấu và phần lời mời. Thẻ riêng kia chỉ nằm không.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Giải hạng và giải đấu mở ngay lập tức',
-      body: 'Trước đây bục vinh danh có thể nghĩ mất mười giây. Đã sửa: màn hình mở ra là có dữ liệu, không còn trống trơn.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Trước tiên là năng lượng', body: 'Năng lượng không còn bị trừ khi bạn trả lời trượt. Giờ nó được trừ lúc bắt đầu phiên. Thoát sớm thì lần bắt đầu mới sẽ cần năng lượng lần nữa. Rõ ràng từ đầu.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'Bạn có ba lượt thử', body: 'Khi hết lượt, phiên cũng kết thúc. Muốn tiếp tục thì dùng rune để khôi phục lượt thử.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'Rune kiếm ở đâu?', body: 'Không có hầm mỏ bí mật nào cả. Hoàn thành phiên và bài luyện, bạn sẽ sớm thấy rune tích lại dễ thế nào.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Diện mạo của bạn đã mới hơn', body: 'Avatar và hào quang mới đã có trong phần trang trí hồ sơ. Ghé xem nhé, biết đâu món hợp với bạn đang chờ ở đó.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'Đấu trường đã trở lại', body: 'Mọi người muốn nó quay lại, và tụi mình đã nghe thấy. Giờ Đấu trường lại sẵn sàng xem ai dùng cụm từ giỏi hơn.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '«Lộ trình» đang xếp hành lý', body: 'Ít người dùng nhưng phần này lại khá nặng. Nó sẽ hoạt động thêm một thời gian rồi chia tay để ứng dụng nhẹ hơn.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'Và giờ đã có MAX', body: 'Gia sư AI đang chờ ở màn hình chính. Chọn một chủ đề và thử trò chuyện mà không cần sách trước mặt.' },
   ],
-  footer: 'Chúng tôi cũng sửa hàng chục chi tiết nhỏ mà hy vọng bạn chưa từng phải để ý.',
-  cta: 'Đã hiểu, tiếp tục',
-  close: 'Đóng',
+  footer: 'Giờ thì hết thật rồi. Đi xem tụi mình đã làm gì nhé.',
+  cta: 'Đi xem ngay',
+  close: 'Đóng cập nhật',
 };
 
-// ── id ──────────────────────────────────────────────────────────────────────
 const ID: ReleaseNotesTexts = {
-  pill: 'Apa yang berubah',
-  title: 'Kami menggeser sedikit perabotnya',
-  subtitle: 'Selagi kamu pergi, beberapa hal pindah tempat dan ganti nama. Ini daftarnya dan alasannya.',
+  pill: 'Yang baru',
+  title: 'Kami mengubah semuanya lagi',
+  subtitle: 'Tenang, kami akan jelaskan apa yang pindah dan alasannya.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Serpihan kini jadi mutiara',
-      body: 'Hanya nama baru: punya 1000 serpihan berarti kini punya 1000 mutiara. Satu banding satu, tanpa penukaran dan tanpa tulisan kecil.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Masuk turnamen gratis',
-      body: 'Dulu perlu mutiara. Setelah dihitung, menarik bayaran karena ingin bertanding rasanya kurang masuk akal.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'Layar «Teman» sudah pergi',
-      body: 'Yang benar-benar kamu pakai — bertanding dan mengundang — kini ada di Turnamen dan undangan. Tab itu hanya berdebu.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Liga dan turnamen langsung terbuka',
-      body: 'Dulu podium bisa berpikir sepuluh detik. Sudah diperbaiki: layar terbuka dengan data, bukan kosong.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Pertama, soal energi', body: 'Energi tidak lagi habis karena jawaban meleset. Sekarang energi dipakai saat sesi dimulai. Keluar lebih awal? Mulai lagi akan memakai energi lagi. Jelas dari awal.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'Kamu punya tiga kesempatan', body: 'Saat kesempatan habis, sesi juga berakhir. Ingin lanjut? Pulihkan kesempatan dengan rune.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'Rune didapat dari mana?', body: 'Tidak ada tambang rahasia. Selesaikan sesi dan latihan, lalu kamu akan segera melihat betapa mudahnya rune terkumpul.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Gayamu kami segarkan', body: 'Avatar dan aura baru sudah ada di personalisasi profil. Coba lihat: mungkin yang cocok untukmu sudah menunggu.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'Arena kembali bermain', body: 'Kalian meminta Arena kembali dan kami mendengarnya. Sekarang Arena siap mencari tahu siapa yang paling jago memakai frasa.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '«Rute» sedang berkemas', body: 'Jarang dipakai, tetapi cukup membebani aplikasi. Rute masih berjalan sebentar, lalu kita berpisah agar aplikasi lebih ringan.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'Dan ya, sekarang ada MAX', body: 'Tutor AI sudah menunggu di Beranda. Pilih topik dan coba mengobrol tanpa buku di depanmu.' },
   ],
-  footer: 'Kami juga membereskan puluhan detail kecil yang semoga tidak pernah kamu sadari.',
-  cta: 'Mengerti, lanjut',
-  close: 'Tutup',
+  footer: 'Nah, sekarang selesai. Ayo lihat apa yang sudah kami kerjakan.',
+  cta: 'Lihat sekarang',
+  close: 'Tutup pembaruan',
 };
 
-// ── tr ──────────────────────────────────────────────────────────────────────
 const TR: ReleaseNotesTexts = {
-  pill: 'Neler değişti',
-  title: 'Mobilyaları biraz kaydırdık',
-  subtitle: 'Siz yokken bazı şeyler yer ve isim değiştirdi. Nereye ve neden, anlatıyoruz.',
+  pill: 'Neler yeni',
+  title: 'Yine her şeyi değiştirdik',
+  subtitle: 'Sakin: neyin nereye taşındığını ve nedenini şimdi anlatıyoruz.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Parçalar artık inci',
-      body: 'Sadece yeni bir isim: 1000 parçanız vardıysa artık 1000 inciniz var. Bire bir, takas yok, küçük punto yok.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Turnuvaya giriş ücretsiz',
-      body: 'Eskiden inci gerekiyordu. Hesapladık ve yarışmak istemenin bedeli olmaması gerektiğine karar verdik.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: '«Arkadaşlar» ekranı gitti',
-      body: 'Gerçekten kullandığınız her şey — yarışmak ve davet etmek — artık Turnuva ve davetlerde. O sekme sadece tozlanıyordu.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Lig ve turnuvalar anında açılıyor',
-      body: 'Eskiden kürsü on saniye düşünebiliyordu. Düzeltildi: ekranlar boş değil, veriyle açılıyor.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Önce enerji meselesi', body: 'Enerji artık kaçırdığın cevaplarda uçup gitmiyor. Şimdi oturumu başlatırken harcanıyor. Erken çıkarsan yeni başlangıç tekrar enerji ister. Baştan açık ve net.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'Üç deneme hakkın var', body: 'Hakların bitince oturum da sona erer. Devam etmek istersen rünlerle haklarını yenileyebilirsin.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'Peki rünler nereden geliyor?', body: 'Gizli maden yok. Oturumları ve alıştırmaları tamamla; rünlerin ne kadar kolay biriktiğini yakında göreceksin.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Görünümünü yeniledik', body: 'Yeni avatarlar ve auralar profil görünümünde hazır. Bir göz at; belki sana göre olan çoktan bekliyordur.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'Arena yeniden oyunda', body: 'Geri istemiştiniz, biz de duyduk. Arena şimdi ifadeleri kimin daha iyi kullandığını görmeye hazır.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '«Rota» bavullarını topluyor', body: 'Az kullanılıyordu ama uygulamada çok yer kaplıyordu. Bir süre daha çalışacak, sonra vedalaşacağız ve uygulama hafifleyecek.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'Ve evet, artık MAX var', body: 'Yapay zekâ eğitmeni ana sayfada seni bekliyor. Bir konu seç ve önünde kitap olmadan konuşmayı dene.' },
   ],
-  footer: 'Ayrıca umarız hiç fark etmediğiniz onlarca küçük ayrıntıyı düzelttik.',
-  cta: 'Anladım, devam',
-  close: 'Kapat',
+  footer: 'İşte şimdi bitti. Neler yaptığımıza bakabilirsin.',
+  cta: 'Gidip bak',
+  close: 'Güncellemeyi kapat',
 };
 
-// ── pl ──────────────────────────────────────────────────────────────────────
 const PL: ReleaseNotesTexts = {
-  pill: 'Co się zmieniło',
-  title: 'Trochę poprzestawialiśmy meble',
-  subtitle: 'Gdy was nie było, kilka rzeczy zmieniło miejsce i nazwę. Mówimy, co i dlaczego.',
+  pill: 'Co nowego',
+  title: 'Znowu wszystko pozmienialiśmy',
+  subtitle: 'Spokojnie: już mówimy, co się przeniosło i dlaczego.',
   items: [
-    {
-      icon: 'diamond-outline',
-      title: 'Okruchy zmieniły się w perły',
-      body: 'To tylko nowa nazwa: było 1000 okruchów, jest 1000 pereł. Jeden do jednego, bez wymiany i bez drobnego druku.',
-      reassuring: true,
-    },
-    {
-      icon: 'ticket-outline',
-      title: 'Wejście do turnieju jest darmowe',
-      body: 'Wcześniej kosztowało perły. Policzyliśmy i uznaliśmy, że pobieranie opłaty za chęć rywalizacji to słaby pomysł.',
-      reassuring: true,
-    },
-    {
-      icon: 'people-outline',
-      title: 'Osobny ekran «Znajomi» odjechał',
-      body: 'To, czego naprawdę używaliście — rywalizacja i zaproszenia — jest teraz w Turnieju i zaproszeniach. Tamta zakładka tylko się kurzyła.',
-    },
-    {
-      icon: 'flash-outline',
-      title: 'Liga i turnieje otwierają się od razu',
-      body: 'Wcześniej podium potrafiło myśleć dziesięć sekund. Naprawione: ekrany otwierają się z danymi, nie z pustką.',
-    },
+    { icon: 'flash-outline', tone: 'gold', title: 'Najpierw energia', body: 'Energia nie znika już przez nietrafione odpowiedzi. Teraz pobieramy ją przy rozpoczęciu sesji. Wyjdziesz wcześniej — kolejne uruchomienie znów poprosi o energię. Wszystko jasne od początku.' },
+    { icon: 'heart-outline', tone: 'blue', title: 'Masz trzy próby', body: 'Kiedy się skończą, sesja również dobiegnie końca. Chcesz grać dalej? Odnów próby za runy.' },
+    { icon: 'sparkles-outline', tone: 'gold', title: 'A skąd brać runy?', body: 'Żadnych tajnych kopalni. Kończ sesje i treningi, a szybko zobaczysz, jak łatwo runy się zbierają.' },
+    { icon: 'person-outline', tone: 'blue', title: 'Odświeżyliśmy twój wygląd', body: 'Nowe awatary i aury są już w personalizacji profilu. Zajrzyj tam — może twoja już czeka.' },
+    { icon: 'trophy-outline', tone: 'gold', title: 'Arena wraca do gry', body: 'Prosiliście o jej powrót, więc wróciła. Znów jest gotowa sprawdzić, kto lepiej włada wyrażeniami.' },
+    { icon: 'swap-horizontal-outline', tone: 'blue', title: '„Trasa” pakuje walizki', body: 'Korzystało z niej niewiele osób, a zajmowała sporo miejsca. Jeszcze trochę popracuje, potem się pożegnamy i aplikacja będzie lżejsza.' },
+    { icon: 'hardware-chip-outline', tone: 'gold', title: 'I tak — teraz jest MAX', body: 'Tutor AI czeka już na stronie głównej. Wybierz temat i spróbuj porozmawiać bez podręcznika przed oczami.' },
   ],
-  footer: 'Poprawiliśmy też dziesiątki drobiazgów, których — mamy nadzieję — nigdy nie zauważyliście.',
-  cta: 'Jasne, idziemy dalej',
-  close: 'Zamknij',
+  footer: 'Teraz to już wszystko. Możesz zobaczyć, co przygotowaliśmy.',
+  cta: 'Idź zobaczyć',
+  close: 'Zamknij aktualizację',
 };
 
 const RELEASE_NOTES_BY_LOCALE: LocaleMap<ReleaseNotesTexts> = {
@@ -328,11 +187,10 @@ const RELEASE_NOTES_BY_LOCALE: LocaleMap<ReleaseNotesTexts> = {
   pl: PL,
 };
 
-// The copy is intentionally kept for the eventual owner-approved relaunch,
-// but no historical "What's new" card may advertise a retired entry point.
+// «Арена» — живой самостоятельный раздел. Старый owner-lock ниже защищает
+// только закрытый маршрут турниров и не должен убирать новую главу про Арену.
 const RETIRED_TOURNAMENT_COPY_RE = /турн(?:ир|ір)|torne|turn(?:amen|uva|iej)|giải đấu/iu;
 
-/** Тексты окна для языка интерфейса. Неизвестный язык → русский. */
 export function pickReleaseNotesTexts(lang: string): ReleaseNotesTexts {
   const selected = RELEASE_NOTES_BY_LOCALE[lang as ReleaseNotesLocale] ?? RU;
   if (ENABLE_TOURNAMENTS) return selected;

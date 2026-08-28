@@ -1,10 +1,8 @@
 // ════════════════════════════════════════════════════════════════════════════
-// ReleaseNotesModal — окно «что нового» для СТАРЫХ пользователей (релиз 1.6.0).
+// ReleaseNotesModal — одноразовое окно «что нового» для старых пользователей.
 //
-// зачем: за релиз переименовались валюта и раздел, а экран «Друзья» исчез.
-// Пользователь, помнящий билд 103, без объяснения решит, что у него отобрали
-// жемчужины и половину приложения. Окно снимает этот испуг: каждый пункт —
-// сначала факт, потом тёплая самоирония, почему так вышло.
+// Выбранный владельцем вариант B: короткие разговорные главы, которые легко
+// просмотреть глазами, но они всё ещё звучат как живое обращение команды.
 //
 // Тексты — в release_notes_copy.ts (8 локалей). Здесь только вёрстка и движение.
 // ════════════════════════════════════════════════════════════════════════════
@@ -23,42 +21,16 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
-import { FlowText } from './text-integrity/FlowText';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { triLang } from '../constants/i18n';
 import { pickReleaseNotesTexts, type ReleaseNoteItem } from './release_notes_copy';
-import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import { LUM } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import DuoPressable from './DuoPressable';
-
-/**
- * Локали окна. Контракт release_update_modals_locale_runtime.test.ts требует,
- * чтобы все плановые языки были видимы в исходнике этого файла.
- * ru · uk · es · 'pt-BR' · vi · id · tr · pl
- */
-const TEXT = {
-  chips: {
-    ru: ['Жемчужины', 'Турнир', 'Бесплатно'],
-    uk: ['Перлини', 'Турнір', 'Безкоштовно'],
-    es: ['Perlas', 'Torneo', 'Gratis'],
-    'pt-BR': ['Pérolas', 'Torneio', 'Grátis'],
-    vi: ['Ngọc trai', 'Giải đấu', 'Miễn phí'],
-    id: ['Mutiara', 'Turnamen', 'Gratis'],
-    tr: ['İnciler', 'Turnuva', 'Ücretsiz'],
-    pl: ['Perły', 'Turniej', 'Za darmo'],
-  },
-} as const;
-
-const pickReleaseNotesCopy = <T extends { ru: unknown }>(
-  lang: string,
-  copy: T,
-) => (copy[lang as keyof T] ?? copy.ru) as T[keyof T];
 
 type Props = {
   visible: boolean;
@@ -74,26 +46,25 @@ type Props = {
 /**
  * Один пункт списка. Плоский ряд «иконка + текст», без вложенных карточек:
  * карточка в карточке — всегда лишний слой (и запрет владельца на обводки).
- * Пункты про деньги подсвечены тоном — именно они снимают испуг «отобрали».
+ * Золотой и синий тона чередуют главы и помогают быстро найти нужный факт.
  */
 const ReleaseNoteRow = memo(function ReleaseNoteRow({
   item,
-  themeMode,
   titleSize,
   bodySize,
 }: {
   item: ReleaseNoteItem;
-  themeMode: string;
   titleSize: number;
   bodySize: number;
 }) {
-  const accent = item.reassuring ? '#F9D77A' : '#8FB4FF';
+  const isGold = item.tone === 'gold';
+  const accent = isGold ? '#F9D77A' : '#8FB4FF';
   return (
     <View style={styles.row}>
       <View
         style={[
           styles.rowIcon,
-          { backgroundColor: item.reassuring ? 'rgba(249,215,122,0.16)' : 'rgba(143,180,255,0.14)' },
+          { backgroundColor: isGold ? 'rgba(249,215,122,0.16)' : 'rgba(143,180,255,0.14)' },
         ]}
       >
         <Ionicons name={item.icon} size={17} color={accent} />
@@ -111,41 +82,30 @@ const ReleaseNoteRow = memo(function ReleaseNoteRow({
 });
 
 function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Props) {
-  const { f, themeMode } = useTheme();
+  const { f } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  // зачем: системная настройка «уменьшить движение» — бесконечные петли
-  // свечения и блика для таких пользователей не запускаем вовсе.
+  // зачем: системная настройка «уменьшить движение» — бесконечный блик для
+  // таких пользователей не запускаем вовсе.
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
   const cardAnim = useRef(new Animated.Value(0)).current;
-  const glowAnim = useRef(new Animated.Value(0)).current;
   const shineAnim = useRef(new Animated.Value(0)).current;
 
   const tx = useMemo(() => pickReleaseNotesTexts(lang), [lang]);
-  const chips = useMemo(() => pickReleaseNotesCopy(lang, TEXT.chips), [lang]);
-  const versionLabel = useMemo(() => pickReleaseNotesCopy(lang, {
-    ru: 'Обновление',
-    uk: 'Оновлення',
-    es: 'Actualización',
-    'pt-BR': 'Atualização',
-    vi: 'Cập nhật',
-    id: 'Pembaruan',
-    tr: 'Güncelleme',
-    pl: 'Aktualizacja',
-  }), [lang]);
 
-  const titleSize = Math.min(f.h2, 23);
-  const rowTitleSize = Math.min(f.body, 16);
-  const bodySize = Math.min(f.body, 15);
-  const captionSize = Math.min(f.caption, 13);
-  const buttonSize = Math.min(f.bodyLg, 17);
+  // Окно прокручивается, поэтому не зажимаем пользовательский крупный шрифт до
+  // базового размера. Верхние границы лишь защищают неподвижный hero и CTA.
+  const titleSize = Math.min(Math.max(f.h2, 23), 28);
+  const rowTitleSize = Math.min(Math.max(f.body, 16), 19);
+  const bodySize = Math.min(Math.max(f.body, 15), 18);
+  const captionSize = Math.min(Math.max(f.caption, 13), 15);
+  const buttonSize = Math.min(Math.max(f.bodyLg, 17), 20);
 
   useEffect(() => {
     if (!visible) {
       cardAnim.setValue(0);
-      glowAnim.setValue(0);
       shineAnim.setValue(0);
       return;
     }
@@ -179,22 +139,6 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
       return () => { enter.stop(); };
     }
 
-    const glowLoop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(glowAnim, {
-          toValue: 1,
-          duration: 1400,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(glowAnim, {
-          toValue: 0,
-          duration: 1400,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ]),
-    );
     const shineLoop = Animated.loop(
       Animated.sequence([
         Animated.timing(shineAnim, {
@@ -208,15 +152,13 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
     );
 
     enter.start();
-    glowLoop.start();
     shineLoop.start();
 
     return () => {
       enter.stop();
-      glowLoop.stop();
       shineLoop.stop();
     };
-  }, [cardAnim, glowAnim, shineAnim, reduceMotion, visible, isHybrid]);
+  }, [cardAnim, shineAnim, reduceMotion, visible, isHybrid]);
 
   const closeOnce = () => {
     hapticTap();
@@ -236,23 +178,6 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
         scale: cardAnim.interpolate({
           inputRange: [0, 1],
           outputRange: [0.96, 1],
-        }),
-      },
-    ],
-  };
-
-  const iconAnimatedStyle = {
-    transform: [
-      {
-        scale: glowAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [1, 1.08],
-        }),
-      },
-      {
-        rotate: glowAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: ['-4deg', '5deg'],
         }),
       },
     ],
@@ -300,15 +225,10 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
           {isHybrid ? null : <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />}
 
           <View style={styles.hero}>
-            <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
-              <LinearGradient colors={['#FFF1B8', '#F7C75F', '#D68A2E']} style={styles.iconBadge}>
-                <Ionicons name="sparkles" size={25} color={'#172033'} />
-              </LinearGradient>
-            </Animated.View>
             <View style={styles.releasePill}>
               <Ionicons name="rocket-outline" size={14} color={'#F9D77A'} />
               <Text style={[styles.releasePillText, { fontSize: captionSize, color: '#F9D77A' }]}>
-                {versionLabel}
+                {tx.pill}
               </Text>
             </View>
             <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
@@ -317,21 +237,6 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
             <Text style={[styles.subtitle, { fontSize: bodySize, color: '#C8D6EA' }]}>
               {tx.subtitle}
             </Text>
-          </View>
-
-          <View style={styles.chipsWrap}>
-            {chips.map((chip) => (
-              <View key={chip} style={styles.chip}>
-                {/* зачем: text-integrity — чип переносится/растёт, не усекается. */}
-                <FlowText
-                  testID="release-notes-chip"
-                  provenance="authored"
-                  style={[styles.chipText, { fontSize: captionSize, color: '#DCE8FF' }]}
-                >
-                  {chip}
-                </FlowText>
-              </View>
-            ))}
           </View>
 
           <ScrollView decelerationRate="fast"
@@ -344,7 +249,6 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
               <ReleaseNoteRow
                 key={item.title}
                 item={item}
-                themeMode={themeMode}
                 titleSize={rowTitleSize}
                 bodySize={bodySize}
               />
@@ -415,22 +319,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 14,
   },
-  iconHalo: {
-    width: 58,
-    height: 58,
-    borderRadius: 29,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(247, 199, 95, 0.13)',
-    marginBottom: 10,
-  },
-  iconBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   releasePill: {
     minHeight: 28,
     borderRadius: 14,
@@ -457,25 +345,6 @@ const styles = StyleSheet.create({
     color: '#C8D6EA',
     textAlign: 'center',
     lineHeight: 21,
-  },
-  chipsWrap: {
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 7,
-    marginBottom: 14,
-  },
-  chip: {
-    minHeight: 28,
-    borderRadius: 9,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    paddingHorizontal: 10,
-    justifyContent: 'center',
-  },
-  chipText: {
-    color: '#DCE8FF',
-    fontWeight: '700',
   },
   scroll: {
     alignSelf: 'stretch',

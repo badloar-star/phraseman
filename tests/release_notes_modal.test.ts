@@ -3,7 +3,7 @@ jest.mock('../app/config', () => ({
   IS_EXPO_GO: false,
 }));
 
-const mockGetAppReleaseBuildId = jest.fn(() => 73);
+const mockGetAppReleaseBuildId = jest.fn(() => 118);
 
 jest.mock('../app/app_build_id', () => ({
   getAppReleaseBuildId: () => mockGetAppReleaseBuildId(),
@@ -21,18 +21,16 @@ const storage = AsyncStorage as typeof AsyncStorage & { __reset: () => void };
 describe('release notes modal gate', () => {
   beforeEach(() => {
     storage.__reset();
-    mockGetAppReleaseBuildId.mockReturnValue(73);
+    mockGetAppReleaseBuildId.mockReturnValue(118);
   });
 
-  it('never offers the modal while the master switch is disabled, even for eligible existing users', async () => {
+  it('offers the modal to an eligible existing user on the release build', async () => {
     await AsyncStorage.multiSet([
       ['install_date', String(RELEASE_NOTES_NEW_USER_CUTOFF_MS - 1)],
       ['onboarding_done', '1'],
     ]);
 
-    // RELEASE_NOTES_MODAL_ENABLED is currently false: the "What's New" text is
-    // stale, so the modal must stay hidden regardless of eligibility.
-    await expect(shouldOfferReleaseNotesModal()).resolves.toBe(false);
+    await expect(shouldOfferReleaseNotesModal()).resolves.toBe(true);
   });
 
   it('does not offer the modal to new users installed on or after the cutoff', async () => {
@@ -56,7 +54,7 @@ describe('release notes modal gate', () => {
   });
 
   it('waits until the current build reaches the release build', async () => {
-    mockGetAppReleaseBuildId.mockReturnValue(70);
+    mockGetAppReleaseBuildId.mockReturnValue(117);
     await AsyncStorage.multiSet([
       ['install_date', String(RELEASE_NOTES_NEW_USER_CUTOFF_MS - 1)],
       ['onboarding_done', '1'],

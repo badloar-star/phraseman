@@ -280,6 +280,23 @@ export const SPANISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Werdykt, który pasuje niemal do wszystkiego — osoby, pomysłu, dnia — i zawsze w odpowiedzi zmienia swój rodzaj.",
       }),
     },
+    {
+      targetLanguage: "es",
+      lexicalItemId: "es-e01-s34-word-diferente",
+      targetText: "diferente",
+      transcription: "/difeˈɾente/",
+      playfulMeaningByLocale: copy({
+        ru: "Признак, который наотрез отказывается меняться по родам — что для него, что для неё, слово стоит на своём.",
+        uk: "Ознака, яка категорично відмовляється змінюватися за родами — що для нього, що для неї, слово стоїть на своєму.",
+        es: "The quality that flatly refuses to change by gender — for him or for her, the word holds its ground.",
+        en: "The quality that flatly refuses to change by gender — for him or for her, the word holds its ground.",
+        "pt-BR": "A qualidade que se recusa terminantemente a mudar de gênero — para ele ou para ela, a palavra não cede.",
+        vi: "Đặc điểm nhất quyết không chịu đổi giống — dù cho anh ấy hay cô ấy, từ này vẫn giữ nguyên lập trường.",
+        id: "Sifat yang bersikeras menolak berubah menurut gender — untuk dia laki-laki maupun perempuan, kata ini tetap teguh.",
+        tr: "Cinsiyete göre değişmeyi kesinlikle reddeden nitelik — onun için de, onun için de, sözcük yerinde duruyor.",
+        pl: "Cecha, która stanowczo odmawia zmiany rodzaju — czy dla niego, czy dla niej, słowo stoi twardo przy swoim.",
+      }),
+    },
   ]);
 
 const SPANISH_EDITORIAL_BY_KEY = new Map(

@@ -135,6 +135,8 @@ import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_repla
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -446,6 +448,10 @@ interface LessonContentProps {
   attemptsRemaining: 0 | 1 | 2 | 3;
   /** Руны, накопленные в этой сессии урока (владелец, 2026-08-27). */
   practiceRunesEarned: number;
+  /** Источник/цель полёта руны (владелец, 2026-08-28): та же механика, что на
+      остальных шести экранах — раньше на самом Уроке её не было вообще. */
+  runeFlightOriginRef: React.RefObject<View | null>;
+  runeFlightCounterRef: React.RefObject<View | null>;
   progress: string[];
   totalCells: number;
   comboCount: number;
@@ -526,6 +532,8 @@ const LessonContent = React.memo(function LessonContent({
   currentMaxEnergy,
   attemptsRemaining,
   practiceRunesEarned,
+  runeFlightOriginRef,
+  runeFlightCounterRef,
   progress,
   totalCells,
   comboCount,
@@ -1043,13 +1051,15 @@ const LessonContent = React.memo(function LessonContent({
             testID="lesson1-session-attempts"
           />
 
-          <PracticeRuneCounter
-            runes={practiceRunesEarned}
-            lang={lang}
-            backgroundColor={t.bgCard}
-            color={t.textPrimary}
-            testID="lesson1-practice-runes"
-          />
+          <View ref={runeFlightCounterRef} collapsable={false}>
+            <PracticeRuneCounter
+              runes={practiceRunesEarned}
+              lang={lang}
+              backgroundColor={t.bgCard}
+              color={t.textPrimary}
+              testID="lesson1-practice-runes"
+            />
+          </View>
 
           {comboCount >= 3 && (
             <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />
@@ -1124,7 +1134,11 @@ const LessonContent = React.memo(function LessonContent({
             return lessonPhraseMeaningForLang(phrase, lang, studyTarget);
           })()}</Text>
 
-          <View testID="lesson1-answer-divider" style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+          <View
+            ref={runeFlightOriginRef}
+            collapsable={false}
+            testID="lesson1-answer-divider"
+            style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {(status === 'result' || speakingResult) ? (
               <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
@@ -2102,6 +2116,10 @@ function LessonScreen() {
     completionOrdinal: passCount + 1,
     devFakeStartRunes: devRunesFake?.runes,
   });
+  // зачем (владелец, 2026-08-28): на самом Уроке полёта руны не было вообще —
+  // подключён только на остальных шести экранах. Тот же паттерн measureInWindow,
+  // что в lesson_words.tsx/lesson_irregular_verbs.tsx.
+  const runeFlight = usePracticeRuneFlight();
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
@@ -2934,7 +2952,10 @@ function LessonScreen() {
     // ЭТУ ячейку. Идентификатор — тот же overridePhraseCell ?? cellIndex, что
     // используют attemptSessionId и AttemptId ниже: одна ячейка = один платёж,
     // независимо от того, сколько раз к ней вернулись через replay ошибок.
-    if (isRight) practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex));
+    if (isRight) {
+      const awarded = practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex));
+      if (awarded > 0) runeFlight.fly(awarded);
+    }
     const teachingMistakeToken = isRight
       ? undefined
       : resolvePhraseMistakeToken(expected, answer)?.tokenIndex;
@@ -3972,6 +3993,8 @@ function LessonScreen() {
             currentMaxEnergy={currentMaxEnergy}
             attemptsRemaining={attempts.state.remainingAttempts}
             practiceRunesEarned={practiceRunes.runes}
+            runeFlightOriginRef={runeFlight.originRef}
+            runeFlightCounterRef={runeFlight.counterRef}
             progress={progress}
             totalCells={effectiveTotal}
             comboCount={comboCount}
@@ -4034,6 +4057,15 @@ function LessonScreen() {
           />
         )}
         {/* ────────────────────────────── */}
+        {runeFlight.flight && (
+          <LearningV2RuneFlight
+            key={runeFlight.flight.key}
+            from={runeFlight.flight.from}
+            to={runeFlight.flight.to}
+            count={runeFlight.flight.count}
+            onDone={runeFlight.clearFlight}
+          />
+        )}
       </ScreenGradient>
     </TouchableWithoutFeedback>
     <NoEnergyModal

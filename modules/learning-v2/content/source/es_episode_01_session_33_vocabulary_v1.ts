@@ -101,14 +101,14 @@ export const ES_EPISODE_01_SESSION_33_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Bueno — это ПРИЗНАК, оценка качества чего-либо: «хороший», положительная оценка предмета или ситуации. Это прилагательное, а не существительное и не другой уже известный признак — оно не про цену, скорость или лёгкость.',
-          uk: 'Bueno — це ОЗНАКА, оцінка якості чогось: «хороший», позитивна оцінка предмета чи ситуації. Це прикметник, а не іменник і не інша вже відома ознака — він не про ціну, швидкість чи легкість.',
-          es: 'Bueno is a QUALITY — an evaluation of something: "good," a positive judgment of a thing or situation. It is an adjective, not a noun and not another already-known quality — it is not about price, speed, or ease.',
-          'pt-BR': 'Bueno é uma QUALIDADE — uma avaliação de algo: "bom", um julgamento positivo de uma coisa ou situação. É um adjetivo, não um substantivo nem outra qualidade já conhecida — não é sobre preço, velocidade ou facilidade.',
-          vi: 'Bueno là một ĐẶC ĐIỂM — sự đánh giá về điều gì đó: "tốt", một nhận định tích cực về một sự vật hay tình huống. Đây là tính từ, không phải danh từ, và cũng không phải một đặc điểm đã biết trước — nó không nói về giá cả, tốc độ hay độ dễ.',
-          id: 'Bueno adalah SIFAT — penilaian terhadap sesuatu: "baik", penilaian positif atas suatu benda atau situasi. Ini kata sifat, bukan kata benda dan bukan sifat lain yang sudah dikenal — bukan tentang harga, kecepatan, atau kemudahan.',
-          tr: 'Bueno bir NİTELİKTİR — bir şeyin değerlendirmesi: "iyi", bir nesne ya da durumun olumlu bir yargısı. Bu bir sıfattır, isim değildir ve zaten bilinen başka bir nitelik de değildir — fiyat, hız ya da kolaylıkla ilgili değildir.',
-          pl: 'Bueno to CECHA — ocena czegoś: "dobry", pozytywna ocena rzeczy lub sytuacji. To przymiotnik, nie rzeczownik i nie inna już znana cecha — nie chodzi o cenę, szybkość ani łatwość.',
+          ru: 'Bueno — это ПРИЗНАК, общая оценка: «хороший». Не цена и не скорость — просто хорошо это или нет.',
+          uk: 'Bueno — це ОЗНАКА, загальна оцінка: «добрий». Не ціна і не швидкість — просто добре це чи ні.',
+          es: 'Bueno is a QUALITY, a general evaluation: "good." Not price, not speed — just whether something is good.',
+          'pt-BR': 'Bueno é uma QUALIDADE, uma avaliação geral: "bom". Não é preço nem velocidade — só se algo é bom.',
+          vi: 'Bueno là một ĐẶC ĐIỂM, một đánh giá chung: "tốt". Không phải giá cả hay tốc độ — chỉ là tốt hay không.',
+          id: 'Bueno adalah SIFAT, penilaian umum: "baik". Bukan harga atau kecepatan — hanya baik atau tidaknya sesuatu.',
+          tr: 'Bueno bir NİTELİKTİR, genel bir değerlendirme: "iyi". Fiyat ya da hız değil — sadece bir şeyin iyi olup olmadığı.',
+          pl: 'Bueno to CECHA, ogólna ocena: "dobry". Nie cena ani prędkość — tylko czy coś jest dobre.',
         }),
         [
           {
@@ -145,14 +145,14 @@ export const ES_EPISODE_01_SESSION_33_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Bueno пишется шестью буквами: b-u-e-n-o, без тильды. Как и caro/cara, rápido/rápida, это признак с парой на -o/-a: мужской род bueno, женский — buena. Мужская форма всегда заканчивается ровно на -o, без удвоений.',
-          uk: 'Bueno пишеться шістьма літерами: b-u-e-n-o, без тильди. Як і caro/cara, rápido/rápida, це ознака з парою на -o/-a: чоловічий рід bueno, жіночий — buena. Чоловіча форма завжди закінчується рівно на -o, без подвоєнь.',
-          es: 'Bueno is spelled with six letters: b-u-e-n-o, no tilde. Like caro/cara, rápido/rápida, this quality has an -o/-a pair: masculine bueno, feminine buena. The masculine form always ends in exactly one -o, no doubling.',
-          'pt-BR': 'Bueno se escreve com seis letras: b-u-e-n-o, sem til. Assim como caro/cara, rápido/rápida, essa qualidade tem um par -o/-a: masculino bueno, feminino buena. A forma masculina sempre termina em um único -o, sem duplicação.',
-          vi: 'Bueno được viết bằng sáu chữ cái: b-u-e-n-o, không có dấu ngã. Giống như caro/cara, rápido/rápida, đặc điểm này có cặp -o/-a: giống đực là bueno, giống cái là buena. Dạng giống đực luôn kết thúc bằng đúng một -o, không lặp chữ.',
-          id: 'Bueno dieja dengan enam huruf: b-u-e-n-o, tanpa tilde. Seperti caro/cara, rápido/rápida, sifat ini memiliki pasangan -o/-a: maskulin bueno, feminin buena. Bentuk maskulin selalu berakhir dengan tepat satu -o, tanpa penggandaan.',
-          tr: 'Bueno altı harfle yazılır: b-u-e-n-o, tildesiz. Caro/cara, rápido/rápida gibi bu nitelik de bir -o/-a çiftine sahiptir: eril bueno, dişil buena. Eril biçim her zaman tek bir -o ile biter, harf tekrarı olmaz.',
-          pl: 'Bueno pisze się sześcioma literami: b-u-e-n-o, bez tyldy. Podobnie jak caro/cara, rápido/rápida, ta cecha ma parę -o/-a: rodzaj męski bueno, żeński buena. Forma męska zawsze kończy się dokładnie jednym -o, bez podwojenia.',
+          ru: 'Bueno: b-u-e-n-o, без тильды. Пара на -o/-a, как и другие уже знакомые признаки: bueno/buena. Мужская форма кончается ровно на -o, без удвоений.',
+          uk: 'Bueno: b-u-e-n-o, без тильди. Пара на -o/-a, як і інші вже знайомі ознаки: bueno/buena. Чоловіча форма закінчується рівно на -o, без подвоєнь.',
+          es: 'Bueno: b-u-e-n-o, no tilde. An -o/-a pair, like other already-known qualities: bueno/buena. The masculine form ends in exactly one -o, no doubling.',
+          'pt-BR': 'Bueno: b-u-e-n-o, sem til. Um par -o/-a, como outras qualidades já conhecidas: bueno/buena. A forma masculina termina em um único -o, sem duplicação.',
+          vi: 'Bueno: b-u-e-n-o, không dấu ngã. Cặp -o/-a, giống các đặc điểm đã biết: bueno/buena. Dạng giống đực kết thúc bằng đúng một -o, không lặp chữ.',
+          id: 'Bueno: b-u-e-n-o, tanpa tilde. Pasangan -o/-a, seperti sifat lain yang sudah dikenal: bueno/buena. Bentuk maskulin berakhir tepat satu -o, tanpa penggandaan.',
+          tr: 'Bueno: b-u-e-n-o, tildesiz. Diğer bilinen nitelikler gibi bir -o/-a çifti: bueno/buena. Eril biçim tek bir -o ile biter, harf tekrarı olmaz.',
+          pl: 'Bueno: b-u-e-n-o, bez tyldy. Para -o/-a, jak inne już znane cechy: bueno/buena. Forma męska kończy się dokładnie jednym -o, bez podwojenia.',
         }),
         [
           {

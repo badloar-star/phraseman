@@ -354,6 +354,14 @@ export const LESSON1_ES_SESSION_31_MODE_NATIVE_PLAN_ID_V1 =
 // 11 уникальных дистракторов) получает speed_match вместо builder/dictation.
 export const LESSON1_ES_SESSION_32_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s32-mode-native-v1' as const;
+// зачем Глава 5 продолжает те же явные override-планы (владелец, 2026-08-28,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md, сессии 33-40, "Больше признаков"):
+// легаси-сессии этой главы были отклонены владельцем как непригодные
+// ("ЭТИ СЕССИИ НЕПРИГОДНЫ ИХ НАДО ПИСАТЬ С НУЛЯ") именно из-за отсутствия
+// авторского mode-native плана — каждая сессия здесь получает свой явный
+// planId и steps-функцию по тому же шаблону, что и сессии 1-32.
+export const LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s33-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -1259,6 +1267,35 @@ function esSession32ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем эти 17 шагов зеркалят esSession18ModeNativeStepsV1 (владелец,
+// 2026-08-28, сессия 33 "Хорошо или плохо" открывает Главу 5): та же
+// words_then_phrases структура — 3 word-first контакта + 1 доп. интеракция
+// на каждой стадии + speed_match на review-словарь + 10 application-шагов
+// на 15 фраз. phrase_builder/listen_build_dictation только на индексах с
+// ≤8 уникальных дистракторов (0-8, 14); индексы 9/10/12/13 (10+ уникальных)
+// идут только через listen_choose/context_gap_grammar.
+function esSession33ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0], learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1476,14 +1513,18 @@ function phraseSteps(): readonly Lesson1ChoreographyStepV1[] {
 }
 
 function voiceSteps(): readonly Lesson1ChoreographyStepV1[] {
+  // зачем listen_choose вместо sound_contrast (владелец, 2026-08-25,
+  // MODE_NATIVE_AUTHORING_CONTRACT.ru.md §2): sound_contrast снята с
+  // активного authoring и не может назначаться новой learner interaction;
+  // тот же фикс уже применён в esSession07ModeNativeStepsV1 выше.
   const families = [
     'listen_choose',
-    'sound_contrast',
+    'listen_choose',
     'scripted_repeat_compare',
     'scripted_repeat_compare',
     'listen_build_dictation',
     'scripted_repeat_compare',
-    'sound_contrast',
+    'listen_choose',
     'scripted_repeat_compare',
     'listen_choose',
   ] as const;
@@ -1702,6 +1743,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession31ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_32_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession32ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession33ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

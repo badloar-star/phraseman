@@ -7,6 +7,8 @@ import {
 } from './es_episode_01_session_33_intro_v1';
 import { ES_EPISODE_01_SESSION_33_PHRASES } from './es_episode_01_session_33_phrases_v1';
 import { ES_EPISODE_01_SESSION_33_VOCABULARY_V1 } from './es_episode_01_session_33_vocabulary_v1';
+import { ES_EPISODE_01_SESSION_33_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_33_mode_native_v1';
+import { LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 33 «Хорошо или плохо»
@@ -39,6 +41,16 @@ import { ES_EPISODE_01_SESSION_33_VOCABULARY_V1 } from './es_episode_01_session_
  * 'words_then_phrases' — override зафиксирован здесь явно с первого
  * черновика, независимо от того, что стоит в английской карте по тому же
  * номеру.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-28,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): легаси-черновик этой сессии был
+ * отклонён владельцем как непригодный именно из-за отсутствия авторского
+ * интеракционного слоя — ДАННЫЕ (vocabulary/phrases/intro) сохранены без
+ * изменений, добавлен только слой из 17 mode-native practice-шагов.
+ * es_episode_01_session_33_mode_native_v1.ts авторит их все, зеркаля код (не
+ * данные) сессии 18, lesson1SessionChoreographyV1 сверяет их против
+ * esSession33ModeNativeStepsV1() через
+ * LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1.
  */
 export const ES_EPISODE_01_SESSION_33_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -49,6 +61,8 @@ export const ES_EPISODE_01_SESSION_33_SOURCE: SessionSource = Object.freeze({
   generationInputFingerprint: 'owner-word-first-es-e01-s33-v1',
   sessionKindOverride: 'words_then_phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_33_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_33_WORD_FIRST_TITLE,
   summary: ES_EPISODE_01_SESSION_33_WORD_FIRST_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_33_WORD_FIRST_GOAL,

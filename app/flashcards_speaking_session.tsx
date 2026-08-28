@@ -239,9 +239,12 @@ export default function FlashcardsSpeakingSession() {
   });
   const runeFlight = usePracticeRuneFlight();
   useEffect(() => {
-    if (result) void practiceRunes.settle();
+    // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
+    // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
+    // ставит result синхронно на первом рендере, раньше гидратации).
+    if (result && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result]);
+  }, [result, practiceRunes.hydrating]);
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);

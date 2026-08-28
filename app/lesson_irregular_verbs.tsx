@@ -312,14 +312,36 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const [learnedCnt, setLearnedCnt] = useState(0);
   // зачем (владелец, 2026-08-27): dev-режим «Проверка рун» подменяет и очки.
   const [totalPts, setTotalPts] = useState(devFakeStartPoints ?? 0);
+  // зачем (владелец, 2026-08-27): «Начать заново» меняет learnTabKey, из-за
+  // чего React ПЕРЕМОНТИРУЕТ этот компонент целиком (см. key={learnTabKey} у
+  // вызывающего) — обычной гидратации хука при монтировании достаточно,
+  // startNewCompletion() не нужен, в отличие от словаря, где финиш встроен в
+  // тот же неперемонтируемый компонент.
+  // зачем (аудит 2026-08-28): объявлен ВЫШЕ allDone/эффекта settle() ниже —
+  // эффект читает practiceRunes.hydrating в deps, порядок объявления важен.
+  const practiceRunes = usePracticeRunes({
+    activity: 'irregular_verbs',
+    // зачем: irregularVerbsGlobalKey — чистая функция от studyTarget (пропа),
+    // не от переменной ниже — inline вместо ссылки на useMemo, объявленный
+    // позже по файлу (порядок объявления здесь важен, см. комментарий выше).
+    sessionKey: irregularVerbsGlobalKey(studyTarget),
+    completionOrdinal: practiceRunCompletionOrdinal,
+    // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба — настоящий
+    // экран со случайным стартовым счётчиком. Параметр читает родитель.
+    devFakeStartRunes,
+  });
+  const runeFlight = usePracticeRuneFlight();
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
   const [allDone, setAllDone] = useState(devJumpToFinale || verbs.length === 0);
   // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
   // экрана празднования» — здесь это переход allDone false→true.
   useEffect(() => {
-    if (allDone) void practiceRunes.settle();
+    // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
+    // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
+    // ставит allDone=true синхронно на первом рендере, раньше гидратации).
+    if (allDone && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allDone]);
+  }, [allDone, practiceRunes.hydrating]);
   const [userName, setUserName] = useState('');
   const [voiceOut, setVoiceOut] = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
@@ -334,20 +356,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const hadErrorThisVerb = useRef(false);
   // Счётчик ошибок на глагол для тренера (порог: 2 ошибки → активация)
   const irregularStorageKey = useMemo(() => irregularVerbsGlobalKey(studyTarget), [studyTarget]);
-  // зачем (владелец, 2026-08-27): «Начать заново» меняет learnTabKey, из-за
-  // чего React ПЕРЕМОНТИРУЕТ этот компонент целиком (см. key={learnTabKey} у
-  // вызывающего) — обычной гидратации хука при монтировании достаточно,
-  // startNewCompletion() не нужен, в отличие от словаря, где финиш встроен в
-  // тот же неперемонтируемый компонент.
-  const practiceRunes = usePracticeRunes({
-    activity: 'irregular_verbs',
-    sessionKey: irregularStorageKey,
-    completionOrdinal: practiceRunCompletionOrdinal,
-    // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба — настоящий
-    // экран со случайным стартовым счётчиком. Параметр читает родитель.
-    devFakeStartRunes,
-  });
-  const runeFlight = usePracticeRuneFlight();
   // Уже знакомые глаголы тренируем воспроизведением; новые — узнаванием.
   const isRecallVerb = useCallback((base: string): boolean => {
     return (initCounts[base] ?? 0) >= 2;

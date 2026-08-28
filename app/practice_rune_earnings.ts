@@ -88,11 +88,32 @@ const SESSION_KEY_MAX = 72;
  * к тому моменту уже считалась зачтённой. Теперь правило ровно одно и оно
  * совпадает с серверным.
  */
+/** FNV-1a — та же схема, что shortHash в app/app_health.ts, продублирована
+    здесь намеренно (не хотим завязывать копилку рун на модуль диагностики). */
+function fnv1aBase36(input: string): string {
+  let h = 2166136261;
+  for (let i = 0; i < input.length; i += 1) {
+    h ^= input.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0).toString(36);
+}
+
+/**
+ * зачем (аудит 2026-08-28): простое .slice(0, 72) обрезало ХВОСТ ключа —
+ * для контент-хэшированных ключей (отработка ошибок, тренировка карточек по
+ * многим наборам) именно хвост нёс уникальность. Две разные сессии,
+ * совпадающие первыми 72 символами, схлопывались в один ключ: вторая
+ * сессия читала чужую («уже кредитовано») копилку с диска, руны за
+ * реально новые ответы не начислялись, а зачёт отклонялся сервером как
+ * дублирующая расписка. Хвост заменяем коротким хэшем от полной строки —
+ * тот же префикс для читаемости в логах, но коллизия исключена.
+ */
 function normalizeSessionKey(value: string): string {
-  return value
-    .trim()
-    .replace(/[^A-Za-z0-9_-]/g, '_')
-    .slice(0, SESSION_KEY_MAX);
+  const cleaned = value.trim().replace(/[^A-Za-z0-9_-]/g, '_');
+  if (cleaned.length <= SESSION_KEY_MAX) return cleaned;
+  const suffix = `_${fnv1aBase36(cleaned)}`;
+  return cleaned.slice(0, SESSION_KEY_MAX - suffix.length) + suffix;
 }
 
 /**

@@ -2810,9 +2810,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   // а не вызов в местах, где ставится setAllDone(true): таких мест два, и
   // подписка на сам переход надёжнее дублирования вызова в обоих.
   useEffect(() => {
-    if (allDone) void practiceRunes.settle();
+    // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
+    // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
+    // ставит allDone=true синхронно на первом рендере, раньше гидратации).
+    if (allDone && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allDone]);
+  }, [allDone, practiceRunes.hydrating]);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);

@@ -367,9 +367,12 @@ function MistakePracticeSessionScreen() {
   });
   const runeFlight = usePracticeRuneFlight();
   useEffect(() => {
-    if (complete) void practiceRunes.settle();
+    // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
+    // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
+    // ставит complete=true синхронно на первом рендере, раньше гидратации).
+    if (complete && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [complete]);
+  }, [complete, practiceRunes.hydrating]);
   const [submitting, setSubmitting] = useState(false);
   const [speechHeld, setSpeechHeld] = useState(false);
   const [speechRecovery, setSpeechRecovery] = useState<string | null>(null);

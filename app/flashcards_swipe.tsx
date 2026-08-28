@@ -2270,9 +2270,12 @@ function FlashcardsSwipeScreen() {
   // «Руны засчитываются, когда игрок дошёл до экрана празднования»
   // (владелец, 2026-08-27) — здесь это переход done false→true.
   useEffect(() => {
-    if (done) void practiceRunes.settle();
+    // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
+    // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
+    // ставит done=true синхронно на первом рендере, раньше гидратации).
+    if (done && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [done]);
+  }, [done, practiceRunes.hydrating]);
 
   useEffect(() => {
     if (phase !== 'play' || trainingCards.length === 0) return;

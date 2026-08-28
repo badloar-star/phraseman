@@ -54,14 +54,14 @@ export const ES_EPISODE_01_SESSION_26_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Rápidos звучит как rápido с добавленным звуком -s в самом конце — ударение остаётся на том же слоге, RÁ-pi-dos, три слога плюс лёгкое шипение на конце. Это ровно тот же признак, что и в сессии про rápido, просто с дополнительным звуком.',
-          uk: 'Rápidos звучить як rápido з доданим звуком -s наприкінці — наголос лишається на тому самому складі, RÁ-pi-dos, три склади плюс легке шипіння наприкінці. Це рівно та сама ознака, що й rápido, просто з додатковим звуком.',
-          es: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos, the same three syllables plus a light hiss at the end.',
-          'pt-BR': 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos, the same three syllables plus a light hiss at the end.',
-          vi: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos, the same three syllables plus a light hiss at the end.',
-          id: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos, the same three syllables plus a light hiss at the end.',
-          tr: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos, the same three syllables plus a light hiss at the end.',
-          pl: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos, the same three syllables plus a light hiss at the end.',
+          ru: 'Rápidos звучит как rápido с добавленным звуком -s в самом конце — ударение остаётся на том же слоге, RÁ-pi-dos.',
+          uk: 'Rápidos звучить як rápido з доданим звуком -s наприкінці — наголос лишається на тому самому складі, RÁ-pi-dos.',
+          es: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos.',
+          'pt-BR': 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos.',
+          vi: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos.',
+          id: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos.',
+          tr: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos.',
+          pl: 'Rápidos sounds like rápido with an added -s sound at the very end — the stress stays on the same syllable, RÁ-pi-dos.',
         }),
         [
           {
@@ -142,14 +142,14 @@ export const ES_EPISODE_01_SESSION_26_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Rápidos пишется как rápido плюс одна буква -s в конце: r-á-p-i-d-o-s. Гласная концовка -o получает простое -s во множественном числе — так же работает bonito → bonitos, barato → baratos. Женский род пишется rápidas, той же схемой: -a плюс -s.',
-          uk: 'Rápidos пишеться як rápido плюс одна літера -s наприкінці: r-á-p-i-d-o-s. Голосна концовка -o отримує просте -s у множині — так само працює bonito → bonitos, barato → baratos. Жіночий рід пишеться rápidas, тією ж схемою: -a плюс -s.',
-          es: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The vowel ending -o simply gets -s in the plural — the same way bonito → bonitos, barato → baratos work. The feminine is spelled rápidas, by the same scheme: -a plus -s.',
-          'pt-BR': 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The vowel ending -o simply gets -s in the plural — the same way bonito → bonitos, barato → baratos work. The feminine is spelled rápidas, by the same scheme: -a plus -s.',
-          vi: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The vowel ending -o simply gets -s in the plural — the same way bonito → bonitos, barato → baratos work. The feminine is spelled rápidas, by the same scheme: -a plus -s.',
-          id: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The vowel ending -o simply gets -s in the plural — the same way bonito → bonitos, barato → baratos work. The feminine is spelled rápidas, by the same scheme: -a plus -s.',
-          tr: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The vowel ending -o simply gets -s in the plural — the same way bonito → bonitos, barato → baratos work. The feminine is spelled rápidas, by the same scheme: -a plus -s.',
-          pl: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The vowel ending -o simply gets -s in the plural — the same way bonito → bonitos, barato → baratos work. The feminine is spelled rápidas, by the same scheme: -a plus -s.',
+          ru: 'Rápidos пишется как rápido плюс одна буква -s в конце: r-á-p-i-d-o-s. Женский род пишется rápidas, той же схемой.',
+          uk: 'Rápidos пишеться як rápido плюс одна літера -s наприкінці: r-á-p-i-d-o-s. Жіночий рід пишеться rápidas, тією ж схемою.',
+          es: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The feminine is spelled rápidas, by the same scheme.',
+          'pt-BR': 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The feminine is spelled rápidas, by the same scheme.',
+          vi: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The feminine is spelled rápidas, by the same scheme.',
+          id: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The feminine is spelled rápidas, by the same scheme.',
+          tr: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The feminine is spelled rápidas, by the same scheme.',
+          pl: 'Rápidos is spelled as rápido plus one letter -s at the end: r-á-p-i-d-o-s. The feminine is spelled rápidas, by the same scheme.',
         }),
         [
           {

@@ -275,6 +275,19 @@ export const LESSON1_ES_SESSION_24_MODE_NATIVE_PLAN_ID_V1 =
 // es_episode_01_session_25_mode_native_v1.ts).
 export const LESSON1_ES_SESSION_25_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s25-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 26 (владелец, 2026-08-28,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md, Глава 4 "Мы и они"): сессия 26
+// вводит одно новое слово (rápidos, sourceVocabularyIndex 0 — единственная
+// запись в ES_EPISODE_01_SESSION_26_VOCABULARY_V1) — форма множественного
+// числа уже известного rápido, впервые признак согласуется сразу по двум
+// осям (род + число). esSession26ModeNativeStepsV1 зеркалит структуру
+// esSession18ModeNativeStepsV1 (words_then_phrases, 3 word-first контакта +
+// доп. интеракции + speed_match + application-шаги), но с 15 короткими
+// application-фразами этой сессии — только индекс 12 (No somos fáciles, de
+// acuerdo) даёт >8 уникальных дистракторов и не используется в
+// phrase_builder/listen_build_dictation.
+export const LESSON1_ES_SESSION_26_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s26-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -993,6 +1006,37 @@ function esSession25ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем именно эта раскладка 17 шагов (владелец, 2026-08-28, зеркало
+// es_episode_01_session_18_mode_native_v1.ts по структуре
+// words_then_phrases): 3 word-first контакта (recognize/retrieve_meaning/
+// build_form) + доп. интеракция другой family на каждой стадии, speed_match
+// на review-словарь (rápido/bonito × род/число), десять application-шагов
+// на 15 фраз — phrase_builder/listen_build_dictation только там, где ≤8
+// уникальных дистракторов (все индексы, кроме 12). Каждый шаг зеркально
+// совпадает по family/purpose/learningStage/индексу с
+// es_episode_01_session_26_mode_native_v1.ts — сверка идёт позиционно.
+function esSession26ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0], learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'apply_in_phrase' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1422,6 +1466,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession24ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_25_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession25ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_26_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession26ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

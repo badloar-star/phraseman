@@ -779,8 +779,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         </Animated.View>
       )}
 
-      {/* ── Top card area ── источник полёта рун (владелец, 2026-08-27) */}
-      <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
+      {/* ── Top card area ── */}
+      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
 
         {/* Progress counter */}
         <View style={{ marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
@@ -815,8 +815,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           </View>
         </View>
 
-        {/* Card */}
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
+        {/* Card ── источник полёта рун (владелец, 2026-08-27) */}
+        <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
           {/* Form badge */}
           <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 0, borderColor: meta.color + '60' }}>
             <Text style={{ color: meta.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.4 }}>{meta.label}</Text>

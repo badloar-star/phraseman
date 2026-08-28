@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { GroupMember, getWeekId } from './league_engine';
+import { CLUBS, GroupMember, getWeekId } from './league_engine';
 // зачем (владелец, 2026-08-26: «весь раздел лига переходит на руны, никакого
 // ХП, только руны»): очки лиги больше не берутся из общего недельного счётчика
 // опыта — у лиги свой источник, руны за ISO-неделю (см. league_week_runes.ts).
@@ -865,7 +865,29 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
         const uid = await ensureAnonUser();
         if (!db || !uid) return;
         const lb = await db.collection(COL_LB).doc(uid).get();
-        const lid = normLeagueIdData(lb.exists ? lb.data()?.leagueId : undefined, leagueId);
+        // зачем (владелец, 2026-08-28: «минут пять назад Цель лиги поменялась с
+        // медной на эфирную»): между чтением leagueRaw в начале функции и этой
+        // записью успевают отработать четыре await (руны, группа, ensureAnonUser,
+        // чтение leaderboard). За это время ролловер league_engine или экран
+        // клуба уже могли записать НАСТОЯЩЕЕ состояние — и мы затирали его
+        // снимком, собранным из устаревшего leagueRaw. Отсюда и подмена лиги
+        // «сама собой» через несколько минут после запуска. Ветка задумана
+        // только под ПЕРВЫЙ запуск (локального состояния нет), поэтому
+        // перечитываем ключ непосредственно перед записью и уступаем дорогу.
+        // Событие НЕ шлём: мы ничего не записали, а победившая сторона
+        // (ролловер/восстановление из облака) уже сообщила о себе сама —
+        // лишний перечит состояния на старте Главной ничего не даёт.
+        const freshLocalRaw = await AsyncStorage.getItem(LEAGUE_STATE_V3_KEY);
+        if (freshLocalRaw && freshLocalRaw.trim()) return;
+        // зачем: leagueId из leaderboard приходит как есть — normLeagueIdData
+        // не ограничивает диапазон, и мусорный/чужой номер (например 10 при
+        // медной лиге 0) прописывался в состояние, минуя capLeagueStep. Здесь
+        // мы НЕ решаем исход недели — это делает ролловер league_engine, — а
+        // лишь берём стартовый снимок, поэтому достаточно удержать номер в
+        // границах существующих лиг; всё за их пределами читаем как «не знаю»
+        // и остаёмся на лиге из локального расчёта.
+        const rawLid = normLeagueIdData(lb.exists ? lb.data()?.leagueId : undefined, leagueId);
+        const lid = rawLid >= 0 && rawLid < CLUBS.length ? rawLid : leagueId;
         await AsyncStorage.setItem(
           LEAGUE_STATE_V3_KEY,
           JSON.stringify({ leagueId: lid, weekId, group }),

@@ -38,10 +38,12 @@ The catalog is the only main scrolling surface. There is no nested vertical scro
 
 ### Yin/Yang control
 
-The Avatar section shows a two-option segmented control directly below the try-on stage:
+The Avatar section shows a two-option segmented control directly below the try-on stage. Its only visible labels are:
 
-- `Инь · чёрный` with the supporting label `цена в рунах`.
-- `Янь · светлый` with the supporting label `цена в жемчуге`.
+- `Инь`.
+- `Янь`.
+
+The control must not show the words `чёрный`, `светлый`, `цена в рунах`, or `цена в жемчуге`, and it has no supporting subtitle. Currency is communicated by the canonical currency icon and amount on the selected tile and confirmation action.
 
 Changing this control updates every visible avatar tile, the fixed preview, price icon, price number, and editor default. The control is not shown in the Aura section because auras keep their existing pearl pricing.
 
@@ -61,7 +63,7 @@ Pressing the bottom `Настроить аватар` action opens the existing 
 
 1. A large live preview.
 2. Background choices.
-3. The same Yin/Yang control.
+3. The same two-button control labeled only `Инь` and `Янь`.
 4. One bottom confirmation action.
 
 The confirmation action is resolved from ownership and style state:
@@ -165,7 +167,7 @@ Before implementation completion, inspect the actual persistence path used by th
 
 - All interactive targets are at least 44 by 44 points.
 - Avatar/Aura and Yin/Yang controls expose tab or selected state, not color alone.
-- Price labels include the currency name in accessibility text.
+- Price labels and the two Yin/Yang buttons include the full side and currency meaning in accessibility text even though the visible button labels remain only `Инь` and `Янь`.
 - The fixed stage and catalog remain usable at 320-point width and on short screens.
 - Try-on transitions use opacity/transform only, last 150–300 ms, and honor reduced-motion preferences.
 - Bright lime/green filled actions use dark foreground according to the project contrast rule.
@@ -179,7 +181,7 @@ Focused tests must cover:
 3. Aura price and gating are unchanged.
 4. Tile tap performs preview only and resolves the bottom action to `Настроить аватар`.
 5. The preview action is absent from the hero.
-6. Editor confirmation labels and currency change with Yin/Yang.
+6. The only visible side-control labels are `Инь` and `Янь`; editor confirmation currency and amount still change with the selection.
 7. Exact owned style applies for free.
 8. Yang restyle costs 25 pearls; Yin restyle costs 2,000 runes.
 9. Initial rune purchase and rune restyle are durable composite operations with exact grants.

@@ -1,6 +1,7 @@
 import {
   applyProgressEvent,
   buildMigrationPatch,
+  buildProgressBaseline,
   canonicalProgressEventSemantics,
   candidateHasSameProgressSemantics,
   fingerprintProgressEvent,
@@ -597,5 +598,41 @@ describe('progress_events engine', () => {
       const result = applyProgressEvent({}, finalEvent, now, { examAttemptsToday: 5 });
       expect(result.xpDelta).toBe(10000);
     });
+  });
+});
+
+describe('buildProgressBaseline — теневой стрик не занижает цепочку', () => {
+  const now = new Date('2026-08-28T10:00:00.000Z');
+
+  // зачем (владелец, 2026-08-28: «у меня 137 дней цепочка, а не 93»): пути, не
+  // ведущие стрик (награда за друга, арена), обновляют progressServerState со
+  // свежей датой и УСТАРЕВШИМ streakCount. Раньше он брался вслепую и обрезал
+  // честную цепочку. Правило зеркалит клиентское mergeStreakByActivityDate.
+  it('keeps the local streak when the shadow date is one day fresher', () => {
+    const baseline = buildProgressBaseline(
+      { streak_count: '137', last_active_date: '2026-08-27' },
+      { streakCount: 93, lastActiveDate: '2026-08-28' },
+      now,
+    );
+    expect(baseline.streak_count).toBe('137');
+    expect(baseline.last_active_date).toBe('2026-08-28');
+  });
+
+  it('still burns a genuinely broken streak when the gap is two days or more', () => {
+    const baseline = buildProgressBaseline(
+      { streak_count: '137', last_active_date: '2026-08-20' },
+      { streakCount: 2, lastActiveDate: '2026-08-28' },
+      now,
+    );
+    expect(baseline.streak_count).toBe('2');
+  });
+
+  it('takes the shadow streak when there is no local activity date', () => {
+    const baseline = buildProgressBaseline(
+      { streak_count: '137' },
+      { streakCount: 4, lastActiveDate: '2026-08-28' },
+      now,
+    );
+    expect(baseline.streak_count).toBe('4');
   });
 });

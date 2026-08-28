@@ -310,7 +310,22 @@ export function buildProgressBaseline(
   let streakCount = progressStreak;
   if (shadowLast && (!progressLast || shadowLast > progressLast)) {
     lastActiveDate = shadowLast;
-    streakCount = shadowStreak;
+    // зачем (владелец, 2026-08-28: «у меня 137 дней цепочка, а не 93»): теневое
+    // состояние обновляют и пути, которые НЕ ведут стрик (награда за друга,
+    // арена — они пишут progressServerState со своим totalXp и свежей датой,
+    // унося устаревший streakCount). Раньше его счётчик брался вслепую вместе с
+    // датой, и честная цепочка обрезалась до отставшего снимка.
+    //
+    // Правило то же, что уже действует на клиенте (app/streak_safety.ts,
+    // mergeStreakByActivityDate): при разрыве в один день свежая сторона —
+    // продолжение ТОЙ ЖЕ цепочки, и меньшее значение означает потерю данных, а
+    // не сгорание, поэтому берём максимум. При разрыве в два дня и больше
+    // цепочка обязана быть сгоревшей — там побеждает счётчик свежей стороны,
+    // иначе сгоревший стрик воскресал бы из устаревшего снимка.
+    const gapDays = progressLast ? dayDiff(shadowLast, progressLast) : null;
+    streakCount = gapDays != null && gapDays <= 1
+      ? Math.max(progressStreak, shadowStreak)
+      : shadowStreak;
   } else if (shadowLast && shadowLast === progressLast) {
     streakCount = Math.max(progressStreak, shadowStreak);
   }

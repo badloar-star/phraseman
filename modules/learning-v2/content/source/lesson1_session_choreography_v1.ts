@@ -299,6 +299,16 @@ export const LESSON1_ES_SESSION_26_MODE_NATIVE_PLAN_ID_V1 =
 // комментарий в es_episode_01_session_27_mode_native_v1.ts).
 export const LESSON1_ES_SESSION_27_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s27-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 28 (владелец, 2026-08-28,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md, Глава 4 "Мы и они"): сессия 28 не
+// вводит новых слов формально (числительные dos/tres — обычные позиционные
+// токены, как раньше артикли/союзы) — тот же класс, что сессии 10/11/13/
+// 17/19/20/25/27 (kind: 'phrases'), учит number_with_ser (ser + число) через
+// 15 фраз. Все фразы укладываются в 8-дистракторный предел, поэтому
+// esSession28ModeNativeStepsV1 свободно использует phrase_builder/
+// listen_build_dictation на всех индексах.
+export const LESSON1_ES_SESSION_28_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s28-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -1074,6 +1084,30 @@ function esSession27ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем именно эта раскладка 12 шагов на индексах 3-14 (владелец,
+// 2026-08-28, зеркало es_episode_01_session_17/19/20_mode_native_v1.ts по
+// общей форме kind: 'phrases'): все 15 фраз укладываются в 8-дистракторный
+// предел, поэтому phrase_builder/listen_build_dictation используются
+// свободно; context_gap_grammar проверяет ПОСЛЕДНЕЕ слово (число dos/tres) —
+// ядро темы сессии. Каждый шаг зеркально совпадает по family/purpose/
+// learningStage/sourcePhraseIndex с es_episode_01_session_28_mode_native_v1.ts.
+function esSession28ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'supported_practice', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'apply_in_phrase' },
+    { family: 'speed_match', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 10, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 13, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1507,6 +1541,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession26ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_27_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession27ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_28_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession28ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

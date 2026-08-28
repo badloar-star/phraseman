@@ -362,6 +362,14 @@ export const LESSON1_ES_SESSION_32_MODE_NATIVE_PLAN_ID_V1 =
 // planId и steps-функцию по тому же шаблону, что и сессии 1-32.
 export const LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s33-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 34 (владелец, 2026-08-28,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md, Глава 5 "Больше признаков",
+// продолжение после 33): легаси-черновика для сессий 34-40 на диске не
+// было вовсе (проверено grep — единственный найденный набор
+// episode_01_session_34..40_*.ts принадлежит английскому треку), сессия
+// написана с нуля по образцу КОДА (не данных) сессии 33.
+export const LESSON1_ES_SESSION_34_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s34-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -1296,6 +1304,36 @@ function esSession33ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем эти 17 шагов зеркалят esSession33ModeNativeStepsV1 (владелец,
+// 2026-08-28, сессия 34 "Одинаковое и разное", написана с нуля — легаси-
+// черновика не было): та же words_then_phrases структура — 3 word-first
+// контакта + 1 доп. интеракция на каждой стадии + speed_match на
+// review-словарь + 10 application-шагов на 15 фраз. phrase_builder/
+// listen_build_dictation только на индексах с ≤8 уникальных дистракторов
+// (0-8, 13, 14); индексы 9-12 (10 уникальных) идут только через
+// listen_choose/context_gap_grammar.
+function esSession34ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0], learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 7, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 9, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 11, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 12, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 8, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 14, learningStage: 'apply_in_phrase' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1745,6 +1783,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession32ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_33_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession33ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_34_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession34ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

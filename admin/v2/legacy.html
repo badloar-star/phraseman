@@ -5573,11 +5573,16 @@ body[data-admin-skin="onboarding"] #uid-lookup {
         overscroll-behavior:contain;
         scrollbar-gutter:stable;
       }
-      body.pm-v4-ready .pm-v4-page.active:not(.pm-page):not(#tab-analytics) {
+      /* зачем: встроенные разделы (iframe) прокручиваются ВНУТРИ рамки, поэтому
+         они относятся к колонкам-без-прокрутки, как .pm-page и аналитика. Без
+         этого исключения им доставался display:block, flex не включался, и
+         рамка сжималась в узкую полосу при пустом экране снизу. */
+      body.pm-v4-ready .pm-v4-page.active:not(.pm-page):not(#tab-analytics):not(.pm-v9-embedded-page) {
         display:block!important;
         overflow:auto!important;
       }
       body.pm-v4-ready .pm-v4-page.pm-page.active,
+      body.pm-v4-ready .pm-v4-page.pm-v9-embedded-page.active,
       body.pm-v4-ready #tab-analytics.pm-v4-page.active {
         display:flex!important;
         flex-direction:column;
@@ -6913,6 +6918,12 @@ body.pm-v9-ready *,body.pm-v9-ready *::before,body.pm-v9-ready *::after{box-sizi
     overflow-y:auto!important;
     scrollbar-gutter:stable;
   }
+  /* зачем: встроенный раздел прокручивается сам, внутри рамки. Вторая прокрутка
+     на странице отбирала у рамки высоту и оставляла пустоту снизу. */
+  body.pm-v9-ready .pm-v4-page.pm-v9-embedded-page.active{
+    overflow-y:hidden!important;
+    scrollbar-gutter:auto;
+  }
 }
 
 body.pm-v9-ready .pm-v4-page{padding:10px 12px 18px!important;}
@@ -7014,8 +7025,16 @@ body.pm-v9-ready #onboarding-source-grid .table-wrap{max-height:260px!important;
 
 /* Same-shell embedded tools. */
 body.pm-v9-ready .pm-v9-embedded-page.active{display:flex!important;flex-direction:column!important;overflow:hidden!important;}
+/* зачем: у встроенных разделов прокручивается САМА рамка. Общее правило
+   .pm-v4-page.active навешивало странице вторую прокрутку и отдавало рамке
+   лишь остаток высоты — таблица заказов сжималась в узкую полосу, а под ней
+   пустовал экран. Здесь высоту забирает рамка, прокрутка ровно одна. */
+@media(min-width:769px){
+  body.pm-v9-ready .pm-v4-page.pm-v9-embedded-page.active{overflow:hidden!important;padding-bottom:10px!important;}
+  body.pm-v9-ready .pm-v4-page.pm-v9-embedded-page.active .pm-v9-embedded-shell{flex:1 1 auto!important;min-height:420px;}
+}
 .pm-v9-embedded-status{flex:0 0 auto;min-height:24px;padding:4px 0 7px;color:var(--pm9-muted);font-size:11.5px;}
-.pm-v9-embedded-shell{flex:1 1 auto;min-height:0;width:100%;overflow:hidden;border:1px solid var(--pm9-border);border-radius:8px;background:var(--pm9-surface);}
+.pm-v9-embedded-shell{flex:1 1 auto;min-height:0;width:100%;overflow:hidden;border-radius:10px;background:var(--pm9-surface);box-shadow:0 1px 2px rgba(0,0,0,.28),0 8px 24px -16px rgba(0,0,0,.55);}
 .pm-v9-embedded-shell iframe{display:block;width:100%!important;height:100%!important;min-height:0;border:0;background:var(--pm9-bg);}
 
 /* Apple Notes-inspired Jarvis plans: list on the left, full note on the right. */
@@ -12021,6 +12040,11 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-collectibles_enabled" class="cp-toggle" onchange="saveControlPanelBool('collectibles_enabled', this.checked)" disabled/><span id="cp-bool-label-collectibles_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
+        <div class="cp-switch-ico">🛡</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Диагностика обращений</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Локальная безопасная история; отправляется только вместе с обращением пользователя.</div></div>
+        <label title="Аварийно отключает запись и прикрепление новых диагностических событий" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-support_diagnostics_enabled" class="cp-toggle" onchange="saveControlPanelBool('support_diagnostics_enabled', this.checked)" disabled/><span id="cp-bool-label-support_diagnostics_enabled" class="cp-bool-chip">…</span></label>
+      </div>
+      <div class="cp-switch-row">
         <div class="cp-switch-ico">🧒</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">«Объясни как для 5-летнего»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Кнопка объяснения фразы (платный ИИ).</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-explain_enabled" class="cp-toggle" onchange="saveControlPanelBool('explain_enabled', this.checked)" disabled/><span id="cp-bool-label-explain_enabled" class="cp-bool-chip">…</span></label>
@@ -12860,16 +12884,14 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
 <!-- Embedded legacy tools: remain in the single live admin shell. -->
 <div id="tab-beta-testers" class="reports-tab pm-v4-page pm-v9-embedded-page" data-pm-v4-section="beta-testers">
-  <div class="pm-v4-section-header" data-pm-v4-header="beta-testers"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Бета-тестеры</h2><div class="pm-v4-section-sub">Список тестеров, ауры, Plus и энергия без ухода из админки.</div></div></div>
-  <div class="pm-v9-source-notice">Встроенный список показывает не более 300 найденных тестеров; старые записи здесь не ищутся.</div>
-  <div class="pm-v9-embedded-status" id="pm-v9-beta-testers-status" role="status">Раздел загрузится при открытии.</div>
+  <div class="pm-v4-section-header" data-pm-v4-header="beta-testers"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Бета-тестеры</h2></div></div>
+  <div class="pm-v9-embedded-status" id="pm-v9-beta-testers-status" role="status" title="Список показывает не более 300 найденных тестеров; старые записи здесь не ищутся.">Раздел загрузится при открытии.</div>
   <div class="pm-v9-embedded-shell"><iframe id="pm-v9-beta-testers-frame" data-src="beta_testers.html" title="Бета-тестеры PhraseMan" loading="lazy"></iframe></div>
 </div>
 
 <div id="tab-site-admin" class="reports-tab pm-v4-page pm-v9-embedded-page" data-pm-v4-section="site-admin">
-  <div class="pm-v4-section-header" data-pm-v4-header="site-admin"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Сайт и веб-оплаты</h2><div class="pm-v4-section-sub">Цены, заказы Stripe/PayPal, коды активации и веб-воронка без отдельного окна.</div></div></div>
-  <div class="pm-v9-source-notice" role="status">Встроенная панель показывает не более 100 веб-заказов и 50 Telegram-заказов; старые записи здесь не ищутся.</div>
-  <div class="pm-v9-embedded-status" id="pm-v9-site-admin-status" role="status">Раздел загрузится при открытии.</div>
+  <div class="pm-v4-section-header" data-pm-v4-header="site-admin"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Сайт и веб-оплаты</h2></div></div>
+  <div class="pm-v9-embedded-status" id="pm-v9-site-admin-status" role="status" title="Панель показывает не более 100 веб-заказов и 50 Telegram-заказов; старые записи здесь не ищутся.">Раздел загрузится при открытии.</div>
   <div class="pm-v9-embedded-shell"><iframe id="pm-v9-site-admin-frame" data-src="site.html" title="Сайт и веб-оплаты PhraseMan" loading="lazy"></iframe></div>
 </div>
 
@@ -15434,7 +15456,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
      опубликовать одобренные, увидеть готовность раундов и включить слоты. Публикация только вручную:
      ни одно задание не уходит игрокам без явного «Опубликовать». -->
 <div id="tab-tournament-pool" class="reports-tab pm-v4-page pm-v9-embedded-page" data-pm-v4-section="tournament-pool">
-  <div class="pm-v4-section-header" data-pm-v4-header="tournament-pool"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Пул турниров</h2><div class="pm-v4-section-sub">Одобренные задания и распределение по режимам без отдельного окна.</div></div></div>
+  <div class="pm-v4-section-header" data-pm-v4-header="tournament-pool"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Пул турниров</h2></div></div>
   <div class="pm-v9-embedded-status" id="pm-v9-tournament-pool-status" role="status">Раздел загрузится при открытии.</div>
   <div class="pm-v9-embedded-shell"><iframe id="pm-v9-tournament-pool-frame" data-src="tournament_pool.html" title="Пул турниров PhraseMan" loading="lazy"></iframe></div>
 </div>
@@ -25569,7 +25591,11 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       text = btn.dataset.copy || '';
     }
     navigator.clipboard.writeText(text)
-      .then(() => { btn.textContent='✅ скопировано'; setTimeout(()=>btn.textContent='📋 копировать для grep',1500); })
+      .then(() => {
+        const originalLabel = btn.textContent;
+        btn.textContent='✅ скопировано';
+        setTimeout(()=>btn.textContent=originalLabel,1500);
+      })
       .catch(()=> { showToast('Не удалось скопировать: ' + text.slice(0,40), 'warn'); });
   });
 
@@ -25629,6 +25655,57 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     });
   })();
 
+  function normalizeSupportDiagnostics(value) {
+    const EVENT_NAMES = new Set(['navigation','app_state','support_report','customization_purchase','customization_apply','account_delete','auth_transition','feature_action']);
+    const RESULTS = new Set(['start','success','blocked','error','info']);
+    const SUBJECTS = new Set(['avatar','aura','account','report','app']);
+    const REASONS = new Set(['account_changed','insufficient_currency','transaction_failed','selection_failed','locally_cleared','server_enqueued','quarantine_retained','queued','direct_fallback','foreground','background','inactive']);
+    if (!value || typeof value !== 'object' || Array.isArray(value) || value.version !== 1 || !Array.isArray(value.events)) return null;
+    const capturedAtMs = Number(value.capturedAtMs);
+    const events = value.events.flatMap(raw => {
+      if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return [];
+      const atMs = Number(raw.atMs);
+      if (!Number.isSafeInteger(atMs) || atMs <= 0 || !EVENT_NAMES.has(raw.event)) return [];
+      const event = { atMs, event: raw.event };
+      const screen = typeof raw.screen === 'string' ? raw.screen.trim().slice(0,96) : '';
+      const screenIsOpaqueIdentity = /(?:^|\/)[A-Za-z0-9]{20,}(?:\/|$)/.test(screen)
+        || /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i.test(screen);
+      if (screen && /^[/a-zA-Z0-9_().\-[\]]+$/.test(screen) && !screenIsOpaqueIdentity) event.screen = screen;
+      if (RESULTS.has(raw.result)) event.result = raw.result;
+      if (REASONS.has(raw.reason)) event.reason = raw.reason;
+      if (SUBJECTS.has(raw.subject)) event.subject = raw.subject;
+      const action = typeof raw.action === 'string' ? raw.action.trim().slice(0,80) : '';
+      const actionIsOpaqueIdentity = /(?:^|[:._-])[A-Za-z0-9]{20,}(?:$|[:._-])/.test(action)
+        || /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i.test(action);
+      if (/^[a-zA-Z][a-zA-Z0-9_.:-]{0,79}$/.test(action) && !actionIsOpaqueIdentity) event.action = action;
+      const durationMs = Number(raw.durationMs);
+      if (Number.isFinite(durationMs) && durationMs >= 0) event.durationMs = Math.min(Math.round(durationMs), 86400000);
+      return [event];
+    }).sort((a,b) => a.atMs - b.atMs).slice(-200);
+    if (!events.length) return null;
+    return { version:1, capturedAtMs:Number.isSafeInteger(capturedAtMs) ? capturedAtMs : events[events.length-1].atMs, events };
+  }
+
+  function renderSupportDiagnostics(value) {
+    const bundle = normalizeSupportDiagnostics(value);
+    if (!bundle) return '';
+    const copyEncoded = btoa(unescape(encodeURIComponent(JSON.stringify(bundle, null, 2))));
+    const rows = bundle.events.map(event => {
+      const time = new Date(event.atMs).toLocaleTimeString(ADMIN_DATE_LOCALE, { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+      const parts = [event.event, event.action, event.result, event.subject, event.reason, event.screen].filter(Boolean).map(part => escapeHtml(String(part)));
+      const duration = event.durationMs != null ? ` · ${escapeHtml(String(event.durationMs))} мс` : '';
+      return `<li style="display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-bottom:1px solid #262238;line-height:1.35"><time style="color:#777;white-space:nowrap">${escapeHtml(time)}</time><span style="color:#d8d2ee;overflow-wrap:anywhere">${parts.join(' · ')}${duration}</span></li>`;
+    }).join('');
+    return `<details class="support-diagnostics" style="margin-top:10px;padding:9px 11px;background:#171421;border:1px solid #332c48;border-radius:9px">
+      <summary title="Безопасная техническая последовательность, которую пользователь явно приложил к обращению" style="cursor:pointer;color:#bba9e8;font-size:12px;font-weight:800;outline-offset:4px">🛡 Диагностика перед ошибкой · ${bundle.events.length}</summary>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <span style="color:#777;font-size:10px">Только разрешённые технические события, без текста сообщений и платёжных данных.</span>
+        <button type="button" class="copy-btn" data-copy-b64="${copyEncoded}" title="Скопировать только безопасный диагностический JSON" aria-label="Скопировать безопасный диагностический JSON" style="min-height:32px">📋 JSON</button>
+      </div>
+      <ol style="list-style:none;margin:7px 0 0;padding:0;font-size:11px">${rows}</ol>
+    </details>`;
+  }
+
   function renderReports(reports) {
     const list = document.getElementById('reports-list');
     const totalLoaded = _allReports.length;
@@ -25656,6 +25733,8 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const textLines = safeText.split('\n').filter(l=>l.trim());
       const answerRaw = String(r.userAnswer || r.user_answer || r.answer || '').trim();
       const userAnswerHtml = answerRaw ? escapeHtml(answerRaw) : '';
+      const normalizedDiagnostics = normalizeSupportDiagnostics(r.diagnostics);
+      const diagnosticsHtml = normalizedDiagnostics ? renderSupportDiagnostics(normalizedDiagnostics) : '';
 
       // device block
       const deviceOS = r.deviceOS ? escapeHtml(`${r.deviceOS} ${r.deviceOSVersion || ''}`.trim()) : null;
@@ -25672,7 +25751,10 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const userLang = r.userLanguage || null;
 
       // copy text: prefer stored copyText, then use raw fields (not HTML)
-      const copyRaw = r.copyText || r.dataId || r.context || '';
+      const diagnosticsCopyText = normalizedDiagnostics
+        ? `\n\n--- безопасная диагностика перед ошибкой ---\n${JSON.stringify(normalizedDiagnostics, null, 2)}`
+        : '';
+      const copyRaw = `${r.copyText || r.dataId || r.context || ''}${diagnosticsCopyText}`;
       const copyEncoded = btoa(unescape(encodeURIComponent(copyRaw)));
 
       return `
@@ -25708,6 +25790,8 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
             ${r.comment ? `<div class="report-comment" style="margin-top:6px">💬 ${escapeHtml(r.comment)}</div>` : ''}
 
+            ${diagnosticsHtml}
+
             ${renderPreparedReplyBox(r)}
 
             <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;font-size:11px">
@@ -25740,9 +25824,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
               <button type="button" class="btn-delete" data-report-id="${encodeURIComponent(String(r.id))}">🗑 Удалить</button>
               ${uidRaw && uidRaw !== '—' ? `<button type="button" data-grant-uid="${escapeHtml(String(uidRaw))}" data-grant-name="${escapeHtml(r.userName || '')}" aria-label="Grant shards to reporter" title="Grant shards" style="background:#1a2a3a;border:1px solid #1e3a5f;color:#60a5fa;border-radius:6px;padding:5px 9px;font-size:11px;cursor:pointer;font-weight:700">💎</button>` : ''}
               ${r.replyMessageId
-                ? `<span title="Ответ отправлен юзеру в уведомления" style="color:#4ade80;background:#0d2318;border:1px solid #1e4a2f;border-radius:6px;padding:5px 9px;font-size:11px;font-weight:700">💬 отвечено${Number(r.replyShards) > 0 ? ` · +${Number(r.replyShards)}💎` : ''}</span>`
+                ? `<span title="Ответ отправлен пользователю в приложение" style="color:#4ade80;background:#0d2318;border:1px solid #1e4a2f;border-radius:6px;padding:5px 9px;font-size:11px;font-weight:700">отвечено${r.replyRewardBundle?.severity && r.replyRewardBundle.severity !== 'none' ? ` · ${escapeHtml(r.replyRewardBundle.severity)}` : ''}</span>`
                 : (uidRaw && uidRaw !== '—' && uidRaw !== 'unknown'
-                  ? `<button type="button" data-reply-report-id="${encodeURIComponent(String(r.id))}" title="ИИ готовит вежливый ответ юзеру → уведомление с кнопкой «Забрать осколки»" style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa;border-radius:6px;padding:5px 9px;font-size:11px;cursor:pointer;font-weight:700">💬 Ответить (ИИ)</button>`
+                  ? `<button type="button" data-reply-report-id="${encodeURIComponent(String(r.id))}" title="Откроет редактируемый черновик ответа и выбор точного уровня награды. Отправка остаётся ручной." style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa;border-radius:6px;padding:5px 9px;font-size:11px;cursor:pointer;font-weight:700">Подготовить ответ</button>`
                   : '')}
             </div>
           </div>
@@ -25975,32 +26059,33 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       '',
       '5. ЧТО ПИСАТЬ в ответе:',
       '   • confirmed_fixed → поблагодари; скажи, что именно исправлено; добавь, что изменения',
-      '     вступят в силу со следующим обновлением приложения; награду упоминай только при shards > 0.',
+      '     вступят в силу со следующим обновлением приложения; при награде скажи только, что пользователь сможет получить приятный бонус.',
       '     Если у юзера в репорте устаревшая версия приложения, а проблема уже исправлена в актуальной версии,',
       '     прямо порекомендуй обновить приложение — не обещай при этом, что исправление появится только в будущем.',
       '   • confirmed_investigating → честно скажи, что проблема подтверждена и команда разбирается;',
-      '     не обещай срок или следующее обновление; награду указывай только если она есть в shards.',
+      '     не обещай срок, следующее обновление или награду до исправления.',
       '   • duplicate → дай обычный тёплый ответ по сути проблемы; не называй сообщение дубликатом и не объясняй внутреннюю логику.',
       '   • not_reproduced / rejected → мягко объясни, что именно проверили и к какому выводу пришли.',
       '   ПРИВАТНОСТЬ: юзер видит этот текст. НЕ вставляй в ответ чужие uid/имена, внутренние id,',
       '   куски кода, стектрейсы, названия файлов — никакой технической кухни; не рассказывай пользователю о внутренних правилах.',
       '',
-      '6. НАГРАДА (shards):',
-      '   • обычный подтверждённый баг = 1;',
-      '   • серьёзный баг / влияет на многих юзеров = 2-3;',
-      '   • НЕ подтвердилось, «так задумано», спам/оскорбления/бессмыслица = 0.',
-      '   В ТЕКСТЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ: если shards = 0, вообще не упоминай награду;',
-      '   если shards > 0, назови точное количество ЖЕМЧУЖИН один раз и без внутренних пояснений',
-      '   (валюта в приложении называется «жемчужины», НЕ «осколки» и НЕ «монеты» —',
-      '   поле называется shards только внутри кода, юзеру это слово показывать нельзя).',
-      '   ДУБЛИКАТЫ: награду (shards≥1) даёт ТОЛЬКО одному автору — первому по времени (createdAt);',
-      '   остальным по тому же багу — тёплый ответ с shards:0 без обсуждения награды или правил.',
-      '   ТОП ХЕЛПЕРОВ: каждый подтверждённый репорт с shards≥1 должен быть учтён в рейтинге автора;',
+      '6. НАГРАДА (rewardBundle): только за подтверждённую И уже исправленную проблему выбери один точный уровень:',
+      '   • minor = 1 спин + 300 рун + 1 жемчужина;',
+      '   • serious = 2 спина + 600 рун + 5 жемчужин;',
+      '   • critical = 3 спина + 1000 рун + 10 жемчужин;',
+      '   • НЕ исправлено, не подтвердилось, «так задумано», спам/оскорбления/бессмыслица = none.',
+      '   ИИ только ПРЕДЛАГАЕТ уровень; администратор проверяет и может изменить его перед ручной отправкой.',
+      '   В ТЕКСТЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ: не перечисляй виды наград, количества и внутреннее название rewardBundle.',
+      '   При rewardBundle != none можно один раз сказать только «получить приятный бонус».',
+      '   ДУБЛИКАТЫ: награду даёт ТОЛЬКО одному автору — первому по времени (createdAt);',
+      '   остальным по тому же багу — тёплый ответ с rewardBundle:none без обсуждения награды или правил.',
+      '   ТОП ХЕЛПЕРОВ: каждый confirmed_fixed с rewardBundle != none должен быть учтён в рейтинге автора;',
       '   после ручной отправки ответов это делает штатный путь автоматически — не создавай записи вручную.',
       '',
       '7. Для результата подготовь отдельный ответ для каждого reportId и собери файл replies.json — массив объектов:',
       '   { "reportId": "<id>", "uid": "<uid>", "title": "<заголовок, до 120 знаков>",',
-      '     "body": "<текст ответа>", "shards": <0..100> }',
+      '     "body": "<текст ответа>", "resolution": "confirmed_fixed|duplicate|in_progress|rejected|unconfirmed",',
+      '     "rewardBundle": { "version": 1, "severity": "none|minor|serious|critical", "spins": <n>, "runes": <n>, "pearls": <n> } }',
       '   title — это ПЕРВАЯ строка в колокольчике, он должен быть самодостаточным',
       '   («Спасибо за репорт!», НЕ «Ответ №3»). НЕ генерируй ответы для репортов с uid',
       '   "unknown"/"test_uid_abc123"/пустым и для уже отвеченных (в JSON есть replyMessageId) —',
@@ -26040,6 +26125,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     const blocks = list.map((r, i) => {
       const sep = '='.repeat(76);
       const ct = r.copyText && String(r.copyText).trim() ? String(r.copyText).trim() : '';
+      const safeDiagnostics = normalizeSupportDiagnostics(r.diagnostics);
       const meta = [
         sep,
         `#${i + 1} / ${list.length}`,
@@ -26057,9 +26143,16 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       if (ct) {
         body += ct + '\n\n';
       }
+      if (safeDiagnostics) {
+        body += '--- безопасная диагностика перед ошибкой ---\n';
+        body += JSON.stringify(safeDiagnostics, null, 2) + '\n\n';
+      }
       body += '--- полный документ (JSON) ---\n';
       try {
-        body += JSON.stringify(r, null, 2);
+        const safeDocument = { ...r };
+        if (safeDiagnostics) safeDocument.diagnostics = safeDiagnostics;
+        else delete safeDocument.diagnostics;
+        body += JSON.stringify(safeDocument, null, 2);
       } catch {
         body += String(r);
       }
@@ -26077,7 +26170,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
   /**
    * Статус репорта БЕЗ наград. Молчаливое shards+=1 убрано (2026-07): награда теперь
-   * едет юзеру через «💬 Ответить (ИИ)» → уведомление с кнопкой «Забрать осколки»
+   * отправляется пользователю только после ручной проверки и кнопки «Отправить ответ»
    * (CF adminReplyToReport + claimReportReward). Здесь остался только статус.
    * @returns {Promise<{ rewardApplied: boolean }>} rewardApplied всегда false (совместимость вызовов).
    */
@@ -26169,7 +26262,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     }
   };
 
-  // ── Ответ юзеру на репорт: ИИ-черновик → уведомление с кнопкой «Забрать осколки» ──
+  // ── Ответ пользователю: редактируемый ИИ-черновик → ручная отправка ──
 
   /** Сырой текст репорта для ИИ: всё, что видит админ на карточке. */
   function buildReportTextForAI(r) {
@@ -26192,7 +26285,11 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       fixNote: fixNote || '',
       lang: report.userLanguage || 'ru',
     });
-    return { title: String(res?.data?.title || ''), body: String(res?.data?.body || '') };
+    return {
+      title: String(res?.data?.title || ''),
+      body: String(res?.data?.body || ''),
+      rewardSeverity: String(res?.data?.rewardSeverity || 'none'),
+    };
   }
 
   /**
@@ -26204,11 +26301,8 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
    */
   const SERVER_RESOLUTION_BY_VERDICT = {
     confirmed_fixed: 'confirmed_fixed',
-    // зачем: баг ПОДТВЕРЖДЁН, и в тексте ответа юзеру уже обещан осколок. Сервер платит
-    // только за resolution 'confirmed_fixed', а ответить на репорт можно один раз —
-    // поэтому подтверждённую находку проводим как confirmed_fixed, чтобы человек
-    // получил обещанное (решение владельца, 2026-07-26).
-    confirmed_investigating: 'confirmed_fixed',
+    // Награда выдаётся только после исправления; расследуемый баг остаётся in_progress.
+    confirmed_investigating: 'in_progress',
     content_review: 'in_progress',
     duplicate: 'duplicate',
     stale_content_not_reproduced: 'unconfirmed',
@@ -26222,22 +26316,39 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     return SERVER_RESOLUTION_BY_VERDICT[String(verdict || '')] || 'unconfirmed';
   }
 
-  /**
-   * Награда: сервер принимает строго 0 или 1 и разрешает 1 только при
-   * resolution 'confirmed_fixed' И если сам документ репорта уже помечен
-   * (resolution 'confirmed_fixed' либо status 'fixed').
-   * зачем: приложение в релизе всё равно ограничивает награду одним осколком
-   * (Math.min(1, coins ?? shards) в app_messages.ts / user_notifications.ts),
-   * поэтому 1 осколок == 1 coin, ничего не теряется.
-   */
-  function toServerCoins(shards, serverResolution) {
-    const wanted = Math.floor(Number(shards) || 0) > 0 ? 1 : 0;
-    return serverResolution === 'confirmed_fixed' ? wanted : 0;
+  const REPORT_REWARD_BUNDLES = Object.freeze({
+    none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
+    minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
+    serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
+    critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
+  });
+
+  function toServerRewardBundle(severity, serverResolution) {
+    const safeSeverity = serverResolution === 'confirmed_fixed' && REPORT_REWARD_BUNDLES[severity]
+      ? severity
+      : 'none';
+    return REPORT_REWARD_BUNDLES[safeSeverity];
   }
 
-  async function sendReportReplyToUser(report, { title, body, shards, resolution }) {
+  function preparedRewardSeverity(prepared) {
+    if (toServerResolution(prepared?.resolution) !== 'confirmed_fixed') return 'none';
+    const explicit = String(prepared?.rewardBundle?.severity || '');
+    if (REPORT_REWARD_BUNDLES[explicit]) return explicit;
+    return Math.floor(Number(prepared?.shards) || 0) > 0 ? 'minor' : 'none';
+  }
+
+  async function sendReportReplyToUser(report, { title, body, rewardSeverity, resolution }) {
     const serverResolution = toServerResolution(resolution);
-    const coins = toServerCoins(shards, serverResolution);
+    const rewardBundle = toServerRewardBundle(rewardSeverity, serverResolution);
+    // Выбор «исправлено» в этой же ручной форме является решением администратора.
+    // Сначала фиксируем его в документе: сервер отдельно проверяет этот факт и без
+    // него правильно отклоняет награду. Повторная запись status=fixed безопасна.
+    if (rewardBundle.severity !== 'none'
+        && serverResolution === 'confirmed_fixed'
+        && report.status !== 'fixed'
+        && String(report.resolution || '') !== 'confirmed_fixed') {
+      await applyReportStatusFix(report, 'fixed', { silent: true });
+    }
     const res = await getAdminReplyToReportCallable()({
       uid: String(report.uid),
       reportCollection: 'error_reports',
@@ -26245,11 +26356,11 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       title,
       body,
       resolution: serverResolution,
-      coins,
+      rewardBundle,
     });
     report.status = 'answered';
     report.replyMessageId = String(res?.data?.messageId || 'sent');
-    report.replyShards = coins;
+    report.replyRewardBundle = rewardBundle;
     return res;
   }
 
@@ -26476,11 +26587,27 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     no_issue_details: '\u041d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u0434\u0435\u0442\u0430\u043b\u0435\u0439',
   };
   const _preparedReplyState = {};
+  function sanitizePreparedReplyBody(value) {
+    // Historical preview rows may still contain legacy promises such as
+    // "Вам начислена 1 жемчужина". Keep the archive intact, but never surface
+    // concrete amounts or claim that a manual reward has already been credited.
+    return String(value || '')
+      .replace(/(^|[.!?]\s+)[^.!?\n]*(?:вам\s+(?:начисл\p{L}*|нарах\p{L}*)|за\s+(?:находку|знахідку)\s+(?:начисл\p{L}*|нарах\p{L}*))[^.!?\n]*[.!?]?/giu, '$1')
+      .replace(/(^|[.!?]\s+)(?=[^.!?\n]*(?:жемчуж\p{L}*|перлин\p{L}*|спин\p{L}*|рун\p{L}*))(?=[^.!?\n]*(?:забрат\p{L}*|отрим\p{L}*|получ\p{L}*|награ\p{L}*|бонус\p{L}*|подяк\p{L}*))[^.!?\n]*[.!?]?/giu, '$1')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+  }
   function getPreparedReply(reportId) {
     if (_preparedReplyState[reportId]) return _preparedReplyState[reportId];
     const base = PREPARED_REPORT_REPLIES[reportId];
     if (!base) return null;
-    _preparedReplyState[reportId] = { title: base.title || '', body: base.body || '', shards: Math.max(0, Math.min(100, Math.floor(Number(base.shards) || 0))), resolution: base.resolution || 'confirmed_fixed', rewardGroup: base.rewardGroup || '' };
+    _preparedReplyState[reportId] = {
+      title: base.title || '',
+      body: sanitizePreparedReplyBody(base.body || ''),
+      rewardBundle: REPORT_REWARD_BUNDLES[preparedRewardSeverity(base)],
+      resolution: base.resolution || 'confirmed_fixed',
+      rewardGroup: base.rewardGroup || '',
+    };
     return _preparedReplyState[reportId];
   }
 
@@ -26488,9 +26615,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     const prepared = getPreparedReply(report.id);
     if (!prepared) return '';
     const resolution = resolutionLabels[prepared.resolution] || prepared.resolution || 'Статус не указан';
-    const reward = Math.max(0, Math.min(100, Math.floor(Number(prepared.shards) || 0)));
-    const rewardLabel = reward > 0
-      ? `<span style="color:#86efac;font-size:11px">+${reward} ${reward === 1 ? 'жемчужина' : reward < 5 ? 'жемчужины' : 'жемчужин'}</span>`
+    const reward = prepared.rewardBundle || REPORT_REWARD_BUNDLES.none;
+    const rewardLabel = reward.severity !== 'none'
+      ? `<span style="color:#86efac;font-size:11px">${reward.spins} спин · ${reward.runes} рун · ${reward.pearls} жемч.</span>`
       : '';
     return `<section class="prepared-reply-box" data-prep-id="${escapeHtml(String(report.id))}" aria-label="Подготовленный ответ пользователю" style="margin-top:10px;border-top:1px solid #2a3145;padding:10px 0 0">
       <div style="color:#d9f99d;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
@@ -26511,30 +26638,36 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     wrap.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
     wrap.innerHTML = `
       <div style="background:#141824;border:1px solid #2a3145;border-radius:14px;max-width:560px;width:100%;max-height:92vh;overflow:auto;padding:18px">
-        <div style="font-size:16px;font-weight:800;color:#e5e9f2;margin-bottom:4px">💬 Ответ юзеру на репорт</div>
-        <div style="font-size:11px;color:#8892a8;margin-bottom:12px">Юзер получит его в колокольчике на главной. Если репорт подтвердился — с кнопкой «Забрать осколки».</div>
+        <div style="font-size:16px;font-weight:800;color:#e5e9f2;margin-bottom:4px">Ответ пользователю</div>
+        <div style="font-size:11px;color:#8892a8;margin-bottom:12px">Пользователь увидит ответ в приложении. Награда доступна только после подтверждения и исправления проблемы.</div>
         <div style="font-size:11px;color:#8892a8;background:#0f1320;border:1px solid #222a3d;border-radius:8px;padding:8px;margin-bottom:12px;white-space:pre-wrap;max-height:120px;overflow:auto">${escapeHtml(buildReportTextForAI(report))}</div>
         <div style="display:flex;gap:14px;align-items:center;margin-bottom:10px;flex-wrap:wrap">
           <label style="color:#cdd5e4;font-size:13px;display:flex;align-items:center;gap:5px;cursor:pointer">
-            <input type="radio" name="rr-verdict" value="confirmed" checked> ✅ Подтвердилось
+            <input type="radio" name="rr-verdict" value="confirmed"> ✅ Подтвердилось
           </label>
           <label style="color:#cdd5e4;font-size:13px;display:flex;align-items:center;gap:5px;cursor:pointer">
-            <input type="radio" name="rr-verdict" value="rejected"> ❌ Не подтвердилось
+            <input type="radio" name="rr-verdict" value="rejected" checked> ❌ Не подтвердилось
           </label>
-          <label style="color:#cdd5e4;font-size:13px;display:flex;align-items:center;gap:5px">
-            💎 <input id="rr-shards" type="number" min="0" max="100" value="1" style="width:56px;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:6px;padding:4px 6px">
+          <label for="rr-severity" style="color:#cdd5e4;font-size:13px;display:flex;align-items:center;gap:7px">
+            Награда
+            <select id="rr-severity" title="Выберите точный уровень награды. Администратор проверяет предложение ИИ перед ручной отправкой." style="min-height:44px;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:6px;padding:7px 9px">
+              <option value="none" selected>Без награды</option>
+              <option value="minor">Небольшая · 1 спин · 300 рун · 1 жемчужина</option>
+              <option value="serious">Серьёзная · 2 спина · 600 рун · 5 жемчужин</option>
+              <option value="critical">Критическая · 3 спина · 1000 рун · 10 жемчужин</option>
+            </select>
           </label>
         </div>
         <input id="rr-fixnote" placeholder="Что исправили / почему отклонили (для ИИ, юзер не увидит)" style="width:100%;box-sizing:border-box;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:8px;padding:8px;font-size:13px;margin-bottom:10px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
-          <button type="button" id="rr-prepared" style="background:#0f2a1a;border:1px solid #1e4a2f;color:#4ade80;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer">📋 Мой готовый ответ</button>
-          <button type="button" id="rr-generate" style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer">🤖 Сгенерировать ответ</button>
+          <button type="button" id="rr-prepared" title="Подставит проверенный черновик для этого reportId. Ничего не отправит пользователю." style="background:#0f2a1a;border:1px solid #1e4a2f;color:#4ade80;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer">Подставить готовый ответ</button>
+          <button type="button" id="rr-generate" title="Создаст редактируемый черновик. Проверьте текст и награду перед ручной отправкой." style="background:#241f35;border:1px solid #5b4b8a;color:#a78bfa;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer">Создать ИИ-черновик</button>
         </div>
         <input id="rr-title" placeholder="Заголовок уведомления" style="width:100%;box-sizing:border-box;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:8px;padding:8px;font-size:13px;margin-bottom:8px">
         <textarea id="rr-body" rows="5" placeholder="Текст ответа юзеру" style="width:100%;box-sizing:border-box;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:8px;padding:8px;font-size:13px;margin-bottom:12px;resize:vertical"></textarea>
         <div style="display:flex;gap:8px;justify-content:flex-end">
-          <button type="button" id="rr-cancel" style="background:#1a1f2e;border:1px solid #2a3145;color:#8892a8;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer">Отмена</button>
-          <button type="button" id="rr-send" style="background:#0d2318;border:1px solid #1e4a2f;color:#4ade80;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer">📨 Отправить юзеру</button>
+          <button type="button" id="rr-cancel" title="Закроет форму без отправки и изменений." style="background:#1a1f2e;border:1px solid #2a3145;color:#8892a8;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer">Отмена</button>
+          <button type="button" id="rr-send" title="Отправит этот ответ одному пользователю и создаст одну идемпотентную награду выбранного уровня." style="background:#0d2318;border:1px solid #1e4a2f;color:#4ade80;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer">Отправить ответ</button>
         </div>
       </div>`;
     document.body.appendChild(wrap);
@@ -26546,27 +26679,27 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     const readVerdict = () => (wrap.querySelector('input[name="rr-verdict"]:checked')?.value === 'rejected' ? 'rejected' : 'confirmed');
     // Точный вердикт из готового ответа; пусто — значит админ решает радиокнопкой.
     let appliedResolution = '';
-    // «Не подтвердилось» → награда 0 автоматически (и обратно 1 при возврате).
+    // Любое ручное изменение вердикта сбрасывает награду. Начисление должно быть
+    // отдельным осознанным выбором администратора, а не побочным эффектом радио.
     wrap.querySelectorAll('input[name="rr-verdict"]').forEach(el => el.addEventListener('change', () => {
       // Ручное переключение отменяет точный вердикт готового ответа — иначе на сервер
       // ушёл бы старый resolution, не совпадающий с тем, что выбрал админ.
       appliedResolution = '';
-      wrap.querySelector('#rr-shards').value = readVerdict() === 'confirmed' ? '1' : '0';
+      wrap.querySelector('#rr-severity').value = 'none';
     }));
 
     // Подставить готовый ответ, подготовленный ЛЛМ-сессией по этому reportId (если есть).
-    // Заполняет заголовок/текст/осколки и вердикт (shards>0 = подтвердилось) — админ читает,
+    // Заполняет заголовок/текст/rewardBundle и вердикт — админ читает,
     // при желании правит и шлёт. Ничего не отправляется автоматически.
     const applyPrepared = () => {
-      const prep = PREPARED_REPORT_REPLIES[report.id];
+      const prep = getPreparedReply(report.id);
       if (!prep) return false;
       wrap.querySelector('#rr-title').value = prep.title || '';
       wrap.querySelector('#rr-body').value = prep.body || '';
       // зачем: точный вердикт готового ответа (by_design / duplicate / …) нужен серверу
       // как resolution; радиокнопка знает только «подтвердилось / нет» и огрубила бы его.
       appliedResolution = prep.resolution || '';
-      const sh = Math.max(0, Math.min(100, Math.floor(Number(prep.shards) || 0)));
-      wrap.querySelector('#rr-shards').value = String(sh);
+      wrap.querySelector('#rr-severity').value = preparedRewardSeverity(prep);
       const verdictVal = ['confirmed_fixed', 'confirmed_investigating'].includes(prep.resolution) ? 'confirmed' : 'rejected';
       const radio = wrap.querySelector(`input[name="rr-verdict"][value="${verdictVal}"]`);
       if (radio) radio.checked = true;
@@ -26594,6 +26727,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         const draft = await draftReportReplyAI(report, readVerdict(), wrap.querySelector('#rr-fixnote').value.trim());
         wrap.querySelector('#rr-title').value = draft.title;
         wrap.querySelector('#rr-body').value = draft.body;
+        if (REPORT_REWARD_BUNDLES[draft.rewardSeverity]) {
+          wrap.querySelector('#rr-severity').value = draft.rewardSeverity;
+        }
       } catch (e) {
         showToast('ИИ-черновик не удался: ' + (e.message || e), 'err');
       } finally {
@@ -26604,23 +26740,25 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     wrap.querySelector('#rr-send').addEventListener('click', async () => {
       const title = wrap.querySelector('#rr-title').value.trim();
       const body = wrap.querySelector('#rr-body').value.trim();
-      const shards = Math.max(0, Math.min(100, Math.floor(Number(wrap.querySelector('#rr-shards').value) || 0)));
+      const rewardSeverity = String(wrap.querySelector('#rr-severity').value || 'none');
       if (!title || !body) { showToast('Заполни заголовок и текст (или нажми «Сгенерировать»)', 'warn'); return; }
       const btn = wrap.querySelector('#rr-send');
       btn.disabled = true; btn.textContent = '⏳ Отправляю…';
       // Точный вердикт готового ответа, иначе — из радиокнопки.
       const resolution = appliedResolution || (readVerdict() === 'confirmed' ? 'confirmed_fixed' : 'not_reproduced');
       try {
-        await sendReportReplyToUser(report, { title, body, shards, resolution });
+        await sendReportReplyToUser(report, { title, body, rewardSeverity, resolution });
         close();
         filterReports();
         // Сервер даёт награду только при confirmed_fixed и помеченном документе репорта,
         // поэтому в тосте показываем фактически отправленное значение, а не желаемое.
-        const awarded = Number(report.replyShards) || 0;
-        showToast(awarded > 0 ? `📨 Отправлено · юзер заберёт +${awarded} 💎 из уведомления` : '📨 Отправлено (без награды)', 'ok');
-        logAction('reply_to_report', report.uid || 'unknown', { reportId: report.id, shards: awarded, resolution });
+        const awarded = report.replyRewardBundle || REPORT_REWARD_BUNDLES.none;
+        showToast(awarded.severity !== 'none'
+          ? `Отправлено · ${awarded.spins} спин · ${awarded.runes} рун · ${awarded.pearls} жемч.`
+          : 'Отправлено без награды', 'ok');
+        logAction('reply_to_report', report.uid || 'unknown', { reportId: report.id, rewardBundle: awarded, resolution });
       } catch (e) {
-        btn.disabled = false; btn.textContent = '📨 Отправить юзеру';
+        btn.disabled = false; btn.textContent = 'Отправить ответ';
         showToast('Не отправилось: ' + (e.message || e), 'err');
       }
     });
@@ -26651,7 +26789,10 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         if (btn) { btn.disabled = true; btn.textContent = `⏳ ${i + 1}/${list.length}…`; }
         try {
           const curated = PREPARED_REPORT_REPLIES[r.id];
-          _preparedReplyState[r.id] = { ...curated };
+          _preparedReplyState[r.id] = {
+            ...curated,
+            rewardBundle: REPORT_REWARD_BUNDLES[preparedRewardSeverity(curated)],
+          };
           okN++;
         } catch (e) {
           errN++;
@@ -26680,11 +26821,21 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
           || !String(prepared.rewardGroup || '').trim() || !validResolutions.has(prepared.resolution)) {
         return { ok: false, reason: 'invalid draft metadata' };
       }
-      const shards = Math.max(0, Math.min(100, Math.floor(Number(prepared.shards) || 0)));
-      if (nonRewarding.has(prepared.resolution) && shards > 0) {
+      const legacyShards = Math.max(0, Math.min(100, Math.floor(Number(prepared.shards) || 0)));
+      const explicitSeverity = String(prepared?.rewardBundle?.severity || '');
+      const hasExplicitSeverity = ['none', 'minor', 'serious', 'critical'].includes(explicitSeverity);
+      if (prepared.resolution !== 'confirmed_fixed' && hasExplicitSeverity && explicitSeverity !== 'none') {
+        return { ok: false, reason: 'negative resolution cannot carry an explicit reward' };
+      }
+      const rewardSeverity = prepared.resolution !== 'confirmed_fixed'
+        ? 'none'
+        : hasExplicitSeverity
+        ? explicitSeverity
+        : legacyShards > 0 ? 'minor' : 'none';
+      if ((nonRewarding.has(prepared.resolution) || prepared.resolution !== 'confirmed_fixed') && rewardSeverity !== 'none') {
         return { ok: false, reason: 'negative resolution cannot carry a reward' };
       }
-      if (shards > 0) {
+      if (rewardSeverity !== 'none') {
         if (positiveGroups.has(prepared.rewardGroup)) {
           return { ok: false, reason: 'duplicate positive reward group' };
         }
@@ -26728,7 +26879,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const needMark = entries
         .filter(({ report, prepared }) =>
           toServerResolution(prepared.resolution) === 'confirmed_fixed'
-          && Math.floor(Number(prepared.shards) || 0) > 0
+          && preparedRewardSeverity(prepared) !== 'none'
           && report.status !== 'fixed'
           && String(report.resolution || '') !== 'confirmed_fixed')
         .map(({ report }) => report);
@@ -26751,7 +26902,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
           await sendReportReplyToUser(report, {
             title: prepared.title.trim(),
             body: prepared.body.trim(),
-            shards: Math.max(0, Math.min(100, Math.floor(Number(prepared.shards) || 0))),
+            rewardSeverity: preparedRewardSeverity(prepared),
             resolution: prepared.resolution,
           });
           sent++;
@@ -32263,6 +32414,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'ai_global_disable', label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ (галочка = ИИ выключен у всех)', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
+    { key: 'support_diagnostics_enabled', label: 'Диагностика обращений включена', def: true },
     { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: true },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) — продажа снята 24.08.2026', def: false },
@@ -33629,6 +33781,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'ai_global_disable',        label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ',            def: false, hint: 'ГЛАВНЫЙ РУБИЛЬНИК. Галочка = весь ИИ выключен у всех живьём (без релиза): Компас, «Объясни», разбор ошибок, диалоги и комментарий дня. Ручные вызовы → забавная плашка «Компас отдыхает»; фоновые → тихо не запускаются. Деньги на ИИ не тратятся. Снять галочку → всё возвращается.' },
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
     { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков.' },
+    { key: 'support_diagnostics_enabled', label: 'Диагностика обращений',        def: true,  hint: 'Локальная allowlist-история. В облако уходит только вместе с явно отправленным обращением; выкл — аварийный стоп записи и вложения.' },
     { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: true,  hint: 'Кнопка объяснения фразы (платный ИИ). Дефолт ON (kill-switch).' },
     { key: 'referral_enabled',         label: 'Реферальная программа',          def: true,  hint: 'Дефолт ON (kill-switch). Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
@@ -50499,6 +50652,19 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     updateThemeButton();
   }
 
+  // зачем: единственный надёжный признак блокировки встраивания — недоступный
+  // документ рамки при том же источнике (same-origin), либо оставшийся about:blank.
+  function embeddedFrameBlocked(frame){
+    try {
+      const doc = frame.contentDocument;
+      if (!doc) return true;
+      const href = String(doc.location && doc.location.href || '');
+      return !href || href === 'about:blank';
+    } catch (_) {
+      return true;
+    }
+  }
+
   function loadEmbeddedSection(key){
     const map = {
       'beta-testers': ['pm-v9-beta-testers-frame','pm-v9-beta-testers-status'],
@@ -50525,7 +50691,18 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         finish({status:'partial',source:key,message:'Встроенный раздел продолжает загрузку'});
       }, 10000);
       frame.addEventListener('load', () => {
-        clearTimeout(timer); frame.dataset.loaded = 'true'; applyFrameTheme(frame);
+        clearTimeout(timer);
+        // зачем: при запрете встраивания (X-Frame-Options/frame-ancestors) браузер шлёт
+        // именно 'load', а не 'error' — раздел показывал зелёное «загружен» поверх
+        // красного ERR_BLOCKED_BY_RESPONSE. Проверяем, что документ реально наш.
+        if (embeddedFrameBlocked(frame)) {
+          frame.removeAttribute('src');
+          delete frame.dataset.loaded;
+          if (status) status.textContent = 'Браузер запретил встроить раздел. Откройте его в отдельной вкладке.';
+          finish({status:'error',source:key,error:new Error('Встраивание запрещено заголовками: '+wanted)});
+          return;
+        }
+        frame.dataset.loaded = 'true'; applyFrameTheme(frame);
         if (status) status.textContent = 'Актуально · открыто внутри единой админки';
         finish({status:'fresh',source:key,message:'Встроенный раздел загружен'});
       }, {once:true});

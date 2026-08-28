@@ -6,6 +6,8 @@ import {
   ES_EPISODE_01_SESSION_22_TITLE,
 } from './es_episode_01_session_22_intro_v1';
 import { ES_EPISODE_01_SESSION_22_PHRASES } from './es_episode_01_session_22_phrases_v1';
+import { ES_EPISODE_01_SESSION_22_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_22_mode_native_v1';
+import { LESSON1_ES_SESSION_22_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 22 «Важно или нет» —
@@ -48,6 +50,17 @@ import { ES_EPISODE_01_SESSION_22_PHRASES } from './es_episode_01_session_22_phr
  *
  * distractorAuthorship: 'manual' снижает минимум дистракторов с 3 до 2 —
  * тот же приём, что в сессиях 7/8/10/11/17/19.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-28,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): каждый обязательный контакт
+ * должен быть реальным действием внутри одной из шести утверждённых
+ * механик. es_episode_01_session_22_mode_native_v1.ts авторит все 12
+ * practice-шагов (после 3 интро), lesson1SessionChoreographyV1 сверяет их
+ * против esSession22ModeNativeStepsV1() через
+ * LESSON1_ES_SESSION_22_MODE_NATIVE_PLAN_ID_V1. ВАЖНО: phrase_builder/
+ * listen_build_dictation здесь используются только на индексах 0/1/5 —
+ * остальные 12 фраз дают >8 уникальных дистракторов (см. подробный
+ * комментарий в начале mode-native файла).
  */
 export const ES_EPISODE_01_SESSION_22_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -55,9 +68,11 @@ export const ES_EPISODE_01_SESSION_22_SOURCE: SessionSource = Object.freeze({
   episodeOrdinal: 1,
   requiredSessionOrdinal: 22,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
-  generationInputFingerprint: 'owner-word-first-es-e01-s22-v1',
+  generationInputFingerprint: 'owner-word-first-es-e01-s22-v2',
   sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_22_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_22_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_22_TITLE,
   summary: ES_EPISODE_01_SESSION_22_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_22_GOAL,

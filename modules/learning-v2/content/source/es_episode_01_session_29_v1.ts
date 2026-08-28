@@ -6,6 +6,8 @@ import {
   ES_EPISODE_01_SESSION_29_TITLE,
 } from './es_episode_01_session_29_intro_v1';
 import { ES_EPISODE_01_SESSION_29_PHRASES } from './es_episode_01_session_29_phrases_v1';
+import { ES_EPISODE_01_SESSION_29_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_29_mode_native_v1';
+import { LESSON1_ES_SESSION_29_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 29 «Мы не, они не» —
@@ -45,6 +47,17 @@ import { ES_EPISODE_01_SESSION_29_PHRASES } from './es_episode_01_session_29_phr
  * номеру сессии. Испанская карта ES_EPISODE_01_SESSION_MAP_V1 держит 29
  * как 'phrases' — override зафиксирован здесь явно с первого черновика,
  * независимо от того, что стоит в английской карте по тому же номеру.
+ *
+ * зачем modeNativePlanId/modeNativePractice (владелец, 2026-08-28,
+ * MODE_NATIVE_AUTHORING_CONTRACT.ru.md): каждый обязательный контакт
+ * должен быть реальным действием внутри одной из шести утверждённых
+ * механик. es_episode_01_session_29_mode_native_v1.ts авторит все 12
+ * practice-шагов (после 3 интро), lesson1SessionChoreographyV1 сверяет их
+ * против esSession29ModeNativeStepsV1() через
+ * LESSON1_ES_SESSION_29_MODE_NATIVE_PLAN_ID_V1. Интро (concept/formula/
+ * trap) переписано в том же проходе — легаси-тела трёх страниц были
+ * 541-666 знаков и 4-5 предложений (выше потолка 320/4); смысл сохранён,
+ * форма ужата на один экран.
  */
 export const ES_EPISODE_01_SESSION_29_SOURCE: SessionSource = Object.freeze({
   packageId: 'learning-v2-es-v1',
@@ -52,9 +65,11 @@ export const ES_EPISODE_01_SESSION_29_SOURCE: SessionSource = Object.freeze({
   episodeOrdinal: 1,
   requiredSessionOrdinal: 29,
   canDoOutcomeId: 'obj-es-e01-evaluate-and-react',
-  generationInputFingerprint: 'owner-word-first-es-e01-s29-v1',
+  generationInputFingerprint: 'owner-word-first-es-e01-s29-v2',
   sessionKindOverride: 'phrases',
   distractorAuthorship: 'manual',
+  modeNativePlanId: LESSON1_ES_SESSION_29_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePractice: ES_EPISODE_01_SESSION_29_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_29_TITLE,
   summary: ES_EPISODE_01_SESSION_29_SUMMARY,
   learningGoal: ES_EPISODE_01_SESSION_29_GOAL,

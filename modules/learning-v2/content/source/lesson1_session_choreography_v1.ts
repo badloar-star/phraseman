@@ -200,6 +200,14 @@ export const LESSON1_ES_SESSION_16_MODE_NATIVE_PLAN_ID_V1 =
 // зеркалит состав легаси generic phraseSteps() 1:1.
 export const LESSON1_ES_SESSION_17_MODE_NATIVE_PLAN_ID_V1 =
   'es-e01-s17-mode-native-v1' as const;
+// зачем отдельный planId для испанской сессии 18 (владелец, 2026-08-28,
+// MODE_NATIVE_AUTHORING_CONTRACT.ru.md): сессия 18 вводит одно новое слово
+// (barato, sourceVocabularyIndex 0 — единственная запись в
+// ES_EPISODE_01_SESSION_18_VOCABULARY_V1) и применяет его в четырёх фразах
+// (Es barato/Es barata/No es caro/¿Es caro o barato?), тот же класс, что
+// сессии 4/6/9/12.
+export const LESSON1_ES_SESSION_18_MODE_NATIVE_PLAN_ID_V1 =
+  'es-e01-s18-mode-native-v1' as const;
 
 function session01ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   return [
@@ -701,6 +709,33 @@ function esSession17ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
   ];
 }
 
+// зачем именно эта раскладка (владелец, 2026-08-28, СТАРТ ES +
+// MODE_NATIVE_AUTHORING_CONTRACT): испанская сессия 18 вводит одно новое
+// слово (barato, sourceVocabularyIndex 0) и применяет его в четырёх фразах
+// (Es barato/Es barata/No es caro/¿Es caro o barato?), зеркально совпадает
+// с es_episode_01_session_18_mode_native_v1.ts.
+function esSession18ModeNativeStepsV1(): readonly Lesson1ChoreographyStepV1[] {
+  return [
+    { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+    { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
+    { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
+    { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0], learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+    { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    { family: 'listen_choose', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
+    { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'speak_with_model' },
+  ];
+}
+
 export type Lesson1SessionChoreographyV1 = Readonly<{
   sessionOrdinal: number;
   kind: SessionKind;
@@ -1114,6 +1149,8 @@ export function lesson1SessionChoreographyV1(
         ? [...introSteps(phraseCount), ...esSession16ModeNativeStepsV1()]
         : modeNativePlanId === LESSON1_ES_SESSION_17_MODE_NATIVE_PLAN_ID_V1
         ? [...introSteps(phraseCount), ...esSession17ModeNativeStepsV1()]
+        : modeNativePlanId === LESSON1_ES_SESSION_18_MODE_NATIVE_PLAN_ID_V1
+        ? [...introSteps(phraseCount), ...esSession18ModeNativeStepsV1()]
         : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
         ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
         : [...introSteps(), ...practiceSteps(kind)],

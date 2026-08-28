@@ -39,14 +39,14 @@ export const ES_EPISODE_01_SESSION_18_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Barato звучит с ударением на второй слог — ba-RA-to, три слога. Она начинается с того же звука b, что и bonito, но заканчивается на -to, а не на -to с другим предшествующим звуком — сравните внимательно с caro, которое короче на один слог.',
-          uk: 'Barato звучить з наголосом на другий склад — ba-RA-to, три склади. Вона починається з того ж звука b, що й bonito, але коротша за vocabulario, довша за caro на один склад.',
-          es: 'Barato has three syllables with stress on the second — ba-RA-to. It starts with the same b sound as bonito, but is one syllable longer than caro.',
-          'pt-BR': 'Barato has three syllables with stress on the second — ba-RA-to. It starts with the same b sound as bonito, but is one syllable longer than caro.',
-          vi: 'Barato has three syllables with stress on the second — ba-RA-to. It starts with the same b sound as bonito, but is one syllable longer than caro.',
-          id: 'Barato has three syllables with stress on the second — ba-RA-to. It starts with the same b sound as bonito, but is one syllable longer than caro.',
-          tr: 'Barato has three syllables with stress on the second — ba-RA-to. It starts with the same b sound as bonito, but is one syllable longer than caro.',
-          pl: 'Barato has three syllables with stress on the second — ba-RA-to. It starts with the same b sound as bonito, but is one syllable longer than caro.',
+          ru: 'Barato звучит с ударением на второй слог — ba-RA-to, три слога, длиннее на один слог, чем уже знакомое caro.',
+          uk: 'Barato звучить з наголосом на другий склад — ba-RA-to, три склади, довше на один склад за вже знайоме caro.',
+          es: 'Barato has three syllables with stress on the second — ba-RA-to — one syllable longer than the already familiar caro.',
+          'pt-BR': 'Barato tem três sílabas com acento na segunda — ba-RA-to — uma sílaba mais longa que o já conhecido caro.',
+          vi: 'Barato có ba âm tiết với trọng âm ở âm tiết thứ hai — ba-RA-to — dài hơn một âm tiết so với caro đã quen thuộc.',
+          id: 'Barato memiliki tiga suku kata dengan tekanan pada suku kata kedua — ba-RA-to — satu suku kata lebih panjang dari caro yang sudah dikenal.',
+          tr: 'Barato, ikinci hecede vurgulu üç heceye sahiptir — ba-RA-to — zaten tanıdık olan caro’dan bir hece daha uzundur.',
+          pl: 'Barato ma trzy sylaby z akcentem na drugiej — ba-RA-to — o jedną sylabę dłuższe niż już znane caro.',
         }),
         [
           {

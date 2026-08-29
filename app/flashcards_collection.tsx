@@ -60,6 +60,10 @@ import ReportPackModal from '../components/ReportPackModal';
 import { packTitleForInterface } from './flashcards/marketplace';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import CollectionDeckView from './flashcards/CollectionDeckView';
+// Витрина «Лучшее у сообщества» — три топ-набора над сохранёнными (владелец, 2026-08-29)
+import SavedTopCommunityPacks from './flashcards/SavedTopCommunityPacks';
+import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
+import type { FlashcardMarketPack } from './flashcards/marketplace';
 // E13: «сила слова» — точки из новой проекции ошибок (§2).
 import {
   loadWordStrengthMap,
@@ -172,7 +176,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const insets   = useStableSafeAreaInsets();
   /** Ограничение ширины контента на планшетах — как в ContentWrap, но без flex. */
   const { contentMaxW } = useScreen();
-  const { height: screenH } = useWindowDimensions();
+  const { height: screenH, width: winW } = useWindowDimensions();
   const { CARD_H, PEEK } = useMemo(() => {
     /** Компактніша висота картки: раніше max 280px / ~52% екрана було зайвим. × uiScale — узгоджено з темою. */
     const cardH = resolveFlashcardListItemHeight(
@@ -634,6 +638,85 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   /** Только просмотр: набор открыт из каталога и ещё не добавлен себе. */
   const previewMode = previewRequested && !packOwnedByMe;
 
+  /* ── Витрина «Лучшее у сообщества» (владелец, 2026-08-29) ──────────────────
+   *
+   * Три самых залайканных набора сообщества стоят НАД списком сохранённых
+   * карточек, и добавить их можно прямо оттуда. Раздел «Наборы сообщества»
+   * не изменён — это дополнительный вход, а не замена.
+   *
+   * Живёт ТОЛЬКО в корне раздела на сохранённых: на экране конкретного набора,
+   * в «Своих карточках» и в режиме просмотра витрине не место.
+   *
+   * Firebase: 0 дополнительных чтений — `marketPackCatalog` этот экран уже грузит.
+   */
+  const [topPackOpeningId, setTopPackOpeningId] = useState<string | null>(null);
+  const topPackOpeningRef = useRef<string | null>(null);
+  const showSavedTopPacks =
+    sectionRoot && !packDeeplink && !previewMode && activeCat === 'saved' && !searchActive;
+
+  /** Тап по плитке — открыть набор в режиме просмотра, как в каталоге. */
+  const openTopCommunityPack = useCallback(
+    (pack: FlashcardMarketPack) => {
+      if (topPackOpeningRef.current) return;
+      topPackOpeningRef.current = pack.id;
+      setTopPackOpeningId(pack.id);
+      void (async () => {
+        const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+        /** Поздний ответ не должен трогать чужое состояние (гонка двойного тапа). */
+        if (topPackOpeningRef.current !== pack.id) return;
+        topPackOpeningRef.current = null;
+        setTopPackOpeningId(null);
+        if (cards.length === 0) {
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
+            uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
+            es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
+            vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
+            id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
+            tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
+            pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
+          }));
+          return;
+        }
+        router.push({
+          pathname: '/flashcards_collection',
+          params: { pack: pack.id, preview: '1' },
+        } as never);
+      })();
+    },
+    [router, studyTarget],
+  );
+
+  /**
+   * Набор добавлен с витрины: галочка на плитке уже стоит (optimistic внутри
+   * плитки), здесь догоняем содержимое экрана — карточки набора должны появиться
+   * в списке сохранённых без перезахода.
+   */
+  const onTopCommunityPackAdded = useCallback(() => {
+    void loadAll();
+  }, [loadAll]);
+
+  const savedTopPacksHeader = useMemo(() => {
+    if (!showSavedTopPacks) return null;
+    return (
+      <SavedTopCommunityPacks
+        catalog={marketPackCatalog}
+        ownedCommunityPackIds={communityOwnedIdList}
+        lang={lang}
+        t={t}
+        contentWidth={Math.min(contentMaxW, winW - 32)}
+        studyTarget={studyTarget}
+        openingPackId={topPackOpeningId}
+        onOpenPreview={openTopCommunityPack}
+        onAdded={onTopCommunityPackAdded}
+      />
+    );
+  }, [
+    showSavedTopPacks, marketPackCatalog, communityOwnedIdList, lang, t,
+    contentMaxW, winW, studyTarget, topPackOpeningId, openTopCommunityPack, onTopCommunityPackAdded,
+  ]);
+
   /**
    * «Слушать» / «Тренировать» — компактными иконками ВВЕРХУ экрана (замечание
    * владельца: раньше это были широкие кнопки с текстом внизу). В корне раздела
@@ -912,6 +995,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             onFlipTracked={trackCardFlip}
             strengthForCard={strengthForCard}
             extraBottomPad={tabBarReserve}
+            listHeader={savedTopPacksHeader}
           />
         )}
 

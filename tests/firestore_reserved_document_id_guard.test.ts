@@ -181,6 +181,34 @@ describe('Firestore reserved document ids', () => {
     expect(profile![1]).toContain('.');
   });
 
+  it('каждый прогон удаления оставляет диагностику в Firestore', () => {
+    // зачем (правило владельца «сперва логи, потом починка»): трассировка
+    // уходила ТОЛЬКО в Cloud Logging, куда у владельца нет доступа. Из-за
+    // этого пять боевых удалений подряд падали, а причина была невидима.
+    const source = fs.readFileSync(path.join(ROOT, 'functions/src/account_delete.ts'), 'utf8');
+    // Отдельная коллекция, закрытая правилами, без uid и email.
+    expect(source).toContain("ACCOUNT_DELETE_DIAGNOSTICS = 'account_deletion_diagnostics'");
+    // Пишем на ОБОИХ исходах: без «как выглядит норма» отказ нечитаем.
+    expect(source).toContain("persistAccountDeleteDiagnostics(db, ctx, stats, 'completed')");
+    expect(source).toContain("persistAccountDeleteDiagnostics(db, ctx, stats, 'failed')");
+    // Стадия падения обязана называться поимённо.
+    expect(source).toContain('ctx.failedStage = stage');
+    expect(source).toContain('account_delete_failed at ${stage}');
+    // Диагностика не имеет права уронить удаление, но и молчать не смеет.
+    expect(source).toContain('account_delete_diagnostics_write_failed');
+
+    const rules = fs.readFileSync(path.join(ROOT, 'firestore.rules'), 'utf8');
+    expect(rules).toContain('match /account_deletion_diagnostics/{runId}');
+  });
+
+  it('обрыв удаления в интерфейсе доезжает до сервера', () => {
+    // зачем: DebugLogger пишет в Firestore только severity 'critical'
+    // (writeToFirestore в app/debug-logger.ts). С 'warning' след оставался на
+    // устройстве ушедшего человека и владельцу не доставался.
+    const trace = fs.readFileSync(path.join(ROOT, 'app/account_delete_ui_trace.ts'), 'utf8');
+    expect(trace).toContain("outcome === 'handoff_failed' ? 'critical' : 'warning'");
+  });
+
   it('удаление аккаунта не падает целиком из-за нечитаемого обратного индекса', () => {
     const source = fs.readFileSync(path.join(ROOT, 'functions/src/account_delete.ts'), 'utf8');
     // Оба чтения индекса обязаны быть в try/catch с логом причины: индекс —

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { reportEconomyOperationApplied } from './economy_daily_stats_reporter';
 import * as Crypto from 'expo-crypto';
 import {
   captureAccountGeneration,
@@ -590,6 +591,12 @@ export async function commitClientShardOperation(
         return { status: 'failed', reason } as const;
       }
     }), options.accountTransitionLockLease);
+    if (result.status === 'applied') {
+      // зачем (Джарвис 2026-08-29): client_economy_* мертвы навсегда, личный
+      // журнал читать запрещено — диагностика экономики живёт на обезличенном
+      // дневном агрегате. Отправка не ждётся и не может уронить операцию.
+      reportEconomyOperationApplied(result.operation);
+    }
     if (
       (result.status === 'applied' || result.status === 'already-applied')
       && result.operation.authority === 'client'

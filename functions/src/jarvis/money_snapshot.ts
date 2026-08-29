@@ -16,8 +16,7 @@ export interface MoneyFetcherMap {
   readonly revenuecat_premium_events: MoneyFetcher;
   readonly voice_minute_events: MoneyFetcher;
   readonly paywall_funnel: MoneyFetcher;
-  readonly client_economy_opening: MoneyFetcher;
-  readonly client_economy_operations: MoneyFetcher;
+  readonly economy_daily_stats: MoneyFetcher;
   readonly external_economy_events: MoneyFetcher;
 }
 
@@ -40,8 +39,8 @@ export interface MoneySnapshot {
 }
 
 const COLLECTIONS: readonly MoneyReportCollection[] = [
-  'revenuecat_premium_events', 'voice_minute_events', 'paywall_funnel', 'client_economy_opening',
-  'client_economy_operations', 'external_economy_events',
+  'revenuecat_premium_events', 'voice_minute_events', 'paywall_funnel',
+  'economy_daily_stats', 'external_economy_events',
 ];
 
 function failClosedFetch(sourceId: MoneyReportCollection, observedAtMs: number): FetchMoneySourceResult {

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../debug-logger';
 import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { ensureAnonUser } from '../cloud_sync';
@@ -728,7 +729,17 @@ export async function ensureLeagueChestRewards(params: {
 
   const request = (async () => {
     try {
-      const { data } = await fn({ weekId: params.weekId, groupId: params.groupId });
+      const { data } = await fn({ weekId: params.weekId, groupId: params.groupId }).catch((error: unknown) => {
+        // зачем (аудит 2026-08-29): лиги не писали отказы никуда. Клейм
+        // сундука — необратимая награда: молчаливый провал = «награду видел,
+        // но не получил», классу таких багов посвящена отдельная память.
+        DebugLogger.error(
+          'league:chest_claim',
+          error instanceof Error ? error : new Error(String(error)),
+          'critical',
+        );
+        throw error;
+      });
       const safeRewards = data.rewards ? {
         ...data.rewards,
         drops: Array.isArray(data.rewards.drops) ? data.rewards.drops.filter(isActiveLeagueChestReward) : [],

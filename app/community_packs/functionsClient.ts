@@ -1,4 +1,5 @@
 import { getApp } from '@react-native-firebase/app';
+import { DebugLogger } from '../debug-logger';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
@@ -20,8 +21,21 @@ function callable<TReq, TRes>(name: string) {
 async function callFunction<TReq, TRes>(name: string, data: TReq): Promise<TRes> {
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<TReq, TRes>(name);
-  const res = await fn(data);
-  return res.data;
+  try {
+    const res = await fn(data);
+    return res.data;
+  } catch (error) {
+    // зачем (аудит 2026-08-29): сообщество не писало отказы никуда — покупка
+    // пака могла молча падать. Денежные имена — critical (доезжают до
+    // app_errors), остальное — warning (локальный журнал + support-бандл).
+    const irreversible = name === 'communityPurchasePack' || name === 'communityRedeemPackGiftVoucher';
+    DebugLogger.error(
+      `community:${name}`,
+      error instanceof Error ? error : new Error(String(error)),
+      irreversible ? 'critical' : 'warning',
+    );
+    throw error;
+  }
 }
 
 export async function callCommunitySubmitPackForReview(data: {

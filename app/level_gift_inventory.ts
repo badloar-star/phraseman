@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -152,9 +153,10 @@ const stampGiftReceivedAt = async (
     if (map[level]) return;
     map[level] = Date.now();
     await AsyncStorage.setItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(map));
-  } catch {
-    // Таймер — best effort; выдачу подарка не блокируем (гранфазер догонит).
-  }
+  } catch (e) {
+      // Таймер — best effort; выдачу подарка не блокируем (гранфазер догонит).
+      DebugLogger.error('level_gift_inventory:map', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 const clearGiftReceivedAt = async (
@@ -168,9 +170,10 @@ const clearGiftReceivedAt = async (
     if (map[level] == null) return;
     delete map[level];
     await AsyncStorage.setItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(map));
-  } catch {
-    // Осиротевший штамп вычистит загрузка инвентаря.
-  }
+  } catch (e) {
+      // Осиротевший штамп вычистит загрузка инвентаря.
+      DebugLogger.error('level_gift_inventory:map', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /**
@@ -199,9 +202,10 @@ export const resyncGiftExpiryPush = async (): Promise<void> => {
     const earliest = expiries.length > 0 ? Math.min(...expiries) : null;
     const { syncGiftExpiringNotification } = await import('./notifications');
     await syncGiftExpiringNotification(earliest);
-  } catch {
-    // Пуш — best effort; инвентарь важнее.
-  }
+  } catch (e) {
+      // Пуш — best effort; инвентарь важнее.
+      DebugLogger.error('level_gift_inventory:earliest', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 const resyncGiftExpiryPushBestEffort = (): void => {
@@ -223,9 +227,10 @@ const writePendingGiftCountCache = async (
   try {
     if (!isAccountTokenCurrent(accountToken)) return;
     await AsyncStorage.setItem(PENDING_LEVEL_GIFT_COUNT_CACHE_KEY, String(Math.max(0, Math.floor(count))));
-  } catch {
-    // Header cache only; the source of truth remains the inventory maps.
-  }
+  } catch (e) {
+      // Header cache only; the source of truth remains the inventory maps.
+      DebugLogger.error('level_gift_inventory:writePendingGiftCountCache', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const readPendingLevelGiftCountCache = async (): Promise<number> => {
@@ -267,9 +272,10 @@ export const saveClaimedGiftRarity = async (
       map[level] = rarity;
       await AsyncStorage.setItem(CLAIMED_GIFTS_KEY, JSON.stringify(map));
     });
-  } catch {
-    // Non-critical UI history.
-  }
+  } catch (e) {
+      // Non-critical UI history.
+      DebugLogger.error('level_gift_inventory:map', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Load all claimed gift rarities. */
@@ -304,9 +310,10 @@ export const saveUnclaimedGift = async (
       await refreshPendingGiftCountCache(accountToken);
       resyncGiftExpiryPushBestEffort();
     });
-  } catch {
-    // A missed cache write should not block the level-up flow.
-  }
+  } catch (e) {
+      // A missed cache write should not block the level-up flow.
+      DebugLogger.error('level_gift_inventory:dualMap', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Mark a single gift as claimed. */
@@ -325,9 +332,10 @@ export const markGiftClaimed = async (
       await refreshPendingGiftCountCache(accountToken);
       resyncGiftExpiryPushBestEffort();
     });
-  } catch {
-    // Best effort cleanup.
-  }
+  } catch (e) {
+      // Best effort cleanup.
+      DebugLogger.error('level_gift_inventory:map', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Load all pending single gifts. */
@@ -361,9 +369,10 @@ export const saveUnclaimedDualGift = async (
       await refreshPendingGiftCountCache(accountToken);
       resyncGiftExpiryPushBestEffort();
     });
-  } catch {
-    // Best effort cache write.
-  }
+  } catch (e) {
+      // Best effort cache write.
+      DebugLogger.error('level_gift_inventory:singleMap', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const loadUnclaimedDualGifts = async (): Promise<Record<number, PremPair>> => {
@@ -390,9 +399,10 @@ export const markDualGiftClaimed = async (
       await refreshPendingGiftCountCache(accountToken);
       resyncGiftExpiryPushBestEffort();
     });
-  } catch {
-    // Best effort cleanup.
-  }
+  } catch (e) {
+      // Best effort cleanup.
+      DebugLogger.error('level_gift_inventory:map', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 const saveRemainingGiftAfterPartialDualClaimUnsafe = async (
@@ -429,9 +439,10 @@ export const saveRemainingGiftAfterPartialDualClaim = async (
   try {
     await withInventoryMutationGuard(accountToken, () =>
       saveRemainingGiftAfterPartialDualClaimUnsafe(level, remainingGift, accountToken));
-  } catch {
-    // Best effort persistence; entitlement read-back will reject conflicting state.
-  }
+  } catch (e) {
+      // Best effort persistence; entitlement read-back will reject conflicting state.
+      DebugLogger.error('level_gift_inventory:saveRemainingGiftAfterPartialDualClaim', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const markDualGiftPartClaimed = async (
@@ -452,9 +463,10 @@ export const markDualGiftPartClaimed = async (
         await saveRemainingGiftAfterPartialDualClaimUnsafe(level, remainingGift, accountToken);
       }
     });
-  } catch {
-    // Best effort cleanup.
-  }
+  } catch (e) {
+      // Best effort cleanup.
+      DebugLogger.error('level_gift_inventory:remainingGift', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const restoreDualGiftPartAfterFailedClaim = async (
@@ -495,9 +507,10 @@ export const restoreDualGiftPartAfterFailedClaim = async (
       await refreshPendingGiftCountCache(accountToken);
       resyncGiftExpiryPushBestEffort();
     });
-  } catch {
-    // The failed reward remains recoverable by the entitlement reconciler.
-  }
+  } catch (e) {
+      // The failed reward remains recoverable by the entitlement reconciler.
+      DebugLogger.error('level_gift_inventory:claimedMap', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const setLevelHadDualClaim = async (
@@ -514,9 +527,10 @@ export const setLevelHadDualClaim = async (
         await AsyncStorage.setItem(CLAIMED_DUAL_LEVELS_KEY, JSON.stringify(set));
       }
     });
-  } catch {
-    // Cosmetic progress state only.
-  }
+  } catch (e) {
+      // Cosmetic progress state only.
+      DebugLogger.error('level_gift_inventory:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const loadDualClaimedLevels = async (): Promise<Set<number>> => {
@@ -606,8 +620,9 @@ export const loadPendingLevelGiftInventory = async (
       } else if (receivedAtChanged) {
         await AsyncStorage.setItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(receivedAt));
       }
-    } catch {
+    } catch (e) {
       // Сгоревшее вычистим при следующем чтении.
+      DebugLogger.error('level_gift_inventory:receivedAtChanged', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 

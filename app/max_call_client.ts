@@ -12,6 +12,7 @@
 // active — забота max_call_ui_state: клиент лишь транслирует серверные события
 // data channel в MaxCallUiEvent, ничего не выдумывая из локальных таймеров.
 
+import { DebugLogger } from './debug-logger';
 import type {
   MaxVoiceNativeModule,
   MediaStreamLike,
@@ -116,7 +117,9 @@ export async function completeLocalOfferSdp(
     // JS-операциями; в обратном порядке оно оставляло бы осиротевший timeout.
     timeoutId = setTimeout(finish, MAX_CALL_ICE_GATHER_TIMEOUT_MS);
     connection.onicegatheringstatechange = () => {
-      try { previous?.(); } catch {}
+      try { previous?.(); } catch (e) {
+      DebugLogger.error('max_call_client:finish', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       if (connection.iceGatheringState === 'complete') finish();
     };
     // Состояние могло смениться между первой проверкой и установкой handler.
@@ -583,24 +586,27 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     phase = next;
     try {
       deps.onPhase?.(next);
-    } catch {
+    } catch (e) {
       // Колбэк UI не имеет права ронять транспорт.
+      DebugLogger.error('max_call_client:setPhase', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 
   function emitUi(event: MaxCallUiEvent): void {
     try {
       deps.onUiEvent?.(event);
-    } catch {
+    } catch (e) {
       // См. setPhase: колбэки — не наша ответственность.
+      DebugLogger.error('max_call_client:emitUi', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 
   function emitTranscript(event: MaxCallTranscriptEvent): void {
     try {
       deps.onTranscriptDelta?.(event);
-    } catch {
-      /* как выше */
+    } catch (e) {
+      // как выше
+      DebugLogger.error('max_call_client:emitTranscript', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 
@@ -660,23 +666,35 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (inCallStarted) return;
     try {
       deps.sfx?.connectCue();
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:acquireAudioSession', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     try {
       deps.native.InCallManager.start({ media: 'audio' });
       inCallStarted = true;
       // media:'audio' по умолчанию выбирает receiver/earpiece. Для тренажёра
       // нужен слышимый hands-free маршрут на встроенный громкий динамик.
       ensureSpeakerRoute();
-      try { deps.native.InCallManager.setKeepScreenOn?.(true); } catch {}
+      try { deps.native.InCallManager.setKeepScreenOn?.(true); } catch (e) {
+      DebugLogger.error('max_call_client:acquireAudioSession', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         deps.sfx?.audioSessionAcquired();
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_client:acquireAudioSession', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     } catch {
       // start() мог успеть частично перенастроить process-wide AVAudioSession.
       // stop() + снятие force-флага безопасно возвращают системный маршрут.
-      try { deps.native.InCallManager.setKeepScreenOn?.(false); } catch {}
-      try { deps.native.InCallManager.setForceSpeakerphoneOn?.(null); } catch {}
-      try { deps.native.InCallManager.stop(); } catch {}
+      try { deps.native.InCallManager.setKeepScreenOn?.(false); } catch (e) {
+      DebugLogger.error('max_call_client:acquireAudioSession', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+      try { deps.native.InCallManager.setForceSpeakerphoneOn?.(null); } catch (e) {
+      DebugLogger.error('max_call_client:acquireAudioSession', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+      try { deps.native.InCallManager.stop(); } catch (e) {
+      DebugLogger.error('max_call_client:acquireAudioSession', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       inCallStarted = false;
     }
   }
@@ -688,8 +706,12 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
    */
   function ensureSpeakerRoute(): void {
     if (!inCallStarted || isTornDown()) return;
-    try { deps.native.InCallManager.setForceSpeakerphoneOn?.(true); } catch {}
-    try { deps.native.InCallManager.setSpeakerphoneOn?.(true); } catch {}
+    try { deps.native.InCallManager.setForceSpeakerphoneOn?.(true); } catch (e) {
+      DebugLogger.error('max_call_client:ensureSpeakerRoute', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+    try { deps.native.InCallManager.setSpeakerphoneOn?.(true); } catch (e) {
+      DebugLogger.error('max_call_client:ensureSpeakerRoute', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 
   function clearRemoteTrackTimer(): void {
@@ -833,12 +855,15 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         try {
           const parsed: unknown = JSON.parse(typeof message.arguments === 'string' ? message.arguments : '{}');
           if (parsed !== null && typeof parsed === 'object') args = parsed as Record<string, unknown>;
-        } catch {
-          // Битые аргументы — пустой объект: исполнитель ответит ошибкой в output.
-        }
+        } catch (e) {
+      // Битые аргументы — пустой объект: исполнитель ответит ошибкой в output.
+      DebugLogger.error('max_call_client:callId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         try {
           deps.onToolCall?.({ name, callId, args });
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('max_call_client:callId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return;
       }
       case 'response.done': {
@@ -1072,7 +1097,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         elapsedSec: elapsed,
         usage: { ...usage },
       })).catch(() => {});
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:settleDetachedMint', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 
   /**
@@ -1124,17 +1151,23 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       return { connection, stream, channel, offerSdp };
     } catch (error) {
       if (channel && dc === channel) {
-        try { channel.close(); } catch {}
+        try { channel.close(); } catch (e) {
+      DebugLogger.error('max_call_client:offerSdp', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         dc = null;
       }
       if (stream && localStream === stream) {
         for (const track of stream.getTracks()) {
-          try { track.stop(); } catch {}
+          try { track.stop(); } catch (e) {
+      DebugLogger.error('max_call_client:offerSdp', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         }
         localStream = null;
       }
       if (pc === connection) {
-        try { connection.close(); } catch {}
+        try { connection.close(); } catch (e) {
+      DebugLogger.error('max_call_client:offerSdp', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         pc = null;
       }
       throw error;
@@ -1166,19 +1199,27 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     // InCallManager и heartbeat не трогаем, владение аудиосессией не отдаём.
     try {
       dc?.close();
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:caps', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     dc = null;
     try {
       pc?.close();
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:caps', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     pc = null;
     try {
       for (const track of localStream?.getTracks() ?? []) {
         try {
           track.stop();
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('max_call_client:caps', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:caps', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     localStream = null;
     remoteTrack = null;
     remoteStream = null;
@@ -1237,7 +1278,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         emitUi({ type: 'reconnected' });
         try {
           deps.sfx?.midCall('reconnected');
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('max_call_client:finish', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       };
       channel.onopen = finish;
       reminting = false;
@@ -1250,8 +1293,17 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         void doRemint(kind);
       }, MAX_CALL_CONNECT_TIMEOUT_MS);
       if (channel.readyState === 'open') finish();
-    } catch {
+    } catch (remintError) {
       reminting = false;
+      // зачем (аудит 2026-08-29): MAX не писал отказы никуда — обрыв живого
+      // звонка был невидим с сервера. Провал ре-минта — необратимая точка:
+      // либо цепочка попыток спасёт, либо звонок умрёт failed'ом; след
+      // обязателен в обоих случаях.
+      DebugLogger.error(
+        'max_call:remint_failed',
+        remintError instanceof Error ? remintError : new Error(String(remintError)),
+        'critical',
+      );
       if (isTornDown()) return;
       // Ре-минт не удался: следующая попытка, пока кап чейна позволяет;
       // исчерпание капа внутри doRemint честно завершит звонок failed'ом.
@@ -1318,7 +1370,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         emitUi({ type: 'reconnected' });
         try {
           deps.sfx?.midCall('reconnected');
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('max_call_client:state', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
     };
   }
@@ -1338,7 +1392,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     emitUi({ type: 'reconnect_started' });
     try {
       deps.sfx?.midCall('reconnect_started');
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:beginReconnect', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     // Обрыв во время приветствия: удержание больше не имеет смысла (после
     // реконнекта ИИ не здоровается заново), grace-мьют — единственный мьют.
     releaseGreetingHold(false);
@@ -1394,19 +1450,27 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     clearRemoteTrackTimer();
     try {
       dc?.close();
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:finalElapsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     dc = null;
     try {
       pc?.close();
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:finalElapsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     pc = null;
     try {
       for (const track of localStream?.getTracks() ?? []) {
         try {
           track.stop();
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('max_call_client:finalElapsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:finalElapsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     localStream = null;
     remoteTrack = null;
     remoteStream = null;
@@ -1414,32 +1478,44 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (inCallStarted) {
       try {
         deps.native.InCallManager.setKeepScreenOn?.(false);
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       // null возвращает default route policy библиотеки. Без этого process-wide
       // force-флаг переживает звонок и ломает маршрутизацию следующего аудио.
       try {
         deps.native.InCallManager.setForceSpeakerphoneOn?.(null);
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         deps.native.InCallManager.stop();
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       inCallStarted = false;
       try {
         deps.sfx?.audioSessionReleased();
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     // Восстановление общей аудиосессии и сетевой settlement не должны держать
     // кнопку сброса и навигацию. Оба процесса безопасно завершаются в фоне.
     try {
       void Promise.resolve(deps.restoreAudioSession?.()).catch(() => {});
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     // End-нота ПОСЛЕ InCallManager.stop() (граница владения аудиосессией) и
     // только если звонок реально был активен — провал соединения без «алло»
     // не заслуживает прощальной ноты.
     if (shouldPlayEndCue) {
       try {
         deps.sfx?.endCue();
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
 
     // Отчёт сеттлмента — один раз и только если сессия была заминчена
@@ -1456,9 +1532,10 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         })).catch(() => {
           // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
         });
-      } catch {
-        // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
-      }
+      } catch (e) {
+      // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
+      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
 
     if (failMessage !== null) {

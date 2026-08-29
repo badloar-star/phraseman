@@ -1,4 +1,5 @@
 import type AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 import {
   AVATAR_AURA_OWNED_KEY,
   CUSTOM_AVATAR_OWNED_KEY,
@@ -220,6 +221,14 @@ export async function resumeCustomizationPurchase(
         if (error instanceof Error && error.message === 'customization_runes_insufficient') {
           throw new Error('insufficient_runes');
         }
+        // зачем (аудит 2026-08-29): провал списания рун ПОСЛЕ подготовленной
+        // покупки — денежная точка; немые отказы покупок уже были классом
+        // инцидентов. «Недостаточно рун» выше — штатный отказ, не сигнал.
+        DebugLogger.error(
+          'customization:rune_purchase_commit',
+          error instanceof Error ? error : new Error(String(error)),
+          'critical',
+        );
         throw error;
       }
     } else {

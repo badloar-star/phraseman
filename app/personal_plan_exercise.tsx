@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { DebugLogger } from './debug-logger';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 // ════════════════════════════════════════════════════════════════════════════
 // ПРАВИЛО UX (важно, действует во ВСЁМ этом экране):
@@ -343,7 +344,10 @@ function PlanListenChooseAudioButton({
             managedPlayer.stop();
             return;
           }
-          try { player.volume = 1; } catch { /* runtime without writable volume */ }
+          try { player.volume = 1; } catch (e) {
+      // runtime without writable volume
+      DebugLogger.error('personal_plan_exercise:label', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           // No TTS fallback here: this control must remain MP3-only.
           await managedPlayer.playFromStart();
         })();
@@ -436,9 +440,10 @@ function deleteTransientSpeechRecordingFile(uri: string | null): void {
   try {
     const file = new File(uri);
     if (file.exists) file.delete();
-  } catch {
-    // Best-effort cache hygiene only.
-  }
+  } catch (e) {
+      // Best-effort cache hygiene only.
+      DebugLogger.error('personal_plan_exercise:file', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function PlanPronunciationRecorder({
@@ -519,7 +524,10 @@ function PlanPronunciationRecorder({
   // whole exercise degrades (escape path) instead of crashing on mount.
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
-    try { speechModule?.abort(); } catch { /* native capture already gone */ }
+    try { speechModule?.abort(); } catch (e) {
+      // native capture already gone
+      DebugLogger.error('personal_plan_exercise:recordingAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   });
   const restoreLoudPlaybackMode = recordingAudio.release;
   const [pronunciationHeardTarget, setPronunciationHeardTarget] = useState(false);
@@ -801,8 +809,9 @@ function PlanPronunciationRecorder({
     // Незавершённая hold-запись при размонтировании — отменяем, файл не пишем.
     try {
       holdRecRef.current?.cancel();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('personal_plan_exercise:result', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     holdRecRef.current = null;
     systemHoldPressedRef.current = false;
@@ -825,13 +834,15 @@ function PlanPronunciationRecorder({
     finishAttemptRef.current = () => undefined;
     try {
       speechModule?.abort();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('personal_plan_exercise:result', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     try {
       holdRecRef.current?.cancel();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('personal_plan_exercise:result', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     holdRecRef.current = null;
     managedTargetAudio.stop();
@@ -969,9 +980,10 @@ function PlanPronunciationRecorder({
       if (!systemHoldPressedRef.current) {
         try {
           speechModule.stop();
-        } catch {
-          /* no-op */
-        }
+        } catch (e) {
+      // no-op
+      DebugLogger.error('personal_plan_exercise:startSub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return;
       }
       setPronunciationPreparing(false);
@@ -1055,9 +1067,10 @@ function PlanPronunciationRecorder({
       try {
         // stop() flushes a final result; abort() would discard a live attempt.
         speechModule.stop();
-      } catch {
-        // recognizer may be unavailable in some builds — safe to ignore on unmount
-      }
+      } catch (e) {
+      // recognizer may be unavailable in some builds — safe to ignore on unmount
+      DebugLogger.error('personal_plan_exercise:uri', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       restoreLoudPlaybackMode();
     };
   }, [onScored, speechModule, runtimeActive, playCorrect, playRecordStart, clearRecognizerWatchdog, clearFinishAttemptTimer, cleanupRecognitionListeners, restoreLoudPlaybackMode, setPronunciationScoring]);
@@ -1092,9 +1105,10 @@ function PlanPronunciationRecorder({
         try {
           try {
             targetAudioPlayer.volume = 1;
-          } catch {
-            // Some runtimes may not expose a writable volume property.
-          }
+          } catch (e) {
+      // Some runtimes may not expose a writable volume property.
+      DebugLogger.error('personal_plan_exercise:playFallbackAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           const started = await managedTargetAudio.playFromStart();
           if (!started) throw new Error('spoken audio ownership unavailable');
           if (Platform.OS === 'android') {
@@ -1110,9 +1124,10 @@ function PlanPronunciationRecorder({
               if (started) return;
               try {
                 managedTargetAudio.stop();
-              } catch {
-                // The player may already be stopped on some Android runtimes.
-              }
+              } catch (e) {
+      // The player may already be stopped on some Android runtimes.
+      DebugLogger.error('personal_plan_exercise:started', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
               playFallbackAudio();
             }, 1400);
           }
@@ -1238,9 +1253,10 @@ function PlanPronunciationRecorder({
         if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
         try {
           speechModule.abort();
-        } catch {
-          /* сервис мог умереть — не мешаем */
-        }
+        } catch (e) {
+      // сервис мог умереть — не мешаем
+      DebugLogger.error('personal_plan_exercise:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         setPronunciationListening(false);
         setPronunciationPreparing(false);
         setPronunciationScoring(false);
@@ -1287,9 +1303,10 @@ function PlanPronunciationRecorder({
     if (pronunciationPreparingRef.current && !pronunciationListeningRef.current) {
       try {
         speechModule?.abort();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('personal_plan_exercise:stopSpeaking', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       setPronunciationPreparing(false);
       setPronunciationScoring(false);
       restoreLoudPlaybackMode();
@@ -1307,8 +1324,9 @@ function PlanPronunciationRecorder({
     }
     try {
       speechModule?.stop();
-    } catch {
+    } catch (e) {
       // end/error listener will settle state
+      DebugLogger.error('personal_plan_exercise:endingGen', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     if (shouldSettleAfterStop) {
       // Запоминаем, ЧЬЯ это отложенная доводка: через 1.5с пользователь может уже
@@ -2186,11 +2204,15 @@ function PersonalPlanExerciseScreen() {
     void (async () => {
       if (answerAudioSource) {
         try {
-          try { answerAudioPlayer.volume = 1; } catch { /* некоторые рантаймы не дают volume */ }
+          try { answerAudioPlayer.volume = 1; } catch (e) {
+      // некоторые рантаймы не дают volume
+      DebugLogger.error('personal_plan_exercise:speakCurrentPhrase', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           if (await managedAnswerAudio.playFromStart()) return;
-        } catch {
-          // упал MP3 — уходим в TTS ниже
-        }
+        } catch (e) {
+      // упал MP3 — уходим в TTS ниже
+      DebugLogger.error('personal_plan_exercise:speakCurrentPhrase', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       const text = answerAudioTextRef.current;
       if (text) speakPhraseFallback(text, 0.9, { language: 'en-US', voice: '' });

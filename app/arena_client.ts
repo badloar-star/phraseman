@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 import {
   arenaOutboxAdoptOwnerGeneration,
   arenaOutboxFlush,
@@ -134,7 +135,27 @@ async function prepareArenaCall<T>(
     expoConfig: Constants.expoConfig,
   });
   const callable = httpsCallable(getFunctions(getApp(), REGION), name);
-  return () => callable({ ...payload, clientVersion }).then((result) => result.data as T);
+  return () => callable({ ...payload, clientVersion })
+    .then((result) => result.data as T)
+    .catch((error: unknown) => {
+      // зачем (аудит 2026-08-29): Арена не писала в app_errors НИЧЕГО — её
+      // отказы были видны только если человек сам жал «Сообщить об ошибке».
+      // Это общее горло всех callable Арены: одна точка даёт след каждому
+      // отказу. Необратимые переходы (вердикт, финиш, расчёт, клейм сезона) —
+      // critical (доезжают до Firestore/app_errors, там квота 20/час на
+      // человека); остальное — warning (локальный журнал + support-бандл).
+      const code = String((error as { code?: unknown })?.code ?? 'unknown');
+      const message = String((error as { message?: unknown })?.message ?? error);
+      const irreversible = name === 'arenaV2MatchFinish' || name === 'arenaV2MatchSettle'
+        || name === 'arenaV2SubmitAnswer' || name === 'arenaV2SubmitSpeedAttempt'
+        || name === 'arenaV2SeasonClaim';
+      DebugLogger.error(
+        `arena:${name}`,
+        error instanceof Error ? error : new Error(`${code}: ${message}`.slice(0, 200)),
+        irreversible ? 'critical' : 'warning',
+      );
+      throw error;
+    });
 }
 
 function isArenaStableIdRace(error: unknown): boolean {

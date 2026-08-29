@@ -83,8 +83,8 @@ describe('Jarvis money source reader — honest evidence state', () => {
 
 test('money sources include both revenue signals and the read-only personal economy journal', () => {
   expect(MONEY_REPORT_COLLECTIONS).toEqual([
-    'revenuecat_premium_events', 'paywall_funnel', 'client_economy_opening',
-    'client_economy_operations', 'external_economy_events',
+    'revenuecat_premium_events', 'voice_minute_events', 'paywall_funnel',
+    'economy_daily_stats', 'external_economy_events',
   ]);
 });
 
@@ -100,42 +100,53 @@ describe('Jarvis personal economy journal ordering', () => {
     balanceAfter: balanceBefore + delta,
   });
 
-  test('normalizes newest-first interleaved owners before continuity checks', () => {
+  // зачем пересборка (2026-08-29): per-owner цепочку revision/balance сервер
+  // больше НЕ видит — её сверяет сам клиент (economy_daily_stats_reporter) и
+  // шлёт готовые счётчики. Сторожим новую обязанность сервера: честно
+  // суммировать дневные документы и не выдумывать данные из кривых строк.
+  test('sums daily counter documents without inventing per-owner data', () => {
     const diagnostics = diagnosePersonalEconomy([{
-      sourceId: 'client_economy_operations',
+      sourceId: 'economy_daily_stats',
       state: 'ready',
       truncated: false,
       droppedCount: 0,
       observedAtMs: 1_000,
       rows: [
-        operation('owner-b', 2, 220, 15, -3),
-        operation('owner-a', 2, 200, 10, 5),
-        operation('owner-b', 1, 110, 0, 15),
-        operation('owner-a', 1, 100, 0, 10),
+        { eventType: 'economy_daily_stats', periodType: null, createdAtMs: 100,
+          ops: 3, invalidOps: 0, revisionGaps: 0, balanceGaps: 0,
+          amountGranted: 25, amountSpent: 3 } as any,
+        { eventType: 'economy_daily_stats', periodType: null, createdAtMs: 200,
+          ops: 1, invalidOps: 0, revisionGaps: 0, balanceGaps: 0,
+          amountGranted: 5, amountSpent: 0 } as any,
       ],
     }]);
 
+    expect(diagnostics.operationCount).toBe(4);
     expect(diagnostics.revisionDiscontinuities).toBe(0);
     expect(diagnostics.balanceDiscontinuities).toBe(0);
     expect(diagnostics.netClientDelta).toBe(27);
+    expect(diagnostics.openingOwners).toBe(0);
   });
 
-  test('a newest-first truncated slice stays ordered and does not invent a missing pre-slice anomaly', () => {
+  test('client-reported gap counters pass through untouched and a broken row is invalid, not fatal', () => {
     const diagnostics = diagnosePersonalEconomy([{
-      sourceId: 'client_economy_operations',
+      sourceId: 'economy_daily_stats',
       state: 'ready',
-      truncated: true,
-      droppedCount: 1,
+      truncated: false,
+      droppedCount: 0,
       observedAtMs: 1_000,
       rows: [
-        operation('owner-b', 4, 420, 20, 2),
-        operation('owner-a', 3, 300, 12, 3),
-        operation('owner-b', 3, 320, 18, 2),
-        operation('owner-a', 2, 200, 10, 2),
+        { eventType: 'economy_daily_stats', periodType: null, createdAtMs: 100,
+          ops: 2, invalidOps: 1, revisionGaps: 1, balanceGaps: 1,
+          amountGranted: 0, amountSpent: 2 } as any,
+        { eventType: 'economy_daily_stats', periodType: null, createdAtMs: 200,
+          ops: -5 } as any,
       ],
     }]);
 
-    expect(diagnostics.revisionDiscontinuities).toBe(0);
-    expect(diagnostics.balanceDiscontinuities).toBe(0);
+    expect(diagnostics.operationCount).toBe(2);
+    expect(diagnostics.invalidRows).toBe(2);
+    expect(diagnostics.revisionDiscontinuities).toBe(1);
+    expect(diagnostics.balanceDiscontinuities).toBe(1);
   });
 });

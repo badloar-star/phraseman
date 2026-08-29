@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { DebugLogger } from '../app/debug-logger';
 import {
   ActivityIndicator,
   Linking,
@@ -107,9 +108,10 @@ function deleteRecordingFile(uri: string | null): void {
   try {
     const file = new File(uri);
     if (file.exists) file.delete();
-  } catch {
-    /* файл могли уже убрать/переместить — не критично */
-  }
+  } catch (e) {
+      // файл могли уже убрать/переместить — не критично
+      DebugLogger.error('SpeakingPanel:file', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -305,7 +307,10 @@ export function SpeakingPanel({
   const { playNoSpeech } = useNoSpeechCue();
   const { speak: speakReferenceAudio, stop: stopReferenceAudio } = useAudio();
   const recordingAudio = useManagedRecordingAudio(() => {
-    try { speech?.abort(); } catch { /* native capture already gone */ }
+    try { speech?.abort(); } catch (e) {
+      // native capture already gone
+      DebugLogger.error('SpeakingPanel:recordingAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   });
   // Historical call sites use this name. It now releases only this panel's
   // scoped claim; it can no longer overwrite a newer screen's microphone mode.
@@ -383,14 +388,23 @@ export function SpeakingPanel({
   const playbackTokenRef = useRef(0);
   const stopReplayPlayback = useCallback(() => {
     playbackTokenRef.current += 1;
-    try { replayStatusSubRef.current?.remove?.(); } catch { /* stale subscription */ }
+    try { replayStatusSubRef.current?.remove?.(); } catch (e) {
+      // stale subscription
+      DebugLogger.error('SpeakingPanel:stopReplayPlayback', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     replayStatusSubRef.current = null;
     replayClaimRef.current?.release();
     replayClaimRef.current = null;
     const player = replayPlayerRef.current;
     replayPlayerRef.current = null;
-    try { player?.pause(); } catch { /* released player */ }
-    try { player?.remove(); } catch { /* released player */ }
+    try { player?.pause(); } catch (e) {
+      // released player
+      DebugLogger.error('SpeakingPanel:player', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+    try { player?.remove(); } catch (e) {
+      // released player
+      DebugLogger.error('SpeakingPanel:player', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }, []);
   useEffect(() => voicePlaybackPolicy.registerStop(() => {
     stopReplayPlayback();
@@ -480,7 +494,10 @@ export function SpeakingPanel({
         };
         const cancel = () => {
           if (settled) return;
-          try { neutralEngine.abort(); } catch { /* no-op */ }
+          try { neutralEngine.abort(); } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:cancel', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           settle(null);
         };
         controlPassCancelRef.current?.();
@@ -490,9 +507,10 @@ export function SpeakingPanel({
         const timer = setTimeout(() => {
           try {
             neutralEngine.abort();
-          } catch {
-            /* no-op */
-          }
+          } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:timer', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           // Контракт 28 июля: даже если нейтральный прогон завершился по таймауту,
           // уже услышанный им результат ОБЯЗАН участвовать в честной оценке.
           settle(bestControl);
@@ -766,9 +784,10 @@ export function SpeakingPanel({
         if (!wordSystemPressActiveRef.current) {
           try {
             speech.stop();
-          } catch {
-            /* no-op */
-          }
+          } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:startSub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           return;
         }
         setWordPhase('listening');
@@ -830,9 +849,10 @@ export function SpeakingPanel({
           if (!isCurrentSession()) return;
           try {
             speech.abort();
-          } catch {
-            /* no-op */
-          }
+          } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:watchdog', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           settle(); // best='' -> честное «не расслышал» вместо вечного спиннера
         }, 7000);
         wordWatchdogRef.current = watchdog;
@@ -902,9 +922,10 @@ export function SpeakingPanel({
       cleanupListeners();
       try {
         speech?.abort();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:stopListening', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       restoreLoudPlaybackMode();
       setStatus('idle');
       return;
@@ -912,8 +933,9 @@ export function SpeakingPanel({
     if (statusRef.current === 'listening') setStatus('scoring');
     try {
       speech?.stop();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:stopListening', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, [speech, clearWatchdog, cleanupListeners, restoreLoudPlaybackMode]);
 
@@ -938,8 +960,9 @@ export function SpeakingPanel({
     stopReplayPlayback();
     try {
       Speech.stop();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:isCurrentSession', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     setTranscript('');
     setScore(null);
@@ -1055,9 +1078,10 @@ export function SpeakingPanel({
       if (!systemHoldPressActiveRef.current) {
         try {
           speech.stop();
-        } catch {
-          /* no-op */
-        }
+        } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:startSub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return;
       }
       setStatus('listening');
@@ -1129,10 +1153,10 @@ export function SpeakingPanel({
     try {
       try {
         if (!await recordingAudio.begin()) return;
-      } catch {
-        // Recognition can still work on runtimes that manage the native session
-        // themselves; do not turn a mode-sync hiccup into a dead microphone.
-      }
+      } catch (e) {
+      // Recognition can still work on runtimes that manage the native session         // themselves; do not turn a mode-sync hiccup into a dead microphone.
+      DebugLogger.error('SpeakingPanel:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (!systemHoldPressActiveRef.current) {
         cleanupListeners();
@@ -1151,9 +1175,10 @@ export function SpeakingPanel({
         if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
         try {
           speech.abort();
-        } catch {
-          /* no-op */
-        }
+        } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:watchdog', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         cleanupListeners();
         // зачем: тот же класс бага, что при сворачивании — abort() рушит нативную
         // сессию, а подписка на 'audioend' переживала её и ловила событие в мёртвый
@@ -1234,8 +1259,9 @@ export function SpeakingPanel({
     stopReplayPlayback();
     try {
       Speech.stop();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:captureGeneration', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     setTranscript('');
     setScore(null);
@@ -1385,9 +1411,10 @@ export function SpeakingPanel({
       stopReplayPlayback();
       try {
         Speech.stop();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:captureGeneration', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       // Держим 'idle' пока мик прогревается; на 'listening' + cue — только когда
       // пришёл первый реальный аудио-чанк (иначе терялось первое слово в cold-start).
       setWordVerdict(null);
@@ -1488,9 +1515,10 @@ export function SpeakingPanel({
       cleanupWordListeners();
       try {
         speech?.abort();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:endWordSystemAttempt', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       restoreLoudPlaybackMode();
       setWordPhase('idle');
       return;
@@ -1499,9 +1527,10 @@ export function SpeakingPanel({
       setWordPhase('scoring');
       try {
         speech?.stop();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:endWordSystemAttempt', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   }, [cleanupWordListeners, restoreLoudPlaybackMode, speech]);
 
@@ -1517,9 +1546,10 @@ export function SpeakingPanel({
       // Останавливаем незавершённую запись слова при переключении.
       try {
         wordHoldRecRef.current?.cancel();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:onTapWord', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       wordHoldRecRef.current = null;
       cleanupWordListeners();
       setWordPhase('idle');
@@ -1552,15 +1582,17 @@ export function SpeakingPanel({
     wordSystemPressActiveRef.current = false;
     try {
       wordHoldRecRef.current?.cancel();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:closeWordCard', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     wordHoldRecRef.current = null;
     cleanupWordListeners();
     try {
       speech?.abort();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:closeWordCard', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     restoreLoudPlaybackMode();
     setWordPhase('idle');
@@ -1582,31 +1614,35 @@ export function SpeakingPanel({
       cleanupAudioEndListener();
       try {
         speech?.abort();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:closeWordCard', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       // Незавершённая hold-запись при закрытии панели: отменяем, файл не пишем.
       try {
         holdRecRef.current?.cancel();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:closeWordCard', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       holdRecRef.current = null;
       // Тренировка слов: снимаем слушатели одиночного слова и отменяем его запись.
       wordListenersRef.current.forEach((sub) => sub?.remove?.());
       wordListenersRef.current = [];
       try {
         wordHoldRecRef.current?.cancel();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:closeWordCard', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       wordHoldRecRef.current = null;
       stopReplayPlayback();
       try {
         Speech.stop();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:closeWordCard', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       // Панель уходит: файл записи никому больше не нужен, сессию — в громкую.
       deleteRecordingFile(recordingUriRef.current);
       restoreLoudPlaybackMode();
@@ -1648,26 +1684,30 @@ export function SpeakingPanel({
     cleanupWordListeners();
     try {
       speech?.abort();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:wordCaptureWasActive', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     try {
       holdRecRef.current?.cancel();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:wordCaptureWasActive', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     holdRecRef.current = null;
     try {
       wordHoldRecRef.current?.cancel();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:wordCaptureWasActive', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     wordHoldRecRef.current = null;
     stopReplayPlayback();
     try {
       Speech.stop();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:wordCaptureWasActive', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     // Сессия захвата больше не нужна — возвращаем громкое воспроизведение.
     restoreLoudPlaybackMode();
@@ -1721,16 +1761,18 @@ export function SpeakingPanel({
     stopListening();
     try {
       speech?.abort();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:handleClose', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     // «Готово»/крестик глушат всё, что ещё звучит (эталон, «Моя запись»),
     // и возвращают громкую сессию хосту (уроку/тренажёру).
     stopReplayPlayback();
     try {
       Speech.stop();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:handleClose', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     restoreLoudPlaybackMode();
     onClose();
@@ -1780,14 +1822,20 @@ export function SpeakingPanel({
         return;
       }
       if (!claim.isCurrent() || playbackTokenRef.current !== token) {
-        try { player.remove(); } catch { /* no-op */ }
+        try { player.remove(); } catch (e) {
+      // no-op
+      DebugLogger.error('SpeakingPanel:token', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return;
       }
       replayPlayerRef.current = player;
       replayStatusSubRef.current = player.addListener('playbackStatusUpdate', (status) => {
         if (status.didJustFinish) stopReplayPlayback();
       });
-      try { player.volume = 1; } catch { /* runtime без настраиваемой громкости */ }
+      try { player.volume = 1; } catch (e) {
+      // runtime без настраиваемой громкости
+      DebugLogger.error('SpeakingPanel:token', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         player.play();
       } catch {

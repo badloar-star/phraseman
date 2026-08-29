@@ -449,14 +449,11 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     authority: 'intentionally_unread_personal_payload',
   },
   {
-    collection: 'client_economy_operations',
-    writer: 'app/economy/client_shard_operation_sync.ts',
-    authority: 'client append-only persistence; read-only Jarvis money diagnostics',
-  },
-  {
-    collection: 'client_economy_opening',
-    writer: 'app/economy/client_shard_operation_sync.ts',
-    authority: 'immutable one-time legacy opening snapshot; read-only Jarvis money diagnostics',
+    // зачем (2026-08-29): живой преемник мёртвой пары client_economy_* —
+    // обезличенный дневной агрегат; проверки цепочки делает клиент.
+    collection: 'economy_daily_stats',
+    writer: 'app/economy/economy_daily_stats_reporter.ts',
+    authority: 'anonymized daily counters; read-only Jarvis money diagnostics',
   },
   {
     collection: 'external_economy_events',

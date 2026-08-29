@@ -23,6 +23,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import Constants from 'expo-constants';
 import * as Crypto from 'expo-crypto';
@@ -193,9 +194,10 @@ export type SignInWithProviderOptions = Readonly<{
 function emitAuthProviderLinked(): void {
   try {
     emitAppEvent('auth_provider_linked');
-  } catch {
-    /* UI refresh is best-effort; auth result must still return. */
-  }
+  } catch (e) {
+      // UI refresh is best-effort; auth result must still return.
+      DebugLogger.error('auth_provider:emitAuthProviderLinked', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function drainEntitlementSafeAccountTransition(): Promise<void> {
@@ -303,9 +305,10 @@ function parseAppleOAuthRedirectUrl(url: string): { idToken?: string; error?: st
         userJson: q.get('user') ?? undefined,
       };
     }
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:q', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return {};
 }
 
@@ -427,9 +430,10 @@ async function tryRestoreAccountSwitchBackup(
     if (res.status === 'restored') {
       logAuthEvent('auth_switch_backup_restored', { stage, keys: res.restoredKeys });
     }
-  } catch {
-    // восстановление — best effort
-  }
+  } catch (e) {
+      // восстановление — best effort
+      DebugLogger.error('auth_provider:res', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 const REMOTE_ACCOUNT_DELETED_NOTICE_KEY = 'remote_account_deleted_notice_v1';
@@ -813,9 +817,10 @@ async function ensureAccountDeleteCredentialSafe(
     const op = startCloudDeletionEnqueue(lock.stableId, proof);
     const ack = await op.acknowledgment;
     if (ack.authReleased === true && ack.credentialSafe === true) return true;
-  } catch {
-    // The closure may have committed and deleted Auth while its response was lost.
-  }
+  } catch (e) {
+      // The closure may have committed and deleted Auth while its response was lost.
+      DebugLogger.error('auth_provider:ack', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return waitForAccountDeletionCredentialSafe(proof).catch(() => false);
 }
 
@@ -1626,9 +1631,10 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
       const payload = JSON.parse(json) as { email?: string };
       if (typeof payload.email === 'string') email = payload.email;
     }
-  } catch {
-    /* ignore JWT parse */
-  }
+  } catch (e) {
+      // ignore JWT parse
+      DebugLogger.error('auth_provider:payload', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   if (parsed.userJson) {
     try {
       const userObj = JSON.parse(decodeURIComponent(parsed.userJson)) as {
@@ -1638,8 +1644,9 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
       if (n && (n.firstName || n.lastName)) {
         displayName = `${n.firstName ?? ''} ${n.lastName ?? ''}`.trim() || null;
       }
-    } catch {
-      /* ignore */
+    } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:n', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 
@@ -1673,9 +1680,10 @@ function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detai
       writeToFirestore: severity === 'critical',
       tags: { provider, stage },
     }).catch(() => {});
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:severity', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -2512,9 +2520,10 @@ async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): 
       if (!isCurrent()) return;
       await persistPortableProgressRegister('onboarding_done', '1');
     }
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:cur', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -3315,7 +3324,10 @@ export async function signOutCurrentProvider(): Promise<void> {
   // ensureAnonUser() сразу возвращает старый resolved Promise, и signInAnonymously
   // никогда не вызывается заново — а currentUser уже null. Любые последующие
   // Firestore writes падают с PERMISSION_DENIED до перезапуска приложения.
-  try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+  try { resetAnonAuthCacheForSignOut(); } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   // зачем: signOutCurrentProvider — единственная точка, через которую проходят
   // ВСЕ пути выхода (явный logout, смена аккаунта, account-delete, recovery-
   // mismatch), включая те, что не доходят до wipeLocalAccountData. Сбрасываем
@@ -3325,7 +3337,10 @@ export async function signOutCurrentProvider(): Promise<void> {
   try {
     const { resetMultiplierBreakdownCache } = await import('./xp_manager');
     resetMultiplierBreakdownCache();
-  } catch { /* ignore */ }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   // зачем: cachedLeagueStateSnapshot в league_open_cache_policy.ts — module-scope
   // кэш БЕЗ привязки к uid (см. clearCachedLeagueStateSnapshot). При смене
   // аккаунта на общем девайсе/QA БЕЗ полного рестарта приложения
@@ -3336,14 +3351,20 @@ export async function signOutCurrentProvider(): Promise<void> {
   try {
     const { clearCachedLeagueStateSnapshot } = await import('./league_open_cache_policy');
     clearCachedLeagueStateSnapshot();
-  } catch { /* ignore */ }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   // зачем: общий снапшот экранов рисует первый кадр синхронно, поэтому после выхода
   // его надо убрать — иначе следующий вошедший на общем девайсе увидит чужие цифры
   // (та же защита, что у снапшота практики выше).
   try {
     const { clearScreenSnapshots } = await import('./screen_snapshot_store');
     clearScreenSnapshots();
-  } catch { /* ignore */ }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   logAuthEvent('auth_signout');
 }
 
@@ -3361,9 +3382,10 @@ export const AUTH_ONBOARDING_DONE_KEY = 'auth_onboarding_done_v1';
 export function logAuthEvent(name: string, params?: Record<string, string | number>) {
   try {
     logEvent(name, params);
-  } catch {
-    // ignore
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('auth_provider:logAuthEvent', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // Re-exports чтобы Phase 3 / 4 могли в одном импорте получить всё.

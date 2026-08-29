@@ -1341,6 +1341,22 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Обезличенный дневной агрегат экономики (замена мёртвых client_economy_*,
+    // решение владельца 2026-08-27/29). Внутри ТОЛЬКО счётчики за день — ни
+    // uid, ни причин, ни балансов. Пишет любой вошедший инкрементами; врать
+    // тут можно только числами диагностики, деньги отсюда не читаются.
+    match /economy_daily_stats/{day} {
+      allow read: if isAdmin();
+      allow create, update: if request.auth != null
+        && request.resource.data.keys().hasOnly([
+          'day', 'createdAtMs', 'ops', 'grants', 'spends',
+          'amountGranted', 'amountSpent', 'invalidOps', 'revisionGaps',
+          'balanceGaps', 'updatedAtMs', 'updatedAt',
+        ])
+        && request.resource.data.day == day;
+      allow delete: if false;
+    }
+
     // Recovery secrets, rate-limit state, and audit events are server-only.
     // Cloud Functions use the Admin SDK, which bypasses Firestore Rules.
     match /auth_recovery_codes/{document=**} {

@@ -7,17 +7,19 @@ const fetch = (sourceId: MoneySourceFetchResult['sourceId'], rows: MoneySourceFe
 describe('Jarvis personal economy diagnostics', () => {
   it('reconstructs journal continuity and external deltas without treating Firestore as balance authority', () => {
     const diagnostics = diagnosePersonalEconomy([
-      fetch('client_economy_opening', [{ eventType: null, periodType: null, ownerStableId: 'u1', openingBalance: 10 }]),
-      fetch('client_economy_operations', [
-        { eventType: null, periodType: null, ownerStableId: 'u1', revision: 1, delta: 5, balanceBefore: 10, balanceAfter: 15 } as any,
-        { eventType: null, periodType: null, ownerStableId: 'u1', revision: 2, delta: -3, balanceBefore: 15, balanceAfter: 12 } as any,
+      // зачем (2026-08-29): личная цепочка сверяется клиентом; сервер видит
+      // только дневные счётчики economy_daily_stats.
+      fetch('economy_daily_stats', [
+        { eventType: 'economy_daily_stats', periodType: null, createdAtMs: 100,
+          ops: 2, invalidOps: 0, revisionGaps: 0, balanceGaps: 0,
+          amountGranted: 5, amountSpent: 3 } as any,
       ]),
       fetch('external_economy_events', [
         { eventType: 'purchase-1', periodType: null, ownerStableId: 'u1', source: 'revenuecat_purchase', delta: 35 },
       ]),
     ]);
     expect(diagnostics).toMatchObject({
-      openingOwners: 1, operationCount: 2, externalEventCount: 1,
+      openingOwners: 0, operationCount: 2, externalEventCount: 1,
       invalidRows: 0, revisionDiscontinuities: 0, balanceDiscontinuities: 0,
       netClientDelta: 2, netExternalDelta: 35,
     });
@@ -25,9 +27,10 @@ describe('Jarvis personal economy diagnostics', () => {
 
   it('reports revision/balance breaks and duplicate external facts', () => {
     const diagnostics = diagnosePersonalEconomy([
-      fetch('client_economy_operations', [
-        { eventType: null, periodType: null, ownerStableId: 'u1', revision: 1, delta: 1, balanceBefore: 0, balanceAfter: 1 } as any,
-        { eventType: null, periodType: null, ownerStableId: 'u1', revision: 3, delta: 1, balanceBefore: 9, balanceAfter: 10 } as any,
+      fetch('economy_daily_stats', [
+        { eventType: 'economy_daily_stats', periodType: null, createdAtMs: 100,
+          ops: 2, invalidOps: 0, revisionGaps: 1, balanceGaps: 1,
+          amountGranted: 2, amountSpent: 0 } as any,
       ]),
       fetch('external_economy_events', [
         { eventType: 'e1', periodType: null, ownerStableId: 'u1', source: 's', delta: 1 },

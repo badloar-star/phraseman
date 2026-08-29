@@ -142,7 +142,9 @@ describe('Jarvis money Firestore fetcher — personal economy exact window', () 
       doc({ ownerStableId: 'future', createdAtMs: nowMs + 1, openingBalance: 20 }),
     ]);
     const result = await fetchMoneySource({
-      sourceId: 'client_economy_opening', collection: collection as unknown as FirebaseFirestore.CollectionReference, nowMs,
+      // зачем замена (2026-08-29): default-ветку fetchPersonalEconomy теперь
+      // представляет external_economy_events; поведение окна и сортировки то же.
+      sourceId: 'external_economy_events', collection: collection as unknown as FirebaseFirestore.CollectionReference, nowMs,
     });
     expect(collection.where.mock.calls).toEqual([
       ['createdAtMs', '>=', nowMs - MONEY_LOOKBACK_MS],

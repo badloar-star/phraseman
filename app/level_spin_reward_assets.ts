@@ -21,6 +21,7 @@ export const LEVEL_SPIN_REWARD_IMAGE_SOURCES = Object.freeze({
   pearls_100: require('../assets/images/level-spin-rewards/pearls_100.webp'),
   pearls_250: require('../assets/images/level-spin-rewards/pearls_250.webp'),
   pearls_500: require('../assets/images/level-spin-rewards/pearls_500.webp'),
+  pearls_1000: require('../assets/images/level-spin-rewards/pearls_1000.webp'),
   stars_10: require('../assets/images/level-spin-rewards/stars_10.webp'),
   stars_20: require('../assets/images/level-spin-rewards/stars_20.webp'),
   stars_50: require('../assets/images/level-spin-rewards/stars_50.webp'),
@@ -28,19 +29,24 @@ export const LEVEL_SPIN_REWARD_IMAGE_SOURCES = Object.freeze({
   stars_250: require('../assets/images/level-spin-rewards/stars_250.webp'),
   stars_500: require('../assets/images/level-spin-rewards/stars_500.webp'),
   stars_1000: require('../assets/images/level-spin-rewards/stars_1000.webp'),
+  stars_2000: require('../assets/images/level-spin-rewards/stars_2000.webp'),
   energy_full: require('../assets/images/level-spin-rewards/energy_full.webp'),
   energy_plus2: require('../assets/images/level-spin-rewards/energy_plus2.webp'),
   energy_plus3: require('../assets/images/level-spin-rewards/energy_plus3.webp'),
   hint_1: require('../assets/images/level-spin-rewards/hint_1.webp'),
   hint_3: require('../assets/images/level-spin-rewards/hint_3.webp'),
   chain_shield_1: require('../assets/images/level-spin-rewards/chain_shield_1.webp'),
+  chain_shield_3: require('../assets/images/level-spin-rewards/chain_shield_3.webp'),
   xp_bank_150: require('../assets/images/level-spin-rewards/xp_bank_150.webp'),
   xp_bank_300: require('../assets/images/level-spin-rewards/xp_bank_300.webp'),
   xp_bank_600: require('../assets/images/level-spin-rewards/xp_bank_600.webp'),
+  xp_bank_1500: require('../assets/images/level-spin-rewards/xp_bank_1500.webp'),
   xp_2x_24h: require('../assets/images/level-spin-rewards/xp_2x_24h.webp'),
   xp_2x_48h: require('../assets/images/level-spin-rewards/xp_2x_48h.webp'),
   plus_days_3: require('../assets/images/level-spin-rewards/plus_days_3.webp'),
   plus_days_7: require('../assets/images/level-spin-rewards/plus_days_7.webp'),
+  plus_days_14: require('../assets/images/level-spin-rewards/plus_days_14.webp'),
+  plus_days_30: require('../assets/images/level-spin-rewards/plus_days_30.webp'),
   cosmetic_avatar_aura: require('../assets/images/level-spin-rewards/cosmetic_avatar_aura.webp'),
   cosmetic_theme: require('../assets/images/level-spin-rewards/cosmetic_theme.webp'),
   cosmetic_avatar_common: require('../assets/images/level-spin-rewards/cosmetic_avatar_common.webp'),
@@ -50,8 +56,11 @@ export const LEVEL_SPIN_REWARD_IMAGE_SOURCES = Object.freeze({
 export type LevelSpinRewardImageKey = keyof typeof LEVEL_SPIN_REWARD_IMAGE_SOURCES;
 
 /** Historical rewards keep their identity but borrow the nearest V2 family art. */
+// зачем (v7, 2026-08-29): chain_shield_3 стал каталожным призом спина и получил
+// СВОЙ файл — его алиас снят (сторож ассетов запрещает каталожному id жить в
+// алиасах). pack_voucher_48h остался вне каталога (нет локальной активации) и
+// продолжает жить алиасом.
 export const LEVEL_SPIN_REWARD_IMAGE_ALIASES = Object.freeze({
-  chain_shield_3: 'chain_shield_1',
   choice_3_level: 'xp_bank_600',
   club_boost_free: 'energy_plus2',
   energy_plus1: 'energy_plus2',

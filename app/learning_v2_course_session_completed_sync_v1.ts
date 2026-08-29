@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { DebugLogger } from './debug-logger';
 import { getApp } from "@react-native-firebase/app";
 import { getFunctions, httpsCallable } from "@react-native-firebase/functions";
 import {
@@ -138,6 +139,17 @@ export async function attemptPendingLearningV2CourseSessionCompletedV1(): Promis
     try {
       await callServer(completion);
     } catch (error) {
+      // зачем (аудит 2026-08-29): Learning V2 не писал отказы никуда. Провал
+      // отправки завершения сессии — это застрявший прогресс человека; спул
+      // повторит, но повторяющийся отказ обязан быть виден с сервера, а не
+      // только на устройстве. Сетевое «отложили» — не ошибка, молчим.
+      if (!isInteractiveNetworkDeferredError(error)) {
+        DebugLogger.error(
+          'learning_v2:session_completed_sync',
+          error instanceof Error ? error : new Error(String(error)),
+          'critical',
+        );
+      }
       return attempt(
         processed,
         isInteractiveNetworkDeferredError(error)

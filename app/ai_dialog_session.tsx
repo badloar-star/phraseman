@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { DebugLogger } from './debug-logger';
 import {
   View,
   Text,
@@ -890,6 +891,13 @@ function AiDialogSession() {
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyTurnState(res.turnState);
       } catch (error) {
+        // зачем (аудит 2026-08-29): диалоги не писали отказы никуда — «ИИ
+        // молчит» было невидимо с сервера. Отказ ответа — ядро фичи: critical.
+        DebugLogger.error(
+          'ai_dialog:reply_stream',
+          error instanceof Error ? error : new Error(String(error)),
+          'critical',
+        );
         setStreamingText('');
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».

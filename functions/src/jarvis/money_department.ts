@@ -64,8 +64,9 @@ interface RefundSpike {
 }
 
 const PERSONAL_ECONOMY_SOURCES = Object.freeze([
-  'client_economy_opening',
-  'client_economy_operations',
+  // зачем (2026-08-29): вместо двух мёртвых client_economy_* — обезличенный
+  // дневной агрегат; проверки цепочки делает клиент, сюда идут счётчики.
+  'economy_daily_stats',
   'external_economy_events',
 ] as const);
 

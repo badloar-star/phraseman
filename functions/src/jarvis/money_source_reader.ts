@@ -14,8 +14,12 @@ export const MONEY_REPORT_COLLECTIONS = [
   'revenuecat_premium_events',
   'voice_minute_events',
   'paywall_funnel',
-  'client_economy_opening',
-  'client_economy_operations',
+  // зачем (2026-08-29): client_economy_opening/operations мертвы навсегда
+  // (писателя снёс чекпойнт 96c32bb97; сторож требует, чтобы они ОСТАВАЛИСЬ
+  // мёртвыми, личный журнал PhoneState закрыт приватностью). Диагностика
+  // экономики переехала на ОБЕЗЛИЧЕННЫЙ дневной агрегат: клиент сам сверяет
+  // свою цепочку revision/balance и шлёт только счётчики аномалий.
+  'economy_daily_stats',
   'external_economy_events',
 ] as const;
 export type MoneyReportCollection = typeof MONEY_REPORT_COLLECTIONS[number];
@@ -91,38 +95,30 @@ export function aggregateMoneyRows(rows: readonly MoneyRawRow[]): MoneyAggregate
 export function diagnosePersonalEconomy(
   fetches: readonly MoneySourceFetchResult[],
 ): PersonalEconomyDiagnostics {
-  const openings = fetches.find((fetch) => fetch.sourceId === 'client_economy_opening')?.rows ?? [];
-  const operations = [...(fetches.find((fetch) => fetch.sourceId === 'client_economy_operations')?.rows ?? [])]
-    .sort((left, right) => {
-      const ownerOrder = (left.ownerStableId ?? '').localeCompare(right.ownerStableId ?? '');
-      if (ownerOrder !== 0) return ownerOrder;
-      const leftAt = Number.isSafeInteger(left.createdAtMs) ? Number(left.createdAtMs) : Number.MAX_SAFE_INTEGER;
-      const rightAt = Number.isSafeInteger(right.createdAtMs) ? Number(right.createdAtMs) : Number.MAX_SAFE_INTEGER;
-      if (leftAt !== rightAt) return leftAt - rightAt;
-      return Number(left.revision ?? 0) - Number(right.revision ?? 0);
-    });
+  // зачем (2026-08-29): построчный разбор личной цепочки revision/balance
+  // ушёл вместе с client_economy_* — теперь эти проверки делает САМ КЛИЕНТ
+  // (app/economy/economy_daily_stats_reporter.ts) по своему локальному хвосту,
+  // а сюда приходят только дневные СЧЁТЧИКИ. Ни одного личного поля в этом
+  // пути больше нет.
+  const daily = fetches.find((fetch) => fetch.sourceId === 'economy_daily_stats')?.rows ?? [];
   const external = fetches.find((fetch) => fetch.sourceId === 'external_economy_events')?.rows ?? [];
   let invalidRows = 0;
   let revisionDiscontinuities = 0;
   let balanceDiscontinuities = 0;
-  const lastByOwner = new Map<string, { revision: number; balanceAfter: number }>();
+  let operationCount = 0;
   let netClientDelta = 0;
-  for (const row of operations) {
-    const owner = row.ownerStableId ?? '';
-    const revision = Number((row as MoneyRawRow & { revision?: unknown }).revision);
-    const delta = Number(row.delta);
-    const before = Number(row.balanceBefore);
-    const after = Number(row.balanceAfter);
-    if (!owner || !Number.isSafeInteger(revision) || revision <= 0 || !Number.isSafeInteger(delta)
-      || !Number.isSafeInteger(before) || !Number.isSafeInteger(after) || before + delta !== after) {
-      invalidRows += 1;
-      continue;
-    }
-    const previous = lastByOwner.get(owner);
-    if (previous && revision !== previous.revision + 1) revisionDiscontinuities += 1;
-    if (previous && before !== previous.balanceAfter) balanceDiscontinuities += 1;
-    lastByOwner.set(owner, { revision, balanceAfter: after });
-    netClientDelta += delta;
+  for (const row of daily) {
+    const stats = row as MoneyRawRow & {
+      ops?: unknown; invalidOps?: unknown; revisionGaps?: unknown; balanceGaps?: unknown;
+      amountGranted?: unknown; amountSpent?: unknown;
+    };
+    const ops = Number(stats.ops ?? 0);
+    if (!Number.isSafeInteger(ops) || ops < 0) { invalidRows += 1; continue; }
+    operationCount += ops;
+    invalidRows += Math.max(0, Number(stats.invalidOps ?? 0) || 0);
+    revisionDiscontinuities += Math.max(0, Number(stats.revisionGaps ?? 0) || 0);
+    balanceDiscontinuities += Math.max(0, Number(stats.balanceGaps ?? 0) || 0);
+    netClientDelta += (Number(stats.amountGranted ?? 0) || 0) - (Number(stats.amountSpent ?? 0) || 0);
   }
   const externalKeys = new Set<string>();
   let duplicateExternalFacts = 0;
@@ -142,8 +138,11 @@ export function diagnosePersonalEconomy(
     netExternalDelta += delta;
   }
   return Object.freeze({
-    openingOwners: new Set(openings.map((row) => row.ownerStableId).filter(Boolean)).size,
-    operationCount: operations.length,
+    // Обезличенный агрегат не знает владельцев — и не должен. Поле оставлено
+    // ради стабильности формы Decision-текста; 0 читается как «per-owner
+    // разреза больше нет», а не как «никто не открывал кошелёк».
+    openingOwners: 0,
+    operationCount,
     externalEventCount: external.length,
     invalidRows,
     revisionDiscontinuities,

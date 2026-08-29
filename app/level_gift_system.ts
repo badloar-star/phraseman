@@ -165,7 +165,7 @@ const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCop
     },
   ),
   ...makeSpinPlannedCopy(
-    ['pearls_5', 'pearls_10', 'pearls_20', 'pearls_50', 'pearls_100', 'pearls_250', 'pearls_500'],
+    ['pearls_5', 'pearls_10', 'pearls_20', 'pearls_50', 'pearls_100', 'pearls_250', 'pearls_500', 'pearls_1000'],
     (id) => {
       const amount = Number(id.slice('pearls_'.length));
       return {
@@ -175,7 +175,7 @@ const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCop
     },
   ),
   ...makeSpinPlannedCopy(
-    ['stars_10', 'stars_20', 'stars_50', 'stars_100', 'stars_250', 'stars_500', 'stars_1000'],
+    ['stars_10', 'stars_20', 'stars_50', 'stars_100', 'stars_250', 'stars_500', 'stars_1000', 'stars_2000'],
     (id) => {
       const amount = Number(id.slice('stars_'.length));
       return {
@@ -184,13 +184,17 @@ const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCop
       };
     },
   ),
-  ...makeSpinPlannedCopy(['plus_days_3', 'plus_days_7'], (id) => {
+  ...makeSpinPlannedCopy(['plus_days_3', 'plus_days_7', 'plus_days_14', 'plus_days_30'], (id) => {
     const days = Number(id.slice('plus_days_'.length));
     return {
       title: { 'pt-BR': `Plus por ${days} dias`, vi: `Plus trong ${days} ngày`, id: `Plus selama ${days} hari`, tr: `${days} günlük Plus`, pl: `Plus na ${days} dni` },
       desc: { 'pt-BR': `Acesso Plus temporário por ${days} dias`, vi: `Quyền truy cập Plus tạm thời trong ${days} ngày`, id: `Akses Plus sementara selama ${days} hari`, tr: `${days} gün geçici Plus erişimi`, pl: `Tymczasowy dostęp Plus przez ${days} dni` },
     };
   }),
+  xp_bank_1500: {
+    title: { 'pt-BR': 'Bônus ×2 para 1500 XP', vi: 'Thưởng ×2 cho 1500 XP', id: 'Bonus ×2 untuk 1500 XP', tr: '1500 XP için ×2 bonus', pl: 'Bonus ×2 na 1500 XP' },
+    desc: { 'pt-BR': 'Os próximos 1500 XP são dobrados. Só é gasto ao estudar', vi: '1500 XP tiếp theo được nhân đôi. Chỉ dùng khi học', id: '1500 XP berikutnya digandakan. Hanya terpakai saat belajar', tr: 'Sonraki 1500 XP ikiye katlanır. Yalnızca çalışırken harcanır', pl: 'Następne 1500 XP zostanie podwojone. Zużywa się tylko podczas nauki' },
+  },
   attempt_restore_all: {
     title: {
       'pt-BR': 'Segunda chance',
@@ -816,7 +820,7 @@ const spinXpGift = (amount: 250 | 500 | 1_000 | 3_000 | 5_000 | 10_000 | 25_000 
   };
 };
 
-const spinPearlGift = (amount: 5 | 10 | 20 | 50 | 100 | 250 | 500): GiftDef => {
+const spinPearlGift = (amount: 5 | 10 | 20 | 50 | 100 | 250 | 500 | 1_000): GiftDef => {
   const entry = spinRewardEntry(`pearls_${amount}`);
   return {
     id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '🫧', weight: entry.weight,
@@ -826,7 +830,7 @@ const spinPearlGift = (amount: 5 | 10 | 20 | 50 | 100 | 250 | 500): GiftDef => {
   };
 };
 
-const spinStarGift = (amount: 10 | 20 | 50 | 100 | 250 | 500 | 1_000): GiftDef => {
+const spinStarGift = (amount: 10 | 20 | 50 | 100 | 250 | 500 | 1_000 | 2_000): GiftDef => {
   const entry = spinRewardEntry(`stars_${amount}`);
   return {
     // зачем (владелец, 22.08): валюта переименована в руны — иконка стала
@@ -838,7 +842,7 @@ const spinStarGift = (amount: 10 | 20 | 50 | 100 | 250 | 500 | 1_000): GiftDef =
   };
 };
 
-const spinPlusGift = (days: 3 | 7): GiftDef => {
+const spinPlusGift = (days: 3 | 7 | 14 | 30): GiftDef => {
   const entry = spinRewardEntry(`plus_days_${days}`);
   return {
     id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '💎', weight: entry.weight,
@@ -848,6 +852,19 @@ const spinPlusGift = (days: 3 | 7): GiftDef => {
     descRU: `Временный доступ Plus на ${days} ${days === 3 ? 'дня' : 'дней'}`,
     descUK: `Тимчасовий доступ Plus на ${days} ${days === 3 ? 'дні' : 'днів'}`,
     descES: `Acceso Plus temporal durante ${days} días`,
+  };
+};
+
+// зачем (v7, 2026-08-29): крупный банк ×2 — спин-эксклюзив. Он ценный, но
+// честный: XP не падает с неба, а удваивается только за реальную учёбу.
+const spinXpBankGift = (): GiftDef => {
+  const entry = spinRewardEntry('xp_bank_1500');
+  return {
+    id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '⚡', weight: entry.weight,
+    titleRU: 'Бонус ×2 на 1500 XP', titleUK: 'Бонус ×2 на 1500 XP', titleES: 'Bono ×2 para 1500 XP',
+    descRU: 'Следующие 1500 XP удваиваются. Расходуется только во время обучения',
+    descUK: 'Наступні 1500 XP подвоюються. Витрачається лише під час навчання',
+    descES: 'Duplica los siguientes 1500 XP. Solo se consume al estudiar',
   };
 };
 

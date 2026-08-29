@@ -194,9 +194,48 @@ async function fetchPaywallFunnel(input: FetchMoneySourceInput): Promise<FetchMo
   }
 }
 
+/**
+ * Обезличенный дневной агрегат экономики (замена мёртвых client_economy_*,
+ * решение владельца 2026-08-27/29): документы economy_daily_stats/{YYYY-MM-DD}
+ * несут только счётчики — клиент сам сверил свою цепочку и прислал итоги.
+ * Пара документов за окно, никакого PII, никакого п(о)-owner разреза.
+ */
+async function fetchEconomyDailyStats(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
+  const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
+  try {
+    const snapshot = await input.collection
+      .where('createdAtMs', '>=', Date.parse(new Date(sinceMs).toISOString().slice(0, 10) + 'T00:00:00.000Z'))
+      .orderBy('createdAtMs', 'desc')
+      .limit(8)
+      .get();
+    let invalidRows = 0;
+    const rows = snapshot.docs
+      .map((snap) => snap.data() as Record<string, unknown>)
+      .flatMap((data) => {
+        const ops = Number(data.ops);
+        if (!Number.isSafeInteger(ops) || ops < 0) { invalidRows += 1; return []; }
+        return [Object.freeze({
+          eventType: 'economy_daily_stats',
+          periodType: null,
+          createdAtMs: number(data.createdAtMs),
+          ops,
+          invalidOps: Number(data.invalidOps ?? 0) || 0,
+          revisionGaps: Number(data.revisionGaps ?? 0) || 0,
+          balanceGaps: Number(data.balanceGaps ?? 0) || 0,
+          amountGranted: Number(data.amountGranted ?? 0) || 0,
+          amountSpent: Number(data.amountSpent ?? 0) || 0,
+        } as MoneyRawRow)];
+      });
+    return packResult('economy_daily_stats', rows, false, invalidRows, input.nowMs);
+  } catch {
+    return errorResult('economy_daily_stats', input.nowMs);
+  }
+}
+
 export async function fetchMoneySource(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
   if (input.sourceId === 'paywall_funnel') return fetchPaywallFunnel(input);
   if (input.sourceId === 'revenuecat_premium_events') return fetchRevenuecatEvents(input);
   if (input.sourceId === 'voice_minute_events') return fetchVoiceMinuteEvents(input);
+  if (input.sourceId === 'economy_daily_stats') return fetchEconomyDailyStats(input);
   return fetchPersonalEconomy(input);
 }

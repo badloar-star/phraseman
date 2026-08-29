@@ -24,8 +24,8 @@ function completeFetches(revenueRows: FetchMoneySourceResult['rows'] = []): Fetc
   return [
     fetchResult({ sourceId: 'revenuecat_premium_events', rows: revenueRows }),
     fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
-    fetchResult({ sourceId: 'client_economy_opening', rows: [] }),
-    fetchResult({ sourceId: 'client_economy_operations', rows: [] }),
+    fetchResult({ sourceId: 'voice_minute_events', rows: [] }),
+    fetchResult({ sourceId: 'economy_daily_stats', rows: [] }),
     fetchResult({ sourceId: 'external_economy_events', rows: [] }),
   ];
 }
@@ -60,8 +60,12 @@ describe('Jarvis money department — required trustworthy sources', () => {
     const complete = runMoneyDepartment({ fetches: completeFetches(), trigger: 'owner_request', nowMs: 10_000 });
     expect(complete.decisions[0].finding).toMatch(/Экономика: 0 клиентских операций, 0 внешних событий/);
 
-    const incompleteFetches = completeFetches();
-    incompleteFetches[3] = fetchResult({ sourceId: 'client_economy_operations', state: 'error' });
+    const incompleteFetches = completeFetches().map((item) => (
+      // зачем не индекс: порядок массива уже менялся и молча ломал тест.
+      item.sourceId === 'economy_daily_stats'
+        ? fetchResult({ sourceId: 'economy_daily_stats', state: 'error' })
+        : item
+    ));
     const incomplete = runMoneyDepartment({ fetches: incompleteFetches, trigger: 'owner_request', nowMs: 10_000 });
     expect(incomplete.decisions[0].status).toBe('insufficient_evidence');
     expect(incomplete.decisions[0].finding).not.toMatch(/Экономика: \d+ клиентских операций/);

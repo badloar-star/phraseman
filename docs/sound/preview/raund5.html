@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Раунд 5 — Живые инструменты, 5 вариантов</title>
+<style>
+  :root{
+    --bg:#1c1e15; --card:#262921; --card2:#2e3227; --gold:#C9A84C; --gold-dim:#8a7434;
+    --text:#ece7d9; --muted:#a9a58f; --ok:#9fce8f; --warn:#d9b48a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{background:var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; padding:32px 16px 120px}
+  .wrap{max-width:900px; margin:0 auto}
+  h1{font-size:28px; font-weight:800; letter-spacing:.2px}
+  h1 b{color:var(--gold)}
+  .sub{color:var(--muted); margin-top:6px; max-width:680px}
+  .progress{position:sticky; top:0; z-index:5; background:linear-gradient(var(--bg) 75%, transparent); padding:14px 0 18px; margin-top:8px}
+  .bar{height:10px; border-radius:6px; background:var(--card2); overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,.4)}
+  .bar i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--gold-dim),var(--gold)); border-radius:6px; transition:width .25s}
+  .ptext{font-size:13px; color:var(--muted); margin-top:6px}
+  h2{font-size:20px; margin:38px 0 6px; color:var(--gold)}
+  .h2sub{color:var(--muted); font-size:14px; margin-bottom:16px}
+  .card{background:var(--card); border-radius:18px; padding:18px 18px 16px; margin-bottom:14px; box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .card.done{background:#242c1f}
+  .name{font-weight:700; font-size:17px}
+  .name small{color:var(--muted); font-weight:500; font-size:13px; margin-left:8px}
+  .desc{color:var(--muted); font-size:14px; margin:4px 0 12px}
+  .row{display:flex; flex-wrap:wrap; gap:8px}
+  button{cursor:pointer; font:inherit; border:0; border-radius:12px; padding:10px 14px; background:var(--card2); color:var(--text); box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .06s, background .15s}
+  button:active{transform:scale(.96)}
+  .play{min-width:118px; font-weight:700; text-align:left}
+  .play small{display:block; font-weight:500; font-size:11px; color:var(--muted); margin-top:2px}
+  .play.playing{background:#3a4030; color:var(--gold)}
+  .play.playing small{color:var(--gold-dim)}
+  .pickrow{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+  .pick{padding:8px 16px; font-weight:700; color:var(--muted)}
+  .pick.on{background:var(--gold); color:#221d0d; box-shadow:0 3px 10px rgba(201,168,76,.35)}
+  .pick.none.on{background:#6b4a42; color:#f2d9d2}
+  .status{font-size:12px; color:var(--ok); margin-top:8px; min-height:16px}
+  .note{font-size:12px; color:var(--warn)}
+  .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); background:var(--gold); color:#221d0d; font-weight:700; padding:10px 22px; border-radius:14px; opacity:0; pointer-events:none; transition:opacity .2s; box-shadow:0 6px 20px rgba(0,0,0,.45)}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Раунд 5 — <b>живые инструменты</b>, 5 вариантов</h1>
+  <p class="sub">Раунд 4 забракован и переделан целиком. Что изменилось: каждый звук — «студийная запись живого инструмента» вместо синтетики; 5 вариантов = 5 разных инструментов (челеста · маримба · арфа · духовые/смычковые · калимба / хендпан / музыкальная шкатулка); тихие дубли не усилены, а перегенерированы (шипения нет); концы с естественным затуханием. Жми ▶ — под буквой подписан инструмент. Выбор сохраняется сразу; повторный клик снимает отметку.</p>
+
+  <div class="progress">
+    <div class="bar"><i id="barfill"></i></div>
+    <div class="ptext" id="ptext">0 из 31 отмечено</div>
+  </div>
+
+  <div id="list"></div>
+</div>
+<div class="toast" id="toast">Сохранено</div>
+
+<script>
+const SOUNDS = [
+  {sec:'Обучение и обвязка', secsub:'Переделки звуков, отвергнутых в раундах 1–4. У learn_correct / lesson_begin / complete_perfect в приложении пока живут старые версии.'},
+  {id:'pm_learn_correct',    title:'Верный ответ в уроке', desc:'Самый частый звук обучения (в приложении 0.42).', v:['челеста','маримба','арфа','калимба','муз. шкатулка']},
+  {id:'pm_learn_hint_reveal',title:'Открылась подсказка', desc:'Тихое «раскрытие» (0.30).', v:['челеста-слайд','вибрафон','флажолеты арфы','глокеншпиль (фетр)','хендпан']},
+  {id:'pm_tap_blocked',      title:'Тап по заблокированной кнопке', desc:'Вежливый отказ с ясной низкой нотой. НОВОЕ событие.', v:['маримба','фагот','контрабас пиццикато','калимба (глушёная)','пианино с фетром']},
+  {id:'pm_lesson_begin',     title:'Вход в урок (интро)', desc:'Тихий «вдох» под фейд интро (0.18).', v:['струнные+челеста','арфа','валторна','муз. шкатулка','хендпан']},
+  {id:'pm_complete_perfect', title:'Идеальная сессия', desc:'Все ответы верные, мотив «три ноты вверх» (0.58).', v:['челеста+струнные','маримба+арфа','валторна+струнные','шкатулка+струнные','вибрафон+рояль']},
+  {id:'pm_onboarding_step',  title:'Шаг онбординга пройден', desc:'Крошечное подтверждение. НОВОЕ событие.', v:['челеста','калимба','арфа','маримба+дерево','пианино с фетром']},
+
+  {sec:'Арена — матч', secsub:'21 событие Арены, впервые озвучены. Код ждёт файлов: после выбора Арена зазвучит целиком.'},
+  {id:'ar_countdown_go',     title:'Старт матча', desc:'Отсчёт кончился (0.55).', v:['литавра+струнные','валторна+щётка','виолончели','тайко+маримба','рояль+литавра']},
+  {id:'ar_answer_correct',   title:'Верный ответ', desc:'Частый и короткий, без пафоса (0.42).', v:['челеста','маримба','арфа','калимба','ксилофон (мягкий)']},
+  {id:'ar_answer_first',     title:'Верный раньше соперника', desc:'Микро-триумф скорости (0.48).', v:['челеста+рим','маримба+щётка','арфа+литавра','глокеншпиль+дерево','хендпан']},
+  {id:'ar_search_start',     title:'Начался поиск соперника', desc:'Нажал «Играть» (0.35).', v:['виолончели+пульс','арфа+щётка','маримба+сердцебиение','виолончель пиццикато','хендпан']},
+  {id:'ar_search_loop',      loop:true, title:'Ожидание поиска (луп)', desc:'Тихая пульсация по кругу (0.12). ▶ зацикливает, повторный клик — стоп.', v:['струнный пульс','маримба-остинато','хендпан-паттерн','пианино с фетром','дыхание струнных']},
+  {id:'ar_opponent_found',   title:'Соперник найден', desc:'Заставка «против» (0.60).', v:['струнные+литавра','валторна+колокол','рояль+струнные','маримба+барабан','виолончель+арфа']},
+  {id:'ar_task_in',          title:'Новый вопрос выехал', desc:'Каждый раунд, тихий (0.24).', v:['арфа','скрипка пиццикато','челеста','калимба','бумага+маримба']},
+  {id:'ar_option_tap',       title:'Тап по варианту ответа', desc:'Самое частое касание Арены (0.20).', v:['пиццикато глушёное','маримба (фетр)','калимба (глушёная)','тонг-драм','пианино с фетром']},
+  {id:'ar_answer_wrong',     title:'Неверный ответ', desc:'Не унижает (0.28).', v:['кларнет','фагот','маримба вниз','виолончель пиццикато','калимба-вздох']},
+  {id:'ar_opponent_answered',title:'Соперник ответил', desc:'Тихо, на его стороне (0.22).', v:['вудблок+струна','контрабас издали','рим+маримба','пианино за стеной','хендпан глушёный']},
+  {id:'ar_timer_tick',       title:'Тик таймера', desc:'Последние секунды, одинаковый (0.30).', v:['вудблок+струна','литавра пальцами','пианино-тик','тонг-драм','клаве+маримба']},
+  {id:'ar_timeout',          title:'Время вышло', desc:'Спокойно и честно (0.34).', v:['кларнет вниз','виолончель+барабан','фагот','маримба вниз','рояль-аккорд']},
+
+  {sec:'Арена — серии, пары, звёзды', secsub:''},
+  {id:'ar_combo_start',      title:'Серия началась', desc:'Обещание (0.38).', v:['маримба','арфа+колокол','челеста+пульс','калимба+сердце','хендпан']},
+  {id:'ar_combo_up',         title:'Серия растёт', desc:'Шаг серии (0.40).', v:['челеста ×3','маримба+рим','арфа-пробежка','глокеншпиль','калимба-триоль']},
+  {id:'ar_combo_break',      title:'Серия оборвалась', desc:'Мягко, без драмы (0.26).', v:['кларнет','арфа глушёная','маримба-вздох','виолончель','муз. шкатулка']},
+  {id:'ar_pair_match',       title:'Пары: пара сошлась', desc:'Быстрые серии (0.34).', v:['челеста-дуэт','маримба','калимба','арфа-дубль','дерево+нота']},
+  {id:'ar_pair_miss',        title:'Пары: мимо', desc:'Нейтрально (0.24).', v:['контрабас','фетр+кларнет','калимба','маримба-призрак','тонг-драм']},
+  {id:'ar_pair_clear',       title:'Пары: доска собрана', desc:'Финал доски (0.46).', v:['челеста+струнные','арфа+аккорд','маримба+барабан','хендпан-арпеджио','шкатулка+пэд']},
+  {id:'ar_star_fly',         title:'Звезда полетела', desc:'Отрыв к счётчику (0.26).', v:['челеста-глисс','флажолет арфы','калимба-слайд','глокеншпиль','воздух+нота']},
+  {id:'ar_star_land',        title:'Звезда приземлилась', desc:'Фиксация (0.34).', v:['колокол+фетр','маримба','челеста+дерево','калимба','тонг-драм']},
+
+  {sec:'Арена — итоги и награды', secsub:''},
+  {id:'ar_result_draw',      title:'Ничья в матче', desc:'Ровно, достойно (0.42).', v:['струнные-квинта','валторна+виолончель','рояль-аккорд','вибрафон','арфа+виолончель']},
+  {id:'ar_goal_complete',    title:'Дневная цель закрыта', desc:'Мотив награды (0.44).', v:['челеста+струнные','арфа','маримба+валторна','шкатулка+пэд','хендпан']},
+  {id:'ar_reward_unlock',    title:'Награда разблокирована', desc:'Сундук Арены (0.50).', v:['струнные+челеста+колокол','арфа+валторна','рояль+струнные','вибрафон+рояль','шкатулка+струнные']},
+  {id:'ar_rank_up',          title:'Ранг повышен', desc:'Редкая церемония (0.55).', v:['челеста+струнные+валторна','валторна+арфа+литавра','струнные+медь+маримба','шкатулка+струнные','вибрафон+рояль+литавры']},
+  {id:'ar_rank_down',        title:'Ранг понижен', desc:'Достойно, зовёт вернуться (0.34).', v:['струнные вниз','фагот+струнные','рояль вниз','виолончель+арфа','маримба вниз']},
+];
+// зачем: 26c и 31c — единственные два компромисса (тихое сырьё, поднято усилением)
+const BOOSTED = { 'ar_result_draw': 'c', 'ar_rank_down': 'c' };
+
+const LETTERS=['a','b','c','d','e'];
+let choices={};
+let cur=null, curBtn=null;
+
+function file(id,letter){ return '/r5/'+id+'_r5'+letter+'.mp3'; }
+
+function stopCurrent(){
+  if(cur){ cur.pause(); cur.currentTime=0; cur=null; }
+  if(curBtn){ curBtn.classList.remove('playing'); curBtn=null; }
+}
+
+function playVar(id,letter,loop,btn){
+  if(curBtn===btn){ stopCurrent(); return; }
+  stopCurrent();
+  cur=new Audio(file(id,letter));
+  cur.loop=!!loop;
+  curBtn=btn; btn.classList.add('playing');
+  cur.onended=()=>{ if(curBtn===btn){ btn.classList.remove('playing'); curBtn=null; cur=null; } };
+  cur.play();
+}
+
+async function save(id,variant){
+  const cardEl=document.getElementById('card_'+id);
+  const prev=choices[id];
+  const next=(prev===variant)?null:variant;
+  try{
+    await fetch('/pick5',{method:'POST',body:JSON.stringify({id,variant:next})});
+    if(next===null) delete choices[id]; else choices[id]=next;
+    render(cardEl,id);
+    updateProgress();
+    toast(next===null?'Отметка снята':'Сохранено: '+(next==='none'?'ни один':next.toUpperCase()));
+  }catch(e){ toast('Ошибка сохранения'); }
+}
+
+function render(cardEl,id){
+  const v=choices[id];
+  cardEl.classList.toggle('done',v!==undefined);
+  cardEl.querySelectorAll('.pick').forEach(b=>{
+    b.classList.toggle('on', b.dataset.v===v);
+  });
+  cardEl.querySelector('.status').textContent =
+    v===undefined?'' : (v==='none'?'Отмечено: ни один не подходит':'Выбран вариант '+v.toUpperCase());
+}
+
+function updateProgress(){
+  const total=SOUNDS.filter(s=>s.id).length;
+  const done=Object.keys(choices).length;
+  document.getElementById('barfill').style.width=(done/total*100)+'%';
+  document.getElementById('ptext').textContent=done+' из '+total+' отмечено';
+}
+
+let toastTimer=null;
+function toast(t){
+  const el=document.getElementById('toast');
+  el.textContent=t; el.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),1400);
+}
+
+function build(){
+  const list=document.getElementById('list');
+  for(const s of SOUNDS){
+    if(s.sec){
+      const h=document.createElement('h2'); h.textContent=s.sec; list.appendChild(h);
+      if(s.secsub){ const hs=document.createElement('div'); hs.className='h2sub'; hs.textContent=s.secsub; list.appendChild(hs); }
+      continue;
+    }
+    const card=document.createElement('div');
+    card.className='card'; card.id='card_'+s.id;
+    const plays=LETTERS.map((l,i)=>{
+      const boosted = BOOSTED[s.id]===l ? ' *' : '';
+      return `<button class="play" data-l="${l}">▶ ${l.toUpperCase()}${boosted}<small>${s.v[i]}</small></button>`;
+    }).join('');
+    const picks=LETTERS.map(l=>
+      `<button class="pick" data-v="${l}">${l.toUpperCase()}</button>`).join('')+
+      `<button class="pick none" data-v="none">Ни один</button>`;
+    const note = BOOSTED[s.id] ? `<div class="note">* вариант ${BOOSTED[s.id].toUpperCase()} — тихое сырьё, поднят усилением (может шуметь)</div>` : '';
+    card.innerHTML=`
+      <div class="name">${s.title}<small>${s.id}</small></div>
+      <div class="desc">${s.desc}</div>
+      <div class="row">${plays}</div>
+      <div class="pickrow">${picks}</div>
+      ${note}
+      <div class="status"></div>`;
+    card.querySelectorAll('.play').forEach(b=>{
+      b.onclick=()=>playVar(s.id,b.dataset.l,s.loop,b);
+    });
+    card.querySelectorAll('.pick').forEach(b=>{
+      b.onclick=()=>save(s.id,b.dataset.v);
+    });
+    list.appendChild(card);
+  }
+}
+
+(async function init(){
+  build();
+  try{ choices=await (await fetch('/choices5')).json(); }catch(e){ choices={}; }
+  for(const s of SOUNDS){ if(s.id) render(document.getElementById('card_'+s.id),s.id); }
+  updateProgress();
+})();
+</script>
+</body>
+</html>

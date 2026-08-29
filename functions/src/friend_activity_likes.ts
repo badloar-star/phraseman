@@ -7,16 +7,41 @@ import { sendExpoPush, type FriendGiftPushTransport } from './friend_gifts';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
-/** Stable event id for a profile-level (eventless) like. */
-const PROFILE_LIKE_EVENT_ID = '__profile__';
+/**
+ * Stable event id for a profile-level (eventless) like.
+ *
+ * зачем именно такое имя (ИНЦИДЕНТ 2026-08-29): раньше здесь стояло
+ * `__profile__`. Firestore РЕЗЕРВИРУЕТ любой id вида `__…__`, поэтому
+ * `my_events/.doc('__profile__')` всегда отвечал `INVALID_ARGUMENT: Resource id
+ * is invalid because it is reserved` — лайк профиля (без конкретного события)
+ * не мог быть записан НИКОГДА. Значение выводится сервером из пустого
+ * `eventId`, по сети не передаётся и в клиентских ключах кэша не участвует
+ * (там своя константа), поэтому переименование безопасно и не требует миграции:
+ * ни одного документа с прежним id физически не существует.
+ *
+ * Точка в имени делает коллизию с настоящим id события невозможной.
+ * Сторож: tests/firestore_reserved_document_id_guard.test.ts.
+ */
+const PROFILE_LIKE_EVENT_ID = 'like.profile';
 
 function cleanId(value: unknown): string {
   return String(value ?? '').trim();
 }
 
+/**
+ * зачем (ИНЦИДЕНТ 2026-08-29): id вида `__x__` зарезервирован Firestore и
+ * бросает INVALID_ARGUMENT прямо из `.doc()`. Раньше проверка его пропускала,
+ * и бросок улетал наружу как отказ всей операции. Отсекаем здесь же, наравне
+ * с `/`, `.` и `..`.
+ */
+export function isReservedFirestoreDocId(id: string): boolean {
+  return /^__.*__$/.test(id);
+}
+
 function cleanDocId(value: unknown): string {
   const id = cleanId(value);
   if (!id || id.length > MAX_ID_LEN || id.includes('/') || id === '.' || id === '..') return '';
+  if (isReservedFirestoreDocId(id)) return '';
   return id;
 }
 

@@ -8,8 +8,24 @@ import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 
 const FUNCTIONS_REGION = 'us-central1';
 
-/** Stable event id the server uses for an eventless, profile-level like (from a user card). */
-export const PROFILE_LIKE_EVENT_ID = '__profile__';
+/**
+ * Stable event id the server uses for an eventless, profile-level like (from a user card).
+ *
+ * зачем именно такое имя (ИНЦИДЕНТ 2026-08-29): раньше здесь стояло
+ * `__profile__` — форма, которую Firestore резервирует, из-за чего серверный
+ * `my_events/.doc('__profile__')` всегда падал с INVALID_ARGUMENT и лайк
+ * профиля не сохранялся НИКОГДА.
+ *
+ * ОБЯЗАНО совпадать с PROFILE_LIKE_EVENT_ID в
+ * functions/src/friend_activity_likes.ts: обе стороны хешируют строку
+ * `activity-like-v2\\0{target}\\0{eventId}` в один и тот же id документа
+ * (activityLikeSentDocId / activityLikeRecordId). Разойдутся значения —
+ * клиент перестанет находить собственные лайки.
+ *
+ * Миграция не нужна: документов со старым id в базе не существует
+ * (проверено на боевой базе 2026-08-29) — записать их было физически нельзя.
+ */
+export const PROFILE_LIKE_EVENT_ID = 'like.profile';
 
 export type FriendActivityLikeState = {
   date: string;

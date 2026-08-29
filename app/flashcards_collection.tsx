@@ -15,6 +15,7 @@ import {
   BackHandler,
   InteractionManager,
   Platform,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -926,25 +927,43 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           </View>
         ) : null}
 
-        {/*
-          Витрина «Лучшее у сообщества» стоит НАД обеими ветками.
-
-          БАГ (владелец, скриншот 2026-08-29): сначала она жила шапкой FlatList —
-          и при пустой коллекции не показывалась вовсе, потому что список тогда
-          не монтируется, его подменяет CollectionEmptyState. А нужнее всего она
-          именно там: человеку с пустыми «Сохранёнными» и надо что-то взять.
-
-          Обёртка БЕЗ flex (в отличие от ContentWrap с его `flex: 1`): иначе
-          соседом списка она забрала бы половину высоты экрана прозрачным блоком —
-          известная «невидимая стена» этого экрана, см. строку соц-бара выше.
-        */}
-        {savedTopPacksHeader ? (
-          <View style={{ width: '100%', alignSelf: 'center', paddingTop: 12 }}>
-            {savedTopPacksHeader}
-          </View>
-        ) : null}
-
         {isEmpty ? (
+          /*
+            Пустая коллекция ТОЖЕ должна скроллиться, если сверху стоит витрина.
+
+            зачем (владелец, 2026-08-29): блок «не должен быть зафиксирован» —
+            он часть страницы и обязан уезжать за экран при скролле. В ветке со
+            списком за это отвечает ListHeaderComponent; здесь списка нет, поэтому
+            даём собственный ScrollView. Без витрины ведём себя как раньше —
+            обычный центрированный ContentWrap, лишнего скролла не появляется.
+          */
+          savedTopPacksHeader ? (
+            <ScrollView
+              style={{ flex: 1 }}
+              contentContainerStyle={{
+                flexGrow: 1,
+                paddingHorizontal: 16,
+                paddingTop: 12,
+                paddingBottom: tabBarReserve + 24,
+              }}
+              showsVerticalScrollIndicator={false}
+              onScroll={sectionRoot ? tabScroll.onScroll : undefined}
+              scrollEventThrottle={16}
+            >
+              {savedTopPacksHeader}
+              <CollectionEmptyState
+                lang={cardContentLang}
+                t={t}
+                f={f}
+                emptyTitle={s.empty}
+                emptySub={s.emptySub}
+                searchActive={searchActive}
+                loadError={loadError}
+                onLeave={openCommunityPacks}
+                onRetry={loadAll}
+              />
+            </ScrollView>
+          ) : (
           <ContentWrap>
             {/* зачем (владелец, 2026-08-16): ОДНО состояние, без вариантов.
                 Раньше подпись переключалась «Ничего не найдено» ↔ «Нет карточек»
@@ -962,6 +981,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
               onRetry={loadAll}
             />
           </ContentWrap>
+          )
         ) : viewMode === 'deck' ? (
           <CollectionDeckView
             cards={listCards}
@@ -1013,6 +1033,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             onFlipTracked={trackCardFlip}
             strengthForCard={strengthForCard}
             extraBottomPad={tabBarReserve}
+            listHeader={savedTopPacksHeader}
           />
         )}
 

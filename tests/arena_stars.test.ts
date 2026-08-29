@@ -174,9 +174,11 @@ describe('зачисление в кошелёк', () => {
     mode: 'ranked', matchStars: 40, taskCount: 10, eligibleMatchIndex: 0, dailyStarsBefore: 0, ...over,
   });
 
-  it('зачисляет только рейтинговый матч', () => {
+  // Владелец 2026-08-29: руны вернулись в быстрый матч (решение D-07 «quick —
+  // только опыт» отменено). Товарищеский матч по-прежнему не начисляет.
+  it('зачисляет рейтинговый и быстрый матч, но не товарищеский', () => {
     expect(banked()).toBe(40);
-    expect(banked({ mode: 'quick', matchStars: 19, taskCount: 5 })).toBe(0);
+    expect(banked({ mode: 'quick', matchStars: 19, taskCount: 5 })).toBe(19);
     expect(banked({ mode: 'friend' })).toBe(0);
   });
 

@@ -225,11 +225,12 @@ describe('Arena V2 pure product contract', () => {
     expect(arenaSeasonStars({ mode: 'friend', rawStars: 30, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(0);
   });
 
-  it('banks stars only for modes the star engine calls banked (D-07: quick pays experience, not stars)', () => {
+  it('banks stars only for modes the star engine calls banked (quick pays runes again since 2026-08-29)', () => {
     // Гейт один и тот же на клиенте и на сервере. Если здесь появится второй
     // список режимов, план матча пообещает игроку ноль, а сервер запишет
     // звёзды — ровно то расхождение, из-за которого этот тест и написан.
-    expect(arenaSeasonStars({ mode: 'quick', rawStars: 19, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(0);
+    // Владелец 2026-08-29 отменил D-07: быстрый матч снова начисляет руны.
+    expect(arenaSeasonStars({ mode: 'quick', rawStars: 19, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(19);
     expect(arenaSeasonStars({ mode: 'series', rawStars: 19, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(0);
     expect(arenaSeasonStars({ mode: 'ranked', rawStars: 40, eligibleMatchIndex: 0, dailyStarsBefore: 0 })).toBe(40);
     for (const mode of ['quick', 'ranked', 'friend', 'series'] as const) {

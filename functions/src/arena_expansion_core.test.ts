@@ -122,12 +122,12 @@ describe('Arena Expansion pure contracts', () => {
     expect(arenaRunEligibility('today', 'friend')).toMatchObject({ todayStars: true, mastery: true, spin: false });
     expect(arenaRunEligibility('ghost', 'quick')).toMatchObject({ baseStars: false, rating: false, mastery: false });
     expect(arenaRunEligibility('rival', 'ranked')).toMatchObject({ baseStars: false, rating: false, spin: false });
-    // Новейшее решение владельца: quick выдаёт только XP. Факт матча остаётся
-    // в telemetry через profileOutcome, но spin/mastery/partner progression
-    // не должны превращаться в косвенную награду.
+    // Владелец 2026-08-29: руны вернулись в быстрый матч (D-07 отменено).
+    // Остальное по-прежнему только ranked — spin/mastery/partner не должны
+    // превращаться в косвенную награду за казуальный режим.
     expect(arenaRunEligibility('match', 'quick'))
       .toMatchObject({
-        baseStars: false, rating: false, spin: false, mastery: false,
+        baseStars: true, rating: false, spin: false, mastery: false,
         partnerActivity: false, profileOutcome: true,
       });
     expect(arenaRunEligibility('match', 'ranked')).toMatchObject({ baseStars: true, rating: true, spin: true });

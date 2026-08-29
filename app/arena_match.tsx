@@ -777,12 +777,36 @@ function ArenaMatchGenerationScreen({
     match.reportBroken(taskIndex);
   }, [match, hud?.task?.taskIndex, taskRenderable]);
 
+  /**
+   * зачем (владелец 2026-08-29, «ответ тупит, кнопка не применяется сразу»):
+   * вердикт считался локально и возвращался тем же кадром, но экран его
+   * ВЫБРАСЫВАЛ — слышен был только звук. Игрок жал вариант и до конца показа
+   * результата (ARENA_LOCAL_REVEAL_MS, 1.2 с) не видел ни-че-го, отчего нажатие
+   * читалось как незасчитанное. Механизм подсветки в ArenaQuestion уже был
+   * готов (проп `verdict`), ему просто нечего было передать.
+   *
+   * Держим вердикт по ИНДЕКСУ задания, а не булевым флагом: иначе подсветка
+   * предыдущего ответа успевала мигнуть на следующем задании до того, как
+   * сбрасывающий эффект отработает.
+   */
+  const [answerVerdict, setAnswerVerdict] = useState<{ taskIndex: number; correct: boolean } | null>(null);
   const onSubmit = useCallback((answer: unknown) => {
+    const taskIndex = match?.state.taskIndex;
     const correct = match?.answer(answer);
     // Звук берётся из ВЕРДИКТА, который уже посчитан локально: сети между
     // нажатием и звуком нет вовсе, поэтому он попадает в тот же кадр.
     playSound(correct ? 'answerCorrect' : 'answerWrong');
+    // Тем же кадром красим выбранный вариант — оптимистично и без сети:
+    // вердикт авторитетный, локальный, сервер его потом лишь подтверждает.
+    if (typeof taskIndex === 'number') setAnswerVerdict({ taskIndex, correct: correct === true });
   }, [match, playSound]);
+
+  // Задание сменилось — подсветка снимается: чужой вердикт на новом вопросе
+  // хуже, чем его отсутствие.
+  const visibleTaskIndex = hud?.task?.taskIndex;
+  useEffect(() => {
+    if (answerVerdict && answerVerdict.taskIndex !== visibleTaskIndex) setAnswerVerdict(null);
+  }, [answerVerdict, visibleTaskIndex]);
 
   const onSpeedAttempt = useCallback((pairIndex: number, selectedIndex: number) => {
     const correct = match?.tapPair(pairIndex, selectedIndex) ?? false;
@@ -1042,6 +1066,8 @@ function ArenaMatchGenerationScreen({
             <ArenaQuestion
               task={arenaPlanTaskToPublic(visibleTask)}
               locked={!hud.interactive}
+              verdict={answerVerdict && answerVerdict.taskIndex === hud.task?.taskIndex
+                ? (answerVerdict.correct ? 'correct' : 'wrong') : null}
               submitLabel={arenaText(lang, 'submit')}
               onSubmit={onSubmit}
               onSpeedAttempt={onSpeedAttempt}

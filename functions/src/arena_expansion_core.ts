@@ -201,11 +201,16 @@ export function arenaRunEligibility(runKind: ArenaExpansionRunKind, mode: string
   };
   return {
     /**
-      * Новейшее решение владельца: quick выдаёт только XP. Поэтому spin,
-      * mastery и partner progression доступны только ranked; profileOutcome
-      * остаётся telemetry факта матча, а не отдельной наградой.
+     * зачем (владелец 2026-08-29, «начисление рун на арене пропало»): руны
+     * возвращены в быстрый матч — решение «quick выдаёт только XP» отменено.
+     * Остальное по-прежнему только ranked: спин, мастерство и партнёрский
+     * прогресс — награды за соревновательный режим, они менялись не этим
+     * решением. profileOutcome остаётся телеметрией факта матча.
+     *
+     * Второй гейт помимо ARENA_STAR_POLICY: этот решает «положено ли режиму
+     * начисление вообще», политика — «сколько». Оба обязаны разрешать.
      */
-    rating: mode === 'ranked', baseStars: mode === 'ranked',
+    rating: mode === 'ranked', baseStars: mode === 'ranked' || mode === 'quick',
     todayStars: false, spin: mode === 'ranked',
     mastery: mode === 'ranked', partnerActivity: mode === 'ranked',
     profileOutcome: true,

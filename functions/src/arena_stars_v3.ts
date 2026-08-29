@@ -63,7 +63,14 @@ export type ArenaStarPolicy = 'banked' | 'unbanked' | 'none';
 
 export const ARENA_STAR_POLICY: Readonly<Record<ArenaEntryMode, ArenaStarPolicy>> = Object.freeze({
   ranked: 'banked',
-  quick: 'none',
+  // зачем (владелец 2026-08-29, «начисление рун на арене пропало»): решение
+  // D-07 «быстрый матч — только опыт» отменено. Для игрока быстрый матч
+  // выглядел сломанным, а не скромным: полка наград на итоге прячет чип рун
+  // при нуле целиком, поэтому «ноль рун по замыслу» и «руны не начислились»
+  // на экране неразличимы. Дневной потолок (arenaSeasonStars: множители по
+  // счёту матчей за сутки + 160 рун в день) общий с рейтингом и защищает от
+  // фарма быстрым матчем — отдельный гейт для этого не нужен.
+  quick: 'banked',
   friend: 'unbanked',
   series: 'unbanked',
   today: 'banked',

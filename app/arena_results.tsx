@@ -12,7 +12,7 @@ import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { creditTournamentStarsToSeason } from './season_pass_model';
 import { arenaText } from '../modules/arena/copy';
@@ -44,12 +44,12 @@ import {
 } from '../modules/arena/quick_result_state';
 import { arenaResultReplayMode, arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
 import { useArenaTerminalResultSync } from '../hooks/use_arena_terminal_result_sync';
-import { subscribeAccountGeneration } from './account_generation';
 import { arenaForgetResultHandoff, arenaPeekResultHandoff } from '../modules/arena/result_handoff';
 import {
   arenaResultRouteOwnerMatches,
   createArenaResultOwnerGate,
 } from '../modules/arena/listener_scope';
+import { flushStalePracticeRuneSettlements } from './practice_rune_settlement';
 
 // зачем: константы модуля подняты выше компонента для читаемости (были в
 // хвосте файла). Крэш ReferenceError на 'ROMAN_DIVISION' наблюдался в dev-
@@ -386,6 +386,43 @@ export default function ArenaResultsScreen() {
   const publicReward = effectiveViewerSeat ? match?.result?.rewards?.[effectiveViewerSeat] : undefined;
   const quickReward = quickPresentation?.reward;
   const reward = match?.mode === 'quick' ? quickReward : privateReward ?? publicReward;
+  const arenaRuneWalletRefreshKeyRef = useRef<string | null>(null);
+  /**
+   * The first Arena-home read starts in parallel with terminal settlement and
+   * can legitimately observe the pre-match wallet. Once the authoritative
+   * reward exists, read the committed unified rune ledger again. This must not
+   * use the practice client-credit path: Arena is a competitive server-confirmed
+   * event, while arenaExpansionHome merges its monotonic starsSeq projection.
+   */
+  useEffect(() => {
+    const starsEarned = Math.max(0, Math.trunc(Number(reward?.starsEarned ?? 0)));
+    if (!resultAccountActive || !matchId || starsEarned <= 0) return;
+    const refreshKey = `${resultAccountKey}:${matchId}:${starsEarned}`;
+    if (arenaRuneWalletRefreshKeyRef.current === refreshKey) return;
+    arenaRuneWalletRefreshKeyRef.current = refreshKey;
+    const refreshWallet = () => arenaExpansionHome()
+      .then((home) => {
+        setExpansion(home);
+        setEquipped(home.wallet.equippedBySlot);
+      })
+      .catch(() => {
+        if (arenaRuneWalletRefreshKeyRef.current === refreshKey) {
+          arenaRuneWalletRefreshKeyRef.current = null;
+        }
+      });
+    // Arena is an external server-confirmed event. Show its committed reward
+    // immediately; an offline/stuck ordinary-practice outbox must not delay it.
+    // The monotonic merge refuses a server snapshot that cannot yet account for
+    // a pending local operation, then a successful background replay refreshes
+    // once more with the now-materialized aggregate.
+    void refreshWallet();
+    void flushStalePracticeRuneSettlements(resultAccount.stableId ?? '')
+      .then((result) => {
+        if (result.synced > 0) return refreshWallet();
+        return undefined;
+      })
+      .catch(() => {});
+  }, [matchId, resultAccount.stableId, resultAccountActive, resultAccountKey, reward]);
   /**
    * зачем (владелец, 23.08): победа в рейтинге над реальным игроком выдаёт
    * спин из ОБЩЕГО каталога подарков — не отдельную награду Арены. Сервер
@@ -419,6 +456,8 @@ export default function ArenaResultsScreen() {
     void creditTournamentStarsToSeason(matchId, stars).catch(() => {});
   }, [match?.mode, matchId, resultAccountActive, reward]);
   const quickXp = useMemo(() => arenaQuickXpPresentation(quickReward), [quickReward]);
+  // Авторитетное число рун быстрого матча: ровно то, что подтвердил сервер.
+  const quickRunesEarned = Math.max(0, Math.trunc(Number(quickReward?.starsEarned ?? 0)));
   const quickXpRewards = useMemo(() => quickXp.modifiers.length ? ({
     multipliers: quickXp.modifiers.map((modifier) => ({
       label: arenaText(lang, modifier.kind === 'correct' ? 'xpCorrectBonus' : 'xpOutcomeBonus'),
@@ -576,9 +615,18 @@ export default function ArenaResultsScreen() {
   if (surfaceKind === 'quick_ready' && matchId && quickPresentation && quickReward) {
     return (
       <ResultsSequence
+        // Звёзды 0-3 — оценка урока, у матча Арены её нет: ряд скрыт намеренно.
         stars={0}
         showStars={false}
         showFinaleMark={false}
+        // зачем (владелец 2026-08-29, «начисление рун на арене пропало... и на
+        // экране победы в конце»): при D-07 «quick — только опыт» руны здесь не
+        // передавались вовсе, и трек рун не появлялся. Решение отменено —
+        // быстрый матч снова начисляет руны, и экран обязан их показать, иначе
+        // начисленное молча не видно (класс бага «награду дали, но не
+        // показали»). Число берётся из АВТОРИТЕТНОГО ответа сервера, а не из
+        // локального счёта матча: показывать можно только реально зачисленное.
+        runes={quickRunesEarned}
         xp={quickXp.baseXp}
         rewards={quickXpRewards}
         title={title}

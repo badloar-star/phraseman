@@ -69,6 +69,36 @@ export function arenaQuickBotDelayMs(unit: number): number {
 
 /** Совместимость: минимальная граница, раньше которой сервер бота не отдаёт. */
 export const ARENA_V2_QUICK_BOT_FALLBACK_MS = ARENA_V2_QUICK_BOT_MIN_MS;
+
+/**
+ * Владелец (2026-08-28): рейтинг тоже получает бота — ждать реального
+ * соперника до победного конца больше нельзя (узкое окно рангов ±1 иногда
+ * никого не находит вовсе). Живой соперник всегда приоритетнее и перебивает
+ * бота, если находится раньше. Владелец: «в первые 20 секунд» относится к
+ * быстрому матчу; для рейтинга — до минуты, ставки выше и живой соперник
+ * ценнее подождать.
+ */
+export const ARENA_V2_RANKED_BOT_MIN_MS = 20_000;
+export const ARENA_V2_RANKED_BOT_MAX_MS = 60_000;
+/** Тот же профиль смещения к началу окна, что и у быстрого бота. */
+export const ARENA_V2_RANKED_BOT_BIAS = 1.6;
+
+export function arenaRankedBotDelayMs(unit: number): number {
+  const safe = Number.isFinite(unit) ? Math.max(0, Math.min(1, unit)) : 0.5;
+  const biased = Math.pow(safe, ARENA_V2_RANKED_BOT_BIAS);
+  const span = ARENA_V2_RANKED_BOT_MAX_MS - ARENA_V2_RANKED_BOT_MIN_MS;
+  return Math.round(ARENA_V2_RANKED_BOT_MIN_MS + biased * span);
+}
+
+export const ARENA_V2_RANKED_BOT_FALLBACK_MS = ARENA_V2_RANKED_BOT_MIN_MS;
+
+/**
+ * Дневной потолок рейтинговых матчей ПРОТИВ БОТА на игрока (владелец
+ * 2026-08-28): бот закрывает дыру пустой очереди, а не становится бесплатным
+ * фармом рейтинга через самый слабый доступный источник побед.
+ */
+export const ARENA_V2_RANKED_BOT_DAILY_LIMIT = 3;
+
 export const ARENA_V2_ACCEPT_MS = 12_000;
 export const ARENA_V2_COUNTDOWN_MS = 3_200;
 export const ARENA_V2_REVEAL_MS = 1_200;
@@ -405,14 +435,34 @@ function seededUnit(seed: string): number {
   return (hash32(seed) + 0.5) / 0x1_0000_0000;
 }
 
+/**
+ * Сила бота-соперника. `quick` — тренировочный подхват, `ranked` — сильнее,
+ * потому что за рейтингом стоят реальные звёзды и он обязан быть достойным
+ * противником, а не поддавком (владелец 2026-08-28).
+ *
+ * Меняется ТОЛЬКО точность. Человечность поведения — 3% таймаутов,
+ * логнормальный разброс времени ответа, модификаторы по типам заданий —
+ * остаётся общей: именно она не даёт узнать в сопернике машину, и усиление
+ * рейтингового бота не должно её трогать.
+ */
+export type ArenaBotStrength = 'quick' | 'ranked';
+
+const ARENA_BOT_ACCURACY_BY_STRENGTH: Record<ArenaBotStrength, { min: number; max: number; base: number; perDivision: number }> = {
+  quick: { min: 0.55, max: 0.88, base: 0.58, perDivision: 0.012 },
+  ranked: { min: 0.65, max: 0.92, base: 0.68, perDivision: 0.012 },
+};
+
 /** Immutable bot behavior generated before play; it never reads player progress. */
 export function buildArenaBotBlueprint(
   seed: string,
   divisionIndex: number,
   tasks: readonly Pick<TournamentTask, 'mode'>[],
+  strength: ArenaBotStrength = 'quick',
 ): ArenaV2BotTaskPlan[] {
   const division = Math.max(0, Math.min(23, Math.trunc(divisionIndex)));
-  const baseAccuracy = Math.max(0.55, Math.min(0.88, 0.58 + division * 0.012));
+  const accuracyRange = ARENA_BOT_ACCURACY_BY_STRENGTH[strength];
+  const baseAccuracy = Math.max(accuracyRange.min, Math.min(accuracyRange.max,
+    accuracyRange.base + division * accuracyRange.perDivision));
   const medianResponseMs = 7_500 - division * 150;
   const modifiers: Record<string, number> = {
     guess_phrase: 0.02,
@@ -513,8 +563,9 @@ export function arenaSeasonStars(input: {
 }): number {
   /**
    * Начисляется ли за режим звёзды в кошелёк, решает ОДИН список — политика
-   * режима в движке звёзд. Владелец (D-07): «быстрый матч звёзды не начисляет,
-   * только опыт». Второй список режимов здесь и был причиной расхождения:
+   * режима в движке звёзд. Правило D-07 «быстрый матч звёзды не начисляет,
+   * только опыт» ОТМЕНЕНО владельцем 2026-08-29: quick снова 'banked'.
+   * Второй список режимов здесь и был причиной расхождения:
    * клиент получал в плане `starPolicy: 'none'` и обещал игроку ноль, а сервер
    * по своему списку записывал звёзды в сезон и кошелёк.
    */
@@ -540,7 +591,8 @@ export function arenaTaskStars(input: {
 
 /**
  * Сколько матчей за сутки дают право на редкую награду. Считаются быстрые и
- * рейтинговые; звёзды при этом начисляет только рейтинговый (D-07), поэтому
+ * рейтинговые; звёзды при этом начисляют рейтинговый и быстрый (D-07 отменён
+ * 2026-08-29), поэтому
  * счётчик отдельный от счётчика начисления.
  */
 export const ARENA_DAILY_REWARD_MATCHES = 6;

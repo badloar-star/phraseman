@@ -54,10 +54,22 @@ test('accepts one exact 300-rune debit bound to the selected spin reward', async
   expect(replayOrdinaryEconomy([asPhoneStateComposite(exact)], 123).balance).toBe(123);
 });
 
+// v7 (2026-08-29): платный спин крутит тот же каталог — новые ценные призы
+// принимаются с catalogVersion 7 и отклоняются на старых версиях.
+test.each(['chain_shield_3', 'xp_bank_1500', 'pearls_1000', 'stars_2000', 'plus_days_14', 'plus_days_30'])(
+  'accepts the v7 reward %s under catalog version 7',
+  async (giftId) => {
+    const exact = await exactPaidSpin({ giftId, catalogVersion: 7 });
+    expect(parsePaidLevelSpinRuneOperation(exact)).toEqual(exact);
+    await expect(hasValidPaidLevelSpinRuneFingerprint(exact)).resolves.toBe(true);
+  },
+);
+
 test.each([
   ['wrong price', { price: 299, runeDelta: -299, balanceAfter: 601 }],
   ['wrong arithmetic', { balanceAfter: 599 }],
   ['unknown gift/catalog pair', { giftId: 'attempt_restore_all', catalogVersion: 2 }],
+  ['v7 reward forged into a v6 receipt', { giftId: 'pearls_1000', catalogVersion: 6 }],
   ['wrong owner', { ownerStableId: 'owner/a' }],
 ])('rejects %s', async (_name, patch) => {
   const exact = await exactPaidSpin(patch as Partial<PaidLevelSpinRuneOperationV1>);

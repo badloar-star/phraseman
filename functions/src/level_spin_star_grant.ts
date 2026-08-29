@@ -16,6 +16,10 @@ import {
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
   stars_250: 250, stars_500: 500, stars_1000: 1_000,
+  // v7 (2026-08-29): джекпот рун каталога спина. Зеркала на клиенте:
+  // app/level_spin_star_grants.ts и modules/phone-state/domains/economy.ts.
+  // Требует деплоя functions ДО релиза клиента с каталогом v7.
+  stars_2000: 2_000,
 } as const);
 const REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
 const DELIVERY_TOKEN = /^[A-Za-z0-9_-]{16,96}$/;

@@ -888,11 +888,14 @@ const spinAttemptRestoreGift = (): GiftDef => {
 /** Definitions used only by local Spin v2. They are not another level-gift roll pool. */
 const SPIN_REWARD_DEFS: GiftDef[] = [
   ...([500, 1_000, 3_000, 5_000, 10_000, 25_000, 50_000] as const).map(spinXpGift),
-  ...([5, 10, 20, 50, 100, 250, 500] as const).map(spinPearlGift),
-  ...([10, 20, 50, 100, 250, 500, 1_000] as const).map(spinStarGift),
+  ...([5, 10, 20, 50, 100, 250, 500, 1_000] as const).map(spinPearlGift),
+  ...([10, 20, 50, 100, 250, 500, 1_000, 2_000] as const).map(spinStarGift),
   spinPlusGift(3),
   spinPlusGift(7),
+  spinPlusGift(14),
+  spinPlusGift(30),
   spinAttemptRestoreGift(),
+  spinXpBankGift(),
 ];
 
 /**
@@ -1719,7 +1722,7 @@ type LevelGiftEffectReceipt = {
   customAvatar?: GiftCosmeticUnlock | null;
   theme?: GiftCosmeticUnlock | null;
   plus?: {
-    days: 3 | 7;
+    days: 3 | 7 | 14 | 30;
     fromMs: number;
     untilMs: number;
     lifetime?: boolean;
@@ -1856,7 +1859,7 @@ const LEVEL_GIFT_RECEIPT_PAYLOAD_GIFT_IDS = Object.freeze({
   ]),
   customAvatar: new Set(['cosmetic_avatar_common', 'premium_cosmetic_avatar']),
   theme: new Set(['cosmetic_theme']),
-  plus: new Set(['plus_days_3', 'plus_days_7']),
+  plus: new Set(['plus_days_3', 'plus_days_7', 'plus_days_14', 'plus_days_30']),
 } satisfies Record<LevelGiftEffectPayloadField, ReadonlySet<string>>);
 
 const isCosmeticUnlock = (value: unknown, kind: GiftCosmeticUnlock['kind']): boolean => {
@@ -1935,12 +1938,14 @@ const isLevelGiftEffectReceipt = (value: unknown): value is LevelGiftEffectRecei
   if (value.customAvatar !== undefined && !isCosmeticUnlock(value.customAvatar, 'avatar')) return false;
   if (value.theme !== undefined && !isCosmeticUnlock(value.theme, 'theme')) return false;
   if (value.plus !== undefined && (!isPlainRecord(value.plus) || !hasOnlyKeys(value.plus, ['days', 'fromMs', 'untilMs', 'lifetime'])
-    || (value.plus.days !== 3 && value.plus.days !== 7)
+    || (value.plus.days !== 3 && value.plus.days !== 7 && value.plus.days !== 14 && value.plus.days !== 30)
     || !isFiniteNumber(value.plus.fromMs) || Number(value.plus.fromMs) < 0
     || !isFiniteNumber(value.plus.untilMs) || Number(value.plus.untilMs) < 0
     || (value.plus.lifetime !== undefined && typeof value.plus.lifetime !== 'boolean')
     || (value.giftId === 'plus_days_3' && value.plus.days !== 3)
-    || (value.giftId === 'plus_days_7' && value.plus.days !== 7))) return false;
+    || (value.giftId === 'plus_days_7' && value.plus.days !== 7)
+    || (value.giftId === 'plus_days_14' && value.plus.days !== 14)
+    || (value.giftId === 'plus_days_30' && value.plus.days !== 30))) return false;
   if (value.status === 'applying'
     && value.aura == null && value.customAvatar == null && value.theme == null) return false;
   return true;
@@ -2319,8 +2324,8 @@ const applyChainShieldForOccurrence = async (
 };
 
 const applySpinPlusForOccurrence = async (
-  id: 'plus_days_3' | 'plus_days_7',
-  days: 3 | 7,
+  id: 'plus_days_3' | 'plus_days_7' | 'plus_days_14' | 'plus_days_30',
+  days: 3 | 7 | 14 | 30,
   opts?: ApplyGiftOptions,
 ): Promise<boolean> => {
   const accountToken = opts?.accountToken ?? captureAccountGeneration();
@@ -2935,6 +2940,7 @@ const applyGiftUnlocked = async (
       case 'pearls_100':
       case 'pearls_250':
       case 'pearls_500':
+      case 'pearls_1000':
         await grantSpinPearls(Number(id.slice('pearls_'.length)));
         break;
       case 'stars_10':
@@ -2944,11 +2950,14 @@ const applyGiftUnlocked = async (
       case 'stars_250':
       case 'stars_500':
       case 'stars_1000':
+      case 'stars_2000':
         await grantSpinStars();
         break;
       case 'plus_days_3':
-      case 'plus_days_7': {
-        const days = id === 'plus_days_3' ? 3 : 7;
+      case 'plus_days_7':
+      case 'plus_days_14':
+      case 'plus_days_30': {
+        const days = id === 'plus_days_3' ? 3 : id === 'plus_days_7' ? 7 : id === 'plus_days_14' ? 14 : 30;
         if (!await applySpinPlusForOccurrence(id, days, opts)) return { success: false };
         break;
       }
@@ -3017,6 +3026,10 @@ const applyGiftUnlocked = async (
       }
       case 'xp_bank_600': {
         await grantXpBankWithoutLoss(600);
+        break;
+      }
+      case 'xp_bank_1500': {
+        await grantXpBankWithoutLoss(1500);
         break;
       }
       case 'premium_xp_bank_1000': {
@@ -3492,7 +3505,7 @@ export function isEnergyBonusGiftId(gid: string | undefined): boolean {
 
 /** Amount for the real spin-only pearl rewards. Historical `shards_*` remain XP. */
 export function giftShardAmount(gid: string | undefined): number {
-  const match = /^pearls_(5|10|20|50|100|250|500)$/.exec(String(gid ?? ''));
+  const match = /^pearls_(5|10|20|50|100|250|500|1000)$/.exec(String(gid ?? ''));
   return match ? Number(match[1]) : 0;
 }
 

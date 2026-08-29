@@ -42,6 +42,14 @@ describe('local Spin catalog version authority', () => {
     ['cosmetic_theme', 3, false], ['cosmetic_theme', 4, true],
     ['cosmetic_avatar_common', 4, false], ['cosmetic_avatar_common', 5, true],
     ['attempt_restore_all', 5, false], ['attempt_restore_all', 6, true],
+    // v7 (2026-08-29): шесть ценных призов — квитанция, подписанная v6, не
+    // может выдать награду, появившуюся только в v7.
+    ['chain_shield_3', 6, false], ['chain_shield_3', 7, true],
+    ['xp_bank_1500', 6, false], ['xp_bank_1500', 7, true],
+    ['pearls_1000', 6, false], ['pearls_1000', 7, true],
+    ['stars_2000', 6, false], ['stars_2000', 7, true],
+    ['plus_days_14', 6, false], ['plus_days_14', 7, true],
+    ['plus_days_30', 6, false], ['plus_days_30', 7, true],
   ] as const)('%s introduction is enforced for catalog v%i', (giftId, version, allowed) => {
     expect(isLocalSpinGiftAllowedForCatalogVersion(giftId, version)).toBe(allowed);
   });

@@ -151,6 +151,7 @@ beforeEach(() => {
 test('uses a closed gift-id amount catalog', () => {
   expect(levelSpinStarAmount('stars_10')).toBe(10);
   expect(levelSpinStarAmount('stars_1000')).toBe(1000);
+  expect(levelSpinStarAmount('stars_2000')).toBe(2000);
   expect(() => levelSpinStarAmount('stars_999999')).toThrow('level_spin_star_gift_invalid');
 });
 

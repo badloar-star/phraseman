@@ -34,7 +34,7 @@ describe('Level Spin reward asset map', () => {
 
   test('ships one universal asset per reward with no theme suffixes', () => {
     const productionDir = path.join(process.cwd(), 'assets', 'images', 'level-spin-rewards');
-    expect(fs.readdirSync(productionDir).filter((name) => name.endsWith('.webp'))).toHaveLength(39);
+    expect(fs.readdirSync(productionDir).filter((name) => name.endsWith('.webp'))).toHaveLength(45);
     for (const reward of LEVEL_SPIN_REWARD_ASSET_MANIFEST) {
       const file = path.join(process.cwd(), reward.productionFile);
       expect(fs.existsSync(file)).toBe(true);

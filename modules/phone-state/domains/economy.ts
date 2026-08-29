@@ -27,6 +27,9 @@ const ZERO_DELTA_GRANT_KINDS = new Set([
 const STAR_CREDIT_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
   stars_250: 250, stars_500: 500, stars_1000: 1_000,
+  // v7 (2026-08-29): джекпот рун каталога спина. Зеркала: app/level_spin_star_grants.ts
+  // и functions/src/level_spin_star_grant.ts — правь все три в одном коммите.
+  stars_2000: 2_000,
 } as const);
 const STAR_REQUEST_ID = /^[A-Za-z0-9_-]{16,80}$/;
 const STAR_DELIVERY_TOKEN = /^[A-Za-z0-9_-]{16,96}$/;
@@ -234,8 +237,18 @@ const PAID_LEVEL_SPIN_GIFTS_V6 = new Set<string>([
   'plus_days_3', 'plus_days_7', 'cosmetic_avatar_aura', 'cosmetic_theme', 'cosmetic_avatar_common',
 ]);
 
+// зачем (v7, 2026-08-29): шесть новых ценных призов спина. Платный спин крутит
+// тот же каталог, поэтому его допуск расширяется вместе с каталожной версией.
+const PAID_LEVEL_SPIN_GIFTS_V7 = new Set<string>([
+  ...PAID_LEVEL_SPIN_GIFTS_V6,
+  'chain_shield_3', 'xp_bank_1500',
+  'pearls_1000', 'stars_2000',
+  'plus_days_14', 'plus_days_30',
+]);
+
 function paidLevelSpinGiftAllowed(giftId: unknown, catalogVersion: unknown): giftId is string {
   if (typeof giftId !== 'string' || !Number.isInteger(catalogVersion)) return false;
+  if (catalogVersion === 7) return PAID_LEVEL_SPIN_GIFTS_V7.has(giftId);
   if (catalogVersion === 6) return PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
   if (catalogVersion === 5) return giftId !== 'attempt_restore_all' && PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
   if (catalogVersion === 4) return giftId !== 'attempt_restore_all'

@@ -66,6 +66,13 @@ describe('level Spin v2 reward definitions', () => {
     expect(byId.get('plus_days_7')?.descRU).toContain('7 дней');
     expect(giftShardAmount('pearls_500')).toBe(500);
     expect(giftShardAmount('shards_10')).toBe(0);
+    // v7 (2026-08-29): джекпоты валют и удлинённая лестница Plus.
+    expect(byId.get('pearls_1000')?.titleRU).toBe('+1000 жемчужин');
+    expect(byId.get('stars_2000')?.titleRU).toBe('+2000 рун');
+    expect(byId.get('plus_days_14')?.descRU).toContain('14 дней');
+    expect(byId.get('plus_days_30')?.descRU).toContain('30 дней');
+    expect(byId.get('xp_bank_1500')?.titleRU).toBe('Бонус ×2 на 1500 XP');
+    expect(giftShardAmount('pearls_1000')).toBe(1000);
   });
 
   test('new rewards have authored non-Spanish copy in all five planned locales', () => {

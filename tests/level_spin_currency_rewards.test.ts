@@ -132,7 +132,7 @@ test.each([250, 500, 1_000, 3_000, 5_000, 10_000, 25_000, 50_000])(
   },
 );
 
-test.each([5, 10, 20, 50, 100, 250, 500])(
+test.each([5, 10, 20, 50, 100, 250, 500, 1_000])(
   'spin pearl reward %i is one client-authoritative composite credit',
   async (amount) => {
     const occurrenceId = `level-spin:pearl-${amount}:base`;
@@ -155,7 +155,7 @@ test.each([5, 10, 20, 50, 100, 250, 500])(
   },
 );
 
-test.each([3, 7] as const)(
+test.each([3, 7, 14, 30] as const)(
   'spin Plus %i days stacks once per occurrence and replays safely',
   async (days) => {
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);

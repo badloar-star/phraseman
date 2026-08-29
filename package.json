@@ -343,6 +343,9 @@
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"
     ],
+    "roots": [
+      "<rootDir>/tests"
+    ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1",
       "\\.(png|jpg|jpeg|gif|svg|webp|avif|mp3|wav|m4a|ogg|aac|ttf|otf)$": "<rootDir>/tests/__mocks__/fileMock.js",

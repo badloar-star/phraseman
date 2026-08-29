@@ -2,7 +2,10 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 describe('Gifts level spin entry', () => {
-  const source = readFileSync(join(process.cwd(), 'app', 'level_gifts_inventory.tsx'), 'utf8');
+  // зачем (2026-08-29): checkout на Windows отдаёт CRLF, а многострочные
+  // маркеры ниже ищутся с \n — без нормализации тест падал на чистом файле.
+  const source = readFileSync(join(process.cwd(), 'app', 'level_gifts_inventory.tsx'), 'utf8')
+    .replace(/\r\n/g, '\n');
 
   test('shows a gold cached spin count and navigates to the separate route', () => {
     expect(source).toContain('level-gifts-spins-button');
@@ -57,7 +60,10 @@ describe('Gifts level spin entry', () => {
     const statsScreen = readFileSync(join(process.cwd(), 'app', 'streak_stats.tsx'), 'utf8');
     expect(statsCache).toContain('readCachedLevelSpinBalance');
     expect(statsCache).toContain('legacyPendingGiftCount + spinBalance');
-    expect(statsScreen).toContain('readCachedLevelSpinBalance');
+    // зачем (2026-08-29): экран статистики мигрировал на локальный баланс
+    // спинов (readLocalLevelSpinBalance) — источник живой системы Spin v2.
+    // Инвариант прежний: баланс спинов входит в бейдж подарков.
+    expect(statsScreen).toContain('readLocalLevelSpinBalance');
     expect(statsScreen).toContain('legacyPendingGiftCount + spinBalance');
   });
 });

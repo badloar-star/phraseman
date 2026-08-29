@@ -57,10 +57,12 @@ import {
 } from '../app/level_reward_spin_motion';
 
 const REWARD_STREAM_IDS = [
+  // зачем (v7, 2026-08-29): в ленту барабана добавлены два ценных приза —
+  // pearls_1000 и plus_days_30 — чтобы витрина показывала, ради чего крутить.
   'energy_full', 'xp_250', 'xp_500', 'pearls_5', 'stars_10',
-  'hint_1', 'xp_bank_150',
+  'hint_1', 'pearls_1000', 'xp_bank_150',
   'xp_2x_24h', 'energy_plus2', 'chain_shield_1', 'hint_3', 'xp_bank_300',
-  'xp_2x_48h', 'energy_plus3', 'xp_bank_600', 'cosmetic_avatar_aura', 'cosmetic_avatar_common',
+  'xp_2x_48h', 'energy_plus3', 'plus_days_30', 'xp_bank_600', 'cosmetic_avatar_aura', 'cosmetic_avatar_common',
 ] as const;
 const REWARD_STREAM_REPEATS = 3;
 const SPIN_ROLLBACK_MS = 160;

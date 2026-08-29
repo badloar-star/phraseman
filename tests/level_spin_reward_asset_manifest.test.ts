@@ -8,14 +8,14 @@ import {
 import type { LevelSpinRewardId } from '../app/level_spin_reward_catalog';
 
 describe('level spin reward asset manifest', () => {
-  test('matches the v6 reward catalogue exactly', () => {
+  test('matches the v7 reward catalogue exactly', () => {
     const exhaustive: Readonly<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>> =
       LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID;
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST.map(({ id }) => id).sort()).toEqual(
       LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort(),
     );
     expect(Object.keys(exhaustive).sort()).toEqual(LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort());
-    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(39);
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(45);
   });
 
   test('preserves each manifest key, embedded id, and production filename as correlated literals', () => {

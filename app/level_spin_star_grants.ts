@@ -45,6 +45,9 @@ import {
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
   stars_250: 250, stars_500: 500, stars_1000: 1_000,
+  // v7 (2026-08-29): джекпот рун из спина. Зеркала: modules/phone-state/domains/
+  // economy.ts (STAR_CREDIT_AMOUNTS) и functions/src/level_spin_star_grant.ts.
+  stars_2000: 2_000,
 } as const);
 
 type LevelSpinStarGiftId = keyof typeof STAR_AMOUNTS;

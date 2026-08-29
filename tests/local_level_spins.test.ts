@@ -58,13 +58,14 @@ describe('local level Spin runtime', () => {
     // с каталогом — квитанции ушли бы с чужой версией. Теперь источник один.
     expect(runtime).toContain('catalogVersion: LEVEL_SPIN_REWARD_CATALOG_VERSION');
     expect(runtime).toContain('schemaVersion: 2');
-    expect(contract).toContain('catalogVersion: 1 | 2 | 3 | 4 | 5 | 6;');
+    expect(contract).toContain('catalogVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7;');
     expect(contract).toContain('(receipt.catalogVersion === 1 && receipt.schemaVersion === 1)');
     expect(contract).toContain('(receipt.catalogVersion === 2 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 3 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 4 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 5 && receipt.schemaVersion === 2)');
     expect(contract).toContain('(receipt.catalogVersion === 6 && receipt.schemaVersion === 2)');
+    expect(contract).toContain('(receipt.catalogVersion === 7 && receipt.schemaVersion === 2)');
     expect(contract).toContain('isLocalSpinGiftAllowedForCatalogVersion');
   });
 

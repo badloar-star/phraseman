@@ -19,7 +19,7 @@ type LocalLevelSpinReceiptBase = {
   status: 'awaiting_ack' | 'acknowledged';
   revealState?: 'pending' | 'acknowledged';
   deliveries: { base: { state: 'unclaimed' } };
-  catalogVersion: 1 | 2 | 3 | 4 | 5 | 6;
+  catalogVersion: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   localOnly: true;
 };
 
@@ -171,17 +171,25 @@ const LEGACY_V1_SPIN_REWARD_IDS = new Set<string>([
   'cosmetic_avatar_common', 'xp_2x_48h', 'energy_plus3', 'xp_bank_600',
 ]);
 
-const SPIN_REWARD_INTRO_CATALOG_VERSION: Readonly<Partial<Record<string, 3 | 4 | 5 | 6>>> = {
+const SPIN_REWARD_INTRO_CATALOG_VERSION: Readonly<Partial<Record<string, 3 | 4 | 5 | 6 | 7>>> = {
   cosmetic_avatar_aura: 3,
   cosmetic_theme: 4,
   cosmetic_avatar_common: 5,
   attempt_restore_all: 6,
+  // v7 (2026-08-29): шесть ценных призов. Квитанция, подписанная старой
+  // версией каталога, не может выдать награду, которой в той версии не было.
+  chain_shield_3: 7,
+  xp_bank_1500: 7,
+  pearls_1000: 7,
+  stars_2000: 7,
+  plus_days_14: 7,
+  plus_days_30: 7,
 };
 
 /** Rejects a valid current gift ID when it was not authority in the signed catalog version. */
 export function isLocalSpinGiftAllowedForCatalogVersion(giftId: string, catalogVersion: number): boolean {
   if (catalogVersion === 1) return LEGACY_V1_SPIN_REWARD_IDS.has(giftId);
-  if (!Number.isInteger(catalogVersion) || catalogVersion < 2 || catalogVersion > 6) return false;
+  if (!Number.isInteger(catalogVersion) || catalogVersion < 2 || catalogVersion > 7) return false;
   if (!LEVEL_SPIN_REWARD_CATALOG.some((entry) => entry.id === giftId)) return false;
   return catalogVersion >= (SPIN_REWARD_INTRO_CATALOG_VERSION[giftId] ?? 2);
 }
@@ -207,7 +215,7 @@ export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt)
     || !Number.isSafeInteger(receipt.expiresAtMs)
     || receipt.expiresAtMs !== receipt.createdAtMs + 259_200_000
     || !(paid
-      ? receipt.catalogVersion >= 2 && receipt.catalogVersion <= 6
+      ? receipt.catalogVersion >= 2 && receipt.catalogVersion <= 7
       : (receipt.catalogVersion === 1 && receipt.schemaVersion === 1)
       || (receipt.catalogVersion === 2 && receipt.schemaVersion === 2)
       || (receipt.catalogVersion === 3 && receipt.schemaVersion === 2)
@@ -217,7 +225,10 @@ export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt)
       // v5 (2026-08-26): добавлен spin-only полный пул аватаров 01..125.
       || (receipt.catalogVersion === 5 && receipt.schemaVersion === 2)
       // v6 (2026-08-26): добавлен постоянный подарок восстановления попыток.
-      || (receipt.catalogVersion === 6 && receipt.schemaVersion === 2))
+      || (receipt.catalogVersion === 6 && receipt.schemaVersion === 2)
+      // v7 (2026-08-29): шесть ценных призов (щит 3 дня, банк 1500, джекпоты
+      // валют, Plus 14/30). Схема квитанции прежняя — расширен только каталог.
+      || (receipt.catalogVersion === 7 && receipt.schemaVersion === 2))
     || !isLocalSpinGiftAllowedForCatalogVersion(receipt.baseGiftId, receipt.catalogVersion)) {
     throw new Error('local_spin_receipt_invalid');
   }

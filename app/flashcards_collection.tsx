@@ -926,6 +926,24 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           </View>
         ) : null}
 
+        {/*
+          Витрина «Лучшее у сообщества» стоит НАД обеими ветками.
+
+          БАГ (владелец, скриншот 2026-08-29): сначала она жила шапкой FlatList —
+          и при пустой коллекции не показывалась вовсе, потому что список тогда
+          не монтируется, его подменяет CollectionEmptyState. А нужнее всего она
+          именно там: человеку с пустыми «Сохранёнными» и надо что-то взять.
+
+          Обёртка БЕЗ flex (в отличие от ContentWrap с его `flex: 1`): иначе
+          соседом списка она забрала бы половину высоты экрана прозрачным блоком —
+          известная «невидимая стена» этого экрана, см. строку соц-бара выше.
+        */}
+        {savedTopPacksHeader ? (
+          <View style={{ width: '100%', alignSelf: 'center', paddingTop: 12 }}>
+            {savedTopPacksHeader}
+          </View>
+        ) : null}
+
         {isEmpty ? (
           <ContentWrap>
             {/* зачем (владелец, 2026-08-16): ОДНО состояние, без вариантов.
@@ -995,7 +1013,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             onFlipTracked={trackCardFlip}
             strengthForCard={strengthForCard}
             extraBottomPad={tabBarReserve}
-            listHeader={savedTopPacksHeader}
           />
         )}
 

@@ -99,13 +99,6 @@ type Props = {
    * Обработчик не держит state, поэтому список от него не ре-рендерится.
    */
   onScroll?: (e: { nativeEvent?: { contentOffset?: { y?: number } } }) => void;
-  /**
-   * Шапка списка над первой карточкой — витрина «Лучшее у сообщества» на экране
-   * сохранённых (владелец, 2026-08-29). Скроллится ВМЕСТЕ со списком, а не
-   * прибита сверху: иначе она съедала бы первый экран у того, у кого карточек уже
-   * много. `undefined` — шапки нет вовсе, лишнего узла в дереве не появляется.
-   */
-  listHeader?: React.ReactElement | null;
 };
 
 export default function CollectionListView({
@@ -142,7 +135,6 @@ export default function CollectionListView({
   strengthForCard = null,
   extraBottomPad = 0,
   onScroll,
-  listHeader = null,
 }: Props) {
   const flatListRef = useRef<any>(null);
   const [scrollViewH, setScrollViewH] = useState(0);
@@ -226,15 +218,6 @@ export default function CollectionListView({
   const detailsEscortUserDragRef = useRef(false);
   /** id → полная высота строки (карточка + раскрытые детали) из onLayout. */
   const rowHeightsRef = useRef<Record<string, number>>({});
-  /**
-   * Высота шапки списка (витрина «Лучшее у сообщества»).
-   *
-   * зачем: `onDetailsScrollSettled` ниже считает офсет строки ВРУЧНУЮ, начиная с
-   * LIST_PAD_TOP. Шапка стоит выше первой карточки, и без её высоты раскрытие
-   * деталей уводило бы список на высоту витрины мимо цели. Меряем по факту —
-   * высота зависит от ширины плиток и длины названий.
-   */
-  const listHeaderHRef = useRef(0);
   const onRowLayout = useCallback((id: string, height: number) => {
     rowHeightsRef.current[id] = height;
   }, []);
@@ -252,7 +235,7 @@ export default function CollectionListView({
     const idx = cardsArr.findIndex((c) => c.id === info.itemId);
     if (idx < 0) return;
     const heights = rowHeightsRef.current;
-    let top = LIST_PAD_TOP + listHeaderHRef.current;
+    let top = LIST_PAD_TOP;
     let measuredAll = true;
     for (let i = 0; i < idx; i++) {
       const h = heights[cardsArr[i].id];
@@ -270,7 +253,7 @@ export default function CollectionListView({
     const viewportH = scrollViewHRef.current;
     const target = viewportH > 0
       ? Math.max(0, top + rowH / 2 - viewportH / 2)
-      : Math.max(0, top - LIST_PAD_TOP - listHeaderHRef.current);
+      : Math.max(0, top - LIST_PAD_TOP);
     (list as any).scrollToOffset({ offset: target, animated: true });
   }, []);
 
@@ -638,19 +621,6 @@ export default function CollectionListView({
              * список ничего не рисует, когда рисовать нечего, и моргать нечему.
              */
             ListEmptyComponent={null}
-            ListHeaderComponent={
-              listHeader
-                ? (
-                  <View
-                    onLayout={(e) => {
-                      listHeaderHRef.current = e.nativeEvent.layout.height;
-                    }}
-                  >
-                    {listHeader}
-                  </View>
-                )
-                : null
-            }
             ListFooterComponent={(
               <View>
                 {hiddenByLimitCount > 0 && (

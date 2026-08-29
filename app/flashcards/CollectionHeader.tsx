@@ -26,6 +26,10 @@ import type { FcCollectionViewMode } from './collection_view_prefs';
 import type { FilterGroup } from './selectors';
 import EnergyCostBadge from '../../components/EnergyCostBadge';
 
+const MODE_BUTTON_SIZE = 30;
+const MODE_ICON_SIZE = 14;
+const VIEW_TOGGLE_ICON_SIZE = 13;
+
 type Props = {
   t: Theme;
   f: Record<string, number>;
@@ -171,7 +175,7 @@ export default function CollectionHeader({
     a11y: string,
     onPress: (() => void) | undefined,
   ) => (
-    <View style={{ width: 34, height: 34, position: 'relative', overflow: 'visible' }}>
+    <View style={{ width: MODE_BUTTON_SIZE, height: MODE_BUTTON_SIZE, position: 'relative', overflow: 'visible' }}>
     <TouchableOpacity
       testID={key === 'listen' ? 'fc-listen-deck' : 'fc-train-deck'}
       accessibilityLabel={key === 'listen' ? 'qa-fc-listen-deck' : 'qa-fc-train-deck'}
@@ -182,20 +186,20 @@ export default function CollectionHeader({
       activeOpacity={0.85}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
       style={{
-        width: 34,
-        height: 34,
+        width: MODE_BUTTON_SIZE,
+        height: MODE_BUTTON_SIZE,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 12,
+        borderRadius: 10,
         borderWidth: 1,
         borderColor: key === 'train' ? t.accent : `${t.accent}66`,
         backgroundColor: key === 'train' ? t.accent : `${t.accent}14`,
       }}
     >
-      <Ionicons name={icon} size={17} color={key === 'train' ? t.correctText : t.accent} />
+      <Ionicons name={icon} size={MODE_ICON_SIZE} color={key === 'train' ? t.correctText : t.accent} />
     </TouchableOpacity>
       <EnergyCostBadge
-        compact
+        micro
         testID={key === 'listen'
           ? 'flashcards-collection-listen-energy-cost'
           : 'flashcards-collection-train-energy-cost'}
@@ -226,7 +230,7 @@ export default function CollectionHeader({
         >
           {headerTitle}
         </Text>
-        <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 8, flexShrink: 0 }}>
+        <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 6, flexShrink: 0 }}>
           {/* Режимы «Слушать» / «Тренировать» — компактно, только иконки */}
           {showModeButtons && modeButton('listen', 'headset-outline', listenA11yLabel, onListen)}
           {showModeButtons && modeButton('train', 'barbell-outline', trainA11yLabel, onTrain)}
@@ -237,11 +241,11 @@ export default function CollectionHeader({
               accessibilityLabel="qa-fc-view-toggle"
               accessible
               onPress={onToggleViewMode}
-              hitSlop={{ top:8,bottom:8,left:8,right:8 }}
+              hitSlop={{ top:11,bottom:11,left:9,right:9 }}
               style={{
-                paddingHorizontal: 8,
+                paddingHorizontal: 7,
                 paddingVertical: 5,
-                borderRadius: 12,
+                borderRadius: 10,
                 borderWidth: 1,
                 borderColor: viewMode === 'deck' ? t.accent : t.border,
                 backgroundColor: viewMode === 'deck' ? `${t.accent}18` : 'transparent',
@@ -249,7 +253,7 @@ export default function CollectionHeader({
             >
               <Ionicons
                 name={viewMode === 'list' ? 'albums-outline' : 'list-outline'}
-                size={15}
+                size={VIEW_TOGGLE_ICON_SIZE}
                 color={viewMode === 'deck' ? t.accent : t.textSecond}
               />
             </TouchableOpacity>
@@ -343,6 +347,14 @@ export default function CollectionHeader({
             paddingHorizontal: 12,
             paddingVertical: 0,
             height: searchFieldHeight,
+            /**
+             * зачем (владелец, скриншот 2026-08-29 «поиск сломал»): CollectionHeader
+             * возвращает фрагмент, поэтому поле поиска — прямой ребёнок flex-колонки
+             * экрана. Соседний список/ScrollView с flex:1 требует высоту, и RN сжимал
+             * поле, несмотря на явный height, — у подсказки срезалась нижняя половина
+             * букв. flexShrink:0 делает заданную высоту неприкосновенной.
+             */
+            flexShrink: 0,
             borderRadius: 14,
             borderWidth: 1,
             borderColor: searchActive ? `${t.accent}88` : t.border,

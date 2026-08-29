@@ -369,7 +369,8 @@ export default function SavedTopCommunityPacks({
   if (top.length === 0) return null;
 
   return (
-    <View style={{ width: contentWidth, alignSelf: 'center', marginBottom: 18 }}>
+    /* зачем: витрина не должна липнуть к полю поиска — воздух сверху обязателен. */
+    <View style={{ width: contentWidth, alignSelf: 'center', marginTop: 10, marginBottom: 18 }}>
       <Text
         style={{
           fontSize: 13,

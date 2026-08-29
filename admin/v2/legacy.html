@@ -11929,6 +11929,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   <div class="tab" onclick="switchTab('product-charter')" title="Устав Phraseman — описание продукта, на которое опирается Око Саурона и поддержка" style="background:rgba(52,211,153,0.14);border:1px solid rgba(52,211,153,0.4);color:#34d399;font-weight:700">📘 Устав</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
+  <div class="tab" onclick="switchTab('diagnostics')" title="Пульс кронов, стадии удалений аккаунтов, critical-ошибки клиентов и обезличенная экономика — всё одним вызовом" style="background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.4);color:#5eead4;font-weight:700">🩺 Диагностика</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="switchTab('testers')" title="Покажет Telegram-заказы, состояние кода и безопасную ручную активацию. Все изменения проходят серверную проверку и попадают в журнал аудита." data-i18n-es="Pagos Telegram">Телеграм оплаты</div>
@@ -14056,6 +14057,37 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   <section id="dd-comparisons" aria-label="Сравнение показателей" style="margin-top:14px"></section>
   <section id="dd-product-manager" aria-label="Product Manager" style="margin-top:14px"></section>
   <section id="dd-source-coverage" aria-label="Полнота источников" style="margin-top:14px"></section>
+</div>
+
+<!-- DIAGNOSTICS TAB (аудит 2026-08-29: пульс кронов + удаления + critical + экономика) -->
+<div id="tab-diagnostics" class="reports-tab pm-v4-page" data-pm-v4-section="diagnostics">
+  <div class="pm-v4-section-header" data-pm-v4-header="diagnostics"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Диагностика</h2><div class="pm-v4-section-sub">Пульс кронов, удаления аккаунтов, critical-поток клиентов и экономика.</div></div></div>
+
+  <div class="reports-toolbar" style="align-items:center;gap:10px;flex-wrap:wrap">
+    <button onclick="loadDiagnosticsOverview(true)" title="Перечитать все четыре блока одним вызовом" style="background:rgba(45,212,191,0.14);border:1px solid rgba(45,212,191,0.4);color:#5eead4;font-weight:800;min-height:44px">🔄 Обновить</button>
+    <span class="reports-count" id="diag-generated-at"></span>
+  </div>
+  <div id="diag-status" role="status" style="min-height:18px;margin:2px 0 10px;color:#94a3b8;font-size:12px"></div>
+
+  <section aria-label="Пульс кронов" style="margin-bottom:14px">
+    <div style="font-weight:800;color:#e2e8f0;margin:0 0 8px">⏱ Пульс кронов <span id="diag-cron-count" style="color:#64748b;font-weight:600"></span></div>
+    <div id="diag-crons"><div class="reports-empty">Загрузка…</div></div>
+  </section>
+
+  <section aria-label="Удаления аккаунтов" style="margin-bottom:14px">
+    <div style="font-weight:800;color:#e2e8f0;margin:0 0 8px">🗑 Удаления аккаунтов — последние прогоны</div>
+    <div id="diag-deletions"><div class="reports-empty">Загрузка…</div></div>
+  </section>
+
+  <section aria-label="Ошибки клиентов" style="margin-bottom:14px">
+    <div style="font-weight:800;color:#e2e8f0;margin:0 0 8px">🚨 Ошибки клиентов — свод по разделам (последние 120)</div>
+    <div id="diag-errors"><div class="reports-empty">Загрузка…</div></div>
+  </section>
+
+  <section aria-label="Экономика (обезличенный агрегат)">
+    <div style="font-weight:800;color:#e2e8f0;margin:0 0 8px">🪙 Экономика — обезличенные дневные счётчики</div>
+    <div id="diag-economy"><div class="reports-empty">Загрузка…</div></div>
+  </section>
 </div>
 
 <!-- GMAIL SUPPORT INBOX TAB (входящая почта support.phraseman@gmail.com + ИИ-ответы) -->
@@ -18159,7 +18191,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','max-feedback','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts','access-management'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','max-feedback','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts','access-management'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -22488,6 +22520,102 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     await window.openUserByUid(uid);
   };
 
+  // ── Панель «Диагностика» (аудит 2026-08-29) ─────────────────────────────
+  // зачем один callable: cron_heartbeats и account_deletion_diagnostics
+  // закрыты правилами наглухо — браузер их не прочитает даже с admin-claim;
+  // adminGetDiagnosticsOverview собирает все 4 блока Admin SDK за ~4 чтения.
+  let _diagLoadedAtMs = 0;
+  let _diagInFlight = null;
+  window.loadDiagnosticsOverview = async function(force) {
+    const status = document.getElementById('diag-status');
+    if (_diagInFlight) return _diagInFlight;
+    if (!force && Date.now() - _diagLoadedAtMs < 30000) return; // та же свежесть, что reopenMs
+    if (status) status.textContent = 'Загружаю…';
+    _diagInFlight = (async () => {
+      try {
+        const call = httpsCallable(functionsUs, 'adminGetDiagnosticsOverview');
+        const { data } = await call({});
+        _diagLoadedAtMs = Date.now();
+        renderDiagnosticsOverview(data || {});
+        if (status) status.textContent = '';
+        const stamp = document.getElementById('diag-generated-at');
+        if (stamp) stamp.textContent = 'на ' + new Date(data.generatedAtMs || Date.now()).toLocaleTimeString('ru-RU');
+      } catch (e) {
+        // зачем: запрет немого catch — причина отказа видна прямо в панели.
+        if (status) status.textContent = 'Не удалось загрузить: ' + (e?.message || e);
+      } finally {
+        _diagInFlight = null;
+      }
+    })();
+    return _diagInFlight;
+  };
+
+  function diagAge(ms) {
+    if (!ms) return '—';
+    const diff = Date.now() - ms;
+    if (diff < 90000) return 'только что';
+    if (diff < 3600000) return Math.round(diff / 60000) + ' мин назад';
+    if (diff < 172800000) return Math.round(diff / 3600000) + ' ч назад';
+    return Math.round(diff / 86400000) + ' дн назад';
+  }
+  function diagEsc(value) {
+    return String(value ?? '').replace(/[&<>"]/g, (ch) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[ch]));
+  }
+
+  function renderDiagnosticsOverview(data) {
+    const crons = Array.isArray(data.crons) ? data.crons : [];
+    const bad = crons.filter((c) => !c.ok || c.silent).length;
+    const cronCount = document.getElementById('diag-cron-count');
+    if (cronCount) cronCount.textContent = '· ' + crons.length + ' шт' + (bad ? ' · проблемных: ' + bad : ' · все живы');
+    const cronsBox = document.getElementById('diag-crons');
+    if (cronsBox) cronsBox.innerHTML = crons.length ? ('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px">'
+      + crons.map((c) => {
+        const tone = !c.ok ? 'rgba(248,113,113,0.5)' : c.silent ? 'rgba(251,191,36,0.5)' : 'rgba(52,211,153,0.35)';
+        const badge = !c.ok ? '⛔ упал' : c.silent ? '😶 молчит' : '✅';
+        return '<div style="background:#10141d;border:1px solid ' + tone + ';border-radius:10px;padding:10px 12px">'
+          + '<div style="display:flex;justify-content:space-between;gap:8px"><b style="color:#e2e8f0;font-size:13px;word-break:break-all">' + diagEsc(c.name) + '</b><span>' + badge + '</span></div>'
+          + '<div style="color:#94a3b8;font-size:12px;margin-top:4px">' + diagAge(c.lastRunAtMs) + ' · ' + (c.durationMs || 0) + ' мс</div>'
+          + (c.lastError ? '<div style="color:#fca5a5;font-size:12px;margin-top:4px;word-break:break-word">' + diagEsc(c.lastError) + '</div>' : '')
+          + '</div>';
+      }).join('') + '</div>') : '<div class="reports-empty">Пульсов пока нет — кроны ещё не пробегали после деплоя.</div>';
+
+    const runs = Array.isArray(data.deletionRuns) ? data.deletionRuns : [];
+    const delBox = document.getElementById('diag-deletions');
+    if (delBox) delBox.innerHTML = runs.length ? runs.map((r) => {
+      const ok = r.outcome === 'completed';
+      const stages = Array.isArray(r.stages) ? r.stages : [];
+      return '<details style="background:#10141d;border:1px solid ' + (ok ? 'rgba(52,211,153,0.3)' : 'rgba(248,113,113,0.5)') + ';border-radius:10px;padding:9px 12px;margin-bottom:6px">'
+        + '<summary style="cursor:pointer;color:#e2e8f0;font-size:13px">' + (ok ? '✅' : '⛔') + ' ' + diagEsc(r.runId)
+        + ' · ' + diagAge(r.startedAtMs) + ' · ' + Math.round((r.totalMs || 0) / 1000) + ' с · документов ' + (r.docsDeleted || 0)
+        + (ok ? '' : ' · <b style="color:#fca5a5">упало на ' + diagEsc(r.failedStage || '?') + '</b>') + '</summary>'
+        + (ok ? '' : '<div style="color:#fca5a5;font-size:12px;margin:6px 0">' + diagEsc(r.failedMessage || '') + '</div>')
+        + '<div style="color:#94a3b8;font-size:12px;margin-top:6px">' + stages.map((st) => (st.ok ? '✅' : '❌') + ' ' + diagEsc(st.stage) + ' — ' + (st.ms || 0) + ' мс').join('<br>') + '</div>'
+        + '</details>';
+    }).join('') : '<div class="reports-empty">Прогонов удаления ещё не было.</div>';
+
+    const groups = Array.isArray(data.errorGroups) ? data.errorGroups : [];
+    const errBox = document.getElementById('diag-errors');
+    if (errBox) errBox.innerHTML = groups.length ? ('<table class="club-clean-table" style="width:100%"><thead><tr><th style="text-align:left">Раздел (context)</th><th>Событий</th><th>Людей</th><th style="text-align:left">Последняя ошибка</th><th>Когда</th></tr></thead><tbody>'
+      + groups.map((g) => '<tr><td style="font-family:monospace;font-size:12px">' + diagEsc(g.context) + '</td>'
+        + '<td style="text-align:center">' + g.count + '</td><td style="text-align:center">' + g.uidCount + '</td>'
+        + '<td style="color:#94a3b8;font-size:12px;max-width:380px;word-break:break-word">' + diagEsc(g.lastMessage || '') + '</td>'
+        + '<td style="white-space:nowrap;color:#94a3b8;font-size:12px">' + diagAge(g.lastAtMs) + '</td></tr>').join('')
+      + '</tbody></table>') : '<div class="reports-empty">Свежих ошибок нет — тишина честная, канал живой.</div>';
+
+    const days = Array.isArray(data.economyDays) ? data.economyDays : [];
+    const ecoBox = document.getElementById('diag-economy');
+    if (ecoBox) ecoBox.innerHTML = days.length ? ('<table class="club-clean-table" style="width:100%"><thead><tr><th>День</th><th>Операций</th><th>Начислено</th><th>Потрачено</th><th>Аномалий</th></tr></thead><tbody>'
+      + days.map((d) => {
+        const anomalies = (d.invalidOps || 0) + (d.revisionGaps || 0) + (d.balanceGaps || 0);
+        return '<tr><td style="font-family:monospace">' + diagEsc(d.day) + '</td>'
+          + '<td style="text-align:center">' + (d.ops || 0) + '</td>'
+          + '<td style="text-align:center;color:#6ee7b7">+' + (d.amountGranted || 0) + '</td>'
+          + '<td style="text-align:center;color:#fca5a5">−' + (d.amountSpent || 0) + '</td>'
+          + '<td style="text-align:center;' + (anomalies ? 'color:#fbbf24;font-weight:700' : 'color:#64748b') + '">' + anomalies + '</td></tr>';
+      }).join('')
+      + '</tbody></table>') : '<div class="reports-empty">Счётчиков пока нет — данные пойдут с релизом клиента (до него нули честные).</div>';
+  }
+
   window.switchTab = function(tab, opts) {
     const options = opts || {};
     if (typeof adminCloseBlockingShellOverlays === 'function') adminCloseBlockingShellOverlays();
@@ -22540,6 +22668,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     if (!options.skipAutoLoad) {
     if (tab === 'mod-queue' && !window._modQueueLoaded && typeof window.loadModQueue === 'function') {
       void window.loadModQueue(false);
+    }
+    if (tab === 'diagnostics' && typeof window.loadDiagnosticsOverview === 'function') {
+      void window.loadDiagnosticsOverview(false);
     }
     if (tab === 'ideas' && typeof window.loadUserIdeas === 'function') {
       void window.loadUserIdeas();
@@ -47776,6 +47907,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'ugc-purchases':{ reopenMs:30000, focusMs:300000, readBudget:120 },
     refunds:{ reopenMs:30000, focusMs:300000, readBudget:120 },
     'access-management':{ reopenMs:15000, focusMs:60000, readBudget:80 },
+    diagnostics:{ reopenMs:30000, focusMs:300000, readBudget:10 },
   });
   const PM_V5_REFRESH_POLICIES = PM_PHASE1_SECTION_POLICIES;
   function pmV5RefreshPolicy(tab) { return PM_PHASE1_SECTION_POLICIES[tab] || PM_PHASE1_SECTION_POLICIES.default; }
@@ -47792,6 +47924,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'product-charter':'Продуктовая хартия','onboarding-screens':'Онбординг',
     'onboarding-sources':'Источники онбординга','safety-flags':'Сигналы безопасности',
     'age-consent':'Возраст и согласие','compliance-radar':'Комплаенс','daily-digest':'Дайджест владельца',
+    'diagnostics':'Диагностика',
     'gmail-support':'Gmail-поддержка','overview':'Обзор','mod-queue':'Очередь модерации',
     'ideas':'Идеи пользователей','analytics':'Доход и аналитика','openai-budget':'Бюджет OpenAI',
     'app-health':'Состояние приложения','max-ops':'Здоровье MAX','max-feedback':'Отзывы MAX','users':'Пользователи','testers':'Телеграм-оплаты',

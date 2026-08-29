@@ -1193,6 +1193,11 @@ export {
   adminSeedV2E1DemoSource,
   adminRunV2E1Compilation,
 } from "./content_factory/v2_e1_compilation_worker";
+// зачем: панель «Диагностика» в админке (аудит 2026-08-29) — пульс кронов,
+// стадии удалений, critical-поток клиентов и обезличенная экономика одним
+// вызовом; cron_heartbeats/deletion_diagnostics закрыты правилами наглухо,
+// браузеру их отдаёт только Admin SDK этой callable.
+export { adminGetDiagnosticsOverview } from "./admin_diagnostics_overview";
 // зачем (владелец, 2026-08-23): кнопка публикации курса в админке
 // (admin/v2/legacy.html) зовёт adminPublishAuthoredLearningV2Course — это
 // доставка контента без OTA: опубликовал, и приложение видит новый материал.

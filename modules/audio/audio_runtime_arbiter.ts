@@ -90,8 +90,9 @@ export class SpokenAudioArbiter {
     if (!callStop) return;
     try {
       owner.stop();
-    } catch {
+    } catch (e) {
       // A broken screen-level cleanup must never strand process-wide ownership.
+      console.warn('[silent-catch] audio_runtime_arbiter:owner', e instanceof Error ? e.message : String(e));
     }
   }
 }
@@ -152,7 +153,10 @@ export class RecordingAudioArbiter {
     if (this.activeOwner === owner) this.activeOwner = null;
     owner.lease.release();
     if (!callStop) return;
-    try { owner.stop(); } catch { /* native capture may already be gone */ }
+    try { owner.stop(); } catch (e) {
+      // native capture may already be gone
+      console.warn('[silent-catch] audio_runtime_arbiter:owner', e instanceof Error ? e.message : String(e));
+    }
   }
 }
 

@@ -6,6 +6,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { withStorageLock } from './storage_mutex';
+import { DebugLogger } from './debug-logger';
 
 export const ACHIEVEMENT_FOUNDATION_PROGRESS_KEY = 'achievement_foundation_progress_v2';
 export const ACHIEVEMENT_ACCESS_PLUS_PAID_KEY = 'achievement_access_plus_paid_v1';
@@ -160,7 +161,10 @@ export function normalizeFoundationProgress(value: unknown): AchievementFoundati
   try {
     const parsed = typeof value === 'string' ? JSON.parse(value) : value;
     if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) row = parsed as Record<string, unknown>;
-  } catch { /* defaults */ }
+  } catch (e) {
+      // defaults
+      DebugLogger.error('achievement_progress_v2:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   const diamondPlusWeeks = normalizeWeeks(row.diamondPlusWeeks);
   const streak = consecutiveTail(diamondPlusWeeks);

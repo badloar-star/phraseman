@@ -15,6 +15,7 @@
 import type { DialogScenario } from './ai_dialog_scenarios';
 import type { TutorBoardPayload, TutorConversationMode } from './max_tutor_live_board_state';
 import type { MaxVoiceStudyTarget } from './max_target_gate';
+import { DebugLogger } from './debug-logger';
 
 export type TutorBoardToolPayload = Omit<TutorBoardPayload, 'shownAtMs' | 'expiresAtMs'>;
 
@@ -252,7 +253,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
           };
         }
         activeScene = scene;
-        try { deps.onSceneChange?.(scene); } catch {}
+        try { deps.onSceneChange?.(scene); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:ids', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return {
           output:
             `SCENE STARTED. Play this role in ${sceneLanguage} at the learner's level for 4-8 exchanges, then call end_scene():\n` +
@@ -269,7 +272,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
           sceneOutcome = outcome === 'done' || outcome === 'partial' || outcome === 'skipped' ? outcome : 'partial';
           completedSceneId = endedSceneId;
         }
-        try { deps.onSceneChange?.(null); } catch {}
+        try { deps.onSceneChange?.(null); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:outcome', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return {
           output: had
             ? 'Scene ended. You are the teacher again: give one short sentence of feedback (in the learner\'s native language for A1/A2), then continue the lesson.'
@@ -324,7 +329,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         }
         homework = unique.map((u) => u.text);
         homeworkMeanings = unique.map((u) => u.meaning);
-        try { deps.onHomework?.(homework); } catch {}
+        try { deps.onHomework?.(homework); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:passed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return {
           output: `Homework saved (${unique.length}): ${homework.join(' | ')}. It will be shown to the learner after the lesson and added to their Trainer.`,
           respond: true,
@@ -334,7 +341,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         const topic = cleanPhrase(args.topic).slice(0, 140);
         if (!topic) return { output: 'Topic is empty. Say the topic aloud and call set_next_topic again.', respond: true };
         nextTopic = topic;
-        try { deps.onNextTopic?.(topic); } catch {}
+        try { deps.onNextTopic?.(topic); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:topic', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return { output: `Next topic saved: ${topic}.`, respond: true };
       }
       case 'show_tutor_board': {
@@ -354,7 +363,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
           meaning,
           source,
         };
-        try { deps.onLiveBoard?.(payload); } catch {}
+        try { deps.onLiveBoard?.(payload); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:validRecast', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return { output: 'Tutor board shown.', respond: false };
       }
       case 'set_live_topic': {
@@ -365,7 +376,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         if (mode !== 'guided' && mode !== 'free_talk') {
           return { output: 'Unknown topic mode. Use "guided" or "free_talk".', respond: false };
         }
-        try { deps.onLiveTopic?.({ topic, mode }); } catch {}
+        try { deps.onLiveTopic?.({ topic, mode }); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:mode', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return { output: 'Live topic updated.', respond: false };
       }
       case 'flag_safety': {
@@ -445,7 +458,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
       }
       case 'end_call': {
         endRequested = true;
-        try { deps.onEndCall?.(); } catch {}
+        try { deps.onEndCall?.(); } catch (e) {
+      DebugLogger.error('max_call_tutor_tools:mode', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         // Ответ без response.create: учитель уже попрощался, новых реплик не надо.
         return { output: 'The lesson is ending now. Do not speak further.', respond: false };
       }

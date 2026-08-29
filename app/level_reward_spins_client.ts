@@ -23,6 +23,7 @@ import {
   LEVEL_SPIN_PENDING_REVEAL_KEY,
   LEVEL_SPIN_OUTBOX_KEY,
 } from './level_up_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 export {
   LEVEL_SPIN_BALANCE_CACHE_KEY,
@@ -471,9 +472,10 @@ async function persistReceipt(
         if (pending?.owner === stableId && pending.receipt?.requestId === receipt.requestId) {
           await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
         }
-      } catch {
-        // A malformed account-local reveal is ignored and replaced by the next valid claim.
-      }
+      } catch (e) {
+      // A malformed account-local reveal is ignored and replaced by the next valid claim.
+      DebugLogger.error('level_reward_spins_client:pending', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     if (!currentFor(token, stableId)) return;
     balancePeekByOwner.set(stableId, boundedBalance(receipt.balanceAfter));

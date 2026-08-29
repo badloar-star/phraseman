@@ -20,6 +20,7 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../app/debug-logger';
 
 interface State {
   hasError: boolean;
@@ -114,7 +115,9 @@ export default class ErrorBoundary extends React.Component<Props, State> {
         screen: 'root',
         tags: { componentStack: (errorInfo.componentStack ?? '').slice(0, 500) },
       });
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('ErrorBoundary:health', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 
   handleRetry = () => {

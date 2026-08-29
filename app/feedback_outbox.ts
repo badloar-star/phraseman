@@ -6,6 +6,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { FeedbackEntryInput } from './feedback_client';
+import { DebugLogger } from './debug-logger';
 
 const OUTBOX_KEY_PREFIX = 'feedback_entries_outbox_v1';
 const outboxQueues = new Map<string, Promise<void>>();
@@ -81,11 +82,17 @@ async function readAllUnlocked(accountKey: string, nowMs: number): Promise<Pendi
   try {
     parsed = JSON.parse(raw);
   } catch {
-    try { await AsyncStorage.removeItem(key); } catch { /* best-effort privacy cleanup */ }
+    try { await AsyncStorage.removeItem(key); } catch (e) {
+      // best-effort privacy cleanup
+      DebugLogger.error('feedback_outbox:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return [];
   }
   if (!Array.isArray(parsed)) {
-    try { await AsyncStorage.removeItem(key); } catch { /* best-effort privacy cleanup */ }
+    try { await AsyncStorage.removeItem(key); } catch (e) {
+      // best-effort privacy cleanup
+      DebugLogger.error('feedback_outbox:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return [];
   }
   const kept = parsed
@@ -101,8 +108,9 @@ async function readAllUnlocked(accountKey: string, nowMs: number): Promise<Pendi
     try {
       if (kept.length === 0) await AsyncStorage.removeItem(key);
       else await AsyncStorage.setItem(key, JSON.stringify(kept));
-    } catch {
+    } catch (e) {
       // Delivery can continue with the in-memory rows even if disk cleanup fails.
+      DebugLogger.error('feedback_outbox:ageMs', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return kept;

@@ -96,6 +96,7 @@ import {
   maxVoiceFailureActions,
   maxVoicePhaseLabel,
 } from './max_voice_copy';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Экран MAX-звонка (спека, раздел 6). Экран ТОНКИЙ: вся хореография транспорта
@@ -454,9 +455,10 @@ function MaxCallSessionContent() {
           const ready = await entry.promise;
           if (isPremintUsable(ready, entry.createdAtMs, Date.now())) return ready;
           enqueueRelease(() => releaseUnusedMint(ready));
-        } catch {
-          // Заготовка упала — одна честная попытка свежего минта ниже.
-        }
+        } catch (e) {
+      // Заготовка упала — одна честная попытка свежего минта ниже.
+      DebugLogger.error('max_call_session:ready', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       return mintAfterRelease(() => performMaxVoiceMint(callParams, req));
     };

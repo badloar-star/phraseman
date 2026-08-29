@@ -16,6 +16,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { onAppEvent } from '../events';
+import { DebugLogger } from '../debug-logger';
 
 const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
 
@@ -135,9 +136,10 @@ async function readCacheOnce(): Promise<void> {
     const parsed = JSON.parse(raw) as { bools?: Record<string, unknown>; numbers?: Record<string, unknown> };
     _cachedEnabled = parsed?.bools?.[FRIENDS_TOGETHER_FLAG_KEY] === true;
     _cachedConfig = friendsTogetherClientConfigFromNumbers(parsed?.numbers);
-  } catch {
-    // best-effort: держим дефолт false
-  } finally {
+  } catch (e) {
+      // best-effort: держим дефолт false
+      DebugLogger.error('together_config:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     _hydrated = true;
   }
 }

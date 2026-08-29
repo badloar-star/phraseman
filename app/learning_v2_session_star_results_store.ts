@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Звёзды 0–3 за пройденную сессию — ТОЛЬКО для показа на карте.
@@ -169,9 +170,10 @@ export async function recordLearningV2SessionStarResult(input: {
       }),
     );
     publish(accountScopeHash, next);
-  } catch {
-    // Витрина: сбой записи не должен ломать завершение сессии.
-  }
+  } catch (e) {
+      // Витрина: сбой записи не должен ломать завершение сессии.
+      DebugLogger.error('learning_v2_session_star_results_store:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function __resetLearningV2SessionStarResultsForTests(): void {

@@ -49,6 +49,7 @@ import {
 } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { DebugLogger } from './debug-logger';
 
 const VARIANT = 'C' as const;
 /** Глубины скролла галереи — впервые узнаем, сколько юзеров читает доказательства. */
@@ -134,22 +135,34 @@ export default function PaywallC() {
           if (tags.length > 0) setPersonalTag(tags[0]);
           trackPaywallTagsShown(tags, VARIANT, source);
         }
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_c:tags', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         const m = await readProgressMirror();
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_c:m', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         const prof = await readPaywallProfile(lang as PaywallLang);
         if (!dead) setProfile(prof);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_c:prof', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
     // Плюс живой рубильник из «Пульта»: выкл → отзывы просто пропадают (пустой массив).
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
       setTestimonials(isPaywallReviewsEnabled() ? pickTestimonials(lang as Lang, ctx, dayHash, 4, false) : []);
-    } catch { /* некритично */ }
+    } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_c:dayHash', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return () => { dead = true; };
   }, [ctx, lang, source]);
 
@@ -160,7 +173,10 @@ export default function PaywallC() {
         const { percentiles } = await loadPercentileData();
         const line = pickPercentileLine(ctx, percentiles, { streak: mirror?.streak ?? 0 }, lang as Lang);
         if (!dead && line) setPercentileLine(line);
-      } catch { /* нет данных — молчим */ }
+      } catch (e) {
+      // нет данных — молчим
+      DebugLogger.error('paywall_c:line', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return () => { dead = true; };
   }, [ctx, lang, mirror?.streak]);

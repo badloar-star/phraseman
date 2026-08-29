@@ -30,6 +30,7 @@ import {
   validateCoursePackManifest,
   type CoursePackManifest,
 } from './course_pack_manifest';
+import { DebugLogger } from './debug-logger';
 
 const CACHE_ROOT_NAME = 'course-packs';
 const MANIFEST_TIMEOUT_MS = 6000;
@@ -351,9 +352,10 @@ export async function evictCachedCoursePack(cacheKey: string): Promise<void> {
   try {
     const dir = cacheDirForKey(cacheKey);
     if (dir.exists) dir.delete();
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('course_pack_remote_loader:dir', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps this utility module from warning when discovered as a route. */

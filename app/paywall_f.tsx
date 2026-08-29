@@ -44,6 +44,7 @@ import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { DebugLogger } from './debug-logger';
 
 const VARIANT = 'F' as const;
 
@@ -99,15 +100,24 @@ export default function PaywallF() {
           if (tags.length > 0) setPersonalTag(tags[0]);
           trackPaywallTagsShown(tags, VARIANT, source);
         }
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_f:tags', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         const m = await readProgressMirror();
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_f:m', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         const prof = await readPaywallProfile(lang as PaywallLang);
         if (!dead) setProfile(prof);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_f:prof', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return () => { dead = true; };
   }, [source, ctx, lang]);

@@ -358,12 +358,18 @@ async function resolveDailyGreeting(pool: readonly string[], lang: Lang): Promis
         }
 
     }
-    catch { /* ignore */ }
+    catch (e) {
+      // ignore
+      DebugLogger.error('home:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const idx = Math.floor(Math.random() * pool.length);
     try {
         await AsyncStorage.setItem(HOME_DAILY_GREETING_KEY, JSON.stringify({ day: today, lang, idx } satisfies DailyGreetingStored));
     }
-    catch { /* ignore */ }
+    catch (e) {
+      // ignore
+      DebugLogger.error('home:idx', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return pool[idx]!;
 }
 function parseStoredCount(raw: string | null): number {
@@ -1985,9 +1991,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
                             if (correct >= 45) done++;
                         }
-                    } catch {
-                        // битая запись — пропускаем, не считаем как завершённый
-                    }
+                    } catch (e) {
+      // битая запись — пропускаем, не считаем как завершённый
+      DebugLogger.error('home:correct', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
                 }
             }
             if (mountedRef.current)
@@ -2007,9 +2014,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     while (lastId > 1 && !(await isLessonUnlockedByEarnedProgress(lastId, studyTarget))) {
                         lastId -= 1;
                     }
-                } catch {
-                    // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
-                }
+                } catch (e) {
+      // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
+      DebugLogger.error('home:lastId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
             }
             if (lastId && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
@@ -2181,9 +2189,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // Inner try/catch: битый login_bonus_pending не должен ронять loadData.
                 try {
                     setLoginBonus(JSON.parse(bonusRaw));
-                } catch {
-                    // битая запись — игнорируем, чистим ниже
-                }
+                } catch (e) {
+      // битая запись — игнорируем, чистим ниже
+      DebugLogger.error('home:pendingSig', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
                 await AsyncStorage.removeItem('login_bonus_pending');
             }
             if (comebackRaw) {

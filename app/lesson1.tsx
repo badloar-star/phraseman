@@ -145,6 +145,7 @@ import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { DebugLogger } from './debug-logger';
 const GRAMMAR_HINTS = [
   {
     key: 'grammar_hint_articles',
@@ -2363,7 +2364,9 @@ function LessonScreen() {
       AsyncStorage.getItem(SETTINGS_KEY).then(ss => {
         if (cancelled) return;
         if (ss) {
-          try { setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(ss) }); } catch {}
+          try { setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(ss) }); } catch (e) {
+      DebugLogger.error('lesson1:cancelled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         }
       });
       return () => { cancelled = true; };
@@ -2776,7 +2779,10 @@ function LessonScreen() {
                   typeof x === 'number' && Number.isFinite(x) && x >= 0 && x < effectiveTotal,
               );
             }
-          } catch { /* keep empty */ }
+          } catch (e) {
+      // keep empty
+      DebugLogger.error('lesson1:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         }
         let restoredSince = 0;
         if (errSinceRaw != null && errSinceRaw !== '') {
@@ -3513,7 +3519,9 @@ function LessonScreen() {
     }
 
     // Сохраняем позицию
-    try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch {}
+    try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch (e) {
+      DebugLogger.error('lesson1:npIdx', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress, override: replayCell }, studyTargetRef.current);
   }, [cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage, lessonStorageId]);
 

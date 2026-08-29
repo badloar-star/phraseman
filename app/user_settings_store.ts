@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { patchAppSnapshot } from './app_snapshot_store';
+import { DebugLogger } from './debug-logger';
 
 const SETTINGS_KEY = 'user_settings';
 // Lower bound raised from 0.5 to 0.8: at 0.5 the pre-generated voice clips slow
@@ -84,7 +85,9 @@ export async function saveSettings(s: UserSettings): Promise<void> {
   publishSettingsSnapshot('local');
   try {
     await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('user_settings_store:saveSettings', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function applyUserSettingsNow(s: UserSettings): void {

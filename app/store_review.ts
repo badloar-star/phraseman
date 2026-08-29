@@ -1,6 +1,7 @@
 import { Linking, Platform } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import { STORE_URL_ANDROID, STORE_URL_IOS } from './config';
+import { DebugLogger } from './debug-logger';
 
 export function appStoreWriteReviewUrl(): string {
   const appId = STORE_URL_IOS.match(/id(\d+)/)?.[1] || '6764800879';
@@ -26,8 +27,9 @@ export async function openStoreReviewPage(): Promise<boolean> {
     try {
       await Linking.openURL(url);
       return true;
-    } catch {
+    } catch (e) {
       // Try the next platform-specific store URL.
+      DebugLogger.error('store_review:urls', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   try {

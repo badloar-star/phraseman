@@ -5,6 +5,7 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export const FRIEND_GIFT_INVENTORY_KEY = 'friend_gift_inventory_v1';
 
@@ -89,8 +90,9 @@ export async function loadStoredFriendGiftInventory(
       await AsyncStorage.setItem(storageKey, JSON.stringify(alive));
       if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return [];
       if (legacyKeys.length > 0) await AsyncStorage.multiRemove(legacyKeys);
-    } catch {
+    } catch (e) {
       // Повторная чистка произойдёт при следующем чтении.
+      DebugLogger.error('friend_gift_inventory:alive', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return alive;

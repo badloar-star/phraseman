@@ -24,6 +24,7 @@ import {
 } from '../app/feedback_client';
 import { enqueueFeedbackEntry, flushFeedbackOutbox } from '../app/feedback_outbox';
 import { triLang, type Lang } from '../constants/i18n';
+import { DebugLogger } from '../app/debug-logger';
 
 export interface FeedbackRatingCardProps {
   kind: FeedbackKind;
@@ -73,8 +74,9 @@ export default function FeedbackRatingCard({
     try {
       const accountKey = await getStableId();
       await flushFeedbackOutbox(accountKey, submitFeedbackEntry);
-    } catch {
+    } catch (e) {
       // Offline queue remains intact for the next completion-screen mount.
+      DebugLogger.error('FeedbackRatingCard:accountKey', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
 
@@ -111,8 +113,9 @@ export default function FeedbackRatingCard({
         return;
       }
       await flushFeedbackOutbox(accountKey, submitFeedbackEntry);
-    } catch {
+    } catch (e) {
       // Осталось в очереди: досылка произойдёт на следующем экране завершения.
+      DebugLogger.error('FeedbackRatingCard:persisted', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
 

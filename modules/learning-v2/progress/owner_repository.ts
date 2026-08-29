@@ -1371,8 +1371,9 @@ export const createOwnerRepository = (
         await import("./owner_repository_root_v3");
       parseOwnerRepositoryRootV3Raw(raw, stableScope.accountScopeHash);
       return loadV3(stableScope);
-    } catch {
+    } catch (e) {
       // Continue with the byte-compatible V2/V1 dispatch.
+      console.warn('[silent-catch] owner_repository:raw', e instanceof Error ? e.message : String(e));
     }
     let isV2 = false;
     try {
@@ -2636,9 +2637,10 @@ export const createOwnerRepository = (
       try {
         parseOwnerRepositoryRootV2Raw(currentRaw, stableScope.accountScopeHash);
         return commitWalletCreditV3FromV2(stableScope, detachedCandidate);
-      } catch {
-        // Continue with the already-adopted RootV3 path.
-      }
+      } catch (e) {
+      // Continue with the already-adopted RootV3 path.
+      console.warn('[silent-catch] owner_repository:currentRaw', e instanceof Error ? e.message : String(e));
+    }
       const admitted = await admitWalletWindow(stableScope);
       if (admitted.currentRootRaw !== currentRaw) continue;
       const snapshot = await loadV3FromAdmitted(admitted);

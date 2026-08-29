@@ -27,6 +27,7 @@ import {
 } from './course_pack_remote_loader';
 import { ensurePlanContentPackReady } from './plan_content_remote_facade';
 import { planContentRowUrl } from './plan_content_remote_registration';
+import { DebugLogger } from './debug-logger';
 
 /** Форма index.json пака (см. scripts/export_plan_content_packs.mjs). */
 type PlanContentPackIndexLike = {
@@ -103,9 +104,10 @@ export async function prefetchPlanContentDayWindow(
     const paths = entryPathsFor(index, planId, (dayIndex) =>
       Math.abs(dayIndex - currentDayIndex) <= radius);
     if (paths.length > 0) await ensureRows(cacheKey, paths);
-  } catch {
-    // best-effort: любой сбой молча откладывает префетч до следующего события
-  }
+  } catch (e) {
+      // best-effort: любой сбой молча откладывает префетч до следующего события
+      DebugLogger.error('plan_content_prefetch:paths', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -154,8 +156,9 @@ export function prefetchActivePlanContentOnColdStart(
       const active = await readActivePlan();
       if (!active) return; // нет активного плана — ничего не качаем (экономия)
       await prefetchPlanContentDayWindow(active.planId, active.currentDayIndex);
-    } catch {
+    } catch (e) {
       // best-effort
+      DebugLogger.error('plan_content_prefetch:active', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   });
 }

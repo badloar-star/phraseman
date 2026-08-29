@@ -3,6 +3,7 @@
  * This prevents "Unmatched Route" on root custom-scheme launches.
  */
 import { IS_STORE_RELEASE } from './config';
+import { DebugLogger } from './debug-logger';
 
 export function redirectSystemPath({
   path,
@@ -116,7 +117,10 @@ export function redirectSystemPath({
   if (deckMatch?.[1] && deckMatch[2]) {
     const category = deckMatch[1].toLowerCase() === 'saved' ? 'saved' : 'custom';
     let cardId = deckMatch[2];
-    try { cardId = decodeURIComponent(cardId); } catch { /* already raw */ }
+    try { cardId = decodeURIComponent(cardId); } catch (e) {
+      // already raw
+      DebugLogger.error('+native-intent:cardId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return `/flashcards_collection?cat=${category}&widgetCard=${encodeURIComponent(cardId)}`;
   }
 

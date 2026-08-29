@@ -20,6 +20,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export type AnalyticsConsentState = 'granted' | 'denied' | 'unset';
 
@@ -32,7 +33,10 @@ const consentListeners = new Set<(state: AnalyticsConsentState) => void>();
 
 function notifyConsentListeners(): void {
   consentListeners.forEach((listener) => {
-    try { listener(consentMemory); } catch { /* analytics listeners must not break consent updates */ }
+    try { listener(consentMemory); } catch (e) {
+      // analytics listeners must not break consent updates
+      DebugLogger.error('analytics_consent:notifyConsentListeners', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   });
 }
 
@@ -119,7 +123,8 @@ export async function setAnalyticsConsent(state: AnalyticsConsentState): Promise
   }
   try {
     await AsyncStorage.setItem(CONSENT_KEY, state);
-  } catch {
-    /* no-op: в памяти уже обновлено, перезапишется при следующей попытке */
-  }
+  } catch (e) {
+      // no-op: в памяти уже обновлено, перезапишется при следующей попытке
+      DebugLogger.error('analytics_consent:previous', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

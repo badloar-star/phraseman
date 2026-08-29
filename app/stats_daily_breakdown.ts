@@ -14,6 +14,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 const STORAGE_KEY = 'stats_daily_breakdown_v1';
 
@@ -93,9 +94,10 @@ export async function reconcileStatsDailyBreakdownWithCloud(
   const str = JSON.stringify(merged);
   try {
     await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), str);
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('stats_daily_breakdown:str', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return str;
 }
 
@@ -201,9 +203,10 @@ export async function bumpStatsDaily(
     void import('./activity_365_analytics')
       .then(({ invalidateActivity365Cache }) => invalidateActivity365Cache())
       .catch(() => {});
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('stats_daily_breakdown:committed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   if (isCurrentAccountGeneration(operationToken)) void syncToCloud();
 }
 

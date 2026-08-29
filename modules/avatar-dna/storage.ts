@@ -37,8 +37,9 @@ async function writeRawVerified(key: string, raw: string): Promise<boolean> {
     try {
       await attempt();
       if (await AsyncStorage.getItem(key) === raw) return true;
-    } catch {
+    } catch (e) {
       // Try the independent batch primitive before declaring storage unavailable.
+      console.warn('[silent-catch] storage:attempts', e instanceof Error ? e.message : String(e));
     }
   }
   return false;
@@ -53,8 +54,9 @@ async function removeRawVerified(key: string): Promise<boolean> {
     try {
       await attempt();
       if (await AsyncStorage.getItem(key) === null) return true;
-    } catch {
+    } catch (e) {
       // Try the independent batch primitive before declaring storage unavailable.
+      console.warn('[silent-catch] storage:attempts', e instanceof Error ? e.message : String(e));
     }
   }
   return false;

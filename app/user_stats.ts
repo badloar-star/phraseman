@@ -6,6 +6,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { syncToCloud } from './cloud_sync';
 import { userStatsKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 interface UserStats {
   lessonsStarted: number;
@@ -63,7 +64,9 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<UserStats> {
 async function save(stats: UserStats, studyTarget?: RuntimeStudyTarget): Promise<void> {
   try {
     await AsyncStorage.setItem(userStatsKey(studyTarget), JSON.stringify(stats));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('user_stats:save', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function trackLessonStart(studyTarget?: RuntimeStudyTarget): Promise<void> {

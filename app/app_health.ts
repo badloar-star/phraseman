@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { recordError } from './firebase';
 import { submitClientReport } from './client_reports';
+import { DebugLogger } from './debug-logger';
 
 export type AppHealthSeverity = 'info' | 'warning' | 'critical';
 
@@ -138,8 +139,9 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
   if (severity === 'critical' || severity === 'warning') {
     try {
       recordError(errForCrashlytics, context);
-    } catch {
+    } catch (e) {
       // Diagnostics must never make the original failure path worse.
+      DebugLogger.error('app_health:errForCrashlytics', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 

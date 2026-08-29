@@ -7,6 +7,7 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
 import { commitConfirmedExternalShardEvent, getShardsBalance } from './shards_system';
 import { sendFriendActivityLike, fetchActivityLikeState } from './friend_activity_likes';
+import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -141,7 +142,9 @@ export async function cacheLeagueGroupBoost(boost: LeagueGroupBoostState | null)
     } else {
       await AsyncStorage.removeItem(LEAGUE_GROUP_BOOST_KEY);
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('league_group_boosts:cacheLeagueGroupBoost', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function loadActiveLeagueGroupBoost(): Promise<LeagueGroupBoostState | null> {

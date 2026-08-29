@@ -11,6 +11,7 @@ import {
 } from './personal_plan_xp_ledger';
 import { markPhrasesCounted } from './personal_plan_counted_phrases';
 import { captureAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 /**
  * XP awarded for completing one personal-plan task. Kept modest and flat so plan
@@ -152,8 +153,9 @@ export async function awardPlanTaskCompletion(params: AwardPlanTaskParams): Prom
         );
         retryableReservation = null;
       }
-    } catch {
+    } catch (e) {
       // ignore — XP/streak update is best-effort
+      DebugLogger.error('personal_plan_xp:eventTaskId', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 
@@ -167,7 +169,8 @@ export async function awardPlanTaskCompletion(params: AwardPlanTaskParams): Prom
     if (learned > 0 && guardLegacyDup && sameAccountGeneration(operationAccount, captureAccountGeneration())) {
       await bumpStatsDaily('phrases_learned', learned, studyTarget);
     }
-  } catch {
-    // ignore — lifetime chart update is best-effort
-  }
+  } catch (e) {
+      // ignore — lifetime chart update is best-effort
+      DebugLogger.error('personal_plan_xp:guardLegacyDup', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

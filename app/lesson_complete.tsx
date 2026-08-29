@@ -84,6 +84,7 @@ import {
   lessonSessionKey,
   lessonTopicShardGrantedKey,
 } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   bronze: require('../assets/images/levels/bronza.webp'),
@@ -941,7 +942,9 @@ export default function LessonComplete() {
               if (wrong === 0) perfectCount++;
             }
           }
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('lesson_complete:wrong', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(() => {});
       if (wasPerfect) {
@@ -1043,7 +1046,9 @@ export default function LessonComplete() {
           const langRaw = await AsyncStorage.getItem('app_lang');
           const d1Lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
           scheduleD1PersonalizedReminder(d1Phrases, d1Streak, d1Lang).catch(() => {});
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('lesson_complete:langRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
     } catch (e) {
       // Ошибка в пост-наградах (ачивки/осколки за идеальность/тему/стрик) —
@@ -1230,9 +1235,10 @@ export default function LessonComplete() {
           return;
         }
         if (!cancelled) setShowAuthPrompt(true);
-      } catch {
-        // игнорируем — модалку просто не покажем
-      }
+      } catch (e) {
+      // игнорируем — модалку просто не покажем
+      DebugLogger.error('lesson_complete:linked', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }, 1500);
     return () => {
       cancelled = true;

@@ -6,6 +6,7 @@ import {
 import { IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { DebugLogger } from './debug-logger';
 
 const CACHE_KEY = 'cosmetic_asset_catalog_cache_v1';
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
@@ -73,9 +74,10 @@ async function refreshRemoteCatalog(): Promise<void> {
     if (!next) return;
     await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(next));
     applyCatalog(next);
-  } catch {
-    // The cached/default catalog remains authoritative while offline.
-  }
+  } catch (e) {
+      // The cached/default catalog remains authoritative while offline.
+      DebugLogger.error('cosmetic_asset_archive:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function hydrateCosmeticAssetCatalog(force = false): Promise<void> {

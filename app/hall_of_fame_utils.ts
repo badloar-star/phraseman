@@ -33,6 +33,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -183,8 +184,9 @@ export const getMyWeekPoints = async (): Promise<number> => {
     try {
       const rawData = raw ? JSON.parse(raw) as { weekKey?: unknown } : null;
       if (rawData?.weekKey === currentWeekKey) return parsed;
-    } catch {
+    } catch (e) {
       // Fall through to the server-mirrored weekly counter.
+      DebugLogger.error('hall_of_fame_utils:rawData', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     const [[, weeklyXpRaw], [, periodRaw], [, legacyWeekPointsRaw]] = await AsyncStorage.multiGet([
       'weekly_xp',

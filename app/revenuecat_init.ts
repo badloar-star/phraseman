@@ -21,6 +21,7 @@ import {
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { selectVoiceMinutePackages, type VoiceMinutePack } from '../modules/voice_minutes/catalog';
+import { DebugLogger } from './debug-logger';
 
 const RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS = 1_500;
 
@@ -149,9 +150,10 @@ function configureRevenueCatLogging(): void {
     }
 
     void Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.WARN : LOG_LEVEL.ERROR).catch(() => {});
-  } catch {
-    // RevenueCat native module can be absent in Expo Go; init already no-ops there.
-  }
+  } catch (e) {
+      // RevenueCat native module can be absent in Expo Go; init already no-ops there.
+      DebugLogger.error('revenuecat_init:configureRevenueCatLogging', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

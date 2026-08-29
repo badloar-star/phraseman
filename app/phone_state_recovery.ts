@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export const phoneStateRecoveryCopyRu = 'Освобождаем место и восстанавливаем сохранение…';
 
@@ -67,7 +68,10 @@ export function createPhoneStateDurabilityRecovery(
       await action();
       return true;
     } catch {
-      try { await dependencies.cleanupReproducibleCaches(); } catch { /* retry still proceeds */ }
+      try { await dependencies.cleanupReproducibleCaches(); } catch (e) {
+      // retry still proceeds
+      DebugLogger.error('phone_state_recovery:commit', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         await action();
         return true;

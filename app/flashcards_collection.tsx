@@ -91,6 +91,7 @@ import {
   usePackDeeplinkGuard,
   type CollectionLoadedInfo,
 } from './flashcards/useCollectionData';
+import { DebugLogger } from './debug-logger';
 
 /** E11 (§3.2): debounce строки поиска. */
 const FC_SEARCH_DEBOUNCE_MS = 200;
@@ -228,9 +229,10 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
         markNextNavigationAsReplace();
         router.dismissTo(packBackOrigin as any);
         return;
-      } catch {
-        /* нет такого экрана в стеке — обычный back ниже */
-      }
+      } catch (e) {
+      // нет такого экрана в стеке — обычный back ниже
+      DebugLogger.error('flashcards_collection:canGoBack', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     /**
      * зачем (владелец, 2026-08-16): у этой кнопки ДВА разных смысла, и их нельзя

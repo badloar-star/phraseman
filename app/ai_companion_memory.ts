@@ -10,6 +10,7 @@
 import { loadMistakePracticeInsights } from './mistake_practice_insights';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import type { DialogMemory } from './ai_dialog_client';
+import { DebugLogger } from './debug-logger';
 
 const WEAK_WORDS_LIMIT = 5;
 
@@ -41,9 +42,10 @@ export async function buildCompanionMemory(
       .map((item) => item.phrase.trim())
       .filter((key) => key.length > 0);
     if (words.length > 0) weakWords = words;
-  } catch {
-    // История ошибок недоступна — продолжаем без слабых слов, это не критично.
-  }
+  } catch (e) {
+      // История ошибок недоступна — продолжаем без слабых слов, это не критично.
+      DebugLogger.error('ai_companion_memory:words', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   const levelNote = CEFR_GOAL_EN[cefr] ?? 'is learning English';
   const profile = `Level ${cefr}, ${levelNote}.`;

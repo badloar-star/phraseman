@@ -9,6 +9,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from '../account
 import type { ClientShardLocalWrite } from '../economy/client_shard_operation_ledger';
 import { getUtcDayKey } from '../local_date';
 import { utcWeekNumberFromTodayKey } from './boon_engine';
+import { DebugLogger } from '../debug-logger';
 
 /**
  * Описание разовой награды бонуса.
@@ -125,9 +126,10 @@ export async function isClaimed(storageKey: string, periodId: string): Promise<b
 export async function markClaimed(storageKey: string, periodId: string): Promise<void> {
   try {
     await AsyncStorage.setItem(storageKey, periodId);
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('boon_rewards:markClaimed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

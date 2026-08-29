@@ -230,9 +230,10 @@ export async function primeRunesPeekFromBoot(): Promise<void> {
       unsubscribe();
       applyBootRunesPatch(bootRunes);
     });
-  } catch {
-    // Хранилище недоступно или проекция битая — обычный поток bootstrap починит это следом.
-  }
+  } catch (e) {
+      // Хранилище недоступно или проекция битая — обычный поток bootstrap починит это следом.
+      DebugLogger.error('runes_system:unsubscribe', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // зачем: прогрев запускается САМ при первом импорте модуля (см. комментарий

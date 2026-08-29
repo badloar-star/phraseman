@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Общий дисковый слой снапшотов экранов — «мгновенное открытие как в Duolingo».
@@ -141,9 +142,10 @@ export async function primeScreenSnapshotsFromStorage(nowMs = Date.now()): Promi
       if (row.value == null) continue;
       entries.set(key, { value: row.value, writtenAtMs });
     }
-  } catch {
-    // Дисковый снапшот — best-effort ускорение первого кадра, не источник правды.
-  }
+  } catch (e) {
+      // Дисковый снапшот — best-effort ускорение первого кадра, не источник правды.
+      DebugLogger.error('screen_snapshot_store:writtenAtMs', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flashcardsOpenedPacksKey, type RuntimeStudyTarget } from '../target_storage_keys';
+import { DebugLogger } from '../debug-logger';
 
 /**
  * Список packId, для яких юзер уже пройшов церемонію відкриття (Hearthstone-стайл).
@@ -34,9 +35,10 @@ export async function markPackCeremoniallyOpened(
     const ids = await loadIds(studyTarget);
     if (ids.includes(packId)) return;
     await AsyncStorage.setItem(flashcardsOpenedPacksKey(studyTarget), JSON.stringify([...ids, packId]));
-  } catch {
-    // ignore — не критично, у гіршому разі юзер побачить церемонію ще раз
-  }
+  } catch (e) {
+      // ignore — не критично, у гіршому разі юзер побачить церемонію ще раз
+      DebugLogger.error('openedPacksTracker:ids', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function loadOpenedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {

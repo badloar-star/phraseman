@@ -12,6 +12,7 @@
  * Гейт чистый: статус premium передаётся аргументом.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 const LAST_ACTIVE_KEY = 'winback_last_active_at_v1';
 const WINBACK_SHOWN_AT_KEY = 'winback_shown_at_v1';
@@ -28,9 +29,10 @@ export interface ShouldShowWinbackParams {
 export async function recordLastActive(nowMs: number): Promise<void> {
   try {
     await AsyncStorage.setItem(LAST_ACTIVE_KEY, String(nowMs));
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('winback_offer:recordLastActive', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function shouldShowWinback({ isPremium, nowMs }: ShouldShowWinbackParams): Promise<boolean> {
@@ -57,7 +59,8 @@ export async function shouldShowWinback({ isPremium, nowMs }: ShouldShowWinbackP
 export async function markWinbackShown(nowMs: number): Promise<void> {
   try {
     await AsyncStorage.setItem(WINBACK_SHOWN_AT_KEY, String(nowMs));
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('winback_offer:markWinbackShown', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -430,9 +431,10 @@ export async function markUserNotificationsRead(ids: string[]): Promise<void> {
       batch.update(ref, { read: true, readAt: now, updatedAt: now });
     });
     await batch.commit();
-  } catch {
-    // best-effort: непрочитанность догонит следующий снапшот
-  } finally {
+  } catch (e) {
+      // best-effort: непрочитанность догонит следующий снапшот
+      DebugLogger.error('user_notifications:ref', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     await updateOwnerCache(stableUid, markCachedRowsRead);
   }
 }
@@ -449,9 +451,10 @@ export async function deleteUserNotification(id: string): Promise<void> {
   if (!db) return;
   try {
     await db.collection('users').doc(stableUid).collection('notifications').doc(notificationId).delete();
-  } catch {
-    // Keep the user's explicit local deletion even while offline.
-  } finally {
+  } catch (e) {
+      // Keep the user's explicit local deletion even while offline.
+      DebugLogger.error('user_notifications:db', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     await updateOwnerCache(stableUid, removeCachedRow);
   }
 }

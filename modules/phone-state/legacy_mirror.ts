@@ -44,7 +44,10 @@ function unionValues(left: unknown, right: unknown): readonly unknown[] {
   for (const raw of [left, right]) {
     const values = Array.isArray(raw) ? raw : raw === null || raw === undefined ? [] : [raw];
     for (const value of values) {
-      try { result.set(JSON.stringify(value), value); } catch { /* malformed legacy value is ignored */ }
+      try { result.set(JSON.stringify(value), value); } catch (e) {
+      // malformed legacy value is ignored
+      console.warn('[silent-catch] legacy_mirror:values', e instanceof Error ? e.message : String(e));
+    }
     }
   }
   return Object.freeze([...result.entries()]

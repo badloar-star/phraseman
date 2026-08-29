@@ -24,6 +24,7 @@ import {
   type PackSocialTx,
   type PackSocialWriteResult,
 } from './packSocial';
+import { DebugLogger } from '../debug-logger';
 
 const NOOP_RESULT: PackSocialWriteResult = { changed: false, delta: 0 };
 
@@ -37,7 +38,9 @@ function socialEnabled(): boolean {
  * `firestore.rules` пускает клиента к `likesCount` и к `pack_likes/{userId}` только
  * при `request.auth != null`. Анонимный вход поднимается в `cloud_sync` асинхронно и
  * на холодном старте может ещё не завершиться, а транзакция лайка шла БЕЗ ожидания
- * авторизации — Firestore отвечал `permission-denied`, ошибка глушилась `catch {}`,
+ * авторизации — Firestore отвечал `permission-denied`, ошибка глушилась `catch (e) {
+      DebugLogger.error('packSocialFirestore:socialEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }`,
  * и лайк оставался только в AsyncStorage: цифра откатывалась при следующем чтении.
  *
  * Публикация и покупка набора уже давно ждут вход явно

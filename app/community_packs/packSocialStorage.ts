@@ -6,6 +6,7 @@
  * локальное хранилище — источник правды для «моего» флага до синхронизации.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../debug-logger';
 
 const LIKED_KEY = 'community_pack_liked_ids_v1';
 const ADDED_KEY = 'community_pack_added_registered_ids_v1';
@@ -31,9 +32,10 @@ async function readIds(key: string): Promise<string[]> {
 async function writeIds(key: string, ids: string[]): Promise<void> {
   try {
     await AsyncStorage.setItem(key, JSON.stringify([...new Set(ids)]));
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('packSocialStorage:writeIds', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function loadLikedCommunityPackIds(): Promise<string[]> {

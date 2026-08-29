@@ -17,6 +17,7 @@ import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './rem
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
+import { DebugLogger } from './debug-logger';
 
 export interface ClubDef {
   id:         number;
@@ -703,7 +704,9 @@ export const loadLeagueState = async (): Promise<LeagueState | null> => {
 
 const saveLeagueState = async (s: LeagueState) => {
   rememberLeagueStateSnapshot(s);
-  try { await AsyncStorage.setItem(STATE_KEY, JSON.stringify(s)); } catch {}
+  try { await AsyncStorage.setItem(STATE_KEY, JSON.stringify(s)); } catch (e) {
+      DebugLogger.error('league_engine:saveLeagueState', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const loadPendingResult = async (): Promise<LeagueResult | null> => {
@@ -730,7 +733,9 @@ export const loadPendingResult = async (): Promise<LeagueResult | null> => {
 };
 
 export const savePendingResult = async (r: LeagueResult) => {
-  try { await AsyncStorage.setItem(RESULT_KEY, JSON.stringify(r)); } catch {}
+  try { await AsyncStorage.setItem(RESULT_KEY, JSON.stringify(r)); } catch (e) {
+      DebugLogger.error('league_engine:savePendingResult', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const clearPendingResult = async () => {
@@ -740,7 +745,9 @@ export const clearPendingResult = async () => {
       await AsyncStorage.setItem(RESULT_CONSUMED_SIG_KEY, getLeagueResultSignature(pending));
     }
     await AsyncStorage.removeItem(RESULT_KEY);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('league_engine:pending', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /**
@@ -755,7 +762,9 @@ export const clearPendingResult = async () => {
 export const markLeagueResultShown = async (result: LeagueResult): Promise<void> => {
   try {
     await AsyncStorage.setItem(RESULT_CONSUMED_SIG_KEY, getLeagueResultSignature(result));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('league_engine:markLeagueResultShown', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 let _groupCache: {
@@ -1129,9 +1138,10 @@ export const checkLeagueOnAppOpen = async (
     const pairs = await AsyncStorage.multiGet([RESULT_KEY, STATE_KEY]);
     pendingRaw = pairs[0]?.[1] ?? null;
     stateRaw = pairs[1]?.[1] ?? null;
-  } catch {
-    // Best-effort local cache. Account-scoped memory recovery is below.
-  }
+  } catch (e) {
+      // Best-effort local cache. Account-scoped memory recovery is below.
+      DebugLogger.error('league_engine:pairs', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   let pending: LeagueResult | null = null;
   try { pending = pendingRaw ? JSON.parse(pendingRaw) : null; } catch { pending = null; }

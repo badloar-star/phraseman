@@ -14,6 +14,7 @@ import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { computeAllPercentiles, type AllPercentiles } from './leaderboard_stats';
 import { getMyWeekPoints } from './hall_of_fame_utils';
+import { DebugLogger } from './debug-logger';
 
 const SYNCED_DATE_KEY = 'daily_analytics_synced_v1';
 
@@ -108,9 +109,10 @@ export async function syncDailyAnalyticsIfNeeded(): Promise<void> {
     const [xp7, time7] = await Promise.all([getLast7DaysXp(), getLast7DaysTimeMs()]);
     await fn({ stableId: uid, daily7xp: xp7, daily7time_ms: time7 });
     await AsyncStorage.setItem(SYNCED_DATE_KEY, today);
-  } catch {
-    // нет сети — попробуем завтра
-  }
+  } catch (e) {
+      // нет сети — попробуем завтра
+      DebugLogger.error('daily_analytics_sync:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // Реэкспорт для обратной совместимости

@@ -35,6 +35,7 @@ import {
   waitForActiveAccountGeneration,
 } from './account_generation';
 import { applyLocalLevelSpinRewardExactlyOnce } from './local_level_spin_auto_delivery';
+import { DebugLogger } from './debug-logger';
 
 export default function LevelRewardSpinScreen() {
   const router = useRouter();
@@ -295,9 +296,9 @@ export default function LevelRewardSpinScreen() {
         return;
       }
       setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
-    } catch {
-      // Журнал переживёт: recoverLocalLevelSpin подберёт неподтверждённый чек
-      // при следующем входе. Экран из-за этого ломать нельзя.
+    } catch (e) {
+      // Журнал переживёт: recoverLocalLevelSpin подберёт неподтверждённый чек // при следующем входе. Экран из-за этого ломать нельзя.
+      DebugLogger.error('level_reward_spin:refunded', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       resultActionBusyRef.current = false;
     }

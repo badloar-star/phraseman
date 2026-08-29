@@ -12,6 +12,7 @@ import {
   isCurrentBackgroundNetworkLease,
   type BackgroundNetworkLease,
 } from "./interactive_network_quiet";
+import { DebugLogger } from './debug-logger';
 
 export const LEARNING_V2_ACTIVITY_AUDIO_STORAGE_BUCKET_V1 =
   "phraseman-ea0b3.firebasestorage.app" as const;
@@ -180,8 +181,9 @@ async function readExactBytes(
   } finally {
     try {
       reader.releaseLock();
-    } catch {
+    } catch (e) {
       // The body may already be terminal.
+      DebugLogger.error('learning_v2_activity_audio_transport_v1:next', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   if (offset !== expectedByteSize) fail();

@@ -1,6 +1,7 @@
 // Одноразовые нудж-подсказки раздела карточек (Cards 2.0, ключ fc_hint_flags_v1).
 // Новый ключ — существующие ключи AsyncStorage не трогаем (принцип 4 мастер-плана).
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../debug-logger';
 
 export const FC_HINT_FLAGS_KEY = 'fc_hint_flags_v1';
 
@@ -36,9 +37,10 @@ export async function setHintFlag(flag: FcHintFlag): Promise<void> {
     if (flags[flag] === true) return;
     flags[flag] = true;
     await AsyncStorage.setItem(FC_HINT_FLAGS_KEY, JSON.stringify(flags));
-  } catch {
-    // ignore
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('hint_flags:flags', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -19,6 +19,7 @@ import { setStoredStudyTarget } from './study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang, type StudyTargetLang } from './study_target_lang_dev';
 import { prefetchAndRecordStudyTargetServerPack } from './study_target_server_prefetch';
 import { shouldGateFeature } from './feature_gates';
+import { DebugLogger } from './debug-logger';
 
 /** Все возможные коды языка обучения (включая dev-испанский). */
 const KNOWN_STUDY_LANGUAGE_CODES = ['en', 'fr', 'es'] as const;
@@ -74,7 +75,9 @@ export async function getStartedStudyLanguages(seed?: StudyTargetLang): Promise<
     const seeded = [seed];
     try {
       await AsyncStorage.setItem(STUDY_LANGUAGES_STARTED_KEY, JSON.stringify(seeded));
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('study_languages:seeded', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return seeded;
   }
   return stored;
@@ -87,7 +90,9 @@ export async function markStudyLanguageStarted(target: StudyTargetLang): Promise
   const next = [...current, target];
   try {
     await AsyncStorage.setItem(STUDY_LANGUAGES_STARTED_KEY, JSON.stringify(next));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('study_languages:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return next;
 }
 

@@ -11,6 +11,7 @@ import {
   getYoutubeChannelUrlOverride,
   getYoutubePinnedVideosRaw,
 } from './remote_flags';
+import { DebugLogger } from './debug-logger';
 
 export type LingmanYoutubeVideo = {
   id: string;
@@ -405,9 +406,10 @@ async function cacheSuccessfulVideos(videos: LingmanYoutubeVideo[]): Promise<voi
   try {
     const channelId = getActiveYoutubeChannel().channelId;
     await AsyncStorage.setItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT, JSON.stringify({ videos, channelId, fetchedAtMs: Date.now() }));
-  } catch {
-    // Cache is best-effort; the fallback list still keeps the catalog usable.
-  }
+  } catch (e) {
+      // Cache is best-effort; the fallback list still keeps the catalog usable.
+      DebugLogger.error('lingman_youtube:channelId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function fetchLingmanYoutubeVideos(): Promise<LingmanYoutubeVideo[]> {

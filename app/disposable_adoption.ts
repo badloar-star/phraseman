@@ -1,3 +1,4 @@
+import { DebugLogger } from './debug-logger';
 export type DisposableAdoption = {
   adopt: (cleanup: () => void) => boolean;
   dispose: () => void;
@@ -11,7 +12,9 @@ export function createDisposableAdoption(): DisposableAdoption {
   return {
     adopt(cleanup) {
       if (disposed) {
-        try { cleanup(); } catch {}
+        try { cleanup(); } catch (e) {
+      DebugLogger.error('disposable_adoption:adopt', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return false;
       }
       cleanups.add(cleanup);
@@ -21,7 +24,9 @@ export function createDisposableAdoption(): DisposableAdoption {
       if (disposed) return;
       disposed = true;
       for (const cleanup of cleanups) {
-        try { cleanup(); } catch {}
+        try { cleanup(); } catch (e) {
+      DebugLogger.error('disposable_adoption:dispose', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       cleanups.clear();
     },

@@ -21,6 +21,7 @@ import {
 } from './interactive_network_quiet';
 import { applyRemoteConfigSnapshot } from './remote_flags';
 import { runtimeAppStateStore } from './runtime_app_state_store';
+import { DebugLogger } from './debug-logger';
 
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
 const REMOTE_CONFIG_DOC = 'app';
@@ -157,9 +158,10 @@ export async function primeRemoteConfigCacheFromStorage(): Promise<void> {
     const parsed = JSON.parse(raw) as RawConfig;
     applyRemoteConfigSnapshot(sanitizeRaw(parsed));
     emitAppEvent('remote_config_changed');
-  } catch {
-    // Cache is best-effort.
-  }
+  } catch (e) {
+      // Cache is best-effort.
+      DebugLogger.error('remote_config_client:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -173,8 +175,9 @@ export async function loadRemoteConfig(): Promise<void> {
     try {
       await primeRemoteConfigCacheFromStorage();
       await refreshRemoteConfigFromNetwork();
-    } catch {
+    } catch (e) {
       // Keep cache/defaults on any failure (offline, permission, or session deferral).
+      DebugLogger.error('remote_config_client:loading', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       explicitRefreshDemand = Math.max(0, explicitRefreshDemand - 1);
     }

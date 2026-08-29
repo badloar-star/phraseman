@@ -19,6 +19,7 @@
  */
 
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export type EnergyPeekState = Readonly<{ energy: number; maxEnergy: number }>;
 
@@ -93,9 +94,10 @@ async function readRecoveryIntervalMsForPeek(): Promise<number> {
       (value): value is number => typeof value === 'number' && value > 0,
     );
     if (overrides.length > 0) return Math.min(...overrides);
-  } catch {
-    // Ускорители недоступны — базовый интервал честнее, чем отказ от прогрева.
-  }
+  } catch (e) {
+      // Ускорители недоступны — базовый интервал честнее, чем отказ от прогрева.
+      DebugLogger.error('energy_peek_cache:overrides', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return getRecoveryIntervalMs();
 }
 
@@ -164,10 +166,10 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
     }
     if (peekEnergyState) return;
     writePeekEnergy(current, dynMax);
-  } catch {
-    // Нет доступа к хранилищу или битый JSON — оставляем кэш пустым: провайдер
-    // отработает как раньше, а не покажет выдуманное число.
-  }
+  } catch (e) {
+      // Нет доступа к хранилищу или битый JSON — оставляем кэш пустым: провайдер // отработает как раньше, а не покажет выдуманное число.
+      DebugLogger.error('energy_peek_cache:recovered', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // зачем (владелец, 2026-08-24): прогрев запускается САМ при первом импорте модуля,

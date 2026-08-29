@@ -32,6 +32,7 @@ import FlashcardListItem from './FlashcardListItem';
 import { FLASHCARD_LIST_ITEM_CARD_STYLE } from './FlashcardListItemChrome';
 import type { WordStrength } from './word_strength';
 import { CardItem, CategoryId, type FlashcardContentLang } from './types';
+import { DebugLogger } from '../debug-logger';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -262,7 +263,10 @@ export default function CollectionListView({
       // Строки выше ещё не мерялись (редко) — scrollToIndex, onScrollToIndexFailed подстрахует
       try {
         (list as any).scrollToIndex({ index: idx, viewPosition: 0.5, viewOffset: 0, animated: true });
-      } catch { /* ignore */ }
+      } catch (e) {
+      // ignore
+      DebugLogger.error('CollectionListView:h', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       return;
     }
     const rowH = heights[info.itemId] ?? 0;
@@ -620,9 +624,10 @@ export default function CollectionListView({
               setTimeout(() => {
                 try {
                   (list as any).scrollToIndex({ index: safe, viewPosition: 0.5, viewOffset: 0, animated: true });
-                } catch {
-                  // ignore
-                }
+                } catch (e) {
+      // ignore
+      DebugLogger.error('CollectionListView:offset', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
               }, 100);
             }}
             /**

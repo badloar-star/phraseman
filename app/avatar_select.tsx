@@ -384,7 +384,9 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
     const totalXp = parseInt(xpRaw || '0', 10) || 0;
     const weekPoints = parseWeekPointsForWeek(weekRaw);
     let leagueId: number | undefined;
-    try { if (leagueRaw) leagueId = JSON.parse(leagueRaw).leagueId; } catch {}
+    try { if (leagueRaw) leagueId = JSON.parse(leagueRaw).leagueId; } catch (e) {
+      DebugLogger.error('avatar_select:weekPoints', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const [realPremium, vip] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
@@ -412,7 +414,9 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
     }, accountToken);
     if (!isCurrentAccountGeneration(accountToken)) return;
     await updateMyGroupPoints(weekPoints, accountToken);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('avatar_select:weekPoints', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function invalidateAvatarDependentCaches(nextAvatar: string, nextAura: string | null): Promise<void> {
@@ -432,7 +436,9 @@ async function invalidateAvatarDependentCaches(nextAvatar: string, nextAura: str
           await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
         }
       }
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('avatar_select:league', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     if (!isCurrentAccountGeneration(accountToken)) return;
     await AsyncStorage.multiRemove([
       'global_lb_cache_v4', 'leaderboard_cache_v1', 'arena_top100_snapshot_v8',

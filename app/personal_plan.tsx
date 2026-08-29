@@ -69,6 +69,7 @@ import {
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { OLIVE_RICH, OLIVE_GRADIENTS } from '../constants/oliveTheme';
+import { DebugLogger } from './debug-logger';
 type LoadedPlan = {
   plan: PersonalPlanDefinition;
   state: PersonalPlanState;
@@ -582,7 +583,10 @@ function PersonalPlanScreen() {
     let signature: string | null = null;
     try {
       signature = JSON.stringify(finalLoaded);
-    } catch { /* на всякий случай, если в данных попадётся не-JSON-совместимое поле */ }
+    } catch (e) {
+      // на всякий случай, если в данных попадётся не-JSON-совместимое поле
+      DebugLogger.error('personal_plan:input', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const unchanged = signature !== null && signature === loadedSignatureRef.current;
     if (unchanged) return;
     if (signature !== null) loadedSignatureRef.current = signature;

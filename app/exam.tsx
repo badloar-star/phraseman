@@ -63,6 +63,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
+import { DebugLogger } from './debug-logger';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 // зачем: владелец 2026-08-23 — единая экономика: ЛЮБОЙ старт стоит ровно 1 ⚡.
@@ -548,7 +549,9 @@ export default function ExamScreen() {
       const pairs = await AsyncStorage.multiGet(keys);
       let done=0;
       for(const [,saved] of pairs){
-        if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter((x:string)=>x==='correct'||x==='replay_correct').length>=45)done++;}catch{} }
+        if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter((x:string)=>x==='correct'||x==='replay_correct').length>=45)done++;}catch (e) {
+      DebugLogger.error('exam:done', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } }
       }
       setCompleted(done);
       const existingCert = await loadLingmanCertificate(studyTarget);
@@ -772,7 +775,9 @@ export default function ExamScreen() {
     try {
       const raw = await AsyncStorage.getItem('user_name');
       storedName = (raw || '').trim();
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('exam:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     // зачем (аудит 2026-08-26): раньше стояло `if (storedName)` — и пользователь
     // без сохранённого ника не получал за финальный экзамен НИЧЕГО (до 10000 XP).
     // При первой сдаче ник и пуст: его спрашивают ниже, уже для сертификата.
@@ -838,7 +843,9 @@ export default function ExamScreen() {
   const handleSaveName = async (name: string) => {
     try {
       await AsyncStorage.setItem('user_name', name);
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('exam:handleSaveName', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const updated = await updateLingmanCertificateName(name, studyTarget);
     if (updated) setCertificate(updated);
     setNameModalVisible(false);

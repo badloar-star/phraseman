@@ -20,6 +20,7 @@ import {
   type OnboardingStepId,
 } from './onboarding_flow';
 import type { SoftUpsellTrigger } from './soft_upsell_core';
+import { DebugLogger } from './debug-logger';
 
 export type RemoteNumberKey =
   | 'free_lesson_limit'
@@ -952,9 +953,10 @@ function parseLessonIdList(raw: string): ReadonlySet<number> {
       const n = Math.trunc(Number(v));
       if (Number.isFinite(n) && n >= 1 && n <= 32) out.add(n);
     }
-  } catch {
-    // невалидный JSON — порог без исключений
-  }
+  } catch (e) {
+      // невалидный JSON — порог без исключений
+      DebugLogger.error('remote_flags:n', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return out;
 }
 /** Локализованный текст режима обслуживания (ru/uk/es; пусто = дефолт компонента). */

@@ -4315,8 +4315,9 @@ const validateV2LearningPackage = (input, context) => {
             }
         }
     }
-    catch {
+    catch (e) {
         // The canonical snapshot below reports hostile descriptor/proxy traps.
+        console.warn('[silent-catch] validation:schemaDescriptor', e instanceof Error ? e.message : String(e));
     }
     const inputSnapshot = snapshotCanonicalJsonInput(input, "$", snapshotOptions);
     if (inputSnapshot.ok === false)
@@ -4700,8 +4701,9 @@ const validateV2EpisodeContract = (input) => {
             }
         }
     }
-    catch {
+    catch (e) {
         // The canonical snapshot below reports hostile descriptors/proxies fail-closed.
+        console.warn('[silent-catch] validation:schemaDescriptor', e instanceof Error ? e.message : String(e));
     }
     const snapshot = snapshotCanonicalJsonInput(input, "$.episode", snapshotOptions);
     if (snapshot.ok === false)

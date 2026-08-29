@@ -40,10 +40,10 @@ export async function saveAvatarDNADraft(
   deps.patchSnapshot(state);
   try {
     await deps.enqueueSync(state);
-  } catch {
-    // The local commit is authoritative for personal progress. Offline/public
-    // sync is retried later and must never roll back the visible character.
-  }
+  } catch (e) {
+      // The local commit is authoritative for personal progress. Offline/public // sync is retried later and must never roll back the visible character.
+      console.warn('[silent-catch] save_flow:state', e instanceof Error ? e.message : String(e));
+    }
   return { status: 'committed', state };
 }
 

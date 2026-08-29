@@ -21,6 +21,7 @@ import {
   type AccountTransitionLockLease,
   type AccountGenerationToken,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 // зачем: ключ сменён с season_pass_xp_v1 — валюта дорожки другая, и старое
 // значение в звёздах читалось бы как гигантский прогресс (400 XP ≠ 400⭐).
@@ -489,10 +490,10 @@ export async function addSeasonPassStars(delta: number): Promise<void> {
   emitAppEvent('season_pass_stars_changed', { totalStars: cache.stars });
   try {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(cache));
-  } catch {
-    // Ошибка диска не откатывает кэш: следующая гидрация возьмёт последний
-    // успешно записанный снапшот.
-  }
+  } catch (e) {
+      // Ошибка диска не откатывает кэш: следующая гидрация возьмёт последний // успешно записанный снапшот.
+      DebugLogger.error('season_pass_model:current', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Комнаты, уже зачтённые в сезон. Ключ переживает перезапуск приложения. */

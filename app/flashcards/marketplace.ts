@@ -34,6 +34,7 @@ import {
   OFFICIAL_PHRASAL_VERBS_EN_ID,
   OFFICIAL_MOVIE_SERIES_EN_ID,
 } from './bundles/packIds';
+import { DebugLogger } from '../debug-logger';
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
 /**
@@ -189,8 +190,9 @@ export async function saveBuiltMarketplaceCardsCache(
   if (ownedIds.length === 0) {
     try {
       await AsyncStorage.removeItem(key);
-    } catch {
+    } catch (e) {
       // ignore
+      DebugLogger.error('marketplace:key', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     return;
   }
@@ -208,9 +210,10 @@ export async function saveBuiltMarketplaceCardsCache(
       return;
     }
     await AsyncStorage.setItem(key, raw);
-  } catch {
-    // ignore
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('marketplace:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 const parseIdList = (raw: string | null): string[] => {
@@ -947,8 +950,9 @@ async function hydrateMarketplacePacksSnapshot(): Promise<void> {
       ));
       warmMarketplacePacks = packs;
       warmMarketplacePacksAtMs = Number(parsed.savedAtMs);
-    } catch {
-      /* malformed/absent cache simply causes a bounded remote refresh */
+    } catch (e) {
+      // malformed/absent cache simply causes a bounded remote refresh
+      DebugLogger.error('marketplace:packs', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   })();
   return marketplaceSnapshotRead;

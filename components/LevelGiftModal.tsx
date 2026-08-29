@@ -63,6 +63,7 @@ import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { DebugLogger } from '../app/debug-logger';
 export {
   CLAIMED_GIFTS_KEY,
   loadClaimedGiftRarities,
@@ -441,7 +442,9 @@ function LevelGiftModal({
             return result;
           } finally {
             if (presentationMode === 'apply') {
-              try { await onGiftApplySettled?.(); } catch {}
+              try { await onGiftApplySettled?.(); } catch (e) {
+      DebugLogger.error('LevelGiftModal:result', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
             }
           }
         })();
@@ -614,11 +617,14 @@ function LevelGiftModal({
           await onGiftApplyFailed(chosenWithReservation, accountToken);
         }
         if (presentationMode === 'apply') emitGiftApplyOutcome(result.success);
-      } catch {
-        // The user already saw the optimistic choice; keep retry paths/background logs quiet.
-      } finally {
+      } catch (e) {
+      // The user already saw the optimistic choice; keep retry paths/background logs quiet.
+      DebugLogger.error('LevelGiftModal:result', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
         if (presentationMode === 'apply') {
-          try { await onGiftApplySettled?.(); } catch {}
+          try { await onGiftApplySettled?.(); } catch (e) {
+      DebugLogger.error('LevelGiftModal:result', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         }
         if (isCurrentOpening(accountToken)) {
           setChoiceBusy(false);

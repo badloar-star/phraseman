@@ -11,6 +11,7 @@ import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
 import { grantLocalReportRewardSpins } from './local_level_spins';
 import { commitConfirmedExternalShardEvent } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
+import { DebugLogger } from './debug-logger';
 
 export type ReportRewardSeverity = 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
 export type ReportRewardBundle = Readonly<{
@@ -279,8 +280,9 @@ export async function resumePendingReportRewardBundleClaims(): Promise<{ resolve
     try {
       await processClaim(claim, token, owner);
       resolved += 1;
-    } catch {
+    } catch (e) {
       // Durable intent remains for a later foreground retry.
+      DebugLogger.error('report_reward_bundle:resolved', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return { resolved, pending: Math.max(0, claims.length - resolved) };

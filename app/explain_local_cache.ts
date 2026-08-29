@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 const CACHE_VERSION = 1;
 const CACHE_KEY_PREFIX = 'ai_explain_local_cache_v1:';
@@ -66,7 +67,8 @@ export async function writeExplainLocalCache(
       text: value.text,
       status: value.status,
     } satisfies StoredExplainLocalCacheValue));
-  } catch {
-    // Local caching is an optimisation; the caller already has a valid response.
-  }
+  } catch (e) {
+      // Local caching is an optimisation; the caller already has a valid response.
+      DebugLogger.error('explain_local_cache:writeExplainLocalCache', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

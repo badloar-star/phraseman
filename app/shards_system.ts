@@ -354,10 +354,10 @@ export const primeShardsBalanceFromBootStorage = async (): Promise<void> => {
     if (shardsBootPrimed || shardsBalanceMemory) return;
     shardsBootPrimed = true;
     setShardsBalanceMemory(parsed, token);
-  } catch {
-    // Хранилище недоступно — оставляем память пустой: экран отработает как раньше,
-    // а не покажет выдуманное число.
-  }
+  } catch (e) {
+      // Хранилище недоступно — оставляем память пустой: экран отработает как раньше, // а не покажет выдуманное число.
+      DebugLogger.error('shards_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Последний известный баланс (после чтения/записи в этой сессии). null — ещё не читали с диска. */

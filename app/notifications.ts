@@ -17,6 +17,7 @@ import { getLocalDayKey, isSameLocalOrUtcDay } from './local_date';
 import { createDisposableAdoption } from './disposable_adoption';
 import { persistPortablePreference } from './phone_state_preference_bridge';
 import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -247,9 +248,10 @@ export async function cancelYoutubePremiereLocalNotification(notificationId: str
   try {
     const N = await getNotifications();
     if (N && notificationId.trim()) await N.cancelScheduledNotificationAsync(notificationId);
-  } catch {
-    // A stale native id is already effectively cancelled.
-  }
+  } catch (e) {
+      // A stale native id is already effectively cancelled.
+      DebugLogger.error('notifications:N', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Мотивационные сообщения ──────────────────────────────────────────────────
@@ -2790,9 +2792,10 @@ export const cancelTrialEndReminder = async (): Promise<void> => {
       await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
       await AsyncStorage.removeItem(TRIAL_END_REMINDER_ID_KEY).catch(() => {});
     }
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('notifications:prevId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -1353,7 +1353,19 @@ service cloud.firestore {
           'amountGranted', 'amountSpent', 'invalidOps', 'revisionGaps',
           'balanceGaps', 'updatedAtMs', 'updatedAt',
         ])
-        && request.resource.data.day == day;
+        && request.resource.data.day == day
+        // зачем (2026-08-29): счётчики диагностики не должны позволять
+        // нашуметь миллиардами — все числа int в разумном потолке.
+        && request.resource.data.ops is int && request.resource.data.ops >= 0
+        && request.resource.data.ops <= 1000000
+        && (!('amountGranted' in request.resource.data)
+          || (request.resource.data.amountGranted is int
+            && request.resource.data.amountGranted >= 0
+            && request.resource.data.amountGranted <= 100000000))
+        && (!('amountSpent' in request.resource.data)
+          || (request.resource.data.amountSpent is int
+            && request.resource.data.amountSpent >= 0
+            && request.resource.data.amountSpent <= 100000000));
       allow delete: if false;
     }
 

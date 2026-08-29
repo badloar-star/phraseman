@@ -10,6 +10,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export const PROFILE_CARD_LEVEL_KEY = 'profile_card_level';
 export const PROFILE_CARD_THEME_KEY = 'profile_card_theme';
@@ -564,9 +565,10 @@ export async function upgradeProfileCardLevel(): Promise<
           await AsyncStorage.setItem(PROFILE_CARD_LEGEND_NO_KEY, String(response.data.legendNo));
           emitAppEvent('xp_changed');
         }
-      } catch {
-        // Best-effort storage projection; a later idempotent call can repair it.
-      }
+      } catch (e) {
+      // Best-effort storage projection; a later idempotent call can repair it.
+      DebugLogger.error('profile_card_system:response', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return { ok: true, level: next, balance: purchase.balanceAfter } as const;
   });
@@ -604,7 +606,10 @@ export async function devResetProfileCard(): Promise<ProfileCardSnapshot> {
   await applyProfileCardLevelLocally(0);
   try {
     await AsyncStorage.removeItem(PROFILE_CARD_LEGEND_NO_KEY);
-  } catch { /* dev-only cleanup */ }
+  } catch (e) {
+      // dev-only cleanup
+      DebugLogger.error('profile_card_system:devResetProfileCard', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   emitAppEvent('xp_changed');
   return getProfileCardSnapshot();
 }

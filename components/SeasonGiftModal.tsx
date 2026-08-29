@@ -42,6 +42,7 @@ import SeasonAuraRing from './SeasonAuraRing';
 import HybridAlertShell from './modal_fx/HybridAlertShell';
 import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
+import { DebugLogger } from '../app/debug-logger';
 
 const STATUS_KINDS: ReadonlySet<SeasonReward['kind']> = new Set([
   'frame', 'aura_stage', 'aura_secret', 'nick_color', 'custom_avatar', 'card_pack', 'season_finale', 'plus_days',
@@ -340,7 +341,10 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
   useEffect(() => {
     if (!visible || phase !== 'friendPick') return;
     const unsub = friendsAccountStore.subscribe((list: FriendEntry[]) => setFriends(list.slice(0, 24)));
-    return () => { try { (unsub as unknown as () => void)?.(); } catch { /* snapshot detach best effort */ } };
+    return () => { try { (unsub as unknown as () => void)?.(); } catch (e) {
+      // snapshot detach best effort
+      DebugLogger.error('SeasonGiftModal:unsub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } };
   }, [visible, phase]);
 
   const onLater = useCallback(() => { hapticTap(); onClose(); }, [onClose]);

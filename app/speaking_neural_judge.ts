@@ -29,6 +29,7 @@ import {
   whisperLanguageFor,
   type WhisperModelSpec,
 } from './speaking_whisper_models';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Подкаталог в documentDirectory (кэш ОС может чиститься — документы нет).
@@ -149,13 +150,15 @@ function pruneOtherModels(keepFileName: string): void {
     for (const name of modelsToPrune(names, keepFileName)) {
       try {
         new fs.File(dir, name).delete();
-      } catch {
-        /* файл мог исчезнуть/залочен — не критично */
-      }
+      } catch (e) {
+      // файл мог исчезнуть/залочен — не критично
+      DebugLogger.error('speaking_neural_judge:names', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  } catch {
-    /* нет доступа к папке — пропускаем уборку */
-  }
+    }
+  } catch (e) {
+      // нет доступа к папке — пропускаем уборку
+      DebugLogger.error('speaking_neural_judge:names', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // Загрузка кэшируется ПО имени файла модели: смена целевого языка меняет файл,
@@ -244,9 +247,10 @@ export async function releaseNeuralJudge(): Promise<void> {
   try {
     const ctx = pending ? await pending : null;
     await ctx?.release?.();
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('speaking_neural_judge:ctx', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export type NeuralJudgeVerdict = {
@@ -281,9 +285,10 @@ export async function judgeWithNeuralEngine(input: {
       setTimeout(() => {
         try {
           job.stop?.();
-        } catch {
-          /* no-op */
-        }
+        } catch (e) {
+      // no-op
+      DebugLogger.error('speaking_neural_judge:timeout', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         resolve(null);
       }, NEURAL_JUDGE_TIMEOUT_MS),
     );

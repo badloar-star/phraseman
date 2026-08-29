@@ -7,6 +7,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 const FALLBACK_NICKNAME_PREFIX = 'Phraseman';
 /** Метка «имя X уже успешно записано в серверный name_index». Ключ — само имя. */
@@ -63,9 +64,10 @@ async function reconcileNameIndex(name: string, oldName: string, justChanged: bo
       await AsyncStorage.setItem(NAME_INDEX_SYNCED_KEY, target).catch(() => {});
     }
     // 'error' / 'cooldown' — метку не ставим: повтор при следующем запуске.
-  } catch {
-    /* best-effort; повтор при следующем ensureLocalNickname */
-  }
+  } catch (e) {
+      // best-effort; повтор при следующем ensureLocalNickname
+      DebugLogger.error('nickname_guard:alreadySynced', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function ensureLocalNickname(candidate?: string | null): Promise<string> {
@@ -163,7 +165,10 @@ export function resumePendingGeneratedNickname(): Promise<void> {
       const parsed = JSON.parse(pending) as { baseName?: unknown };
       const candidate = String(parsed?.baseName ?? '').trim();
       if (candidate) baseName = candidate;
-    } catch { /* старый формат флага — без базового имени */ }
+    } catch (e) {
+      // старый формат флага — без базового имени
+      DebugLogger.error('nickname_guard:candidate', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const { generateAndReserveNickname } = await import('./firestore_leaderboard');
     const result = await generateAndReserveNickname(baseName);
     const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
@@ -181,7 +186,9 @@ export function resumePendingGeneratedNickname(): Promise<void> {
 
       const rawProfile = await AsyncStorage.getItem('user_profile').catch(() => null);
       let profile: Record<string, unknown> = {};
-      try { profile = rawProfile ? JSON.parse(rawProfile) as Record<string, unknown> : {}; } catch {}
+      try { profile = rawProfile ? JSON.parse(rawProfile) as Record<string, unknown> : {}; } catch (e) {
+      DebugLogger.error('nickname_guard:rawProfile', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       await AsyncStorage.multiSet([
         ['user_name', name],
         ['user_profile', JSON.stringify({ ...profile, name })],

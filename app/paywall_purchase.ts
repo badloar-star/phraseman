@@ -78,6 +78,7 @@ import {
   readRevenueCatCustomerInfoForGeneration,
   runRevenueCatOperationForGeneration,
 } from './revenuecat_account_identity';
+import { DebugLogger } from './debug-logger';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 
@@ -275,7 +276,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // dev-превью: показываем таймер всегда, даже если 77ч-окно у этого
         // устройства уже истекло (в стор-сборке используем реальный s).
         if (!dead) setUrgency(DEV_IAP_BYPASS && !s.isActive ? DEV_PREVIEW_URGENCY : s);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_purchase:s', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return () => { dead = true; };
   }, []);
@@ -675,7 +679,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
               }),
             );
             if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days });
-          } catch { /* напоминание — best-effort */ }
+          } catch (e) {
+      // напоминание — best-effort
+      DebugLogger.error('paywall_purchase:ok', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         })();
       }
       if (source === 'onboarding') {
@@ -939,7 +946,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         try {
           await persistPortableProgressRegister('onboarding_step', 'name');
           await persistPortableProgressRegister('onboarding_done', null);
-        } catch { /* best-effort */ }
+        } catch (e) {
+      // best-effort
+      DebugLogger.error('paywall_purchase:doClose', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         // НЕ навигируем на '/(tabs)/home'. Слушатель в _layout по этому событию
         // синхронно поднимает непрозрачный онбординг-оверлей (absoluteFill, zIndex 50) —
         // он перекрывает оставшийся под ним пейвол. Навигация на «Главную» здесь

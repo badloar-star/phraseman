@@ -17,6 +17,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, TurboModuleRegistry } from 'react-native';
+import { DebugLogger } from './debug-logger';
 
 type Pair = readonly [unknown, unknown];
 type Key = unknown;
@@ -191,9 +192,10 @@ export function installAsyncStorageNullBindGuard(): void {
         return originalRemove(sanitizeKeys(list), cb);
       };
     }
-  } catch {
-    /* нативный модуль недоступен (например, web) — JS-обёртки выше достаточно */
-  }
+  } catch (e) {
+      // нативный модуль недоступен (например, web) — JS-обёртки выше достаточно
+      DebugLogger.error('async_storage_null_bind_guard:list', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // Самоустановка при импорте: гарантирует, что обёртка стоит ДО любых сайд-эффектов

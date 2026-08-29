@@ -241,6 +241,7 @@ import {
 import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
+import { DebugLogger } from './debug-logger';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -362,7 +363,10 @@ if (typeof globalThis !== 'undefined') {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const health = require('./app_health');
         health?.logAppWarning?.('promise:unhandled_rejection', event?.reason, { feature: 'async' });
-      } catch { /* best-effort */ }
+      } catch (e) {
+      // best-effort
+      DebugLogger.error('_layout:health', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   };
 }
@@ -1075,7 +1079,10 @@ function GlobalLevelUpHandler() {
         await markAfterWinUpsellShown(Date.now());
         await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
         void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
-      } catch { /* no-op */ }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('_layout:introState', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     });
   }, [hasPremiumAccess]);
 
@@ -1757,8 +1764,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         [BAN_CACHE_KEY, banned ? '1' : '0'],
         [BAN_CACHE_AT_KEY, String(Date.now())],
       ]).catch(() => {});
-    } catch {
+    } catch (e) {
       // fail-soft: if check fails, do not block app
+      DebugLogger.error('_layout:banned', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, []);
 
@@ -2127,7 +2135,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           const sub = m.subscribeRemoteConfig();
           if (effectDisposed) {
             // эффект уже размонтирован к моменту резолва импорта — сразу закрываем
-            try { sub.remove(); } catch {}
+            try { sub.remove(); } catch (e) {
+      DebugLogger.error('_layout:sub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           } else {
             remoteConfigUnsub = sub.remove;
           }
@@ -2141,7 +2151,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             const { identifyPostHog } = await import('./posthog_client');
             identifyPostHog(uid);
           }
-        } catch { /* аналитика не должна ломать запуск */ }
+        } catch (e) {
+      // аналитика не должна ломать запуск
+      DebugLogger.error('_layout:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })();
       void startFriendsTabSwrPrime().catch(() => {});
       const startShopWarm = async () => {
@@ -2390,7 +2403,29 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         return;
       }
       clearAuthRecoveryBootRetry();
-      const startupStableId = await getStableId();
+      let startupStableId: string;
+      try {
+        startupStableId = await getStableId();
+      } catch (identityError) {
+        // зачем (аудит 2026-08-29, вечный сплеш): застрявший замок удаления
+        // заставлял getStableId бросать account_delete_identity_quarantined,
+        // бросок пролетал мимо внутреннего catch (он парен с try ниже), внешний
+        // try закрыт только finally — setReady(true) не наступал НИКОГДА, и
+        // человек висел на заставке вечно; переустановка не лечит (Keychain).
+        // Теперь идём тем же graceful-путём, что recoveryGate!=proceed выше:
+        // приложение открывается и предлагает восстановление входа.
+        DebugLogger.error(
+          '_layout:startup_stable_id',
+          identityError instanceof Error ? identityError : new Error(String(identityError)),
+          'critical',
+        );
+        setReady(true);
+        if (!startupAuthRecoveryOfferedRef.current) {
+          startupAuthRecoveryOfferedRef.current = true;
+          setStartupAuthRecoveryVisible(true);
+        }
+        return;
+      }
       beginInitialAccountGeneration(startupStableId);
       recoveryBootAllowsCloud = true;
       safetyTimer = setTimeout(() => setReady(true), 1200);
@@ -2519,9 +2554,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
                 }
               }
             });
-          } catch {
-            // Модуль реферера недоступен (нестандартная сборка) — не критично.
-          }
+          } catch (e) {
+      // Модуль реферера недоступен (нестандартная сборка) — не критично.
+      DebugLogger.error('_layout:refM', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         }
 
         const willShowOnboarding = forceOnboardingForQA || !val;
@@ -2800,7 +2836,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
       // фиксируем активность ПОСЛЕ оценки
       await recordLastActive(nowMs);
-    } catch { /* no-op */ }
+    } catch (e) {
+      // no-op
+      DebugLogger.error('_layout:show', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
 
   const lastForegroundWinbackCheckAtRef = useRef(0);
@@ -2925,7 +2964,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         try {
           await persistPortableProgressRegister('onboarding_step', 'name');
           await persistPortableProgressRegister('onboarding_done', null);
-        } catch { /* best-effort: paywall_purchase уже записал эти ключи */ }
+        } catch (e) {
+      // best-effort: paywall_purchase уже записал эти ключи
+      DebugLogger.error('_layout:sub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })();
     });
     return () => sub.remove();

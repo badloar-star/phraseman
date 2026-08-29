@@ -21,6 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO } from './config';
 import { beginInitialAccountGeneration, invalidateAccountGeneration } from './account_generation';
 import { assertAccountDeleteStableIdentityAvailable } from './account_delete_quarantine';
+import { DebugLogger } from './debug-logger';
 
 const SECURE_KEY = 'phraseman_stable_uid';
 const ASYNC_KEY = 'phraseman_stable_uid_cache';
@@ -118,7 +119,10 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
             await SecureStore.deleteItemAsync(SECURE_KEY).catch(() => {});
             stored = legacy;
           }
-        } catch { /* ignore legacy migration errors */ }
+        } catch (e) {
+      // ignore legacy migration errors
+      DebugLogger.error('stable_id:legacy', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       if (stored) {
         await assertAccountDeleteStableIdentityAvailable(stored);
@@ -129,8 +133,9 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
         beginInitialAccountGeneration(stored);
         return stored;
       }
-    } catch {
-      /* native / keystore issues → fall through */
+    } catch (e) {
+      // native / keystore issues → fall through
+      DebugLogger.error('stable_id:legacy', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 
@@ -149,7 +154,9 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
       beginInitialAccountGeneration(cached);
       return cached;
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('stable_id:cached', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   // Создаём новый ID
   const newId = Crypto.randomUUID();
@@ -161,8 +168,9 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
     try {
       await SecureStore.setItemAsync(SECURE_KEY, newId, opts);
       assertCurrentStableIdRead(epoch);
-    } catch {
-      /* only AsyncStorage below */
+    } catch (e) {
+      // only AsyncStorage below
+      DebugLogger.error('stable_id:newId', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   await AsyncStorage.setItem(ASYNC_KEY, newId).catch(() => {});
@@ -208,16 +216,18 @@ async function persistStableId(newId: string, epoch: number): Promise<void> {
     try {
       await SecureStore.setItemAsync(SECURE_KEY, newId, getSecureStoreOpts(SecureStore));
       persisted = true;
-    } catch {
-      /* SecureStore unavailable — продолжаем через AsyncStorage */
+    } catch (e) {
+      // SecureStore unavailable — продолжаем через AsyncStorage
+      DebugLogger.error('stable_id:SecureStore', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   try {
     await AsyncStorage.setItem(ASYNC_KEY, newId);
     persisted = true;
-  } catch {
-    // SecureStore may still have persisted the identity.
-  }
+  } catch (e) {
+      // SecureStore may still have persisted the identity.
+      DebugLogger.error('stable_id:SecureStore', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   if (epoch !== stableIdOperationEpoch) return;
   if (persisted) {
     cachedId = newId;

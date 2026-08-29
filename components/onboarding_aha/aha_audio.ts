@@ -19,6 +19,7 @@ import {
   getSoundSettingsSnapshot,
   subscribeSoundSettings,
 } from '../../modules/audio/sound_settings';
+import { DebugLogger } from '../../app/debug-logger';
 
 const AMBIENT_VOLUME = 0.5;
 const AMBIENT_DUCKED_VOLUME = 0.25;
@@ -35,9 +36,10 @@ export interface UseAhaSceneAudio {
 function safe(fn: () => void): void {
   try {
     fn();
-  } catch {
-    // ignore
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('aha_audio:safe', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function playFromStart(player: AudioPlayer): void {

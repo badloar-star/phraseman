@@ -17,6 +17,7 @@ import { checkComebackEligible, COMEBACK_GRANTED_KEY } from '../app/boons/comeba
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
 import BoonChestModal from './BoonChestModal';
+import { DebugLogger } from '../app/debug-logger';
 
 function makeL(lang: Lang) {
   return (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
@@ -58,8 +59,9 @@ export default function ComebackBoonHost() {
       if (!isStreakFreezeActiveToday(existing, todayKey)) {
         freezeWrite = ['streak_freeze', JSON.stringify({ active: true, date: todayKey })];
       }
-    } catch {
+    } catch (e) {
       // best-effort
+      DebugLogger.error('ComebackBoonHost:existing', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     const granted = await grantBoonReward(
       COMEBACK_REWARD,

@@ -26,6 +26,7 @@ import {
   LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY,
   PENDING_LEVEL_UP_QUEUE_KEY,
 } from './level_up_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 export {
   LEVEL_UP_REWARD_CONTEXT_KEY,
@@ -224,8 +225,9 @@ const prepareOwnerUnlocked = async (scope: AccountScope): Promise<OwnerState> =>
     try {
       if (!isAccountScopeCurrent(scope, owner)) return { owner: null, changed: false };
       await AsyncStorage.setItem(LEVEL_UP_REWARD_OWNER_KEY, owner);
-    } catch {
+    } catch (e) {
       // Every journal entry also carries its owner, so marker failure does not mix saved contexts.
+      DebugLogger.error('level_up_reward_reconciler:owner', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return { owner, changed: false };
@@ -327,8 +329,9 @@ const stageBeforeEntitlement = async (
       if (!isAccountScopeCurrent(scope)) return 'memory';
       entries.forEach((entry) => inMemoryRetryEntries.delete(entry.level));
       return 'primary';
-    } catch {
+    } catch (e) {
       // Use the independent journal below.
+      DebugLogger.error('level_up_reward_reconciler:stageBeforeEntitlement', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   if (fallbackAvailable && await persistFallback(entries, scope)) return 'fallback';
@@ -356,13 +359,15 @@ const finalizeRetries = async (
         try {
           if (!isAccountScopeCurrent(scope)) return;
           await AsyncStorage.setItem(LEVEL_UP_REWARD_FALLBACK_KEY, '[]');
-        } catch {
-          // A stale duplicate is safe: entitlement is idempotent, while deleting it without confirmation is not.
-        }
+        } catch (e) {
+      // A stale duplicate is safe: entitlement is idempotent, while deleting it without confirmation is not.
+      DebugLogger.error('level_up_reward_reconciler:finalizeRetries', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       return;
-    } catch {
+    } catch (e) {
       // Preserve all remaining work in fallback rather than clearing the staging journal.
+      DebugLogger.error('level_up_reward_reconciler:finalizeRetries', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   if (fallbackAvailable && await persistFallback(remaining, scope)) return;
@@ -556,9 +561,10 @@ const acknowledgeUnlocked = async (level: number, scope: AccountScope): Promise<
       ]);
       return;
     }
-  } catch {
-    // The process-local shown set still prevents a duplicate in this session.
-  }
+  } catch (e) {
+      // The process-local shown set still prevents a duplicate in this session.
+      DebugLogger.error('level_up_reward_reconciler:nextShown', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   await Promise.all([
     queue.state === 'available'
       ? writeLevels(PENDING_LEVEL_UP_QUEUE_KEY, queue.values.filter((item) => item !== level), scope)

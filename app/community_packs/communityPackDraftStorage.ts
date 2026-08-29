@@ -12,6 +12,7 @@ import {
   type RuntimeSourceLocale,
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
+import { DebugLogger } from '../debug-logger';
 
 export type CommunityPackCreateDraftRow = {
   id: string;
@@ -156,9 +157,10 @@ export async function saveCommunityPackCreateDraft(
   };
   try {
     await AsyncStorage.setItem(communityPackCreateDraftKey(studyTarget, sourceLocale), JSON.stringify(body));
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('communityPackDraftStorage:saveCommunityPackCreateDraft', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function clearCommunityPackCreateDraft(
@@ -167,9 +169,10 @@ export async function clearCommunityPackCreateDraft(
 ): Promise<void> {
   try {
     await AsyncStorage.removeItem(communityPackCreateDraftKey(studyTarget, sourceLocale));
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('communityPackDraftStorage:clearCommunityPackCreateDraft', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

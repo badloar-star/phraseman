@@ -14,6 +14,7 @@
 // Ноль React/нативных импортов — модуль детерминирован и покрыт юнит-тестами.
 
 import { MAX_CALL_ORB_HYBRID } from '../constants/motionHybrid';
+import { DebugLogger } from './debug-logger';
 
 /** Один нормализованный тик уровней звука. `null` = данных нет (fallback UI). */
 export interface AudioLevelSample {
@@ -212,9 +213,10 @@ export function createAudioLevelFanout(): AudioLevelFanout {
       for (const cb of Array.from(subscribers)) {
         try {
           cb(s);
-        } catch {
-          // Сломавшийся потребитель — его проблема; рассылку продолжаем.
-        }
+        } catch (e) {
+      // Сломавшийся потребитель — его проблема; рассылку продолжаем.
+      DebugLogger.error('max_call_audio_level:subscribers', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
     },
   };

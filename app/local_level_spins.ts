@@ -45,6 +45,7 @@ import {
   parsePaidLevelSpinRuneOperation,
   type PaidLevelSpinRuneOperationV1,
 } from '../modules/phone-state/domains/economy';
+import { DebugLogger } from './debug-logger';
 export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './level_spin_local_contract';
 
 /**
@@ -1068,8 +1069,9 @@ export async function claimLocalLevelSpinWithRunes(): Promise<LocalLevelSpinRece
         ))],
         [LEVEL_SPIN_PENDING_REVEAL_KEY, JSON.stringify({ owner, receipt: nextReceipt })],
       ]);
-    } catch {
+    } catch (e) {
       // Envelope remains authoritative; recovery rebuilds every torn row.
+      DebugLogger.error('local_level_spins:nextOutbox', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     return nextReceipt;
   });

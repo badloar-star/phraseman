@@ -12,6 +12,7 @@ import {
   resumeCleanInstallRecoveryAdoption,
 } from './auth_clean_install_recovery_adoption';
 import { AUTH_CLEAN_INSTALL_RECOVERY_KEY } from './auth_clean_install_recovery_journal';
+import { DebugLogger } from './debug-logger';
 
 const DEFAULT_AUTH_HYDRATION_TIMEOUT_MS = 8_000;
 const MAX_AUTH_HYDRATION_TIMEOUT_MS = 30_000;
@@ -81,7 +82,10 @@ function waitForPersistedDefaultAuth(
       if (unsubscribe) {
         const current = unsubscribe;
         unsubscribe = null;
-        try { current(); } catch { /* best-effort listener cleanup */ }
+        try { current(); } catch (e) {
+      // best-effort listener cleanup
+      DebugLogger.error('auth_recovery_boot_gate:current', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       } else {
         // Firebase may deliver the cached persisted user synchronously while
         // onAuthStateChanged is still returning its unsubscribe function.
@@ -106,7 +110,10 @@ function waitForPersistedDefaultAuth(
       unsubscribe = nextUnsubscribe;
       if (unsubscribeWhenAssigned) {
         unsubscribe = null;
-        try { nextUnsubscribe(); } catch { /* best-effort listener cleanup */ }
+        try { nextUnsubscribe(); } catch (e) {
+      // best-effort listener cleanup
+      DebugLogger.error('auth_recovery_boot_gate:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
     } catch {
       finish({ result: 'subscription_failed' });

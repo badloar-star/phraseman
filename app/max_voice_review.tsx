@@ -43,6 +43,7 @@ import type {
 } from './max_voice_finalize_types';
 import { projectMaxReview } from './max_voice_review_projection';
 import { getStableId } from './stable_id';
+import { DebugLogger } from './debug-logger';
 
 /** The local handoff is temporary; the durable receipt is the review source of truth. */
 export interface MaxCallResult {
@@ -246,9 +247,10 @@ export default function MaxVoiceReview() {
       try {
         const accountKey = await getStableId();
         await flushVoiceFeedbackOutbox(accountKey, submitMaxVoiceFeedback);
-      } catch {
-        // Досылка — фоновая любезность: молчим, попробуем в следующий заход.
-      }
+      } catch (e) {
+      // Досылка — фоновая любезность: молчим, попробуем в следующий заход.
+      DebugLogger.error('max_voice_review:accountKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
   }, []);
 
@@ -420,9 +422,9 @@ export default function MaxVoiceReview() {
       await submitMaxVoiceFeedback(input);
       // Дошло — снимаем из очереди, чтобы не досылать повторно.
       await dequeueVoiceFeedback(accountKey, input.sessionId);
-    } catch {
-      // Осталось в очереди: досылка произойдёт при следующем открытии разбора.
-      // Пользователю ничего не показываем — его работа уже сохранена.
+    } catch (e) {
+      // Осталось в очереди: досылка произойдёт при следующем открытии разбора. // Пользователю ничего не показываем — его работа уже сохранена.
+      DebugLogger.error('max_voice_review:accountKey', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
 

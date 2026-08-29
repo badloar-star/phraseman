@@ -15,6 +15,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { DebugLogger } from './debug-logger';
 
 export const PREMIUM_FREE_FREEZES_PER_MONTH = 3;
 
@@ -88,9 +89,10 @@ export async function applyMonthlyPremiumFreezeAllowance(now: Date = new Date())
     }
 
     await AsyncStorage.setItem(PREMIUM_FREEZE_MONTH_STATE_KEY, JSON.stringify(next));
-  } catch {
-    // best-effort: перк не должен ронять bootstrap главной
-  }
+  } catch (e) {
+      // best-effort: перк не должен ронять bootstrap главной
+      DebugLogger.error('premium_freeze_allowance:flagUsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

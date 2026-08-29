@@ -6,6 +6,7 @@
  */
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../debug-logger';
 
 export const LOW_POWER_MEMORY_THRESHOLD_BYTES = 3 * 1024 * 1024 * 1024;
 
@@ -71,7 +72,9 @@ export async function setLowPowerOverride(value: boolean | null): Promise<void> 
   try {
     if (value == null) await AsyncStorage.removeItem(LOW_POWER_OVERRIDE_KEY);
     else await AsyncStorage.setItem(LOW_POWER_OVERRIDE_KEY, value ? 'on' : 'off');
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('low_power:setLowPowerOverride', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function getLowPowerOverride(): boolean | null {

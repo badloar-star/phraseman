@@ -6,6 +6,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { FeedbackKind } from './feedback_client';
+import { DebugLogger } from './debug-logger';
 
 const THROTTLE_KEY_PREFIX = 'feedback_prompt_last_shown_v1';
 export const FEEDBACK_PROMPT_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1_000;
@@ -33,9 +34,10 @@ export async function shouldPromptFeedback(kind: FeedbackKind, nowMs: number = D
 export async function markFeedbackPrompted(kind: FeedbackKind, nowMs: number = Date.now()): Promise<void> {
   try {
     await AsyncStorage.setItem(storageKey(kind), String(nowMs));
-  } catch {
-    // Не критично: в худшем случае блок покажется чаще нужного.
-  }
+  } catch (e) {
+      // Не критично: в худшем случае блок покажется чаще нужного.
+      DebugLogger.error('feedback_prompt_throttle:markFeedbackPrompted', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

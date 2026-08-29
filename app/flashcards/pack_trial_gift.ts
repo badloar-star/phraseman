@@ -14,6 +14,7 @@ import {
   requireGiftAccountStorageKey,
   writeGiftAccountValue,
 } from '../gift_account_storage';
+import { DebugLogger } from '../debug-logger';
 
 export type PackGiftClaimBinding = {
   packId: string;
@@ -118,8 +119,9 @@ async function readLegacyEntries(token: AccountGenerationToken): Promise<PackTri
       const target = key === LEGACY_KEYS[1] ? 'fr' : 'en';
       const voucher = parseVoucher(legacy, `legacy_${target}_${safePart(String((legacy as Record<string, unknown>)?.voucherId ?? 'slot'))}`);
       if (voucher) result.push({ ...voucher, source: voucher.source ?? `legacy_migration_${target}` });
-    } catch {
+    } catch (e) {
       // Invalid legacy state is ignored; it never grants access by itself.
+      DebugLogger.error('pack_trial_gift:voucher', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   if (!isCurrentAccountGeneration(token, token.stableId)) throw new Error('pack_gift_account_changed');

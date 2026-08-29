@@ -25,6 +25,7 @@ import {
   hapticTap,
 } from '../../hooks/use-haptics';
 import { FC_SFX_TTS_GAP_MS } from '../../constants/flashcards_motion';
+import { DebugLogger } from '../debug-logger';
 
 // ── SFX ────────────────────────────────────────────────────────────────────────
 
@@ -127,7 +128,9 @@ export async function setFcSfxEnabled(on: boolean): Promise<void> {
   cachedSfxOn = on;
   try {
     await AsyncStorage.setItem(SFX_ON_KEY, on ? 'true' : 'false');
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('SoundService:setFcSfxEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Тумблер «Автопроизношение» (`fc_autospeak_on`, дефолт true) — E9 ─────────
@@ -149,7 +152,9 @@ export async function setFcAutoSpeakEnabled(on: boolean): Promise<void> {
   cachedAutoSpeakOn = on;
   try {
     await AsyncStorage.setItem(AUTOSPEAK_ON_KEY, on ? 'true' : 'false');
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('SoundService:setFcAutoSpeakEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Воспроизвести короткий SFX из пула. Синхронный fire-and-forget, ошибки глотаем. */
@@ -165,9 +170,13 @@ export function playSfx(name: FcSfxName): void {
       .then(() => {
         try {
           p.play();
-        } catch {}
+        } catch (e) {
+      DebugLogger.error('SoundService:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       });
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('SoundService:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Очередь SFX → пауза → TTS ─────────────────────────────────────────────────
@@ -216,7 +225,9 @@ function speakNow(text: string, opts?: FcSpeakOpts): void {
       pitch: 1,
       onDone: opts?.onDone,
     });
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('SoundService:Speech', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 let pendingTtsTimer: ReturnType<typeof setTimeout> | null = null;

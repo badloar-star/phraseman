@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
+import { DebugLogger } from './debug-logger';
 
 type ProgressMap = Record<string, string | null | undefined>;
 
@@ -92,7 +93,9 @@ function hasDevSeedFingerprint(data: ProgressMap): boolean {
   try {
     const login = JSON.parse(String(data.login_bonus_v1 ?? '{}'));
     if (parseIntSafe(login?.consecutiveDays) === 365) score += 1;
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('streak_safety:login', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return score >= 2;
 }
 

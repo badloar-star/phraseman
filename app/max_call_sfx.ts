@@ -1,3 +1,4 @@
+import { DebugLogger } from './debug-logger';
 // Сигналы MAX-звонка (спека §1 max_call_sfx).
 //
 // Ключевой контракт: звуковые cue играют ТОЛЬКО на границах владения
@@ -58,9 +59,10 @@ export function createMaxCallSfx(deps: MaxCallSfxDeps): MaxCallSfx {
       connectPlayed = true;
       try {
         deps.playCue('connect');
-      } catch {
-        // Сломанный плеер не имеет права ронять звонок.
-      }
+      } catch (e) {
+      // Сломанный плеер не имеет права ронять звонок.
+      DebugLogger.error('max_call_sfx:endPlayed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       return true;
     },
 
@@ -69,7 +71,9 @@ export function createMaxCallSfx(deps: MaxCallSfxDeps): MaxCallSfx {
       endPlayed = true;
       try {
         deps.playCue('end');
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_sfx:endPlayed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       return true;
     },
 
@@ -86,7 +90,9 @@ export function createMaxCallSfx(deps: MaxCallSfxDeps): MaxCallSfx {
       // конфликтует с voiceChat-сессией и не будит спикер.
       try {
         deps.haptic(event);
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_sfx:endPlayed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
 
     ownsAudioSession: () => owned,
@@ -115,14 +121,18 @@ export function createDefaultMaxCallSfx(): MaxCallSfx {
         soundDirector.request(cue === 'connect' ? 'pm.max.call_connect' : 'pm.max.call_end', {
           scope: 'max-call',
         });
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_sfx:createDefaultMaxCallSfx', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
     haptic(): void {
       try {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const haptics = require('./feedback/haptics') as { light(): void };
         haptics.light();
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('max_call_sfx:haptics', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
   });
 }

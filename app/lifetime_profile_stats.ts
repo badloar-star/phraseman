@@ -17,6 +17,7 @@ import {
   lessonWordsKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 const WORD_REQUIRED = 3;
 const MIN_ACTIVE_MS = 60_000;
@@ -97,8 +98,9 @@ async function countPhrasesLearnedFromLessonProgress(): Promise<number> {
       if (!Array.isArray(p)) continue;
       const slice = p.slice(0, LESSON_PHRASE_SLOTS_CAP);
       sum += slice.filter(x => x === 'correct' || x === 'replay_correct').length;
-    } catch {
-      /* skip */
+    } catch (e) {
+      // skip
+      DebugLogger.error('lifetime_profile_stats:slice', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return sum;
@@ -136,8 +138,9 @@ async function countLearnedWordsTotal(): Promise<number> {
           if (Number.isFinite(n) && n >= WORD_REQUIRED) sum++;
         }
       }
-    } catch {
-      /* skip */
+    } catch (e) {
+      // skip
+      DebugLogger.error('lifetime_profile_stats:n', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return sum;
@@ -191,9 +194,10 @@ export async function readLifetimeProfileStatsCache(): Promise<LifetimeProfileSt
 async function persistLifetimeProfileStatsCache(s: LifetimeProfileStats): Promise<void> {
   try {
     await AsyncStorage.setItem(LIFETIME_PROFILE_STATS_CACHE_KEY, JSON.stringify(s));
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('lifetime_profile_stats:persistLifetimeProfileStatsCache', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> {

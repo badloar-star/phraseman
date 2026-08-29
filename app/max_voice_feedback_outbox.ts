@@ -17,6 +17,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { VoiceFeedbackInput } from './max_voice_feedback_client';
+import { DebugLogger } from './debug-logger';
 
 const OUTBOX_KEY_PREFIX = 'max_voice_feedback_outbox_v1';
 
@@ -65,10 +66,10 @@ async function readAll(accountKey: string, nowMs: number): Promise<PendingVoiceF
 async function writeAll(accountKey: string, rows: PendingVoiceFeedback[]): Promise<void> {
   try {
     await AsyncStorage.setItem(storageKey(accountKey), JSON.stringify(rows));
-  } catch {
-    // Нет места на диске — отзыв просто не переживёт перезапуск. Это хуже, чем
-    // сохранить, но лучше, чем упасть в лицо пользователю.
-  }
+  } catch (e) {
+      // Нет места на диске — отзыв просто не переживёт перезапуск. Это хуже, чем // сохранить, но лучше, чем упасть в лицо пользователю.
+      DebugLogger.error('max_voice_feedback_outbox:writeAll', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

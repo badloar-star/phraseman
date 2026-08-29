@@ -7,6 +7,7 @@ import type { PurchasesOfferings, PurchasesPackage } from 'react-native-purchase
 import Purchases from 'react-native-purchases';
 import { IS_EXPO_GO } from './config';
 import { SHARDS_PACKS } from './shards_shop_catalog';
+import { DebugLogger } from './debug-logger';
 
 const CACHE_KEY = 'shards_shop_price_cache_v1';
 
@@ -101,7 +102,9 @@ export async function saveShardsPriceCacheFromPackages(map: Record<string, Purch
       CACHE_KEY,
       JSON.stringify({ prices, updatedAt: Date.now() }),
     );
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('shards_shop_cache:base', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

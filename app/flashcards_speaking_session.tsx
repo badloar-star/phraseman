@@ -95,6 +95,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+import { DebugLogger } from './debug-logger';
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / listening #9C6ADE / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
@@ -108,7 +109,9 @@ function saveSpeakingPrefs(prefs: SpeakingPrefs): void {
       try {
         const p = raw ? JSON.parse(raw) : null;
         if (p && typeof p === 'object' && !Array.isArray(p)) base = p as Record<string, unknown>;
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('flashcards_speaking_session:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       return AsyncStorage.setItem(FC_SPEAKING_PREFS_KEY, JSON.stringify({ ...base, ...prefs }));
     })
     .catch(() => {});

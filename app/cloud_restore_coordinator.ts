@@ -1,4 +1,5 @@
 import type { CloudRestoreResult } from './cloud_sync';
+import { DebugLogger } from './debug-logger';
 
 export type BootCloudRestoreOutcome = {
   status: CloudRestoreResult;
@@ -28,7 +29,10 @@ export function createBootCloudRestoreCoordinator(deps: BootCloudRestoreDependen
       const hasLocalAccountData = await deps.hasLocalAccountData().catch(() => false);
       if (status === 'restored' && !hydrationEmitted) {
         hydrationEmitted = true;
-        try { deps.onHydrated(); } catch { /* hydration notification is best-effort */ }
+        try { deps.onHydrated(); } catch (e) {
+      // hydration notification is best-effort
+      DebugLogger.error('cloud_restore_coordinator:hasLocalAccountData', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       return {
         status,

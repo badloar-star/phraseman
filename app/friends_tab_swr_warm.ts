@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { APP_SNAPSHOT_RESOURCE_LIMITS, limitArray, patchAppSnapshot } from './app_snapshot_store';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
+import { DebugLogger } from './debug-logger';
 
 /** Тот же ключ, что во вкладке — один источник правды для SWR. */
 export const FRIENDS_TAB_SWR_CACHE_KEY = 'friends_tab_swr_v1';
@@ -165,9 +166,10 @@ export function startFriendsTabSwrPrime(): Promise<void> {
 
         warm = { canonicalUid: canon, friends, requests, profiles };
         publishFriendsSnapshot('storage');
-      } catch {
-        /* ignore */
-      }
+      } catch (e) {
+      // ignore
+      DebugLogger.error('friends_tab_swr_warm:requests', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
   }
   return primePromise;

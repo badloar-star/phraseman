@@ -76,6 +76,7 @@ import {
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 // Medal images
 const MEDAL_IMAGES: Record<string, any> = {
@@ -180,7 +181,10 @@ function parseProgress(
         progressArr: progressArr.length === 50 ? progressArr : emptyProgress(),
       };
     }
-  } catch { /* keep defaults */ }
+  } catch (e) {
+      // keep defaults
+      DebugLogger.error('lesson_menu:denominator', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   const bestScore = parseFloat(bestScoreRaw ?? '0') || 0;
   return { score: bestScore, progress: 0, progressArr: emptyProgress() };
 }
@@ -278,7 +282,10 @@ export async function prefetchLessonMenuCache(
       theoryProgressPct: parseTheoryMenuProgress(map[theorySectionsKey] ?? null, map[theoryClaimedKey] ?? null),
       passCount: medalInfo.passCount,
     };
-  } catch { /* prefetch should never block navigation */ }
+  } catch (e) {
+      // prefetch should never block navigation
+      DebugLogger.error('lesson_menu:prep', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

@@ -41,8 +41,14 @@ type PlayerLike = {
 const liveScenePlayers = new Map<PlayerLike, { cleanupTimer: ReturnType<typeof setTimeout>; releaseSession: () => void }>();
 
 function disposePlayer(player: PlayerLike): void {
-  try { player.pause(); } catch { /* native player may already be released */ }
-  try { player.remove(); } catch { /* native player may already be released */ }
+  try { player.pause(); } catch (e) {
+      // native player may already be released
+      console.warn('[silent-catch] celebrationScenePlayer:disposePlayer', e instanceof Error ? e.message : String(e));
+    }
+  try { player.remove(); } catch (e) {
+      // native player may already be released
+      console.warn('[silent-catch] celebrationScenePlayer:disposePlayer', e instanceof Error ? e.message : String(e));
+    }
 }
 
 /**

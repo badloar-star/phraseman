@@ -54,9 +54,10 @@ async function persist(seconds: number): Promise<void> {
   try {
     const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({ seconds }));
-  } catch {
-    // Диск недоступен — кэш продолжает жить в памяти процесса.
-  }
+  } catch (e) {
+      // Диск недоступен — кэш продолжает жить в памяти процесса.
+      console.warn('[silent-catch] peek_cache:AsyncStorage', e instanceof Error ? e.message : String(e));
+    }
 }
 
 // зачем (тот же разбор, что у энергии): сбрасываем ровно тогда, когда прежний
@@ -86,10 +87,10 @@ export async function primeVoiceMinutePeekFromBoot(): Promise<void> {
     if (!Number.isFinite(seconds) || seconds < 0 || peekState) return;
     peekState = Object.freeze({ seconds: Math.floor(seconds) });
     peekOwnerStableId = captureAccountGeneration().stableId?.trim() || null;
-  } catch {
-    // Битый JSON или нет доступа — оставляем кэш пустым: экран отработает как
-    // раньше, а не покажет выдуманное число.
-  }
+  } catch (e) {
+      // Битый JSON или нет доступа — оставляем кэш пустым: экран отработает как // раньше, а не покажет выдуманное число.
+      console.warn('[silent-catch] peek_cache:seconds', e instanceof Error ? e.message : String(e));
+    }
 }
 
 // Прогрев запускается сам при первом импорте: экран MAX может смонтироваться

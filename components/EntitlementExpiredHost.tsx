@@ -27,6 +27,7 @@ import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import RewardCardV2 from './reward_v2/RewardCardV2';
+import { DebugLogger } from '../app/debug-logger';
 
 type Kind = 'premium' | 'vip';
 
@@ -161,8 +162,9 @@ function EntitlementExpiredHost() {
       if (Number.isFinite(lastShown) && Date.now() - lastShown < SHOW_COOLDOWN_MS) return;
       // prev ?? k: premium-карточка приоритетнее, второй кандидат не перетирает первого.
       setKind((prev) => prev ?? k);
-    } catch {
+    } catch (e) {
       // Состояние недоступно — лучше промолчать, чем спамить ложной карточкой.
+      DebugLogger.error('EntitlementExpiredHost:lastShown', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, []);
 
@@ -245,9 +247,10 @@ function EntitlementExpiredHost() {
           // VIP-карточку не дублируем поверх premium-кейса в одной сессии.
           await maybeShow('vip', checkedAccount);
         }
-      } catch {
-        // Guard недоступен (ранний старт) — попробуем в следующей сессии.
-      }
+      } catch (e) {
+      // Guard недоступен (ранний старт) — попробуем в следующей сессии.
+      DebugLogger.error('EntitlementExpiredHost:isCurrent', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return () => {
       cancelled = true;
@@ -277,9 +280,10 @@ function EntitlementExpiredHost() {
           messageUk: msgRu,
           messageEs: remaining < 30 * 60 * 1000 ? 'El trial termina en menos de 30 min ⏳' : 'El trial termina en menos de 2 h ⏳',
         });
-      } catch {
-        /* ignore */
-      }
+      } catch (e) {
+      // ignore
+      DebugLogger.error('EntitlementExpiredHost:msgRu', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
   }, [lang]);
 

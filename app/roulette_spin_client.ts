@@ -18,6 +18,7 @@ import { accountScopeKey } from './account_scope_key';
 import { getCanonicalUserId } from './user_id_policy';
 import { isReferralCloudEnabled } from './referral_flags';
 import { isReferralRouletteEmergencyStopped } from './remote_flags';
+import { DebugLogger } from './debug-logger';
 
 const REGION = 'us-central1';
 const SPIN_CREDITS_CACHE_KEY = 'referral_spin_credits_v1';
@@ -150,7 +151,10 @@ async function newSpinRequestId(): Promise<string> {
   try {
     const uuid = await Crypto.randomUUID();
     if (uuid) return uuid;
-  } catch { /* fallback ниже */ }
+  } catch (e) {
+      // fallback ниже
+      DebugLogger.error('roulette_spin_client:uuid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   const bytes = new Uint8Array(16);
   Crypto.getRandomValues(bytes);
   bytes[6] = (bytes[6] & 0x0f) | 0x40;

@@ -18,6 +18,7 @@
 // возврата управления.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 const COUNTED_PHRASES_KEY = 'personal_plan_counted_phrases_v1';
 
@@ -114,8 +115,9 @@ export async function clearCountedPhrases(planInstanceId: string | null | undefi
       const next = { ...map };
       delete next[instanceId];
       await AsyncStorage.setItem(COUNTED_PHRASES_KEY, JSON.stringify(next));
-    } catch {
+    } catch (e) {
       // best-effort
+      DebugLogger.error('personal_plan_counted_phrases:next', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   });
   writeChain = run.catch(() => undefined);

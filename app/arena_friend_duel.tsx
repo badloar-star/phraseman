@@ -23,6 +23,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
+import { DebugLogger } from './debug-logger';
 
 const ACTIVE_INVITE_KEY = 'arena_friend_invite_active_v2';
 type SelectedFriend = { uid: string; name: string; avatar?: string; aura?: string };
@@ -95,7 +96,10 @@ export default function ArenaFriendDuelScreen() {
           setInvite(stored);
           setPickerOpen(false);
         }
-      } catch { /* corrupted DEV/session state is ignored */ }
+      } catch (e) {
+      // corrupted DEV/session state is ignored
+      DebugLogger.error('arena_friend_duel:stored', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     });
     return () => { cancelled = true; };
   }, []);
@@ -129,7 +133,10 @@ export default function ArenaFriendDuelScreen() {
       try {
         const status = await arenaV2InviteReady(invite.inviteId);
         if (cancelled || finishStatus(status)) return;
-      } catch { /* bounded focused poll retries */ }
+      } catch (e) {
+      // bounded focused poll retries
+      DebugLogger.error('arena_friend_duel:status', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       if (!cancelled) timer = setTimeout(poll, 1500);
     };
     void poll();

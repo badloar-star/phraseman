@@ -12,6 +12,7 @@ import { triLang } from '../constants/i18n';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import EnergyCostBadge from '../components/EnergyCostBadge';
+import { DebugLogger } from './debug-logger';
 
 function firstParam(v: string | string[] | undefined): string {
   return Array.isArray(v) ? v[0] ?? '' : v ?? '';
@@ -265,9 +266,10 @@ function PersonalPlanExerciseTransitionScreen() {
         const parsed = JSON.parse(nextParams);
         router.replace({ pathname: '/personal_plan_exercise', params: parsed } as any);
         return;
-      } catch {
-        // fallthrough
-      }
+      } catch (e) {
+      // fallthrough
+      DebugLogger.error('personal_plan_exercise_transition:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     safeRouterBack(router, '/personal_plan');
   };

@@ -20,6 +20,7 @@ import {
   COMPLETION_CREDENTIAL_MIN_TTL_MS,
   LEARNING_V2_COMPLETION_FIREBASE_PROJECT_ID,
 } from './learning_v2_completion_transport_policy';
+import { DebugLogger } from './debug-logger';
 
 const CALLABLE_NAMES = new Set([
   'getLearningV2AccountBinding',
@@ -540,7 +541,10 @@ const readResponseTextBounded = async (
     }
     throw error;
   } finally {
-    try { reader.releaseLock(); } catch { /* already terminal */ }
+    try { reader.releaseLock(); } catch (e) {
+      // already terminal
+      DebugLogger.error('learning_v2_completion_callable_fetch:tail', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 };
 

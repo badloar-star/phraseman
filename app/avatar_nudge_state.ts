@@ -12,6 +12,7 @@
 // Firestore — состояние ничего не стоит и не требует сети.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 const STORAGE_PREFIX = 'avatar_nudge_v1';
 
@@ -79,16 +80,18 @@ export async function claimAvatarNudgeSession(): Promise<AvatarNudgeState> {
 export async function markAvatarSectionVisited(): Promise<void> {
   try {
     await AsyncStorage.setItem(scopedKey(VISITED_KEY), '1');
-  } catch {
-    // Не критично: в худшем случае намёк доживёт свой бюджет сессий и стихнет сам.
-  }
+  } catch (e) {
+      // Не критично: в худшем случае намёк доживёт свой бюджет сессий и стихнет сам.
+      DebugLogger.error('avatar_nudge_state:markAvatarSectionVisited', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Только для дев-витрины: вернуть намёк в исходное состояние. */
 export async function resetAvatarNudgeState(): Promise<void> {
   try {
     await AsyncStorage.multiRemove([scopedKey(VISITED_KEY), scopedKey(SESSIONS_KEY)]);
-  } catch {
-    // dev-only утилита — тихий отказ достаточен.
-  }
+  } catch (e) {
+      // dev-only утилита — тихий отказ достаточен.
+      DebugLogger.error('avatar_nudge_state:resetAvatarNudgeState', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

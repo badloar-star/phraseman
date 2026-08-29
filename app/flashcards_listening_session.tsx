@@ -75,6 +75,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+import { DebugLogger } from './debug-logger';
 
 /** Акцент режима «Слушание» (words #4A9EFF / phrases #40C080 / arena #E05050). */
 const ACCENT = '#9C6ADE';
@@ -116,7 +117,9 @@ function saveListeningPrefs(prefs: ListeningPrefs): void {
       try {
         const p = raw ? JSON.parse(raw) : null;
         if (p && typeof p === 'object' && !Array.isArray(p)) base = p as Record<string, unknown>;
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('flashcards_listening_session:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       return AsyncStorage.setItem(LISTENING_PREFS_KEY, JSON.stringify({ ...base, ...prefs }));
     })
     .catch(() => {});

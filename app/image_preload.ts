@@ -3,6 +3,7 @@ import { Asset } from 'expo-asset';
 import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets';
 import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
 import { getActiveReferralInviteBannerImage } from '../components/ReferralInviteBannerArt';
+import { DebugLogger } from './debug-logger';
 
 // Pre-load critical bundled images so Metro-served assets are already cached in dev.
 // Image.getSize() only works with network URIs, not require() assets.
@@ -67,8 +68,9 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
           prefetches.push(Image.prefetch(resolved.uri).catch(() => false));
         }
       }
-    } catch {
+    } catch (e) {
       // Individual asset resolution failure must never crash the app.
+      DebugLogger.error('image_preload:resolved', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   });
 
@@ -88,9 +90,10 @@ export const preloadPrimaryTabImages = async () => {
       ...LESSON_INTRO_CTA_IMAGES,
       activeReferralBanner,
     ]);
-  } catch {
-    // Silently fail - preloading is entirely optional.
-  }
+  } catch (e) {
+      // Silently fail - preloading is entirely optional.
+      DebugLogger.error('image_preload:activeReferralBanner', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const preloadDeferredNonPrimaryImages = async () => {
@@ -98,9 +101,10 @@ export const preloadDeferredNonPrimaryImages = async () => {
     await warmImageSources([
       ...OSKOLOK_IMAGE_SOURCES,
     ]);
-  } catch {
-    // Silently fail - preloading is entirely optional.
-  }
+  } catch (e) {
+      // Silently fail - preloading is entirely optional.
+      DebugLogger.error('image_preload:preloadDeferredNonPrimaryImages', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const preloadImages = async () => {
@@ -115,9 +119,10 @@ export const preloadImages = async () => {
       ...OSKOLOK_IMAGE_SOURCES,
     ];
     await warmImageSources(allImages);
-  } catch {
-    // Silently fail - preloading is entirely optional.
-  }
+  } catch (e) {
+      // Silently fail - preloading is entirely optional.
+      DebugLogger.error('image_preload:allImages', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

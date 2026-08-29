@@ -168,6 +168,7 @@ import {
   markLearningV2LessonWordUnlockedV1,
   type LearningV2UnlockedLessonWordV1,
 } from "./learning_v2_unlocked_lesson_words_v1";
+import { DebugLogger } from './debug-logger';
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -527,8 +528,9 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (!audioRequest) return;
     try {
       audioPlayer.replace({ uri: audioRequest.fileUri });
-    } catch {
+    } catch (e) {
       // Player already released on unmount; playFromStart below will no-op.
+      DebugLogger.error('learning_v2_direct_session_player_v1:audioStatus', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, [audioRequest, audioPlayer]);
   const managedAudio = useManagedSpokenAudioPlayer(
@@ -1191,10 +1193,10 @@ export default function LearningV2DirectSessionPlayerV1() {
             selectableId,
           })?.fileUri,
         );
-      } catch {
-        // The visible learner text remains usable if account-scoped audio was
-        // invalidated during an account transition.
-      }
+      } catch (e) {
+      // The visible learner text remains usable if account-scoped audio was // invalidated during an account transition.
+      DebugLogger.error('learning_v2_direct_session_player_v1:speechText', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
     [
       activeAudioPreload,

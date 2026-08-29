@@ -26,6 +26,7 @@ import {
   parseSessionAttemptRuneRecoveryExactResult,
   type SessionAttemptRuneRecoveryExactResultV1,
 } from '../../modules/phone-state/domains/economy';
+import { DebugLogger } from '../debug-logger';
 
 export type SessionAttemptRecoverySource = 'runes' | 'gift';
 
@@ -238,9 +239,15 @@ async function cleanupPrepared(
         prepared.recoveryOrdinal,
       ));
     });
-  } catch { /* a durable receipt makes cleanup retryable */ }
+  } catch (e) {
+      // a durable receipt makes cleanup retryable
+      DebugLogger.error('session_attempt_recovery:cleanupPrepared', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   if (prepared.source === 'gift' && operationId) {
-    try { await clearAttemptRestoreGiftConsumePreparation(token, operationId, lease); } catch { /* retryable */ }
+    try { await clearAttemptRestoreGiftConsumePreparation(token, operationId, lease); } catch (e) {
+      // retryable
+      DebugLogger.error('session_attempt_recovery:cleanupPrepared', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 }
 
@@ -408,10 +415,16 @@ export async function commitSessionAttemptRecovery(input: Readonly<{
         [sessionAttemptsStateKey(ownerStableId, state.sessionId), JSON.stringify(restored.state)],
       );
       await AsyncStorage.multiSet(writes);
-      try { await AsyncStorage.removeItem(preparedKey); } catch { /* receipt wins; cleanup retries */ }
+      try { await AsyncStorage.removeItem(preparedKey); } catch (e) {
+      // receipt wins; cleanup retries
+      DebugLogger.error('session_attempt_recovery:pending', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     });
     if (input.source === 'gift') {
-      try { await clearAttemptRestoreGiftConsumePreparation(input.token, operation.operationId, lease); } catch { /* retryable */ }
+      try { await clearAttemptRestoreGiftConsumePreparation(input.token, operation.operationId, lease); } catch (e) {
+      // retryable
+      DebugLogger.error('session_attempt_recovery:pending', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     return Object.freeze({
       duplicate: false,

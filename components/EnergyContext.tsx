@@ -48,6 +48,7 @@ import {
   type EnergySessionIntent,
   type EnergySessionProjection,
 } from '../app/energy_session_operation_ledger';
+import { DebugLogger } from '../app/debug-logger';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -520,8 +521,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
             }
           }
           loadSucceeded = true;
-        } catch {
-        } finally {
+        } catch (e) {
+      DebugLogger.error('EnergyContext:timer', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
           if (isCurrentAccountGeneration(accountToken)) {
             // Public readiness means the initial load attempt has finished, so
             // gated screens do not wait forever on a broken storage read.
@@ -540,7 +542,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
           }
         }
       });
-    } catch {
+    } catch (e) {
+      DebugLogger.error('EnergyContext:timer', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       // Fail-open only for rendering readiness: callers may leave a loading
       // gate, but mutation readiness remains false and confirm fails closed.
@@ -812,7 +815,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       );
       const lang = await readNotificationLang();
       await scheduleEnergyFullNotification(secondsUntilFull, lang);
-    } catch { /* best-effort: пуш не критичен */ }
+    } catch (e) {
+      // best-effort: пуш не критичен
+      DebugLogger.error('EnergyContext:lang', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }, []);
   syncEnergyPushRef.current = syncEnergyFullNotification;
 
@@ -859,8 +865,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       } else if (currentBonus) {
         refilledBonus = currentBonus.amount;
       }
-    } catch {
+    } catch (e) {
       // Подарок недоступен/испорчен — премиум всё равно заливает базу.
+      DebugLogger.error('EnergyContext:currentBonus', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     if (!isCurrent()) return false;
     energyRef.current = fullEnergy;
@@ -891,10 +898,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         });
         persisted = true;
         break;
-      } catch {
-        // One immediate retry covers a transient native-storage failure without
-        // adding a timer, listener, or background worker.
-      }
+      } catch (e) {
+      // One immediate retry covers a transient native-storage failure without // adding a timer, listener, or background worker.
+      DebugLogger.error('EnergyContext:attempt', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     if (!persisted || !isCurrent()) return false;
     await cancelEnergyFullNotification().catch(() => {});

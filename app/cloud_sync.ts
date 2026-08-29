@@ -252,6 +252,7 @@ import {
   migrateLegacyFreeLessonAccessForAllTargets,
   normalizeLegacyFreeLessonCap,
 } from './legacy_free_lesson_access';
+import { DebugLogger } from './debug-logger';
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -367,13 +368,19 @@ function mergeActiveDaysRestoreValue(localRaw: string | null | undefined, cloudR
     if (parsedLocal && typeof parsedLocal.anchor === 'string' && typeof parsedLocal.bits === 'string') {
       localState = { anchor: parsedLocal.anchor, bits: parsedLocal.bits };
     }
-  } catch { /* локальное значение повреждено — считаем пустым */ }
+  } catch (e) {
+      // локальное значение повреждено — считаем пустым
+      DebugLogger.error('cloud_sync:parsedLocal', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   try {
     const parsedCloud = JSON.parse(cloudRaw) as { anchor?: unknown; bits?: unknown };
     if (parsedCloud && typeof parsedCloud.anchor === 'string' && typeof parsedCloud.bits === 'string') {
       cloudState = { anchor: parsedCloud.anchor, bits: parsedCloud.bits };
     }
-  } catch { /* облачное значение повреждено — считаем пустым */ }
+  } catch (e) {
+      // облачное значение повреждено — считаем пустым
+      DebugLogger.error('cloud_sync:parsedCloud', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   const merged = mergeActiveDays(localState, cloudState);
   if (!merged.anchor) return localRaw ?? cloudRaw;
   return JSON.stringify(merged);
@@ -1966,9 +1973,9 @@ function mergeCurrentWeekProgressRestoreValue(
     let local: { weekKey?: unknown; points?: unknown } | null = null;
     try {
       cloud = JSON.parse(cloudValue) as { weekKey?: unknown; points?: unknown };
-    } catch {
-      // Keep the original cloud representation unless a valid current local
-      // representation below can safely preserve this week's progress.
+    } catch (e) {
+      // Keep the original cloud representation unless a valid current local // representation below can safely preserve this week's progress.
+      DebugLogger.error('cloud_sync:isCurrentWeekToken', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     try {
       local = localValue ? JSON.parse(localValue) as { weekKey?: unknown; points?: unknown } : null;
@@ -2255,8 +2262,9 @@ export function warmAuthSignInCallables(): void {
     try {
       const fn = callable<{ warmup: true }, { warm?: boolean }>(name);
       void fn({ warmup: true }).catch(() => {});
-    } catch {
-      /* прогрев best-effort */
+    } catch (e) {
+      // прогрев best-effort
+      DebugLogger.error('cloud_sync:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 }
@@ -2986,7 +2994,9 @@ async function doSyncToCloud(): Promise<void> {
       const snapRaw = await AsyncStorage.getItem(LAST_SYNC_SNAPSHOT_KEY);
       if (!isSyncGenerationCurrent()) return;
       if (snapRaw) previousSnapshot = JSON.parse(snapRaw);
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('cloud_sync:snapRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const progressPatch: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
       if (!shouldSyncPremiumProgressField(key, value, data)) continue;
@@ -3095,7 +3105,10 @@ async function applyRestoreFromUserDoc(
   const vipOwnerStableId = vipGeneration?.stableId?.trim();
   const phoneStateOwnsCore = phoneStateOwnsCoreProgress(vipOwnerStableId ?? null);
   const completeRestore = (applied: boolean): boolean => {
-    try { afterLegacyRestore?.(root); } catch { /* visual overlay must never alter restore */ }
+    try { afterLegacyRestore?.(root); } catch (e) {
+      // visual overlay must never alter restore
+      DebugLogger.error('cloud_sync:completeRestore', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return applied;
   };
   const progressServerAuthoritative = !phoneStateOwnsCore && root.progressServerAuthoritative === true;
@@ -3189,9 +3202,10 @@ async function applyRestoreFromUserDoc(
       'fr',
     );
     assertCurrent();
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('cloud_sync:frenchStatsKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   const cloudHasVipEntitlementState =
     cloudData['vip_active'] !== undefined ||
@@ -3333,9 +3347,10 @@ async function applyRestoreFromUserDoc(
         const localVal = await AsyncStorage.getItem(fcKey);
         const mergedFc = fcStrategy(localVal, String(cloudVal));
         if (mergedFc !== localVal) stickyPairs.push([fcKey, mergedFc]);
-      } catch {
-        /* fail-soft: ключ останется локальным */
-      }
+      } catch (e) {
+      // fail-soft: ключ останется локальным
+      DebugLogger.error('cloud_sync:mergedFc', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     // Локальный XP ≥ облачного, но ник мог остаться только в облаке (другой девайс / сбой записи).
     const localNameRaw = await AsyncStorage.getItem('user_name');
@@ -3683,9 +3698,10 @@ function tryPublishExamBestPctOverlay(
     const values = extractExamBestPctOverlay(progress as Record<string, unknown>);
     if (Object.keys(values).length === 0 || !isCurrent() || !canPublish()) return;
     publishExamBestPctOverlay(stableId, values);
-  } catch {
-    /* legacy restore remains authoritative if the render-only overlay rejects input */
-  }
+  } catch (e) {
+      // legacy restore remains authoritative if the render-only overlay rejects input
+      DebugLogger.error('cloud_sync:values', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function completedCloudRestoreAttempt(applied: boolean): CloudRestoreAttempt {
@@ -4199,9 +4215,10 @@ export async function saveAccountSwitchEmergencyBackup(
             ));
           }
         }
-      } catch {
-        // New root remains the only authority; orphan cleanup is best-effort.
-      }
+      } catch (e) {
+      // New root remains the only authority; orphan cleanup is best-effort.
+      DebugLogger.error('cloud_sync:offset', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   } catch (e) {
     try {
@@ -4449,9 +4466,9 @@ export async function waitForAccountDeletionCredentialSafe(
         'account_delete_credential_status',
       );
       if (response.data?.status === 'credential_safe') return true;
-    } catch {
-      // A closure may be committed while its first response is lost. Retry the
-      // capability receipt within the bounded foreground deadline.
+    } catch (e) {
+      // A closure may be committed while its first response is lost. Retry the // capability receipt within the bounded foreground deadline.
+      DebugLogger.error('cloud_sync:response', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     const remaining = deadline - Date.now();
     if (remaining <= 0) break;

@@ -64,6 +64,7 @@ import {
   type SaveOfferKind,
   type SaveOfferProgress,
 } from './manage_subscription_save_offer';
+import { DebugLogger } from './debug-logger';
 
 type ManageSubscriptionCopy = {
   ru: string;
@@ -303,7 +304,10 @@ export default function ManageSubscription() {
           setYearlyPkg(pkgs.yearly);
           setYearlyPriceStr(storePriceTrim(pkgs.yearly.product?.priceString));
         }
-      } catch { /* данных нет — покажем минимум */ }
+      } catch (e) {
+      // данных нет — покажем минимум
+      DebugLogger.error('manage_subscription:pkgs', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       finally { if (isBootstrapCurrent()) setLoading(false); }
     })();
     return () => { dead = true; };

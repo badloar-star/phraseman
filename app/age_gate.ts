@@ -14,6 +14,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 /** Минимальный возраст полного доступа (ирландский цифровой возраст согласия). */
 export const MIN_FULL_ACCESS_AGE = 16;
@@ -81,9 +82,10 @@ export async function restoreAgeBracket(bracket: AgeBracket): Promise<void> {
   bracketMemory = 'adult';
   try {
     await AsyncStorage.setItem(AGE_BRACKET_KEY, 'adult');
-  } catch {
-    /* no-op: в памяти уже обновлено */
-  }
+  } catch (e) {
+      // no-op: в памяти уже обновлено
+      DebugLogger.error('age_gate:restoreAgeBracket', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -101,8 +103,9 @@ export async function confirmAdultAgeAttestation(): Promise<AgeBracket> {
     await AsyncStorage.setItem(AGE_BRACKET_KEY, 'adult');
     // Подчищаем год, оставшийся от прошлых версий (там лежит синтетика).
     await AsyncStorage.removeItem(BIRTH_YEAR_KEY);
-  } catch {
-    /* no-op: в памяти уже обновлено */
-  }
+  } catch (e) {
+      // no-op: в памяти уже обновлено
+      DebugLogger.error('age_gate:confirmAdultAgeAttestation', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return 'adult';
 }

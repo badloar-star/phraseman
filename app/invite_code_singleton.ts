@@ -13,6 +13,7 @@
 import { generateReferralCode, getReferralCode } from './referral_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { DebugLogger } from './debug-logger';
 
 const CODE_TTL_MS = 5 * 60 * 1000;
 // Both the TTL cache and deduplicated request are generation-scoped. Different
@@ -69,7 +70,10 @@ async function resolveCodeWithRetry(nameForFallback: string, flight: InviteCodeF
       const rc = await getReferralCode();
       if (flight.consumers.size === 0) return '';
       if (rc && rc.trim().length >= 4) return rc.trim().toUpperCase();
-    } catch { /* ещё не готово — повторим */ }
+    } catch (e) {
+      // ещё не готово — повторим
+      DebugLogger.error('invite_code_singleton:rc', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     if (attempt < MAX_ATTEMPTS && !(await waitForRetry(flight, 1500 * attempt))) return '';
   }
   return '';

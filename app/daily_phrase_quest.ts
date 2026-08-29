@@ -6,6 +6,7 @@ import {
   type DailyPhraseInterfaceLang,
 } from './daily_phrase_system';
 import { registerXP } from './xp_manager';
+import { DebugLogger } from './debug-logger';
 
 export const DAILY_PHRASE_QUEST_XP = 50;
 
@@ -147,9 +148,10 @@ async function pruneDailyPhraseQuestMarkers(retainKeys: readonly string[]): Prom
     const keys = await AsyncStorage.getAllKeys();
     const remove = selectDailyPhraseQuestMarkerKeysToRemove(keys, now, retainKeys);
     if (remove.length > 0) await AsyncStorage.multiRemove(remove);
-  } catch {
-    // Best-effort marker cleanup only.
-  } finally {
+  } catch (e) {
+      // Best-effort marker cleanup only.
+      DebugLogger.error('daily_phrase_quest:remove', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     questMarkerPruneInFlight = false;
   }
 }

@@ -41,6 +41,7 @@ import {
   unlockedLessonsKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 // ─── Урок ────────────────────────────────────────────────────────────────────
 
@@ -74,7 +75,9 @@ export const unlockLesson = async (
         await storageSet(key, [...unlocked, lessonId]);
       }
     });
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('lesson_lock_system:unlocked', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Разблокирует следующий урок если score >= 2.5 (бронза). Возвращает true если разблокировал. */
@@ -222,7 +225,9 @@ export const markPremiumCourseLevelReached = async (
   try {
     const current = await getPremiumCourseLevel(studyTarget);
     await storageSetString(premiumCourseLevelKey(studyTarget), maxLevel(current, level));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('lesson_lock_system:current', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const isLessonUnlockedByPremiumCourse = async (
@@ -399,7 +404,9 @@ export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): 
       return acc;
     }, []);
     await storageSet(unlockedLessonsKey(studyTarget), earned);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('lesson_lock_system:earned', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /**
@@ -494,9 +501,10 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
     }
 
     await storageSetString(REPAIR_KEY, '1');
-  } catch {
-    // soft-fail: следующий запуск повторит попытку, флаг не выставлен
-  }
+  } catch (e) {
+      // soft-fail: следующий запуск повторит попытку, флаг не выставлен
+      DebugLogger.error('lesson_lock_system:prevId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Синхронная проверка (без флага "впервые") — для UI exam.tsx */

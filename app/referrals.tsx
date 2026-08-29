@@ -72,6 +72,7 @@ import {
   beginReferralInvitesRequest, commitReferralState, hydrateReferralStateFromRaw,
   isReferralInvitesRequestCurrent, readReferralDrain, readReferralInvites,
 } from './referrals_cache';
+import { DebugLogger } from './debug-logger';
 
 function makeL(lang: Lang) {
   return (
@@ -321,7 +322,10 @@ export default function ReferralsScreen() {
             ));
             setLoading(false);
           }
-        } catch { /* битый кэш — просто ждём сеть */ }
+        } catch (e) {
+      // битый кэш — просто ждём сеть
+      DebugLogger.error('referrals:currentDrain', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })
       .catch(() => {});
     load()
@@ -567,7 +571,10 @@ export default function ReferralsScreen() {
       setCodeCopied(true);
       if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
       copyTimerRef.current = setTimeout(() => setCodeCopied(false), 1600);
-    } catch { /* буфер недоступен — код всё равно виден на экране */ }
+    } catch (e) {
+      // буфер недоступен — код всё равно виден на экране
+      DebugLogger.error('referrals:copied', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }, [referralCode, renderAccountScope, renderToken]);
 
   useEffect(() => () => {

@@ -12,6 +12,7 @@ import {
   type AccountGenerationToken,
   type AccountTransitionLockLease,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 /** Legacy global v1 key. New overlay state must never be written here. */
 export const CUSTOMIZATION_DEV_GRANT_RECEIPT_KEY = 'customization_dev_unlock_all_v1';
@@ -236,9 +237,10 @@ function exactOwnedRecord(raw: string | null): Record<string, unknown> {
     if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
       return parsed as Record<string, unknown>;
     }
-  } catch {
-    // Fail closed below.
-  }
+  } catch (e) {
+      // Fail closed below.
+      DebugLogger.error('customization_dev_grant:exactOwnedRecord', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   throw new Error('customization_dev_legacy_ownership_invalid');
 }
 

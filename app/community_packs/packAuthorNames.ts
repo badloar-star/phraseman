@@ -20,6 +20,7 @@ import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { triLang, type Lang } from '../../constants/i18n';
+import { DebugLogger } from '../debug-logger';
 
 const AUTHOR_NAME_CACHE_KEY = 'community_pack_author_names_v1';
 const AUTHOR_NAME_TTL_MS = 7 * 24 * 60 * 60 * 1000;
@@ -90,9 +91,10 @@ async function writeCache(sid: string, name: string): Promise<void> {
   cache[sid] = { name, at: Date.now() };
   try {
     await AsyncStorage.setItem(AUTHOR_NAME_CACHE_KEY, JSON.stringify(cache));
-  } catch {
-    /* кэш — не критичный путь */
-  }
+  } catch (e) {
+      // кэш — не критичный путь
+      DebugLogger.error('packAuthorNames:cache', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Свой ник из настроек аккаунта («Имя / никнейм»). */

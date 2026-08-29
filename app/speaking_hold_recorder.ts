@@ -20,6 +20,7 @@
 import { Platform } from 'react-native';
 
 import { base64ToBytes, pcmChunksToWav, pcmDurationSec, type WavPcmConfig } from './pcm_wav';
+import { DebugLogger } from './debug-logger';
 
 type RecordingActivityLease = { release(): void };
 
@@ -192,7 +193,10 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
   // Native PCM capture bypasses expo-speech, so it must explicitly participate
   // in the same process-wide session arbitration as the system recognizer.
   let recordingLease: RecordingActivityLease | null = claimRecordingActivity(() => {
-    try { void native.stop(); } catch { /* recorder was not started or is already gone */ }
+    try { void native.stop(); } catch (e) {
+      // recorder was not started or is already gone
+      DebugLogger.error('speaking_hold_recorder:settled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   });
   // stop() may be triggered by release AND by the max-hold timer; share one promise.
   let stopPromise: Promise<string | null> | null = null;
@@ -212,15 +216,17 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
   const teardownNative = () => {
     try {
       dataSub?.remove?.();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('speaking_hold_recorder:teardownNative', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     dataSub = undefined;
     try {
       // stop() may return a promise (Android) — we don't await; we already have the PCM.
       void native.stop();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('speaking_hold_recorder:teardownNative', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
 
@@ -287,18 +293,20 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
         chunks.push(bytes);
         try {
           opts?.onLevel?.(pcm16VolumeSample(bytes));
-        } catch {
-          /* UI animation callbacks must never interrupt audio capture. */
-        }
+        } catch (e) {
+      // UI animation callbacks must never interrupt audio capture.
+      DebugLogger.error('speaking_hold_recorder:bytes', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         // Первый реальный чанк = мик пишет по-настоящему. Сообщаем один раз,
         // чтобы UI показал «Говори» именно сейчас, а не в момент cold-start.
         if (!firstAudioFired) {
           firstAudioFired = true;
           try {
             opts?.onFirstAudio?.();
-          } catch {
-            /* колбэк UI не должен ронять запись */
-          }
+          } catch (e) {
+      // колбэк UI не должен ронять запись
+      DebugLogger.error('speaking_hold_recorder:bytes', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         }
       }
     });
@@ -328,9 +336,10 @@ export function deleteHoldRecording(uri: string | null): void {
   try {
     const file = new fs.File(uri);
     if (file.exists) file.delete();
-  } catch {
-    /* already gone / locked — not critical */
-  }
+  } catch (e) {
+      // already gone / locked — not critical
+      DebugLogger.error('speaking_hold_recorder:file', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

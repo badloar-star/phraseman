@@ -50,6 +50,7 @@ import {
   capturePremiumActivationEventGuard,
   readPremiumActivationDisposition,
 } from '../app/premium_activation_event_guard';
+import { DebugLogger } from '../app/debug-logger';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -439,8 +440,9 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     }
     try {
       await restoreFromCloud();
-    } catch {
-      /* premium state can still fall back to local/RevenueCat */
+    } catch (e) {
+      // premium state can still fall back to local/RevenueCat
+      DebugLogger.error('PremiumContext:refreshEpoch', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     if (premiumReloadEpochRef.current !== refreshEpoch) return;
     invalidatePremiumCache();

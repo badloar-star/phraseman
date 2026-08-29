@@ -41,6 +41,7 @@ import {
   paidLevelSpinEnvelopePrefix,
   parsePaidLevelSpinEnvelope,
 } from './level_spin_local_contract';
+import { DebugLogger } from './debug-logger';
 
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -1693,8 +1694,9 @@ export async function syncPendingLevelSpinStarGrants(
         return compacted;
       }));
       if (projection) publishProjection(token, projection);
-    } catch {
+    } catch (e) {
       // Sync is persistence only; the locally committed credit remains durable.
+      DebugLogger.error('level_spin_star_grants:compactedIds', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   if (!isCurrentAccountGeneration(token, ownerStableId)) return { synced: 0, pending: 0 };

@@ -6,6 +6,7 @@ import {
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 const TOTAL = 50;
 
@@ -102,14 +103,20 @@ function applyPrimedFromStorageStrings(
     try {
       const parsed: number[] = JSON.parse(order);
       if (Array.isArray(parsed) && parsed.length > 0) orderArr = parsed;
-    } catch { /* keep null */ }
+    } catch (e) {
+      // keep null
+      DebugLogger.error('lesson_screen_bootstrap:applyPrimedFromStorageStrings', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
   let progressArr: string[] | null = null;
   if (prog) {
     try {
       const p: string[] = JSON.parse(prog);
       if (Array.isArray(p) && p.length > 0) progressArr = p;
-    } catch { /* keep null */ }
+    } catch (e) {
+      // keep null
+      DebugLogger.error('lesson_screen_bootstrap:applyPrimedFromStorageStrings', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
   byLesson[primedKey(lessonId, studyTarget)] = {
     cell: parseIntCell(ci),
@@ -171,10 +178,10 @@ export async function primeLessonScreenFromStorage(
     ]);
     applyPrimedFromStorageStrings(lessonId, ci, order, prog, override, studyTarget);
     publishLessonPrimeSummary(studyTarget);
-  } catch {
-    // Priming is an optimization only. Callers must still be able to navigate to
-    // the lesson; the lesson screen performs its own authoritative storage load.
-  }
+  } catch (e) {
+      // Priming is an optimization only. Callers must still be able to navigate to // the lesson; the lesson screen performs its own authoritative storage load.
+      DebugLogger.error('lesson_screen_bootstrap:primeLessonScreenFromStorage', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function getLessonScreenPrimed(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): Primed | null {

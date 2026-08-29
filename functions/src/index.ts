@@ -283,6 +283,7 @@ const submitLearningV2RequiredSessionCompletion =
 const {
   ADMIN_ALERT_BOT_TOKEN,
   adminAlertOnUserReport,
+  adminAlertOnCronHeartbeat,
   adminAlertOnCriticalError,
   adminAlertOnAuthFailureSpike,
   adminAlertOnContentReport,
@@ -383,6 +384,7 @@ exports.progressMigrateSnapshot = progressMigrateSnapshot;
 exports.submitLearningV2RequiredSessionCompletion =
   submitLearningV2RequiredSessionCompletion;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
+exports.adminAlertOnCronHeartbeat = adminAlertOnCronHeartbeat;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnAuthFailureSpike = adminAlertOnAuthFailureSpike;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;

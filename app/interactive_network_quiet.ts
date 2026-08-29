@@ -1,3 +1,4 @@
+import { DebugLogger } from './debug-logger';
 const MAX_ACTIVE_NETWORK_LEASES = 32;
 const MAX_QUIET_HANDLES = 16;
 const SOURCE = /^[a-z][a-z0-9_.:-]{0,79}$/;
@@ -149,7 +150,10 @@ export const releaseInteractiveNetworkQuiet = (
     phase = 'open';
     quiescence = Promise.resolve();
     for (const participant of participants.values()) {
-      try { participant.resume(); } catch { /* resume retries belong to the producer */ }
+      try { participant.resume(); } catch (e) {
+      // resume retries belong to the producer
+      DebugLogger.error('interactive_network_quiet:ticket', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   });
 };

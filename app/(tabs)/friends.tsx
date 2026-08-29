@@ -211,6 +211,7 @@ import {
   devBotToFriendProfile,
   devBotTogetherMetrics,
 } from '../friends_together/dev_bots';
+import { DebugLogger } from '../debug-logger';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -338,7 +339,10 @@ async function writeProfilesCache(cache: Record<string, ProfileCacheEntry>, reta
       FRIEND_PROFILES_CACHE_KEY,
       JSON.stringify(pruneFriendsProfileCache(cache, Date.now(), retainUids)),
     );
-  } catch { /* ignore */ }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('friends:writeProfilesCache', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Firestore accessor ────────────────────────────────────────────────────────
@@ -1345,10 +1349,16 @@ export default function FriendsTabScreen() {
               if (Number.isFinite(dMs) && dMs >= monday.getTime()) activeDaysThisWeek += 1;
             }
           }
-        } catch { /* дефолт 0 активных дней */ }
+        } catch (e) {
+      // дефолт 0 активных дней
+      DebugLogger.error('friends:dMs', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         setMyWeeklyStats({ weeklyXp, activeDaysThisWeek, weekKey });
         setChestClaimedWeekKey(claimedWeekKey);
-      } catch { /* офлайн — сундук останется locked до следующего фокуса */ }
+      } catch (e) {
+      // офлайн — сундук останется locked до следующего фокуса
+      DebugLogger.error('friends:dMs', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return () => { cancelled = true; };
   }, [friendsTogetherPolicy.enabled, friendsRuntimeActive, focusTick]);
@@ -1757,7 +1767,10 @@ export default function FriendsTabScreen() {
         setReferralCodeAccountKey(accountScopeKey(requestToken));
         setReferralCode(rc.trim().toUpperCase());
       }
-    } catch { /* нет auth_links / сети — добьём ретраем ниже (useEffect) */ }
+    } catch (e) {
+      // нет auth_links / сети — добьём ретраем ниже (useEffect)
+      DebugLogger.error('friends:rc', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     if (!isCurrentRequest()) return;
     const state = await getClaimableReferralState({ force: options.force });
     if (state.ok && isCurrentRequest()) {
@@ -1777,7 +1790,10 @@ export default function FriendsTabScreen() {
       const until = Number(vip?.vip_until ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
       if (show && isCurrentRequest()) setAccessEndedOpen(true);
-    } catch { /* нет данных — пропускаем */ }
+    } catch (e) {
+      // нет данных — пропускаем
+      DebugLogger.error('friends:show', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     const ownedTask = task.finally(() => {
       if (referralRefreshInFlightRef.current === ownedTask) referralRefreshInFlightRef.current = null;
@@ -2167,9 +2183,10 @@ export default function FriendsTabScreen() {
             JSON.stringify({ canonicalUid: uid, friends, requests, savedAt: Date.now() }),
           );
           memoryUpsertFriendsTabSwr(uid, friends, requests);
-        } catch {
-          /* ignore */
-        }
+        } catch (e) {
+      // ignore
+      DebugLogger.error('friends:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })();
     }, 450);
     return () => clearTimeout(timer);
@@ -2207,7 +2224,10 @@ export default function FriendsTabScreen() {
             await refreshFriendsTogether(records);
             if (cancelled) return;
             setTogetherSnapshot(getFriendsTogetherSnapshot());
-          } catch { /* best-effort — снапшот остаётся прежним/пустым */ }
+          } catch (e) {
+      // best-effort — снапшот остаётся прежним/пустым
+      DebugLogger.error('friends:records', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         })();
       }
     })();

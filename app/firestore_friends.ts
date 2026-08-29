@@ -5,6 +5,7 @@ import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normali
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { DebugLogger } from './debug-logger';
 
 /** Устаревший глобальный ключ — без привязки к stableId; мигрируем в v2 при чтении. */
 const FRIEND_CODE_LEGACY_KEY = 'friend_code_local_v1';
@@ -42,9 +43,10 @@ async function loadOwnerScopedStoredCode(owner: string): Promise<string | null> 
       await saveOwnerScopedStoredCode(owner, c);
       return c;
     }
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('firestore_friends:c', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return null;
 }
 
@@ -54,9 +56,10 @@ async function saveOwnerScopedStoredCode(owner: string, code: string): Promise<v
     if (!isValidInviteCodeLookup(c)) return;
     const rec: FriendCodeOwnerRecord = { ownerStableId: owner, code: c };
     await AsyncStorage.setItem(FRIEND_CODE_OWNER_JSON_KEY, JSON.stringify(rec));
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('firestore_friends:c', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** @deprecated Не подставлять в UI до `ensureMyInviteCodeForFriends` — избегаем мигания чужим/старым кодом. */
@@ -186,9 +189,10 @@ export async function readCachedMyInviteCodeForFriends(): Promise<string | null>
     const owner = await resolveOwnerForFriendCodeCache();
     const local = await loadOwnerScopedStoredCode(owner);
     if (local) return local;
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('firestore_friends:local', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return null;
 }
 
@@ -230,9 +234,10 @@ export async function ensureMyFriendCode(): Promise<string | null> {
         try {
           await callFriendEnsureMyCode(uid);
           await saveOwnerScopedStoredCode(owner, c);
-        } catch {
-          // Re-registration failed (network / claimed by someone else) — trust cache, try next time.
-        }
+        } catch (e) {
+      // Re-registration failed (network / claimed by someone else) — trust cache, try next time.
+      DebugLogger.error('firestore_friends:indexUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return cached;
       } else {
         // Auth not ready — trust cache for now.
@@ -330,9 +335,10 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
     if (uid) {
       if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'legacy_friend_code' };
     }
-  } catch {
-    /* Best-effort legacy lookup for old users whose friend_code_index was never backfilled. */
-  }
+  } catch (e) {
+      // Best-effort legacy lookup for old users whose friend_code_index was never backfilled.
+      DebugLogger.error('firestore_friends:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   // Реферальный код как код друга. Пользователю на виду именно РЕФЕРАЛЬНЫЙ код (кнопки
   // «Пригласить», карточка «Твой код для друзей» на /referrals, share-ссылка), а friend-код
@@ -348,9 +354,10 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
         if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'referral_code' };
       }
     }
-  } catch {
-    /* Best-effort: referral_codes может быть недоступен (правила/сеть) — не роняем поиск. */
-  }
+  } catch (e) {
+      // Best-effort: referral_codes может быть недоступен (правила/сеть) — не роняем поиск.
+      DebugLogger.error('firestore_friends:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   return null;
 }

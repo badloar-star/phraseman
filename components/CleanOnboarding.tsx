@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { isAccountDeleteIdentityQuarantinedFromKnownState } from '../app/account_delete_quarantine';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
@@ -869,6 +870,11 @@ const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 
 
 function OnboardingSkipLink({ step }: { step: CleanOnboardingStep }) {
   const skip = React.useContext(OnboardingSkipContext);
+  // зачем (инцидент владельца 2026-08-29): при застрявшем удалении кнопка
+  // «Пропустить» уводила мимо входа ПРЯМО в старые локальные данные
+  // недоудалённого аккаунта. Пока замок удаления известен как активный —
+  // скипа нет вовсе: человек обязан пройти вход, где замок обработают.
+  if (isAccountDeleteIdentityQuarantinedFromKnownState()) return null;
   if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null;
   return (
     <Pressable

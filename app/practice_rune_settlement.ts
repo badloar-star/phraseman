@@ -295,7 +295,10 @@ export async function markPracticeRuneSettlementPending(input: Readonly<{
   if (existingRaw) {
     try {
       marker = JSON.parse(existingRaw) as { createdAtMs?: unknown; requestFingerprint?: unknown };
-    } catch { /* legacy/corrupt marker is replaced by the exact current intent */ }
+    } catch (e) {
+      // legacy/corrupt marker is replaced by the exact current intent
+      DebugLogger.error('practice_rune_settlement:existingRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
   const operationId = practiceRuneSettlementOperationId({
     activity: input.earnings.activity,

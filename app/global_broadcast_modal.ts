@@ -21,6 +21,7 @@ import {
   ruKnowledgeShardsAfterNumber,
   ukKnowledgeShardsAfterNumber,
 } from '../constants/shard_plurals';
+import { DebugLogger } from './debug-logger';
 
 export type GlobalBroadcastKind = 'general' | 'review_promo';
 export type GlobalBroadcastPremiumAudience = 'all' | 'free' | 'premium';
@@ -551,9 +552,10 @@ export async function recordReviewPromoClick(payload: GlobalBroadcastModalPayloa
       clickedAt: new Date().toISOString(),
       status: 'clicked',
     });
-  } catch {
-    // Best-effort analytics; never block the user from opening the store.
-  }
+  } catch (e) {
+      // Best-effort analytics; never block the user from opening the store.
+      DebugLogger.error('global_broadcast_modal:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function claimAndDismissGlobalBroadcastModal(

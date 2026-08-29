@@ -43,6 +43,7 @@ import {
   primeMaxTutorPreview,
   type MaxTutorPreview,
 } from './max_tutor_preview';
+import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -122,8 +123,9 @@ export async function buildMintExtras(
     extras.personaRole = 'a friendly conversation partner who knows the learner';
     try {
       extras.memoryBlock = formatMemoryBlock(await buildCompanionMemory(cefr ?? 'A2'));
-    } catch {
+    } catch (e) {
       // Память недоступна (чистый профиль/сбой стора) — компаньон без памяти.
+      DebugLogger.error('max_call_mint_request:name', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return extras;
@@ -191,7 +193,9 @@ export async function buildLearnerSnapshot(
       lines.push(`lessons completed: ${Math.max(0, home.lessonsCompleted)}`);
       if (home.lastLessonId) lines.push(`last lesson: ${home.lastLessonId}`);
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('max_call_mint_request:home', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   // The mistake-practice store currently has isolated en/fr namespaces only.
   // Never read the English namespace for a Spanish MAX lesson.
   if (studyTarget !== 'es') {
@@ -200,7 +204,9 @@ export async function buildLearnerSnapshot(
       lines.push(`mistakes ready to practise: ${insights.dueWords + insights.duePhrases}`);
       const words = insights.topMistakes.slice(0, 6).map((item) => item.phrase.trim()).filter(Boolean);
       if (words.length > 0) lines.push(`frequent mistakes to revisit naturally: ${words.join(', ')}`);
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('max_call_mint_request:words', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
   if (cefr) lines.push(`level in the app: ${cefr}`);
   return lines.join('\n');
@@ -250,7 +256,9 @@ export function buildLessonSyllabusBlock(studyTarget: MaxVoiceStudyTarget = 'en'
     if (nextPhrases.length > 0) {
       lines.push(`SYLLABUS — next app lesson ${current + 1} phrases (preview; a natural "next topic"): ${nextPhrases.join(' | ')}`);
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('max_call_mint_request:nextPhrases', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return lines.join('\n');
 }
 
@@ -364,9 +372,10 @@ export async function releaseUnusedMint(mint: MaxVoiceMintResponse): Promise<voi
       usage: { audioInputTokens: 0, audioOutputTokens: 0, cachedTokens: 0, textTokens: 0 },
       channel: 'realtime',
     });
-  } catch {
-    // См. docstring: серверные страховки дожмут.
-  }
+  } catch (e) {
+      // См. docstring: серверные страховки дожмут.
+      DebugLogger.error('max_call_mint_request:releaseUnusedMint', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: файлы в app/ считаются роутами и требуют default export. */

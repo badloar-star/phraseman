@@ -5,6 +5,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
+import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -124,9 +125,10 @@ async function ensureActivityLikeAuthLink(stableUid: string): Promise<void> {
   if (!db) return;
   try {
     await db.collection('users').doc(stableUid).set({ firebaseAuthUid: authUid }, { merge: true });
-  } catch {
-    /* Existing sync usually owns this link; callable will enforce it server-side. */
-  }
+  } catch (e) {
+      // Existing sync usually owns this link; callable will enforce it server-side.
+      DebugLogger.error('friend_activity_likes:db', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function fetchLegacyActivityLikeStates(

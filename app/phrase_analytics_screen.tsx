@@ -51,6 +51,7 @@ import {
 } from './phrase_analytics_warm_cache';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { DebugLogger } from './debug-logger';
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
 // ── Дизайн-токены ─────────────────────────────────────────────────────────────
@@ -366,8 +367,9 @@ export default function PhraseAnalyticsScreen() {
         setLoadedCacheKey(requestCacheKey);
         setCachedData(result);
       }
-    } catch {
+    } catch (e) {
       // Quiet revalidation keeps the last known real data visible.
+      DebugLogger.error('phrase_analytics_screen:result', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       if (isPhraseAnalyticsRequestCurrent(request)) setLoading(false);
     }

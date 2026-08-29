@@ -128,19 +128,22 @@ function safeCleanup(
 ): void {
   try {
     subscription?.remove();
-  } catch {
-    // Cleanup is best-effort after the observation has already terminated.
-  }
+  } catch (e) {
+      // Cleanup is best-effort after the observation has already terminated.
+      console.warn('[silent-catch] voice_physical_device_runner_v1:safeCleanup', e instanceof Error ? e.message : String(e));
+    }
   try {
     player?.pause();
-  } catch {
-    // A failed native player may already be released.
-  }
+  } catch (e) {
+      // A failed native player may already be released.
+      console.warn('[silent-catch] voice_physical_device_runner_v1:safeCleanup', e instanceof Error ? e.message : String(e));
+    }
   try {
     player?.remove();
-  } catch {
-    // A failed native player may already be released.
-  }
+  } catch (e) {
+      // A failed native player may already be released.
+      console.warn('[silent-catch] voice_physical_device_runner_v1:safeCleanup', e instanceof Error ? e.message : String(e));
+    }
 }
 
 async function observeExactLocalPlayback(input: {

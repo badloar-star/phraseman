@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT } from './ai_mistake_explain_flags';
+import { DebugLogger } from './debug-logger';
 
 export { FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT };
 
@@ -42,7 +43,9 @@ export async function markAiMistakeExplainUsed(): Promise<void> {
       DAILY_AI_MISTAKE_EXPLAIN_KEY,
       JSON.stringify({ date: data.date, count: data.count + 1 }),
     );
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('ai_mistake_explain_limit_session:data', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function peekAiMistakeLimitNoticeShownToday(): boolean {
@@ -67,7 +70,9 @@ export async function markAiMistakeLimitNoticeShownToday(): Promise<void> {
   limitNoticeShownDayMemory = today;
   try {
     await AsyncStorage.setItem(DAILY_AI_MISTAKE_LIMIT_NOTICE_KEY, today);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('ai_mistake_explain_limit_session:today', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function __resetAiMistakeLimitNoticeMemoryForTests(): void {

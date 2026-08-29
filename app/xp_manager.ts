@@ -239,9 +239,10 @@ function patchProfileXpSnapshot(totalXp: number): void {
         updatedAt: Date.now(),
       },
     } : {});
-  } catch {
-    // Snapshot is a UI cache only; AsyncStorage remains the source of truth.
-  }
+  } catch (e) {
+      // Snapshot is a UI cache only; AsyncStorage remains the source of truth.
+      DebugLogger.error('xp_manager:safeTotalXp', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function isStorageFullError(error: unknown): boolean {
@@ -289,9 +290,10 @@ async function reserveLocalProgressEvent(eventId?: string): Promise<boolean> {
       ledgerKey,
       JSON.stringify(ids.slice(-LOCAL_PROGRESS_EVENT_LEDGER_MAX)),
     );
-  } catch {
-    // If the tiny local ledger fails, keep the reward flow alive.
-  }
+  } catch (e) {
+      // If the tiny local ledger fails, keep the reward flow alive.
+      DebugLogger.error('xp_manager:ids', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return true;
 }
 

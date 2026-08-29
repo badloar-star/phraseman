@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SYNC_KEYS } from './cloud_sync';
+import { DebugLogger } from './debug-logger';
 
 const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   'user_name',
@@ -33,9 +34,10 @@ export function isMeaningfulStoredAccountValue(raw: string | null): boolean {
     const parsed = JSON.parse(value);
     if (Array.isArray(parsed)) return parsed.length > 0;
     if (parsed && typeof parsed === 'object') return Object.keys(parsed).length > 0;
-  } catch {
-    // Non-empty scalar strings can be account-owned values.
-  }
+  } catch (e) {
+      // Non-empty scalar strings can be account-owned values.
+      DebugLogger.error('local_account_data:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return true;
 }
 

@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { getStableId } from './stable_id';
+import { DebugLogger } from './debug-logger';
 
 const SEEN_KEY = 'seen_warning_ids';
 const WARN_FETCH_AT_KEY = 'user_warnings_last_fetch_at_v1';
@@ -59,7 +60,9 @@ export async function checkUserWarning(): Promise<UserWarning | null> {
         return { id: doc.id, message: doc.data().message };
       }
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('user_warning_check:fetchedAt', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return null;
 }
 

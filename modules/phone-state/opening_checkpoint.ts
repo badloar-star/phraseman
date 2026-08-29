@@ -80,9 +80,10 @@ function stableUnion(values: readonly unknown[]): readonly unknown[] {
     for (const item of items) {
       try {
         unique.set(canonicalJsonWithLimit(item, 64 * 1024), item);
-      } catch {
-        // The caller quarantines a key when no usable values remain.
-      }
+      } catch (e) {
+      // The caller quarantines a key when no usable values remain.
+      console.warn('[silent-catch] opening_checkpoint:items', e instanceof Error ? e.message : String(e));
+    }
     }
   }
   return Object.freeze([...unique.entries()]

@@ -13,6 +13,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { lingmanCertificateKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 export const LINGMAN_CERT_STORAGE_KEY = 'lingman_certificate_v1';
 export const LINGMAN_CERT_MIN_PCT = 80;
@@ -101,7 +102,9 @@ export async function loadLingmanCertificate(studyTarget?: RuntimeStudyTarget): 
 export async function saveLingmanCertificate(cert: LingmanCertificate, studyTarget?: RuntimeStudyTarget): Promise<void> {
   try {
     await AsyncStorage.setItem(lingmanCertificateKey(studyTarget), JSON.stringify(cert));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('exam_certificate:saveLingmanCertificate', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Используется когда юзер ввёл имя в модалке уже после генерации серта. */

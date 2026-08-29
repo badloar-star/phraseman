@@ -19,6 +19,7 @@ import HybridAlertShell from './modal_fx/HybridAlertShell';
 import DuoPressable from './DuoPressable';
 import { soundDirector } from '../modules/audio/sound_director';
 import { onAppEvent } from '../app/events';
+import { DebugLogger } from '../app/debug-logger';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 const GIFT_SOUND = { soundEventId: 'pm.social.gift_received' as const };
@@ -78,8 +79,9 @@ export default function GlobalFriendGiftHost() {
       await AsyncStorage.setItem(pollKey, String(now));
       if (!isCurrentAccountGeneration(accountToken, accountToken.stableId) || gifts.length === 0) return;
       setPending((current) => [...current, ...gifts.filter((gift) => !current.some((item) => item.id === gift.id))]);
-    } catch {
-      /* Подарок останется unseen и будет подобран следующим безопасным poll. */
+    } catch (e) {
+      // Подарок останется unseen и будет подобран следующим безопасным poll.
+      DebugLogger.error('GlobalFriendGiftHost:gifts', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       runningRef.current = false;
       if (forcePollPendingRef.current) {

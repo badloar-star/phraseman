@@ -25,6 +25,7 @@ import {
   type ReferralWelcomeDecision,
 } from '../app/referral_welcome_state';
 import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
+import { DebugLogger } from '../app/debug-logger';
 
 function makeL(lang: Lang) {
   return (
@@ -90,8 +91,9 @@ export default function ReferralWelcomeHost() {
       // зачем: экран ввода кода удалён — единый экран рефералов сам выдвигает
       // шит «Код от друга» по параметру enter=1.
       router.push('/referrals?enter=1' as never);
-    } catch {
-      /* роут недоступен — просто закрываем */
+    } catch (e) {
+      // роут недоступен — просто закрываем
+      DebugLogger.error('ReferralWelcomeHost:openCodeEntry', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
 

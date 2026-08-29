@@ -25,6 +25,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { DebugLogger } from './debug-logger';
 
 const PENDING_KEY = 'lesson_bonus_pending_v1';
 const PENDING_MAX_ENTRIES = 32;
@@ -101,9 +102,10 @@ async function writePending(
       if (!isAccountOperationCurrent(accountToken)) return;
       await write();
     });
-  } catch {
-    // best effort — потеря маркера не хуже прежнего поведения
-  }
+  } catch (e) {
+      // best effort — потеря маркера не хуже прежнего поведения
+      DebugLogger.error('lesson_bonus_grant:write', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function markPending(entry: PendingEntry, accountToken: AccountGenerationToken): Promise<void> {

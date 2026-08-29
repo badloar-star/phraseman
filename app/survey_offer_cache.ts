@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import type { SurveyOfferSnapshot } from './survey_offer_model';
+import { DebugLogger } from './debug-logger';
 
 export type SurveyOfferScope = { stableId: string; dayKey: string; lang: Lang };
 type Entry = { snapshot: SurveyOfferSnapshot | null; writtenAtMs: number; requestId: number };
@@ -44,9 +45,10 @@ export async function primeSurveyOfferCacheFromStorage(nowMs = Date.now()): Prom
       });
     }
     prune(nowMs);
-  } catch {
-    // Cached survey state is best-effort only.
-  }
+  } catch (e) {
+      // Cached survey state is best-effort only.
+      DebugLogger.error('survey_offer_cache:entry', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function peekSurveyOffer(scope: SurveyOfferScope, nowMs = Date.now()): SurveyOfferSnapshot | null {

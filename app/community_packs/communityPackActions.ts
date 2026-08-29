@@ -16,6 +16,7 @@ import {
   setCommunityPackLikedLocally,
 } from './packSocialStorage';
 import { registerCommunityPackAddRemote, setCommunityPackLikeRemote } from './packSocialFirestore';
+import { DebugLogger } from '../debug-logger';
 
 export type AddPackToLibraryResult =
   /** Добавлен сейчас. */
@@ -71,9 +72,10 @@ async function bumpAddedCountOnce(packId: string): Promise<void> {
     const userId = await getCanonicalUserId();
     if (!userId) return;
     await registerCommunityPackAddRemote(packId, userId);
-  } catch {
-    /* счётчик — не критичный путь, UI уже обновлён */
-  }
+  } catch (e) {
+      // счётчик — не критичный путь, UI уже обновлён
+      DebugLogger.error('communityPackActions:userId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export type ToggleLikeResult = {
@@ -108,9 +110,10 @@ export async function toggleCommunityPackLike(packId: string): Promise<ToggleLik
       const res = await setCommunityPackLikeRemote(packId, userId, nextLiked);
       synced = res.changed;
     }
-  } catch {
-    /* лайк остаётся локальным до следующей попытки */
-  }
+  } catch (e) {
+      // лайк остаётся локальным до следующей попытки
+      DebugLogger.error('communityPackActions:res', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return { liked: nextLiked, changed: true, synced };
 }
 

@@ -15,6 +15,7 @@ import { arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2I
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
+import { DebugLogger } from './debug-logger';
 
 export default function ArenaInviteScreen() {
   const router = useRouter();
@@ -74,7 +75,10 @@ export default function ArenaInviteScreen() {
       try {
         const next = await arenaV2InviteStatus(inviteId);
         if (cancelled || handleStatus(next)) return;
-      } catch { /* retry only while focused */ }
+      } catch (e) {
+      // retry only while focused
+      DebugLogger.error('arena_invite:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       if (!cancelled) timer = setTimeout(poll, 1500);
     };
     timer = setTimeout(poll, 1500);
@@ -92,7 +96,10 @@ export default function ArenaInviteScreen() {
           : await arenaV2InviteReady(inviteId);
         readyRequestedRef.current = inviteId;
         if (cancelled || handleStatus(next)) return;
-      } catch { /* retry only while focused */ }
+      } catch (e) {
+      // retry only while focused
+      DebugLogger.error('arena_invite:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       if (!cancelled) timer = setTimeout(poll, 1500);
     };
     void poll();

@@ -1,3 +1,4 @@
+import { DebugLogger } from './debug-logger';
 /**
  * «Звёздная» оценка урока для гейтов (зачёт, Лингман) и вкладки «Уроки».
  * max(best_score, оценка из текущего progress) — чтобы устаревший best_score
@@ -21,8 +22,9 @@ export function effectiveLessonStarScore(
         const fromProgress = (correct / denominator) * 5;
         return { score: Math.max(best, fromProgress), correctCount: correct };
       }
-    } catch {
-      /* ignore */
+    } catch (e) {
+      // ignore
+      DebugLogger.error('lesson_star_score:fromProgress', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return { score: best, correctCount: correct };

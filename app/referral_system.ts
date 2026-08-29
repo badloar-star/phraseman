@@ -10,6 +10,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { DebugLogger } from './debug-logger';
 
 const LEGACY_REFERRAL_KEY = 'user_referral_code';
 const LEGACY_REFERRAL_OWNER_KEY = 'user_referral_code_owner_v1';
@@ -116,9 +117,10 @@ export async function generateReferralCode(name: string): Promise<string> {
             await AsyncStorage.setItem(scope.storageKey, normalized);
             return referralCodeScopeIsCurrent(scope) ? normalized : '';
           }
-        } catch {
-          /* линк ещё не готов (медленная сеть) — добьём ретраем в friends.tsx useEffect */
-        }
+        } catch (e) {
+      // линк ещё не готов (медленная сеть) — добьём ретраем в friends.tsx useEffect
+      DebugLogger.error('referral_system:normalized', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       return '';
     }

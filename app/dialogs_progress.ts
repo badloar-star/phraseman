@@ -10,6 +10,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
 
 export const DIALOGS_COMPLETED_KEY = 'dialogs_completed_ids_v1';
 
@@ -46,7 +47,8 @@ export async function markDialogCompleted(scenarioId: string): Promise<void> {
     const next = [...current, scenarioId];
     await AsyncStorage.setItem(DIALOGS_COMPLETED_KEY, JSON.stringify(next));
     emitAppEvent('dialogs_progress_changed', undefined);
-  } catch {
-    // best-effort: при сбое записи диалог просто покажется «новым» в следующий раз
-  }
+  } catch (e) {
+      // best-effort: при сбое записи диалог просто покажется «новым» в следующий раз
+      DebugLogger.error('dialogs_progress:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

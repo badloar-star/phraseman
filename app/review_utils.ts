@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { decideReviewPrompt, type ReviewPromptInput } from './review_prompt_policy';
+import { DebugLogger } from './debug-logger';
 
 const KEY_LAST_PROMPTED = 'review_prompted_at';
 const KEY_SESSIONS      = 'app_session_count';
@@ -229,7 +230,9 @@ export const incrementSessionCount = async (): Promise<void> => {
     const raw = await AsyncStorage.getItem(KEY_SESSIONS);
     const n = parseInt(raw || '0') + 1;
     await AsyncStorage.setItem(KEY_SESSIONS, String(n));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('review_utils:n', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const canShowReview = async (input: Omit<ReviewPromptInput, 'nowMs' | 'priorPromptCount' | 'lastPromptedAtMs' | 'hasRated'>): Promise<boolean> => {
@@ -269,7 +272,9 @@ export const markReviewRated = async (): Promise<void> => {
       AsyncStorage.setItem(KEY_RATED, '1'),
       AsyncStorage.setItem(KEY_LAST_PROMPTED, String(Date.now())),
     ]);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('review_utils:markReviewRated', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /**
@@ -298,7 +303,9 @@ export const markReviewPrompted = async (): Promise<void> => {
       AsyncStorage.setItem(KEY_SHOW_COUNT, String(n)),
       AsyncStorage.setItem(KEY_LAST_PROMPTED, String(Date.now())),
     ]);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('review_utils:n', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const requestNativeReview = async (): Promise<void> => {
@@ -311,7 +318,9 @@ export const requestNativeReview = async (): Promise<void> => {
       await markReviewPrompted();
       await StoreReview.requestReview();
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('review_utils:StoreReview', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

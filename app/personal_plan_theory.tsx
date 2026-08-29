@@ -17,6 +17,7 @@ import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './pers
 import { triLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
+import { DebugLogger } from './debug-logger';
 
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] : (value ?? '');
@@ -116,8 +117,9 @@ function PersonalPlanTheoryScreen() {
         openPersonalPlanTask(router, plan, day, task, planInstanceId || undefined, 'replace');
         return;
       }
-    } catch {
+    } catch (e) {
       // нет такого плана/дня/задания — мягко возвращаемся в меню
+      DebugLogger.error('personal_plan_theory:task', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     goBack();
   };

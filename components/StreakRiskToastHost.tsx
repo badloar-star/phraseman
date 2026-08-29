@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { checkStreakLossPending } from '../app/hall_of_fame_utils';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
+import { DebugLogger } from '../app/debug-logger';
 
 const EVENING_HOUR = 17;
 const SHOWN_KEY = 'streak_risk_toast_shown';
@@ -59,8 +60,9 @@ export default function StreakRiskToastHost() {
         }),
         motionVariant: 'hybrid',
       });
-    } catch {
-      /* ignore — optional enhancement */
+    } catch (e) {
+      // ignore — optional enhancement
+      DebugLogger.error('StreakRiskToastHost:shown', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       runningRef.current = false;
     }

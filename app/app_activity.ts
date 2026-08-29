@@ -5,6 +5,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { recordSupportDiagnostic } from './support_diagnostics';
+import { DebugLogger } from './debug-logger';
 
 type ActivityValue = string | number | boolean | null | undefined;
 
@@ -146,9 +147,10 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     // оставляем — это строго необходимая диагностика стабильности (как Crashlytics),
     // согласия не требует.
     await submitClientReport('app_activity', record).catch(() => {});
-  } catch {
-    // Activity logging must never affect product behavior.
-  }
+  } catch (e) {
+      // Activity logging must never affect product behavior.
+      DebugLogger.error('app_activity:record', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function trackFeatureStart(

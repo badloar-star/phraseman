@@ -37,6 +37,7 @@ import { AHA_STRINGS, pickTri } from './aha_scenes';
 import { pickBetterTranscript, softSpeechOutcome, type SoftSpeechOutcome } from './aha_speech_logic';
 import { AHA_THEME } from './aha_theme';
 import type { AhaSpeechStatus, SpeechBeatProps, TriText } from './aha_types';
+import { DebugLogger } from '../../app/debug-logger';
 
 // Android-движок может принять start() и молчать вечно — 7с и выходим в shadow.
 const WATCHDOG_MS = 7000;
@@ -52,9 +53,10 @@ type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 function safeCall(fn: () => void): void {
   try {
     fn();
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('SpeechBeat:safeCall', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // Запись попытки живёт до ретрая/анмаунта — дальше это мусор в кэше (wav).

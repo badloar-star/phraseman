@@ -2,6 +2,7 @@ import { AppState } from 'react-native';
 import { Image } from 'expo-image';
 import { ACTIVE_FOUNDATION_IDS } from './achievement_catalog_v2';
 import { getAchievementImageUrl } from '../constants/achievement_image_urls';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Событийный прогрев дискового кэша арта достижений.
@@ -56,10 +57,10 @@ async function drain(): Promise<void> {
       });
       if (queue.length > 0) await sleep(BATCH_PAUSE_MS);
     }
-  } catch {
-    // Прогрев — «best effort»: ошибка просто откладывает его до следующего
-    // события, показ при этом никогда не остаётся пустым (есть щит).
-  } finally {
+  } catch (e) {
+      // Прогрев — «best effort»: ошибка просто откладывает его до следующего // события, показ при этом никогда не остаётся пустым (есть щит).
+      DebugLogger.error('achievement_art_prefetch:results', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     running = false;
   }
 }

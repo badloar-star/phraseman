@@ -28,6 +28,7 @@ import {
   loadSeasonCosmetics,
   SEASON1_FRAME_ID,
 } from './season_cosmetics';
+import { DebugLogger } from './debug-logger';
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
 export const PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000;
@@ -314,7 +315,9 @@ async function syncPublicProfileSnapshotUnsafe(
   try {
     const banDoc = await db.collection('banned_users').doc(stableId).get();
     if (banDoc.exists || !isCurrent()) return;
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('public_profile_snapshot:banDoc', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   // nameLower ДОЛЖЕН обновляться вместе с name. Иначе при merge:true профиль
   // получает новое name, но старый nameLower (напр. name="Дладуд" +

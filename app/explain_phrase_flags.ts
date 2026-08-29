@@ -1,3 +1,4 @@
+import { DebugLogger } from './debug-logger';
 /**
  * Флаги фичи «Объясни как для 5-летнего» (Фаза 5).
  * Самодостаточный модуль по образцу ai_dialog_flags.ts: env-override + дефолты.
@@ -29,6 +30,9 @@ export function isExplainEnabled(): boolean {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { getRemoteBool } = require('./remote_flags') as { getRemoteBool: (k: string) => boolean };
     if (getRemoteBool('explain_enabled')) return true;
-  } catch { /* remote_flags недоступен — падаем на env */ }
+  } catch (e) {
+      // remote_flags недоступен — падаем на env
+      DebugLogger.error('explain_phrase_flags:isExplainEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return explainEnabledFromEnv() ?? EXPLAIN_ENABLED_DEFAULT;
 }

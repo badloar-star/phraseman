@@ -21,6 +21,7 @@ import { onAppEvent } from '../../app/events';
 import { hapticTap } from '../../hooks/use-haptics';
 import YoutubeInlinePlayer from '../youtube/YoutubeInlinePlayer';
 import YoutubeVideoCard from '../youtube/YoutubeVideoCard';
+import { DebugLogger } from '../../app/debug-logger';
 
 type HomeYoutubeFeatureCardProps = {
   ownerActive: boolean;
@@ -123,10 +124,10 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
           if (settledScope) memorySnapshotByScope.set(settledScope, next);
           setSnapshotState({ scope: renderScope, value: next });
         }
-      } catch {
-        // The home card is optional chrome: keep a warm snapshot or stay absent.
-        // Network errors belong on the full Video screen, not as a Home warning.
-      }
+      } catch (e) {
+      // The home card is optional chrome: keep a warm snapshot or stay absent. // Network errors belong on the full Video screen, not as a Home warning.
+      DebugLogger.error('HomeYoutubeFeatureCard:scopeChanged', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     };
 
     void refresh();

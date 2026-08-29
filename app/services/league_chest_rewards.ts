@@ -214,9 +214,10 @@ export async function unlockLeagueGoldThemeReward(source = 'league_chest'): Prom
       [LEAGUE_GOLD_THEME_UNLOCK_AT_KEY, String(Date.now())],
     ]);
     if (!already) emitAppEvent('gold_theme_unlocked', { source });
-  } catch {
-    // Cosmetic reward only; never block the chest flow.
-  }
+  } catch (e) {
+      // Cosmetic reward only; never block the chest flow.
+      DebugLogger.error('league_chest_rewards:already', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function resolveMyLeagueGroupMeta(): Promise<{
@@ -347,9 +348,10 @@ async function pruneLocalClaimKeys(retainKey: string): Promise<void> {
     ));
     const remove = [...staleClaims, ...staleReveal];
     if (remove.length > 0) await AsyncStorage.multiRemove(remove);
-  } catch {
-    // Best-effort local marker cleanup only.
-  } finally {
+  } catch (e) {
+      // Best-effort local marker cleanup only.
+      DebugLogger.error('league_chest_rewards:remove', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     localClaimPruneInFlight = false;
   }
 }
@@ -825,8 +827,9 @@ export async function fetchActiveLeagueCrowns(uids: string[]): Promise<Record<st
         const nextUpdatedAt = Math.max(0, Math.floor(Number((d as any).updatedAt) || Number(d.expiresAt) || 0));
         if (!current || nextUpdatedAt >= currentUpdatedAt) out[d.uid] = d;
       });
-    } catch {
+    } catch (e) {
       // ignore chunk
+      DebugLogger.error('league_chest_rewards:nextUpdatedAt', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   Object.keys(out).forEach((uid) => {

@@ -52,6 +52,7 @@ import PremiumCard from './PremiumCard';
 import RegistrationPromptModal from './RegistrationPromptModal';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { DebugLogger } from '../app/debug-logger';
 const DISMISSED_AT_KEY = 'auth_save_banner_dismissed_at';
 const XP_THRESHOLD = 1000;
 const DISMISS_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней
@@ -73,7 +74,10 @@ async function shouldShow(isCurrent: () => boolean): Promise<boolean> {
       const dismissedAt = parseInt(dismissedRaw, 10) || 0;
       if (Date.now() - dismissedAt < DISMISS_COOLDOWN_MS) return false;
     }
-  } catch { /* ignore */ }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('SaveProgressBanner:dismissedAt', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   try {
     if (!isCurrent()) return false;
     const info = await getLinkedAuthInfo();
@@ -255,7 +259,10 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
     applyVisibility(false);
     try {
       await AsyncStorage.setItem(DISMISSED_AT_KEY, String(Date.now()));
-    } catch { /* ignore */ }
+    } catch (e) {
+      // ignore
+      DebugLogger.error('SaveProgressBanner:handleDismiss', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }, [applyVisibility]);
 
   const handleSignInPress = useCallback(() => {

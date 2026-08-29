@@ -9,6 +9,7 @@
  * из Speech.getAvailableVoicesAsync (tts_voices.getVoicesOnce).
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../debug-logger';
 
 export const FC_VOICE_PREFS_KEY = 'fc_voice_prefs_v1';
 
@@ -77,12 +78,16 @@ export async function setEnVoiceId(voiceId: string | null): Promise<void> {
     try {
       const p = raw ? JSON.parse(raw) : null;
       if (p && typeof p === 'object' && !Array.isArray(p)) base = p as Record<string, unknown>;
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('voice_prefs:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     await AsyncStorage.setItem(
       FC_VOICE_PREFS_KEY,
       JSON.stringify({ ...base, voiceIdEn: cachedVoiceIdEn }),
     );
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('voice_prefs:p', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Только для юнит-тестов: сброс модульного кэша. */

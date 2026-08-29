@@ -11,6 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export interface PrevRank {
   rank: number;        // 1-based
@@ -46,7 +47,9 @@ export async function loadPrevRank(storageKey: string): Promise<PrevRank | null>
 export async function savePrevRank(storageKey: string, value: PrevRank): Promise<void> {
   try {
     await AsyncStorage.setItem(storageKey, JSON.stringify(value));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('rank_change:savePrevRank', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

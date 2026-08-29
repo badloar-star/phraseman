@@ -16,7 +16,9 @@ export class VoicePlaybackPolicy {
 
   registerStop(stop: () => void): () => void {
     if (!this.enabled) {
-      try { stop(); } catch {}
+      try { stop(); } catch (e) {
+      console.warn('[silent-catch] voice_playback_policy:constructor', e instanceof Error ? e.message : String(e));
+    }
       return () => undefined;
     }
     this.stopCallbacks.add(stop);
@@ -29,7 +31,9 @@ export class VoicePlaybackPolicy {
     this.generation += 1;
     if (enabled) return;
     for (const stop of Array.from(this.stopCallbacks)) {
-      try { stop(); } catch {}
+      try { stop(); } catch (e) {
+      console.warn('[silent-catch] voice_playback_policy:constructor', e instanceof Error ? e.message : String(e));
+    }
     }
   }
 

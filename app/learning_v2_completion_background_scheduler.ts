@@ -24,6 +24,7 @@ import {
   LEARNING_V2_COMPLETION_RETRY_MAX_REVISION,
   type LearningV2CompletionRetryCursor,
 } from "./learning_v2_completion_retry_cursor";
+import { DebugLogger } from './debug-logger';
 
 const MAX_INTERACTIVE_SURFACES = 8;
 const MAX_BACKGROUND_SYNC_FLIGHTS = 8;
@@ -195,9 +196,10 @@ export const createLearningV2CompletionBackgroundScheduler = (
           return;
         try {
           await persistRetry(scopeHash, cursor, "retryable_failure");
-        } catch {
-          /* fail closed */
-        }
+        } catch (e) {
+      // fail closed
+      DebugLogger.error('learning_v2_completion_background_scheduler:current', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })
       .finally(() => {
         const current = credentialAdmissions.get(admissionKey);
@@ -307,9 +309,10 @@ export const createLearningV2CompletionBackgroundScheduler = (
             await loadCursor(scopeHash),
             "retryable_failure",
           );
-        } catch {
-          /* fail closed */
-        }
+        } catch (e) {
+      // fail closed
+      DebugLogger.error('learning_v2_completion_background_scheduler:outcome', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })
       .finally(() => {
         if (inFlights.get(flightKey) === flight) inFlights.delete(flightKey);

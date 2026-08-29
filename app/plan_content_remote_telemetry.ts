@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { trackEvent } from './analytics';
 import type { PlanContentRemoteDay } from './plan_content_remote_readiness';
+import { DebugLogger } from './debug-logger';
 
 /** Why the bundled fallback was used (or '' when we served the server day). */
 export type PlanContentFallbackReason =
@@ -106,9 +107,10 @@ export function recordPlanContentSource(record: PlanContentTelemetryRecord): voi
     if (shouldWriteFirestoreTelemetry(record, key, now)) {
       void writePlanContentTelemetryDoc(record).catch(() => { /* swallow */ });
     }
-  } catch {
-    // telemetry must never break the app
-  }
+  } catch (e) {
+      // telemetry must never break the app
+      DebugLogger.error('plan_content_remote_telemetry:last', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -137,9 +139,10 @@ async function writePlanContentTelemetryDoc(record: PlanContentTelemetryRecord):
         // Server timestamp so admin queries never depend on client clock.
         at: firestore.FieldValue.serverTimestamp(),
       });
-  } catch {
-    // swallow: never break content delivery for telemetry
-  }
+  } catch (e) {
+      // swallow: never break content delivery for telemetry
+      DebugLogger.error('plan_content_remote_telemetry:dayKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function pad2(n: number): string { return n < 10 ? `0${n}` : `${n}`; }

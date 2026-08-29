@@ -47,6 +47,7 @@ import {
   upsertCustomCard,
 } from './flashcards/custom_cards_store';
 import type { CardItem } from './flashcards/types';
+import { DebugLogger } from './debug-logger';
 
 function firstParam(v: string | string[] | undefined): string | null {
   const raw = Array.isArray(v) ? v[0] : v;
@@ -83,7 +84,9 @@ async function getAssistTranslationMap(): Promise<Map<string, AssistEntry>> {
           }
         }
       }
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('flashcards_card_editor:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     try {
       // Word bank уроков: en → ru/uk/es (give up, look forward to, …)
       const words = await import('./lesson_words');
@@ -96,7 +99,9 @@ async function getAssistTranslationMap(): Promise<Map<string, AssistEntry>> {
           }
         }
       }
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('flashcards_card_editor:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     assistMapCache = map;
     assistMapInflight = null;
     return map;

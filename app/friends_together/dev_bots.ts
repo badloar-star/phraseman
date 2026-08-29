@@ -15,6 +15,7 @@ import { BOT_NAMES } from '../constants/bot_names';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { LEVEL_THRESHOLDS, levelForDays, nextThreshold } from './together_days';
 import { FRIENDS_CHEST_TIERS, FRIENDS_CHEST_CAP_PER_FRIEND } from './together_config';
+import { DebugLogger } from '../debug-logger';
 
 const STORAGE_KEY = 'friends_together_dev_bots_v1';
 const DEV_BOT_UID_PREFIX = 'devbot_';
@@ -64,7 +65,10 @@ async function persist(state: DevBotsState): Promise<void> {
   if (!isDev()) return;
   try {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch { /* dev-only best-effort */ }
+  } catch (e) {
+      // dev-only best-effort
+      DebugLogger.error('dev_bots:persist', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function loadDevBots(): Promise<DevBotsState> {

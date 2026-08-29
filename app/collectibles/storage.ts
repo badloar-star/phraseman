@@ -21,6 +21,7 @@ import {
   collectiblesTotalCount,
   findCollectibleCard,
 } from './catalog';
+import { DebugLogger } from '../debug-logger';
 
 export const COLLECTIBLES_OWNED_KEY = 'collectibles_owned_v1';
 /** Локальный (не синкается): какие карточки юзер уже видел в Сокровищнице. */
@@ -152,9 +153,10 @@ export async function markCollectiblesSeen(ids: string[]): Promise<void> {
       for (const id of ids) seen.add(id);
       await AsyncStorage.setItem(COLLECTIBLES_SEEN_KEY, JSON.stringify([...seen]));
     });
-  } catch {
-    /* некритично — бейдж «новое» */
-  }
+  } catch (e) {
+      // некритично — бейдж «новое»
+      DebugLogger.error('storage:seen', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function getCollectiblesUnseenCount(): Promise<number> {

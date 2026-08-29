@@ -15,6 +15,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isValidDeckId, normalizeDeckIds, type FcDeckId } from './deck_selection';
+import { DebugLogger } from '../debug-logger';
 
 export const FC_MODE_PREFS_KEY = 'fc_mode_prefs_v1';
 
@@ -176,8 +177,9 @@ export function setLastPreset(mode: FcPresetMode, preset: FcModePresetInput): Pr
     prefsMemory = next;
     try {
       await AsyncStorage.setItem(FC_MODE_PREFS_KEY, JSON.stringify(next));
-    } catch {
+    } catch (e) {
       // fail-soft: память обновлена, следующий успешный write перезапишет
+      DebugLogger.error('mode_prefs:current', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   });
 }

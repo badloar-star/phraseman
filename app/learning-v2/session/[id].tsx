@@ -112,6 +112,7 @@ import {
   getLearningV2ActivityReleasedSessionTaskV1,
   type LearningV2ActivityReleasedSessionRuntimeHandleV1,
 } from "../../../modules/learning-v2/runtime/activity_released_session_package_v1";
+import { DebugLogger } from '../../debug-logger';
 
 const SESSION_IDS = ["understand", "use", "master"].flatMap((zone) =>
   [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`),
@@ -483,8 +484,9 @@ function LearningV2LegacySessionScreen() {
     audioPlaybackOwnedRef.current = false;
     try {
       localAudioPlayer.pause();
-    } catch {
-      /* released local player */
+    } catch (e) {
+      // released local player
+      DebugLogger.error('[id]:stopAudioAttempt', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, [invalidateAudioAttempt, localAudioPlayer]);
 
@@ -571,9 +573,10 @@ function LearningV2LegacySessionScreen() {
             }),
           );
         }
-      } catch {
-        /* stale route cleanup */
-      }
+      } catch (e) {
+      // stale route cleanup
+      DebugLogger.error('[id]:exitTarget', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       releaseInteractiveSurface();
     };
   }, [ordinal, sessionId]);
@@ -880,8 +883,9 @@ function LearningV2LegacySessionScreen() {
     invalidateAudioAttempt();
     try {
       localAudioPlayer.pause();
-    } catch {
-      /* stale hook player */
+    } catch (e) {
+      // stale hook player
+      DebugLogger.error('[id]:playLocalAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     setFailedAudioCardId(null);
     const claim = claimSpokenAudio(stopAudioAttempt);
@@ -1175,9 +1179,10 @@ function LearningV2LegacySessionScreen() {
             "en",
             ensureAccountGeneration(stableId),
           );
-        } catch {
-          // Спин восстановится при повторном завершении: ключ тот же.
-        }
+        } catch (e) {
+      // Спин восстановится при повторном завершении: ключ тот же.
+      DebugLogger.error('[id]:stableId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })();
       const breakdown = summarizeSessionStars(
         taskCompletionsRef.current.values(),

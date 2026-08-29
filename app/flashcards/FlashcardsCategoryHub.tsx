@@ -70,6 +70,7 @@ import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../commun
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { hapticTap } from '../../hooks/use-haptics';
+import { DebugLogger } from '../debug-logger';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -844,9 +845,10 @@ export default function FlashcardsCategoryHub({
             try {
               await hideCommunityPackOnDevice(pack.id, studyTarget);
               await refreshHiddenCommunityPacks();
-            } catch {
-              // no-op: AsyncStorage unavailable
-            }
+            } catch (e) {
+      // no-op: AsyncStorage unavailable
+      DebugLogger.error('FlashcardsCategoryHub:pack', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           }}
           hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
         >

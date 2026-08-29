@@ -14,6 +14,7 @@ import {
   withBackgroundNetworkLease,
   type BackgroundNetworkLease,
 } from './interactive_network_quiet';
+import { DebugLogger } from './debug-logger';
 
 let appCheckInitPromise: Promise<boolean> | null = null;
 let appCheckReady = false;
@@ -36,9 +37,10 @@ async function setAppCheckAutoRefreshEnabled(enabled: boolean): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const appCheck = require('@react-native-firebase/app-check').default;
     await Promise.resolve(appCheck().setTokenAutoRefreshEnabled(enabled));
-  } catch {
-    // Native module may be unavailable before prebuild / pod install.
-  }
+  } catch (e) {
+      // Native module may be unavailable before prebuild / pod install.
+      DebugLogger.error('app_check_init:appCheck', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 registerInteractiveNetworkQuietParticipant('firebase.app_check_refresh', {

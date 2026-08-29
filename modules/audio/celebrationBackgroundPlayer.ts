@@ -105,8 +105,14 @@ function clearFade() {
 }
 
 function disposePlayer(player: PlayerLike): void {
-  try { player.pause(); } catch { /* native player may already be released */ }
-  try { player.remove(); } catch { /* native player may already be released */ }
+  try { player.pause(); } catch (e) {
+      // native player may already be released
+      console.warn('[silent-catch] celebrationBackgroundPlayer:disposePlayer', e instanceof Error ? e.message : String(e));
+    }
+  try { player.remove(); } catch (e) {
+      // native player may already be released
+      console.warn('[silent-catch] celebrationBackgroundPlayer:disposePlayer', e instanceof Error ? e.message : String(e));
+    }
 }
 
 function disposeBackground(background: Background): void {

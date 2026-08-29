@@ -926,11 +926,27 @@ export async function assertAccountDeleteStableIdentityAvailable(
 ): Promise<void> {
   const raw = await readAccountDeletePendingAuthRaw();
   const inspection = inspectAccountDeletePendingAuth(raw);
+  // зачем (аудит 2026-08-29): у замка в фазе prepared/local_data_cleared НЕ
+  // БЫЛО легального выхода — даже просроченный (7 дней!) он бросал и держал
+  // устройство в вечном карантине; ровно так владелец потерял вход. Просрочка
+  // означает: устройство неделю не смогло довести удаление — держать человека
+  // снаружи дальше бессмысленно и жестоко. Сервер к этому моменту защищён
+  // сам: permanent denial + tombstone не пустят старую identity, а вход
+  // провайдера проверяет замок отдельно. Отпускаем С ПРИЧИНОЙ в critical.
+  if (
+    inspection.status === 'expired'
+    && (inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared')
+  ) {
+    const { DebugLogger } = require('./debug-logger') as typeof import('./debug-logger');
+    DebugLogger.error(
+      'account_delete_quarantine:expired_released',
+      new Error(`phase=${inspection.lock.phase} ageMs=${Date.now() - inspection.lock.createdAt}`),
+      'critical',
+    );
+    return;
+  }
   if (
     inspection.status === 'malformed'
-    || inspection.status === 'expired' && (
-      inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared'
-    )
     || inspection.status === 'active' && (
       inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared'
     )

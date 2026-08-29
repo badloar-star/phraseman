@@ -22,6 +22,7 @@ import {
   levelForDays,
   type ActiveDays,
 } from './together_days';
+import { DebugLogger } from '../debug-logger';
 
 const SNAPSHOT_KEY = 'friends_together_snapshot_v1';
 const BONUS_KEY = 'friends_together_bonus_v1';
@@ -185,9 +186,10 @@ export async function loadFriendPairsServerState(
       fetchedAtMs: now,
       pairs: fetchedPairs,
     })).catch(() => {});
-  } catch {
-    // сеть недоступна — кэш уже применён выше, молча остаёмся на нём
-  }
+  } catch (e) {
+      // сеть недоступна — кэш уже применён выше, молча остаёмся на нём
+      DebugLogger.error('together_store:boostActive', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   return out;
 }

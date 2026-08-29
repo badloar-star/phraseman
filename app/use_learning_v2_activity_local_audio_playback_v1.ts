@@ -6,6 +6,7 @@ import {
   type SpokenAudioClaim,
   whenSpokenAudioReady,
 } from "../modules/audio/audio_runtime_arbiter";
+import { DebugLogger } from './debug-logger';
 
 export type LearningV2ActivityLocalAudioPlayDispositionV1 =
   | "started"
@@ -43,20 +44,23 @@ export function useLearningV2ActivityLocalAudioPlaybackV1(input: {
     subscriptionRef.current = null;
     try {
       subscription?.remove();
-    } catch {
+    } catch (e) {
       // Already detached by native teardown.
+      DebugLogger.error('use_learning_v2_activity_local_audio_playback_v1:subscription', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     const player = playerRef.current;
     playerRef.current = null;
     try {
       player?.pause();
-    } catch {
+    } catch (e) {
       // Already released.
+      DebugLogger.error('use_learning_v2_activity_local_audio_playback_v1:player', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     try {
       player?.remove();
-    } catch {
+    } catch (e) {
       // Already released.
+      DebugLogger.error('use_learning_v2_activity_local_audio_playback_v1:player', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     const claim = claimRef.current;
     claimRef.current = null;

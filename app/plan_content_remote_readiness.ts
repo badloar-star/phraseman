@@ -22,6 +22,7 @@ import {
 } from './course_pack_remote_loader';
 import { getAuthoredPlanContentDay } from './plan_content_registry';
 import type { PlanContentDay } from './plan_content_schema';
+import { DebugLogger } from './debug-logger';
 
 export type PlanContentRemoteSource = 'downloaded_pack' | 'bundled_compatibility' | 'missing';
 
@@ -87,8 +88,9 @@ export async function resolveRemoteOrBundledPlanContentDay(
   if (isCorruptPackRow(verified)) {
     try {
       await evictCachedCoursePack(cacheKey);
-    } catch {
+    } catch (e) {
       // best-effort
+      DebugLogger.error('plan_content_remote_readiness:rowCached', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     const day = bundled(planId, dayIndex);
     return {

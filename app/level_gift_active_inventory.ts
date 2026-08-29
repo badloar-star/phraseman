@@ -21,6 +21,7 @@ import {
   type GiftFirstSeenKind,
   type GiftFirstSeenMap,
 } from './gift_expiry';
+import { DebugLogger } from './debug-logger';
 
 export type ActiveLevelGiftLifetime =
   | Readonly<{ kind: 'permanent' }>
@@ -592,8 +593,9 @@ export const loadActiveLevelGiftInventory = async (
   for (const storageKey of burnKeys) {
     try {
       await AsyncStorage.removeItem(storageKey);
-    } catch {
+    } catch (e) {
       // Повторная чистка при следующей загрузке раздела.
+      DebugLogger.error('level_gift_active_inventory:turboExpiresAt', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   if (firstSeenChanged) await persistGiftFirstSeenMap(firstSeen);

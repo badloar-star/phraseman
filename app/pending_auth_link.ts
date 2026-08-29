@@ -21,6 +21,7 @@ import * as Crypto from 'expo-crypto';
 import { Platform } from 'react-native';
 import { logEvent } from './firebase';
 import { ensureStableAuthLinkForStableIdDetailed, getCurrentUid } from './cloud_sync';
+import { DebugLogger } from './debug-logger';
 
 const PENDING_AUTH_LINK_KEY = 'pending_auth_link_v1';
 const PENDING_AUTH_LINK_TTL_MS = 24 * 60 * 60_000;
@@ -167,9 +168,10 @@ export async function recordPendingAuthLink(input: PendingAuthLinkInput): Promis
       ...(!expectedAuthUidHash ? { quarantineReason: 'auth_uid_unbound' as const } : {}),
     };
     await writePendingAuthLink(record);
-  } catch {
-    // Журнал best-effort: его потеря не ломает вход — boot-restore всё равно сойдётся.
-  }
+  } catch (e) {
+      // Журнал best-effort: его потеря не ломает вход — boot-restore всё равно сойдётся.
+      DebugLogger.error('pending_auth_link:expectedAuthUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function readPendingAuthLink(): Promise<PendingAuthLink | null> {
@@ -232,9 +234,10 @@ async function schedulePendingAuthLinkRetry(
 export async function clearPendingAuthLink(): Promise<void> {
   try {
     await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY);
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('pending_auth_link:clearPendingAuthLink', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -297,9 +300,10 @@ export async function processPendingAuthLink(): Promise<
       }
       try {
         logEvent('auth_recovery_completed_silently', { provider: pending.provider, attempts: pending.attempts + 1 });
-      } catch {
-        /* ignore */
-      }
+      } catch (e) {
+      // ignore
+      DebugLogger.error('pending_auth_link:finalAuthUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       return 'completed';
     }
     return schedulePendingAuthLinkRetry(pending);

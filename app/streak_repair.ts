@@ -21,6 +21,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export interface RepairState {
   eligibleDate:  string | null;   // YYYY-MM-DD когда стала доступна починка
@@ -53,12 +54,16 @@ export const loadRepairState = async (): Promise<RepairState> => {
       return { ...state, lessonsToday: 0, repaired: false, repairDate: null };
     }
     return state;
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('streak_repair:t', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return { eligibleDate: null, repairDate: null, lessonsToday: 0, repaired: false };
 };
 
 const save = async (state: RepairState) => {
-  try { await AsyncStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+  try { await AsyncStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {
+      DebugLogger.error('streak_repair:save', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /**

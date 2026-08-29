@@ -24,6 +24,7 @@ import { AppState } from 'react-native';
 import { Image } from 'expo-image';
 import { APPROVED_AVATAR_AURAS } from '../constants/avatar_auras';
 import { avatarAuraLayerUrls } from './avatar_aura_remote_art';
+import { DebugLogger } from './debug-logger';
 
 // Малые пачки: сеть не забивается, видимый контент не тормозит.
 const BATCH_SIZE = 6;
@@ -56,10 +57,10 @@ async function drain(): Promise<void> {
       });
       if (queue.length > 0) await sleep(BATCH_PAUSE_MS);
     }
-  } catch {
-    // Прогрев — «best effort»: любая ошибка просто откладывает его до
-    // следующего события, показ при этом никогда не остаётся пустым.
-  } finally {
+  } catch (e) {
+      // Прогрев — «best effort»: любая ошибка просто откладывает его до // следующего события, показ при этом никогда не остаётся пустым.
+      DebugLogger.error('avatar_aura_art_prefetch:results', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     running = false;
   }
 }

@@ -1,4 +1,5 @@
 import { materializePhoneStateLineage } from '../modules/phone-state/account_secret';
+import { DebugLogger } from './debug-logger';
 
 export type AccountGenerationToken = Readonly<{
   generation: number;
@@ -31,7 +32,10 @@ const normalizedStableId = (value: string | null): string | null => value?.trim(
 const notifyAccountGeneration = (): void => {
   const token = captureAccountGeneration();
   generationListeners.forEach((listener) => {
-    try { listener(token); } catch { /* account transitions must not be interrupted by UI listeners */ }
+    try { listener(token); } catch (e) {
+      // account transitions must not be interrupted by UI listeners
+      DebugLogger.error('account_generation:token', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   });
 };
 

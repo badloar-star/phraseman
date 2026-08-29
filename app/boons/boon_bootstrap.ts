@@ -16,6 +16,7 @@ import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { getTodaysBoons, isPrimaryBoonActive } from './boon_engine';
 import { applyTurboRegenOverride } from './boon_effects_energy';
 import type { BoonId } from './boon_types';
+import { DebugLogger } from '../debug-logger';
 
 function isCurrentPrimary(expectedPrimary: BoonId, todayKey: string): boolean {
   return isPrimaryBoonActive(expectedPrimary, todayKey);
@@ -39,9 +40,10 @@ async function notGrantedToday(boon: string, todayKey: string): Promise<boolean>
 async function markGrantedToday(boon: string, todayKey: string): Promise<void> {
   try {
     await AsyncStorage.setItem(dayGuardKey(boon), todayKey);
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('boon_bootstrap:markGrantedToday', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -68,9 +70,10 @@ async function applyStreakSaver(todayKey: string): Promise<void> {
     await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
     await markGrantedToday('streak_saver', todayKey);
     emitAppEvent('streak_freeze_updated', { active: true });
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('boon_bootstrap:existing', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Flashcard-Friday is one global occurrence; unrelated vouchers may coexist. */
@@ -121,9 +124,10 @@ export async function applyTodaysBoonsOnAppOpen(
       default:
         break;
     }
-  } catch {
-    // bootstrap не должен ронять открытие главной
-  }
+  } catch (e) {
+      // bootstrap не должен ронять открытие главной
+      DebugLogger.error('boon_bootstrap:applyTodaysBoonsOnAppOpen', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

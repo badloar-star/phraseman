@@ -4,6 +4,7 @@ import {
   flashcardsCommunityOwnedPackTitlesKey,
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
+import { DebugLogger } from '../debug-logger';
 
 function parseIds(raw: string | null): string[] {
   if (!raw) return [];
@@ -79,8 +80,9 @@ export async function addCommunityOwnedPackId(
       const titles = await loadCommunityOwnedPackTitles(studyTarget);
       titles[id] = title;
       await AsyncStorage.setItem(flashcardsCommunityOwnedPackTitlesKey(studyTarget), JSON.stringify(titles));
-    } catch {
-      /* не критично — фолбэк на код набора остаётся рабочим */
+    } catch (e) {
+      // не критично — фолбэк на код набора остаётся рабочим
+      DebugLogger.error('communityOwnedStorage:titles', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 }

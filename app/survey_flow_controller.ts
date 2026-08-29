@@ -16,6 +16,7 @@ import {
   type SurveySubmissionState,
   type SurveySubmitErrorKey,
 } from './survey_submission_state';
+import { DebugLogger } from './debug-logger';
 
 export type AnswersState = Record<string, { optionId?: string; comment?: string }>;
 
@@ -256,9 +257,10 @@ export function useSurveyFlowController(input: {
       if (!cacheCommitted) throw new Error('cache_reconcile_failed');
       try {
         onDurablyReconciledRef.current?.({ stableId, dayKey, surveyId: survey.surveyId });
-      } catch {
-        // Durable completion already succeeded; presentation observers are best-effort only.
-      }
+      } catch (e) {
+      // Durable completion already succeeded; presentation observers are best-effort only.
+      DebugLogger.error('survey_flow_controller:cacheCommitted', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       if (!presentationActiveRef.current || attemptIdRef.current !== attemptId) return;
 
       dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: response.reward });

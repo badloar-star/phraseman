@@ -13,6 +13,7 @@ import {
   type RecordingAudioClaim,
   whenRecordingAudioReady,
 } from '../../../modules/audio/audio_runtime_arbiter';
+import { DebugLogger } from '../../../app/debug-logger';
 // путь: components/learning-v2-lab/kimi → ../../../ = корень репозитория
 
 /** Состояния захвата, на которые опирается визуальная машина Kimi. */
@@ -130,9 +131,10 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
       cleanupListeners();
       try {
         speechRef.current?.abort();
-      } catch {
-        /* модуль мог уже уйти — молча выходим */
-      }
+      } catch (e) {
+      // модуль мог уже уйти — молча выходим
+      DebugLogger.error('use_voice_capture:cleanupListeners', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       releaseRecording();
     };
   }, [cleanupListeners, releaseRecording]);
@@ -147,8 +149,9 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     cleanupListeners();
     try {
       speechRef.current?.abort();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('use_voice_capture:cleanupListeners', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     releaseRecording();
     if (mountedRef.current && (statusRef.current === 'listening' || statusRef.current === 'evaluating')) {
@@ -242,7 +245,10 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
 
     releaseRecording();
     const recordingLease = claimRecordingAudio(() => {
-      try { speech.abort(); } catch { /* capture already gone */ }
+      try { speech.abort(); } catch (e) {
+      // capture already gone
+      DebugLogger.error('use_voice_capture:recordingLease', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     });
     recordingLeaseRef.current = recordingLease;
     try {
@@ -301,8 +307,9 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     cleanupListeners();
     try {
       speechRef.current?.abort();
-    } catch {
-      /* нечего прерывать */
+    } catch (e) {
+      // нечего прерывать
+      DebugLogger.error('use_voice_capture:reset', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     releaseRecording();
     setPartial('');

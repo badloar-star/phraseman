@@ -15,6 +15,7 @@
 
 import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
 import { isMaxVoiceNativeAvailable } from './max_webrtc_module';
+import { DebugLogger } from './debug-logger';
 
 export const MAX_VOICE_GATE_KEY = 'gate_ai_voice_call';
 
@@ -40,9 +41,10 @@ export function isMaxVoiceCallEnabled(): boolean {
   try {
     const remote = getRemoteBool(MAX_VOICE_GATE_KEY as RemoteBoolKey) as boolean | undefined;
     if (typeof remote === 'boolean') return remote;
-  } catch {
-    // Слой remote_flags не готов (ранний старт) — работаем от дефолта.
-  }
+  } catch (e) {
+      // Слой remote_flags не готов (ранний старт) — работаем от дефолта.
+      DebugLogger.error('max_voice_flags:remote', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return MAX_VOICE_GATE_DEFAULT;
 }
 

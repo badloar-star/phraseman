@@ -20,6 +20,7 @@ import { commitShardCompositeOperation, addShardsRaw } from './shards_system';
 import { semanticShardOperationId } from './economy/client_shard_semantic_id';
 import { trackActivity } from './app_activity';
 import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
 
 function logWagerHealth(
   context: string,
@@ -126,7 +127,9 @@ export const loadWager = async (): Promise<WagerState | null> => {
 };
 
 const saveWager = async (w: WagerState) => {
-  try { await AsyncStorage.setItem(KEY, JSON.stringify(w)); } catch {}
+  try { await AsyncStorage.setItem(KEY, JSON.stringify(w)); } catch (e) {
+      DebugLogger.error('streak_wager:saveWager', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /**
@@ -135,7 +138,10 @@ const saveWager = async (w: WagerState) => {
 export async function tryGrantPremiumMonthlyWagerFromLevelUp(): Promise<void> {
   try {
     await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
-  } catch { /* empty */ }
+  } catch (e) {
+      // empty
+      DebugLogger.error('streak_wager:tryGrantPremiumMonthlyWagerFromLevelUp', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**

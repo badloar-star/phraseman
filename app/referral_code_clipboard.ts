@@ -3,6 +3,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { DebugLogger } from './debug-logger';
 
 export async function copyReferralCodeForAccount(input: Readonly<{
   accountToken: AccountGenerationToken;
@@ -26,9 +27,10 @@ export async function copyReferralCodeForAccount(input: Readonly<{
     if (currentClipboard !== code) return false;
     await input.writeText('');
     await input.readText();
-  } catch {
-    // Best effort only. A stale operation must never report copied success.
-  }
+  } catch (e) {
+      // Best effort only. A stale operation must never report copied success.
+      DebugLogger.error('referral_code_clipboard:currentClipboard', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return false;
 }
 

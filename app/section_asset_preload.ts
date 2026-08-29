@@ -3,6 +3,7 @@ import { Image as ExpoImage } from 'expo-image';
 import { Asset } from 'expo-asset';
 import type { ThemeMode } from '../constants/theme';
 import { getHomeMenuImages } from './home_menu_icons';
+import { DebugLogger } from './debug-logger';
 
 /**
  * Предзагрузка ассетов РАЗДЕЛОВ (не главной).
@@ -48,8 +49,9 @@ async function warmSectionSources(sources: readonly ImageSourcePropType[]): Prom
     try {
       const resolved = RNImage.resolveAssetSource(source);
       if (resolved?.uri) expoUris.push(resolved.uri);
-    } catch {
+    } catch (e) {
       // Сбой одного ассета не должен ломать прогрев остальных.
+      DebugLogger.error('section_asset_preload:resolved', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   await Promise.all([

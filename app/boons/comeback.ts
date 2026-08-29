@@ -9,6 +9,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getUtcDayKey } from '../local_date';
+import { DebugLogger } from '../debug-logger';
 
 /** Минимум пропущенных дней, чтобы считать это «возвращением». */
 export const COMEBACK_MIN_MISSED_DAYS = 2;
@@ -65,9 +66,10 @@ export async function checkComebackEligible(todayKey: string = getUtcDayKey()): 
 export async function markComebackGranted(todayKey: string = getUtcDayKey()): Promise<void> {
   try {
     await AsyncStorage.setItem(COMEBACK_GRANTED_KEY, todayKey);
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('comeback:markComebackGranted', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

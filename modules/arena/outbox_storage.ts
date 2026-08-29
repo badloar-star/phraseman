@@ -98,8 +98,9 @@ export async function arenaOutboxList(
     try {
       const entry = arenaOutboxDecodeEntry(await store.getItem(arenaOutboxEntryKey(scope, matchId)), scope);
       if (entry) entries.push(entry);
-    } catch {
+    } catch (e) {
       // Одна нечитаемая запись не должна прятать остальные.
+      console.warn('[silent-catch] outbox_storage:entry', e instanceof Error ? e.message : String(e));
     }
   }
   return entries;
@@ -147,8 +148,9 @@ export async function arenaOutboxAdoptOwnerGeneration(
       if (!decoded) continue;
       await store.setItem(key, JSON.stringify(decoded));
       adopted += 1;
-    } catch {
+    } catch (e) {
       // One corrupt row remains quarantined without hiding valid owner rows.
+      console.warn('[silent-catch] outbox_storage:decoded', e instanceof Error ? e.message : String(e));
     }
   }
   return adopted;
@@ -173,7 +175,10 @@ export async function arenaOutboxEnqueue(
     await writeIndex(store, scope, keep);
     for (const matchId of dropped) {
       if (matchId === entry.matchId) continue;
-      try { await store.removeItem(arenaOutboxEntryKey(scope, matchId)); } catch { /* протухшее и так не читается */ }
+      try { await store.removeItem(arenaOutboxEntryKey(scope, matchId)); } catch (e) {
+      // протухшее и так не читается
+      console.warn('[silent-catch] outbox_storage:existing', e instanceof Error ? e.message : String(e));
+    }
     }
     return true;
   } catch {
@@ -190,9 +195,10 @@ export async function arenaOutboxSave(
     if (entry.ownerStableUid !== scope.stableUid
       || entry.ownerGeneration !== scope.accountGeneration) return;
     await store.setItem(arenaOutboxEntryKey(scope, entry.matchId), JSON.stringify(entry));
-  } catch {
-    // Не сохранившийся повтор означает лишнюю попытку позже, а не потерю.
-  }
+  } catch (e) {
+      // Не сохранившийся повтор означает лишнюю попытку позже, а не потерю.
+      console.warn('[silent-catch] outbox_storage:arenaOutboxSave', e instanceof Error ? e.message : String(e));
+    }
 }
 
 export async function arenaOutboxRemove(
@@ -204,9 +210,10 @@ export async function arenaOutboxRemove(
     const rest = (await arenaOutboxList(store, scope)).filter((entry) => entry.matchId !== matchId);
     await writeIndex(store, scope, rest);
     await store.removeItem(arenaOutboxEntryKey(scope, matchId));
-  } catch {
-    // Осталась в индексе — попробуем ещё раз при следующей отправке.
-  }
+  } catch (e) {
+      // Осталась в индексе — попробуем ещё раз при следующей отправке.
+      console.warn('[silent-catch] outbox_storage:rest', e instanceof Error ? e.message : String(e));
+    }
 }
 
 /** Записи, которым пора уходить прямо сейчас. */

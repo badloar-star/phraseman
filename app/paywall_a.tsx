@@ -46,6 +46,7 @@ import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { DebugLogger } from './debug-logger';
 
 const VARIANT = 'A' as const;
 
@@ -105,22 +106,34 @@ export default function PaywallA() {
           if (tags.length > 0) setPersonalTag(tags[0]);
           trackPaywallTagsShown(tags, VARIANT, source);
         }
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_a:tags', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         const m = await readProgressMirror();
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_a:m', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       try {
         const prof = await readPaywallProfile(lang as PaywallLang);
         if (!dead) setProfile(prof);
-      } catch { /* некритично */ }
+      } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_a:prof', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
     // Плюс живой рубильник из «Пульта»: выкл → отзывы просто пропадают (пустой массив).
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
       setTestimonials(isPaywallReviewsEnabled() ? pickTestimonials(lang as Lang, ctx, dayHash, 3, false) : []);
-    } catch { /* некритично */ }
+    } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_a:dayHash', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return () => { dead = true; };
   }, [source, ctx, lang]);
 

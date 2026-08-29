@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser } from './cloud_sync';
 import { ActiveBoost } from './club_boosts';
+import { DebugLogger } from './debug-logger';
 
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
@@ -100,17 +101,23 @@ export async function getCachedGroupBoosts(): Promise<ActiveBoost[]> {
       const { ts, data }: { ts: number; data: ActiveBoost[] } = JSON.parse(raw);
       if (Date.now() - ts < CACHE_TTL) return data;
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_boosts:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   // Кэш устарел — обновляем
   const fresh = await fetchGroupBoosts();
   try {
     await AsyncStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: fresh }));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_boosts:fresh', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return fresh;
 }
 
 export async function invalidateGroupBoostsCache(): Promise<void> {
-  try { await AsyncStorage.removeItem(CACHE_KEY); } catch {}
+  try { await AsyncStorage.removeItem(CACHE_KEY); } catch (e) {
+      DebugLogger.error('firestore_boosts:invalidateGroupBoostsCache', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

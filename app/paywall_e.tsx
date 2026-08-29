@@ -43,6 +43,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { DebugLogger } from './debug-logger';
 const VARIANT = 'E' as const;
 
 export default function PaywallE() {
@@ -92,7 +93,10 @@ export default function PaywallE() {
     try {
       const dayHash = Math.floor(Date.now() / 86_400_000);
       setTestimonials(isPaywallReviewsEnabled() ? pickTestimonials(lang as Lang, ctx, dayHash, 3, false) : []);
-    } catch { /* некритично */ }
+    } catch (e) {
+      // некритично
+      DebugLogger.error('paywall_e:dayHash', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }, [source, ctx, lang]);
 
   // Вернувшийся юзер (Premium стал фри/истёк) видит win-back заголовок.

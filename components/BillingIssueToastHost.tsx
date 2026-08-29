@@ -18,6 +18,7 @@ import { IS_EXPO_GO } from '../app/config';
 import { revenueCatBillingIssueAtMs } from '../app/premium_revenuecat_state';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 import { soundDirector } from '../modules/audio/sound_director';
+import { DebugLogger } from '../app/debug-logger';
 
 const COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000;
 const LAST_SHOWN_KEY = 'billing_issue_toast_last_shown';
@@ -95,8 +96,9 @@ export default function BillingIssueToastHost() {
         }),
         motionVariant: 'hybrid',
       });
-    } catch {
-      /* ignore — optional enhancement */
+    } catch (e) {
+      // ignore — optional enhancement
+      DebugLogger.error('BillingIssueToastHost:sameIssue', e instanceof Error ? e : new Error(String(e)), 'warning');
     } finally {
       runningRef.current = false;
     }

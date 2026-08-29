@@ -7,6 +7,7 @@ import {
 } from './functionsClient';
 import { fetchCommunityPackMeta } from './communityFirestore';
 import { getCanonicalUserId } from '../user_id_policy';
+import { DebugLogger } from '../debug-logger';
 
 let flushRunning = false;
 
@@ -127,9 +128,10 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
             rec.titleUk = meta.titleUk;
             rec.titleEs = meta.titleEs;
           }
-        } catch {
-          /* тіло повідомлення в moderationBody() без сирого id */
-        }
+        } catch (e) {
+      // тіло повідомлення в moderationBody() без сирого id
+      DebugLogger.error('communityModerationAlerts:meta', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       const result = String(rec.result || '');
       const title = moderationTitle(result, lang);
@@ -140,9 +142,10 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
     if (seenIds.length) {
       try {
         await callCommunityMarkSellerInboxSeen({ authorStableId, eventIds: seenIds });
-      } catch {
-        /* non-critical */
-      }
+      } catch (e) {
+      // non-critical
+      DebugLogger.error('communityModerationAlerts:body', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   } finally {
     flushRunning = false;

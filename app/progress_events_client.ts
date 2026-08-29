@@ -19,6 +19,7 @@ import {
 } from './account_generation';
 import { recordShadowProgressEvent } from './phone_state_shadow_adapters';
 import { trySubmitProgressThroughPhoneState } from './phone_state_progress_cutover';
+import { DebugLogger } from './debug-logger';
 
 export type ProgressEventType =
   | 'lesson_answer'
@@ -681,7 +682,10 @@ async function doFlush(stableId: string): Promise<number> {
   try {
     const m = await import('./referral_bootstrap');
     await m.tryApplyPendingReferral();
-  } catch { /* нет сети/кода — прогресс не блокируем, ретрай на следующем flush */ }
+  } catch (e) {
+      // нет сети/кода — прогресс не блокируем, ретрай на следующем flush
+      DebugLogger.error('progress_events_client:m', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return withOwnerQueueMutation(stableId, async (state) => {
     if (state.queue!.length === 0) return 0;
     const retryKey = progressOwnerKey(PROGRESS_EVENT_RETRY_KEY, stableId);
@@ -797,11 +801,10 @@ export async function submitProgressEvent(
         await enqueue(event);
         await ensureProgressSnapshotMigratedWithBaseline(stableId, options?.migrationSnapshot);
         await flushPendingProgressEventsForOwner(stableId);
-      } catch {
-        // Best-effort: локальный PhoneState-прогресс уже сохранён и виден
-        // пользователю; следующий flush (следующее событие/фоновый цикл)
-        // повторит попытку по той же идемпотентной очереди.
-      }
+      } catch (e) {
+      // Best-effort: локальный PhoneState-прогресс уже сохранён и виден // пользователю; следующий flush (следующее событие/фоновый цикл) // повторит попытку по той же идемпотентной очереди.
+      DebugLogger.error('progress_events_client:activeDate', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     })();
     return {
       ok: true,

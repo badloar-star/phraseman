@@ -18,6 +18,7 @@
 
 import { getApp } from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
+import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -81,9 +82,10 @@ function drainFrames(raw: string, from: number): { frames: StreamFrame[]; nextFr
       if (!payload) continue;
       try {
         frames.push(JSON.parse(payload) as StreamFrame);
-      } catch {
-        // Битый кадр не должен рушить весь поток.
-      }
+      } catch (e) {
+      // Битый кадр не должен рушить весь поток.
+      DebugLogger.error('ai_dialog_stream_client:payload', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   }
   return { frames, nextFrom: cursor };
@@ -103,8 +105,9 @@ export function warmPremiumDialogStream(): void {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ warmupPing: true }),
       });
-    } catch {
+    } catch (e) {
       // Прогрев — best-effort: его провал не должен ничего ломать.
+      DebugLogger.error('ai_dialog_stream_client:token', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   })();
 }
@@ -195,9 +198,10 @@ export function callPremiumDialogStream(
           try {
             const parsed = JSON.parse(xhr.responseText ?? '{}') as { error?: unknown };
             if (typeof parsed.error === 'string' && parsed.error) code = parsed.error;
-          } catch {
-            // Тело не JSON (например, HTML-страница 404 от хостинга) — общий код.
-          }
+          } catch (e) {
+      // Тело не JSON (например, HTML-страница 404 от хостинга) — общий код.
+      DebugLogger.error('ai_dialog_stream_client:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
           // Развилка по смыслу статуса, а не «любой >=400 — это конец».
           //
           // зачем: 404/501 означает, что стриминговой функции на сервере просто

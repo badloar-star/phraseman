@@ -256,6 +256,43 @@ export function formatContentReportAlertSafe(data: Record<string, unknown>): str
   return text;
 }
 
+/**
+ * Падение/оживание крона → Telegram (владелец 2026-08-29: «панель видна,
+ * только когда я в неё смотрю — упавший крон должен будить сам»).
+ *
+ * Шлём ТОЛЬКО на переходах ok→fail и fail→ok: повторные падения подряд не
+ * спамят (lastError и так виден в панели «Диагностика»), тишина канала
+ * остаётся значимой. Стоимость: срабатывает на записи пульса, выходит без
+ * чтений, шлёт telegram лишь на смене состояния.
+ */
+export const adminAlertOnCronHeartbeat = onDocumentWritten(
+  { document: 'cron_heartbeats/{cronName}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  async (event) => {
+    const after = event.data?.after?.exists ? event.data.after.data() : null;
+    if (!after) return;
+    const before = event.data?.before?.exists ? event.data.before.data() : null;
+    const wasOk = before ? before.ok === true : true;
+    const isOk = after.ok === true;
+    if (wasOk === isOk) return;
+    const name = String(event.params.cronName);
+    const cfg = await readAlertsConfig();
+    if (isOk) {
+      await sendTelegramAlert(
+        ADMIN_ALERT_BOT_TOKEN.value(),
+        `✅ Крон ожил: ${name}\nПрогон за ${Number(after.durationMs) || 0} мс.`,
+        cfg,
+      );
+      return;
+    }
+    const reason = String(after.lastError ?? 'unknown').slice(0, 300);
+    await sendTelegramAlert(
+      ADMIN_ALERT_BOT_TOKEN.value(),
+      `⛔ Крон упал: ${name}\n${reason}\nПанель: админка → 🩺 Диагностика.`,
+      cfg,
+    );
+  },
+);
+
 export const adminAlertOnContentReport = onDocumentCreated(
   { document: 'error_reports/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {

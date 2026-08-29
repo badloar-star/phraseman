@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
+import { DebugLogger } from './debug-logger';
 
 export const TESTER_NO_PREMIUM_STORAGE_KEY = 'tester_no_premium';
 
@@ -18,8 +19,9 @@ export function resolveTesterNoPremiumOverride(
 
   try {
     void AsyncStorage.removeItem(TESTER_NO_PREMIUM_STORAGE_KEY).catch(() => {});
-  } catch {
-    // An unavailable storage bridge must not turn a legacy QA flag into denial.
-  }
+  } catch (e) {
+      // An unavailable storage bridge must not turn a legacy QA flag into denial.
+      DebugLogger.error('tester_premium_override:resolveTesterNoPremiumOverride', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return false;
 }

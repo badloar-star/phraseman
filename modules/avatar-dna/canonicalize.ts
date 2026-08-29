@@ -33,9 +33,10 @@ const safeErrorDetail = (error: unknown): string => {
   try {
     if (typeof error === 'string') return error;
     if (error instanceof Error && typeof error.message === 'string') return error.message;
-  } catch {
-    // Hostile values must never prevent the stable invalid-DNA sentinel.
-  }
+  } catch (e) {
+      // Hostile values must never prevent the stable invalid-DNA sentinel.
+      console.warn('[silent-catch] canonicalize:safeErrorDetail', e instanceof Error ? e.message : String(e));
+    }
   return 'invalid input';
 };
 

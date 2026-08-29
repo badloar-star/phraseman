@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { readLifetimeProfileStatsCache } from './lifetime_profile_stats';
 import { statsDailyBreakdownKey, type RuntimeStudyTarget } from './target_storage_keys';
 import type { StatsDailyMetric } from './stats_daily_breakdown';
+import { DebugLogger } from './debug-logger';
 
 /** Таргеты, по которым суммируем посуточные метрики (как в lifetime_profile_stats). */
 const MIRROR_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
@@ -77,8 +78,9 @@ export async function sumDailyBreakdownSince(
         const n = typeof v === 'number' ? v : Number(v);
         if (Number.isFinite(n) && n > 0) total += Math.floor(n);
       }
-    } catch {
-      /* skip target */
+    } catch (e) {
+      // skip target
+      DebugLogger.error('paywall_progress_mirror:n', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return total;

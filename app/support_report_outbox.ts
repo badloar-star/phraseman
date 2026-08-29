@@ -19,6 +19,7 @@ import {
   recordSupportDiagnostic,
 } from './support_diagnostics';
 import { sanitizeSupportDiagnosticBundle } from './support_diagnostic_schema';
+import { DebugLogger } from './debug-logger';
 
 const OUTBOX_KEY_PREFIX = 'support_report_outbox_v1';
 const mutationLocks = new Map<string, Promise<void>>();
@@ -154,11 +155,17 @@ async function readAllUnlocked(
   try {
     parsed = JSON.parse(raw);
   } catch {
-    try { await AsyncStorage.removeItem(key); } catch { /* best-effort privacy cleanup */ }
+    try { await AsyncStorage.removeItem(key); } catch (e) {
+      // best-effort privacy cleanup
+      DebugLogger.error('support_report_outbox:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return [];
   }
   if (!Array.isArray(parsed)) {
-    try { await AsyncStorage.removeItem(key); } catch { /* best-effort privacy cleanup */ }
+    try { await AsyncStorage.removeItem(key); } catch (e) {
+      // best-effort privacy cleanup
+      DebugLogger.error('support_report_outbox:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return [];
   }
 

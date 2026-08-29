@@ -24,6 +24,7 @@ import {
   commitPhoneStatePracticeFact,
   mergePhoneStatePracticeFacts,
 } from './phone_state_practice_bridge';
+import { DebugLogger } from './debug-logger';
 
 export interface MistakePracticeStorage {
   getItem(key: string): Promise<string | null>;
@@ -69,7 +70,10 @@ async function sweepUnreachableMistakePracticeGraph(input: Readonly<{
     if ((!key.startsWith(chunkPrefix) && !key.startsWith(pagePrefix)) || input.reachable.has(key)) continue;
     input.assertCurrentOwner();
     try { await input.storage.removeItem(key); }
-    catch { /* The committed root remains authoritative; a later sweep retries the orphan. */ }
+    catch (e) {
+      // The committed root remains authoritative; a later sweep retries the orphan.
+      DebugLogger.error('mistake_practice_store:pagePrefix', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
   input.assertCurrentOwner();
 }
@@ -198,7 +202,10 @@ export async function loadMistakeEventJournal(
   const raw = await storage.getItem(mistakePracticeEventsKey(accountScope, input.studyTarget));
   if (!raw) return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
   let rootCandidate: unknown;
-  try { rootCandidate = JSON.parse(raw); } catch { /* v1 parser reports canonical error */ }
+  try { rootCandidate = JSON.parse(raw); } catch (e) {
+      // v1 parser reports canonical error
+      DebugLogger.error('mistake_practice_store:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   if (
     rootCandidate && typeof rootCandidate === 'object' && !Array.isArray(rootCandidate)
     && (rootCandidate as { version?: unknown }).version === 2

@@ -17,6 +17,7 @@ import { applyManualReferralCode, type ReferralApplyStatus } from '../app/referr
 import { lookupUserByFriendCode } from '../app/firestore_friends';
 import { sendFriendRequest } from '../app/firestore_friend_requests';
 import ReferralSheetShell from './referral_sheet_shell';
+import { DebugLogger } from '../app/debug-logger';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -206,7 +207,10 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
             const res = await sendFriendRequest(owner.uid);
             if (res === 'sent' || res === 'already_sent') setFriendRequested(true);
           }
-        } catch { /* дружба best-effort */ }
+        } catch (e) {
+      // дружба best-effort
+      DebugLogger.error('referral_code_sheet:res', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
     } finally {
       setBusy(false);

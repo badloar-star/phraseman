@@ -20,6 +20,7 @@ import {
   normalizeProfileCardTheme,
 } from './profile_card_system';
 import type { LeagueCrown } from './services/league_chest_rewards';
+import { DebugLogger } from './debug-logger';
 
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
@@ -394,7 +395,9 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
         if (Date.now() - ts < LB_CACHE_TTL) return data;
       }
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_leaderboard:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   const db = getFirestore();
   if (!db) return [];
@@ -507,7 +510,9 @@ export async function deleteMyLeaderboardEntry(): Promise<void> {
     const authUid = auth.currentUser?.uid ?? null;
     const docIds = Array.from(new Set([canonicalUid, authUid].filter(Boolean) as string[]));
     await Promise.all(docIds.map((id) => db.collection(COL).doc(id).delete().catch(() => {})));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_leaderboard:docIds', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Освободить ник в name_index (вызывается при удалении аккаунта) ───────────
@@ -532,12 +537,16 @@ export async function deleteMyNameReservation(): Promise<void> {
     try {
       const localName = await AsyncStorage.getItem('user_name');
       if (localName && localName.trim()) candidates.add(normalizeNameIndexKey(localName));
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('firestore_leaderboard:localName', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
     await ensureStableAuthLinkForStableId(canonicalUid).catch(() => false);
     const fn = callable<{ stableId?: string; names: string[] }, { ok: boolean; deleted: number }>('nameReleaseMine');
     await fn({ stableId: canonicalUid, names: Array.from(candidates) });
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_leaderboard:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

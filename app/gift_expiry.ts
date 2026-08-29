@@ -13,6 +13,7 @@
  * «сразу при получении», раньше он таймер увидеть не мог.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export const GIFT_TTL_MS = 72 * 60 * 60 * 1000;
 
@@ -70,9 +71,10 @@ export const loadGiftFirstSeenMap = async (): Promise<GiftFirstSeenMap> => {
 export const persistGiftFirstSeenMap = async (map: GiftFirstSeenMap): Promise<void> => {
   try {
     await AsyncStorage.setItem(GIFT_FIRST_SEEN_KEY, JSON.stringify(map));
-  } catch {
-    // Best effort: без штампа отсчёт стартует при следующем показе.
-  }
+  } catch (e) {
+      // Best effort: без штампа отсчёт стартует при следующем показе.
+      DebugLogger.error('gift_expiry:persistGiftFirstSeenMap', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /* expo-router route shim */

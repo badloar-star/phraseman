@@ -14,6 +14,7 @@ import { VIP_SURVEY_ID } from './vip_survey_content';
 import type { Lang } from '../constants/i18n';
 import { createDisposableAdoption } from './disposable_adoption';
 import { normalizeReportRewardBundle, type ReportRewardBundle } from './report_reward_bundle';
+import { DebugLogger } from './debug-logger';
 
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
@@ -194,8 +195,9 @@ async function flushPendingAppMessageVisibility(
           visibilityRevision: operation.revision,
         }, { merge: true });
       });
-    } catch {
+    } catch (e) {
       // Keep the operation until a server snapshot acknowledges this revision.
+      DebugLogger.error('app_messages:serverRevision', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 }
@@ -335,8 +337,9 @@ async function flushPendingPersonalModalAcknowledgements(
           updatedAtMs: operation.acknowledgedAtMs,
         }, { merge: true });
       });
-    } catch {
+    } catch (e) {
       // Keep the account-scoped operation until a server snapshot acknowledges it.
+      DebugLogger.error('app_messages:serverAcknowledgedAtMs', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 }
@@ -1145,9 +1148,10 @@ async function writeLocalPreviewMessages(messages: AppMessage[], expectedOwnerUi
   if (!ownerUid) return;
   try {
     await AsyncStorage.setItem(appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX, ownerUid), JSON.stringify(messages));
-  } catch {
-    // Local preview is best-effort only.
-  }
+  } catch (e) {
+      // Local preview is best-effort only.
+      DebugLogger.error('app_messages:ownerUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function writeLocalPreviewStates(states: AppMessageState[], expectedOwnerUid?: string | null): Promise<void> {
@@ -1155,9 +1159,10 @@ async function writeLocalPreviewStates(states: AppMessageState[], expectedOwnerU
   if (!ownerUid) return;
   try {
     await AsyncStorage.setItem(appMessagesOwnerStorageKey(LOCAL_APP_MESSAGE_STATES_KEY_PREFIX, ownerUid), JSON.stringify(states));
-  } catch {
-    // Local preview is best-effort only.
-  }
+  } catch (e) {
+      // Local preview is best-effort only.
+      DebugLogger.error('app_messages:ownerUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function updateLocalPreviewState(
@@ -1252,9 +1257,10 @@ async function writeCachedSnapshot(
       appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX, ownerUid),
       JSON.stringify(sanitizeAppMessagesInboxSnapshot(snapshot)),
     );
-  } catch {
-    // Cache is a comfort feature only.
-  }
+  } catch (e) {
+      // Cache is a comfort feature only.
+      DebugLogger.error('app_messages:ownerUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function readLastBackgroundRefreshMs(): Promise<number> {
@@ -1279,9 +1285,10 @@ async function writeLastBackgroundRefreshMs(ms: number, expectedOwnerUid?: strin
       appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX, ownerUid),
       String(Math.max(0, Math.floor(ms))),
     );
-  } catch {
-    // Best-effort throttle only.
-  }
+  } catch (e) {
+      // Best-effort throttle only.
+      DebugLogger.error('app_messages:ownerUid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function refreshAppMessagesSnapshotOnce(options: {
@@ -1674,9 +1681,10 @@ export async function markMessageIdsAnimated(ids: string[]): Promise<void> {
       appMessagesOwnerStorageKey(ANIMATED_MESSAGE_IDS_KEY_PREFIX, ownerUid),
       JSON.stringify(next),
     );
-  } catch {
-    // Best-effort: при сбое в худшем случае анимация повторится один раз.
-  }
+  } catch (e) {
+      // Best-effort: при сбое в худшем случае анимация повторится один раз.
+      DebugLogger.error('app_messages:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function isAlreadyClaimedReportReplyError(error: unknown): boolean {

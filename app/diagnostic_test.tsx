@@ -54,6 +54,7 @@ import { loadFrenchRemoteDiagnosticQuestions } from './french_diagnostic_remote_
 import { getHomeMenuImages } from './home_menu_icons';
 import { glassFill } from '../components/GlassSurface';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { DebugLogger } from './debug-logger';
 
 const TIMER_SEC = 30;
 
@@ -1248,7 +1249,10 @@ export default function DiagnosticTest() {
         const p: string[] = JSON.parse(saved);
         const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
         if (correct >= EXAM_LESSON_DONE_THRESHOLD) done++;
-      } catch { /* skip corrupt */ }
+      } catch (e) {
+      // skip corrupt
+      DebugLogger.error('diagnostic_test:correct', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
     setExamLessonsDone(done);
     rememberDiagnosticExamLessonsDone(done, studyTarget); // зачем: обновить peek-кеш для следующего первого кадра
@@ -1260,8 +1264,9 @@ export default function DiagnosticTest() {
       setExamReadiness(snap);
       setExamReadinessPercent(snap.percent);
       rememberDiagnosticExamReadinessPercent(snap.percent, studyTarget); // зачем: обновить peek-кеш для следующего первого кадра
-    } catch {
-      /* keep previous */
+    } catch (e) {
+      // keep previous
+      DebugLogger.error('diagnostic_test:snap', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, [studyTarget]);
 

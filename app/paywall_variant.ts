@@ -35,6 +35,7 @@ import {
   type ExperimentAssignmentQuality,
   type ExperimentPassport,
 } from './analytics_experiments';
+import { DebugLogger } from './debug-logger';
 
 export type PaywallAbVariant = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
 
@@ -204,18 +205,20 @@ async function ensureFirebaseAuthForConfigRead(): Promise<void> {
     const auth = typeof authFactory === 'function' ? authFactory() : null;
     if (!auth || auth.currentUser || typeof auth.signInAnonymously !== 'function') return;
     await withTimeout(auth.signInAnonymously(), CONFIG_AUTH_TIMEOUT_MS);
-  } catch {
-    // If auth is unavailable/offline, the Firestore read below will fall back to cache/new C.
-  }
+  } catch (e) {
+      // If auth is unavailable/offline, the Firestore read below will fall back to cache/new C.
+      DebugLogger.error('paywall_variant:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function applyCache(): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem(CONFIG_CACHE_KEY);
     if (raw) _config = sanitizeConfig(JSON.parse(raw));
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('paywall_variant:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function refreshPaywallAbConfigFromNetwork(): Promise<void> {
@@ -239,8 +242,9 @@ async function refreshPaywallAbConfigFromNetwork(): Promise<void> {
           experiment_passport: _config.experimentPassport,
         })).catch(() => {});
       }
-    } catch {
+    } catch (e) {
       // оффлайн/нет прав — остаёмся на кэше/дефолте (новый C)
+      DebugLogger.error('paywall_variant:snap', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 }

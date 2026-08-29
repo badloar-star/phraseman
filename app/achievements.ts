@@ -39,6 +39,7 @@ import {
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 const safeAchievementEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -1553,9 +1554,15 @@ const readLifetimeActiveDateHistory = async (): Promise<string[]> => {
               : Number(value) > 0;
           if (hasActivity) dates.add(day);
         }
-      } catch { /* one malformed legacy map must not hide the others */ }
+      } catch (e) {
+      // one malformed legacy map must not hide the others
+      DebugLogger.error('achievements:hasActivity', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  } catch { /* fail-soft */ }
+    }
+  } catch (e) {
+      // fail-soft
+      DebugLogger.error('achievements:hasActivity', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return [...dates].sort();
 };
 

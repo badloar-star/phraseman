@@ -50,6 +50,7 @@ import {
   reduceNativeModalDismiss,
   type NativeModalDismissEvent,
 } from './native_modal_dismiss_coordinator';
+import { DebugLogger } from '../../app/debug-logger';
 
 const SHEET_HIDDEN = 320;
 
@@ -257,8 +258,9 @@ export default function HybridSheetShell({
     dismissRequestedRef.current = true;
     try {
       onDismissRequested?.();
-    } catch {
+    } catch (e) {
       // Observers may tear down presentation state, but cannot strand the shell mid-dismiss.
+      DebugLogger.error('HybridSheetShell:dismissSheet', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     hapticTap();
     if (reduceMotion) {

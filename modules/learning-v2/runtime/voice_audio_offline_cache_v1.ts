@@ -132,9 +132,10 @@ async function exactFileBytes(
 function safeDelete(file: File): void {
   try {
     if (file.exists) file.delete();
-  } catch {
-    // A later exact readback still prevents a stale or partial file from use.
-  }
+  } catch (e) {
+      // A later exact readback still prevents a stale or partial file from use.
+      console.warn('[silent-catch] voice_audio_offline_cache_v1:safeDelete', e instanceof Error ? e.message : String(e));
+    }
 }
 
 function cacheDirectory(): Directory {
@@ -192,9 +193,10 @@ async function sweepCache(protectedUri: string): Promise<void> {
         entry.file.delete();
         totalBytes -= entry.byteSize;
         totalFiles -= 1;
-      } catch {
-        // Cache eviction is best-effort; exact readback gates every later use.
-      }
+      } catch (e) {
+      // Cache eviction is best-effort; exact readback gates every later use.
+      console.warn('[silent-catch] voice_audio_offline_cache_v1:totalFiles', e instanceof Error ? e.message : String(e));
+    }
     }
   } finally {
     sweepInProgress = false;

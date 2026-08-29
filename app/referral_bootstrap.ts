@@ -9,6 +9,7 @@ import {
 } from './referral_cloud';
 import { loadShardsFromCloud } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
+import { DebugLogger } from './debug-logger';
 
 const INVITE_HTTPS_BASE = 'https://knowlyapps.com/phraseman/invite';
 
@@ -223,9 +224,10 @@ async function sendAutoFriendRequestToReferrer(referrerStableId: string): Promis
     const { sendFriendRequest } = await import('./firestore_friend_requests');
     const result = await sendFriendRequest(target);
     logEvent('referral_auto_friend', { result: String(result) });
-  } catch {
-    /* друзья недоступны — пропускаем, реферал уже зафиксирован */
-  }
+  } catch (e) {
+      // друзья недоступны — пропускаем, реферал уже зафиксирован
+      DebugLogger.error('referral_bootstrap:result', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Подписка на phraseman:// и https-инвайт во время сессии. */

@@ -109,6 +109,7 @@ import {
   type LevelSpinRewardId,
 } from './level_spin_reward_catalog';
 import { creditAttemptRestoreGiftFromSpin } from './session_attempts/session_attempt_restore_inventory';
+import { DebugLogger } from './debug-logger';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -1416,7 +1417,9 @@ export const readGiftMultiplierForBaseXp = async (baseXp: number): Promise<{ mul
         timedM = Math.max(1, Number(state.multiplier) || 1);
       }
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('level_gift_system:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   const bank = await readGiftXpBank();
   if (amount <= 0 || bank.remaining <= 0) return { multiplier: timedM, consumeBank: false };
   const bankM = 1 + Math.min(bank.remaining, amount) / amount;
@@ -1441,7 +1444,9 @@ const setTimedGiftMultiplier = async (multiplier: number, durationMs: number): P
         return { success: true, xpBoostAlreadyActive };
       }
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('level_gift_system:existingRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   await AsyncStorage.setItem(GIFT_MULT_KEY, JSON.stringify({ multiplier: safeM, expiresAt: now + durationMs }));
   return { success: true, xpBoostAlreadyActive };
 };
@@ -2104,10 +2109,10 @@ const persistEnergyFullProjection = async (
         try {
           const parsed = JSON.parse(energyRaw) as unknown;
           if (isPlainRecord(parsed)) energyState = parsed;
-        } catch {
-          // Same self-healing boundary as EnergyContext: a torn legacy base
-          // snapshot must not permanently block a durable full-energy gift.
-        }
+        } catch (e) {
+      // Same self-healing boundary as EnergyContext: a torn legacy base // snapshot must not permanently block a durable full-energy gift.
+      DebugLogger.error('level_gift_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       const inspectedBonus = parseBonusEnergyStorageValue(bonusRaw, now);
       if (inspectedBonus.status === 'malformed') throw new Error('bonus_energy_storage_corrupt');
@@ -2247,7 +2252,9 @@ const applyTimedGiftMultiplierForOccurrence = async (
     try {
       const raw = await AsyncStorage.getItem(GIFT_MULT_KEY);
       existing = raw ? JSON.parse(raw) as GiftMultiplierState : null;
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('level_gift_system:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     const active = !!existing && now < existing.expiresAt && existing.multiplier > 1;
     const safeMultiplier = Math.max(1, Number(multiplier) || 1);
     return {
@@ -2272,7 +2279,9 @@ const applyTimedGiftMultiplierForOccurrence = async (
   try {
     const raw = await AsyncStorage.getItem(GIFT_MULT_KEY);
     existing = raw ? JSON.parse(raw) as GiftMultiplierState : null;
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('level_gift_system:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   const projected = existing && existing.multiplier > planned.multiplier
     ? existing
     : {
@@ -2298,7 +2307,9 @@ const applyChainShieldForOccurrence = async (
       const raw = await AsyncStorage.getItem(CHAIN_SHIELD_KEY);
       const parsed = raw ? JSON.parse(raw) as { daysLeft?: unknown } : null;
       currentDays = Math.max(0, Math.floor(Number(parsed?.daysLeft) || 0));
-    } catch {}
+    } catch (e) {
+      DebugLogger.error('level_gift_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     return {
       giftId: id,
       status: 'prepared',
@@ -2314,7 +2325,9 @@ const applyChainShieldForOccurrence = async (
     const raw = await AsyncStorage.getItem(CHAIN_SHIELD_KEY);
     const parsed = raw ? JSON.parse(raw) as { daysLeft?: unknown } : null;
     currentDays = Math.max(0, Math.floor(Number(parsed?.daysLeft) || 0));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('level_gift_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   await AsyncStorage.setItem(CHAIN_SHIELD_KEY, JSON.stringify({
     daysLeft: Math.max(currentDays, planned.daysLeft),
     grantedAt: planned.grantedAt,
@@ -2708,7 +2721,9 @@ const scheduleMarketplaceCachePrime = (studyTarget?: RuntimeStudyTarget): void =
       scheduledMarketplaceCachePrimeTargets.delete(target);
       try {
         void Promise.resolve(primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget)).catch(() => {});
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('level_gift_system:timer', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }, MARKETPLACE_CACHE_PRIME_DELAY_MS);
     (timer as any)?.unref?.();
   };

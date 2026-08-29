@@ -4,6 +4,7 @@ import {
   registerInteractiveNetworkQuietParticipant,
   withBackgroundNetworkLease,
 } from './interactive_network_quiet';
+import { DebugLogger } from './debug-logger';
 
 // Первым — Google captive-portal probe (быстрый), дальше фолбэки вне
 // инфраструктуры Google: в некоторых регионах Google-хосты фильтруются или
@@ -57,7 +58,10 @@ export function createNetStatusCoordinator(deps: NetStatusCoordinatorDeps) {
     status = next;
     const online = next === 'online';
     listeners.forEach((listener) => {
-      try { listener(online); } catch { /* listeners cannot break delivery */ }
+      try { listener(online); } catch (e) {
+      // listeners cannot break delivery
+      DebugLogger.error('net_status:online', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     });
   };
   const delayForNextProbe = () => status === 'offline'

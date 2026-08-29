@@ -6,6 +6,7 @@ import {
   FRIEND_REQUESTS_SENT_INDEX,
   FRIEND_REQUESTS_SENT_MARKER_ID,
 } from '../shared/friend_requests_index_contract';
+import { DebugLogger } from './debug-logger';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -100,7 +101,9 @@ async function readMyFriendRequestDisplayName(
   try {
     const localName = cleanFriendRequestDisplayName(await AsyncStorage.getItem('user_name'));
     if (localName) return localName;
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_friend_requests:localName', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   if (!myUid || !db) return '';
   return readUserDisplayNameFromFirestore(db, myUid);
 }
@@ -505,7 +508,9 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
       totalFriends = (await friendsRef.get()).size;
     }
     void checkAchievements({ type: 'friend_added', totalFriends });
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_friend_requests:countSnap', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── declineFriendRequest ───────────────────────────────────────────────────
@@ -853,9 +858,10 @@ export async function cleanupStaleFriendData(): Promise<void> {
     if (batchCount > 0) {
       await batch.commit();
     }
-  } catch {
-    /* ignore — cleanup is best-effort */
-  } finally {
+  } catch (e) {
+      // ignore — cleanup is best-effort
+      DebugLogger.error('firestore_friend_requests:reverseSnaps', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
     friendCleanupInFlight = false;
   }
 }

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { getFreeDialogsLifetime } from './ai_dialog_flags';
+import { DebugLogger } from './debug-logger';
 
 // Client-side UX gate for the lifetime free AI-dialog allowance. The server
 // remains the source of truth; this local counter only hides input quickly and
@@ -50,9 +51,10 @@ export async function markFreeDialogUsed(): Promise<void> {
     const limit = getFreeDialogsLifetime();
     const used = await getFreeDialogsUsed();
     await AsyncStorage.setItem(FREE_DIALOG_USED_KEY, String(Math.min(limit, used + 1)));
-  } catch {
-    // Best-effort local UX state; the server remains authoritative.
-  }
+  } catch (e) {
+      // Best-effort local UX state; the server remains authoritative.
+      DebugLogger.error('dialogs_limit_session:used', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** true = a non-premium user can still start another free AI dialog. */

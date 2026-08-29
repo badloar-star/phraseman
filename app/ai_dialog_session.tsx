@@ -215,7 +215,10 @@ function AiDialogSession() {
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
-    try { speechModule?.abort(); } catch { /* native capture already gone */ }
+    try { speechModule?.abort(); } catch (e) {
+      // native capture already gone
+      DebugLogger.error('ai_dialog_session:recordingAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   });
   const restoreLoudPlaybackMode = recordingAudio.release;
   // зачем: экран диалога не размонтируется при сворачивании приложения, поэтому нужен явный
@@ -522,9 +525,10 @@ function AiDialogSession() {
       if (!holdPressActiveRef.current) {
         try {
           speechModule.stop();
-        } catch {
-          /* no-op */
-        }
+        } catch (e) {
+      // no-op
+      DebugLogger.error('ai_dialog_session:startSub', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         return;
       }
       setVoiceInputStatus('listening');
@@ -616,9 +620,10 @@ function AiDialogSession() {
         if (!isCurrentSession()) return;
         try {
           speechModule.abort();
-        } catch {
-          /* сервис мог умереть — не мешаем */
-        }
+        } catch (e) {
+      // сервис мог умереть — не мешаем
+      DebugLogger.error('ai_dialog_session:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
         cleanupVoiceInputListeners();
         if (voiceInputMountedRef.current) {
           setVoiceInputStatus('stalled');
@@ -682,9 +687,10 @@ function AiDialogSession() {
       cleanupVoiceInputListeners();
       try {
         speechModule?.abort();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('ai_dialog_session:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       restoreLoudPlaybackMode();
     };
   }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode, speechModule]);
@@ -704,13 +710,15 @@ function AiDialogSession() {
     cleanupVoiceInputListeners();
     try {
       speechModule?.abort();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('ai_dialog_session:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     try {
       stopSpeaking();
-    } catch {
-      /* no-op */
+    } catch (e) {
+      // no-op
+      DebugLogger.error('ai_dialog_session:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     restoreLoudPlaybackMode();
     if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
@@ -752,9 +760,10 @@ function AiDialogSession() {
         // Показ «+XP» на финальном экране — только когда начисление реально
         // произошло (повтор сценария честно молчит, как в контракте салюта).
         setXpAwarded(amount);
-      } catch {
-        // best-effort: сбой начисления XP не должен ломать показ модала-вердикта
-      }
+      } catch (e) {
+      // best-effort: сбой начисления XP не должен ломать показ модала-вердикта
+      DebugLogger.error('ai_dialog_session:userName', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
     [scenario.id, lang],
   );
@@ -938,9 +947,10 @@ function AiDialogSession() {
       cleanupVoiceInputListeners();
       try {
         speechModule?.abort();
-      } catch {
-        /* no-op */
-      }
+      } catch (e) {
+      // no-op
+      DebugLogger.error('ai_dialog_session:handleMicPressOut', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       restoreLoudPlaybackMode();
       setVoiceInputStatus('idle');
       return;
@@ -955,8 +965,9 @@ function AiDialogSession() {
     setVoiceInputStatus('finishing');
     try {
       speechModule?.stop();
-    } catch {
-      /* сервис мог умереть — не мешаем */
+    } catch (e) {
+      // сервис мог умереть — не мешаем
+      DebugLogger.error('ai_dialog_session:handleMicPressOut', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, [clearRecognizerWatchdog, speechModule, cleanupVoiceInputListeners, restoreLoudPlaybackMode]);
 

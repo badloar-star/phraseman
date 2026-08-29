@@ -18,6 +18,7 @@
 
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { withBackgroundNetworkLease } from './interactive_network_quiet';
+import { DebugLogger } from './debug-logger';
 
 const POSTHOG_KEY = process.env.EXPO_PUBLIC_POSTHOG_KEY ?? '';
 const POSTHOG_HOST = process.env.EXPO_PUBLIC_POSTHOG_HOST ?? 'https://eu.i.posthog.com';
@@ -125,7 +126,10 @@ const consumePostHogResponseBody = async (
     }
     throw error;
   } finally {
-    try { reader.releaseLock(); } catch { /* already terminal */ }
+    try { reader.releaseLock(); } catch (e) {
+      // already terminal
+      DebugLogger.error('posthog_client:tail', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 
   const bytes = new Uint8Array(total);
@@ -233,9 +237,10 @@ export function capturePostHog(event: string, properties?: Record<string, unknow
   if (!c) return;
   try {
     c.capture(event, properties);
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('posthog_client:c', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function identifyPostHog(distinctId: string, properties?: Record<string, unknown>): void {
@@ -245,9 +250,10 @@ export function identifyPostHog(distinctId: string, properties?: Record<string, 
   if (!c) return;
   try {
     c.identify(distinctId, properties);
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('posthog_client:c', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function resetPostHog(): void {
@@ -255,9 +261,10 @@ export function resetPostHog(): void {
   if (!c) return;
   try {
     c.reset();
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('posthog_client:c', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

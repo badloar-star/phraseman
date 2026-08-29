@@ -172,6 +172,7 @@ import { preloadCurrentLearningV2CourseReleasedSessionV2 } from "../learning_v2_
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
+import { DebugLogger } from '../debug-logger';
 /** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
  *  Штамп поколения дополняет LessonsPaneBoundary retained-вкладки: кэш прежнего
  *  аккаунта не должен мигнуть ни в одном из двух presentation-режимов. */
@@ -2666,8 +2667,9 @@ export default function LessonsTab({
       setExamBestPcts(snapshot.examBestPcts);
       setExamPassCounts(snapshot.examPassCounts);
       writeLessonsUiSessionCache(lessonCacheTarget, snapshot);
-    } catch {
-      /* ignore */
+    } catch (e) {
+      // ignore
+      DebugLogger.error('lessons:snapshot', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, [lessonCacheTarget, studyTarget]);
   useFocusEffect(

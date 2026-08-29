@@ -7,6 +7,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodaysBoons } from './boon_engine';
 import type { BoonReward } from './boon_rewards';
+import { DebugLogger } from '../debug-logger';
 
 /**
  * Приз за полную неделю (все 7 дней закрыты).
@@ -133,9 +134,10 @@ export async function markPerfectWeekClaimed(): Promise<void> {
   try {
     const weekKey = await AsyncStorage.getItem('week_days_week_key');
     if (weekKey) await AsyncStorage.setItem(PERFECT_WEEK_CLAIMED_KEY, weekKey);
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('perfect_week:weekKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

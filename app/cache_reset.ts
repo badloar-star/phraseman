@@ -25,6 +25,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { REFERRAL_STATE_STORAGE_KEY } from './referrals_cache';
 import { FRIENDS_TAB_SWR_CACHE_KEY, FRIEND_PROFILES_CACHE_KEY } from './friends_tab_swr_warm';
+import { DebugLogger } from './debug-logger';
 
 const STATIC_CACHE_KEYS = [
   REFERRAL_STATE_STORAGE_KEY,
@@ -97,7 +98,10 @@ export async function clearAppCaches(): Promise<{ removedKeys: number }> {
       await AsyncStorage.multiRemove(doomed);
       removedKeys = doomed.length;
     }
-  } catch { /* хранилище недоступно — просто чистим картинки */ }
+  } catch (e) {
+      // хранилище недоступно — просто чистим картинки
+      DebugLogger.error('cache_reset:doomed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   await Promise.all([
     Image.clearMemoryCache().catch(() => false),
     Image.clearDiskCache().catch(() => false),

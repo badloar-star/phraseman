@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSyncExternalStore } from 'react';
 import { Platform, type PlatformOSType } from 'react-native';
+import { DebugLogger } from './debug-logger';
 
 export const PLATFORM_UI_PREVIEW_STORAGE_KEY = 'platform_ui_preview_mode';
 
@@ -14,8 +15,9 @@ function notify(): void {
   for (const l of listeners) {
     try {
       l();
-    } catch {
-      /* ignore */
+    } catch (e) {
+      // ignore
+      DebugLogger.error('platform_ui_preview:notify', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
 }
@@ -42,9 +44,10 @@ export async function hydratePlatformUiPreviewFromStorage(): Promise<void> {
     if (v === 'ios' || v === 'android') mode = v;
     else mode = 'real';
     notify();
-  } catch {
-    /* ignore */
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('platform_ui_preview:v', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export function useEffectivePlatformOS(): PlatformOSType {

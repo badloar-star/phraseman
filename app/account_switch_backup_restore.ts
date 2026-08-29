@@ -27,6 +27,7 @@ import {
   hashCanonicalBody,
   utf8ByteLengthV1,
 } from '../modules/learning-v2/policies/decision_registry';
+import { DebugLogger } from './debug-logger';
 
 // Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY):
 // константа там не экспортируется. При смене ключа менять в обоих местах.
@@ -158,9 +159,10 @@ function parseBackup(raw: string): BackupPayload | BackupManifestV3 | null {
         (parsed.pageCount === 0) !== (parsed.lastPageFingerprint === null)) return null;
       return parsed as BackupManifestV3;
     }
-  } catch {
-    // повреждённый JSON — вызывающий удалит копию
-  }
+  } catch (e) {
+      // повреждённый JSON — вызывающий удалит копию
+      DebugLogger.error('account_switch_backup_restore:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return null;
 }
 

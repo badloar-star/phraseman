@@ -194,7 +194,9 @@ export class ExpoSfxBackend {
   dispose(): void {
     this.stop();
     for (const entry of this.cache.values()) {
-      try { entry.player.remove(); } catch {}
+      try { entry.player.remove(); } catch (e) {
+      console.warn('[silent-catch] expo_sfx_backend:startAfterSeek', e instanceof Error ? e.message : String(e));
+    }
     }
     this.cache.clear();
   }
@@ -227,7 +229,9 @@ export class ExpoSfxBackend {
     if (!playback) return;
     this.activePlayback.delete(token);
     playback.entry.activeToken = null;
-    try { playback.subscription?.remove(); } catch {}
+    try { playback.subscription?.remove(); } catch (e) {
+      console.warn('[silent-catch] expo_sfx_backend:playback', e instanceof Error ? e.message : String(e));
+    }
     this.evictIdleEntries();
   }
 
@@ -236,9 +240,15 @@ export class ExpoSfxBackend {
     if (!playback) return;
     this.activePlayback.delete(token);
     playback.entry.activeToken = null;
-    try { playback.subscription?.remove(); } catch {}
-    try { playback.player.pause(); } catch {}
-    try { void playback.player.seekTo(0); } catch {}
+    try { playback.subscription?.remove(); } catch (e) {
+      console.warn('[silent-catch] expo_sfx_backend:playback', e instanceof Error ? e.message : String(e));
+    }
+    try { playback.player.pause(); } catch (e) {
+      console.warn('[silent-catch] expo_sfx_backend:playback', e instanceof Error ? e.message : String(e));
+    }
+    try { void playback.player.seekTo(0); } catch (e) {
+      console.warn('[silent-catch] expo_sfx_backend:playback', e instanceof Error ? e.message : String(e));
+    }
     this.evictIdleEntries();
   }
 
@@ -252,7 +262,9 @@ export class ExpoSfxBackend {
         }
       }
       if (!oldest) return;
-      try { oldest.player.remove(); } catch {}
+      try { oldest.player.remove(); } catch (e) {
+      console.warn('[silent-catch] expo_sfx_backend:capacity', e instanceof Error ? e.message : String(e));
+    }
       this.cache.delete(oldest);
     }
   }

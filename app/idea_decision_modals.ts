@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import { getCanonicalUserId } from './user_id_policy';
+import { DebugLogger } from './debug-logger';
 
 const IDEA_INBOX = 'idea_inbox';
 let flushRunning = false;
@@ -88,9 +89,10 @@ export async function flushIdeaDecisionModals(): Promise<void> {
           .collection(IDEA_INBOX)
           .doc(r.id)
           .set({ seen: true, seenAt: Date.now() }, { merge: true });
-      } catch {
-        /* non-critical: покажем снова в след. раз */
-      }
+      } catch (e) {
+      // non-critical: покажем снова в след. раз
+      DebugLogger.error('idea_decision_modals:message', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   } finally {
     flushRunning = false;

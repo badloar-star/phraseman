@@ -14,6 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { ensureAnonUser, getCurrentUid, waitForAnonAuth } from './cloud_sync';
+import { DebugLogger } from './debug-logger';
 
 export type AiConsentState = 'granted' | 'denied' | 'unset';
 
@@ -41,7 +42,10 @@ export function createAiConsentModule(storageKey: string, cloudCallableName: str
 
   function notify(): void {
     listeners.forEach((listener) => {
-      try { listener(consentMemory); } catch { /* listeners must not break consent updates */ }
+      try { listener(consentMemory); } catch (e) {
+      // listeners must not break consent updates
+      DebugLogger.error('ai_consent_factory:notify', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     });
   }
 
@@ -76,9 +80,10 @@ export function createAiConsentModule(storageKey: string, cloudCallableName: str
       if (state !== previous) notify();
       try {
         await AsyncStorage.setItem(storageKey, state);
-      } catch {
-        /* no-op: в памяти уже обновлено, перезапишется при следующей попытке */
-      }
+      } catch (e) {
+      // no-op: в памяти уже обновлено, перезапишется при следующей попытке
+      DebugLogger.error('ai_consent_factory:previous', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
     recordToCloud: async () => {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
@@ -93,9 +98,10 @@ export function createAiConsentModule(storageKey: string, cloudCallableName: str
           callable = httpsCallable(getFunctions(getApp(), 'us-central1'), cloudCallableName) as typeof callable;
         }
         await callable!({ state: consentMemory });
-      } catch {
-        /* best-effort: локальный гейт (source of truth) уже обновлён */
-      }
+      } catch (e) {
+      // best-effort: локальный гейт (source of truth) уже обновлён
+      DebugLogger.error('ai_consent_factory:previous', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     },
   };
 }

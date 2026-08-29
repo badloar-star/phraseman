@@ -55,8 +55,9 @@ export async function openPhoneStateDatabase(
   } catch (error) {
     try {
       await database.closeAsync();
-    } catch {
+    } catch (e) {
       // Preserve the original SQLCipher failure; closing is best effort only.
+      console.warn('[silent-catch] database:integrityErrors', e instanceof Error ? e.message : String(e));
     }
     throw error;
   }

@@ -12,6 +12,7 @@
  * Чистые функции разбора экспортированы для юнит-тестов (tests/fc_blitz_record.test.ts).
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from '../debug-logger';
 
 export const FC_BLITZ_BEST_KEY = 'fc_blitz_best_v1';
 
@@ -120,8 +121,9 @@ export function commitBlitzScore(score: number, now = Date.now()): Promise<FcBli
     recordMemory = next;
     try {
       await AsyncStorage.setItem(FC_BLITZ_BEST_KEY, JSON.stringify(next));
-    } catch {
+    } catch (e) {
       // fail-soft: рекорд уже в памяти, следующий успешный write его сохранит
+      DebugLogger.error('blitz_record:outcome', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     return outcome;
   });

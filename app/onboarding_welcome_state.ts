@@ -26,6 +26,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
 
 /** Флаг «онбординг закончен, шторку на главной ещё не показали». */
 export const ONBOARDING_WELCOME_PENDING_KEY = 'onboarding_welcome_pending_v1';
@@ -41,9 +42,10 @@ export async function markOnboardingWelcomePending(): Promise<void> {
     // одноразовый useEffect успел прочитать диск раньше этой записи (гонка
     // старта — см. комментарий у события в app/events.ts).
     emitAppEvent('onboarding_welcome_pending_raised');
-  } catch {
-    // best-effort: не показать приветствие не страшно, ронять онбординг — страшно.
-  }
+  } catch (e) {
+      // best-effort: не показать приветствие не страшно, ронять онбординг — страшно.
+      DebugLogger.error('onboarding_welcome_state:markOnboardingWelcomePending', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Читает флаг. Хост вызывает это один раз при монтировании. */
@@ -59,9 +61,10 @@ export async function isOnboardingWelcomePending(): Promise<boolean> {
 export async function clearOnboardingWelcomePending(): Promise<void> {
   try {
     await AsyncStorage.removeItem(ONBOARDING_WELCOME_PENDING_KEY);
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('onboarding_welcome_state:clearOnboardingWelcomePending', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /**
@@ -93,7 +96,8 @@ export async function raiseWelcomeGiftForExistingUserIfEligible(): Promise<void>
     // события хост навсегда остаётся при выводе «показывать нечего», и ни
     // модалка, ни начисление никогда не срабатывают для retro-пути.
     emitAppEvent('onboarding_welcome_pending_raised');
-  } catch {
-    // best-effort: пропущенный ретро-подарок не блокирует и не портит ничего.
-  }
+  } catch (e) {
+      // best-effort: пропущенный ретро-подарок не блокирует и не портит ничего.
+      DebugLogger.error('onboarding_welcome_state:alreadyOffered', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

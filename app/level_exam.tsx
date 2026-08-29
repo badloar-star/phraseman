@@ -51,6 +51,7 @@ import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { soundDirector } from '../modules/audio/sound_director';
 import LevelExamV2 from '../components/level-exam/LevelExamV2';
+import { DebugLogger } from './debug-logger';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -941,7 +942,9 @@ export default function LevelExam() {
       // множители/цепочку — поэтому прежний прямой submitProgressEvent с xpDelta:0 убран.
       const examXp = passed ? 50 + Math.round(pct / 2) : Math.max(10, Math.round(pct / 4));
       let storedName = '';
-      try { storedName = ((await AsyncStorage.getItem('user_name')) || '').trim(); } catch {}
+      try { storedName = ((await AsyncStorage.getItem('user_name')) || '').trim(); } catch (e) {
+      DebugLogger.error('level_exam:storedName', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       registerXP(examXp, 'exam_complete', storedName, lang, undefined, {
         eventId: [
           'exam',

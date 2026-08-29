@@ -11,6 +11,7 @@
  * Гейт чистый и тестируемый: статус premium передаётся аргументом, не дёргается изнутри.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 const LAST_SHOWN_KEY = 'after_win_upsell_last_shown_v1';
 /** 1.5 суток между показами after-win апсейла. */
@@ -44,7 +45,8 @@ export async function canShowAfterWinUpsell({ isPremium, nowMs }: CanShowAfterWi
 export async function markAfterWinUpsellShown(nowMs: number): Promise<void> {
   try {
     await AsyncStorage.setItem(LAST_SHOWN_KEY, String(nowMs));
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('after_win_upsell_gate:markAfterWinUpsellShown', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

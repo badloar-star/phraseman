@@ -127,6 +127,7 @@ import {
   ProfileCardSnapshot,
   ProfileCardTheme,
 } from '../app/profile_card_system';
+import { DebugLogger } from '../app/debug-logger';
 
 export interface PlayerInfo {
   name: string;
@@ -760,7 +761,10 @@ function PlayerProfileModalBody({
             setHasSeasonProfileFrame(true);
             return;
           }
-        } catch { /* пробуем следующий id */ }
+        } catch (e) {
+      // пробуем следующий id
+      DebugLogger.error('PlayerProfileModal:publicFrameId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
       if (!cancelled && needsRemoteFrame) setHasSeasonProfileFrame(false);
     })();

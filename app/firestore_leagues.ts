@@ -50,6 +50,7 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 // Дебаунс для updateMyGroupPoints — не чаще 1 раза в 8 сек
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
@@ -641,7 +642,9 @@ export async function fetchLeagueTopMembers(
             }
           });
         }
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('firestore_leagues:hasLeagueId', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
 
     return all
@@ -793,7 +796,9 @@ async function _doUpdateGroupPoints(
         points: weekPoints,
       }).catch(() => {});
     }
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_leagues:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function syncMyLeagueMemberProfileNow(): Promise<void> {
@@ -816,7 +821,9 @@ export async function syncMyLeagueMemberProfileNow(): Promise<void> {
       await getOrCreateLeagueGroup(getWeekId(), leagueId, name, weekPoints).catch(() => null);
     }
     await _doUpdateGroupPoints(weekPoints, { force: true }, accountToken);
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('firestore_leagues:state', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Тихая регистрация в группу при старте приложения ────────────────────────
@@ -893,9 +900,13 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
           JSON.stringify({ leagueId: lid, weekId, group }),
         );
         emitAppEvent('league_local_state_updated');
-      } catch {}
+      } catch (e) {
+      DebugLogger.error('firestore_leagues:lid', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  } catch {}
+    }
+  } catch (e) {
+      DebugLogger.error('firestore_leagues:lid', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // ── Загрузить участников группы ──────────────────────────────────────────────
@@ -972,7 +983,10 @@ export async function syncMyLeagueMemberBoostToCloud(): Promise<void> {
     await fn(boost && Date.now() < boost.expiresAt
       ? { stableId: uid, multiplier: boost.multiplier, expiresAt: boost.expiresAt }
       : { stableId: uid });
-  } catch { /* empty */ }
+  } catch (e) {
+      // empty
+      DebugLogger.error('firestore_leagues:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

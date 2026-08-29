@@ -289,9 +289,10 @@ export function createLearningV2ActivityCompactActionExecutorV1(
               command: "stop",
               interaction: "lifecycle",
             });
-          } catch {
-            // The native owner still owns its revocation cleanup.
-          }
+          } catch (e) {
+      // The native owner still owns its revocation cleanup.
+      console.warn('[silent-catch] activity_compact_action_executor_v1:outcome', e instanceof Error ? e.message : String(e));
+    }
           voiceState = "idle";
           return Object.freeze({ kind: "voice_result", outcome: "disposed" });
         }
@@ -365,9 +366,10 @@ export function createLearningV2ActivityCompactActionExecutorV1(
       if (voiceState === "starting" && pendingVoicePort) {
         try {
           await pendingVoicePort;
-        } catch {
-          // executeVoice converts the failure to a typed result.
-        }
+        } catch (e) {
+      // executeVoice converts the failure to a typed result.
+      console.warn('[silent-catch] activity_compact_action_executor_v1:outcome', e instanceof Error ? e.message : String(e));
+    }
       }
       if (voiceState === "recording") {
         voiceState = "stopping";
@@ -376,9 +378,10 @@ export function createLearningV2ActivityCompactActionExecutorV1(
             command: "stop",
             interaction: "lifecycle",
           });
-        } catch {
-          // The native owner is responsible for releasing its recording lease.
-        }
+        } catch (e) {
+      // The native owner is responsible for releasing its recording lease.
+      console.warn('[silent-catch] activity_compact_action_executor_v1:outcome', e instanceof Error ? e.message : String(e));
+    }
       }
       voiceState = "idle";
     },

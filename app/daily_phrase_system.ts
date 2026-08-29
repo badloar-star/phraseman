@@ -27,6 +27,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import type { CardItem } from './flashcards/types';
+import { DebugLogger } from './debug-logger';
 
 export interface DailyPhrase {
   id: string;
@@ -173,9 +174,10 @@ async function getTodayFrenchPhrase(sourceLocaleInput?: RuntimeSourceLocale): Pr
       try {
         const parsed = JSON.parse(cached) as DailyPhrase;
         if (parsed?.id?.startsWith('fr-daily-') && parsed.english?.trim()) return parsed;
-      } catch {
-        // ignore corrupt French daily cache and rebuild from the remote pack below
-      }
+      } catch (e) {
+      // ignore corrupt French daily cache and rebuild from the remote pack below
+      DebugLogger.error('daily_phrase_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
     }
   }
 
@@ -301,9 +303,10 @@ async function ensureCloudAuth(): Promise<void> {
   try {
     const mod = await import('./cloud_sync');
     await mod.ensureAnonUser().catch(() => null);
-  } catch {
-    // best-effort
-  }
+  } catch (e) {
+      // best-effort
+      DebugLogger.error('daily_phrase_system:mod', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function readRemoteTodayPhrase(date: string): Promise<DailyPhrase | null> {
@@ -362,9 +365,10 @@ export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
     const parsed = JSON.parse(raw) as Record<string, DailyPhrase | undefined>;
     const todays = parsed?.[todayKey()];
     if (todays?.english?.trim()) peekPhraseToday = todays;
-  } catch {
-    // best-effort: без peek sync-путь честно поднимет каталог, как раньше
-  }
+  } catch (e) {
+      // best-effort: без peek sync-путь честно поднимет каталог, как раньше
+      DebugLogger.error('daily_phrase_system:todays', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 function rememberPeekPhrases(today: DailyPhrase): void {
@@ -379,9 +383,10 @@ function rememberPeekPhrases(today: DailyPhrase): void {
     const tomorrowIdiom = all[(getDayIndex() + 1) % all.length];
     const tomorrowDate = new Date(Date.now() + 86400000).toISOString().split('T')[0]!;
     if (tomorrowIdiom) map[tomorrowDate] = phraseFromIdiom(tomorrowIdiom, tomorrowDate);
-  } catch {
-    // каталог недоступен — сохраним хотя бы сегодняшнюю
-  }
+  } catch (e) {
+      // каталог недоступен — сохраним хотя бы сегодняшнюю
+      DebugLogger.error('daily_phrase_system:tomorrowDate', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   void AsyncStorage.setItem(DAILY_PHRASE_PEEK_KEY, JSON.stringify(map)).catch(() => {});
 }
 
@@ -464,9 +469,10 @@ export async function setDailyPhraseSavedOnServer(phraseId: string | undefined, 
   try {
     await ensureCloudAuth();
     await fn({ phraseId: id, saved });
-  } catch {
-    // Count sync is best-effort; local flashcard save must never fail because of analytics.
-  }
+  } catch (e) {
+      // Count sync is best-effort; local flashcard save must never fail because of analytics.
+      DebugLogger.error('daily_phrase_system:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export async function setDailyPhraseSavedOnServerForTarget(

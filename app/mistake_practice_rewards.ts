@@ -24,6 +24,7 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
 } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export const MISTAKE_PRACTICE_ANSWER_XP = 5;
 export const MISTAKE_PRACTICE_COMPLETION_XP = 10;
@@ -278,8 +279,9 @@ export async function flushPendingMistakeCorrectionRewards(
         correctionEventFingerprint: replayReceipt.correctionEventFingerprint,
       });
       if (replay.granted) rewarded.add(cycleKey);
-    } catch {
+    } catch (e) {
       // Keep it pending; a later owner-bound reconciliation retries exact bytes.
+      DebugLogger.error('mistake_practice_rewards:replay', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   const corrected = [...projectMistakes(journal.events).items.values()].filter((item) =>
@@ -324,8 +326,9 @@ export async function flushPendingMistakeCorrectionRewards(
         ...input, ...item, rewardKey, replayReceipt, storage: dependencies.storage,
       });
       delivered += 1;
-    } catch {
+    } catch (e) {
       // Оставляем цикл без маркера: следующий запуск безопасно повторит тот же idempotency key.
+      DebugLogger.error('mistake_practice_rewards:replayReceipt', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return Object.freeze({

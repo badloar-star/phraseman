@@ -62,6 +62,7 @@ import {
   type AccountGenerationToken,
 } from '../app/account_generation';
 import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
+import { DebugLogger } from '../app/debug-logger';
 
 export {
   loadDualClaimedLevels,
@@ -565,9 +566,10 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
             // Apply не подтвердился — не теряем пару: оба остаются незабранными.
             await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift }, accountToken);
           }
-        } catch {
-          // Модалка уже закрыта оптимистично; фоновые ошибки хранилища не показываем.
-        }
+        } catch (e) {
+      // Модалка уже закрыта оптимистично; фоновые ошибки хранилища не показываем.
+      DebugLogger.error('LevelGiftDualModal:result', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       })();
     },
     [f2pGift, premGift, storesOnly, level, onClose],
@@ -709,9 +711,10 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           setPremAppliedMeta(premResult);
         }
         await persistDualGiftOutcome(f2p, prem, f2pResult, premResult, accountToken);
-      } catch {
-        // The modal already closed optimistically; failed parts stay retryable through persist fallback.
-      } finally {
+      } catch (e) {
+      // The modal already closed optimistically; failed parts stay retryable through persist fallback.
+      DebugLogger.error('LevelGiftDualModal:prem', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
         if (isCurrentOpening(accountToken)) setClaimNowBusy(false);
       }
     })();
@@ -744,9 +747,10 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           setPremAppliedMeta(premResult);
         }
         await persistDualGiftOutcome(f2p, prem, f2pResult, premResult, accountToken);
-      } catch {
-        // The modal has already closed optimistically; do not surface background storage noise.
-      } finally {
+      } catch (e) {
+      // The modal has already closed optimistically; do not surface background storage noise.
+      DebugLogger.error('LevelGiftDualModal:prem', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
         if (isCurrentOpening(accountToken)) setClaimNowBusy(false);
       }
     })();

@@ -10,6 +10,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { DebugLogger } from './debug-logger';
 
 const CACHE_KEY = 'leaderboard_stats_cache_v2';
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 час
@@ -58,7 +59,10 @@ export async function fetchLeaderboardStats(): Promise<GlobalLeaderboardStats | 
         return cached.data;
       }
     }
-  } catch { /* */ }
+  } catch (e) {
+      // 
+      DebugLogger.error('leaderboard_stats:raw', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   // Firestore
   const db = getFirestore();

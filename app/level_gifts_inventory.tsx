@@ -64,6 +64,7 @@ import {
   type GiftRarity,
 } from './gift_gradient_palette';
 import type { ThemeMode } from '../constants/theme';
+import { DebugLogger } from './debug-logger';
 
 // зачем 2026-08-03 (владелец: «полностью измени цвета градиентов подарков,
 // сделай под каждую тему свои цвета и форму градиента»): здесь жили giftAccent
@@ -342,8 +343,9 @@ export default function LevelGiftsInventoryScreen() {
       if (isCurrentAccountGeneration(accountToken, stableId)) {
         setSpinBalance(status.balance);
       }
-    } catch {
+    } catch (e) {
       // Offline/error: keep the account-scoped cached count without blocking legacy gifts.
+      DebugLogger.error('level_gifts_inventory:status', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }, []);
 

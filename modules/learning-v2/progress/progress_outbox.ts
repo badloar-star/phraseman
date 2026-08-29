@@ -313,9 +313,10 @@ export const createProgressOutbox = (
     if (source === "legacy" && storage.removeItem) {
       try {
         await storage.removeItem(LEGACY_KEY(accountKey));
-      } catch {
-        // V2 is authoritative once its write succeeds; stale V1 is ignored.
-      }
+      } catch (e) {
+      // V2 is authoritative once its write succeeds; stale V1 is ignored.
+      console.warn('[silent-catch] progress_outbox:accountKey', e instanceof Error ? e.message : String(e));
+    }
       assertGeneration(scope);
     }
   };

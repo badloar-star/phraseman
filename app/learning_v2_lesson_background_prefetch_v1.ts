@@ -41,6 +41,7 @@ import {
   LEARNING_V2_COURSE_LESSON_COUNT_V1,
   LEARNING_V2_LESSON_SESSION_COUNT_V1,
 } from "../modules/learning-v2/content/course_topology_v1";
+import { DebugLogger } from './debug-logger';
 
 // Столько же воркеров, сколько в прогреве фраз (hooks/phrase_audio_prefetch.ts)
 // и в предзагрузке Learning V2 — больше заметно отбирает канал у активного
@@ -65,10 +66,10 @@ function loadNetInfo(
     }>;
     if (mod?.default?.fetch) return mod.default;
     if (typeof mod?.fetch === "function") return mod as NetInfoLike;
-  } catch {
-    // NetInfo недоступен (тесты, web) — трактуем как «не Wi-Fi»: лучше не
-    // скачать урок целиком заранее, чем молча сжечь чей-то мобильный трафик.
-  }
+  } catch (e) {
+      // NetInfo недоступен (тесты, web) — трактуем как «не Wi-Fi»: лучше не // скачать урок целиком заранее, чем молча сжечь чей-то мобильный трафик.
+      DebugLogger.error('learning_v2_lesson_background_prefetch_v1:mod', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return null;
 }
 
@@ -167,9 +168,9 @@ export function prefetchLearningV2LessonInBackgroundV1(
           await Promise.all(workers);
         },
       );
-    } catch {
-      // Лизинг отменён (активная сессия попросила тишину сети) — штатный
-      // исход, очередь просто не докачалась в этот раз.
+    } catch (e) {
+      // Лизинг отменён (активная сессия попросила тишину сети) — штатный // исход, очередь просто не докачалась в этот раз.
+      DebugLogger.error('learning_v2_lesson_background_prefetch_v1:sessionOrdinal', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   })();
 

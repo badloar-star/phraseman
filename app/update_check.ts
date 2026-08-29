@@ -14,6 +14,7 @@ import Constants from 'expo-constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import { UPDATE_CHECK_URL, STORE_URL_IOS, STORE_URL_ANDROID } from './config';
+import { DebugLogger } from './debug-logger';
 
 interface PlatformVersionManifest {
   versionCode?: number;
@@ -93,7 +94,9 @@ async function shouldShow(): Promise<boolean> {
 export async function markUpdateSeen(): Promise<void> {
   try {
     await AsyncStorage.setItem(LAST_CHECK_KEY, String(Date.now()));
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('update_check:markUpdateSeen', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 // Возвращает UpdateInfo если есть новая версия и прошли сутки, иначе null.

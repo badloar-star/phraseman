@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { DebugLogger } from './debug-logger';
 
 const KEY_PREFIX = 'ai_dialog_intro_seen:v1';
 const seenMemory = new Map<string, boolean>();
@@ -44,7 +45,8 @@ export async function markAiDialogIntroSeen(
   seenMemory.set(key, true);
   try {
     await AsyncStorage.setItem(key, '1');
-  } catch {
-    // Best-effort local flag.
-  }
+  } catch (e) {
+      // Best-effort local flag.
+      DebugLogger.error('ai_dialog_intro_seen:key', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }

@@ -62,6 +62,7 @@ import {
   type StudyTargetLang,
 } from './study_target_lang_dev';
 import { commitPhoneStateDurableAction } from './phone_state_recovery';
+import { DebugLogger } from './debug-logger';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type WelcomeStep = 'welcome' | 'goal' | 'level' | 'done';
@@ -227,9 +228,10 @@ export default function LanguageWelcomeScreen() {
         if (committed) {
           setStep('done'); // язык активирован → экран-подтверждение, а не молчаливый выход
         }
-      } catch {
-        // Local durability recovery owns retry and neutral user feedback.
-      } finally {
+      } catch (e) {
+      // Local durability recovery owns retry and neutral user feedback.
+      DebugLogger.error('language_welcome:committed', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
         setBusy(false);
       }
     })();

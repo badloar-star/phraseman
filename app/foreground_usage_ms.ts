@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, type AppStateStatus } from 'react-native';
 import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
 
 const STORAGE_KEY = 'phraseman_foreground_usage_ms_v1';
 /** UTC-календарный день → миллисекунды только в foreground (активное окно). */
@@ -80,7 +81,10 @@ async function mergeDeltaIntoDailyBuckets(deltaMs: number, rangeStart: number): 
   const pruned = pruneDailyMap(map);
   try {
     await AsyncStorage.setItem(DAILY_STORAGE_KEY, JSON.stringify(pruned));
-  } catch { /* */ }
+  } catch (e) {
+      // 
+      DebugLogger.error('foreground_usage_ms:pruned', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 async function addDelta(delta: number, rangeStart: number): Promise<number> {
@@ -92,7 +96,10 @@ async function addDelta(delta: number, rangeStart: number): Promise<number> {
   try {
     await AsyncStorage.setItem(STORAGE_KEY, String(next));
     persisted = true;
-  } catch { /* */ }
+  } catch (e) {
+      // 
+      DebugLogger.error('foreground_usage_ms:persisted', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   await mergeDeltaIntoDailyBuckets(capped, rangeStart);
   if (persisted) emitAppEvent('foreground_usage_changed', { totalMs: next });
   return next;

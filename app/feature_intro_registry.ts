@@ -9,6 +9,7 @@ import type React from 'react';
 import type Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { captureAccountGeneration } from './account_generation';
+import { DebugLogger } from './debug-logger';
 
 export type FeatureIntroTrigger = 'first_visit' | 'condition';
 export type FeatureIntroIconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -49,18 +50,20 @@ export async function shouldShowFeatureIntro(id: string): Promise<boolean> {
 export async function markFeatureIntroSeen(id: string): Promise<void> {
   try {
     await AsyncStorage.setItem(seenStorageKey(id), '1');
-  } catch {
-    // Не критично: в худшем случае покажется снова в следующий раз.
-  }
+  } catch (e) {
+      // Не критично: в худшем случае покажется снова в следующий раз.
+      DebugLogger.error('feature_intro_registry:markFeatureIntroSeen', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 /** Только для витрины движения (DEV Hub): стирает «показано» для ВСЕХ зарегистрированных интро текущего аккаунта. */
 export async function resetAllFeatureIntrosSeen(): Promise<void> {
   try {
     await AsyncStorage.multiRemove(FEATURE_INTRO_REGISTRY.map((def) => seenStorageKey(def.id)));
-  } catch {
-    // dev-only утилита — тихий отказ достаточен.
-  }
+  } catch (e) {
+      // dev-only утилита — тихий отказ достаточен.
+      DebugLogger.error('feature_intro_registry:resetAllFeatureIntrosSeen', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 }
 
 export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [

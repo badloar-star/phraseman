@@ -6322,9 +6322,10 @@ export const validateV2LearningPackage = (
         }
       }
     }
-  } catch {
-    // The canonical snapshot below reports hostile descriptor/proxy traps.
-  }
+  } catch (e) {
+      // The canonical snapshot below reports hostile descriptor/proxy traps.
+      console.warn('[silent-catch] validation:schemaDescriptor', e instanceof Error ? e.message : String(e));
+    }
   const inputSnapshot = snapshotCanonicalJsonInput(input, "$", snapshotOptions);
   if (inputSnapshot.ok === false) return fail([inputSnapshot.issue]);
   return safely(() =>
@@ -6923,9 +6924,10 @@ export const validateV2EpisodeContract = (
         };
       }
     }
-  } catch {
-    // The canonical snapshot below reports hostile descriptors/proxies fail-closed.
-  }
+  } catch (e) {
+      // The canonical snapshot below reports hostile descriptors/proxies fail-closed.
+      console.warn('[silent-catch] validation:schemaDescriptor', e instanceof Error ? e.message : String(e));
+    }
   const snapshot = snapshotCanonicalJsonInput(
     input,
     "$.episode",

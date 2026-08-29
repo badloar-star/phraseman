@@ -24,6 +24,7 @@ import {
 import { bumpStatsDaily } from '../app/stats_daily_breakdown';
 import { setDailyPhraseSavedOnServerForTarget } from '../app/daily_phrase_system';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
+import { DebugLogger } from '../app/debug-logger';
 
 interface Props {
   en: string;
@@ -144,8 +145,9 @@ function AddToFlashcard({
       if (result && typeof result === 'object' && 'catch' in result) {
         (result as Promise<unknown>).catch(() => {});
       }
-    } catch {
+    } catch (e) {
       // Saving/removing the flashcard is the primary action; rewards and analytics are best-effort.
+      DebugLogger.error('AddToFlashcard:result', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
 

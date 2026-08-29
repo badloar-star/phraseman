@@ -3,6 +3,7 @@ import { useSyncExternalStore } from 'react';
 import { getLevelFromXP } from '../constants/theme';
 import type { PersonalProgressProjection } from '../modules/phone-state/domains/progress_projection';
 import { patchAppSnapshotFromPersonalProgress } from './app_snapshot_store';
+import { DebugLogger } from './debug-logger';
 
 export type PersonalProgressSnapshot = PersonalProgressProjection & Readonly<{
   hydrated: boolean;
@@ -110,7 +111,10 @@ async function readLegacyProjection(): Promise<PersonalProgressProjection> {
   try {
     const parsed: unknown = JSON.parse(pairs.get('unlocked_lessons') ?? '[]');
     if (Array.isArray(parsed)) unlockedLessons = parsed.map(String).sort();
-  } catch { /* malformed legacy projection starts empty */ }
+  } catch (e) {
+      // malformed legacy projection starts empty
+      DebugLogger.error('personal_progress_store:activityDate', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return Object.freeze({
     totalXp,
     level: getLevelFromXP(totalXp),

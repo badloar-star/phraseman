@@ -34,6 +34,7 @@ import {
   type SoftUpsellTrigger,
 } from './soft_upsell_core';
 import type { GovernedProductAnalyticsEventName } from './product_analytics_event_catalog';
+import { DebugLogger } from './debug-logger';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
@@ -266,18 +267,20 @@ export function isPosthogEnabled(): boolean {
 export const identifyUser = async (userId: string, props: Record<string, unknown> = {}): Promise<void> => {
   try {
     identifyPostHog(userId, props);
-  } catch {
-    // analytics must never crash the app
-  }
+  } catch (e) {
+      // analytics must never crash the app
+      DebugLogger.error('analytics:identifyUser', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Сбросить идентификацию (вызывать при выходе). */
 export const resetAnalyticsIdentity = async (): Promise<void> => {
   try {
     resetPostHog();
-  } catch {
-    // ignore
-  }
+  } catch (e) {
+      // ignore
+      DebugLogger.error('analytics:resetAnalyticsIdentity', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 // ── Запись события (фасад) ─────────────────────────────────────────────────────
@@ -294,16 +297,18 @@ export const trackEvent = async (
   // 1) Firebase — синхронно, не блокирует
   try {
     firebaseLogEvent(firebaseSafeName(event), firebaseSafeParams(props));
-  } catch {
-    /* аналитика не должна ломать приложение */
-  }
+  } catch (e) {
+      // аналитика не должна ломать приложение
+      DebugLogger.error('analytics:eventKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   // 2) PostHog — no-op, если ключ не задан
   try {
     capturePostHog(event, props);
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('analytics:eventKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 
   // 3) Offline-очередь (резерв/отладка)
   try {
@@ -314,9 +319,10 @@ export const trackEvent = async (
     eventQueueCache.push({ event, props, ts: now });
     if (eventQueueCache.length > MAX_QUEUE) eventQueueCache.splice(0, eventQueueCache.length - MAX_QUEUE);
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(eventQueueCache));
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('analytics:eventKey', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 export const SOFT_UPSELL_ANALYTICS_EVENTS = [
@@ -416,9 +422,10 @@ export const clearEventQueue = async (): Promise<void> => {
   try {
     eventQueueCache = [];
     await AsyncStorage.removeItem(STORAGE_KEY);
-  } catch {
-    /* no-op */
-  }
+  } catch (e) {
+      // no-op
+      DebugLogger.error('analytics:clearEventQueue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /** Сброс локальной очереди (события уже ушли в Firebase/PostHog в реальном времени). */
@@ -433,7 +440,10 @@ export const flushAnalytics = async (): Promise<void> => {
     // (события всё равно записаны локально до этого вызова).
     if (isPostHogEnabled()) {
       for (const e of queue) {
-        try { capturePostHog(e.event, e.props); } catch { /* ignore */ }
+        try { capturePostHog(e.event, e.props); } catch (e) {
+      // ignore
+      DebugLogger.error('analytics:queue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
       }
     }
 
@@ -442,7 +452,9 @@ export const flushAnalytics = async (): Promise<void> => {
     }
 
     await clearEventQueue();
-  } catch {}
+  } catch (e) {
+      DebugLogger.error('analytics:queue', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

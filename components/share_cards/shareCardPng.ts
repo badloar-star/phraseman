@@ -2,6 +2,7 @@ import { cacheDirectory, writeAsStringAsync, EncodingType } from 'expo-file-syst
 import { Share } from 'react-native';
 import type { RefObject } from 'react';
 import Svg from 'react-native-svg';
+import { DebugLogger } from '../../app/debug-logger';
 
 function stripDataUrl(b64: string) {
   const i = b64.indexOf(',');
@@ -17,9 +18,10 @@ async function sharePngWithExpoSharing(path: string): Promise<boolean> {
       await Sharing.shareAsync(path, { mimeType: 'image/png' });
       return true;
     }
-  } catch {
-    // «Cannot find native module 'ExpoSharing'» — старый dev client / веб / неполная сборка
-  }
+  } catch (e) {
+      // «Cannot find native module 'ExpoSharing'» — старый dev client / веб / неполная сборка
+      DebugLogger.error('shareCardPng:Sharing', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   return false;
 }
 

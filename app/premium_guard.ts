@@ -79,8 +79,9 @@ export function beginPremiumAccountTransition(): number {
   for (const listener of _premiumAccountTransitionListeners) {
     try {
       listener(epoch);
-    } catch {
+    } catch (e) {
       // A broken UI subscriber must not interrupt an auth/account transition.
+      DebugLogger.error('premium_guard:epoch', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
   return epoch;
@@ -390,8 +391,9 @@ function refreshRealPremiumInBackground(
         cacheReal(false, generation);
         emitAppEvent('premium_deactivated');
       }
-    } catch {
+    } catch (e) {
       // Offline is expected: the bounded local decision remains authoritative.
+      DebugLogger.error('premium_guard:persisted', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   })().finally(() => {
     if (_realPremiumBackgroundRefreshes.get(generation.generation) === refresh) {
